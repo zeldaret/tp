@@ -125,7 +125,7 @@ void daAlink_c::makeArrow() {
         mItemAcKeep.setData(arrow_actor);
     }
 
-    field_0x3018 = 0;
+    mItemVar0.field_0x3018 = 0;
 }
 
 /* 800DEAE4-800DEB8C 0D9424 00A8+00 3/3 0/0 0/0 .text            deleteArrow__9daAlink_cFv */

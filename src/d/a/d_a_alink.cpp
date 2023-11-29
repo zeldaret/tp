@@ -5814,8 +5814,8 @@ SECTION_RODATA static Vec const hookRoot = {
 COMPILER_STRIP_GATE(0x80391A08, &hookRoot);
 
 /* 80391A14-80391A20 01E074 000C+00 1/1 0/0 0/0 .rodata          bottleTop$32160 */
-SECTION_RODATA static u8 const bottleTop[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const bottleTop = {
+    0.0f, 25.0f, 0.0f,
 };
 COMPILER_STRIP_GATE(0x80391A14, &bottleTop);
 
@@ -16253,7 +16253,7 @@ int daAlink_c::cancelUpperItemReadyAnime(int param_0) {
         seStartSystem(0x6F);
 
         if (mEquipItem == IRONBALL) {
-            field_0x3018 = 8;
+            mItemVar0.field_0x3018 = 8;
             procIronBallReturnInit();
         } else {
             resetUpperAnime(UPPER_2, 3.0f);

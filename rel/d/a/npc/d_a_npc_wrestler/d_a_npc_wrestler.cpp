@@ -3,7 +3,8 @@
 // Translation Unit: d_a_npc_wrestler
 //
 
-#include "rel/d/a/npc/d_a_npc_wrestler/d_a_npc_wrestler.h"
+// #include "rel/d/a/npc/d_a_npc_wrestler/d_a_npc_wrestler.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

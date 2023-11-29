@@ -3711,7 +3711,7 @@ int daAlink_c::draw() {
 
     if (mClothesChangeWaitTimer != 0) {
         if (mProcID == PROC_METAMORPHOSE) {
-            if (mProcVar3.field_0x300e > 0) {
+            if (mProcVar3.field_0x300e.x > 0) {
                 mTevStr.mFogColor.r = 255;
             } else {
                 mTevStr.mFogColor.r = -255;

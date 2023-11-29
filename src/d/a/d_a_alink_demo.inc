@@ -2961,7 +2961,7 @@ int daAlink_c::procCoDead() {
     }
 
     if (!i_checkNoResetFlg2(FLG2_UNK_40000)) {
-        mProcVar3.field_0x300e.x++;
+        mProcVar3.field_0x300e++;
         if (mProcVar3.field_0x300e.x == 2) {
             dCam_getBody()->StartEventCamera(9, fopAcM_GetID(this), 0);
         } else if (mProcVar3.field_0x300e.x > 10) {

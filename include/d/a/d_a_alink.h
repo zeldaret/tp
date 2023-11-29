@@ -2032,7 +2032,7 @@ public:
     /* 800EA4CC */ int procGoronMove();
     /* 800EA844 */ BOOL checkSumouVsActor();
     /* 800EA8D0 */ void cancelSumouMode();
-    /* 800EA908 */ void sumouPunchTrigger();
+    /* 800EA908 */ BOOL sumouPunchTrigger();
     /* 800EA92C */ void setSumouPunchStatus();
     /* 800EA950 */ int procSumouReadyInit();
     /* 800EAA28 */ int procSumouReady();
@@ -2040,7 +2040,7 @@ public:
     /* 800EAD84 */ int procSumouMove();
     /* 800EB208 */ int procSumouSideMoveInit();
     /* 800EB2BC */ int procSumouSideMove();
-    /* 800EB624 */ int procSumouActionInit(int, int, int);
+    /* 800EB624 */ int procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int unused);
     /* 800EBCE0 */ int procSumouAction();
     /* 800EC0F8 */ int procSumouStaggerInit();
     /* 800EC170 */ int procSumouStagger();
@@ -3206,7 +3206,7 @@ public:
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
     s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
     bool checkFisingRodLure() const { return mEquipItem == noentry73; }
-    bool doTrigger() const { return mItemTrigger & BTN_A; }
+    BOOL doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
     u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
@@ -3448,11 +3448,11 @@ private:
     /* 0x00710 */ J3DModel* field_0x0710;  // related to held item
     /* 0x00714 */ J3DModel* field_0x0714;  // related to held item
     /* 0x00718 */ J3DAnmTextureSRTKey* field_0x0718;
-    /* 0x0071C */ J3DAnmBase* field_0x071c;
-    /* 0x00720 */ J3DAnmBase* field_0x0720;
+    /* 0x0071C */ J3DAnmTextureSRTKey* field_0x071c;
+    /* 0x00720 */ J3DAnmTextureSRTKey* field_0x0720;
     /* 0x00724 */ J3DAnmTevRegKey* field_0x0724;
     /* 0x00728 */ J3DAnmBase* field_0x0728;
-    /* 0x0072C */ J3DAnmBase* field_0x072c;
+    /* 0x0072C */ J3DAnmTexPattern* field_0x072c;
     /* 0x00730 */ mDoExt_bckAnm mItemBck;
     /* 0x0074C */ mDoExt_bckAnm mHookTipBck;
     /* 0x00768 */ J3DModelData* mpHookKusariModelData;
@@ -3703,7 +3703,10 @@ private:
     } /* 0x0300E */ mProcVar3;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
-    /* 0x03018 */ s16 field_0x3018;
+    union {
+        s16 field_0x3018;
+        s16 mBottleItemHealAmount;
+    } /* 0x03018 */ mItemVar0;
     /* 0x0301A */ s16 mItemMode;
     /* 0x0301C */ s16 field_0x301c;
     /* 0x0301E */ s16 field_0x301e;
@@ -6020,7 +6023,7 @@ public:
     /* 0x50 */ daAlinkHIO_anm_c mSwingDownAnm;
     /* 0x64 */ daAlinkHIO_anm_c mSwingSideAnm;
     /* 0x78 */ daAlinkHIO_anm_c mGetAnm;
-    /* 0x8C */ daAlinkHIO_anm_c field_0x8C;
+    /* 0x8C */ daAlinkHIO_anm_c mDrinkNastyAnm;
     /* 0xA0 */ daAlinkHIO_anm_c mScoopAnm;
 };  // Size: 0xB4
 

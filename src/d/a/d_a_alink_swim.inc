@@ -809,7 +809,7 @@ int daAlink_c::procSwimHookshotMoveInit() {
     field_0x3198 = -1;
     field_0x2f98 = 5;
 
-    if (field_0x3018 == 0) {
+    if (mItemVar0.field_0x3018 == 0) {
         setSwimMoveAnime();
     }
 
@@ -842,7 +842,7 @@ int daAlink_c::procSwimHookshotMove() {
         setDoStatus(0x12);
     }
 
-    if (field_0x3018 == 0) {
+    if (mItemVar0.field_0x3018 == 0) {
         setSpeedAndAngleSwim();
         setSwimMoveAnime();
     }

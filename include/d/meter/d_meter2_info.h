@@ -157,6 +157,7 @@ public:
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
+    void onBlinkButton(int i_flag) { mBlinkButton |= i_flag; }
     void setCollectCursorPosXY(u8 x, u8 y) {
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
@@ -607,6 +608,10 @@ inline u16 dMeter2Info_getFloatingFlowID() {
 
 inline void dMeter2Info_setCollectCursorPosXY(u8 x, u8 y) {
     g_meter2_info.setCollectCursorPosXY(x, y);
+}
+
+inline void dMeter2Info_onBlinkButton(int i_flag) {
+    g_meter2_info.onBlinkButton(i_flag);
 }
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);

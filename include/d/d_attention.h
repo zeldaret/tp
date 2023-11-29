@@ -205,7 +205,7 @@ public:
     /* 80182AD0 */ void keepLock(int);
     /* 8014B010 */ static dist_entry& getDistTable(int);
 
-    dAttCatch_c& getCatghTarget() { return mCatghTarget; }
+    fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }
     BOOL chkFlag(u32 flag) { return (mFlags & flag) ? TRUE : FALSE; }
     void setFlag(u32 flag) { mFlags |= flag; }
@@ -220,6 +220,12 @@ public:
     void LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist, f32 i_downDist,
                      s16 i_angle, int param_5) {
         mLookTarget.request(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle, param_5);
+    }
+
+    void CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist, f32 i_upDist,
+                      f32 i_downDist, s16 i_angle, int param_5) {
+        mCatghTarget.request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
+                             param_5);
     }
 
     static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }

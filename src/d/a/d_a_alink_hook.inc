@@ -435,7 +435,7 @@ void daAlink_c::initHookshotReady() {
 
     dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
 
-    field_0x3018 = 3;
+    mItemVar0.field_0x3018 = 3;
     field_0x3494 = lit_6041;
 }
 
@@ -462,7 +462,7 @@ int daAlink_c::checkUpperItemActionHookshot() {
     }
 
     if (mItemMode == HS_MODE_READY_e) {
-        if (!itemButton() && field_0x3018 == 0 && checkReadyItem()) {
+        if (!itemButton() && mItemVar0.field_0x3018 == 0 && checkReadyItem()) {
             mItemMode = 2;
             field_0x3026 = 0;
             field_0x3494 = lit_6041;
@@ -543,8 +543,8 @@ int daAlink_c::checkUpperItemActionHookshot() {
         return procHookshotFlyInit();
     }
 
-    if (field_0x3018 > 0) {
-        field_0x3018--;
+    if (mItemVar0.field_0x3018 > 0) {
+        mItemVar0.field_0x3018--;
     }
 
     return cancelUpperItemReadyAnime(0);
@@ -803,7 +803,7 @@ void daAlink_c::setHookshotPos() {
     if (checkHookshotWait() || mItemMode == 2) {
         csXyz* var_r28;
         if (mProcID == PROC_HOOKSHOT_WALL_SHOOT || mProcID == PROC_HOOKSHOT_ROOF_SHOOT) {
-            var_r28 = &mProcVar3.field_0x300e;
+            var_r28 = &mProcVar3.field_0x300e.x;
         } else {
             var_r28 = &mBodyAngle;
         }

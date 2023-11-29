@@ -370,6 +370,7 @@ public:
     }
 
     u8& getItemLifeCountType() { return mItemLifeCountType; }
+    u16 getItemNowLife() { return mItemNowLife; }
     s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
     void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
     u8 getNeedLightDropNum() { return mNeedLightDropNum; }
@@ -1780,6 +1781,14 @@ inline void dComIfGs_setTransformStatus(u8 i_status) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setTransformStatus(i_status);
 }
 
+inline void dComIfGs_setEquipBottleItemIn(u8 i_curItem, u8 i_newItem) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEquipBottleItemIn(i_curItem, i_newItem);
+}
+
+inline void dComIfGs_setEquipBottleItemEmpty(u8 i_curItem) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setEquipBottleItemEmpty(i_curItem);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1825,6 +1834,7 @@ static u8 dComIfGp_getRStatus();
 static dAttCatch_c* dComIfGp_att_getCatghTarget();
 static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
 bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
+void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
 
 inline void dComIfGp_itemDataInit() {
     g_dComIfG_gameInfo.play.itemInit();
@@ -1862,6 +1872,10 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
+inline fopAc_ac_c* i_dComIfGp_att_getCatghTarget() {
+    return dComIfGp_getAttention().getCatghTarget();
+}
+
 inline int dComIfGp_att_ZHintRequest(fopAc_ac_c* param_1, int param_2) {
     return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
 }
@@ -1874,8 +1888,8 @@ inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, 
 
 inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
                                       f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention().getCatghTarget().request(param_0, param_1, i_horizontalDist, i_upDist,
-                                                     i_downDist, i_angle, param_5);
+    dComIfGp_getAttention().CatchRequest(param_0, param_1, i_horizontalDist, i_upDist,
+                                         i_downDist, i_angle, param_5);
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -2753,6 +2767,10 @@ inline void dComIfGp_clearItemMaxLifeCount() {
 
 inline u8 dComIfGp_getItemLifeCountType() {
     return g_dComIfG_gameInfo.play.getItemLifeCountType();
+}
+
+inline u16 dComIfGp_getItemNowLife() {
+    return g_dComIfG_gameInfo.play.getItemNowLife();
 }
 
 inline int dComIfGp_getMessageCountNumber() {

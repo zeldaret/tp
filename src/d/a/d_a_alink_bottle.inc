@@ -3,6 +3,8 @@
  * Player Bottle action handling
  */
 
+#include "d/a/d_a_alink.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_insect.h"
 
 /* 8010E48C-8010E52C 108DCC 00A0+00 1/1 0/0 0/0 .text            bottleModelCallBack__9daAlink_cFv
@@ -20,10 +22,10 @@ int daAlink_c::bottleModelCallBack() {
 
 /* 8010E52C-8010E568 108E6C 003C+00 1/1 0/0 0/0 .text daAlink_bottleModelCallBack__FP8J3DJointi */
 static int daAlink_bottleModelCallBack(J3DJoint* i_joint, int param_1) {
-    daAlink_c* link = (daAlink_c*)j3dSys.getModel()->getUserArea();
+    daAlink_c* player_p = (daAlink_c*)j3dSys.getModel()->getUserArea();
 
     if (param_1 == 0) {
-        link->bottleModelCallBack();
+        player_p->bottleModelCallBack();
     }
 
     return 1;
@@ -45,6 +47,103 @@ BOOL daAlink_c::checkOilBottleItemNotGet(u16 i_itemNo) {
 }
 
 /* 8010E5D8-8010EAC4 108F18 04EC+00 7/7 0/0 0/0 .text            setBottleModel__9daAlink_cFUs */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::setBottleModel(u16 i_itemNo) {
+    JKRHeap* prev_heap = setItemHeap();
+    mHeldItemModel = initModelEnv(loadAramBmd(0x310, 0x5C00), 0x1020200);
+    field_0x072c = loadAramItemBtp(0x3AE, mHeldItemModel);
+    field_0x0724 = loadAramItemBrk(0x322, mHeldItemModel);
+
+    if (checkDrinkBottleItem(i_itemNo) || checkOilBottleItemNotGet(i_itemNo)) {
+        field_0x071c = loadAramItemBtk(0x328, mHeldItemModel);
+        field_0x0720 = loadAramItemBtk(0x327, mHeldItemModel);
+    } else {
+        field_0x071c = loadAramItemBtk(0x32A, mHeldItemModel);
+        field_0x0720 = loadAramItemBtk(0x329, mHeldItemModel);
+    }
+
+    field_0x0718 = loadAramItemBtk(0x32B, mHeldItemModel);
+
+    if (i_itemNo == FAIRY) {
+        J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E8, 0xC00);
+        mpHookTipModel = initModel(loadAramBmd(0x31D, 0x1400), 0);
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+            JUT_ASSERT(142, 0);
+        }
+        mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
+    } else if (i_itemNo == WORM) {
+        J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E9, 0xC00);
+        mpHookTipModel = initModel(loadAramBmd(0x31E, 0x2400), 0);
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+            JUT_ASSERT(151, 0);
+        }
+        mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
+    } else if (i_itemNo == BEE_CHILD) {
+        mpHookTipModel = initModel(loadAramBmd(0x31C, 0x1000), 0);
+    }
+
+    mDoExt_setCurrentHeap(prev_heap);
+
+    J3DModelData* item_model_data = mHeldItemModel->getModelData();
+    mEquipItem = i_itemNo;
+
+    if (checkOilBottleItemNotGet(i_itemNo)) {
+        item_model_data->getJointNodePointer(1)->setCallBack(NULL);
+        field_0x2f95 = 9;
+    } else {
+        item_model_data->getJointNodePointer(1)->setCallBack(daAlink_bottleModelCallBack);
+        mHeldItemModel->setUserArea((u32)this);
+        field_0x2f94 = 3;
+        mItemMode = 0;
+    }
+
+    if ((checkDrinkBottleItem(i_itemNo) && i_itemNo != BEE_CHILD) || checkOilBottleItem(i_itemNo)) {
+        item_model_data->getMaterialNodePointer(0)->getShape()->hide();
+
+        if (i_itemNo == RED_BOTTLE || i_itemNo == CHUCHU_RED || i_itemNo == RED_BOTTLE_2) {
+            field_0x0724->setFrame(0.0f);
+        } else if (i_itemNo == GREEN_BOTTLE || i_itemNo == CHUCHU_GREEN) {
+            field_0x0724->setFrame(1.0f);
+        } else if (i_itemNo == BLUE_BOTTLE || i_itemNo == CHUCHU_BLUE) {
+            field_0x0724->setFrame(2.0f);
+        } else if (checkOilBottleItem(i_itemNo)) {
+            field_0x0724->setFrame(4.0f);
+        } else if (i_itemNo == HOT_SPRING) {
+            field_0x0724->setFrame(5.0f);
+        } else if (i_itemNo == CHUCHU_PURPLE) {
+            field_0x0724->setFrame(6.0f);
+        } else if (i_itemNo == CHUCHU_RARE) {
+            field_0x0724->setFrame(7.0f);
+        } else if (i_itemNo == UGLY_SOUP || i_itemNo == CHUCHU_BLACK) {
+            field_0x0724->setFrame(8.0f);
+        } else if (i_itemNo == LV1_SOUP) {
+            field_0x0724->setFrame(9.0f);
+        } else if (i_itemNo == LV2_SOUP || i_itemNo == LV3_SOUP) {
+            field_0x0724->setFrame(10.0f);
+        } else if (i_itemNo == FAIRY_DROP) {
+            field_0x0724->setFrame(11.0f);
+        } else {
+            field_0x0724->setFrame(3.0f);
+
+            if (i_itemNo == HALF_MILK_BOTTLE) {
+                field_0x072c->setFrame(1.0f);
+            }
+        }
+    } else if (checkOpenBottleItem(i_itemNo)) {
+        if (i_itemNo == WATER_BOTTLE) {
+            field_0x0724->setFrame(5.0f);
+        } else {
+            field_0x072c->setFrame(2.0f);
+        }
+
+        item_model_data->getMaterialNodePointer(0)->getShape()->show();
+    } else {
+        field_0x072c->setFrame(2.0f);
+        item_model_data->getMaterialNodePointer(0)->getShape()->hide();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,8 +152,200 @@ asm void daAlink_c::setBottleModel(u16 param_0) {
 #include "asm/d/a/d_a_alink/setBottleModel__9daAlink_cFUs.s"
 }
 #pragma pop
+#endif
 
 /* 8010EAC4-8010F45C 109404 0998+00 3/3 0/0 0/0 .text            commonBottleDrink__9daAlink_cFi */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::commonBottleDrink(int param_0) {
+    simpleAnmPlay(field_0x0718);
+    simpleAnmPlay(field_0x071c);
+
+    daPy_frameCtrl_c* frameCtrl_p;
+    u16 current_anm;
+    if (param_0 || mUpperAnmHeap[2].getIdx() == 0x247) {
+        frameCtrl_p = &mUpperFrameCtrl[2];
+        current_anm = mUpperAnmHeap[2].getIdx();
+    } else {
+        frameCtrl_p = &mUnderFrameCtrl[0];
+        current_anm = mUnderAnmHeap[0].getIdx();
+    }
+
+    if (current_anm == getMainBckData(ANM_BOTTLE_DRINK_START)->m_underID) {
+        if (checkAnmEnd(frameCtrl_p)) {
+            if (param_0) {
+                setUpperAnimeBaseMorf(getMainBckData(ANM_BOTTLE_DRINK)->m_upperID, 0.0f);
+                setFacePriAnime(ANM_BOTTLE_DRINK);
+            } else {
+                setSingleAnimeBaseMorf(ANM_BOTTLE_DRINK, 0.0f);
+            }
+
+            mItemVar0.mBottleItemHealAmount = 0;
+
+            if (mEquipItem != UGLY_SOUP && mEquipItem != CHUCHU_BLACK &&
+                mEquipItem != CHUCHU_PURPLE)
+            {
+                if (mEquipItem == LV1_SOUP) {
+                    i_dComIfGp_setItemLifeCount(8, 0);
+                } else if (mEquipItem == LV2_SOUP) {
+                    i_dComIfGp_setItemLifeCount(16, 0);
+                } else if (mEquipItem == LV3_SOUP) {
+                    i_dComIfGp_setItemLifeCount(32, 0);
+                } else if (mEquipItem == BEE_CHILD) {
+                    field_0x2fd3 = 3;
+                    i_dComIfGp_setItemLifeCount(dComIfGp_getSelectItemNum(mSelectItemId), 0);
+                } else if (mEquipItem == RED_BOTTLE || mEquipItem == CHUCHU_RED ||
+                           mEquipItem == RED_BOTTLE_2)
+                {
+                    i_dComIfGp_setItemLifeCount(32, 0);
+                } else if (mEquipItem == MILK_BOTTLE || mEquipItem == HALF_MILK_BOTTLE) {
+                    i_dComIfGp_setItemLifeCount(12, 0);
+                } else if (mEquipItem == BLUE_BOTTLE || mEquipItem == CHUCHU_BLUE ||
+                           mEquipItem == HOT_SPRING)
+                {
+                    i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
+                } else if (mEquipItem == CHUCHU_RARE || mEquipItem == FAIRY_DROP) {
+                    i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
+                }
+            }
+            voiceStart(Z2SE_AL_V_DRINK);
+        } else if (frameCtrl_p->checkPass(50.0f)) {
+            field_0x071c->setFrame(0.0f);
+            mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x071c);
+        }
+    } else if (current_anm == getMainBckData(ANM_BOTTLE_DRINK)->m_underID) {
+        if (dComIfGp_getItemNowLife() == i_dComIfGs_getLife()) {
+            mpHookTipModel = NULL;
+
+            if (mEquipItem == MILK_BOTTLE) {
+                if (param_0) {
+                    setUpperAnimeParam(getMainBckData(ANM_BOTTLE_DRINK_END)->m_upperID, UPPER_2,
+                                       &daAlinkHIO_bottle_c0::m.mEndDrinkAnm);
+                    setFacePriAnime(ANM_BOTTLE_DRINK_END);
+                } else {
+                    setSingleAnimeParam(ANM_BOTTLE_DRINK_END,
+                                        &daAlinkHIO_bottle_c0::m.mEndDrinkAnm);
+                }
+
+                field_0x072c->setFrame(1.0f);
+                if (mDemo.getDemoType() == 5) {
+                    dComIfGs_setEquipBottleItemIn(mSelectItemId, HALF_MILK_BOTTLE);
+                }
+            } else if (mProcVar2.field_0x300c == 0) {
+                mProcVar2.field_0x300c = 1;
+                mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0720);
+            } else if (simpleAnmPlay(field_0x0720)) {
+                if (mEquipItem == UGLY_SOUP) {
+                    if (i_dComIfGs_getLife() <= 2) {
+                        mItemVar0.mBottleItemHealAmount = dComIfGs_getMaxLifeGauge();
+                    } else if (i_dComIfGs_getLife() <= 4) {
+                        mItemVar0.mBottleItemHealAmount =
+                            (dComIfGs_getMaxLifeGauge() / 2) - i_dComIfGs_getLife();
+                    } else if (i_dComIfGs_getLife() == dComIfGs_getMaxLifeGauge() ||
+                               cM_rnd() < 0.5f)
+                    {
+                        mItemVar0.mBottleItemHealAmount = -4;
+                    } else {
+                        mItemVar0.mBottleItemHealAmount = 4;
+                    }
+                } else if (mEquipItem == CHUCHU_PURPLE) {
+                    f32 rnd = cM_rndF(6.0f);
+
+                    if (rnd < 1.0f) {
+                        mItemVar0.mBottleItemHealAmount = dComIfGs_getMaxLifeGauge();
+                    } else if (rnd < 2.0f) {
+                        mItemVar0.mBottleItemHealAmount = -(i_dComIfGs_getLife() - 1);
+                        if (mItemVar0.mBottleItemHealAmount == 0) {
+                            mItemVar0.mBottleItemHealAmount = -1;
+                        }
+                    } else if (rnd < 4.0f) {
+                        mItemVar0.mBottleItemHealAmount = -4;
+                    } else {
+                        mItemVar0.mBottleItemHealAmount = 4;
+                    }
+                } else if (mEquipItem == CHUCHU_BLACK) {
+                    mItemVar0.mBottleItemHealAmount = -4;
+                }
+
+                if (mItemVar0.mBottleItemHealAmount < 0 || mEquipItem == BEE_CHILD) {
+                    if (param_0) {
+                        setUpperAnimeParam(getMainBckData(ANM_BOTTLE_DRINK_NASTY)->m_upperID,
+                                           UPPER_2, &daAlinkHIO_bottle_c0::m.mDrinkNastyAnm);
+                        setFacePriAnime(ANM_BOTTLE_DRINK_NASTY);
+                    } else {
+                        setSingleAnimeParam(ANM_BOTTLE_DRINK_NASTY,
+                                            &daAlinkHIO_bottle_c0::m.mDrinkNastyAnm);
+                    }
+                } else if (param_0) {
+                    setUpperAnimeParam(getMainBckData(ANM_BOTTLE_DRINK_END)->m_upperID, UPPER_2,
+                                       &daAlinkHIO_bottle_c0::m.mEndDrinkAnm);
+                    setFacePriAnime(ANM_BOTTLE_DRINK_END);
+                } else {
+                    setSingleAnimeParam(ANM_BOTTLE_DRINK_END,
+                                        &daAlinkHIO_bottle_c0::m.mEndDrinkAnm);
+                }
+
+                field_0x072c->setFrame(2.0f);
+                if (mDemo.getDemoType() == 5) {
+                    dComIfGs_setEquipBottleItemEmpty(mSelectItemId);
+                }
+
+                if (mEquipItem == CHUCHU_RARE || mEquipItem == FAIRY_DROP) {
+                    mSwordUpTimer = 510;
+                }
+            }
+        }
+    } else if (current_anm == getMainBckData(ANM_BOTTLE_DRINK_END)->m_underID ||
+               current_anm == getMainBckData(ANM_BOTTLE_DRINK_NASTY)->m_underID)
+    {
+        if (checkAnmEnd(frameCtrl_p)) {
+            if (mDemo.getDemoMode() == 0x2A) {
+                setSingleAnimeParam(ANM_PICK_UP, &daAlinkHIO_pickUp_c0::m.field_0x14);
+            } else {
+                allUnequip(mKeepItem == KANTERA);
+            }
+        } else if (frameCtrl_p->checkPass(11.0f)) {
+            mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0718);
+        } else if (mItemVar0.mBottleItemHealAmount >= 0 && frameCtrl_p->checkPass(21.0f)) {
+            if (mItemVar0.mBottleItemHealAmount > 0) {
+                i_dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
+            }
+
+            voiceStart(Z2SE_AL_V_DRINK_2);
+        } else if (mItemVar0.mBottleItemHealAmount < 0) {
+            if (frameCtrl_p->checkPass(25.0f)) {
+                voiceStart(Z2SE_AL_V_DRINK_DAMAGE);
+            } else if (frameCtrl_p->checkPass(17.0f)) {
+                mDoAud_seStart(Z2SE_AL_DAMAGE_SMALL, NULL, 0, 0);
+
+                if (i_dComIfGs_getLife() <= -mItemVar0.mBottleItemHealAmount) {
+                    i_dComIfGp_setItemLifeCount(-(i_dComIfGs_getLife() - 1), 0);
+                } else {
+                    i_dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
+                }
+            }
+        }
+    } else if (current_anm == getMainBckData(ANM_PICK_UP)->m_underID) {
+        if (checkAnmEnd(frameCtrl_p)) {
+            resetUpperAnime(UPPER_2, 3.0f);
+            dCam_getBody()->EndEventCamera(fopAcM_GetID(this));
+            return 1;
+        } else if (frameCtrl_p->checkPass(9.0f)) {
+            returnKeepItemData();
+        }
+    } else if (mEquipItem == NO_ITEM || mEquipItem == KANTERA) {
+        resetUpperAnime(UPPER_2, 3.0f);
+        if (mEquipItem == NO_ITEM) {
+            returnKeepItemData();
+        }
+
+        resetSpecialEvent();
+        return 1;
+    }
+
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -63,6 +354,7 @@ asm int daAlink_c::commonBottleDrink(int param_0) {
 #include "asm/d/a/d_a_alink/commonBottleDrink__9daAlink_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8010F45C-8010F54C 109D9C 00F0+00 2/2 0/0 0/0 .text            makeFairy__9daAlink_cFP4cXyzUl */
 fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
@@ -96,7 +388,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
 
 /* 8010F54C-8010F698 109E8C 014C+00 2/2 0/0 0/0 .text            procBottleDrinkInit__9daAlink_cFUs
  */
-int daAlink_c::procBottleDrinkInit(u16 param_0) {
+int daAlink_c::procBottleDrinkInit(u16 i_itemNo) {
     if (mDemo.getDemoMode() == 0x2A) {
         if (mProcID == PROC_BOTTLE_DRINK) {
             return 1;
@@ -116,7 +408,7 @@ int daAlink_c::procBottleDrinkInit(u16 param_0) {
 
     setSingleAnimeParam(ANM_BOTTLE_DRINK_START, &daAlinkHIO_bottle_c0::m.mStartDrinkAnm);
     keepItemData();
-    setBottleModel(param_0);
+    setBottleModel(i_itemNo);
     dComIfGp_setPlayerStatus1(0, 0x2000);
     field_0x3194 = 1;
     mProcVar0.field_0x3008 = 0;
@@ -141,7 +433,7 @@ int daAlink_c::procBottleDrink() {
 
 /* 8010F6F4-8010F8E4 10A034 01F0+00 1/1 0/0 0/0 .text            procBottleOpenInit__9daAlink_cFUs
  */
-// literals
+// matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procBottleOpenInit(u16 param_0) {
     if (!dComIfGp_event_compulsory(this, 0, 0xFFFF)) {
@@ -202,6 +494,91 @@ asm int daAlink_c::procBottleOpenInit(u16 param_0) {
 #endif
 
 /* 8010F8E4-8010FC38 10A224 0354+00 1/0 0/0 0/0 .text            procBottleOpen__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procBottleOpen() {
+    daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
+
+    if (mProcVar2.field_0x300c == 0) {
+        simpleAnmPlay(field_0x0718);
+    } else if (mProcVar2.field_0x300c == 2) {
+        if (simpleAnmPlay(field_0x0720)) {
+            field_0x072c->setFrame(2.0f);
+        }
+    } else if (simpleAnmPlay(field_0x071c)) {
+        mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0718);
+        mProcVar2.field_0x300c = 0;
+    }
+
+    if (checkUnderMove0BckNoArc(ANM_BOTTLE_OPEN)) {
+        if (checkAnmEnd(frameCtrl_p)) {
+            if (mEquipItem == FAIRY) {
+                setSingleAnimeBaseMorf(ANM_BOTTLE_FAIRY, -1.0f);
+            } else {
+                setSingleAnimeParam(ANM_BOTTLE_POUR, &daAlinkHIO_bottle_c0::m.mPourAnm);
+
+                if (mEquipItem == WATER_BOTTLE) {
+                    if (mWaterY > mLeftHandPos.y) {
+                        mProcVar3.field_0x300e.x = 0;
+                    } else {
+                        mProcVar3.field_0x300e.x = 1;
+                    }
+                }
+            }
+        } else if (frameCtrl_p->checkPass(30.0f)) {
+            mItemMode = 1;
+            mProcVar2.field_0x300c = 1;
+            mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x071c);
+
+            if (mEquipItem == FAIRY) {
+                cXyz spC;
+                mDoMtx_multVec(mHeldItemModel->getBaseTRMtx(), &bottleTop, &spC);
+
+                if (makeFairy(&spC, 0)) {
+                    onModeFlg(0x8000000);
+                    mpHookTipModel = NULL;
+                    resetFairyEffect();
+                }
+            }
+        } else if (frameCtrl_p->getFrame() >= 18.0f) {
+            field_0x2f93 = 5;
+        }
+    } else {
+        if (checkAnmEnd(frameCtrl_p) && mProcVar0.field_0x3008 != 0) {
+            returnKeepItemData();
+            resetSpecialEvent();
+        } else if (frameCtrl_p->checkPass(11.0f)) {
+            mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0720);
+            mProcVar2.field_0x300c = 2;
+            dComIfGs_setEquipBottleItemEmpty(mSelectItemId);
+
+            if (mEquipItem == WATER_BOTTLE && mProcVar3.field_0x300e.x != 0) {
+                seStartOnlyReverb(Z2SE_LK_SPRINKLE_WATER);
+            }
+        } else if (frameCtrl_p->getFrame() > 16.0f && frameCtrl_p->getFrame() < 31.0f) {
+            mProcVar3.field_0x300e.y = 1;
+        } else {
+            mProcVar3.field_0x300e.y = 0;
+        }
+
+        if (mProcVar0.field_0x3008 == 0 && frameCtrl_p->getFrame() >= 25.0f) {
+            dInsect_c* insect_p = (dInsect_c*)fopAcM_SearchByID(field_0x32cc);
+            if (insect_p != NULL) {
+                mpHookTipModel = NULL;
+                mProcVar0.field_0x3008 = 1;
+                mDoMtx_multVec(mHeldItemModel->getBaseTRMtx(), &bottleTop, &insect_p->current.pos);
+                fopAcM_OnStatus(insect_p, 0x800);
+
+                if (mProcVar1.field_0x300a != 0) {
+                    insect_p->Insect_Release();
+                }
+            }
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -210,9 +587,99 @@ asm int daAlink_c::procBottleOpen() {
 #include "asm/d/a/d_a_alink/procBottleOpen__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8010FC38-8010FF58 10A578 0320+00 4/4 0/0 0/0 .text
  * procBottleSwingInit__9daAlink_cFP10fopAc_ac_ci               */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
+    fopAc_ac_c* var_r31 = param_0;
+    if (var_r31 != NULL && mEquipItem != KANTERA) {
+        return procPreActionUnequipInit(PROC_BOTTLE_SWING, NULL);
+    }
+
+    if (var_r31 == NULL && getReadyItem() != EMPTY_BOTTLE) {
+        return checkWaitAction();
+    }
+
+    commonProcInit(PROC_BOTTLE_SWING);
+    current.angle.y = shape_angle.y;
+    mNormalSpeed = 0.0f;
+    field_0x2f98 = 4;
+    mProcVar3.field_0x300e.y = param_1;
+
+    if (var_r31 != NULL) {
+        field_0x280c.setData(var_r31);
+    } else {
+        var_r31 = i_dComIfGp_att_getCatghTarget();
+    }
+
+    BOOL temp_r3;
+    s16 temp_r30;
+    if (var_r31 != NULL) {
+        if (var_r31->mAttentionInfo.mPosition.y > field_0x3834.y - 30.0f) {
+            temp_r3 = false;
+        } else {
+            temp_r3 = true;
+        }
+
+        temp_r30 = fopAcM_GetName(var_r31);
+    } else {
+        if (field_0x2fbc != 11 && field_0x2fbc != 6 && mWaterY > current.pos.y + 10.0f) {
+            temp_r3 = true;
+        } else {
+            temp_r3 = false;
+        }
+
+        temp_r30 = PROC_ALINK;
+    }
+
+    if (temp_r30 == PROC_OBJ_OILTUBO || temp_r30 == PROC_TAG_SSDRINK ||
+        temp_r30 == PROC_TAG_BTLITM || mEquipItem == KANTERA)
+    {
+        setSingleAnimeParam(ANM_BOTTLE_SCOOP, &daAlinkHIO_bottle_c0::m.mScoopAnm);
+
+        if (mEquipItem == KANTERA) {
+            i_onNoResetFlg2(FLG2_UNK_10000000);
+
+            JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(field_0x31c4);
+            if (emitter_p != NULL) {
+                emitter_p->stopDrawParticle();
+            }
+        }
+
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mScoopAnm.mCheckFrame;
+        field_0x347c = 14.0f;
+
+        if (var_r31 != NULL) {
+            shape_angle.y = cLib_targetAngleY(&current.pos, &var_r31->current.pos);
+            current.angle.y = shape_angle.y;
+
+            current.pos.x = var_r31->current.pos.x - cM_ssin(shape_angle.y) * 70.0f;
+            current.pos.z = var_r31->current.pos.z - cM_scos(shape_angle.y) * 70.0f;
+        }
+
+        if (temp_r30 == PROC_OBJ_OILTUBO) {
+            onModeFlg(0x2000);
+        }
+    } else if (temp_r3) {
+        setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCheckFrame;
+        field_0x347c = 8.0f;
+    } else {
+        setSingleAnimeParam(ANM_BOTTLE_SWING, &daAlinkHIO_bottle_c0::m.mSwingSideAnm);
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingSideAnm.mCheckFrame;
+        field_0x347c = 4.0f;
+    }
+
+    mProcVar2.field_0x300c = 0;
+    voiceStart(Z2SE_AL_V_SWING_BOTTLE);
+    seStartOnlyReverb(Z2SE_AL_SWING_BOTTLE);
+    mProcVar3.field_0x300e.x = 0;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -221,8 +688,90 @@ asm int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
 #include "asm/d/a/d_a_alink/procBottleSwingInit__9daAlink_cFP10fopAc_ac_ci.s"
 }
 #pragma pop
+#endif
 
 /* 8010FF58-801102D0 10A898 0378+00 1/0 0/0 0/0 .text            procBottleSwing__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::procBottleSwing() {
+    daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
+
+    if (mProcVar2.field_0x300c == 0) {
+        if (mEvtInfo.i_checkCommandCatch()) {
+            if (mProcVar3.field_0x300e.x == 0) {
+                dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
+                mProcVar3.field_0x300e.x = 1;
+            }
+
+            dComIfGp_setPlayerStatus1(0, 0x4000000);
+
+            if (i_dComIfGp_att_getCatghTarget() != NULL) {
+                fopAcM_OnStatus(i_dComIfGp_att_getCatghTarget(), 0x800);
+            } else if (field_0x280c.getActor() != NULL) {
+                fopAcM_OnStatus(field_0x280c.getActor(), 0x800);
+            }
+
+            if (frameCtrl_p->getFrame() > field_0x347c) {
+                mProcVar2.field_0x300c = 1;
+                offModeFlg(4);
+
+                if (mEquipItem != KANTERA) {
+                    u16 bottle_item = dComIfGp_event_getPreItemNo();
+
+                    if (bottle_item == WATER_BOTTLE &&
+                        getMoveBGActorName(mLinkAcch.m_wtr, 0) == PROC_Obj_Onsen)
+                    {
+                        bottle_item = HOT_SPRING;
+                    }
+
+                    dComIfGs_setEquipBottleItemIn(mSelectItemId, bottle_item);
+
+                    if (bottle_item == BEE_CHILD) {
+                        dComIfGp_setSelectItemNum(mSelectItemId, dComIfGs_getBottleMax());
+                    } else if (bottle_item == WATER_BOTTLE) {
+                        seStartOnlyReverb(Z2SE_LK_SCOOP_WATER);
+                    } else if (checkOilBottleItem(bottle_item)) {
+                        seStartOnlyReverb(Z2SE_AL_SCOOP_OIL);
+                    } else if (bottle_item == LV1_SOUP || bottle_item == LV2_SOUP ||
+                               bottle_item == LV3_SOUP)
+                    {
+                        seStartOnlyReverb(Z2SE_AL_SCOOP_SOUP);
+                    }
+
+                    setBottleModel(bottle_item);
+                    mHeldItemModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
+                }
+
+                mDemo.i_setSpecialDemoType();
+            }
+        } else if (frameCtrl_p->getFrame() <= field_0x347c) {
+            if (getReadyItem() == EMPTY_BOTTLE &&
+                (i_dComIfGp_att_getCatghTarget() != NULL ||
+                 (field_0x2fbc != 11 && field_0x2fbc != 6 && mWaterY > current.pos.y + 10.0f)))
+            {
+                fopAcM_orderCatchEvent(this, i_dComIfGp_att_getCatghTarget(), 0, 0);
+            } else if (mEquipItem == KANTERA) {
+                if (field_0x280c.getActor() != NULL) {
+                    fopAcM_orderCatchEvent(this, field_0x280c.getActor(), 0, 0);
+                }
+            }
+        }
+    }
+
+    if (checkAnmEnd(frameCtrl_p)) {
+        if (mProcVar2.field_0x300c != 0) {
+            procBottleGetInit(mProcVar3.field_0x300e.y);
+        } else {
+            checkNextAction(0);
+        }
+    } else if (frameCtrl_p->getFrame() > field_0x3478 && mProcVar2.field_0x300c == 0) {
+        onModeFlg(4);
+        checkNextAction(1);
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,6 +780,7 @@ asm int daAlink_c::procBottleSwing() {
 #include "asm/d/a/d_a_alink/procBottleSwing__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801102D0-80110518 10AC10 0248+00 2/2 0/0 0/0 .text            procBottleGetInit__9daAlink_cFi */
 int daAlink_c::procBottleGetInit(int param_0) {
@@ -304,7 +854,7 @@ int daAlink_c::procBottleGet() {
     if (frameCtrl->checkAnmEnd() && checkEndMessage(field_0x32cc)) {
         resetFairyEffect();
         if (mEquipItem != KANTERA) {
-            deleteEquipItem(0, 0);
+            deleteEquipItem(FALSE, FALSE);
         }
 
         resetSpecialEvent();
