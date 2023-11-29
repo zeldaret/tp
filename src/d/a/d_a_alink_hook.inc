@@ -803,7 +803,7 @@ void daAlink_c::setHookshotPos() {
     if (checkHookshotWait() || mItemMode == 2) {
         csXyz* var_r28;
         if (mProcID == PROC_HOOKSHOT_WALL_SHOOT || mProcID == PROC_HOOKSHOT_ROOF_SHOOT) {
-            var_r28 = &mProcVar3.field_0x300e;
+            var_r28 = &mProcVar3.field_0x300e.x;
         } else {
             var_r28 = &mBodyAngle;
         }

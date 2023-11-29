@@ -2032,7 +2032,7 @@ public:
     /* 800EA4CC */ int procGoronMove();
     /* 800EA844 */ BOOL checkSumouVsActor();
     /* 800EA8D0 */ void cancelSumouMode();
-    /* 800EA908 */ void sumouPunchTrigger();
+    /* 800EA908 */ BOOL sumouPunchTrigger();
     /* 800EA92C */ void setSumouPunchStatus();
     /* 800EA950 */ int procSumouReadyInit();
     /* 800EAA28 */ int procSumouReady();
@@ -2040,7 +2040,7 @@ public:
     /* 800EAD84 */ int procSumouMove();
     /* 800EB208 */ int procSumouSideMoveInit();
     /* 800EB2BC */ int procSumouSideMove();
-    /* 800EB624 */ int procSumouActionInit(int, int, int);
+    /* 800EB624 */ int procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int unused);
     /* 800EBCE0 */ int procSumouAction();
     /* 800EC0F8 */ int procSumouStaggerInit();
     /* 800EC170 */ int procSumouStagger();
@@ -3206,7 +3206,7 @@ public:
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
     s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
     bool checkFisingRodLure() const { return mEquipItem == noentry73; }
-    bool doTrigger() const { return mItemTrigger & BTN_A; }
+    BOOL doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
     u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
