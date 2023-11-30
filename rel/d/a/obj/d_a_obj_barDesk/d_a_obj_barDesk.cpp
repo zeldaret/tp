@@ -4,271 +4,26 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk.h"
-#include "dol2asm.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/d_procname.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
 
-//
-// Types:
-//
+/* 80BA9D24-80BA9D2C 000014 0008+00 2/2 0/0 0/0 .bss             l_HIO */
+static daBarDesk_HIO_c l_HIO;
 
-struct request_of_phase_process_class {};
+/* 80BA9D2C-80BA9D30 00001C 0004+00 1/1 0/0 0/0 .bss             None */
+static u8 data_80BA9D2C[4];
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 80BA91B8 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {};
-
-struct daBarDesk_c {
-    /* 80BA9200 */ void setBaseMtx();
-    /* 80BA9288 */ void CreateHeap();
-    /* 80BA92F4 */ void create();
-    /* 80BA95A4 */ void Execute(f32 (**)[3][4]);
-    /* 80BA95F4 */ void windowProc();
-    /* 80BA9680 */ void init_modeWait();
-    /* 80BA968C */ void modeWait();
-    /* 80BA973C */ void init_modeBreak();
-    /* 80BA9824 */ void modeBreak();
-    /* 80BA9844 */ void setBreakEffect();
-    /* 80BA98E8 */ void Draw();
-    /* 80BA998C */ void Delete();
-
-    static u8 const mCcDObjInfo[48];
-    static u8 mCcDCyl[68];
-};
-
-struct daBarDesk_HIO_c {
-    /* 80BA918C */ daBarDesk_HIO_c();
-    /* 80BA9A90 */ ~daBarDesk_HIO_c();
-};
-
-struct cXyz {};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80BA9548 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {};
-
-struct cBgS_PolyInfo {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 80078690 */ bool Create();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 80BA94B8 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80BA9500 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80BA9A48 */ ~cCcD_GStts();
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct J3DModel {};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__15daBarDesk_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__11daBarDesk_cFv();
-extern "C" void CreateHeap__11daBarDesk_cFv();
-extern "C" void create__11daBarDesk_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void Execute__11daBarDesk_cFPPA3_A4_f();
-extern "C" void windowProc__11daBarDesk_cFv();
-extern "C" void init_modeWait__11daBarDesk_cFv();
-extern "C" void modeWait__11daBarDesk_cFv();
-extern "C" void init_modeBreak__11daBarDesk_cFv();
-extern "C" void modeBreak__11daBarDesk_cFv();
-extern "C" void setBreakEffect__11daBarDesk_cFv();
-extern "C" void Draw__11daBarDesk_cFv();
-extern "C" void Delete__11daBarDesk_cFv();
-extern "C" static void daBarDesk_Draw__FP11daBarDesk_c();
-extern "C" static void daBarDesk_Execute__FP11daBarDesk_c();
-extern "C" static void daBarDesk_Delete__FP11daBarDesk_c();
-extern "C" static void daBarDesk_Create__FP10fopAc_ac_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__15daBarDesk_HIO_cFv();
-extern "C" void __sinit_d_a_obj_barDesk_cpp();
-extern "C" u8 const mCcDObjInfo__11daBarDesk_c[48];
-extern "C" extern char const* const d_a_obj_barDesk__stringBase0;
-extern "C" u8 mCcDCyl__11daBarDesk_c[68];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80BA9BBC-80BA9BC8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80BA9BC8-80BA9BDC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -276,433 +31,190 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
+
+/* 80BA9B70-80BA9BA0 000000 0030+00 2/2 0/0 0/0 .rodata          mCcDObjInfo__11daBarDesk_c */
+dCcD_SrcGObjInf const daBarDesk_c::mCcDObjInfo = {
+    {0, {{0, 0, 0}, {0xD8FAFDBF, 0x11}, {0}}},
+    {1, 0, 0, 0, 0},
+    {0xA, 0, 0, 0, 6},
+    {0}
+};
 
 /* 80BA9BDC-80BA9C20 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__11daBarDesk_c */
-SECTION_DATA u8 daBarDesk_c::mCcDCyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BA9C20-80BA9C2C -00001 000C+00 0/1 0/0 0/0 .data            @3821 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3821[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__11daBarDesk_cFv,
-};
-#pragma pop
-
-/* 80BA9C2C-80BA9C38 -00001 000C+00 0/1 0/0 0/0 .data            @3822 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3822[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeBreak__11daBarDesk_cFv,
-};
-#pragma pop
-
-/* 80BA9C38-80BA9C50 00007C 0018+00 0/1 0/0 0/0 .data            mode_proc$3820 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80BA9C50-80BA9C70 -00001 0020+00 1/0 0/0 0/0 .data            l_daBarDesk_Method */
-SECTION_DATA static void* l_daBarDesk_Method[8] = {
-    (void*)daBarDesk_Create__FP10fopAc_ac_c,
-    (void*)daBarDesk_Delete__FP11daBarDesk_c,
-    (void*)daBarDesk_Execute__FP11daBarDesk_c,
-    (void*)NULL,
-    (void*)daBarDesk_Draw__FP11daBarDesk_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80BA9C70-80BA9CA0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BarDesk */
-SECTION_DATA extern void* g_profile_Obj_BarDesk[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x008F0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000730, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02790000, (void*)&l_daBarDesk_Method,
-    (void*)0x00040100, (void*)0x000E0000,
-};
-
-/* 80BA9CA0-80BA9CAC 0000E4 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80BA9CAC-80BA9CB8 0000F0 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80BA9CB8-80BA9CC4 0000FC 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80BA9CC4-80BA9CD0 000108 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80BA9CD0-80BA9CF8 000114 0028+00 1/1 0/0 0/0 .data            __vt__11daBarDesk_c */
-SECTION_DATA extern void* __vt__11daBarDesk_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__11daBarDesk_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__11daBarDesk_cFPPA3_A4_f,
-    (void*)Draw__11daBarDesk_cFv,
-    (void*)Delete__11daBarDesk_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80BA9CF8-80BA9D04 00013C 000C+00 2/2 0/0 0/0 .data            __vt__15daBarDesk_HIO_c */
-SECTION_DATA extern void* __vt__15daBarDesk_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daBarDesk_HIO_cFv,
-};
-
-/* 80BA9D04-80BA9D10 000148 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
+dCcD_SrcCyl daBarDesk_c::mCcDCyl = {
+    mCcDObjInfo,
+    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
 };
 
 /* 80BA918C-80BA91B8 0000EC 002C+00 1/1 0/0 0/0 .text            __ct__15daBarDesk_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daBarDesk_HIO_c::daBarDesk_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__ct__15daBarDesk_HIO_cFv.s"
+daBarDesk_HIO_c::daBarDesk_HIO_c() : field_0x4(10), field_0x5(3) {
+    /* empty function */
 }
-#pragma pop
-
-/* 80BA91B8-80BA9200 000118 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__14mDoHIO_entry_cFv.s"
-}
-#pragma pop
 
 /* 80BA9200-80BA9288 000160 0088+00 2/2 0/0 0/0 .text            setBaseMtx__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/setBaseMtx__11daBarDesk_cFv.s"
+void daBarDesk_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mpModel->setBaseScale(mScale);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80BA9BB4-80BA9BB4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BA9BB4 = "KHdesk";
-#pragma pop
 
 /* 80BA9288-80BA92F4 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/CreateHeap__11daBarDesk_cFv.s"
+int daBarDesk_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("KHdesk", 4);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+    return 1;
 }
-#pragma pop
 
 /* 80BA92F4-80BA94B8 000254 01C4+00 1/1 0/0 0/0 .text            create__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/create__11daBarDesk_cFv.s"
+cPhs__Step daBarDesk_c::create() {
+    fopAcM_SetupActor(this, daBarDesk_c);
+    if (i_fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
+        return cPhs_ERROR_e;
+    }
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "KHdesk");
+    if (step == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate("KHdesk", 7, dBgS_MoveBGProc_TypicalRotY, 0xe50, NULL) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        }
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+        mColStatus.Init(0xff, 0xff, this);
+        mColCyl.Set(mCcDCyl);
+        mColCyl.SetStts(&mColStatus);
+        init_modeWait();
+        setBaseMtx();
+    }
+    return step;
 }
-#pragma pop
-
-/* 80BA94B8-80BA9500 000418 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__8cM3dGCylFv.s"
-}
-#pragma pop
-
-/* 80BA9500-80BA9548 000460 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__8cM3dGAabFv.s"
-}
-#pragma pop
-
-/* 80BA9548-80BA95A4 0004A8 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__10dCcD_GSttsFv.s"
-}
-#pragma pop
 
 /* 80BA95A4-80BA95F4 000504 0050+00 1/0 0/0 0/0 .text            Execute__11daBarDesk_cFPPA3_A4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::Execute(f32 (**param_0)[3][4]) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/Execute__11daBarDesk_cFPPA3_A4_f.s"
+int daBarDesk_c::Execute(Mtx** i_mtxP) {
+    windowProc();
+    *i_mtxP = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    return 1;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 80BA9D18-80BA9D24 000008 000C+00 1/1 0/0 0/0 .bss             @3643 */
-static u8 lit_3643[12];
-
-/* 80BA9D24-80BA9D2C 000014 0008+00 2/2 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[8];
-
-/* 80BA9D2C-80BA9D30 00001C 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80BA9D2C[4];
+typedef void (daBarDesk_c::*daBarDesk_modeFunc)();
 
 /* 80BA95F4-80BA9680 000554 008C+00 1/1 0/0 0/0 .text            windowProc__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::windowProc() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/windowProc__11daBarDesk_cFv.s"
+void daBarDesk_c::windowProc() {
+    static daBarDesk_modeFunc mode_proc[2] = {
+        &modeWait,
+        &modeBreak,
+    };
+    (this->*mode_proc[mMode])();
 }
-#pragma pop
 
 /* 80BA9680-80BA968C 0005E0 000C+00 1/1 0/0 0/0 .text            init_modeWait__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::init_modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/init_modeWait__11daBarDesk_cFv.s"
+void daBarDesk_c::init_modeWait() {
+    mMode = 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80BA9B70-80BA9BA0 000000 0030+00 2/2 0/0 0/0 .rodata          mCcDObjInfo__11daBarDesk_c */
-SECTION_RODATA u8 const daBarDesk_c::mCcDObjInfo[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD8, 0xFA, 0xFD, 0xBF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BA9B70, &daBarDesk_c::mCcDObjInfo);
-
-/* 80BA9BA0-80BA9BA4 000030 0004+00 1/1 0/0 0/0 .rodata          @3839 */
-SECTION_RODATA static f32 const lit_3839 = 90.0f;
-COMPILER_STRIP_GATE(0x80BA9BA0, &lit_3839);
 
 /* 80BA968C-80BA973C 0005EC 00B0+00 1/0 0/0 0/0 .text            modeWait__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/modeWait__11daBarDesk_cFv.s"
+void daBarDesk_c::modeWait() {
+    if (mColCyl.ChkTgHit()) {
+        if (mpBgW != NULL) {
+            dComIfG_Bgsp().Release(mpBgW);
+        }
+        init_modeBreak();
+    }
+    mColCyl.SetR(90.0f);
+    mColCyl.SetH(90.0f);
+    mColCyl.SetC(current.pos);
+    dComIfG_Ccsp()->Set(&mColCyl);
+    mColCyl.ClrTgHit();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80BA9BA4-80BA9BA8 000034 0004+00 1/2 0/0 0/0 .rodata          @3861 */
-SECTION_RODATA static f32 const lit_3861 = 1.0f;
-COMPILER_STRIP_GATE(0x80BA9BA4, &lit_3861);
-
-/* 80BA9BA8-80BA9BAC 000038 0004+00 0/1 0/0 0/0 .rodata          @3862 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3862 = -1.0f;
-COMPILER_STRIP_GATE(0x80BA9BA8, &lit_3862);
-#pragma pop
-
-/* 80BA9BAC-80BA9BB0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3863[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BA9BAC, &lit_3863);
-#pragma pop
 
 /* 80BA973C-80BA9824 00069C 00E8+00 1/1 0/0 0/0 .text            init_modeBreak__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::init_modeBreak() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/init_modeBreak__11daBarDesk_cFv.s"
+void daBarDesk_c::init_modeBreak() {
+    mDoAud_seStart(Z2SE_OBJ_TABLE_BRAKE, &current.pos, 0,
+                   dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    setBreakEffect();
+    dComIfGp_getVibration().StartShock(l_HIO.field_0x5, 15, cXyz(0.0f, 1.0f, 0.0f));
+    i_fopAcM_onSwitch(this, (u8)fopAcM_GetParam(this));
+    mMode = 1;
 }
-#pragma pop
 
 /* 80BA9824-80BA9844 000784 0020+00 1/0 0/0 0/0 .text            modeBreak__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::modeBreak() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/modeBreak__11daBarDesk_cFv.s"
+void daBarDesk_c::modeBreak() {
+    fopAcM_delete(this);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80BA9BB0-80BA9BB4 000040 0004+00 1/1 0/0 0/0 .rodata          particle_id$3871 */
-SECTION_RODATA static u8 const particle_id[4] = {
-    0x85,
-    0xF4,
-    0x85,
-    0xF5,
-};
-COMPILER_STRIP_GATE(0x80BA9BB0, &particle_id);
 
 /* 80BA9844-80BA98E8 0007A4 00A4+00 1/1 0/0 0/0 .text            setBreakEffect__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::setBreakEffect() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/setBreakEffect__11daBarDesk_cFv.s"
+void daBarDesk_c::setBreakEffect() {
+    static const u16 particle_id[2] = {0x85F4, 0x85F5};
+    for (int i = 0; i < 2; i++) {
+        dComIfGp_particle_set(particle_id[i], &current.pos, NULL, &mScale,
+                              0xff, NULL, -1, NULL, NULL, NULL);
+    }
 }
-#pragma pop
 
 /* 80BA98E8-80BA998C 000848 00A4+00 1/0 0/0 0/0 .text            Draw__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/Draw__11daBarDesk_cFv.s"
+int daBarDesk_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
 }
-#pragma pop
 
 /* 80BA998C-80BA99BC 0008EC 0030+00 1/0 0/0 0/0 .text            Delete__11daBarDesk_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBarDesk_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/Delete__11daBarDesk_cFv.s"
+int daBarDesk_c::Delete() {
+    dComIfG_resDelete(&mPhase, "KHdesk");
+    return 1;
 }
-#pragma pop
 
 /* 80BA99BC-80BA99E8 00091C 002C+00 1/0 0/0 0/0 .text            daBarDesk_Draw__FP11daBarDesk_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBarDesk_Draw(daBarDesk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/daBarDesk_Draw__FP11daBarDesk_c.s"
+static int daBarDesk_Draw(daBarDesk_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80BA99E8-80BA9A08 000948 0020+00 1/0 0/0 0/0 .text            daBarDesk_Execute__FP11daBarDesk_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBarDesk_Execute(daBarDesk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/daBarDesk_Execute__FP11daBarDesk_c.s"
+static int daBarDesk_Execute(daBarDesk_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80BA9A08-80BA9A28 000968 0020+00 1/0 0/0 0/0 .text            daBarDesk_Delete__FP11daBarDesk_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBarDesk_Delete(daBarDesk_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/daBarDesk_Delete__FP11daBarDesk_c.s"
+static int daBarDesk_Delete(daBarDesk_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 80BA9A28-80BA9A48 000988 0020+00 1/0 0/0 0/0 .text            daBarDesk_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daBarDesk_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/daBarDesk_Create__FP10fopAc_ac_c.s"
+static cPhs__Step daBarDesk_Create(fopAc_ac_c* i_this) {
+    return static_cast<daBarDesk_c*>(i_this)->create();
 }
-#pragma pop
 
-/* 80BA9A48-80BA9A90 0009A8 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__10cCcD_GSttsFv.s"
-}
-#pragma pop
+/* 80BA9C50-80BA9C70 -00001 0020+00 1/0 0/0 0/0 .data            l_daBarDesk_Method */
+static actor_method_class l_daBarDesk_Method = {
+    (process_method_func)daBarDesk_Create,
+    (process_method_func)daBarDesk_Delete,
+    (process_method_func)daBarDesk_Execute,
+    (process_method_func)NULL,
+    (process_method_func)daBarDesk_Draw,
+};
 
-/* 80BA9A90-80BA9AEC 0009F0 005C+00 2/1 0/0 0/0 .text            __dt__15daBarDesk_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daBarDesk_HIO_c::~daBarDesk_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__dt__15daBarDesk_HIO_cFv.s"
-}
-#pragma pop
-
-/* 80BA9AEC-80BA9B5C 000A4C 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_barDesk_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_obj_barDesk_cpp() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_barDesk/d_a_obj_barDesk/__sinit_d_a_obj_barDesk_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80BA9AEC, __sinit_d_a_obj_barDesk_cpp);
-#pragma pop
-
-/* 80BA9BB4-80BA9BB4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80BA9C70-80BA9CA0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BarDesk */
+extern actor_process_profile_definition g_profile_Obj_BarDesk = {
+    fpcLy_CURRENT_e,
+    3,
+    fpcPi_CURRENT_e,
+    PROC_Obj_BarDesk,
+    &g_fpcLf_Method.mBase,
+    sizeof(daBarDesk_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x279,
+    &l_daBarDesk_Method,
+    0x40100,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
+};
