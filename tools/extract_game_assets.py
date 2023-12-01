@@ -9,6 +9,7 @@ Extracts the game assets and stores them in the game folder
 Usage: `python tools/extract_game_assets.py`
 """
 
+fileMagicNumber = b"GZ2E01"
 fstInfoPosition = 0x424
 bootPosition = 0x0
 bootSize = 0x440
@@ -243,6 +244,13 @@ def extract(isoPath: Path, gamePath: Path, yaz0Encoder):
     cwd = os.getcwd()
     os.chdir(gamePath)
     with open(isoPath, "rb") as f:
+        magic = f.read(len(fileMagicNumber))
+        if magic != fileMagicNumber:
+            if magic.startswith(b"CISO"):
+                raise RuntimeError("Compressed ISO files are not supported.")
+            else:
+                raise RuntimeError(f"Invalid ISO magic number: expected {fileMagicNumber}, got {magic}")
+
         # Seek to fst offset information and retrieve it
         f.seek(fstInfoPosition)
         fstOffset, fstSize = getFstInfo(f, fstInfoPosition)
