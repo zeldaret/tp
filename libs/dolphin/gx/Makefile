@@ -38,6 +38,7 @@ LIBGX_A_O_FILES := \
 
 LIBGX_A_CFLAGS := \
 	-O4,p \
+	-inline auto \
 	-lang=c \
 
 LIBGX_A_LDFLAGS := \

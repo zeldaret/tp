@@ -90,8 +90,8 @@ extern GXData* const __GXData;
 
 extern u32* __piReg;
 extern u16* __cpReg;
-extern u8 __peReg[4];
-extern u8 __memReg[4];
+extern u16* __peReg;
+extern vu16* __memReg;
 
 inline void GXSetWasteFlags() {
 	GXData* data = __GXData;

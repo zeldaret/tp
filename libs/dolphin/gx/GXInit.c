@@ -37,7 +37,6 @@ void GXInvalidateVtxCache();
 void __GXAbort();
 void GXPokeAlphaRead();
 void GXPokeBlendMode();
-void GXSetDrawSyncCallback();
 void __GXPEInit();
 void GXSetDispCopyFrame2Field();
 void GXClearBoundingBox();
@@ -107,10 +106,10 @@ GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut) {
 /* static */ u8 peCount[4 + 4 /* padding */];
 
 /* 8045192C-80451930 000E2C 0004+00 2/2 2/2 0/0 .sbss            __memReg */
-u8 __memReg[4];
+vu16* __memReg;
 
 /* 80451928-8045192C 000E28 0004+00 1/1 11/11 0/0 .sbss            __peReg */
-u8 __peReg[4];
+u16* __peReg;
 
 /* 80451924-80451928 000E24 0004+00 2/2 12/12 0/0 .sbss            __cpReg */
 u16* __cpReg;
