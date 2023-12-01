@@ -11,3 +11,4 @@ pyelftools
 requests
 GitPython
 clang
+pyyaml
