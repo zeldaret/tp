@@ -93,7 +93,7 @@ void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
         break;
     }
 
-    __GXData->field_0x200 = (fmt & 0x10) == 0x10;
+    __GXData->field_0x200 = 0x10 == (fmt & 0x10);
     __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, fmt2, 0, 28, 28);
     fmt2 &= 7;
     __GetImageTileCount(fmt, width, height, &arg3, &arg4, &arg5);
@@ -142,7 +142,28 @@ SECTION_SDATA2 static f32 lit_179[1 + 1 /* padding */] = {
     0.0f,
 };
 
+static u32 __GXGetNumXfbLines(u16 efb_height, u32 y_scale) {
+    u32 rv = ((efb_height - 1) * 0x100) / y_scale + 1;
+    if (y_scale > 0x80 && y_scale < 0x100) {
+        for (; (y_scale & 1) == 0; y_scale >>= 1) {
+        }
+        if (efb_height % y_scale == 0) {
+            rv++;
+        }
+    }
+    if (rv > 0x400) {
+        rv = 0x400;
+    }
+    return rv;
+}
+
 /* 8035CCDC-8035CD6C 35761C 0090+00 0/0 2/2 0/0 .text            GXGetNumXfbLines */
+// regalloc
+#ifdef NONMATCHING
+u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale) {
+    return __GXGetNumXfbLines(efb_height, ((u32)(256.0f / y_scale)) & 0x1ff);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,12 +172,37 @@ asm u16 GXGetNumXfbLines(u32 efb_height, f32 y_scale) {
 #include "asm/dolphin/gx/GXFrameBuf/GXGetNumXfbLines.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804565B0-804565B8 004BB0 0008+00 1/1 0/0 0/0 .sdata2          @234 */
 SECTION_SDATA2 static f64 lit_234 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8035CD6C-8035CFA4 3576AC 0238+00 0/0 2/2 0/0 .text            GXGetYScaleFactor */
+// Matches with literals
+#ifdef NONMATCHING
+f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height) {
+    u8 padding[0x10];
+    u32 uVar6 = xfb_height;
+    f32 f29;
+    f32 ratio = (f32)xfb_height / (f32)efb_height;
+    u32 uVar5 = __GXGetNumXfbLines(efb_height, (u32)(256.0f / ratio) & 0x1ff);
+    while (uVar5 > xfb_height) {
+        uVar6--;
+        ratio = (f32)uVar6 / (f32)efb_height;
+        uVar5 = __GXGetNumXfbLines(efb_height, ((u32)(256.0f / ratio)) & 0x1ff);
+    }
+    f29 = ratio;
+    while (uVar5 < xfb_height) {
+        uVar6++;
+        f29 = ratio;
+        ratio = (f32)uVar6 / (f32)efb_height;
+        uVar5 = __GXGetNumXfbLines(efb_height, ((u32)(256.0f / ratio)) & 0x1ff);
+    }
+
+    return f29;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,8 +211,26 @@ asm f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height) {
 #include "asm/dolphin/gx/GXFrameBuf/GXGetYScaleFactor.s"
 }
 #pragma pop
+#endif
 
 /* 8035CFA4-8035D070 3578E4 00CC+00 0/0 2/2 0/0 .text            GXSetDispCopyYScale */
+// Needs works
+#ifdef NONMATCHING
+u32 GXSetDispCopyYScale(f32 y_scale) {
+    u32 r5;
+    u32 r6;
+    u32 r7 = ((u32)(256.0f / y_scale)) & 0x1ff;
+    GXFIFO.u8 = 0x61;
+    r6 = 0;
+    GX_BITFIELD_SET(r6, 0x17, 9, r7);
+    GX_BITFIELD_SET(r6, 0, 7, 0x4e);
+    GXFIFO.u32 = r6;
+    __GXData->field_0x2 = 0;
+    r5 = 0x100 - r7 != 1;
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 0x15, 1, r5);
+    return __GXGetNumXfbLines(__GXData->field_0x1e4, r7);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -175,6 +239,7 @@ asm u32 GXSetDispCopyYScale(f32 y_scale) {
 #include "asm/dolphin/gx/GXFrameBuf/GXSetDispCopyYScale.s"
 }
 #pragma pop
+#endif
 
 /* 8035D070-8035D0E8 3579B0 0078+00 0/0 2/2 0/0 .text            GXSetCopyClear */
 void GXSetCopyClear(GXColor color, u32 clear_z) {
@@ -202,6 +267,97 @@ void GXSetCopyClear(GXColor color, u32 clear_z) {
 }
 
 /* 8035D0E8-8035D2F0 357A28 0208+00 0/0 4/4 0/0 .text            GXSetCopyFilter */
+// Start of antialias if. Possibly variable definition order.
+#ifdef NONMATCHING
+void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfilter[7]) {
+    u32 r8;
+    u32 r7;
+    u32 r3;
+    u32 r9;
+    u32 r11;
+    u32 r5;
+    if (antialias) {
+        r3 = 0;
+        GX_BITFIELD_SET(r3, 0x1c, 4, pattern[0][0]);
+        GX_BITFIELD_SET(r3, 0x18, 4, pattern[0][1]);
+        GX_BITFIELD_SET(r3, 0x14, 4, pattern[1][0]);
+        GX_BITFIELD_SET(r3, 0x10, 4, pattern[1][1]);
+        GX_BITFIELD_SET(r3, 0xc, 4, pattern[2][0]);
+        GX_BITFIELD_SET(r3, 0x8, 4, pattern[2][1]);
+        GX_BITFIELD_SET(r3, 0, 8, 1);
+
+        r7 = 0;
+        GX_BITFIELD_SET(r7, 0x1c, 4, pattern[3][0]);
+        GX_BITFIELD_SET(r7, 0x18, 4, pattern[3][1]);
+        GX_BITFIELD_SET(r7, 0x14, 4, pattern[4][0]);
+        GX_BITFIELD_SET(r7, 0x10, 4, pattern[4][1]);
+        GX_BITFIELD_SET(r7, 0xc, 4, pattern[5][0]);
+        GX_BITFIELD_SET(r7, 0x8, 4, pattern[5][1]);
+        GX_BITFIELD_SET(r7, 0, 8, 2);
+
+        r8 = 0;
+        GX_BITFIELD_SET(r8, 0x1c, 4, pattern[6][0]);
+        GX_BITFIELD_SET(r8, 0x18, 4, pattern[6][1]);
+        GX_BITFIELD_SET(r8, 0x14, 4, pattern[7][0]);
+        GX_BITFIELD_SET(r8, 0x10, 4, pattern[7][1]);
+        GX_BITFIELD_SET(r8, 0xc, 4, pattern[8][0]);
+        GX_BITFIELD_SET(r8, 0x8, 4, pattern[8][1]);
+        GX_BITFIELD_SET(r8, 0, 8, 3);
+
+        r9 = 0;
+        GX_BITFIELD_SET(r9, 0x1c, 4, pattern[9][0]);
+        GX_BITFIELD_SET(r9, 0x18, 4, pattern[9][1]);
+        GX_BITFIELD_SET(r9, 0x14, 4, pattern[10][0]);
+        GX_BITFIELD_SET(r9, 0x10, 4, pattern[10][1]);
+        GX_BITFIELD_SET(r9, 0xc, 4, pattern[11][0]);
+        GX_BITFIELD_SET(r9, 0x8, 4, pattern[11][1]);
+        GX_BITFIELD_SET(r9, 0, 8, 4);
+    } else {
+        r3 = 0x01666666;
+        r7 = 0x02666666;
+        r8 = 0x03666666;
+        r9 = 0x04666666;
+    }
+
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r3;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r7;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r8;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r9;
+
+    r11 = 0;
+    GX_BITFIELD_SET(r11, 0, 8, 0x53);
+    r5 = 0;
+    GX_BITFIELD_SET(r5, 0, 8, 0x54);
+    if (vf) {
+        GX_BITFIELD_SET(r11, 0x1a, 6, vfilter[0]);
+        GX_BITFIELD_SET(r11, 0x14, 6, vfilter[1]);
+        GX_BITFIELD_SET(r11, 0xe, 6, vfilter[2]);
+        GX_BITFIELD_SET(r11, 0x8, 6, vfilter[3]);
+        GX_BITFIELD_SET(r5, 0x1a, 6, vfilter[4]);
+        GX_BITFIELD_SET(r5, 0x14, 6, vfilter[5]);
+        GX_BITFIELD_SET(r5, 0xe, 6, vfilter[6]);
+    } else {
+        GX_BITFIELD_SET(r11, 0x1a, 6, 0);
+        GX_BITFIELD_SET(r11, 0x14, 6, 0);
+        GX_BITFIELD_SET(r11, 0xe, 6, 0x15);
+        GX_BITFIELD_SET(r11, 0x8, 6, 0x16);
+
+        GX_BITFIELD_SET(r5, 0x1a, 6, 0x15);
+        GX_BITFIELD_SET(r5, 0x14, 6, 0);
+        GX_BITFIELD_SET(r5, 0xe, 6, 0);
+    }
+
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r11;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r5;
+    __GXData->field_0x2 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -210,6 +366,7 @@ asm void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfil
 #include "asm/dolphin/gx/GXFrameBuf/GXSetCopyFilter.s"
 }
 #pragma pop
+#endif
 
 /* 8035D2F0-8035D304 357C30 0014+00 0/0 2/2 0/0 .text            GXSetDispCopyGamma */
 void GXSetDispCopyGamma(GXGamma gamma)
@@ -218,6 +375,74 @@ void GXSetDispCopyGamma(GXGamma gamma)
 }
 
 /* 8035D304-8035D46C 357C44 0168+00 0/0 3/3 0/0 .text            GXCopyDisp */
+// regalloc / instruction order
+#ifdef NONMATCHING
+void GXCopyDisp(void* dst, GXBool clear) {
+    u32 r7;
+    u32 r8;
+    GXBool r10;
+    u32 r9;
+    u32 field_0x1dc;
+    if (clear) {
+        r8 = __GXData->field_0x1d8;
+        GX_BITFIELD_SET(r8, 0x1f, 1, 1);
+        GX_BITFIELD_SET(r8, 0x1c, 3, 7);
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = r8;
+
+        r7 = __GXData->field_0x1d0;
+        GX_BITFIELD_SET(r7, 0x1f, 1, 0);
+        GX_BITFIELD_SET(r7, 0x1e, 1, 0);
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = r7;
+    }
+
+    r10 = 0;
+    if (clear || (__GXData->field_0x1dc & 0x7) == 3) {
+        field_0x1dc = __GXData->field_0x1dc;
+        if (((field_0x1dc >> 6) & 1) == 1) {
+            GX_BITFIELD_SET(field_0x1dc, 0x19, 1, 0);
+            GXFIFO.u8 = 0x61;
+            GXFIFO.u32 = field_0x1dc;
+            r10 = 1;
+        }
+    }
+
+    r9 = 0;
+    __rlwimi(r9, (int)dst, 0x1b, 0xb, 0x1f);
+    GX_BITFIELD_SET(r9, 0, 8, 0x4b);
+
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1e0;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1e4;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1e8;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r9;
+
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 0x14, 1, clear);
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 0x11, 1, 1);
+    GX_BITFIELD_SET(__GXData->field_0x1ec, 0, 8, 0x52);
+
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1ec;
+
+    if (clear) {
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1d8;
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1d0;
+    }
+
+    if (r10) {
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1dc;
+    }
+
+    __GXData->field_0x2 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,8 +451,79 @@ asm void GXCopyDisp(void* dst, GXBool clear) {
 #include "asm/dolphin/gx/GXFrameBuf/GXCopyDisp.s"
 }
 #pragma pop
+#endif
 
 /* 8035D46C-8035D5F8 357DAC 018C+00 0/0 9/9 0/0 .text            GXCopyTex */
+// regalloc
+#ifdef NONMATCHING
+void GXCopyTex(void* dst, GXBool clear) {
+    u32 r8;
+    u32 r7;
+    u32 field_0x1dc;
+    u8 r0;
+    u32 r10;
+    if (clear) {
+        r8 = __GXData->field_0x1d8;
+        GX_BITFIELD_SET(r8, 0x1f, 1, 1);
+        GX_BITFIELD_SET(r8, 0x1c, 3, 7);
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = r8;
+
+        r7 = __GXData->field_0x1d0;
+        GX_BITFIELD_SET(r7, 0x1f, 1, 0);
+        GX_BITFIELD_SET(r7, 0x1e, 1, 0);
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = r7;
+    }
+
+    r0 = 0;
+    field_0x1dc = __GXData->field_0x1dc;
+    if (__GXData->field_0x200 && (field_0x1dc & 0x7) != 3) {
+        GX_BITFIELD_SET(r7, 0x1d, 3, 3);
+        r0 = 1;
+    }
+
+    if ((clear || (field_0x1dc & 0x7) == 3) && ((field_0x1dc >> 6) & 1) == 1) {
+        GX_BITFIELD_SET(r7, 0x19, 1, 0);
+        r0 = 1;
+    }
+
+    if (r0) {
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = r7;
+    }
+
+    r10 = 0;
+    __rlwimi(r10, (int)dst, 0x1b, 0xb, 0x1f);
+    GX_BITFIELD_SET(r10, 0, 8, 0x4b);
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1f0;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1f4;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1f8;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = r10;
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 0x14, 1, clear);
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 0x11, 1, 0);
+    GX_BITFIELD_SET(__GXData->field_0x1fc, 0, 8, 0x52);
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = __GXData->field_0x1fc;
+    if (clear) {
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1d8;
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1d0;
+    }
+
+    if (r0) {
+        GXFIFO.u8 = 0x61;
+        GXFIFO.u32 = __GXData->field_0x1dc;
+    }
+
+    __GXData->field_0x2 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,6 +532,7 @@ asm void GXCopyTex(void* dst, GXBool clear) {
 #include "asm/dolphin/gx/GXFrameBuf/GXCopyTex.s"
 }
 #pragma pop
+#endif
 
 /* 8035D5F8-8035D630 357F38 0038+00 0/0 1/1 0/0 .text            GXClearBoundingBox */
 void GXClearBoundingBox(void)
