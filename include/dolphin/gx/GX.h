@@ -22,6 +22,10 @@ extern "C" {
 // Pack value into bitfield
 #define GX_BITFIELD_SET(field, pos, size, value) (field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos), (pos) + (size)-1)
 
+#define GX_BITGET(field, pos, size)              ((field) >> (31 - (pos) - (size) + 1) & ((1 << (size)) - 1))
+#define GX_GET_REG(reg, st, end)    GX_BITGET(reg, st, (end - st + 1))
+#define GX_SET_REG(reg, x, st, end) GX_BITFIELD_SET(reg, st, (end - st + 1), x)
+
 #define INSERT_FIELD(reg, value, nbits, shift)                                 \
     (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
             ((u32) (value) << (shift));
@@ -45,6 +49,25 @@ typedef union {
 volatile PPCWGPipe GXFIFO : 0xCC008000;
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
+
+#define GX_CP_LOAD_REG(addr, data)          \
+	GXFIFO.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
+	GXFIFO.s8  = (addr);                  \
+	GXFIFO.s32 = (data);
+
+/**
+ * Header for an XF register load
+ */
+#define GX_XF_LOAD_REG_HDR(addr)            \
+	GXFIFO.s8  = GX_FIFO_CMD_LOAD_XF_REG; \
+	GXFIFO.s32 = (addr);
+
+/**
+ * Load immediate value into XF register
+ */
+#define GX_XF_LOAD_REG(addr, data) \
+	GX_XF_LOAD_REG_HDR(addr);      \
+	GXFIFO.s32 = (data);
 
 inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GXFIFO.f32 = x;

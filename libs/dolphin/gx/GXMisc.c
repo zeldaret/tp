@@ -51,14 +51,14 @@ void GXSetMisc(u32 id, u32 value) {
     case 0:
         break;
     case 1:
-        __GXData->field_0x4 = value;
-        // fake match. Should be something like __GXData->field_0x4 == 0, but it adds a neg instruction
-        __GXData->field_0x0 = (__cntlzw(__GXData->field_0x4) >> 5) & 0xffff;
+        __GXData->vNum = value;
+        // fake match. Should be something like __GXData->vNum == 0, but it adds a neg instruction
+        __GXData->field_0x0 = (__cntlzw(__GXData->vNum) >> 5) & 0xffff;
         __GXData->field_0x2 = 1;
-        if (__GXData->field_0x4 == 0) {
+        if (__GXData->vNum == 0) {
             break;
         }
-        __GXData->field_0x5ac |= 8;
+        __GXData->dirtyFlags |= GX_DIRTY_VCD;
         break;
     case 2:
         __GXData->field_0x5a9 = value != 0;
@@ -71,7 +71,7 @@ void GXSetMisc(u32 id, u32 value) {
 
 /* 8035BECC-8035BF28 35680C 005C+00 1/1 10/10 0/0 .text            GXFlush */
 void GXFlush(void) {
-    if (__GXData->field_0x5ac) {
+    if (__GXData->dirtyFlags) {
         __GXSetDirtyState();
     }
 
@@ -147,7 +147,7 @@ void GXAbortFrame(void) {
     if (GXGetGPFifo()) {
         __GXCleanGPFifo();
         __GXInitRevisionBits();
-        __GXData->field_0x5ac = 0;
+        __GXData->dirtyFlags = 0;
         GXFlush();
     }
 }

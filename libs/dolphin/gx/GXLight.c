@@ -301,7 +301,7 @@ void GXSetNumChans(u8 chan_num) {
     GXFIFO.s32 = 0x1009;
     GXFIFO.s32 = chan_num;
 
-    data->field_0x5ac |= 0x4;
+    data->dirtyFlags |= GX_DIRTY_GEN_MODE;
 }
 #else
 #pragma push

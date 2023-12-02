@@ -8,66 +8,66 @@
 
 /* 8035C6E4-8035C764 357024 0080+00 0/0 4/4 0/0 .text            __GXSetDirtyState */
 void __GXSetDirtyState(void) {
-    u32 dirtyFlags = __GXData->field_0x5ac;
+    u32 dirtyFlags = __GXData->dirtyFlags;
 
-    if (dirtyFlags & 1) {
+    if (dirtyFlags & GX_DIRTY_SU_TEX) {
         __GXSetSUTexRegs();
     }
 
-    if (dirtyFlags & 2) {
+    if (dirtyFlags & GX_DIRTY_BP_MASK) {
         __GXUpdateBPMask();
     }
 
-    if (dirtyFlags & 4) {
+    if (dirtyFlags & GX_DIRTY_GEN_MODE) {
         __GXSetGenMode();
     }
 
-    if (dirtyFlags & 8) {
+    if (dirtyFlags & GX_DIRTY_VCD) {
         __GXSetVCD();
     }
 
-    if (dirtyFlags & 0x10) {
+    if (dirtyFlags & GX_DIRTY_VAT) {
         __GXSetVAT();
     }
 
-    if (dirtyFlags & 0x18) {
+    if (dirtyFlags & GX_DIRTY_VLIM) {
         __GXCalculateVLim();
     }
 
-    __GXData->field_0x5ac = 0;
+    __GXData->dirtyFlags = 0;
 }
 
 /* 8035C764-8035C834 3570A4 00D0+00 0/0 66/66 3/3 .text            GXBegin */
 void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num) {
     GXData* data = __GXData;
-    u32 dirtyFlags = data->field_0x5ac;
+    u32 dirtyFlags = data->dirtyFlags;
 
-    if (data->field_0x5ac != 0) {
-        if (dirtyFlags & 1) {
+    if (data->dirtyFlags != 0) {
+        if (dirtyFlags & GX_DIRTY_SU_TEX) {
             __GXSetSUTexRegs();
         }
 
-        if (dirtyFlags & 2) {
+        if (dirtyFlags & GX_DIRTY_BP_MASK) {
             __GXUpdateBPMask();
         }
 
-        if (dirtyFlags & 4) {
+        if (dirtyFlags & GX_DIRTY_GEN_MODE) {
             __GXSetGenMode();
         }
 
-        if (dirtyFlags & 8) {
+        if (dirtyFlags & GX_DIRTY_VCD) {
             __GXSetVCD();
         }
 
-        if (dirtyFlags & 0x10) {
+        if (dirtyFlags & GX_DIRTY_VAT) {
             __GXSetVAT();
         }
 
-        if (dirtyFlags & 0x18) {
+        if (dirtyFlags & GX_DIRTY_VLIM) {
             __GXCalculateVLim();
         }
 
-        __GXData->field_0x5ac = 0;
+        __GXData->dirtyFlags = 0;
     }
 
     if (*(u32*)__GXData == 0) {
@@ -81,10 +81,10 @@ void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num) {
 /* 8035C834-8035C8BC 357174 0088+00 1/1 1/1 0/0 .text            __GXSendFlushPrim */
 void __GXSendFlushPrim(void) {
     u32 i;
-    u32 sz = __GXData->field_0x4 * __GXData->field_0x6;
+    u32 sz = __GXData->vNum * __GXData->vLim;
 
     GXFIFO.u8 = 0x98;
-    GXFIFO.u16 = __GXData->field_0x4;
+    GXFIFO.u16 = __GXData->vNum;
 
     for (i = 0; i < sz; i += 4) {
         GXFIFO.s32 = 0;
@@ -135,24 +135,24 @@ void GXSetCullMode(GXCullMode mode) {
     mode2 = (mode >> 1) & 1;
     GX_BITFIELD_SET(mode2, 30, 1, mode);
 
-    GX_BITFIELD_SET(data->field_0x204, 16, 2, mode2);
-    data->field_0x5ac |= 4;
+    GX_BITFIELD_SET(data->genMode, 16, 2, mode2);
+    data->dirtyFlags |= GX_DIRTY_GEN_MODE;
 }
 
 /* 8035C9AC-8035C9E0 3572EC 0034+00 0/0 6/6 0/0 .text            GXSetCoPlanar */
 void GXSetCoPlanar(GXBool enable) {
     GXData* data = __GXData;
 
-    GX_BITFIELD_SET(data->field_0x204, 12, 1, enable);
+    GX_BITFIELD_SET(data->genMode, 12, 1, enable);
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = 0xFE080000;
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = data->field_0x204;
+    GXFIFO.u32 = data->genMode;
 }
 
 /* 8035C9E0-8035CA04 357320 0024+00 2/2 0/0 0/0 .text            __GXSetGenMode */
 void __GXSetGenMode(void) {
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x204;
+    GXFIFO.u32 = __GXData->genMode;
     __GXData->field_0x2 = 0;
 }

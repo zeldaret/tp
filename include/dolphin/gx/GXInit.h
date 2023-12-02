@@ -11,19 +11,19 @@ typedef GXTlutRegion* (*GXTlutRegionCallback)(u32 name);
 typedef struct _GXData {
     /* 0x000 */ u16 field_0x0;
     /* 0x002 */ u16 field_0x2;
-    /* 0x004 */ u16 field_0x4;
-    /* 0x006 */ u16 field_0x6;
+    /* 0x004 */ u16 vNum;
+    /* 0x006 */ u16 vLim;
     /* 0x008 */ u32 field_0x8;
     /* 0x00C */ u32 field_0xc;
     /* 0x010 */ u32 field_0x10;
-    /* 0x014 */ u32 field_0x14;
-    /* 0x018 */ GXAttrType field_0x18;
-    /* 0x01C */ GXCompCnt field_0x1c[8];
-    /* 0x03C */ GXCompCnt field_0x3c[8];
-    /* 0x05C */ u32 field_0x5c[8];
+    /* 0x014 */ u32 vcdLoReg;
+    /* 0x018 */ GXAttrType vcdHiReg;
+    /* 0x01C */ GXCompCnt vatA[8];
+    /* 0x03C */ GXCompCnt vatB[8];
+    /* 0x05C */ u32 vatC[8];
     /* 0x07C */ u32 field_0x7c;
-    /* 0x080 */ u32 field_0x80;
-    /* 0x084 */ u32 field_0x84;
+    /* 0x080 */ u32 matIdxA;
+    /* 0x084 */ u32 matIdxB;
     /* 0x088 */ u8 field_0x88[0xA8 - 0x88];
     /* 0x0A8 */ GXColor ambColors[2];
     /* 0x0B0 */ GXColor matColors[2];
@@ -52,7 +52,7 @@ typedef struct _GXData {
     /* 0x1F8 */ u32 field_0x1f8;
     /* 0x1FC */ u32 field_0x1fc;
     /* 0x200 */ u8 field_0x200;
-    /* 0x204 */ u32 field_0x204;
+    /* 0x204 */ u32 genMode;
     /* 0x208 */ GXTexRegion field_0x208[8];
     /* 0x288 */ GXTexRegion field_0x288[8];
     /* 0x308 */ GXTexRegion field_0x308[8];
@@ -60,9 +60,9 @@ typedef struct _GXData {
     /* 0x488 */ GXTlutRegion field_0x488[4]; 
     /* 0x4C8 */ GXTexRegionCallback field_0x4c8;
     /* 0x4CC */ GXTlutRegionCallback field_0x4cc;
-    /* 0x4D0 */ GXAttrType field_0x4d0;
-    /* 0x4D4 */ u8 field_0x4d4;
-    /* 0x4D5 */ u8 field_0x4d5;
+    /* 0x4D0 */ GXAttrType nrmDataType;
+    /* 0x4D4 */ GXBool hasNrm;
+    /* 0x4D5 */ GXBool hasBiNrm;
     /* 0x4D8 */ GXProjectionType field_0x4d8;
     /* 0x4DC */ Mtx field_0x4dc;
     /* 0x50C */ f32 field_0x50c;
@@ -80,8 +80,8 @@ typedef struct _GXData {
     /* 0x5A8 */ u8 field_0x5a8;
     /* 0x5A9 */ u8 field_0x5a9;
     /* 0x5AA */ u8 field_0x5aa;
-    /* 0x5AB */ u8 field_0x5ab;
-    /* 0x5AC */ u32 field_0x5ac;
+    /* 0x5AB */ u8 dirtyVAT;
+    /* 0x5AC */ u32 dirtyFlags;
 } GXData;  // Size: 0x5B0
 
 STATIC_ASSERT(sizeof(GXData) == 0x5B0);
@@ -95,7 +95,7 @@ extern vu16* __memReg;
 
 inline void GXSetWasteFlags() {
 	GXData* data = __GXData;
-	data->field_0x5ac |= 0x3;
+	data->dirtyFlags |= GX_DIRTY_SU_TEX | GX_DIRTY_BP_MASK;
 	data->field_0x2 = 0;
 }
 

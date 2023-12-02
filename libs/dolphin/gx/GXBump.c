@@ -172,8 +172,8 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
 /* 8035F0D4-8035F0F8 359A14 0024+00 0/0 43/43 7/7 .text            GXSetNumIndStages */
 void GXSetNumIndStages(u8 num) {
     GXData* data = __GXData;
-    GX_BITFIELD_SET(data->field_0x204, 13, 3, num);
-    data->field_0x5ac |= 0x6;
+    GX_BITFIELD_SET(data->genMode, 13, 3, num);
+    data->dirtyFlags |= GX_DIRTY_BP_MASK | GX_DIRTY_GEN_MODE;
 }
 
 /* 8035F0F8-8035F140 359A38 0048+00 0/0 16/16 0/0 .text            GXSetTevDirect */
