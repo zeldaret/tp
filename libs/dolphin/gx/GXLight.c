@@ -219,7 +219,7 @@ void GXSetChanAmbColor(GXChannelID chan, GXColor color) {
     GXFIFO.u8 = 0x10;
     GXFIFO.u32 = colorId + 0x100a;
     GXFIFO.u32 = ambColor;
-    __GXData->field_0x2 = 1;
+    __GXData->bpSentNot = 1;
     ((u32*)__GXData->ambColors)[colorId] = ambColor;
 }
 #else
@@ -276,7 +276,7 @@ void GXSetChanMatColor(GXChannelID chan, GXColor color) {
     GXFIFO.u8 = 0x10;
     GXFIFO.u32 = colorId + 0x100c;
     GXFIFO.u32 = matColor;
-    __GXData->field_0x2 = 1;
+    __GXData->bpSentNot = 1;
     ((u32*)__GXData->matColors)[colorId] = matColor;
 }
 #else
@@ -295,7 +295,7 @@ asm void GXSetChanMatColor(GXChannelID channel, GXColor color) {
 #ifdef NONMATCHING
 void GXSetNumChans(u8 chan_num) {
     GXData* data = __GXData;
-    GX_BITFIELD_SET(data->field_0x204, 25, 3, chan_num);
+    GX_BITFIELD_SET(data->bpSentNot04, 25, 3, chan_num);
 
     GXFIFO.u8 = 0x10;
     GXFIFO.s32 = 0x1009;
@@ -345,7 +345,7 @@ void GXSetChanCtrl(GXChannelID channel, GXBool enable, GXColorSrc amb_src, GXCol
         GXFIFO.u32 = field;
     }
 
-    __GXData->field_0x2 = 1;
+    __GXData->bpSentNot = 1;
 }
 #else
 #pragma push

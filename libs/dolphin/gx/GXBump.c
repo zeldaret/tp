@@ -27,7 +27,7 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = field;
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035ED2C-8035EEA4 35966C 0178+00 0/0 4/4 1/1 .text            GXSetIndTexMtx */
@@ -84,7 +84,7 @@ void GXSetIndTexMtx(GXIndTexMtxID mtxID, f32 offset[6], s8 scale_exp) {
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = field;
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035EEA4-8035EFE8 3597E4 0144+00 0/0 5/5 0/0 .text            GXSetIndTexCoordScale */
@@ -126,7 +126,7 @@ void GXSetIndTexCoordScale(GXIndTexStageID texStage, GXIndTexScale scaleS, GXInd
         break;
     }
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035EFE8-8035F0D4 359928 00EC+00 0/0 3/3 0/0 .text            GXSetIndTexOrder */
@@ -192,12 +192,12 @@ void __GXSetIndirectMask(u32 mask) {
     GX_BITFIELD_SET(data->field_0x124, 24, 8, mask);
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = data->field_0x124;
-    data->field_0x2 = 0;
+    data->bpSentNot = 0;
 }
 
 /* 8035F174-8035F198 359AB4 0024+00 0/0 4/4 0/0 .text            __GXFlushTextureState */
 void __GXFlushTextureState(void) {
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = __GXData->field_0x124;
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }

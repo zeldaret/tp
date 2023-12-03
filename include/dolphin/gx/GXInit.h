@@ -10,7 +10,7 @@ typedef GXTlutRegion* (*GXTlutRegionCallback)(u32 name);
 
 typedef struct _GXData {
     /* 0x000 */ u16 field_0x0;
-    /* 0x002 */ u16 field_0x2;
+    /* 0x002 */ u16 bpSentNot;
     /* 0x004 */ u16 vNum;
     /* 0x006 */ u16 vLim;
     /* 0x008 */ u32 field_0x8;
@@ -31,14 +31,14 @@ typedef struct _GXData {
     /* 0x0D8 */ u32 field_0xd8[8];  // GX_MAX_TEXCOORD
     /* 0x0F8 */ u32 field_0xf8;
     /* 0x0FC */ u32 field_0xfc;
-    /* 0x100 */ u32 field_0x100[GX_MAX_TEVSTAGE / 2];
+    /* 0x100 */ u32 tref[GX_MAX_TEVSTAGE / 2];
     /* 0x120 */ u32 field_0x120;
     /* 0x124 */ u32 field_0x124;
     /* 0x128 */ u32 field_0x128;
     /* 0x12C */ u32 field_0x12c;
-    /* 0x130 */ u32 field_0x130[GX_MAX_TEVSTAGE];
-    /* 0x170 */ u32 field_0x170[GX_MAX_TEVSTAGE];
-    /* 0x1B0 */ u32 field_0x1b0[GX_MAX_TEVSTAGE / 2];
+    /* 0x130 */ u32 tevc[GX_MAX_TEVSTAGE];
+    /* 0x170 */ u32 teva[GX_MAX_TEVSTAGE];
+    /* 0x1B0 */ u32 tevKsel[GX_MAX_TEVSTAGE / 2];
     /* 0x1D0 */ u32 field_0x1d0;
     /* 0x1D4 */ u32 field_0x1d4;
     /* 0x1D8 */ u32 field_0x1d8;
@@ -69,11 +69,10 @@ typedef struct _GXData {
     /* 0x510 */ f32 field_0x510;
     /* 0x514 */ u32 field_0x514[8];
     /* 0x534 */ u32 field_0x534[8];
-    /* 0x554 */ u32 field_0x554;
-    /* 0x558 */ u32 field_0x558[8];
+    /* 0x558 */ u32 texmapId[9];
     /* 0x578 */ u8 field_0x578[0x594 - 0x578];
     /* 0x594 */ u32 field_0x594;
-    /* 0x598 */ u32 field_0x598;
+    /* 0x598 */ u32 tevTcEnab;
     /* 0x59C */ u32 field_0x59c;
     /* 0x5A0 */ u8 field_0x5a0[4];
     /* 0x5A4 */ u32 field_0x5a4;
@@ -96,12 +95,12 @@ extern vu16* __memReg;
 inline void GXSetWasteFlags() {
 	GXData* data = __GXData;
 	data->dirtyFlags |= GX_DIRTY_SU_TEX | GX_DIRTY_BP_MASK;
-	data->field_0x2 = 0;
+	data->bpSentNot = 0;
 }
 
 static inline void set_x2(u16 value)
 {
-    __GXData->field_0x2 = value;
+    __GXData->bpSentNot = value;
 }
 
 #ifdef __cplusplus

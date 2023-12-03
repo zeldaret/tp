@@ -73,7 +73,7 @@ void GXSetDispCopyDst(u16 arg0, u16 arg1)
 void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
     s32 fmt2;
     s32 arg3, arg4, arg5;
-    __GXData->field_0x200 = 0;
+    __GXData->bpSentNot00 = 0;
 
     fmt2 = fmt & 0xf;
     if ((s32)fmt == GX_TF_Z16) {
@@ -93,7 +93,7 @@ void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
         break;
     }
 
-    __GXData->field_0x200 = 0x10 == (fmt & 0x10);
+    __GXData->bpSentNot00 = 0x10 == (fmt & 0x10);
     __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, fmt2, 0, 28, 28);
     fmt2 &= 7;
     __GetImageTileCount(fmt, width, height, &arg3, &arg4, &arg5);
@@ -225,7 +225,7 @@ u32 GXSetDispCopyYScale(f32 y_scale) {
     GX_BITFIELD_SET(r6, 0x17, 9, r7);
     GX_BITFIELD_SET(r6, 0, 7, 0x4e);
     GXFIFO.u32 = r6;
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
     r5 = 0x100 - r7 != 1;
     GX_BITFIELD_SET(__GXData->field_0x1ec, 0x15, 1, r5);
     return __GXGetNumXfbLines(__GXData->field_0x1e4, r7);
@@ -263,7 +263,7 @@ void GXSetCopyClear(GXColor color, u32 clear_z) {
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = r6;
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035D0E8-8035D2F0 357A28 0208+00 0/0 4/4 0/0 .text            GXSetCopyFilter */
@@ -355,7 +355,7 @@ void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfilter[
     GXFIFO.u32 = r11;
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = r5;
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 #else
 #pragma push
@@ -440,7 +440,7 @@ void GXCopyDisp(void* dst, GXBool clear) {
         GXFIFO.u32 = __GXData->field_0x1dc;
     }
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 #else
 #pragma push
@@ -478,7 +478,7 @@ void GXCopyTex(void* dst, GXBool clear) {
 
     r0 = 0;
     field_0x1dc = __GXData->field_0x1dc;
-    if (__GXData->field_0x200 && (field_0x1dc & 0x7) != 3) {
+    if (__GXData->bpSentNot00 && (field_0x1dc & 0x7) != 3) {
         GX_BITFIELD_SET(r7, 0x1d, 3, 3);
         r0 = 1;
     }
@@ -521,7 +521,7 @@ void GXCopyTex(void* dst, GXBool clear) {
         GXFIFO.u32 = __GXData->field_0x1dc;
     }
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 #else
 #pragma push

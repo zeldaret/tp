@@ -4,97 +4,187 @@
 //
 
 #include "dolphin/gx/GXTev.h"
+#include "dolphin/gx/GX.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-void GXSetTevOp();
-void GXSetTevColorIn();
-void GXSetTevAlphaIn();
-void GXSetTevColor();
-void GXSetTevColorS10();
-void GXSetTevKColor();
-void GXSetTevKColorSel();
-void GXSetTevKAlphaSel();
-void GXSetTevSwapMode();
-void GXSetTevSwapModeTable();
-void GXSetZTexture();
-void GXSetTevOrder();
-
-//
-// External References:
-//
-
-extern void* __GXData;
-
-//
-// Declarations:
-//
 
 /* ############################################################################################## */
 /* 803D27C0-803D27D4 02F8E0 0014+00 1/1 0/0 0/0 .data            TEVCOpTableST0 */
-SECTION_DATA static u8 TEVCOpTableST0[20] = {
-    0xC0, 0x08, 0xF8, 0xAF, 0xC0, 0x08, 0xA8, 0x9F, 0xC0, 0x08,
-    0xAC, 0x8F, 0xC0, 0x08, 0xFF, 0xF8, 0xC0, 0x08, 0xFF, 0xFA,
+static u32 TEVCOpTableST0[] = {
+	0xC008F8AF, // modulate
+	0xC008A89F, // decal
+	0xC008AC8F, // blend
+	0xC008FFF8, // replace
+	0xC008FFFA, // passclr
+};
+
+/* 803D27D4-803D27E8 02F8F4 0014+00 0/0 0/0 0/0 .data            TEVCOpTableST1 */
+static u32 TEVCOpTableST1[] = {
+	0xC008F80F, // modulate
+	0xC008089F, // decal
+	0xC0080C8F, // blend
+	0xC008FFF8, // replace
+	0xC008FFF0, // passclr
+};
+
+/* 803D27E8-803D27FC 02F908 0014+00 0/0 0/0 0/0 .data            TEVAOpTableST0 */
+static u32 TEVAOpTableST0[] = {
+	0xC108F2F0, // modulate
+	0xC108FFD0, // decal
+	0xC108F2F0, // blend
+	0xC108FFC0, // replace
+	0xC108FFD0, // passclr
+};
+
+/* 803D27FC-803D2810 02F91C 0014+00 0/0 0/0 0/0 .data            TEVAOpTableST1 */
+static u32 TEVAOpTableST1[] = {
+	0xC108F070, // modulate
+	0xC108FF80, // decal
+	0xC108F070, // blend
+	0xC108FFC0, // replace
+	0xC108FF80, // passclr
 };
 
 /* 8035F198-8035F224 359AD8 008C+00 0/0 15/15 1/1 .text            GXSetTevOp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevOp(GXTevStageID id, GXTevMode mode) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevOp.s"
+void GXSetTevOp(GXTevStageID stage, GXTevMode mode) {
+	u32* color;
+	u32* alpha;
+	u32 tevReg;
+
+	if (stage == GX_TEVSTAGE0) {
+		color = &TEVCOpTableST0[mode];
+		alpha = &TEVAOpTableST0[mode];
+	} else {
+		color = &TEVCOpTableST1[mode];
+		alpha = &TEVAOpTableST1[mode];
+	}
+
+	tevReg = __GXData->tevc[stage];
+	tevReg = (*color & ~0xFF000000) | (tevReg & 0xFF000000);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	__GXData->tevc[stage] = tevReg;
+
+	tevReg = __GXData->teva[stage];
+	tevReg = (*alpha & ~0xFF00000F) | (tevReg & 0xFF00000F);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	__GXData->teva[stage] = tevReg;
+
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F224-8035F268 359B64 0044+00 0/0 49/49 5/5 .text            GXSetTevColorIn */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c,
-                         GXTevColorArg d) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevColorIn.s"
+void GXSetTevColorIn(GXTevStageID stage, GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) {
+	u32 tevReg;
+
+	tevReg = __GXData->tevc[stage];
+
+	FAST_FLAG_SET(tevReg, a, 12, 4);
+	FAST_FLAG_SET(tevReg, b, 8, 4);
+	FAST_FLAG_SET(tevReg, c, 4, 4);
+	FAST_FLAG_SET(tevReg, d, 0, 4);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	__GXData->tevc[stage] = tevReg;
+	__GXData->bpSentNot   = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F268-8035F2AC 359BA8 0044+00 0/0 49/49 6/6 .text            GXSetTevAlphaIn */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c,
-                         GXTevAlphaArg d) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevAlphaIn.s"
+void GXSetTevAlphaIn(GXTevStageID stage, GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d) {
+	u32 tevReg;
+
+	tevReg = __GXData->teva[stage];
+
+	FAST_FLAG_SET(tevReg, a, 13, 3);
+	FAST_FLAG_SET(tevReg, b, 10, 3);
+	FAST_FLAG_SET(tevReg, c, 7, 3);
+	FAST_FLAG_SET(tevReg, d, 4, 3);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+
+	__GXData->teva[stage] = tevReg;
+	__GXData->bpSentNot   = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F2AC-8035F314 359BEC 0068+00 0/0 50/50 5/5 .text            GXSetTevColorOp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale,
-                         GXBool clamp, GXTevRegID out_reg) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevColorOp.s"
+void GXSetTevColorOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg) {
+	u32 tevReg;
+
+	tevReg = __GXData->tevc[stage];
+	FAST_FLAG_SET(tevReg, op & 1, 18, 1);
+
+	if (op <= 1) {
+		FAST_FLAG_SET(tevReg, scale, 20, 2);
+		FAST_FLAG_SET(tevReg, bias, 16, 2);
+	} else {
+		FAST_FLAG_SET(tevReg, (op >> 1) & 3, 20, 2);
+		FAST_FLAG_SET(tevReg, 3, 16, 2);
+	}
+
+	FAST_FLAG_SET(tevReg, doClamp, 19, 1);
+	FAST_FLAG_SET(tevReg, outReg, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+	__GXData->tevc[stage] = tevReg;
+	__GXData->bpSentNot   = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F314-8035F37C 359C54 0068+00 0/0 50/50 5/5 .text            GXSetTevAlphaOp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale,
-                         GXBool clamp, GXTevRegID out_reg) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevAlphaOp.s"
+void GXSetTevAlphaOp(GXTevStageID stage, GXTevOp op, GXTevBias bias, GXTevScale scale, GXBool doClamp, GXTevRegID outReg) {
+	u32 tevReg;
+
+	tevReg = __GXData->teva[stage];
+	FAST_FLAG_SET(tevReg, op & 1, 18, 1);
+
+	if (op <= 1) {
+		FAST_FLAG_SET(tevReg, scale, 20, 2);
+		FAST_FLAG_SET(tevReg, bias, 16, 2);
+	} else {
+		FAST_FLAG_SET(tevReg, (op >> 1) & 3, 20, 2);
+		FAST_FLAG_SET(tevReg, 3, 16, 2);
+	}
+
+	FAST_FLAG_SET(tevReg, doClamp, 19, 1);
+	FAST_FLAG_SET(tevReg, outReg, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(tevReg);
+	__GXData->teva[stage] = tevReg;
+	__GXData->bpSentNot   = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F37C-8035F3DC 359CBC 0060+00 0/0 54/54 4/4 .text            GXSetTevColor */
+#ifdef NONMATCHING
+void GXSetTevColor(GXTevRegID reg, GXColor color) {
+	u32 ra;
+	u32 bg;
+
+    ra = (((0xE0 + reg * 2) & 0xff) << 24) | (((*(u32*)&color) & 0xff000000) >> 24) | (((*(u32*)&color) & 0xff) << 12);
+    bg = (((0xE1 + reg * 2) & 0xff) << 24) | (((*(u32*)&color) & 0xff00) >> 8) | (((*(u32*)&color) & 0x00ff0000) >> 4);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	__GXData->bpSentNot = GX_FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,8 +193,32 @@ asm void GXSetTevColor(GXTevRegID id, GXColor color) {
 #include "asm/dolphin/gx/GXTev/GXSetTevColor.s"
 }
 #pragma pop
+#endif
 
 /* 8035F3DC-8035F440 359D1C 0064+00 0/0 8/8 2/2 .text            GXSetTevColorS10 */
+#ifdef NONMATCHING
+void GXSetTevColorS10(GXTevRegID reg, GXColorS10 color) {
+	u32 ra;
+	u32 bg;
+
+	ra = (((0xE0 + reg * 2) & 0xff) << 24) | (((*(u32*)&color) & 0x07ff0000) >> 16) | (((*(u32*)&color) & 0x7ff) << 12);
+    bg = (((0xE1 + reg * 2) & 0xff) << 24) | (((*(u32*)&color.b) & 0x07ff0000) >> 16) | (((*(u32*)&color.b) & 0x07ff) << 12);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	__GXData->bpSentNot = GX_FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,8 +227,33 @@ asm void GXSetTevColorS10(GXTevRegID id, GXColorS10 color) {
 #include "asm/dolphin/gx/GXTev/GXSetTevColorS10.s"
 }
 #pragma pop
+#endif
 
 /* 8035F440-8035F4A4 359D80 0064+00 0/0 8/8 4/4 .text            GXSetTevKColor */
+#ifdef NONMATCHING
+void GXSetTevKColor(GXTevKColorID id, GXColor color)
+{
+    u32 ra;
+	u32 bg;
+
+    ra = (((0xE0 + id * 2) & 0xff) << 24) | (((*(u32*)&color) & 0xff000000) >> 24) | (((*(u32*)&color) & 0xff) << 12) | (8 << 0x14);
+    bg = (((0xE1 + id * 2) & 0xff) << 24) | (((*(u32*)&color) & 0xff00) >> 8) | (((*(u32*)&color) & 0x00ff0000) >> 4) | (8 << 0x14);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(ra);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(bg);
+
+	__GXData->bpSentNot = GX_FALSE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,157 +262,177 @@ asm void GXSetTevKColor(GXTevKColorID id, GXColor color) {
 #include "asm/dolphin/gx/GXTev/GXSetTevKColor.s"
 }
 #pragma pop
+#endif
 
 /* 8035F4A4-8035F500 359DE4 005C+00 0/0 9/9 4/4 .text            GXSetTevKColorSel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel color_sel) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevKColorSel.s"
+void GXSetTevKColorSel(GXTevStageID stage, GXTevKColorSel sel)
+{
+	u32* reg;
+
+	reg = &__GXData->tevKsel[stage >> 1];
+
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, sel, 14, 5);
+	} else {
+		FAST_FLAG_SET(*reg, sel, 4, 5);
+	}
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F500-8035F55C 359E40 005C+00 0/0 9/9 4/4 .text            GXSetTevKAlphaSel */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel alpha_sel) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevKAlphaSel.s"
+void GXSetTevKAlphaSel(GXTevStageID stage, GXTevKAlphaSel sel) {
+	u32* reg;
+
+	reg = &__GXData->tevKsel[stage >> 1];
+
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, sel, 19, 5);
+	} else {
+		FAST_FLAG_SET(*reg, sel, 9, 5);
+	}
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
+
 
 /* 8035F55C-8035F5A4 359E9C 0048+00 0/0 10/10 5/5 .text            GXSetTevSwapMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel ras_sel, GXTevSwapSel tex_sel) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevSwapMode.s"
+void GXSetTevSwapMode(GXTevStageID stage, GXTevSwapSel rasSel, GXTevSwapSel texSel) {
+	u32* reg = &__GXData->teva[stage];
+	FAST_FLAG_SET(*reg, rasSel, 0, 2);
+	FAST_FLAG_SET(*reg, texSel, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F5A4-8035F624 359EE4 0080+00 0/0 17/17 2/2 .text            GXSetTevSwapModeTable */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevSwapModeTable(GXTevSwapSel select, GXTevColor r, GXTevColor g, GXTevColor b,
-                               GXTevColor a) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevSwapModeTable.s"
+void GXSetTevSwapModeTable(GXTevSwapSel table, GXTevColor red, GXTevColor green, GXTevColor blue, GXTevColor alpha) {
+	u32* reg;
+
+	reg = &__GXData->tevKsel[table << 1];
+	FAST_FLAG_SET(*reg, red, 0, 2);
+	FAST_FLAG_SET(*reg, green, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	reg = &__GXData->tevKsel[(table << 1) + 1];
+	FAST_FLAG_SET(*reg, blue, 0, 2);
+	FAST_FLAG_SET(*reg, alpha, 2, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
 
 /* 8035F624-8035F668 359F64 0044+00 0/0 43/43 5/5 .text            GXSetAlphaCompare */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetAlphaCompare.s"
+void GXSetAlphaCompare(GXCompare comp0, u8 ref0, GXAlphaOp op, GXCompare comp1, u8 ref1) {
+	u32 reg = 0xF3000000;
+
+	FAST_FLAG_SET(reg, ref0, 0, 8);
+	FAST_FLAG_SET(reg, ref1, 8, 8);
+	FAST_FLAG_SET(reg, comp0, 16, 3);
+	FAST_FLAG_SET(reg, comp1, 19, 3);
+	FAST_FLAG_SET(reg, op, 22, 2);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(reg);
+
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
+
 
 /* 8035F668-8035F6F4 359FA8 008C+00 0/0 3/3 0/0 .text            GXSetZTexture */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetZTexture.s"
+void GXSetZTexture(GXZTexOp op, GXTexFmt format, u32 bias) {
+	u32 val1;
+	u32 val2;
+	u32 val3;
+
+	val1 = 0;
+	FAST_FLAG_SET(val1, bias, 0, 24);
+	FAST_FLAG_SET(val1, 0xF4, 24, 8);
+
+	val2 = 0;
+	switch (format) {
+	case GX_TF_Z8:
+		val3 = 0;
+		break;
+	case GX_TF_Z16:
+		val3 = 1;
+		break;
+	case GX_TF_Z24X8:
+		val3 = 2;
+		break;
+	default:
+		val3 = 2;
+		break;
+	}
+
+	FAST_FLAG_SET(val2, val3, 0, 2);
+	FAST_FLAG_SET(val2, op, 2, 2);
+	FAST_FLAG_SET(val2, 0xF5, 24, 8);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(val1);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(val2);
+
+	__GXData->bpSentNot = GX_FALSE;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803D27D4-803D27E8 02F8F4 0014+00 0/0 0/0 0/0 .data            TEVCOpTableST1 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 TEVCOpTableST1[20] = {
-    0xC0, 0x08, 0xF8, 0x0F, 0xC0, 0x08, 0x08, 0x9F, 0xC0, 0x08,
-    0x0C, 0x8F, 0xC0, 0x08, 0xFF, 0xF8, 0xC0, 0x08, 0xFF, 0xF0,
-};
-#pragma pop
-
-/* 803D27E8-803D27FC 02F908 0014+00 0/0 0/0 0/0 .data            TEVAOpTableST0 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 TEVAOpTableST0[20] = {
-    0xC1, 0x08, 0xF2, 0xF0, 0xC1, 0x08, 0xFF, 0xD0, 0xC1, 0x08,
-    0xF2, 0xF0, 0xC1, 0x08, 0xFF, 0xC0, 0xC1, 0x08, 0xFF, 0xD0,
-};
-#pragma pop
-
-/* 803D27FC-803D2810 02F91C 0014+00 0/0 0/0 0/0 .data            TEVAOpTableST1 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 TEVAOpTableST1[20] = {
-    0xC1, 0x08, 0xF0, 0x70, 0xC1, 0x08, 0xFF, 0x80, 0xC1, 0x08,
-    0xF0, 0x70, 0xC1, 0x08, 0xFF, 0xC0, 0xC1, 0x08, 0xFF, 0x80,
-};
-#pragma pop
-
-/* 803D2810-803D2838 02F930 0024+04 1/1 0/0 0/0 .data            c2r$334 */
-SECTION_DATA static u8 c2r[36 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
 
 /* 8035F6F4-8035F890 35A034 019C+00 0/0 65/65 6/6 .text            GXSetTevOrder */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetTevOrder.s"
+void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) {
+	static int c2r[] = { 0, 1, 0, 1, 0, 1, 7, 5, 6 };
+
+	u32* reg;
+	u32 tempMap;
+	u32 tempCoord;
+
+	reg                 = &__GXData->tref[stage / 2];
+	__GXData->texmapId[stage] = map;
+
+	tempMap = map & ~0x100;
+	tempMap = (tempMap >= GX_MAX_TEXMAP) ? GX_TEXMAP0 : tempMap;
+
+	if (coord >= GX_MAXCOORD) {
+		tempCoord     = GX_TEXCOORD0;
+		__GXData->tevTcEnab = __GXData->tevTcEnab & ~(1 << stage);
+	} else {
+		tempCoord     = coord;
+		__GXData->tevTcEnab = __GXData->tevTcEnab | (1 << stage);
+	}
+
+	if (stage & 1) {
+		FAST_FLAG_SET(*reg, tempMap, 12, 3);
+		FAST_FLAG_SET(*reg, tempCoord, 15, 3);
+		FAST_FLAG_SET(*reg, (color == GX_COLOR_NULL ? 7 : c2r[color]), 19, 3);
+		FAST_FLAG_SET(*reg, ((map != GX_TEXMAP_NULL) && !(map & 0x100)), 18, 1);
+
+	} else {
+		FAST_FLAG_SET(*reg, tempMap, 0, 3);
+		FAST_FLAG_SET(*reg, tempCoord, 3, 3);
+		FAST_FLAG_SET(*reg, (color == GX_COLOR_NULL ? 7 : c2r[color]), 7, 3);
+		FAST_FLAG_SET(*reg, ((map != GX_TEXMAP_NULL) && !(map & 0x100)), 6, 1);
+	}
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(*reg);
+
+	__GXData->bpSentNot = GX_FALSE;
+	__GXData->dirtyFlags |= GX_DIRTY_SU_TEX;
 }
-#pragma pop
 
 /* 8035F890-8035F8B8 35A1D0 0028+00 0/0 63/63 6/6 .text            GXSetNumTevStages */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetNumTevStages(u8 num_stages) {
-    nofralloc
-#include "asm/dolphin/gx/GXTev/GXSetNumTevStages.s"
+void GXSetNumTevStages(u8 count) {
+	FAST_FLAG_SET(__GXData->genMode, count - 1, 10, 4);
+	__GXData->dirtyFlags |= GX_DIRTY_GEN_MODE;
 }
-#pragma pop

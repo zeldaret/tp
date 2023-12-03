@@ -178,7 +178,7 @@ static void __GXXfVtxSpecs(void) {
 	texCount = texCount / 2;
 
 	GX_XF_LOAD_REG(GX_XF_REG_INVERTEXSPEC, colorCount | normCount << 2 | texCount << 4);
-	__GXData->field_0x2 = GX_TRUE;
+	__GXData->bpSentNot = GX_TRUE;
 }
 
 void __GXSetVCD(void) {

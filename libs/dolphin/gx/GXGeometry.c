@@ -90,7 +90,7 @@ void __GXSendFlushPrim(void) {
         GXFIFO.s32 = 0;
     }
 
-    __GXData->field_0x2 = 1;
+    __GXData->bpSentNot = 1;
 }
 
 /* 8035C8BC-8035C8FC 3571FC 0040+00 0/0 8/8 0/0 .text            GXSetLineWidth */
@@ -101,7 +101,7 @@ void GXSetLineWidth(u8 width, GXTexOffset offsets) {
     GX_BITFIELD_SET(data->field_0x7c, 13, 3, offsets);
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = data->field_0x7c;
-    data->field_0x2 = 0;
+    data->bpSentNot = 0;
 }
 
 /* 8035C8FC-8035C93C 35723C 0040+00 0/0 5/5 0/0 .text            GXSetPointSize */
@@ -112,7 +112,7 @@ void GXSetPointSize(u8 size, GXTexOffset offsets) {
     GX_BITFIELD_SET(data->field_0x7c, 10, 3, offsets);
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = data->field_0x7c;
-    data->field_0x2 = 0;
+    data->bpSentNot = 0;
 }
 
 /* 8035C93C-8035C984 35727C 0048+00 0/0 3/3 0/0 .text            GXEnableTexOffsets */
@@ -123,7 +123,7 @@ void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point) {
     GX_BITFIELD_SET(data->field_0xb8[coord], 12, 1, point);
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = data->field_0xb8[coord];
-    data->field_0x2 = 0;
+    data->bpSentNot = 0;
 }
 
 /* 8035C984-8035C9AC 3572C4 0028+00 0/0 33/33 5/5 .text            GXSetCullMode */
@@ -154,5 +154,5 @@ void GXSetCoPlanar(GXBool enable) {
 void __GXSetGenMode(void) {
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = __GXData->genMode;
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }

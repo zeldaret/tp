@@ -30,6 +30,11 @@ extern "C" {
     (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
             ((u32) (value) << (shift));
 
+#define FAST_FLAG_SET(regOrg, newFlag, shift, size)                                                                \
+	do {                                                                                                           \
+		(regOrg) = (u32)__rlwimi((int)(regOrg), (int)(newFlag), (shift), (32 - (shift) - (size)), (31 - (shift))); \
+	} while (0);
+
 #define GX_LOAD_BP_REG 0x61
 #define GX_NOP 0
 
@@ -49,6 +54,9 @@ typedef union {
 volatile PPCWGPipe GXFIFO : 0xCC008000;
 
 #define GFX_FIFO(T) (*(volatile T*)0xCC008000)
+
+#define GX_WRITE_U8(data) GXFIFO.u8 = data;
+#define GX_WRITE_U32(data) GXFIFO.u32 = data;
 
 #define GX_CP_LOAD_REG(addr, data)          \
 	GXFIFO.s8  = GX_FIFO_CMD_LOAD_CP_REG; \

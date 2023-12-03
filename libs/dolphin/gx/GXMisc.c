@@ -54,7 +54,7 @@ void GXSetMisc(u32 id, u32 value) {
         __GXData->vNum = value;
         // fake match. Should be something like __GXData->vNum == 0, but it adds a neg instruction
         __GXData->field_0x0 = (__cntlzw(__GXData->vNum) >> 5) & 0xffff;
-        __GXData->field_0x2 = 1;
+        __GXData->bpSentNot = 1;
         if (__GXData->vNum == 0) {
             break;
         }
@@ -205,7 +205,7 @@ void GXDrawDone(void) {
 void GXPixModeSync(void) {
     GXFIFO.u8 = 0x61;   
     GXFIFO.u32 = __GXData->field_0x1dc;
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035C398-8035C3AC 356CD8 0014+00 0/0 1/1 0/0 .text            GXPokeAlphaMode */
