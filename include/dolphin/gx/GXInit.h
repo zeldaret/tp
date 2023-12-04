@@ -21,7 +21,7 @@ typedef struct _GXData {
     /* 0x01C */ GXCompCnt vatA[8];
     /* 0x03C */ GXCompCnt vatB[8];
     /* 0x05C */ u32 vatC[8];
-    /* 0x07C */ u32 field_0x7c;
+    /* 0x07C */ u32 lpSize;
     /* 0x080 */ u32 matIdxA;
     /* 0x084 */ u32 matIdxB;
     /* 0x088 */ u8 field_0x88[0xA8 - 0x88];
@@ -39,10 +39,10 @@ typedef struct _GXData {
     /* 0x130 */ u32 tevc[GX_MAX_TEVSTAGE];
     /* 0x170 */ u32 teva[GX_MAX_TEVSTAGE];
     /* 0x1B0 */ u32 tevKsel[GX_MAX_TEVSTAGE / 2];
-    /* 0x1D0 */ u32 field_0x1d0;
-    /* 0x1D4 */ u32 field_0x1d4;
-    /* 0x1D8 */ u32 field_0x1d8;
-    /* 0x1DC */ u32 field_0x1dc;
+    /* 0x1D0 */ u32 cmode0;
+    /* 0x1D4 */ u32 cmode1;
+    /* 0x1D8 */ u32 zmode;
+    /* 0x1DC */ u32 peCtrl;
     /* 0x1E0 */ u32 field_0x1e0;
     /* 0x1E4 */ u32 field_0x1e4;
     /* 0x1E8 */ u32 field_0x1e8;

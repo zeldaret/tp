@@ -97,10 +97,10 @@ void __GXSendFlushPrim(void) {
 void GXSetLineWidth(u8 width, GXTexOffset offsets) {
     GXData* data = __GXData;
 
-    GX_BITFIELD_SET(data->field_0x7c, 24, 8, width);
-    GX_BITFIELD_SET(data->field_0x7c, 13, 3, offsets);
+    GX_BITFIELD_SET(data->lpSize, 24, 8, width);
+    GX_BITFIELD_SET(data->lpSize, 13, 3, offsets);
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = data->field_0x7c;
+    GXFIFO.u32 = data->lpSize;
     data->bpSentNot = 0;
 }
 
@@ -108,10 +108,10 @@ void GXSetLineWidth(u8 width, GXTexOffset offsets) {
 void GXSetPointSize(u8 size, GXTexOffset offsets) {
     GXData* data = __GXData;
 
-    GX_BITFIELD_SET(data->field_0x7c, 16, 8, size);
-    GX_BITFIELD_SET(data->field_0x7c, 10, 3, offsets);
+    GX_BITFIELD_SET(data->lpSize, 16, 8, size);
+    GX_BITFIELD_SET(data->lpSize, 10, 3, offsets);
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = data->field_0x7c;
+    GXFIFO.u32 = data->lpSize;
     data->bpSentNot = 0;
 }
 

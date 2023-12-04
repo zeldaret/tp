@@ -77,6 +77,13 @@ volatile PPCWGPipe GXFIFO : 0xCC008000;
 	GX_XF_LOAD_REG_HDR(addr);      \
 	GXFIFO.s32 = (data);
 
+/**
+ * Load immediate value into BP register
+ */
+#define GX_BP_LOAD_REG(data)                \
+	GXFIFO.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
+	GXFIFO.s32 = (data);
+
 inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GXFIFO.f32 = x;
     GXFIFO.f32 = y;

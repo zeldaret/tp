@@ -758,6 +758,8 @@ typedef enum _GXPixelFmt {
     /* 0x5 */ GX_PF_U8,
     /* 0x6 */ GX_PF_V8,
     /* 0x7 */ GX_PF_YUV420,
+    /* 0x8 */ GX_PF_MAX,
+    g
 } GXPixelFmt;
 
 typedef enum _GXZFmt16 {
@@ -1543,5 +1545,204 @@ typedef enum _GXBPRegs {
 	// SS mask
 	GX_BP_REG_SSMASK = 0xFE,
 } GXBPRegs;
+
+// BP locators for fog parameter 0.
+typedef enum _GXBPFogParam0 {
+	// A mantissa [21-31]
+	GX_BP_FOGPARAM0_A_MANT_ST  = 21,
+	GX_BP_FOGPARAM0_A_MANT_END = 31,
+
+	// A exponent [13-20]
+	GX_BP_FOGPARAM0_A_EXP_ST  = 13,
+	GX_BP_FOGPARAM0_A_EXP_END = 20,
+
+	// A sign [12-12]
+	GX_BP_FOGPARAM0_A_SIGN_ST  = 12,
+	GX_BP_FOGPARAM0_A_SIGN_END = 12,
+} GXBPFogParam0;
+
+// BP locators for fog parameter 1.
+typedef enum _GXBPFogParam1 {
+	// B magnitude [8-31]
+	GX_BP_FOGPARAM1_B_MAG_ST  = 8,
+	GX_BP_FOGPARAM1_B_MAG_END = 31,
+} GXBPFogParam1;
+
+// BP locators for fog parameter 2.
+typedef enum _GXBPFogParam2 {
+	// B shift [27-31]
+	GX_BP_FOGPARAM2_B_SHIFT_ST  = 27,
+	GX_BP_FOGPARAM2_B_SHIFT_END = 31,
+} GXBPFogParam2;
+
+// BP locators for fog parameter 3.
+typedef enum _GXBPFogParam3 {
+	// C mantissa [21-31]
+	GX_BP_FOGPARAM3_C_MANT_ST  = 21,
+	GX_BP_FOGPARAM3_C_MANT_END = 31,
+
+	// C exponent [13-20]
+	GX_BP_FOGPARAM3_C_EXP_ST  = 13,
+	GX_BP_FOGPARAM3_C_EXP_END = 20,
+
+	// C sign [12-12]
+	GX_BP_FOGPARAM3_C_SIGN_ST  = 12,
+	GX_BP_FOGPARAM3_C_SIGN_END = 12,
+
+	// Projection [11]
+	GX_BP_FOGPARAM3_PROJ_ST  = 11,
+	GX_BP_FOGPARAM3_PROJ_END = 11,
+
+	// F select [8-10]
+	GX_BP_FOGPARAM3_FSEL_ST  = 8,
+	GX_BP_FOGPARAM3_FSEL_END = 10,
+} GXBPFogParam3;
+
+// BP locators for fog color.
+typedef enum _GXBPFogColor {
+	// RGB components of color [8-31]
+	GX_BP_FOGCOLOR_RGB_ST  = 8,
+	GX_BP_FOGCOLOR_RGB_END = 31,
+} GXBPFogColor;
+
+// BP locators for fog range.
+typedef enum _GXBPFogRange {
+	// Center [22-31]
+	GX_BP_FOGRANGE_CENTER_ST  = 22,
+	GX_BP_FOGRANGE_CENTER_END = 31,
+
+	// Enabled [21-21]
+	GX_BP_FOGRANGE_ENABLED_ST  = 21,
+	GX_BP_FOGRANGE_ENABLED_END = 21,
+} GXBPFogRange;
+
+// BP locators for fog range K.
+typedef enum _GXBPFogRangeK {
+	// Hi [20-31]
+	GX_BP_FOGRANGEK_HI_ST  = 20,
+	GX_BP_FOGRANGEK_HI_END = 31,
+
+	// Lo [8-19]
+	GX_BP_FOGRANGEK_LO_ST  = 8,
+	GX_BP_FOGRANGEK_LO_END = 19,
+} GXBPFogRangeK;
+
+// BP locators for blend mode.
+typedef enum _GXBPBlendMode {
+	// Blend enable [31-31]
+	GX_BP_BLENDMODE_ENABLE_ST  = 31,
+	GX_BP_BLENDMODE_ENABLE_END = 31,
+
+	// Logic operation enable [30-30]
+	GX_BP_BLENDMODE_LOGIC_OP_ST  = 30,
+	GX_BP_BLENDMODE_LOGIC_OP_END = 30,
+
+	// Dither [29-29]
+	GX_BP_BLENDMODE_DITHER_ST  = 29,
+	GX_BP_BLENDMODE_DITHER_END = 29,
+
+	// Color update [28-28]
+	GX_BP_BLENDMODE_COLOR_UPDATE_ST  = 28,
+	GX_BP_BLENDMODE_COLOR_UPDATE_END = 28,
+
+	// Alpha update [27-27]
+	GX_BP_BLENDMODE_ALPHA_UPDATE_ST  = 27,
+	GX_BP_BLENDMODE_ALPHA_UPDATE_END = 27,
+
+	// Destination factor [24-26]
+	GX_BP_BLENDMODE_DSTFACTOR_ST  = 24,
+	GX_BP_BLENDMODE_DSTFACTOR_END = 26,
+
+	// Source factor [21-23]
+	GX_BP_BLENDMODE_SRCFACTOR_ST  = 21,
+	GX_BP_BLENDMODE_SRCFACTOR_END = 23,
+
+	// Subtract [20-20]
+	GX_BP_BLENDMODE_SUBTRACT_ST  = 20,
+	GX_BP_BLENDMODE_SUBTRACT_END = 20,
+
+	// Logic mode [16-19]
+	GX_BP_BLENDMODE_LOGICMODE_ST  = 16,
+	GX_BP_BLENDMODE_LOGICMODE_END = 19,
+} GXBPBlendMode;
+
+// BP locators for Z mode.
+typedef enum _GXBPZMode {
+	// Test enable [31-31]
+	GX_BP_ZMODE_TEST_ENABLE_ST  = 31,
+	GX_BP_ZMODE_TEST_ENABLE_END = 31,
+
+	// Compare [28-30]
+	GX_BP_ZMODE_COMPARE_ST  = 28,
+	GX_BP_ZMODE_COMPARE_END = 30,
+
+	// Update enable [27-27]
+	GX_BP_ZMODE_UPDATE_ENABLE_ST  = 27,
+	GX_BP_ZMODE_UPDATE_ENABLE_END = 27,
+} GXBPZMode;
+
+// BP locators for Z control.
+typedef enum _GXBPZControl {
+	// Pixel format [29-31]
+	GX_BP_ZCONTROL_PIXEL_FMT_ST  = 29,
+	GX_BP_ZCONTROL_PIXEL_FMT_END = 31,
+
+	// Z format [26-28]
+	GX_BP_ZCONTROL_Z_FMT_ST  = 26,
+	GX_BP_ZCONTROL_Z_FMT_END = 28,
+
+	// Whether to do Z-buffering before or after texturing [25-25]
+	GX_BP_ZCONTROL_BEFORE_TEX_ST  = 25,
+	GX_BP_ZCONTROL_BEFORE_TEX_END = 25,
+} GXBPZControl;
+
+// BP locators for destination alpha.
+typedef enum _GXBPDstAlpha {
+	// Alpha [24-31]
+	GX_BP_DSTALPHA_ALPHA_ST  = 24,
+	GX_BP_DSTALPHA_ALPHA_END = 31,
+
+	// Enable [23-23]
+	GX_BP_DSTALPHA_ENABLE_ST  = 23,
+	GX_BP_DSTALPHA_ENABLE_END = 23,
+
+	// YUV format [21-22]
+	GX_BP_DSTALPHA_YUV_FMT_ST  = 21,
+	GX_BP_DSTALPHA_YUV_FMT_END = 22,
+} GXBPDstAlpha;
+
+// BP locators for field mask.
+typedef enum _GXBPFieldMask {
+	// Whether to write odd fields to the EFB [31-31]
+	GX_BP_FIELDMASK_ODD_ST  = 31,
+	GX_BP_FIELDMASK_ODD_END = 31,
+
+	// Whether to write even fields to the EFB [30-30]
+	GX_BP_FIELDMASK_EVEN_ST  = 30,
+	GX_BP_FIELDMASK_EVEN_END = 30,
+} GXBPFieldMask;
+
+// BP locators for line and point settings.
+typedef enum _GXBPLinePtWidth {
+	// Line size/width [24-31]
+	GX_BP_LINEPTWIDTH_LINESZ_ST  = 24,
+	GX_BP_LINEPTWIDTH_LINESZ_END = 31,
+
+	// Point size [16-23]
+	GX_BP_LINEPTWIDTH_POINTSZ_ST  = 16,
+	GX_BP_LINEPTWIDTH_POINTSZ_END = 23,
+
+	// Line offset [13-15]
+	GX_BP_LINEPTWIDTH_LINEOFS_ST  = 13,
+	GX_BP_LINEPTWIDTH_LINEOFS_END = 15,
+
+	// Point offset [10-12]
+	GX_BP_LINEPTWIDTH_POINTOFS_ST  = 10,
+	GX_BP_LINEPTWIDTH_POINTOFS_END = 12,
+
+	// Interlacing adjustment for aspect ratio [9-9]
+	GX_BP_LINEPTWIDTH_ADJUST_ST  = 9,
+	GX_BP_LINEPTWIDTH_ADJUST_END = 9,
+} GXBPLinePtWidth;
 
 #endif /* GXENUM_H */

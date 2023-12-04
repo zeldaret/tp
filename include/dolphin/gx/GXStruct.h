@@ -72,7 +72,7 @@ typedef struct _GXLightObj {
 } GXLightObj;
 
 typedef struct _GXFogAdjTable {
-    /* 0x0 */ u16 r[10];
+    /* 0x0 */ u16 fogVals[10];
 } GXFogAdjTable;
 
 typedef struct _GXFifoObj {

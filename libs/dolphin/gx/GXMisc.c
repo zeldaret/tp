@@ -204,7 +204,7 @@ void GXDrawDone(void) {
 /* 8035C374-8035C398 356CB4 0024+00 0/0 9/9 0/0 .text            GXPixModeSync */
 void GXPixModeSync(void) {
     GXFIFO.u8 = 0x61;   
-    GXFIFO.u32 = __GXData->field_0x1dc;
+    GXFIFO.u32 = __GXData->peCtrl;
     __GXData->bpSentNot = 0;
 }
 
