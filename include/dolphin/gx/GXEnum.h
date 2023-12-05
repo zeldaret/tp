@@ -1755,4 +1755,45 @@ typedef enum _GXMiscToken {
 	GX_MT_ABORT_WAIT_COPYOUT = 3,
 } GXMiscToken;
 
+// Transform memory types.
+typedef enum _GXXfMem {
+	GX_XF_MEM_POSMTX     = 0x000, // position coord matrix
+	GX_XF_MEM_NRMMTX     = 0x400, // normal coord matrix
+	GX_XF_MEM_DUALTEXMTX = 0x500, // dual texture matrix
+	GX_XF_MEM_LIGHTOBJ   = 0x600, // light object
+} GXXfMem;
+
+// BP locators for top-left scissor.
+typedef enum _GXBPScissorTL {
+	// Top component [21-31]
+	GX_BP_SCISSORTL_TOP_ST  = 21,
+	GX_BP_SCISSORTL_TOP_END = 31,
+
+	// Left component [9-19]
+	GX_BP_SCISSORTL_LEFT_ST  = 9,
+	GX_BP_SCISSORTL_LEFT_END = 19,
+} GXBPScissorTL;
+
+// BP locators for bottom-right scissor.
+typedef enum _GXBPScissorBR {
+	// Bottom component [21-31]
+	GX_BP_SCISSORBR_BOT_ST  = 21,
+	GX_BP_SCISSORBR_BOT_END = 31,
+
+	// Right component [9-19]
+	GX_BP_SCISSORBR_RIGHT_ST  = 9,
+	GX_BP_SCISSORBR_RIGHT_END = 19,
+} GXBPScissorBR;
+
+// BP locators for scissor offset.
+typedef enum _GXBPScissorOffset {
+	// X offset [22-31]
+	GX_BP_SCISSOROFS_OX_ST  = 22,
+	GX_BP_SCISSOROFS_OX_END = 31,
+
+	// Y offset [12-21]
+	GX_BP_SCISSOROFS_OY_ST  = 12,
+	GX_BP_SCISSOROFS_OY_END = 21,
+} GXBPScissorOffset;
+
 #endif /* GXENUM_H */

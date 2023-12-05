@@ -58,6 +58,7 @@ volatile PPCWGPipe GXFIFO : GXFIFO_ADDR;
 
 #define GX_WRITE_U8(data) GXFIFO.u8 = data;
 #define GX_WRITE_U32(data) GXFIFO.u32 = data;
+#define GX_WRITE_F32(val) (GXFIFO.f32 = (f32)val)
 
 #define GX_CP_LOAD_REG(addr, data)          \
 	GXFIFO.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
@@ -84,6 +85,15 @@ volatile PPCWGPipe GXFIFO : GXFIFO_ADDR;
 #define GX_BP_LOAD_REG(data)                \
 	GXFIFO.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
 	GXFIFO.s32 = (data);
+
+/**
+ * Load immediate values into multiple XF registers
+ */
+#define GX_XF_LOAD_REGS(size, addr)    \
+	{                                  \
+		u32 cmd = (size) << 16 | addr; \
+		GX_XF_LOAD_REG_HDR(cmd);       \
+	}
 
 inline void GXPosition3f32(f32 x, f32 y, f32 z) {
     GXFIFO.f32 = x;
