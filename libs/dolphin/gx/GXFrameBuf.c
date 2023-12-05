@@ -73,7 +73,7 @@ void GXSetDispCopyDst(u16 arg0, u16 arg1)
 void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
     s32 fmt2;
     s32 arg3, arg4, arg5;
-    __GXData->bpSentNot00 = 0;
+    __GXData->field_0x200 = 0;
 
     fmt2 = fmt & 0xf;
     if ((s32)fmt == GX_TF_Z16) {
@@ -86,22 +86,22 @@ void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
     case 2:
     case 3:
     case 0x26:
-        GX_BITFIELD_SET(__GXData->field_0x1fc, 15, 2, 3);
+        GX_BITFIELD_SET(__GXData->cpTex, 15, 2, 3);
         break;
     default:
-        GX_BITFIELD_SET(__GXData->field_0x1fc, 15, 2, 2);
+        GX_BITFIELD_SET(__GXData->cpTex, 15, 2, 2);
         break;
     }
 
-    __GXData->bpSentNot00 = 0x10 == (fmt & 0x10);
-    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, fmt2, 0, 28, 28);
+    __GXData->field_0x200 = 0x10 == (fmt & 0x10);
+    __GXData->cpTex = __rlwimi(__GXData->cpTex, fmt2, 0, 28, 28);
     fmt2 &= 7;
     __GetImageTileCount(fmt, width, height, &arg3, &arg4, &arg5);
     __GXData->field_0x1f8 = 0;
     GX_BITFIELD_SET(__GXData->field_0x1f8, 22, 10, arg3*arg5);
     GX_BITFIELD_SET(__GXData->field_0x1f8, 0, 8, 0x4d);
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 22, 1, mipmap);
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 25, 3, fmt2);
+    GX_BITFIELD_SET(__GXData->cpTex, 22, 1, mipmap);
+    GX_BITFIELD_SET(__GXData->cpTex, 25, 3, fmt2);
 }
 #else
 #pragma push
@@ -118,7 +118,7 @@ asm void GXSetTexCopyDst(u16 width, u16 height, s32 fmt, GXBool mipmap) {
 void GXSetDispCopyFrame2Field(GXCopyMode arg0)
 {
     GX_BITFIELD_SET(__GXData->field_0x1ec, 18, 2, arg0);
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 18, 2, 0);
+    GX_BITFIELD_SET(__GXData->cpTex, 18, 2, 0);
 }
 #define INSERT_FIELD(reg, value, nbits, shift)                                 \
     (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
@@ -130,8 +130,8 @@ void GXSetCopyClamp(GXFBClamp clamp) {
     u8 isBottom = (clamp & GX_CLAMP_BOTTOM) == GX_CLAMP_BOTTOM;
     __GXData->field_0x1ec = __rlwimi(__GXData->field_0x1ec, isTop, 0, 31, 31);
     __GXData->field_0x1ec = __rlwimi(__GXData->field_0x1ec, isBottom, 1, 30, 30);
-    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, isTop, 0, 31, 31);
-    __GXData->field_0x1fc = __rlwimi(__GXData->field_0x1fc, isBottom, 1, 30, 30);
+    __GXData->cpTex = __rlwimi(__GXData->cpTex, isTop, 0, 31, 31);
+    __GXData->cpTex = __rlwimi(__GXData->cpTex, isBottom, 1, 30, 30);
 }
 
 /* ############################################################################################## */
@@ -478,7 +478,7 @@ void GXCopyTex(void* dst, GXBool clear) {
 
     r0 = 0;
     field_0x1dc = __GXData->field_0x1dc;
-    if (__GXData->bpSentNot00 && (field_0x1dc & 0x7) != 3) {
+    if (__GXData->bpSentNot && (field_0x1dc & 0x7) != 3) {
         GX_BITFIELD_SET(r7, 0x1d, 3, 3);
         r0 = 1;
     }
@@ -504,11 +504,11 @@ void GXCopyTex(void* dst, GXBool clear) {
     GXFIFO.u32 = __GXData->field_0x1f8;
     GXFIFO.u8 = 0x61;
     GXFIFO.u32 = r10;
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 0x14, 1, clear);
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 0x11, 1, 0);
-    GX_BITFIELD_SET(__GXData->field_0x1fc, 0, 8, 0x52);
+    GX_BITFIELD_SET(__GXData->cpTex, 0x14, 1, clear);
+    GX_BITFIELD_SET(__GXData->cpTex, 0x11, 1, 0);
+    GX_BITFIELD_SET(__GXData->cpTex, 0, 8, 0x52);
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1fc;
+    GXFIFO.u32 = __GXData->cpTex;
     if (clear) {
         GXFIFO.u8 = 0x61;
         GXFIFO.u32 = __GXData->field_0x1d8;

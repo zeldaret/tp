@@ -388,10 +388,12 @@ typedef enum _GXTlut {
     /* 0x0D */ GX_TLUT13,
     /* 0x0E */ GX_TLUT14,
     /* 0x0F */ GX_TLUT15,
-    /* 0x10 */ GX_BIGTLUT0,
+    /* 0x10 */ GX_MAX_TLUT,
+    /* 0x10 */ GX_BIGTLUT0 = 0x10,
     /* 0x11 */ GX_BIGTLUT1,
     /* 0x12 */ GX_BIGTLUT2,
     /* 0x13 */ GX_BIGTLUT3,
+    /* 0x13 */ GX_MAX_BIGTLUT = 4,
 } GXTlut;
 
 /* 8-bit version of GXTexFmt for use in structures */
@@ -1744,5 +1746,13 @@ typedef enum _GXBPLinePtWidth {
 	GX_BP_LINEPTWIDTH_ADJUST_ST  = 9,
 	GX_BP_LINEPTWIDTH_ADJUST_END = 9,
 } GXBPLinePtWidth;
+
+// Miscellaneous token types.
+typedef enum _GXMiscToken {
+	GX_MT_NULL               = 0,
+	GX_MT_XF_FLUSH           = 1,
+	GX_MT_DL_SAVE_CONTEXT    = 2,
+	GX_MT_ABORT_WAIT_COPYOUT = 3,
+} GXMiscToken;
 
 #endif /* GXENUM_H */

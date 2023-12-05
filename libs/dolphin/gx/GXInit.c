@@ -5,14 +5,15 @@
 
 #include "dolphin/gx/GXInit.h"
 #include "dolphin/gx/GX.h"
+#include "dolphin/base/PPCArch.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSTime.h"
+#include "dolphin/os/OS.h"
 
 //
 // Forward References:
 //
 
-void __GXShutdown();
 void __GXInitRevisionBits();
 void __GXInitGX();
 
@@ -21,9 +22,6 @@ void __GXInitGX();
 //
 
 void PPCSync();
-void PPCMfhid2();
-void PPCMthid2();
-void PPCMtwpar();
 void OSRegisterVersion();
 void OSRegisterResetFunction();
 void VIGetTvFormat();
@@ -68,41 +66,54 @@ static GXData gxData;
 GXData* const __GXData = &gxData;
 
 /* 8035921C-80359318 353B5C 00FC+00 1/1 0/0 0/0 .text            __GXDefaultTexRegionCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj, GXTexMapID mapID) {
-    nofralloc
-#include "asm/dolphin/gx/GXInit/__GXDefaultTexRegionCallback.s"
+GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj, GXTexMapID id) {
+	GXTexFmt format; // r31
+	GXBool isMipMap; // r3 
+
+	format   = GXGetTexObjFmt(obj);
+	isMipMap = GXGetTexObjMipMap(obj);
+	id       = (GXTexMapID)(id % GX_MAX_TEXMAP);
+
+	switch (format) {
+	case GX_TF_RGBA8:
+		if (isMipMap) {
+			return &__GXData->TexRegions2[id];
+		}
+		return &__GXData->TexRegions1[id];
+
+	case GX_TF_C4:
+	case GX_TF_C8:
+	case GX_TF_C14X2:
+		return &__GXData->TexRegions0[id];
+
+	default:
+		if (isMipMap) {
+			return &__GXData->TexRegions1[id];
+		}
+		return &__GXData->TexRegions0[id];
+	}
 }
-#pragma pop
 
 /* 80359318-8035933C 353C58 0024+00 1/1 0/0 0/0 .text            __GXDefaultTlutRegionCallback */
-#pragma push
-#pragma peephole off
 GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut) {
     if (tlut >= 0x14) {
         return NULL;
     } else {
-        return &__GXData->field_0x388[tlut];
+        return &__GXData->TlutRegions[tlut];
     }
 }
-#pragma pop
 
 /* 80451944-80451948 000E44 0004+00 1/1 0/0 0/0 .sbss            resetFuncRegistered$145 */
-/* static */ u8 resetFuncRegistered[4];
+/* static */ u32 resetFuncRegistered;
 
 /* 80451940-80451944 000E40 0004+00 1/1 0/0 0/0 .sbss            calledOnce$37 */
-/* static */ u8 calledOnce[4];
-
-/* 8045193C-80451940 000E3C 0004+00 1/1 0/0 0/0 .sbss            None */
-/* static */ u8 data_8045193C[4];
+/* static */ u32 calledOnce;
 
 /* 80451938-8045193C 000E38 0004+00 1/1 0/0 0/0 .sbss            time$36 */
-/* static */ u8 time[4];
+/* static */ OSTime time;
 
 /* 80451930-80451938 000E30 0004+04 1/1 0/0 0/0 .sbss            peCount$35 */
-/* static */ u8 peCount[4 + 4 /* padding */];
+/* static */ u32 peCount;
 
 /* 8045192C-80451930 000E2C 0004+00 2/2 2/2 0/0 .sbss            __memReg */
 vu16* __memReg;
@@ -118,24 +129,102 @@ u16* __cpReg;
 u32* __piReg;
 
 /* 8035933C-803594CC 353C7C 0190+00 1/0 0/0 0/0 .text            __GXShutdown */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __GXShutdown(s32) {
-    nofralloc
-#include "asm/dolphin/gx/GXInit/__GXShutdown.s"
+BOOL __GXShutdown(BOOL final) {
+	u32 val;
+	u32 newPeCount;
+	OSTime newTime;
+
+	if (!final) {
+		if (!calledOnce) {
+			peCount    = GXReadMEMReg(0x28, 0x27);
+			time       = OSGetTime();
+			calledOnce = 1;
+			return FALSE;
+		}
+
+		newTime    = OSGetTime();
+		newPeCount = GXReadMEMReg(0x28, 0x27);
+
+		if (newTime - time < 10) {
+			return FALSE;
+		}
+
+		if (newPeCount != peCount) {
+			peCount = newPeCount;
+			time    = newTime;
+			return FALSE;
+		}
+
+	} else {
+		GXSetBreakPtCallback(NULL);
+		GXSetDrawSyncCallback(NULL);
+		GXSetDrawDoneCallback(NULL);
+
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+		GX_WRITE_U32(0);
+
+		PPCSync();
+
+		GX_SET_CP_REG(1, 0);
+		GX_SET_CP_REG(2, 3);
+
+		__GXData->abtWaitPECopy = GX_TRUE;
+
+		__GXAbort();
+	}
+
+	return TRUE;
 }
-#pragma pop
 
 /* 803594CC-80359670 353E0C 01A4+00 1/1 1/1 0/0 .text            __GXInitRevisionBits */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __GXInitRevisionBits(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXInit/__GXInitRevisionBits.s"
+void __GXInitRevisionBits(void) {
+    u32 i;
+    for (i = 0; i < 8; i++) {
+		FAST_FLAG_SET(__GXData->vatA[i], 1, 30, 33);
+		FAST_FLAG_SET(__GXData->vatB[i], 1, 31, 33);
+
+		GX_WRITE_U8(0x8);
+		GX_WRITE_U8(i | 0x80);
+		GX_WRITE_U32(__GXData->vatB[i]);
+	}
+
+	{
+		u32 reg1 = 0;
+		u32 reg2 = 0;
+
+		FAST_FLAG_SET(reg1, 1, 0, 1);
+		FAST_FLAG_SET(reg1, 1, 1, 1);
+		FAST_FLAG_SET(reg1, 1, 2, 1);
+		FAST_FLAG_SET(reg1, 1, 3, 1);
+		FAST_FLAG_SET(reg1, 1, 4, 1);
+		FAST_FLAG_SET(reg1, 1, 5, 1);
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1000);
+		GX_WRITE_U32(reg1);
+
+		FAST_FLAG_SET(reg2, 1, 0, 1);
+		GX_WRITE_U8(0x10);
+		GX_WRITE_U32(0x1012);
+		GX_WRITE_U32(reg2);
+	}
+
+	{
+		u32 reg = 0;
+		FAST_FLAG_SET(reg, 1, 0, 1);
+		FAST_FLAG_SET(reg, 1, 1, 1);
+		FAST_FLAG_SET(reg, 1, 2, 1);
+		FAST_FLAG_SET(reg, 1, 3, 1);
+		FAST_FLAG_SET(reg, 0x58, 24, 8);
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(reg);
+	}
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803D2040-803D20A0 02F160 0044+1C 2/1 0/0 0/0 .data            @1 */
@@ -180,19 +269,11 @@ SECTION_DATA static u8 GXDefaultProjData[28] = {
 #pragma pop
 
 /* 803D21AC-803D226C 02F2CC 00C0+00 1/1 0/0 0/0 .data            GXTexRegionAddrTable */
-SECTION_DATA static u8 GXTexRegionAddrTable[192] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00,
-    0x00, 0x00, 0x80, 0x00, 0x00, 0x01, 0x80, 0x00, 0x00, 0x02, 0x80, 0x00, 0x00, 0x03, 0x80, 0x00,
-    0x00, 0x04, 0x80, 0x00, 0x00, 0x05, 0x80, 0x00, 0x00, 0x06, 0x80, 0x00, 0x00, 0x07, 0x80, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x09, 0x80, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x0B, 0x80, 0x00,
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
-    0x00, 0x08, 0x80, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0A, 0x80, 0x00, 0x00, 0x07, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00,
+static u32 GXTexRegionAddrTable[] = {
+	0x00000, 0x10000, 0x20000, 0x30000, 0x40000, 0x50000, 0x60000, 0x70000, 0x08000, 0x18000, 0x28000, 0x38000,
+	0x48000, 0x58000, 0x68000, 0x78000, 0x00000, 0x90000, 0x20000, 0xB0000, 0x40000, 0x98000, 0x60000, 0xB8000,
+	0x80000, 0x10000, 0xA0000, 0x30000, 0x88000, 0x50000, 0xA8000, 0x70000, 0x00000, 0x90000, 0x20000, 0xB0000,
+	0x40000, 0x90000, 0x60000, 0xB0000, 0x80000, 0x10000, 0xA0000, 0x30000, 0x80000, 0x50000, 0xA0000, 0x70000,
 };
 
 /* 803D226C-803D2280 -00001 0010+04 1/1 0/0 0/0 .data            GXResetFuncInfo */
@@ -220,6 +301,166 @@ SECTION_SDATA2 static u8 lit_268[4] = {
 };
 
 /* 80359670-80359C70 353FB0 0600+00 0/0 2/2 0/0 .text            GXInit */
+// Matches with literals
+#ifdef NONMATCHING
+static void EnableWriteGatherPipe() {
+	u32 hid2; // r31
+	hid2 = PPCMfhid2();
+	PPCMtwpar(OSUncachedToPhysical((void*)GXFIFO_ADDR));
+	hid2 |= 0x40000000;
+	PPCMthid2(hid2);
+}
+
+GXFifoObj* GXInit(void* base, u32 size)
+{
+	u32 i;
+	u32 pad2; // for stack matching
+
+	OSRegisterVersion(__GXVersion);
+	__GXData->inDispList    = GX_FALSE;
+	__GXData->dlSaveContext = GX_TRUE;
+	__GXData->abtWaitPECopy = GX_TRUE;
+
+	__GXData->tcsManEnab = 0;
+	__GXData->tevTcEnab  = 0;
+
+	GXSetMisc(GX_MT_XF_FLUSH, 0);
+
+	__piReg  = (void*)OSPhysicalToUncached(GX_PI_ADDR);
+	__cpReg  = (void*)OSPhysicalToUncached(GX_CP_ADDR);
+	__peReg  = (void*)OSPhysicalToUncached(GX_PE_ADDR);
+	__memReg = (void*)OSPhysicalToUncached(GX_MEM_ADDR);
+
+	__GXFifoInit();
+
+	GXInitFifoBase(&FifoObj, base, size);
+	GXSetCPUFifo(&FifoObj);
+	GXSetGPFifo(&FifoObj);
+
+	if (!resetFuncRegistered) {
+		OSRegisterResetFunction(&GXResetFuncInfo);
+		resetFuncRegistered = 1;
+	}
+
+	__GXPEInit();
+	EnableWriteGatherPipe();
+
+	__GXData->genMode = 0;
+	FAST_FLAG_SET(__GXData->genMode, 0, 24, 8);
+
+	__GXData->bpMask = 255;
+	FAST_FLAG_SET(__GXData->bpMask, 0xF, 24, 8);
+
+	__GXData->lpSize = 0;
+	FAST_FLAG_SET(__GXData->lpSize, 34, 24, 8);
+
+	for (i = 0; i < GX_MAX_TEVSTAGE; i++) {
+		__GXData->tevc[i]     = 0;
+		__GXData->teva[i]     = 0;
+		__GXData->tref[i / 2] = 0;
+		__GXData->texmapId[i] = GX_TEXMAP_NULL;
+
+		FAST_FLAG_SET(__GXData->tevc[i], 0xC0 + i * 2, 24, 8);
+		FAST_FLAG_SET(__GXData->teva[i], 0xC1 + i * 2, 24, 8);
+		FAST_FLAG_SET(__GXData->tevKsel[i / 2], 0xF6 + i / 2, 24, 8);
+		FAST_FLAG_SET(__GXData->tref[i / 2], 0x28 + i / 2, 24, 8);
+	}
+
+	__GXData->iref = 0;
+	FAST_FLAG_SET(__GXData->iref, 0x27, 24, 8);
+
+	for (i = 0; i < GX_MAXCOORD; i++) {
+		__GXData->suTs0[i] = 0;
+		__GXData->suTs1[i] = 0;
+
+		FAST_FLAG_SET(__GXData->suTs0[i], 0x30 + i * 2, 24, 8);
+		FAST_FLAG_SET(__GXData->suTs1[i], 0x31 + i * 2, 24, 8);
+	}
+
+	FAST_FLAG_SET(__GXData->suScis0, 0x20, 24, 8);
+	FAST_FLAG_SET(__GXData->suScis1, 0x21, 24, 8);
+
+	FAST_FLAG_SET(__GXData->cmode0, 0x41, 24, 8);
+	FAST_FLAG_SET(__GXData->cmode1, 0x42, 24, 8);
+
+	FAST_FLAG_SET(__GXData->zmode, 0x40, 24, 8);
+	FAST_FLAG_SET(__GXData->peCtrl, 0x43, 24, 8);
+
+	FAST_FLAG_SET(__GXData->cpTex, 0, 7, 2);
+
+	__GXData->zScale  = 1.6777216E7f;
+	__GXData->zOffset = 0.0f;
+
+	__GXData->dirtyFlags = 0;
+	__GXData->dirtyVAT   = 0;
+
+	{
+		u32 val1;
+		u32 val2;
+
+		val2 = OS_BUS_CLOCK / 500;
+
+		__GXFlushTextureState();
+
+		val1 = (val2 / 2048) | 0x69000400;
+
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(val1);
+
+		__GXFlushTextureState();
+
+		val1 = (val2 / 4224) | 0x46000200;
+		GX_WRITE_U8(0x61);
+		GX_WRITE_U32(val1);
+	}
+
+	__GXInitRevisionBits();
+
+	for (i = 0; i < GX_MAX_TEXMAP; i++) {
+		GXInitTexCacheRegion(&__GXData->TexRegions0[i], GX_FALSE, GXTexRegionAddrTable[i], GX_TEXCACHE_32K, GXTexRegionAddrTable[i + 8],
+		                     GX_TEXCACHE_32K);
+		GXInitTexCacheRegion(&__GXData->TexRegions1[i], GX_FALSE, GXTexRegionAddrTable[i + 16], GX_TEXCACHE_32K, GXTexRegionAddrTable[i + 24],
+		                     GX_TEXCACHE_32K);
+		GXInitTexCacheRegion(&__GXData->TexRegions2[i], GX_TRUE, GXTexRegionAddrTable[i + 32], GX_TEXCACHE_32K, GXTexRegionAddrTable[i + 40],
+		                     GX_TEXCACHE_32K);
+	}
+
+	for (i = 0; i < GX_MAX_TLUT; i++) {
+		GXInitTlutRegion(&__GXData->TlutRegions[i], 0xC0000 + 0x2000 * i, GX_TLUT_256);
+	}
+
+	for (i = 0; i < GX_MAX_BIGTLUT; i++) {
+		GXInitTlutRegion(&__GXData->TlutRegions[i + 16], 0xE0000 + 0x8000 * i, GX_TLUT_1K);
+	}
+
+	GX_SET_CP_REG(3, 0);
+
+	FAST_FLAG_SET(__GXData->perfSel, 0, 4, 4);
+
+	GX_WRITE_U8(0x8);
+	GX_WRITE_U8(0x20);
+	GX_WRITE_U32(__GXData->perfSel);
+
+	GX_WRITE_U8(0x10);
+	GX_WRITE_U32(0x1006);
+	GX_WRITE_U32(0);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(0x23000000);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(0x24000000);
+
+	GX_WRITE_U8(0x61);
+	GX_WRITE_U32(0x67000000);
+
+	__GXSetIndirectMask(0);
+	__GXSetTmemConfig(2);
+	__GXInitGX();
+
+	return &FifoObj;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,6 +469,7 @@ asm GXFifoObj* GXInit(void* base, u32 size) {
 #include "asm/dolphin/gx/GXInit/GXInit.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8045658C-80456590 004B8C 0004+00 1/1 0/0 0/0 .sdata2          @269 */

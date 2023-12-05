@@ -27,13 +27,13 @@ typedef struct _GXData {
     /* 0x088 */ u8 field_0x88[0xA8 - 0x88];
     /* 0x0A8 */ GXColor ambColors[2];
     /* 0x0B0 */ GXColor matColors[2];
-    /* 0x0B8 */ u32 field_0xb8[8];  // GX_MAX_TEXCOORD
-    /* 0x0D8 */ u32 field_0xd8[8];  // GX_MAX_TEXCOORD
-    /* 0x0F8 */ u32 field_0xf8;
-    /* 0x0FC */ u32 field_0xfc;
+    /* 0x0B8 */ u32 suTs0[8];  // GX_MAX_TEXCOORD
+    /* 0x0D8 */ u32 suTs1[8];  // GX_MAX_TEXCOORD
+    /* 0x0F8 */ u32 suScis0;
+    /* 0x0FC */ u32 suScis1;
     /* 0x100 */ u32 tref[GX_MAX_TEVSTAGE / 2];
-    /* 0x120 */ u32 field_0x120;
-    /* 0x124 */ u32 field_0x124;
+    /* 0x120 */ u32 iref;
+    /* 0x124 */ u32 bpMask;
     /* 0x128 */ u32 field_0x128;
     /* 0x12C */ u32 field_0x12c;
     /* 0x130 */ u32 tevc[GX_MAX_TEVSTAGE];
@@ -50,13 +50,13 @@ typedef struct _GXData {
     /* 0x1F0 */ u32 field_0x1f0;
     /* 0x1F4 */ u32 field_0x1f4;
     /* 0x1F8 */ u32 field_0x1f8;
-    /* 0x1FC */ u32 field_0x1fc;
+    /* 0x1FC */ u32 cpTex;
     /* 0x200 */ u8 field_0x200;
     /* 0x204 */ u32 genMode;
-    /* 0x208 */ GXTexRegion field_0x208[8];
-    /* 0x288 */ GXTexRegion field_0x288[8];
-    /* 0x308 */ GXTexRegion field_0x308[8];
-    /* 0x388 */ GXTlutRegion field_0x388[16]; 
+    /* 0x208 */ GXTexRegion TexRegions0[8];
+    /* 0x288 */ GXTexRegion TexRegions1[8];
+    /* 0x308 */ GXTexRegion TexRegions2[8];
+    /* 0x388 */ GXTlutRegion TlutRegions[16]; 
     /* 0x488 */ GXTlutRegion field_0x488[4]; 
     /* 0x4C8 */ GXTexRegionCallback field_0x4c8;
     /* 0x4CC */ GXTlutRegionCallback field_0x4cc;
@@ -65,20 +65,20 @@ typedef struct _GXData {
     /* 0x4D5 */ GXBool hasBiNrm;
     /* 0x4D8 */ GXProjectionType field_0x4d8;
     /* 0x4DC */ Mtx field_0x4dc;
-    /* 0x50C */ f32 field_0x50c;
-    /* 0x510 */ f32 field_0x510;
+    /* 0x50C */ f32 zOffset;
+    /* 0x510 */ f32 zScale;
     /* 0x514 */ u32 field_0x514[8];
     /* 0x534 */ u32 field_0x534[8];
     /* 0x558 */ u32 texmapId[9];
     /* 0x578 */ u8 field_0x578[0x594 - 0x578];
-    /* 0x594 */ u32 field_0x594;
+    /* 0x594 */ u32 tcsManEnab;
     /* 0x598 */ u32 tevTcEnab;
     /* 0x59C */ u32 field_0x59c;
     /* 0x5A0 */ u8 field_0x5a0[4];
-    /* 0x5A4 */ u32 field_0x5a4;
-    /* 0x5A8 */ u8 field_0x5a8;
-    /* 0x5A9 */ u8 field_0x5a9;
-    /* 0x5AA */ u8 field_0x5aa;
+    /* 0x5A4 */ u32 perfSel;
+    /* 0x5A8 */ u8 inDispList;
+    /* 0x5A9 */ u8 dlSaveContext;
+    /* 0x5AA */ u8 abtWaitPECopy;
     /* 0x5AB */ u8 dirtyVAT;
     /* 0x5AC */ u32 dirtyFlags;
 } GXData;  // Size: 0x5B0
@@ -86,6 +86,12 @@ typedef struct _GXData {
 STATIC_ASSERT(sizeof(GXData) == 0x5B0);
 
 extern GXData* const __GXData;
+
+// Define register addresses.
+#define GX_CP_ADDR  (0x0C000000)
+#define GX_PE_ADDR  (0x0C001000)
+#define GX_PI_ADDR  (0x0C003000)
+#define GX_MEM_ADDR (0x0C004000)
 
 extern u32* __piReg;
 extern u16* __cpReg;
@@ -117,9 +123,22 @@ static inline void set_x2(u16 value)
 extern "C" {
 #endif
 
+static inline u32 GXReadMEMReg(u32 addrLo, u32 addrHi)
+{
+	u32 hiStart, hiNew, lo;
+	hiStart = GX_GET_MEM_REG(addrHi);
+	do {
+		hiNew   = hiStart;
+		lo      = GX_GET_MEM_REG(addrLo);
+		hiStart = GX_GET_MEM_REG(addrHi);
+	} while (hiStart != hiNew);
+
+	return ((hiStart << 16) | lo);
+}
+
 GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj, GXTexMapID mapID);
 GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut);
-void __GXShutdown(s32);
+BOOL __GXShutdown(BOOL);
 void __GXInitRevisionBits(void);
 GXFifoObj* GXInit(void* base, u32 size);
 void __GXInitGX(void);

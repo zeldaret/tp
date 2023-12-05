@@ -119,10 +119,10 @@ void GXSetPointSize(u8 size, GXTexOffset offsets) {
 void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point) {
     GXData* data = __GXData;
 
-    GX_BITFIELD_SET(data->field_0xb8[coord], 13, 1, line);
-    GX_BITFIELD_SET(data->field_0xb8[coord], 12, 1, point);
+    GX_BITFIELD_SET(data->suTs0[coord], 13, 1, line);
+    GX_BITFIELD_SET(data->suTs0[coord], 12, 1, point);
     GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = data->field_0xb8[coord];
+    GXFIFO.u32 = data->suTs0[coord];
     data->bpSentNot = 0;
 }
 

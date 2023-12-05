@@ -41,6 +41,8 @@ LIBGX_A_CFLAGS := \
 	-inline auto \
 	-lang=c \
 
+$(BUILD_DIR)/libs/dolphin/gx/GXInit.o: LIBGX_A_CFLAGS += -opt nopeephole
+
 LIBGX_A_LDFLAGS := \
 	-nodefaults \
 	-fp hard \

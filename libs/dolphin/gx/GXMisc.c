@@ -61,10 +61,10 @@ void GXSetMisc(u32 id, u32 value) {
         __GXData->dirtyFlags |= GX_DIRTY_VCD;
         break;
     case 2:
-        __GXData->field_0x5a9 = value != 0;
+        __GXData->dlSaveContext = value != 0;
         break;
     case 3:
-        __GXData->field_0x5aa = value != 0;
+        __GXData->abtWaitPECopy = value != 0;
         break;
     }
 }
@@ -120,7 +120,7 @@ static void __GXAbortWaitPECopyDone() {
 }
 
 void __GXAbort(void) {
-    if (__GXData->field_0x5aa && GXGetGPFifo()){
+    if (__GXData->abtWaitPECopy && GXGetGPFifo()){
         __GXAbortWaitPECopyDone();
     }
     __PIRegs[6] = 1;

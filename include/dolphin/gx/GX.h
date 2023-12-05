@@ -51,9 +51,10 @@ typedef union {
 	f64 f64;
 } PPCWGPipe;
 
-volatile PPCWGPipe GXFIFO : 0xCC008000;
+#define GXFIFO_ADDR 0xCC008000
+volatile PPCWGPipe GXFIFO : GXFIFO_ADDR;
 
-#define GFX_FIFO(T) (*(volatile T*)0xCC008000)
+#define GFX_FIFO(T) (*(volatile T*)GXFIFO_ADDR)
 
 #define GX_WRITE_U8(data) GXFIFO.u8 = data;
 #define GX_WRITE_U32(data) GXFIFO.u32 = data;
