@@ -13,9 +13,9 @@ typedef struct _GXData {
     /* 0x002 */ u16 bpSentNot;
     /* 0x004 */ u16 vNum;
     /* 0x006 */ u16 vLim;
-    /* 0x008 */ u32 field_0x8;
-    /* 0x00C */ u32 field_0xc;
-    /* 0x010 */ u32 field_0x10;
+    /* 0x008 */ u32 cpEnable;
+    /* 0x00C */ u32 cpStatus;
+    /* 0x010 */ u32 cpClr;
     /* 0x014 */ u32 vcdLoReg;
     /* 0x018 */ GXAttrType vcdHiReg;
     /* 0x01C */ GXCompCnt vatA[8];
@@ -91,6 +91,16 @@ extern u32* __piReg;
 extern u16* __cpReg;
 extern u16* __peReg;
 extern vu16* __memReg;
+
+#define GX_GET_MEM_REG(offset) (*(vu16*)((vu16*)(__memReg) + (offset)))
+#define GX_GET_CP_REG(offset)  (*(vu16*)((vu16*)(__cpReg) + (offset)))
+#define GX_GET_PE_REG(offset)  (*(vu16*)((vu16*)(__peReg) + (offset)))
+#define GX_GET_PI_REG(offset)  (*(vu32*)((vu32*)(__piReg) + (offset)))
+
+#define GX_SET_MEM_REG(offset, val) (*(vu16*)((vu16*)(__memReg) + (offset)) = val)
+#define GX_SET_CP_REG(offset, val)  (*(vu16*)((vu16*)(__cpReg) + (offset)) = val)
+#define GX_SET_PE_REG(offset, val)  (*(vu16*)((vu16*)(__peReg) + (offset)) = val)
+#define GX_SET_PI_REG(offset, val)  (*(vu32*)((vu32*)(__piReg) + (offset)) = val)
 
 inline void GXSetWasteFlags() {
 	GXData* data = __GXData;

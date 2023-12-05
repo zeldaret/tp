@@ -77,13 +77,13 @@ typedef struct _GXFogAdjTable {
 
 typedef struct _GXFifoObj {
     /* 0x00 */ void* base;
-    /* 0x04 */ u32 end;
+    /* 0x04 */ void* end;
     /* 0x08 */ u32 size;
     /* 0x0C */ u32 high_wtrmark;
     /* 0x10 */ u32 low_wtrmark;
     /* 0x14 */ void* read_ptr;
     /* 0x18 */ void* write_ptr;
-    /* 0x1C */ void* rw_dst;
+    /* 0x1C */ s32 rw_dst;
     /* 0x20 */ u8 fifo_wrap;
     /* 0x21 */ u8 cpu_fifo_ready;
     /* 0x22 */ u8 gp_fifo_ready;

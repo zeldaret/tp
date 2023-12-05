@@ -29,7 +29,6 @@ void OSRegisterResetFunction();
 void VIGetTvFormat();
 void GXSetCPUFifo();
 void GXSetGPFifo();
-void GXSetBreakPtCallback();
 void __GXFifoInit();
 void GXClearVtxDesc();
 void GXSetVtxAttrFmtv();
