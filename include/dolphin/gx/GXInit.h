@@ -58,8 +58,8 @@ typedef struct _GXData {
     /* 0x308 */ GXTexRegion TexRegions2[8];
     /* 0x388 */ GXTlutRegion TlutRegions[16]; 
     /* 0x488 */ GXTlutRegion field_0x488[4]; 
-    /* 0x4C8 */ GXTexRegionCallback field_0x4c8;
-    /* 0x4CC */ GXTlutRegionCallback field_0x4cc;
+    /* 0x4C8 */ GXTexRegionCallback texRegionCB;
+    /* 0x4CC */ GXTlutRegionCallback tlutRegionCB;
     /* 0x4D0 */ GXAttrType nrmDataType;
     /* 0x4D4 */ GXBool hasNrm;
     /* 0x4D5 */ GXBool hasBiNrm;
