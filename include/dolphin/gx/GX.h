@@ -180,6 +180,18 @@ inline void GFWriteBPCmd(u32 param_1) {
   GXFIFO.u32 = param_1;
 }
 
+static inline u32 GXReadCPReg(u32 addrLo, u32 addrHi) {
+	u32 hiStart, hiNew, lo;
+	hiStart = GX_GET_CP_REG(addrHi);
+	do {
+		hiNew   = hiStart;
+		lo      = GX_GET_CP_REG(addrLo);
+		hiStart = GX_GET_CP_REG(addrHi);
+	} while (hiStart != hiNew);
+
+	return ((hiStart << 16) | lo);
+}
+
 inline void GFFill(u16 param_1, u32 param_2) {
   GXFIFO.u8 = 0x10;
   GXFIFO.u16 = 0;

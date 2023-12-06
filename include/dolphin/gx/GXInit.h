@@ -84,8 +84,8 @@ typedef struct _GXData {
     /* 0x578 */ u8 field_0x578[0x594 - 0x578];
     /* 0x594 */ u32 tcsManEnab;
     /* 0x598 */ u32 tevTcEnab;
-    /* 0x59C */ u32 field_0x59c;
-    /* 0x5A0 */ u8 field_0x5a0[4];
+    /* 0x59C */ u32 perf0;
+    /* 0x5A0 */ u32 perf1;
     /* 0x5A4 */ u32 perfSel;
     /* 0x5A8 */ u8 inDispList;
     /* 0x5A9 */ u8 dlSaveContext;
