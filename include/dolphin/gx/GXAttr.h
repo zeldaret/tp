@@ -24,7 +24,7 @@ void GXSetVtxDescv(GXVtxDescList* list);
 void __GXSetVCD(void);
 void __GXCalculateVLim(void);
 void GXClearVtxDesc(void);
-void GXSetVtxAttrFmt(GXVtxFmt fmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u32);
+void GXSetVtxAttrFmt(GXVtxFmt fmt, GXAttr attr, GXCompCnt cnt, GXCompType type, u8);
 void GXSetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList* list);
 void __GXSetVAT(void);
 void GXSetArray(GXAttr attr, void* base, u8);
