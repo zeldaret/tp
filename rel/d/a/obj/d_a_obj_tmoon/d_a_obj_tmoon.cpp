@@ -9,13 +9,13 @@
 #include "f_op/f_op_draw_tag.h"
 
 /* 80D12B98-80D12BB8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-static bool CheckCreateHeap(fopAc_ac_c* i_this) {
+static int CheckCreateHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjTMoon_c*>(i_this)->CreateHeap();
 }
 
 /* 80D12BB8-80D12BF4 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjTMoon_cFv */
 void daObjTMoon_c::initBaseMtx() {
-    field_0x570->setBaseScale(mScale);
+    mpModel->setBaseScale(mScale);
     setBaseMtx();
 }
 
@@ -23,7 +23,7 @@ void daObjTMoon_c::initBaseMtx() {
 void daObjTMoon_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    MTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 /* 80D12C48-80D12C9C 000128 0054+00 1/1 0/0 0/0 .text            Create__12daObjTMoon_cFv */
@@ -31,7 +31,7 @@ int daObjTMoon_c::Create() {
     field_0x574 = getEventBit1();
     field_0x576 = getEventBit2();
     initBaseMtx();
-    fopAcM_SetMtx(this, field_0x570->getBaseTRMtx());
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     return 1;
 }
 
@@ -39,16 +39,16 @@ int daObjTMoon_c::Create() {
 static const char* l_arcName = "A_TMoon";
 
 /* 80D12C9C-80D12D0C 00017C 0070+00 1/1 0/0 0/0 .text            CreateHeap__12daObjTMoon_cFv */
-bool daObjTMoon_c::CreateHeap() {
-    field_0x570 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 3),
-                                          0x80000, 0x11000084);
-    return field_0x570 != NULL;
+int daObjTMoon_c::CreateHeap() {
+    mpModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 3), 0x80000,
+                                      0x11000084);
+    return mpModel != NULL ? 1 : 0;
 }
 
 /* 80D12D0C-80D12DC0 0001EC 00B4+00 1/1 0/0 0/0 .text            create__12daObjTMoon_cFv */
 int daObjTMoon_c::create() {
     fopAcM_SetupActor(this, daObjTMoon_c);
-    int phase = dComIfG_resLoad(&field_0x568, l_arcName);
+    int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x880)) {
             return cPhs_ERROR_e;
@@ -85,11 +85,12 @@ int daObjTMoon_c::draw() {
 
 /* 80D12EDC-80D12F10 0003BC 0034+00 1/1 0/0 0/0 .text            _delete__12daObjTMoon_cFv */
 int daObjTMoon_c::_delete() {
-    dComIfG_resDelete(&field_0x568, l_arcName);
+    dComIfG_resDelete(&mPhaseReq, l_arcName);
     return 1;
 }
 
-/* 80D12F10-80D12F30 0003F0 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Draw__FP12daObjTMoon_c */
+/* 80D12F10-80D12F30 0003F0 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Draw__FP12daObjTMoon_c
+ */
 static int daObjTMoon_Draw(daObjTMoon_c* i_this) {
     return i_this->draw();
 }
@@ -99,12 +100,14 @@ static int daObjTMoon_Execute(daObjTMoon_c* i_this) {
     return i_this->execute();
 }
 
-/* 80D12F50-80D12F70 000430 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Delete__FP12daObjTMoon_c */
+/* 80D12F50-80D12F70 000430 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Delete__FP12daObjTMoon_c
+ */
 static int daObjTMoon_Delete(daObjTMoon_c* i_this) {
     return i_this->_delete();
 }
 
-/* 80D12F70-80D12F90 000450 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Create__FP12daObjTMoon_c */
+/* 80D12F70-80D12F90 000450 0020+00 1/0 0/0 0/0 .text            daObjTMoon_Create__FP12daObjTMoon_c
+ */
 static int daObjTMoon_Create(daObjTMoon_c* i_this) {
     return i_this->create();
 }
@@ -118,18 +121,18 @@ static actor_method_class l_daObjTMoon_Method = {
 
 /* 80D12FC4-80D12FF4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_TMoon */
 extern actor_process_profile_definition g_profile_Obj_TMoon = {
-    fpcLy_CURRENT_e,        // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_Obj_TMoon,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
-    sizeof(daObjTMoon_c),   // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
-    569,                    // mPriority
-    &l_daObjTMoon_Method,   // mSubMtd
-    0x40000,                // mStatus
-    fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_TMoon,          // mProcName
+    &g_fpcLf_Method.mBase,   // mSubMtd
+    sizeof(daObjTMoon_c),    // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // mSubMtd
+    569,                     // mPriority
+    &l_daObjTMoon_Method,    // mSubMtd
+    0x40000,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // mCullType
 };
