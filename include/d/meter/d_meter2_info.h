@@ -157,6 +157,8 @@ public:
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
+    u8 getCollectCursorPosX() { return mCollectCursorPosX; }
+    u8 getCollectCursorPosY() { return mCollectCursorPosY; }
     void setCollectCursorPosXY(u8 x, u8 y) {
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
@@ -255,6 +257,7 @@ void dMeter2Info_set2DVibrationM();
 static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible);
 static void dMeter2Info_offUseButton(int pButton);
 bool dMeter2Info_is2DActiveTouchArea();
+u8 dMeter2Info_getRecieveLetterNum();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -603,6 +606,14 @@ inline void dMeter2Info_resetDirectUseItem() {
 
 inline u16 dMeter2Info_getFloatingFlowID() {
     return g_meter2_info.getFloatingFlowID();
+}
+
+inline u8 dMeter2Info_getCollectCursorPosX() {
+    return g_meter2_info.getCollectCursorPosX();
+}
+
+inline u8 dMeter2Info_getCollectCursorPosY() {
+    return g_meter2_info.getCollectCursorPosY();
 }
 
 inline void dMeter2Info_setCollectCursorPosXY(u8 x, u8 y) {

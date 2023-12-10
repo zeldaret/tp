@@ -25,6 +25,12 @@
 #define ITEM_ZONE_MAX 0x20
 #define ITEM_ONE_ZONE_MAX 0x10
 #define QUEST_LOG_SIZE 0xA94
+#define QUIVER_MAX 30
+#define BIG_QUIVER_MAX 60
+#define GIANT_QUIVER_MAX 100
+#define WALLET_MAX 300
+#define BIG_WALLET_MAX 600
+#define GIANT_WALLET_MAX 1000
 
 enum Wallets {
     /* 0x0 */ WALLET,

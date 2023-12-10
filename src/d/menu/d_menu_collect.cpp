@@ -11,6 +11,7 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/meter/d_meter2_info.h"
@@ -20,6 +21,7 @@
 #include "d/menu/d_menu_option.h"
 #include "d/menu/d_menu_save.h"
 #include "d/menu/d_menu_skill.h"
+#include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_string.h"
 #include "d/msg/d_msg_class.h"
 #include "d/msg/d_msg_object.h"
@@ -1187,6 +1189,356 @@ SECTION_SDATA2 static f32 lit_5173 = 0.5f;
 SECTION_SDATA2 static f32 lit_5174 = -1000.0f;
 
 /* 801B074C-801B1C3C 1AB08C 14F0+00 1/1 0/0 0/0 .text            screenSet__17dMenu_Collect2D_cFv */
+// Later
+#ifdef NONMATCHING
+void dMenu_Collect2D_c::screenSet() {
+    ((J2DTextBox*)(mpScreen->search('f_t00')))->setFont(mDoExt_getRubyFont());
+    ((J2DTextBox*)(mpScreen->search('f_t00')))->setString(0x20, "");
+    dMeter2Info_getStringKanji(0x3E1, ((J2DTextBox*)(mpScreen->search('f_t00')))->getStringPtr(), NULL);
+    mpScreen->search('t_t00')->hide();
+    for (int i = 0; i < 3; i++) {
+        ((J2DTextBox*)(mpScreen->search(ftext_sv[i])))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreen->search(ftext_op[i])))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreen->search(ftext_sv[i])))->setString(0x20, "");
+        ((J2DTextBox*)(mpScreen->search(ftext_op[i])))->setString(0x20, "");
+        dMeter2Info_getStringKanji(0x60, ((J2DTextBox*)(mpScreen->search(ftext_sv[i])))->getStringPtr(), NULL);
+        dMeter2Info_getStringKanji(0x5F, ((J2DTextBox*)(mpScreen->search(ftext_op[i])))->getStringPtr(), NULL);
+        mpScreen->search(ftext_sv[i])->hide();
+        mpScreen->search(ftext_op[i])->hide();
+    }
+    for (int i = 0; i < 5; i++) {
+        ((J2DTextBox*)(mpScreenIcon)->search(text_a_tag_4777[i]))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreenIcon)->search(text_b_tag_4778[i]))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreenIcon)->search(text_a_tag_4777[i]))->setString(0x20, "");
+        ((J2DTextBox*)(mpScreenIcon)->search(text_b_tag_4778[i]))->setString(0x20, "");
+    }
+    ((J2DTextBox*)(mpScreen->search('item_n04')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('item_n05')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('item_n06')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('item_n07')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('item_n04')))->setString(0x20, "");
+    ((J2DTextBox*)(mpScreen->search('item_n05')))->setString(0x20, "");
+    ((J2DTextBox*)(mpScreen->search('item_n06')))->setString(0x20, "");
+    ((J2DTextBox*)(mpScreen->search('item_n07')))->setString(0x20, "");
+    ((J2DTextBox*)(mpScreen->search('f_text1')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('f_text0')))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)(mpScreen->search('f_text1')))->setString(0x100, "");
+    ((J2DTextBox*)(mpScreen->search('f_text0')))->setString(0x100, "");
+    mpScreen->search('item_n00')->hide();
+    mpScreen->search('item_n01')->hide();
+    mpScreen->search('item_n02')->hide();
+    mpScreen->search('item_n03')->hide();
+    mpScreen->search('i_text1')->hide();
+    mpScreen->search('i_text0')->hide();
+    field_0x22d = 0;
+    field_0x233 = 0;
+    field_0x239 = 0;
+    u8 isBit = 1;
+    u8 bVar2;
+    if (!i_dComIfGs_isItemFirstBit(0x28)) {
+        bVar2 = 0;
+        if (i_dComIfGs_isItemFirstBit(0x3F) && !i_dComIfGs_isEventBit(0x302)) {
+            bVar2 = 1;
+        }
+        if (!bVar2) {
+            isBit = 1;
+        }
+    }
+    field_0x23f = isBit != 0;
+    if (field_0x23f != 0) {
+        if (!i_dComIfGs_isItemFirstBit(0x28)) {
+            if (i_dComIfGs_isItemFirstBit(0x3F)) {
+                if (!i_dComIfGs_isEventBit(0x302)) {
+                    mpScreen->search('ken_00')->show();
+                    mpScreen->search('ken_01')->hide();
+                }
+            }
+        } else {
+            mpScreen->search('ken_00')->hide();
+            mpScreen->search('ken_01')->show();
+        }
+    }
+    u8 isBit2 = 1;
+    if (!i_dComIfGs_isItemFirstBit(0x29) && !i_dComIfGs_isItemFirstBit(0x49)) {
+        isBit2 = 0;
+    }
+    field_0x245 = isBit2 != 0;
+    if (dComIfGs_getMaxLife() > 0x10) {
+        field_0x24b = 1;
+    } else {
+        field_0x24b = 0;
+    }
+    field_0x251 = dMenu_Collect3D_c::getMaskMdlVisible();
+    field_0x22e = 0;
+    field_0x234 = 0;
+    field_0x23a = 0;
+    u8 isBit3 = 1;
+    if (!i_dComIfGs_isItemFirstBit(0x2B) && !i_dComIfGs_isItemFirstBit(0x2A)) {
+        isBit3 = 0;
+    }
+    field_0x240 = isBit3 != 0;
+    if (field_0x240 != 0) {
+        if (!i_dComIfGs_isItemFirstBit(0x2B) && i_dComIfGs_isItemFirstBit(0x2A)) {
+            mpScreen->search('tate_00')->hide();
+            mpScreen->search('tate_01')->show();
+        } else {
+            mpScreen->search('tate_00')->show();
+            mpScreen->search('tate_01')->hide();
+        }
+    }
+    field_0x246 = i_dComIfGs_isItemFirstBit(0x2C);
+    field_0x24c = 0;
+    field_0x252 = 0;
+    field_0x22f = 0;
+    field_0x235 = 0;
+    field_0x23b = 0;
+    if (dComIfGs_getSelectEquipClothes() == WEAR_CASUAL) {
+        field_0x241 = 0;
+        field_0x247 = 0;
+        field_0x24d = 0;
+    } else {
+        field_0x241 = i_dComIfGs_isItemFirstBit(0x2F);
+        field_0x247 = i_dComIfGs_isItemFirstBit(0x31);
+        field_0x24d = i_dComIfGs_isItemFirstBit(0x30);
+    }
+    field_0x253 = 0;
+    field_0x230 = 1;
+    if (checkItemGet(BOW, 1)) {
+        field_0x236 = 1;
+    } else {
+        field_0x236 = 0;
+    }
+    if (isInsectIconVisible()) {
+        field_0x23c = 1;
+    } else {
+        field_0x23c = 0;
+    }
+    field_0x242 = isSkillIconVisible();
+    field_0x248 = 0;
+    field_0x24e = 0;
+    field_0x254 = 0;
+    if (dComIfGs_getCollectSmell() != NO_ITEM) {
+        field_0x231 = 1;
+    } else {
+        field_0x231 = 0;
+    }
+    field_0x237 = dComIfGs_getPohSpiritNum();
+    if (isFishIconVisible()) {
+        field_0x23d = 1;
+    } else {
+        field_0x23d = 0;
+    }
+    if (g_drawHIO.mLetterSelectScreen.mLetterNum >= 1) {
+        field_0x243 = 1;
+    } else {
+        if (dMeter2Info_getRecieveLetterNum()) {
+            field_0x243 = 1;
+        } else {
+            field_0x243 = 0;
+        }
+    }
+    field_0x249 = 0;
+    field_0x24f = 0;
+    field_0x255 = 0;
+    field_0x232 = 1;
+    field_0x238 = 1;
+    field_0x23e = 0;
+    field_0x244 = 0;
+    field_0x24a = 0;
+    field_0x250 = 0;
+    field_0x256 = 0;
+    field_0x184 = 0;
+    field_0x190 = 0;
+    field_0x19c = 0;
+    if (i_dComIfGs_isItemFirstBit(0x28)) {
+        field_0x1a8 = 0x18d;
+    } else {
+        field_0x1a8 = 0x1a4;
+    }
+    if (i_dComIfGs_isItemFirstBit(0x49)) {
+        field_0x1b4 = 0x1ae;
+    } else {
+        field_0x1b4 = 0x18e;
+    }
+    field_0x1c0 = 0x186;
+    if (field_0x251 == 2) {
+        if (dMenu_Collect3D_c::getMirrorNum() >= 4) {
+            field_0x1cc = 0x20c;
+        } else {
+            if (dMenu_Collect3D_c::getMirrorNum() >= 2) {
+                field_0x1cc = 0x20b;
+            } else {
+                field_0x1cc = 0x20a;
+            }
+        }
+    } else {
+        if (dMenu_Collect3D_c::getCrystalNum() < 2) {
+            field_0x1cc = 0x5aa;
+        } else {
+            field_0x1cc = 0x5ab;
+        }
+    }
+    field_0x186 = 0;
+    field_0x192 = 0;
+    field_0x19e = 0;
+    if (i_dComIfGs_isItemFirstBit(0x2B)) {
+        field_0x1aa = 0x190;
+    } else {
+        field_0x1aa = 0x18f;
+    }
+    field_0x1b6 = 0x191;
+    field_0x1c2 = 0x192;
+    field_0x1ce = 0;
+    field_0x188 = 0;
+    field_0x194 = 0;
+    field_0x1a0 = 0;
+    field_0x1ac = 0x194;
+    field_0x1b8 = 0x196;
+    field_0x1c4 = 0x195;
+    field_0x1d0 = 0;
+    if (dComIfGs_getRupeeMax() == WALLET_MAX) {
+        field_0x18a = 0x199;
+    } else if (dComIfGs_getRupeeMax() == BIG_WALLET_MAX) {
+        field_0x18a = 0x19a;
+    } else {
+        field_0x18a = 0x19b;
+    }
+    if (dComIfGs_getArrowMax() == QUIVER_MAX) {
+        field_0x196 = 0x1b9;
+    } else if (dComIfGs_getArrowMax() == BIG_QUIVER_MAX) {
+        field_0x196 = 0x1ba;
+    } else {
+        field_0x196 = 0x1bb;
+    }
+    field_0x1a2 = 0x5b8;
+    field_0x1ae = 0x5b0;
+    field_0x1ba = 0;
+    field_0x1c6 = 0;
+    field_0x1d2 = 0;
+    field_0x18c = dMsgObject_getSmellTypeMessageID();
+    field_0x198 = 0x245;
+    field_0x1a4 = 0x5a1;
+    field_0x1b0 = 0x4c8;
+    field_0x1bc = 0;
+    field_0x1c8 = 0;
+    field_0x1d4 = 0;
+    field_0x18e = 0x60;
+    field_0x19a = 0x5f;
+    field_0x1a6 = 0;
+    field_0x1b2 = 0;
+    field_0x1be = 0;
+    field_0x1ca = 0;
+    field_0x1d6 = 0;
+    field_0x1d8 = 0;
+    field_0x1e4 = 0;
+    field_0x1f0 = 0;
+    field_0x1fc = field_0x1a8 + 0x100;
+    field_0x208 = field_0x1b4 + 0x100;
+    field_0x214 = field_0x1c0 + 0x100;
+    if (field_0x251 == 2) {
+        if (dMenu_Collect3D_c::getMirrorNum() >= 4) {
+            field_0x220 = 0x30c;
+        } else {
+            if (dMenu_Collect3D_c::getMirrorNum() >= 2) {
+                field_0x220 = 0x30b;
+            } else {
+                field_0x220 = 0x30a;
+            }
+        }
+    } else {
+        if (dMenu_Collect3D_c::getCrystalNum() < 2) {
+            field_0x220 = 0x5ac;
+        } else {
+            field_0x220 = 0x5ad;
+        }
+    }
+    field_0x1da = 0;
+    field_0x1e6 = 0;
+    field_0x1f2 = 0;
+    field_0x1fe = field_0x1aa + 0x100;
+    field_0x20a = field_0x1b6 + 0x100;
+    field_0x216 = field_0x1c2 + 0x100;
+    field_0x222 = 0;
+    field_0x1dc = 0;
+    field_0x1e8 = 0;
+    field_0x1f4 = 0;
+    field_0x200 = field_0x1ac + 0x100;
+    field_0x20c = field_0x1b8 + 0x100;
+    field_0x218 = field_0x1c4 + 0x100;
+    field_0x224 = 0;
+    field_0x1de = field_0x18a + 0x100;
+    field_0x1ea = field_0x196 + 0x100;
+    field_0x1f6 = 0x5b9;
+    field_0x202 = 0x5b1;
+    field_0x20e = 0;
+    field_0x21a = 0;
+    field_0x226 = 0;
+    field_0x1e0 = dMsgObject_getSmellTypeMessageID() + 0x100;
+    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[456])) {
+        field_0x1ec = 0x12d8;
+    } else {
+        field_0x1ec = field_0x198 + 0x100;
+    }
+    field_0x1f8 = 0x5a2;
+    field_0x204 = 0x4c9;
+    field_0x210 = 0;
+    field_0x21c = 0;
+    field_0x228 = 0;
+    field_0x1e2 = 0x4c5;
+    field_0x1ee = 0x4c6;
+    field_0x1fa = 0;
+    field_0x206 = 0;
+    field_0x212 = 0;
+    field_0x21e = 0;
+    field_0x22a = 0;
+    mCursorX = dMeter2Info_getCollectCursorPosX();
+    mCursorY = dMeter2Info_getCollectCursorPosY();
+    if (dMenu_Collect3D_c::getMaskMdlVisible() == 0) {
+        if (mCursorX == 6 && mCursorY == 0) {
+            mCursorX = 3;
+            mCursorY = 0;
+        }
+    }
+    field_0x259 = mCursorX;
+    field_0x25a = mCursorY;
+    field_0x17c = 0;
+    field_0x17e = 0;
+    field_0x180 = 0;
+    field_0x182 = 0;
+    field_0x25b = 0xff;
+    field_0x25c = 0xff;
+    field_0x25d = 0xff;
+    mSubWindowOpenCheck = 0;
+    field_0x25f = 0;
+    field_0x260 = 0xff;
+    field_0x261 = 0xff;
+    setEquipItemFrameColorSword(-1);
+    setEquipItemFrameColorShield(-1);
+    setEquipItemFrameColorClothes(-1);
+    bool bVar18 = false;
+    bool bVar2 = false;
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < 6; j++) {
+            if (getItemTag(i, j, true)) {
+                mpSelPm[i][j] = new CPaneMgr(mpScreen, getItemTag(i, j, true), 0, NULL);
+                if (!bVar18) {
+                    bVar18 = true;
+                }
+                if (!bVar2) {
+                    if (mCursorX == i && mCursorY == j) {
+                        bVar2 = true;
+                    }
+                }
+            } else {
+                mpSelPm[i][j] = NULL;
+            }
+            if (getItemTag(i, j, false)) {
+                if ()
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1195,6 +1547,7 @@ asm void dMenu_Collect2D_c::screenSet() {
 #include "asm/d/menu/d_menu_collect/screenSet__17dMenu_Collect2D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801B1C3C-801B1CE0 1AC57C 00A4+00 1/1 0/0 0/0 .text            animationSet__17dMenu_Collect2D_cFv
  */
@@ -1570,7 +1923,7 @@ COMPILER_STRIP_GATE(0x80395118, &itemTag);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Collect2D_c::getItemTag(int param_0, int param_1, bool param_2) {
+asm u64 dMenu_Collect2D_c::getItemTag(int param_0, int param_1, bool param_2) {
     nofralloc
 #include "asm/d/menu/d_menu_collect/getItemTag__17dMenu_Collect2D_cFiib.s"
 }

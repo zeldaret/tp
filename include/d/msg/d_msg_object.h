@@ -137,7 +137,7 @@ public:
     /* 80238378 */ void isMsgSend();
     /* 802383A4 */ static bool isMouthCheck();
     /* 802383D0 */ static u32 getMessageID();
-    /* 802383E4 */ void getSmellTypeMessageID();
+    /* 802383E4 */ u32 getSmellTypeMessageID();
     /* 80238410 */ static void setSmellType(u8);
     /* 80238440 */ void getSelectCursorPos();
     /* 8023846C */ static void setSelectCursorPos(u8);
@@ -294,6 +294,10 @@ inline bool dMsgObject_isKillMessageFlag() {
 
 inline u32 dMsgObject_getMessageID() {
     return dMsgObject_c::getMessageID();
+}
+
+inline u32 dMsgObject_getSmellTypeMessageID() {
+    return dMsgObject_getMsgObjectClass()->getSmellTypeMessageID();
 }
 
 inline void dMsgObject_readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
