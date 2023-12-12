@@ -106,6 +106,7 @@ struct J3DSys {
     J3DTexture* getTexture() { return mTexture; }
 
     void setNBTScale(Vec* scale) { mNBTScale = scale; }
+    Vec* getNBTScale() { return mNBTScale; }
 
     void onFlag(u32 flag) { mFlags |= flag; }
 

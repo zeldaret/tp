@@ -32,6 +32,26 @@ void J3DScaleNrmMtx33(f32 (*)[3], const Vec&);
 void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
 
+inline void J3DPSMtx33Copy(register Mtx3P src, register Mtx3P dst) {
+    register f32 fr4;
+    register f32 fr3;
+    register f32 fr2;
+    register f32 fr1;
+    register f32 fr0;
+    asm {
+        psq_l fr4, 0(src), 0, 0
+        psq_l fr3, 8(src), 0, 0
+        psq_l fr2, 0x10(src), 0, 0
+        psq_l fr1, 0x18(src), 0, 0
+        lfs fr0, 0x20(src)
+        psq_st fr4, 0(dst), 0, 0
+        psq_st fr3, 8(dst), 0, 0
+        psq_st fr2, 0x10(dst), 0, 0
+        psq_st fr1, 0x18(dst), 0, 0
+        stfs fr0, 0x20(dst)
+    }
+}
+
 inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst) {
     register f32 x_y1;
     register f32 z1;

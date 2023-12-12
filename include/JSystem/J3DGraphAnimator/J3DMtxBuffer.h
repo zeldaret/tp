@@ -25,6 +25,7 @@ public:
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
     void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
     MtxP getWeightAnmMtx(int idx) const { return mpWeightEvlpMtx[idx]; }
+    MtxP getUserAnmMtx(int idx) const { return mpUserAnmMtx[idx]; }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
