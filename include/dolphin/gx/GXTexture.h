@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod);
-void __GetImageTileCount(u32 arg0, s16 arg1, s16 arg2, s32* arg3, s32* arg4, s32* arg5);
+void __GetImageTileCount(u32 arg0, u16 arg1, u16 arg2, s32* arg3, s32* arg4, s32* arg5);
 void GXInitTexObj(GXTexObj* obj, void* image, u16 width, u16 height, GXTexFmt fmt,
                   GXTexWrapMode wrapS, GXTexWrapMode wrapT, GXBool mipmap);
 void GXInitTexObjCI(GXTexObj* obj, void* image, u16 width, u16 height, GXCITexFmt format,

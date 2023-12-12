@@ -229,58 +229,6 @@ void dPaPoF_c::clearFourAllID() {
     clearTwoAllID();
 }
 
-/* 80051470-8005147C 04BDB0 000C+00 2/0 0/0 0/0 .text            getRightEffType__8dPaPoT_cCFi */
-u8 dPaPoT_c::getRightEffType(int i_idx) const {
-    return mRightEffType[i_idx];
-}
-
-/* 8005147C-80051488 04BDBC 000C+00 2/0 0/0 0/0 .text            getLeftEffType__8dPaPoT_cCFi */
-u8 dPaPoT_c::getLeftEffType(int i_idx) const {
-    return mLeftEffType[i_idx];
-}
-
-/* 80051488-80051494 04BDC8 000C+00 2/0 0/0 0/0 .text            getCenterEffType__7dPaPo_cCFi */
-u8 dPaPo_c::getCenterEffType(int i_idx) const {
-    return mCenterEffType[i_idx];
-}
-
-/* 80051494-800514DC 04BDD4 0048+00 2/0 0/0 0/0 .text            getRightEmitter__8dPaPoT_cFii */
-JPABaseEmitter* dPaPoT_c::getRightEmitter(int param_0, int param_1) {
-    return dComIfGp_particle_getEmitter(mRightEmitter[param_0][param_1]);
-}
-
-/* 800514DC-80051524 04BE1C 0048+00 2/0 0/0 0/0 .text            getLeftEmitter__8dPaPoT_cFii */
-JPABaseEmitter* dPaPoT_c::getLeftEmitter(int param_0, int param_1) {
-    return dComIfGp_particle_getEmitter(mLeftEmitter[param_0][param_1]);
-}
-
-/* 80051524-8005156C 04BE64 0048+00 2/0 0/0 0/0 .text            getCenterEmitter__7dPaPo_cFii */
-JPABaseEmitter* dPaPo_c::getCenterEmitter(int param_0, int param_1) {
-    return dComIfGp_particle_getEmitter(field_0x8[param_0][param_1]);
-}
-
-/* 8005156C-80051578 04BEAC 000C+00 1/0 0/0 0/0 .text            getBackRightEffType__8dPaPoF_cCFi
- */
-u8 dPaPoF_c::getBackRightEffType(int i_idx) const {
-    return mBackRightEffType[i_idx];
-}
-
-/* 80051578-80051584 04BEB8 000C+00 1/0 0/0 0/0 .text            getBackLeftEffType__8dPaPoF_cCFi */
-u8 dPaPoF_c::getBackLeftEffType(int i_idx) const {
-    return mBackLeftEffType[i_idx];
-}
-
-/* 80051584-800515CC 04BEC4 0048+00 1/0 0/0 0/0 .text            getBackRightEmitter__8dPaPoF_cFii
- */
-JPABaseEmitter* dPaPoF_c::getBackRightEmitter(int param_0, int param_1) {
-    return dComIfGp_particle_getEmitter(mBackRightEmitter[param_0][param_1]);
-}
-
-/* 800515CC-80051614 04BF0C 0048+00 1/0 0/0 0/0 .text            getBackLeftEmitter__8dPaPoF_cFii */
-JPABaseEmitter* dPaPoF_c::getBackLeftEmitter(int param_0, int param_1) {
-    return dComIfGp_particle_getEmitter(mBackLeftEmitter[param_0][param_1]);
-}
-
 /* ############################################################################################## */
 /* 803A85F8-803A8604 005718 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {

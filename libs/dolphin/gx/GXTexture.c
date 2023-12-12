@@ -4,6 +4,8 @@
 //
 
 #include "dolphin/gx/GXTexture.h"
+#include "dolphin/gx/GX.h"
+#include "MSL_C/MSL_Common/Src/string.h"
 #include "dol2asm.h"
 
 //
@@ -23,7 +25,6 @@ void __GXSetTmemConfig();
 // External References:
 //
 
-SECTION_INIT void memset();
 void __GXFlushTextureState();
 
 //
@@ -67,6 +68,85 @@ SECTION_DATA static void* lit_104[61] = {
 };
 
 /* 8035DC1C-8035DD78 35855C 015C+00 1/0 8/8 0/0 .text            GXGetTexBufferSize */
+#ifdef NONMATCHING
+u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 max_lod) {
+    u32 r0;
+    u32 r8;
+    u32 i;
+    u32 rv;
+    u32 r7;
+    u32 r6;
+    u32 r10;
+    u32 uVar1;
+    u32 uVar2;
+    u32 uVar3;
+    switch(format) {
+    case GX_TF_I4:
+    case GX_TF_CI8:
+    case GX_TF_CMPR:
+    case 32:
+    case 48:
+        r0 = 3;
+        r8 = 3;
+        break;
+    case GX_TF_I8:
+    case GX_TF_IA4:
+    case 17:
+    case 34:
+    case 39:
+    case 40:
+    case 41:
+    case 42:
+    case 57:
+    case 58:
+        r0 = 3;
+        r8 = 2;
+        break;
+    case GX_TF_IA8:
+    case GX_TF_RGB565:
+    case GX_TF_TGB5A3:
+    case GX_TF_RGBA8:
+    case 19:
+    case 22:
+    case 35:
+    case 43:
+    case 44:
+    case 60:
+        r0 = 2;
+        r8 = 2;
+        break;
+    default:
+        r8 = 0;
+        r0 = 0;
+        break;
+    }
+
+    if (format == 6 || format == 0x16) {
+        uVar3 = 0x40;
+    } else {
+        uVar3 = 0x20;
+    }
+
+    if (mipmap == GX_TRUE) {
+        r7 = (1 << r8) - 1;
+        r10 = (1 << r0) - 1;
+        rv = 0;
+        for (i = 0; i < max_lod; i++) {
+            rv += uVar3 * (((s32)(width + r10) >> r0) * ((s32)(height + r7) >> r0));
+
+            if (width == 1 && height == 1) {
+                break;
+            }
+
+            width =  (width > 1) ? width >> 1 : 1;
+            height =  (height > 1) ? height >> 1 : 1;
+        }
+    } else {
+        rv = uVar3 * (((s32)(width + (1 << r0) - 1) >> r0) * ((s32)(height + (1 << r8) - 1) >> r0));
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,6 +155,7 @@ asm u32 GXGetTexBufferSize(u16 width, u16 height, u32 format, GXBool mipmap, u8 
 #include "asm/dolphin/gx/GXTexture/GXGetTexBufferSize.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D268C-803D2780 -00001 00F4+00 1/1 0/0 0/0 .data            @145 */
@@ -113,14 +194,84 @@ SECTION_DATA static void* lit_145[61] = {
 };
 
 /* 8035DD78-8035DE40 3586B8 00C8+00 1/0 1/1 0/0 .text            __GetImageTileCount */
+#ifdef NONMATCHING
+void __GetImageTileCount(u32 arg0, u16 arg1, u16 arg2, s32* arg3, s32* arg4, s32* arg5) {
+    u32 r0;
+    u32 r8;
+    s32 uVar3;
+    s32 uVar4;
+    s32 uVar5;
+    s32 uVar6;
+    s32 uVar7;
+    switch(arg0) {
+    case GX_TF_I4:
+    case GX_TF_CI8:
+    case GX_TF_CMPR:
+    case 32:
+    case 48:
+        r0 = 3;
+        r8 = 3;
+        break;
+    case GX_TF_I8:
+    case GX_TF_IA4:
+    case 17:
+    case 34:
+    case 39:
+    case 40:
+    case 41:
+    case 42:
+    case 57:
+    case 58:
+        r0 = 3;
+        r8 = 2;
+        break;
+    case GX_TF_IA8:
+    case GX_TF_RGB565:
+    case GX_TF_TGB5A3:
+    case GX_TF_RGBA8:
+    case 19:
+    case 22:
+    case 35:
+    case 43:
+    case 44:
+    case 60:
+        r0 = 2;
+        r8 = 2;
+        break;
+    default:
+        r8 = 0;
+        r0 = 0;
+        break;
+    }
+
+    if (arg1 == 0) {
+        arg1 = 1;
+    }
+
+    if (arg2 == 0) {
+        arg2 = 1;
+    }
+
+    uVar3 = 1;
+    *arg3 = (arg1 + ((1 << r0) - 1)) >> r0;
+    *arg4 = (arg2 + ((1 << r8) - 1)) >> r8;
+
+    if ((s32)arg0 != 6 && (s32)arg0 != 0x16) {
+        uVar3 = 0;
+    }
+
+    *arg5 = uVar3 ? 2 : 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __GetImageTileCount(u32 arg0, s16 arg1, s16 arg2, s32* arg3, s32* arg4, s32* arg5) {
+asm void __GetImageTileCount(u32 arg0, u16 arg1, u16 arg2, s32* arg3, s32* arg4, s32* arg5) {
     nofralloc
 #include "asm/dolphin/gx/GXTexture/__GetImageTileCount.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803D2780-803D27C0 -00001 003C+04 1/1 0/0 0/0 .data            @224 */
@@ -261,74 +412,39 @@ asm void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter min_filter, GXTexFilter max_
 #pragma pop
 
 /* 8035E238-8035E248 358B78 0010+00 0/0 4/4 1/1 .text            GXGetTexObjWidth */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 GXGetTexObjWidth(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjWidth.s"
+u16 GXGetTexObjWidth(GXTexObj* obj) {
+    return (obj->texture_size & 0x3ff) + 1;
 }
-#pragma pop
 
 /* 8035E248-8035E258 358B88 0010+00 0/0 3/3 0/0 .text            GXGetTexObjHeight */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 GXGetTexObjHeight(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjHeight.s"
+u16 GXGetTexObjHeight(GXTexObj* obj) {
+    return ((obj->texture_size >> 10) & 0x3ff) + 1;
 }
-#pragma pop
 
 /* 8035E258-8035E260 358B98 0008+00 0/0 1/1 0/0 .text            GXGetTexObjFmt */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTexFmt GXGetTexObjFmt(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjFmt.s"
+GXTexFmt GXGetTexObjFmt(GXTexObj* obj) {
+    return obj->texture_format;
 }
-#pragma pop
 
 /* 8035E260-8035E26C 358BA0 000C+00 0/0 1/1 0/0 .text            GXGetTexObjWrapS */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTexWrapMode GXGetTexObjWrapS(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjWrapS.s"
+GXTexWrapMode GXGetTexObjWrapS(GXTexObj* obj) {
+    return obj->texture_filter & 0x3;
 }
-#pragma pop
 
 /* 8035E26C-8035E278 358BAC 000C+00 0/0 1/1 0/0 .text            GXGetTexObjWrapT */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTexWrapMode GXGetTexObjWrapT(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjWrapT.s"
+GXTexWrapMode GXGetTexObjWrapT(GXTexObj* obj) {
+    return (obj->texture_filter & 0xc) >> 2;
 }
-#pragma pop
 
 /* 8035E278-8035E290 358BB8 0018+00 0/0 1/1 0/0 .text            GXGetTexObjMipMap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXBool GXGetTexObjMipMap(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjMipMap.s"
+GXBool GXGetTexObjMipMap(GXTexObj* obj) {
+    return (obj->texture_flags & 1) == 1;
 }
-#pragma pop
 
 /* 8035E290-8035E298 358BD0 0008+00 0/0 1/1 0/0 .text            GXGetTexObjTlut */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 GXGetTexObjTlut(GXTexObj* obj) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXGetTexObjTlut.s"
+u32 GXGetTexObjTlut(GXTexObj* obj) {
+    return obj->tlut_name;
 }
-#pragma pop
 
 /* 8035E298-8035E414 358BD8 017C+00 1/1 0/0 0/0 .text            GXLoadTexObjPreLoaded */
 #pragma push
@@ -392,34 +508,28 @@ asm void GXInitTlutRegion(GXTlutRegion* region, u32 tmem_addr, GXTlutSize tlut_s
 #pragma pop
 
 /* 8035E664-8035E6AC 358FA4 0048+00 0/0 8/8 1/1 .text            GXInvalidateTexAll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXInvalidateTexAll(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXInvalidateTexAll.s"
+void GXInvalidateTexAll(void) {
+    __GXFlushTextureState();
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = 0x66001000;
+    GXFIFO.u8 = 0x61;
+    GXFIFO.u32 = 0x66001100;
+    __GXFlushTextureState();
 }
-#pragma pop
 
 /* 8035E6AC-8035E6C0 358FEC 0014+00 0/0 1/1 0/0 .text            GXSetTexRegionCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback callback) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXSetTexRegionCallback.s"
+GXTexRegionCallback GXSetTexRegionCallback(GXTexRegionCallback callback) {
+    GXTexRegionCallback prev = __GXData->texRegionCB;
+    __GXData->texRegionCB = callback;
+    return prev;
 }
-#pragma pop
 
 /* 8035E6C0-8035E6D4 359000 0014+00 0/0 1/1 0/0 .text            GXSetTlutRegionCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback callback) {
-    nofralloc
-#include "asm/dolphin/gx/GXTexture/GXSetTlutRegionCallback.s"
+GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback callback) {
+    GXTlutRegionCallback prev = __GXData->tlutRegionCB;
+    __GXData->tlutRegionCB = callback;
+    return prev;
 }
-#pragma pop
 
 /* 8035E6D4-8035E750 359014 007C+00 0/0 1/1 0/0 .text            GXSetTexCoordScaleManually */
 #pragma push
