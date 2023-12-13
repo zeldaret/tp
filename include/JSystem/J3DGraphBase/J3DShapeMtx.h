@@ -9,9 +9,12 @@ class J3DTexGenBlock;
 class J3DTexMtxObj {
 public:
     Mtx& getMtx(u16 idx) { return mpTexMtx[idx]; }
+    Mtx44& getEffectMtx(u16 idx) { return mpEffectMtx[idx]; }
+    u16 getNumTexMtx() { return mTexMtxNum; }
 
-private:
-    /* 0x00 */ Mtx *mpTexMtx;
+    /* 0x00 */ Mtx* mpTexMtx;
+    /* 0x04 */ Mtx44* mpEffectMtx;
+    /* 0x08 */ u16 mTexMtxNum;
 };
 
 class J3DDifferedTexMtx {
@@ -27,10 +30,8 @@ public:
     static J3DTexMtxObj* sTexMtxObj;
 };
 
-extern u8 struct_804515B0;
-extern u8 struct_804515B1;
-extern u8 struct_804515B2;
-extern u8 struct_804515B3;
+class J3DShapeMtx;
+typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
 
 class J3DShapeMtx {
 public:
@@ -43,28 +44,32 @@ public:
     /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
     /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
 
-    /* 80314798 */ virtual ~J3DShapeMtx();
-    /* 803147E0 */ virtual u32 getType() const;
-    /* 80273E08 */ virtual u32 getUseMtxNum() const;
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
+    /* 80314798 */ virtual ~J3DShapeMtx() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
+    /* 80273E08 */ virtual u32 getUseMtxNum() const { return 1; }
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const { return mUseMtxIndex; }
     /* 80313B94 */ virtual void load() const;
     /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
-    static u8 sMtxLoadPipeline[48];
+    static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
     static u16 sMtxLoadCache[10 + 2 /* padding */];
     static u32 sCurrentPipeline;
-    // static J3DScaleFlag sCurrentScaleFlag;
     static u8* sCurrentScaleFlag;
+    static u8 sNBTFlag;
+    static u8 sLODFlag;
     static u32 sTexMtxLoadType;
 
     static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
-    static void setLODFlag(u8 flag) { struct_804515B1 = flag; }
-    static u8 getLODFlag() { return struct_804515B1; }
+    static void setLODFlag(u8 flag) { sLODFlag = flag; }
+    static u8 getLODFlag() { return sLODFlag; }
     static void resetMtxLoadCache();
 
-private:
+protected:
     /* 0x04 */ u16 mUseMtxIndex;
 };
+
+class J3DShapeMtxConcatView;
+typedef void (J3DShapeMtxConcatView::*J3DShapeMtxConcatView_LoadFunc)(int, u16) const;
 
 class J3DShapeMtxConcatView : public J3DShapeMtx {
 public:
@@ -72,10 +77,10 @@ public:
         : J3DShapeMtx(useMtxIndex)
     {}
 
-    /* 80314730 */ virtual ~J3DShapeMtxConcatView();
-    /* 803147E0 */ virtual u32 getType() const;
+    /* 80314730 */ virtual ~J3DShapeMtxConcatView() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMCV'; }
     /* 80313C54 */ virtual void load() const;
-    /* 80314598 */ virtual void loadNrmMtx(int, u16) const;
+    /* 80314598 */ virtual void loadNrmMtx(int, u16) const {}
     /* 80313D28 */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
 
     /* 80313828 */ void loadMtxConcatView_PNGP(int, u16) const;
@@ -84,9 +89,9 @@ public:
     /* 80313A14 */ void loadMtxConcatView_PNCPU(int, u16) const;
     /* 80313AC8 */ void loadMtxConcatView_PNGP_LOD(int, u16) const;
 
-    static u8 sMtxLoadPipeline[48];
-    static u8 sMtxLoadLODPipeline[48];
-    static u8 sMtxPtrTbl[8];
+    static J3DShapeMtxConcatView_LoadFunc sMtxLoadPipeline[4];
+    static J3DShapeMtxConcatView_LoadFunc sMtxLoadLODPipeline[4];
+    static MtxP sMtxPtrTbl[2];
 };
 
 class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
@@ -95,8 +100,8 @@ public:
         : J3DShapeMtxConcatView(useMtxIndex)
     {}
 
-    /* 80314520 */ virtual ~J3DShapeMtxYBBoardConcatView();
-    /* 803147E0 */ virtual u32 getType() const;
+    /* 80314520 */ virtual ~J3DShapeMtxYBBoardConcatView() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMYB'; }
     /* 803143E4 */ virtual void load() const;
 };
 
@@ -106,8 +111,8 @@ public:
         : J3DShapeMtxConcatView(useMtxIndex)
     {}
 
-    /* 803145A4 */ virtual ~J3DShapeMtxBBoardConcatView();
-    /* 803147E0 */ virtual u32 getType() const;
+    /* 803145A4 */ virtual ~J3DShapeMtxBBoardConcatView() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMBB'; }
     /* 803142D4 */ virtual void load() const;
 };
 
@@ -119,16 +124,16 @@ public:
         , mUseMtxIndexTable(useMtxIndexTable)
     {}
 
-    /* 803146B0 */ virtual ~J3DShapeMtxMulti();
-    /* 803147E0 */ virtual u32 getType() const;
-    /* 80273E08 */ virtual u32 getUseMtxNum() const;
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
+    /* 803146B0 */ virtual ~J3DShapeMtxMulti() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMML'; }
+    /* 80273E08 */ virtual u32 getUseMtxNum() const { return mUseMtxNum; }
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
     /* 80313E4C */ virtual void load() const;
     /* 80313EEC */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
 private:
-    /* 0x6 */ u16 mUseMtxNum;
-    /* 0x8 */ u16* mUseMtxIndexTable;
+    /* 0x8 */ u16 mUseMtxNum;
+    /* 0xC */ u16* mUseMtxIndexTable;
 };
 
 class J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
@@ -139,17 +144,17 @@ public:
         , mUseMtxIndexTable(useMtxIndexTable)
     {}
 
-    /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView();
-    /* 803147E0 */ virtual u32 getType() const;
-    /* 80273E08 */ virtual u32 getUseMtxNum() const;
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const;
+    /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMMC'; }
+    /* 80273E08 */ virtual u32 getUseMtxNum() const { return mUseMtxNum; }
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
     /* 80313FA4 */ virtual void load() const;
-    /* 803146AC */ virtual void loadNrmMtx(int, u16) const;
+    /* 803146AC */ virtual void loadNrmMtx(int, u16) const {}
     /* 8031419C */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
 
 private:
-    /* 0x6 */ u16 mUseMtxNum;
-    /* 0x8 */ u16* mUseMtxIndexTable;
+    /* 0x8 */ u16 mUseMtxNum;
+    /* 0xC */ u16* mUseMtxIndexTable;
 };
 
 #endif /* J3DSHAPEMTX_H */

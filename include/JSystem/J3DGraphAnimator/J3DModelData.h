@@ -53,6 +53,7 @@ public:
     u16* getWEvlpMixMtxIndex() const { return mJointTree.getWEvlpMixIndex(); }
     f32* getWEvlpMixWeight() const { return mJointTree.getWEvlpMixWeight(); }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mJointTree.getWEvlpMixMtxNum(idx); }
+    u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
     u32 getModelDataType() const { return mJointTree.getModelDataType(); }
     void setModelDataType(u32 type) { mJointTree.setModelDataType(type); }
     void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }

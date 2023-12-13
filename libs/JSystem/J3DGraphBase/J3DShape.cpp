@@ -298,7 +298,7 @@ void J3DShape::setArrayAndBindPipeline() const {
     J3DShapeMtx::sCurrentScaleFlag = mScaleFlagArray;
     // The below struct_804515B0 is actually a continuation of sCurrentScaleFlag, I believe?
     // Also, there seems to be an extra entry in the array that's only there in DEBUG builds.
-    struct_804515B0 = mHasNBT;
+    J3DShapeMtx::sNBTFlag = mHasNBT;
     data_804515D4[0] = mHasPNMTXIdx;
     J3DShapeMtx::sTexMtxLoadType = getTexMtxLoadType();
 }
