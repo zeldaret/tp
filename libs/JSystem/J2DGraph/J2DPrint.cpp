@@ -5,6 +5,7 @@
 
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "MSL_C/stdio.h"
 #include "MSL_C/stdlib.h"
 #include "MSL_C/string.h"
@@ -351,23 +352,22 @@ SECTION_SDATA2 static f32 lit_913 = 10000.0f;
 
 /* 802F4B4C-802F52E8 2EF48C 079C+00 2/2 0/0 0/0 .text
  * parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb              */
-// Mostly regalloc
+// regswap
 #ifdef NONMATCHING
 f32 J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
                          J2DPrint::TSize& param_4, u8 param_5, bool param_6) {
     if (mFont == NULL) {
         return 0.0f;
     }
-    u16 uVar13 = 0;
-    f32 dVar18 = (double)field_0x2c;
-    f32 dVar16 = mCursorV;
-    f32 dVar19 = dVar18;
-    f32 f28 = dVar16;
-    u8 const* local_f8 = param_0 + 1;
-    int uVar12 = *param_0;
-    f32 tmpf = field_0x2c;
-    f32 dVar17 = tmpf;
-    f32 local_ac = tmpf;
+    const u8* local_a4 = param_0;
+    u16 r29 = 0;
+    f32 f30 = field_0x2c;
+    f32 f28 = mCursorV;
+    f32 f31 = f30;
+    f32 local_a8 = f28;
+    int r27 = *(param_0++);
+    f32 f29 = field_0x2c;
+    f32 local_ac = field_0x2c;
     f32 local_b0 = mCursorV;
     f32 local_b4 = mCursorV;
     JUtility::TColor local_b8 = field_0x8;
@@ -375,108 +375,102 @@ f32 J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
     f32 local_c0;
     local_b8.a = local_b8.a * param_5 / 0xff;
     local_bc.a = local_bc.a * param_5 / 0xff;
-    JUtility::TColor* local_d8;
-    if (field_0x22) {
-        local_d8 = &local_bc;
-    } else {
-        local_d8 = &local_b8;
-    }
-    mFont->setGradColor(local_bc, *local_d8);
-    bool bVar1;
+    mFont->setGradColor(local_b8, field_0x22 ? local_bc : local_b8);
+    bool r25;
     do {
-        u8 local_f0 = 0;
-        if (mFont->isLeadByte(uVar12)) {
-            uVar12 = (uVar12 << 8) | (*(++local_f8));
-            local_f0 = 1;
+        bool local_f0 = false;
+        if (mFont->isLeadByte(r27)) {
+            r27 = (r27 << 8) | (*(param_0++));
+            local_f0 = true;
         }
 
-        if (uVar12 == 0 || ((u32)param_1 > (u32)local_f8 - (u32)param_0)) {
+        if (r27 == 0 || ((u32)param_0 - (u32)local_a4) > param_1) {
             if (param_6 == 0 && param_3 != NULL) {
-                param_3[uVar13] = 0.5f + dVar19;
+                param_3[r29] = 0.5f + f31;
             }
-            uVar13++;
+            r29++;
             break;
         } else {
-            bVar1 = true;
+            r25 = true;
             local_c0 = field_0x2c;
-            if (uVar12 < 0x20) {
-                if (uVar12 == 0x1b) {
-                    u16 local_e8 = doEscapeCode(&local_f8, param_5);
+            if (r27 < 0x20) {
+                if (r27 == 0x1b) {
+                    u16 local_e8 = doEscapeCode(&param_0, param_5);
                     if (local_e8 == 'HM') {
                         if ((param_6 == 0) && (param_3 != NULL)) {
-                            param_3[uVar13] = 0.5f + dVar19;
+                            param_3[r29] = 0.5f + f31;
                         }
-                        field_0x2c = dVar18;
-                        mCursorV = dVar16;
-                        uVar13++;
-                        if (uVar13 == 0x100) {
+                        field_0x2c = f30;
+                        mCursorV = f28;
+                        r29++;
+                        if (r29 == 0x100) {
                             break;
                         }
-                        dVar19 = 0.0f;
+                        f31 = 0.0f;
                     }
                     if (local_e8) {
-                        bVar1 = false;
+                        r25 = false;
                     }
                 } else {
-                    doCtrlCode(uVar12);
-                    bVar1 = false;
-                    if (uVar12 == 10) {
+                    doCtrlCode(r27);
+                    r25 = false;
+                    if (r27 == 10) {
                         if ((!param_6) && (param_3 != NULL)) {
-                            param_3[uVar13] = 0.5f + dVar19;
+                            param_3[r29] = 0.5f + f31;
                         }
-                        uVar13++;
-                        if (uVar13 == 0x100) {
+                        r29++;
+                        if (r29 == 0x100) {
                             break;
                         }
-                        dVar19 = 0.0f;
+                        f31 = 0.0f;
                     }
                 }
-            } else if (local_f0 && ((u32)local_f8 - (u32)param_0 > (u32)param_1)) {
+            } else if (local_f0 && ((u32)param_0 - (u32)local_a4 > (u32)param_1)) {
                 if ((!param_6) && (param_3 != NULL)) {
-                    param_3[uVar13] = 0.5f + dVar19;
+                    param_3[r29] = 0.5f + f31;
                 }
-                uVar13++;
+                r29++;
                 break;
             } else {
                 if (mFont->isFixed()) {
                     field_0x34 = mFont->getFixedWidth();
                 } else {
                     JUTFont::TWidth uStack_ec;
-                    mFont->getWidthEntry(uVar12, &uStack_ec);
+                    mFont->getWidthEntry(r27, &uStack_ec);
                     field_0x34 = uStack_ec.field_0x1;
                 }
 
                 field_0x34 *= field_0x18 / mFont->getCellWidth();
                 f32 fVar6 = ((field_0x2c + field_0x34) - field_0x24);
                 fVar6 = 10000.0f * fVar6;
-                f32 local_90 = ((s32)fVar6) / 10000.0f;
-                if (local_90 > param_2 && field_0x2c > dVar18) {
+                f32 local_c8 = s32(fVar6) / 10000.0f;
+                if (local_c8 > param_2 && field_0x2c > f30) {
                     u32 local_e4;
                     if (local_f0) {
                         local_e4 = 2;
                     } else {
                         local_e4 = 1;
                     }
-                    local_f8 -= local_e4;
+                    param_0 -= local_e4;
                     mCursorV += field_0x14;
                     if (!param_6 && (param_3 != NULL)) {
-                        param_3[uVar13] = 0.5f + dVar19;
+                        param_3[r29] = 0.5f + f31;
                     }
-                    uVar13++;
-                    if (uVar13 == 0x100) {
+                    r29++;
+                    if (r29 == 0x100) {
                         break;
                     }
                     field_0x2c = field_0x24;
-                    dVar19 = 0.0f;
-                    bVar1 = false;
+                    f31 = 0.0f;
+                    r25 = false;
                 } else {
                     if (param_6) {
                         if (param_3 != NULL) {
-                            mFont->drawChar_scale(field_0x2c + (f32)(s16)param_3[uVar13], mCursorV, 
-                                (s32)field_0x18, (s32)field_0x1c, uVar12, true);
+                            mFont->drawChar_scale(field_0x2c + (f32)(s16)param_3[r29], mCursorV,
+                                (s32)field_0x18, (s32)field_0x1c, r27, true);
                         } else {
-                            mFont->drawChar_scale(field_0x2c, mCursorV, 
-                                (s32)field_0x18, (s32)field_0x1c, uVar12, true);
+                            mFont->drawChar_scale(field_0x2c, mCursorV,
+                                (s32)field_0x18, (s32)field_0x1c, r27, true);
                         }
                     }
                     field_0x2c += field_0x34;
@@ -484,46 +478,45 @@ f32 J2DPrint::parse(u8 const* param_0, int param_1, int param_2, u16* param_3,
             }
         }
 
-        if (bVar1) {
-            if (field_0x2c - dVar18 > dVar19) {
-                dVar19 = field_0x2c - dVar18;
+        if (r25) {
+            if (field_0x2c - f30 > f31) {
+                f31 = field_0x2c - f30;
             }
             field_0x2c += field_0x10;
             field_0x34 += field_0x10;
-            f32 local_cc = mCursorV + (field_0x1c / mFont->getHeight()) * mFont->getDescent();
-            if (f28 < local_cc) {
-                f28 = local_cc;
+            f32 local_cc = (field_0x1c / mFont->getHeight()) * mFont->getDescent();
+            if (local_a8 < mCursorV + local_cc) {
+                local_a8 = mCursorV + local_cc;
             }
             if (field_0x2c > local_ac) {
                 local_ac = field_0x2c;
             }
-            if (field_0x2c < dVar17) {
-                dVar17 = field_0x2c;
+            if (field_0x2c < f29) {
+                f29 = field_0x2c;
             }
-            if (local_c0 < dVar17) {
-                dVar17 = local_c0;
+            if (local_c0 < f29) {
+                f29 = local_c0;
             }
-            if (local_b4 > mCursorV) {
+            if (mCursorV > local_b4) {
                 local_b4 = mCursorV;
             }
             if (mCursorV < local_b0) {
                 local_b0 = mCursorV;
             }
         }
-        local_f8++;
-        uVar12 = *local_f8;
+        r27 = *(param_0++);
     } while (true);
 
     if (param_3 != NULL) {
-        param_3[uVar13] = 0xffff;
+        param_3[r29] = 0xffff;
     }
-    param_4.field_0x0 = local_ac - dVar17;
+    param_4.field_0x0 = local_ac - f29;
     param_4.field_0x4 = local_b4 - local_b0 + mFont->getLeading();
     if (!param_6) {
-        field_0x2c = dVar18;
-        mCursorV = dVar16;
+        field_0x2c = f30;
+        mCursorV = f28;
     }
-    return f28 - dVar16;
+    return local_a8 - f28;
 }
 #else
 #pragma push
