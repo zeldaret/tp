@@ -119,6 +119,8 @@ void dBgS_MoveBGProc_Typical(dBgW* param_0, void* param_1, cBgS_PolyInfo const& 
                              bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6);
 void dBgS_MoveBGProc_TypicalRotY(dBgW* param_0, void* param_1, cBgS_PolyInfo const& param_2,
                                  bool param_3, cXyz* param_4, csXyz* param_5, csXyz* param_6);
+void dBgS_MoveBGProc_Trans(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& i_poly,
+                           bool param_3, cXyz* i_pos, csXyz* i_angle, csXyz* i_shapeAngle);
 f32 dBgS_GetNY(cBgS_PolyInfo const& poly);
 
 #endif /* D_BG_D_BG_S_H */
