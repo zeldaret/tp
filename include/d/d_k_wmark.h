@@ -3,6 +3,7 @@
 
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/kankyo/d_kankyo.h"
+#include "d/d_procname.h"
 
 class dkWmark_c : public kankyo_class {
 public:
@@ -14,6 +15,10 @@ public:
     inline int draw();
 
     static int m_nowID;
+
+    static void setFootMark(cXyz* i_pos, s16 param_1, int param_2) {
+        fopKyM_create(PROC_WMARK, param_2 | (param_1 << 0x10), i_pos, NULL, NULL);
+    }
 
     /* 0x0F8 */ JKRSolidHeap* mpHeap;
     /* 0x0FC */ J3DModel* mpModel;

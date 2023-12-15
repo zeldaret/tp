@@ -149,6 +149,7 @@ public:
     void onEventFlag(u16 flag) { mEventFlag |= flag; }
     void offEventFlag(u16 flag) { mEventFlag &= ~flag; }
     u8 getMode() const { return mMode; }
+    void onHindFlag(u16 flag) { mHindFlag |= flag; }
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
     u8 checkCompulsory() { return mCompulsory; }
     u8 getMapToolId() { return mMapToolId; }

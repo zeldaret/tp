@@ -653,6 +653,7 @@ public:
         FTANM_UNK_3 = 3,
         FTANM_UNK_4 = 4,
         FTANM_UNK_8 = 8,
+        FTANM_UNK_9 = 9,
         FTANM_UNK_13 = 0x13,
         FTANM_UNK_14 = 0x14,
         FTANM_UNK_27 = 0x27,
@@ -1420,7 +1421,7 @@ public:
     /* 800B26AC */ BOOL midnaTalkTrigger() const;
     /* 800B26B8 */ BOOL swordSwingTrigger();
     /* 800B26DC */ void setItemActionButtonStatus(u8);
-    /* 800B26FC */ void itemActionTrigger();
+    /* 800B26FC */ BOOL itemActionTrigger();
     /* 800B271C */ void setStickData();
     /* 800B2EA4 */ void setAtnList();
     /* 800B3220 */ void setRStatus(u8);
@@ -1852,7 +1853,7 @@ public:
     /* 800DEE1C */ BOOL cancelBowMove();
     /* 800DEEDC */ void setBowReadyAnime();
     /* 800DEFB8 */ void setBowReloadAnime();
-    /* 800DF0BC */ void checkUpperItemActionBow();
+    /* 800DF0BC */ BOOL checkUpperItemActionBow();
     /* 800DF798 */ void checkUpperItemActionBowFly();
     /* 800DF814 */ int checkNextActionBow();
     /* 800DFAE8 */ void setBowModel();
@@ -2496,7 +2497,7 @@ public:
     /* 80110E84 */ void setKandelaarModel();
     /* 80110F88 */ void resetOilBottleModel();
     /* 80110FE0 */ void commonKandelaarPourInit();
-    /* 801110B8 */ void commonKandelaarPour(int);
+    /* 801110B8 */ int commonKandelaarPour(int);
     /* 8011130C */ void initKandelaarSwing();
     /* 80111440 */ int procKandelaarSwingInit();
     /* 801115CC */ int procKandelaarSwing();
@@ -3208,6 +3209,8 @@ public:
     bool checkFisingRodLure() const { return mEquipItem == noentry73; }
     BOOL doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
+    BOOL grassCancelTrigger() { return itemTriggerCheck(BTN_B); }
+    BOOL arrowChangeTrigger() { return itemActionTrigger(); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
     u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
     inline bool checkInputOnR() const;
@@ -3575,8 +3578,7 @@ private:
     /* 0x02D80 */ int field_0x2d80;
     /* 0x02D84 */ Z2WolfHowlMgr mZ2WolfHowlMgr;
     /* 0x02E44 */ dJntCol_c field_0x2e44;
-    /* 0x02E54 */ dPaPo_c field_0x2e54;
-    /* 0x02E8C */ u8 field_0x2e8c[0x90];
+    /* 0x02E54 */ dPaPoF_c field_0x2e54;
     /* 0x02F1C */ dPaPo_c* field_0x2f1c;
     /* 0x02F20 */ dPa_hermiteEcallBack_c field_0x2f20;
     /* 0x02F38 */ dPa_hermiteEcallBack_c field_0x2f38;
@@ -6004,8 +6006,8 @@ public:
     /* 0x42 */ s16 mColorReg2R;
     /* 0x44 */ s16 mColorReg2G;
     /* 0x46 */ s16 mColorReg2B;
-    /* 0x48 */ u16 mNormalOilLoss;
-    /* 0x4A */ u16 mShakeOilLoss;
+    /* 0x48 */ s16 mNormalOilLoss;
+    /* 0x4A */ s16 mShakeOilLoss;
     /* 0x4C */ f32 mFlameTrackRate;
 };  // Size: 0x50
 

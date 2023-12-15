@@ -46,11 +46,26 @@ public:
     void setBombArrowExplode() { field_0x950 = 0; }
     bool checkBombArrow() const { return mIsBombArrow == true; }
 
-    static fopAc_ac_c* makeArrow(fopAc_ac_c* i_player, u16 param_1) {
+    void setShoot() { fopAcM_SetParam(this, 1); }
+    void setChargeShoot() { fopAcM_SetParam(this, 2); }
+
+    static fopAc_ac_c* makeArrow(fopAc_ac_c* i_actor, u16 param_1) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_ARROW,
                                               param_1 << 8,
-                                              &i_player->current.pos,
-                                              fopAcM_GetRoomNo(i_player),
+                                              &i_actor->current.pos,
+                                              fopAcM_GetRoomNo(i_actor),
+                                              NULL,
+                                              NULL,
+                                              -1,
+                                              NULL,
+                                              NULL);
+    }
+
+    static fopAc_ac_c* makeSlingStone(fopAc_ac_c* i_actor, cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_ARROW,
+                                              0x401,
+                                              i_pos,
+                                              fopAcM_GetRoomNo(i_actor),
                                               NULL,
                                               NULL,
                                               -1,

@@ -15,14 +15,14 @@ public:
     /* 80D61044 */ u8 getSwitchBit1();
     /* 80D61050 */ u8 getSwitchBit2();
     /* 80D6105C */ void initialize();
+
     /* 80D61168 */ virtual ~daTag_ShopItem_c();
-    s32 getProcessID() { return field_0x56c; }
 
-    /* 0x56C */ s32 field_0x56c;
-    /* 0x570 */ s16 field_0x570;
+    u32 getProcessID() { return mProcessID; }
+
+    /* 0x56C */ u32 mProcessID;
+    /* 0x570 */ s16 mCreateTimer;
     /* 0x572 */ u8 field_0x572;
-    /* 0x573 */ u8 field_0x573;
-
 };  // Size: 0x574
 
 #endif /* D_A_TAG_SHOP_ITEM_H */

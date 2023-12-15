@@ -371,6 +371,7 @@ public:
 
     u8& getItemLifeCountType() { return mItemLifeCountType; }
     u16 getItemNowLife() { return mItemNowLife; }
+    s32 getItemNowOil() { return mItemNowOil; }
     s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
     void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
     u8 getNeedLightDropNum() { return mNeedLightDropNum; }
@@ -2773,6 +2774,10 @@ inline u16 dComIfGp_getItemNowLife() {
     return g_dComIfG_gameInfo.play.getItemNowLife();
 }
 
+inline s32 dComIfGp_getItemNowOil() {
+    return g_dComIfG_gameInfo.play.getItemNowOil();
+}
+
 inline int dComIfGp_getMessageCountNumber() {
     return g_dComIfG_gameInfo.play.getMessageCountNumber();
 }
@@ -3028,6 +3033,10 @@ inline void i_dComIfGp_event_reset() {
 
 inline void dComIfGp_event_onEventFlag(u16 i_flag) {
     g_dComIfG_gameInfo.play.getEvent().onEventFlag(i_flag);
+}
+
+inline void dComIfGp_event_onHindFlag(u16 i_flag) {
+    g_dComIfG_gameInfo.play.getEvent().onHindFlag(i_flag);
 }
 
 inline void dComIfGp_evmng_cutEnd(int param_0) {
