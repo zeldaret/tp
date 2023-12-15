@@ -15206,8 +15206,8 @@ void daAlink_c::setItemActionButtonStatus(u8 param_0) {
 }
 
 /* 800B26FC-800B271C 0AD03C 0020+00 2/2 0/0 1/1 .text            itemActionTrigger__9daAlink_cFv */
-void daAlink_c::itemActionTrigger() {
-    spActionTrigger();
+BOOL daAlink_c::itemActionTrigger() {
+    return spActionTrigger();
 }
 
 /* 800B271C-800B2EA4 0AD05C 0788+00 1/1 0/0 0/0 .text            setStickData__9daAlink_cFv */

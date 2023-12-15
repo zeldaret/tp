@@ -63,6 +63,7 @@ public:
 
     void setBump() { mFlags |= 4; }
     void setEventWolf() { mFlags |= 0x80; }
+    void setEvent() { mFlags |= 0x8; }
 
     void setHawkPath(u8 i_pathNo) {
         if (i_pathNo != 0xFF) {

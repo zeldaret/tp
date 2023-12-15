@@ -4,7 +4,6 @@
 #include "d/a/d_a_obj_ss_base.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daTag_SSDrink_c;
@@ -32,6 +31,7 @@ public:
     /* 80D63724 */ ~daTag_SSDrink_c();
 
     s32 fopAcM_seenPlayerAngleY() { return fopAcM_seenActorAngleY(this, dComIfGp_getPlayer(0)); }
+    bool checkShopOil() const { return field_0x5D2 == 4; }
 
     /* 0x578 */ dMsgFlow_c field_0x578;
     /* 0x5C4 */ ProcessFunc mProcessFunc;

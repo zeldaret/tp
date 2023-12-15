@@ -11,91 +11,125 @@
 int daTag_ShopItem_c::create() {
     fopAcM_SetupActor(this, daTag_ShopItem_c);
     initialize();
-    field_0x572 = 0;
-    if (!strcmp("F_SP109", dComIfGp_getStartStageName())) {
+    field_0x572 = false;
+
+    if (strcmp("F_SP109", dComIfGp_getStartStageName()) == 0) {
+        // saveBitLabels[64] = Goron Mines completed
         if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
             return cPhs_ERROR_e;
         }
-        if ((dComIfGs_getTime() >= 90.0f) && (dComIfGs_getTime() < 270.0f)) {
+
+        if (dComIfGs_getTime() >= 90.0f && dComIfGs_getTime() < 270.0f) {
             return cPhs_ERROR_e;
         }
     }
-    if (getGroupID() == 0x0f) {
-        field_0x570 = 0x96;
-        if (getSwitchBit1() != 0xff) {
+
+    if (getGroupID() == 15) {
+        mCreateTimer = 150;
+
+#ifdef DEBUG
+        // "Event Item\n"
+        OSReport("イベントアイテム\n");
+#endif
+
+        if (getSwitchBit1() != 0xFF) {
             if (!dComIfGs_isSaveSwitch(getSwitchBit1())) {
                 dComIfGs_onSaveSwitch(getSwitchBit2());
-                field_0x572 = 1;
-                field_0x570 = 0;
+                field_0x572 = true;
+                mCreateTimer = 0;
+#ifdef DEBUG
+                // "Before Talk\n"
+                OSReport("会話前\n");
+#endif
+            } else {
+#ifdef DEBUG
+                // "After Talk\n"
+                OSReport("会話後\n");
+#endif
             }
         }
     } else {
-        field_0x570 = 0;
-        if (getSwitchBit1() != 0xff) {
+        mCreateTimer = 0;
+
+        if (getSwitchBit1() != 0xFF) {
             if (dComIfGs_isSaveSwitch(getSwitchBit1())) {
-                field_0x570 = 0x96;
+                mCreateTimer = 150;
+#ifdef DEBUG
+                // "Already Sold\n"
+                OSReport("もう売れたよ\n");
+#endif
             }
         }
-        if (getSwitchBit2() != 0xff) {
+
+        if (getSwitchBit2() != 0xFF) {
             if (!dComIfGs_isSaveSwitch(getSwitchBit2())) {
-                field_0x570 = 0x96;
+                mCreateTimer = 150;
+#ifdef DEBUG
+                // "Not sold yet\n"
+                OSReport("まだ売れない\n");
+#endif
             }
         }
     }
+
     return cPhs_COMPLEATE_e;
 }
 
 /* 80D60D78-80D60E04 000278 008C+00 1/1 0/0 0/0 .text            Delete__16daTag_ShopItem_cFv */
 int daTag_ShopItem_c::Delete() {
-    if ((field_0x572 != NULL) && (getGroupID() == 0x0f)) {
+    if (field_0x572 && getGroupID() == 15) {
         if (dComIfGs_isSaveSwitch(getSwitchBit1())) {
             dComIfGs_offSaveSwitch(getSwitchBit2());
         }
     }
+
     return 1;
 }
 
 /* 80D60E04-80D61024 000304 0220+00 1/1 0/0 0/0 .text            Execute__16daTag_ShopItem_cFv */
 int daTag_ShopItem_c::Execute() {
-    if (field_0x56c == 0xffffffff) {
-        if (!field_0x570) {
-            field_0x56c =
-                fopAcM_create(PROC_ShopItem, getType() & 0xff | getGroupID() << 0x1c, &current.pos,
-                              fopAcM_GetRoomNo(this), &current.angle, NULL, 0xff);
+    if (mProcessID == UINT32_MAX) {
+        if (mCreateTimer == 0) {
+            mProcessID =
+                fopAcM_create(PROC_ShopItem, (getType() & 0xFF) | (getGroupID() << 0x1C),
+                              &current.pos, fopAcM_GetRoomNo(this), &current.angle, NULL, -1);
 
         } else {
-            field_0x570 -= 1;
-            if (getGroupID() == 0x0f) {
+            mCreateTimer--;
+
+            if (getGroupID() == 15) {
                 if (field_0x572) {
-                    field_0x570 = 0;
+                    mCreateTimer = 0;
                 }
             } else {
-                if (getSwitchBit1() != 0xff && dComIfGs_isSaveSwitch(getSwitchBit1())) {
-                } else if (getSwitchBit2() == 0xff || dComIfGs_isSaveSwitch(getSwitchBit2())) {
-                    field_0x570 = 0;
+                if (getSwitchBit1() != 0xFF && dComIfGs_isSaveSwitch(getSwitchBit1())) {
+                } else if (getSwitchBit2() == 0xFF || dComIfGs_isSaveSwitch(getSwitchBit2())) {
+                    mCreateTimer = 0;
                 }
             }
         }
     } else {
-        daItemBase_c* mpItemBase = (daItemBase_c*)fopAcM_SearchByID(field_0x56c);
-        if (mpItemBase) {
-            if (getGroupID() == 0x0f) {
+        daItemBase_c* item_actor_p = (daItemBase_c*)fopAcM_SearchByID(mProcessID);
+
+        if (item_actor_p != NULL) {
+            if (getGroupID() == 15) {
                 if (!field_0x572) {
-                    mpItemBase->hide();
+                    item_actor_p->hide();
                 } else {
-                    mpItemBase->show();
+                    item_actor_p->show();
                 }
             } else {
-                if (getSwitchBit1() != 0xff && dComIfGs_isSaveSwitch(getSwitchBit1())) {
-                    mpItemBase->hide();
-                } else if (getSwitchBit2() != 0xff && !dComIfGs_isSaveSwitch(getSwitchBit2())) {
-                    mpItemBase->hide();
+                if (getSwitchBit1() != 0xFF && dComIfGs_isSaveSwitch(getSwitchBit1())) {
+                    item_actor_p->hide();
+                } else if (getSwitchBit2() != 0xFF && !dComIfGs_isSaveSwitch(getSwitchBit2())) {
+                    item_actor_p->hide();
                 } else {
-                    mpItemBase->show();
+                    item_actor_p->show();
                 }
             }
         }
     }
+
     return 1;
 }
 
@@ -106,34 +140,33 @@ int daTag_ShopItem_c::Draw() {
 
 /* 80D6102C-80D61038 00052C 000C+00 1/1 0/0 0/0 .text            getType__16daTag_ShopItem_cFv */
 u8 daTag_ShopItem_c::getType() {
-    return mBase.mParameters & 0xff;
+    return fopAcM_GetParam(this) & 0xFF;
 }
 
 /* 80D61038-80D61044 000538 000C+00 3/3 0/0 0/0 .text            getGroupID__16daTag_ShopItem_cFv */
 u8 daTag_ShopItem_c::getGroupID() {
-    return mBase.mParameters >> 0x1c;
+    return fopAcM_GetParam(this) >> 0x1C;
 }
 
-/* 80D61044-80D61050 000544 000C+00 3/3 0/0 1/1 .text            getSwitchBit1__16daTag_ShopItem_cFv */
+/* 80D61044-80D61050 000544 000C+00 3/3 0/0 1/1 .text            getSwitchBit1__16daTag_ShopItem_cFv
+ */
 u8 daTag_ShopItem_c::getSwitchBit1() {
-    return orig.angle.z & 0xff;
+    return orig.angle.z & 0xFF;
 }
 
-/* 80D61050-80D6105C 000550 000C+00 3/3 0/0 0/0 .text            getSwitchBit2__16daTag_ShopItem_cFv */
+/* 80D61050-80D6105C 000550 000C+00 3/3 0/0 0/0 .text            getSwitchBit2__16daTag_ShopItem_cFv
+ */
 u8 daTag_ShopItem_c::getSwitchBit2() {
-    return orig.angle.z >> 8 & 0xff;
+    return orig.angle.z >> 8 & 0xFF;
 }
 
 /* 80D6105C-80D610E0 00055C 0084+00 1/1 0/0 0/0 .text            initialize__16daTag_ShopItem_cFv */
 void daTag_ShopItem_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
-    mAttentionInfo.mFlags = NULL;
-    s16 mAngleY = orig.angle.y;
-    current.angle.x = 0;
-    current.angle.y = mAngleY;
-    current.angle.z = 0;
+    mAttentionInfo.mFlags = 0;
+    current.angle.set(0, orig.angle.y, 0);
     shape_angle = current.angle;
-    field_0x56c = -1;
+    mProcessID = -1;
 }
 
 /* 80D610E0-80D61100 0005E0 0020+00 1/0 0/0 0/0 .text            daTag_ShopItem_Create__FPv */
@@ -173,18 +206,18 @@ static actor_method_class daTag_ShopItem_MethodTable = {
 
 /* 80D61210-80D61240 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_SHOPITM */
 extern actor_process_profile_definition g_profile_TAG_SHOPITM = {
-    fpcLy_CURRENT_e,                // mLayerID
-    7,                              // mListID
-    fpcPi_CURRENT_e,                // mListPrio
-    PROC_TAG_SHOPITM,               // mProcName
-    &g_fpcLf_Method.mBase,          // mSubMtd
-    sizeof(daTag_ShopItem_c),       // mSize
-    0,                              // mSizeOther
-    0,                              // mParameters
-    &g_fopAc_Method.base,           // mSubMtd
-    75,                             // mPriority
-    &daTag_ShopItem_MethodTable,    // mSubMtd
-    0x64100,                        // mStatus
-    5,                              // mActorType
-    fopAc_CULLBOX_CUSTOM_e,         // mCullType
+    fpcLy_CURRENT_e,              // mLayerID
+    7,                            // mListID
+    fpcPi_CURRENT_e,              // mListPrio
+    PROC_TAG_SHOPITM,             // mProcName
+    &g_fpcLf_Method.mBase,        // mSubMtd
+    sizeof(daTag_ShopItem_c),     // mSize
+    0,                            // mSizeOther
+    0,                            // mParameters
+    &g_fopAc_Method.base,         // mSubMtd
+    75,                           // mPriority
+    &daTag_ShopItem_MethodTable,  // mSubMtd
+    0x64100,                      // mStatus
+    5,                            // mActorType
+    fopAc_CULLBOX_CUSTOM_e,       // mCullType
 };

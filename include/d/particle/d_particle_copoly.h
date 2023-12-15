@@ -16,15 +16,13 @@ public:
     /* 80050E7C */ void setEffect(u32*, int, dKy_tevstr_c const*, cXyz const*, u32, u32,
                                   cXyz const*, csXyz const*, s8, u8*, u8*);
     /* 80051008 */ int setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                        csXyz const*, cXyz const*, s8, f32, f32);
+                                       csXyz const*, cXyz const*, s8, f32, f32);
     /* 8005113C */ void clearID(u32*, u8*);
 
     void clearCenterID() { clearID(field_0x8[0], &field_0x36); }
     void changeWaterOffset(f32 i_offset) { mWaterOffset = i_offset; }
     void changeRippleOffset(f32 i_offset) { mRippleOffset = i_offset; }
-    u8 getCenterEffType(int i_idx) const {
-        return mCenterEffType[i_idx];
-    }
+    u8 getCenterEffType(int i_idx) const { return mCenterEffType[i_idx]; }
     JPABaseEmitter* getCenterEmitter(int param_0, int param_1) {
         return dComIfGp_particle_getEmitter(field_0x8[param_0][param_1]);
     }
@@ -42,8 +40,8 @@ public:
 class dPaPoT_c : public dPaPo_c {
 public:
     /* 8005115C */ int setEffectTwo(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                     cXyz const*, cXyz const*, csXyz const*, cXyz const*, s8, f32,
-                                     f32);
+                                    cXyz const*, cXyz const*, csXyz const*, cXyz const*, s8, f32,
+                                    f32);
     /* 80051294 */ void clearTwoAllID();
 
     void clearLeftID() { clearID(mLeftEmitter[0], &field_0x7c); }
@@ -74,18 +72,14 @@ public:
 class dPaPoF_c : public dPaPoT_c {
 public:
     /* 800512E8 */ int setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
-                                      cXyz const*, cXyz const*, cXyz const*, cXyz const*,
-                                      csXyz const*, cXyz const*, s8, f32, f32);
+                                     cXyz const*, cXyz const*, cXyz const*, cXyz const*,
+                                     csXyz const*, cXyz const*, s8, f32, f32);
     /* 80051424 */ void clearFourAllID();
 
     void clearBLeftID() { clearID(mBackLeftEmitter[0], &field_0xc4); }
     void clearBRightID() { clearID(mBackRightEmitter[0], &field_0xc5); }
-    u8 getBackRightEffType(int i_idx) const {
-        return mBackRightEffType[i_idx];
-    }
-    u8 getBackLeftEffType(int i_idx) const {
-        return mBackLeftEffType[i_idx];
-    }
+    u8 getBackRightEffType(int i_idx) const { return mBackRightEffType[i_idx]; }
+    u8 getBackLeftEffType(int i_idx) const { return mBackLeftEffType[i_idx]; }
     JPABaseEmitter* getBackRightEmitter(int param_0, int param_1) {
         return dComIfGp_particle_getEmitter(mBackRightEmitter[param_0][param_1]);
     }
@@ -95,6 +89,13 @@ public:
 
     typedef u8 (dPaPoF_c::*effTypeFunc)(int) const;
     typedef JPABaseEmitter* (dPaPoF_c::*emitterFunc)(int, int);
+
+    u8 getTypeFour(int param_0, int param_1) const {
+        return (this->*m_typeFourData[param_0])(param_1);
+    }
+    JPABaseEmitter* getEmitterFour(int param_0, int param_1, int param_2) {
+        return (this->*m_emitterFourData[param_0])(param_1, param_2);
+    }
 
     static effTypeFunc m_typeFourData[];
     static emitterFunc m_emitterFourData[];

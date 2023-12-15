@@ -3,6 +3,8 @@
  * Player Swim action handling
  */
 
+#include "d/a/d_a_alink.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 /* 80101890-801018E4 0FC1D0 0054+00 6/6 0/0 0/0 .text            checkZoraWearMaskDraw__9daAlink_cFv
