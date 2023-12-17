@@ -473,7 +473,7 @@ public:
 
 class mDoExt_3DlineMat_c {
 public:
-    #ifdef NONMATCHING
+    #ifndef NON_VIRTUAL_3DLINEMAT
     virtual int getMaterialID();
     virtual void setMaterial();
     virtual void draw();
@@ -528,6 +528,8 @@ public:
     /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
     /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
     /* 80014E84 */ int getMaterialID();
+
+    cXyz* getPos(int param_0) { return field_0x18[param_0].field_0x0; }
 
 private:
     /* 0x08 */ GXColor field_0x8;

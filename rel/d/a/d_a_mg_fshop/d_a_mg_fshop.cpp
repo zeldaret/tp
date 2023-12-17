@@ -4,142 +4,19 @@
 //
 
 #include "rel/d/a/d_a_mg_fshop/d_a_mg_fshop.h"
+#include "SSystem/SComponent/c_lib.h"
+#include "SSystem/SComponent/c_math.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
+#include "d/bg/d_bg_w.h"
+#include "d/kankyo/d_kankyo.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/d_timer.h"
 #include "dol2asm.h"
 #include "f_pc/f_pc_executor.h"
 #include "m_Do/m_Do_controller_pad.h"
-
-//
-// Types:
-//
-
-struct fs_weed_s {
-    /* 8086FED8 */ ~fs_weed_s();
-    /* 8086FF38 */ fs_weed_s();
-
-    /* 0x00 */ cXyz field_0x00[15];
-    /* 0xB4 */ f32 field_0xb4;
-    /* 0xB8 */ f32 field_0xb8;
-    /* 0xBC */ s16 field_0xbc;
-};
-
-struct fs_tsubo_s {
-    /* 8086FE98 */ ~fs_tsubo_s();
-    /* 8086FED4 */ fs_tsubo_s();
-
-    /* 0x00 */ u8 field_0x00[0x14 - 0x00];
-    /* 0x14 */ J3DModel* field_0x14;
-    /* 0x18 */ u8 field_0x18[0x1C - 0x18];
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ s16 field_0x20;
-    /* 0x22 */ s16 field_0x22;
-    /* 0x24 */ s16 field_0x24;
-};
-
-struct fs_rod_s {
-    /* 8086FF84 */ ~fs_rod_s();
-    /* 8086FFC0 */ fs_rod_s();
-
-    /* 0x00 */ u8 field_0x00[0x04 - 0x00];
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ u8 field_0x0C[0x14 - 0x0C];
-    /* 0x14 */ J3DModel* field_0x14;
-    /* 0x18 */ J3DModel* field_0x18[6];
-    /* 0x30 */ mDoExt_3DlineMat0_c line_mat;
-    /* 0x4C */ int field_0x4c;
-    /* 0x50 */ u8 field_0x50[0x54 - 0x50];
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ u8 field_0x58[0x5C - 0x58];
-};
-
-struct fs_lure_s {
-    /* 8086FFDC */ ~fs_lure_s();
-    /* 80870018 */ fs_lure_s();
-
-    /* 0x00 */ f32 field_0x00;
-    /* 0x04 */ u8 field_0x04[0x08 - 0x04];
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ s16 field_0x0c;
-    /* 0x0E */ s16 field_0x0e;
-    /* 0x10 */ s16 field_0x10;
-    /* 0x12 */ u8 field_0x12[0x14 - 0x12];
-    /* 0x14 */ J3DModel* field_0x14;
-    /* 0x18 */ J3DModel* field_0x18[2];
-    /* 0x20 */ u8 field_0x20[0x24 - 0x20];
-    /* 0x24 */ int field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ s16 field_0x30;
-    /* 0x32 */ s16 field_0x32;
-    /* 0x34 */ s16 field_0x34;
-    /* 0x36 */ s16 field_0x36;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-};
-
-struct fs_koro2_s {
-    /* 8086FD78 */ ~fs_koro2_s();
-    /* 8086FDB4 */ fs_koro2_s();
-
-    /* 0x00 */ J3DModel* mpModel;
-    /* 0x04 */ J3DModelData* field_0x04;
-    /* 0x08 */ u8 field_0x08[0x34 - 0x08];
-    /* 0x34 */ s8 field_0x34;
-    /* 0x35 */ u8 field_0x35[0x38 - 0x35];
-    /* 0x38 */ cXyz field_0x38;
-    /* 0x44 */ cXyz field_0x44;
-    /* 0x50 */ s16 field_0x50;
-    /* 0x52 */ u8 field_0x52[0x54 - 0x52];
-    /* 0x54 */ cXyz field_0x54;
-    /* 0x60 */ u8 field_0x60;
-    /* 0x61 */ u8 field_0x61[0x64 - 0x61];
-    /* 0x64 */ dBgW* mpBgW;
-};
-
-class fshop_class : public fopAc_ac_c {
-public:
-    /* 0x0568 */ request_of_phase_process_class mPhase;
-    /* 0x0570 */ s16 field_0x0570;
-    /* 0x0572 */ s16 field_0x0572;
-    /* 0x0574 */ fs_lure_s mLure[48];
-    /* 0x1174 */ fs_rod_s mRod[3];
-    /* 0x1288 */ fs_weed_s mWeed[60];
-    /* 0x3F88 */ mDoExt_3DlineMat0_c field_0x3f88;
-    /* 0x3FA4 */ fs_tsubo_s mTsubo[2];
-    /* 0x3FF4 */ J3DModel* field_0x3ff4;
-    /* 0x3FF8 */ s16 field_0x3ff8;
-    /* 0x3FFA */ s16 field_0x3ffa;
-    /* 0x3FFC */ f32 field_0x3ffc;
-    /* 0x4000 */ f32 field_0x4000;
-    /* 0x4004 */ J3DModel* field_0x4004;
-    /* 0x4008 */ fshop_class* field_0x4008;
-    /* 0x400C */ u8 field_0x400C[0x400D - 0x400C];
-    /* 0x400D */ u8 field_0x400d;
-    /* 0x400E */ u8 field_0x400e;
-    /* 0x4010 */ s16 field_0x4010;
-    /* 0x4014 */ cXyz field_0x4014;
-    /* 0x4020 */ csXyz field_0x4020;
-    /* 0x4028 */ J3DModel* mpA_crwaku_model;
-    /* 0x402C */ dBgW* field_0x402c;
-    /* 0x4030 */ Mtx field_0x4030;
-    /* 0x4060 */ s16 field_0x4060;
-    /* 0x4062 */ s16 field_0x4062;
-    /* 0x4064 */ cXyz field_0x4064;
-    /* 0x4070 */ J3DModel* field_0x4070;
-    /* 0x4074 */ dBgS_AcchCir field_0x4074;
-    /* 0x40B4 */ dBgS_ObjAcch field_0x40b4;
-    /* 0x428C */ u8 field_0x428c;
-    /* 0x428D */ u8 field_0x428d;
-    /* 0x4290 */ fs_koro2_s mKoro2[100];
-    /* 0x6B30 */ J3DModel* field_0x6b30;
-    /* 0x6B34 */ s16 field_0x6b34;
-    /* 0x6B38 */ Mtx field_0x6b38;
-    /* 0x6B68 */ dBgW* field_0x6b68;
-    /* 0x6B6C */ u32 field_0x6b6c[2];
-    /* 0x6B74 */ u8 field_0x6B74[0x6B7C - 0x6B74];
-    /* 0x6B7C */ u8 field_0x6b7c;
-};
 
 //
 // Forward References:
@@ -306,24 +183,26 @@ extern "C" void __register_global_object();
 
 /* 8086C06C-8086C08C 0000EC 0020+00 1/1 0/0 0/0 .text
  * ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void ride_call_back(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
+static void ride_call_back(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+    if (param_2->field_0x567 == 0) {
+        param_2->field_0x567 = 1;
+        ((fshop_class*)param_2)->field_0x428c = 0;
+    }
 }
-#pragma pop
 
 /* 8086C08C-8086C140 00010C 00B4+00 1/1 0/0 0/0 .text            Reel_CallBack__FP8J3DJointi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void Reel_CallBack(J3DJoint* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/Reel_CallBack__FP8J3DJointi.s"
+static int Reel_CallBack(J3DJoint* param_0, int param_1) {
+    if (param_1 == 0) {
+        u16 uVar1 = param_0->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        s32 iVar2 = model->getUserArea();
+        MTXCopy(model->i_getAnmMtx(uVar1), (MtxP)calc_mtx);
+        cMtx_XrotM((MtxP)calc_mtx, (int)*(short*)(iVar2 + 0x58));
+        model->setAnmMtx(uVar1, (MtxP)calc_mtx);
+        PSMTXCopy((MtxP)calc_mtx, (MtxP) J3DSys::mCurrentMtx);
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80870094-80870098 000000 0004+00 13/13 0/0 0/0 .rodata          @3829 */
@@ -345,14 +224,34 @@ COMPILER_STRIP_GATE(0x8087009C, &lit_3831);
 #pragma pop
 
 /* 8086C140-8086C214 0001C0 00D4+00 1/1 0/0 0/0 .text            frog_CallBack__FP8J3DJointi */
+// Matches with literals
+#ifdef NONMATCHING
+static int frog_CallBack(J3DJoint* param_0, int param_1) {
+    if (param_1 == 0) {
+        s32 sVar2 = param_0->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        model->getUserArea();
+        if (sVar2 == 1) {
+            MtxP uVar1 = model->i_getAnmMtx(sVar2);
+            MTXCopy(uVar1, (MtxP)calc_mtx);
+            cMtx_YrotM((MtxP)calc_mtx, -8800);
+            MtxScale(2.0f, 1.0f, 1.5f, 1);
+            model->i_setAnmMtx(sVar2, (MtxP)calc_mtx);
+            MTXCopy((MtxP)calc_mtx, (MtxP)J3DSys::mCurrentMtx);
+        }
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void frog_CallBack(J3DJoint* param_0, int param_1) {
+static asm int frog_CallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/frog_CallBack__FP8J3DJointi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808700A0-808700A4 00000C 0004+00 2/3 0/0 0/0 .rodata          @3871 */
@@ -459,7 +358,7 @@ static u8 lit_3770[12];
 #pragma pop
 
 /* 808709A4-808709B0 000054 000C+00 2/3 0/0 0/0 .bss             BallStartPos */
-static u8 BallStartPos[12];
+static Vec BallStartPos;
 
 /* 808709B0-808709BC 000060 000C+00 0/1 0/0 0/0 .bss             @3771 */
 #pragma push
@@ -468,12 +367,30 @@ static u8 lit_3771[12];
 #pragma pop
 
 /* 808709BC-808709C8 00006C 000C+00 2/3 0/0 0/0 .bss             BallEndPos */
-static u8 BallEndPos[12];
+static Vec BallEndPos;
 
 /* 808709C8-808709CC 000078 0004+00 2/3 0/0 0/0 .bss             ArcIX_A_crwaku_model */
-static u8 ArcIX_A_crwaku_model[4];
+static J3DModel* ArcIX_A_crwaku_model[1];
 
 /* 8086C214-8086C310 000294 00FC+00 1/1 0/0 0/0 .text            koro2_draw__FP11fshop_class */
+// Matches with literals
+#ifdef NONMATCHING
+static void koro2_draw(fshop_class* param_1) {
+
+    if (param_1->mScale.x > 5.0f) {
+        dComIfGd_setListBG();
+    }
+    g_env_light.setLightTevColorType_MAJI(ArcIX_A_crwaku_model[0], &param_1->mTevStr);
+    mDoExt_modelUpdateDL(ArcIX_A_crwaku_model[0]);
+    for (s32 iVar1 = 0; iVar1 < (s32)ARRAY_SIZE(param_1->mKoro2); iVar1++) {
+        if (param_1->mKoro2[iVar1].mpModel != NULL) {
+            g_env_light.setLightTevColorType_MAJI(param_1->mKoro2[iVar1].mpModel, &param_1->mTevStr);
+            mDoExt_modelUpdateDL(param_1->mKoro2[iVar1].mpModel);
+        }
+    }
+    dComIfGd_setList();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -482,30 +399,31 @@ static asm void koro2_draw(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/koro2_draw__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808709CC-808709D0 00007C 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crstart_model */
-extern "C" u8 ArcIX_A_crstart_model[4];
+extern J3DModel* ArcIX_A_crstart_model[1];
 
 /* 808709D0-808709D4 000080 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crgoal_model */
-extern "C" u8 ArcIX_A_crgoal_model[4];
+extern J3DModel* ArcIX_A_crgoal_model[1];
 
 /* 808709D4-80870A50 000084 007C+00 1/1 0/0 0/0 .bss             ArcIX_A_crbox_model */
-extern "C" u8 ArcIX_A_crbox_model[124];
+extern J3DModel* ArcIX_A_crbox_model[31];
 
 /* 80870A50-80870A90 000100 0040+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_a_model */
-extern "C" u8 ArcIX_A_crcurve_a_model[64];
+extern J3DModel* ArcIX_A_crcurve_a_model[16];
 
 /* 80870A90-80870AA0 000140 0010+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_b_model */
-extern "C" u8 ArcIX_A_crcurve_b_model[16];
+extern J3DModel* ArcIX_A_crcurve_b_model[4];
 
 /* 80870AA0-80870AC0 000150 0020+00 1/1 0/0 0/0 .bss             ArcIX_A_crsaka_model */
-extern "C" u8 ArcIX_A_crsaka_model[32];
+extern J3DModel* ArcIX_A_crsaka_model[8];
 
 /* 808700A4-808700A8 000010 0004+00 0/1 0/0 0/0 .rodata          @3977 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3977 = 0x42853333;
+SECTION_RODATA static f32 const lit_3977 = 66.6f;
 COMPILER_STRIP_GATE(0x808700A4, &lit_3977);
 #pragma pop
 
@@ -1538,144 +1456,22 @@ SECTION_DATA static u8 koro2_map_LV6[135 + 1 /* padding */] = {
 };
 
 /* 8087065C-808706E4 0003D8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV8 */
-SECTION_DATA static u8 koro2_map_LV8[135 + 1 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x0E,
-    0x00,
-    0x00,
-    0x0F,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
+SECTION_DATA static u8 koro2_map_LV8[15][9] = {
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x05, 0x0E, 0x00, 0x00, 0x0F, 0x02, 0x00},
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00},
+    {0x00, 0x03, 0x01, 0x01, 0x02, 0x00, 0x00, 0x01, 0x00},
+    {0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00},
+    {0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00},
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    {0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00},
+    {0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00},
+    {0x00, 0x06, 0x00, 0x00, 0x05, 0x01, 0x01, 0x04, 0x00},
+    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
 };
 
 /* 808706E4-80870704 -00001 0020+00 0/1 0/0 0/0 .data            koro2_map_d */
@@ -1697,12 +1493,12 @@ SECTION_DATA static void* koro2_union_model[6] = {
 #pragma pop
 
 /* 8087071C-80870728 000498 000C+00 1/1 0/0 0/0 .data            rod_color$3900 */
-SECTION_DATA static u8 rod_color[12] = {
-    0x96, 0x50, 0x14, 0xFF, 0x64, 0x96, 0x14, 0xFF, 0x96, 0x14, 0x14, 0xFF,
+SECTION_DATA static GXColor rod_color[3] = {
+    {0x96, 0x50, 0x14, 0xFF}, {0x64, 0x96, 0x14, 0xFF}, {0x96, 0x14, 0x14, 0xFF},
 };
 
 /* 80870728-8087072C 0004A4 0004+00 1/1 0/0 0/0 .data            l_color$3912 */
-SECTION_DATA static u8 l_color[4] = {
+SECTION_DATA static GXColor l_color = {
     0x32,
     0x64,
     0x1E,
@@ -1710,32 +1506,103 @@ SECTION_DATA static u8 l_color[4] = {
 };
 
 /* 808709CC-808709D0 00007C 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crstart_model */
-static u8 ArcIX_A_crstart_model[4];
+static J3DModel* ArcIX_A_crstart_model[1];
 
 /* 808709D0-808709D4 000080 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crgoal_model */
-static u8 ArcIX_A_crgoal_model[4];
+static J3DModel* ArcIX_A_crgoal_model[1];
 
 /* 808709D4-80870A50 000084 007C+00 1/1 0/0 0/0 .bss             ArcIX_A_crbox_model */
-static u8 ArcIX_A_crbox_model[124];
+static J3DModel* ArcIX_A_crbox_model[31];
 
 /* 80870A50-80870A90 000100 0040+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_a_model */
-static u8 ArcIX_A_crcurve_a_model[64];
+static J3DModel* ArcIX_A_crcurve_a_model[16];
 
 /* 80870A90-80870AA0 000140 0010+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_b_model */
-static u8 ArcIX_A_crcurve_b_model[16];
+static J3DModel* ArcIX_A_crcurve_b_model[4];
 
 /* 80870AA0-80870AC0 000150 0020+00 1/1 0/0 0/0 .bss             ArcIX_A_crsaka_model */
-static u8 ArcIX_A_crsaka_model[32];
+static J3DModel* ArcIX_A_crsaka_model[8];
 
 /* 8086C310-8086C6E4 000390 03D4+00 1/0 0/0 0/0 .text            daFshop_Draw__FP11fshop_class */
+// regalloc
+#ifdef NONMATCHING
+static int daFshop_Draw(fshop_class* param_0) {
+    g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->mTevStr);
+
+    if (param_0->field_0x4070 != NULL) {
+        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4070, &param_0->mTevStr);
+        param_0->field_0x4070->getModelData()->getMaterialNodePointer(0)->getTevKColor(1)->r = 0;
+        mDoExt_modelUpdateDL(param_0->field_0x4070);
+        dComIfGd_setSimpleShadow(
+            &param_0->current.pos, param_0->field_0x40b4.GetGroundH(), 66.6f * param_0->mScale.x,
+            param_0->field_0x40b4.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+       return 1;
+    }
+    
+    if (param_0->field_0x400e != 0) {
+        if (param_0->field_0x400d == 0) {
+            koro2_draw(param_0);
+            param_0->field_0x400d = 1;
+        }
+        return 1;
+    }
+    
+    int cVar11 = fopAcM_GetRoomNo(param_0);
+    camera_class* camera = dComIfGp_getCamera(0);
+    
+    for (int iVar12 = 0; iVar12 < 48; iVar12++) {
+        f32 fVar4 = param_0->mLure[iVar12].field_0x00.x - camera->mLookat.mEye.x;
+        f32 fVar5 = param_0->mLure[iVar12].field_0x00.z - camera->mLookat.mEye.z;
+        if (fVar4 * fVar4 + fVar5 * fVar5 > 1200.0f) {
+            g_env_light.setLightTevColorType_MAJI(param_0->mLure[iVar12].field_0x14, &param_0->mTevStr);
+            mDoExt_modelUpdateDL(param_0->mLure[iVar12].field_0x14);
+            if (param_0->mLure[iVar12].field_0x24 != 3) {
+                for (int local_50 = 0; local_50 < 2; local_50++) {
+                    dComIfGp_entrySimpleModel(param_0->mLure[iVar12].field_0x18[local_50], cVar11);
+                }
+            }
+        }
+    }
+
+    for (int iVar9 = 0; iVar9 < 3; iVar9++) {
+        g_env_light.setLightTevColorType_MAJI(param_0->mRod[iVar9].field_0x14, &param_0->mTevStr);
+        mDoExt_modelUpdateDL(param_0->mRod[iVar9].field_0x14);
+        param_0->mRod[iVar9].line_mat.update(8, rod_color[iVar9], &param_0->mTevStr);
+        dComIfGd_set3DlineMat(&param_0->mRod[iVar9].line_mat);
+        for (int local_54 = 0; local_54 < 6; local_54++) {
+            dComIfGp_entrySimpleModel(param_0->mRod[iVar9].field_0x18[local_54], cVar11);
+        }
+    }
+    for (int local_58 = 0; local_58 < 2; local_58++) {
+        g_env_light.setLightTevColorType_MAJI(param_0->mTsubo[local_58].field_0x14, &param_0->mTevStr);
+        mDoExt_modelUpdateDL(param_0->mTsubo[local_58].field_0x14);
+    }
+
+    param_0->field_0x3f88.update(0xf, 1.2f, l_color, 2, &param_0->mTevStr);
+    dComIfGd_set3DlineMat(&param_0->field_0x3f88);
+    g_env_light.setLightTevColorType_MAJI(param_0->field_0x6b30, &param_0->mTevStr);
+    mDoExt_modelUpdateDL(param_0->field_0x6b30);
+    g_env_light.setLightTevColorType_MAJI(param_0->field_0x3ff4, &param_0->mTevStr);
+    mDoExt_modelUpdateDL(param_0->field_0x3ff4);
+    if (param_0->field_0x4004 != NULL) {
+        mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
+        MtxP pfVar10 = mDoMtx_stack_c::get();
+        param_0->field_0x4004->i_setBaseTRMtx(pfVar10);
+        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4004, &param_0->mTevStr);
+        mDoExt_modelUpdateDL(param_0->field_0x4004);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daFshop_Draw(fshop_class* param_0) {
+static asm int daFshop_Draw(fshop_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/daFshop_Draw__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808700B4-808700B8 000020 0004+00 0/5 0/0 0/0 .rodata          @4049 */
@@ -1790,52 +1657,105 @@ COMPILER_STRIP_GATE(0x808700CC, &lit_4055);
 /* 8087072C-80870738 0004A8 000C+00 0/0 0/0 0/0 .data            lure_scale */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lure_scale[12] = {
-    0x3F, 0x40, 0x00, 0x00, 0x3F, 0x40, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A,
+SECTION_DATA static f32 lure_scale[3] = {
+    0.75f, 0.75f, 0.6f,
 };
 #pragma pop
 
 /* 80870738-80870744 0004B4 000C+00 0/0 0/0 0/0 .data            lure_eye_off */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lure_eye_off[12] = {
-    0x41, 0x88, 0x00, 0x00, 0x41, 0x30, 0x00, 0x00, 0x41, 0x84, 0x00, 0x00,
+SECTION_DATA static f32 lure_eye_off[3] = {
+    17.0f, 11.0f, 16.5f,
 };
 #pragma pop
 
 /* 80870744-80870750 0004C0 000C+00 0/1 0/0 0/0 .data            hook_1_offy */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 hook_1_offy[12] = {
-    0xC0, 0x60, 0x00, 0x00, 0xC0, 0x60, 0x00, 0x00, 0xC0, 0xA0, 0x00, 0x00,
+SECTION_DATA static f32 hook_1_offy[3] = {
+    -3.5f, -3.5f, -5.0f,
 };
 #pragma pop
 
 /* 80870750-8087075C 0004CC 000C+00 0/1 0/0 0/0 .data            hook_2_offz */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 hook_2_offz[12] = {
-    0xC1, 0x98, 0x00, 0x00, 0xC1, 0x80, 0x00, 0x00, 0xC1, 0xA8, 0x00, 0x00,
+SECTION_DATA static f32 hook_2_offz[3] = {
+    -19.0f, -16.0f, -21.0f,
 };
 #pragma pop
 
 /* 8087075C-80870768 0004D8 000C+00 0/1 0/0 0/0 .data            hook_2_offy */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 hook_2_offy[12] = {
-    0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_DATA static f32 hook_2_offy[3] = {
+    -1.0f, 0.0f, 0.0f,
 };
 #pragma pop
 
 /* 80870768-80870774 0004E4 000C+00 0/1 0/0 0/0 .data            lure_ofy$3993 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 lure_ofy[12] = {
-    0xC1, 0x40, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00,
+SECTION_DATA static f32 lure_ofy[3] = {
+    -12.0f, -10.0f, -14.0f,
 };
 #pragma pop
 
 /* 8086C6E4-8086C9D0 000764 02EC+00 1/1 0/0 0/0 .text            lure_set__FP11fshop_class */
+// Matches with literals
+#ifdef NONMATCHING
+static void lure_set(fshop_class* param_0) {
+    fs_lure_s* pLure = param_0->mLure;
+    for (int i = 0; i < 48; i++, pLure++) {
+        if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
+            pLure->field_0x34 = cM_rndF(65536.0f);
+            pLure->field_0x36 = cM_rndF(65536.0f);
+            pLure->field_0x38 = cM_rndF(1000.0f) + 500.0f;
+            pLure->field_0x3c = cM_rndF(1000.0f) + 500.0f;
+        }
+        pLure->field_0x34 += 4000;
+        pLure->field_0x36 += 4000;
+        pLure->field_0x32 = pLure->field_0x3c * cM_ssin(pLure->field_0x36);
+        pLure->field_0x30 = pLure->field_0x38 * cM_ssin(pLure->field_0x34);
+        cLib_addCalc0(&pLure->field_0x3c, 1.0f, 40.0f);
+        cLib_addCalc0(&pLure->field_0x38, 1.0f, 40.0f);
+        f32 fVar1 = 0.0f;
+        f32 fVar2;
+        if (pLure->field_0x24 != 3) {
+            fVar2 = 25.0f;
+            fVar1 = 13.0f / pLure->field_0x28 + lure_ofy[pLure->field_0x24];
+        } else {
+            fVar2 = 12.0f;
+        }
+        mDoMtx_stack_c::transS(
+            pLure->field_0x00.x,
+            pLure->field_0x00.y + fVar1,
+            pLure->field_0x00.z);
+        mDoMtx_stack_c::transM(0.0f, fVar2, 0.0f);
+        mDoMtx_stack_c::ZrotM(pLure->field_0x32);
+        mDoMtx_stack_c::XrotM(pLure->field_0x30);
+        mDoMtx_stack_c::transM(0.0f, -fVar2, 0.0f);
+        mDoMtx_stack_c::YrotM(pLure->field_0x0e);
+        mDoMtx_stack_c::XrotM(pLure->field_0x0c);
+        mDoMtx_stack_c::ZrotM(pLure->field_0x10);
+        mDoMtx_stack_c::scaleM(pLure->field_0x2c, pLure->field_0x2c, pLure->field_0x28);
+        mDoMtx_stack_c::transM(0.0f, 0.0f, 0.0f);
+        pLure->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        if (pLure->field_0x24 != 3) {
+            mDoMtx_stack_c::push();
+            mDoMtx_stack_c::transM(0.0f, hook_1_offy[pLure->field_0x24], 1.0f);
+            mDoMtx_stack_c::XrotM(-10000);
+            pLure->field_0x18[0]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            mDoMtx_stack_c::pop();
+            mDoMtx_stack_c::transM(0.0f, hook_2_offy[pLure->field_0x24],
+                                   hook_2_offz[pLure->field_0x24]);
+            mDoMtx_stack_c::XrotM(0x4000);
+            pLure->field_0x18[1]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1844,6 +1764,7 @@ static asm void lure_set(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/lure_set__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808700D0-808700D4 00003C 0004+00 0/2 0/0 0/0 .rodata          @4164 */
@@ -1868,18 +1789,66 @@ COMPILER_STRIP_GATE(0x808700D8, &lit_4166);
 #pragma pop
 
 /* 80870774-8087078C 0004F0 0018+00 1/1 0/0 0/0 .data            guide_p$4084 */
-SECTION_DATA static u8 guide_p[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3E, 0x61, 0x47, 0xAE,
-    0x3E, 0xB8, 0x51, 0xEC, 0x3F, 0x05, 0x1E, 0xB8, 0x3F, 0x33, 0x33, 0x33,
+SECTION_DATA static f32 guide_p[6] = {
+    0.0f, 0.1f, 0.22f,
+    0.36f, 0.52f, 0.7f,
 };
 
 /* 8087078C-808707A4 000508 0018+00 1/1 0/0 0/0 .data            guide_s$4085 */
-SECTION_DATA static u8 guide_s[24] = {
-    0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x0C, 0xCC, 0xCD,
-    0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x26, 0x66, 0x66, 0x3F, 0x4C, 0xCC, 0xCD,
+SECTION_DATA static f32 guide_s[6] = {
+    0.5f, 0.5f, 0.55f,
+    0.6f, 0.65f, 0.8f,
 };
 
 /* 8086C9D0-8086CC30 000A50 0260+00 1/1 0/0 0/0 .text            rod_set__FP11fshop_class */
+// Matches with literals
+#ifdef NONMATCHING
+static void rod_set(fshop_class* param_0) {
+    fs_rod_s* pRod = param_0->mRod;
+    for (s32 i = 0; i < 3; i++, pRod++) {
+        mDoMtx_stack_c::transS(pRod->field_0x00.x, pRod->field_0x00.y, pRod->field_0x00.z);
+        if (i == 0) {
+            mDoMtx_stack_c::YrotM(-12000.0f);
+        } else if (i == 1) {
+            mDoMtx_stack_c::YrotM(-9000.0f);
+        } else {
+            mDoMtx_stack_c::YrotM(-16000.0f);
+        }
+        mDoMtx_stack_c::XrotM(1300);
+        mDoMtx_stack_c::YrotM(0);
+        pRod->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        cXyz* local_64 = pRod->line_mat.getPos(0);
+        if (pRod->field_0x4c == 0) {
+            mDoMtx_stack_c::transM(0.0f, 15.0f, 0.0f);
+        } else {
+            mDoMtx_stack_c::transM(0.0f, 15.0f, -0.8f);
+        }
+
+        cXyz cStack_1c;
+        cXyz cStack_28;
+        cXyz local_34;
+        for (s32 local_68 = 0; local_68 < 8; local_68++) {
+            mDoMtx_stack_c::multVecZero(local_64);
+            if (local_68 == 0) {
+                cStack_1c = *local_64;
+            } else if (local_68 == 7) {
+                cStack_28 = *local_64;
+            }
+            mDoMtx_stack_c::transM(0.0f, pRod->field_0x54, 0.0f);
+            local_64++;
+        }
+
+        for (s32 local_6c = 0; local_6c < 6; local_6c++) {
+            cXyz local_34 = cStack_28 + (cStack_1c - cStack_28) * guide_p[local_6c];
+            mDoMtx_stack_c::transS(local_34.x, local_34.y, local_34.z);
+            mDoMtx_stack_c::scaleM(guide_s[local_6c], guide_s[local_6c], guide_s[local_6c]);
+            mDoMtx_stack_c::transM(0.0f, 4.0f, 0.0f);
+            mDoMtx_stack_c::YrotM(0x4000);
+            pRod->field_0x18[local_6c]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1888,6 +1857,7 @@ static asm void rod_set(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/rod_set__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* 8086CC30-8086CC6C 000CB0 003C+00 3/3 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
@@ -1937,14 +1907,38 @@ COMPILER_STRIP_GATE(0x808700EC, &lit_4194);
 #pragma pop
 
 /* 8086CC6C-8086CD70 000CEC 0104+00 1/1 0/0 0/0 .text            s_fish_sub__FPvPv */
+// Matches with literals
+#ifdef NONMATCHING
+static void* s_fish_sub(void* param_1, void* param_2) {
+    fopAc_ac_c* actor = (fopAc_ac_c*)param_1;
+    fs_weed_s* weed = (fs_weed_s*)param_2;
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_MG_FISH && actor->speedF > 0.1f) {
+        f32 dVar9 = actor->current.pos.x - weed->field_0x00[0].x;
+        f32 dVar8 = actor->current.pos.y - weed->field_0x00[0].y;
+        f32 dVar10 = actor->current.pos.z - weed->field_0x00[0].z;
+        f32 dVar3 = ((f32*)actor)[0x16F];
+        if (dVar3 > 0.7f) {
+            dVar3 = 0.7f;
+        }
+        if (fabsf(dVar8) < 60.0f * weed->field_0xb4 &&
+            JMAFastSqrt(((dVar9 * dVar9) + (dVar10 * dVar10))) < dVar3 * 35.0f){
+            cLib_addCalc2(&weed->field_0xb8, dVar3, 0.1f, 0.05f);
+            return (fopAc_ac_c*)param_1;
+        }
+    }
+
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void s_fish_sub(void* param_0, void* param_1) {
+static asm void* s_fish_sub(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/s_fish_sub__FPvPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808700F0-808700F4 00005C 0004+00 0/2 0/0 0/0 .rodata          @4248 */
@@ -1969,6 +1963,49 @@ COMPILER_STRIP_GATE(0x808700F8, &lit_4250);
 #pragma pop
 
 /* 8086CD70-8086CF8C 000DF0 021C+00 1/1 0/0 0/0 .text            tsubo_set__FP11fshop_class */
+// Matches with literals
+#ifdef NONMATCHING
+static void tsubo_set(fshop_class* param_1) {
+    fopAc_ac_c* pfVar5 = dComIfGp_getPlayer(0);
+    fs_tsubo_s* pTsubo = param_1->mTsubo;
+    cXyz local_40;
+    s16 xrot;
+    s16 zrot;
+    for (s32 local_48 = 0; local_48 < 2; local_48++, pTsubo++) {
+        local_40.x = pTsubo->field_0x00.x - pfVar5->current.pos.x;
+        local_40.z = pTsubo->field_0x00.z - pfVar5->current.pos.z;
+        if (daPy_getPlayerActorClass()->checkFrontRollCrash() && 
+            JMAFastSqrt((local_40.x * local_40.x + local_40.z * local_40.z)) < 150.0f)
+        {
+            if (local_48 == 0) {
+                pTsubo->field_0x1c = 1200.0f;
+                pTsubo->field_0x24 = 0x708;
+            } else {
+                pTsubo->field_0x1c = 1800.0f;
+                pTsubo->field_0x24 = 0xaf0;
+            }
+            pTsubo->field_0x20 = cM_rndF(65536.0f);
+            pTsubo->field_0x22 = cM_rndF(65536.0f);
+            fopAc_ac_c* henna = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+            if (henna != NULL) {
+                // TODO: include henna header file
+                ((u8*)henna)[0x7b5] = 0x3c;
+            }
+        }
+        xrot = cM_ssin(pTsubo->field_0x20) * pTsubo->field_0x1c;
+        zrot = cM_ssin(pTsubo->field_0x22) * pTsubo->field_0x1c;
+        pTsubo->field_0x20 += pTsubo->field_0x24;
+        pTsubo->field_0x22 += pTsubo->field_0x24 + 700;
+        cLib_addCalcAngleS2(&pTsubo->field_0x24, 9000, 1, 200);
+        mDoMtx_stack_c::transS(pTsubo->field_0x00.x, pTsubo->field_0x00.y, pTsubo->field_0x00.z);
+        mDoMtx_stack_c::XrotM(xrot);
+        mDoMtx_stack_c::ZrotM(zrot);
+        mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
+        pTsubo->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1977,6 +2014,7 @@ static asm void tsubo_set(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/tsubo_set__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808700FC-80870100 000068 0004+00 0/2 0/0 0/0 .rodata          @4289 */
@@ -2003,7 +2041,7 @@ COMPILER_STRIP_GATE(0x80870104, &lit_4291);
 /* 80870108-8087010C 000074 0004+00 0/1 0/0 0/0 .rodata          @4292 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4292 = 1.0f / 50.0f;
+SECTION_RODATA static f32 const lit_4292 = 0.02f;
 COMPILER_STRIP_GATE(0x80870108, &lit_4292);
 #pragma pop
 
@@ -2015,6 +2053,34 @@ COMPILER_STRIP_GATE(0x8087010C, &lit_4293);
 #pragma pop
 
 /* 8086CF8C-8086D1A0 00100C 0214+00 1/1 0/0 0/0 .text weed_control__FP11fshop_classP9fs_weed_s */
+// Matches with literals
+#ifdef NONMATCHING
+static void weed_control(fshop_class* param_1, fs_weed_s* param_2) {
+    int iVar6;
+    cXyz local_84;
+    cXyz local_90;
+    cXyz* pfVar7 = param_2->field_0x00 + 1;
+    local_84.x = 0.0f;
+    local_84.y = 0.0f;
+    local_84.z = param_2->field_0xb4 * 5.0f;
+    f32 dVar11 = param_2->field_0xb8 + 0.5f;
+    param_2->field_0xbc += (s16)(param_2->field_0xb8 * 600.0f + 200.0f);
+    cLib_addCalc0(&param_2->field_0xb8, 0.05f, 0.02f);
+    for (iVar6 = 1; iVar6 < 0xf; iVar6++, pfVar7++) {
+        f32 dVar10 = dVar11 * cM_ssin(param_2->field_0xbc + iVar6 * -5000);
+        f32 dVar8 = cM_ssin(param_2->field_0xbc + iVar6 * -5500);
+        f32 dVar4 = dVar10 + (pfVar7[0].x - pfVar7[0 - 1].x);
+        f32 dVar12 = (pfVar7[0].y - pfVar7[0 - 1].y) + 3.0f;
+        f32 dVar6 = dVar11 * dVar8 + (pfVar7[0].z - pfVar7[0 - 1].z);
+        mDoMtx_XrotS((MtxP)calc_mtx, -cM_atan2s(dVar12, dVar6));
+        mDoMtx_YrotM((MtxP)calc_mtx, (s32)cM_atan2s(dVar4, JMAFastSqrt(dVar12 * dVar12 + dVar6 * dVar6)));
+        MtxPosition(&local_84, &local_90);
+        pfVar7[0].x = pfVar7[0 - 1].x + local_90.x;
+        pfVar7[0].y = pfVar7[0 - 1].y + local_90.y;
+        pfVar7[0].z = pfVar7[0 - 1].z + local_90.z;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2023,6 +2089,7 @@ static asm void weed_control(fshop_class* param_0, fs_weed_s* param_1) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/weed_control__FP11fshop_classP9fs_weed_s.s"
 }
 #pragma pop
+#endif
 
 /* 8086D1A0-8086D1EC 001220 004C+00 1/1 0/0 0/0 .text stage_copy__FP11fshop_classP11fshop_class */
 static void stage_copy(fshop_class* param_0, fshop_class* param_1) {
@@ -2072,6 +2139,64 @@ COMPILER_STRIP_GATE(0x80870124, &lit_4381);
 #pragma pop
 
 /* 8086D1EC-8086D48C 00126C 02A0+00 1/1 0/0 0/0 .text            koro2_mtx_set__FP11fshop_class */
+// float load order
+#ifdef NONMATCHING
+static void koro2_mtx_set(fshop_class* param_1) {
+    cXyz cStack_44;
+    cXyz cStack_50;
+    if (param_1->field_0x400d) {
+        mDoMtx_stack_c::transS(0.0f, -10000.0f, 0.0f);
+        MTXCopy(mDoMtx_stack_c::get(), param_1->field_0x4030);
+        param_1->field_0x402c->Move();
+        for (int local_58 = 0; local_58 < 100; local_58++) {
+            fs_koro2_s* pmVar4 = &param_1->mKoro2[local_58];
+            if (param_1->mKoro2[local_58].mpModel != NULL) {
+                MTXCopy(mDoMtx_stack_c::get(), param_1->mKoro2[local_58].field_0x04);
+                param_1->mKoro2[local_58].mpBgW->Move();
+            }
+        }
+    } else {
+        mDoMtx_stack_c::transS(param_1->field_0x4014.x, param_1->field_0x4014.y, param_1->field_0x4014.z);
+        mDoMtx_stack_c::YrotM(param_1->field_0x4020.y);
+        mDoMtx_stack_c::XrotM(param_1->field_0x4020.x);
+        mDoMtx_stack_c::ZrotM(param_1->field_0x4020.z);
+        mDoMtx_stack_c::scaleM(param_1->mScale.x, param_1->mScale.x, param_1->mScale.x);
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
+        param_1->mpA_crwaku_model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        MTXCopy(mDoMtx_stack_c::get(), param_1->field_0x4030);
+        param_1->field_0x402c->Move();
+        mDoMtx_stack_c::pop();
+        for (int iVar8 = 0; iVar8 < 100; iVar8++) {
+            if (param_1->mKoro2[iVar8].mpModel != NULL) {
+                mDoMtx_stack_c::push();
+                mDoMtx_stack_c::transM(param_1->mKoro2[iVar8].field_0x38.x + -10.0f,
+                                       param_1->mKoro2[iVar8].field_0x38.y,
+                                       param_1->mKoro2[iVar8].field_0x38.z + -18.0f);
+                mDoMtx_stack_c::YrotM(param_1->mKoro2[iVar8].field_0x50);
+                mDoMtx_stack_c::scaleM(param_1->mKoro2[iVar8].field_0x44.x,
+                                       param_1->mKoro2[iVar8].field_0x44.y,
+                                       param_1->mKoro2[iVar8].field_0x44.z);
+                mDoMtx_stack_c::push();
+                mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
+                param_1->mKoro2[iVar8].mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                MTXCopy(mDoMtx_stack_c::get(), param_1->mKoro2[iVar8].field_0x04);
+                param_1->mKoro2[iVar8].mpBgW->Move();
+                mDoMtx_stack_c::pop();
+                mDoMtx_stack_c::multVecZero(&param_1->mKoro2[iVar8].field_0x54);
+                if (param_1->mKoro2[iVar8].field_0x34 == 6) {
+                    cStack_44.set(0.0f, 0.0f, 2.5f);
+                    mDoMtx_stack_c::multVec(&cStack_44, &BallStartPos);
+                } else if (param_1->mKoro2[iVar8].field_0x34 == 7) {
+                    cStack_44.set(0.0f, 0.0f, -2.0f);
+                    mDoMtx_stack_c::multVec(&cStack_44, &BallEndPos);
+                }
+                mDoMtx_stack_c::pop();
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2080,26 +2205,30 @@ static asm void koro2_mtx_set(fshop_class* param_0) {
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/koro2_mtx_set__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* 8086D48C-8086D500 00150C 0074+00 1/1 0/0 0/0 .text            s_sel_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* s_sel_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/s_sel_sub__FPvPv.s"
+static void* s_sel_sub(void* param_1, void* param_2) {
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_FSHOP) {
+        u8 uVar1 = ((fshop_class*)param_1)->field_0x400e;
+        u8 uVar2 = (((fshop_class*)param_2)->field_0x400c & 7) + 1;
+        if (uVar1 == uVar2) {
+            return param_1;
+        }
+    }
+        
+    return NULL;
 }
-#pragma pop
 
 /* 8086D500-8086D55C 001580 005C+00 1/1 0/0 0/0 .text            s_ball_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* s_ball_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/s_ball_sub__FPvPv.s"
+static void* s_ball_sub(void* param_1, void* param_2) {
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_FSHOP &&
+        (u8)fopAcM_GetParam(param_1) == 0x23) {
+        return param_1;
+    }
+
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80870128-8087012C 000094 0004+00 0/1 0/0 0/0 .rodata          @4459 */
@@ -2186,6 +2315,7 @@ static u8 old_stick_x[4];
 static u8 data_80870AC4[4];
 
 /* 8086D55C-8086D854 0015DC 02F8+00 1/1 0/0 0/0 .text            koro2_game__FP11fshop_class */
+// Matches with literals
 #ifdef NONMATCHING
 static void koro2_game(fshop_class* i_this) {
     cXyz sp5C;
@@ -2235,25 +2365,24 @@ static void koro2_game(fshop_class* i_this) {
             f32 var_f2 = sp68.x;
             f32 var_f3 = sp68.z;
 
-            f32 var_f31;
-            f32 var_f3_2;
+            f32 var_f31 = var_f2;;
             if (var_f2 > 0.15f) {
-                var_f31 = var_f2 - 0.15f;
+                var_f31-= 0.15f;
             } else if (var_f2 < -0.15f) {
-                var_f31 = var_f2 + 0.15f;
+                var_f31 += 0.15f;
             } else {
                 var_f31 = 0.0f;
             }
 
             if (var_f3 > 0.15f) {
-                var_f3_2 = var_f3 - 0.15f;
+                var_f3 -= 0.15f;
             } else if (var_f3 < -0.15f) {
-                var_f3_2 = var_f3 + 0.15f;
+                var_f3 += 0.15f;
             } else {
-                var_f3_2 = 0.0f;
+                var_f3 = 0.0f;
             }
 
-            cLib_addCalcAngleS2(&i_this->field_0x4020.x, var_f3_2 * -6000.0f, 4, 0x200);
+            cLib_addCalcAngleS2(&i_this->field_0x4020.x, var_f3 * -6000.0f, 4, 0x200);
             cLib_addCalcAngleS2(&i_this->field_0x4020.z, var_f31 * -6000.0f, 4, 0x200);
         }
         break;
@@ -2281,6 +2410,45 @@ static asm void koro2_game(fshop_class* param_0) {
 #pragma pop
 #endif
 
+/* 8086D854-8086DA00 0018D4 01AC+00 1/1 0/0 0/0 .text            ball_wall_check__FP11fshop_class */
+// Matches with literals
+#ifdef NONMATCHING
+static int ball_wall_check(fshop_class* param_1) {
+    if (!param_1->field_0x40b4.ChkWallHit()) {
+        return 0;
+    }
+
+    fopAc_ac_c* actor = param_1;
+    dBgS_LinChk adStack_88;
+    cXyz cStack_94;
+    cXyz cStack_a0;
+    cXyz local_ac;
+    local_ac.y = 0.0f;
+    cStack_94 = actor->current.pos;
+    cStack_94.y +=5.0f;
+    for (int iVar1 = 0; iVar1 < 4; iVar1++) {
+        static f32 c_x[4] = {14.0f, -14.0f, 0.0f, 0.0f};
+        static f32 c_z[4] = {0.0f, 0.0f, 14.0f, -14.0f};
+        local_ac.x = c_x[iVar1];
+        local_ac.z = c_z[iVar1];
+        cStack_a0 = cStack_94 + local_ac;
+        adStack_88.Set(&cStack_94, &cStack_a0, actor);
+        if (dComIfG_Bgsp().LineCross(&adStack_88)) {
+            if ((iVar1 == 0 && actor->speed.x > 0.0f) ||
+                (iVar1 == 1 && actor->speed.x < 0.0f))
+            {
+                actor->speed.x = 0.0f;
+            }
+            if ((iVar1 == 2 && actor->speed.z > 0.0f) ||
+                (iVar1 == 3 && actor->speed.z < 0.0f))
+            {
+                actor->speed.z = 0.0f;
+            }
+        }
+    }
+    return 0;
+}
+#else
 /* ############################################################################################## */
 /* 808707A4-808707B4 000520 0010+00 1/1 0/0 0/0 .data            c_x$4477 */
 SECTION_DATA static u8 c_x[16] = {
@@ -2292,15 +2460,15 @@ SECTION_DATA static u8 c_z[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00,
 };
 
-/* 8086D854-8086DA00 0018D4 01AC+00 1/1 0/0 0/0 .text            ball_wall_check__FP11fshop_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void ball_wall_check(fshop_class* param_0) {
+static asm int ball_wall_check(fshop_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/ball_wall_check__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80870154-80870158 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4838 */
@@ -2499,14 +2667,266 @@ SECTION_RODATA static u8 const lit_4864[8] = {
 COMPILER_STRIP_GATE(0x808701CC, &lit_4864);
 
 /* 8086DA00-8086E6C4 001A80 0CC4+00 2/1 0/0 0/0 .text            daFshop_Execute__FP11fshop_class */
+// Regalloc, instruction order issues
+#ifdef NONMATCHING
+static int daFshop_Execute(fshop_class* param_1) {
+    fopAc_ac_c* pPlayer = dComIfGp_getPlayer(0);
+    cXyz local_c0;
+    param_1->field_0x0570++;
+    if (param_1->field_0x400e != 0) {
+        if (param_1->field_0x428d != 0) {
+            param_1->field_0x428d--;
+        }
+        koro2_mtx_set(param_1);
+        return;
+    }
+    if (param_1->field_0x4070 != NULL) {
+        param_1->mScale.x = 0.024f;
+        cXyz local_cc;
+        cXyz local_d8;
+        BOOL bVar5 = FALSE;
+        if (param_1->field_0x428d != 0) {
+            param_1->field_0x428d--;
+        }
+        switch (param_1->field_0x0572) {
+        case 0:
+            param_1->current.pos = BallStartPos;
+            param_1->current.pos.y += 4.0f;
+            param_1->next.pos = param_1->current.pos;
+            param_1->field_0x428d = 10;
+            break;
+        case 1:
+            param_1->current.pos = BallStartPos;
+            param_1->current.pos.y += 4.0f;
+            param_1->next.pos = param_1->current.pos;
+            param_1->speed.zero();
+            param_1->field_0x0572++;
+            param_1->field_0x428c = 3;
+            param_1->field_0x567 = 0;
+            param_1->field_0x428d = 10;
+        case 2:
+            bVar5 = TRUE;
+            param_1->mScale.x = 0.24f;
+            break;
+        }
+
+        if (bVar5) {
+            cMtx_YrotS((MtxP)calc_mtx, param_1->field_0x4020.y);
+            cMtx_XrotM((MtxP)calc_mtx, param_1->field_0x4020.x);
+            cMtx_ZrotM((MtxP)calc_mtx, param_1->field_0x4020.z);
+            MtxPosition(&param_1->speed, &param_1->field_0x4064);
+            param_1->field_0x4064 = param_1->speed;
+            param_1->current.pos += param_1->field_0x4064;
+            if (param_1->speed.x != 0.0f || param_1->speed.z != 0.0f) {
+                param_1->current.angle.y = cM_atan2s(param_1->speed.x, param_1->speed.z);
+            }
+            param_1->speed.y -= 3.5f;
+            if (param_1->speed.y <= -15.0f) {
+                param_1->speed.y = -15.0f;
+            }
+            param_1->field_0x40b4.m_gnd.OffWall();
+            param_1->field_0x40b4.CrrPos(dComIfG_Bgsp());
+            ball_wall_check(param_1);
+            fshop_class* iVar6 = param_1->field_0x4008;
+            for (int local_124 = 0; local_124 < 100; local_124++) {
+                if (iVar6->mKoro2[local_124].mpModel != NULL) {
+                    local_cc.x = iVar6->mKoro2[local_124].field_0x54.x - param_1->current.pos.x;
+                    local_cc.z = iVar6->mKoro2[local_124].field_0x54.z - param_1->current.pos.z;
+                    if (JMAFastSqrt(local_cc.x * local_cc.x + local_cc.z * local_cc.z) < 40.0f) {
+                        iVar6->mKoro2[local_124].field_0x60 = 0;
+                    }
+                }
+            }
+            if (param_1->current.pos.y < -2500.0f) {
+                param_1->field_0x567 = 1;
+            }
+            
+            // TODO: include henna npc header
+            fopAc_ac_c* iVar9 = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+            if (iVar9 != NULL && ((u8*)iVar9)[0x7b9] != 0 &&
+                (param_1->field_0x567 == 1 || dTimer_getRestTimeMs() == 0))
+            {
+                BOOL bVar5 = FALSE;
+                for (int local_130 = 0; local_130 < 100; local_130++) {
+                    if (iVar6->mKoro2[local_130].mpModel != NULL && iVar6->mKoro2[local_130].field_0x60) {
+                        bVar5 = TRUE;
+                        break;
+                    }
+                }
+                if (!bVar5) {
+                    iVar9->mHealth = 1;
+                } else if (param_1->field_0x567 == 1) {
+                    iVar9->mHealth = 0;
+                } else {
+                    iVar9->mHealth = 2;
+                }
+                
+                *(u16*)((u8*)iVar9 + 0x752) = 0x49;
+                *(u16*)((u8*)iVar9 + 0x754) = 0;
+                ((u8*)iVar9)[0x7b9] = 0;
+                param_1->field_0x567 = 2;
+            } else {
+                if (param_1->field_0x567 == 0) {
+                    local_cc = *(cXyz*)&BallEndPos - param_1->current.pos;
+                    if (local_cc.abs() < 65.0f) {
+                        // TODO: include henna npc header
+                        fopAc_ac_c* uVar19 = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+                        if (uVar19 != NULL) {
+                            BOOL bVar5 = FALSE;
+                            for (int local_13c = 0; local_13c < 100; local_13c++) {
+                                if (iVar6->mKoro2[local_13c].mpModel != NULL && iVar6->mKoro2[local_13c].field_0x60) {
+                                    bVar5 = TRUE;
+                                    break;
+                                }
+                            }
+
+                            if (bVar5) {
+                                uVar19->mHealth = 3;
+                                *(u16*)((u8*)uVar19 + 0x752) = 0x49;
+                            } else {
+                                *(u16*)((u8*)uVar19 + 0x752) = 0x4c;
+                            }
+                            *(u16*)((u8*)uVar19 + 0x754) = 0;
+                            ((u8*)uVar19)[0x7b9] = 0;
+                            param_1->field_0x567 = 2;
+                        }
+                    }
+                }
+            }
+            if (param_1->field_0x40b4.ChkGroundHit()) {
+                if (param_1->field_0x428c == 0) {
+                    param_1->speed.y = 7.0f;
+                } else if (param_1->field_0x428c == 1) {
+                    param_1->speed.y = 2.5f;
+                } else if (param_1->field_0x428c == 2) {
+                    param_1->speed.y = 1.0f;
+                } else {
+                    param_1->speed.y = -5.0f;
+                    param_1->field_0x428c = 2;
+                }
+                param_1->field_0x428c++;
+                dBgS_GndChk adStack_b4;
+                cXyz local_e4 = param_1->current.pos;
+                local_e4.y += 10.0f;
+                local_e4.z += 1.0f;
+                adStack_b4.SetPos(&local_e4);
+                local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
+                s16 local_160 = -cM_atan2s(local_e4.y - param_1->current.pos.y,
+                                          local_e4.z - param_1->current.pos.z);
+                if (local_160 > 0x3000) {
+                    local_160 = 0x3000;
+                } else if (local_160 < -0x3000) {
+                    local_160 = -0x3000;
+                }
+                local_e4 = param_1->current.pos;
+                local_e4.y += 10.0f;
+                local_e4.x += 1.0f;
+                adStack_b4.SetPos(&local_e4);
+                local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
+                s16 local_162 = cM_atan2s(local_e4.y - param_1->current.pos.y,
+                                          local_e4.x - param_1->current.pos.x);
+                if (local_162 > 0x3000) {
+                    local_162 = 0x3000;
+                } else if (local_162 < -0x3000) {
+                    local_162 = -0x3000;
+                }
+                cMtx_XrotS((MtxP)calc_mtx, local_160);
+                cMtx_ZrotM((MtxP)calc_mtx, local_162);
+                local_cc.x = 0.0f;
+                local_cc.y = 30.0f;
+                local_cc.z = 0.0f;
+                MtxPosition(&local_cc, &local_d8);
+                cLib_addCalc2(&param_1->speed.x, local_d8.x, 0.05f,
+                                           (fabsf(local_d8.x) * 0.1f + 0.2f));
+                cLib_addCalc2(&param_1->speed.z, local_d8.z, 0.05f,
+                                           (fabsf(local_d8.z) * 0.1f + 0.2f));
+            }
+        }
+        camera_class* pmVar11 = dComIfGp_getCamera(0);
+        mDoMtx_stack_c::transS(param_1->current.pos.x, param_1->current.pos.y,
+                               param_1->current.pos.z);
+        mDoMtx_stack_c::scaleM(param_1->mScale.x, param_1->mScale.x,
+                               param_1->mScale.x);
+        mDoMtx_stack_c::transM(0.0f, 190.0f * param_1->mScale.x, 0.0f);
+        local_cc = pmVar11->mLookat.mEye - param_1->current.pos;
+        mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
+        mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));
+        param_1->field_0x4070->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        return 1;
+    } else {
+        lure_set(param_1);
+        rod_set(param_1);
+        tsubo_set(param_1);
+        fs_weed_s* pWeed = param_1->mWeed;
+        for (s32 local_14c = 0; local_14c < 60; local_14c++) {
+            weed_control(param_1, &pWeed[local_14c]);
+            cXyz* local_148 = param_1->field_0x3f88.getPos(local_14c);
+            for (s32 local_150 = 0; local_150 < 15; local_150++, local_148++) {
+                *local_148 = pWeed[local_14c].field_0x00[local_150];
+            }
+            i_fpcM_Search(s_fish_sub, &pWeed[local_14c]);
+        }
+        cXyz cStack_f0(-720.0f, 30.0f, 70.0f);
+        cXyz cStack_fc(0.5f, 0.5f, 0.5f);
+        for (int local_154 = 0; local_154 < 2; local_154++) {
+            if (local_154 == 0) {
+                cStack_f0.z = -30.0f;
+            } else {
+                cStack_f0.z = 220.0f;
+            }
+            param_1->field_0x6b6c[local_154] = dComIfGp_particle_set(
+                param_1->field_0x6b6c[local_154], 0x1e8, &cStack_f0, 0, &cStack_fc);
+        }
+        if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
+            param_1->field_0x6b34 = 0x1e;
+        }
+        s16 iVar6 = 30.0f * param_1->field_0x6b34 * cM_ssin(param_1->field_0x6b34 * 5000);
+        if (param_1->field_0x6b34 != 0) {
+            param_1->field_0x6b34--;
+        }
+        mDoMtx_stack_c::transS(-450.0f, 25.0f, -250.0f);
+        mDoMtx_stack_c::YrotM(0x4000);
+        mDoMtx_stack_c::ZrotM(iVar6 + 2000);
+        param_1->field_0x6b30->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoMtx_stack_c::transS(-450.0f, 0.0f, -250.0f);
+        mDoMtx_stack_c::scaleM(4.0f, 1.5f, 1.0f);
+        MTXCopy(mDoMtx_stack_c::get(), param_1->field_0x6b38);
+        param_1->field_0x6b68->Move();
+        local_c0.x = 325.0f - pPlayer->current.pos.x;
+        local_c0.z = 237.0f - pPlayer->current.pos.z;
+        if (daPy_getPlayerActorClass()->checkFrontRollCrash() &&
+            JMAFastSqrt((local_c0.x * local_c0.x + local_c0.z * local_c0.z)) < 150.0)
+        {
+            param_1->field_0x3ff8 = cM_rndF(65536.0f);
+            param_1->field_0x3ffa = cM_rndF(65536.0f);
+            param_1->field_0x3ffc = cM_rndF(600.0) + 1300.0f;
+            param_1->field_0x4000 = cM_rndF(600.0) + 1300.0f;
+        }
+        param_1->field_0x3ff8 += 4000;
+        param_1->field_0x3ffa += 4000;
+        s16 iVar10 = param_1->field_0x3ffc * cM_ssin(param_1->field_0x3ff8);
+        s16 iVar11 = param_1->field_0x4000 * cM_ssin(param_1->field_0x3ffa);
+        cLib_addCalc0(&param_1->field_0x3ffc, 1.0f, 40.0f);
+        cLib_addCalc0(&param_1->field_0x4000, 1.0f, 40.0f);
+        mDoMtx_stack_c::transS(325.0f, 140.0f, 237.0f);
+        mDoMtx_stack_c::XrotM(iVar10);
+        mDoMtx_stack_c::ZrotM(iVar11);
+        mDoMtx_stack_c::transM(-10.0f, -7.0f, 65.0f);
+        param_1->field_0x3ff4->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        koro2_game(param_1);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daFshop_Execute(fshop_class* param_0) {
+static asm int daFshop_Execute(fshop_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/daFshop_Execute__FP11fshop_class.s"
 }
 #pragma pop
+#endif
 
 /* 8086E6C4-8086E6CC 002744 0008+00 1/0 0/0 0/0 .text            daFshop_IsDelete__FP11fshop_class
  */
@@ -2514,43 +2934,50 @@ static bool daFshop_IsDelete(fshop_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8087027C-8087027C 0001E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8087027C = "Fshop";
-#pragma pop
-
 /* 8086E6CC-8086E7F0 00274C 0124+00 1/0 0/0 0/0 .text            daFshop_Delete__FP11fshop_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daFshop_Delete(fshop_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/daFshop_Delete__FP11fshop_class.s"
+static int daFshop_Delete(fshop_class* param_1) {
+    fopAcM_GetID(param_1);
+    if (param_1->field_0x6b7c != 0) {
+        J3DModelData* pModelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 5);
+        dComIfGp_removeSimpleModel(pModelData, fopAcM_GetRoomNo(param_1));
+        pModelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 6);
+        dComIfGp_removeSimpleModel(pModelData, fopAcM_GetRoomNo(param_1));
+    }
+    dComIfG_resDelete(&param_1->mPhase, "Fshop");
+    dComIfG_Bgsp().Release(param_1->field_0x6b68);
+    if (param_1->field_0x400e != 0) {
+        dComIfG_Bgsp().Release(param_1->field_0x402c);
+        for (int i = 0; i < 100; i++) {
+            if (param_1->mKoro2[i].mpBgW != NULL) {
+                dComIfG_Bgsp().Release(param_1->mKoro2[i].mpBgW);
+            }
+        }
+    }
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 808707C4-80870800 000540 003C+00 0/1 0/0 0/0 .data            koro2_bmd$4909 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 koro2_bmd[60] = {
-    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00,
-    0x0B, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00,
-    0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00,
-    0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E,
+SECTION_DATA static s32 koro2_bmd[15] = {
+    {0x0A}, {0x0B}, {0x0B},
+    {0x0B}, {0x0B}, {0x0F},
+    {0x0D}, {0x0C}, {0x0C},
+    {0x0C}, {0x0C}, {0x0E},
+    {0x0E}, {0x0E}, {0x0E},
 };
 #pragma pop
 
 /* 80870800-8087083C 00057C 003C+00 0/1 0/0 0/0 .data            koro2_dzb$4910 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 koro2_dzb[60] = {
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
-    0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00,
-    0x00, 0x21, 0x00, 0x00, 0x00, 0x21, 0x00, 0x00, 0x00, 0x21, 0x00, 0x00, 0x00, 0x21, 0x00,
-    0x00, 0x00, 0x23, 0x00, 0x00, 0x00, 0x23, 0x00, 0x00, 0x00, 0x23, 0x00, 0x00, 0x00, 0x23,
+SECTION_DATA static u32 koro2_dzb[15] = {
+    {0x1F}, {0x20}, {0x20},
+    {0x20}, {0x20}, {0x24},
+    {0x22}, {0x21}, {0x21},
+    {0x21}, {0x21}, {0x23},
+    {0x23}, {0x23}, {0x23},
 };
 #pragma pop
 
@@ -2563,14 +2990,125 @@ SECTION_DATA static u8 pande_d[16] = {
 #pragma pop
 
 /* 8086E7F0-8086ECC8 002870 04D8+00 1/1 0/0 0/0 .text            koro2_heapinit__FP10fopAc_ac_c */
+// mapPtr definition and stack issue
+#ifdef NONMATCHING
+static int koro2_heapinit(fopAc_ac_c* param_1) {
+    fshop_class* pShop = (fshop_class*) param_1;
+    pShop->field_0x402c = new dBgW();
+    if (pShop->field_0x402c == NULL) {
+        return 0;
+    }
+    cBgD_t* pcVar3 = (cBgD_t*)dComIfG_getObjectRes("Fshop", 37);
+    if (pShop->field_0x402c->Set(pcVar3, 1, &pShop->field_0x4030) == 1) {
+        return 0;
+    }
+    pShop->field_0x402c->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    pShop->field_0x402c->SetRideCallback(ride_call_back);
+    pShop->mpA_crwaku_model = ArcIX_A_crwaku_model[0];
+
+    int local_30 = 0;
+    int flag567 = pShop->field_0x567 & 8;
+    int r29 = 0;
+    int r28 = 0;
+    int r30 = 0;
+    int r27 = 0;
+    int r26 = 0;
+    int r25 = 0;
+    s8 (*mapPtr)[9] = (s8(*)[9])koro2_map_d[pShop->field_0x567 & 7];
+    for (int local_5c = 0; local_5c < 9; local_5c++) {
+        for (int local_60 = 0; local_60 < 15; local_60++) {
+            if (mapPtr[local_60][local_5c] != 0) {
+                if (flag567 != 0) {
+                    pShop->mKoro2[local_30].field_0x34 = pande_d[mapPtr[local_60][local_5c]];
+                    pShop->mKoro2[local_30].field_0x38.x = 2.5f * (8 - local_5c);
+                } else {
+                    pShop->mKoro2[local_30].field_0x34 = mapPtr[local_60][local_5c];
+                    pShop->mKoro2[local_30].field_0x38.x = 2.5f * local_5c;
+                }
+                pShop->mKoro2[local_30].field_0x38.y = 2.0f;
+                pShop->mKoro2[local_30].field_0x38.z = 2.5f * local_60;
+                if (pShop->mKoro2[local_30].field_0x34 == 6) {
+                    pShop->mKoro2[local_30].field_0x38.z -= 2.5f;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 8) {
+                    pShop->mKoro2[local_30].field_0x38.z -= 2.5f;
+                    pShop->mKoro2[local_30].field_0x38.x -= 2.5f;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 11) {
+                    pShop->mKoro2[local_30].field_0x38.z += 2.5f;
+                    pShop->mKoro2[local_30].field_0x38.x += 2.5f;
+                }
+                pShop->mKoro2[local_30].field_0x44.set(2.5f, 2.5f, 2.5f);
+                if (pShop->mKoro2[local_30].field_0x34 == 2 ||
+                    pShop->mKoro2[local_30].field_0x34 == 8)
+                {
+                    pShop->mKoro2[local_30].field_0x50 = -16384;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 4 ||
+                            pShop->mKoro2[local_30].field_0x34 == 10)
+                {
+                    pShop->mKoro2[local_30].field_0x50 = -32768;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 5 ||
+                            pShop->mKoro2[local_30].field_0x34 == 11)
+                {
+                    pShop->mKoro2[local_30].field_0x50 = 16384;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 12) {
+                    pShop->mKoro2[local_30].field_0x50 = -32768;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 14) {
+                    pShop->mKoro2[local_30].field_0x50 = -16384;
+                } else if (pShop->mKoro2[local_30].field_0x34 == 15) {
+                    pShop->mKoro2[local_30].field_0x50 = 16384;
+                }
+                
+                if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 10) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crbox_model[r30];
+                    r30++;
+                } else if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 15) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crstart_model[r29];
+                    r29++;
+                } else if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 13) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crgoal_model[r28];
+                    r28++;
+                } else if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 11) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crcurve_a_model[r27];
+                    r27++;
+                } else if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 12) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crcurve_b_model[r26];
+                    r26++;
+                } else if (koro2_bmd[pShop->mKoro2[local_30].field_0x34 - 1] == 14) {
+                    pShop->mKoro2[local_30].mpModel = ArcIX_A_crsaka_model[r25];
+                    r25++;
+                }
+                
+                if (pShop->mKoro2[local_30].mpModel == NULL) {
+                    return 0;
+                }
+                
+                pShop->mKoro2[local_30].mpBgW = new dBgW();
+                if (pShop->mKoro2[local_30].mpBgW == NULL) {
+                    return 0;
+                }
+                cBgD_t* pcVar3 = (cBgD_t*)dComIfG_getObjectRes("Fshop",koro2_dzb[pShop->mKoro2[local_30].field_0x34 - 1]);
+                if (pShop->mKoro2[local_30].mpBgW->Set(pcVar3, 1, &pShop->mKoro2[local_30].field_0x04) == 1) {
+                    return 0;
+                }
+                pShop->mKoro2[local_30].mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+                local_30++;
+                if (local_30 >= 100) {
+                    return 0;
+                }
+            }
+        }
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void koro2_heapinit(fopAc_ac_c* param_0) {
+static asm int koro2_heapinit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_mg_fshop/d_a_mg_fshop/koro2_heapinit__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 808701D4-808701D8 000140 0004+00 0/1 0/0 0/0 .rodata          @5206 */

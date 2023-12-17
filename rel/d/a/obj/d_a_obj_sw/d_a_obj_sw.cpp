@@ -3,6 +3,9 @@
 // Translation Unit: d_a_obj_sw
 //
 
+//#define VIRTUAL_3DLINEMAT
+#include "m_Do/m_Do_ext.h"
+
 #include "rel/d/a/obj/d_a_obj_sw/d_a_obj_sw.h"
 #include "dol2asm.h"
 
@@ -19,50 +22,13 @@ struct obj_sc_s {
     /* 80CF2FA8 */ obj_sc_s();
 };
 
-struct mDoMtx_stack_c {
-    /* 8000CCC8 */ void push();
-    /* 8000CD14 */ void pop();
-    /* 8000CD9C */ void transM(f32, f32, f32);
 
-    static u8 now[48];
-};
 
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct Vec {};
-
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorf {
-    /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                  mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                                  int, void*, u32, u32);
-    /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
-    /* 800105C8 */ void play(Vec*, u32, s8);
-    /* 80010680 */ void entryDL();
-    /* 800106AC */ void modelCalc();
-};
-
-struct mDoExt_3DlineMat_c {};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
-};
 
 struct ResTIMG {};
 
-struct _GXColor {};
 
 struct dKy_tevstr_c {};
-
-struct mDoExt_3DlineMat1_c {
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 80013FB0 */ void update(int, _GXColor&, dKy_tevstr_c*);
-};
 
 struct mDoCPd_c {
     static u8 m_cpadInfo[256];
@@ -76,14 +42,6 @@ struct daPy_py_c {
     /* 80CF2FDC */ void getLeftHandPos() const;
 };
 
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266C18 */ void operator/(f32) const;
-    /* 80CF1008 */ ~cXyz();
-    /* 80CF2F38 */ cXyz();
-};
 
 struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
@@ -116,23 +74,6 @@ struct dCamera_c {
     /* 80180AE0 */ void Set(cXyz, cXyz, f32, s16);
     /* 80180BA0 */ void Reset(cXyz, cXyz, f32, s16);
 };
-
-struct csXyz {};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFF8 */ void deleteObject();
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -220,12 +161,6 @@ extern "C" void deleteObject__14Z2SoundObjBaseFv();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXScale();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECSquareMag();
 extern "C" void __construct_array();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
@@ -247,7 +182,6 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -419,7 +353,8 @@ static asm void sc_build(obj_sw_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+//asm cXyz::~cXyz() {
+asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_sw/d_a_obj_sw/__dt__4cXyzFv.s"
 }
@@ -874,7 +809,8 @@ static asm void daObj_Sw_Create(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* 80CF2F38-80CF2F3C 002978 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+//cXyz::cXyz() {
+void __ct__4cXyzFv() {
     /* empty function */
 }
 

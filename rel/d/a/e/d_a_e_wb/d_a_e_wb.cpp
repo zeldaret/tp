@@ -4598,7 +4598,7 @@ extern "C" asm void __ct__4cXyzFRC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void cMtx_YrotS(f32 (*param_0)[4], s16 param_1) {
+extern "C" asm void cMtx_YrotS__FPA4_fs() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/cMtx_YrotS__FPA4_fs.s"
 }
