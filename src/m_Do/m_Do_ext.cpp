@@ -3,6 +3,9 @@
  * Model, Animation, and Heap Functions
  */
 
+// Not matching because of virtual tables
+#define NON_VIRTUAL_3DLINEMAT
+
 #include "m_Do/m_Do_ext.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

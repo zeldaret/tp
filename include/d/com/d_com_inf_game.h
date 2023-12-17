@@ -1577,6 +1577,10 @@ inline void dComIfGs_removeZone(int i_zoneNo) {
     g_dComIfG_gameInfo.info.removeZone(i_zoneNo);
 }
 
+inline void dComIfGp_removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
+    g_dComIfG_gameInfo.play.removeSimpleModel(i_modelData, roomNo);
+}
+
 inline u32 dComIfGs_getTurnRestartParam() {
     return g_dComIfG_gameInfo.info.getTurnRestart().getParam();
 }
@@ -2835,6 +2839,11 @@ inline void dComIfGp_drawSimpleModel() {
     g_dComIfG_gameInfo.play.drawSimpleModel();
 }
 
+inline void dComIfGp_entrySimpleModel(J3DModel *model,int roomNo) {
+    g_dComIfG_gameInfo.play.entrySimpleModel(model, roomNo);
+}
+
+
 inline dStage_Multi_c* dComIfGp_getMulti() {
     return g_dComIfG_gameInfo.play.getStage().getMulti();
 }
@@ -3786,6 +3795,10 @@ inline void dComIfGd_drawShadow(Mtx param_0) {
 
 inline void dComIfGd_imageDrawShadow(Mtx param_0) {
     g_dComIfG_gameInfo.drawlist.imageDrawShadow(param_0);
+}
+
+inline void dComIfGd_set3DlineMat(mDoExt_3DlineMat_c *param_0) {
+    g_dComIfG_gameInfo.drawlist.set3DlineMat(param_0);
 }
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {
