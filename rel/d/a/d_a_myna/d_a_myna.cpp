@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_myna/d_a_myna.h"
+#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
@@ -12,15 +13,8 @@
 #include "d/kankyo/d_kankyo.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "rel/d/a/obj/d_a_obj_ss_item/d_a_obj_ss_item.h"
 #include "rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.h"
-
-//
-// Types:
-//
-
-struct daObj_SSItem_c {
-    /* 80CE77F8 */ void getExchangeItemPtr();
-};
 
 //
 // Forward References:
@@ -380,44 +374,48 @@ static u8 l_HOSTIO[52];
 #endif
 
 /* 8094BA70-8094BA98 000088 0028+00 0/2 0/0 0/0 .bss             daMyna_targetActor */
-#pragma push
-#pragma force_active on
-static u8 daMyna_targetActor[40];
-#pragma pop
+static fopAc_ac_c* daMyna_targetActor[10];
 
 /* 8094BA98-8094BAC0 0000B0 0028+00 0/2 0/0 0/0 .bss             daMyna_subActor */
-#pragma push
-#pragma force_active on
-static u8 daMyna_subActor[40];
-#pragma pop
+static fopAc_ac_c* daMyna_subActor[10];
 
 /* 8094BAC0-8094BAC4 0000D8 0004+00 7/7 0/0 0/0 .bss             daMyna_LightActor */
 static daTag_MynaLight_c* daMyna_LightActor;
 
 /* 8094BAC4-8094BAC8 0000DC 0004+00 0/2 0/0 0/0 .bss             daMyna_actor_count */
-#pragma push
-#pragma force_active on
-static u8 daMyna_actor_count[4];
-#pragma pop
+static s32 daMyna_actor_count;
 
 /* 80945CD8-80945D9C 000158 00C4+00 1/1 0/0 0/0 .text            daMyna_searchSSItem__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMyna_searchSSItem(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/daMyna_searchSSItem__FPvPv.s"
+static void* daMyna_searchSSItem(void* param_0, void* param_1) {
+    if (fopAcM_IsActor(param_0) && (fopAcM_GetName(param_0) == PROC_OBJ_SSITEM ||
+                                    fopAcM_GetName(param_0) == PROC_OBJ_SSDRINK ||
+                                    fopAcM_GetName(param_0) == PROC_TAG_SSDRINK))
+    {
+        if ((fopAcM_GetParam(param_1) & 0xF0000000) == (fopAcM_GetParam(param_0) & 0xF0000000) &&
+            daMyna_actor_count < 10)
+        {
+            fopAc_ac_c* pfVar4 = static_cast<fopAc_ac_c*>(param_0);
+            if (fopAcM_GetName(param_0) == PROC_OBJ_SSITEM) {
+                pfVar4 = static_cast<daObj_SSItem_c*>(param_0)->getExchangeItemPtr();
+            }
+            if (pfVar4 != NULL) {
+                daMyna_targetActor[daMyna_actor_count] = pfVar4;
+                daMyna_subActor[daMyna_actor_count] = static_cast<fopAc_ac_c*>(param_0);
+                daMyna_actor_count++;
+            }
+        }
+    }
+    return 0;
 }
-#pragma pop
 
 /* 80945D9C-80945E0C 00021C 0070+00 1/1 0/0 0/0 .text            daMyna_searchLight__FPvPv */
 static void* daMyna_searchLight(void* i_mynaLightTagActor, void* param_1) {
     if (fopAcM_IsActor(i_mynaLightTagActor) &&
         fopAcM_GetName(i_mynaLightTagActor) == PROC_TAG_MNLIGHT)
     {
-        u32 uVar1 = fopAcM_GetParam(param_1) & 0xF0000000;
-        u32 uVar2 = fopAcM_GetParam(i_mynaLightTagActor) & 0xF0000000;
-        if (uVar1 == uVar2) {
+        if ((fopAcM_GetParam(param_1) & 0xF0000000) ==
+            (fopAcM_GetParam(i_mynaLightTagActor) & 0xF0000000))
+        {
             daMyna_LightActor = static_cast<daTag_MynaLight_c*>(i_mynaLightTagActor);
         }
     }
@@ -426,20 +424,23 @@ static void* daMyna_searchLight(void* i_mynaLightTagActor, void* param_1) {
 
 /* ############################################################################################## */
 /* 8094BAC8-8094BACC 0000E0 0004+00 8/9 0/0 0/0 .bss             daMyna_evtTagActor0 */
-static u8 daMyna_evtTagActor0[4];
+static fopAc_ac_c* daMyna_evtTagActor0;
 
 /* 8094BACC-8094BAD0 0000E4 0004+00 2/2 0/0 0/0 .bss             daMyna_evtTagActor1 */
-static u8 daMyna_evtTagActor1[4];
+static fopAc_ac_c* daMyna_evtTagActor1;
 
 /* 80945E0C-80945E80 00028C 0074+00 1/1 0/0 0/0 .text            daMyna_searchEvtTag__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daMyna_searchEvtTag(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/daMyna_searchEvtTag__FPvPv.s"
+static void* daMyna_searchEvtTag(void* i_evtTagActor, void* param_1) {
+    if (fopAcM_IsActor(i_evtTagActor) && fopAcM_GetName(i_evtTagActor) == PROC_TAG_EVT) {
+        if (((fopAcM_GetParam(i_evtTagActor) >> 24) & 0xF) == 0) {
+            daMyna_evtTagActor0 = static_cast<fopAc_ac_c*>(i_evtTagActor);
+        } else if (((fopAcM_GetParam(i_evtTagActor) >> 24) & 0xF) == 1) {
+            daMyna_evtTagActor1 = static_cast<fopAc_ac_c*>(i_evtTagActor);
+        }
+        return 0;
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8094B1B0-8094B1F0 000000 0040+00 7/7 0/0 0/0 .rodata          mCcDSph__8daMyna_c */
@@ -1569,6 +1570,13 @@ int daMyna_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
 }
 
 /* 809468EC-8094692C 000D6C 0040+00 1/0 0/0 0/0 .text            attack_wait_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_wait_init() {
+    setAnimeType(1, 0.0f);
+    field_0x92A = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1577,8 +1585,45 @@ asm void daMyna_c::attack_wait_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_wait_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8094692C-80946AEC 000DAC 01C0+00 1/0 0/0 0/0 .text            attack_wait_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_wait_move() {
+    if (current.angle.y != orig.angle.y) {
+        cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 32767, 1500);
+        cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 32767, 1500);
+        if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
+            current.angle = orig.angle;
+        }
+    }
+    if (!daPy_py_c::i_checkNowWolf() && daMyna_evtTagActor0 != NULL) {
+        cXyz var1(1.0f, 1.0f, 1.0f);
+        if (!dComIfGs_isSaveSwitch(0x3C)) {
+            if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1)) {
+                if (!isEventFlag(1)) {
+                    mEvtInfo.i_onCondition(1);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    if (mEvtInfo.checkCommandTalk()) {
+                        field_0x92C = 1;
+                    }
+                } else {
+                    field_0x92C = 2;
+                }
+            }
+        } else if (field_0x92A < l_HOSTIO.field_0x24) {
+            field_0x92A++;
+        } else {
+            mEvtInfo.i_onCondition(1);
+            fopAcM_orderSpeakEvent(this, 0, 0);
+            if (mEvtInfo.checkCommandTalk()) {
+                field_0x92C = 4;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1587,8 +1632,16 @@ asm void daMyna_c::attack_wait_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_wait_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946AEC-80946B40 000F6C 0054+00 1/0 0/0 0/0 .text attack_before_talk_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_before_talk_init() {
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
+    setAnimeType(10, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1597,18 +1650,25 @@ asm void daMyna_c::attack_before_talk_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_before_talk_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946B40-80946BB4 000FC0 0074+00 1/0 0/0 0/0 .text attack_before_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack_before_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack_before_talk_move__8daMyna_cFv.s"
+void daMyna_c::attack_before_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        onEventFlag(1);
+        field_0x92C = 2;
+    }
 }
-#pragma pop
 
 /* 80946BB4-80946BF4 001034 0040+00 1/0 0/0 0/0 .text            attack_fly_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_fly_init() {
+    setAnimeType(0, 0.0f);
+    field_0x91A = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1617,8 +1677,31 @@ asm void daMyna_c::attack_fly_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_fly_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946BF4-80946D20 001074 012C+00 1/0 0/0 0/0 .text            attack_fly_move__8daMyna_cFv */
+// regswap
+#ifdef NONMATCHING
+void daMyna_c::attack_fly_move() {
+    if (daMyna_evtTagActor0 != NULL) {
+        cXyz var1(1.0f, 1.0f, 1.0f);
+        fly_body_wave();
+        if (field_0x926 > 0 && dComIfGs_isSaveSwitch(0x3C)) {
+            field_0x926 = 0;
+        }
+        if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1) && !daPy_py_c::i_checkNowWolf() &&
+            !dComIfGs_isSaveSwitch(0x3C) && field_0x926 == 0)
+        {
+            mStatus.Move();
+            if (fly_attack_move()) {
+                field_0x92C = 3;
+            }
+        } else if (fly_return_move()) {
+            field_0x92C = 0;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1627,8 +1710,16 @@ asm void daMyna_c::attack_fly_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_fly_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946D20-80946D64 0011A0 0044+00 1/0 0/0 0/0 .text            attack_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_init() {
+    setAnimeType(8, 0.0f);
+    mSph.OnAtVsPlayerBit();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1637,8 +1728,22 @@ asm void daMyna_c::attack_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946D64-80946DD4 0011E4 0070+00 1/0 0/0 0/0 .text            attack_move__8daMyna_cFv */
+// Matches when l_HOSTIO is the correct type
+#ifdef NONMATCHING
+void daMyna_c::attack_move() {
+    mStatus.Move();
+    if (field_0x91E != 0) {
+        field_0x92C = 2;
+    }
+    if (mSph.ChkAtHit()) {
+        field_0x926 = l_HOSTIO.field_0x30;
+        mSph.OffAtVsPlayerBit();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1647,30 +1752,32 @@ asm void daMyna_c::attack_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80946DD4-80946E08 001254 0034+00 1/0 0/0 0/0 .text            attack_after_talk_init__8daMyna_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack_after_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack_after_talk_init__8daMyna_cFv.s"
+void daMyna_c::attack_after_talk_init() {
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
-#pragma pop
 
 /* 80946E08-80946E84 001288 007C+00 1/0 0/0 0/0 .text            attack_after_talk_move__8daMyna_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack_after_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack_after_talk_move__8daMyna_cFv.s"
+void daMyna_c::attack_after_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        onEventFlag(2);
+        field_0x91C = 0x139;
+        field_0x92C = 5;
+    }
 }
-#pragma pop
 
 /* 80946E84-80946EB0 001304 002C+00 1/0 0/0 0/0 .text            greet_wait_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::greet_wait_init() {
+    setAnimeType(1, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1679,6 +1786,7 @@ asm void daMyna_c::greet_wait_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/greet_wait_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B200-8094B204 000050 0004+00 1/1 0/0 0/0 .rodata          @4481 */
@@ -1686,6 +1794,46 @@ SECTION_RODATA static f32 const lit_4481 = 350.0f;
 COMPILER_STRIP_GATE(0x8094B200, &lit_4481);
 
 /* 80946EB0-80947030 001330 0180+00 1/0 0/0 0/0 .text            greet_wait_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::greet_wait_move() {
+    if (!daPy_py_c::i_checkNowWolf()) {
+        if (daMyna_evtTagActor0 != NULL) {
+            if (chkPlayerInEvtArea(daMyna_evtTagActor0, cXyz(cXyz(1.0f, 1.0f, 1.0f)))) {
+                mEvtInfo.i_onCondition(1);
+                fopAcM_orderSpeakEvent(this, 0, 0);
+                if (mEvtInfo.checkCommandTalk()) {
+                    field_0x92C = 6;
+                }
+            } else {
+                if (isEventFlag(0)) {
+                    mEvtInfo.i_onCondition(1);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    if (mEvtInfo.checkCommandTalk()) {
+                        field_0x92C = 10;
+                    }
+                }
+            }
+        } else {
+            if (fopAcM_searchPlayerDistanceXZ(this) < 350.0f) {
+                mEvtInfo.i_onCondition(1);
+                fopAcM_orderSpeakEvent(this, 0, 0);
+                if (mEvtInfo.checkCommandTalk()) {
+                    field_0x92C = 6;
+                }
+            } else {
+                if (isEventFlag(0)) {
+                    mEvtInfo.i_onCondition(1);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    if (mEvtInfo.checkCommandTalk()) {
+                        field_0x92C = 10;
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1694,8 +1842,35 @@ asm void daMyna_c::greet_wait_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/greet_wait_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947030-8094711C 0014B0 00EC+00 1/0 0/0 0/0 .text            greet_talk_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::greet_talk_init() {
+    dMsgObject_setTotalPayment(0);
+    dMsgObject_setTotalPrice(0);
+    field_0x922 = dMsgObject_getTotalPayment();
+    field_0x920 = dMsgObject_getTotalPrice();
+    dMsgObject_getMsgObjectClass()->setNowTotalPrice(0);
+    dMsgObject_getMsgObjectClass()->setNowTotalPayment(0);
+
+    switch (field_0x932) {
+    case 0:
+        field_0x91C = getFlowNodeNum();
+        break;
+    case 1:
+        field_0x91C = getFlowNodeNum() + 1;
+        break;
+    case 2:
+        field_0x91C = getFlowNodeNum() + 2;
+        break;
+    }
+
+    setAnimeType(9, 0.0f);
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1704,18 +1879,28 @@ asm void daMyna_c::greet_talk_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/greet_talk_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8094711C-809471BC 00159C 00A0+00 1/0 0/0 0/0 .text            greet_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::greet_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/greet_talk_move__8daMyna_cFv.s"
+void daMyna_c::greet_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+            field_0x937 = 20;
+            field_0x92C = 19;
+        } else {
+            field_0x92C = 7;
+        }
+    }
 }
-#pragma pop
 
 /* 809471BC-809471E8 00163C 002C+00 1/0 0/0 0/0 .text            shopping_wait_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::shopping_wait_init() {
+    setAnimeType(1, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1724,6 +1909,7 @@ asm void daMyna_c::shopping_wait_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/shopping_wait_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B204-8094B208 000054 0004+00 1/1 0/0 0/0 .rodata          @4655 */
@@ -1731,6 +1917,100 @@ SECTION_RODATA static f32 const lit_4655 = 450.0f;
 COMPILER_STRIP_GATE(0x8094B204, &lit_4655);
 
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
+// regswap
+#ifdef NONMATCHING
+void daMyna_c::shopping_wait_move() {
+    if (!daPy_py_c::i_checkNowWolf()) {
+        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+            field_0x92C = 17;
+            field_0x937 = 20;
+        } else {
+            daPy_py_c* player = daPy_getPlayerActorClass();
+            bool bVar1 = false;
+            s16 nowTotalPrice = dMsgObject_getMsgObjectClass()->getNowTotalPrice();
+            if (dMsgObject_getMsgObjectClass()->isPaymentFlag()) {
+                mEvtInfo.i_onCondition(1);
+                fopAcM_orderSpeakEvent(this, 0, 0);
+                if (mEvtInfo.checkCommandTalk()) {
+                    field_0x92C = 9;
+                    dMsgObject_getMsgObjectClass()->offPaymentFlag();
+                }
+            } else {
+                if (player->getGrabUpEnd()) {
+                    for (int i = 0; i < 10; i++) {
+                        if (mShopItems[i].mTargetActorID == player->getGrabActorID() &&
+                            mShopItems[i].mItemStatus == 2)
+                        {
+                            dMsgObject_addTotalPrice(mShopItems[i].mValueNum);
+                            field_0x931 = i;
+                            if (mShopItems[i].mFlowNodeNum != 0xFFFF) {
+                                mEvtInfo.i_onCondition(1);
+                                fopAcM_orderSpeakEvent(this, 0, 0);
+                            }
+                        }
+                    }
+                }
+
+                if (field_0x931 != 0xFF) {
+                    if (mShopItems[field_0x931].mTargetActorID != player->getGrabActorID() &&
+                        mShopItems[field_0x931].mItemStatus == 2)
+                    {
+                        dMsgObject_addTotalPrice(-mShopItems[field_0x931].mValueNum);
+                        field_0x931 = -1;
+                    }
+                }
+
+                if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203]) &&
+                    daMyna_evtTagActor1 != NULL)
+                {
+                    cXyz stack_2c(1.0f, 1.0f, 1.0f);
+                    if (chkPlayerInEvtArea(daMyna_evtTagActor1, stack_2c)) {
+                        if (isEventFlag(0)) {
+                            mEvtInfo.i_onCondition(1);
+                            fopAcM_orderSpeakEvent(this, 0, 0);
+                            bVar1 = true;
+                            field_0x933 = 1;
+                        } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2)
+                        {
+                            mEvtInfo.i_onCondition(1);
+                            fopAcM_orderSpeakEvent(this, 0, 0);
+                            bVar1 = true;
+                            field_0x933 = 1;
+                        }
+                    }
+                }
+
+                if (daMyna_evtTagActor0 != NULL) {
+                    cXyz stack_38(1.0f, 1.0f, 1.0f);
+                    if (!chkPlayerInEvtArea(daMyna_evtTagActor0, stack_38) && nowTotalPrice > 0) {
+                        mEvtInfo.i_onCondition(1);
+                        fopAcM_orderSpeakEvent(this, 0, 0);
+                        bVar1 = true;
+                    }
+                } else if (fopAcM_searchPlayerDistanceXZ(this) > 450.0f) {
+                    if (isEventFlag(0)) {
+                        mEvtInfo.i_onCondition(1);
+                        fopAcM_orderSpeakEvent(this, 0, 0);
+                        bVar1 = true;
+                    } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2) {
+                        mEvtInfo.i_onCondition(1);
+                        fopAcM_orderSpeakEvent(this, 0, 0);
+                        bVar1 = true;
+                    }
+                }
+
+                if (mEvtInfo.checkCommandTalk()) {
+                    if (!bVar1) {
+                        field_0x92C = 8;
+                    } else {
+                        field_0x92C = 10;
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1739,68 +2019,123 @@ asm void daMyna_c::shopping_wait_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/shopping_wait_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809475B4-80947630 001A34 007C+00 1/0 0/0 0/0 .text            shopping_talk_init__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::shopping_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/shopping_talk_init__8daMyna_cFv.s"
+void daMyna_c::shopping_talk_init() {
+    field_0x828 = fopAcM_SearchByID(mShopItems[field_0x931].mTargetActorID);
+    field_0x91C = mShopItems[field_0x931].mFlowNodeNum;
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
-#pragma pop
 
 /* 80947630-809476A0 001AB0 0070+00 1/0 0/0 0/0 .text            shopping_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::shopping_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/shopping_talk_move__8daMyna_cFv.s"
+void daMyna_c::shopping_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        field_0x828 = NULL;
+        field_0x92C = 7;
+    }
 }
-#pragma pop
 
 /* 809476A0-8094772C 001B20 008C+00 1/0 0/0 0/0 .text            thanks_talk_init__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::thanks_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/thanks_talk_init__8daMyna_cFv.s"
+void daMyna_c::thanks_talk_init() {
+    s16 nowTotalPayment = dMsgObject_getMsgObjectClass()->getNowTotalPayment();
+    s16 nowTotalPrice = dMsgObject_getMsgObjectClass()->getNowTotalPrice();
+    if (nowTotalPayment == nowTotalPrice) {
+        field_0x91C = getFlowNodeNum() + 6;
+    } else if (nowTotalPayment > nowTotalPrice) {
+        field_0x91C = getFlowNodeNum() + 7;
+    } else {
+        field_0x91C = getFlowNodeNum() + 8;
+    }
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
-#pragma pop
 
 /* 8094772C-80947794 001BAC 0068+00 1/0 0/0 0/0 .text            thanks_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::thanks_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/thanks_talk_move__8daMyna_cFv.s"
+void daMyna_c::thanks_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        field_0x92C = 7;
+    }
 }
-#pragma pop
 
 /* 80947794-809478D0 001C14 013C+00 1/0 0/0 0/0 .text            byebye_talk_init__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::byebye_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/byebye_talk_init__8daMyna_cFv.s"
+void daMyna_c::byebye_talk_init() {
+    int var1 = dMsgObject_getTotalPayment() - field_0x922;
+    if (var1 >= dMsgObject_getTotalPrice() - field_0x920) {
+        field_0x932 = 0;
+    } else if (var1 > 0) {
+        field_0x932 = 1;
+    } else {
+        field_0x932 = 2;
+    }
+
+    switch (field_0x932) {
+    case 0:
+        field_0x91C = getFlowNodeNum() + 3;
+        break;
+    case 1:
+        field_0x91C = getFlowNodeNum() + 4;
+        break;
+    case 2:
+        field_0x91C = getFlowNodeNum() + 5;
+        break;
+    }
+
+    if (field_0x933 == 0) {
+        field_0x922 = dMsgObject_getTotalPayment();
+        field_0x920 = dMsgObject_getTotalPrice();
+        dMsgObject_getMsgObjectClass()->setNowTotalPrice(0);
+        dMsgObject_getMsgObjectClass()->setNowTotalPayment(0);
+        offEventFlag(0);
+    }
+
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
-#pragma pop
 
 /* 809478D0-80947A00 001D50 0130+00 1/0 0/0 0/0 .text            byebye_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::byebye_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/byebye_talk_move__8daMyna_cFv.s"
+void daMyna_c::byebye_talk_move() {
+    bool bVar1 = true;
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        if (field_0x933 == 0) {
+            if (field_0x931 != 0xFF) {
+                mShopItems[field_0x931].mItemStatus = 3;
+                field_0x931 = -1;
+            }
+            for (int i = 0; i < mNumShopItems; i++) {
+                if (mShopItems[i].mItemStatus == 2) {
+                    bVar1 = false;
+                }
+            }
+        } else {
+            field_0x933 = 0;
+            bVar1 = false;
+        }
+
+        i_dComIfGp_event_reset();
+        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+            field_0x92C = 0x11;
+            field_0x937 = 0x14;
+        } else if (bVar1) {
+            field_0x92C = 7;
+        } else {
+            field_0x92C = 7;
+        }
+    }
 }
-#pragma pop
 
 /* 80947A00-80947AA4 001E80 00A4+00 1/0 0/0 0/0 .text            turn_on_start_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_start_init() {
+    setAnimeType(4, 0.0f);
+    if (daMyna_LightActor->getTurnOnFlag()) {
+        mCreature.startCreatureVoice(JAISoundID(Z2SE_MYNA_V_LIGHT_ON), -1);
+    } else {
+        mCreature.startCreatureVoice(JAISoundID(Z2SE_MYNA_V_LIGHT_OFF), -1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1809,6 +2144,7 @@ asm void daMyna_c::turn_on_start_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_start_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B208-8094B210 000058 0004+04 0/5 0/0 0/0 .rodata          @4828 */
@@ -1850,6 +2186,36 @@ COMPILER_STRIP_GATE(0x8094B220, &lit_4831);
 #pragma pop
 
 /* 80947AA4-80947CD0 001F24 022C+00 1/0 0/0 0/0 .text            turn_on_start_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_start_move() {
+    cXyz stack_28;
+    cXyz local_34;
+    cXyz local_40;
+
+    local_40.x = daMyna_LightActor->current.pos.x;
+    local_40.y = current.pos.y;
+    local_40.z = daMyna_LightActor->current.pos.z;
+
+    cXyz local_4c = local_40 - current.pos;
+
+    s16 sVar2 = cM_atan2s(local_4c.x, local_4c.z);
+    f32 fVar1 = 0.5f * ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y));
+
+    local_34.x = 0.0f;
+    local_34.y = 0.0f;
+    local_34.z = l_HOSTIO.field_0x0C * (fVar1 * fVar1);
+
+    cLib_offsetPos(&stack_28, &current.pos, sVar2, &local_34);
+    current.pos = stack_28;
+
+    cXyz stack_58 = local_40 - current.pos;
+
+    if (stack_58.abs() < l_HOSTIO.field_0x1C) {
+        field_0x92C = 12;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1858,8 +2224,15 @@ asm void daMyna_c::turn_on_start_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_start_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947CD0-80947CFC 002150 002C+00 1/0 0/0 0/0 .text            turn_on_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_init() {
+    setAnimeType(7, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1868,18 +2241,23 @@ asm void daMyna_c::turn_on_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947CFC-80947D48 00217C 004C+00 1/0 0/0 0/0 .text            turn_on_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::turn_on_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_move__8daMyna_cFv.s"
+void daMyna_c::turn_on_move() {
+    if (field_0x91E != 0) {
+        daMyna_LightActor->setTurnOnOffChange();
+        field_0x92C = 13;
+    }
 }
-#pragma pop
 
 /* 80947D48-80947D74 0021C8 002C+00 1/0 0/0 0/0 .text            turn_on_end1_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_end1_init() {
+    setAnimeType(4, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1888,8 +2266,23 @@ asm void daMyna_c::turn_on_end1_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_end1_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947D74-80947E18 0021F4 00A4+00 1/0 0/0 0/0 .text            turn_on_end1_move__8daMyna_cFv */
+// Matches when l_HOSTIO is the correct type
+#ifdef NONMATCHING
+void daMyna_c::turn_on_end1_move() {
+    cXyz local_18 = orig.pos - current.pos;
+    s16 sVar2 = cM_atan2s(local_18.x, local_18.z);
+    cLib_addCalcAngleS(&current.angle.y, sVar2, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
+                       l_HOSTIO.field_0x2A);
+
+    if (abs(current.angle.y - sVar2) <= 16) {
+        current.angle.y = sVar2;
+        field_0x92C = 14;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1898,8 +2291,17 @@ asm void daMyna_c::turn_on_end1_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_end1_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947E18-80947E50 002298 0038+00 1/0 0/0 0/0 .text            turn_on_end2_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_end2_init() {
+    if (field_0x935 != 4) {
+        setAnimeType(4, 0.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1908,8 +2310,34 @@ asm void daMyna_c::turn_on_end2_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_end2_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80947E50-80948070 0022D0 0220+00 1/0 0/0 0/0 .text            turn_on_end2_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::turn_on_end2_move() {
+    cXyz stack_24;
+    cXyz local_30;
+    cXyz local_3c = orig.pos - current.pos;
+
+    s16 sVar2 = cM_atan2s(local_3c.x, local_3c.z);
+    f32 fVar1 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
+
+    local_30.x = 0.0f;
+    local_30.y = 0.0f;
+    local_30.z = l_HOSTIO.field_0x0C * (fVar1 * fVar1);
+
+    cLib_offsetPos(&stack_24, &current.pos, sVar2, &local_30);
+    current.pos = stack_24;
+
+    cXyz stack_48 = orig.pos - current.pos;
+
+    if (stack_48.abs() < l_HOSTIO.field_0x20) {
+        current.pos.set(orig.pos);
+        field_0x92C = 15;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1918,6 +2346,7 @@ asm void daMyna_c::turn_on_end2_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_end2_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948070-80948074 0024F0 0004+00 1/0 0/0 0/0 .text            turn_on_end3_init__8daMyna_cFv */
 void daMyna_c::turn_on_end3_init() {
@@ -1925,6 +2354,18 @@ void daMyna_c::turn_on_end3_init() {
 }
 
 /* 80948074-809480E4 0024F4 0070+00 1/0 0/0 0/0 .text            turn_on_end3_move__8daMyna_cFv */
+// Matches when l_HOSTIO is the correct type
+#ifdef NONMATCHING
+void daMyna_c::turn_on_end3_move() {
+    cLib_addCalcAngleS(&current.angle.y, orig.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
+                       l_HOSTIO.field_0x2A);
+
+    if (abs(current.angle.y - orig.angle.y) <= 16) {
+        current.angle.y = orig.angle.y;
+        field_0x92C = field_0x92D;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1933,28 +2374,29 @@ asm void daMyna_c::turn_on_end3_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/turn_on_end3_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809480E4-80948118 002564 0034+00 1/0 0/0 0/0 .text            wolf_talk_init__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::wolf_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/wolf_talk_init__8daMyna_cFv.s"
+void daMyna_c::wolf_talk_init() {
+    mMsgFlow.init(this, 0xC9, 0, NULL);
 }
-#pragma pop
 
 /* 80948118-80948174 002598 005C+00 1/0 0/0 0/0 .text            wolf_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::wolf_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/wolf_talk_move__8daMyna_cFv.s"
+void daMyna_c::wolf_talk_move() {
+    if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        field_0x92C = field_0x92E;
+    }
 }
-#pragma pop
 
 /* 80948174-809481B4 0025F4 0040+00 1/0 0/0 0/0 .text            attack_wait2_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_wait2_init() {
+    setAnimeType(1, 0.0f);
+    field_0x92A = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1963,8 +2405,48 @@ asm void daMyna_c::attack_wait2_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_wait2_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809481B4-80948388 002634 01D4+00 1/0 0/0 0/0 .text            attack_wait2_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_wait2_move() {
+    if (daPy_py_c::i_checkNowWolf()) {
+        field_0x92C = 7;
+    } else {
+        if (current.angle.y != orig.angle.y) {
+            cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 0x7FFF, 0x5DC);
+            cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 0x7FFF, 0x5DC);
+            if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
+                current.angle = orig.angle;
+            }
+        }
+
+        if (daMyna_evtTagActor0 != NULL) {
+            cXyz stack_1c(1.0f, 1.0f, 1.0f);
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+                if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_1c)) {
+                    field_0x937 = 20;
+                    field_0x92C = 19;
+                }
+            } else {
+                if (field_0x939 == 1) {
+                    current.angle = orig.angle;
+                    mEvtInfo.i_onCondition(1);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    if (mEvtInfo.checkCommandTalk()) {
+                        field_0x92C = 21;
+                    }
+                } else if (field_0x92A < l_HOSTIO.field_0x24) {
+                    field_0x92A++;
+                } else {
+                    field_0x92C = 7;
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1973,8 +2455,16 @@ asm void daMyna_c::attack_wait2_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_wait2_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948388-809483DC 002808 0054+00 1/0 0/0 0/0 .text attack_before_talk2_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_before_talk2_init() {
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
+    setAnimeType(10, 0.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1983,18 +2473,24 @@ asm void daMyna_c::attack_before_talk2_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_before_talk2_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809483DC-80948444 00285C 0068+00 1/0 0/0 0/0 .text attack_before_talk2_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack_before_talk2_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack_before_talk2_move__8daMyna_cFv.s"
+void daMyna_c::attack_before_talk2_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        field_0x92C = 19;
+    }
 }
-#pragma pop
 
 /* 80948444-80948484 0028C4 0040+00 1/0 0/0 0/0 .text            attack_fly2_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_fly2_init() {
+    setAnimeType(0, 0.0f);
+    field_0x91A = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2003,8 +2499,42 @@ asm void daMyna_c::attack_fly2_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_fly2_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948484-80948600 002904 017C+00 1/0 0/0 0/0 .text            attack_fly2_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack_fly2_move() {
+    if (daMyna_evtTagActor0 != NULL) {
+        cXyz stack_2c(1.0f, 1.0f, 1.0f);
+        fly_body_wave();
+
+        if (field_0x926 > 0 && field_0x937 == 0) {
+            field_0x926 = 0;
+        }
+
+        if (dMsgObject_getTotalPayment() > field_0x922) {
+            field_0x937 = 0;
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[802]);
+            field_0x939 = 1;
+        }
+
+        if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_2c) && !daPy_py_c::i_checkNowWolf() &&
+            field_0x937 != 0 && field_0x926 == 0)
+        {
+            mStatus.Move();
+            if (fly_attack_move()) {
+                field_0x92C = 20;
+            }
+        } else if (fly_return_move()) {
+            if (field_0x937 == 0) {
+                dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[802]);
+            }
+            field_0x92C = 17;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2013,8 +2543,16 @@ asm void daMyna_c::attack_fly2_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack_fly2_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948600-80948644 002A80 0044+00 1/0 0/0 0/0 .text            attack2_init__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::attack2_init() {
+    setAnimeType(8, 0.0f);
+    mSph.OnAtVsPlayerBit();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2023,8 +2561,30 @@ asm void daMyna_c::attack2_init() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack2_init__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80948644-809486F8 002AC4 00B4+00 1/0 0/0 0/0 .text            attack2_move__8daMyna_cFv */
+// Matches when l_HOSTIO is the correct type
+#ifdef NONMATCHING
+void daMyna_c::attack2_move() {
+    mStatus.Move();
+    if (field_0x91E != 0) {
+        field_0x92C = 19;
+    }
+
+    if (mSph.ChkAtHit()) {
+        field_0x926 = l_HOSTIO.field_0x30;
+        mSph.OffAtVsPlayerBit();
+        if (field_0x937 != 0) {
+            field_0x937--;
+            if (i_dComIfGs_getLife() <= 1) {
+                dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[802]);
+                field_0x937 = 0;
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2033,26 +2593,30 @@ asm void daMyna_c::attack2_move() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/attack2_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 809486F8-80948734 002B78 003C+00 1/0 0/0 0/0 .text            attack2_talk_init__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack2_talk_init() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack2_talk_init__8daMyna_cFv.s"
+void daMyna_c::attack2_talk_init() {
+    field_0x91C = 214;
+    mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
-#pragma pop
 
 /* 80948734-809487EC 002BB4 00B8+00 1/0 0/0 0/0 .text            attack2_talk_move__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::attack2_talk_move() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/attack2_talk_move__8daMyna_cFv.s"
+void daMyna_c::attack2_talk_move() {
+    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+        i_dComIfGp_event_reset();
+        field_0x828 = NULL;
+        field_0x92C = 7;
+        dMsgObject_setTotalPayment(0);
+        dMsgObject_setTotalPrice(0);
+        field_0x922 = dMsgObject_getTotalPayment();
+        field_0x920 = dMsgObject_getTotalPrice();
+        dMsgObject_getMsgObjectClass()->setNowTotalPrice(0);
+        dMsgObject_getMsgObjectClass()->setNowTotalPayment(0);
+        dMsgObject_getMsgObjectClass()->offPaymentFlag();
+        field_0x939 = 0;
+    }
 }
-#pragma pop
 
 /* 809487EC-80948828 002C6C 003C+00 0/0 0/0 2/2 .text            soldoutItem__8daMyna_cFUi */
 void daMyna_c::soldoutItem(unsigned int i_itemId) {
@@ -2069,14 +2633,42 @@ SECTION_RODATA static f32 const lit_5221 = 15.0f;
 COMPILER_STRIP_GATE(0x8094B228, &lit_5221);
 
 /* 80948828-80948ADC 002CA8 02B4+00 2/2 0/0 0/0 .text            fly_attack_move__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+bool daMyna_c::fly_attack_move() {
+    daPy_py_c* playerActorClass = daPy_getPlayerActorClass();
+    cXyz local_28;
+    cXyz stack_34;
+    cXyz stack_40;
+    cXyz stack_4c;
+    cXyz stack_58;
+
+    stack_34.set(playerActorClass->getHeadTopPos());
+    stack_34.y += l_HOSTIO.field_0x14;
+    stack_40.set(field_0x85C);
+    stack_4c = current.pos - stack_40;
+    local_28 = stack_34 - stack_40;
+
+    f32 fVar4 = JMAFastSqrt(local_28.x * local_28.x + local_28.z * local_28.z);
+    s16 sVar1 = -cM_atan2s(local_28.y, fVar4);
+    s16 sVar2 = cM_atan2s(local_28.x, local_28.z);
+    cLib_addCalcAngleS(&current.angle.y, sVar2, 4, 0x7FFF, 0x5DC);
+    cLib_addCalcAngleS(&current.angle.x, sVar1, 4, 0x7FFF, 0x5DC);
+    cLib_addCalcPos2(&stack_40, stack_34, 0.5f, 15.0f);
+    stack_58 = stack_34 - stack_40;
+    current.pos = stack_40 + stack_4c;
+    return stack_58.abs() < l_HOSTIO.field_0x18;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::fly_attack_move() {
+asm bool daMyna_c::fly_attack_move() {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/fly_attack_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B22C-8094B230 00007C 0004+00 0/1 0/0 0/0 .rodata          @5317 */
@@ -2101,14 +2693,52 @@ COMPILER_STRIP_GATE(0x8094B234, &lit_5319);
 #pragma pop
 
 /* 80948ADC-80948DFC 002F5C 0320+00 2/2 0/0 0/0 .text            fly_return_move__8daMyna_cFv */
+// Possibly matches with literals? Will need to double check
+#ifdef NONMATCHING
+bool daMyna_c::fly_return_move() {
+    if (field_0x926 > 0) {
+        daPy_py_c* playerActorClass = daPy_getPlayerActorClass();
+        cXyz stack_3c;
+        stack_3c.set(playerActorClass->getHeadTopPos());
+
+        cXyz local_30 = stack_3c - current.pos;
+        f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
+        s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
+        s16 sVar2 = cM_atan2s(local_30.x, local_30.z);
+
+        cLib_addCalcAngleS(&current.angle.y, sVar2, 4, 0x7FFF, 0x5DC);
+        cLib_addCalcAngleS(&current.angle.x, sVar1, 4, 0x7FFF, 0x5DC);
+        cLib_addCalcPos2(&current.pos, orig.pos, 0.001f, 100.0f);
+
+    } else {
+        cXyz stack_48 = orig.pos;
+        cXyz local_30 = stack_48 - current.pos;
+        f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
+        s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
+        s16 sVar2 = cM_atan2s(local_30.x, local_30.z);
+
+        cLib_addCalcAngleS(&current.angle.y, sVar2, 4, 0x7FFF, 0x5DC);
+        cLib_addCalcAngleS(&current.angle.x, sVar1, 4, 0x7FFF, 0x5DC);
+        cLib_addCalcPos2(&current.pos, stack_48, 0.5f, 25.0f);
+
+        cXyz local_44 = stack_48 - current.pos;
+        if (local_44.abs() < 3.0f) {
+            current.pos.set(orig.pos);
+            return true;
+        }
+    }
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMyna_c::fly_return_move() {
+asm bool daMyna_c::fly_return_move() {
     nofralloc
 #include "asm/rel/d/a/d_a_myna/d_a_myna/fly_return_move__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B238-8094B240 000088 0008+00 3/3 0/0 0/0 .rodata          @5332 */
@@ -2140,6 +2770,36 @@ asm void daMyna_c::fly_body_wave() {
 #endif
 
 /* 80948E84-80948FAC 003304 0128+00 1/1 0/0 0/0 .text            talkAnime__8daMyna_cFP9msg_class */
+// Matches when mBaseMotionTBL is the correct type
+#ifdef NONMATCHING
+void daMyna_c::talkAnime(msg_class* param_0) {
+    u32 uVar4 = 0;
+    if (param_0 != NULL && this == dComIfGp_event_getTalkPartner()) {
+        switch (param_0->mMode) {
+        case 2:
+            field_0x81C = 1;
+            break;
+        default:
+            if (param_0->mMsgID != field_0x824) {
+                field_0x81C = 1;
+            }
+        }
+
+        if (param_0->mMode == 6 && field_0x81C != 0) {
+            field_0x81C = 0;
+            field_0x820 = dComIfGp_getMesgAnimeAttrInfo();
+            field_0x824 = param_0->mMsgID;
+            uVar4 = 1;
+        }
+    }
+
+    if (field_0x824 != 0 && field_0x820 >= 0 && field_0x820 < 7 &&
+        mBaseMotionTBL[field_0x820] != NULL)
+    {
+        (this->*mBaseMotionTBL[field_0x820])(uVar4);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2148,6 +2808,7 @@ asm void daMyna_c::talkAnime(msg_class* param_0) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/talkAnime__8daMyna_cFP9msg_class.s"
 }
 #pragma pop
+#endif
 
 /* 80948FAC-809490B8 00342C 010C+00 1/1 0/0 0/0 .text            chkEvent__8daMyna_cFv */
 // Matches with literals
@@ -2338,14 +2999,28 @@ asm void daMyna_c::initiate() {
 #endif
 
 /* 80949408-80949544 003888 013C+00 1/1 0/0 0/0 .text            setItemInfo__8daMyna_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daMyna_c::setItemInfo() {
-    nofralloc
-#include "asm/rel/d/a/d_a_myna/d_a_myna/setItemInfo__8daMyna_cFv.s"
+void daMyna_c::setItemInfo() {
+    if (daMyna_actor_count != -1 && mNumShopItems > daMyna_actor_count) {
+        daMyna_actor_count = 0;
+        i_fpcM_Search(daMyna_searchSSItem, this);
+    }
+    if (daMyna_evtTagActor0 == NULL) {
+        i_fpcM_Search(daMyna_searchEvtTag, this);
+    }
+    if (daMyna_actor_count != -1 && mNumShopItems <= daMyna_actor_count) {
+        for (int i = 0; i < mNumShopItems; i++) {
+            daObj_SSBase_c* subActor = static_cast<daObj_SSBase_c*>(daMyna_subActor[i]);
+            subActor->setParentPtr(this);
+            mShopItems[i].mTargetActorID = fopAcM_GetID(daMyna_targetActor[i]);
+            mShopItems[i].mSubActorID = fopAcM_GetID(daMyna_subActor[i]);
+            mShopItems[i].mFlowNodeNum = subActor->getFlowNodeNumber();
+            mShopItems[i].mValueNum = subActor->getValueNumber();
+            mShopItems[i].mItemType = getItemType(subActor);
+            mShopItems[i].mItemStatus = 2;
+        }
+        daMyna_actor_count = -1;
+    }
 }
-#pragma pop
 
 /* 80949544-80949588 0039C4 0044+00 2/2 0/0 0/0 .text            setRoomNo__8daMyna_cFv */
 void daMyna_c::setRoomNo() {
@@ -2495,6 +3170,32 @@ J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
 }
 
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
+// regswap
+#ifdef NONMATCHING
+int daMyna_c::checkEndAnm(f32 param_0) {
+    bool retVal;
+    switch (mpMorf->getPlayMode()) {
+    case 2:
+        return mpMorf->isLoop();
+    case 0:
+    case 1:
+        retVal = false;
+        if (mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0) {
+            retVal = true;
+        }
+        return retVal;
+    case 3:
+    case 4:
+        retVal = false;
+        if (mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0) {
+            retVal = true;
+        }
+        return retVal;
+    default:
+        return false;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2503,6 +3204,7 @@ asm int daMyna_c::checkEndAnm(f32 param_0) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/checkEndAnm__8daMyna_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 80949A70-80949AD4 003EF0 0064+00 1/1 0/0 0/0 .text checkEndAnm__8daMyna_cFP12J3DFrameCtrl */
 // Matches with literals
@@ -2622,6 +3324,27 @@ u16 daMyna_c::getFlowNodeNum() {
 }
 
 /* 80949C44-80949D54 0040C4 0110+00 1/1 0/0 0/0 .text            checkDead__8daMyna_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::checkDead() {
+    for (int i = 0; i < 10; i++) {
+        if (mShopItems[i].mItemStatus == 2 && !fopAcM_IsExecuting(mShopItems[i].mTargetActorID)) {
+            deleteItem(i);
+            onEventFlag(0);
+            dMsgObject_addTotalPrice(mShopItems[i].mValueNum);
+            fopAcM_delete(mShopItems[i].mSubActorID);
+            cXyz var1(1.0f, 1.0f, 1.0f);
+            if (daMyna_evtTagActor0 == NULL ||
+                (daMyna_evtTagActor0 != NULL && !chkPlayerInEvtArea(daMyna_evtTagActor0, var1)))
+            {
+                if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203])) {
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[203]);
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2630,6 +3353,7 @@ asm void daMyna_c::checkDead() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/checkDead__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80949D54-80949EE8 0041D4 0194+00 7/7 0/0 0/0 .text
  * chkPlayerInEvtArea__8daMyna_cFP10fopAc_ac_c4cXyz             */
@@ -2677,6 +3401,49 @@ SECTION_RODATA static f32 const lit_5889 = 6.0f;
 COMPILER_STRIP_GATE(0x8094B244, &lit_5889);
 
 /* 80949EE8-8094A054 004368 016C+00 2/1 0/0 0/0 .text            animeControl__8daMyna_cFv */
+// regswap
+#ifdef NONMATCHING
+void daMyna_c::animeControl() {
+    f32 fVar1 = 1.0f;
+    int iVar5 = 2;
+    f32 fVar2 = field_0x90C;
+    switch (field_0x935) {
+    case 1:
+        if (field_0x934 == 4) {
+            fVar2 = 6.0f;
+        }
+        break;
+    case 2:
+        iVar5 = 0;
+        break;
+    case 3:
+        iVar5 = 0;
+        break;
+    case 4:
+        fVar1 = l_HOSTIO.field_0x08;
+        break;
+    case 7:
+        iVar5 = 0;
+        fVar2 = 6.0f;
+        break;
+    case 8:
+        iVar5 = 0;
+        break;
+    case 14:
+        iVar5 = 0;
+        break;
+    }
+
+    setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]), fVar1, fVar2, iVar5, 0, -1);
+    if (cLib_checkBit(field_0x914, 0x40) == 0) {
+        J3DAnmTexPattern* btk = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
+        if (btk != NULL) {
+            setBtpAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, 2);
+            cLib_onBit(field_0x914, 0x44);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2685,8 +3452,20 @@ asm void daMyna_c::animeControl() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/animeControl__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8094A054-8094A098 0044D4 0044+00 24/24 0/0 0/0 .text            setAnimeType__8daMyna_cFUcf */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::setAnimeType(u8 param_0, f32 param_1) {
+    if (param_0 == 13 || param_0 == 1 || (param_0 == 14 && field_0x935 != 13)) {
+        param_1 = 6.0f;
+    }
+    field_0x934 = field_0x935;
+    field_0x935 = param_0;
+    field_0x90C = param_1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2695,9 +3474,72 @@ asm void daMyna_c::setAnimeType(u8 param_0, f32 param_1) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/setAnimeType__8daMyna_cFUcf.s"
 }
 #pragma pop
+#endif
 
 /* 8094A098-8094A608 004518 0570+00 1/1 0/0 0/0 .text            playDefaultWaitAnime__8daMyna_cFv
  */
+// Mostly matching, still has a few issues that need to be fixed
+#ifdef NONMATCHING
+void daMyna_c::playDefaultWaitAnime() {
+    switch (field_0x935) {
+    case 2:
+    case 3:
+        if (field_0x91E != 0) {
+            setAnimeType(1, 0.0f);
+        }
+        break;
+    case 6:
+        cXyz local_58;
+        cXyz local_64;
+        cXyz stack_70;
+
+        local_58.x = daMyna_LightActor->current.pos.x;
+        local_58.y = orig.pos.y;
+        local_58.z = daMyna_LightActor->current.pos.z;
+
+        cXyz stack_7c = local_58 - orig.pos;
+
+        s16 sVar42 = cM_atan2s(stack_7c.x, stack_7c.z);
+        f32 fVar7 = stack_7c.abs();
+        f32 fVar3 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
+
+        local_64.x = 0.0f;
+        local_64.y = 0.0f;
+        local_64.z = l_HOSTIO.field_0x10 * (fVar3 * fVar3);
+
+        cLib_offsetPos(&stack_70, &current.pos, sVar42, &local_64);
+        current.pos = stack_70;
+
+        cXyz stack_88 = current.pos - orig.pos;
+        if (fVar7 > field_0x910 * stack_88.abs()) {
+            setAnimeType(1, 6.0f);
+        }
+        break;
+    case 5:
+        cXyz local_94;
+        cXyz stack_a0;
+        cXyz local_ac = orig.pos - current.pos;
+
+        s16 sVar4 = cM_atan2s(local_ac.x, local_ac.z);
+        f32 fVar2 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
+
+        local_94.x = 0.0f;
+        local_94.y = 0.0f;
+        local_94.z = l_HOSTIO.field_0x10 * (fVar2 * fVar2);
+
+        cLib_offsetPos(&stack_a0, &current.pos, sVar4, &local_94);
+        current.pos = stack_a0;
+
+        cXyz stack_b8 = orig.pos - current.pos;
+
+        if (stack_b8.abs() < l_HOSTIO.field_0x20) {
+            current.pos.set(orig.pos);
+            setAnimeType(1, 6.0f);
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2706,6 +3548,7 @@ asm void daMyna_c::playDefaultWaitAnime() {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/playDefaultWaitAnime__8daMyna_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8094B248-8094B24C 000098 0004+00 0/1 0/0 0/0 .rodata          @6108 */
@@ -2717,6 +3560,43 @@ COMPILER_STRIP_GATE(0x8094B248, &lit_6108);
 
 /* 8094A608-8094A890 004A88 0288+00 1/1 0/0 0/0 .text            setDefaultWaitAnime__8daMyna_cFUc
  */
+// Matches with literals
+#ifdef NONMATCHING
+void daMyna_c::setDefaultWaitAnime(u8 param_0) {
+    if (daMyna_LightActor != NULL && field_0x935 == 1 &&
+        (field_0x92C == 0 || field_0x92C == 5 || field_0x92C == 7) &&
+        daMyna_LightActor->field_0x578 != daMyna_LightActor->mTurnOnFlag)
+    {
+        field_0x92D = field_0x92C;
+        field_0x92C = 11;
+    } else {
+        if (field_0x935 == param_0) {
+            switch (field_0x935) {
+            case 1:
+                field_0x924--;
+                if (field_0x924 <= 0) {
+                    switch (int(cM_rndF(100.0f)) % 3) {
+                    case 0:
+                        setAnimeType(2, 0.0f);
+                        break;
+                    case 1:
+                        setAnimeType(3, 0.0f);
+                        break;
+                    default:
+                        cXyz stack_24 = orig.pos - current.pos;
+                        if (stack_24.abs() < l_HOSTIO.field_0x20) {
+                            field_0x910 = cM_rnd() * 0.25f + 0.25f;
+                            setAnimeType(6, 0.0f);
+                        } else {
+                            setAnimeType(5, 0.0f);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2725,6 +3605,7 @@ asm void daMyna_c::setDefaultWaitAnime(u8 param_0) {
 #include "asm/rel/d/a/d_a_myna/d_a_myna/setDefaultWaitAnime__8daMyna_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8094A890-8094A8B0 004D10 0020+00 1/0 0/0 0/0 .text            daMyna_Create__FPv */
 static int daMyna_Create(void* i_this) {

@@ -2033,7 +2033,7 @@ void dMsgObject_c::setSelectCancelPos(u8 pos) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_getTotalPrice() {
+asm u16 dMsgObject_getTotalPrice() {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_getTotalPrice__Fv.s"
 }
@@ -2063,7 +2063,7 @@ asm void dMsgObject_addTotalPrice(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_getTotalPayment() {
+asm u16 dMsgObject_getTotalPayment() {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_getTotalPayment__Fv.s"
 }
@@ -2143,8 +2143,7 @@ asm void dMsgObject_addOffering(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_msg_object_cpp() {
-    nofralloc
+asm void __sinit_d_msg_object_cpp(){nofralloc
 #include "asm/d/msg/d_msg_object/__sinit_d_msg_object_cpp.s"
 }
 #pragma pop

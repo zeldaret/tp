@@ -94,9 +94,7 @@ private:
 
 class daPy_actorKeep_c {
 public:
-    daPy_actorKeep_c() {
-        clearData();
-    }
+    daPy_actorKeep_c() { clearData(); }
 
     void setActor();
     void setData(fopAc_ac_c*);
@@ -161,10 +159,10 @@ public:
     s16 getMoveAngle() const { return mDemoMoveAngle; }
     f32 getStick() { return mStick; }
     int getParam0() const { return mParam0; }
-    void setParam0(int value) { mParam0 = value;}
-    void setParam1(int value) { mParam1 = value;}
-    void setParam2(int value) { mParam2 = value;}
-    void setPos0(const cXyz* pos) { mDemoPos0 = *pos;}
+    void setParam0(int value) { mParam0 = value; }
+    void setParam1(int value) { mParam1 = value; }
+    void setParam2(int value) { mParam2 = value; }
+    void setPos0(const cXyz* pos) { mDemoPos0 = *pos; }
     void setToolDemoType() { setDemoType(1); }
     s16 getTimer() const { return mTimer; }
     void decTimer() { mTimer--; }
@@ -410,6 +408,7 @@ public:
         RFLG0_UNK_100 = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
+        RFLG0_GRAB_UP_END = 0x20,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_8 = 0x8,
         RFLG0_UNK_2 = 0x2,
@@ -539,11 +538,12 @@ public:
     void changeDemoParam2(s16);
     void cancelOriginalDemo();
     void changeOriginalDemo();
+    cXyz getHeadTopPos() const;
     /* 801829E0 */ void checkThrowDamage() const;
     /* 80182A10 */ void checkGoronSideMove() const;
     /* 80182AAC */ void getRightFootPosP();
     /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */ //u32 getMidnaActor();
+    /* 80182ABC */  // u32 getMidnaActor();
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
@@ -727,7 +727,6 @@ public:
     virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const;
     virtual BOOL checkCutJumpMode() const;
-    virtual cXyz getHeadTopPos() const;
 
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
@@ -758,13 +757,14 @@ public:
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
     bool checkWolfTagLockJumpReady() const { return i_checkResetFlg0(RFLG0_UNK_20000); }
-    
+    bool getGrabUpEnd() const { return i_checkResetFlg0(RFLG0_GRAB_UP_END); }
+
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
-    
+
     void offCargoCarry() {
         if (checkCargoCarry()) {
             mSpecialMode = 0;
@@ -788,35 +788,35 @@ public:
     u32 i_checkNoResetFlg1(daPy_FLG1 i_flag) const { return mNoResetFlg1 & i_flag; }
     u32 i_checkNoResetFlg2(daPy_FLG2 i_flag) const { return mNoResetFlg2 & i_flag; }
     u32 i_checkNoResetFlg3(daPy_FLG3 i_flag) const { return mNoResetFlg3 & i_flag; }
-    
+
     void i_onNoResetFlg0(int i_flag) { mNoResetFlg0 |= i_flag; }
     void i_onNoResetFlg1(int i_flag) { mNoResetFlg1 |= i_flag; }
     void i_onNoResetFlg2(int i_flag) { mNoResetFlg2 |= i_flag; }
     void i_onNoResetFlg3(int i_flag) { mNoResetFlg3 |= i_flag; }
-    
+
     void i_offNoResetFlg0(int i_flag) { mNoResetFlg0 &= ~i_flag; }
     void i_offNoResetFlg1(int i_flag) { mNoResetFlg1 &= ~i_flag; }
     void i_offNoResetFlg2(int i_flag) { mNoResetFlg2 &= ~i_flag; }
     void i_offNoResetFlg3(int i_flag) { mNoResetFlg3 &= ~i_flag; }
-    
+
     void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
     void i_offResetFlg1(int flag) { mResetFlg1 &= ~flag; }
     void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
     void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
-    
+
     void i_onEndResetFlg0(int i_flag) { mEndResetFlg0 |= i_flag; }
     void i_onEndResetFlg2(int i_flag) { mEndResetFlg2 |= i_flag; }
     void i_offEndResetFlg2(daPy_ERFLG2 i_flag) { mEndResetFlg2 &= ~i_flag; }
-    
+
     u32 i_checkResetFlg0(daPy_py_c::daPy_RFLG0 i_flag) const { return mResetFlg0 & i_flag; }
     u32 checkResetFlg1(daPy_py_c::daPy_RFLG1 i_flag) const { return mResetFlg1 & i_flag; }
-    
+
     u32 i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 i_flag) const { return mEndResetFlg0 & i_flag; }
     u32 i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 i_flag) const { return mEndResetFlg1 & i_flag; }
     u32 i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 i_flag) const { return mEndResetFlg2 & i_flag; }
-    
+
     void i_onEndResetFlg1(daPy_ERFLG1 i_flag) { mEndResetFlg1 |= i_flag; }
-    
+
     u32 i_checkWolf() const { return i_checkNoResetFlg1(FLG1_IS_WOLF); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
@@ -826,7 +826,6 @@ public:
     void i_onPushPullKeep() { i_onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void i_offPushPullKeep() { i_offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
 
-
     u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
     void i_changeOriginalDemo() {
@@ -834,7 +833,7 @@ public:
         mDemo.setParam0(0);
     }
 
-    void i_changeDemoMode(u32 i_demoMode,int i_param0,int i_param1,s16 i_param2) {
+    void i_changeDemoMode(u32 i_demoMode, int i_param0, int i_param1, s16 i_param2) {
         mDemo.setDemoMode(i_demoMode);
         mDemo.setParam0(i_param0);
         mDemo.setParam1(i_param1);

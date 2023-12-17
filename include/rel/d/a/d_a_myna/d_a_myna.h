@@ -81,8 +81,8 @@ public:
     /* 809486F8 */ void attack2_talk_init();
     /* 80948734 */ void attack2_talk_move();
     /* 809487EC */ void soldoutItem(unsigned int);
-    /* 80948828 */ void fly_attack_move();
-    /* 80948ADC */ void fly_return_move();
+    /* 80948828 */ bool fly_attack_move();
+    /* 80948ADC */ bool fly_return_move();
     /* 80948DFC */ void fly_body_wave();
     /* 80948E84 */ void talkAnime(msg_class*);
     /* 80948FAC */ int chkEvent();
@@ -115,6 +115,8 @@ public:
     daMyna_c(){};
 
     void onEventFlag(u8 flag) { field_0x92F |= (1 << flag); }
+    void offEventFlag(u8 flag) { field_0x92F &= ~(1 << flag); }
+    bool isEventFlag(u8 flag) { return field_0x92F & (1 << flag); }
 
     typedef void (daMyna_c::*ProcFunc)();
     typedef int (daMyna_c::*BaseMotionFunc)(int);
@@ -135,8 +137,8 @@ public:
     /* 0x66C */ cBgS_GndChk mGndChk;
     /* 0x6A8 */ dCcD_Stts mStatus;
     /* 0x6E4 */ dCcD_Sph mSph;
-    /* 0x81C */ u32 field_0x81C;
-    /* 0x820 */ u32 field_0x820;
+    /* 0x81C */ s32 field_0x81C;
+    /* 0x820 */ s32 field_0x820;
     /* 0x824 */ u32 field_0x824;
     /* 0x828 */ fopAc_ac_c* field_0x828;
     /* 0x82C */ cXyz field_0x82C;
