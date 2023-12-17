@@ -22,6 +22,8 @@ public:
         return var1 & 0xFF;
     }
 
+    bool getTurnOnFlag() { return mTurnOnFlag; }
+
     /* 0x568 */  // vtable
     /* 0x56C */ f32 field_0x56c;
     /* 0x570 */ JPABaseEmitter* field_0x570[2];
