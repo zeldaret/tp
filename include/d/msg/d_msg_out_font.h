@@ -20,6 +20,7 @@ public:
     f32 getPosY() { return mPosY; }
     f32 getSizeX() { return mSizeX; }
     f32 getSizeY() { return mSizeY; }
+    u8 getAlpha() { return mAlpha; }
     J2DTextBox* getTextBoxPtr() { return mpTextBoxPtr; }
     void setTextBoxPtr(J2DTextBox* p_textBox) { mpTextBoxPtr = p_textBox; }
     void resetType() { mType = 0x47; }

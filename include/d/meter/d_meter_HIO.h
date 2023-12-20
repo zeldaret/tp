@@ -11,7 +11,7 @@ class JKRArchive;
 class dMeter_menuHIO_c {
 public:
     /* 801FE330 */ dMeter_menuHIO_c();
-    /* 8020123C */ virtual ~dMeter_menuHIO_c();
+    /* 8020123C */ virtual ~dMeter_menuHIO_c() {}
 
     /* 0x0 */  // vtable
     /* 0x4 */ u8 field_0x4[2];
@@ -23,7 +23,7 @@ STATIC_ASSERT(sizeof(dMeter_menuHIO_c) == 8);
 class dMeter_drawCollectHIO_c {
 public:
     dMeter_drawCollectHIO_c();
-    virtual ~dMeter_drawCollectHIO_c();
+    virtual ~dMeter_drawCollectHIO_c() {}
 
     enum {
         /* 0x0 */ VESSEL_HEART,
@@ -72,7 +72,7 @@ public:
 class dMeter_drawOptionHIO_c {
 public:
     /* 801FE4EC */ dMeter_drawOptionHIO_c();
-    /* 80200F98 */ virtual ~dMeter_drawOptionHIO_c();
+    /* 80200F98 */ virtual ~dMeter_drawOptionHIO_c() {}
 
     enum OptionType {
         /* 0x0 */ ATTENTION,
@@ -108,7 +108,7 @@ public:
 class dMeter_drawLetterHIO_c {
 public:
     /* 801FE5CC */ dMeter_drawLetterHIO_c();
-    /* 80200F50 */ virtual ~dMeter_drawLetterHIO_c();
+    /* 80200F50 */ virtual ~dMeter_drawLetterHIO_c() {}
 
     enum {
         /* 0x0 */ WINDOW_FRAME,
@@ -148,7 +148,7 @@ public:
 class dMeter_drawFishingHIO_c {
 public:
     /* 801FE730 */ dMeter_drawFishingHIO_c();
-    /* 80200F08 */ virtual ~dMeter_drawFishingHIO_c();
+    /* 80200F08 */ virtual ~dMeter_drawFishingHIO_c() {}
 
     enum {
         /* 0x0 */ HYLIAN_BASS,
@@ -198,7 +198,7 @@ public:
 class dMeter_drawInsectHIO_c {
 public:
     /* 801FE8DC */ dMeter_drawInsectHIO_c();
-    /* 80200EC0 */ virtual ~dMeter_drawInsectHIO_c();
+    /* 80200EC0 */ virtual ~dMeter_drawInsectHIO_c() {}
 
     enum Type {
         /* 0x0 */ DEFAULT,
@@ -229,7 +229,7 @@ public:
 class dMeter_drawCalibrationHIO_c {
 public:
     /* 801FE954 */ dMeter_drawCalibrationHIO_c();
-    /* 80200E78 */ virtual ~dMeter_drawCalibrationHIO_c();
+    /* 80200E78 */ virtual ~dMeter_drawCalibrationHIO_c() {}
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -244,7 +244,7 @@ public:
 class dMeter_drawSkillHIO_c {
 public:
     /* 801FE990 */ dMeter_drawSkillHIO_c();
-    /* 80200E30 */ virtual ~dMeter_drawSkillHIO_c();
+    /* 80200E30 */ virtual ~dMeter_drawSkillHIO_c() {}
 
     enum {
         /* 0x0 */ WINDOW,
@@ -282,7 +282,7 @@ public:
 class dMeter_drawEmpButtonHIO_c {
 public:
     /* 801FEAF0 */ dMeter_drawEmpButtonHIO_c();
-    /* 80200DA0 */ virtual ~dMeter_drawEmpButtonHIO_c();
+    /* 80200DA0 */ virtual ~dMeter_drawEmpButtonHIO_c() {}
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -434,7 +434,7 @@ public:
 class dMeter_drawMiniGameHIO_c {
 public:
     /* 801FEFF0 */ dMeter_drawMiniGameHIO_c();
-    /* 80200DE8 */ virtual ~dMeter_drawMiniGameHIO_c();
+    /* 80200DE8 */ virtual ~dMeter_drawMiniGameHIO_c() {}
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -546,7 +546,7 @@ public:
 class dMeter_drawLightDropHIO_c {
 public:
     /* 801FF31C */ dMeter_drawLightDropHIO_c();
-    /* 80200D58 */ virtual ~dMeter_drawLightDropHIO_c();
+    /* 80200D58 */ virtual ~dMeter_drawLightDropHIO_c() {}
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -594,7 +594,7 @@ public:
 class dMeter_drawHIO_c {
 public:
     /* 801FF5B8 */ dMeter_drawHIO_c();
-    /* 80201128 */ virtual ~dMeter_drawHIO_c();
+    /* 80201128 */ virtual ~dMeter_drawHIO_c() {}
 
     /* 0x000 */  // vtable
     /* 0x004 */ s8 field_0x4;
@@ -962,7 +962,7 @@ STATIC_ASSERT(sizeof(dMeter_drawHIO_c) == 3880);
 class dMeter_ringHIO_c {
 public:
     /* 802001AC */ dMeter_ringHIO_c();
-    /* 802010E0 */ virtual ~dMeter_ringHIO_c();
+    /* 802010E0 */ virtual ~dMeter_ringHIO_c() {}
 
     enum {
         /* 0x0 */ SET_ITEM,
@@ -1053,7 +1053,7 @@ STATIC_ASSERT(sizeof(dMeter_ringHIO_c) == 344);
 class dMeter_mapIconHIO_c {
 public:
     /* 802004B4 */ dMeter_mapIconHIO_c();
-    /* 80201028 */ virtual ~dMeter_mapIconHIO_c();
+    /* 80201028 */ virtual ~dMeter_mapIconHIO_c() {}
 
     enum {
         /* 0x00 */ ICON_PORTAL,
@@ -1217,7 +1217,7 @@ public:
     };  // Size: 0xC
 
     struct MapBlinkAnime {
-        MapBlinkAnime();
+        MapBlinkAnime() {}
 
         /* 0x00 */ BlinkAnime mSelectedRegion;
         /* 0x0C */ BlinkAnime mUnselectedRegion;
@@ -1341,7 +1341,7 @@ STATIC_ASSERT(sizeof(dMeter_fmapHIO_c) == 1188);
 class dMeter_cursorHIO_c {
 public:
     /* 80200CD4 */ dMeter_cursorHIO_c();
-    /* 80201098 */ virtual ~dMeter_cursorHIO_c();
+    /* 80201098 */ virtual ~dMeter_cursorHIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ cXyz mSeraShopObjZoom;
