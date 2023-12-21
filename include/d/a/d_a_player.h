@@ -374,7 +374,7 @@ public:
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_800 = 0x800,
         ERFLG1_UNK_400 = 0x400,
-        ERFLG1_UNK_200 = 0x200,
+        ERFLG1_WOLF_EYE_KEEP = 0x200,
         ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_80 = 0x80,
         ERFLG1_UNK_40 = 0x40,
@@ -763,6 +763,7 @@ public:
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
+    void onWolfEyeKeep() { i_onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
 
     void offCargoCarry() {

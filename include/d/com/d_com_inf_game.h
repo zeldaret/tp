@@ -912,6 +912,7 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 i_keyNum);
 s32 dComIfGs_isDungeonItemWarp(int i_stageNo);
 void dComIfGs_BossLife_public_Set(s8);
 s8 dComIfGs_sense_type_change_Get();
+void dComIfGs_sense_type_change_Set(s8);
 cXyz& dComIfGs_getWarpPlayerPos();
 const char* dComIfGs_getWarpStageName();
 s16 dComIfGs_getWarpPlayerAngleY();
