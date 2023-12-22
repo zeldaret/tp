@@ -439,21 +439,21 @@ void dMenu_Fishing_c::screenSetBase() {
     textBox->setString(0x200, "");
     mpString->getString(0x5a1, textBox, NULL, NULL, NULL, 0);
     for (int i = 0; i < 6; i++) {
-        field_0x124[i] = (J2DTextBox*)mpScreen->search(size_1[i]);
-        field_0x124[i]->setFont(mDoExt_getSubFont());
-        field_0x124[i]->setString(0x20, "");
+        field_0x10c[1][i] = (J2DTextBox*)mpScreen->search(size_1[i]);
+        field_0x10c[1][i]->setFont(mDoExt_getSubFont());
+        field_0x10c[1][i]->setString(0x20, "");
 
-        field_0x184[i] = (J2DTextBox*)mpScreen->search(size_unit_1[i]);
-        field_0x184[i]->setFont(mDoExt_getSubFont());
-        field_0x184[i]->setString(0x20, "");
+        field_0x16c[1][i] = (J2DTextBox*)mpScreen->search(size_unit_1[i]);
+        field_0x16c[1][i]->setFont(mDoExt_getSubFont());
+        field_0x16c[1][i]->setString(0x20, "");
 
-        field_0x154[i] = (J2DTextBox*)mpScreen->search(count_1[i]);
-        field_0x154[i]->setFont(mDoExt_getSubFont());
-        field_0x154[i]->setString(0x20, "");
+        field_0x13c[1][i] = (J2DTextBox*)mpScreen->search(count_1[i]);
+        field_0x13c[1][i]->setFont(mDoExt_getSubFont());
+        field_0x13c[1][i]->setString(0x20, "");
 
-        field_0x1b4[i] = (J2DTextBox*)mpScreen->search(count_unit_1[i]);
-        field_0x1b4[i]->setFont(mDoExt_getSubFont());
-        field_0x1b4[i]->setString(0x20, "");
+        field_0x19c[1][i] = (J2DTextBox*)mpScreen->search(count_unit_1[i]);
+        field_0x19c[1][i]->setFont(mDoExt_getSubFont());
+        field_0x19c[1][i]->setString(0x20, "");
 
         field_0x1cc[i] = (J2DTextBox*)mpScreen->search(name_0[i]);
         mpScreen->search(fname_0[i])->hide();
@@ -540,8 +540,6 @@ u8 dMenu_Fishing_c::getFigure(int param_0) {
 }
 
 /* 801C605C-801C6210 1C099C 01B4+00 1/1 0/0 0/0 .text setFishParam__15dMenu_Fishing_cFiUsUc */
-#ifdef NONMATCHING
-// regalloc
 void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
     u8 figure1 = getFigure(param_1);
     u8 figure2 = getFigure(param_2);
@@ -550,41 +548,33 @@ void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
     for (int j = 1; j < 2; j++) {
         // part one, param_2
         dComIfGp_setMessageCountNumber(param_2);
-        mpString->getString(0x597, field_0x124[param_0], NULL, NULL, NULL, 0);
-        strcpy(strBuff1, field_0x124[param_0]->getStringPtr());
+        mpString->getString(0x597, field_0x10c[j][param_0], NULL, NULL, NULL, 0);
+        char* x = field_0x10c[j][param_0]->getStringPtr();
+        strcpy(strBuff1, x);
         int i;
         for (i = 0; strBuff1[i + figure2] != 0; i++) {
             strBuff2[i] = strBuff1[i + figure2];
         }
         strBuff2[i] = 0;
         strBuff1[figure2] = 0;
-        strcpy(field_0x124[param_0]->getStringPtr(), strBuff1);
-        strcpy(field_0x184[param_0]->getStringPtr(), strBuff2);
+        strcpy(field_0x10c[j][param_0]->getStringPtr(), strBuff1);
+        strcpy(field_0x16c[j][param_0]->getStringPtr(), strBuff2);
 
         // part two, param_1
         dComIfGp_setMessageCountNumber(param_1);
-        mpString->getString(0x598, field_0x154[param_0], NULL, NULL, NULL, 0);
-        strcpy(strBuff1, field_0x154[param_0]->getStringPtr());
+        mpString->getString(0x598, field_0x13c[j][param_0], NULL, NULL, NULL, 0);
+        x = field_0x13c[j][param_0]->getStringPtr();
+        strcpy(strBuff1, x);
         int k;
         for (k = 0; strBuff1[k + figure1] != 0; k++) {
             strBuff2[k] = strBuff1[k + figure1];
         }
         strBuff2[k] = 0;
         strBuff1[figure1] = 0;
-        strcpy(field_0x154[param_0]->getStringPtr(), strBuff1);
-        strcpy(field_0x1b4[param_0]->getStringPtr(), strBuff2);
+        strcpy(field_0x13c[j][param_0]->getStringPtr(), strBuff1);
+        strcpy(field_0x19c[j][param_0]->getStringPtr(), strBuff2);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
-    nofralloc
-#include "asm/d/menu/d_menu_fishing/setFishParam__15dMenu_Fishing_cFiUsUc.s"
-}
-#pragma pop
-#endif
 
 /* 801C6210-801C659C 1C0B50 038C+00 2/2 0/0 0/0 .text            setHIO__15dMenu_Fishing_cFb */
 void dMenu_Fishing_c::setHIO(bool param_0) {

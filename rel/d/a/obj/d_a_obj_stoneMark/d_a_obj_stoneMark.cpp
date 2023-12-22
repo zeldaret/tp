@@ -205,7 +205,7 @@ int daObjSMark_c::draw() {
                     l_shadow_size[fopAcM_GetParam(this) & 0xFF],
                     mObjAcch.m_gnd,
                     shape_angle.y,
-                    ((f32)-0.6 - g_env_light.field_0x1238 * (f32)0.4),
+                    (-0.6f - g_env_light.field_0x1238 * (0.7f - 0.3f)),
                     &this->mTexObj);
     return 1;
 }
