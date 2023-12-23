@@ -7,7 +7,7 @@
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "MSL_C/math.h"
-#include "MSL_C/MSL_Common/Src/limits"
+#include "MSL_C/MSL_Common/Src/limits.h"
 
 //
 // Types:

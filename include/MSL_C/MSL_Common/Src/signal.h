@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+typedef void (*__signal_func_ptr)(int);
+
 int raise(int sig);
 
 #ifdef __cplusplus

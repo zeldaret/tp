@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-int fseek(FILE* file, long offset, int mode);
+int fseek(FILE* file, unsigned long offset, int mode);
 int _fseek(FILE* file, fpos_t offset, int mode);
 long ftell(FILE* file);
 

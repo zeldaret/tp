@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-int __msl_strnicmp(const char* str1, const char* str2, size_t n);
+int __msl_strnicmp(const char* str1, const char* str2, int n);
 int fflush(FILE* file);
 int fclose(FILE* file);
 

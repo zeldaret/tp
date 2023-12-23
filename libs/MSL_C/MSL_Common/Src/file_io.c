@@ -2,16 +2,6 @@
 #include "MSL_C/MSL_Common/Src/buffer_io.h"
 #include "MSL_C/MSL_Common/Src/ctype.h"
 
-/* 8036581C-803658C0 36015C 00A4+00 0/0 1/1 0/0 .text            __msl_strnicmp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int __msl_strnicmp(const char* str1, const char* str2, size_t n) {
-    nofralloc
-#include "asm/MSL_C/MSL_Common/Src/file_io/__msl_strnicmp.s"
-}
-#pragma pop
-
 /* 803659F8-80365BB4 360338 01BC+00 0/0 1/1 0/0 .text            fclose */
 int fclose(FILE* file) {
     int flush_result, close_result;
@@ -77,5 +67,30 @@ int fflush(FILE* file) {
     file->file_state.io_state = 0;
     file->position = pos;
     file->buffer_length = 0;
+    return 0;
+}
+
+/* 8036581C-803658C0 36015C 00A4+00 0/0 1/1 0/0 .text            __msl_strnicmp */
+int __msl_strnicmp(const char* str1, const char* str2, int n) {
+    int i;
+    char c1, c2;
+
+    for (i = 0; i < n; i++) {
+        c1 = _tolower(*str1++);
+        c2 = _tolower(*str2++);
+
+        if (c1 < c2) {
+            return -1;
+        }
+
+        if (c1 > c2) {
+            return 1;
+        }
+
+        if (c1 == '\0') {
+            return 0;
+        }
+    }
+
     return 0;
 }

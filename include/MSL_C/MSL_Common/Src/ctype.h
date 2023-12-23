@@ -30,6 +30,15 @@ extern unsigned char __upper_map[];
 
 int tolower(int);
 
+inline int isalpha(int c) { return (int)(__ctype_map[(unsigned char)c] & __letter); }
+inline int isdigit(int c) { return (int)(__ctype_map[(unsigned char)c] & __digit); }
+inline int isspace(int c) { return (int)(__ctype_map[(unsigned char)c] & __whitespace); }
+inline int isupper(int c) { return (int)(__ctype_map[(unsigned char)c] & __upper_case); }
+inline int isxdigit(int c) { return (int)(__ctype_map[(unsigned char)c] & __hex_digit); }
+// added underscore to avoid naming conflicts
+inline int _tolower(int c) { return (c == -1 ? -1 : (int)__lower_map[(unsigned char)c]); }
+inline int toupper(int c) { return (c == -1 ? -1 : (int)__upper_map[(unsigned char)c]); }
+
 #ifdef __cplusplus
 }
 #endif

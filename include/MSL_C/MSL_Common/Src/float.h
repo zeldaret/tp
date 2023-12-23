@@ -16,10 +16,10 @@
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
 #define isfinite(x) ((fpclassify(x) > 2))
 
-#define __signbitf(x) ((*(unsigned char*)&(x)) & 0x80)
+#define __signbitf(x) ((int)(__HI(x) & 0x80000000))
 
 // TODO: OK?
-#define __signbitd(x) ((*(unsigned char*)&(x)) & 0x80)
+#define __signbitd(x) ((int)(__HI(x) & 0x80000000))
 
 extern unsigned long __float_nan[];
 extern unsigned long __float_huge[];
