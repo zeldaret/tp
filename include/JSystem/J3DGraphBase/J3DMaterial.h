@@ -112,6 +112,7 @@ public:
 
 class J3DLockedMaterial : public J3DMaterial {
 public:
+    J3DLockedMaterial() { initialize(); }
     /* 80317044 */ void initialize();
 
     /* 803170D0 */ virtual void calc(f32 const (*)[4]);

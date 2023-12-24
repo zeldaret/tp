@@ -44,8 +44,4 @@ u8 mDoLib_setResTimgObj(ResTIMG const* res, GXTexObj* o_texObj, u32 tlut_name,
                           GXTlutObj* o_tlutObj);
 void mDoLib_pos2camera(Vec* src, Vec* dst);
 
-inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
-    return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
-}
-
 #endif /* M_DO_M_DO_LIB_H */

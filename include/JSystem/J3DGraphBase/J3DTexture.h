@@ -53,15 +53,22 @@ struct J3DTexCoordInfo {
     /* 0x0 */ u8 mTexGenType;
     /* 0x1 */ u8 mTexGenSrc;
     /* 0x2 */ u8 mTexGenMtx;
-    void operator=(J3DTexCoordInfo const& other) {
-        *(u32*) this = *(u32*)&other;
-    }
+    /* 0x3 */ u8 pad;
 };
 
+extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
+
 struct J3DTexCoord : public J3DTexCoordInfo {
-    /* 8000E464 */ J3DTexCoord();
-    void setTexCoordInfo(J3DTexCoordInfo *param_1) {
-        *(J3DTexCoordInfo*)this = *param_1;
+    /* 8000E464 */ J3DTexCoord() {
+        setTexCoordInfo(j3dDefaultTexCoordInfo[0]);
+        resetTexMtxReg();
+    }
+    J3DTexCoord(J3DTexCoordInfo const& info) {
+        setTexCoordInfo(info);
+        resetTexMtxReg();
+    }
+    void setTexCoordInfo(J3DTexCoordInfo const& info) {
+        __memcpy(this, &info, sizeof(J3DTexCoordInfo));
     }
 
     u8 getTexGenType() { return mTexGenType; }
@@ -75,12 +82,5 @@ struct J3DTexCoord : public J3DTexCoordInfo {
 
     /* 0x4 */ u16 mTexMtxReg;
 };  // Size: 0x6
-
-struct J3DDefaultTexCoordInfo {
-    /* 0x0 */ u8 mTexGenType;
-    /* 0x1 */ u8 mTexGenSrc;
-    /* 0x2 */ u8 mTexGenMtx;
-    /* 0x3 */ u8 pad;
-};
 
 #endif /* J3DTEXTURE_H */

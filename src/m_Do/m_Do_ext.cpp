@@ -441,10 +441,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const j3dDefaultTexCoordInfo[32];
-extern "C" extern u8 const j3dDefaultIndTexMtxInfo[28];
-extern "C" extern u8 const j3dDefaultTevStageInfo[20];
-extern "C" extern u8 const j3dDefaultIndTevStageInfo[12];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
@@ -453,11 +449,7 @@ extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultIndTexOrderNull;
-extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
 extern "C" extern u16 data_804563F8;
 
 //
@@ -1859,7 +1851,8 @@ void J3DIndBlock::setIndTexCoordScale(u32 param_0, J3DIndTexCoordScale param_1) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTexCoordScale::~J3DIndTexCoordScale() {
+// asm J3DIndTexCoordScale::~J3DIndTexCoordScale() {
+extern "C" asm void __dt__19J3DIndTexCoordScaleFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__19J3DIndTexCoordScaleFv.s"
 }
@@ -1875,7 +1868,8 @@ void J3DIndBlock::setIndTexMtx(u32 param_0, J3DIndTexMtx param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTexMtx::~J3DIndTexMtx() {
+// asm J3DIndTexMtx::~J3DIndTexMtx() {
+extern "C" asm void __dt__12J3DIndTexMtxFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__dt__12J3DIndTexMtxFv.s"
 }
@@ -1985,7 +1979,8 @@ void J3DColorBlock::setColorChanNum(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTexCoordScale::J3DIndTexCoordScale() {
+// asm J3DIndTexCoordScale::J3DIndTexCoordScale() {
+extern "C" asm void __ct__19J3DIndTexCoordScaleFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__19J3DIndTexCoordScaleFv.s"
 }
@@ -1995,7 +1990,8 @@ asm J3DIndTexCoordScale::J3DIndTexCoordScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTexMtx::J3DIndTexMtx() {
+// asm J3DIndTexMtx::J3DIndTexMtx() {
+extern "C" asm void __ct__12J3DIndTexMtxFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__12J3DIndTexMtxFv.s"
 }
@@ -2005,7 +2001,8 @@ asm J3DIndTexMtx::J3DIndTexMtx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTexOrder::J3DIndTexOrder() {
+// asm J3DIndTexOrder::J3DIndTexOrder() {
+extern "C" asm void __ct__14J3DIndTexOrderFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__14J3DIndTexOrderFv.s"
 }
@@ -2025,7 +2022,8 @@ asm J3DTevSwapModeTable::J3DTevSwapModeTable() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevOrder::J3DTevOrder() {
+// asm J3DTevOrder::J3DTevOrder() {
+extern "C" asm void __ct__11J3DTevOrderFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__11J3DTevOrderFv.s"
 }
@@ -2035,7 +2033,8 @@ asm J3DTevOrder::J3DTevOrder() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndTevStage::J3DIndTevStage() {
+// asm J3DIndTevStage::J3DIndTevStage() {
+extern "C" asm void __ct__14J3DIndTevStageFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__14J3DIndTevStageFv.s"
 }
@@ -2072,7 +2071,8 @@ extern "C" void __ct__13J3DGXColorS10Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexCoord::J3DTexCoord() {
+// asm J3DTexCoord::J3DTexCoord() {
+extern "C" asm void __ct__11J3DTexCoordFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__11J3DTexCoordFv.s"
 }
@@ -2082,7 +2082,8 @@ asm J3DTexCoord::J3DTexCoord() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DColorChan::J3DColorChan() {
+// asm J3DColorChan::J3DColorChan() {
+extern "C" asm void __ct__12J3DColorChanFv() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/__ct__12J3DColorChanFv.s"
 }

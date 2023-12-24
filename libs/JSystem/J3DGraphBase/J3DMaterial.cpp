@@ -955,7 +955,8 @@ asm J3DColorBlockLightOff::~J3DColorBlockLightOff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DColorBlock::~J3DColorBlock() {
+// asm J3DColorBlock::~J3DColorBlock() {
+extern "C" asm void __dt__13J3DColorBlockFv() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__13J3DColorBlockFv.s"
 }
@@ -975,7 +976,8 @@ asm J3DTexGenBlockPatched::~J3DTexGenBlockPatched() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexGenBlock::~J3DTexGenBlock() {
+// asm J3DTexGenBlock::~J3DTexGenBlock() {
+extern "C" asm void __dt__14J3DTexGenBlockFv() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__14J3DTexGenBlockFv.s"
 }
@@ -985,7 +987,8 @@ asm J3DTexGenBlock::~J3DTexGenBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevBlock::~J3DTevBlock() {
+// asm J3DTevBlock::~J3DTevBlock() {
+extern "C" asm void __dt__11J3DTevBlockFv() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__11J3DTevBlockFv.s"
 }
@@ -1005,7 +1008,8 @@ asm J3DIndBlock::~J3DIndBlock() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DPEBlock::~J3DPEBlock() {
+// asm J3DPEBlock::~J3DPEBlock() {
+extern "C" asm void __dt__10J3DPEBlockFv() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__10J3DPEBlockFv.s"
 }
