@@ -1,5 +1,5 @@
 #include "JSystem/JStage/JSGFog.h"
-#include "float.h"
+#include "math.h"
 
 /* 80280C80-80280CE0 27B5C0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage4TFogFv */
 JStage::TFog::~TFog() {}

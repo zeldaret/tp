@@ -4,6 +4,7 @@
 #include "char_io.h"
 #include "file_io.h"
 #include "printf.h"
+#include "extras.h"
 
 #define stdin (&__files._stdin)
 #define stdout (&__files._stdout)

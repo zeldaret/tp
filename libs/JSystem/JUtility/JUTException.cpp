@@ -6,7 +6,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "float.h"
+#include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "dol2asm.h"

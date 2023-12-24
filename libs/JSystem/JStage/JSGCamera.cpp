@@ -1,5 +1,5 @@
 #include "JSystem/JStage/JSGCamera.h"
-#include "float.h"
+#include "math.h"
 
 /* 80280BA0-80280C00 27B4E0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage7TCameraFv */
 JStage::TCamera::~TCamera() {}

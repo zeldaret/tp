@@ -2,6 +2,7 @@
 #define _MSL_COMMON_STRING_H
 
 #include "stddef.h"
+#include "extras.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,7 +10,10 @@ extern "C" {
 
 void* memcpy(void* dst, const void* src, size_t n);
 void* memset(void* dst, int val, size_t n);
-
+int memcmp(const void* lhs, const void* rhs, size_t count);
+void* __memrchr(const void* ptr, int ch, size_t count);
+void* memchr(const void* ptr, int ch, size_t count);
+void* memmove(void* dst, const void* src, size_t n);
 char* strrchr(const char* str, int c);
 char* strchr(const char* str, int c);
 int strncmp(const char* str1, const char* str2, size_t n);

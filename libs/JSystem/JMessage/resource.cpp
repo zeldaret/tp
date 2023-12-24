@@ -5,7 +5,7 @@
 
 #include "JSystem/JMessage/resource.h"
 #include "string.h"
-#include "mem.h"
+#include "string.h"
 #include "dol2asm.h"
 
 //

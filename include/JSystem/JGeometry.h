@@ -2,7 +2,6 @@
 #define JGEOMETRY_H
 
 #include "dolphin/mtx/vec.h"
-#include "float.h"
 #include "math.h"
 
 namespace JGeometry {

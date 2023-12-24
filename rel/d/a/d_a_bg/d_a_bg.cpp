@@ -12,7 +12,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "mem.h"
+#include "string.h"
 
 //
 // Types:
