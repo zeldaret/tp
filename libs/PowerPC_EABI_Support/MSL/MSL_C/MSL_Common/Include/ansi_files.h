@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_ANSI_FILES_H
-#define MSL_COMMON_SRC_ANSI_FILES_H
+#ifndef _MSL_COMMON_ANSI_FILES_H
+#define _MSL_COMMON_ANSI_FILES_H
 
 #include "stddef.h"
 
@@ -126,4 +126,4 @@ void __close_all(void);
 };
 #endif
 
-#endif /* MSL_COMMON_SRC_ANSI_FILES_H */
+#endif /* _MSL_COMMON_ANSI_FILES_H */

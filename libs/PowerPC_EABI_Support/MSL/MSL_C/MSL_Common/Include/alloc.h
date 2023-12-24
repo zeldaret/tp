@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_ALLOC_H
-#define MSL_COMMON_SRC_ALLOC_H
+#ifndef _MSL_COMMON_ALLOC_H
+#define _MSL_COMMON_ALLOC_H
 
 #include "ansi_files.h"
 
@@ -13,4 +13,4 @@ void free(void* ptr);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_ALLOC_H */
+#endif /* _MSL_COMMON_ALLOC_H */

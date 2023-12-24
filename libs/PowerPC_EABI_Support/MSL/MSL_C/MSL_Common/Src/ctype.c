@@ -12,7 +12,6 @@
 #define uhex (hexd | uppc)
 #define lhex (hexd | lowc)
 
-/* ############################################################################################## */
 /* 803D2C18-803D2D18 02FD38 0100+00 0/0 3/3 0/0 .data            __ctype_map */
 unsigned char __ctype_map[256] = {
     // clang-format off

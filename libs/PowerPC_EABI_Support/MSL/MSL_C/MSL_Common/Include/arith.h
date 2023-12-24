@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_ARITH_H
-#define MSL_COMMON_SRC_ARITH_H
+#ifndef _MSL_COMMON_ARITH_H
+#define _MSL_COMMON_ARITH_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,4 +16,4 @@ div_t div(int numerator, int denominator);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_ARITH_H */
+#endif /* _MSL_COMMON_ARITH_H */

@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_DIRECT_IO_H
-#define MSL_COMMON_SRC_DIRECT_IO_H
+#ifndef _MSL_COMMON_DIRECT_IO_H
+#define _MSL_COMMON_DIRECT_IO_H
 
 #include "ansi_files.h"
 
@@ -14,4 +14,4 @@ size_t fwrite(const void* buffer, size_t size, size_t count, FILE* stream);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_DIRECT_IO_H */
+#endif /* _MSL_COMMON_DIRECT_IO_H */

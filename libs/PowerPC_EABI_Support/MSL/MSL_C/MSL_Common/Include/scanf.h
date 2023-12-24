@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_SCANF_H
-#define MSL_COMMON_SRC_SCANF_H
+#ifndef _MSL_COMMON_SCANF_H
+#define _MSL_COMMON_SCANF_H
 
 #include "stddef.h"
 #include "ansi_files.h"
@@ -40,4 +40,4 @@ int __StringRead(void* str, int ch, int behavior);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_SCANF_H */
+#endif /* _MSL_COMMON_SCANF_H */

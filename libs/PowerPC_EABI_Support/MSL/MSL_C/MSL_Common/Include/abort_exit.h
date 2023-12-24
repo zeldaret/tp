@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_ABORT_EXIT_H
-#define MSL_COMMON_SRC_ABORT_EXIT_H
+#ifndef _MSL_COMMON_ABORT_EXIT_H
+#define _MSL_COMMON_ABORT_EXIT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,4 +14,4 @@ extern void (*__stdio_exit)(void);
 };
 #endif
 
-#endif /* MSL_COMMON_SRC_ABORT_EXIT_H */
+#endif /* _MSL_COMMON_ABORT_EXIT_H */

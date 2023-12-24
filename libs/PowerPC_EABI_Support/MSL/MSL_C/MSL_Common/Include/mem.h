@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_MEM_H
-#define MSL_COMMON_SRC_MEM_H
+#ifndef _MSL_COMMON_MEM_H
+#define _MSL_COMMON_MEM_H
 
 #include "stddef.h"
 
@@ -16,4 +16,4 @@ void* memmove(void* dst, const void* src, size_t n);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_MEM_H */
+#endif /* _MSL_COMMON_MEM_H */

@@ -1,10 +1,7 @@
 #include "ansi_files.h"
 #include "file_io.h"
+#include "critical_regions.h"
 
-void __end_critical_region(int);
-void __begin_critical_region(int);
-
-/* ############################################################################################## */
 /* 8044D778-8044D878 07A498 0100+00 1/0 0/0 0/0 .bss             stdin_buff */
 static unsigned char stdin_buff[0x100];
 
@@ -123,7 +120,7 @@ void __close_all(void) {
     FILE* file = &__files._stdin;
     FILE* last_file;
 
-    __begin_critical_region(2);
+    __begin_critical_region(stdin_access);
 
     while (file != NULL) {
         if (file->file_mode.file_kind != __closed_file) {
@@ -143,7 +140,7 @@ void __close_all(void) {
         }
     }
 
-    __end_critical_region(2);
+    __end_critical_region(stdin_access);
 }
 
 /* 8036300C-8036307C 35D94C 0070+00 0/0 2/2 0/0 .text            __flush_all */
@@ -152,7 +149,7 @@ unsigned int __flush_all(void) {
     FILE* file = &__files._stdin;
 
     while (file) {
-        if (file->file_mode.file_kind != 0 && fflush(file)) {
+        if (file->file_mode.file_kind != __closed_file && fflush(file)) {
             ret = -1;
         }
         file = file->next_file;

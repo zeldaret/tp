@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_ANSI_FP_H
-#define MSL_COMMON_SRC_ANSI_FP_H
+#ifndef _MSL_COMMON_ANSI_FP_H
+#define _MSL_COMMON_ANSI_FP_H
 
 #include "float.h"
 

@@ -11,7 +11,3 @@ unsigned long __float_max[] = {0x7F7FFFFF};
 
 /* 80450AEC-80450AF0 00056C 0004+00 0/0 28/28 0/0 .sdata           __float_epsilon */
 unsigned long __float_epsilon[] = {0x34000000};
-
-/* 80450AF0-80450AF4 000570 0004+00 0/0 1/1 0/0 .sdata           None */
-extern float data_80450AF0;
-float data_80450AF0 = -0.0f;

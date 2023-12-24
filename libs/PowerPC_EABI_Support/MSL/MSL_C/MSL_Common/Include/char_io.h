@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_CHAR_IO_H
-#define MSL_COMMON_SRC_CHAR_IO_H
+#ifndef _MSL_COMMON_CHAR_IO_H
+#define _MSL_COMMON_CHAR_IO_H
 
 #include "ansi_files.h"
 
@@ -14,4 +14,4 @@ int __put_char(int c, FILE* stream);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_CHAR_IO_H */
+#endif /* _MSL_COMMON_CHAR_IO_H */

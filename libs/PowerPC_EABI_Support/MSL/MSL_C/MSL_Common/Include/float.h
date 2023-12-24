@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_FLOAT_H
-#define MSL_COMMON_SRC_FLOAT_H
+#ifndef _MSL_COMMON_FLOAT_H
+#define _MSL_COMMON_FLOAT_H
 
 #include "fdlibm.h"
 
@@ -83,4 +83,4 @@ inline int __fpclassifyd(double __value) {
 #define DBL_MAX_EXP    1024
 #define DBL_MAX_10_EXP 308
 
-#endif /* MSL_COMMON_SRC_FLOAT_H */
+#endif /* _MSL_COMMON_FLOAT_H */

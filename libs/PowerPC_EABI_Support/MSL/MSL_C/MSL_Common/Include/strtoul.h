@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_STRTOUL_H
-#define MSL_COMMON_SRC_STRTOUL_H
+#ifndef _MSL_COMMON_STRTOUL_H
+#define _MSL_COMMON_STRTOUL_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,4 +14,4 @@ unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_STRTOUL_H */
+#endif /* _MSL_COMMON_STRTOUL_H */

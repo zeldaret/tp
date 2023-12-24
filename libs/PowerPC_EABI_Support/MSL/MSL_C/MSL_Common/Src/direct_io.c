@@ -1,19 +1,16 @@
 #include "direct_io.h"
+#include "critical_regions.h"
 #include "misc_io.h"
 #include "string.h"
 #include "wchar_io.h"
-#include "dol2asm.h"
-
-void __end_critical_region();
-void __begin_critical_region();
 
 /* 80365494-803657A0 35FDD4 030C+00 1/1 0/0 0/0 .text            __fwrite */
 size_t fwrite(const void* buffer, size_t size, size_t count, FILE* stream) {
     size_t retval;
 
-    __begin_critical_region(2);
+    __begin_critical_region(stdin_access);
     retval = __fwrite(buffer, size, count, stream);
-    __end_critical_region(2);
+    __end_critical_region(stdin_access);
 
     return (retval);
 }
@@ -85,7 +82,8 @@ size_t __fwrite(const void* buffer, size_t size, size_t count, FILE* stream) {
                 stream->buffer_length -= num_bytes;
             }
             if (!stream->buffer_length || newline != NULL ||
-                (stream->file_mode.buffer_mode == _IONBF)) {
+                (stream->file_mode.buffer_mode == _IONBF))
+            {
                 ioresult = __flush_buffer(stream, NULL);
 
                 if (ioresult) {

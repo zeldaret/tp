@@ -35,20 +35,20 @@ int fflush(FILE* file) {
         return -1;
     }
 
-    if (file->file_mode.io_mode == 1) {
+    if (file->file_mode.io_mode == __read) {
         return 0;
     }
 
-    if (file->file_state.io_state >= 3) {
-        file->file_state.io_state = 2;
+    if (file->file_state.io_state >= __rereading) {
+        file->file_state.io_state = __reading;
     }
 
-    if (file->file_state.io_state == 2) {
+    if (file->file_state.io_state == __reading) {
         file->buffer_length = 0;
     }
 
-    if (file->file_state.io_state != 1) {
-        file->file_state.io_state = 0;
+    if (file->file_state.io_state != __writing) {
+        file->file_state.io_state = __neutral;
         return 0;
     }
 
@@ -64,7 +64,7 @@ int fflush(FILE* file) {
         return -1;
     }
 
-    file->file_state.io_state = 0;
+    file->file_state.io_state = __neutral;
     file->position = pos;
     file->buffer_length = 0;
     return 0;

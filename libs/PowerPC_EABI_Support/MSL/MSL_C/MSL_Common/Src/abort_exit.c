@@ -1,27 +1,11 @@
 #include "abort_exit.h"
+#include "critical_regions.h"
 #include "stddef.h"
 
-extern unsigned char data_804519A0[8];
-
-//
-// External References:
-//
-
-void _ExitProcess();
-void __destroy_global_chain();
-void __end_critical_region();
-void __begin_critical_region();
-void __kill_critical_regions();
 extern void (*__destroy_global_chain_reference[])(void);
 
-/* ############################################################################################## */
 /* 8044D440-8044D540 07A160 0100+00 2/2 0/0 0/0 .bss             __atexit_funcs */
 static void (*__atexit_funcs[64])(void);
-
-/* ############################################################################################## */
-/* 804519A0-804519A8 000EA0 0008+00 0/0 1/1 0/0 .sbss            None */
-extern unsigned char data_804519A0[8];
-unsigned char data_804519A0[8];
 
 /* 8045199C-804519A0 000E9C 0004+00 2/2 0/0 0/0 .sbss            __console_exit */
 static void (*__console_exit)(void);
@@ -39,12 +23,12 @@ static int __aborting;
 void abort(void) {
     raise(1);
     __aborting = 1;
-    __begin_critical_region(0);
+    __begin_critical_region(atexit_funcs_access);
 
     while (__atexit_curr_func > 0)
         __atexit_funcs[--__atexit_curr_func]();
 
-    __end_critical_region(0);
+    __end_critical_region(atexit_funcs_access);
     __kill_critical_regions();
 
     if (__console_exit != NULL) {
@@ -61,8 +45,8 @@ void exit(int status) {
     void (**dtor)(void);
 
     if (!__aborting) {
-        __begin_critical_region(0);
-        __end_critical_region(0);
+        __begin_critical_region(atexit_funcs_access);
+        __end_critical_region(atexit_funcs_access);
         __destroy_global_chain();
 
         dtor = __destroy_global_chain_reference;
@@ -77,11 +61,11 @@ void exit(int status) {
         }
     }
 
-    __begin_critical_region(0);
+    __begin_critical_region(atexit_funcs_access);
     while (__atexit_curr_func > 0)
         __atexit_funcs[--__atexit_curr_func]();
 
-    __end_critical_region(0);
+    __end_critical_region(atexit_funcs_access);
     __kill_critical_regions();
 
     if (__console_exit != NULL) {

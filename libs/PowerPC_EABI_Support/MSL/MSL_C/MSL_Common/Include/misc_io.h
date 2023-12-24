@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_MISC_IO_H
-#define MSL_COMMON_SRC_MISC_IO_H
+#ifndef _MSL_COMMON_MISC_IO_H
+#define _MSL_COMMON_MISC_IO_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,4 +11,4 @@ void __stdio_atexit(void);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_MISC_IO_H */
+#endif /* _MSL_COMMON_MISC_IO_H */

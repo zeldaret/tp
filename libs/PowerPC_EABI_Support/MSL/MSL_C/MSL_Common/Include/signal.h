@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_SIGNAL_H
-#define MSL_COMMON_SRC_SIGNAL_H
+#ifndef _MSL_COMMON_SIGNAL_H
+#define _MSL_COMMON_SIGNAL_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,4 +13,4 @@ int raise(int sig);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_SIGNAL_H */
+#endif /* _MSL_COMMON_SIGNAL_H */

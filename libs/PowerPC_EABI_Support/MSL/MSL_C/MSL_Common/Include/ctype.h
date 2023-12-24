@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_CTYPE_H
-#define MSL_COMMON_SRC_CTYPE_H
+#ifndef _MSL_COMMON_CTYPE_H
+#define _MSL_COMMON_CTYPE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ inline int toupper(int c) { return (c == -1 ? -1 : (int)__upper_map[(unsigned ch
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_CTYPE_H */
+#endif /* _MSL_COMMON_CTYPE_H */

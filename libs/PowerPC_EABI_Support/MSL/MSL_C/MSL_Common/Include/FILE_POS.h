@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_FILE_POS_H
-#define MSL_COMMON_SRC_FILE_POS_H
+#ifndef _MSL_COMMON_FILE_POS_H
+#define _MSL_COMMON_FILE_POS_H
 
 #include "ansi_files.h"
 
@@ -15,4 +15,4 @@ long ftell(FILE* file);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_FILE_POS_H */
+#endif /* _MSL_COMMON_FILE_POS_H */

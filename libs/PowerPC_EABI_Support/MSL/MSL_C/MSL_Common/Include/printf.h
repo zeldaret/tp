@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_PRINTF_H
-#define MSL_COMMON_SRC_PRINTF_H
+#ifndef _MSL_COMMON_PRINTF_H
+#define _MSL_COMMON_PRINTF_H
 
 #include "ansi_files.h"
 #include "__va_arg.h"
@@ -19,4 +19,4 @@ int vprintf(const char* format, va_list arg);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_PRINTF_H */
+#endif /* _MSL_COMMON_PRINTF_H */

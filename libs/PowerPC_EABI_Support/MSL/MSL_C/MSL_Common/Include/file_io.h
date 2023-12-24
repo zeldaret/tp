@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_FILE_IO_H
-#define MSL_COMMON_SRC_FILE_IO_H
+#ifndef _MSL_COMMON_FILE_IO_H
+#define _MSL_COMMON_FILE_IO_H
 
 #include "ansi_files.h"
 
@@ -15,4 +15,4 @@ int fclose(FILE* file);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_FILE_IO_H */
+#endif /* _MSL_COMMON_FILE_IO_H */

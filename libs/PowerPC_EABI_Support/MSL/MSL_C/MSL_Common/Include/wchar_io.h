@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_WCHAR_IO_H
-#define MSL_COMMON_SRC_WCHAR_IO_H
+#ifndef _MSL_COMMON_WCHAR_IO_H
+#define _MSL_COMMON_WCHAR_IO_H
 
 #include "ansi_files.h"
 
@@ -9,4 +9,4 @@ typedef unsigned short wchar_t;
 
 int fwide(FILE* file, int mode);
 
-#endif /* MSL_COMMON_SRC_WCHAR_IO_H */
+#endif /* _MSL_COMMON_WCHAR_IO_H */

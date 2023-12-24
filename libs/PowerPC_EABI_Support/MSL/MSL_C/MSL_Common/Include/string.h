@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_STRING_H
-#define MSL_COMMON_SRC_STRING_H
+#ifndef _MSL_COMMON_STRING_H
+#define _MSL_COMMON_STRING_H
 
 #include "stddef.h"
 
@@ -23,4 +23,4 @@ size_t strlen(const char* str);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_STRING_H */
+#endif /* _MSL_COMMON_STRING_H */

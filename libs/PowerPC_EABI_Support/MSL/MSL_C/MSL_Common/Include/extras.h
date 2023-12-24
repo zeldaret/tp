@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_EXTRAS_H
-#define MSL_COMMON_SRC_EXTRAS_H
+#ifndef _MSL_COMMON_EXTRAS_H
+#define _MSL_COMMON_EXTRAS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,4 +12,4 @@ int stricmp(const char* str1, const char* str2);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_EXTRAS_H */
+#endif /* _MSL_COMMON_EXTRAS_H */

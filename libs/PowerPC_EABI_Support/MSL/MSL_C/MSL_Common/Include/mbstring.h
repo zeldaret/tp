@@ -1,5 +1,5 @@
-#ifndef MSL_COMMON_SRC_MBSTRING_H
-#define MSL_COMMON_SRC_MBSTRING_H
+#ifndef _MSL_COMMON_MBSTRING_H
+#define _MSL_COMMON_MBSTRING_H
 
 #include "wchar_io.h"
 
@@ -13,4 +13,4 @@ size_t wcstombs(char* dst, const wchar_t* src, size_t n);
 }
 #endif
 
-#endif /* MSL_COMMON_SRC_MBSTRING_H */
+#endif /* _MSL_COMMON_MBSTRING_H */
