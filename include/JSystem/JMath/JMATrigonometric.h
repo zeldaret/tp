@@ -2,7 +2,7 @@
 #define JMATRIGONOMETRIC_H
 
 #include "dolphin/types.h"
-#include "MSL_C/utility.h"
+#include "utility.h"
 
 struct TSinCosTable {
     std::pair<f32, f32> table[0x2000];

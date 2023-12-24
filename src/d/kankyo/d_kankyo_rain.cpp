@@ -12,6 +12,7 @@
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include "mem.h"
 
 //
 // Forward References:

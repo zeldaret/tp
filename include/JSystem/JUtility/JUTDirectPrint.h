@@ -2,7 +2,7 @@
 #define JUTDIRECTPRINT_H
 
 #include "JSystem/JUtility/TColor.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
+#include "__va_arg.h"
 
 class JUTDirectPrint {
 private:

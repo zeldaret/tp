@@ -15,6 +15,7 @@
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/kytag/d_a_kytag08/d_a_kytag08.h"
+#include "mem.h"
 
 //
 // Types:

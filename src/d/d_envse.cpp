@@ -8,6 +8,7 @@
 #include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
+#include "mem.h"
 
 //
 // Forward References:

@@ -4,7 +4,7 @@
  */
 
 #include "SSystem/SComponent/c_m3d.h"
-#include "MSL_C/float.h"
+#include "float.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"

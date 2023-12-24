@@ -5,7 +5,7 @@
 
 #include "dolphin/gx/GXTexture.h"
 #include "dolphin/gx/GX.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "string.h"
 #include "dol2asm.h"
 
 //

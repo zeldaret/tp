@@ -4,7 +4,7 @@
  */
 
 #include "SSystem/SComponent/c_lib.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dolphin/mtx/mtxvec.h"
 

@@ -9,7 +9,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 

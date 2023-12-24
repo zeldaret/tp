@@ -4,7 +4,7 @@
 //
 
 #include "d/msg/d_msg_object.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_class.h"
 #include "dol2asm.h"

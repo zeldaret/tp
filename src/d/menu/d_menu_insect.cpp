@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter2_info.h"

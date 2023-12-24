@@ -9,8 +9,8 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "MSL_C/math.h"
-#include "MSL_C/string.h"
+#include "math.h"
+#include "string.h"
 #include "dolphin/os/OS.h"
 #include "global.h"
 

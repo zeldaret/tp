@@ -1,4 +1,4 @@
-#include "MSL_C/stdlib.h"
+#include "stdlib.h"
 #include "dol2asm.h"
 #include "init.h"
 

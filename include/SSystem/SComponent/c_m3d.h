@@ -1,7 +1,7 @@
 #ifndef C_M3D_H_
 #define C_M3D_H_
 
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dolphin/types.h"
 #include "dolphin/mtx/vec.h"
 
