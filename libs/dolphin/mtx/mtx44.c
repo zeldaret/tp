@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/mtx/mtx44.h"
-#include "MSL_C/math.h"
+#include "math.h"
 
 //
 // Declarations:

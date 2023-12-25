@@ -5,8 +5,8 @@
 
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/MSL_Common/Src/ctype.h"
-#include "MSL_C/string.h"
+#include "ctype.h"
+#include "string.h"
 
 /* ############################################################################################## */
 /* 80451420-80451428 000920 0004+04 1/1 5/5 0/0 .sbss            sCurrentDirID__10JKRArchive */

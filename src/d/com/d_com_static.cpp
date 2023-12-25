@@ -4,7 +4,7 @@
 //
 
 #include "d/com/d_com_static.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "rel/d/a/d_a_dshutter/d_a_dshutter.h"

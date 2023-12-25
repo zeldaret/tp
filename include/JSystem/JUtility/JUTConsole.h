@@ -4,7 +4,7 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "Runtime.PPCEABI.H/__va_arg.h"
+#include "__va_arg.h"
 #include "dolphin/types.h"
 
 class JUTConsole : public JKRDisposer {

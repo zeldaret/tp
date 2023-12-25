@@ -11,7 +11,7 @@ public:
     /* 80485E88 */ int Delete();
 
     /* 0x568 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ const char mArcName[16];
+    /* 0x570 */ char mArcName[16];
 };
 
 #endif /* D_A_SET_BGOBJ_H */

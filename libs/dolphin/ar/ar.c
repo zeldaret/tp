@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/ar/ar.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/dsp/dsp.h"

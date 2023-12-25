@@ -5,7 +5,7 @@
 
 #include "d/com/d_com_inf_game.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_item.h"
 #include "d/d_procname.h"

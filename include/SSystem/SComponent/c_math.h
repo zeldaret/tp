@@ -8,11 +8,11 @@ u16 U_GetAtanTable(float, float);
 s16 cM_atan2s(float y, float x);
 float cM_atan2f(float y, float x);
 void cM_initRnd(int, int, int);
-float cM_rnd(void);
+float cM_rnd();
 float cM_rndF(float);
 float cM_rndFX(float);
 void cM_initRnd2(int, int, int);
-float cM_rnd2(void);
+float cM_rnd2();
 float cM_rndF2(float);
 float cM_rndFX2(float);
 

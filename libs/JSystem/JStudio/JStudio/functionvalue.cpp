@@ -5,8 +5,8 @@
 
 #include "JSystem/JStudio/JStudio/functionvalue.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "MSL_C/math.h"
-#include "MSL_C/stdlib.h"
+#include "math.h"
+#include "stdlib.h"
 #include "dol2asm.h"
 #include "global.h"
 

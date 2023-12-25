@@ -6,7 +6,7 @@
 #include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/pane/d_pane_class.h"

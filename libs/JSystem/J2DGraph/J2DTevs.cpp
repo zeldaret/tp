@@ -6,7 +6,7 @@
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JUtility/TColor.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GX.h"
 

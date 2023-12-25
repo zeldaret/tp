@@ -4,7 +4,7 @@
  */
 
 #include "dolphin/gx/GXLight.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dolphin/gx/GX.h"
 
 /* 8035D630-8035D64C 357F70 001C+00 0/0 1/1 0/0 .text            GXInitLightAttn */

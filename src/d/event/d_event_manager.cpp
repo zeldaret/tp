@@ -5,7 +5,7 @@
 
 #include "d/event/d_event_manager.h"
 #include "SSystem/SComponent/c_math.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"

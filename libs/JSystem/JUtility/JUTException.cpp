@@ -6,9 +6,9 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "MSL_C/float.h"
-#include "MSL_C/stdio.h"
-#include "MSL_C/stdlib.h"
+#include "math.h"
+#include "stdio.h"
+#include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
@@ -285,12 +285,15 @@ void JUTException::setFPException(u32 fpscr_enable_bits) {
     }
 }
 
+// u8 doesn't work in other places for signbit? temp fix
+#define __signbit(x) ((*(unsigned char*)&(x)) & 0x80)
+
 /* 802E22C4-802E2454 2DCC04 0190+00 1/1 0/0 0/0 .text            showFloatSub__12JUTExceptionFif */
 void JUTException::showFloatSub(int index, f32 value) {
     if (fpclassify(value) == FP_NAN) {
         sConsole->print_f("F%02d: Nan      ", index);
     } else if (fpclassify(value) == FP_INFINITE) {
-        if (signbit(value)) {
+        if (__signbit(value)) {
             sConsole->print_f("F%02d:+Inf     ", index);
         } else {
             sConsole->print_f("F%02d:-Inf     ", index);

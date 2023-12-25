@@ -9,8 +9,8 @@
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/ai/ai.h"
 #include "dol2asm.h"
-#include "MSL_C/MSL_Common/Src/string.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "string.h"
+#include "printf.h"
 
 /* 8033CA80-8033CC08 3373C0 0188+00 1/1 0/0 0/0 .text            PackArgs */
 #pragma push

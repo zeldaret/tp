@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 #include "m_Do/m_Do_dvd_thread.h"

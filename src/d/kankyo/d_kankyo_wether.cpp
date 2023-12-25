@@ -12,6 +12,7 @@
 #include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "global.h"
+#include "string.h"
 #include "m_Do/m_Do_audio.h"
 
 //
