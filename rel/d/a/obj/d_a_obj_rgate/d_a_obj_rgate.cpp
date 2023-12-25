@@ -13,6 +13,28 @@
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/obj/d_a_obj_eff/d_a_obj_eff.h"
 
+#define GATE_L_JNT 1
+#define GATE_R_JNT 2
+
+enum {
+    ACT_WAIT_EVENT,
+    ACT_EVENT,
+    ACT_DEAD,
+};
+
+enum {
+    DEMO_ACT_WAIT,
+    DEMO_ACT_ADJUSTMENT,
+    DEMO_ACT_UNLOCK,
+    DEMO_ACT_OPEN,
+};
+
+enum {
+    AREA_CHECK_PLAYER = 1,
+    AREA_CHECK_COACH,
+    AREA_CHECK_HORSE,
+};
+
 /* 80CB9C98-80CB9CE8 000078 0050+00 3/3 0/0 0/0 .text            search_coach__FPvPv */
 static void* search_coach(void* i_actor, void* i_data) {
     if (i_actor != NULL && fopAcM_IsActor(i_actor) && fopAcM_GetProfName(i_actor) == PROC_NPC_COACH)
@@ -30,15 +52,15 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model_p = j3dSys.getModel();
         daObjRgate_c* actor_p = (daObjRgate_c*)model_p->getUserArea();
 
-        if (jnt_no == 1) {
+        if (jnt_no == GATE_L_JNT) {
             MTXCopy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
-            mDoMtx_stack_c::YrotM(actor_p->field_0xb76);
+            mDoMtx_stack_c::YrotM(actor_p->mGateLAngle);
             model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
 
             MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
-        } else if (jnt_no == 2) {
+        } else if (jnt_no == GATE_R_JNT) {
             MTXCopy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
-            mDoMtx_stack_c::YrotM(actor_p->field_0xb74);
+            mDoMtx_stack_c::YrotM(actor_p->mGateRAngle);
             model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
 
             MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
@@ -93,7 +115,7 @@ void daObjRgate_c::initBaseMtx() {
 
     mEffPos = current.pos;
     mEffPos += eff_pos_offset;
-    field_0xbdc.set(0, current.angle.y, 0);
+    mKeyRot.set(0, current.angle.y, 0);
     setBaseMtx();
 }
 
@@ -113,7 +135,7 @@ void daObjRgate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(sp30);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mDoMtx_stack_c::YrotM(field_0xb76);
+    mDoMtx_stack_c::YrotM(mGateLAngle);
 
     MTXCopy(mDoMtx_stack_c::get(), field_0xc30);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
@@ -123,7 +145,7 @@ void daObjRgate_c::setBaseMtx() {
     mDoMtx_stack_c::transM(sp3C);
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::YrotM(0x7FFF);
-    mDoMtx_stack_c::YrotM(field_0xb74);
+    mDoMtx_stack_c::YrotM(mGateRAngle);
 
     MTXCopy(mDoMtx_stack_c::get(), field_0xc00);
     MTXCopy(mDoMtx_stack_c::get(), field_0xae4);
@@ -133,7 +155,7 @@ void daObjRgate_c::setBaseMtx() {
         cXyz sp48(0.0f, 128.0f, 38.0f);
         mDoMtx_stack_c::YrotS(current.angle.y);
         mDoMtx_stack_c::transM(-350.0f, 0.0f, 0.0f);
-        mDoMtx_stack_c::YrotM(field_0xb76);
+        mDoMtx_stack_c::YrotM(mGateLAngle);
         mDoMtx_stack_c::transM(350.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::multVec(&sp48, &sp48);
 
@@ -141,17 +163,17 @@ void daObjRgate_c::setBaseMtx() {
         cXyz sp60;
         sp60 = field_0xbc0;
 
-        mDoMtx_stack_c::YrotS(current.angle.y + field_0xb76);
+        mDoMtx_stack_c::YrotS(current.angle.y + mGateLAngle);
         mDoMtx_stack_c::multVec(&sp60, &sp60);
         sp54 = field_0xbb4;
 
-        s16 var_r29 = field_0xbb0 * cM_scos(field_0xb98 * 3000);
+        s16 var_r29 = field_0xbb0 * cM_scos(mCounter * 3000);
         cLib_addCalc(&field_0xbb0, 0.0f, 0.05f, 50.0f, 5.0f);
 
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::transM(sp60);
         mDoMtx_stack_c::transM(sp48);
-        mDoMtx_stack_c::YrotM(current.angle.y + field_0xb76);
+        mDoMtx_stack_c::YrotM(current.angle.y + mGateLAngle);
         mDoMtx_stack_c::XrotM(-0xE38);
         mDoMtx_stack_c::XrotM(-field_0xbaa);
         mDoMtx_stack_c::transM(14.0f, 0.0f, 0.0f);
@@ -164,7 +186,7 @@ void daObjRgate_c::setBaseMtx() {
             if (field_0xbae == 0) {
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::transM(sp48);
-                mDoMtx_stack_c::YrotM(current.angle.y + field_0xb76);
+                mDoMtx_stack_c::YrotM(current.angle.y + mGateLAngle);
                 mDoMtx_stack_c::XrotM(-0xE38);
                 mDoMtx_stack_c::XrotM(-field_0xbaa);
                 mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -179,15 +201,15 @@ void daObjRgate_c::setBaseMtx() {
                 if (fopAcM_gc_c::gndCheck(&sp6C) && fopAcM_gc_c::getGroundY() > mEffPos.y) {
                     mEffPos.y = fopAcM_gc_c::getGroundY() + 2.0f;
 
-                    if (field_0xba9 == 0) {
+                    if (!mCreatedSmokeEff) {
                         daObjEff::Act_c::make_land_smoke(&mEffPos, 0.5f);
-                        field_0xba9 = 1;
+                        mCreatedSmokeEff = true;
                     }
                 }
 
-                cLib_addCalcAngleS(&field_0xbdc.x, -0x4000, 5, 0xC00, 0x400);
+                cLib_addCalcAngleS(&mKeyRot.x, -0x4000, 5, 0xC00, 0x400);
                 mDoMtx_stack_c::transS(mEffPos);
-                mDoMtx_stack_c::ZXYrotM(field_0xbdc);
+                mDoMtx_stack_c::ZXYrotM(mKeyRot);
                 mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
             }
         }
@@ -227,11 +249,11 @@ int daObjRgate_c::Create() {
 
         mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
         mMapToolID = getEventID();
-        setAction(0);
+        setAction(ACT_WAIT_EVENT);
     } else {
         mEventID = -1;
         mMapToolID = 0xFF;
-        setAction(2);
+        setAction(ACT_DEAD);
     }
 
     mAttentionInfo.mPosition.y += 150.0f;
@@ -322,150 +344,154 @@ int daObjRgate_c::create1st() {
 }
 
 /* 80CBA8A8-80CBAC38 000C88 0390+00 1/1 0/0 0/0 .text checkAreaL__12daObjRgate_cFPC4cXyzPC4cXyz */
-int daObjRgate_c::checkAreaL(cXyz const* param_0, cXyz const* param_1) {
+int daObjRgate_c::checkAreaL(cXyz const* unused1, cXyz const* unused2) {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
-    Mtx sp48;
-    cXyz sp54;
-    cXyz sp60;
-    cXyz sp6C;
-    cXyz sp78;
+    Mtx m;
+    cXyz pos;
+    cXyz offset;
+    cXyz bound_a;
+    cXyz bound_b;
 
-    sp6C.set(0.0f, 0.0f, -100.0f);
-    sp78.set(400.0f, 0.0f, 300.0f);
-    sp60.set(0.0f, 0.0f, 100.0f);
+    bound_a.set(0.0f, 0.0f, -100.0f);
+    bound_b.set(400.0f, 0.0f, 300.0f);
+    offset.set(0.0f, 0.0f, 100.0f);
 
     fopAc_ac_c* coach_p = fopAcM_Search(search_coach, this);
     if (coach_p != NULL) {
         mDoMtx_stack_c::transS(coach_p->current.pos);
         mDoMtx_stack_c::YrotM(coach_p->shape_angle.y);
-        mDoMtx_stack_c::multVec(&sp60, &sp60);
-        sp54 = sp60;
+        mDoMtx_stack_c::multVec(&offset, &offset);
+        pos = offset;
 
-        mDoMtx_inverse(field_0xc30, sp48);
-        mDoMtx_stack_c::copy(sp48);
-        mDoMtx_stack_c::multVec(&sp54, &sp54);
+        mDoMtx_inverse(field_0xc30, m);
+        mDoMtx_stack_c::copy(m);
+        mDoMtx_stack_c::multVec(&pos, &pos);
 
-        if (sp6C.x <= sp54.x && sp54.x <= sp78.x && sp6C.z <= sp54.z && sp54.z <= sp78.z) {
-            return 2;
+        if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z && pos.z <= bound_b.z) {
+            return AREA_CHECK_COACH;
         }
     }
 
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-        sp60.set(0.0f, 0.0f, 250.0f);
+        offset.set(0.0f, 0.0f, 250.0f);
 
         daHorse_c* horse_p = i_dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
-            mDoMtx_stack_c::multVec(&sp60, &sp60);
-            sp54 = sp60;
+            mDoMtx_stack_c::multVec(&offset, &offset);
+            pos = offset;
 
-            mDoMtx_inverse(field_0xc30, sp48);
-            mDoMtx_stack_c::copy(sp48);
-            mDoMtx_stack_c::multVec(&sp54, &sp54);
+            mDoMtx_inverse(field_0xc30, m);
+            mDoMtx_stack_c::copy(m);
+            mDoMtx_stack_c::multVec(&pos, &pos);
 
-            if (sp6C.x <= sp54.x && sp54.x <= sp78.x && sp6C.z <= sp54.z && sp54.z <= sp78.z) {
-                return 3;
+            if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z &&
+                pos.z <= bound_b.z)
+            {
+                return AREA_CHECK_HORSE;
             }
         }
     }
 
-    sp6C.set(0.0f, 0.0f, -100.0f);
-    sp78.set(350.0f, 0.0f, 100.0f);
-    sp54 = player_p->current.pos;
+    bound_a.set(0.0f, 0.0f, -100.0f);
+    bound_b.set(350.0f, 0.0f, 100.0f);
+    pos = player_p->current.pos;
 
     if (daPy_py_c::i_checkNowWolf()) {
-        sp60.set(0.0f, 0.0f, 90.0f);
+        offset.set(0.0f, 0.0f, 90.0f);
     } else {
-        sp60.set(0.0f, 0.0f, 0.0f);
+        offset.set(0.0f, 0.0f, 0.0f);
     }
 
     mDoMtx_stack_c::YrotS(player_p->shape_angle.y);
-    mDoMtx_stack_c::multVec(&sp60, &sp60);
-    sp54 += sp60;
+    mDoMtx_stack_c::multVec(&offset, &offset);
+    pos += offset;
 
-    mDoMtx_inverse(field_0xc30, sp48);
-    mDoMtx_stack_c::copy(sp48);
-    mDoMtx_stack_c::multVec(&sp54, &sp54);
+    mDoMtx_inverse(field_0xc30, m);
+    mDoMtx_stack_c::copy(m);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    if (sp6C.x <= sp54.x && sp54.x <= sp78.x && sp6C.z <= sp54.z && sp54.z <= sp78.z) {
-        return 1;
+    if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z && pos.z <= bound_b.z) {
+        return AREA_CHECK_PLAYER;
     }
 
     return 0;
 }
 
 /* 80CBAC38-80CBAFC4 001018 038C+00 1/1 0/0 0/0 .text checkAreaR__12daObjRgate_cFPC4cXyzPC4cXyz */
-int daObjRgate_c::checkAreaR(cXyz const* param_0, cXyz const* param_1) {
+int daObjRgate_c::checkAreaR(cXyz const* unused1, cXyz const* unused2) {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
-    Mtx sp48;
-    Mtx sp78;
-    cXyz sp88;
-    cXyz sp94;
-    cXyz spA0;
-    cXyz spAC;
+    Mtx m;
+    Mtx m2;
+    cXyz pos;
+    cXyz offset;
+    cXyz bound_a;
+    cXyz bound_b;
 
-    spA0.set(0.0f, 0.0f, -300.0f);
-    spAC.set(400.0f, 0.0f, 100.0f);
-    sp94.set(0.0f, 0.0f, 100.0f);
+    bound_a.set(0.0f, 0.0f, -300.0f);
+    bound_b.set(400.0f, 0.0f, 100.0f);
+    offset.set(0.0f, 0.0f, 100.0f);
 
     fopAc_ac_c* coach_p = fopAcM_Search(search_coach, this);
     if (coach_p != NULL) {
         mDoMtx_stack_c::transS(coach_p->current.pos);
         mDoMtx_stack_c::YrotM(coach_p->shape_angle.y);
-        mDoMtx_stack_c::multVec(&sp94, &sp94);
-        sp88 = sp94;
+        mDoMtx_stack_c::multVec(&offset, &offset);
+        pos = offset;
 
-        mDoMtx_inverse(field_0xc00, sp48);
-        mDoMtx_stack_c::copy(sp48);
-        mDoMtx_stack_c::multVec(&sp88, &sp88);
+        mDoMtx_inverse(field_0xc00, m);
+        mDoMtx_stack_c::copy(m);
+        mDoMtx_stack_c::multVec(&pos, &pos);
 
-        if (spA0.x <= sp88.x && sp88.x <= spAC.x && spA0.z <= sp88.z && sp88.z <= spAC.z) {
-            return 2;
+        if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z && pos.z <= bound_b.z) {
+            return AREA_CHECK_COACH;
         }
     }
 
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-        sp94.set(0.0f, 0.0f, 250.0f);
+        offset.set(0.0f, 0.0f, 250.0f);
 
         daHorse_c* horse_p = i_dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
-            mDoMtx_stack_c::multVec(&sp94, &sp94);
-            sp88 = sp94;
+            mDoMtx_stack_c::multVec(&offset, &offset);
+            pos = offset;
 
-            mDoMtx_inverse(field_0xc00, sp48);
-            mDoMtx_stack_c::copy(sp48);
-            mDoMtx_stack_c::multVec(&sp88, &sp88);
+            mDoMtx_inverse(field_0xc00, m);
+            mDoMtx_stack_c::copy(m);
+            mDoMtx_stack_c::multVec(&pos, &pos);
 
-            if (spA0.x <= sp88.x && sp88.x <= spAC.x && spA0.z <= sp88.z && sp88.z <= spAC.z) {
-                return 3;
+            if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z &&
+                pos.z <= bound_b.z)
+            {
+                return AREA_CHECK_HORSE;
             }
         }
     }
 
-    spA0.set(0.0f, 0.0f, -100.0f);
-    spAC.set(350.0f, 0.0f, 100.0f);
-    sp88 = player_p->current.pos;
+    bound_a.set(0.0f, 0.0f, -100.0f);
+    bound_b.set(350.0f, 0.0f, 100.0f);
+    pos = player_p->current.pos;
 
-    cXyz spB8;
+    cXyz player_offset;
     if (daPy_py_c::i_checkNowWolf()) {
-        spB8.set(0.0f, 0.0f, 90.0f);
+        player_offset.set(0.0f, 0.0f, 90.0f);
     } else {
-        spB8.set(0.0f, 0.0f, 0.0f);
+        player_offset.set(0.0f, 0.0f, 0.0f);
     }
 
     mDoMtx_stack_c::YrotS(player_p->shape_angle.y);
-    mDoMtx_stack_c::multVec(&spB8, &spB8);
-    sp88 += spB8;
+    mDoMtx_stack_c::multVec(&player_offset, &player_offset);
+    pos += player_offset;
 
-    mDoMtx_inverse(field_0xc00, sp78);
-    mDoMtx_stack_c::copy(sp78);
-    mDoMtx_stack_c::multVec(&sp88, &sp88);
+    mDoMtx_inverse(field_0xc00, m2);
+    mDoMtx_stack_c::copy(m2);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    if (spA0.x <= sp88.x && sp88.x <= spAC.x && spA0.z <= sp88.z && sp88.z <= spAC.z) {
-        return 1;
+    if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z && pos.z <= bound_b.z) {
+        return AREA_CHECK_PLAYER;
     }
 
     return 0;
@@ -483,17 +509,17 @@ BOOL daObjRgate_c::checkOpen() {
         return false;
     }
 
-    Mtx sp40;
-    mDoMtx_inverse(field_0xb14, sp40);
+    Mtx m;
+    mDoMtx_inverse(field_0xb14, m);
 
-    cXyz sp50(player_p->current.pos);
-    mDoMtx_stack_c::copy(sp40);
-    mDoMtx_stack_c::multVec(&sp50, &sp50);
+    cXyz pos(player_p->current.pos);
+    mDoMtx_stack_c::copy(m);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    cXyz sp5C(-100.0f, 0.0f, 0.0f);
-    cXyz sp68(100.0f, 0.0f, 100.0f);
+    cXyz bound_a(-100.0f, 0.0f, 0.0f);
+    cXyz bound_b(100.0f, 0.0f, 100.0f);
 
-    if (sp5C.x <= sp50.x && sp50.x <= sp68.x && sp5C.z <= sp50.z && sp50.z <= sp68.z) {
+    if (bound_a.x <= pos.x && pos.x <= bound_b.x && bound_a.z <= pos.z && pos.z <= bound_b.z) {
         return true;
     }
 
@@ -502,14 +528,14 @@ BOOL daObjRgate_c::checkOpen() {
 
 /* 80CBB0F0-80CBB180 0014D0 0090+00 1/1 0/0 0/0 .text checkDirL__12daObjRgate_cFP10fopAc_ac_c */
 BOOL daObjRgate_c::checkDirL(fopAc_ac_c* i_actor) {
-    Mtx sp30;
-    mDoMtx_inverse(field_0xc30, sp30);
+    Mtx m;
+    mDoMtx_inverse(field_0xc30, m);
 
-    cXyz sp40(i_actor->current.pos);
-    mDoMtx_stack_c::copy(sp30);
-    mDoMtx_stack_c::multVec(&sp40, &sp40);
+    cXyz pos(i_actor->current.pos);
+    mDoMtx_stack_c::copy(m);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    if (sp40.z > 0.0f) {
+    if (pos.z > 0.0f) {
         return false;
     } else {
         return true;
@@ -518,14 +544,14 @@ BOOL daObjRgate_c::checkDirL(fopAc_ac_c* i_actor) {
 
 /* 80CBB180-80CBB210 001560 0090+00 1/1 0/0 0/0 .text checkDirR__12daObjRgate_cFP10fopAc_ac_c */
 BOOL daObjRgate_c::checkDirR(fopAc_ac_c* i_actor) {
-    Mtx sp30;
-    mDoMtx_inverse(field_0xc00, sp30);
+    Mtx m;
+    mDoMtx_inverse(field_0xc00, m);
 
-    cXyz sp40(i_actor->current.pos);
-    mDoMtx_stack_c::copy(sp30);
-    mDoMtx_stack_c::multVec(&sp40, &sp40);
+    cXyz pos(i_actor->current.pos);
+    mDoMtx_stack_c::copy(m);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    if (sp40.z < 0.0f) {
+    if (pos.z < 0.0f) {
         return false;
     } else {
         return true;
@@ -545,8 +571,8 @@ void daObjRgate_c::setCrkSE() {
 /* 80CBB308-80CBB370 0016E8 0068+00 1/1 0/0 0/0 .text            action__12daObjRgate_cFv */
 void daObjRgate_c::action() {
     if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
-        field_0xb76 = 0x4000;
-        field_0xb74 = -0x4000;
+        mGateLAngle = 0x4000;
+        mGateRAngle = -0x4000;
     } else {
         action_typeA();
     }
@@ -558,35 +584,35 @@ void daObjRgate_c::action_typeA() {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
     if (i_fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
-        cXyz sp54;
-        cXyz sp60;
+        cXyz unused1;
+        cXyz unused2;
 
-        int chk_l = checkAreaL(&sp54, &sp60);
-        int chk_r = checkAreaR(&sp54, &sp60);
-        s16 temp_r28 = field_0xb9c;
-        s16 temp_r27 = field_0xb9e;
+        int chk_l = checkAreaL(&unused1, &unused2);
+        int chk_r = checkAreaR(&unused1, &unused2);
+        s16 prev_l_move = mGateLMove;
+        s16 prev_r_move = mGateRMove;
 
         if (player_p->getSpeedF() != 0.0f) {
-            if (chk_l == 1) {
+            if (chk_l == AREA_CHECK_PLAYER) {
                 switch (checkDirL(player_p)) {
-                case 0:
-                    field_0xb9c = 500;
+                case FALSE:
+                    mGateLMove = 500;
                     break;
-                case 1:
-                    field_0xb9c = -500;
+                case TRUE:
+                    mGateLMove = -500;
                     break;
                 }
 
                 field_0xbb0 = 2000.0f;
             }
 
-            if (chk_r == 1) {
+            if (chk_r == AREA_CHECK_PLAYER) {
                 switch (checkDirR(player_p)) {
-                case 0:
-                    field_0xb9e = -500;
+                case FALSE:
+                    mGateRMove = -500;
                     break;
-                case 1:
-                    field_0xb9e = 500;
+                case TRUE:
+                    mGateRMove = 500;
                     break;
                 }
             }
@@ -594,26 +620,26 @@ void daObjRgate_c::action_typeA() {
 
         daHorse_c* horse_p = i_dComIfGp_getHorseActor();
         if (horse_p != NULL && horse_p->speedF != 0.0f) {
-            if (chk_l == 3) {
+            if (chk_l == AREA_CHECK_HORSE) {
                 switch (checkDirL(horse_p)) {
-                case 0:
-                    field_0xb9c = 800;
+                case FALSE:
+                    mGateLMove = 800;
                     break;
-                case 1:
-                    field_0xb9c = -800;
+                case TRUE:
+                    mGateLMove = -800;
                     break;
                 }
 
                 field_0xbb0 = 2500.0f;
             }
 
-            if (chk_r == 3) {
+            if (chk_r == AREA_CHECK_HORSE) {
                 switch (checkDirR(horse_p)) {
-                case 0:
-                    field_0xb9e = -800;
+                case FALSE:
+                    mGateRMove = -800;
                     break;
-                case 1:
-                    field_0xb9e = 800;
+                case TRUE:
+                    mGateRMove = 800;
                     break;
                 }
             }
@@ -621,87 +647,87 @@ void daObjRgate_c::action_typeA() {
 
         fopAc_ac_c* coach_p = fopAcM_Search(search_coach, this);
         if (coach_p != NULL && coach_p->speedF != 0.0f) {
-            if (chk_l == 2) {
+            if (chk_l == AREA_CHECK_COACH) {
                 switch (checkDirL(coach_p)) {
-                case 0:
-                    field_0xb9c = 900;
+                case FALSE:
+                    mGateLMove = 900;
                     break;
-                case 1:
-                    field_0xb9c = -900;
+                case TRUE:
+                    mGateLMove = -900;
                     break;
                 }
 
                 field_0xbb0 = 2500.0f;
             }
 
-            if (chk_r == 2) {
+            if (chk_r == AREA_CHECK_COACH) {
                 switch (checkDirR(coach_p)) {
-                case 0:
-                    field_0xb9e = -900;
+                case FALSE:
+                    mGateRMove = -900;
                     break;
-                case 1:
-                    field_0xb9e = 900;
+                case TRUE:
+                    mGateRMove = 900;
                     break;
                 }
             }
         }
 
-        if (abs(abs(temp_r28) - abs(field_0xb9c)) > 400 ||
-            abs(abs(temp_r27) - abs(field_0xb9e)) > 400)
+        if (abs(abs(prev_l_move) - abs(mGateLMove)) > 400 ||
+            abs(abs(prev_r_move) - abs(mGateRMove)) > 400)
         {
             setCrkSE();
         }
 
-        if (field_0xb9c > 1500) {
-            field_0xb9c = 1500;
+        if (mGateLMove > 1500) {
+            mGateLMove = 1500;
         }
 
-        if (field_0xb9c < -1500) {
-            field_0xb9c = -1500;
+        if (mGateLMove < -1500) {
+            mGateLMove = -1500;
         }
 
-        if (field_0xb9e > 1500) {
-            field_0xb9e = 1500;
+        if (mGateRMove > 1500) {
+            mGateRMove = 1500;
         }
 
-        if (field_0xb9e < -1500) {
-            field_0xb9e = -1500;
+        if (mGateRMove < -1500) {
+            mGateRMove = -1500;
         }
 
-        field_0xb76 += field_0xb9c;
-        if (field_0xb76 > 0x4000) {
-            field_0xb76 = 0x4000;
-            field_0xb9c *= -0.7f;
+        mGateLAngle += mGateLMove;
+        if (mGateLAngle > 0x4000) {
+            mGateLAngle = 0x4000;
+            mGateLMove *= -0.7f;
         }
 
-        if (field_0xb76 < -0x4000) {
-            field_0xb76 = -0x4000;
-            field_0xb9c *= -0.7f;
+        if (mGateLAngle < -0x4000) {
+            mGateLAngle = -0x4000;
+            mGateLMove *= -0.7f;
         }
 
-        field_0xb74 += field_0xb9e;
-        if (field_0xb74 > 0x4000) {
-            field_0xb74 = 0x4000;
-            field_0xb9e *= -0.7f;
+        mGateRAngle += mGateRMove;
+        if (mGateRAngle > 0x4000) {
+            mGateRAngle = 0x4000;
+            mGateRMove *= -0.7f;
         }
 
-        if (field_0xb74 < -0x4000) {
-            field_0xb74 = -0x4000;
-            field_0xb9e *= -0.7f;
+        if (mGateRAngle < -0x4000) {
+            mGateRAngle = -0x4000;
+            mGateRMove *= -0.7f;
         }
 
-        cLib_addCalcAngleS(&field_0xb9c, 0, 10, 100, 10);
-        cLib_addCalcAngleS(&field_0xb9e, 0, 10, 100, 10);
+        cLib_addCalcAngleS(&mGateLMove, 0, 10, 100, 10);
+        cLib_addCalcAngleS(&mGateRMove, 0, 10, 100, 10);
         cLib_addCalcAngleS(&field_0xbae, 0x3000, 10, 0x400, 0x100);
         cLib_chaseF(&field_0xbb4.x, -39.0f, 1.0f);
         cLib_chaseF(&field_0xbc0.x, -25.0f, 1.0f);
         cLib_addCalcAngleS(&field_0xbcc, 0x7FFF, 10, 0x400, 0x100);
     } else {
-        cXyz sp6C;
-        cXyz sp78;
+        cXyz unused1;
+        cXyz unused2;
 
-        int chk_l = checkAreaL(&sp6C, &sp78);
-        int chk_r = checkAreaR(&sp6C, &sp78);
+        int chk_l = checkAreaL(&unused1, &unused2);
+        int chk_r = checkAreaR(&unused1, &unused2);
         if (chk_l != 0 || chk_r != 0) {
             daPy_py_c* player_p = daPy_getPlayerActorClass();
 
@@ -722,8 +748,8 @@ void daObjRgate_c::action_typeA() {
             }
         }
 
-        field_0xb76 = field_0xb90 * cM_ssin(field_0xb98 * 4000);
-        field_0xb74 = field_0xb94 * -cM_ssin(field_0xb98 * 4000);
+        mGateLAngle = field_0xb90 * cM_ssin(mCounter * 4000);
+        mGateRAngle = field_0xb94 * -cM_ssin(mCounter * 4000);
         cLib_addCalc0(&field_0xb90, 0.1f, 20.0f);
         cLib_addCalc0(&field_0xb94, 0.1f, 20.0f);
 
@@ -742,21 +768,21 @@ void daObjRgate_c::action_typeA() {
  */
 void daObjRgate_c::actionWaitEvent() {
     if (mEvtInfo.i_checkCommandDoor()) {
-        setAction(1);
+        setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
         i_fopAcM_onSwitch(this, getSwNo());
         fopAcM_seStart(this, Z2SE_OBJ_RIDER_GATE_L_OP, 0);
     } else if (checkOpen()) {
         mEvtInfo.setEventId(mEventID);
         mEvtInfo.setMapToolId(mMapToolID);
-        mEvtInfo.i_onCondition(4);
+        mEvtInfo.i_onCondition(dEvtCnd_CANDOOR_e);
     }
 }
 
 /* 80CBBAF4-80CBBB5C 001ED4 0068+00 1/0 0/0 0/0 .text            actionEvent__12daObjRgate_cFv */
 void daObjRgate_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
-        setAction(2);
+        setAction(ACT_DEAD);
         i_dComIfGp_event_reset();
     } else {
         demoProc();
@@ -783,7 +809,7 @@ void daObjRgate_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (demo_action) {
-        case 0:
+        case DEMO_ACT_WAIT:
             int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffID, "Timer");
             if (timer_p == NULL) {
                 mTimer = 1;
@@ -791,26 +817,26 @@ void daObjRgate_c::demoProc() {
                 mTimer = *timer_p;
             }
             break;
-        case 3:
-            field_0xb9c = 1000;
-            field_0xb9e = -1000;
+        case DEMO_ACT_OPEN:
+            mGateLMove = 1000;
+            mGateRMove = -1000;
             break;
         }
     }
 
     switch (demo_action) {
-    case 0:
+    case DEMO_ACT_WAIT:
         if (cLib_calcTimer(&mTimer) == 0) {
             dComIfGp_evmng_cutEnd(mStaffID);
         }
         break;
-    case 3:
+    case DEMO_ACT_OPEN:
         dComIfGp_evmng_cutEnd(mStaffID);
         break;
-    case 2:
+    case DEMO_ACT_UNLOCK:
         dComIfGp_evmng_cutEnd(mStaffID);
         break;
-    case 1:
+    case DEMO_ACT_ADJUSTMENT:
         dComIfGp_evmng_cutEnd(mStaffID);
         break;
     default:
@@ -831,7 +857,7 @@ int daObjRgate_c::getDemoAction() {
 int daObjRgate_c::Execute(Mtx** param_0) {
     event_proc_call();
     action();
-    field_0xb98++;
+    mCounter++;
 
     *param_0 = &mBgMtx;
     setBaseMtx();
