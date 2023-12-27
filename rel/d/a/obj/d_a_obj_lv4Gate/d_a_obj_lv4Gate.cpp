@@ -7,21 +7,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
-
-extern "C" void CreateHeap__11daLv4Gate_cFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" void Execute__11daLv4Gate_cFPPA3_A4_f();
-extern "C" void Draw__11daLv4Gate_cFv();
-extern "C" void Delete__11daLv4Gate_cFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-
-extern "C" extern char const* const d_a_obj_lv4Gate__stringBase0;
-extern void* __vt__11daLv4Gate_c[10];
 
 /* 80C5F41C-80C5F428 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
@@ -42,6 +27,9 @@ static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
+/* 80C5F52C-80C5F538 000014 000C+00 3/3 0/0 0/0 .bss             l_HIO */
+static daLv4Gate_HIO_c l_HIO;
+
 /* 80C5EB6C-80C5EB9C 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__15daLv4Gate_HIO_cFv */
 daLv4Gate_HIO_c::daLv4Gate_HIO_c() {
     mMoveSpeed = 2.0f;
@@ -58,16 +46,7 @@ void daLv4Gate_c::setBaseMtx() {
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
-/* ############################################################################################## */
-/* 80C5F414-80C5F414 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C5F414 = "L4Gate";
-#pragma pop
-
 /* 80C5EC80-80C5ECEC 000200 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daLv4Gate_cFv */
-// vtable ordering issue
-#ifdef NONMATCHING
 int daLv4Gate_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L4Gate", 4);
 
@@ -78,17 +57,6 @@ int daLv4Gate_c::CreateHeap() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm int daLv4Gate_c::CreateHeap() {
-extern "C" asm void CreateHeap__11daLv4Gate_cFv() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv4Gate/d_a_obj_lv4Gate/CreateHeap__11daLv4Gate_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C5ECEC-80C5EE54 00026C 0168+00 1/1 0/0 0/0 .text            create__11daLv4Gate_cFv */
 int daLv4Gate_c::create() {
@@ -140,9 +108,6 @@ int daLv4Gate_c::Execute(f32 (**param_0)[3][4]) {
 
     return 1;
 }
-
-/* 80C5F52C-80C5F538 000014 000C+00 3/3 0/0 0/0 .bss             l_HIO */
-static daLv4Gate_HIO_c l_HIO;
 
 /* 80C5EEA4-80C5EF48 000424 00A4+00 1/1 0/0 0/0 .text            moveGate__11daLv4Gate_cFv */
 void daLv4Gate_c::moveGate() {
@@ -248,9 +213,6 @@ static int daLv4Gate_Create(fopAc_ac_c* i_this) {
     return static_cast<daLv4Gate_c*>(i_this)->create();
 }
 
-/* 80C5F348-80C5F3A4 0008C8 005C+00 2/1 0/0 0/0 .text            __dt__15daLv4Gate_HIO_cFv */
-daLv4Gate_HIO_c::~daLv4Gate_HIO_c() {}
-
 /* 80C5F484-80C5F4A4 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv4Gate_Method */
 static actor_method_class l_daLv4Gate_Method = {
     (process_method_func)daLv4Gate_Create,  (process_method_func)daLv4Gate_Delete,
@@ -274,18 +236,4 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Gate = {
     0x40000,
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
-};
-
-/* 80C5F4D4-80C5F4FC 0000B8 0028+00 1/1 0/0 0/0 .data            __vt__11daLv4Gate_c */
-SECTION_DATA extern void* __vt__11daLv4Gate_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__11daLv4Gate_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__11daLv4Gate_cFPPA3_A4_f,
-    (void*)Draw__11daLv4Gate_cFv,
-    (void*)Delete__11daLv4Gate_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
 };

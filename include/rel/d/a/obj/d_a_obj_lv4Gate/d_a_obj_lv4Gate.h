@@ -41,7 +41,7 @@ public:
 class daLv4Gate_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C5EB6C */ daLv4Gate_HIO_c();
-    /* 80C5F348 */ virtual ~daLv4Gate_HIO_c();
+    /* 80C5F348 */ virtual ~daLv4Gate_HIO_c() {}
 
     /* 0x4 */ f32 mMoveSpeed;
     /* 0x8 */ u8 mShockStrength;
