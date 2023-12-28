@@ -4,8 +4,8 @@
 //
 
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "MSL_C/string.h"
-#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "string.h"
+#include "ctype.h"
 #include "global.h"
 
 //

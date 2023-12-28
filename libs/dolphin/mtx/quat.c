@@ -4,7 +4,7 @@
  */
 
 #include "dolphin/mtx/quat.h"
-#include "MSL_C/math.h"
+#include "math.h"
 
 /* 80347418-80347474 341D58 005C+00 0/0 0/0 2/2 .text            PSQUATMultiply */
 void PSQUATMultiply(register const Quaternion* a, register const Quaternion* b, register Quaternion* ab) {

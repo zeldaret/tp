@@ -2,7 +2,7 @@
 #define D_D_NAME_H
 
 #include "d/d_select_cursor.h"
-#include "MSL_C/string.h"
+#include "string.h"
 
 class CPaneMgr;
 class CPaneMgrAlpha;

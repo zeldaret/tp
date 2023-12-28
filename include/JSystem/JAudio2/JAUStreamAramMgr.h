@@ -5,7 +5,7 @@
 #include "JSystem/JAudio2/JASAramStream.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "MSL_C/bitset.h"
+#include "bitset.h"
 
 template <size_t A0>
 class JAUStreamAramMgrBase_ : public JAIStreamAramMgr {

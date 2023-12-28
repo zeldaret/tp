@@ -50,6 +50,10 @@ void DBOpen() {
     /* empty function */
 }
 
+/* 80450AF0-80450AF4 000570 0004+00 0/0 1/1 0/0 .sdata           None */
+extern float data_80450AF0;
+float data_80450AF0 = -0.0f;
+
 /* 80372D34-80372F94 36D674 0260+00 0/0 1/1 0/0 .text            DBWrite */
 #pragma push
 #pragma optimization_level 0

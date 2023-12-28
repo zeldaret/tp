@@ -41,8 +41,8 @@
 -include libs/dolphin/card/Makefile
 -include libs/dolphin/gx/Makefile
 -include libs/dolphin/gd/Makefile
--include libs/Runtime.PPCEABI.H/Makefile
--include libs/MSL_C/Makefile
+-include libs/PowerPC_EABI_Support/Runtime/Src/Makefile
+-include libs/PowerPC_EABI_Support/MSL/MSL_C/Makefile
 -include libs/TRK_MINNOW_DOLPHIN/Makefile
 -include libs/amcstubs/Makefile
 -include libs/odemuexi2/Makefile

@@ -1,7 +1,7 @@
 #ifndef OS_H_
 #define OS_H_
 
-#include "Runtime.PPCEABI.H/__va_arg.h"
+#include "__va_arg.h"
 #include "dolphin/dvd/dvd.h"
 
 #include "dolphin/os/OSAlarm.h"

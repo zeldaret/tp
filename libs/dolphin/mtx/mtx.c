@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/mtx/mtx.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dol2asm.h"
 
 //

@@ -728,6 +728,8 @@ public:
     virtual bool checkCopyRodEquip() const;
     virtual BOOL checkCutJumpMode() const;
 
+    f32 getSpeedF() const { return speedF; }
+
     bool getSumouCameraMode() const {
         bool sumouCameraMode = false;
         if (mSpecialMode != 0 && mSpecialMode < 0x26) {

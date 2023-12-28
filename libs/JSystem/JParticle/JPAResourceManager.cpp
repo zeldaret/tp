@@ -6,7 +6,7 @@
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAResource.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "dolphin/types.h"
 
 struct JPAResourceLoader {

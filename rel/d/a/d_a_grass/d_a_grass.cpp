@@ -12,6 +12,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_lib.h"
+#include "string.h"
 
 //
 // Forward References:

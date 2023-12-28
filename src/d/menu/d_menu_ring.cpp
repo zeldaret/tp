@@ -8,7 +8,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_item_data.h"

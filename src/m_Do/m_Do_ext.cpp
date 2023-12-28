@@ -14,7 +14,7 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 //#include "JSystem/JUtility/JUTResFont.h"
 //#include "JSystem/JUtility/JUTCacheFont.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"

@@ -9,7 +9,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"

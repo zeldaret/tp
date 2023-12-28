@@ -7,7 +7,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "string.h"
 
 //
 // Types:
