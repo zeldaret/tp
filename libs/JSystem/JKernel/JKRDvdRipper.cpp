@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/os/OSInterrupt.h"

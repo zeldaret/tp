@@ -6,7 +6,7 @@
 #include "msg/scrn/d_msg_scrn_explain.h"
 #include "msg/scrn/d_msg_scrn_arrow.h"
 #include "msg/scrn/d_msg_scrn_3select.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"

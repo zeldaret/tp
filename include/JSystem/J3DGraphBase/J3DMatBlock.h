@@ -5,14 +5,17 @@
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"
-#include "m_Do/m_Do_lib.h"
 
 struct J3DGXColorS10 : public GXColorS10 {
     /* 8000E460 */ J3DGXColorS10() {}
+    J3DGXColorS10(J3DGXColorS10 const& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+    J3DGXColorS10(GXColorS10 const& color) : GXColorS10(color) {}
 };
 
 struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
+    J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+    J3DGXColor(GXColor const& color) : GXColor(color) {}
 };
 
 struct J3DNBTScale : public J3DNBTScaleInfo {
@@ -52,7 +55,21 @@ public:
     /* 80317334 */ virtual J3DNBTScale* getNBTScale();
     /* 80317428 */ virtual bool getTexMtxOffset() const;
     /* 80317430 */ virtual void setTexMtxOffset(u32);
-    /* 803171DC */ virtual ~J3DTexGenBlock();
+    /* 803171DC */ virtual ~J3DTexGenBlock() {}
+};
+
+struct J3DTexGenBlockNull : public J3DTexGenBlock {
+    /* 80332AA0 */ virtual void calc(f32 const (*)[4]); // {}
+    /* 80332AA4 */ virtual void calcWithoutViewMtx(f32 const (*)[4]); // {}
+    /* 80332AA8 */ virtual void calcPostTexMtx(f32 const (*)[4]); // {}
+    /* 80332AAC */ virtual void calcPostTexMtxWithoutViewMtx(f32 const (*)[4]); // {}
+    /* 80332AB0 */ virtual void load(); // {}
+    /* 80332AB4 */ virtual void patch(); // {}
+    /* 80332AB8 */ virtual void diff(u32); // {}
+    /* 80332ABC */ virtual void diffTexMtx(); // {}
+    /* 80332AC0 */ virtual void diffTexGen(); // {}
+    /* 80332AC4 */ virtual u32 getType(); // { return 'TGNL'; }
+    /* 80332AD0 */ virtual ~J3DTexGenBlockNull(); // {}
 };
 
 class J3DTexGenBlockPatched : public J3DTexGenBlock {
@@ -188,12 +205,23 @@ public:
     /* 80322964 */ virtual bool getTevRegOffset() const;
     /* 80321FE0 */ virtual void setTexNoOffset(u32);
     /* 8032296C */ virtual void setTevRegOffset(u32);
-    /* 80317224 */ virtual ~J3DTevBlock();
+    /* 80317224 */ virtual ~J3DTevBlock() {}
 
-private:
+protected:
     /* 8031E098 */ void indexToPtr_private(u32);
 
     /* 0x4 */ u32 mTexNoOffset;
+};
+
+class J3DTevBlockNull : public J3DTevBlock {
+public:
+    J3DTevBlockNull() { initialize(); }
+    /* 803176D4 */ void initialize();
+    /* 80332A0C */ virtual void reset(J3DTevBlock*); // {}
+    /* 80332A10 */ virtual void ptrToIndex(); // {}
+    /* 80332A14 */ virtual void indexToPtr(); // { indexToPtr_private(mTexNoOffset); }
+    /* 80332A38 */ virtual u32 getType(); // { return 'TVNL'; }
+    /* 80332A44 */ virtual ~J3DTevBlockNull(); // {}
 };
 
 class J3DTevBlockPatched : public J3DTevBlock {
@@ -258,10 +286,6 @@ private:
     /* 0xD0 */ u8 mTevStageNum;
     /* 0xD4 */ u32 mTevRegOffset;
 };  // Size: 0xD8
-
-class J3DTevBlockNull : public J3DTevBlock {
-    /* 803176D4 */ void initialize();
-};
 
 class J3DTevBlock4 : public J3DTevBlock {
 public:
@@ -532,19 +556,19 @@ private:
 extern const u16 j3dDefaultZModeID;
 
 inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) {
-    return ((param_1 * 2) & 0x1FE) + (param_0 * 0x10) + param_2;
+    return param_1 * 2 + param_0 * 0x10 + param_2;
 }
 
 struct J3DZModeInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 field_0x2;
+    /* 0x3 */ u8 pad;
 };
 
 struct J3DZMode {
-    J3DZMode() {
-        mZModeID = j3dDefaultZModeID;
-    }
+    J3DZMode() : mZModeID(j3dDefaultZModeID) {}
+    J3DZMode(J3DZModeInfo const& info) : mZModeID(calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2)) {}
 
     void setZModeInfo(const J3DZModeInfo& info) {
         mZModeID = calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2);
@@ -566,18 +590,16 @@ struct J3DBlendInfo {
 extern const J3DBlendInfo j3dDefaultBlendInfo;
 
 struct J3DBlend : public J3DBlendInfo {
-    J3DBlend() {
-        *(J3DBlendInfo*)this = j3dDefaultBlendInfo;
-    }
+    J3DBlend() : J3DBlendInfo(j3dDefaultBlendInfo) {}
+    J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
 };
 
 extern const J3DFogInfo j3dDefaultFogInfo;
 
 struct J3DFog : public J3DFogInfo {
-    J3DFog() {
-        *getFogInfo() = j3dDefaultFogInfo;
-    }
-    J3DFogInfo* getFogInfo() { return (J3DFogInfo*)this; }
+    J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
+    J3DFogInfo* getFogInfo() { return this; }
+    void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }
 };
 
 struct J3DAlphaCompInfo {
@@ -593,25 +615,36 @@ struct J3DAlphaCompInfo {
 
 extern const u16 j3dDefaultAlphaCmpID;
 
+inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
+    return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
+}
+
+// matches for `J3DMaterialFactory::newAlphaComp` but fails for `d_resorce::addWarpMaterial`
+// inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
+//     return param_1 * 0x20 + param_2 * 8 + param_3;
+// }
+
 struct J3DAlphaComp {
-    J3DAlphaComp() {
-        field_0x0 = j3dDefaultAlphaCmpID;
-        mRef0 = 0;
-        mRef1 = 0;
-    }
+    J3DAlphaComp() : mID(j3dDefaultAlphaCmpID), mRef0(0), mRef1(0) {}
+    J3DAlphaComp(u16 id) : mID(id), mRef0(0), mRef1(0) {}
+    J3DAlphaComp(J3DAlphaCompInfo const& info) :
+        mID(calcAlphaCmpID(info.field_0x0, info.mRef0, info.mRef1)),
+        mRef0(info.field_0x1),
+        mRef1(info.field_0x4)
+        {}
 
     void setAlphaCompInfo(const J3DAlphaCompInfo& param_1) {
         mRef0 = param_1.field_0x1;
         mRef1 = param_1.field_0x4;
         u32 p1_mref1 = param_1.mRef1;
-        field_0x0 = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
+        mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
 
         // this matches for `dKy_bg_MAxx_proc` but causes `addWarpMaterial` to fail,
         // while the above matches for `addWarpMaterial` but causes `dKy_bg_MAxx_proc` to fail?
-        // field_0x0 = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
+        // mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
     }
 
-    /* 0x00 */ u16 field_0x0;
+    /* 0x00 */ u16 mID;
     /* 0x02 */ u8 mRef0;
     /* 0x03 */ u8 mRef1;
 };  // Size: 0x4
@@ -646,7 +679,13 @@ public:
     /* 80317384 */ virtual bool getDither() const;
     /* 8031738C */ virtual bool getFogOffset() const;
     /* 80317394 */ virtual void setFogOffset(u32);
-    virtual ~J3DPEBlock();
+    virtual ~J3DPEBlock() {}
+};
+
+struct J3DPEBlockNull : public J3DPEBlock {
+    /* 803329A0 */ virtual void load(); // {}
+    /* 803329A4 */ virtual u32 getType(); // { return 'PENL'; }
+    /* 803329B0 */ virtual ~J3DPEBlockNull(); // {}
 };
 
 class J3DPEBlockXlu : public J3DPEBlock {
@@ -763,24 +802,22 @@ struct J3DIndTexCoordScaleInfo {
     /* 0x1 */ u8 mScaleT;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
-};
+};  // Size: 0x4
 
-struct J3DIndTexCoordScale {
-    /* 8000E024 */ ~J3DIndTexCoordScale();
-    /* 8000E0E4 */ J3DIndTexCoordScale();
+extern J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
 
-    /* 0x0 */ u8 mScaleS;
-    /* 0x1 */ u8 mScaleT;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-};
+struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
+    /* 8000E0E4 */ J3DIndTexCoordScale() : J3DIndTexCoordScaleInfo(j3dDefaultIndTexCoordScaleInfo) {}
+    J3DIndTexCoordScale(J3DIndTexCoordScaleInfo const& info) : J3DIndTexCoordScaleInfo(info) {}
+    /* 8000E024 */ ~J3DIndTexCoordScale() {}
+};  // Size: 0x4
 
-struct J3DIndTexMtx {
-    /* 8000E064 */ ~J3DIndTexMtx();
-    /* 8000E0F0 */ J3DIndTexMtx();
+extern J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo;
 
-    /* 0x00 */ Mtx23 mOffsetMtx;
-    /* 0x18 */ u8 mScaleExp;
+struct J3DIndTexMtx : public J3DIndTexMtxInfo {
+    /* 8000E0F0 */ J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
+    J3DIndTexMtx(J3DIndTexMtxInfo const& info) { *(J3DIndTexMtxInfo*)this = info; }
+    /* 8000E064 */ ~J3DIndTexMtx() {}
 };  // Size: 0x1C
 
 struct J3DIndTexOrderInfo {
@@ -788,16 +825,14 @@ struct J3DIndTexOrderInfo {
     /* 0x1 */ u8 mCoord;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
-};
+};  // Size: 0x04
 
-struct J3DIndTexOrder {
-    /* 8000E128 */ J3DIndTexOrder();
+extern J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
 
-    /* 0x0 */ u8 mMap;
-    /* 0x1 */ u8 mCoord;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-};
+struct J3DIndTexOrder : public J3DIndTexOrderInfo {
+    /* 8000E128 */ J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
+    J3DIndTexOrder(J3DIndTexOrderInfo const& info) : J3DIndTexOrderInfo(info) {}
+};  // Size: 0x04
 
 class J3DIndBlock {
 public:
@@ -818,6 +853,15 @@ public:
     /* 80317418 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale const*);
     /* 8000DF64 */ virtual bool getIndTexCoordScale(u32);
     /* 8031726C */ virtual ~J3DIndBlock();
+};
+
+class J3DIndBlockNull : public J3DIndBlock {
+public:
+    /* 803173A0 */ virtual void reset(J3DIndBlock*);
+    /* 80317398 */ virtual void diff(u32);
+    /* 8031739C */ virtual void load();
+    /* 803173A4 */ virtual u32 getType();
+    /* 803173B0 */ virtual ~J3DIndBlockNull();
 };
 
 class J3DIndBlockFull : public J3DIndBlock {
@@ -852,15 +896,6 @@ private:
     /* 0x6C */ J3DIndTexCoordScale mIndTexCoordScale[4];
 };  // Size: 0x7C
 
-class J3DIndBlockNull : public J3DIndBlock {
-public:
-    /* 803173A0 */ virtual void reset(J3DIndBlock*);
-    /* 80317398 */ virtual void diff(u32);
-    /* 8031739C */ virtual void load();
-    /* 803173A4 */ virtual u32 getType();
-    /* 803173B0 */ virtual ~J3DIndBlockNull();
-};
-
 struct J3DColorChanInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -868,10 +903,41 @@ struct J3DColorChanInfo {
     /* 0x3 */ u8 field_0x3;
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 pad[2];
 };
 
+extern J3DColorChanInfo j3dDefaultColorChanInfo;
+
 struct J3DColorChan {
-    /* 8000E47C */ J3DColorChan();
+    /* 8000E47C */ J3DColorChan() {
+        setColorChanInfo(j3dDefaultColorChanInfo);
+    }
+    J3DColorChan(J3DColorChanInfo const& info) {
+        setColorChanInfo(info);
+    }
+    void setColorChanInfo(J3DColorChanInfo const& info) {
+        mColorChanID = calcColorChanID(info.field_0x0, info.field_0x1, info.field_0x2,
+            info.field_0x3, info.field_0x4, info.field_0x5 == 0xff ? 0 : info.field_0x5);
+    }
+    u16 calcColorChanID(u16 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
+        // if (param_4 == 0) {
+        //     param_3 = 0;
+        // }
+        u32 b0 = ((param_2 & 1) != 0);
+        u32 b1 = ((param_2 & 2) != 0);
+        u32 b2 = ((param_2 & 4) != 0);
+        u32 b3 = ((param_2 & 8) != 0);
+        u32 b4 = ((param_2 & 0x10) != 0);
+        u32 b5 = ((param_2 & 0x20) != 0);
+        u32 b6 = ((param_2 & 0x40) != 0);
+        u32 b7 = ((param_2 & 0x80) != 0);
+        return param_1 | (param_0 << 1) | (b0 << 2) | (b1 << 3) | (b2 << 4) | (b3 << 5) |
+            (param_5 << 6) | (param_3 << 7) | ((param_4 != 2) << 9) | ((param_4 != 0) << 10) |
+            (b4 << 11) | (b5 << 12) | (b6 << 13) | (b7 << 14);
+        // return (b7 << 14) | (b6 << 13) | (b5 << 12) | (b4 << 11) |
+        //     ((param_4 != 0) << 10) | ((param_4 != 2) << 9) | ((param_3 != 0) << 7) | ((param_5 != 0) << 6) |
+        //     (b3 << 5) | (b2 << 4) | (b1 << 3) | (b0 << 2) | ((param_0 != 0) << 1) | param_1;
+    }
     u8 getLightMask() { return (((mColorChanID & 0x7800) >> 7) | (mColorChanID & 0x3c) >> 2); }
     void setLightMask(u8 param_1) {
         mColorChanID = (mColorChanID & ~0x3c) | ((param_1 & 0xf) << 2);
@@ -916,7 +982,12 @@ public:
     /* 8031746C */ virtual bool getColorChanOffset() const;
     /* 80317474 */ virtual void setMatColorOffset(u32);
     /* 80317478 */ virtual void setColorChanOffset(u32);
-    /* 80317138 */ virtual ~J3DColorBlock();
+    /* 80317138 */ virtual ~J3DColorBlock() {}
+};
+
+struct J3DColorBlockNull : public J3DColorBlock {
+    /* 80332B2C */ virtual u32 getType(); // { return 'CLNL'; }
+    /* 80332B38 */ virtual ~J3DColorBlockNull(); // {}
 };
 
 class J3DColorBlockLightOn : public J3DColorBlock {

@@ -24,7 +24,7 @@ public:
     /* 80C5F1E4 */ void modeMoveEnd();
 
     /* 80C5EC80 */ virtual int CreateHeap();
-    /* 80C5EE54 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C5EE54 */ virtual int Execute(Mtx**);
     /* 80C5F1E8 */ virtual int Draw();
     /* 80C5F28C */ virtual int Delete();
 
@@ -41,7 +41,7 @@ public:
 class daLv4Gate_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C5EB6C */ daLv4Gate_HIO_c();
-    /* 80C5F348 */ virtual ~daLv4Gate_HIO_c();
+    /* 80C5F348 */ virtual ~daLv4Gate_HIO_c() {}
 
     /* 0x4 */ f32 mMoveSpeed;
     /* 0x8 */ u8 mShockStrength;

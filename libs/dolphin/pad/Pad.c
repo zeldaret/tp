@@ -420,8 +420,6 @@ BOOL PADInit() {
     return PADReset(PAD_CHAN0_BIT | PAD_CHAN1_BIT | PAD_CHAN2_BIT | PAD_CHAN3_BIT);
 }
 
-#define offsetof(type, memb) ((u32) & ((type*)0)->memb)
-
 /* 8034EEA0-8034F1A0 3497E0 0300+00 0/0 1/1 0/0 .text            PADRead */
 u32 PADRead(PADStatus* status) {
     BOOL enabled;

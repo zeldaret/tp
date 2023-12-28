@@ -51,14 +51,10 @@ private:
     /* 0x0F4 */ CPaneMgr* mpFishInfoParent[2];
     /* 0x0FC */ CPaneMgr* mpButtonAB[2];
     /* 0x104 */ CPaneMgr* mpButtonText[2];
-    /* 0x10C */ J2DTextBox* field_0x10c[1][6];
-    /* 0x124 */ J2DTextBox* field_0x124[6];
-    /* 0x13C */ J2DTextBox* field_0x13c[1][6];
-    /* 0x154 */ J2DTextBox* field_0x154[6];
-    /* 0x16C */ J2DTextBox* field_0x16c[1][6];
-    /* 0x184 */ J2DTextBox* field_0x184[6];
-    /* 0x19C */ J2DTextBox* field_0x19c[1][6];
-    /* 0x1B4 */ J2DTextBox* field_0x1b4[6];
+    /* 0x10C */ J2DTextBox* field_0x10c[2][6];
+    /* 0x13C */ J2DTextBox* field_0x13c[2][6];
+    /* 0x16C */ J2DTextBox* field_0x16c[2][6];
+    /* 0x19C */ J2DTextBox* field_0x19c[2][6];
     /* 0x1CC */ J2DTextBox* field_0x1cc[6];
     /* 0x1E4 */ J2DTextBox* field_0x1e4;
     /* 0x1E8 */ J2DTextBox* field_0x1e8;

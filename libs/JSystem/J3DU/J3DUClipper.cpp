@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/J3DU/J3DUClipper.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dolphin/types.h"
 
 //

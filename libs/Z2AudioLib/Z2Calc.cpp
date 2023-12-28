@@ -5,7 +5,7 @@
 
 #include "Z2AudioLib/Z2Calc.h"
 #include "JSystem/JMath/random.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dol2asm.h"
 
 //

@@ -31,6 +31,12 @@ public:
         mMtxIdxRegB = 0x00f3cf3c;
     }
 
+    J3DCurrentMtx& operator=(J3DCurrentMtxInfo const& info) {
+        mMtxIdxRegA = info.mMtxIdxRegA;
+        mMtxIdxRegB = info.mMtxIdxRegB;
+        return *this;
+    }
+
     u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 

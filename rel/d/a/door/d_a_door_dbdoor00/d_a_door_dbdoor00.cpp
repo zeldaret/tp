@@ -5,7 +5,7 @@
 
 #include "rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/MSL_Common/Src/printf.h"
+#include "printf.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/d_door_param2.h"

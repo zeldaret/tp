@@ -6,7 +6,7 @@
 #include "d/save/d_save.h"
 #include "d/save/d_save_init.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"

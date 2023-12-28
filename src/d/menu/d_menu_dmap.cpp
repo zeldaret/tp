@@ -4,7 +4,7 @@
 //
 
 #include "d/menu/d_menu_dmap.h"
-#include "MSL_C/string.h"
+#include "string.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

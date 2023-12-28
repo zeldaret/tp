@@ -1,8 +1,10 @@
 #ifndef D_A_OBJ_STONEMARK_H
 #define D_A_OBJ_STONEMARK_H
 
-#include "d/com/d_com_inf_game.h"
-
+#include "SSystem/SComponent/c_phase.h"
+#include "f_op/f_op_actor.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/cc/d_cc_d.h"
 
 class daObjSMark_c : public fopAc_ac_c {
 public:

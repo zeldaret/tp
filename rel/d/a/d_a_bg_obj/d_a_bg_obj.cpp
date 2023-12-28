@@ -6,7 +6,7 @@
 #include "rel/d/a/d_a_bg_obj/d_a_bg_obj.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"

@@ -4,7 +4,7 @@
  */
 
 #include "m_Do/m_Do_printf.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os/OS.h"
