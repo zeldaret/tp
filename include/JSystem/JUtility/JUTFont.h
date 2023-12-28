@@ -83,9 +83,15 @@ public:
     /* 0x3C */ virtual ResFONT* getResFont() const = 0;
     /* 0x40 */ virtual bool isLeadByte(int a1) const = 0;
 
-    static bool isLeadByte_1Byte(int b);
-    static bool isLeadByte_2Byte(int b);
-    static bool isLeadByte_ShiftJIS(int b);
+    static bool isLeadByte_1Byte(int b) {
+        return false;
+    }
+    static bool isLeadByte_2Byte(int b) {
+        return true;
+    }
+    static bool isLeadByte_ShiftJIS(int b) {
+        return (b >= 0x81 && b <= 0x9f) || (b >= 0xe0 && b <= 0xfc);
+    }
 
     void initialize_state();
     void setCharColor(JUtility::TColor col1);
