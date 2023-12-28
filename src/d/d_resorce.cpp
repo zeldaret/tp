@@ -305,7 +305,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         u32 texGenNum = texGenBlock->getTexGenNum();
         J3DTexCoord* coord = texGenBlock->getTexCoord(texGenNum);
         l_texCoordInfo.mTexGenMtx = texGenNum * 3 + 0x1e;
-        coord->setTexCoordInfo(&l_texCoordInfo);
+        coord->setTexCoordInfo(l_texCoordInfo);
         coord->resetTexMtxReg();
         texGenBlock->setTexGenNum(texGenNum + 1);
         texGenBlock->setTexMtx(texGenNum, texMtxInfo);

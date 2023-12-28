@@ -11,6 +11,7 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "m_Do/m_Do_lib.h"
 
 //
 // Types:
