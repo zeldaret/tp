@@ -1051,3 +1051,4 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/a/d_a_alink.o \
 	$(BUILD_DIR)/src/DynamicLink.o \
 	$(BUILD_DIR)/src/d/meter/d_meter_HIO.o \
+	$(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o \
