@@ -25,16 +25,17 @@ void daObjSMark_c::initBaseMtx() {
 void daObjSMark_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    MTXCopy((MtxP)&mDoMtx_stack_c::now,(MtxP)&mCullMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mCullMtx);
 }
 
 /* 8059A080-8059A168 0000E0 00E8+00 1/1 0/0 0/0 .text            Create__12daObjSMark_cFv */
 int daObjSMark_c::Create() {
     initBaseMtx();
-    fopAcM_SetMtx(this,(MtxP)&mCullMtx);
+    fopAcM_SetMtx(this, mCullMtx);
     fopAcM_setCullSizeSphere(this,0.0f,0.0f,0.0f,100.0f);
     mAcchCir.SetWall(30.0f,30.0f);
-    mObjAcch.Set(&fopAcM_GetPosition_p(this),&fopAcM_GetOldPosition_p(this),this,1,&mAcchCir,&fopAcM_GetSpeed_p(this),0,0);
+    mObjAcch.Set(&fopAcM_GetPosition_p(this),&fopAcM_GetOldPosition_p(this),this,1,
+                 &mAcchCir,&fopAcM_GetSpeed_p(this),0,0);
     mObjAcch.CrrPos(dComIfG_Bgsp());
     mDoLib_setResTimgObj((ResTIMG*)dComIfG_getObjectRes(l_arcName,3),&mTexObj,0,0);
     return 1;

@@ -24,7 +24,7 @@ public:
     /* 80C5F1E4 */ void modeMoveEnd();
 
     /* 80C5EC80 */ virtual int CreateHeap();
-    /* 80C5EE54 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C5EE54 */ virtual int Execute(Mtx**);
     /* 80C5F1E8 */ virtual int Draw();
     /* 80C5F28C */ virtual int Delete();
 

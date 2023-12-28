@@ -42,7 +42,7 @@ void daObjWSword_c::initBaseMtx() {
 void daObjWSword_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D3BA40-80D3BAB8 000140 0078+00 1/1 0/0 0/0 .text            Create__13daObjWSword_cFv */

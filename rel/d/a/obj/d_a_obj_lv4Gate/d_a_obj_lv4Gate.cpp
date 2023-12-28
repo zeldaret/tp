@@ -101,9 +101,9 @@ int daLv4Gate_c::create() {
 }
 
 /* 80C5EE54-80C5EEA4 0003D4 0050+00 1/0 0/0 0/0 .text            Execute__11daLv4Gate_cFPPA3_A4_f */
-int daLv4Gate_c::Execute(f32 (**param_0)[3][4]) {
+int daLv4Gate_c::Execute(Mtx** i_mtxP) {
     moveGate();
-    *param_0 = &mpModel->getBaseTRMtx();
+    *i_mtxP = &mpModel->getBaseTRMtx();
     setBaseMtx();
 
     return 1;
