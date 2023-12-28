@@ -17,7 +17,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 // fake match?
 void daBkLeaf_c::setBokkuri() {
     csXyz currentAngle = current.angle;
-    ((daObjCarry_c*)NULL)->make_prm((u32*)&currentAngle, (csXyz*)6, getItem(), getItemBit(), 1, 2);
+    daObjCarry_c::make_prm(&currentAngle, 6, getItem(), getItemBit(), 1, 2);
     field_0x578 = fopAcM_createChild(PROC_Obj_Carry, fopAcM_GetID(this), 0, &current.pos,
                                      fopAcM_GetRoomNo(this), &currentAngle, &mScale, -1, 0);
 }
