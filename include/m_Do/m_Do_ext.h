@@ -38,6 +38,7 @@ public:
         }
         return stopped;
     }
+    void reset() { mFrameCtrl.reset(); }
 
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
@@ -254,7 +255,7 @@ public:
 
 class mDoExt_McaMorfCallBack1_c {
 public:
-    virtual void execute(u16, J3DTransformInfo*) = 0;
+    virtual int execute(u16, J3DTransformInfo*) = 0;
 };
 
 class mDoExt_McaMorfCallBack2_c {

@@ -27,7 +27,7 @@ public:
     fopAc_ac_c* convPId(unsigned int);
     void init();
     void proc();
-    void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
+    int request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
 
     fopAc_ac_c* getCatghTarget() { return convPId(mCatghTargetID); }
     u8 getChangeItem() { return mChangeItem; }
@@ -80,11 +80,11 @@ public:
     /* 80073CA4 */ fopAc_ac_c* convPId(unsigned int);
     /* 80073CD4 */ void init();
     /* 80073CEC */ void proc();
-    /* 80073D08 */ void request(fopAc_ac_c*, f32, f32, f32, s16, int);
+    /* 80073D08 */ int request(fopAc_ac_c*, f32, f32, f32, s16, int);
 
 private:
     u32 field_0x0;
-    u32 field_0x4;
+    s32 field_0x4;
     f32 field_0x8;
     u32 mLookTargetID;
 };  // Size: 0x10
@@ -137,7 +137,7 @@ STATIC_ASSERT(sizeof(dAttDraw_c) == 0x178);
 
 class dAttDraw_CallBack_c : public mDoExt_McaMorfCallBack1_c {
 public:
-    /* 80070178 */ virtual void execute(u16, J3DTransformInfo*);
+    /* 80070178 */ virtual int execute(u16, J3DTransformInfo*);
 };
 
 struct dist_entry {
@@ -243,7 +243,7 @@ public:
     /* 0x004 */ u32 mLockTargetID;
     /* 0x008 */ dAttDraw_CallBack_c mpDrawCallback;
     /* 0x00C */ u32 mPadNo;
-    /* 0x010 */ u32 field_0x10;
+    /* 0x010 */ u32 mPlayerAttentionFlags;
     /* 0x014 */ u8 field_0x14[4];
     /* 0x018 */ JKRSolidHeap* heap;
     /* 0x01C */ cXyz mDrawAttnPos;
