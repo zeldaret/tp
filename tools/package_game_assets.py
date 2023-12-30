@@ -5,6 +5,7 @@ import extract_game_assets
 from pathlib import Path
 import libyaz0
 import libarc
+import libstage
 from datetime import datetime
 
 
@@ -20,37 +21,48 @@ def getMaxDateFromDir(path):
 
 convertDefinitions = [
     {
-        "sourceExtension": ".arc",
+        "sourceExtension": "arc",
         "destExtension": ".arc",
         "convertFunction": libarc.convert_dir_to_arc,
         "exceptions": ["game/files/res/Object/HomeBtn.c.arc/archive/dat/speakerse.arc"],
+    },
+    {
+        "sourceExtension": "dzs.json",
+        "destExtension": ".dzs",
+        "convertFunction": libstage.package_from_json,
+    },
+    {
+        "sourceExtension": "dzr.json",
+        "destExtension": ".dzr",
+        "convertFunction": libstage.package_from_json,
     }
 ]
 
 yaz0CompressFunction = libyaz0.compress
 
 def convertEntry(file, path, destPath, returnData):
-    split = os.path.splitext(file)
+    split = str(file).split(".")
     mustBeCompressed = False
-    destFileName = file
-    if split[0].split(".")[-1] == "c":
-        destFileName = split[0][0:-2] + split[-1]
+    destFileName = str(file)
+    if len(split)>1 and split[1] == "c":
+        destFileName = ".".join([split[0]] + split[2:])
         mustBeCompressed = True
-    sourceExtension = split[-1]
+    # print(destFileName)
+    sourceExtension = ".".join(destFileName.split(".")[1:])
     data = None
 
     extractDef = None
     for extractData in convertDefinitions:
         if sourceExtension == extractData["sourceExtension"]:
             extractDef = extractData
-            if extractData["exceptions"] != None:
+            if "exceptions" in extractData:
                 for exception in extractData["exceptions"]:
                     if str(path / file) == exception:
                         extractDef = None
             break
 
     if extractDef != None:
-        destFileName = os.path.splitext(destFileName)[0] + extractDef["destExtension"]
+        destFileName = destFileName.split(".")[0] + extractDef["destExtension"]
 
     targetTime = 0
     if destPath != None and os.path.exists(destPath / destFileName):
