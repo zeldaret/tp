@@ -469,19 +469,4 @@ int JUTResFont::convertSjis(int inChr, u16* inLead) const {
     return tmp2 + (tmp - 0x88) * 0xbc + -0x5e + lead;
 }
 
-/* 802E0108-802E0110 2DAA48 0008+00 1/0 0/0 0/0 .text            isLeadByte_1Byte__7JUTFontFi */
-bool JUTFont::isLeadByte_1Byte(int param_0) {
-    return false;
-}
-
-/* 802E0110-802E0118 2DAA50 0008+00 1/0 0/0 0/0 .text            isLeadByte_2Byte__7JUTFontFi */
-bool JUTFont::isLeadByte_2Byte(int param_0) {
-    return true;
-}
-
-/* 802E0118-802E0148 2DAA58 0030+00 1/0 0/0 0/0 .text            isLeadByte_ShiftJIS__7JUTFontFi */
-bool JUTFont::isLeadByte_ShiftJIS(int param_0) {
-    return (param_0 >= 0x81 && param_0 <= 0x9f) || (param_0 >= 0xe0 && param_0 <= 0xfc);
-}
-
 /* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

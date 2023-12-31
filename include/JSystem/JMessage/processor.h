@@ -150,6 +150,12 @@ struct TProcessor {
         return 1;
     }
 
+    int setBegin_messageEntryText(const TProcessor* processor, const void* entry,
+                                  const char* param_2) {
+        setBegin_messageEntryText(processor->getResourceCache(), entry, param_2);
+        return 1;
+    }
+
     void* getMessageEntry_messageCode(u16 messageCode, u16 messageIndex) const {
         const TResource* pResource = getResource_groupID(messageCode);
 
@@ -299,6 +305,14 @@ struct TRenderingProcessor : public TProcessor {
     /* 802A8BA4 */ virtual void do_begin_(void const*, char const*);
     /* 802A8BA8 */ virtual void do_end_();
     /* 802A8BAC */ virtual void do_tag_(u32, void const*, u32);
+
+    bool process_messageEntryText(TProcessor *param_0,void const*param_1,const char *param_2) {
+        int rv = TProcessor::setBegin_messageEntryText(param_0, param_1, param_2);
+        if (rv != 0) {
+            process(NULL);
+        }
+        return rv != 0;
+    }
 };
 };  // namespace JMessage
 

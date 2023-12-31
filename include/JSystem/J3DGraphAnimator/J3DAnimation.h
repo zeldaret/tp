@@ -628,6 +628,11 @@ public:
     void setRate(f32 rate) { mRate = rate; }
     f32 getFrame() const { return mFrame; }
     void setFrame(f32 frame) { mFrame = frame; }
+    void reset() {
+        mFrame = mStart;
+        mRate = 1.0f;
+        mState = 0;
+    }
 
 private:
     /* 0x04 */ u8 mAttribute;

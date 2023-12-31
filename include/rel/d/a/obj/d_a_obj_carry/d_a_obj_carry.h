@@ -203,6 +203,11 @@ public:
     u32 getSetType() { return (u32)(field_0xd18 << 16) >> 29;} // fake match?
     s8 prm_chk_type_ironball() { return (s8)(getType() == TYPE_IRON_BALL); }
 
+    static void make_prm(csXyz* param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5, u8 param_6=0) {
+        param_1->x = (param_4 << 8) | param_3;
+        param_1->z = param_5 | (param_6 << 13) | ((u32(param_2) & 0xFF) << 1);
+    }
+
     static u8 const mData[2072];
     static Vec mPos[5];
     static u8 mSttsFlag[5];
