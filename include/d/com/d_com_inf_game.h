@@ -192,6 +192,17 @@ public:
     bool isRSetFlag(u8 flag) { return (mRSetFlag & flag) ? true : false; }
     bool isXSetFlag(u8 flag) { return (mXSetFlag & flag) ? true : false; }
     bool isYSetFlag(u8 flag) { return (mYSetFlag & flag) ? true : false; }
+    bool is3DSetFlag(u8 flag) { return (m3DSetFlag & flag) ? true : false; }
+    bool isZSetFlag(u8 flag) { return (mZSetFlag & flag) ? true : false; }
+    bool isSButtonSetFlag(u8 flag) { return (mSButtonSetFlag & flag) ? true : false; }
+    bool isNunSetFlag(u8 flag) { return (mNunSetFlag & flag) ? true : false; }
+    bool isRemoConSetFlag(u8 flag) { return (mRemoConSetFlag & flag) ? true : false; }
+    bool isNunZSetFlag(u8 flag) { return (mNunZSetFlag & flag) ? true : false; }
+    bool isNunCSetFlag(u8 flag) { return (mNunCSetFlag & flag) ? true : false; }
+    bool isBottleSetFlag(u8 flag) { return (mBottleSetFlag & flag) ? true : false; }
+
+    u8 get3DDirection() { return m3DDirection; }
+    u8 getCStickDirection() { return mCStickDirection; }
 
     void setZStatus(u8 status, u8 flag) {
         mZStatus = status;
@@ -425,6 +436,7 @@ public:
     JKRArchive* getRingResArchive() { return mRingResArchive; }
     JKRArchive* getFontArchive() { return mFontArchive; }
     JKRArchive* getRubyArchive() { return mRubyArchive; }
+    JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -539,6 +551,8 @@ public:
     void setGameoverStatus(u8 status) { mGameoverStatus = status; }
     u8 getGameoverStatus() { return mGameoverStatus; }
     u8 getMesgStatus() { return mMesgStatus; }
+
+    u8 getDirection() { return mDirection; }
 
 public:
     /* 0x00000 */ dBgS mBgs;
@@ -2639,12 +2653,52 @@ inline bool dComIfGp_isYSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isYSetFlag(flag);
 }
 
+inline bool dComIfGp_isZSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isZSetFlag(flag);
+}
+
+inline bool dComIfGp_isSButtonSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isSButtonSetFlag(flag);
+}
+
+inline bool dComIfGp_isNunSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isNunSetFlag(flag);
+}
+
+inline bool dComIfGp_isRemoConSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isRemoConSetFlag(flag);
+}
+
+inline bool dComIfGp_isNunZSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isNunZSetFlag(flag);
+}
+
+inline bool dComIfGp_isNunCSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isNunCSetFlag(flag);
+}
+
+inline bool dComIfGp_isBottleSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.isBottleSetFlag(flag);
+}
+
 inline bool dComIfGp_isPauseFlag() {
     return g_dComIfG_gameInfo.play.isPauseFlag();
 }
 
 inline bool dComIfGp_isCStickSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isCStickSetFlag(flag);
+}
+
+inline bool dComIfGp_is3DSetFlag(u8 flag) {
+    return g_dComIfG_gameInfo.play.is3DSetFlag(flag);
+}
+
+inline u8 dComIfGp_get3DDirection() {
+    return g_dComIfG_gameInfo.play.get3DDirection();
+}
+
+inline u8 dComIfGp_getCStickDirection() {
+    return g_dComIfG_gameInfo.play.getCStickDirection();
 }
 
 inline void dComIfGp_offPauseFlag() {
@@ -2866,6 +2920,10 @@ inline JKRArchive* dComIfGp_getRingResArchive() {
     return g_dComIfG_gameInfo.play.getRingResArchive();
 }
 
+inline JKRArchive* dComIfGp_getMeterButtonArchive() {
+    return g_dComIfG_gameInfo.play.getMeterButtonArchive();
+}
+
 inline void dComIfGp_onPauseFlag() {
     g_dComIfG_gameInfo.play.onPauseFlag();
 }
@@ -2993,6 +3051,10 @@ inline void dComIfGp_setBottleStatusForce(u8 param_0, u8 param_1) {
 
 inline u8 i_dComIfGp_getDoStatus() {
     return g_dComIfG_gameInfo.play.getDoStatus();
+}
+
+inline u8 dComIfGp_getAdvanceDirection() {
+    return g_dComIfG_gameInfo.play.getDirection();
 }
 
 inline dEvt_control_c& i_dComIfGp_getEvent() {

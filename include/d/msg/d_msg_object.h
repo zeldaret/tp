@@ -127,7 +127,7 @@ public:
     /* 802381E8 */ static u16 getNodeIdx();
     /* 802381FC */ static void setStatus(u16);
     /* 8023822C */ static u16 getStatus();
-    /* 80238258 */ void getScrnDrawPtr();
+    /* 80238258 */ static dMsgScrnBase_c* getScrnDrawPtr();
     /* 8023826C */ static void setTalkActor(fopAc_ac_c*);
     /* 8023829C */ void onMsgSendControl();
     /* 802382C8 */ void offMsgSendControl();
@@ -192,6 +192,7 @@ public:
     u16 getPortalMessageID() { return getPortalMessageIDLocal(); }
     bool isAutoMessageFlag() { return isAutoMessageFlagLocal(); }
     bool isPaymentFlag() { return isPaymentFlagLocal(); }
+    u8 getFukiKind() { return mFukiKind; }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
@@ -292,6 +293,7 @@ void dMsgObject_setTotalPayment(u16 param_0);
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();
 }
+
 inline void dMsgObject_demoMessageGroup() {
     dMsgObject_c::demoMessageGroup();
 }
@@ -379,6 +381,10 @@ inline bool dMsgObject_isHowlHearingMode() {
 
 inline void dMsgObject_onMsgSend() {
     dMsgObject_getMsgObjectClass()->onMsgSend();
+}
+
+inline bool dMsgObject_isFukidashiCheck() {
+    return dMsgObject_getMsgObjectClass()->getScrnDrawPtr() != NULL ? true : false;
 }
 
 class dMsgObject_HowlHIO_c {

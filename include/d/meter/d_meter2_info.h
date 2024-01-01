@@ -51,7 +51,7 @@ public:
     int setFloatingMessage(u16, s16, bool);
     int setFloatingFlow(u16, s16, bool);
     bool isFloatingMessageVisible(void);
-    int decFloatingMessageTimer(void);
+    s16 decFloatingMessageTimer(void);
     void resetFloatingMessage(void);
     void decMsgKeyWaitTimer(void);
     void getString(u32, char*, JMSMesgEntry_c*);  // define JMSMesgEntry
@@ -157,7 +157,12 @@ public:
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
+    bool isFloatingMessageWakuVisible() { return mFloatingMessageWakuVisible; }
     void onBlinkButton(int i_flag) { mBlinkButton |= i_flag; }
+    bool isBlinkButton(int i_flag) { return mBlinkButton & i_flag; }
+    void resetBlinkButton() { mBlinkButton = 0; }
+    s16 getFloatingMessageTimer() { return mFloatingMessageTimer; }
+    u16 getFloatingMessageID() { return mFloatingMessageID; }
     void setCollectCursorPosXY(u8 x, u8 y) {
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
@@ -287,6 +292,10 @@ inline void dMeter2Info_getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_
 
 inline f32 dMeter2Info_getStringLength(JUTFont* param_0, f32 param_1, f32 param_2, char* param_3) {
     return g_meter2_info.getStringLength(param_0, param_1, param_2, param_3);
+}
+
+inline f32 dMeter2Info_getStringLength(J2DTextBox* param_0, char* param_1) {
+    return g_meter2_info.getStringLength(param_0, param_1);
 }
 
 inline void dMeter2Info_setHotSpringTimer(u8 time) {
@@ -612,6 +621,34 @@ inline void dMeter2Info_setCollectCursorPosXY(u8 x, u8 y) {
 
 inline void dMeter2Info_onBlinkButton(int i_flag) {
     g_meter2_info.onBlinkButton(i_flag);
+}
+
+inline bool dMeter2Info_isFloatingMessageWakuVisible() {
+    return g_meter2_info.isFloatingMessageWakuVisible();
+}
+
+inline bool dMeter2Info_isBlinkButton(int i_flag) {
+    return g_meter2_info.isBlinkButton(i_flag);
+}
+
+inline void dMeter2Info_resetBlinkButton() {
+    g_meter2_info.resetBlinkButton();
+}
+
+inline void dMeter2Info_resetFloatingMessage() {
+    g_meter2_info.resetFloatingMessage();
+}
+
+inline s16 dMeter2Info_decFloatingMessageTimer() {
+    return g_meter2_info.decFloatingMessageTimer();
+}
+
+inline s16 dMeter2Info_getFloatingMessageTimer() {
+    return g_meter2_info.getFloatingMessageTimer();
+}
+
+inline u32 dMeter2Info_getFloatingMessageID() {
+    return g_meter2_info.getFloatingMessageID();
 }
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);

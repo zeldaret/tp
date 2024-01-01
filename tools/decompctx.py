@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+###
+# Generates a ctx.c file, usable for "Context" on https://decomp.me.
+#
+# Usage:
+#   python3 tools/decompctx.py src/file.cpp
+#
+# If changes are made, please submit a PR to
+# https://github.com/encounter/dtk-template
+###
+
 import argparse
 import os
 import re
