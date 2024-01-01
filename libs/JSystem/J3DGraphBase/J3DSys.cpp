@@ -27,7 +27,6 @@ extern void makeZModeTable();
 extern void makeTevSwapTable();
 extern "C" void GXInvalidateVtxCache();
 
-extern "C" extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8];
 extern "C" extern const GXColor j3dDefaultColInfo;
 extern "C" extern u8 data_804563C8;
 extern "C" extern const GXColorS10 j3dDefaultTevColor;

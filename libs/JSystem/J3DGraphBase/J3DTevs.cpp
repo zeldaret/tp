@@ -41,14 +41,9 @@ extern "C" static void J3DGDLoadPostTexMtxImm__FPA4_fUl();
 extern "C" extern GXColor j3dDefaultColInfo;
 extern "C" extern u32 j3dDefaultAmbInfo;
 extern "C" extern u8 data_804563C8;
-extern "C" extern u32 j3dDefaultTevOrderInfoNull;
-extern "C" extern u32 j3dDefaultIndTexOrderNull;
 extern "C" extern GXColorS10 j3dDefaultTevColor;
-extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
 extern "C" extern GXColor j3dDefaultTevKColor;
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
-extern "C" extern u32 j3dDefaultTevSwapModeTable;
-extern "C" extern u8 j3dDefaultColorChanInfo[8];
 extern "C" extern u16 data_804563F8;
 
 //
@@ -414,7 +409,7 @@ SECTION_RODATA extern const J3DLightInfo j3dDefaultLightInfo = {
 COMPILER_STRIP_GATE(0x803A1EC8, &j3dDefaultLightInfo);
 
 /* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
-SECTION_RODATA extern J3DDefaultTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
+SECTION_RODATA extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
     {GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0},
     {GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0},
     {GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0},
@@ -435,21 +430,22 @@ SECTION_RODATA extern u8 const j3dDefaultTexMtxInfo[100] = {
 COMPILER_STRIP_GATE(0x803A1F1C, &j3dDefaultTexMtxInfo);
 
 /* 803A1F80-803A1F9C 02E5E0 001C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTexMtxInfo */
-SECTION_RODATA extern u8 const j3dDefaultIndTexMtxInfo[28] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
+SECTION_RODATA extern J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo = {
+    0.5f, 0.0f, 0.0f,
+    0.0f, 0.5f, 0.0f,
+    1
 };
 COMPILER_STRIP_GATE(0x803A1F80, &j3dDefaultIndTexMtxInfo);
 
 /* 803A1F9C-803A1FB0 02E5FC 0014+00 0/0 1/1 0/0 .rodata          j3dDefaultTevStageInfo */
-SECTION_RODATA extern u8 const j3dDefaultTevStageInfo[20] = {
+SECTION_RODATA extern J3DTevStageInfo const j3dDefaultTevStageInfo = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
 COMPILER_STRIP_GATE(0x803A1F9C, &j3dDefaultTevStageInfo);
 
 /* 803A1FB0-803A1FBC 02E610 000C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTevStageInfo */
-SECTION_RODATA extern u8 const j3dDefaultIndTevStageInfo[12] = {
+SECTION_RODATA extern J3DIndTevStageInfo const j3dDefaultIndTevStageInfo = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 COMPILER_STRIP_GATE(0x803A1FB0, &j3dDefaultIndTevStageInfo);
@@ -643,16 +639,16 @@ SECTION_SDATA2 extern u32 j3dDefaultAmbInfo = 0x32323232;
 SECTION_SDATA2 extern u8 data_804563C8 = 0x01;
 
 /* 804563CC-804563D0 0049CC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultTevOrderInfoNull */
-SECTION_SDATA2 extern u32 j3dDefaultTevOrderInfoNull = 0xFFFFFF00;
+SECTION_SDATA2 extern J3DTevOrderInfo j3dDefaultTevOrderInfoNull = {0xFF, 0xFF, 0xFF, 0x00};
 
 /* 804563D0-804563D4 0049D0 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexOrderNull */
-SECTION_SDATA2 extern u32 j3dDefaultIndTexOrderNull = 0xFFFF0000;
+SECTION_SDATA2 extern J3DIndTexOrderInfo j3dDefaultIndTexOrderNull = {0xFF, 0xFF, 0x00, 0x00};
 
 /* 804563D4-804563D8 0049D4 0004+00 0/0 5/5 0/0 .sdata2          j3dDefaultTevColor */
 SECTION_SDATA2 extern GXColorS10 j3dDefaultTevColor = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 804563DC-804563E0 0049DC 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultIndTexCoordScaleInfo */
-SECTION_SDATA2 extern u8 j3dDefaultIndTexCoordScaleInfo[4] = {
+SECTION_SDATA2 extern J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo = {
     0x00,
     0x00,
     0x00,
@@ -671,13 +667,13 @@ SECTION_SDATA2 extern u8 j3dDefaultTevSwapMode[4] = {
 };
 
 /* 804563E8-804563EC 0049E8 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultTevSwapModeTable */
-SECTION_SDATA2 extern u32 j3dDefaultTevSwapModeTable = 0x00010203;
+SECTION_SDATA2 extern J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = {0x00, 0x01, 0x02, 0x03};
 
 /* 804563EC-804563F0 0049EC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultBlendInfo */
 SECTION_SDATA2 extern const J3DBlendInfo j3dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_NOOP};
 
 /* 804563F0-804563F8 0049F0 0008+00 0/0 3/3 0/0 .sdata2          j3dDefaultColorChanInfo */
-SECTION_SDATA2 extern u8 j3dDefaultColorChanInfo[8] = {
+SECTION_SDATA2 extern J3DColorChanInfo j3dDefaultColorChanInfo = {
     0x00, 0x00, 0x00, 0x02, 0x02, 0x00, 0xFF, 0xFF,
 };
 

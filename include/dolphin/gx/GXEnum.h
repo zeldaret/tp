@@ -761,7 +761,6 @@ typedef enum _GXPixelFmt {
     /* 0x6 */ GX_PF_V8,
     /* 0x7 */ GX_PF_YUV420,
     /* 0x8 */ GX_PF_MAX,
-    g
 } GXPixelFmt;
 
 typedef enum _GXZFmt16 {

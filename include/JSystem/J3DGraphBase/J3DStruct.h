@@ -8,7 +8,7 @@
 
 class J3DLightInfo {
 public:
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
+    /* 803256C4 */ J3DLightInfo& operator=(J3DLightInfo const&);
 
     /* 0x00 */ Vec mLightPosition;
     /* 0x0C */ Vec mLightDirection;
@@ -61,7 +61,7 @@ struct J3DTextureSRTInfo {
 };  // Size: 0x14
 
 struct J3DTexMtxInfo {
-    /* 80325718 */ void operator=(J3DTexMtxInfo const&);
+    /* 80325718 */ J3DTexMtxInfo& operator=(J3DTexMtxInfo const&);
     /* 80325794 */ void setEffectMtx(Mtx);
 
     /* 0x00 */ u8 mProjection;
@@ -72,14 +72,13 @@ struct J3DTexMtxInfo {
 };  // Size: 0x64
 
 struct J3DIndTexMtxInfo {
-    /* 803257DC */ void operator=(J3DIndTexMtxInfo const&);
-
+    J3DIndTexMtxInfo& operator=(J3DIndTexMtxInfo const&);
     /* 0x00 */ Mtx23 field_0x0;
     /* 0x18 */ u8 field_0x18;
 };  // Size: 0x1C
 
 struct J3DFogInfo {
-    /* 80325800 */ void operator=(J3DFogInfo const&);
+    /* 80325800 */ J3DFogInfo& operator=(J3DFogInfo const&);
 
     /* 0x00 */ u8 field_0x0;
     /* 0x01 */ u8 field_0x1;
@@ -88,15 +87,12 @@ struct J3DFogInfo {
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 field_0x15;
-    /* 0x16 */ u8 field_0x16;
-    /* 0x17 */ u8 field_0x17;
-    /* 0x18 */ u16 field_0x18[10];
+    /* 0x14 */ GXColor field_0x14;
+    /* 0x18 */ GXFogAdjTable field_0x18;
 };  // Size: 0x2C
 
 struct J3DNBTScaleInfo {
-    /* 8032587C */ void operator=(J3DNBTScaleInfo const&);
+    /* 8032587C */ J3DNBTScaleInfo& operator=(J3DNBTScaleInfo const&);
 
     /* 0x0 */ bool mbHasScale;
     /* 0x4 */ Vec mScale;
