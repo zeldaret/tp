@@ -1052,10 +1052,10 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mScrollArrowBCKAnimSpeed = 1.0f;
     mScrollArrowBPKAnimSpeed = 1.0f;
     mScrollArrowBTKAnimSpeed = 1.0f;
-    mScrollArrowTopBottomPosX = 0.0f;
-    mScrollArrowTopBottomPosY = 200.0f;
-    mScrollArrowLeftRightPosX = 200.0f;
-    mScrollArrowLeftRightPosY = 0.0f;
+    mScrollArrowPosX[0] = 0.0f;
+    mScrollArrowPosY[0] = 200.0f;
+    mScrollArrowPosX[1] = 200.0f;
+    mScrollArrowPosY[1] = 0.0f;
     mScrollArrowCenterPosX = 0.0f;
     mScrollArrowCenterPosY = 0.0f;
     mScrollArrowDisplayAll = false;
@@ -1065,10 +1065,10 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mWiiLockArrowBCKAnimSpeed = 1.0f;
     mWiiLockArrowBPKAnimSpeed = 1.0f;
     mWiiLockArrowBTKAnimSpeed = 1.0f;
-    mWiiLockArrowTopBottomPosX = 0.0f;
-    mWiiLockArrowTopBottomPosY = 150.0f;
-    mWiiLockArrowLeftRightPosX = 208.0f;
-    mWiiLockArrowLeftRightPosY = 0.0f;
+    mWiiLockArrowPosX[0] = 0.0f;
+    mWiiLockArrowPosY[0] = 150.0f;
+    mWiiLockArrowPosX[1] = 208.0f;
+    mWiiLockArrowPosY[1] = 0.0f;
     mWiiLockArrowDisplayAll = false;
 
     field_0x54c = 1.0f;

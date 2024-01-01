@@ -902,10 +902,8 @@ public:
     /* 0x500 */ f32 mScrollArrowBPKAnimSpeed;
     /* 0x504 */ f32 mScrollArrowBCKAnimSpeed;
     /* 0x508 */ f32 mScrollArrowBTKAnimSpeed;
-    /* 0x50C */ f32 mScrollArrowTopBottomPosX;
-    /* 0x510 */ f32 mScrollArrowLeftRightPosX;
-    /* 0x514 */ f32 mScrollArrowTopBottomPosY;
-    /* 0x518 */ f32 mScrollArrowLeftRightPosY;
+    /* 0x50C */ f32 mScrollArrowPosX[2];
+    /* 0x514 */ f32 mScrollArrowPosY[2];
     /* 0x51C */ f32 mScrollArrowCenterPosX;
     /* 0x520 */ f32 mScrollArrowCenterPosY;
     /* 0x524 */ bool mScrollArrowDisplayAll;
@@ -914,10 +912,8 @@ public:
     /* 0x530 */ f32 mWiiLockArrowBPKAnimSpeed;
     /* 0x534 */ f32 mWiiLockArrowBCKAnimSpeed;
     /* 0x538 */ f32 mWiiLockArrowBTKAnimSpeed;
-    /* 0x53C */ f32 mWiiLockArrowTopBottomPosX;
-    /* 0x540 */ f32 mWiiLockArrowLeftRightPosX;
-    /* 0x544 */ f32 mWiiLockArrowTopBottomPosY;
-    /* 0x548 */ f32 mWiiLockArrowLeftRightPosY;
+    /* 0x53C */ f32 mWiiLockArrowPosX[2];
+    /* 0x544 */ f32 mWiiLockArrowPosY[2];
     /* 0x54C */ f32 field_0x54c;
     /* 0x550 */ bool mWiiLockArrowDisplayAll;
     /* 0x554 */ f32 mFloatingMessagePosX;

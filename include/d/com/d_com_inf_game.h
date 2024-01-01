@@ -552,6 +552,8 @@ public:
     u8 getGameoverStatus() { return mGameoverStatus; }
     u8 getMesgStatus() { return mMesgStatus; }
 
+    u8 getDirection() { return mDirection; }
+
 public:
     /* 0x00000 */ dBgS mBgs;
     /* 0x01404 */ dCcS mCcs;
@@ -3049,6 +3051,10 @@ inline void dComIfGp_setBottleStatusForce(u8 param_0, u8 param_1) {
 
 inline u8 i_dComIfGp_getDoStatus() {
     return g_dComIfG_gameInfo.play.getDoStatus();
+}
+
+inline u8 dComIfGp_getAdvanceDirection() {
+    return g_dComIfG_gameInfo.play.getDirection();
 }
 
 inline dEvt_control_c& i_dComIfGp_getEvent() {

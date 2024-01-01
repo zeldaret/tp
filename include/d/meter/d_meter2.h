@@ -49,31 +49,7 @@ public:
 };
 
 class dMeterButton_c;
-
-class dMeterHaihai_c : public dMeterSub_c {
-public:
-    /* 8020AE8C */ dMeterHaihai_c(u8);
-    /* 8020B814 */ void drawHaihai(u8, f32, f32, f32, f32);
-    /* 8020B518 */ void drawHaihai(u8);
-    /* 8020B9B0 */ void drawHaihaiLeft(f32, f32);
-    /* 8020BA4C */ void drawHaihaiRight(f32, f32);
-    /* 8020BAE8 */ void drawHaihaiTop(f32, f32);
-    /* 8020BB84 */ void drawHaihaiBottom(f32, f32);
-    /* 8020BC20 */ void setScale(f32);
-    /* 8020BEA0 */ void alphaAnimeHaihai(u32);
-    /* 8020BEA4 */ void updateHaihai();
-    /* 8020BF00 */ void playBckAnime(J2DAnmTransformKey*);
-    /* 8020C078 */ void playBtkAnime(J2DAnmTextureSRTKey*);
-    /* 8020C1CC */ void playBpkAnime(J2DAnmColor*);
-
-    /* 8020B140 */ virtual void draw();
-    /* 8020AEF0 */ virtual ~dMeterHaihai_c();
-    /* 8020AF6C */ virtual int _create();
-    /* 8020B0F4 */ virtual int _execute(u32);
-    /* 8020BDAC */ virtual int _delete();
-
-    u8 field_0x4[0x2c - 0x4];
-};
+class dMeterHaihai_c;
 
 class dMeter2_c : public msg_class {
 public:
