@@ -25,22 +25,47 @@ inline void J3DGDWrite_f32(f32 param) {
     J3DGDWrite_u32(tmp);
 }
 
-inline void J3DGDWriteBPCmd(u32 param_1) {
+inline void J3DGDWriteBPCmd(u32 cmd) {
     J3DGDWrite_u8(0x61);
-    J3DGDWrite_u32(param_1);
+    J3DGDWrite_u32(cmd);
 }
 
-inline void J3DGDWriteXFCmd(u16 param_1, u32 param_2) {
+inline void J3DFifoLoadBPCmd(u32 cmd) {
+    GFX_FIFO(u8) = 0x61;
+    GFX_FIFO(u32) = cmd;
+}
+
+inline void J3DGDWriteXFCmd(u16 addr, u32 cmd) {
     J3DGDWrite_u8(0x10);
     J3DGDWrite_u16(0);
-    J3DGDWrite_u16(param_1);
-    J3DGDWrite_u32(param_2);
+    J3DGDWrite_u16(addr);
+    J3DGDWrite_u32(cmd);
 }
 
-inline void J3DGDWriteXFCmdHdr(u16 cmd, u8 len) {
+inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
     J3DGDWrite_u8(0x10);
     J3DGDWrite_u16(len - 1);
-    J3DGDWrite_u16(cmd);
+    J3DGDWrite_u16(addr);
+}
+
+inline void J3DFifoWriteXFCmdHdr(u16 addr, u8 len) {
+    GFX_FIFO(u8) = 0x10;
+    GFX_FIFO(u16) = len - 1;
+    GFX_FIFO(u16) = addr;
+}
+
+inline void J3DGXCmd1f32ptr(f32* value) {
+    GFX_FIFO(u32) = *(u32*)value;
+}
+
+inline void J3DGXCmd1f32(f32 value) {
+    GFX_FIFO(u32) = *(u32*)&value;
+}
+
+inline void J3DGDWriteCPCmd(u8 reg, u32 value) {
+    J3DGDWrite_u8(8);
+    J3DGDWrite_u8(reg);
+    J3DGDWrite_u32(value);
 }
 
 void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevStageNum, u8 IndTexStageNum,
