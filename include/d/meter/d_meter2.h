@@ -31,110 +31,6 @@ public:
     /* 80194138 */ virtual bool isDead();
 };
 
-class dMeterButton_c : public dDlst_base_c {
-public:
-    /* 80201328 */ dMeterButton_c();
-    /* 802013CC */ void _create();
-    /* 80201404 */ void _execute(u32, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool,
-                                 bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool,
-                                 bool);
-    /* 80202A9C */ void _delete();
-    /* 802032C4 */ void alphaAnimeButtonA(u32, bool);
-    /* 8020339C */ void alphaAnimeButtonB(u32, bool);
-    /* 802034A8 */ void alphaAnimeButtonR(u32, bool);
-    /* 802035AC */ void alphaAnimeButtonZ(u32, bool);
-    /* 802036C0 */ void alphaAnimeButton3D(u32, bool);
-    /* 802037B8 */ void alphaAnimeButtonC(u32, bool);
-    /* 80203878 */ void alphaAnimeButtonS(u32, bool);
-    /* 802038F4 */ void alphaAnimeButtonX(u32, bool);
-    /* 80203A08 */ void alphaAnimeButtonY(u32, bool);
-    /* 80203B1C */ void alphaAnimeButtonNun(u32, bool);
-    /* 80203C30 */ void alphaAnimeButtonRemo(u32, bool);
-    /* 80203D44 */ void alphaAnimeButtonRemo2(u32, bool);
-    /* 80203E58 */ void alphaAnimeButtonAR(u32, bool);
-    /* 80203F60 */ void alphaAnimeButton3DB(u32, bool);
-    /* 80204068 */ void alphaAnimeButtonNURE(u32, bool);
-    /* 80204170 */ void alphaAnimeButtonReel(u32, bool);
-    /* 80204278 */ void alphaAnimeButtonReel2(u32, bool);
-    /* 80204368 */ void alphaAnimeButtonAB(u32, bool);
-    /* 80204458 */ void alphaAnimeButtonTate(u32, bool);
-    /* 80204548 */ void alphaAnimeButtonNunZ(u32, bool);
-    /* 80204620 */ void alphaAnimeButtonNunC(u32, bool);
-    /* 802046F8 */ void alphaAnimeButtonBin(u32, bool);
-    /* 802047E8 */ void screenInitButton();
-    /* 80205834 */ void screenInitText();
-    /* 80205CA0 */ void updateButton();
-    /* 80206978 */ void updateText(u32);
-    /* 80206CE0 */ void setAlphaButtonAAnimeMin();
-    /* 80206D70 */ void isFastSet(int);
-    /* 80207060 */ void setAlphaButtonAAnimeMax();
-    /* 8020714C */ void setAlphaButtonBAnimeMin();
-    /* 802071DC */ void setAlphaButtonBAnimeMax();
-    /* 802072C8 */ void setAlphaButtonRAnimeMin();
-    /* 80207358 */ void setAlphaButtonRAnimeMax();
-    /* 80207444 */ void setAlphaButtonZAnimeMin();
-    /* 802074D4 */ void setAlphaButtonZAnimeMax();
-    /* 802075C0 */ void setAlphaButton3DAnimeMin();
-    /* 80207654 */ void setAlphaButton3DAnimeMax();
-    /* 80207740 */ void setAlphaButton3DVAnimeMin();
-    /* 80207744 */ void setAlphaButton3DVAnimeMax();
-    /* 80207748 */ void setAlphaButtonCAnimeMin();
-    /* 802077EC */ void setAlphaButtonCAnimeMax();
-    /* 80207A28 */ void setAlphaButtonSAnimeMin();
-    /* 80207AB8 */ void setAlphaButtonSAnimeMax();
-    /* 80207BA4 */ void setAlphaButtonXAnimeMin();
-    /* 80207C34 */ void setAlphaButtonXAnimeMax();
-    /* 80207D20 */ void setAlphaButtonYAnimeMin();
-    /* 80207DB0 */ void setAlphaButtonYAnimeMax();
-    /* 80207E9C */ void setAlphaButtonNunAnimeMin();
-    /* 80207F34 */ void setAlphaButtonNunAnimeMax();
-    /* 80208028 */ void setAlphaButtonRemoAnimeMin();
-    /* 802080C0 */ void setAlphaButtonRemoAnimeMax();
-    /* 802081B4 */ void setAlphaButtonRemo2AnimeMin();
-    /* 8020824C */ void setAlphaButtonRemo2AnimeMax();
-    /* 80208340 */ void setAlphaButtonARAnimeMin();
-    /* 802083D8 */ void setAlphaButtonARAnimeMax();
-    /* 802084D8 */ void setAlphaButton3DBAnimeMin();
-    /* 80208570 */ void setAlphaButton3DBAnimeMax();
-    /* 80208670 */ void setAlphaButtonNUREAnimeMin();
-    /* 80208708 */ void setAlphaButtonNUREAnimeMax();
-    /* 80208808 */ void setAlphaButtonReelAnimeMin();
-    /* 802088A0 */ void setAlphaButtonReelAnimeMax();
-    /* 802089A0 */ void setAlphaButtonReel2AnimeMin();
-    /* 80208A38 */ void setAlphaButtonReel2AnimeMax();
-    /* 80208AEC */ void setAlphaButtonABAnimeMin();
-    /* 80208B84 */ void setAlphaButtonABAnimeMax();
-    /* 80208C38 */ void setAlphaButtonTateAnimeMin();
-    /* 80208CD0 */ void setAlphaButtonTateAnimeMax();
-    /* 80208D84 */ void setAlphaButtonNunZAnimeMin();
-    /* 80208E1C */ void setAlphaButtonNunZAnimeMax();
-    /* 80208F1C */ void setAlphaButtonNunCAnimeMin();
-    /* 80208FB4 */ void setAlphaButtonNunCAnimeMax();
-    /* 802090B4 */ void setAlphaButtonBinAnimeMin();
-    /* 8020914C */ void setAlphaButtonBinAnimeMax();
-    /* 8020924C */ void setAlphaButtonOAnimeMin(int);
-    /* 802092C0 */ void setAlphaButtonOAnimeMax(int);
-    /* 80209368 */ void setAlphaIconAnimeMin();
-    /* 802093D8 */ void setAlphaIconAnimeMax();
-    /* 80209474 */ bool isClose();
-    /* 802095C0 */ void setString(char*, u8, u8, u8);
-    /* 80209CEC */ void hideAll();
-    /* 80209D7C */ void getCenterPosCalc(u8, char*, int);
-    /* 8020A540 */ void trans_button(int, f32);
-    /* 8020A94C */ void hide_button(u8);
-    /* 8020AA84 */ void pikariCheck();
-    /* 8020AE68 */ void paneTrans(CPaneMgr*, f32, f32, u8);
-
-    /* 80202240 */ virtual void draw();
-    /* 80201370 */ virtual ~dMeterButton_c();
-
-    bool isSetButton(u8 i_no) { return field_0x484[i_no] <= 0; }
-
-    /* 0x004 */ u8 field_0x4[0x484 - 0x4];
-    /* 0x48C */ s16 field_0x484[21];
-    /* 0x4AE */ u8 field_0x4ae[0x630 - 0x4ae];
-};
-
 class dMeterString_c : public dMeterSub_c {
 public:
     /* 8020ED60 */ dMeterString_c(int);
@@ -151,6 +47,8 @@ public:
 
     /* 0x04 */ u8 field_0x4[0x40 - 0x4];
 };
+
+class dMeterButton_c;
 
 class dMeterHaihai_c : public dMeterSub_c {
 public:

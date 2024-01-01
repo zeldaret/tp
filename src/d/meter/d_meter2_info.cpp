@@ -334,7 +334,7 @@ bool dMeter2Info_c::isFloatingMessageVisible() {
 
 /* 8021C1F0-8021C218 216B30 0028+00 0/0 1/1 0/0 .text decFloatingMessageTimer__13dMeter2Info_cFv
  */
-int dMeter2Info_c::decFloatingMessageTimer() {
+s16 dMeter2Info_c::decFloatingMessageTimer() {
     if (mFloatingMessageTimer > 0) {
         mFloatingMessageTimer--;
     } else {

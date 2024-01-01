@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "d/meter/d_meter2.h"
+#include "d/meter/d_meter_button.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80D4D478-80D4D498 000078 0020+00 1/1 0/0 0/0 .text            daSkip2D_createHeap__FP10fopAc_ac_c

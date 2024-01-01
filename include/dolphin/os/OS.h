@@ -93,6 +93,12 @@ void OSVReport(const char* format, va_list list);
 void OSVAttention(const char* fmt, va_list args);
 void OSReportInit(void);
 
+#ifdef DEBUG
+#define OS_REPORT(...) OSReport(__VA_ARGS__);
+#else
+#define OS_REPORT(...)
+#endif
+
 extern u8 __OSReport_disable;
 extern u8 __OSReport_Error_disable;
 extern u8 __OSReport_Warning_disable;

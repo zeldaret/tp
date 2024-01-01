@@ -1752,7 +1752,7 @@ asm u16 dMsgObject_c::getStatus() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getScrnDrawPtr() {
+asm dMsgScrnBase_c* dMsgObject_c::getScrnDrawPtr() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getScrnDrawPtr__12dMsgObject_cFv.s"
 }
