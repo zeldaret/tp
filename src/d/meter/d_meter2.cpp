@@ -13,18 +13,13 @@
 #include "d/meter/d_meter2_draw.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
-#include "d/meter/d_meter_map.h"
 #include "d/meter/d_meter_button.h"
 #include "d/meter/d_meter_haihai.h"
+#include "d/meter/d_meter_map.h"
+#include "d/meter/d_meter_hakusha.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
-
-struct dMeterHakusha_c : public dMeterSub_c {
-    /* 8020C320 */ dMeterHakusha_c(void*);
-
-    u8 field_0x4[0x118 - 0x4];
-};
 
 //
 // Forward References:
@@ -960,8 +955,8 @@ void dMeter2_c::moveKantera() {
             }
 
             if (!dComIfGp_getOxygenShowFlag() && mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f) {
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
-                                                     -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_RECOVER, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                              -1.0f, 0);
             }
             draw_kantera = true;
         } else if (mNowOil > dComIfGs_getOil()) {
@@ -972,14 +967,14 @@ void dMeter2_c::moveKantera() {
 
             if (mNowOil == 0) {
                 if (mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f) {
-                    Z2GetAudioMgr()->seStart(Z2SE_OIL_METER_FINISH, NULL, 0, 0, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_OIL_METER_FINISH, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                             -1.0f, 0);
                 }
             } else if (((f32)dComIfGs_getOil() / (f32)dComIfGs_getMaxOil()) <= 0.1f &&
                        mpMeterDraw->getMeterGaugeAlphaRate(1) > 0.0f)
             {
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_LESS, NULL, 0, 0, 1.0f, 1.0f,
-                                                     -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OIL_METER_LESS, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                              -1.0f, 0);
             }
 
             draw_kantera = true;
@@ -1057,8 +1052,8 @@ void dMeter2_c::moveOxygen() {
             if (dComIfGp_getOxygen() < dComIfGp_getMaxOxygen() &&
                 mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f)
             {
-                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_RECOVER, NULL, 0, 0, 1.0f, 1.0f,
-                                                -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_RECOVER, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
             }
         }
 
@@ -1100,8 +1095,8 @@ void dMeter2_c::moveOxygen() {
             if ((f32)dComIfGp_getOxygen() / (f32)dComIfGp_getMaxOxygen() > 0.5f &&
                 mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f)
             {
-                Z2GetAudioMgr()->seStartLevel(Z2SE_SWIM_TIMER_DEC, NULL, 0, 0, 1.0f, 1.0f,
-                                                     -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_SWIM_TIMER_DEC, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                              -1.0f, 0);
             }
 
             draw_oxygen = true;
@@ -1162,12 +1157,12 @@ void dMeter2_c::moveLightDrop() {
             dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea()))
         {
             var_r28 = 2;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_COMPLETE, NULL, 0, 0, 1.0f, 1.0f,
-                                            -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_COMPLETE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
         } else if (mLightDropNum < dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea())) {
             var_r28 = 1;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_GET, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_LIGHT_DROP_GET, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
         }
 
         mLightDropNum = dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea());
@@ -2195,11 +2190,11 @@ void dMeter2_c::moveButtonXY() {
                     dComIfGp_setXStatusForce(0, 0);
                 }
 
-                if (mItemStatus[i*2+1] != dComIfGp_getXStatus()) {
-                    mItemStatus[i*2+1] = dComIfGp_getXStatus();
+                if (mItemStatus[i * 2 + 1] != dComIfGp_getXStatus()) {
+                    mItemStatus[i * 2 + 1] = dComIfGp_getXStatus();
 
-                    if (mItemStatus[i*2+1] == 0x2D || mItemStatus[i*2+1] == 0x2E) {
-                        dComIfGp_setXStatus(mItemStatus[i*2+1], 1);
+                    if (mItemStatus[i * 2 + 1] == 0x2D || mItemStatus[i * 2 + 1] == 0x2E) {
+                        dComIfGp_setXStatus(mItemStatus[i * 2 + 1], 1);
                     }
 
                     spC[i] = 1;
@@ -2217,11 +2212,11 @@ void dMeter2_c::moveButtonXY() {
                     dComIfGp_setYStatusForce(0, 0);
                 }
 
-                if (mItemStatus[i*2+1] != dComIfGp_getYStatus()) {
-                    mItemStatus[i*2+1] = dComIfGp_getYStatus();
+                if (mItemStatus[i * 2 + 1] != dComIfGp_getYStatus()) {
+                    mItemStatus[i * 2 + 1] = dComIfGp_getYStatus();
 
-                    if (mItemStatus[i*2+1] == 0x2D || mItemStatus[i*2+1] == 0x2E) {
-                        dComIfGp_setYStatus(mItemStatus[i*2+1], 1);
+                    if (mItemStatus[i * 2 + 1] == 0x2D || mItemStatus[i * 2 + 1] == 0x2E) {
+                        dComIfGp_setYStatus(mItemStatus[i * 2 + 1], 1);
                     }
 
                     spC[i] = 1;
@@ -2235,8 +2230,8 @@ void dMeter2_c::moveButtonXY() {
                 }
             }
         } else {
-            if (mItemStatus[2*i] != dComIfGp_getSelectItem(i) || field_0x128 != field_0x12c) {
-                mItemStatus[2*i] = dComIfGp_getSelectItem(i);
+            if (mItemStatus[2 * i] != dComIfGp_getSelectItem(i) || field_0x128 != field_0x12c) {
+                mItemStatus[2 * i] = dComIfGp_getSelectItem(i);
                 spC[i] = 1;
                 sp8[i] = 1;
             }
@@ -2247,7 +2242,7 @@ void dMeter2_c::moveButtonXY() {
                 sp8[i] = 1;
             }
 
-            if (mItemStatus[2*i] == 0x48) {
+            if (mItemStatus[2 * i] == 0x48) {
                 if (field_0x1ec == 0) {
                     if (dComIfGs_getOil() != 0) {
                         field_0x1ec = 1;
@@ -2259,7 +2254,7 @@ void dMeter2_c::moveButtonXY() {
                         sp8[i] = 1;
                     }
                 }
-            } else if (mItemStatus[2*i] == 0x46) {
+            } else if (mItemStatus[2 * i] == 0x46) {
                 if (field_0x1ed == 0) {
                     if (daPy_getPlayerActorClass()->checkCopyRodTopUse()) {
                         field_0x1ed = 1;
@@ -2271,14 +2266,14 @@ void dMeter2_c::moveButtonXY() {
                         sp8[i] = 1;
                     }
                 }
-            } else if (mItemStatus[2*i] == 0x50 || mItemStatus[2*i] == 0x70 ||
-                       mItemStatus[2*i] == 0x71 || mItemStatus[2*i] == 0x72)
+            } else if (mItemStatus[2 * i] == 0x50 || mItemStatus[2 * i] == 0x70 ||
+                       mItemStatus[2 * i] == 0x71 || mItemStatus[2 * i] == 0x72)
             {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                             dComIfGp_getSelectItemMaxNum(i));
                 }
-            } else if (mItemStatus[2*i] == 0x76) {
+            } else if (mItemStatus[2 * i] == 0x76) {
                 if (field_0x1d8[i] != dComIfGp_getSelectItemNum(i)) {
                     field_0x1d8[i] = dComIfGp_getSelectItemNum(i);
                     sp8[i] = 1;
@@ -2288,18 +2283,18 @@ void dMeter2_c::moveButtonXY() {
                     mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                             dComIfGp_getSelectItemMaxNum(i));
                 }
-            } else if (mItemStatus[2*i] == 0x43 || mItemStatus[2*i] == 0x53 ||
-                       mItemStatus[2*i] == 0x54 || mItemStatus[2*i] == 0x55 ||
-                       mItemStatus[2*i] == 0x56 || mItemStatus[2*i] == 0x5A)
+            } else if (mItemStatus[2 * i] == 0x43 || mItemStatus[2 * i] == 0x53 ||
+                       mItemStatus[2 * i] == 0x54 || mItemStatus[2 * i] == 0x55 ||
+                       mItemStatus[2 * i] == 0x56 || mItemStatus[2 * i] == 0x5A)
             {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, mArrowNum, dComIfGs_getArrowMax());
                 }
-            } else if (mItemStatus[2*i] == 0x4B) {
+            } else if (mItemStatus[2 * i] == 0x4B) {
                 if (sp8[i] != 0) {
                     mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
                 }
-            } else if (mItemStatus[2*i] == 0x59) {
+            } else if (mItemStatus[2 * i] == 0x59) {
                 u8 var_r25 = dComIfGp_getSelectItemNum(i);
                 u8 var_r6_2 = dComIfGp_getSelectItemMaxNum(i);
 
@@ -2316,7 +2311,7 @@ void dMeter2_c::moveButtonXY() {
         }
 
         if (sp8[i] != 0) {
-            mpMeterDraw->drawButtonXY(i, mItemStatus[2*i], mItemStatus[i*2+1],
+            mpMeterDraw->drawButtonXY(i, mItemStatus[2 * i], mItemStatus[i * 2 + 1],
                                       field_0x128 == 0 ? true : false, spC[i]);
         }
     }
@@ -3053,8 +3048,8 @@ void dMeter2_c::alphaAnimeOxygen() {
             field_0x1e1 = 1;
 
             if (mpMeterDraw->getMeterGaugeAlphaRate(2) > 0.0f) {
-                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SWIM_TIMER_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
             }
         }
     }
