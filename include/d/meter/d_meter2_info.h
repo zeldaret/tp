@@ -163,6 +163,7 @@ public:
     void resetBlinkButton() { mBlinkButton = 0; }
     s16 getFloatingMessageTimer() { return mFloatingMessageTimer; }
     u16 getFloatingMessageID() { return mFloatingMessageID; }
+    s16 getHorseLifeCount() { return mHorseLifeCount; }
     void setCollectCursorPosXY(u8 x, u8 y) {
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
@@ -196,7 +197,7 @@ public:
     /* 0x8C */ s32 mMeterString;
     /* 0x90 */ u32 mTempBits;
     /* 0x94 */ s16 mMsgKeyWaitTimer;
-    /* 0x96 */ u16 mHorseLifeCount;
+    /* 0x96 */ s16 mHorseLifeCount;
     /* 0x98 */ u16 unk152;
     /* 0x9A */ u16 mHotSpringTimer[4];
     /* 0xA2 */ u16 mSub2DStatus;
@@ -649,6 +650,10 @@ inline s16 dMeter2Info_getFloatingMessageTimer() {
 
 inline u32 dMeter2Info_getFloatingMessageID() {
     return g_meter2_info.getFloatingMessageID();
+}
+
+inline s16 dMeter2Info_getHorseLifeCount() {
+    return g_meter2_info.getHorseLifeCount();
 }
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);
