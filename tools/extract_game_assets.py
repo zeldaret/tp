@@ -3,6 +3,7 @@ import sys
 import libarc
 from pathlib import Path
 import libyaz0
+import libstage
 
 """
 Extracts the game assets and stores them in the game folder
@@ -133,14 +134,18 @@ def writeFolder(parsedFstBin, i):
 Use the parsed fst.bin contents to write assets to file
 """
 
-convertDefinitions = [
-    {
-        "extension": ".arc",
+convertDefinitions = {
+    ".arc": {
         "function": libarc.extract_to_directory,
         "exceptions": ["archive/dat/speakerse.arc"],
+    },
+    ".dzs": {
+        "function": libstage.extract_to_json
+    },
+    ".dzr": {
+        "function": libstage.extract_to_json
     }
-]
-
+}
 
 def writeFile(name, data):
     if data[0:4] == bytes("Yaz0", "ascii"):
@@ -151,14 +156,10 @@ def writeFile(name, data):
     extractDef = None
     splitName = os.path.splitext(name)
     ext = splitName[1]
-    for extractData in convertDefinitions:
-        if ext == extractData["extension"]:
-            extractDef = extractData
-            if extractData["exceptions"] != None:
-                for exception in extractData["exceptions"]:
-                    if str(name) == exception:
-                        extractDef = None
-            break
+    if ext in convertDefinitions:
+        extractDef = convertDefinitions[ext]
+        if "exceptions" in extractDef and str(name) in extractDef["exceptions"]:
+            extractDef = None
 
     if extractDef == None:
         file = open(name, "wb")

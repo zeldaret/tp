@@ -431,6 +431,8 @@ def convert_dir_to_arc(sourceDir, convertFunction):
     dirOffset = dirOffset + dirOffsetPadding
     stringTableOffset = dirOffset + (len(dirs) * 20)
     stringTablePadding = 0x20 - (stringTableOffset % 0x20)
+    if stringTablePadding == 0x20:
+        stringTablePadding = 0
     stringTableOffset = stringTableOffset + stringTablePadding
     stringTableLen = len(bytearray(stringTable, "shift-jis"))
     fileOffset = stringTableOffset + stringTableLen
