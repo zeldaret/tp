@@ -398,9 +398,16 @@ struct jmessage_string_tReference : public JMessage::TReference {
     u8 getLineMax() { return mLineMax; }
     u8 getNowPage() { return mNowPage; }
     JUTFont* getFont() { return mpFont; }
+    s16 getLineCount() { return mLineCount; }
     void setLineCount(s16 lineCount) { mLineCount = lineCount; }
     void addLineCount() { mLineCount++; }
     u8 isFlag(u8 flag) { return mFlags & flag; }
+    void setColor(u32 ccColor, u32 gcColor) {
+        mCCColor = ccColor;
+        mGCColor = gcColor;
+    }
+    void setNowPage(u8 nowPage) { mNowPage = nowPage; }
+    void setLineMax(u8 lineMax) { mLineMax = lineMax; }
 
     /* 8022F94C */ virtual ~jmessage_string_tReference();
 
@@ -469,6 +476,8 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 80230CE8 */ virtual void do_end();
     /* 80230D48 */ virtual void do_character(int);
     /* 80231110 */ virtual bool do_tag(u32, void const*, u32);
+
+    char* getString() { return field_0x54; }
 
     /* 0x038 */ jmessage_string_tReference* mpReference;
     /* 0x03C */ f32 field_0x3c;

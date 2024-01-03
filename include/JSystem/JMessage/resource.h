@@ -56,6 +56,10 @@ struct TResource {
 
 struct TResource_color {
     TResource_color() : field_0x0(NULL), field_0x4(NULL) {}
+    void reset() { 
+        field_0x0.setRaw(NULL);
+        field_0x4.setRaw(NULL);
+    }
 
     /* 0x0 */ data::TParse_THeader field_0x0;
     /* 0x4 */ data::TParse_TBlock_color field_0x4;
@@ -83,6 +87,16 @@ struct TResourceContainer {
 
     bool isEncodingSettable(u8 e) const { return mEncodingType == e || mEncodingType == 0; }
     const TCResource* getResourceContainer() const { return &resContainer_; }
+    void destroyResource() {
+        resContainer_.Clear_destroy();
+    }
+    void destroyResource_color() {
+        resColor_.reset();
+    }
+    void destroyResource_all() {
+        destroyResource();
+        destroyResource_color();
+    }
 
     static JMessage::locale::parseCharacter_function sapfnParseCharacter_[5];
 

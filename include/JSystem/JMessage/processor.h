@@ -25,6 +25,7 @@ struct TReference {
     }
 
     TResourceContainer* getResourceContainer() const { return pcResource_; }
+    void setResourceContainer(TResourceContainer* container) { pcResource_ = container; }
 
     /* 0x4 */ TResourceContainer* pcResource_;
 };
@@ -207,6 +208,9 @@ struct TProcessor {
 
         return pReference_->getResourceContainer();
     }
+
+    void setResourceCache(TResource* cache) { pResourceCache_ = cache; }
+    void resetResourceCache() { setResourceCache(NULL); }
 
     /* 0x04 */ const TReference* pReference_;
     /* 0x08 */ const TResource* pResourceCache_;

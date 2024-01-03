@@ -16,16 +16,16 @@ public:
     /* 802493B4 */ dMsgStringBase_c();
     /* 80249528 */ ~dMsgStringBase_c();
     /* 80249700 */ void getResource();
-    /* 80249768 */ void getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 802498D8 */ void getStringPageLocal(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*,
+    /* 80249768 */ f32 getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
+    /* 802498D8 */ f32 getStringPageLocal(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*,
                                            COutFont_c*, u8);
-    /* 80249A48 */ void getPageMax(int);
-    /* 80249A70 */ void getMessageLocal(u32, char*);
+    /* 80249A48 */ u8 getPageMax(int);
+    /* 80249A70 */ f32 getMessageLocal(u32, char*);
 
     /* 80249BB0 */ virtual f32 getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
-    /* 80249BD0 */ virtual void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
+    /* 80249BD0 */ virtual f32 getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                       u8);
-    /* 80249BF8 */ virtual void getMessage(u32, char*);
+    /* 80249BF8 */ virtual f32 getMessage(u32, char*);
     /* 80249C18 */ virtual void resetStringLocal(J2DTextBox*);
     /* 80249C1C */ virtual void drawOutFontLocal(J2DTextBox*, f32);
     /* 80249BAC */ virtual void drawFontLocal(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
