@@ -90,7 +90,7 @@ public:
     /* 802254C0 */ void alphaAnimeButtonCross();
     /* 802256DC */ bool isShowLightDrop();
     /* 802258A0 */ void killSubContents(u8);
-    /* 80225960 */ BOOL isKeyVisible();
+    /* 80225960 */ u8 isKeyVisible();
     /* 802259F8 */ int isArrowEquip();
     /* 80225A64 */ int isPachinkoEquip();
 

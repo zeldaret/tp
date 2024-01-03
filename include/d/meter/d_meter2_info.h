@@ -60,7 +60,7 @@ public:
     f32 getStringLength(J2DTextBox*, char*);
     f32 getStringLength(JUTFont*, f32, f32, char*);
     void onDirectUseItem(int);
-    bool isDirectUseItem(int);
+    BOOL isDirectUseItem(int);
     int setMeterString(s32);
     void resetWarpStatus(void);
     void warpInProc(void);
@@ -364,7 +364,7 @@ inline void dMeter2Info_setMaxCount(u8 count) {
     g_meter2_info.setMaxCount(count);
 }
 
-inline bool dMeter2Info_isDirectUseItem(int param_0) {
+inline BOOL dMeter2Info_isDirectUseItem(int param_0) {
     return g_meter2_info.isDirectUseItem(param_0);
 }
 
