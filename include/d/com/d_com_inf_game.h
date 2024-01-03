@@ -437,6 +437,7 @@ public:
     JKRArchive* getFontArchive() { return mFontArchive; }
     JKRArchive* getRubyArchive() { return mRubyArchive; }
     JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
+    JKRArchive* getAllMapArchive() { return mAllMapArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -2922,6 +2923,10 @@ inline JKRArchive* dComIfGp_getRingResArchive() {
 
 inline JKRArchive* dComIfGp_getMeterButtonArchive() {
     return g_dComIfG_gameInfo.play.getMeterButtonArchive();
+}
+
+inline JKRArchive* dComIfGp_getAllMapArchive() {
+    return g_dComIfG_gameInfo.play.getAllMapArchive();
 }
 
 inline void dComIfGp_onPauseFlag() {

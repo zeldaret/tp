@@ -5,10 +5,9 @@
 
 #include "d/meter/d_meter_map.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 
@@ -190,47 +189,14 @@ asm bool dMeterMap_c::isEventRunCheck() {
 #pragma pop
 #endif
 
-/* ############################################################################################## */
-/* 80454828-80454830 002E28 0008+00 3/3 0/0 0/0 .sdata2          @4100 */
-SECTION_SDATA2 static f64 lit_4100 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 8020D72C-8020D75C 20806C 0030+00 2/2 0/0 0/0 .text getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
  */
-#ifdef NONMATCHING
-// matches with literal
 f32 dMeterMap_c::getMapDispEdgeLeftX_Layout() {
     return field_0x28 + 35;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMeterMap_c::getMapDispEdgeLeftX_Layout() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/getMapDispEdgeLeftX_Layout__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80454830-80454834 002E30 0004+00 2/2 0/0 0/0 .sdata2          @4128 */
-SECTION_SDATA2 static u8 lit_4128[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80454834-80454838 002E34 0004+00 5/5 0/0 0/0 .sdata2          @4129 */
-SECTION_SDATA2 static f32 lit_4129 = 1.0f;
-
-/* 80454838-80454840 002E38 0008+00 1/1 0/0 0/0 .sdata2          @4131 */
-SECTION_SDATA2 static f64 lit_4131 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8020D75C-8020D7E4 20809C 0088+00 0/0 1/1 0/0 .text            getMapDispEdgeTop__11dMeterMap_cFv
  */
-// matches with literals
-#ifdef NONMATCHING
 f32 dMeterMap_c::getMapDispEdgeTop() {
     f32 tmp = 0.0f;
     if (mMap != NULL) {
@@ -240,50 +206,24 @@ f32 dMeterMap_c::getMapDispEdgeTop() {
     }
     return getMapDispEdgeBottomY_Layout() - tmp;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMeterMap_c::getMapDispEdgeTop() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/getMapDispEdgeTop__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020D7E4-8020D7EC 208124 0008+00 2/2 0/0 0/0 .text getDispPosInside_OffsetX__11dMeterMap_cFv */
 s16 dMeterMap_c::getDispPosInside_OffsetX() {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80454840-80454844 002E40 0004+00 1/1 0/0 0/0 .sdata2          @4159 */
-SECTION_SDATA2 static f32 lit_4159 = -36.0f;
-
 /* 8020D7EC-8020D874 20812C 0088+00 2/2 0/0 0/0 .text getDispPosOutSide_OffsetX__11dMeterMap_cFv
  */
-// matches with literals
-#ifdef NONMATCHING
 s16 dMeterMap_c::getDispPosOutSide_OffsetX() {
     f32 dvar3 = -36.0f - mSizeW;
     f32 offset = 0.0f;
     if (mMap != NULL) {
         offset = mMap->getTexelPerCm() * mMap->getPackX();
-        offset +=(mMap->getRightEdgePlus() + (mMap->getTexelPerCm() * mMap->getPackPlusZ()));
+        offset += (mMap->getRightEdgePlus() + (mMap->getTexelPerCm() * mMap->getPackPlusZ()));
     }
     dvar3 += offset;
     return dvar3 - getMapDispEdgeLeftX_Layout();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s16 dMeterMap_c::getDispPosOutSide_OffsetX() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/getDispPosOutSide_OffsetX__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020D874-8020D8BC 2081B4 0048+00 2/2 2/2 0/0 .text setDispPosInsideFlg_SE_On__11dMeterMap_cFv
  */
@@ -304,8 +244,8 @@ void dMeterMap_c::setDispPosOutsideFlg_SE_On() {
 }
 
 /* 8020D8F8-8020D900 -00001 0008+00 0/0 0/0 0/0 .text            setMapAlpha__11dMeterMap_cFUc */
-void dMeterMap_c::setMapAlpha(u8 alpha) {
-    mMapAlpha = alpha;
+void dMeterMap_c::setMapAlpha(u8 i_alpha) {
+    mMapAlpha = i_alpha;
 }
 
 /* 8020D900-8020D948 208240 0048+00 3/3 1/1 0/0 .text            isMapOpenCheck__11dMeterMap_cFv */
@@ -313,22 +253,9 @@ bool dMeterMap_c::isMapOpenCheck() {
     return dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 7 ? false : true;
 }
 
-/* ############################################################################################## */
-/* 803BF2D8-803BF2F8 -00001 0020+00 1/1 0/0 0/0 .data            @4516 */
-SECTION_DATA static void* lit_4516[8] = {
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x1C8),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x184),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x1B4),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x19C),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x1C8),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x1A8),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x1C0),
-    (void*)(((char*)ctrlShowMap__11dMeterMap_cFv) + 0x190),
-};
-
 /* 8020D948-8020D990 208288 0048+00 0/0 1/1 0/0 .text            __ct__11dMeterMap_cFP9J2DScreen */
-dMeterMap_c::dMeterMap_c(J2DScreen* p_scrn) {
-    _create(p_scrn);
+dMeterMap_c::dMeterMap_c(J2DScreen* i_scrn) {
+    _create(i_scrn);
 }
 
 /* 8020D990-8020D9EC 2082D0 005C+00 1/0 0/0 0/0 .text            __dt__11dMeterMap_cFv */
@@ -338,9 +265,7 @@ dMeterMap_c::~dMeterMap_c() {
 
 /* 8020D9EC-8020DC50 20832C 0264+00 1/1 0/0 0/0 .text            _create__11dMeterMap_cFP9J2DScreen
  */
-// matches with auto gen literals
-#ifdef NONMATCHING
-void dMeterMap_c::_create(J2DScreen* param_0) {
+void dMeterMap_c::_create(J2DScreen* unused) {
     s32 sizeX;
     s32 sizeY;
     s32 dispSizeW;
@@ -421,16 +346,6 @@ void dMeterMap_c::_create(J2DScreen* param_0) {
     field_0x30 = 0;
     field_0x2b = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118]);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::_create(J2DScreen* param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter_map/_create__11dMeterMap_cFP9J2DScreen.s"
-}
-#pragma pop
-#endif
 
 /* 8020DC50-8020DCE4 208590 0094+00 1/1 0/0 0/0 .text            _delete__11dMeterMap_cFv */
 void dMeterMap_c::_delete() {
@@ -451,16 +366,7 @@ void dMeterMap_c::_delete() {
     }
 }
 
-/* ############################################################################################## */
-/* 80398208-80398208 024868 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80398208 = "F_SP115";
-#pragma pop
-
 /* 8020DCE4-8020DF1C 208624 0238+00 0/0 1/1 0/0 .text            _move__11dMeterMap_cFUl */
-// matches with literals
-#ifdef NONMATCHING
 void dMeterMap_c::_move(u32 param_0) {
     if (!field_0x2b && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118])) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0) {
@@ -478,7 +384,8 @@ void dMeterMap_c::_move(u32 param_0) {
     if (field_0x2a == 1 || field_0x2a == 2 || field_0x2a == 3 ||
         dMeter2Info_getPauseStatus() == 7 || dMeter2Info_getPauseStatus() == 2 ||
         dMeter2Info_getPauseStatus() == 6 || dMeter2Info_getPauseStatus() == 4 ||
-        dMeter2Info_getPauseStatus() == 3 || dMeter2Info_getPauseStatus() == 5) {
+        dMeter2Info_getPauseStatus() == 3 || dMeter2Info_getPauseStatus() == 5)
+    {
         ctrlShowMap();
     }
 
@@ -498,16 +405,6 @@ void dMeterMap_c::_move(u32 param_0) {
     mMap->_move(map_pos.x, map_pos.z, stayNo, map_pos.y);
     field_0x30 = i_dComIfGp_event_runCheck();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::_move(u32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter_map/_move__11dMeterMap_cFUl.s"
-}
-#pragma pop
-#endif
 
 /* 8020DF1C-8020DF68 20885C 004C+00 0/0 1/1 0/0 .text            _draw__11dMeterMap_cFv */
 void dMeterMap_c::_draw() {
@@ -530,28 +427,22 @@ void dMeterMap_c::draw() {
     }
 }
 
-/* ############################################################################################## */
-/* 80454844-80454848 002E44 0004+00 3/3 0/0 0/0 .sdata2          @4515 */
-SECTION_SDATA2 static f32 lit_4515 = -1.0f;
-
 /* 8020E070-8020E45C 2089B0 03EC+00 2/1 0/0 0/0 .text            ctrlShowMap__11dMeterMap_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dMeterMap_c::ctrlShowMap() {
     if (!dMeter2Info_isGameStatus(1)) {
         if (!isMapOpenCheck() && !isEventRunCheck()) {
             if (dMw_LEFT_TRIGGER() || dMw_RIGHT_TRIGGER()) {
-                Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             }
         } else {
             if (dMeter2Info_getPauseStatus() == 1 || dMeter2Info_getPauseStatus() == 7 ||
                 dMeter2Info_getPauseStatus() == 3 || dMeter2Info_getPauseStatus() == 5 ||
-                dMeter2Info_getPauseStatus() == 2 || dMeter2Info_getPauseStatus() == 6) {
+                dMeter2Info_getPauseStatus() == 2 || dMeter2Info_getPauseStatus() == 6)
+            {
                 if (dMeter2Info_getMapStatus() == 0 && field_0x2d == 0) {
                     setDispPosInsideFlg_SE_On();
-                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                             -1.0f, 0);
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
                 }
@@ -561,7 +452,7 @@ void dMeterMap_c::ctrlShowMap() {
                     case 1:
                         dMeter2Info_setMapStatus(4);
                         break;
-                    case 2:
+                    case 7:
                         dMeter2Info_setMapStatus(7);
                         break;
                     case 3:
@@ -570,16 +461,16 @@ void dMeterMap_c::ctrlShowMap() {
                     case 5:
                         dMeter2Info_setMapStatus(9);
                         break;
-                    case 6:
+                    case 2:
                         dMeter2Info_setMapStatus(5);
                         break;
-                    case 7:
+                    case 6:
                         dMeter2Info_setMapStatus(3);
                         break;
                     }
                     dMeter2Info_setMapKeyDirection(0x400);
-                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                             -1.0f, 0);
                     dMeter2Info_set2DVibration();
                 }
                 dMeter2Info_resetPauseStatus();
@@ -589,8 +480,8 @@ void dMeterMap_c::ctrlShowMap() {
                     if (isDmapScreen()) {
                         if (dMeter2Info_getMapStatus() == 0 && field_0x2d == 0) {
                             setDispPosInsideFlg_SE_On();
-                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
-                                                            1.0f, -1.0f, -1.0f, 0);
+                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                                                     -1.0f, -1.0f, 0);
                             dMeter2Info_set2DVibration();
                             dMeter2Info_setMapStatus(1);
                         }
@@ -598,8 +489,8 @@ void dMeterMap_c::ctrlShowMap() {
                         if (dMeter2Info_getMapStatus() == 1 && field_0x2d != 0) {
                             dMeter2Info_setMapStatus(6);
                             dMeter2Info_setMapKeyDirection(0x400);
-                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f,
-                                                            1.0f, -1.0f, -1.0f, 0);
+                            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
+                                                     -1.0f, -1.0f, 0);
                             dMeter2Info_set2DVibration();
                         }
                     }
@@ -627,16 +518,6 @@ void dMeterMap_c::ctrlShowMap() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::ctrlShowMap() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/ctrlShowMap__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020E45C-8020E4C8 208D9C 006C+00 1/1 0/0 0/0 .text            checkMoveStatus__11dMeterMap_cFv */
 u8 dMeterMap_c::checkMoveStatus() {
@@ -669,7 +550,8 @@ bool dMeterMap_c::isShow(u32 param_0) {
         (param_0 & 0x20000) || (param_0 & 8) || (param_0 & 0x10) || (param_0 & 0x1000000) ||
         (param_0 & 0x800000) || (param_0 & 0x20) || (param_0 & 0x4000000) ||
         (param_0 & 0x10000000) || (param_0 & 0x800) || (param_0 & 0x20000000) ||
-        daPy_getPlayerActorClass()->checkEnemyAttentionLock() || dMeter2Info_isGameStatus(2)) {
+        daPy_getPlayerActorClass()->checkEnemyAttentionLock() || dMeter2Info_isGameStatus(2))
+    {
         return false;
     }
     return true;
@@ -691,7 +573,8 @@ bool dMeterMap_c::isFmapScreen() {
         dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 5 ||
         dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 3 ||
         dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 4 ||
-        dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 6) {
+        dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 6)
+    {
         return true;
     }
     return false;
@@ -703,40 +586,41 @@ bool dMeterMap_c::isDmapScreen() {
 }
 
 /* 8020E754-8020E9CC 209094 0278+00 0/0 1/1 0/0 .text            meter_map_move__11dMeterMap_cFUl */
-// matches with literals
-#ifdef NONMATCHING
 void dMeterMap_c::meter_map_move(u32 param_0) {
     if (isShow(param_0) && isMapOpenCheck()) {
         if (dMeter2Info_getPauseStatus() == 6) {
             if (!dMeter2Info_isSub2DStatus(1) && isFmapScreen()) {
                 dMeter2Info_setMapStatus(3);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_set2DVibration();
             }
             dMeter2Info_resetPauseStatus();
         } else {
-            if (dMw_LEFT_TRIGGER() && !i_dComIfGp_event_runCheck() && !dMsgObject_isTalkNowCheck() &&
-                (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1)) {
+            if (dMw_LEFT_TRIGGER() && !i_dComIfGp_event_runCheck() &&
+                !dMsgObject_isTalkNowCheck() &&
+                (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
+            {
                 if (dMeter2Info_getMapStatus() == 0 && !dMeter2Info_isSub2DStatus(1)) {
                     if (isFmapScreen() || isDmapScreen()) {
                         dMeter2Info_setMapStatus(2);
                         dMeter2Info_setMapKeyDirection(0x200);
-                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
-                                                        -1.0f, -1.0f, 0);
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                 -1.0f, 0);
                         dMeter2Info_set2DVibration();
                     }
                 }
             } else if (dMw_RIGHT_TRIGGER() && !i_dComIfGp_event_runCheck() &&
                        !dMsgObject_isTalkNowCheck() &&
-                       (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1)) {
+                       (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
+            {
                 if (!dMeter2Info_isSub2DStatus(1)) {
                     if (isFmapScreen() || isDmapScreen()) {
                         dMeter2Info_setMapStatus(2);
                         dMeter2Info_setMapKeyDirection(0x400);
-                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
-                                                        -1.0f, -1.0f, 0);
+                        Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                                 -1.0f, 0);
                         dMeter2Info_set2DVibration();
                     }
                 }
@@ -744,88 +628,66 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::meter_map_move(u32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter_map/meter_map_move__11dMeterMap_cFUl.s"
-}
-#pragma pop
-#endif
 
 /* 8020E9CC-8020ED60 20930C 0394+00 1/1 0/0 0/0 .text            keyCheck__11dMeterMap_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dMeterMap_c::keyCheck() {
     if (dMw_LEFT_TRIGGER() && !isEventRunCheck() &&
-        (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1)) {
+        (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
+    {
         if (dMeter2Info_getMapStatus() == 1) {
             if (isDispPosInsideFlg()) {
                 setDispPosOutsideFlg_SE_On();
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_setMapStatus(0);
             }
         } else if (dMeter2Info_getMapStatus() == 0) {
             if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x200);
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_set2DVibration();
             } else {
                 setDispPosInsideFlg_SE_On();
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_set2DVibration();
                 dMeter2Info_setMapStatus(1);
             }
         }
     } else if (dMw_RIGHT_TRIGGER() && !isEventRunCheck() &&
-               (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1)) {
+               (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
+    {
         if (dMeter2Info_getMapStatus() == 0) {
             if (isEnableDispMapAndMapDispSizeTypeNo()) {
                 if (!isDispPosInsideFlg()) {
                     setDispPosInsideFlg_SE_On();
-                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
-                                                    -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                             -1.0f, 0);
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
                 }
             } else if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_set2DVibration();
             }
         } else if (dMeter2Info_getMapStatus() == 1 && isDispPosInsideFlg()) {
             if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_set2DVibration();
             } else {
                 setDispPosOutsideFlg_SE_On();
-                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
                 dMeter2Info_setMapStatus(0);
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeterMap_c::keyCheck() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/keyCheck__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 80398208-80398208 024868 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

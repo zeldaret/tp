@@ -5,13 +5,13 @@
 
 #include "d/meter/d_meter2_info.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "d/a/d_a_npc.h"
+#include "d/d_item_data.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter_map.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
-#include "d/a/d_a_npc.h"
-#include "d/d_item_data.h"
 #include "global.h"
 
 //
@@ -353,11 +353,9 @@ void dMeter2Info_c::resetFloatingMessage() {
 
 /* 8021C238-8021C250 216B78 0018+00 0/0 2/2 0/0 .text decMsgKeyWaitTimer__13dMeter2Info_cFv */
 void dMeter2Info_c::decMsgKeyWaitTimer() {
-    if (mMsgKeyWaitTimer <= 0) {
-        return;
+    if (mMsgKeyWaitTimer > 0) {
+        mMsgKeyWaitTimer--;
     }
-
-    mMsgKeyWaitTimer--;
 }
 
 /* 8021C250-8021C370 216B90 0120+00 0/0 16/16 0/0 .text
@@ -388,7 +386,7 @@ void dMeter2Info_c::getString(u32 stringID, char* outStr, JMSMesgEntry_c* p_msgE
         if (stringID == *(u16*)(entry + 0x14)) {
             strcpy(outStr, (char*)(strPtr + *(u32*)(entry + 0x10)));
             if (p_msgEntry == NULL) {
-                return;    
+                return;
             }
             memcpy(p_msgEntry, entry + 0x10, 0x14);
             return;
@@ -455,7 +453,8 @@ f32 dMeter2Info_c::getStringLength(J2DTextBox* p_textBox, char* str) {
             }
             strWidth = 0.0f;
         } else {
-            strWidth += charSpace + (fontSize.mSizeX * ((f32)font->getWidth(*str) / (f32)font->getCellWidth()));
+            strWidth += charSpace +
+                        (fontSize.mSizeX * ((f32)font->getWidth(*str) / (f32)font->getCellWidth()));
         }
     }
 
@@ -491,8 +490,7 @@ asm JUTFont* J2DTextBox::getFont() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm f32 dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2,
-                                                  char* param_3) {
+asm f32 dMeter2Info_c::getStringLength(JUTFont* param_0, f32 param_1, f32 param_2, char* param_3) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/getStringLength__13dMeter2Info_cFP7JUTFontffPc.s"
 }
@@ -506,8 +504,8 @@ void dMeter2Info_c::onDirectUseItem(int param_0) {
 
 /* 8021C950-8021C970 217290 0020+00 0/0 4/4 0/0 .text            isDirectUseItem__13dMeter2Info_cFi
  */
-bool dMeter2Info_c::isDirectUseItem(int param_0) {
-    return (mDirectUseItem & (u8)(1 << param_0)) != 0;
+BOOL dMeter2Info_c::isDirectUseItem(int param_0) {
+    return (mDirectUseItem & (u8)(1 << param_0)) ? TRUE : FALSE;
 }
 
 /* 80430188-80430280 05CEA8 00F8+00 4/4 267/267 70/70 .bss             g_meter2_info */
@@ -515,19 +513,21 @@ dMeter2Info_c g_meter2_info;
 
 /* 8021C970-8021C9DC 2172B0 006C+00 0/0 0/0 5/5 .text            setMeterString__13dMeter2Info_cFl
  */
-int dMeter2Info_c::setMeterString(s32 meterStr) {
+int dMeter2Info_c::setMeterString(s32 i_string) {
     if (mMeterString != 0) {
         return 0;
     }
 
-    if (meterStr == 0) {
+    if (i_string == 0) {
         return 0;
     }
 
-    if (dMeter2Info_getMeterClass() != NULL && 
-       (dMeter2Info_getMeterClass()->getSubContents() == 0 ||
-       (dMeter2Info_getMeterClass()->getSubContents() == 5 && dMeter2Info_getMeterClass()->getSubContentsStringType() == 0))) {
-        mMeterString = meterStr;
+    if (dMeter2Info_getMeterClass() != NULL &&
+        (dMeter2Info_getMeterClass()->getSubContents() == 0 ||
+         (dMeter2Info_getMeterClass()->getSubContents() == 5 &&
+          dMeter2Info_getMeterClass()->getSubContentsStringType() == 0)))
+    {
+        mMeterString = i_string;
         return 1;
     }
 
@@ -585,7 +585,6 @@ void dMeter2Info_c::warpOutProc() {
     dComIfGs_setWarpItemData(dComIfGp_getStartStageName(), warpPos, warpAngle.y, warpRoomNo, 0, 1);
     dComIfGs_setItem(SLOT_18, DUNGEON_BACK);
 }
-
 
 /* 8021CC00-8021CC0C 217540 000C+00 0/0 1/1 1/1 .text            resetMeterString__13dMeter2Info_cFv
  */
@@ -662,7 +661,7 @@ u8 dMeter2Info_c::getItemType(u8 itemNo) {
     case 0x7A:
         return 0x16;
     case 0x7B:
-        case 0x7E:
+    case 0x7E:
         return 0x17;
     case 0x7C:
         return 0x18;
@@ -678,9 +677,9 @@ u8 dMeter2Info_c::getItemType(u8 itemNo) {
     case 0x9E:
         return 0x1D;
     case 0x70:
-        case 0x71:
-        case 0x72:
-        case 0x74:
+    case 0x71:
+    case 0x72:
+    case 0x74:
         return 0x1E;
     case 0x73:
     case 0x75:
@@ -690,7 +689,7 @@ u8 dMeter2Info_c::getItemType(u8 itemNo) {
     case 0x5A:
         return 34;
     default:
-        return 0;   
+        return 0;
     }
 }
 #else
@@ -709,27 +708,34 @@ asm u8 dMeter2Info_c::getItemType(u8 param_0) {
  */
 #ifdef NONMATCHING
 int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2, void* param_3,
-                                      J2DPicture* param_4, void* param_5, J2DPicture* param_6,
-                                      void* param_7, J2DPicture* param_8, int param_9) {
+                                   J2DPicture* param_4, void* param_5, J2DPicture* param_6,
+                                   void* param_7, J2DPicture* param_8, int param_9) {
     u8 itemType = getItemType(itemNo);
     int ret = 0;
 
     if (param_1 != NULL) {
         if ((itemNo == KANTERA && dComIfGs_getOil() == 0) || itemNo == KANTERA2) {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x23);
-        } else if (itemNo == COPY_ROD && !daPy_getPlayerActorClass()->checkCopyRodTopUse() && param_9 == -1) {
+        } else if (itemNo == COPY_ROD && !daPy_getPlayerActorClass()->checkCopyRodTopUse() &&
+                   param_9 == -1)
+        {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x57);
-        } else if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
+        } else if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) &&
+                   param_5 == NULL)
+        {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, get2ndTexture(itemType));
         } else if (param_9 >= 0) {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, param_9);
         } else {
-            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, dItem_data::getTexture(itemNo));
+            dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00,
+                                                           dItem_data::getTexture(itemNo));
         }
 
         DCStoreRangeNoSync(param_1, 0xC00);
         if (param_2 != NULL) {
-            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
+            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) &&
+                param_5 == NULL)
+            {
                 set2ndColor(itemType, param_2);
             } else {
                 set1stColor(itemType, param_2);
@@ -739,8 +745,11 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
 
         ret = 1;
         if (param_3 != NULL && get2ndTexture(itemType) > 0) {
-            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) && param_5 == NULL) {
-                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get3rdTexture(itemType));
+            if ((itemType == 0x1B || itemType == 0x1C || itemType == 0x1D || itemType == 0x1E) &&
+                param_5 == NULL)
+            {
+                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00,
+                                                               get3rdTexture(itemType));
                 DCStoreRangeNoSync(param_3, 0xC00);
                 if (param_4 != NULL) {
                     set3rdColor(itemType, param_4);
@@ -748,7 +757,8 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
                 }
                 ret = 2;
             } else {
-                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get2ndTexture(itemType));
+                dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00,
+                                                               get2ndTexture(itemType));
                 DCStoreRangeNoSync(param_3, 0xC00);
                 if (param_4 != NULL) {
                     set2ndColor(itemType, param_4);
@@ -757,7 +767,8 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
                 ret = 2;
 
                 if (param_5 != NULL && get3rdTexture(itemType) > 0) {
-                    dComIfGp_getItemIconArchive()->readIdxResource(param_5, 0xC00, get3rdTexture(itemType));
+                    dComIfGp_getItemIconArchive()->readIdxResource(param_5, 0xC00,
+                                                                   get3rdTexture(itemType));
                     DCStoreRangeNoSync(param_5, 0xC00);
                     if (param_6 != NULL) {
                         set3rdColor(itemType, param_6);
@@ -766,7 +777,8 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
                     ret = 3;
 
                     if (param_7 != NULL && get4thTexture(itemType) > 0) {
-                        dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00, get4thTexture(itemType));
+                        dComIfGp_getItemIconArchive()->readIdxResource(param_3, 0xC00,
+                                                                       get4thTexture(itemType));
                         DCStoreRangeNoSync(param_7, 0xC00);
                         if (param_8 != NULL) {
                             set4thColor(itemType, param_8);
@@ -774,7 +786,7 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
                         }
                         ret = 4;
                     }
-                } 
+                }
             }
         }
     }
@@ -785,9 +797,10 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2, void* param_3,
-                                      J2DPicture* param_4, void* param_5, J2DPicture* param_6,
-                                      void* param_7, J2DPicture* param_8, int param_9) {
+asm int dMeter2Info_c::readItemTexture(u8 param_0, void* param_1, J2DPicture* param_2,
+                                       void* param_3, J2DPicture* param_4, void* param_5,
+                                       J2DPicture* param_6, void* param_7, J2DPicture* param_8,
+                                       int param_9) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/func_8021CF08.s"
 }
@@ -1352,16 +1365,11 @@ s16 dMeter2Info_getNowLifeGauge() {
 /* 8021E2C8-8021E2DC 218C08 0014+00 0/0 11/11 3/3 .text dMeter2Info_getNumberTextureName__Fi */
 const char* dMeter2Info_getNumberTextureName(int nameIdx) {
     static const char* tex_name[10] = {
-        "im_font_number_32_32_ganshinkyo_0_02.bti",
-        "im_font_number_32_32_ganshinkyo_1_02.bti",
-        "im_font_number_32_32_ganshinkyo_2_02.bti",
-        "im_font_number_32_32_ganshinkyo_3_02.bti",
-        "im_font_number_32_32_ganshinkyo_4_03.bti",
-        "im_font_number_32_32_ganshinkyo_5_02.bti",
-        "im_font_number_32_32_ganshinkyo_6_02.bti",
-        "im_font_number_32_32_ganshinkyo_7_02.bti",
-        "im_font_number_32_32_ganshinkyo_8_02.bti",
-        "im_font_number_32_32_ganshinkyo_9_02.bti",
+        "im_font_number_32_32_ganshinkyo_0_02.bti", "im_font_number_32_32_ganshinkyo_1_02.bti",
+        "im_font_number_32_32_ganshinkyo_2_02.bti", "im_font_number_32_32_ganshinkyo_3_02.bti",
+        "im_font_number_32_32_ganshinkyo_4_03.bti", "im_font_number_32_32_ganshinkyo_5_02.bti",
+        "im_font_number_32_32_ganshinkyo_6_02.bti", "im_font_number_32_32_ganshinkyo_7_02.bti",
+        "im_font_number_32_32_ganshinkyo_8_02.bti", "im_font_number_32_32_ganshinkyo_9_02.bti",
     };
 
     return tex_name[nameIdx];
@@ -1470,7 +1478,9 @@ bool dMeter2Info_isMapOpenCheck() {
 
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
 bool dMeter2Info_isItemOpenCheck() {
-    if (daPy_getPlayerActorClass()->checkCanoeSlider() || daPy_getPlayerActorClass()->i_getSumouMode() || dMeter2Info_isSub2DStatus(1)) {
+    if (daPy_getPlayerActorClass()->checkCanoeSlider() ||
+        daPy_getPlayerActorClass()->i_getSumouMode() || dMeter2Info_isSub2DStatus(1))
+    {
         return false;
     }
     return true;
