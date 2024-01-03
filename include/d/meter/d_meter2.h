@@ -10,8 +10,12 @@ class J2DAnmTextureSRTKey;
 class J2DAnmTransformKey;
 class JKRExpHeap;
 class JKRHeap;
+
 class dMeter2Draw_c;
 class dMeterMap_c;
+class dMeterString_c;
+class dMeterButton_c;
+class dMeterHaihai_c;
 
 class dMeterSub_c : public dDlst_base_c {
 public:
@@ -30,26 +34,6 @@ public:
     /* 80194124 */ virtual int _delete();
     /* 80194138 */ virtual bool isDead();
 };
-
-class dMeterString_c : public dMeterSub_c {
-public:
-    /* 8020ED60 */ dMeterString_c(int);
-    /* 8020F5A4 */ void createString(int);
-    /* 8020F66C */ void playBckAnimation(f32);
-    /* 8020F6EC */ void drawPikari();
-    /* 8020FA88 */ void isLeadByte(int);
-
-    /* 8020F1B0 */ virtual void draw();
-    /* 8020EDF4 */ virtual ~dMeterString_c();
-    /* 8020EE70 */ virtual int _create();
-    /* 8020F150 */ virtual int _execute(u32);
-    /* 8020F49C */ virtual int _delete();
-
-    /* 0x04 */ u8 field_0x4[0x40 - 0x4];
-};
-
-class dMeterButton_c;
-class dMeterHaihai_c;
 
 class dMeter2_c : public msg_class {
 public:

@@ -656,6 +656,11 @@ inline s16 dMeter2Info_getHorseLifeCount() {
     return g_meter2_info.getHorseLifeCount();
 }
 
+inline void dMeter2Info_resetMeterString() {
+    g_meter2_info.resetMeterString();
+}
+
+
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
