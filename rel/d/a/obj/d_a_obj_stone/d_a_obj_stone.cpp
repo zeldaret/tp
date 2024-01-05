@@ -759,7 +759,7 @@ int daObjStone_c::Create() {
     }
 
     fopAcM_setCullSizeSphere(this,0.0f,0.0f,0.0f,l_r[mStoneType]*1.2f);
-    cLib_onBit(mAttentionInfo.mFlags,16);
+    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
     mAttentionInfo.field_0x0[4] = 0x2A;
     fopAcM_OnCarryType(this,fopAcM_CARRY_LIGHT);
 
@@ -1058,7 +1058,7 @@ extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
 void daObjStone_c::init_modePutWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit(mAttentionInfo.mFlags,16);
+    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
     mInitialOffsetY = l_initial_offsetY[mStoneType];
     mMode = 0;
     field_0x0907 = 3;
@@ -1073,7 +1073,7 @@ void daObjStone_c::modePutWait() {
 void daObjStone_c::init_modeWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit(mAttentionInfo.mFlags,16);
+    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
     mMode = 0;
     field_0x0907 = 0;
 }
@@ -1110,7 +1110,7 @@ void daObjStone_c::modeWait() {
 void daObjStone_c::init_modeDrop() {
     mCollider.OnAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_offBit(mAttentionInfo.mFlags,16);
+    cLib_offBit<u32>(mAttentionInfo.mFlags,0x10);
     mMode = 0;
     mLastPosY = current.pos.y;
     field_0x0907 = 1;
@@ -1126,7 +1126,7 @@ void daObjStone_c::modeDrop() {
 
     if (mIsInWater != 0) {
         mCollider.OffAtSPrmBit(1);
-        mChkObj.ChkGroundHit() ? cLib_onBit(mAttentionInfo.mFlags,16) : cLib_offBit(mAttentionInfo.mFlags,16);
+        mChkObj.ChkGroundHit() ? cLib_onBit<u32>(mAttentionInfo.mFlags,0x10) : cLib_offBit<u32>(mAttentionInfo.mFlags,0x10);
 
         pos2.x = speedF * cM_ssin(current.angle.y);
         pos2.y = speed.y;
@@ -1278,7 +1278,7 @@ asm void daObjStone_c::modeCarry() {
 void daObjStone_c::init_modeWalk() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit(mAttentionInfo.mFlags,16);
+    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
     mMode = 0;
     field_0x0907 = 4;
 }

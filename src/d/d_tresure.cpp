@@ -160,7 +160,7 @@ void dTres_c::onStatus(u8 listIdx, int param_1, int flag) {
         if (param_1 == groupData->getNo()) {
             u8 status = groupData->getStatus();
 
-            cLib_onBit(status, flag);
+            cLib_onBit<u8>(status, flag);
             groupData->setStatus(status);
         }
         groupData = getNextData(groupData);
@@ -176,7 +176,7 @@ void dTres_c::offStatus(u8 listIdx, int param_1, int flag) {
         if (param_1 == groupData->getNo()) {
             u8 status = groupData->getStatus();
 
-            cLib_offBit(status, flag);
+            cLib_offBit<u8>(status, flag);
             groupData->setStatus(status);
         }
         groupData = getNextData(groupData);

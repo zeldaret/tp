@@ -700,7 +700,7 @@ asm int daItemKantera_c::actionInit() {
 int daItemKantera_c::actionWaitInit() {
     mCollider.OffTgSPrmBit(1);
     mCollider.OffCoSPrmBit(1);
-    cLib_offBit(mAttentionInfo.mFlags, 16);
+    cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
     mAttentionInfo.field_0x0[4] = 16;
     mAttentionInfo.mPosition = current.pos;
     show();
@@ -740,7 +740,7 @@ asm int daItemKantera_c::actionWait() {
  */
 #ifdef NONMATCHING
 int daItemKantera_c::initActionOrderGetDemo() {
-    cLib_offBit(mAttentionInfo.mFlags, 16);
+    cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
     mCollider.OffTgSPrmBit(1);
     mCollider.OffCoSPrmBit(1);
     hide();

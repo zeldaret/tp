@@ -36,18 +36,18 @@ void cLib_offsetPos(cXyz* pDest, cXyz const* pSrc, s16 angle, cXyz const* vec);
 s32 cLib_distanceAngleS(s16 x, s16 y);
 
 template <typename T>
-inline void cLib_offBit(T& value, u8 bit) {
+inline void cLib_offBit(T& value, T bit) {
     value &= ~bit;
 }
 
 template <typename T>
-inline void cLib_onBit(T& value, u8 bit) {
+inline void cLib_onBit(T& value, T bit) {
     value |= bit;
 }
 
 template <typename T>
-inline u8 cLib_checkBit(T& value, u8 bit) {
-    return value & bit;
+inline T cLib_checkBit(T& value, T bit) {
+    return (T)(value & bit);
 }
 
 template <typename T>
