@@ -14,11 +14,11 @@ u8 daItemBase_c::getItemNo() {
 }
 
 void daItemBase_c::hide() {
-    cLib_offBit(field_0x92b, 1);
+    cLib_offBit<u8>(field_0x92b, 1);
 }
 
 void daItemBase_c::show() {
-    cLib_onBit(field_0x92b, 1);
+    cLib_onBit<u8>(field_0x92b, 1);
 }
 
 void daItemBase_c::changeDraw() {
@@ -30,15 +30,15 @@ void daItemBase_c::changeDraw() {
 }
 
 u8 daItemBase_c::chkDraw() {
-    return cLib_checkBit(field_0x92b, 1) != 0;
+    return cLib_checkBit<u8>(field_0x92b, 1) != 0;
 }
 
 void daItemBase_c::dead() {
-    cLib_onBit(field_0x92b, 2);
+    cLib_onBit<u8>(field_0x92b, 2);
 }
 
 u8 daItemBase_c::chkDead() {
-    return cLib_checkBit(field_0x92b, 2) != 0;
+    return cLib_checkBit<u8>(field_0x92b, 2) != 0;
 }
 
 /* 80037B0C-80037B78 03244C 006C+00 0/0 0/0 1/1 .text            CheckItemCreateHeap__FP10fopAc_ac_c

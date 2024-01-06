@@ -157,7 +157,7 @@ void dFlower_packet_c::setData(dFlower_data_c* i_data, int param_1, s8 param_2, 
     }
 
     if (param_2 == 2) {
-        cLib_onBit(i_data->m_state, 0x40);
+        cLib_onBit<u8>(i_data->m_state, 0x40);
     }
 
     i_data->field_0x01 = cM_rndF(FLOAT_LABEL(lit_6262));
@@ -190,7 +190,7 @@ dFlower_data_c* dFlower_packet_c::newData(s8 param_0, cXyz& i_pos, int i_roomNo,
     dFlower_data_c* data_p = m_data + field_0x10;
 
     for (int i = field_0x10; i < 1000; i++) {
-        if (!cLib_checkBit(data_p->m_state, 2)) {
+        if (!cLib_checkBit<u8>(data_p->m_state, 2)) {
             setData(data_p, i, param_0, i_pos, i_roomNo, i_tableNo, i_addCol);
             return data_p;
         }
@@ -199,7 +199,7 @@ dFlower_data_c* dFlower_packet_c::newData(s8 param_0, cXyz& i_pos, int i_roomNo,
 
     data_p = m_data;
     for (int i = 0; i < field_0x10; i++) {
-        if (!cLib_checkBit(data_p->m_state, 2)) {
+        if (!cLib_checkBit<u8>(data_p->m_state, 2)) {
             setData(data_p, i, param_0, i_pos, i_roomNo, i_tableNo, i_addCol);
             return data_p;
         }

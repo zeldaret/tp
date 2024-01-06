@@ -1428,12 +1428,12 @@ int daMyna_c::draw() {
     J3DModelData* modelData = model->getModelData();
     g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
     g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
-    if (cLib_checkBit(field_0x914, 0x40)) {
+    if (cLib_checkBit<u16>(field_0x914, 0x40)) {
         mBtpAnm.entry(modelData);
     }
     fopAcM_setEffectMtx(this, modelData);
     mpMorf->entryDL();
-    if (cLib_checkBit(field_0x914, 0x40)) {
+    if (cLib_checkBit<u16>(field_0x914, 0x40)) {
         mBtpAnm.remove(modelData);
     }
     return 1;
@@ -1544,7 +1544,7 @@ int daMyna_c::createHeap() {
         J3DAnmTexPattern* anmTexPattern = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
         if (anmTexPattern != NULL) {
             setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, 2);
-            cLib_onBit(field_0x914, 0x44);
+            cLib_onBit<u16>(field_0x914, 0x44);
         }
         return 1;
     }
@@ -3091,7 +3091,7 @@ void daMyna_c::animePlay() {
         field_0x91E += 1;
     }
 
-    if (cLib_checkBit(field_0x914, 0x40) != 0 && cLib_checkBit(field_0x914, 4) == 0) {
+    if (cLib_checkBit<u16>(field_0x914, 0x40) != 0 && cLib_checkBit<u16>(field_0x914, 4) == 0) {
         mBtpAnm.play();
         if (mBtpAnm.getFrameCtrl()->getAttribute() == 2) {
             if (checkEndAnm(mBtpAnm.getFrameCtrl()) != 0) {
@@ -3105,7 +3105,7 @@ void daMyna_c::animePlay() {
             mBtpAnm.setPlaySpeed(1.0f);
         }
     }
-    cLib_offBit(field_0x914, 0xF);
+    cLib_offBit<u16>(field_0x914, 0xF);
 }
 #else
 #pragma push
@@ -3435,11 +3435,11 @@ void daMyna_c::animeControl() {
     }
 
     setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]), fVar1, fVar2, iVar5, 0, -1);
-    if (cLib_checkBit(field_0x914, 0x40) == 0) {
+    if (cLib_checkBit<u16>(field_0x914, 0x40) == 0) {
         J3DAnmTexPattern* btk = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
         if (btk != NULL) {
             setBtpAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, 2);
-            cLib_onBit(field_0x914, 0x44);
+            cLib_onBit<u16>(field_0x914, 0x44);
         }
     }
 }

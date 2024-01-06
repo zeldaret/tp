@@ -289,7 +289,7 @@ int daObj_SSItem_c::setProcess(ProcessFunc i_process) {
 /* 80CE7BB4-80CE7C24 001014 0070+00 1/1 0/0 0/0 .text            setParam__14daObj_SSItem_cFv */
 void daObj_SSItem_c::setParam() {
     mScale.set(1.4f, 1.4f, 1.4f);
-    cLib_onBit(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
     mAcchCir.SetWallR(24.0f);
     mAcchCir.SetWallH(12.0f);
     mGravity = -5.0f;
