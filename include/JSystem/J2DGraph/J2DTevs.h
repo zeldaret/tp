@@ -2,6 +2,7 @@
 #define J2DTEVS_H
 
 #include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx/mtxvec.h"
 
 struct J2DTextureSRTInfo {
@@ -244,7 +245,7 @@ struct J2DTevOrderInfo {
     }
 };
 
-extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
+extern const J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 
 class J2DTevOrder {
 public:
@@ -293,6 +294,8 @@ struct J2DTevSwapModeInfo {
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
 };
+
+extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 
 class J2DTevStage {
 public:
@@ -454,5 +457,13 @@ public:
 private:
     /* 0x0 */ u8 field_0x0;
 };
+
+extern const GXColor j2dDefaultColInfo;
+extern const GXColorS10 j2dDefaultTevColor;
+extern const GXColor j2dDefaultTevKColor;
+extern const J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
+extern const u8 j2dDefaultPEBlockDither;
+extern const u8 data_804561AC;
+extern const u16 j2dDefaultAlphaCmp;
 
 #endif /* J2DTEVS_H */

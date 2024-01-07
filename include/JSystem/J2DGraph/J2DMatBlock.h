@@ -444,8 +444,6 @@ struct J2DAlphaCompInfo {
     /* 0x7 */ u8 field_0x7;
 };
 
-extern u16 j2dDefaultAlphaCmp;
-
 inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) {
     return ((param_1) << 5) | ((param_2 & 0xff) << 3) | (param_3 & 0xff);
 }
@@ -486,7 +484,7 @@ struct J2DBlendInfo {
     /* 0x3 */ u8 mOp;
 };
 
-extern J2DBlendInfo j2dDefaultBlendInfo;
+extern const J2DBlendInfo j2dDefaultBlendInfo;
 
 struct J2DBlend {
     J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
@@ -595,7 +593,7 @@ struct J2DColorChanInfo {
 };
 
 inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
-extern J2DColorChanInfo j2dDefaultColorChanInfo;
+extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
 class J2DColorChan {
 public:

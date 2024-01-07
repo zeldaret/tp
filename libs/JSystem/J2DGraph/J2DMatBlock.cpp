@@ -353,14 +353,6 @@ extern "C" extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
 extern "C" extern J2DTevStageInfo const j2dDefaultTevStageInfo;
 extern "C" extern J2DIndTevStageInfo const j2dDefaultIndTevStageInfo;
 extern "C" extern void* __vt__11J2DIndBlock[14];
-extern "C" extern GXColor j2dDefaultColInfo;
-extern "C" extern J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
-extern "C" extern J2DGXColorS10 j2dDefaultTevColor;
-extern "C" extern GXColor j2dDefaultTevKColor;
-extern "C" extern J2DTevSwapModeInfo j2dDefaultTevSwapMode;
-extern "C" extern u8 data_804561A4;
-extern "C" extern J2DColorChanInfo j2dDefaultColorChanInfo;
-extern "C" extern u8 data_804561AC;
 
 //
 // Declarations:
@@ -2566,7 +2558,7 @@ void J2DIndBlockFull::setGX() {
 void J2DPEBlock::initialize() {
     mAlphaComp = J2DAlphaComp();
     mBlend.setBlendInfo(j2dDefaultBlendInfo);
-    mDither = data_804561A4;
+    mDither = j2dDefaultPEBlockDither;
 }
 
 /* 802F1840-802F18A0 2EC180 0060+00 0/0 1/1 0/0 .text            setGX__10J2DPEBlockFv */
