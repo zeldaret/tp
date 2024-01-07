@@ -26,6 +26,7 @@ public:
     bool Cross(cM3dGCyl const* cyl, cXyz* xyz) const { return cM3d_Cross_CpsCyl(*this, *cyl, xyz); }
     bool Cross(cM3dGSph const* sph, cXyz* xyz) const { return cM3d_Cross_CpsSph(*this, *sph, xyz); }
     void SetR(f32 r) { mRadius = r; }
+    f32 GetR() const { return mRadius; }
 
 };  // Size = 0x20
 
