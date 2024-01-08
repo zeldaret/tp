@@ -30,6 +30,7 @@ struct JASBasicWaveBank : public JASWaveBank {
         /* 80298B64 */ int getWavePtr() const;
         /* 80298C18 */ TWaveHandle() { mHeap = NULL; }
         /* 80298C64 */ const JASWaveInfo* getWaveInfo() const { return &field_0x4; }
+        bool compareHeap(JASHeap* heap) const { return mHeap == heap;}
 
         /* 0x04 */ JASWaveInfo field_0x4;
         /* 0x28 */ JASHeap* mHeap;

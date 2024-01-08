@@ -6,7 +6,7 @@
 class Z2AudioArcLoader : public JAUAudioArcLoader {
 public:
     Z2AudioArcLoader(JAUSection*);
-    virtual ~Z2AudioArcLoader();
+    virtual ~Z2AudioArcLoader() {}
 
     virtual bool readCommandMore(u32);
     void readBFCA(const void*);

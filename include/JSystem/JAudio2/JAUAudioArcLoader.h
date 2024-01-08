@@ -22,7 +22,7 @@ public:
     /* 802A4990 */ virtual void beginBNKList(u32, u32);
     /* 802A49B4 */ virtual void endBNKList();
     /* 802A49D8 */ virtual void readMaxSeCategory(int, int, int);
-    /* 802A49FC */ virtual ~JAUAudioArcLoader();
+    /* 802A49FC */ virtual ~JAUAudioArcLoader() {}
 
     /* 0x0C */ JAUSection* mSection;
 };

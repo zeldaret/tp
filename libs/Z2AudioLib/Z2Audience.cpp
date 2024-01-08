@@ -301,7 +301,7 @@ SECTION_SDATA2 static f64 lit_1008 = 4503599627370496.0 /* cast u32 to float */;
 void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams const& param_1,
                                    int param_2) {
     Z2AudibleChannel* this_01 = &field_0x2c[param_2];
-    u32 iStack_94 = (field_0x10.field_0x0.b.f1 & 0xf00) >> 8;
+    u32 iStack_94 = (field_0x10.field_0x0.half.f1 & 0xf00) >> 8;
     if (iStack_94 == 0) {
         this_01->field_0x0.combine(param_0, param_1);
         return;
@@ -1016,15 +1016,7 @@ asm Z2Audience::Z2Audience() {
 #endif
 
 /* 802BD1FC-802BD288 2B7B3C 008C+00 1/0 1/1 0/0 .text            __dt__10Z2AudienceFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__10Z2AudienceFv() {
-    // asm Z2Audience::~Z2Audience() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2Audience/__dt__10Z2AudienceFv.s"
-}
-#pragma pop
+Z2Audience::~Z2Audience() {}
 
 /* 802BD288-802BD2DC 2B7BC8 0054+00 2/2 1/1 0/0 .text            __dt__22JASMemPool<9Z2Audible>Fv */
 #pragma push

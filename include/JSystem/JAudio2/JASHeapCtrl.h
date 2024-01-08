@@ -20,7 +20,7 @@ public:
     /* 802906F0 */ JASHeap* getTailHeap();
     /* 8029077C */ u32 getTailOffset();
     /* 802907E0 */ u32 getCurOffset();
-    /* 80290B54 */ ~JASHeap();
+    /* 80290B54 */ ~JASHeap() {}
 
     void* getBase() { return mBase; }
     bool isAllocated() { return mBase; }

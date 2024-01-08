@@ -506,8 +506,8 @@ u8* JAUSection::newStaticSeqDataBlock_(JAISoundID param_0, u32 size) {
         if (!r28) {
             return NULL;
         }
-        seqDataBlock->field_0x14 = r28;
-        seqDataBlock->field_0x18 = size;
+        seqDataBlock->field_0x14.addr = r28;
+        seqDataBlock->field_0x14.size = size;
         seqDataBlock->field_0x10 = param_0;
         JASCriticalSection cs;
         if(data_.field_0x00.appendDynamicSeqDataBlock(seqDataBlock)) {
@@ -844,7 +844,7 @@ bool JAUSectionHeap::setSeqDataUser(JAISeqDataUser* param_0) {
 }
 
 /* 802A60AC-802A61D0 2A09EC 0124+00 0/0 2/2 0/0 .text newDynamicSeqBlock__14JAUSectionHeapFUl */
-bool JAUSectionHeap::newDynamicSeqBlock(u32 param_0) {
+bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
     /* JUT_ASSERT(937, isOpen());
     JUT_ASSERT(938, isBuilding());
     JUT_ASSERT(939, sectionHeap_ == this); */
@@ -857,12 +857,12 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 param_0) {
     if (!link) {
         return false;
     }
-    u8* r25 = new(0x20) u8[param_0];
+    u8* r25 = new(0x20) u8[size];
     if (!r25) {
         return false;
     }
-    seqDataBlock->field_0x14 = r25;
-    seqDataBlock->field_0x18 = param_0;
+    seqDataBlock->field_0x14.addr = r25;
+    seqDataBlock->field_0x14.size = size;
     seqDataBlock->field_0x10.setAnonymous();
     JASCriticalSection cs;
     if (base1.sectionHeap_->sectionHeapData_.field_0x408.appendDynamicSeqDataBlock(seqDataBlock)) {

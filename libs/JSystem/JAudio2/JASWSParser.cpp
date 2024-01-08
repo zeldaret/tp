@@ -4,50 +4,12 @@
 //
 
 #include "JSystem/JAudio2/JASWSParser.h"
+#include "JSystem/JAudio2/JASWaveInfo.h"
+#include "JSystem/JAudio2/JASWaveArcLoader.h"
+#include "JSystem/JAudio2/JASSimpleWaveBank.h"
+#include "JSystem/JAudio2/JASBasicWaveBank.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {
-    /* 802CE72C */ void getFreeSize();
-};
-
-struct JASWaveInfo {
-    static u32 one[1 + 1 /* padding */];
-};
-
-struct JASWaveArc {
-    /* 8029A70C */ void setFileName(char const*);
-};
-
-struct JASWSParser {
-    /* 80298FB0 */ void getGroupCount(void const*);
-    /* 80298FD8 */ void createWaveBank(void const*, JKRHeap*);
-    /* 80299034 */ void createBasicWaveBank(void const*, JKRHeap*);
-    /* 80299264 */ void createSimpleWaveBank(void const*, JKRHeap*);
-
-    static u8 sUsedHeapSize[4 + 4 /* padding */];
-};
-
-struct JASSimpleWaveBank {
-    /* 80298C94 */ JASSimpleWaveBank();
-    /* 80298DE0 */ void setWaveTableSize(u32, JKRHeap*);
-    /* 80298E84 */ void setWaveInfo(u32, JASWaveInfo const&);
-};
-
-struct JASBasicWaveBank {
-    struct TWaveGroup {
-        /* 80298A84 */ void setWaveCount(u32, JKRHeap*);
-    };
-
-    /* 802984F8 */ JASBasicWaveBank();
-    /* 80298640 */ void getWaveGroup(u32);
-    /* 80298664 */ void setGroupCount(u32, JKRHeap*);
-    /* 80298710 */ void setWaveTableSize(u32, JKRHeap*);
-    /* 80298910 */ void setWaveInfo(JASBasicWaveBank::TWaveGroup*, int, u16, JASWaveInfo const&);
-};
 
 //
 // Forward References:
@@ -88,32 +50,38 @@ extern "C" void _savegpr_23();
 extern "C" void _restgpr_20();
 extern "C" void _restgpr_23();
 extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
-extern "C" extern u8 JASDram[4];
 
 //
 // Declarations:
 //
 
 /* 80298FB0-80298FD8 2938F0 0028+00 1/1 0/0 0/0 .text            getGroupCount__11JASWSParserFPCv */
+// Matches with JSUConvertOffsetToPtr
+#ifdef NONMATCHING
+u32 JASWSParser::getGroupCount(void const* stream) {
+	THeader* header = (THeader*)stream;
+	return ((TOffset<TCtrlGroup>*)&header->mCtrlGroupOffset)->ptr(header)->mCtrlGroupCount;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASWSParser::getGroupCount(void const* param_0) {
+asm u32 JASWSParser::getGroupCount(void const* param_0) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/getGroupCount__11JASWSParserFPCv.s"
 }
 #pragma pop
+#endif
 
 /* 80298FD8-80299034 293918 005C+00 0/0 1/1 0/0 .text createWaveBank__11JASWSParserFPCvP7JKRHeap
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASWSParser::createWaveBank(void const* param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASWSParser/createWaveBank__11JASWSParserFPCvP7JKRHeap.s"
+JASWaveBank* JASWSParser::createWaveBank(void const* param_0, JKRHeap* param_1) {
+    if (getGroupCount(param_0) == 1) {
+        return (JASWaveBank*)createSimpleWaveBank(param_0, param_1);
+    } else {
+        return (JASWaveBank*) createBasicWaveBank(param_0, param_1);
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451280-80451288 000780 0004+04 2/2 0/0 0/0 .sbss            sUsedHeapSize__11JASWSParser */
@@ -124,7 +92,7 @@ u8 JASWSParser::sUsedHeapSize[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASWSParser::createBasicWaveBank(void const* param_0, JKRHeap* param_1) {
+asm JASBasicWaveBank* JASWSParser::createBasicWaveBank(void const* param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/createBasicWaveBank__11JASWSParserFPCvP7JKRHeap.s"
 }
@@ -135,7 +103,7 @@ asm void JASWSParser::createBasicWaveBank(void const* param_0, JKRHeap* param_1)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASWSParser::createSimpleWaveBank(void const* param_0, JKRHeap* param_1) {
+asm JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void const* param_0, JKRHeap* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap.s"
 }
