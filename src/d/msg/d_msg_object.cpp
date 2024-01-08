@@ -1856,7 +1856,7 @@ asm u32 dMsgObject_c::getMessageID() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSmellTypeMessageID() {
+asm u32 dMsgObject_c::getSmellTypeMessageID() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSmellTypeMessageID__12dMsgObject_cFv.s"
 }

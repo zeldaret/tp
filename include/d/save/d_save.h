@@ -15,6 +15,8 @@
 #define LIGHT_DROP_STAGE 4
 #define LETTER_INFO_BIT 64
 #define MAX_INSECT_NUM 24
+#define MAX_VISIBLE_HEARTPIECES 4
+#define MAX_POH_NUM 100
 #define BOMB_BAG_MAX 3
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64
@@ -25,6 +27,12 @@
 #define ITEM_ZONE_MAX 0x20
 #define ITEM_ONE_ZONE_MAX 0x10
 #define QUEST_LOG_SIZE 0xA94
+#define QUIVER_MAX 30
+#define BIG_QUIVER_MAX 60
+#define GIANT_QUIVER_MAX 100
+#define WALLET_MAX 300
+#define BIG_WALLET_MAX 600
+#define GIANT_WALLET_MAX 1000
 
 enum Wallets {
     /* 0x0 */ WALLET,

@@ -63,6 +63,9 @@ public:
     f32 getInitGlobalPosX() { return mGlobalPos.x; }
     f32 getInitGlobalPosY() { return mGlobalPos.y; }
 
+    f32 getInitGlobalCenterPosX() { return mGlobalPos.x + mInitSize.x * 0.5f; }
+    f32 getInitGlobalCenterPosY() { return mGlobalPos.y + mInitSize.y * 0.5f; }
+
     f32 getInitSizeX() { return mInitSize.x; }
     f32 getInitSizeY() { return mInitSize.y; }
 
