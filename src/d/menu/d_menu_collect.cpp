@@ -2939,9 +2939,9 @@ void dMenu_Collect2D_c::insect_close_proc() {
 // Matches with sinit
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::_move() {
-    u8 proc = mProcess;
-    (this->*process[proc])();
-    if (mProcess != proc) {
+    u8 last_process = mProcess;
+    (this->*process[last_process])();
+    if (mProcess != last_process) {
         (this->*init[mProcess])();
     }
     btkAnimeLoop0(mpAnmKey);
