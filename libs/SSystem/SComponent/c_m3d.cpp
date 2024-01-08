@@ -632,7 +632,7 @@ static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 para
     }
 
     if (dVar7 - dVar6 > param_7 || param_3 + dVar6 < param_7) {
-        return 0;
+        return false;
     } 
 
     f32 fVar1;
@@ -651,9 +651,9 @@ static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 para
     
     if (fVar1 - dVar6 > param_8 || param_4 + dVar6 < param_8)
     {
-        return 0;
+        return false;
     }
-    return 1;
+    return true;
 }
 
 /* ############################################################################################## */
