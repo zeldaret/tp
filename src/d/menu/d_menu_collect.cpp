@@ -1,7 +1,7 @@
 /**
  * d_menu_collect.cpp
  * Collection Menu
-*/
+ */
 
 #include "d/menu/d_menu_collect.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
