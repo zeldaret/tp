@@ -223,8 +223,8 @@ private:
     /* 0x024 */ u32 mIsWolf;
     /* 0x028 */ dKy_tevstr_c mTevStr;
     /* 0x3B0 */ cXyz mMaskMirrorPos;
-    /* 0x3BC */ csXyz mMaskMirrorAngle
-        /* 0x3C4 */ f32 mMaskMirrorOffsetX;
+    /* 0x3BC */ csXyz mMaskMirrorAngle;
+    /* 0x3C4 */ f32 mMaskMirrorOffsetX;
     /* 0x3C8 */ f32 mMaskMirrorOffsetY;
     /* 0x3CC */ f32 mMaskMirrorScale;
     /* 0x3D0 */ f32 mMaskMirrorAnmFrameBrk;
