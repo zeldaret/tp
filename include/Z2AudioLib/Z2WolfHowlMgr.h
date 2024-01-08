@@ -32,7 +32,7 @@ public:
     f32 getNowPitch();
     f32 getNowInputValue();
     void calcPitchMod(f32, f32);
-    void startWolfHowlSound(f32, f32, bool, f32);
+    s8 startWolfHowlSound(f32, f32, bool, f32);
     void setCorrectData(s8, Z2WolfHowlData*);
     SongNote getCorrectLine(u8);
     u8 getCorrectLineNum();
@@ -41,6 +41,10 @@ public:
     void startWindStoneSound(s8, Vec*);
     int startGuideMelody(bool);
     void skipCorrectDemo();
+
+    void setCorrectCurve(s8 i_curve) { setCorrectData(i_curve, NULL); }
+    u32 getTimer() { return mTimer; }
+    u8 getReleaseTimer() { return mReleaseTimer; }
 
 private:
     /* 0x00 */ JAISoundHandle field_0x00;

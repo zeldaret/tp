@@ -3,6 +3,8 @@
  * Player Bow and Arrow action handling
  */
 
+#include "d/a/d_a_alink.h"
+#include "d/com/d_com_inf_game.h"
 #include "rel/d/a/d_a_arrow/d_a_arrow.h"
 
 /* 800DE64C-800DE740 0D8F8C 00F4+00 1/1 0/0 2/2 .text            getArrowFlyData__9daAlink_cCFPfPfi
@@ -59,13 +61,13 @@ BOOL daAlink_c::checkBowAndSlingItem(int i_itemNo) {
 /* 800DE7D4-800DE884 0D9114 00B0+00 1/1 0/0 0/0 .text            setSlingModel__9daAlink_cFv */
 void daAlink_c::setSlingModel() {
     J3DAnmTransform* bck = (J3DAnmTransform*)mAnmHeap9.loadDataIdx(0x1F9);
-    JKRHeap* heap = setItemHeap();
+    JKRHeap* prev_heap = setItemHeap();
 
     J3DModelData* model_data = loadAramBmd(0x319, 0x2C00);
     mHeldItemModel = initModel(model_data, 0);
     mItemBck.init(bck, 0, 2, lit_6040, 0, -1, false);
 
-    mDoExt_setCurrentHeap(heap);
+    mDoExt_setCurrentHeap(prev_heap);
     field_0x2f95 = 5;
     field_0x2f94 = 103;
 }
@@ -121,26 +123,26 @@ void daAlink_c::makeArrow() {
             field_0x301e = 0;
         }
 
-        fopAc_ac_c* arrow_actor = daArrow_c::makeArrow(this, field_0x301e);
-        mItemAcKeep.setData(arrow_actor);
+        fopAc_ac_c* arrow_p = daArrow_c::makeArrow(this, field_0x301e);
+        mItemAcKeep.setData(arrow_p);
     }
 
-    field_0x3018 = 0;
+    mItemVar0.field_0x3018 = 0;
 }
 
 /* 800DEAE4-800DEB8C 0D9424 00A8+00 3/3 0/0 0/0 .text            deleteArrow__9daAlink_cFv */
 void daAlink_c::deleteArrow() {
-    daArrow_c* arrow = (daArrow_c*)mItemAcKeep.getActor();
+    daArrow_c* arrow_p = (daArrow_c*)mItemAcKeep.getActor();
 
-    if (arrow != NULL && fopAcM_GetName(arrow) == PROC_ARROW) {
-        if (arrow->checkBombArrow() &&
+    if (arrow_p != NULL && fopAcM_GetName(arrow_p) == PROC_ARROW) {
+        if (arrow_p->checkBombArrow() &&
             (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || i_checkModeFlg(8)))
         {
-            arrow->setBombArrowExplode();
+            arrow_p->setBombArrowExplode();
             dComIfGp_addSelectItemNum(mSelectItemId, -1);
             dComIfGp_setItemArrowNumCount(-1);
         } else {
-            fopAcM_delete(arrow);
+            fopAcM_delete(arrow_p);
         }
         mItemAcKeep.clearData();
     }
@@ -157,6 +159,44 @@ void daAlink_c::setBowOrSlingStatus() {
 }
 
 /* 800DEBC8-800DED88 0D9508 01C0+00 1/1 0/0 0/0 .text            changeArrowType__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::changeArrowType() {
+    if (checkCanoeSlider() || (mEquipItem == BOW && field_0x301e == 0) ||
+        (mEquipItem == BOMB_ARROW && field_0x301e == 0 &&
+         dComIfGp_getSelectItemNum(mSelectItemId) == 0) ||
+        (mEquipItem == HAWK_ARROW && i_checkAttentionLock()))
+    {
+        return;
+    }
+
+    setItemActionButtonStatus(0x11);
+
+    if (arrowChangeTrigger()) {
+        if (mEquipItem == HAWK_ARROW) {
+            if (i_dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+                dComIfGp_clearPlayerStatus0(0, 0x200000);
+                seStartSystem(Z2SE_AL_HAWK_EYE_PUTOFF);
+            } else {
+                dComIfGp_setPlayerStatus0(0, 0x200000);
+                seStartSystem(Z2SE_AL_HAWK_EYE_PUTON);
+            }
+        } else {
+            if (field_0x301e == 1) {
+                field_0x301e = 0;
+            } else {
+                field_0x301e = 1;
+            }
+
+            if (mItemAcKeep.getActor() != NULL) {
+                deleteArrow();
+                makeArrow();
+                setBowReloadAnime();
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,18 +205,14 @@ asm void daAlink_c::changeArrowType() {
 #include "asm/d/a/d_a_alink/changeArrowType__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800DED88-800DEE1C 0D96C8 0094+00 1/1 0/0 0/0 .text cancelBowMoveRideNotAtn__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 BOOL daAlink_c::cancelBowMoveRideNotAtn() {
     return i_checkModeFlg(0x400) && i_checkAttentionLock() && mTargetedActor == NULL;
 }
-#pragma pop
 
 /* 800DEE1C-800DEEDC 0D975C 00C0+00 3/3 0/0 0/0 .text            cancelBowMove__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 BOOL daAlink_c::cancelBowMove() {
     if (mTargetedActor == NULL && !i_checkAttentionLock() && mFastShotTime == 0 &&
         !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd()))
@@ -187,7 +223,6 @@ BOOL daAlink_c::cancelBowMove() {
 
     return false;
 }
-#pragma pop
 
 /* 800DEEDC-800DEFB8 0D981C 00DC+00 3/3 0/0 0/0 .text            setBowReadyAnime__9daAlink_cFv */
 void daAlink_c::setBowReadyAnime() {
@@ -242,14 +277,194 @@ void daAlink_c::setBowReloadAnime() {
 }
 
 /* 800DF0BC-800DF798 0D99FC 06DC+00 2/2 0/0 0/0 .text checkUpperItemActionBow__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+BOOL daAlink_c::checkUpperItemActionBow() {
+    daPy_frameCtrl_c* frameCtrl_p = &mUpperFrameCtrl[2];
+
+    if (mEquipItem == PACHINKO) {
+        mDoMtx_multVec(getLeftItemMatrix(), &slingLocalPos, &mHeldItemRootPos);
+    }
+
+    if (checkBowChargeWaitAnime()) {
+        daArrow_c* arrow_p = (daArrow_c*)mItemAcKeep.getActor();
+
+        if (mEquipItem != PACHINKO) {
+            if (field_0x301c > 0) {
+                field_0x301c--;
+
+                if (field_0x301c <= frameCtrl_p->getEnd() && frameCtrl_p->getFrame() < 0.1f &&
+                    frameCtrl_p->getRate() < 0.1f)
+                {
+                    frameCtrl_p->setRate(1.0f);
+                }
+            } else {
+                i_onResetFlg0(RFLG0_UNK_10);
+                cancelItemUseQuake(0);
+            }
+        }
+
+        if (checkReadyItem()) {
+            if (mItemVar0.field_0x3018 != 0) {
+                setUpperAnimeParam(0xC, UPPER_2, &daAlinkHIO_bow_c0::m.mShootAnm);
+                setFacePriBck(0xE8);
+                field_0x2f96 = 0;
+
+                u16 var_r29;
+                if (mEquipItem == PACHINKO) {
+                    var_r29 = 0x1F1;
+                    if (dComIfGs_getPachinkoNum() != 0 &&
+                        daArrow_c::makeSlingStone(this, &mHeldItemRootPos) != NULL)
+                    {
+                        dComIfGp_setItemPachinkoNumCount(-1);
+                    }
+                } else if (field_0x301c != 0) {
+                    var_r29 = 0x43;
+                } else {
+                    var_r29 = 0x44;
+                }
+
+                changeItemBck(var_r29, daAlinkHIO_bow_c0::m.mShootAnm.mStartFrame);
+                mItemVar0.field_0x3018 = 0;
+            } else if (mEquipItem == PACHINKO) {
+                if (!itemButton()) {
+                    dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
+                    seStartOnlyReverb(Z2SE_AL_PACHINKO_SHOT);
+                    mItemVar0.field_0x3018 = 1;
+                    resetFacePriAnime();
+                }
+            } else if (!itemButton()) {
+                if (arrow_p != NULL) {
+                    u32 sound;
+                    int shock_strength;
+
+                    if (field_0x301c != 0) {
+                        arrow_p->setShoot();
+                        shock_strength = 1;
+
+                        if (arrow_p->checkBombArrow()) {
+                            sound = Z2SE_OBJ_ARROWBOMB_SHOT;
+                        } else {
+                            sound = Z2SE_OBJ_ARROW_SHOT_NORMAL;
+                        }
+                    } else {
+                        arrow_p->setChargeShoot();
+                        shock_strength = 2;
+
+                        if (arrow_p->checkBombArrow()) {
+                            sound = Z2SE_OBJ_ARROWBOMB_SHOTGAIN;
+                        } else {
+                            sound = Z2SE_OBJ_ARROW_SHOT_GAIN;
+                        }
+                    }
+
+                    dComIfGp_getVibration().StartShock(shock_strength, 1, cXyz(0.0f, 1.0f, 0.0f));
+                    seStartOnlyReverb(sound);
+
+                    if (field_0x301e == 1) {
+                        dComIfGp_addSelectItemNum(mSelectItemId, -1);
+                    }
+
+                    dComIfGp_setItemArrowNumCount(-1);
+                    mItemAcKeep.clearData();
+                    i_onResetFlg0(RFLG0_UNK_20000000);
+                    field_0x30a4 = daAlinkHIO_bow_c0::m.mBombArrowHoldTime;
+                } else {
+                    seStartOnlyReverb(Z2SE_AL_ARROW_EMPTY);
+                }
+
+                mItemVar0.field_0x3018 = 1;
+                resetFacePriAnime();
+
+                if (mEquipItem == BOW) {
+                    field_0x301e = 0;
+                }
+            } else {
+                changeArrowType();
+            }
+        }
+    } else if (checkBowReloadAnime()) {
+        if (checkAnmEnd(frameCtrl_p)) {
+            setUpperAnimeBaseSpeed(10, 0.0f, -1.0f);
+            setFacePriTexture(FTANM_UNK_9);
+            setFacePriBck(0xE6);
+
+            if (mEquipItem != PACHINKO) {
+                changeItemBck(0x42, 0.0f);
+                dComIfGp_getVibration().StartQuake(1, 1, cXyz(0.0f, 1.0f, 0.0f));
+                i_onNoResetFlg3(FLG3_UNK_4);
+            }
+        }
+    } else if (checkBowWaitAnime()) {
+        if ((mItemVar0.field_0x3018 == 0 && mFastShotTime != 0) ||
+            (mItemMode == 0 && !itemButton() && mItemVar0.field_0x3018 == 0 &&
+             cancelBowMoveRideNotAtn()))
+        {
+            resetUpperAnime(UPPER_2, 3.0f);
+            dComIfGp_clearPlayerStatus0(0, 0x1040);
+            return 1;
+        }
+
+        if (mItemMode == 0 && (itemButton() || mItemVar0.field_0x3018 != 0) && checkReadyItem() &&
+            (field_0x30a4 == 0 || field_0x301e != 1))
+        {
+            setBowReloadAnime();
+
+            if (mEquipItem == PACHINKO) {
+                mItemVar0.field_0x3018 = 0;
+            } else {
+                makeArrow();
+            }
+        } else if (mEquipItem == HAWK_ARROW) {
+            changeArrowType();
+        }
+
+        if (mItemMode != 0) {
+            mItemMode--;
+        }
+    } else if (checkBowShootAnime()) {
+        if (mUpperFrameCtrl[2].getFrame() >= 6.0f) {
+            field_0x2f97 = 5;
+        } else if (mUpperFrameCtrl[2].getFrame() >= 1.0f) {
+            field_0x2f96 = 4;
+        }
+
+        if (checkAnmEnd(&mUpperFrameCtrl[2]) && cancelBowMoveRideNotAtn()) {
+            resetUpperAnime(UPPER_2, 3.0f);
+            dComIfGp_clearPlayerStatus0(0, 0x1040);
+            return 1;
+        }
+
+        if (checkAnmEnd(&mUpperFrameCtrl[2]) ||
+            (mUpperFrameCtrl[2].getFrame() > daAlinkHIO_bow_c0::m.mShootAnm.mCheckFrame &&
+             itemButton()))
+        {
+            setBowReadyAnime();
+        }
+
+        if (mItemMode != 0) {
+            mItemMode--;
+        }
+    }
+
+    if (checkBowWaitAnime() || (mEquipItem == PACHINKO && checkBowChargeWaitAnime())) {
+        field_0x33dc += daAlinkHIO_bow_c0::m.mShootAnm.mSpeed;
+    } else {
+        field_0x33dc = mUpperFrameCtrl[2].getFrame();
+    }
+
+    return cancelUpperItemReadyAnime(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkUpperItemActionBow() {
+asm BOOL daAlink_c::checkUpperItemActionBow() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkUpperItemActionBow__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800DF798-800DF814 0DA0D8 007C+00 1/1 0/0 0/0 .text checkUpperItemActionBowFly__9daAlink_cFv */
 void daAlink_c::checkUpperItemActionBowFly() {
@@ -263,6 +478,76 @@ void daAlink_c::checkUpperItemActionBowFly() {
 }
 
 /* 800DF814-800DFAE8 0DA154 02D4+00 4/4 0/0 0/0 .text            checkNextActionBow__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::checkNextActionBow() {
+    if (mFastShotTime != 0 && checkBowReadyAnime()) {
+        mFastShotTime--;
+    }
+
+    BOOL var_r31 = false;
+    if (!checkBowAnime()) {
+        setBowReadyAnime();
+        setFastShotTimer();
+
+        if (!i_checkAttentionLock()) {
+            field_0x2fe4 = shape_angle.y;
+        }
+
+        mItemMode = 0;
+        mItemVar0.field_0x3018 = 1;
+
+        if (mEquipItem == HAWK_ARROW) {
+            var_r31 = true;
+            mFastShotTime = 0;
+        }
+
+        if ((!i_checkAttentionLock() && !checkDashAnime()) || i_checkModeFlg(0x400)) {
+            mFastShotTime = 0;
+
+            if (i_checkAttentionLock() && i_checkModeFlg(0x400)) {
+                mItemVar0.field_0x3018 = 1;
+            } else {
+                mItemVar0.field_0x3018 = 0;
+            }
+
+            if (!i_checkResetFlg0(RFLG0_UNK_80)) {
+                mItemMode = 3;
+            }
+        }
+    }
+
+    BOOL rt;
+    if (!i_checkAttentionLock() && mFastShotTime == 0) {
+        if (i_checkModeFlg(0x400)) {
+            if (checkCanoeRide()) {
+                rt = procCanoeBowSubjectInit();
+            } else {
+                rt = procHorseBowSubjectInit();
+            }
+        } else {
+            rt = procBowSubjectInit();
+        }
+    } else {
+        if (i_checkModeFlg(0x400)) {
+            if (checkCanoeRide()) {
+                rt = procCanoeBowMoveInit();
+            } else {
+                rt = procHorseBowMoveInit();
+            }
+        } else {
+            rt = procBowMoveInit();
+        }
+    }
+
+    if (rt && var_r31) {
+        dComIfGp_setPlayerStatus0(0, 0x200000);
+        seStartSystem(Z2SE_AL_HAWK_EYE_PUTON);
+    }
+
+    return rt;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -271,6 +556,7 @@ asm int daAlink_c::checkNextActionBow() {
 #include "asm/d/a/d_a_alink/checkNextActionBow__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800DFAE8-800DFBC8 0DA428 00E0+00 1/1 0/0 0/0 .text            setBowModel__9daAlink_cFv */
 // matches with literals
@@ -370,7 +656,7 @@ int daAlink_c::procBowMoveInit() {
     }
 
     setBlendAtnMoveAnime(daAlinkHIO_bow_c0::m.mStartInterpolation);
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     setBowOrSlingStatus();
     return 1;
 }
@@ -379,11 +665,11 @@ int daAlink_c::procBowMoveInit() {
 int daAlink_c::procBowMove() {
     cancelBowMove();
 
-    if (mFastShotTime == 0 && field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
+    if (mFastShotTime == 0 && mProcVar2.field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
         resetUpperAnime(UPPER_2, lit_6041);
     }
 
-    field_0x300c = 1;
+    mProcVar2.field_0x300c = 1;
     i_onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (!checkNextAction(0)) {

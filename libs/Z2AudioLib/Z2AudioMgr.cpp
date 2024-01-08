@@ -14,8 +14,8 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "Z2AudioLib/Z2AudioArcLoader.h"
 #include "Z2AudioLib/Z2SoundHandles.h"
-#include "MSL_C/stdio.h"
-#include "MSL_C/stdlib.h"
+#include "stdio.h"
+#include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/os/OS.h"
 

@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSResetSW.h"
 

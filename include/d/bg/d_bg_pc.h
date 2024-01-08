@@ -32,10 +32,10 @@ public:
     void setCode(sBgPc&);
 
     u32 getHorseNoEntry() const { return m_code.code0 >> 0x15 & 1; }
-    u32 getSpl() const { return m_code.code0 >> 0x18 & 0xF; }
+    s32 getSpl() const { return m_code.code0 >> 0x18 & 0xF; }
     u32 getMagnet() const { return m_code.code0 >> 0x1C & 0x3; }
     u32 getMonkeyBars() const { return m_code.code0 >> 0x1F; }
-    u32 getWallCode() const { return m_code.code1 >> 0x8 & 0xF; }
+    s32 getWallCode() const { return m_code.code1 >> 0x8 & 0xF; }
     u32 getAtt0Code() const { return m_code.code1 >> 0xC & 0xF; }
     u32 getAtt1Code() const { return m_code.code1 >> 0x10 & 0x7; }
     u32 getGroundCode() const { return m_code.code1 >> 0x13 & 0x1F; }
@@ -61,8 +61,14 @@ public:
     u8 getRoomPathPnt() const { return m_code.code2 >> 0x18; }
     u8 getRoomInf() const { return m_code.code4; }
     u8 getSnd() const { return m_code.code4 >> 0xB; }
+    u32 maskNrm() { return m_code.code4 & 0x100; }
 
-private:
+    // BUG: Seems like this uses the same mask as maskNrm
+    u32 getWtr() { return m_code.code4 & 0x100; }
+    u32 getObjThrough() { return m_code.code0 & 0x4000; }
+    u32 getCamThrough() { return m_code.code0 & 0x8000; }
+    u32 getLinkThrough() { return m_code.code0 & 0x10000; }
+
     /* 0x0 */ sBgPc m_code;
 };
 

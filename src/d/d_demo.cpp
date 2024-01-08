@@ -752,7 +752,7 @@ static int it;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* param_3,
+asm int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* param_3,
                                       u8* param_4) {
     nofralloc
 #include "asm/d/d_demo/getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc.s"

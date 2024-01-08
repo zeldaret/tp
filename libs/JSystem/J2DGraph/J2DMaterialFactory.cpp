@@ -5,7 +5,8 @@
 
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
-#include "MSL_C/string.h"
+#include "JSystem/JSupport/JSupport.h"
+#include "string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -81,7 +82,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_19();
 extern "C" void _restgpr_29();
 extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
-extern "C" extern u8 j2dDefaultTevSwapMode[4];
 
 //
 // Declarations:

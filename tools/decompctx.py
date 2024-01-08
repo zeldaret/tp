@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+###
+# Generates a ctx.c file, usable for "Context" on https://decomp.me.
+#
+# Usage:
+#   python3 tools/decompctx.py src/file.cpp
+#
+# If changes are made, please submit a PR to
+# https://github.com/encounter/dtk-template
+###
+
 import argparse
 import os
 import re
@@ -7,7 +17,15 @@ import re
 script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 src_dir = os.path.join(root_dir, "src")
-include_dir = os.path.join(root_dir, "include")
+include_dirs = [
+   os.path.join(root_dir, "include"),
+   os.path.join(root_dir, "include/dolphin"),
+   os.path.join(root_dir, "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include"),
+   os.path.join(root_dir, "libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include"),
+   os.path.join(root_dir, "libs/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include"),
+   os.path.join(root_dir, "libs/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include"),
+   os.path.join(root_dir, "libs/PowerPC_EABI_Support/Runtime/Inc"),
+]
 
 include_pattern = re.compile(r'^#include\s*[<"](.+?)[>"]$')
 guard_pattern = re.compile(r'^#ifndef\s+(.*)$')
@@ -16,14 +34,16 @@ defines = set()
 
 def import_h_file(in_file: str, r_path: str) -> str:
     rel_path = os.path.join(root_dir, r_path, in_file)
-    inc_path = os.path.join(include_dir, in_file)
     if os.path.exists(rel_path):
       return import_c_file(rel_path)
-    elif os.path.exists(inc_path):
-      return import_c_file(inc_path)
     else:
-      print("Failed to locate", in_file)
-      exit(1)
+      for inc_dir in include_dirs:
+        inc_path = os.path.join(inc_dir, in_file)
+        if os.path.exists(inc_path):
+          return import_c_file(inc_path)
+      else:
+        print("Failed to locate", in_file)
+        exit(1)
 
 def import_c_file(in_file) -> str:
     in_file = os.path.relpath(in_file, root_dir)

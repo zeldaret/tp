@@ -2911,7 +2911,7 @@ const daAlinkHIO_wlRope_c1 daAlinkHIO_wlRope_c0::m = {
 /* 8038F4A4-8038F4E0 01BB04 003C+00 0/1 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtWaLr_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_wlAtWaLr_c1 daAlinkHIO_wlAtWaLr_c0::m = {
+const daAlinkHIO_wlAtWait_c1 daAlinkHIO_wlAtWaLr_c0::m = {
 	{
 		41,
         0.9f,
@@ -2936,7 +2936,7 @@ const daAlinkHIO_wlAtWaLr_c1 daAlinkHIO_wlAtWaLr_c0::m = {
 /* 8038F4E0-8038F51C 01BB40 003C+00 0/1 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtWaSc_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_wlAtWaSc_c1 daAlinkHIO_wlAtWaSc_c0::m = {
+const daAlinkHIO_wlAtWait_c1 daAlinkHIO_wlAtWaSc_c0::m = {
 	{
 		15,
         0.9f,
@@ -2961,7 +2961,7 @@ const daAlinkHIO_wlAtWaSc_c1 daAlinkHIO_wlAtWaSc_c0::m = {
 /* 8038F51C-8038F558 01BB7C 003C+00 0/1 0/0 0/0 .rodata          m__22daAlinkHIO_wlAtWaTl_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_wlAtWaTl_c1 daAlinkHIO_wlAtWaTl_c0::m = {
+const daAlinkHIO_wlAtWait_c1 daAlinkHIO_wlAtWaTl_c0::m = {
 	{
 		42,
         1.05f,

@@ -117,8 +117,8 @@ public:
     /* 802380C4 */ static void changeGroup(s16);
     /* 8023806C */ static void demoMessageGroup();
     /* 80238098 */ void endFlowGroup();
-    /* 802380F4 */ static bool getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
-                                  char*, char*, s16*);
+    /* 802380F4 */ static bool getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
+                                         char*, char*, char*, s16*);
     /* 80238174 */ static u8* getMsgDtPtr();
     /* 80238188 */ static void setProcessID(unsigned int);
     /* 8023819C */ static fopAc_ac_c* getActor();
@@ -127,7 +127,7 @@ public:
     /* 802381E8 */ static u16 getNodeIdx();
     /* 802381FC */ static void setStatus(u16);
     /* 8023822C */ static u16 getStatus();
-    /* 80238258 */ void getScrnDrawPtr();
+    /* 80238258 */ static dMsgScrnBase_c* getScrnDrawPtr();
     /* 8023826C */ static void setTalkActor(fopAc_ac_c*);
     /* 8023829C */ void onMsgSendControl();
     /* 802382C8 */ void offMsgSendControl();
@@ -151,7 +151,7 @@ public:
     /* 80238528 */ void getSelectWord(int);
     /* 80238544 */ static void setSelectWordFlag(u8);
     /* 80238574 */ void getSelectWordFlag();
-    /* 80238588 */ bool isHowlHearingMode();
+    /* 80238588 */ static bool isHowlHearingMode();
     /* 802385B4 */ static u8 getSelectBombBagID();
     /* 802385E0 */ static s16 getSelectBombPrice();
     /* 8023860C */ static void setEquipBombInfo();
@@ -164,26 +164,35 @@ public:
     s16 getInputValueLocal() { return mInputValue; }
     void setInputValueLocal(s16 i_inputValue) { mInputValue = i_inputValue; }
     s16 getNowTotalPriceLocal() { return mNowTotalPrice; }
+    void setNowTotalPriceLocal(s16 i_nowTotalPrice) { mNowTotalPrice = i_nowTotalPrice; }
     s16 getNowTotalPaymentLocal() { return mNowTotalPayment; }
+    void setNowTotalPaymentLocal(s16 i_nowTotalPayment) { mNowTotalPayment = i_nowTotalPayment; }
     void onInputFlagLocal() { mInputFlag = 1; }
+    void offPaymentFlagLocal() { mPaymentFlag = 0; }
     void offAutoMessageFlagLocal() { mAutoMessageFlag = 0; }
     void onAutoMessageFlagLocal() { mAutoMessageFlag = 1; }
     void setFundRaisingValueLocal(s16 i_value) { mFundRaisingValue = i_value; }
     u16 getPortalMessageIDLocal() { return mPortalMessageID; }
     bool isAutoMessageFlagLocal() { return mAutoMessageFlag; }
+    bool isPaymentFlagLocal() { return mPaymentFlag; }
 
     u8 getSelectPushFlag() { return mSelectPushFlag; }
     u8 getSelectCancelPos() { return mSelectCancelPos; }
     s16 getInputValue() { return getInputValueLocal(); }
     void setInputValue(s16 i_inputValue) { setInputValueLocal(i_inputValue); }
     s16 getNowTotalPrice() { return getNowTotalPriceLocal(); }
+    void setNowTotalPrice(s16 i_nowTotalPrice) { setNowTotalPriceLocal(i_nowTotalPrice); }
     s16 getNowTotalPayment() { return getNowTotalPaymentLocal(); }
+    void setNowTotalPayment(s16 i_nowTotalPayment) { setNowTotalPaymentLocal(i_nowTotalPayment); }
     void onInputFlag() { onInputFlagLocal(); }
+    void offPaymentFlag() { offPaymentFlagLocal(); }
     void offAutoMessageFlag() { offAutoMessageFlagLocal(); }
     void onAutoMessageFlag() { onAutoMessageFlagLocal(); }
     void setFundRaisingValue(s16 i_value) { setFundRaisingValueLocal(i_value); }
     u16 getPortalMessageID() { return getPortalMessageIDLocal(); }
     bool isAutoMessageFlag() { return isAutoMessageFlagLocal(); }
+    bool isPaymentFlag() { return isPaymentFlagLocal(); }
+    u8 getFukiKind() { return mFukiKind; }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
@@ -276,10 +285,15 @@ u16 dMsgObject_getFundRaising();
 void dMsgObject_addOffering(s16 param_0);
 u16 dMsgObject_getOffering();
 void dMsgObject_addTotalPrice(s16 param_0);
+u16 dMsgObject_getTotalPrice();
+void dMsgObject_setTotalPrice(u16 param_0);
+u16 dMsgObject_getTotalPayment();
+void dMsgObject_setTotalPayment(u16 param_0);
 
 inline dMsgObject_c* dMsgObject_getMsgObjectClass() {
     return dComIfGp_getMsgObjectClass();
 }
+
 inline void dMsgObject_demoMessageGroup() {
     dMsgObject_c::demoMessageGroup();
 }
@@ -329,11 +343,8 @@ inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
 inline bool dMsgObject_getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
                                  JUTFont* param_3, COutFont_c* param_4, char* param_5,
                                  char* param_6, char* param_7, s16* param_8) {
-    return dMsgObject_c::getString(
-        param_0, param_1, param_2, param_3,
-        param_4, param_5, param_6, param_7,
-        param_8
-    );
+    return dMsgObject_c::getString(param_0, param_1, param_2, param_3, param_4, param_5, param_6,
+                                   param_7, param_8);
 }
 
 inline void dMsgObject_onKillMessageFlag() {
@@ -352,7 +363,7 @@ inline void dMsgObject_setSmellType(u8 type) {
     dMsgObject_c::setSmellType(type);
 }
 
-inline void dMsgObject_setTalkPartner(fopAc_ac_c *actor) {
+inline void dMsgObject_setTalkPartner(fopAc_ac_c* actor) {
     dMsgObject_getMsgObjectClass()->setTalkPartner(actor);
 }
 
@@ -366,6 +377,18 @@ inline void dMsgObject_setNowTalkFlowNo(s16 nowTalkFlowNo) {
 
 inline void dMsgObject_setEquipBombInfo() {
     dMsgObject_c::setEquipBombInfo();
+}
+
+inline bool dMsgObject_isHowlHearingMode() {
+    return dMsgObject_c::isHowlHearingMode();
+}
+
+inline void dMsgObject_onMsgSend() {
+    dMsgObject_getMsgObjectClass()->onMsgSend();
+}
+
+inline bool dMsgObject_isFukidashiCheck() {
+    return dMsgObject_getMsgObjectClass()->getScrnDrawPtr() != NULL ? true : false;
 }
 
 class dMsgObject_HowlHIO_c {
@@ -482,7 +505,8 @@ public:
     /* 0x0DC */ f32 mBoxItemTextSizeY;
     /* 0x0E0 */ f32 mBoxItemTextPosX;
     /* 0x0E4 */ f32 mBoxItemTextPosY;
-    /* 0x0E8 */ JUtility::TColor mBoxStartBlack[10]; // talk, navi, midna, item, stone, wood, book, wolf, 
+    /* 0x0E8 */ JUtility::TColor
+        mBoxStartBlack[10];  // talk, navi, midna, item, stone, wood, book, wolf,
     /* 0x110 */ JUtility::TColor mBoxEndBlack[10];
     /* 0x138 */ JUtility::TColor mBoxStartWhite[10];
     /* 0x160 */ JUtility::TColor mBoxEndWhite[10];
@@ -506,7 +530,8 @@ public:
     /* 0x1CC */ f32 mStageTitleBaseAlpha;
     /* 0x1D0 */ f32 mBossNameBaseAlpha;
     /* 0x1D4 */ f32 mChoicePos[3][10];  // down, mid, top
-    /* 0x24C */ f32 mBoxPos[3][10];  // down, mid, top    // talk, navi, midna, item, stone, wood, book, wolf, 
+    /* 0x24C */ f32
+        mBoxPos[3][10];  // down, mid, top    // talk, navi, midna, item, stone, wood, book, wolf,
     /* 0x2C4 */ f32 mPortalIconScale;
     /* 0x2C8 */ f32 mTextPosX;
     /* 0x2CC */ f32 mTextPosY;
@@ -544,10 +569,12 @@ public:
     /* 0x31E */ bool mSaveSeqMsgDebug;
     /* 0x31F */ bool mMsgDebug;
     /* 0x320 */ bool mTextColorDebug;
-    /* 0x321 */ u8 mTextColorUpperR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange, 
+    /* 0x321 */ u8
+        mTextColorUpperR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange,
     /* 0x32A */ u8 mTextColorUpperG[9];
     /* 0x333 */ u8 mTextColorUpperB[9];
-    /* 0x33C */ u8 mTextColorLowerR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange, 
+    /* 0x33C */ u8
+        mTextColorLowerR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange,
     /* 0x345 */ u8 mTextColorLowerG[9];
     /* 0x34E */ u8 mTextColorLowerB[9];
     /* 0x357 */ u8 mDisplaySpeed;

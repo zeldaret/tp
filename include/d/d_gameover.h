@@ -80,6 +80,7 @@ public:
     /* 8019B864 */ int _delete();
 
     s32 deleteCheck() { return mProc == 8; }
+    void animeStart() { mIsDemoSave = true; }
 
     /* 0x0FC */ dMenu_save_c* dMs_c;
     /* 0x100 */ dDlst_GameOverScrnDraw_c* dgo_screen_c;
@@ -101,6 +102,21 @@ inline s32 d_GameOver_CheckDelete(unsigned int& id) {
 
         if (gameover != NULL) {
             return gameover->deleteCheck();
+        } else {
+            return 0;
+        }
+    }
+
+    return 0;
+}
+
+inline s32 d_GameOver_animeStart(unsigned int& id) {
+    if (id != UINT32_MAX) {
+        dGameover_c* gameover = (dGameover_c*)fopMsgM_SearchByID(id);
+
+        if (gameover != NULL) {
+            gameover->animeStart();
+            return 1;
         } else {
             return 0;
         }

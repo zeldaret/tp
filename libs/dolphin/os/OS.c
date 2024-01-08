@@ -87,7 +87,6 @@ extern f64 ZeroF;
 f64 ZeroF;
 
 /* 8045160C-80451610 000B0C 0004+00 1/1 1/1 0/0 .sbss            __OSIsGcam */
-extern BOOL __OSIsGcam;
 BOOL __OSIsGcam;
 
 /* 80339DD4-80339EFC 334714 0128+00 0/0 1/1 0/0 .text            __OSFPRInit */
@@ -192,9 +191,6 @@ static DVDDriveInfo DriveInfo;
 
 void* __OSSavedRegionStart;
 void* __OSSavedRegionEnd;
-
-extern u32 BOOT_REGION_START : 0x812FDFF0;  //(*(u32 *)0x812fdff0)
-extern u32 BOOT_REGION_END : 0x812FDFEC;    //(*(u32 *)0x812fdfec)
 
 inline void ClearArena(void) {
     u32 resetCode = OSGetResetCode();

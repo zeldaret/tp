@@ -2696,13 +2696,13 @@ static void action(do_class* i_this) {
     }
 
     if (tmp2 != 0 && player->mSpeedF < FLOAT_LABEL(lit_3665)) {
-        cLib_onBit(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_onBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
 
         if (do_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_offBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
     }
 
     cLib_addCalcAngleS2(&i_this->current.angle.x, 0, 1, 0x400);
@@ -3001,11 +3001,11 @@ static void message(do_class* i_this) {
 
         if (i_this->field_0xc05 == 2 && i_this->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
-            cLib_onBit(i_this->mAttentionInfo.mFlags, 10);
+            cLib_onBit<u32>(i_this->mAttentionInfo.mFlags, 0xa);
             i_this->mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
-            cLib_offBit(i_this->mAttentionInfo.mFlags, 10);
+            cLib_offBit<u32>(i_this->mAttentionInfo.mFlags, 0xa);
         }
     }
 }

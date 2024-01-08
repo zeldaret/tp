@@ -4,6 +4,12 @@
 //
 
 #include "dolphin/gx/GXMisc.h"
+#include "dolphin/gx/GX.h"
+#include "dolphin/os/OSContext.h"
+#include "dolphin/os/OSInterrupt.h"
+#include "dolphin/os/OSReset.h"
+#include "dolphin/os/OSTime.h"
+#include "dolphin/gx/GXInit.h"
 #include "dolphin/types.h"
 
 //
@@ -19,10 +25,8 @@ void GXDrawDone();
 void GXPixModeSync();
 void GXPokeAlphaRead();
 void GXPokeBlendMode();
-void GXSetDrawSyncCallback();
-static void GXTokenInterruptHandler();
-void GXSetDrawDoneCallback();
-static void GXFinishInterruptHandler();
+static void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* context);
+static void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext);
 void __GXPEInit();
 
 //
@@ -30,49 +34,101 @@ void __GXPEInit();
 //
 
 void PPCSync();
-void OSSetCurrentContext();
-void OSClearContext();
-void OSDisableInterrupts();
-void OSRestoreInterrupts();
-void __OSSetInterruptHandler();
-void __OSUnmaskInterrupts();
 void OSInitThreadQueue();
 void OSSleepThread();
 void OSWakeupThread();
-void OSGetTime();
 void __GXInitRevisionBits();
 void __GXCleanGPFifo();
-void GXGetGPFifo();
 void __GXSetDirtyState();
-extern u8 __peReg[4];
-extern u8 __memReg[4];
-extern void* __GXData;
 
 //
 // Declarations:
 //
 
 /* 8035BE38-8035BECC 356778 0094+00 0/0 9/9 0/0 .text            GXSetMisc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetMisc(u32 id, u32 value) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXSetMisc.s"
+void GXSetMisc(u32 id, u32 value) {
+    switch (id) {
+    case 0:
+        break;
+    case 1:
+        __GXData->vNum = value;
+        // fake match. Should be something like __GXData->vNum == 0, but it adds a neg instruction
+        __GXData->field_0x0 = (__cntlzw(__GXData->vNum) >> 5) & 0xffff;
+        __GXData->bpSentNot = 1;
+        if (__GXData->vNum == 0) {
+            break;
+        }
+        __GXData->dirtyFlags |= GX_DIRTY_VCD;
+        break;
+    case 2:
+        __GXData->dlSaveContext = value != 0;
+        break;
+    case 3:
+        __GXData->abtWaitPECopy = value != 0;
+        break;
+    }
 }
-#pragma pop
 
 /* 8035BECC-8035BF28 35680C 005C+00 1/1 10/10 0/0 .text            GXFlush */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXFlush(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXFlush.s"
+void GXFlush(void) {
+    if (__GXData->dirtyFlags) {
+        __GXSetDirtyState();
+    }
+
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+    GXFIFO.u32 = 0;
+
+    PPCSync();
 }
-#pragma pop
 
 /* 8035BF28-8035C094 356868 016C+00 0/0 1/1 0/0 .text            __GXAbort */
+// Instruction order
+#ifdef NONMATCHING
+static void __GXAbortWait(u32 time) {
+    OSTime startTime = OSGetTime();
+    while (OSGetTime() - startTime <= time);
+}
+
+static u32 __GXReadMEMCounterU32(u32 param_0, u32 param_1) {
+    vu16* ptr0 = &__memReg[param_0];
+    vu16* ptr1 = &__memReg[param_1];
+    u32 sVar3 = __memReg[param_1];
+    u32 sVar2;
+    u32 temp;
+    do {
+        temp = sVar3;
+        sVar3 = *ptr1;
+        sVar2 = *ptr0;
+    } while (sVar3 != temp);
+    return ((u32)sVar3 << 16) | sVar2;
+}
+
+static void __GXAbortWaitPECopyDone() {
+    u32 iVar3;
+    u32 iVar2 = __GXReadMEMCounterU32(0x28, 0x27);
+    do {
+        __GXAbortWait(8);
+        iVar3 = iVar2;
+        iVar2 = __GXReadMEMCounterU32(0x28, 0x27);
+    } while (iVar2 != iVar3);
+}
+
+void __GXAbort(void) {
+    if (__GXData->abtWaitPECopy && GXGetGPFifo()){
+        __GXAbortWaitPECopyDone();
+    }
+    __PIRegs[6] = 1;
+    __GXAbortWait(50);
+    __PIRegs[6] = 0;
+    __GXAbortWait(5);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -81,8 +137,21 @@ asm void __GXAbort(void) {
 #include "asm/dolphin/gx/GXMisc/__GXAbort.s"
 }
 #pragma pop
+#endif
 
 /* 8035C094-8035C25C 3569D4 01C8+00 0/0 2/2 0/0 .text            GXAbortFrame */
+// Needs __GXAbort and __GXReadMEMCounterU32 is not inlined
+#ifdef NONMATCHING
+void GXAbortFrame(void) {
+    __GXAbort();
+    if (GXGetGPFifo()) {
+        __GXCleanGPFifo();
+        __GXInitRevisionBits();
+        __GXData->dirtyFlags = 0;
+        GXFlush();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -91,82 +160,94 @@ asm void GXAbortFrame(void) {
 #include "asm/dolphin/gx/GXMisc/GXAbortFrame.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451968-8045196C 000E68 0004+00 2/2 0/0 0/0 .sbss            TokenCB */
-static u8 TokenCB[4];
+static GXDrawSyncCallback TokenCB;
 
 /* 8045196C-80451970 000E6C 0004+00 2/2 0/0 0/0 .sbss            DrawDoneCB */
-static u8 DrawDoneCB[4];
+static GXDrawDoneCallback DrawDoneCB;
 
 /* 80451970-80451974 000E70 0004+00 3/3 0/0 0/0 .sbss            None */
 static u8 data_80451970[4];
 
 /* 8035C25C-8035C2F4 356B9C 0098+00 0/0 2/2 0/0 .text            GXSetDrawDone */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDrawDone(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXSetDrawDone.s"
+void GXSetDrawDone(void) {
+    u8 padding[8];
+    BOOL restore = OSDisableInterrupts();
+    GFWriteBPCmd(0x45000002);
+    GXFlush();
+    data_80451970[0] = 0;
+    OSRestoreInterrupts(restore);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451974-8045197C 000E74 0008+00 3/3 0/0 0/0 .sbss            FinishQueue */
-static u8 FinishQueue[8];
+static OSThreadQueue FinishQueue;
+
+static void GXWaitDrawDone(void) {
+    BOOL restore = OSDisableInterrupts();
+    while (data_80451970[0] == 0) {
+        OSSleepThread(&FinishQueue);
+    }
+    OSRestoreInterrupts(restore);
+}
 
 /* 8035C2F4-8035C374 356C34 0080+00 0/0 3/3 1/1 .text            GXDrawDone */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXDrawDone(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXDrawDone.s"
+void GXDrawDone(void) {
+    u8 padding[8];
+    GXSetDrawDone();
+    GXWaitDrawDone();
 }
-#pragma pop
 
 /* 8035C374-8035C398 356CB4 0024+00 0/0 9/9 0/0 .text            GXPixModeSync */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPixModeSync(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPixModeSync.s"
+void GXPixModeSync(void) {
+    GXFIFO.u8 = 0x61;   
+    GXFIFO.u32 = __GXData->peCtrl;
+    __GXData->bpSentNot = 0;
 }
-#pragma pop
 
 /* 8035C398-8035C3AC 356CD8 0014+00 0/0 1/1 0/0 .text            GXPokeAlphaMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeAlphaMode(GXCompare comp, u8 threshold) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeAlphaMode.s"
+void GXPokeAlphaMode(GXCompare comp, u8 threshold) {
+    __peReg[3] = (comp << 8) | threshold;
 }
-#pragma pop
 
 /* 8035C3AC-8035C3CC 356CEC 0020+00 0/0 1/1 0/0 .text            GXPokeAlphaRead */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeAlphaRead(GXAlphaReadMode mode) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeAlphaRead.s"
+void GXPokeAlphaRead(GXAlphaReadMode mode) {
+    u32 val = 0;
+    GX_BITFIELD_SET(val, 0x1e, 2, mode);
+    GX_BITFIELD_SET(val, 0x1d, 1, 1);
+    __peReg[4] = val;
 }
-#pragma pop
 
 /* 8035C3CC-8035C3E4 356D0C 0018+00 0/0 1/1 0/0 .text            GXPokeAlphaUpdate */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeAlphaUpdate(GXBool enable_update) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeAlphaUpdate.s"
+void GXPokeAlphaUpdate(GXBool enable_update) {
+    GX_BITFIELD_SET(__peReg[1], 0x1b, 1, enable_update);
 }
-#pragma pop
 
 /* 8035C3E4-8035C448 356D24 0064+00 0/0 1/1 0/0 .text            GXPokeBlendMode */
+// regalloc
+#ifdef NONMATCHING
+void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op) {
+    u32 r8;
+    u32 r9 = TRUE;
+    u16 r10;
+    r10 = __peReg[1];
+    if (mode != GX_BM_BLEND && mode != GX_BM_SUBTRACT) {
+        r9 = FALSE;
+    }
+    r8 = r10;
+    GX_BITFIELD_SET(r8, 0x1f, 1, r9);
+    GX_BITFIELD_SET(r8, 0x14, 1, mode == GX_BM_SUBTRACT);
+    GX_BITFIELD_SET(r8, 0x1e, 1, mode == GX_BM_LOGIC);
+    GX_BITFIELD_SET(r8, 0x10, 4, op);
+    GX_BITFIELD_SET(r8, 0x15, 3, src_factor);
+    GX_BITFIELD_SET(r8, 0x18, 3, dst_factor);
+    GX_BITFIELD_SET(r8, 0, 8, 0x41);
+    __peReg[1] = r8;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -175,106 +256,132 @@ asm void GXPokeBlendMode(GXBlendMode mode, GXBlendFactor src_factor, GXBlendFact
 #include "asm/dolphin/gx/GXMisc/GXPokeBlendMode.s"
 }
 #pragma pop
+#endif
 
 /* 8035C448-8035C460 356D88 0018+00 0/0 1/1 0/0 .text            GXPokeColorUpdate */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeColorUpdate(GXBool enable_update) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeColorUpdate.s"
+void GXPokeColorUpdate(GXBool enable_update) {
+    GX_BITFIELD_SET(__peReg[1], 0x1c, 1, enable_update);
 }
-#pragma pop
 
 /* 8035C460-8035C484 356DA0 0024+00 0/0 1/1 0/0 .text            GXPokeDstAlpha */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeDstAlpha(GXBool enable, u8 alpha) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeDstAlpha.s"
+void GXPokeDstAlpha(GXBool enable, u8 alpha) {
+    u32 val = 0;
+    GX_BITFIELD_SET(val, 0x18, 8, alpha);
+    GX_BITFIELD_SET(val, 0x17, 1, enable);
+    __peReg[2] = val;
 }
-#pragma pop
 
 /* 8035C484-8035C49C 356DC4 0018+00 0/0 1/1 0/0 .text            GXPokeDither */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeDither(GXBool enable) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeDither.s"
+void GXPokeDither(GXBool enable) {
+    GX_BITFIELD_SET(__peReg[1], 0x1d, 1, enable);
 }
-#pragma pop
 
 /* 8035C49C-8035C4BC 356DDC 0020+00 0/0 1/1 0/0 .text            GXPokeZMode */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPokeZMode(GXBool enable_compare, GXCompare comp) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPokeZMode.s"
+void GXPokeZMode(GXBool enable_compare, GXCompare comp, GXBool update_enable) {
+    u32 val = 0;
+    GX_BITFIELD_SET(val, 0x1f, 1, enable_compare);
+    GX_BITFIELD_SET(val, 0x1c, 3, comp);
+    GX_BITFIELD_SET(val, 0x1b, 1, update_enable);
+    __peReg[0] = val;
 }
-#pragma pop
 
 /* 8035C4BC-8035C4E0 356DFC 0024+00 0/0 1/1 0/0 .text            GXPeekZ */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXPeekZ(u16 x, u16 y, u32* z) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXPeekZ.s"
+void GXPeekZ(u16 x, u16 y, u32* z) {
+    u32 addr = 0xc8000000;
+    GX_BITFIELD_SET(addr, 0x14, 10, x);
+    GX_BITFIELD_SET(addr, 0xa, 10, y);
+    GX_BITFIELD_SET(addr, 8, 2, 1);
+    *z = *(u32*)addr;
 }
-#pragma pop
 
 /* 8035C4E0-8035C524 356E20 0044+00 0/0 1/1 0/0 .text            GXSetDrawSyncCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDrawSyncCallback(GXDrawSyncCallback callback) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXSetDrawSyncCallback.s"
+GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback) {
+    BOOL restore;
+    GXDrawSyncCallback prevCb = TokenCB;
+    restore = OSDisableInterrupts();
+    TokenCB = callback;
+    OSRestoreInterrupts(restore);
+    return prevCb;
 }
-#pragma pop
 
 /* 8035C524-8035C5AC 356E64 0088+00 1/1 0/0 0/0 .text            GXTokenInterruptHandler */
+// regalloc
+#ifdef NONMATCHING
+static void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
+    OSContext context;
+    u16 token = __peReg[7];
+    if (TokenCB != NULL) {
+        OSClearContext(&context);
+        OSSetCurrentContext(&context);
+        TokenCB(token);
+        OSClearContext(&context);
+        OSSetCurrentContext(pContext);
+    }
+    GX_BITFIELD_SET(__peReg[5], 0x1d, 1, 1);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXTokenInterruptHandler() {
+static asm void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXTokenInterruptHandler.s"
 }
 #pragma pop
+#endif
 
 /* 8035C5AC-8035C5F0 356EEC 0044+00 0/0 4/4 0/0 .text            GXSetDrawDoneCallback */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetDrawDoneCallback(GXDrawDoneCallback callback) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/GXSetDrawDoneCallback.s"
+GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback) {
+    BOOL restore;
+    GXDrawDoneCallback prevCb = DrawDoneCB;
+    restore = OSDisableInterrupts();
+    DrawDoneCB = callback;
+    OSRestoreInterrupts(restore);
+    return prevCb;
 }
-#pragma pop
 
 /* 8035C5F0-8035C670 356F30 0080+00 1/1 0/0 0/0 .text            GXFinishInterruptHandler */
+// regalloc, instruction order
+#ifdef NONMATCHING
+static void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
+    OSContext context;
+    GX_BITFIELD_SET(__peReg[5], 0x1c, 1, 1);
+    data_80451970[0] = param_0;
+    if (DrawDoneCB != NULL) {
+        OSClearContext(&context);
+        OSSetCurrentContext(&context);
+        DrawDoneCB();
+        OSClearContext(&context);
+        OSSetCurrentContext(pContext);
+    }
+    OSWakeupThread(&FinishQueue);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXFinishInterruptHandler() {
+static asm void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXFinishInterruptHandler.s"
 }
 #pragma pop
+#endif
 
 /* 8035C670-8035C6E4 356FB0 0074+00 0/0 1/1 0/0 .text            __GXPEInit */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __GXPEInit(void) {
-    nofralloc
-#include "asm/dolphin/gx/GXMisc/__GXPEInit.s"
+void __GXPEInit(void) {
+    u32 val;
+    __OSSetInterruptHandler(OS_INTR_PI_PE_TOKEN, GXTokenInterruptHandler);
+    __OSSetInterruptHandler(OS_INTR_PI_PE_FINISH, GXFinishInterruptHandler);
+    OSInitThreadQueue(&FinishQueue);
+    __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_PE_TOKEN);
+    __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_PE_FINISH);
+    val = __peReg[5];
+    GX_BITFIELD_SET(val, 0x1d, 1, 1);
+    GX_BITFIELD_SET(val, 0x1c, 1, 1);
+    GX_BITFIELD_SET(val, 0x1f, 1, 1);
+    GX_BITFIELD_SET(val, 0x1e, 1, 1);
+    __peReg[5] = val;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8045197C-80451980 -00001 0004+00 0/0 0/0 0/0 .sbss            None */

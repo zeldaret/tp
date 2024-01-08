@@ -27,7 +27,7 @@ public:
     fopAc_ac_c* convPId(unsigned int);
     void init();
     void proc();
-    void request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
+    int request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
 
     fopAc_ac_c* getCatghTarget() { return convPId(mCatghTargetID); }
     u8 getChangeItem() { return mChangeItem; }
@@ -80,11 +80,11 @@ public:
     /* 80073CA4 */ fopAc_ac_c* convPId(unsigned int);
     /* 80073CD4 */ void init();
     /* 80073CEC */ void proc();
-    /* 80073D08 */ void request(fopAc_ac_c*, f32, f32, f32, s16, int);
+    /* 80073D08 */ int request(fopAc_ac_c*, f32, f32, f32, s16, int);
 
 private:
     u32 field_0x0;
-    u32 field_0x4;
+    s32 field_0x4;
     f32 field_0x8;
     u32 mLookTargetID;
 };  // Size: 0x10
@@ -137,7 +137,7 @@ STATIC_ASSERT(sizeof(dAttDraw_c) == 0x178);
 
 class dAttDraw_CallBack_c : public mDoExt_McaMorfCallBack1_c {
 public:
-    /* 80070178 */ virtual void execute(u16, J3DTransformInfo*);
+    /* 80070178 */ virtual int execute(u16, J3DTransformInfo*);
 };
 
 struct dist_entry {
@@ -205,9 +205,9 @@ public:
     /* 80182AD0 */ void keepLock(int);
     /* 8014B010 */ static dist_entry& getDistTable(int);
 
-    dAttCatch_c& getCatghTarget() { return mCatghTarget; }
+    fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }
-    BOOL chkFlag(u32 flag) { return mFlags & flag; }
+    BOOL chkFlag(u32 flag) { return (mFlags & flag) ? TRUE : FALSE; }
     void setFlag(u32 flag) { mFlags |= flag; }
     void clrFlag(u32 flag) { mFlags &= ~flag; }
     int GetActionCount() { return mActionCount; }
@@ -220,6 +220,12 @@ public:
     void LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist, f32 i_downDist,
                      s16 i_angle, int param_5) {
         mLookTarget.request(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle, param_5);
+    }
+
+    void CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist, f32 i_upDist,
+                      f32 i_downDist, s16 i_angle, int param_5) {
+        mCatghTarget.request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
+                             param_5);
     }
 
     static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
@@ -237,7 +243,7 @@ public:
     /* 0x004 */ u32 mLockTargetID;
     /* 0x008 */ dAttDraw_CallBack_c mpDrawCallback;
     /* 0x00C */ u32 mPadNo;
-    /* 0x010 */ u32 field_0x10;
+    /* 0x010 */ u32 mPlayerAttentionFlags;
     /* 0x014 */ u8 field_0x14[4];
     /* 0x018 */ JKRSolidHeap* heap;
     /* 0x01C */ cXyz mDrawAttnPos;

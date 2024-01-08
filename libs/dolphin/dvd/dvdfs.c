@@ -6,7 +6,7 @@
 #include "dolphin/dvd/dvdfs.h"
 #include "dolphin/dvd/dvd.h"
 #include "dolphin/os/OS.h"
-#include "MSL_C/MSL_Common/Src/ctype.h"
+#include "ctype.h"
 
 //
 // Forward References:

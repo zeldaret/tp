@@ -321,9 +321,9 @@ void dGrass_packet_c::update() {
 
             sp1C.set(data_p->m_pos.x, data_p->m_pos.y + 260.0f, data_p->m_pos.z);
             if (mDoLib_clipper::clip(j3dSys.getViewMtx(), sp1C, 260.0f)) {
-                cLib_onBit(data_p->field_0x01, 2);
+                cLib_onBit<u8>(data_p->field_0x01, 2);
             } else {
-                cLib_offBit(data_p->field_0x01, 2);
+                cLib_offBit<u8>(data_p->field_0x01, 2);
 
                 if (data_p->field_0x02 >= 0) {
                     MtxP mtx = anm_p[data_p->field_0x02].m_animMtx;

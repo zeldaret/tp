@@ -9,6 +9,8 @@
 #include "dol2asm.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_msg_mng.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 //
 // Forward References:
@@ -359,6 +361,170 @@ void COutFont_c::setPane(J2DPicture* p_pic) {
 SECTION_SDATA2 static f64 lit_4397 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80225EA8-80226CF8 2207E8 0E50+00 2/0 0/0 0/0 .text            createPane__10COutFont_cFv */
+#ifdef NONMATCHING
+void COutFont_c::createPane() {
+    ResTIMG* local_30;
+    for (int iVar5 = 0; iVar5 < 70; iVar5++) {
+        if (iVar5 == 41) {
+            local_30 = (ResTIMG*)dComIfGp_getItemIconArchive()->getResource('TIMG', getBtiName(iVar5));
+        } else {
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', getBtiName(iVar5));
+        }
+        mpPane[iVar5] = new J2DPicture(local_30);
+        switch (iVar5) {
+        case 0:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(255, 255, 255, 0), JUtility::TColor(98, 163, 46, 255));
+            break;
+        case 1:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(255, 255, 255, 0), JUtility::TColor(200, 39, 39, 255));
+            break;
+        case 2:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 200, 50, 255));
+            break;
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 8:
+            if (field_0x242 == 0x1) {
+                mpPane[iVar5]->setBlackWhite(JUtility::TColor(255, 255, 255, 0), JUtility::TColor(120, 120, 120, 255));
+            } else {
+                mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(200, 200, 200, 255));
+            }
+            break;
+        case 7:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(255, 255, 255, 0), JUtility::TColor(80, 70, 165, 255));
+            break;
+        case 9:
+        case 0xe:
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_07_02.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(200, 200, 200, 255));
+            break;
+        case 0x14:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(220, 50, 50, 255));
+            break;
+        case 0x15:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 200, 50, 255));
+            break;
+        case 0x16:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 100, 0, 255));
+            break;
+        case 0x17:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 255, 180, 255));
+            break;
+        case 0x18:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x19:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(170, 255, 255, 255));
+            break;
+        case 0x1a:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 255, 0), JUtility::TColor(30, 50, 120, 255));
+            break;
+        case 0x1b:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 50, 50, 255));
+            break;
+        case 0x1c:
+        case 0x2b:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x1d:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+            break;
+        case 0x1f:
+        case 0x20:
+        case 0x21:
+        case 0x22:
+        case 0x23:
+        case 0x24:
+        case 0x25:
+        case 0x26:
+        case 0x27:
+        case 0x28:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 80, 80, 255));
+            break;
+        case 0x1e:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            field_0x1ac = (f32)local_30->width / (f32)local_30->height;
+            field_0x1b0 = 1.0f;
+            break;
+        case 0x29:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x2a:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x2c:
+        case 0x2d:
+        case 0x2e:
+        case 0x2f:
+        case 0x37:
+        case 0x38:
+        case 0x39:
+        case 0x3a:
+        case 0x3d:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x30:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_20.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x31:
+        case 0x32:
+        case 0x41:
+        case 0x42:
+        case 0x43:
+        case 0x44:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_21.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x33:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(190, 190, 190, 255));
+            break;
+        case 0x34:
+        case 0x35:
+        case 0x36:
+        case 0x3f:
+        case 0x40:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x3b:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_30.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x3c:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_31.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x3e:
+            local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "font_34.bti");
+            mpPane[iVar5]->append(local_30, 1.0f);
+            mpPane[iVar5]->setBlendRatio(1.0f, 0.0f);
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        case 0x45:
+            mpPane[iVar5]->setBlackWhite(JUtility::TColor(166, 12, 0, 0), JUtility::TColor(255, 255, 255, 255));
+            break;
+        }
+    }
+    field_0x240 = true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -367,6 +533,7 @@ asm void COutFont_c::createPane() {
 #include "asm/d/msg/d_msg_out_font/createPane__10COutFont_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80226CF8-80226D4C 221638 0054+00 0/0 2/2 0/0 .text            initialize__10COutFont_cFv */
 void COutFont_c::initialize() {
@@ -435,6 +602,7 @@ SECTION_SDATA2 static f64 lit_5001 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80226DB0-80228448 2216F0 1698+00 2/0 0/0 0/0 .text            draw__10COutFont_cFP10J2DTextBoxfff
  */
+// Matches with literals
 #ifdef NONMATCHING
 void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param_3) {
     s16 sp256[70];
@@ -464,7 +632,7 @@ void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param
             f32 sizeY = local_110 * mpOfs[i]->getSizeY();
 
             if (mpPane[type] != NULL) {
-                mpPane[type]->setAlpha(mAlphaRatio * mpPane[i]->getAlpha());
+                mpPane[type]->setAlpha(mAlphaRatio * mpOfs[i]->getAlpha());
                 
                 switch (type) {
                 case 10:
@@ -630,7 +798,7 @@ void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param
                         field_0x1b4[type] = 0;
                     }
 
-                    mpPane[type]->rotate(0.5f * posX, 0.5f * posY, ROTATE_Z, (360.0f * (f32)field_0x1b4[type]) / 28.0f);
+                    mpPane[type]->rotate(0.5f * sizeX, 0.5f * sizeY, ROTATE_Z, (360.0f * (f32)field_0x1b4[type]) / 28.0f);
                     mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
                     break;
                 case 25:  // some issues in here, 2020
@@ -644,15 +812,17 @@ void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param
 
                     f32 alpha;
                     if (field_0x1b4[type] < 9) {
-                        alpha = field_0x1b4[type];
+                        alpha = 50.0f + 205.0f * (field_0x1b4[type] / 9.0f);
                     } else {
-                        alpha = 18.0f - field_0x1b4[type];
+                        alpha = 50.0f + 205.0f * ((18.0f - field_0x1b4[type]) / 9.0f);
                     }
 
-                    mpPane[26]->setAlpha(((alpha / 9.0f) * 205.0f + 50.0f) * mAlphaRatio);
-                    f32 tmpX = 0.5f * (g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeX;
-                    f32 tmpY = 0.5f * (g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeY;
-                    mpPane[26]->draw(posX - tmpX, posY - tmpY, g_MsgObject_HIO_c.mPortalIconScale * sizeX, g_MsgObject_HIO_c.mPortalIconScale * sizeY, false, false, false);
+                    mpPane[26]->setAlpha(alpha * mAlphaRatio);
+                    mpPane[26]->draw(
+                        posX - 0.5f * ((g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeX),
+                        posY - 0.5f * ((g_MsgObject_HIO_c.mPortalIconScale - 1.0f) * sizeY),
+                        sizeX * g_MsgObject_HIO_c.mPortalIconScale,
+                        sizeY * g_MsgObject_HIO_c.mPortalIconScale, false, false, false);
                     mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
                     break;
                 case 26:
@@ -660,7 +830,7 @@ void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param
                     break;
                 case 30:
                     mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
-                    mpPane[type]->draw(posX + (0.5f * (sizeX * (field_0x1ac - 1.0f))), posY + (0.5f * (sizeY * (field_0x1b0 - 1.0f))), sizeX * field_0x1ac, sizeY * field_0x1b0, false, false, false);
+                    mpPane[type]->draw(posX + (0.5f * (sizeX * (1.0f - field_0x1ac))), posY + (0.5f * (sizeY * (1.0f - field_0x1b0))), sizeX * field_0x1ac, sizeY * field_0x1b0, false, false, false);
                     break;
                 case 31:
                 case 32:
@@ -682,8 +852,8 @@ void COutFont_c::draw(J2DTextBox* p_textBox, f32 param_1, f32 param_2, f32 param
                     mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
                     mpPane[type]->draw(2.0f + posX, 2.0f + ((posY + -3.0f) - 4.0f), sizeX, sizeY * 1.25f, false, false, false);
 
-                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), mpOfs[i]->getColor());
-                    mpPane[type]->draw(posX, posY, sizeX, sizeY, false, false, false);
+                    mpPane[type]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 255, 255, 255));
+                    mpPane[type]->draw(posX, (posY + -3.0f) - 4.0f, sizeX, sizeY * 1.25f, false, false, false);
                     break;
                 case 45:
                     mpPane[type]->draw(posX, (posY + -3.0f) - 4.0f, sizeX, sizeY * 1.25f, false, false, false);

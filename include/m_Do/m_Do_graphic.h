@@ -101,6 +101,7 @@ public:
     static GXTexObj* getZbufferTexObj() { return &mZbufferTexObj; }
     static GXTexObj* getFrameBufferTexObj() { return &mFrameBufferTexObj; }
     static f32 getInvScale() { return 1.0f; }
+    static f32 getScale() { return 1.0f; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

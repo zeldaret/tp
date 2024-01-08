@@ -65,6 +65,18 @@ inline void cMtx_ZrotM(Mtx mtx, s16 z) {
     mDoMtx_ZrotM(mtx, z);
 }
 
+inline void cMtx_XrotS(Mtx mtx, s16 x) {
+    mDoMtx_XrotS(mtx, x);
+}
+
+inline void cMtx_YrotS(Mtx mtx, s16 y) {
+    mDoMtx_YrotS(mtx, y);
+}
+
+inline void cMtx_ZrotS(Mtx mtx, s16 z) {
+    mDoMtx_ZrotS(mtx, z);
+}
+
 inline void cMtx_lookAt(Mtx param_0, const Vec* param_1, const Vec* param_2, s16 param_3) {
     mDoMtx_lookAt(param_0, param_1, param_2, param_3);
 }

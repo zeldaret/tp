@@ -9,7 +9,7 @@ public:
     /* 80D12BB8 */ void initBaseMtx();
     /* 80D12BF4 */ void setBaseMtx();
     /* 80D12C48 */ int Create();
-    /* 80D12C9C */ bool CreateHeap();
+    /* 80D12C9C */ int CreateHeap();
     /* 80D12D0C */ int create();
     /* 80D12DC0 */ int execute();
     /* 80D12EB4 */ int draw();
@@ -18,8 +18,8 @@ public:
     u32 getEventBit1() { return fopAcM_GetParamBit(this, 0, 10); }
     u32 getEventBit2() { return fopAcM_GetParamBit(this, 10, 10); }
 
-    /* 0x568 */ request_of_phase_process_class field_0x568;
-    /* 0x570 */ J3DModel* field_0x570;
+    /* 0x568 */ request_of_phase_process_class mPhaseReq;
+    /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ u16 field_0x574;
     /* 0x576 */ u16 field_0x576;
 };  // Size: 0x578

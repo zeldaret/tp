@@ -73,7 +73,7 @@ BOOL daAlink_c::checkForestOldCentury() {
 /* 800E145C-800E1530 0DBD9C 00D4+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daAlink_cFv */
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
-    return (i_dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && field_0x300e.x != 0)) ||
+    return (i_dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e.x != 0)) ||
            i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }
@@ -126,8 +126,6 @@ void daAlink_c::setCopyRodModel() {
 
 /* 800E1840-800E191C 0DC180 00DC+00 2/2 0/0 0/0 .text            setCopyRodReadyAnime__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::setCopyRodReadyAnime() {
     f32 speed;
     if (i_checkAttentionLock()) {
@@ -148,7 +146,6 @@ void daAlink_c::setCopyRodReadyAnime() {
     mAtCps[0].SetAtType(0x1000000);
     initLockAt();
 }
-#pragma pop
 
 /* 800E191C-800E1A30 0DC25C 0114+00 1/1 0/0 0/0 .text            throwCopyRod__9daAlink_cFv */
 void daAlink_c::throwCopyRod() {
@@ -199,8 +196,8 @@ int daAlink_c::returnCopyRod() {
 
 /* 800E1ADC-800E1BB4 0DC41C 00D8+00 2/2 0/0 0/0 .text checkUpperItemActionCopyRod__9daAlink_cFv */
 BOOL daAlink_c::checkUpperItemActionCopyRod() {
-    if (field_0x3018 != 0) {
-        field_0x3018--;
+    if (mItemVar0.field_0x3018 != 0) {
+        mItemVar0.field_0x3018--;
     }
 
     if (checkReadyItem() && !itemButton() && checkCopyRodReadyAnime()) {
@@ -230,8 +227,6 @@ void daAlink_c::checkUpperItemActionCopyRodFly() {
 }
 
 /* 800E1C44-800E1D6C 0DC584 0128+00 2/2 0/0 0/0 .text checkNextActionCopyRod__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextActionCopyRod() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
@@ -258,7 +253,6 @@ int daAlink_c::checkNextActionCopyRod() {
 
     return procCopyRodMoveInit();
 }
-#pragma pop
 
 /* 800E1D6C-800E1E20 0DC6AC 00B4+00 1/1 0/0 0/0 .text            setCopyRodSight__9daAlink_cFv */
 void daAlink_c::setCopyRodSight() {
@@ -382,8 +376,8 @@ int daAlink_c::procCopyRodSwingInit() {
 
     mNormalSpeed = FLOAT_LABEL(lit_6108);
     current.angle.y = shape_angle.y;
-    field_0x300c = 1;
-    field_0x300e.x = 0;
+    mProcVar2.field_0x300c = 1;
+    mProcVar3.field_0x300e.x = 0;
 
     voiceStart(Z2SE_AL_V_ATTACK_S);
     mAtCps[0].SetR(lit_11442);
@@ -395,7 +389,7 @@ int daAlink_c::procCopyRodSwingInit() {
 /* 800E21FC-800E2308 0DCB3C 010C+00 1/0 0/0 0/0 .text            procCopyRodSwing__9daAlink_cFv */
 int daAlink_c::procCopyRodSwing() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
 
     if (frameCtrl->checkAnmEnd()) {
         setCopyRodControllAnime();
@@ -405,16 +399,16 @@ int daAlink_c::procCopyRodSwing() {
             setCopyRodControllAnime();
         }
     } else if (frameCtrl->getFrame() >= field_0x3478 && frameCtrl->getFrame() < field_0x347c) {
-        if (field_0x300e.x == 0) {
+        if (mProcVar3.field_0x300e.x == 0) {
             seStartSwordCut(Z2SE_AL_COPYROD_SWING);
         }
 
-        field_0x300e.x = 1;
+        mProcVar3.field_0x300e.x = 1;
         if (changeCutReverseProc(ANM_CUT_RECOIL_A)) {
             return 1;
         }
     } else {
-        field_0x300e.x = 0;
+        mProcVar3.field_0x300e.x = 0;
     }
 
     return 1;

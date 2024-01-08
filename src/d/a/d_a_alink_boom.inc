@@ -110,7 +110,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
     if (i_checkNoResetFlg0(FLG0_UNK_20) && !checkEventRun() && !i_checkWolf() &&
         i_checkModeFlg(0x10000000) &&
         (checkHorseNoUpperAnime() || checkHorseTurnAnime() || checkBoomerangThrowAnime())) {
-        deleteEquipItem(0, 0);
+        deleteEquipItem(FALSE, FALSE);
         seStartOnlyReverb(JA_SE_LK_BOOM_CATCH);
         i_offNoResetFlg0(FLG0_UNK_20);
 
@@ -156,12 +156,10 @@ void daAlink_c::setBoomerangReadyQuake() {
     dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
 
     i_onNoResetFlg3(FLG3_UNK_4);
-    field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
+    mItemVar0.field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
 }
 
 /* 800E055C-800E05E8 0DAE9C 008C+00 2/2 0/0 0/0 .text setBoomerangReadyAnime__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 void daAlink_c::setBoomerangReadyAnime() {
     f32 var_f31;
     if (i_checkAttentionLock()) {
@@ -173,7 +171,6 @@ void daAlink_c::setBoomerangReadyAnime() {
     setUpperAnimeBaseSpeed(0x54, var_f31, lit_6109);
     setBoomerangReadyQuake();
 }
-#pragma pop
 
 /* 800E05E8-800E0630 0DAF28 0048+00 2/2 0/0 0/0 .text setThrowBoomerangAnime__9daAlink_cFv */
 void daAlink_c::setThrowBoomerangAnime() {
@@ -286,10 +283,10 @@ int daAlink_c::returnBoomerang(int param_0) {
 /* 800E0A9C-800E0B58 0DB3DC 00BC+00 2/2 0/0 0/0 .text checkUpperItemActionBoomerang__9daAlink_cFv
  */
 int daAlink_c::checkUpperItemActionBoomerang() {
-    if (field_0x3018 != 0) {
-        field_0x3018--;
+    if (mItemVar0.field_0x3018 != 0) {
+        mItemVar0.field_0x3018--;
 
-        if (field_0x3018 == 0) {
+        if (mItemVar0.field_0x3018 == 0) {
             cancelItemUseQuake(0);
         }
     }
@@ -313,8 +310,6 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 }
 
 /* 800E0BE4-800E0D8C 0DB524 01A8+00 4/4 0/0 0/0 .text checkNextActionBoomerang__9daAlink_cFv */
-#pragma push
-#pragma optimization_level 2
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
@@ -355,7 +350,6 @@ int daAlink_c::checkNextActionBoomerang() {
         return procBoomerangMoveInit();
     }
 }
-#pragma pop
 
 /* 800E0D8C-800E0E64 0DB6CC 00D8+00 1/1 0/0 0/0 .text checkBoomerangCatchAction__9daAlink_cFv */
 int daAlink_c::checkBoomerangCatchAction() {
@@ -373,7 +367,7 @@ int daAlink_c::checkBoomerangCatchAction() {
         i_offNoResetFlg0(FLG0_UNK_20);
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 800E0E64-800E0F10 0DB7A4 00AC+00 3/3 0/0 0/0 .text            setBoomerangSight__9daAlink_cFv */

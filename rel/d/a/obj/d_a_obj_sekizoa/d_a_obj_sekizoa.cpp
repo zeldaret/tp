@@ -3,7 +3,8 @@
 // Translation Unit: d_a_obj_sekizoa
 //
 
-#include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
+// #include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

@@ -219,7 +219,7 @@ asm int daAlink_c::procGuardBreak() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daAlink_c::procTurnMoveInit(int param_0) {
+asm int daAlink_c::procTurnMoveInit(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/procTurnMoveInit__9daAlink_cFi.s"
 }

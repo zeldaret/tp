@@ -5,188 +5,10 @@
 
 #include "d/meter/d_meter_HIO.h"
 #include "d/save/d_save.h"
-#include "dol2asm.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "m_Do/m_Do_ext.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "m_Do/m_Do_ext.h"
 #include "global.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__16dMeter_menuHIO_cFv();
-extern "C" void __ct__23dMeter_drawCollectHIO_cFv();
-extern "C" void __ct__22dMeter_drawOptionHIO_cFv();
-extern "C" void __ct__22dMeter_drawLetterHIO_cFv();
-extern "C" void __ct__23dMeter_drawFishingHIO_cFv();
-extern "C" void __ct__22dMeter_drawInsectHIO_cFv();
-extern "C" void __ct__27dMeter_drawCalibrationHIO_cFv();
-extern "C" void __ct__21dMeter_drawSkillHIO_cFv();
-extern "C" void __ct__25dMeter_drawEmpButtonHIO_cFv();
-extern "C" void __ct__24dMeter_drawMiniGameHIO_cFv();
-extern "C" void __ct__25dMeter_drawLightDropHIO_cFv();
-extern "C" void __ct__16dMeter_drawHIO_cFv();
-extern "C" void __ct__16dMeter_ringHIO_cFv();
-extern "C" void __ct__19dMeter_mapIconHIO_cFv();
-extern "C" void __ct__16dMeter_fmapHIO_cFv();
-extern "C" void __dt__16dMeter_fmapHIO_cFv();
-extern "C" void __ct__18dMeter_cursorHIO_cFv();
-extern "C" void __dt__25dMeter_drawLightDropHIO_cFv();
-extern "C" void __dt__25dMeter_drawEmpButtonHIO_cFv();
-extern "C" void __dt__24dMeter_drawMiniGameHIO_cFv();
-extern "C" void __dt__21dMeter_drawSkillHIO_cFv();
-extern "C" void __dt__27dMeter_drawCalibrationHIO_cFv();
-extern "C" void __dt__22dMeter_drawInsectHIO_cFv();
-extern "C" void __dt__23dMeter_drawFishingHIO_cFv();
-extern "C" void __dt__22dMeter_drawLetterHIO_cFv();
-extern "C" void __dt__22dMeter_drawOptionHIO_cFv();
-extern "C" void __dt__23dMeter_drawCollectHIO_cFv();
-extern "C" void __dt__19dMeter_mapIconHIO_cFv();
-extern "C" void __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv();
-extern "C" void __dt__18dMeter_cursorHIO_cFv();
-extern "C" void __dt__16dMeter_ringHIO_cFv();
-extern "C" void __dt__16dMeter_drawHIO_cFv();
-extern "C" void __dt__16dMeter_menuHIO_cFv();
-extern "C" void __sinit_d_meter_HIO_cpp();
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __ct__Q28JUtility6TColorFv();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803BF0E8-803BF0F4 01C208 000C+00 2/2 0/0 0/0 .data            __vt__18dMeter_cursorHIO_c */
-SECTION_DATA extern void* __vt__18dMeter_cursorHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18dMeter_cursorHIO_cFv,
-};
-
-/* 803BF0F4-803BF100 01C214 000C+00 2/2 0/0 0/0 .data            __vt__16dMeter_fmapHIO_c */
-SECTION_DATA extern void* __vt__16dMeter_fmapHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16dMeter_fmapHIO_cFv,
-};
-
-/* 803BF100-803BF10C 01C220 000C+00 3/3 0/0 0/0 .data            __vt__19dMeter_mapIconHIO_c */
-SECTION_DATA extern void* __vt__19dMeter_mapIconHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19dMeter_mapIconHIO_cFv,
-};
-
-/* 803BF10C-803BF118 01C22C 000C+00 2/2 0/0 0/0 .data            __vt__16dMeter_ringHIO_c */
-SECTION_DATA extern void* __vt__16dMeter_ringHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16dMeter_ringHIO_cFv,
-};
-
-/* 803BF118-803BF124 01C238 000C+00 2/2 0/0 0/0 .data            __vt__16dMeter_drawHIO_c */
-SECTION_DATA extern void* __vt__16dMeter_drawHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16dMeter_drawHIO_cFv,
-};
-
-/* 803BF124-803BF130 01C244 000C+00 3/3 0/0 0/0 .data            __vt__25dMeter_drawLightDropHIO_c
- */
-SECTION_DATA extern void* __vt__25dMeter_drawLightDropHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__25dMeter_drawLightDropHIO_cFv,
-};
-
-/* 803BF130-803BF13C 01C250 000C+00 3/3 0/0 0/0 .data            __vt__24dMeter_drawMiniGameHIO_c */
-SECTION_DATA extern void* __vt__24dMeter_drawMiniGameHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__24dMeter_drawMiniGameHIO_cFv,
-};
-
-/* 803BF13C-803BF148 01C25C 000C+00 3/3 0/0 0/0 .data            __vt__25dMeter_drawEmpButtonHIO_c
- */
-SECTION_DATA extern void* __vt__25dMeter_drawEmpButtonHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__25dMeter_drawEmpButtonHIO_cFv,
-};
-
-/* 803BF148-803BF154 01C268 000C+00 3/3 0/0 0/0 .data            __vt__21dMeter_drawSkillHIO_c */
-SECTION_DATA extern void* __vt__21dMeter_drawSkillHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__21dMeter_drawSkillHIO_cFv,
-};
-
-/* 803BF154-803BF160 01C274 000C+00 3/3 0/0 0/0 .data            __vt__27dMeter_drawCalibrationHIO_c
- */
-SECTION_DATA extern void* __vt__27dMeter_drawCalibrationHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__27dMeter_drawCalibrationHIO_cFv,
-};
-
-/* 803BF160-803BF16C 01C280 000C+00 3/3 0/0 0/0 .data            __vt__22dMeter_drawInsectHIO_c */
-SECTION_DATA extern void* __vt__22dMeter_drawInsectHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__22dMeter_drawInsectHIO_cFv,
-};
-
-/* 803BF16C-803BF178 01C28C 000C+00 3/3 0/0 0/0 .data            __vt__23dMeter_drawFishingHIO_c */
-SECTION_DATA extern void* __vt__23dMeter_drawFishingHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__23dMeter_drawFishingHIO_cFv,
-};
-
-/* 803BF178-803BF184 01C298 000C+00 3/3 0/0 0/0 .data            __vt__22dMeter_drawLetterHIO_c */
-SECTION_DATA extern void* __vt__22dMeter_drawLetterHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__22dMeter_drawLetterHIO_cFv,
-};
-
-/* 803BF184-803BF190 01C2A4 000C+00 3/3 0/0 0/0 .data            __vt__22dMeter_drawOptionHIO_c */
-SECTION_DATA extern void* __vt__22dMeter_drawOptionHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__22dMeter_drawOptionHIO_cFv,
-};
-
-/* 803BF190-803BF19C 01C2B0 000C+00 3/3 0/0 0/0 .data            __vt__23dMeter_drawCollectHIO_c */
-SECTION_DATA extern void* __vt__23dMeter_drawCollectHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__23dMeter_drawCollectHIO_cFv,
-};
-
-/* 803BF19C-803BF1A8 01C2BC 000C+00 2/2 0/0 0/0 .data            __vt__16dMeter_menuHIO_c */
-SECTION_DATA extern void* __vt__16dMeter_menuHIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16dMeter_menuHIO_cFv,
-};
 
 /* 801FE330-801FE348 1F8C70 0018+00 1/1 0/0 0/0 .text            __ct__16dMeter_menuHIO_cFv */
 dMeter_menuHIO_c::dMeter_menuHIO_c() {
@@ -1230,10 +1052,10 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mScrollArrowBCKAnimSpeed = 1.0f;
     mScrollArrowBPKAnimSpeed = 1.0f;
     mScrollArrowBTKAnimSpeed = 1.0f;
-    mScrollArrowTopBottomPosX = 0.0f;
-    mScrollArrowTopBottomPosY = 200.0f;
-    mScrollArrowLeftRightPosX = 200.0f;
-    mScrollArrowLeftRightPosY = 0.0f;
+    mScrollArrowPosX[0] = 0.0f;
+    mScrollArrowPosY[0] = 200.0f;
+    mScrollArrowPosX[1] = 200.0f;
+    mScrollArrowPosY[1] = 0.0f;
     mScrollArrowCenterPosX = 0.0f;
     mScrollArrowCenterPosY = 0.0f;
     mScrollArrowDisplayAll = false;
@@ -1243,10 +1065,10 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mWiiLockArrowBCKAnimSpeed = 1.0f;
     mWiiLockArrowBPKAnimSpeed = 1.0f;
     mWiiLockArrowBTKAnimSpeed = 1.0f;
-    mWiiLockArrowTopBottomPosX = 0.0f;
-    mWiiLockArrowTopBottomPosY = 150.0f;
-    mWiiLockArrowLeftRightPosX = 208.0f;
-    mWiiLockArrowLeftRightPosY = 0.0f;
+    mWiiLockArrowPosX[0] = 0.0f;
+    mWiiLockArrowPosY[0] = 150.0f;
+    mWiiLockArrowPosX[1] = 208.0f;
+    mWiiLockArrowPosY[1] = 0.0f;
     mWiiLockArrowDisplayAll = false;
 
     field_0x54c = 1.0f;
@@ -1688,8 +1510,6 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
 }
 
 /* 80200BCC-80200CD4 1FB50C 0108+00 2/1 0/0 0/0 .text            __dt__16dMeter_fmapHIO_cFv */
-// Matches with dMeter_mapIconHIO_c dtor defined instead of declared in the header
-#ifdef NONMATCHING
 dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
     if (field_0xc != NULL) {
         mDoExt_getGameHeap()->free(field_0xc);
@@ -1707,17 +1527,6 @@ dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
         field_0x8 = NULL;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
-extern "C" asm void __dt__16dMeter_fmapHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__16dMeter_fmapHIO_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80200CD4-80200D58 1FB614 0084+00 1/1 0/0 0/0 .text            __ct__18dMeter_cursorHIO_cFv */
 dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
@@ -1732,172 +1541,6 @@ dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
     mMagicArmorObjZoom.set(0.0f, 20.0f, 28.0f);
     mMagicArmorObjZoomAngleX = -500;
 }
-
-/* 80200D58-80200DA0 1FB698 0048+00 1/0 0/0 0/0 .text            __dt__25dMeter_drawLightDropHIO_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawLightDropHIO_c::~dMeter_drawLightDropHIO_c() {
-extern "C" asm void __dt__25dMeter_drawLightDropHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__25dMeter_drawLightDropHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200DA0-80200DE8 1FB6E0 0048+00 1/0 0/0 0/0 .text            __dt__25dMeter_drawEmpButtonHIO_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawEmpButtonHIO_c::~dMeter_drawEmpButtonHIO_c() {
-extern "C" asm void __dt__25dMeter_drawEmpButtonHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__25dMeter_drawEmpButtonHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200DE8-80200E30 1FB728 0048+00 1/0 0/0 0/0 .text            __dt__24dMeter_drawMiniGameHIO_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawMiniGameHIO_c::~dMeter_drawMiniGameHIO_c() {
-extern "C" asm void __dt__24dMeter_drawMiniGameHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__24dMeter_drawMiniGameHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200E30-80200E78 1FB770 0048+00 1/0 0/0 0/0 .text            __dt__21dMeter_drawSkillHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawSkillHIO_c::~dMeter_drawSkillHIO_c() {
-extern "C" asm void __dt__21dMeter_drawSkillHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__21dMeter_drawSkillHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200E78-80200EC0 1FB7B8 0048+00 1/0 0/0 0/0 .text __dt__27dMeter_drawCalibrationHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawCalibrationHIO_c::~dMeter_drawCalibrationHIO_c() {
-extern "C" asm void __dt__27dMeter_drawCalibrationHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__27dMeter_drawCalibrationHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200EC0-80200F08 1FB800 0048+00 1/0 0/0 0/0 .text            __dt__22dMeter_drawInsectHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawInsectHIO_c::~dMeter_drawInsectHIO_c() {
-extern "C" asm void __dt__22dMeter_drawInsectHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawInsectHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200F08-80200F50 1FB848 0048+00 1/0 0/0 0/0 .text            __dt__23dMeter_drawFishingHIO_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawFishingHIO_c::~dMeter_drawFishingHIO_c() {
-extern "C" asm void __dt__23dMeter_drawFishingHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__23dMeter_drawFishingHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200F50-80200F98 1FB890 0048+00 1/0 0/0 0/0 .text            __dt__22dMeter_drawLetterHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawLetterHIO_c::~dMeter_drawLetterHIO_c() {
-extern "C" asm void __dt__22dMeter_drawLetterHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawLetterHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200F98-80200FE0 1FB8D8 0048+00 1/0 0/0 0/0 .text            __dt__22dMeter_drawOptionHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawOptionHIO_c::~dMeter_drawOptionHIO_c() {
-extern "C" asm void __dt__22dMeter_drawOptionHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__22dMeter_drawOptionHIO_cFv.s"
-}
-#pragma pop
-
-/* 80200FE0-80201028 1FB920 0048+00 1/0 0/0 0/0 .text            __dt__23dMeter_drawCollectHIO_cFv
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawCollectHIO_c::~dMeter_drawCollectHIO_c() {
-extern "C" asm void __dt__23dMeter_drawCollectHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__23dMeter_drawCollectHIO_cFv.s"
-}
-#pragma pop
-
-/* 80201028-80201070 1FB968 0048+00 1/0 0/0 0/0 .text            __dt__19dMeter_mapIconHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_mapIconHIO_c::~dMeter_mapIconHIO_c() {
-extern "C" asm void __dt__19dMeter_mapIconHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__19dMeter_mapIconHIO_cFv.s"
-}
-#pragma pop
-
-/* 80201070-80201098 1FB9B0 0028+00 1/1 0/0 0/0 .text __ct__Q216dMeter_fmapHIO_c13MapBlinkAnimeFv
- */
-dMeter_fmapHIO_c::MapBlinkAnime::MapBlinkAnime() {}
-
-/* 80201098-802010E0 1FB9D8 0048+00 2/1 0/0 0/0 .text            __dt__18dMeter_cursorHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_cursorHIO_c::~dMeter_cursorHIO_c() {
-extern "C" asm void __dt__18dMeter_cursorHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__18dMeter_cursorHIO_cFv.s"
-}
-#pragma pop
-
-/* 802010E0-80201128 1FBA20 0048+00 2/1 0/0 0/0 .text            __dt__16dMeter_ringHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_ringHIO_c::~dMeter_ringHIO_c() {
-extern "C" asm void __dt__16dMeter_ringHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__16dMeter_ringHIO_cFv.s"
-}
-#pragma pop
-
-/* 80201128-8020123C 1FBA68 0114+00 2/1 0/0 0/0 .text            __dt__16dMeter_drawHIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeter_drawHIO_c::~dMeter_drawHIO_c() {
-extern "C" asm void __dt__16dMeter_drawHIO_cFv() {
-    nofralloc
-#include "asm/d/meter/d_meter_HIO/__dt__16dMeter_drawHIO_cFv.s"
-}
-#pragma pop
-
-/* 8020123C-80201284 1FBB7C 0048+00 2/1 0/0 0/0 .text            __dt__16dMeter_menuHIO_cFv */
-dMeter_menuHIO_c::~dMeter_menuHIO_c() {}
 
 /* 804510B0-804510B8 0005B0 0008+00 1/1 1/1 0/0 .sbss            g_menuHIO */
 dMeter_menuHIO_c g_menuHIO;

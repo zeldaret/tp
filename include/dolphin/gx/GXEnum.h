@@ -388,10 +388,12 @@ typedef enum _GXTlut {
     /* 0x0D */ GX_TLUT13,
     /* 0x0E */ GX_TLUT14,
     /* 0x0F */ GX_TLUT15,
-    /* 0x10 */ GX_BIGTLUT0,
+    /* 0x10 */ GX_MAX_TLUT,
+    /* 0x10 */ GX_BIGTLUT0 = 0x10,
     /* 0x11 */ GX_BIGTLUT1,
     /* 0x12 */ GX_BIGTLUT2,
     /* 0x13 */ GX_BIGTLUT3,
+    /* 0x13 */ GX_MAX_BIGTLUT = 4,
 } GXTlut;
 
 /* 8-bit version of GXTexFmt for use in structures */
@@ -586,6 +588,8 @@ typedef enum _GXTexGenSrc {
     /* 0x10 */ GX_TG_TEXCOORD4,
     /* 0x11 */ GX_TG_TEXCOORD5,
     /* 0x12 */ GX_TG_TEXCOORD6,
+    /* 0x13 */ GX_TG_COLOR0,
+	/* 0x14 */ GX_TG_COLOR1,
 } GXTexGenSrc;
 
 typedef enum _GXZTexOp {
@@ -756,6 +760,7 @@ typedef enum _GXPixelFmt {
     /* 0x5 */ GX_PF_U8,
     /* 0x6 */ GX_PF_V8,
     /* 0x7 */ GX_PF_YUV420,
+    /* 0x8 */ GX_PF_MAX,
 } GXPixelFmt;
 
 typedef enum _GXZFmt16 {
@@ -805,5 +810,1080 @@ typedef enum _GXTlutSize {
     /* 0x200 */ GX_TLUT_8K = 512,
     /* 0x400 */ GX_TLUT_16K = 1024,
 } GXTlutSize;
+
+typedef enum _GXDirtyFlag {
+    GX_DIRTY_SU_TEX = (1 << 0),
+    GX_DIRTY_BP_MASK = (1 << 1),
+    GX_DIRTY_GEN_MODE = (1 << 2),
+    GX_DIRTY_VCD = (1 << 3),
+    GX_DIRTY_VAT = (1 << 4),
+    GX_DIRTY_AMB_COLOR0 = (1 << 8),
+    GX_DIRTY_AMB_COLOR1 = (1 << 9),
+    GX_DIRTY_MAT_COLOR0 = (1 << 10),
+    GX_DIRTY_MAT_COLOR1 = (1 << 11),
+    GX_DIRTY_MTX_IDX = (1 << 26),
+    GX_DIRTY_PROJECTION = (1 << 27),
+    GX_DIRTY_VIEWPORT = (1 << 28),
+
+    GX_DIRTY_VLIM = GX_DIRTY_VCD | GX_DIRTY_VAT,
+
+    GX_AMB_MAT_MASK = GX_DIRTY_AMB_COLOR0 | GX_DIRTY_AMB_COLOR1 |
+                      GX_DIRTY_MAT_COLOR0 | GX_DIRTY_MAT_COLOR1,
+    GX_LIGHT_CHAN_MASK = 0x100F000,
+    GX_TEX_GEN_MASK = 0x2FF0000,
+} GXDirtyFlag;
+
+// CP locator for vertex descriptor (lo).
+typedef enum _GXCPVCDLo {
+	// Position matrix idx [31]
+	GX_CP_VCD_LO_POSMTXIDX_ST  = 31,
+	GX_CP_VCD_LO_POSMTXIDX_END = 31,
+
+	// Tex 0 matrix idx [30]
+	GX_CP_VCD_LO_TEX0MTXIDX_ST  = 30,
+	GX_CP_VCD_LO_TEX0MTXIDX_END = 30,
+
+	// Tex 1 matrix idx [29]
+	GX_CP_VCD_LO_TEX1MTXIDX_ST  = 29,
+	GX_CP_VCD_LO_TEX1MTXIDX_END = 29,
+
+	// Tex 2 matrix idx [28]
+	GX_CP_VCD_LO_TEX2MTXIDX_ST  = 28,
+	GX_CP_VCD_LO_TEX2MTXIDX_END = 28,
+
+	// Tex 3 matrix idx [27]
+	GX_CP_VCD_LO_TEX3MTXIDX_ST  = 27,
+	GX_CP_VCD_LO_TEX3MTXIDX_END = 27,
+
+	// Tex 4 matrix idx [26]
+	GX_CP_VCD_LO_TEX4MTXIDX_ST  = 26,
+	GX_CP_VCD_LO_TEX4MTXIDX_END = 26,
+
+	// Tex 5 matrix idx [25]
+	GX_CP_VCD_LO_TEX5MTXIDX_ST  = 25,
+	GX_CP_VCD_LO_TEX5MTXIDX_END = 25,
+
+	// Tex 6 matrix idx [24]
+	GX_CP_VCD_LO_TEX6MTXIDX_ST  = 24,
+	GX_CP_VCD_LO_TEX6MTXIDX_END = 24,
+
+	// Tex 7 matrix idx [23]
+	GX_CP_VCD_LO_TEX7MTXIDX_ST  = 23,
+	GX_CP_VCD_LO_TEX7MTXIDX_END = 23,
+
+	// Position [21-22]
+	GX_CP_VCD_LO_POS_ST  = 21,
+	GX_CP_VCD_LO_POS_END = 22,
+
+	// Normal [19-20]
+	GX_CP_VCD_LO_NRM_ST  = 19,
+	GX_CP_VCD_LO_NRM_END = 20,
+
+	// Color diffused [17-18]
+	GX_CP_VCD_LO_CLRDIF_ST  = 17,
+	GX_CP_VCD_LO_CLRDIF_END = 18,
+
+	// Color specular [15-16]
+	GX_CP_VCD_LO_CLRSPEC_ST  = 15,
+	GX_CP_VCD_LO_CLRSPEC_END = 16,
+} GXCPVCDLo;
+
+// CP locators for vertex descriptor (hi).
+typedef enum _GXCPVCDHi {
+	// Tex0 coordinates [30-31]
+	GX_CP_VCD_HI_TEX0COORD_ST  = 30,
+	GX_CP_VCD_HI_TEX0COORD_END = 31,
+
+	// Tex1 coordinates [28-29]
+	GX_CP_VCD_HI_TEX1COORD_ST  = 28,
+	GX_CP_VCD_HI_TEX1COORD_END = 29,
+
+	// Tex2 coordinates [26-27]
+	GX_CP_VCD_HI_TEX2COORD_ST  = 26,
+	GX_CP_VCD_HI_TEX2COORD_END = 27,
+
+	// Tex3 coordinates [24-25]
+	GX_CP_VCD_HI_TEX3COORD_ST  = 24,
+	GX_CP_VCD_HI_TEX3COORD_END = 25,
+
+	// Tex4 coordinates [22-23]
+	GX_CP_VCD_HI_TEX4COORD_ST  = 22,
+	GX_CP_VCD_HI_TEX4COORD_END = 23,
+
+	// Tex5 coordinates [20-21]
+	GX_CP_VCD_HI_TEX5COORD_ST  = 20,
+	GX_CP_VCD_HI_TEX5COORD_END = 21,
+
+	// Tex6 coordinates [18-19]
+	GX_CP_VCD_HI_TEX6COORD_ST  = 18,
+	GX_CP_VCD_HI_TEX6COORD_END = 19,
+
+	// Tex7 coordinates [16-17]
+	GX_CP_VCD_HI_TEX7COORD_ST  = 16,
+	GX_CP_VCD_HI_TEX7COORD_END = 17,
+} GXCPVCDHi;
+
+// Command processor registers.
+typedef enum _GXCPRegs {
+	GX_CP_REG_MTXIDXA     = 0x30, // Matrix index A
+	GX_CP_REG_MTXIDXB     = 0x40, // Matrix index B
+	GX_CP_REG_VCD_LO      = 0x50, // Vertex descriptor (lo)
+	GX_CP_REG_VCD_HI      = 0x60, // Vertex descriptor (hi)
+	GX_CP_REG_VAT_GRP0    = 0x70, // Vertex attribute table (group 0)
+	GX_CP_REG_VAT_GRP1    = 0x80, // Vertex attribute table (group 1)
+	GX_CP_REG_VAT_GRP2    = 0x90, // Vertex attribute table (group 2)
+	GX_CP_REG_ARRAYBASE   = 0xA0, // Vertex array start/base
+	GX_CP_REG_ARRAYSTRIDE = 0xB0, // Vertex array stride
+} GXCPRegs;
+
+// Transform unit registers.
+typedef enum _GXXFRegs {
+	GX_XF_REG_ERROR        = 0x1000,
+	GX_XF_REG_DIAGNOSTICS  = 0x1001,
+	GX_XF_REG_STATE0       = 0x1002,
+	GX_XF_REG_STATE1       = 0x1003,
+	GX_XF_REG_CLOCK        = 0x1004,
+	GX_XF_REG_CLIPDISABLE  = 0x1005,
+	GX_XF_REG_PERF0        = 0x1006,
+	GX_XF_REG_PERF1        = 0x1007,
+	GX_XF_REG_INVERTEXSPEC = 0x1008,
+	GX_XF_REG_NUMCOLORS    = 0x1009,
+	GX_XF_REG_AMBIENT0     = 0x100A,
+	GX_XF_REG_AMBIENT1     = 0x100B,
+	GX_XF_REG_MATERIAL0    = 0x100C,
+	GX_XF_REG_MATERIAL1    = 0x100D,
+	GX_XF_REG_COLOR0CNTRL  = 0x100E,
+	GX_XF_REG_COLOR1CNTRL  = 0x100F,
+	GX_XF_REG_ALPHA0CNTRL  = 0x1010,
+	GX_XF_REG_ALPHA1CNTRL  = 0x1011,
+	GX_XF_REG_DUALTEXTRAN  = 0x1012,
+	GX_XF_REG_MATRIXINDEX0 = 0x1018,
+	GX_XF_REG_MATRIXINDEX1 = 0x1019,
+	GX_XF_REG_SCALEX       = 0x101A,
+	GX_XF_REG_SCALEY       = 0x101B,
+	GX_XF_REG_SCALEZ       = 0x101C,
+	GX_XF_REG_OFFSETX      = 0x101D,
+	GX_XF_REG_OFFSETY      = 0x101E,
+	GX_XF_REG_OFFSETZ      = 0x101F,
+	GX_XF_REG_PROJECTIONA  = 0x1020,
+	GX_XF_REG_PROJECTIONB  = 0x1021,
+	GX_XF_REG_PROJECTIONC  = 0x1022,
+	GX_XF_REG_PROJECTIOND  = 0x1023,
+	GX_XF_REG_PROJECTIONE  = 0x1024,
+	GX_XF_REG_PROJECTIONF  = 0x1025,
+	GX_XF_REG_PROJECTORTHO = 0x1026,
+	GX_XF_REG_NUMTEX       = 0x103F,
+	GX_XF_REG_TEX0         = 0x1040,
+	GX_XF_REG_TEX1         = 0x1041,
+	GX_XF_REG_TEX2         = 0x1042,
+	GX_XF_REG_TEX3         = 0x1043,
+	GX_XF_REG_TEX4         = 0x1044,
+	GX_XF_REG_TEX5         = 0x1045,
+	GX_XF_REG_TEX6         = 0x1046,
+	GX_XF_REG_TEX7         = 0x1047,
+	GX_XF_REG_DUALTEX0     = 0x1050,
+	GX_XF_REG_DUALTEX1     = 0x1051,
+	GX_XF_REG_DUALTEX2     = 0x1052,
+	GX_XF_REG_DUALTEX3     = 0x1053,
+	GX_XF_REG_DUALTEX4     = 0x1054,
+	GX_XF_REG_DUALTEX5     = 0x1055,
+	GX_XF_REG_DUALTEX6     = 0x1056,
+	GX_XF_REG_DUALTEX7     = 0x1057,
+} GXXFRegs;
+
+// Commands for interacting with the GXFifo pipe.
+typedef enum _GXFifoCmd {
+	GX_FIFO_CMD_NOOP = 0x00, // no operation
+
+	GX_FIFO_CMD_LOAD_BP_REG = 0x61, // load blitting processor reg
+	GX_FIFO_CMD_LOAD_CP_REG = 0x08, // load command processor reg
+	GX_FIFO_CMD_LOAD_XF_REG = 0x10, // load transform unit reg
+
+	GX_FIFO_CMD_LOAD_INDX_A = 0x20, // load index A
+	GX_FIFO_CMD_LOAD_INDX_B = 0x28, // load index B
+	GX_FIFO_CMD_LOAD_INDX_C = 0x30, // load index C
+	GX_FIFO_CMD_LOAD_INDX_D = 0x38, // load index D
+
+	GX_FIFO_CMD_CALL_DL   = 0x40, // call displaylist
+	GX_FIFO_CMD_INVAL_VTX = 0x48, // invalid vertex
+
+} GXFifoCmd;
+
+// CP locator for vertex attribute table (group 0).
+typedef enum _GXCPVATGrp0 {
+	// Position count [31-31]
+	GX_CP_VAT_GRP0_POS_CNT_ST  = 31,
+	GX_CP_VAT_GRP0_POS_CNT_END = 31,
+
+	// Position type [28-30]
+	GX_CP_VAT_GRP0_POS_TYPE_ST  = 28,
+	GX_CP_VAT_GRP0_POS_TYPE_END = 30,
+
+	// Position shift [23-27]
+	GX_CP_VAT_GRP0_POS_SHIFT_ST  = 23,
+	GX_CP_VAT_GRP0_POS_SHIFT_END = 27,
+
+	// Normal count [22-22]
+	GX_CP_VAT_GRP0_NRM_CNT_ST  = 22,
+	GX_CP_VAT_GRP0_NRM_CNT_END = 22,
+
+	// Normal type [19-21]
+	GX_CP_VAT_GRP0_NRM_TYPE_ST  = 19,
+	GX_CP_VAT_GRP0_NRM_TYPE_END = 21,
+
+	// Color diffused count [18-18]
+	GX_CP_VAT_GRP0_CLRDIFF_CNT_ST  = 18,
+	GX_CP_VAT_GRP0_CLRDIFF_CNT_END = 18,
+
+	// Color diffused type [15-17]
+	GX_CP_VAT_GRP0_CLRDIFF_TYPE_ST  = 15,
+	GX_CP_VAT_GRP0_CLRDIFF_TYPE_END = 17,
+
+	// Color specular count [14-14]
+	GX_CP_VAT_GRP0_CLRSPEC_CNT_ST  = 14,
+	GX_CP_VAT_GRP0_CLRSPEC_CNT_END = 14,
+
+	// Color specular type [11-13]
+	GX_CP_VAT_GRP0_CLRSPEC_TYPE_ST  = 11,
+	GX_CP_VAT_GRP0_CLRSPEC_TYPE_END = 13,
+
+	// Tex0 coord count [10-10]
+	GX_CP_VAT_GRP0_TXC0_CNT_ST  = 10,
+	GX_CP_VAT_GRP0_TXC0_CNT_END = 10,
+
+	// Tex0 coord type [7-9]
+	GX_CP_VAT_GRP0_TXC0_TYPE_ST  = 7,
+	GX_CP_VAT_GRP0_TXC0_TYPE_END = 9,
+
+	// Tex0 coord shift [2-6]
+	GX_CP_VAT_GRP0_TXC0_SHIFT_ST  = 2,
+	GX_CP_VAT_GRP0_TXC0_SHIFT_END = 6,
+
+	// Byte dequantised [1-1]
+	GX_CP_VAT_GRP0_BYTEDEQ_ST  = 1,
+	GX_CP_VAT_GRP0_BYTEDEQ_END = 1,
+
+	// Normal index 3 [0-0] (Input will be treated as three staggered indices (one per triple biased by component size) into normal table))
+	GX_CP_VAT_GRP0_NRMIDX3_ST  = 0,
+	GX_CP_VAT_GRP0_NRMIDX3_END = 0,
+} GXCPVATGrp0;
+
+// CP locators for vertex attribute table (group 1).
+typedef enum _GXCPVATGrp1 {
+	// Tex1 coord count [31-31]
+	GX_CP_VAT_GRP1_TXC1_CNT_ST  = 31,
+	GX_CP_VAT_GRP1_TXC1_CNT_END = 31,
+
+	// Tex1 coord type [28-30]
+	GX_CP_VAT_GRP1_TXC1_TYPE_ST  = 28,
+	GX_CP_VAT_GRP1_TXC1_TYPE_END = 30,
+
+	// Tex1 coord shift [23-27]
+	GX_CP_VAT_GRP1_TXC1_SHIFT_ST  = 23,
+	GX_CP_VAT_GRP1_TXC1_SHIFT_END = 27,
+
+	// Tex2 coord count [22-22]
+	GX_CP_VAT_GRP1_TXC2_CNT_ST  = 22,
+	GX_CP_VAT_GRP1_TXC2_CNT_END = 22,
+
+	// Tex2 coord type [19-21]
+	GX_CP_VAT_GRP1_TXC2_TYPE_ST  = 19,
+	GX_CP_VAT_GRP1_TXC2_TYPE_END = 21,
+
+	// Tex2 coord shift [14-18]
+	GX_CP_VAT_GRP1_TXC2_SHIFT_ST  = 14,
+	GX_CP_VAT_GRP1_TXC2_SHIFT_END = 18,
+
+	// Tex3 coord count [13-13]
+	GX_CP_VAT_GRP1_TXC3_CNT_ST  = 13,
+	GX_CP_VAT_GRP1_TXC3_CNT_END = 13,
+
+	// Tex3 coord type [10-12]
+	GX_CP_VAT_GRP1_TXC3_TYPE_ST  = 10,
+	GX_CP_VAT_GRP1_TXC3_TYPE_END = 12,
+
+	// Tex3 coord shift [5-9]
+	GX_CP_VAT_GRP1_TXC3_SHIFT_ST  = 5,
+	GX_CP_VAT_GRP1_TXC3_SHIFT_END = 9,
+
+	// Tex4 coord count [4-4]
+	GX_CP_VAT_GRP1_TXC4_CNT_ST  = 4,
+	GX_CP_VAT_GRP1_TXC4_CNT_END = 4,
+
+	// Tex4 coord type [1-3]
+	GX_CP_VAT_GRP1_TXC4_TYPE_ST  = 1,
+	GX_CP_VAT_GRP1_TXC4_TYPE_END = 3,
+
+} GXCPVATGrp1;
+
+// CP locators for vertex attribute table (group 2).
+typedef enum _GXCPVATGrp2 {
+	// Tex4 coord shift [27-31]
+	GX_CP_VAT_GRP2_TXC4_SHIFT_ST  = 27,
+	GX_CP_VAT_GRP2_TXC4_SHIFT_END = 31,
+
+	// Tex5 coord count [26-26]
+	GX_CP_VAT_GRP2_TXC5_CNT_ST  = 26,
+	GX_CP_VAT_GRP2_TXC5_CNT_END = 26,
+
+	// Tex5 coord type [23-25]
+	GX_CP_VAT_GRP2_TXC5_TYPE_ST  = 23,
+	GX_CP_VAT_GRP2_TXC5_TYPE_END = 25,
+
+	// Tex5 coord shift [18-22]
+	GX_CP_VAT_GRP2_TXC5_SHIFT_ST  = 18,
+	GX_CP_VAT_GRP2_TXC5_SHIFT_END = 22,
+
+	// Tex6 coord count [17-17]
+	GX_CP_VAT_GRP2_TXC6_CNT_ST  = 17,
+	GX_CP_VAT_GRP2_TXC6_CNT_END = 17,
+
+	// Tex6 coord type [14-16]
+	GX_CP_VAT_GRP2_TXC6_TYPE_ST  = 14,
+	GX_CP_VAT_GRP2_TXC6_TYPE_END = 16,
+
+	// Tex6 coord shift [9-13]
+	GX_CP_VAT_GRP2_TXC6_SHIFT_ST  = 9,
+	GX_CP_VAT_GRP2_TXC6_SHIFT_END = 13,
+
+	// Tex7 coord count [8-8]
+	GX_CP_VAT_GRP2_TXC7_CNT_ST  = 8,
+	GX_CP_VAT_GRP2_TXC7_CNT_END = 8,
+
+	// Tex7 coord type [5-7]
+	GX_CP_VAT_GRP2_TXC7_TYPE_ST  = 5,
+	GX_CP_VAT_GRP2_TXC7_TYPE_END = 7,
+
+	// Tex7 coord shift [0-4]
+	GX_CP_VAT_GRP2_TXC7_SHIFT_ST  = 0,
+	GX_CP_VAT_GRP2_TXC7_SHIFT_END = 4,
+} GXCPVATGrp2;
+
+// BP GenMode locators.
+typedef enum _GXBPGenMode {
+	// Active texture counts [28-31]
+	GX_BP_GENMODE_NUMTEX_ST  = 28,
+	GX_BP_GENMODE_NUMTEX_END = 31,
+
+	// Color/channel counts [25-27]
+	GX_BP_GENMODE_NUMCOLORS_ST  = 25,
+	GX_BP_GENMODE_NUMCOLORS_END = 27,
+
+	// Multisample mode [22-22]
+	GX_BP_GENMODE_MULTISAMPLE_ST  = 22,
+	GX_BP_GENMODE_MULTISAMPLE_END = 22,
+
+	// Cull mode [16-17]
+	GX_BP_GENMODE_CULLMODE_ST  = 16,
+	GX_BP_GENMODE_CULLMODE_END = 17,
+
+	// Indirect stage counts [13-15]
+	GX_BP_GENMODE_NUMINDSTAGES_ST  = 13,
+	GX_BP_GENMODE_NUMINDSTAGES_END = 15,
+
+	// Toggle co-planar/Z-freeze [12-12]
+	GX_BP_GENMODE_COPLANAR_ST  = 12,
+	GX_BP_GENMODE_COPLANAR_END = 12,
+} GXBPGenMode;
+
+// Texture register fields for XF (transform) unit.
+typedef enum _GXXfTexReg {
+	GX_XF_TEX_PROJ_ST  = 0, // (s,t) (2x4)
+	GX_XF_TEX_PROJ_STQ = 1, // (s,t,q) (3x4)
+
+	GX_XF_TEX_FORM_AB11 = 0, // (A, B, 1.0f, 1.0f), used for regular tex src
+	GX_XF_TEX_FORM_ABC1 = 1, // (A, B, C, 1.0f), used for geometry/normal src
+} GXXfTexReg;
+
+// XF locators for textures.
+typedef enum _GXXFTex {
+	// Projection type [30-30]
+	GX_XF_TEX_PROJTYPE_ST  = 30,
+	GX_XF_TEX_PROJTYPE_END = 30,
+
+	// Input format [29-29]
+	GX_XF_TEX_INPUTFORM_ST  = 29,
+	GX_XF_TEX_INPUTFORM_END = 29,
+
+	// Texture gen type [25-27]
+	GX_XF_TEX_TEXGENTYPE_ST  = 25,
+	GX_XF_TEX_TEXGENTYPE_END = 27,
+
+	// Source row [20-24]
+	GX_XF_TEX_SRCROW_ST  = 20,
+	GX_XF_TEX_SRCROW_END = 24,
+
+	// Bump source texture [17-19]
+	GX_XF_TEX_BUMPSRCTEX_ST  = 17,
+	GX_XF_TEX_BUMPSRCTEX_END = 19,
+
+	// Bump source light [14-16]
+	GX_XF_TEX_BUMPSRCLIGHT_ST  = 14,
+	GX_XF_TEX_BUMPSRCLIGHT_END = 16,
+} GXXFTex;
+
+// XF locators for dual textures.
+typedef enum _GXXFDualTex {
+	// Base row of the transform matrix [26-31]
+	GX_XF_DUALTEX_BASEROW_ST  = 26,
+	GX_XF_DUALTEX_BASEROW_END = 31,
+
+	// Normalise texcoord before sending transform [23-23]
+	GX_XF_DUALTEX_NORMALISE_ST  = 23,
+	GX_XF_DUALTEX_NORMALISE_END = 23,
+} GXXFDualTex;
+
+// General texture commands.
+typedef enum _GXXfTexGen {
+	GX_XF_TG_REGULAR = 0, // Regular; transform incoming data.
+	GX_XF_TG_BUMP    = 1, // Texgen bump mapping.
+	GX_XF_TG_CLR0    = 2, // Color texgen for color 0 (s,t) = (r, g:b)
+	GX_XF_TG_CLR1    = 3, // Color texgen for color 1 (s,t) = (r, g:b)
+} GXXfTexGen;
+
+// XF locators for matrix index 0.
+typedef enum _GXXFMtxIdx0 {
+	// Geometry [26-31]
+	GX_XF_MTXIDX0_GEOM_ST  = 26,
+	GX_XF_MTXIDX0_GEOM_END = 31,
+
+	// Tex 0 [20-25]
+	GX_XF_MTXIDX0_TEX0_ST  = 20,
+	GX_XF_MTXIDX0_TEX0_END = 25,
+
+	// Tex 1 [14-19]
+	GX_XF_MTXIDX0_TEX1_ST  = 14,
+	GX_XF_MTXIDX0_TEX1_END = 19,
+
+	// Tex 2 [8-13]
+	GX_XF_MTXIDX0_TEX2_ST  = 8,
+	GX_XF_MTXIDX0_TEX2_END = 13,
+
+	// Tex 3 [2-7]
+	GX_XF_MTXIDX0_TEX3_ST  = 2,
+	GX_XF_MTXIDX0_TEX3_END = 7,
+} GXXFMtxIdx0;
+
+// XF locators for matrix index 1.
+typedef enum _GXXFMtxIdx1 {
+	// Tex 4 [26-31]
+	GX_XF_MTXIDX1_TEX4_ST  = 26,
+	GX_XF_MTXIDX1_TEX4_END = 31,
+
+	// Tex 5 [20-25]
+	GX_XF_MTXIDX1_TEX5_ST  = 20,
+	GX_XF_MTXIDX1_TEX5_END = 25,
+
+	// Tex 6 [14-19]
+	GX_XF_MTXIDX1_TEX6_ST  = 14,
+	GX_XF_MTXIDX1_TEX6_END = 19,
+
+	// Tex 7 [8-13]
+	GX_XF_MTXIDX1_TEX7_ST  = 8,
+	GX_XF_MTXIDX1_TEX7_END = 13,
+} GXXFMtxIdx1;
+
+// Blitting processor registers.
+typedef enum _GXBPRegs {
+	// gen mode
+	GX_BP_REG_GENMODE = 0x0, // gen mode
+
+	// display copy filters
+	GX_BP_REG_DISPCOPYFILTER0 = 0x1, // display copy filter 0
+	GX_BP_REG_DISPCOPYFILTER1 = 0x2, // display copy filter 1
+	GX_BP_REG_DISPCOPYFILTER2 = 0x3, // display copy filter 2
+	GX_BP_REG_DISPCOPYFILTER3 = 0x4, // display copy filter 3
+
+	// indirect matrices
+	GX_BP_REG_INDMTX0A = 0x6, // indirect matrix 0A
+	GX_BP_REG_INDMTX0B = 0x7, // indirect matrix 0B
+	GX_BP_REG_INDMTX0C = 0x8, // indirect matrix 0C
+	GX_BP_REG_INDMTX1A = 0x9, // indirect matrix 1A
+	GX_BP_REG_INDMTX1B = 0xA, // indirect matrix 1B
+	GX_BP_REG_INDMTX1C = 0xB, // indirect matrix 1C
+	GX_BP_REG_INDMTX2A = 0xC, // indirect matrix 2A
+	GX_BP_REG_INDMTX2B = 0xD, // indirect matrix 2B
+	GX_BP_REG_INDMTX2C = 0xE, // indirect matrix 2C
+	GX_BP_REG_INDIMASK = 0xF, // indirect mask
+
+	// indirect TEV stages
+	GX_BP_REG_INDTEVSTAGE0  = 0x10, // indirect TEV stage 0
+	GX_BP_REG_INDTEVSTAGE1  = 0x11, // indirect TEV stage 1
+	GX_BP_REG_INDTEVSTAGE2  = 0x12, // indirect TEV stage 2
+	GX_BP_REG_INDTEVSTAGE3  = 0x13, // indirect TEV stage 3
+	GX_BP_REG_INDTEVSTAGE4  = 0x14, // indirect TEV stage 4
+	GX_BP_REG_INDTEVSTAGE5  = 0x15, // indirect TEV stage 5
+	GX_BP_REG_INDTEVSTAGE6  = 0x16, // indirect TEV stage 6
+	GX_BP_REG_INDTEVSTAGE7  = 0x17, // indirect TEV stage 7
+	GX_BP_REG_INDTEVSTAGE8  = 0x18, // indirect TEV stage 8
+	GX_BP_REG_INDTEVSTAGE9  = 0x19, // indirect TEV stage 9
+	GX_BP_REG_INDTEVSTAGE10 = 0x1A, // indirect TEV stage 10
+	GX_BP_REG_INDTEVSTAGE11 = 0x1B, // indirect TEV stage 11
+	GX_BP_REG_INDTEVSTAGE12 = 0x1C, // indirect TEV stage 12
+	GX_BP_REG_INDTEVSTAGE13 = 0x1D, // indirect TEV stage 13
+	GX_BP_REG_INDTEVSTAGE14 = 0x1E, // indirect TEV stage 14
+	GX_BP_REG_INDTEVSTAGE15 = 0x1F, // indirect TEV stage 15
+
+	// performance manips
+	GX_BP_REG_SCISSORTL   = 0x20, // scissor top left
+	GX_BP_REG_SCISSORBR   = 0x21, // scissor bottom right
+	GX_BP_REG_LINEPTWIDTH = 0x22, // line point width
+	GX_BP_REG_PERF0TRI    = 0x23, // performance 0 (triangle)
+	GX_BP_REG_PERF0QUAD   = 0x24, // performance 0 (quad)
+
+	// rasters
+	GX_BP_REG_RAS1_SS0   = 0x25,
+	GX_BP_REG_RAS1_SS1   = 0x26,
+	GX_BP_REG_RAS1_IREF  = 0x27,
+	GX_BP_REG_RAS1_TREF0 = 0x28,
+	GX_BP_REG_RAS1_TREF1 = 0x29,
+	GX_BP_REG_RAS1_TREF2 = 0x2A,
+	GX_BP_REG_RAS1_TREF3 = 0x2B,
+	GX_BP_REG_RAS1_TREF4 = 0x2C,
+	GX_BP_REG_RAS1_TREF5 = 0x2D,
+	GX_BP_REG_RAS1_TREF6 = 0x2E,
+	GX_BP_REG_RAS1_TREF7 = 0x2F,
+
+	// setup sizes
+	GX_BP_REG_SU_SSIZE0 = 0x30,
+	GX_BP_REG_SU_TSIZE0 = 0x31,
+	GX_BP_REG_SU_SSIZE1 = 0x32,
+	GX_BP_REG_SU_TSIZE1 = 0x33,
+	GX_BP_REG_SU_SSIZE2 = 0x34,
+	GX_BP_REG_SU_TSIZE2 = 0x35,
+	GX_BP_REG_SU_SSIZE3 = 0x36,
+	GX_BP_REG_SU_TSIZE3 = 0x37,
+	GX_BP_REG_SU_SSIZE4 = 0x38,
+	GX_BP_REG_SU_TSIZE4 = 0x39,
+	GX_BP_REG_SU_SSIZE5 = 0x3A,
+	GX_BP_REG_SU_TSIZE5 = 0x3B,
+	GX_BP_REG_SU_SSIZE6 = 0x3C,
+	GX_BP_REG_SU_TSIZE6 = 0x3D,
+	GX_BP_REG_SU_SSIZE7 = 0x3E,
+	GX_BP_REG_SU_TSIZE7 = 0x3F,
+
+	// Z and blend controls
+	GX_BP_REG_ZMODE      = 0x40,
+	GX_BP_REG_BLENDMODE  = 0x41,
+	GX_BP_REG_DSTALPHA   = 0x42,
+	GX_BP_REG_ZCONTROL   = 0x43,
+	GX_BP_REG_FIELDMASK  = 0x44,
+	GX_BP_REG_DRAWDONE   = 0x45,
+	GX_BP_REG_PETOKEN    = 0x47,
+	GX_BP_REG_PETOKENINT = 0x48,
+
+	// copying
+	GX_BP_REG_TEXCOPYSRCXY   = 0x49,
+	GX_BP_REG_TEXCOPYSRCWH   = 0x4A,
+	GX_BP_REG_TEXCOPYDST     = 0x4B,
+	GX_BP_REG_DISPCOPYSTRIDE = 0x4D,
+	GX_BP_REG_DISPCOPYSCALEY = 0x4E,
+	GX_BP_REG_COPYCLEARAR    = 0x4F,
+	GX_BP_REG_COPYCLEARGB    = 0x50,
+	GX_BP_REG_COPYCLEARZ     = 0x51,
+	GX_BP_REG_COPYFILTER0    = 0x53,
+	GX_BP_REG_COPYFILTER1    = 0x54,
+
+	//
+	GX_BP_REG_BOUNDINGBOX0 = 0x55,
+	GX_BP_REG_BOUNDINGBOX1 = 0x56,
+
+	GX_BP_REG_SCISSOROFFSET = 0x59,
+
+	// texture memory
+	GX_BP_REG_TMEMPRELOADADDR   = 0x60,
+	GX_BP_REG_TMEMPRELOADEVEN   = 0x61,
+	GX_BP_REG_TMEMPRELOADODD    = 0x62,
+	GX_BP_REG_TMEMPRELOADMODE   = 0x63,
+	GX_BP_REG_TMEMTLUTSRC       = 0x64,
+	GX_BP_REG_TMEMTLUTDST       = 0x65,
+	GX_BP_REG_TMEMTEXINVALIDATE = 0x66,
+
+	// performance 1
+	GX_BP_REG_PERF1     = 0x67,
+	GX_BP_REG_FIELDMODE = 0x68,
+
+	// set modes
+	GX_BP_REG_SETMODE0_TEX0 = 0x80,
+	GX_BP_REG_SETMODE0_TEX1 = 0x81,
+	GX_BP_REG_SETMODE0_TEX2 = 0x82,
+	GX_BP_REG_SETMODE0_TEX3 = 0x83,
+	GX_BP_REG_SETMODE1_TEX0 = 0x84,
+	GX_BP_REG_SETMODE1_TEX1 = 0x85,
+	GX_BP_REG_SETMODE1_TEX2 = 0x86,
+	GX_BP_REG_SETMODE1_TEX3 = 0x87,
+
+	// set images
+	GX_BP_REG_SETIMAGE0_TEX0 = 0x88,
+	GX_BP_REG_SETIMAGE0_TEX1 = 0x89,
+	GX_BP_REG_SETIMAGE0_TEX2 = 0x8A,
+	GX_BP_REG_SETIMAGE0_TEX3 = 0x8B,
+	GX_BP_REG_SETIMAGE1_TEX0 = 0x8C,
+	GX_BP_REG_SETIMAGE1_TEX1 = 0x8D,
+	GX_BP_REG_SETIMAGE1_TEX2 = 0x8E,
+	GX_BP_REG_SETIMAGE1_TEX3 = 0x8F,
+	GX_BP_REG_SETIMAGE2_TEX0 = 0x90,
+	GX_BP_REG_SETIMAGE2_TEX1 = 0x91,
+	GX_BP_REG_SETIMAGE2_TEX2 = 0x92,
+	GX_BP_REG_SETIMAGE2_TEX3 = 0x93,
+	GX_BP_REG_SETIMAGE3_TEX0 = 0x94,
+	GX_BP_REG_SETIMAGE3_TEX1 = 0x95,
+	GX_BP_REG_SETIMAGE3_TEX2 = 0x96,
+	GX_BP_REG_SETIMAGE3_TEX3 = 0x97,
+
+	// set texture lookups
+	GX_BP_REG_SETTLUT_TEX0 = 0x98,
+	GX_BP_REG_SETTLUT_TEX1 = 0x99,
+	GX_BP_REG_SETTLUT_TEX2 = 0x9A,
+	GX_BP_REG_SETTLUT_TEX3 = 0x9B,
+
+	// set modes continued
+	GX_BP_REG_SETMODE0_TEX4 = 0xA0,
+	GX_BP_REG_SETMODE0_TEX5 = 0xA1,
+	GX_BP_REG_SETMODE0_TEX6 = 0xA2,
+	GX_BP_REG_SETMODE0_TEX7 = 0xA3,
+	GX_BP_REG_SETMODE1_TEX4 = 0xA4,
+	GX_BP_REG_SETMODE1_TEX5 = 0xA5,
+	GX_BP_REG_SETMODE1_TEX6 = 0xA6,
+	GX_BP_REG_SETMODE1_TEX7 = 0xA7,
+
+	// set images continued
+	GX_BP_REG_SETIMAGE0_TEX4 = 0xA8,
+	GX_BP_REG_SETIMAGE0_TEX5 = 0xA9,
+	GX_BP_REG_SETIMAGE0_TEX6 = 0xAA,
+	GX_BP_REG_SETIMAGE0_TEX7 = 0xAB,
+	GX_BP_REG_SETIMAGE1_TEX4 = 0xAC,
+	GX_BP_REG_SETIMAGE1_TEX5 = 0xAD,
+	GX_BP_REG_SETIMAGE1_TEX6 = 0xAE,
+	GX_BP_REG_SETIMAGE1_TEX7 = 0xAF,
+	GX_BP_REG_SETIMAGE2_TEX4 = 0xB0,
+	GX_BP_REG_SETIMAGE2_TEX5 = 0xB1,
+	GX_BP_REG_SETIMAGE2_TEX6 = 0xB2,
+	GX_BP_REG_SETIMAGE2_TEX7 = 0xB3,
+	GX_BP_REG_SETIMAGE3_TEX4 = 0xB4,
+	GX_BP_REG_SETIMAGE3_TEX5 = 0xB5,
+	GX_BP_REG_SETIMAGE3_TEX6 = 0xB6,
+	GX_BP_REG_SETIMAGE3_TEX7 = 0xB7,
+
+	// set texture lookups continued
+	GX_BP_REG_SETTLUT_TEX4 = 0xB8,
+	GX_BP_REG_SETTLUT_TEX5 = 0xB9,
+	GX_BP_REG_SETTLUT_TEX6 = 0xBA,
+	GX_BP_REG_SETTLUT_TEX7 = 0xBB,
+
+	// TEV color manips
+	GX_BP_REG_TEVCOLORCOMBINER0  = 0xC0,
+	GX_BP_REG_TEVALPHACOMBINER0  = 0xC1,
+	GX_BP_REG_TEVCOLORCOMBINER1  = 0xC2,
+	GX_BP_REG_TEVALPHACOMBINER1  = 0xC3,
+	GX_BP_REG_TEVCOLORCOMBINER2  = 0xC4,
+	GX_BP_REG_TEVALPHACOMBINER2  = 0xC5,
+	GX_BP_REG_TEVCOLORCOMBINER3  = 0xC6,
+	GX_BP_REG_TEVALPHACOMBINER3  = 0xC7,
+	GX_BP_REG_TEVCOLORCOMBINER4  = 0xC8,
+	GX_BP_REG_TEVALPHACOMBINER4  = 0xC9,
+	GX_BP_REG_TEVCOLORCOMBINER5  = 0xCA,
+	GX_BP_REG_TEVALPHACOMBINER5  = 0xCB,
+	GX_BP_REG_TEVCOLORCOMBINER6  = 0xCC,
+	GX_BP_REG_TEVALPHACOMBINER6  = 0xCD,
+	GX_BP_REG_TEVCOLORCOMBINER7  = 0xCE,
+	GX_BP_REG_TEVALPHACOMBINER7  = 0xCF,
+	GX_BP_REG_TEVCOLORCOMBINER8  = 0xD0,
+	GX_BP_REG_TEVALPHACOMBINER8  = 0xD1,
+	GX_BP_REG_TEVCOLORCOMBINER9  = 0xD2,
+	GX_BP_REG_TEVALPHACOMBINER9  = 0xD3,
+	GX_BP_REG_TEVCOLORCOMBINER10 = 0xD4,
+	GX_BP_REG_TEVALPHACOMBINER10 = 0xD5,
+	GX_BP_REG_TEVCOLORCOMBINER11 = 0xD6,
+	GX_BP_REG_TEVALPHACOMBINER11 = 0xD7,
+	GX_BP_REG_TEVCOLORCOMBINER12 = 0xD8,
+	GX_BP_REG_TEVALPHACOMBINER12 = 0xD9,
+	GX_BP_REG_TEVCOLORCOMBINER13 = 0xDA,
+	GX_BP_REG_TEVALPHACOMBINER13 = 0xDB,
+	GX_BP_REG_TEVCOLORCOMBINER14 = 0xDC,
+	GX_BP_REG_TEVALPHACOMBINER14 = 0xDD,
+	GX_BP_REG_TEVCOLORCOMBINER15 = 0xDE,
+	GX_BP_REG_TEVALPHACOMBINER15 = 0xDF,
+
+	// TEV registers
+	GX_BP_REG_TEVREG0LO = 0xE0,
+	GX_BP_REG_TEVREG0HI = 0xE1,
+	GX_BP_REG_TEVREG1LO = 0xE2,
+	GX_BP_REG_TEVREG1HI = 0xE3,
+	GX_BP_REG_TEVREG2LO = 0xE4,
+	GX_BP_REG_TEVREG2HI = 0xE5,
+	GX_BP_REG_TEVREG3LO = 0xE6,
+	GX_BP_REG_TEVREG3HI = 0xE7,
+
+	// fog registers
+	GX_BP_REG_FOGRANGE   = 0xE8,
+	GX_BP_REG_FOGRANGEK0 = 0xE9,
+	GX_BP_REG_FOGRANGEK1 = 0xEA,
+	GX_BP_REG_FOGRANGEK2 = 0xEB,
+	GX_BP_REG_FOGRANGEK3 = 0xEC,
+	GX_BP_REG_FOGRANGEK4 = 0xED,
+	GX_BP_REG_FOGPARAM0  = 0xEE,
+	GX_BP_REG_FOGPARAM1  = 0xEF,
+	GX_BP_REG_FOGPARAM2  = 0xF0,
+	GX_BP_REG_FOGPARAM3  = 0xF1,
+	GX_BP_REG_FOGCOLOR   = 0xF2,
+
+	// performance manip registers
+	GX_BP_REG_ALPHACOMPARE = 0xF3,
+	GX_BP_REG_ZTEXTURE0    = 0xF4,
+	GX_BP_REG_ZTEXTURE1    = 0xF5,
+
+	// TEV K selectors
+	GX_BP_REG_TEVKSEL0 = 0xF6,
+	GX_BP_REG_TEVKSEL1 = 0xF7,
+	GX_BP_REG_TEVKSEL2 = 0xF8,
+	GX_BP_REG_TEVKSEL3 = 0xF9,
+	GX_BP_REG_TEVKSEL4 = 0xFA,
+	GX_BP_REG_TEVKSEL5 = 0xFB,
+	GX_BP_REG_TEVKSEL6 = 0xFC,
+	GX_BP_REG_TEVKSEL7 = 0xFD,
+
+	// SS mask
+	GX_BP_REG_SSMASK = 0xFE,
+} GXBPRegs;
+
+// BP locators for fog parameter 0.
+typedef enum _GXBPFogParam0 {
+	// A mantissa [21-31]
+	GX_BP_FOGPARAM0_A_MANT_ST  = 21,
+	GX_BP_FOGPARAM0_A_MANT_END = 31,
+
+	// A exponent [13-20]
+	GX_BP_FOGPARAM0_A_EXP_ST  = 13,
+	GX_BP_FOGPARAM0_A_EXP_END = 20,
+
+	// A sign [12-12]
+	GX_BP_FOGPARAM0_A_SIGN_ST  = 12,
+	GX_BP_FOGPARAM0_A_SIGN_END = 12,
+} GXBPFogParam0;
+
+// BP locators for fog parameter 1.
+typedef enum _GXBPFogParam1 {
+	// B magnitude [8-31]
+	GX_BP_FOGPARAM1_B_MAG_ST  = 8,
+	GX_BP_FOGPARAM1_B_MAG_END = 31,
+} GXBPFogParam1;
+
+// BP locators for fog parameter 2.
+typedef enum _GXBPFogParam2 {
+	// B shift [27-31]
+	GX_BP_FOGPARAM2_B_SHIFT_ST  = 27,
+	GX_BP_FOGPARAM2_B_SHIFT_END = 31,
+} GXBPFogParam2;
+
+// BP locators for fog parameter 3.
+typedef enum _GXBPFogParam3 {
+	// C mantissa [21-31]
+	GX_BP_FOGPARAM3_C_MANT_ST  = 21,
+	GX_BP_FOGPARAM3_C_MANT_END = 31,
+
+	// C exponent [13-20]
+	GX_BP_FOGPARAM3_C_EXP_ST  = 13,
+	GX_BP_FOGPARAM3_C_EXP_END = 20,
+
+	// C sign [12-12]
+	GX_BP_FOGPARAM3_C_SIGN_ST  = 12,
+	GX_BP_FOGPARAM3_C_SIGN_END = 12,
+
+	// Projection [11]
+	GX_BP_FOGPARAM3_PROJ_ST  = 11,
+	GX_BP_FOGPARAM3_PROJ_END = 11,
+
+	// F select [8-10]
+	GX_BP_FOGPARAM3_FSEL_ST  = 8,
+	GX_BP_FOGPARAM3_FSEL_END = 10,
+} GXBPFogParam3;
+
+// BP locators for fog color.
+typedef enum _GXBPFogColor {
+	// RGB components of color [8-31]
+	GX_BP_FOGCOLOR_RGB_ST  = 8,
+	GX_BP_FOGCOLOR_RGB_END = 31,
+} GXBPFogColor;
+
+// BP locators for fog range.
+typedef enum _GXBPFogRange {
+	// Center [22-31]
+	GX_BP_FOGRANGE_CENTER_ST  = 22,
+	GX_BP_FOGRANGE_CENTER_END = 31,
+
+	// Enabled [21-21]
+	GX_BP_FOGRANGE_ENABLED_ST  = 21,
+	GX_BP_FOGRANGE_ENABLED_END = 21,
+} GXBPFogRange;
+
+// BP locators for fog range K.
+typedef enum _GXBPFogRangeK {
+	// Hi [20-31]
+	GX_BP_FOGRANGEK_HI_ST  = 20,
+	GX_BP_FOGRANGEK_HI_END = 31,
+
+	// Lo [8-19]
+	GX_BP_FOGRANGEK_LO_ST  = 8,
+	GX_BP_FOGRANGEK_LO_END = 19,
+} GXBPFogRangeK;
+
+// BP locators for blend mode.
+typedef enum _GXBPBlendMode {
+	// Blend enable [31-31]
+	GX_BP_BLENDMODE_ENABLE_ST  = 31,
+	GX_BP_BLENDMODE_ENABLE_END = 31,
+
+	// Logic operation enable [30-30]
+	GX_BP_BLENDMODE_LOGIC_OP_ST  = 30,
+	GX_BP_BLENDMODE_LOGIC_OP_END = 30,
+
+	// Dither [29-29]
+	GX_BP_BLENDMODE_DITHER_ST  = 29,
+	GX_BP_BLENDMODE_DITHER_END = 29,
+
+	// Color update [28-28]
+	GX_BP_BLENDMODE_COLOR_UPDATE_ST  = 28,
+	GX_BP_BLENDMODE_COLOR_UPDATE_END = 28,
+
+	// Alpha update [27-27]
+	GX_BP_BLENDMODE_ALPHA_UPDATE_ST  = 27,
+	GX_BP_BLENDMODE_ALPHA_UPDATE_END = 27,
+
+	// Destination factor [24-26]
+	GX_BP_BLENDMODE_DSTFACTOR_ST  = 24,
+	GX_BP_BLENDMODE_DSTFACTOR_END = 26,
+
+	// Source factor [21-23]
+	GX_BP_BLENDMODE_SRCFACTOR_ST  = 21,
+	GX_BP_BLENDMODE_SRCFACTOR_END = 23,
+
+	// Subtract [20-20]
+	GX_BP_BLENDMODE_SUBTRACT_ST  = 20,
+	GX_BP_BLENDMODE_SUBTRACT_END = 20,
+
+	// Logic mode [16-19]
+	GX_BP_BLENDMODE_LOGICMODE_ST  = 16,
+	GX_BP_BLENDMODE_LOGICMODE_END = 19,
+} GXBPBlendMode;
+
+// BP locators for Z mode.
+typedef enum _GXBPZMode {
+	// Test enable [31-31]
+	GX_BP_ZMODE_TEST_ENABLE_ST  = 31,
+	GX_BP_ZMODE_TEST_ENABLE_END = 31,
+
+	// Compare [28-30]
+	GX_BP_ZMODE_COMPARE_ST  = 28,
+	GX_BP_ZMODE_COMPARE_END = 30,
+
+	// Update enable [27-27]
+	GX_BP_ZMODE_UPDATE_ENABLE_ST  = 27,
+	GX_BP_ZMODE_UPDATE_ENABLE_END = 27,
+} GXBPZMode;
+
+// BP locators for Z control.
+typedef enum _GXBPZControl {
+	// Pixel format [29-31]
+	GX_BP_ZCONTROL_PIXEL_FMT_ST  = 29,
+	GX_BP_ZCONTROL_PIXEL_FMT_END = 31,
+
+	// Z format [26-28]
+	GX_BP_ZCONTROL_Z_FMT_ST  = 26,
+	GX_BP_ZCONTROL_Z_FMT_END = 28,
+
+	// Whether to do Z-buffering before or after texturing [25-25]
+	GX_BP_ZCONTROL_BEFORE_TEX_ST  = 25,
+	GX_BP_ZCONTROL_BEFORE_TEX_END = 25,
+} GXBPZControl;
+
+// BP locators for destination alpha.
+typedef enum _GXBPDstAlpha {
+	// Alpha [24-31]
+	GX_BP_DSTALPHA_ALPHA_ST  = 24,
+	GX_BP_DSTALPHA_ALPHA_END = 31,
+
+	// Enable [23-23]
+	GX_BP_DSTALPHA_ENABLE_ST  = 23,
+	GX_BP_DSTALPHA_ENABLE_END = 23,
+
+	// YUV format [21-22]
+	GX_BP_DSTALPHA_YUV_FMT_ST  = 21,
+	GX_BP_DSTALPHA_YUV_FMT_END = 22,
+} GXBPDstAlpha;
+
+// BP locators for field mask.
+typedef enum _GXBPFieldMask {
+	// Whether to write odd fields to the EFB [31-31]
+	GX_BP_FIELDMASK_ODD_ST  = 31,
+	GX_BP_FIELDMASK_ODD_END = 31,
+
+	// Whether to write even fields to the EFB [30-30]
+	GX_BP_FIELDMASK_EVEN_ST  = 30,
+	GX_BP_FIELDMASK_EVEN_END = 30,
+} GXBPFieldMask;
+
+// BP locators for line and point settings.
+typedef enum _GXBPLinePtWidth {
+	// Line size/width [24-31]
+	GX_BP_LINEPTWIDTH_LINESZ_ST  = 24,
+	GX_BP_LINEPTWIDTH_LINESZ_END = 31,
+
+	// Point size [16-23]
+	GX_BP_LINEPTWIDTH_POINTSZ_ST  = 16,
+	GX_BP_LINEPTWIDTH_POINTSZ_END = 23,
+
+	// Line offset [13-15]
+	GX_BP_LINEPTWIDTH_LINEOFS_ST  = 13,
+	GX_BP_LINEPTWIDTH_LINEOFS_END = 15,
+
+	// Point offset [10-12]
+	GX_BP_LINEPTWIDTH_POINTOFS_ST  = 10,
+	GX_BP_LINEPTWIDTH_POINTOFS_END = 12,
+
+	// Interlacing adjustment for aspect ratio [9-9]
+	GX_BP_LINEPTWIDTH_ADJUST_ST  = 9,
+	GX_BP_LINEPTWIDTH_ADJUST_END = 9,
+} GXBPLinePtWidth;
+
+// Miscellaneous token types.
+typedef enum _GXMiscToken {
+	GX_MT_NULL               = 0,
+	GX_MT_XF_FLUSH           = 1,
+	GX_MT_DL_SAVE_CONTEXT    = 2,
+	GX_MT_ABORT_WAIT_COPYOUT = 3,
+} GXMiscToken;
+
+// Transform memory types.
+typedef enum _GXXfMem {
+	GX_XF_MEM_POSMTX     = 0x000, // position coord matrix
+	GX_XF_MEM_NRMMTX     = 0x400, // normal coord matrix
+	GX_XF_MEM_DUALTEXMTX = 0x500, // dual texture matrix
+	GX_XF_MEM_LIGHTOBJ   = 0x600, // light object
+} GXXfMem;
+
+// BP locators for top-left scissor.
+typedef enum _GXBPScissorTL {
+	// Top component [21-31]
+	GX_BP_SCISSORTL_TOP_ST  = 21,
+	GX_BP_SCISSORTL_TOP_END = 31,
+
+	// Left component [9-19]
+	GX_BP_SCISSORTL_LEFT_ST  = 9,
+	GX_BP_SCISSORTL_LEFT_END = 19,
+} GXBPScissorTL;
+
+// BP locators for bottom-right scissor.
+typedef enum _GXBPScissorBR {
+	// Bottom component [21-31]
+	GX_BP_SCISSORBR_BOT_ST  = 21,
+	GX_BP_SCISSORBR_BOT_END = 31,
+
+	// Right component [9-19]
+	GX_BP_SCISSORBR_RIGHT_ST  = 9,
+	GX_BP_SCISSORBR_RIGHT_END = 19,
+} GXBPScissorBR;
+
+// BP locators for scissor offset.
+typedef enum _GXBPScissorOffset {
+	// X offset [22-31]
+	GX_BP_SCISSOROFS_OX_ST  = 22,
+	GX_BP_SCISSOROFS_OX_END = 31,
+
+	// Y offset [12-21]
+	GX_BP_SCISSOROFS_OY_ST  = 12,
+	GX_BP_SCISSOROFS_OY_END = 21,
+} GXBPScissorOffset;
+
+// Perf-0 types.
+typedef enum _GXPerf0 {
+	GX_PERF0_VERTICES      = 0,
+	GX_PERF0_CLIP_VTX      = 1,
+	GX_PERF0_CLIP_CLKS     = 2,
+	GX_PERF0_XF_WAIT_IN    = 3,
+	GX_PERF0_XF_WAIT_OUT   = 4,
+	GX_PERF0_XF_XFRM_CLKS  = 5,
+	GX_PERF0_XF_LIT_CLKS   = 6,
+	GX_PERF0_XF_BOT_CLKS   = 7,
+	GX_PERF0_XF_REGLD_CLKS = 8,
+	GX_PERF0_XF_REGRD_CLKS = 9,
+	GX_PERF0_CLIP_RATIO    = 10,
+
+	GX_PERF0_TRIANGLES           = 11,
+	GX_PERF0_TRIANGLES_CULLED    = 12,
+	GX_PERF0_TRIANGLES_PASSED    = 13,
+	GX_PERF0_TRIANGLES_SCISSORED = 14,
+	GX_PERF0_TRIANGLES_0TEX      = 15,
+	GX_PERF0_TRIANGLES_1TEX      = 16,
+	GX_PERF0_TRIANGLES_2TEX      = 17,
+	GX_PERF0_TRIANGLES_3TEX      = 18,
+	GX_PERF0_TRIANGLES_4TEX      = 19,
+	GX_PERF0_TRIANGLES_5TEX      = 20,
+	GX_PERF0_TRIANGLES_6TEX      = 21,
+	GX_PERF0_TRIANGLES_7TEX      = 22,
+	GX_PERF0_TRIANGLES_8TEX      = 23,
+	GX_PERF0_TRIANGLES_0CLR      = 24,
+	GX_PERF0_TRIANGLES_1CLR      = 25,
+	GX_PERF0_TRIANGLES_2CLR      = 26,
+
+	GX_PERF0_QUAD_0CVG    = 27,
+	GX_PERF0_QUAD_NON0CVG = 28,
+	GX_PERF0_QUAD_1CVG    = 29,
+	GX_PERF0_QUAD_2CVG    = 30,
+	GX_PERF0_QUAD_3CVG    = 31,
+	GX_PERF0_QUAD_4CVG    = 32,
+	GX_PERF0_AVG_QUAD_CNT = 33,
+
+	GX_PERF0_CLOCKS = 34,
+	GX_PERF0_NONE   = 35,
+} GXPerf0;
+
+// Perf-1 types.
+typedef enum _GXPerf1 {
+	GX_PERF1_TEXELS      = 0,
+	GX_PERF1_TX_IDLE     = 1,
+	GX_PERF1_TX_REGS     = 2,
+	GX_PERF1_TX_MEMSTALL = 3,
+	GX_PERF1_TC_CHECK1_2 = 4,
+	GX_PERF1_TC_CHECK3_4 = 5,
+	GX_PERF1_TC_CHECK5_6 = 6,
+	GX_PERF1_TC_CHECK7_8 = 7,
+	GX_PERF1_TC_MISS     = 8,
+
+	GX_PERF1_VC_ELEMQ_FULL    = 9,
+	GX_PERF1_VC_MISSQ_FULL    = 10,
+	GX_PERF1_VC_MEMREQ_FULL   = 11,
+	GX_PERF1_VC_STATUS7       = 12,
+	GX_PERF1_VC_MISSREP_FULL  = 13,
+	GX_PERF1_VC_STREAMBUF_LOW = 14,
+	GX_PERF1_VC_ALL_STALLS    = 15,
+	GX_PERF1_VERTICES         = 16,
+
+	GX_PERF1_FIFO_REQ    = 17,
+	GX_PERF1_CALL_REQ    = 18,
+	GX_PERF1_VC_MISS_REQ = 19,
+	GX_PERF1_CP_ALL_REQ  = 20,
+
+	GX_PERF1_CLOCKS = 21,
+	GX_PERF1_NONE   = 22,
+} GXPerf1;
+
+// Vertex cache perf types.
+typedef enum _GXVCachePerf {
+	GX_VC_POS  = 0,
+	GX_VC_NRM  = 1,
+	GX_VC_CLR0 = 2,
+	GX_VC_CLR1 = 3,
+	GX_VC_TEX0 = 4,
+	GX_VC_TEX1 = 5,
+	GX_VC_TEX2 = 6,
+	GX_VC_TEX3 = 7,
+	GX_VC_TEX4 = 8,
+	GX_VC_TEX5 = 9,
+	GX_VC_TEX6 = 10,
+	GX_VC_TEX7 = 11,
+
+	GX_VC_ALL = 15
+} GXVCachePerf;
 
 #endif /* GXENUM_H */

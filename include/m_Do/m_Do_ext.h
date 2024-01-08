@@ -38,6 +38,7 @@ public:
         }
         return stopped;
     }
+    void reset() { mFrameCtrl.reset(); }
 
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;
@@ -254,7 +255,7 @@ public:
 
 class mDoExt_McaMorfCallBack1_c {
 public:
-    virtual void execute(u16, J3DTransformInfo*) = 0;
+    virtual int execute(u16, J3DTransformInfo*) = 0;
 };
 
 class mDoExt_McaMorfCallBack2_c {
@@ -275,7 +276,11 @@ public:
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     void setPlayMode(int mode) { mFrameCtrl.setAttribute(mode); }
     bool isStop() {
-        return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f;
+        bool stopped = true;
+        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
+            stopped = false;
+        }
+        return stopped;
     }
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getStartFrame() { return mFrameCtrl.getStart(); }
@@ -343,7 +348,7 @@ public:
                                mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
                                int, void*, u32, u32);
     /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
-    /* 800105C8 */ void play(Vec*, u32, s8);
+    /* 800105C8 */ u32 play(Vec*, u32, s8);
     /* 80010680 */ void entryDL();
     /* 800106AC */ void modelCalc();
     /* 80010710 */ void getTransform(u16, J3DTransformInfo*);
@@ -398,6 +403,7 @@ public:
 
     bool getOldFrameFlg() { return mOldFrameFlg; }
     void onOldFrameFlg() { mOldFrameFlg = true; }
+    void offOldFrameFlg() { mOldFrameFlg = false; }
     f32 getOldFrameRate() { return mOldFrameRate; }
     J3DTransformInfo* getOldFrameTransInfo(int i) { return &mOldFrameTransInfo[i]; }
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
@@ -468,7 +474,13 @@ public:
 
 class mDoExt_3DlineMat_c {
 public:
+    #ifndef NON_VIRTUAL_3DLINEMAT
+    virtual int getMaterialID();
+    virtual void setMaterial();
+    virtual void draw();
+    #else
     /* 0x0 */ void* field_0x0;
+    #endif
     /* 0x4 */ mDoExt_3DlineMat_c* field_0x4;
 };
 
@@ -490,11 +502,13 @@ class dKy_tevstr_c;
 class mDoExt_3DlineMat1_c : public mDoExt_3DlineMat_c {
 public:
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 800134F8 */ void setMaterial();
-    /* 800135D0 */ void draw();
     /* 80013FB0 */ void update(int, GXColor&, dKy_tevstr_c*);
     /* 8001373C */ void update(int, f32, GXColor&, u16, dKy_tevstr_c*);
     /* 80014E7C */ int getMaterialID();
+    /* 800134F8 */ void setMaterial();
+    /* 800135D0 */ void draw();
+
+    cXyz* getPos(int i_idx) { return field_0x38[i_idx].field_0x0; }
 
 private:
     /* 0x08 */ GXTexObj field_0x8;
@@ -515,6 +529,8 @@ public:
     /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
     /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
     /* 80014E84 */ int getMaterialID();
+
+    cXyz* getPos(int param_0) { return field_0x18[param_0].field_0x0; }
 
 private:
     /* 0x08 */ GXColor field_0x8;

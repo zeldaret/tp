@@ -174,7 +174,7 @@ extern "C" extern u8 data_80C91AD0[4];
 
 /* 80C90AF8-80C90B50 000078 0058+00 1/0 0/0 0/0 .text            initWait__18daObjMasterSword_cFv */
 void daObjMasterSword_c::initWait() {
-    cLib_onBit(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
     current.pos = orig.pos;
     current.angle = orig.angle;
     shape_angle = orig.angle;
@@ -504,7 +504,7 @@ void daObjMasterSword_c::create_init() {
     initBaseMtx();
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
-    cLib_onBit(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
     mAttentionInfo.field_0x0[4] = 74;
     mAttentionInfo.mPosition = current.pos;
     mAttentionInfo.mPosition.y += 100.0f;
@@ -608,6 +608,12 @@ static int daObjMasterSword_Delete(daObjMasterSword_c* i_this) {
 }
 
 /* 80C91448-80C915E8 0009C8 01A0+00 1/1 0/0 0/0 .text            __dt__18daObjMasterSword_cFv */
+// vtables issues
+#ifdef NONMATCHING
+daObjMasterSword_c::~daObjMasterSword_c() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -616,6 +622,7 @@ asm daObjMasterSword_c::~daObjMasterSword_c() {
 #include "asm/rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword/__dt__18daObjMasterSword_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C91960-80C91968 000020 0008+00 1/1 0/0 0/0 .rodata          @4030 */
@@ -680,7 +687,7 @@ COMPILER_STRIP_GATE(0x80C9196C, &lit_4092);
 #pragma pop
 
 /* 80C91714-80C91894 000C94 0180+00 1/1 0/0 0/0 .text            draw__18daObjMasterSword_cFv */
-// weird cXyz stuff
+// Matches with literals
 #ifdef NONMATCHING
 int daObjMasterSword_c::draw() {
     if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[73])) {
@@ -700,9 +707,9 @@ int daObjMasterSword_c::draw() {
     mBrk.remove(modelData);
     dComIfGd_setList();
 
-    cXyz sp14, sp8 = cXyz(current.pos.x, current.pos.y + 50.0f, current.pos.z);
+    cXyz sp8 = cXyz(current.pos.x, current.pos.y + 50.0f, current.pos.z);
     mShadowKey =
-        dComIfGd_setShadow(mShadowKey, 1, mpModel, &sp14, 200.0f, 10.0f, current.pos.y, field_0x738,
+        dComIfGd_setShadow(mShadowKey, 1, mpModel, &sp8, 200.0f, 10.0f, current.pos.y, field_0x738,
                            field_0x728, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
     return 1;

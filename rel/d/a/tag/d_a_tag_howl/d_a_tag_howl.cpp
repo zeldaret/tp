@@ -23,12 +23,14 @@ int daTag_Howl_c::destroy() {
 
 /* 8048D9C4-8048DA24 0000E4 0060+00 1/1 0/0 0/0 .text            execute__12daTag_Howl_cFv */
 int daTag_Howl_c::execute() {
-    this->current.roomNo = dStage_roomControl_c::mStayNo;
-    this->mAttentionInfo.mFlags = 0;
-    if (isAreaCheck() != NULL) {
-        this->mAttentionInfo.mFlags |= 0x80;
-        this->mAttentionInfo.field_0x0[7] = 0x41;
+    fopAcM_SetRoomNo(this, dComIfGp_roomControl_getStayNo());
+    mAttentionInfo.mFlags = 0;
+
+    if (isAreaCheck()) {
+        mAttentionInfo.mFlags |= 0x80;
+        mAttentionInfo.field_0x0[7] = 0x41;
     }
+
     return 1;
 }
 
@@ -41,22 +43,26 @@ int daTag_Howl_c::draw() {
 u8 daTag_Howl_c::isAreaCheck() {
     if (getSwitchBit() != 0xFF) {
         if (dComIfGs_isSaveSwitch(getSwitchBit())) {
-            return 0;
+            return false;
         }
     }
 
-    cXyz pos = daPy_getPlayerActorClass()->current.pos - current.pos;
-    if (dComIfGp_getLinkPlayer()->i_checkNoResetFlg1(daPy_py_c::FLG1_IS_WOLF)) {
-        if ((pos.absXZ() < mScale.x) && (-mScale.y < pos.y) && (pos.y < mScale.y)) {
-            return 1;
+    cXyz vec_to_player = daPy_getPlayerActorClass()->current.pos - current.pos;
+    if (daPy_py_c::i_checkNowWolf()) {
+        if (vec_to_player.absXZ() < mScale.x && -mScale.y < vec_to_player.y &&
+            vec_to_player.y < mScale.y)
+        {
+            return true;
         }
     }
-    return 0;
+
+    return false;
 }
+
 /* 8048DC1C-8048DC68 00033C 004C+00 1/1 0/0 0/0 .text            getParam__12daTag_Howl_cFv */
 int daTag_Howl_c::getParam() {
-    field_0x568 = mBase.mParameters & 0xf;
-    field_0x569 = mBase.mParameters >> 0x1e;
+    mCurveID = fopAcM_GetParam(this) & 0xF;
+    field_0x569 = fopAcM_GetParam(this) >> 0x1E;
     mScale.x *= 100.0f;
     mScale.y *= 100.0f;
     mScale.z *= 100.0f;
@@ -65,7 +71,7 @@ int daTag_Howl_c::getParam() {
 
 /* 8048DC68-8048DC74 000388 000C+00 1/1 0/0 0/0 .text            getSwitchBit__12daTag_Howl_cFv */
 u8 daTag_Howl_c::getSwitchBit() {
-    return this->mBase.mParameters >> 4 & 0xff;
+    return (fopAcM_GetParam(this) >> 4) & 0xFF;
 }
 
 /* 8048DC74-8048DC94 000394 0020+00 1/0 0/0 0/0 .text            daTag_Howl_Create__FPv */

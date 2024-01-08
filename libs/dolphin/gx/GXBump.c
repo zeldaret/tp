@@ -27,7 +27,7 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = field;
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035ED2C-8035EEA4 35966C 0178+00 0/0 4/4 1/1 .text            GXSetIndTexMtx */
@@ -84,7 +84,7 @@ void GXSetIndTexMtx(GXIndTexMtxID mtxID, f32 offset[6], s8 scale_exp) {
     GXFIFO.u8 = 0x61;
     GXFIFO.s32 = field;
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035EEA4-8035EFE8 3597E4 0144+00 0/0 5/5 0/0 .text            GXSetIndTexCoordScale */
@@ -126,7 +126,7 @@ void GXSetIndTexCoordScale(GXIndTexStageID texStage, GXIndTexScale scaleS, GXInd
         break;
     }
 
-    __GXData->field_0x2 = 0;
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035EFE8-8035F0D4 359928 00EC+00 0/0 3/3 0/0 .text            GXSetIndTexOrder */
@@ -144,36 +144,36 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
     switch (stage) {
     case GX_INDTEXSTAGE0:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x120, 29, 3, map);
-        GX_BITFIELD_SET(data->field_0x120, 26, 3, coord);
+        GX_BITFIELD_SET(data->iref, 29, 3, map);
+        GX_BITFIELD_SET(data->iref, 26, 3, coord);
         break;
     case GX_INDTEXSTAGE1:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x120, 23, 3, map);
-        GX_BITFIELD_SET(data->field_0x120, 20, 3, coord);
+        GX_BITFIELD_SET(data->iref, 23, 3, map);
+        GX_BITFIELD_SET(data->iref, 20, 3, coord);
         break;
     case GX_INDTEXSTAGE2:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x120, 17, 3, map);
-        GX_BITFIELD_SET(data->field_0x120, 14, 3, coord);
+        GX_BITFIELD_SET(data->iref, 17, 3, map);
+        GX_BITFIELD_SET(data->iref, 14, 3, coord);
         break;
     case GX_INDTEXSTAGE3:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x120, 11, 3, map);
-        GX_BITFIELD_SET(data->field_0x120, 8, 3, coord);
+        GX_BITFIELD_SET(data->iref, 11, 3, map);
+        GX_BITFIELD_SET(data->iref, 8, 3, coord);
         break;
     }
 
     GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = __GXData->field_0x120;
+    GXFIFO.s32 = __GXData->iref;
     GXSetWasteFlags();
 }
 
 /* 8035F0D4-8035F0F8 359A14 0024+00 0/0 43/43 7/7 .text            GXSetNumIndStages */
 void GXSetNumIndStages(u8 num) {
     GXData* data = __GXData;
-    GX_BITFIELD_SET(data->field_0x204, 13, 3, num);
-    data->field_0x5ac |= 0x6;
+    GX_BITFIELD_SET(data->genMode, 13, 3, num);
+    data->dirtyFlags |= GX_DIRTY_BP_MASK | GX_DIRTY_GEN_MODE;
 }
 
 /* 8035F0F8-8035F140 359A38 0048+00 0/0 16/16 0/0 .text            GXSetTevDirect */
@@ -189,15 +189,15 @@ void __GXUpdateBPMask(void) {}
 void __GXSetIndirectMask(u32 mask) {
     GXData* data = __GXData;
 
-    GX_BITFIELD_SET(data->field_0x124, 24, 8, mask);
+    GX_BITFIELD_SET(data->bpMask, 24, 8, mask);
     GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = data->field_0x124;
-    data->field_0x2 = 0;
+    GXFIFO.s32 = data->bpMask;
+    data->bpSentNot = 0;
 }
 
 /* 8035F174-8035F198 359AB4 0024+00 0/0 4/4 0/0 .text            __GXFlushTextureState */
 void __GXFlushTextureState(void) {
     GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = __GXData->field_0x124;
-    __GXData->field_0x2 = 0;
+    GXFIFO.s32 = __GXData->bpMask;
+    __GXData->bpSentNot = 0;
 }

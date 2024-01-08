@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "MSL_C/stdio.h"
+#include "stdio.h"
 #include "dolphin/vi/vi.h"
 
 namespace JUTAssertion {

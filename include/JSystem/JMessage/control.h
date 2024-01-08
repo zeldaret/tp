@@ -39,6 +39,19 @@ struct TControl {
 
     const char* getMessageText_begin() const { return pMessageText_begin_; }
     void* getMessageEntry() const { return pEntry_; }
+    void setSequenceProcessor(TSequenceProcessor* processor) { pSequenceProcessor_ = processor; }
+    void setRenderingProcessor(TRenderingProcessor* processor) { pRenderingProcessor_ = processor; }
+    void resetResourceCache() { 
+        if (pSequenceProcessor_ != NULL) {
+            pSequenceProcessor_->resetResourceCache();
+        }
+
+        if (pRenderingProcessor_ != NULL) {
+            pRenderingProcessor_->resetResourceCache();
+        }
+
+        pResourceCache_ = NULL;
+    }
 
     /* 0x04 */ TSequenceProcessor* pSequenceProcessor_;
     /* 0x08 */ TRenderingProcessor* pRenderingProcessor_;

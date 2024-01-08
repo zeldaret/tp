@@ -812,8 +812,8 @@ static GXFogAdjTable S_xfog_table_data[2] = {
 /* 80056A24-80056A64 051364 0040+00 0/0 2/2 0/0 .text            dKyd_xfog_table_set__FUc */
 void dKyd_xfog_table_set(u8 tblIdx) {
     for (int i = 0; i < 10; i++) {
-        u16 fogAdjTableEntry = S_xfog_table_data[tblIdx & 0xff].r[i];
-        g_env_light.mXFogTbl.r[i] = fogAdjTableEntry;
+        u16 fogAdjTableEntry = S_xfog_table_data[tblIdx & 0xff].fogVals[i];
+        g_env_light.mXFogTbl.fogVals[i] = fogAdjTableEntry;
     }
 }
 

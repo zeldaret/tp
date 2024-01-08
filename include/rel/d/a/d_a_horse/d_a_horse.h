@@ -171,7 +171,7 @@ public:
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
     void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
-    int checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
+    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
     MtxP getSaddleMtx() { return field_0x570->i_getAnmMtx(21); }
     MtxP getRootMtx() { return field_0x570->i_getAnmMtx(0); }
     f32 getAnmFrameMax(int i_idx) const { return field_0x5b0[i_idx].getEnd(); }
@@ -180,6 +180,7 @@ public:
     f32 getMorfFrame() const { return mMorfFrame; }
     f32 getBlendRate() { return field_0x594[1].getRatio(); }
     u16 getAnmIdx(int i_idx) const { return mAnmIdx[i_idx]; }
+    int callHorse(const cXyz* param_0) { return (this->*mpCallHorseFn)(param_0); }
 
     daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)mZeldaActorKeep.getActor(); }
 
@@ -195,6 +196,7 @@ public:
     bool checkLand() const { return field_0x16b4 == 5 && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
     bool checkEnemySearch() { return checkResetStateFlg0(ENEMY_SEARCH); }
+    bool checkOriginalDemo() const { return field_0x16b8 == 3; }
 
     void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
         field_0x1768 = param_0;
@@ -277,7 +279,7 @@ public:
     /* 0x17C4 */ cXyz mDemoPos0;
     /* 0x17D0 */ u8 field_0x17d0[0x18A4 - 0x17D0];
     /* 0x18A4 */ int (daHorse_c::*mpProcFn)();
-    /* 0x18B0 */ int (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
+    /* 0x18B0 */ bool (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
     /* 0x18BC */ void (daHorse_c::*mpSetReinPosHandFn)(int);
     /* 0x18C8 */ void (daHorse_c::*mpSetReinPosNormalFn)();
     /* 0x18D4 */ int (daHorse_c::*mpCallHorseFn)(const cXyz*);

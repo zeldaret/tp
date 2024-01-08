@@ -7,6 +7,7 @@
 #include "d/bg/d_bg_pc.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
 
 //
 // Forward References:
@@ -222,15 +223,34 @@ bool dBgWKCol::GetTriPnt(int poly_index, Vec* param_1, Vec* param_2, Vec* param_
 
 /* 8007E9D4-8007EB28 079314 0154+00 3/3 0/0 0/0 .text
  * GetTriPnt__8dBgWKColCFPC12KC_PrismDataP3VecP3VecP3Vec        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgWKCol::GetTriPnt(KC_PrismData const* param_0, Vec* param_1, Vec* param_2,
-                             Vec* param_3) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w_kcol/GetTriPnt__8dBgWKColCFPC12KC_PrismDataP3VecP3VecP3Vec.s"
+bool dBgWKCol::GetTriPnt(KC_PrismData const* param_1, Vec* param_2, Vec* param_3,
+                         Vec* param_4) const {
+    pkcdata* pkcData = m_pkc_head;
+    *param_2 = pkcData->field_0x0[param_1->field_0x4];
+    Vec* vec6 = &pkcData->field_0x4[param_1->field_0x6];
+    Vec* veca = &pkcData->field_0x4[param_1->field_0xa];
+    Vec* vecc = &pkcData->field_0x4[param_1->field_0xc];
+
+    Vec auStack_64;
+    VECCrossProduct(vec6, &pkcData->field_0x4[param_1->field_0x8], &auStack_64);
+    Vec auStack_70;
+    VECCrossProduct(veca, vec6, &auStack_70);
+    f32 dVar11 = VECDotProduct(&auStack_64,vecc);
+    if (cM3d_IsZero(dVar11)) {
+        return false;
+    }
+    dVar11 = param_1->field_0x0 / dVar11;
+    VECScale(&auStack_64, &auStack_64, dVar11);
+    VECAdd(&auStack_64, param_2, param_4);
+    dVar11 = VECDotProduct(&auStack_70,vecc);
+    if (cM3d_IsZero(dVar11)) {
+        return false;
+    }
+    dVar11 = param_1->field_0x0 / dVar11;
+    VECScale(&auStack_70, &auStack_70, dVar11);
+    VECAdd(&auStack_70, param_2, param_3);
+    return true;
 }
-#pragma pop
 
 /* 8007EB28-8007EB30 079468 0008+00 1/0 0/0 0/0 .text            GetBnd__8dBgWKColCFv */
 cM3dGAab* dBgWKCol::GetBnd() const {
@@ -260,15 +280,72 @@ void dBgWKCol::getPolyCode(int poly_index, dBgPc* pbgpc) const {
 
 /* 8007EBC4-8007EE34 079504 0270+00 8/8 0/0 0/0 .text
  * chkPolyThrough__8dBgWKColCFP5dBgPcP16cBgS_PolyPassChkP15cBgS_GrpPassChkR4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dBgWKCol::chkPolyThrough(dBgPc* param_0, cBgS_PolyPassChk* param_1,
-                                  cBgS_GrpPassChk* param_2, cXyz& param_3) const {
-    nofralloc
-#include "asm/d/bg/d_bg_w_kcol/chkPolyThrough__8dBgWKColCFP5dBgPcP16cBgS_PolyPassChkP15cBgS_GrpPassChkR4cXyz.s"
+bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* param_2,
+                                  cBgS_GrpPassChk* param_3, cXyz& param_4) const {
+    JUT_ASSERT(279, ppoly != 0);
+
+    if (param_3 != NULL) {
+        if (ppoly->maskNrm() == 0) {
+            if (((dBgS_GrpPassChk*)param_3)->MaskNormalGrp() == 0) {
+                return true;
+            }
+        } else if (ppoly->getWtr() != 0 &&
+            (((dBgS_GrpPassChk*)param_3)->MaskWaterGrp() == 0))
+        {
+            return true;
+        }
+    }
+    if (param_2 != NULL) {
+        dBgS_PolyPassChk* polypass = (dBgS_PolyPassChk*)param_2;
+        if (polypass->ChkObj() && ppoly->getObjThrough() != 0) {
+            return true;
+        }
+        if (polypass->ChkCam() && ppoly->getCamThrough() != 0) {
+            return true;
+        }
+        if ((polypass->ChkLink() && ppoly->getLinkThrough() != 0) ||
+            (polypass->ChkHorse() && ppoly->getLinkThrough() != 0))
+        {
+            return true;
+        }
+        if (polypass->ChkArrow() && ppoly->getArrowThrough() != 0) {
+            return true;
+        }
+        if (polypass->ChkBomb() && ppoly->getBombThrough() != 0) {
+            return true;
+        }
+        if (polypass->ChkBoomerang() && ppoly->getBoomerangThrough() != 0) {
+            return true;
+        }
+        if (polypass->ChkRope() && ppoly->getRopeThrough() != 0) {
+            return true;
+        }
+        if (polypass->ChkUnderwaterRoof() && ppoly->getUnderwaterRoof() != 0) {
+            return true;
+        }
+        if (ppoly->getWallCode() == 8 && polypass->ChkNoHorse())
+        {
+            return true;
+        }
+        if (ppoly->getWallCode() == 9) {
+            if (polypass->ChkNoHorse()) {
+                return true;
+            }
+            if (polypass->ChkHorse() && i_dComIfGp_getHorseActor() != NULL) {
+                if (!i_dComIfGp_getHorseActor()->checkSpecialWallHit(param_4)) {
+                    return true;
+                }
+            }
+        }
+        if (polypass->ChkStatue() && ppoly->getSpl() == 7) {
+            return true;
+        }
+        if (polypass->ChkIronBall() && ppoly->getIronBallThrough() != 0) {
+            return true;
+        }
+    }
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452718-8045271C 000D18 0004+00 5/5 0/0 0/0 .sdata2          @4187 */

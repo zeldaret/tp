@@ -6,7 +6,7 @@
 #include "JSystem/J3DU/J3DUDL.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 
-/* 80273E08-80273E10 26E748 0008+00 0/0 4/0 0/0 .text            getUseMtxNum__11J3DShapeMtxCFv */
-u32 J3DShapeMtx::getUseMtxNum() const {
-    return 1;
+// Fake function to make the weak function J3DShapeMtx::getUseMtxNum appear in this TU
+u32 J3DUGetUseMtxNum(J3DShapeMtx* i_shapeMtx) {
+    return i_shapeMtx->getUseMtxNum();
 }

@@ -984,6 +984,30 @@ SECTION_DATA static void* lit_4497[3] = {
 #pragma pop
 
 /* 803BA25C-803BA34C 01737C 00F0+00 2/3 3/3 0/0 .data            engine_tbl__9dCamera_c */
+#ifdef NONMATCHING
+engine_fn dCamera_c::engine_tbl[] = {
+    &dCamera_c::letCamera,
+    &dCamera_c::chaseCamera,
+    &dCamera_c::lockonCamera,
+    &dCamera_c::talktoCamera,
+    &dCamera_c::subjectCamera,
+    &dCamera_c::fixedPositionCamera,
+    &dCamera_c::fixedFrameCamera,
+    &dCamera_c::towerCamera,
+    &dCamera_c::rideCamera,
+    &dCamera_c::manualCamera,
+    &dCamera_c::eventCamera,
+    &dCamera_c::hookshotCamera,
+    &dCamera_c::colosseumCamera,
+    &dCamera_c::observeCamera,
+    &dCamera_c::magneCamera,
+    &dCamera_c::railCamera,
+    &dCamera_c::paraRailCamera,
+    &dCamera_c::oneSideCamera,
+    &dCamera_c::test1Camera,
+    &dCamera_c::test2Camera,
+};
+#else
 SECTION_DATA u8 dCamera_c::engine_tbl[240] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1001,6 +1025,7 @@ SECTION_DATA u8 dCamera_c::engine_tbl[240] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#endif
 
 /* 803BA34C-803BA378 -00001 002C+00 1/1 0/0 0/0 .data            @7128 */
 SECTION_DATA static void* lit_7128[11] = {
@@ -2012,7 +2037,7 @@ asm void dCamera_c::getParamTargetActor(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 param_1) {
+asm int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 param_1) {
     nofralloc
 #include "asm/d/d_camera/GetCameraTypeFromMapToolID__9dCamera_cFll.s"
 }
@@ -2577,7 +2602,7 @@ SECTION_SDATA2 static f32 lit_10582 = -50.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::chaseCamera(s32 param_0) {
+asm bool dCamera_c::chaseCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/chaseCamera__9dCamera_cFl.s"
 }
@@ -2691,7 +2716,7 @@ SECTION_SDATA2 static f32 lit_11175 = 1.0f / 50.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::lockonCamera(s32 param_0) {
+asm bool dCamera_c::lockonCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/lockonCamera__9dCamera_cFl.s"
 }
@@ -2838,7 +2863,7 @@ SECTION_SDATA2 static f32 lit_12297 = 7.0f / 25.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::talktoCamera(s32 param_0) {
+asm bool dCamera_c::talktoCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/talktoCamera__9dCamera_cFl.s"
 }
@@ -2914,7 +2939,7 @@ SECTION_SDATA2 static f32 lit_12869 = -511.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::subjectCamera(s32 param_0) {
+asm bool dCamera_c::subjectCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/subjectCamera__9dCamera_cFl.s"
 }
@@ -2928,7 +2953,7 @@ SECTION_SDATA2 static f32 lit_13132 = 4.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::magneCamera(s32 param_0) {
+asm bool dCamera_c::magneCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/magneCamera__9dCamera_cFl.s"
 }
@@ -2942,7 +2967,7 @@ SECTION_SDATA2 static f32 lit_13314 = 0.9990000128746033f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::colosseumCamera(s32 param_0) {
+asm bool dCamera_c::colosseumCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/colosseumCamera__9dCamera_cFl.s"
 }
@@ -2966,7 +2991,7 @@ SECTION_SDATA2 static f32 lit_13673 = 1.0f / 40.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::towerCamera(s32 param_0) {
+asm bool dCamera_c::towerCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/towerCamera__9dCamera_cFl.s"
 }
@@ -2995,7 +3020,7 @@ SECTION_SDATA2 static f32 lit_14064 = -100.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::hookshotCamera(s32 param_0) {
+asm bool dCamera_c::hookshotCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/hookshotCamera__9dCamera_cFl.s"
 }
@@ -3014,7 +3039,7 @@ static u8 struct_80451040[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::railCamera(s32 param_0) {
+asm bool dCamera_c::railCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/railCamera__9dCamera_cFl.s"
 }
@@ -3033,7 +3058,7 @@ static u8 struct_80451044[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::paraRailCamera(s32 param_0) {
+asm bool dCamera_c::paraRailCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/paraRailCamera__9dCamera_cFl.s"
 }
@@ -3106,7 +3131,7 @@ SECTION_SDATA2 static f32 lit_15487 = 1.1500000953674316f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::rideCamera(s32 param_0) {
+asm bool dCamera_c::rideCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/rideCamera__9dCamera_cFl.s"
 }
@@ -3138,7 +3163,7 @@ SECTION_SDATA2 static f32 lit_15773 = 4.0f / 3.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::observeCamera(s32 param_0) {
+asm bool dCamera_c::observeCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/observeCamera__9dCamera_cFl.s"
 }
@@ -3148,7 +3173,7 @@ asm void dCamera_c::observeCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::fixedFrameCamera(s32 param_0) {
+asm bool dCamera_c::fixedFrameCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/fixedFrameCamera__9dCamera_cFl.s"
 }
@@ -3159,7 +3184,7 @@ asm void dCamera_c::fixedFrameCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::fixedPositionCamera(s32 param_0) {
+asm bool dCamera_c::fixedPositionCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/fixedPositionCamera__9dCamera_cFl.s"
 }
@@ -3169,7 +3194,7 @@ asm void dCamera_c::fixedPositionCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::oneSideCamera(s32 param_0) {
+asm bool dCamera_c::oneSideCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/oneSideCamera__9dCamera_cFl.s"
 }
@@ -3227,7 +3252,7 @@ SECTION_DEAD static char const* const stringBase_803942F2 = "WideMode";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::eventCamera(s32 param_0) {
+asm bool dCamera_c::eventCamera(s32 param_0) {
     nofralloc
 #include "asm/d/d_camera/eventCamera__9dCamera_cFl.s"
 }

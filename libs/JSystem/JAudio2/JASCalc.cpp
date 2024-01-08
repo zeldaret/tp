@@ -6,8 +6,8 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "MSL_C/math.h"
-#include "MSL_C/MSL_Common/Src/limits"
+#include "math.h"
+#include "limits.h"
 
 //
 // Types:

@@ -3,7 +3,8 @@
 // Translation Unit: d_a_cow
 //
 
-#include "rel/d/a/d_a_cow/d_a_cow.h"
+// #include "rel/d/a/d_a_cow/d_a_cow.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

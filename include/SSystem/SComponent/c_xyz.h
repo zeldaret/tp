@@ -1,7 +1,7 @@
 #ifndef C_XYZ_H
 #define C_XYZ_H
 
-#include "MSL_C/math.h"
+#include "math.h"
 #include "dolphin/mtx/vec.h"
 
 struct cXyz : Vec {
@@ -110,6 +110,7 @@ struct cXyz : Vec {
             z = other.z;
         }
     }
+    void zero() { set(0.0f, 0.0f, 0.0f); }
 
     float getSquareMag() const { return VECSquareMag(this); }
     f32 getSquareDistance(const Vec& other) const { return VECSquareDistance(this, &other); }

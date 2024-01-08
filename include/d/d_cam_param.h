@@ -52,7 +52,8 @@ public:
 struct dCamStyleData {
     struct StyleData {
         /* 0x0 */ u32 field_0x0;
-        /* 0x4 */ u8 field_0x4[0x78 - 0x4];
+        /* 0x4 */ u16 field_0x4;
+        /* 0x6 */ u8 field_0x6[0x78 - 0x6];
     };  // Size: 0x78
 
     /* 0x0 */ u8 field_0x0[4];
@@ -86,6 +87,8 @@ public:
     /* 0x10 */ dCamStyleData::StyleData* mCurrentStyle;
     /* 0x14 */ int mStyleID;
     /* 0x18 */ u8 field_0x18[4];
+
+    u16 Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
 
     /* 8008858C */ virtual ~dCamParam_c();
 };

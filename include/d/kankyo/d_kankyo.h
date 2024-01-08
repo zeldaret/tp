@@ -50,6 +50,7 @@ static void dKy_twilight_camelight_set();
 u8 dKy_shadow_mode_check(u8 mode);
 void dKy_shadow_mode_set(u8 mode);
 void dKy_shadow_mode_reset(u8 mode);
+void dKy_Itemgetcol_chg_on();
 
 struct LIGHT_INFLUENCE {
     /* 0x00 */ cXyz mPosition;

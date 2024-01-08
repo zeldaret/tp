@@ -398,7 +398,7 @@ int daAlink_c::procHangReadyInit() {
 
     commonProcInit(PROC_HANG_READY);
     setSingleAnimeParam(ANM_CLIMB_JUMP, &daAlinkHIO_wallCatch_c0::m.mJumpAnm);
-    field_0x300c = field_0x306e + 0x8000;
+    mProcVar2.field_0x300c = field_0x306e + 0x8000;
     field_0x3198 = field_0x2f91;
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
@@ -409,11 +409,11 @@ int daAlink_c::procHangReadyInit() {
 
 /* 800FC240-800FC2F4 0F6B80 00B4+00 1/0 0/0 0/0 .text            procHangReady__9daAlink_cFv */
 int daAlink_c::procHangReady() {
-    cLib_addCalcAngleS(&shape_angle.y, field_0x300c, 2, 0x1000, 0x400);
+    cLib_addCalcAngleS(&shape_angle.y, mProcVar2.field_0x300c, 2, 0x1000, 0x400);
     current.angle.y = shape_angle.y;
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
-        shape_angle.y = field_0x300c;
+        shape_angle.y = mProcVar2.field_0x300c;
         current.angle.y = shape_angle.y;
 
         int hang_init;
@@ -443,7 +443,7 @@ int daAlink_c::procHangLeverDownInit() {
     commonProcInit(PROC_HANG_LEVER_DOWN);
     field_0x280c.setData(field_0x27f4);
     setSingleAnimeParam(ANM_CLIMB_JUMP, &daAlinkHIO_wallCatch_c0::m.mJumpAnm);
-    field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
+    mProcVar2.field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
     field_0x3198 = 145;
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
@@ -525,11 +525,11 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
     speed.y = FLOAT_LABEL(lit_6108);
 
-    field_0x300c = 0;
-    field_0x300e.x = 0;
-    field_0x300e.y = 0;
-    field_0x3008 = 0;
-    field_0x300e.z = 0;
+    mProcVar2.field_0x300c = 0;
+    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e.y = 0;
+    mProcVar0.field_0x3008 = 0;
+    mProcVar3.field_0x300e.z = 0;
     field_0x3080 = 0;
 
     field_0x280c.setData(param_0);
@@ -691,8 +691,8 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
 
     field_0x30a0 = -0x0800;
     field_0x33f4 = lit_6041;
-    field_0x300c = 1;
-    field_0x300e.y = 1;
+    mProcVar2.field_0x300c = 1;
+    mProcVar3.field_0x300e.y = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -711,8 +711,8 @@ int daAlink_c::procLadderUpEnd() {
                !checkNextAction(1))
     {
         if (frame_ctrl->getFrame() >= lit_15341) {
-            field_0x300c = 0;
-            field_0x300e.y = 0;
+            mProcVar2.field_0x300c = 0;
+            mProcVar3.field_0x300e.y = 0;
         } else if (frame_ctrl->getFrame() >= lit_17382) {
             field_0x30a0 = 0;
             field_0x33f4 = FLOAT_LABEL(lit_6108);
@@ -749,8 +749,8 @@ int daAlink_c::procLadderDownStart() {
             changeLadderMoveProc(0);
         }
     } else if (frame_ctrl->getFrame() >= lit_10286) {
-        field_0x300c = 1;
-        field_0x300e.y = 1;
+        mProcVar2.field_0x300c = 1;
+        mProcVar3.field_0x300e.y = 1;
     }
 
     return 1;
@@ -769,8 +769,8 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
 
     field_0x30a0 = 0x2800;
     field_0x33f4 = lit_6040;
-    field_0x300c = 0;
-    field_0x300e.y = 0;
+    mProcVar2.field_0x300c = 0;
+    mProcVar3.field_0x300e.y = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -1211,7 +1211,7 @@ int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& p
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     field_0x2f99 = 0x50;
-    field_0x3008 = param_2;
+    mProcVar0.field_0x3008 = param_2;
     return 1;
 }
 
@@ -1222,11 +1222,11 @@ int daAlink_c::procRoofHangStart() {
     }
 
     if (field_0x33a8 < lit_13700) {
-        field_0x3008 = 0;
+        mProcVar0.field_0x3008 = 0;
     }
 
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
-    if (field_0x3008 == 0 &&
+    if (mProcVar0.field_0x3008 == 0 &&
         (checkAnmEnd(frame_ctrl) ||
          (checkInputOnR() &&
           frame_ctrl->getFrame() > daAlinkHIO_roofHang_c0::m.field_0x0.mCheckFrame)))
@@ -1257,10 +1257,10 @@ int daAlink_c::procRoofHangWait() {
     }
 
     if (field_0x33a8 < lit_13700) {
-        field_0x3008 = 0;
+        mProcVar0.field_0x3008 = 0;
     }
 
-    if (field_0x3008 == 0) {
+    if (mProcVar0.field_0x3008 == 0) {
         checkNextActionRoofHang();
     }
 
@@ -1348,17 +1348,17 @@ int daAlink_c::procRoofHangTurnInit() {
     f32 anm_speed;
     if ((s16)(field_0x2fe2 - shape_angle.y) < 0) {
         anm_speed = -daAlinkHIO_roofHang_c0::m.field_0x44;
-        field_0x3008 = 1;
+        mProcVar0.field_0x3008 = 1;
         shape_angle.y += 0x8000;
         setOldRootQuaternion(0, -0x8000, 0);
         field_0x2060->getOldFrameTransInfo(0)->mTranslate.z = lit_26275;
-        field_0x300c = field_0x2fe2;
+        mProcVar2.field_0x300c = field_0x2fe2;
         field_0x3478 = FLOAT_LABEL(lit_6108);
         field_0x347c = lit_7625;
     } else {
         anm_speed = daAlinkHIO_roofHang_c0::m.field_0x44;
-        field_0x3008 = 0;
-        field_0x300c = field_0x2fe2 + 0x8000;
+        mProcVar0.field_0x3008 = 0;
+        mProcVar2.field_0x300c = field_0x2fe2 + 0x8000;
         field_0x3478 = lit_7625;
         field_0x347c = lit_26276;
     }
@@ -1366,7 +1366,7 @@ int daAlink_c::procRoofHangTurnInit() {
     current.angle.y = shape_angle.y;
     setSingleAnimeBaseSpeed(ANM_ROOF_HANG_TURN, anm_speed, daAlinkHIO_roofHang_c0::m.field_0x48);
 
-    if (field_0x3008 != 0) {
+    if (mProcVar0.field_0x3008 != 0) {
         setFaceBasicTexture(FTANM_UNK_4);
     } else {
         setFaceBasicTexture(FTANM_UNK_3);
@@ -1389,7 +1389,7 @@ int daAlink_c::procRoofHangTurn() {
 
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
     if (checkAnmEnd(frame_ctrl)) {
-        if (field_0x3008 == 0) {
+        if (mProcVar0.field_0x3008 == 0) {
             shape_angle.y += 0x8000;
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
@@ -1399,7 +1399,7 @@ int daAlink_c::procRoofHangTurn() {
         checkNextActionRoofHang();
     } else {
         if (frame_ctrl->getFrame() >= field_0x3478 && frame_ctrl->getFrame() <= field_0x347c) {
-            cLib_addCalcAngleS(&shape_angle.y, field_0x300c, 3, 0x200, 0x100);
+            cLib_addCalcAngleS(&shape_angle.y, mProcVar2.field_0x300c, 3, 0x200, 0x100);
             current.angle.y = shape_angle.y;
         }
 
@@ -1441,7 +1441,7 @@ int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     setOldRootQuaternion(0, current.angle.y - shape_angle.y, 0);
     shape_angle.y = current.angle.y;
     field_0x2f99 = 0x50;
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     return 1;
 }
 
@@ -1456,8 +1456,8 @@ int daAlink_c::procRoofSwitchHang() {
     if (checkAnmEnd(mUnderFrameCtrl)) {
         setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.field_0x1C,
                                 daAlinkHIO_roofHang_c0::m.field_0x20);
-        field_0x300c = 1;
-    } else if (field_0x300c != 0) {
+        mProcVar2.field_0x300c = 1;
+    } else if (mProcVar2.field_0x300c != 0) {
         setDoStatus(0x33);
 
         if (doTrigger()) {

@@ -6,8 +6,10 @@
 
 class daTag_Howl_c : public fopAc_ac_c {
 public:
-    u8 field_0x568;
-    u8 field_0x569;
+    /* 0x568 */ s8 mCurveID;
+    /* 0x569 */ u8 field_0x569;
+
+    s8 getCurveID() { return mCurveID; }
 
     /* 8048D958 */ int create();
     /* 8048D9BC */ int destroy();
@@ -17,7 +19,6 @@ public:
     /* 8048DC1C */ int getParam();
     /* 8048DC68 */ u8 getSwitchBit();
     /* 8048DCFC */ virtual ~daTag_Howl_c() {}
-
 };  // Size: 0x570
 
 #endif /* D_A_TAG_HOWL_H */

@@ -248,11 +248,20 @@ public:
     bool checkWolfNoLock() const { return mFlags & 0x200; }
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkDownFlg() const { return mFlags & 0x1; }
+    bool checkDeadFlg() const { return mFlags & 0x8; }
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
     void onCutDownHitFlg() { mFlags |= 2; }
+    void onWolfBiteDamage() { mFlags |= 0x40; }
+    void onWolfDownStartFlg() { mFlags |= 0x14; }
+    void onWolfDownPullEndFlg() { mFlags |= 0x20; }
 
+    void setThrowModeCatch() { mThrowMode |= 2; }
+    void setThrowModeDash() { mThrowMode |= 4; }
+    void setThrowModeThrowRight() { mThrowMode |= 0x10; }
+    void setThrowModeThrowLeft() { mThrowMode |= 8; }
+    
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;
     /* 0x580 */ J3DModel* mBallModel;

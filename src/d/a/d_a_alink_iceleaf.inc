@@ -160,9 +160,9 @@ int daAlink_c::procBoardRowInit() {
     commonProcInit(PROC_BOARD_ROW);
     setSingleAnimeBaseSpeed(ANM_RIDE_KICK, getBoardRowAnmSpeed(), daAlinkHIO_board_c0::m.mPushInterpolation);
     i_onResetFlg1(0x40);
-    field_0x3008 = 4;
-    field_0x300e.y = 1;
-    field_0x300e.z = 0;
+    mProcVar0.field_0x3008 = 4;
+    mProcVar3.field_0x300e.y = 1;
+    mProcVar3.field_0x300e.z = 0;
 
     return 1;
 }
@@ -182,9 +182,9 @@ int daAlink_c::procBoardTurnInit() {
     commonProcInit(PROC_BOARD_TURN);
     setSingleAnime(ANM_RIDE_JUMP, FLOAT_LABEL(lit_6108), lit_6040, daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame, lit_6109);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    field_0x300e.y = shape_angle.y + 0x8000;
-    field_0x300e.z = 0;
-    field_0x300a = 0;
+    mProcVar3.field_0x300e.y = shape_angle.y + 0x8000;
+    mProcVar3.field_0x300e.z = 0;
+    mProcVar1.field_0x300a = 0;
 
     return 1;
 }
@@ -203,8 +203,8 @@ asm int daAlink_c::procBoardTurn() {
 #ifdef NONMATCHING
 int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
     commonProcInit(PROC_BOARD_JUMP);
-    field_0x3008 = 0;
-    field_0x300e.z = 1;
+    mProcVar0.field_0x3008 = 0;
+    mProcVar3.field_0x300e.z = 1;
 
     setSingleAnime(ANM_RIDE_JUMP, FLOAT_LABEL(lit_6108),
                    daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
@@ -215,7 +215,7 @@ int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
         speed.y = cLib_minMaxLimit(param_0, daAlinkHIO_board_c0::m.mMinJumpSpeedY, daAlinkHIO_board_c0::m.mMaxJumpSpeedY);
     }
 
-    field_0x300e.y = 0;
+    mProcVar3.field_0x300e.y = 0;
     seStartOnlyReverb(Z2SE_AL_SNOBO_JUMP);
     return 1;
 }
@@ -240,12 +240,12 @@ int daAlink_c::procBoardJump() {
         if (!i_checkModeFlg(2)) {
             setBoardLandAnime();
             procBoardWaitInit(NULL);
-        } else if (field_0x300e.z != 0 && field_0x300e.y == 0 && field_0x2060->getOldFrameRate() < lit_8782) {
+        } else if (mProcVar3.field_0x300e.z != 0 && mProcVar3.field_0x300e.y == 0 && field_0x2060->getOldFrameRate() < lit_8782) {
             setSingleAnime(ANM_RIDE_JUMP, daAlinkHIO_board_c0::m.mAirborneAnm.mSpeed,
                            daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
                            daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame,
                            lit_6041);
-            field_0x300e.y = 1;
+            mProcVar3.field_0x300e.y = 1;
         }
     }
 
@@ -298,7 +298,7 @@ int daAlink_c::procBoardCutInit() {
 
     setCommonBoardAnime(0);
     setCutDash(1, var_r31);
-    field_0x300e.z = 0;
+    mProcVar3.field_0x300e.z = 0;
 
     return 1;
 }

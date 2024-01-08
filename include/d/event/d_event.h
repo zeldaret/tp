@@ -4,6 +4,8 @@
 #include "d/a/d_a_itembase.h"
 #include "global.h"
 
+int dEv_noFinishSkipProc(void*, int);
+
 struct dStage_MapEvent_dt_c;
 class fopAc_ac_c;
 
@@ -147,6 +149,7 @@ public:
     void onEventFlag(u16 flag) { mEventFlag |= flag; }
     void offEventFlag(u16 flag) { mEventFlag &= ~flag; }
     u8 getMode() const { return mMode; }
+    void onHindFlag(u16 flag) { mHindFlag |= flag; }
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
     u8 checkCompulsory() { return mCompulsory; }
     u8 getMapToolId() { return mMapToolId; }
@@ -161,6 +164,9 @@ public:
     fopAc_ac_c* getPtT() { return convPId(mPtT); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
+    u8 getGtItm() { return mGtItm; }
+    void i_startCheckSkipEdge(void* param_0) { setSkipProc(param_0, dEv_noFinishSkipProc, 0); }
+    bool i_checkSkipEdge() { return chkFlag2(8) != false; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

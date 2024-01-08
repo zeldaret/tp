@@ -3,12 +3,14 @@ import sys
 import libarc
 from pathlib import Path
 import libyaz0
+import libstage
 
 """
 Extracts the game assets and stores them in the game folder
 Usage: `python tools/extract_game_assets.py`
 """
 
+fileMagicNumber = b"GZ2E01"
 fstInfoPosition = 0x424
 bootPosition = 0x0
 bootSize = 0x440
@@ -132,14 +134,18 @@ def writeFolder(parsedFstBin, i):
 Use the parsed fst.bin contents to write assets to file
 """
 
-convertDefinitions = [
-    {
-        "extension": ".arc",
+convertDefinitions = {
+    ".arc": {
         "function": libarc.extract_to_directory,
         "exceptions": ["archive/dat/speakerse.arc"],
+    },
+    ".dzs": {
+        "function": libstage.extract_to_json
+    },
+    ".dzr": {
+        "function": libstage.extract_to_json
     }
-]
-
+}
 
 def writeFile(name, data):
     if data[0:4] == bytes("Yaz0", "ascii"):
@@ -150,14 +156,10 @@ def writeFile(name, data):
     extractDef = None
     splitName = os.path.splitext(name)
     ext = splitName[1]
-    for extractData in convertDefinitions:
-        if ext == extractData["extension"]:
-            extractDef = extractData
-            if extractData["exceptions"] != None:
-                for exception in extractData["exceptions"]:
-                    if str(name) == exception:
-                        extractDef = None
-            break
+    if ext in convertDefinitions:
+        extractDef = convertDefinitions[ext]
+        if "exceptions" in extractDef and str(name) in extractDef["exceptions"]:
+            extractDef = None
 
     if extractDef == None:
         file = open(name, "wb")
@@ -243,6 +245,13 @@ def extract(isoPath: Path, gamePath: Path, yaz0Encoder):
     cwd = os.getcwd()
     os.chdir(gamePath)
     with open(isoPath, "rb") as f:
+        magic = f.read(len(fileMagicNumber))
+        if magic != fileMagicNumber:
+            if magic.startswith(b"CISO"):
+                raise RuntimeError("Compressed ISO files are not supported.")
+            else:
+                raise RuntimeError(f"Invalid ISO magic number: expected {fileMagicNumber}, got {magic}")
+
         # Seek to fst offset information and retrieve it
         f.seek(fstInfoPosition)
         fstOffset, fstSize = getFstInfo(f, fstInfoPosition)

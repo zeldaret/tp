@@ -3,7 +3,8 @@
 // Translation Unit: d_a_npc_gwolf
 //
 
-#include "rel/d/a/npc/d_a_npc_gwolf/d_a_npc_gwolf.h"
+// #include "rel/d/a/npc/d_a_npc_gwolf/d_a_npc_gwolf.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

@@ -1474,10 +1474,6 @@ s32 fopAcM_createItemForTrBoxDemo(cXyz const* i_pos, int i_itemNo, int i_itemBit
     }
 }
 
-/* ############################################################################################## */
-/* 80451C28-80451C2C 000228 0004+00 1/1 0/0 0/0 .sdata2          @5584 */
-SECTION_SDATA2 static f32 lit_5584 = 15.999899864196777f;
-
 struct ItemTableList {
     /* 0x00 */ char mListName[11];
     /* 0x0B */ u8 mTableNum;
@@ -1487,7 +1483,6 @@ struct ItemTableList {
 
 /* 8001BCFC-8001BE14 01663C 0118+00 2/2 0/0 0/0 .text            fopAcM_getItemNoFromTableNo__FUc */
 // out of order instructions / regalloc
-#ifdef NONMATCHING
 u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
     u8 tableNo = i_tableNo;
     ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
@@ -1518,18 +1513,8 @@ u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
         break;
     }
 
-    return tableList->mTables[tableNo][(int)cM_rndF(15.999f)];
+    return tableList->mTables[tableNo][(int)cM_rndF(15.999899864196777f)];
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 fopAcM_getItemNoFromTableNo(u8 param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_getItemNoFromTableNo__FUc.s"
-}
-#pragma pop
-#endif
 
 struct EnemyTableList {
     /* 0x0 */ u32 mTag;
@@ -1687,7 +1672,7 @@ inline u32 maskShift(int val, int bits, int shift) {
     return (val & ((1 << bits) - 1)) << shift;
 }
 
-inline u32 makeItemParams(int iNo, int p8, int unk, int p9) {
+inline u32 makeItemParams(u32 iNo, u32 p8, u32 unk, u32 p9) {
     return maskShift(p8, 8, 0x8) | maskShift(iNo, 8, 0) | maskShift(unk, 8, 0x10) |
            maskShift(p9, 4, 0x18);
 }
@@ -2536,17 +2521,21 @@ asm s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1) {
 
 /* 8001DC68-8001DCBC 0185A8 0054+00 0/0 5/5 21/21 .text
  * lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool fopAcM_lc_c::lineCheck(cXyz const* param_0, cXyz const* param_1,
+bool fopAcM_lc_c::lineCheck(cXyz const* param_0, cXyz const* param_1,
                                 fopAc_ac_c const* param_2) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c.s"
+    ((dBgS_LinChk*)mLineCheck)->Set(param_0, param_1, param_2);
+    dComIfG_Bgsp().LineCross((cBgS_LinChk*)mLineCheck);
 }
-#pragma pop
 
 /* 8001DCBC-8001DD1C 0185FC 0060+00 1/1 10/10 108/108 .text gndCheck__11fopAcM_gc_cFPC4cXyz */
+// return value calculation
+#ifdef NONMATCHING
+bool fopAcM_gc_c::gndCheck(cXyz const* param_0) {
+    ((cBgS_GndChk*)mGndCheck)->SetPos(param_0);
+    mGroundY = dComIfG_Bgsp().GroundCross((cBgS_GndChk*)mGndCheck);
+    return -1000000000.0f > mGroundY;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2555,6 +2544,7 @@ asm bool fopAcM_gc_c::gndCheck(cXyz const* param_0) {
 #include "asm/f_op/f_op_actor_mng/gndCheck__11fopAcM_gc_cFPC4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451C5C-80451C60 00025C 0004+00 1/1 0/0 0/0 .sdata2          @6517 */

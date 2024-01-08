@@ -4,94 +4,13 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct cXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CE70 */ void scaleM(cXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct daObjIce_l_c {
-    /* 80C1F9F8 */ void RideOn_Angle(s16&, f32, s16, f32);
-    /* 80C1FA60 */ void Check_RideOn(cXyz);
-    /* 80C1FCCC */ void initBaseMtx();
-    /* 80C1FCF8 */ void setBaseMtx();
-    /* 80C200CC */ void create();
-    /* 80C2030C */ void CreateHeap();
-    /* 80C20384 */ void Create();
-    /* 80C203C4 */ void Execute(f32 (**)[3][4]);
-    /* 80C206AC */ void Draw();
-    /* 80C20750 */ void Delete();
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C6B8 */ void getObjectResName2Index(char const*, char const*);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dBgW {};
-
-struct dBgS_ObjGndChk_Spl {
-    /* 800777B0 */ dBgS_ObjGndChk_Spl();
-    /* 80077848 */ ~dBgS_ObjGndChk_Spl();
-};
-
-struct cBgS_PolyInfo {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct Vec {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -150,24 +69,16 @@ extern "C" void cLib_addCalcAngleS__FPsssss();
 extern "C" void cLib_chaseF__FPfff();
 extern "C" void cLib_chaseAngleS__FPsss();
 extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void PSMTXCopy();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -196,14 +107,9 @@ COMPILER_STRIP_GATE(0x80C20794, &lit_3677);
 
 /* 80C1F9F8-80C1FA60 000078 0068+00 1/1 0/0 0/0 .text            RideOn_Angle__12daObjIce_l_cFRsfsf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::RideOn_Angle(s16& param_0, f32 param_1, s16 param_2, f32 param_3) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/RideOn_Angle__12daObjIce_l_cFRsfsf.s"
+void daObjIce_l_c::RideOn_Angle(s16& i_angle, f32 param_1, s16 param_2, f32 param_3) {
+    cLib_addCalcAngleS(&i_angle, param_2 * (param_1 / param_3), 1, 0x100, 1);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C2079C-80C207A4 000010 0008+00 0/2 0/0 0/0 .rodata          @3733 */
@@ -277,34 +183,62 @@ COMPILER_STRIP_GATE(0x80C207C8, &lit_3741);
 
 /* 80C1FA60-80C1FCCC 0000E0 026C+00 1/1 0/0 0/0 .text            Check_RideOn__12daObjIce_l_cF4cXyz
  */
+// float match issues
+#ifdef NONMATCHING
+int daObjIce_l_c::Check_RideOn(cXyz param_0) {
+    fopAc_ac_c* player_p = (fopAc_ac_c*)daPy_getPlayerActorClass();
+    s16 var_r29 = 0;
+    field_0x5e6 = 1;
+
+    s16 target = cLib_targetAngleY(&current.pos, &param_0);
+    f32 dist_to_pos = current.pos.abs(param_0);
+
+    f32 var_f31 = cM_scos(target - shape_angle.y);
+    var_f31 *= dist_to_pos;
+
+    f32 var_f30 = cM_ssin(target - shape_angle.y);
+    var_f30 *= -dist_to_pos;
+
+    RideOn_Angle(field_0x5d8.x, var_f31, 352.0f / field_0x5b4.x, field_0x5b4.x * 600.0f);
+    RideOn_Angle(field_0x5d8.z, var_f30, 352.0f / field_0x5b4.x, field_0x5b4.x * 500.0f);
+    field_0x5e6 = 1;
+
+    f32 player_speed = fopAcM_GetSpeedF(player_p);
+    if (player_speed > 0.0f) {
+        var_r29 = player_speed * 48.0f;
+        field_0x5ac = 0x150;
+    }
+
+    field_0x5e0 = 0.0f;
+    cLib_addCalc(&field_0x5a0, var_r29, 0.015f, 100.0f, 0.0f);
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjIce_l_c::Check_RideOn(cXyz param_0) {
+asm int daObjIce_l_c::Check_RideOn(cXyz param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/Check_RideOn__12daObjIce_l_cF4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 80C1FCCC-80C1FCF8 00034C 002C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/initBaseMtx__12daObjIce_l_cFv.s"
+void daObjIce_l_c::initBaseMtx() {
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80C1FCF8-80C1FD5C 000378 0064+00 2/2 0/0 0/0 .text            setBaseMtx__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/setBaseMtx__12daObjIce_l_cFv.s"
+void daObjIce_l_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::scaleM(field_0x5b4);
+
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C207CC-80C207D0 000040 0004+00 0/1 0/0 0/0 .rodata          @3843 */
@@ -323,6 +257,47 @@ COMPILER_STRIP_GATE(0x80C207D0, &lit_3844);
 
 /* 80C1FD5C-80C20034 0003DC 02D8+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
+// instruction out of order
+#ifdef NONMATCHING
+static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+    daObjIce_l_c* ice_p = static_cast<daObjIce_l_c*>(param_1);
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+    cXyz* ball_pos = player_p->getIronBallCenterPos();
+    cXyz& player_pos = fopAcM_GetPosition(player_p);
+
+    // fake match?
+    if ((u8)(fopAcM_GetName(param_2) == 0) == PROC_ALINK) {
+        ice_p->field_0x5f4 = 0x100;
+        ice_p->field_0x5a4 = -1.0f;
+        ice_p->field_0x5ac = 0x500;
+    } else {
+        ice_p->Check_RideOn(player_pos);
+    }
+
+    cXyz* actor_pos = &fopAcM_GetPosition(param_2);
+    if (ball_pos != NULL && actor_pos != NULL &&
+        actor_pos->absXZ(*ball_pos) < ice_p->field_0x5b4.x * 600.0f)
+    {
+        ice_p->field_0x5f4 = 0x400;
+        ice_p->field_0x5a4 = -6.0f;
+        ice_p->field_0x5ac = 0x700;
+        ice_p->Check_RideOn(*ball_pos);
+    }
+
+    if (player_p->checkBootsOrArmorHeavy()) {
+        ice_p->field_0x5a4 = -6.0f;
+        ice_p->field_0x5ac = 0x200;
+        ice_p->Check_RideOn(player_pos);
+    }
+
+    if (ice_p->field_0x5b1 == 0xFF && fopAcM_GetName(param_2) == PROC_ALINK) {
+        ice_p->field_0x5f4 = 0x300;
+        ice_p->field_0x5a4 = -6.0f;
+        ice_p->field_0x5ac = 0x1000;
+        ice_p->Check_RideOn(player_pos);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,54 +306,36 @@ static asm void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* par
 #include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80C20034-80C20060 0006B4 002C+00 1/0 0/0 0/0 .text            daObjIce_l_Draw__FP12daObjIce_l_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjIce_l_Draw(daObjIce_l_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/daObjIce_l_Draw__FP12daObjIce_l_c.s"
+static int daObjIce_l_Draw(daObjIce_l_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80C20060-80C20080 0006E0 0020+00 1/0 0/0 0/0 .text daObjIce_l_Execute__FP12daObjIce_l_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjIce_l_Execute(daObjIce_l_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/daObjIce_l_Execute__FP12daObjIce_l_c.s"
+static int daObjIce_l_Execute(daObjIce_l_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80C20080-80C20088 000700 0008+00 1/0 0/0 0/0 .text daObjIce_l_IsDelete__FP12daObjIce_l_c */
-static bool daObjIce_l_IsDelete(daObjIce_l_c* param_0) {
-    return true;
+static int daObjIce_l_IsDelete(daObjIce_l_c* i_this) {
+    return 1;
 }
 
 /* 80C20088-80C200AC 000708 0024+00 1/0 0/0 0/0 .text            daObjIce_l_Delete__FP12daObjIce_l_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjIce_l_Delete(daObjIce_l_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/daObjIce_l_Delete__FP12daObjIce_l_c.s"
+static int daObjIce_l_Delete(daObjIce_l_c* i_this) {
+    i_this->MoveBGDelete();
+    return 1;
 }
-#pragma pop
 
 /* 80C200AC-80C200CC 00072C 0020+00 1/0 0/0 0/0 .text            daObjIce_l_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjIce_l_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/daObjIce_l_Create__FP10fopAc_ac_c.s"
+static int daObjIce_l_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjIce_l_c*>(i_this)->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C207D4-80C207D8 000048 0004+00 0/1 0/0 0/0 .rodata          @3934 */
@@ -437,7 +394,7 @@ SECTION_DEAD static char const* const stringBase_80C20824 = "Ice_l.dzb";
 #pragma pop
 
 /* 80C20838-80C2083C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_ice_l__stringBase0;
+SECTION_DATA static char* l_arcName = "V_Ice_l";
 
 /* 80C2083C-80C2085C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjIce_l_Method */
 SECTION_DATA static void* l_daObjIce_l_Method[8] = {
@@ -476,41 +433,84 @@ SECTION_DATA extern void* __vt__12daObjIce_l_c[10] = {
 };
 
 /* 80C200CC-80C2030C 00074C 0240+00 1/1 0/0 0/0 .text            create__12daObjIce_l_cFv */
+// matches with literals
+#ifdef NONMATCHING
+int daObjIce_l_c::create() {
+    fopAcM_SetupActor(this, daObjIce_l_c);
+
+    int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "Ice_l.dzb");
+        JUT_ASSERT(108, dzb_id != -1);
+
+        phase_state = MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x1440, NULL);
+        if (phase_state == cPhs_ERROR_e) {
+            return phase_state;
+        }
+    }
+
+    field_0x5b1 = fopAcM_GetParam(this) & 0xFF;
+    if (field_0x5b1 == 0) {
+        field_0x5b0 = 1;
+    }
+
+    if (field_0x5b0 != 0) {
+        if (dComIfGs_getCollectSmell() == SMELL_FISH) {
+            field_0x5b1 = 1;
+        } else {
+            field_0x5b1 = 0xFF;
+        }
+    }
+
+    u16 prm1 = (fopAcM_GetParam(this) >> 8) & 0xFF;
+    if (prm1 == 0xFF) {
+        prm1 = 0;
+    }
+    field_0x5b4.set(prm1 + 1.0f, 1.0f, prm1 + 1.0f);
+
+    cXyz gndchk_pos(current.pos.x, current.pos.y + 300.0f, current.pos.z);
+    field_0x5e4 = cM_rndFX(32000.0f);
+
+    dBgS_ObjGndChk_Spl gndchk;
+    gndchk.SetPos(&gndchk_pos);
+    field_0x5c0 = current.pos.y;
+
+    f32 cull_size = field_0x5b4.x * 1000.0f;
+    fopAcM_setCullSizeFar(this, 3.0f);
+    fopAcM_setCullSizeBox(this, -cull_size, -cull_size, -cull_size, cull_size, cull_size,
+                          cull_size);
+    return phase_state;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjIce_l_c::create() {
+asm int daObjIce_l_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/create__12daObjIce_l_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80C2081C-80C2081C 000090 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C2082E = "Ice_l.bmd";
-#pragma pop
+#endif
 
 /* 80C2030C-80C20384 00098C 0078+00 1/0 0/0 0/0 .text            CreateHeap__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/CreateHeap__12daObjIce_l_cFv.s"
+int daObjIce_l_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Ice_l.bmd");
+    JUT_ASSERT(82, modelData != 0);
+
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80C20384-80C203C4 000A04 0040+00 1/0 0/0 0/0 .text            Create__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/func_80C20384.s"
+int daObjIce_l_c::Create() {
+    initBaseMtx();
+    mpBgW->SetRideCallback(rideCallBack);
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C207F4-80C207F8 000068 0004+00 0/1 0/0 0/0 .rodata          @3994 */
@@ -585,33 +585,65 @@ COMPILER_STRIP_GATE(0x80C20818, &lit_4003);
 
 /* 80C203C4-80C206AC 000A44 02E8+00 1/0 0/0 0/0 .text            Execute__12daObjIce_l_cFPPA3_A4_f
  */
+#ifdef NONMATCHING
+int daObjIce_l_c::Execute(Mtx** param_0) {
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+    fopAcM_GetPosition(player_p);
+    cXyz sp68(current.pos.x, current.pos.y - 300.0f, current.pos.z);
+
+    cLib_chaseF(&field_0x5a4, 0.0f, 0.04f);
+    field_0x5d4 += (field_0x5a0 * 1.5f) + 848.0f;
+    field_0x5d6 += (field_0x5a0 * 1.5f) + 848.0f;
+
+    cLib_addCalc(&current.pos.y,
+                 field_0x5e0 + (field_0x5c0 + (21.0f * field_0x5a4) +
+                                (cM_ssin(field_0x5d6 + field_0x5e4) * 5.0f)),
+                 0.1f, 15.0f, 0.1f);
+    cLib_addCalcAngleS(&shape_angle.x,
+                       field_0x5d8.x +
+                           (field_0x5ac * 0.5f * cM_ssin(0x2000 + (field_0x5d4 + field_0x5e4))),
+                       2, 0x100, 1);
+    cLib_addCalcAngleS(&shape_angle.z,
+                       field_0x5d8.z + (field_0x5ac * 0.5f * cM_ssin(field_0x5d6 + field_0x5e4)), 2,
+                       0x100, 1);
+
+    if (field_0x5e6 == 0) {
+        cLib_addCalcAngleS(&field_0x5d8.x, 0, 2, 0x100, 1);
+        cLib_addCalcAngleS(&field_0x5d8.z, 0, 2, 0x100, 1);
+        cLib_addCalc(&field_0x5e0, 0.0f, 0.2f, 100.0f, 0.0f);
+        cLib_addCalc(&field_0x5a0, 0.0f, 0.05f, 100.0f, 0.0f);
+        cLib_chaseAngleS(&field_0x5ac, 0x120, 0x10);
+    }
+
+    field_0x5e6 = 0;
+    *param_0 = &mBgMtx;
+    setBaseMtx();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjIce_l_c::Execute(f32 (**param_0)[3][4]) {
+asm int daObjIce_l_c::Execute(Mtx** param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/Execute__12daObjIce_l_cFPPA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 80C206AC-80C20750 000D2C 00A4+00 1/0 0/0 0/0 .text            Draw__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/Draw__12daObjIce_l_cFv.s"
+int daObjIce_l_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+    dComIfGd_setListDarkBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
 }
-#pragma pop
 
 /* 80C20750-80C20784 000DD0 0034+00 1/0 0/0 0/0 .text            Delete__12daObjIce_l_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjIce_l_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l/Delete__12daObjIce_l_cFv.s"
+int daObjIce_l_c::Delete() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+    return 1;
 }
-#pragma pop
-
-/* 80C2081C-80C2081C 000090 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

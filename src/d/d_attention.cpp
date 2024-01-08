@@ -5,6 +5,7 @@
 
 #include "d/d_attention.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
@@ -342,6 +343,16 @@ SECTION_SDATA2 static f32 lit_4092 = 3.0f / 5.0f;
 
 /* 80070178-80070198 06AAB8 0020+00 1/0 0/0 0/0 .text
  * execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo         */
+// vtable issues
+#ifdef NONMATCHING
+int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
+    if (param_0 == 0) {
+        param_1->mTranslate.y *= 0.6f;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -351,6 +362,7 @@ extern "C" asm void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo() {
 #include "asm/d/d_attention/execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -380,7 +392,7 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     mLockOnOffset = 0;
     initList(-1);
 
-    field_0x10 = 0;
+    mPlayerAttentionFlags = 0;
     field_0x32a = 0;
     mAttnStatus = ST_NONE;
     field_0x32b = 4;
@@ -783,7 +795,7 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
         f32 dvar12;
         type_tbl_entry* entry = &table[i];
 
-        if (field_0x10 & entry->field_0x2 & param_1->mAttentionInfo.mFlags) {
+        if (mPlayerAttentionFlags & entry->field_0x2 & param_1->mAttentionInfo.mFlags) {
             u8 index = param_1->mAttentionInfo.field_0x0[entry->field_0x0];
             dist_entry* d_entry = &dist_table[index];
 
@@ -825,24 +837,25 @@ asm f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, 
 
 /* 800710C0-80071240 06BA00 0180+00 1/1 0/0 0/0 .text
  * setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl           */
+// Matches with literals
 #ifdef NONMATCHING
 void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
                            cSAngle param_4, u32 param_5) {
-    int i;
     int max;
     int* num;
+    s32 maxIndex;
     dAttList_c* list;
 
     switch (param_0) {
     case 0x4C:
-        if (!chkFlag(0x4000) && (mLockonCount < 1 || param_1 != mLockOnList[0].getActor() || param_5 != mLockOnList[0].mType)) {
-            max = 8;
-            num = &mLockonCount;
-            list = mLockOnList;
-            break;
+        if (chkFlag(0x4000)) return;
+        if (mLockonCount >= 1 && param_1 == mLockOnList[0].getActor() && param_5 == mLockOnList[0].mType) {
+            return;
         }
-
-        return;
+        max = 8;
+        num = &mLockonCount;
+        list = mLockOnList;
+        break;
     default:
     case 0x41:
         max = 4;
@@ -859,30 +872,27 @@ void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 pa
     f32 weight = 0.0f;
 
     if (param_2 > weight) {
-        int temp_r3 = *num;
-        int var_r5;
-
-        if (temp_r3 < max) {
-            var_r5 = temp_r3;
-            *num = temp_r3 + 1;
+        if (*num < max) {
+            maxIndex = *num;
+            (*num)++;
         } else {
-            f32 var_f1 = weight;
-            var_r5 = 0;
-            for (i = 0; i < max; i++) {
-                if (list[i].mWeight > var_f1) {
-                    var_f1 = list[i].mWeight;
-                    var_r5 = i;
+            f32 maxWeight = weight;
+            s32 i = 0;
+            maxIndex = 0;
+            for (; i < max; i++) {
+                if (list[i].mWeight > maxWeight) {
+                    maxWeight = list[i].mWeight;
+                    maxIndex = i;
                 }
             }
         }
 
-        list = &list[var_r5];
-        if (list->mWeight > param_2) {
-            list->setActor(param_1);
-            list->mWeight = param_2;
-            list->mDistance = param_3;
-            list->mAngle = param_4;
-            list->mType = param_5;
+        if (list[maxIndex].mWeight > param_2) {
+            list[maxIndex].setActor(param_1);
+            list[maxIndex].mWeight = param_2;
+            list[maxIndex].mDistance = param_3;
+            list[maxIndex].mAngle = param_4;
+            list[maxIndex].mType = param_5;
         }
     }
 }
@@ -899,6 +909,37 @@ asm void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f3
 #endif
 
 /* 80071240-8007138C 06BB80 014C+00 6/6 0/0 0/0 .text            initList__12dAttention_cFUl */
+// Matches with literals
+#ifdef NONMATCHING
+void dAttention_c::initList(u32 flags) {
+    mPlayerAttentionFlags = flags;
+    if (chkFlag(0x4000) == 0) {
+        int lockonIndex;
+        mLockonCount = lockonIndex = mLockTargetID != -1 ? 1 : 0;
+        if (mLockOnOffset != 0) {
+            memcpy(mLockOnList, mLockOnList + mLockOnOffset, sizeof(dAttList_c));
+            mLockOnList[0].mWeight = 0.0f;
+        }
+        mLockOnOffset = 0;
+        for (; lockonIndex < 8; lockonIndex++) {
+            mLockOnList[lockonIndex].setActor(NULL);
+            mLockOnList[lockonIndex].mWeight = FLT_MAX;
+        }
+    }
+    int i;
+    mActionCount = mActionOffset = i = 0;
+    for (; i < 4; i++) {
+        mActionList[i].setActor(NULL);
+        mActionList[i].mWeight = FLT_MAX;
+    }
+    mCheckObjectCount = mCheckObjectOffset = i = 0;
+    for (; i < 4; i++) {
+        mCheckObjectList[i].setActor(NULL);
+        mCheckObjectList[i].mWeight = FLT_MAX;
+    }
+    setFlag(0x1000);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -907,6 +948,7 @@ asm void dAttention_c::initList(u32 param_0) {
 #include "asm/d/d_attention/initList__12dAttention_cFUl.s"
 }
 #pragma pop
+#endif
 
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
@@ -936,14 +978,32 @@ void dAttention_c::setOwnerAttentionPos() {
 
 /* 80071488-8007167C 06BDC8 01F4+00 1/1 0/0 0/0 .text
  * SelectAttention__12dAttention_cFP10fopAc_ac_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_attention/SelectAttention__12dAttention_cFP10fopAc_ac_c.s"
+int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
+    cSAngle acStack_4c;
+    cSAngle acStack_50;
+    if (param_0 == mpPlayer || mpPlayer == NULL) {
+        return 0;
+    }
+    mPlayerAttentionFlags = mpPlayer->mAttentionInfo.mFlags;
+    cSGlobe acStack_40(param_0->mAttentionInfo.mPosition - mOwnerAttnPos);
+    acStack_4c = acStack_40.U() - fopAcM_GetShapeAngle_p(mpPlayer).y;
+    acStack_50 = cSAngle(acStack_40.U().Inv()) - fopAcM_GetShapeAngle_p(param_0).y;
+    u32 local_48;
+    if ((param_0->mAttentionInfo.mFlags & 7) != 0 && chkFlag(0x4000) == 0)
+    {
+        f32 dVar5 = calcWeight(0x4c, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
+        setList(0x4c, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+    }
+    if ((param_0->mAttentionInfo.mFlags & 0xf8) != 0) {
+        f32 dVar5 = calcWeight(0x41, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
+        setList(0x41, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+    }
+    if (((param_0->mAttentionInfo).mFlags & 0x100) != 0) {
+        f32 dVar5 = calcWeight(0x43, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
+        setList(0x43, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+    }
+    return 0;
 }
-#pragma pop
 
 /* 8007167C-800716B8 06BFBC 003C+00 0/0 9/9 0/0 .text            __dt__7cSGlobeFv */
 #pragma push
@@ -955,62 +1015,52 @@ extern "C" asm void __dt__7cSGlobeFv() {
 }
 #pragma pop
 
+
 /* 800716B8-800718A4 06BFF8 01EC+00 4/4 0/0 0/0 .text            sortList__12dAttention_cFv */
-#ifdef NONMATCHING
 void dAttention_c::sortList() {
-    dAttList_c list;
+    int i;
+    int j;
+    int count;
+    dAttList_c temp;
+    dAttList_c* list;
 
     if (!chkFlag(0x4000)) {
-        for (int i = (mLockTargetID != -1); i < mLockonCount - 1; i++) {
-            dAttList_c* list_1 = &mLockOnList[i];
-            for (int j = i + 1; j < mLockonCount; j++) {
-                dAttList_c* list_2 = &mLockOnList[j];
-
-                if (list_2->mWeight < list_1->mWeight) {
-                    memcpy(&list, list_2, sizeof(dAttList_c));
-                    memcpy(list_2, list_1, sizeof(dAttList_c));
-                    memcpy(list_1, &list, sizeof(dAttList_c));
+        list = mLockOnList;
+        for (i = (mLockTargetID != -1) ? 1 : 0, count = mLockonCount; i < count - 1; i++) {
+            for (j = i + 1; j < count; j++) {
+                if (list[i].mWeight > list[j].mWeight) {
+                    memcpy(&temp, &list[j], sizeof(dAttList_c));
+                    memcpy(&list[j], &list[i], sizeof(dAttList_c));
+                    memcpy(&list[i], &temp, sizeof(dAttList_c));
                 }
             }
         }
     }
 
-    for (int i = 0; i < mActionCount - 1; i++) {
-        dAttList_c* list_1 = &mActionList[i];
-        for (int j = i + 1; j < mActionCount; j++) {
-            dAttList_c* list_2 = &mActionList[j];
-
-            if (list_2->mWeight < list_1->mWeight) {
-                memcpy(&list, list_2, sizeof(dAttList_c));
-                memcpy(list_2, list_1, sizeof(dAttList_c));
-                memcpy(list_1, &list, sizeof(dAttList_c));
+    list = mActionList;
+    count = mActionCount;
+    for (i = 0; i < count - 1; i++) {
+        for (j = i + 1; j < count; j++) {
+            if (list[i].mWeight > list[j].mWeight) {
+                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&list[j], &list[i], sizeof(dAttList_c));
+                memcpy(&list[i], &temp, sizeof(dAttList_c));
             }
         }
     }
 
-    for (int i = 0; i < mCheckObjectCount - 1; i++) {
-        dAttList_c* list_1 = &mCheckObjectList[i];
-        for (int j = i + 1; j < mCheckObjectCount; j++) {
-            dAttList_c* list_2 = &mCheckObjectList[j];
-
-            if (list_2->mWeight < list_1->mWeight) {
-                memcpy(&list, list_2, sizeof(dAttList_c));
-                memcpy(list_2, list_1, sizeof(dAttList_c));
-                memcpy(list_1, &list, sizeof(dAttList_c));
+    list = mCheckObjectList;
+    count = mCheckObjectCount;
+    for (i = 0; i < count - 1; i++) {
+        for (j = i + 1; j < count; j++) {
+            if (list[i].mWeight > list[j].mWeight) {
+                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&list[j], &list[i], sizeof(dAttList_c));
+                memcpy(&list[i], &temp, sizeof(dAttList_c));
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::sortList() {
-    nofralloc
-#include "asm/d/d_attention/sortList__12dAttention_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 800718A4-80071960 06C1E4 00BC+00 2/2 0/0 0/0 .text            stockAttention__12dAttention_cFv */
 void dAttention_c::stockAttention() {
@@ -1073,6 +1123,7 @@ int dAttention_c::freeAttention() {
 }
 
 /* 80071A98-80071CC0 06C3D8 0228+00 2/2 0/0 0/0 .text            chaseAttention__12dAttention_cFv */
+// Matches with literals
 #ifdef NONMATCHING
 bool dAttention_c::chaseAttention() {
     int offset = mLockOnOffset;
@@ -1083,16 +1134,18 @@ bool dAttention_c::chaseAttention() {
     }
 
     if (!chkFlag(0x4000)) {
-        cSGlobe g1(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
-        cSAngle a1(g1.U() - mpPlayer->shape_angle.y);
+        cSGlobe g1 = actor->mAttentionInfo.mPosition - mOwnerAttnPos;
+        cSAngle a1;
+        a1 = g1.U() - fopAcM_GetShapeAngle_p(mpPlayer).y;
 
         cSGlobe g2(mOwnerAttnPos - actor->mAttentionInfo.mPosition);
-        cSAngle a2(g2.U() - actor->shape_angle.y);
+        cSAngle a2;
+        a2 = g2.U() - fopAcM_GetShapeAngle_p(actor).y;
 
         u32 type;
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
-        if (weight >= 0.0f) {
-            int type = mLockOnList[offset].mType;
+        if (weight <= 0.0f) {
+            type = mLockOnList[offset].mType;
             int tbl_idx = actor->mAttentionInfo.field_0x0[type];
 
             if (!chkAttMask(type, actor->mAttentionInfo.mFlags)) {
@@ -1559,7 +1612,7 @@ int dAttention_c::Run() {
     }
 
     if (chkFlag(0x80)) {
-        mpPlayer = dComIfGp_getPlayer(0);
+        mpPlayer = (fopAc_ac_c*) dComIfGp_getPlayer(0);
         mPadNo = PAD_1;
     }
 
@@ -1630,8 +1683,6 @@ int dAttention_c::Run() {
 }
 
 /* 80072BD4-80072D80 06D514 01AC+00 0/0 1/1 0/0 .text            Draw__12dAttention_cFv */
-// reg stuff
-#ifdef NONMATCHING
 void dAttention_c::Draw() {
     if (mAttParam.CheckFlag(0x10)) {
         draw[0].field_0x173 = 3;
@@ -1650,12 +1701,11 @@ void dAttention_c::Draw() {
             if (mLockonCount >= 2 && draw[1].field_0x173 == 2) {
                 int listIdx = mLockOnOffset;
 
-                if (listIdx == 0) {
+                if (mLockOnOffset == 0) {
                     listIdx = mLockonCount - 1;
                 } else {
                     listIdx--;
                 }
-
                 if (mLockOnList[listIdx].getActor() != NULL) {
                     fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
                     draw[1].draw(actor->mAttentionInfo.mPosition, tmp);
@@ -1677,16 +1727,6 @@ void dAttention_c::Draw() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::Draw() {
-    nofralloc
-#include "asm/d/d_attention/Draw__12dAttention_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80072D80-80072DD8 06D6C0 0058+00 2/2 0/0 0/0 .text            lockSoundStart__12dAttention_cFUl
  */
@@ -1709,6 +1749,29 @@ asm void dAttention_c::lockSoundStart(u32 param_0) {
 #endif
 
 /* 80072DD8-80072FE8 06D718 0210+00 1/1 0/0 0/0 .text            setAnm__10dAttDraw_cFUcf */
+// Matches with literals
+#ifdef NONMATCHING
+void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
+    field_0x170 = param_0;
+    mNoticeCursorBck[field_0x170].reset();
+    mNoticeCursorBck[field_0x170].setPlaySpeed(param_1);
+    mNoticeCursorBpk[field_0x170].reset();
+    mNoticeCursorBpk[field_0x170].setPlaySpeed(param_1);
+    mNoticeCursorBrk[field_0x170].reset();
+    mNoticeCursorBrk[field_0x170].setPlaySpeed(param_1);
+    mNoticeCursor02Brk[field_0x170].reset();
+    mNoticeCursor02Brk[field_0x170].setPlaySpeed(param_1);
+    mNoticeCursorBtk[field_0x170].reset();
+    mNoticeCursorBtk[field_0x170].setPlaySpeed(param_1);
+
+    if (field_0x170 == 1) {
+        mImpactBck.reset();
+        mImpactBpk.reset();
+        mImpactBrk.reset();
+        mImpactBtk.reset();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1717,6 +1780,7 @@ asm void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
 #include "asm/d/d_attention/setAnm__10dAttDraw_cFUcf.s"
 }
 #pragma pop
+#endif
 
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
 void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
@@ -1738,6 +1802,50 @@ SECTION_SDATA2 static f32 lit_5668[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_5670 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80073004-800732AC 06D944 02A8+00 1/1 0/0 0/0 .text            alphaAnm__10dAttDraw_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dAttDraw_c::alphaAnm() {
+    f32 dVar9 = (f32)field_0x172 / (f32)field_0x171;
+    f32 dVar8;
+    if (field_0x174 == 1) {
+        dVar8 = 1.0f - dVar9;
+    } else {
+        dVar8 = dVar9;
+    }
+    if (dVar9 == 1.0f) {
+        if (field_0x170 == 1 && field_0x174 == 0) {
+            if (mImpactBck.isStop() && mImpactBpk.isStop() && mImpactBrk.isStop() && mImpactBtk.isStop()) {
+                field_0x175 = 0;
+                field_0x173 = 3;
+            }
+        } else {
+            field_0x173 = 3;
+        }
+    }
+    if (field_0x172 < field_0x171) {
+        field_0x172++;
+    }
+    J3DModelData* modelData = mModel[field_0x170]->getModelData();
+    for (int iVar4 = 0; iVar4 < modelData->getMaterialNum(); iVar4++) {
+        J3DMaterial* material = modelData->getMaterialNodePointer(iVar4);
+        J3DGXColor* pJVar5 = (J3DGXColor*)material->getTevKColor(0);
+        pJVar5->a = 255.0f * dVar8;
+        material->setTevKColor(0, pJVar5);
+    }
+    if (field_0x175 == 0) {
+        mNoticeCursorBck[field_0x170].play();
+        mNoticeCursorBpk[field_0x170].play();
+        mNoticeCursorBrk[field_0x170].play();
+        mNoticeCursorBtk[field_0x170].play();
+        mNoticeCursor02Brk[field_0x170].play();
+    } else {
+        mImpactBck.play();
+        mImpactBpk.play();
+        mImpactBrk.play();
+        mImpactBtk.play();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1746,6 +1854,7 @@ asm void dAttDraw_c::alphaAnm() {
 #include "asm/d/d_attention/alphaAnm__10dAttDraw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 800732AC-800732B0 06DBEC 0004+00 0/0 3/0 0/0 .text setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
  */
@@ -1840,6 +1949,7 @@ fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
 }
 
 /* 800735DC-800736CC 06DF1C 00F0+00 0/0 1/1 0/0 .text LockonReleaseDistanse__12dAttention_cFv */
+// Matches with literals
 #ifdef NONMATCHING
 f32 dAttention_c::LockonReleaseDistanse() {
     if (!LockonTruth()) {
@@ -1851,9 +1961,9 @@ f32 dAttention_c::LockonReleaseDistanse() {
         return 0.0f;
     }
 
-    int idx = mLockOnList[mLockOnOffset].mType + actor->mAttentionInfo.field_0x0[0];
+    int idx =  actor->mAttentionInfo.field_0x0[mLockOnList[mLockOnOffset].mType];
     cSGlobe tmp_g(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
-    cSAngle tmp_a(tmp_g.U() - mpPlayer->shape_angle.y);
+    cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer).y);
 
     return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
 }
@@ -2001,15 +2111,58 @@ void dAttCatch_c::proc() {
 
 /* 80073A08-80073CA4 06E348 029C+00 0/0 0/0 10/10 .text
  * request__11dAttCatch_cFP10fopAc_ac_cUcfffsi                  */
+// regalloc
+// This is a weird one. Some solution was found that changes dComIfGp_getPlayer but it is incompatible
+// with other calls.
+// https://decomp.me/scratch/aMCEI
+#ifdef NONMATCHING
+int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param_4,
+                              f32 param_5, s16 param_6, int param_7) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    if (param_7 > field_0x4) {
+        return 0;
+    } 
+    cXyz acStack_48 = param_1->mAttentionInfo.mPosition - player->mAttentionInfo.mPosition;
+    if (acStack_48.y < param_5 || acStack_48.y > param_4) {
+        return 0;
+    }
+    f32 dVar7 = acStack_48.absXZ();
+    if (dVar7 > param_3) {
+        return 0;
+    }
+    if (param_6 != 0) {
+        cSGlobe acStack_50(acStack_48);
+        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p((fopAc_ac_c*)player).y;
+        if (sVar5 < 0) {
+            sVar5 = -sVar5;
+        }
+        if (sVar5 == -0x8000) {
+            sVar5 = 0x7fff;
+        }
+        if (sVar5 > param_6) {
+            return 0;
+        }
+    }
+    if (param_7 < field_0x4 || dVar7 < field_0x8) {
+        field_0x4 = param_7;
+        field_0xc = param_2;
+        field_0x0 = fopAcM_GetID(param_1);
+        field_0x8 = dVar7;
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 param_3,
+asm int dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 param_3,
                               f32 param_4, s16 param_5, int param_6) {
     nofralloc
 #include "asm/d/d_attention/request__11dAttCatch_cFP10fopAc_ac_cUcfffsi.s"
 }
 #pragma pop
+#endif
 
 /* 80073CA4-80073CD4 06E5E4 0030+00 0/0 1/1 0/0 .text            convPId__10dAttLook_cFUi */
 fopAc_ac_c* dAttLook_c::convPId(unsigned int i_id) {
@@ -2031,15 +2184,55 @@ void dAttLook_c::proc() {
 }
 
 /* 80073D08-80073FC4 06E648 02BC+00 0/0 0/0 7/7 .text request__10dAttLook_cFP10fopAc_ac_cfffsi */
+// Matches with literals
+#ifdef NONMATCHING 
+int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param_4,
+                             s16 param_5, int param_6) {
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+    if (param_6 > field_0x4) {
+        return 0;
+    } 
+    cXyz acStack_48 = param_1->mEyePos - player->mEyePos;
+    if (acStack_48.y < param_4 || acStack_48.y > param_3) {
+        return 0;
+    }
+    f32 dVar7 = acStack_48.absXZ();
+    if (dVar7 > param_2) {
+        return 0;
+    }
+    if (param_5 != 0) {
+        acStack_48 = param_1->current.pos - player->current.pos;
+        cSGlobe acStack_50(acStack_48);
+        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player).y;
+        if (sVar5 < 0) {
+            sVar5 = -sVar5;
+        }
+        if (sVar5 == -0x8000) {
+            sVar5 = 0x7fff;
+        }
+        if (sVar5 > param_5) {
+            return 0;
+        }
+    }
+    if (param_6 < field_0x4 || dVar7 < field_0x8) {
+        field_0x4 = param_6;
+        field_0x0 = fopAcM_GetID(param_1);
+        field_0x8 = dVar7;
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dAttLook_c::request(fopAc_ac_c* param_0, f32 param_1, f32 param_2, f32 param_3,
+asm int dAttLook_c::request(fopAc_ac_c* param_0, f32 param_1, f32 param_2, f32 param_3,
                              s16 param_4, int param_5) {
     nofralloc
 #include "asm/d/d_attention/request__10dAttLook_cFP10fopAc_ac_cfffsi.s"
 }
 #pragma pop
+#endif
 
 /* 80073FC4-8007400C 06E904 0048+00 2/1 0/0 0/0 .text            __dt__15dAttDrawParam_cFv */
 dAttDrawParam_c::~dAttDrawParam_c() {}

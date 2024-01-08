@@ -11,21 +11,12 @@ public:
     /* 8015E4C8 */ virtual void setSoldOut();
     /* 8015E4B0 */ virtual u32 getProcessID();
 
-    void* getParentPtr() {
-        return mpParentPtr;
-    }
-
-    void setFlowNodeNumber(u16 flowNodeNum) {
-        mFlowNodeNum = flowNodeNum;
-    }
-
-    u16 getValueNumber() {
-        return mValueNum;
-    }
-
-    void setValueNumber(u16 valueNum) {
-        mValueNum = valueNum;
-    }
+    void* getParentPtr() { return mpParentPtr; }
+    void setParentPtr(void* parentPtr) { mpParentPtr = parentPtr; }
+    u16 getFlowNodeNumber() { return mFlowNodeNum; }
+    void setFlowNodeNumber(u16 flowNodeNum) { mFlowNodeNum = flowNodeNum; }
+    u16 getValueNumber() { return mValueNum; }
+    void setValueNumber(u16 valueNum) { mValueNum = valueNum; }
 
 private:
     /* 0x56C */ void* mpParentPtr;

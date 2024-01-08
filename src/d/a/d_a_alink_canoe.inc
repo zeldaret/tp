@@ -85,7 +85,7 @@ BOOL daAlink_c::checkFishingRodAndLureItem() const {
 void daAlink_c::initFishingRodHand() {
     field_0x2f94 = 0x65;
     field_0x2f95 = 0x65;
-    field_0x3018 = 1;
+    mItemVar0.field_0x3018 = 1;
 
     if (mEquipItem == JEWEL_WORM_ROD || mEquipItem == WORM_ROD) {
         mItemMode = 0x74;
@@ -127,11 +127,11 @@ BOOL daAlink_c::checkCanoeFishingRodGrabOrPut() const {
 
 /* 800F3FC4-800F4008 0EE904 0044+00 2/2 0/0 0/0 .text            initCanoeRide__9daAlink_cFv */
 void daAlink_c::initCanoeRide() {
-    field_0x300e.z = 1;
+    mProcVar3.field_0x300e.z = 1;
     field_0x3588 = l_waitBaseAnime;
     field_0x384c = (cXyz*)&l_canoeBaseAnime;
     mRideStatus = 3;
-    field_0x300e.y = 0;
+    mProcVar3.field_0x300e.y = 0;
 }
 
 /* 800F4008-800F40E4 0EE948 00DC+00 2/2 0/0 0/0 .text            checkCanoeJumpRide__9daAlink_cFv */
@@ -146,7 +146,7 @@ BOOL daAlink_c::checkCanoeJumpRide() {
 
     if (speed.y < FLOAT_LABEL(lit_6108) && canoe != NULL && fopAcM_GetName(canoe) == PROC_CANOE &&
         canoe->checkJumpRideFlg() && !checkDeadHP() &&
-        (mProcID != PROC_FALL || field_0x300e.y != 0)) {
+        (mProcID != PROC_FALL || mProcVar3.field_0x300e.y != 0)) {
         return procCanoeJumpRideInit(canoe);
     }
 
@@ -267,11 +267,11 @@ int daAlink_c::procCanoeRideInit() {
 
     if ((s16)(fopAcM_searchActorAngleY(canoe, this) - canoe->shape_angle.y) > 0) {
         shape_angle.y = canoe->shape_angle.y - 0x4000;
-        field_0x3008 = 0;
+        mProcVar0.field_0x3008 = 0;
         field_0x37c8.x = lit_20991;
     } else {
         shape_angle.y = canoe->shape_angle.y + 0x4000;
-        field_0x3008 = 1;
+        mProcVar0.field_0x3008 = 1;
         field_0x37c8.x = lit_20992;
     }
 
@@ -279,7 +279,7 @@ int daAlink_c::procCanoeRideInit() {
     current.angle.y = shape_angle.y;
 
     initCanoeRide();
-    field_0x300e.x = 0x80;
+    mProcVar3.field_0x300e.x = 0x80;
     swimOutAfter(1);
     return 1;
 }
@@ -297,12 +297,12 @@ int daAlink_c::procCanoeRide() {
     if (frameCtrl->checkAnmEnd()) {
         procCanoeWaitInit(1);
     } else if (frameCtrl->getFrame() < lit_7710) {
-        field_0x300e.x += 0x180;
+        mProcVar3.field_0x300e.x += 0x180;
 
-        if (field_0x3008 == 0) {
-            canoe->incShapeAngleZ(-field_0x300e.x);
+        if (mProcVar0.field_0x3008 == 0) {
+            canoe->incShapeAngleZ(-mProcVar3.field_0x300e.x);
         } else {
-            canoe->incShapeAngleZ(field_0x300e.x);
+            canoe->incShapeAngleZ(mProcVar3.field_0x300e.x);
         }
         canoe->incShapeOffsetY(lit_21021);
     }

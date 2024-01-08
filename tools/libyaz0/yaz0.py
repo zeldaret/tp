@@ -20,7 +20,7 @@ def decompress(data):
     return bytearray(decompressedDataBuffer)[:-1]
 
 def compress(data):
-    decompresseddDataBuffer = ctypes.c_buffer(data)
+    decompresseddDataBuffer = ctypes.c_buffer(bytes(data))
     compressedDataBuffer = ctypes.c_buffer(bytes(len(data)*2))
     encode = _yaz0lib.yaz0_encode
     encode.argtypes = [ctypes.c_char_p,ctypes.c_char_p,ctypes.c_int]

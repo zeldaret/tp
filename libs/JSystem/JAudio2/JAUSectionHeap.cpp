@@ -17,7 +17,7 @@
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "MSL_C/stdlib.h"
+#include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvd.h"
 

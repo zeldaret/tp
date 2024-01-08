@@ -35,6 +35,7 @@ public:
     };
 
     enum daMidna_FLG1 {
+        FLG1_UNK_100 = 0x100,
         FLG1_FORCE_NORMAL_COL = 8,
         FLG1_FORCE_TIRED_COL = 4,
         FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE = 2,
@@ -96,6 +97,8 @@ public:
     void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
     void onStateFlg0(daMidna_FLG0 i_flag) { mStateFlg0 |= i_flag; }
     void offStateFlg0(daMidna_FLG0 i_flag) { mStateFlg0 &= ~i_flag; }
+    void onStateFlg1(daMidna_FLG1 i_flag) { mStateFlg1 |= i_flag; }
+    void offStateFlg1(daMidna_FLG1 i_flag) { mStateFlg1 &= ~i_flag; }
     u32 checkStateFlg0(daMidna_FLG0 flag) const { return mStateFlg0 & flag; }
     u32 checkStateFlg1(daMidna_FLG1 flag) const { return mStateFlg1 & flag; }
     void setFaceNum(int num) { mFaceNum = num; }
@@ -130,6 +133,10 @@ public:
         onStateFlg0(FLG0_UNK_80000000);
     }
 
+    void onSideWarp() {
+        onStateFlg1(FLG1_UNK_100);
+    }
+
     bool checkReturnAnime() const {
         return field_0x5e4[0].getIdx() == 0x1CA;
     }
@@ -159,9 +166,11 @@ public:
 
     inline static BOOL checkMidnaRealBody();
 
-    bool i_checkMidnaTired() {
+    static bool i_checkMidnaTired() {
         return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1E08);
     }
+
+    void resetRatBody() {}
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

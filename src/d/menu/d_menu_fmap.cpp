@@ -5,8 +5,8 @@
 
 #include "d/menu/d_menu_fmap.h"
 #include "JSystem/JKernel/JKRArchive.h"
-#include "MSL_C/stdio.h"
-#include "MSL_C/string.h"
+#include "stdio.h"
+#include "string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"

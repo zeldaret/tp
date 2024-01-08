@@ -38,6 +38,7 @@ public:
     bool GetPreWallChk() const { return mPreWallChk; }
     bool GetPreGroundChk() const { return mPreGroundChk; }
     bool GetPreRoofChk() const { return mPreRoofChk; }
+    cXyz* GetStartP() { return &mLin.GetStartP(); }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */

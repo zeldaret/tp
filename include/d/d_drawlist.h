@@ -338,6 +338,11 @@ public:
     void setOpaListMiddle() { setOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
     void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void set3DlineMat(mDoExt_3DlineMat_c *param_1) { 
+        #ifndef NON_VIRTUAL_3DLINEMAT
+        m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
+        #endif
+    }
 
     void peekZdata() { mPeekZ.peekData(); }
     void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {

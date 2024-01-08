@@ -322,6 +322,8 @@ public:
     void OffTgShield() { mGObjTg.OffSPrm(0x1); }
     void OnTgShieldFrontRange() { mGObjTg.OnSPrm(0x8); }
     void OffTgShieldFrontRange() { mGObjTg.OffSPrm(0x8); }
+    void OnTgSmallShield() { mGObjTg.OnSPrm(0x10); }
+    void OffTgSmallShield() { mGObjTg.OffSPrm(0x10); }
     bool ChkTgIronBallRebound() { return mGObjTg.ChkSPrm(0x100); }
     s16* GetTgShieldFrontRangeYAngle() { return mGObjTg.GetShieldFrontRangeYAngle(); }
     s16 GetTgShieldRange() { return mGObjTg.GetShieldRange(); }

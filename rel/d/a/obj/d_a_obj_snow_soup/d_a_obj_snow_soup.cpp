@@ -4,7 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "string.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor.h"

@@ -11,7 +11,7 @@ struct dBgPc;
 struct dBgS_CaptPoly;
 
 struct KC_PrismData {
-    /* 0x0 */ u16 field_0x0[2];
+    /* 0x0 */ f32 field_0x0;
     /* 0x4 */ u16 field_0x4;
     /* 0x6 */ u16 field_0x6;
     /* 0x8 */ u16 field_0x8;

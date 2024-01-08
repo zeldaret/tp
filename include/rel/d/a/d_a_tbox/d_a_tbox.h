@@ -116,7 +116,8 @@ public:
     /* 80495AF0 */ int Draw();
     /* 80495C9C */ int Delete();
     /* 804961B0 */ int Create();
-    /* 804961B8 */ bool checkSmallTbox();
+
+    /* 804961B8 */ virtual BOOL checkSmallTbox();
 
     u32 getEvent() { return fopAcM_GetParam(this) >> 24; }
     int getShapeType() { return (fopAcM_GetParam(this) >> 20) & 0xf; }

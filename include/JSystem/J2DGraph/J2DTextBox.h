@@ -123,6 +123,9 @@ public:
         return (J2DTextBoxHBinding)((mFlags >> 2) & 3);
     }
 
+    JUtility::TColor getCharColor() { return mCharColor; }
+    JUtility::TColor getGradColor() { return mGradientColor; }
+
 // private:
     /* 0x0100 */ JUTFont* mFont;
     /* 0x0104 */ JUtility::TColor mCharColor;

@@ -764,8 +764,8 @@ static dJntColData_c kibako_jc_data = {
     1,
     1,
     0,
-    0x42340000,
-    &kibako_jv_offset
+    45.0f,
+    (Vec*)kibako_jv_offset
 };
 
 /* 8047A71C-8047A728 -00001 000C+00 1/1 0/0 0/0 .data            taru_jc_data */
@@ -773,8 +773,8 @@ static dJntColData_c taru_jc_data = {
     1,
     1,
     0,
-    0x42340000,
-    &taru_jv_offset
+    45.0f,
+    (Vec*)taru_jv_offset
 };
 
 /* 8047A728-8047A734 -00001 000C+00 0/1 0/0 0/0 .data            @5956 */

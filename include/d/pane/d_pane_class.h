@@ -15,7 +15,7 @@ public:
     /* 80253A18 */ virtual ~CPaneMgr();
     /* 80253AB4 */ virtual void setAlpha(u8);
 
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
+    /* 80253984 */ CPaneMgr(J2DScreen* i_scrn, u64 i_tag, u8 i_flags, JKRExpHeap* i_heap);
     /* 80253930 */ CPaneMgr();
     /* 80253B2C */ void reinit();
     /* 80253C08 */ void initiate(J2DPane*, JKRExpHeap*);

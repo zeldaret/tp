@@ -6,7 +6,7 @@
 #include "JSystem/JUtility/JUTResource.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JSupport/JSUInputStream.h"
-#include "MSL_C/MSL_Common/Src/string.h"
+#include "string.h"
 #include "dolphin/types.h"
 
 //

@@ -32,6 +32,7 @@ public:
     void calcMinMax(cXyz*, cXyz*);
     const cXyz* GetCP(void) const { return &mCenter; }
     f32 GetR(void) const { return mRadius; }
+    f32* GetRP() { return &mRadius; }
     f32 GetH(void) const { return mHeight; }
     cXyz& GetC() { return mCenter; }
 

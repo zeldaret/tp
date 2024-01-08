@@ -411,7 +411,7 @@ int daAlink_c::procMagneBootsFlyInit() {
 
     field_0x3478 = 0.0f;
     field_0x594 = daAlinkHIO_magneBoots_c0::m.mMaxMagneFlySpeed;
-    field_0x300c = 0;
+    mProcVar2.field_0x300c = 0;
     voiceStart(Z2SE_AL_V_MAGNET_CAUGHT);
     return 1;
 }
@@ -461,7 +461,7 @@ int daAlink_c::procMagneBootsFly() {
 
         cLib_addCalcAngleS(&shape_angle.x, sp24.atan2sY_XZ() + -0x4000, 5, 0x1000, 0x100);
         cLib_addCalcAngleS(&shape_angle.y, sp24.atan2sX_Z(), 5, 0x1000, 0x100);
-        field_0x300c += 0x1C00;
+        mProcVar2.field_0x300c += 0x1C00;
     }
 
     return 1;

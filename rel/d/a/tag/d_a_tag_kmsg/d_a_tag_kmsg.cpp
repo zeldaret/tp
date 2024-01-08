@@ -3,7 +3,8 @@
 // Translation Unit: d_a_tag_kmsg
 //
 
-#include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
+// #include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

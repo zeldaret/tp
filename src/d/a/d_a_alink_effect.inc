@@ -3,6 +3,10 @@
  * Player Particle Effect handling
  */
 
+#include "d/a/d_a_alink.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_k_wmark.h"
+
 /* 80120580-80120634 11AEC0 00B4+00 21/21 0/0 0/0 .text
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */
 // matches with literal
@@ -57,6 +61,24 @@ void daAlink_c::stopDrawParticle(u32 param_0) {
 }
 
 /* 801207BC-80120880 11B0FC 00C4+00 1/0 0/0 0/0 .text setEffectFrontRollParam__9daAlink_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void daAlink_c::setEffectFrontRollParam() {
+    int j, i;
+
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 2; j++) {
+            if (field_0x2e54.getTypeFour(i, j) == 0) {
+                JPABaseEmitter* emitter_p = field_0x2e54.getEmitterFour(i, j, 0);
+
+                if (emitter_p != NULL) {
+                    emitter_p->setRate(2.0f);
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,6 +87,7 @@ asm void daAlink_c::setEffectFrontRollParam() {
 #include "asm/d/a/d_a_alink/setEffectFrontRollParam__9daAlink_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80120880-80120B00 11B1C0 0280+00 1/0 0/0 0/0 .text            setEffectSlipParam__9daAlink_cFv */
 #pragma push
@@ -111,14 +134,14 @@ asm void daAlink_c::setEffectSumouParam() {
 #pragma pop
 
 /* 801211C0-80121214 11BB00 0054+00 46/46 0/0 0/0 .text setFootEffectProcType__9daAlink_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setFootEffectProcType(int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setFootEffectProcType__9daAlink_cFi.s"
+void daAlink_c::setFootEffectProcType(int param_0) {
+    if (param_0 != field_0x2f9f) {
+        field_0x2e54.clearFourAllID();
+    }
+
+    field_0x2f9e = param_0;
+    field_0x2f9f = field_0x2f9e;
 }
-#pragma pop
 
 /* 80121214-80121304 11BB54 00F0+00 1/1 0/0 0/0 .text            setWolfFootOn__9daAlink_cFi */
 #pragma push
@@ -132,14 +155,11 @@ asm void daAlink_c::setWolfFootOn(int param_0) {
 
 /* 80121304-80121388 11BC44 0084+00 1/1 0/0 0/0 .text            setFootMark__9daAlink_cFP4cXyzUsi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setFootMark(cXyz* param_0, u16 param_1, int param_2) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setFootMark__9daAlink_cFP4cXyzUsi.s"
+void daAlink_c::setFootMark(cXyz* i_pos, u16 i_mtxNo, int param_2) {
+    cXyz sp8;
+    mDoMtx_multVecSR(mpLinkModel->i_getAnmMtx(i_mtxNo), &cXyz::BaseX, &sp8);
+    dkWmark_c::setFootMark(i_pos, sp8.atan2sX_Z(), param_2);
 }
-#pragma pop
 
 /* 80121388-801221F0 11BCC8 0E68+00 1/1 0/0 0/0 .text            setEffect__9daAlink_cFv */
 #pragma push
@@ -162,14 +182,10 @@ asm void daAlink_c::setSumouEffect() {
 #pragma pop
 
 /* 801225E8-80122654 11CF28 006C+00 1/1 0/0 0/0 .text setWaterfallEffect__9daAlink_cFPC4cXyzPUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setWaterfallEffect(cXyz const* param_0, u32* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setWaterfallEffect__9daAlink_cFPC4cXyzPUl.s"
+void daAlink_c::setWaterfallEffect(cXyz const* param_0, u32* param_1) {
+    setEmitter(&param_1[0], 0x8614, param_0, NULL);
+    setEmitter(&param_1[1], 0x8615, param_0, NULL);
 }
-#pragma pop
 
 /* 80122654-8012277C 11CF94 0128+00 1/1 0/0 0/0 .text            setWaterfallEffect__9daAlink_cFv */
 #pragma push
@@ -342,7 +358,7 @@ asm void daAlink_c::setWolfBarrierHitEffect(dBgS_LinChk& param_0) {
 /* 80124144-801241E0 11EA84 009C+00 9/9 0/0 0/0 .text            setCutWaterDropEffect__9daAlink_cFv
  */
 void daAlink_c::setCutWaterDropEffect() {
-    if (field_0x32c0 > 0) {
+    if (field_0x32c0[0] > 0) {
         cXyz sp18;
         mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(1), &sp18);
         dComIfGp_particle_setColor(0x2A4, &sp18, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
@@ -459,8 +475,8 @@ asm void daAlink_c::setBottleEffect() {
 #pragma pop
 
 /* 80124E28-80124EA8 11F768 0080+00 2/2 0/0 0/0 .text clearFirePointDamageEffect__9daAlink_cFi */
-void daAlink_c::clearFirePointDamageEffect(int i) {
-    firePointEff_c* fire_eff = &field_0x32d8[i];
+void daAlink_c::clearFirePointDamageEffect(int i_effNo) {
+    firePointEff_c* fire_eff = &field_0x32d8[i_effNo];
 
     if (fire_eff->field_0x0 != 0) {
         stopDrawParticle(fire_eff->field_0x4);
