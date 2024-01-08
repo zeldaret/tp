@@ -107,6 +107,3 @@ void JAUAudioArcLoader::readMaxSeCategory(int param_0, int param_1, int param_2)
         seMgr->getCategory(param_0)->setMaxInactiveSe(param_2);
     }
 }
-
-/* 802A49FC-802A4A5C 29F33C 0060+00 1/0 0/0 0/0 .text            __dt__17JAUAudioArcLoaderFv */
-JAUAudioArcLoader::~JAUAudioArcLoader() {}

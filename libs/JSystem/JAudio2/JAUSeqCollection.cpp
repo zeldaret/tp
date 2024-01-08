@@ -59,8 +59,8 @@ bool JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* param_2)
  * getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion     */
 bool JAUSeqCollection::getSeqDataRegion(JAISeqDataRegion* param_0) {
     if (isValid()) {
-        param_0->field_0x0 = (u32)field_0x8;
-        param_0->field_0x4 = field_0xc;
+        param_0->addr = (u8*)field_0x8;
+        param_0->size = field_0xc;
         return true;
     }
     return false;

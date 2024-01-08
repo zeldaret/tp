@@ -226,4 +226,8 @@ inline bool JKRRemoveResource(void* resource, JKRFileLoader* fileLoader) {
     return JKRFileLoader::removeResource(resource, fileLoader);
 }
 
+inline void JKRUnmountArchive(JKRArchive* arc) {
+    arc->unmount();
+}
+
 #endif

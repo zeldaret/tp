@@ -101,6 +101,12 @@ public:
     /* 802A6278 */ ~JAUSectionHeap();
 
     JAUWaveBankTable& getWaveBankTable() { return sectionHeapData_.waveBankTable; }
+    JKRHeap* getHeap() {
+        if (getOpenSection()->isBuilding() != 0) {
+            return mHeap;
+        } 
+        return NULL;
+    }
 
     /* 0x00 */ JAUSection base1;
     /* 0xDC */ u8 base2[0xE0 - 0xDC]; // JAISeqDataMgr

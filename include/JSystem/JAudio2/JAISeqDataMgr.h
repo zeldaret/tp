@@ -20,17 +20,17 @@ struct JAISeqData {
 
 struct JAISeqDataRegion {
     bool intersects(JAISeqData& seqData) const {
-        if (field_0x0 + field_0x4 < (u32)seqData.field_0x0) {
+        if ((u32)addr + size < (u32)seqData.field_0x0) {
             return false;
         }
-        if ((u32)seqData.field_0x0 + seqData.field_0x4 < field_0x0) {
+        if ((u32)seqData.field_0x0 + seqData.field_0x4 < (u32)addr) {
             return false;
         }
         return true;
     }
 
-    /* 0x00 */ u32 field_0x0;
-    /* 0x04 */ u32 field_0x4;
+    /* 0x00 */ u8* addr;
+    /* 0x04 */ u32 size;
 };
 
 

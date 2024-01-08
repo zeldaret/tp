@@ -4,29 +4,15 @@
 //
 
 #include "Z2AudioLib/Z2AudioArcLoader.h"
+#include "Z2AudioLib/Z2FxLineMgr.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
-
-struct JKRHeap {
-    static u8 sCurrentHeap[4];
-};
-
-struct JKRArchive {
-    struct EMountDirection {};
-
-    /* 802D5840 */ void mount(void*, JKRHeap*, JKRArchive::EMountDirection);
-};
-
-struct Z2FxLineMgr {
-    /* 802BA7FC */ void initDataArc(JKRArchive*, JKRHeap*);
-};
-
-struct JAUSectionHeap {
-    /* 802A6094 */ void getOpenSection();
-};
 
 //
 // Forward References:
@@ -68,55 +54,33 @@ extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" extern u8 __OSReport_disable;
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C9CD0-803C9D18 026DF0 0044+04 2/2 1/1 0/0 .data            __vt__16Z2AudioArcLoader */
-SECTION_DATA extern void* __vt__16Z2AudioArcLoader[17 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16Z2AudioArcLoaderFv,
-    (void*)readWS__17JAUAudioArcLoaderFUlPCvUl,
-    (void*)readBNK__17JAUAudioArcLoaderFUlPCv,
-    (void*)readBSC__17JAUAudioArcLoaderFPCvUl,
-    (void*)readBST__17JAUAudioArcLoaderFPCvUl,
-    (void*)readBSTN__16Z2AudioArcLoaderFPCvUl,
-    (void*)readBMS__17JAUAudioArcLoaderFUlPCvUl,
-    (void*)readBMS_fromArchive__17JAUAudioArcLoaderFUl,
-    (void*)newVoiceBank__17JAUAudioArcLoaderFUlUl,
-    (void*)newDynamicSeqBlock__17JAUAudioArcLoaderFUl,
-    (void*)readBSFT__17JAUAudioArcLoaderFPCv,
-    (void*)readMaxSeCategory__17JAUAudioArcLoaderFiii,
-    (void*)beginBNKList__17JAUAudioArcLoaderFUlUl,
-    (void*)endBNKList__17JAUAudioArcLoaderFv,
-    (void*)readCommandMore__16Z2AudioArcLoaderFUl,
-    /* padding */
-    NULL,
-};
-
 /* 802A9A34-802A9A70 2A4374 003C+00 0/0 1/1 0/0 .text __ct__16Z2AudioArcLoaderFP10JAUSection */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2AudioArcLoader::Z2AudioArcLoader(JAUSection* param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioArcLoader/__ct__16Z2AudioArcLoaderFP10JAUSection.s"
+Z2AudioArcLoader::Z2AudioArcLoader(JAUSection* param_0) : JAUAudioArcLoader(param_0) {
 }
-#pragma pop
 
 /* 802A9A70-802A9AC8 2A43B0 0058+00 1/0 0/0 0/0 .text readCommandMore__16Z2AudioArcLoaderFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool Z2AudioArcLoader::readCommandMore(u32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioArcLoader/readCommandMore__16Z2AudioArcLoaderFUl.s"
+bool Z2AudioArcLoader::readCommandMore(u32 param_0) {
+    bool rv = false;
+    switch (param_0) {
+    case 'bfca':
+        readBFCA(getContent_(readU32_()));
+        rv = true;
+        break;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 802A9AC8-802A9B54 2A4408 008C+00 1/1 0/0 0/0 .text            readBFCA__16Z2AudioArcLoaderFPCv */
+// regalloc and extra stack
+#ifdef NONMATCHING
+void Z2AudioArcLoader::readBFCA(void const* param_0) {
+    JAUSectionHeap* sectionHeap = JASGlobalInstance<JAUSectionHeap>::getInstance();
+    JKRHeap* pJVar1 = sectionHeap->getHeap();
+    JKRArchive* pJVar5 = JKRArchive::mount((void*)param_0, JKRGetCurrentHeap(), JKRArchive::MOUNT_DIRECTION_TAIL);
+    Z2GetFxLineMgr()->initDataArc(pJVar5, pJVar1);
+    JKRUnmountArchive(pJVar5);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,19 +89,9 @@ asm void Z2AudioArcLoader::readBFCA(void const* param_0) {
 #include "asm/Z2AudioLib/Z2AudioArcLoader/readBFCA__16Z2AudioArcLoaderFPCv.s"
 }
 #pragma pop
-
+#endif
 /* 802A9B54-802A9B58 2A4494 0004+00 1/0 0/0 0/0 .text            readBSTN__16Z2AudioArcLoaderFPCvUl
  */
 void Z2AudioArcLoader::readBSTN(void const* param_0, u32 param_1) {
     /* empty function */
 }
-
-/* 802A9B58-802A9BC8 2A4498 0070+00 1/0 0/0 0/0 .text            __dt__16Z2AudioArcLoaderFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2AudioArcLoader::~Z2AudioArcLoader() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2AudioArcLoader/__dt__16Z2AudioArcLoaderFv.s"
-}
-#pragma pop

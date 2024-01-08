@@ -2,6 +2,7 @@
 #define JAUSEQDATABLOCKMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JSupport/JSUList.h"
 
 class JAISeqData;
@@ -13,18 +14,17 @@ struct JAUSeqDataBlock {
 
     /* 0x00 */ JSULink<JAUSeqDataBlock> field_0x0;
     /* 0x10 */ JAISoundID field_0x10;
-    /* 0x14 */ u8* field_0x14;
-    /* 0x18 */ u32 field_0x18;
+    /* 0x14 */ JAISeqDataRegion field_0x14;
     /* 0x1C */ int field_0x1c;
 };
 
 class JAUSeqDataBlocks {
 public:
-    /* 802A6928 */ void getSeqData(JAISoundID);
-    /* 802A6974 */ void seekFreeBlock(u32);
-    /* 802A69D8 */ void append(JSULink<JAUSeqDataBlock>*);
-    /* 802A69F8 */ void remove(JSULink<JAUSeqDataBlock>*);
-    /* 802A6A18 */ void hasFailedBlock(JAISoundID);
+    /* 802A6928 */ u8* getSeqData(JAISoundID);
+    /* 802A6974 */ JSULink<JAUSeqDataBlock>* seekFreeBlock(u32);
+    /* 802A69D8 */ bool append(JSULink<JAUSeqDataBlock>*);
+    /* 802A69F8 */ bool remove(JSULink<JAUSeqDataBlock>*);
+    /* 802A6A18 */ bool hasFailedBlock(JAISoundID);
 
     /* 0x00 */ JSUList<JAUSeqDataBlock> field_0x0;
 };
@@ -36,8 +36,8 @@ public:
     /* 802A6AA8 */ s32 getSeqData(JAISoundID, JAISeqDataUser*, JAISeqData*, bool);
     /* 802A6B8C */ bool appendDynamicSeqDataBlock(JAUSeqDataBlock*);
     /* 802A6C18 */ bool loadDynamicSeq(JAISoundID, bool, JAISeqDataUser*);
-    /* 802A6D48 */ void releaseIdleDynamicSeqDataBlock(JAISeqDataUser*);
-    /* 802A6E00 */ void releaseIdleDynamicSeqDataBlock_(JAISeqDataUser*, u32);
+    /* 802A6D48 */ u32 releaseIdleDynamicSeqDataBlock(JAISeqDataUser*);
+    /* 802A6E00 */ JAUSeqDataBlock* releaseIdleDynamicSeqDataBlock_(JAISeqDataUser*, u32);
     /* 802A6EDC */ void rearrangeLoadingSeqs_();
 
     JKRArchive* getSeqDataArchive() { return seqDataArchive_; }

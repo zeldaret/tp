@@ -412,7 +412,8 @@ REGISTER_CTORS(0x80290B14, __sinit_JASHeapCtrl_cpp);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASHeap::~JASHeap() {
+//asm JASHeap::~JASHeap() {
+asm void __dt__7JASHeapFv() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASHeapCtrl/__dt__7JASHeapFv.s"
 }
