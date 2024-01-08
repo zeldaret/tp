@@ -107,40 +107,48 @@ public:
 
     u8 getCursorX() { return mCursorX; }
     u8 getCursorY() { return mCursorY; }
-    u8 getSubWindowOpenCheck() { return mSubWindowOpenCheck; }
-    CPaneMgr* getpLink() { return mpLinkPm; }
     CPaneMgr* getpMask() { return mpMaskPm; }
+    CPaneMgr* getpLink() { return mpLinkPm; }
+    J2DScreen* getIconScreen() { return mpScreenIcon; }
+    dMenu_Insect_c* getInsectScreen() { return mpInsectScrn; }
+    dMenu_Skill_c* getSkillScreen() { return mpSkillScrn; }
+    dMenu_Fishing_c* getFishingScreen() { return mpFishingScrn; }
+    dMenu_Letter_c* getLetterScreen() { return mpLetterScrn; }
+    dMenu_Option_c* getOptionScreen() { return mpOptionScrn; }
+    dMenu_save_c* getSaveScreen() { return mpSaveScrn; }
+    J2DPicture* getBlackTex() { return mpBlackTex; }
+    u8 getSubWindowOpenCheck() { return mSubWindowOpenCheck; }
 
 private:
     /* 0x004 */ JKRExpHeap* mpHeap;
     /* 0x008 */ JKRExpHeap* mpSubHeap;
     /* 0x00C */ void* field_0xc;
-    /* 0x010 */ STControl* field_0x10;
-    /* 0x014 */ CSTControl* field_0x14;
+    /* 0x010 */ STControl* mpStick;
+    /* 0x014 */ CSTControl* mpCStick;
     /* 0x018 */ J2DScreen* mpScreen;
     /* 0x01C */ J2DScreen* mpScreenIcon;
     /* 0x020 */ dSelect_cursor_c* mpDrawCursor;
     /* 0x024 */ dMsgString_c* mpString;
     /* 0x028 */ u8 field_0x28[4];
-    /* 0x02C */ J2DAnmTextureSRTKey* field_0x2c;
+    /* 0x02C */ J2DAnmTextureSRTKey* mpAnmKey;
     /* 0x030 */ u8 field_0x30[4];
     /* 0x034 */ f32 field_0x34;
-    /* 0x038 */ f32 field_0x38;
+    /* 0x038 */ f32 mFrame;
     /* 0x03C */ f32 field_0x3c;
-    /* 0x040 */ u32 field_0x40;
+    /* 0x040 */ u32 mIsWolf;
     /* 0x044 */ f32 field_0x44[2];
     /* 0x04C */ f32 field_0x4c[2];
-    /* 0x054 */ f32 field_0x54;
-    /* 0x058 */ f32 field_0x58;
-    /* 0x05C */ f32 field_0x5c;
-    /* 0x060 */ f32 field_0x60;
-    /* 0x064 */ f32 field_0x64;
-    /* 0x068 */ f32 field_0x68;
-    /* 0x06C */ f32 field_0x6c;
-    /* 0x070 */ f32 field_0x70;
-    /* 0x074 */ f32 field_0x74;
-    /* 0x078 */ f32 field_0x78;
-    /* 0x07C */ cXyz field_0x7c;
+    /* 0x054 */ f32 mBlueSmokePosX;
+    /* 0x058 */ f32 mBlueSmokePosY;
+    /* 0x05C */ f32 mBlueSmokeScale;
+    /* 0x060 */ f32 mBlueSmokeAlpha;
+    /* 0x064 */ f32 mHeartVesselPosX;
+    /* 0x068 */ f32 mHeartVesselPosY;
+    /* 0x06C */ f32 mHeartVesselScale;
+    /* 0x070 */ f32 mHeartPiecePosX;
+    /* 0x074 */ f32 mHeartPiecePosY;
+    /* 0x078 */ f32 mHeartPieceScale;
+    /* 0x07C */ cXyz mLinkGlobalCenterPos;
     /* 0x088 */ dMenu_Collect2DTop_c* mpDraw2DTop;
     /* 0x08C */ J2DPicture* mpBlackTex;
     /* 0x090 */ dMenu_save_c* mpSaveScrn;
@@ -158,21 +166,21 @@ private:
     /* 0x168 */ CPaneMgr* mpHeartPiece;
     /* 0x16C */ CPaneMgr* mpButtonAB[2];
     /* 0x174 */ CPaneMgr* mpButtonText[2];
-    /* 0x17C */ u16 field_0x17c;
-    /* 0x17E */ u16 field_0x17e;
+    /* 0x17C */ u16 mCurrentAString;
+    /* 0x17E */ u16 mCurrentBString;
     /* 0x180 */ u16 field_0x180;
-    /* 0x182 */ u16 field_0x182;
+    /* 0x182 */ u16 mItemNameString;
     /* 0x184 */ u16 field_0x184[7][6];
     /* 0x1D8 */ u16 field_0x1d8[7][6];
-    /* 0x22C */ u8 field_0x22c;
+    /* 0x22C */ u8 mProcess;
     /* 0x22D */ u8 field_0x22d[7][6];
     /* 0x257 */ u8 mCursorX;
     /* 0x258 */ u8 mCursorY;
     /* 0x259 */ u8 field_0x259;
     /* 0x25A */ u8 field_0x25a;
-    /* 0x25B */ u8 field_0x25b;
-    /* 0x25C */ u8 field_0x25c;
-    /* 0x25D */ u8 field_0x25d;
+    /* 0x25B */ u8 mEquippedSword;
+    /* 0x25C */ u8 mEquippedShield;
+    /* 0x25D */ u8 mEquippedClothes;
     /* 0x25E */ u8 mSubWindowOpenCheck;
     /* 0x25F */ u8 field_0x25f;
     /* 0x260 */ u8 field_0x260;
@@ -207,21 +215,21 @@ private:
     /* 0x004 */ JKRExpHeap* mpHeap;
     /* 0x008 */ JKRSolidHeap* mpSolidHeap;
     /* 0x00C */ dMenu_Collect2D_c* mpCollect2D;
-    /* 0x010 */ void* field_0x10;
-    /* 0x014 */ CSTControl* field_0x14;
+    /* 0x010 */ STControl* mpStick;
+    /* 0x014 */ CSTControl* mpCStick;
     /* 0x018 */ J3DModel* mpModel;
-    /* 0x01C */ mDoExt_bckAnm* field_0x1c;
-    /* 0x020 */ mDoExt_brkAnm* field_0x20;
-    /* 0x024 */ u32 field_0x24;
-    /* 0x028 */ dKy_tevstr_c field_0x28;
-    /* 0x3B0 */ cXyz field_0x3b0;
-    /* 0x3BC */ csXyz field_0x3bc;
-    /* 0x3C4 */ f32 mMaskMirrorOffsetX;
+    /* 0x01C */ mDoExt_bckAnm* mpBckAnm;
+    /* 0x020 */ mDoExt_brkAnm* mpBrkAnm;
+    /* 0x024 */ u32 mIsWolf;
+    /* 0x028 */ dKy_tevstr_c mTevStr;
+    /* 0x3B0 */ cXyz mMaskMirrorPos;
+    /* 0x3BC */ csXyz mMaskMirrorAngle
+        /* 0x3C4 */ f32 mMaskMirrorOffsetX;
     /* 0x3C8 */ f32 mMaskMirrorOffsetY;
     /* 0x3CC */ f32 mMaskMirrorScale;
-    /* 0x3D0 */ f32 field_0x3d0;
-    /* 0x3D4 */ f32 field_0x3d4;
-    /* 0x3D8 */ s16 field_0x3d8;
+    /* 0x3D0 */ f32 mMaskMirrorAnmFrameBrk;
+    /* 0x3D4 */ f32 mMaskMirrorAnmFrameBck;
+    /* 0x3D8 */ s16 mLinkAngle;
 };
 
 class dMenu_Collect_c {

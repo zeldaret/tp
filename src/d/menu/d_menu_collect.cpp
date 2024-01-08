@@ -883,25 +883,25 @@ SECTION_SDATA2 static f32 lit_4482 = 1.0f;
 #ifdef NONMATCHING
 dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
     mpHeap = param_0;
-    field_0x10 = param_1;
-    field_0x14 = param_2;
+    mpStick = param_1;
+    mpCStick = param_2;
     field_0xc = NULL;
-    field_0x40 = daPy_py_c::i_checkNowWolf();
-    field_0x7c.set(0.0f, 0.0f, 0.0f);
+    mIsWolf = daPy_py_c::i_checkNowWolf();
+    mLinkGlobalCenterPos.set(0.0f, 0.0f, 0.0f);
     for (int i = 0; i < 2; i++) {
         field_0x44[i] = 1.0f;
         field_0x4c[i] = 1.0f;
     }
-    field_0x54 = 0.0f;
-    field_0x58 = 0.0f;
-    field_0x5c = 1.0f;
-    field_0x60 = 1.0f;
-    field_0x64 = 0.0f;
-    field_0x68 = 0.0f;
-    field_0x6c = 1.0f;
-    field_0x70 = 0.0f;
-    field_0x74 = 0.0f;
-    field_0x78 = 1.0f;
+    mBlueSmokePosX = 0.0f;
+    mBlueSmokePosY = 0.0f;
+    mBlueSmokeScale = 1.0f;
+    mBlueSmokeAlpha = 1.0f;
+    mHeartVesselPosX = 0.0f;
+    mHeartVesselPosY = 0.0f;
+    mHeartVesselScale = 1.0f;
+    mHeartPiecePosX = 0.0f;
+    mHeartPiecePosY = 0.0f;
+    mHeartPieceScale = 1.0f;
     mpSubHeap = JKRCreateExpHeap(0x00046000, mpHeap, 0);
 }
 #else
@@ -952,7 +952,7 @@ void dMenu_Collect2D_c::_create() {
     mpFishingScrn = NULL;
     mpSkillScrn = NULL;
     mpInsectScrn = NULL;
-    field_0x22c = 0;
+    mProcess = 0;
     animationSet();
     screenSet();
     initialize();
@@ -1019,8 +1019,8 @@ void dMenu_Collect2D_c::_delete() {
         mpSubHeap->freeAll();
     }
     mDoExt_setCurrentHeap(heap);
-    delete field_0x2c;
-    field_0x2c = NULL;
+    delete mpAnmKey;
+    mpAnmKey = NULL;
     for (int i = 0; i < 7; i++) {
         for (int j = 0; j < 6; j++) {
             if (mpSelPm[i][j]) {
@@ -1047,7 +1047,7 @@ void dMenu_Collect2D_c::_delete() {
 // Matches with sinit
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::initialize() {
-    (this->*init[field_0x22c])();
+    (this->*init[mProcess])();
 }
 #else
 #pragma push
@@ -1485,13 +1485,13 @@ void dMenu_Collect2D_c::screenSet() {
     }
     field_0x259 = mCursorX;
     field_0x25a = mCursorY;
-    field_0x17c = 0;
-    field_0x17e = 0;
+    mCurrentAString = 0;
+    mCurrentBString = 0;
     field_0x180 = 0;
-    field_0x182 = 0;
-    field_0x25b = 0xff;
-    field_0x25c = 0xff;
-    field_0x25d = 0xff;
+    mItemNameString = 0;
+    mEquippedSword = 0xff;
+    mEquippedShield = 0xff;
+    mEquippedClothes = 0xff;
     mSubWindowOpenCheck = 0;
     field_0x25f = 0;
     field_0x260 = 0xff;
@@ -1534,15 +1534,15 @@ void dMenu_Collect2D_c::screenSet() {
         mCursorY = j_copy;
     }
     mpLinkPm = new CPaneMgr(mpScreen, 'linki_n', 0, NULL);
-    field_0x7c.x = mpLinkPm->getInitGlobalCenterPosX();
-    field_0x7c.y = mpLinkPm->getInitGlobalCenterPosY();
-    field_0x7c.z = -1000.0f;
+    mLinkGlobalCenterPos.x = mpLinkPm->getInitGlobalCenterPosX();
+    mLinkGlobalCenterPos.y = mpLinkPm->getInitGlobalCenterPosY();
+    mLinkGlobalCenterPos.z = -1000.0f;
     mpMaskPm = new CPaneMgr(mpScreen, 'kamen_n', 0, NULL);
     mpModelBg = new CPaneMgr(mpScreen, 'modelbgn', 2, NULL);
     mpHeartParent = new CPaneMgr(mpScreen, 'heart_n', 0, NULL);
     mpHeartPiece = new CPaneMgr(mpScreen, 'heart_kn', 0, NULL);
-    setAButtonString(field_0x17c);
-    setBButtonString(field_0x17e);
+    setAButtonString(mCurrentAString);
+    setBButtonString(mCurrentBString);
     setItemNameString(mCursorX, mCursorY);
     cursorPosSet();
     setArrowMaxNum(dComIfGs_getArrowMax());
@@ -1570,10 +1570,10 @@ void dMenu_Collect2D_c::animationSet() {
     i_OSInitFastCast();
     void* resource =
         JKRGetNameResource("zelda_collect_soubi_screen_revo.btk", dComIfGp_getCollectResArchive());
-    field_0x2c = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);
-    field_0x2c->searchUpdateMaterialID(mpScreen);
+    mpAnmKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);
+    mpAnmKey->searchUpdateMaterialID(mpScreen);
     field_0x34 = 0.0f;
-    field_0x38 = 0.0f;
+    mFrame = 0.0f;
     field_0x3c = 0.0f;
 }
 #else
@@ -1597,13 +1597,13 @@ SECTION_SDATA2 static f64 lit_5199 = 4503601774854144.0 /* cast s32 to float */;
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::btkAnimeLoop0(J2DAnmTextureSRTKey* i_SRTKey) {
     if (i_SRTKey != NULL) {
-        field_0x38++;
-        if (field_0x38 >= i_SRTKey->getFrameMax()) {
-            field_0x38 -= i_SRTKey->getFrameMax();
+        mFrame++;
+        if (mFrame >= i_SRTKey->getFrameMax()) {
+            mFrame -= i_SRTKey->getFrameMax();
         }
-        i_SRTKey->setFrame(field_0x38);
+        i_SRTKey->setFrame(mFrame);
     } else {
-        field_0x38 = 0.0f;
+        mFrame = 0.0f;
     }
     static_cast<J2DTextBox*>(mpScreen->search('modelbg0'))->setAnimation(i_SRTKey);
     static_cast<J2DTextBox*>(mpScreen->search('modelbg1'))->setAnimation(i_SRTKey);
@@ -1640,7 +1640,7 @@ SECTION_SDATA2 static f64 lit_5271 = 4503599627370496.0 /* cast u32 to float */;
 void dMenu_Collect2D_c::setBackAlpha() {
     f32 alpha = mpBlackTex->getAlpha() / 150.0f;
 
-    switch (field_0x22c) {
+    switch (mProcess) {
     case 1:
     case 2:
     case 3:
@@ -2126,10 +2126,10 @@ void dMenu_Collect2D_c::setEquipItemFrameColorSword(int i_frame) {
     };
 
     if (i_frame == -1) {
-        if (field_0x25b != dComIfGs_getSelectEquipSword()) {
-            field_0x25b = dComIfGs_getSelectEquipSword();
+        if (mEquippedSword != dComIfGs_getSelectEquipSword()) {
+            mEquippedSword = dComIfGs_getSelectEquipSword();
 
-            switch (field_0x25b) {
+            switch (mEquippedSword) {
             case SWORD:
                 i_frame = 0;
                 break;
@@ -2185,10 +2185,10 @@ void dMenu_Collect2D_c::setEquipItemFrameColorShield(int i_frame) {
     };
 
     if (i_frame == -1) {
-        if (field_0x25c != dComIfGs_getSelectEquipShield()) {
-            field_0x25c = dComIfGs_getSelectEquipShield();
+        if (mEquippedShield != dComIfGs_getSelectEquipShield()) {
+            mEquippedShield = dComIfGs_getSelectEquipShield();
 
-            switch (field_0x25c) {
+            switch (mEquippedShield) {
             case SHIELD:
             case WOOD_SHIELD:
                 i_frame = 0;
@@ -2236,10 +2236,10 @@ void dMenu_Collect2D_c::setEquipItemFrameColorClothes(int i_frame) {
     };
 
     if (i_frame == -1) {
-        if (field_0x25d != dComIfGs_getSelectEquipClothes()) {
-            field_0x25d = dComIfGs_getSelectEquipClothes();
+        if (mEquippedClothes != dComIfGs_getSelectEquipClothes()) {
+            mEquippedClothes = dComIfGs_getSelectEquipClothes();
 
-            switch (field_0x25d) {
+            switch (mEquippedClothes) {
             case WEAR_KOKIRI:
                 i_frame = 0;
                 break;
@@ -2286,48 +2286,48 @@ void dMenu_Collect2D_c::setHIO(bool i_useHIO) {
         'uzu_00', 'uzu_01', 'uzu_02', 'uzu_03', 'uzu_04', 'uzu_05', 'uzu_06', 'uzu_07', 'hishi',
     };
 
-    if (field_0x54 != g_drawHIO.mCollectScreen.mBlueSmokePosX ||
-        field_0x58 != g_drawHIO.mCollectScreen.mBlueSmokePosY)
+    if (mBlueSmokePosX != g_drawHIO.mCollectScreen.mBlueSmokePosX ||
+        mBlueSmokePosY != g_drawHIO.mCollectScreen.mBlueSmokePosY)
     {
-        field_0x54 = g_drawHIO.mCollectScreen.mBlueSmokePosX;
-        field_0x58 = g_drawHIO.mCollectScreen.mBlueSmokePosY;
-        mpModelBg->paneTrans(field_0x54, field_0x58);
+        mBlueSmokePosX = g_drawHIO.mCollectScreen.mBlueSmokePosX;
+        mBlueSmokePosY = g_drawHIO.mCollectScreen.mBlueSmokePosY;
+        mpModelBg->paneTrans(mBlueSmokePosX, mBlueSmokePosY);
     }
 
-    if (field_0x5c != g_drawHIO.mCollectScreen.mBlueSmokeScale) {
-        field_0x5c = g_drawHIO.mCollectScreen.mBlueSmokeScale;
-        mpModelBg->scale(field_0x5c, field_0x5c);
+    if (mBlueSmokeScale != g_drawHIO.mCollectScreen.mBlueSmokeScale) {
+        mBlueSmokeScale = g_drawHIO.mCollectScreen.mBlueSmokeScale;
+        mpModelBg->scale(mBlueSmokeScale, mBlueSmokeScale);
     }
 
-    if (field_0x60 != g_drawHIO.mCollectScreen.mBlueSmokeAlpha) {
-        field_0x60 = g_drawHIO.mCollectScreen.mBlueSmokeAlpha;
-        mpModelBg->setAlphaRate(field_0x60);
+    if (mBlueSmokeAlpha != g_drawHIO.mCollectScreen.mBlueSmokeAlpha) {
+        mBlueSmokeAlpha = g_drawHIO.mCollectScreen.mBlueSmokeAlpha;
+        mpModelBg->setAlphaRate(mBlueSmokeAlpha);
     }
 
-    if (field_0x64 != g_drawHIO.mCollectScreen.mHeartVesselPosX ||
-        field_0x68 != g_drawHIO.mCollectScreen.mHeartVesselPosY)
+    if (mHeartVesselPosX != g_drawHIO.mCollectScreen.mHeartVesselPosX ||
+        mHeartVesselPosY != g_drawHIO.mCollectScreen.mHeartVesselPosY)
     {
-        field_0x64 = g_drawHIO.mCollectScreen.mHeartVesselPosX;
-        field_0x68 = g_drawHIO.mCollectScreen.mHeartVesselPosY;
-        mpHeartParent->paneTrans(field_0x64, field_0x68);
+        mHeartVesselPosX = g_drawHIO.mCollectScreen.mHeartVesselPosX;
+        mHeartVesselPosY = g_drawHIO.mCollectScreen.mHeartVesselPosY;
+        mpHeartParent->paneTrans(mHeartVesselPosX, mHeartVesselPosY);
     }
 
-    if (field_0x6c != g_drawHIO.mCollectScreen.mHeartVesselScale) {
-        field_0x6c = g_drawHIO.mCollectScreen.mHeartVesselScale;
-        mpHeartParent->scale(field_0x6c, field_0x6c);
+    if (mHeartVesselScale != g_drawHIO.mCollectScreen.mHeartVesselScale) {
+        mHeartVesselScale = g_drawHIO.mCollectScreen.mHeartVesselScale;
+        mpHeartParent->scale(mHeartVesselScale, mHeartVesselScale);
     }
 
-    if (field_0x70 != g_drawHIO.mCollectScreen.mHeartPiecePosX ||
-        field_0x74 != g_drawHIO.mCollectScreen.mHeartPiecePosY)
+    if (mHeartPiecePosX != g_drawHIO.mCollectScreen.mHeartPiecePosX ||
+        mHeartPiecePosY != g_drawHIO.mCollectScreen.mHeartPiecePosY)
     {
-        field_0x70 = g_drawHIO.mCollectScreen.mHeartPiecePosX;
-        field_0x74 = g_drawHIO.mCollectScreen.mHeartPiecePosY;
-        mpHeartPiece->paneTrans(field_0x70, field_0x74);
+        mHeartPiecePosX = g_drawHIO.mCollectScreen.mHeartPiecePosX;
+        mHeartPiecePosY = g_drawHIO.mCollectScreen.mHeartPiecePosY;
+        mpHeartPiece->paneTrans(mHeartPiecePosX, mHeartPiecePosY);
     }
 
-    if (field_0x78 != g_drawHIO.mCollectScreen.mHeartPieceScale) {
-        field_0x78 = g_drawHIO.mCollectScreen.mHeartPieceScale;
-        mpHeartPiece->scale(field_0x78, field_0x78);
+    if (mHeartPieceScale != g_drawHIO.mCollectScreen.mHeartPieceScale) {
+        mHeartPieceScale = g_drawHIO.mCollectScreen.mHeartPieceScale;
+        mpHeartPiece->scale(mHeartPieceScale, mHeartPieceScale);
     }
 
     if (g_drawHIO.mCollectScreen.mColorDebugON) {
@@ -2490,7 +2490,7 @@ void dMenu_Collect2D_c::wait_proc() {
                 dMeter2Info_set2DVibration();
             }
         } else {
-            if (field_0x22d[mCursorX][mCursorY] != 0 && field_0x40 == 0) {
+            if (field_0x22d[mCursorX][mCursorY] != 0 && !mIsWolf) {
                 if ((mCursorX >= 3 && mCursorX <= 4) || (mCursorX == 5 && mCursorY == 2)) {
                     u8 cursorY = mCursorY;
                     if (cursorY == 0) {
@@ -2517,7 +2517,7 @@ void dMenu_Collect2D_c::wait_proc() {
             cursorMove();
         }
         if (mCursorX >= 3 && mCursorX <= 4 && mCursorY <= 2 || (mCursorX == 5 && mCursorY == 2)) {
-            if (field_0x22d[mCursorX][mCursorY] != 0 && field_0x40 == 0) {
+            if (field_0x22d[mCursorX][mCursorY] != 0 && !mIsWolf) {
                 setAButtonString(0x436);
             } else {
                 setAButtonString(0);
@@ -2587,7 +2587,7 @@ void dMenu_Collect2D_c::save_open_proc() {
         mpSaveScrn->_open();
     }
     if (mpSaveScrn->getSaveStatus() == 2) {
-        field_0x22c = 2;
+        mProcess = 2;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2605,7 +2605,7 @@ void dMenu_Collect2D_c::save_move_proc() {
         mpSaveScrn->_move();
     }
     if (mpSaveScrn->getSaveStatus() == 3) {
-        field_0x22c = 3;
+        mProcess = 3;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2623,7 +2623,7 @@ void dMenu_Collect2D_c::save_close_proc() {
         mpSaveScrn->_close();
     }
     if (mpSaveScrn->getSaveStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2633,7 +2633,7 @@ void dMenu_Collect2D_c::save_close_proc() {
 void dMenu_Collect2D_c::option_open_init() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
     if (!mpOptionScrn) {
-        mpOptionScrn = new dMenu_Option_c(dComIfGp_getCollectResArchive(), field_0x10);
+        mpOptionScrn = new dMenu_Option_c(dComIfGp_getCollectResArchive(), mpStick);
     }
     mpOptionScrn->initialize();
     setAButtonString(0);
@@ -2649,7 +2649,7 @@ void dMenu_Collect2D_c::option_open_proc() {
         mpOptionScrn->_open();
     }
     if (mpOptionScrn->getQuitStatus() == 2) {
-        field_0x22c = 5;
+        mProcess = 5;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2667,7 +2667,7 @@ void dMenu_Collect2D_c::option_move_proc() {
         mpOptionScrn->_move();
     }
     if (mpOptionScrn->getQuitStatus() == 3) {
-        field_0x22c = 6;
+        mProcess = 6;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2685,7 +2685,7 @@ void dMenu_Collect2D_c::option_close_proc() {
         mpOptionScrn->_close();
     }
     if (mpOptionScrn->getQuitStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2695,7 +2695,7 @@ void dMenu_Collect2D_c::option_close_proc() {
 void dMenu_Collect2D_c::letter_open_init() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
     if (!mpLetterScrn) {
-        mpLetterScrn = new dMenu_Letter_c(mpSubHeap, field_0x10, field_0x14);
+        mpLetterScrn = new dMenu_Letter_c(mpSubHeap, mpStick, mpCStick);
     }
     setAButtonString(0);
     setBButtonString(0);
@@ -2710,7 +2710,7 @@ void dMenu_Collect2D_c::letter_open_proc() {
         mpLetterScrn->_open();
     }
     if (mpLetterScrn->getStatus() == 2) {
-        field_0x22c = 8;
+        mProcess = 8;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2728,7 +2728,7 @@ void dMenu_Collect2D_c::letter_move_proc() {
         mpLetterScrn->_move();
     }
     if (mpLetterScrn->getStatus() == 3) {
-        field_0x22c = 9;
+        mProcess = 9;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2746,7 +2746,7 @@ void dMenu_Collect2D_c::letter_close_proc() {
         mpLetterScrn->_close();
     }
     if (mpLetterScrn->getStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2756,7 +2756,7 @@ void dMenu_Collect2D_c::letter_close_proc() {
 void dMenu_Collect2D_c::fishing_open_init() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
     if (!mpFishingScrn) {
-        mpFishingScrn = new dMenu_Fishing_c(mpSubHeap, field_0x10, field_0x14);
+        mpFishingScrn = new dMenu_Fishing_c(mpSubHeap, mpStick, mpCStick);
     }
     setAButtonString(0);
     setBButtonString(0);
@@ -2771,7 +2771,7 @@ void dMenu_Collect2D_c::fishing_open_proc() {
         mpFishingScrn->_open();
     }
     if (mpFishingScrn->getStatus() == 2) {
-        field_0x22c = 11;
+        mProcess = 11;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2789,7 +2789,7 @@ void dMenu_Collect2D_c::fishing_move_proc() {
         mpFishingScrn->_move();
     }
     if (mpFishingScrn->getStatus() == 3) {
-        field_0x22c = 12;
+        mProcess = 12;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2807,7 +2807,7 @@ void dMenu_Collect2D_c::fishing_close_proc() {
         mpFishingScrn->_close();
     }
     if (mpFishingScrn->getStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2817,7 +2817,7 @@ void dMenu_Collect2D_c::fishing_close_proc() {
 void dMenu_Collect2D_c::skill_open_init() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
     if (!mpSkillScrn) {
-        mpSkillScrn = new dMenu_Skill_c(mpSubHeap, field_0x10, field_0x14);
+        mpSkillScrn = new dMenu_Skill_c(mpSubHeap, mpStick, mpCStick);
     }
     setAButtonString(0);
     setBButtonString(0);
@@ -2832,7 +2832,7 @@ void dMenu_Collect2D_c::skill_open_proc() {
         mpSkillScrn->_open();
     }
     if (mpSkillScrn->getStatus() == 2) {
-        field_0x22c = 14;
+        mProcess = 14;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2850,7 +2850,7 @@ void dMenu_Collect2D_c::skill_move_proc() {
         mpSkillScrn->_move();
     }
     if (mpSkillScrn->getStatus() == 3) {
-        field_0x22c = 15;
+        mProcess = 15;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2868,7 +2868,7 @@ void dMenu_Collect2D_c::skill_close_proc() {
         mpSkillScrn->_close();
     }
     if (mpSkillScrn->getStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2878,7 +2878,7 @@ void dMenu_Collect2D_c::skill_close_proc() {
 void dMenu_Collect2D_c::insect_open_init() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpSubHeap);
     if (!mpInsectScrn) {
-        mpInsectScrn = new dMenu_Insect_c(mpSubHeap, field_0x10, field_0x14, 0);
+        mpInsectScrn = new dMenu_Insect_c(mpSubHeap, mpStick, mpCStick, 0);
     }
     setAButtonString(0);
     setBButtonString(0);
@@ -2893,7 +2893,7 @@ void dMenu_Collect2D_c::insect_open_proc() {
         mpInsectScrn->_open();
     }
     if (mpInsectScrn->getStatus() == 2) {
-        field_0x22c = 17;
+        mProcess = 17;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2911,7 +2911,7 @@ void dMenu_Collect2D_c::insect_move_proc() {
         mpInsectScrn->_move();
     }
     if (mpInsectScrn->getStatus() == 3) {
-        field_0x22c = 18;
+        mProcess = 18;
     }
     mDoExt_setCurrentHeap(heap);
 }
@@ -2929,7 +2929,7 @@ void dMenu_Collect2D_c::insect_close_proc() {
         mpInsectScrn->_close();
     }
     if (mpInsectScrn->getStatus() == 0) {
-        field_0x22c = 0;
+        mProcess = 0;
         mpDrawCursor->onPlayAllAnime();
     }
     mDoExt_setCurrentHeap(heap);
@@ -2939,12 +2939,12 @@ void dMenu_Collect2D_c::insect_close_proc() {
 // Matches with sinit
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::_move() {
-    u8 idx = field_0x22c;
-    (this->*process[idx])();
-    if (field_0x22c != idx) {
-        (this->*init[field_0x22c])();
+    u8 proc = mProcess;
+    (this->*process[proc])();
+    if (mProcess != proc) {
+        (this->*init[mProcess])();
     }
-    btkAnimeLoop0(field_0x2c);
+    btkAnimeLoop0(mpAnmKey);
     mpScreen->animation();
     setBackAlpha();
     setHIO(false);
@@ -2968,7 +2968,7 @@ void dMenu_Collect2D_c::_draw() {
     grafPort->setup2D();
     mpScreen->draw(0.0f, 0.0f, grafPort);
 
-    if (field_0x182 == 0) {
+    if (mItemNameString == 0) {
         char* stringPtr1 = static_cast<J2DTextBox*>(mpScreen->search('f_text1'))->getStringPtr();
         strcpy(stringPtr1, "");
 
@@ -2976,10 +2976,10 @@ void dMenu_Collect2D_c::_draw() {
         strcpy(stringPtr0, "");
     } else {
         J2DTextBox* textBox1 = static_cast<J2DTextBox*>(mpScreen->search('f_text1'));
-        mpString->getString(field_0x182, textBox1, NULL, NULL, NULL, 0);
+        mpString->getString(mItemNameString, textBox1, NULL, NULL, NULL, 0);
 
         J2DTextBox* textBox0 = static_cast<J2DTextBox*>(mpScreen->search('f_text0'));
-        mpString->getString(field_0x182, textBox0, NULL, NULL, NULL, 0);
+        mpString->getString(mItemNameString, textBox0, NULL, NULL, NULL, 0);
 
         textBox0 = static_cast<J2DTextBox*>(mpScreen->search('f_text0'));
         mpString->drawOutFontLocal(textBox0, -1.0f);
@@ -3005,7 +3005,7 @@ void dMenu_Collect2D_c::drawTop() {
 /* 801B5F84-801B5FAC 1B08C4 0028+00 0/0 1/1 0/0 .text            isKeyCheck__17dMenu_Collect2D_cFv
  */
 bool dMenu_Collect2D_c::isKeyCheck() {
-    if (field_0x22c || field_0x25f) {
+    if (mProcess || field_0x25f) {
         return true;
     }
     return false;
@@ -3024,8 +3024,8 @@ void dMenu_Collect2D_c::setAButtonString(u16 i_stringID) {
         'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
     };
 
-    if (i_stringID != field_0x17c) {
-        field_0x17c = i_stringID;
+    if (i_stringID != mCurrentAString) {
+        mCurrentAString = i_stringID;
 
         if (i_stringID == 0) {
             for (int i = 0; i < 5; i++) {
@@ -3050,8 +3050,8 @@ void dMenu_Collect2D_c::setBButtonString(u16 i_stringID) {
         'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
     };
 
-    if (i_stringID != field_0x17e) {
-        field_0x17e = i_stringID;
+    if (i_stringID != mCurrentBString) {
+        mCurrentBString = i_stringID;
 
         if (i_stringID == 0) {
             for (int i = 0; i < 5; i++) {
@@ -3076,7 +3076,7 @@ void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
         setItemNameStringNull();
     } else {
         u32 uVar6 = field_0x184[param_0][param_1];
-        field_0x182 = field_0x1d8[param_0][param_1];
+        mItemNameString = field_0x1d8[param_0][param_1];
         field_0x180 = uVar6;
         if (uVar6 == 0) {
             setItemNameStringNull();
@@ -3097,7 +3097,7 @@ void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
 /* 801B6344-801B6454 1B0C84 0110+00 1/1 0/0 0/0 .text setItemNameStringNull__17dMenu_Collect2D_cFv
  */
 void dMenu_Collect2D_c::setItemNameStringNull() {
-    field_0x182 = 0;
+    mItemNameString = 0;
     J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('item_n04');
     strcpy(textBox->getStringPtr(), "");
     textBox = (J2DTextBox*)mpScreen->search('item_n05');
@@ -3114,21 +3114,21 @@ void dMenu_Collect2D_c::setItemNameStringNull() {
 #ifdef NONMATCHING
 dMenu_Collect3D_c::dMenu_Collect3D_c(JKRExpHeap* param_0, dMenu_Collect2D_c* param_1,
                                      CSTControl* param_2) {
-    field_0x24 = daPy_py_c::i_checkNowWolf();
+    mIsWolf = daPy_py_c::i_checkNowWolf();
     mpHeap = param_0;
     mpSolidHeap = NULL;
-    field_0x14 = param_2;
+    mpCStick = param_2;
     mpCollect2D = param_1;
-    if (field_0x24) {
-        field_0x3d8 = -20748;
+    if (mIsWolf) {
+        mLinkAngle = -20748;
     } else {
-        field_0x3d8 = -23324;
+        mLinkAngle = -23324;
     }
-    field_0x3d0 = 0.0f;
-    field_0x3d4 = 0.0f;
-    field_0x3c8 = 0.0f;
-    field_0x3c4 = 0.0f;
-    field_0x3cc = 1.0f;
+    mMaskMirrorAnmFrameBrk = 0.0f;
+    mMaskMirrorAnmFrameBck = 0.0f;
+    mMaskMirrorOffsetY = 0.0f;
+    mMaskMirrorOffsetX = 0.0f;
+    mMaskMirrorScale = 1.0f;
 }
 #else
 #pragma push
@@ -3179,13 +3179,13 @@ void dMenu_Collect3D_c::_create() {
         createMaskModel();
     } else {
         mpModel = NULL;
-        field_0x1c = NULL;
-        field_0x20 = NULL;
+        mpBckAnm = NULL;
+        mpBrkAnm = NULL;
     }
     mpSolidHeap->adjustSize();
     mDoExt_restoreCurrentHeap();
     if (mpModel != NULL) {
-        dKy_tevstr_init(&field_0x28, -1, 0xff);
+        dKy_tevstr_init(&mTevStr, -1, 0xff);
         set_mtx();
     }
     _move(mpCollect2D->getCursorX(), mpCollect2D->getCursorY());
@@ -3246,7 +3246,7 @@ void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
     Vec linkPos = mpCollect2D->getpLink()->getGlobalVtxCenter(false, 0);
     f32 posY;
     f32 posZ;
-    if (field_0x24 != 0) {
+    if (mIsWolf != 0) {
         posY = linkPos.y + 60.0f;
         posZ = 580.0f;
     } else {
@@ -3256,13 +3256,13 @@ void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
     toItem3Dpos(linkPos.x, posY, posZ, &itemPos);
     if (param_0 == 0 && param_1 == 0) {
         f32 temp = 450.0f;
-        field_0x3d8 += (s16)temp;
+        mLinkAngle += (s16)temp;
     } else {
-        s16 target = field_0x24 != 0 ? (s16)-0x510C : (s16)-0x5B1C;
-        cLib_addCalcAngleS(&field_0x3d8, target, 4, 0x800, 0x80);
+        s16 target = mIsWolf != 0 ? (s16)-0x510C : (s16)-0x5B1C;
+        cLib_addCalcAngleS(&mLinkAngle, target, 4, 0x800, 0x80);
     }
     if (daAlink_getAlinkActorClass() != NULL) {
-        daAlink_getAlinkActorClass()->statusWindowExecute(&itemPos, field_0x3d8);
+        daAlink_getAlinkActorClass()->statusWindowExecute(&itemPos, mLinkAngle);
     }
     if (mpModel != NULL) {
         cXyz modelPos;
@@ -3297,8 +3297,8 @@ void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
         f32 offsetPosY =
             maskPos.y + g_drawHIO.mCollectScreen.mMaskMirrorPos.y + mMaskMirrorOffsetY + offsetY;
         toItem3Dpos(offsetPosX, offsetPosY, 600.0f, &modelPos);
-        field_0x3b0.set(modelPos);
-        field_0x3bc.set(g_drawHIO.mCollectScreen.mMaskMirrorAngle.x,
+        mMaskMirrorPos.set(modelPos);
+        mMaskMirrorAngle.set(g_drawHIO.mCollectScreen.mMaskMirrorAngle.x,
                         g_drawHIO.mCollectScreen.mMaskMirrorAngle.y,
                         g_drawHIO.mCollectScreen.mMaskMirrorAngle.z);
         animePlay();
@@ -3323,8 +3323,8 @@ void dMenu_Collect3D_c::draw() {
         daAlink_getAlinkActorClass()->statusWindowDraw();
     }
     if (mpModel) {
-        g_env_light.settingTevStruct(13, &field_0x3b0, &field_0x28);
-        g_env_light.setLightTevColorType_MAJI(mpModel, &field_0x28);
+        g_env_light.settingTevStruct(13, &mMaskMirrorPos, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
         animeEntry();
         mDoExt_modelUpdateDL(mpModel);
     }
@@ -3348,11 +3348,11 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
     if (param_1 != NULL) {
         J3DAnmTransform* pbck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(
             resArchive->getResource('BCK ', param_1), J3DLOADER_UNK_FLAG0);
-        field_0x1c = new mDoExt_bckAnm();
-        if (field_0x1c == NULL) {
+        mpBckAnm = new mDoExt_bckAnm();
+        if (mpBckAnm == NULL) {
             return;
         }
-        if (field_0x1c->init(pbck, 1, 2, 1.0f, 0, -1, false) != 0) {
+        if (mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false) != 0) {
             return;
         }
     }
@@ -3360,9 +3360,9 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
         J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(
             resArchive->getResource('BRK ', param_2), J3DLOADER_UNK_FLAG0);
         pbrk->searchUpdateMaterialID(modelData);
-        field_0x20 = new mDoExt_brkAnm();
-        if (field_0x20 != NULL) {
-            field_0x20->init(modelData, pbrk, -1, 2, 1.0f, 0, -1);
+        mpBrkAnm = new mDoExt_brkAnm();
+        if (mpBrkAnm != NULL) {
+            mpBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1);
         }
     }
 }
@@ -3416,10 +3416,10 @@ void dMenu_Collect3D_c::set_mtx() {
     baseScale.y = finalScale;
     baseScale.x = finalScale;
     mpModel->setBaseScale(baseScale);
-    mDoMtx_stack_c::transS(field_0x3b0.x, field_0x3b0.y, field_0x3b0.z);
-    mDoMtx_stack_c::YrotM(field_0x3bc.y);
-    mDoMtx_stack_c::XrotM(field_0x3bc.x);
-    mDoMtx_stack_c::ZrotM(field_0x3bc.z);
+    mDoMtx_stack_c::transS(mMaskMirrorPos.x, mMaskMirrorPos.y, mMaskMirrorPos.z);
+    mDoMtx_stack_c::YrotM(mMaskMirrorAngle.y);
+    mDoMtx_stack_c::XrotM(mMaskMirrorAngle.x);
+    mDoMtx_stack_c::ZrotM(mMaskMirrorAngle.z);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 #else
@@ -3437,21 +3437,21 @@ asm void dMenu_Collect3D_c::set_mtx() {
 #ifdef NONMATCHING
 // matches with literals
 void dMenu_Collect3D_c::animePlay() {
-    if (field_0x20 != NULL) {
-        field_0x3d0 += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
-        if (field_0x3d0 >= field_0x20->getEndFrame()) {
-            field_0x3d0 -= field_0x20->getEndFrame();
+    if (mpBrkAnm != NULL) {
+        mMaskMirrorAnmFrameBrk += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
+        if (mMaskMirrorAnmFrameBrk >= mpBrkAnm->getEndFrame()) {
+            mMaskMirrorAnmFrameBrk -= mpBrkAnm->getEndFrame();
         }
-        field_0x20->setFrame(field_0x3d0);
-        field_0x20->play();
+        mpBrkAnm->setFrame(mMaskMirrorAnmFrameBrk);
+        mpBrkAnm->play();
     }
-    if (field_0x1c != NULL) {
-        field_0x3d4 += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
-        if (field_0x3d4 >= field_0x1c->getEndFrame()) {
-            field_0x3d4 -= field_0x1c->getEndFrame();
+    if (mpBckAnm != NULL) {
+        mMaskMirrorAnmFrameBck += g_drawHIO.mCollectScreen.mMaskMirrorAnimSpeed;
+        if (mMaskMirrorAnmFrameBck >= mpBckAnm->getEndFrame()) {
+            mMaskMirrorAnmFrameBck -= mpBckAnm->getEndFrame();
         }
-        field_0x1c->setFrame(field_0x3d4);
-        field_0x1c->play();
+        mpBckAnm->setFrame(mMaskMirrorAnmFrameBck);
+        mpBckAnm->play();
     }
 }
 #else
@@ -3468,11 +3468,11 @@ asm void dMenu_Collect3D_c::animePlay() {
 /* 801B6FB0-801B7014 1B18F0 0064+00 1/1 0/0 0/0 .text            animeEntry__17dMenu_Collect3D_cFv
  */
 void dMenu_Collect3D_c::animeEntry() {
-    if (field_0x20 != NULL) {
-        field_0x20->entry(mpModel->getModelData());
+    if (mpBrkAnm != NULL) {
+        mpBrkAnm->entry(mpModel->getModelData());
     }
-    if (field_0x1c != NULL) {
-        field_0x1c->entry(mpModel->getModelData());
+    if (mpBckAnm != NULL) {
+        mpBckAnm->entry(mpModel->getModelData());
     }
 }
 
@@ -3521,11 +3521,11 @@ void dMenu_Collect3D_c::createMaskModel() {
     mMaskMirrorOffsetX = m_kamen_offset_x[crystalNum];
     mMaskMirrorOffsetY = m_kamen_offset_y[crystalNum];
     mMaskMirrorScale = m_kamen_scale[crystalNum];
-    field_0x3b0.set(0.0f, 0.0f, 0.0f);
-    field_0x3bc.set(0, 0, 0);
+    mMaskMirrorPos.set(0.0f, 0.0f, 0.0f);
+    mMaskMirrorAngle.set(0, 0, 0);
     mpModel = NULL;
-    field_0x1c = NULL;
-    field_0x20 = NULL;
+    mpBckAnm = NULL;
+    mpBrkAnm = NULL;
     if (crystalNum != 0) {
         setJ3D("md_mask_UI.bmd", bck_name[crystalNum - 1], brk_name[crystalNum - 1]);
         switch (crystalNum) {
@@ -3606,11 +3606,11 @@ void dMenu_Collect3D_c::createMirrorModel() {
     mMaskMirrorOffsetX = m_mirror_offset_x[mirrorNum];
     mMaskMirrorOffsetY = m_mirror_offset_y[mirrorNum];
     mMaskMirrorScale = m_mirror_scale[mirrorNum];
-    field_0x3b0.set(0.0f, 0.0f, 0.0f);
-    field_0x3bc.set(0, 0, 0);
+    mMaskMirrorPos.set(0.0f, 0.0f, 0.0f);
+    mMaskMirrorAngle.set(0, 0, 0);
     mpModel = NULL;
-    field_0x1c = NULL;
-    field_0x20 = NULL;
+    mpBckAnm = NULL;
+    mpBrkAnm = NULL;
     if (mirrorNum != 0) {
         setJ3D("kageri_mirrer_UI.bmd", bck_name[mirrorNum - 1], brk_name[mirrorNum - 1]);
         switch (mirrorNum) {
