@@ -7,7 +7,7 @@ struct cBgD_Vtx_t : public Vec {};
 
 class cBgS_GrpPassChk {
 public:
-    virtual ~cBgS_GrpPassChk();
+    virtual ~cBgS_GrpPassChk() {}
 };
 
 class cBgS_PolyPassChk;

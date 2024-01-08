@@ -1052,3 +1052,5 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/DynamicLink.o \
 	$(BUILD_DIR)/src/d/meter/d_meter_HIO.o \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o \
+	$(BUILD_DIR)/src/d/bg/d_bg_s_grp_pass_chk.o \
+	
