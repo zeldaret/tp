@@ -108,6 +108,8 @@ public:
     u8 getCursorX() { return mCursorX; }
     u8 getCursorY() { return mCursorY; }
     u8 getSubWindowOpenCheck() { return mSubWindowOpenCheck; }
+    CPaneMgr* getpLink() { return mpLinkPm; }
+    CPaneMgr* getpMask() { return mpMaskPm; }
 
 private:
     /* 0x004 */ JKRExpHeap* mpHeap;
@@ -125,7 +127,7 @@ private:
     /* 0x034 */ f32 field_0x34;
     /* 0x038 */ f32 field_0x38;
     /* 0x03C */ f32 field_0x3c;
-    /* 0x040 */ s32 field_0x40;
+    /* 0x040 */ u32 field_0x40;
     /* 0x044 */ f32 field_0x44[2];
     /* 0x04C */ f32 field_0x4c[2];
     /* 0x054 */ f32 field_0x54;
@@ -160,90 +162,8 @@ private:
     /* 0x17E */ u16 field_0x17e;
     /* 0x180 */ u16 field_0x180;
     /* 0x182 */ u16 field_0x182;
-    /* 0x184 */ u16 field_0x184;
-    /* 0x186 */ u16 field_0x186;
-    /* 0x188 */ u16 field_0x188;
-    /* 0x18A */ u16 field_0x18a;
-    /* 0x18C */ u16 field_0x18c;
-    /* 0x18E */ u16 field_0x18e;
-    /* 0x190 */ u16 field_0x190;
-    /* 0x192 */ u16 field_0x192;
-    /* 0x194 */ u16 field_0x194;
-    /* 0x196 */ u16 field_0x196;
-    /* 0x198 */ u16 field_0x198;
-    /* 0x19A */ u16 field_0x19a;
-    /* 0x19C */ u16 field_0x19c;
-    /* 0x19E */ u16 field_0x19e;
-    /* 0x1A0 */ u16 field_0x1a0;
-    /* 0x1A2 */ u16 field_0x1a2;
-    /* 0x1A4 */ u16 field_0x1a4;
-    /* 0x1A6 */ u16 field_0x1a6;
-    /* 0x1A8 */ u16 field_0x1a8;
-    /* 0x1AA */ u16 field_0x1aa;
-    /* 0x1AC */ u16 field_0x1ac;
-    /* 0x1AE */ u16 field_0x1ae;
-    /* 0x1B0 */ u16 field_0x1b0;
-    /* 0x1B2 */ u16 field_0x1b2;
-    /* 0x1B4 */ u16 field_0x1b4;
-    /* 0x1B6 */ u16 field_0x1b6;
-    /* 0x1B8 */ u16 field_0x1b8;
-    /* 0x1BA */ u16 field_0x1ba;
-    /* 0x1BC */ u16 field_0x1bc;
-    /* 0x1BE */ u16 field_0x1be;
-    /* 0x1C0 */ u16 field_0x1c0;
-    /* 0x1C2 */ u16 field_0x1c2;
-    /* 0x1C4 */ u16 field_0x1c4;
-    /* 0x1C6 */ u16 field_0x1c6;
-    /* 0x1C8 */ u16 field_0x1c8;
-    /* 0x1CA */ u16 field_0x1ca;
-    /* 0x1CC */ u16 field_0x1cc;
-    /* 0x1CE */ u16 field_0x1ce;
-    /* 0x1D0 */ u16 field_0x1d0;
-    /* 0x1D2 */ u16 field_0x1d2;
-    /* 0x1D4 */ u16 field_0x1d4;
-    /* 0x1D6 */ u16 field_0x1d6;
-    /* 0x1D8 */ u16 field_0x1d8;
-    /* 0x1DA */ u16 field_0x1da;
-    /* 0x1DC */ u16 field_0x1dc;
-    /* 0x1DE */ u16 field_0x1de;
-    /* 0x1E0 */ u16 field_0x1e0;
-    /* 0x1E2 */ u16 field_0x1e2;
-    /* 0x1E4 */ u16 field_0x1e4;
-    /* 0x1E6 */ u16 field_0x1e6;
-    /* 0x1E8 */ u16 field_0x1e8;
-    /* 0x1EA */ u16 field_0x1ea;
-    /* 0x1EC */ u16 field_0x1ec;
-    /* 0x1EE */ u16 field_0x1ee;
-    /* 0x1F0 */ u16 field_0x1f0;
-    /* 0x1F2 */ u16 field_0x1f2;
-    /* 0x1F4 */ u16 field_0x1f4;
-    /* 0x1F6 */ u16 field_0x1f6;
-    /* 0x1F8 */ u16 field_0x1f8;
-    /* 0x1FA */ u16 field_0x1fa;
-    /* 0x1FC */ u16 field_0x1fc;
-    /* 0x1FE */ u16 field_0x1fe;
-    /* 0x200 */ u16 field_0x200;
-    /* 0x202 */ u16 field_0x202;
-    /* 0x204 */ u16 field_0x204;
-    /* 0x206 */ u16 field_0x206;
-    /* 0x208 */ u16 field_0x208;
-    /* 0x20A */ u16 field_0x20a;
-    /* 0x20C */ u16 field_0x20c;
-    /* 0x20E */ u16 field_0x20e;
-    /* 0x210 */ u16 field_0x210;
-    /* 0x212 */ u16 field_0x212;
-    /* 0x214 */ u16 field_0x214;
-    /* 0x216 */ u16 field_0x216;
-    /* 0x218 */ u16 field_0x218;
-    /* 0x21A */ u16 field_0x21a;
-    /* 0x21C */ u16 field_0x21c;
-    /* 0x21E */ u16 field_0x21e;
-    /* 0x220 */ u16 field_0x220;
-    /* 0x222 */ u16 field_0x222;
-    /* 0x224 */ u16 field_0x224;
-    /* 0x226 */ u16 field_0x226;
-    /* 0x228 */ u16 field_0x228;
-    /* 0x22A */ u16 field_0x22a;
+    /* 0x184 */ u16 field_0x184[7][6];
+    /* 0x1D8 */ u16 field_0x1d8[7][6];
     /* 0x22C */ u8 field_0x22c;
     /* 0x22D */ u8 field_0x22d[7][6];
     /* 0x257 */ u8 mCursorX;
@@ -266,7 +186,7 @@ public:
     /* 801B6694 */ void _delete();
     /* 801B66C8 */ void _move(u8, u8);
     /* 801B696C */ void draw();
-    /* 801B6A30 */ void setJ3D(char const*, char const*, char const*);
+    /* 801B6A30 */ void setJ3D(const char*, const char*, const char*);
     /* 801B6D30 */ void set_mtx();
     /* 801B6E70 */ void animePlay();
     /* 801B6FB0 */ void animeEntry();
@@ -276,7 +196,7 @@ public:
     /* 801B749C */ static u8 getMirrorNum();
     /* 801B7504 */ static u8 getMaskMdlVisible();
     /* 801B75E8 */ static void setupItem3D(Mtx);
-    /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
+    /* 801B7660 */ static void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801B774C */ static void calcViewMtx(Mtx);
 
     /* 801B6538 */ virtual ~dMenu_Collect3D_c();
