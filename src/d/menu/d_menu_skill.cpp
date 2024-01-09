@@ -777,28 +777,28 @@ void dMenu_Skill_c::setHIO(bool i_useHIO) {
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
         if (mpButtonAB[0]) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX,
-                                     g_drawHIO.mCollectScreen.mAButtonPosY);
-            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mAButtonScale,
-                                 g_drawHIO.mCollectScreen.mAButtonScale);
+            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
+                                     g_drawHIO.mCollectScreen.mButtonAPosY);
+            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mButtonAScale,
+                                 g_drawHIO.mCollectScreen.mButtonAScale);
         }
         if (mpButtonAB[1]) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX,
-                                     g_drawHIO.mCollectScreen.mBButtonPosY);
-            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mBButtonScale,
-                                 g_drawHIO.mCollectScreen.mBButtonScale);
+            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
+                                     g_drawHIO.mCollectScreen.mButtonBPosY);
+            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mButtonBScale,
+                                 g_drawHIO.mCollectScreen.mButtonBScale);
         }
         if (mpButtonText[0]) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX,
-                                       g_drawHIO.mCollectScreen.mAButtonTextPosY);
-            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mAButtonTextScale,
-                                   g_drawHIO.mCollectScreen.mAButtonTextScale);
+            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
+                                       g_drawHIO.mCollectScreen.mButtonATextPosY);
+            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
+                                   g_drawHIO.mCollectScreen.mButtonATextScale);
         }
         if (mpButtonText[1]) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX,
-                                       g_drawHIO.mCollectScreen.mBButtonTextPosY);
-            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mBButtonTextScale,
-                                   g_drawHIO.mCollectScreen.mBButtonTextScale);
+            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
+                                       g_drawHIO.mCollectScreen.mButtonBTextPosY);
+            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
+                                   g_drawHIO.mCollectScreen.mButtonBTextScale);
         }
     }
 }

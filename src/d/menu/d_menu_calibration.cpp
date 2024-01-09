@@ -316,31 +316,31 @@ void dMenu_Calibration_c::setHIO(bool i_useHIO) {
 
     if (g_drawHIO.mCollectScreen.mButtonDebugON || i_useHIO) {
         if (field_0x94 != NULL) {
-            field_0x94->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX,
-                                  g_drawHIO.mCollectScreen.mAButtonPosY);
-            field_0x94->scale(g_drawHIO.mCollectScreen.mAButtonScale,
-                              g_drawHIO.mCollectScreen.mAButtonScale);
+            field_0x94->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
+                                  g_drawHIO.mCollectScreen.mButtonAPosY);
+            field_0x94->scale(g_drawHIO.mCollectScreen.mButtonAScale,
+                              g_drawHIO.mCollectScreen.mButtonAScale);
         }
 
         if (field_0x98 != NULL) {
-            field_0x98->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX,
-                                  g_drawHIO.mCollectScreen.mBButtonPosY);
-            field_0x98->scale(g_drawHIO.mCollectScreen.mBButtonScale,
-                              g_drawHIO.mCollectScreen.mBButtonScale);
+            field_0x98->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
+                                  g_drawHIO.mCollectScreen.mButtonBPosY);
+            field_0x98->scale(g_drawHIO.mCollectScreen.mButtonBScale,
+                              g_drawHIO.mCollectScreen.mButtonBScale);
         }
 
         if (field_0x9c != NULL) {
-            field_0x9c->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX,
-                                  g_drawHIO.mCollectScreen.mAButtonTextPosY);
-            field_0x9c->scale(g_drawHIO.mCollectScreen.mAButtonTextScale,
-                              g_drawHIO.mCollectScreen.mAButtonTextScale);
+            field_0x9c->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
+                                  g_drawHIO.mCollectScreen.mButtonATextPosY);
+            field_0x9c->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
+                              g_drawHIO.mCollectScreen.mButtonATextScale);
         }
 
         if (field_0xa0 != NULL) {
-            field_0xa0->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX,
-                                  g_drawHIO.mCollectScreen.mBButtonTextPosY);
-            field_0xa0->scale(g_drawHIO.mCollectScreen.mBButtonTextScale,
-                              g_drawHIO.mCollectScreen.mBButtonTextScale);
+            field_0xa0->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
+                                  g_drawHIO.mCollectScreen.mButtonBTextPosY);
+            field_0xa0->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
+                              g_drawHIO.mCollectScreen.mButtonBTextScale);
         }
     }
 }

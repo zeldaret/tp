@@ -181,15 +181,15 @@ extern "C" void drawButtonBin__13dMeter2Draw_cFUc();
 extern "C" void drawButtonXY__13dMeter2Draw_cFiUcUcbb();
 extern "C" void getButtonCrossParentInitTransY__13dMeter2Draw_cFv();
 extern "C" void drawButtonCross__13dMeter2Draw_cFff();
-extern "C" void setAlphaButtonCrossAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonCrossAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaButtonAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonAAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonAAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonBAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaButtonBAnimeMax__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonACrossAnimeMin__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonACrossAnimeMax__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonAChange__13dMeter2Draw_cFb();
+extern "C" void setAlphButtonAAnimeMin__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonAAnimeMax__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonAAAnimeMin__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonAAAnimeMax__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonABAnimeMin__13dMeter2Draw_cFv();
+extern "C" void setAlphButtonABAnimeMax__13dMeter2Draw_cFv();
 extern "C" void setButtonIconAAlpha__13dMeter2Draw_cFUcUlb();
 extern "C" void setButtonIconBAlpha__13dMeter2Draw_cFUcUlb();
 extern "C" void setButtonIconMidonaAlpha__13dMeter2Draw_cFUl();
@@ -202,7 +202,7 @@ extern "C" void isButtonVisible__13dMeter2Draw_cFv();
 extern "C" void getCameraSubject__13dMeter2Draw_cFv();
 extern "C" void getItemSubject__13dMeter2Draw_cFv();
 extern "C" void getPlayerSubject__13dMeter2Draw_cFv();
-extern "C" void isBButtonShow__13dMeter2Draw_cFb();
+extern "C" void isButtonBShow__13dMeter2Draw_cFb();
 extern "C" void getButtonTimer__13dMeter2Draw_cFv();
 extern "C" void isFloatingMessageVisible__13dMeter2Info_cFv();
 extern "C" void isDirectUseItem__13dMeter2Info_cFi();
@@ -329,8 +329,8 @@ int dMeter2_c::_create() {
     mDoSetFlag = dComIfGp_isDoSetFlag(2);
 
     for (int i = 0; i < 2; i++) {
-        mAButtonTalkPosX[i] = 0.0f;
-        mAButtonTalkPosY[i] = 0.0f;
+        mButtonATalkPosX[i] = 0.0f;
+        mButtonATalkPosY[i] = 0.0f;
     }
     field_0x144 = 1.0f;
 
@@ -868,18 +868,18 @@ void dMeter2_c::moveLife() {
         draw_life = true;
     }
 
-    if (mLifeGaugeScale != g_drawHIO.mLifeGaugeScale) {
-        mLifeGaugeScale = g_drawHIO.mLifeGaugeScale;
+    if (mLifeGaugeScale != g_drawHIO.mLifeParentScale) {
+        mLifeGaugeScale = g_drawHIO.mLifeParentScale;
         draw_life = true;
     }
 
-    if (mHeartScale != g_drawHIO.mHeartScale) {
-        mHeartScale = g_drawHIO.mHeartScale;
+    if (mHeartScale != g_drawHIO.mHeartMarkScale) {
+        mHeartScale = g_drawHIO.mHeartMarkScale;
         draw_life = true;
     }
 
-    if (mLargeHeartScale != g_drawHIO.mLargeHeartScale) {
-        mLargeHeartScale = g_drawHIO.mLargeHeartScale;
+    if (mLargeHeartScale != g_drawHIO.mBigHeartScale) {
+        mLargeHeartScale = g_drawHIO.mBigHeartScale;
         draw_life = true;
     }
 
@@ -1504,84 +1504,84 @@ void dMeter2_c::moveButtonA() {
         field_0x1fd = 0;
     }
 
-    if (mAButtonScale != g_drawHIO.mAButtonScale) {
-        mAButtonScale = g_drawHIO.mAButtonScale;
+    if (mButtonAScale != g_drawHIO.mButtonAScale) {
+        mButtonAScale = g_drawHIO.mButtonAScale;
         draw_buttonA = true;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (mAButtonTalkScale[i] != g_drawHIO.mAButtonTalkScale[i]) {
-            mAButtonTalkScale[i] = g_drawHIO.mAButtonTalkScale[i];
+        if (mButtonATalkScale[i] != g_drawHIO.mButtonATalkScale[i]) {
+            mButtonATalkScale[i] = g_drawHIO.mButtonATalkScale[i];
             draw_buttonA = true;
         }
     }
 
-    if (mAButtonPosX != g_drawHIO.mAButtonPosX) {
-        mAButtonPosX = g_drawHIO.mAButtonPosX;
+    if (mButtonAPosX != g_drawHIO.mButtonAPosX) {
+        mButtonAPosX = g_drawHIO.mButtonAPosX;
         draw_buttonA = true;
     }
 
-    if (mAButtonPosY != g_drawHIO.mAButtonPosY) {
-        mAButtonPosY = g_drawHIO.mAButtonPosY;
+    if (mButtonAPosY != g_drawHIO.mButtonAPosY) {
+        mButtonAPosY = g_drawHIO.mButtonAPosY;
         draw_buttonA = true;
     }
 
-    if (mAButtonFontScale != g_drawHIO.mAButtonFontScale) {
-        mAButtonFontScale = g_drawHIO.mAButtonFontScale;
+    if (mButtonATextScale != g_drawHIO.mButtonATextScale) {
+        mButtonATextScale = g_drawHIO.mButtonATextScale;
         draw_buttonA = true;
     }
 
-    if (mAButtonFontPosX != g_drawHIO.mAButtonFontPosX) {
-        mAButtonFontPosX = g_drawHIO.mAButtonFontPosX;
+    if (mButtonATextPosX != g_drawHIO.mButtonATextPosX) {
+        mButtonATextPosX = g_drawHIO.mButtonATextPosX;
         draw_buttonA = true;
     }
 
-    if (mAButtonFontPosY != g_drawHIO.mAButtonFontPosY) {
-        mAButtonFontPosY = g_drawHIO.mAButtonFontPosY;
+    if (mButtonATextPosY != g_drawHIO.mButtonATextPosY) {
+        mButtonATextPosY = g_drawHIO.mButtonATextPosY;
         draw_buttonA = true;
     }
 
     if (isShowLightDrop()) {
-        pos_x[0] = g_drawHIO.mAButtonVesselPosX;
-        pos_y[0] = g_drawHIO.mAButtonVesselPosY;
+        pos_x[0] = g_drawHIO.mButtonAVesselPosX;
+        pos_y[0] = g_drawHIO.mButtonAVesselPosY;
         pos_x[1] = 0.0f;
         pos_y[1] = 0.0f;
         var_f31 = 1.0f;
     } else if (isShowFlag(0)) {
         if (isShowFlag(1)) {
             for (int i = 0; i < 2; i++) {
-                pos_x[i] = g_drawHIO.mAButtonTalkPosX[i];
-                pos_y[i] = g_drawHIO.mAButtonTalkPosY[i];
+                pos_x[i] = g_drawHIO.mButtonATalkPosX[i];
+                pos_y[i] = g_drawHIO.mButtonATalkPosY[i];
             }
         } else {
             for (int i = 0; i < 2; i++) {
-                pos_x[i] = g_drawHIO.mAButtonTalkAPosX[i];
-                pos_y[i] = g_drawHIO.mAButtonTalkAPosY[i];
+                pos_x[i] = g_drawHIO.mButtonATalkAPosX[i];
+                pos_y[i] = g_drawHIO.mButtonATalkAPosY[i];
             }
         }
         var_f31 = 1.0f;
     } else {
-        pos_x[0] = g_drawHIO.mAButtonPosX;
-        pos_y[0] = g_drawHIO.mAButtonPosY;
+        pos_x[0] = g_drawHIO.mButtonAPosX;
+        pos_y[0] = g_drawHIO.mButtonAPosY;
         pos_x[1] = 0.0f;
         pos_y[1] = 0.0f;
         var_f31 = 1.0f;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (mAButtonTalkPosX[i] != pos_x[i]) {
-            cLib_addCalc2(&mAButtonTalkPosX[i], pos_x[i], 1.0f, 10.0f);
+        if (mButtonATalkPosX[i] != pos_x[i]) {
+            cLib_addCalc2(&mButtonATalkPosX[i], pos_x[i], 1.0f, 10.0f);
             draw_buttonA = true;
-            if ((f32)fabs(mAButtonTalkPosX[i] - pos_x[i]) < 0.1f) {
-                mAButtonTalkPosX[i] = pos_x[i];
+            if ((f32)fabs(mButtonATalkPosX[i] - pos_x[i]) < 0.1f) {
+                mButtonATalkPosX[i] = pos_x[i];
             }
         }
 
-        if (mAButtonTalkPosY[i] != pos_y[i]) {
-            cLib_addCalc2(&mAButtonTalkPosY[i], pos_y[i], 1.0f, 10.0f);
+        if (mButtonATalkPosY[i] != pos_y[i]) {
+            cLib_addCalc2(&mButtonATalkPosY[i], pos_y[i], 1.0f, 10.0f);
             draw_buttonA = true;
-            if ((f32)fabs(mAButtonTalkPosY[i] - pos_y[i]) < 0.1f) {
-                mAButtonTalkPosY[i] = pos_y[i];
+            if ((f32)fabs(mButtonATalkPosY[i] - pos_y[i]) < 0.1f) {
+                mButtonATalkPosY[i] = pos_y[i];
             }
         }
     }
@@ -1600,8 +1600,8 @@ void dMeter2_c::moveButtonA() {
     }
 
     if (draw_buttonA) {
-        mpMeterDraw->drawButtonA(mDoStatus, mAButtonTalkPosX[0], mAButtonTalkPosY[0],
-                                 mAButtonTalkPosX[1], mAButtonTalkPosY[1], field_0x144, var_r29,
+        mpMeterDraw->drawButtonA(mDoStatus, mButtonATalkPosX[0], mButtonATalkPosY[0],
+                                 mButtonATalkPosX[1], mButtonATalkPosY[1], field_0x144, var_r29,
                                  ((mStatus & 0x100) ||
                                   daPy_getPlayerActorClass()->checkHawkWait() ||
                                   daPy_getPlayerActorClass()->checkGrassWhistle()) != false);
@@ -1681,25 +1681,25 @@ void dMeter2_c::moveButtonB() {
         field_0x1fe = 0;
     }
 
-    if (field_0x2cc != g_drawHIO.mBButtonScale) {
-        field_0x2cc = g_drawHIO.mBButtonScale;
+    if (field_0x2cc != g_drawHIO.mButtonBScale) {
+        field_0x2cc = g_drawHIO.mButtonBScale;
         draw_buttonB = true;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x2ec[i] != g_drawHIO.mBButtonTalkScale[i]) {
-            field_0x2ec[i] = g_drawHIO.mBButtonTalkScale[i];
+        if (field_0x2ec[i] != g_drawHIO.mButtonBTalkScale[i]) {
+            field_0x2ec[i] = g_drawHIO.mButtonBTalkScale[i];
             draw_buttonB = true;
         }
     }
 
-    if (mBButtonPosX != g_drawHIO.mBButtonPosX) {
-        mBButtonPosX = g_drawHIO.mBButtonPosX;
+    if (mButtonBPosX != g_drawHIO.mButtonBPosX) {
+        mButtonBPosX = g_drawHIO.mButtonBPosX;
         draw_buttonB = true;
     }
 
-    if (mBButtonPosY != g_drawHIO.mBButtonPosY) {
-        mBButtonPosY = g_drawHIO.mBButtonPosY;
+    if (mButtonBPosY != g_drawHIO.mButtonBPosY) {
+        mButtonBPosY = g_drawHIO.mButtonBPosY;
         draw_buttonB = true;
     }
 
@@ -1708,54 +1708,54 @@ void dMeter2_c::moveButtonB() {
     }
 
     for (int i = 0; i < 2; i++) {
-        if (mBItemBaseScale[i] != g_drawHIO.mBItemBaseScale[i]) {
-            mBItemBaseScale[i] = g_drawHIO.mBItemBaseScale[i];
+        if (mItemBBaseScale[i] != g_drawHIO.mItemBBaseScale[i]) {
+            mItemBBaseScale[i] = g_drawHIO.mItemBBaseScale[i];
             draw_buttonB = true;
         }
 
-        if (mBItemBasePosX[i] != g_drawHIO.mBItemBasePosX[i]) {
-            mBItemBasePosX[i] = g_drawHIO.mBItemBasePosX[i];
+        if (mItemBBasePosX[i] != g_drawHIO.mItemBBasePosX[i]) {
+            mItemBBasePosX[i] = g_drawHIO.mItemBBasePosX[i];
             draw_buttonB = true;
         }
 
-        if (mBItemBasePosY[i] != g_drawHIO.mBItemBasePosY[i]) {
-            mBItemBasePosY[i] = g_drawHIO.mBItemBasePosY[i];
+        if (mItemBBasePosY[i] != g_drawHIO.mItemBBasePosY[i]) {
+            mItemBBasePosY[i] = g_drawHIO.mItemBBasePosY[i];
             draw_buttonB = true;
         }
     }
 
-    if (mBButtonFontScale != g_drawHIO.mBButtonFontScale) {
-        mBButtonFontScale = g_drawHIO.mBButtonFontScale;
+    if (mButtonBFontScale != g_drawHIO.mButtonBFontScale) {
+        mButtonBFontScale = g_drawHIO.mButtonBFontScale;
         draw_buttonB = true;
     }
 
-    if (mBButtonFontPosX != g_drawHIO.mBButtonFontPosX) {
-        mBButtonFontPosX = g_drawHIO.mBButtonFontPosX;
+    if (mButtonBFontPosX != g_drawHIO.mButtonBFontPosX) {
+        mButtonBFontPosX = g_drawHIO.mButtonBFontPosX;
         draw_buttonB = true;
     }
 
-    if (mBButtonFontPosY != g_drawHIO.mBButtonFontPosY) {
-        mBButtonFontPosY = g_drawHIO.mBButtonFontPosY;
+    if (mButtonBFontPosY != g_drawHIO.mButtonBFontPosY) {
+        mButtonBFontPosY = g_drawHIO.mButtonBFontPosY;
         draw_buttonB = true;
     }
 
     if (isShowLightDrop()) {
-        pos_x[0] = g_drawHIO.mBButtonVesselPosX;
-        pos_y[0] = g_drawHIO.mBButtonVesselPosY;
+        pos_x[0] = g_drawHIO.mButtonBVesselPosX;
+        pos_y[0] = g_drawHIO.mButtonBVesselPosY;
         pos_x[1] = 0.0f;
         pos_y[1] = 0.0f;
         var_f31 = 1.0f;
     } else if (isShowFlag(1)) {
         for (int i = 0; i < 2; i++) {
-            pos_x[i] = g_drawHIO.mBButtonTalkPosX[i];
-            pos_y[i] = g_drawHIO.mBButtonTalkPosY[i];
+            pos_x[i] = g_drawHIO.mButtonBTalkPosX[i];
+            pos_y[i] = g_drawHIO.mButtonBTalkPosY[i];
         }
         var_f31 = 1.0f;
     } else {
         for (int i = 0; i < 2; i++) {
             if (field_0x128 != 0 && i == 0) {
-                pos_x[i] = g_drawHIO.mBButtonWolfPosX;
-                pos_y[i] = g_drawHIO.mBButtonWolfPosY;
+                pos_x[i] = g_drawHIO.mButtonBWolfPosX;
+                pos_y[i] = g_drawHIO.mButtonBWolfPosY;
             } else {
                 pos_x[i] = 0.0f;
                 pos_y[i] = 0.0f;
@@ -1764,7 +1764,7 @@ void dMeter2_c::moveButtonB() {
         var_f31 = 1.0f;
     }
 
-    if (mpMeterDraw->isBButtonShow(false)) {
+    if (mpMeterDraw->isButtonBShow(false)) {
         if (field_0x1ff == 0) {
             field_0x1ff = 1;
             draw_buttonB = true;
@@ -1867,63 +1867,63 @@ void dMeter2_c::moveButtonR() {
 void dMeter2_c::moveButtonZ() {
     bool draw_buttonZ = false;
 
-    if (field_0x324 != g_drawHIO.mZButtonScale) {
-        field_0x324 = g_drawHIO.mZButtonScale;
+    if (field_0x324 != g_drawHIO.mButtonZScale) {
+        field_0x324 = g_drawHIO.mButtonZScale;
         draw_buttonZ = true;
     }
 
-    if (field_0x328 != g_drawHIO.mZButtonPosX) {
-        field_0x328 = g_drawHIO.mZButtonPosX;
+    if (field_0x328 != g_drawHIO.mButtonZPosX) {
+        field_0x328 = g_drawHIO.mButtonZPosX;
         draw_buttonZ = true;
     }
 
-    if (field_0x32c != g_drawHIO.mZButtonPosY) {
-        field_0x32c = g_drawHIO.mZButtonPosY;
+    if (field_0x32c != g_drawHIO.mButtonZPosY) {
+        field_0x32c = g_drawHIO.mButtonZPosY;
         draw_buttonZ = true;
     }
 
-    if (field_0x384 != g_drawHIO.mZButtonItemScale) {
-        field_0x384 = g_drawHIO.mZButtonItemScale;
+    if (field_0x384 != g_drawHIO.mButtonZItemScale) {
+        field_0x384 = g_drawHIO.mButtonZItemScale;
         draw_buttonZ = true;
     }
 
-    if (field_0x388 != g_drawHIO.mZButtonItemPosX) {
-        field_0x388 = g_drawHIO.mZButtonItemPosX;
+    if (field_0x388 != g_drawHIO.mButtonZItemPosX) {
+        field_0x388 = g_drawHIO.mButtonZItemPosX;
         draw_buttonZ = true;
     }
 
-    if (field_0x38c != g_drawHIO.mZButtonItemPosY) {
-        field_0x38c = g_drawHIO.mZButtonItemPosY;
+    if (field_0x38c != g_drawHIO.mButtonZItemPosY) {
+        field_0x38c = g_drawHIO.mButtonZItemPosY;
         draw_buttonZ = true;
     }
 
-    if (field_0x3e4 != g_drawHIO.mZButtonItemBaseScale) {
-        field_0x3e4 = g_drawHIO.mZButtonItemBaseScale;
+    if (field_0x3e4 != g_drawHIO.mButtonZItemBaseScale) {
+        field_0x3e4 = g_drawHIO.mButtonZItemBaseScale;
         draw_buttonZ = true;
     }
 
-    if (field_0x3e8 != g_drawHIO.mZButtonItemBasePosX) {
-        field_0x3e8 = g_drawHIO.mZButtonItemBasePosX;
+    if (field_0x3e8 != g_drawHIO.mButtonZItemBasePosX) {
+        field_0x3e8 = g_drawHIO.mButtonZItemBasePosX;
         draw_buttonZ = true;
     }
 
-    if (field_0x3ec != g_drawHIO.mZButtonItemBasePosY) {
-        field_0x3ec = g_drawHIO.mZButtonItemBasePosY;
+    if (field_0x3ec != g_drawHIO.mButtonZItemBasePosY) {
+        field_0x3ec = g_drawHIO.mButtonZItemBasePosY;
         draw_buttonZ = true;
     }
 
-    if (field_0x330 != g_drawHIO.mZButtonFontScale) {
-        field_0x330 = g_drawHIO.mZButtonFontScale;
+    if (field_0x330 != g_drawHIO.mButtonZFontScale) {
+        field_0x330 = g_drawHIO.mButtonZFontScale;
         draw_buttonZ = true;
     }
 
-    if (field_0x334 != g_drawHIO.mZButtonFontPosX) {
-        field_0x334 = g_drawHIO.mZButtonFontPosX;
+    if (field_0x334 != g_drawHIO.mButtonZFontPosX) {
+        field_0x334 = g_drawHIO.mButtonZFontPosX;
         draw_buttonZ = true;
     }
 
-    if (field_0x338 != g_drawHIO.mZButtonFontPosY) {
-        field_0x338 = g_drawHIO.mZButtonFontPosY;
+    if (field_0x338 != g_drawHIO.mButtonZFontPosY) {
+        field_0x338 = g_drawHIO.mButtonZFontPosY;
         draw_buttonZ = true;
     }
 
@@ -2035,94 +2035,94 @@ void dMeter2_c::moveButtonXY() {
         spC[i] = 0;
     }
 
-    if (field_0x33c != g_drawHIO.mXButtonScale) {
-        field_0x33c = g_drawHIO.mXButtonScale;
+    if (field_0x33c != g_drawHIO.mButtonXScale) {
+        field_0x33c = g_drawHIO.mButtonXScale;
         sp8[0] = 1;
     }
 
-    if (field_0x340 != g_drawHIO.mXButtonPosX) {
-        field_0x340 = g_drawHIO.mXButtonPosX;
+    if (field_0x340 != g_drawHIO.mButtonXPosX) {
+        field_0x340 = g_drawHIO.mButtonXPosX;
         sp8[0] = 1;
     }
 
-    if (field_0x344 != g_drawHIO.mXButtonPosY) {
-        field_0x344 = g_drawHIO.mXButtonPosY;
+    if (field_0x344 != g_drawHIO.mButtonXPosY) {
+        field_0x344 = g_drawHIO.mButtonXPosY;
         sp8[0] = 1;
     }
 
-    if (field_0x348 != g_drawHIO.mYButtonScale) {
-        field_0x348 = g_drawHIO.mYButtonScale;
+    if (field_0x348 != g_drawHIO.mButtonYScale) {
+        field_0x348 = g_drawHIO.mButtonYScale;
         sp8[1] = 1;
     }
 
-    if (field_0x34c != g_drawHIO.mYButtonPosX) {
-        field_0x34c = g_drawHIO.mYButtonPosX;
+    if (field_0x34c != g_drawHIO.mButtonYPosX) {
+        field_0x34c = g_drawHIO.mButtonYPosX;
         sp8[1] = 1;
     }
 
-    if (field_0x350 != g_drawHIO.mYButtonPosY) {
-        field_0x350 = g_drawHIO.mYButtonPosY;
+    if (field_0x350 != g_drawHIO.mButtonYPosY) {
+        field_0x350 = g_drawHIO.mButtonYPosY;
         sp8[1] = 1;
     }
 
-    if (field_0x360 != g_drawHIO.mXButtonItemScale) {
-        field_0x360 = g_drawHIO.mXButtonItemScale;
+    if (field_0x360 != g_drawHIO.mButtonXItemScale) {
+        field_0x360 = g_drawHIO.mButtonXItemScale;
         sp8[0] = 1;
     }
 
-    if (field_0x364 != g_drawHIO.mXButtonItemPosX) {
-        field_0x364 = g_drawHIO.mXButtonItemPosX;
+    if (field_0x364 != g_drawHIO.mButtonXItemPosX) {
+        field_0x364 = g_drawHIO.mButtonXItemPosX;
         sp8[0] = 1;
     }
 
-    if (field_0x368 != g_drawHIO.mXButtonItemPosY) {
-        field_0x368 = g_drawHIO.mXButtonItemPosY;
+    if (field_0x368 != g_drawHIO.mButtonXItemPosY) {
+        field_0x368 = g_drawHIO.mButtonXItemPosY;
         sp8[0] = 1;
     }
 
-    if (field_0x36c != g_drawHIO.mYButtonItemScale) {
-        field_0x36c = g_drawHIO.mYButtonItemScale;
+    if (field_0x36c != g_drawHIO.mButtonYItemScale) {
+        field_0x36c = g_drawHIO.mButtonYItemScale;
         sp8[1] = 1;
     }
 
-    if (field_0x370 != g_drawHIO.mYButtonItemPosX) {
-        field_0x370 = g_drawHIO.mYButtonItemPosX;
+    if (field_0x370 != g_drawHIO.mButtonYItemPosX) {
+        field_0x370 = g_drawHIO.mButtonYItemPosX;
         sp8[1] = 1;
     }
 
-    if (field_0x374 != g_drawHIO.mYButtonItemPosY) {
-        field_0x374 = g_drawHIO.mYButtonItemPosY;
+    if (field_0x374 != g_drawHIO.mButtonYItemPosY) {
+        field_0x374 = g_drawHIO.mButtonYItemPosY;
         sp8[1] = 1;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x39c[i] != g_drawHIO.mXButtonItemBaseScale[i]) {
-            field_0x39c[i] = g_drawHIO.mXButtonItemBaseScale[i];
+        if (field_0x39c[i] != g_drawHIO.mButtonXItemBaseScale[i]) {
+            field_0x39c[i] = g_drawHIO.mButtonXItemBaseScale[i];
             sp8[0] = 1;
         }
 
-        if (field_0x3a4[i] != g_drawHIO.mXButtonItemBasePosX[i]) {
-            field_0x3a4[i] = g_drawHIO.mXButtonItemBasePosX[i];
+        if (field_0x3a4[i] != g_drawHIO.mButtonXItemBasePosX[i]) {
+            field_0x3a4[i] = g_drawHIO.mButtonXItemBasePosX[i];
             sp8[0] = 1;
         }
 
-        if (field_0x3ac[i] != g_drawHIO.mXButtonItemBasePosY[i]) {
-            field_0x3ac[i] = g_drawHIO.mXButtonItemBasePosY[i];
+        if (field_0x3ac[i] != g_drawHIO.mButtonXItemBasePosY[i]) {
+            field_0x3ac[i] = g_drawHIO.mButtonXItemBasePosY[i];
             sp8[0] = 1;
         }
 
-        if (field_0x3b4[i] != g_drawHIO.mYButtonItemBaseScale[i]) {
-            field_0x3b4[i] = g_drawHIO.mYButtonItemBaseScale[i];
+        if (field_0x3b4[i] != g_drawHIO.mButtonYItemBaseScale[i]) {
+            field_0x3b4[i] = g_drawHIO.mButtonYItemBaseScale[i];
             sp8[1] = 1;
         }
 
-        if (field_0x3bc[i] != g_drawHIO.mYButtonItemBasePosX[i]) {
-            field_0x3bc[i] = g_drawHIO.mYButtonItemBasePosX[i];
+        if (field_0x3bc[i] != g_drawHIO.mButtonYItemBasePosX[i]) {
+            field_0x3bc[i] = g_drawHIO.mButtonYItemBasePosX[i];
             sp8[1] = 1;
         }
 
-        if (field_0x3c4[i] != g_drawHIO.mYButtonItemBasePosY[i]) {
-            field_0x3c4[i] = g_drawHIO.mYButtonItemBasePosY[i];
+        if (field_0x3c4[i] != g_drawHIO.mButtonYItemBasePosY[i]) {
+            field_0x3c4[i] = g_drawHIO.mButtonYItemBasePosY[i];
             sp8[1] = 1;
         }
     }
@@ -2135,24 +2135,24 @@ void dMeter2_c::moveButtonXY() {
         }
     }
 
-    if (field_0x3f0 != g_drawHIO.mXYButtonFontScale) {
-        field_0x3f0 = g_drawHIO.mXYButtonFontScale;
+    if (field_0x3f0 != g_drawHIO.mButtonXYTextScale) {
+        field_0x3f0 = g_drawHIO.mButtonXYTextScale;
 
         for (int i = 0; i < 2; i++) {
             sp8[i] = 1;
         }
     }
 
-    if (field_0x3f4 != g_drawHIO.mXYButtonFontPosX) {
-        field_0x3f4 = g_drawHIO.mXYButtonFontPosX;
+    if (field_0x3f4 != g_drawHIO.mButtonXYTextPosX) {
+        field_0x3f4 = g_drawHIO.mButtonXYTextPosX;
 
         for (int i = 0; i < 2; i++) {
             sp8[i] = 1;
         }
     }
 
-    if (field_0x3f8 != g_drawHIO.mXYButtonFontPosY) {
-        field_0x3f8 = g_drawHIO.mXYButtonFontPosY;
+    if (field_0x3f8 != g_drawHIO.mButtonXYTextPosY) {
+        field_0x3f8 = g_drawHIO.mButtonXYTextPosY;
 
         for (int i = 0; i < 2; i++) {
             sp8[i] = 1;
@@ -2329,33 +2329,33 @@ void dMeter2_c::moveButtonCross() {
     draw_cross = false;
     var_f31 = 0.0f;
 
-    if (mDPadButtonOFFPosX != g_drawHIO.mDPadButtonOFFPosX) {
-        mDPadButtonOFFPosX = g_drawHIO.mDPadButtonOFFPosX;
+    if (mButtonCrossOFFPosX != g_drawHIO.mButtonCrossOFFPosX) {
+        mButtonCrossOFFPosX = g_drawHIO.mButtonCrossOFFPosX;
         draw_cross = true;
     }
 
-    if (mDPadButtonOFFPosY != g_drawHIO.mDPadButtonOFFPosY) {
-        mDPadButtonOFFPosY = g_drawHIO.mDPadButtonOFFPosY;
+    if (mButtonCrossOFFPosY != g_drawHIO.mButtonCrossOFFPosY) {
+        mButtonCrossOFFPosY = g_drawHIO.mButtonCrossOFFPosY;
         draw_cross = true;
     }
 
-    if (mDPadButtonONPosX != g_drawHIO.mDPadButtonONPosX) {
-        mDPadButtonONPosX = g_drawHIO.mDPadButtonONPosX;
+    if (mButtonCrossONPosX != g_drawHIO.mButtonCrossONPosX) {
+        mButtonCrossONPosX = g_drawHIO.mButtonCrossONPosX;
         draw_cross = true;
     }
 
-    if (mDPadButtonONPosY != g_drawHIO.mDPadButtonONPosY) {
-        mDPadButtonONPosY = g_drawHIO.mDPadButtonONPosY;
+    if (mButtonCrossONPosY != g_drawHIO.mButtonCrossONPosY) {
+        mButtonCrossONPosY = g_drawHIO.mButtonCrossONPosY;
         draw_cross = true;
     }
 
-    if (mDPadButtonScale != g_drawHIO.mDPadButtonScale) {
-        mDPadButtonScale = g_drawHIO.mDPadButtonScale;
+    if (mButtonCrossScale != g_drawHIO.mButtonCrossScale) {
+        mButtonCrossScale = g_drawHIO.mButtonCrossScale;
         draw_cross = true;
     }
 
-    if (mDPadButtonLetterSpacing != g_drawHIO.mDPadButtonLetterSpacing) {
-        mDPadButtonLetterSpacing = g_drawHIO.mDPadButtonLetterSpacing;
+    if (mButtonCrossTextScale != g_drawHIO.mButtonCrossTextScale) {
+        mButtonCrossTextScale = g_drawHIO.mButtonCrossTextScale;
         draw_cross = true;
     }
 
@@ -2364,14 +2364,14 @@ void dMeter2_c::moveButtonCross() {
         temp_f1 = (temp_f31 - mpMeterDraw->getButtonCrossParentInitTransY()) - 15.0f;
 
         if (mpMap->isDispPosInsideFlg()) {
-            if (field_0x1b4 < g_drawHIO.mDPadButtonMoveFrame) {
+            if (field_0x1b4 < g_drawHIO.mButtonCrossMoveFrame) {
                 field_0x1b4++;
                 draw_cross = true;
             } else {
-                field_0x1b4 = g_drawHIO.mDPadButtonMoveFrame;
+                field_0x1b4 = g_drawHIO.mButtonCrossMoveFrame;
             }
 
-            var_f31 = mDPadButtonONPosY + temp_f1;
+            var_f31 = mButtonCrossONPosY + temp_f1;
         } else {
             if (field_0x1b4 > 0) {
                 field_0x1b4--;
@@ -2380,12 +2380,12 @@ void dMeter2_c::moveButtonCross() {
                 field_0x1b4 = 0;
             }
 
-            var_f31 = mDPadButtonOFFPosY;
+            var_f31 = mButtonCrossOFFPosY;
         }
     }
 
-    temp_f30 = mDPadButtonOFFPosX + (((f32)field_0x1b4 / (f32)g_drawHIO.mDPadButtonMoveFrame) *
-                                     (mDPadButtonONPosX - mDPadButtonOFFPosX));
+    temp_f30 = mButtonCrossOFFPosX + (((f32)field_0x1b4 / (f32)g_drawHIO.mButtonCrossMoveFrame) *
+                                     (mButtonCrossONPosX - mButtonCrossOFFPosX));
     if (field_0x15c != var_f31) {
         cLib_addCalc2(&field_0x15c, var_f31, 0.5f, 50.0f);
         if ((f32)fabs(field_0x15c - var_f31) < 0.5f) {
@@ -3139,41 +3139,41 @@ void dMeter2_c::alphaAnimeButton() {
         ((mStatus & 0x40000000) && !(mStatus & 0x100)) || (mStatus & 0x80000000) || (mStatus & 8) ||
         (mStatus & 0x10) || (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x10000000))
     {
-        mpMeterDraw->setAlphaButtonAnimeMin();
-        mpMeterDraw->setAlphaButtonAAnimeMin();
-        mpMeterDraw->setAlphaButtonBAnimeMin();
+        mpMeterDraw->setAlphButtonAAnimeMin();
+        mpMeterDraw->setAlphButtonAAAnimeMin();
+        mpMeterDraw->setAlphButtonABAnimeMin();
     } else if (!(mStatus & 0x1000000) &&
                ((mStatus & 0x100) || daPy_getPlayerActorClass()->checkHawkWait() ||
                 (mStatus & 0x40) && dComIfGp_event_checkHind(1)))
     {
-        mpMeterDraw->setAlphaButtonAnimeMin();
+        mpMeterDraw->setAlphButtonAAnimeMin();
         var_31 = 1;
     } else if (dMeter2Info_getItemExplainWindowStatus()) {
-        mpMeterDraw->setAlphaButtonAnimeMin();
+        mpMeterDraw->setAlphButtonAAnimeMin();
         var_31 = 1;
     } else {
-        mpMeterDraw->setAlphaButtonAnimeMax();
+        mpMeterDraw->setAlphButtonAAnimeMax();
     }
 
     field_0x1e6 = 0;
 
     if (var_31 == 1) {
         if (dMeter2Info_getItemExplainWindowStatus()) {
-            mpMeterDraw->setAlphaButtonAAnimeMin();
+            mpMeterDraw->setAlphButtonAAAnimeMin();
         } else if ((mStatus & 0x100) || daPy_getPlayerActorClass()->checkHawkWait() ||
                    !dComIfGp_event_checkHind(2))
         {
-            mpMeterDraw->setAlphaButtonAAnimeMax();
+            mpMeterDraw->setAlphButtonAAAnimeMax();
             onShowFlag(0);
         } else {
-            mpMeterDraw->setAlphaButtonAAnimeMin();
+            mpMeterDraw->setAlphButtonAAAnimeMin();
         }
 
-        if (mpMeterDraw->isBButtonShow(false)) {
-            mpMeterDraw->setAlphaButtonBAnimeMax();
+        if (mpMeterDraw->isButtonBShow(false)) {
+            mpMeterDraw->setAlphButtonABAnimeMax();
             onShowFlag(1);
         } else {
-            mpMeterDraw->setAlphaButtonBAnimeMin();
+            mpMeterDraw->setAlphButtonABAnimeMin();
         }
     }
 
@@ -3210,7 +3210,7 @@ void dMeter2_c::alphaAnimeButton() {
         }
     }
 
-    mpMeterDraw->setAlphaButtonChange(false);
+    mpMeterDraw->setAlphButtonAChange(false);
 }
 
 /* 802254C0-802256DC 21FE00 021C+00 1/1 0/0 0/0 .text            alphaAnimeButtonCross__9dMeter2_cFv
@@ -3224,7 +3224,7 @@ void dMeter2_c::alphaAnimeButtonCross() {
          (mStatus & 0x10000000) || (mStatus & 0x20000000)) ||
         daPy_getPlayerActorClass()->checkEnemyAttentionLock() || dMeter2Info_isGameStatus(1))
     {
-        mpMeterDraw->setAlphaButtonCrossAnimeMin();
+        mpMeterDraw->setAlphButtonACrossAnimeMin();
 
         if ((!i_dComIfGp_event_chkEventFlag(0x40) || dMeter2Info_isGameStatus(2) ||
              (mStatus & 0x100)) &&
@@ -3233,13 +3233,13 @@ void dMeter2_c::alphaAnimeButtonCross() {
             field_0x190--;
         }
     } else if (dMeter2Info_isSub2DStatus(1) || dMeter2Info_isFloatingMessageVisible()) {
-        mpMeterDraw->setAlphaButtonCrossAnimeMin();
+        mpMeterDraw->setAlphButtonACrossAnimeMin();
 
         if (field_0x190 < 5) {
             field_0x190++;
         }
     } else {
-        mpMeterDraw->setAlphaButtonCrossAnimeMax();
+        mpMeterDraw->setAlphButtonACrossAnimeMax();
 
         if (field_0x190 < 5) {
             field_0x190++;

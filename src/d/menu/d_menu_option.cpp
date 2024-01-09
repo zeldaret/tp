@@ -3024,27 +3024,27 @@ void dMenu_Option_c::setHIO(bool i_useHIO) {
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
         if (mpButtonAB[0] != NULL) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonPosX,
-                                     g_drawHIO.mCollectScreen.mAButtonPosY);
-            f32 AButtonScale = g_drawHIO.mCollectScreen.mAButtonScale;
+            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
+                                     g_drawHIO.mCollectScreen.mButtonAPosY);
+            f32 AButtonScale = g_drawHIO.mCollectScreen.mButtonAScale;
             mpButtonAB[0]->scale(AButtonScale, AButtonScale);
         }
         if (mpButtonAB[1] != NULL) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonPosX,
-                                     g_drawHIO.mCollectScreen.mBButtonPosY);
-            f32 BButtonScale = g_drawHIO.mCollectScreen.mBButtonScale;
+            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
+                                     g_drawHIO.mCollectScreen.mButtonBPosY);
+            f32 BButtonScale = g_drawHIO.mCollectScreen.mButtonBScale;
             mpButtonAB[1]->scale(BButtonScale, BButtonScale);
         }
         if (mpButtonText[0] != NULL) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mAButtonTextPosX,
-                                       g_drawHIO.mCollectScreen.mAButtonTextPosY);
-            f32 AButtonTextScale = g_drawHIO.mCollectScreen.mAButtonTextScale;
+            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
+                                       g_drawHIO.mCollectScreen.mButtonATextPosY);
+            f32 AButtonTextScale = g_drawHIO.mCollectScreen.mButtonATextScale;
             mpButtonText[0]->scale(AButtonTextScale, AButtonTextScale);
         }
         if (mpButtonText[1] != NULL) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mBButtonTextPosX,
-                                       g_drawHIO.mCollectScreen.mBButtonTextPosY);
-            f32 BButtonTextScale = g_drawHIO.mCollectScreen.mBButtonTextScale;
+            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
+                                       g_drawHIO.mCollectScreen.mButtonBTextPosY);
+            f32 BButtonTextScale = g_drawHIO.mCollectScreen.mButtonBTextScale;
             mpButtonText[1]->scale(BButtonTextScale, BButtonTextScale);
         }
     }

@@ -38,18 +38,18 @@ dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
     mHeartPiecePosY = 0.0f;
     mHeartPieceScale = 1.0f;
     mButtonDebugON = false;
-    mAButtonPosX = -22.3f;
-    mAButtonPosY = 24.9f;
-    mAButtonScale = 1.3f;
-    mBButtonPosX = -22.3f;
-    mBButtonPosY = 25.0f;
-    mBButtonScale = 1.3f;
-    mAButtonTextPosX = -24.9f;
-    mAButtonTextPosY = 24.9f;
-    mAButtonTextScale = 1.1f;
-    mBButtonTextPosX = -27.5f;
-    mBButtonTextPosY = 26.0f;
-    mBButtonTextScale = 1.1f;
+    mButtonAPosX = -22.3f;
+    mButtonAPosY = 24.9f;
+    mButtonAScale = 1.3f;
+    mButtonBPosX = -22.3f;
+    mButtonBPosY = 25.0f;
+    mButtonBScale = 1.3f;
+    mButtonATextPosX = -24.9f;
+    mButtonATextPosY = 24.9f;
+    mButtonATextScale = 1.1f;
+    mButtonBTextPosX = -27.5f;
+    mButtonBTextPosY = 26.0f;
+    mButtonBTextScale = 1.1f;
     mColorDebugON = false;
     mVesselBack[VESSEL_HEART].set(0, 0, 0, 0);
     mVesselFront[VESSEL_HEART].set(250, 250, 210, 220);
@@ -285,33 +285,33 @@ dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c() {
 /* 801FEAF0-801FEFF0 1F9430 0500+00 1/1 0/0 0/0 .text            __ct__25dMeter_drawEmpButtonHIO_cFv
  */
 dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
-    mHighlightScale = 2.5f;
-    mHighlightFrontInner.set(255, 255, 255, 185);
-    mHighlightFrontOuter.set(0, 155, 0, 0);
-    mHighlightBackInner.set(255, 255, 255, 87);
-    mHighlightBackOuter.set(0, 115, 0, 0);
-    mHighlightAnimSpeed = 0.772705f;
+    mPikariScale = 2.5f;
+    mPikariFrontInner.set(255, 255, 255, 185);
+    mPikariFrontOuter.set(0, 155, 0, 0);
+    mPikariBackInner.set(255, 255, 255, 87);
+    mPikariBackOuter.set(0, 115, 0, 0);
+    mPikariAnimSpeed = 0.772705f;
 
-    mHighlightFastScale = 3.0f;
-    mHighlightFastFrontInner.set(255, 255, 255, 255);
-    mHighlightFastFrontOuter.set(220, 220, 215, 0);
-    mHighlightFastBackInner.set(255, 255, 190, 255);
-    mHighlightFastBackOuter.set(200, 200, 210, 0);
-    mHighlightFastAnimSpeed = 2.0f;
+    mPikariFastScale = 3.0f;
+    mPikariFastFrontInner.set(255, 255, 255, 255);
+    mPikariFastFrontOuter.set(220, 220, 215, 0);
+    mPikariFastBackInner.set(255, 255, 190, 255);
+    mPikariFastBackOuter.set(200, 200, 210, 0);
+    mPikariFastAnimSpeed = 2.0f;
 
-    mHighlightListenScale = 1.0f;
-    mHighlightListenFrontInner.set(255, 255, 255, 185);
-    mHighlightListenFrontOuter.set(0, 155, 0, 0);
-    mHighlightListenBackInner.set(255, 255, 255, 87);
-    mHighlightListenBackOuter.set(0, 115, 0, 0);
-    mHighlightListenAnimSpeed = 0.3f;
+    mPikariListenScale = 1.0f;
+    mPikariListenFrontInner.set(255, 255, 255, 185);
+    mPikariListenFrontOuter.set(0, 155, 0, 0);
+    mPikariListenBackInner.set(255, 255, 255, 87);
+    mPikariListenBackOuter.set(0, 115, 0, 0);
+    mPikariListenAnimSpeed = 0.3f;
 
-    mHighlightRepeatHitScale = 2.5f;
-    mHighlightRepeatHitFrontInner.set(255, 255, 255, 185);
-    mHighlightRepeatHitFrontOuter.set(0, 155, 0, 0);
-    mHighlightRepeatHitBackInner.set(255, 255, 255, 87);
-    mHighlightRepeatHitBackOuter.set(0, 115, 0, 0);
-    mHighlightRepeatHitAnimSpeed = 1.1f;
+    mPikariRepeatHitScale = 2.5f;
+    mPikariRepeatHitFrontInner.set(255, 255, 255, 185);
+    mPikariRepeatHitFrontOuter.set(0, 155, 0, 0);
+    mPikariRepeatHitBackInner.set(255, 255, 255, 87);
+    mPikariRepeatHitBackOuter.set(0, 115, 0, 0);
+    mPikariRepeatHitAnimSpeed = 1.1f;
     mRepeatHitScale = 1.15f;
     mRepeatHitFrameNum = 4;
 
@@ -324,21 +324,21 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mEmpButtonPosY = 175.0f;
     mEmpButtonScale = 1.0f;
 
-    mAButtonPosX = 0.0f;
-    mAButtonPosY = 0.0f;
-    mAButtonScale = 1.0f;
+    mButtonAPosX = 0.0f;
+    mButtonAPosY = 0.0f;
+    mButtonAScale = 1.0f;
 
-    mBButtonPosX = 0.0f;
-    mBButtonPosY = 0.0f;
-    mBButtonScale = 1.0f;
+    mButtonBPosX = 0.0f;
+    mButtonBPosY = 0.0f;
+    mButtonBScale = 1.0f;
 
     mRButtonPosX = 0.0f;
     mRButtonPosY = 0.0f;
     mRButtonScale = 1.0f;
 
-    mZButtonPosX = 0.0f;
-    mZButtonPosY = 0.0f;
-    mZButtonScale = 1.0f;
+    mButtonZPosX = 0.0f;
+    mButtonZPosY = 0.0f;
+    mButtonZScale = 1.0f;
 
     m3DButtonPosX = 0.0f;
     m3DButtonPosY = 0.0f;
@@ -352,13 +352,13 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mSButtonPosY = -392.0f;
     mSButtonScale = 0.9f;
 
-    mXButtonPosX = 0.0f;
-    mXButtonPosY = 0.0f;
-    mXButtonScale = 1.0f;
+    mButtonXPosX = 0.0f;
+    mButtonXPosY = 0.0f;
+    mButtonXScale = 1.0f;
 
-    mYButtonPosX = 0.0f;
-    mYButtonPosY = 0.0f;
-    mYButtonScale = 1.0f;
+    mButtonYPosX = 0.0f;
+    mButtonYPosY = 0.0f;
+    mButtonYScale = 1.0f;
 
     mNunchukPosX = 0.0f;
     mNunchukPosY = 0.0f;
@@ -396,13 +396,13 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mNunchukAttackPosY = 0.0f;
     mNunchukAttackScale = 1.0f;
 
-    mABButtonPosX = 0.0f;
-    mABButtonPosY = 0.0f;
-    mABButtonScale = 1.0f;
+    mAButtonBPosX = 0.0f;
+    mAButtonBPosY = 0.0f;
+    mAButtonBScale = 1.0f;
 
-    mNunchukZButtonPosX = 0.0f;
-    mNunchukZButtonPosY = 0.0f;
-    mNunchukZButtonScale = 1.0f;
+    mNunchukButtonZPosX = 0.0f;
+    mNunchukButtonZPosY = 0.0f;
+    mNunchukButtonZScale = 1.0f;
 
     mNunchukCButtonPosX = 0.0f;
     mNunchukCButtonPosY = 0.0f;
@@ -559,23 +559,23 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
     mGetInTextAnimSpeed = 1.0f;
     mGetInTextWaitFrames = 10;
     mGetInTextAlphaFrames = 10;
-    mGetInHighlightAppearFrames = 30;
-    mGetInHighlightScale = 1.8f;
-    mGetInHighlightFrontInner.set(255, 255, 167, 80);
-    mGetInHighlightFrontOuter.set(220, 110, 30, 0);
-    mGetInHighlightBackInner.set(255, 255, 190, 90);
-    mGetInHighlightBackOuter.set(170, 110, 0, 0);
-    mGetInHighlightAnimSpeed = 0.6f;
+    mGetInPikariAppearFrames = 30;
+    mGetInPikariScale = 1.8f;
+    mGetInPikariFrontInner.set(255, 255, 167, 80);
+    mGetInPikariFrontOuter.set(220, 110, 30, 0);
+    mGetInPikariBackInner.set(255, 255, 190, 90);
+    mGetInPikariBackOuter.set(170, 110, 0, 0);
+    mGetInPikariAnimSpeed = 0.6f;
     mGetInTextLocation = 0;
 
-    mStartHighlightAppearFrames = 30;
-    mStartHighlightScale = 1.8f;
-    mStartHighlightFrontInner.set(255, 255, 167, 80);
-    mStartHighlightFrontOuter.set(220, 110, 30, 0);
-    mStartHighlightBackInner.set(255, 255, 190, 90);
-    mStartHighlightBackOuter.set(170, 110, 0, 0);
-    mStartHighlightAnimSpeed = 0.6f;
-    mStartHighlightDisplayFrames = 30;
+    mStartPikariAppearFrames = 30;
+    mStartPikariScale = 1.8f;
+    mStartPikariFrontInner.set(255, 255, 167, 80);
+    mStartPikariFrontOuter.set(220, 110, 30, 0);
+    mStartPikariBackInner.set(255, 255, 190, 90);
+    mStartPikariBackOuter.set(170, 110, 0, 0);
+    mStartPikariAnimSpeed = 0.6f;
+    mStartPikariDisplayFrames = 30;
 
     mReadyFightTextSizeX = 1.0f;
     mReadyFightTextSizeY = 1.0f;
@@ -584,13 +584,13 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
     mReadyFightTextAnimSpeed = 1.0f;
     mReadyFightTextWaitFrames = 10;
     field_0x172 = 10;
-    mReadyFightHighlightAppearFrames = 30;
-    mReadyFightHighlightScale = 1.8f;
-    mReadyFightHighlightFrontInner.set(255, 255, 167, 80);
-    mReadyFightHighlightFrontOuter.set(220, 110, 30, 0);
-    mReadyFightHighlightBackInner.set(255, 255, 190, 90);
-    mReadyFightHighlightBackOuter.set(170, 110, 0, 0);
-    mReadyFightHighlightAnimSpeed = 0.6f;
+    mReadyFightPikariAppearFrames = 30;
+    mReadyFightPikariScale = 1.8f;
+    mReadyFightPikariFrontInner.set(255, 255, 167, 80);
+    mReadyFightPikariFrontOuter.set(220, 110, 30, 0);
+    mReadyFightPikariBackInner.set(255, 255, 190, 90);
+    mReadyFightPikariBackOuter.set(170, 110, 0, 0);
+    mReadyFightPikariAnimSpeed = 0.6f;
 }
 
 /* 801FF31C-801FF5B8 1F9C5C 029C+00 1/1 0/0 0/0 .text            __ct__25dMeter_drawLightDropHIO_cFv
@@ -611,7 +611,7 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
     mDropGetScale = 2.5f;
     mDropGetScaleAnimFrameNum = 20;
     mDropScale = 1.0f;
-    mHighlightInterval = 1;
+    mPikariInterval = 1;
     field_0x54 = 0xFFF1;
     mVesselAlpha[2] = 0.5f;
     mDropAlpha = 1.0f;
@@ -621,28 +621,28 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
     mDropOffColorBlack.set(0, 0, 0, 0);
     mDropOffColorWhite.set(255, 255, 255, 255);
 
-    mHighlightLoopScale = 0.6f;
-    mHighlightLoopFrontInner[0].set(255, 255, 255, 255);
-    mHighlightLoopFrontOuter[0].set(0, 0, 0, 0);
-    mHighlightLoopBackInner[0].set(255, 255, 255, 255);
-    mHighlightLoopBackOuter[0].set(126, 238, 218, 0);
-    mHighlightLoopAnimSpeed = 0.2f;
+    mPikariLoopScale = 0.6f;
+    mPikariLoopFrontInner[0].set(255, 255, 255, 255);
+    mPikariLoopFrontOuter[0].set(0, 0, 0, 0);
+    mPikariLoopBackInner[0].set(255, 255, 255, 255);
+    mPikariLoopBackOuter[0].set(126, 238, 218, 0);
+    mPikariLoopAnimSpeed = 0.2f;
 
-    mHighlightLoopBackScale = 0.7f;
-    mHighlightLoopFrontInner[1].set(255, 255, 255, 255);
-    mHighlightLoopFrontOuter[1].set(0, 0, 0, 0);
-    mHighlightLoopBackInner[1].set(255, 255, 255, 255);
-    mHighlightLoopBackOuter[1].set(126, 238, 218, 0);
-    mHighlightLoopBackStopFrame = 19.0f;
+    mPikariLoopBackScale = 0.7f;
+    mPikariLoopFrontInner[1].set(255, 255, 255, 255);
+    mPikariLoopFrontOuter[1].set(0, 0, 0, 0);
+    mPikariLoopBackInner[1].set(255, 255, 255, 255);
+    mPikariLoopBackOuter[1].set(126, 238, 218, 0);
+    mPikariLoopBackStopFrame = 19.0f;
 
-    mDropHighlightFrontInner.set(255, 255, 255, 255);
-    mDropHighlightFrontOuter.set(0, 0, 0, 0);
-    mDropHighlightBackInner.set(255, 255, 255, 255);
-    mDropHighlightBackOuter.set(126, 238, 218, 0);
-    mDropHighlightAnimSpeed = 0.1f;
-    mDropHighlightAnimSpeed_Completed = 0.6f;
-    mHighlightScaleNormal = 1.3f;
-    mHighlightScaleComplete = 0.3f;
+    mDropPikariFrontInner.set(255, 255, 255, 255);
+    mDropPikariFrontOuter.set(0, 0, 0, 0);
+    mDropPikariBackInner.set(255, 255, 255, 255);
+    mDropPikariBackOuter.set(126, 238, 218, 0);
+    mDropPikariAnimSpeed = 0.1f;
+    mDropPikariAnimSpeed_Completed = 0.6f;
+    mPikariScaleNormal = 1.3f;
+    mPikariScaleComplete = 0.3f;
     mAnimDebug = 0;
 }
 
@@ -653,19 +653,19 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
 
     mNoMagicPosY = -15.0f;
 
-    mHUDScale = 1.0f;
-    mHUDAlpha = 1.0f;
+    mParentScale = 1.0f;
+    mParentAlpha = 1.0f;
 
-    mLifeGaugeScale = 1.0f;
-    mLifeGaugeHeartAlpha = 1.0f;
-    mLifeGaugeBaseAlpha = 0.4f;
+    mLifeParentScale = 1.0f;
+    mLifeParentHeartAlpha = 1.0f;
+    mHeartBaseAlpha = 0.4f;
     mLifeGaugePosX = 5.0f;
     mLifeGaugePosY = 18.0f;
 
-    mHeartScale = 1.0f;
+    mHeartMarkScale = 1.0f;
     mHeartAlpha = 0.7f;
-    mLargeHeartScale = 1.0f;
-    mLargeHeartAlpha = 1.0f;
+    mBigHeartScale = 1.0f;
+    mBigHeartAlpha = 1.0f;
 
     mMagicMeterScale = 0.7f;
     mMagicMeterAlpha = 1.0f;
@@ -698,44 +698,44 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mButtonDisplayBackScale = 1.0f;
     mButtonDisplayBackAlpha = 1.0f;
 
-    mAButtonScale = 1.1f;
-    mAButtonAlpha = 1.0f;
-    mAButtonPosX = 0.0f;
-    mAButtonPosY = 0.0f;
-    mAButtonTalkScale[0] = 1.0f;
-    mAButtonTalkPosX[0] = 0.0f;
-    mAButtonTalkPosY[0] = -63.0f;
-    mAButtonTalkAScale = 1.0f;
-    mAButtonTalkAPosX[0] = 0.0f;
-    mAButtonTalkAPosY[0] = -49.0f;
+    mButtonAScale = 1.1f;
+    mButtonAAlpha = 1.0f;
+    mButtonAPosX = 0.0f;
+    mButtonAPosY = 0.0f;
+    mButtonATalkScale[0] = 1.0f;
+    mButtonATalkPosX[0] = 0.0f;
+    mButtonATalkPosY[0] = -63.0f;
+    mButtonATalkAScale = 1.0f;
+    mButtonATalkAPosX[0] = 0.0f;
+    mButtonATalkAPosY[0] = -49.0f;
 
-    mAButtonTalkScale[1] = 1.0f;
-    mAButtonTalkPosX[1] = -20.0f;
-    mAButtonTalkPosY[1] = -62.0f;
-    mAButtonFontTalkAScale = 1.0f;
-    mAButtonTalkAPosX[1] = -20.0f;
-    mAButtonTalkAPosY[1] = -48.0f;
+    mButtonATalkScale[1] = 1.0f;
+    mButtonATalkPosX[1] = -20.0f;
+    mButtonATalkPosY[1] = -62.0f;
+    mButtonATextTalkAScale = 1.0f;
+    mButtonATalkAPosX[1] = -20.0f;
+    mButtonATalkAPosY[1] = -48.0f;
 
-    mAButtonVesselPosX = 0.0f;
-    mAButtonVesselPosY = 0.0f;
+    mButtonAVesselPosX = 0.0f;
+    mButtonAVesselPosY = 0.0f;
 
-    mBButtonScale = 1.1f;
-    mBButtonAlpha = 1.0f;
-    mBButtonPosX = -2.2f;
-    mBButtonPosY = -1.3f;
-    mBButtonTalkScale[0] = 1.0f;
-    mBButtonTalkPosX[0] = 0.0f;
-    mBButtonTalkPosY[0] = -62.0f;
+    mButtonBScale = 1.1f;
+    mButtonBAlpha = 1.0f;
+    mButtonBPosX = -2.2f;
+    mButtonBPosY = -1.3f;
+    mButtonBTalkScale[0] = 1.0f;
+    mButtonBTalkPosX[0] = 0.0f;
+    mButtonBTalkPosY[0] = -62.0f;
 
-    mBButtonTalkScale[1] = 1.0f;
-    mBButtonTalkPosX[1] = -9.2f;
-    mBButtonTalkPosY[1] = -65.0f;
+    mButtonBTalkScale[1] = 1.0f;
+    mButtonBTalkPosX[1] = -9.2f;
+    mButtonBTalkPosY[1] = -65.0f;
 
-    mBButtonWolfPosX = 0.0f;
-    mBButtonWolfPosY = 0.0f;
+    mButtonBWolfPosX = 0.0f;
+    mButtonBWolfPosY = 0.0f;
 
-    mBButtonVesselPosX = 0.0f;
-    mBButtonVesselPosY = 0.0f;
+    mButtonBVesselPosX = 0.0f;
+    mButtonBVesselPosY = 0.0f;
 
     mMidnaIconScale = 1.1f;
     mMidnaIconAlpha = 1.0f;
@@ -747,15 +747,15 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x13c = 0.0f;
     field_0x140 = 0.0f;
 
-    mXButtonScale = 1.0f;
-    mXButtonAlpha = 0.9f;
-    mXButtonPosX = 0.0f;
-    mXButtonPosY = 0.0f;
+    mButtonXScale = 1.0f;
+    mButtonXAlpha = 0.9f;
+    mButtonXPosX = 0.0f;
+    mButtonXPosY = 0.0f;
 
-    mYButtonScale = 1.0f;
-    mYButtonAlpha = 0.9f;
-    mYButtonPosX = 0.0f;
-    mYButtonPosY = 0.0f;
+    mButtonYScale = 1.0f;
+    mButtonYAlpha = 0.9f;
+    mButtonYPosX = 0.0f;
+    mButtonYPosY = 0.0f;
 
     field_0x164 = 1.5f;
     field_0x168 = 1.0f;
@@ -774,33 +774,33 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x324 = 0.0f;
     field_0x328 = 0.0f;
 
-    mZButtonScale = 1.0f;
-    mZButtonAlpha = 0.9f;
-    mZButtonPosX = 0.0f;
-    mZButtonPosY = 0.0f;
+    mButtonZScale = 1.0f;
+    mButtonZAlpha = 0.9f;
+    mButtonZPosX = 0.0f;
+    mButtonZPosY = 0.0f;
 
-    mBButtonItemPosX[0] = 3.0f;
-    mBButtonItemPosY[0] = 18.0f;
-    mBButtonItemRotation[0] = 0.0f;
-    mBButtonItemScale[0] = 1.4f;
+    mButtonBItemPosX[0] = 3.0f;
+    mButtonBItemPosY[0] = 18.0f;
+    mButtonBItemRotation[0] = 0.0f;
+    mButtonBItemScale[0] = 1.4f;
 
-    mBButtonItemPosX[1] = 17.0f;
-    mBButtonItemPosY[1] = 25.0f;
-    mBButtonItemRotation[1] = 76.0f;
-    mBButtonItemScale[1] = 2.3f;
+    mButtonBItemPosX[1] = 17.0f;
+    mButtonBItemPosY[1] = 25.0f;
+    mButtonBItemRotation[1] = 76.0f;
+    mButtonBItemScale[1] = 2.3f;
 
-    mBButtonItemPosX[2] = 4.0f;
-    mBButtonItemPosY[2] = 22.0f;
-    mBButtonItemRotation[2] = 20.0f;
-    mBButtonItemScale[2] = 2.1f;
+    mButtonBItemPosX[2] = 4.0f;
+    mButtonBItemPosY[2] = 22.0f;
+    mButtonBItemRotation[2] = 20.0f;
+    mButtonBItemScale[2] = 2.1f;
 
-    mXButtonItemPosX = 4.0f;
-    mXButtonItemPosY = -14.0f;
-    mXButtonItemScale = 1.5f;
+    mButtonXItemPosX = 4.0f;
+    mButtonXItemPosY = -14.0f;
+    mButtonXItemScale = 1.5f;
 
-    mYButtonItemPosX = 0.0f;
-    mYButtonItemPosY = 0.0f;
-    mYButtonItemScale = 1.5f;
+    mButtonYItemPosX = 0.0f;
+    mButtonYItemPosY = 0.0f;
+    mButtonYItemScale = 1.5f;
 
     field_0x1cc = 0.0f;
     field_0x1d0 = 0.0f;
@@ -818,46 +818,46 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x208 = 0.0f;
     field_0x218 = 1.0f;
 
-    mBItemNumPosX = 0.0f;
-    mBItemNumPosY = 0.0f;
-    mBItemNumScale = 1.0f;
+    mItemBNumPosX = 0.0f;
+    mItemBNumPosY = 0.0f;
+    mItemBNumScale = 1.0f;
 
     for (int i = 0; i < 3; i++) {
         mButtonItemRotation[i] = 0.0f;
     }
 
-    mZButtonItemPosX = 0.0f;
-    mZButtonItemPosY = 0.0f;
-    mZButtonItemScale = 1.0f;
+    mButtonZItemPosX = 0.0f;
+    mButtonZItemPosY = 0.0f;
+    mButtonZItemScale = 1.0f;
 
     for (int i = 0; i < 2; i++) {
-        mBItemBaseScale[i] = 1.0f;
-        mBItemBasePosX[i] = 0.0f;
-        mBItemBasePosY[i] = 0.0f;
+        mItemBBaseScale[i] = 1.0f;
+        mItemBBasePosX[i] = 0.0f;
+        mItemBBasePosY[i] = 0.0f;
     }
 
-    mBItemBaseAlpha[0] = 0.5f;
-    mBItemBaseAlpha[1] = 0.5f;
+    mItemBBaseAlpha[0] = 0.5f;
+    mItemBBaseAlpha[1] = 0.5f;
 
-    mXButtonItemBaseScale[0] = 1.5f;
-    mXButtonItemBasePosX[0] = 14.0f;
-    mXButtonItemBasePosY[0] = -12.0f;
-    mXButtonItemBaseAlpha[0] = 0.5f;
+    mButtonXItemBaseScale[0] = 1.5f;
+    mButtonXItemBasePosX[0] = 14.0f;
+    mButtonXItemBasePosY[0] = -12.0f;
+    mButtonXItemBaseAlpha[0] = 0.5f;
 
-    mXButtonItemBaseScale[1] = 1.5f;
-    mXButtonItemBasePosX[1] = 0.0f;
-    mXButtonItemBasePosY[1] = 0.0f;
-    mXButtonItemBaseAlpha[1] = 1.0f;
+    mButtonXItemBaseScale[1] = 1.5f;
+    mButtonXItemBasePosX[1] = 0.0f;
+    mButtonXItemBasePosY[1] = 0.0f;
+    mButtonXItemBaseAlpha[1] = 1.0f;
 
-    mYButtonItemBaseScale[0] = 1.5f;
-    mYButtonItemBasePosX[0] = -15.0f;
-    mYButtonItemBasePosY[0] = -12.0f;
-    mYButtonItemBaseAlpha[0] = 0.5f;
+    mButtonYItemBaseScale[0] = 1.5f;
+    mButtonYItemBasePosX[0] = -15.0f;
+    mButtonYItemBasePosY[0] = -12.0f;
+    mButtonYItemBaseAlpha[0] = 0.5f;
 
-    mYButtonItemBaseScale[1] = 1.5f;
-    mYButtonItemBasePosX[1] = 0.0f;
-    mYButtonItemBasePosY[1] = 0.0f;
-    mYButtonItemBaseAlpha[1] = 0.5f;
+    mButtonYItemBaseScale[1] = 1.5f;
+    mButtonYItemBasePosX[1] = 0.0f;
+    mButtonYItemBasePosY[1] = 0.0f;
+    mButtonYItemBaseAlpha[1] = 0.5f;
 
     field_0x280 = 1.5f;
     field_0x288 = 0.0f;
@@ -869,42 +869,42 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x294 = 4.0f;
     field_0x298[1] = 1.0f;
 
-    mZButtonItemBaseScale = 1.0f;
-    mZButtonItemBasePosX = 0.0f;
-    mZButtonItemBasePosY = 0.0f;
-    mZButtonItemBaseAlpha = 0.5f;
+    mButtonZItemBaseScale = 1.0f;
+    mButtonZItemBasePosX = 0.0f;
+    mButtonZItemBasePosY = 0.0f;
+    mButtonZItemBaseAlpha = 0.5f;
 
     mButtonBaseAlpha = 0.55f;
 
-    mAButtonFontActionID = 1001;
+    mButtonATextActionID = 1001;
     field_0x2cc = 1001;
-    mAButtonTextDebug = false;
+    mButtonATextDebug = false;
 
-    mAButtonFontSpacing = 1.0f;
-    mAButtonFontScale = 1.0f;
-    mAButtonFontPosX = 0.0f;
-    mAButtonFontPosY = 0.0f;
-    mAButtonFontColor.set(255, 255, 255, 255);
+    mButtonATextSpacing = 1.0f;
+    mButtonATextScale = 1.0f;
+    mButtonATextPosX = 0.0f;
+    mButtonATextPosY = 0.0f;
+    mButtonATextColor.set(255, 255, 255, 255);
 
-    mBButtonFontScale = 1.0f;
-    mBButtonFontPosX = -8.0f;
-    mBButtonFontPosY = 4.0f;
-    mBButtonFontColor.set(255, 255, 255, 255);
+    mButtonBFontScale = 1.0f;
+    mButtonBFontPosX = -8.0f;
+    mButtonBFontPosY = 4.0f;
+    mButtonBFontColor.set(255, 255, 255, 255);
 
     field_0x2e4 = 1.0f;
     field_0x2e8 = 0.0f;
     field_0x2ec = 0.0f;
     field_0x2f0.set(255, 255, 255, 255);
 
-    mXYButtonFontScale = 1.0f;
-    mXYButtonFontPosX = 0.0f;
-    mXYButtonFontPosY = 0.0f;
-    mXYButtonFontColor.set(255, 255, 255, 255);
+    mButtonXYTextScale = 1.0f;
+    mButtonXYTextPosX = 0.0f;
+    mButtonXYTextPosY = 0.0f;
+    mButtonXYTextColor.set(255, 255, 255, 255);
 
-    mZButtonFontScale = 1.0f;
-    mZButtonFontPosX = 0.0f;
-    mZButtonFontPosY = -4.7f;
-    mZButtonFontColor.set(255, 255, 255, 255);
+    mButtonZFontScale = 1.0f;
+    mButtonZFontPosX = 0.0f;
+    mButtonZFontPosY = -4.7f;
+    mButtonZFontColor.set(255, 255, 255, 255);
 
     mRupeeKeyScale = 1.0f;
     mRupeeKeyPosX = 9.2f;
@@ -945,37 +945,37 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mSpurBarPosX = 6.6f;
     mSpurBarPosY = -1.3f;
 
-    mAButtonHorsePosX = 2.2f;
-    mAButtonHorsePosY = 0.0f;
-    mAButtonHorseScale = 0.85f;
+    mButtonAHorsePosX = 2.2f;
+    mButtonAHorsePosY = 0.0f;
+    mButtonAHorseScale = 0.85f;
 
-    mAButtonHighlightScale = 1.5f;
-    mBButtonHighlightScale = 0.7f;
+    mButtonAPikariScale = 1.5f;
+    mButtonBPikariScale = 0.7f;
     field_0x3cc = 1.0f;
-    mZButtonHighlightScale = 1.2f;
-    mXYButtonHighlightScale = 1.2f;
-    mMidnaIconHighlightScale = 1.0f;
-    mSpurIconHighlightScale = 2.5f;
-    mSpurIconReviveHighlightScale = 1.3f;
+    mButtonZPikariScale = 1.2f;
+    mButtonXYPikariScale = 1.2f;
+    mMidnaIconPikariScale = 1.0f;
+    mSpurIconPikariScale = 2.5f;
+    mSpurIconRevivePikariScale = 1.3f;
     field_0x3f0 = 0.0f;
     field_0x3f4 = 0.0f;
     field_0x3f8 = 1.0f;
 
-    mDPadButtonScale = 0.9f;
-    mDPadButtonOFFPosX = 12.0f;
-    mDPadButtonOFFPosY = 0.0f;
-    mDPadButtonONPosX = 12.0f;
-    mDPadButtonONPosY = 0.0f;
-    mDPadButtonLetterSpacing = 0.9f;
-    mDPadButtonAlpha = 1.0f;
-    mDPadButtonITEMAlpha = 1.0f;
-    mDPadButtonMAPAlpha = 1.0f;
-    mDPadButtonMoveFrame = 5;
+    mButtonCrossScale = 0.9f;
+    mButtonCrossOFFPosX = 12.0f;
+    mButtonCrossOFFPosY = 0.0f;
+    mButtonCrossONPosX = 12.0f;
+    mButtonCrossONPosY = 0.0f;
+    mButtonCrossTextScale = 0.9f;
+    mButtonCrossAlpha = 1.0f;
+    mButtonCrossITEMAlpha = 1.0f;
+    mButtonCrossMAPAlpha = 1.0f;
+    mButtonCrossMoveFrame = 5;
     field_0x422 = 10;
     field_0x424 = 20;
 
-    mXYButtonsItemDimAlpha = 128;
-    mXYButtonsBaseDimAlpha = 128;
+    mButtonXYItemDimAlpha = 128;
+    mButtonXYBaseDimAlpha = 128;
     field_0x42c = 128;
 
     for (int i = 0; i < 4; i++) {
@@ -984,41 +984,41 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
 
     mMaxSpurAmount = 6;
 
-    mSpurIconHighlightFrontInner.set(255, 255, 255, 255);
-    mSpurIconHighlightFrontOuter.set(140, 232, 228, 0);
-    mSpurIconHighlightBackInner.set(255, 255, 190, 255);
-    mSpurIconHighlightBackOuter.set(55, 215, 90, 0);
-    mSpurIconHighlightAnimSpeed = 1.5f;
+    mSpurIconPikariFrontInner.set(255, 255, 255, 255);
+    mSpurIconPikariFrontOuter.set(140, 232, 228, 0);
+    mSpurIconPikariBackInner.set(255, 255, 190, 255);
+    mSpurIconPikariBackOuter.set(55, 215, 90, 0);
+    mSpurIconPikariAnimSpeed = 1.5f;
 
-    mSpurIconReviveHighlightFrontInner.set(255, 255, 255, 255);
-    mSpurIconReviveHighlightFrontOuter.set(220, 110, 30, 0);
-    mSpurIconReviveHighlightBackInner.set(255, 255, 190, 255);
-    mSpurIconReviveHighlightBackOuter.set(170, 110, 0, 0);
-    mSpurIconReviveHighlightAnimSpeed = 0.5f;
+    mSpurIconRevivePikariFrontInner.set(255, 255, 255, 255);
+    mSpurIconRevivePikariFrontOuter.set(220, 110, 30, 0);
+    mSpurIconRevivePikariBackInner.set(255, 255, 190, 255);
+    mSpurIconRevivePikariBackOuter.set(170, 110, 0, 0);
+    mSpurIconRevivePikariAnimSpeed = 0.5f;
 
-    mZButtonHighlightFrontInner.set(255, 255, 255, 255);
-    mZButtonHighlightFrontOuter.set(0, 0, 0, 0);
-    mZButtonHighlightBackInner.set(255, 255, 255, 255);
-    mZButtonHighlightBackOuter.set(160, 160, 110, 0);
-    mZButtonHighlightAnimSpeed = 0.4f;
+    mButtonZPikariFrontInner.set(255, 255, 255, 255);
+    mButtonZPikariFrontOuter.set(0, 0, 0, 0);
+    mButtonZPikariBackInner.set(255, 255, 255, 255);
+    mButtonZPikariBackOuter.set(160, 160, 110, 0);
+    mButtonZPikariAnimSpeed = 0.4f;
 
-    mXYButtonHighlightFrontInner.set(255, 255, 255, 255);
-    mXYButtonHighlightFrontOuter.set(0, 0, 0, 0);
-    mXYButtonHighlightBackInner.set(255, 255, 255, 255);
-    mXYButtonHighlightBackOuter.set(160, 160, 110, 0);
-    mXYButtonHighlightAnimSpeed = 0.4f;
+    mButtonXYPikariFrontInner.set(255, 255, 255, 255);
+    mButtonXYPikariFrontOuter.set(0, 0, 0, 0);
+    mButtonXYPikariBackInner.set(255, 255, 255, 255);
+    mButtonXYPikariBackOuter.set(160, 160, 110, 0);
+    mButtonXYPikariAnimSpeed = 0.4f;
 
-    mAButtonHighlightFrontInner.set(255, 255, 255, 160);
-    mAButtonHighlightFrontOuter.set(0, 0, 0, 0);
-    mAButtonHighlightBackInner.set(255, 255, 255, 128);
-    mAButtonHighlightBackOuter.set(0, 255, 0, 0);
-    mAButtonHighlightAnimSpeed = 0.4f;
+    mButtonAPikariFrontInner.set(255, 255, 255, 160);
+    mButtonAPikariFrontOuter.set(0, 0, 0, 0);
+    mButtonAPikariBackInner.set(255, 255, 255, 128);
+    mButtonAPikariBackOuter.set(0, 255, 0, 0);
+    mButtonAPikariAnimSpeed = 0.4f;
 
-    mBButtonHighlightFrontInner.set(255, 180, 180, 160);
-    mBButtonHighlightFrontOuter.set(0, 0, 0, 0);
-    mBButtonHighlightBackInner.set(255, 255, 255, 128);
-    mBButtonHighlightBackOuter.set(255, 0, 0, 0);
-    mBButtonHighlightAnimSpeed = 0.4f;
+    mButtonBPikariFrontInner.set(255, 180, 180, 160);
+    mButtonBPikariFrontOuter.set(0, 0, 0, 0);
+    mButtonBPikariBackInner.set(255, 255, 255, 128);
+    mButtonBPikariBackOuter.set(255, 0, 0, 0);
+    mButtonBPikariAnimSpeed = 0.4f;
 
     field_0x4a8.set(255, 180, 180, 160);
     field_0x4ac.set(0, 0, 0, 0);
@@ -1040,11 +1040,11 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x4e0 = 0.4f;
     field_0x3d4 = 0.7f;
 
-    mMidnaIconHighlightFrontInner.set(200, 235, 255, 255);
-    mMidnaIconHighlightFrontOuter.set(0, 0, 0, 0);
-    mMidnaIconHighlightBackInner.set(255, 255, 255, 255);
-    mMidnaIconHighlightBackOuter.set(140, 200, 125, 0);
-    mMidnaIconHighlightAnimSpeed = 0.5f;
+    mMidnaIconPikariFrontInner.set(200, 235, 255, 255);
+    mMidnaIconPikariFrontOuter.set(0, 0, 0, 0);
+    mMidnaIconPikariBackInner.set(255, 255, 255, 255);
+    mMidnaIconPikariBackOuter.set(140, 200, 125, 0);
+    mMidnaIconPikariAnimSpeed = 0.5f;
     mMidnaIconFlashRate = 50;
 
     mScrollArrowScaleX = 1.0f;
@@ -1197,12 +1197,12 @@ dMeter_ringHIO_c::dMeter_ringHIO_c() {
     mRingScaleH = 1.5f;
     mRingScaleV = 1.5f;
 
-    mHighlightScale = 2.5f;
-    mHighlightFrontInner.set(255, 255, 255, 185);
-    mHighlightFrontOuter.set(0, 155, 0, 0);
-    mHighlightBackInner.set(255, 255, 255, 87);
-    mHighlightBackOuter.set(0, 115, 0, 0);
-    mHighlightAnimSpeed = 0.772705f;
+    mPikariScale = 2.5f;
+    mPikariFrontInner.set(255, 255, 255, 185);
+    mPikariFrontOuter.set(0, 155, 0, 0);
+    mPikariBackInner.set(255, 255, 255, 87);
+    mPikariBackOuter.set(0, 115, 0, 0);
+    mPikariAnimSpeed = 0.772705f;
 
     mCursorInitSpeed = 5000;
     mCursorMax = 10000;
@@ -1429,29 +1429,29 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     mDoIconScale = 0.9f;
     mButtonDebugON = false;
 
-    mZButtonPosX = 25.0f;
-    mZButtonPosY = 25.0f;
-    mZButtonScale = 0.92f;
+    mButtonZPosX = 25.0f;
+    mButtonZPosY = 25.0f;
+    mButtonZScale = 0.92f;
 
-    mAButtonPosX = -0.5f;
-    mAButtonPosY = 1.0f;
-    mAButtonScale = 0.92f;
+    mButtonAPosX = -0.5f;
+    mButtonAPosY = 1.0f;
+    mButtonAScale = 0.92f;
 
-    mBButtonPosX = -1.0f;
-    mBButtonPosY = -1.0f;
-    mBButtonScale = 1.05f;
+    mButtonBPosX = -1.0f;
+    mButtonBPosY = -1.0f;
+    mButtonBScale = 1.05f;
 
-    mZButtonTextPosX = 20.0f;
-    mZButtonTextPosY = 12.0f;
-    mZButtonTextScale = 0.95f;
+    mButtonZTextPosX = 20.0f;
+    mButtonZTextPosY = 12.0f;
+    mButtonZTextScale = 0.95f;
 
-    mAButtonTextPosX = -7.5f;
-    mAButtonTextPosY = 8.0f;
-    mAButtonTextScale = 0.95f;
+    mButtonATextPosX = -7.5f;
+    mButtonATextPosY = 8.0f;
+    mButtonATextScale = 0.95f;
 
-    mBButtonTextPosX = -7.0f;
-    mBButtonTextPosY = 5.0f;
-    mBButtonTextScale = 0.95f;
+    mButtonBTextPosX = -7.0f;
+    mButtonBTextPosY = 5.0f;
+    mButtonBTextScale = 0.95f;
 
     mMapBlink[WORLD_VIEW].mSelectedRegion.mBlack.set(29, 24, 0, 0);
     mMapBlink[WORLD_VIEW].mSelectedRegion.mWhite.set(255, 255, 255, 255);
