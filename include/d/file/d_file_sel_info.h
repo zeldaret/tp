@@ -3,6 +3,18 @@
 
 #include "d/d_drawlist.h"
 
+class dDlst_FileInfo_c : public dDlst_base_c {
+public:
+    dDlst_FileInfo_c() {}
+    virtual void draw();
+    virtual ~dDlst_FileInfo_c() {}
+
+    /* 0x04 */ J2DScreen* Scr;
+    /* 0x08 */ JUTFont* mFont;
+    /* 0x0C */ J2DPane* mBasePane;
+    /* 0x10 */ J2DPane* field_0x10;
+};
+
 class CPaneMgrAlpha;
 class dSv_save_c;
 
@@ -19,6 +31,10 @@ public:
     /* 80192D60 */ void _draw();
 
     /* 801924A0 */ virtual ~dFile_info_c();
+
+    // fake? needed to get vtable size correct
+    virtual void dummy() = 0;
+    virtual void dummy2() = 0;
 
     void setBasePane(J2DPane* pane) { mFileInfo.mBasePane = pane; }
     CPaneMgrAlpha* getDatBase() { return mDatBase; }
