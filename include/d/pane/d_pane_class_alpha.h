@@ -31,6 +31,7 @@ public:
     u8 getAlpha() { return getPanePtr()->getAlpha(); }
     s16 getAlphaTimer() { return mAlphaTimer; }
     void alphaAnimeStart(s16 start) { mAlphaTimer = start; }
+    u8 getInitAlpha() { return mInitAlpha; }
 
     /* 0x04 */ J2DPane* mPane;
     /* 0x08 */ JKRExpHeap* heap;

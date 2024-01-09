@@ -153,6 +153,23 @@ class dKantera_icon_c;
 
 class dMeter2Draw_c : public dDlst_base_c {
 public:
+    enum {
+        SELECT_X_e,
+        SELECT_Y_e,
+        SELECT_Z_e,
+        SELECT_MAX_e = 2,
+    };
+
+    struct item_params {
+        /* 0x00 */ f32 pos_x;
+        /* 0x04 */ f32 pos_y;
+        /* 0x08 */ f32 scale;
+        /* 0x0C */ f32 rotation;
+        /* 0x10 */ f32 num_pos_x;
+        /* 0x14 */ f32 num_pos_y;
+        /* 0x18 */ f32 num_scale;
+    };
+
     /* 8020FAB4 */ dMeter2Draw_c(JKRExpHeap*);
     /* 80210FB0 */ void init();
     /* 8021135C */ void exec(u32);
@@ -270,39 +287,12 @@ public:
     void setEmphasisB(u8 param_0) { field_0x762 = param_0; }
 
 private:
-    /* 0x004 */ f32 field_0x4;
-    /* 0x008 */ f32 field_0x8;
-    /* 0x00C */ f32 field_0xc;
-    /* 0x010 */ f32 field_0x10;
-    /* 0x014 */ f32 field_0x14;
-    /* 0x028 */ f32 field_0x18;
-    /* 0x01C */ f32 field_0x1c;
-    /* 0x020 */ f32 field_0x20;
-    /* 0x024 */ f32 field_0x24;
-    /* 0x028 */ f32 field_0x28;
-    /* 0x02C */ f32 field_0x2c;
-    /* 0x030 */ f32 field_0x30;
-    /* 0x034 */ f32 field_0x34;
-    /* 0x038 */ f32 field_0x38;
-    /* 0x03C */ f32 field_0x3c;
-    /* 0x040 */ f32 field_0x40;
-    /* 0x044 */ f32 field_0x44;
-    /* 0x048 */ f32 field_0x48;
-    /* 0x04C */ f32 field_0x4c;
-    /* 0x050 */ f32 field_0x50;
-    /* 0x054 */ f32 field_0x54;
-    /* 0x058 */ f32 field_0x58;
-    /* 0x05C */ f32 field_0x5c;
-    /* 0x060 */ f32 field_0x60;
-    /* 0x064 */ f32 field_0x64;
-    /* 0x068 */ f32 field_0x68;
-    /* 0x06C */ f32 field_0x6c;
-    /* 0x070 */ f32 field_0x70;
-    /* 0x074 */ JKRExpHeap* mp_heap;
+    /* 0x004 */ item_params mItemParams[4];
+    /* 0x074 */ JKRExpHeap* heap;
     /* 0x078 */ J2DScreen* mpScreen;
     /* 0x07C */ J2DScreen* mpKanteraScreen;
     /* 0x080 */ J2DScreen* mpPikariScreen;
-    /* 0x084 */ J2DScreen* mpItemNumTex[2][3];
+    /* 0x084 */ J2DPicture* mpItemNumTex[2][3];
     /* 0x09C */ CPaneMgr* field_0x9c[3];
     /* 0x0A8 */ int field_0xa8;
     /* 0x0AC */ dKantera_icon_c* mpKanteraMeter[2];
@@ -313,7 +303,7 @@ private:
     /* 0x0E8 */ CPaneMgr* mpXYText[5][3];
     /* 0x124 */ CPaneMgr* mpLifeParent;
     /* 0x128 */ CPaneMgr* mpLifeParts[20];
-    /* 0x178 */ CPaneMgr* mpHeartMask[20];
+    /* 0x178 */ CPaneMgr* mpHeartMark[20];
     /* 0x1C8 */ CPaneMgr* mpBigHeart;
     /* 0x1CC */ CPaneMgr* mpMagicParent;
     /* 0x1D0 */ CPaneMgr* mpMagicBase;
@@ -352,14 +342,14 @@ private:
     /* 0x36C */ int field_0x36c;
     /* 0x370 */ u8 field_0x370[0x2C];
     /* 0x39C */ CPaneMgr* mpPikariParent;
-    /* 0x3A0 */ CPaneMgr* mpLifeTexture[20][2];
-    /* 0x440 */ CPaneMgr* mpHeartBase[20];
+    /* 0x3A0 */ CPaneMgrAlpha* mpLifeTexture[20][2];
+    /* 0x440 */ CPaneMgrAlpha* mpHeartBase[20];
     /* 0x490 */ CPaneMgr* mpJujiI[5];
     /* 0x4A4 */ CPaneMgr* mpJujiM[5];
-    /* 0x4B8 */ CPaneMgr* mpUzu;
+    /* 0x4B8 */ CPaneMgrAlpha* mpUzu;
     /* 0x4BC */ u8 field_0x4bc[0x28];
-    /* 0x4E4 */ JKRHeap* mpItemBTex[2][2];
-    /* 0x4F4 */ JKRHeap* mpItemXYTex[2][2][2];
+    /* 0x4E4 */ ResTIMG* mpItemBTex[2][2];
+    /* 0x4F4 */ ResTIMG* mpItemXYTex[2][2][2];
     /* 0x514 */ J2DPicture* mpItemBPane;
     /* 0x518 */ J2DPicture* mpItemXYPane[3];
     /* 0x524 */ int field_0x524[2][2];
@@ -520,8 +510,7 @@ private:
     /* 0x85D */ u8 field_0x85d;
     /* 0x85E */ u8 field_0x85e;
     /* 0x85F */ u8 field_0x85f;
-    /* 0x860 */ u8 field_0x860;
-    /* 0x861 */ u8 field_0x861;
+    /* 0x860 */ u8 field_0x860[2];
 };
 
 #endif /* D_METER_D_METER2_DRAW_H */

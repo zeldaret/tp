@@ -1182,12 +1182,12 @@ void dMeter2_c::moveLightDrop() {
         pos_x = g_drawHIO.mLightDrop.mVesselTalkPosX;
         pos_y = g_drawHIO.mLightDrop.mVesselTalkPosY;
         scale = g_drawHIO.mLightDrop.mVesselTalkScale;
-        alpha = g_drawHIO.mLightDrop.mVesselTalkAlpha;
+        alpha = g_drawHIO.mLightDrop.mVesselAlpha[1];
     } else {
         pos_x = g_drawHIO.mLightDrop.mVesselPosX;
         pos_y = g_drawHIO.mLightDrop.mVesselPosY;
         scale = g_drawHIO.mLightDrop.mVesselScale;
-        alpha = g_drawHIO.mLightDrop.mVesselAlpha;
+        alpha = g_drawHIO.mLightDrop.mVesselAlpha[0];
     }
 
     if (mVesselPosX != pos_x) {

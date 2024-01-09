@@ -1810,6 +1810,14 @@ inline void dComIfGs_setEquipBottleItemEmpty(u8 i_curItem) {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setEquipBottleItemEmpty(i_curItem);
 }
 
+inline u8 dComIfGs_getBButtonItemKey() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(4);
+}
+
+inline void dComIfGs_setBButtonItemKey(u8 i_itemNo) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(4, i_itemNo);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();

@@ -356,6 +356,7 @@ public:
     bool Active() { return field_0x24 == 0; }
     f32 TrimHeight() { return mTrimHeight; }
     int Type() { return mCurType; }
+    int Mode() { return mNextMode; }
 
     bool i_chkFlag(u32 i_flag) { return mEventFlags & i_flag; }
     void i_setFlag(u32 i_flag) { mEventFlags |= i_flag; }

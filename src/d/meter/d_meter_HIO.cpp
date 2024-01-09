@@ -601,19 +601,19 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
     mVesselPosY = 11.0f;
     mVesselPosX_4x3 = -20.0f;
     mVesselPosY_4x3 = 6.6f;
-    mVesselAlpha = 1.0f;
+    mVesselAlpha[0] = 1.0f;
 
     mVesselTalkScale = 0.76f;
     mVesselTalkPosX = 20.0f;
     mVesselTalkPosY = -35.0f;
-    mVesselTalkAlpha = 0.5f;
+    mVesselAlpha[1] = 0.5f;
 
     mDropGetScale = 2.5f;
     mDropGetScaleAnimFrameNum = 20;
     mDropScale = 1.0f;
     mHighlightInterval = 1;
     field_0x54 = 0xFFF1;
-    mVesselDecorAlpha = 0.5f;
+    mVesselAlpha[2] = 0.5f;
     mDropAlpha = 1.0f;
 
     mDropOnColorBlack.set(30, 255, 255, 0);
@@ -779,20 +779,20 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mZButtonPosX = 0.0f;
     mZButtonPosY = 0.0f;
 
-    mBButtonItemPosX = 3.0f;
-    mBButtonItemPosY = 18.0f;
-    mBButtonItemRotation = 0.0f;
-    mBButtonItemScale = 1.4f;
+    mBButtonItemPosX[0] = 3.0f;
+    mBButtonItemPosY[0] = 18.0f;
+    mBButtonItemRotation[0] = 0.0f;
+    mBButtonItemScale[0] = 1.4f;
 
-    mBButtonSwordPosX = 17.0f;
-    mBButtonSwordPosY = 25.0f;
-    mBButtonSwordRotation = 76.0f;
-    mBButtonSwordScale = 2.3f;
+    mBButtonItemPosX[1] = 17.0f;
+    mBButtonItemPosY[1] = 25.0f;
+    mBButtonItemRotation[1] = 76.0f;
+    mBButtonItemScale[1] = 2.3f;
 
-    mBButtonFishingPosX = 4.0f;
-    mBButtonFishingPosY = 22.0f;
-    mBButtonFishingRotation = 20.0f;
-    mBButtonFishingScale = 2.1f;
+    mBButtonItemPosX[2] = 4.0f;
+    mBButtonItemPosY[2] = 22.0f;
+    mBButtonItemRotation[2] = 20.0f;
+    mBButtonItemScale[2] = 2.1f;
 
     mXButtonItemPosX = 4.0f;
     mXButtonItemPosY = -14.0f;
