@@ -80,8 +80,8 @@ int dMeterHakusha_c::_create() {
     mpButtonA->setAlphaRate(0.0f);
 
     mpButtonScreen->search('info_n')->translate(0.0f, 0.0f);
-    field_0x100 = g_drawHIO.mAButtonHorsePosX;
-    field_0x104 = g_drawHIO.mAButtonHorsePosY;
+    field_0x100 = g_drawHIO.mButtonAHorsePosX;
+    field_0x104 = g_drawHIO.mButtonAHorsePosY;
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0) {
         mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX + 28.4f, g_drawHIO.mSpurBarPosY);
@@ -90,8 +90,8 @@ int dMeterHakusha_c::_create() {
     }
     mpHakushaParent->scale(g_drawHIO.mSpurBarScale, g_drawHIO.mSpurBarScale);
 
-    mpButtonA->paneTrans(g_drawHIO.mAButtonHorsePosX, g_drawHIO.mAButtonHorsePosY);
-    mpButtonA->scale(g_drawHIO.mAButtonHorseScale, g_drawHIO.mAButtonHorseScale);
+    mpButtonA->paneTrans(g_drawHIO.mButtonAHorsePosX, g_drawHIO.mButtonAHorsePosY);
+    mpButtonA->scale(g_drawHIO.mButtonAHorseScale, g_drawHIO.mButtonAHorseScale);
 
     mpHakushaOn->scale(g_drawHIO.mSpurIconScale, g_drawHIO.mSpurIconScale);
     mpHakushaOff->scale(g_drawHIO.mUsedSpurIconScale, g_drawHIO.mUsedSpurIconScale);
@@ -138,17 +138,17 @@ void dMeterHakusha_c::draw() {
 
             if (mHakushaStatus[i] == 0) {
                 dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikariHakusha(
-                    center.x, center.y, mHakushaAnimFrame[i], g_drawHIO.mSpurIconHighlightScale,
-                    g_drawHIO.mSpurIconHighlightFrontOuter, g_drawHIO.mSpurIconHighlightFrontInner,
-                    g_drawHIO.mSpurIconHighlightBackOuter, g_drawHIO.mSpurIconHighlightBackInner);
+                    center.x, center.y, mHakushaAnimFrame[i], g_drawHIO.mSpurIconPikariScale,
+                    g_drawHIO.mSpurIconPikariFrontOuter, g_drawHIO.mSpurIconPikariFrontInner,
+                    g_drawHIO.mSpurIconPikariBackOuter, g_drawHIO.mSpurIconPikariBackInner);
             } else {
                 dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikariHakusha(
                     center.x, center.y, mHakushaAnimFrame[i],
-                    g_drawHIO.mSpurIconReviveHighlightScale,
-                    g_drawHIO.mSpurIconReviveHighlightFrontOuter,
-                    g_drawHIO.mSpurIconReviveHighlightFrontInner,
-                    g_drawHIO.mSpurIconReviveHighlightBackOuter,
-                    g_drawHIO.mSpurIconReviveHighlightBackInner);
+                    g_drawHIO.mSpurIconRevivePikariScale,
+                    g_drawHIO.mSpurIconRevivePikariFrontOuter,
+                    g_drawHIO.mSpurIconRevivePikariFrontInner,
+                    g_drawHIO.mSpurIconRevivePikariBackOuter,
+                    g_drawHIO.mSpurIconRevivePikariBackInner);
             }
         }
     }
@@ -219,11 +219,11 @@ void dMeterHakusha_c::updateHakusha() {
     if (mHakushaNum != dMeter2Info_getHorseLifeCount()) {
         if (mHakushaNum > dMeter2Info_getHorseLifeCount()) {
             mHakushaAnimFrame[dMeter2Info_getHorseLifeCount()] =
-                18.0f - g_drawHIO.mSpurIconHighlightAnimSpeed;
+                18.0f - g_drawHIO.mSpurIconPikariAnimSpeed;
             mHakushaStatus[dMeter2Info_getHorseLifeCount()] = 0;
         } else if (mHakushaNum < dMeter2Info_getHorseLifeCount()) {
             for (int i = mHakushaNum; i < dMeter2Info_getHorseLifeCount(); i++) {
-                mHakushaAnimFrame[i] = 18.0f - g_drawHIO.mSpurIconReviveHighlightAnimSpeed;
+                mHakushaAnimFrame[i] = 18.0f - g_drawHIO.mSpurIconRevivePikariAnimSpeed;
                 mHakushaStatus[i] = 1;
             }
         }
@@ -234,9 +234,9 @@ void dMeterHakusha_c::updateHakusha() {
     for (int i = 0; i < getHakushaNum(); i++) {
         if (mHakushaAnimFrame[i] > 0.0f) {
             if (mHakushaStatus[i] == 0) {
-                mHakushaAnimFrame[i] += g_drawHIO.mSpurIconHighlightAnimSpeed;
+                mHakushaAnimFrame[i] += g_drawHIO.mSpurIconPikariAnimSpeed;
             } else {
-                mHakushaAnimFrame[i] += g_drawHIO.mSpurIconReviveHighlightAnimSpeed;
+                mHakushaAnimFrame[i] += g_drawHIO.mSpurIconRevivePikariAnimSpeed;
             }
 
             if (mHakushaAnimFrame[i] > 28.0f) {
@@ -280,8 +280,8 @@ void dMeterHakusha_c::updateHakusha() {
     mButtonAPosY = abtn_y_offset + field_0x104;
 
     if (g_drawHIO.mSpurDebug) {
-        field_0x100 = g_drawHIO.mAButtonHorsePosX;
-        field_0x104 = g_drawHIO.mAButtonHorsePosY;
+        field_0x100 = g_drawHIO.mButtonAHorsePosX;
+        field_0x104 = g_drawHIO.mButtonAHorsePosY;
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0) {
             mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX + 28.4f, g_drawHIO.mSpurBarPosY);
@@ -290,8 +290,8 @@ void dMeterHakusha_c::updateHakusha() {
         }
         mpHakushaParent->scale(g_drawHIO.mSpurBarScale, g_drawHIO.mSpurBarScale);
 
-        mpButtonA->paneTrans(g_drawHIO.mAButtonHorsePosX, g_drawHIO.mAButtonHorsePosY);
-        mpButtonA->scale(g_drawHIO.mAButtonHorseScale, g_drawHIO.mAButtonHorseScale);
+        mpButtonA->paneTrans(g_drawHIO.mButtonAHorsePosX, g_drawHIO.mButtonAHorsePosY);
+        mpButtonA->scale(g_drawHIO.mButtonAHorseScale, g_drawHIO.mButtonAHorseScale);
 
         mpHakushaOn->scale(g_drawHIO.mSpurIconScale, g_drawHIO.mSpurIconScale);
         mpHakushaOff->scale(g_drawHIO.mUsedSpurIconScale, g_drawHIO.mUsedSpurIconScale);

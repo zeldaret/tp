@@ -72,6 +72,12 @@ public:
     f32 getInitScaleX() { return mInitScale.x; }
     f32 getInitScaleY() { return mInitScale.y; }
 
+    f32 getScaleX() { return mPane->getScaleX(); }
+    f32 getScaleY() { return mPane->getScaleY(); }
+
+    f32 getTranslateX() { return mPane->getTranslateX(); }
+    f32 getTranslateY() { return mPane->getTranslateY(); }
+
     JUtility::TColor getInitBlack() { return mInitBlack; }
     JUtility::TColor getInitWhite() { return mInitWhite; }
 

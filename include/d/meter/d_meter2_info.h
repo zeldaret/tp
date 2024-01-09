@@ -164,6 +164,8 @@ public:
     s16 getFloatingMessageTimer() { return mFloatingMessageTimer; }
     u16 getFloatingMessageID() { return mFloatingMessageID; }
     s16 getHorseLifeCount() { return mHorseLifeCount; }
+    void setMeterItemPanePtr(int i_no, CPaneMgr* i_pane) { mMeterItemPanePtr[i_no] = i_pane; }
+    bool isShopTalkFlag() { return mShopTalkFlag != false; }
     u8 getCollectCursorPosX() { return mCollectCursorPosX; }
     u8 getCollectCursorPosY() { return mCollectCursorPosY; }
     void setCollectCursorPosXY(u8 x, u8 y) {
@@ -292,6 +294,10 @@ inline void dMeter2Info_getString(u32 param_0, char* param_1, JMSMesgEntry_c* pa
 
 inline void dMeter2Info_getStringKanji(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
     g_meter2_info.getStringKanji(param_0, param_1, param_2);
+}
+
+inline void dMeter2Info_getStringKana(u32 param_0, char* param_1, JMSMesgEntry_c* param_2) {
+    g_meter2_info.getStringKana(param_0, param_1, param_2);
 }
 
 inline f32 dMeter2Info_getStringLength(JUTFont* param_0, f32 param_1, f32 param_2, char* param_3) {
@@ -671,10 +677,20 @@ inline void dMeter2Info_resetMeterString() {
     g_meter2_info.resetMeterString();
 }
 
+inline void dMeter2Info_setMeterItemPanePtr(int i_no, CPaneMgr* i_pane) {
+    g_meter2_info.setMeterItemPanePtr(i_no, i_pane);
+}
+
+inline bool dMeter2Info_isShopTalkFlag() {
+    return g_meter2_info.isShopTalkFlag();
+}
+
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
 int dMeter2Info_setNewLetterSender();
+bool dMeter2Info_isItemOpenCheck();
+bool dMeter2Info_isMapOpenCheck();
 
 #endif /* D_METER_D_METER2_INFO_H */

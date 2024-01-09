@@ -153,6 +153,23 @@ class dKantera_icon_c;
 
 class dMeter2Draw_c : public dDlst_base_c {
 public:
+    enum {
+        SELECT_X_e,
+        SELECT_Y_e,
+        SELECT_Z_e,
+        SELECT_MAX_e = 2,
+    };
+
+    struct item_params {
+        /* 0x00 */ f32 pos_x;
+        /* 0x04 */ f32 pos_y;
+        /* 0x08 */ f32 scale;
+        /* 0x0C */ f32 rotation;
+        /* 0x10 */ f32 num_pos_x;
+        /* 0x14 */ f32 num_pos_y;
+        /* 0x18 */ f32 num_scale;
+    };
+
     /* 8020FAB4 */ dMeter2Draw_c(JKRExpHeap*);
     /* 80210FB0 */ void init();
     /* 8021135C */ void exec(u32);
@@ -213,19 +230,19 @@ public:
     /* 80217AB4 */ void drawButtonXY(int, u8, u8, bool, bool);
     /* 80218238 */ f32 getButtonCrossParentInitTransY();
     /* 80218254 */ void drawButtonCross(f32, f32);
-    /* 80218338 */ void setAlphaButtonCrossAnimeMin();
-    /* 802183A8 */ void setAlphaButtonCrossAnimeMax();
-    /* 80218448 */ void setAlphaButtonCrossItemAnimeMin();
-    /* 80218524 */ void setAlphaButtonCrossItemAnimeMax();
-    /* 802185E8 */ void setAlphaButtonCrossMapAnimeMin();
-    /* 802186C4 */ void setAlphaButtonCrossMapAnimeMax();
-    /* 80218788 */ void setAlphaButtonChange(bool);
-    /* 8021901C */ void setAlphaButtonAnimeMin();
-    /* 802190A8 */ void setAlphaButtonAnimeMax();
-    /* 80219174 */ void setAlphaButtonAAnimeMin();
-    /* 80219258 */ void setAlphaButtonAAnimeMax();
-    /* 80219324 */ void setAlphaButtonBAnimeMin();
-    /* 80219474 */ void setAlphaButtonBAnimeMax();
+    /* 80218338 */ void setAlphButtonACrossAnimeMin();
+    /* 802183A8 */ void setAlphButtonACrossAnimeMax();
+    /* 80218448 */ void setAlphButtonACrossItemAnimeMin();
+    /* 80218524 */ void setAlphButtonACrossItemAnimeMax();
+    /* 802185E8 */ void setAlphButtonACrossMapAnimeMin();
+    /* 802186C4 */ void setAlphButtonACrossMapAnimeMax();
+    /* 80218788 */ void setAlphButtonAChange(bool);
+    /* 8021901C */ void setAlphButtonAAnimeMin();
+    /* 802190A8 */ void setAlphButtonAAnimeMax();
+    /* 80219174 */ void setAlphButtonAAAnimeMin();
+    /* 80219258 */ void setAlphButtonAAAnimeMax();
+    /* 80219324 */ void setAlphButtonABAnimeMin();
+    /* 80219474 */ void setAlphButtonABAnimeMax();
     /* 802195A4 */ void setButtonIconAAlpha(u8, u32, bool);
     /* 80219788 */ void setButtonIconBAlpha(u8, u32, bool);
     /* 80219A84 */ void setButtonIconMidonaAlpha(u32);
@@ -249,7 +266,7 @@ public:
     /* 8021BC24 */ bool getCameraSubject();
     /* 8021BC54 */ bool getItemSubject();
     /* 8021BCAC */ bool getPlayerSubject();
-    /* 8021BCC0 */ bool isBButtonShow(bool);
+    /* 8021BCC0 */ bool isButtonBShow(bool);
     /* 8021BDD0 */ s16 getButtonTimer();
 
     /* 802102F8 */ virtual ~dMeter2Draw_c();
@@ -270,39 +287,12 @@ public:
     void setEmphasisB(u8 param_0) { field_0x762 = param_0; }
 
 private:
-    /* 0x004 */ f32 field_0x4;
-    /* 0x008 */ f32 field_0x8;
-    /* 0x00C */ f32 field_0xc;
-    /* 0x010 */ f32 field_0x10;
-    /* 0x014 */ f32 field_0x14;
-    /* 0x028 */ f32 field_0x18;
-    /* 0x01C */ f32 field_0x1c;
-    /* 0x020 */ f32 field_0x20;
-    /* 0x024 */ f32 field_0x24;
-    /* 0x028 */ f32 field_0x28;
-    /* 0x02C */ f32 field_0x2c;
-    /* 0x030 */ f32 field_0x30;
-    /* 0x034 */ f32 field_0x34;
-    /* 0x038 */ f32 field_0x38;
-    /* 0x03C */ f32 field_0x3c;
-    /* 0x040 */ f32 field_0x40;
-    /* 0x044 */ f32 field_0x44;
-    /* 0x048 */ f32 field_0x48;
-    /* 0x04C */ f32 field_0x4c;
-    /* 0x050 */ f32 field_0x50;
-    /* 0x054 */ f32 field_0x54;
-    /* 0x058 */ f32 field_0x58;
-    /* 0x05C */ f32 field_0x5c;
-    /* 0x060 */ f32 field_0x60;
-    /* 0x064 */ f32 field_0x64;
-    /* 0x068 */ f32 field_0x68;
-    /* 0x06C */ f32 field_0x6c;
-    /* 0x070 */ f32 field_0x70;
-    /* 0x074 */ JKRExpHeap* mp_heap;
+    /* 0x004 */ item_params mItemParams[4];
+    /* 0x074 */ JKRExpHeap* heap;
     /* 0x078 */ J2DScreen* mpScreen;
     /* 0x07C */ J2DScreen* mpKanteraScreen;
     /* 0x080 */ J2DScreen* mpPikariScreen;
-    /* 0x084 */ J2DScreen* mpItemNumTex[2][3];
+    /* 0x084 */ J2DPicture* mpItemNumTex[2][3];
     /* 0x09C */ CPaneMgr* field_0x9c[3];
     /* 0x0A8 */ int field_0xa8;
     /* 0x0AC */ dKantera_icon_c* mpKanteraMeter[2];
@@ -313,7 +303,7 @@ private:
     /* 0x0E8 */ CPaneMgr* mpXYText[5][3];
     /* 0x124 */ CPaneMgr* mpLifeParent;
     /* 0x128 */ CPaneMgr* mpLifeParts[20];
-    /* 0x178 */ CPaneMgr* mpHeartMask[20];
+    /* 0x178 */ CPaneMgr* mpHeartMark[20];
     /* 0x1C8 */ CPaneMgr* mpBigHeart;
     /* 0x1CC */ CPaneMgr* mpMagicParent;
     /* 0x1D0 */ CPaneMgr* mpMagicBase;
@@ -352,22 +342,22 @@ private:
     /* 0x36C */ int field_0x36c;
     /* 0x370 */ u8 field_0x370[0x2C];
     /* 0x39C */ CPaneMgr* mpPikariParent;
-    /* 0x3A0 */ CPaneMgr* mpLifeTexture[20][2];
-    /* 0x440 */ CPaneMgr* mpHeartBase[20];
+    /* 0x3A0 */ CPaneMgrAlpha* mpLifeTexture[20][2];
+    /* 0x440 */ CPaneMgrAlpha* mpHeartBase[20];
     /* 0x490 */ CPaneMgr* mpJujiI[5];
     /* 0x4A4 */ CPaneMgr* mpJujiM[5];
-    /* 0x4B8 */ CPaneMgr* mpUzu;
+    /* 0x4B8 */ CPaneMgrAlpha* mpUzu;
     /* 0x4BC */ u8 field_0x4bc[0x28];
-    /* 0x4E4 */ JKRHeap* mpItemBTex[2][2];
-    /* 0x4F4 */ JKRHeap* mpItemXYTex[2][2][2];
+    /* 0x4E4 */ ResTIMG* mpItemBTex[2][2];
+    /* 0x4F4 */ ResTIMG* mpItemXYTex[2][2][2];
     /* 0x514 */ J2DPicture* mpItemBPane;
     /* 0x518 */ J2DPicture* mpItemXYPane[3];
     /* 0x524 */ int field_0x524[2][2];
     /* 0x534 */ J2DAnmTransformKey* mPikariBck;
     /* 0x538 */ J2DAnmColorKey* mPikariBpk;
     /* 0x53C */ J2DAnmColorKey* mpOxygenBpk[3];
-    /* 0x548 */ JUtility::TColor field_0x548;
-    /* 0x54C */ JUtility::TColor field_0x54c;
+    /* 0x548 */ JUtility::TColor mPikariBlack;
+    /* 0x54C */ JUtility::TColor mPikariWhite;
     /* 0x550 */ f32 field_0x550;
     /* 0x554 */ f32 field_0x554;
     /* 0x558 */ f32 field_0x558;
@@ -409,13 +399,13 @@ private:
     /* 0x6E8 */ f32 field_0x6e8;
     /* 0x6EC */ f32 field_0x6ec;
     /* 0x6F0 */ f32 field_0x6f0;
-    /* 0x6F4 */ f32 field_0x6f4;
+    /* 0x6F4 */ f32 mLightDropVesselScale;
     /* 0x6F8 */ f32 field_0x6f8;
     /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ u8 field_0x700[0x18];
     /* 0x718 */ f32 field_0x718;
     /* 0x71C */ u8 field_0x71c[4];
-    /* 0x720 */ f32 mZButtonAlpha;
+    /* 0x720 */ f32 mButtonZAlpha;
     /* 0x724 */ f32 field_0x724;
     /* 0x728 */ f32 field_0x728;
     /* 0x72C */ f32 field_0x72c;
@@ -446,22 +436,22 @@ private:
     /* 0x76B */ u8 field_0x76b;
     /* 0x76C */ u8 field_0x76c[2];
     /* 0x76E */ u8 field_0x76e;
-    /* 0x76F */ u8 field_0x76f;
+    /* 0x76F */ u8 mButtonBItem;
     /* 0x770 */ u8 field_0x770;
     /* 0x771 */ u8 field_0x771;
     /* 0x772 */ u8 field_0x772;
     /* 0x773 */ u8 field_0x773[2];
-    /* 0x778 */ f32 mHUDScale;
-    /* 0x77C */ f32 mHUDAlpha;
+    /* 0x778 */ f32 mParentScale;
+    /* 0x77C */ f32 mParentAlpha;
     /* 0x780 */ f32 mButtonsPosX;
     /* 0x784 */ f32 mButtonsPosY;
     /* 0x788 */ f32 mButtonsScale;
     /* 0x78C */ f32 field_0x78c;
-    /* 0x790 */ f32 field_0x790;
-    /* 0x794 */ f32 mLifeGaugeHeartAlpha;
-    /* 0x798 */ f32 mLifeGaugeBaseAlpha;
+    /* 0x790 */ f32 mLifeParentAlpha;
+    /* 0x794 */ f32 mLifeParentHeartAlpha;
+    /* 0x798 */ f32 mHeartBaseAlpha;
     /* 0x79C */ f32 mHeartAlpha;
-    /* 0x7A0 */ f32 mLargeHeartAlpha;
+    /* 0x7A0 */ f32 mBigHeartAlpha;
     /* 0x7A4 */ f32 field_0x7a4;
     /* 0x7A8 */ f32 mMagicMeterAlpha;
     /* 0x7AC */ f32 mMagicMeterFrameAlpha;
@@ -484,44 +474,28 @@ private:
     /* 0x7F0 */ f32 field_0x7f0;
     /* 0x7F4 */ f32 mMainHUDButtonsAlpha;
     /* 0x7F8 */ f32 mButtonDisplayBackAlpha;
-    /* 0x7FC */ f32 mAButtonAlpha;
-    /* 0x800 */ f32 mBButtonAlpha;
-    /* 0x804 */ f32 mXButtonAlpha;
-    /* 0x808 */ f32 mYButtonAlpha;
+    /* 0x7FC */ f32 mButtonAAlpha;
+    /* 0x800 */ f32 mButtonBAlpha;
+    /* 0x804 */ f32 mButtonXAlpha;
+    /* 0x808 */ f32 mButtonYAlpha;
     /* 0x80C */ f32 field_0x80c;
     /* 0x810 */ f32 field_0x810;
-    /* 0x814 */ f32 mBItemBaseAlpha[2];
-    /* 0x81C */ f32 mXButtonItemBaseAlpha[2];
-    /* 0x824 */ f32 mYButtonItemBaseAlpha[2];
+    /* 0x814 */ f32 mItemBBaseAlpha[2];
+    /* 0x81C */ f32 mButtonXItemBaseAlpha[2];
+    /* 0x824 */ f32 mButtonYItemBaseAlpha[2];
     /* 0x82C */ f32 field_0x82c[2];
-    /* 0x834 */ f32 mZButtonItemBaseAlpha;
+    /* 0x834 */ f32 mButtonZItemBaseAlpha;
     /* 0x838 */ f32 mButtonBaseAlpha;
-    /* 0x83C */ f32 mAButtonFontSpacing;
-    /* 0x840 */ f32 mDPadButtonAlpha;
-    /* 0x844 */ f32 mDPadButtonITEMAlpha;
-    /* 0x848 */ f32 mDPadButtonMAPAlpha;
-    /* 0x84C */ u8 field_0x84c;
-    /* 0x84D */ u8 field_0x84d;
-    /* 0x84E */ u8 field_0x84e;
-    /* 0x84F */ u8 field_0x84f;
-    /* 0x850 */ u8 field_0x850;
-    /* 0x851 */ u8 field_0x851;
-    /* 0x852 */ u8 field_0x852;
-    /* 0x853 */ u8 field_0x853;
-    /* 0x854 */ u8 field_0x854;
-    /* 0x855 */ u8 field_0x855;
-    /* 0x856 */ u8 field_0x856;
-    /* 0x857 */ u8 field_0x857;
-    /* 0x858 */ u8 field_0x858;
-    /* 0x859 */ u8 field_0x859;
-    /* 0x85A */ u8 field_0x85a;
-    /* 0x85B */ u8 field_0x85b;
-    /* 0x85C */ u8 field_0x85c;
-    /* 0x85D */ u8 field_0x85d;
-    /* 0x85E */ u8 field_0x85e;
-    /* 0x85F */ u8 field_0x85f;
-    /* 0x860 */ u8 field_0x860;
-    /* 0x861 */ u8 field_0x861;
+    /* 0x83C */ f32 mButtonATextSpacing;
+    /* 0x840 */ f32 mButtonCrossAlpha;
+    /* 0x844 */ f32 mButtonCrossITEMAlpha;
+    /* 0x848 */ f32 mButtonCrossMAPAlpha;
+    /* 0x84C */ GXColor mButtonATextColor;
+    /* 0x850 */ GXColor mButtonBTextColor;
+    /* 0x854 */ GXColor field_0x854;
+    /* 0x858 */ GXColor mButtonZTextColor;
+    /* 0x85C */ GXColor mButtonXYTextColor;
+    /* 0x860 */ u8 field_0x860[2];
 };
 
 #endif /* D_METER_D_METER2_DRAW_H */

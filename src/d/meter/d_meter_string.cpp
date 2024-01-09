@@ -131,9 +131,9 @@ void dMeterString_c::draw() {
             if (mPikariAnimFrame > 0.0f) {
                 drawPikari();
             } else if (mPikariAnimFrame == -1.0f &&
-                       mAnimFrame > g_drawHIO.mMiniGame.mReadyFightHighlightAppearFrames)
+                       mAnimFrame > g_drawHIO.mMiniGame.mReadyFightPikariAppearFrames)
             {
-                mPikariAnimFrame = 18.0f - g_drawHIO.mMiniGame.mReadyFightHighlightAnimSpeed;
+                mPikariAnimFrame = 18.0f - g_drawHIO.mMiniGame.mReadyFightPikariAnimSpeed;
             }
 
             if (mAnimFrame >= var_f31) {
@@ -247,12 +247,12 @@ void dMeterString_c::drawPikari() {
         if (c != 0x20 && c != 0x8140) {
             dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                 (temp_f24 / 2) + (var_f25 + var_f29), center.y, &frame,
-                g_drawHIO.mMiniGame.mReadyFightHighlightScale,
-                g_drawHIO.mMiniGame.mReadyFightHighlightFrontOuter,
-                g_drawHIO.mMiniGame.mReadyFightHighlightFrontInner,
-                g_drawHIO.mMiniGame.mReadyFightHighlightBackOuter,
-                g_drawHIO.mMiniGame.mReadyFightHighlightBackInner,
-                g_drawHIO.mMiniGame.mReadyFightHighlightAnimSpeed, 0);
+                g_drawHIO.mMiniGame.mReadyFightPikariScale,
+                g_drawHIO.mMiniGame.mReadyFightPikariFrontOuter,
+                g_drawHIO.mMiniGame.mReadyFightPikariFrontInner,
+                g_drawHIO.mMiniGame.mReadyFightPikariBackOuter,
+                g_drawHIO.mMiniGame.mReadyFightPikariBackInner,
+                g_drawHIO.mMiniGame.mReadyFightPikariAnimSpeed, 0);
         }
 
         var_f29 += temp_f24;

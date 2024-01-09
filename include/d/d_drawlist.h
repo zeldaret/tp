@@ -55,18 +55,6 @@ private:
     /* 0x34 */ f32 field_0x34;
 };  // Size: 0x38
 
-class dDlst_FileInfo_c : public dDlst_base_c {
-public:
-    dDlst_FileInfo_c() {}
-    virtual void draw();
-    virtual ~dDlst_FileInfo_c();  // inlined
-
-    /* 0x04 */ J2DScreen* Scr;
-    /* 0x08 */ JUTFont* mFont;
-    /* 0x0C */ J2DPane* mBasePane;
-    /* 0x10 */ J2DPane* field_0x10;
-};
-
 class dDlst_2D_c : public dDlst_base_c {
 public:
     /* 80053A00 */ dDlst_2D_c(ResTIMG* image, s16 posX, s16 posY, s16 width, s16 height, u8 alpha);

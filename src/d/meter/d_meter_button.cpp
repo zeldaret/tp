@@ -274,7 +274,7 @@ void dMeterButton_c::draw() {
             var_r23 = 1;
 
             if (field_0x4b8[i] == 0 && field_0x4bc[i] == 0) {
-                field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mHighlightRepeatHitAnimSpeed;
+                field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariRepeatHitAnimSpeed;
             }
 
             s16 temp_r6 = g_drawHIO.mEmpButton.mRepeatHitFrameNum;
@@ -309,7 +309,7 @@ void dMeterButton_c::draw() {
         {
             var_r22 = 1;
             if (field_0x2e8[i] <= 0.0f) {
-                field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mHighlightListenAnimSpeed;
+                field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariListenAnimSpeed;
             }
         }
 
@@ -369,46 +369,46 @@ void dMeterButton_c::draw() {
                     if (daPy_getPlayerActorClass()->i_getSumouMode()) {
                         dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                             vtx.x, vtx.y, &field_0x2e8[i], 1.8f,
-                            g_drawHIO.mEmpButton.mHighlightListenFrontOuter,
-                            g_drawHIO.mEmpButton.mHighlightListenFrontInner,
-                            g_drawHIO.mEmpButton.mHighlightListenBackOuter,
-                            g_drawHIO.mEmpButton.mHighlightListenBackInner,
-                            g_drawHIO.mEmpButton.mHighlightListenAnimSpeed, 3);
+                            g_drawHIO.mEmpButton.mPikariListenFrontOuter,
+                            g_drawHIO.mEmpButton.mPikariListenFrontInner,
+                            g_drawHIO.mEmpButton.mPikariListenBackOuter,
+                            g_drawHIO.mEmpButton.mPikariListenBackInner,
+                            g_drawHIO.mEmpButton.mPikariListenAnimSpeed, 3);
                     } else {
                         dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                             vtx.x, vtx.y, &field_0x2e8[i],
-                            g_drawHIO.mEmpButton.mHighlightListenScale,
-                            g_drawHIO.mEmpButton.mHighlightListenFrontOuter,
-                            g_drawHIO.mEmpButton.mHighlightListenFrontInner,
-                            g_drawHIO.mEmpButton.mHighlightListenBackOuter,
-                            g_drawHIO.mEmpButton.mHighlightListenBackInner,
-                            g_drawHIO.mEmpButton.mHighlightListenAnimSpeed, 3);
+                            g_drawHIO.mEmpButton.mPikariListenScale,
+                            g_drawHIO.mEmpButton.mPikariListenFrontOuter,
+                            g_drawHIO.mEmpButton.mPikariListenFrontInner,
+                            g_drawHIO.mEmpButton.mPikariListenBackOuter,
+                            g_drawHIO.mEmpButton.mPikariListenBackInner,
+                            g_drawHIO.mEmpButton.mPikariListenAnimSpeed, 3);
                     }
                 } else if (var_r23) {
                     dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                         vtx.x, vtx.y, &field_0x2e8[i],
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitScale,
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitFrontOuter,
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitFrontInner,
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitBackOuter,
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitBackInner,
-                        g_drawHIO.mEmpButton.mHighlightRepeatHitAnimSpeed, 0);
+                        g_drawHIO.mEmpButton.mPikariRepeatHitScale,
+                        g_drawHIO.mEmpButton.mPikariRepeatHitFrontOuter,
+                        g_drawHIO.mEmpButton.mPikariRepeatHitFrontInner,
+                        g_drawHIO.mEmpButton.mPikariRepeatHitBackOuter,
+                        g_drawHIO.mEmpButton.mPikariRepeatHitBackInner,
+                        g_drawHIO.mEmpButton.mPikariRepeatHitAnimSpeed, 0);
                 } else if (isFastSet(i)) {
                     dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
-                        vtx.x, vtx.y, &field_0x2e8[i], g_drawHIO.mEmpButton.mHighlightFastScale,
-                        g_drawHIO.mEmpButton.mHighlightFastFrontOuter,
-                        g_drawHIO.mEmpButton.mHighlightFastFrontInner,
-                        g_drawHIO.mEmpButton.mHighlightFastBackOuter,
-                        g_drawHIO.mEmpButton.mHighlightFastBackInner,
-                        g_drawHIO.mEmpButton.mHighlightFastAnimSpeed, 0);
+                        vtx.x, vtx.y, &field_0x2e8[i], g_drawHIO.mEmpButton.mPikariFastScale,
+                        g_drawHIO.mEmpButton.mPikariFastFrontOuter,
+                        g_drawHIO.mEmpButton.mPikariFastFrontInner,
+                        g_drawHIO.mEmpButton.mPikariFastBackOuter,
+                        g_drawHIO.mEmpButton.mPikariFastBackInner,
+                        g_drawHIO.mEmpButton.mPikariFastAnimSpeed, 0);
                 } else {
                     dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
-                        vtx.x, vtx.y, &field_0x2e8[i], g_drawHIO.mEmpButton.mHighlightScale,
-                        g_drawHIO.mEmpButton.mHighlightFrontOuter,
-                        g_drawHIO.mEmpButton.mHighlightFrontInner,
-                        g_drawHIO.mEmpButton.mHighlightBackOuter,
-                        g_drawHIO.mEmpButton.mHighlightBackInner,
-                        g_drawHIO.mEmpButton.mHighlightAnimSpeed, 0);
+                        vtx.x, vtx.y, &field_0x2e8[i], g_drawHIO.mEmpButton.mPikariScale,
+                        g_drawHIO.mEmpButton.mPikariFrontOuter,
+                        g_drawHIO.mEmpButton.mPikariFrontInner,
+                        g_drawHIO.mEmpButton.mPikariBackOuter,
+                        g_drawHIO.mEmpButton.mPikariBackInner,
+                        g_drawHIO.mEmpButton.mPikariAnimSpeed, 0);
                 }
             }
         }
@@ -1559,32 +1559,32 @@ void dMeterButton_c::updateButton() {
         mpParent->scale(mParentScale, mParentScale);
     }
 
-    if (mButtonAPosX != g_drawHIO.mEmpButton.mAButtonPosX ||
-        mButtonAPosY != g_drawHIO.mEmpButton.mAButtonPosY)
+    if (mButtonAPosX != g_drawHIO.mEmpButton.mButtonAPosX ||
+        mButtonAPosY != g_drawHIO.mEmpButton.mButtonAPosY)
     {
-        mButtonAPosX = g_drawHIO.mEmpButton.mAButtonPosX;
-        mButtonAPosY = g_drawHIO.mEmpButton.mAButtonPosY;
+        mButtonAPosX = g_drawHIO.mEmpButton.mButtonAPosX;
+        mButtonAPosY = g_drawHIO.mEmpButton.mButtonAPosY;
         paneTrans(mpButtonA, field_0x304[0] + (mButtonAPosX + field_0x18c[0]), mButtonAPosY, 0xFF);
     }
 
-    if (mButtonAScale != g_drawHIO.mEmpButton.mAButtonScale) {
-        mButtonAScale = g_drawHIO.mEmpButton.mAButtonScale;
+    if (mButtonAScale != g_drawHIO.mEmpButton.mButtonAScale) {
+        mButtonAScale = g_drawHIO.mEmpButton.mButtonAScale;
 
         if (!dComIfGp_isDoSetFlag(4)) {
             mpButtonA->scale(mButtonAScale, mButtonAScale);
         }
     }
 
-    if (mButtonBPosX != g_drawHIO.mEmpButton.mBButtonPosX ||
-        mButtonBPosY != g_drawHIO.mEmpButton.mBButtonPosY)
+    if (mButtonBPosX != g_drawHIO.mEmpButton.mButtonBPosX ||
+        mButtonBPosY != g_drawHIO.mEmpButton.mButtonBPosY)
     {
-        mButtonBPosX = g_drawHIO.mEmpButton.mBButtonPosX;
-        mButtonBPosY = g_drawHIO.mEmpButton.mBButtonPosY;
+        mButtonBPosX = g_drawHIO.mEmpButton.mButtonBPosX;
+        mButtonBPosY = g_drawHIO.mEmpButton.mButtonBPosY;
         paneTrans(mpButtonB, field_0x304[1] + (mButtonBPosX + field_0x18c[1]), mButtonBPosY, 0xFF);
     }
 
-    if (mButtonBScale != g_drawHIO.mEmpButton.mBButtonScale) {
-        mButtonBScale = g_drawHIO.mEmpButton.mBButtonScale;
+    if (mButtonBScale != g_drawHIO.mEmpButton.mButtonBScale) {
+        mButtonBScale = g_drawHIO.mEmpButton.mButtonBScale;
 
         mpButtonB->scale(mButtonBScale, mButtonBScale);
     }
@@ -1603,16 +1603,16 @@ void dMeterButton_c::updateButton() {
         mpButtonR->scale(mButtonRScale, mButtonRScale);
     }
 
-    if (mButtonZPosX != g_drawHIO.mEmpButton.mZButtonPosX ||
-        mButtonZPosY != g_drawHIO.mEmpButton.mZButtonPosY)
+    if (mButtonZPosX != g_drawHIO.mEmpButton.mButtonZPosX ||
+        mButtonZPosY != g_drawHIO.mEmpButton.mButtonZPosY)
     {
-        mButtonZPosX = g_drawHIO.mEmpButton.mZButtonPosX;
-        mButtonZPosY = g_drawHIO.mEmpButton.mZButtonPosY;
+        mButtonZPosX = g_drawHIO.mEmpButton.mButtonZPosX;
+        mButtonZPosY = g_drawHIO.mEmpButton.mButtonZPosY;
         paneTrans(mpButtonZ, field_0x304[3] + (mButtonZPosX + field_0x18c[3]), mButtonZPosY, 0xFF);
     }
 
-    if (mButtonZScale != g_drawHIO.mEmpButton.mZButtonScale) {
-        mButtonZScale = g_drawHIO.mEmpButton.mZButtonScale;
+    if (mButtonZScale != g_drawHIO.mEmpButton.mButtonZScale) {
+        mButtonZScale = g_drawHIO.mEmpButton.mButtonZScale;
 
         mpButtonZ->scale(mButtonZScale, mButtonZScale);
     }
@@ -1660,30 +1660,30 @@ void dMeterButton_c::updateButton() {
         mpButtonS->scale(mButtonSScale, mButtonSScale);
     }
 
-    if (mButtonXPosX != g_drawHIO.mEmpButton.mXButtonPosX ||
-        mButtonXPosY != g_drawHIO.mEmpButton.mXButtonPosY)
+    if (mButtonXPosX != g_drawHIO.mEmpButton.mButtonXPosX ||
+        mButtonXPosY != g_drawHIO.mEmpButton.mButtonXPosY)
     {
-        mButtonXPosX = g_drawHIO.mEmpButton.mXButtonPosX;
-        mButtonXPosY = g_drawHIO.mEmpButton.mXButtonPosY;
+        mButtonXPosX = g_drawHIO.mEmpButton.mButtonXPosX;
+        mButtonXPosY = g_drawHIO.mEmpButton.mButtonXPosY;
         paneTrans(mpButtonX, field_0x304[7] + (mButtonXPosX + field_0x18c[7]), mButtonXPosY, 0xFF);
     }
 
-    if (mButtonXScale != g_drawHIO.mEmpButton.mXButtonScale) {
-        mButtonXScale = g_drawHIO.mEmpButton.mXButtonScale;
+    if (mButtonXScale != g_drawHIO.mEmpButton.mButtonXScale) {
+        mButtonXScale = g_drawHIO.mEmpButton.mButtonXScale;
 
         mpButtonX->scale(mButtonXScale, mButtonXScale);
     }
 
-    if (mButtonYPosX != g_drawHIO.mEmpButton.mYButtonPosX ||
-        mButtonYPosY != g_drawHIO.mEmpButton.mYButtonPosY)
+    if (mButtonYPosX != g_drawHIO.mEmpButton.mButtonYPosX ||
+        mButtonYPosY != g_drawHIO.mEmpButton.mButtonYPosY)
     {
-        mButtonYPosX = g_drawHIO.mEmpButton.mYButtonPosX;
-        mButtonYPosY = g_drawHIO.mEmpButton.mYButtonPosY;
+        mButtonYPosX = g_drawHIO.mEmpButton.mButtonYPosX;
+        mButtonYPosY = g_drawHIO.mEmpButton.mButtonYPosY;
         paneTrans(mpButtonY, field_0x304[8] + (mButtonXPosX + field_0x18c[8]), mButtonYPosY, 0xFF);
     }
 
-    if (mButtonYScale != g_drawHIO.mEmpButton.mYButtonScale) {
-        mButtonYScale = g_drawHIO.mEmpButton.mYButtonScale;
+    if (mButtonYScale != g_drawHIO.mEmpButton.mButtonYScale) {
+        mButtonYScale = g_drawHIO.mEmpButton.mButtonYScale;
 
         mpButtonY->scale(mButtonYScale, mButtonYScale);
     }
@@ -3355,9 +3355,9 @@ void dMeterButton_c::pikariCheck() {
                     (dComIfGp_isNunCSetFlag(1) && field_0x4be[i] == BUTTON_NUNC_e) ||
                     (dComIfGp_isBottleSetFlag(1) && field_0x4be[i] == BUTTON_BIN_e))
                 {
-                    field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mHighlightFastAnimSpeed;
+                    field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariFastAnimSpeed;
                 } else {
-                    field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mHighlightAnimSpeed;
+                    field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariAnimSpeed;
                 }
             }
 
