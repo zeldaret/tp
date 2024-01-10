@@ -3,10 +3,10 @@
 #
 
 LIBODENOTSTUB_A_CPP_FILES := \
-	libs/odenotstub/odenotstub.cpp \
+	libs/dolphin/odenotstub/odenotstub.cpp \
 
 LIBODENOTSTUB_A_O_FILES := \
-	$(BUILD_DIR)/libs/odenotstub/odenotstub.o \
+	$(BUILD_DIR)/libs/dolphin/odenotstub/odenotstub.o \
 
 LIBODENOTSTUB_A_CFLAGS := \
 
@@ -21,7 +21,7 @@ $(BUILD_DIR)/libodenotstub.a: $(LIBODENOTSTUB_A_O_FILES)
 	@echo $(LIBODENOTSTUB_A_O_FILES) > build/LIBODENOTSTUB_A_ofiles
 	@$(LD) -xm l $(LIBODENOTSTUB_A_LDFLAGS) -o $(BUILD_DIR)/libodenotstub.a @build/LIBODENOTSTUB_A_ofiles
 
-$(BUILD_DIR)/libs/odenotstub/%.o: libs/odenotstub/%.cpp $(BUILD_DIR)/libs/odenotstub/%.d
+$(BUILD_DIR)/libs/dolphin/odenotstub/%.o: libs/dolphin/odenotstub/%.cpp $(BUILD_DIR)/libs/dolphin/odenotstub/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp

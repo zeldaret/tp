@@ -6,7 +6,6 @@
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "dolphin/types.h"
 
 /* 803071E4-8030751C 301B24 0338+00 0/0 1/1 0/0 .text
  * __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */

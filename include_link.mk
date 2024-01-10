@@ -44,9 +44,9 @@
 -include libs/PowerPC_EABI_Support/Runtime/Src/Makefile
 -include libs/PowerPC_EABI_Support/MSL/MSL_C/Makefile
 -include libs/TRK_MINNOW_DOLPHIN/Makefile
--include libs/amcstubs/Makefile
--include libs/odemuexi2/Makefile
--include libs/odenotstub/Makefile
+-include libs/dolphin/amcstubs/Makefile
+-include libs/dolphin/odemuexi2/Makefile
+-include libs/dolphin/odenotstub/Makefile
 
 # rels
 -include rel/f_pc/f_pc_profile_lst/Makefile

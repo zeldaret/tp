@@ -3,10 +3,10 @@
 #
 
 LIBAMCSTUBS_A_CPP_FILES := \
-	libs/amcstubs/AmcExi2Stubs.c \
+	libs/dolphin/amcstubs/AmcExi2Stubs.c \
 
 LIBAMCSTUBS_A_O_FILES := \
-	$(BUILD_DIR)/libs/amcstubs/AmcExi2Stubs.o \
+	$(BUILD_DIR)/libs/dolphin/amcstubs/AmcExi2Stubs.o \
 
 LIBAMCSTUBS_A_CFLAGS := \
 	-O4,p \
@@ -23,7 +23,7 @@ $(BUILD_DIR)/libamcstubs.a: $(LIBAMCSTUBS_A_O_FILES)
 	@echo $(LIBAMCSTUBS_A_O_FILES) > build/LIBAMCSTUBS_A_ofiles
 	@$(LD) -xm l $(LIBAMCSTUBS_A_LDFLAGS) -o $(BUILD_DIR)/libamcstubs.a @build/LIBAMCSTUBS_A_ofiles
 
-$(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.c $(BUILD_DIR)/libs/amcstubs/%.d
+$(BUILD_DIR)/libs/dolphin/amcstubs/%.o: libs/dolphin/amcstubs/%.c $(BUILD_DIR)/libs/dolphin/amcstubs/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c

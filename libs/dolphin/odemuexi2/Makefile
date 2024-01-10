@@ -3,10 +3,10 @@
 #
 
 LIBODEMUEXI2_A_CPP_FILES := \
-	libs/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.cpp \
+	libs/dolphin/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.cpp \
 
 LIBODEMUEXI2_A_O_FILES := \
-	$(BUILD_DIR)/libs/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.o \
+	$(BUILD_DIR)/libs/dolphin/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.o \
 
 LIBODEMUEXI2_A_CFLAGS := \
 
@@ -21,7 +21,7 @@ $(BUILD_DIR)/libodemuexi2.a: $(LIBODEMUEXI2_A_O_FILES)
 	@echo $(LIBODEMUEXI2_A_O_FILES) > build/LIBODEMUEXI2_A_ofiles
 	@$(LD) -xm l $(LIBODEMUEXI2_A_LDFLAGS) -o $(BUILD_DIR)/libodemuexi2.a @build/LIBODEMUEXI2_A_ofiles
 
-$(BUILD_DIR)/libs/odemuexi2/%.o: libs/odemuexi2/%.cpp $(BUILD_DIR)/libs/odemuexi2/%.d
+$(BUILD_DIR)/libs/dolphin/odemuexi2/%.o: libs/dolphin/odemuexi2/%.cpp $(BUILD_DIR)/libs/dolphin/odemuexi2/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp

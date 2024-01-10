@@ -9,13 +9,11 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
-#include "dolphin/os/OS.h"
-#include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80374640-80375DE8 -00001 17A8+00 1/1 0/0 0/0 .rodata          DynamicNameTable */
-static DynamicNameTableEntry const DynamicNameTable[757] = {
+static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_ALLDIE, "d_a_alldie"},
     {PROC_Obj_Swpush, "d_a_obj_swpush"},
     {PROC_Obj_Swpush2, "d_a_obj_swpush2"},
@@ -776,7 +774,7 @@ static DynamicNameTableEntry const DynamicNameTable[757] = {
 };
 
 /* 803F0F50-803F1BB0 01DC70 0C60+00 4/4 0/0 0/0 .bss             DMC */
-static DynamicModuleControlBase* DMC[0x318];
+static DynamicModuleControlBase* DMC[792];
 
 /* 80450CA8-80450CAC 0001A8 0004+00 1/1 0/0 0/0 .sbss            None */
 static bool DMC_initialized;
@@ -955,11 +953,3 @@ int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
 
     return ret;
 }
-
-/* 800188DC-800188E4 01321C 0008+00 0/0 1/0 0/0 .text getModuleName__24DynamicModuleControlBaseCFv
- */
-
-/* 800188E4-80018944 013224 0060+00 0/0 1/0 0/0 .text            __dt__20DynamicModuleControlFv */
-
-/* 80375DE8-80375DE8 002448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
