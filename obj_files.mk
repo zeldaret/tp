@@ -1058,4 +1058,6 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/bg/d_bg_s_grp_pass_chk.o \
 	$(BUILD_DIR)/src/d/file/d_file_sel_info.o \
 	$(BUILD_DIR)/src/d/file/d_file_sel_warning.o \
+	$(BUILD_DIR)/src/d/d_gameover.o \
+	$(BUILD_DIR)/src/d/menu/d_menu_save.o \
 	
