@@ -7,6 +7,7 @@
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SeMgr.h"
+#include "Z2AudioLib/Z2Param.h"
 #include "dol2asm.h"
 #include "global.h"
 
@@ -141,7 +142,6 @@ extern "C" void _restgpr_16();
 extern "C" void _restgpr_29();
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450B48[4];

@@ -30,6 +30,7 @@ public:
 
     bool isSceneExist() const { return sceneExist; }
     int getCurrentSceneNum() const { return sceneNum; }
+    bool isInGame() const { return inGame; }
 
 private:
     /* 0x00 */ long BGM_ID;

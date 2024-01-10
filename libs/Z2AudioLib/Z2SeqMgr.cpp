@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2Param.h"
 #include "dol2asm.h"
 
 //
@@ -30,13 +31,6 @@ struct Z2SoundObjMgr {
 
 struct Z2SceneMgr {
     /* 802B68E0 */ void setSceneExist(bool);
-};
-
-struct Z2Param {
-    static f32 VOL_BGM_DEFAULT;
-    static f32 VOL_BGM_TALKING;
-    static f32 VOL_BGM_PAUSING;
-    static f32 ENEMY_LASTHIT_MUTE_VOLUME;
 };
 
 struct Z2CreatureLink {
@@ -151,7 +145,6 @@ extern "C" void _restgpr_29();
 extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;
 extern "C" f32 VOL_BGM_TALKING__7Z2Param;
 extern "C" f32 VOL_BGM_PAUSING__7Z2Param;
-extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 struct_80450864[4];
 extern "C" extern u8 struct_80450868[4];
 extern "C" extern u32 data_8045086C;
