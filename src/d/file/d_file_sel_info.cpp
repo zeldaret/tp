@@ -154,7 +154,7 @@ void dFile_info_c::setHeartCnt(dSv_save_c* i_savedata) {
 
 /* 803BB570-803BB588 018690 0018+00 0/1 0/0 0/0 .data            fileWarningProc */
 typedef void (dFile_info_c::*procFunc)();
-procFunc fileWarningProc[] = {&dFile_info_c::modeWait, &dFile_info_c::modeMove};
+static procFunc fileWarningProc[] = {&dFile_info_c::modeWait, &dFile_info_c::modeMove};
 
 /* 80192C08-80192C70 18D548 0068+00 1/1 0/0 0/0 .text setSaveDate__12dFile_info_cFP10dSv_save_c */
 void dFile_info_c::setSaveDate(dSv_save_c* i_savedata) {
