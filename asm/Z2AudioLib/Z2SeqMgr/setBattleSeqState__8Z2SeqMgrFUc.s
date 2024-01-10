@@ -19,8 +19,8 @@ lbl_802B4844:
 /* 802B4888  41 82 02 5C */	beq lbl_802B4AE4
 /* 802B488C  28 00 00 00 */	cmplwi r0, 0
 /* 802B4890  40 82 00 14 */	bne lbl_802B48A4
-/* 802B4894  88 8D 82 E2 */	lbz r4, struct_80450860+0x2(r13)
-/* 802B4898  88 AD 82 E1 */	lbz r5, struct_80450860+0x1(r13)
+/* 802B4894  88 8D 82 E2 */	lbz r4, struct_80450862+0x0(r13)
+/* 802B4898  88 AD 82 E1 */	lbz r5, struct_80450861+0x0(r13)
 /* 802B489C  48 00 09 69 */	bl stopBattleBgm__8Z2SeqMgrFUcUc
 /* 802B48A0  48 00 02 44 */	b lbl_802B4AE4
 lbl_802B48A4:

@@ -80,6 +80,7 @@ public:
     bool isRiding() const { return mRiding; }
     void i_setLinkState(u8 i_state) { mLinkState = i_state; }
     Z2SoundObjSimple& getKantera() { return mKantera; }
+    u8 getLinkHp() const { return mLinkHp; }
 
     static Z2CreatureLink* mLinkPtr;
 

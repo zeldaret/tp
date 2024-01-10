@@ -42,4 +42,9 @@ struct Z2Param {
     static f32 ENEMY_LASTHIT_MUTE_VOLUME;
 };
 
+extern u8 struct_80450860;
+extern u8 struct_80450861;
+extern u8 struct_80450862;
+extern u8 struct_80450863;
+
 #endif /* Z2PARAM_H */

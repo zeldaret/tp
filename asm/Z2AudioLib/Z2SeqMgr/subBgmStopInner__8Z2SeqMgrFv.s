@@ -11,7 +11,7 @@ lbl_802AF9D0:
 /* 802AF9F4  80 7E 00 04 */	lwz r3, 4(r30)
 /* 802AF9F8  28 03 00 00 */	cmplwi r3, 0
 /* 802AF9FC  41 82 01 80 */	beq lbl_802AFB7C
-/* 802AFA00  8B ED 82 E2 */	lbz r31, struct_80450860+0x2(r13)
+/* 802AFA00  8B ED 82 E2 */	lbz r31, struct_80450862+0x0(r13)
 /* 802AFA04  41 82 00 10 */	beq lbl_802AFA14
 /* 802AFA08  80 83 00 18 */	lwz r4, 0x18(r3)
 /* 802AFA0C  90 81 00 08 */	stw r4, 8(r1)
@@ -90,7 +90,7 @@ lbl_802AFAFC:
 /* 802AFB04  4B FF 29 D9 */	bl stop__8JAISoundFUl
 /* 802AFB08  38 7E 00 04 */	addi r3, r30, 4
 /* 802AFB0C  4B FF 26 79 */	bl releaseSound__14JAISoundHandleFv
-/* 802AFB10  88 0D 82 E2 */	lbz r0, struct_80450860+0x2(r13)
+/* 802AFB10  88 0D 82 E2 */	lbz r0, struct_80450862+0x0(r13)
 /* 802AFB14  28 00 00 00 */	cmplwi r0, 0
 /* 802AFB18  41 82 00 40 */	beq lbl_802AFB58
 /* 802AFB1C  C0 1E 00 14 */	lfs f0, 0x14(r30)

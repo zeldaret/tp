@@ -123,17 +123,10 @@ f32 Z2Param::VOL_SE_OBJECT_PAUSING = 72.0f / 127.0f;
 f32 Z2Param::VOL_SE_ATMOSPHERE_PAUSING = 72.0f / 127.0f;
 
 /* 80450860-80450864 -00001 0004+00 0/0 15/15 0/0 .sdata           None */
-extern u8 struct_80450860[4];
-u8 struct_80450860[4] = {
-    /* 80450860 0001+00 data_80450860 None */
-    0x21,
-    /* 80450861 0001+00 data_80450861 None */
-    0x3C,
-    /* 80450862 0001+00 data_80450862 None */
-    0x3C,
-    /* 80450863 0001+00 data_80450863 None */
-    0x1E,
-};
+u8 struct_80450860 = 0x21;
+u8 struct_80450861 = 0x3C;
+u8 struct_80450862 = 0x3C;
+u8 struct_80450863 = 0x1E;
 
 /* 80450864-80450868 -00001 0004+00 0/0 2/2 0/0 .sdata           None */
 extern u8 struct_80450864[4];

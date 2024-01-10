@@ -255,8 +255,8 @@ lbl_802B4804:
 /* 802B4814  40 82 00 14 */	bne lbl_802B4828
 lbl_802B4818:
 /* 802B4818  7F C3 F3 78 */	mr r3, r30
-/* 802B481C  88 8D 82 E2 */	lbz r4, struct_80450860+0x2(r13)
-/* 802B4820  88 AD 82 E1 */	lbz r5, struct_80450860+0x1(r13)
+/* 802B481C  88 8D 82 E2 */	lbz r4, struct_80450862+0x0(r13)
+/* 802B4820  88 AD 82 E1 */	lbz r5, struct_80450861+0x0(r13)
 /* 802B4824  48 00 09 E1 */	bl stopBattleBgm__8Z2SeqMgrFUcUc
 lbl_802B4828:
 /* 802B4828  9B FE 00 BE */	stb r31, 0xbe(r30)

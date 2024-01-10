@@ -75,7 +75,7 @@ lbl_802B4F5C:
 /* 802B4FC0  3B 40 00 00 */	li r26, 0
 lbl_802B4FC4:
 /* 802B4FC4  7F 40 07 34 */	extsh r0, r26
-/* 802B4FC8  88 8D 82 E1 */	lbz r4, struct_80450860+0x1(r13)
+/* 802B4FC8  88 8D 82 E1 */	lbz r4, struct_80450861+0x0(r13)
 /* 802B4FCC  7C 00 20 00 */	cmpw r0, r4
 /* 802B4FD0  40 81 00 08 */	ble lbl_802B4FD8
 /* 802B4FD4  7C 9A 23 78 */	mr r26, r4
@@ -95,7 +95,7 @@ lbl_802B4FFC:
 /* 802B5004  54 1F 06 3E */	clrlwi r31, r0, 0x18
 /* 802B5008  7C 60 0E 70 */	srawi r0, r3, 1
 /* 802B500C  7C 60 01 94 */	addze r3, r0
-/* 802B5010  88 0D 82 E2 */	lbz r0, struct_80450860+0x2(r13)
+/* 802B5010  88 0D 82 E2 */	lbz r0, struct_80450862+0x0(r13)
 /* 802B5014  7C 03 00 50 */	subf r0, r3, r0
 /* 802B5018  54 1E 06 3E */	clrlwi r30, r0, 0x18
 /* 802B501C  88 1C 00 D0 */	lbz r0, 0xd0(r28)

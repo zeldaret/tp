@@ -13,8 +13,12 @@ struct TTransition {
 
 struct Z2SoundFader {
     void move(f32 vol, u32 count) {
-        mIntensity = vol;
-        mTransition.zero();
+        if (count != 0) {
+            mTransition.set(vol, mIntensity, count);
+        } else {
+            mIntensity = vol;
+            mTransition.zero();
+        }
     }
 
     /* 0x0 */ float mIntensity;
@@ -84,6 +88,10 @@ public:
     void i_setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); }
 
     void i_bgmAllUnMute(u32 count) { mAllBgmMaster.move(1.0f, count); }
+
+    void i_muteSceneBgm(u32 count, f32 vol) {
+        field_0x44.move(vol, count);
+    }
 
     void i_unMuteSceneBgm(u32 count) {
         mBgmPause.move(1.0f, 0);
