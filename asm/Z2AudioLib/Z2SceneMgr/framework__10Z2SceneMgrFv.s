@@ -47,7 +47,7 @@ lbl_802B9CE4:
 /* 802B9CF8  28 00 00 03 */	cmplwi r0, 3
 /* 802B9CFC  41 82 00 30 */	beq lbl_802B9D2C
 /* 802B9D00  80 7F 00 08 */	lwz r3, 8(r31)
-/* 802B9D04  88 0D 82 E3 */	lbz r0, struct_80450860+0x3(r13)
+/* 802B9D04  88 0D 82 E3 */	lbz r0, struct_80450863+0x0(r13)
 /* 802B9D08  7C 03 00 00 */	cmpw r3, r0
 /* 802B9D0C  40 82 00 20 */	bne lbl_802B9D2C
 /* 802B9D10  80 6D 86 04 */	lwz r3, __OSReport_disable-0x14(r13)

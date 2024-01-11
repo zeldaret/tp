@@ -90,7 +90,7 @@ lbl_802AFCD8:
 /* 802AFCD8  80 7F 00 00 */	lwz r3, 0(r31)
 /* 802AFCDC  28 03 00 00 */	cmplwi r3, 0
 /* 802AFCE0  41 82 00 F4 */	beq lbl_802AFDD4
-/* 802AFCE4  88 8D 82 E2 */	lbz r4, struct_80450860+0x2(r13)
+/* 802AFCE4  88 8D 82 E2 */	lbz r4, struct_80450862+0x0(r13)
 /* 802AFCE8  4B FF 27 F5 */	bl stop__8JAISoundFUl
 /* 802AFCEC  48 00 00 E8 */	b lbl_802AFDD4
 lbl_802AFCF0:
@@ -131,7 +131,7 @@ lbl_802AFD60:
 /* 802AFD6C  38 84 02 6A */	addi r4, r4, 0x26a
 /* 802AFD70  48 00 64 79 */	bl setDemoName__11Z2StatusMgrFPc
 lbl_802AFD74:
-/* 802AFD74  88 0D 82 E2 */	lbz r0, struct_80450860+0x2(r13)
+/* 802AFD74  88 0D 82 E2 */	lbz r0, struct_80450862+0x0(r13)
 /* 802AFD78  28 00 00 00 */	cmplwi r0, 0
 /* 802AFD7C  41 82 00 40 */	beq lbl_802AFDBC
 /* 802AFD80  C0 1F 00 64 */	lfs f0, 0x64(r31)

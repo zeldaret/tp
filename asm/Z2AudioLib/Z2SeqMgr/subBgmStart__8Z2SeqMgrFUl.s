@@ -46,7 +46,7 @@ lbl_802AF51C:
 /* 802AF540  38 84 02 6A */	addi r4, r4, 0x26a
 /* 802AF544  48 00 6C A5 */	bl setDemoName__11Z2StatusMgrFPc
 /* 802AF548  3B 80 00 00 */	li r28, 0
-/* 802AF54C  8B ED 82 E2 */	lbz r31, struct_80450860+0x2(r13)
+/* 802AF54C  8B ED 82 E2 */	lbz r31, struct_80450862+0x0(r13)
 /* 802AF550  48 00 00 E0 */	b lbl_802AF630
 /* 802AF554  3B 80 00 00 */	li r28, 0
 /* 802AF558  3B E0 00 78 */	li r31, 0x78
@@ -102,11 +102,11 @@ lbl_802AF5E8:
 /* 802AF614  3B E0 00 14 */	li r31, 0x14
 /* 802AF618  48 00 00 18 */	b lbl_802AF630
 /* 802AF61C  3B 80 00 00 */	li r28, 0
-/* 802AF620  8B ED 82 E2 */	lbz r31, struct_80450860+0x2(r13)
+/* 802AF620  8B ED 82 E2 */	lbz r31, struct_80450862+0x0(r13)
 /* 802AF624  48 00 00 0C */	b lbl_802AF630
 lbl_802AF628:
-/* 802AF628  8B 8D 82 E1 */	lbz r28, struct_80450860+0x1(r13)
-/* 802AF62C  8B ED 82 E2 */	lbz r31, struct_80450860+0x2(r13)
+/* 802AF628  8B 8D 82 E1 */	lbz r28, struct_80450861+0x0(r13)
+/* 802AF62C  8B ED 82 E2 */	lbz r31, struct_80450862+0x0(r13)
 lbl_802AF630:
 /* 802AF630  80 7D 00 04 */	lwz r3, 4(r29)
 /* 802AF634  28 03 00 00 */	cmplwi r3, 0

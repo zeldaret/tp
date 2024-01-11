@@ -31,7 +31,7 @@ lbl_802B2AE0:
 /* 802B2AEC  7F E3 FB 78 */	mr r3, r31
 /* 802B2AF0  4B FF CD 95 */	bl subBgmStop__8Z2SeqMgrFv
 lbl_802B2AF4:
-/* 802B2AF4  88 6D 82 E2 */	lbz r3, struct_80450860+0x2(r13)
+/* 802B2AF4  88 6D 82 E2 */	lbz r3, struct_80450862+0x0(r13)
 /* 802B2AF8  C0 62 BF 98 */	lfs f3, lit_3372(r2)
 /* 802B2AFC  D0 7F 00 34 */	stfs f3, 0x34(r31)
 /* 802B2B00  C0 02 BF 9C */	lfs f0, lit_3373(r2)
