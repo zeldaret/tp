@@ -71,6 +71,6 @@ void CircleBufferInitialize(CircleBuffer* cb, u8* buf, s32 size) {
 }
 
 /* 80372900-80372908 36D240 0008+00 0/0 2/2 0/0 .text            CBGetBytesAvailableForRead */
-s32 CBGetBytesAvailableForRead(CircleBuffer* cb) {
+u32 CBGetBytesAvailableForRead(CircleBuffer* cb) {
     return cb->mBytesToRead;
 }

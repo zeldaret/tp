@@ -16,6 +16,6 @@ typedef struct CircleBuffer {
 s32 CircleBufferReadBytes(CircleBuffer*, u8*, u32);
 s32 CircleBufferWriteBytes(CircleBuffer*, u8*, u32);
 void CircleBufferInitialize(CircleBuffer*, u8*, s32);
-s32 CBGetBytesAvailableForRead(CircleBuffer*);
+u32 CBGetBytesAvailableForRead(CircleBuffer*);
 
 #endif /* UTILS_COMMON_CIRCLEBUFFER_H */

@@ -67,7 +67,7 @@ LIBTRK_MINNOW_DOLPHIN_A_O_FILES := \
 LIBTRK_MINNOW_DOLPHIN_A_CFLAGS := \
 	-O4,p \
 	-lang=c \
-	-rostr
+	-rostr \
 
 LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS := \
 	-nodefaults \

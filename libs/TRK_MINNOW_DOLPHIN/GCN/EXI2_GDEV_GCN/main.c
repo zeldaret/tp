@@ -3,168 +3,149 @@
 // Translation Unit: GCN/EXI2_GDEV_GCN/main
 //
 
-#include "TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
+#include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "dol2asm.h"
+#include "dolphin/db/db.h"
 
-//
-// Forward References:
-//
-
-u8 gdev_cc_initinterrupts();
-void gdev_cc_peek();
-u8 gdev_cc_post_stop();
-u8 gdev_cc_pre_continue();
-void gdev_cc_write();
-void gdev_cc_read();
-u8 gdev_cc_close();
-s32 gdev_cc_open();
-u8 gdev_cc_shutdown();
-void gdev_cc_initialize();
-
-//
-// External References:
-//
-
-void MWTRACE();
-void DBClose();
-void DBOpen();
-void DBWrite();
-int DBRead();
-int DBQueryData();
-void DBInitInterrupts();
-void DBInitComm();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80450050-80450550 07CD70 0500+00 1/1 0/0 0/0 .bss             gRecvBuf */
-static u8 gRecvBuf[1280];
+#define GDEV_BUF_SIZE (0x500)
 
 /* 80450550-8045056C 07D270 001C+00 3/3 0/0 0/0 .bss             gRecvCB */
 static CircleBuffer gRecvCB;
 
-// copied from pikmin2. should try to find a real fix
-static makeMainBSSOrderingWork() {
-    u8 buff[0x500];
-    memcpy(buff, gRecvBuf, 0x500);
-}
-
-/* 80372908-8037292C 36D248 0024+00 0/0 1/1 0/0 .text            gdev_cc_initinterrupts */
-u8 gdev_cc_initinterrupts() {
-    DBInitInterrupts();
-    return 0;
-}
-
-/* 8037292C-8037299C 36D26C 0070+00 0/0 1/1 0/0 .text            gdev_cc_peek */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void gdev_cc_peek() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main/gdev_cc_peek.s"
-}
-#pragma pop
-
-/* 8037299C-803729C0 36D2DC 0024+00 0/0 1/1 0/0 .text            gdev_cc_post_stop */
-u8 gdev_cc_post_stop() {
-    DBOpen();
-    return 0;
-}
-
-/* 803729C0-803729E4 36D300 0024+00 0/0 1/1 0/0 .text            gdev_cc_pre_continue */
-u8 gdev_cc_pre_continue() {
-    DBClose();
-    return 0;
-}
-
-/* ############################################################################################## */
-/* 803A2DF0-803A2E04 02F450 0014+00 1/1 0/0 0/0 .rodata          @318 */
-SECTION_RODATA static char const lit_318[] = "cc not initialized\n";
-COMPILER_STRIP_GATE(0x803A2DF0, &lit_318);
-
-/* 803A2E04-803A2E30 02F464 0029+03 0/1 0/0 0/0 .rodata          @319 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static char const lit_319[] = "cc_write : Output data 0x%08x %ld bytes\n";
-COMPILER_STRIP_GATE(0x803A2E04, &lit_319);
-#pragma pop
-
-/* 803A2E30-803A2E4C 02F490 001C+00 0/1 0/0 0/0 .rodata          @320 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_320[] = "cc_write sending %ld bytes\n";
-COMPILER_STRIP_GATE(0x803A2E30, &lit_320);
-#pragma pop
+/* 80450050-80450550 07CD70 0500+00 1/1 0/0 0/0 .bss             gRecvBuf */
+static u8 gRecvBuf[GDEV_BUF_SIZE];
 
 /* 804519C8-804519D0 000EC8 0004+04 3/3 0/0 0/0 .sbss            gIsInitialized */
 static BOOL gIsInitialized;
 
-/* 803729E4-80372AA4 36D324 00C0+00 0/0 1/1 0/0 .text            gdev_cc_write */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void gdev_cc_write() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main/gdev_cc_write.s"
+/* 80372BCC-80372C54 36D50C 0088+00 0/0 1/1 0/0 .text            gdev_cc_initialize */
+BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback) {
+    MWTRACE(1, "CALLING EXI2_Init\n");
+    DBInitComm(inputPendingPtrRef, monitorCallback);
+    MWTRACE(1, "DONE CALLING EXI2_Init\n");
+    CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
+    return FALSE;
 }
-#pragma pop
 
-/* ############################################################################################## */
-/* 803A2E4C-803A2E74 02F4AC 0025+03 1/1 0/0 0/0 .rodata          @341 */
-SECTION_RODATA static char const lit_341[] = "Expected packet size : 0x%08x (%ld)\n";
-COMPILER_STRIP_GATE(0x803A2E4C, &lit_341);
-
-/* 803A2E74-803A2EA4 02F4D4 002D+03 1/1 0/0 0/0 .rodata          @342 */
-SECTION_RODATA static char const lit_342[] = "cc_read : error reading bytes from EXI2 %ld\n";
-COMPILER_STRIP_GATE(0x803A2E74, &lit_342);
-
-/* 80372AA4-80372B98 36D3E4 00F4+00 0/0 1/1 0/0 .text            gdev_cc_read */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void gdev_cc_read() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main/gdev_cc_read.s"
-}
-#pragma pop
-
-/* 80372B98-80372BA0 36D4D8 0008+00 0/0 1/1 0/0 .text            gdev_cc_close */
-u8 gdev_cc_close() {
-    return 0;
+/* 80372BC4-80372BCC 36D504 0008+00 0/0 1/1 0/0 .text            gdev_cc_shutdown */
+BOOL gdev_cc_shutdown() {
+    return FALSE;
 }
 
 /* 80372BA0-80372BC4 36D4E0 0024+00 0/0 1/1 0/0 .text            gdev_cc_open */
-s32 gdev_cc_open() {
+int gdev_cc_open() {
     if (gIsInitialized != FALSE) {
         return -10005;
     }
+
     gIsInitialized = TRUE;
     return 0;
 }
 
-/* 80372BC4-80372BCC 36D504 0008+00 0/0 1/1 0/0 .text            gdev_cc_shutdown */
-u8 gdev_cc_shutdown() {
+/* 80372B98-80372BA0 36D4D8 0008+00 0/0 1/1 0/0 .text            gdev_cc_close */
+BOOL gdev_cc_close() {
+    return FALSE;
+}
+
+/* 80372AA4-80372B98 36D3E4 00F4+00 0/0 1/1 0/0 .text            gdev_cc_read */
+u32 gdev_cc_read(u8* data, u32 size) {
+    u8 buff[GDEV_BUF_SIZE];
+    int p1;
+    u32 retval;
+    int p2;
+    int poll;
+    retval = 0;
+    if (!gIsInitialized) {
+        return -0x2711;
+    }
+
+    MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", size, size);
+
+    p1 = size;
+    p2 = size;
+    while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
+        retval = 0;
+        poll = DBQueryData();
+        if (poll != 0) {
+            retval = DBRead(buff, p2);
+            if (retval == 0) {
+                CircleBufferWriteBytes(&gRecvCB, buff, poll);
+            }
+        }
+    }
+
+    if (retval == 0) {
+        CircleBufferReadBytes(&gRecvCB, data, p1);
+    } else {
+        MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", retval);
+    }
+
+    return retval;
+}
+
+/* 803729E4-80372AA4 36D324 00C0+00 0/0 1/1 0/0 .text            gdev_cc_write */
+int gdev_cc_write(int bytes, int length) {
+    int exi2Len;
+    int n_copy;
+    u32 hexCopy;
+
+    hexCopy = bytes;
+    n_copy = length;
+
+    if (gIsInitialized == FALSE) {
+        MWTRACE(8, "cc not initialized\n");
+        return -0x2711;
+    }
+
+    MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
+
+    while (n_copy > 0) {
+        MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
+        exi2Len = DBWrite((const void*)hexCopy, n_copy);
+        if (exi2Len == AMC_EXI_NO_ERROR) {
+            break;
+        }
+        hexCopy += exi2Len;
+        n_copy -= exi2Len;
+    }
+
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803A2EA4-803A2EB8 02F504 0013+01 1/1 0/0 0/0 .rodata          @348 */
-SECTION_RODATA static char const lit_348[] = "CALLING EXI2_Init\n";
-COMPILER_STRIP_GATE(0x803A2EA4, &lit_348);
-
-/* 803A2EB8-803A2ED0 02F518 0018+00 1/1 0/0 0/0 .rodata          @349 */
-SECTION_RODATA static char const lit_349[] = "DONE CALLING EXI2_Init\n";
-COMPILER_STRIP_GATE(0x803A2EB8, &lit_349);
-
-/* 80372BCC-80372C54 36D50C 0088+00 0/0 1/1 0/0 .text            gdev_cc_initialize */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void gdev_cc_initialize() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main/gdev_cc_initialize.s"
+/* 803729C0-803729E4 36D300 0024+00 0/0 1/1 0/0 .text            gdev_cc_pre_continue */
+BOOL gdev_cc_pre_continue() {
+    DBClose();
+    return FALSE;
 }
-#pragma pop
+
+/* 8037299C-803729C0 36D2DC 0024+00 0/0 1/1 0/0 .text            gdev_cc_post_stop */
+BOOL gdev_cc_post_stop() {
+    DBOpen();
+    return FALSE;
+}
+
+/* 8037292C-8037299C 36D26C 0070+00 0/0 1/1 0/0 .text            gdev_cc_peek */
+int gdev_cc_peek() {
+    int poll;
+    u8 buff[GDEV_BUF_SIZE];
+
+    poll = DBQueryData();
+    if (poll <= 0) {
+        return 0;
+    }
+
+    if (DBRead(buff, poll) == 0) {
+        CircleBufferWriteBytes(&gRecvCB, buff, poll);
+    } else {
+        return -0x2719;
+    }
+
+    return poll;
+}
+
+/* 80372908-8037292C 36D248 0024+00 0/0 1/1 0/0 .text            gdev_cc_initinterrupts */
+BOOL gdev_cc_initinterrupts() {
+    DBInitInterrupts();
+    return FALSE;
+}
