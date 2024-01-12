@@ -31,7 +31,7 @@ LIBTRK_MINNOW_DOLPHIN_A_CPP_FILES := \
 	libs/TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.c \
 	libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.c \
 	libs/TRK_MINNOW_DOLPHIN/utils/common/MWTrace.c \
-	libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.c \
+	libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.cpp \
 
 LIBTRK_MINNOW_DOLPHIN_A_O_FILES := \
 	$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.o \
@@ -75,7 +75,27 @@ LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
-$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch.o: CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES) -lang=c
+
+BASE_CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -inline deferred -use_lmw_stmw on -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Export/mslsupp.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mutex_TRK.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/UDP_Stubs.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/usr_put.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 
 $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a: $(LIBTRK_MINNOW_DOLPHIN_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libTRK_MINNOW_DOLPHIN.a

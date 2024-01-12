@@ -82,7 +82,7 @@ MAKEREL   		:= tools/makerel.py
 IMAGENAME 		:= gz2e01.iso
 
 # Options
-INCLUDES := -i include -i include/dolphin/ -i src -i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include -i libs/PowerPC_EABI_Support/Runtime/Inc/
+INCLUDES := -i include -i include/dolphin/ -i src -i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include -i libs/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include -i libs/PowerPC_EABI_Support/Runtime/Inc/ -i libs/PowerPC_EABI_Support/MetroTRK/
 
 # Assembler flags
 ASFLAGS := -mgekko -I include

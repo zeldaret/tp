@@ -8,7 +8,7 @@
 /* 803711D0-803711D8 -00001 0008+00 0/0 0/0 0/0 .text            TRKAccessFile */
 #pragma push
 #pragma function_align 16
-asm void TRKAccessFile() {
+asm u32 TRKAccessFile(u32, u32, u32*, u8*) {
     // clang-format off
 	nofralloc
 	twi 31, r0, 0x0
@@ -18,7 +18,7 @@ asm void TRKAccessFile() {
 #pragma pop
 
 /* 803711D8-803711E0 -00001 0008+00 0/0 0/0 0/0 .text            TRKOpenFile */
-asm void TRKOpenFile() {
+asm u32 TRKOpenFile(u32, u32, u32*, u8*) {
     // clang-format off
 	nofralloc
 	twi 31, r0, 0x0
@@ -27,7 +27,7 @@ asm void TRKOpenFile() {
 }
 
 /* 803711E0-803711E8 -00001 0008+00 0/0 0/0 0/0 .text            TRKCloseFile */
-asm void TRKCloseFile() {
+asm u32 TRKCloseFile(u32, u32) {
     // clang-format off
 	nofralloc
 	twi 31, r0, 0x0
@@ -36,7 +36,7 @@ asm void TRKCloseFile() {
 }
 
 /* 803711E8-803711F0 -00001 0008+00 0/0 0/0 0/0 .text            TRKPositionFile */
-asm void TRKPositionFile() {
+asm u32 TRKPositionFile(u32, u32, u32*, u8*) {
     // clang-format off
 	nofralloc
 	twi 31, r0, 0x0
