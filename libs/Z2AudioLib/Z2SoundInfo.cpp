@@ -4,7 +4,11 @@
 //
 
 #include "Z2AudioLib/Z2SoundInfo.h"
+#include "Z2AudioLib/Z2Calc.h"
 #include "JSystem/JAudio2/JAISeq.h"
+#include "JSystem/JAudio2/JAISe.h"
+#include "JSystem/JAudio2/JAISoundChild.h"
+#include "JSystem/JAudio2/JAIStream.h"
 #include "JSystem/JAudio2/JAUAudibleParam.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -15,13 +19,13 @@
 // Types:
 //
 
-struct Z2Calc {
-    /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
-    /* 802A98D4 */ void getRandom_0_1();
-};
-
 struct JAUStdSoundTableType {
     static u32 STRM_CH_SHIFT;
+    struct StringOffset {
+        static inline const char* getString(const void* addr, u32 offset) {
+            return (const char*)addr + offset;
+        }
+    };
 };
 
 //
@@ -71,20 +75,21 @@ extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
 extern "C" extern u8 data_80450B58[4];
 extern "C" extern u8 __OSReport_disable;
 
-//
-// Declarations:
-//
-
 /* 802BB00C-802BB090 2B594C 0084+00 2/1 0/0 0/0 .text
  * getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u16 Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID.s"
+u16 Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
+    JUT_ASSERT(20, isValid());
+    JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_0);
+    u8 typeID = JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0);
+
+    if (data != NULL) {
+        switch ((typeID & 0xf0)) {
+        case 0x60:
+            return data->mResourceId;
+        }
+    }
+    return 0xffff;
 }
-#pragma pop
 
 /* 802BB090-802BB0D8 2B59D0 0048+00 1/0 0/0 0/0 .text getSoundType__11Z2SoundInfoCF10JAISoundID */
 u32 Z2SoundInfo::getSoundType(JAISoundID param_0) const {
@@ -105,35 +110,140 @@ int Z2SoundInfo::getCategory(JAISoundID param_0) const {
 }
 
 /* 802BB0E0-802BB158 2B5A20 0078+00 1/0 0/0 0/0 .text getPriority__11Z2SoundInfoCF10JAISoundID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 Z2SoundInfo::getPriority(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getPriority__11Z2SoundInfoCF10JAISoundID.s"
+u32 Z2SoundInfo::getPriority(JAISoundID param_0) const {
+    JUT_ASSERT(63, isValid());
+    JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_0);
+    u8 typeID = JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0);
+
+    if (data != NULL && (typeID & 0x40) != 0) {
+        return data->mPriority;
+    }
+    return 0;
 }
-#pragma pop
 
 /* 802BB158-802BB448 2B5A98 02F0+00 0/0 1/1 0/0 .text getAudibleSwFull__11Z2SoundInfoF10JAISoundID
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getAudibleSwFull__11Z2SoundInfoF10JAISoundID.s"
+JAUAudibleParam Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
+    JAUAudibleParam local_28;
+    JUT_ASSERT(82, isValid());
+    switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0)) {
+    case 81:
+        local_28.field_0x0.bytes.b0_0 = (u32)getSwBit(param_0) >> 8;
+        if ((getSwBit(param_0) & 1) != 0) {
+            local_28.field_0x0.bytes.b0_4 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_4 = 1;
+        }
+        if ((getSwBit(param_0) & 2) != 0) {
+            local_28.field_0x0.bytes.b0_5 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_5 = 1;
+        }
+        if ((getSwBit(param_0) & 4) != 0) {
+            local_28.field_0x0.bytes.b0_6 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_6 = 1;
+        }
+        if ((getSwBit(param_0) & 0x800000) != 0) {
+            local_28.field_0x0.bytes.b0_7 = 1;
+        } else {
+            local_28.field_0x0.bytes.b0_7 = 0;
+        }
+        if ((getSwBit(param_0) & 0x1000) != 0) {
+            local_28.field_0x0.bytes.b1_0 = 0;
+        } else {
+            local_28.field_0x0.bytes.b1_0 = 1;
+        }
+        if ((getSwBit(param_0) & 0x2000) != 0) {
+            local_28.field_0x0.bytes.b1_1 = 0;
+        } else {
+            local_28.field_0x0.bytes.b1_1 = 1;
+        }
+
+        int iVar1;
+        int uVar7 = 0;
+        if ((getSwBit(param_0) & 0x80000) != 0) {
+            uVar7 = 8;
+        }
+
+        iVar1 = (getSwBit(param_0) >> 16) & 0x7;
+        iVar1 += (getSwBit(param_0) >> 16) & 0x70;
+        iVar1 += (getSwBit(param_0) >> 16) & 0xf00;
+        local_28.field_0x0.bytes.b1_2_7 = uVar7;
+        local_28.field_0x0.half.f1 = iVar1;
+        break;
+    default:
+        local_28.field_0x0.bytes.b0_0 = 0;
+        local_28.field_0x0.bytes.b0_4 = 1;
+        local_28.field_0x0.bytes.b0_5 = 1;
+        local_28.field_0x0.bytes.b0_6 = 1;
+        local_28.field_0x0.bytes.b0_7 = 0;
+        local_28.field_0x0.bytes.b1_0 = 1;
+        local_28.field_0x0.bytes.b1_1 = 1;
+        local_28.field_0x0.bytes.b1_2_7 = 0;
+        local_28.field_0x0.half.f1 = 0;
+        break;
+    }
+    return local_28;
 }
-#pragma pop
 
 /* 802BB448-802BB6DC 2B5D88 0294+00 2/1 0/0 0/0 .text getAudibleSw__11Z2SoundInfoCF10JAISoundID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getAudibleSw__11Z2SoundInfoCF10JAISoundID.s"
+u16 Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
+    JAUAudibleParam local_28;
+    JUT_ASSERT(184, isValid());
+    switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0)) {
+    case 81:
+        local_28.field_0x0.bytes.b0_0 = (u32)getSwBit(param_0) >> 8;
+        if ((getSwBit(param_0) & 1) != 0) {
+            local_28.field_0x0.bytes.b0_4 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_4 = 1;
+        }
+        if ((getSwBit(param_0) & 2) != 0) {
+            local_28.field_0x0.bytes.b0_5 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_5 = 1;
+        }
+        if ((getSwBit(param_0) & 4) != 0) {
+            local_28.field_0x0.bytes.b0_6 = 0;
+        } else {
+            local_28.field_0x0.bytes.b0_6 = 1;
+        }
+        if ((getSwBit(param_0) & 0x800000) != 0) {
+            local_28.field_0x0.bytes.b0_7 = 1;
+        } else {
+            local_28.field_0x0.bytes.b0_7 = 0;
+        }
+        if ((getSwBit(param_0) & 0x1000) != 0) {
+            local_28.field_0x0.bytes.b1_0 = 0;
+        } else {
+            local_28.field_0x0.bytes.b1_0 = 1;
+        }
+        if ((getSwBit(param_0) & 0x2000) != 0) {
+            local_28.field_0x0.bytes.b1_1 = 0;
+        } else {
+            local_28.field_0x0.bytes.b1_1 = 1;
+        }
+
+        int iVar1;
+        int uVar7 = 0;
+        if ((getSwBit(param_0) & 0x80000) != 0) {
+            uVar7 = 8;
+        }
+
+        iVar1 = (getSwBit(param_0) >> 16) & 0x7;
+        iVar1 += (getSwBit(param_0) >> 16) & 0x70;
+        iVar1 += (getSwBit(param_0) >> 16) & 0xf00;
+        local_28.field_0x0.bytes.b1_2_7 = uVar7;
+        local_28.field_0x0.half.f1 = iVar1;
+        break;
+    default:
+        local_28.field_0x0.half.f0 = 0xffff;
+        local_28.field_0x0.half.f1 = 0xffff;
+        break;
+    }
+    return local_28.field_0x0.half.f0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455A68-80455A6C 004068 0004+00 1/1 0/0 0/0 .sdata2          @963 */
@@ -171,6 +281,39 @@ SECTION_SDATA2 static f64 lit_973 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802BB6DC-802BB8B4 2B601C 01D8+00 1/0 0/0 0/0 .text
  * getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe                */
+// Matches with literals
+#ifdef NONMATCHING
+void Z2SoundInfo::getSeInfo(JAISoundID param_1, JAISe* param_2) const {
+    getSoundInfo_(param_1, param_2);
+    JUT_ASSERT(292, isValid());
+    JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+    u8 typeID = JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1);
+    if (data == NULL) {
+        return;
+    }
+    switch(typeID) {
+    case 81:
+        param_2->getProperty().field_0x8 *= data->field_0x8;
+        u32 uStack_6c = (getSwBit(param_1) & 0xf0) >> 4;
+        if (uStack_6c > 8) {
+            f32 dVar18 = Z2Calc::getRandom_0_1();
+            f32 dVar19 = Z2Calc::linearTransform(uStack_6c, 8.0f, 15.0f, 16.0f, 24.0f, true);
+            dVar19 = dVar19 / 48.0f * dVar18;
+            param_2->getProperty().field_0x8 += dVar19;
+        } else {
+            f32 dVar18 = Z2Calc::getRandom_0_1();
+            dVar18 = (uStack_6c / 48.0f) * dVar18;
+            param_2->getProperty().field_0x8 += dVar18;
+        }
+        u32 uVar1 = (u32)getSwBit(param_1) >> 0x1c;
+        if (uVar1 != 0) {
+            f32 dVar18 = (uVar1 / 15.0f) * Z2Calc::getRandom_0_1();
+            param_2->getProperty().field_0x0 -= dVar18 < 0.0f ? 0.0f : (dVar18 > 1.0f ? 1.0f : dVar18);
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,6 +322,7 @@ asm void Z2SoundInfo::getSeInfo(JAISoundID param_0, JAISe* param_1) const {
 #include "asm/Z2AudioLib/Z2SoundInfo/getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe.s"
 }
 #pragma pop
+#endif
 
 /* 802BB8B4-802BB8E0 2B61F4 002C+00 1/0 0/0 0/0 .text
  * getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq              */
@@ -195,6 +339,47 @@ SECTION_SDATA2 static f32 lit_1010 = 0.5f;
 
 /* 802BB8E0-802BBA10 2B6220 0130+00 1/0 0/0 0/0 .text
  * getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream        */
+// regalloc
+#ifdef NONMATCHING
+void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
+    int numChild;
+    JAUSoundTableItem* data;
+    getSoundInfo_(param_1, param_2);
+    JUT_ASSERT(349, isValid());
+    switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1) & 0xf0) {
+    case 0x70:
+        int chShift;
+        u32 uVar1;
+        s32 iVar4;
+        u16 uVar3;
+        data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+        JUT_ASSERT(356, data);
+        uVar1 = data->mResourceId;
+        numChild = param_2->getNumChild();
+        iVar4 = 0;
+        chShift = JAUStdSoundTableType::STRM_CH_SHIFT;
+        for (uVar3 = uVar1; iVar4 < numChild && uVar3 != 0; uVar3 >>= chShift, iVar4++) {
+            u32 uVar2 = uVar3 & 3;
+            if (uVar2 != 0) {
+                JAISoundChild* child = param_2->getChild(iVar4);
+                if (child != NULL) {
+                    switch (uVar2) {
+                    case 1:
+                        child->mMove.mParams.mPan = 0.5f;
+                        break;
+                    case 2:
+                        child->mMove.mParams.mPan = 0.0f;
+                        break;
+                    case 3:
+                        child->mMove.mParams.mPan = 1.0f;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -203,17 +388,24 @@ asm void Z2SoundInfo::getStreamInfo(JAISoundID param_0, JAIStream* param_1) cons
 #include "asm/Z2AudioLib/Z2SoundInfo/getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream.s"
 }
 #pragma pop
+#endif
 
 /* 802BBA10-802BBA88 2B6350 0078+00 1/1 0/0 0/0 .text
  * getStreamFilePath__11Z2SoundInfoF10JAISoundID                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm const char* Z2SoundInfo::getStreamFilePath(JAISoundID param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getStreamFilePath__11Z2SoundInfoF10JAISoundID.s"
+const char* Z2SoundInfo::getStreamFilePath(JAISoundID param_1) {
+    JUT_ASSERT(387, isValid());
+    switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1) & 0xf0) {
+    case 0x70:
+        JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+        JUT_ASSERT(394, data);
+        const void* resource = JASGlobalInstance<JAUSoundTable>::getInstance()->getResource();
+        JUT_ASSERT(398, resource);
+        return JAUStdSoundTableType::StringOffset::getString(resource, data->field_0x4);
+    default:
+        return NULL;
+        break;
+    }
 }
-#pragma pop
 
 /* 802BBA88-802BBAC8 2B63C8 0040+00 2/1 0/0 0/0 .text
  * getStreamFileEntry__11Z2SoundInfoF10JAISoundID               */
@@ -223,14 +415,18 @@ s32 Z2SoundInfo::getStreamFileEntry(JAISoundID param_0) {
 }
 
 /* 802BBAC8-802BBB48 2B6408 0080+00 3/3 4/4 0/0 .text getSwBit__11Z2SoundInfoCF10JAISoundID */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int Z2SoundInfo::getSwBit(JAISoundID param_0) const {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/getSwBit__11Z2SoundInfoCF10JAISoundID.s"
+int Z2SoundInfo::getSwBit(JAISoundID param_1) const {
+    JUT_ASSERT(418, isValid());
+    JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+    u8 typeID = JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1);
+    if (data != NULL) {
+        switch(typeID) {
+        case 81:
+            return data->field_0x4;
+        }
+    }
+    return 0xffffffff;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455A98-80455AA0 004098 0004+04 1/1 0/0 0/0 .sdata2          @1070 */
@@ -242,6 +438,17 @@ SECTION_SDATA2 static f32 lit_1070[1 + 1 /* padding */] = {
 
 /* 802BBB48-802BBBE0 2B6488 0098+00 3/3 0/0 0/0 .text
  * getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound         */
+// Matches with literals
+#ifdef NONMATCHING
+void Z2SoundInfo::getSoundInfo_(JAISoundID param_1, JAISound* param_2) const {
+    JUT_ASSERT(440, isValid());
+    JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+    u8 typeID = JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1);
+    if (data != NULL && (typeID & 0x40) != 0) {
+        param_2->getProperty().field_0x0 = (1.0f / 127.0f) * data->field_0x1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -250,42 +457,10 @@ asm void Z2SoundInfo::getSoundInfo_(JAISoundID param_0, JAISound* param_1) const
 #include "asm/Z2AudioLib/Z2SoundInfo/getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 803CAC48-803CAC98 027D68 0050+00 1/1 2/2 0/0 .data            __vt__11Z2SoundInfo */
-SECTION_DATA extern void* __vt__11Z2SoundInfo[20] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getSoundType__11Z2SoundInfoCF10JAISoundID,
-    (void*)getCategory__11Z2SoundInfoCF10JAISoundID,
-    (void*)getPriority__11Z2SoundInfoCF10JAISoundID,
-    (void*)getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe,
-    (void*)getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq,
-    (void*)getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream,
-    (void*)__dt__11Z2SoundInfoFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_802BBCC4,
-    (void*)func_802BBCBC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_802BBCD4,
-    (void*)func_802BBCCC,
-    (void*)getAudibleSw__11Z2SoundInfoCF10JAISoundID,
-    (void*)getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID,
-    (void*)getStreamFileEntry__11Z2SoundInfoF10JAISoundID,
-};
+#endif
 
 /* 802BBBE0-802BBCBC 2B6520 00DC+00 2/1 0/0 0/0 .text            __dt__11Z2SoundInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__11Z2SoundInfoFv() {
-    // asm Z2SoundInfo::~Z2SoundInfo() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SoundInfo/__dt__11Z2SoundInfoFv.s"
-}
-#pragma pop
+Z2SoundInfo::~Z2SoundInfo() {}
 
 /* 802BBCBC-802BBCC4 2B65FC 0008+00 1/0 0/0 0/0 .text
  * @4@getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID          */

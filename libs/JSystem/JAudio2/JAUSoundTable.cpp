@@ -32,7 +32,7 @@ u8 JAUSoundTable::getTypeID(JAISoundID param_0) const {
 }
 
 /* 802A728C-802A73D4 2A1BCC 0148+00 0/0 7/7 0/0 .text getData__13JAUSoundTableCF10JAISoundID */
-void* JAUSoundTable::getData(JAISoundID param_0) const {
+JAUSoundTableItem* JAUSoundTable::getData(JAISoundID param_0) const {
     if (param_0.isAnonymous()) {
         return NULL;
     }

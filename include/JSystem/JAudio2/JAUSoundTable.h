@@ -4,6 +4,14 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+struct JAUSoundTableItem {
+    u8 mPriority;
+    u8 field_0x1;
+    u16 mResourceId;
+    u32 field_0x4;
+    f32 field_0x8;
+};
+
 template<typename Root, typename Section, typename Group, typename Typename_0>
 struct JAUSoundTable_ {
     JAUSoundTable_() {
@@ -116,15 +124,17 @@ struct JAUSoundTable : public JASGlobalInstance<JAUSoundTable> {
     
     /* 802A7114 */ void init(void const*);
     /* 802A7160 */ u8 getTypeID(JAISoundID) const;
-    /* 802A728C */ void* getData(JAISoundID) const;
+    /* 802A728C */ JAUSoundTableItem* getData(JAISoundID) const;
 
-    void* getItem(JAUSoundTableGroup* group, int index) const {
+    JAUSoundTableItem* getItem(JAUSoundTableGroup* group, int index) const {
         u32 offset = group->getItemOffset(index);
         if (offset == 0) {
             return NULL;
         }
-        return (void*)((u8*)field_0x0.field_0x0 + offset);
+        return (JAUSoundTableItem*)((u8*)field_0x0.field_0x0 + offset);
     }
+
+    const void* getResource() { return field_0x0.field_0x0; }
 
     JAUSoundTable_<JAUSoundTableRoot,JAUSoundTableSection,JAUSoundTableGroup,void> field_0x0;
 };

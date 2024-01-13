@@ -13,10 +13,7 @@ struct JAUAudibleParam {
             u16 f1;
         } half;
         struct {
-            u8 b0_0 : 1;
-            u8 b0_1 : 1;
-            u8 b0_2 : 1;
-            u8 b0_3 : 1;
+            u8 b0_0 : 4;
             u8 b0_4 : 1;
             u8 b0_5 : 1;
             u8 b0_6 : 1;

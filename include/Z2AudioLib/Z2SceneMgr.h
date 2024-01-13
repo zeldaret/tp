@@ -4,6 +4,8 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+s8 dComIfGp_getReverb(int roomNo);
+
 class Z2SceneMgr : public JASGlobalInstance<Z2SceneMgr> {
 public:
     Z2SceneMgr();
@@ -31,6 +33,8 @@ public:
     bool isSceneExist() const { return sceneExist; }
     int getCurrentSceneNum() const { return sceneNum; }
     bool isInGame() const { return inGame; }
+    bool isInDarkness() const { return inDarkness; }
+    s8 getRoomReverb() const { return dComIfGp_getReverb(roomNum); }
 
 private:
     /* 0x00 */ long BGM_ID;

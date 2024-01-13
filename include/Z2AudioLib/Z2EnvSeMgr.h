@@ -73,7 +73,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802C92C8 */ void registWolfSmellSePos(Vec*);
     /* 802C92EC */ void startFogWipeTrigger(Vec*);
     /* 802C93A0 */ void setFogWipeWidth(f32);
-    /* 802C93E4 */ void getFogDensity();
+    /* 802C93E4 */ f32 getFogDensity();
     /* 802C9400 */ void startFogSe();
     /* 802C950C */ void initLv3WaterSe(u8, u8, u8, u8);
     /* 802C9F58 */ void registLv3WaterSePos(u8, Vec*);
@@ -169,5 +169,9 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
 STATIC_ASSERT(sizeof(Z2EnvSeMgr) == 0x30C);
 
 extern Z2EnvSeMgr g_mEnvSeMgr;
+
+inline Z2EnvSeMgr* Z2GetEnvSeMgr() {
+    return JASGlobalInstance<Z2EnvSeMgr>::getInstance();
+}
 
 #endif /* Z2ENVSEMGR_H */

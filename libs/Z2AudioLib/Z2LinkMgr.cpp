@@ -19,7 +19,7 @@ struct Z2SoundObjCoach {
     /* 802C54FC */ void init(Vec*, u8);
     /* 802C551C */ void startWheelSound(f32);
     /* 802C56C0 */ void startFireSound(u16);
-    /* 802C57C0 */ void startSound(JAISoundID, u32, s8);
+    /* 802C57C0 */ int startSound(JAISoundID, u32, s8);
 };
 
 //
@@ -634,7 +634,7 @@ SECTION_SDATA2 static f32 lit_4399 = 9.0f / 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm int Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {
@@ -697,7 +697,7 @@ Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* ride) : Z2SoundStarter(fa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm int Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {
@@ -777,7 +777,7 @@ asm void Z2SoundObjCoach::startFireSound(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SoundObjCoach::startSound(JAISoundID param_0, u32 param_1, s8 param_2) {
+asm int Z2SoundObjCoach::startSound(JAISoundID param_0, u32 param_1, s8 param_2) {
     nofralloc
 #include "asm/Z2AudioLib/Z2LinkMgr/startSound__15Z2SoundObjCoachF10JAISoundIDUlSc.s"
 }

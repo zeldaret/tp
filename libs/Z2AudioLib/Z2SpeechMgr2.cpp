@@ -4,15 +4,25 @@
 //
 
 #include "Z2AudioLib/Z2SpeechMgr2.h"
+#include "Z2AudioLib/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
+#include "JSystem/J3DU/J3DUD.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
 
-struct Z2SeqMgr {
-    /* 802AF49C */ void subBgmStart(u32);
-};
+typedef struct {
+    u8** field_0x0;
+    u8** field_0x4;
+    u8 field_0x8;
+    u8 field_0x9;
+    u8 field_0xa;
+    u8 field_0xb;
+
+} sPrmStruct;
 
 struct Z2MdnPrm {
     static u8 const sReply[100];
@@ -39,7 +49,7 @@ struct Z2MdnPrm {
     static u8 const sDeside[100];
     static u8 const sAfford[104];
     static u8 const sAffordTail[12];
-    static void* const sPrm[51];
+    static sPrmStruct const sPrm[17];
     static u8 sBoringTail[6 + 2 /* padding */];
     static u8 sOrderTail[6 + 2 /* padding */];
     static u8 sResentTail[5 + 3 /* padding */];
@@ -50,14 +60,6 @@ struct Z2MdnPrm {
     static u8 sSeriousTail[7 + 1 /* padding */];
     static u8 sReplybTail[7 + 1 /* padding */];
     static u8 sDesideTail[8];
-};
-
-struct Z2EnvSeMgr {
-    /* 802C93E4 */ void getFogDensity();
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -152,14 +154,17 @@ extern "C" extern u8 __OSReport_disable;
 //
 
 /* 802CBC60-802CBCEC 2C65A0 008C+00 0/0 1/1 0/0 .text            __ct__12Z2SpeechMgr2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SpeechMgr2::Z2SpeechMgr2() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/__ct__12Z2SpeechMgr2Fv.s"
+Z2SpeechMgr2::Z2SpeechMgr2() : JASGlobalInstance<Z2SpeechMgr2>(true), random(0) {
+    field_0x3f8 = 0;
+    field_0x3fa = -1;
+    field_0x3fc = 0;
+    field_0x3fe = 0;
+    field_0x3ff = 0;
+    field_0x401 = 0;
+    for (int i = 0; i < 64; i++) {
+        field_0x402[i] = -1;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CBD08-803CBED0 -00001 01C8+00 1/1 0/0 0/0 .data            @3729 */
@@ -312,17 +317,152 @@ SECTION_DATA extern void* __vt__15Z2SpeechStarter[5] = {
 };
 
 /* 802CBCEC-802CBD88 2C662C 009C+00 1/0 0/0 0/0 .text            __dt__15Z2SpeechStarterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SpeechStarter::~Z2SpeechStarter() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/__dt__15Z2SpeechStarterFv.s"
-}
-#pragma pop
+Z2SpeechStarter::~Z2SpeechStarter() {}
 
 /* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
  */
+// Matches with literals
+#ifdef NONMATCHING
+void Z2SpeechMgr2::setString(u16 const* param_1, s16 param_2, u8 param_3, u16 param_4) {
+    switch (param_3) {
+    case 0x13:
+    case 0x15:
+        field_0x3fe = 1;
+        break;
+    case 0x12:
+    case 0x14:
+        field_0x3fe = 2;
+        break;
+    case 4:
+    case '\a':
+    case '\n':
+    case 0x16:
+    case 0x19:
+    case 0x1d:
+    case '!':
+    case '$':
+    case ')':
+    case ',':
+    case '-':
+    case '2':
+    case '3':
+    case '?':
+    case '@':
+    case 'A':
+    case 'S':
+    case 'T':
+    case 'U':
+    case 'Y':
+    case 'Z':
+    case '[':
+    case '\\':
+    case '`':
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+        field_0x3fe = 12;
+        break;
+    case 0x1e:
+    case 0x1f:
+    case '\"':
+    case '%':
+    case '\'':
+    case '=':
+    case 'e':
+    case 'f':
+    case 'g':
+    case 'h':
+    case 'i':
+    case 'j':
+        field_0x3fe = 13;
+        break;
+    case '7':
+    case '8':
+    case '9':
+    case ':':
+    case ';':
+    case '<':
+    case 'l':
+    case 'm':
+        field_0x3fe = 14;
+        break;
+    case '/':
+        field_0x3fe = 15;
+        break;
+    case 0x0f:
+    case 0x10:
+    case '4':
+    case '5':
+    case '6':
+    case 'p':
+        field_0x3fe = 16;
+        break;
+    case 0x0e:
+    case 'B':
+    case 'D':
+        field_0x3fe = 17;
+        break;
+    case '\f':
+        field_0x3fe = 18;
+        break;
+    case '\t':
+    case '&':
+    case 'o':
+        field_0x3fe = 30;
+        break;
+    case '\b':
+        field_0x3fe = 31;
+        break;
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+        field_0x3fe = 99;
+        return;
+    case 'q':
+    default:
+        field_0x3fe = 11;
+        break;
+    }
+    if ((field_0x3fe == 1) || (field_0x3fe == 2)) {
+        if (param_4 == 0) {
+            field_0x3fc = 0;
+        } else {
+            if (param_4 > 0x11) {
+                if ((field_0x3fe == 21) || (field_0x3fe == 20)) {
+                    field_0x3fc = 0;
+                }
+            } else {
+                field_0x3fc = param_4 - 1;
+            }
+        }
+    } else {
+        field_0x3fc = param_4;
+    }
+    for (int i = 0; i < 500; i++) {
+       field_0x10[i] = 0;
+    }
+
+    if (param_2 > 500) {
+        field_0x3f8 = 500;
+        JUT_WARN(387, "TOO MANY TEXT : now(%d) > max(%d)", param_2, 500);
+    } else {
+        field_0x3f8 = param_2;
+    }
+    for (int i = 0; i < field_0x3f8; i++) {
+        field_0x10[i] = param_1[i];
+    }
+    field_0x3fa = 0;
+    field_0x3ff = 0;
+    field_0x400 = 0;
+    field_0x401 = 0;
+    for (int i = 0; i < 64; i++) {
+        field_0x402[i] = -1;
+    }
+    selectUnit(false);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,6 +471,7 @@ asm void Z2SpeechMgr2::setString(u16 const* param_0, s16 param_1, u8 param_2, u1
 #include "asm/Z2AudioLib/Z2SpeechMgr2/setString__12Z2SpeechMgr2FPCUssUcUs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
@@ -454,6 +595,72 @@ SECTION_SDATA2 static f32 lit_3837 = 1.0f;
 SECTION_SDATA2 static f32 lit_3838 = -1.0f;
 
 /* 802CBF60-802CC190 2C68A0 0230+00 1/0 2/2 0/0 .text            setTextCount__12Z2SpeechMgr2Fs */
+// Matches with literals
+#ifdef NONMATCHING
+void Z2SpeechMgr2::setTextCount(s16 param_0) {
+    if (field_0x3fe != 0x63) {
+        field_0x3ff = 0x0;
+        param_0 = (param_0 == 0) ? 0 : param_0 - 1;
+        bool bVar1 = false;
+        if (field_0x3fa == 0 && param_0 >= field_0x3f8) {
+            bVar1 = true;
+        }
+        field_0x3fa = param_0;
+        if (field_0x3fa >= field_0x3f8) {
+            field_0x3fa = field_0x3f8;
+        }
+        if ((field_0x3fe == 1) || (field_0x3fe == 2)) {
+            if (!field_0x0.isSoundAttached()) {
+                speakOneWord(false);
+            }
+        } else if (bVar1) {
+            if (field_0x3fc == 0) {
+                mSpeech.startSound(0x7a, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f,
+                                   -1.0f, 0);
+            }
+        } else {
+            if (!isNonVerbal() ) {
+                JAISoundID aJStack_18;
+                switch (field_0x3fe) {
+                case 0xb:
+                    // TODO: Fix JAISoundID fake match
+                    aJStack_18.stackCopyHelper(0x7b);
+                    break;
+                case 0xc:
+                    aJStack_18.stackCopyHelper(0x7c);
+                    break;
+                case 0xd:
+                    aJStack_18.stackCopyHelper(0x7d);
+                    break;
+                case 0xe:
+                    aJStack_18.stackCopyHelper(0x7e);
+                    break;
+                case 0xf:
+                    aJStack_18.stackCopyHelper(0x7f);
+                    break;
+                case 0x10:
+                    aJStack_18.stackCopyHelper(0x80);
+                    break;
+                case 0x11:
+                    aJStack_18.stackCopyHelper(0x81);
+                    break;
+                case 0x12:
+                    aJStack_18.stackCopyHelper(0x82);
+                    break;
+                case 0x1e:
+                    aJStack_18.stackCopyHelper(0x83);
+                    break;
+                case 0x1f:
+                    aJStack_18.stackCopyHelper(0x84);
+                    break;
+                }
+                mSpeech.startSound(aJStack_18, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,
+                                   0);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,6 +669,7 @@ asm void Z2SpeechMgr2::setTextCount(s16 param_0) {
 #include "asm/Z2AudioLib/Z2SpeechMgr2/setTextCount__12Z2SpeechMgr2Fs.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80455F3C-80455F40 00453C 0004+00 2/2 0/0 0/0 .sdata2          @3885 */
@@ -471,6 +679,29 @@ SECTION_SDATA2 static f32 lit_3885 = 127.0f;
 SECTION_SDATA2 static f64 lit_3887 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802CC190-802CC2FC 2C6AD0 016C+00 1/1 1/1 0/0 .text            speakOneWord__12Z2SpeechMgr2Fb */
+// Matches with literals
+#ifdef NONMATCHING
+void Z2SpeechMgr2::speakOneWord(bool param_0) {
+    if (Z2GetSceneMgr()->isSceneExist() && (field_0x3fe == 1 || field_0x3fe == 2) &&
+        field_0x400 == 0 && field_0x3ff <= 30)
+    {
+        if (field_0x3fa >= field_0x3f8) {
+            selectTail();
+            field_0x400 = 1;
+        } else if (isNonVerbal()) {
+            return;
+        }
+        u32 sound = field_0x3fc + 0x500a1;
+        f32 fVar1 = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
+        mSpeech.startSound(sound, &field_0x0, NULL, 0,
+                           fVar1, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        mSpeech.setPortData(&field_0x0, 8, field_0x402[field_0x401 - 1] + 1, -1);
+        if (field_0x400 == 0) {
+            selectUnit(param_0);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -479,47 +710,95 @@ asm void Z2SpeechMgr2::speakOneWord(bool param_0) {
 #include "asm/Z2AudioLib/Z2SpeechMgr2/speakOneWord__12Z2SpeechMgr2Fb.s"
 }
 #pragma pop
+#endif
 
 /* 802CC2FC-802CC4C0 2C6C3C 01C4+00 2/2 0/0 0/0 .text            isNonVerbal__12Z2SpeechMgr2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SpeechMgr2::isNonVerbal() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/isNonVerbal__12Z2SpeechMgr2Fv.s"
+bool Z2SpeechMgr2::isNonVerbal() {
+    switch(field_0x10[field_0x3fa]) {
+    case 0:
+    case 0x20:
+    case 0x21:
+    case 0x22:
+    case 0x23:
+    case 0x24:
+    case 0x25:
+    case 0x26:
+    case 0x27:
+    case 0x28:
+    case 0x29:
+    case 0x2a:
+    case 0x2b:
+    case 0x2c:
+    case 0x2d:
+    case 0x2e:
+    case 0x2f:
+    case 0x3a:
+    case 0x3b:
+    case 0x3c:
+    case 0x3d:
+    case 0x3e:
+    case 0x3f:
+    case 0x4b:
+    case 0x4c:
+    case 0x4d:
+    case 0x4e:
+    case 0x4f:
+    case 0x5b:
+    case 0x5c:
+    case 0x5d:
+    case 0x5e:
+    case 0x5f:
+    case 0x813f:
+    case 0x8140:
+    case 0x8141:
+    case 0x8142:
+    case 0x8143:
+    case 0x8144:
+    case 0x8145:
+    case 0x8146:
+    case 0x8147:
+    case 0x8148:
+    case 0x8149:
+    case 0x814a:
+    case 0x814b:
+    case 0x8151:
+    case 0x815e:
+    case 0x8162:
+    case 0x8166:
+    case 0x8168:
+    case 0x8169:
+    case 0x816a:
+    case 0x816d:
+    case 0x816e:
+    case 0x816f:
+    case 0x8170:
+    case 0x8171:
+    case 0x8172:
+    case 0x8175:
+    case 0x8176:
+    case 0x817b:
+    case 0x817c:
+    case 0x8181:
+    case 0x818f:
+    case 0x8190:
+    case 0x8193:
+    case 0x8194:
+    case 0x8195:
+    case 0x8196:
+        return true;
+    }
+
+    if(field_0x10[field_0x3fa] == 10) {
+        switch (field_0x3fe) {
+        case 1:
+        case 2:
+            return false;
+        default:
+            return true;
+        }
+    }
+    return false;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
-extern "C" u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */];
-
-/* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
-extern "C" u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */];
-
-/* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
-extern "C" u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */];
-
-/* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
-extern "C" u8 sCheerfulTail__8Z2MdnPrm[8];
-
-/* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
-extern "C" u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */];
-
-/* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
-extern "C" u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */];
-
-/* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
-extern "C" u8 sTiredTail__8Z2MdnPrm[8];
-
-/* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
-extern "C" u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */];
-
-/* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
-extern "C" u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */];
-
-/* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
-extern "C" u8 sDesideTail__8Z2MdnPrm[8];
 
 /* 8039C260-8039C2C4 0288C0 0064+00 1/0 0/0 0/0 .rodata          sReply__8Z2MdnPrm */
 SECTION_RODATA u8 const Z2MdnPrm::sReply[100] = {
@@ -1549,24 +1828,24 @@ SECTION_RODATA u8 const Z2MdnPrm::sAffordTail[12] = {
 COMPILER_STRIP_GATE(0x8039C980, &Z2MdnPrm::sAffordTail);
 
 /* 8039C98C-8039CA58 -00001 00CC+00 2/2 0/0 0/0 .rodata          sPrm__8Z2MdnPrm */
-SECTION_RODATA void* const Z2MdnPrm::sPrm[51] = {
-    (void*)&Z2MdnPrm::sReply,     (void*)&Z2MdnPrm::sReplyTail,     (void*)0x32060400,
-    (void*)&Z2MdnPrm::sJoke,      (void*)&Z2MdnPrm::sJokeTail,      (void*)0x32030700,
-    (void*)&Z2MdnPrm::sSexy,      (void*)&Z2MdnPrm::sSexyTail,      (void*)0x32030700,
-    (void*)&Z2MdnPrm::sRidicule,  (void*)&Z2MdnPrm::sRidiculeTail,  (void*)0x32030700,
-    (void*)&Z2MdnPrm::sBoring,    (void*)&Z2MdnPrm::sBoringTail,    (void*)0x36010500,
-    (void*)&Z2MdnPrm::sIrritated, (void*)&Z2MdnPrm::sIrritatedTail, (void*)0x2F030700,
-    (void*)&Z2MdnPrm::sOrder,     (void*)&Z2MdnPrm::sOrderTail,     (void*)0x39020400,
-    (void*)&Z2MdnPrm::sResent,    (void*)&Z2MdnPrm::sResentTail,    (void*)0x35020300,
-    (void*)&Z2MdnPrm::sCheerful,  (void*)&Z2MdnPrm::sCheerfulTail,  (void*)0x35010700,
-    (void*)&Z2MdnPrm::sConfused,  (void*)&Z2MdnPrm::sConfusedTail,  (void*)0x35030200,
-    (void*)&Z2MdnPrm::sHostility, (void*)&Z2MdnPrm::sHostilityTail, (void*)0x34020500,
-    (void*)&Z2MdnPrm::sTired,     (void*)&Z2MdnPrm::sTiredTail,     (void*)0x35030500,
-    (void*)&Z2MdnPrm::sSerious,   (void*)&Z2MdnPrm::sSeriousTail,   (void*)0x35020500,
-    (void*)&Z2MdnPrm::sReplyb,    (void*)&Z2MdnPrm::sReplybTail,    (void*)0x2A040300,
-    (void*)&Z2MdnPrm::sApologize, (void*)&Z2MdnPrm::sApologizeTail, (void*)0x32040500,
-    (void*)&Z2MdnPrm::sDeside,    (void*)&Z2MdnPrm::sDesideTail,    (void*)0x32010700,
-    (void*)&Z2MdnPrm::sAfford,    (void*)&Z2MdnPrm::sAffordTail,    (void*)0x34020A00,
+SECTION_RODATA sPrmStruct const Z2MdnPrm::sPrm[17] = {
+    { (u8**)&Z2MdnPrm::sReply,     (u8**)&Z2MdnPrm::sReplyTail,     0x32, 0x06, 0x04, 0x00},
+    { (u8**)&Z2MdnPrm::sJoke,      (u8**)&Z2MdnPrm::sJokeTail,      0x32, 0x03, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sSexy,      (u8**)&Z2MdnPrm::sSexyTail,      0x32, 0x03, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sRidicule,  (u8**)&Z2MdnPrm::sRidiculeTail,  0x32, 0x03, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sBoring,    (u8**)&Z2MdnPrm::sBoringTail,    0x36, 0x01, 0x05, 0x00},
+    { (u8**)&Z2MdnPrm::sIrritated, (u8**)&Z2MdnPrm::sIrritatedTail, 0x2F, 0x03, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sOrder,     (u8**)&Z2MdnPrm::sOrderTail,     0x39, 0x02, 0x04, 0x00},
+    { (u8**)&Z2MdnPrm::sResent,    (u8**)&Z2MdnPrm::sResentTail,    0x35, 0x02, 0x03, 0x00},
+    { (u8**)&Z2MdnPrm::sCheerful,  (u8**)&Z2MdnPrm::sCheerfulTail,  0x35, 0x01, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sConfused,  (u8**)&Z2MdnPrm::sConfusedTail,  0x35, 0x03, 0x02, 0x00},
+    { (u8**)&Z2MdnPrm::sHostility, (u8**)&Z2MdnPrm::sHostilityTail, 0x34, 0x02, 0x05, 0x00},
+    { (u8**)&Z2MdnPrm::sTired,     (u8**)&Z2MdnPrm::sTiredTail,     0x35, 0x03, 0x05, 0x00},
+    { (u8**)&Z2MdnPrm::sSerious,   (u8**)&Z2MdnPrm::sSeriousTail,   0x35, 0x02, 0x05, 0x00},
+    { (u8**)&Z2MdnPrm::sReplyb,    (u8**)&Z2MdnPrm::sReplybTail,    0x2A, 0x04, 0x03, 0x00},
+    { (u8**)&Z2MdnPrm::sApologize, (u8**)&Z2MdnPrm::sApologizeTail, 0x32, 0x04, 0x05, 0x00},
+    { (u8**)&Z2MdnPrm::sDeside,    (u8**)&Z2MdnPrm::sDesideTail,    0x32, 0x01, 0x07, 0x00},
+    { (u8**)&Z2MdnPrm::sAfford,    (u8**)&Z2MdnPrm::sAffordTail,    0x34, 0x02, 0x0A, 0x00},
 };
 COMPILER_STRIP_GATE(0x8039C98C, &Z2MdnPrm::sPrm);
 
@@ -1576,7 +1855,61 @@ SECTION_SDATA2 static f64 lit_4083 = 4503599627370496.0 /* cast u32 to float */;
 /* 80456BA8-80456BAC 000048 0002+02 1/1 0/0 0/0 .sbss2           @4003 */
 SECTION_SBSS2 static u8 lit_4003[2 + 2 /* padding */];
 
+typedef struct {
+    u8 field_0x0;
+    u8 field_0x1;
+} Z2ConnectCost;
+
 /* 802CC4C0-802CC738 2C6E00 0278+00 2/2 0/0 0/0 .text            selectUnit__12Z2SpeechMgr2Fb */
+// This one is a mess
+#ifdef NONMATCHING
+void Z2SpeechMgr2::selectUnit(bool param_0) {
+    Z2ConnectCost local_3c[5];
+    if (field_0x401 >= 64) {
+        field_0x0->stop();
+    } else {
+        s32 ZVar2 = random.get_uint8(Z2MdnPrm::sPrm[field_0x3fc].field_0x8);
+        if (field_0x401 != 0 && param_0) {
+            u8 cVar5 = 0;
+            ZVar2 = field_0x402[field_0x401 - 1];
+            do {
+                bool bVar1;
+                int ZVar3;
+                do {
+                    do {
+                        bVar1 = false;
+                        ZVar3 = random.get_uint8(Z2MdnPrm::sPrm[field_0x3fc].field_0x8);
+                        for (int iVar4 = 0; iVar4 < field_0x401; iVar4++) {
+                            if (ZVar3 == field_0x402[iVar4]) {
+                                bVar1 = true;
+                                break;
+                            }
+                        }
+                    } while (bVar1);
+                    for (int iVar4 = 0; iVar4 < cVar5; iVar4++) {
+                        if (ZVar3 == local_3c[iVar4].field_0x0) {
+                            bVar1 = true;
+                            break;
+                        }
+                    }
+                } while (bVar1);
+                local_3c[1].field_0x1 = J3DUD::JMAAbs((*Z2MdnPrm::sPrm[field_0x3fc].field_0x0)[ZVar3 * 2] - (*Z2MdnPrm::sPrm[field_0x3fc].field_0x0)[ZVar3 * 2 + 1]);
+                local_3c[2].field_0x0 = ZVar3;
+                local_3c[cVar5] = local_3c[2];
+                cVar5++;
+            } while (cVar5 != 5);
+            for (int iVar4 = 0; /*ZVar2 = local_3c[0],*/ iVar4 < 5; iVar4++) {
+                if (local_3c[iVar4].field_0x1 < local_3c[0].field_0x0) {
+                    local_3c[0].field_0x1 = local_3c[iVar4].field_0x1;
+                    local_3c[0].field_0x0 = local_3c[iVar4].field_0x0;
+                }
+            }
+        }
+        field_0x402[field_0x401 - 1] = ZVar2;
+        field_0x401++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1585,6 +1918,7 @@ asm void Z2SpeechMgr2::selectUnit(bool param_0) {
 #include "asm/Z2AudioLib/Z2SpeechMgr2/selectUnit__12Z2SpeechMgr2Fb.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80456BAC-80456BB0 00004C 0002+02 1/1 0/0 0/0 .sbss2           @4104 */
@@ -1601,14 +1935,21 @@ asm void Z2SpeechMgr2::selectTail() {
 #pragma pop
 
 /* 802CC9D0-802CCA18 2C7310 0048+00 0/0 1/1 0/0 .text            framework__12Z2SpeechMgr2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SpeechMgr2::framework() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/framework__12Z2SpeechMgr2Fv.s"
+void Z2SpeechMgr2::framework() {
+    switch (field_0x3fe) {
+    case 1:
+    case 2:
+        if (field_0x0) {
+            field_0x3ff++;
+            if (field_0x3ff > 30) {
+                return;
+            }
+        } else {
+            field_0x3fa = 0;
+        }
+        break;
+    }
 }
-#pragma pop
 
 /* 802CCA18-802CCF88 2C7358 0570+00 0/0 2/2 0/0 .text playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
  */
@@ -1622,24 +1963,15 @@ asm void Z2SpeechMgr2::playOneShotVoice(u8 param_0, u16 param_1, Vec* param_2, s
 #pragma pop
 
 /* 802CCF88-802CCFB8 2C78C8 0030+00 0/0 1/1 0/0 .text            isMidnaSpeak__12Z2SpeechMgr2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2SpeechMgr2::isMidnaSpeak() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/isMidnaSpeak__12Z2SpeechMgr2Fv.s"
+bool Z2SpeechMgr2::isMidnaSpeak() {
+    if ((field_0x3fe == 1 || field_0x3fe == 2) && field_0x0) {
+        return true;
+    } 
+    return false;
 }
-#pragma pop
 
 /* 802CCFB8-802CCFF8 2C78F8 0040+00 1/1 0/0 0/0 .text            __ct__15Z2SpeechStarterFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm Z2SpeechStarter::Z2SpeechStarter() {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SpeechMgr2/__ct__15Z2SpeechStarterFv.s"
-}
-#pragma pop
+Z2SpeechStarter::Z2SpeechStarter() : Z2SoundStarter(false) {}
 
 /* ############################################################################################## */
 /* 80455F50-80455F54 004550 0004+00 1/1 0/0 0/0 .sdata2          @4571 */
@@ -1653,7 +1985,7 @@ SECTION_SDATA2 static f32 lit_4572 = 0.5f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2SpeechStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm int Z2SpeechStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                      JGeometry::TVec3<f32> const* param_2, u32 param_3, f32 param_4,
                                      f32 param_5, f32 param_6, f32 param_7, f32 param_8,
                                      u32 param_9) {

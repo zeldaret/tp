@@ -24,6 +24,7 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     void setHour(s32 hour) { mHour = hour; }
     void setMinute(s32 min) { mMinute = min; }
     void setWeekday(s32 day) { mWeekday = day; }
+    f32 getCameraInWaterDepthRatio() const { return mCameraInWaterDepthRatio; }
 
     /* 0x00 */ u8 mHour;
     /* 0x01 */ u8 mMinute;

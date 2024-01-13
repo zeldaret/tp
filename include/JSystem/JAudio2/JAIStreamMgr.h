@@ -3,26 +3,17 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
+#include "JSystem/JAudio2/JAIStream.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
 class JAIStreamAramMgr;
 class JAIStreamDataMgr;
-class JAIStreamMgr;
-
-class JAIStream {
-public:
-    /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
-    /* 802A319C */ void JAIStreamMgr_startID_(JAISoundID, s32, JGeometry::TVec3<f32> const*,
-                                              JAIAudience*, int);
-    /* 802A34E4 */ void JAIStreamMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
-    /* 802A388C */ void JAIStreamMgr_calc_();
-};
 
 class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
     /* 802A3B68 */ JAIStreamMgr(bool);
-    /* 802A3C3C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A3C3C */ int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A3D70 */ void freeDeadStream_();
     /* 802A3EBC */ void calc();
     /* 802A4028 */ void stop();
