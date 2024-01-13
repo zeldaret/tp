@@ -1022,7 +1022,7 @@ asm void Z2EnvSeMgr::setFogWipeWidth(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2EnvSeMgr::getFogDensity() {
+asm f32 Z2EnvSeMgr::getFogDensity() {
     nofralloc
 #include "asm/Z2AudioLib/Z2EnvSeMgr/getFogDensity__10Z2EnvSeMgrFv.s"
 }

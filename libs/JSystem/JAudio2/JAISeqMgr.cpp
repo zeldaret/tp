@@ -185,7 +185,7 @@ extern "C" asm void func_802A1AF4(void* _this) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAISeqMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm int JAISeqMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                JGeometry::TVec3<f32> const* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/func_802A1B48.s"

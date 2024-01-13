@@ -8,13 +8,17 @@
 class JAISoundID {
 public:
     operator u32() const { return this->mId.mFullId; }
-    void operator=(JAISoundID const& other) { mId.mFullId = other.mId.mFullId; };
+    const JAISoundID& operator=(JAISoundID const& other) { mId.mFullId = other.mId.mFullId; return *this; };
 
     JAISoundID(u32 pId) { mId.mFullId = pId; };
 
     JAISoundID(JAISoundID const& other) { mId = other.mId; };
 
     JAISoundID() {}
+
+    // Helps solve some JAISoundID ctor/assignment operator stack issues
+    // Remove when solved
+    void stackCopyHelper(JAISoundID other) { mId = other.mId; }
 
     bool isAnonymous() { return mId.mFullId == 0xffffffff; }
     void setAnonymous() { mId.mFullId = -1; }
@@ -283,6 +287,8 @@ public:
         fader.fadeInFromOut(param_1);
         return;
     }
+
+    JAISoundParamsProperty& getProperty() { return params.mProperty; }
 
     s32 getCount() const { return mCount; }
 

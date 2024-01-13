@@ -107,7 +107,7 @@ asm JAIStreamMgr::JAIStreamMgr(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JAIStreamMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm int JAIStreamMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                   JGeometry::TVec3<f32> const* param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStreamMgr/func_802A3C3C.s"

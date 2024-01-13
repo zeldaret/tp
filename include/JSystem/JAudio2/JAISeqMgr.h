@@ -13,7 +13,7 @@ class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {
 public:
     /* 802A1914 */ JAISeqMgr(bool);
     /* 802A1A08 */ void freeDeadSeq_();
-    /* 802A1B48 */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A1B48 */ int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A1C90 */ void calc();
     /* 802A1DFC */ void stop();
     /* 802A1E3C */ void stop(u32);

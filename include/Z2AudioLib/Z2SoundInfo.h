@@ -4,11 +4,12 @@
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
+#include "JSystem/JAudio2/JAUAudibleParam.h"
 
 class Z2SoundInfo : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr, public JASGlobalInstance<Z2SoundInfo> {
 public:
     Z2SoundInfo() : JAISoundInfo(true), JAUSoundInfo(true), JASGlobalInstance<Z2SoundInfo>(true) {}
-    /* 802BB448 */ virtual void getAudibleSw(JAISoundID) const;
+    /* 802BB448 */ virtual u16 getAudibleSw(JAISoundID) const;
     /* 802BB00C */ virtual u16 getBgmSeqResourceID(JAISoundID) const;
     /* 802BBA88 */ virtual s32 getStreamFileEntry(JAISoundID);
     /* 802BB090 */ virtual u32 getSoundType(JAISoundID) const;
@@ -19,11 +20,12 @@ public:
     /* 802BB8E0 */ virtual void getStreamInfo(JAISoundID, JAIStream*) const;
     /* 802BBBE0 */ virtual ~Z2SoundInfo();
 
-    /* 802BB158 */ u32 getAudibleSwFull(JAISoundID);
+    /* 802BB158 */ JAUAudibleParam getAudibleSwFull(JAISoundID);
     /* 802BBA10 */ const char* getStreamFilePath(JAISoundID);
     /* 802BBAC8 */ int getSwBit(JAISoundID) const;
     /* 802BBB48 */ void getSoundInfo_(JAISoundID, JAISound*) const;
 };
+
 
 inline Z2SoundInfo* Z2GetSoundInfo() {
     return JASGlobalInstance<Z2SoundInfo>::getInstance();
