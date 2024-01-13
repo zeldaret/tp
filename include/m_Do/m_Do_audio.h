@@ -34,6 +34,8 @@ s32 mDoAud_load1stDynamicWave();
 static void mDoAud_setLinkGroupInfo(u8 param_0);
 static void mDoAud_setLinkHp(s32 param_0, s32 param_1);
 static void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3);
+void mDoAud_setFadeInStart(u8 param_0);
+void mDoAud_setFadeOutStart(u8 param_0);
 
 inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->bgmSetSwordUsing(id);

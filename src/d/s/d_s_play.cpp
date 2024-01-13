@@ -999,7 +999,7 @@ SECTION_DATA extern void* __vt__21dScnPly_preLoad_HIO_c[3] = {
 };
 
 /* 80451128-80451130 000628 0004+04 1/1 0/0 0/0 .sbss            g_regHIO */
-static u8 g_regHIO[4 + 4 /* padding */];
+u8 g_regHIO[4];
 
 /* 8025AC54-8025AD04 255594 00B0+00 0/0 1/0 0/0 .text            __sinit_d_s_play_cpp */
 #pragma push

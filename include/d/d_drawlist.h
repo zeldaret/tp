@@ -33,6 +33,11 @@ public:
     virtual void draw();
 };
 
+class dDlst_snapShot_c : public dDlst_base_c {
+public:
+    /* 80252ED4 */ virtual void draw();
+};
+
 class dDlst_effectLine_c : public dDlst_base_c {
 public:
     /* 80053E9C */ virtual void draw();
