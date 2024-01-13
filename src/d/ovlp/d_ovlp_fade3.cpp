@@ -127,7 +127,7 @@ dOvlpFd3_c::dOvlpFd3_c() {
     }
 
     dCam_getBody()->Stop();
-    mDoGph_gInf_c::startFadeOut((field_0x11f >> 1) + 90);
+    mDoGph_gInf_c::startFadeOut(XREG_S(3) + (field_0x11f >> 1) + 90);
 }
 
 /* 80253518-802535AC 24DE58 0094+00 1/0 0/0 0/0 .text            execFirstSnap__10dOvlpFd3_cFv */
@@ -158,8 +158,8 @@ void dOvlpFd3_c::execFadeOut() {
 
     if (mTimer < 0) {
         if (++mTimer == 0) {
-            mDoGph_gInf_c::startFadeOut(75);
-            mTimer = TREG_S(1) + 90;
+            mDoGph_gInf_c::startFadeOut(XREG_S(1) + 75);
+            mTimer = XREG_S(2) + 90;
             mDoAud_setFadeOutStart(0);
         }
     } else {
@@ -170,7 +170,7 @@ void dOvlpFd3_c::execFadeOut() {
 /* 8025368C-80253730 24DFCC 00A4+00 1/0 0/0 0/0 .text            execNextSnap__10dOvlpFd3_cFv */
 void dOvlpFd3_c::execNextSnap() {
     if (func_80252E70(&mTimer) == 0) {
-        if (!JFWDisplay::getManager()->getFader()->startFadeIn(26)) {
+        if (!JFWDisplay::getManager()->getFader()->startFadeIn(XREG_S(4) + 26)) {
             mDoAud_setFadeInStart(0);
             field_0x110 += field_0x112;
 
