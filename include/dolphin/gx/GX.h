@@ -154,6 +154,11 @@ inline void GXPosition2s8(s8 x, s8 y) {
     GFX_FIFO(s8) = y;
 }
 
+inline void GXPosition2s16(s16 x, s16 y) {
+    GFX_FIFO(s16) = x;
+    GFX_FIFO(s16) = y;
+}
+
 inline void i_GXPosition3s16(s16 x, s16 y, s16 z) {
     GFX_FIFO(s16) = x;
     GFX_FIFO(s16) = y;

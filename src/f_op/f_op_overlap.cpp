@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_request.h"
 #include "f_op/f_op_overlap.h"
-#include "f_op/f_op_overlap_mng.h"
 #include "f_pc/f_pc_manager.h"
 
 /* 8001E37C-8001E3A4 018CBC 0028+00 1/0 0/0 0/0 .text            fopOvlp_Draw__FPv */
@@ -50,7 +49,7 @@ static s32 fopOvlp_Create(void* i_this) {
 
 /* ############################################################################################## */
 /* 803A3878-803A3890 -00001 0014+04 0/0 10/0 0/0 .data            g_fopOvlp_Method */
-extern leafdraw_method_class g_fopOvlp_Method = {
+leafdraw_method_class g_fopOvlp_Method = {
     (process_method_func)fopOvlp_Create,  (process_method_func)fopOvlp_Delete,
     (process_method_func)fopOvlp_Execute, (process_method_func)fopOvlp_IsDelete,
     (process_method_func)fopOvlp_Draw,

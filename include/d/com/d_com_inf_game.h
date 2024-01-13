@@ -401,8 +401,9 @@ public:
     s8 getNextStageLayer() { return mNextStage.getLayer(); }
     s16 getNextStagePoint() { return mNextStage.getPoint(); }
     s8 getNextStageWipe() { return mNextStage.getWipe(); }
-    bool isEnableNextStage() { return mNextStage.isEnable(); }
+    BOOL isEnableNextStage() { return mNextStage.isEnable(); }
     void offEnableNextStage() { mNextStage.offEnable(); }
+    u8 getNextStageWipeSpeed() { return mNextStage.getWipeSpeed(); }
     void setNextStage(const char* stage, s8 roomNo, s16 point, s8 layer, s8 wipe, u8 wipe_speed) {
         mNextStage.set(stage, roomNo, point, layer, wipe, wipe_speed);
     }
@@ -2145,8 +2146,12 @@ inline s32 dComIfGp_getNextStageWipe() {
     return g_dComIfG_gameInfo.play.getNextStageWipe();
 }
 
-inline bool dComIfGp_isEnableNextStage() {
+inline BOOL dComIfGp_isEnableNextStage() {
     return g_dComIfG_gameInfo.play.isEnableNextStage();
+}
+
+inline u8 dComIfGp_getNextStageWipeSpeed() {
+    return g_dComIfG_gameInfo.play.getNextStageWipeSpeed();
 }
 
 inline s16 dComIfGp_getNextStagePoint() {

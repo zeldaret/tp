@@ -65,7 +65,7 @@ public:
 
     static JFWDisplay* getManager() { return sManager; }
 
-    int startFadeOut(int param_0) {
+    bool startFadeOut(int param_0) {
         if (mFader != NULL) {
             return mFader->startFadeOut(param_0);
         }
@@ -86,6 +86,7 @@ public:
 
     void setDrawDoneMethod(EDrawDone drawDone) { mDrawDoneMethod = drawDone; }
     void setFader(JUTFader* fader) { mFader = fader; }
+    JUTFader* getFader() const { return mFader; }
     void setClearColor(JUtility::TColor color) { mClearColor = color; }
 
     static JFWDisplay* sManager;

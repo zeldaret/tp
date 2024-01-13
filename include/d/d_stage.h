@@ -890,8 +890,9 @@ public:
     }
     void set(const char*, s8, s16, s8, s8, u8);
     void offEnable() { enabled = 0; }
-    s8 isEnable() const { return enabled; }
+    BOOL isEnable() const { return enabled; }
     s8 getWipe() const { return wipe; }
+    u8 getWipeSpeed() const { return wipe_speed; }
 
 private:
     s8 enabled;
