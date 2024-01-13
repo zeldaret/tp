@@ -3,6 +3,11 @@
 // Translation Unit: d/d_gameover
 //
 
+/**
+ * This TU mostly matches except for the dGov_HIO_c vtable being the incorrect size
+ * Once that's fixed, inline the dGov_HIO_c / dDlst_Gameover_CAPTURE_c dtors.
+ */
+
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRHeap.h"
@@ -11,12 +16,21 @@
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
-#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_graphic.h"
 
-//
-// Types:
-//
+class dGov_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 8019AFE0 */ dGov_HIO_c();
+    /* 8019C06C */ virtual ~dGov_HIO_c();  // supposed to be inlined
+
+    /* 0x04 */ u8 unk_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mAlpha;
+    /* 0x10 */ f32 mAnimSpeed;
+    /* 0x14 */ GXColor mBlack;
+    /* 0x18 */ GXColor mWhite;
+};  // Size: 0x1C
 
 struct dMsgScrnLight_c {
     /* 80245934 */ dMsgScrnLight_c(u8, u8);
@@ -530,6 +544,7 @@ SECTION_DATA extern void* __vt__24dDlst_Gameover_CAPTURE_c[4] = {
 };
 
 /* 8019B044-8019B2F4 195984 02B0+00 1/1 0/0 0/0 .text            _create__11dGameover_cFv */
+// matches with literals
 #ifdef NONMATCHING
 int dGameover_c::_create() {
     int phase = dComIfG_resLoad(&mPhase, "Gover");
@@ -548,14 +563,16 @@ int dGameover_c::_create() {
         }
 
         dRes_info_c* resInfo = dComIfG_getObjectResInfo("Gover");
+        JUT_ASSERT(resInfo != 0);
 
-        mpHeap = dComIfGp_getExpHeap2D();
+        mpHeap = (JKRHeap*)dComIfGp_getExpHeap2D();
         dComIfGp_setHeapLockFlag(6);
         JKRHeap* old_heap = mDoExt_setCurrentHeap(mpHeap);
-        mpHeap->getTotalFreeSize();
+        int temp = mpHeap->getTotalFreeSize();
 
         dgo_screen_c = new dDlst_GameOverScrnDraw_c(resInfo->getArchive());
         dMs_c = new dMenu_save_c();
+        JUT_ASSERT(dMs_c != 0);
 
         if (dMeter2Info_getGameOverType() == 1) {
             if (!strcmp(dComIfGp_getLastPlayStageName(), "D_MN10A")) {
@@ -574,22 +591,28 @@ int dGameover_c::_create() {
 
         dMs_c->_create();
         dgo_capture_c = new dDlst_Gameover_CAPTURE_c();
+        JUT_ASSERT(dgo_capture_c != 0);
+
+        OS_REPORT("game over create size ===> %d\n", temp - mpHeap->getTotalFreeSize());
 
         mDoExt_setCurrentHeap(old_heap);
-        field_0x116 = g_menuHIO.mGameover;
-
-        if (dMeter2Info_getGameOverType() == 1 || dMeter2Info_getGameOverType() == 2) {
-            mIsDemoSave = true;
-            mProc = PROC_DEMO_FADE_IN;
-            dgo_screen_c->setBackAlpha(1.0f);
-        } else {
-            mIsDemoSave = false;
-            mProc = PROC_PLAYER_ANM_WAIT;
-        }
-
-        (this->*init_process[mProc])();
-        return cPhs_COMPLEATE_e;
+    } else {
+        return phase;
     }
+
+    field_0x116 = g_menuHIO.mGameover;
+
+    if (dMeter2Info_getGameOverType() == 1 || dMeter2Info_getGameOverType() == 2) {
+        mIsDemoSave = true;
+        mProc = PROC_DEMO_FADE_IN;
+        dgo_screen_c->setBackAlpha(1.0f);
+    } else {
+        mIsDemoSave = false;
+        mProc = PROC_PLAYER_ANM_WAIT;
+    }
+
+    (this->*init_process[mProc])();
+    return cPhs_COMPLEATE_e;
 
     return phase;
 }
@@ -917,7 +940,7 @@ SECTION_SDATA2 static f32 lit_4377[1 + 1 /* padding */] = {
 #ifdef NONMATCHING
 /* ############################################################################################## */
 /* 8042CA20-8042CA2C 059740 000C+00 1/1 0/0 0/0 .bss             @3882 */
-static u8 lit_3882[12];
+// static u8 lit_3882[12];
 
 /* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
 static dGov_HIO_c l_HIO;

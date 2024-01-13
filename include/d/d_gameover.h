@@ -7,23 +7,10 @@
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
-class dGov_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 8019AFE0 */ dGov_HIO_c();
-    /* 8019C06C */ virtual ~dGov_HIO_c();
-
-    /* 0x04 */ u8 unk_0x4;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mAlpha;
-    /* 0x10 */ f32 mAnimSpeed;
-    /* 0x14 */ GXColor mBlack;
-    /* 0x18 */ GXColor mWhite;
-};  // Size: 0x1C
-
 class dDlst_Gameover_CAPTURE_c : public dDlst_base_c {
 public:
     /* 8019ACF8 */ virtual void draw();
-    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c();
+    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c();  // supposed to be inlined
 };
 
 class dMsgScrnLight_c;

@@ -2,8 +2,7 @@
 #define OS_DOLPHIN_DOLPHIN_TRK_GLUE_H
 
 #include "dolphin/os/OS.h"
-
-typedef enum { HARDWARE_GDEV = 0, HARDWARE_DDH = 1, HARDWARE_BBA = 2 } HardwareType;
+#include "trk.h"
 
 typedef int (*DBCommFunc)();
 typedef int (*DBCommInitFunc)(void*, OSInterruptHandler);

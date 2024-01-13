@@ -3,12 +3,13 @@
 // Translation Unit: J2DAnmLoader
 //
 
-// non matching because some dtors are emitted immediately after
-// J2DAnmLoaderDataBase::load but they should be at the very end
+// this should match with -sym on and once J2DMaterialFactory is done
+// JSUConvertOffsetToPtr<u16> needs to be emitted in J2DMaterialFactory before its used here
 
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "JSystem/JSupport/JSupport.h"
 
 //
 // Types:
@@ -16,7 +17,7 @@
 
 /* 80308A6C-80309290 3033AC 0824+00 0/0 26/26 2/2 .text            load__20J2DAnmLoaderDataBaseFPCv
  */
-void* J2DAnmLoaderDataBase::load(void const* p_data) {
+J2DAnmBase* J2DAnmLoaderDataBase::load(void const* p_data) {
     const J3DAnmDataHeader* hdr = (const J3DAnmDataHeader*)p_data;
 
     if (hdr == NULL) {
@@ -26,13 +27,13 @@ void* J2DAnmLoaderDataBase::load(void const* p_data) {
         case 'bck1': {
             J2DAnmKeyLoader_v15 loader;
             loader.mpResource = new J2DAnmTransformKey();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'bpk1': {
             J2DAnmKeyLoader_v15 loader;
             loader.mpResource = new J2DAnmColorKey();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'blk1':
@@ -40,42 +41,42 @@ void* J2DAnmLoaderDataBase::load(void const* p_data) {
         case 'btk1': {
             J2DAnmKeyLoader_v15 loader;
             loader.mpResource = new J2DAnmTextureSRTKey();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'brk1': {
             J2DAnmKeyLoader_v15 loader;
             loader.mpResource = new J2DAnmTevRegKey();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'bxk1': {
             J2DAnmKeyLoader_v15 loader;
             loader.mpResource = new J2DAnmVtxColorKey();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'bca1': {
             J2DAnmFullLoader_v15 loader;
             loader.mpResource = new J2DAnmTransformFull();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'bpa1': {
             J2DAnmFullLoader_v15 loader;
             loader.mpResource = new J2DAnmColorFull();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'btp1': {
             J2DAnmFullLoader_v15 loader;
             loader.mpResource = new J2DAnmTexPattern();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
         }
         case 'bva1': {
             J2DAnmFullLoader_v15 loader;
             loader.mpResource = new J2DAnmVisibilityFull();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
             break;
         }
         case 'bla1':
@@ -83,7 +84,7 @@ void* J2DAnmLoaderDataBase::load(void const* p_data) {
         case 'bxa1': {
             J2DAnmFullLoader_v15 loader;
             loader.mpResource = new J2DAnmVtxColorFull();
-            return loader.load(p_data);
+            return (J2DAnmBase*)loader.load(p_data);
         }
         }
         return NULL;

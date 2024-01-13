@@ -3889,13 +3889,3 @@ extern "C" asm void draw__16dDlst_MenuSave_cFv() {
 }
 #pragma pop
 #endif
-
-/* 801F6B44-801F6B8C 1F1484 0048+00 1/0 0/0 0/0 .text            __dt__16dDlst_MenuSave_cFv */
-dDlst_MenuSave_c::~dDlst_MenuSave_c() {}
-
-/* 801F6B8C-801F6BD4 1F14CC 0048+00 1/0 0/0 0/0 .text            __dt__23dDlst_MenuSaveExplain_cFv
- */
-dDlst_MenuSaveExplain_c::~dDlst_MenuSaveExplain_c() {}
-
-/* 801F6BD4-801F6C1C 1F1514 0048+00 2/1 0/0 0/0 .text            __dt__9dMs_HIO_cFv */
-dMs_HIO_c::~dMs_HIO_c() {}

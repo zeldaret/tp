@@ -41,7 +41,7 @@ public:
     /* 802F9620 */ virtual bool isUsed(ResFONT const*);
     /* 80053BA0 */ virtual void clearAnmTransform();
     /* 802F9704 */ virtual void setAnimation(J2DAnmColor*);
-    /* 80192414 */ virtual void setAnimation(J2DAnmTransform*);
+    /* 80192414 */ virtual void setAnimation(J2DAnmTransform* i_bck) { J2DPane::setAnimation(i_bck); }
     /* 802F9798 */ virtual void setAnimation(J2DAnmTextureSRTKey*);
     /* 802F99A8 */ virtual void setAnimation(J2DAnmVtxColor*);
     /* 802F9838 */ virtual void setAnimation(J2DAnmTexPattern*);

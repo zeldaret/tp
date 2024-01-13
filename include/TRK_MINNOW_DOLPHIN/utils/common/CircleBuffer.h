@@ -3,19 +3,27 @@
 
 #include "dolphin/types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct CircleBuffer {
-    u8* field_0x0;
-    u8* field_0x4;
-    u8* field_0x8;
-    u32 field_0xc;
+    u8* read_ptr;
+    u8* write_ptr;
+    u8* start_ptr;
+    u32 size;
     s32 mBytesToRead;
     u32 mBytesToWrite;
     u32 mCriticalSection;
 } CircleBuffer;
 
-s32 CircleBufferReadBytes(CircleBuffer*, u8*, u32);
-s32 CircleBufferWriteBytes(CircleBuffer*, u8*, u32);
+int CircleBufferReadBytes(CircleBuffer*, u8*, u32);
+int CircleBufferWriteBytes(CircleBuffer*, u8*, u32);
 void CircleBufferInitialize(CircleBuffer*, u8*, s32);
-s32 CBGetBytesAvailableForRead(CircleBuffer*);
+u32 CBGetBytesAvailableForRead(CircleBuffer*);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* UTILS_COMMON_CIRCLEBUFFER_H */

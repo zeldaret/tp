@@ -2,6 +2,7 @@
 #define DB_H
 
 #include "dolphin/types.h"
+#include "amcstubs/AmcExi2Stubs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,6 +23,13 @@ void DBInit(void);
 void __DBExceptionDestinationAux(void);
 void __DBExceptionDestination(void);
 void DBPrintf(char* format, ...);
+void DBInitComm(vu8**, AmcEXICallback); // possibly not this type, but some similar construction
+void DBInitInterrupts();
+u32 DBQueryData();
+BOOL DBRead(void*, u32);
+BOOL DBWrite(const void*, u32);
+void DBOpen();
+void DBClose();
 
 #ifdef __cplusplus
 }
