@@ -23,7 +23,7 @@ public:
     dDlst_MenuSaveExplain_c() { mpScrn = NULL; }
 
     /* 801F6ADC */ virtual void draw();
-    /* 801F6B8C */ virtual ~dDlst_MenuSaveExplain_c();
+    /* 801F6B8C */ virtual ~dDlst_MenuSaveExplain_c() {}
 
     void setScrnExplain(dMsgScrnExplain_c* p_scrn) { mpScrn = p_scrn; }
 
@@ -39,7 +39,7 @@ public:
     }
 
     /* 801F6B0C */ virtual void draw();
-    /* 801F6B44 */ virtual ~dDlst_MenuSave_c();
+    /* 801F6B44 */ virtual ~dDlst_MenuSave_c() {}
 
     /* 0x04 */ J2DScreen* Scr;
     /* 0x08 */ JUTFont* font[2];
@@ -49,7 +49,7 @@ public:
 class dMs_HIO_c {
 public:
     /* 801EF654 */ dMs_HIO_c();
-    /* 801F6BD4 */ virtual ~dMs_HIO_c();
+    /* 801F6BD4 */ virtual ~dMs_HIO_c() {}
 
     /* 0x4 */ s8 field_0x4;
     /* 0x5 */ u8 mDisplayWaitFrames;

@@ -20,7 +20,6 @@ void TRKReadBuffer();
 void TRKAppendBuffer();
 void TRKResetBuffer();
 void TRKReleaseBuffer();
-void TRKGetBuffer();
 void TRKGetFreeBuffer();
 void TRKInitializeMessageBuffers();
 
@@ -158,7 +157,7 @@ asm void TRKReleaseBuffer() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKGetBuffer() {
+asm void* TRKGetBuffer(int) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf/TRKGetBuffer.s"
 }

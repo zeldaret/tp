@@ -1047,6 +1047,10 @@ RELS := \
 	$(BUILD_DIR)/rel/d/a/d_a_warp_bug.plf \
 
 O_FILES_SYM_ON := \
+	$(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o \
+	$(BUILD_DIR)/libs/JSystem/JAudio2/JAUAudioArcLoader.o \
+	$(BUILD_DIR)/libs/JSystem/J2DGraph/J2DAnmLoader.o \
+	$(BUILD_DIR)/libs/Z2AudioLib/Z2AudioArcLoader.o \
 	$(BUILD_DIR)/src/c/c_dylink.o \
 	$(BUILD_DIR)/src/d/a/d_a_alink.o \
 	$(BUILD_DIR)/src/DynamicLink.o \
@@ -1060,4 +1064,7 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/ovlp/d_ovlp_fade2.o \
 	$(BUILD_DIR)/src/d/ovlp/d_ovlp_fade3.o \
 	$(BUILD_DIR)/src/d/s/d_s_play.o \
+	$(BUILD_DIR)/src/d/file/d_file_sel_warning.o \
+	$(BUILD_DIR)/src/d/d_gameover.o \
+	$(BUILD_DIR)/src/d/menu/d_menu_save.o \
 	

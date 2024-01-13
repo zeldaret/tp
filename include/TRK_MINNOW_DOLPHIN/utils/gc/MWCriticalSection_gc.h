@@ -3,8 +3,16 @@
 
 #include "dolphin/types.h"
 
-void MWExitCriticalSection(u32* section);
-void MWEnterCriticalSection(u32* section);
-void MWInitializeCriticalSection();
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void MWExitCriticalSection(unsigned int* section);
+void MWEnterCriticalSection(unsigned int* section);
+void MWInitializeCriticalSection(unsigned int*);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* UTILS_GC_MWCRITICALSECTION_GC_H */

@@ -6,6 +6,9 @@
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
 #include "dol2asm.h"
 
+TRKState gTRKState;
+ProcessorState_PPC gTRKCPUState;
+
 //
 // Forward References:
 //
@@ -21,14 +24,11 @@ static void WriteFPSCR();
 void TRKTargetAccessARAM();
 void TRKTargetSetInputPendingPtr();
 u32 TRKTargetStop();
-s32 TRKTargetStopped();
-void TRKTargetSupportRequest();
 u32 TRKTargetGetPC();
 void TRKTargetStepOutOfRange();
 void TRKTargetSingleStep();
 void TRKTargetAddExceptionInfo();
 void TRKTargetAddStopInfo();
-void TRKTargetInterrupt();
 static void TRKPostInterruptEvent();
 void TRKTargetAccessExtended2();
 void TRKTargetAccessExtended1();
@@ -43,8 +43,6 @@ static void TRKValidMemory32();
 //
 
 SECTION_INIT void memset();
-void TRKConstructEvent();
-void TRKPostEvent();
 void TRKReadBuffer_ui32();
 void TRKReadBuffer1_ui64();
 void TRKAppendBuffer_ui32();
@@ -213,7 +211,7 @@ void TRKTargetSetStopped(s32 isStopped) {
 }
 
 /* 8036FB10-8036FB20 36A450 0010+00 0/0 3/3 0/0 .text            TRKTargetStopped */
-s32 TRKTargetStopped() {
+BOOL TRKTargetStopped() {
     return gTRKState.stopped;
 }
 
@@ -221,7 +219,7 @@ s32 TRKTargetStopped() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKTargetSupportRequest() {
+asm DSError TRKTargetSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetSupportRequest.s"
 }
@@ -317,7 +315,7 @@ asm void TRKTargetAddStopInfo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TRKTargetInterrupt() {
+asm DSError TRKTargetInterrupt(TRKEvent*) {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/TRKTargetInterrupt.s"
 }
