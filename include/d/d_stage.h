@@ -301,7 +301,8 @@ struct dStage_FloorInfo_c {
 
 class dStage_Lbnk_dt_c {
 public:
-    /* 0x0 */ u8 field_0x0[0x2 - 0x0];
+    /* 0x0 */ u8 bank;
+    /* 0x1 */ u8 bank2;
     /* 0x2 */ u8 field_0x2;
 };
 
@@ -779,6 +780,17 @@ public:
         /* 0x1 */ char m_names[32][10];  // ?
     };
 
+    struct bankDataEntry {
+        u8 field_0x0;
+        u8 mLayerNo;
+        u8 field_0x2[0x20];
+    };
+
+    struct bankData {
+        /* 0x0 */ u8 m_num;
+        /* 0x1 */ bankDataEntry m_entries[32];  // ?
+    };
+
     static void createRoomDzs(u8 i_num) { m_roomDzs.create(i_num); }
     static void* addRoomDzs(u8 i_num, u8 roomNo) { return m_roomDzs.add(i_num, roomNo); }
     static void removeRoomDzs() { m_roomDzs.remove(); }
@@ -813,7 +825,8 @@ public:
         return mStatus[i_roomNo].mRoomDt.mFileList2Info;
     }
     static char* getDemoArcName() { return mDemoArcName; }
-    static char* getArcBankName() { return mArcBankName; }
+    static nameData* getArcBankName() { return mArcBankName; }
+    static bankData* getArcBankData() { return mArcBankData; }
     static void setRoomReadId(s8 id) { data_804505F0 = id; }
     static s8 getRoomReadId() { return data_804505F0; }
     static void offNoChangeRoom() { mNoChangeRoom = false; }
@@ -851,8 +864,8 @@ public:
     static dStage_roomStatus_c mStatus[0x40];
     static char mDemoArcName[10];
     static u32 mProcID;
-    static char* mArcBankName;
-    static char* mArcBankData;
+    static nameData* mArcBankName;
+    static bankData* mArcBankData;
     static roomDzs_c m_roomDzs;
     static s8 mStayNo;
     static s8 mOldStayNo;

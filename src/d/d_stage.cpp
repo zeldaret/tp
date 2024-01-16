@@ -538,8 +538,8 @@ void dStage_roomControl_c::init() {
         status++;
     }
 
-    mArcBankName = (char*)dComIfG_getStageRes("name.bin");
-    mArcBankData = (char*)dComIfG_getStageRes("bank.bin");
+    mArcBankName = (dStage_roomControl_c::nameData*)dComIfG_getStageRes("name.bin");
+    mArcBankData = (dStage_roomControl_c::bankData*)dComIfG_getStageRes("bank.bin");
 
     if (mArcBankName == NULL) {
         mArcBankData = NULL;
@@ -1867,10 +1867,10 @@ s8 dStage_roomControl_c::m_time_pass;
 u8 dStage_roomControl_c::mNoChangeRoom;
 
 /* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
-char* dStage_roomControl_c::mArcBankName;
+dStage_roomControl_c::nameData* dStage_roomControl_c::mArcBankName;
 
 /* 80450D70-80450D74 000270 0004+00 1/1 1/1 0/0 .sbss mArcBankData__20dStage_roomControl_c */
-char* dStage_roomControl_c::mArcBankData;
+dStage_roomControl_c::bankData* dStage_roomControl_c::mArcBankData;
 
 /* 80024EFC-80024F98 01F83C 009C+00 7/7 0/0 0/0 .text
  * dStage_actorCreate__FP22stage_actor_data_classP16fopAcM_prm_class */
