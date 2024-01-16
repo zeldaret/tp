@@ -22,15 +22,10 @@ struct fopMsg_prm_class {
     /* 0x18 */ int field_0x18;
 };  // Size: 0x1C
 
-struct fopMsg_prm_timer {
-    /* 0x00 */ int field_0x0;
-    /* 0x04 */ cXyz field_0x4;
-    /* 0x10 */ int field_0x10;
-    /* 0x14 */ int field_0x14;
-    /* 0x18 */ u32 field_0x18;
-    /* 0x1C */ int field_0x1c;
-    /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u8 field_0x24;
+struct fopMsg_prm_timer : public fopMsg_prm_class {
+    /* 0x1C */ int timer_mode;
+    /* 0x20 */ u32 limit_ms;
+    /* 0x24 */ u8 type;
     /* 0x25 */ u8 field_0x25;
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ f32 field_0x2c;
@@ -57,11 +52,12 @@ msg_class* fopMsgM_SearchByID(unsigned int param_0);
 char* fopMsgM_messageGet(char* msg, u32 string_id);
 s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
                      f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc);
-inline s32 fopMsgM_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4,
+
+inline s32 fopMsgM_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs, u8 i_type, u8 param_4,
                                 f32 param_5, f32 param_6, f32 param_7, f32 param_8,
-                                fopMsgCreateFunc createFunc) {
-    return fop_Timer_create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
-                            param_8, createFunc);
+                                fopMsgCreateFunc i_createFunc) {
+    return fop_Timer_create(i_procName, i_mode, i_limitMs, i_type, param_4, param_5, param_6,
+                            param_7, param_8, i_createFunc);
 }
 
 #endif
