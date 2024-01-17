@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 void TRKSwapAndGo();
-void TRKTargetSetStopped(s32);
+void TRKTargetSetStopped(unsigned int);
 DSError TRKTargetInterrupt(TRKEvent*);
 DSError TRKTargetSupportRequest();
 void TRKDestructEvent(TRKEvent*);
@@ -124,16 +124,16 @@ typedef ProcessorState_PPC_6xx_7xx ProcessorState_PPC;
 extern ProcessorState_PPC gTRKCPUState;
 
 typedef struct TRKState {
-    /* 0x00 */ u32 GPR[32];
-    /* 0x80 */ u32 LR;
-    /* 0x84 */ u32 CTR;
-    /* 0x88 */ u32 XER;
-    /* 0x8C */ u32 MSR;
-    /* 0x90 */ u32 DAR;
-    /* 0x94 */ u32 DSISR;
-    /* 0x98 */ u32 stopped;
-    /* 0x9C */ u32 inputActivated;
-    /* 0xA0 */ void* inputPendingPtr;
+	u32 gpr[32];           // _00
+	u32 lr;                // _80
+	u32 ctr;               // _84
+	u32 xer;               // _88
+	u32 msr;               // _8C
+	u32 dar;               // _90
+	u32 dsisr;             // _94
+	BOOL isStopped;        // _98
+	BOOL inputActivated;   // _9C
+	void* inputPendingPtr; // _A0
 } TRKState;
 extern TRKState gTRKState;
 

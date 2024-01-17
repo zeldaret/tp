@@ -4,7 +4,6 @@
  */
 
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/UDP_Stubs.h"
-#include "dolphin/os/OS.h"
 
 /* 80372354-8037235C 36CC94 0008+00 0/0 1/1 0/0 .text            udp_cc_initialize */
 __declspec(weak) int udp_cc_initialize(void* flagOut, OSInterruptHandler handler) {

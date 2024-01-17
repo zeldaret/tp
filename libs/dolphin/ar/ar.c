@@ -12,7 +12,6 @@
 
 void __ARHandler(s16 interrupt, OSContext* context);
 void __ARClearInterrupt();
-u16 __ARGetInterruptStatus();
 void __ARChecksize();
 
 /* ############################################################################################## */

@@ -25,15 +25,15 @@ DSIOResult __TRK_write_console(u32 handle, u8* buffer, size_t* count, void* ref_
     return __write_file(DS_Stdout, buffer, count, ref_con);
 }
 
-static inline DSIOResult __read_file(u32 handle, u8* buffer, size_t* count, void* ref_con) {
+static DSIOResult __read_file(u32 handle, u8* buffer, size_t* count, void* ref_con) {
     return __access_file(handle, buffer, count, ref_con, DSMSG_ReadFile);
 }
 
-static inline DSIOResult __write_file(u32 handle, u8* buffer, size_t* count, void* ref_con) {
+static DSIOResult __write_file(u32 handle, u8* buffer, size_t* count, void* ref_con) {
     return __access_file(handle, buffer, count, ref_con, DSMSG_WriteFile);
 }
 
-static inline DSIOResult __access_file(u32 handle, u8* buffer, size_t* count, void* ref_con,
+static DSIOResult __access_file(u32 handle, u8* buffer, size_t* count, void* ref_con,
                                        MessageCommandID cmd) {
     size_t countTemp;
     u32 r0;

@@ -6,7 +6,6 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.h"
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include "trk.h"
 
 /* 8044F818-8044F820 07C538 0004+04 1/1 0/0 0/0 .bss             TRK_mainError */
 static DSError TRK_mainError;
