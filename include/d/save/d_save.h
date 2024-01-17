@@ -509,6 +509,7 @@ public:
     void set(const char* i_name, const cXyz& i_pos, s16 i_angle, s8 i_spawn, u8 i_regionNo);
 
     bool isFieldDataExistFlag() const { return mFieldDataExistFlag; }
+    void offFieldDataExistFlag() { mFieldDataExistFlag = false; }
 
 private:
     /* 0x00 */ cXyz mPos;

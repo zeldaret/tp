@@ -2172,7 +2172,7 @@ static int dStage_lgtvInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 
 /* 80025738-80025744 020078 000C+00 0/0 1/1 0/0 .text
  * dStage_stagInfo_GetParticleNo__FP21stage_stag_info_classi    */
-u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
+u32 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer) {
     return p_info->mParticleNo[layer];
 }
 

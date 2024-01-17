@@ -808,6 +808,7 @@ extern dComIfG_inf_c g_dComIfG_gameInfo;
 extern GXColor g_blackColor;
 extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
+extern GXColor g_saftyWhiteColor;
 
 int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
 BOOL dComIfG_resetToOpening(scene_class* scene);
@@ -1835,6 +1836,10 @@ inline void dComIfGs_setBButtonItemKey(u8 i_itemNo) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(4, i_itemNo);
 }
 
+inline void dComIfGs_offPlayerFieldLastStayFieldDataExistFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().offFieldDataExistFlag();
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -1884,6 +1889,10 @@ void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
 
 inline void dComIfGp_itemDataInit() {
     g_dComIfG_gameInfo.play.itemInit();
+}
+
+inline void dComIfGp_init() {
+    g_dComIfG_gameInfo.play.init();
 }
 
 inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
@@ -2966,6 +2975,10 @@ inline void dComIfGp_createSimpleModel() {
     g_dComIfG_gameInfo.play.createSimpleModel();
 }
 
+inline void dComIfGp_deleteSimpleModel() {
+    g_dComIfG_gameInfo.play.deleteSimpleModel();
+}
+
 inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
                                   const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
     g_dComIfG_gameInfo.play.getParticle()->setHitMark(i_hitmark, param_1, param_2, param_3, param_4,
@@ -3135,6 +3148,10 @@ inline void dComIfGp_event_setGtItm(int i_itemNo) {
 
 inline void i_dComIfGp_event_reset() {
     g_dComIfG_gameInfo.play.getEvent().reset();
+}
+
+inline void i_dComIfGp_event_remove() {
+    g_dComIfG_gameInfo.play.getEvent().remove();
 }
 
 inline void dComIfGp_event_onEventFlag(u16 i_flag) {

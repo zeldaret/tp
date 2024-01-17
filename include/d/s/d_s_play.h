@@ -16,29 +16,29 @@ public:
 
 class dScnPly_reg_HIO_c {
 public:
-    /* 8025AD78 */ virtual ~dScnPly_reg_HIO_c();
+    /* 8025AD78 */ virtual ~dScnPly_reg_HIO_c() {}
 
-#ifdef DEBUG
     /* 0x4 */ u8 field_0x4[0x8 - 0x4];
+#ifdef DEBUG
     /* 0x8 */ dScnPly_reg_childHIO_c mChildReg[26];
 #endif
 };
 
 class mDoHIO_entry_c {
 public:
-    virtual ~mDoHIO_entry_c();
+    virtual ~mDoHIO_entry_c() {}
 };
 
 class dScnPly_preLoad_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 8025ADC0 */ virtual ~dScnPly_preLoad_HIO_c();
+    /* 8025ADC0 */ virtual ~dScnPly_preLoad_HIO_c() {}
 };
 
 class dScnPly_env_otherHIO_c {
 public:
     /* 80259440 */ dScnPly_env_otherHIO_c();
 
-    /* 8025AC0C */ virtual ~dScnPly_env_otherHIO_c();
+    /* 8025AC0C */ virtual ~dScnPly_env_otherHIO_c() {}
 
     /* 0x4 */ f32 mShadowDensity;
     /* 0x8 */ u8 mLODBias;
@@ -50,7 +50,7 @@ class dScnPly_env_debugHIO_c {
 public:
     /* 80259468 */ dScnPly_env_debugHIO_c();
 
-    /* 8025ABC4 */ virtual ~dScnPly_env_debugHIO_c();
+    /* 8025ABC4 */ virtual ~dScnPly_env_debugHIO_c() {}
 
 private:
     /* 0x04 */ u8 field_0x4;
@@ -62,9 +62,9 @@ private:
 
 class dScnPly_env_HIO_c {
 public:
-    /* 8025AD04 */ virtual ~dScnPly_env_HIO_c();
+    /* 8025AD04 */ virtual ~dScnPly_env_HIO_c() {}
 
-    /* 0x04 */ u8 field_0x4;
+    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ dScnPly_env_otherHIO_c mOther;
     /* 0x14 */ dScnPly_env_debugHIO_c mDebug;
 };
@@ -90,8 +90,8 @@ public:
     /* 0x1D4 */ u8 field_0x1d4;
 };
 
-extern u8 g_envHIO[68];
-extern u8 g_regHIO[4];
+extern dScnPly_env_HIO_c g_envHIO;
+extern dScnPly_reg_HIO_c g_regHIO;
 
 /**
  * === Register Usage ===

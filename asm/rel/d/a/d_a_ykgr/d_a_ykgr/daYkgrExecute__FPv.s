@@ -47,12 +47,12 @@ lbl_805A8A50:
 /* 805A8B04  EC 01 00 32 */	fmuls f0, f1, f0
 /* 805A8B08  EC 22 00 2A */	fadds f1, f2, f0
 /* 805A8B0C  4B FF F9 C9 */	bl setParam__17dPa_YkgrPcallBackFf
-/* 805A8B10  3C 60 80 45 */	lis r3, struct_80450D8C+0x1@ha /* 0x80450D8D@ha */
-/* 805A8B14  88 03 0D 8D */	lbz r0, struct_80450D8C+0x1@l(r3)  /* 0x80450D8D@l */
+/* 805A8B10  3C 60 80 45 */	lis r3, m_alpha_flag__8daYkgr_c+0x0@ha /* 0x80450D8D@ha */
+/* 805A8B14  88 03 0D 8D */	lbz r0, m_alpha_flag__8daYkgr_c+0x0@l(r3)  /* 0x80450D8D@l */
 /* 805A8B18  28 00 00 00 */	cmplwi r0, 0
 /* 805A8B1C  40 82 00 44 */	bne lbl_805A8B60
-/* 805A8B20  3C 60 80 45 */	lis r3, struct_80450D8C+0x2@ha /* 0x80450D8E@ha */
-/* 805A8B24  38 83 0D 8E */	addi r4, r3, struct_80450D8C+0x2@l /* 0x80450D8E@l */
+/* 805A8B20  3C 60 80 45 */	lis r3, m_alpha__8daYkgr_c+0x0@ha /* 0x80450D8E@ha */
+/* 805A8B24  38 83 0D 8E */	addi r4, r3, m_alpha__8daYkgr_c+0x0@l /* 0x80450D8E@l */
 /* 805A8B28  88 04 00 00 */	lbz r0, 0(r4)
 /* 805A8B2C  28 00 00 00 */	cmplwi r0, 0
 /* 805A8B30  41 82 00 70 */	beq lbl_805A8BA0
@@ -69,8 +69,8 @@ lbl_805A8B54:
 /* 805A8B58  98 04 00 00 */	stb r0, 0(r4)
 /* 805A8B5C  48 00 00 44 */	b lbl_805A8BA0
 lbl_805A8B60:
-/* 805A8B60  3C 60 80 45 */	lis r3, struct_80450D8C+0x2@ha /* 0x80450D8E@ha */
-/* 805A8B64  38 83 0D 8E */	addi r4, r3, struct_80450D8C+0x2@l /* 0x80450D8E@l */
+/* 805A8B60  3C 60 80 45 */	lis r3, m_alpha__8daYkgr_c+0x0@ha /* 0x80450D8E@ha */
+/* 805A8B64  38 83 0D 8E */	addi r4, r3, m_alpha__8daYkgr_c+0x0@l /* 0x80450D8E@l */
 /* 805A8B68  88 A4 00 00 */	lbz r5, 0(r4)
 /* 805A8B6C  28 05 00 FF */	cmplwi r5, 0xff
 /* 805A8B70  40 80 00 30 */	bge lbl_805A8BA0
