@@ -150,8 +150,10 @@ public:
     void setMsgKeyWaitTimer(s16 i_waitTimer) { mMsgKeyWaitTimer = i_waitTimer; }
     u32 getMsgTimeMs() { return mMsgTimeMs; }
     void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
+    void setTimeMs(s32 i_time) { mTimeMs = i_time; }
     u32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
+    u8 getMaxCount() { return mMaxCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
@@ -196,7 +198,7 @@ public:
     /* 0x78 */ f32 m2DPosH;
     /* 0x7C */ f32 m2DPosV;
     /* 0x80 */ f32 unk128;
-    /* 0x84 */ u32 mTimeMs;
+    /* 0x84 */ s32 mTimeMs;
     /* 0x88 */ u32 mMsgTimeMs;
     /* 0x8C */ s32 mMeterString;
     /* 0x90 */ u32 mTempBits;
@@ -593,8 +595,16 @@ inline void dMeter2Info_setMsgTimeMs(u32 msgTime) {
     g_meter2_info.setMsgTimeMs(msgTime);
 }
 
+inline void dMeter2Info_setTimeMs(s32 i_time) {
+    g_meter2_info.setTimeMs(i_time);
+}
+
 inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
+}
+
+inline u8 dMeter2Info_getMaxCount() {
+    return g_meter2_info.getMaxCount();
 }
 
 inline void dMeter2Info_setScopeZoomPointer(u8 param_0) {

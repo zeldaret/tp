@@ -474,80 +474,80 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
 /* 801FEFF0-801FF31C 1F9930 032C+00 1/1 0/0 0/0 .text            __ct__24dMeter_drawMiniGameHIO_cFv
  */
 dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
-    field_0x8 = 1.0f;
-    field_0x14 = 0.0f;
-    field_0x20 = 0.0f;
-    field_0x2c = 1.0f;
+    field_0x8[0] = 1.0f;
+    field_0x14[0] = 0.0f;
+    field_0x20[0] = 0.0f;
+    field_0x2c[0] = 1.0f;
 
-    mGoatTimerSizeX = 1.2f;
-    mGoatTimerSizeY = 0.9f;
-    mGoatTimerPosX = 207.0f;
-    mGoatTimerPosY = -43.0f;
-    mGoatTimerAlpha = 0.5f;
-    mGoatTimerSizeX_4x3 = 1.2f;
-    mGoatTimerSizeY_4x3 = 0.9f;
-    mGoatTimerPosX_4x3 = 207.0f;
-    mGoatTimerPosY_4x3 = -43.0f;
+    mTimerSizeX[0] = 1.2f;
+    mTimerSizeY[0] = 0.9f;
+    mTimerPosX[0] = 207.0f;
+    mTimerPosY[0] = -43.0f;
+    mTimerAlpha[0] = 0.5f;
+    mTimerSizeX_4x3 = 1.2f;
+    mTimerSizeY_4x3 = 0.9f;
+    mTimerPosX_4x3 = 207.0f;
+    mTimerPosY_4x3 = -43.0f;
 
-    mGoatCounterSizeX = 1.1f;
-    mGoatCounterSizeY = 0.9f;
-    mGoatCounterPosX = 17.0f;
-    mGoatCounterPosY = 317.0f;
-    mGoatCounterAlpha = 0.7f;
+    mCounterSizeX[0] = 1.1f;
+    mCounterSizeY[0] = 0.9f;
+    mCounterPosX[0] = 17.0f;
+    mCounterPosY[0] = 317.0f;
+    mCounterAlpha[0] = 0.7f;
 
-    mGoatIconSizeX = 0.75f;
-    mGoatIconSizeY = 0.75f;
-    mGoatIconPosX = -275.0f;
-    mGoatIconPosX_4x3 = -275.0f;
-    mGoatIconPosY = 76.0f;
-    mGoatIconAlpha = 0.9f;
+    mIconSizeX[0] = 0.75f;
+    mIconSizeY[0] = 0.75f;
+    mIconPosX[0] = -275.0f;
+    mIconPosX_4x3 = -275.0f;
+    mIconPosY[0] = 76.0f;
+    mIconAlpha[0] = 0.9f;
 
-    mRiverRideTargetCounterSizeY = 1.0f;
-    mRiverRideTargetCounterPosX = -22.0f;
+    field_0x8[1] = 1.0f;
+    field_0x14[1] = -22.0f;
     mRiverRideIconPosX_4x3 = -30.0f;
-    mRiverRideTargetCounterPosY = 0.0f;
-    mRiverRideTargetCounterAlpha = 1.0f;
+    field_0x20[1] = 0.0f;
+    field_0x2c[1] = 1.0f;
 
-    field_0x3c = 1.4f;
-    field_0x48 = 1.0f;
-    field_0x54 = 198.0f;
-    field_0x60 = 160.0f;
-    field_0x6c = 0.5f;
+    mTimerSizeX[1] = 1.4f;
+    mTimerSizeY[1] = 1.0f;
+    mTimerPosX[1] = 198.0f;
+    mTimerPosY[1] = 160.0f;
+    mTimerAlpha[1] = 0.5f;
 
-    mRiverRideCounterSizeX = 1.1f;
-    mRiverRideCounterSizeY = 0.95f;
-    mRiverRideCounterPosX = 28.0f;
-    mRiverRideCounterPosY = -18.0f;
-    mRiverRideCounterAlpha = 0.7f;
+    mCounterSizeX[1] = 1.1f;
+    mCounterSizeY[1] = 0.95f;
+    mCounterPosX[1] = 28.0f;
+    mCounterPosY[1] = -18.0f;
+    mCounterAlpha[1] = 0.7f;
 
-    mRiverRideTargetIconSizeX = 0.9f;
-    mRiverRideTargetIconSizeY = 0.9f;
-    mRiverRideTargetIconPosX = 23.0f;
-    mRiverRideTargetIconPosY = -16.0f;
-    mRiverRideTargetIconAlpha = 0.9f;
+    mIconSizeX[1] = 0.9f;
+    mIconSizeY[1] = 0.9f;
+    mIconPosX[1] = 23.0f;
+    mIconPosY[1] = -16.0f;
+    mIconAlpha[1] = 0.9f;
 
-    field_0x10 = 1.0f;
-    field_0x1c = 0.0f;
-    field_0x28 = 0.0f;
-    field_0x34 = 1.0f;
-    field_0x40 = 1.4f;
-    field_0x4c = 1.0f;
-    field_0x58 = 198.0f;
-    field_0x64 = -30.0f;
-    field_0x70 = 0.5f;
+    field_0x8[2] = 1.0f;
+    field_0x14[2] = 0.0f;
+    field_0x20[2] = 0.0f;
+    field_0x2c[2] = 1.0f;
+    mTimerSizeX[2] = 1.4f;
+    mTimerSizeY[2] = 1.0f;
+    mTimerPosX[2] = 198.0f;
+    mTimerPosY[2] = -30.0f;
+    mTimerAlpha[2] = 0.5f;
 
-    mRiderGameCounterSizeX = 1.1f;
-    mRiderGameCounterSizeY = 0.95f;
-    mRiderGameCounterPosX = 267.0f;
-    mRiderGameCounterPosY = 288.0f;
-    mRiderGameCounterAlpha = 0.7f;
+    mCounterSizeX[2] = 1.1f;
+    mCounterSizeY[2] = 0.95f;
+    mCounterPosX[2] = 267.0f;
+    mCounterPosY[2] = 288.0f;
+    mCounterAlpha[2] = 0.7f;
 
-    mRiderGameIconSizeX = 0.75f;
-    mRiderGameIconSizeY = 0.75f;
-    mRiderGameIconPosX = -29.0f;
+    mIconSizeX[2] = 0.75f;
+    mIconSizeY[2] = 0.75f;
+    mIconPosX[2] = -29.0f;
     mRiderGameIconPosX_4x3 = -26.0f;
-    mRiderGameIconPosY = 50.0f;
-    mRiderGameIconAlpha = 0.9f;
+    mIconPosY[2] = 50.0f;
+    mIconAlpha[2] = 0.9f;
 
     mReadyGo = 60;
     field_0x15a = 10;

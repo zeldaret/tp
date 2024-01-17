@@ -102,31 +102,30 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_m
 
 /* 8001FB50-8001FC4C 01A490 00FC+00 1/1 0/0 0/0 .text            createTimerAppend__FiUlUcUcffffUi
  */
-static fopMsg_prm_timer* createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param_3,
+static fopMsg_prm_timer* createTimerAppend(int i_mode, u32 i_limitMs, u8 i_type, u8 param_3,
                                            f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                            unsigned int param_8) {
-    fopMsg_prm_timer* timer = (fopMsg_prm_timer*)cMl::memalignB(-4, 0x38);
+    fopMsg_prm_timer* appen = (fopMsg_prm_timer*)cMl::memalignB(-4, sizeof(fopMsg_prm_timer));
 
-    if (timer == NULL) {
-        timer = NULL;
+    if (appen == NULL) {
+        appen = NULL;
     } else {
-        timer->field_0x0 = 0;
-        timer->field_0x10 = 0;
-        timer->field_0x14 = 0;
-        cXyz pos(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
-        timer->field_0x4 = pos;
-        timer->field_0x18 = param_8;
-        timer->field_0x1c = param_0;
-        timer->field_0x20 = param_1;
-        timer->field_0x24 = param_2;
-        timer->field_0x25 = param_3;
-        timer->field_0x28 = param_4;
-        timer->field_0x2c = param_5;
-        timer->field_0x30 = param_6;
-        timer->field_0x34 = param_7;
+        appen->mpActor = 0;
+        appen->mMsgID = 0;
+        appen->field_0x14 = 0;
+        appen->mPos = cXyz(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
+        appen->field_0x18 = param_8;
+        appen->timer_mode = i_mode;
+        appen->limit_ms = i_limitMs;
+        appen->type = i_type;
+        appen->field_0x25 = param_3;
+        appen->field_0x28 = param_4;
+        appen->field_0x2c = param_5;
+        appen->field_0x30 = param_6;
+        appen->field_0x34 = param_7;
     }
 
-    return timer;
+    return appen;
 }
 
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
@@ -143,16 +142,16 @@ s32 fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3
 }
 
 /* 8001FCC0-8001FD34 01A600 0074+00 0/0 2/2 0/0 .text fop_Timer_create__FsUcUlUcUcffffPFPv_i */
-s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
-                     f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc) {
-    fopMsg_prm_timer* timer_prm = createTimerAppend(param_1, param_2, param_3, param_4, param_5,
+s32 fop_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs, u8 i_type, u8 param_4, f32 param_5,
+                     f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc i_createFunc) {
+    fopMsg_prm_timer* timer_prm = createTimerAppend(i_mode, i_limitMs, i_type, param_4, param_5,
                                                     param_6, param_7, param_8, -1);
 
     if (timer_prm == NULL) {
         return -1;
     }
 
-    return fpcSCtRq_Request(fpcLy_CurrentLayer(), param_0, (stdCreateFunc)createFunc, NULL,
+    return fpcSCtRq_Request(fpcLy_CurrentLayer(), i_procName, (stdCreateFunc)i_createFunc, NULL,
                             timer_prm);
 }
 

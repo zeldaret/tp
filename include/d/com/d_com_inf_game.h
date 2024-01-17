@@ -838,8 +838,24 @@ inline dTimer_c* dComIfG_getTimerPtr() {
     return g_dComIfG_gameInfo.play.getTimerPtr();
 }
 
+inline void dComIfG_setTimerPtr(dTimer_c* i_ptr) {
+    g_dComIfG_gameInfo.play.setTimerPtr(i_ptr);
+}
+
+inline void dComIfG_setTimerType(u8 i_type) {
+    g_dComIfG_gameInfo.play.setTimerType(i_type);
+}
+
 inline u8 dComIfG_getTimerType() {
     return g_dComIfG_gameInfo.play.getTimerType();
+}
+
+inline int dComIfG_getTimerLimitTimeMs() {
+    return g_dComIfG_gameInfo.play.getTimerLimitTimeMs();
+}
+
+inline void dComIfG_setTimerLimitTimeMs(int i_time) {
+    g_dComIfG_gameInfo.play.setTimerLimitTimeMs(i_time);
 }
 
 inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
@@ -3214,6 +3230,10 @@ inline BOOL dComIfGp_event_chkTalkXY() {
 
 inline void dComIfGp_event_setCullRate(f32 f) {
     g_dComIfG_gameInfo.play.getEvent().setCullRate(f);
+}
+
+inline u8 dComIfGp_event_getMode() {
+    return g_dComIfG_gameInfo.play.getEvent().getMode();
 }
 
 inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
