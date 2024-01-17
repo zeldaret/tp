@@ -44,7 +44,7 @@ public:
     /* 8009C724 */ dMdl_c* entry(J3DModelData*, u16, dKy_tevstr_c*);
     /* 8009C8D8 */ static dMdl_c* entry(J3DModelData*, u16, int);
     /* 8009C7AC */ static void create();
-    /* 8009C864 */ void remove();
+    /* 8009C864 */ static void remove();
     /* 8009C8C0 */ static void reset();
 
     static dMdl_mng_c* m_myObj;

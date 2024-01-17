@@ -64,6 +64,10 @@ inline f32 fopCamM_GetFovy(camera_class* i_camera) {
     return i_camera->mFovy;
 }
 
+inline cXyz* fopCamM_GetEye_p(camera_class* i_camera) {
+    return &i_camera->mLookat.mEye;
+}
+
 u32 fopCamM_Create(int i_cameraIdx, s16 pProcName, void* param_3);
 void fopCamM_Management(void);
 u32 fopCamM_GetParam(camera_class* pCamera);

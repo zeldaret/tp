@@ -16,16 +16,11 @@
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
+#include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
 
 //
 // Types:
 //
-
-struct daYkgr_c {
-    static u8 m_aim_rate[4];
-    static u8 m_path[4];
-    static u8 m_emitter[4];
-};
 
 struct daObjMovebox {
     struct Act_c {
@@ -273,14 +268,15 @@ u8 daSus_c::mRoom[256];
 /* 80450D88-80450D8C -00001 0004+00 1/1 0/0 2/2 .sbss            None */
 /* 80450D88 0002+00 data_80450D88 m_count__9daArrow_c */
 extern s16 m_count__9daArrow_c;
+#pragma push
+#pragma force_active on
 s16 m_count__9daArrow_c;
+#pragma pop
 
 /* 80450D8A 0002+00 data_80450D8A mSetTop__7daSus_c */
 s16 daSus_c::mSetTop;
 
 /* 80031248-800313BC 02BB88 0174+00 0/0 0/0 1/1 .text newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc */
-// Issues with mSetTop and m_count__9daArrow_c relocation
-#ifdef NONMATCHING
 int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 param_3, u8 param_4,
                      u8 i_type) {
     s16 setTop = mSetTop;
@@ -307,17 +303,6 @@ int daSus_c::newData(s8 i_roomNo, cXyz const& param_1, cXyz const& param_2, u8 p
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSus_c::newData(s8 param_0, cXyz const& param_1, cXyz const& param_2, u8 param_3,
-                         u8 param_4, u8 param_5) {
-    nofralloc
-#include "asm/d/com/d_com_static/newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc.s"
-}
-#pragma pop
-#endif
 
 /* 800313BC-80031434 02BCFC 0078+00 0/0 1/1 0/0 .text            reset__7daSus_cFv */
 void daSus_c::reset() {
@@ -429,34 +414,24 @@ void daNpcKakashi_clrSuccessCount() {
     dComIfGs_setTmpReg(0xFEFF, 0);
 }
 
-/* ############################################################################################## */
-/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803790B8 = "@bg%04x";
-#pragma pop
-
 /* 80450D8C-80450D90 -00001 0004+00 0/0 1/1 3/3 .sbss            None */
 /* 80450D8C 0001+00 data_80450D8C None */
-// u8 daYkgr_c::m_flag;
+bool daYkgr_c::m_flag;
 
 /* 80450D8D 0001+00 data_80450D8D None */
-// u8 daYkgr_c::m_alpha_flag;
+bool daYkgr_c::m_alpha_flag;
 
 /* 80450D8E 0002+00 data_80450D8E None */
-// u8 daYkgr_c::m_alpha;
-
-extern u8 struct_80450D8C[4];
-u8 struct_80450D8C[4];
+u8 daYkgr_c::m_alpha;
 
 /* 80450D90-80450D94 000290 0004+00 0/0 0/0 1/1 .sbss            m_aim_rate__8daYkgr_c */
-u8 daYkgr_c::m_aim_rate[4];
+f32 daYkgr_c::m_aim_rate;
 
 /* 80450D94-80450D98 000294 0004+00 0/0 0/0 2/2 .sbss            m_path__8daYkgr_c */
-u8 daYkgr_c::m_path[4];
+dPath* daYkgr_c::m_path;
 
 /* 80450D98-80450D9C 000298 0004+00 0/0 1/1 2/2 .sbss            m_emitter__8daYkgr_c */
-u8 daYkgr_c::m_emitter[4];
+JPABaseEmitter* daYkgr_c::m_emitter;
 
 /* 80031870-800318B4 02C1B0 0044+00 0/0 0/0 19/19 .text getArcName__12daSetBgObj_cFP10fopAc_ac_c
  */

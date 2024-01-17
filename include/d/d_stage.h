@@ -997,11 +997,12 @@ static int dStage_fieldMapMapPathInit(dStage_dt_c*, void*, int, void*);
 s8 dStage_roomRead_dt_c_GetReverbStage(roomRead_class&, int);
 int dStage_changeScene(int i_exitId, f32 i_speed, u32 i_mode, s8 i_roomNo, s16 i_angle, int i_layerOverride);
 void dStage_infoCreate();
-u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
+u32 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info, int layer);
 int dStage_changeSceneExitId(cBgS_PolyInfo& param_0, f32 speed, u32 mode, s8 roomNo, s16 angle);
 int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3, f32 speed,
                              u32 mode, s16 angle, int param_7);
 void dStage_Create();
+void dStage_Delete();
 static s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0);
 void dStage_restartRoom(u32 roomParam, u32 mode, int param_2);
 class cBgS_GndChk;
@@ -1043,7 +1044,7 @@ inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
     return (pstag->field_0x0a >> 0xD) & 7;
 }
 
-inline u8 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info) {
+inline u32 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info) {
     return (p_info->field_0x0a >> 0x3) & 0xFF;
 }
 

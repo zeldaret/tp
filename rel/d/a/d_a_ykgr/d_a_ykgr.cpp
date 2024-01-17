@@ -4,74 +4,19 @@
 //
 
 #include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
+#include "m_Do/m_Do_mtx.h"
+#include "m_Do/m_Do_hostIO.h"
+#include "d/particle/d_particle.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "dol2asm.h"
+#include "JSystem/JKernel/JKRHeap.h"
 
 //
 // Types:
 //
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 805A8DF4 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daYkgr_c {
-    /* 805A85D4 */ void getPosRate();
-
-    static u8 m_aim_rate[4];
-    static u8 m_path[4];
-    static u8 m_emitter[4];
-};
-
-struct daYkgr_HIO_c {
-    /* 805A8D98 */ ~daYkgr_HIO_c();
-};
-
-struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct csXyz {};
-
-struct _GXColor {};
-
-struct cXyz {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
-struct JPABaseParticle {};
-
-struct JPABaseEmitter {};
-
-struct dPa_YkgrPcallBack {
-    /* 805A848C */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 805A84D4 */ void setParam(f32);
-    /* 805A8E3C */ ~dPa_YkgrPcallBack();
-};
-
-struct JPAParticleCallBack {
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-    /* 805A8E9C */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 805A8FA4 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-};
-
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
 
 //
 // Forward References:
@@ -111,23 +56,11 @@ extern "C" void cLib_addCalc2__FPffff();
 extern "C" void __dt__19JPAParticleCallBackFv();
 extern "C" void func_802807E0();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareDistance();
-extern "C" void GXSetIndTexMtx();
-extern "C" void GXSetTevAlphaIn();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
-extern "C" extern u32 __float_max;
-extern "C" extern u8 struct_80450D8C[4];
 extern "C" u8 m_aim_rate__8daYkgr_c[4];
 extern "C" u8 m_path__8daYkgr_c[4];
 extern "C" u8 m_emitter__8daYkgr_c[4];
@@ -139,6 +72,13 @@ extern "C" void __register_global_object();
 
 /* 805A848C-805A84D4 0000EC 0048+00 1/0 0/0 0/0 .text
  * draw__17dPa_YkgrPcallBackFP14JPABaseEmitterP15JPABaseParticle */
+// Needs inheritance
+#ifdef NONMATCHING
+void dPa_YkgrPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
+    GXSetIndTexMtx(GX_ITM_0, &field_0x4, field_0x1c);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,6 +87,7 @@ asm void dPa_YkgrPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/draw__17dPa_YkgrPcallBackFP14JPABaseEmitterP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 805A8FBC-805A8FC0 000000 0004+00 6/6 0/0 0/0 .rodata          @3759 */
@@ -200,6 +141,29 @@ COMPILER_STRIP_GATE(0x805A8FD4, &lit_3766);
 #pragma pop
 
 /* 805A84D4-805A85D4 000134 0100+00 2/2 0/0 0/0 .text            setParam__17dPa_YkgrPcallBackFf */
+// Matches with literals
+#ifdef NONMATCHING
+void dPa_YkgrPcallBack::setParam(f32 param_1) {
+    if (param_1 <= -17.0f || param_1 >= 47.0f) return; {
+        if (param_1 >= 0.0f) {
+            field_0x1c = param_1;
+            f32 fVar1 = (param_1 - field_0x1c) * 0.5f + 0.5f;
+            field_0x14 = fVar1;
+            field_0x4 = fVar1;
+        } else {
+            f32 x = param_1 - 1.0f;
+            field_0x1c = x;
+            f32 fVar1 = (x - field_0x1c) * 0.5f + 1.0f;
+            field_0x14 = fVar1;
+            field_0x4 = fVar1;
+        }
+        field_0x8 = 0.0f;
+        field_0xc = 0.0f;
+        field_0x10 = 0.0f;
+        field_0x18 = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -208,6 +172,7 @@ asm void dPa_YkgrPcallBack::setParam(f32 param_0) {
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/setParam__17dPa_YkgrPcallBackFf.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 805A8FDC-805A8FE4 000020 0008+00 0/1 0/0 0/0 .rodata          @3846 */
@@ -340,14 +305,42 @@ static u8 lit_3744[12];
 static u8 l_HIO[40];
 
 /* 805A85D4-805A882C 000234 0258+00 1/1 0/0 0/0 .text            getPosRate__8daYkgr_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+f32 daYkgr_c::getPosRate() {
+    if (m_path == NULL) {
+        return 0.0f;
+    } 
+    f32 dVar11 = FLT_MAX;
+    cXyz cStack_5c(dComIfGp_getPlayer(0)->current.pos);
+    dStage_dPnt_c* iVar9 = m_path->m_points;
+    int uVar2 = m_path->m_num;
+    for (int iVar8 = 0; iVar8 < uVar2; iVar8++, iVar9++) {
+        cXyz cStack_68(iVar9->m_position.x, iVar9->m_position.y, iVar9->m_position.z);
+        f32 dVar10 = cStack_5c.absXZ(cStack_68);
+        if (dVar10 < dVar11) {
+            dVar11 = dVar10;
+        }
+    }
+    if (dVar11 > ((daYkgr_HIO_c*)&l_HIO)->field_0x20) {
+        dVar11 = ((daYkgr_HIO_c*)&l_HIO)->field_0x20;
+    } else if (dVar11 < ((daYkgr_HIO_c*)&l_HIO)->field_0x24) {
+        dVar11 = ((daYkgr_HIO_c*)&l_HIO)->field_0x24;
+    }
+    f32 y = (((daYkgr_HIO_c*)&l_HIO)->field_0x20);
+    y = (dVar11 - ((daYkgr_HIO_c*)&l_HIO)->field_0x24) / (y -((daYkgr_HIO_c*)&l_HIO)->field_0x24);
+    return 1.0f - y;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daYkgr_c::getPosRate() {
+asm f32 daYkgr_c::getPosRate() {
     nofralloc
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/getPosRate__8daYkgr_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 805A8FF4-805A8FF8 000038 0004+00 0/2 0/0 0/0 .rodata          @3951 */
@@ -367,18 +360,73 @@ static u8 lit_3851[12];
 static u8 YkgrCB[32];
 
 /* 805A882C-805A8A48 00048C 021C+00 1/0 0/0 0/0 .text            daYkgrCreate__FPv */
+// regalloc
+#ifdef NONMATCHING
+inline int daYkgr_c::_create() {
+    dPath* path;
+    s32 uVar1 = fopAcM_GetParam(this) ;
+    uVar1 = (uVar1 >> 0x14) & 0xf;
+    fopAcM_SetupActor(this, daYkgr_c);
+    u32 uVar4 = (fopAcM_GetParam(this) >> 8) & 0xff;
+    if (uVar4 != 0xff) {
+        path = dPath_GetRoomPath(uVar4, fopAcM_GetRoomNo(this));
+    } else {
+        path = NULL;
+    }
+    m_path = path;
+
+    if (m_emitter == NULL) {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        this->current.pos = player->current.pos;
+        m_emitter = dComIfGp_particle_set(0x80e2, &this->current.pos, NULL, NULL);
+        if (m_emitter != NULL) {
+            m_emitter->setParticleCallBackPtr((JPAParticleCallBack*)YkgrCB);
+            ((dPa_YkgrPcallBack*)YkgrCB)->setParam(-3.0f);
+        } else {
+            return cPhs_ERROR_e;
+        }
+        fopAcM_setStageLayer(this);
+        if (uVar1 == 1) {
+            setAlpha(0xff);
+            m_emitter->setGlobalAlpha(0xff);
+            field_0x5a4 = 0.5f;
+            field_0x5a8 = 0.0f;
+            start();
+        } else {
+            setAlpha(0);
+            m_emitter->setGlobalAlpha(0);
+            field_0x5a4 = 0.5f;
+            field_0x5a8 = 0.0f;
+            stop();
+        }
+    } else {
+        if (uVar1 == 1) {
+            start();
+        } else {
+            stop();
+        }
+        return cPhs_UNK3_e;
+    }
+    return cPhs_COMPLEATE_e;
+}
+
+static int daYkgrCreate(void* i_this) {
+    return static_cast<daYkgr_c*>(i_this)->_create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daYkgrCreate(void* param_0) {
+static asm int daYkgrCreate(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/daYkgrCreate__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 805A8A48-805A8A50 0006A8 0008+00 1/0 0/0 0/0 .text            daYkgrDelete__FPv */
-static bool daYkgrDelete(void* param_0) {
-    return true;
+static int daYkgrDelete(void* param_0) {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -397,14 +445,45 @@ COMPILER_STRIP_GATE(0x805A8FFC, &lit_3977);
 #pragma pop
 
 /* 805A8A50-805A8BBC 0006B0 016C+00 1/0 0/0 0/0 .text            daYkgrExecute__FPv */
+// Matches with literals
+#ifdef NONMATCHING
+inline int daYkgr_c::_execute() {
+    cLib_addCalc2(&field_0x5a4, m_aim_rate, 0.25f, 0.05f);
+    cLib_addCalc2(&m_aim_rate, ((f32*)l_HIO)[7], 0.25f, 0.05f);
+    cLib_addCalc2(&field_0x5a8, getPosRate(), 0.25f, 0.05f);
+    f32 fVar4 = field_0x5a8 * 0.5f + field_0x5a4 * 0.5f;
+    ((dPa_YkgrPcallBack*)YkgrCB)->setParam(fVar4 * ((f32*)l_HIO)[6] + (1.0f - fVar4) * ((f32*)l_HIO)[5]);
+    if (m_alpha_flag == 0) {
+        if (m_alpha != 0) {
+            if (m_alpha > ((s32*)l_HIO)[3]) {
+                m_alpha = m_alpha - ((s32*)l_HIO)[3];
+            } else {
+                m_alpha = 0;
+            }
+        }
+    } else if (m_alpha < 0xff) {
+        if (m_alpha < 0xff - ((s32*)l_HIO)[3]) {
+            m_alpha = m_alpha + ((s32*)l_HIO)[3];
+        } else {
+            m_alpha = 0xff;
+        }
+    }
+    return 1;
+}
+
+static int daYkgrExecute(void* i_this) {
+    return static_cast<daYkgr_c*>(i_this)->_execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daYkgrExecute(void* param_0) {
+static asm int daYkgrExecute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/daYkgrExecute__FPv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 805A9000-805A9004 000044 0004+00 0/1 0/0 0/0 .rodata          @4032 */
@@ -428,41 +507,73 @@ SECTION_DEAD static char const* const stringBase_805A9018 = "D_MN04A";
 #pragma pop
 
 /* 805A8BBC-805A8D90 00081C 01D4+00 1/0 0/0 0/0 .text            daYkgrDraw__FPv */
+// Matches with literals
+#ifdef NONMATCHING
+inline int daYkgr_c::_draw() {
+    bool rv;
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN04A") == 0) {
+        m_alpha = (dComIfGs_BossLife_public_Get() / 100.0f) * 255.0f;
+        if (m_alpha == 0) {
+            m_alpha++;
+        }
+    }
+    if (m_alpha == 0) {
+        rv = true;
+    } else {
+        set_mtx();
+        if  (m_emitter != NULL) {
+            m_emitter->setGlobalRTMatrix(field_0x570);
+            m_emitter->setGlobalAlpha(m_alpha);
+        }
+        rv = true;
+    }
+    return rv;
+}
+
+static int daYkgrDraw(void* i_this) {
+    return static_cast<daYkgr_c*>(i_this)->_draw();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daYkgrDraw(void* param_0) {
+static asm int daYkgrDraw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/daYkgrDraw__FPv.s"
 }
 #pragma pop
+#endif
 
 /* 805A8D90-805A8D98 0009F0 0008+00 1/0 0/0 0/0 .text            daYkgrIsDelete__FPv */
-static bool daYkgrIsDelete(void* param_0) {
-    return true;
+static int daYkgrIsDelete(void* param_0) {
+    return 1;
 }
 
 /* ############################################################################################## */
 /* 805A9020-805A9040 -00001 0020+00 1/0 0/0 0/0 .data            daYkgrMethodTable */
-SECTION_DATA static void* daYkgrMethodTable[8] = {
-    (void*)daYkgrCreate__FPv,
-    (void*)daYkgrDelete__FPv,
-    (void*)daYkgrExecute__FPv,
-    (void*)daYkgrIsDelete__FPv,
-    (void*)daYkgrDraw__FPv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daYkgrMethodTable = {
+    daYkgrCreate,
+    daYkgrDelete,
+    daYkgrExecute,
+    daYkgrIsDelete,
+    daYkgrDraw,
 };
 
-/* 805A9040-805A9070 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Ykgr */
-SECTION_DATA extern void* g_profile_Ykgr[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02BC0000, (void*)&g_fpcLf_Method,
-    (void*)0x000005AC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01AE0000, (void*)&daYkgrMethodTable,
-    (void*)0x00044000, (void*)NULL,
+extern actor_process_profile_definition g_profile_Ykgr = {
+    fpcLy_CURRENT_e,
+    7,
+    fpcPi_CURRENT_e,
+    PROC_Ykgr,
+    &g_fpcLf_Method.mBase,
+    sizeof(daYkgr_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x01AE,
+    &daYkgrMethodTable,
+    0x00044000,
+    0,
+    0,
 };
 
 /* 805A9070-805A9084 000050 0014+00 2/2 0/0 0/0 .data            __vt__17dPa_YkgrPcallBack */
@@ -511,13 +622,18 @@ asm daYkgr_HIO_c::~daYkgr_HIO_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+asm void __dt__14mDoHIO_entry_cFv() {
+//asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
 /* 805A8E3C-805A8E9C 000A9C 0060+00 2/1 0/0 0/0 .text            __dt__17dPa_YkgrPcallBackFv */
+#ifdef NONMATCHING
+dPa_YkgrPcallBack::~dPa_YkgrPcallBack() {
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,6 +642,7 @@ asm dPa_YkgrPcallBack::~dPa_YkgrPcallBack() {
 #include "asm/rel/d/a/d_a_ykgr/d_a_ykgr/__dt__17dPa_YkgrPcallBackFv.s"
 }
 #pragma pop
+#endif
 
 /* 805A8E9C-805A8EA0 000AFC 0004+00 2/0 0/0 0/0 .text
  * execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle */
