@@ -304,6 +304,7 @@ struct GLOBAL_MEMORY {
 #define OSUncachedToCached(ucaddr) ((void*)((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 
 extern OSTime __OSStartTime;
+extern BOOL __OSInIPL;
 
 #ifdef __cplusplus
 };

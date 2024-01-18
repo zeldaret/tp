@@ -67,7 +67,6 @@ static u32* BI2DebugFlagHolder;
 OSTime __OSStartTime;
 
 /* 80451628-80451630 000B28 0004+04 1/1 1/1 0/0 .sbss            __OSInIPL */
-extern BOOL __OSInIPL;
 BOOL __OSInIPL;
 
 /* 80451624-80451628 000B24 0004+00 3/3 0/0 0/0 .sbss            OSExceptionTable */

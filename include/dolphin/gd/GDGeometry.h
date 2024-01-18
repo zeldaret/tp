@@ -1,7 +1,7 @@
 #ifndef GDGEOMETRY_H
 #define GDGEOMETRY_H
 
-#include "dolphin/types.h"
+#include "gx.h"
 
 #ifdef __cplusplus
 extern "C" {
