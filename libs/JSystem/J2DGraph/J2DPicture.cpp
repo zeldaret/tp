@@ -759,7 +759,7 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
         GXColor1u32(black[2]);
         GXTexCoord2s16(param_8,param_9);
 
-        i_GXEnd();
+        GXEnd();
 
         GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_RGBX8,0xf);
         GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_RGBA4,0);

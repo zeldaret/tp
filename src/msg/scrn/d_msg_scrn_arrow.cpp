@@ -13,7 +13,7 @@ dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mScreen = new J2DScreen();
     mScreen->setPriority("zelda_window_yajirushi.blo", 0x20000, dComIfGp_getMsgArchive(0));
     dPaneClass_showNullPane(mScreen);
-    i_OSInitFastCast();
+    OSInitFastCast();
 
     mAnmBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
         JKRFileLoader::getGlbResource("zelda_window_yajirushi.bck", dComIfGp_getMsgArchive(0)));

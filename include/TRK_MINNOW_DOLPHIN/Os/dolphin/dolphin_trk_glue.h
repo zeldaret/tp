@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 typedef int (*DBCommFunc)();
-typedef int (*DBCommInitFunc)(void*, OSInterruptHandler);
+typedef int (*DBCommInitFunc)(void*, __OSInterruptHandler);
 typedef int (*DBCommReadFunc)(u8*, int);
 typedef int (*DBCommWriteFunc)(const u8*, int);
 

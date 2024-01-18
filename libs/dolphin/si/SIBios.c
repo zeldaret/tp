@@ -137,7 +137,7 @@ static u32 CompleteTransfer() {
 static SITypeAndStatusCallback TypeCallback[SI_MAX_CHAN][4];
 
 /* 8044C7D0-8044C7E0 0794F0 0010+00 2/3 0/0 0/0 .bss             RDSTHandler */
-static OSInterruptHandler RDSTHandler[4];
+static __OSInterruptHandler RDSTHandler[4];
 
 /* 8044C7E0-8044C7F0 079500 0010+00 0/0 0/0 0/0 .bss             InputBufferValid */
 #pragma push
@@ -180,7 +180,7 @@ inline void SITransferNext(s32 chan) {
 static u8 cmdTypeAndStatus_78[4];
 
 /* 80344EF8-8034523C 33F838 0344+00 1/1 0/0 0/0 .text            SIInterruptHandler */
-static void SIInterruptHandler(OSInterrupt interrupt, OSContext* context) {
+static void SIInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
     u32 reg;
 
     reg = __SIRegs[13];
@@ -272,7 +272,7 @@ static BOOL SIEnablePollingInterrupt(BOOL enable) {
 }
 
 /* 803452D4-803453A0 33FC14 00CC+00 0/0 1/1 0/0 .text            SIRegisterPollingHandler */
-BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
+BOOL SIRegisterPollingHandler(__OSInterruptHandler handler) {
     BOOL enabled;
     int i;
 
@@ -296,7 +296,7 @@ BOOL SIRegisterPollingHandler(OSInterruptHandler handler) {
 }
 
 /* 803453A0-80345494 33FCE0 00F4+00 0/0 1/1 0/0 .text            SIUnregisterPollingHandler */
-BOOL SIUnregisterPollingHandler(OSInterruptHandler handler) {
+BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler) {
     BOOL enabled;
     int i;
 

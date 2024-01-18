@@ -462,7 +462,7 @@ void J2DWindow::drawContents(JGeometry::TBox2<f32> const& param_0) {
             GXColor1u32(color4);
             GXPosition3f32(param_0.i.x, param_0.f.y, 0.0f);
             GXColor1u32(color2);
-            i_GXEnd();
+            GXEnd();
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
         } else {
             GXClearVtxDesc();
@@ -491,17 +491,17 @@ void J2DWindow::drawFrameTexture(JUTTexture* param_0, f32 param_1, f32 param_2, 
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3f32(param_1, param_2, 0.0f);
     GXColor1u32(stack_64);
-    i_GXTexCoord2u16(param_7, param_8);
+    GXTexCoord2u16(param_7, param_8);
     GXPosition3f32(f31, param_2, 0.0f);
     GXColor1u32(stack_64);
-    i_GXTexCoord2u16(param_5, param_8);
+    GXTexCoord2u16(param_5, param_8);
     GXPosition3f32(f31, f30, 0.0f);
     GXColor1u32(stack_64);
-    i_GXTexCoord2u16(param_5, param_6);
+    GXTexCoord2u16(param_5, param_6);
     GXPosition3f32(param_1, f30, 0.0f);
     GXColor1u32(stack_64);
-    i_GXTexCoord2u16(param_7, param_6);
-    i_GXEnd();
+    GXTexCoord2u16(param_7, param_6);
+    GXEnd();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 }
 
@@ -552,7 +552,7 @@ void J2DWindow::drawContentsTexture(f32 param_0, f32 param_1, f32 param_2, f32 p
     GXPosition3f32(param_0, f28, 0.0f);
     GXColor1u32(stack_f0.field_0x8);
     GXTexCoord2f32(f27, f24);
-    i_GXEnd();
+    GXEnd();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 }

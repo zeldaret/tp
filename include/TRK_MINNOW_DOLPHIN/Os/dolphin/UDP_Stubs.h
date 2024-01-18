@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-int udp_cc_initialize(void* flagOut, OSInterruptHandler handler);
+int udp_cc_initialize(void* flagOut, __OSInterruptHandler handler);
 int udp_cc_shutdown(void);
 int udp_cc_open(void);
 int udp_cc_close(void);

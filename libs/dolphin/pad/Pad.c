@@ -24,9 +24,15 @@ static void SPEC0_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
 static void SPEC1_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
 static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
 static s32 OnReset(s32 final);
-static void SamplingHandler(OSInterrupt interrupt, OSContext* context);
+static void SamplingHandler(__OSInterrupt interrupt, OSContext* context);
 static PADSamplingCallback PADSetSamplingCallback(PADSamplingCallback callback);
 BOOL __PADDisableRecalibration(BOOL disable);
+
+static void PADOriginCallback(s32 chan, u32 error, OSContext* context);
+static void PADOriginUpdateCallback(s32 chan, u32 error, OSContext* context);
+static void PADProbeCallback(s32 chan, u32 error, OSContext* context);
+static void PADTypeAndStatusCallback(s32 chan, u32 type);
+static void PADReceiveCheckCallback(s32 chan, u32 type);
 
 //
 // External References:
@@ -802,7 +808,7 @@ static s32 OnReset(s32 f) {
 }
 
 /* 8034FB40-8034FBA0 34A480 0060+00 1/1 0/0 0/0 .text            SamplingHandler */
-static void SamplingHandler(OSInterrupt interrupt, OSContext* context) {
+static void SamplingHandler(__OSInterrupt interrupt, OSContext* context) {
     OSContext exceptionContext;
 
     if (SamplingCallback) {

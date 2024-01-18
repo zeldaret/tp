@@ -102,10 +102,10 @@ typedef union SIComm_u {
 
 BOOL SIBusy(void);
 BOOL SIIsChanBusy(s32 chan);
-static void SIInterruptHandler(OSInterrupt interrupt, OSContext* context);
+static void SIInterruptHandler(__OSInterrupt interrupt, OSContext* context);
 static BOOL SIEnablePollingInterrupt(BOOL enable);
-BOOL SIRegisterPollingHandler(OSInterruptHandler handler);
-BOOL SIUnregisterPollingHandler(OSInterruptHandler handler);
+BOOL SIRegisterPollingHandler(__OSInterruptHandler handler);
+BOOL SIUnregisterPollingHandler(__OSInterruptHandler handler);
 void SIInit(void);
 u32 SIGetStatus(s32 chan);
 void SISetCommand(s32 chan, u32 command);

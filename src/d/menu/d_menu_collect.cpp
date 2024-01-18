@@ -1567,7 +1567,7 @@ asm void dMenu_Collect2D_c::screenSet() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::animationSet() {
-    i_OSInitFastCast();
+    OSInitFastCast();
     void* resource =
         JKRGetNameResource("zelda_collect_soubi_screen_revo.btk", dComIfGp_getCollectResArchive());
     mpAnmKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);

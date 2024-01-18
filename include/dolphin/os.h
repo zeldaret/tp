@@ -169,7 +169,7 @@ inline void OSf32tou8(f32* f, u8* out) {
     *out = __OSf32tou8(*f);
 }
 
-inline void i_OSInitFastCast(void) {
+static inline void OSInitFastCast(void) {
     // clang-format off
     asm {
         li r3, 4

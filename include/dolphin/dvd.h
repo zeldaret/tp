@@ -139,6 +139,8 @@ s32 DVDCancel(DVDCommandBlock* block);
 void __DVDPrepareResetAsync(DVDCBCallback callbac);
 BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2);
 
+DVDCommandBlock* __DVDPopWaitingQueue(void);
+
 #ifdef __cplusplus
 };
 #endif

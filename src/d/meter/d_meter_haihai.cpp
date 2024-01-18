@@ -36,7 +36,7 @@ int dMeterHaihai_c::_create() {
     mpParent = new CPaneMgr(mpHaihaiScreen, 'n_all', 2, NULL);
     JUT_ASSERT(mpParent != 0);
 
-    i_OSInitFastCast();
+    OSInitFastCast();
     mpCursorBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_hihi_cursor.bck", dComIfGp_getMain2DArchive()));
     mBckFrame = 0.0f;

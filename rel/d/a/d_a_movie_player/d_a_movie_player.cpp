@@ -94,7 +94,7 @@ extern "C" void __THPHuffDecodeDCTCompY();
 extern "C" void __THPHuffDecodeTab();
 extern "C" void __THPHuffDecodeDCTCompU();
 extern "C" void __THPHuffDecodeDCTCompV();
-extern "C" static void OSInitFastCast();
+extern "C" static void i_OSInitFastCast();
 extern "C" static void THPInit();
 extern "C" static void daMP_PopReadedBuffer__Fv();
 extern "C" static void daMP_PushReadedBuffer__FPv();
@@ -131,7 +131,7 @@ extern "C" static void daMP_THPGXRestore__Fv();
 extern "C" static void daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj();
 extern "C" static void GXSetTexCoordGen();
 extern "C" static void daMP_THPGXYuv2RgbDraw__FPUcPUcPUcssssss();
-extern "C" static void GXTexCoord2u16();
+extern "C" static void i_GXTexCoord2u16();
 extern "C" static void daMP_MixAudio__FPsPsUl();
 extern "C" static void daMP_audioCallbackWithMSound__Fl();
 extern "C" static void daMP_audioInitWithMSound__Fv();
@@ -230,8 +230,8 @@ extern "C" void AIGetDSPSampleRate();
 extern "C" void GXClearVtxDesc();
 extern "C" void GXDrawDone();
 extern "C" void GXInvalidateTexAll();
-extern "C" static void GXEnd();
-extern "C" static void GXPosition3s16();
+extern "C" static void i_GXEnd();
+extern "C" static void i_GXPosition3s16();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_23();
@@ -780,7 +780,7 @@ static asm void THPInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void OSInitFastCast() {
+static asm void i_OSInitFastCast() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/OSInitFastCast.s"
 }
@@ -1336,7 +1336,7 @@ static asm void daMP_THPGXYuv2RgbDraw(u8* param_0, u8* param_1, u8* param_2, s16
 #pragma pop
 
 /* 80876DE4-80876DE8 004704 0004+00 1/1 0/0 0/0 .text            GXEnd */
-static void GXEnd() {
+static void i_GXEnd() {
     /* empty function */
 }
 
@@ -1344,7 +1344,7 @@ static void GXEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXTexCoord2u16() {
+static asm void i_GXTexCoord2u16() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/GXTexCoord2u16.s"
 }
@@ -1354,7 +1354,7 @@ static asm void GXTexCoord2u16() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXPosition3s16() {
+static asm void i_GXPosition3s16() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/GXPosition3s16.s"
 }

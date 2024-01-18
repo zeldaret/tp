@@ -91,7 +91,7 @@ void dDrawPath_c::rendering(dDrawPath_c::line_class const* p_line) {
                 GXPosition1x16(*tmp);
                 tmp++;
             }
-            i_GXEnd();
+            GXEnd();
         }
     }
 }
@@ -110,7 +110,7 @@ void dDrawPath_c::rendering(dDrawPath_c::poly_class const* p_poly) {
                 GXPosition1x16(*tmp);
                 tmp++;
             }
-            i_GXEnd();
+            GXEnd();
         }
     }
 }
@@ -262,7 +262,7 @@ void dRenderingFDAmap_c::drawBack() const {
     GXPosition3f32(field_0x8, -field_0xc, 0);
     GXPosition3f32(field_0x8, field_0xc, 0);
     GXPosition3f32(-field_0x8, field_0xc, 0);
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 8003D188-8003D320 037AC8 0198+00 1/0 8/0 0/0 .text preRenderingMap__18dRenderingFDAmap_cFv */
@@ -363,7 +363,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
         GXBegin(GX_POINTS, GX_VTXFMT0, 1);
         GXPosition1x16(data_p[0]);
         GXTexCoord2f32(0, 0);
-        i_GXEnd();
+        GXEnd();
     }
 
     setTevSettingNonTextureDirectColor();

@@ -25,8 +25,8 @@ void GXDrawDone();
 void GXPixModeSync();
 void GXPokeAlphaRead();
 void GXPokeBlendMode();
-static void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* context);
-static void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext);
+static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* context);
+static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* pContext);
 void __GXPEInit();
 
 //
@@ -307,7 +307,7 @@ GXDrawSyncCallback GXSetDrawSyncCallback(GXDrawSyncCallback callback) {
 /* 8035C524-8035C5AC 356E64 0088+00 1/1 0/0 0/0 .text            GXTokenInterruptHandler */
 // regalloc
 #ifdef NONMATCHING
-static void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
+static void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* pContext) {
     OSContext context;
     u16 token = __peReg[7];
     if (TokenCB != NULL) {
@@ -323,7 +323,7 @@ static void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* pContext) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXTokenInterruptHandler(OSInterrupt interrupt, OSContext* context) {
+static asm void GXTokenInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXTokenInterruptHandler.s"
 }
@@ -343,7 +343,7 @@ GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback callback) {
 /* 8035C5F0-8035C670 356F30 0080+00 1/1 0/0 0/0 .text            GXFinishInterruptHandler */
 // regalloc, instruction order
 #ifdef NONMATCHING
-static void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
+static void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* pContext) {
     OSContext context;
     GX_BITFIELD_SET(__peReg[5], 0x1c, 1, 1);
     data_80451970[0] = param_0;
@@ -360,7 +360,7 @@ static void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXFinishInterruptHandler(OSInterrupt interrupt, OSContext* pContext) {
+static asm void GXFinishInterruptHandler(__OSInterrupt interrupt, OSContext* pContext) {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXFinishInterruptHandler.s"
 }

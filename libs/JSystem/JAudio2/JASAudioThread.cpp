@@ -143,7 +143,7 @@ class JASChannel {
 // Maybe location of JASPoolAllocObject_MultiThreaded<JASChannel>
 #ifdef NONMATCHING
 void* JASAudioThread::run() {
-    i_OSInitFastCast();
+    OSInitFastCast();
     JASDriver::initAI(DMACallback);
     JASDsp::boot(DSPCallback);
     JASDsp::initBuffer();

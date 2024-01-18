@@ -156,7 +156,7 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
 // Regalloc
 #ifdef NONMATCHING
 void JASTaskThread::run() {
-    i_OSInitFastCast();
+    OSInitFastCast();
     do {
         JASThreadCallStack* ppcVar1 = (JASThreadCallStack*)waitMessageBlock();
         if (field_0x84) {

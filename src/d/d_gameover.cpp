@@ -224,7 +224,7 @@ void dDlst_Gameover_CAPTURE_c::draw() {
     GXPosition3s8(0, 1, -5);
     GXTexCoord2s8(0, 1);
 
-    i_GXEnd();
+    GXEnd();
 }
 #else
 #pragma push

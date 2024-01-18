@@ -323,7 +323,7 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     }
 
     mpSelectIcon = NULL;
-    i_OSInitFastCast();
+    OSInitFastCast();
     if (strcmp(bpk_name[mNameIdx], "") != 0) {
         field_0x30 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource(bpk_name[mNameIdx], param_2));
         field_0x30->searchUpdateMaterialID(mpScreen);

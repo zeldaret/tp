@@ -36,7 +36,7 @@ static u8 struct_8045130b;
 DSPTaskInfo* DSP_prior_task;
 
 /* 8029EB20-8029EE24 299460 0304+00 0/0 1/1 0/0 .text            __DSPHandler */
-void __DSPHandler(OSInterrupt interrupt, OSContext* context) {
+void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
     OSContext funcContext;
     __DSPRegs[5] = ((u16)(__DSPRegs[5]) & ~0x28) | 0x80;
     OSClearContext(&funcContext);

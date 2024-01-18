@@ -159,7 +159,7 @@ void J2DGrafContext::fillBox(JGeometry::TBox2<f32> const& box) {
     GXColor1u32(mColorBL);
     GXPosition3f32(box.i.x, box.f.y, 0);
     GXColor1u32(mColorBR);
-    i_GXEnd();
+    GXEnd();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
@@ -181,7 +181,7 @@ void J2DGrafContext::drawFrame(JGeometry::TBox2<f32> const& box) {
     GXColor1u32(mColorBR);
     GXPosition3f32(box.i.x, box.i.y, 0);
     GXColor1u32(mColorTL);
-    i_GXEnd();
+    GXEnd();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
@@ -197,7 +197,7 @@ void J2DGrafContext::line(JGeometry::TVec2<f32> start, JGeometry::TVec2<f32> end
     GXColor1u32(mColorTL);
     GXPosition3f32(end.x, end.y, 0);
     GXColor1u32(mColorBR);
-    i_GXEnd();
+    GXEnd();
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 

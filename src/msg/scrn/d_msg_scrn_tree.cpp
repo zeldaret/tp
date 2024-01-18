@@ -53,7 +53,7 @@ dMsgScrnTree_c::dMsgScrnTree_c(JUTFont* param_0, JKRExpHeap* param_1) {
     mpScreen = new J2DScreen();
     mpScreen->setPriority("zelda_kanban_wood_a.blo", 0x1020000, dComIfGp_getMsgArchive(2));
     dPaneClass_showNullPane(mpScreen);
-    i_OSInitFastCast();
+    OSInitFastCast();
     field_0xcc = (J2DAnmTransform*) J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_kanban_wood_a.bck", dComIfGp_getMsgArchive(2)));
     field_0xd0 = (J2DAnmTextureSRTKey*) J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_kanban_wood_a.btk", dComIfGp_getMsgArchive(2)));
     field_0xd0->searchUpdateMaterialID(mpScreen);

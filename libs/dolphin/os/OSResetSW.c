@@ -9,7 +9,7 @@
 
 u8 GameChoice : (OS_BASE_CACHED | 0x30E3);
 
-void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context);
+void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context);
 
 //
 // External References:
@@ -38,7 +38,7 @@ static OSTime HoldUp;
 static OSTime HoldDown;
 
 /* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
-void __OSResetSWInterruptHandler(OSInterrupt interrupt, OSContext* context) {
+void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
     OSResetCallback callback;
 
     HoldDown = __OSGetSystemTime();

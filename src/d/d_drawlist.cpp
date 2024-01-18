@@ -411,10 +411,10 @@ void dDlst_2DTri_c::draw() {
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_TRIANGLES, GX_VTXFMT0, 3);
-    i_GXPosition3s16(x[0], y[0], 0);
-    i_GXPosition3s16(x[1], y[1], 0);
-    i_GXPosition3s16(x[2], y[2], 0);
-    i_GXEnd();
+    GXPosition3s16(x[0], y[0], 0);
+    GXPosition3s16(x[1], y[1], 0);
+    GXPosition3s16(x[2], y[2], 0);
+    GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
@@ -447,11 +447,11 @@ void dDlst_2DQuad_c::draw() {
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    i_GXPosition3s16(field_0x4, field_0x6, 0);
-    i_GXPosition3s16(field_0x8, field_0x6, 0);
-    i_GXPosition3s16(field_0x8, field_0xa, 0);
-    i_GXPosition3s16(field_0x4, field_0xa, 0);
-    i_GXEnd();
+    GXPosition3s16(field_0x4, field_0x6, 0);
+    GXPosition3s16(field_0x8, field_0x6, 0);
+    GXPosition3s16(field_0x8, field_0xa, 0);
+    GXPosition3s16(field_0x4, field_0xa, 0);
+    GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
@@ -485,8 +485,8 @@ void dDlst_2DPoint_c::draw() {
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_POINTS, GX_VTXFMT0, 1);
-    i_GXPosition3s16(field_0x4, field_0x6, 0);
-    i_GXEnd();
+    GXPosition3s16(field_0x4, field_0x6, 0);
+    GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
@@ -572,19 +572,19 @@ void dDlst_2DT_c::draw() {
     GXSetClipMode(GX_CLIP_DISABLE);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    i_GXPosition3s16(field_0x12, field_0x14, 0);
+    GXPosition3s16(field_0x12, field_0x14, 0);
     GXColor1u32(0xffffffff);
-    i_GXTexCoord2u16(var1, var2);
-    i_GXPosition3s16(field_0x16, field_0x14, 0);
+    GXTexCoord2u16(var1, var2);
+    GXPosition3s16(field_0x16, field_0x14, 0);
     GXColor1u32(0xffffffff);
-    i_GXTexCoord2u16(var3, var2);
-    i_GXPosition3s16(field_0x16, field_0x18, 0);
+    GXTexCoord2u16(var3, var2);
+    GXPosition3s16(field_0x16, field_0x18, 0);
     GXColor1u32(0xffffffff);
-    i_GXTexCoord2u16(var3, var4);
-    i_GXPosition3s16(field_0x12, field_0x18, 0);
+    GXTexCoord2u16(var3, var4);
+    GXPosition3s16(field_0x12, field_0x18, 0);
     GXColor1u32(0xffffffff);
-    i_GXTexCoord2u16(var1, var4);
-    i_GXEnd();
+    GXTexCoord2u16(var1, var4);
+    GXEnd();
     GXSetClipMode(GX_CLIP_ENABLE);
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
@@ -695,7 +695,7 @@ void dDlst_2DT2_c::draw() {
         GXTexCoord2f32(f27, f25);
         GXPosition2f32(f29, f30);
         GXTexCoord2f32(f26, f25);
-        i_GXEnd();
+        GXEnd();
     } else if (field_0x44) {
         f32 f28 = field_0x24 + field_0x2c * 0.5f;
         f32 f29;
@@ -730,7 +730,7 @@ void dDlst_2DT2_c::draw() {
         GXTexCoord2f32(f29, 1.0f);
         GXPosition2f32(f28, f30);
         GXTexCoord2f32(f27, 1.0f);
-        i_GXEnd();
+        GXEnd();
     } else if (field_0x45) {
         f32 f24 = field_0x28 + 0.5f * field_0x30;
         f32 f25;
@@ -768,7 +768,7 @@ void dDlst_2DT2_c::draw() {
         GXTexCoord2f32(f26, f27);
         GXPosition2f32(field_0x24, f30);
         GXTexCoord2f32(f25, f27);
-        i_GXEnd();
+        GXEnd();
     } else {
         f32 f24;
         f32 f25;
@@ -797,7 +797,7 @@ void dDlst_2DT2_c::draw() {
         GXTexCoord2f32(f25, f27);
         GXPosition2f32(field_0x24, f30);
         GXTexCoord2f32(f24, f27);
-        i_GXEnd();
+        GXEnd();
     }
     GXSetClipMode(GX_CLIP_ENABLE);
     dComIfGp_getCurrentGrafPort()->setup2D();
@@ -1193,19 +1193,19 @@ void dDlst_2DM_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    GXPosition3s16(field_0x4, field_0x6, 0);
     GXTexCoord2s16(r31, r30);
     GXTexCoord2s16(r27, r26);
-    i_GXPosition3s16(field_0x8, field_0x6, 0);
+    GXPosition3s16(field_0x8, field_0x6, 0);
     GXTexCoord2s16(r29, r30);
     GXTexCoord2s16(r25, r26);
-    i_GXPosition3s16(field_0x8, field_0xa, 0);
+    GXPosition3s16(field_0x8, field_0xa, 0);
     GXTexCoord2s16(r29, r28);
     GXTexCoord2s16(r25, r24);
-    i_GXPosition3s16(field_0x4, field_0xa, 0);
+    GXPosition3s16(field_0x4, field_0xa, 0);
     GXTexCoord2s16(r31, r28);
     GXTexCoord2s16(r27, r24);
-    i_GXEnd();
+    GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
@@ -1271,19 +1271,19 @@ void dDlst_2Dm_c::draw() {
     GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetCurrentMtx(0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    i_GXPosition3s16(field_0x4, field_0x6, 0);
+    GXPosition3s16(field_0x4, field_0x6, 0);
     GXTexCoord2s16(r31, r30);
     GXTexCoord2s16(r27, r26);
-    i_GXPosition3s16(field_0x8, field_0x6, 0);
+    GXPosition3s16(field_0x8, field_0x6, 0);
     GXTexCoord2s16(r29, r30);
     GXTexCoord2s16(r25, r26);
-    i_GXPosition3s16(field_0x8, field_0xa, 0);
+    GXPosition3s16(field_0x8, field_0xa, 0);
     GXTexCoord2s16(r29, r28);
     GXTexCoord2s16(r25, r24);
-    i_GXPosition3s16(field_0x4, field_0xa, 0);
+    GXPosition3s16(field_0x4, field_0xa, 0);
     GXTexCoord2s16(r31, r28);
     GXTexCoord2s16(r27, r24);
-    i_GXEnd();
+    GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
@@ -1337,7 +1337,7 @@ void dDlst_2DMt_c::draw() {
         GXSetNumTevStages(r28);
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        i_GXPosition3s16(field_0xc, field_0xe, 0);
+        GXPosition3s16(field_0xc, field_0xe, 0);
         dDlst_2DMt_tex_c* tmp = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
             if (tmp->check()) {
@@ -1345,7 +1345,7 @@ void dDlst_2DMt_c::draw() {
             }
             tmp++;
         }
-        i_GXPosition3s16(field_0x10, field_0xe, 0);
+        GXPosition3s16(field_0x10, field_0xe, 0);
         tmp = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
             if (tmp->check()) {
@@ -1353,7 +1353,7 @@ void dDlst_2DMt_c::draw() {
             }
             tmp++;
         }
-        i_GXPosition3s16(field_0x10, field_0x12, 0);
+        GXPosition3s16(field_0x10, field_0x12, 0);
         tmp = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
             if (tmp->check()) {
@@ -1361,7 +1361,7 @@ void dDlst_2DMt_c::draw() {
             }
             tmp++;
         }
-        i_GXPosition3s16(field_0xc, field_0x12, 0);
+        GXPosition3s16(field_0xc, field_0x12, 0);
         tmp = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
             if (tmp->check()) {
@@ -1369,7 +1369,7 @@ void dDlst_2DMt_c::draw() {
             }
             tmp++;
         }
-        i_GXEnd();
+        GXEnd();
         dComIfGp_getCurrentGrafPort()->setup2D();
     }
 }
@@ -1619,7 +1619,7 @@ void dDlst_effectLine_c::draw() {
         GXBegin(GX_LINES, GX_VTXFMT0, 2);
         GXPosition3f32(local_68.x, local_68.y, local_68.z);
         GXPosition3f32(local_74.x, local_74.y, local_74.z);
-        i_GXEnd();
+        GXEnd();
     }
 }
 #else
@@ -1703,7 +1703,7 @@ void dDlst_shadowPoly_c::draw() {
         tri++;
     }
 
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 80054478-800544F0 04EDB8 0078+00 1/1 0/0 0/0 .text            J3DDrawBuffer__create__FUl */

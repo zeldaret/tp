@@ -55,7 +55,7 @@ int dMeterString_c::_create() {
     JUT_ASSERT(fg != false);
     dPaneClass_showNullPane(mpScreen);
 
-    i_OSInitFastCast();
+    OSInitFastCast();
     mpGetInBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpMapArchive));
 

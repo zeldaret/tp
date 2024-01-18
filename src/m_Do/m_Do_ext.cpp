@@ -3846,7 +3846,7 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXPosition1x8(3);
     GXPosition1x8(0);
     GXPosition1x8(2);
-    i_GXEnd();
+    GXEnd();
 }
 
 void mDoExt_cubePacket::draw() {

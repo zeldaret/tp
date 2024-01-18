@@ -1154,7 +1154,7 @@ void renderingPlusDoor_c::drawNormalDoorS(stage_tgsc_data_class const* i_doorDat
         GXPosition3f32(sp18[i].x, sp18[i].y, sp18[i].z);
         GXTexCoord1x8(i);
     }
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 800409B4-800409E0 03B2F4 002C+00 3/0 2/0 0/0 .text isDrawRoomIcon__16renderingDAmap_cCFii */
@@ -1390,7 +1390,7 @@ void renderingPlusDoorAndCursor_c::drawIconSingle(Vec const& param_0, f32 param_
         GXTexCoord1x8(i);
     }
 
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 800412C0-8004145C 03BC00 019C+00 1/1 0/0 0/0 .text
@@ -1430,7 +1430,7 @@ void renderingPlusDoorAndCursor_c::drawCursor(Vec const& param_0, s16 param_1, i
         GXPosition2f32(offset[i].x, offset[i].z);
     }
 
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 8004145C-80041460 03BD9C 0004+00 2/0 0/0 0/0 .text beforeDrawPath__19renderingPlusDoor_cFv */

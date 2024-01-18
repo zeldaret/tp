@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-typedef OSInterruptHandler AmcEXICallback;
+typedef __OSInterruptHandler AmcEXICallback;
 
 typedef enum {
     AMC_EXI_NO_ERROR = 0,

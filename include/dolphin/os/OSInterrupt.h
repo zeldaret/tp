@@ -104,22 +104,22 @@ typedef enum {
    OS_INTERRUPTMASK_PI_PE_TOKEN | OS_INTERRUPTMASK_PI_PE_FINISH | OS_INTERRUPTMASK_PI_DEBUG |      \
    OS_INTERRUPTMASK_PI_HSP)
 
-typedef s16 OSInterrupt;
+typedef s16 __OSInterrupt;
 typedef u32 OSInterruptMask;
-typedef void (*OSInterruptHandler)(OSInterrupt interrupt, OSContext* context);
+typedef void (*__OSInterruptHandler)(__OSInterrupt interrupt, OSContext* context);
 
 BOOL OSDisableInterrupts(void);
 void __RAS_OSDisableInterrupts_end(void);
 BOOL OSEnableInterrupts(void);
 BOOL OSRestoreInterrupts(BOOL enable);
-OSInterruptHandler __OSSetInterruptHandler(OSInterrupt interrupt, OSInterruptHandler handler);
-OSInterruptHandler __OSGetInterruptHandler(s16 index);
+__OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler);
+__OSInterruptHandler __OSGetInterruptHandler(s16 index);
 void __OSInterruptInit(void);
 static OSInterruptMask SetInterruptMask(OSInterruptMask param_0, OSInterruptMask param_1);
 OSInterruptMask __OSMaskInterrupts(OSInterruptMask mask);
 OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask mask);
 void __OSDispatchInterrupt(u8 interrupt, OSContext* context);
-static void ExternalInterruptHandler(OSInterrupt interrupt, OSContext* context);
+static void ExternalInterruptHandler(__OSInterrupt interrupt, OSContext* context);
 
 void __RAS_OSDisableInterrupts_begin(void);
 void __RAS_OSDisableInterrupts_end(void);

@@ -55,7 +55,7 @@ void dOvlpFd3_dlst_c::draw() {
     GXPosition2s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMinY());
     GXPosition2s16(mDoGph_gInf_c::getMaxX(), mDoGph_gInf_c::getMaxY());
     GXPosition2s16(mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMaxY());
-    i_GXEnd();
+    GXEnd();
 
     Mtx44 m;
     C_MTXPerspective(m, 60.0f, mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF(), 100.0f,
@@ -107,7 +107,7 @@ void dOvlpFd3_dlst_c::draw() {
 
     GXPosition2s16(-mDoGph_gInf_c::getWidth() / 2, -mDoGph_gInf_c::getHeight() / 2);
     GXTexCoord2s8(0, 1);
-    i_GXEnd();
+    GXEnd();
 
     J2DOrthoGraph* graf_ctx = (J2DOrthoGraph*)dComIfGp_getCurrentGrafPort();
     graf_ctx->setOrtho(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),

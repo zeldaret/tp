@@ -33,7 +33,7 @@ static asm s32 OnReset(s32 param_0) {
 #pragma pop
 
 /* 8033ECA8-8033ED14 3395E8 006C+00 1/1 0/0 0/0 .text            MEMIntrruptHandler */
-static void MEMIntrruptHandler(OSInterrupt interrupt, OSContext* context) {
+static void MEMIntrruptHandler(__OSInterrupt interrupt, OSContext* context) {
     u32 addr;
     u32 cause;
 
