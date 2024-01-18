@@ -3,7 +3,7 @@
  * Description:
  */
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 
 /* 80346D6C-80346DC0 3416AC 0054+00 0/0 158/158 826/826 .text            PSMTXMultVec */
 asm void PSMTXMultVec(register const Mtx m, register const Vec* src, register Vec* dst) {

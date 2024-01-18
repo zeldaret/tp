@@ -4,10 +4,10 @@
 //
 
 #include "dolphin/gx/GXFifo.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSAlloc.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Forward References:

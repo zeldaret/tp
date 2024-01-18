@@ -3,7 +3,7 @@
 
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 
 typedef GXTexRegion (*GXTexRegionCallback)(GXTexObj* obj);
 typedef GXTlutRegion* (*GXTlutRegionCallback)(u32 name);

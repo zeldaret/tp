@@ -1,6 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include "dolphin/db/db.h"
+#include "dolphin/db.h"
 
 #define GDEV_BUF_SIZE (0x500)
 

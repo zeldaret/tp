@@ -3,10 +3,10 @@
 // Translation Unit: OS
 //
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/db/db.h"
+#include "dolphin/db.h"
 
 #define OS_CURRENTCONTEXT_PADDR 0x00C0
 #define OS_EXCEPTIONTABLE_ADDR 0x3000

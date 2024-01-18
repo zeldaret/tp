@@ -4,8 +4,8 @@
 //
 
 #include "dolphin/card/CARDMount.h"
-#include "dolphin/card/card.h"
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/card.h"
+#include "dolphin/dsp.h"
 #include "dolphin/os/OSRtc.h"
 
 #include "dolphin/card/CARDPriv.h"

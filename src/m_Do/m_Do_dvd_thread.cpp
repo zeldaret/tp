@@ -11,7 +11,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_ext.h"

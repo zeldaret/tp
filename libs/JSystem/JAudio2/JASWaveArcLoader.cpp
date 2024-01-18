@@ -9,7 +9,7 @@
 #include "JSystem/JAudio2/JASMutex.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "string.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 #include "global.h"
 
 //

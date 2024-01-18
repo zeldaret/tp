@@ -2,7 +2,7 @@
 #define JKRARAMPIECE_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/ar/arq.h"
+#include "dolphin/arq.h"
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSMutex.h"
 

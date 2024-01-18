@@ -5,7 +5,7 @@
 
 #include "dolphin/exi/EXIBios.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 #define REG_MAX 5
 #define REG(chan, idx) (__EXIRegs[((chan)*REG_MAX) + (idx)])

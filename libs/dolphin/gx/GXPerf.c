@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXPerf.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 8036067C-80360EC4 35AFBC 0848+00 2/0 1/1 0/0 .text            GXSetGPMetric */
 void GXSetGPMetric(GXPerf0 perf0, GXPerf1 perf1) {

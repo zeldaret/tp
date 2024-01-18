@@ -3,7 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 class J3DTexture {

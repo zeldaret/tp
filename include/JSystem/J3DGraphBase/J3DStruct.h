@@ -2,7 +2,7 @@
 #define J3DSTRUCT_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/vec.h"
 

@@ -1,5 +1,5 @@
 #include "dolphin/dvd/dvdidutils.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 
 /* 8034BC04-8034BCFC 346544 00F8+00 0/0 1/1 0/0 .text            DVDCompareDiskID */
 BOOL DVDCompareDiskID(DVDDiskID* id1, DVDDiskID* id2) {

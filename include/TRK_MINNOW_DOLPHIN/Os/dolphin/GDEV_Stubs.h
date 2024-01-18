@@ -1,7 +1,7 @@
 #ifndef OS_DOLPHIN_GDEV_STUBS_H
 #define OS_DOLPHIN_GDEV_STUBS_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "amcstubs/AmcExi2Stubs.h"
 
 #ifdef __cplusplus

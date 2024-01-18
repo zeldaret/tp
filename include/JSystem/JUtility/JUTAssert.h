@@ -2,7 +2,7 @@
 #define JUTASSERT_H
 
 #include "dolphin/types.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 #ifdef DEBUG
 #define JUT_ASSERT(LINE, COND)                                                                     \

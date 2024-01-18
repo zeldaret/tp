@@ -23,7 +23,6 @@
 #define SECTION_DTORS10 __declspec(section ".dtors$10")
 #define SECTION_DTORS15 __declspec(section ".dtors$15")
 #define COMPILER_STRIP_GATE(NAME, VALUE) SECTION_DEAD void* const cg_##NAME = (void*)(VALUE)
-#define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
 #define REGISTER_CTORS(ADDR, FUNCTION) SECTION_CTORS void* const _ctors_##ADDR = (void*)(FUNCTION);
 #else
 #define SECTION_INIT __declspec(section ".init")
@@ -44,7 +43,6 @@
 #define SECTION_DTORS10 __declspec(section ".dtors$10")
 #define SECTION_DTORS15 __declspec(section ".dtors$15")
 #define COMPILER_STRIP_GATE(NAME, VALUE) SECTION_DEAD void* const cg_##NAME = (void*)(VALUE)
-#define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
 #define REGISTER_CTORS(ADDR, FUNCTION) SECTION_CTORS void* const _ctors_##ADDR = (void*)(FUNCTION);
 #endif
 
@@ -67,7 +65,6 @@
 #define SECTION_DTORS10
 #define SECTION_DTORS15
 #define COMPILER_STRIP_GATE(...)
-#define ALIGN_DECL(...)
 #define REGISTER_CTORS(...)
 
 // vscode doesn't like asm and nofralloc very much

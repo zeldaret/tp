@@ -1,5 +1,5 @@
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 802E9670-802E96D0 2E3FB0 0060+00 3/3 1/1 0/0 .text            __ct__13J2DOrthoGraphFv */
 J2DOrthoGraph::J2DOrthoGraph() : J2DGrafContext(0, 0, 0, 0) {

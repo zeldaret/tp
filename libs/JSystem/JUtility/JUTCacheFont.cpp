@@ -8,7 +8,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JKernel/JKRAram.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 802DD188-802DD208 2D7AC8 0080+00 0/0 1/1 0/0 .text __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap
  */

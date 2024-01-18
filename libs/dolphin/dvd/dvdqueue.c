@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/dvd/dvdqueue.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 #include "dolphin/os/OSInterrupt.h"
 
 //

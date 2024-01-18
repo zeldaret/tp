@@ -7,7 +7,7 @@
 #include "stdio.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */

@@ -5,7 +5,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/pane/d_pane_class.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 /* 8023B9B4-8023BC78 2362F4 02C4+00 0/0 4/4 0/0 .text __ct__15dMsgScrnArrow_cFv */

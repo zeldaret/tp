@@ -52,39 +52,37 @@ typedef union {
 } PPCWGPipe;
 
 #define GXFIFO_ADDR 0xCC008000
-volatile PPCWGPipe GXFIFO : GXFIFO_ADDR;
+volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 
-#define GFX_FIFO(T) (*(volatile T*)GXFIFO_ADDR)
-
-#define GX_WRITE_U8(data) GXFIFO.u8 = data;
-#define GX_WRITE_U32(data) GXFIFO.u32 = data;
-#define GX_WRITE_F32(val) (GXFIFO.f32 = (f32)val)
+#define GX_WRITE_U8(data) GXWGFifo.u8 = data;
+#define GX_WRITE_U32(data) GXWGFifo.u32 = data;
+#define GX_WRITE_F32(val) (GXWGFifo.f32 = (f32)val)
 
 #define GX_CP_LOAD_REG(addr, data)          \
-	GXFIFO.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
-	GXFIFO.s8  = (addr);                  \
-	GXFIFO.s32 = (data);
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_CP_REG; \
+	GXWGFifo.s8  = (addr);                  \
+	GXWGFifo.s32 = (data);
 
 /**
  * Header for an XF register load
  */
 #define GX_XF_LOAD_REG_HDR(addr)            \
-	GXFIFO.s8  = GX_FIFO_CMD_LOAD_XF_REG; \
-	GXFIFO.s32 = (addr);
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_XF_REG; \
+	GXWGFifo.s32 = (addr);
 
 /**
  * Load immediate value into XF register
  */
 #define GX_XF_LOAD_REG(addr, data) \
 	GX_XF_LOAD_REG_HDR(addr);      \
-	GXFIFO.s32 = (data);
+	GXWGFifo.s32 = (data);
 
 /**
  * Load immediate value into BP register
  */
 #define GX_BP_LOAD_REG(data)                \
-	GXFIFO.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
-	GXFIFO.s32 = (data);
+	GXWGFifo.s8  = GX_FIFO_CMD_LOAD_BP_REG; \
+	GXWGFifo.s32 = (data);
 
 /**
  * Load immediate values into multiple XF registers
@@ -95,94 +93,94 @@ volatile PPCWGPipe GXFIFO : GXFIFO_ADDR;
 		GX_XF_LOAD_REG_HDR(cmd);       \
 	}
 
-inline void GXPosition3f32(f32 x, f32 y, f32 z) {
-    GXFIFO.f32 = x;
-    GXFIFO.f32 = y;
-    GXFIFO.f32 = z;
+inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
 }
 
-inline void GXNormal3f32(f32 x, f32 y, f32 z) {
-    GXFIFO.f32 = x;
-    GXFIFO.f32 = y;
-    GXFIFO.f32 = z;
+inline void GXNormal3f32(const f32 x, const f32 y, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = y;
+    GXWGFifo.f32 = z;
 }
 
-inline void GXPosition2f32(f32 x, f32 z) {
-    GXFIFO.f32 = x;
-    GXFIFO.f32 = z;
+inline void GXPosition2f32(const f32 x, const f32 z) {
+    GXWGFifo.f32 = x;
+    GXWGFifo.f32 = z;
 }
 
-inline void GXColor1u32(u32 c) {
-    GFX_FIFO(u32) = c;
+inline void GXColor1u32(const u32 c) {
+    GXWGFifo.u32 = c;
 }
 
-inline void GXTexCoord2f32(f32 s, f32 t) {
-    GFX_FIFO(f32) = s;
-    GFX_FIFO(f32) = t;
+inline void GXTexCoord2f32(const f32 s, const f32 t) {
+    GXWGFifo.f32 = s;
+    GXWGFifo.f32 = t;
 }
 
-inline void GXTexCoord2u8(u8 s, u8 t) {
-    GFX_FIFO(u8) = s;
-    GFX_FIFO(u8) = t;
+inline void GXTexCoord2u8(const u8 s, const u8 t) {
+    GXWGFifo.u8 = s;
+    GXWGFifo.u8 = t;
 }
 
-inline void GXTexCoord1x8(u8 s) {
-    GFX_FIFO(u8) = s;
+inline void GXTexCoord1x8(const u8 s) {
+    GXWGFifo.u8 = s;
 }
 
-inline void GXPosition2u16(u16 x, u16 y) {
-    GFX_FIFO(u16) = x;
-    GFX_FIFO(u16) = y;
+inline void GXPosition2u16(const u16 x, const u16 y) {
+    GXWGFifo.u16 = x;
+    GXWGFifo.u16 = y;
 }
 
-inline void GXPosition1x16(u16 x) {
-    GFX_FIFO(u16) = x;
+inline void GXPosition1x16(const u16 x) {
+    GXWGFifo.u16 = x;
 }
 
-inline void GXPosition1x8(u8 x) {
-    GFX_FIFO(u8) = x;
+inline void GXPosition1x8(const u8 x) {
+    GXWGFifo.u8 = x;
 }
 
-inline void GXPosition3s8(s8 x, s8 y, s8 z) {
-    GFX_FIFO(s8) = x;
-    GFX_FIFO(s8) = y;
-    GFX_FIFO(s8) = z;
+inline void GXPosition3s8(const s8 x, const s8 y, const s8 z) {
+    GXWGFifo.s8 = x;
+    GXWGFifo.s8 = y;
+    GXWGFifo.s8 = z;
 }
 
-inline void GXPosition2s8(s8 x, s8 y) {
-    GFX_FIFO(s8) = x;
-    GFX_FIFO(s8) = y;
+inline void GXPosition2s8(const s8 x, const s8 y) {
+    GXWGFifo.s8 = x;
+    GXWGFifo.s8 = y;
 }
 
-inline void GXPosition2s16(s16 x, s16 y) {
-    GFX_FIFO(s16) = x;
-    GFX_FIFO(s16) = y;
+inline void GXPosition2s16(const s16 x, const s16 y) {
+    GXWGFifo.s16 = x;
+    GXWGFifo.s16 = y;
 }
 
-inline void i_GXPosition3s16(s16 x, s16 y, s16 z) {
-    GFX_FIFO(s16) = x;
-    GFX_FIFO(s16) = y;
-    GFX_FIFO(s16) = z;
+inline void i_GXPosition3s16(const s16 x, const s16 y, const s16 z) {
+    GXWGFifo.s16 = x;
+    GXWGFifo.s16 = y;
+    GXWGFifo.s16 = z;
 }
 
-inline void GXTexCoord2s8(s8 x, s8 y) {
-    GFX_FIFO(s8) = x;
-    GFX_FIFO(s8) = y;
+inline void GXTexCoord2s8(const s8 x, const s8 y) {
+    GXWGFifo.s8 = x;
+    GXWGFifo.s8 = y;
 }
 
-inline void i_GXTexCoord2u16(u16 x, u16 y) {
-    GFX_FIFO(u16) = x;
-    GFX_FIFO(u16) = y;
+inline void i_GXTexCoord2u16(const u16 x, const u16 y) {
+    GXWGFifo.u16 = x;
+    GXWGFifo.u16 = y;
 }
 
 inline void GXTexCoord2s16(const s16 u, const s16 v) {
-	GFX_FIFO(s16) = u;
-	GFX_FIFO(s16) = v;
+	GXWGFifo.s16 = u;
+	GXWGFifo.s16 = v;
 }
 
 inline void GFWriteBPCmd(u32 param_1) {
-  GXFIFO.u8 = 0x61;
-  GXFIFO.u32 = param_1;
+  GXWGFifo.u8 = 0x61;
+  GXWGFifo.u32 = param_1;
 }
 
 static inline u32 GXReadCPReg(u32 addrLo, u32 addrHi) {
@@ -198,10 +196,10 @@ static inline u32 GXReadCPReg(u32 addrLo, u32 addrHi) {
 }
 
 inline void GFFill(u16 param_1, u32 param_2) {
-  GXFIFO.u8 = 0x10;
-  GXFIFO.u16 = 0;
-  GXFIFO.u16 = param_1;
-  GXFIFO.u32 = param_2;
+  GXWGFifo.u8 = 0x10;
+  GXWGFifo.u16 = 0;
+  GXWGFifo.u16 = param_1;
+  GXWGFifo.u32 = param_2;
 }
 
 inline void i_GXEnd() {}

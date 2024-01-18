@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gf/GFPixel.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/types.h"
 
 //

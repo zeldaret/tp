@@ -4,8 +4,8 @@
 //
 
 #include "dolphin/dvd/dvdfs.h"
-#include "dolphin/dvd/dvd.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/dvd.h"
+#include "dolphin/os.h"
 #include "ctype.h"
 
 //

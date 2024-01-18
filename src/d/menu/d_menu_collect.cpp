@@ -30,7 +30,7 @@
 #include "d/msg/d_msg_string.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_mtx.h"

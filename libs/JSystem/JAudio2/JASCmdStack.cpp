@@ -3,7 +3,7 @@
 //
 
 #include "JSystem/JAudio2/JASCmdStack.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 /* 80431684-80431690 05E3A4 000C+00 1/2 0/0 0/0 .bss             sCommandListOnce__10JASPortCmd */
 JASPortCmd::TPortHead JASPortCmd::sCommandListOnce;

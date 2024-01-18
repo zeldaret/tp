@@ -13,7 +13,7 @@
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 
 //
 // Types:

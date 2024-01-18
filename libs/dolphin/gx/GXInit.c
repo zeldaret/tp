@@ -4,11 +4,11 @@
 //
 
 #include "dolphin/gx/GXInit.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/base/PPCArch.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Forward References:

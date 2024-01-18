@@ -8,7 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_Reset.h"
 

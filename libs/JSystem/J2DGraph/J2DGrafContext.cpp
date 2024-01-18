@@ -1,5 +1,5 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 802E8B08-802E8BB4 2E3448 00AC+00 0/0 2/2 0/0 .text            __ct__14J2DGrafContextFffff */
 J2DGrafContext::J2DGrafContext(f32 x, f32 y, f32 width, f32 height)

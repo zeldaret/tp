@@ -8,9 +8,9 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JMath/JMATrigonometric.h"
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/types.h"
 
 //

@@ -3,11 +3,13 @@
 
 #include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/quat.h"
-#include "dolphin/types.h"
+#include "dolphin/mtx/vec.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// ====== MATRIX ====== //
 
 typedef f32 Mtx[3][4];
 typedef f32 Mtx33[3][3];
@@ -81,6 +83,32 @@ inline void C_MTXRotAxisRad(Mtx m, const Vec* axis, f32 rad) {
 #define MTXScale PSMTXScale
 #define MTXScaleApply PSMTXScaleApply
 #define MTXQuat PSMTXQuat
+#endif
+
+// ====== MATRIX VECTOR ====== //
+
+void PSMTXMultVec(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecSR(const Mtx m, const Vec* src, Vec* dst);
+void PSMTXMultVecArray(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
+void PSMTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count);
+
+/* When compiling in debug mode, use C implementations */
+#ifdef DEBUG
+// TODO: Add debug rom C implementations
+/* #define MTXMultVec C_MTXMultVec
+#define MTXMultVecSR C_MTXMultVecSR
+#define MTXMultVecArray C_MTXMultVecArray
+#define MTXMultVecArraySR C_MTXMultVecArraySR */
+
+#define MTXMultVec PSMTXMultVec
+#define MTXMultVecSR PSMTXMultVecSR
+#define MTXMultVecArray PSMTXMultVecArray
+#define MTXMultVecArraySR PSMTXMultVecArraySR
+#else
+#define MTXMultVec PSMTXMultVec
+#define MTXMultVecSR PSMTXMultVecSR
+#define MTXMultVecArray PSMTXMultVecArray
+#define MTXMultVecArraySR PSMTXMultVecArraySR
 #endif
 
 #ifdef __cplusplus

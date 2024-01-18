@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/dvd/dvdlow.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSContext.h"

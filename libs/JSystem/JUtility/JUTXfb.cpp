@@ -5,7 +5,7 @@
 
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 //
 // Forward References:

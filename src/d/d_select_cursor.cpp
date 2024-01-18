@@ -7,7 +7,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "global.h"
 
 //

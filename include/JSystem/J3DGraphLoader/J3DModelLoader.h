@@ -2,7 +2,7 @@
 #define J3DMODELLOADER_H
 
 #include "dolphin/types.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 
 class J3DModelData;
 class J3DMaterialTable;

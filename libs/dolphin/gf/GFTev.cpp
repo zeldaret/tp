@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gf/GFTev.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/types.h"
 
 //

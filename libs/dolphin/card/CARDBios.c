@@ -4,9 +4,9 @@
 //
 
 #include "dol2asm.h"
-#include "dolphin/card/card.h"
-#include "dolphin/dsp/dsp.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/card.h"
+#include "dolphin/dsp.h"
+#include "dolphin/os.h"
 
 #include "dolphin/card/CARDPriv.h"
 

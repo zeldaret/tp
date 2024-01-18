@@ -3,8 +3,8 @@
 // Translation Unit: arq
 //
 
-#include "dolphin/ar/arq.h"
-#include "dolphin/ar/ar.h"
+#include "dolphin/arq.h"
+#include "dolphin/ar.h"
 #include "dolphin/types.h"
 
 //

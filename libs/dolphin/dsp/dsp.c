@@ -1,4 +1,4 @@
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/dsp.h"
 #include "dolphin/dsp/dsp_debug.h"
 #include "dolphin/dsp/dsp_task.h"
 #include "JSystem/JAudio2/osdsp_task.h"

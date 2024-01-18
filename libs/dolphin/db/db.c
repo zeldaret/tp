@@ -3,8 +3,8 @@
 // Translation Unit: db
 //
 
-#include "dolphin/db/db.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/db.h"
+#include "dolphin/os.h"
 
 /* ############################################################################################## */
 /* 80451708-8045170C 000C08 0004+00 2/2 0/0 0/0 .sbss            __DBInterface */

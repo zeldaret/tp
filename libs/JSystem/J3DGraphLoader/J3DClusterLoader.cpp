@@ -5,7 +5,7 @@
 
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Types:

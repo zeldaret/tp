@@ -2,7 +2,7 @@
 #define OS_H_
 
 #include "__va_arg.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSAlloc.h"

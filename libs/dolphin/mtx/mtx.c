@@ -3,7 +3,7 @@
 // Translation Unit: mtx
 //
 
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 #include "math.h"
 #include "dol2asm.h"
 

@@ -5,7 +5,7 @@
 
 #include "dolphin/os/OSReset.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 vu16 __VIRegs[59] : 0xCC002000;
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);

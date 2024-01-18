@@ -5,7 +5,7 @@
 
 #include "d/d_camera.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"

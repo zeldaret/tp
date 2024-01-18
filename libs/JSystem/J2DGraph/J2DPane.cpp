@@ -4,7 +4,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResource.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 802F5BF8-802F5CB8 2F0538 00C0+00 0/0 10/10 0/0 .text            __ct__7J2DPaneFv */
 J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {

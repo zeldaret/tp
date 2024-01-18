@@ -8,7 +8,7 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 #define suAboutEncoding_ 3
 

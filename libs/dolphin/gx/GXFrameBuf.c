@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXFrameBuf.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -220,11 +220,11 @@ u32 GXSetDispCopyYScale(f32 y_scale) {
     u32 r5;
     u32 r6;
     u32 r7 = ((u32)(256.0f / y_scale)) & 0x1ff;
-    GXFIFO.u8 = 0x61;
+    GXWGFifo.u8 = 0x61;
     r6 = 0;
     GX_BITFIELD_SET(r6, 0x17, 9, r7);
     GX_BITFIELD_SET(r6, 0, 7, 0x4e);
-    GXFIFO.u32 = r6;
+    GXWGFifo.u32 = r6;
     __GXData->bpSentNot = 0;
     r5 = 0x100 - r7 != 1;
     GX_BITFIELD_SET(__GXData->field_0x1ec, 0x15, 1, r5);
@@ -247,21 +247,21 @@ void GXSetCopyClear(GXColor color, u32 clear_z) {
     GX_BITFIELD_SET(r6, 24, 8, color.r);
     GX_BITFIELD_SET(r6, 16, 8, color.a);
     GX_BITFIELD_SET(r6, 0, 8, 0x4f);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r6;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r6;
 
     r6 = 0;
     GX_BITFIELD_SET(r6, 24, 8, color.b);
     GX_BITFIELD_SET(r6, 16, 8, color.g);
     GX_BITFIELD_SET(r6, 0, 8, 0x50);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r6;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r6;
 
     r6 = 0;
     GX_BITFIELD_SET(r6, 8, 24, clear_z);
     GX_BITFIELD_SET(r6, 0, 8, 0x51);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r6;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r6;
 
     __GXData->bpSentNot = 0;
 }
@@ -319,14 +319,14 @@ void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfilter[
         r9 = 0x04666666;
     }
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r3;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r7;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r8;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r9;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r3;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r7;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r8;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r9;
 
     r11 = 0;
     GX_BITFIELD_SET(r11, 0, 8, 0x53);
@@ -351,10 +351,10 @@ void GXSetCopyFilter(GXBool antialias, u8 pattern[12][2], GXBool vf, u8 vfilter[
         GX_BITFIELD_SET(r5, 0xe, 6, 0);
     }
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r11;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r5;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r11;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r5;
     __GXData->bpSentNot = 0;
 }
 #else
@@ -387,14 +387,14 @@ void GXCopyDisp(void* dst, GXBool clear) {
         r8 = __GXData->field_0x1d8;
         GX_BITFIELD_SET(r8, 0x1f, 1, 1);
         GX_BITFIELD_SET(r8, 0x1c, 3, 7);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = r8;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = r8;
 
         r7 = __GXData->field_0x1d0;
         GX_BITFIELD_SET(r7, 0x1f, 1, 0);
         GX_BITFIELD_SET(r7, 0x1e, 1, 0);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = r7;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = r7;
     }
 
     r10 = 0;
@@ -402,8 +402,8 @@ void GXCopyDisp(void* dst, GXBool clear) {
         field_0x1dc = __GXData->field_0x1dc;
         if (((field_0x1dc >> 6) & 1) == 1) {
             GX_BITFIELD_SET(field_0x1dc, 0x19, 1, 0);
-            GXFIFO.u8 = 0x61;
-            GXFIFO.u32 = field_0x1dc;
+            GXWGFifo.u8 = 0x61;
+            GXWGFifo.u32 = field_0x1dc;
             r10 = 1;
         }
     }
@@ -412,32 +412,32 @@ void GXCopyDisp(void* dst, GXBool clear) {
     __rlwimi(r9, (int)dst, 0x1b, 0xb, 0x1f);
     GX_BITFIELD_SET(r9, 0, 8, 0x4b);
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1e0;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1e4;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1e8;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r9;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1e0;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1e4;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1e8;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r9;
 
     GX_BITFIELD_SET(__GXData->field_0x1ec, 0x14, 1, clear);
     GX_BITFIELD_SET(__GXData->field_0x1ec, 0x11, 1, 1);
     GX_BITFIELD_SET(__GXData->field_0x1ec, 0, 8, 0x52);
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1ec;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1ec;
 
     if (clear) {
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1d8;
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1d0;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1d8;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1d0;
     }
 
     if (r10) {
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1dc;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1dc;
     }
 
     __GXData->bpSentNot = 0;
@@ -466,14 +466,14 @@ void GXCopyTex(void* dst, GXBool clear) {
         r8 = __GXData->field_0x1d8;
         GX_BITFIELD_SET(r8, 0x1f, 1, 1);
         GX_BITFIELD_SET(r8, 0x1c, 3, 7);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = r8;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = r8;
 
         r7 = __GXData->field_0x1d0;
         GX_BITFIELD_SET(r7, 0x1f, 1, 0);
         GX_BITFIELD_SET(r7, 0x1e, 1, 0);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = r7;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = r7;
     }
 
     r0 = 0;
@@ -489,36 +489,36 @@ void GXCopyTex(void* dst, GXBool clear) {
     }
 
     if (r0) {
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = r7;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = r7;
     }
 
     r10 = 0;
     __rlwimi(r10, (int)dst, 0x1b, 0xb, 0x1f);
     GX_BITFIELD_SET(r10, 0, 8, 0x4b);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1f0;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1f4;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->field_0x1f8;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = r10;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1f0;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1f4;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->field_0x1f8;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = r10;
     GX_BITFIELD_SET(__GXData->cpTex, 0x14, 1, clear);
     GX_BITFIELD_SET(__GXData->cpTex, 0x11, 1, 0);
     GX_BITFIELD_SET(__GXData->cpTex, 0, 8, 0x52);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = __GXData->cpTex;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->cpTex;
     if (clear) {
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1d8;
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1d0;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1d8;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1d0;
     }
 
     if (r0) {
-        GXFIFO.u8 = 0x61;
-        GXFIFO.u32 = __GXData->field_0x1dc;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.u32 = __GXData->field_0x1dc;
     }
 
     __GXData->bpSentNot = 0;
@@ -537,10 +537,10 @@ asm void GXCopyTex(void* dst, GXBool clear) {
 /* 8035D5F8-8035D630 357F38 0038+00 0/0 1/1 0/0 .text            GXClearBoundingBox */
 void GXClearBoundingBox(void)
 {
-    GXFIFO.u8 = GX_LOAD_BP_REG;
-    GXFIFO.u32 = 0x550003FF;
-    GXFIFO.u8 = GX_LOAD_BP_REG;
-    GXFIFO.u32 = 0x560003FF;
+    GXWGFifo.u8 = GX_LOAD_BP_REG;
+    GXWGFifo.u32 = 0x550003FF;
+    GXWGFifo.u8 = GX_LOAD_BP_REG;
+    GXWGFifo.u32 = 0x560003FF;
     set_x2(GX_FALSE);
 }
 

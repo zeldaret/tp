@@ -14,7 +14,7 @@
 #include "d/meter/d_meter2_info.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_controller_pad.h"

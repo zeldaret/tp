@@ -3,9 +3,9 @@
 // Translation Unit: Pad
 //
 
-#include "dolphin/pad/Pad.h"
+#include "dolphin/pad.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/si/SIBios.h"
 #include "dolphin/si/SISamplingRate.h"
 

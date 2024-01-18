@@ -6,7 +6,7 @@
 #include "dolphin/os/OSError.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | 0x00E4);
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);

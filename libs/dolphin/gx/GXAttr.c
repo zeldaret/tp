@@ -6,7 +6,7 @@
 #include "dolphin/gx/GXAttr.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GXInit.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 //
 // Forward References:
@@ -655,7 +655,7 @@ void GXSetArray(GXAttr attr, void* basePtr, u8 stride) {
 
 /* 8035BB6C-8035BB7C 3564AC 0010+00 0/0 6/6 0/0 .text            GXInvalidateVtxCache */
 void GXInvalidateVtxCache(void) { 
-    GXFIFO.u8 = GX_FIFO_CMD_INVAL_VTX;
+    GXWGFifo.u8 = GX_FIFO_CMD_INVAL_VTX;
 }
 
 /* 8035BB7C-8035BDFC 3564BC 0280+00 2/0 46/46 5/5 .text            GXSetTexCoordGen2 */

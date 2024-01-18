@@ -7,7 +7,7 @@
 #include "d/bg/d_bg_s_sph_chk.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 800740F4-80074110 06EA34 001C+00 2/2 1/1 0/0 .text            Init__11cBgS_ChkElmFv */

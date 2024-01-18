@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXPixel.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dol2asm.h"
 
 //

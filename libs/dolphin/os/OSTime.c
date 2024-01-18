@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/os/OSTime.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/os/OSInterrupt.h"
 
 #define OS_TIME_MONTH_MAX 12

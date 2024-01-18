@@ -5,7 +5,7 @@
 
 #include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

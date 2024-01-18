@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXTexture.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "string.h"
 #include "dol2asm.h"
 
@@ -510,10 +510,10 @@ asm void GXInitTlutRegion(GXTlutRegion* region, u32 tmem_addr, GXTlutSize tlut_s
 /* 8035E664-8035E6AC 358FA4 0048+00 0/0 8/8 1/1 .text            GXInvalidateTexAll */
 void GXInvalidateTexAll(void) {
     __GXFlushTextureState();
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = 0x66001000;
-    GXFIFO.u8 = 0x61;
-    GXFIFO.u32 = 0x66001100;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = 0x66001000;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = 0x66001100;
     __GXFlushTextureState();
 }
 

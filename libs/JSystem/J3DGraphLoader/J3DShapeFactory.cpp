@@ -7,7 +7,7 @@
 #include "JSystem/J3DGraphBase/J3DShape.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "global.h"
 
 //

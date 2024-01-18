@@ -3,7 +3,7 @@
 // Translation Unit: Padclamp
 //
 
-#include "dolphin/pad/Pad.h"
+#include "dolphin/pad.h"
 #include "dolphin/pad/Padclamp.h"
 #include "dol2asm.h"
 

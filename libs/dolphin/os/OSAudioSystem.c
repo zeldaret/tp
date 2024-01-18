@@ -5,7 +5,7 @@
 
 #include "dolphin/os/OSAudioSystem.h"
 #include "dol2asm.h"
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/dsp.h"
 #include "dolphin/os/OSTime.h"
 
 //

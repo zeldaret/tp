@@ -5,7 +5,7 @@
 
 #include "dolphin/exi/EXIUart.h"
 #include "dolphin/exi/EXIBios.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

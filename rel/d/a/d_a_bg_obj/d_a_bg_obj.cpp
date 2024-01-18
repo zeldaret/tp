@@ -9,7 +9,7 @@
 #include "stdio.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
 
 SECTION_DATA extern void* __vt__10cCcD_GStts[3];

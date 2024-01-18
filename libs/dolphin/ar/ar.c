@@ -1,7 +1,7 @@
-#include "dolphin/ar/ar.h"
+#include "dolphin/ar.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/dsp/dsp.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/dsp.h"
+#include "dolphin/os.h"
 #include "string.h"
 
 #define DSP_MAILBOX_IN_HI (0)

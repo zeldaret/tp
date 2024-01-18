@@ -13,7 +13,7 @@
 #include "d/d_timer.h"
 #include "d/map/d_map_path_dmap.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"

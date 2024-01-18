@@ -4,7 +4,7 @@
  */
 
 #include "dolphin/gx/GXDisplayList.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 8035FEF0-8035FF60 35A830 0070+00 0/0 20/20 4/4 .text            GXCallDisplayList */
 void GXCallDisplayList(void* list, u32 nbytes) {
@@ -16,7 +16,7 @@ void GXCallDisplayList(void* list, u32 nbytes) {
         __GXSendFlushPrim();
     }
 
-    GFX_FIFO(u8) = 0x40;
-    GFX_FIFO(u32) = (u32)list;
-    GFX_FIFO(u32) = nbytes;
+    GXWGFifo.u8 = 0x40;
+    GXWGFifo.u32 = (u32)list;
+    GXWGFifo.u32 = nbytes;
 }

@@ -5,7 +5,7 @@
 
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Forward References:

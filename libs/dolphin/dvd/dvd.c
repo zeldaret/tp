@@ -3,10 +3,10 @@
 // Translation Unit: dvd
 //
 
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 #include "dol2asm.h"
 #include "dolphin/dvd/dvdlow.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Forward References:

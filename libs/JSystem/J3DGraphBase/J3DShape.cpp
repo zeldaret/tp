@@ -7,7 +7,7 @@
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 #include "dolphin/gd/GDGeometry.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //
@@ -136,9 +136,9 @@ u32 J3DShape::countBumpMtxNum() const {
 
 /* 80314E98-80314EB0 30F7D8 0018+00 1/1 0/0 0/0 .text            J3DLoadCPCmd__FUcUl */
 void J3DLoadCPCmd(u8 cmd, u32 param) {
-    GFX_FIFO(u8) = GX_CMD_LOAD_CP_REG;
-    GFX_FIFO(u8) = cmd;
-    GFX_FIFO(u32) = param;
+    GXWGFifo.u8 = GX_CMD_LOAD_CP_REG;
+    GXWGFifo.u8 = cmd;
+    GXWGFifo.u32 = param;
 }
 
 /* 80314EB0-80314EEC 30F7F0 003C+00 1/1 0/0 0/0 .text            J3DLoadArrayBasePtr__F7_GXAttrPv */

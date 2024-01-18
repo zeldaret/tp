@@ -19,7 +19,7 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "stdlib.h"
 #include "dol2asm.h"
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 
 //
 // Types:

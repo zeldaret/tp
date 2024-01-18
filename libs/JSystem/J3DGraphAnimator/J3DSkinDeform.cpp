@@ -6,7 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "string.h"
 
 //

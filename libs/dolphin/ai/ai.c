@@ -1,6 +1,6 @@
-#include "dolphin/ai/ai.h"
-#include "dolphin/dsp/dsp.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/ai.h"
+#include "dolphin/dsp.h"
+#include "dolphin/os.h"
 
 /* 80450A40-80450A48 -00001 0004+04 1/1 0/0 0/0 .sdata           __AIVersion */
 char* __AIVersion = "<< Dolphin SDK - AI\trelease build: Apr  5 2004 04:15:02 (0x2301) >>";

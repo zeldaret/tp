@@ -2,7 +2,7 @@
 #define GXTRANSFORM_H
 
 #include "dolphin/gx/GXEnum.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 
 #ifdef __cplusplus
 extern "C" {

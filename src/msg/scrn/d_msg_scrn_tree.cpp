@@ -7,7 +7,7 @@
 #include "d/pane/d_pane_class.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

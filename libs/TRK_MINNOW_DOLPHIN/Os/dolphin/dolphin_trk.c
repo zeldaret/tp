@@ -2,9 +2,8 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
-#include "dol2asm.h"
-#include "dolphin/ar/ar.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/ar.h"
+#include "dolphin/os.h"
 
 extern u8 _db_stack_addr[];
 #define EXCEPTIONMASK_ADDR 0x80000044

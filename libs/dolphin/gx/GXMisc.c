@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXMisc.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/os/OSContext.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSReset.h"
@@ -75,14 +75,14 @@ void GXFlush(void) {
         __GXSetDirtyState();
     }
 
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
-    GXFIFO.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
+    GXWGFifo.u32 = 0;
 
     PPCSync();
 }
@@ -203,8 +203,8 @@ void GXDrawDone(void) {
 
 /* 8035C374-8035C398 356CB4 0024+00 0/0 9/9 0/0 .text            GXPixModeSync */
 void GXPixModeSync(void) {
-    GXFIFO.u8 = 0x61;   
-    GXFIFO.u32 = __GXData->peCtrl;
+    GXWGFifo.u8 = 0x61;   
+    GXWGFifo.u32 = __GXData->peCtrl;
     __GXData->bpSentNot = 0;
 }
 

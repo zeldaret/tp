@@ -12,7 +12,7 @@
 #include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"

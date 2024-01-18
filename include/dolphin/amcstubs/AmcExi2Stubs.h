@@ -1,7 +1,7 @@
 #ifndef AMCEXI2STUBS_H
 #define AMCEXI2STUBS_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus

@@ -11,7 +11,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "math.h"
 #include "string.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "global.h"
 
 //

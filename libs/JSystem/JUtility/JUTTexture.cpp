@@ -5,7 +5,7 @@
 
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/JUTPalette.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 //
 // Forward References:

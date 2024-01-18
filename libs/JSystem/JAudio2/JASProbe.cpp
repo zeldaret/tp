@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JASProbe.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Types:

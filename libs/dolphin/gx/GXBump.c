@@ -4,7 +4,7 @@
  */
 
 #include "dolphin/gx/GXBump.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 8035ECC0-8035ED2C 359600 006C+00 1/1 3/3 0/0 .text            GXSetTevIndirect */
 void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexFormat texFmt,
@@ -24,8 +24,8 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
     GX_BITFIELD_SET(field, 11, 1, addPrev);
     GX_BITFIELD_SET(field, 0, 8, stage);
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = field;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = field;
 
     __GXData->bpSentNot = 0;
 }
@@ -65,24 +65,24 @@ void GXSetIndTexMtx(GXIndTexMtxID mtxID, f32 offset[6], s8 scale_exp) {
     GX_BITFIELD_SET(field, 10, 11, 1024.0f * offset[3]);
     GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 0) & 3);
     GX_BITFIELD_SET(field, 0, 8, val * 3 + 6);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = field;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = field;
 
     field = 0;
     GX_BITFIELD_SET(field, 21, 11, 1024.0f * offset[1]);
     GX_BITFIELD_SET(field, 10, 11, 1024.0f * offset[4]);
     GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 2) & 3);
     GX_BITFIELD_SET(field, 0, 8, val * 3 + 7);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = field;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = field;
 
     field = 0;
     GX_BITFIELD_SET(field, 21, 11, 1024.0f * offset[2]);
     GX_BITFIELD_SET(field, 10, 11, 1024.0f * offset[5]);
     GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 4) & 3);
     GX_BITFIELD_SET(field, 0, 8, val * 3 + 8);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = field;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = field;
 
     __GXData->bpSentNot = 0;
 }
@@ -97,32 +97,32 @@ void GXSetIndTexCoordScale(GXIndTexStageID texStage, GXIndTexScale scaleS, GXInd
         GX_BITFIELD_SET(data->field_0x128, 28, 4, scaleS);
         GX_BITFIELD_SET(data->field_0x128, 24, 4, scaleT);
         GX_BITFIELD_SET(data->field_0x128, 0, 8, 0x25);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.s32 = data->field_0x128;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->field_0x128;
         break;
     case GX_INDTEXSTAGE1:
         data = __GXData;
         GX_BITFIELD_SET(data->field_0x128, 20, 4, scaleS);
         GX_BITFIELD_SET(data->field_0x128, 16, 4, scaleT);
         GX_BITFIELD_SET(data->field_0x128, 0, 8, 0x25);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.s32 = data->field_0x128;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->field_0x128;
         break;
     case GX_INDTEXSTAGE2:
         data = __GXData;
         GX_BITFIELD_SET(data->field_0x12c, 28, 4, scaleS);
         GX_BITFIELD_SET(data->field_0x12c, 24, 4, scaleT);
         GX_BITFIELD_SET(data->field_0x12c, 0, 8, 0x26);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.s32 = data->field_0x12c;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->field_0x12c;
         break;
     case GX_INDTEXSTAGE3:
         data = __GXData;
         GX_BITFIELD_SET(data->field_0x12c, 20, 4, scaleS);
         GX_BITFIELD_SET(data->field_0x12c, 16, 4, scaleT);
         GX_BITFIELD_SET(data->field_0x12c, 0, 8, 0x26);
-        GXFIFO.u8 = 0x61;
-        GXFIFO.s32 = data->field_0x12c;
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->field_0x12c;
         break;
     }
 
@@ -164,8 +164,8 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
         break;
     }
 
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = __GXData->iref;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = __GXData->iref;
     GXSetWasteFlags();
 }
 
@@ -190,14 +190,14 @@ void __GXSetIndirectMask(u32 mask) {
     GXData* data = __GXData;
 
     GX_BITFIELD_SET(data->bpMask, 24, 8, mask);
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = data->bpMask;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = data->bpMask;
     data->bpSentNot = 0;
 }
 
 /* 8035F174-8035F198 359AB4 0024+00 0/0 4/4 0/0 .text            __GXFlushTextureState */
 void __GXFlushTextureState(void) {
-    GXFIFO.u8 = 0x61;
-    GXFIFO.s32 = __GXData->bpMask;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = __GXData->bpMask;
     __GXData->bpSentNot = 0;
 }

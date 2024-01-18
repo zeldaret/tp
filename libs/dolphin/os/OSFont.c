@@ -4,8 +4,8 @@
 //
 
 #include "dolphin/os/OSFont.h"
-#include "dolphin/os/OS.h"
-#include "dolphin/vi/vi.h"
+#include "dolphin/os.h"
+#include "dolphin/vi.h"
 
 /* ############################################################################################## */
 /* 803CFC48-803CFDC8 02CD68 0180+00 1/1 0/0 0/0 .data            HankakuToCode */

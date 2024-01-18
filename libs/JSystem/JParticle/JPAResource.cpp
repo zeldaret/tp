@@ -7,8 +7,8 @@
 #include "JSystem/JParticle/JPABaseShape.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/gx.h"
+#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 //

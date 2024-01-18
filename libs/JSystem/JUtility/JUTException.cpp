@@ -11,8 +11,8 @@
 #include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os/OS.h"
-#include "dolphin/vi/vi.h"
+#include "dolphin/os.h"
+#include "dolphin/vi.h"
 #include "global.h"
 
 //

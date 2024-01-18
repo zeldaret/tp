@@ -6,7 +6,7 @@
 #include "d/d_demo.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_graphic.h"

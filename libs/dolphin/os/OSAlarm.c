@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/os/OSAlarm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/os/OSReset.h"
 
 static s32 OnReset(s32 param_0);

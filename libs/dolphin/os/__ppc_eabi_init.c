@@ -3,7 +3,7 @@
 // Translation Unit: __ppc_eabi_init
 //
 
-#include "dolphin/os/__ppc_eabi_init.h"
+#include "dolphin/base/PPCArch.h"
 #include "dol2asm.h"
 
 //

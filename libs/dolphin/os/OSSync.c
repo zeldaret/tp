@@ -1,5 +1,5 @@
 #include "dolphin/os/OSSync.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 void __OSSystemCallVectorStart();
 void __OSSystemCallVectorEnd();

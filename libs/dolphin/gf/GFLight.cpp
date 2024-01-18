@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gf/GFLight.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 //
 // Types:

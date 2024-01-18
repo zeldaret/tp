@@ -5,7 +5,7 @@
 
 #include "dolphin/gx/GXLight.h"
 #include "math.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 8035D630-8035D64C 357F70 001C+00 0/0 1/1 0/0 .text            GXInitLightAttn */
 void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2) {
@@ -216,9 +216,9 @@ void GXSetChanAmbColor(GXChannelID chan, GXColor color) {
             return;
     }
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = colorId + 0x100a;
-    GXFIFO.u32 = ambColor;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = colorId + 0x100a;
+    GXWGFifo.u32 = ambColor;
     __GXData->bpSentNot = 1;
     ((u32*)__GXData->ambColors)[colorId] = ambColor;
 }
@@ -273,9 +273,9 @@ void GXSetChanMatColor(GXChannelID chan, GXColor color) {
             return;
     }
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = colorId + 0x100c;
-    GXFIFO.u32 = matColor;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = colorId + 0x100c;
+    GXWGFifo.u32 = matColor;
     __GXData->bpSentNot = 1;
     ((u32*)__GXData->matColors)[colorId] = matColor;
 }
@@ -297,9 +297,9 @@ void GXSetNumChans(u8 chan_num) {
     GXData* data = __GXData;
     GX_BITFIELD_SET(data->bpSentNot04, 25, 3, chan_num);
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.s32 = 0x1009;
-    GXFIFO.s32 = chan_num;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.s32 = 0x1009;
+    GXWGFifo.s32 = chan_num;
 
     data->dirtyFlags |= GX_DIRTY_GEN_MODE;
 }
@@ -331,18 +331,18 @@ void GXSetChanCtrl(GXChannelID channel, GXBool enable, GXColorSrc amb_src, GXCol
     GX_BITFIELD_SET(field, 26, 4, (u32)light_mask);
     field = __rlwimi(field, (u32)light_mask, 7, 0x11, 0x14);
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = idx + 0x100e;
-    GXFIFO.u32 = field;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = idx + 0x100e;
+    GXWGFifo.u32 = field;
 
     if (channel == GX_COLOR0A0) {
-        GXFIFO.u8 = 0x10;
-        GXFIFO.u32 = 0x1010;
-        GXFIFO.u32 = field;
+        GXWGFifo.u8 = 0x10;
+        GXWGFifo.u32 = 0x1010;
+        GXWGFifo.u32 = field;
     } else if (channel == GX_COLOR1A1) {
-        GXFIFO.u8 = 0x10;
-        GXFIFO.u32 = 0x1011;
-        GXFIFO.u32 = field;
+        GXWGFifo.u8 = 0x10;
+        GXWGFifo.u32 = 0x1011;
+        GXWGFifo.u32 = field;
     }
 
     __GXData->bpSentNot = 1;

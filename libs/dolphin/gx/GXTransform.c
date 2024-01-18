@@ -4,7 +4,7 @@
 //
 
 #include "dolphin/gx/GXTransform.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dol2asm.h"
 
 //
@@ -134,11 +134,11 @@ void GXSetProjection(Mtx44 mtx, GXProjectionType type) {
         __GXData->field_0x4e8 = mtx[1][2];
     }
     
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = 0x61020;
-    fifo = &GXFIFO;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = 0x61020;
+    fifo = &GXWGFifo;
     WriteProjPS(fifo, &__GXData->field_0x4dc);
-    GXFIFO.u32 = __GXData->projectionType;
+    GXWGFifo.u32 = __GXData->projectionType;
     __GXData->bpSentNot = 1;
 }
 
@@ -149,10 +149,10 @@ void GXSetProjectionv(f32* p) {
     __GXData->projectionType = (*p == 0.0f) ? GX_PERSPECTIVE : GX_ORTHOGRAPHIC;
     p++;
     Copy6Floats(&__GXData->field_0x4dc, p);
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = 0x61020;
-    WriteProjPS(&GXFIFO, &__GXData->field_0x4dc);
-    GXFIFO.u32 = __GXData->projectionType;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u32 = 0x61020;
+    WriteProjPS(&GXWGFifo, &__GXData->field_0x4dc);
+    GXWGFifo.u32 = __GXData->projectionType;
     __GXData->bpSentNot = 1;
 }
 #else
@@ -209,7 +209,7 @@ static void WriteMTXPS4x3(register volatile void* dst, register const Mtx src) {
 /* 8036024C-8036029C 35AB8C 0050+00 0/0 83/83 9/9 .text            GXLoadPosMtxImm */
 void GXLoadPosMtxImm(Mtx mtx, u32 id) {
 	GX_XF_LOAD_REGS(4 * 3 - 1, id * 4 + GX_XF_MEM_POSMTX);
-	WriteMTXPS4x3(&GXFIFO, mtx);
+	WriteMTXPS4x3(&GXWGFifo, mtx);
 }
 
 static void WriteMTXPS3x3(register volatile void* dst, register const Mtx src) {
@@ -237,7 +237,7 @@ static void WriteMTXPS3x3(register volatile void* dst, register const Mtx src) {
 /* 8036029C-803602EC 35ABDC 0050+00 0/0 11/11 7/7 .text            GXLoadNrmMtxImm */
 void GXLoadNrmMtxImm(Mtx mtx, u32 id) {
     GX_XF_LOAD_REGS(3 * 3 - 1, id * 3 + GX_XF_MEM_NRMMTX);
-    WriteMTXPS3x3(&GXFIFO, mtx);
+    WriteMTXPS3x3(&GXWGFifo, mtx);
 }
 
 /* 803602EC-80360320 35AC2C 0034+00 0/0 51/51 2/2 .text            GXSetCurrentMtx */
@@ -281,9 +281,9 @@ void GXLoadTexMtxImm(const Mtx mtx, u32 id, GXTexMtxType type) {
 	GX_XF_LOAD_REG_HDR(reg);
 
 	if (type == GX_MTX3x4) {
-		WriteMTXPS4x3(&GXFIFO, mtx);
+		WriteMTXPS4x3(&GXWGFifo, mtx);
 	} else {
-		WriteMTXPS4x2(&GXFIFO, mtx);
+		WriteMTXPS4x2(&GXWGFifo, mtx);
 	}
 }
 

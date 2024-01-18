@@ -17,7 +17,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"

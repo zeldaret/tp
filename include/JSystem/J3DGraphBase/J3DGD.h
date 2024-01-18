@@ -2,7 +2,7 @@
 #define J3DGD_H
 
 #include "dolphin/gd/GDBase.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 inline void J3DGDWrite_u8(u8 param) {
     __GDWrite(param);
@@ -31,8 +31,8 @@ inline void J3DGDWriteBPCmd(u32 cmd) {
 }
 
 inline void J3DFifoLoadBPCmd(u32 cmd) {
-    GFX_FIFO(u8) = 0x61;
-    GFX_FIFO(u32) = cmd;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = cmd;
 }
 
 inline void J3DGDWriteXFCmd(u16 addr, u32 cmd) {
@@ -49,17 +49,17 @@ inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
 }
 
 inline void J3DFifoWriteXFCmdHdr(u16 addr, u8 len) {
-    GFX_FIFO(u8) = 0x10;
-    GFX_FIFO(u16) = len - 1;
-    GFX_FIFO(u16) = addr;
+    GXWGFifo.u8 = 0x10;
+    GXWGFifo.u16 = len - 1;
+    GXWGFifo.u16 = addr;
 }
 
 inline void J3DGXCmd1f32ptr(f32* value) {
-    GFX_FIFO(u32) = *(u32*)value;
+    GXWGFifo.u32 = *(u32*)value;
 }
 
 inline void J3DGXCmd1f32(f32 value) {
-    GFX_FIFO(u32) = *(u32*)&value;
+    GXWGFifo.u32 = *(u32*)&value;
 }
 
 inline void J3DGDWriteCPCmd(u8 reg, u32 value) {
@@ -104,9 +104,9 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32);
 void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
 
 static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
-    GFX_FIFO(u8) = cmd;
-    GFX_FIFO(u16) = indx;
-    GFX_FIFO(u16) = addr;
+    GXWGFifo.u8 = cmd;
+    GXWGFifo.u16 = indx;
+    GXWGFifo.u16 = addr;
 }
 
 inline void J3DGDSetNumChans(u8 numChans) {
