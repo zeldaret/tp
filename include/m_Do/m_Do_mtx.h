@@ -128,7 +128,7 @@ inline void mDoMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
 }
 
 inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
-    MTXQuat(m, q);
+    MTXQuat(m, (PSQuaternion*)q);
 }
 
 inline void cMtx_inverse(const Mtx a, Mtx b) {
