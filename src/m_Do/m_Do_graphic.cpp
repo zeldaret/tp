@@ -1155,7 +1155,7 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
         }
 
         GXSetTexCopySrc(x_orig, y_orig_pos, width, height);
-        GXSetTexCopyDst(width >> 1, height >> 1, mDoGph_gInf_c::getFrameBufferTimg()->format,
+        GXSetTexCopyDst(width >> 1, height >> 1, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format,
                         GX_TRUE);
         GXCopyTex(tex, GX_FALSE);
         GXPixModeSync();

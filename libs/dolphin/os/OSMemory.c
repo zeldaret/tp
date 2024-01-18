@@ -26,7 +26,7 @@ extern OSErrorHandlerEx __OSErrorTable[16];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm s32 OnReset(s32 param_0) {
+static asm BOOL OnReset(BOOL param_0) {
     nofralloc
 #include "asm/dolphin/os/OSMemory/OnReset.s"
 }

@@ -7,6 +7,7 @@
 #include "dolphin/gx/GXFifo.h"
 #include "dolphin/gx/GXFrameBuf.h"
 #include "dolphin/gx/GXGeometry.h"
+#include "dolphin/gx/GXInit.h"
 #include "dolphin/gx/GXLight.h"
 #include "dolphin/gx/GXMisc.h"
 #include "dolphin/gx/GXPerf.h"
@@ -20,11 +21,16 @@ extern "C" {
 #endif
 
 // Pack value into bitfield
+// clang-format off
 #define GX_BITFIELD_SET(field, pos, size, value) (field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos), (pos) + (size)-1)
+#define GX_BITFIELD_TRUNC(field, pos, size, value) (__rlwimi((field), (value), 0, (pos), (pos) + (size)-1))
 
 #define GX_BITGET(field, pos, size)              ((field) >> (31 - (pos) - (size) + 1) & ((1 << (size)) - 1))
 #define GX_GET_REG(reg, st, end)    GX_BITGET(reg, st, (end - st + 1))
 #define GX_SET_REG(reg, x, st, end) GX_BITFIELD_SET(reg, st, (end - st + 1), x)
+#define GX_SET_TRUNC(reg, x, st, end) GX_BITFIELD_TRUNC((reg), (st), ((end) - (st) + 1), (x))
+
+#define GXCOLOR_AS_U32(color) (*((u32*)&(color)))
 
 #define INSERT_FIELD(reg, value, nbits, shift)                                 \
     (reg) = ((u32) (reg) & ~(((1 << (nbits)) - 1) << (shift))) |               \
@@ -34,7 +40,7 @@ extern "C" {
 	do {                                                                                                           \
 		(regOrg) = (u32)__rlwimi((int)(regOrg), (int)(newFlag), (shift), (32 - (shift) - (size)), (31 - (shift))); \
 	} while (0);
-
+// clang-format on
 
 #define GX_LOAD_BP_REG 0x61
 #define GX_NOP 0
@@ -204,6 +210,12 @@ inline void GFFill(u16 param_1, u32 param_2) {
 }
 
 static inline void GXEnd(void) {}
+
+extern GXRenderModeObj GXNtsc480IntDf;
+extern GXRenderModeObj GXNtsc480Int;
+extern GXRenderModeObj GXMpal480IntDf;
+extern GXRenderModeObj GXPal528IntDf;
+extern GXRenderModeObj GXEurgb60Hz480IntDf;
 
 #ifdef __cplusplus
 };

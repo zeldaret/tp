@@ -94,35 +94,35 @@ void GXSetIndTexCoordScale(GXIndTexStageID texStage, GXIndTexScale scaleS, GXInd
     switch (texStage) {
     case GX_INDTEXSTAGE0:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x128, 28, 4, scaleS);
-        GX_BITFIELD_SET(data->field_0x128, 24, 4, scaleT);
-        GX_BITFIELD_SET(data->field_0x128, 0, 8, 0x25);
+        GX_BITFIELD_SET(data->IndTexScale0, 28, 4, scaleS);
+        GX_BITFIELD_SET(data->IndTexScale0, 24, 4, scaleT);
+        GX_BITFIELD_SET(data->IndTexScale0, 0, 8, 0x25);
         GXWGFifo.u8 = 0x61;
-        GXWGFifo.s32 = data->field_0x128;
+        GXWGFifo.s32 = data->IndTexScale0;
         break;
     case GX_INDTEXSTAGE1:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x128, 20, 4, scaleS);
-        GX_BITFIELD_SET(data->field_0x128, 16, 4, scaleT);
-        GX_BITFIELD_SET(data->field_0x128, 0, 8, 0x25);
+        GX_BITFIELD_SET(data->IndTexScale0, 20, 4, scaleS);
+        GX_BITFIELD_SET(data->IndTexScale0, 16, 4, scaleT);
+        GX_BITFIELD_SET(data->IndTexScale0, 0, 8, 0x25);
         GXWGFifo.u8 = 0x61;
-        GXWGFifo.s32 = data->field_0x128;
+        GXWGFifo.s32 = data->IndTexScale0;
         break;
     case GX_INDTEXSTAGE2:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x12c, 28, 4, scaleS);
-        GX_BITFIELD_SET(data->field_0x12c, 24, 4, scaleT);
-        GX_BITFIELD_SET(data->field_0x12c, 0, 8, 0x26);
+        GX_BITFIELD_SET(data->IndTexScale1, 28, 4, scaleS);
+        GX_BITFIELD_SET(data->IndTexScale1, 24, 4, scaleT);
+        GX_BITFIELD_SET(data->IndTexScale1, 0, 8, 0x26);
         GXWGFifo.u8 = 0x61;
-        GXWGFifo.s32 = data->field_0x12c;
+        GXWGFifo.s32 = data->IndTexScale1;
         break;
     case GX_INDTEXSTAGE3:
         data = __GXData;
-        GX_BITFIELD_SET(data->field_0x12c, 20, 4, scaleS);
-        GX_BITFIELD_SET(data->field_0x12c, 16, 4, scaleT);
-        GX_BITFIELD_SET(data->field_0x12c, 0, 8, 0x26);
+        GX_BITFIELD_SET(data->IndTexScale1, 20, 4, scaleS);
+        GX_BITFIELD_SET(data->IndTexScale1, 16, 4, scaleT);
+        GX_BITFIELD_SET(data->IndTexScale1, 0, 8, 0x26);
         GXWGFifo.u8 = 0x61;
-        GXWGFifo.s32 = data->field_0x12c;
+        GXWGFifo.s32 = data->IndTexScale1;
         break;
     }
 
@@ -173,7 +173,7 @@ void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
 void GXSetNumIndStages(u8 num) {
     GXData* data = __GXData;
     GX_BITFIELD_SET(data->genMode, 13, 3, num);
-    data->dirtyFlags |= GX_DIRTY_BP_MASK | GX_DIRTY_GEN_MODE;
+    data->dirtyState |= GX_DIRTY_BP_MASK | GX_DIRTY_GEN_MODE;
 }
 
 /* 8035F0F8-8035F140 359A38 0048+00 0/0 16/16 0/0 .text            GXSetTevDirect */

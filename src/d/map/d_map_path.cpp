@@ -297,7 +297,7 @@ void dRenderingFDAmap_c::preRenderingMap() {
 void dRenderingFDAmap_c::postRenderingMap() {
     GXSetCopyFilter(GX_FALSE, NULL, GX_FALSE, NULL);
     GXSetTexCopySrc(0, 0, field_0x1c, field_0x1e);
-    GXSetTexCopyDst(field_0x1c, field_0x1e, _GX_CTF_R8, GX_FALSE);
+    GXSetTexCopyDst(field_0x1c, field_0x1e, GX_CTF_G8, GX_FALSE);
     GXCopyTex(field_0x4, GX_TRUE);
     GXPixModeSync();
     GXSetClipMode(GX_CLIP_ENABLE);

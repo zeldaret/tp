@@ -8,7 +8,7 @@
 
 /* 8035C6E4-8035C764 357024 0080+00 0/0 4/4 0/0 .text            __GXSetDirtyState */
 void __GXSetDirtyState(void) {
-    u32 dirtyFlags = __GXData->dirtyFlags;
+    u32 dirtyFlags = __GXData->dirtyState;
 
     if (dirtyFlags & GX_DIRTY_SU_TEX) {
         __GXSetSUTexRegs();
@@ -34,15 +34,15 @@ void __GXSetDirtyState(void) {
         __GXCalculateVLim();
     }
 
-    __GXData->dirtyFlags = 0;
+    __GXData->dirtyState = 0;
 }
 
 /* 8035C764-8035C834 3570A4 00D0+00 0/0 66/66 3/3 .text            GXBegin */
 void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num) {
     GXData* data = __GXData;
-    u32 dirtyFlags = data->dirtyFlags;
+    u32 dirtyFlags = data->dirtyState;
 
-    if (data->dirtyFlags != 0) {
+    if (data->dirtyState != 0) {
         if (dirtyFlags & GX_DIRTY_SU_TEX) {
             __GXSetSUTexRegs();
         }
@@ -67,7 +67,7 @@ void GXBegin(GXPrimitive type, GXVtxFmt fmt, u16 vert_num) {
             __GXCalculateVLim();
         }
 
-        __GXData->dirtyFlags = 0;
+        __GXData->dirtyState = 0;
     }
 
     if (*(u32*)__GXData == 0) {
@@ -130,13 +130,13 @@ void GXEnableTexOffsets(GXTexCoordID coord, GXBool line, GXBool point) {
 void GXSetCullMode(GXCullMode mode) {
     GXData* data;
     GXCullMode mode2;
-    data  = __GXData;
+    data = __GXData;
 
     mode2 = (mode >> 1) & 1;
     GX_BITFIELD_SET(mode2, 30, 1, mode);
 
     GX_BITFIELD_SET(data->genMode, 16, 2, mode2);
-    data->dirtyFlags |= GX_DIRTY_GEN_MODE;
+    data->dirtyState |= GX_DIRTY_GEN_MODE;
 }
 
 /* 8035C9AC-8035C9E0 3572EC 0034+00 0/0 6/6 0/0 .text            GXSetCoPlanar */

@@ -95,8 +95,10 @@ void OSReportInit(void);
 
 #ifdef DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__);
+#define ASSERTMSG(exp, msg) (void)((exp) || (OSPanic(__FILE__, __LINE__, (msg)), 0))
 #else
 #define OS_REPORT(...)
+#define ASSERTMSG(exp, msg) ((void)0)
 #endif
 
 extern u8 __OSReport_disable;

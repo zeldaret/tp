@@ -7,7 +7,7 @@
 #include "dolphin/os.h"
 #include "dolphin/os/OSReset.h"
 
-static s32 OnReset(s32 param_0);
+static BOOL OnReset(BOOL param_0);
 
 //
 // External References:
@@ -239,7 +239,7 @@ static asm void DecrementerExceptionHandler(register __OSException exception,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm s32 OnReset(s32 param_0) {
+static asm BOOL OnReset(BOOL param_0) {
     nofralloc
 #include "asm/dolphin/os/OSAlarm/OnReset.s"
 }

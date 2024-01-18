@@ -1,97 +1,124 @@
 #ifndef GXINIT_H
 #define GXINIT_H
 
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
+#include "dolphin/gx/GXTexture.h"
 #include "dolphin/mtx.h"
 
-typedef GXTexRegion (*GXTexRegionCallback)(GXTexObj* obj);
-typedef GXTlutRegion* (*GXTlutRegionCallback)(u32 name);
-
 typedef struct _GXData {
-    /* 0x000 */ u16 field_0x0;
-    /* 0x002 */ u16 bpSentNot;
-    /* 0x004 */ u16 vNum;
-    /* 0x006 */ u16 vLim;
-    /* 0x008 */ u32 cpEnable;
-    /* 0x00C */ u32 cpStatus;
-    /* 0x010 */ u32 cpClr;
-    /* 0x014 */ u32 vcdLoReg;
-    /* 0x018 */ GXAttrType vcdHiReg;
-    /* 0x01C */ GXCompCnt vatA[8];
-    /* 0x03C */ GXCompCnt vatB[8];
-    /* 0x05C */ u32 vatC[8];
-    /* 0x07C */ u32 lpSize;
-    /* 0x080 */ u32 matIdxA;
-    /* 0x084 */ u32 matIdxB;
-    /* 0x088 */ u8 field_0x88[0xA8 - 0x88];
-    /* 0x0A8 */ GXColor ambColors[2];
-    /* 0x0B0 */ GXColor matColors[2];
-    /* 0x0B8 */ u32 suTs0[8];  // GX_MAX_TEXCOORD
-    /* 0x0D8 */ u32 suTs1[8];  // GX_MAX_TEXCOORD
-    /* 0x0F8 */ u32 suScis0;
-    /* 0x0FC */ u32 suScis1;
-    /* 0x100 */ u32 tref[GX_MAX_TEVSTAGE / 2];
-    /* 0x120 */ u32 iref;
-    /* 0x124 */ u32 bpMask;
-    /* 0x128 */ u32 field_0x128;
-    /* 0x12C */ u32 field_0x12c;
-    /* 0x130 */ u32 tevc[GX_MAX_TEVSTAGE];
-    /* 0x170 */ u32 teva[GX_MAX_TEVSTAGE];
-    /* 0x1B0 */ u32 tevKsel[GX_MAX_TEVSTAGE / 2];
-    /* 0x1D0 */ u32 cmode0;
-    /* 0x1D4 */ u32 cmode1;
-    /* 0x1D8 */ u32 zmode;
-    /* 0x1DC */ u32 peCtrl;
-    /* 0x1E0 */ u32 field_0x1e0;
-    /* 0x1E4 */ u32 field_0x1e4;
-    /* 0x1E8 */ u32 field_0x1e8;
-    /* 0x1EC */ u32 field_0x1ec;
-    /* 0x1F0 */ u32 field_0x1f0;
-    /* 0x1F4 */ u32 field_0x1f4;
-    /* 0x1F8 */ u32 field_0x1f8;
-    /* 0x1FC */ u32 cpTex;
-    /* 0x200 */ u8 field_0x200;
-    /* 0x204 */ u32 genMode;
-    /* 0x208 */ GXTexRegion TexRegions0[8];
-    /* 0x288 */ GXTexRegion TexRegions1[8];
-    /* 0x308 */ GXTexRegion TexRegions2[8];
-    /* 0x388 */ GXTlutRegion TlutRegions[16]; 
-    /* 0x488 */ GXTlutRegion field_0x488[4]; 
-    /* 0x4C8 */ GXTexRegionCallback texRegionCB;
-    /* 0x4CC */ GXTlutRegionCallback tlutRegionCB;
-    /* 0x4D0 */ GXAttrType nrmDataType;
-    /* 0x4D4 */ GXBool hasNrm;
-    /* 0x4D5 */ GXBool hasBiNrm;
-    /* 0x4D8 */ GXProjectionType projectionType;
-    /* 0x4DC */ f32 field_0x4dc;
-    /* 0x4E0 */ f32 field_0x4e0;
-    /* 0x4E4 */ f32 field_0x4e4;
-    /* 0x4E8 */ f32 field_0x4e8;
-    /* 0x4EC */ f32 field_0x4ec;
-    /* 0x4F0 */ f32 field_0x4f0;
-    /* 0x4F4 */ f32 vpLeft;
-    /* 0x4F8 */ f32 vpTop;
-    /* 0x4FC */ f32 vpWd;
-    /* 0x500 */ f32 vpHt;
-    /* 0x504 */ f32 vpNearz;
-    /* 0x508 */ f32 vpFarz;
-    /* 0x50C */ f32 zOffset;
-    /* 0x510 */ f32 zScale;
-    /* 0x514 */ u32 field_0x514[8];
-    /* 0x534 */ u32 field_0x534[8];
-    /* 0x558 */ u32 texmapId[9];
-    /* 0x578 */ u8 field_0x578[0x594 - 0x578];
-    /* 0x594 */ u32 tcsManEnab;
-    /* 0x598 */ u32 tevTcEnab;
-    /* 0x59C */ u32 perf0;
-    /* 0x5A0 */ u32 perf1;
-    /* 0x5A4 */ u32 perfSel;
-    /* 0x5A8 */ u8 inDispList;
-    /* 0x5A9 */ u8 dlSaveContext;
-    /* 0x5AA */ u8 abtWaitPECopy;
-    /* 0x5AB */ u8 dirtyVAT;
-    /* 0x5AC */ u32 dirtyFlags;
+    // Bypass and vertex info
+	u16 vNumNot;   // _000, !(# flush verts to send)
+	u16 bpSentNot; // _002, !(bypass reg sent last?)
+	u16 vNum;      // _004, # flush verts to send
+	u16 vLim;      // _006, max vert size
+
+	// Command process (CP) regs
+	u32 cpEnable; // _008
+	u32 cpStatus; // _00C
+	u32 cpClr;    // _010
+	u32 vcdLo;    // _014
+	u32 vcdHi;    // _018
+	u32 vatA[8];  // _01C
+	u32 vatB[8];  // _03C
+	u32 vatC[8];  // _05C
+	u32 lpSize;   // _07C
+	u32 matIdxA;  // _080
+	u32 matIdxB;  // _084
+
+	// Index loading base/stride regs (pos, nrm, tex, light)
+	u32 indexBase[4];   // _088
+	u32 indexStride[4]; // _098
+
+	// Transform and lighting regs
+	u32 ambColor[2]; // _0A8
+	u32 matColor[2]; // _0B0
+
+	// Setup regs
+	u32 suTs0[8]; // _0B8
+	u32 suTs1[8]; // _0D8
+	u32 suScis0;  // _0F8
+	u32 suScis1;  // _0FC
+
+	// Raster regs
+	u32 tref[8]; // _100
+	u32 iref;    // _120
+
+	// Bump/Indirect texture regs
+	u32 bpMask;       // _124
+	u32 IndTexScale0; // _128
+	u32 IndTexScale1; // _12C
+
+	// Tev regs
+	u32 tevc[16];   // _130
+	u32 teva[16];   // _170
+	u32 tevKsel[8]; // _1B0
+
+	// Performance regs
+	u32 cmode0; // _1D0
+	u32 cmode1; // _1D4
+	u32 zmode;  // _1D8
+	u32 peCtrl; // _1DC
+
+	// Display copy regs
+	u32 cpDispSrc;    // _1E0
+	u32 cpDispSize;   // _1E4
+	u32 cpDispStride; // _1E8
+	u32 cpDisp;       // _1EC
+
+	// Texture copy regs
+	u32 cpTexSrc;    // _1F0
+	u32 cpTexSize;   // _1F4
+	u32 cpTexStride; // _1F8
+	u32 cpTex;       // _1FC
+	GXBool cpTexZ;   // _200
+
+	// General raster mode
+	u32 genMode; // _204
+
+	// Texture regions
+	GXTexRegion TexRegions0[GX_MAX_TEXMAP]; // _208
+	GXTexRegion TexRegions1[GX_MAX_TEXMAP]; // _288
+	GXTexRegion TexRegions2[GX_MAX_TEXMAP]; // _308
+
+	// Texture lookup table regions
+	GXTlutRegion TlutRegions[GX_MAX_TLUT_ALL]; // _388
+	GXTexRegionCallback texRegionCallback;     // _4C8
+	GXTlutRegionCallback tlutRegionCallback;   // _4CC
+
+	// Command processor vars
+	GXAttrType nrmType; // _4D0
+	GXBool hasNrms;     // _4D4
+	GXBool hasBiNrms;   // _4D5
+	u32 projType;       // _4D8
+	f32 projMtx[6];     // _4DC
+
+	// Viewport parms
+	f32 vpLeft;  // _4F4
+	f32 vpTop;   // _4F8
+	f32 vpWd;    // _4FC
+	f32 vpHt;    // _500
+	f32 vpNearz; // _504
+	f32 vpFarz;  // _508
+	f32 zOffset; // _50C
+	f32 zScale;  // _510
+
+	// Texture regs
+	u32 tImage0[8];   // _514
+	u32 tMode0[8];    // _534
+	u32 texmapId[16]; // _554
+	u32 tcsManEnab;   // _594
+	u32 tevTcEnab;    // _598
+
+	// Performance metrics
+	GXPerf0 perf0; // _59C
+	GXPerf1 perf1; // _5A0
+	u32 perfSel;   // _5A4
+
+	// Flags
+	GXBool inDispList;    // _5A8
+	GXBool dlSaveContext; // _5A9
+	GXBool abtWaitPECopy; // _5AA
+	u8 dirtyVAT;          // _5AB
+	u32 dirtyState;       // _5AC
 } GXData;  // Size: 0x5B0
 
 STATIC_ASSERT(sizeof(GXData) == 0x5B0);
@@ -121,7 +148,7 @@ extern vu16* __memReg;
 
 inline void GXSetWasteFlags() {
 	GXData* data = __GXData;
-	data->dirtyFlags |= GX_DIRTY_SU_TEX | GX_DIRTY_BP_MASK;
+	data->dirtyState |= GX_DIRTY_SU_TEX | GX_DIRTY_BP_MASK;
 	data->bpSentNot = 0;
 }
 
@@ -147,7 +174,7 @@ static inline u32 GXReadMEMReg(u32 addrLo, u32 addrHi)
 	return ((hiStart << 16) | lo);
 }
 
-GXTexRegion* __GXDefaultTexRegionCallback(GXTexObj* obj, GXTexMapID mapID);
+GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj* obj, GXTexMapID mapID);
 GXTlutRegion* __GXDefaultTlutRegionCallback(u32 tlut);
 BOOL __GXShutdown(BOOL);
 void __GXInitRevisionBits(void);

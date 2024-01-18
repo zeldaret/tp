@@ -21,7 +21,6 @@ static void GetCurrentDisplayPosition(u32* x, u32* y);
 static void getCurrentFieldEvenOdd();
 u32 VIGetNextField();
 void VIGetCurrentLine();
-void VIGetTvFormat();
 u32 VIGetDTVStatus();
 void __VIDisplayPositionToXY();
 void __VIGetCurrentPosition();
@@ -522,7 +521,7 @@ SECTION_DATA static void* lit_740[8 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void VIGetTvFormat() {
+asm u32 VIGetTvFormat(void) {
     nofralloc
 #include "asm/dolphin/vi/vi/VIGetTvFormat.s"
 }

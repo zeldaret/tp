@@ -6,7 +6,7 @@
 /* 80450A60-80450A68 -00001 0004+04 1/1 0/0 0/0 .sdata           __CARDVersion */
 char* __CARDVersion = "<< Dolphin SDK - CARD\trelease build: Apr  5 2004 04:15:35 (0x2301) >>";
 
-static s32 OnReset(s32);
+static BOOL OnReset(BOOL);
 static void TimeoutHandler(OSAlarm* alarm, OSContext* context);
 static s32 Retry(s32 chan);
 static void UnlockedCallback(s32 chan, s32 result);
@@ -642,7 +642,7 @@ s32 __CARDSync(s32 chan) {
 }
 
 /* 80353EB8-80353F08 34E7F8 0050+00 1/0 0/0 0/0 .text            OnReset */
-static s32 OnReset(s32 f) {
+static BOOL OnReset(BOOL f) {
     if (!f) {
         if (CARDUnmount(0) == CARD_RESULT_BUSY || CARDUnmount(1) == CARD_RESULT_BUSY) {
             return FALSE;

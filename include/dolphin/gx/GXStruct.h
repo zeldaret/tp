@@ -2,6 +2,8 @@
 #define GXSTRUCT_H
 
 #include "global.h"
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/vi.h"
 
 typedef struct _GXColor {
     /* 0x0 */ u8 r;
@@ -18,7 +20,7 @@ typedef struct _GXColorS10 {
 } GXColorS10;
 
 typedef struct _GXRenderModeObj {
-    /* 0x00 */ s32 vi_tv_mode;
+    /* 0x00 */ VITVMode vi_tv_mode;
     /* 0x04 */ u16 fb_width;
     /* 0x06 */ u16 efb_height;
     /* 0x08 */ u16 xfb_height;
@@ -26,7 +28,7 @@ typedef struct _GXRenderModeObj {
     /* 0x0C */ u16 vi_y_origin;
     /* 0x0E */ u16 vi_width;
     /* 0x10 */ u16 vi_height;
-    /* 0x14 */ s32 xfb_mode;
+    /* 0x14 */ VIXFBMode xfb_mode;
     /* 0x18 */ u8 field_rendering;
     /* 0x19 */ u8 antialiasing;
     /* 0x1A */ u8 sample_pattern[12][2];
@@ -51,7 +53,7 @@ typedef struct _GXTexObj {
 typedef struct _GXTlutObj {
     /* 0x0 */ u32 format;
     /* 0x4 */ u32 address;
-    /* 0x8 */ u32 numEntries;
+    /* 0x8 */ u16 numEntries;
 } GXTlutObj;
 
 typedef struct _GXLightObj {
@@ -91,11 +93,16 @@ typedef struct _GXFifoObj {
 } GXFifoObj;  // Size: 0x80
 
 typedef struct _GXTexRegion {
-    /* 0x00 */ u8 dummy[0x10];
+    u32 unk0;      // _00
+	u32 unk4;      // _04
+	u32 unk8;      // _08
+	u8 unkC;       // _0C
+	u8 unkD;       // _0D
 } GXTexRegion;  // Size: 0x10
 
 typedef struct _GXTlutRegion {
-    /* 0x00 */ u8 dummy[0x10];
+    /* 0x00 */ u32 unk0;
+    /* 0x04 */ GXTlutObj tlutObj;
 } GXTlutRegion;  // Size: 0x10
 
 #endif /* GXSTRUCT_H */

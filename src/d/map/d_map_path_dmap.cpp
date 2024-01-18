@@ -862,13 +862,13 @@ void renderingDAmap_c::preDrawPath() {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
-    GXSetMisc(1, 8);
+    GXSetMisc(GX_MT_XF_FLUSH, 8);
 }
 
 /* 8003FFC4-8003FFEC 03A904 0028+00 3/0 3/0 0/0 .text            postDrawPath__16renderingDAmap_cFv
  */
 void renderingDAmap_c::postDrawPath() {
-    GXSetMisc(1, 0);
+    GXSetMisc(GX_MT_XF_FLUSH, 0);
 }
 
 /* 8003FFEC-8003FFF4 03A92C 0008+00 3/0 3/1 0/0 .text getRoomNoSingle__16renderingDAmap_cFv */
