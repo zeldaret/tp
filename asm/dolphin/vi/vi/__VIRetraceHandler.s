@@ -97,7 +97,7 @@ lbl_8034C0B8:
 lbl_8034C0C4:
 /* 8034C0C4  80 6D 92 A0 */	lwz r3, shdwChanged(r13)
 /* 8034C0C8  38 A0 00 20 */	li r5, 0x20
-/* 8034C0CC  83 6D 92 A4 */	lwz r27, data_80451824(r13)
+/* 8034C0CC  83 6D 92 A4 */	lwz r27, shdwChanged+0x4(r13)
 /* 8034C0D0  38 9B 00 00 */	addi r4, r27, 0
 /* 8034C0D4  48 01 65 9D */	bl __shr2u
 /* 8034C0D8  7C 84 00 34 */	cntlzw r4, r4
@@ -121,15 +121,15 @@ lbl_8034C0F8:
 /* 8034C118  80 0D 92 A0 */	lwz r0, shdwChanged(r13)
 /* 8034C11C  7C 65 18 F8 */	nor r5, r3, r3
 /* 8034C120  7C 84 20 F8 */	nor r4, r4, r4
-/* 8034C124  80 6D 92 A4 */	lwz r3, data_80451824(r13)
+/* 8034C124  80 6D 92 A4 */	lwz r3, shdwChanged+0x4(r13)
 /* 8034C128  7C 00 28 38 */	and r0, r0, r5
 /* 8034C12C  7C 63 20 38 */	and r3, r3, r4
-/* 8034C130  90 6D 92 A4 */	stw r3, data_80451824(r13)
+/* 8034C130  90 6D 92 A4 */	stw r3, shdwChanged+0x4(r13)
 /* 8034C134  90 0D 92 A0 */	stw r0, shdwChanged(r13)
 lbl_8034C138:
 /* 8034C138  80 0D 92 A0 */	lwz r0, shdwChanged(r13)
 /* 8034C13C  38 80 00 00 */	li r4, 0
-/* 8034C140  80 6D 92 A4 */	lwz r3, data_80451824(r13)
+/* 8034C140  80 6D 92 A4 */	lwz r3, shdwChanged+0x4(r13)
 /* 8034C144  7C 00 22 78 */	xor r0, r0, r4
 /* 8034C148  7C 63 22 78 */	xor r3, r3, r4
 /* 8034C14C  7C 60 03 79 */	or. r0, r3, r0

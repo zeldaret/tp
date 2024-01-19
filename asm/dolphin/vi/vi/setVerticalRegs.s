@@ -73,35 +73,35 @@ lbl_8034CDE0:
 /* 8034CDF4  3D 20 01 00 */	lis r9, 0x100
 /* 8034CDF8  80 AD 92 90 */	lwz r5, changed(r13)
 /* 8034CDFC  3D 00 02 00 */	lis r8, 0x200
-/* 8034CE00  81 4D 92 94 */	lwz r10, data_80451814(r13)
+/* 8034CE00  81 4D 92 94 */	lwz r10, changed+0x4(r13)
 /* 8034CE04  7C A4 23 78 */	or r4, r5, r4
 /* 8034CE08  3C A0 00 40 */	lis r5, 0x40
-/* 8034CE0C  91 4D 92 94 */	stw r10, data_80451814(r13)
+/* 8034CE0C  91 4D 92 94 */	stw r10, changed+0x4(r13)
 /* 8034CE10  90 8D 92 90 */	stw r4, changed(r13)
 /* 8034CE14  3C 80 00 80 */	lis r4, 0x80
 /* 8034CE18  B0 0B 00 0E */	sth r0, 0xe(r11)
 /* 8034CE1C  80 0D 92 90 */	lwz r0, changed(r13)
-/* 8034CE20  81 4D 92 94 */	lwz r10, data_80451814(r13)
+/* 8034CE20  81 4D 92 94 */	lwz r10, changed+0x4(r13)
 /* 8034CE24  7C 00 4B 78 */	or r0, r0, r9
-/* 8034CE28  91 4D 92 94 */	stw r10, data_80451814(r13)
+/* 8034CE28  91 4D 92 94 */	stw r10, changed+0x4(r13)
 /* 8034CE2C  90 0D 92 90 */	stw r0, changed(r13)
 /* 8034CE30  B0 CB 00 0C */	sth r6, 0xc(r11)
 /* 8034CE34  80 0D 92 90 */	lwz r0, changed(r13)
-/* 8034CE38  80 CD 92 94 */	lwz r6, data_80451814(r13)
+/* 8034CE38  80 CD 92 94 */	lwz r6, changed+0x4(r13)
 /* 8034CE3C  7C 00 43 78 */	or r0, r0, r8
-/* 8034CE40  90 CD 92 94 */	stw r6, data_80451814(r13)
+/* 8034CE40  90 CD 92 94 */	stw r6, changed+0x4(r13)
 /* 8034CE44  90 0D 92 90 */	stw r0, changed(r13)
 /* 8034CE48  B0 6B 00 12 */	sth r3, 0x12(r11)
 /* 8034CE4C  80 0D 92 90 */	lwz r0, changed(r13)
-/* 8034CE50  80 6D 92 94 */	lwz r3, data_80451814(r13)
+/* 8034CE50  80 6D 92 94 */	lwz r3, changed+0x4(r13)
 /* 8034CE54  7C 00 2B 78 */	or r0, r0, r5
-/* 8034CE58  90 6D 92 94 */	stw r3, data_80451814(r13)
+/* 8034CE58  90 6D 92 94 */	stw r3, changed+0x4(r13)
 /* 8034CE5C  90 0D 92 90 */	stw r0, changed(r13)
 /* 8034CE60  B0 EB 00 10 */	sth r7, 0x10(r11)
 /* 8034CE64  80 0D 92 90 */	lwz r0, changed(r13)
-/* 8034CE68  80 6D 92 94 */	lwz r3, data_80451814(r13)
+/* 8034CE68  80 6D 92 94 */	lwz r3, changed+0x4(r13)
 /* 8034CE6C  7C 00 23 78 */	or r0, r0, r4
-/* 8034CE70  90 6D 92 94 */	stw r3, data_80451814(r13)
+/* 8034CE70  90 6D 92 94 */	stw r3, changed+0x4(r13)
 /* 8034CE74  90 0D 92 90 */	stw r0, changed(r13)
 /* 8034CE78  83 E1 00 24 */	lwz r31, 0x24(r1)
 /* 8034CE7C  83 C1 00 20 */	lwz r30, 0x20(r1)

@@ -17,18 +17,18 @@ lbl_8034D694:
 /* 8034D6D0  90 6D 92 98 */	stw r3, shdwChangeMode(r13)
 /* 8034D6D4  90 0D 92 88 */	stw r0, changeMode(r13)
 /* 8034D6D8  80 8D 92 A0 */	lwz r4, shdwChanged(r13)
-/* 8034D6DC  80 AD 92 A4 */	lwz r5, data_80451824(r13)
+/* 8034D6DC  80 AD 92 A4 */	lwz r5, shdwChanged+0x4(r13)
 /* 8034D6E0  80 0D 92 90 */	lwz r0, changed(r13)
-/* 8034D6E4  80 6D 92 94 */	lwz r3, data_80451814(r13)
+/* 8034D6E4  80 6D 92 94 */	lwz r3, changed+0x4(r13)
 /* 8034D6E8  7C 80 03 78 */	or r0, r4, r0
 /* 8034D6EC  7C A3 1B 78 */	or r3, r5, r3
-/* 8034D6F0  90 6D 92 A4 */	stw r3, data_80451824(r13)
+/* 8034D6F0  90 6D 92 A4 */	stw r3, shdwChanged+0x4(r13)
 /* 8034D6F4  90 0D 92 A0 */	stw r0, shdwChanged(r13)
 /* 8034D6F8  48 00 00 78 */	b lbl_8034D770
 lbl_8034D6FC:
 /* 8034D6FC  80 6D 92 90 */	lwz r3, changed(r13)
 /* 8034D700  38 A0 00 20 */	li r5, 0x20
-/* 8034D704  83 8D 92 94 */	lwz r28, data_80451814(r13)
+/* 8034D704  83 8D 92 94 */	lwz r28, changed+0x4(r13)
 /* 8034D708  38 9C 00 00 */	addi r4, r28, 0
 /* 8034D70C  48 01 4F 65 */	bl __shr2u
 /* 8034D710  7C 84 00 34 */	cntlzw r4, r4
@@ -52,15 +52,15 @@ lbl_8034D730:
 /* 8034D750  80 0D 92 90 */	lwz r0, changed(r13)
 /* 8034D754  7C 65 18 F8 */	nor r5, r3, r3
 /* 8034D758  7C 84 20 F8 */	nor r4, r4, r4
-/* 8034D75C  80 6D 92 94 */	lwz r3, data_80451814(r13)
+/* 8034D75C  80 6D 92 94 */	lwz r3, changed+0x4(r13)
 /* 8034D760  7C 00 28 38 */	and r0, r0, r5
 /* 8034D764  7C 63 20 38 */	and r3, r3, r4
-/* 8034D768  90 6D 92 94 */	stw r3, data_80451814(r13)
+/* 8034D768  90 6D 92 94 */	stw r3, changed+0x4(r13)
 /* 8034D76C  90 0D 92 90 */	stw r0, changed(r13)
 lbl_8034D770:
 /* 8034D770  80 0D 92 90 */	lwz r0, changed(r13)
 /* 8034D774  38 60 00 00 */	li r3, 0
-/* 8034D778  80 8D 92 94 */	lwz r4, data_80451814(r13)
+/* 8034D778  80 8D 92 94 */	lwz r4, changed+0x4(r13)
 /* 8034D77C  7C 00 1A 78 */	xor r0, r0, r3
 /* 8034D780  7C 83 1A 78 */	xor r3, r4, r3
 /* 8034D784  7C 60 03 79 */	or. r0, r3, r0

@@ -30,10 +30,10 @@ lbl_8034C57C:
 /* 8034C580  93 ED 92 64 */	stw r31, retraceCount(r13)
 /* 8034C584  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC002000@ha */
 /* 8034C588  38 63 20 00 */	addi r3, r3, 0x2000 /* 0xCC002000@l */
-/* 8034C58C  93 ED 92 94 */	stw r31, data_80451814(r13)
+/* 8034C58C  93 ED 92 94 */	stw r31, changed+0x4(r13)
 /* 8034C590  38 00 02 80 */	li r0, 0x280
 /* 8034C594  93 ED 92 90 */	stw r31, changed(r13)
-/* 8034C598  93 ED 92 A4 */	stw r31, data_80451824(r13)
+/* 8034C598  93 ED 92 A4 */	stw r31, shdwChanged+0x4(r13)
 /* 8034C59C  93 ED 92 A0 */	stw r31, shdwChanged(r13)
 /* 8034C5A0  93 ED 92 88 */	stw r31, changeMode(r13)
 /* 8034C5A4  93 ED 92 98 */	stw r31, shdwChangeMode(r13)
@@ -116,8 +116,8 @@ lbl_8034C57C:
 /* 8034C6D8  88 03 00 10 */	lbz r0, 0x10(r3)
 /* 8034C6DC  38 60 00 00 */	li r3, 0
 /* 8034C6E0  7C 00 07 74 */	extsb r0, r0
-/* 8034C6E4  B3 ED 92 86 */	sth r31, struct_80451804+0x2(r13)
-/* 8034C6E8  B0 0D 92 84 */	sth r0, struct_80451804+0x0(r13)
+/* 8034C6E4  B3 ED 92 86 */	sth r31, displayOffsetV(r13)
+/* 8034C6E8  B0 0D 92 84 */	sth r0, displayOffsetH(r13)
 /* 8034C6EC  4B FF 3E 4D */	bl __OSUnlockSram
 /* 8034C6F0  A3 BC 00 00 */	lhz r29, 0(r28)
 /* 8034C6F4  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000CC@ha */
@@ -169,7 +169,7 @@ lbl_8034C740:
 /* 8034C7A4  B1 1E 00 F2 */	sth r8, 0xf2(r30)
 /* 8034C7A8  A0 1E 00 F4 */	lhz r0, 0xf4(r30)
 /* 8034C7AC  A8 FE 00 F0 */	lha r7, 0xf0(r30)
-/* 8034C7B0  A8 AD 92 84 */	lha r5, struct_80451804+0x0(r13)
+/* 8034C7B0  A8 AD 92 84 */	lha r5, displayOffsetH(r13)
 /* 8034C7B4  20 00 02 D0 */	subfic r0, r0, 0x2d0
 /* 8034C7B8  A1 24 00 00 */	lhz r9, 0(r4)
 /* 8034C7BC  7C A7 2A 14 */	add r5, r7, r5
@@ -196,7 +196,7 @@ lbl_8034C7FC:
 /* 8034C7FC  39 60 00 01 */	li r11, 1
 lbl_8034C800:
 /* 8034C800  A0 03 00 00 */	lhz r0, 0(r3)
-/* 8034C804  A8 AD 92 86 */	lha r5, struct_80451804+0x2(r13)
+/* 8034C804  A8 AD 92 86 */	lha r5, displayOffsetV(r13)
 /* 8034C808  7C 07 07 34 */	extsh r7, r0
 /* 8034C80C  54 00 07 FE */	clrlwi r0, r0, 0x1f
 /* 8034C810  7C E7 2A 14 */	add r7, r7, r5
