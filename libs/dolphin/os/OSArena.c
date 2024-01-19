@@ -1,11 +1,6 @@
-//
-// Translation Unit: OSArena
-//
-
 #include "dolphin/os/OSArena.h"
 #include "dolphin/os/OSAlloc.h"
 
-/* ############################################################################################## */
 /* 80451650-80451658 000B50 0004+04 2/1 0/0 0/0 .sbss            __OSArenaHi */
 static void* __OSArenaHi;
 
@@ -14,7 +9,6 @@ void* OSGetArenaHi(void) {
     return __OSArenaHi;
 }
 
-/* ############################################################################################## */
 /* 80450998-804509A0 000418 0004+04 3/2 0/0 0/0 .sdata           __OSArenaLo */
 static void* __OSArenaLo = (void*)0xFFFFFFFF;
 

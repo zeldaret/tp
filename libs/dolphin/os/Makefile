@@ -25,7 +25,7 @@ LIBOS_A_CPP_FILES := \
 	libs/dolphin/os/OSSync.c \
 	libs/dolphin/os/OSThread.c \
 	libs/dolphin/os/OSTime.c \
-	libs/dolphin/os/__ppc_eabi_init.c \
+	libs/dolphin/os/__ppc_eabi_init.cpp \
 
 LIBOS_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/os/OS.o \
@@ -57,13 +57,12 @@ LIBOS_A_CFLAGS := \
 	-proc gekko \
 	-fp hard \
 	-nodefaults \
-	-str reuse \
+	-str noreadonly \
 	-inline auto \
 	-RTTI off \
 	-maxerrors 5 \
 	-enum int $(INCLUDES) \
 	-O4,p \
-	-lang=c \
 
 LIBOS_A_LDFLAGS := \
 	-nodefaults \
@@ -82,6 +81,14 @@ $(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.c $(BUILD_DIR)/libs/dolphin/
 	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
 	@$(DOLPHIN_LIB_CC) $(LIBOS_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
+$(BUILD_DIR)/libs/dolphin/os/%.o: libs/dolphin/os/%.cpp $(BUILD_DIR)/libs/dolphin/os/%.d
+	@mkdir -p $(@D)
+	@echo building... $<
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
+	@$(DOLPHIN_LIB_CC) $(LIBOS_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
+
 
 ifndef DISABLE_DEPS
 LIBOS_A_D_FILES := $(LIBOS_A_O_FILES:.o=.d)

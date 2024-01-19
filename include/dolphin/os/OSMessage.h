@@ -22,6 +22,10 @@ typedef struct OSMessageQueue {
 #define OS_MESSAGE_NOBLOCK 0
 #define OS_MESSAGE_BLOCK 1
 
+typedef enum {
+	OS_MSG_PERSISTENT = (1 << 0),
+} OSMessageFlags;
+
 void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgArray, s32 msgCount);
 BOOL OSSendMessage(OSMessageQueue* queue, OSMessage msg, s32 flags);
 BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, s32 flags);

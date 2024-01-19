@@ -131,7 +131,7 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
     } else {
         u8* stackPtr = OSGetStackPointer();
-        if (stackPtr < currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
+        if (stackPtr < (u8*)currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
             mDoPrintf_vprintf_Interrupt(fmt, args);
         } else {
             mDoPrintf_vprintf_Thread(fmt, args);
