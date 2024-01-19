@@ -2,23 +2,22 @@
 #include "math.h"
 
 #define R_RET fp1
-#define FP2   fp2
-#define FP3   fp3
-#define FP4   fp4
-#define FP5   fp5
-#define FP6   fp6
-#define FP7   fp7
-#define FP8   fp8
-#define FP9   fp9
-#define FP10  fp10
-#define FP11  fp11
-#define FP12  fp12
-#define FP13  fp13
+#define FP2 fp2
+#define FP3 fp3
+#define FP4 fp4
+#define FP5 fp5
+#define FP6 fp6
+#define FP7 fp7
+#define FP8 fp8
+#define FP9 fp9
+#define FP10 fp10
+#define FP11 fp11
+#define FP12 fp12
+#define FP13 fp13
 
 /* 80347090-803470B4 3419D0 0024+00 1/1 103/103 679/679 .text            PSVECAdd */
-asm void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
-{
-#ifdef __MWERKS__ // clang-format off
+asm void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register Vec* ret) {
+#ifdef __MWERKS__  // clang-format off
 	nofralloc;
 	psq_l     FP2,  0(vec1), 0, 0;
 	psq_l     FP4,  0(vec2), 0, 0;
@@ -29,13 +28,12 @@ asm void PSVECAdd(const register Vec* vec1, const register Vec* vec2, register V
 	ps_add    FP7, FP3, FP5;
 	psq_st    FP7,   8(ret), 1, 0;
 	blr
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 /* 803470B4-803470D8 3419F4 0024+00 0/0 60/60 59/59 .text            PSVECSubtract */
-asm void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, register Vec* ret)
-{
-#ifdef __MWERKS__ // clang-format off
+asm void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, register Vec* ret) {
+#ifdef __MWERKS__  // clang-format off
 	nofralloc;
 	psq_l     FP2,  0(vec1), 0, 0;
 	psq_l     FP4,  0(vec2), 0, 0;
@@ -46,12 +44,12 @@ asm void PSVECSubtract(const register Vec* vec1, const register Vec* vec2, regis
 	ps_sub    FP7, FP3, FP5;
 	psq_st    FP7,  8(ret), 1, 0;
 	blr
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 /* 803470D8-803470F4 341A18 001C+00 0/0 58/58 101/101 .text            PSVECScale */
 asm void PSVECScale(register const Vec* src, register Vec* dst, register f32 scale) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__  // clang-format off
 	nofralloc
 	psq_l        f0, 0(src), 0, 0
     psq_l        f2, 8(src), 1, 0
@@ -60,7 +58,7 @@ asm void PSVECScale(register const Vec* src, register Vec* dst, register f32 sca
     ps_muls0     f0, f2, f1
     psq_st       f0, 8(dst), 1, 0
     blr 
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 void C_VECScale(const Vec* src, Vec* dst, f32 scale) {
@@ -73,9 +71,8 @@ void C_VECScale(const Vec* src, Vec* dst, f32 scale) {
 }
 
 /* 803470F4-80347138 341A34 0044+00 2/2 16/16 0/0 .text            PSVECNormalize */
-void PSVECNormalize(const register Vec* vec1, register Vec* ret)
-{
-#ifdef __MWERKS__ // clang-format off
+void PSVECNormalize(const register Vec* vec1, register Vec* ret) {
+#ifdef __MWERKS__  // clang-format off
 	register f32 half  = 0.5f;
 	register f32 three = 3.0f;
 	register f32 xx_zz, xx_yy;
@@ -98,27 +95,29 @@ void PSVECNormalize(const register Vec* vec1, register Vec* ret)
 		ps_muls0    FP3, FP3, ret_sqrt;
 		psq_st      FP3, 8(ret), 1, 0;
 	}
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 /* 80347138-80347150 341A78 0018+00 0/0 140/140 727/727 .text            PSVECSquareMag */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 PSVECSquareMag(const Vec* v) {
-    nofralloc
-#include "asm/dolphin/mtx/vec/PSVECSquareMag.s"
+asm f32 PSVECSquareMag(register const Vec* v){
+#ifdef __MWERKS__  // clang-format off
+	nofralloc
+    psq_l      f0, 0(v), 0, 0
+    ps_mul     f0, f0, f0
+    lfs        f1, 8(v)
+    ps_madd    f1, f1, f1, f0
+    ps_sum0    f1, f1, f0, f0
+    blr 
+#endif  // clang-format on
 }
-#pragma pop
 
 /* 80347150-80347194 341A90 0044+00 0/0 24/24 0/0 .text            PSVECMag */
-f32 PSVECMag(const register Vec* v)
-{
-	register f32 v_xy, v_zz, square_mag;
-	register f32 ret_mag, n_0, n_1;
-	register f32 three, half, zero;
-	half = 0.5f;
-#ifdef __MWERKS__ // clang-format off
+f32 PSVECMag(const register Vec* v) {
+    register f32 v_xy, v_zz, square_mag;
+    register f32 ret_mag, n_0, n_1;
+    register f32 three, half, zero;
+    half = 0.5f;
+#ifdef __MWERKS__  // clang-format off
 	asm {
 		psq_l       v_xy, 0(v), 0, 0
 		ps_mul      v_xy, v_xy, v_xy
@@ -130,9 +129,9 @@ f32 PSVECMag(const register Vec* v)
 		beq-        __exit
 		frsqrte     ret_mag, square_mag
 	}
-#endif // clang-format on
-	three = 3.0f;
-#ifdef __MWERKS__ // clang-format off
+#endif  // clang-format on
+    three = 3.0f;
+#ifdef __MWERKS__  // clang-format off
 	asm {
 		fmuls       n_0, ret_mag, ret_mag
 		fmuls       n_1, ret_mag, half
@@ -141,14 +140,13 @@ f32 PSVECMag(const register Vec* v)
 		fmuls       square_mag, square_mag, ret_mag
 	__exit:
 	}
-#endif // clang-format on
-	return square_mag;
+#endif  // clang-format on
+    return square_mag;
 }
 
 /* 80347194-803471B4 341AD4 0020+00 2/2 39/39 15/15 .text            PSVECDotProduct */
-asm f32 PSVECDotProduct(const register Vec* vec1, const register Vec* vec2)
-{
-#ifdef __MWERKS__ // clang-format off
+asm f32 PSVECDotProduct(const register Vec* vec1, const register Vec* vec2) {
+#ifdef __MWERKS__  // clang-format off
 	nofralloc;
     psq_l      f2, 4(r3), 0, 0 /* qr0 */
     psq_l      f3, 4(r4), 0, 0 /* qr0 */
@@ -158,12 +156,12 @@ asm f32 PSVECDotProduct(const register Vec* vec1, const register Vec* vec2)
     ps_madd    f3, f5, f4, f2
     ps_sum0    f1, f3, f2, f2
     blr 
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 /* 803471B4-803471F0 341AF4 003C+00 0/0 20/20 3/3 .text            PSVECCrossProduct */
 asm void PSVECCrossProduct(register const Vec* a, register const Vec* b, register Vec* axb) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__  // clang-format off
 	nofralloc
     psq_l          f1, 0(b), 0, 0
     lfs            f2, 8(a)
@@ -180,7 +178,7 @@ asm void PSVECCrossProduct(register const Vec* a, register const Vec* b, registe
     ps_neg         f10, f10
     psq_st         f10, 4(axb), 0, 0
     blr 
-#endif // clang-format on
+#endif  // clang-format on
 }
 
 /* 803471F0-803472C8 341B30 00D8+00 0/0 1/1 0/0 .text            C_VECHalfAngle */
@@ -230,18 +228,25 @@ void C_VECReflect(const Vec* src, const Vec* normal, Vec* dst) {
 }
 
 /* 8034739C-803473C4 341CDC 0028+00 0/0 107/107 446/446 .text            PSVECSquareDistance */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 PSVECSquareDistance(const Vec* a, const Vec* b) {
-    nofralloc
-#include "asm/dolphin/mtx/vec/PSVECSquareDistance.s"
+asm f32 PSVECSquareDistance(register const Vec* a, register const Vec* b){
+#ifdef __MWERKS__  // clang-format off
+	nofralloc
+    psq_l      f0, 4(a), 0, 0
+    psq_l      f1, 4(b), 0, 0
+    ps_sub     f2, f0, f1
+    psq_l      f0, 0(a), 0, 0
+    psq_l      f1, 0(b), 0, 0
+    ps_mul     f2, f2, f2
+    ps_sub     f0, f0, f1
+    ps_madd    f1, f0, f0, f2
+    ps_sum0    f1, f1, f2, f2
+    blr 
+#endif  // clang-format on
 }
-#pragma pop
 
 /* 803473C4-80347418 341D04 0054+00 0/0 4/4 0/0 .text            PSVECDistance */
 f32 PSVECDistance(register const Vec* a, register const Vec* b) {
-    
+
     register f32 half_c;
     register f32 three_c;
     register f32 dist;
