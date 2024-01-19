@@ -9,12 +9,10 @@ extern "C" {
 
 typedef struct OSContext OSContext;
 
-typedef enum PADMask {
-    PAD_CHAN3_BIT = (1 << 28),
-    PAD_CHAN2_BIT = (1 << 29),
-    PAD_CHAN1_BIT = (1 << 30),
-    PAD_CHAN0_BIT = (1 << 31),
-} PADMask;
+#define PAD_CHAN0_BIT 0x80000000
+#define PAD_CHAN1_BIT 0x40000000
+#define PAD_CHAN2_BIT 0x20000000
+#define PAD_CHAN3_BIT 0x10000000
 
 #define PAD_SPEC_0 0
 #define PAD_SPEC_1 1

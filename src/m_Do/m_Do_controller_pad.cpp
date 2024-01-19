@@ -125,6 +125,5 @@ void mDoCPd_c::LRlockCheck(interface_of_controller_pad* interface) {
 
 void mDoCPd_c::recalibrate(void) {
     JUTGamePad::clearForReset();
-    JUTGamePad::CRumble::setEnabled(
-        PADMask(PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT));
+    JUTGamePad::CRumble::setEnabled(PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT);
 }

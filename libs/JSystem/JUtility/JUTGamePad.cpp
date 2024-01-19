@@ -4,9 +4,9 @@
 //
 
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "math.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSResetSW.h"
+#include "math.h"
 
 //
 // Forward References:
@@ -104,7 +104,7 @@ extern "C" void _restgpr_29();
 
 /* ############################################################################################## */
 /* 803CC5F0-803CC600 029710 0010+00 3/3 0/0 0/0 .data sChannelMask__Q210JUTGamePad7CRumble */
-SECTION_DATA PADMask JUTGamePad::CRumble::sChannelMask[4] = {
+SECTION_DATA u32 JUTGamePad::CRumble::sChannelMask[4] = {
     PAD_CHAN0_BIT,
     PAD_CHAN1_BIT,
     PAD_CHAN2_BIT,
@@ -227,8 +227,8 @@ u32 JUTGamePad::read() {
                                                sStickMode, WS_MAIN_STICK, mPadButton[i].mButton)
                           << 0x18;
             u32 s_stick = (mPadSStick[i].update(mPadStatus[i].substick_x, mPadStatus[i].substick_y,
-                                               sStickMode, WS_SUB_STICK, mPadButton[i].mButton)
-                          << 0x10);
+                                                sStickMode, WS_SUB_STICK, mPadButton[i].mButton)
+                           << 0x10);
             m_stick |= s_stick;
             mPadButton[i].update(&mPadStatus[i], m_stick);
         } else if (mPadStatus[i].error == -1) {
@@ -275,7 +275,7 @@ u32 JUTGamePad::read() {
     }
 
     if (mask != 0) {
-        PADReset((PADMask)mask);
+        PADReset(mask);
     }
 
     checkResetSwitch();
@@ -310,7 +310,7 @@ void JUTGamePad::assign() {
 bool JUTGamePad::CRumble::mStatus[4];
 
 /* 804514E8-804514EC 0009E8 0004+00 5/5 0/0 0/0 .sbss            mEnabled__Q210JUTGamePad7CRumble */
-PADMask JUTGamePad::CRumble::mEnabled;
+u32 JUTGamePad::CRumble::mEnabled;
 
 /* 804514EC-804514F0 0009EC 0004+00 2/2 4/4 0/0 .sbss sCallback__Q210JUTGamePad13C3ButtonReset */
 callbackFn JUTGamePad::C3ButtonReset::sCallback;
@@ -608,7 +608,7 @@ void JUTGamePad::CRumble::clear() {
     field_0x8 = 0;
     field_0xc = 0;
     field_0x10 = 0;
-    mEnabled = (PADMask)(PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT);
+    mEnabled = (PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT);
 }
 
 /* 802E15D8-802E1634 2DBF18 005C+00 2/2 0/0 0/0 .text clear__Q210JUTGamePad7CRumbleFP10JUTGamePad
@@ -758,7 +758,7 @@ void JUTGamePad::CRumble::setEnabled(u32 mask) {
             }
         }
     }
-    mEnabled = (PADMask)(mask & (PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT));
+    mEnabled = (mask & (PAD_CHAN3_BIT | PAD_CHAN2_BIT | PAD_CHAN1_BIT | PAD_CHAN0_BIT));
 }
 
 /* 802E1A7C-802E1A98 2DC3BC 001C+00 1/1 0/0 0/0 .text setRepeat__Q210JUTGamePad7CButtonFUlUlUl */
@@ -778,7 +778,7 @@ bool JUTGamePad::recalibrate(u32 mask) {
         }
     }
 
-    return PADRecalibrate((PADMask)mask);
+    return PADRecalibrate(mask);
 }
 
 /* 802E1AFC-802E1B60 2DC43C 0064+00 1/1 0/0 0/0 .text checkCallback__19JUTGamePadLongPressFiUl */
