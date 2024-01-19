@@ -94,7 +94,7 @@ private:
 
 private:
     /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u32 mMaxLines;
+    /* 0x24 */ int mMaxLines;
     /* 0x28 */ u8* mBuf;
     /* 0x2C */ bool field_0x2c;
     /* 0x30 */ int field_0x30;
