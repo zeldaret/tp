@@ -7,55 +7,101 @@
 extern "C" {
 #endif
 
-typedef struct OSModuleQueue {
-	int* first;
-	int* last;
-} OSModuleQueue;
+#define OS_MODULE_VERSION 3
+
+typedef struct OSModuleHeader OSModuleHeader;
+
+typedef u32 OSModuleID;
+typedef struct OSModuleQueue OSModuleQueue;
+typedef struct OSModuleLink OSModuleLink;
+typedef struct OSModuleInfo OSModuleInfo;
+typedef struct OSSectionInfo OSSectionInfo;
+typedef struct OSImportInfo OSImportInfo;
+typedef struct OSRel OSRel;
 
 OSModuleQueue __OSModuleList : 0x800030C8;
 void* __OSStringTable : 0x800030D0;
 
-typedef struct OSSectionInfo {
-    u32 mOffset;
-    u32 mSize;
-} OSSectionInfo;
+struct OSModuleQueue {
+    OSModuleInfo* head;
+    OSModuleInfo* tail;
+};
 
-typedef struct OSModuleInfo {
-    u32 mId;
-    u32 mNext;
-    u32 mPrev;
-    u32 mNumSections;
-    struct {  // Needed to get an assert correct; very likely bigger
-        u32 sectionInfoOffset;
-    } info;
-    u32 mModuleNameOffset;
-    u32 mModuleNameSize;
-    u32 mModuleVersion;
-    u32 mBssSize;
-    u32 mRelocationTableOffset;
-    u32 mImportTableOffset;
-    u32 mImportTableSize;
-    u8 mPrologSection;
-    u8 mEpilogSection;
-    u8 mUnresolvedSection;
-    u8 mBssSection;
-    u32 prolog;
-    u32 epilog;
-    u32 mUnresolvedFuncOffset;
-    u32 mModuleAlignment;
-    u32 mBssAlignment;
+struct OSModuleLink {
+    OSModuleInfo* next;
+    OSModuleInfo* prev;
+};
+
+struct OSSectionInfo {
+    u32 offset;
+    u32 size;
+};
+
+struct OSModuleInfo {
+    OSModuleID id;          // unique identifier for the module
+    OSModuleLink link;      // doubly linked list of modules
+    u32 numSections;        // # of sections
+    u32 sectionInfoOffset;  // offset to section info table
+    u32 nameOffset;         // offset to module name
+    u32 nameSize;           // size of module name
+    u32 version;            // version number
+};
+
+struct OSModuleHeader {
+    // CAUTION: info must be the 1st member
+    OSModuleInfo info;
+
+    // OS_MODULE_VERSION == 1
+    u32 bssSize;  // total size of bss sections in bytes
+    u32 relOffset;
+    u32 impOffset;
+    u32 impSize;           // size in bytes
+    u8 prologSection;      // section # for prolog function
+    u8 epilogSection;      // section # for epilog function
+    u8 unresolvedSection;  // section # for unresolved function
+    u8 bssSection;         // section # for bss section (set at run-time)
+    u32 prolog;            // prolog function offset
+    u32 epilog;            // epilog function offset
+    u32 unresolved;        // unresolved function offset
+
+    // OS_MODULE_VERSION == 2
+#if (2 <= OS_MODULE_VERSION)
+    u32 align;     // module alignment constraint
+    u32 bssAlign;  // bss alignment constraint
+#endif
+
+    // OS_MODULE_VERSION == 3
+#if (3 <= OS_MODULE_VERSION)
     u32 fixSize;
-} OSModuleInfo;
+#endif
+};
 
-BOOL OSLink(OSModuleInfo* module);
-BOOL OSLinkFixed(OSModuleInfo* module, u32 param_1);
+#define OSGetSectionInfo(module) ((OSSectionInfo*)(((OSModuleInfo*)(module))->sectionInfoOffset))
+
+#define OS_SECTIONINFO_EXEC 0x1
+#define OS_SECTIONINFO_OFFSET(offset) ((offset) & ~0x1)
+
+struct OSImportInfo {
+    OSModuleID id;  // external module id
+    u32 offset;     // offset to OSRel instructions
+};
+
+struct OSRel {
+    u16 offset;  // byte offset from the previous entry
+    u8 type;
+    u8 section;
+    u32 addend;
+};
+
+#define R_DOLPHIN_NOP 201      //  C9h current offset += OSRel.offset
+#define R_DOLPHIN_SECTION 202  //  CAh current section = OSRel.section
+#define R_DOLPHIN_END 203      //  CBh
+#define R_DOLPHIN_MRKREF 204   //  CCh
+
+BOOL OSLink(OSModuleInfo* newModule, void* bss);
+BOOL OSLinkFixed(OSModuleInfo* newModule, void* bss);
 BOOL OSUnlink(OSModuleInfo* module);
-static void OSNotifyLink(void);
-static void OSNotifyUnlink(void);
 void OSSetStringTable(void* string_table);
-static BOOL Relocate(OSModuleInfo* param_0, OSModuleInfo* param_1);
-static BOOL Link(OSModuleInfo* module, u32 param_1);
-static BOOL Undo(OSModuleInfo* param_0, OSModuleInfo* param_1);
 void __OSModuleInit(void);
 
 #ifdef __cplusplus
