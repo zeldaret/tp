@@ -1,7 +1,7 @@
 #ifndef J3DSHAPEMTX_H
 #define J3DSHAPEMTX_H
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 
 class J3DTexMtx;
 class J3DTexGenBlock;

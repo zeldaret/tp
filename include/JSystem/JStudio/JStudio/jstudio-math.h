@@ -1,7 +1,7 @@
 #ifndef JSTUDIO_MATH_H
 #define JSTUDIO_MATH_H
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 
 namespace JStudio {
 namespace math {

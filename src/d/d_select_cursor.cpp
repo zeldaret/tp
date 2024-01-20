@@ -7,7 +7,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "global.h"
 
 //
@@ -323,7 +323,7 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     }
 
     mpSelectIcon = NULL;
-    i_OSInitFastCast();
+    OSInitFastCast();
     if (strcmp(bpk_name[mNameIdx], "") != 0) {
         field_0x30 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource(bpk_name[mNameIdx], param_2));
         field_0x30->searchUpdateMaterialID(mpScreen);

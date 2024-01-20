@@ -5,7 +5,7 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "d/bg/d_bg_w_base.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 class cBgS_GrpPassChk;

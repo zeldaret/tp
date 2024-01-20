@@ -10,7 +10,7 @@
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2Audience.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "d/d_demo.h"
 
 /* ############################################################################################## */

@@ -7,7 +7,8 @@
 #include "math.h"
 
 /* 80347418-80347474 341D58 005C+00 0/0 0/0 2/2 .text            PSQUATMultiply */
-void PSQUATMultiply(register const Quaternion* a, register const Quaternion* b, register Quaternion* ab) {
+void PSQUATMultiply(register const Quaternion* a, register const Quaternion* b,
+                    register Quaternion* ab) {
     asm {
         psq_l f0, 0(a), 0, 0
         psq_l f1, 8(a), 0, 0
@@ -45,14 +46,14 @@ static f32 dummyLiteralFunc2() {
 
 /* 80347474-80347500 341DB4 008C+00 0/0 1/1 0/0 .text            C_QUATRotAxisRad */
 void C_QUATRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
-    f32 tmp,tmp2,tmp3;
+    f32 tmp, tmp2, tmp3;
     Vec dst;
 
     tmp = rad;
-    PSVECNormalize(axis,&dst);
+    PSVECNormalize(axis, &dst);
 
     tmp2 = tmp * 0.5f;
-    tmp3 = sinf(tmp* 0.5f);
+    tmp3 = sinf(tmp * 0.5f);
     tmp = tmp3;
     tmp3 = cosf(tmp2);
 
@@ -67,7 +68,7 @@ void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t)
     f32 ratioA, ratioB;
 
     f32 value = 1.0f;
-    f32 cosHalfTheta =  p->x*q->x + p->y*q->y + p->z*q->z + p->w*q->w;
+    f32 cosHalfTheta = p->x * q->x + p->y * q->y + p->z * q->z + p->w * q->w;
 
     if (cosHalfTheta < 0.0f) {
         cosHalfTheta = -cosHalfTheta;
@@ -85,7 +86,7 @@ void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t)
         ratioA = 1.0f - t;
         value *= t;
     }
-    
+
     r->x = (ratioA * p->x) + (value * q->x);
     r->y = (ratioA * p->y) + (value * q->y);
     r->z = (ratioA * p->z) + (value * q->z);

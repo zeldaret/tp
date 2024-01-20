@@ -15,7 +15,7 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dol2asm.h"
 
 //

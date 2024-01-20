@@ -5,7 +5,7 @@
 
 #include "d/d_error_msg.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

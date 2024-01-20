@@ -4,8 +4,8 @@
  */
 
 #include "dolphin/gx/GXLight.h"
+#include "dolphin/gx.h"
 #include "math.h"
-#include "dolphin/gx/GX.h"
 
 /* 8035D630-8035D64C 357F70 001C+00 0/0 1/1 0/0 .text            GXInitLightAttn */
 void GXInitLightAttn(GXLightObj* obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2) {
@@ -135,226 +135,171 @@ void GXInitLightColor(GXLightObj* obj, GXColor color) {
     *(u32*)&obj->color = *(u32*)&color;
 }
 
+static inline void PushLight(const register GXLightObj* lt_obj, register void* dest) {
+    register u32 zero, color;
+    register f32 a0_a1, a2_k0, k1_k2;
+    register f32 px_py, pz_dx, dy_dz;
+#ifdef __MWERKS__  // clang-format off
+	asm {
+		lwz     color, 12(lt_obj)
+		xor     zero, zero, zero
+		psq_l   a0_a1, 16(lt_obj), 0, 0
+		psq_l   a2_k0, 24(lt_obj), 0, 0
+		psq_l   k1_k2, 32(lt_obj), 0, 0
+		psq_l   px_py, 40(lt_obj), 0, 0
+		psq_l   pz_dx, 48(lt_obj), 0, 0
+		psq_l   dy_dz, 56(lt_obj), 0, 0
+
+		stw     zero,  0(dest)
+		stw     zero,  0(dest)
+		stw     zero,  0(dest)
+		stw     color, 0(dest)
+		psq_st  a0_a1, 0(dest), 0, 0
+		psq_st  a2_k0, 0(dest), 0, 0
+		psq_st  k1_k2, 0(dest), 0, 0
+		psq_st  px_py, 0(dest), 0, 0
+		psq_st  pz_dx, 0(dest), 0, 0
+		psq_st  dy_dz, 0(dest), 0, 0
+	}
+#endif  // clang-format on
+}
+
 /* 8035D8E4-8035D960 358224 007C+00 0/0 4/4 2/2 .text            GXLoadLightObjImm */
-asm void GXLoadLightObjImm(register GXLightObj* obj, register GXLightID id) {
-    // clang-format off
-    nofralloc
+void GXLoadLightObjImm(GXLightObj* obj, GXLightID light) {
+    u32 addr;
+    u32 idx;
+    GXLightObj* pObj = (GXLightObj*)obj;
 
-    cntlzw r0, id
-    subfic r0, r0, 0x1f
-    rlwinm r5, r0, 4, 0x19, 0x1b
-    lis r4, 0xCC01
-    li r0, 0x10
-    addi r5, r5, 0x600
-    stb r0, 0x8000(r4)
-    oris r0, r5, 0xf
-    stwu r0, -0x8000(r4)
-    lwz r0, 0xc(r3)
-    xor r6, r6, r6
-    psq_l f5, 16(obj), 0, 0
-    psq_l f4, 24(obj), 0, 0
-    psq_l f3, 32(obj), 0, 0
-    psq_l f2, 40(obj), 0, 0
-    psq_l f1, 48(obj), 0, 0
-    psq_l f0, 56(obj), 0, 0
-    stw r6, 0(r4)
-    stw r6, 0(r4)
-    stw r6, 0(r4)
-    stw r0, 0(r4)
-    psq_st f5, 0(r4), 0, 0
-    psq_st f4, 0(r4), 0, 0
-    psq_st f3, 0(r4), 0, 0
-    psq_st f2, 0(r4), 0, 0
-    psq_st f1, 0(r4), 0, 0
-    psq_st f0, 0(r4), 0, 0
+    idx = 31 - __cntlzw(light);
+    idx &= 7;
 
-    lwz r3, __GXData(r2)
-    li r0, 1
-    sth r0, 2(r3)
+    addr = 0x600 + idx * 0x10;
 
-    blr
-    // clang-format on
+    GX_XF_LOAD_REG_HDR(addr | (0x10 - 1) << 16);
+
+    PushLight(pObj, (void*)GXFIFO_ADDR);
+    __GXData->bpSentNot = 1;
 }
 
 /* 8035D960-8035DA48 3582A0 00E8+00 0/0 7/7 4/4 .text            GXSetChanAmbColor */
-// b's instead of blr's
-#ifdef NONMATCHING
-void GXSetChanAmbColor(GXChannelID chan, GXColor color) {
-    u32 ambColor;
-    u32 colorId;
-    
-    switch(chan) {
-        case GX_COLOR0:
-            ambColor = *(u32*)&__GXData->ambColors[0];
-            ambColor = __rlwimi(ambColor, *(u32*)&color, 0, 0, 23);
-            colorId = 0;
-            break;
-        case GX_COLOR1:
-            ambColor = *(u32*)&__GXData->ambColors[1];
-            ambColor = __rlwimi(ambColor, *(u32*)&color, 0, 0, 23);
-            colorId = 1;
-            break;
-        case GX_ALPHA0:
-            ambColor = *(u32*)&__GXData->ambColors[0];
-            ambColor = __rlwimi(ambColor, color.a, 0, 24, 31);
-            colorId = 0;
-            break;
-        case GX_ALPHA1:
-            ambColor = *(u32*)&__GXData->ambColors[1];
-            ambColor = __rlwimi(ambColor, color.a, 0, 24, 31);
-            colorId = 1;
-            break;
-        case GX_COLOR0A0:
-            ambColor = *(u32*)&color;
-            colorId = 0;
-            break;
-        case GX_COLOR1A1:
-            ambColor = *(u32*)&color;
-            colorId = 1;
-            break;
-        default:
-            return;
+void GXSetChanAmbColor(GXChannelID channel, GXColor color) {
+    u32 reg;
+    u32 colorID;
+    u8 alpha;
+
+    switch (channel) {
+    case GX_COLOR0:
+        reg = __GXData->ambColor[GX_COLOR0];
+        reg = GX_SET_TRUNC(reg, GXCOLOR_AS_U32(color), 0, 23);
+        colorID = GX_COLOR0;
+        break;
+    case GX_COLOR1:
+        reg = __GXData->ambColor[GX_COLOR1];
+        reg = GX_SET_TRUNC(reg, GXCOLOR_AS_U32(color), 0, 23);
+        colorID = GX_COLOR1;
+        break;
+    case GX_ALPHA0:
+        reg = __GXData->ambColor[GX_COLOR0];
+        reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+        colorID = GX_COLOR0;
+        break;
+    case GX_ALPHA1:
+        reg = __GXData->ambColor[GX_COLOR1];
+        reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+        colorID = GX_COLOR1;
+        break;
+    case GX_COLOR0A0:
+        reg = GXCOLOR_AS_U32(color);
+        colorID = GX_COLOR0;
+        break;
+    case GX_COLOR1A1:
+        reg = GXCOLOR_AS_U32(color);
+        colorID = GX_COLOR1;
+        break;
+    default:
+        return;
     }
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = colorId + 0x100a;
-    GXFIFO.u32 = ambColor;
-    __GXData->bpSentNot = 1;
-    ((u32*)__GXData->ambColors)[colorId] = ambColor;
+    GX_XF_LOAD_REG(GX_XF_REG_AMBIENT0 + colorID, reg);
+    __GXData->bpSentNot = GX_TRUE;
+    __GXData->ambColor[colorID] = reg;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetChanAmbColor(GXChannelID channel, GXColor color) {
-    nofralloc
-#include "asm/dolphin/gx/GXLight/GXSetChanAmbColor.s"
-}
-#pragma pop
-#endif
 
 /* 8035DA48-8035DB30 358388 00E8+00 0/0 20/20 2/2 .text            GXSetChanMatColor */
-// b's instead of blr's
-#ifdef NONMATCHING
-void GXSetChanMatColor(GXChannelID chan, GXColor color) {
-    u32 matColor;
-    u32 colorId;
-    
-    switch(chan) {
-        case GX_COLOR0:
-            matColor = *(u32*)&__GXData->matColors[0];
-            matColor = __rlwimi(matColor, *(u32*)&color, 0, 0, 23);
-            colorId = 0;
-            break;
-        case GX_COLOR1:
-            matColor = *(u32*)&__GXData->matColors[1];
-            matColor = __rlwimi(matColor, *(u32*)&color, 0, 0, 23);
-            colorId = 1;
-            break;
-        case GX_ALPHA0:
-            matColor = *(u32*)&__GXData->matColors[0];
-            matColor = __rlwimi(matColor, color.a, 0, 24, 31);
-            colorId = 0;
-            break;
-        case GX_ALPHA1:
-            matColor = *(u32*)&__GXData->matColors[1];
-            matColor = __rlwimi(matColor, color.a, 0, 24, 31);
-            colorId = 1;
-            break;
-        case GX_COLOR0A0:
-            matColor = *(u32*)&color;
-            colorId = 0;
-            break;
-        case GX_COLOR1A1:
-            matColor = *(u32*)&color;
-            colorId = 1;
-            break;
-        default:
-            return;
+void GXSetChanMatColor(GXChannelID channel, GXColor color) {
+    u32 reg = 0;
+    GXChannelID colorID;
+
+    switch (channel) {
+    case GX_COLOR0:
+        reg = __GXData->matColor[GX_COLOR0];
+        reg = GX_SET_TRUNC(reg, GXCOLOR_AS_U32(color), 0, 23);
+        colorID = GX_COLOR0;
+        break;
+    case GX_COLOR1:
+        reg = __GXData->matColor[GX_COLOR1];
+        reg = GX_SET_TRUNC(reg, GXCOLOR_AS_U32(color), 0, 23);
+        colorID = GX_COLOR1;
+        break;
+    case GX_ALPHA0:
+        reg = __GXData->matColor[GX_COLOR0];
+        reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+        colorID = GX_COLOR0;
+        break;
+    case GX_ALPHA1:
+        reg = __GXData->matColor[GX_COLOR1];
+        reg = GX_SET_TRUNC(reg, color.a, 24, 31);
+        colorID = GX_COLOR1;
+        break;
+    case GX_COLOR0A0:
+        reg = GXCOLOR_AS_U32(color);
+        colorID = GX_COLOR0;
+        break;
+    case GX_COLOR1A1:
+        reg = GXCOLOR_AS_U32(color);
+        colorID = GX_COLOR1;
+        break;
+    default:
+        return;
     }
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = colorId + 0x100c;
-    GXFIFO.u32 = matColor;
-    __GXData->bpSentNot = 1;
-    ((u32*)__GXData->matColors)[colorId] = matColor;
+    GX_XF_LOAD_REG(GX_XF_REG_MATERIAL0 + colorID, reg);
+    __GXData->bpSentNot = GX_TRUE;
+    __GXData->matColor[colorID] = reg;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetChanMatColor(GXChannelID channel, GXColor color) {
-    nofralloc
-#include "asm/dolphin/gx/GXLight/GXSetChanMatColor.s"
-}
-#pragma pop
-#endif
 
 /* 8035DB30-8035DB6C 358470 003C+00 0/0 51/51 6/6 .text            GXSetNumChans */
-// 1 wrong reg
-#ifdef NONMATCHING
-void GXSetNumChans(u8 chan_num) {
-    GXData* data = __GXData;
-    GX_BITFIELD_SET(data->bpSentNot04, 25, 3, chan_num);
-
-    GXFIFO.u8 = 0x10;
-    GXFIFO.s32 = 0x1009;
-    GXFIFO.s32 = chan_num;
-
-    data->dirtyFlags |= GX_DIRTY_GEN_MODE;
+void GXSetNumChans(u8 count) {
+    GX_SET_REG(__GXData->genMode, count, 25, 27);
+    GX_XF_LOAD_REG(GX_XF_REG_NUMCOLORS, count);
+    __GXData->dirtyState |= GX_DIRTY_GEN_MODE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetNumChans(u8 chan_num) {
-    nofralloc
-#include "asm/dolphin/gx/GXLight/GXSetNumChans.s"
-}
-#pragma pop
-#endif
 
 /* 8035DB6C-8035DC1C 3584AC 00B0+00 0/0 34/34 4/4 .text            GXSetChanCtrl */
-// mr/addi, extra branch instruction
-#ifdef NONMATCHING
-void GXSetChanCtrl(GXChannelID channel, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src,
-                       u32 light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) {
-    u32 field = 0;
-    const u32 idx = channel & 3;
+void GXSetChanCtrl(GXChannelID channel, GXBool doEnable, GXColorSrc ambSrc, GXColorSrc matSrc,
+                   u32 mask, GXDiffuseFn diffFunc, GXAttnFn attnFunc) {
+    const u32 colorID = (u32)channel & 0x3;
+    u32 reg = 0;
 
-    GX_BITFIELD_SET(field, 30, 1, enable);
-    GX_BITFIELD_SET(field, 31, 1, amb_src);
-    GX_BITFIELD_SET(field, 25, 1, mat_src);
-    GX_BITFIELD_SET(field, 23, 2, (attn_fn == GX_AF_SPEC) ? GX_DF_NONE : diff_fn);
-    GX_BITFIELD_SET(field, 22, 1, attn_fn != GX_AF_NONE);
-    GX_BITFIELD_SET(field, 21, 1, attn_fn != GX_AF_SPEC);
-    GX_BITFIELD_SET(field, 26, 4, (u32)light_mask);
-    field = __rlwimi(field, (u32)light_mask, 7, 0x11, 0x14);
+    GX_SET_REG(reg, doEnable, GX_XF_CLR0CTRL_LIGHT_ST, GX_XF_CLR0CTRL_LIGHT_END);
+    GX_SET_REG(reg, matSrc, GX_XF_CLR0CTRL_MTXSRC_ST, GX_XF_CLR0CTRL_MTXSRC_END);
+    GX_SET_REG(reg, ambSrc, GX_XF_CLR0CTRL_AMBSRC_ST, GX_XF_CLR0CTRL_AMBSRC_END);
+    GX_SET_REG(reg, (attnFunc == GX_AF_SPEC ? GX_DF_NONE : diffFunc), GX_XF_CLR0CTRL_DIFATTN_ST,
+               GX_XF_CLR0CTRL_DIFATTN_END);
+    GX_SET_REG(reg, (attnFunc != GX_AF_NONE), GX_XF_CLR0CTRL_ATTNENABLE_ST,
+               GX_XF_CLR0CTRL_ATTNENABLE_END);
+    GX_SET_REG(reg, (attnFunc != GX_AF_SPEC), GX_XF_CLR0CTRL_ATTNSEL_ST,
+               GX_XF_CLR0CTRL_ATTNSEL_END);
+    GX_BITFIELD_SET(reg, 26, 4, (u32)mask);
+    reg = __rlwimi(reg, (u32)mask, 7, 0x11, 0x14);
 
-    GXFIFO.u8 = 0x10;
-    GXFIFO.u32 = idx + 0x100e;
-    GXFIFO.u32 = field;
+    GX_XF_LOAD_REG(GX_XF_REG_COLOR0CNTRL + colorID, reg);
 
     if (channel == GX_COLOR0A0) {
-        GXFIFO.u8 = 0x10;
-        GXFIFO.u32 = 0x1010;
-        GXFIFO.u32 = field;
+        GX_XF_LOAD_REG(GX_XF_REG_ALPHA0CNTRL, reg);
     } else if (channel == GX_COLOR1A1) {
-        GXFIFO.u8 = 0x10;
-        GXFIFO.u32 = 0x1011;
-        GXFIFO.u32 = field;
+        GX_XF_LOAD_REG(GX_XF_REG_ALPHA1CNTRL, reg);
     }
 
-    __GXData->bpSentNot = 1;
+    __GXData->bpSentNot = GX_TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void GXSetChanCtrl(GXChannelID channel, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src,
-                       u32 light_mask, GXDiffuseFn diff_fn, GXAttnFn attn_fn) {
-    nofralloc
-#include "asm/dolphin/gx/GXLight/GXSetChanCtrl.s"
-}
-#pragma pop
-#endif

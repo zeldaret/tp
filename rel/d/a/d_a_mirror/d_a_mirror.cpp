@@ -254,7 +254,7 @@ inline static void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGe
 }
 
 inline static void damirror_GXEnd() {
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 80870D88-80871268 000248 04E0+00 1/1 0/0 0/0 .text mirrorZdraw__16dMirror_packet_cFPfPfffffff

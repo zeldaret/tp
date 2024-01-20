@@ -3,41 +3,40 @@
  * Description:
  */
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 
 /* 80346D6C-80346DC0 3416AC 0054+00 0/0 158/158 826/826 .text            PSMTXMultVec */
-asm void PSMTXMultVec(register const Mtx m, register const Vec* src, register Vec* dst) {
-    // clang-format off
-    nofralloc
-
-    psq_l f0, 0(src), 0, 0
-    psq_l f2, 0(m), 0, 0
-    psq_l f1, 8(src), 1, 0
-    ps_mul f4, f2, f0
-    psq_l f3, 8(m), 0, 0
-    ps_madd f5, f3, f1, f4
-    psq_l f8, 16(m), 0, 0
-    ps_sum0 f6, f5, f6, f5
-    psq_l f9, 24(m), 0, 0
-    ps_mul f10, f8, f0
-    psq_st f6, 0(dst), 1, 0
-    ps_madd f11, f9, f1, f10
-    psq_l f2, 32(m), 0, 0
-    ps_sum0 f12, f11, f12, f11
-    psq_l f3, 40(m), 0, 0
-    ps_mul f4, f2, f0
-    psq_st f12, 4(dst), 1, 0
-    ps_madd f5, f3, f1, f4
-    ps_sum0 f6, f5, f6, f5
-    psq_st f6, 8(dst), 1, 0
-    blr
-    // clang-format on
+asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out) {
+#ifdef __MWERKS__  // clang-format off
+	nofralloc;
+	psq_l fp0, 0(in), 0, 0;
+	psq_l fp2, 0(m), 0, 0;
+	psq_l fp1, 8(in), 1, 0;
+	ps_mul fp4, fp2, fp0;
+	psq_l fp3, 8(m), 0, 0;
+	ps_madd fp5, fp3, fp1, fp4;
+	psq_l fp8, 16(m), 0, 0;
+	ps_sum0 fp6, fp5, fp6, fp5;
+	psq_l fp9, 24(m), 0, 0;
+	ps_mul fp10, fp8, fp0;
+	psq_st fp6, 0(out), 1, 0;
+	ps_madd fp11, fp9, fp1, fp10;
+	psq_l fp2, 32(m), 0, 0;
+	ps_sum0 fp12, fp11, fp12, fp11;
+	psq_l fp3, 40(m), 0, 0;
+	ps_mul fp4, fp2, fp0;
+	psq_st fp12, 4(out), 1, 0;
+	ps_madd fp5, fp3, fp1, fp4;
+	ps_sum0 fp6, fp5, fp6, fp5;
+	psq_st fp6, 8(out), 1, 0;
+	blr
+#endif  // clang-format on
 }
 
 /* 80346DC0-80346E4C 341700 008C+00 0/0 2/2 3/3 .text            PSMTXMultVecArray */
 asm void PSMTXMultVecArray(register const Mtx m, register const Vec* srcBase, register Vec* dstBase,
                            register u32 count) {
-    // clang-format off
+#ifdef __MWERKS__  // clang-format off
     nofralloc
 
     psq_l f13, 0(m), 0, 0
@@ -78,42 +77,41 @@ lbl_80346E0C:
     psq_stu f12, 4(dstBase), 0, 0
     psq_stu f13, 8(dstBase), 1, 0
     blr
-    // clang-format on
+#endif  // clang-format on
 }
 
 /* 80346E4C-80346EA0 34178C 0054+00 0/0 47/47 9/9 .text            PSMTXMultVecSR */
-asm void PSMTXMultVecSR(register const Mtx m, register const Vec* src, register Vec* dst) {
-    // clang-format off
-    nofralloc
-
-    psq_l f0, 0(m), 0, 0
-    psq_l f6, 0(src), 0, 0
-    psq_l f2, 16(m), 0, 0
-    ps_mul f8, f0, f6
-    psq_l f4, 32(m), 0, 0
-    ps_mul f10, f2, f6
-    psq_l f7, 8(src), 1, 0
-    ps_mul f12, f4, f6
-    psq_l f3, 24(m), 0, 0
-    ps_sum0 f8, f8, f8, f8
-    psq_l f5, 40(m), 0, 0
-    ps_sum0 f10, f10, f10, f10
-    psq_l f1, 8(m), 0, 0
-    ps_sum0 f12, f12, f12, f12
-    ps_madd f9, f1, f7, f8
-    psq_st f9, 0(dst), 1, 0
-    ps_madd f11, f3, f7, f10
-    psq_st f11, 4(dst), 1, 0
-    ps_madd f13, f5, f7, f12
-    psq_st f13, 8(dst), 1, 0
-    blr
-    // clang-format on
+asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out) {
+#ifdef __MWERKS__  // clang-format off
+	nofralloc;
+	psq_l fp0, 0(mtx), 0, 0;
+	psq_l fp6, 0(in), 0, 0;
+	psq_l fp2, 0x10(mtx), 0, 0;
+	ps_mul fp8, fp0, fp6;
+	psq_l fp4, 0x20(mtx), 0, 0;
+	ps_mul fp10, fp2, fp6;
+	psq_l fp7, 8(in), 1, 0;
+	ps_mul fp12, fp4, fp6;
+	psq_l fp3, 0x18(mtx), 0, 0;
+	ps_sum0 fp8, fp8, fp8, fp8;
+	psq_l fp5, 0x28(mtx), 0, 0;
+	ps_sum0 fp10, fp10, fp10, fp10;
+	psq_l fp1, 8(mtx), 0, 0;
+	ps_sum0 fp12, fp12, fp12, fp12;
+	ps_madd fp9, fp1, fp7, fp8;
+	psq_st fp9, 0(out), 1, 0;
+	ps_madd fp11, fp3, fp7, fp10;
+	psq_st fp11, 4(out), 1, 0;
+	ps_madd fp13, fp5, fp7, fp12;
+	psq_st fp13, 8(out), 1, 0;
+	blr
+#endif  // clang-format on
 }
 
 /* 80346EA0-80346F28 3417E0 0088+00 0/0 2/2 0/0 .text            PSMTXMultVecArraySR */
 asm void PSMTXMultVecArraySR(register const Mtx m, register const Vec* srcBase,
                              register Vec* dstBase, register u32 count) {
-    // clang-format off
+#ifdef __MWERKS__  // clang-format off
     nofralloc
 
     psq_l f13, 0(m), 0, 0
@@ -153,5 +151,5 @@ lbl_80346EE8:
     psq_stu f12, 4(dstBase), 0, 0
     psq_stu f13, 8(dstBase), 1, 0
     blr
-    // clang-format on
+#endif  // clang-format on
 }

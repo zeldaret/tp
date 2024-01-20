@@ -11,6 +11,8 @@ typedef struct Quaternion {
     f32 x, y, z, w;
 } Quaternion;
 
+typedef f32 PSQuaternion[4];
+
 void PSQUATMultiply(const Quaternion* a, const Quaternion* b, Quaternion* ab);
 void C_QUATRotAxisRad(Quaternion* q, const Vec* axis, f32 rad);
 void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t);

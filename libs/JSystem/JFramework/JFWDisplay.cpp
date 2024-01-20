@@ -10,8 +10,8 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/gx.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //
@@ -585,8 +585,8 @@ static void JFWDrawDoneAlarm() {
 static void JFWGXAbortAlarmHandler(OSAlarm* param_0, OSContext* param_1) {
     diagnoseGpHang();
     GXAbortFrame();
-    GFX_FIFO(u8) = 0x61;
-    GFX_FIFO(u32) = 0x5800000F;
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = 0x5800000F;
 
     GXFifoObj* fifo = GXGetCPUFifo();
     if (fifo != NULL) {

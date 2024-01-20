@@ -8,7 +8,7 @@
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 //
 // Forward References:

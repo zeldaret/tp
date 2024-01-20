@@ -7,7 +7,7 @@
 
 #include "dol2asm.h"
 #include "dolphin/gx/GXPixel.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "global.h"
 
@@ -244,7 +244,7 @@ void J3DSys::drawInit() {
         GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF,
                          GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE, GX_ITBA_OFF);
 
-    i_OSInitFastCast();
+    OSInitFastCast();
     setTexCacheRegion(GX_TEXCACHE_32K);
 }
 

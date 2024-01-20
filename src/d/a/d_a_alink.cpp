@@ -17,7 +17,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "rel/d/a/d_a_crod/d_a_crod.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_mg_rod/d_a_mg_rod.h"

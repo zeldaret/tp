@@ -32,6 +32,8 @@ typedef int BOOL;
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
+#define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
+
 #include "stddef.h"
 
 #define INT32_MAX (0x7fffffff)

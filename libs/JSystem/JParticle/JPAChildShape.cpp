@@ -6,8 +6,8 @@
 #include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "dolphin/gx/GX.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/gx.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

@@ -165,7 +165,7 @@ void PPCDisableSpeculation(void) {
 /* 80339DCC-80339DD4 -00001 0008+00 0/0 0/0 0/0 .text            PPCSetFpNonIEEEMode */
 asm void PPCSetFpNonIEEEMode() {
 	nofralloc
-	mtfsb1 4*7+1
+	mtfsb1 29
 	blr
 }
 // clang-format on

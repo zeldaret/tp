@@ -1,14 +1,14 @@
 #ifndef AMCEXI2STUBS_H
 #define AMCEXI2STUBS_H
 
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef OSInterruptHandler AmcEXICallback;
+typedef __OSInterruptHandler AmcEXICallback;
 
 typedef enum {
     AMC_EXI_NO_ERROR = 0,

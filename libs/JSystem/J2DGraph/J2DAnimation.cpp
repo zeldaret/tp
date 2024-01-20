@@ -3,7 +3,7 @@
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTResource.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 f32 J2DGetKeyFrameInterpolationf(f32 param_0, J3DAnmKeyTableBase* param_1, f32* param_2);
 f32 J2DGetKeyFrameInterpolations(f32 param_0, J3DAnmKeyTableBase* param_1, s16* param_2);

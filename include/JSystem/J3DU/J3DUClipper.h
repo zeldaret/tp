@@ -1,7 +1,7 @@
 #ifndef J3DUCLIPPER_H
 #define J3DUCLIPPER_H
 
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 class J3DUClipper {

@@ -8,9 +8,9 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JMath/JMATrigonometric.h"
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 #include "dolphin/types.h"
 
 //
@@ -1326,7 +1326,7 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXBegin(GX_POINTS, GX_VTXFMT1, 1);
     GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
     GXTexCoord2f32(0.0f, 0.0f);
-    i_GXEnd();
+    GXEnd();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
@@ -1361,7 +1361,7 @@ void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
             GXTexCoord2f32(0.0f, 0.0f);
             GXPosition3f32(local_28.x, local_28.y, local_28.z);
             GXTexCoord2f32(0.0f, 1.0f);
-            i_GXEnd();
+            GXEnd();
             GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
             GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
         }
@@ -1482,7 +1482,7 @@ void JPADrawStripe(JPAEmitterWorkData* param_0) {
         GXTexCoord2f32(1.0f, dVar16);
         
     }
-    i_GXEnd();
+    GXEnd();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }

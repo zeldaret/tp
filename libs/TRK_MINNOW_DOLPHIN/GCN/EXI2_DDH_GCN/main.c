@@ -18,22 +18,22 @@ static u8 gRecvBuf[DDH_BUF_SIZE];
 static BOOL gIsInitialized;
 
 /* 80372618-803726A0 36CF58 0088+00 0/0 1/1 0/0 .text            ddh_cc_initialize */
-BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback) {
+int ddh_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback) {
     MWTRACE(1, "CALLING EXI2_Init\n");
     EXI2_Init(inputPendingPtrRef, monitorCallback);
     MWTRACE(1, "DONE CALLING EXI2_Init\n");
     CircleBufferInitialize(&gRecvCB, gRecvBuf, DDH_BUF_SIZE);
-    return FALSE;
+    return 0;
 }
 
 /* 80372610-80372618 36CF50 0008+00 0/0 1/1 0/0 .text            ddh_cc_shutdown */
-BOOL ddh_cc_shutdown() {
-    return FALSE;
+int ddh_cc_shutdown() {
+    return 0;
 }
 
 /* 803725EC-80372610 36CF2C 0024+00 0/0 1/1 0/0 .text            ddh_cc_open */
 int ddh_cc_open() {
-    if (gIsInitialized != FALSE) {
+    if (gIsInitialized != 0) {
         return DDH_ERR_ALREADY_INITIALIZED;
     }
 
@@ -42,12 +42,12 @@ int ddh_cc_open() {
 }
 
 /* 803725E4-803725EC 36CF24 0008+00 0/0 1/1 0/0 .text            ddh_cc_close */
-BOOL ddh_cc_close() {
-    return FALSE;
+int ddh_cc_close() {
+    return 0;
 }
 
 /* 803724F8-803725E4 36CE38 00EC+00 0/0 1/1 0/0 .text            ddh_cc_read */
-u32 ddh_cc_read(u8* data, u32 size) {
+int ddh_cc_read(u8* data, int size) {
     u8 buff[DDH_BUF_SIZE];
     int originalDataSize;
     u32 result;
@@ -84,12 +84,12 @@ u32 ddh_cc_read(u8* data, u32 size) {
 }
 
 /* 80372438-803724F8 36CD78 00C0+00 0/0 1/1 0/0 .text            ddh_cc_write */
-int ddh_cc_write(u32 bytes, u32 length) {
+int ddh_cc_write(const u8* bytes, int length) {
     int exi2Len;
     int n_copy;
     u32 hexCopy;
 
-    hexCopy = bytes;
+    hexCopy = (u32)bytes;
     n_copy = length;
 
     if (gIsInitialized == FALSE) {
@@ -113,15 +113,15 @@ int ddh_cc_write(u32 bytes, u32 length) {
 }
 
 /* 80372414-80372438 36CD54 0024+00 0/0 1/1 0/0 .text            ddh_cc_pre_continue */
-BOOL ddh_cc_pre_continue() {
+int ddh_cc_pre_continue() {
     EXI2_Unreserve();
-    return FALSE;
+    return 0;
 }
 
 /* 803723F0-80372414 36CD30 0024+00 0/0 1/1 0/0 .text            ddh_cc_post_stop */
-BOOL ddh_cc_post_stop() {
+int ddh_cc_post_stop() {
     EXI2_Reserve();
-    return FALSE;
+    return 0;
 }
 
 /* 80372380-803723F0 36CCC0 0070+00 0/0 1/1 0/0 .text            ddh_cc_peek */
@@ -144,7 +144,7 @@ int ddh_cc_peek() {
 }
 
 /* 8037235C-80372380 36CC9C 0024+00 0/0 1/1 0/0 .text            ddh_cc_initinterrupts */
-BOOL ddh_cc_initinterrupts() {
+int ddh_cc_initinterrupts() {
     EXI2_EnableInterrupts();
-    return FALSE;
+    return 0;
 }

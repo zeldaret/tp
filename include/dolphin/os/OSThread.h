@@ -68,7 +68,7 @@ struct OSThread {
     OSMutexQueue owned_mutexes;
     OSThreadLink active_threads_link;
     u8* stack_base;
-    u8* stack_end;
+    u32* stack_end;
     u8* error_code;
     void* data[2];
 };

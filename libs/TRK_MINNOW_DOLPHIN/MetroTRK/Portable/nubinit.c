@@ -60,7 +60,7 @@ void TRKNubWelcome(void) {
     return;
 }
 
-inline BOOL TRKInitializeEndian(void) {
+BOOL TRKInitializeEndian(void) {
     u8 bendian[4];
     BOOL result = FALSE;
     gTRKBigEndian = TRUE;

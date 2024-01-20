@@ -16,7 +16,7 @@
 #include "d/map/d_map_path_fmap.h"
 #include "d/save/d_save_HIO.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_scene_mng.h"

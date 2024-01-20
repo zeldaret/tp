@@ -2863,7 +2863,7 @@ void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
 
             GXPosition3f32(sp7C.x, sp7C.y, sp7C.z);
             GXTexCoord2s16(0, 0x1FF);
-            i_GXEnd();
+            GXEnd();
         }
 
         GXSetClipMode(GX_CLIP_ENABLE);
@@ -3282,7 +3282,7 @@ void dKyr_drawHousi(Mtx param_0, u8** param_1) {
                             GXTexCoord2s16(var_r17, var_r17);
                             GXPosition3f32(sp15C[3].x, sp15C[3].y, sp15C[3].z);
                             GXTexCoord2s16(0, var_r17);
-                            i_GXEnd();
+                            GXEnd();
                         }
                     }
                 }

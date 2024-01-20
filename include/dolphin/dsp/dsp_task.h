@@ -1,7 +1,7 @@
 #ifndef DSP_TASK_H
 #define DSP_TASK_H
 
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/dsp.h"
 
 extern DSPTaskInfo* __DSP_tmp_task;
 extern DSPTaskInfo* __DSP_last_task;

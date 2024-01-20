@@ -17,7 +17,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"
@@ -531,8 +531,8 @@ SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/
 #pragma pop
 
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
-static _GXRenderModeObj g_ntscZeldaIntDf = {
-    0,
+extern GXRenderModeObj g_ntscZeldaIntDf = {
+    VI_TVMODE_NTSC_INT,
     608,
     448,
     448,
@@ -540,7 +540,7 @@ static _GXRenderModeObj g_ntscZeldaIntDf = {
     16,
     666,
     448,
-    1,
+    VI_XFBMODE_DF,
     0,
     0,
     {{6, 6},
@@ -559,8 +559,8 @@ static _GXRenderModeObj g_ntscZeldaIntDf = {
 };
 
 /* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
-extern _GXRenderModeObj g_ntscZeldaProg = {
-    2,
+extern GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_NTSC_PROG,
     608,
     448,
     448,
@@ -568,7 +568,7 @@ extern _GXRenderModeObj g_ntscZeldaProg = {
     16,
     666,
     448,
-    0,
+    VI_XFBMODE_SF,
     0,
     0,
     {{6, 6},

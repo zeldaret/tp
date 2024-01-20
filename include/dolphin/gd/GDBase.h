@@ -1,7 +1,7 @@
 #ifndef GDBASE_H
 #define GDBASE_H
 
-#include "dolphin/types.h"
+#include "gx.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,41 +23,41 @@ void GDFlushCurrToMem();
 void GDPadCurr32();
 void GDOverflowed(void);
 
-inline void __GDWrite(u8 data) {
+static inline void __GDWrite(u8 data) {
     *__GDCurrentDL->ptr++ = data;
 }
 
-inline void GDSetCurrent(GDLObj* obj) {
+static inline void GDSetCurrent(GDLObj* obj) {
     __GDCurrentDL = obj;
 }
 
-inline u32 GDGetGDLObjOffset(GDLObj* obj) {
+static inline u32 GDGetGDLObjOffset(GDLObj* obj) {
     return (u32)(obj->ptr - obj->start);
 }
 
-inline u8* GDGetCurrPointer() {
+static inline u8* GDGetCurrPointer() {
     return __GDCurrentDL->ptr;
 }
 
-inline s32 GDGetCurrOffset() {
+static inline s32 GDGetCurrOffset() {
     return __GDCurrentDL->ptr - __GDCurrentDL->start;
 }
 
-inline void GDSetCurrOffset(s32 offs) {
+static inline void GDSetCurrOffset(s32 offs) {
     __GDCurrentDL->ptr = __GDCurrentDL->start + offs;
 }
 
-inline void GDAdvCurrOffset(s32 offs) {
+static inline void GDAdvCurrOffset(s32 offs) {
     __GDCurrentDL->ptr += offs;
 }
 
-inline void GDOverflowCheck(u32 len) {
+static inline void GDOverflowCheck(u32 len) {
     if (__GDCurrentDL->ptr + len > __GDCurrentDL->end) {
         GDOverflowed();
     }
 }
 
-inline void GDWrite_u32(u32 v) {
+static inline void GDWrite_u32(u32 v) {
     GDOverflowCheck(4);
     __GDWrite((v >> 24) & 0xff);
     __GDWrite((v >> 16) & 0xff);
@@ -65,15 +65,28 @@ inline void GDWrite_u32(u32 v) {
     __GDWrite((v >> 0) & 0xff);
 }
 
-inline void GDWrite_u16(u16 v) {
+static inline void GDWrite_u16(u16 v) {
     GDOverflowCheck(2);
     __GDWrite(v >> 8);
     __GDWrite(v & 0xff);
 }
 
-inline void GDWrite_u8(u8 v) {
+static inline void GDWrite_u8(u8 v) {
     GDOverflowCheck(1);
     __GDWrite(v);
+}
+
+static inline void GDWriteCPCmd(u8 addr, u32 v) {
+    GDWrite_u8(8);
+    GDWrite_u8(addr);
+    GDWrite_u32(v);
+}
+
+static inline void GDWriteXFCmd(u16 addr, u32 v) {
+    GDWrite_u8(0x10);
+    GDWrite_u16(0);
+    GDWrite_u16(addr);
+    GDWrite_u32(v);
 }
 
 #ifdef __cplusplus

@@ -104,6 +104,9 @@ struct TLinkList : public TNodeLinkList {
             TNodeLinkList::const_iterator::operator++();
             return *this;
         }
+
+        friend bool operator==(const_iterator a, const_iterator b) { return a == b; }
+        friend bool operator!=(const_iterator a, const_iterator b) { return !(a == b); }
     };
 
     TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }

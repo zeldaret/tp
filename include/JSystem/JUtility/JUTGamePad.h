@@ -3,7 +3,7 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/pad/Pad.h"
+#include "dolphin/pad.h"
 #include "dolphin/types.h"
 
 typedef void (*callbackFn)(int, void*);
@@ -195,9 +195,9 @@ public:
     struct CRumble {
         CRumble(JUTGamePad* pad) { clear(pad); }
 
-        static PADMask sChannelMask[4];
+        static u32 sChannelMask[4];
         static bool mStatus[4];
-        static PADMask mEnabled;
+        static u32 mEnabled;
 
         enum ERumble {
             VAL_0 = 0,

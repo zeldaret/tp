@@ -19,8 +19,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GXDraw.h"
-#include "dolphin/mtx/mtx.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/mtx.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
@@ -3846,7 +3846,7 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXPosition1x8(3);
     GXPosition1x8(0);
     GXPosition1x8(2);
-    i_GXEnd();
+    GXEnd();
 }
 
 void mDoExt_cubePacket::draw() {

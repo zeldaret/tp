@@ -15,7 +15,7 @@
 #include "d/d_lib.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

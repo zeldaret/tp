@@ -1,5 +1,5 @@
 #include "dolphin/gx/GXDraw.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 static GXVtxDescList vcd[27];
 static GXVtxAttrFmtList vat[27];
@@ -47,7 +47,7 @@ void GXDrawCylinder(u8 numEdges) {
         GXPosition3f32(sp1A0[i], sp10[i], temp_f31);
         GXNormal3f32(sp1A0[i], sp10[i], 0.0f);
     }
-    i_GXEnd();
+    GXEnd();
 
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT3, numEdges + 2);
     GXPosition3f32(0.0f, 0.0f, temp_f31);
@@ -56,7 +56,7 @@ void GXDrawCylinder(u8 numEdges) {
         GXPosition3f32(sp1A0[i], -sp10[i], temp_f31);
         GXNormal3f32(0.0f, 0.0f, 1.0f);
     }
-    i_GXEnd();
+    GXEnd();
 
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT3, numEdges + 2);
     GXPosition3f32(0.0f, 0.0f, temp_f30);
@@ -65,7 +65,7 @@ void GXDrawCylinder(u8 numEdges) {
         GXPosition3f32(sp1A0[i], sp10[i], temp_f30);
         GXNormal3f32(0.0f, 0.0f, -1.0f);
     }
-    i_GXEnd();
+    GXEnd();
 
     RestoreVertState();
 }

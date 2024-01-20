@@ -1,7 +1,3 @@
-//
-// Translation Unit: OSAlloc
-//
-
 #include "dolphin/os/OSAlloc.h"
 
 /* 8033B078-8033B124 3359B8 00AC+00 1/1 0/0 0/0 .text            DLInsert */

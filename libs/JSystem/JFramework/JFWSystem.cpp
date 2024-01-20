@@ -61,7 +61,6 @@ extern "C" void createManager__17JUTConsoleManagerFP7JKRHeap();
 extern "C" void OSInit();
 extern "C" void DVDInit();
 extern "C" extern u8 const JUTResFONT_Ascfont_fix12[16736];
-extern "C" extern u8 GXNtsc480IntDf[60];
 
 //
 // Declarations:

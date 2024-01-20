@@ -8,8 +8,8 @@
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/os.h"
+#include "dolphin/dsp.h"
 
 //
 // Types:
@@ -143,7 +143,7 @@ class JASChannel {
 // Maybe location of JASPoolAllocObject_MultiThreaded<JASChannel>
 #ifdef NONMATCHING
 void* JASAudioThread::run() {
-    i_OSInitFastCast();
+    OSInitFastCast();
     JASDriver::initAI(DMACallback);
     JASDsp::boot(DSPCallback);
     JASDsp::initBuffer();

@@ -17,7 +17,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 //
 // Types:

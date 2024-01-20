@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "stdio.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/card/card.h"
+#include "dolphin/card.h"
 #include "m_Do/m_Do_MemCard.h"
 
 //

@@ -8,7 +8,7 @@
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_class.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 
 //

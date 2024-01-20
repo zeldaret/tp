@@ -9,7 +9,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_unit.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "d/msg/d_msg_out_font.h"

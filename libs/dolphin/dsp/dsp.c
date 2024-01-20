@@ -1,21 +1,12 @@
-#include "dolphin/dsp/dsp.h"
+#include "dolphin/dsp.h"
 #include "dolphin/dsp/dsp_debug.h"
 #include "dolphin/dsp/dsp_task.h"
-#include "JSystem/JAudio2/osdsp_task.h"
 
 /* 80450A58-80450A60 -00001 0004+04 1/1 0/0 0/0 .sdata           __DSPVersion */
 static char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr  5 2004 04:15:32 (0x2301) >>";
 
 /* 80451900-80451908 000E00 0004+04 1/1 0/0 0/0 .sbss            __DSP_init_flag */
 static s32 __DSP_init_flag;
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 
 /* 80352430-80352440 34CD70 0010+00 0/0 5/5 0/0 .text            DSPCheckMailToDSP */
 u32 DSPCheckMailToDSP(void) {

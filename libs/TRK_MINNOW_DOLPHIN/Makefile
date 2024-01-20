@@ -76,7 +76,7 @@ LIBTRK_MINNOW_DOLPHIN_A_LDFLAGS := \
 	-linkmode moreram \
 
 
-BASE_CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -inline deferred -use_lmw_stmw on -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+BASE_CFLAGS := -Cpp_exceptions off -proc gekko -fp hard -O4,p -inline auto,deferred -use_lmw_stmw on -nodefaults -str reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_DDH_GCN/main.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/GCN/EXI2_GDEV_GCN/main.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
@@ -92,8 +92,11 @@ $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubinit.o: CFLAGS := $(BA
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/serpoll.o: CFLAGS := $(BASE_CFLAGS) -sdata 8
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/UDP_Stubs.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/Os/dolphin/usr_put.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
+$(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 $(BUILD_DIR)/libs/TRK_MINNOW_DOLPHIN/utils/gc/MWCriticalSection_gc.o: CFLAGS := $(BASE_CFLAGS) -sdata 0 -sdata2 0
 

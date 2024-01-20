@@ -10,7 +10,7 @@
 #include "d/d_stage.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "d/d_procname.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"

@@ -5,7 +5,7 @@
 
 #include "dolphin/os/OSThread.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 
 OSThread* __OSCurrentThread : OS_BASE_CACHED + 0x00E4;
 OSThreadQueue __OSActiveThreadQueue : OS_BASE_CACHED + 0x00DC;
@@ -144,7 +144,8 @@ static volatile BOOL RunQueueHint;
 /* 804516C8-804516D0 000BC8 0004+04 4/4 0/0 0/0 .sbss            Reschedule */
 static volatile s32 Reschedule;
 
-extern void* _stack_end;
+extern u8 _stack_end[];
+extern u8 _stack_addr[];
 
 static inline void OSInitMutexQueue(OSMutexQueue* queue) {
     queue->head = queue->tail = NULL;
@@ -156,6 +157,7 @@ static inline void OSSetCurrentThread(OSThread* thread) {
 }
 
 /* 80340B1C-80340C74 33B45C 0158+00 0/0 1/1 0/0 .text            __OSThreadInit */
+// similar issue with OSInit where _stack address seems to be wrong?
 #ifdef NONMATCHING
 void __OSThreadInit() {
     OSThread* thread = &DefaultThread;
@@ -174,8 +176,8 @@ void __OSThreadInit() {
 
     OSClearContext(&thread->context);
     OSSetCurrentContext(&thread->context);
-    /* thread->stack_base = (void*)_stack_addr;
-    thread->stack_end = (void*)_stack_end; */
+    thread->stack_base = (void*)_stack_addr;
+    thread->stack_end = (void*)_stack_end;
     *(thread->stack_end) = OS_THREAD_STACK_MAGIC;
 
     OSSetCurrentThread(thread);
@@ -246,7 +248,7 @@ static inline void SetRun(OSThread* thread) {
 
 /* 80340D44-80340DAC 33B684 0068+00 3/3 0/0 0/0 .text            UnsetRun */
 #pragma dont_inline on
-static void UnsetRun(OSThread* thread)  {
+static void UnsetRun(OSThread* thread) {
     OSThreadQueue* queue;
     OSThread* next;
     OSThread* prev;
@@ -335,9 +337,9 @@ void __OSPromoteThread(OSThread* thread, s32 priority) {
         if (thread->suspend_count > 0 || thread->effective_priority <= priority) {
             break;
         }
-        
+
         thread = SetEffectivePriority(thread, priority);
-    } while(thread != NULL);
+    } while (thread != NULL);
 }
 
 static inline void __OSSwitchThread(OSThread* nextThread) {
@@ -381,7 +383,8 @@ static OSThread* SelectThread(BOOL yield) {
         }
 
         if (!(currentThread->context.state & OS_CONTEXT_STATE_EXC) &&
-            OSSaveContext(&currentThread->context)) {
+            OSSaveContext(&currentThread->context))
+        {
             return 0;
         }
     }
@@ -439,7 +442,7 @@ BOOL OSCreateThread(OSThread* thread_, void* func, void* param, void* stackBase,
     u32* stack;
     OSThread* thread;
     u32 stack1, stack2;
-    
+
     if (priority < 0 || priority > 31) {
         return FALSE;
     }
@@ -460,9 +463,9 @@ BOOL OSCreateThread(OSThread* thread_, void* func, void* param, void* stackBase,
     stack = (u32*)((u32)stackBase & 0xfffffff8);
     stack[-2] = 0;
     stack[-1] = 0;
-    OSInitContext(&thread->context, (u32)func,(u32)stack - 8);
-    thread->context.lr = (u32) OSExitThread;
-    thread->context.gpr[3] = (u32) param;
+    OSInitContext(&thread->context, (u32)func, (u32)stack - 8);
+    thread->context.lr = (u32)OSExitThread;
+    thread->context.gpr[3] = (u32)param;
     thread->stack_base = (u8*)stackBase;
     thread->stack_end = (void*)((u32)stackBase - stackSize);
     *(u32*)thread->stack_end = OS_THREAD_STACK_MAGIC;
@@ -703,7 +706,7 @@ s32 CheckThreadQueue(OSThreadQueue* thread) {
 
     current = thread->head;
 
-    while(current) {
+    while (current) {
         if (current->link.next && current != current->link.next->link.prev) {
             return 0;
         }
@@ -739,31 +742,40 @@ s32 OSCheckActiveThreads(void) {
     enabled = OSDisableInterrupts();
 
     for (i = 0; i <= 31; i++) {
-        if (RunQueueBits & (1 << (31-i))) {
+        if (RunQueueBits & (1 << (31 - i))) {
             if (RunQueue[i].head == NULL || RunQueue[i].tail == NULL) {
-                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head != NULL && RunQueue[prio].tail != NULL in %d\n", 0x5e0);
+                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head != NULL && "
+                         "RunQueue[prio].tail != NULL in %d\n",
+                         0x5e0);
                 OSPanic(__FILE__, 0x5e0, "");
             }
         } else {
             if (RunQueue[i].head != NULL || RunQueue[i].tail != NULL) {
-                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head == NULL && RunQueue[prio].tail == NULL in %d\n", 0x5e5);
+                OSReport("OSCheckActiveThreads: Failed RunQueue[prio].head == NULL && "
+                         "RunQueue[prio].tail == NULL in %d\n",
+                         0x5e5);
                 OSPanic(__FILE__, 0x5e5, "");
             }
         }
 
         if (CheckThreadQueue(&RunQueue[i]) == 0) {
-            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&RunQueue[prio]) in %d\n", 0x5e7);
+            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&RunQueue[prio]) in %d\n",
+                     0x5e7);
             OSPanic(__FILE__, 0x5e7, "");
         }
     }
 
     if (OS_THREAD_QUEUE.head != NULL && OS_THREAD_QUEUE.head->active_threads_link.prev != NULL) {
-        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.head == NULL || __OSActiveThreadQueue.head->linkActive.prev == NULL in %d\n", 0x5ec);
+        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.head == NULL || "
+                 "__OSActiveThreadQueue.head->linkActive.prev == NULL in %d\n",
+                 0x5ec);
         OSPanic(__FILE__, 0x5ec, "");
     }
 
     if (OS_THREAD_QUEUE.tail != NULL && OS_THREAD_QUEUE.tail->active_threads_link.next != NULL) {
-        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.tail == NULL || __OSActiveThreadQueue.tail->linkActive.next == NULL in %d\n", 0x5ee);
+        OSReport("OSCheckActiveThreads: Failed __OSActiveThreadQueue.tail == NULL || "
+                 "__OSActiveThreadQueue.tail->linkActive.next == NULL in %d\n",
+                 0x5ee);
         OSPanic(__FILE__, 0x5ee, "");
     }
 
@@ -771,23 +783,37 @@ s32 OSCheckActiveThreads(void) {
 
     while (thread != NULL) {
         rv++;
-        if (thread->active_threads_link.next != NULL && thread != thread->active_threads_link.next->active_threads_link.prev) {
-            OSReport("OSCheckActiveThreads: Failed thread->linkActive.next == NULL || thread == thread->linkActive.next->linkActive.prev in %d\n", 0x5f6);
+        if (thread->active_threads_link.next != NULL &&
+            thread != thread->active_threads_link.next->active_threads_link.prev)
+        {
+            OSReport("OSCheckActiveThreads: Failed thread->linkActive.next == NULL || thread == "
+                     "thread->linkActive.next->linkActive.prev in %d\n",
+                     0x5f6);
             OSPanic(__FILE__, 0x5f6, "");
         }
 
-        if (thread->active_threads_link.prev != NULL && thread != thread->active_threads_link.prev->active_threads_link.next) {
-            OSReport("OSCheckActiveThreads: Failed thread->linkActive.prev == NULL || thread == thread->linkActive.prev->linkActive.next in %d\n", 0x5f8);
+        if (thread->active_threads_link.prev != NULL &&
+            thread != thread->active_threads_link.prev->active_threads_link.next)
+        {
+            OSReport("OSCheckActiveThreads: Failed thread->linkActive.prev == NULL || thread == "
+                     "thread->linkActive.prev->linkActive.next in %d\n",
+                     0x5f8);
             OSPanic(__FILE__, 0x5f8, "");
         }
 
         if (*(u32*)thread->stack_end != OS_THREAD_STACK_MAGIC) {
-            OSReport("OSCheckActiveThreads: Failed *(thread->stackEnd) == OS_THREAD_STACK_MAGIC in %d\n", 0x5fb);
+            OSReport(
+                "OSCheckActiveThreads: Failed *(thread->stackEnd) == OS_THREAD_STACK_MAGIC in %d\n",
+                0x5fb);
             OSPanic(__FILE__, 0x5fb, "");
         }
 
-        if (OS_PRIORITY_MIN > thread->effective_priority || thread->effective_priority > OS_PRIORITY_MAX+1) {
-            OSReport("OSCheckActiveThreads: Failed OS_PRIORITY_MIN <= thread->priority && thread->priority <= OS_PRIORITY_MAX+1 in %d\n", 0x5fe);
+        if (OS_PRIORITY_MIN > thread->effective_priority ||
+            thread->effective_priority > OS_PRIORITY_MAX + 1)
+        {
+            OSReport("OSCheckActiveThreads: Failed OS_PRIORITY_MIN <= thread->priority && "
+                     "thread->priority <= OS_PRIORITY_MAX+1 in %d\n",
+                     0x5fe);
             OSPanic(__FILE__, 0x5fe, "");
         }
 
@@ -797,86 +823,103 @@ s32 OSCheckActiveThreads(void) {
         }
 
         if (!CheckThreadQueue(&thread->join_queue)) {
-            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&thread->queueJoin) in %d\n", 0x600);
+            OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(&thread->queueJoin) in %d\n",
+                     0x600);
             OSPanic(__FILE__, 0x600, "");
         }
 
         switch (thread->state) {
-            case OS_THREAD_STATE_READY:
-                if (thread->suspend_count <= 0) {
-                    if (thread->queue != &RunQueue[thread->effective_priority]) {
-                        OSReport("OSCheckActiveThreads: Failed thread->queue == &RunQueue[thread->priority] in %d\n", 0x606);
-                        OSPanic(__FILE__, 0x606, "");
-                    }
-
-                    if (!isMember(&RunQueue[thread->effective_priority], thread)) {
-                        OSReport("OSCheckActiveThreads: Failed IsMember(&RunQueue[thread->priority], thread) in %d\n", 0x607);
-                        OSPanic(__FILE__, 0x607, "");
-                    }
-
-                    if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
-                        OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x608);
-                        OSPanic(__FILE__, 0x608, "");
-                    }
-                }
-                break;
-            case OS_THREAD_STATE_RUNNING:
-                if (thread->suspend_count > 0) {
-                    OSReport("OSCheckActiveThreads: Failed !IsSuspended(thread->suspend) in %d\n", 0x60c);
-                    OSPanic(__FILE__, 0x60c, "");
+        case OS_THREAD_STATE_READY:
+            if (thread->suspend_count <= 0) {
+                if (thread->queue != &RunQueue[thread->effective_priority]) {
+                    OSReport("OSCheckActiveThreads: Failed thread->queue == "
+                             "&RunQueue[thread->priority] in %d\n",
+                             0x606);
+                    OSPanic(__FILE__, 0x606, "");
                 }
 
-                if (thread->queue != NULL) {
-                    OSReport("OSCheckActiveThreads: Failed thread->queue == NULL in %d\n", 0x60d);
-                    OSPanic(__FILE__, 0x60d, "");
+                if (!isMember(&RunQueue[thread->effective_priority], thread)) {
+                    OSReport("OSCheckActiveThreads: Failed IsMember(&RunQueue[thread->priority], "
+                             "thread) in %d\n",
+                             0x607);
+                    OSPanic(__FILE__, 0x607, "");
                 }
 
                 if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
-                    OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x60e);
-                    OSPanic(__FILE__, 0x60e, "");
+                    OSReport("OSCheckActiveThreads: Failed thread->priority == "
+                             "__OSGetEffectivePriority(thread) in %d\n",
+                             0x608);
+                    OSPanic(__FILE__, 0x608, "");
                 }
-                break;
-            case OS_THREAD_STATE_WAITING:
-                if (thread->queue == NULL) {
-                    OSReport("OSCheckActiveThreads: Failed thread->queue != NULL in %d\n", 0x611);
-                    OSPanic(__FILE__, 0x611, "");
-                }
+            }
+            break;
+        case OS_THREAD_STATE_RUNNING:
+            if (thread->suspend_count > 0) {
+                OSReport("OSCheckActiveThreads: Failed !IsSuspended(thread->suspend) in %d\n",
+                         0x60c);
+                OSPanic(__FILE__, 0x60c, "");
+            }
 
-                if (CheckThreadQueue(thread->queue) == 0) {
-                    OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(thread->queue) in %d\n", 0x612);
-                    OSPanic(__FILE__, 0x612, "");
-                }
+            if (thread->queue != NULL) {
+                OSReport("OSCheckActiveThreads: Failed thread->queue == NULL in %d\n", 0x60d);
+                OSPanic(__FILE__, 0x60d, "");
+            }
 
-                if (!isMember(thread->queue, thread)) {
-                    OSReport("OSCheckActiveThreads: Failed IsMember(thread->queue, thread) in %d\n", 0x613);
-                    OSPanic(__FILE__, 0x613, "");
-                }
+            if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
+                OSReport("OSCheckActiveThreads: Failed thread->priority == "
+                         "__OSGetEffectivePriority(thread) in %d\n",
+                         0x60e);
+                OSPanic(__FILE__, 0x60e, "");
+            }
+            break;
+        case OS_THREAD_STATE_WAITING:
+            if (thread->queue == NULL) {
+                OSReport("OSCheckActiveThreads: Failed thread->queue != NULL in %d\n", 0x611);
+                OSPanic(__FILE__, 0x611, "");
+            }
 
-                if (thread->suspend_count <= 0) {
-                    if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
-                        OSReport("OSCheckActiveThreads: Failed thread->priority == __OSGetEffectivePriority(thread) in %d\n", 0x616);
-                        OSPanic(__FILE__, 0x616, "");
-                    }
-                } else if (thread->effective_priority != 32) {
-                    OSReport("OSCheckActiveThreads: Failed thread->priority == 32 in %d\n", 0x61a);
-                    OSPanic(__FILE__, 0x61a, "");
-                }
+            if (CheckThreadQueue(thread->queue) == 0) {
+                OSReport("OSCheckActiveThreads: Failed CheckThreadQueue(thread->queue) in %d\n",
+                         0x612);
+                OSPanic(__FILE__, 0x612, "");
+            }
 
-                if (__OSCheckDeadLock(thread)) {
-                    OSReport("OSCheckActiveThreads: Failed !__OSCheckDeadLock(thread) in %d\n", 0x61c);
-                    OSPanic(__FILE__, 0x61c, "");
+            if (!isMember(thread->queue, thread)) {
+                OSReport("OSCheckActiveThreads: Failed IsMember(thread->queue, thread) in %d\n",
+                         0x613);
+                OSPanic(__FILE__, 0x613, "");
+            }
+
+            if (thread->suspend_count <= 0) {
+                if (thread->effective_priority != __OSGetEffectivePriority(thread)) {
+                    OSReport("OSCheckActiveThreads: Failed thread->priority == "
+                             "__OSGetEffectivePriority(thread) in %d\n",
+                             0x616);
+                    OSPanic(__FILE__, 0x616, "");
                 }
-                break;
-            case OS_THREAD_STATE_DEAD:
-                if (thread->owned_mutexes.head != NULL || thread->owned_mutexes.tail != NULL) {
-                    OSReport("OSCheckActiveThreads: Failed thread->queueMutex.head == NULL && thread->queueMutex.tail == NULL in %d\n", 0x620);
-                    OSPanic(__FILE__, 0x620, "");
-                }
-                break;
-            default:
-                OSReport("OSCheckActiveThreads: Failed. unkown thread state (%d) of thread %p\n", thread->state, thread);
-                OSPanic(__FILE__, 0x626, "");
-                break;
+            } else if (thread->effective_priority != 32) {
+                OSReport("OSCheckActiveThreads: Failed thread->priority == 32 in %d\n", 0x61a);
+                OSPanic(__FILE__, 0x61a, "");
+            }
+
+            if (__OSCheckDeadLock(thread)) {
+                OSReport("OSCheckActiveThreads: Failed !__OSCheckDeadLock(thread) in %d\n", 0x61c);
+                OSPanic(__FILE__, 0x61c, "");
+            }
+            break;
+        case OS_THREAD_STATE_DEAD:
+            if (thread->owned_mutexes.head != NULL || thread->owned_mutexes.tail != NULL) {
+                OSReport("OSCheckActiveThreads: Failed thread->queueMutex.head == NULL && "
+                         "thread->queueMutex.tail == NULL in %d\n",
+                         0x620);
+                OSPanic(__FILE__, 0x620, "");
+            }
+            break;
+        default:
+            OSReport("OSCheckActiveThreads: Failed. unkown thread state (%d) of thread %p\n",
+                     thread->state, thread);
+            OSPanic(__FILE__, 0x626, "");
+            break;
         }
 
         if (!__OSCheckMutexes(thread)) {

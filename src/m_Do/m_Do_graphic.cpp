@@ -379,7 +379,7 @@ static void darwFilter(GXColor matColor) {
     GXPosition3s8(1, 0, -5);
     GXPosition3s8(1, 1, -5);
     GXPosition3s8(0, 1, -5);
-    i_GXEnd();
+    GXEnd();
 }
 #else
 #pragma push
@@ -760,15 +760,15 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
     if (l_tevColor0.a > -255) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        i_GXPosition3s16(x_orig, y_orig, -5);
+        GXPosition3s16(x_orig, y_orig, -5);
         GXTexCoord2s8(0,0);
-        i_GXPosition3s16(width, y_orig, -5);
+        GXPosition3s16(width, y_orig, -5);
         GXTexCoord2s8(1,0);
-        i_GXPosition3s16(width, height, -5);
+        GXPosition3s16(width, height, -5);
         GXTexCoord2s8(1,1);
-        i_GXPosition3s16(x_orig, height, -5);
+        GXPosition3s16(x_orig, height, -5);
         GXTexCoord2s8(0,1);
-        i_GXEnd();
+        GXEnd();
     }
 
     GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
@@ -850,15 +850,15 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
         GXSetProjection(ortho, GX_ORTHOGRAPHIC);
         GXSetCurrentMtx(0);
         GXBegin(GX_QUADS, GX_VTXFMT0, 8);
-        i_GXPosition3s16(0, 0, -5);
-        i_GXPosition3s16(0x260, 0, -5);
-        i_GXPosition3s16(0x280, sc_top, -5);
-        i_GXPosition3s16(0, sc_top, -5);
-        i_GXPosition3s16(0, sc_bottom, -5);
-        i_GXPosition3s16(0x280, sc_bottom, -5);
-        i_GXPosition3s16(0x280, 0x1c0, -5);
-        i_GXPosition3s16(0, 0x1c8, -5);
-        i_GXEnd();
+        GXPosition3s16(0, 0, -5);
+        GXPosition3s16(0x260, 0, -5);
+        GXPosition3s16(0x280, sc_top, -5);
+        GXPosition3s16(0, sc_top, -5);
+        GXPosition3s16(0, sc_bottom, -5);
+        GXPosition3s16(0x280, sc_bottom, -5);
+        GXPosition3s16(0x280, 0x1c0, -5);
+        GXPosition3s16(0, 0x1c8, -5);
+        GXEnd();
     }
     GXSetScissor(param_1->mScissor.mXOrig, param_1->mScissor.mYOrig,
                  param_1->mScissor.mWidth, param_1->mScissor.mHeight);
@@ -885,7 +885,7 @@ void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
     GXTexCoord2s8(1, 1);
     GXPosition2s8(0, param_1);
     GXTexCoord2s8(0, 1);
-    i_GXEnd();
+    GXEnd();
 }
 
 /* 80009544-800095F8 003E84 00B4+00 0/0 1/1 0/0 .text            create__Q213mDoGph_gInf_c7bloom_cFv
@@ -1155,7 +1155,7 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
         }
 
         GXSetTexCopySrc(x_orig, y_orig_pos, width, height);
-        GXSetTexCopyDst(width >> 1, height >> 1, mDoGph_gInf_c::getFrameBufferTimg()->format,
+        GXSetTexCopyDst(width >> 1, height >> 1, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format,
                         GX_TRUE);
         GXCopyTex(tex, GX_FALSE);
         GXPixModeSync();

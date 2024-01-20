@@ -30,11 +30,11 @@ void GDFlushCurrToMem(void) {
 void GDPadCurr32(void) {
     u32 i = ((u32)__GDCurrentDL->ptr & 31);
 
-	if (i) {
-		for (i; i < 32; i++) {
-			__GDWrite(0);
-		}
-	}
+    if (i) {
+        for (i; i < 32; i++) {
+            __GDWrite(0);
+        }
+    }
 }
 
 /* 803610D4-80361104 35BA14 0030+00 0/0 41/41 0/0 .text            GDOverflowed */

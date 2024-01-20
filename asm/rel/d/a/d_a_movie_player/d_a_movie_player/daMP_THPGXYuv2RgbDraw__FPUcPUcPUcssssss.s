@@ -95,37 +95,37 @@ lbl_80876BD0:
 /* 80876D44  7F BA 07 34 */	extsh r26, r29
 /* 80876D48  7F 44 D3 78 */	mr r4, r26
 /* 80876D4C  38 A0 00 00 */	li r5, 0
-/* 80876D50  48 00 00 A9 */	bl GXPosition3s16
+/* 80876D50  48 00 00 A9 */	bl i_GXPosition3s16
 /* 80876D54  38 60 00 00 */	li r3, 0
 /* 80876D58  38 80 00 00 */	li r4, 0
-/* 80876D5C  48 00 00 8D */	bl GXTexCoord2u16
+/* 80876D5C  48 00 00 8D */	bl i_GXTexCoord2u16
 /* 80876D60  7F 23 CB 78 */	mr r3, r25
 /* 80876D64  7F C0 07 34 */	extsh r0, r30
 /* 80876D68  7F 63 02 14 */	add r27, r3, r0
 /* 80876D6C  7F 63 07 34 */	extsh r3, r27
 /* 80876D70  7F 44 D3 78 */	mr r4, r26
 /* 80876D74  38 A0 00 00 */	li r5, 0
-/* 80876D78  48 00 00 81 */	bl GXPosition3s16
+/* 80876D78  48 00 00 81 */	bl i_GXPosition3s16
 /* 80876D7C  38 60 00 01 */	li r3, 1
 /* 80876D80  38 80 00 00 */	li r4, 0
-/* 80876D84  48 00 00 65 */	bl GXTexCoord2u16
+/* 80876D84  48 00 00 65 */	bl i_GXTexCoord2u16
 /* 80876D88  7F 63 07 34 */	extsh r3, r27
 /* 80876D8C  7F 40 D3 78 */	mr r0, r26
 /* 80876D90  7F 40 FA 14 */	add r26, r0, r31
 /* 80876D94  7F 44 07 34 */	extsh r4, r26
 /* 80876D98  38 A0 00 00 */	li r5, 0
-/* 80876D9C  48 00 00 5D */	bl GXPosition3s16
+/* 80876D9C  48 00 00 5D */	bl i_GXPosition3s16
 /* 80876DA0  38 60 00 01 */	li r3, 1
 /* 80876DA4  38 80 00 01 */	li r4, 1
-/* 80876DA8  48 00 00 41 */	bl GXTexCoord2u16
+/* 80876DA8  48 00 00 41 */	bl i_GXTexCoord2u16
 /* 80876DAC  7F 23 CB 78 */	mr r3, r25
 /* 80876DB0  7F 44 07 34 */	extsh r4, r26
 /* 80876DB4  38 A0 00 00 */	li r5, 0
-/* 80876DB8  48 00 00 41 */	bl GXPosition3s16
+/* 80876DB8  48 00 00 41 */	bl i_GXPosition3s16
 /* 80876DBC  38 60 00 00 */	li r3, 0
 /* 80876DC0  38 80 00 01 */	li r4, 1
-/* 80876DC4  48 00 00 25 */	bl GXTexCoord2u16
-/* 80876DC8  48 00 00 1D */	bl GXEnd
+/* 80876DC4  48 00 00 25 */	bl i_GXTexCoord2u16
+/* 80876DC8  48 00 00 1D */	bl i_GXEnd
 /* 80876DCC  39 61 00 90 */	addi r11, r1, 0x90
 /* 80876DD0  4B AE B4 45 */	bl _restgpr_24
 /* 80876DD4  80 01 00 94 */	lwz r0, 0x94(r1)

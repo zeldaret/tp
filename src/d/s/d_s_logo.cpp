@@ -14,7 +14,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "dolphin/os/OSRtc.h"
-#include "dolphin/vi/vi.h"
+#include "dolphin/vi.h"
 
 //
 // Types:

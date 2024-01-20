@@ -6,7 +6,7 @@
 #include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JUtility/TColor.h"
 #include "math.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 /* 802E9C90-802E9CC4 2E45D0 0034+00 0/0 1/1 0/0 .text            load__9J2DTexMtxFUl */
 void J2DTexMtx::load(u32 mtxIdx) {

@@ -620,7 +620,7 @@ void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* i_archive) {
     JUT_ASSERT(fg != false);
     dPaneClass_showNullPane(mpGetInScreen);
 
-    i_OSInitFastCast();
+    OSInitFastCast();
     mpGetInBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpArchive));
 

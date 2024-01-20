@@ -28,7 +28,7 @@ vu32 __PIRegs[12] : 0xCC003000;
 #define OS_RESET_PRIO_GX 127
 #define OS_RESET_PRIO_ALARM 4294967295
 
-typedef s32 (*OSResetFunction)(s32);
+typedef BOOL (*OSResetFunction)(BOOL final);
 
 typedef struct OSResetFunctionInfo {
     /* 0x0 */ OSResetFunction func;

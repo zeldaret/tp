@@ -7,7 +7,7 @@
 #include "stdio.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
@@ -131,7 +131,7 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
     } else {
         u8* stackPtr = OSGetStackPointer();
-        if (stackPtr < currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
+        if (stackPtr < (u8*)currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
             mDoPrintf_vprintf_Interrupt(fmt, args);
         } else {
             mDoPrintf_vprintf_Thread(fmt, args);

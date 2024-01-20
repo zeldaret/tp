@@ -3,7 +3,7 @@
 
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/mtx/mtxvec.h"
+#include "dolphin/mtx.h"
 
 struct J2DTextureSRTInfo {
     /* 0x00 */ f32 field_0x0;

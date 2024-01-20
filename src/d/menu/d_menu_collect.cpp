@@ -30,7 +30,7 @@
 #include "d/msg/d_msg_string.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_mtx.h"
@@ -1567,7 +1567,7 @@ asm void dMenu_Collect2D_c::screenSet() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::animationSet() {
-    i_OSInitFastCast();
+    OSInitFastCast();
     void* resource =
         JKRGetNameResource("zelda_collect_soubi_screen_revo.btk", dComIfGp_getCollectResArchive());
     mpAnmKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);

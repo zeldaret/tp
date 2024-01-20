@@ -1,6 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include "dolphin/db/db.h"
+#include "dolphin/db.h"
 
 #define GDEV_BUF_SIZE (0x500)
 
@@ -14,22 +14,22 @@ static u8 gRecvBuf[GDEV_BUF_SIZE];
 static BOOL gIsInitialized;
 
 /* 80372BCC-80372C54 36D50C 0088+00 0/0 1/1 0/0 .text            gdev_cc_initialize */
-BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback) {
+int gdev_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback) {
     MWTRACE(1, "CALLING EXI2_Init\n");
     DBInitComm(inputPendingPtrRef, monitorCallback);
     MWTRACE(1, "DONE CALLING EXI2_Init\n");
     CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
-    return FALSE;
+    return 0;
 }
 
 /* 80372BC4-80372BCC 36D504 0008+00 0/0 1/1 0/0 .text            gdev_cc_shutdown */
-BOOL gdev_cc_shutdown() {
-    return FALSE;
+int gdev_cc_shutdown() {
+    return 0;
 }
 
 /* 80372BA0-80372BC4 36D4E0 0024+00 0/0 1/1 0/0 .text            gdev_cc_open */
 int gdev_cc_open() {
-    if (gIsInitialized != FALSE) {
+    if (gIsInitialized != 0) {
         return -10005;
     }
 
@@ -38,12 +38,12 @@ int gdev_cc_open() {
 }
 
 /* 80372B98-80372BA0 36D4D8 0008+00 0/0 1/1 0/0 .text            gdev_cc_close */
-BOOL gdev_cc_close() {
-    return FALSE;
+int gdev_cc_close() {
+    return 0;
 }
 
 /* 80372AA4-80372B98 36D3E4 00F4+00 0/0 1/1 0/0 .text            gdev_cc_read */
-u32 gdev_cc_read(u8* data, u32 size) {
+int gdev_cc_read(u8* data, int size) {
     u8 buff[GDEV_BUF_SIZE];
     int p1;
     u32 retval;
@@ -79,12 +79,12 @@ u32 gdev_cc_read(u8* data, u32 size) {
 }
 
 /* 803729E4-80372AA4 36D324 00C0+00 0/0 1/1 0/0 .text            gdev_cc_write */
-int gdev_cc_write(int bytes, int length) {
+int gdev_cc_write(const u8* bytes, int length) {
     int exi2Len;
     int n_copy;
     u32 hexCopy;
 
-    hexCopy = bytes;
+    hexCopy = (u32)bytes;
     n_copy = length;
 
     if (gIsInitialized == FALSE) {
@@ -108,15 +108,15 @@ int gdev_cc_write(int bytes, int length) {
 }
 
 /* 803729C0-803729E4 36D300 0024+00 0/0 1/1 0/0 .text            gdev_cc_pre_continue */
-BOOL gdev_cc_pre_continue() {
+int gdev_cc_pre_continue() {
     DBClose();
-    return FALSE;
+    return 0;
 }
 
 /* 8037299C-803729C0 36D2DC 0024+00 0/0 1/1 0/0 .text            gdev_cc_post_stop */
-BOOL gdev_cc_post_stop() {
+int gdev_cc_post_stop() {
     DBOpen();
-    return FALSE;
+    return 0;
 }
 
 /* 8037292C-8037299C 36D26C 0070+00 0/0 1/1 0/0 .text            gdev_cc_peek */
@@ -139,7 +139,7 @@ int gdev_cc_peek() {
 }
 
 /* 80372908-8037292C 36D248 0024+00 0/0 1/1 0/0 .text            gdev_cc_initinterrupts */
-BOOL gdev_cc_initinterrupts() {
+int gdev_cc_initinterrupts() {
     DBInitInterrupts();
-    return FALSE;
+    return 0;
 }

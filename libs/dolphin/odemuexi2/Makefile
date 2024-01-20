@@ -3,12 +3,24 @@
 #
 
 LIBODEMUEXI2_A_CPP_FILES := \
-	libs/dolphin/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.cpp \
+	libs/dolphin/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.c \
 
 LIBODEMUEXI2_A_O_FILES := \
 	$(BUILD_DIR)/libs/dolphin/odemuexi2/Src/OdemuExi2Lib/DebuggerDriver.o \
 
 LIBODEMUEXI2_A_CFLAGS := \
+	-Cpp_exceptions off \
+	-proc gekko \
+	-fp hard \
+	-nodefaults \
+	-str reuse \
+	-inline auto,deferred \
+	-RTTI off \
+	-maxerrors 5 \
+	-enum int $(INCLUDES) \
+	-O4,p \
+	-lang=c \
+
 
 LIBODEMUEXI2_A_LDFLAGS := \
 	-nodefaults \
@@ -21,11 +33,11 @@ $(BUILD_DIR)/libodemuexi2.a: $(LIBODEMUEXI2_A_O_FILES)
 	@echo $(LIBODEMUEXI2_A_O_FILES) > build/LIBODEMUEXI2_A_ofiles
 	@$(LD) -xm l $(LIBODEMUEXI2_A_LDFLAGS) -o $(BUILD_DIR)/libodemuexi2.a @build/LIBODEMUEXI2_A_ofiles
 
-$(BUILD_DIR)/libs/dolphin/odemuexi2/%.o: libs/dolphin/odemuexi2/%.cpp $(BUILD_DIR)/libs/dolphin/odemuexi2/%.d
+$(BUILD_DIR)/libs/dolphin/odemuexi2/%.o: libs/dolphin/odemuexi2/%.c $(BUILD_DIR)/libs/dolphin/odemuexi2/%.d
 	@mkdir -p $(@D)
 	@echo building... $<
-	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).cpp
-	@$(CC) $(CFLAGS) $(LIBODEMUEXI2_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).cpp
+	@$(ICONV) -f UTF-8 -t CP932 < $< > $(basename $@).c
+	@$(DOLPHIN_LIB_CC) $(LIBODEMUEXI2_A_CFLAGS) $(DEPFLAGS) -c -o $(dir $@) $(basename $@).c
 	@if [ -z '$(DISABLE_DEPS)' ]; then tools/transform-dep.py '$(basename $@).d' '$(basename $@).d'; touch -c $@; fi
 
 ifndef DISABLE_DEPS

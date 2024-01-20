@@ -1,7 +1,7 @@
 #ifndef JPADRAWINFO_H
 #define JPADRAWINFO_H
 
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 
 class JPADrawInfo {
 public:

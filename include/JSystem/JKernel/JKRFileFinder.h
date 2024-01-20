@@ -1,7 +1,7 @@
 #ifndef JKRFILEFINDER_H
 #define JKRFILEFINDER_H
 
-#include "dolphin/dvd/dvd.h"
+#include "dolphin/dvd.h"
 
 class JKRFileFinder {
 public:

@@ -14,7 +14,7 @@
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
-#include "dolphin/ai/ai.h"
+#include "dolphin/ai.h"
 #include "dolphin/os/OSCache.h"
 #include "dolphin/os/OSTime.h"
 

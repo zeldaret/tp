@@ -8,7 +8,7 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "dolphin/gx/GX.h"
+#include "dolphin/gx.h"
 
 #define suAboutEncoding_ 3
 
@@ -274,22 +274,22 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
     // Bottom Left
     GXPosition3f32(x1, y1, 0.0f);
     GXColor1u32(mColor1);
-    i_GXTexCoord2u16(u1, v1);
+    GXTexCoord2u16(u1, v1);
 
     // Bottom Right
     GXPosition3f32(x2, y1, 0.0f);
     GXColor1u32(mColor2);
-    i_GXTexCoord2u16(u2, v1);
+    GXTexCoord2u16(u2, v1);
 
     // Top Right
     GXPosition3f32(x2, y2, 0.0f);
     GXColor1u32(mColor4);
-    i_GXTexCoord2u16(u2, v2);
+    GXTexCoord2u16(u2, v2);
 
     // Top Left
     GXPosition3f32(x1, y2, 0.0f);
     GXColor1u32(mColor3);
-    i_GXTexCoord2u16(u1, v2);
+    GXTexCoord2u16(u1, v2);
 
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 

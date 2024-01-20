@@ -3,7 +3,7 @@
 
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/mtx/mtx.h"
+#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 class J2DGrafContext {

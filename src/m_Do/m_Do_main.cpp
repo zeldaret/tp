@@ -16,7 +16,7 @@
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/os/OS.h"
+#include "dolphin/os.h"
 #include "f_ap/f_ap_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_MemCard.h"

@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-void GXSetMisc(u32 id, u32 value);
+void GXSetMisc(GXMiscToken token, u32 val);
 void GXFlush(void);
 void __GXAbort(void);
 void GXAbortFrame(void);
