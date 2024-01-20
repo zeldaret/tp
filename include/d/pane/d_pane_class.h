@@ -33,8 +33,20 @@ public:
     /* 80254EBC */ Vec getGlobalVtxCenter(J2DPane*, bool, s16);
     /* 80254FB8 */ JGeometry::TBox2<f32>* getBounds(J2DPane*);
 
+    Vec getGlobalVtx(Mtx* param_0, u8 param_1, bool param_2, s16 param_3) {
+        return getGlobalVtx(getPanePtr(), param_0, param_1, param_2, param_3);
+    }
+
     Vec getGlobalVtxCenter(bool param_0, s16 param_1) {
         return getGlobalVtxCenter(getPanePtr(), param_0, param_1);
+    }
+
+    f32 getGlobalCenterPosY() {
+        return getGlobalPosY() + mPane->getHeight() / 2;
+    }
+
+    f32 getCenterPosX() {
+        return mPane->getBounds().i.x + mPane->getWidth() / 2;
     }
 
     void translate(f32 x, f32 y) { getPanePtr()->translate(x, y); }

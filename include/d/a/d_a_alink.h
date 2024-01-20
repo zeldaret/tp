@@ -3367,6 +3367,12 @@ public:
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
+    s16 checkWindStoneHowl() {return mProcVar3.field_0x300e.y; }
+    u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
+    u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
+    u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
+    s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
+    SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);

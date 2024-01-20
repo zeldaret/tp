@@ -440,7 +440,7 @@ public:
     /* 0xA8 */ f32 mLineSpaceOffset;
     /* 0xAC */ u16 mWaveformThickness;
     /* 0xAE */ u16 mWaveformLineLen;
-    /* 0xB0 */ u16 mWaveformDotLen;
+    /* 0xB0 */ s16 mWaveformDotLen;
 };
 
 class dMsgObject_HIO_c {

@@ -45,6 +45,7 @@ public:
     void setCorrectCurve(s8 i_curve) { setCorrectData(i_curve, NULL); }
     u32 getTimer() { return mTimer; }
     u8 getReleaseTimer() { return mReleaseTimer; }
+    u8 getCorrectCurveID() { return mCorrectCurveID; }
 
 private:
     /* 0x00 */ JAISoundHandle field_0x00;
