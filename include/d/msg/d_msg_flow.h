@@ -43,8 +43,8 @@ public:
     /* 8024A424 */ int checkEventRender(int*, int*, int*, int*);
     /* 8024A4C4 */ void remove();
     /* 8024A528 */ u16 getEventId(int*);
-    /* 8024A538 */ int getMsgNo();
-    /* 8024A540 */ int getNowMsgNo();
+    /* 8024A538 */ u32 getMsgNo();
+    /* 8024A540 */ u32 getNowMsgNo();
     /* 8024A548 */ msg_class* getMsg();
     /* 8024A580 */ void setInitValue(int);
     /* 8024A618 */ void setInitValueGroupChange(int, fopAc_ac_c**);
@@ -181,8 +181,8 @@ private:
     /* 0x25 */ u8 field_0x25;
     /* 0x26 */ u8 field_0x26;
     /* 0x27 */ u8 field_0x27;
-    /* 0x28 */ int mMsgNo;
-    /* 0x2C */ int mNowMsgNo;
+    /* 0x28 */ u32 mMsgNo;
+    /* 0x2C */ u32 mNowMsgNo;
     /* 0x30 */ u16 field_0x30;
     /* 0x32 */ u16 mEventId;
     /* 0x34 */ int field_0x34;

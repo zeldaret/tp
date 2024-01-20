@@ -673,12 +673,12 @@ u16 dMsgFlow_c::getEventId(int* oItemId_p) {
 }
 
 /* 8024A538-8024A540 244E78 0008+00 0/0 3/3 4/4 .text            getMsgNo__10dMsgFlow_cFv */
-int dMsgFlow_c::getMsgNo() {
+u32 dMsgFlow_c::getMsgNo() {
     return mMsgNo;
 }
 
 /* 8024A540-8024A548 244E80 0008+00 0/0 0/0 12/12 .text            getNowMsgNo__10dMsgFlow_cFv */
-int dMsgFlow_c::getNowMsgNo() {
+u32 dMsgFlow_c::getNowMsgNo() {
     return mNowMsgNo;
 }
 

@@ -398,6 +398,7 @@ public:
         RFLG0_UNK_20000000 = 0x20000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_GRAB_PUT_START = 0x400000,
         RFLG0_UNK_20000 = 0x20000,
         RFLG0_UNK_8000 = 0x8000,
         RFLG0_UNK_4000 = 0x4000,
@@ -760,6 +761,7 @@ public:
     bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
     bool checkWolfTagLockJumpReady() const { return i_checkResetFlg0(RFLG0_UNK_20000); }
     bool getGrabUpEnd() const { return i_checkResetFlg0(RFLG0_GRAB_UP_END); }
+    bool getGrabPutStart() const { return i_checkResetFlg0(RFLG0_GRAB_PUT_START); }
 
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }

@@ -3,6 +3,9 @@
 
 #include "d/msg/d_msg_flow.h"
 #include "f_op/f_op_actor.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/cc/d_cc_d.h"
 
 struct mg_rod_s {
     /* 0x0 */ cXyz field_0x0[16];
@@ -25,7 +28,6 @@ public:
     f32 getRodStickY() { return mRodStickY; }
     bool checkRodEquipPermission() { return field_0x1514 == 0; }
 
-private:
     /* 0x0568 */ u8 field_0x568[0x5A4 - 0x568];
     /* 0x05A4 */ mg_rod_s field_0x5a4;
     /* 0x0664 */ u8 field_0x664[0x6AC - 0x664];
@@ -44,7 +46,10 @@ private:
     /* 0x075C */ u8 field_0x75c[0x764 - 0x75C];
     /* 0x0764 */ cXyz field_0x764;
     /* 0x0770 */ mg_line_s field_0x770;
-    /* 0x0C20 */ u8 field_0xc20[0xFAC - 0xC20];
+    /* 0x0C20 */ u8 field_0xc20[0xF7C - 0xC20];
+    /* 0x0F7C */ s16 field_0xf7c;
+    /* 0x0F7E */ s16 field_0xf7e;
+    /* 0x0F80 */ u8 field_0xf80[0xFAC - 0xF80];
     /* 0x0FAC */ mg_hook_s field_0xfac[2];
     /* 0x0FEC */ u8 field_0xfec[0x1060 - 0xFEC];
     /* 0x1060 */ cXyz field_0x1060;
@@ -56,7 +61,9 @@ private:
     /* 0x1144 */ u8 field_0x1144[0x1190 - 0x1144];
     /* 0x1190 */ dBgS_AcchCir field_0x1190;
     /* 0x11D0 */ dBgS_ObjAcch field_0x11d0;
-    /* 0x13A8 */ u8 field_0x13a8[0x1474 - 0x13A8];
+    /* 0x13A8 */ u8 field_0x13a8[0x13B4 - 0x13A8];
+    /* 0x13B4 */ s16 field_0x13b4;
+    /* 0x13B6 */ u8 field_0x13b6[0x1474 - 0x13B6];
     /* 0x1474 */ dMsgFlow_c mMsgFlow;
     /* 0x14C0 */ u8 field_0x14c0[0x14C8 - 0x14C0];
     /* 0x14C8 */ f32 mRodStickX;
