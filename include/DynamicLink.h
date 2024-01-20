@@ -1,9 +1,8 @@
 #ifndef DYNAMICLINK_H
 #define DYNAMICLINK_H
 
-#include "dolphin/types.h"
+#include "dolphin/os.h"
 
-typedef struct OSModuleInfo OSModuleInfo;
 class JKRArchive;
 class JKRFileCache;
 class mDoDvdThd_callback_c;
@@ -58,7 +57,7 @@ struct DynamicModuleControl : DynamicModuleControlBase {
     /* 8026275C */ static bool initialize();
     /* 80262794 */ static bool callback(void*);
 
-    /* 0x10 */ OSModuleInfo* mModule;
+    /* 0x10 */ OSModuleHeader* mModule;
     /* 0x14 */ void* mBss;
     /* 0x18 */ u32 unk_24;
     /* 0x1c */ const char* mName;
