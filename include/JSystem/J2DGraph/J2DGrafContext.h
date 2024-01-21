@@ -17,6 +17,10 @@ public:
 
     /* 802E8B08 */ J2DGrafContext(f32 x, f32 y, f32 width, f32 height);
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const& bounds);
+    void scissor(f32 x, f32 y, f32 width, f32 height) {
+        scissor(JGeometry::TBox2<f32>(x, y, x + width, y + height));
+    }
+
     void setColor(JUtility::TColor c) { this->setColor(c, c, c, c); }
     /* 802E9118 */ void setColor(JUtility::TColor colorTL, JUtility::TColor colorTR,
                                  JUtility::TColor colorBR, JUtility::TColor colorBL);

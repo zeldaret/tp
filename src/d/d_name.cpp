@@ -723,13 +723,9 @@ int dName_c::mojiChange(u8 idx) {
                 mChrInfo[idx].mCharacter = 'ゥ';
             }
         } else {
-            int c = 'ァ';
-            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                c = 'ぁ';
-            }
-            bool check = mChrInfo[idx].mCharacter - c == 0 ? 1 : 0;
+            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ぁ' : 'ァ';
 
-            if (check) {
+            if ((mChrInfo[idx].mCharacter - c) % 2) {
                 --mChrInfo[idx].mCharacter;
             } else {
                 ++mChrInfo[idx].mCharacter;
@@ -737,36 +733,25 @@ int dName_c::mojiChange(u8 idx) {
         }
         break;
     case 1:
-        int c = 'か';
-        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-            c = 'カ';
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'カ' : 'か';
+        if ((mChrInfo[idx].mCharacter - c) % 2 == 0) {
+            mChrInfo[idx].mCharacter += 1;
+        } else {
+            mChrInfo[idx].mCharacter -= 1;
         }
-
-        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
         break;
     case 2:
-        int c2 = 'さ';
-        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-            c2 = 'サ';
-        }
-
-        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'サ' : 'さ';
+        ((mChrInfo[idx].mCharacter - c) % 2) ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
         break;
     case 3:
     case 12:
         if (mChrInfo[idx].mCharacter != 0x815b) {
-            int c = 'ぢ';
-            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                c = 'ヂ';
-            }
+            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ': 'ぢ';
 
             if (c < mChrInfo[idx].mCharacter) {
-                int c2 = 'ぢ';
-                if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                    c2 = 'ヂ';
-                }
-
-                mChrInfo[idx].mCharacter == c2 ? mChrInfo[idx].mCharacter++ :
+                int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ' : 'ぢ';
+                (mChrInfo[idx].mCharacter - c2) % 2 ? mChrInfo[idx].mCharacter++ :
                                                  mChrInfo[idx].mCharacter--;
             }
         }

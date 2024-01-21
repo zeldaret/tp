@@ -178,9 +178,13 @@ public:
     /* 800562D0 */ dDlst_shadowReal_c() { mState = 0; }
 
     dDlst_shadowReal_c* getZsortNext() { return mZsortNext; }
+    dDlst_shadowReal_c* getZsortPre() { return mZsortPre; }
     bool isNoUse() { return mState == 0; }
     bool isUse() { return mState == 1; }
     bool checkKey(u32 i_key) { return mKey == i_key; }
+    f32 getCameraZ() { return mCameraZ; }
+    void setZsortNext(dDlst_shadowReal_c* next) { mZsortNext = next; }
+    void setZsortPre(dDlst_shadowReal_c* pre) { mZsortPre = pre; }
 
 private:
     /* 0x0000 */ u8 mState;

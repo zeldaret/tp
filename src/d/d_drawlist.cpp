@@ -4,7 +4,9 @@
 //
 
 #include "d/d_drawlist.h"
+#include "d/s/d_s_play.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "d/com/d_com_inf_game.h"
@@ -351,7 +353,6 @@ extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 g_envHIO[68];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
 extern "C" f32 mSystemFar__14mDoLib_clipper;
@@ -430,7 +431,7 @@ extern "C" asm void draw__13dDlst_2DTri_cFv() {
 #endif
 
 /* 80051CF0-80051E5C 04C630 016C+00 1/0 0/0 0/0 .text            draw__14dDlst_2DQuad_cFv */
-// regalloc
+// vtable
 #ifdef NONMATCHING
 void dDlst_2DQuad_c::draw() {
     GXClearVtxDesc();
@@ -447,10 +448,10 @@ void dDlst_2DQuad_c::draw() {
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16(field_0x4, field_0x6, 0);
-    GXPosition3s16(field_0x8, field_0x6, 0);
-    GXPosition3s16(field_0x8, field_0xa, 0);
-    GXPosition3s16(field_0x4, field_0xa, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0x6, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0xa, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0xa, 0);
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
@@ -530,7 +531,7 @@ SECTION_SDATA2 static f64 lit_4076 = 4503599627370496.0 /* cast u32 to float */;
 SECTION_SDATA2 static f64 lit_4079 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80051F98-80052354 04C8D8 03BC+00 1/0 0/0 0/0 .text            draw__11dDlst_2DT_cFv */
-// regalloc
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_2DT_c::draw() {
     f32 var5 = field_0xe;
@@ -572,16 +573,16 @@ void dDlst_2DT_c::draw() {
     GXSetClipMode(GX_CLIP_DISABLE);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16(field_0x12, field_0x14, 0);
+    GXPosition3s16((s32)field_0x12, (s32)field_0x14, 0);
     GXColor1u32(0xffffffff);
     GXTexCoord2u16(var1, var2);
-    GXPosition3s16(field_0x16, field_0x14, 0);
+    GXPosition3s16((s32)field_0x16, (s32)field_0x14, 0);
     GXColor1u32(0xffffffff);
     GXTexCoord2u16(var3, var2);
-    GXPosition3s16(field_0x16, field_0x18, 0);
+    GXPosition3s16((s32)field_0x16, (s32)field_0x18, 0);
     GXColor1u32(0xffffffff);
     GXTexCoord2u16(var3, var4);
-    GXPosition3s16(field_0x12, field_0x18, 0);
+    GXPosition3s16((s32)field_0x12, (s32)field_0x18, 0);
     GXColor1u32(0xffffffff);
     GXTexCoord2u16(var1, var4);
     GXEnd();
@@ -1146,7 +1147,7 @@ void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, 
 SECTION_SDATA2 static f32 lit_4360 = 256.0f;
 
 /* 80052C58-8005312C 04D598 04D4+00 1/0 0/0 0/0 .text            draw__11dDlst_2DM_cFv */
-// regalloc
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_2DM_c::draw() {
     s16 r31 = field_0x22;
@@ -1193,16 +1194,16 @@ void dDlst_2DM_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16(field_0x4, field_0x6, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
     GXTexCoord2s16(r31, r30);
     GXTexCoord2s16(r27, r26);
-    GXPosition3s16(field_0x8, field_0x6, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0x6, 0);
     GXTexCoord2s16(r29, r30);
     GXTexCoord2s16(r25, r26);
-    GXPosition3s16(field_0x8, field_0xa, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0xa, 0);
     GXTexCoord2s16(r29, r28);
     GXTexCoord2s16(r25, r24);
-    GXPosition3s16(field_0x4, field_0xa, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0xa, 0);
     GXTexCoord2s16(r31, r28);
     GXTexCoord2s16(r27, r24);
     GXEnd();
@@ -1221,7 +1222,7 @@ extern "C" asm void draw__11dDlst_2DM_cFv() {
 #endif
 
 /* 8005312C-8005364C 04DA6C 0520+00 1/0 0/0 0/0 .text            draw__11dDlst_2Dm_cFv */
-// regalloc
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_2Dm_c::draw() {
     s16 r31 = field_0x48;
@@ -1271,16 +1272,16 @@ void dDlst_2Dm_c::draw() {
     GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetCurrentMtx(0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16(field_0x4, field_0x6, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
     GXTexCoord2s16(r31, r30);
     GXTexCoord2s16(r27, r26);
-    GXPosition3s16(field_0x8, field_0x6, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0x6, 0);
     GXTexCoord2s16(r29, r30);
     GXTexCoord2s16(r25, r26);
-    GXPosition3s16(field_0x8, field_0xa, 0);
+    GXPosition3s16((s32)field_0x8, (s32)field_0xa, 0);
     GXTexCoord2s16(r29, r28);
     GXTexCoord2s16(r25, r24);
-    GXPosition3s16(field_0x4, field_0xa, 0);
+    GXPosition3s16((s32)field_0x4, (s32)field_0xa, 0);
     GXTexCoord2s16(r31, r28);
     GXTexCoord2s16(r27, r24);
     GXEnd();
@@ -1299,7 +1300,7 @@ extern "C" asm void draw__11dDlst_2Dm_cFv() {
 #endif
 
 /* 8005364C-800539DC 04DF8C 0390+00 1/0 0/0 0/0 .text            draw__12dDlst_2DMt_cFv */
-// regalloc
+// vtable
 #ifdef NONMATCHING
 void dDlst_2DMt_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
@@ -1307,7 +1308,6 @@ void dDlst_2DMt_c::draw() {
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     dDlst_2DMt_tex_c* r27 = field_0x8;
     int r28 = 0;
-    int r30 = 0;
     for (int i = 0; i < field_0x4; i++) {
         if (r27->check()) {
             if (r27->getCI()) {
@@ -1319,12 +1319,11 @@ void dDlst_2DMt_c::draw() {
             GXSetTevColor(GXTevRegID(GX_TEVREG0 + r28), r27->mColor);
             GXSetTexCoordGen(GXTexCoordID(r28), GX_TG_MTX2x4, GXTexGenSrc(GX_TG_TEX0 + r28), GX_IDENTITY);
             GXSetTevOrder(GXTevStageID(r28), GXTexCoordID(r28), GXTexMapID(r28), GX_COLOR_NULL);
-            GXSetTevColorIn(GXTevStageID(r28), GX_CC_ZERO, GXTevColorArg(GX_CC_C0 + r30), GX_CC_TEXC, r28 ? GX_CC_CPREV : GX_CC_ZERO);
+            GXSetTevColorIn(GXTevStageID(r28), GX_CC_ZERO, GXTevColorArg(GX_CC_C0 + r28*2), GX_CC_TEXC, r28 ? GX_CC_CPREV : GX_CC_ZERO);
             GXSetTevColorOp(GXTevStageID(r28), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
             GXSetTevAlphaIn(GXTevStageID(r28), GX_CA_ZERO, GXTevAlphaArg(GX_CA_A0 + r28), GX_CA_TEXA, r28 ? GX_CA_APREV : GX_CA_ZERO);
             GXSetTevAlphaOp(GXTevStageID(r28), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
             r28++;
-            r30 += 2;
             if (r28 >= 3) {
                 break;
             }
@@ -1386,14 +1385,13 @@ extern "C" asm void draw__12dDlst_2DMt_cFv() {
 #endif
 
 /* 800539DC-80053A00 04E31C 0024+00 0/0 1/0 0/0 .text            getTexture__10J2DPictureCFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTTexture* J2DPicture::getTexture(u8 param_0) const {
-    nofralloc
-#include "asm/d/d_drawlist/getTexture__10J2DPictureCFUc.s"
+// Should be inline
+JUTTexture* J2DPicture::getTexture(u8 param_0) const {
+    if (param_0 < 2) {
+        return mTexture[param_0];
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 80053A00-80053A9C 04E340 009C+00 0/0 1/1 0/0 .text            __ct__10dDlst_2D_cFP7ResTIMGssssUc
  */
@@ -1968,7 +1966,7 @@ SECTION_SDATA2 static f32 lit_5275 = -0.5f;
 
 /* 80054BD0-80055028 04F510 0458+00 1/1 0/0 0/0 .text
  * setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c */
-// g_envHIO
+// Matches with literals
 #ifdef NONMATCHING
 u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
                                             f32 param_4, dKy_tevstr_c* param_5) {
@@ -2150,7 +2148,7 @@ SECTION_SDATA2 static f32 lit_5378 = 16.0f;
 
 /* 800553EC-80055684 04FD2C 0298+00 1/1 0/0 0/0 .text
  * set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj      */
-// g_envHIO
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                    s16 param_4, f32 param_5, _GXTexObj* param_6) {
@@ -2330,7 +2328,7 @@ SECTION_SDATA2 static u32 lit_5433 = 0x00000020;
 
 /* 80055A14-80055C74 050354 0260+00 0/0 1/1 0/0 .text            draw__21dDlst_shadowControl_cFPA4_f
  */
-// extra stack var with GXColor
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_shadowControl_c::draw(Mtx param_0) {
     j3dSys.reinitGX();
@@ -2343,7 +2341,8 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetNumTevStages(1);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXLoadPosMtxImm(param_0, GX_PNMTX0);
-    GXSetChanMatColor(GX_ALPHA0, (GXColor){0, 0, 0, 0x20});
+    GXColor matColor = {0, 0, 0, 0x20};
+    GXSetChanMatColor(GX_ALPHA0, matColor);
 
     clearColor.a = mDoGph_gInf_c::getBackColor().a;
     GXSetTevColor(GX_TEVREG1, clearColor);
@@ -2405,6 +2404,100 @@ SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 
 /* 80055C74-80055F1C 0505B4 02A8+00 0/0 1/1 1/1 .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
+// Matches with literals
+#ifdef NONMATCHING
+int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, cXyz* param_4,
+                                       f32 param_5, f32 param_6, dKy_tevstr_c* param_7) {
+    f32 fVar1;
+    f32 dVar16 = (param_2 == 0) ? 1.0f : (1.0f - 0.003000000026077032f * param_6);
+    if (dVar16 <= 0.0f) {
+        return 0;
+    }
+    if (dVar16 > 1.0f) {
+        dVar16 = 1.0f;
+    }
+    cXyz acStack_94;
+    cMtx_multVec(j3dSys.getViewMtx(), param_4, &acStack_94);
+    if ((acStack_94.z - param_5) >= 0.0f) {
+        return 0;
+    }
+    f32 dVar17 = acStack_94.z + param_5;
+    if (dVar17 < -1000.0f) {
+        f32 fVar1 = 0.0010000000474974513f *
+                (-1000.0f - dVar17);
+        if (fVar1 >= 1.0f) {
+            return 0;
+        }
+        dVar16 = (dVar16 * (1.0f - fVar1));
+    }
+    if (param_2 == 0) {
+        dVar17 = FLT_MAX;
+    }
+    dDlst_shadowReal_c* pdVar11;
+    dDlst_shadowReal_c* pdVar10 = NULL;
+    dDlst_shadowReal_c* local_98 = field_0x4;
+    pdVar11 = NULL;
+    while (local_98 != NULL) {
+        pdVar11 = local_98;
+        if (dVar17 > local_98->getCameraZ()) {
+            pdVar10 = local_98;
+            local_98 = NULL;
+        } else {
+            local_98 = local_98->getZsortNext();
+        }
+    }
+    dDlst_shadowReal_c* pdVar12;
+    if (mRealNum >= 8) {
+        if (pdVar10 == NULL) {
+            return 0;
+        }
+        pdVar12 = field_0x8;
+        field_0x8 = pdVar12->getZsortPre();
+        field_0x8->setZsortNext(NULL);
+        if (pdVar12 == pdVar10) {
+            pdVar10 = NULL;
+            pdVar11 = field_0x8;
+        }
+        pdVar12->reset();
+        mRealNum--;
+    } else {
+        pdVar12 = mReal;
+        for (int i = 0; i < 8; i++, pdVar12++) {
+            if (pdVar12->isNoUse()) {
+                break;
+            }
+        }
+    }
+
+    do {
+    } while (++mNextID == 0);
+    u32 rv = pdVar12->set(mNextID, param_3, param_4, param_5, param_6, param_7, dVar17, dVar16);
+    if (!rv) {
+        return 0;
+    } 
+    mRealNum++;
+    if (pdVar10 == NULL) {
+        if (pdVar11 == NULL) {
+            field_0x4 = pdVar12;
+        } else {
+            pdVar11->setZsortNext(pdVar12);
+            pdVar12->setZsortPre(pdVar11);
+        }
+        field_0x8 = pdVar12;
+    } else {
+        pdVar11 = pdVar10->getZsortPre();
+        if (pdVar11 == NULL) {
+            field_0x4 = pdVar12;
+        } else {
+            pdVar11->setZsortNext(pdVar12);
+            pdVar12->setZsortPre(pdVar11);
+        }
+        pdVar12->setZsortNext(pdVar10);
+        pdVar10->setZsortPre(pdVar12);
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2414,6 +2507,7 @@ asm int dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_
 #include "asm/d/d_drawlist/setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c.s"
 }
 #pragma pop
+#endif
 
 /* 80055F1C-80055F84 05085C 0068+00 0/0 1/1 45/45 .text
  * addReal__21dDlst_shadowControl_cFUlP8J3DModel                */
@@ -2566,48 +2660,39 @@ dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
 
 /* ############################################################################################## */
 /* 8037A178-8037A1A4 0067D8 002A+02 1/1 0/0 0/0 .rodata          l_drawlistSize$5656 */
-SECTION_RODATA static u16 const l_drawlistSize[21] = {
+static u16 const l_drawlistSize[21] = {
     0x0001, 0x0001, 0x0001, 0x0080, 0x0001, 0x0001, 0x0001, 0x0080, 0x0100, 0x0001, 0x0100,
     0x0001, 0x0020, 0x0010, 0x0010, 0x0020, 0x0020, 0x0100, 0x0001, 0x0004, 0x0004,
 };
-COMPILER_STRIP_GATE(0x8037A178, &l_drawlistSize);
 
 /* 8037A1A4-8037A1B0 006804 0009+03 1/1 0/0 0/0 .rodata          l_nonSortId$5662 */
-SECTION_RODATA static u8 const l_nonSortId[9] = {
+static u8 const l_nonSortId[9] = {
     0x00, 0x01, 0x02, 0x04, 0x05, 0x06, 0x09, 0x12, 0x0D,
 };
-COMPILER_STRIP_GATE(0x8037A1A4, &l_nonSortId);
 
 /* 804520C4-804520CC 0006C4 0006+02 1/1 0/0 0/0 .sdata2          l_zSortId$5668 */
-SECTION_SDATA2 static u8 l_zSortId[6] = {
+static const u8 l_zSortId[6] = {
     0x08, 0x0A, 0x0C, 0x0E, 0x10, 0x11,
 };
 
 /* 80056390-8005648C 050CD0 00FC+00 0/0 1/1 0/0 .text            init__12dDlst_list_cFv */
-// r3 / r4 swap
-#ifdef NONMATCHING
 void dDlst_list_c::init() {
     J3DDrawBuffer** var_r30 = mDrawBuffers;
     const u16* var_r29 = l_drawlistSize;
 
     for (int i = 0; i < 21; i++) {
-        u32 temp_r3 = *var_r29;
-        var_r29++;
-
-        *var_r30 = J3DDrawBuffer__create(temp_r3);
+        *var_r30 = J3DDrawBuffer__create(*var_r29++);
         var_r30++;
     }
 
     const u8* var_r5 = l_nonSortId;
     for (int i = 0; i < 9; i++) {
-        mDrawBuffers[(u8)*var_r5]->setNonSort();
-        var_r5++;
+        mDrawBuffers[*var_r5++]->setNonSort();
     }
 
-    u8* var_r5_2 = l_zSortId;
+    const u8* var_r5_2 = l_zSortId;
     for (int i = 0; i < 6; i++) {
-        mDrawBuffers[(u8)*var_r5_2]->setZSort();
-        var_r5_2++;
+        mDrawBuffers[*var_r5_2++]->setZSort();
     }
 
     setOpaList();
@@ -2619,16 +2704,6 @@ void dDlst_list_c::init() {
 
     mShadowControl.init();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::init() {
-    nofralloc
-#include "asm/d/d_drawlist/init__12dDlst_list_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8005648C-80056538 050DCC 00AC+00 0/0 1/1 0/0 .text            __dt__12dDlst_list_cFv */
 // TU vtable data order has to be fixed
@@ -2683,18 +2758,19 @@ SECTION_SDATA2 static f32 lit_5747 = 9999.0f;
 
 /* 800565EC-800566D4 050F2C 00E8+00 0/0 2/2 0/0 .text
  * entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz */
-// (size / 9999.0f) register swap, but reversing values makes things much worse
+// Matches with literals
 #ifdef NONMATCHING
 void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
                                          cXyz& param_2) {
     f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), param_2);
     u32 size = param_0->getEntryTableSize();
-    f32 temp_f1 = size / 9999.0f;
+    f32 fsize = size;
+    fsize = 9999.0f / fsize;
 
     u16 var_r0;
-    if (temp_f1 + 1.0f < z_value) {
-        if (10000.0f - temp_f1 > z_value) {
-            var_r0 = z_value / temp_f1;
+    if (fsize + 1.0f < z_value) {
+        if (10000.0f - fsize > z_value) {
+            var_r0 = z_value / fsize;
         } else {
             var_r0 = size - 1;
         }
