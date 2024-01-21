@@ -581,6 +581,10 @@ public:
     /* 0x28 */ u8 field_0x28;
 };
 
+inline void mDoExt_bckAnmRemove(J3DModelData* i_modelData) {
+    i_modelData->getJointNodePointer(0)->setMtxCalc(NULL);
+}
+
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);
 void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
 u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap);
