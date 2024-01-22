@@ -372,7 +372,6 @@ static void (*SamplingCallback)(void);
 static BOOL recalibrated;
 
 /* 80451870-80451878 000D70 0004+04 2/2 1/1 0/0 .sbss            __PADSpec */
-extern u32 __PADSpec;
 u32 __PADSpec;
 
 /* 8034ED50-8034EEA0 349690 0150+00 0/0 1/1 0/0 .text            PADInit */

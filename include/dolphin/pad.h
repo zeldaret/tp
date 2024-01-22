@@ -69,6 +69,8 @@ u32 PADRead(PADStatus* status);
 void PADControlMotor(s32 channel, u32 command);
 BOOL PADRecalibrate(u32 mask);
 
+extern u32 __PADSpec;
+
 #ifdef __cplusplus
 };
 #endif
