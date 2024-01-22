@@ -4,7 +4,11 @@
 //
 
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/JSupport/JSURandomInputStream.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/JUTResource.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
 #include "dolphin/gx.h"
@@ -251,16 +255,15 @@ SECTION_DATA extern void* __vt__10J2DPicture[83 + 1 /* padding */] = {
 };
 
 /* 802FC050-802FC118 2F6990 00C8+00 0/0 2/2 0/0 .text            __ct__10J2DPictureFv */
+// matches with weak functions setup (TVec2<s16> ctor needs to be later)
 #ifdef NONMATCHING
-J2DPicture::J2DPicture()
-    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
-      field_0x14c() {
+J2DPicture::J2DPicture() : mPalette(NULL) {
     for (int i = 0; i < 2; i++) {
         mTexture[i] = NULL;
     }
 
     field_0x109 = 0;
-    mTextureCount = 0;
+    mTextureNum = 0;
     initinfo();
 }
 #else
@@ -276,10 +279,10 @@ asm J2DPicture::J2DPicture() {
 
 /* 802FC118-802FC1D4 2F6A58 00BC+00 0/0 1/1 0/0 .text
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
+// matches with weak functions setup (TVec2<s16> ctor needs to be later)
 #ifdef NONMATCHING
 J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, JKRArchive* p_archive)
-    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
-      field_0x14c() {
+    : mPalette(NULL) {
     private_readStream(p_pane, p_stream, p_archive);
 }
 #else
@@ -299,10 +302,10 @@ SECTION_SDATA2 static f64 lit_1739 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802FC1D4-802FC708 2F6B14 0534+00 0/0 1/1 0/0 .text
  * __ct__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP11J2DMaterial */
+// matches with literals and weak functions setup (TVec2<s16> ctor needs to be later)
 #ifdef NONMATCHING
 J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMaterial* p_material)
-    : field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
-      field_0x14c() {
+    : mPalette(NULL) {
     int position = p_stream->getPosition();
 
     J2DPicHeader header;
@@ -313,7 +316,7 @@ J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMater
 
     J2DPaneHeader panHeader;
     p_stream->peek(&panHeader, sizeof(panHeader));
-    p_pane->makePaneExStream(p_pane, p_stream);
+    makePaneExStream(p_pane, p_stream);
     p_stream->seek(position2 + panHeader.mSize, JSUStreamSeekFrom_SET);
 
     J2DScrnBlockPictureParameter picInfo;
@@ -339,13 +342,14 @@ J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMater
 
     mBlack = JUtility::TColor(0);
     mWhite = JUtility::TColor(0xFFFFFFFF);
-    mTextureCount = 0;
+    mTextureNum = 0;
 
     if (material != NULL && material->getTevBlock() != NULL) {
         u8 texgenNum = material->getTexGenBlock()->getTexGenNum();
         u32 stageNum = material->getTevBlock()->getTevStageNum();
 
-        if ((texgenNum == 1 && stageNum != 1) || (texgenNum != 1 && (int)stageNum != texgenNum + 1)) {
+        if ((texgenNum == 1 && stageNum != 1) || (texgenNum != 1 && (int)stageNum != texgenNum + 1))
+        {
             J2DGXColorS10* color0p = material->getTevBlock()->getTevColor(0);
             GXColorS10 color0;
             color0.r = color0p->r;
@@ -361,15 +365,12 @@ J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMater
             color1.a = color1p->a;
 
             mBlack = JUtility::TColor(((u8)color0.r << 0x18) | ((u8)color0.g << 0x10) |
-                                           ((u8)color0.b << 8) | (u8)color0.a);
+                                      ((u8)color0.b << 8) | (u8)color0.a);
             mWhite = JUtility::TColor(((u8)color1.r << 0x18) | ((u8)color1.g << 0x10) |
-                                           ((u8)color1.b << 8) | (u8)color1.a);
+                                      ((u8)color1.b << 8) | (u8)color1.a);
         }
 
-        if (texgenNum <= 2) {
-            texgenNum = 2;
-        }
-        mTextureCount = texgenNum;
+        mTextureNum = texgenNum <= 2 ? texgenNum : 2;
     }
 
     field_0x109 = 0;
@@ -419,16 +420,15 @@ asm J2DPicture::J2DPicture(J2DPane* param_0, JSURandomInputStream* param_1, J2DM
 SECTION_SDATA2 static f32 lit_1767 = 1.0f;
 
 /* 802FC708-802FC800 2F7048 00F8+00 0/0 20/20 1/1 .text            __ct__10J2DPictureFPC7ResTIMG */
+// matches with literals and weak functions setup (TVec2<s16> ctor needs to be later)
 #ifdef NONMATCHING
-J2DPicture::J2DPicture(ResTIMG const* p_timg)
-    : field_0x10a(), mWhite(), mBlack(), mCornerColor(), field_0x148(),
-      field_0x14c() {
+J2DPicture::J2DPicture(ResTIMG const* p_timg) {
     for (int i = 0; i < 2; i++) {
         mTexture[i] = NULL;
     }
 
     field_0x109 = 0;
-    mTextureCount = 0;
+    mTextureNum = 0;
 
     if (p_timg != NULL) {
         append(p_timg, 1.0f);
@@ -449,17 +449,17 @@ asm J2DPicture::J2DPicture(ResTIMG const* param_0) {
 
 /* 802FC800-802FC8E8 2F7140 00E8+00 0/0 5/5 0/0 .text
  * __ct__10J2DPictureFUxRCQ29JGeometry8TBox2<f>PC7ResTIMGPC7ResTLUT */
+// matches with weak functions setup (TVec2<s16> ctor needs to be later)
 #ifdef NONMATCHING
-J2DPicture::J2DPicture(u64 tag, JGeometry::TBox2<f32> const& bounds,
-                           ResTIMG const* p_timg, ResTLUT const* p_tlut)
-    : J2DPane(tag, bounds), field_0x10a(), mPalette(NULL), mWhite(), mBlack(), mCornerColor(), field_0x148(),
-      field_0x14c() {
+J2DPicture::J2DPicture(u64 tag, JGeometry::TBox2<f32> const& bounds, ResTIMG const* p_timg,
+                       ResTLUT const* p_tlut)
+    : J2DPane(tag, bounds), mPalette(NULL) {
     for (int i = 0; i < 2; i++) {
         mTexture[i] = NULL;
     }
 
     field_0x109 = 0;
-    mTextureCount = 0;
+    mTextureNum = 0;
 
     private_initiate(p_timg, p_tlut);
     initinfo();
@@ -478,6 +478,82 @@ asm J2DPicture::J2DPicture(u64 param_0, JGeometry::TBox2<f32> const& param_1,
 
 /* 802FC8E8-802FCCDC 2F7228 03F4+00 1/1 0/0 0/0 .text
  * private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* stream,
+                                    JKRArchive* archive) {
+    J2DScrnBlockHeader header;
+    int headerPosition = stream->getPosition();
+
+    stream->read(&header, sizeof(J2DScrnBlockHeader));
+    mKind = header.mTag;
+    makePaneStream(parent, stream);
+
+    JUTResReference ref;
+
+    ResTIMG* img;
+    ResTLUT* lut;
+    u32 var_r27 = 0;
+    u8 var_r26 = stream->readU8();
+
+    img = (ResTIMG*)getPointer(stream, 'TIMG', archive);
+    lut = (ResTLUT*)getPointer(stream, 'TLUT', archive);
+
+    u8 spA = stream->read8b();
+
+    var_r26 -= 3;
+    if (var_r26 != 0) {
+        var_r27 = stream->read8b();
+        var_r26--;
+    }
+
+    if (var_r26 != 0) {
+        stream->read8b();
+        var_r26--;
+    }
+
+    mBlack = 0;
+    mWhite = 0xFFFFFFFF;
+
+    if (var_r26 != 0) {
+        mBlack = stream->readU32();
+        var_r26--;
+    }
+
+    if (var_r26 != 0) {
+        mWhite = stream->readU32();
+        var_r26--;
+    }
+
+    setCornerColor(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF);
+    for (int i = 0; var_r26 != 0 && i < 4; i++) {
+        mCornerColor[i] = stream->readU32();
+        var_r26--;
+    }
+
+    stream->seek(headerPosition + header.mSize, JSUStreamSeekFrom_SET);
+
+    for (int i = 0; i < 2; i++) {
+        mTexture[i] = NULL;
+    }
+
+    mTextureNum = 0;
+    field_0x109 = 1;
+
+    if (img != NULL) {
+        mTexture[0] = new JUTTexture(img, 0);
+        mTextureNum++;
+    }
+
+    if (lut != NULL) {
+        mPalette = new JUTPalette(GX_TLUT0, lut);
+        mTexture[0]->attachPalette(mPalette);
+    }
+
+    setTexCoord(mTexture[0], (J2DBinding)spA, (J2DMirror)(var_r27 & 3), (bool)((var_r27 >> 2) & 1));
+    setBlendRatio(1.0f, 1.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,6 +563,7 @@ asm void J2DPicture::private_readStream(J2DPane* param_0, JSURandomInputStream* 
 #include "asm/JSystem/J2DGraph/J2DPicture/private_readStream__10J2DPictureFP7J2DPaneP20JSURandomInputStreamP10JKRArchive.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8045626C-80456270 00486C 0004+00 9/9 0/0 0/0 .sdata2          @2017 */
@@ -502,6 +579,17 @@ SECTION_SDATA2 static f64 lit_2021 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802FCCDC-802FCD70 2F761C 0094+00 1/0 0/0 0/0 .text initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT
  */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::initiate(const ResTIMG* img, const ResTLUT* lut) {
+    private_initiate(img, lut);
+    if (mTexture[0] == NULL) {
+        return;
+    }
+
+    place(JGeometry::TBox2<f32>(0.0f, 0.0f, mTexture[0]->getWidth(), mTexture[0]->getHeight()));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -510,17 +598,37 @@ asm void J2DPicture::initiate(ResTIMG const* param_0, ResTLUT const* param_1) {
 #include "asm/JSystem/J2DGraph/J2DPicture/initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT.s"
 }
 #pragma pop
+#endif
 
 /* 802FCD70-802FCE9C 2F76B0 012C+00 2/2 0/0 0/0 .text
  * private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPicture::private_initiate(ResTIMG const* param_0, ResTLUT const* param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT.s"
+void J2DPicture::private_initiate(const ResTIMG* timg, const ResTLUT* tlut) {
+    if (mTextureNum != 0) {
+        return;
+    }
+
+    if (timg != NULL) {
+        if (mTexture[0] == NULL) {
+            mTexture[0] = new JUTTexture(timg, 0);
+            if (mTexture[0] != NULL) {
+                mTextureNum++;
+                field_0x109 = (field_0x109 & 2) | 1;
+            }
+        } else {
+            mTexture[0]->storeTIMG(timg, (u8)0);
+            mTextureNum++;
+            field_0x109 = (field_0x109 & 2) | 1;
+        }
+    }
+
+    mPalette = NULL;
+    if (tlut && mPalette == NULL) {
+        mPalette = new JUTPalette(GX_TLUT0, const_cast<ResTLUT*>(tlut));
+        if (mTexture[0] != NULL) {
+            mTexture[0]->attachPalette(mPalette);
+        }
+    }
 }
-#pragma pop
 
 /* 802FCE9C-802FCFF0 2F77DC 0154+00 3/3 0/0 0/0 .text            initinfo__10J2DPictureFv */
 // matches with real literal
@@ -552,6 +660,7 @@ J2DPicture::~J2DPicture() {
             delete mTexture[i];
         }
     }
+
     delete mPalette;
 }
 
@@ -577,6 +686,81 @@ bool J2DPicture::prepareTexture(u8 param_0) {
 
 /* 802FD168-802FD4B4 2F7AA8 034C+00 1/0 0/0 0/0 .text
  * insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf              */
+// matches with literals
+#ifdef NONMATCHING
+bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32 param_3) {
+    if (img == NULL || mTextureNum >= 2 || param_2 >= 2 || param_2 > mTextureNum) {
+        return false;
+    }
+
+    u8 var_r26 = 0;
+    if (img->indexTexture != 0 && palette == NULL) {
+        var_r26 = getUsableTlut(mTextureNum);
+    }
+
+    JUTTexture* var_r31;
+    if (mTexture[mTextureNum] == NULL) {
+        var_r31 = new JUTTexture(img, var_r26);
+
+        if (palette != NULL) {
+            var_r31->storeTIMG(img, palette);
+        }
+
+        for (u8 i = 1; i > param_2; i--) {
+            mTexture[i] = mTexture[i - 1];
+            field_0x11c[i] = field_0x11c[i - 1];
+            field_0x124[i] = field_0x124[i - 1];
+        }
+
+        field_0x109 =
+            (field_0x109 & ((1 << param_2) - 1)) | ((field_0x109 & ~((1 << param_2) - 1)) * 2);
+        field_0x109 |= (1 << param_2);
+    } else {
+        var_r31 = mTexture[mTextureNum];
+        if (palette == NULL) {
+            mTexture[mTextureNum]->storeTIMG(img, var_r26);
+        } else {
+            mTexture[mTextureNum]->storeTIMG(img, palette);
+        }
+
+        u8 sp8[2];
+        for (u8 i = 0; i < 2; i++) {
+            sp8[i] = (field_0x109 & (1 << i)) != 0;
+        }
+
+        for (u8 i = mTextureNum; i > param_2; i--) {
+            mTexture[i] = mTexture[i - 1];
+            sp8[i] = sp8[i - 1];
+            field_0x11c[i] = field_0x11c[i - 1];
+            field_0x124[i] = field_0x124[i - 1];
+        }
+
+        field_0x109 = 0;
+
+        for (u8 i = 0; i < 2; i++) {
+            if (sp8[i] != 0) {
+                field_0x109 |= (1 << i);
+            }
+        }
+
+        field_0x109 |= (1 << param_2);
+    }
+
+    mTexture[param_2] = var_r31;
+    field_0x11c[param_2] = param_3;
+    field_0x124[param_2] = param_3;
+
+    if (mTextureNum == 0 && mTexture[0] != NULL) {
+        place(JGeometry::TBox2<f32>(0.0f, 0.0f, mTexture[0]->getWidth(), mTexture[0]->getHeight()));
+        setTexCoord(NULL, BIND15, MIRROR0, false);
+    }
+
+    mTextureNum++;
+    setBlendKonstColor();
+    setBlendKonstAlpha();
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -585,14 +769,52 @@ asm bool J2DPicture::insert(ResTIMG const* param_0, JUTPalette* param_1, u8 para
 #include "asm/JSystem/J2DGraph/J2DPicture/insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf.s"
 }
 #pragma pop
+#endif
 
 /* 802FD4B4-802FD524 2F7DF4 0070+00 1/0 0/0 0/0 .text insert__10J2DPictureFPCcP10JUTPaletteUcf */
-bool J2DPicture::insert(char const* param_0, JUTPalette* param_1, u8 param_2, f32 param_3) {
-    void* resource = J2DScreen::getNameResource(param_0);
-    return insert((ResTIMG*)resource, param_1, param_2, param_3);
+bool J2DPicture::insert(char const* resName, JUTPalette* palette, u8 param_2, f32 param_3) {
+    void* resource = J2DScreen::getNameResource(resName);
+    return insert((ResTIMG*)resource, palette, param_2, param_3);
 }
 
 /* 802FD524-802FD6F4 2F7E64 01D0+00 1/0 0/0 0/0 .text insert__10J2DPictureFP10JUTTextureUcf */
+// matches with literals
+#ifdef NONMATCHING
+bool J2DPicture::insert(JUTTexture* texture, u8 param_1, f32 param_2) {
+    if (texture == NULL || mTextureNum >= 2 || param_1 >= 2 || param_1 > mTextureNum) {
+        return false;
+    }
+
+    if (mTexture[1] != NULL && field_0x109 & 2) {
+        delete mTexture[1];
+        field_0x109 &= 1;
+    }
+
+    for (u8 i = 1; i > param_1; i--) {
+        mTexture[i] = mTexture[i - 1];
+        field_0x11c[i] = field_0x11c[i - 1];
+        field_0x124[i] = field_0x124[i - 1];
+    }
+
+    field_0x109 =
+        (field_0x109 & ((1 << param_1) - 1)) | ((field_0x109 & ~((1 << param_1) - 1)) * 2);
+    mTexture[param_1] = texture;
+    field_0x109 &= ~(1 << param_1);
+
+    field_0x11c[param_1] = param_2;
+    field_0x124[param_1] = param_2;
+
+    if (mTextureNum == 0 && &mTexture[0] != NULL) {
+        place(JGeometry::TBox2<f32>(0.0f, 0.0f, mTexture[0]->getWidth(), mTexture[0]->getHeight()));
+        setTexCoord(NULL, BIND15, MIRROR0, false);
+    }
+
+    mTextureNum++;
+    setBlendKonstColor();
+    setBlendKonstAlpha();
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -601,22 +823,39 @@ asm bool J2DPicture::insert(JUTTexture* param_0, u8 param_1, f32 param_2) {
 #include "asm/JSystem/J2DGraph/J2DPicture/insert__10J2DPictureFP10JUTTextureUcf.s"
 }
 #pragma pop
+#endif
 
 /* 802FD6F4-802FD814 2F8034 0120+00 1/0 0/0 0/0 .text            remove__10J2DPictureFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DPicture::remove(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/remove__10J2DPictureFUc.s"
+bool J2DPicture::remove(u8 param_0) {
+    if (mTextureNum <= param_0 || mTextureNum == 1) {
+        return false;
+    }
+
+    if (field_0x109 & (1 << param_0)) {
+        delete mTexture[param_0];
+    }
+
+    for (u8 i = param_0; i < mTextureNum - 1; i++) {
+        mTexture[i] = mTexture[i + 1];
+        field_0x11c[i] = field_0x11c[i + 1];
+        field_0x124[i] = field_0x124[i + 1];
+    }
+
+    mTexture[mTextureNum - 1] = NULL;
+    field_0x109 =
+        (field_0x109 & ((1 << param_0) - 1)) | ((field_0x109 & ~((1 << (param_0 + 1)) - 1)) >> 1);
+
+    mTextureNum--;
+    setBlendKonstColor();
+    setBlendKonstAlpha();
+    return true;
 }
-#pragma pop
 
 /* 802FD814-802FD874 2F8154 0060+00 1/0 0/0 0/0 .text            remove__10J2DPictureFP10JUTTexture
  */
 bool J2DPicture::remove(JUTTexture* param_0) {
     u8 i = 0;
-    for (; i < mTextureCount; i++) {
+    for (; i < mTextureNum; i++) {
         if (mTexture[i] == param_0) {
             break;
         }
@@ -625,6 +864,30 @@ bool J2DPicture::remove(JUTTexture* param_0) {
 }
 
 /* 802FD874-802FD964 2F81B4 00F0+00 1/0 0/0 0/0 .text changeTexture__10J2DPictureFPC7ResTIMGUc */
+// matches with literals
+#ifdef NONMATCHING
+const ResTIMG* J2DPicture::changeTexture(ResTIMG const* img, u8 texIndex) {
+    if (texIndex > mTextureNum || 2 <= texIndex || img == NULL) {
+        return NULL;
+    }
+
+    const ResTIMG* result;
+    if (texIndex < mTextureNum) {
+        JUTTexture* tex = getTexture(texIndex);
+        result = tex->getTexInfo();
+
+        u8 var_r30 = 0;
+        if (img->indexTexture != 0) {
+            var_r30 = getUsableTlut(texIndex);
+        }
+        getTexture(texIndex)->storeTIMG(img, var_r30);
+        return result;
+    }
+
+    append(img, 1.0f);
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -633,24 +896,51 @@ asm const ResTIMG* J2DPicture::changeTexture(ResTIMG const* param_0, u8 param_1)
 #include "asm/JSystem/J2DGraph/J2DPicture/changeTexture__10J2DPictureFPC7ResTIMGUc.s"
 }
 #pragma pop
+#endif
 
 /* 802FD964-802FD9BC 2F82A4 0058+00 1/0 0/0 0/0 .text            changeTexture__10J2DPictureFPCcUc
  */
-const ResTIMG* J2DPicture::changeTexture(char const* param_0, u8 param_1) {
-    void* resource = J2DScreen::getNameResource(param_0);
+const ResTIMG* J2DPicture::changeTexture(char const* resName, u8 param_1) {
+    void* resource = J2DScreen::getNameResource(resName);
     return changeTexture((ResTIMG*)resource, param_1);
 }
 
 /* 802FD9BC-802FDAC8 2F82FC 010C+00 1/0 0/0 0/0 .text
  * changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette        */
+// matches with literals
+#ifdef NONMATCHING
+const ResTIMG* J2DPicture::changeTexture(ResTIMG const* img, u8 texIndex, JUTPalette* palette) {
+    if (texIndex > mTextureNum || 2 <= texIndex || img == NULL) {
+        return NULL;
+    }
+
+    const ResTIMG* result;
+    if (texIndex < mTextureNum) {
+        JUTTexture* tex = getTexture(texIndex);
+        result = tex->getTexInfo();
+
+        GXTlut var_r30 = GX_TLUT0;
+        if (img->indexTexture != 0) {
+            var_r30 = getTlutID(img, getUsableTlut(texIndex));
+        }
+        getTexture(texIndex)->storeTIMG(img, palette, var_r30);
+        return result;
+    }
+
+    append(img, palette, 1.0f);
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const ResTIMG* J2DPicture::changeTexture(ResTIMG const* param_0, u8 param_1, JUTPalette* param_2) {
+asm const ResTIMG* J2DPicture::changeTexture(ResTIMG const* param_0, u8 param_1,
+                                             JUTPalette* param_2) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DPicture/changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette.s"
 }
 #pragma pop
+#endif
 
 /* 802FDAC8-802FDB28 2F8408 0060+00 1/0 0/0 0/0 .text
  * changeTexture__10J2DPictureFPCcUcP10JUTPalette               */
@@ -670,7 +960,7 @@ void J2DPicture::drawSelf(f32 param_0, f32 param_1) {
 /* 802FDB90-802FDBFC 2F84D0 006C+00 1/0 0/0 0/0 .text            drawSelf__10J2DPictureFffPA3_A4_f
  */
 void J2DPicture::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
-    if (mTexture[0] != NULL && mTextureCount != 0) {
+    if (mTexture[0] != NULL && mTextureNum != 0) {
         drawFullSet(mGlobalBounds.i.x + param_0, mGlobalBounds.i.y + param_1,
                     mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y, param_2);
     }
@@ -678,7 +968,7 @@ void J2DPicture::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
 
 /* 802FDBFC-802FDC70 2F853C 0074+00 1/0 0/0 0/0 .text drawFullSet__10J2DPictureFffffPA3_A4_f */
 void J2DPicture::drawFullSet(f32 param_0, f32 param_1, f32 param_2, f32 param_3, Mtx* param_4) {
-    if (mTexture[0] != NULL && mTextureCount != 0) {
+    if (mTexture[0] != NULL && mTextureNum != 0) {
         drawTexCoord(mBounds.i.x, mBounds.i.y, param_2, param_3, field_0x10a[0].x, field_0x10a[0].y,
                      field_0x10a[1].x, field_0x10a[1].y, field_0x10a[2].x, field_0x10a[2].y,
                      field_0x10a[3].x, field_0x10a[3].y, param_4);
@@ -686,6 +976,67 @@ void J2DPicture::drawFullSet(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
 }
 
 /* 802FDC70-802FDF88 2F85B0 0318+00 1/0 1/1 0/0 .text            draw__10J2DPictureFffffbbb */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::draw(f32 x, f32 y, f32 width, f32 height, bool mirrorX, bool mirrorY,
+                      bool rotate90) {
+    if (isVisible() && mTextureNum != 0 && mTexture[0] != NULL) {
+        for (u8 i = 0; i < mTextureNum; i++) {
+            load(i);
+        }
+
+        GXSetNumTexGens(mTextureNum);
+        mColorAlpha = mAlpha;
+        JUtility::TColor color[4];
+        getNewColor(color);
+
+        setTevMode();
+        makeMatrix(x, y, 0.0f, 0.0f);
+        GXLoadPosMtxImm(mPositionMtx, GX_PNMTX0);
+        GXSetCurrentMtx(GX_PNMTX0);
+        GXClearVtxDesc();
+        GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+        JGeometry::TVec2<s16> coords[4];
+        setTexCoord(coords, mTexture[0], BIND15, (J2DMirror)((mirrorX << 1) | mirrorY), rotate90);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S16, 8);
+
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(0.0f, 0.0f, 0.0f);
+        GXColor1u32(color[0]);
+        GXTexCoord2s16(coords[0].x, coords[0].y);
+
+        GXPosition3f32(width, 0.0f, 0.0f);
+        GXColor1u32(color[1]);
+        GXTexCoord2s16(coords[1].x, coords[1].y);
+
+        GXPosition3f32(width, height, 0.0f);
+        GXColor1u32(color[3]);
+        GXTexCoord2s16(coords[3].x, coords[3].y);
+
+        GXPosition3f32(0.0f, height, 0.0f);
+        GXColor1u32(color[2]);
+        GXTexCoord2s16(coords[2].x, coords[2].y);
+        GXEnd();
+
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 15);
+        GXSetNumTexGens(0);
+        GXSetNumTevStages(1);
+        GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+
+        Mtx m;
+        MTXIdentity(m);
+        GXLoadPosMtxImm(m, GX_PNMTX0);
+        GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                      GX_AF_NONE);
+        GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -695,9 +1046,69 @@ asm void J2DPicture::draw(f32 param_0, f32 param_1, f32 param_2, f32 param_3, bo
 #include "asm/JSystem/J2DGraph/J2DPicture/draw__10J2DPictureFffffbbb.s"
 }
 #pragma pop
+#endif
 
 /* 802FDF88-802FE380 2F88C8 03F8+00 1/0 0/0 0/0 .text
  * drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f> */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::drawOut(JGeometry::TBox2<f32> const& posBox,
+                         JGeometry::TBox2<f32> const& texRect) {
+    if (isVisible() && mTextureNum != 0 && mTexture[0] != NULL) {
+        for (u8 i = 0; i < mTextureNum; i++) {
+            load(i);
+        }
+
+        GXSetNumTexGens(mTextureNum);
+
+        f32 s0 = (posBox.i.x - texRect.i.x) / texRect.getWidth();
+        f32 s1 = (posBox.f.x - texRect.f.x) / texRect.getWidth() + 1.0f;
+
+        f32 t0 = (posBox.i.y - texRect.i.y) / texRect.getHeight();
+        f32 t1 = (posBox.f.y - texRect.f.y) / texRect.getHeight() + 1.0f;
+
+        mColorAlpha = mAlpha;
+        JUtility::TColor color[4];
+        getNewColor(color);
+        setTevMode();
+
+        GXClearVtxDesc();
+        GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32((s16)posBox.i.x, (s16)posBox.i.y, 0.0f);
+        GXColor1u32(color[0]);
+        GXTexCoord2f32(s0, t0);
+
+        GXPosition3f32((s16)posBox.f.x, (s16)posBox.i.y, 0.0f);
+        GXColor1u32(color[1]);
+        GXTexCoord2f32(s1, t0);
+
+        GXPosition3f32((s16)posBox.f.x, (s16)posBox.f.y, 0.0f);
+        GXColor1u32(color[3]);
+        GXTexCoord2f32(s1, t1);
+
+        GXPosition3f32((s16)posBox.i.x, (s16)posBox.f.y, 0.0f);
+        GXColor1u32(color[2]);
+        GXTexCoord2f32(s0, t1);
+        GXEnd();
+
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 15);
+        GXSetNumTexGens(0);
+        GXSetNumTevStages(1);
+        GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+        GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                      GX_AF_NONE);
+        GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -707,24 +1118,24 @@ asm void J2DPicture::drawOut(JGeometry::TBox2<f32> const& param_0,
 #include "asm/JSystem/J2DGraph/J2DPicture/func_802FDF88.s"
 }
 #pragma pop
+#endif
 
 /* 802FE380-802FE5D0 2F8CC0 0250+00 1/0 0/0 0/0 .text
  * drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f              */
 #ifdef NONMATCHING
 // matches with literals
 void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3, s16 param_4,
-                                  s16 param_5, s16 param_6, s16 param_7, s16 param_8, s16 param_9,
-                                  s16 param_10, s16 param_11, Mtx* param_12) {
-                                  
-    if (mTextureCount != 0) {
-        for (u8 i = 0; i < mTextureCount; i++) {
+                              s16 param_5, s16 param_6, s16 param_7, s16 param_8, s16 param_9,
+                              s16 param_10, s16 param_11, Mtx* param_12) {
+    if (mTextureNum != 0) {
+        for (u8 i = 0; i < mTextureNum; i++) {
             load(i);
         }
 
         f32 tmp1 = param_0 + param_2;
         f32 tmp2 = param_1 + param_3;
 
-        GXSetNumTexGens(mTextureCount);
+        GXSetNumTexGens(mTextureNum);
 
         JUtility::TColor black[4];
 
@@ -732,37 +1143,37 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
         getNewColor(black);
         setTevMode();
-        MTXConcat((MtxP)param_12,mGlobalMtx,outputMtx);
+        MTXConcat((MtxP)param_12, mGlobalMtx, outputMtx);
 
-        GXLoadPosMtxImm(outputMtx,0);
+        GXLoadPosMtxImm(outputMtx, 0);
         GXClearVtxDesc();
-        GXSetVtxDesc(GX_VA_POS,GX_DIRECT);
-        GXSetVtxDesc(GX_VA_CLR0,GX_DIRECT);
-        GXSetVtxDesc(GX_VA_TEX0,GX_DIRECT);
-        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
-        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_RGBA4,8);
-        GXBegin(GX_QUADS,GX_VTXFMT0,4);
+        GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+        GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
-        GXPosition3f32(param_0,param_1,0.0f);
+        GXPosition3f32(param_0, param_1, 0.0f);
         GXColor1u32(black[0]);
-        GXTexCoord2s16(param_4,param_5);
+        GXTexCoord2s16(param_4, param_5);
 
-        GXPosition3f32(tmp1,param_1,0.0f);
+        GXPosition3f32(tmp1, param_1, 0.0f);
         GXColor1u32(black[1]);
-        GXTexCoord2s16(param_6,param_7);
+        GXTexCoord2s16(param_6, param_7);
 
-        GXPosition3f32(tmp1,tmp2,0.0f);
+        GXPosition3f32(tmp1, tmp2, 0.0f);
         GXColor1u32(black[3]);
-        GXTexCoord2s16(param_10,param_11);
+        GXTexCoord2s16(param_10, param_11);
 
-        GXPosition3f32(param_0,tmp2,0.0f);
+        GXPosition3f32(param_0, tmp2, 0.0f);
         GXColor1u32(black[2]);
-        GXTexCoord2s16(param_8,param_9);
+        GXTexCoord2s16(param_8, param_9);
 
         GXEnd();
 
-        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_RGBX8,0xf);
-        GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_RGBA4,0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
     }
 }
 #else
@@ -778,15 +1189,94 @@ asm void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 par
 #pragma pop
 #endif
 
-/* 802FE5D0-802FEA60 2F8F10 0490+00 3/3 0/0 0/0 .text            setTevMode__10J2DPictureFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPicture::setTevMode() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/setTevMode__10J2DPictureFv.s"
+static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
+    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
 }
-#pragma pop
+
+/* 802FE5D0-802FEA60 2F8F10 0490+00 3/3 0/0 0/0 .text            setTevMode__10J2DPictureFv */
+void J2DPicture::setTevMode() {
+    u8 i;
+    for (i = 0; i < mTextureNum; i++) {
+        GXSetTevOrder(GXTevStageID(i), GXTexCoordID(i), GXTexMapID(i), GX_COLOR_NULL);
+    }
+
+    GXSetTevColor(GX_TEVREG2, JUtility::TColor(0xFFFFFFFF));
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+
+    if (mTexture[0] == NULL) {
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+    } else if (mTexture[0]->getTransparency()) {
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+    } else {
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+    }
+
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevKColor(GX_KCOLOR0, mBlendKonstColor);
+    GXSetTevKColor(GX_KCOLOR2, mBlendKonstAlpha);
+
+    for (i = 1; i < mTextureNum; i++) {
+        GXSetTevKColorSel(GXTevStageID(i), GXTevKColorSel(0x20 - i * 4));
+        GXSetTevKAlphaSel(GXTevStageID(i), GXTevKAlphaSel(0x22 - i * 4));
+        GXSetTevColorIn(GXTevStageID(i), GX_CC_CPREV, GX_CC_TEXC, GX_CC_KONST, GX_CC_ZERO);
+
+        if (mTexture[i] == NULL) {
+            GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_A2, GX_CA_KONST, GX_CA_ZERO);
+        } else if (mTexture[i]->getTransparency()) {
+            GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_TEXA, GX_CA_KONST, GX_CA_ZERO);
+        } else {
+            GXSetTevAlphaIn(GXTevStageID(i), GX_CA_APREV, GX_CA_A2, GX_CA_KONST, GX_CA_ZERO);
+        }
+
+        GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+        GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+    }
+
+    if (mBlack != 0 || mWhite != 0xFFFFFFFF) {
+        GXSetTevOrder(GXTevStageID(i), GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+        GXSetTevColor(GX_TEVREG0, mBlack);
+        GXSetTevColor(GX_TEVREG1, mWhite);
+        GXSetTevColorIn(GXTevStageID(i), GX_CC_C0, GX_CC_C1, GX_CC_CPREV, GX_CC_ZERO);
+        GXSetTevAlphaIn(GXTevStageID(i), GX_CA_A0, GX_CA_A1, GX_CA_APREV, GX_CA_ZERO);
+        GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+        GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+        i++;
+    }
+
+    if (mColorAlpha != 0xFF || mCornerColor[0] != 0xFFFFFFFF || mCornerColor[1] != 0xFFFFFFFF ||
+        mCornerColor[2] != 0xFFFFFFFF || mCornerColor[3] != 0xFFFFFFFF)
+    {
+        GXSetTevOrder(GXTevStageID(i), GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+        GXSetTevColorIn(GXTevStageID(i), GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
+        GXSetTevAlphaIn(GXTevStageID(i), GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);
+        GXSetTevColorOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+        GXSetTevAlphaOp(GXTevStageID(i), GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
+                        GX_TEVPREV);
+        i++;
+    }
+
+    GXSetNumTevStages(u8(i));
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+
+    for (i = 0; i < mTextureNum; i++) {
+        GXSetTexCoordGen(GXTexCoordID(i), GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+    }
+
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                  GX_AF_NONE);
+    GXSetNumIndStages(0);
+
+    for (int i = GX_TEVSTAGE0; i < GX_MAX_TEVSTAGE; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+}
 
 /* 802FEA60-802FEA74 2F93A0 0014+00 1/1 0/0 0/0 .text            swap__10J2DPictureFRfRf */
 void J2DPicture::swap(f32& lhs, f32& rhs) {
@@ -821,7 +1311,7 @@ SECTION_SDATA2 static f32 lit_2758 = 255.0f;
 #ifdef NONMATCHING
 void J2DPicture::setBlendKonstColor() {
     int uvar3 = 0;
-    for (u8 i = 1; i < mTextureCount; i++) {
+    for (u8 i = 1; i < mTextureNum; i++) {
         f32 tmp = 0.0f;
         for (u8 j = 0; j < i; j++) {
             tmp += field_0x11c[j];
@@ -833,7 +1323,7 @@ void J2DPicture::setBlendKonstColor() {
             uvar3 |= (u8)(255.0f * (1.0f - tmp / tmp2)) << (i - 1) * 8;
         }
     }
-    field_0x148 = uvar3;
+    mBlendKonstColor = uvar3;
 }
 #else
 #pragma push
@@ -848,6 +1338,25 @@ asm void J2DPicture::setBlendKonstColor() {
 
 /* 802FEB94-802FEC64 2F94D4 00D0+00 4/4 0/0 0/0 .text            setBlendKonstAlpha__10J2DPictureFv
  */
+// matches with real literals
+#ifdef NONMATCHING
+void J2DPicture::setBlendKonstAlpha() {
+    int uvar3 = 0;
+    for (u8 i = 1; i < mTextureNum; i++) {
+        f32 tmp = 0.0f;
+        for (u8 j = 0; j < i; j++) {
+            tmp += field_0x124[j];
+        }
+
+        f32 tmp2 = tmp + field_0x124[i];
+        if (tmp2 != 0.0f) {
+            // probably fake match but idk whats happening here
+            uvar3 |= (u8)(255.0f * (1.0f - tmp / tmp2)) << (i - 1) * 8;
+        }
+    }
+    mBlendKonstAlpha = uvar3;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -856,17 +1365,23 @@ asm void J2DPicture::setBlendKonstAlpha() {
 #include "asm/JSystem/J2DGraph/J2DPicture/setBlendKonstAlpha__10J2DPictureFv.s"
 }
 #pragma pop
+#endif
 
 /* 802FEC64-802FED44 2F95A4 00E0+00 3/3 0/0 0/0 .text
  * getNewColor__10J2DPictureFPQ28JUtility6TColor                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPicture::getNewColor(JUtility::TColor* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/getNewColor__10J2DPictureFPQ28JUtility6TColor.s"
+void J2DPicture::getNewColor(JUtility::TColor* param_0) {
+    param_0[0] = mCornerColor[0];
+    param_0[1] = mCornerColor[1];
+    param_0[2] = mCornerColor[2];
+    param_0[3] = mCornerColor[3];
+
+    if (mColorAlpha != 0xFF) {
+        param_0[0].a = (param_0[0].a * mColorAlpha) / 0xFF;
+        param_0[1].a = (param_0[1].a * mColorAlpha) / 0xFF;
+        param_0[2].a = (param_0[2].a * mColorAlpha) / 0xFF;
+        param_0[3].a = (param_0[3].a * mColorAlpha) / 0xFF;
+    }
 }
-#pragma pop
 
 /* 802FED44-802FED84 2F9684 0040+00 4/4 0/0 0/0 .text
  * setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb */
@@ -881,6 +1396,118 @@ SECTION_SDATA2 static f32 lit_2933 = 0.5f;
 
 /* 802FED84-802FF09C 2F96C4 0318+00 2/2 0/0 0/0 .text
  * setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb */
+#ifdef NONMATCHING
+void J2DPicture::setTexCoord(JGeometry::TVec2<s16>* param_0, JUTTexture const* param_1,
+                             J2DBinding param_2, J2DMirror param_3, bool param_4) {
+    u8 var_r0;
+    u8 var_r4;
+    u8 var_r7;
+    u8 var_r9;
+
+    f32 sp14;
+    f32 sp10;
+    f32 spC;
+    f32 sp8;
+
+    f32 var_f0;
+    f32 var_f2;
+    f32 var_f3;
+    f32 var_f4;
+    f32 var_f5;
+
+    if (!param_4) {
+        var_r0 = (param_3 & 2) ? (param_2 & 4) : (param_2 & 8);
+        var_r4 = (param_3 & 2) ? (param_2 & 8) : (param_2 & 4);
+        var_r7 = (param_3 & 1) ? (param_2 & 1) : (param_2 & 2);
+        var_r9 = (param_3 & 1) ? (param_2 & 1) : (param_2 & 2);
+    } else {
+        var_r0 = (param_3 & 2) ? (param_2 & 1) : (param_2 & 2);
+        var_r4 = (param_3 & 2) ? (param_2 & 2) : (param_2 & 1);
+        var_r7 = (param_3 & 1) ? (param_2 & 8) : (param_2 & 4);
+        var_r9 = (param_3 & 1) ? (param_2 & 4) : (param_2 & 8);
+    }
+
+    if (!param_4) {
+        var_f2 = getHeight();
+    } else {
+        var_f2 = getWidth();
+    }
+
+    if (!param_4) {
+        var_f3 = getWidth();
+    } else {
+        var_f3 = getHeight();
+    }
+
+    if (param_1 == NULL) {
+        var_f4 = var_f2;
+        var_f5 = var_f3;
+    } else {
+        var_f4 = param_1->getWidth();
+        var_f5 = param_1->getHeight();
+    }
+
+    if (var_r0 != 0) {
+        sp14 = 0.0f;
+        if (var_r4 != 0) {
+            var_f0 = 1.0f;
+        } else {
+            var_f0 = var_f2 / var_f4;
+        }
+        spC = var_f0;
+    } else if (var_r4 != 0) {
+        sp14 = 1.0f - (var_f2 / var_f4);
+        spC = 1.0f;
+    } else {
+        sp14 = 0.5f - ((var_f2 / var_f4) * 0.5f);
+        spC = 0.5f + ((var_f2 / var_f4) * 0.5f);
+    }
+
+    if (var_r7 != 0) {
+        sp10 = 0.0f;
+
+        f32 var_f0_2;
+        if (var_r9 != 0) {
+            var_f0_2 = 1.0f;
+        } else {
+            var_f0_2 = var_f3 / var_f5;
+        }
+
+        sp8 = var_f0_2;
+    } else if (var_r9 != 0) {
+        sp10 = 1.0f - (var_f3 / var_f5);
+        sp8 = 1.0f;
+    } else {
+        sp10 = 0.5f - ((var_f3 / var_f5) * 0.5f);
+        sp8 = 0.5f + ((var_f3 / var_f5) * 0.5f);
+    }
+
+    if (param_3 & 2) {
+        swap(sp14, spC);
+    }
+
+    if (param_3 & 1) {
+        swap(sp10, sp8);
+    }
+
+    s16 temp_r27 = J2DCast_F32_to_S16(sp14, 8);
+    s16 temp_r28 = J2DCast_F32_to_S16(spC, 8);
+    s16 temp_r30 = J2DCast_F32_to_S16(sp10, 8);
+    s16 temp_r31 = J2DCast_F32_to_S16(sp8, 8);
+
+    if (!param_4) {
+        param_0[0].set(temp_r27, temp_r30);
+        param_0[1].set(temp_r28, temp_r30);
+        param_0[2].set(temp_r28, temp_r31);
+        param_0[3].set(temp_r27, temp_r31);
+    } else {
+        param_0[0].set(temp_r27, temp_r31);
+        param_0[1].set(temp_r27, temp_r30);
+        param_0[2].set(temp_r28, temp_r31);
+        param_0[3].set(temp_r28, temp_r30);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -890,10 +1517,11 @@ asm void J2DPicture::setTexCoord(JGeometry::TVec2<s16>* param_0, JUTTexture cons
 #include "asm/JSystem/J2DGraph/J2DPicture/func_802FED84.s"
 }
 #pragma pop
+#endif
 
 /* 802FF09C-802FF100 2F99DC 0064+00 1/0 0/0 0/0 .text            isUsed__10J2DPictureFPC7ResTIMG */
 bool J2DPicture::isUsed(ResTIMG const* param_0) {
-    for (u8 i = 0; i < mTextureCount; i++) {
+    for (u8 i = 0; i < mTextureNum; i++) {
         if (mTexture[i] != NULL && mTexture[i]->getTexInfo() == param_0) {
             return true;
         }
@@ -903,24 +1531,44 @@ bool J2DPicture::isUsed(ResTIMG const* param_0) {
 }
 
 /* 802FF100-802FF1D0 2F9A40 00D0+00 1/0 0/0 0/0 .text            getUsableTlut__10J2DPictureFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 J2DPicture::getUsableTlut(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/getUsableTlut__10J2DPictureFUc.s"
+u8 J2DPicture::getUsableTlut(u8 param_0) {
+    u8 var_r8 = 0;
+
+    for (u8 i = 0; i < mTextureNum; i++) {
+        if (i != param_0 && mTexture[i] != NULL) {
+            const ResTIMG* img = mTexture[i]->getTexInfo();
+
+            if (img != NULL && img->indexTexture != 0) {
+                int name = mTexture[i]->getTlutName();
+                int var_r0 = name >= GX_MAX_TLUT ? GX_MAX_TLUT : GX_TLUT0;
+
+                u8 temp_r0 = name - var_r0;
+                if (temp_r0 < 2) {
+                    var_r8 |= (1 << temp_r0);
+                }
+            }
+        }
+    }
+
+    u8 var_r26 = 0;
+    for (u8 i = 0; i < 2; i++) {
+        if (!(var_r8 & (1 << i))) {
+            var_r26 = i;
+            break;
+        }
+    }
+
+    return var_r26;
 }
-#pragma pop
 
 /* 802FF1D0-802FF204 2F9B10 0034+00 1/1 1/1 0/0 .text getTlutID__10J2DPictureFPC7ResTIMGUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm GXTlut J2DPicture::getTlutID(ResTIMG const* param_0, u8 param_1) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/getTlutID__10J2DPictureFPC7ResTIMGUc.s"
+GXTlut J2DPicture::getTlutID(ResTIMG const* img, u8 param_1) {
+    if (img->numColors > 256) {
+        return (GXTlut)((param_1 % 4) + 0x10);
+    }
+
+    return (GXTlut)param_1;
 }
-#pragma pop
 
 /* 802FF204-802FF208 2F9B44 0004+00 5/5 1/1 0/0 .text            __ct__Q29JGeometry8TVec2<s>Fv */
 extern "C" void func_802FF204(void* _this) {
@@ -930,13 +1578,13 @@ extern "C" void func_802FF204(void* _this) {
 /* 802FF208-802FF238 2F9B48 0030+00 1/0 0/0 0/0 .text            append__10J2DPictureFP10JUTTexturef
  */
 bool J2DPicture::append(JUTTexture* param_0, f32 param_1) {
-    return insert(param_0, mTextureCount, param_1);
+    return insert(param_0, mTextureNum, param_1);
 }
 
 /* 802FF238-802FF268 2F9B78 0030+00 1/0 0/0 0/0 .text
  * append__10J2DPictureFPC7ResTIMGP10JUTPalettef                */
 bool J2DPicture::append(ResTIMG const* param_0, JUTPalette* param_1, f32 param_2) {
-    return insert(param_0, param_1, mTextureCount, param_2);
+    return insert(param_0, param_1, mTextureNum, param_2);
 }
 
 /* 802FF268-802FF29C 2F9BA8 0034+00 1/0 0/0 0/0 .text            load__10J2DPictureFUc */
@@ -947,7 +1595,7 @@ void J2DPicture::load(u8 param_0) {
 /* 802FF29C-802FF2E8 2F9BDC 004C+00 1/0 0/0 0/0 .text            load__10J2DPictureF11_GXTexMapIDUc
  */
 void J2DPicture::load(_GXTexMapID param_0, u8 param_1) {
-    if (param_1 < mTextureCount && param_1 < 2 && mTexture[param_1] != NULL) {
+    if (param_1 < mTextureNum && param_1 < 2 && mTexture[param_1] != NULL) {
         mTexture[param_1]->load(param_0);
     }
 }
@@ -959,7 +1607,7 @@ u16 J2DPicture::getTypeID() const {
 
 /* 802FF2F0-802FF320 2F9C30 0030+00 1/0 0/0 0/0 .text append__10J2DPictureFPCcP10JUTPalettef */
 bool J2DPicture::append(char const* param_0, JUTPalette* param_1, f32 param_2) {
-    return insert(param_0, param_1, mTextureCount, param_2);
+    return insert(param_0, param_1, mTextureNum, param_2);
 }
 
 /* 802FF320-802FF350 2F9C60 0030+00 1/0 0/0 0/0 .text prepend__10J2DPictureFP10JUTTexturef */
@@ -991,7 +1639,7 @@ void J2DPicture::prepend(ResTIMG const* param_0, f32 param_1) {
 
 /* 802FF410-802FF448 2F9D50 0038+00 1/0 0/0 0/0 .text            remove__10J2DPictureFv */
 bool J2DPicture::remove() {
-    return remove(mTextureCount - 1);
+    return remove(mTextureNum - 1);
 }
 
 /* 802FF448-802FF4E0 2F9D88 0098+00 1/0 0/0 0/0 .text            draw__10J2DPictureFffUcbbb */
@@ -1039,7 +1687,7 @@ asm void J2DPicture::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
 
 /* 802FF634-802FF63C 2F9F74 0008+00 1/0 0/0 0/0 .text            getTextureCount__10J2DPictureCFv */
 u8 J2DPicture::getTextureCount() const {
-    return mTextureCount;
+    return mTextureNum;
 }
 
 /* 802FF63C-802FF65C 2F9F7C 0020+00 1/0 0/0 0/0 .text            isUsed__10J2DPictureFPC7ResFONT */

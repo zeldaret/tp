@@ -119,7 +119,7 @@ public:
 
 protected:
     /* 0x100 */ JUTTexture* mTexture[2];
-    /* 0x108 */ u8 mTextureCount;
+    /* 0x108 */ u8 mTextureNum;
     /* 0x109 */ u8 field_0x109;
     /* 0x10A */ JGeometry::TVec2<s16> field_0x10a[4];
     /* 0x11C */ f32 field_0x11c[2];
@@ -128,8 +128,8 @@ protected:
     /* 0x130 */ JUtility::TColor mWhite;
     /* 0x134 */ JUtility::TColor mBlack;
     /* 0x138 */ JUtility::TColor mCornerColor[4];
-    /* 0x148 */ JUtility::TColor field_0x148;
-    /* 0x14C */ JUtility::TColor field_0x14c;
+    /* 0x148 */ JUtility::TColor mBlendKonstColor;
+    /* 0x14C */ JUtility::TColor mBlendKonstAlpha;
 };
 
 #endif /* J2DPICTURE_H */
