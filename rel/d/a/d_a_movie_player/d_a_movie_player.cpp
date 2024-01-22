@@ -129,7 +129,7 @@ extern "C" static void daMP_AudioDecodeThreadStart__Fv();
 extern "C" static void daMP_AudioDecodeThreadCancel__Fv();
 extern "C" static void daMP_THPGXRestore__Fv();
 extern "C" static void daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj();
-extern "C" static void GXSetTexCoordGen();
+extern "C" static void i_GXSetTexCoordGen();
 extern "C" static void daMP_THPGXYuv2RgbDraw__FPUcPUcPUcssssss();
 extern "C" static void i_GXTexCoord2u16();
 extern "C" static void daMP_MixAudio__FPsPsUl();
@@ -1315,7 +1315,7 @@ static asm void daMP_THPGXYuv2RgbSetup(_GXRenderModeObj const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void GXSetTexCoordGen() {
+static asm void i_GXSetTexCoordGen() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/GXSetTexCoordGen.s"
 }

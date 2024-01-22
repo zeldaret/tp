@@ -1189,10 +1189,6 @@ asm void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 par
 #pragma pop
 #endif
 
-static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
-    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
-}
-
 /* 802FE5D0-802FEA60 2F8F10 0490+00 3/3 0/0 0/0 .text            setTevMode__10J2DPictureFv */
 void J2DPicture::setTevMode() {
     u8 i;

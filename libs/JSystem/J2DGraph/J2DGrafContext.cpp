@@ -25,10 +25,6 @@ void J2DGrafContext::setPort() {
     GXSetViewport(bounds.i.x, bounds.i.y, bounds.getWidth(), bounds.getHeight(), 0.0f, 1.0f);
 }
 
-static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
-    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
-}
-
 /* 802E8C44-802E8E20 2E3584 01DC+00 1/0 1/0 0/0 .text            setup2D__14J2DGrafContextFv */
 void J2DGrafContext::setup2D() {
     GXSetNumIndStages(0);

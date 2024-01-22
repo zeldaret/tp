@@ -929,10 +929,6 @@ SECTION_SDATA2 static f64 lit_4595 = 4503599627370496.0 /* cast u32 to float */;
 /* 80456B60-80456B68 000000 0004+04 1/1 0/0 0/0 .sbss2           @4530 */
 SECTION_SBSS2 static GXColor lit_4530;
 
-static inline void GXSetTexCoordGen(GXTexCoordID param_1, GXTexGenType param_2, GXTexGenSrc param_3, u32 param_4){
-    GXSetTexCoordGen2(param_1, param_2, param_3, param_4, GX_FALSE, 0x7d);
-}
-
 /* 80009650-8000A160 003F90 0B10+00 1/1 0/0 0/0 .text            draw__Q213mDoGph_gInf_c7bloom_cFv
  */
 // Matches with literals

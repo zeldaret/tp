@@ -38,9 +38,9 @@ void GXGetVtxAttrFmt(GXVtxFmt param_0, int param_1, GXCompCnt* param_2, GXCompTy
                      u8* param_4);
 void GXGetVtxDescv(GXVtxDescList* attrPtr);
 
-/* static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
+static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
     GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
-} */
+}
 
 #ifdef __cplusplus
 };
