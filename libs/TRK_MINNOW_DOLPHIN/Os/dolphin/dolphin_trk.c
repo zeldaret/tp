@@ -5,7 +5,6 @@
 #include "dolphin/ar.h"
 #include "dolphin/os.h"
 
-extern u8 _db_stack_addr[];
 #define EXCEPTIONMASK_ADDR 0x80000044
 
 /* 8044F810-8044F818 07C530 0004+04 3/3 0/0 0/0 .bss             lc_base */

@@ -157,8 +157,6 @@ static inline void OSSetCurrentThread(OSThread* thread) {
 }
 
 /* 80340B1C-80340C74 33B45C 0158+00 0/0 1/1 0/0 .text            __OSThreadInit */
-// similar issue with OSInit where _stack address seems to be wrong?
-#ifdef NONMATCHING
 void __OSThreadInit() {
     OSThread* thread = &DefaultThread;
     int prio;
@@ -194,16 +192,6 @@ void __OSThreadInit() {
     OSClearContext(&IdleContext);
     Reschedule = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __OSThreadInit(void) {
-    nofralloc
-#include "asm/dolphin/os/OSThread/__OSThreadInit.s"
-}
-#pragma pop
-#endif
 
 /* 80340C74-80340C84 33B5B4 0010+00 1/1 9/9 0/0 .text            OSInitThreadQueue */
 void OSInitThreadQueue(OSThreadQueue* queue) {
