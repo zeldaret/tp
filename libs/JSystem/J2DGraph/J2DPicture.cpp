@@ -1639,6 +1639,16 @@ bool J2DPicture::remove() {
 }
 
 /* 802FF448-802FF4E0 2F9D88 0098+00 1/0 0/0 0/0 .text            draw__10J2DPictureFffUcbbb */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::draw(f32 param_0, f32 param_1, u8 param_2, bool param_3, bool param_4,
+                      bool param_5) {
+    if (param_2 < mTextureNum && mTexture[param_2] != NULL) {
+        draw(param_0, param_1, mTexture[param_2]->getWidth(), mTexture[param_2]->getHeight(),
+             param_3, param_4, param_5);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1648,29 +1658,32 @@ asm void J2DPicture::draw(f32 param_0, f32 param_1, u8 param_2, bool param_3, bo
 #include "asm/JSystem/J2DGraph/J2DPicture/draw__10J2DPictureFffUcbbb.s"
 }
 #pragma pop
+#endif
 
 /* 802FF4E0-802FF524 2F9E20 0044+00 1/0 0/0 0/0 .text            draw__10J2DPictureFffbbb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPicture::draw(f32 param_0, f32 param_1, bool param_2, bool param_3, bool param_4) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/draw__10J2DPictureFffbbb.s"
+void J2DPicture::draw(f32 param_0, f32 param_1, bool param_2, bool param_3, bool param_4) {
+    draw(param_0, param_1, 0, param_2, param_3, param_4);
 }
-#pragma pop
 
 /* 802FF524-802FF588 2F9E64 0064+00 1/0 0/0 0/0 .text            drawOut__10J2DPictureFffffffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPicture::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                             f32 param_5, f32 param_6, f32 param_7) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPicture/drawOut__10J2DPictureFffffffff.s"
+void J2DPicture::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                         f32 param_5, f32 param_6, f32 param_7) {
+    drawOut(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+            JGeometry::TBox2<f32>(param_4, param_5, param_4 + param_6, param_5 + param_7));
 }
-#pragma pop
 
 /* 802FF588-802FF634 2F9EC8 00AC+00 1/0 0/0 0/0 .text            drawOut__10J2DPictureFffffff */
+// matches with literals
+#ifdef NONMATCHING
+void J2DPicture::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                         f32 param_5) {
+    if (mTexture[0] != NULL) {
+        drawOut(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+                JGeometry::TBox2<f32>(param_4, param_5, param_4 + mTexture[0]->getWidth(),
+                                      param_5 + mTexture[0]->getHeight()));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1680,6 +1693,7 @@ asm void J2DPicture::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3,
 #include "asm/JSystem/J2DGraph/J2DPicture/drawOut__10J2DPictureFffffff.s"
 }
 #pragma pop
+#endif
 
 /* 802FF634-802FF63C 2F9F74 0008+00 1/0 0/0 0/0 .text            getTextureCount__10J2DPictureCFv */
 u8 J2DPicture::getTextureCount() const {
