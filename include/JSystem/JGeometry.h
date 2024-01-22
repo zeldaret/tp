@@ -296,7 +296,10 @@ struct TVec3<f32> {
 template <typename T>
 struct TVec2 {
     TVec2() {}
+    TVec2(T v) { set(v); }
     TVec2(T x, T y) { set(x, y); }
+
+    void set(T v) { y = x = v; }
 
     void set(T x, T y) {
         this->x = x;

@@ -187,10 +187,6 @@ public:
     /* 0x3c */ dDlst_shadowPoly_c* mPoly;
 };
 
-static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
-    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
-}
-
 //
 // Forward References:
 //

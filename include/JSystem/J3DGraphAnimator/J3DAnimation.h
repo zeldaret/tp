@@ -64,7 +64,7 @@ struct J3DAnmTransformFullTable {
 struct J3DAnmTexPatternFullTable {
     /* 0x00 */ u16 mMaxFrame;
     /* 0x02 */ u16 mOffset;
-    /* 0x04 */ u8 _4;
+    /* 0x04 */ u8 mTexNo;
     /* 0x06 */ u16 _6;
 };  // Size = 0x8
 
@@ -421,13 +421,18 @@ public:
     /* 8032BD20 */ virtual ~J3DAnmTexPattern();
     /* 8032BD94 */ virtual s32 getKind() const;
 
+    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
+    bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
+    J3DAnmTexPatternFullTable* getAnmTable() { return mAnmTable; }
+
 private:
     /* 0x0C */ void* field_0xc;
-    /* 0x10 */ void* mAnmTable;
+    /* 0x10 */ J3DAnmTexPatternFullTable* mAnmTable;
     /* 0x14 */ u16 field_0x14;
     /* 0x16 */ u16 mUpdateMaterialNum;
-    /* 0x18 */ u16* field_0x18;
-    /* 0x1C */ JUTNameTab field_0x1c;
+    /* 0x18 */ u16* mUpdateMaterialID;
+    /* 0x1C */ JUTNameTab mUpdateMaterialName;
 };  // Size: 0x2C
 
 class J3DAnmTevRegKey : public J3DAnmBase {
