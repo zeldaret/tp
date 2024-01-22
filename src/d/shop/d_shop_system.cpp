@@ -876,16 +876,17 @@ int dShopSystem_c::chooseItem3(u8 seq) {
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto right;
-            } else if (seq != SEQ_START) {
-                if (mCursorPos != 0) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+            } else {
+                if (seq != SEQ_START) {
+                    if (mCursorPos != 0) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    }
+
+                    mShopCamAction.SetSelectIdx(mCursorPos);
                 }
 
-                mShopCamAction.SetSelectIdx(mCursorPos);
+                return 3;
             }
-
-            return 3;
         } else if (cursor_pos == 4) {
             mLastCursorPos = cursor_pos;
             mCursorPos = 0;
@@ -906,19 +907,19 @@ int dShopSystem_c::chooseItem3(u8 seq) {
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto right;
-            } else if (seq != SEQ_START) {
-                if (mCursorPos != 0) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                }
+            } else {
+                if (seq != SEQ_START) {
+                    if (mCursorPos != 0) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    }
 
-                mShopCamAction.SetSelectIdx(mCursorPos);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 3;
             }
-            return 3;
         }
     }
 
-right:
     if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
         u8 cursor_pos = mCursorPos;
 
@@ -930,32 +931,31 @@ right:
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
-                    goto up;
-                } else if (seq != SEQ_START) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                    mShopCamAction.SetSelectIdx(mCursorPos);
+                } else {
+                    if (seq != SEQ_START) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                        mShopCamAction.SetSelectIdx(mCursorPos);
+                    }
+                    return 4;
                 }
-                return 4;
-            }
-
-            if (data_80451058 == 7) {
+            } else if (data_80451058 == 7) {
                 mLastCursorPos = cursor_pos;
                 mCursorPos = 7;
 
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
-                    goto up;
-                } else if (seq != SEQ_START) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                    mShopCamAction.SetSelectIdx(mCursorPos);
+                } else {
+                    if (seq != SEQ_START) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                        mShopCamAction.SetSelectIdx(mCursorPos);
+                    }
+                    return 4;
                 }
-                return 4;
             }
         }
     }
 
-up:
     if (data_80451058 >= 6) {
         if (mpStick->checkUpTrigger() && seq != SEQ_SELECT_WAIT && mCursorPos <= 3) {
             mLastCursorPos = mCursorPos;
@@ -964,19 +964,19 @@ up:
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto down;
-            } else if (seq != SEQ_START) {
-                if (mCursorPos != 0) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+            } else {
+                if (seq != SEQ_START) {
+                    if (mCursorPos != 0) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    }
+
+                    mShopCamAction.SetSelectIdx(mCursorPos);
                 }
 
-                mShopCamAction.SetSelectIdx(mCursorPos);
+                return 5;
             }
-
-            return 5;
         }
 
-    down:
         if (mpStick->checkDownTrigger() && seq != SEQ_SELECT_WAIT) {
             u8 cursor_pos = mCursorPos;
 
@@ -987,17 +987,17 @@ up:
                 if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                     mCursorPos = mLastCursorPos;
                     mLastCursorPos = old_cursor;
-                    goto ret;
-                } else if (seq != SEQ_START) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                    mShopCamAction.SetSelectIdx(mCursorPos);
+                } else {
+                    if (seq != SEQ_START) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                        mShopCamAction.SetSelectIdx(mCursorPos);
+                    }
+                    return 6;
                 }
-                return 6;
             }
         }
     }
 
-ret:
     return 0;
 }
 
@@ -1027,19 +1027,19 @@ int dShopSystem_c::chooseItem5(u8 seq) {
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto right;
-            } else if (seq != SEQ_START) {
-                if (mCursorPos != 0) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                }
+            } else {
+                if (seq != SEQ_START) {
+                    if (mCursorPos != 0) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    }
 
-                mShopCamAction.SetSelectIdx(mCursorPos);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 3;
             }
-            return 3;
         }
     }
 
-right:
     if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT) {
         u8 cursor_pos = mCursorPos;
 
@@ -1050,16 +1050,16 @@ right:
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto up;
-            } else if (seq != SEQ_START) {
-                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                mShopCamAction.SetSelectIdx(mCursorPos);
+            } else {
+                if (seq != SEQ_START) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 4;
             }
-            return 4;
         }
     }
 
-up:
     if (mpStick->checkUpTrigger() && seq != SEQ_SELECT_WAIT) {
         u8 cursor_pos = mCursorPos;
 
@@ -1075,19 +1075,19 @@ up:
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto down;
-            } else if (seq != SEQ_START) {
-                if (mCursorPos != 0) {
-                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                }
+            } else {
+                if (seq != SEQ_START) {
+                    if (mCursorPos != 0) {
+                        mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    }
 
-                mShopCamAction.SetSelectIdx(mCursorPos);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 5;
             }
-            return 5;
         }
     }
 
-down:
     if (mpStick->checkDownTrigger() && seq != SEQ_SELECT_WAIT) {
         u8 cursor_pos = mCursorPos;
 
@@ -1103,16 +1103,16 @@ down:
             if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
                 mCursorPos = mLastCursorPos;
                 mLastCursorPos = old_cursor;
-                goto ret;
-            } else if (seq != SEQ_START) {
-                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-                mShopCamAction.SetSelectIdx(mCursorPos);
+            } else {
+                if (seq != SEQ_START) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                    mShopCamAction.SetSelectIdx(mCursorPos);
+                }
+                return 6;
             }
-            return 6;
         }
     }
 
-ret:
     return 0;
 }
 
@@ -1126,19 +1126,19 @@ int dShopSystem_c::chooseItem4(u8 seq) {
         if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
             mCursorPos = mLastCursorPos;
             mLastCursorPos = old_cursor;
-            goto right;
-        } else if (seq != SEQ_START) {
-            if (mCursorPos != 0) {
-                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+        } else {
+            if (seq != SEQ_START) {
+                if (mCursorPos != 0) {
+                    mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                }
+
+                mShopCamAction.SetSelectIdx(mCursorPos);
             }
 
-            mShopCamAction.SetSelectIdx(mCursorPos);
+            return 3;
         }
-
-        return 3;
     }
 
-right:
     if (checkRightTrigger(mpStick) && seq != SEQ_SELECT_WAIT && mCursorPos < 4) {
         mLastCursorPos = mCursorPos;
         mCursorPos++;
@@ -1146,16 +1146,16 @@ right:
         if (mCursorPos != 0 && isFlag(mCursorPos - 1)) {
             mCursorPos = mLastCursorPos;
             mLastCursorPos = old_cursor;
-            goto ret;
-        } else if (seq != SEQ_START) {
-            mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
-            mShopCamAction.SetSelectIdx(mCursorPos);
-        }
+        } else {
+            if (seq != SEQ_START) {
+                mDoAud_seStart(Z2SE_SY_TALK_NEXT, NULL, 0, 0);
+                mShopCamAction.SetSelectIdx(mCursorPos);
+            }
 
-        return 4;
+            return 4;
+        }
     }
 
-ret:
     return 0;
 }
 
