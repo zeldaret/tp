@@ -786,11 +786,11 @@ asm void J3DAnmTexPattern::getTexNo(u16 param_0, u16* param_1) const {
  * searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable */
 void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
     for (u16 i = 0; i < mUpdateMaterialNum; i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(field_0x1c.getName(i));
+        s32 r3 = param_0->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
         if (r3 != -1) {
-            field_0x18[i] = r3;
+            mUpdateMaterialID[i] = r3;
         } else {
-            field_0x18[i] = -1;
+            mUpdateMaterialID[i] = -1;
         }
     }
 }

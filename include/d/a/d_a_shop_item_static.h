@@ -39,6 +39,10 @@ public:
     /* 80037C1C */ cXyz* getPosP();
 
     u8 getShopItemID() const { return mShopItemID; }
+    s16 getAngleX() const { return mAngleX; }
+    void setAngleX(s16 angle) { mAngleX = angle;}
+    s16 getAngleY() const { return mAngleY; }
+    void setAngleY(s16 angle) { mAngleY = angle;}
 
     static ResourceData const mData[23];
 

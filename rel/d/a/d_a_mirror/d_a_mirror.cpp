@@ -249,10 +249,6 @@ SECTION_RODATA static f32 const lit_3948 = -100.0f;
 COMPILER_STRIP_GATE(0x808725A4, &lit_3948);
 #pragma pop
 
-inline static void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
-    GXSetTexCoordGen2(dst, type, src, mtx, 0, 125);
-}
-
 inline static void damirror_GXEnd() {
     GXEnd();
 }

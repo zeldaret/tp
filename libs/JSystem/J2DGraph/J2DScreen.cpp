@@ -208,7 +208,7 @@ SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
 // almost
 #ifdef NONMATCHING
 J2DScreen::J2DScreen()
-    : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 0.0f, 0.0f)), mColor() {
+    : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 640.0f, 480.0f)), mColor() {
     field_0x4 = -1;
     mScissor = false;
     mMaterialNum = 0;
@@ -342,14 +342,12 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* p_stream) {
 
 /* 802F8990-802F8B98 2F32D0 0208+00 1/1 0/0 0/0 .text
  * makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive */
-// goto can probably be replaced
 s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_stream, u32 param_2,
                                   JKRArchive* p_archive) {
-    J2DScrnBlockHeader header;
     J2DPane* next_pane = p_basePane;
 
-    do {
-    loop:
+    while (true) {
+        J2DScrnBlockHeader header;
         p_stream->peek(&header, sizeof(J2DScrnBlockHeader));
 
         switch (header.mTag) {
@@ -360,10 +358,10 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
 
             int ret = makeHierarchyPanes(next_pane, p_stream, param_2, p_archive);
-            if (ret == 0) {
-                goto loop;
+            if (ret != 0) {
+                return ret;
             }
-            return ret;
+            break;
         case 'END1':
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 0;
@@ -371,33 +369,36 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
             J2DResReference* texRes = getResReference(p_stream, param_2);
             mTexRes = texRes;
 
-            if (texRes != NULL) {
-                goto loop;
+            if (texRes == NULL) {
+                return 2;
             }
-            return 2;
+            break;
         case 'FNT1':
             J2DResReference* fntRes = getResReference(p_stream, param_2);
             mFontRes = fntRes;
 
-            if (fntRes != NULL) {
-                goto loop;
+            if (fntRes == NULL) {
+                return 2;
             }
-            return 2;
+            break;
         case 'MAT1':
-            if (createMaterial(p_stream, param_2, p_archive)) {
-                goto loop;
+            if (!createMaterial(p_stream, param_2, p_archive)) {
+                return 2;
             }
-            return 2;
-        }
+            break;
+        default:
+            if (p_archive == NULL) {
+                next_pane = createPane(header, p_stream, p_basePane, param_2);
+            } else {
+                next_pane = createPane(header, p_stream, p_basePane, param_2, p_archive);
+            }
 
-        if (p_archive == NULL) {
-            next_pane = createPane(header, p_stream, p_basePane, param_2);
-        } else {
-            next_pane = createPane(header, p_stream, p_basePane, param_2, p_archive);
+            if (next_pane == NULL) {
+                return 2;
+            }
+            break;
         }
-    } while (next_pane != NULL);
-
-    return 2;
+    }
 }
 
 /* 802F8B98-802F8ED4 2F34D8 033C+00 1/0 0/0 0/0 .text

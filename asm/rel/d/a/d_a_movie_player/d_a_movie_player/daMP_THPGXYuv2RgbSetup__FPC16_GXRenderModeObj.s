@@ -112,12 +112,12 @@ lbl_8087667C:
 /* 80876834  38 80 00 01 */	li r4, 1
 /* 80876838  38 A0 00 04 */	li r5, 4
 /* 8087683C  38 C0 00 3C */	li r6, 0x3c
-/* 80876840  48 00 03 69 */	bl GXSetTexCoordGen
+/* 80876840  48 00 03 69 */	bl i_GXSetTexCoordGen
 /* 80876844  38 60 00 01 */	li r3, 1
 /* 80876848  38 80 00 01 */	li r4, 1
 /* 8087684C  38 A0 00 04 */	li r5, 4
 /* 80876850  38 C0 00 3C */	li r6, 0x3c
-/* 80876854  48 00 03 55 */	bl GXSetTexCoordGen
+/* 80876854  48 00 03 55 */	bl i_GXSetTexCoordGen
 /* 80876858  4B AE 7E 0D */	bl GXInvalidateTexAll
 /* 8087685C  4B AE 4D 31 */	bl GXClearVtxDesc
 /* 80876860  38 60 00 09 */	li r3, 9

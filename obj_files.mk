@@ -1050,6 +1050,7 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o \
 	$(BUILD_DIR)/libs/JSystem/JAudio2/JAUAudioArcLoader.o \
 	$(BUILD_DIR)/libs/JSystem/J2DGraph/J2DAnmLoader.o \
+	$(BUILD_DIR)/libs/JSystem/J2DGraph/J2DPicture.o \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTProcBar.o \
 	$(BUILD_DIR)/libs/Z2AudioLib/Z2AudioArcLoader.o \
 	$(BUILD_DIR)/src/c/c_dylink.o \

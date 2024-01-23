@@ -342,7 +342,7 @@ void J2DMaterial::setAnimation(J2DAnmTexPattern* anm) {
                 u16 matID = anm->getUpdateMaterialID(i);
 
                 if (index == matID) {
-                    mAnmPointer->field_0x22[anmTbl[i]._4] = i;
+                    mAnmPointer->field_0x22[anmTbl[i].mTexNo] = i;
                 }
             }
         }
