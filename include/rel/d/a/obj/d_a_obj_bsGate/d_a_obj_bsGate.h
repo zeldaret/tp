@@ -7,6 +7,12 @@
 
 class daBsGate_c : public dBgS_MoveBgActor {
 public:
+    enum Mode {
+        /* 0 */ MODE_WAIT,
+        /* 1 */ MODE_OPEN,
+        /* 2 */ MODE_CLOSE,
+    };
+
     /* 80BC2910 */ void setBaseMtx();
     /* 80BC29AC */ int CreateHeap();
     /* 80BC2A18 */ cPhs__Step create();

@@ -109,7 +109,7 @@ void daBsGate_c::moveGate() {
 
 /* 80BC2CC4-80BC2CD0 000524 000C+00 3/3 0/0 0/0 .text            init_modeWait__10daBsGate_cFv */
 void daBsGate_c::init_modeWait() {
-    mMode = 0;
+    mMode = MODE_WAIT;
 }
 
 /* 80BC2CD0-80BC2CD4 000530 0004+00 1/0 0/0 0/0 .text            modeWait__10daBsGate_cFv */
@@ -119,7 +119,7 @@ void daBsGate_c::modeWait() {
 
 /* 80BC2CD4-80BC2CE0 000534 000C+00 1/1 0/0 0/0 .text            init_modeOpen__10daBsGate_cFv */
 void daBsGate_c::init_modeOpen() {
-    mMode = 1;
+    mMode = MODE_OPEN;
 }
 
 /* 80BC2CE0-80BC2E34 000540 0154+00 1/0 0/0 0/0 .text            modeOpen__10daBsGate_cFv */
@@ -140,7 +140,7 @@ void daBsGate_c::modeOpen() {
 
 /* 80BC2E34-80BC2E40 000694 000C+00 1/1 0/0 0/0 .text            init_modeClose__10daBsGate_cFv */
 void daBsGate_c::init_modeClose() {
-    mMode = 2;
+    mMode = MODE_CLOSE;
 }
 
 /* 80BC2E40-80BC2F94 0006A0 0154+00 1/0 0/0 0/0 .text            modeClose__10daBsGate_cFv */
