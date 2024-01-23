@@ -16,18 +16,6 @@ public:
     void* mpResource;
 };
 
-struct J3DAnmTransformKeyData {
-    /* 0x00 */ u8 _0[0x8];
-    /* 0x08 */ u8 _8;
-    /* 0x09 */ u8 _9;
-    /* 0x0A */ s16 mFrameMax;
-    /* 0x0C */ u16 _C;
-    /* 0x0E */ u8 _E[0x14 - 0xE];
-    /* 0x14 */ s32 mTableOffset;
-    /* 0x18 */ s32 mScaleOffset;
-    /* 0x1C */ s32 mRotationOffset;
-    /* 0x20 */ s32 mTranslateOffset;
-};
 struct J3DAnmTextureSRTKeyData;
 struct J3DAnmColorKeyData;
 struct J3DAnmVtxColorKeyData;
@@ -37,6 +25,7 @@ struct J3DAnmColorFullData;
 struct J3DAnmTexPatternFullData;
 struct J3DAnmVisibilityFullData;
 struct J3DAnmVtxColorFullData;
+struct J3DAnmTransformKeyData;
 
 class J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 public:
