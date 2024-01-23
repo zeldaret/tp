@@ -12,6 +12,7 @@ struct TLinkListNode {
     }
 
     TLinkListNode* getNext() { return mNext; }
+    TLinkListNode* getPrev() { return mPrev; }
 
     /* 0x0 */ TLinkListNode* mNext;
     /* 0x4 */ TLinkListNode* mPrev;
@@ -25,7 +26,13 @@ struct TNodeLinkList {
             node = node->getNext();
             return *this; 
         }
+        iterator& operator--() {
+            node = node->getPrev();
+            return *this; 
+        }
         TLinkListNode* operator->() { return node; }
+
+        inline friend bool operator==(iterator a, iterator b) { return a.node == b.node; }
 
         TLinkListNode* node;
     };
@@ -91,6 +98,17 @@ struct TLinkList : public TNodeLinkList {
             JUT_ASSERT(541, node != 0);
             return Element_toValue(node);
         }
+        iterator& operator--() {
+            TNodeLinkList::iterator::operator--();
+            return *this;
+        }
+        // Stack issues. See JStudio::ctb::TControl::getObject
+        inline friend bool operator==(iterator a, iterator b) { 
+            TNodeLinkList::iterator ita = a;
+            TNodeLinkList::iterator itb = b;
+            return operator==(ita,itb); 
+        }
+        inline friend bool operator!=(iterator a, iterator b) { return !(a == b); }
     };
 
     struct const_iterator : TNodeLinkList::const_iterator {
@@ -110,7 +128,7 @@ struct TLinkList : public TNodeLinkList {
     };
 
     TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
-    static T* Element_toValue(TLinkListNode* node) { return (T*)node; }
+    static T* Element_toValue(TLinkListNode* node) { return (T*)((char*)node - offsetof(T, ocObject_)); }
 
     iterator Insert(TLinkList::iterator iter, T* element) {
         TLinkListNode* node = Element_toNode(element);
@@ -123,9 +141,7 @@ struct TLinkList : public TNodeLinkList {
     }
 
     TLinkList::iterator end() {
-        TNodeLinkList::iterator node_iter = TNodeLinkList::end();
-        TLinkList::iterator iter(node_iter);
-        return iter;
+        return iterator(TNodeLinkList::end());
     }
 
     TLinkList::const_iterator end() const {
@@ -141,13 +157,18 @@ struct TLinkList : public TNodeLinkList {
     }
 
     void Push_back(T* element) {
-        TLinkList::iterator iter(TLinkList::end());
+        TLinkList::iterator iter = TLinkList::end();
         this->Insert(iter, element);
     }
 
     T& front() {
         JUT_ASSERT(642, !empty());
         return *begin();
+    }
+
+    T& back() {
+        JUT_ASSERT(652, !empty());
+        return *--TLinkList::end();
     }
 };
 
@@ -160,6 +181,16 @@ template<typename T, int I>
 bool operator!=(const typename TLinkList<T, I>::const_iterator iter1, const typename TLinkList<T, I>::const_iterator iter2) {
     return !(iter1 == iter2);
 }
+
+// template<typename T, int I>
+// inline bool operator==(typename TLinkList<T, I>::iterator iter1, typename TLinkList<T, I>::iterator iter2) {
+//     return iter1->node == iter2->node;
+// }
+
+// template<typename T, int I>
+// inline bool operator!=(typename TLinkList<T, I>::iterator iter1, typename TLinkList<T, I>::iterator iter2) {
+//     return !(iter1 == iter2);
+// }
 
 template <typename T, int I>
 struct TLinkList_factory : public TLinkList<T, I> {
