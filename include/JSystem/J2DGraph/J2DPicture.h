@@ -12,10 +12,17 @@ struct ResTIMG;
 struct ResTLUT;
 
 enum J2DMirror {
-    /* 0x0 */ MIRROR0,  // temp, figure out later
+    /* 0 */ MIRROR0,  // temp, figure out later
+    /* 1 */ J2DMirror_Y = (1 << 0),
+    /* 2 */ J2DMirror_X = (1 << 1),
 };
 
 enum J2DBinding {
+    /* 1 */ J2DBind_Bottom = (1 << 0),
+    /* 2 */ J2DBind_Top = (1 << 1),
+    /* 4 */ J2DBind_Right = (1 << 2),
+    /* 8 */ J2DBind_Left = (1 << 3),
+
     /* 0xF */ BIND15 = 15,  // temp, figure out later
 };
 

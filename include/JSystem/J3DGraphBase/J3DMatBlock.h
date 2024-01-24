@@ -102,7 +102,6 @@ public:
     /* 80322DA0 */ virtual void setTexMtxOffset(u32);
     /* 80317180 */ virtual ~J3DTexGenBlockPatched();
 
-private:
     /* 0x04 */ u32 mTexGenNum;
     /* 0x08 */ J3DTexCoord mTexCoord[8];
     /* 0x38 */ J3DTexMtx* mTexMtx[8];
@@ -126,7 +125,6 @@ public:
     /* 80322CC0 */ virtual J3DNBTScale* getNBTScale();
     /* 80322CC8 */ virtual ~J3DTexGenBlockBasic();
 
-private:
     /* 0x5C */ J3DNBTScale mNBTScale;
 };  // Size: 0x6C
 
@@ -147,7 +145,6 @@ public:
     /* 80322DFC */ virtual J3DNBTScale* getNBTScale();
     /* 80322E04 */ virtual ~J3DTexGenBlock4();
 
-private:
     /* 0x5C */ J3DNBTScale mNBTScale;
 };  // Size: 0x6C
 
@@ -275,7 +272,6 @@ public:
     /* 80322C08 */ virtual void setTevRegOffset(u32);
     /* 80322C10 */ virtual ~J3DTevBlockPatched();
 
-private:
     /* 0x08 */ u16 mTexNo[8];
     /* 0x18 */ J3DTevOrder mTevOrder[8];
     /* 0x38 */ J3DTevStage mTevStage[8];
@@ -346,7 +342,6 @@ public:
     /* 80322348 */ virtual void setTevRegOffset(u32);
     /* 80322350 */ virtual ~J3DTevBlock4();
 
-private:
     /* 0x08 */ u16 mTexNo[4];
     /* 0x10 */ J3DTevOrder mTevOrder[4];
     /* 0x20 */ u8 mTevStageNum;
@@ -419,7 +414,6 @@ public:
     /* 8032270C */ virtual void setTevRegOffset(u32);
     /* 80322714 */ virtual ~J3DTevBlock2();
 
-private:
     /* 0x08 */ u16 mTexNo[2];
     /* 0x0C */ J3DTevOrder mTevOrder[2];
     /* 0x14 */ J3DGXColorS10 mTevColor[4];
@@ -492,7 +486,6 @@ public:
     /* 80321F7C */ virtual void setTevRegOffset(u32);
     /* 80321F84 */ virtual ~J3DTevBlock16();
 
-private:
     /* 0x008 */ u16 mTexNo[8];
     /* 0x018 */ J3DTevOrder mTevOrder[16];
     /* 0x058 */ u8 mTevStageNum;
@@ -546,7 +539,6 @@ public:
     /* 803228EC */ virtual bool getTexNoOffset() const;
     /* 803228F4 */ virtual ~J3DTevBlock1();
 
-private:
     /* 0x08 */ u16 mTexNo[1];
     /* 0x0A */ J3DTevOrder mTevOrder[1];
     /* 0x0E */ J3DTevStage mTevStage[1];
@@ -749,7 +741,6 @@ public:
     /* 80321A68 */ virtual void setFogOffset(u32);
     /* 80321A70 */ virtual ~J3DPEBlockFull();
 
-private:
     /* 0x04 */ J3DFog mFog;
     /* 0x30 */ J3DAlphaComp mAlphaComp;
     /* 0x34 */ J3DBlend mBlend;
@@ -789,7 +780,6 @@ public:
     /* 80321BBC */ virtual bool getDither() const;
     /* 80321BC4 */ virtual ~J3DPEBlockFogOff();
 
-private:
     /* 0x04 */ J3DAlphaComp mAlphaComp;
     /* 0x08 */ J3DBlend mBlend;
     /* 0x0C */ J3DZMode mZMode;
@@ -889,7 +879,6 @@ public:
     /* 8032348C */ virtual bool getIndTexCoordScale(u32);
     /* 803234A0 */ virtual ~J3DIndBlockFull();
 
-private:
     /* 0x04 */ u8 mIndTexStageNum;
     /* 0x05 */ J3DIndTexOrder mIndTexOrder[4];
     /* 0x18 */ J3DIndTexMtx mIndTexMtx[3];
@@ -907,6 +896,10 @@ struct J3DColorChanInfo {
 };
 
 extern J3DColorChanInfo j3dDefaultColorChanInfo;
+
+/* static inline u32 setChanCtrlMacro(u8 param_0, GXColorSrc param_1, GXColorSrc param_2, u32 param_3, GXDiffuseFn param_4, GXAttnFn param_5) {
+    
+} */
 
 struct J3DColorChan {
     /* 8000E47C */ J3DColorChan() {
@@ -1032,7 +1025,6 @@ public:
     /* 80323010 */ virtual void setColorChanOffset(u32);
     /* 80323018 */ virtual ~J3DColorBlockLightOn();
 
-private:
     /* 0x04 */ J3DGXColor mMatColor[2];
     /* 0x0C */ J3DGXColor mAmbColor[2];
     /* 0x14 */ u8 mColorChanNum;
@@ -1078,7 +1070,6 @@ public:
     /* 80323250 */ virtual void setColorChanOffset(u32);
     /* 803170DC */ virtual ~J3DColorBlockLightOff();
 
-private:
     /* 0x04 */ J3DGXColor mMatColor[2];
     /* 0x0C */ u8 mColorChanNum;
     /* 0x0E */ J3DColorChan mColorChan[4];
@@ -1103,7 +1094,6 @@ public:
     /* 803230D8 */ virtual bool getAmbColor(u32);
     /* 803230EC */ virtual ~J3DColorBlockAmbientOn();
 
-private:
     /* 0x20 */ J3DGXColor mAmbColor[2];
 };  // Size: 0x28
 

@@ -4,6 +4,7 @@
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/JStudio/object-id.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 namespace JStudio {
 namespace ctb {
@@ -134,7 +135,7 @@ struct TControl {
     TFactory* getFactory() { return pFactory_; }
 
     /* 0x4 */ TFactory* pFactory_;
-    /* 0x8 */ JGadget::TLinkList<TObject, 2> mList;
+    /* 0x8 */ JGadget::TLinkList<TObject, -12> mList;
 };
 
 struct TParse : public JGadget::binary::TParse_header_block {

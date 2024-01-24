@@ -1392,110 +1392,113 @@ SECTION_SDATA2 static f32 lit_2933 = 0.5f;
 
 /* 802FED84-802FF09C 2F96C4 0318+00 2/2 0/0 0/0 .text
  * setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb */
+// matches with literals
 #ifdef NONMATCHING
 void J2DPicture::setTexCoord(JGeometry::TVec2<s16>* param_0, JUTTexture const* param_1,
-                             J2DBinding param_2, J2DMirror param_3, bool param_4) {
-    u8 var_r0;
-    u8 var_r4;
-    u8 var_r7;
-    u8 var_r9;
+                             J2DBinding binding, J2DMirror mirror, bool rotate90) {
+    bool bindLeft;
+    bool bindRight;
+    bool bindTop;
+    bool bindBottom;
 
-    f32 sp14;
-    f32 sp10;
-    f32 spC;
-    f32 sp8;
+    if (!rotate90) {
+        if (mirror & J2DMirror_X)
+            bindLeft = binding & J2DBind_Right;
+        else
+            bindLeft = binding & J2DBind_Left;
 
-    f32 var_f0;
-    f32 var_f2;
-    f32 var_f3;
-    f32 var_f4;
-    f32 var_f5;
+        if (mirror & J2DMirror_X)
+            bindRight = binding & J2DBind_Left;
+        else
+            bindRight = binding & J2DBind_Right;
 
-    if (!param_4) {
-        var_r0 = (param_3 & 2) ? (param_2 & 4) : (param_2 & 8);
-        var_r4 = (param_3 & 2) ? (param_2 & 8) : (param_2 & 4);
-        var_r7 = (param_3 & 1) ? (param_2 & 1) : (param_2 & 2);
-        var_r9 = (param_3 & 1) ? (param_2 & 1) : (param_2 & 2);
+        if (mirror & J2DMirror_Y)
+            bindTop = binding & J2DBind_Bottom;
+        else
+            bindTop = binding & J2DBind_Top;
+
+        if (mirror & J2DMirror_Y)
+            bindBottom = binding & J2DBind_Top;
+        else
+            bindBottom = binding & J2DBind_Bottom;
     } else {
-        var_r0 = (param_3 & 2) ? (param_2 & 1) : (param_2 & 2);
-        var_r4 = (param_3 & 2) ? (param_2 & 2) : (param_2 & 1);
-        var_r7 = (param_3 & 1) ? (param_2 & 8) : (param_2 & 4);
-        var_r9 = (param_3 & 1) ? (param_2 & 4) : (param_2 & 8);
+        if (mirror & J2DMirror_X)
+            bindLeft = binding & J2DBind_Bottom;
+        else
+            bindLeft = binding & J2DBind_Top;
+
+        if (mirror & J2DMirror_X)
+            bindRight = binding & J2DBind_Top;
+        else
+            bindRight = binding & J2DBind_Bottom;
+
+        if (mirror & J2DMirror_Y)
+            bindTop = binding & J2DBind_Left;
+        else
+            bindTop = binding & J2DBind_Right;
+
+        if (mirror & J2DMirror_Y)
+            bindBottom = binding & J2DBind_Right;
+        else
+            bindBottom = binding & J2DBind_Left;
     }
 
-    if (!param_4) {
-        var_f2 = getHeight();
-    } else {
-        var_f2 = getWidth();
-    }
+    f32 rectWidth;
+    f32 rectHeight;
 
-    if (!param_4) {
-        var_f3 = getWidth();
-    } else {
-        var_f3 = getHeight();
-    }
+    rectWidth = !rotate90 ? getWidth() : getHeight();
+    rectHeight = !rotate90 ? getHeight() : getWidth();
 
+    f32 texWidth;
+    f32 texHeight;
     if (param_1 == NULL) {
-        var_f4 = var_f2;
-        var_f5 = var_f3;
+        texWidth = rectWidth;
+        texHeight = rectHeight;
     } else {
-        var_f4 = param_1->getWidth();
-        var_f5 = param_1->getHeight();
+        texWidth = param_1->getWidth();
+        texHeight = param_1->getHeight();
     }
 
-    if (var_r0 != 0) {
-        sp14 = 0.0f;
-        if (var_r4 != 0) {
-            var_f0 = 1.0f;
-        } else {
-            var_f0 = var_f2 / var_f4;
-        }
-        spC = var_f0;
-    } else if (var_r4 != 0) {
-        sp14 = 1.0f - (var_f2 / var_f4);
-        spC = 1.0f;
+    f32 s0, t0, s1, t1;
+    if (bindLeft) {
+        s0 = 0.0f;
+        s1 = bindRight ? 1.0f : (rectWidth / texWidth);
+    } else if (bindRight) {
+        s0 = 1.0f - (rectWidth / texWidth);
+        s1 = 1.0f;
     } else {
-        sp14 = 0.5f - ((var_f2 / var_f4) * 0.5f);
-        spC = 0.5f + ((var_f2 / var_f4) * 0.5f);
+        s0 = 0.5f - (rectWidth / texWidth) / 2.0f;
+        s1 = 0.5f + (rectWidth / texWidth) / 2.0f;
     }
 
-    if (var_r7 != 0) {
-        sp10 = 0.0f;
-
-        f32 var_f0_2;
-        if (var_r9 != 0) {
-            var_f0_2 = 1.0f;
-        } else {
-            var_f0_2 = var_f3 / var_f5;
-        }
-
-        sp8 = var_f0_2;
-    } else if (var_r9 != 0) {
-        sp10 = 1.0f - (var_f3 / var_f5);
-        sp8 = 1.0f;
+    if (bindTop) {
+        t0 = 0.0f;
+        t1 = bindBottom ? 1.0f : (rectHeight / texHeight);
+    } else if (bindBottom) {
+        t0 = 1.0f - (rectHeight / texHeight);
+        t1 = 1.0f;
     } else {
-        sp10 = 0.5f - ((var_f3 / var_f5) * 0.5f);
-        sp8 = 0.5f + ((var_f3 / var_f5) * 0.5f);
+        t0 = 0.5f - (rectHeight / texHeight) / 2.0f;
+        t1 = 0.5f + (rectHeight / texHeight) / 2.0f;
     }
 
-    if (param_3 & 2) {
-        swap(sp14, spC);
+    if (mirror & J2DMirror_X) {
+        swap(s0, s1);
+    }
+    if (mirror & J2DMirror_Y) {
+        swap(t0, t1);
     }
 
-    if (param_3 & 1) {
-        swap(sp10, sp8);
-    }
+    s16 temp_r27 = J2DCast_F32_to_S16(s0, 8);
+    s16 temp_r28 = J2DCast_F32_to_S16(s1, 8);
+    s16 temp_r30 = J2DCast_F32_to_S16(t0, 8);
+    s16 temp_r31 = J2DCast_F32_to_S16(t1, 8);
 
-    s16 temp_r27 = J2DCast_F32_to_S16(sp14, 8);
-    s16 temp_r28 = J2DCast_F32_to_S16(spC, 8);
-    s16 temp_r30 = J2DCast_F32_to_S16(sp10, 8);
-    s16 temp_r31 = J2DCast_F32_to_S16(sp8, 8);
-
-    if (!param_4) {
+    if (!rotate90) {
         param_0[0].set(temp_r27, temp_r30);
         param_0[1].set(temp_r28, temp_r30);
-        param_0[2].set(temp_r28, temp_r31);
-        param_0[3].set(temp_r27, temp_r31);
+        param_0[2].set(temp_r27, temp_r31);
+        param_0[3].set(temp_r28, temp_r31);
     } else {
         param_0[0].set(temp_r27, temp_r31);
         param_0[1].set(temp_r27, temp_r30);

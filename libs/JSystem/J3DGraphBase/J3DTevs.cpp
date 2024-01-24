@@ -80,25 +80,13 @@ extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
 //
 
 /* 80323590-80323644 31DED0 00B4+00 0/0 3/3 0/0 .text            load__11J3DLightObjCFUl */
-// missing instruction
-#ifdef NONMATCHING
-void J3DLightObj::load(u32 param_0) const {
+void J3DLightObj::load(u32 lightIdx) const {
     GDOverflowCheck(0x48);
-    J3DGDSetLightPos(GXLightID(param_0 * 2), mInfo.mLightPosition.x, mInfo.mLightPosition.y, mInfo.mLightPosition.z);
-    J3DGDSetLightAttn(GXLightID(param_0 * 2), mInfo.mCosAtten.x, mInfo.mCosAtten.y, mInfo.mCosAtten.z, mInfo.mDistAtten.x, mInfo.mDistAtten.y, mInfo.mDistAtten.z);
-    J3DGDSetLightColor(GXLightID(param_0 * 2), mInfo.mColor);
-    J3DGDSetLightDir(GXLightID(param_0 * 2), mInfo.mLightDirection.x, mInfo.mLightDirection.y, mInfo.mLightDirection.z);
+    J3DGDSetLightPos(GXLightID(1 << lightIdx), mInfo.mLightPosition.x, mInfo.mLightPosition.y, mInfo.mLightPosition.z);
+    J3DGDSetLightAttn(GXLightID(1 << lightIdx), mInfo.mCosAtten.x, mInfo.mCosAtten.y, mInfo.mCosAtten.z, mInfo.mDistAtten.x, mInfo.mDistAtten.y, mInfo.mDistAtten.z);
+    J3DGDSetLightColor(GXLightID(1 << lightIdx), mInfo.mColor);
+    J3DGDSetLightDir(GXLightID(1 << lightIdx), mInfo.mLightDirection.x, mInfo.mLightDirection.y, mInfo.mLightDirection.z);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DLightObj::load(u32 param_0) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/load__11J3DLightObjCFUl.s"
-}
-#pragma pop
-#endif
 
 /* 80323644-803238C4 31DF84 0280+00 0/0 3/3 0/0 .text            loadTexCoordGens__FUlP11J3DTexCoord
  */
@@ -489,33 +477,33 @@ COMPILER_STRIP_GATE(0x803A1FF8, &lit_1197);
 static u8 j3dTexCoordTable[7623 + 1 /* padding */];
 
 /* 80324194-8032423C 31EAD4 00A8+00 0/0 1/1 0/0 .text            makeTexCoordTable__Fv */
-// regswap
-#ifdef NONMATCHING
 void makeTexCoordTable() {
-    u8 bytes[] = { 0x1e, 0x21, 0x24, 0x27, 0x2a, 0x2d, 0x30, 0x33, 0x36, 0x39, 0x3c };
+    u8 texMtx[] = {
+        GX_TEXMTX0,
+        GX_TEXMTX1,
+        GX_TEXMTX2,
+        GX_TEXMTX3,
+        GX_TEXMTX4,
+        GX_TEXMTX5,
+        GX_TEXMTX6,
+        GX_TEXMTX7,
+        GX_TEXMTX8,
+        GX_TEXMTX9,
+        GX_IDENTITY,
+    };
 
     u8* table = j3dTexCoordTable;
     for (u32 i = 0; i < 11; i++) {
         for (u32 j = 0; j < 21; j++) {
-            for (int k = 0; k < 11; k++) {
-                u32 idx = i * 0xe7 + j * 11 + k;
-                table[idx * 3] = i;
+            for (int k = 0; k < ARRAY_SIZE(texMtx); k++) {
+                u32 idx = j * 11 + i * 0xe7 + k;
+                table[idx * 3 + 0] = i;
                 table[idx * 3 + 1] = j;
-                table[idx * 3 + 2] = bytes[k];
+                table[idx * 3 + 2] = texMtx[k];
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void makeTexCoordTable() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/makeTexCoordTable__Fv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80436A60-80436E60 063780 0400+00 1/1 3/3 0/0 .bss             j3dTevSwapTableTable */
@@ -547,31 +535,19 @@ extern u8 j3dZModeTable[96];
 u8 j3dZModeTable[96];
 
 /* 803242A8-80324314 31EBE8 006C+00 0/0 1/1 0/0 .text            makeZModeTable__Fv */
-// regswap
-#ifdef NONMATCHING
 void makeZModeTable() {
     u8* table = j3dZModeTable;
     for (int i = 0; i < 2; i++) {
         for (u32 j = 0; j < 8; j++) {
             for (int k = 0; k < 2; k++) {
-                u32 idx = i * 16 + j * 2 + k;
-                table[idx * 3] = i;
+                u32 idx = j * 2 + i * 16 + k;
+                table[idx * 3 + 0] = i;
                 table[idx * 3 + 1] = j;
                 table[idx * 3 + 2] = k;
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void makeZModeTable() {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTevs/makeZModeTable__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 80324314-80324358 31EC54 0044+00 0/0 1/1 0/0 .text            makeTevSwapTable__Fv */
 void makeTevSwapTable() {

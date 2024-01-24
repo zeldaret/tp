@@ -4,6 +4,11 @@
 //
 
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/J3DGraphAnimator/J3DCluster.h"
+#include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
+#include "JSystem/JSupport/JSupport.h"
+#include "JSystem/JUtility/JUTNameTab.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 
@@ -11,31 +16,37 @@
 // Types:
 //
 
-struct ResNTAB {};
-
-struct JUTNameTab {
-    /* 802DE9E0 */ JUTNameTab(ResNTAB const*);
+class J3DClusterBlock : public JUTDataBlockHeader {
+public:
+    /* 0x08 */ u16 mClusterNum;
+    /* 0x0A */ u16 mClusterKeyNum;
+    /* 0x0C */ u16 mClusterVertexNum;
+    /* 0x0E */ u16 mVtxPosNum;
+    /* 0x10 */ u16 mVtxNrmNum;
+    /* 0x14 */ void* mClusterPointer;
+    /* 0x18 */ void* mClusterKeyPointer;
+    /* 0x1C */ void* mClusterVertex;
+    /* 0x20 */ void* mVtxPos;
+    /* 0x24 */ void* mVtxNrm;
+    /* 0x28 */ void* mClusterName;
+    /* 0x2C */ void* mClusterKeyName;
 };
 
-struct J3DDeformData {
-    /* 8032E1F8 */ J3DDeformData();
+class J3DClusterLoader {
+public:
+    virtual void* load(const void*) = 0;
+    /* 803345FC */ virtual ~J3DClusterLoader();
 };
 
-struct J3DDeformer {
-    /* 8032E39C */ J3DDeformer(J3DDeformData*);
-};
-
-struct J3DClusterBlock {};
-
-struct J3DClusterLoader_v15 {
+class J3DClusterLoader_v15 : public J3DClusterLoader {
+public:
     /* 803341CC */ J3DClusterLoader_v15();
-    /* 803341E8 */ ~J3DClusterLoader_v15();
-    /* 80334244 */ void load(void const*);
     /* 803342F8 */ void readCluster(J3DClusterBlock const*);
-};
 
-struct J3DClusterLoader {
-    /* 803345FC */ ~J3DClusterLoader();
+    /* 80334244 */ virtual void* load(void const*);
+    /* 803341E8 */ virtual ~J3DClusterLoader_v15();
+
+    /* 0x04 */ J3DDeformData* mpDeformData;
 };
 
 //
@@ -78,14 +89,16 @@ extern "C" void _restgpr_26();
 //
 
 /* 80334130-803341CC 32EA70 009C+00 0/0 1/1 0/0 .text load__24J3DClusterLoaderDataBaseFPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* J3DClusterLoaderDataBase::load(void const* param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/load__24J3DClusterLoaderDataBaseFPCv.s"
+void* J3DClusterLoaderDataBase::load(const void* i_data) {
+    const JUTDataFileHeader* fileHeader = (JUTDataFileHeader*)i_data;
+    if (fileHeader->mMagic == 'J3D1' && fileHeader->mType == 'bls1') {
+        J3DClusterLoader_v15 loader;
+        return loader.load(i_data);
+    } else if (fileHeader->mMagic == 'J3D2' && fileHeader->mType == 'bls2') {
+        return NULL;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803CF0E8-803CF0F8 02C208 0010+00 2/2 0/0 0/0 .data            __vt__20J3DClusterLoader_v15 */
@@ -105,6 +118,10 @@ SECTION_DATA extern void* __vt__16J3DClusterLoader[4] = {
 };
 
 /* 803341CC-803341E8 32EB0C 001C+00 1/1 0/0 0/0 .text            __ct__20J3DClusterLoader_v15Fv */
+// matches with weak order
+#ifdef NONMATCHING
+J3DClusterLoader_v15::J3DClusterLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -113,8 +130,13 @@ asm J3DClusterLoader_v15::J3DClusterLoader_v15() {
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/__ct__20J3DClusterLoader_v15Fv.s"
 }
 #pragma pop
+#endif
 
 /* 803341E8-80334244 32EB28 005C+00 2/1 0/0 0/0 .text            __dt__20J3DClusterLoader_v15Fv */
+// matches with weak order
+#ifdef NONMATCHING
+J3DClusterLoader_v15::~J3DClusterLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,6 +145,7 @@ asm J3DClusterLoader_v15::~J3DClusterLoader_v15() {
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/__dt__20J3DClusterLoader_v15Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A2098-803A2098 02E6F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -134,17 +157,117 @@ SECTION_DEAD static char const* const pad_803A20AC = "\0\0\0";
 #pragma pop
 
 /* 80334244-803342F8 32EB84 00B4+00 2/1 0/0 0/0 .text            load__20J3DClusterLoader_v15FPCv */
+// matches with vtable data
+#ifdef NONMATCHING
+void* J3DClusterLoader_v15::load(const void* i_data) {
+    mpDeformData = new J3DDeformData();
+
+    const JUTDataFileHeader* fileHeader = (JUTDataFileHeader*)i_data;
+    const JUTDataBlockHeader* block = &fileHeader->mFirstBlock;
+    for (int i = 0; i < fileHeader->mBlockNum; i++) {
+        switch (block->mType) {
+        case 'CLS1':
+            readCluster((J3DClusterBlock*)block);
+            break;
+        default:
+            OSReport("Unknown data block\n");
+            break;
+        }
+        block = block->getNext();
+    }
+
+    return mpDeformData;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DClusterLoader_v15::load(void const* param_0) {
+// asm void* J3DClusterLoader_v15::load(void const* param_0) {
+extern "C" asm void load__20J3DClusterLoader_v15FPCv() {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/load__20J3DClusterLoader_v15FPCv.s"
 }
 #pragma pop
+#endif
 
 /* 803342F8-803345FC 32EC38 0304+00 1/1 0/0 0/0 .text
  * readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock      */
+#ifdef NONMATCHING
+void J3DClusterLoader_v15::readCluster(const J3DClusterBlock* block) {
+    mpDeformData->mClusterNum = block->mClusterNum;
+    mpDeformData->mClusterKeyNum = block->mClusterKeyNum;
+    mpDeformData->mVtxPosNum = block->mVtxPosNum;
+    mpDeformData->mVtxNrmNum = block->mVtxNrmNum;
+    mpDeformData->mClusterVertexNum = block->mClusterVertexNum;
+
+    if (block->mClusterName != NULL) {
+        mpDeformData->mClusterName =
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->mClusterName));
+    } else {
+        mpDeformData->mClusterName = NULL;
+    }
+    if (block->mClusterKeyName != NULL) {
+        mpDeformData->mClusterKeyName =
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(block, block->mClusterKeyName));
+    } else {
+        mpDeformData->mClusterKeyName = NULL;
+    }
+
+    mpDeformData->mVtxPos = JSUConvertOffsetToPtr<f32>(block, block->mVtxPos);
+    mpDeformData->mVtxNrm = JSUConvertOffsetToPtr<f32>(block, block->mVtxNrm);
+
+    mpDeformData->mClusterPointer = new J3DCluster[mpDeformData->getClusterNum()];
+    J3DCluster* blockCluster = JSUConvertOffsetToPtr<J3DCluster>(block, block->mClusterPointer);
+    for (int i = 0; i < mpDeformData->getClusterNum(); i++) {
+        mpDeformData->mClusterPointer[i] = blockCluster[i];
+    }
+
+    mpDeformData->mClusterKeyPointer = new J3DClusterKey[mpDeformData->getClusterKeyNum()];
+    J3DClusterKey* blockClusterKey =
+        JSUConvertOffsetToPtr<J3DClusterKey>(block, block->mClusterKeyPointer);
+    for (int i = 0; i < mpDeformData->getClusterKeyNum(); i++) {
+        mpDeformData->mClusterKeyPointer[i] = blockClusterKey[i];
+    }
+
+    mpDeformData->mClusterVertex = new J3DClusterVertex[mpDeformData->mClusterVertexNum];
+    J3DClusterVertex* blockClusterVertex =
+        JSUConvertOffsetToPtr<J3DClusterVertex>(block, block->mClusterVertex);
+    for (int i = 0; i < mpDeformData->mClusterVertexNum; i++) {
+        mpDeformData->mClusterVertex[i] = blockClusterVertex[i];
+    }
+
+    for (int i = 0; i < mpDeformData->getClusterNum(); i++) {
+        J3DCluster* cluster = &mpDeformData->mClusterPointer[i];
+        cluster->mClusterKey = JSUConvertOffsetToPtr<J3DClusterKey>(block, cluster->mClusterKey);
+        cluster->field_0x18 = JSUConvertOffsetToPtr<u16>(block, cluster->field_0x18);
+        J3DClusterVertex* clusterVertex =
+            JSUConvertOffsetToPtr<J3DClusterVertex>(block, cluster->mClusterVertex);
+        u32 vertexIdx = (clusterVertex - blockClusterVertex) / sizeof(J3DClusterVertex);
+        cluster->mClusterVertex = &mpDeformData->mClusterVertex[vertexIdx];
+        J3DDeformer* deformer = new J3DDeformer(mpDeformData);
+        if (cluster->field_0x14 != 0) {
+            deformer->field_0xc = new f32[cluster->field_0x14 * 3];
+        } else {
+            deformer->field_0xc = NULL;
+        }
+        deformer->mFlags = cluster->mFlags;
+        deformer->field_0x8 = new f32[cluster->mKeyNum];
+        cluster->setDeformer(deformer);
+    }
+
+    for (int i = 0; i < mpDeformData->getClusterKeyNum(); i++) {
+        J3DClusterKey* clusterKey = &mpDeformData->mClusterKeyPointer[i];
+        clusterKey->field_0x4 = JSUConvertOffsetToPtr<u16>(block, clusterKey->field_0x4);
+        clusterKey->field_0x8 = JSUConvertOffsetToPtr<u16>(block, clusterKey->field_0x8);
+    }
+
+    for (int i = 0; i < mpDeformData->mClusterVertexNum; i++) {
+        J3DClusterVertex* clusterVertex = &mpDeformData->mClusterVertex[i];
+        clusterVertex->field_0x4 = JSUConvertOffsetToPtr<u16>(block, clusterVertex->field_0x4);
+        clusterVertex->field_0x8 = JSUConvertOffsetToPtr<u16>(block, clusterVertex->field_0x8);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -153,6 +276,7 @@ asm void J3DClusterLoader_v15::readCluster(J3DClusterBlock const* param_0) {
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock.s"
 }
 #pragma pop
+#endif
 
 /* 803345FC-80334644 32EF3C 0048+00 1/0 0/0 0/0 .text            __dt__16J3DClusterLoaderFv */
 #pragma push

@@ -23,7 +23,7 @@ public:
 private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
-    /* 0x64 */ s32 field_0x64;
+    /* 0x64 */ s32 mDataOffset;
     /* 0x68 */ JKRDvdFile* mDvdFile;
 };
 

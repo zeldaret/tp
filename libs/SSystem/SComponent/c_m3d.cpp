@@ -342,54 +342,54 @@ bool cM3d_Cross_AabSph(const cM3dGAab* pAab, const cM3dGSph* pSph) {
 
 /* 80268C5C-80268ED4 26359C 0278+00 3/3 0/0 0/0 .text
  * cM3d_Check_LinLin__FPC8cM3dGLinPC8cM3dGLinPfPf               */
+// matches with literals
 #ifdef NONMATCHING
-int cM3d_Check_LinLin(const cM3dGLin* pLinA, const cM3dGLin* pLinB, f32* pFloatA, f32* pFloatB) {
+int cM3d_Check_LinLin(const cM3dGLin* lin_a, const cM3dGLin* lin_b, f32* dst_a, f32* dst_b) {
     Vec linAVec;
     Vec linBVec;
-    pLinA->CalcVec(&linAVec);
-    pLinB->CalcVec(&linBVec);
+    lin_a->CalcVec(&linAVec);
+    lin_b->CalcVec(&linBVec);
     f32 linALen = VECMag(&linAVec);
     f32 linBLen = VECMag(&linBVec);
     if (cM3d_IsZero(linALen) || cM3d_IsZero(linBLen)) {
         return 1;
     } else {
-        f32 invLinALen = /* 1.0 */ FLOAT_LABEL(lit_2273) / linALen;
-        f32 invLinBLen = /* 1.0 */ FLOAT_LABEL(lit_2273) / linBLen;
+        f32 invLinALen = 1.0f / linALen;
+        f32 invLinBLen = 1.0f / linBLen;
         VECScale(&linAVec, &linAVec, invLinALen);
         VECScale(&linBVec, &linBVec, invLinBLen);
         Vec tmp;
-        VECSubtract(&pLinA->GetStartP(), &pLinB->GetStartP(), &tmp);
+        VECSubtract(&lin_a->GetStartP(), &lin_b->GetStartP(), &tmp);
         f32 tmpF = -VECDotProduct(&linAVec, &linBVec);
         f32 tmpF2 = VECDotProduct(&tmp, &linAVec);
         VECSquareMag(&tmp);  // result not used
-        f32 tmpF3 = fabsf(/* 1.0 */ FLOAT_LABEL(lit_2273) - (tmpF * tmpF));
+        f32 tmpF3 = fabsf(1.0f - (tmpF * tmpF));
         if (!cM3d_IsZero(tmpF3)) {
             f32 tmpF4 = -VECDotProduct(&tmp, &linBVec);
-            f32 tmpF7 = /* 1.0 */ FLOAT_LABEL(lit_2273) / tmpF3;
+            f32 tmpF7 = 1.0f / tmpF3;
             f32 outFloatAtmp = ((tmpF * tmpF4) - tmpF2) * tmpF7;
-            *pFloatA = outFloatAtmp * invLinALen;
+            *dst_a = outFloatAtmp * invLinALen;
             f32 outFloatBtmp = ((tmpF * tmpF2) - tmpF4) * tmpF7;
-            *pFloatB = outFloatBtmp * invLinBLen;
+            *dst_b = outFloatBtmp * invLinBLen;
             return 3;
         } else {
             f32 tmpF5 = -tmpF2;
-            f32 tmpF6 =
-                /* 0.0 */ FLOAT_LABEL(lit_2256);  // would match with literals instead of labels
-            if (tmpF5 < /* 0.0 */ FLOAT_LABEL(lit_2256) || (tmpF5 > linALen)) {
+            f32 tmpF6 = 0.0f;
+            if (tmpF5 < 0.0f || (tmpF5 > linALen)) {
                 tmpF6 = linBLen;
                 tmpF5 = (tmpF6 * tmpF) - tmpF2;
             }
             f32 tmpF7 = VECDotProduct(&tmp, &linBVec);
-            if (tmpF5 < /* 0.0 */ FLOAT_LABEL(lit_2256) || tmpF5 > linALen) {
-                tmpF5 = /* 0.0 */ FLOAT_LABEL(lit_2256);
+            if (tmpF5 < 0.0f || tmpF5 > linALen) {
+                tmpF5 = 0.0f;
                 tmpF6 = tmpF7;
             }
-            if (tmpF6 < /* 0.0 */ FLOAT_LABEL(lit_2256) || tmpF6 > linBLen) {
+            if (tmpF6 < 0.0f || tmpF6 > linBLen) {
                 tmpF5 = linALen;
                 tmpF6 = tmpF7 + (-linALen * tmpF);
             }
-            *pFloatA = tmpF5 * invLinALen;
-            *pFloatB = tmpF6 * invLinBLen;
+            *dst_a = tmpF5 * invLinALen;
+            *dst_b = tmpF6 * invLinBLen;
             return 2;
         }
     }
@@ -421,33 +421,26 @@ static bool cM3d_CrossInfLineVsInfPlane_proc(f32 pFloatA, f32 pFloatB, const Vec
 
 /* 80268F34-80269050 263874 011C+00 3/3 1/1 0/0 .text
  * cM3d_Cross_LinPla__FPC8cM3dGLinPC8cM3dGPlaP3Vecbb            */
+// matches with literals
 #ifdef NONMATCHING
-bool cM3d_Cross_LinPla(const cM3dGLin* pLine, const cM3dGPla* pPlane, Vec* pVecOut, bool pBoolA,
-                       bool pBoolB) {
-    f32 startVal = pPlane->getPlaneFunc(&pLine->GetStartP());
-    f32 endVal = pPlane->getPlaneFunc(&pLine->GetEndP());
-    if (startVal * endVal > /* 0.0 */ FLOAT_LABEL(lit_2256)) {
-        // matches with the literal, but that screws up data
-        // if (startVal * endVal > 0) {
-        *pVecOut = pLine->GetEndP();
+bool cM3d_Cross_LinPla(const cM3dGLin* lin, const cM3dGPla* pla, Vec* dst, bool a, bool b) {
+    f32 startVal = pla->getPlaneFunc(&lin->GetStartP());
+    f32 endVal = pla->getPlaneFunc(&lin->GetEndP());
+    if (startVal * endVal > 0.0f) {
+        *dst = lin->GetEnd();
         return false;
     } else {
-        if (startVal >= /* 0.0 */ FLOAT_LABEL(lit_2256) &&
-            endVal <= /* 0.0 */ FLOAT_LABEL(lit_2256))
-        {
-            // if (startVal >= 0 && endVal <= 0) {
-            if (pBoolA) {
-                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->GetStartP(),
-                                                        &pLine->GetEndP(), pVecOut);
+        if (startVal >= 0.0f && endVal <= 0.0f) {
+            if (a) {
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &lin->GetStartP(), &lin->GetEndP(), dst);
             }
         } else {
-            if (pBoolB) {
-                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &pLine->GetStartP(),
-                                                        &pLine->GetEndP(), pVecOut);
+            if (b) {
+                return cM3d_CrossInfLineVsInfPlane_proc(startVal, endVal, &lin->GetStartP(), &lin->GetEndP(), dst);
             }
         }
-        *pVecOut = pLine->GetEndP();
-        return true;
+        *dst = lin->GetEnd();
+        return false;
     }
 }
 #else
