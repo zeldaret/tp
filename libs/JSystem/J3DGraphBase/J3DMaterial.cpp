@@ -491,37 +491,30 @@ J3DIndBlock* J3DMaterial::createIndBlock(int param_0) {
 
 /* 80315F60-80316100 3108A0 01A0+00 0/0 3/3 0/0 .text            createPEBlock__11J3DMaterialFUlUl
  */
-// rv is in r5 for some reason
-#ifdef NONMATCHING
-J3DPEBlock* J3DMaterial::createPEBlock(u32 param_0, u32 param_1) {
+J3DPEBlock* J3DMaterial::createPEBlock(u32 createFlag, u32 materialMode) {
     J3DPEBlock* rv = NULL;
-    if (param_0 == 0) {
-        if (param_1 & 1) {
-            return new J3DPEBlockOpa();
-        } else if (param_1 & 2) {
-            return new J3DPEBlockTexEdge();
-        } else if (param_1 & 4) {
-            return new J3DPEBlockXlu();
+
+    if (createFlag == 0) {
+        if (materialMode & 1) {
+            rv = new J3DPEBlockOpa();
+            return rv;
+        } else if (materialMode & 2) {
+            rv = new J3DPEBlockTexEdge();
+            return rv;
+        } else if (materialMode & 4) {
+            rv = new J3DPEBlockXlu();
+            return rv;
         }
     }
 
-    if (param_0 == 0x10000000) {
+    if (createFlag == 0x10000000) {
         rv = new J3DPEBlockFull();
-    } else if (param_0 == 0x20000000) {
+    } else if (createFlag == 0x20000000) {
         rv = new J3DPEBlockFogOff();
     }
+
     return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DPEBlock* J3DMaterial::createPEBlock(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DMaterial/createPEBlock__11J3DMaterialFUlUl.s"
-}
-#pragma pop
-#endif
 
 /* 80316100-80316150 310A40 0050+00 0/0 2/2 0/0 .text calcSizeColorBlock__11J3DMaterialFUl */
 u32 J3DMaterial::calcSizeColorBlock(u32 param_0) {

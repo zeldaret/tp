@@ -27,6 +27,7 @@ public:
     const cXyz& GetEndP(void) const { return mEnd; }
     cXyz& GetEndP(void) { return mEnd; }
     cXyz& GetEnd() { return mEnd; }
+    const cXyz& GetEnd() const { return mEnd; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cM3dGLin));
