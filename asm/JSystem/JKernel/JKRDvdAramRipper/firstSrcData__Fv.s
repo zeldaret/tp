@@ -25,7 +25,7 @@ lbl_802DB428:
 /* 802DB440  48 06 DA 05 */	bl DVDReadPrio
 /* 802DB444  2C 03 00 00 */	cmpwi r3, 0
 /* 802DB448  40 80 00 20 */	bge lbl_802DB468
-/* 802DB44C  88 0D 83 50 */	lbz r0, data_804508D0(r13)
+/* 802DB44C  88 0D 83 50 */	lbz r0, errorRetry__16JKRDvdAramRipper(r13)
 /* 802DB450  28 00 00 00 */	cmplwi r0, 0
 /* 802DB454  40 82 00 0C */	bne lbl_802DB460
 /* 802DB458  38 60 00 00 */	li r3, 0

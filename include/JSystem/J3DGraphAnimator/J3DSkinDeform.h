@@ -80,7 +80,6 @@ public:
     void offFlag(u32 i_flag) { mFlags &= ~i_flag; }
     void setAnmCluster(J3DAnmCluster* anm) { mAnmCluster = anm; }
 
-private:
     /* 0x00 */ J3DDeformData* mDeformData;
     /* 0x04 */ J3DAnmCluster* mAnmCluster;
     /* 0x08 */ f32* field_0x8;

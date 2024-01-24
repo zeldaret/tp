@@ -391,6 +391,7 @@ void J3DAnmLoaderDataBase::setResource(J3DAnmBase* param_1, const void* param_2)
 }
 
 /* 80338468-80338484 332DA8 001C+00 2/2 0/0 0/0 .text            __ct__20J3DAnmFullLoader_v15Fv */
+// matches with vtable data
 #ifdef NONMATCHING
 J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() {}
 #else
@@ -405,6 +406,7 @@ asm J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() {
 #endif
 
 /* 80338484-803384E0 332DC4 005C+00 3/2 0/0 0/0 .text            __dt__20J3DAnmFullLoader_v15Fv */
+// matches with vtable data
 #ifdef NONMATCHING
 J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() {}
 #else
@@ -419,6 +421,10 @@ asm J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() {
 #endif
 
 /* 803384E0-803384FC 332E20 001C+00 2/2 0/0 0/0 .text            __ct__19J3DAnmKeyLoader_v15Fv */
+// matches with vtable data
+#ifdef NONMATCHING
+J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -427,8 +433,13 @@ asm J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() {
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/__ct__19J3DAnmKeyLoader_v15Fv.s"
 }
 #pragma pop
+#endif
 
 /* 803384FC-80338558 332E3C 005C+00 3/2 0/0 0/0 .text            __dt__19J3DAnmKeyLoader_v15Fv */
+// matches with vtable data
+#ifdef NONMATCHING
+J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -437,6 +448,7 @@ asm J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/__dt__19J3DAnmKeyLoader_v15Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803A2130-803A2130 02E790 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -535,7 +547,7 @@ void J3DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* param
 
 /* 80338828-803388BC 333168 0094+00 2/2 0/0 0/0 .text
  * setAnmTransform__20J3DAnmFullLoader_v15FP19J3DAnmTransformFullPC23J3DAnmTransformFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull* param_1,
                                            const J3DAnmTransformFullData* param_2) {
@@ -569,7 +581,7 @@ void J3DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* param_1) {
 
 /* 803388E4-803389B0 333224 00CC+00 2/2 0/0 0/0 .text
  * setAnmColor__20J3DAnmFullLoader_v15FP15J3DAnmColorFullPC19J3DAnmColorFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull* param_1,
                                        const J3DAnmColorFullData* param_2) {
@@ -608,7 +620,7 @@ void J3DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* par
 
 /* 803389D8-80338A7C 333318 00A4+00 2/2 0/0 0/0 .text
  * setAnmTexPattern__20J3DAnmFullLoader_v15FP16J3DAnmTexPatternPC24J3DAnmTexPatternFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmTexPattern(J3DAnmTexPattern* param_1,
                                             const J3DAnmTexPatternFullData* param_2) {
@@ -645,7 +657,7 @@ void J3DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* par
 
 /* 80338AA4-80338B20 3333E4 007C+00 2/2 0/0 0/0 .text
  * setAnmVisibility__20J3DAnmFullLoader_v15FP20J3DAnmVisibilityFullPC24J3DAnmVisibilityFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull* param_1,
                                             const J3DAnmVisibilityFullData* param_2) {
@@ -678,7 +690,7 @@ void J3DAnmFullLoader_v15::readAnmCluster(const J3DAnmClusterFullData* param_1) 
 
 /* 80338B48-80338BB4 333488 006C+00 2/2 0/0 0/0 .text
  * setAnmCluster__20J3DAnmFullLoader_v15FP17J3DAnmClusterFullPC21J3DAnmClusterFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull* param_1,
                                          const J3DAnmClusterFullData* param_2) {
@@ -709,7 +721,7 @@ void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* param_1
 
 /* 80338BDC-80338D44 33351C 0168+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__20J3DAnmFullLoader_v15FP18J3DAnmVtxColorFullPC22J3DAnmVtxColorFullData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* dst,
                                           const J3DAnmVtxColorFullData* data) {
@@ -756,6 +768,7 @@ asm void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* param_0,
 #endif
 
 /* 80338D44-80338E8C 333684 0148+00 2/1 0/0 0/0 .text            load__19J3DAnmKeyLoader_v15FPCv */
+// matches with literals
 #ifdef NONMATCHING
 J3DAnmBase* J3DAnmKeyLoader_v15::load(const void* param_1) {
     const JUTDataFileHeader* header = (const JUTDataFileHeader*)param_1;
@@ -841,7 +854,7 @@ void J3DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* param_1
 
 /* 80339014-803390B0 333954 009C+00 2/2 0/0 0/0 .text
  * setAnmTransform__19J3DAnmKeyLoader_v15FP18J3DAnmTransformKeyPC22J3DAnmTransformKeyData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmTransform(J3DAnmTransformKey* param_1,
                                           const J3DAnmTransformKeyData* param_2) {
@@ -876,7 +889,7 @@ void J3DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* param
 
 /* 803390D8-803392B0 333A18 01D8+00 2/2 0/0 0/0 .text
  * setAnmTextureSRT__19J3DAnmKeyLoader_v15FP19J3DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey* param_1,
                                            const J3DAnmTextureSRTKeyData* param_2) {
@@ -948,7 +961,7 @@ void J3DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* param_1) {
 
 /* 803392D8-803393C4 333C18 00EC+00 2/2 0/0 0/0 .text
  * setAnmColor__19J3DAnmKeyLoader_v15FP14J3DAnmColorKeyPC18J3DAnmColorKeyData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmColor(J3DAnmColorKey* param_1, const J3DAnmColorKeyData* param_2) {
     param_1->mFrameMax = param_2->mFrameMax;
@@ -990,7 +1003,7 @@ void J3DAnmKeyLoader_v15::readAnmCluster(const J3DAnmClusterKeyData* param_1) {
 
 /* 803393EC-80339458 333D2C 006C+00 2/2 0/0 0/0 .text
  * setAnmCluster__19J3DAnmKeyLoader_v15FP16J3DAnmClusterKeyPC20J3DAnmClusterKeyData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey* param_1,
                                         const J3DAnmClusterKeyData* param_2) {
@@ -1021,6 +1034,7 @@ void J3DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* param_1) {
 
 /* 80339480-8033960C 333DC0 018C+00 2/2 0/0 0/0 .text
  * setAnmTevReg__19J3DAnmKeyLoader_v15FP15J3DAnmTevRegKeyPC19J3DAnmTevRegKeyData */
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmTevReg(J3DAnmTevRegKey* param_1,
                                        const J3DAnmTevRegKeyData* param_2) {
@@ -1078,7 +1092,7 @@ void J3DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* param_1) 
 
 /* 80339634-8033979C 333F74 0168+00 2/2 0/0 0/0 .text
  * setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData */
-// matches with literals
+// matches with literals / weaks
 #ifdef NONMATCHING
 void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey* dst,
                                          const J3DAnmVtxColorKeyData* data) {

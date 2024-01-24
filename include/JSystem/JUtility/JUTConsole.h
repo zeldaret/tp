@@ -89,10 +89,7 @@ public:
     void scrollToLastLine() { scroll(mMaxLines); }
     void scrollToFirstLine() { scroll(-mMaxLines); }
 
-private:
     /* 0x18 */ JGadget::TLinkListNode mListNode;
-
-private:
     /* 0x20 */ u32 field_0x20;
     /* 0x24 */ int mMaxLines;
     /* 0x28 */ u8* mBuf;
@@ -133,8 +130,10 @@ public:
 
     static JUTConsoleManager* sManager;
 
+    typedef JGadget::TLinkList<JUTConsole, -offsetof(JUTConsole, mListNode)> ConsoleList;
+
 private:
-    /* 0x00 */ JGadget::TLinkList<JUTConsole, 4> mLinkList;
+    /* 0x00 */ ConsoleList soLink_;
     /* 0x0C */ JUTConsole* mActiveConsole;
     /* 0x10 */ JUTConsole* mDirectConsole;
 };  // Size: 0x14

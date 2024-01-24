@@ -63,7 +63,7 @@ lbl_802DAB40:
 /* 802DAB54  48 06 E2 F1 */	bl DVDReadPrio
 /* 802DAB58  2C 03 00 00 */	cmpwi r3, 0
 /* 802DAB5C  40 80 00 40 */	bge lbl_802DAB9C
-/* 802DAB60  88 0D 83 50 */	lbz r0, data_804508D0(r13)
+/* 802DAB60  88 0D 83 50 */	lbz r0, errorRetry__16JKRDvdAramRipper(r13)
 /* 802DAB64  28 00 00 00 */	cmplwi r0, 0
 /* 802DAB68  40 82 00 2C */	bne lbl_802DAB94
 /* 802DAB6C  28 1C 00 00 */	cmplwi r28, 0

@@ -6,6 +6,17 @@
 #include "JSystem/JGadget/linklist.h"
 #include "dolphin/types.h"
 
+template <typename T>
+class TPRIsEqual_pointer_ {
+public:
+    TPRIsEqual_pointer_<T>(const T* p) { this->p_ = p; }
+
+    bool operator()(const T& rSrc) const { return &rSrc == this->p_; }
+
+private:
+    const T* p_;
+};
+
 //
 // Forward References:
 //
@@ -39,85 +50,80 @@ extern "C" void _restgpr_29();
 
 /* 802DCA1C-802DCA58 2D735C 003C+00 1/1 6/6 0/0 .text            __dt__Q27JGadget13TNodeLinkListFv
  */
-JGadget::TNodeLinkList::~TNodeLinkList() {
-}
+JGadget::TNodeLinkList::~TNodeLinkList() {}
 
 /* 802DCA58-802DCAA0 2D7398 0048+00 0/0 2/2 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator */
 JGadget::TNodeLinkList::iterator
 JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator it) {
-    iterator it2 = JGadget::TNodeLinkList::iterator(it);
-    iterator next = ++it2;
+    iterator next = it;
+    ++next;
     return erase(it, next);
 }
 
 /* 802DCAA0-802DCB08 2D73E0 0068+00 1/1 0/0 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
  */
-JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::erase(iterator start, iterator end) {
-    TLinkListNode* startNode = start.node;
-    TLinkListNode* endNode = end.node;
-    while (startNode != endNode) {
-        TLinkListNode* nextNode = startNode->mNext;
-        Erase(startNode);
-        startNode = nextNode;
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::erase(iterator a, iterator b) {
+    TLinkListNode* cur = a.node;
+    TLinkListNode* end = b.node;
+    TLinkListNode* next;
+
+    for (; cur != end; cur = next) {
+        next = cur->mNext;
+        Erase(cur);
     }
-    return iterator(end.node);
+
+    return b;
 }
 
 /* 802DCB08-802DCBA8 2D7448 00A0+00 1/1 0/0 0/0 .text
  * splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator param_0,
-                                        JGadget::TNodeLinkList& param_1,
-                                        JGadget::TNodeLinkList::iterator param_2) {
-    nofralloc
-#include "asm/JSystem/JGadget/linklist/func_802DCB08.s"
+void JGadget::TNodeLinkList::splice(iterator it, TNodeLinkList& rSrc, iterator itSrc) {
+    iterator itSrcNext = itSrc;
+    ++itSrcNext;
+
+    if ((it == itSrc) || (it == itSrcNext)) {
+        return;
+    } else {
+        TLinkListNode* const node = &(*itSrc);
+        rSrc.Erase(node);
+        Insert(it, node);
+    }
 }
-#pragma pop
 
 /* 802DCBA8-802DCBD4 2D74E8 002C+00 1/1 7/7 0/0 .text
  * Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode */
-JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Insert(iterator it, TLinkListNode* node) {
-    TLinkListNode* itNode = it.node;
-    TLinkListNode* prev = itNode->mPrev;
-    node->mNext = itNode;
-    node->mPrev = prev;
-    itNode->mPrev = node;
-    prev->mNext = node;
-    this->count++;
-    return iterator(node);
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Insert(iterator it, TLinkListNode* p) {
+    TLinkListNode* pIt = it.node;
+    TLinkListNode* pItPrev = pIt->mPrev;
+
+    p->mNext = pIt;
+    p->mPrev = pItPrev;
+    pIt->mPrev = p;
+    pItPrev->mNext = p;
+    count++;
+    return iterator(p);
 }
 
 /* 802DCBD4-802DCBF8 2D7514 0024+00 2/2 4/4 0/0 .text
  * Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode  */
-JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Erase(TLinkListNode* node) {
-    TLinkListNode* next = node->mNext;
-    TLinkListNode* prev = node->mPrev;
-    next->mPrev = prev;
-    prev->mNext = next;
-    this->count--;
-    return iterator(next);
+JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Erase(TLinkListNode* p) {
+    TLinkListNode* pNext = p->mNext;
+    TLinkListNode* pPrev = p->mPrev;
+    pNext->mPrev = pPrev;
+    pPrev->mNext = pNext;
+    count--;
+    return iterator(pNext);
 }
 
 /* 802DCBF8-802DCCC8 2D7538 00D0+00 0/0 2/2 0/0 .text
  * Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode */
+// missing stack
 #ifdef NONMATCHING
-void JGadget::TNodeLinkList::Remove(TLinkListNode* node) {
-    TNodeLinkList trashList;
-    TLinkListNode* myNode = this->ocObject_.mNext;
-    while (myNode != end().node) {
-        if (myNode == node) {
-            TLinkListNode* next = myNode->mNext;
-            trashList.splice(&trashList.ocObject_, *this, myNode);
-            myNode = next;
-        } else {
-            myNode = myNode->mNext;
-        }
-    }
+void JGadget::TNodeLinkList::Remove(TLinkListNode* p) {
+    remove_if(TPRIsEqual_pointer_<TLinkListNode>(p));
 }
 #else
 #pragma push

@@ -439,41 +439,43 @@ JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
 
 /* 802E8240-802E82B0 2E2B80 0070+00 3/3 0/0 0/0 .text
  * appendConsole__17JUTConsoleManagerFP10JUTConsole             */
-#ifdef NONMATCHING
 void JUTConsoleManager::appendConsole(JUTConsole* console) {
     JUT_ASSERT(961, sManager != 0 && console != 0);
-    mLinkList.Push_back(console);
+    soLink_.Push_back(console);
+
     if (mActiveConsole == NULL) {
         mActiveConsole = console;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsoleManager::appendConsole(JUTConsole* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/appendConsole__17JUTConsoleManagerFP10JUTConsole.s"
-}
-#pragma pop
-#endif
 
 /* 802E82B0-802E8384 2E2BF0 00D4+00 2/2 0/0 0/0 .text
  * removeConsole__17JUTConsoleManagerFP10JUTConsole             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JUTConsoleManager::removeConsole(JUTConsole* param_0) {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/removeConsole__17JUTConsoleManagerFP10JUTConsole.s"
+void JUTConsoleManager::removeConsole(JUTConsole* console) {
+    JUT_ASSERT(982, sManager != 0 && console != 0);
+    JUT_ASSERT(985, soLink_.Find( console ) != soLink_.end());
+
+    if (mActiveConsole == console) {
+        if (soLink_.size() <= 1) {
+            mActiveConsole = NULL;
+        } else {
+            mActiveConsole = console != &soLink_.back() ? soLink_.Element_toValue(console->mListNode.getNext()) : &soLink_.front();
+        }
+    }
+
+    if (JUTGetWarningConsole() == console)
+        JUTSetWarningConsole(NULL);
+    if (JUTGetReportConsole() == console)
+        JUTSetReportConsole(NULL);
+
+    soLink_.Remove(console);
 }
-#pragma pop
 
 /* 802E8384-802E8450 2E2CC4 00CC+00 0/0 1/1 0/0 .text            draw__17JUTConsoleManagerCFv */
+// missing stack var, different from tww/pik2
 #ifdef NONMATCHING
 void JUTConsoleManager::draw() const {
-    JGadget::TLinkList<JUTConsole, 4>::const_iterator iter = mLinkList.begin();
-    JGadget::TLinkList<JUTConsole, 4>::const_iterator end = mLinkList.end();
+    ConsoleList::const_iterator iter = soLink_.begin();
+    ConsoleList::const_iterator end = soLink_.end();
 
     for (; iter != end; ++iter) {
         const JUTConsole* const console = &(*iter);
