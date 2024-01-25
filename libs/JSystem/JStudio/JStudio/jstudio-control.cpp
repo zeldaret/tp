@@ -4,8 +4,11 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
+#include "JSystem/JStudio/JStudio/jstudio-math.h"
+#include "JSystem/JStudio/JStudio/jstudio-data.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "string.h"
 
 //
 // Forward References:
@@ -64,276 +67,208 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void memcmp();
 extern "C" extern void* __vt__Q27JStudio13TCreateObject[4];
 extern "C" u8 ga8cSignature__Q27JStudio4data[8];
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 8039AA40-8039AA4C 0270A0 000C+00 1/1 0/0 0/0 .rodata          @745 */
-SECTION_RODATA static u8 const lit_745[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039AA40, &lit_745);
-
-/* 803C4AC0-803C4AE0 021BE0 0020+00 2/2 0/0 0/0 .data            __vt__Q27JStudio6TParse */
-SECTION_DATA extern void* __vt__Q27JStudio6TParse[8] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q27JStudio6TParseFv,
-    (void*)parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl,
-    (void*)parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl,
-    (void*)parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl,
-    (void*)parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl,
-    (void*)parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl,
-};
-
-/* 803C4AE0-803C4AF4 021C00 0014+00 1/1 1/1 0/0 .data            __vt__Q27JStudio8TFactory */
-SECTION_DATA extern void* __vt__Q27JStudio8TFactory[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q27JStudio8TFactoryFv,
-    (void*)create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object,
-    (void*)destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject,
-};
-
-/* 803C4AF4-803C4B00 021C14 000C+00 2/2 0/0 0/0 .data            __vt__Q27JStudio8TControl */
-SECTION_DATA extern void* __vt__Q27JStudio8TControl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q27JStudio8TControlFv,
-};
-
-/* 80455458-8045545C 003A58 0004+00 2/2 0/0 0/0 .sdata2          @748 */
-SECTION_SDATA2 static u8 lit_748[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80285114-802851AC 27FA54 0098+00 0/0 1/1 0/0 .text            __ct__Q27JStudio8TControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TControl::TControl() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__ct__Q27JStudio8TControlFv.s"
+JStudio::TControl::TControl() {
+    mTransformOnSet = false;
+    mTransformOnGet = false;
+    Vec aVStack_20 = {0.0f,0.0f,0.0f};
+    transform_setOrigin_TxyzRy(aVStack_20, 0.0f);
 }
-#pragma pop
 
 /* 802851AC-80285228 27FAEC 007C+00 1/0 0/0 0/0 .text            __dt__Q27JStudio8TControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TControl::~TControl() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio8TControlFv.s"
-}
-#pragma pop
+JStudio::TControl::~TControl() {}
 
 /* 80285228-80285250 27FB68 0028+00 0/0 1/1 0/0 .text
  * setFactory__Q27JStudio8TControlFPQ27JStudio8TFactory         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TControl::setFactory(JStudio::TFactory* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/setFactory__Q27JStudio8TControlFPQ27JStudio8TFactory.s"
+void JStudio::TControl::setFactory(JStudio::TFactory* factory) {
+    fvb::TFactory* fvbFactory = NULL;
+    ctb::TFactory* ctbFactory = NULL;
+    if (factory != NULL) {
+        fvbFactory = &factory->fvb_Factory;
+        ctbFactory = &factory->ctb_Factory;
+    }
+    stb::TControl::setFactory(factory);
+    fvb_Control.setFactory(fvbFactory);
+    ctb_Control.setFactory(ctbFactory);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8045545C-80455460 003A5C 0004+00 2/2 0/0 0/0 .sdata2          @772 */
-SECTION_SDATA2 static f32 lit_772 = 0.01745329238474369f;
 
 /* 80285250-802852D0 27FB90 0080+00 3/3 1/1 0/0 .text
  * transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TControl::transformOnSet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/transformOnSet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf.s"
+int JStudio::TControl::transformOnSet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
+    field_0x8c = param_0;
+    mTransformOnSet_RotationY = param_1;
+    JStudio::math::getTransformation_RyT(mTransformOnSet_Matrix, param_0, param_1);
+    return 1;
 }
-#pragma pop
 
 /* 802852D0-80285368 27FC10 0098+00 3/3 1/1 0/0 .text
  * transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf.s"
+int JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
+    field_0x98 =  param_0;
+    field_0xa8 = param_1;
+    Mtx afStack_48;
+    MTXTrans(afStack_48, -param_0.x, -param_0.y, -param_0.z);
+    math::rotate_y(mTransformOnGet_Matrix, afStack_48, -param_1);
+    return 1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039AA4C-8039AA58 0270AC 000C+00 1/1 0/0 0/0 .rodata          @838 */
-SECTION_RODATA static u8 const lit_838[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039AA4C, &lit_838);
 
 /* 80285368-8028543C 27FCA8 00D4+00 1/1 0/0 0/0 .text
  * transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TControl::transform_setOrigin_ctb(JStudio::ctb::TObject const& param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject.s"
+int JStudio::TControl::transform_setOrigin_ctb(JStudio::ctb::TObject const& param_0) {
+    switch (param_0.getScheme()) {
+    case 1:
+        const f32* pfVar4 = (const f32*)param_0.getData();
+        Vec local_144 = {0.0f, 0.0f, 0.0f};
+        local_144.x = pfVar4[0];
+        local_144.y = pfVar4[1];
+        local_144.z = pfVar4[2];
+        transform_setOrigin_TxyzRy(local_144, pfVar4[3]);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
 }
-#pragma pop
 
 /* 8028543C-80285488 27FD7C 004C+00 1/1 0/0 0/0 .text
  * transform_setOrigin_ctb_index__Q27JStudio8TControlFUl        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TControl::transform_setOrigin_ctb_index(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/transform_setOrigin_ctb_index__Q27JStudio8TControlFUl.s"
+bool JStudio::TControl::transform_setOrigin_ctb_index(u32 index) {
+    ctb::TObject* object = ctb_getObject_index(index);
+    if (object == NULL) {
+        return false;
+    }
+    transform_setOrigin_ctb(*object);
+    return true;
 }
-#pragma pop
 
 /* 80285488-802854D0 27FDC8 0048+00 0/0 4/4 0/0 .text            __dt__Q27JStudio13TCreateObjectFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TCreateObject::~TCreateObject() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio13TCreateObjectFv.s"
-}
-#pragma pop
+JStudio::TCreateObject::~TCreateObject() {}
 
 /* 802854D0-80285560 27FE10 0090+00 1/0 0/0 0/0 .text            __dt__Q27JStudio8TFactoryFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JStudio::TFactory::~TFactory() {
-extern "C" asm void __dt__Q27JStudio8TFactoryFv() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio8TFactoryFv.s"
-}
-#pragma pop
+JStudio::TFactory::~TFactory() {}
 
 /* 80285560-802855AC 27FEA0 004C+00 0/0 1/1 0/0 .text
  * appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/appendCreateObject__Q27JStudio8TFactoryFPQ27JStudio13TCreateObject.s"
+void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* param_0) {
+    mList.Push_back(param_0);
 }
-#pragma pop
 
 /* 802855AC-8028566C 27FEEC 00C0+00 1/0 0/0 0/0 .text
  * create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_object const& param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/create__Q27JStudio8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object.s"
+JStudio::TObject* JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_object const& param_0) {
+    JGadget::TContainerEnumerator<TCreateObject, -4> aTStack_368(&mList);
+    while(aTStack_368) {
+        TCreateObject& piVar1 = *aTStack_368;
+        JStudio::TObject* obj;
+        if (piVar1.create(&obj, param_0)) {
+            return obj;
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 8028566C-802856A8 27FFAC 003C+00 0/0 1/1 0/0 .text __ct__Q27JStudio6TParseFPQ27JStudio8TControl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TParse::TParse(JStudio::TControl* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__ct__Q27JStudio6TParseFPQ27JStudio8TControl.s"
+JStudio::TParse::TParse(JStudio::TControl* param_0) : stb::TParse(param_0) {
 }
-#pragma pop
 
 /* 802856A8-80285708 27FFE8 0060+00 1/0 1/1 0/0 .text            __dt__Q27JStudio6TParseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JStudio::TParse::~TParse() {
-extern "C" asm void __dt__Q27JStudio6TParseFv() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/__dt__Q27JStudio6TParseFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 8039AA58-8039AA68 0270B8 000C+04 1/1 0/0 0/0 .rodata          @1138 */
-SECTION_RODATA static u8 const lit_1138[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8039AA58, &lit_1138);
+JStudio::TParse::~TParse() {}
 
 /* 80285708-802857E4 280048 00DC+00 1/0 0/0 0/0 .text
  * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TParse::parseHeader(JStudio::stb::data::TParse_THeader const& param_0,
+bool JStudio::TParse::parseHeader(JStudio::stb::data::TParse_THeader const& param_0,
                                       u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl.s"
+    const JStudio::stb::data::THeader::Target& target = param_0.get_target();
+    if (memcmp(target.name, JStudio::data::ga8cSignature, sizeof(JStudio::data::ga8cSignature)) != 0) {
+        return false;
+    }
+    if (target.target_version < 2) {
+        return false;
+    } 
+    if (target.target_version > 6) {
+        return false;
+    }
+    JStudio::TControl* pControl = getControl();
+    JUT_ASSERT(322, pControl!=0);
+    if ((param_1 & 0x100) == 0) {
+        Vec local_468 = {0.0f, 0.0f, 0.0f};
+        pControl->transform_setOrigin_TxyzRy(local_468, 0.0f);
+        pControl->transform_enable(false);
+    }
+    return true;
 }
-#pragma pop
 
 /* 802857E4-80285844 280124 0060+00 1/0 0/0 0/0 .text
  * parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& param_0,
+bool JStudio::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& param_0,
                                            u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl.s"
+    switch(param_0.get_type()) {
+    case 'JFVB':
+        return parseBlock_block_fvb_(param_0, param_1);
+    case 'JCTB':
+        return parseBlock_block_ctb_(param_0, param_1);
+    default:
+        return stb::TParse::parseBlock_block(param_0, param_1);
+    }
 }
-#pragma pop
 
 /* 80285844-802858F0 280184 00AC+00 1/1 0/0 0/0 .text
  * parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const& param_0,
+bool JStudio::TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const& param_0,
                                                 u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/func_80285844.s"
+    TControl* pControl = getControl();
+    JUT_ASSERT(361, pControl!=0);
+    const void* pContent = param_0.getContent();
+    JUT_ASSERT(363, pContent!=0);
+    u32 uVar4 = param_1 & 0xf;
+    if ((param_1 & 0x10) != 0) {
+        uVar4 |= 0x10;
+    }
+    if ((param_1 & 0x20) != 0) {
+        uVar4 |= 0x20;
+    }
+    if ((param_1 & 0x40) != 0) {
+        uVar4 |= 0x40;
+    }
+    fvb::TParse aTStack_30(&pControl->fvb_Control);
+    if (!aTStack_30.parse(pContent, uVar4)) {
+        return false;
+    } 
+    return true;
 }
-#pragma pop
 
 /* 802858F0-802859DC 280230 00EC+00 1/1 0/0 0/0 .text
  * parseBlock_block_ctb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TParse::parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const& param_0,
+bool JStudio::TParse::parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const& param_0,
                                                 u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-control/func_802858F0.s"
+    TControl* pControl = getControl();
+    JUT_ASSERT(386, pControl!=0);
+    const void* pContent = param_0.getContent();
+    JUT_ASSERT(388, pContent!=0);
+    u32 uVar4 = param_1 & 0xf;
+    if ((param_1 & 0x10) != 0) {
+        uVar4 |= 0x10;
+    }
+    if ((param_1 & 0x20) != 0) {
+        uVar4 |= 0x20;
+    }
+    if ((param_1 & 0x40) != 0) {
+        uVar4 |= 0x40;
+    }
+    ctb::TParse aTStack_30(&pControl->ctb_Control);
+    if (!aTStack_30.parse(pContent, uVar4)) {
+        return false;
+    }
+    if ((param_1 & 0x200) == 0) {
+        if (pControl->transform_setOrigin_ctb_index(0) == 0) {
+            return 0;
+        }
+        pControl->transform_enable(true);
+    }
+    return true;
 }
-#pragma pop

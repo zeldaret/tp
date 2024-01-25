@@ -1320,25 +1320,20 @@ asm JStudio::TVariableValue::TOutput::~TOutput() {
 
 /* 80285E54-80285EB8 280794 0064+00 1/1 0/0 0/0 .text
  * update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TVariableValue::update(f64 param_0, JStudio::TAdaptor* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor.s"
+void JStudio::TVariableValue::update(f64 param_0, JStudio::TAdaptor* param_1) {
+    if (field_0x8) {
+        field_0x8(this, param_0);
+        JUT_ASSERT(200, pOutput_!=0);
+        (*pOutput_)(mValue, param_1);
+    }
 }
-#pragma pop
 
 /* 80285EB8-80285ECC 2807F8 0014+00 4/4 4/4 0/0 .text
  * update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TVariableValue::update_immediate_(JStudio::TVariableValue* param_0, f64 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued.s"
+void JStudio::TVariableValue::update_immediate_(JStudio::TVariableValue* param_0, f64 param_1) {
+    param_0->mValue = param_0->field_0xc.val;
+    param_0->field_0x8 = NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804554A0-804554A8 003AA0 0008+00 3/3 0/0 0/0 .sdata2          @803 */
@@ -1346,26 +1341,16 @@ SECTION_SDATA2 static f64 lit_803 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80285ECC-80285F08 28080C 003C+00 1/1 0/0 0/0 .text
  * update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TVariableValue::update_time_(JStudio::TVariableValue* param_0, f64 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/update_time___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued.s"
+void JStudio::TVariableValue::update_time_(JStudio::TVariableValue* param_0, f64 param_1) {
+    param_0->mValue = param_0->field_0xc.val * (param_0->field_0x4 * param_1);
 }
-#pragma pop
 
 /* 80285F08-80285F6C 280848 0064+00 2/2 0/0 0/0 .text
  * update_functionValue___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TVariableValue::update_functionValue_(JStudio::TVariableValue* param_0,
+void JStudio::TVariableValue::update_functionValue_(JStudio::TVariableValue* param_0,
                                                         f64 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80285F08.s"
+    param_0->mValue = param_0->field_0xc.fv->getValue(param_0->field_0x4 * param_1);
 }
-#pragma pop
 
 /* 80285F6C-80285FCC 2808AC 0060+00 2/1 0/0 0/0 .text
  * __dt__Q37JStudio14TVariableValue13TOutput_none_Fv            */
@@ -1386,14 +1371,7 @@ void JStudio::TVariableValue::TOutput_none_::operator()(f32 param_0,
 }
 
 /* 80285FD0-80286018 280910 0048+00 8/8 0/0 0/0 .text            __dt__Q27JStudio8TAdaptorFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TAdaptor::~TAdaptor() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio8TAdaptorFv.s"
-}
-#pragma pop
+JStudio::TAdaptor::~TAdaptor() {}
 
 /* 80286018-8028601C 280958 0004+00 8/0 2/0 0/0 .text adaptor_do_prepare__Q27JStudio8TAdaptorFv */
 // void JStudio::TAdaptor::adaptor_do_prepare() {
@@ -1426,6 +1404,36 @@ void JStudio::TAdaptor::adaptor_do_data(void const* param_0, u32 param_1, void c
 /* 8028602C-802860CC 28096C 00A0+00 8/7 0/0 0/0 .text
  * adaptor_setVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUlQ37JStudio4data15TEOperationDataPCvUl
  */
+// Matches with literals
+#ifdef NONMATCHING
+void JStudio::TAdaptor::adaptor_setVariableValue(JStudio::TControl* pControl, u32 param_2,
+                                                     JStudio::data::TEOperationData param_3,
+                                                     void const* param_4, u32 param_5) {
+    setVarFunc func;
+    JUT_ASSERT(304, pControl!=0);
+    switch (param_3) {
+    case JStudio::data::UNK_0x1:
+        func = &adaptor_setVariableValue_VOID_;
+        break;
+    case JStudio::data::UNK_0x2:
+        func = &adaptor_setVariableValue_IMMEDIATE_;
+        break;
+    case JStudio::data::UNK_0x3:
+        func = &adaptor_setVariableValue_TIME_;
+        break;
+    case JStudio::data::UNK_0x10:
+        func = &adaptor_setVariableValue_FVR_NAME_;
+        break;
+    case JStudio::data::UNK_0x12:
+        func = &adaptor_setVariableValue_FVR_INDEX_;
+        break;
+     default:
+        return;
+    }
+
+    (*func)(this, pControl, param_2, param_4, param_5);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1436,198 +1444,182 @@ asm void JStudio::TAdaptor::adaptor_setVariableValue(JStudio::TControl* param_0,
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/func_8028602C.s"
 }
 #pragma pop
+#endif
 
 /* 802860CC-802861C0 280A0C 00F4+00 7/7 0/0 0/0 .text
  * adaptor_setVariableValue_n__Q27JStudio8TAdaptorFPQ27JStudio8TControlPCUlUlQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_n(JStudio::TControl* param_0,
-                                                       u32 const* param_1, u32 param_2,
-                                                       JStudio::data::TEOperationData param_3,
-                                                       void const* param_4, u32 param_5) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_802860CC.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_n(JStudio::TControl* pControl,
+                                                       u32 const* param_2, u32 param_3,
+                                                       JStudio::data::TEOperationData param_4,
+                                                       void const* param_5, u32 param_6) {
+    JUT_ASSERT(343, pControl!=0);
+    setVarFunc pcVar6;
+    u32 iVar7;
+    switch(param_4) {
+    case JStudio::data::UNK_0x1:
+        iVar7 = 0;
+        pcVar6 = adaptor_setVariableValue_VOID_;
+        break;
+    case JStudio::data::UNK_0x2:
+        iVar7 = 4;
+        pcVar6 = adaptor_setVariableValue_IMMEDIATE_;
+        break;
+    case JStudio::data::UNK_0x3:
+        iVar7 = 4;
+        pcVar6 = adaptor_setVariableValue_TIME_;
+        break;
+    case JStudio::data::UNK_0x12:
+        iVar7 = 4;
+        pcVar6 = adaptor_setVariableValue_FVR_INDEX_;
+        break;
+    default:
+        return;
+    }
+    
+    JGadget::TEnumerator<const u32*> enumerator(param_2, param_2 + param_3);
+    while (enumerator) {
+        (*pcVar6)(this, pControl, **enumerator, param_5, iVar7);
+        param_5 = (const void*)((int)param_5 + iVar7);
+    }
 }
-#pragma pop
 
 /* 802861C0-80286204 280B00 0044+00 0/0 2/2 0/0 .text
  * adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
+void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
     JStudio::TAdaptor::TSetVariableValue_immediate const* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_802861C0.s"
+    u32 uVar1;
+    while ((uVar1 = param_0->field_0x0) != 0xffffffff) {
+        adaptor_setVariableValue_immediate(uVar1, param_0->field_0x4);
+        param_0++;
+    }
 }
-#pragma pop
 
 /* 80286204-80286274 280B44 0070+00 0/0 4/4 0/0 .text
  * adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_Vec(u32 const* param_0, Vec const& param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_Vec(u32 const* puIndex, Vec const& param_2) {
+    JUT_ASSERT(400, puIndex!=0);
+    adaptor_referVariableValue(puIndex[0])->setValue_immediate(param_2.x);
+    adaptor_referVariableValue(puIndex[1])->setValue_immediate(param_2.y);
+    adaptor_referVariableValue(puIndex[2])->setValue_immediate(param_2.z);
 }
-#pragma pop
 
 /* 80286274-802862AC 280BB4 0038+00 0/0 6/6 0/0 .text
  * adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_getVariableValue_Vec(Vec* param_0, u32 const* param_1) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl.s"
+void JStudio::TAdaptor::adaptor_getVariableValue_Vec(Vec* param_1, u32 const* param_2) const {
+    param_1->x = adaptor_getVariableValue(param_2[0])->getValue();
+    param_1->y = adaptor_getVariableValue(param_2[1])->getValue();
+    param_1->z = adaptor_getVariableValue(param_2[2])->getValue();
 }
-#pragma pop
 
 /* 802862AC-8028638C 280BEC 00E0+00 0/0 3/3 0/0 .text
  * adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_GXColor(u32 const* param_0,
-                                                             GXColor const& param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_GXColor(u32 const* puIndex,
+                                                         GXColor const& param_2) {
+    JUT_ASSERT(431, puIndex!=0);
+    adaptor_referVariableValue(puIndex[0])->setValue_immediate(param_2.r);
+    adaptor_referVariableValue(puIndex[1])->setValue_immediate(param_2.g);
+    adaptor_referVariableValue(puIndex[2])->setValue_immediate(param_2.b);
+    adaptor_referVariableValue(puIndex[3])->setValue_immediate(param_2.a);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804554A8-804554AC 003AA8 0004+00 1/1 0/0 0/0 .sdata2          @1094 */
-SECTION_SDATA2 static u8 lit_1094[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804554AC-804554B0 003AAC 0004+00 1/1 0/0 0/0 .sdata2          @1095 */
-SECTION_SDATA2 static f32 lit_1095 = 255.0f;
 
 /* 8028638C-802864D8 280CCC 014C+00 0/0 4/4 0/0 .text
  * adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(GXColor* param_0,
-                                                             u32 const* param_1) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl.s"
+void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(GXColor* param_1,
+                                                             u32 const* param_2) const {
+    param_1->r = adaptor_getVariableValue(param_2[0])->getValue_uint8();
+    param_1->g = adaptor_getVariableValue(param_2[1])->getValue_uint8();
+    param_1->b = adaptor_getVariableValue(param_2[2])->getValue_uint8();
+    param_1->a = adaptor_getVariableValue(param_2[3])->getValue_uint8();
 }
-#pragma pop
 
 /* 802864D8-8028656C 280E18 0094+00 1/1 0/0 0/0 .text
  * adaptor_updateVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_updateVariableValue(JStudio::TControl* param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/adaptor_updateVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUl.s"
+void JStudio::TAdaptor::adaptor_updateVariableValue(JStudio::TControl* pControl, u32 param_2) {
+    JUT_ASSERT(479, pControl!=0);
+    f64 dVar3 = pControl->getSecondPerFrame();
+    JGadget::TEnumerator<JStudio::TVariableValue*> enumerator(pValue_, pValue_ + u);
+    while (enumerator) {
+        JStudio::TVariableValue* value = *enumerator;
+        value->forward(param_2);
+        value->update(dVar3, this);
+    }
 }
-#pragma pop
 
 /* 8028656C-80286584 280EAC 0018+00 2/2 0/0 0/0 .text
  * adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor* param_0,
-                                                           JStudio::TControl* param_1, u32 param_2,
-                                                           void const* param_3, u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_8028656C.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_VOID_(JStudio::TAdaptor* param_1,
+                                                       JStudio::TControl* param_2, u32 param_3,
+                                                       void const* param_4, u32 uSize) {
+    JUT_ASSERT(499, uSize==0);
+    param_1->pValue_[param_3].setValue_none();
 }
-#pragma pop
 
 /* 80286584-802865B0 280EC4 002C+00 2/2 0/0 0/0 .text
  * adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor* param_0,
-                                                                JStudio::TControl* param_1,
-                                                                u32 param_2, void const* param_3,
-                                                                u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286584.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor* param_1,
+                                                            JStudio::TControl* param_2, u32 param_3,
+                                                            void const* param_4, u32 param_5) {
+    TVariableValue* value = &param_1->pValue_[param_3];
+    value->setValue_immediate(*(f32*)param_4);
 }
-#pragma pop
 
 /* 802865B0-802865DC 280EF0 002C+00 2/2 0/0 0/0 .text
  * adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_TIME_(JStudio::TAdaptor* param_0,
-                                                           JStudio::TControl* param_1, u32 param_2,
-                                                           void const* param_3, u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_802865B0.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_TIME_(JStudio::TAdaptor* param_1,
+                                                       JStudio::TControl* param_2, u32 param_3,
+                                                       void const* param_4, u32 param_5) {
+    TVariableValue* value = &param_1->pValue_[param_3];
+    value->setValue_time(*(f32*)param_4);
 }
-#pragma pop
 
 /* 802865DC-80286648 280F1C 006C+00 1/1 0/0 0/0 .text
  * adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor* param_0,
-                                                               JStudio::TControl* param_1,
-                                                               u32 param_2, void const* param_3,
-                                                               u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_802865DC.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor* param_1,
+                                                           JStudio::TControl* param_2, u32 param_3,
+                                                           void const* param_4, u32 param_5) {
+    TVariableValue* value = &param_1->pValue_[param_3];
+    value->setValue_functionValue(param_2->getFunctionValue(param_4,param_5));
 }
-#pragma pop
 
 /* 80286648-802866B0 280F88 0068+00 2/2 0/0 0/0 .text
  * adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio8TControlUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* param_0,
-                                                                JStudio::TControl* param_1,
-                                                                u32 param_2, void const* param_3,
-                                                                u32 param_4) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286648.s"
+void JStudio::TAdaptor::adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor* param_1,
+                                                            JStudio::TControl* param_2, u32 param_3,
+                                                            void const* param_4, u32 param_5) {
+    TVariableValue* value = &param_1->pValue_[param_3];
+    value->setValue_functionValue(param_2->getFunctionValue_index(*(u32*)param_4));
 }
-#pragma pop
 
 /* 802866B0-80286734 280FF0 0084+00 8/8 0/0 0/0 .text            __dt__Q27JStudio7TObjectFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject::~TObject() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio7TObjectFv.s"
+JStudio::TObject::~TObject() {
+    delete mpAdaptor;
 }
-#pragma pop
 
 /* 80286734-8028679C 281074 0068+00 1/1 0/0 0/0 .text forward_value__Q27JStudio7TObjectFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TObject::forward_value(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/forward_value__Q27JStudio7TObjectFUl.s"
+void JStudio::TObject::forward_value(u32 param_0) {
+    TAdaptor* adaptor = getAdaptor();
+    if (adaptor != NULL) {
+        adaptor->adaptor_updateVariableValue(getControl(), param_0);
+        adaptor->adaptor_do_update(param_0);
+    }
 }
-#pragma pop
 
 /* 8028679C-802867D4 2810DC 0038+00 9/0 0/0 0/0 .text            do_begin__Q27JStudio7TObjectFv */
+#ifdef NONMATCHING
+void JStudio::TObject::do_begin() {
+    TAdaptor* adaptor = getAdaptor();
+    if (adaptor != NULL) {
+        adaptor->adaptor_do_begin();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1637,52 +1629,42 @@ extern "C" asm void do_begin__Q27JStudio7TObjectFv() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/do_begin__Q27JStudio7TObjectFv.s"
 }
 #pragma pop
+#endif
 
 /* 802867D4-8028680C 281114 0038+00 9/0 0/0 0/0 .text            do_end__Q27JStudio7TObjectFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TObject::do_end() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/do_end__Q27JStudio7TObjectFv.s"
+void JStudio::TObject::do_end() {
+    TAdaptor* adaptor = getAdaptor();
+    if (adaptor != NULL) {
+        adaptor->adaptor_do_end();
+    }
 }
-#pragma pop
 
 /* 8028680C-8028682C 28114C 0020+00 9/0 0/0 0/0 .text            do_wait__Q27JStudio7TObjectFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TObject::do_wait(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/do_wait__Q27JStudio7TObjectFUl.s"
+void JStudio::TObject::do_wait(u32 param_0) {
+    forward_value(param_0);
 }
-#pragma pop
 
 /* 8028682C-80286864 28116C 0038+00 9/0 0/0 0/0 .text do_data__Q27JStudio7TObjectFPCvUlPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::TObject::do_data(void const* param_0, u32 param_1, void const* param_2,
+void JStudio::TObject::do_data(void const* param_0, u32 param_1, void const* param_2,
                                    u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/do_data__Q27JStudio7TObjectFPCvUlPCvUl.s"
+    TAdaptor* adaptor = getAdaptor();
+    if (adaptor != NULL) {
+        adaptor->adaptor_do_data(param_0, param_1, param_2, param_3);
+    }
 }
-#pragma pop
 
 /* 80286864-802868B0 2811A4 004C+00 8/8 0/0 0/0 .text
  * __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject::TObject(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                              JStudio::TAdaptor* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286864.s"
-}
-#pragma pop
+JStudio::TObject::TObject(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                          JStudio::TAdaptor* param_1)
+    : stb::TObject(param_0), mpAdaptor(param_1) {}
 
 /* 802868B0-80286910 2811F0 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_actorFv
  */
+#ifdef NONMATCHING
+JStudio::TAdaptor_actor::~TAdaptor_actor() {
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1691,19 +1673,15 @@ asm JStudio::TAdaptor_actor::~TAdaptor_actor() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio14TAdaptor_actorFv.s"
 }
 #pragma pop
+#endif
 
 /* 80286910-8028694C 281250 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                                          JStudio::TAdaptor_actor* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286910.s"
+JStudio::TObject_actor::TObject_actor(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                          JStudio::TAdaptor_actor* param_1) : TObject(param_0, param_1) {
+
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039AA68-8039AA74 0270C8 000C+00 3/3 2/2 0/0 .rodata
@@ -1746,6 +1724,9 @@ asm void JStudio::TObject_actor::do_paragraph(u32 param_0, void const* param_1, 
 #pragma pop
 
 /* 80286C9C-80286CFC 2815DC 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio21TAdaptor_ambientLightFv */
+#ifdef NONMATCHING
+JStudio::TAdaptor_ambientLight::~TAdaptor_ambientLight() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1754,20 +1735,15 @@ asm JStudio::TAdaptor_ambientLight::~TAdaptor_ambientLight() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio21TAdaptor_ambientLightFv.s"
 }
 #pragma pop
+#endif
 
 /* 80286CFC-80286D38 28163C 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_ambientLight::TObject_ambientLight(
+JStudio::TObject_ambientLight::TObject_ambientLight(
     JStudio::stb::data::TParse_TBlock_object const& param_0,
-    JStudio::TAdaptor_ambientLight* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286CFC.s"
+    JStudio::TAdaptor_ambientLight* param_1) : TObject(param_0, param_1) {
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039AA74-8039AA80 0270D4 000C+00 0/0 2/2 0/0 .rodata
@@ -1812,6 +1788,9 @@ asm void JStudio::TObject_ambientLight::do_paragraph(u32 param_0, void const* pa
 
 /* 80286E1C-80286E7C 28175C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio15TAdaptor_cameraFv
  */
+#ifdef NONMATCHING
+JStudio::TAdaptor_camera::~TAdaptor_camera() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1820,19 +1799,14 @@ asm JStudio::TAdaptor_camera::~TAdaptor_camera() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio15TAdaptor_cameraFv.s"
 }
 #pragma pop
+#endif
 
 /* 80286E7C-80286EB8 2817BC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                                            JStudio::TAdaptor_camera* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80286E7C.s"
-}
-#pragma pop
+JStudio::TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                        JStudio::TAdaptor_camera* param_1)
+    : TObject(param_0, param_1) {}
 
 /* ############################################################################################## */
 /* 8039AAA8-8039AAB4 027108 000C+00 1/1 2/2 0/0 .rodata
@@ -1887,6 +1861,9 @@ asm void JStudio::TObject_camera::do_paragraph(u32 param_0, void const* param_1,
 #pragma pop
 
 /* 8028717C-802871DC 281ABC 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio12TAdaptor_fogFv */
+#ifdef NONMATCHING
+JStudio::TAdaptor_fog::~TAdaptor_fog() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1895,19 +1872,13 @@ asm JStudio::TAdaptor_fog::~TAdaptor_fog() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio12TAdaptor_fogFv.s"
 }
 #pragma pop
+#endif
 
 /* 802871DC-80287218 281B1C 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                                      JStudio::TAdaptor_fog* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_802871DC.s"
-}
-#pragma pop
+JStudio::TObject_fog::TObject_fog(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                      JStudio::TAdaptor_fog* param_1) : TObject(param_0, param_1) {}
 
 /* ############################################################################################## */
 /* 8039AAC0-8039AACC 027120 000C+00 1/1 0/0 0/0 .rodata
@@ -1943,6 +1914,9 @@ asm void JStudio::TObject_fog::do_paragraph(u32 param_0, void const* param_1, u3
 
 /* 80287308-80287368 281C48 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_lightFv
  */
+#ifdef NONMATCHING
+JStudio::TAdaptor_light::~TAdaptor_light() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1951,19 +1925,13 @@ asm JStudio::TAdaptor_light::~TAdaptor_light() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio14TAdaptor_lightFv.s"
 }
 #pragma pop
+#endif
 
 /* 80287368-802873A4 281CA8 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                                          JStudio::TAdaptor_light* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80287368.s"
-}
-#pragma pop
+JStudio::TObject_light::TObject_light(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                          JStudio::TAdaptor_light* param_1) : TObject(param_0, param_1) {}
 
 /* ############################################################################################## */
 /* 80431080-8043108C 05DDA0 000C+00 0/1 0/0 0/0 .bss             @756 */
@@ -1994,30 +1962,38 @@ asm void JStudio::TObject_light::do_paragraph(u32 param_0, void const* param_1, 
 #pragma pop
 
 /* 802875E0-80287640 281F20 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio16TAdaptor_messageFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TAdaptor_message::~TAdaptor_message() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio16TAdaptor_messageFv.s"
-}
-#pragma pop
+JStudio::TAdaptor_message::~TAdaptor_message() {}
 
 /* 80287640-8028767C 281F80 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio15TObject_messageFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio16TAdaptor_message
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_message::TObject_message(
-    JStudio::stb::data::TParse_TBlock_object const& param_0, JStudio::TAdaptor_message* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80287640.s"
-}
-#pragma pop
+JStudio::TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                          JStudio::TAdaptor_message* param_1)
+    : TObject(param_0, param_1) {}
 
 /* 8028767C-8028770C 281FBC 0090+00 1/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio15TObject_messageFUlPCvUl            */
+// param_1 &= 0x1f is out of place + unsure about the pmfn
+#ifdef NONMATCHING
+void JStudio::TObject_message::do_paragraph(u32 param_1, void const* param_2, u32 param_3) {
+    TAdaptor* adaptor = getAdaptor();
+    if (adaptor != NULL) {
+        u32 uVar1 = (param_1 >> 5);
+        param_1 &= 0x1f;
+        paragraphFunc pmfn_ = NULL;
+        switch (uVar1) {
+        case 0x42:
+            pmfn_ = &TObject::do_paragraph;
+            JUT_ASSERT(1161, pmfn_!=0);
+            break;
+        default:
+            return;
+        }
+        (((TObject*)adaptor)->*pmfn_)(param_1, param_2, param_3);
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2026,8 +2002,12 @@ asm void JStudio::TObject_message::do_paragraph(u32 param_0, void const* param_1
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/do_paragraph__Q27JStudio15TObject_messageFUlPCvUl.s"
 }
 #pragma pop
+#endif
 
 /* 8028770C-8028776C 28204C 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio17TAdaptor_particleFv */
+#ifdef NONMATCHING
+JStudio::TAdaptor_particle::~TAdaptor_particle() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2036,19 +2016,13 @@ asm JStudio::TAdaptor_particle::~TAdaptor_particle() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio17TAdaptor_particleFv.s"
 }
 #pragma pop
+#endif
 
 /* 8028776C-802877A8 2820AC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio16TObject_particleFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio17TAdaptor_particle
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_particle::TObject_particle(
-    JStudio::stb::data::TParse_TBlock_object const& param_0, JStudio::TAdaptor_particle* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_8028776C.s"
-}
-#pragma pop
+JStudio::TObject_particle::TObject_particle(
+    JStudio::stb::data::TParse_TBlock_object const& param_0, JStudio::TAdaptor_particle* param_1) : TObject(param_0, param_1) {}
 
 /* 802877A8-80287B3C 2820E8 0394+00 2/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio16TObject_particleFUlPCvUl           */
@@ -2063,6 +2037,9 @@ asm void JStudio::TObject_particle::do_paragraph(u32 param_0, void const* param_
 
 /* 80287B3C-80287B9C 28247C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_soundFv
  */
+#ifdef NONMATCHING
+JStudio::TAdaptor_sound::~TAdaptor_sound() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2071,19 +2048,13 @@ asm JStudio::TAdaptor_sound::~TAdaptor_sound() {
 #include "asm/JSystem/JStudio/JStudio/jstudio-object/__dt__Q27JStudio14TAdaptor_soundFv.s"
 }
 #pragma pop
+#endif
 
 /* 80287B9C-80287BD8 2824DC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_soundFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_sound
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_object const& param_0,
-                                          JStudio::TAdaptor_sound* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-object/func_80287B9C.s"
-}
-#pragma pop
+JStudio::TObject_sound::TObject_sound(JStudio::stb::data::TParse_TBlock_object const& param_0,
+                                          JStudio::TAdaptor_sound* param_1) : TObject(param_0, param_1) {}
 
 /* ############################################################################################## */
 /* 8039AADC-8039AAE8 02713C 000C+00 0/0 0/0 0/0 .rodata

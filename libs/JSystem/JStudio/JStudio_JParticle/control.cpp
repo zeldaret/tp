@@ -68,7 +68,7 @@ asm JStudio_JParticle::TCreateObject::~TCreateObject() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void
+asm bool
 JStudio_JParticle::TCreateObject::create(JStudio::TObject** param_0,
                                          JStudio::stb::data::TParse_TBlock_object const& param_1) {
     nofralloc

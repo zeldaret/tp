@@ -15,7 +15,7 @@ struct TCreateObject : public JStudio::TCreateObject {
     }
 
     /* 8028D550 */ virtual ~TCreateObject();
-    /* 8028D5B0 */ virtual void create(JStudio::TObject**,
+    /* 8028D5B0 */ virtual bool create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
     /* 8028D624 */ void createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
                                                 JStudio_JAudio2::TCreateObject*);
