@@ -4,121 +4,15 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain.h"
+#include "SSystem/SComponent/c_math.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {
-    /* 80D303D0 */ csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80D30394 */ ~csXyz();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266F48 */ void normalizeZP();
-    /* 80267150 */ void atan2sY_XZ() const;
-    /* 80D303D4 */ cXyz();
-    /* 80D303D8 */ ~cXyz();
-
-    static f32 Zero[3];
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CDD4 */ void transM(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct fopAcM_rc_c {
-    /* 8001DD1C */ void roofCheck(cXyz const*);
-
-    static f32 mRoofY;
-};
-
-struct daObjWchain_shape_c {
-    /* 80D31418 */ void draw();
-    /* 80D318C0 */ ~daObjWchain_shape_c();
-};
-
-struct daObjWchain_c {
-    /* 80D2FEF8 */ void createHeap();
-    /* 80D2FFBC */ void create();
-    /* 80D30434 */ ~daObjWchain_c();
-    /* 80D30534 */ void setMatrix();
-    /* 80D305E4 */ void getChainAngleZ(cXyz*, int);
-    /* 80D3080C */ void setChainPos();
-    /* 80D310AC */ void execute();
-    /* 80D31810 */ void draw();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DShape {
-    /* 80315300 */ void loadPreDrawSetting() const;
-
-    static u8 sOldVcdVatCmd[4];
-};
-
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
-struct J3DPacket {
-    /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -191,37 +85,17 @@ extern "C" void __dl__FPv();
 extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
 extern "C" void loadPreDrawSetting__8J3DShapeCFv();
 extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareMag();
-extern "C" void GXLoadLightObjImm();
-extern "C" void GXSetChanAmbColor();
-extern "C" void GXSetChanMatColor();
-extern "C" void GXLoadPosMtxImm();
-extern "C" void GXLoadNrmMtxImm();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_20();
 extern "C" void _savegpr_22();
 extern "C" void _restgpr_20();
 extern "C" void _restgpr_22();
-extern "C" void abs();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern u32 __float_nan;
 extern "C" f32 mRoofY__11fopAcM_rc_c;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
@@ -229,40 +103,37 @@ extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 // Declarations:
 //
 
-/* ############################################################################################## */
 /* 80D31924-80D3192C 000000 0007+01 8/8 0/0 0/0 .rodata          l_arcName */
-SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
-    0x57,
-    0x63,
-    0x68,
-    0x61,
-    0x69,
-    0x6E,
-    0x00,
-    /* padding */
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D31924, &l_arcName);
+static char const l_arcName[7] = "Wchain";
 
 /* 80D2FEF8-80D2FF9C 000078 00A4+00 1/1 0/0 0/0 .text            createHeap__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches once daObjWchain_shape_c inheritance is resolved
+int daObjWchain_c::createHeap() {
+    J3DModelData* handle_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
+    mpHandleModel = mDoExt_J3DModel__create(handle_model_data, 0x80000, 0x11000084);
+    if (mpHandleModel == NULL) {
+        return 0;
+    }
+    mpChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
+    mShape.setUserArea((u32)this);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWchain_c::createHeap() {
+asm int daObjWchain_c::createHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/createHeap__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D2FF9C-80D2FFBC 00011C 0020+00 1/1 0/0 0/0 .text daObjWchain_createHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWchain_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/daObjWchain_createHeap__FP10fopAc_ac_c.s"
+static int daObjWchain_createHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjWchain_c*>(i_this)->createHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D3192C-80D31930 000008 0004+00 0/1 0/0 0/0 .rodata          @3744 */
@@ -409,32 +280,90 @@ SECTION_DATA extern void* __vt__19daObjWchain_shape_c[5] = {
 };
 
 /* 80D2FFBC-80D30394 00013C 03D8+00 1/1 0/0 0/0 .text            create__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches once daObjWchain_shape_c inheritance is resolved
+cPhs__Step daObjWchain_c::create() {
+    fopAcM_SetupActor(this, daObjWchain_c);
+    mSw = fopAcM_GetParam(this) & 0xff;
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (step == cPhs_COMPLEATE_e) {
+        mRepeatable = (fopAcM_GetParam(this) >> 8) & 0xf;
+        if (mRepeatable == 0xf) {
+            mRepeatable = 0;
+        }
+        if (!fopAcM_entrySolidHeap(this, daObjWchain_createHeap, 0x820)) {
+            return cPhs_ERROR_e;
+        }
+        mTevStr.mRoomNo = dStage_roomControl_c::mStayNo;
+        mAttentionInfo.mPosition = current.pos;
+        mEyePos = mAttentionInfo.mPosition;
+        mAttentionInfo.field_0x0[0] = 0x1c;
+        fopAcM_SetMtx(this, mpHandleModel->getBaseTRMtx());
+        fopAcM_SetMin(this, -200.0f, -45.0f, -200.0f);
+        fopAcM_SetMax(this, 200.0f, 800.0f, 200.0f);
+        mTopPos = current.pos;
+        current.pos.y += 53.75f;
+        mRoofPos.set(current.pos.x, current.pos.y + 280.0f - 100.0f, current.pos.z);
+        mRealRoofY = mRoofPos.y + 250.0f;
+        mInitOutLength = mRoofPos.y - orig.pos.y;
+        if (!mRepeatable && i_fopAcM_isSwitch(this, mSw)) {
+            current.pos.y -= 100.0f;
+            mEnd = true;
+            mPullLength = 100.0f;
+            field_0x7a8 = 600.0f;
+        } else {
+            mPullLength = 0.0f;
+        }
+        shape_angle.x = 0x4000;
+        mGravity = -7.0f;
+        cXyz* chain_pos = &mChainPos[0xf];
+        cXyz* chain_speed = &mChainSpeed[0xf];
+        csXyz* chain_angle = &mChainAngle[0xf];
+        s16 ang_z = cM_rndFX(2048.0f) + 16384.0f;
+        f32 pos_y = current.pos.y;
+        for (int i = 0xf; i >= 0; chain_pos--, chain_speed--, chain_angle--, i--) {
+            chain_pos->set(current.pos.x, pos_y, current.pos.z);
+            *chain_speed = cXyz::Zero;
+            chain_angle->set(0x4000, shape_angle.y, ang_z);
+            ang_z += cM_rndFX(2048.0f) + 16384.0f;
+            pos_y += 17.5f;
+        }
+        speed = cXyz::Zero;
+        setMatrix();
+    }
+    return step;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWchain_c::create() {
+asm cPhs__Step daObjWchain_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/create__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D30394-80D303D0 000514 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm csXyz::~csXyz() {
+// asm csXyz::~csXyz() {
+extern "C" asm void __dt__5csXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/__dt__5csXyzFv.s"
 }
 #pragma pop
 
 /* 80D303D0-80D303D4 000550 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-csXyz::csXyz() {
+// csXyz::csXyz() {
+extern "C" void __ct__5csXyzFv() {
     /* empty function */
 }
 
 /* 80D303D4-80D303D8 000554 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -442,7 +371,8 @@ cXyz::cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/__dt__4cXyzFv.s"
 }
@@ -450,16 +380,17 @@ asm cXyz::~cXyz() {
 
 /* 80D30414-80D30434 000594 0020+00 1/0 0/0 0/0 .text            daObjWchain_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWchain_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/daObjWchain_Create__FP10fopAc_ac_c.s"
+static cPhs__Step daObjWchain_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjWchain_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80D30434-80D3050C 0005B4 00D8+00 1/1 0/0 0/0 .text            __dt__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches once daObjWchain_shape_c inheritance is resolved
+daObjWchain_c::~daObjWchain_c() {
+    dComIfG_resDelete(&mPhaseReq, l_arcName);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -468,16 +399,13 @@ asm daObjWchain_c::~daObjWchain_c() {
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/__dt__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D3050C-80D30534 00068C 0028+00 1/0 0/0 0/0 .text daObjWchain_Delete__FP13daObjWchain_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWchain_Delete(daObjWchain_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/daObjWchain_Delete__FP13daObjWchain_c.s"
+static int daObjWchain_Delete(daObjWchain_c* i_this) {
+    i_this->~daObjWchain_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D3196C-80D31978 000048 000C+00 0/1 0/0 0/0 .rodata          eyeOffset$3803 */
@@ -497,6 +425,18 @@ COMPILER_STRIP_GATE(0x80D31978, &lit_3819);
 #pragma pop
 
 /* 80D30534-80D305E4 0006B4 00B0+00 2/2 0/0 0/0 .text            setMatrix__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void daObjWchain_c::setMatrix() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZrotM(mHandleRotation);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::transM(0.0f, 0.0f, 8.75f);
+    mpHandleModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    static Vec const eyeOffset = {0.0f, 0.0f, 53.75f};
+    mDoMtx_stack_c::multVec(&eyeOffset, &mEyePos);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -505,6 +445,7 @@ asm void daObjWchain_c::setMatrix() {
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/setMatrix__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D3197C-80D31984 000058 0008+00 0/2 0/0 0/0 .rodata          @3863 */
@@ -549,14 +490,31 @@ COMPILER_STRIP_GATE(0x80D31998, &lit_3867);
 #pragma pop
 
 /* 80D305E4-80D3080C 000764 0228+00 1/1 0/0 0/0 .text getChainAngleZ__13daObjWchain_cFP4cXyzi */
+#ifdef NONMATCHING
+// matches with literals
+s16 daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
+    cXyz vec(param_0->x, 0.0f, param_0->z);
+    f32 len = vec.abs();
+    if (param_1 > 0x5000) {
+        return -len * (cM_rndF(0.5f) + 0.5f) * 512.0f;
+    } else if (param_1 < 0x3000) {
+        return len * (cM_rndF(0.5f) + 0.5f) * 512.0f;
+    } else if (cM_rnd() < 0.5f) {
+        return -len * (cM_rndF(0.5f) + 0.5f) * 512.0f;
+    } else {
+        return len * (cM_rndF(0.5f) + 0.5f) * 512.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
+asm s16 daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/getChainAngleZ__13daObjWchain_cFP4cXyzi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D3199C-80D319A8 000078 000C+00 0/1 0/0 0/0 .rodata          currentOffset$3872 */
@@ -634,6 +592,119 @@ COMPILER_STRIP_GATE(0x80D319D0, &lit_4161);
 #pragma pop
 
 /* 80D3080C-80D310AC 00098C 08A0+00 1/1 0/0 0/0 .text            setChainPos__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// regalloc, instruction ordering
+void daObjWchain_c::setChainPos() {
+    cXyz prev_pos, vec1;
+    if (mRide) {
+        shape_angle.y = daPy_getLinkPlayerActorClass()->shape_angle.y;
+        shape_angle.z = 0;
+        prev_pos = mTopPos;
+        mTopPos = daPy_getLinkPlayerActorClass()->current.pos;
+        speed = (mTopPos - prev_pos) * 0.75f;
+        vec1 = mTopPos - mRoofPos;
+        mDoMtx_stack_c::YrotS(-shape_angle.y);
+        mDoMtx_stack_c::multVec(&vec1, &vec1);
+        shape_angle.x = cM_atan2s(-vec1.z, -vec1.y) + 0x4000;
+        mHandleRotation = cM_atan2s(vec1.x, JMAFastSqrt(vec1.y * vec1.y + vec1.z * vec1.z));
+        mDoMtx_stack_c::transS(mTopPos.x, mTopPos.y, mTopPos.z);
+        mDoMtx_stack_c::ZrotM(mHandleRotation);
+        mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+        static Vec const currentOffset = {0.0f, 0.0f, -53.75f};
+        mDoMtx_stack_c::multVec(&currentOffset, &current.pos);
+        cXyz* chain_pos = &mChainPos[0xf];
+        csXyz* chain_angle = &mChainAngle[0xf];
+        cXyz* chain_speed = &mChainSpeed[0xf];
+        s16* chain_rotation = &mChainRotation[0xf];
+        prev_pos = current.pos;
+        int svar7 = shape_angle.z;
+        for (int i = 0xf; i >= 0; i--, chain_pos--, chain_angle--, chain_speed--, chain_rotation--) {
+            chain_angle->z += getChainAngleZ(chain_speed, abs((s16)(chain_angle->z - svar7)));
+            *chain_speed = (prev_pos - *chain_pos) * 0.75;
+            *chain_pos = prev_pos;
+            chain_angle->x = shape_angle.x;
+            *chain_rotation = mHandleRotation;
+            mDoMtx_stack_c::transS(prev_pos.x, prev_pos.y, prev_pos.z);
+            mDoMtx_stack_c::ZrotM(*chain_rotation);
+            mDoMtx_stack_c::ZXYrotM(chain_angle->x, shape_angle.y, chain_angle->z);
+            static Vec const chainOffset = {0.0f, 0.0f, -17.5f};
+            mDoMtx_stack_c::multVec(&chainOffset, &prev_pos);
+            svar7 = chain_angle->z;
+        }
+    } else {
+        if (mReset) {
+            if (cLib_chaseF(&mPullLength, 0.0f, 1.0f)) {
+                mReset = false;
+                mEnd = false;
+            }
+        } else if (mRepeatable || !i_fopAcM_isSwitch(this, mSw)) {
+            cLib_chaseF(&mPullLength, 0.0f, 5.0f);
+        } else {
+            mPullLength = 100.0f;
+            mEnd = true;
+            if (!mRepeatable) {
+                cLib_chaseF(&field_0x7a8, 600.0f, 30.0f);
+            }
+        }
+        f32 fvar2 = mInitOutLength + mPullLength - 53.75f;
+        int local_68 = fvar2 * (1.0f / 17.5f);
+        int ivar5 = local_68 <= 0xf ? local_68 + 1 : 0x10;
+        int chain_no = 0x10 - ivar5;
+        cXyz* chain_pos = &mChainPos[chain_no];
+        csXyz* chain_angle = &mChainAngle[chain_no];
+        s16* chain_rotation = &mChainRotation[chain_no];
+        chain_pos->set(
+            mRoofPos.x,
+            field_0x7a8 + (mRoofPos.y - (17.5f - (ivar5 * 17.5f - fvar2))),
+            mRoofPos.z
+        );
+        chain_angle->x = 0x4000;
+        *chain_rotation = 0;
+        chain_pos = mChainPos + 1 + chain_no;
+        chain_angle++;
+        cXyz* chain_speed = mChainSpeed + 1 + chain_no;
+        chain_rotation++;
+        mDoMtx_stack_c::YrotS(-shape_angle.y);
+        f32 prob = 0.2f;
+        cXyz local_90;
+        if (!mEnd && cM_rnd() < prob) {
+            f32 ang = cM_rnd() * 6.283185f;
+            local_90.set(cM_fsin(ang), 0.0f, cM_fcos(ang));
+        } else {
+            local_90 = cXyz::Zero;
+        }
+        for (int i = chain_no + 1; i < 0x10; i++, chain_pos++, chain_angle++, chain_speed++, chain_rotation++) {
+            prev_pos = *chain_pos;
+            vec1 = *chain_pos - chain_pos[-1];
+            if (chain_speed->abs2XZ() < 0.04f && cM_rnd() < prob) {
+                vec1 += local_90;
+                prob *= 0.5f;
+            }
+            vec1.y += mGravity;
+            vec1 += *chain_speed;
+            chain_angle->z += getChainAngleZ(chain_speed, abs((s16)(chain_angle->z - chain_angle[-1].z)));
+            vec1.normalizeZP();
+            *chain_pos = chain_pos[-1] + vec1 * 17.5f;
+            *chain_speed = (*chain_pos - prev_pos) * 0.75f;
+            mDoMtx_stack_c::multVec(&vec1, &vec1);
+            chain_angle->x = cM_atan2s(-vec1.z, -vec1.y) + 0x4000;
+            *chain_rotation = cM_atan2s(vec1.x, JMAFastSqrt(vec1.y * vec1.y + vec1.z * vec1.z));
+        }
+        current.pos = mChainPos[0xf];
+        shape_angle.z += getChainAngleZ(&speed, abs((s16)(shape_angle.z - mChainAngle[0xf].z)));
+        prev_pos = mTopPos;
+        vec1 = mTopPos - current.pos;
+        vec1.y += mGravity;
+        vec1 += speed;
+        vec1.normalizeZP();
+        mTopPos = current.pos + vec1 * 53.75f;
+        speed = (mTopPos - prev_pos) * 0.75f;
+        mDoMtx_stack_c::multVec(&vec1, &vec1);
+        shape_angle.x = cM_atan2s(-vec1.z, -vec1.y) + 0x4000;
+        mHandleRotation = cM_atan2s(vec1.x, JMAFastSqrt(vec1.y * vec1.y + vec1.z * vec1.z));
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -642,6 +713,7 @@ asm void daObjWchain_c::setChainPos() {
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/setChainPos__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D319D4-80D319D8 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4252 */
@@ -666,24 +738,76 @@ COMPILER_STRIP_GATE(0x80D319DC, &lit_4254);
 #pragma pop
 
 /* 80D310AC-80D313F8 00122C 034C+00 1/1 0/0 0/0 .text            execute__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int daObjWchain_c::execute() {
+    if (!mRidePrev && mRide) {
+        fopAcM_seStartCurrent(this, Z2SE_OBJ_GNAW_CHAIN_SW, 0);
+    } else if (mRidePrev && !mRide) {
+        fopAcM_seStartCurrent(this, Z2SE_OBJ_GNAW_CHAIN_SW, 0);
+    }
+
+    if (!mRide) {
+        mDown = false;
+    }
+
+    if (fopAcM_rc_c::roofCheck(&orig.pos)) {
+        mRealRoofY = fopAcM_rc_c::getRoofY();
+        if (mRoofPos.y > mRealRoofY) {
+            mRoofPos.y = mRealRoofY;
+            mInitOutLength = mRoofPos.y - orig.pos.y;
+        }
+        mRealRoofY += 250.0f;
+    }
+
+    setChainPos();
+    
+    if (daPy_py_c::i_checkNowWolf() && !mRide && mPullLength < 0.1f) {
+        mAttentionInfo.mFlags |= 1;
+    } else {
+        mAttentionInfo.mFlags &= ~1;
+    }
+    mAttentionInfo.mPosition = current.pos;
+    mAttentionInfo.mPosition.y += 150.0f;
+    
+    setMatrix();
+    
+    if (mNowSwitch) {
+        fopAcM_seStartCurrent(this, Z2SE_OBJ_STOP_CHAIN_SW, 0);
+        mNowSwitch = false;
+        if (mRepeatable) {
+            mReset = true;
+            if (i_fopAcM_isSwitch(this, mSw)) {
+                i_fopAcM_offSwitch(this, mSw);
+            } else {
+                i_fopAcM_onSwitch(this, mSw);
+            }
+        } else {
+            i_fopAcM_onSwitch(this, mSw);
+        }
+        field_0x77e = 20;
+    } else if (mRide && !mDown) {
+        fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_PULLDOWN_CHAIN_SW, 0);
+    }
+
+    mRidePrev = mRide;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWchain_c::execute() {
+asm int daObjWchain_c::execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/execute__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D313F8-80D31418 001578 0020+00 1/0 0/0 0/0 .text daObjWchain_Execute__FP13daObjWchain_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWchain_Execute(daObjWchain_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/daObjWchain_Execute__FP13daObjWchain_c.s"
+static int daObjWchain_Execute(daObjWchain_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D319E0-80D319E4 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4364 */
@@ -694,6 +818,65 @@ COMPILER_STRIP_GATE(0x80D319E0, &lit_4364);
 #pragma pop
 
 /* 80D31418-80D31810 001598 03F8+00 1/0 0/0 0/0 .text            draw__19daObjWchain_shape_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void daObjWchain_shape_c::draw() {
+    daObjWchain_c* chain = (daObjWchain_c*)getUserArea();
+    cXyz* pos = chain->getChainPos();
+    csXyz* angle = chain->getChainAngle();
+    s16* rotation = chain->getChainAngleZ();
+    J3DModelData* model_data = chain->getChainModelData();
+    J3DMaterial* material = model_data->getMaterialNodePointer(0);
+    dKy_tevstr_c& tevstr = chain->mTevStr;
+    j3dSys.setVtxPos(model_data->getVtxPosArray());
+    j3dSys.setVtxNrm(model_data->getVtxNrmArray());
+    j3dSys.setVtxCol(model_data->getVtxColorArray(0));
+    J3DShape::resetVcdVatCache();
+    material->loadSharedDL();
+    material->getShape()->loadPreDrawSetting();
+    GXColor amb_color;
+    amb_color.r = tevstr.mColorC0.r;
+    amb_color.g = tevstr.mColorC0.g;
+    amb_color.b = tevstr.mColorC0.b;
+    amb_color.a = tevstr.mColorC0.a;
+    GXSetChanAmbColor(GX_COLOR0A0, amb_color);
+    GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);
+    dKy_setLight_again();
+    dKy_GxFog_tevstr_set(&tevstr);
+    GXLoadLightObjImm(&tevstr.mLightObj.mLightObj, GX_LIGHT0);
+    for (int i = 0; i < 0x10; pos++, angle++, rotation++, i++) {
+        mDoMtx_stack_c::copy(j3dSys.getViewMtx());
+        mDoMtx_stack_c::transM(*pos);
+        mDoMtx_stack_c::ZrotM(*rotation);
+        mDoMtx_stack_c::ZXYrotM(angle->x, chain->shape_angle.y, angle->z);
+        mDoMtx_stack_c::transM(0.0f, 0.0f, -8.75f);
+        GXLoadPosMtxImm(mDoMtx_stack_c::get(), 0);
+        GXLoadNrmMtxImm(mDoMtx_stack_c::get(), 0);
+        material->getShape()->simpleDrawCache();
+    }
+    cXyz roof_pos(chain->getRoofPos().x, chain->getRealRoofY(), chain->getRoofPos().z);
+    cXyz delta = roof_pos - *chain->getChainPos();
+    f32 len = delta.abs();
+    if (len > 17.5f) {
+        cXyz pos = *chain->getChainPos();
+        csXyz angle(
+            delta.atan2sY_XZ(),
+            chain->getChainAngle()->y,
+            chain->getChainAngle()->z + 0x3000
+        );
+        delta *= (17.5f / len);
+        for (; len > 17.5f; len -= 17.5f, pos += delta, angle.z += 0x3000) {
+            mDoMtx_stack_c::copy(j3dSys.getViewMtx());
+            mDoMtx_stack_c::transM(pos);
+            mDoMtx_stack_c::ZXYrotM(angle);
+            mDoMtx_stack_c::transM(0.0f, 0.0f, 8.75f);
+            GXLoadPosMtxImm(mDoMtx_stack_c::get(), 0);
+            GXLoadNrmMtxImm(mDoMtx_stack_c::get(), 0);
+            material->getShape()->simpleDrawCache();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -702,29 +885,38 @@ asm void daObjWchain_shape_c::draw() {
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/draw__19daObjWchain_shape_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D31810-80D318A0 001990 0090+00 1/1 0/0 0/0 .text            draw__13daObjWchain_cFv */
+#ifdef NONMATCHING
+// matches once daObjWchain_shape_c inheritance is resolved
+int daObjWchain_c::draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpHandleModel->mModelData, &mTevStr);
+    mDoExt_modelUpdateDL(mpHandleModel);
+    g_env_light.setLightTevColorType_MAJI(mpChainModelData, &mTevStr);
+    dComIfGd_getOpaList()->entryImm(&mShape, 0);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjWchain_c::draw() {
+asm int daObjWchain_c::draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/draw__13daObjWchain_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D318A0-80D318C0 001A20 0020+00 1/0 0/0 0/0 .text            daObjWchain_Draw__FP13daObjWchain_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjWchain_Draw(daObjWchain_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/daObjWchain_Draw__FP13daObjWchain_c.s"
+static int daObjWchain_Draw(daObjWchain_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80D318C0-80D3191C 001A40 005C+00 1/0 0/0 0/0 .text            __dt__19daObjWchain_shape_cFv */
+#ifndef NONMATCHING
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -733,3 +925,4 @@ asm daObjWchain_shape_c::~daObjWchain_shape_c() {
 #include "asm/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain/__dt__19daObjWchain_shape_cFv.s"
 }
 #pragma pop
+#endif

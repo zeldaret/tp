@@ -31,7 +31,7 @@ public:
     }
 
     /* 0x00 */ J3DLightInfo mInfo;
-    /* 0x34 */ u8 field_0x34[64];
+    /* 0x34 */ GXLightObj mLightObj;
 };  // Size = 0x74
 
 struct J3DTextureSRTInfo {

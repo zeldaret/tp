@@ -108,6 +108,7 @@ public:
         mpFirstChild = NULL;
     }
 
+    void* getUserArea() { return mpUserData; }
     void setUserArea(u32 area) { mpUserData = (void*)area; }
 
     virtual int entry(J3DDrawBuffer*);

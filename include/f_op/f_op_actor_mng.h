@@ -75,6 +75,7 @@ class dBgS_RoofChk;
 class fopAcM_rc_c {
 public:
     static dBgS_RoofChk* getRoofCheck() { return (dBgS_RoofChk*)&mRoofCheck; }
+    static f32 getRoofY() { return mRoofY; }
     static bool roofCheck(const cXyz*);
     static u8 mRoofCheck[80];
     static f32 mRoofY;
