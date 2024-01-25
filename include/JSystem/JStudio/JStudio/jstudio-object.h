@@ -3,12 +3,18 @@
 
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
+#include "limits.h"
 
 typedef struct _GXColor GXColor;
 
 namespace JStudio {
 namespace data {
     enum TEOperationData {
+        UNK_0x1 = 0x1,
+        UNK_0x2 = 0x2,
+        UNK_0x3 = 0x3,
+        UNK_0x10 = 0x10,
+        UNK_0x12 = 0x12,
         UNK_0x19 = 0x19,
     };
 };
@@ -16,6 +22,7 @@ namespace data {
 struct TAdaptor;
 struct TVariableValue {
     struct TOutput {
+        virtual void operator()(f32, JStudio::TAdaptor*) const = 0;
         /* 80285E0C */ ~TOutput();
     };
 
@@ -25,19 +32,68 @@ struct TVariableValue {
     };
 
     /* 80285E54 */ void update(f64, JStudio::TAdaptor*);
-    /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
-    /* 80285ECC */ void update_time_(JStudio::TVariableValue*, f64);
-    /* 80285F08 */ void update_functionValue_(JStudio::TVariableValue*, f64);
+    /* 80285EB8 */ static void update_immediate_(JStudio::TVariableValue*, f64);
+    /* 80285ECC */ static void update_time_(JStudio::TVariableValue*, f64);
+    /* 80285F08 */ static void update_functionValue_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+
+    void setValue_immediate(f32 value) {
+        field_0x8 = &update_immediate_;
+        field_0x4 = 0;
+        field_0xc.val = value;
+    }
+
+     void setValue_none() {
+        field_0x8 = NULL;
+    }
+
+    void setValue_time(f32 value) {
+        field_0x8 = &update_time_;
+        field_0x4 = 0;
+        field_0xc.val = value;
+    }
+    
+    void setValue_functionValue(TFunctionValue* value) {
+        field_0x8 = &update_functionValue_;
+        field_0x4 = 0;
+        field_0xc.fv = value;
+    }
+
+    f32 getValue() const { return mValue; }
+
+    template<typename T>
+    T getValue_clamp() const {
+        f32 val = mValue;
+        if (val <= std::numeric_limits<T>::min()) {
+            return std::numeric_limits<T>::min();
+        } else if (val >= std::numeric_limits<T>::max()) {
+            return std::numeric_limits<T>::max();
+        }
+        return val;
+    }
+    u8 getValue_uint8() const { return getValue_clamp<u8>(); }
+
+    void forward(u32 param_0) {
+        if (std::numeric_limits<u32>::max() - field_0x4 <= param_0) {
+            field_0x4 = std::numeric_limits<u32>::max();
+        } else {
+            field_0x4 += param_0;
+        }
+    }
 
     static u8 soOutput_none_[4 + 4 /* padding */];
 
     /* 0x00 */ f32 mValue;
     /* 0x04 */ u32 field_0x4;
     /* 0x08 */ void (*field_0x8)(TVariableValue*, double);
-    /* 0x0C */ TFunctionValue* field_0xc;
+    /* 0x0C */ union {
+        TFunctionValue* fv;
+        f32 val;
+    } field_0xc;
     /* 0x10 */ TOutput* pOutput_;
 };  // Size: 0x14
+
+typedef void (TObject::*paragraphFunc)(u32, void const*, u32); 
 
 class TObject : public stb::TObject {
 public:
@@ -50,6 +106,9 @@ public:
     virtual void do_paragraph(u32, void const*, u32) = 0;
     /* 8028680C */ virtual void do_wait(u32);
     /* 8028682C */ virtual void do_data(void const*, u32, void const*, u32);
+
+    TAdaptor* getAdaptor() { return mpAdaptor; }
+    TControl* getControl() { return (TControl*)stb::TObject::getControl(); }
 
     void prepareAdaptor() {
         if (mpAdaptor != NULL) {
@@ -75,8 +134,11 @@ public:
 };
 
 struct TAdaptor {
-    struct TSetVariableValue_immediate {};
-
+    struct TSetVariableValue_immediate {
+        u32 field_0x0;
+        f32 field_0x4;
+    };
+    typedef void (*setVarFunc)(JStudio::TAdaptor*, JStudio::TControl*, u32, void const*, u32);
     /* 80285FD0 */ virtual ~TAdaptor() = 0;
     /* 80286018 */ virtual void adaptor_do_prepare();
     /* 8028601C */ virtual void adaptor_do_begin();
@@ -96,19 +158,31 @@ struct TAdaptor {
     /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, GXColor const&);
     /* 8028638C */ void adaptor_getVariableValue_GXColor(GXColor*, u32 const*) const;
     /* 802864D8 */ void adaptor_updateVariableValue(JStudio::TControl*, u32);
-    /* 8028656C */ void adaptor_setVariableValue_VOID_(JStudio::TAdaptor*, JStudio::TControl*, u32,
+    /* 8028656C */ static void adaptor_setVariableValue_VOID_(JStudio::TAdaptor*, JStudio::TControl*, u32,
                                                        void const*, u32);
-    /* 80286584 */ void adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor*, JStudio::TControl*,
+    /* 80286584 */ static void adaptor_setVariableValue_IMMEDIATE_(JStudio::TAdaptor*, JStudio::TControl*,
                                                             u32, void const*, u32);
-    /* 802865B0 */ void adaptor_setVariableValue_TIME_(JStudio::TAdaptor*, JStudio::TControl*, u32,
+    /* 802865B0 */ static void adaptor_setVariableValue_TIME_(JStudio::TAdaptor*, JStudio::TControl*, u32,
                                                        void const*, u32);
-    /* 802865DC */ void adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor*, JStudio::TControl*,
+    /* 802865DC */ static void adaptor_setVariableValue_FVR_NAME_(JStudio::TAdaptor*, JStudio::TControl*,
                                                            u32, void const*, u32);
-    /* 80286648 */ void adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*, JStudio::TControl*,
+    /* 80286648 */ static void adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*, JStudio::TControl*,
                                                             u32, void const*, u32);
 
     void adaptor_setObject_(const TObject* pObject) {
         pObject_ = pObject;
+    }
+
+    TVariableValue* adaptor_referVariableValue(u32 param_0) {
+        return &pValue_[param_0];
+    }
+
+    void adaptor_setVariableValue_immediate(u32 param_0, f32 param_1) {
+        adaptor_referVariableValue(param_0)->setValue_immediate(param_1);
+    }
+
+     const TVariableValue* adaptor_getVariableValue(u32 param_0) const {
+        return &pValue_[param_0];
     }
 
     /* 0x4 */ const TObject* pObject_;

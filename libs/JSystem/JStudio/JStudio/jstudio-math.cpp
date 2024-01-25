@@ -4,7 +4,10 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
+#include "JSystem/TPosition3.hh"
+#include "JSystem/JGeometry.h"
 #include "dol2asm.h"
+#include "math.h"
 
 //
 // Forward References:
@@ -22,11 +25,6 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void cos();
-extern "C" void sin();
-extern "C" void asin();
-extern "C" void atan2();
-extern "C" extern u32 __float_epsilon;
 
 //
 // Declarations:
@@ -45,6 +43,34 @@ SECTION_SDATA2 static u8 lit_489[4] = {
 };
 
 /* 802859DC-80285B44 28031C 0168+00 1/1 0/0 0/0 .text getRotation_xyz__Q27JStudio4mathFPA4_ffff */
+// regalloc
+#ifdef NONMATCHING
+void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
+    f32 cosx = cos(DEG_TO_RAD(x));
+    f32 sinx = sin(DEG_TO_RAD(x));
+    f32 cosy = cos(DEG_TO_RAD(y));
+    f32 siny = sin(DEG_TO_RAD(y));
+    f32 cosz = cos(DEG_TO_RAD(z));
+    f32 sinz = sin(DEG_TO_RAD(z));
+    f32 cosxcosz = cosx * cosz;
+    f32 cosxsinz = cosx * sinz;
+    f32 sinxcosz = sinx * cosz;
+    f32 sinxsinz = sinx * sinz;
+
+    param_1[0][0] = cosy * cosz;
+    param_1[1][0] = cosy * sinz;
+    param_1[2][0] = -siny;
+    param_1[2][1] = sinx * cosy;
+    param_1[2][2] = cosx * cosy;
+    param_1[0][1] = ((sinxcosz * siny) - cosxsinz);
+    param_1[0][2] = (sinxsinz + (cosxcosz * siny));
+    param_1[1][1] = (cosxcosz + (sinxsinz * siny));
+    param_1[1][2] = (((cosxsinz) * siny) - sinxcosz);
+    param_1[0][3] = 0.0f;
+    param_1[1][3] = 0.0f;
+    param_1[2][3] = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -53,18 +79,18 @@ asm void JStudio::math::getRotation_xyz(MtxP param_0, f32 param_1, f32 param_2, 
 #include "asm/JSystem/JStudio/JStudio/jstudio-math/getRotation_xyz__Q27JStudio4mathFPA4_ffff.s"
 }
 #pragma pop
+#endif
 
 /* 80285B44-80285BCC 280484 0088+00 0/0 2/2 0/0 .text
  * getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::math::getTransformation_SRxyzT(MtxP param_0, Vec const& param_1,
-                                                 Vec const& param_2, Vec const& param_3) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/jstudio-math/getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec.s"
+void JStudio::math::getTransformation_SRxyzT(MtxP param_1, Vec const& param_2, Vec const& param_3,
+                                             Vec const& param_4) {
+    Mtx afStack_40;
+    MTXScale(afStack_40, param_2.x, param_2.y, param_2.z);
+    Mtx amStack_70;
+    rotate_xyz(afStack_40, amStack_70, param_3);
+    MTXTransApply(amStack_70, param_1, param_4.x, param_4.y, param_4.z);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455470-80455478 003A70 0008+00 1/1 0/0 0/0 .sdata2          @623 */
@@ -93,6 +119,37 @@ SECTION_SDATA2 static f64 lit_628 = 57.29577951308232;
 
 /* 80285BCC-80285E0C 28050C 0240+00 0/0 2/2 0/0 .text
  * getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf */
+// getEulerXYZ is not inlined
+#ifdef NONMATCHING
+void JStudio::math::getFromTransformation_SRxyzT(Vec* param_1, Vec* param_2, Vec* param_3,
+                                                     CMtxP param_4) {
+    getFromTransformation_S(param_4, param_1);
+    getFromTransformation_T(param_4, param_3);
+    JGeometry::TRotation3<JGeometry::SMatrix33C<double> > aTStack_88;
+    JGeometry::TVec3<double> local_a0;
+    double dVar9 = 0.0;
+    double dVar8 = 0.0;
+    double dVar7 = 0.0;
+    if (0.0f != param_1->x) {
+        dVar9 = 1.0 / param_1->x;
+    }
+    if (0.0f != param_1->y) {
+        dVar8 = 1.0 / param_1->y;
+    }
+    if (0.0f != param_1->z) {
+        dVar7 = 1.0 / param_1->z;
+    }
+    aTStack_88.set( param_4[0][0] * dVar9,
+        param_4[0][1] * dVar8, param_4[0][2] * dVar7, param_4[1][0] * dVar9,
+        param_4[1][2] * dVar8, param_4[1][3] * dVar7, param_4[2][0] * dVar9,
+        param_4[2][1] * dVar8, param_4[2][2] * dVar7);
+    aTStack_88.getEulerXYZ(&local_a0);
+    local_a0 *= 57.29577951308232;
+    param_2->x = local_a0.x;
+    param_2->y = local_a0.y;
+    param_2->z = local_a0.z;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -102,3 +159,4 @@ asm void JStudio::math::getFromTransformation_SRxyzT(Vec* param_0, Vec* param_1,
 #include "asm/JSystem/JStudio/JStudio/jstudio-math/getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf.s"
 }
 #pragma pop
+#endif

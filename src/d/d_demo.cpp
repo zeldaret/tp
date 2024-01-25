@@ -530,7 +530,7 @@ jstudio_tCreateObject_message::~jstudio_tCreateObject_message() {}
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void
+asm bool
 jstudio_tCreateObject_message::create(JStudio::TObject** param_0,
                                       const JStudio::stb::data::TParse_TBlock_object& param_1) {
     nofralloc

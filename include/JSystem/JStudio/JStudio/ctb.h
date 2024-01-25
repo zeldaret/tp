@@ -14,6 +14,8 @@ struct TObject : public object::TObject_ID {
         JUT_ASSERT(82, pData_!=0);
     }
     /* 80280F18 */ virtual ~TObject() = 0;
+    virtual int getScheme() const = 0;
+    const void* getData() const { return pData_; }
 
     /* 0x08 vtable */
     /* 0x0C */ JGadget::TLinkListNode ocObject_;
@@ -111,7 +113,7 @@ struct TObject_TxyzRy : public TObject {
     /* 80280F60 */ TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock const&);
     
     /* 80281554 */ virtual ~TObject_TxyzRy();
-    /* 80280FBC */ virtual bool getScheme() const;
+    /* 80280FBC */ virtual int getScheme() const;
 };
 
 struct TFactory {
@@ -133,6 +135,7 @@ struct TControl {
     /* 80281230 */ JStudio::ctb::TObject* getObject_index(u32);
 
     TFactory* getFactory() { return pFactory_; }
+    void setFactory(TFactory* factory) { pFactory_ = factory; }
 
     /* 0x4 */ TFactory* pFactory_;
     /* 0x8 */ JGadget::TLinkList<TObject, -12> mList;

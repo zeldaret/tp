@@ -1,14 +1,15 @@
 #include "JSystem/JStudio/JStudio/stb.h"
+#include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "global.h"
+#include "algorithm.h"
 
 //
 // Types:
 //
 
 namespace std {
-template <typename A1, typename B1>
-void find_if(/* ... */);
+
 /* 80289928 */ /* std::find_if<JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
 void func_80289928(void* _this, JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
@@ -112,7 +113,7 @@ void TObject::reset(const void* arg1) {
     u32Wait_ = 0;
 }
 
-int TObject::forward(u32 arg1) {
+u8 TObject::forward(u32 arg1) {
     u8 temp = false;
 
     while (true) {
@@ -330,23 +331,12 @@ TControl::~TControl() {
     JUT_EXPECT(ocObject_.empty());
 }
 
-#ifdef NONMATCHING
+/* 80289228-80289278 283B68 0050+00 1/1 0/0 0/0 .text
+ * appendObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject */
 void TControl::appendObject(TObject* p) {
     p->setControl_(this);
     mObjectContainer.Push_back(p);
 }
-#else
-/* 80289228-80289278 283B68 0050+00 1/1 0/0 0/0 .text
- * appendObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TControl::appendObject(TObject* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb/appendObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject.s"
-}
-#pragma pop
-#endif
 
 void TControl::removeObject(TObject* p) {
     ASSERT(p != 0);
@@ -363,16 +353,25 @@ void TControl::destroyObject(TObject* p) {
 
 /* 80289300-80289364 283C40 0064+00 0/0 2/2 0/0 .text destroyObject_all__Q37JStudio3stb8TControlFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TControl::destroyObject_all() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb/destroyObject_all__Q37JStudio3stb8TControlFv.s"
+void TControl::destroyObject_all() {
+    while (!mObjectContainer.empty()) {
+        destroyObject(&mObjectContainer.back());
+    }
 }
-#pragma pop
 
 /* 80289364-80289404 283CA4 00A0+00 1/1 0/0 0/0 .text getObject__Q37JStudio3stb8TControlFPCvUl */
+// TPRObject_ID_equal copy issue
+#ifdef NONMATCHING
+TObject* TControl::getObject(void const* param_0, u32 param_1) {
+    JGadget::TLinkList<TObject, -12>::iterator begin = mObjectContainer.begin();
+    JGadget::TLinkList<TObject, -12>::iterator end = mObjectContainer.end();
+    JGadget::TLinkList<TObject, -12>::iterator local_50 = std::find_if(begin, end, object::TPRObject_ID_equal(param_0, param_1));
+    if ((local_50 != end) != false) {
+        return &*local_50;
+    }
+    return NULL;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -381,19 +380,44 @@ asm TObject* TControl::getObject(void const* param_0, u32 param_1) {
 #include "asm/JSystem/JStudio/JStudio/stb/getObject__Q37JStudio3stb8TControlFPCvUl.s"
 }
 #pragma pop
+#endif
 
 /* 80289404-802894B4 283D44 00B0+00 0/0 1/1 0/0 .text            reset__Q37JStudio3stb8TControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TControl::reset() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/stb/reset__Q37JStudio3stb8TControlFv.s"
+void TControl::reset() {
+    resetStatus_();
+    mObject_control.reset(NULL);
+    JGadget::TContainerEnumerator<JStudio::stb::TObject, -12> aTStack_18(&mObjectContainer);
+    while (aTStack_18) {
+        (*aTStack_18).reset(NULL);
+    }
 }
-#pragma pop
 
 /* 802894B4-802895B4 283DF4 0100+00 0/0 2/2 0/0 .text            forward__Q37JStudio3stb8TControlFUl
  */
+// regalloc
+#ifdef NONMATCHING
+u8 TControl::forward(u32 param_0) {
+    _54 = mObject_control.getSuspend();
+    u8 rv = mObject_control.forward(param_0);
+    int uVar7 = 0xf;
+    int uVar6 = 0;
+    JGadget::TContainerEnumerator<JStudio::stb::TObject, -12> aTStack_38(&mObjectContainer);
+    while (aTStack_38) {
+        JStudio::stb::TObject& this_00 = *aTStack_38;
+        u8 iVar5 = 0;
+        u8 iVar4 = this_00.forward(param_0);
+        if (iVar4 != 0 || rv != 0) {
+            iVar5 = 1;
+        }
+        rv = iVar5;
+        int uVar3 = this_00.getStatus();
+        uVar7 &= uVar3;
+        uVar6 |= uVar3;
+    }
+    setStatus_(uVar7 | (uVar6 << 0x10));
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -402,10 +426,11 @@ asm u8 TControl::forward(u32 param_0) {
 #include "asm/JSystem/JStudio/JStudio/stb/forward__Q37JStudio3stb8TControlFUl.s"
 }
 #pragma pop
+#endif
 
 TFactory::~TFactory() {}
 
-TObject* TFactory::create(data::TParse_TBlock_object const& param_0) {
+JStudio::TObject* TFactory::create(data::TParse_TBlock_object const& param_0) {
     return NULL;
 }
 
@@ -501,7 +526,7 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 f
         return false;
     }
 
-    TObject* p = pFactory->create(ppObject);
+    JStudio::TObject* p = pFactory->create(ppObject);
     if (p == NULL) {
         if (flags & 0x40)
             return true;
