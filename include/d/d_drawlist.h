@@ -305,6 +305,7 @@ public:
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
     void setViewport(view_port_class* port) { mViewport = port; }
+    J3DDrawBuffer* getOpaList() { return mDrawBuffers[DB_OPA_LIST]; }
     J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }

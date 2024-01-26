@@ -126,8 +126,8 @@ JStudio::ctb::TObject_TxyzRy::TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock c
 
 /* 80280FBC-80280FC4 27B8FC 0008+00 1/0 0/0 0/0 .text getScheme__Q37JStudio3ctb14TObject_TxyzRyCFv
  */
-bool JStudio::ctb::TObject_TxyzRy::getScheme() const {
-    return true;
+int JStudio::ctb::TObject_TxyzRy::getScheme() const {
+    return 1;
 }
 
 /* 80280FC4-80280FF4 27B904 0030+00 0/0 1/1 0/0 .text            __ct__Q37JStudio3ctb8TControlFv */
@@ -146,21 +146,9 @@ extern "C" asm void __dt__Q37JStudio3ctb8TControlFv() {
 
 /* 80281060-802810AC 27B9A0 004C+00 1/1 0/0 0/0 .text
  * appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject */
-// Push_back stack issues
-#ifdef NONMATCHING
 void JStudio::ctb::TControl::appendObject(JStudio::ctb::TObject* param_0) {
     mList.Push_back(param_0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::ctb::TControl::appendObject(JStudio::ctb::TObject* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/ctb/appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject.s"
-}
-#pragma pop
-#endif
 
 /* 802810AC-802810DC 27B9EC 0030+00 1/1 0/0 0/0 .text
  * removeObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject */
@@ -177,36 +165,20 @@ void JStudio::ctb::TControl::destroyObject(JStudio::ctb::TObject* param_0) {
 
 /* 8028112C-80281190 27BA6C 0064+00 0/0 2/2 0/0 .text destroyObject_all__Q37JStudio3ctb8TControlFv
  */
-// Stack
-#ifdef NONMATCHING
 void JStudio::ctb::TControl::destroyObject_all() {
-    TObject* pTVar1;
-    int iVar2;
-
     while (!mList.empty()) {
         destroyObject(&mList.back());
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio::ctb::TControl::destroyObject_all() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/ctb/destroyObject_all__Q37JStudio3ctb8TControlFv.s"
-}
-#pragma pop
-#endif
 
 /* 80281190-80281230 27BAD0 00A0+00 1/1 0/0 0/0 .text getObject__Q37JStudio3ctb8TControlFPCvUl */
-// end issues
+// TPRObject_ID_equal issues
 #ifdef NONMATCHING
 JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u32 param_1) {
-    JGadget::TLinkList<TObject, 2>::iterator local_3c = mList.begin();
-    JGadget::TLinkList<TObject, 2>::iterator local_40 = mList.end();
-    object::TPRObject_ID_equal aTStack_38(param_0, param_1);
-    JGadget::TLinkList<TObject, 2>::iterator local_50 = std::find_if(local_3c, local_40, object::TPRObject_ID_equal(param_0, param_1));
-    if ((local_50 != local_40) != false) {
+    JGadget::TLinkList<TObject, -12>::iterator begin = mList.begin();
+    JGadget::TLinkList<TObject, -12>::iterator end = mList.end();
+    JGadget::TLinkList<TObject, -12>::iterator local_50 = std::find_if(begin, end, object::TPRObject_ID_equal(param_0, param_1));
+    if ((local_50 != end) != false) {
         return &*local_50;
     }
     return NULL;
@@ -224,26 +196,14 @@ asm JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0
 
 /* 80281230-80281274 27BB70 0044+00 0/0 1/1 0/0 .text getObject_index__Q37JStudio3ctb8TControlFUl
  */
-// Stack issues
-#ifdef NONMATCHING
 JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
     if (param_0 >= mList.size()) {
         return 0;
     }
-    JGadget::TLinkList<TObject, 2>::iterator aiStack_14 = mList.begin();
+    JGadget::TLinkList<TObject, -12>::iterator aiStack_14 = mList.begin();
     std::advance(aiStack_14, param_0);
     return &*aiStack_14;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/ctb/getObject_index__Q37JStudio3ctb8TControlFUl.s"
-}
-#pragma pop
-#endif
 
 /* 80281274-802812BC 27BBB4 0048+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3ctb8TFactoryFv */
 #pragma push

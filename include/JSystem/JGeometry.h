@@ -20,6 +20,28 @@ struct TVec3 {
 };
 
 template <>
+struct TVec3<double> {
+    double x, y, z;
+
+    void set(double x_, double y_, double z_) {
+        x = x_;
+        y = y_;
+        z = z_;
+    }
+
+    inline TVec3<double>& operator*=(double b) {
+        scale(b);
+        return *this;
+    }
+
+    void scale(double b) {
+        x *= b;
+        y *= b;
+        z *= b;
+    }
+};
+
+template <>
 struct TVec3<s16> {
     s16 x, y, z;
 
@@ -420,6 +442,15 @@ struct TUtil {
         }
         return v;
     }
+};
+
+template<>
+struct TUtil<double> {
+    static inline double epsilon() { return 32.0f * FLT_EPSILON; }
+    static inline double one() { return 1.0; }
+    static inline double atan2(double x, double y) { return atan2(x, y); }
+    static inline double asin(double x) { return asin(x); }
+    static inline double halfPI() { return 1.5707963267948966; }
 };
 
 // clang-format on

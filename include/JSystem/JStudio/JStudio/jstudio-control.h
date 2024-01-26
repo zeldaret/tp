@@ -8,9 +8,11 @@
 #include "dolphin/mtx/vec.h"
 
 namespace JStudio {
+struct TObject;
 struct TCreateObject {
     TCreateObject() {}
     /* 80285488 */ virtual ~TCreateObject() = 0;
+    virtual bool create(TObject**, JStudio::stb::data::TParse_TBlock_object const&) = 0;
 
     /* 0x4 */ JGadget::TLinkListNode mNode;
 };  // Size: 0xC
@@ -19,7 +21,7 @@ struct TFactory : public stb::TFactory {
     TFactory() {}
 
     /* 802854D0 */ virtual ~TFactory();
-    /* 802855AC */ virtual void create(JStudio::stb::data::TParse_TBlock_object const&);
+    /* 802855AC */ virtual TObject* create(JStudio::stb::data::TParse_TBlock_object const&);
 
     /* 80285560 */ void appendCreateObject(JStudio::TCreateObject*);
 
@@ -36,10 +38,10 @@ public:
     /* 80285114 */ TControl();
     /* 802851AC */ virtual ~TControl();
     /* 80285228 */ void setFactory(JStudio::TFactory*);
-    /* 80285250 */ void transformOnSet_setOrigin_TxyzRy(Vec const&, f32);
-    /* 802852D0 */ void transformOnGet_setOrigin_TxyzRy(Vec const&, f32);
-    /* 80285368 */ void transform_setOrigin_ctb(JStudio::ctb::TObject const&);
-    /* 8028543C */ void transform_setOrigin_ctb_index(u32);
+    /* 80285250 */ int transformOnSet_setOrigin_TxyzRy(Vec const&, f32);
+    /* 802852D0 */ int transformOnGet_setOrigin_TxyzRy(Vec const&, f32);
+    /* 80285368 */ int transform_setOrigin_ctb(JStudio::ctb::TObject const&);
+    /* 8028543C */ bool transform_setOrigin_ctb_index(u32);
 
     void stb_destroyObject_all() { stb::TControl::destroyObject_all(); }
     void fvb_destroyObject_all() { fvb_Control.destroyObject_all(); }
@@ -68,7 +70,36 @@ public:
         transform_setOrigin_TxyzRy(xyz, rotY);
     }
 
-    void setSecondPerFrame(double param_0) { mSecondPerFrame = param_0; }
+    void setSecondPerFrame(f64 param_0) { mSecondPerFrame = param_0; }
+    f64 getSecondPerFrame() const { return mSecondPerFrame; }
+
+    ctb::TObject* ctb_getObject_index(u32 index) {
+        return ctb_Control.getObject_index(index);
+    }
+
+    fvb::TObject* fvb_getObject(const void* param_1, u32 param_2) {
+        return fvb_Control.getObject(param_1, param_2);
+    }
+
+    fvb::TObject* fvb_getObject_index(u32 index) {
+        return fvb_Control.getObject_index(index);
+    }
+
+    TFunctionValue* getFunctionValue(const void* param_1, u32 param_2) {
+        fvb::TObject* obj = fvb_getObject(param_1, param_2);
+        if (obj == NULL) {
+            return NULL;
+        } 
+        return obj->referFunctionValue();
+    }
+
+    TFunctionValue* getFunctionValue_index(u32 index) {
+        fvb::TObject* obj = fvb_getObject_index(index);
+        if (obj == NULL) {
+            return NULL;
+        } 
+        return obj->referFunctionValue();
+    }
 
     /* 0x58 */ f64 mSecondPerFrame;
     /* 0x60 */ fvb::TControl fvb_Control;
@@ -78,19 +109,21 @@ public:
     /* 0x8C */ Vec field_0x8c;
     /* 0x98 */ Vec field_0x98;
     /* 0xA4 */ f32 mTransformOnSet_RotationY;
-    /* 0xA8 */ u8 field_0xa8[4];
+    /* 0xA8 */ f32 field_0xa8;
     /* 0xAC */ Mtx mTransformOnSet_Matrix;
     /* 0xDC */ Mtx mTransformOnGet_Matrix;
 };
 
 struct TParse : public stb::TParse {
     /* 8028566C */ TParse(JStudio::TControl*);
-    /* 80285844 */ void parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32);
-    /* 802858F0 */ void parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const&, u32);
+    /* 80285844 */ bool parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32);
+    /* 802858F0 */ bool parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const&, u32);
 
     /* 802856A8 */ virtual ~TParse();
-    /* 80285708 */ virtual void parseHeader(JStudio::stb::data::TParse_THeader const&, u32);
-    /* 802857E4 */ virtual void parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32);
+    /* 80285708 */ virtual bool parseHeader(JStudio::stb::data::TParse_THeader const&, u32);
+    /* 802857E4 */ virtual bool parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32);
+
+    TControl* getControl() { return (TControl*)stb::TParse::getControl(); }
 };
 
 };  // namespace JStudio

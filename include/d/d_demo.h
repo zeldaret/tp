@@ -246,7 +246,7 @@ public:
     jstudio_tCreateObject_message() {}
 
     virtual ~jstudio_tCreateObject_message();
-    virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&);
+    virtual bool create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&);
 };
 
 class jstudio_tAdaptor_message : public JStudio::TAdaptor_message {

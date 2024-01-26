@@ -16,7 +16,7 @@ struct TCreateObject : public JStudio::TCreateObject {
     }
 
     /* 80289B00 */ virtual ~TCreateObject();
-    /* 80289B60 */ virtual void create(JStudio::TObject**,
+    /* 80289B60 */ virtual bool create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
 
     /* 0x0C */ const JStage::TSystem* pJSGSystem_;

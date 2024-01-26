@@ -8,12 +8,10 @@ M420_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor.map
 
 M420_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_cdoor/d_a_obj_cdoor.cpp \
 
 M420_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/d_a_obj_cdoor.o \
 
 M420_LIBS := \

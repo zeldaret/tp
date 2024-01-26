@@ -152,7 +152,7 @@ const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 groupID
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
-// TContainerEnumerator_const inline issues + while condition
+// TContainerEnumerator_const stack issues
 #ifdef NONMATCHING
 u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
                                                       bool* param_2) const {
@@ -166,7 +166,7 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
         return -1;
     }
 
-    JGadget::TContainerEnumerator_const<TResourceContainer::TCResource, 0> enumerator(this_01->getResourceContainer());
+    JGadget::TContainerEnumerator_const<JMessage::TResource, 0> enumerator(this_01->getResourceContainer());
     const TResource* this_02;
     while (!enumerator) {
         this_02 = (const TResource*)&(*enumerator);

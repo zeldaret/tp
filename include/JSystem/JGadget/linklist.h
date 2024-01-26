@@ -256,28 +256,57 @@ struct TLinkList_factory : public TLinkList<T, I> {
     }
 };
 
-template <typename T, int I>
+template <typename T>
 struct TEnumerator {
-    inline TEnumerator(typename TLinkList<T, I>::const_iterator _current,
-                       typename TLinkList<T, I>::const_iterator _end)
+    inline TEnumerator(T _current, T _end)
         : current(_current), end(_end) {}
 
-    bool isEnd() const { return current.node == end.node; }
+    bool isEnd() const { return current != end; }
     operator bool() const { return isEnd(); }
-    T& operator*() {
-        T& rv = (T&)*current;
+    T operator*() {
+        T rv = current;
         ++current;
         return rv;
     }
 
-    TLinkList<T, I>::const_iterator current;
-    TLinkList<T, I>::const_iterator end;
+    T current;
+    T end;
+};
+
+// TEnumerator2 should be the same but there are two issues:
+// 1. How to derive the iterator return type for operator* (the debug makes it seem like operator* is called
+// so the return value should be what the iterator points to)
+// 2. Calling the * operator seems to make functions using TEnumerator<T*> not work. See
+// JStudio::TAdaptor::adaptor_setVariableValue_n
+// Perhaps template specialization?
+template <typename Iterator, typename T>
+struct TEnumerator2 {
+    inline TEnumerator2(Iterator _current, Iterator _end)
+        : current(_current), end(_end) {}
+
+    bool isEnd() const { return current != end; }
+    operator bool() const { return isEnd(); }
+    T& operator*() {
+        T& rv = *current;
+        ++current;
+        return rv;
+    }
+
+    Iterator current;
+    Iterator end;
 };
 
 template <typename T, int I>
-struct TContainerEnumerator_const : public TEnumerator<T, I> {
-    inline TContainerEnumerator_const(const T* param_0)
-        : TEnumerator<T, I>(param_0->begin(), param_0->end()) {}
+struct TContainerEnumerator : public TEnumerator2<TLinkList<T, I>::iterator, T> {
+    inline TContainerEnumerator(TLinkList<T, I>* param_0)
+        : TEnumerator2<TLinkList<T, I>::iterator, T>(param_0->begin(), param_0->end()) {}
+};
+
+
+template <typename T, int I>
+struct TContainerEnumerator_const : public TEnumerator2<TLinkList<T, I>::const_iterator, const T> {
+    inline TContainerEnumerator_const(const TLinkList<T, I>* param_0)
+        : TEnumerator2<TLinkList<T, I>::const_iterator, const T>(param_0->begin(), param_0->end()) {}
 };
 
 };  // namespace JGadget
