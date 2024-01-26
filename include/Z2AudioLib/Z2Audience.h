@@ -238,4 +238,7 @@ inline Z2Audience* Z2GetAudience() {
     return JASGlobalInstance<Z2Audience>::getInstance();
 }
 
+extern s8 data_80451358;
+extern s8 data_80451359;
+
 #endif /* Z2AUDIENCE_H */

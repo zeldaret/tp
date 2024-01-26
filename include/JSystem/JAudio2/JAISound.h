@@ -8,17 +8,12 @@
 class JAISoundID {
 public:
     operator u32() const { return this->mId.mFullId; }
-    const JAISoundID& operator=(JAISoundID const& other) { mId.mFullId = other.mId.mFullId; return *this; };
 
     JAISoundID(u32 pId) { mId.mFullId = pId; };
 
     JAISoundID(JAISoundID const& other) { mId = other.mId; };
 
     JAISoundID() {}
-
-    // Helps solve some JAISoundID ctor/assignment operator stack issues
-    // Remove when solved
-    void stackCopyHelper(JAISoundID other) { mId = other.mId; }
 
     bool isAnonymous() { return mId.mFullId == 0xffffffff; }
     void setAnonymous() { mId.mFullId = -1; }
@@ -229,7 +224,7 @@ public:
     virtual JAITempoMgr* getTempoMgr() = 0;
     virtual bool JAISound_tryDie_() = 0;
 
-    JAISoundID getID() const;
+    JAISoundID getID() const { return soundID; }
     u8 getAnimationState() const { return status_.state.flags.animationState; }
     bool isAnimated() const { return getAnimationState() != 0; }
     void setAnimationState(u8 pState) {

@@ -7,13 +7,13 @@
 
 class Z2SoundStarter;
 
-class Z2SoundObjBase : protected Z2SoundHandles {
+class Z2SoundObjBase : public Z2SoundHandles {
 public:
     Z2SoundObjBase();
     ~Z2SoundObjBase();
 
     void deleteObject();
-    JAISoundHandle* startCollisionSE(u32, u32, Z2SoundObjBase*);
+    Z2SoundHandlePool* startCollisionSE(u32, u32, Z2SoundObjBase*);
 
     bool isAlive() const { return mIsInitialized; }
     void setSoundStarter(Z2SoundStarter* i_soundStarter) { mSoundStarter = i_soundStarter; }
@@ -22,8 +22,8 @@ public:
     virtual void dispose();
     virtual bool stopOK(Z2SoundHandlePool& pool);
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
-    virtual JAISoundHandle* startSound(JAISoundID, u32, s8);
-    virtual JAISoundHandle* startLevelSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startLevelSound(JAISoundID, u32, s8);
 
     /* 0x14 */ Z2SoundStarter* mSoundStarter;
     /* 0x18 */ JGeometry::TVec3<f32>* mSoundPos;
@@ -35,11 +35,11 @@ public:
 class Z2SoundObjSimple : public Z2SoundObjBase {
 public:
     Z2SoundObjSimple();
-    ~Z2SoundObjSimple();
+    ~Z2SoundObjSimple() {}
 
     virtual void init(Vec* pSoundPos, u8 pNumHandles);
-    virtual JAISoundHandle* startSound(JAISoundID, u32, s8);
-    virtual JAISoundHandle* startLevelSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startLevelSound(JAISoundID, u32, s8);
 };
 
 class Z2SoundObjAnime : public Z2SoundObjBase {
@@ -91,8 +91,8 @@ public:
 
     virtual void framework(u32, s8);
     virtual void init(Vec*, u8);
-    virtual JAISoundHandle* startSound(JAISoundID, u32, s8);
-    virtual JAISoundHandle* startLevelSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startLevelSound(JAISoundID, u32, s8);
 
     /* 0x20 */ JGeometry::TVec3<f32> field_0x20;
     /* 0x2C */ JGeometry::TVec3<f32> field_0x2c;

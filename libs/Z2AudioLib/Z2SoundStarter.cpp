@@ -26,16 +26,15 @@ int Z2SoundStarter::startSound(JAISoundID param_1, JAISoundHandle* handlePtr,
                                f32 param_6, f32 param_7, f32 param_8, f32 param_9, u32 param_10) {
     JUT_ASSERT(45, handlePtr);
     if (param_4 == 6) {
-        switch ((u32)param_1) {
-        case 0x6002b:
-            // TODO: Fix JAISoundID fake match
-            param_1.stackCopyHelper(0x6002e);
+        switch (param_1) {
+        case Z2SE_CM_BODYFALL_S:
+            param_1 = Z2SE_CM_BODYFALL_ASASE_S;
             break;
-        case 0x6002c:
-            param_1.stackCopyHelper(0x6002f);
+        case Z2SE_CM_BODYFALL_M:
+            param_1 = Z2SE_CM_BODYFALL_ASASE_M;
             break;
-        case 0x6002d:
-            param_1.stackCopyHelper(0x60030);
+        case Z2SE_CM_BODYFALL_L:
+            param_1 = Z2SE_CM_BODYFALL_ASASE_L;
             break;
         }
     }

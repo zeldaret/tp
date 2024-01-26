@@ -796,7 +796,8 @@ asm int daItem_c::_daItem_create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm Z2SoundObjSimple::~Z2SoundObjSimple() {
+// asm Z2SoundObjSimple::~Z2SoundObjSimple() {
+extern "C" asm void __dt__16Z2SoundObjSimpleFv() {
     nofralloc
 #include "asm/a/obj/d_a_obj_item/__dt__16Z2SoundObjSimpleFv.s"
 }

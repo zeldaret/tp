@@ -19,20 +19,20 @@ public:
 
     void initHandlesPool(u8 pNumHandles);
     void deleteHandlesPool();
-    JAISoundHandle* getFreeHandle();
-    JAISoundHandle* getLowPrioSound(JAISoundID pSoundId);
+    Z2SoundHandlePool* getFreeHandle();
+    Z2SoundHandlePool* getLowPrioSound(JAISoundID pSoundId);
 
     bool isActive() const;
 
-    JAISoundHandle* getHandleSoundID(JAISoundID pSoundId);
-    JAISoundHandle* getHandleUserData(u32 pUserData);
+    Z2SoundHandlePool* getHandleSoundID(JAISoundID pSoundId);
+    Z2SoundHandlePool* getHandleUserData(u32 pUserData);
 
     void stopAllSounds(u32 fadeout);
 
     void setPos(const JGeometry::TVec3<f32>& pos);
 
     int getNumHandles() const { return getNumLinks(); }
-    JAISoundHandle* getHandle(int index) { return (Z2SoundHandlePool*)getNth(index); }
+    Z2SoundHandlePool* getHandle(int index) { return (Z2SoundHandlePool*)getNth(index); }
 
 private:
     /* 0xC */ u8 mNumHandles;

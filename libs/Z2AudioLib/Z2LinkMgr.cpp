@@ -583,7 +583,7 @@ void Z2CreatureLink::startLinkSwordSound(JAISoundID i_soundID, u32 id, s8 ch) {
 }
 
 /* 802C4784-802C4814 2BF0C4 0090+00 1/0 0/0 0/0 .text startCollisionSE__14Z2CreatureLinkFUlUl */
-void Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
+Z2SoundHandlePool* Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
     switch (mapinfo) {
     case 0x28:
     case 0x29:
@@ -597,7 +597,7 @@ void Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
         break;
     }
 
-    mSoundObjAnime.startCollisionSE(hitID, mapinfo, NULL);
+    return mSoundObjAnime.startCollisionSE(hitID, mapinfo, NULL);
 }
 
 /* ############################################################################################## */

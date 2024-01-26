@@ -1513,5 +1513,8 @@ REGISTER_CTORS(0x802BDEDC, __sinit_Z2Audience_cpp);
 /* 80451358-80451360 -00001 0008+00 0/0 1/1 0/0 .sbss            None */
 /* 80451358 0001+00 data_80451358 None */
 /* 80451359 0007+00 data_80451359 None */
-extern u8 struct_80451358[8];
-u8 struct_80451358[8];
+// extern u8 struct_80451358[8];
+// u8 struct_80451358[8];
+s8 data_80451358;
+s8 data_80451359;
+u8 data_8045135a[6]; // padding?
