@@ -2,7 +2,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_boss
 //
 
-#include "msg/scrn/d_msg_scrn_boss.h"
+#include "d/msg/d_msg_scrn_boss.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/msg/d_msg_object.h"

@@ -1,7 +1,7 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_EXPLAIN_H
 #define MSG_SCRN_D_MSG_SCRN_EXPLAIN_H
 
-#include "msg/scrn/d_msg_scrn_base.h"
+#include "d/msg/d_msg_scrn_base.h"
 
 class J2DOrthoGraph;
 class STControl;

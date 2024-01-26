@@ -2,9 +2,9 @@
 // Translation Unit: msg/scrn/d_msg_scrn_explain
 //
 
-#include "msg/scrn/d_msg_scrn_explain.h"
-#include "msg/scrn/d_msg_scrn_arrow.h"
-#include "msg/scrn/d_msg_scrn_3select.h"
+#include "d/msg/d_msg_scrn_explain.h"
+#include "d/msg/d_msg_scrn_arrow.h"
+#include "d/msg/d_msg_scrn_3select.h"
 #include "stdio.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"

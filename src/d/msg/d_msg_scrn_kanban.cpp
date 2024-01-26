@@ -3,7 +3,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_kanban
 //
 
-#include "msg/scrn/d_msg_scrn_kanban.h"
+#include "d/msg/d_msg_scrn_kanban.h"
 #include "dol2asm.h"
 
 //

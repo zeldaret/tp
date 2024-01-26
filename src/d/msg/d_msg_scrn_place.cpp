@@ -3,7 +3,7 @@
  *
  */
 
-#include "msg/scrn/d_msg_scrn_place.h"
+#include "d/msg/d_msg_scrn_place.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/msg/d_msg_object.h"

@@ -1,4 +1,4 @@
-#include "msg/scrn/d_msg_scrn_light.h"
+#include "d/msg/d_msg_scrn_light.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

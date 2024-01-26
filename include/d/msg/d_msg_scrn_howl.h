@@ -2,7 +2,7 @@
 #define MSG_SCRN_D_MSG_SCRN_HOWL_H
 
 #include "dolphin/types.h"
-#include "msg/scrn/d_msg_scrn_base.h"
+#include "d/msg/d_msg_scrn_base.h"
 
 struct dMsgScrnHowl_c : public dMsgScrnBase_c {
     /* 8024096C */ dMsgScrnHowl_c();

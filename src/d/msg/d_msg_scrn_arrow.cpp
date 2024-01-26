@@ -1,6 +1,6 @@
 // Translation Unit: msg/scrn/d_msg_scrn_arrow
 
-#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "d/msg/d_msg_scrn_arrow.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/com/d_com_inf_game.h"

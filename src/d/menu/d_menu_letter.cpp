@@ -21,7 +21,7 @@
 #include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "d/msg/d_msg_scrn_arrow.h"
 
 extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
 extern "C" void __dt__14dMenu_Letter_cFv();

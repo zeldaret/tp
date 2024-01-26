@@ -3,7 +3,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_jimaku
 //
 
-#include "msg/scrn/d_msg_scrn_jimaku.h"
+#include "d/msg/d_msg_scrn_jimaku.h"
 #include "dol2asm.h"
 
 //

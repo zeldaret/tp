@@ -3,7 +3,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_tree
 //
 
-#include "msg/scrn/d_msg_scrn_tree.h"
+#include "d/msg/d_msg_scrn_tree.h"
 #include "d/pane/d_pane_class.h"
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_out_font.h"

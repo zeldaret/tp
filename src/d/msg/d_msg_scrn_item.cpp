@@ -3,7 +3,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_item
 //
 
-#include "msg/scrn/d_msg_scrn_item.h"
+#include "d/msg/d_msg_scrn_item.h"
 #include "dol2asm.h"
 
 //
