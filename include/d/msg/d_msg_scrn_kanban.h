@@ -1,8 +1,7 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_KANBAN_H
 #define MSG_SCRN_D_MSG_SCRN_KANBAN_H
 
-#include "dolphin/types.h"
-#include "msg/scrn/d_msg_scrn_base.h"
+#include "d/msg/d_msg_scrn_base.h"
 
 class JKRExpHeap;
 class J2DAnmTransform;
