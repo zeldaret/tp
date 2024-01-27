@@ -249,7 +249,6 @@ s8 Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32
 
     if (param_2) { 
         if (mTimer > data_8045088E) {
-            //JVar7 = (JAISoundID)JAISoundID::JAISoundID(aJStack_34, 0x10035);
             Z2GetSoundStarter()->startLevelSound(0x10035, &field_0x00, NULL);
         }
         if (field_0x00) {

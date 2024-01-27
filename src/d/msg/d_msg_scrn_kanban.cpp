@@ -270,3 +270,4 @@ void dMsgScrnKanban_c::fukiTrans(f32 param_0, f32 param_1) {
 }
 
 /* 80399AB8-80399AB8 026118 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
