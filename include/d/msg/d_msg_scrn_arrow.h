@@ -20,12 +20,12 @@ public:
     /* 8023BFC4 */ void dotAnimeInit();
     /* 8023C010 */ void dotAnimeMove();
 
-    /* 0x04 */ J2DScreen* mScreen;
-    /* 0x08 */ J2DAnmTransform* mAnmBck;
-    /* 0x0C */ J2DAnmColor* mAnmBpk;
-    /* 0x10 */ CPaneMgr* mPaneMgr0;
-    /* 0x14 */ CPaneMgr* mPaneMgr1;
-    /* 0x18 */ CPaneMgr* mPaneMgr2;
+    /* 0x04 */ J2DScreen* mpScreen;
+    /* 0x08 */ J2DAnmTransform* mpBck;
+    /* 0x0C */ J2DAnmColor* mpBpk;
+    /* 0x10 */ CPaneMgr* mpParent_c;
+    /* 0x14 */ CPaneMgr* mpArw_c;
+    /* 0x18 */ CPaneMgr* mpDot_c;
     /* 0x1C */ f32 mBckFrame;
     /* 0x20 */ f32 mBpkFrame;
 };

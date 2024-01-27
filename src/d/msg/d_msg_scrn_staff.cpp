@@ -1,7 +1,7 @@
 /**
  * d_msg_scrn_staff.cpp
- * 
-*/
+ *
+ */
 
 #include "d/msg/d_msg_scrn_staff.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -17,7 +17,7 @@ static u64 t_tag[6] = {
 };
 
 /* 80246B34-80246DD8 241474 02A4+00 0/0 1/1 0/0 .text            __ct__15dMsgScrnStaff_cFUc */
-dMsgScrnStaff_c::dMsgScrnStaff_c(u8 param_0) {
+dMsgScrnStaff_c::dMsgScrnStaff_c(u8 unused) {
     init();
 
     field_0xd0 = 0.0f;
@@ -90,16 +90,10 @@ void dMsgScrnStaff_c::fukiAlpha(f32 i_rate) {
 }
 
 /* 80246FE4-80246FE8 241924 0004+00 1/0 0/0 0/0 .text            fukiScale__15dMsgScrnStaff_cFf */
-void dMsgScrnStaff_c::fukiScale(f32 param_0) {
-    /* empty function */
-}
+void dMsgScrnStaff_c::fukiScale(f32 param_0) {}
 
 /* 80246FE8-80246FEC 241928 0004+00 1/0 0/0 0/0 .text            fukiTrans__15dMsgScrnStaff_cFff */
-void dMsgScrnStaff_c::fukiTrans(f32 param_0, f32 param_1) {
-    /* empty function */
-}
+void dMsgScrnStaff_c::fukiTrans(f32 param_0, f32 param_1) {}
 
 /* 80246FEC-80246FF0 24192C 0004+00 1/0 0/0 0/0 .text            fontAlpha__15dMsgScrnStaff_cFf */
-void dMsgScrnStaff_c::fontAlpha(f32 param_0) {
-    /* empty function */
-}
+void dMsgScrnStaff_c::fontAlpha(f32 param_0) {}

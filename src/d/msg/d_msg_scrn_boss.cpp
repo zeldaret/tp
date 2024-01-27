@@ -1,29 +1,15 @@
-//
-// Translation Unit: msg/scrn/d_msg_scrn_boss
-//
-
 #include "d/msg/d_msg_scrn_boss.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/msg/d_msg_object.h"
 #include "d/pane/d_pane_class.h"
-#include "dolphin/types.h"
-
-//
-// External References:
-//
 
 extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
-//
-// Declarations:
-//
 
 /* 8023C5C8-8023C928 236F08 0360+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnBoss_cFv */
 dMsgScrnBoss_c::dMsgScrnBoss_c() {
     static u64 t_tag[7] = {
-        'sfontb0', 'sfontb1', 'sfontb2', 'sfontl0',
-        'sfontl1', 'sfontl2', 'sfont00',
+        'sfontb0', 'sfontb1', 'sfontb2', 'sfontl0', 'sfontl1', 'sfontl2', 'sfont00',
     };
 
     init();
@@ -37,11 +23,13 @@ dMsgScrnBoss_c::dMsgScrnBoss_c() {
 
     mpFontParent = new CPaneMgr(mpScreen, 's_font_n', 0, NULL);
     mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
-    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX, g_MsgObject_HIO_c.mBossNameCharPosY);
+    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX,
+                            g_MsgObject_HIO_c.mBossNameCharPosY);
 
     mpBaseParent = new CPaneMgr(mpScreen, 'base_n', 2, NULL);
     mpBaseParent->scale(g_MsgObject_HIO_c.mBossNameBaseSizeX, g_MsgObject_HIO_c.mBossNameBaseSizeY);
-    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX, g_MsgObject_HIO_c.mBossNameBasePosY);
+    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX,
+                            g_MsgObject_HIO_c.mBossNameBasePosY);
 
     for (int i = 0; i < 7; i++) {
         mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
@@ -91,10 +79,12 @@ void dMsgScrnBoss_c::exec() {
     mpPmp_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
 
     mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
-    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX, g_MsgObject_HIO_c.mBossNameCharPosY);
+    mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX,
+                            g_MsgObject_HIO_c.mBossNameCharPosY);
 
     mpBaseParent->scale(g_MsgObject_HIO_c.mBossNameBaseSizeX, g_MsgObject_HIO_c.mBossNameBaseSizeY);
-    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX, g_MsgObject_HIO_c.mBossNameBasePosY);
+    mpBaseParent->paneTrans(g_MsgObject_HIO_c.mBossNameBasePosX,
+                            g_MsgObject_HIO_c.mBossNameBasePosY);
 
     if (isTalkNow()) {
         fukiAlpha(1.0f);
@@ -109,28 +99,20 @@ void dMsgScrnBoss_c::drawSelf() {
 }
 
 /* 8023CBF0-8023CC7C 237530 008C+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBoss_cFf */
-void dMsgScrnBoss_c::fukiAlpha(f32 alpha) {
-    mpPmp_c->setAlphaRate(alpha);
-    mpBaseParent->setAlphaRate(alpha * g_MsgObject_HIO_c.mBossNameBaseAlpha);
+void dMsgScrnBoss_c::fukiAlpha(f32 i_alpha) {
+    mpPmp_c->setAlphaRate(i_alpha);
+    mpBaseParent->setAlphaRate(i_alpha * g_MsgObject_HIO_c.mBossNameBaseAlpha);
 
     for (int i = 0; i < 7; i++) {
-        mpTm_c[i]->setAlphaRate(alpha);
+        mpTm_c[i]->setAlphaRate(i_alpha);
     }
 }
 
 /* 8023CC7C-8023CC80 2375BC 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBoss_cFf */
-void dMsgScrnBoss_c::fukiScale(f32) {
-    /* empty function */
-}
+void dMsgScrnBoss_c::fukiScale(f32) {}
 
 /* 8023CC80-8023CC84 2375C0 0004+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBoss_cFff */
-void dMsgScrnBoss_c::fukiTrans(f32, f32) {
-    /* empty function */
-}
+void dMsgScrnBoss_c::fukiTrans(f32, f32) {}
 
 /* 8023CC84-8023CC88 2375C4 0004+00 1/0 0/0 0/0 .text            fontAlpha__14dMsgScrnBoss_cFf */
-void dMsgScrnBoss_c::fontAlpha(f32) {
-    /* empty function */
-}
-
-/* 803998F8-803998F8 025F58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+void dMsgScrnBoss_c::fontAlpha(f32) {}

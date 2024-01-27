@@ -53,7 +53,7 @@ private:
     /* 0x38 */ dMsgScrn3Select_c* mpSelect_c;
     /* 0x3C */ COutFont_c* mpOutFont;
     /* 0x40 */ J2DPicture* mpBackTex;
-    /* 0x44 */ STControl* field_0x44;
+    /* 0x44 */ STControl* mpStick;
     /* 0x48 */ f32 field_0x48;
     /* 0x4C */ f32 field_0x4c;
     /* 0x50 */ f32 field_0x50;

@@ -128,16 +128,10 @@ void dMsgScrnPlace_c::fukiAlpha(f32 i_rate) {
 }
 
 /* 80246B28-80246B2C 241468 0004+00 1/0 0/0 0/0 .text            fukiScale__15dMsgScrnPlace_cFf */
-void dMsgScrnPlace_c::fukiScale(f32) {
-    /* empty function */
-}
+void dMsgScrnPlace_c::fukiScale(f32) {}
 
 /* 80246B2C-80246B30 24146C 0004+00 1/0 0/0 0/0 .text            fukiTrans__15dMsgScrnPlace_cFff */
-void dMsgScrnPlace_c::fukiTrans(f32, f32) {
-    /* empty function */
-}
+void dMsgScrnPlace_c::fukiTrans(f32, f32) {}
 
 /* 80246B30-80246B34 241470 0004+00 1/0 0/0 0/0 .text            fontAlpha__15dMsgScrnPlace_cFf */
-void dMsgScrnPlace_c::fontAlpha(f32) {
-    /* empty function */
-}
+void dMsgScrnPlace_c::fontAlpha(f32) {}

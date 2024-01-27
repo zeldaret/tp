@@ -1,127 +1,143 @@
-// Translation Unit: msg/scrn/d_msg_scrn_arrow
-
 #include "d/msg/d_msg_scrn_arrow.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/pane/d_pane_class.h"
-#include "dolphin/os.h"
-#include "dolphin/types.h"
 
 /* 8023B9B4-8023BC78 2362F4 02C4+00 0/0 4/4 0/0 .text __ct__15dMsgScrnArrow_cFv */
 dMsgScrnArrow_c::dMsgScrnArrow_c() {
-    mScreen = new J2DScreen();
-    mScreen->setPriority("zelda_window_yajirushi.blo", 0x20000, dComIfGp_getMsgArchive(0));
-    dPaneClass_showNullPane(mScreen);
+    mpScreen = new J2DScreen();
+    JUT_ASSERT(mpScreen != 0);
+    bool fg =
+        mpScreen->setPriority("zelda_window_yajirushi.blo", 0x20000, dComIfGp_getMsgArchive(0));
+    JUT_ASSERT(fg != false);
+    dPaneClass_showNullPane(mpScreen);
+
     OSInitFastCast();
 
-    mAnmBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
-        JKRFileLoader::getGlbResource("zelda_window_yajirushi.bck", dComIfGp_getMsgArchive(0)));
+    mpBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_window_yajirushi.bck", dComIfGp_getMsgArchive(0)));
     mBckFrame = 0.0f;
 
-    mAnmBpk = (J2DAnmColor*)J2DAnmLoaderDataBase::load(
-        JKRFileLoader::getGlbResource("zelda_window_yajirushi.bpk", dComIfGp_getMsgArchive(0)));
-    mAnmBpk->searchUpdateMaterialID(mScreen);
+    mpBpk = (J2DAnmColor*)J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_window_yajirushi.bpk", dComIfGp_getMsgArchive(0)));
+    mpBpk->searchUpdateMaterialID(mpScreen);
     mBpkFrame = 0.0f;
 
-    mPaneMgr0 = new CPaneMgr(mScreen, 'set_ya_n', 0, NULL);
-    mPaneMgr1 = new CPaneMgr(mScreen, 'ya_next', 0, NULL);
-    mPaneMgr1->hide();
-    mPaneMgr1->mPane->setAnimation(mAnmBck);
-    mScreen->search('yajnext')->setAnimation(mAnmBpk);
-    mScreen->search('yajinexl')->setAnimation(mAnmBpk);
+    mpParent_c = new CPaneMgr(mpScreen, 'set_ya_n', 0, NULL);
+    JUT_ASSERT(mpParent_c != 0);
 
-    mPaneMgr2 = new CPaneMgr(mScreen, 'ya_end', 0, NULL);
-    mPaneMgr2->hide();
-    mScreen->search('yaj_end')->setAnimation(mAnmBpk);
-    mScreen->search('yajiendl')->setAnimation(mAnmBpk);
+    mpArw_c = new CPaneMgr(mpScreen, 'ya_next', 0, NULL);
+    JUT_ASSERT(mpArw_c != 0);
+
+    mpArw_c->hide();
+    mpArw_c->mPane->setAnimation(mpBck);
+    mpScreen->search('yajnext')->setAnimation(mpBpk);
+    mpScreen->search('yajinexl')->setAnimation(mpBpk);
+
+    mpDot_c = new CPaneMgr(mpScreen, 'ya_end', 0, NULL);
+    JUT_ASSERT(mpDot_c != 0);
+
+    mpDot_c->hide();
+    mpScreen->search('yaj_end')->setAnimation(mpBpk);
+    mpScreen->search('yajiendl')->setAnimation(mpBpk);
 }
 
 /* 8023BC78-8023BDC0 2365B8 0148+00 1/0 0/0 0/0 .text __dt__15dMsgScrnArrow_cFv */
 dMsgScrnArrow_c::~dMsgScrnArrow_c() {
-    delete mScreen;
-    mScreen = NULL;
+    delete mpScreen;
+    mpScreen = NULL;
 
-    delete mAnmBck;
-    mAnmBck = NULL;
+    delete mpBck;
+    mpBck = NULL;
 
-    delete mAnmBpk;
-    mAnmBpk = NULL;
+    delete mpBpk;
+    mpBpk = NULL;
 
-    delete mPaneMgr0;
-    mPaneMgr0 = NULL;
+    delete mpParent_c;
+    mpParent_c = NULL;
 
-    delete mPaneMgr1;
-    mPaneMgr1 = NULL;
+    delete mpArw_c;
+    mpArw_c = NULL;
 
-    delete mPaneMgr2;
-    mPaneMgr2 = NULL;
+    delete mpDot_c;
+    mpDot_c = NULL;
 }
 
 /* 8023BDC0-8023BDF8 236700 0038+00 0/0 5/5 0/0 .text draw__15dMsgScrnArrow_cFv */
 void dMsgScrnArrow_c::draw() {
-    J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
-    mScreen->draw(0.0f, 0.0f, ctx);
+    J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
+    mpScreen->draw(0.0f, 0.0f, graf_ctx);
 }
 
 /* 8023BDF8-8023BE34 236738 003C+00 0/0 5/5 0/0 .text setPos__15dMsgScrnArrow_cFff */
-void dMsgScrnArrow_c::setPos(f32 x, f32 y) {
-    mPaneMgr0->translate(x, y);
+void dMsgScrnArrow_c::setPos(f32 i_posX, f32 i_posY) {
+    mpParent_c->translate(i_posX, i_posY);
 }
 
 /* 8023BE34-8023BE90 236774 005C+00 0/0 9/9 0/0 .text arwAnimeInit__15dMsgScrnArrow_cFv */
 void dMsgScrnArrow_c::arwAnimeInit() {
-    mPaneMgr1->hide();
+    mpArw_c->hide();
+
     mBckFrame = 0.0f;
-    mAnmBck->setFrame(mBckFrame);
+    mpBck->setFrame(mBckFrame);
+
     mBpkFrame = 0.0f;
-    mAnmBpk->setFrame(mBpkFrame);
-    mScreen->animation();
+    mpBpk->setFrame(mBpkFrame);
+
+    mpScreen->animation();
 }
 
 /* 8023BE90-8023BFC4 2367D0 0134+00 0/0 4/4 0/0 .text arwAnimeMove__15dMsgScrnArrow_cFv */
 void dMsgScrnArrow_c::arwAnimeMove() {
-    if (!mPaneMgr1->isVisible()) {
-        mPaneMgr1->show();
+    if (!mpArw_c->isVisible()) {
+        mpArw_c->show();
     }
-    if (mPaneMgr2->isVisible() == true) {
-        mPaneMgr2->hide();
+
+    if (mpDot_c->isVisible() == true) {
+        mpDot_c->hide();
     }
+
     mBckFrame += 1.0f;
-    if (mBckFrame >= (f32)mAnmBck->getFrameMax()) {
-        mBckFrame -= (f32)mAnmBck->getFrameMax();
+    if (mBckFrame >= (f32)mpBck->getFrameMax()) {
+        mBckFrame -= (f32)mpBck->getFrameMax();
     }
-    mAnmBck->setFrame(mBckFrame);
+    mpBck->setFrame(mBckFrame);
+
     mBpkFrame += 1.0f;
-    if (mBpkFrame >= (f32)mAnmBpk->getFrameMax()) {
-        mBpkFrame -= (f32)mAnmBpk->getFrameMax();
+    if (mBpkFrame >= (f32)mpBpk->getFrameMax()) {
+        mBpkFrame -= (f32)mpBpk->getFrameMax();
     }
-    mAnmBpk->setFrame(mBpkFrame);
-    mScreen->animation();
+    mpBpk->setFrame(mBpkFrame);
+
+    mpScreen->animation();
 }
 
 /* 8023BFC4-8023C010 236904 004C+00 0/0 3/3 0/0 .text dotAnimeInit__15dMsgScrnArrow_cFv */
 void dMsgScrnArrow_c::dotAnimeInit() {
-    mPaneMgr2->hide();
+    mpDot_c->hide();
+
     mBpkFrame = 0.0f;
-    mAnmBpk->setFrame(mBpkFrame);
-    mScreen->animation();
+    mpBpk->setFrame(mBpkFrame);
+
+    mpScreen->animation();
 }
 
 /* 8023C010-8023C0DC 236950 00CC+00 0/0 3/3 0/0 .text dotAnimeMove__15dMsgScrnArrow_cFv */
 void dMsgScrnArrow_c::dotAnimeMove() {
-    if (mPaneMgr1->isVisible() == true) {
-        mPaneMgr1->hide();
+    if (mpArw_c->isVisible() == true) {
+        mpArw_c->hide();
     }
-    if (!mPaneMgr2->isVisible()) {
-        mPaneMgr2->show();
-    }
-    mBpkFrame += 1.0f;
-    if (mBpkFrame >= (f32)mAnmBpk->getFrameMax()) {
-        mBpkFrame -= (f32)mAnmBpk->getFrameMax();
-    }
-    mAnmBpk->setFrame(mBpkFrame);
-    mScreen->animation();
-}
 
-/* 803998A0-803998A0 025F00 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+    if (!mpDot_c->isVisible()) {
+        mpDot_c->show();
+    }
+
+    mBpkFrame += 1.0f;
+    if (mBpkFrame >= (f32)mpBpk->getFrameMax()) {
+        mBpkFrame -= (f32)mpBpk->getFrameMax();
+    }
+
+    mpBpk->setFrame(mBpkFrame);
+    mpScreen->animation();
+}
