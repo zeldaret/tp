@@ -31,6 +31,7 @@ public:
     u8 isTwilightBattle();
 
     bool isForceBattle() { return mForceBattle; }
+    JSUList<Z2CreatureEnemy>* getEnemyList() { return this; }
 
 private:
     /* 0x0C */ Z2EnemyArea mEnemyArea;

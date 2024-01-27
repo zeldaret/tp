@@ -4,23 +4,6 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
 
-struct Z2CreatureOI : public Z2CreatureEnemy {
-    /* 802C2578 */ Z2CreatureOI();
-    /* 802C2670 */ void init(Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*, Vec*,
-                             Vec*);
-    /* 802C2C84 */ void startTentacleSound(JAISoundID, u8, u32, s8);
-    /* 802C2CD4 */ void startTentacleSoundLevel(JAISoundID, u8, f32, u32, s8);
-
-    /* 802C25EC */ virtual void deleteObject();
-    /* 802C2864 */ virtual void framework(u32, s8);
-    /* 802C29D4 */ virtual void startCreatureSoundLevel(JAISoundID, u32, s8);
-
-    /* 0x0A4 */ Z2SoundObjSimple field_0xa4;
-    /* 0x0C4 */ Z2SoundObjSimple field_0xc4;
-    /* 0x0E4 */ Z2SoundObjSimple field_0xe4;
-    /* 0x104 */ Z2SoundObjSimple field_0x104[8];
-};
-
 struct ob_part_s {
     /* 8061A658 */ ~ob_part_s();
     /* 8061A72C */ ob_part_s();

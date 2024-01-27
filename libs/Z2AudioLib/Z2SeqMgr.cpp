@@ -145,8 +145,6 @@ extern "C" void _restgpr_29();
 extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;
 extern "C" f32 VOL_BGM_TALKING__7Z2Param;
 extern "C" f32 VOL_BGM_PAUSING__7Z2Param;
-extern "C" extern u8 struct_80450864[4];
-extern "C" extern u8 struct_80450868[4];
 extern "C" extern u32 data_8045086C;
 extern "C" extern u8 data_80450B48[4];
 extern "C" extern u8 data_80450B60[4];

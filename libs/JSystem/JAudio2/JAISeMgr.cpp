@@ -237,10 +237,6 @@ void JAISeCategoryMgr::stop() {
 
 /* 8029FE78-8029FEEC 29A7B8 0074+00 1/1 0/0 0/0 .text stopSoundID__16JAISeCategoryMgrF10JAISoundID
  */
-inline JAISoundID JAISound::getID() const {
-    return JAISoundID((u32)soundID);
-}
-
 void JAISeCategoryMgr::stopSoundID(JAISoundID param_0) {
     if (!param_0.isAnonymous()) {
         for (JSULink<JAISe>* link = mSeList.getFirst(); link != NULL; link = link->getNext()) {

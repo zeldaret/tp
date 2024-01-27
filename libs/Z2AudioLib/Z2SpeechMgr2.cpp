@@ -623,35 +623,34 @@ void Z2SpeechMgr2::setTextCount(s16 param_0) {
                 JAISoundID aJStack_18;
                 switch (field_0x3fe) {
                 case 0xb:
-                    // TODO: Fix JAISoundID fake match
-                    aJStack_18.stackCopyHelper(0x7b);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT;
                     break;
                 case 0xc:
-                    aJStack_18.stackCopyHelper(0x7c);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_FEMALE;
                     break;
                 case 0xd:
-                    aJStack_18.stackCopyHelper(0x7d);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_CHILD;
                     break;
                 case 0xe:
-                    aJStack_18.stackCopyHelper(0x7e);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_GORON;
                     break;
                 case 0xf:
-                    aJStack_18.stackCopyHelper(0x7f);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_ZORA;
                     break;
                 case 0x10:
-                    aJStack_18.stackCopyHelper(0x80);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_GREY;
                     break;
                 case 0x11:
-                    aJStack_18.stackCopyHelper(0x81);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_SPIRIT;
                     break;
                 case 0x12:
-                    aJStack_18.stackCopyHelper(0x82);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_BRAVE;
                     break;
                 case 0x1e:
-                    aJStack_18.stackCopyHelper(0x83);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_GANON;
                     break;
                 case 0x1f:
-                    aJStack_18.stackCopyHelper(0x84);
+                    aJStack_18 = Z2SE_SY_TEXT_OUT_ZANT;
                     break;
                 }
                 mSpeech.startSound(aJStack_18, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,

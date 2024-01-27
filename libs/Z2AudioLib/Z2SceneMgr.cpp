@@ -712,7 +712,7 @@ asm void Z2SceneMgr::setSceneName(char* param_0, s32 param_1, s32 param_2) {
 
 //! @meme this looks to be non-inlined here because @ref setSceneName is too large*
 extern "C" void __ct__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID const& soundIdToSet) {
-    *this_ = soundIdToSet;
+    this_->mId = soundIdToSet.mId;
 }
 
 /* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
@@ -734,7 +734,8 @@ asm bool JAIStreamMgr::isActive() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JAISoundID JAISound::getID() const {
+// asm JAISoundID JAISound::getID() const {
+extern "C" asm void getID__8JAISoundCFv() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/getID__8JAISoundCFv.s"
 }

@@ -145,10 +145,6 @@ SECTION_SDATA2 static u32 sAreaSmallFloating = 0x000001F4;
 /* 80455BAC-80455BB0 0041AC 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455BAC = 0x032004B0;
 
-inline JAISoundID JAISound::getID() const {
-    return JAISoundID((u32)soundID);
-}
-
 /* 802BF994-802BFFEC 2BA2D4 0658+00 1/0 1/1 0/0 .text            searchEnemy__13Z2SoundObjMgrFv */
 void Z2SoundObjMgr::searchEnemy() {
     mTwilightBattle = 0;

@@ -122,7 +122,8 @@ public:
         return -1;
     }
 
-private:
+    JAISoundHandle* getMainBgmHandle() { return &mMainBgmHandle; }
+
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;
     /* 0x08 */ JAISoundHandle field_0x08;
