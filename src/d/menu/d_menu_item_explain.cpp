@@ -24,8 +24,8 @@
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "msg/scrn/d_msg_scrn_3select.h"
-#include "msg/scrn/d_msg_scrn_arrow.h"
+#include "d/msg/d_msg_scrn_3select.h"
+#include "d/msg/d_msg_scrn_arrow.h"
 
 /* 80396950-80396970 022FB0 0020+00 1/1 0/0 0/0 .rodata          name_tag$3883 */
 static const u64 name_tag[4] = {

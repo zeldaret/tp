@@ -1,8 +1,4 @@
-//
-// Translation Unit: msg/scrn/d_msg_scrn_base
-//
-
-#include "msg/scrn/d_msg_scrn_base.h"
+#include "d/msg/d_msg_scrn_base.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/msg/d_msg_object.h"
@@ -90,13 +86,13 @@ void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
 }
 
 /* 8023C360-8023C3EC 236CA0 008C+00 0/0 2/2 0/0 .text            setString__14dMsgScrnBase_cFPcPc */
-void dMsgScrnBase_c::setString(char* str1, char* str2) {
+void dMsgScrnBase_c::setString(char* i_stringA, char* i_stringB) {
     for (int i = 0; i < 7; i++) {
         if (mpTm_c[i] != NULL) {
             if (i == 0) {
-                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), str1);
+                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), i_stringA);
             } else {
-                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), str2);
+                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), i_stringB);
             }
         }
     }
@@ -104,39 +100,39 @@ void dMsgScrnBase_c::setString(char* str1, char* str2) {
 
 /* 8023C3EC-8023C458 236D2C 006C+00 0/0 2/2 0/0 .text            setRubyString__14dMsgScrnBase_cFPc
  */
-void dMsgScrnBase_c::setRubyString(char* str) {
+void dMsgScrnBase_c::setRubyString(char* i_string) {
     for (int i = 0; i < 3; i++) {
         if (mpTmr_c[i] != NULL) {
-            strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), str);
+            strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), i_string);
         }
     }
 }
 
 /* 8023C458-8023C480 236D98 0028+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBase_cFf */
-void dMsgScrnBase_c::fukiScale(f32 scale) {
-    mpPmp_c->paneScale(scale, scale);
+void dMsgScrnBase_c::fukiScale(f32 i_scale) {
+    mpPmp_c->paneScale(i_scale, i_scale);
 }
 
 /* 8023C480-8023C4A4 236DC0 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBase_cFff */
-void dMsgScrnBase_c::fukiTrans(f32 posX, f32 posY) {
-    mpPmp_c->paneTrans(posX, posY);
+void dMsgScrnBase_c::fukiTrans(f32 i_posX, f32 i_posY) {
+    mpPmp_c->paneTrans(i_posX, i_posY);
 }
 
 /* 8023C4A4-8023C4F4 236DE4 0050+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBase_cFf */
-void dMsgScrnBase_c::fukiAlpha(f32 alpha) {
-    fontAlpha(alpha);
-    mpPmp_c->setAlphaRate(alpha);
+void dMsgScrnBase_c::fukiAlpha(f32 i_alpha) {
+    fontAlpha(i_alpha);
+    mpPmp_c->setAlphaRate(i_alpha);
 }
 
 /* 8023C4F4-8023C574 236E34 0080+00 1/0 5/0 0/0 .text            fontAlpha__14dMsgScrnBase_cFf */
-void dMsgScrnBase_c::fontAlpha(f32 alpha) {
+void dMsgScrnBase_c::fontAlpha(f32 i_alpha) {
     for (int i = 0; i < 7; i++) {
         if (mpTm_c[i] != NULL) {
-            mpTm_c[i]->setAlphaRate(alpha);
+            mpTm_c[i]->setAlphaRate(i_alpha);
         }
 
         if (mpTmr_c[i] != NULL) {
-            mpTmr_c[i]->setAlphaRate(alpha);
+            mpTmr_c[i]->setAlphaRate(i_alpha);
         }
     }
 }

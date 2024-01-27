@@ -163,10 +163,3 @@ asm void dMsgUnit_c::setTag(int param_0, int param_1, char* param_2, bool param_
 
 /* 804510D0-804510D8 0005D0 0004+04 1/1 5/5 0/0 .sbss            g_msg_unit */
 dMsgUnit_c g_msg_unit;
-
-/* ############################################################################################## */
-/* 804510D8-804510E0 0005D8 0008+00 0/0 2/2 0/0 .sbss            None */
-extern u8 data_804510D8[8];
-u8 data_804510D8[8] ALIGN_DECL(8);
-
-/* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

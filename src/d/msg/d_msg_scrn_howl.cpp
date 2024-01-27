@@ -3,7 +3,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_howl
 //
 
-#include "msg/scrn/d_msg_scrn_howl.h"
+#include "d/msg/d_msg_scrn_howl.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/msg/d_msg_class.h"

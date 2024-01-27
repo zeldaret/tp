@@ -204,20 +204,20 @@ O_FILES := \
 	$(BUILD_DIR)/src/d/msg/d_msg_class.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_object.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_unit.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_3select.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_arrow.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_base.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_boss.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_explain.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_item.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_howl.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_jimaku.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_kanban.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_light.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_place.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_staff.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_talk.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_tree.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_3select.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_arrow.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_base.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_boss.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_explain.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_item.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_howl.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_jimaku.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_kanban.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_light.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_place.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_staff.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_talk.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_tree.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_string_base.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_string.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_flow.o \
