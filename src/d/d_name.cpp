@@ -723,7 +723,7 @@ int dName_c::mojiChange(u8 idx) {
                 mChrInfo[idx].mCharacter = 'ゥ';
             }
         } else {
-            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ぁ' : 'ァ';
+            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ァ' : 'ぁ';
 
             if ((mChrInfo[idx].mCharacter - c) % 2) {
                 --mChrInfo[idx].mCharacter;
@@ -734,35 +734,70 @@ int dName_c::mojiChange(u8 idx) {
         break;
     case 1:
         int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'カ' : 'か';
-        if ((mChrInfo[idx].mCharacter - c) % 2 == 0) {
-            mChrInfo[idx].mCharacter += 1;
-        } else {
-            mChrInfo[idx].mCharacter -= 1;
-        }
+        int a = (((mChrInfo[idx].mCharacter - c) % 2) + 1) & 1;
+        mChrInfo[idx].mCharacter = a - c + mChrInfo[idx].mCharacter;
         break;
     case 2:
         int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'サ' : 'さ';
-        ((mChrInfo[idx].mCharacter - c) % 2) ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        int a2 = (((mChrInfo[idx].mCharacter - c2) % 2) + 1) & 1;
+        mChrInfo[idx].mCharacter = a2 - c2 + mChrInfo[idx].mCharacter;
         break;
     case 3:
     case 12:
-        if (mChrInfo[idx].mCharacter != 0x815b) {
-            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ': 'ぢ';
+        if (mChrInfo[idx].mCharacter != (u32)0x815B) {
+            u32 c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ': 'ぢ';
 
-            if (c < mChrInfo[idx].mCharacter) {
-                int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ' : 'ぢ';
-                (mChrInfo[idx].mCharacter - c2) % 2 ? mChrInfo[idx].mCharacter++ :
-                                                 mChrInfo[idx].mCharacter--;
+            if (mChrInfo[idx].mCharacter <= c) {
+                int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'タ' : 'た';
+                int a2 = (((mChrInfo[idx].mCharacter - c2) % 2) + 1) & 1;
+                mChrInfo[idx].mCharacter = a2 - c2 + mChrInfo[idx].mCharacter;
+            } else {
+                c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ド': 'ど';
+                if (mChrInfo[idx].mCharacter <= c) {
+                    u32 c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ': 'て';
+                    
+                    if (mChrInfo[idx].mCharacter >= c2) {
+                        int c3 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ' : 'て';
+                        int a2 = (((mChrInfo[idx].mCharacter - c3) % 2) + 1) & 1;
+                        mChrInfo[idx].mCharacter = a2 - c3 + mChrInfo[idx].mCharacter;
+                    }
+                } else {
+                    int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ッ' : 'っ';
+                    int ivar6 = (mChrInfo[idx].mCharacter - c2) % 3;
+            
+                    int ivar2 = ivar6 + 1;
+                    if (ivar2 > 2) {
+                        ivar2 = 0;
+                    }
+                    
+                    mChrInfo[idx].mCharacter = ivar2 + (mChrInfo[idx].mCharacter - ivar6);
+                }
+
+                
             }
+
+            
         }
         break;
-    case 5:
+    case 5: {
+        int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ハ' : 'は';
+        int ivar6 = (mChrInfo[idx].mCharacter - c2) % 3;
 
+        int ivar2 = ivar6 + 1;
+        if (ivar2 > 2) {
+            ivar2 = 0;
+        }
+        
+        mChrInfo[idx].mCharacter = ivar2 + (mChrInfo[idx].mCharacter - ivar6);
         break;
+    }
     case 7:
-    case 11:
-
+    case 11: {
+        int c2 = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ャ' : 'ゃ';
+        int a2 = (((mChrInfo[idx].mCharacter - c2) % 2) + 1) & 1;
+        mChrInfo[idx].mCharacter = a2 - c2 + mChrInfo[idx].mCharacter;
         break;
+    }
     }
 
     setNameText();

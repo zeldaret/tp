@@ -636,7 +636,7 @@ public:
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
-    virtual BOOL checkCutJumpCancelTurn() const;
+    virtual BOOL checkCutJumpCancelTurn() const { return FALSE; }
     virtual bool checkIronBallReturn() const;
     virtual bool checkIronBallGroundStop() const;
     virtual BOOL checkSingleBoarBattleSecondBowReady() const;
