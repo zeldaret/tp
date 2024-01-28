@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/kankyo/d_kankyo_static.h"
 
 /* 80529518-80529520 000078 0008+00 1/0 0/0 0/0 .text            daKytag11_Draw__FP13kytag11_class
  */
@@ -118,12 +119,12 @@ static int daKytag11_Create(fopAc_ac_c* i_this) {
 
 /* 80529854-8052988C 0003B4 0038+00 1/1 0/0 0/0 .text            dKankyo_DayProc__Fv */
 // this is a weak func that should be compiler generated, unsure how to make it do that for now
-#pragma push
+/* #pragma push
 #pragma force_active on
 extern "C" void dKankyo_DayProc__Fv() {
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
 }
-#pragma pop
+#pragma pop */
 
 /* ############################################################################################## */
 /* 805298B4-805298D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag11_Method */
