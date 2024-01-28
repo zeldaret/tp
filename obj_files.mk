@@ -1072,4 +1072,5 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/d_gameover.o \
 	$(BUILD_DIR)/src/d/menu/d_menu_save.o \
 	$(BUILD_DIR)/src/d/d_bright_check.o \
+	$(BUILD_DIR)/src/d/shop/d_shop_system.o \
 	

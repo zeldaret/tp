@@ -1,16 +1,16 @@
-//
-// d_s_room
-//
+/**
+ * d_s_room.cpp
+ * Gameplay Room Scene
+ */
 
 #include "d/s/d_s_room.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/s/d_s_play.h"
-#include "dolphin/os.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_Reset.h"
+#include "stdio.h"
 
 /* 8025AE1C-8025AE24 25575C 0008+00 1/0 0/0 0/0 .text dScnRoom_Draw__FP19room_of_scene_class */
 static int dScnRoom_Draw(room_of_scene_class* i_this) {
@@ -21,6 +21,7 @@ static int dScnRoom_Draw(room_of_scene_class* i_this) {
 static int getResetArchiveBank(int param_1, u8 const** param_2) {
     dStage_roomControl_c::nameData* arcBankName = dStage_roomControl_c::getArcBankName();
     int local_30 = 0;
+
     *param_2 = NULL;
     if (arcBankName != NULL) {
         dStage_roomControl_c::bankData* arcBankData = dStage_roomControl_c::getArcBankData();
@@ -35,19 +36,23 @@ static int getResetArchiveBank(int param_1, u8 const** param_2) {
             }
         }
     }
+
     u8 const* pbVar1 = *param_2;
     for (int i = 0; i < local_30; pbVar1++, i++) {
         char* arcBank = dStage_roomControl_c::getArcBank(i);
         char* name = "";
+
         int id = *pbVar1;
         if (id != 0xff) {
             JUT_ASSERT(160, 0 <= id && id < arcBankName->m_num);
             name = arcBankName->m_names[id];
         }
+
         if (strcmp(arcBank, name) != 0) {
             return i;
         }
     }
+
     return local_30;
 }
 
@@ -60,24 +65,26 @@ static bool resetArchiveBank(int param_0) {
 /* 8025AF4C-8025B0F0 25588C 01A4+00 1/1 0/0 0/0 .text            setArchiveBank__Fi */
 static bool setArchiveBank(int param_0) {
     u8* arr[4];
-    int iVar1 = getResetArchiveBank(param_0, (u8 const**)&arr);
+    int bank_no = getResetArchiveBank(param_0, (u8 const**)&arr);
     if (arr[0] == NULL) {
         return true;
     }
+
     dStage_roomControl_c::nameData* arcBankName = dStage_roomControl_c::getArcBankName();
-    for (; (int)iVar1 < 0x20; iVar1++) {
+    for (; (int)bank_no < 0x20; bank_no++) {
         const char* name = "";
-        int id = arr[0][iVar1];
+        int id = arr[0][bank_no];
         if (id != 0xff) {
             JUT_ASSERT(216, 0 <= id && id < arcBankName->m_num);
             name = arcBankName->m_names[id];
         }
+
         if (strcmp(name, "") != 0) {
             if (strnicmp(name, "pack", 4) == 0) {
                 int syncres = dComIfG_syncObjectRes(name);
                 if (syncres < 0) {
                     if (!dComIfG_setObjectRes(name, 0, mDoExt_getArchiveHeap())) {
-                        OSReport_Error("Bank[%d] : %s.arc Read Error !!\n", iVar1, name);
+                        OSReport_Error("Bank[%d] : %s.arc Read Error !!\n", bank_no, name);
                     } else {
                         return false;
                     }
@@ -86,12 +93,14 @@ static bool setArchiveBank(int param_0) {
                 }
             } else {
                 if (!dComIfG_setObjectRes(name, 0, mDoExt_getArchiveHeap())) {
-                    OSReport_Error("Bank[%d] : %s.arc Read Error !!\n", iVar1, name);
+                    OSReport_Error("Bank[%d] : %s.arc Read Error !!\n", bank_no, name);
                 }
             }
         }
-        dStage_roomControl_c::setArcBank(iVar1, name);
+
+        dStage_roomControl_c::setArcBank(bank_no, name);
     }
+
     return true;
 }
 
@@ -131,24 +140,31 @@ static bool isCreating(unsigned int param_0) {
 static int loadDemoArchive(int room_no) {
     if (*dStage_roomControl_c::getDemoArcName() == 0) {
         dStage_Lbnk_c* lbnk = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLbnk();
+
         if (lbnk != NULL) {
             dStage_Lbnk_dt_c* entries = lbnk->entries;
+
             if (entries != NULL) {
                 int bank = entries[dComIfG_play_c::getLayerNo(room_no)].bank;
+
                 if (bank != 0xff) {
                     JUT_ASSERT(350, 0 <= bank && bank < 100);
                     u8 bank2 = entries[dComIfG_play_c::getLayerNo(room_no)].bank2;
                     JUT_ASSERT(353, 0 <= bank2 && bank2 < 100);
+
                     sprintf(dStage_roomControl_c::getDemoArcName(), "Demo%02d_%02d", bank, bank2);
-                    if (!dComIfG_setObjectRes(dStage_roomControl_c::getDemoArcName(), 0, (JKRHeap*)NULL)) {
+                    if (!dComIfG_setObjectRes(dStage_roomControl_c::getDemoArcName(), 0,
+                                              (JKRHeap*)NULL))
+                    {
                         *dStage_roomControl_c::getDemoArcName() = 0;
                     } else {
                         return 1;
                     }
                 }
             }
-        }         
+        }
     }
+
     return 0;
 }
 
@@ -224,7 +240,8 @@ static int dScnRoom_Execute(room_of_scene_class* i_this) {
             fopScnM_DeleteReq(i_this);
         } else if (i_this->field_0x1d4 < 0 && i_this->field_0x1d5 != 0 &&
                    !i_dComIfGp_event_runCheck() &&
-                   (int)fopScnM_GetParam(i_this) == dComIfGp_roomControl_getStayNo()) {
+                   (int)fopScnM_GetParam(i_this) == dComIfGp_roomControl_getStayNo())
+        {
             if (isCreating(fpcM_LayerID(i_this))) {
                 dScnPly_c::nextPauseTimer = 2;
             } else {
@@ -259,7 +276,8 @@ static bool isReadRoom(int param_0) {
 
     for (int i = 0; i < roomData->field_0x0; i++) {
         if (dStage_roomRead_dt_c_ChkBg(*tmp) &&
-            param_0 == dStage_roomRead_dt_c_GetLoadRoomIndex(*tmp)) {
+            param_0 == dStage_roomRead_dt_c_GetLoadRoomIndex(*tmp))
+        {
             return true;
         }
         tmp++;
@@ -280,7 +298,8 @@ static int dScnRoom_Delete(room_of_scene_class* i_this) {
 
     if (mDoRst::isReset() || !dComIfGp_isEnableNextStage() ||
         strcmp(dComIfGp_getNextStageName(), dComIfGp_getStartStageName()) ||
-        (roomNo != dComIfGp_getNextStageRoomNo() && !isReadRoom(roomNo))) {
+        (roomNo != dComIfGp_getNextStageRoomNo() && !isReadRoom(roomNo)))
+    {
         dComIfG_deleteStageRes(setArcName(i_this));
 
         JKRExpHeap* heap = dStage_roomControl_c::getMemoryBlock(roomNo);
@@ -298,7 +317,7 @@ static int dScnRoom_Delete(room_of_scene_class* i_this) {
 static int phase_0(room_of_scene_class* i_this) {
     int roomNo = fopScnM_GetParam(i_this);
     dStage_roomControl_c::setStatusProcID(roomNo, fopScnM_GetID(i_this));
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 8025B8A4-8025B980 2561E4 00DC+00 1/0 0/0 0/0 .text            phase_1__FP19room_of_scene_class */
@@ -313,7 +332,7 @@ static int phase_1(room_of_scene_class* i_this) {
 
         if (heap != NULL) {
             if (heap->getTotalUsedSize() != 0) {
-                return 0;
+                return cPhs_INIT_e;
             }
         } else {
             stage_stag_info_class* stagInfo = i_dComIfGp_getStage()->getStagInfo();
@@ -328,7 +347,7 @@ static int phase_1(room_of_scene_class* i_this) {
         }
     }
 
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 8025B980-8025BAAC 2562C0 012C+00 1/0 0/0 0/0 .text            phase_2__FP19room_of_scene_class */
@@ -341,7 +360,7 @@ static int phase_2(room_of_scene_class* i_this) {
     }
 
     if (phase != 0) {
-        return 0;
+        return cPhs_INIT_e;
     }
 
     int roomNo = fopScnM_GetParam(i_this);
@@ -368,7 +387,7 @@ static int phase_2(room_of_scene_class* i_this) {
         mDoExt_setCurrentHeap(old_heap);
     }
 
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 8025BAAC-8025BAC4 2563EC 0018+00 1/1 0/0 0/0 .text setZoneNo__20dStage_roomControl_cFii */
@@ -378,16 +397,24 @@ void dStage_roomControl_c::setZoneNo(int i_roomNo, int i_zoneNo) {
 
 /* 8025BAC4-8025BAF8 256404 0034+00 1/0 0/0 0/0 .text            phase_3__FP19room_of_scene_class */
 static int phase_3(room_of_scene_class* i_this) {
-    return objectSetCheck(i_this) ? 2 : 0;
+    if (objectSetCheck(i_this)) {
+        return cPhs_NEXT_e;
+    } else {
+        return cPhs_INIT_e;
+    }
 }
 
 /* 8025BAF8-8025BB48 256438 0050+00 1/0 0/0 0/0 .text            phase_4__FP19room_of_scene_class */
 static int phase_4(room_of_scene_class* i_this) {
     if (dComIfGp_getPlayer(0) == NULL) {
-        return 0;
+        return cPhs_INIT_e;
     }
 
-    return objectSetCheck(i_this) ? cPhs_COMPLEATE_e : 0;
+    if (objectSetCheck(i_this)) {
+        return cPhs_COMPLEATE_e;
+    } else {
+        return cPhs_INIT_e;
+    }
 }
 
 /* 8025BB48-8025BB78 256488 0030+00 1/0 0/0 0/0 .text            dScnRoom_Create__FP11scene_class */
@@ -401,24 +428,23 @@ static int dScnRoom_Create(scene_class* i_this) {
     return dComLbG_PhaseHandler(&room->field_0x1c4, l_method, i_this);
 }
 
-/* ############################################################################################## */
 /* 803C3274-803C3288 -00001 0014+00 1/0 0/0 0/0 .data            l_dScnRoom_Method */
 static leafdraw_method_class l_dScnRoom_Method = {
-    (process_method_func)dScnRoom_Create,   (process_method_func)dScnRoom_Delete, (process_method_func)dScnRoom_Execute,
-    (process_method_func)dScnRoom_IsDelete, (process_method_func)dScnRoom_Draw,
+    (process_method_func)dScnRoom_Create,  (process_method_func)dScnRoom_Delete,
+    (process_method_func)dScnRoom_Execute, (process_method_func)dScnRoom_IsDelete,
+    (process_method_func)dScnRoom_Draw,
 };
 
 /* 803C3288-803C32B0 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_ROOM_SCENE */
 scene_process_profile_definition g_profile_ROOM_SCENE = {
-    fpcLy_CURRENT_e,                             // mLayerID          
-    0,                                           // mListID   
-    fpcPi_CURRENT_e,                             // mListPrio    
-    PROC_ROOM_SCENE,                             // mProcName                     
-    &g_fpcNd_Method.mBase,                       // mSubMtd                       
-    sizeof(room_of_scene_class),                 // mSize             
-    0,                                           // mSizeOther                
-    0,                                           // mParameters                
-    &g_fopScn_Method.mBase,                      // mSubMtd                        
-    (process_method_class*)&l_dScnRoom_Method,   // mpMtd
+    fpcLy_CURRENT_e,                            // mLayerID
+    0,                                          // mListID
+    fpcPi_CURRENT_e,                            // mListPrio
+    PROC_ROOM_SCENE,                            // mProcName
+    &g_fpcNd_Method.mBase,                      // mSubMtd
+    sizeof(room_of_scene_class),                // mSize
+    0,                                          // mSizeOther
+    0,                                          // mParameters
+    &g_fopScn_Method.mBase,                     // mSubMtd
+    (process_method_class*)&l_dScnRoom_Method,  // mpMtd
 };
-/* 8039A388-8039A388 0269E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -22,7 +22,7 @@ struct ShopCam_action_c {
     /* 801968B8 */ void setMasterCamCtrPos(cXyz*);
 
     void setCamAction(ShopCamFunc func) {
-        field_0x0 = func;
+        mCamAction = func;
     }
 
     void setCameraSpeed(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
@@ -37,7 +37,7 @@ struct ShopCam_action_c {
         setCameraSpeed(0.25f, 20.0f, 0.25f, 5.0f);
     }
 
-    /* 0x00 */ ShopCamFunc field_0x0;
+    /* 0x00 */ ShopCamFunc mCamAction;
     /* 0x0c */ u8 field_0xc[0x18 - 0xc];
     /* 0x18 */ fopAc_ac_c* field_0x18;
     /* 0x1c */ fopAc_ac_c* field_0x1c;

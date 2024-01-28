@@ -1,6 +1,7 @@
-//
-// Translation Unit: d/s/d_s_name
-//
+/**
+ * d_s_name.cpp
+ * File Select Scene
+*/
 
 #include "d/s/d_s_name.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -15,95 +16,6 @@
 #include "m_Do/m_Do_mtx.h"
 #include "f_op/f_op_overlap_mng.h"
 
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__9dSn_HIO_cFv();
-extern "C" static void phase_1__FPc();
-extern "C" static void phase_2__FPc();
-extern "C" static void resLoad__FP30request_of_phase_process_classPc();
-extern "C" void create__10dScnName_cFv();
-extern "C" void setView__10dScnName_cFv();
-extern "C" void execute__10dScnName_cFv();
-extern "C" void draw__10dScnName_cFv();
-extern "C" void __dt__10dScnName_cFv();
-extern "C" void FileSelectOpen__10dScnName_cFv();
-extern "C" void FileSelectMain__10dScnName_cFv();
-extern "C" void FileSelectMainNormal__10dScnName_cFv();
-extern "C" void FileSelectClose__10dScnName_cFv();
-extern "C" void brightCheckOpen__10dScnName_cFv();
-extern "C" void brightCheck__10dScnName_cFv();
-extern "C" void changeGameScene__10dScnName_cFv();
-extern "C" static void dScnName_Draw__FP10dScnName_c();
-extern "C" static void dScnName_Execute__FP10dScnName_c();
-extern "C" static void dScnName_IsDelete__FP10dScnName_c();
-extern "C" static void dScnName_Delete__FP10dScnName_c();
-extern "C" static void dScnName_Create__FP11scene_class();
-extern "C" void __dt__17dScnName_camera_cFv();
-extern "C" void __dt__9dSn_HIO_cFv();
-extern "C" void __sinit_d_s_name_cpp();
-extern "C" extern char const* const d_s_d_s_name__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs();
-extern "C" void mDoMtx_concatProjView__FPA4_CfPA4_CfPA4_f();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void fopOvlpM_IsPeek__Fv();
-extern "C" void fopScnM_ChangeReq__FP11scene_classssUs();
-extern "C" void dComIfG_resetToOpening__FP11scene_class();
-extern "C" void dComIfGp_setNextStage__FPCcsScSc();
-extern "C" void dComIfGs_gameStart__Fv();
-extern "C" void dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv();
-extern "C" void offFirstBit__21dSv_player_get_item_cFUc();
-extern "C" void setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap();
-extern "C" void syncRes__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void deleteRes__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void getResInfo__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void cleanup__13dPa_control_cFv();
-extern "C" void setViewPort__14dDlst_window_cFffffff();
-extern "C" void setScissor__14dDlst_window_cFffff();
-extern "C" void Run__12dVibration_cFv();
-extern "C" void Init__12dVibration_cFv();
-extern "C" void __ct__14dFile_select_cFP10JKRArchive();
-extern "C" void _create__14dFile_select_cFv();
-extern "C" void _move__14dFile_select_cFv();
-extern "C" void _draw__14dFile_select_cFv();
-extern "C" void __ct__14dBrightCheck_cFP10JKRArchive();
-extern "C" void _move__14dBrightCheck_cFv();
-extern "C" void _draw__14dBrightCheck_cFv();
-extern "C" void dKy_clear_game_init__Fv();
-extern "C" void dKy_setLight_init__Fv();
-extern "C" void changeWater__13dMeter2Info_cFUc();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void bgmStop__8Z2SeqMgrFUll();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 sManager__10JFWDisplay[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 803C3040-803C304C 020160 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -128,10 +40,10 @@ dSn_HIO_c::dSn_HIO_c() {
 static s32 phase_1(char* resName) {
     mDoAud_bgmStart(-1);
     if (dComIfG_setObjectRes(resName, (u8)0, NULL) == 0) {
-        return 5;
+        return cPhs_ERROR_e;
     }
 
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 80258820-80258878 253160 0058+00 1/0 0/0 0/0 .text            phase_2__FPc */
@@ -139,24 +51,26 @@ static s32 phase_2(char* resName) {
     int syncStatus = dComIfG_syncObjectRes(resName);
 
     if (syncStatus < 0) {
-        return 5;
+        return cPhs_ERROR_e;
+    }
+
+    if (syncStatus > 0) {
+        return cPhs_INIT_e;
     } else {
-        return syncStatus > 0 ? 0 : 4;
+        return cPhs_COMPLEATE_e;
     }
 }
 
 /* 80258878-802588A0 2531B8 0028+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classPc                */
-static s32 resLoad(request_of_phase_process_class* i_phase, char* param_1) {
+static s32 resLoad(request_of_phase_process_class* i_phase, char* i_resName) {
     static request_of_phase_process_fn l_method[2] = {
         (request_of_phase_process_fn)phase_1, 
         (request_of_phase_process_fn)phase_2
     };
 
-    return dComLbG_PhaseHandler(i_phase, l_method, param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, i_resName);
 }
-
-/* ############################################################################################## */
 
 s32 dScnName_c::create() {
     int phase_state = resLoad(&field_0x1c4, "fileSel");
@@ -349,8 +263,6 @@ void dScnName_c::brightCheck() {
     }
 }
 
-/* ############################################################################################## */
-
 /* 802590F8-802591C0 253A38 00C8+00 1/0 0/0 0/0 .text            changeGameScene__10dScnName_cFv */
 void dScnName_c::changeGameScene() {
     if (!mDoRst::isReset() && !fopOvlpM_IsPeek()) {
@@ -369,36 +281,33 @@ void dScnName_c::changeGameScene() {
 }
 
 /* 802591C0-802591E0 253B00 0020+00 1/0 0/0 0/0 .text            dScnName_Draw__FP10dScnName_c */
-static void dScnName_Draw(dScnName_c* scn) {
-    scn->draw();
+static int dScnName_Draw(dScnName_c* i_this) {
+    return i_this->draw();
 }
 
 /* 802591E0-80259200 253B20 0020+00 1/0 0/0 0/0 .text            dScnName_Execute__FP10dScnName_c */
-static void dScnName_Execute(dScnName_c* scn) {
-    scn->execute();
+static int dScnName_Execute(dScnName_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80259200-80259230 253B40 0030+00 1/0 0/0 0/0 .text            dScnName_IsDelete__FP10dScnName_c
  */
-static s32 dScnName_IsDelete(dScnName_c*) {
+static int dScnName_IsDelete(dScnName_c*) {
     dComIfGp_particle_cleanup();
     return 1;
 }
 
 /* 80259230-80259258 253B70 0028+00 1/0 0/0 0/0 .text            dScnName_Delete__FP10dScnName_c */
-static s32 dScnName_Delete(dScnName_c* scn) {
-    scn->~dScnName_c();
+static int dScnName_Delete(dScnName_c* i_this) {
+    i_this->~dScnName_c();
     return 1;
 }
 
 /* 80259258-80259294 253B98 003C+00 1/0 0/0 0/0 .text            dScnName_Create__FP11scene_class */
-static void dScnName_Create(scene_class* scn) {
-    new (scn) dScnName_c();
-    static_cast<dScnName_c*>(scn)->create();
+static int dScnName_Create(scene_class* i_this) {
+    new (i_this) dScnName_c();
+    return static_cast<dScnName_c*>(i_this)->create();
 }
-
-/* 8039A2A8-8039A2A8 026908 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 
 /* 803C30DC-803C30F0 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnName_Method */
 static leafdraw_method_class l_dScnName_Method = {
