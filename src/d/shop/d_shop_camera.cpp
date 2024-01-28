@@ -5,41 +5,8 @@
 
 #include "d/shop/d_shop_camera.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct fopAc_ac_c {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
-struct dCamera_c {
-    /* 801614E8 */ void Stay();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180A40 */ void EventRecoverNotime();
-    /* 80180AE0 */ void Set(cXyz, cXyz, f32, s16);
-    /* 80180BA0 */ void Reset(cXyz, cXyz, f32, s16);
-};
-
-struct ShopCam_action_c {
-    /* 80195C9C */ void shop_cam_action_init();
-    /* 80195E18 */ void shop_cam_action();
-    /* 8019630C */ void Save();
-    /* 8019635C */ void EventRecoverNotime();
-    /* 801963B4 */ void Reset();
-    /* 801964C8 */ void move();
-    /* 80196544 */ void setCamDataIdx(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, cXyz*,
-                                      cXyz*);
-    /* 80196608 */ void setCamDataIdx2(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*,
-                                       fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, cXyz*, cXyz*);
-    /* 801966D4 */ void _debugSetCamera();
-    /* 801968B8 */ void setMasterCamCtrPos(cXyz*);
-};
+#include "d/d_camera.h"
+#include "d/a/d_a_player.h"
 
 //
 // Forward References:
@@ -73,14 +40,11 @@ extern "C" void cM_atan2s__Fff();
 extern "C" void cLib_addCalc2__FPffff();
 extern "C" void cLib_addCalcPos2__FP4cXyzRC4cXyzff();
 extern "C" void cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz();
-extern "C" void PSVECSquareMag();
 extern "C" void __ptmf_test();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 __float_nan;
 
 //
 // Declarations:
@@ -139,7 +103,7 @@ SECTION_SDATA2 static f32 lit_3798 = 5.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ShopCam_action_c::shop_cam_action_init() {
+asm int ShopCam_action_c::shop_cam_action_init() {
     nofralloc
 #include "asm/d/shop/d_shop_camera/shop_cam_action_init__16ShopCam_action_cFv.s"
 }
@@ -172,7 +136,7 @@ SECTION_SDATA2 static f32 lit_3920 = 1.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void ShopCam_action_c::shop_cam_action() {
+asm int ShopCam_action_c::shop_cam_action() {
     nofralloc
 #include "asm/d/shop/d_shop_camera/shop_cam_action__16ShopCam_action_cFv.s"
 }

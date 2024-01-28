@@ -3,143 +3,12 @@
 // Translation Unit: d_a_obj_wind_stone
 //
 
-// #include "rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone.h"
+#include "rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone.h"
 #include "dolphin/types.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daWindStone_c {
-    /* 80D37A18 */ daWindStone_c();
-    /* 80D37A68 */ ~daWindStone_c();
-    /* 80D37AF4 */ void createHeap();
-    /* 80D37C20 */ void create();
-    /* 80D37F0C */ void execute();
-    /* 80D37F6C */ void draw();
-    /* 80D3806C */ void Delete();
-    /* 80D3811C */ void setModelMtx();
-    /* 80D38180 */ void init();
-    /* 80D381EC */ void chkWlfInRange();
-    /* 80D38278 */ void chkEveOccur();
-    /* 80D382C4 */ void exeModeHowl();
-    /* 80D3835C */ void exeModeMapDisp();
-    /* 80D383FC */ void chkMapDispMode();
-    /* 80D384C4 */ void getGoldWolfIdx();
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80D37E2C */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80D37E9C */ ~dBgS_AcchCir();
-};
-
-struct csXyz {};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cBgW_BgId {
-    /* 802681D4 */ void ChkUsed() const;
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct _GXTexObj {};
-
-struct Vec {};
-
-struct Z2WolfHowlMgr {
-    /* 802CB6EC */ void startWindStoneSound(s8, Vec*);
-};
-
-struct J3DModel {};
+#include "d/meter/d_meter2_info.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "d/d_procname.h"
 
 //
 // Forward References:
@@ -210,46 +79,25 @@ extern "C" void __dt__8cM3dGCirFv();
 extern "C" void startWindStoneSound__13Z2WolfHowlMgrFScP3Vec();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareDistance();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
 
 //
 // Declarations:
 //
 
 /* 80D379F8-80D37A18 000078 0020+00 1/1 0/0 0/0 .text daWindStone_c_createHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daWindStone_c_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/daWindStone_c_createHeap__FP10fopAc_ac_c.s"
+static int daWindStone_c_createHeap(fopAc_ac_c* i_this) {
+    return static_cast<daWindStone_c*>(i_this)->createHeap();
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80D38628-80D38628 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D38628 = "WindStone";
-#pragma pop
 
 /* 80D38634-80D38638 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wind_stone__stringBase0;
+static char* l_arcName = "WindStone";
 
 /* 80D38638-80D38658 -00001 0020+00 1/0 0/0 0/0 .data            daWindStone_METHODS */
 SECTION_DATA static void* daWindStone_METHODS[8] = {
@@ -324,7 +172,7 @@ asm daWindStone_c::~daWindStone_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daWindStone_c::createHeap() {
+asm int daWindStone_c::createHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/createHeap__13daWindStone_cFv.s"
 }
@@ -354,7 +202,7 @@ COMPILER_STRIP_GATE(0x80D38618, &lit_4128);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daWindStone_c::create() {
+asm int daWindStone_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/create__13daWindStone_cFv.s"
 }
@@ -364,7 +212,8 @@ asm void daWindStone_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// dBgS_ObjAcch::~dBgS_ObjAcch()
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -374,7 +223,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// dBgS_AcchCir::~dBgS_AcchCir()
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/__dt__12dBgS_AcchCirFv.s"
 }
@@ -384,7 +234,7 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daWindStone_c::execute() {
+asm int daWindStone_c::execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/execute__13daWindStone_cFv.s"
 }
@@ -406,24 +256,47 @@ COMPILER_STRIP_GATE(0x80D38620, &lit_4176);
 #pragma pop
 
 /* 80D37F6C-80D3806C 0005EC 0100+00 1/1 0/0 0/0 .text            draw__13daWindStone_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daWindStone_c::draw() {
+    g_env_light.settingTevStruct(8, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    cXyz shadowPos(current.pos.x, current.pos.y, current.pos.z);
+    field_0x5c0 = dComIfGd_setShadow(field_0x5c0, 1, mpModel, &shadowPos, 500.0f, 0.0f, current.pos.y, field_0x5bc, mPolyInfo, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daWindStone_c::draw() {
+asm int daWindStone_c::draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/draw__13daWindStone_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D3806C-80D3811C 0006EC 00B0+00 1/1 0/0 0/0 .text            Delete__13daWindStone_cFv */
+#ifdef NONMATCHING
+int daWindStone_c::Delete() {
+    if (i_fopAcM_isSwitch(this, getSwBit1())) {
+        i_fopAcM_offSwitch(this, getSwBit1());
+    }
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daWindStone_c::Delete() {
+asm int daWindStone_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/Delete__13daWindStone_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D3811C-80D38180 00079C 0064+00 2/2 0/0 0/0 .text            setModelMtx__13daWindStone_cFv */
 #pragma push
@@ -517,7 +390,7 @@ asm void daWindStone_c::getGoldWolfIdx() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daWindStone_create(daWindStone_c* param_0) {
+static asm int daWindStone_create(daWindStone_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/daWindStone_create__FP13daWindStone_c.s"
 }
@@ -527,7 +400,7 @@ static asm void daWindStone_create(daWindStone_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daWindStone_Delete(daWindStone_c* param_0) {
+static asm int daWindStone_Delete(daWindStone_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/daWindStone_Delete__FP13daWindStone_c.s"
 }
@@ -537,7 +410,7 @@ static asm void daWindStone_Delete(daWindStone_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daWindStone_execute(daWindStone_c* param_0) {
+static asm int daWindStone_execute(daWindStone_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/daWindStone_execute__FP13daWindStone_c.s"
 }
@@ -548,7 +421,7 @@ static asm void daWindStone_execute(daWindStone_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daWindStone_draw(daWindStone_c* param_0) {
+static asm int daWindStone_draw(daWindStone_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/daWindStone_draw__FP13daWindStone_c.s"
 }
@@ -573,5 +446,3 @@ static asm void func_80D385F8() {
 #include "asm/rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone/func_80D385F8.s"
 }
 #pragma pop
-
-/* 80D38628-80D38628 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

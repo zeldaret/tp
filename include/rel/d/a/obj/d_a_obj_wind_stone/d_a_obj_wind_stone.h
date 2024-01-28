@@ -1,17 +1,20 @@
 #ifndef D_A_OBJ_WIND_STONE_H
 #define D_A_OBJ_WIND_STONE_H
 
+#include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-class daWindStone_c : public fopAc_ac_c {
+class daWindStone_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80D37A18 */ daWindStone_c();
-    /* 80D37A68 */ ~daWindStone_c();
-    /* 80D37AF4 */ void createHeap();
-    /* 80D37C20 */ void create();
-    /* 80D37F0C */ void execute();
-    /* 80D37F6C */ void draw();
-    /* 80D3806C */ void Delete();
+    /* 80D37A68 */ virtual ~daWindStone_c();
+    /* 80D37AF4 */ int createHeap();
+    /* 80D37C20 */ int create();
+    /* 80D37F0C */ int execute();
+    /* 80D37F6C */ int draw();
+    /* 80D3806C */ int Delete();
     /* 80D3811C */ void setModelMtx();
     /* 80D38180 */ void init();
     /* 80D381EC */ void chkWlfInRange();
@@ -23,6 +26,17 @@ public:
 
     s8 getTuneId() { return fopAcM_GetParamBit(this, 4, 4); }
     int getNextSceneId() { return fopAcM_GetParamBit(this, 0, 4); }
+    u32 getSwBit1() { return orig.angle.x & 0xff; }
+    u32 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u32 getDelEveFlgId() { return fopAcM_GetParamBit(this, 0x10, 0x10); }
+
+    /* 0x574 */ cBgS_PolyInfo mPolyInfo;
+    /* 0x584 */ J3DModel* mpModel;
+    /* 0x588 */ dBgW_Base* mpBgWBase;
+    /* 0x58C */ Mtx field_0x58c;
+    /* 0x5BC */ f32 field_0x5bc;
+    /* 0x5C0 */ u32 field_0x5c0;
+    /* 0x5C4 */ u8 field_0x5c4;
 };
 
 #endif /* D_A_OBJ_WIND_STONE_H */

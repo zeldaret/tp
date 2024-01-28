@@ -4,311 +4,11 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.h"
+#include "d/a/d_a_obj.h"
+#include "d/bg/d_bg_s.h"
+#include "d/cc/d_cc_d.h"
+#include "d/d_path.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {};
-
-struct Quaternion {};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 8047DBB0 */ ~cXyz();
-    /* 8047DBEC */ cXyz();
-
-    static f32 Zero[3];
-    static u8 BaseY[12];
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CDD4 */ void transM(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-    /* 8000CF7C */ void quatM(Quaternion const*);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {};
-
-struct dBgW_Base {
-    struct PushPullLabel {};
-};
-
-struct dBgW {
-    /* 8007B9C0 */ void Move();
-};
-
-struct daObjMovebox {
-    struct Act_c {
-        struct Prm_e {};
-
-        /* 8047E628 */ void prm_get_swSave1() const;
-        /* 8047E650 */ void prmZ_init();
-        /* 8047E680 */ void prmX_init();
-        /* 8047E6B0 */ void attr() const;
-        /* 8047E6C8 */ void set_mtx();
-        /* 8047E7B0 */ void init_mtx();
-        /* 8047E7F4 */ void path_init();
-        /* 8047E92C */ void path_save();
-        /* 8047EB48 */ void CreateHeap();
-        /* 8047EBEC */ void RideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-        /* 8047ED10 */ void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
-        /* 8047EE0C */ void Create();
-        /* 8047F11C */ void afl_sway();
-        /* 8047F38C */ void check_to_walk();
-        /* 8047F50C */ void clr_moment_cnt();
-        /* 8047F530 */ void chk_appear() const;
-        /* 8047F5CC */ void eff_smoke_slip_start();
-        /* 8047F634 */ void mode_wait_init();
-        /* 8047F6A8 */ void mode_wait();
-        /* 8047F8D4 */ void mode_walk_init();
-        /* 8047F8F4 */ void mode_walk();
-        /* 8047FCBC */ void mode_afl_init();
-        /* 8047FCE4 */ void mode_afl();
-        /* 8047FF5C */ void sound_slip();
-        /* 80480020 */ void sound_limit();
-        /* 804800E4 */ void sound_land();
-        /* 804801A8 */ void vib_land();
-        /* 804801FC */ void eff_land_smoke();
-        /* 8048027C */ void Execute(f32 (**)[3][4]);
-        /* 80480728 */ void Draw();
-        /* 804808FC */ void Delete();
-
-        static void* M_dir_base[2];
-        static void* const M_arcname[8];
-        static u8 const M_cyl_src[68];
-        static u8 const M_attr[1280];
-    };
-
-    struct BgcSrc_c {};
-
-    struct Bgc_c {
-        /* 8047DAEC */ Bgc_c();
-        /* 8047DBF0 */ void gnd_pos(daObjMovebox::Act_c const*, daObjMovebox::BgcSrc_c const*, int,
-                                    f32);
-        /* 8047DD88 */ void wrt_pos(cXyz const&);
-        /* 8047DE58 */ void wall_pos(daObjMovebox::Act_c const*, daObjMovebox::BgcSrc_c const*, int,
-                                     s16, f32);
-        /* 8047E134 */ void proc_vertical(daObjMovebox::Act_c*);
-        /* 8047E2D4 */ void chk_wall_pre(daObjMovebox::Act_c const*, daObjMovebox::BgcSrc_c const*,
-                                         int, s16);
-        /* 8047E350 */ void chk_wall_touch(daObjMovebox::Act_c const*,
-                                           daObjMovebox::BgcSrc_c const*, s16);
-        /* 8047E5A0 */ void chk_wall_touch2(daObjMovebox::Act_c const*,
-                                            daObjMovebox::BgcSrc_c const*, int, s16);
-
-        static u8 const M_lin5[80];
-        static u8 const M_lin20[368];
-        static u8 M_gnd_work[1932];
-        static u8 M_wrt_work[84];
-        static u8 M_wall_work[2576];
-    };
-};
-
-struct daObj {
-    /* 800373C0 */ void posMoveF_stream(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32);
-    /* 80037788 */ void quat_rotBaseY(Quaternion*, cXyz const&);
-    template <typename A1>
-    void PrmAbstract(/* ... */);
-    /* 80480CD8 */ /* daObj::PrmAbstract<daObjMovebox::Act_c::Prm_e> */
-    void func_80480CD8(void* _this, fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
-                       daObjMovebox::Act_c::Prm_e);
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPath {};
-
-struct JPABaseEmitter {};
-
-struct dPa_modelEcallBack {
-    /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
-                                 u8);
-
-    static u8 mEcallback[4];
-};
-
-struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-};
-
-struct _GXTexObj {};
-
-struct dDlst_shadowControl_c {
-    /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80480B64 */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 80084548 */ void GetTgHitGObj();
-};
-
-struct dCcD_GAtTgCoCommonBase {
-    /* 80083688 */ void GetAc();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-    /* 800849C4 */ void MoveCTg(cXyz&);
-};
-
-struct dBgS_WtrChk {
-    /* 80079164 */ dBgS_WtrChk();
-    /* 80480DD8 */ ~dBgS_WtrChk();
-};
-
-struct dBgS_SplGrpChk {
-    /* 80078B90 */ void Set(cXyz&, f32);
-    /* 80078C78 */ ~dBgS_SplGrpChk();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjLinChk {
-    /* 80077F5C */ dBgS_ObjLinChk();
-    /* 80077FB8 */ ~dBgS_ObjLinChk();
-};
-
-struct dBgS_ObjGndChk {
-    /* 8047FEE4 */ ~dBgS_ObjGndChk();
-    /* 80480E88 */ dBgS_ObjGndChk();
-};
-
-struct cBgS_PolyInfo {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dBgS {
-    /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
-    /* 80075564 */ void SplGrpChk(dBgS_SplGrpChk*);
-    /* 80075B84 */ void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
-};
-
-struct cM3dGPla {
-    /* 804808B4 */ ~cM3dGPla();
-};
-
-struct cM3dGCyl {
-    /* 80480AD4 */ ~cM3dGCyl();
-};
-
-struct cM3dGAab {
-    /* 80480B1C */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 80480C90 */ ~cCcD_GStts();
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-    /* 80074618 */ void GetActorPointer(int) const;
-    /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -479,11 +179,6 @@ extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
-extern "C" void PSVECScale();
-extern "C" void PSVECSquareDistance();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void __ptmf_scall();
@@ -503,21 +198,15 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_max;
 extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void* M_dir_base__Q212daObjMovebox5Act_c[2];
@@ -592,14 +281,16 @@ asm daObjMovebox::Bgc_c::Bgc_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// cXyz::~cXyz()
+extern "C" asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__4cXyzFv.s"
 }
 #pragma pop
 
 /* 8047DBEC-8047DBF0 0001EC 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz()
+extern "C" void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -1475,7 +1166,8 @@ SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+// dBgS_ObjGndChk::~dBgS_ObjGndChk()
+extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__14dBgS_ObjGndChkFv.s"
 }
@@ -1794,7 +1486,8 @@ asm void daObjMovebox::Act_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGPla::~cM3dGPla() {
+// cM3dGPla::~cM3dGPla()
+extern "C" asm void __dt__8cM3dGPlaFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__8cM3dGPlaFv.s"
 }
@@ -1840,7 +1533,8 @@ static asm void func_80480920() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// cM3dGCyl::~cM3dGCyl()
+extern "C" asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__8cM3dGCylFv.s"
 }
@@ -1850,7 +1544,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// cM3dGAab::~cM3dGAab()
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__8cM3dGAabFv.s"
 }
@@ -1860,7 +1555,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// dCcD_GStts::~dCcD_GStts()
+extern "C" asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__10dCcD_GSttsFv.s"
 }
@@ -1914,7 +1610,8 @@ static asm void func_80480C64() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// cCcD_GStts::~cCcD_GStts()
+extern "C" asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__10cCcD_GSttsFv.s"
 }
@@ -1938,8 +1635,7 @@ extern "C" asm void func_80480CD8(void* _this, fopAc_ac_c const* param_0,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_obj_movebox_cpp() {
-    nofralloc
+asm void __sinit_d_a_obj_movebox_cpp(){nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__sinit_d_a_obj_movebox_cpp.s"
 }
 #pragma pop
@@ -1980,7 +1676,8 @@ SECTION_DATA extern void* __vt__11dBgS_WtrChk[12] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_WtrChk::~dBgS_WtrChk() {
+// dBgS_WtrChk::~dBgS_WtrChk()
+extern "C" asm void __dt__11dBgS_WtrChkFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__dt__11dBgS_WtrChkFv.s"
 }
@@ -2000,7 +1697,8 @@ asm void func_80480E50() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjGndChk::dBgS_ObjGndChk() {
+// dBgS_ObjGndChk::dBgS_ObjGndChk()
+extern "C" asm void __ct__14dBgS_ObjGndChkFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/__ct__14dBgS_ObjGndChkFv.s"
 }
@@ -2065,5 +1763,3 @@ static asm void func_80480F0C() {
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/func_80480F0C.s"
 }
 #pragma pop
-
-/* 804816A4-804816A4 00077C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
