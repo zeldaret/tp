@@ -25,7 +25,7 @@ public:
     /* 802AA9E8 */ void multiVolumeSoundID(JAISoundID, f32);
     /* 802AAAC4 */ void isPlayingSoundID(JAISoundID);
 
-    /* 802A9EE8 */ virtual int startSound(JAISoundID, JAISoundHandle*,
+    /* 802A9EE8 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
                                                  JGeometry::TVec3<f32> const*);
 
     JAISeMgr* getSeMgr() { return &mSeMgr; }

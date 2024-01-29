@@ -51,7 +51,7 @@ struct JAISoundStatus_ {
     bool isDead() { return state.unk == 6;}
 
     inline bool isPlaying() { return state.unk == 5; }
-
+    bool isPrepared() { return state.unk >= 3; }
     inline bool isMute() { return field_0x0.flags.mute; }
     inline bool isPaused() { return field_0x0.flags.paused; }
     void pauseWhenOut() {
@@ -97,7 +97,7 @@ struct JAISoundStatus_ {
         } flags;
     } state;
     /* 0x4 */ u32 user_data;
-};  // Size: 0x6
+};  // Size: 0x8
 
 struct JAISoundFader {
     void forceIn() {
@@ -236,10 +236,14 @@ public:
     bool isHandleAttached() const { return handle_ != NULL; }
     bool hasLifeTime() const { return status_.field_0x1.flags.flag2; }
     void removeLifeTime_() { status_.field_0x1.flags.flag1 = false; }
+    bool isPrepared() { return status_.isPrepared(); }
+    void unlockIfLocked() { status_.unlockIfLocked(); }
+    void lockWhenPrepared() { status_.lockWhenPrepared(); }
     void stop_JAISound_() {
         status_.state.flags.flag5 = 0;
         status_.state.flags.flag1 = 1;
     }
+
     bool isStopping() {
         bool isStopping = false;
         if (status_.state.flags.flag1) {
@@ -278,10 +282,9 @@ public:
         return audible_ != NULL;
     }
 
-    void fadeIn(u32 param_1) {
-        fader.fadeInFromOut(param_1);
-        return;
-    }
+    JAISoundFader& getFader() { return fader; }
+    void fadeIn(u32 i_count) { fader.fadeInFromOut(i_count); }
+    void fadeOut(u32 i_count) { fader.fadeOut(i_count); }
 
     JAISoundParamsProperty& getProperty() { return params.mProperty; }
 

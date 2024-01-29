@@ -18,32 +18,32 @@ struct JAISoundParamsProperty {
 struct JAISoundParamsTransition {
     struct TTransition {
         void zero() {
-            field_0x0 = 0.0f;
+            mStep = 0.0f;
             mCount = 0;
-            field_0x4 = 0.0f;
+            mDest = 0.0f;
         }
 
         void set(f32 newValue, f32 intensity, u32 fadeCount) {
             mCount = fadeCount;
-            field_0x0 = (newValue - intensity) / mCount;
-            field_0x4 = newValue;
+            mStep = (newValue - intensity) / mCount;
+            mDest = newValue;
         }
 
         f32 apply(f32 param_0) {
             if (mCount > 1) {
                 mCount--;
-                param_0 += field_0x0;
+                param_0 += mStep;
             } else {
                 if (mCount == 1) {
                     mCount = 0;
-                    param_0 = field_0x4;
+                    param_0 = mDest;
                 }
             }
             return param_0;
         }
 
-        /* 0x0 */ f32 field_0x0;
-        /* 0x4 */ f32 field_0x4;
+        /* 0x0 */ f32 mStep;
+        /* 0x4 */ f32 mDest;
         /* 0x8 */ u32 mCount;
     };  // Size: 0xC
 

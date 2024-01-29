@@ -81,6 +81,7 @@ public:
     void i_setLinkState(u8 i_state) { mLinkState = i_state; }
     Z2SoundObjSimple& getKantera() { return mKantera; }
     u8 getLinkHp() const { return mLinkHp; }
+    u8 getMovingTime() { return mMovingTime; }
 
     static Z2CreatureLink* mLinkPtr;
 

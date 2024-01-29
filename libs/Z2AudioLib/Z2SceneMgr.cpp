@@ -717,7 +717,7 @@ extern "C" void __ct__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID 
 
 /* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
 void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
-    mFlags = (param_1 & 1U) << 2 | (mFlags & ~4);
+    mFlags.flag5 = param_1;
 }
 
 /* 802B9978-802B9988 2B42B8 0010+00 1/1 0/0 0/0 .text            isActive__12JAIStreamMgrCFv */

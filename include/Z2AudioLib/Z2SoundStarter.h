@@ -15,4 +15,8 @@ struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2Sound
                             float, float, float, float, u32);
 };
 
+inline Z2SoundStarter* Z2GetSoundStarter() {
+    return JASGlobalInstance<Z2SoundStarter>::getInstance();
+}
+
 #endif /* Z2SOUNDSTARTER_H */

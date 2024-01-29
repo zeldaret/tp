@@ -4,13 +4,6 @@
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
-// move TTransition / Z2SoundFader ?
-struct TTransition {
-    /* 0x0 */ float field_0x0;
-    /* 0x4 */ float field_0x4;
-    /* 0x8 */ u32 mCount;
-};  // Size = 0xC
-
 struct Z2SoundFader {
     void move(f32 vol, u32 count) {
         if (count != 0) {
@@ -19,6 +12,61 @@ struct Z2SoundFader {
             mIntensity = vol;
             mTransition.zero();
         }
+    }
+
+    void forceIn() {
+        mIntensity = 1.0f;
+        mTransition.zero();
+    }
+
+    void forceOut() {
+        mIntensity = 0.0f;
+        mTransition.zero();
+    }
+
+    void fadeIn(u32 count) {
+        if (count != 0) {
+            mTransition.set(1.0f, mIntensity, count);
+        } else {
+            forceIn();
+        }
+    }
+
+    void fadeOut(u32 count) {
+        if (count != 0) {
+            mTransition.set(0.0f, mIntensity, count);
+        } else {
+            forceOut();
+        }
+    }
+
+    void fadeInFromOut(u32 count) {
+        mIntensity = 0.0f;
+        fadeIn(count);
+    }
+
+    u32 getCount() {
+        return mTransition.mCount;
+    }
+
+    f32 getIntensity() {
+        return mIntensity;
+    }
+
+    f32 getDest() {
+        if (getCount() != 0) {
+            return mTransition.mDest;
+        } else {
+            return mIntensity;
+        }
+    }
+
+    void calc() {
+        mIntensity = mTransition.apply(mIntensity);
+    }
+
+    f32 get() {
+        return getIntensity();
     }
 
     /* 0x0 */ float mIntensity;
@@ -35,7 +83,7 @@ public:
     void subBgmStop();
     void subBgmStopInner();
     void bgmStreamPrepare(u32);
-    int bgmStreamCheckReady();
+    bool bgmStreamCheckReady();
     void bgmStreamPlay();
     void bgmStreamStop(u32);
     void changeBgmStatus(s32);
@@ -52,7 +100,7 @@ public:
     void setTimeProcVolMod(bool, u32);
     void processBgmFramework();
     bool checkBgmIDPlaying(u32);
-    void getChildTrackVolume(JAISoundHandle*, int);
+    f32 getChildTrackVolume(JAISoundHandle*, int);
     void setChildTrackVolume(JAISoundHandle*, int, float, u32, float, float);
     void resetBattleBgmParams();
     void setBattleBgmOff(bool);
@@ -90,20 +138,24 @@ public:
     void i_bgmAllUnMute(u32 count) { mAllBgmMaster.move(1.0f, count); }
 
     void i_muteSceneBgm(u32 count, f32 vol) {
-        field_0x44.move(vol, count);
+        mSceneBgm.move(vol, count);
     }
 
     void i_unMuteSceneBgm(u32 count) {
         mBgmPause.move(1.0f, 0);
-        field_0x44.move(1.0f, count);
+        mSceneBgm.move(1.0f, count);
     }
 
     void bgmAllMute(u32 count, f32 val) {
         mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
     }
 
+    void bgmAllUnMute(u32 count) {
+        mAllBgmMaster.move(1.0f, count);
+    }
+
     bool isItemGetDemo() {
-        return field_0x08.isSoundAttached() || field_0xba != 0;
+        return mFanfareHandle.isSoundAttached() || mFanfareCount != 0;
     }
 
     u32 getMainBgmID() {
@@ -122,39 +174,56 @@ public:
         return -1;
     }
 
+    u32 getStreamBgmID() {
+        if (mStreamBgmHandle) {
+            return mStreamBgmHandle->getID();
+        }
+
+        return -1;
+    }
+
     JAISoundHandle* getMainBgmHandle() { return &mMainBgmHandle; }
 
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;
-    /* 0x08 */ JAISoundHandle field_0x08;
-    /* 0x0C */ JAISoundHandle field_0x0c;
-    /* 0x10 */ JAISoundID field_0x10;
+    /* 0x08 */ JAISoundHandle mFanfareHandle;
+    /* 0x0C */ JAISoundHandle mStreamBgmHandle;
+    /* 0x10 */ JAISoundID mFanfareID;
     /* 0x14 */ Z2SoundFader mMainBgmMaster;
     /* 0x24 */ Z2SoundFader mSubBgmMaster;
     /* 0x34 */ Z2SoundFader mBgmPause;
-    /* 0x44 */ Z2SoundFader field_0x44;
+    /* 0x44 */ Z2SoundFader mSceneBgm;
     /* 0x54 */ Z2SoundFader mFanfareMute;
-    /* 0x64 */ Z2SoundFader field_0x64;
+    /* 0x64 */ Z2SoundFader mStreamBgmMaster;
     /* 0x74 */ Z2SoundFader mAllBgmMaster;
     /* 0x84 */ Z2SoundFader field_0x84;
     /* 0x94 */ Z2SoundFader mWindStone;
     /* 0xA4 */ Z2SoundFader field_0xa4;
     /* 0xB4 */ f32 mTwilightGateVol;
-    /* 0xB8 */ u16 field_0xb8;
-    /* 0xBA */ u8 field_0xba;
-    /* 0xBB */ u8 field_0xbb;
-    /* 0xBC */ u8 field_0xbc;
-    /* 0xBD */ u8 field_0xbd;
-    /* 0xBE */ u8 field_0xbe;
-    /* 0xBF */ u8 field_0xbf;
-    /* 0xC0 */ u8 field_0xc0;
+    /* 0xB8 */ s16 field_0xb8;
+    /* 0xBA */ u8 mFanfareCount;
+    /* 0xBB */ u8 mDekuToadCount;
+    /* 0xBC */ u8 mBgmStatus;
+    /* 0xBD */ u8 mSubBgmStatus;
+    /* 0xBE */ u8 mBattleDistState;
+    /* 0xBF */ u8 mBattleSeqState;
+    /* 0xC0 */ u8 mBattleSeqCount;
     /* 0xC1 */ u8 field_0xc1;
-    /* 0xC2 */ u8 field_0xc2;
-    /* 0xC3 */ u8 field_0xc3;
+    /* 0xC2 */ u8 mBattleLastHit;
+    /* 0xC3 */ u8 mRideCount;
     /* 0xC4 */ u8 field_0xc4;
     /* 0xC8 */ f32 field_0xc8;
     /* 0xCC */ f32 field_0xcc;
-    /* 0xD0 */ u8 mFlags;
+    /* 0xD0 */ struct {
+        bool mBattleDistIgnore : 1;
+        bool flag1 : 1;
+        bool mBattleSearched : 1;
+        bool mBattleBgmOff : 1;
+        bool mRiding : 1;
+        bool flag5 : 1;
+        bool flag6 : 1;
+        bool flag7 : 1;
+    } mFlags;
 };  // Size = 0xD4
 
 inline Z2SeqMgr* Z2GetSeqMgr() {

@@ -303,8 +303,4 @@ public:
     static const u8* m_branchData;
 };
 
-inline Z2SoundStarter* Z2GetSoundStarter() {
-    return JASGlobalInstance<Z2SoundStarter>::getInstance();
-}
-
 #endif /* D_D_DEMO_H */

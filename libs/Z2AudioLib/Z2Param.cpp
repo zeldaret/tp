@@ -147,7 +147,7 @@ u8 struct_8045086B = 0x14;
 #pragma pop
 
 /* 8045086C-80450870 0002EC 0004+00 0/0 3/3 0/0 .sdata           None */
-extern u32 data_8045086C = 0x01000000;
+u8 data_8045086C = 1;
 
 /* 80451338-8045133C 000838 0004+00 0/0 1/1 0/0 .sbss            MIN_DISTANCE_VOLUME__7Z2Param */
 f32 Z2Param::MIN_DISTANCE_VOLUME;
