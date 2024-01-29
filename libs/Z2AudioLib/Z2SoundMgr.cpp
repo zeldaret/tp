@@ -212,7 +212,7 @@ SECTION_SDATA2 static f64 lit_3909 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2SoundMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2SoundMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                 JGeometry::TVec3<f32> const* param_2) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundMgr/func_802A9EE8.s"

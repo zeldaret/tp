@@ -629,7 +629,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
  * startCreatureVoice__15Z2CreatureEnemyF10JAISoundIDSc         */
 Z2SoundHandlePool* Z2CreatureEnemy::startCreatureVoice(JAISoundID i_soundID, s8 param_1) {
     if (Z2GetSeqMgr()->getMainBgmID() == Z2BGM_BOSS_ZANT) {
-        switch (Z2GetSeqMgr()->field_0xbc) {
+        switch (Z2GetSeqMgr()->mBgmStatus) {
         case 0:
         case 1:
             break;
