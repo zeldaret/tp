@@ -19,6 +19,7 @@ M76_LIBS := \
 M76_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M76_LDFLAGS := \
 	-nodefaults \

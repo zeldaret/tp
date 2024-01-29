@@ -217,4 +217,6 @@ private:
     /* 0x313 */ u8 field_0x313;
 };
 
+const char* dMenuFmap_getStartStageName(void* param_0);
+
 #endif /* D_MENU_D_MENU_FMAP_H */

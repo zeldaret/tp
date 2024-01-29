@@ -280,7 +280,7 @@ extern "C" u8 mWipeDlst__12dDlst_list_c[72];
 extern "C" u8 mWipeColor__12dDlst_list_c[4];
 extern "C" f32 mWipeRate__12dDlst_list_c;
 extern "C" f32 mWipeSpeed__12dDlst_list_c[1 + 1 /* padding */];
-extern "C" extern u8 data_80450EE0[8];
+extern "C" extern u8 data_80450EE0;
 
 //
 // External References:
@@ -2850,7 +2850,7 @@ SECTION_DEAD static char const* const pad_8037A1BC = "\0\0\0";
 dDlst_2DT2_c dDlst_list_c::mWipeDlst;
 
 /* 8045065C-80450660 0000DC 0004+00 1/1 0/0 0/0 .sdata           mWipeColor__12dDlst_list_c */
-SECTION_SDATA GXColor dDlst_list_c::mWipeColor = {0, 0, 0, 0};
+GXColor dDlst_list_c::mWipeColor = {0, 0, 0, 0};
 
 /* 80450ED0-80450ED4 0003D0 0004+00 2/2 1/1 0/0 .sbss            None */
 u8 dDlst_list_c::mWipe;
@@ -2993,9 +2993,3 @@ SECTION_DATA extern void* __vt__13dDlst_2DTri_c[3] = {
     (void*)NULL,
     (void*)draw__13dDlst_2DTri_cFv,
 };
-
-/* 80450EE0-80450EE8 0003E0 0008+00 0/0 1/1 0/0 .sbss            None */
-extern u8 data_80450EE0[8];
-u8 data_80450EE0[8] ALIGN_DECL(8);
-
-/* 8037A1B0-8037A1B0 006810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

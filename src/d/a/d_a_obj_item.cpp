@@ -291,11 +291,11 @@ void daItem_c::setBaseMtx_0() {
 SECTION_SDATA2 static f32 lit_3923 = 0.5f;
 
 /* 8015B1C8-8015B254 155B08 008C+00 1/1 0/0 0/0 .text            setBaseMtx_1__8daItem_cFv */
-// literals / load instructions flipped
+// matches with literals
 #ifdef NONMATCHING
 void daItem_c::setBaseMtx_1() {
     f32 max_y = mpModel->getModelData()->getJointNodePointer(0)->getMax()->y;
-    f32 y = max_y * 0.5f * mScale.y;
+    f32 y = (max_y / 2) * mScale.y;
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(0.0f, y, 0.0f);
@@ -396,6 +396,15 @@ SECTION_DATA static void* lit_5193[10] = {
     (void*)(((char*)initScale__8daItem_cFv) + 0x3C),
 };
 
+#ifdef NONMATCHING
+procFunc daItem_c::mFuncPtr[9] = {
+    &daItem_c::procMainNormal,        &daItem_c::procMainEnemyCarry,
+    &daItem_c::procMainSimpleGetDemo, &daItem_c::procWaitGetDemoEvent,
+    &daItem_c::procMainGetDemoEvent,  &daItem_c::procMainBoomerangCarry,
+    &daItem_c::procMainSwOnWait,      &daItem_c::procMainBoomHitWait,
+    &daItem_c::procMainForceGet,
+};
+#else
 /* 803B9E2C-803B9E38 -00001 000C+00 0/1 0/0 0/0 .data            @5240 */
 #pragma push
 #pragma force_active on
@@ -497,13 +506,7 @@ SECTION_DATA u8 daItem_c::mFuncPtr[120] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-
-/* SECTION_DATA procFunc daItem_c::mFuncPtr[9] = {
-    &daItem_c::procMainNormal, &daItem_c::procMainEnemyCarry, &daItem_c::procMainSimpleGetDemo,
-    &daItem_c::procWaitGetDemoEvent, &daItem_c::procMainGetDemoEvent,
-&daItem_c::procMainBoomerangCarry, &daItem_c::procMainSwOnWait, &daItem_c::procMainBoomHitWait,
-&daItem_c::procMainForceGet,
-}; */
+#endif
 
 /* 803B9F10-803B9F54 017030 0044+00 1/1 0/0 0/0 .data            m_cyl_src__8daItem_c */
 dCcD_SrcCyl daItem_c::m_cyl_src = {
@@ -607,7 +610,8 @@ void daItem_c::CreateInit() {
     if (m_itemNo == BOOMERANG) {
         itemGetNextExecute();
     } else if ((m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE) &&
-               field_0x998.getEmitter() == NULL) {
+               field_0x998.getEmitter() == NULL)
+    {
         dComIfGp_particle_set(0x0C14, &field_0x9ac, NULL, NULL, -1, &field_0x998, -1, NULL, NULL,
                               NULL);
     }
@@ -770,7 +774,8 @@ int daItem_c::_daItem_create() {
 
             if (phase_state == cPhs_COMPLEATE_e) {
                 if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckFieldItemCreateHeap,
-                                           dItem_data::getFieldHeapSize(m_itemNo))) {
+                                           dItem_data::getFieldHeapSize(m_itemNo)))
+                {
                     return cPhs_ERROR_e;
                 } else {
                     CreateInit();
@@ -811,14 +816,14 @@ SECTION_SDATA2 static f32 lit_4320 = 300.0f;
 SECTION_SDATA2 static f32 lit_4321 = 18.0f;
 
 /* 8015BA9C-8015BD84 1563DC 02E8+00 1/1 0/0 0/0 .text            _daItem_execute__8daItem_cFv */
-// eyepos.y issue / need sinit for mFuncPtr
+// matches with sinit
 #ifdef NONMATCHING
 int daItem_c::_daItem_execute() {
     field_0x950 = speed;
     CountTimer();
 
     mEyePos = current.pos;
-    mEyePos.y += (f32)dItem_data::getH(m_itemNo) * 0.5f;
+    mEyePos.y += (f32)dItem_data::getH(m_itemNo) / 2;
 
     mAttentionInfo.mPosition = current.pos;
 
@@ -871,7 +876,7 @@ int daItem_c::_daItem_execute() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daItem_c::_daItem_execute() {
+asm int daItem_c::_daItem_execute() {
     nofralloc
 #include "asm/a/obj/d_a_obj_item/_daItem_execute__8daItem_cFv.s"
 }
@@ -1307,7 +1312,8 @@ void daItem_c::itemGetNextExecute() {
         case SILVER_RUPEE:
         case PACHINKO_SHOT:
             if (daPy_getPlayerActorClass()->checkCanoeRide() ||
-                daPy_getPlayerActorClass()->checkHorseRide()) {
+                daPy_getPlayerActorClass()->checkHorseRide())
+            {
                 if (checkItemGet(m_itemNo, 1)) {
                     haveItem = true;
                 }
@@ -1696,7 +1702,8 @@ REGISTER_CTORS(0x8015DED0, __sinit_d_a_obj_item_cpp);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const cXyz daPy_py_c::getItemPos() const {
+// asm const cXyz daPy_py_c::getItemPos() const {
+extern "C" asm void getItemPos__9daPy_py_cCFv() {
     nofralloc
 #include "asm/a/obj/d_a_obj_item/getItemPos__9daPy_py_cCFv.s"
 }
@@ -1706,7 +1713,8 @@ asm const cXyz daPy_py_c::getItemPos() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm const cXyz& daPy_py_c::getLeftHandPos() const {
+// asm const cXyz& daPy_py_c::getLeftHandPos() const {
+extern "C" asm void getLeftHandPos__9daPy_py_cCFv() {
     nofralloc
 #include "asm/a/obj/d_a_obj_item/getLeftHandPos__9daPy_py_cCFv.s"
 }

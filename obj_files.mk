@@ -1072,4 +1072,7 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/d_gameover.o \
 	$(BUILD_DIR)/src/d/menu/d_menu_save.o \
 	$(BUILD_DIR)/src/d/d_bright_check.o \
+	$(BUILD_DIR)/src/d/shop/d_shop_system.o \
+	$(BUILD_DIR)/src/d/kankyo/d_kankyo.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_object.o \
 	

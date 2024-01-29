@@ -56,7 +56,7 @@ extern "C" void ChkLineDown__9dBgS_AcchFv();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" static void func_80077484();
 extern "C" static void func_8007748C();
-extern "C" bool checkPlayerFly__9daPy_py_cCFv();
+extern "C" u32 checkPlayerFly__9daPy_py_cCFv();
 
 //
 // External References:
@@ -823,6 +823,7 @@ static asm void func_8007748C() {
 #pragma pop
 
 /* 80077494-8007749C 071DD4 0008+00 0/0 1/0 0/0 .text            checkPlayerFly__9daPy_py_cCFv */
-u32 daPy_py_c::checkPlayerFly() const {
+// u32 daPy_py_c::checkPlayerFly() const {
+extern "C" u32 checkPlayerFly__9daPy_py_cCFv() {
     return 0;
 }

@@ -1,8 +1,10 @@
-//
-// d/s/d_s_play
-//
+/**
+ * d_s_play.cpp
+ * Main Gameplay Scene
+ */
 
 #include "d/s/d_s_play.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_counter.h"
@@ -21,16 +23,11 @@
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "f_op/f_op_scene_mng.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
 #include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
-
-//
-// Declarations:
-//
 
 static void dScnPly_Create(scene_class*);
 static int dScnPly_Delete(dScnPly_c*);
@@ -52,7 +49,6 @@ static int phase_compleate(void*);
 
 extern "C" s8 func_80252E70(s8*);
 
-/* ############################################################################################## */
 /* 804510F8-80451100 0005F8 0008+00 2/2 0/0 0/0 .sbss            resPhase */
 static request_of_phase_process_class resPhase[1];
 
@@ -71,11 +67,10 @@ static OSTime resPreLoadTime1;
 /* 80451120-80451124 000620 0004+00 1/1 0/0 0/0 .sbss            g_preLoadHIO */
 static dScnPly_preLoad_HIO_c g_preLoadHIO;
 
-/* 80451124-80451128 -00001 0004+00 3/3 7/7 38/38 .sbss            None */
 /* 80451124 0001+00 data_80451124 None */
-/* 80451125 0003+00 nextPauseTimer__9dScnPly_c None */
 s8 dScnPly_c::pauseTimer;
 
+/* 80451125 0003+00 nextPauseTimer__9dScnPly_c None */
 s8 dScnPly_c::nextPauseTimer;
 
 /* 80259400-80259440 253D40 0040+00 1/1 0/0 0/0 .text            calcPauseTimer__9dScnPly_cFv */
@@ -88,66 +83,6 @@ s8 dScnPly_c::calcPauseTimer() {
         return func_80252E70(&pauseTimer);  // cLib_calcTimer<s8> : 80252E70
     }
 }
-
-/* ############################################################################################## */
-/* 803C3158-803C3188 020278 002E+02 1/1 0/0 0/0 .data            l_wipeType$4081 */
-static s16 l_wipeType[23] = {
-    0x0000, 0x0000, 0x0011, 0x0002, 0x0002, 0x0001, 0x0003, 0x0001, 0x0004, 0x0004, 0x0005, 0x0005,
-    0x0006, 0x0007, 0x0000, 0x0000, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0008, 0x0008,
-};
-
-/* 803C3188-803C3194 0202A8 000A+02 1/1 0/0 0/0 .data            camparamarc$4608 */
-static char camparamarc[10] = "CamParam";
-
-/* 803C3194-803C31C0 -00001 002C+00 1/1 0/0 0/0 .data            l_method$4860 */
-static request_of_phase_process_fn l_method[11] = {
-    (request_of_phase_process_fn)phase_00,
-    (request_of_phase_process_fn)phase_1,
-    (request_of_phase_process_fn)phase_1_0,
-    (request_of_phase_process_fn)phase_01,
-    (request_of_phase_process_fn)phase_0,
-    (request_of_phase_process_fn)phase_2,
-    (request_of_phase_process_fn)phase_3,
-    (request_of_phase_process_fn)phase_4,
-    (request_of_phase_process_fn)phase_5,
-    (request_of_phase_process_fn)phase_6,
-    (request_of_phase_process_fn)phase_compleate,
-};
-
-/* 803C31C0-803C31D4 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnPly_Method */
-static leafdraw_method_class l_dScnPly_Method = {
-    (process_method_func)dScnPly_Create,  (process_method_func)dScnPly_Delete,
-    (process_method_func)dScnPly_Execute, (process_method_func)dScnPly_IsDelete,
-    (process_method_func)dScnPly_Draw,
-};
-
-/* 803C31D4-803C31FC -00001 0028+00 0/0 0/0 1/0 .data            g_profile_PLAY_SCENE */
-scene_process_profile_definition g_profile_PLAY_SCENE = {
-    fpcLy_ROOT_e,                              // mLayerID
-    1,                                         // mListID
-    fpcPi_CURRENT_e,                           // mListPrio
-    PROC_PLAY_SCENE,                           // mProcName
-    &g_fpcNd_Method.mBase,                     // mSubMtd
-    sizeof(dScnPly_c),                         // mSize
-    0,                                         // mSizeOther
-    0,                                         // mParameters
-    &g_fopScn_Method.mBase,                    // mSubMtd
-    (process_method_class*)&l_dScnPly_Method,  // mpMtd
-};
-
-/* 803C31FC-803C3224 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_OPENING_SCENE */
-scene_process_profile_definition g_profile_OPENING_SCENE = {
-    fpcLy_ROOT_e,                              // mLayerID
-    1,                                         // mListID
-    fpcPi_CURRENT_e,                           // mListPrio
-    PROC_OPENING_SCENE,                        // mProcName
-    &g_fpcNd_Method.mBase,                     // mSubMtd
-    sizeof(dScnPly_c),                         // mSize
-    0,                                         // mSizeOther
-    0,                                         // mParameters
-    &g_fopScn_Method.mBase,                    // mSubMtd
-    (process_method_class*)&l_dScnPly_Method,  // mpMtd
-};
 
 /* 80454F18-80454F1C 003518 0002+02 1/0 0/0 0/0 .sdata2          T_JOINT_dylKeyTbl */
 static const s16 T_JOINT_dylKeyTbl[1] = {
@@ -170,15 +105,20 @@ dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
 }
 
 /* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */
-static int dScnPly_Draw(dScnPly_c* scn) {
+static int dScnPly_Draw(dScnPly_c* i_this) {
+    static s16 l_wipeType[] = {
+        0x0000, 0x0000, 0x0011, 0x0002, 0x0002, 0x0001, 0x0003, 0x0001, 0x0004, 0x0004, 0x0005, 0x0005,
+        0x0006, 0x0007, 0x0000, 0x0000, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0008, 0x0008,
+    };
+
     dComIfG_Ccsp()->Move();
     dComIfG_Bgsp().ClrMoveFlag();
 
     u8 useWhiteColor;
-    if (!fopOvlpM_IsPeek() && !dComIfG_resetToOpening(scn)) {
+    if (!fopOvlpM_IsPeek() && !dComIfG_resetToOpening(i_this)) {
         if (dComIfGp_isEnableNextStage()) {
             u8 wipe = dComIfGp_getNextStageWipe();
-            fopScnM_ChangeReq(scn, 11, l_wipeType[wipe], 5);
+            fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, l_wipeType[wipe], 5);
 
             int hour = dKy_getdaytime_hour();
             useWhiteColor = hour >= 6 && hour < 18 ? true : false;
@@ -186,7 +126,8 @@ static int dScnPly_Draw(dScnPly_c* scn) {
 
             if (wipe == 1 || wipe == 2 || wipe == 7 || wipe == 17 || wipe == 21 ||
                 ((wipe == 8 || wipe == 10 || wipe == 18) && tmp) ||
-                ((wipe == 9 || wipe == 11 || wipe == 19) && !tmp)) {
+                ((wipe == 9 || wipe == 11 || wipe == 19) && !tmp))
+            {
                 mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_saftyWhiteColor);
             } else if (wipe == 14 || wipe == 20) {
                 GXColor color = {0x2A, 0x1E, 0x46, 0xFF};
@@ -204,7 +145,7 @@ static int dScnPly_Draw(dScnPly_c* scn) {
     dMdl_mng_c::reset();
 
     if (!dComIfGp_isPauseFlag() && dScnPly_c::pauseTimer == 0) {
-        if (fpcM_GetName(scn) == PROC_PLAY_SCENE) {
+        if (fpcM_GetName(i_this) == PROC_PLAY_SCENE) {
             dComIfGp_getVibration().Run();
         }
         daSus_c::execute();
@@ -236,8 +177,8 @@ static int dScnPly_Draw(dScnPly_c* scn) {
 }
 
 /* 802597B8-8025987C 2540F8 00C4+00 1/0 0/0 0/0 .text            dScnPly_Execute__FP9dScnPly_c */
-static int dScnPly_Execute(dScnPly_c* scnPly) {
-    scnPly->offReset();
+static int dScnPly_Execute(dScnPly_c* i_this) {
+    i_this->offReset();
     dStage_roomControl_c::offNoChangeRoom();
     dStage_roomControl_c::setRoomReadId(0xFF);
 
@@ -248,7 +189,7 @@ static int dScnPly_Execute(dScnPly_c* scnPly) {
             mDoAud_zelAudio_c::offBgmSet();
         }
 
-        if (scnPly->calcPauseTimer() != 0) {
+        if (i_this->calcPauseTimer() != 0) {
             return 1;
         }
     }
@@ -263,24 +204,24 @@ static int dScnPly_Execute(dScnPly_c* scnPly) {
 }
 
 /* 8025987C-802598AC 2541BC 0030+00 1/0 0/0 0/0 .text            dScnPly_IsDelete__F9dScnPly_c */
-static int dScnPly_IsDelete(dScnPly_c scnPly) {
+static int dScnPly_IsDelete(dScnPly_c i_this) {
     dComIfGp_particle_cleanup();
     return 1;
 }
 
-struct ProLoadInfoStruct {
-    const char* field_0x0;
-    const s16* field_0x4;
-    const char** field_0x8;
-    u8 field_0xc;
-    u8 field_0xd;
+struct PreLoadInfo {
+    const char* stageName;
+    const s16* profNameTbl;
+    const char** resNameTbl;
+    u8 dylKeyTblNum;
+    u8 resNameNum;
 };
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 static const char* T_JOINT_resName[1] = {"Always"};
 
 /* 8039A2C8-8039A2D8 -00001 0010+00 4/4 0/0 0/0 .rodata          PreLoadInfoT */
-static ProLoadInfoStruct const PreLoadInfoT[1] = {
+static PreLoadInfo const PreLoadInfoT[1] = {
     {
         "T_JOINT",
         T_JOINT_dylKeyTbl,
@@ -296,46 +237,59 @@ static s8 preLoadNo = -1;
 static u8 doPreLoad = 1;
 
 /* 802598AC-80259AC4 2541EC 0218+00 1/0 0/0 0/0 .text            dScnPly_Delete__FP9dScnPly_c */
-static int dScnPly_Delete(dScnPly_c* param_0) {
+static int dScnPly_Delete(dScnPly_c* i_this) {
     daSus_c::reset();
     dMpath_c::remove();
     dTres_c::remove();
+
     dComIfGp_getAttention().~dAttention_c();
     dComIfGp_getVibration().Remove();
+
     dComIfG_Bgsp().Dt();
     dComIfG_Ccsp()->Dt();
     dStage_Delete();
+
     i_dComIfGp_event_remove();
+
     dComIfGp_particle_removeScene(0);
+
     dComIfGp_getMsgDtArchive(1)->removeResourceAll();
     JKRUnmountArchive(dComIfGp_getMsgDtArchive(1));
+
     dDemo_c::remove();
+
     fopMsgM_destroyExpHeap(dComIfGp_getExpHeap2D());
     dComIfGp_setExpHeap2D(NULL);
     fopMsgM_destroyExpHeap(dComIfGp_getMsgExpHeap());
     dComIfGp_setMsgExpHeap(NULL);
+
     dComIfGp_deleteSimpleModel();
     dMdl_mng_c::remove();
+
     mDoGph_gInf_c::getBloom()->remove();
+
     dComIfGs_offPlayerFieldLastStayFieldDataExistFlag();
     dComIfGp_setWindowNum(0);
     dComIfGd_setView(NULL);
+
     if (preLoadNo >= 0) {
-        const char** piVar4 = PreLoadInfoT[preLoadNo].field_0x8;
-        int bVar1 = PreLoadInfoT[preLoadNo].field_0xd;
-        if (piVar4 != NULL && (*piVar4 != NULL)) {
-            for (int iVar3 = 0; iVar3 < bVar1; iVar3++) {
-                dComIfG_resDelete(&resPhase[iVar3], piVar4[iVar3]);
+        const char** resname_table = PreLoadInfoT[preLoadNo].resNameTbl;
+        int res_num = PreLoadInfoT[preLoadNo].resNameNum;
+        if (resname_table != NULL && (*resname_table != NULL)) {
+            for (int i = 0; i < res_num; i++) {
+                dComIfG_resDelete(&resPhase[i], resname_table[i]);
             }
         }
-        const s16* psVar5 = PreLoadInfoT[preLoadNo].field_0x4;
-        int bVar2 = PreLoadInfoT[preLoadNo].field_0xc;
-        if (psVar5 != NULL && *psVar5 != 0) {
-            for (int iVar3 = 0; iVar3 < bVar2; iVar3++) {
-                cDylPhs::Unlink(&dylPhase[iVar3], psVar5[iVar3]);
+
+        const s16* profname_table = PreLoadInfoT[preLoadNo].profNameTbl;
+        int prof_num = PreLoadInfoT[preLoadNo].dylKeyTblNum;
+        if (profname_table != NULL && *profname_table != 0) {
+            for (int i = 0; i < prof_num; i++) {
+                cDylPhs::Unlink(&dylPhase[i], profname_table[i]);
             }
         }
     }
+
     dComIfGp_init();
     JUTAssertion::setMessageCount(0);
     return 1;
@@ -359,7 +313,8 @@ bool dScnPly_c::resetGame() {
         if (dComIfGp_getNextStagePoint() == -4 || (dComIfGs_getLastSceneMode() & 0xF) == 0xC ||
             !strcmp(dComIfGp_getNextStageName(), "F_SP109") ||
             (!strcmp(dComIfGp_getNextStageName(), "F_SP116") &&
-             dComIfGp_getNextStageRoomNo() == 1 && dComIfGp_getNextStageLayer() == 9)) {
+             dComIfGp_getNextStageRoomNo() == 1 && dComIfGp_getNextStageLayer() == 9))
+        {
             if (!dStage_roomControl_c::resetArchiveBank(0)) {
                 return false;
             }
@@ -384,8 +339,8 @@ void dScnPly_c::offReset() {
 }
 
 /* 80259C70-80259CAC 2545B0 003C+00 1/0 0/0 0/0 .text            phase_00__FP9dScnPly_c */
-static int phase_00(dScnPly_c* scn) {
-    if (!scn->resetGame()) {
+static int phase_00(dScnPly_c* i_this) {
+    if (!i_this->resetGame()) {
         return cPhs_INIT_e;
     } else {
         mDoGph_gInf_c::offBlure();
@@ -394,7 +349,7 @@ static int phase_00(dScnPly_c* scn) {
 }
 
 /* 80259CAC-80259D7C 2545EC 00D0+00 1/0 0/0 0/0 .text            phase_01__FP9dScnPly_c */
-static int phase_01(dScnPly_c* scn) {
+static int phase_01(dScnPly_c* i_this) {
     mDoAud_setHour(dKy_getdaytime_hour());
     mDoAud_setMinute(dKy_getdaytime_minute());
     mDoAud_setWeekday(dKy_get_dayofweek());
@@ -419,13 +374,13 @@ static int phase_01(dScnPly_c* scn) {
 }
 
 /* 80259D7C-80259D84 2546BC 0008+00 1/0 0/0 0/0 .text            phase_0__FP9dScnPly_c */
-static int phase_0(dScnPly_c* param_0) {
+static int phase_0(dScnPly_c* i_this) {
     return cPhs_NEXT_e;
 }
 
 /* 80259D84-8025A438 2546C4 06B4+00 1/0 0/0 0/0 .text            phase_1__FP9dScnPly_c */
-static int phase_1(dScnPly_c* scn) {
-    u32 id = fopScnM_GetID(scn);
+static int phase_1(dScnPly_c* i_this) {
+    u32 id = fopScnM_GetID(i_this);
     dStage_roomControl_c::setProcID(id);
 
     dComIfGp_setStartStage(dComIfGp_getNextStartStage());
@@ -442,38 +397,45 @@ static int phase_1(dScnPly_c* scn) {
 
     // Stage: Faron Woods, Room: Faron Spring
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") && dComIfGp_getStartStageRoomNo() == 1 &&
-        dComIfGp_getStartStagePoint() == 3) {
+        dComIfGp_getStartStagePoint() == 3)
+    {
         dComIfGs_onDarkClearLV(0);
         execItemGet(WEAR_KOKIRI);
     }
     // Stage: Kakariko Village, Room: Kakariko Village
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109") &&
-             dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStagePoint() == 30) {
+             dComIfGp_getStartStageRoomNo() == 0 && dComIfGp_getStartStagePoint() == 30)
+    {
         dComIfGs_onDarkClearLV(1);
     }
     // Stage: Lake Hylia, Room: Fountain
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
-             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 20) {
+             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 20)
+    {
         dComIfGs_onDarkClearLV(2);
     }
     // Stage: Sacred Grove, Room: Lost Woods
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP117") &&
-             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 99) {
+             dComIfGp_getStartStageRoomNo() == 1 && dComIfGp_getStartStagePoint() == 99)
+    {
         dComIfGs_onDarkClearLV(3);
     }
 
     // Stage: Ordon Spring, Room: Ordon Spring
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP104") && dComIfGp_getStartStageRoomNo() == 1 &&
-        dComIfGp_getStartStagePoint() == 23 && dComIfGp_getStartStageLayer() == 12) {
+        dComIfGp_getStartStagePoint() == 23 && dComIfGp_getStartStageLayer() == 12)
+    {
         dComIfGs_onItemFirstBit(HORSE_FLUTE);
         dComIfGs_setItem(SLOT_21, HORSE_FLUTE);
     }
 
     if ((u8)dKy_darkworld_stage_check(dComIfGp_getStartStageName(),
-                                      dComIfGp_getStartStageRoomNo()) == true) {
+                                      dComIfGp_getStartStageRoomNo()) == true)
+    {
         dComIfGp_world_dark_set(1);
     } else if ((u8)dKy_darkworld_spot_check(dComIfGp_getStartStageName(),
-                                            dComIfGp_getStartStageRoomNo()) == true) {
+                                            dComIfGp_getStartStageRoomNo()) == true)
+    {
         dComIfGp_world_dark_set(2);
     } else {
         dComIfGp_world_dark_set(0);
@@ -481,7 +443,8 @@ static int phase_1(dScnPly_c* scn) {
 
     // Stage: Lake Hylia, Room: Fountain
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
-        dComIfGp_getStartStageLayer() < 0) {
+        dComIfGp_getStartStageLayer() < 0)
+    {
         const char* stage = dComIfGp_getStartStageName();
         s8 room = dComIfGp_getStartStageRoomNo();
         s8 layer = dComIfGp_getStartStageLayer();
@@ -502,13 +465,15 @@ static int phase_1(dScnPly_c* scn) {
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
          dComIfGp_getStartStageLayer() == 8) ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") && dComIfGp_getStartStageRoomNo() == 1 &&
-         dComIfGp_getStartStageLayer() == 9)) {
+         dComIfGp_getStartStageLayer() == 9))
+    {
         dComIfGp_world_dark_set(1);
     }
 
     // Stage: Zant Boss Fight, Room: Throne Room
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN08D") && dComIfGp_getStartStageRoomNo() == 50 &&
-        dComIfGp_getStartStagePoint() == 20) {
+        dComIfGp_getStartStagePoint() == 20)
+    {
         dComIfGs_onSaveDunSwitch(30);
     }
 
@@ -516,29 +481,34 @@ static int phase_1(dScnPly_c* scn) {
 
     // Stage: Hyrule Castle Sewers, Room: Prison Cell
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP107") && dComIfGp_getStartStageRoomNo() == 0 &&
-        (dComIfGp_getStartStagePoint() == 24 || dComIfGp_getStartStagePoint() == 0)) {
+        (dComIfGp_getStartStagePoint() == 24 || dComIfGp_getStartStagePoint() == 0))
+    {
         dComIfGs_onTransformLV(0);
     }
     // Stage: Hyrule Field, Room: Eldin Gorge south entrance
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-             dComIfGp_getStartStageRoomNo() == 2 && dComIfGp_getStartStagePoint() == 10) {
+             dComIfGp_getStartStageRoomNo() == 2 && dComIfGp_getStartStagePoint() == 10)
+    {
         dComIfGs_onTransformLV(1);
     }
     // Stage: Hyrule Field, Room: Lanayru Field north entrance
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-             dComIfGp_getStartStageRoomNo() == 9 && dComIfGp_getStartStagePoint() == 10) {
+             dComIfGp_getStartStageRoomNo() == 9 && dComIfGp_getStartStagePoint() == 10)
+    {
         dComIfGs_onTransformLV(2);
     }
     // Stage: Hyrule Field, Room: Lanayru Field
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
              dComIfGp_getStartStageRoomNo() == 10 &&
-             (dComIfGp_getStartStagePoint() == 23 || dComIfGp_getStartStagePoint() == 20)) {
+             (dComIfGp_getStartStagePoint() == 23 || dComIfGp_getStartStagePoint() == 20))
+    {
         dComIfGs_onTransformLV(3);
     }
 
     // Stage: Fishing Pond, Room: Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && dComIfGp_getStartStageRoomNo() == 0 &&
-        dComIfGp_getStartStagePoint() == 2) {
+        dComIfGp_getStartStagePoint() == 2)
+    {
         g_env_light.mPondSeason++;
 
         if (g_env_light.mPondSeason > 4) {
@@ -559,7 +529,9 @@ static int phase_1(dScnPly_c* scn) {
 }
 
 /* 8025A438-8025A4F8 254D78 00C0+00 1/0 0/0 0/0 .text            phase_1_0__FP9dScnPly_c */
-static int phase_1_0(dScnPly_c* param_0) {
+static int phase_1_0(dScnPly_c* i_this) {
+    static char camparamarc[10] = "CamParam";
+
     if (dComIfG_syncStageRes("Stg_00")) {
         return cPhs_INIT_e;
     } else {
@@ -572,29 +544,33 @@ static int phase_1_0(dScnPly_c* param_0) {
 }
 
 /* 8025A4F8-8025A5D4 254E38 00DC+00 1/0 0/0 0/0 .text            phase_2__FP9dScnPly_c */
-static int phase_2(dScnPly_c* scn) {
+static int phase_2(dScnPly_c* i_this) {
     int tmp = dComIfG_syncAllObjectRes();
     if (tmp >= 0 && tmp != 0) {
         return cPhs_INIT_e;
     }
-    u8 particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo(), dComIfG_play_c::getLayerNo(0));
+
+    u8 particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo(),
+                                                   dComIfG_play_c::getLayerNo(0));
     if (particle_no == 255) {
         particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo());
     }
 
-    dComIfGp_particle_readScene(particle_no, &scn->sceneCommand);
-    dMsgObject_readMessageGroup(&scn->field_0x1d0);
+    dComIfGp_particle_readScene(particle_no, &i_this->sceneCommand);
+    dMsgObject_readMessageGroup(&i_this->field_0x1d0);
     return cPhs_NEXT_e;
 }
 
 /* 8025A5D4-8025A654 254F14 0080+00 1/0 0/0 0/0 .text            phase_3__FP9dScnPly_c */
-static int phase_3(dScnPly_c* scn) {
-    if ((scn->sceneCommand != NULL && !scn->sceneCommand->sync()) || mDoAud_check1stDynamicWave()) {
+static int phase_3(dScnPly_c* i_this) {
+    if ((i_this->sceneCommand != NULL && !i_this->sceneCommand->sync()) || mDoAud_check1stDynamicWave()) {
         return cPhs_INIT_e;
-    } 
-    if (!scn->field_0x1d0 == NULL && !scn->field_0x1d0->sync()) {
+    }
+
+    if (!i_this->field_0x1d0 == NULL && !i_this->field_0x1d0->sync()) {
         return cPhs_INIT_e;
-    } 
+    }
+
     return cPhs_NEXT_e;
 }
 
@@ -664,7 +640,7 @@ static int phase_4(dScnPly_c* i_this) {
     new (&dComIfGp_getAttention()) dAttention_c(dComIfGp_getPlayer(0), 0);
     dComIfGp_getVibration().Init();
     daYkgr_c::init();
-    
+
     dComIfG_setBrightness(255);
     mDoGph_gInf_c::offFade();
     mDoAud_zelAudio_c::onBgmSet();
@@ -676,7 +652,7 @@ static int phase_4(dScnPly_c* i_this) {
         const char* stageName = dComIfGp_getStartStageName();
         OS_REPORT("stageName=%s\n", stageName);
         for (u32 i = 0; i < 1; i++) {
-            if (strcmp(stageName, PreLoadInfoT[i].field_0x0) == 0) {
+            if (strcmp(stageName, PreLoadInfoT[i].stageName) == 0) {
                 preLoadNo = i;
             }
         }
@@ -691,11 +667,12 @@ static int phase_4(dScnPly_c* i_this) {
 }
 
 /* 8025A9F4-8025AAC0 255334 00CC+00 1/0 0/0 0/0 .text            phase_5__FP9dScnPly_c */
-static int phase_5(dScnPly_c* param_0) {
+static int phase_5(dScnPly_c* i_this) {
     if (preLoadNo >= 0) {
-        int rv = 2;
-        const char** resNames = PreLoadInfoT[preLoadNo].field_0x8;
-        s32 resNameNum = PreLoadInfoT[preLoadNo].field_0xd;
+        int phase_state = cPhs_NEXT_e;
+
+        const char** resNames = PreLoadInfoT[preLoadNo].resNameTbl;
+        s32 resNameNum = PreLoadInfoT[preLoadNo].resNameNum;
         if (resNames != NULL && *resNames != NULL) {
             JUT_ASSERT(2830, resNameNum <= (sizeof(resPhase) / sizeof(resPhase[0])));
             int goodLoads = 0;
@@ -704,52 +681,103 @@ static int phase_5(dScnPly_c* param_0) {
                 if (dComIfG_resLoad(&resPhase[i], resNames[i]) == 4) {
                     goodLoads++;
                 } else {
-                    rv = 0;
+                    phase_state = cPhs_INIT_e;
                 }
                 loadNum++;
             }
         }
-        if (rv == 4) {
+    
+        if (phase_state == cPhs_COMPLEATE_e) {
             resPreLoadTime1 = OSGetTime();
         }
-        return rv;
+    
+        return phase_state;
     }
+
     return cPhs_NEXT_e;
 }
 
 /* 8025AAC0-8025AB8C 255400 00CC+00 1/0 0/0 0/0 .text            phase_6__FP9dScnPly_c */
-static int phase_6(dScnPly_c* param_0) {
+static int phase_6(dScnPly_c* i_this) {
     if (preLoadNo >= 0) {
-        int rv = 2;
-        const s16* dylKeyTbl = PreLoadInfoT[preLoadNo].field_0x4;
-        s32 dylKeyTblNum = PreLoadInfoT[preLoadNo].field_0xc;
+        int phase_state = cPhs_NEXT_e;
+
+        const s16* dylKeyTbl = PreLoadInfoT[preLoadNo].profNameTbl;
+        s32 dylKeyTblNum = PreLoadInfoT[preLoadNo].dylKeyTblNum;
         if (dylKeyTbl != NULL && *dylKeyTbl != 0) {
             JUT_ASSERT(2864, dylKeyTblNum <= (sizeof(dylPhase) / sizeof(dylPhase[0])));
             int goodLoads = 0;
             int loadNum = 0;
             for (int i = 0; i < dylKeyTblNum; i++) {
-                if (cDylPhs::Link(&dylPhase[i], dylKeyTbl[i]) == 4) {
+                if (cDylPhs::Link(&dylPhase[i], dylKeyTbl[i]) == cPhs_COMPLEATE_e) {
                     goodLoads++;
                 } else {
-                    rv = 0;
+                    phase_state = cPhs_INIT_e;
                 }
                 loadNum++;
             }
         }
-        if (rv == 4) {
+
+        if (phase_state == cPhs_COMPLEATE_e) {
             dylPreLoadTime1 = OSGetTime();
         }
-        return rv;
+
+        return phase_state;
     }
+
     return cPhs_NEXT_e;
 }
 
 /* 8025AB8C-8025AB94 2554CC 0008+00 1/0 0/0 0/0 .text            phase_compleate__FPv */
-static int phase_compleate(void* param_0) {
+static int phase_compleate(void* i_this) {
     return cPhs_COMPLEATE_e;
 }
 
 /* 8025AB94-8025ABC4 2554D4 0030+00 1/0 0/0 0/0 .text            dScnPly_Create__FP11scene_class */
 static void dScnPly_Create(scene_class* i_this) {
+    static request_of_phase_process_fn l_method[] = {
+        (request_of_phase_process_fn)phase_00,        (request_of_phase_process_fn)phase_1,
+        (request_of_phase_process_fn)phase_1_0,       (request_of_phase_process_fn)phase_01,
+        (request_of_phase_process_fn)phase_0,         (request_of_phase_process_fn)phase_2,
+        (request_of_phase_process_fn)phase_3,         (request_of_phase_process_fn)phase_4,
+        (request_of_phase_process_fn)phase_5,         (request_of_phase_process_fn)phase_6,
+        (request_of_phase_process_fn)phase_compleate,
+    };
+
     dComLbG_PhaseHandler(&static_cast<dScnPly_c*>(i_this)->field_0x1c4, l_method, i_this);
 }
+
+/* 803C31C0-803C31D4 -00001 0014+00 2/0 0/0 0/0 .data            l_dScnPly_Method */
+static leafdraw_method_class l_dScnPly_Method = {
+    (process_method_func)dScnPly_Create,  (process_method_func)dScnPly_Delete,
+    (process_method_func)dScnPly_Execute, (process_method_func)dScnPly_IsDelete,
+    (process_method_func)dScnPly_Draw,
+};
+
+/* 803C31D4-803C31FC -00001 0028+00 0/0 0/0 1/0 .data            g_profile_PLAY_SCENE */
+scene_process_profile_definition g_profile_PLAY_SCENE = {
+    fpcLy_ROOT_e,                              // mLayerID
+    1,                                         // mListID
+    fpcPi_CURRENT_e,                           // mListPrio
+    PROC_PLAY_SCENE,                           // mProcName
+    &g_fpcNd_Method.mBase,                     // mSubMtd
+    sizeof(dScnPly_c),                         // mSize
+    0,                                         // mSizeOther
+    0,                                         // mParameters
+    &g_fopScn_Method.mBase,                    // mSubMtd
+    (process_method_class*)&l_dScnPly_Method,  // mpMtd
+};
+
+/* 803C31FC-803C3224 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_OPENING_SCENE */
+scene_process_profile_definition g_profile_OPENING_SCENE = {
+    fpcLy_ROOT_e,                              // mLayerID
+    1,                                         // mListID
+    fpcPi_CURRENT_e,                           // mListPrio
+    PROC_OPENING_SCENE,                        // mProcName
+    &g_fpcNd_Method.mBase,                     // mSubMtd
+    sizeof(dScnPly_c),                         // mSize
+    0,                                         // mSizeOther
+    0,                                         // mParameters
+    &g_fopScn_Method.mBase,                    // mSubMtd
+    (process_method_class*)&l_dScnPly_Method,  // mpMtd
+};

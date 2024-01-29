@@ -3827,7 +3827,8 @@ static asm void func_80182804() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getChainGrabActor() {
+// asm void daAlink_c::getChainGrabActor() {
+extern "C" asm void getChainGrabActor__9daAlink_cFv() {
     nofralloc
 #include "asm/d/d_camera/getChainGrabActor__9daAlink_cFv.s"
 }
@@ -3837,7 +3838,8 @@ asm void daAlink_c::getChainGrabActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCokkoGlide() const {
+// asm void daAlink_c::checkCokkoGlide() const {
+extern "C" asm void checkCokkoGlide__9daAlink_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkCokkoGlide__9daAlink_cCFv.s"
 }
@@ -3847,7 +3849,8 @@ asm void daAlink_c::checkCokkoGlide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCameraLargeDamage() const {
+// asm void daAlink_c::checkCameraLargeDamage() const {
+extern "C" asm void checkCameraLargeDamage__9daAlink_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkCameraLargeDamage__9daAlink_cCFv.s"
 }
@@ -3858,7 +3861,8 @@ asm void daAlink_c::checkCameraLargeDamage() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getHsSubChainTopPos() const {
+// asm void daAlink_c::getHsSubChainTopPos() const {
+extern "C" asm void getHsSubChainTopPos__9daAlink_cCFv() {
     nofralloc
 #include "asm/d/d_camera/getHsSubChainTopPos__9daAlink_cCFv.s"
 }
@@ -3879,7 +3883,8 @@ extern "C" asm void daAlink_getAlinkActorClass__Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkCutHeadProc() const {
+// asm void daAlink_c::checkCutHeadProc() const {
+extern "C" asm void checkCutHeadProc__9daAlink_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkCutHeadProc__9daAlink_cCFv.s"
 }
@@ -3889,7 +3894,8 @@ asm void daAlink_c::checkCutHeadProc() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::getRideActor() {
+// asm void daAlink_c::getRideActor() {
+extern "C" asm void getRideActor__9daAlink_cFv() {
     nofralloc
 #include "asm/d/d_camera/getRideActor__9daAlink_cFv.s"
 }
@@ -4007,7 +4013,8 @@ asm void dCamera_c::Bank() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkThrowDamage() const {
+// asm void daPy_py_c::checkThrowDamage() const {
+extern "C" asm void checkThrowDamage__9daPy_py_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkThrowDamage__9daPy_py_cCFv.s"
 }
@@ -4055,7 +4062,8 @@ extern "C" asm void V__7cSGlobeCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkGoronSideMove() const {
+// asm void daPy_py_c::checkGoronSideMove() const {
+extern "C" asm void checkGoronSideMove__9daPy_py_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkGoronSideMove__9daPy_py_cCFv.s"
 }
@@ -4146,7 +4154,8 @@ extern "C" asm bool __gt__7cSAngleCFRC7cSAngle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::getRightFootPosP() {
+// asm void daPy_py_c::getRightFootPosP() {
+extern "C" asm void getRightFootPosP__9daPy_py_cFv() {
     nofralloc
 #include "asm/d/d_camera/getRightFootPosP__9daPy_py_cFv.s"
 }
@@ -4156,7 +4165,8 @@ asm void daPy_py_c::getRightFootPosP() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::getLeftFootPosP() {
+// asm void daPy_py_c::getLeftFootPosP() {
+extern "C" asm void getLeftFootPosP__9daPy_py_cFv() {
     nofralloc
 #include "asm/d/d_camera/getLeftFootPosP__9daPy_py_cFv.s"
 }
@@ -4171,7 +4181,8 @@ extern "C" u32 getMidnaActor__9daPy_py_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkCopyRodThrowAfter() const {
+// asm void daPy_py_c::checkCopyRodThrowAfter() const {
+extern "C" asm void checkCopyRodThrowAfter__9daPy_py_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkCopyRodThrowAfter__9daPy_py_cCFv.s"
 }
@@ -4186,7 +4197,8 @@ void dAttention_c::keepLock(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::checkRide() const {
+// asm void daPy_py_c::checkRide() const {
+extern "C" asm void checkRide__9daPy_py_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkRide__9daPy_py_cCFv.s"
 }
@@ -4196,7 +4208,8 @@ asm void daPy_py_c::checkRide() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::getRightHandPos() const {
+// asm void daPy_py_c::getRightHandPos() const {
+extern "C" asm void getRightHandPos__9daPy_py_cCFv() {
     nofralloc
 #include "asm/d/d_camera/getRightHandPos__9daPy_py_cCFv.s"
 }

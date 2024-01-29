@@ -82,6 +82,10 @@ public:
         /* 0xA */ SEQ_FINISH,
     };
 
+    enum {
+        ITEM_MAX_e = 7,
+    };
+
     /* 80197338 */ void initShopSystem();
     /* 801975C0 */ void onFlag(int);
     /* 801975DC */ void offFlag(int);
@@ -127,10 +131,12 @@ public:
     /* 8019AB84 */ bool checkRightTrigger(STControl*);
     /* 8019ABA8 */ bool dpdMove();
 
+    void dummyWeakOrder();  // fake, used to fix weak function order in d_shop_system.cpp
+
     /* 801974E4 */ virtual ~dShopSystem_c();
-    /* 8019ACF0 */ virtual bool getResName2(int);
-    /* 8019ACE0 */ virtual int beforeStartSeqAction(dMsgFlow_c*, int);
-    /* 8019ACE8 */ virtual int beforeSelectSeqAction(dMsgFlow_c*, int);
+    /* 8019ACF0 */ virtual bool getResName2(int) { return false; }
+    /* 8019ACE0 */ virtual int beforeStartSeqAction(dMsgFlow_c*, int) { return 1; }
+    /* 8019ACE8 */ virtual int beforeSelectSeqAction(dMsgFlow_c*, int) { return 1; }
 
     bool chkSpMode() { return mSpMode == 1; }
     void offSpMode() { mSpMode = 0; }
