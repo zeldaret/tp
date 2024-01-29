@@ -217,7 +217,7 @@ extern "C" extern dScnKy_env_light_c g_env_light;
 extern "C" extern Z2EnvSeMgr g_mEnvSeMgr;
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u8 data_80450EE0[8];
+extern "C" extern u8 data_80450EE0;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 static void dKyw_pntlight_set(WIND_INFLUENCE* pntwind);
@@ -1320,6 +1320,8 @@ SECTION_SDATA2 static f32 lit_5192 = 24575.0f;
 
 /* 80452160-80452164 000760 0004+00 1/1 0/0 0/0 .sdata2          @5193 */
 SECTION_SDATA2 static f32 lit_5193 = 0.00139999995008111f;
+
+u8 data_80450EE0;
 
 /* 80059728-80059E38 054068 0710+00 1/1 0/0 0/0 .text            wether_move_vrkumo__Fv */
 // gameinfo load issue, cmath instruction order / reg alloc

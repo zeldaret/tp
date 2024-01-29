@@ -19,7 +19,7 @@ public:
     /* 8015B3D8 */ void CreateInit();
     /* 8015B7BC */ void setCullInfo();
     /* 8015B7D4 */ int _daItem_create();
-    /* 8015BA9C */ void _daItem_execute();
+    /* 8015BA9C */ int _daItem_execute();
     /* 8015BD84 */ int _daItem_draw();
     /* 8015BDE8 */ int _daItem_delete();
     /* 8015BE60 */ void procInitNormal();
@@ -109,8 +109,11 @@ public:
     bool checkFlag(u8 flag) { return cLib_checkBit(mFlag, flag); }
     void clrFlag(u8 flag) { cLib_offBit(mFlag, flag); }
 
+#ifdef NONMATCHING
+    static procFunc mFuncPtr[9];
+#else
     static u8 mFuncPtr[120];
-    //static procFunc mFuncPtr[9];
+#endif
     static dCcD_SrcCyl m_cyl_src;
     static s32 m_timer_max;
 

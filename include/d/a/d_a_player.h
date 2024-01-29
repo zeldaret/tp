@@ -540,24 +540,16 @@ public:
     void cancelOriginalDemo();
     void changeOriginalDemo();
     cXyz getHeadTopPos() const;
-    /* 801829E0 */ void checkThrowDamage() const;
-    /* 80182A10 */ void checkGoronSideMove() const;
-    /* 80182AAC */ void getRightFootPosP();
-    /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */  // u32 getMidnaActor();
-    /* 80182AC4 */ void checkCopyRodThrowAfter() const;
-    /* 80182AD8 */ void checkRide() const;
-    /* 80182B9C */ void getRightHandPos() const;
-    /* 8015DFD8 */ const cXyz getItemPos() const;
-    /* 8015DFF4 */ const cXyz& getLeftHandPos() const;
+    /* 801829E0 */ BOOL checkThrowDamage() const { return i_checkNoResetFlg1(FLG1_THROW_DAMAGE); }
+    /* 80182A10 */ BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
+    /* 80182AAC */ cXyz* getRightFootPosP() { return &mRightFootPos; }
+    /* 80182AB4 */ cXyz* getLeftFootPosP() { return &mLeftFootPos; }
+    /* 80182AC4 */ BOOL checkCopyRodThrowAfter() const { return i_checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
+    /* 80182AD8 */ BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
+    /* 80182B9C */ const cXyz& getRightHandPos() const { return mRightHandPos; }
+    /* 8015DFD8 */ const cXyz* getItemPos() const { return &mItemPos; }
+    /* 8015DFF4 */ const cXyz* getLeftHandPos() const { return &mLeftHandPos; }
     /* 800977B4 */ bool checkMidnaRide() const;
-
-    /* const cXyz* getItemPos() const {
-        return &mItemPos;
-    }
-    const cXyz* getLeftHandPos() const {
-        return &mLeftHandPos;
-    } */
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -574,9 +566,9 @@ public:
     virtual MtxP getWolfBackbone2Matrix();
     virtual MtxP getBottleMtx();
     virtual BOOL checkPlayerGuard() const;
-    virtual u32 checkPlayerFly() const;
-    virtual BOOL checkFrontRoll() const;
-    virtual BOOL checkWolfDash() const;
+    virtual u32 checkPlayerFly() const { return 0; }
+    virtual BOOL checkFrontRoll() const { return false; }
+    virtual BOOL checkWolfDash() const { return false; }
     virtual BOOL checkAutoJump() const;
     virtual bool checkSideStep() const;
     virtual bool checkWolfTriggerJump() const;
@@ -618,9 +610,9 @@ public:
     virtual void setAnimeFrame(f32);
     virtual bool checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual s32 getAtnActorID() const;
+    virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const;
+    virtual s32 getGrabActorID() const { return -1; }
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -632,7 +624,7 @@ public:
     virtual void setOutPower(f32, short, int);
     virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onMagneGrab(f32, f32);
-    virtual void onFrollCrashFlg(u8, int);
+    virtual void onFrollCrashFlg(u8, int) {}
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
@@ -655,11 +647,11 @@ public:
     virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeAreaJump(u8, u8, fopAc_ac_c*);
     virtual void onSceneChangeDead(u8, int);
-    virtual u32 checkHorseRide() const;
-    virtual u32 checkBoarRide() const;
-    virtual u32 checkCanoeRide() const;
-    virtual u32 checkBoardRide() const;
-    virtual u32 checkSpinnerRide() const;
+    virtual u32 checkHorseRide() const { return false; }
+    virtual u32 checkBoarRide() const { return 0; }
+    virtual u32 checkCanoeRide() const { return 0; }
+    virtual u32 checkBoardRide() const { return 0; }
+    virtual u32 checkSpinnerRide() const { return 0; }
     virtual fopAc_ac_c* getSpinnerActor();
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;

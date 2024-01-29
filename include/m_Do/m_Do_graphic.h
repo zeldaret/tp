@@ -72,7 +72,7 @@ public:
     static u8 getBlureRate() { return mBlureRate; }
     static MtxP getBlureMtx() { return mBlureMtx; }
     static void offAutoForcus() { data_80450BE7 = 0; }
-    static bool isAutoForcus() { return data_80450BE7; }
+    static BOOL isAutoForcus() { return data_80450BE7; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
     static f32 getWidthF() { return 608.0f; }

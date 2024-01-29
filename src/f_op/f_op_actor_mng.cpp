@@ -155,9 +155,9 @@ extern "C" static void func_8001E104();
 extern "C" static void func_8001E10C();
 extern "C" static void func_8001E114();
 extern "C" void onFrollCrashFlg__9daPy_py_cFUci();
-extern "C" bool checkWolfDash__9daPy_py_cCFv();
-extern "C" bool checkFrontRoll__9daPy_py_cCFv();
-extern "C" bool checkHorseRide__9daPy_py_cCFv();
+extern "C" int checkWolfDash__9daPy_py_cCFv();
+extern "C" int checkFrontRoll__9daPy_py_cCFv();
+extern "C" u32 checkHorseRide__9daPy_py_cCFv();
 extern "C" s32 getGrabActorID__9daPy_py_cCFv();
 extern "C" extern char const* const f_op_f_op_actor_mng__stringBase0;
 extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
@@ -2757,27 +2757,32 @@ static asm void func_8001E114() {
 #pragma pop
 
 /* 8001E11C-8001E120 018A5C 0004+00 0/0 1/0 0/0 .text            onFrollCrashFlg__9daPy_py_cFUci */
-void daPy_py_c::onFrollCrashFlg(u8 param_0, int param_1) {
+// void daPy_py_c::onFrollCrashFlg(u8 param_0, int param_1) {
+extern "C" void onFrollCrashFlg__9daPy_py_cFUci() {
     /* empty function */
 }
 
 /* 8001E120-8001E128 018A60 0008+00 0/0 1/0 0/0 .text            checkWolfDash__9daPy_py_cCFv */
-int daPy_py_c::checkWolfDash() const {
+// int daPy_py_c::checkWolfDash() const {
+extern "C" int checkWolfDash__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8001E128-8001E130 018A68 0008+00 0/0 1/0 0/0 .text            checkFrontRoll__9daPy_py_cCFv */
-int daPy_py_c::checkFrontRoll() const {
+// int daPy_py_c::checkFrontRoll() const {
+extern "C" int checkFrontRoll__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8001E130-8001E138 018A70 0008+00 0/0 1/0 0/0 .text            checkHorseRide__9daPy_py_cCFv */
-u32 daPy_py_c::checkHorseRide() const {
+// u32 daPy_py_c::checkHorseRide() const {
+extern "C" u32 checkHorseRide__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8001E138-8001E140 018A78 0008+00 0/0 1/0 0/0 .text            getGrabActorID__9daPy_py_cCFv */
-s32 daPy_py_c::getGrabActorID() const {
+// s32 daPy_py_c::getGrabActorID() const {
+extern "C" s32 getGrabActorID__9daPy_py_cCFv() {
     return -1;
 }
 
