@@ -510,6 +510,9 @@ public:
 
     bool isFieldDataExistFlag() const { return mFieldDataExistFlag; }
     void offFieldDataExistFlag() { mFieldDataExistFlag = false; }
+    void onFieldDataExistFlag() { mFieldDataExistFlag = true; }
+    cXyz& getPos() { return mPos; }
+    u8 getRegionNo() const { return mRegionNo; }
 
 private:
     /* 0x00 */ cXyz mPos;

@@ -9,6 +9,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
+#include "d/d_item.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
@@ -21,17 +22,15 @@
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
 
+#define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
+    ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
+
 //
 // Types:
 //
 
 struct l_HIO {
     /* 8001E098 */ ~l_HIO();
-};
-
-class dEnemyItem_c {
-public:
-    static u8* mData;
 };
 
 //
@@ -171,7 +170,7 @@ extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 
 // TODO: move
 
-u32 check_itemno(int param1);
+u8 check_itemno(int param1);
 BOOL isHeart(u8);
 
 //
@@ -807,7 +806,7 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_act
 #else
 #pragma push
 #pragma optimization_level 0
-#pragma optimizewithasm off 
+#pragma optimizewithasm off
 asm s16 fopAcM_searchActorAngleX(const fopAc_ac_c* p_actorA, const fopAc_ac_c* p_actorB) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c.s"
@@ -1067,11 +1066,13 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         if (fopAcM_GetCullSize(i_actor) == 14) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax, &i_actor->mCull.mBox.mMin);
+                u32 ret = mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax,
+                                               &i_actor->mCull.mBox.mMin);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax, &i_actor->mCull.mBox.mMin);
+                return mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax,
+                                            &i_actor->mCull.mBox.mMin);
             }
         } else {
             cull_box* box = &l_cullSizeBox[cullsize];
@@ -1096,7 +1097,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 center.x = center_p->x;
                 center.y = center_p->y;
                 center.z = center_p->z;
-                
+
                 u32 ret = mDoLib_clipper::clip(mtx_p, center, radius);
                 mDoLib_clipper::resetFar();
                 return ret;
@@ -1668,20 +1669,11 @@ void* fopAcM_createItemForSimpleDemo(const cXyz* i_pos, int i_itemNo, int i_room
                                  0x4, NULL);
 }
 
-inline u32 maskShift(int val, int bits, int shift) {
-    return (val & ((1 << bits) - 1)) << shift;
-}
-
-inline u32 makeItemParams(u32 iNo, u32 p8, u32 unk, u32 p9) {
-    return maskShift(p8, 8, 0x8) | maskShift(iNo, 8, 0) | maskShift(unk, 8, 0x10) |
-           maskShift(p9, 4, 0x18);
-}
-
 /* 8001C240-8001C3E0 016B80 01A0+00 1/1 1/1 17/17 .text
  * fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi               */
-s32 fopAcM_createItem(const cXyz* i_pos, int itemNo, int param_3, int i_roomNo,
+s32 fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
                       const csXyz* i_angle, const cXyz* i_scale, int param_7) {
-    if (itemNo == NO_ITEM) {
+    if (i_itemNo == NO_ITEM) {
         return -1;
     }
 
@@ -1689,67 +1681,66 @@ s32 fopAcM_createItem(const cXyz* i_pos, int itemNo, int param_3, int i_roomNo,
     if (i_angle != NULL) {
         item_angle = *i_angle;
     } else {
-        item_angle.y = cM_rndFX(32767.0f);
+        item_angle.y = cM_rndFX(0x7FFF);
     }
     item_angle.z = 0xFF;
 
-    u32 itemActorParams = makeItemParams(check_itemno(itemNo), param_3, 0xFF, param_7);
+    u8 item_no = check_itemno(i_itemNo);
+    u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, 0xFF, param_7);
 
-    switch (itemNo) {
+    switch (i_itemNo) {
     case RECOVERY_FAILY:
         return fopAcM_create(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_create(PROC_Obj_LifeContainer, itemActorParams, i_pos, i_roomNo, i_angle,
-                             i_scale, -1);
+        return fopAcM_create(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale, -1);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_create(PROC_ITEM, itemActorParams, i_pos, i_roomNo, &item_angle, i_scale, -1);
+            fopAcM_create(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
             item_angle.y = cM_rndFX(32767.0f);
         }
     default:
-        return fopAcM_create(PROC_ITEM, itemActorParams, i_pos, i_roomNo, &item_angle, i_scale, -1);
+        return fopAcM_create(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
     }
 }
 
 /* 8001C3E0-8001C5B0 016D20 01D0+00 1/1 0/0 0/0 .text
  * fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz          */
-void* fopAcM_fastCreateItem2(const cXyz* i_pos, int itemNo, int param_3, int i_roomNo, int param_5,
-                             const csXyz* i_angle, const cXyz* i_scale) {
+void* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
+                             int param_5, const csXyz* i_angle, const cXyz* i_scale) {
     csXyz item_angle(csXyz::Zero);
 
-    if (itemNo == NO_ITEM) {
+    if (i_itemNo == NO_ITEM) {
         return NULL;
     }
 
     if (i_angle != NULL) {
         item_angle = *i_angle;
     } else {
-        item_angle.y = cM_rndFX(32767.0f);
+        item_angle.y = cM_rndFX(0x7FFF);
     }
     item_angle.z = 0xFF;
 
-    int tmpItemNo = check_itemno(itemNo);
-    u32 itemActorParams =
-        (param_3 & 0xFF) << 0x8 | (tmpItemNo & 0xFF) | 0xFF << 0x10 | ((param_5 & 0xF) << 0x18);
+    u8 item_no = check_itemno(i_itemNo);
+    u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, 0xFF, param_5);
 
-    switch (itemNo) {
+    switch (i_itemNo) {
     case RECOVERY_FAILY:
         return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_fastCreate(PROC_Obj_LifeContainer, itemActorParams, i_pos, i_roomNo, i_angle,
-                                 i_scale, -1, NULL, NULL);
+        return fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+                                 -1, NULL, NULL);
     case TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_fastCreate(PROC_ITEM, itemActorParams, i_pos, i_roomNo, &item_angle, i_scale, -1,
-                              NULL, NULL);
-            item_angle.y = cM_rndFX(32767.0f);
+            fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
+                              NULL);
+            item_angle.y = cM_rndFX(0x7FFF);
         }
     default:
-        return fopAcM_fastCreate(PROC_ITEM, itemActorParams, i_pos, i_roomNo, &item_angle, i_scale,
-                                 -1, NULL, NULL);
+        return fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
+                                 NULL);
     }
 }
 
@@ -1763,60 +1754,54 @@ SECTION_SDATA2 static f32 lit_5809 = 8192.0f;
 /* 80451C38-80451C3C 000238 0004+00 4/4 0/0 0/0 .sdata2          @5810 */
 SECTION_SDATA2 static f32 lit_5810 = 1.0f;
 
-/* 80451C3C-80451C40 00023C 0004+00 1/1 0/0 0/0 .sdata2          @5811 */
-SECTION_SDATA2 static f32 lit_5811 = 3.0f / 10.0f;
-
-/* 80451C40-80451C44 000240 0004+00 1/1 0/0 0/0 .sdata2          @5812 */
-SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
-
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
-// issue with makeItemParams
-#ifdef NONMATCHING
 void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
-                            const cXyz* i_scale, f32* p_speedF, f32* p_speedY, int param_8,
+                            const cXyz* i_scale, f32* p_speedF, f32* p_speedY, int i_itemBitNo,
                             int param_9, createFunc i_createFunc) {
-    csXyz angle;
-
     if (i_itemNo == NO_ITEM) {
         return NULL;
     }
 
-    u32 itemActorParams = makeItemParams(check_itemno(i_itemNo), param_8, 0xFF, param_9);
+    int i;
+
+    u8 item_no = check_itemno(i_itemNo);
+    u8 item_bit_no = i_itemBitNo;
+    u32 params = MAKE_ITEM_PARAMS(item_no, item_bit_no, 0xFF, param_9);
 
     if (p_speedF != NULL && isHeart(i_itemNo)) {
-        *p_speedF = *p_speedF * 2.0f;
+        *p_speedF = lit_5808 * *p_speedF;
     }
 
+    csXyz angle;
     switch (i_itemNo) {
     case RECOVERY_FAILY:
         return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
     case KAKERA_HEART:
     case UTAWA_HEART:
-        return fopAcM_fastCreate(PROC_Obj_LifeContainer, itemActorParams, i_pos, i_roomNo, i_angle,
-                                 i_scale, -1, NULL, NULL);
+        return fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+                                 -1, NULL, NULL);
     case TRIPLE_HEART:
-        for (int i = 0; i < 2; i++) {
+        for (i = 0; i < 2; i++) {
             if (i_angle != NULL) {
                 angle = *i_angle;
             } else {
                 angle = csXyz::Zero;
             }
             angle.z = 0xFF;
-            angle.y += (s16)cM_rndFX(8192.0f);
+            angle.y += (s16)cM_rndFX(lit_5809);
 
-            fopAc_ac_c* actor =
-                (fopAc_ac_c*)fopAcM_fastCreate(PROC_ITEM, itemActorParams, i_pos, i_roomNo, &angle,
-                                               i_scale, -1, i_createFunc, NULL);
+            fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(
+                PROC_ITEM, params, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
 
             if (actor != NULL) {
                 if (p_speedF != NULL) {
-                    actor->speedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
+                    actor->speedF = *p_speedF * (lit_5810 + cM_rndFX(0.3f));
                 }
 
                 if (p_speedY != NULL) {
-                    actor->speed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
+                    actor->speed.y = *p_speedY * (lit_5810 + cM_rndFX(0.2f));
                 }
             }
         }
@@ -1828,8 +1813,8 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
         }
         angle.z = 0xFF;
 
-        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(
-            PROC_ITEM, itemActorParams, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
+        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo,
+                                                           &angle, i_scale, -1, i_createFunc, NULL);
 
         if (actor != NULL) {
             if (p_speedF != NULL) {
@@ -1844,18 +1829,6 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
         return actor;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
-                                const cXyz* i_scale, f32* p_speedF, f32* p_speedY, int param_8,
-                                int param_9, createFunc i_createFunc) {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i.s"
-}
-#pragma pop
-#endif
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
@@ -1910,7 +1883,7 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 i_roomNo) {
         return actor;
     }
 
-    return (fopAc_ac_c*) fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
+    return (fopAc_ac_c*)fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
 }
 
 /* 8001CAD8-8001CB48 017418 0070+00 0/0 0/0 81/81 .text
@@ -2104,7 +2077,7 @@ f32 fopAcM_gc_c::mGroundY;
 /* 8001D020-8001D10C 017960 00EC+00 0/0 0/0 96/96 .text
  * fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci */
 void fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
-                        f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
+                         f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
     cXyz p2;
     float z = param_2->z;
     float y = FLOAT_LABEL(lit_6035) + param_2->y;
@@ -2117,7 +2090,9 @@ void fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz 
         stack_18.x = param_4;
         stack_18.y = param_4;
         stack_18.z = param_4;
-        *param_0 = dComIfGp_particle_setSimpleFoot(*param_0, param_1, *fopAcM_gc_c::getGroundCheck(), &p2, param_5, param_6, param_3, &stack_18, NULL, 0xff, NULL);
+        *param_0 =
+            dComIfGp_particle_setSimpleFoot(*param_0, param_1, *fopAcM_gc_c::getGroundCheck(), &p2,
+                                            param_5, param_6, param_3, &stack_18, NULL, 0xff, NULL);
     }
 }
 
@@ -2421,9 +2396,9 @@ s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXy
     daTagStream_c* stream = daTagStream_c::getTop();
     if (stream != NULL) {
         for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
-            if (stream->checkStreamOn() &&
-                (param_4 == 0 || stream->checkCanoeOn()) &&
-                  stream->checkArea(param_0)) {
+            if (stream->checkStreamOn() && (param_4 == 0 || stream->checkCanoeOn()) &&
+                stream->checkArea(param_0))
+            {
                 *speed = stream->speed;
                 *param_3 = stream->getPower() & 0xff;
                 return 1;
@@ -2521,8 +2496,7 @@ asm s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1) {
 
 /* 8001DC68-8001DCBC 0185A8 0054+00 0/0 5/5 21/21 .text
  * lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c        */
-bool fopAcM_lc_c::lineCheck(cXyz const* param_0, cXyz const* param_1,
-                                fopAc_ac_c const* param_2) {
+bool fopAcM_lc_c::lineCheck(cXyz const* param_0, cXyz const* param_1, fopAc_ac_c const* param_2) {
     ((dBgS_LinChk*)mLineCheck)->Set(param_0, param_1, param_2);
     dComIfG_Bgsp().LineCross((cBgS_LinChk*)mLineCheck);
 }

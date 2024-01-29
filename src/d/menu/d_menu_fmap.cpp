@@ -1206,7 +1206,7 @@ static u8 virtual_stage[8];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenuFmap_getStartStageName(void* param_0) {
+asm const char* dMenuFmap_getStartStageName(void* param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap/dMenuFmap_getStartStageName__FPv.s"
 }

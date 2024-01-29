@@ -72,9 +72,9 @@ public:
     /* 8002F3B4 */ int load(char const**, JKRHeap*);
 
 private:
-    /* 0x0 */ const char** field_0x0;
-    /* 0x4 */ request_of_phase_process_class field_0x4;
-    /* 0xC */ u8 field_0xc;
+    /* 0x0 */ const char** mResNameTable;
+    /* 0x4 */ request_of_phase_process_class mPhase;
+    /* 0xC */ u8 mLoadIndex;
 };
 
 enum PlayerPtr { LINK_PTR, HORSE_PTR };
@@ -1838,6 +1838,18 @@ inline void dComIfGs_setBButtonItemKey(u8 i_itemNo) {
 
 inline void dComIfGs_offPlayerFieldLastStayFieldDataExistFlag() {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().offFieldDataExistFlag();
+}
+
+inline void dComIfGs_onPlayerFieldLastStayFieldDataExistFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().onFieldDataExistFlag();
+}
+
+inline cXyz& dComIfGs_getPlayerFieldLastStayPos() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().getPos();
+}
+
+inline u8 dComIfGs_getPlayerFieldLastStayRegionNo() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().getRegionNo();
 }
 
 void dComIfGp_setSelectItem(int index);
