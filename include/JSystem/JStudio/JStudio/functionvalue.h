@@ -5,8 +5,6 @@
 #include "JSystem/JGadget/vector.h"
 #include "global.h"
 
-extern u8 lit_652[];
-
 namespace JStudio {
 
 typedef f64 (*ExtrapolateParameter)(f64, f64);
@@ -21,7 +19,7 @@ class TFunctionValueAttribute_interpolate;
 class TFunctionValue {
 public:
     enum TEProgress { PROG_INIT };
-    enum TEAdjust { ADJ_INIT };
+    enum TEAdjust { ADJ_INIT, ADJ_UNK1, ADJ_UNK2, ADJ_UNK3, ADJ_UNK4 };
     enum TEOutside { OUT_INIT };
     enum TEInterpolate {};
 
@@ -78,8 +76,8 @@ public:
 
 class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
-    // TFunctionValueAttribute_refer() :
-    // JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
+    TFunctionValueAttribute_refer() :
+    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
     ~TFunctionValueAttribute_refer() {}
 
     /* 802816E8 */ void refer_initialize();
@@ -112,16 +110,20 @@ public:
     void range_setOutside_begin(TFunctionValue::TEOutside begin) { mBegin = begin; }
     void range_setOutside_end(TFunctionValue::TEOutside end) { mEnd = end; }
     f64 range_getParameter_outside(f64 arg1) const {
-        f64 temp = arg1 - fBegin_;
-        f64 result = temp;
-        if (temp < *(f64*)&lit_652) {
-            result = TFunctionValue::toFunction(mBegin)(temp, fDifference_);
-        } else if (temp >= fDifference_) {
-            result = TFunctionValue::toFunction(mEnd)(temp, fDifference_);
+        f64 result = arg1;
+        result -= fBegin_;
+        if (result < 0.0) {
+            result = TFunctionValue::toFunction(mBegin)(result, fDifference_);
+        } else if (result >= fDifference_) {
+            result = TFunctionValue::toFunction(mEnd)(result, fDifference_);
         }
-        return result + fBegin_;
+        result += fBegin_;
+        return result;
     }
     f64 range_getParameter_progress(f64 arg1) const { return _20 + _28 * (arg1 - _20); }
+    f64 range_getBegin() const { return fBegin_;}
+    f64 range_getEnd() const { return fEnd_;}
+    f64 range_getDifference() const { return fDifference_; }
 
 private:
     /* 0x00 */ f64 fBegin_;
@@ -176,6 +178,8 @@ public:
         TData(f32 data) : f32data(data) {}
 
         inline void operator=(const TData& rhs) { f32data = rhs.f32data; }
+        u32 get_unsignedInteger() const { return u32data; }
+        f64 get_value() const { return f32data; }
 
         union {
             const void* rawData;
@@ -196,17 +200,17 @@ public:
     /* 80281DE0 */ virtual void initialize();
     /* 80281E24 */ virtual void prepare();
     /* 80281E28 */ virtual f64 getValue(f64);
-    /* 80281E5C */ void composite_raw(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
-    /* 80281EC8 */ void composite_index(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
-    /* 8028202C */ void composite_parameter(TVector_pointer<TFunctionValue*> const&, TData const&,
-                                            f64);
-    /* 80282094 */ void composite_add(TVector_pointer<JStudio::TFunctionValue*> const&,
-                                      TData const&, f64);
-    /* 80282118 */ void composite_subtract(TVector_pointer<TFunctionValue*> const&, TData const&,
+    /* 80281E5C */ static f64 composite_raw(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+    /* 80281EC8 */ static f64 composite_index(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+    /* 8028202C */ static f64 composite_parameter(TVector_pointer<TFunctionValue*> const&,
+                                                  TData const&, f64);
+    /* 80282094 */ static f64 composite_add(TVector_pointer<JStudio::TFunctionValue*> const&,
+                                            TData const&, f64);
+    /* 80282118 */ static f64 composite_subtract(TVector_pointer<TFunctionValue*> const&, TData const&,
                                            f64);
-    /* 80282200 */ void composite_multiply(TVector_pointer<TFunctionValue*> const&, TData const&,
+    /* 80282200 */ static f64 composite_multiply(TVector_pointer<TFunctionValue*> const&, TData const&,
                                            f64);
-    /* 80282284 */ void composite_divide(TVector_pointer<TFunctionValue*> const&, TData const&,
+    /* 80282284 */ static f64 composite_divide(TVector_pointer<TFunctionValue*> const&, TData const&,
                                          f64);
 
     void data_set(CompositeFunc fn, const TData& dat) {
@@ -239,6 +243,8 @@ public:
         _50 = a2;
     }
 
+    f64 data_getDifference() const { return _50 - _48; }
+
 private:
     /* 0x48 */ f64 _48;
     /* 0x50 */ f64 _50;
@@ -267,7 +273,7 @@ public:
     void data_set(const f32* pf, u32 u) {
         ASSERT((pf != NULL) || (u == 0));
         _44 = pf;
-        _48 = u;
+        uData_ = u;
     }
 
     void data_setInterval(f64 f) {
@@ -290,9 +296,9 @@ public:
 
 private:
     /* 0x44 */ const f32* _44;
-    /* 0x48 */ u32 _48;
+    /* 0x48 */ u32 uData_;
     /* 0x50 */ f64 _50;
-    /* 0x58 */ update_INTERPOLATE _58;
+    /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
 class TFunctionValue_list_parameter : TFunctionValue,
@@ -304,6 +310,11 @@ public:
         TIterator_data_(const TIterator_data_& other) : value_(other.value_) {}
 
         void operator=(const TIterator_data_& rhs) { value_ = rhs.value_; }
+        TIterator_data_& operator--() {
+            value_ -= 2;
+            return *this;
+        }
+        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
 
         const f32* get() const { return value_; }
         void set(const f32* value) { value_ = value; }
@@ -331,13 +342,18 @@ public:
     /* 80283060 */ static f64
     update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list_parameter const&, f64);
 
+    f64 data_getValue_back() { 
+        return pfData_[(uData_ - 1) * 2];
+    }
+    f64 data_getValue_front() { return pfData_[0]; }
+
 private:
-    /* 0x44 */ const f32* _44;
-    /* 0x48 */ u32 _48;
+    /* 0x44 */ const f32* pfData_;
+    /* 0x48 */ u32 uData_;
     /* 0x4c */ TIterator_data_ dat1;
     /* 0x50 */ TIterator_data_ dat2;
     /* 0x54 */ TIterator_data_ dat3;
-    /* 0x58 */ update_INTERPOLATE _58;
+    /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
 class TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
@@ -347,19 +363,19 @@ public:
             value_ = value;
             size_ = rParent.data_getSize();
         }
-        TIterator_data_(const TIterator_data_& other) {
-            value_ = other.value_;
-            size_ = other.size_;
-        }
+
+        const f32* get() { return value_; }
 
         void set(const f32* value, u32 size) {
             value_ = value;
             size_ = size;
         }
+   
+        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
 
-        void operator=(const TIterator_data_& rhs) {
-            value_ = rhs.value_;
-            size_ = rhs.size_;
+        TIterator_data_& operator--() {
+            value_ -= size_;
+            return *this;
         }
 
         /* 0x00 */ const f32* value_;
@@ -377,6 +393,10 @@ public:
     /* 8028344C */ virtual f64 getValue(f64);
 
     u32 data_getSize() const { return uSize_; }
+    f64 data_getValue_back() { 
+        return pf_[(u_ - 1) * uSize_];
+    }
+    f64 data_getValue_front() { return pf_[0]; }
 
 private:
     /* 0x40 */ const f32* pf_;

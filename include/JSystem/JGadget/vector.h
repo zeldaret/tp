@@ -34,6 +34,16 @@ struct TVector {
         extend = vector::extend_default;
     }
 
+    inline u32 size() const {
+        if (pBegin_ == NULL) {
+            return 0;
+        }
+
+        return ((int)pEnd_ - (int)pBegin_) / 4;
+    }
+
+    void **const begin() const { return pBegin_; }
+    void **const end() const { return pEnd_; }
     void** begin() { return pBegin_; }
     void** end() { return pEnd_; }
     // void erase(void** arg1, void** arg2) {}
@@ -57,8 +67,14 @@ struct TVector_pointer_void : TVector<void*, TAllocator> {
 
 template <typename T>
 struct TVector_pointer : TVector_pointer_void {
-    // TVector_pointer(const TAllocator<void*>& allocator) : TVector_pointer_void(allocator) {}
+    TVector_pointer(const TAllocator<void*>& allocator) : TVector_pointer_void(allocator) {}
     ~TVector_pointer() {}
+
+    const T* begin() const { return (const T*)TVector_pointer_void::begin(); }
+    T* begin() { return (T*)TVector_pointer_void::begin(); }
+
+    const T* end() const { return (const T*)TVector_pointer_void::end(); }
+    T* end() { return (T*)TVector_pointer_void::end(); }
 
     void push_back(const T& ref) {
         static_cast<TVector_pointer_void*>(this)->push_back((const void*&)ref);
