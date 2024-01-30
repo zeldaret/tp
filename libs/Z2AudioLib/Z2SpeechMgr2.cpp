@@ -1984,7 +1984,7 @@ SECTION_SDATA2 static f32 lit_4572 = 0.5f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2SpeechStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2SpeechStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                      JGeometry::TVec3<f32> const* param_2, u32 param_3, f32 param_4,
                                      f32 param_5, f32 param_6, f32 param_7, f32 param_8,
                                      u32 param_9) {

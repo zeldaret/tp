@@ -18,15 +18,13 @@ struct JAUSeqDataBlock {
     /* 0x1C */ int field_0x1c;
 };
 
-class JAUSeqDataBlocks {
+class JAUSeqDataBlocks : public JSUList<JAUSeqDataBlock> {
 public:
     /* 802A6928 */ u8* getSeqData(JAISoundID);
     /* 802A6974 */ JSULink<JAUSeqDataBlock>* seekFreeBlock(u32);
     /* 802A69D8 */ bool append(JSULink<JAUSeqDataBlock>*);
     /* 802A69F8 */ bool remove(JSULink<JAUSeqDataBlock>*);
     /* 802A6A18 */ bool hasFailedBlock(JAISoundID);
-
-    /* 0x00 */ JSUList<JAUSeqDataBlock> field_0x0;
 };
 
 class JAUDynamicSeqDataBlocks {
@@ -40,11 +38,13 @@ public:
     /* 802A6E00 */ JAUSeqDataBlock* releaseIdleDynamicSeqDataBlock_(JAISeqDataUser*, u32);
     /* 802A6EDC */ void rearrangeLoadingSeqs_();
 
+    JAUSeqDataBlocks const& getFreeBlocks() const { return mFreeBlocks; }
+    JAUSeqDataBlocks const& getLoadedBlocks() const { return mLoadedBlocks; }
     JKRArchive* getSeqDataArchive() { return seqDataArchive_; }
 
-    /* 0x00 */ JAUSeqDataBlocks field_0x0;
+    /* 0x00 */ JAUSeqDataBlocks mFreeBlocks;
     /* 0x0C */ JAUSeqDataBlocks field_0xc;
-    /* 0x18 */ JAUSeqDataBlocks field_0x18;
+    /* 0x18 */ JAUSeqDataBlocks mLoadedBlocks;
     /* 0x24 */ JKRArchive* seqDataArchive_;
 };
 

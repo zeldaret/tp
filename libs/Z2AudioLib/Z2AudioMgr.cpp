@@ -415,7 +415,7 @@ asm bool Z2AudioMgr::hasReset() const {
  * startSound__10Z2AudioMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
 // vtable order
 #ifdef NONMATCHING
-int Z2AudioMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+bool Z2AudioMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                             JGeometry::TVec3<f32> const* param_2) {
     if (mResettingFlag) {
         return 0;

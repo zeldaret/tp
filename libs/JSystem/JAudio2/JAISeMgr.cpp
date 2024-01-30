@@ -464,7 +464,7 @@ void JAISeMgr::mixOut() {
 
 /* 802A0768-802A08D0 29B0A8 0168+00 0/0 1/1 0/0 .text
  * startSound__8JAISeMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
-int JAISeMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+bool JAISeMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                               JGeometry::TVec3<f32> const* param_2) {
     if (param_1 && param_1->isSoundAttached()) {
         param_1->getSound()->stop();
@@ -483,7 +483,7 @@ int JAISeMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
     JAISe* pJAISe = newSe_(categoryIndex, uVar4);
     if (pJAISe == NULL) {
         JASReport("cannot new Se %08x.", param_0.mId.mFullId);
-        return 0;
+        return false;
     } 
     JAIAudience* pAudience = getAudience(categoryIndex);
     pJAISe->JAISeMgr_startID_(param_0, param_2, pAudience);
@@ -493,7 +493,7 @@ int JAISeMgr::startSound(JAISoundID param_0, JAISoundHandle* param_1,
     if (param_1 != NULL) {
         pJAISe->attachHandle(param_1);
     }
-    return 1;
+    return true;
 }
 
 /* 802A08D0-802A08FC 29B210 002C+00 0/0 2/2 0/0 .text            getNumActiveSe__8JAISeMgrCFv */

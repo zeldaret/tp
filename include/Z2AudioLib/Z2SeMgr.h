@@ -8,19 +8,69 @@
 struct Z2MultiSeMgr {
     Z2MultiSeMgr();
     ~Z2MultiSeMgr();
-    void registMultiSePos(Vec*);
+    s8 registMultiSePos(Vec*);
     void resetMultiSePos();
-    void getPanPower();
-    void getDolbyPower();
+    f32 getPanPower();
+    f32 getDolbyPower();
 
     void setVolumeScale(f32 param_0) { mVolumeScale = param_0; }
+
+    f32 getMaxVolume() {
+        if (mMaxVolume > 1.0f) {
+            return 1.0f;
+        } else if (mMaxVolume < 0.0f) {
+            return 0.0f;
+        } else {
+            return mMaxVolume;
+        }
+    }
+
+    f32 getMaxPowR() {
+        if (mMaxPowR > 1.0f) {
+            return 1.0f;
+        } else if (mMaxPowR < 0.0f) {
+            return 0.0f;
+        } else {
+            return mMaxPowR;
+        }
+    }
+
+    f32 getMaxPowL() {
+        if (mMaxPowL > 1.0f) {
+            return 1.0f;
+        } else if (mMaxPowL < 0.0f) {
+            return 0.0f;
+        } else {
+            return mMaxPowL;
+        }
+    }
+
+    f32 getMaxPowB() {
+        if (mMaxPowB > 1.0f) {
+            return 1.0f;
+        } else if (mMaxPowB < 0.0f) {
+            return 0.0f;
+        } else {
+            return mMaxPowB;
+        }
+    }
+
+    f32 getMaxPowF() {
+        if (mMaxPowF > 1.0f) {
+            return 1.0f;
+        } else if (mMaxPowF < 0.0f) {
+            return 0.0f;
+        } else {
+            return mMaxPowF;
+        }
+    }
 
     /* 0x00 */ float mVolumeScale;
     /* 0x04 */ float mMaxVolume;
     /* 0x08 */ float mMaxPowL;
     /* 0x0C */ float mMaxPowR;
-    /* 0x10 */ float mMaxPowB;
-    /* 0x14 */ float mMaxPowF;
+    /* 0x10 */ float mMaxPowF;
+    /* 0x14 */ float mMaxPowB;
     /* 0x18 */ s8 mPosCount;
 };  // Size = 0x1C
 
@@ -28,8 +78,8 @@ struct Z2MultiSeObj : Z2MultiSeMgr {
     Z2MultiSeObj();
     ~Z2MultiSeObj() {}
 
-    /* 0x1C */ u32 field_0x1c;
-    /* 0x20 */ u8 field_0x20;
+    /* 0x1C */ u32 mSoundID;
+    /* 0x20 */ s8 field_0x20;
 };  // Size = 0x24
 
 class Z2SeMgr : public JASGlobalInstance<Z2SeMgr> {
@@ -40,8 +90,8 @@ public:
     /* 802AB830 */ void modHeightAtCamera(Vec const**);
     /* 802AB93C */ void incrCrowdSize();
     /* 802AB960 */ void decrCrowdSize();
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+    /* 802AB984 */ bool seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+    /* 802AC50C */ bool seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AD8B0 */ void seStop(JAISoundID, u32);
     /* 802AD94C */ void seStopAll(u32);
     /* 802AD9F4 */ void seMoveVolumeAll(f32, u32);
@@ -52,19 +102,19 @@ public:
     /* 802ADE5C */ void setLevObjSE(u32, Vec*, s8);
     /* 802ADFF4 */ void setMultiTriggerSE(u32, Vec*, s8);
     /* 802AE184 */ void processSeFramework();
-    /* 802AE524 */ void isLevelSe(JAISoundID);
+    /* 802AE524 */ bool isLevelSe(JAISoundID);
     /* 802AE5B0 */ bool isSoundCulling(JAISoundID);
     /* 802B9AC4 */ void resetCrowdSize();
 
 private:
     /* 0x000 */ JAISoundHandle mSoundHandle[24];
-    /* 0x060 */ JAISoundHandles field_0x60;
+    /* 0x060 */ JAISoundHandles mSoundHandles;
     /* 0x068 */ Z2MultiSeObj mLevelObjSe[10];
     /* 0x1D0 */ u8 mLevelObjectSeCount;
     /* 0x1D4 */ Z2MultiSeObj mMultiTriggerSe[10];
     /* 0x33C */ u8 mMultiTriggerSeCount;
-    /* 0x33D */ u8 field_0x33d[0x60];
-    /* 0x3A0 */ u32 mModY[8];
+    /* 0x340 */ Vec field_0x340[8];
+    /* 0x3A0 */ Vec const* mModY[8];
     /* 0x3C0 */ u8 field_0x3c0;
     /* 0x3C1 */ u8 field_0x3c1;
     /* 0x3C2 */ u8 field_0x3c2;

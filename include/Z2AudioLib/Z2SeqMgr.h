@@ -183,6 +183,7 @@ public:
     }
 
     JAISoundHandle* getMainBgmHandle() { return &mMainBgmHandle; }
+    JAISoundHandle* getSubBgmHandle() { return &mSubBgmHandle; }
 
     /* 0x00 */ JAISoundHandle mMainBgmHandle;
     /* 0x04 */ JAISoundHandle mSubBgmHandle;

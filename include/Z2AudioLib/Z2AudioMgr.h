@@ -34,7 +34,7 @@ public:
 
     static Z2AudioMgr* mAudioMgrPtr;
 
-    /* 0x0514 */ virtual int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 0x0514 */ virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 0x0518 */ bool mResettingFlag;
     /* 0x0519 */ bool field_0x519;
     /* 0x051C */ JASAudioReseter mAudioReseter;

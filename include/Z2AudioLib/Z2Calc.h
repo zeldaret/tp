@@ -7,6 +7,7 @@ namespace Z2Calc {
 enum CurveSign {
     CURVE_SIGN_0 = 0,
     CURVE_SIGN_1 = 1,
+    CURVE_SIGN_2 = 2,
 };
 
 struct FNoise1f {
