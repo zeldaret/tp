@@ -160,8 +160,13 @@ f32 Z2Param::ENEMY_LASTHIT_MUTE_VOLUME;
 /* 80451340 0001+00 data_80451340 None */
 /* 80451341 0001+00 data_80451341 None */
 /* 80451342 0006+00 data_80451342 None */
-extern u8 struct_80451340[8];
-u8 struct_80451340[8];
+#pragma push
+#pragma force_active on
+u8 struct_80451340;
+u8 struct_80451341;
+u8 struct_80451342;
+u8 pad_80451344[4];
+#pragma pop
 
 /* 80451348-80451350 000848 0008+00 0/0 4/4 0/0 .sbss            None */
 extern u8 data_80451348[8];

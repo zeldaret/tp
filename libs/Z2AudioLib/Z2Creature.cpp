@@ -1145,7 +1145,7 @@ Z2SoundHandlePool* Z2CreatureOI::startCreatureSoundLevel(JAISoundID i_soundID, u
  * startTentacleSound__12Z2CreatureOIF10JAISoundIDUcUlSc        */
 Z2SoundHandlePool* Z2CreatureOI::startTentacleSound(JAISoundID i_soundID, u8 param_1, u32 param_2,
                                                     s8 param_3) {
-    mTentacleSounds[param_1].startSound(i_soundID, param_2, param_3);
+    return mTentacleSounds[param_1].startSound(i_soundID, param_2, param_3);
 }
 
 /* 802C2CD4-802C2DE0 2BD614 010C+00 0/0 0/0 1/1 .text

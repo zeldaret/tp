@@ -12,7 +12,7 @@ public:
     /* 802BB448 */ virtual u16 getAudibleSw(JAISoundID) const;
     /* 802BB00C */ virtual u16 getBgmSeqResourceID(JAISoundID) const;
     /* 802BBA88 */ virtual s32 getStreamFileEntry(JAISoundID);
-    /* 802BB090 */ virtual u32 getSoundType(JAISoundID) const;
+    /* 802BB090 */ virtual int getSoundType(JAISoundID) const;
     /* 802BB0D8 */ virtual int getCategory(JAISoundID) const;
     /* 802BB0E0 */ virtual u32 getPriority(JAISoundID) const;
     /* 802BB6DC */ virtual void getSeInfo(JAISoundID, JAISe*) const;

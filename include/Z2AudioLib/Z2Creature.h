@@ -39,7 +39,7 @@ struct Z2LinkSoundStarter : public Z2SoundStarter {
     Z2LinkSoundStarter();
 
     inline virtual ~Z2LinkSoundStarter();
-    virtual int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, f32,
+    virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, f32,
                             f32, f32, f32, f32, u32);
 };
 
@@ -127,7 +127,7 @@ struct Z2RideSoundStarter : public Z2SoundStarter {
     /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);
 
     /* 802C5078 */ inline virtual ~Z2RideSoundStarter();
-    /* 802C5284 */ virtual int startSound(JAISoundID, JAISoundHandle*,
+    /* 802C5284 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
                                            JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
                                            f32, u32);
 

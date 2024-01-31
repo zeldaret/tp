@@ -82,7 +82,7 @@ public:
 
         /* 0x000 */ JAUWaveBankTable waveBankTable;
         /* 0x404 */ JAISeqDataUser* seqDataUser;
-        /* 0x408 */ JAUDynamicSeqDataBlocks field_0x408;
+        /* 0x408 */ JAUDynamicSeqDataBlocks seqDataBlocks;
         /* 0x430 */ JAISeqDataMgr* seSeqDataMgr_;
         /* 0x434 */ JAIStreamDataMgr* streamDataMgr_;
         /* 0x438 */ JAUSoundTable* soundTable;
@@ -100,6 +100,7 @@ public:
     /* 802A6270 */ int releaseSeqData();
     /* 802A6278 */ ~JAUSectionHeap();
 
+    TSectionHeapData const& getSectionHeapData() const { return sectionHeapData_; }
     JAUWaveBankTable& getWaveBankTable() { return sectionHeapData_.waveBankTable; }
     JKRHeap* getHeap() {
         if (getOpenSection()->isBuilding() != 0) {
