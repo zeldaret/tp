@@ -5,10 +5,13 @@
 
 #include "JSystem/JStudio/JStudio/functionvalue.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JGadget/linklist.h"
 #include "math.h"
 #include "stdlib.h"
 #include "dol2asm.h"
 #include "global.h"
+#include "iterator.h"
 
 //
 // Types:
@@ -16,8 +19,8 @@
 
 namespace JGadget {
 
-template <typename A1, typename B1>
-void findUpperBound_binary_current(/* ... */);
+template <typename Iterator, typename B1>
+Iterator findUpperBound_binary_current(Iterator, Iterator, Iterator, const B1&);
 };  // namespace JGadget
 
 namespace std {
@@ -40,14 +43,14 @@ void func_80283E24(void* _this, JStudio::TFunctionValue_list_parameter::TIterato
 };  // namespace std
 
 namespace JGadget {
-/* 80283858 */ void func_80283858(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
-                                  JStudio::TFunctionValue_hermite::TIterator_data_,
-                                  JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
-/* 802835DC */ void func_802835DC(void* _this,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_,
-                                  f64 const&);
+/* 80283858 */ JStudio::TFunctionValue_hermite::TIterator_data_
+func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_,
+              JStudio::TFunctionValue_hermite::TIterator_data_,
+              JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
+/* 802835DC */ JStudio::TFunctionValue_list_parameter::TIterator_data_
+func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&);
 /* 80283634 */ void func_80283634(void* _this,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
@@ -140,16 +143,18 @@ extern "C" void getValue__Q27JStudio22TFunctionValue_hermiteFd();
 extern "C" void extrapolateParameter_raw__Q27JStudio13functionvalueFdd();
 extern "C" void extrapolateParameter_repeat__Q27JStudio13functionvalueFdd();
 extern "C" void extrapolateParameter_clamp__Q27JStudio13functionvalueFdd();
-extern "C" void func_802835DC(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
-                              JStudio::TFunctionValue_list_parameter::TIterator_data_,
-                              JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&);
+extern "C" JStudio::TFunctionValue_list_parameter::TIterator_data_
+func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&);
 extern "C" void func_80283634(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&,
                               std::less<f64>);
-extern "C" void func_80283858(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
-                              JStudio::TFunctionValue_hermite::TIterator_data_,
-                              JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
+extern "C" JStudio::TFunctionValue_hermite::TIterator_data_
+func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_,
+              JStudio::TFunctionValue_hermite::TIterator_data_,
+              JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
 extern "C" void func_802838C8(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&,
@@ -315,9 +320,18 @@ namespace JStudio {
 
 namespace functionvalue {
 f64 extrapolateParameter_raw(f64, f64);
-f64 extrapolateParameter_repeat(f64, f64);
+inline f64 extrapolateParameter_repeat(f64, f64);
 f64 extrapolateParameter_turn(f64, f64);
 f64 extrapolateParameter_clamp(f64, f64);
+
+static inline f64 i_extrapolateParameter_repeat(f64 a1, f64 a2) {
+    f64 t = fmod(a1, a2);
+
+    if (t < 0.0)
+        t += a2;
+
+    return t;
+}
 };  // namespace functionvalue
 
 namespace {
@@ -357,22 +371,27 @@ void TFunctionValueAttribute_refer::refer_initialize() {
 
 namespace functionvalue {
 
-#ifdef NONMATCHING  // impossible regalloc
+/* 80281710-80281774 27C050 0064+00 4/4 0/0 0/0 .text
+ * interpolateValue_hermite__Q27JStudio13functionvalueFddddddd  */
+// Matches with literals
+#ifdef NONMATCHING
 f64 interpolateValue_hermite(f64 c0, f64 c1, f64 x, f64 c2, f64 x2, f64 c3, f64 x3) {
     f64 a;
-    f64 d;
-    f64 c;
     f64 b;
+    f64 c;
+    f64 d;
 
     a = c0 - c1;
     b = a * (1.0 / (x2 - c1));               // (a - b) * 1.0 / (c - d)
     c = b - 1.0;                             // 1.0
     d = (3.0 + -2.0 * b) * (b * b);  // 3.0 - 2.0 * b
-    return (a * b * c * x3) + ((1.0 - d) * x + (d * c3)) + (a * (c * c) * c2);
+    f64 cab = (c * a * b);
+    f64 coeffx3 = cab * x3;
+    f64 cca = (c * c * a);
+    f64 coeffc2 = cca * c2;
+    return ((1.0 - d) * x + (d * c3)) + coeffc2 + coeffx3;
 }
 #else
-/* 80281710-80281774 27C050 0064+00 4/4 0/0 0/0 .text
- * interpolateValue_hermite__Q27JStudio13functionvalueFddddddd  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,22 +403,29 @@ asm f64 interpolateValue_hermite(f64 param_0, f64 param_1, f64 param_2, f64 para
 #pragma pop
 #endif
 
-#ifdef NONMATCHING  // really minor regalloc
+/* 80281774-802817D8 27C0B4 0064+00 1/1 0/0 0/0 .text
+ * interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd */
+// really minor regalloc.
+#ifdef NONMATCHING  
 f64 interpolateValue_BSpline_uniform(f64 f1, f64 f2, f64 f3, f64 f4, f64 f5) {
     // pow3(1.0 - f1)
     f64 f6 = (1.0 - f1);
     f64 temp = f6;
-    temp *= f6 * f6;
+    temp = (f6 * f6) * temp;
 
     f64 f0 = f1 * f1;
     f64 f8 = f0 * f1;
 
-    return ((lit_799 * f8 - f0) + lit_801) * f3 + (temp * f2 + f8 * f5) * 0.5 +
-           f4 * (0.5 + lit_799 * ((f1 + f0) - f8));
+    f64 temp2 = (0.5 + (1.0 / 6.0) * ((f1 + f0) - f8));
+    f64 temp3 = temp2 * f4;
+
+    f64 temp4 = (((1.0 / 6.0) * f8 - f0) + (2.0 / 3.0));
+    f64 temp5 = temp4 * f3;
+
+    return temp5 + (temp * f2 + f8 * f5) * 0.5 +
+           temp3;
 }
 #else
-/* 80281774-802817D8 27C0B4 0064+00 1/1 0/0 0/0 .text
- * interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -431,12 +457,22 @@ inline f64 interpolateValue_linear_1(f64 a1, f64 a2, f64 a3, f64 a4) {
 }
 
 inline f64 interpolateValue_plateau(f64 a1, f64 a2, f64 a3, f64 a4, f64 a5) {
-    return interpolateValue_hermite(a1, a2, a3, DOUBLE_LABEL(/* 0.0 */ lit_652), a4, a5,
-                                    DOUBLE_LABEL(/* 0.0 */ lit_652));
+    return interpolateValue_hermite(a1, a2, a3, 0.0, a4, a5, 0.0);
 }
 
 /* 802818B8-80281918 27C1F8 0060+00 1/0 0/0 0/0 .text
  * extrapolateParameter_turn__Q27JStudio13functionvalueFdd      */
+// Matches with literals
+#ifdef NONMATCHING
+f64 extrapolateParameter_turn(f64 param_0, f64 param_1) {
+    f64 dVar2 = 2.0 * param_1;
+    f64 dVar1 = i_extrapolateParameter_repeat(param_0, dVar2);
+    if (dVar1 >= param_1) {
+        dVar1 = dVar2 - dVar1;
+    }
+    return dVar1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,6 +481,7 @@ asm f64 extrapolateParameter_turn(f64 param_0, f64 param_1) {
 #include "asm/JSystem/JStudio/JStudio/functionvalue/extrapolateParameter_turn__Q27JStudio13functionvalueFdd.s"
 }
 #pragma pop
+#endif
 
 }  // namespace functionvalue
 
@@ -496,6 +533,9 @@ void TFunctionValueAttribute_range::range_set(f64 begin, f64 end) {
     ASSERT(fDifference_ >= TValue(0));
 }
 
+// /* 80281A08-80281D18 27C348 0310+00 2/2 0/0 0/0 .text
+//  * range_getParameter__Q27JStudio29TFunctionValueAttribute_rangeCFddd */
+// Matches with literals
 #ifdef NONMATCHING
 f64 TFunctionValueAttribute_range::range_getParameter(f64 arg1, f64 arg2, f64 arg3) const {
     f64 progress = range_getParameter_progress(arg1);
@@ -527,8 +567,6 @@ f64 TFunctionValueAttribute_range::range_getParameter(f64 arg1, f64 arg2, f64 ar
     return result;
 }
 #else
-// /* 80281A08-80281D18 27C348 0310+00 2/2 0/0 0/0 .text
-//  * range_getParameter__Q27JStudio29TFunctionValueAttribute_rangeCFddd */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -547,6 +585,11 @@ TFunctionValueAttribute_range::TFunctionValueAttribute_range()
 
 /* 80281D5C-80281DB8 27C69C 005C+00 0/0 1/1 0/0 .text __ct__Q27JStudio24TFunctionValue_compositeFv
  */
+// TVector_pointer ctor issue
+#ifdef NONMATCHING
+TFunctionValue_composite::TFunctionValue_composite() : pfn_(NULL), data((void*)NULL) {
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,6 +598,7 @@ asm TFunctionValue_composite::TFunctionValue_composite() {
 #include "asm/JSystem/JStudio/JStudio/functionvalue/__ct__Q27JStudio24TFunctionValue_compositeFv.s"
 }
 #pragma pop
+#endif
 
 u32 TFunctionValue_composite::getType() const {
     return 1;
@@ -585,96 +629,225 @@ f64 TFunctionValue_composite::getValue(f64 arg1) {
 /* 80281E5C-80281EC8 27C79C 006C+00 0/0 1/0 0/0 .text
  * composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> const& param_1,
+                                                 TData const& param_2, f64 param_3) {
+    u32 index = param_2.get_unsignedInteger();
+    u32 size = param_1.size();
+    if (index >= size) {
+        return 0.0;
+    }
+    TFunctionValue** local_18 = (TFunctionValue**)param_1.begin();
+    std::advance_pointer(local_18, index);
+    TFunctionValue* piVar4 = *local_18;
+    return piVar4->getValue(param_3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> const& param_0,
+asm f64 TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> const& param_0,
                                                  TData const& param_1, f64 param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80281E5C.s"
 }
 #pragma pop
+#endif
 
 /* 80281EC8-8028202C 27C808 0164+00 0/0 1/0 0/0 .text
  * composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> const& param_1,
+                                              TData const& param_2, f64 param_3) {
+    s32 size = param_1.size();
+    if (size <= 1) {
+        return 0.0;
+    }
+    TFunctionValue** local_148 = (TFunctionValue**)param_1.begin();
+    TFunctionValue* pFront = *local_148;
+    JUT_ASSERT(599, pFront!=0);
+    f64 dVar4 = pFront->getValue(param_3);
+    s32 index = floor(dVar4);
+    u32 uVar2 = param_2.get_unsignedInteger();
+    switch (uVar2) {
+    case 0:
+    case 3:
+    default:
+        if (index < 0) {
+            index = 0;
+        } else if (index >= size - 1) {
+            index = size - 2;
+        }
+        break;
+    case 1:
+        div_t dt = div(index, size - 1);
+        index = dt.rem;
+        if (index < 0) {
+            index = size + index;
+            index--;
+        }
+        break;
+    case 2:
+        if (size - 1 == 1) {
+            index = 0;
+        } else {
+            u32 uVar3 = (u32)(size - 2) * 2;
+            div_t dt2 = div(index, uVar3);
+            index = dt2.rem;
+            if (index < 0) {
+                index += uVar3;
+            }
+            if (index >= size - 1) {
+                index = uVar3 - index;
+            }
+        }
+        break;
+    }
+   
+    std::advance_pointer(local_148, index + 1);
+    pFront = *local_148;
+    return pFront->getValue(param_3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> const& param_0,
+asm f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> const& param_0,
                                                    TData const& param_1, f64 param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80281EC8.s"
 }
 #pragma pop
+#endif
+
+// TODO: remove when TContainerEnumerator_const is generic enough
+template <typename T>
+struct TContainerEnumerator_const_TVector : public JGadget::TEnumerator<const T*> {
+    inline TContainerEnumerator_const_TVector(JGadget::TVector_pointer<T> const& param_1)
+        : JGadget::TEnumerator<const T*>(param_1.begin(), param_1.end()) {}
+};
 
 /* 8028202C-80282094 27C96C 0068+00 0/0 1/0 0/0 .text
  * composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-TFunctionValue_composite::composite_parameter(TVector_pointer<TFunctionValue*> const& param_0,
-                                              TData const& param_1, f64 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/functionvalue/func_8028202C.s"
+f64
+TFunctionValue_composite::composite_parameter(TVector_pointer<TFunctionValue*> const& param_1,
+                                              TData const& param_2, f64 param_3) {
+    f64 dVar4 = param_3 - param_2.get_value();
+    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    while (aTStack_18) {
+        TFunctionValue* const* ppiVar3 = *aTStack_18;
+        TFunctionValue* piVar3 = *ppiVar3;
+        dVar4 = piVar3->getValue(dVar4);
+    }
+    return dVar4;
 }
-#pragma pop
 
 /* 80282094-80282118 27C9D4 0084+00 0/0 1/0 0/0 .text
  * composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void TFunctionValue_composite::composite_add(TVector_pointer<TFunctionValue*> const& param_0,
-                                                 TData const& param_1, f64 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/functionvalue/func_80282094.s"
+f64 TFunctionValue_composite::composite_add(TVector_pointer<TFunctionValue*> const& param_1,
+                                                 TData const& param_2, f64 param_3) {
+    f64 dVar4 = param_2.get_value();
+    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    while (aTStack_18) {
+        TFunctionValue* const* ppiVar3 = *aTStack_18;
+        TFunctionValue* piVar3 = *ppiVar3;
+        dVar4 += piVar3->getValue(param_3);
+    }
+    return dVar4;
 }
-#pragma pop
 
 /* 80282118-80282200 27CA58 00E8+00 0/0 1/0 0/0 .text
  * composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_composite::composite_subtract(TVector_pointer<TFunctionValue*> const& param_1,
+                                                 TData const& param_2, f64 param_3) {
+    u32 size = param_1.size();
+    if (size == 0) {
+        return 0.0;
+    }
+    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    TFunctionValue* const* local_148 = *aTStack_18;
+    TFunctionValue* pFront = *local_148;
+    JUT_ASSERT(688, pFront!=0);
+    f64 dVar4 = pFront->getValue(param_3);
+    while (aTStack_18) {
+        TFunctionValue* const* ppiVar3 = *aTStack_18;
+        TFunctionValue* piVar3 = *ppiVar3;
+        dVar4 -= piVar3->getValue(param_3);
+    }
+    dVar4 -= param_2.f32data;
+    return dVar4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void
+asm f64
 TFunctionValue_composite::composite_subtract(TVector_pointer<TFunctionValue*> const& param_0,
                                              TData const& param_1, f64 param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80282118.s"
 }
 #pragma pop
+#endif
 
 /* 80282200-80282284 27CB40 0084+00 0/0 1/0 0/0 .text
  * composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-TFunctionValue_composite::composite_multiply(TVector_pointer<TFunctionValue*> const& param_0,
-                                             TData const& param_1, f64 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/functionvalue/func_80282200.s"
+f64 TFunctionValue_composite::composite_multiply(TVector_pointer<TFunctionValue*> const& param_1,
+                                                 TData const& param_2, f64 param_3) {
+    f64 dVar4 = param_2.get_value();
+    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    while (aTStack_18) {
+        TFunctionValue* const* ppiVar3 = *aTStack_18;
+        TFunctionValue* piVar3 = *ppiVar3;
+        dVar4 *= piVar3->getValue(param_3);
+    }
+    return dVar4;
 }
-#pragma pop
 
 /* 80282284-8028236C 27CBC4 00E8+00 0/0 1/0 0/0 .text
  * composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> const& param_1,
+                                                 TData const& param_2, f64 param_3) {
+    u32 size = param_1.size();
+    if (size == 0) {
+        return 0.0;
+    }
+    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    TFunctionValue* const* local_148 = *aTStack_18;
+    TFunctionValue* pFront = *local_148;
+    JUT_ASSERT(724, pFront!=0);
+    f64 dVar4 = pFront->getValue(param_3);
+    while (aTStack_18) {
+        TFunctionValue* const* ppiVar3 = *aTStack_18;
+        TFunctionValue* piVar3 = *ppiVar3;
+        dVar4 /= piVar3->getValue(param_3);
+    }
+    dVar4 /= param_2.f32data;
+    return dVar4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> const& param_0,
+asm f64 TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> const& param_0,
                                                     TData const& param_1, f64 param_2) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80282284.s"
 }
 #pragma pop
+#endif
 
 TFunctionValue_constant::TFunctionValue_constant() : fValue_(NAN) {}
 
@@ -723,6 +896,47 @@ void TFunctionValue_transition::prepare() {
 
 /* 802824F4-802826BC 27CE34 01C8+00 1/0 0/0 0/0 .text
  * getValue__Q27JStudio25TFunctionValue_transitionFd            */
+// regalloc. Maybe return value related.
+#ifdef NONMATCHING
+f64 TFunctionValue_transition::getValue(f64 param_1) {
+    f64 progress = range_getParameter_progress(param_1);
+    f64 dVar3 = range_getParameter_outside(progress);
+    switch (range_getAdjust()) {
+    default:
+        if (dVar3 < range_getBegin()) {
+            return _48;
+        }
+        return _50;
+    case TFunctionValue::ADJ_UNK2:
+        if (dVar3 < range_getEnd()) {
+            return _48;
+        }
+        return _50;
+    case TFunctionValue::ADJ_UNK3:
+        ADJ_UNK3_label:
+        if (dVar3 < 0.5 * (range_getBegin() + range_getEnd())) {
+            return _48;
+        }
+        return _50;
+    case TFunctionValue::ADJ_UNK4:
+        if (dVar3 < range_getBegin()) {
+            return _48;
+        }
+        if (dVar3 >= range_getEnd()) {
+            return _50;
+        }
+        switch (interpolate_get()) {
+        case 0:
+            goto ADJ_UNK3_label;
+        case 1:
+        case 3:
+            return _48 + ((dVar3 - range_getBegin()) * data_getDifference()) / range_getDifference();
+        case 2:
+            return functionvalue::interpolateValue_plateau(dVar3, range_getBegin(), _48, range_getEnd(), _50);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -731,8 +945,9 @@ asm f64 TFunctionValue_transition::getValue(f64 param_0) {
 #include "asm/JSystem/JStudio/JStudio/functionvalue/getValue__Q27JStudio25TFunctionValue_transitionFd.s"
 }
 #pragma pop
+#endif
 
-TFunctionValue_list::TFunctionValue_list() : _44(NULL), _48(0), _50(NAN), _58(NULL) {}
+TFunctionValue_list::TFunctionValue_list() : _44(NULL), uData_(0), _50(NAN), pfnUpdate_(NULL) {}
 
 u32 TFunctionValue_list::getType() const {
     return 4;
@@ -747,9 +962,9 @@ void TFunctionValue_list::initialize() {
     interpolate_initialize();
 
     _44 = NULL;
-    _48 = 0;
+    uData_ = 0;
     _50 = NAN;
-    _58 = NULL;
+    pfnUpdate_ = NULL;
 }
 
 void TFunctionValue_list::prepare() {
@@ -763,24 +978,69 @@ void TFunctionValue_list::prepare() {
         JUTWarn w;
         w << "unknown interpolation : " << interp;
     case 0:
-        _58 = update_INTERPOLATE_NONE_;
+        pfnUpdate_ = update_INTERPOLATE_NONE_;
         break;
     case 1:
-        _58 = update_INTERPOLATE_LINEAR_;
+        pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
     case 2:
-        _58 = update_INTERPOLATE_PLATEAU_;
+        pfnUpdate_ = update_INTERPOLATE_PLATEAU_;
         break;
     case 3:
-        _58 = update_INTERPOLATE_BSPLINE_dataMore3_;
-        if (_48 == 2)
-            _58 = update_INTERPOLATE_LINEAR_;
+        pfnUpdate_ = update_INTERPOLATE_BSPLINE_dataMore3_;
+        if (uData_ == 2)
+            pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
     }
 }
 
 /* 80282858-80282C10 27D198 03B8+00 1/0 0/0 0/0 .text getValue__Q27JStudio19TFunctionValue_listFd
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_list::getValue(f64 param_1) {
+    f64 dVar9 = range_getParameter_progress(param_1);
+    u32 iVar7 = uData_ - 1;
+    TFunctionValue::TEAdjust iVar5 = range_getAdjust();
+    f64 dVar12 = iVar7;
+    TIndexData_ local_178;
+    f64 parOutside;
+    switch (iVar5) {
+    case 0:
+    default:
+        parOutside = range_getParameter_outside(dVar9);
+        local_178._0 = parOutside / _50;
+        break;
+    case 1:
+        parOutside = range_getParameter_outside(dVar9 + range_getBegin());
+        local_178._0 = parOutside / _50;
+        break;
+    case 2:
+        parOutside = range_getParameter_outside(dVar9 + range_getEnd());
+        local_178._0 = parOutside / _50;
+        break;
+    case 3:
+        parOutside = range_getParameter_outside(dVar9 + 0.5 * (range_getBegin() + range_getEnd()));
+        local_178._0 = parOutside / _50;
+        break;
+    case 4:
+        parOutside = range_getParameter_outside(dVar9);
+        local_178._0 = (dVar12 * (parOutside - range_getBegin())) / range_getDifference();
+        break;
+    }
+   
+    if (local_178._0 < 0.0) {
+        return _44[0];
+    }
+    if (local_178._0 >= dVar12) {
+        return _44[iVar7];
+    }
+    local_178._8 = floor(local_178._0);
+    local_178._10 = local_178._8;
+    JUT_ASSERT(1063, pfnUpdate_!=0);
+    return pfnUpdate_(*this, local_178);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -789,6 +1049,7 @@ asm f64 TFunctionValue_list::getValue(f64 param_0) {
 #include "asm/JSystem/JStudio/JStudio/functionvalue/getValue__Q27JStudio19TFunctionValue_listFd.s"
 }
 #pragma pop
+#endif
 
 f64 TFunctionValue_list::update_INTERPOLATE_NONE_(const TFunctionValue_list& rThis,
                                                   const TIndexData_& data) {
@@ -801,18 +1062,19 @@ f64 TFunctionValue_list::update_INTERPOLATE_LINEAR_(const TFunctionValue_list& r
                                                     rThis._44[data._10 + 1]);
 }
 
-#ifdef NONMATCHING  // float load
+/* 80282C58-80282CA8 27D598 0050+00 1/1 0/0 0/0 .text
+ * update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
+ */
+// Matches with literals
+#ifdef NONMATCHING
 f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& rThis,
                                                      const TIndexData_& data) {
     const f32* arr = rThis._44;
 
     return functionvalue::interpolateValue_plateau(data._0, data._8, arr[data._10],
-                                                   lit_792 + data._8, arr[data._10 + 1]);
+                                                   1.0 + data._8, arr[data._10 + 1]);
 }
 #else
-/* 80282C58-80282CA8 27D598 0050+00 1/1 0/0 0/0 .text
- * update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
- */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -828,6 +1090,32 @@ asm f64 JStudio::TFunctionValue_list::update_INTERPOLATE_PLATEAU_(
 /* 80282CA8-80282D34 27D5E8 008C+00 1/1 0/0 0/0 .text
  * update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
+    TFunctionValue_list const& rThis, TFunctionValue_list::TIndexData_ const& param_2) {
+    f64 dVar11 = rThis._44[param_2._10];
+    f64 dVar10 = rThis._44[param_2._10 + 1];
+    f64 dVar9;
+    f64 dVar8;
+    if (param_2._10 == 0) {
+        JUT_ASSERT(1119, rThis.uData_>=3);
+        dVar9 = 2.0 * dVar11 - dVar10;
+        dVar8 = rThis._44[param_2._10 + 2];
+    } else {
+        if (param_2._10 == rThis.uData_ - 2) {
+            JUT_ASSERT(1125, rThis.uData_>=3);
+            dVar9 = rThis._44[param_2._10 - 1];
+            dVar8 = 2.0 * dVar10 - dVar11;
+        } else {
+            JUT_ASSERT(1131, rThis.uData_>=3);
+            dVar9 = rThis._44[param_2._10 - 1];
+            dVar8 = rThis._44[param_2._10 + 2];
+        }
+    }
+    functionvalue::interpolateValue_BSpline_uniform(param_2._0 - param_2._8, dVar9, dVar11, dVar10, dVar8);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -837,9 +1125,10 @@ asm f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80282CA8.s"
 }
 #pragma pop
+#endif
 
 TFunctionValue_list_parameter::TFunctionValue_list_parameter()
-    : _44(NULL), _48(0), dat1(NULL), dat2(dat1), dat3(dat1), _58(NULL) {}
+    : pfData_(NULL), uData_(0), dat1(NULL), dat2(dat1), dat3(dat1), pfnUpdate_(NULL) {}
 
 u32 TFunctionValue_list_parameter::getType() const {
     return 5;
@@ -852,11 +1141,11 @@ TFunctionValueAttributeSet TFunctionValue_list_parameter::getAttributeSet() {
 void TFunctionValue_list_parameter::data_set(const f32* pf, u32 u) {
     ASSERT((pf != NULL) || (u == 0));
 
-    _44 = pf;
-    _48 = u;
+    pfData_ = pf;
+    uData_ = u;
 
-    dat1.set(_44);
-    dat2.set(&_44[_48 * 2]);
+    dat1.set(pfData_);
+    dat2.set(&pfData_[uData_ * 2]);
     dat3 = dat1;
 }
 
@@ -864,15 +1153,15 @@ void TFunctionValue_list_parameter::initialize() {
     range_initialize();
     interpolate_initialize();
 
-    _44 = NULL;
-    _48 = 0;
+    pfData_ = NULL;
+    uData_ = 0;
 
     TIterator_data_ iter(NULL);
 
     dat1 = iter;
     dat2 = dat1;
     dat3 = dat1;
-    _58 = NULL;
+    pfnUpdate_ = NULL;
 }
 
 void TFunctionValue_list_parameter::prepare() {
@@ -885,33 +1174,46 @@ void TFunctionValue_list_parameter::prepare() {
         JUTWarn w;
         w << "unknown interpolation : " << interp;
     case 0:
-        _58 = update_INTERPOLATE_NONE_;
+        pfnUpdate_ = update_INTERPOLATE_NONE_;
         break;
     case 1:
-        _58 = update_INTERPOLATE_LINEAR_;
+        pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
     case 2:
-        _58 = update_INTERPOLATE_PLATEAU_;
+        pfnUpdate_ = update_INTERPOLATE_PLATEAU_;
         break;
     case 3:
-        _58 = update_INTERPOLATE_BSPLINE_dataMore3_;
-        if (_48 != 2)
+        pfnUpdate_ = update_INTERPOLATE_BSPLINE_dataMore3_;
+        if (uData_ != 2)
             return;
-        _58 = update_INTERPOLATE_LINEAR_;
+        pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
     }
 }
 
 /* 80282F10-80282FE8 27D850 00D8+00 1/0 0/0 0/0 .text
  * getValue__Q27JStudio29TFunctionValue_list_parameterFd        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f64 TFunctionValue_list_parameter::getValue(f64 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/functionvalue/getValue__Q27JStudio29TFunctionValue_list_parameterFd.s"
+f64 TFunctionValue_list_parameter::getValue(f64 pfData_) {
+    pfData_ = range_getParameter(pfData_, data_getValue_front(), data_getValue_back());
+    JUT_ASSERT(1395, pfData_!=0)
+
+    // TODO: change to actual function
+    //dat3 = JGadget::findUpperBound_binary_current(dat1, dat2, dat3, &pfData_);
+    dat3 = func_802835DC(dat1, dat2, dat3, pfData_);
+    if (dat3 == dat1) {
+        return dat3.get()[1];
+    }
+    if (dat3 == dat2) {
+        --dat3;
+        return dat3.get()[1];
+    } 
+
+    const f32* pf = dat3.get();
+    const int suData_size = 1;
+    JUT_ASSERT(1411, (pfData_<=pf-suData_size)&&(pf<pfData_+suData_size*uData_));
+    JUT_ASSERT(1412, pfnUpdate_!=0);
+    return pfnUpdate_(*this, pfData_);
 }
-#pragma pop
 
 f64 TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
     const TFunctionValue_list_parameter& rThis, f64 d) {
@@ -924,16 +1226,17 @@ f64 TFunctionValue_list_parameter::update_INTERPOLATE_LINEAR_(
     return functionvalue::interpolateValue_linear(d, a[-2], a[-1], a[0], a[1]);
 }
 
-#ifdef NONMATCHING  // float load
+/* 80283024-80283060 27D964 003C+00 1/1 0/0 0/0 .text
+ * update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
+ */
+// Matches with literals
+#ifdef NONMATCHING
 f64 TFunctionValue_list_parameter::update_INTERPOLATE_PLATEAU_(
     const TFunctionValue_list_parameter& rThis, f64 d) {
     const f32* a = rThis.dat3.get();
     return functionvalue::interpolateValue_plateau(d, a[-2], a[-1], a[0], a[1]);
 }
 #else
-/* 80283024-80283060 27D964 003C+00 1/1 0/0 0/0 .text
- * update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
- */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -948,6 +1251,85 @@ asm f64 TFunctionValue_list_parameter::update_INTERPOLATE_PLATEAU_(
 /* 80283060-802832C4 27D9A0 0264+00 1/1 0/0 0/0 .text
  * update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd
  */
+// Matches with literals
+#ifdef NONMATCHING
+f64 TFunctionValue_list_parameter::update_INTERPOLATE_BSPLINE_dataMore3_(
+    TFunctionValue_list_parameter const& rThis, f64 param_2) {
+    JUT_ASSERT(1457, rThis.uData_>=3)
+    const f32* pfVar2 = rThis.dat3.get();
+    f64 local_68[4];
+    f64 local_48[6];
+    local_68[1] = pfVar2[-1];
+    local_68[2] = pfVar2[1];
+    local_48[2] = pfVar2[-2];
+    local_48[3] = pfVar2[0];
+    s32 iVar3 = ((int)rThis.dat2.get() - (int)pfVar2) / 4;
+    s32 iVar5 = ((int)pfVar2 - (int)rThis.dat1.get()) / 4;
+    switch(iVar5) {
+    case 2:
+        local_68[0] = 2.0 * local_68[1] - local_68[2];
+        local_68[3] = pfVar2[3];
+        local_48[4] = pfVar2[2];
+        local_48[1] = 2.0 * local_48[2] - local_48[3];
+        local_48[0] = 2.0 * local_48[2] - local_48[4];
+        switch (iVar3) {
+        case 2:
+        case 4:
+            local_48[5] = 2.0 * local_48[4] - local_48[3];
+            break;
+        default:
+            local_48[5] = pfVar2[4];
+            break;
+        }
+        break;
+    case 4:
+        local_68[0] = pfVar2[-3];
+        local_48[1] = pfVar2[-4];
+        local_48[0] = 2.0 * local_48[1] - local_48[2];
+        switch (iVar3)
+        {
+        case 2:
+            local_68[3] = 2.0 * local_68[2] - local_68[1];
+            local_48[4] = 2.0 * local_48[3] - local_48[2];
+            local_48[5] = 2.0 * local_48[3] - local_48[1];
+            break;
+        case 4:
+            local_68[3] = pfVar2[3];
+            local_48[4] = pfVar2[2];
+            local_48[5] = 2.0 * local_48[4] - local_48[3];
+            break;
+        default:
+            local_68[3] = pfVar2[3];
+            local_48[4] = pfVar2[2];
+            local_48[5] = pfVar2[4];
+        }
+        break;
+    default:
+        local_68[0] = pfVar2[-3];
+        local_48[1] = pfVar2[-4];
+        local_48[0] = pfVar2[-6];
+        switch (iVar3) {
+        case 2:
+            local_68[3] = 2.0 * local_68[2] - local_68[1];
+            local_48[4] = 2.0 * local_48[3] - local_48[2];
+            local_48[5] = 2.0 * local_48[3] - local_48[1];
+            break;
+        case 4:
+            local_68[3] = pfVar2[3];
+            local_48[4] = pfVar2[2];
+            local_48[5] = 2.0 * local_48[4] - local_48[3];
+            break;
+        default:
+            local_68[3] = pfVar2[3];
+            local_48[4] = pfVar2[2];
+            local_48[5] = pfVar2[4];
+            break;
+        }
+        break;
+    }
+    functionvalue::interpolateValue_BSpline_nonuniform(param_2, (f64*)&local_68, (f64*)&local_48);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -957,6 +1339,7 @@ asm f64 TFunctionValue_list_parameter::update_INTERPOLATE_BSPLINE_dataMore3_(
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80283060.s"
 }
 #pragma pop
+#endif
 
 TFunctionValue_hermite::TFunctionValue_hermite()
     : pf_(NULL), u_(0), uSize_(0), dat1(*this, NULL), dat2(dat1), dat3(dat1) {}
@@ -1001,14 +1384,28 @@ void TFunctionValue_hermite::prepare() {
 
 /* 8028344C-80283570 27DD8C 0124+00 1/0 0/0 0/0 .text
  * getValue__Q27JStudio22TFunctionValue_hermiteFd               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f64 TFunctionValue_hermite::getValue(f64 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio/functionvalue/getValue__Q27JStudio22TFunctionValue_hermiteFd.s"
+f64 TFunctionValue_hermite::getValue(f64 pfData_) {
+    pfData_ = range_getParameter(pfData_, data_getValue_front(), data_getValue_back());
+    JUT_ASSERT(1395, pfData_!=0)
+    // TODO: change to actual function
+    //dat3 = JGadget::findUpperBound_binary_current(dat1, dat2, dat3, &pfData_);
+    dat3 = func_80283858(dat1, dat2, dat3, pfData_);
+    
+    if (dat3 == dat1) {
+        return dat3.get()[1];
+    }
+    if (dat3 == dat2) {
+        --dat3;
+        return dat3.get()[1];
+    }
+
+    const f32* pfVar5 = dat3.get();
+    const f32* pfVar7 = pfVar5 - uSize_;
+    return functionvalue::interpolateValue_hermite(
+        pfData_, pfVar7[0], pfVar7[1],
+        pfVar7[uSize_ - 1], pfVar5[0],
+        pfVar5[1], pfVar5[2]);
 }
-#pragma pop
 
 }  // namespace JStudio
 
@@ -1019,7 +1416,7 @@ f64 extrapolateParameter_raw(f64 a1, f64 a2) {
     return a1;
 }
 
-f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
+inline f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
     f64 t = fmod(a1, a2);
 
     if (t < DOUBLE_LABEL(/* 0.0 */ lit_652))
@@ -1047,11 +1444,10 @@ f64 extrapolateParameter_clamp(f64 value, f64 max) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802835DC(void* _this,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_1,
-                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_2,
-                                  f64 const& param_3) {
+extern "C" asm JStudio::TFunctionValue_list_parameter::TIterator_data_
+func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_ param_1,
+              JStudio::TFunctionValue_list_parameter::TIterator_data_ param_2, f64 const& param_3) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_802835DC.s"
 }
@@ -1079,11 +1475,10 @@ extern "C" asm void func_80283634(void* _this,
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80283858(void* _this,
-                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
-                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_1,
-                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_2,
-                                  f64 const& param_3) {
+extern "C" asm JStudio::TFunctionValue_hermite::TIterator_data_
+func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
+              JStudio::TFunctionValue_hermite::TIterator_data_ param_1,
+              JStudio::TFunctionValue_hermite::TIterator_data_ param_2, f64 const& param_3) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio/functionvalue/func_80283858.s"
 }
