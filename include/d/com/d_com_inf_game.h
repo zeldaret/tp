@@ -3804,6 +3804,10 @@ inline J3DDrawBuffer* dComIfGd_getOpaListDark() {
     return g_dComIfG_gameInfo.drawlist.getOpaListDark();
 }
 
+inline J3DDrawBuffer* dComIfGd_getXluListBG() {
+    return g_dComIfG_gameInfo.drawlist.getXluListBG();
+}
+
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
 }
