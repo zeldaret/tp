@@ -10,8 +10,8 @@ struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2Sound
     u16 getPortData(JAISoundHandle*, u32, s8);
 
     virtual ~Z2SoundStarter() {}
-    virtual int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
-    virtual int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, float,
+    virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, float,
                             float, float, float, float, u32);
 };
 

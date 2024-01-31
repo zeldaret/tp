@@ -13,7 +13,7 @@ class JAIStreamDataMgr;
 class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
     /* 802A3B68 */ JAIStreamMgr(bool);
-    /* 802A3C3C */ int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A3C3C */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A3D70 */ void freeDeadStream_();
     /* 802A3EBC */ void calc();
     /* 802A4028 */ void stop();
@@ -32,6 +32,7 @@ public:
         JUT_ASSERT(157, !isActive());
         mStreamAramMgr = param_0;
     }
+    void pause(bool i_pause) { mActivity.field_0x0.flags.flag2 = i_pause; }
 
 private:
     /* 0x00 */ JAISoundActivity mActivity;

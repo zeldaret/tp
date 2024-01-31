@@ -634,7 +634,7 @@ SECTION_SDATA2 static f32 lit_4399 = 9.0f / 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {
@@ -697,7 +697,7 @@ Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* ride) : Z2SoundStarter(fa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {

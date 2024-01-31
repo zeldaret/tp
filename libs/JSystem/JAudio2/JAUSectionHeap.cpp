@@ -318,7 +318,7 @@ JAUSection::JAUSection(JAUSectionHeap* param_0, u32 param_1, s32 param_2) : JSUL
     field_0x2c = 1;
     data_.field_0x98 = param_2;
     if (this != sectionHeap_) {
-        data_.field_0x00.setSeqDataArchive(sectionHeap_->sectionHeapData_.field_0x408.getSeqDataArchive());
+        data_.field_0x00.setSeqDataArchive(sectionHeap_->sectionHeapData_.seqDataBlocks.getSeqDataArchive());
     }
 }
 #else
@@ -773,7 +773,7 @@ JAUSectionHeap::TSectionHeapData::TSectionHeapData() {
 /* 802A5E60-802A5EC0 2A07A0 0060+00 0/0 1/1 0/0 .text
  * setSeqDataArchive__14JAUSectionHeapFP10JKRArchive            */
 void JAUSectionHeap::setSeqDataArchive(JKRArchive* param_0) {
-    sectionHeapData_.field_0x408.setSeqDataArchive(param_0);
+    sectionHeapData_.seqDataBlocks.setSeqDataArchive(param_0);
     for (JSULink<JAUSection>* link = mSectionList.getFirst(); link; link = link->getNext()) {
         link->getObject()->data_.field_0x00.setSeqDataArchive(param_0);
     }
@@ -782,13 +782,13 @@ void JAUSectionHeap::setSeqDataArchive(JKRArchive* param_0) {
 /* 802A5EC0-802A5EF8 2A0800 0038+00 0/0 1/1 0/0 .text
  * loadDynamicSeq__14JAUSectionHeapF10JAISoundIDb               */
 bool JAUSectionHeap::loadDynamicSeq(JAISoundID param_0, bool param_1) {
-    return sectionHeapData_.field_0x408.loadDynamicSeq(param_0, param_1, sectionHeapData_.seqDataUser);
+    return sectionHeapData_.seqDataBlocks.loadDynamicSeq(param_0, param_1, sectionHeapData_.seqDataUser);
 }
 
 /* 802A5EF8-802A5F24 2A0838 002C+00 0/0 1/1 0/0 .text
  * releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv           */
 void JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
-    sectionHeapData_.field_0x408.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
+    sectionHeapData_.seqDataBlocks.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
 }
 
 namespace {
@@ -865,7 +865,7 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
     seqDataBlock->field_0x14.size = size;
     seqDataBlock->field_0x10.setAnonymous();
     JASCriticalSection cs;
-    if (base1.sectionHeap_->sectionHeapData_.field_0x408.appendDynamicSeqDataBlock(seqDataBlock)) {
+    if (base1.sectionHeap_->sectionHeapData_.seqDataBlocks.appendDynamicSeqDataBlock(seqDataBlock)) {
         return true;
     }
     return false;
@@ -881,7 +881,7 @@ s32 JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
             return 2;
         }
     }
-    return sectionHeapData_.field_0x408.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, true);
+    return sectionHeapData_.seqDataBlocks.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, true);
 }
 
 /* 802A6270-802A6278 2A0BB0 0008+00 2/1 0/0 0/0 .text            releaseSeqData__14JAUSectionHeapFv

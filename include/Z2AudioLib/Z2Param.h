@@ -56,4 +56,8 @@ extern u8 struct_8045086A;
 extern u8 struct_8045086B;
 extern u8 data_8045086C;
 
+extern u8 struct_80451340;
+extern u8 struct_80451341;
+extern u8 struct_80451342;
+
 #endif /* Z2PARAM_H */

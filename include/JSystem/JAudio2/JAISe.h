@@ -47,7 +47,7 @@ public:
     JAISeqData* getSeqData() { return &inner_.mSeqData; }
     u32 JAISeCategoryMgr_getProperPriority_() const { return inner_.mProperPriority; }
     u32 JAISeCategoryMgr_getPriority_() const { return inner_.mPriority; }
-    bool isFarAway() const { return mPriority == -1; }
+    bool isFarAway() const { return inner_.mPriority == -1; }
 
     /* 0x0ac */ TInner inner_;
 };
