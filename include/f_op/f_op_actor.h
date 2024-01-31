@@ -40,6 +40,7 @@ enum fopAc_Group_e {
     /* 2 */ fopAc_ENEMY_e,
     /* 3 */ fopAc_ENV_e,  // is this correct?
     /* 4 */ fopAc_NPC_e,
+    /* 5 */ fopAc_UNK_GROUP_5_e,
 };
 
 enum fopAc_Condition_e {
