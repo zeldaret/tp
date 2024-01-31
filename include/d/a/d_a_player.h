@@ -814,6 +814,11 @@ public:
 
     void i_onEndResetFlg1(daPy_ERFLG1 i_flag) { mEndResetFlg1 |= i_flag; }
 
+    cXyz* getLeftHandPosP() { return &mLeftHandPos; }
+    cXyz* getRightHandPosP() { return &mRightHandPos; }
+    cXyz* i_getLeftFootPosP() { return &mLeftFootPos; }
+    cXyz* i_getRightFootPosP() { return &mRightFootPos; }
+
     u32 i_checkWolf() const { return i_checkNoResetFlg1(FLG1_IS_WOLF); }
     BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
     BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }

@@ -20,6 +20,7 @@ public:
     inline void create_init();
 
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    void setAnmSpeed(f32 speed) { mpBck->setPlaySpeed(speed); }
 
     bool isSwitch() {
         return i_fopAcM_isSwitch(this, getSwitchNo()) ||

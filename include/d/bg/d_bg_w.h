@@ -230,7 +230,7 @@ public:
     /* 0x7C */ cXyz mTransVel;
     /* 0x88 */ u8 mFlags;
     /* 0x89 */ u8 mNeedsFullTransform;
-    /* 0x8A */ u8 field_0x8a[6];
+    /* 0x8C */ u32 field_0x8c;
     /* 0x90 */ u8 mMoveCounter;
     /* 0x91 */ u8 field_0x91;
     /* 0x92 */ u16 m_rootGrpIdx;

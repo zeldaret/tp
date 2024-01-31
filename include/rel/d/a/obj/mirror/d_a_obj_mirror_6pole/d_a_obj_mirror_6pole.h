@@ -19,7 +19,9 @@ public:
     /* 80C95E2C */ void executeWait();
     /* 80C95E88 */ void initDemo();
     /* 80C95E8C */ void executeDemo();
-    /* 80C95EFC */ void setBaseMtx();
+    /* 80C95EFC */ inline void setBaseMtx();
+    inline void initBaseMtx();
+    inline void create_init();
     /* 80C95F50 */ static int createHeapCallBack(fopAc_ac_c* i_this);
     /* 80C95F70 */ int CreateHeap();
 
@@ -29,24 +31,9 @@ public:
     inline int create();
     inline int draw();
 
-    void initBaseMtx() {
-        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-        // setBaseMtx();
-
-        // this is supposed to be setBaseMtx, but it gets inlined here for some reason?
-        mDoMtx_stack_c::transS(current.pos);
-        mDoMtx_stack_c::YrotM(shape_angle.y);
-
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    }
-
-    void create_init() {
-        initBaseMtx();
-        mAttentionInfo.mFlags = 0;
-        setAction(MODE_WAIT_e);
-    }
-
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+
+    void setAnmSpeed(f32 speed) { mpBck->setPlaySpeed(speed); }
 
     bool isSwitch() {
         return i_fopAcM_isSwitch(this, getSwitchNo()) ||

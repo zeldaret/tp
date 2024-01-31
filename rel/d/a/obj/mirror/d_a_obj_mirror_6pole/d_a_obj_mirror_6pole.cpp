@@ -72,6 +72,17 @@ void daObjMirror6Pole_c::setBaseMtx() {
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
+void daObjMirror6Pole_c::initBaseMtx() {
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    setBaseMtx();
+}
+
+void daObjMirror6Pole_c::create_init() {
+    initBaseMtx();
+    mAttentionInfo.mFlags = 0;
+    setAction(MODE_WAIT_e);
+}
+
 /* 80C95F50-80C95F70 0001B0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__18daObjMirror6Pole_cFP10fopAc_ac_c       */
 int daObjMirror6Pole_c::createHeapCallBack(fopAc_ac_c* i_this) {

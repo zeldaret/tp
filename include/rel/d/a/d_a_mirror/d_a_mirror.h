@@ -38,6 +38,7 @@ struct daMirror_c : public fopAc_ac_c {
     /* 80031990 */ static int remove();
     s32 getType() { return fopAcM_GetParamBit(this, 0, 8); }
     s32 getSw() { return fopAcM_GetParamBit(this, 8, 8); }
+    static u32 getMirrorRoomPrm() { return 0xff03; }
 
     typedef int (daMirror_c::*entryModelFunc)(J3DModel*);
     static entryModelFunc m_entryModel;
