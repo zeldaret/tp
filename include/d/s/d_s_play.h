@@ -207,108 +207,108 @@ extern dScnPly_reg_HIO_c g_regHIO;
 #define tREG_S(i) g_regHIO.mChildReg[25].mShortReg[i]
 #else
 // Morita
-#define TREG_F(i)
-#define TREG_S(i)
+#define TREG_F(i) (0)
+#define TREG_S(i) (0)
 
 // Matsutani
-#define DREG_F(i)
-#define DREG_S(i)
+#define DREG_F(i) (0)
+#define DREG_S(i) (0)
 
 // Iwawaki
-#define IREG_F(i)
-#define IREG_S(i)
+#define IREG_F(i) (0)
+#define IREG_S(i) (0)
 
 // Sasa
-#define SREG_F(i)
-#define SREG_S(i)
+#define SREG_F(i) (0)
+#define SREG_S(i) (0)
 
 // Umemiya
-#define UREG_F(i)
-#define UREG_S(i)
+#define UREG_F(i) (0)
+#define UREG_S(i) (0)
 
 // Ogawa
-#define OREG_F(i)
-#define OREG_S(i)
+#define OREG_F(i) (0)
+#define OREG_S(i) (0)
 
 // Sakaguchi
-#define YREG_F(i)
-#define YREG_S(i)
+#define YREG_F(i) (0)
+#define YREG_S(i) (0)
 
 // Sakai
-#define KREG_F(i)
-#define KREG_S(i)
+#define KREG_F(i) (0)
+#define KREG_S(i) (0)
 
 // Hara
-#define BREG_F(i)
-#define BREG_S(i)
+#define BREG_F(i) (0)
+#define BREG_S(i) (0)
 
 // Sumiyoshi
-#define MREG_F(i)
-#define MREG_S(i)
+#define MREG_F(i) (0)
+#define MREG_S(i) (0)
 
 // Takeshita
-#define AREG_F(i)
-#define AREG_S(i)
+#define AREG_F(i) (0)
+#define AREG_S(i) (0)
 
 // Yoshida
-#define PREG_F(i)
-#define PREG_S(i)
+#define PREG_F(i) (0)
+#define PREG_S(i) (0)
 
 // Noma
-#define NREG_F(i)
-#define NREG_S(i)
+#define NREG_F(i) (0)
+#define NREG_S(i) (0)
 
 // Nishiwaki
-#define WREG_F(i)
-#define WREG_S(i)
+#define WREG_F(i) (0)
+#define WREG_S(i) (0)
 
 // Masaro
-#define JREG_F(i)
-#define JREG_S(i)
+#define JREG_F(i) (0)
+#define JREG_S(i) (0)
 
 // Hayakawa
-#define HREG_F(i)
-#define HREG_S(i)
+#define HREG_F(i) (0)
+#define HREG_S(i) (0)
 
 // Sadamoto
-#define VREG_F(i)
-#define VREG_S(i)
+#define VREG_F(i) (0)
+#define VREG_S(i) (0)
 
 // Nishikawa
-#define XREG_F(i)
-#define XREG_S(i)
+#define XREG_F(i) (0)
+#define XREG_S(i) (0)
 
 // Suzuki
-#define ZREG_F(i)
-#define ZREG_S(i)
+#define ZREG_F(i) (0)
+#define ZREG_S(i) (0)
 
 // Nakanishi
-#define nREG_F(i)
-#define nREG_S(i)
+#define nREG_F(i) (0)
+#define nREG_S(i) (0)
 
 // Kuwajima
-#define kREG_F(i)
-#define kREG_S(i)
+#define kREG_F(i) (0)
+#define kREG_S(i) (0)
 
 // Okajima
-#define oREG_F(i)
-#define oREG_S(i)
+#define oREG_F(i) (0)
+#define oREG_S(i) (0)
 
 // Yamazaki
-#define yREG_F(i)
-#define yREG_S(i)
+#define yREG_F(i) (0)
+#define yREG_S(i) (0)
 
 // Ashida
-#define aREG_F(i)
-#define aREG_S(i)
+#define aREG_F(i) (0)
+#define aREG_S(i) (0)
 
 // Okada
-#define hREG_F(i)
-#define hREG_S(i)
+#define hREG_F(i) (0)
+#define hREG_S(i) (0)
 
 // Takahashi
-#define tREG_F(i)
-#define tREG_S(i)
+#define tREG_F(i) (0)
+#define tREG_S(i) (0)
 #endif
 
 #endif /* D_S_D_S_PLAY_H */

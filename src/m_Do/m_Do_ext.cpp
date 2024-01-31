@@ -317,7 +317,7 @@ extern "C" void getCellWidth__7JUTFontCFv();
 extern "C" void getCellHeight__7JUTFontCFv();
 extern "C" void __dt__26mDoExt_3DlineMatSortPacketFv();
 extern "C" bool getMaterialID__19mDoExt_3DlineMat1_cFv();
-extern "C" bool getMaterialID__19mDoExt_3DlineMat0_cFv();
+extern "C" int getMaterialID__19mDoExt_3DlineMat0_cFv();
 extern "C" void setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform();
 extern "C" void setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform();
 extern "C" bool getAnmTransform__10J3DMtxCalcFUc();
@@ -3607,7 +3607,7 @@ extern "C" void __ct__4cXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
+asm int mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat0_cFUsUsi.s"
 }
@@ -4212,7 +4212,8 @@ int mDoExt_3DlineMat1_c::getMaterialID() {
 }
 
 /* 80014E84-80014E8C 00F7C4 0008+00 1/0 0/0 0/0 .text getMaterialID__19mDoExt_3DlineMat0_cFv */
-int mDoExt_3DlineMat0_c::getMaterialID() {
+// int mDoExt_3DlineMat0_c::getMaterialID() {
+extern "C" int getMaterialID__19mDoExt_3DlineMat0_cFv() {
     return 0;
 }
 

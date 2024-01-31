@@ -1,6 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/kankyo/d_kankyo.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
@@ -262,7 +263,7 @@ public:
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
     void setThrowModeThrowLeft() { mThrowMode |= 8; }
-    
+
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;
     /* 0x580 */ J3DModel* mBallModel;
