@@ -204,20 +204,20 @@ O_FILES := \
 	$(BUILD_DIR)/src/d/msg/d_msg_class.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_object.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_unit.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_3select.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_arrow.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_base.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_boss.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_explain.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_item.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_howl.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_jimaku.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_kanban.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_light.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_place.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_staff.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_talk.o \
-	$(BUILD_DIR)/src/msg/scrn/d_msg_scrn_tree.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_3select.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_arrow.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_base.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_boss.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_explain.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_item.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_howl.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_jimaku.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_kanban.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_light.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_place.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_staff.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_talk.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_scrn_tree.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_string_base.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_string.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_flow.o \
@@ -1050,7 +1050,9 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTResFont.o \
 	$(BUILD_DIR)/libs/JSystem/JAudio2/JAUAudioArcLoader.o \
 	$(BUILD_DIR)/libs/JSystem/J2DGraph/J2DAnmLoader.o \
+	$(BUILD_DIR)/libs/JSystem/J2DGraph/J2DPicture.o \
 	$(BUILD_DIR)/libs/JSystem/JUtility/JUTProcBar.o \
+	$(BUILD_DIR)/libs/JSystem/JKernel/JKRAramArchive.o \
 	$(BUILD_DIR)/libs/Z2AudioLib/Z2AudioArcLoader.o \
 	$(BUILD_DIR)/src/c/c_dylink.o \
 	$(BUILD_DIR)/src/d/a/d_a_alink.o \
@@ -1070,4 +1072,7 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/d_gameover.o \
 	$(BUILD_DIR)/src/d/menu/d_menu_save.o \
 	$(BUILD_DIR)/src/d/d_bright_check.o \
+	$(BUILD_DIR)/src/d/shop/d_shop_system.o \
+	$(BUILD_DIR)/src/d/kankyo/d_kankyo.o \
+	$(BUILD_DIR)/src/d/msg/d_msg_object.o \
 	

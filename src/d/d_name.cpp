@@ -4,15 +4,16 @@
 //
 
 #include "d/d_name.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 #include "global.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_audio.h"
+#include "m_Do/m_Do_controller_pad.h"
+#include "stdio.h"
 
 //
 // Forward References:
@@ -201,129 +202,8 @@ SECTION_DATA static selProcFunc SelProc[9] = {
     &dName_c::MojiSelectAnm3, &dName_c::MenuSelect,     &dName_c::MenuSelectAnm,
     &dName_c::MenuSelectAnm2, &dName_c::MenuSelectAnm3, &dName_c::Wait};
 
-/* 803C2750-803C2788 -00001 0034+04 1/1 0/0 0/0 .data            @4121 */
-SECTION_DATA static void* lit_4121[13 + 1 /* padding */] = {
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x8C),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x130),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x170),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x1B0),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x358),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x2D4),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x358),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x31C),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x358),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x358),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x8C),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x31C),
-    (void*)(((char*)mojiChange__7dName_cFUc) + 0x1B0),
-    /* padding */
-    NULL,
-};
-
-/* 803C2788-803C27C8 01F8A8 0040+00 0/1 0/0 0/0 .data            l_cur0TagName$4610 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_cur0TagName[8] = {
-    's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
-};
-#pragma pop
-
-/* 803C27C8-803C2808 01F8E8 0040+00 0/1 0/0 0/0 .data            l_cur1TagName$4611 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_cur1TagName[8] = {
-    's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
-};
-#pragma pop
-
-/* 803C2808-803C2828 01F928 0020+00 0/1 0/0 0/0 .data            l_menu_icon_tag$4617 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_menu_icon_tag[4] = {
-    'p_ABC_n',
-    'p_abc_n',
-    'j_eigo_n',
-    'p_end_n',
-};
-#pragma pop
-
-/* 803C2828-803C28A0 01F948 0078+00 0/1 0/0 0/0 .data            l_menu_tag$4618 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_menu_tag[15] = {
-    'p_ABC_0',  'p_ABC_1',  'p_ABC_2',  'p_abc_0', 'p_abc_1', 'p_abc_2',
-    'm_eigo_0', 'm_eigo_1', 'm_eigo_2', 'p_end_0', 'p_end_1', 'p_end_2',
-};
-#pragma pop
-
-/* 803C28A0-803C28B0 01F9C0 0010+00 0/1 0/0 0/0 .data            l_menu_msg$4619 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 l_menu_msg[4] = {
-    0x38B,
-    0x38C,
-    0x388,
-    0x38E,
-};
-#pragma pop
-
-/* 803C28B0-803C2AB8 01F9D0 0208+00 0/1 0/0 0/0 .data            l_tagName$4635 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName[65] = {
-    'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
-    'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',
-    'm03_3',  'm03_4',  'm_04_0', 'm_04_1', 'm_04_2', 'm_04_3', 'm_04_4', 'm_05_0', 'm_05_1',
-    'm_05_2', 'm_05_3', 'm_05_4', 'm_06_0', 'm_06_1', 'm_06_2', 'm_06_3', 'm_06_4', 'm_07_0',
-    'm_07_1', 'm_07_2', 'm_07_3', 'm_07_4', 'm_08_0', 'm_08_1', 'm_08_2', 'm_08_3', 'm_08_4',
-    'm_09_0', 'm_09_1', 'm_09_2', 'm_09_3', 'm_09_4', 'm_10_0', 'm_10_1', 'm_10_2', 'm_10_3',
-    'm_10_4', 'm_11_0', 'm_11_1', 'm_11_2', 'm_11_3', 'm_11_4', 'm12_0',  'm12_1',  'm12_2',
-    'm12_3',  'm12_4',
-};
-#pragma pop
-
-/* 803C2AB8-803C2AF8 01FBD8 0040+00 0/1 0/0 0/0 .data            l_nameTagName$4642 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_nameTagName[8] = {
-    'name_00', 'name_01', 'name_02', 'name_03', 'name_04', 'name_05', 'name_06', 'name_07',
-};
-#pragma pop
-
-/* 803C2AF8-803C2B38 01FC18 0040+00 0/1 0/0 0/0 .data            l_nameCurTagName$4643 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_nameCurTagName[8] = {
-    's__n_00', 's__n_01', 's__n_02', 's__n_03', 's__n_04', 's__n_05', 's__n_06', 's__n_07',
-};
-#pragma pop
-
-/* 803C2B38-803C2B64 01FC58 0010+1C 3/3 0/0 0/0 .data            __vt__14dDlst_NameIN_c */
-SECTION_DATA extern void* __vt__14dDlst_NameIN_c[4 + 7 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dDlst_NameIN_cFv,
-    (void*)__dt__14dDlst_NameIN_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803C2B64-803C2B7C 01FC84 000C+0C 2/2 0/0 0/0 .data            __vt__7dName_c */
-SECTION_DATA extern void* __vt__7dName_c[3 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7dName_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
+extern void* __vt__14dDlst_NameIN_c[4 + 7 /* padding */];
+extern void* __vt__7dName_c[3 + 3 /* padding */];
 
 /* 8024E3E0-8024E408 248D20 0028+00 1/1 0/0 0/0 .text            __ct__9dNm_HIO_cFv */
 dNm_HIO_c::dNm_HIO_c() {
@@ -340,6 +220,7 @@ dName_c::dName_c(J2DPane* pane) {
 }
 
 /* 8024E468-8024E62C 248DA8 01C4+00 1/0 0/0 0/0 .text            __dt__7dName_cFv */
+// matches with vtable data
 #ifdef NONMATCHING
 dName_c::~dName_c() {
     delete stick;
@@ -502,7 +383,8 @@ void dName_c::_move() {
         }
     } else if (mDoCPd_c::getTrigStart(PAD_1)) {
         if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_END) &&
-            (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT)) {
+            (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT))
+        {
             mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
             mPrevSelMenu = mSelMenu;
             mSelMenu = MENU_END;
@@ -577,9 +459,7 @@ void dName_c::cursorAnm() {
 }
 
 /* 8024ED48-8024ED4C 249688 0004+00 1/0 0/0 0/0 .text            Wait__7dName_cFv */
-void dName_c::Wait() {
-    /* empty function */
-}
+void dName_c::Wait() {}
 
 /* 8024ED4C-8024F034 24968C 02E8+00 1/0 0/0 0/0 .text            MojiSelect__7dName_cFv */
 // matches with literals
@@ -672,7 +552,8 @@ void dName_c::MojiSelectAnmInit() {
 /* 8024F0E0-8024F164 249A20 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm__7dName_cFv */
 void dName_c::MojiSelectAnm() {
     if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
-                                                          lit_3820, 0) == 1) {
+                                                          lit_3820, 0) == 1)
+    {
         selectCursorMove();
         mSelProc = PROC_MOJI_SELECT;
         field_0x2ad = mSelProc;
@@ -682,7 +563,8 @@ void dName_c::MojiSelectAnm() {
 /* 8024F164-8024F1E8 249AA4 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm2__7dName_cFv */
 void dName_c::MojiSelectAnm2() {
     if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
-                                                          lit_3820, 0) == 1) {
+                                                          lit_3820, 0) == 1)
+    {
         menuCursorMove2();
         mSelProc = PROC_MENU_SELECT;
         field_0x2ad = mSelProc;
@@ -690,29 +572,28 @@ void dName_c::MojiSelectAnm2() {
 }
 
 /* 8024F1E8-8024F1EC 249B28 0004+00 1/0 0/0 0/0 .text            MojiSelectAnm3__7dName_cFv */
-void dName_c::MojiSelectAnm3() {
-    /* empty function */
-}
+void dName_c::MojiSelectAnm3() {}
 
 /* 8024F1EC-8024F55C 249B2C 0370+00 1/0 0/0 0/0 .text            mojiChange__7dName_cFUc */
-// weird pattern
-#ifdef NONMATCHING
 int dName_c::mojiChange(u8 idx) {
     if (mChrInfo[idx].field_0x3 == 0 || mChrInfo[idx].mMojiSet == MOJI_EIGO ||
-        mChrInfo[idx].mCharacter == '　') {
+        mChrInfo[idx].mCharacter == '　')
+    {
         return 0;
     }
 
     if (mChrInfo[idx].mColumn == 4 || mChrInfo[idx].mColumn == 6 || mChrInfo[idx].mColumn == 8 ||
-        mChrInfo[idx].mColumn == 9) {
+        mChrInfo[idx].mColumn == 9)
+    {
         return 0;
     }
 
     switch (mChrInfo[idx].mColumn) {
     case 0:
-    case 10:
+    case 10: {
         if (mChrInfo[idx].mCharacter == 'ウ' || mChrInfo[idx].mCharacter == 'ゥ' ||
-            mChrInfo[idx].mCharacter == 'ヴ') {
+            mChrInfo[idx].mCharacter == 'ヴ')
+        {
             mChrInfo[idx].mCharacter++;
 
             if (mChrInfo[idx].mCharacter == 'ェ') {
@@ -723,76 +604,91 @@ int dName_c::mojiChange(u8 idx) {
                 mChrInfo[idx].mCharacter = 'ゥ';
             }
         } else {
-            int c = 'ァ';
-            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                c = 'ぁ';
-            }
-            bool check = mChrInfo[idx].mCharacter - c == 0 ? 1 : 0;
+            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ァ' : 'ぁ';
 
-            if (check) {
+            if ((mChrInfo[idx].mCharacter - c) % 2) {
                 --mChrInfo[idx].mCharacter;
             } else {
                 ++mChrInfo[idx].mCharacter;
             }
         }
         break;
-    case 1:
-        int c = 'か';
-        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-            c = 'カ';
-        }
+    }
+    case 1: {
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'カ' : 'か';
+        c = ((mChrInfo[idx].mCharacter - c) % 2);
 
-        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        int c2 = c + 1;
+        mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
         break;
-    case 2:
-        int c2 = 'さ';
-        if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-            c2 = 'サ';
-        }
+    }
+    case 2: {
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'サ' : 'さ';
+        c = ((mChrInfo[idx].mCharacter - c) % 2);
 
-        mChrInfo[idx].mCharacter == c ? mChrInfo[idx].mCharacter++ : mChrInfo[idx].mCharacter--;
+        int c2 = c + 1;
+        mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
         break;
+    }
     case 3:
-    case 12:
-        if (mChrInfo[idx].mCharacter != 0x815b) {
-            int c = 'ぢ';
-            if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                c = 'ヂ';
-            }
+    case 12: {
+        if (mChrInfo[idx].mCharacter != (u32)0x815b) {
+            if (mChrInfo[idx].mCharacter <= (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ' : 'ぢ')) {
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'タ' : 'た';
+                c = ((mChrInfo[idx].mCharacter - c) % 2);
 
-            if (c < mChrInfo[idx].mCharacter) {
-                int c2 = 'ぢ';
-                if (mChrInfo[idx].mMojiSet != MOJI_HIRA) {
-                    c2 = 'ヂ';
+                int c2 = c + 1;
+                mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
+            } else if (mChrInfo[idx].mCharacter <=
+                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ド' : 'ど') &&
+                       mChrInfo[idx].mCharacter >=
+                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ' : 'て'))
+            {
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ' : 'て';
+                c = ((mChrInfo[idx].mCharacter - c) % 2);
+
+                int c2 = c + 1;
+                mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
+            } else {
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ッ' : 'っ';
+                int c2 = (mChrInfo[idx].mCharacter - c) % 3;
+
+                int ivar2 = c2 + 1;
+                if (ivar2 > 2) {
+                    ivar2 = 0;
                 }
 
-                mChrInfo[idx].mCharacter == c2 ? mChrInfo[idx].mCharacter++ :
-                                                 mChrInfo[idx].mCharacter--;
+                mChrInfo[idx].mCharacter = ivar2 + (mChrInfo[idx].mCharacter - c2);
             }
         }
         break;
-    case 5:
+    }
+    case 5: {
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ハ' : 'は';
+        int c2 = (mChrInfo[idx].mCharacter - c) % 3;
 
+        int ivar2 = c2 + 1;
+        if (ivar2 > 2) {
+            ivar2 = 0;
+        }
+
+        mChrInfo[idx].mCharacter = ivar2 + (mChrInfo[idx].mCharacter - c2);
         break;
+    }
     case 7:
-    case 11:
+    case 11: {
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ャ' : 'ゃ';
+        c = ((mChrInfo[idx].mCharacter - c) % 2);
 
+        int c2 = c + 1;
+        mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
         break;
+    }
     }
 
     setNameText();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dName_c::mojiChange(u8 param_0) {
-    nofralloc
-#include "asm/d/d_name/mojiChange__7dName_cFUc.s"
-}
-#pragma pop
-#endif
 
 /* 8024F55C-8024F59C 249E9C 0040+00 1/1 0/0 0/0 .text            selectMojiSet__7dName_cFv */
 void dName_c::selectMojiSet() {
@@ -1026,9 +922,7 @@ void dName_c::MenuSelectAnm2() {
 }
 
 /* 8024FFA0-8024FFA4 24A8E0 0004+00 1/0 0/0 0/0 .text            MenuSelectAnm3__7dName_cFv */
-void dName_c::MenuSelectAnm3() {
-    /* empty function */
-}
+void dName_c::MenuSelectAnm3() {}
 
 /* 8024FFA4-80250074 24A8E4 00D0+00 1/1 0/0 0/0 .text            menuAbtnSelect__7dName_cFv */
 // matches with literals
@@ -1236,20 +1130,130 @@ SECTION_SDATA2 static f32 lit_4725[1 + 1 /* padding */] = {
     0.0f,
 };
 
+/* 803C2788-803C27C8 01F8A8 0040+00 0/1 0/0 0/0 .data            l_cur0TagName$4610 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_cur0TagName[8] = {
+    's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
+};
+#pragma pop
+
+/* 803C27C8-803C2808 01F8E8 0040+00 0/1 0/0 0/0 .data            l_cur1TagName$4611 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_cur1TagName[8] = {
+    's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
+};
+#pragma pop
+
+/* 803C2808-803C2828 01F928 0020+00 0/1 0/0 0/0 .data            l_menu_icon_tag$4617 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_menu_icon_tag[4] = {
+    'p_ABC_n',
+    'p_abc_n',
+    'j_eigo_n',
+    'p_end_n',
+};
+#pragma pop
+
+/* 803C2828-803C28A0 01F948 0078+00 0/1 0/0 0/0 .data            l_menu_tag$4618 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_menu_tag[5][3] = {
+    'p_ABC_0',  'p_ABC_1',  'p_ABC_2',  'p_abc_0', 'p_abc_1', 'p_abc_2',
+    'm_eigo_0', 'm_eigo_1', 'm_eigo_2', 'p_end_0', 'p_end_1', 'p_end_2',
+};
+#pragma pop
+
+/* 803C28A0-803C28B0 01F9C0 0010+00 0/1 0/0 0/0 .data            l_menu_msg$4619 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 l_menu_msg[4] = {
+    0x38B,
+    0x38C,
+    0x388,
+    0x38E,
+};
+#pragma pop
+
+/* 803C28B0-803C2AB8 01F9D0 0208+00 0/1 0/0 0/0 .data            l_tagName$4635 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_tagName[65] = {
+    'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
+    'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',
+    'm03_3',  'm03_4',  'm_04_0', 'm_04_1', 'm_04_2', 'm_04_3', 'm_04_4', 'm_05_0', 'm_05_1',
+    'm_05_2', 'm_05_3', 'm_05_4', 'm_06_0', 'm_06_1', 'm_06_2', 'm_06_3', 'm_06_4', 'm_07_0',
+    'm_07_1', 'm_07_2', 'm_07_3', 'm_07_4', 'm_08_0', 'm_08_1', 'm_08_2', 'm_08_3', 'm_08_4',
+    'm_09_0', 'm_09_1', 'm_09_2', 'm_09_3', 'm_09_4', 'm_10_0', 'm_10_1', 'm_10_2', 'm_10_3',
+    'm_10_4', 'm_11_0', 'm_11_1', 'm_11_2', 'm_11_3', 'm_11_4', 'm12_0',  'm12_1',  'm12_2',
+    'm12_3',  'm12_4',
+};
+#pragma pop
+
+/* 803C2AB8-803C2AF8 01FBD8 0040+00 0/1 0/0 0/0 .data            l_nameTagName$4642 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_nameTagName[8] = {
+    'name_00', 'name_01', 'name_02', 'name_03', 'name_04', 'name_05', 'name_06', 'name_07',
+};
+#pragma pop
+
+/* 803C2AF8-803C2B38 01FC18 0040+00 0/1 0/0 0/0 .data            l_nameCurTagName$4643 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u64 l_nameCurTagName[8] = {
+    's__n_00', 's__n_01', 's__n_02', 's__n_03', 's__n_04', 's__n_05', 's__n_06', 's__n_07',
+};
+#pragma pop
+
+/* 803C2B38-803C2B64 01FC58 0010+1C 3/3 0/0 0/0 .data            __vt__14dDlst_NameIN_c */
+SECTION_DATA extern void* __vt__14dDlst_NameIN_c[4 + 7 /* padding */] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)draw__14dDlst_NameIN_cFv,
+    (void*)__dt__14dDlst_NameIN_cFv,
+    /* padding */
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+
+/* 803C2B64-803C2B7C 01FC84 000C+0C 2/2 0/0 0/0 .data            __vt__7dName_c */
+SECTION_DATA extern void* __vt__7dName_c[3 + 3 /* padding */] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__7dName_cFv,
+    /* padding */
+    NULL,
+    NULL,
+    NULL,
+};
+
 /* 802505CC-80250CEC 24AF0C 0720+00 1/1 0/0 0/0 .text            screenSet__7dName_cFv */
+// matches with literals
 #ifdef NONMATCHING
 void dName_c::screenSet() {
     nameIn.NameInScr = new J2DScreen();
+    JUT_ASSERT(nameIn.NameInScr != 0);
+
     archive = dComIfGp_getNameResArchive();
     nameIn.NameInScr->setPriority("zelda_player_name.blo", 0x100000, archive);
     dPaneClass_showNullPane(nameIn.NameInScr);
     nameIn.field_0x10 = nameIn.NameInScr->search('name_n');
 
-    void* bpk = JKRFileLoader::getGlbResource("zelda_player_name.bpk", archive);
+    void* bpk = JKRGetNameResource("zelda_player_name.bpk", archive);
+    JUT_ASSERT(bpk != 0);
     mCursorColorKey = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(bpk);
     mCursorColorKey->searchUpdateMaterialID(nameIn.NameInScr);
 
-    void* btk = JKRFileLoader::getGlbResource("zelda_player_name.btk", archive);
+    void* btk = JKRGetNameResource("zelda_player_name.btk", archive);
+    JUT_ASSERT(btk != 0);
     mCursorTexKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     mCursorTexKey->searchUpdateMaterialID(nameIn.NameInScr);
 
@@ -1286,7 +1290,7 @@ void dName_c::screenSet() {
             fopMsgM_messageGet(buf, l_menu_msg[i]);
 
             for (int j = 0; j < 3; j++) {
-                menuPane[j] = (J2DTextBox*)nameIn.NameInScr->search(l_menu_tag[j]);
+                menuPane[j] = (J2DTextBox*)nameIn.NameInScr->search(l_menu_tag[i][j]);
 
                 if (j == 0) {
                     mMenuText[i] = menuPane[j];
@@ -1302,7 +1306,7 @@ void dName_c::screenSet() {
     mMenuIcon[1]->hide();
     mMojiPane = nameIn.NameInScr->search('moji_n');
 
-    for (int i = 0; i < 65; i++) {
+    for (u32 i = 0; i < 65; i++) {
         mMojiIcon[i] = new CPaneMgr(nameIn.NameInScr, l_tagName[i], 2, NULL);
         ((J2DTextBox*)mMojiIcon[i]->getPanePtr())->setFont(nameIn.font);
         ((J2DTextBox*)mMojiIcon[i]->getPanePtr())->setString(72, "");
@@ -1323,7 +1327,9 @@ void dName_c::screenSet() {
     mCharRow = 0;
 
     mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
+    JUT_ASSERT(mSelIcon != 0);
     mSelIcon->setParam(0.82f, 0.77f, 0.05f, 0.4f, 0.4f);
+
     Vec pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);
     mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(), true);
     mSelIcon->setAlphaRate(0.0f);
@@ -1382,14 +1388,16 @@ void dName_c::NameStrSet() {
             for (int j = 0; j < 65; j++) {
                 if (mChrInfo[i].mCharacter == *(u16*)l_mojiHira[j] ||
                     mChrInfo[i].mCharacter == *(u16*)l_mojiHira2[j] ||
-                    mChrInfo[i].mCharacter == *(u16*)l_mojiHira3[j]) {
+                    mChrInfo[i].mCharacter == *(u16*)l_mojiHira3[j])
+                {
                     mChrInfo[i].mColumn = j / 5;
                     mChrInfo[i].mRow = j % 5;
                     mChrInfo[i].mMojiSet = MOJI_HIRA;
                     break;
                 } else if (mChrInfo[i].mCharacter == *(u16*)l_mojikata[j] ||
                            mChrInfo[i].mCharacter == *(u16*)l_mojikata2[j] ||
-                           mChrInfo[i].mCharacter == *(u16*)l_mojikata3[j]) {
+                           mChrInfo[i].mCharacter == *(u16*)l_mojikata3[j])
+                {
                     mChrInfo[i].mColumn = j / 5;
                     mChrInfo[i].mRow = j % 5;
                     mChrInfo[i].mMojiSet = MOJI_KATA;
@@ -1442,6 +1450,23 @@ s32 dName_c::getMenuPosIdx(u8 selPos) {
 }
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */
+// matches with literals / vtable data
+#ifdef NONMATCHING
+void dDlst_NameIN_c::draw() {
+    if (field_0xc != NULL) {
+        Mtx m;
+        MtxP global_mtx = (MtxP)&field_0xc->getGlbMtx()[0][0];  // fake match?
+
+        MTXScale(m, (field_0xc->getWidth() / field_0x10->getWidth()),
+                 (field_0xc->getHeight() / field_0x10->getHeight()), 1.0f);
+        MTXConcat(global_mtx, m, global_mtx);
+        field_0x10->setMtx(global_mtx);
+    }
+
+    J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
+    NameInScr->draw(0.0f, 0.0f, graf_ctx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1451,6 +1476,7 @@ extern "C" asm void draw__14dDlst_NameIN_cFv() {
 #include "asm/d/d_name/draw__14dDlst_NameIN_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8025115C-802511A4 24BA9C 0048+00 1/0 0/0 0/0 .text            __dt__14dDlst_NameIN_cFv */
 dDlst_NameIN_c::~dDlst_NameIN_c() {}

@@ -7,6 +7,7 @@
 #include "global.h"
 
 namespace JStudio {
+struct TObject;
 namespace stb {
 
 class TControl;
@@ -43,7 +44,7 @@ public:
 
     /* 80288B78 */ void setFlag_operation(u8, int);
     /* 80288BD0 */ void reset(void const*);
-    /* 80288BE8 */ int forward(u32);
+    /* 80288BE8 */ u8 forward(u32);
     /* 80288E18 */ virtual void do_begin();
     /* 80288E1C */ virtual void do_end();
     /* 80288E20 */ virtual void do_paragraph(u32, void const*, u32);
@@ -110,7 +111,7 @@ public:
     TFactory() {}
 
     /* 802895B4 */ virtual ~TFactory();
-    /* 802895FC */ virtual TObject* create(data::TParse_TBlock_object const&);
+    /* 802895FC */ virtual JStudio::TObject* create(data::TParse_TBlock_object const&);
     /* 80289604 */ virtual void destroy(TObject*);
 };
 
@@ -138,6 +139,7 @@ public:
     void resetStatus_() { setStatus_(0); }
     bool isSuspended() const { return _54 > 0; }
     TFactory* getFactory() const { return pFactory; }
+    void setFactory(TFactory* factory) { pFactory = factory; }
     TObject_control& referObject_control() { return mObject_control; }
     int getSuspend() const { return _54; }
     void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
@@ -146,7 +148,7 @@ private:
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
     /* 0x0C */ TFactory* pFactory;
-    /* 0x10 */ JGadget::TLinkList<TObject, 12> mObjectContainer;
+    /* 0x10 */ JGadget::TLinkList<TObject, -12> mObjectContainer;
     /* 0x1C */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
     /* 0x54 */ s32 _54;

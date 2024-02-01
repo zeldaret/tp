@@ -20,7 +20,7 @@ u8* JAUSeqDataBlocks::getSeqData(JAISoundID param_0) {
     if ((u32)param_0 == 0xffffffff) {
         return NULL;
     }
-    for (JSULink<JAUSeqDataBlock>* link = field_0x0.getFirst(); link != NULL;
+    for (JSULink<JAUSeqDataBlock>* link = getFirst(); link != NULL;
             link = link->getNext())
     {
         if ((u32)link->getObject()->field_0x10 == (u32)param_0) {
@@ -34,7 +34,7 @@ u8* JAUSeqDataBlocks::getSeqData(JAISoundID param_0) {
 JSULink<JAUSeqDataBlock>* JAUSeqDataBlocks::seekFreeBlock(u32 size) {
     u32 currentBlockSize = 0xffffffff;
     JSULink<JAUSeqDataBlock>* rv = NULL;
-    for (JSULink<JAUSeqDataBlock>* link = field_0x0.getFirst(); link != NULL; link = link->getNext())
+    for (JSULink<JAUSeqDataBlock>* link = getFirst(); link != NULL; link = link->getNext())
     {
         if (link->getObject()->field_0x10.isAnonymous()) {
             u32 blockSize = link->getObject()->field_0x14.size;
@@ -53,20 +53,20 @@ JSULink<JAUSeqDataBlock>* JAUSeqDataBlocks::seekFreeBlock(u32 size) {
 /* 802A69D8-802A69F8 2A1318 0020+00 5/5 0/0 0/0 .text
  * append__16JAUSeqDataBlocksFP26JSULink<15JAUSeqDataBlock>     */
 bool JAUSeqDataBlocks::append(JSULink<JAUSeqDataBlock>* param_0) {
-    return field_0x0.append(param_0);
+    return JSUList::append(param_0);
 }
 
 /* 802A69F8-802A6A18 2A1338 0020+00 4/4 0/0 0/0 .text
  * remove__16JAUSeqDataBlocksFP26JSULink<15JAUSeqDataBlock>     */
 bool JAUSeqDataBlocks::remove(JSULink<JAUSeqDataBlock>* param_0) {
-    return field_0x0.remove(param_0);
+    return JSUList::remove(param_0);
 }
 
 /* 802A6A18-802A6A58 2A1358 0040+00 1/1 0/0 0/0 .text
  * hasFailedBlock__16JAUSeqDataBlocksF10JAISoundID              */
 bool JAUSeqDataBlocks::hasFailedBlock(JAISoundID param_0) {
     JSULink<JAUSeqDataBlock>* rv = NULL;
-    for (JSULink<JAUSeqDataBlock>* link = field_0x0.getFirst(); link != NULL; link = link->getNext())
+    for (JSULink<JAUSeqDataBlock>* link = getFirst(); link != NULL; link = link->getNext())
     {
         if (link->getObject()->field_0x10 == param_0) {
             link->getObject()->field_0x10.setAnonymous();
@@ -93,7 +93,7 @@ void JAUDynamicSeqDataBlocks::setSeqDataArchive(JKRArchive* param_0) {
 s32 JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* param_1,
                                         JAISeqData* param_2, bool param_3) {
     rearrangeLoadingSeqs_();
-    if (field_0x0.hasFailedBlock(param_0)) {
+    if (mFreeBlocks.hasFailedBlock(param_0)) {
         return 0;
     }
 
@@ -101,7 +101,7 @@ s32 JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* para
         return 1;
     }
 
-    u8* seqData = field_0x18.getSeqData(param_0);
+    u8* seqData = mLoadedBlocks.getSeqData(param_0);
     if (seqData != NULL) {
         param_2->field_0x0 = seqData;
         param_2->field_0x4 = 0;
@@ -119,9 +119,9 @@ s32 JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* para
 bool JAUDynamicSeqDataBlocks::appendDynamicSeqDataBlock(JAUSeqDataBlock* seqDataBlock) {
     rearrangeLoadingSeqs_();
     if (seqDataBlock->field_0x10.isAnonymous()) {
-        field_0x0.append(&seqDataBlock->field_0x0);
+        mFreeBlocks.append(&seqDataBlock->field_0x0);
     } else {
-        field_0x18.append(&seqDataBlock->field_0x0);
+        mLoadedBlocks.append(&seqDataBlock->field_0x0);
     }
     return 1;
 }
@@ -150,7 +150,7 @@ bool JAUDynamicSeqDataBlocks::loadDynamicSeq(JAISoundID param_0, bool param_1,
     } 
     u16 resourceId = soundInfo->getBgmSeqResourceID(param_0);
     size_t resSize = JASResArcLoader::getResSize(seqDataArchive_, resourceId);
-    JSULink<JAUSeqDataBlock>* link = field_0x0.seekFreeBlock(resSize);
+    JSULink<JAUSeqDataBlock>* link = mFreeBlocks.seekFreeBlock(resSize);
     if (link == NULL) {
         if (param_1) {
             link = &releaseIdleDynamicSeqDataBlock_(param_2, resSize)->field_0x0;
@@ -161,7 +161,7 @@ bool JAUDynamicSeqDataBlocks::loadDynamicSeq(JAISoundID param_0, bool param_1,
             return false;
         }
     }
-    field_0x0.remove(link);
+    mFreeBlocks.remove(link);
     JAUSeqDataBlock* seqDataBlock = link->getObject();
     seqDataBlock->field_0x10 = param_0;
     link->getObject()->field_0x1c = 1;
@@ -179,17 +179,17 @@ u32 JAUDynamicSeqDataBlocks::releaseIdleDynamicSeqDataBlock(JAISeqDataUser* para
     rearrangeLoadingSeqs_();
     u32 size = 0;
     JSULink<JAUSeqDataBlock>* nextLink;
-    for (JSULink<JAUSeqDataBlock>* link = field_0x18.field_0x0.getFirst(); link != NULL; ) {
+    for (JSULink<JAUSeqDataBlock>* link = mLoadedBlocks.getFirst(); link != NULL; ) {
         nextLink = link->getNext();
         JAUSeqDataBlock* seqDataBlock = link->getObject();
         if (param_0 == NULL || !param_0->isUsingSeqData(seqDataBlock->field_0x14)) {
-            field_0x18.remove(link);
+            mLoadedBlocks.remove(link);
             JAUSeqDataBlock* seqDataBlock = link->getObject();
             link->getObject()->field_0x10.setAnonymous();
             if (size < seqDataBlock->field_0x14.size) {
                 size = seqDataBlock->field_0x14.size;
             }
-            field_0x0.append(link);
+            mFreeBlocks.append(link);
         }
         link = nextLink;
     }
@@ -203,7 +203,7 @@ JAUDynamicSeqDataBlocks::releaseIdleDynamicSeqDataBlock_(JAISeqDataUser* param_0
     rearrangeLoadingSeqs_();
     u32 minSize = 0xffffffff;
     JSULink<JAUSeqDataBlock>* foundBlock = NULL;
-    JSULink<JAUSeqDataBlock>* link = field_0x18.field_0x0.getFirst();
+    JSULink<JAUSeqDataBlock>* link = mLoadedBlocks.getFirst();
     JSULink<JAUSeqDataBlock>* nextLink;
     while (link != NULL) {
         nextLink = link->getNext();
@@ -218,10 +218,10 @@ JAUDynamicSeqDataBlocks::releaseIdleDynamicSeqDataBlock_(JAISeqDataUser* param_0
         link = nextLink;
     }
     if (foundBlock != NULL) {
-        field_0x18.remove(foundBlock);
+        mLoadedBlocks.remove(foundBlock);
         JAUSeqDataBlock* seqDataBlock = foundBlock->getObject();
         seqDataBlock->field_0x10.setAnonymous();
-        field_0x0.append(foundBlock);
+        mFreeBlocks.append(foundBlock);
         return foundBlock->getObject();
     }
     return NULL;
@@ -230,17 +230,17 @@ JAUDynamicSeqDataBlocks::releaseIdleDynamicSeqDataBlock_(JAISeqDataUser* param_0
 /* 802A6EDC-802A6F70 2A181C 0094+00 4/4 0/0 0/0 .text
  * rearrangeLoadingSeqs___23JAUDynamicSeqDataBlocksFv           */
 void JAUDynamicSeqDataBlocks::rearrangeLoadingSeqs_() {
-    JSULink<JAUSeqDataBlock>* link = field_0xc.field_0x0.getFirst();
+    JSULink<JAUSeqDataBlock>* link = field_0xc.getFirst();
     JSULink<JAUSeqDataBlock>* nextLink;
     while (link != NULL) {
         nextLink = link->getNext();
         JAUSeqDataBlock* seqDataBlock = link->getObject();
         if (seqDataBlock->field_0x1c == 0) {
             field_0xc.remove(link);
-            field_0x0.append(link);
+            mFreeBlocks.append(link);
         } else if (seqDataBlock->field_0x1c == 2) {
             field_0xc.remove(link);
-            field_0x18.append(link);
+            mLoadedBlocks.append(link);
         }
         link = nextLink;
     }

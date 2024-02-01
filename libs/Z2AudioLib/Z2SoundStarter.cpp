@@ -13,67 +13,66 @@ Z2SoundStarter::Z2SoundStarter(bool param_0) : JAISoundStarter(param_0), JASGlob
 
 /* 802AABF4-802AAC3C 2A5534 0048+00 1/0 5/0 0/0 .text
  * startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
-int Z2SoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
-                               JGeometry::TVec3<f32> const* param_2) {
-    return Z2SoundStarter::startSound(param_0, param_1, param_2, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,
-                                      0);
+bool Z2SoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* i_handlePtr,
+                                JGeometry::TVec3<f32> const* i_pos) {
+    return Z2SoundStarter::startSound(i_soundID, i_handlePtr, i_pos,
+                                      0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 }
 
 /* 802AAC3C-802AAEDC 2A557C 02A0+00 2/1 2/2 0/0 .text
  * startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-int Z2SoundStarter::startSound(JAISoundID param_1, JAISoundHandle* handlePtr,
-                               JGeometry::TVec3<f32> const* param_3, u32 param_4, f32 param_5,
-                               f32 param_6, f32 param_7, f32 param_8, f32 param_9, u32 param_10) {
+bool Z2SoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* handlePtr,
+                                JGeometry::TVec3<f32> const* i_pos, u32 param_4, f32 i_fxMix,
+                                f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u32 i_count) {
     JUT_ASSERT(45, handlePtr);
     if (param_4 == 6) {
-        switch ((u32)param_1) {
-        case 0x6002b:
-            // TODO: Fix JAISoundID fake match
-            param_1.stackCopyHelper(0x6002e);
+        switch (i_soundID) {
+        case Z2SE_CM_BODYFALL_S:
+            i_soundID = Z2SE_CM_BODYFALL_ASASE_S;
             break;
-        case 0x6002c:
-            param_1.stackCopyHelper(0x6002f);
+        case Z2SE_CM_BODYFALL_M:
+            i_soundID = Z2SE_CM_BODYFALL_ASASE_M;
             break;
-        case 0x6002d:
-            param_1.stackCopyHelper(0x60030);
+        case Z2SE_CM_BODYFALL_L:
+            i_soundID = Z2SE_CM_BODYFALL_ASASE_L;
             break;
         }
     }
-    if (param_1.mId.mBytes.b1 != 0 && param_1.mId.mBytes.b1 != 9) {
+    if (i_soundID.mId.mBytes.b1 != 0 && i_soundID.mId.mBytes.b1 != 9) {
         if (Z2GetSceneMgr()->isInDarkness()) {
-            param_5 = 1.0f;
+            i_fxMix = 1.0f;
         } else {
             f32 ratio = Z2GetStatusMgr()->getCameraInWaterDepthRatio();
             f32 uStack_8c = ratio > 0.0f;
             if (uStack_8c) {
-                param_5 = uStack_8c;
+                i_fxMix = uStack_8c;
             } else {
-                param_5 += 0.5f * Z2GetEnvSeMgr()->getFogDensity();
-                if (param_5 > 1.0f) {
-                    param_5 = 1.0f;
+                i_fxMix += 0.5f * Z2GetEnvSeMgr()->getFogDensity();
+                if (i_fxMix > 1.0f) {
+                    i_fxMix = 1.0f;
                 }
             }
         }
     }
-    int startSoundRes = Z2GetAudioMgr()->startSound(param_1, handlePtr, param_3);
+    bool startSoundRes = Z2GetAudioMgr()->startSound(i_soundID, handlePtr, i_pos);
     if (*handlePtr) {
         if (param_4 != 0) {
             setPortData(handlePtr, 6, param_4, -1);
         }
-        if (param_5 > 0.0f) {
-            (*handlePtr)->getAuxiliary().moveFxMix(param_5, param_10);
+        if (i_fxMix > 0.0f) {
+            (*handlePtr)->getAuxiliary().moveFxMix(i_fxMix, i_count);
         }
-        if (param_6 != 1.0f) {
-            (*handlePtr)->getAuxiliary().movePitch(param_6, param_10);
+        if (i_pitch != 1.0f) {
+            (*handlePtr)->getAuxiliary().movePitch(i_pitch, i_count);
         }
-        if (param_7 != 1.0f) {
-            (*handlePtr)->getAuxiliary().moveVolume(param_7, param_10);
+        if (i_volume != 1.0f) {
+            (*handlePtr)->getAuxiliary().moveVolume(i_volume, i_count);
         }
-        if (param_8 != -1.0f) {
-            (*handlePtr)->getAuxiliary().movePan(param_8, param_10);
+        if (i_pan != -1.0f) {
+            (*handlePtr)->getAuxiliary().movePan(i_pan, i_count);
         }
-        if (param_9 != -1.0f) {
-            (*handlePtr)->getAuxiliary().moveDolby(param_9, param_10);
+        if (i_dolby != -1.0f) {
+            (*handlePtr)->getAuxiliary().moveDolby(i_dolby, i_count);
         }
     }
     return startSoundRes;

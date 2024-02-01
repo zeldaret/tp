@@ -13,10 +13,6 @@
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAUSoundAnimator.h"
 
-inline JAISoundID JAISound::getID() const {
-    return JAISoundID((u32)soundID);
-}
-
 Z2SoundObjBase::Z2SoundObjBase() {
     //! @note initializer list doesn't work since fields were initialized out of
     //! structure layout order, indicating original code didn't use initializer list.
@@ -80,7 +76,7 @@ bool Z2SoundObjBase::stopOK(Z2SoundHandlePool& pSoundHandlePool) {
 
 /* 802BE144-802BE2D4 2B8A84 0190+00 5/3 3/1 0/0 .text
  * startSound__14Z2SoundObjBaseF10JAISoundIDUlSc                */
-JAISoundHandle* Z2SoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
+Z2SoundHandlePool* Z2SoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
     if (!mIsInitialized) {
         return NULL;
     }
@@ -94,7 +90,7 @@ JAISoundHandle* Z2SoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 
         param_2 = field_0x1e;
     }
     f32 local_0 = (f32)param_2 / 127.0f;
-    JAISoundHandle* handle = getHandleSoundID(pSoundId);
+    Z2SoundHandlePool* handle = getHandleSoundID(pSoundId);
     if (handle != NULL) {
         if ((JASGlobalInstance<Z2SoundInfo>::getInstance()->getSwBit(pSoundId) & 0x4000) != 0) {
             handle = NULL;
@@ -117,7 +113,7 @@ JAISoundHandle* Z2SoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 
 
 /* 802BE2D4-802BE4A4 2B8C14 01D0+00 4/2 3/0 0/0 .text
  * startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc           */
-JAISoundHandle* Z2SoundObjBase::startLevelSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
+Z2SoundHandlePool* Z2SoundObjBase::startLevelSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
     if (!mIsInitialized) {
         return NULL;
     }
@@ -128,7 +124,7 @@ JAISoundHandle* Z2SoundObjBase::startLevelSound(JAISoundID pSoundId, u32 param_1
         param_2 = field_0x1e;
     }
     f32 local_0 = (f32)param_2 / 127.0f;
-    JAISoundHandle* handle = getHandleSoundID(pSoundId);
+    Z2SoundHandlePool* handle = getHandleSoundID(pSoundId);
     if (handle != NULL) {
         handle->getSound()->updateLifeTime(1);
         mSoundStarter->setPortData(handle, 6, (u16)param_1, -1);
@@ -154,7 +150,7 @@ JAISoundHandle* Z2SoundObjBase::startLevelSound(JAISoundID pSoundId, u32 param_1
 
 /* 802BE4A4-802BE5A0 2B8DE4 00FC+00 0/0 5/5 21/21 .text
  * startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase     */
-JAISoundHandle* Z2SoundObjBase::startCollisionSE(u32 pId, u32 pUserData, Z2SoundObjBase* pOther) {
+Z2SoundHandlePool* Z2SoundObjBase::startCollisionSE(u32 pId, u32 pUserData, Z2SoundObjBase* pOther) {
     if (pOther != NULL) {
         return pOther->startCollisionSE(pId, pUserData, NULL);
     }
@@ -168,7 +164,7 @@ JAISoundHandle* Z2SoundObjBase::startCollisionSE(u32 pId, u32 pUserData, Z2Sound
             link->getObject()->stop();
         }
     }
-    JAISoundHandle* handle = Z2SoundObjBase::startSound(JAISoundID(pId), pUserData, -1);
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startSound(JAISoundID(pId), pUserData, -1);
     if (handle != NULL && handle->getSound() != NULL) {
         handle->getSound()->setUserData(pUserData);
         if (30 <= pUserData && pUserData <= 52) {
@@ -219,10 +215,10 @@ void Z2DopplerSoundObjBase::framework(u32 param_0, s8 param_1) {
 
 /* 802BE714-802BE7AC 2B9054 0098+00 2/0 0/0 0/0 .text
  * startSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc         */
-JAISoundHandle* Z2DopplerSoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
+Z2SoundHandlePool* Z2DopplerSoundObjBase::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
     JGeometry::TVec3<f32>* pos = mSoundPos;
     mSoundPos = NULL;
-    JAISoundHandle* handle = Z2SoundObjBase::startSound(pSoundId, param_1, param_2);
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startSound(pSoundId, param_1, param_2);
     if (pos != NULL && handle != NULL && handle->getSound() != NULL) {
         if (handle->getSound()->acceptsNewAudible()) {
             handle->getSound()->newAudible(*pos, &field_0x20, 0, NULL);
@@ -234,11 +230,11 @@ JAISoundHandle* Z2DopplerSoundObjBase::startSound(JAISoundID pSoundId, u32 param
 
 /* 802BE7AC-802BE844 2B90EC 0098+00 2/0 0/0 0/0 .text
  * startLevelSound__21Z2DopplerSoundObjBaseF10JAISoundIDUlSc    */
-JAISoundHandle* Z2DopplerSoundObjBase::startLevelSound(JAISoundID pSoundId,
+Z2SoundHandlePool* Z2DopplerSoundObjBase::startLevelSound(JAISoundID pSoundId,
                                                        u32 param_1, s8 param_2) {
     JGeometry::TVec3<f32>* pos = mSoundPos;
     mSoundPos = NULL;
-    JAISoundHandle* handle = Z2SoundObjBase::startLevelSound(pSoundId, param_1, param_2);
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startLevelSound(pSoundId, param_1, param_2);
     if (pos != NULL && handle != NULL && handle->getSound() != NULL) {
         if (handle->getSound()->acceptsNewAudible()) {
             handle->getSound()->newAudible(*pos, &field_0x20, 0, NULL);
@@ -257,8 +253,8 @@ void Z2SoundObjSimple::init(Vec* pSoundPos, u8 pNumHandles) {
 
 /* 802BE8A0-802BE9B0 2B91E0 0110+00 1/0 0/0 0/0 .text
  * startSound__16Z2SoundObjSimpleF10JAISoundIDUlSc              */
-JAISoundHandle* Z2SoundObjSimple::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
-    JAISoundHandle* handle = Z2SoundObjBase::startSound(pSoundId, param_1, param_2);
+Z2SoundHandlePool* Z2SoundObjSimple::startSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startSound(pSoundId, param_1, param_2);
     if (pSoundId == 0x200c7 && handle != NULL && handle->getSound() != NULL) {
         f32 local_0 = Z2Calc::getParamByExp((f32)param_1, 0.0f, 127.0f, 0.2f, 0.4f, 1.0f,
                                             Z2Calc::CURVE_SIGN_1);
@@ -272,8 +268,8 @@ JAISoundHandle* Z2SoundObjSimple::startSound(JAISoundID pSoundId, u32 param_1, s
 
 /* 802BE9B0-802BEB38 2B92F0 0188+00 1/0 0/0 0/0 .text
  * startLevelSound__16Z2SoundObjSimpleF10JAISoundIDUlSc         */
-JAISoundHandle* Z2SoundObjSimple::startLevelSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
-    JAISoundHandle* handle = Z2SoundObjBase::startLevelSound(pSoundId, param_1, param_2);
+Z2SoundHandlePool* Z2SoundObjSimple::startLevelSound(JAISoundID pSoundId, u32 param_1, s8 param_2) {
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startLevelSound(pSoundId, param_1, param_2);
     if (handle != NULL && handle->getSound() != NULL) {
         f32 local_0 = 1.0f;
         f32 local_1 = 1.0f;

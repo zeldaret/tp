@@ -68,6 +68,7 @@ public:
     /* 802848D4 */ TObject* getObject_index(u32);
 
     TFactory* getFactory() const { return pFactory; }
+    void setFactory(TFactory* factory) { pFactory = factory; }
 
 private:
     /* 0x4 */ TFactory* pFactory;

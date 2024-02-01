@@ -620,7 +620,7 @@ asm J3DAnmVtxColor::J3DAnmVtxColor() {
 /* 8032A30C-8032A368 324C4C 005C+00 0/0 1/1 0/0 .text            __ct__18J3DAnmVtxColorFullFv */
 J3DAnmVtxColorFull::J3DAnmVtxColorFull() {
     for (int i = 0; i < 2; i++) {
-        field_0x18[i] = 0;
+        mpTable[i] = 0;
     }
 }
 
@@ -638,7 +638,7 @@ asm void J3DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* param_2
 /* 8032A4E0-8032A53C 324E20 005C+00 0/0 1/1 0/0 .text            __ct__17J3DAnmVtxColorKeyFv */
 J3DAnmVtxColorKey::J3DAnmVtxColorKey() {
     for (int i = 0; i < 2; i++) {
-        field_0x18[i] = 0;
+        mpTable[i] = 0;
     }
 }
 
@@ -685,11 +685,11 @@ asm void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* param_0) {
 
 /* 8032A93C-8032A990 32527C 0054+00 0/0 1/1 0/0 .text            __ct__15J3DAnmColorFullFv */
 J3DAnmColorFull::J3DAnmColorFull() {
-    field_0x2c = 0;
-    field_0x30 = 0;
-    field_0x34 = 0;
-    field_0x38 = 0;
-    field_0x3c = 0;
+    mColorR = 0;
+    mColorG = 0;
+    mColorB = 0;
+    mColorA = 0;
+    mAnmTable = 0;
 }
 
 /* 8032A990-8032AB00 3252D0 0170+00 1/0 0/0 0/0 .text getColor__15J3DAnmColorFullCFUsP8_GXColor */
@@ -786,11 +786,11 @@ asm void J3DAnmTexPattern::getTexNo(u16 param_0, u16* param_1) const {
  * searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable */
 void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
     for (u16 i = 0; i < mUpdateMaterialNum; i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(field_0x1c.getName(i));
+        s32 r3 = param_0->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
         if (r3 != -1) {
-            field_0x18[i] = r3;
+            mUpdateMaterialID[i] = r3;
         } else {
-            field_0x18[i] = -1;
+            mUpdateMaterialID[i] = -1;
         }
     }
 }
@@ -804,8 +804,8 @@ void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* param_0) {
 /* 8032B0C0-8032B1D4 325A00 0114+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable */
 void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
-    for (u16 i = 0; i < u16(field_0x14 / 3); i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(field_0x30.getName(i));
+    for (u16 i = 0; i < u16(mTrackNum / 3); i++) {
+        s32 r3 = param_0->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
         if (r3 != -1) {
             mUpdateMaterialID[i] = r3;
         } else {
@@ -813,11 +813,11 @@ void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
         }
     }
     for (u16 i = 0; i < u16(field_0x4a / 3); i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(field_0x64.getName(i));
+        s32 r3 = param_0->getMaterialName()->getIndex(mPostUpdateMaterialName.getName(i));
         if (r3 != -1) {
-            field_0x60[i] = r3;
+            mPostUpdateMaterialID[i] = r3;
         } else {
-            field_0x60[i] = -1;
+            mPostUpdateMaterialID[i] = -1;
         }
     }
 }

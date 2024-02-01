@@ -129,33 +129,25 @@ u8 struct_80450862 = 0x3C;
 u8 struct_80450863 = 0x1E;
 
 /* 80450864-80450868 -00001 0004+00 0/0 2/2 0/0 .sdata           None */
-extern u8 struct_80450864[4];
-u8 struct_80450864[4] = {
-    /* 80450864 0001+00 data_80450864 None */
-    0x14,
-    /* 80450865 0001+00 data_80450865 None */
-    0x1E,
-    /* 80450866 0001+00 data_80450866 None */
-    0x0A,
-    /* 80450867 0001+00 data_80450867 None */
-    0x1E,
-};
+#pragma push
+#pragma force_active on
+u8 struct_80450864 = 0x14;
+u8 struct_80450865 = 0x1E;
+u8 struct_80450866 = 0x0A;
+u8 struct_80450867 = 0x1E;
+#pragma pop
 
 /* 80450868-8045086C -00001 0004+00 0/0 5/5 0/0 .sdata           None */
-extern u8 struct_80450868[4];
-u8 struct_80450868[4] = {
-    /* 80450868 0001+00 data_80450868 None */
-    0x01,
-    /* 80450869 0001+00 data_80450869 None */
-    0x0A,
-    /* 8045086A 0001+00 data_8045086A None */
-    0x1E,
-    /* 8045086B 0001+00 data_8045086B None */
-    0x14,
-};
+#pragma push
+#pragma force_active on
+u8 struct_80450868 = 0x01;
+u8 struct_80450869 = 0x0A;
+u8 struct_8045086A = 0x1E;
+u8 struct_8045086B = 0x14;
+#pragma pop
 
 /* 8045086C-80450870 0002EC 0004+00 0/0 3/3 0/0 .sdata           None */
-extern u32 data_8045086C = 0x01000000;
+u8 data_8045086C = 1;
 
 /* 80451338-8045133C 000838 0004+00 0/0 1/1 0/0 .sbss            MIN_DISTANCE_VOLUME__7Z2Param */
 f32 Z2Param::MIN_DISTANCE_VOLUME;
@@ -168,8 +160,13 @@ f32 Z2Param::ENEMY_LASTHIT_MUTE_VOLUME;
 /* 80451340 0001+00 data_80451340 None */
 /* 80451341 0001+00 data_80451341 None */
 /* 80451342 0006+00 data_80451342 None */
-extern u8 struct_80451340[8];
-u8 struct_80451340[8];
+#pragma push
+#pragma force_active on
+u8 struct_80451340;
+u8 struct_80451341;
+u8 struct_80451342;
+u8 pad_80451344[4];
+#pragma pop
 
 /* 80451348-80451350 000848 0008+00 0/0 4/4 0/0 .sbss            None */
 extern u8 data_80451348[8];

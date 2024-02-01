@@ -1,5 +1,0 @@
-#ifndef MSG_SCRN_D_MSG_SCRN_LIGHT_H
-#define MSG_SCRN_D_MSG_SCRN_LIGHT_H
-
-
-#endif /* MSG_SCRN_D_MSG_SCRN_LIGHT_H */

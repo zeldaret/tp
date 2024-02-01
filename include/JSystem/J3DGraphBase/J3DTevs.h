@@ -126,6 +126,8 @@ struct J3DTevSwapModeInfo {
 }; // Size: 0x4
 
 struct J3DNBTScale;
+struct J3DTexCoord;
 void loadNBTScale(J3DNBTScale& param_0);
+void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1);
 
 #endif /* J3DTEVS_H */

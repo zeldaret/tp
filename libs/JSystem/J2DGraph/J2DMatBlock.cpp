@@ -406,10 +406,6 @@ void J2DTexGenBlock::initialize() {
     }
 }
 
-static inline void GXSetTexCoordGen(GXTexCoordID dst, GXTexGenType type, GXTexGenSrc src, u32 mtx) {
-    GXSetTexCoordGen2(dst, type, src, mtx, GX_FALSE, GX_PTIDENTITY);
-}
-
 /* 802EB570-802EB620 2E5EB0 00B0+00 0/0 1/1 0/0 .text            setGX__14J2DTexGenBlockFv */
 void J2DTexGenBlock::setGX() {
     GXSetNumTexGens(mTexGenNum);

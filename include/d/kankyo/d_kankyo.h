@@ -11,7 +11,6 @@ class JPABaseEmitter;
 class cBgS_PolyInfo;
 class color_RGB_class;
 
-void dKankyo_DayProc();
 void dKy_set_nexttime(f32);
 void dKy_itudemo_se();
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo);

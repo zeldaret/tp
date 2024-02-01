@@ -1,46 +1,22 @@
-//
-// Translation Unit: d/s/d_s_logo
-//
+/**
+ * d_s_logo.cpp
+ * Game Boot Logo's Display
+ */
 
 #include "d/s/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "c/c_dylink.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_item.h"
 #include "d/d_procname.h"
 #include "d/map/d_map_path_dmap.h"
+#include "dolphin/vi.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
-#include "dolphin/os/OSRtc.h"
-#include "dolphin/vi.h"
 
-//
-// Types:
-//
-
-class dEnemyItem_c {
-public:
-    static void setItemData(u8* data) { mData = data; }
-
-    static u8* mData;
-};
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -75,7 +51,6 @@ void dScnLogo_c::preLoad_dyl_remove() {
     delete[] m_preLoad_dylPhase;
 }
 
-/* ############################################################################################## */
 /* 80399FE0-80399FFC 026640 001C+00 1/1 0/0 0/0 .rodata          l_preLoad_dylKeyTbl */
 static s16 const l_preLoad_dylKeyTbl[14] = {
     0x02DC, 0x02CE, 0x0221, 0x00F2, 0x021B, 0x02F4, 0x0139,
@@ -84,13 +59,13 @@ static s16 const l_preLoad_dylKeyTbl[14] = {
 
 /* 8025611C-80256198 250A5C 007C+00 2/2 0/0 0/0 .text            preLoad_dyl__10dScnLogo_cFv */
 bool dScnLogo_c::preLoad_dyl() {
-    bool ret = 1;
+    bool ret = true;
 
     for (int i = 0; i < 14; i++) {
-        int link = cDylPhs::Link(&m_preLoad_dylPhase[i], l_preLoad_dylKeyTbl[i]);
+        int phase_state = cDylPhs::Link(&m_preLoad_dylPhase[i], l_preLoad_dylKeyTbl[i]);
 
-        if (link != 4) {
-            ret = 0;
+        if (phase_state != cPhs_COMPLEATE_e) {
+            ret = false;
         }
     }
 
@@ -100,7 +75,7 @@ bool dScnLogo_c::preLoad_dyl() {
 /* 80256198-80256210 250AD8 0078+00 1/1 0/0 0/0 .text            checkProgSelect__10dScnLogo_cFv */
 void dScnLogo_c::checkProgSelect() {
     if (mDoRst::getProgSeqFlag() == 0 && VIGetDTVStatus() != 0) {
-        if (isProgressiveMode() || mDoCPd_c::getHoldB(0)) {
+        if (isProgressiveMode() || mDoCPd_c::getHoldB(PAD_1)) {
             field_0x20a = 1;
             field_0x209 = 0;
         }
@@ -138,7 +113,7 @@ void dScnLogo_c::progSelDraw() {
 
     if (field_0x20b == 0) {
         if (field_0x209 == 0) {
-            if (mDoCPd_c::getHoldRight(0) || mDoCPd_c::getStickX(0) > 0.5f) {
+            if (mDoCPd_c::getHoldRight(PAD_1) || mDoCPd_c::getStickX(PAD_1) > 0.5f) {
                 mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0);
                 field_0x209 = 1;
                 field_0x20e = 30;
@@ -146,7 +121,7 @@ void dScnLogo_c::progSelDraw() {
                 field_0x212 = 0;
             }
         } else {
-            if (mDoCPd_c::getHoldLeft(0) || mDoCPd_c::getStickX(0) < -0.5f) {
+            if (mDoCPd_c::getHoldLeft(PAD_1) || mDoCPd_c::getStickX(PAD_1) < -0.5f) {
                 mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0);
                 field_0x209 = 0;
                 field_0x20e = 30;
@@ -326,10 +301,11 @@ void dScnLogo_c::warningDispDraw() {
         field_0x210--;
     }
 
-    if (mTimer == 0 ||
-        mDoCPd_c::getTrig(PAD_1) & (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
-                                CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
-                                CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP)) {
+    if (mTimer == 0 || mDoCPd_c::getTrig(PAD_1) &
+                           (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
+                            CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
+                            CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP))
+    {
         mExecCommand = EXEC_WARNING_OUT;
         mTimer = 30;
         mDoGph_gInf_c::startFadeOut(30);
@@ -394,10 +370,9 @@ void dScnLogo_c::dolbyOutDraw() {
 
 /* 80257058-80257070 251998 0018+00 1/0 0/0 0/0 .text            dolbyOutDraw2__10dScnLogo_cFv */
 void dScnLogo_c::dolbyOutDraw2() {
-    if (mTimer != 0) {
-        return;
+    if (mTimer == 0) {
+        mExecCommand = EXEC_DVD_WAIT;
     }
-    mExecCommand = EXEC_DVD_WAIT;
 }
 
 /* 80257070-80257284 2519B0 0214+00 1/0 0/0 0/0 .text            dvdWaitDraw__10dScnLogo_cFv */
@@ -412,7 +387,8 @@ void dScnLogo_c::dvdWaitDraw() {
             mpMsgResCommand[3]->sync() && mpMsgResCommand[4]->sync() &&
             mpMsgResCommand[5]->sync() && mpMsgResCommand[6]->sync() && mpFontResCommand->sync() &&
             mpMain2DCommand->sync() && mpRubyResCommand->sync() && mParticleCommand->sync() &&
-            mItemTableCommand->sync() && mEnemyItemCommand->sync() && preLoad_dyl()) {
+            mItemTableCommand->sync() && mEnemyItemCommand->sync() && preLoad_dyl())
+        {
             mDoRst::setLogoScnFlag(0);
             mDoRst::setProgChgFlag(0);
             mExecCommand = EXEC_SCENE_CHANGE;
@@ -515,53 +491,56 @@ dScnLogo_c::~dScnLogo_c() {
 }
 
 /* 80257910-802579BC 252250 00AC+00 1/0 0/0 0/0 .text            phase_0__FP10dScnLogo_c */
-static int phase_0(dScnLogo_c* logo) {
+static int phase_0(dScnLogo_c* i_this) {
     mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
     dComIfGp_particle_create();
 
-    logo->buffer = mDoExt_getGameHeap()->alloc(0x340000, -0x10);
-    logo->field_0x1d0 = JKRExpHeap::create(logo->buffer, 0x340000, NULL, false);
-    logo->field_0x1d4 = JKRExpHeap::create(0x130000, logo->field_0x1d0, false);
+    i_this->buffer = mDoExt_getGameHeap()->alloc(0x340000, -0x10);
+    i_this->field_0x1d0 = JKRExpHeap::create(i_this->buffer, 0x340000, NULL, false);
+    i_this->field_0x1d4 = JKRExpHeap::create(0x130000, i_this->field_0x1d0, false);
 
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 802579BC-80257A70 2522FC 00B4+00 1/0 0/0 0/0 .text            phase_1__FP10dScnLogo_c */
-static int phase_1(dScnLogo_c* logo) {
+static int phase_1(dScnLogo_c* i_this) {
     if (!cDyl_InitAsyncIsDone()) {
-        return 0;
+        return cPhs_INIT_e;
     }
 
-    if (!mDoAud_zelAudio_c::isInitFlag() ||
-        Z2AudioMgr::getInterface()->checkFirstWaves()) {
-        return 0;
+    if (!mDoAud_zelAudio_c::isInitFlag() || Z2AudioMgr::getInterface()->checkFirstWaves()) {
+        return cPhs_INIT_e;
     }
 
-    dComIfG_setObjectRes("LogoUs", (u8)0, logo->field_0x1d0);
+    dComIfG_setObjectRes("LogoUs", (u8)0, i_this->field_0x1d0);
     mDoRst::setLogoScnFlag(1);
     archiveHeap->dump_sort();
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 80257A70-80257AB4 2523B0 0044+00 1/0 0/0 0/0 .text            phase_2__FP10dScnLogo_c */
-static int phase_2(dScnLogo_c* param_0) {
-    return dComIfG_syncAllObjectRes() ? 0 : 4;
+static int phase_2(dScnLogo_c* i_this) {
+    if (dComIfG_syncAllObjectRes()) {
+        return cPhs_INIT_e;
+    } else {
+        return cPhs_COMPLEATE_e;
+    }
 }
 
 /* 80257AB4-80257AE0 2523F4 002C+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classP10dScnLogo_c     */
-static int resLoad(request_of_phase_process_class* i_phase, dScnLogo_c* param_1) {
+static int resLoad(request_of_phase_process_class* i_phase, dScnLogo_c* i_this) {
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_0, (int (*)(void*))phase_1,
                                         (int (*)(void*))phase_2};
 
-    return dComLbG_PhaseHandler(i_phase, l_method, param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, i_this);
 }
 
 /* 80257AE0-80257C64 252420 0184+00 1/1 0/0 0/0 .text            create__10dScnLogo_cFv */
 int dScnLogo_c::create() {
-    int stat = resLoad(&field_0x1c4, this);
-    if (stat != 4) {
-        return stat;
+    int phase_state = resLoad(&field_0x1c4, this);
+    if (phase_state != cPhs_COMPLEATE_e) {
+        return phase_state;
     }
 
     mpHeap = mDoExt_setCurrentHeap(field_0x1d4);
@@ -596,7 +575,7 @@ int dScnLogo_c::create() {
     mDoRst::offReset();
     mDoRst::offResetPrepare();
 
-    return stat;
+    return phase_state;
 }
 
 /* 80257C64-80257FEC 2525A4 0388+00 1/1 0/0 0/0 .text            logoInitGC__10dScnLogo_cFv */
@@ -693,33 +672,33 @@ void dScnLogo_c::dvdDataLoad() {
 }
 
 /* 80258420-80258444 252D60 0024+00 1/0 0/0 0/0 .text            dScnLogo_Create__FP11scene_class */
-static int dScnLogo_Create(scene_class* scn) {
-    return (new (scn) dScnLogo_c())->create();
+static int dScnLogo_Create(scene_class* i_this) {
+    return (new (i_this) dScnLogo_c())->create();
 }
 
 /* 80258444-80258484 252D84 0040+00 1/0 0/0 0/0 .text            dScnLogo_Execute__FP10dScnLogo_c */
-static int dScnLogo_Execute(dScnLogo_c* logo) {
+static int dScnLogo_Execute(dScnLogo_c* i_this) {
     if (mDoRst::isReset()) {
-        fopScnM_ChangeReq(logo, 9, 0, 5);
+        fopScnM_ChangeReq(i_this, PROC_LOGO_SCENE, 0, 5);
     }
     return 1;
 }
 
 /* 80258484-802584A8 252DC4 0024+00 1/0 0/0 0/0 .text            dScnLogo_Draw__FP10dScnLogo_c */
-static int dScnLogo_Draw(dScnLogo_c* logo) {
-    logo->draw();
+static int dScnLogo_Draw(dScnLogo_c* i_this) {
+    i_this->draw();
     return 1;
 }
 
 /* 802584A8-802584D0 252DE8 0028+00 1/0 0/0 0/0 .text            dScnLogo_Delete__FP10dScnLogo_c */
-static int dScnLogo_Delete(dScnLogo_c* logo) {
-    logo->~dScnLogo_c();
+static int dScnLogo_Delete(dScnLogo_c* i_this) {
+    i_this->~dScnLogo_c();
     return 1;
 }
 
 /* 802584D0-802584D8 252E10 0008+00 1/0 0/0 0/0 .text            dScnLogo_IsDelete__FP10dScnLogo_c
  */
-static int dScnLogo_IsDelete(dScnLogo_c* logo) {
+static int dScnLogo_IsDelete(dScnLogo_c* i_this) {
     return 1;
 }
 
@@ -751,8 +730,10 @@ dLog_HIO_c::~dLog_HIO_c() {}
 
 /* 803C2FD0-803C2FE4 -00001 0014+00 1/0 0/0 0/0 .data            l_dScnLogo_Method */
 static dScnLogo_Method l_dScnLogo_Method[5] = {
-    (dScnLogo_Method) dScnLogo_Create, dScnLogo_Delete,
-    dScnLogo_Execute, dScnLogo_IsDelete,
+    (dScnLogo_Method)dScnLogo_Create,
+    dScnLogo_Delete,
+    dScnLogo_Execute,
+    dScnLogo_IsDelete,
     dScnLogo_Draw,
 };
 
@@ -770,5 +751,3 @@ extern scene_process_profile_definition g_profile_LOGO_SCENE = {
     (process_method_class*)&l_dScnLogo_Method,
     NULL,
 };
-
-/* 80399FFC-80399FFC 02665C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

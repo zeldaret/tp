@@ -1,6 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
+#include "JSystem/JKernel/JKRHeap.h"
 #include "d/kankyo/d_kankyo.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
@@ -40,6 +41,7 @@ enum fopAc_Group_e {
     /* 2 */ fopAc_ENEMY_e,
     /* 3 */ fopAc_ENV_e,  // is this correct?
     /* 4 */ fopAc_NPC_e,
+    /* 5 */ fopAc_UNK_GROUP_5_e,
 };
 
 enum fopAc_Condition_e {
@@ -261,7 +263,7 @@ public:
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
     void setThrowModeThrowLeft() { mThrowMode |= 8; }
-    
+
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;
     /* 0x580 */ J3DModel* mBallModel;

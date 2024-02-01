@@ -40,10 +40,6 @@ u8 data_804341C4[16 + 4 /* padding */];
 
 // inline JAISoundID::JAISoundID(u32 pId) : mId(pId) {}
 
-inline JAISoundID JAISound::getID() const {
-    return JAISoundID((u32)soundID);
-}
-
 Z2SoundHandles::Z2SoundHandles() {
     mNumHandles = 0;
 }
@@ -88,10 +84,10 @@ extern "C" asm void func_802AB200(void* _this) {
 }
 #pragma pop
 
-JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
+Z2SoundHandlePool* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
-        JAISoundHandle* handle = link->getObject();
+        Z2SoundHandlePool* handle = link->getObject();
         if (handle->isSoundAttached()) {
             if ((*handle)->getID() == pSoundId) {
                 return handle;
@@ -102,10 +98,10 @@ JAISoundHandle* Z2SoundHandles::getHandleSoundID(JAISoundID pSoundId) {
     return NULL;
 }
 
-JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
+Z2SoundHandlePool* Z2SoundHandles::getHandleUserData(u32 pUserData) {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
-        JAISoundHandle* handle = link->getObject();
+        Z2SoundHandlePool* handle = link->getObject();
         if (handle->isSoundAttached()) {
             if ((*handle)->getUserData() == pUserData) {
                 return handle;
@@ -119,10 +115,10 @@ JAISoundHandle* Z2SoundHandles::getHandleUserData(u32 pUserData) {
 /* 802AB2D8-802AB3D0 2A5C18 00F8+00 0/0 3/3 0/0 .text            getFreeHandle__14Z2SoundHandlesFv
  */
 #ifdef NONMATCHING
-JAISoundHandle* Z2SoundHandles::getFreeHandle() {
+Z2SoundHandlePool* Z2SoundHandles::getFreeHandle() {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
-        JAISoundHandle* handle = link->getObject();
+        Z2SoundHandlePool* handle = link->getObject();
         if (!handle->isSoundAttached()) {
             return handle;
         }
@@ -143,7 +139,7 @@ JAISoundHandle* Z2SoundHandles::getFreeHandle() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JAISoundHandle* Z2SoundHandles::getFreeHandle() {
+asm Z2SoundHandlePool* Z2SoundHandles::getFreeHandle() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/getFreeHandle__14Z2SoundHandlesFv.s"
 }
@@ -152,11 +148,11 @@ asm JAISoundHandle* Z2SoundHandles::getFreeHandle() {
 
 /* 802AB3D0-802AB4A0 2A5D10 00D0+00 0/0 2/2 0/0 .text
  * getLowPrioSound__14Z2SoundHandlesF10JAISoundID               */
-JAISoundHandle* Z2SoundHandles::getLowPrioSound(JAISoundID pSoundId) {
+Z2SoundHandlePool* Z2SoundHandles::getLowPrioSound(JAISoundID pSoundId) {
     JAISoundInfo* sound_info = JASGlobalInstance<JAISoundInfo>::getInstance();
-    JAISoundHandle* handle;
+    Z2SoundHandlePool* handle;
     u32 low_prio = 0xffff;
-    JAISoundHandle* low_prio_handle = NULL;
+    Z2SoundHandlePool* low_prio_handle = NULL;
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
         handle = link->getObject();

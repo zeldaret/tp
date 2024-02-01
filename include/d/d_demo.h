@@ -246,7 +246,7 @@ public:
     jstudio_tCreateObject_message() {}
 
     virtual ~jstudio_tCreateObject_message();
-    virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&);
+    virtual bool create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&);
 };
 
 class jstudio_tAdaptor_message : public JStudio::TAdaptor_message {
@@ -302,9 +302,5 @@ public:
     static u16 m_branchType;
     static const u8* m_branchData;
 };
-
-inline Z2SoundStarter* Z2GetSoundStarter() {
-    return JASGlobalInstance<Z2SoundStarter>::getInstance();
-}
 
 #endif /* D_D_DEMO_H */

@@ -45,8 +45,9 @@ public:
     static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
 
     // TODO: fix type
-    static u8 sDvdAramAsyncList[12];
+    static JSUList<JKRADCommand> sDvdAramAsyncList;
     static u32 sSZSBufferSize;
+    static bool errorRetry;
 };
 
 inline JKRAramBlock *JKRDvdToAram(s32 entrynum, u32 p2, JKRExpandSwitch expSwitch, u32 p4, u32 p5, u32 *p6) {

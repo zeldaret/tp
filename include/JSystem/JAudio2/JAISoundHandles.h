@@ -35,6 +35,8 @@ public:
         numHandles_ = param_1;
     };
 
+    JAISoundHandle& operator[](int n) { return mSoundHandle[n]; }
+
     JAISoundHandle* getHandleSoundID(JAISoundID);
     JAISoundHandle* getFreeHandle();
 

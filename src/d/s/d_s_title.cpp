@@ -1,6 +1,6 @@
 /**
  * d_s_title.cpp
- * dolzel2 - Scene Title
+ * Title Screen Scene
  */
 
 #include "d/s/d_s_title.h"
@@ -8,7 +8,6 @@
 #include "f_pc/f_pc_leaf.h"
 #include "d/d_procname.h"
 
-/* ############################################################################################## */
 /* 803C32B0-803C32D8 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_WARNING_SCENE */
 extern scene_process_profile_definition g_profile_WARNING_SCENE = {
     fpcLy_ROOT_e,           // mLayerID     

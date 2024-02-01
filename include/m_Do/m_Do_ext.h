@@ -28,6 +28,7 @@ public:
     void setPlaySpeed(f32 speed) { mFrameCtrl.setRate(speed); }
     f32 getFrame() { return mFrameCtrl.getFrame(); }
     f32 getEndFrame() { return mFrameCtrl.getEnd(); }
+    void setEndFrame(f32 frame) { mFrameCtrl.setEnd(frame); }
     void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
     void setPlayMode(int i_mode) { mFrameCtrl.setAttribute(i_mode); }
     void setLoopFrame(f32 i_frame) { mFrameCtrl.setLoop(i_frame); }
@@ -463,7 +464,7 @@ public:
     /* 800126BC */ mDoExt_3Dline_c();
 
     /* 0x00 */ cXyz* field_0x0;
-    /* 0x04 */ void* field_0x4;
+    /* 0x04 */ f32* field_0x4;
     /* 0x08 */ cXyz* field_0x8;
     /* 0x0C */ cXyz* field_0xc;
     /* 0x10 */ void* field_0x10;
@@ -475,9 +476,9 @@ public:
 class mDoExt_3DlineMat_c {
 public:
     #ifndef NON_VIRTUAL_3DLINEMAT
-    virtual int getMaterialID();
-    virtual void setMaterial();
-    virtual void draw();
+    virtual int getMaterialID() = 0;
+    virtual void setMaterial() = 0;
+    virtual void draw() = 0;
     #else
     /* 0x0 */ void* field_0x0;
     #endif
@@ -523,14 +524,16 @@ private:
 
 class mDoExt_3DlineMat0_c : public mDoExt_3DlineMat_c {
 public:
-    /* 800125E0 */ void init(u16, u16, int);
-    /* 800126C0 */ void setMaterial();
-    /* 80012774 */ void draw();
+    /* 800125E0 */ int init(u16, u16, int);
     /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
     /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
-    /* 80014E84 */ int getMaterialID();
+
+    /* 80014E84 */ virtual int getMaterialID();
+    /* 800126C0 */ virtual void setMaterial();
+    /* 80012774 */ virtual void draw();
 
     cXyz* getPos(int param_0) { return field_0x18[param_0].field_0x0; }
+    f32* getSize(int param_0) { return field_0x18[param_0].field_0x4; }
 
 private:
     /* 0x08 */ GXColor field_0x8;
@@ -580,6 +583,10 @@ public:
     /* 0x24 */ GXColor mColor;
     /* 0x28 */ u8 field_0x28;
 };
+
+inline void mDoExt_bckAnmRemove(J3DModelData* i_modelData) {
+    i_modelData->getJointNodePointer(0)->setMtxCalc(NULL);
+}
 
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);
 void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);

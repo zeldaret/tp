@@ -111,6 +111,29 @@ int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
 
 /* 8032F6F8-8032F7B4 32A038 00BC+00 0/0 5/5 10/10 .text
  * removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern  */
+// regalloc
+#ifdef NONMATCHING
+int J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* anm) {
+    int ret = 0;
+    u16 materialNum = anm->getUpdateMaterialNum();
+    J3DAnmTexPatternFullTable* anm_table = anm->getAnmTable();
+
+    for (u16 i = 0; i < materialNum; i++) {
+        if (anm->isValidUpdateMaterialID(i)) {
+            u16 materialID = anm->getUpdateMaterialID(i);
+
+            J3DMaterialAnm* pMatAnm = getMaterialNodePointer(materialID)->getMaterialAnm();
+            u8 texNo = anm_table[i].mTexNo;
+            if (pMatAnm == NULL)
+                ret = 1;
+            else
+                pMatAnm->setTexNoAnm(texNo, NULL);
+        }
+    }
+
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -119,6 +142,7 @@ asm int J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* param_0) {
 #include "asm/JSystem/J3DGraphAnimator/J3DMaterialAttach/removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern.s"
 }
 #pragma pop
+#endif
 
 /* 8032F7B4-8032F880 32A0F4 00CC+00 0/0 4/4 26/26 .text
  * removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey */

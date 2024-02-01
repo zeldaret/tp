@@ -227,4 +227,8 @@ inline void mDoAud_startLv3WaterSe(s8 i_reverb) {
     g_mEnvSeMgr.startLv3WaterSe(i_reverb);
 }
 
+inline void mDoAud_setHyrulSewerOpen(bool i_close) {
+    g_mEnvSeMgr.setHyrulSewerOpen(i_close);
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

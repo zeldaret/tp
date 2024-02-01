@@ -8,29 +8,8 @@
 
 class J3DModel;
 class J3DAnmCluster;
-
-class J3DDeformData {
-public:
-    /* 8032E1F8 */ J3DDeformData();
-    /* 8032E230 */ void offAllFlag(u32);
-    /* 8032E298 */ void deform(J3DVertexBuffer*);
-    /* 8032E274 */ void deform(J3DModel*);
-    /* 8032E364 */ void setAnm(J3DAnmCluster*);
-
-private:
-    /* 0x00 */ u16 mClusterNum;
-    /* 0x02 */ u16 mClusterKeyNum;
-    /* 0x04 */ u16 field_0x4;
-    /* 0x08 */ J3DCluster** mClusterPointer;
-    /* 0x0C */ J3DClusterKey** mClusterKeyPointer;
-    /* 0x10 */ int field_0x10;
-    /* 0x14 */ u16 field_0x14;
-    /* 0x16 */ u16 field_0x16;
-    /* 0x18 */ void* mVtxPos;
-    /* 0x1C */ void* mVtxNrm;
-    /* 0x20 */ int field_0x20;
-    /* 0x24 */ int field_0x24;
-};  // Size: 0x28
+class J3DClusterVertex;
+class JUTNameTab;
 
 struct J3DSkinNList {
     /* 8032C6E4 */ J3DSkinNList();
@@ -98,11 +77,13 @@ public:
     /* 8032E60C */ void deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, f32*);
     /* 8032EBCC */ void normalizeWeight(int, f32*);
 
-private:
+    void offFlag(u32 i_flag) { mFlags &= ~i_flag; }
+    void setAnmCluster(J3DAnmCluster* anm) { mAnmCluster = anm; }
+
     /* 0x00 */ J3DDeformData* mDeformData;
     /* 0x04 */ J3DAnmCluster* mAnmCluster;
-    /* 0x08 */ int field_0x8;
-    /* 0x0C */ int field_0xc;
+    /* 0x08 */ f32* field_0x8;
+    /* 0x0C */ f32* field_0xc;
     /* 0x10 */ u32 mFlags;
 };  // Size: 0x14
 

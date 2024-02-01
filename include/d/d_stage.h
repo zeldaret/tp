@@ -830,10 +830,12 @@ public:
     static void setRoomReadId(s8 id) { data_804505F0 = id; }
     static s8 getRoomReadId() { return data_804505F0; }
     static void offNoChangeRoom() { mNoChangeRoom = false; }
+    static void onNoChangeRoom() { mNoChangeRoom = true; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
+    static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
 
     static void setMemoryBlockID(int i_roomNo, int i_blockID) {
         mStatus[i_roomNo].mMemBlockID = i_blockID;

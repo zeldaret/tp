@@ -105,6 +105,26 @@ public:
         mTransformedVtxNrmArray[1] = tmp;
     }
 
+    void swapVtxPosArrayPointer() {
+        void* temp = mVtxPosArray[0];
+        mVtxPosArray[0] = mVtxPosArray[1];
+        mVtxPosArray[1] = temp;
+    }
+
+    void swapVtxNrmArrayPointer() {
+        void* temp = mVtxNrmArray[0];
+        mVtxNrmArray[0] = mVtxNrmArray[1];
+        mVtxNrmArray[1] = temp;
+    }
+
+    void* getVtxPosArrayPointer(int index) {
+        return mVtxPosArray[index];
+    }
+
+    void* getVtxNrmArrayPointer(int index) {
+        return mVtxNrmArray[index];
+    }
+
 private:
     /* 0x00 */ J3DVertexData* mVtxData;
     /* 0x04 */ void* mVtxPosArray[2];

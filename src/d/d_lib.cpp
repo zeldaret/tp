@@ -4,28 +4,16 @@
 //
 
 #include "d/d_lib.h"
+#include "d/event/d_event.h"
+#include "d/d_stage.h"
 #include "SSystem/SComponent/c_m3d.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
+#include "JSystem/JKernel/JKRAram.h"
+#include "JSystem/JKernel/JKRDecomp.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_controller_pad.h"
-
-//
-// Types:
-//
-
-struct dEvt_control_c {
-    /* 800434D8 */ void searchMapEventData(u8);
-};
-
-struct JKRExpandSwitch {};
-
-struct JKRAramArchive {
-    /* 802D781C */ void getAramAddress(char const*);
-};
-
-struct JKRAram {
-    /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
-};
 
 //
 // Forward References:
@@ -316,37 +304,49 @@ bool STControl::checkDownTrigger() {
 }
 
 /* 8003261C-80032654 02CF5C 0038+00 0/0 0/0 1/1 .text            dLib_getEventSwitchNo__Fi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dLib_getEventSwitchNo(int param_0) {
-    nofralloc
-#include "asm/d/d_lib/dLib_getEventSwitchNo__Fi.s"
+u8 dLib_getEventSwitchNo(int param_0) {
+    dStage_MapEvent_dt_c* mapEvent = dEvt_control_c::searchMapEventData(param_0);
+    if (mapEvent != NULL) {
+        return mapEvent->mSwitch;
+    }
+    return 0xff;
 }
-#pragma pop
 
 /* 80032654-80032738 02CF94 00E4+00 0/0 0/0 8/8 .text
  * dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm BOOL dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz const* param_2,
-                                    cXyz const* param_3) {
-    nofralloc
-#include "asm/d/d_lib/dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz.s"
+BOOL dLib_checkActorInRectangle(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz const* param_2,
+                                cXyz const* param_3) {
+    cXyz local_24 = param_0->current.pos - param_1->current.pos;
+    mDoMtx_stack_c::YrotS(-param_1->current.angle.y);
+    mDoMtx_stack_c::multVec(&local_24, &local_24);
+    if (param_2->x <= local_24.x && local_24.x <= param_3->x && param_2->z <= local_24.z &&
+        local_24.z <= param_3->z)
+    {
+        return TRUE;
+    }
+    return FALSE;
 }
-#pragma pop
 
 /* 80032738-80032804 02D078 00CC+00 0/0 4/4 0/0 .text
  * dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_0, char const* param_1) {
-    nofralloc
-#include "asm/d/d_lib/dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc.s"
+u32 dLib_getExpandSizeFromAramArchive(JKRAramArchive* i_aramArchive, char const* param_2) {
+    u8 header[32] __attribute__((aligned(32)));
+    JUT_ASSERT(1252, i_aramArchive != 0);
+    u32 address = i_aramArchive->getAramAddress(param_2);
+    if (address == 0) {
+        return 0;
+    }
+    u8* readAddress = JKRAramToMainRam(address, header, 0x20, EXPAND_SWITCH_UNKNOWN0, 0, 0, 0xffffffff, 0);
+    JUT_ASSERT(1260, readAddress == header);
+    JKRArchive::SDIFileEntry* entry = i_aramArchive->findFsResource(param_2, 0);
+    JUT_ASSERT(1263, entry != 0);
+    u32 uVar1 = ALIGN_NEXT(JKRDecompExpandSize(header), 32);
+    u32 uVar5 = ALIGN_NEXT(entry->data_size, 32);
+    if (uVar1 > uVar5) {
+        return uVar1;
+    }
+    return uVar5;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450DD8-80450DDC 0002D8 0004+00 2/2 0/0 0/0 .sbss            m_diffTime__11dLib_time_c */

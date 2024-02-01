@@ -108,6 +108,7 @@ public:
         mpFirstChild = NULL;
     }
 
+    void* getUserArea() { return mpUserData; }
     void setUserArea(u32 area) { mpUserData = (void*)area; }
 
     virtual int entry(J3DDrawBuffer*);
@@ -194,7 +195,10 @@ public:
     J3DMaterial* getMaterial() const { return mpMaterial; }
     J3DShapePacket* getShapePacket() const { return mpShapePacket; }
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
+    void setMaterial(J3DMaterial* pMaterial) { mpMaterial = pMaterial; }
+    void setTexture(J3DTexture* pTexture) { mpTexture = pTexture; }
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
+    void setMaterialID(u32 id) { mDiffFlag = id; }
     void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }
     bool isChanged() const { return mDiffFlag & 0x80000000; }
     bool isEnabled_Diff() const { return mpInitShapePacket->getDisplayListObj() != NULL; }

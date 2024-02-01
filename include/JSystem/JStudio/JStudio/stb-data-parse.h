@@ -21,6 +21,7 @@ public:
     u16 get_byteOrder() const { return get()->byte_order; }
     u16 get_version() const { return get()->version; }
     u32 get_blockNumber() const { return get()->block_number; }
+    const THeader::Target& get_target() const { return get()->target; }
 };
 
 class TParse_TBlock : public TParseData_aligned<4> {
@@ -32,6 +33,7 @@ public:
 
     u32 get_size() const { return get()->size; }
     u32 get_type() const { return get()->type; }
+    const void* getContent() const { return ((char*)getRaw()) + 8;}
 };
 
 class TParse_TSequence : public TParseData_aligned<4> {

@@ -30,7 +30,9 @@ public:
     bool removeEnemy(JSULink<Z2CreatureEnemy>*);
     u8 isTwilightBattle();
 
+    u8 getEnemyNumVeryFar() { return mEnemyNumVeryFar; }
     bool isForceBattle() { return mForceBattle; }
+    JSUList<Z2CreatureEnemy>* getEnemyList() { return this; }
 
 private:
     /* 0x0C */ Z2EnemyArea mEnemyArea;

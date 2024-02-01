@@ -20,7 +20,7 @@
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "msg/scrn/d_msg_scrn_explain.h"
+#include "d/msg/d_msg_scrn_explain.h"
 
 //
 // Forward References:

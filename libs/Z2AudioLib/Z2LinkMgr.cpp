@@ -583,7 +583,7 @@ void Z2CreatureLink::startLinkSwordSound(JAISoundID i_soundID, u32 id, s8 ch) {
 }
 
 /* 802C4784-802C4814 2BF0C4 0090+00 1/0 0/0 0/0 .text startCollisionSE__14Z2CreatureLinkFUlUl */
-void Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
+Z2SoundHandlePool* Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
     switch (mapinfo) {
     case 0x28:
     case 0x29:
@@ -597,7 +597,7 @@ void Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
         break;
     }
 
-    mSoundObjAnime.startCollisionSE(hitID, mapinfo, NULL);
+    return mSoundObjAnime.startCollisionSE(hitID, mapinfo, NULL);
 }
 
 /* ############################################################################################## */
@@ -634,7 +634,7 @@ SECTION_SDATA2 static f32 lit_4399 = 9.0f / 10.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {
@@ -697,7 +697,7 @@ Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* ride) : Z2SoundStarter(fa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
+asm bool Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
                                         JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                         f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                         f32 param_8, u32 param_9) {

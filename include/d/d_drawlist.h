@@ -178,9 +178,13 @@ public:
     /* 800562D0 */ dDlst_shadowReal_c() { mState = 0; }
 
     dDlst_shadowReal_c* getZsortNext() { return mZsortNext; }
+    dDlst_shadowReal_c* getZsortPre() { return mZsortPre; }
     bool isNoUse() { return mState == 0; }
     bool isUse() { return mState == 1; }
     bool checkKey(u32 i_key) { return mKey == i_key; }
+    f32 getCameraZ() { return mCameraZ; }
+    void setZsortNext(dDlst_shadowReal_c* next) { mZsortNext = next; }
+    void setZsortPre(dDlst_shadowReal_c* pre) { mZsortPre = pre; }
 
 private:
     /* 0x0000 */ u8 mState;
@@ -301,11 +305,13 @@ public:
     void setView(view_class* view) { mView = view; }
     void setWindow(dDlst_window_c* window) { mWindow = window; }
     void setViewport(view_port_class* port) { mViewport = port; }
+    J3DDrawBuffer* getOpaList() { return mDrawBuffers[DB_OPA_LIST]; }
     J3DDrawBuffer* getOpaListFilter() { return mDrawBuffers[DB_LIST_FILTER]; }
     J3DDrawBuffer* getOpaListP0() { return mDrawBuffers[DB_LIST_P0]; }
     J3DDrawBuffer* getOpaListPacket() { return mDrawBuffers[DB_OPA_LIST_PACKET]; }
     J3DDrawBuffer* getOpaListBG() { return mDrawBuffers[DB_OPA_LIST_BG]; }
     J3DDrawBuffer* getOpaListDark() { return mDrawBuffers[DB_OPA_LIST_DARK]; }
+    J3DDrawBuffer* getXluListBG() { return mDrawBuffers[DB_XLU_LIST_BG]; }
     void setXluDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, J3DSys_XLU_BUFFER_e); }
     void setOpaDrawList(J3DDrawBuffer* buffer) { j3dSys.setDrawBuffer(buffer, J3DSys_OPA_BUFFER_e); }
     void setXluListSky() { setXluDrawList(mDrawBuffers[DB_XLU_LIST_SKY]); }

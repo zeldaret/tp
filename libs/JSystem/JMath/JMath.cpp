@@ -40,7 +40,7 @@ void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
     f32 cyz = cosY * cosZ;
     f32 syz = sinY * sinZ;
     quat->w = cosX * (cyz) + sinX * (syz);
-    quat->x = sinX * (cyz) - cosX * (syz);
+    quat->x = sinX * (cyz)-cosX * (syz);
     quat->y = cosZ * (cosX * sinY) + sinZ * (sinX * cosY);
     quat->z = sinZ * (cosX * cosY) - cosZ * (sinX * sinY);
 }
@@ -61,8 +61,10 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
                  Quaternion* dst) {
     register f32 pxy, pzw, qxy, qzw;
     register f32 dp;
-    __asm  // compute dot product
-    {
+
+#ifdef __MWERKS__ // clang-format off    
+    // compute dot product
+    asm {
         psq_l       pxy, 0(p), 0, 0
         psq_l       qxy, 0(q), 0, 0
         ps_mul      dp, pxy, qxy
@@ -73,14 +75,14 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
         
         ps_sum0     dp, dp, dp, dp
     }
+#endif // clang-format on
 
     if (dp < 0.0) {
         dst->x = -t * (p->x + q->x) + p->x;
         dst->y = -t * (p->y + q->y) + p->y;
         dst->z = -t * (p->z + q->z) + p->z;
         dst->w = -t * (p->w + q->w) + p->w;
-    }
-    else {
+    } else {
         dst->x = -t * (p->x - q->x) + p->x;
         dst->y = -t * (p->y - q->y) + p->y;
         dst->z = -t * (p->z - q->z) + p->z;
@@ -90,42 +92,78 @@ void JMAQuatLerp(register const Quaternion* p, register const Quaternion* q, f32
 
 /* 80339A30-80339A5C 334370 002C+00 0/0 1/1 0/0 .text            JMAFastVECNormalize__FPC3VecP3Vec
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMAFastVECNormalize(Vec const* param_0, Vec* param_1) {
-    nofralloc
-#include "asm/JSystem/JMath/JMath/JMAFastVECNormalize__FPC3VecP3Vec.s"
+void JMAFastVECNormalize(register const Vec* src, register Vec* dst) {
+    register f32 vxy, rxy, vz, length;
+#ifdef __MWERKS__  // clang-format off
+	asm {
+		psq_l vxy, 0(src), 0, 0
+		ps_mul rxy, vxy, vxy
+		lfs vz, src->z
+		ps_madd length, vz, vz, rxy
+		ps_sum0 length, length, rxy, rxy
+		frsqrte length, length
+		ps_muls0 vxy, vxy, length;
+		psq_st vxy, 0(dst), 0, 0
+		fmuls vz, vz, length
+		stfs vz, dst->z
+	}
+#endif  // clang-format on
 }
-#pragma pop
 
 /* 80339A5C-80339A84 33439C 0028+00 0/0 1/1 0/0 .text            JMAVECScaleAdd__FPC3VecPC3VecP3Vecf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMAVECScaleAdd(Vec const* param_0, Vec const* param_1, Vec* param_2, f32 param_3) {
-    nofralloc
-#include "asm/JSystem/JMath/JMath/JMAVECScaleAdd__FPC3VecPC3VecP3Vecf.s"
-}
-#pragma pop
+void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst,
+                    register f32 scale) {
+    register f32 v1xy;
+    register f32 v2xy = scale;
+    register f32 rxy, v1z, v2z, rz;
+#ifdef __MWERKS__  // clang-format off
+	asm {
+        psq_l v1xy, 0(vec1), 0, 0
+        psq_l v2xy, 0(vec2), 0, 0
+        ps_madds0 rxy, v1xy, scale, v2xy
+        psq_st rxy, 0(dst), 0, 0
 
-/* ############################################################################################## */
-/* 804564D0-804564D8 004AD0 0004+04 1/1 0/0 0/0 .sdata2          @411 */
-SECTION_SDATA2 static f32 lit_411[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
+        psq_l v1z, 8(vec1), 1, 0
+        psq_l v2z, 8(vec2), 1, 0
+        ps_madds0 rz, v1z,  scale, v2z
+        psq_st rz, 8(dst), 1, 0
+	}
+#endif  // clang-format on
+}
 
 /* 80339A84-80339AE4 3343C4 0060+00 0/0 5/5 0/0 .text            JMAMTXApplyScale__FPA4_CfPA4_ffff
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMAMTXApplyScale(f32 const (*param_0)[4], f32 (*param_1)[4], f32 param_2, f32 param_3,
-                          f32 param_4) {
-    nofralloc
-#include "asm/JSystem/JMath/JMath/JMAMTXApplyScale__FPA4_CfPA4_ffff.s"
+void JMAMTXApplyScale(register const Mtx src, register Mtx dst, register f32 xScale,
+                      register f32 yScale, register f32 zScale) {
+    register f32 scale = yScale;
+    register f32 x, y, z;
+    register f32 normal = 1.0f;
+#ifdef __MWERKS__  // clang-format off
+    asm {
+        // scale first 2 components
+        ps_merge00 scale, xScale, scale
+        psq_l x, 0(src), 0, 0
+        psq_l y, 16(src), 0, 0
+        psq_l z, 32(src), 0, 0
+        ps_mul x, x, scale
+        ps_mul y, y, scale
+        ps_mul z, z, scale
+        psq_st x, 0(dst), 0, 0
+        psq_st y, 16(dst), 0, 0
+        psq_st z, 32(dst), 0, 0
+
+        // scale last 2 components
+        ps_merge00 scale, zScale, normal
+        psq_l x, 8(src), 0, 0
+        psq_l y, 24(src), 0, 0
+        psq_l z, 40(src), 0, 0
+        ps_mul x, x, scale
+        ps_mul y, y, scale
+        ps_mul z, z, scale
+        psq_st x, 8(dst), 0, 0
+        psq_st y, 24(dst), 0, 0
+        psq_st z, 40(dst), 0, 0
+    }
+#endif  // clang-format on
 }
-#pragma pop

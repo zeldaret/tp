@@ -203,7 +203,7 @@ def lcf_generate(output_path,shiftable,map_file):
 
         file.write("\t} > text\n")
         file.write(
-            "\t_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;\n"
+            "\t_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 0x1000 + 0x7) & ~0x7;\n"
         )
         file.write("\t_stack_end = _f_sbss2 + SIZEOF(.sbss2);\n")
         file.write("\t_db_stack_addr = (_stack_addr + 0x2000);\n")

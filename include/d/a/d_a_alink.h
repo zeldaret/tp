@@ -2971,18 +2971,18 @@ public:
     /* 80140888 */ void statusWindowExecute(cXyz const*, s16);
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
-    /* 8018280C */ void getChainGrabActor();
-    /* 80182814 */ void checkCokkoGlide() const;
-    /* 8018283C */ void checkCameraLargeDamage() const;
-    /* 80182870 */ void getHsSubChainTopPos() const;
-    /* 80182888 */ void checkCutHeadProc() const;
-    /* 8018289C */ void getRideActor();
+    /* 8018280C */ fopAc_ac_c* getChainGrabActor() { return field_0x2844.getActor(); }
+    /* 80182814 */ BOOL checkCokkoGlide() const { return mProcID == PROC_AUTO_JUMP && mProcVar2.field_0x300c != 0; }
+    /* 8018283C */ BOOL checkCameraLargeDamage() const { return mProcID == PROC_LARGE_DAMAGE || mProcID == PROC_LARGE_DAMAGE_WALL || mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP; }
+    /* 80182870 */ const cXyz& getHsSubChainTopPos() const { return mIronBallBgChkPos; }
+    /* 80182888 */ BOOL checkCutHeadProc() const { return mProcID == PROC_CUT_HEAD; }
+    /* 8018289C */ fopAc_ac_c* getRideActor() { return mRideAcKeep.getActor(); }
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
     virtual MtxP getModelMtx();
     virtual MtxP getInvMtx();
-    virtual cXyz* getShadowTalkAtnPos();
+    virtual cXyz* getShadowTalkAtnPos() { return &field_0x375c; }
     virtual f32 getGroundY();
     virtual MtxP getLeftItemMatrix();
     virtual MtxP getRightItemMatrix();
@@ -3367,6 +3367,12 @@ public:
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
+    s16 checkWindStoneHowl() {return mProcVar3.field_0x300e.y; }
+    u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
+    u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
+    u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
+    s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
+    SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);

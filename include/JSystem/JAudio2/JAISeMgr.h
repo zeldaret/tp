@@ -74,7 +74,7 @@ public:
     /* 802A0484 */ JAISe* newSe_(int, u32);
     /* 802A0574 */ void calc();
     /* 802A0704 */ void mixOut();
-    /* 802A0768 */ int startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A0768 */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A08D0 */ int getNumActiveSe() const;
 
     /* 802A08FC */ virtual ~JAISeMgr();  // inline?

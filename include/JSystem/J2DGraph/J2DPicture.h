@@ -12,10 +12,17 @@ struct ResTIMG;
 struct ResTLUT;
 
 enum J2DMirror {
-    /* 0x0 */ MIRROR0,  // temp, figure out later
+    /* 0 */ MIRROR0,  // temp, figure out later
+    /* 1 */ J2DMirror_Y = (1 << 0),
+    /* 2 */ J2DMirror_X = (1 << 1),
 };
 
 enum J2DBinding {
+    /* 1 */ J2DBind_Bottom = (1 << 0),
+    /* 2 */ J2DBind_Top = (1 << 1),
+    /* 4 */ J2DBind_Right = (1 << 2),
+    /* 8 */ J2DBind_Left = (1 << 3),
+
     /* 0xF */ BIND15 = 15,  // temp, figure out later
 };
 
@@ -119,7 +126,7 @@ public:
 
 protected:
     /* 0x100 */ JUTTexture* mTexture[2];
-    /* 0x108 */ u8 mTextureCount;
+    /* 0x108 */ u8 mTextureNum;
     /* 0x109 */ u8 field_0x109;
     /* 0x10A */ JGeometry::TVec2<s16> field_0x10a[4];
     /* 0x11C */ f32 field_0x11c[2];
@@ -128,8 +135,8 @@ protected:
     /* 0x130 */ JUtility::TColor mWhite;
     /* 0x134 */ JUtility::TColor mBlack;
     /* 0x138 */ JUtility::TColor mCornerColor[4];
-    /* 0x148 */ JUtility::TColor field_0x148;
-    /* 0x14C */ JUtility::TColor field_0x14c;
+    /* 0x148 */ JUtility::TColor mBlendKonstColor;
+    /* 0x14C */ JUtility::TColor mBlendKonstAlpha;
 };
 
 #endif /* J2DPICTURE_H */

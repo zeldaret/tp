@@ -8,11 +8,6 @@
 #include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_wether.h"
 
-/* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
-void dKankyo_DayProc() {
-    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
-}
-
 static int dKyeff_Draw(dKyeff_c* i_this) {
     dKyw_wether_draw();
     return 1;

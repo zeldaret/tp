@@ -11,20 +11,6 @@
 // Types:
 //
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct dPath {};
-
-struct daTagSppath_c {
-    /* 80D61C18 */ void create();
-    /* 80D61EC4 */ ~daTagSppath_c();
-    /* 80D62024 */ void getNearPathPos(cXyz*, dPath*);
-    /* 80D629C0 */ void execute();
-};
-
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
@@ -81,8 +67,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];

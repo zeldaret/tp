@@ -22,6 +22,7 @@ extern DBInterface* __DBInterface;
 void DBInit(void);
 void __DBExceptionDestinationAux(void);
 void __DBExceptionDestination(void);
+BOOL __DBIsExceptionMarked(__OSException);
 void DBPrintf(char* format, ...);
 void DBInitComm(vu8**, AmcEXICallback); // possibly not this type, but some similar construction
 void DBInitInterrupts();

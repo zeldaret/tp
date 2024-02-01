@@ -92,7 +92,7 @@ u16 Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
 }
 
 /* 802BB090-802BB0D8 2B59D0 0048+00 1/0 0/0 0/0 .text getSoundType__11Z2SoundInfoCF10JAISoundID */
-u32 Z2SoundInfo::getSoundType(JAISoundID param_0) const {
+int Z2SoundInfo::getSoundType(JAISoundID param_0) const {
     switch (param_0.mId.mBytes.b0) {
     case 0:
         return 0;

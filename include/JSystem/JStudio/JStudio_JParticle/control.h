@@ -14,7 +14,7 @@ struct TCreateObject : public JStudio::TCreateObject {
     }
 
     /* 8028E3A0 */ virtual ~TCreateObject();
-    /* 8028E400 */ virtual void create(JStudio::TObject**,
+    /* 8028E400 */ virtual bool create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
     /* 8028E474 */ virtual void emitter_create(u32);
     /* 8028E4E4 */ virtual void emitter_destroy(JPABaseEmitter*);
