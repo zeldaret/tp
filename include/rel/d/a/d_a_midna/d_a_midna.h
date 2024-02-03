@@ -137,6 +137,10 @@ public:
         onStateFlg1(FLG1_UNK_100);
     }
 
+    MtxP getMtxHairTop() {
+        return field_0x574->i_getAnmMtx(10);
+    }
+
     bool checkReturnAnime() const {
         return field_0x5e4[0].getIdx() == 0x1CA;
     }
