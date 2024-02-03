@@ -3214,6 +3214,10 @@ inline int dComIfGp_evmng_startDemo(int param_0) {
     return dComIfGp_getPEvtManager()->setStartDemo(param_0);
 }
 
+inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
+    g_dComIfG_gameInfo.play.getEvent().setPtT(i_actor);
+}
+
 inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
     u32 t = g_dComIfG_gameInfo.play.getEvent().mPtT;
     return g_dComIfG_gameInfo.play.getEvent().convPId(t);
