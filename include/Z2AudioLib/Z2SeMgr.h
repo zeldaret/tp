@@ -26,44 +26,22 @@ struct Z2MultiSeMgr {
     }
 
     f32 getMaxPowR() {
-        if (mMaxPowR > 1.0f) {
-            return 1.0f;
-        } else if (mMaxPowR < 0.0f) {
-            return 0.0f;
-        } else {
-            return mMaxPowR;
-        }
+        return (mMaxPowR > 1.0f) ? 1.0f : (mMaxPowR < 0.0f ? 0.0f : mMaxPowR);
     }
 
     f32 getMaxPowL() {
-        if (mMaxPowL > 1.0f) {
-            return 1.0f;
-        } else if (mMaxPowL < 0.0f) {
-            return 0.0f;
-        } else {
-            return mMaxPowL;
-        }
+        return (mMaxPowL > 1.0f) ? 1.0f : (mMaxPowL < 0.0f ? 0.0f : mMaxPowL);
     }
 
     f32 getMaxPowB() {
-        if (mMaxPowB > 1.0f) {
-            return 1.0f;
-        } else if (mMaxPowB < 0.0f) {
-            return 0.0f;
-        } else {
-            return mMaxPowB;
-        }
+        return (mMaxPowB > 1.0f) ? 1.0f : (mMaxPowB < 0.0f ? 0.0f : mMaxPowB);
     }
 
     f32 getMaxPowF() {
-        if (mMaxPowF > 1.0f) {
-            return 1.0f;
-        } else if (mMaxPowF < 0.0f) {
-            return 0.0f;
-        } else {
-            return mMaxPowF;
-        }
+        return (mMaxPowF > 1.0f) ? 1.0f : (mMaxPowF < 0.0f ? 0.0f : mMaxPowF);
     }
+
+    s8 getPosCount() { return mPosCount; }
 
     /* 0x00 */ float mVolumeScale;
     /* 0x04 */ float mMaxVolume;

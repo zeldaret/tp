@@ -257,7 +257,7 @@ public:
     }
 
     void updateLifeTime(u32 param_0) {
-        if (lifeTime < param_0) {
+        if (param_0 > lifeTime) {
             lifeTime = param_0;
         }
     }
