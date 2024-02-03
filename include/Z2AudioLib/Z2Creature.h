@@ -82,6 +82,7 @@ public:
     Z2SoundObjSimple& getKantera() { return mKantera; }
     u8 getLinkHp() const { return mLinkHp; }
     u8 getMovingTime() { return mMovingTime; }
+    u8 isWolfSmellOpen() const { return mWolfEyeOpen; }
 
     static Z2CreatureLink* mLinkPtr;
 

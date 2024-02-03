@@ -1338,7 +1338,7 @@ void Z2MultiSeMgr::resetMultiSePos(void) {
 
 /* 802AECE0-802AEDC0 2A9620 00E0+00 1/1 8/8 0/0 .text            getPanPower__12Z2MultiSeMgrFv */
 #ifdef NONMATCHING
-// regalloc
+// Matches with literals
 f32 Z2MultiSeMgr::getPanPower() {
     f32 pow_r = getMaxPowR();
     f32 pow_l = getMaxPowL();
@@ -1363,7 +1363,7 @@ asm f32 Z2MultiSeMgr::getPanPower() {
 
 /* 802AEDC0-802AEEA0 2A9700 00E0+00 1/1 8/8 0/0 .text            getDolbyPower__12Z2MultiSeMgrFv */
 #ifdef NONMATCHING
-// regalloc
+// Matches with literals
 f32 Z2MultiSeMgr::getDolbyPower() {
     f32 pow_b = getMaxPowB();
     f32 pow_f = getMaxPowF();
