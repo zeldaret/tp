@@ -137,6 +137,7 @@ struct cXyz : Vec {
 
     f32 getDotProduct(const Vec& other) const { return VECDotProduct(this, &other); }
     f32 inprod(const Vec& other) const { return getDotProduct(other); }
+    f32 inprodXZ(const Vec& other) const { return x * other.x + z * other.z; }
 };
 
 #endif /* C_XYZ_H */
