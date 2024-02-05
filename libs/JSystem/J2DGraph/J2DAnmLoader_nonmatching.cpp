@@ -214,7 +214,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* p_anm,
     p_anm->mUpdateMaterialID = JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->mUpdateMatIDOffset);
     p_anm->field_0x34.setResource(
         JSUConvertOffsetToPtr<ResNTAB>(p_data, (void*)p_data->mNameTab1Offset));
-    p_anm->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mUpdateTexMtxIDOffset);
+    p_anm->mUpdateTexMtxID = JSUConvertOffsetToPtr<u8>(p_data, p_data->mUpdateTexMtxIDOffset);
     p_anm->field_0x44 = JSUConvertOffsetToPtr<Vec>(p_data, (void*)p_data->unkOffset);
     p_anm->mScaleValues = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->mScaleValOffset);
     p_anm->mRotationValues = JSUConvertOffsetToPtr<s16>(p_data, (void*)p_data->mRotValOffset);
@@ -230,7 +230,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* p_anm,
     p_anm->field_0x5c =
         JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(p_data, (void*)p_data->mInfoTable2Offset);
     p_anm->field_0x64 = JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->field_0x40);
-    p_anm->field_0x60 = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->field_0x48);
+    p_anm->field_0x60 = JSUConvertOffsetToPtr<u8>(p_data, p_data->field_0x48);
     p_anm->field_0x78 = JSUConvertOffsetToPtr<Vec>(p_data, (void*)p_data->field_0x48);
     p_anm->field_0x50 = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->field_0x50);
     p_anm->field_0x54 = JSUConvertOffsetToPtr<s16>(p_data, (void*)p_data->field_0x54);
@@ -415,10 +415,10 @@ void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull* p_anm, J3DAnmColorFullDa
     p_anm->mUpdateMaterialNum = p_data->mUpdateMaterialNum;
     p_anm->mInfoTable =
         JSUConvertOffsetToPtr<J3DAnmColorFullTable>(p_data, (void*)p_data->mTableOffset);
-    p_anm->mRValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mRValuesOffset);
-    p_anm->mGValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mGValuesOffset);
-    p_anm->mBValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mBValuesOffset);
-    p_anm->mAValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mAValuesOffset);
+    p_anm->mRValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mRValuesOffset);
+    p_anm->mGValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mGValuesOffset);
+    p_anm->mBValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mBValuesOffset);
+    p_anm->mAValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mAValuesOffset);
     p_anm->mUpdateMaterialID =
         JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->mUpdateMaterialIDOffset);
     p_anm->field_0x20.setResource(
@@ -510,7 +510,7 @@ void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull* p_anm,
     p_anm->field_0x12 = p_data->field_0xe;
     p_anm->mTable =
         JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(p_data, (void*)p_data->mTableOffset);
-    p_anm->mValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mValuesOffset);
+    p_anm->mValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mValuesOffset);
 }
 
 /* 8030A234-8030A25C 304B74 0028+00 1/1 0/0 0/0 .text
@@ -540,10 +540,10 @@ void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull* p_anm,
         JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->mVtxColorIndexPointerOffsets[0]);
     p_anm->mVtxColorIndexPointer[1] =
         JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->mVtxColorIndexPointerOffsets[1]);
-    p_anm->mRValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mRValuesOffset);
-    p_anm->mGValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mGValuesOffset);
-    p_anm->mBValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mBValuesOffset);
-    p_anm->mAValues = JSUConvertOffsetToPtr<u8>(p_data, (void*)p_data->mAValuesOffset);
+    p_anm->mRValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mRValuesOffset);
+    p_anm->mGValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mGValuesOffset);
+    p_anm->mBValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mBValuesOffset);
+    p_anm->mAValues = JSUConvertOffsetToPtr<u8>(p_data, p_data->mAValuesOffset);
 }
 
 /* 8030A358-8030A3B4 304C98 005C+00 1/0 0/0 0/0 .text            __dt__14J2DAnmVtxColorFv */

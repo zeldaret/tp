@@ -667,11 +667,9 @@ void J3DModelLoader::readVertex(J3DVertexBlock const* i_block) {
 void J3DModelLoader::readEnvelop(J3DEnvelopeBlock const* i_block) {
     mpModelData->getJointTree().mWEvlpMtxNum = i_block->mWEvlpMtxNum;
     mpModelData->getJointTree().mWEvlpMixMtxNum =
-        // JSUConvertOffsetToPtr<u8>(i_block, i_block->mpWEvlpMixMtxNum);
-        func_802F4260(i_block, i_block->mpWEvlpMixMtxNum);
+        JSUConvertOffsetToPtr<u8>(i_block, i_block->mpWEvlpMixMtxNum);
     mpModelData->getJointTree().mWEvlpMixIndex =
-        // JSUConvertOffsetToPtr<u16>(i_block, i_block->mpWEvlpMixIndex);
-        func_802F42C0(i_block, i_block->mpWEvlpMixIndex);
+        JSUConvertOffsetToPtr<u16>(i_block, i_block->mpWEvlpMixIndex);
     mpModelData->getJointTree().mWEvlpMixWeight =
         // JSUConvertOffsetToPtr<f32>(i_block, i_block->mpWEvlpMixWeight);
         func_8030A560(i_block, i_block->mpWEvlpMixWeight);
@@ -685,10 +683,8 @@ void J3DModelLoader::readEnvelop(J3DEnvelopeBlock const* i_block) {
 void J3DModelLoader::readDraw(J3DDrawBlock const* i_block) {
     J3DJointTree& joint_tree = mpModelData->getJointTree();
     joint_tree.mDrawMtxData.mEntryNum = i_block->mMtxNum - mpModelData->getJointTree().mWEvlpMtxNum;
-    // joint_tree.mDrawMtxData.mDrawMtxFlag = JSUConvertOffsetToPtr<u8>(i_block, i_block->mpDrawMtxFlag);
-    joint_tree.mDrawMtxData.mDrawMtxFlag = func_802F4260(i_block, i_block->mpDrawMtxFlag);
-    // joint_tree.mDrawMtxData.mDrawMtxIndex = JSUConvertOffsetToPtr<u16>(i_block, i_block->mpDrawMtxIndex);
-    joint_tree.mDrawMtxData.mDrawMtxIndex = func_802F42C0(i_block, i_block->mpDrawMtxIndex);
+    joint_tree.mDrawMtxData.mDrawMtxFlag = JSUConvertOffsetToPtr<u8>(i_block, i_block->mpDrawMtxFlag);
+    joint_tree.mDrawMtxData.mDrawMtxIndex = JSUConvertOffsetToPtr<u16>(i_block, i_block->mpDrawMtxIndex);
     u16 i;
     for (i = 0; i < joint_tree.mDrawMtxData.mEntryNum; i++) {
         if (joint_tree.mDrawMtxData.mDrawMtxFlag[i] == 1) {
