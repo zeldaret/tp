@@ -177,17 +177,17 @@ void J2DAnmKeyLoader_v15::readAnmTransform(J3DAnmTransformKeyData const* p_data)
  * setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData */
 void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey* p_anm,
                                           J3DAnmTransformKeyData const* p_data) {
-    p_anm->field_0x22 = p_data->_C;
+    p_anm->field_0x22 = p_data->field_0xc;
     p_anm->mFrameMax = p_data->mFrameMax;
-    p_anm->field_0x4 = p_data->_8;
-    p_anm->field_0x24 = p_data->_9;
+    p_anm->field_0x4 = p_data->field_0x8;
+    p_anm->field_0x24 = p_data->field_0x9;
     p_anm->mFrame = 0;
     p_anm->mInfoTable =
         JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(p_data, (void*)p_data->mTableOffset);
-    p_anm->mScaleValues = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->mScaleOffset);
-    p_anm->mRotationValues = JSUConvertOffsetToPtr<s16>(p_data, (void*)p_data->mRotationOffset);
+    p_anm->mScaleValues = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->field_0x18);
+    p_anm->mRotationValues = JSUConvertOffsetToPtr<s16>(p_data, (void*)p_data->field_0x1c);
     p_anm->mTranslateValues =
-        JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->mTranslateOffset);
+        JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->field_0x20);
 }
 
 /* 80309634-8030965C 303F74 0028+00 1/1 0/0 0/0 .text
@@ -231,7 +231,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey* p_anm,
         JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(p_data, (void*)p_data->mInfoTable2Offset);
     p_anm->field_0x64 = JSUConvertOffsetToPtr<u16>(p_data, (void*)p_data->field_0x40);
     p_anm->field_0x60 = JSUConvertOffsetToPtr<u8>(p_data, p_data->field_0x48);
-    p_anm->field_0x78 = JSUConvertOffsetToPtr<Vec>(p_data, (void*)p_data->field_0x48);
+    p_anm->field_0x78 = JSUConvertOffsetToPtr<Vec>(p_data, (void*)p_data->field_0x4c);
     p_anm->field_0x50 = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->field_0x50);
     p_anm->field_0x54 = JSUConvertOffsetToPtr<s16>(p_data, (void*)p_data->field_0x54);
     p_anm->field_0x58 = JSUConvertOffsetToPtr<f32>(p_data, (void*)p_data->field_0x58);
