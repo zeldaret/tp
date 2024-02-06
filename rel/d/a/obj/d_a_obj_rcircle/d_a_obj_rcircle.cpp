@@ -18,14 +18,9 @@ static char* l_arcName = "RCircle";
 /* 80CB8678-80CB8704 000098 008C+00 2/2 0/0 0/0 .text            __ct__14daObjRCircle_cFv */
 daObjRCircle_c::daObjRCircle_c() {}
 
-inline request_of_phase_process_class* daObjRCircle_getRes(daObjRCircle_c* i_rcircle) {
-    daObjRCircle_c* rCircle = (daObjRCircle_c*)i_rcircle;
-    return i_rcircle ? &rCircle->mPhaseReq : (request_of_phase_process_class*)rCircle;
-}
-
 /* 80CB874C-80CB8814 00016C 00C8+00 1/0 0/0 0/0 .text            __dt__14daObjRCircle_cFv */
 daObjRCircle_c::~daObjRCircle_c() {
-    dComIfG_resDelete(daObjRCircle_getRes(this), l_arcName);
+    dComIfG_resDelete(this, l_arcName);
 }
 
 /* 80CB8814-80CB8928 000234 0114+00 1/1 0/0 0/0 .text            createHeap__14daObjRCircle_cFv */
@@ -51,11 +46,8 @@ int daObjRCircle_c::create() {
     if (i_fopAcM_isSwitch(this, getSwBit())) {
         return cPhs_ERROR_e;
     }
-    daObjRCircle_c* tmp = this;
-    if (this) {
-        tmp = (daObjRCircle_c*)&mPhaseReq;
-    }
-    int phase = dComIfG_resLoad((request_of_phase_process_class*)tmp, l_arcName);
+    
+    int phase = dComIfG_resLoad(this, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)daObjRCircle_c_createHeap, 0x1000)) {
             return cPhs_ERROR_e;

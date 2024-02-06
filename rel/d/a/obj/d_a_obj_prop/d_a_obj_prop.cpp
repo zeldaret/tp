@@ -18,14 +18,9 @@ static const char* l_arcName = "L7Prop";
 /* 80CB51F8-80CB5234 000098 003C+00 2/2 0/0 0/0 .text            __ct__11daObjProp_cFv */
 daObjProp_c::daObjProp_c() {}
 
-inline request_of_phase_process_class* daObjProp_getRes(daObjProp_c* i_prop) {
-    daObjProp_c* mProp2 = (daObjProp_c*)i_prop;
-    return mProp2 != NULL ? &mProp2->mPhaseReq : (request_of_phase_process_class*)mProp2;
-}
-
 /* 80CB5234-80CB52B4 0000D4 0080+00 1/0 0/0 0/0 .text            __dt__11daObjProp_cFv */
 daObjProp_c::~daObjProp_c() {
-    dComIfG_resDelete(daObjProp_getRes(this), l_arcName);
+    dComIfG_resDelete(this, l_arcName);
 }
 
 static const u32 BMD_IDX[] = {3, 4};
@@ -43,12 +38,7 @@ bool daObjProp_c::createHeap() {
 int daObjProp_c::create() {
     fopAcM_SetupActor(this, daObjProp_c);
 
-    daObjProp_c* tmp = this;
-    if (this) {
-        tmp = (daObjProp_c*)&mPhaseReq;
-    }
-
-    int phase = dComIfG_resLoad((request_of_phase_process_class*)tmp, l_arcName);
+    int phase = dComIfG_resLoad(this, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)daObjProp_c_createHeap, 0x1000)) {
             return cPhs_ERROR_e;

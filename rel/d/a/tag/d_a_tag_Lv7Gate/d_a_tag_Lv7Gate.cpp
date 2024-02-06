@@ -225,13 +225,12 @@ void daTagLv7Gate_c::flyAnime() {
 
 /* 80D511C8-80D51628 000788 0460+00 1/1 0/0 0/0 .text            execute__14daTagLv7Gate_cFv */
 int daTagLv7Gate_c::execute() {
-    // Fake match?
+    // Fakematch
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (i_dComIfGp_event_runCheck() && !mEvtInfo.checkCommandTalk()) {
+    if (i_dComIfGp_event_runCheck() != 0 && !mEvtInfo.checkCommandTalk()) {
         s32 cut_index = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
-            // int* cut_name = (int*)i_dComIfGp_getEventManager().getMyNowCutName(cut_index);
-            int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index);
+            int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index); // Fakematch
 
             daPy_getPlayerActorClass()->onShieldBackBone();
 
@@ -264,7 +263,8 @@ int daTagLv7Gate_c::execute() {
 
             if (mEvtInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 dComIfGp_evmng_endCheck(mEvtId)) {
-                i_dComIfGp_event_reset();
+                // i_dComIfGp_event_reset();
+                play.getEvent().reset(); // Fakematch
                 mEvtId = -1;
                 fopAcM_delete(this);
             }

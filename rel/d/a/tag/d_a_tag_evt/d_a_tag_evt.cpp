@@ -55,7 +55,7 @@ int daTag_Evt_c::execute() {
     fopAcM_SetRoomNo(this, dComIfGp_roomControl_getStayNo());
     if (field_0x5E4 == 0 || field_0x5E4 == 1) {
         dComIfG_inf_c* pGameInfo = &g_dComIfG_gameInfo;
-        if (i_dComIfGp_event_runCheck()) {
+        if (i_dComIfGp_event_runCheck() != 0) {
             bVar = false;
             int iVar1 = i_dComIfGp_evmng_getMyStaffId(field_0x568, 0, 0);
             if (!mEvtInfo.checkCommandTalk()) {

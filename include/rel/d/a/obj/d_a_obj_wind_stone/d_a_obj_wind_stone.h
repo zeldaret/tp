@@ -17,12 +17,12 @@ public:
     /* 80D3806C */ int Delete();
     /* 80D3811C */ void setModelMtx();
     /* 80D38180 */ void init();
-    /* 80D381EC */ void chkWlfInRange();
-    /* 80D38278 */ void chkEveOccur();
+    /* 80D381EC */ bool chkWlfInRange();
+    /* 80D38278 */ bool chkEveOccur();
     /* 80D382C4 */ void exeModeHowl();
     /* 80D3835C */ void exeModeMapDisp();
-    /* 80D383FC */ void chkMapDispMode();
-    /* 80D384C4 */ void getGoldWolfIdx();
+    /* 80D383FC */ bool chkMapDispMode();
+    /* 80D384C4 */ u8 getGoldWolfIdx();
 
     s8 getTuneId() { return fopAcM_GetParamBit(this, 4, 4); }
     int getNextSceneId() { return fopAcM_GetParamBit(this, 0, 4); }
@@ -32,7 +32,7 @@ public:
 
     /* 0x574 */ cBgS_PolyInfo mPolyInfo;
     /* 0x584 */ J3DModel* mpModel;
-    /* 0x588 */ dBgW_Base* mpBgWBase;
+    /* 0x588 */ dBgW* mpBgW;
     /* 0x58C */ Mtx field_0x58c;
     /* 0x5BC */ f32 field_0x5bc;
     /* 0x5C0 */ u32 field_0x5c0;
