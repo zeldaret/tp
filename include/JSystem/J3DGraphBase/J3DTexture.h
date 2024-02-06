@@ -28,8 +28,13 @@ public:
     }
 };
 
+extern J3DTexMtxInfo const j3dDefaultTexMtxInfo;
+
 class J3DTexMtx {
 public:
+    J3DTexMtx() {
+        mTexMtxInfo = j3dDefaultTexMtxInfo;
+    }
     J3DTexMtx(const J3DTexMtxInfo& info) {
         mTexMtxInfo = info;
     }
@@ -75,6 +80,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     u8 getTexGenSrc() { return mTexGenSrc; }
     u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
     u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
+    void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
 
     void resetTexMtxReg() {
         mTexMtxReg = mTexGenMtx;

@@ -449,7 +449,6 @@ extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u8 j3dDefaultTevSwapMode[4];
 extern "C" extern u16 data_804563F8;
 
 //
@@ -2055,7 +2054,8 @@ asm J3DTevStage::J3DTevStage() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DTevStage::setTevStageInfo(J3DTevStageInfo const& param_0) {
+//asm void J3DTevStage::setTevStageInfo(J3DTevStageInfo const& param_0) {
+asm void setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo.s"
 }

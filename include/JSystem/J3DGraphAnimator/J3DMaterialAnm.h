@@ -10,6 +10,11 @@ class J3DMatColorAnm {
 public:
     /* 8003B2B8 */ ~J3DMatColorAnm() {};
     /* 8003B2F4 */ J3DMatColorAnm() {};
+    J3DMatColorAnm(u16 param_1, J3DAnmColor* param_2) {
+        field_0x0 = param_1;
+        mAnmFlag = 1;
+        mAnmColor = param_2;
+    }
 
     void operator=(J3DMatColorAnm const& other) {
         mAnmColor = other.mAnmColor;
@@ -31,6 +36,11 @@ class J3DTexNoAnm {
 public:
     /* 8003B1F8 */ ~J3DTexNoAnm() {};
     /* 8003B240 */ J3DTexNoAnm() {};
+    J3DTexNoAnm(u16 param_1, J3DAnmTexPattern* param_2) {
+        field_0x4 = param_1;
+        mAnmFlag = 1;
+        mAnmTexPattern = param_2;
+    }
     /* 8003C82C */ virtual void calc(u16* param_0) const { mAnmTexPattern->getTexNo(field_0x4, param_0); }
 
     void operator=(J3DTexNoAnm const& other) {
@@ -53,6 +63,11 @@ class J3DTexMtxAnm {
 public:
     /* 8003B264 */ ~J3DTexMtxAnm() {};
     /* 8003B2A0 */ J3DTexMtxAnm() {};
+    J3DTexMtxAnm(u16 param_1, J3DAnmTextureSRTKey* param_2) {
+        field_0x0 = param_1;
+        mAnmFlag = 1;
+        mAnmTransform = param_2;
+    }
 
     void operator=(J3DTexMtxAnm const& other) {
         mAnmTransform = other.mAnmTransform;
@@ -74,8 +89,13 @@ private:
 
 class J3DTevKColorAnm {
 public:
-    /* 8003B150 */ ~J3DTevKColorAnm() {};
-    /* 8003B18C */ J3DTevKColorAnm() {};
+    /* 8003B150 */ ~J3DTevKColorAnm() {}
+    /* 8003B18C */ J3DTevKColorAnm() {}
+    J3DTevKColorAnm(u16 param_1, J3DAnmTevRegKey* param_2) {
+        field_0x0 = param_1;
+        mAnmFlag = 1;
+        mAnmTevReg = param_2;
+    }
 
     void operator=(J3DTevKColorAnm const& other) {
         mAnmTevReg = other.mAnmTevReg;
@@ -95,8 +115,13 @@ private:
 
 class J3DTevColorAnm {
 public:
-    /* 8003B1A4 */ ~J3DTevColorAnm() {};
-    /* 8003B1E0 */ J3DTevColorAnm() {};
+    /* 8003B1A4 */ ~J3DTevColorAnm() {}
+    /* 8003B1E0 */ J3DTevColorAnm() {}
+    J3DTevColorAnm(u16 param_1, J3DAnmTevRegKey* param_2) {
+        field_0x0 = param_1;
+        mAnmFlag = 1;
+        mAnmTevReg = param_2;
+    }
 
     void operator=(J3DTevColorAnm const& other) {
         mAnmTevReg = other.mAnmTevReg;
