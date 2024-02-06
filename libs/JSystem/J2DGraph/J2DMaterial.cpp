@@ -369,7 +369,7 @@ void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
 
                 if (index == matID) {
                     J3DAnmCRegKeyTable* anmTbl = anm->getAnmCRegKeyTable();
-                    mAnmPointer->field_0x32[anmTbl[i]._18] = i;
+                    mAnmPointer->field_0x32[anmTbl[i].mColorId] = i;
                 }
             }
         }
@@ -387,7 +387,7 @@ void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
 
                 if (index == matID) {
                     J3DAnmKRegKeyTable* anmTbl = anm->getAnmKRegKeyTable();
-                    mAnmPointer->field_0x3a[anmTbl[i]._18] = i;
+                    mAnmPointer->field_0x3a[anmTbl[i].mColorId] = i;
                 }
             }
         }

@@ -296,17 +296,19 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
             int tex_gen_type = tex_coord->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
                 tex_mtx = tex_gen_block->getTexMtx(i);
-                u8 tex_gen_src = tex_coord->getTexGenSrc();
+                u8 tex_gen_src = tex_mtx->getTexMtxInfo().mInfo;
                 u32 unk;
                 switch (tex_gen_src & 0x3f) {
                 case 3:
                 case 9:
-                    mtx = &tex_mtx_obj->getMtx(i);
+                    Mtx& tmp5 = tex_mtx_obj->getMtx(i);
+                    mtx = &tmp5;
                     break;
                 case 1:
                 case 6:
                 case 7:
-                    mtx = &tex_mtx_obj->getMtx(i);
+                    Mtx& tmp6 = tex_mtx_obj->getMtx(i);
+                    mtx = &tmp6;
                     break;
                 case 2:
                 case 8:
@@ -368,7 +370,8 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                     mtx = &tmp2;
                     break;
                 default:
-                    mtx = &tex_mtx_obj->getMtx(i);
+                    Mtx& tmp7 = tex_mtx_obj->getMtx(i);
+                    mtx = &tmp7;
                     break;
                 }
                 GXLoadTexMtxImm(*mtx, i * 3 + 0x40, GX_MTX3x4);
@@ -376,11 +379,10 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
         }
     } else {
         for (u16 i = 0; i < (u16)tex_mtx_num; i++) {
-            tex_coord = tex_gen_block->getTexCoord(i);
-            int tex_gen_type = tex_coord->getTexGenType();
+            int tex_gen_type = tex_gen_block->getTexCoord(i)->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
                 tex_mtx = tex_gen_block->getTexMtx(i);
-                u8 tex_gen_src = tex_coord->getTexGenSrc();
+                u8 tex_gen_src = tex_mtx->getTexMtxInfo().mInfo;
                 u32 unk;
                 switch (tex_gen_src & 0x3f) {
                 case 3:

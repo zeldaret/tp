@@ -48,7 +48,7 @@ public:
     /* 8000DFE8 */ virtual u32 getTexGenNum() const;
     /* 8000E0CC */ virtual void setTexCoord(u32, J3DTexCoord const*);
     /* 8000DFE0 */ virtual J3DTexCoord* getTexCoord(u32);
-    /* 8003AB2C */ virtual void setTexMtx(u32, J3DTexMtx*);
+    /* 8003AB2C */ virtual void setTexMtx(u32, J3DTexMtx*) {}
     /* 8000DFD8 */ virtual J3DTexMtx* getTexMtx(u32);
     /* 80317424 */ virtual void setNBTScale(J3DNBTScale const*);
     /* 80317420 */ virtual void setNBTScale(J3DNBTScale);
@@ -611,7 +611,7 @@ inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
     return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
 }
 
-// matches for `J3DMaterialFactory::newAlphaComp` but fails for `d_resorce::addWarpMaterial`
+// matches for `J3DMaterialFactory::newAlphaComp,J3DMaterialFactory_v21::newAlphaComp` but fails for `d_resorce::addWarpMaterial`
 // inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
 //     return param_1 * 0x20 + param_2 * 8 + param_3;
 // }
@@ -794,7 +794,7 @@ struct J3DIndTexCoordScaleInfo {
     /* 0x3 */ u8 field_0x3;
 };  // Size: 0x4
 
-extern J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
+extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
 
 struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
     /* 8000E0E4 */ J3DIndTexCoordScale() : J3DIndTexCoordScaleInfo(j3dDefaultIndTexCoordScaleInfo) {}
@@ -817,7 +817,7 @@ struct J3DIndTexOrderInfo {
     /* 0x3 */ u8 field_0x3;
 };  // Size: 0x04
 
-extern J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
+extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
 
 struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     /* 8000E128 */ J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
@@ -895,7 +895,7 @@ struct J3DColorChanInfo {
     /* 0x6 */ u8 pad[2];
 };
 
-extern J3DColorChanInfo j3dDefaultColorChanInfo;
+extern const J3DColorChanInfo j3dDefaultColorChanInfo;
 
 /* static inline u32 setChanCtrlMacro(u8 param_0, GXColorSrc param_1, GXColorSrc param_2, u32 param_3, GXDiffuseFn param_4, GXAttnFn param_5) {
     

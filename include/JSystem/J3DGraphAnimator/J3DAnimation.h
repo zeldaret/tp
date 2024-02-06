@@ -89,7 +89,7 @@ struct J3DAnmCRegKeyTable {
     /* 0x06 */ J3DAnmKeyTableBase mGTable;
     /* 0x0C */ J3DAnmKeyTableBase mBTable;
     /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18;
+    /* 0x18 */ u8 mColorId;
     u8 padding[3];
 };  // Size = 0x1C
 
@@ -98,7 +98,7 @@ struct J3DAnmKRegKeyTable {
     /* 0x06 */ J3DAnmKeyTableBase mGTable;
     /* 0x0C */ J3DAnmKeyTableBase mBTable;
     /* 0x12 */ J3DAnmKeyTableBase mATable;
-    /* 0x18 */ u8 _18;
+    /* 0x18 */ u8 mColorId;
     u8 padding[3];
 };  // Size = 0x1C
 
@@ -444,6 +444,11 @@ public:
     u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
     u16 getUpdateMaterialNum() const { return mTrackNum / 3; }
 
+    int getUpdateTexMtxID(u16 idx) { return mUpdateTexMtxID[idx]; }
+    bool isValidUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx] != 0xffff; }
+    u32 getTexMtxCalcType() const { return mTexMtxCalcType; }
+    Vec* getSRTCenter(u16 idx) { return &mSRTCenter[idx]; }
+
     /* 0x0C */ int mDecShift;
     /* 0x10 */ J3DAnmTransformKeyTable* mAnmTable;
     /* 0x14 */ u16 mTrackNum;
@@ -511,6 +516,12 @@ public:
 
     u16 getCRegUpdateMaterialID(u16 idx) const { return mCRegUpdateMaterialID[idx]; }
     u16 getKRegUpdateMaterialID(u16 idx) const { return mKRegUpdateMaterialID[idx]; }
+
+    const J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mAnmCRegKeyTable; }
+    const J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mAnmKRegKeyTable; }
+
+    bool isValidCRegUpdateMaterialID(u16 idx) { return mCRegUpdateMaterialID[idx] != 0xffff; }
+    bool isValidKRegUpdateMaterialID(u16 idx) { return mKRegUpdateMaterialID[idx] != 0xffff; }
 
     /* 0x0C */ u16 mCRegUpdateMaterialNum;
     /* 0x0E */ u16 mKRegUpdateMaterialNum;
