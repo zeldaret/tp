@@ -5,16 +5,20 @@
 
 
 struct JASOscillator {
-	struct Point {};
+	struct Point {
+		/* 0x0 */ s16 _0;
+		/* 0x2 */ s16 _2;
+		/* 0x4 */ s16 _4;
+	};
 
     struct EffectParams {};
 
 	struct Data {
 		/* 0x00 */ u32 _00;
 		/* 0x04 */ f32 _04;
-		/* 0x08 */ const short* _08;
-		/* 0x0C */ const short* _0C;
-		/* 0x10 */ f32 _10;
+		/* 0x08 */ const Point* mTable;
+		/* 0x0C */ const Point* _0C;
+		/* 0x10 */ f32 mScale;
 		/* 0x14 */ f32 _14;
 	};
 
