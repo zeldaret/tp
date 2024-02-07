@@ -52,14 +52,14 @@ void JASOscillator::initStart(JASOscillator::Data const* data) {
         return;
 	}
 
-    if (mData->_08 == NULL) {
+    if (mData->mTable == NULL) {
         _1C = 2;
         _08 = 1.0f;
         return;
     }
 
-    _10 = mData->_08[2] / 32768.0f;
-    _18 = mData->_08[0];
+    _10 = mData->mTable[0]._4 / 32768.0f;
+    _18 = mData->mTable[0]._0;
     _1C = 1;
 }
 
@@ -79,7 +79,7 @@ void JASOscillator::incCounter(f32 param_0) {
 
 /* 8029BFC8-8029BFE4 296908 001C+00 0/0 1/1 0/0 .text            getValue__13JASOscillatorCFv */
 f32 JASOscillator::getValue() const {
-	return _08 * mData->_10 + mData->_14;
+	return _08 * mData->mScale + mData->_14;
 }
 
 /* 8029BFE4-8029C0E0 296924 00FC+00 0/0 1/1 0/0 .text            release__13JASOscillatorFv */
@@ -100,12 +100,12 @@ void JASOscillator::release() {
         return;
 	}
 	
-    if (mData->_08 != mData->_0C) {
+    if (mData->mTable != mData->_0C) {
         _04 = 0.0f;
         _0C = _08;
-        _10 = mData->_0C[2] / 32768.0f;
+        _10 = mData->_0C[0]._4 / 32768.0f;
         _14 = 0;
-        _18 = mData->_0C[0];
+        _18 = mData->_0C[0]._0;
     }
 
     _1C = 3;
@@ -127,9 +127,9 @@ void JASOscillator::update() {
 
     if (_1C == 2) return;
 
-    const short* psVar1;
+    const Point* psVar1;
     if (_1C == 1) {
-        psVar1 = mData->_08;
+        psVar1 = mData->mTable;
     } else {
         psVar1 = mData->_0C;
     }
@@ -139,12 +139,12 @@ void JASOscillator::update() {
         return;
     }
     
-    while (_04 >= psVar1[_14 * 3 + 1]) {
-        _04 -= psVar1[_14 * 3 + 1];
+    while (_04 >= psVar1[_14]._2) {
+        _04 -= psVar1[_14]._2;
         _08 = _10;
         _14++;
         _0C = _08;
-        const s16* ps = &psVar1[_14 * 3];
+        const s16* ps = &psVar1[_14]._0;
         switch(ps[0]) {
         case 0xf:
             _1C = 0;
@@ -162,7 +162,7 @@ void JASOscillator::update() {
         }
     }
 
-    updateCurrentValue(psVar1[_14 * 3 + 1]);
+    updateCurrentValue(psVar1[_14]._2);
 }
 
 /* ############################################################################################## */

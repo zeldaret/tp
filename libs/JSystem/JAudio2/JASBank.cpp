@@ -138,8 +138,9 @@ asm JASChannel* JASBank::noteOn(JASBank const* param_0, int param_1, u8 param_2,
 
 /* ############################################################################################## */
 /* 8039B190-8039B19C 0277F0 000C+00 1/0 0/0 0/0 .rodata          OSC_RELEASE_TABLE$260 */
-SECTION_RODATA static s16 const OSC_RELEASE_TABLE[6] = {
-    0x0001, 0x000A, 0x0000, 0x000F, 0x0000, 0x0000,
+SECTION_RODATA static JASOscillator::Point const OSC_RELEASE_TABLE[2] = {
+    {0x0001, 0x000A, 0x0000},
+    {0x000F, 0x0000, 0x0000},
 };
 COMPILER_STRIP_GATE(0x8039B190, &OSC_RELEASE_TABLE);
 

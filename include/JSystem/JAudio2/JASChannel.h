@@ -17,28 +17,28 @@ namespace JASDsp {
 class JASChannelParams {
 public:
     JASChannelParams() {
-        field_0x0 = 1.0f;
-        field_0x4 = 1.0f;
+        mVolume = 1.0f;
+        mPitch = 1.0f;
         field_0x8 = 0.0f;
-        field_0xc = 0.5f;
-        field_0x10 = 0.0f;
-        field_0x14 = 0.0f;
+        mPan = 0.5f;
+        mFxMix = 0.0f;
+        mDolby = 0.0f;
     }
     void init() {
-        field_0x0 = 1.0f;
-        field_0x4 = 1.0f;
+        mVolume = 1.0f;
+        mPitch = 1.0f;
         field_0x8 = 0.0f;
-        field_0xc = 0.5f;
-        field_0x10 = 0.0f;
-        field_0x14 = 0.0f;
+        mPan = 0.5f;
+        mFxMix = 0.0f;
+        mDolby = 0.0f;
     }
 
-    f32 field_0x0;
-    f32 field_0x4;
+    f32 mVolume;
+    f32 mPitch;
     f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
+    f32 mPan;
+    f32 mFxMix;
+    f32 mDolby;
 };
 
 class JASChannel : public JASPoolAllocObject_MultiThreaded<JASChannel> {
