@@ -20,4 +20,4 @@ public:
     JASDefaultBankTable() : JASGlobalInstance(true) {}
 };
 
-#endif /* JASBANKLIST_H */
+#endif /* JASBANKTABLE_H */

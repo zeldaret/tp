@@ -108,11 +108,6 @@ extern "C" void registerSubFrameCallback__9JASDriverFPFPv_lPv();
 extern "C" void* __nwa__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
 extern "C" void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl();
-extern "C" void OSDisableInterrupts();
-extern "C" void OSRestoreInterrupts();
-extern "C" void DVDFastOpen();
-extern "C" void DVDReadPrio();
-extern "C" void DVDGetDriveStatus();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_19();
 extern "C" void _savegpr_25();
@@ -201,7 +196,7 @@ asm void JASAramStream::init(u32 param_0, u32 param_1, void (*param_2)(u32, JASA
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAramStream::prepare(s32 param_0, int param_1) {
+asm bool JASAramStream::prepare(s32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAramStream/prepare__13JASAramStreamFli.s"
 }
@@ -211,7 +206,7 @@ asm void JASAramStream::prepare(s32 param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAramStream::start() {
+asm bool JASAramStream::start() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAramStream/start__13JASAramStreamFv.s"
 }

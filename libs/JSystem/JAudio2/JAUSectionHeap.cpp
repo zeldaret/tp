@@ -531,8 +531,6 @@ bool JAUSection::newStaticSeqData(JAISoundID param_0, void const* param_1, u32 p
 
 /* 802A5730-802A57F0 2A0070 00C0+00 0/0 1/1 0/0 .text newStaticSeqData__10JAUSectionF10JAISoundID
  */
-// extra instruction JAISoundID
-#ifdef NONMATCHING
 bool JAUSection::newStaticSeqData(JAISoundID param_0) {
     JKRArchive* seqArchive = data_.field_0x00.getSeqDataArchive();
     JUT_ASSERT(481, seqArchive);
@@ -542,25 +540,13 @@ bool JAUSection::newStaticSeqData(JAISoundID param_0) {
     }
     u16 r26 = soundInfo->getBgmSeqResourceID(param_0);
     u32 r25 = JASResArcLoader::getResSize(seqArchive, r26);
-    JAISoundID stack_2c;
-    stack_2c.setAnonymous();
-    u8* r24 = newStaticSeqDataBlock_(stack_2c, r25);
+    u8* r24 = newStaticSeqDataBlock_(0xffffffff, r25);
     if (r24) {
         data_.field_0x00.loadDynamicSeq(param_0, true, sectionHeap_->sectionHeapData_.seqDataUser);
         return true;
     }
     return false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool JAUSection::newStaticSeqData(JAISoundID param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSectionHeap/newStaticSeqData__10JAUSectionF10JAISoundID.s"
-}
-#pragma pop
-#endif
 
 /* 802A57F0-802A5854 2A0130 0064+00 3/3 0/0 0/0 .text            newCopy__10JAUSectionFPCvUll */
 void* JAUSection::newCopy(void const* param_0, u32 param_1, s32 param_2) {

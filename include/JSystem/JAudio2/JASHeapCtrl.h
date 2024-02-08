@@ -214,6 +214,9 @@ public:
         JASMemPool<T>* memPool = getMemPool();
         return memPool->alloc(sizeof(T));
     }
+    static void* operator new(size_t n, void* ptr) {
+        return ptr;
+    }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool<T>* memPool_ = getMemPool();
         memPool_->free(ptr, sizeof(T));
@@ -255,6 +258,9 @@ public:
     static void* operator new(size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
         return memPool_->alloc(sizeof(T));
+    }
+    static void* operator new(size_t n, void* ptr) {
+        return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();

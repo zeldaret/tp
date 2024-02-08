@@ -196,4 +196,5 @@ u8 data_80451318[8];
 u8 data_80451320[8];
 
 /* 80451328-80451330 000828 0008+00 0/0 3/3 0/0 .sbss            None */
+// init$localstatic4$getMemPool__30JASPoolAllocObject<9JAIStream>Fv
 u8 data_80451328[8];

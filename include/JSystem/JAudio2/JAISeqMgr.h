@@ -9,8 +9,12 @@
 struct JAIAudience;
 class JAISeq;
 
-class JAISeqMgr : public JAISeqDataUser, public JASGlobalInstance<JAISeqMgr> {
+class JAISeqMgr : public JASGlobalInstance<JAISeqMgr>, public JAISeqDataUser {
 public:
+    enum ReleaseSeqResult {
+        RELEASE_SEQ_1 = 1,
+        RELEASE_SEQ_2 = 2,
+    };
     /* 802A1914 */ JAISeqMgr(bool);
     /* 802A1A08 */ void freeDeadSeq_();
     /* 802A1B48 */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
@@ -19,8 +23,8 @@ public:
     /* 802A1E3C */ void stop(u32);
     /* 802A1E8C */ void stopSoundID(JAISoundID);
     /* 802A1EFC */ void mixOut();
-    /* 802A1F58 */ void beginStartSeq_();
-    /* 802A1FE8 */ void endStartSeq_(JAISeq*, JAISoundHandle*);
+    /* 802A1F58 */ JAISeq* beginStartSeq_();
+    /* 802A1FE8 */ bool endStartSeq_(JAISeq*, JAISoundHandle*);
 
     /* 802A20F0 */ virtual ~JAISeqMgr();  // inline?
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
@@ -50,7 +54,7 @@ private:
     /* 0x04 */ JAISoundActivity mActivity;
     /* 0x08 */ JAIAudience* mAudience;
     /* 0x0C */ JAISeqDataMgr* seqDataMgr_;
-    /* 0x10 */ void* field_0x10;
+    /* 0x10 */ JAISoundStrategyMgr<JAISeq>* field_0x10;
     /* 0x14 */ JAISoundParamsMove mMove;
     /* 0x64 */ JSUList<JAISeq> mSeqList;
     /* 0x70 */ int field_0x70;

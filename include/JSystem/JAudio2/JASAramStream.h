@@ -2,6 +2,7 @@
 #define JASARAMSTREAM_H
 
 #include "dolphin/os/OSMessage.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 class JASChannel;
 
@@ -9,13 +10,15 @@ namespace JASDsp {
     class TChannel;
 }
 
+#define CHANNEL_MAX 6
+
 class JASAramStream {
 public:
     /* 8029631C */ static void initSystem(u32, u32);
     /* 802963A8 */ JASAramStream();
     /* 8029649C */ void init(u32, u32, void (*)(u32, JASAramStream*, void*), void*);
-    /* 8029655C */ void prepare(s32, int);
-    /* 80296618 */ void start();
+    /* 8029655C */ bool prepare(s32, int);
+    /* 80296618 */ bool start();
     /* 8029664C */ void stop(u16);
     /* 80296684 */ void pause(bool);
     /* 802966CC */ void cancel();
@@ -34,6 +37,51 @@ public:
     /* 802974AC */ void channelProc();
     /* 80297658 */ void channelStart();
     /* 80297870 */ void channelStop(u16);
+
+    void setPitch(f32 pitch) { field_0x178 = pitch; }
+    void setVolume(f32 volume) { 
+        for (int i = 0; i < 6; i++) {
+            mChannelVolume[i] = volume; 
+        }
+    }
+
+    void setPan(f32 pan) { 
+        for (int i = 0; i < 6; i++) {
+            mChannelPan[i] = pan; 
+        }
+    }
+
+    void setFxmix(f32 fxMix) { 
+        for (int i = 0; i < 6; i++) {
+            mchannelFxMix[i] = fxMix; 
+        }
+    }
+
+    void setDolby(f32 dolby) { 
+        for (int i = 0; i < 6; i++) {
+            mChannelDolby[i] = dolby; 
+        }
+    }
+
+    void setChannelVolume(int channel, f32 volume) {
+        JUT_ASSERT(290, channel < CHANNEL_MAX);
+        mChannelVolume[channel] = volume;
+    }
+
+    void setChannelPan(int channel, f32 pan) {
+        JUT_ASSERT(296, channel < CHANNEL_MAX);
+        mChannelPan[channel] = pan;
+    }
+
+    void setChannelFxmix(int channel, f32 fxMix) {
+        JUT_ASSERT(302, channel < CHANNEL_MAX);
+        mchannelFxMix[channel] = fxMix;
+    }
+
+    void setChannelDolby(int channel, f32 dolby) {
+        JUT_ASSERT(308, channel < CHANNEL_MAX);
+        mChannelDolby[channel] = dolby;
+    }
 
     /* 0x000 */ OSMessageQueue field_0x000;
     /* 0x020 */ OSMessageQueue field_0x020;
@@ -66,8 +114,8 @@ public:
     /* 0x128 */ short field_0x128;
     /* 0x12A */ u8 field_0x12A[0x12C - 0x12A];
     /* 0x12C */ int field_0x12c;
-    /* 0x130 */ short field_0x130[6];
-    /* 0x13C */ short field_0x13c[6];
+    /* 0x130 */ short field_0x130[CHANNEL_MAX];
+    /* 0x13C */ short field_0x13c[CHANNEL_MAX];
     /* 0x148 */ int field_0x148;
     /* 0x14C */ int field_0x14c;
     /* 0x150 */ void* field_0x150;
@@ -83,11 +131,11 @@ public:
     /* 0x170 */ int field_0x170;
     /* 0x174 */ f32 field_0x174;
     /* 0x178 */ f32 field_0x178;
-    /* 0x17C */ float field_0x17c[6];
-    /* 0x194 */ float field_0x194[6];
-    /* 0x1AC */ float field_0x1ac[6];
-    /* 0x1C4 */ float field_0x1c4[6];
-    /* 0x1DC */ short field_0x1dc[6];
+    /* 0x17C */ float mChannelVolume[CHANNEL_MAX];
+    /* 0x194 */ float mChannelPan[CHANNEL_MAX];
+    /* 0x1AC */ float mchannelFxMix[CHANNEL_MAX];
+    /* 0x1C4 */ float mChannelDolby[CHANNEL_MAX];
+    /* 0x1DC */ short field_0x1dc[CHANNEL_MAX];
 
     u32 getBlockSize() { return sBlockSize; }
 

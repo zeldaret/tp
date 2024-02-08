@@ -8,29 +8,6 @@
 #include "dolphin/os.h"
 #include "dolphin/dsp/dsp_task.h"
 
-//
-// Types:
-//
-
-// Unclear why this is a different type than DSPTaskInfo
-struct STRUCT_DSP_TASK {
-    DSPTaskInfo info;
-};
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-
 /* 8029EA00-8029EA84 299340 0084+00 0/0 1/1 0/0 .text            DSPAddTask */
 DSPTaskInfo* DSPAddTask(DSPTaskInfo* task) {
     if (DSP_prior_task == NULL) {
