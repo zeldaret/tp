@@ -2482,7 +2482,7 @@ BOOL daNpcAsh_c::main() {
     if (mpActionFn != NULL) {
         (this->*mpActionFn)(NULL);
     }
-    if (i_dComIfGp_event_runCheck() && !mEvtInfo.checkCommandTalk() && mItemPartnerId != -1) {
+    if (i_dComIfGp_event_runCheck() != 0 && !mEvtInfo.checkCommandTalk() && mItemPartnerId != -1) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);
         mItemPartnerId = -1;
     }

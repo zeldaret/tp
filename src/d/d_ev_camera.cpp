@@ -10,14 +10,7 @@
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
-
-//
-// Types:
-//
-
-struct daMidna_c {
-    /* 800977A8 */ void checkNoDraw() const;
-};
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 
 //
 // Forward References:
@@ -1973,7 +1966,8 @@ asm void dCamera_c::eyePos(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daMidna_c::checkNoDraw() const {
+// BOOL daMidna_c::checkNoDraw() const
+extern "C" asm void checkNoDraw__9daMidna_cCFv() {
     nofralloc
 #include "asm/d/d_ev_camera/checkNoDraw__9daMidna_cCFv.s"
 }

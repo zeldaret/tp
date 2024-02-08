@@ -142,6 +142,7 @@ public:
     void setLightDropGetFlag(int index, u8 flag) { mLightDropGetFlag[index] = flag; }
     u8 getRentalBombBag() { return mRentalBombBagIdx; }
     void setTableMapRegionNo(u8 regionNo) { mTableMapRegionNo = regionNo; }
+    void setGoldWolfMapType(u8 i_mapType) { mGoldWolfMapType = i_mapType; }
     dMeter2_c* getMeterClass() { return mMeterClass; }
     u8 getMiniGameItemSetFlag() { return mMiniGameItemSetFlag; }
     s16 getMsgKeyWaitTimer() { return mMsgKeyWaitTimer; }
@@ -541,6 +542,10 @@ inline void dMeter2Info_resetMiniGameItem(bool param_0) {
 
 inline void dMeter2Info_setTableMapRegionNo(u8 regionNo) {
     g_meter2_info.setTableMapRegionNo(regionNo);
+}
+
+inline void dMeter2Info_setGoldWolfMapType(u8 i_mapType) {
+    g_meter2_info.setGoldWolfMapType(i_mapType);
 }
 
 inline void dMeter2Info_changeWater(u8 bottleIdx) {

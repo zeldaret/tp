@@ -11,8 +11,7 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "stdio.h"
-#include "string.h"
+#include "d/bg/d_bg_w_kcol.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/mtx.h"
@@ -20,14 +19,8 @@
 #include "dolphin/types.h"
 #include "global.h"
 #include "m_Do/m_Do_graphic.h"
-
-//
-// Types:
-//
-
-struct dBgWKCol {
-    /* 8007E7D0 */ static void* initKCollision(void*);
-};
+#include "stdio.h"
+#include "string.h"
 
 //
 // Forward References:

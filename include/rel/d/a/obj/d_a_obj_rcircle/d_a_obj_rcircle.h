@@ -4,10 +4,10 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
-class daObjRCircle_c : public fopAc_ac_c {
+class daObjRCircle_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80CB8678 */ daObjRCircle_c();
-    
+    /* 80CB874C */ virtual ~daObjRCircle_c();
     /* 80CB8814 */ int createHeap();
     /* 80CB8928 */ int create();
     /* 80CB8A28 */ int Delete();
@@ -17,10 +17,6 @@ public:
     /* 80CB8BF0 */ void setModelMtx();
 
     int getSwBit() { return fopAcM_GetParamBit(this, 0, 8) & 0xFF; }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-    
-    /* 80CB874C */ virtual ~daObjRCircle_c();
 
     /* 0x574 */ mDoExt_brkAnm mBrk;
     /* 0x58C */ mDoExt_btkAnm mBtk;

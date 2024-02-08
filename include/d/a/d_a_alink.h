@@ -3140,6 +3140,7 @@ public:
     u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     bool i_checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     bool i_checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
+    Z2WolfHowlMgr* i_getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
 
     // this might be a fake match, but helps fix usage in many functions
 #pragma optimization_level 2

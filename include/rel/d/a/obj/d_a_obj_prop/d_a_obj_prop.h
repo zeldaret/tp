@@ -4,10 +4,10 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-class daObjProp_c : public fopAc_ac_c {
+class daObjProp_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80CB51F8 */ daObjProp_c();
-
+    /* 80CB5234 */ virtual ~daObjProp_c();
     /* 80CB52B4 */ bool createHeap();
     /* 80CB5334 */ int create();
     /* 80CB5408 */ int Delete();
@@ -18,10 +18,6 @@ public:
 
     u32 getNameArg_0() { return fopAcM_GetParamBit(this, 0, 4); }
     u32 getArg_0() { return fopAcM_GetParamBit(this, 4, 4); }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-
-    /* 0x570 */ /* 80CB5234 */ virtual ~daObjProp_c();
 
     /* 0x574 */ J3DModel* mpModel;
     /* 0x578 */ u8 mArg;

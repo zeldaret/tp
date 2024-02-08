@@ -1774,7 +1774,7 @@ int daNpcT_c::execute() {
     setCollision();
 
     if (!field_0xe2c) {
-        if ((field_0xe33 && i_dComIfGp_getEvent().i_isOrderOK()) || !i_dComIfGp_event_runCheck()) {
+        if ((field_0xe33 && i_dComIfGp_getEvent().i_isOrderOK()) || i_dComIfGp_event_runCheck() == 0) {
             evtOrder();
         }
     }

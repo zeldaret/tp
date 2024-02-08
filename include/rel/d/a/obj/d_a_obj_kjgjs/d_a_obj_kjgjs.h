@@ -5,7 +5,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-class daObjKJgjs_c : public dBgS_MoveBgActor {
+class daObjKJgjs_c : public dBgS_MoveBgActor, public request_of_phase_process_class {
 public:
     /* 80C46098 */ int create1st();
     /* 80C4616C */ void setMtx();
@@ -18,7 +18,6 @@ public:
 
     u32 getType() { return fopAcM_GetParamBit(this, 0, 4); }
 
-    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ Mtx mMtx[2];
     /* 0x608 */ J3DModel* mpModel;
     /* 0x60C */ s32 field_0x60c;
