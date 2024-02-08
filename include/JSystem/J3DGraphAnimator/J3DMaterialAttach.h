@@ -19,11 +19,11 @@ public:
     /* 8032F6F8 */ int removeTexNoAnimator(J3DAnmTexPattern*);
     /* 8032F7B4 */ int removeTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032F880 */ int removeTevRegAnimator(J3DAnmTevRegKey*);
-    /* 8032F9C0 */ void createTexMtxForAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FAF4 */ void entryMatColorAnimator(J3DAnmColor*);
-    /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
+    /* 8032F9C0 */ int createTexMtxForAnimator(J3DAnmTextureSRTKey*);
+    /* 8032FAF4 */ int entryMatColorAnimator(J3DAnmColor*);
+    /* 8032FBC8 */ int entryTexNoAnimator(J3DAnmTexPattern*);
+    /* 8032FCC4 */ int entryTexMtxAnimator(J3DAnmTextureSRTKey*);
+    /* 8032FE70 */ int entryTevRegAnimator(J3DAnmTevRegKey*);
 
     /* 8032F604 */ virtual ~J3DMaterialTable();
 

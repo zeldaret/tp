@@ -77,9 +77,9 @@ bool JASDrumSet::getParam(int param_0, int param_1, JASInstParam* param_2) const
     param_2->field_0x18 = perc->field_0xc;
     osc._00 = 0;
     osc._04 = 1.0f;
-    osc._08 = NULL;
+    osc.mTable = NULL;
     osc._0C = NULL;
-    osc._10 = 1.0f;
+    osc.mScale = 1.0f;
     osc._14 = 0.0f;
 
     if (data_80451274[0] == 0) {

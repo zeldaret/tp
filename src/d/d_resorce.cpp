@@ -5,6 +5,10 @@
 
 #include "d/d_resorce.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
+#include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/bg/d_bg_w_kcol.h"
@@ -144,11 +148,6 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
 extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 j3dDefaultTevSwapMode[4];
-
-//
-// Declarations:
-//
 
 /* 8003A260-8003A280 034BA0 0020+00 0/0 1/1 0/0 .text            __ct__11dRes_info_cFv */
 dRes_info_c::dRes_info_c() {
@@ -243,9 +242,9 @@ static void setAlpha(J3DModelData* pModelData) {
 
 /* ############################################################################################## */
 /* 80379840-803798A4 005EA0 0064+00 2/2 0/0 0/0 .rodata          l_texMtxInfo */
-SECTION_RODATA static const J3DTexMtxInfo l_texMtxInfo = {
+static const J3DTexMtxInfo l_texMtxInfo = {
     0x00,
-    0x08,
+    0x08, 0x00, 0x00,
     {0.5f, 0.5f, 0.0f},
     {0.1f, 0.1f, 0, 0.0f, 0.0f},
     {
@@ -257,21 +256,20 @@ SECTION_RODATA static const J3DTexMtxInfo l_texMtxInfo = {
 };
 
 /* 803798A4-803798B8 005F04 0014+00 1/1 0/0 0/0 .rodata          l_tevStageInfo$3774 */
-SECTION_RODATA static u8 const l_tevStageInfo[20] = {
+static J3DTevStageInfo const l_tevStageInfo = {
     0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x07, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
+    0x07, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01, 0x00,
 };
-COMPILER_STRIP_GATE(0x803798A4, &l_tevStageInfo);
 
 /* 80450628-8045062C 0000A8 0004+00 1/1 0/0 0/0 .sdata           l_texCoordInfo$3772 */
-SECTION_SDATA static J3DTexCoordInfo l_texCoordInfo = {
+static J3DTexCoordInfo l_texCoordInfo = {
     0x00,
     0x00,
     0x27,
 };
 
 /* 8045062C-80450630 0000AC 0004+00 1/1 0/0 0/0 .sdata           l_tevOrderInfo$3773 */
-SECTION_SDATA static J3DTevOrderInfo l_tevOrderInfo = {
+static J3DTevOrderInfo l_tevOrderInfo = {
     0x00,
     0x03,
     0xFF,
@@ -307,7 +305,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         l_tevOrderInfo.field_0x0 = texGenNum;
         tevBlock->setTexNo(3, textureNum);
         tevBlock->setTevOrder(tevStageNum, l_tevOrderInfo);
-        tevBlock->setTevStage(tevStageNum, J3DTevStage(*(J3DTevStageInfo*)l_tevStageInfo));
+        tevBlock->setTevStage(tevStageNum, l_tevStageInfo);
         tevBlock->setTevStageNum(tevStageNum + 1);
         J3DShape* pShape = pMaterial->getShape();
         GXAttr attr = (GXAttr)(texGenNum + 1);
@@ -318,21 +316,6 @@ static void addWarpMaterial(J3DModelData* param_1) {
         alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
-}
-
-/* 8003AACC-8003AB2C 03540C 0060+00 1/1 2/2 0/0 .text __ct__11J3DTevStageFRC15J3DTevStageInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DTevStage::J3DTevStage(J3DTevStageInfo const& param_0) {
-    nofralloc
-#include "asm/d/d_resorce/__ct__11J3DTevStageFRC15J3DTevStageInfo.s"
-}
-#pragma pop
-
-/* 8003AB2C-8003AB30 03546C 0004+00 0/0 2/0 0/0 .text setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx */
-void J3DTexGenBlock::setTexMtx(u32 param_0, J3DTexMtx* param_1) {
-    /* empty function */
 }
 
 /* 8003AB30-8003AC1C 035470 00EC+00 0/0 2/1 0/0 .text

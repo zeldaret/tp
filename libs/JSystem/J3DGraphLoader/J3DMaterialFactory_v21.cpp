@@ -88,30 +88,22 @@ extern "C" extern void* __vt__11J3DMaterial[12];
 J3DMaterialFactory_v21::J3DMaterialFactory_v21(J3DMaterialBlock_v21 const& i_block) {
     mMaterialNum = i_block.mMaterialNum;
     mpMaterialInitData = JSUConvertOffsetToPtr<J3DMaterialInitData_v21>(&i_block, i_block.mpMaterialInitData);
-    // mpMaterialID = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpMaterialID);
-    mpMaterialID = func_802F42C0(&i_block, i_block.mpMaterialID);
-    // mpCullMode = JSUConvertOffsetToPtr<GXCullMode>(&i_block, i_block.mpCullMode);
-    mpCullMode = func_802F4290(&i_block, i_block.mpCullMode);
-    // mpMatColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpMatColor);
-    mpMatColor = func_802F4278(&i_block, i_block.mpMatColor);
-    // mpColorChanNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpColorChanNum);
-    mpColorChanNum = func_802F4260(&i_block, i_block.mpColorChanNum);
+    mpMaterialID = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpMaterialID);
+    mpCullMode = JSUConvertOffsetToPtr<GXCullMode>(&i_block, i_block.mpCullMode);
+    mpMatColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpMatColor);
+    mpColorChanNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpColorChanNum);
     mpColorChanInfo = JSUConvertOffsetToPtr<J3DColorChanInfo>(&i_block, i_block.mpColorChanInfo);
-    // mpTexGenNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTexGenNum);
-    mpTexGenNum = func_802F4260(&i_block, i_block.mpTexGenNum);
+    mpTexGenNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTexGenNum);
     mpTexCoordInfo = JSUConvertOffsetToPtr<J3DTexCoordInfo>(&i_block, i_block.mpTexCoordInfo);
     mpTexCoord2Info = JSUConvertOffsetToPtr<J3DTexCoord2Info>(&i_block, i_block.mpTexCoord2Info);
     mpTexMtxInfo = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&i_block, i_block.mpTexMtxInfo);
     field_0x28 = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&i_block, i_block.field_0x38);
-    // mpTexNo = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpTexNo);
-    mpTexNo = func_802F42C0(&i_block, i_block.mpTexNo);
+    mpTexNo = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpTexNo);
     mpTevOrderInfo = JSUConvertOffsetToPtr<J3DTevOrderInfo>(&i_block, i_block.mpTevOrderInfo);
     // mpTevColor = JSUConvertOffsetToPtr<GXColorS10>(&i_block, i_block.mpTevColor);
     mpTevColor = func_802F41E8(&i_block, i_block.mpTevColor);
-    // mpTevKColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpTevKColor);
-    mpTevKColor = func_802F4278(&i_block, i_block.mpTevKColor);
-    // mpTevStageNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTevStageNum);
-    mpTevStageNum = func_802F4260(&i_block, i_block.mpTevStageNum);
+    mpTevKColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpTevKColor);
+    mpTevStageNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTevStageNum);
     mpTevStageInfo = JSUConvertOffsetToPtr<J3DTevStageInfo>(&i_block, i_block.mpTevStageInfo);
     mpTevSwapModeInfo = JSUConvertOffsetToPtr<J3DTevSwapModeInfo>(&i_block, i_block.mpTevSwapModeInfo);
     mpTevSwapModeTableInfo = JSUConvertOffsetToPtr<J3DTevSwapModeTableInfo>(&i_block, i_block.mpTevSwapModeTableInfo);
@@ -119,10 +111,8 @@ J3DMaterialFactory_v21::J3DMaterialFactory_v21(J3DMaterialBlock_v21 const& i_blo
     mpAlphaCompInfo = JSUConvertOffsetToPtr<J3DAlphaCompInfo>(&i_block, i_block.mpAlphaCompInfo);
     mpBlendInfo = JSUConvertOffsetToPtr<J3DBlendInfo>(&i_block, i_block.mpBlendInfo);
     mpZModeInfo = JSUConvertOffsetToPtr<J3DZModeInfo>(&i_block, i_block.mpZModeInfo);
-    // mpZCompLoc = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpZCompLoc);
-    mpZCompLoc = func_802F4260(&i_block, i_block.mpZCompLoc);
-    // mpDither = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpDither);
-    mpDither = func_802F4260(&i_block, i_block.mpDither);
+    mpZCompLoc = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpZCompLoc);
+    mpDither = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpDither);
     mpNBTScaleInfo = JSUConvertOffsetToPtr<J3DNBTScaleInfo>(&i_block, i_block.mpNBTScaleInfo);
 }
 
@@ -179,19 +169,16 @@ asm J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* param_0, int param_
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 804564B8-804564BC 004AB8 0004+00 1/1 0/0 0/0 .sdata2          @1130 */
-SECTION_SDATA2 static u32 lit_1130 = 0xFFFFFFFF;
-
 /* 803337D8-80333834 32E118 005C+00 1/1 0/0 0/0 .text newMatColor__22J3DMaterialFactory_v21CFii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DGXColor J3DMaterialFactory_v21::newMatColor(int param_0, int param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/newMatColor__22J3DMaterialFactory_v21CFii.s"
+J3DGXColor J3DMaterialFactory_v21::newMatColor(int i_idx, int i_no) const {
+    GXColor defaultColor = {0xff,0xff,0xff,0xff};
+    J3DGXColor defaultJ3DGXColor = J3DGXColor(defaultColor);
+    J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mMatColorIdx[i_no] != 0xffff) {
+        return J3DGXColor(mpMatColor[mtl_init_data->mMatColorIdx[i_no]]);
+    } 
+    return J3DGXColor(defaultJ3DGXColor);
 }
-#pragma pop
 
 /* 80333834-8033386C 32E174 0038+00 1/1 0/0 0/0 .text newColorChanNum__22J3DMaterialFactory_v21CFi
  */
@@ -206,6 +193,17 @@ u8 J3DMaterialFactory_v21::newColorChanNum(int i_idx) const {
 
 /* 8033386C-80333A10 32E1AC 01A4+00 1/1 0/0 0/0 .text newColorChan__22J3DMaterialFactory_v21CFii
  */
+// J3DColorChan ctor
+#ifdef NONMATCHING
+J3DColorChan J3DMaterialFactory_v21::newColorChan(int i_idx, int i_no) const {
+    J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mColorChanIdx[i_no] != 0xffff) {
+        return J3DColorChan(mpColorChanInfo[mtl_init_data->mColorChanIdx[i_no]]);
+    } else {
+        return J3DColorChan();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -214,6 +212,7 @@ asm J3DColorChan J3DMaterialFactory_v21::newColorChan(int param_0, int param_1) 
 #include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/newColorChan__22J3DMaterialFactory_v21CFii.s"
 }
 #pragma pop
+#endif
 
 /* 80333A10-80333A48 32E350 0038+00 1/1 0/0 0/0 .text newTexGenNum__22J3DMaterialFactory_v21CFi */
 u32 J3DMaterialFactory_v21::newTexGenNum(int i_idx) const {
@@ -275,34 +274,29 @@ J3DTevOrder J3DMaterialFactory_v21::newTevOrder(int i_idx, int i_no) const {
     }
 }
 
-/* 80456BC0-80456BC4 000060 0004+00 1/1 0/0 0/0 .sbss2           @1299 */
-SECTION_SBSS2 static GXColorS10 defaultTevColor;
-
 /* 80333C04-80333C74 32E544 0070+00 1/1 0/0 0/0 .text newTevColor__22J3DMaterialFactory_v21CFii */
 J3DGXColorS10 J3DMaterialFactory_v21::newTevColor(int i_idx, int i_no) const {
+    GXColorS10 defaultTevColor = {0,0,0,0};
     J3DGXColorS10 dflt = defaultTevColor;
     J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mTevColorIdx[i_no] != 0xffff) {
         return mpTevColor[mtl_init_data->mTevColorIdx[i_no]];
     } else {
-        return dflt;
+        return defaultTevColor;
     }
 }
 
-/* ############################################################################################## */
-/* 804564BC-804564C0 004ABC 0004+00 1/1 0/0 0/0 .sdata2          @1317 */
-SECTION_SDATA2 static u32 lit_1317 = 0xFFFFFFFF;
-
 /* 80333C74-80333CD0 32E5B4 005C+00 1/1 0/0 0/0 .text newTevKColor__22J3DMaterialFactory_v21CFii
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DGXColor J3DMaterialFactory_v21::newTevKColor(int param_0, int param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/newTevKColor__22J3DMaterialFactory_v21CFii.s"
+J3DGXColor J3DMaterialFactory_v21::newTevKColor(int i_idx, int param_1) const {
+    GXColor defaultColor = {0xff,0xff,0xff,0xff};
+    J3DGXColor defaultJ3DGXColor = J3DGXColor(defaultColor);
+    J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevKColorIdx[param_1] != 0xffff) {
+        return J3DGXColor(mpTevKColor[mtl_init_data->mTevKColorIdx[param_1]]);
+    } 
+    return J3DGXColor(defaultJ3DGXColor);
 }
-#pragma pop
 
 /* 80333CD0-80333D08 32E610 0038+00 1/1 0/0 0/0 .text newTevStageNum__22J3DMaterialFactory_v21CFi
  */
@@ -327,14 +321,13 @@ J3DTevStage J3DMaterialFactory_v21::newTevStage(int i_idx, int i_no) const {
 
 /* 80333D68-80333E04 32E6A8 009C+00 1/1 0/0 0/0 .text
  * newTevSwapModeTable__22J3DMaterialFactory_v21CFii            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DTevSwapModeTable J3DMaterialFactory_v21::newTevSwapModeTable(int param_0, int param_1) const {
-    nofralloc
-#include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/newTevSwapModeTable__22J3DMaterialFactory_v21CFii.s"
+J3DTevSwapModeTable J3DMaterialFactory_v21::newTevSwapModeTable(int i_idx, int param_1) const {
+    J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevSwapModeTableIdx[param_1] != 0xffff) {
+        return J3DTevSwapModeTable(mpTevSwapModeTableInfo[mtl_init_data->mTevSwapModeTableIdx[param_1]]);
+    } 
+    return J3DTevSwapModeTable(j3dDefaultTevSwapModeTable);
 }
-#pragma pop
 
 /* 80333E04-80333EE0 32E744 00DC+00 1/1 0/0 0/0 .text            newFog__22J3DMaterialFactory_v21CFi
  */
@@ -348,6 +341,16 @@ J3DFog J3DMaterialFactory_v21::newFog(int i_idx) const {
 }
 
 /* 80333EE0-80333F60 32E820 0080+00 1/1 0/0 0/0 .text newAlphaComp__22J3DMaterialFactory_v21CFi */
+// calcAlphaCmpID issue
+#ifdef NONMATCHING
+J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int i_idx) const {
+    J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mAlphaCompIdx != 0xffff) {
+        return J3DAlphaComp(mpAlphaCompInfo[mtl_init_data->mAlphaCompIdx]);
+    } 
+    return J3DAlphaComp(0xffff);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -356,6 +359,7 @@ asm J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int param_0) const {
 #include "asm/JSystem/J3DGraphLoader/J3DMaterialFactory_v21/newAlphaComp__22J3DMaterialFactory_v21CFi.s"
 }
 #pragma pop
+#endif
 
 /* 80333F60-80333FA4 32E8A0 0044+00 1/1 0/0 0/0 .text newBlend__22J3DMaterialFactory_v21CFi */
 J3DBlend J3DMaterialFactory_v21::newBlend(int i_idx) const {

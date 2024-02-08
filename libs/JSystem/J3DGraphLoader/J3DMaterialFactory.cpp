@@ -291,38 +291,29 @@ extern "C" extern void* __vt__11J3DTevBlock[55];
 J3DMaterialFactory::J3DMaterialFactory(J3DMaterialBlock const& i_block) {
     mMaterialNum = i_block.mMaterialNum;
     mpMaterialInitData = JSUConvertOffsetToPtr<J3DMaterialInitData>(&i_block, i_block.mpMaterialInitData);
-    // mpMaterialID = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpMaterialID);
-    mpMaterialID = func_802F42C0(&i_block, i_block.mpMaterialID);
+    mpMaterialID = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpMaterialID);
     if (i_block.mpIndInitData != NULL && (u32)i_block.mpIndInitData - (u32)i_block.mpNameTable > 4) {
         mpIndInitData = JSUConvertOffsetToPtr<J3DIndInitData>(&i_block, i_block.mpIndInitData);
     } else {
         mpIndInitData = NULL;
     }
-    // mpCullMode = JSUConvertOffsetToPtr<GXCullMode>(&i_block, i_block.mpCullMode);
-    mpCullMode = func_802F4290(&i_block, i_block.mpCullMode);
-    // mpMatColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpMatColor);
-    mpMatColor = func_802F4278(&i_block, i_block.mpMatColor);
-    // mpColorChanNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpColorChanNum);
-    mpColorChanNum = func_802F4260(&i_block, i_block.mpColorChanNum);
+    mpCullMode = JSUConvertOffsetToPtr<GXCullMode>(&i_block, i_block.mpCullMode);
+    mpMatColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpMatColor);
+    mpColorChanNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpColorChanNum);
     mpColorChanInfo = JSUConvertOffsetToPtr<J3DColorChanInfo>(&i_block, i_block.mpColorChanInfo);
-    // mpAmbColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpAmbColor);
-    mpAmbColor = func_802F4278(&i_block, i_block.mpAmbColor);
+    mpAmbColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpAmbColor);
     mpLightInfo = JSUConvertOffsetToPtr<J3DLightInfo>(&i_block, i_block.mpLightInfo);
-    // mpTexGenNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTexGenNum);
-    mpTexGenNum = func_802F4260(&i_block, i_block.mpTexGenNum);
+    mpTexGenNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTexGenNum);
     mpTexCoordInfo = JSUConvertOffsetToPtr<J3DTexCoordInfo>(&i_block, i_block.mpTexCoordInfo);
     mpTexCoord2Info = JSUConvertOffsetToPtr<J3DTexCoord2Info>(&i_block, i_block.mpTexCoord2Info);
     mpTexMtxInfo = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&i_block, i_block.mpTexMtxInfo);
     field_0x34 = JSUConvertOffsetToPtr<J3DTexMtxInfo>(&i_block, i_block.field_0x44);
-    // mpTexNo = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpTexNo);
-    mpTexNo = func_802F42C0(&i_block, i_block.mpTexNo);
+    mpTexNo = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpTexNo);
     mpTevOrderInfo = JSUConvertOffsetToPtr<J3DTevOrderInfo>(&i_block, i_block.mpTevOrderInfo);
     // mpTevColor = JSUConvertOffsetToPtr<GXColorS10>(&i_block, i_block.mpTevColor);
     mpTevColor = func_802F41E8(&i_block, i_block.mpTevColor);
-    // mpTevKColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpTevKColor);
-    mpTevKColor = func_802F4278(&i_block, i_block.mpTevKColor);
-    // mpTevStageNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTevStageNum);
-    mpTevStageNum = func_802F4260(&i_block, i_block.mpTevStageNum);
+    mpTevKColor = JSUConvertOffsetToPtr<GXColor>(&i_block, i_block.mpTevKColor);
+    mpTevStageNum = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpTevStageNum);
     mpTevStageInfo = JSUConvertOffsetToPtr<J3DTevStageInfo>(&i_block, i_block.mpTevStageInfo);
     mpTevSwapModeInfo = JSUConvertOffsetToPtr<J3DTevSwapModeInfo>(&i_block, i_block.mpTevSwapModeInfo);
     mpTevSwapModeTableInfo = JSUConvertOffsetToPtr<J3DTevSwapModeTableInfo>(&i_block, i_block.mpTevSwapModeTableInfo);
@@ -330,10 +321,8 @@ J3DMaterialFactory::J3DMaterialFactory(J3DMaterialBlock const& i_block) {
     mpAlphaCompInfo = JSUConvertOffsetToPtr<J3DAlphaCompInfo>(&i_block, i_block.mpAlphaCompInfo);
     mpBlendInfo = JSUConvertOffsetToPtr<J3DBlendInfo>(&i_block, i_block.mpBlendInfo);
     mpZModeInfo = JSUConvertOffsetToPtr<J3DZModeInfo>(&i_block, i_block.mpZModeInfo);
-    // mpZCompLoc = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpZCompLoc);
-    mpZCompLoc = func_802F4260(&i_block, i_block.mpZCompLoc);
-    // mpDither = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpDither);
-    mpDither = func_802F4260(&i_block, i_block.mpDither);
+    mpZCompLoc = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpZCompLoc);
+    mpDither = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpDither);
     mpNBTScaleInfo = JSUConvertOffsetToPtr<J3DNBTScaleInfo>(&i_block, i_block.mpNBTScaleInfo);
     mpDisplayListInit = NULL;
     mpPatchingInfo = NULL;
@@ -349,8 +338,7 @@ J3DMaterialFactory::J3DMaterialFactory(J3DMaterialDLBlock const& i_block) {
     mpDisplayListInit = JSUConvertOffsetToPtr<J3DDisplayListInit>(&i_block, i_block.mpDisplayListInit);
     mpPatchingInfo = JSUConvertOffsetToPtr<J3DPatchingInfo>(&i_block, i_block.mpPatchingInfo);
     mpCurrentMtxInfo = JSUConvertOffsetToPtr<J3DCurrentMtxInfo>(&i_block, i_block.mpCurrentMtxInfo);
-    // mpMaterialMode = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpMaterialMode);
-    mpMaterialMode = func_802F4260(&i_block, i_block.mpMaterialMode);
+    mpMaterialMode = JSUConvertOffsetToPtr<u8>(&i_block, i_block.mpMaterialMode);
 }
 
 /* 803302BC-80330304 32ABFC 0048+00 0/0 3/3 0/0 .text countUniqueMaterials__18J3DMaterialFactoryFv

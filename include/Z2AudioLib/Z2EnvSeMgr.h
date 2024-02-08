@@ -5,11 +5,21 @@
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "global.h"
 
+enum WindType {
+    WIND_TYPE_0,
+    WIND_TYPE_1,
+    WIND_TYPE_2,
+    WIND_TYPE_3,
+};
+
 struct Z2EnvSeBase {
     /* 802C589C */ Z2EnvSeBase(Vec* param_0 = NULL);
     /* 802C58AC */ ~Z2EnvSeBase();
-    /* 802C5908 */ void startEnvSe(JAISoundID, f32, f32, f32, f32, f32, u32);
-    /* 802C5AB4 */ void startEnvSeLevel(JAISoundID, f32, f32, f32, f32, f32, u32);
+    /* 802C5908 */ bool startEnvSe(JAISoundID, f32, f32, f32, f32, f32, u32);
+    /* 802C5AB4 */ bool startEnvSeLevel(JAISoundID, f32, f32, f32, f32, f32, u32);
+
+    JAISoundHandle* getHandle() { return &mHandle; }
+    void setPos(Vec* pos) { mPos = pos; }
 
     /* 0x0 */ Vec* mPos;
     /* 0x4 */ JAISoundHandle mHandle;
@@ -20,7 +30,7 @@ struct Z2EnvSeAutoPan : public Z2EnvSeBase {
     /* 802C5F28 */ ~Z2EnvSeAutoPan();
     /* 802C5F7C */ void setPanParam(f32, f32, bool, bool, f32, f32);
     /* 802C5F98 */ void calcPan();
-    /* 802C60E0 */ void startEnvSeAutoPanLevel(JAISoundID, f32, f32, f32);
+    /* 802C60E0 */ bool startEnvSeAutoPanLevel(JAISoundID, f32, f32, f32);
 
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
@@ -35,7 +45,7 @@ struct Z2EnvSeDir : public Z2EnvSeBase {
     /* 802C5D1C */ ~Z2EnvSeDir();
     /* 802C5D70 */ void setPanDir(Vec*);
     /* 802C5D9C */ void calcPan(f32);
-    /* 802C5E90 */ void startEnvSeDirLevel(JAISoundID, f32, f32);
+    /* 802C5E90 */ bool startEnvSeDirLevel(JAISoundID, f32, f32);
 
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
@@ -51,30 +61,30 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802C6AC0 */ void initSceneEnvSe(s32, s8, f32);
     /* 802C6C1C */ void playSceneEnvSe();
     /* 802C6C84 */ void initStaticEnvSe(u8, u8, u8, u8, Vec*);
-    /* 802C70C8 */ void startStaticEnvSe(s8);
+    /* 802C70C8 */ bool startStaticEnvSe(s8);
     /* 802C780C */ void registWindowPos(Vec*);
-    /* 802C7830 */ void startRainSe(s32, s8);
+    /* 802C7830 */ bool startRainSe(s32, s8);
     /* 802C7CF4 */ void startNearThunderSe(s8);
     /* 802C7E68 */ void startFarThunderSe(Vec*, s8);
     /* 802C7FB4 */ void setSnowPower(s8);
     /* 802C7FBC */ void initStrongWindSe();
     /* 802C7FC8 */ void setWindDirection(Vec*);
-    /* 802C800C */ void startStrongWindSe(s8);
+    /* 802C800C */ bool startStrongWindSe(s8);
     /* 802C80F8 */ void initRiverSe(u8, u8, u8, u8);
     /* 802C8234 */ void registRiverSePos(Vec*);
     /* 802C8258 */ void setHyrulSewerOpen(bool);
-    /* 802C8300 */ void startRiverSe(s8);
+    /* 802C8300 */ bool startRiverSe(s8);
     /* 802C8730 */ void initFallSe(u8, u8, u8, u8);
     /* 802C886C */ void registFallSePos(Vec*);
-    /* 802C8890 */ void startFallSe(s8);
+    /* 802C8890 */ bool startFallSe(s8);
     /* 802C8A90 */ void initEtcSe(u8, u8, u8, u8);
     /* 802C8C24 */ void registEtcSePos(Vec*);
-    /* 802C8C48 */ void startEtcSe(s8);
+    /* 802C8C48 */ bool startEtcSe(s8);
     /* 802C92C8 */ void registWolfSmellSePos(Vec*);
-    /* 802C92EC */ void startFogWipeTrigger(Vec*);
+    /* 802C92EC */ bool startFogWipeTrigger(Vec*);
     /* 802C93A0 */ void setFogWipeWidth(f32);
     /* 802C93E4 */ f32 getFogDensity();
-    /* 802C9400 */ void startFogSe();
+    /* 802C9400 */ bool startFogSe();
     /* 802C950C */ void initLv3WaterSe(u8, u8, u8, u8);
     /* 802C9F58 */ void registLv3WaterSePos(u8, Vec*);
     /* 802CA794 */ void startLv3WaterSe(s8);
@@ -90,9 +100,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x01C */ Z2EnvSeAutoPan field_0x1c;
     /* 0x038 */ u8 field_0x38;
     /* 0x039 */ u8 field_0x39;
-    /* 0x03C */ f32 field_0x3c;
-    /* 0x040 */ f32 field_0x40;
-    /* 0x044 */ f32 field_0x44;
+    /* 0x03C */ Vec field_0x3c;
     /* 0x048 */ f32 field_0x48;
     /* 0x04C */ f32 field_0x4c;
     /* 0x050 */ f32 field_0x50;
@@ -115,11 +123,11 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x118 */ Z2EnvSeBase field_0x118;
     /* 0x120 */ Z2Calc::FNoise1f field_0x120;
     /* 0x130 */ Z2Calc::FNoise1f field_0x130;
-    /* 0x140 */ u8 field_0x140;
-    /* 0x141 */ u8 mSnowPower;
+    /* 0x140 */ s8 field_0x140;
+    /* 0x141 */ s8 mSnowPower;
     /* 0x144 */ Z2EnvSeDir field_0x144;
     /* 0x160 */ u8 mWindType;
-    /* 0x164 */ Z2MultiSeMgr field_0x164;
+    /* 0x164 */ Z2MultiSeMgr mRiverSeMgr;
     /* 0x180 */ Z2EnvSeBase field_0x180;
     /* 0x188 */ u8 field_0x188;
     /* 0x18C */ Z2Calc::FNoise1f field_0x18c;
@@ -127,14 +135,14 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x1AC */ f32 field_0x1ac;
     /* 0x1B0 */ f32 field_0x1b0;
     /* 0x1B4 */ f32 field_0x1b4;
-    /* 0x1B8 */ u8 field_0x1b8;
-    /* 0x1BC */ Z2MultiSeMgr field_0x1bc;
+    /* 0x1B8 */ s8 field_0x1b8;
+    /* 0x1BC */ Z2MultiSeMgr mFallSeMgr;
     /* 0x1D8 */ Z2EnvSeBase field_0x1d8;
     /* 0x1E0 */ u8 field_0x1e0;
     /* 0x1E4 */ f32 field_0x1e4;
     /* 0x1E8 */ f32 field_0x1e8;
     /* 0x1EC */ f32 field_0x1ec;
-    /* 0x1F0 */ Z2MultiSeMgr field_0x1f0;
+    /* 0x1F0 */ Z2MultiSeMgr mEtcSeMgr;
     /* 0x20C */ Z2EnvSeBase field_0x20c;
     /* 0x214 */ u8 field_0x214;
     /* 0x218 */ f32 field_0x218;
@@ -158,7 +166,7 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 0x2B4 */ f32 field_0x2b4;
     /* 0x2B8 */ f32 field_0x2b8;
     /* 0x2BC */ f32 field_0x2bc;
-    /* 0x2C0 */ Z2MultiSeMgr field_0x2c0;
+    /* 0x2C0 */ Z2MultiSeMgr mWolfSmellSeMgr;
     /* 0x2DC */ Z2EnvSeBase field_0x2dc;
     /* 0x2E4 */ u8 field_0x2e4;
     /* 0x2E8 */ Z2Calc::FNoise1f field_0x2e8;

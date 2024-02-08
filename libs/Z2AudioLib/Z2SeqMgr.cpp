@@ -1087,11 +1087,11 @@ asm void Z2SeqMgr::subBgmStopInner() {
 #endif
 
 /* 802AFB94-802AFDEC 2AA4D4 0258+00 1/1 3/3 46/46 .text            bgmStreamPrepare__8Z2SeqMgrFUl */
+// Matches with literals
 #ifdef NONMATCHING
-// regalloc
 void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
     if (mStreamBgmHandle) {
-        mStreamBgmHandle->stop(0);
+        bgmStreamStop(0);
     }
     Z2GetSoundMgr()->startSound(i_bgmID, &mStreamBgmHandle, NULL);
     mStreamBgmHandle->lockWhenPrepared();
@@ -2864,6 +2864,7 @@ asm void Z2SeqMgr::battleBgmFramework() {
 #endif
 
 /* 802B4EB0-802B5204 2AF7F0 0354+00 1/1 0/0 0/0 .text            startBattleBgm__8Z2SeqMgrFb */
+// Matches with literals
 #ifdef NONMATCHING
 void Z2SeqMgr::startBattleBgm(bool i_fade) {
     if (!mFlags.mBattleBgmOff && Z2GetSceneMgr()->isSceneExist()
@@ -2873,7 +2874,8 @@ void Z2SeqMgr::startBattleBgm(bool i_fade) {
         if (Z2GetSceneMgr()->isInDarkness() || Z2GetSoundObjMgr()->isTwilightBattle()) {
             bgm_id = Z2BGM_BATTLE_TWILIGHT;
         }
-        if (getSubBgmID() != bgm_id) {
+        u32 subBgmID = getSubBgmID();
+        if (subBgmID != bgm_id) {
             mBattleSeqState = 1;
             if (Z2GetSoundMgr()->startSound(bgm_id, &mSubBgmHandle, NULL)) {
                 Z2GetSoundObjMgr()->setBattleInit();
@@ -3099,6 +3101,7 @@ SECTION_DATA static void* lit_6877[21] = {
 };
 
 /* 802B594C-802B5E80 2B028C 0534+00 2/1 0/0 0/0 .text            fieldBgmFramework__8Z2SeqMgrFv */
+// Switch table needs to be verified
 #ifdef NONMATCHING
 void Z2SeqMgr::fieldBgmFramework() {
     if (Z2GetSceneMgr()->isSceneExist() && !Z2GetSceneMgr()->isInDarkness()
@@ -3158,6 +3161,12 @@ void Z2SeqMgr::fieldBgmFramework() {
                         case 4:
                             changeBgmStatus(5);
                             break;
+                        case 0:
+                        case 1:
+                        case 5:
+                        case 7:
+                        case 19:
+                        case 20:
                         default:
                             changeBgmStatus(4);
                             break;
