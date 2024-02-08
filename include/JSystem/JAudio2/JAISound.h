@@ -47,7 +47,7 @@ struct JAISoundStatus_ {
         user_data = 0;
     }
 
-    bool isAlive() { return  state.unk != 6; }
+    bool isAlive() { return state.unk != 6; }
     bool isDead() { return state.unk == 6;}
 
     inline bool isPlaying() { return state.unk == 5; }
