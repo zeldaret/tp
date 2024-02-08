@@ -24,6 +24,7 @@ public:
     /* 802B9978 */ bool isActive() const;
 
     JAISoundParamsMove* getParams() { return &mParams; }
+    JAIStreamAramMgr* getStreamAramMgr() { return mStreamAramMgr; }
     void setStreamDataMgr(JAIStreamDataMgr* param_0) {
         JUT_ASSERT(139, !isActive());
         mStreamDataMgr = param_0;
