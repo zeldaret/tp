@@ -5,28 +5,12 @@
 
 #include "JSystem/JAudio2/dsptask.h"
 #include "JSystem/JAudio2/osdsp.h"
-#include "dol2asm.h"
 #include "dolphin/dsp.h"
 #include "dolphin/os.h"
 
 //
-// Types:
-//
-
-struct STRUCT_DSP_TASK {
-    /* 0x00 */ DSPTaskInfo info;
-};
-
-//
 // Forward References:
 //
-
-extern "C" static void DspHandShake__FPv();
-extern "C" void DspBoot__FPFPv_v();
-extern "C" void DSPSendCommands2__FPUlUlPFUs_v();
-extern "C" static void DspInitWork__Fv();
-extern "C" static void DspStartWork__FUlPFUs_v();
-extern "C" void DspFinishWork__FUs();
 
 static void DspInitWork();
 static void DspHandShake(void* param_0);
@@ -36,32 +20,20 @@ static int DspStartWork(u32 param_0, void (*param_1)(u16));
 // External References:
 //
 
-extern "C" void DSPAddPriorTask__FP15STRUCT_DSP_TASK();
-extern "C" void Dsp_Running_Check__Fv();
-extern "C" void Dsp_Running_Start__Fv();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-
 extern int Dsp_Running_Check();
-
-//
-// Declarations:
-//
+extern int Dsp_Running_Start();
 
 /* 8029E6E0-8029E718 299020 0038+00 1/1 0/0 0/0 .text            DspHandShake__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-static asm void DspHandShake(void* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dsptask/DspHandShake__FPv.s"
+void DspHandShake(void*) {
+    while (DSPCheckMailFromDSP() == 0) {}
+    DSPReadMailFromDSP();
+    DSPCheckMailFromDSP();
+    Dsp_Running_Start();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803C7920-803C9820 024A40 1F00+00 1/1 0/0 0/0 .data            jdsp */
-SECTION_DATA static u8 jdsp[7936] = {
+static u8 jdsp[7936] = {
     0x02, 0x9F, 0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00,
     0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0xFF, 0x00, 0x00, 0x02, 0x9F, 0x06, 0xA5,
     0x02, 0x9F, 0x00, 0x4E, 0x12, 0x05, 0x02, 0xBF, 0x00, 0x57, 0x81, 0x00, 0x00, 0x9F, 0x10, 0x00,
@@ -587,49 +559,39 @@ void DspBoot(void (*param_0)(void*)) {
 }
 
 /* 8029E7E0-8029E8C8 299120 00E8+00 0/0 4/4 0/0 .text            DSPSendCommands2__FPUlUlPFUs_v */
-// lwz instead of lwzx in loop
-#ifdef NONMATCHING
-int DSPSendCommands2(u32* param_0, u32 param_1, void (*param_2)(u16)) {
-    while (Dsp_Running_Check() == 0);
+int DSPSendCommands2(u32* param_1, u32 param_2, void (*callBack)(u16)) {
+    s32 i;
+    BOOL interruptFlag;
+    s32 startWorkStatus;
 
-    BOOL status = OSDisableInterrupts();
+    while (Dsp_Running_Check() == 0) {};
+
+    interruptFlag = OSDisableInterrupts();
     if (DSPCheckMailToDSP()) {
-        OSRestoreInterrupts(status);
+        OSRestoreInterrupts(interruptFlag);
         return -1;
     }
 
-    DSPSendMailToDSP(param_1);
+    DSPSendMailToDSP(param_2);
     DSPAssertInt();
     while(DSPCheckMailToDSP() != 0);
 
-    if (param_1 == 0) {
-        param_1 = 1;
+    if (param_2 == 0) {
+        param_2 = 1;
     }
 
-    int startWorkStatus;
-    if (param_2 != NULL) {
-        startWorkStatus = DspStartWork(param_0[0], param_2);
+    if (callBack != NULL) {
+        startWorkStatus = DspStartWork(param_1[0], callBack);
     }
 
-    for (int i = 0; i < param_1; i++) {
-        DSPSendMailToDSP(param_0[i]);
+    for (i = 0; i < param_2; i++) {
+        DSPSendMailToDSP(param_1[i]);
         while (DSPCheckMailToDSP() != 0);
     }
 
-    OSRestoreInterrupts(status);
+    OSRestoreInterrupts(interruptFlag);
     return startWorkStatus;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-asm int DSPSendCommands2(u32* param_0, u32 param_1, void (*param_2)(u16)) {
-    nofralloc
-#include "asm/JSystem/JAudio2/dsptask/DSPSendCommands2__FPUlUlPFUs_v.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80433FE0-80434060 060D00 0080+00 3/3 0/0 0/0 .bss             taskwork */
@@ -644,23 +606,11 @@ static TaskWorkStruct taskwork[16];
 
 /* 8029E8E0-8029E90C 299220 002C+00 1/1 0/0 0/0 .text            DspInitWork__Fv */
 // Loop is unrolled but should not be
-#ifdef NONMATCHING
 static void DspInitWork() {
     for (int i = 0; i < 16; i++) {
         taskwork[i].field_0x4 = NULL;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-#pragma function_align 32
-static asm void DspInitWork() {
-    nofralloc
-#include "asm/JSystem/JAudio2/dsptask/DspInitWork__Fv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80451300-80451304 000800 0004+00 2/2 0/0 0/0 .sbss            taskreadp */
