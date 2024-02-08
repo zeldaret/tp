@@ -3,11 +3,12 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASAramStream.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JSupport/JSUList.h"
 
 class JAIStreamMgr;
 
-class JAIStream : public JAISound, JSULink<JAIStream> {
+class JAIStream : public JASPoolAllocObject<JAIStream>, public JAISound, public JSULink<JAIStream> {
 public:
     struct TInner {
         JASAramStream field_0x0;
@@ -30,6 +31,11 @@ public:
     /* 802A3AC4 */ JASTrack* getChildTrack(int);
     /* 802A3ACC */ JAIStream* asStream();
     /* 802A3AD0 */ JAITempoMgr* getTempoMgr();
+
+    void* JAIStreamMgr_getAramAddr_() { return field_0x29c; }
+    // ~JAIStream() {
+    //     delete (JASPoolAllocObject<JAIStream>*)this;
+    // }
 
     /* 0x0A8 */ TInner field_0x0a8;
     /* 0x290 */ int field_0x290;
