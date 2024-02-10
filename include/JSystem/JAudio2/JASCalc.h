@@ -21,6 +21,16 @@ struct JASCalc {
         return x;
     } */
 
+    static f32 clamp01(f32 i_value) {
+        if (i_value <= 0.0f) {
+            return 0.0f;
+        }
+        if (i_value >= 1.0f) {
+            return 1.0f;
+        }
+        return i_value;
+    }
+
     f32 fake1();
     f32 fake2(long x);
     f32 fake3();

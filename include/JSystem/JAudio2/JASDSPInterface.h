@@ -57,7 +57,7 @@ namespace JASDsp {
         /* 0x002 */ u16 mIsFinished;
         /* 0x004 */ u16 mPitch;
         /* 0x006 */ short field_0x006;
-        /* 0x008 */ short field_0x008;
+        /* 0x008 */ u16 field_0x008;
         /* 0x00A */ u8 field_0x00A[0x00C - 0x00A];
         /* 0x00C */ s16 mPauseFlag;
         /* 0x00E */ short field_0x00E;
@@ -71,7 +71,7 @@ namespace JASDsp {
         /* 0x05A */ u8 field_0x05A[0x060 - 0x05A];
         /* 0x060 */ short field_0x060;
         /* 0x062 */ u8 field_0x062[0x064 - 0x062];
-        /* 0x064 */ short field_0x064;
+        /* 0x064 */ u16 field_0x064;
         /* 0x066 */ short field_0x066;
         /* 0x068 */ int field_0x068;
         /* 0x06C */ u8 field_0x06C[0x070 - 0x06C];

@@ -25,7 +25,7 @@ public:
     /* 8028FE88 */ void pause(bool);
 
     /* 8028F724 */ virtual ~JASTaskThread();
-    /* 8028FD4C */ virtual void run();
+    /* 8028FD4C */ virtual void* run();
 
     /* 0x7C */ OSThreadQueue mpThreadQueue;
     /* 0x84 */ bool field_0x84;

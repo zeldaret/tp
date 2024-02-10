@@ -225,7 +225,7 @@ asm void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* para
 
 /* ############################################################################################## */
 /* 80451278-80451280 000778 0004+04 2/2 0/0 0/0 .sbss            mNoLoad__16JASBasicWaveBank */
-u8 JASBasicWaveBank::mNoLoad[4 + 4 /* padding */];
+u32 JASBasicWaveBank::mNoLoad;
 
 /* 8029883C-802988DC 29317C 00A0+00 1/1 0/0 0/0 .text
  * decWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */
@@ -235,7 +235,7 @@ void JASBasicWaveBank::decWaveTable(JASBasicWaveBank::TWaveGroup const* param_0)
         TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
         if (handle->mHeap == &param_0->base.mHeap) {
             handle->mHeap = NULL;
-            handle->field_0x4.field_0x20 = mNoLoad;
+            handle->field_0x4.field_0x20 = &mNoLoad;
             handle->field_0x4.field_0x08 = -1;
         }
     }
@@ -260,7 +260,7 @@ void JASBasicWaveBank::setWaveInfo(JASBasicWaveBank::TWaveGroup* wgrp, int index
     JUT_ASSERT(205, index < wgrp->mWaveCount);
     JUT_ASSERT(206, index >= 0);
     mWaveTable[param_2].field_0x4 = param_3;
-    mWaveTable[param_2].field_0x4.field_0x20 = mNoLoad;
+    mWaveTable[param_2].field_0x4.field_0x20 = &mNoLoad;
     mWaveTable[param_2].field_0x4.field_0x08 = -1;
     wgrp->mCtrlWaveArray[index].field_0x0 = param_2;
     wgrp->mCtrlWaveArray[index].field_0x4 = param_3.field_0x08;
