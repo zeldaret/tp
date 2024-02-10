@@ -398,20 +398,10 @@ asm f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
 #pragma pop
 #endif
 
-/* 800202CC-80020338 01AC0C 006C+00 0/0 2/0 0/0 .text            setBlendRatio__10J2DPictureFff */
-void J2DPicture::setBlendRatio(f32 param_0, f32 param_1) {
-    setBlendColorRatio(param_0, param_1);
-    setBlendAlphaRatio(param_0, param_1);
-}
-
-/* 80020338-80020368 01AC78 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPCcf */
-bool J2DPicture::append(char const* param_0, f32 param_1) {
-    return insert(param_0, mTextureNum, param_1);
-}
-
-/* 80020368-8002039C 01ACA8 0034+00 0/0 1/0 0/0 .text            insert__10J2DPictureFPCcUcf */
-bool J2DPicture::insert(char const* param_0, u8 param_1, f32 param_2) {
-    return insert(param_0, NULL, param_1, param_2);
+// Here to generate J2DPicture virtual inlines
+static void dummyVirtual(J2DPicture* picture, f32 param_1, f32 param_2, const char* param_3) {
+    picture->append(param_3, param_1);
+    picture->setBlendRatio(param_1, param_2);
 }
 
 /* 8002039C-800203E0 01ACDC 0044+00 0/0 3/3 0/0 .text            fopMsgM_createExpHeap__FUlP7JKRHeap
