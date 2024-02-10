@@ -54,7 +54,7 @@ public:
         }
     }
     /* 8030A358 */ virtual ~J2DAnmVtxColor() {}
-    /* 8030363C */ virtual void getColor(u8, u16, _GXColor*) const;
+    /* 8030363C */ virtual void getColor(u8, u16, _GXColor*) const {}
     u16 getAnmTableNum(u8 param_0) const { return mAnmTableNum[param_0]; }
     J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 param_0, u16 param_1) const { return &mVtxColorIndexData[param_0][param_1]; }
     u16* getVtxColorIndexPointer(u8 param_0) const { return mVtxColorIndexPointer[param_0]; }

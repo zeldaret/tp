@@ -534,6 +534,85 @@ SECTION_SDATA2 static f32 lit_2257[1 + 1 /* padding */] = {
 
 /* 80301994-80301D74 2FC2D4 03E0+00 1/0 0/0 0/0 .text
  * drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>          */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DWindowEx::drawContents(JGeometry::TBox2<f32> const& param_1) {
+    if (!param_1.isValid() || mContentsMaterial == NULL)  {
+        return;
+    }
+    if (!mContentsMaterial->isVisible()) {
+        return;
+    }
+    mContentsMaterial->setGX();
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    JUtility::TColor TStack_b4(field_0x128);
+    JUtility::TColor TStack_b8(field_0x130);
+    JUtility::TColor TStack_bc(field_0x12C);
+    JUtility::TColor TStack_c0(field_0x134);
+    if (mContentsMaterial->getColorBlock()->getColorChan(1)->getMatSrc() == 1) {
+        if (mContentsMaterial->getMaterialAlphaCalc() == 1) {
+            TStack_b4.a = (TStack_b4.a * mColorAlpha) / 0xff;
+            TStack_b8.a = (TStack_b8.a * mColorAlpha) / 0xff;
+            TStack_bc.a = (TStack_bc.a * mColorAlpha) / 0xff;
+            TStack_c0.a = (TStack_c0.a * mColorAlpha) / 0xff;
+        }
+    } else if (mIsInfluencedAlpha) {
+        GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(mColorAlpha));
+    }
+    bool bVar5 = false;
+    f32 in_f31;
+    f32 in_f30;
+    f32 in_f29;
+    f32 in_f28;
+    if (mContentsMaterial->getTevBlock() != NULL) {
+        if (mContentsMaterial->getTevBlock()->getTexture(0)) {
+            bVar5 = true;
+            GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+            f32 dVar15 = mContentsMaterial->getTevBlock()->getTexture(0)->getWidth();
+            f32 dVar14 = mContentsMaterial->getTevBlock()->getTexture(0)->getHeight();
+
+            f32 dVar12 = param_1.getWidth();
+            f32 dVar13 = param_1.getHeight();
+            in_f31 = -(dVar12 / dVar15 - 1.0f) / 2;
+            in_f30 = -((dVar13 / dVar14) - 1.0f) / 2;
+            in_f29 = in_f31 + (dVar12 / dVar15);
+            in_f28 = in_f30 + (dVar13 / dVar14);
+        }
+    }
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+    GXPosition3f32(param_1.i.x, param_1.i.y,
+                        0.0f);
+    GXColor1u32(TStack_b4);
+    if (bVar5) {
+        GXTexCoord2f32(in_f31, in_f30);
+    }
+    GXPosition3f32(param_1.f.x, param_1.i.y,
+                        0.0f);
+    GXColor1u32(TStack_bc);
+    if (bVar5) {
+        GXTexCoord2f32(in_f29, in_f30);
+    }
+    GXPosition3f32(param_1.f.x, param_1.f.y,
+                        0.0f);
+    GXColor1u32(TStack_c0);
+    if (bVar5) {
+        GXTexCoord2f32(in_f29, in_f28);
+    }
+    GXPosition3f32(param_1.i.x, param_1.f.y,
+                        0.0f);
+    GXColor1u32(TStack_b8);
+    if (bVar5) {
+        GXTexCoord2f32(in_f31, in_f28);
+    }
+    GXEnd();
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -542,9 +621,58 @@ asm void J2DWindowEx::drawContents(JGeometry::TBox2<f32> const& param_0) {
 #include "asm/JSystem/J2DGraph/J2DWindowEx/func_80301994.s"
 }
 #pragma pop
+#endif
 
 /* 80301D74-80301FC8 2FC6B4 0254+00 1/1 0/0 0/0 .text
  * drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb  */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DWindowEx::drawFrameTexture(f32 param_1, f32 param_2, f32 param_3, f32 param_4, u16 param_5,
+                                   u16 param_6, u16 param_7, u16 param_8, J2DMaterial* param_9,
+                                   bool param_10) {
+    if (param_9 != NULL && param_9->isVisible()) {
+        f32 dVar15 = param_1 + param_3;
+        f32 dVar14 = param_2 + param_4;
+        if (param_10) {
+            param_9->setGX();
+        }
+        JUtility::TColor aTStack_84(0xffffffff);
+        J2DPane* parentPane = getParentPane();
+        if (param_9->getColorBlock()->getColorChan(1)->getMatSrc() == 1) {
+            if (param_9->getMaterialAlphaCalc() == 1) {
+                u8 uVar11 = 0xff;
+                if (param_9->getColorBlock()->getMatColor(0) != 0) {
+                    uVar11 = param_9->getColorBlock()->getMatColor(0)->a;
+                }
+                if (parentPane != NULL && mIsInfluencedAlpha != 0) {
+                    uVar11 = ((uVar11 * parentPane->mColorAlpha) / 0xff);
+                }
+                aTStack_84 = JUtility::TColor((u32)uVar11 | 0xffffff00);
+            }
+        } else if (parentPane != NULL && mIsInfluencedAlpha != 0 && param_10) {
+            s32 matColorAlpha = param_9->getColorBlock()->getMatColor(0)->a;
+            s32 colorAlpha = parentPane->mColorAlpha;
+            GXSetChanMatColor(GX_ALPHA0, JUtility::TColor((matColorAlpha * colorAlpha / 0xff) & 0xff));
+        }
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(param_1, param_2, 0.0f);
+        GXColor1u32(aTStack_84);
+        GXTexCoord2u16(param_7, param_8);
+        GXPosition3f32(dVar15, param_2, 0.0f);
+        GXColor1u32(aTStack_84);
+        GXTexCoord2u16(param_5, param_8);
+        GXPosition3f32(dVar15, dVar14, 0.0f);
+        GXColor1u32(aTStack_84);
+        GXTexCoord2u16(param_5, param_6);
+        GXPosition3f32(param_1, dVar14, 0.0f);
+        GXColor1u32(aTStack_84);
+        GXTexCoord2u16(param_7, param_6);
+        GXEnd();
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,9 +683,38 @@ asm void J2DWindowEx::drawFrameTexture(f32 param_0, f32 param_1, f32 param_2, f3
 #include "asm/JSystem/J2DGraph/J2DWindowEx/drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb.s"
 }
 #pragma pop
+#endif
 
 /* 80301FC8-80302164 2FC908 019C+00 1/0 0/0 0/0 .text draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>
  */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1) {
+    bool isMissingTexture = false;
+    JUTTexture* local_68[4];
+    for (int i = 0; i < 4; i++) {
+        if (mFrameMaterial[i] == NULL) {
+            return;
+        }
+        if (mFrameMaterial[i]->getTevBlock() == NULL) {
+            return;
+        }
+        local_68[i] = mFrameMaterial[i]->getTevBlock()->getTexture(0);
+        if (local_68[i] == NULL) {
+            isMissingTexture = true;
+        }
+    }
+    JGeometry::TBox2<f32> aTStack_78;
+    if (!isMissingTexture) {
+        aTStack_78.set(local_68[0]->getWidth(), local_68[0]->getHeight(),
+                       param_1.getWidth() - local_68[1]->getWidth(),
+                       param_1.getHeight() - local_68[2]->getHeight());
+    } else {
+        aTStack_78.set(0.0f, 0.0f, param_1.getWidth(), param_1.getHeight());
+    }
+    draw(param_1, aTStack_78);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -566,9 +723,32 @@ asm void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_0) {
 #include "asm/JSystem/J2DGraph/J2DWindowEx/func_80301FC8.s"
 }
 #pragma pop
+#endif
 
 /* 80302164-80302284 2FCAA4 0120+00 1/0 0/0 0/0 .text
  * draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f> */
+// Matches with literals
+#ifdef NONMATCHING
+void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1, JGeometry::TBox2<f32> const& param_2) {
+    rewriteAlpha();
+    mColorAlpha = mAlpha;
+    makeMatrix(param_1.i.x, param_1.i.y, 0.0f, 0.0f);
+    GXLoadPosMtxImm(mPositionMtx, 0);
+    GXSetCurrentMtx(0);
+    JGeometry::TBox2<f32> aTStack_70(0.0f, 0.0f, param_1.getWidth(), param_1.getHeight());
+    draw_private(aTStack_70, param_2);
+    for (int i = GX_TEV_SWAP0; i < GX_MAX_TEVSWAP; i++) {
+        GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+    }
+    GXSetNumIndStages(0);
+    for (int i = GX_TEVSTAGE0; i < GX_MAX_TEVSTAGE; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+    Mtx auStack_60;
+    MTXIdentity(auStack_60);
+    GXLoadPosMtxImm(auStack_60, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -578,6 +758,7 @@ asm void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_0,
 #include "asm/JSystem/J2DGraph/J2DWindowEx/func_80302164.s"
 }
 #pragma pop
+#endif
 
 /* 80302284-80302388 2FCBC4 0104+00 1/1 0/0 0/0 .text            setTevOrder__11J2DWindowExFb */
 void J2DWindowEx::setTevOrder(bool param_0) {
@@ -605,29 +786,45 @@ void J2DWindowEx::setTevOrder(bool param_0) {
 }
 
 /* 80302388-803024B4 2FCCC8 012C+00 1/1 0/0 0/0 .text            setTevStage__11J2DWindowExFb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DWindowEx::setTevStage(bool param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DWindowEx/setTevStage__11J2DWindowExFb.s"
+void J2DWindowEx::setTevStage(bool param_1) {
+    for (int i = 0; i < 4; i++) {
+        J2DTevStage* pJVar3 = mFrameMaterial[i]->getTevBlock()->getTevStage(0);
+        JUTTexture* this_00 = mFrameMaterial[i]->getTevBlock()->getTexture(0);
+        bool bVar1 = false;
+        if (this_00 != NULL && ((s32)this_00->getFormat() == 0 || (s32)this_00->getFormat() == 1) &&
+            this_00->getTransparency() == 0)
+        {
+            bVar1 = true;
+        }
+        if (!param_1) {
+            setStage(pJVar3, bVar1 ? STAGE_ENUM_1 : STAGE_ENUM_0);
+        } else {
+            stage_enum sVar5;
+            if (bVar1) {
+                sVar5 = STAGE_ENUM_4;
+            } else {
+                sVar5 = STAGE_ENUM_3;
+            }
+            setStage(pJVar3, sVar5);
+            setStage(mFrameMaterial[i]->getTevBlock()->getTevStage(1), STAGE_ENUM_2);
+        }
+    }
 }
-#pragma pop
 
 /* 803024B4-80302764 2FCDF4 02B0+00 1/1 0/0 0/0 .text
  * setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum */
-// rlwinm/slwi diffs + regalloc. Need to verify data arrays.
+// Matches with literals.
 #ifdef NONMATCHING
 void J2DWindowEx::setStage(J2DTevStage* param_0, J2DWindowEx::stage_enum param_1) {
-    u8 local_30[6][4] = {
+    s8 local_30[6][4] = {
         {0x0f, 0x08, 0x0a, 0x0f}, {0x0f, 0x08, 0x0a, 0x0f}, {0x0f, 0x0a, 0x00, 0x0f},
         {0x02, 0x04, 0x08, 0x0f}, {0x02, 0x04, 0x08, 0x0f}, {0x0f, 0x0f, 0x0f, 0x0a},
     };
-    u8 local_48[6][4] = {
+    s8 local_48[6][4] = {
         {0x07, 0x04, 0x05, 0x07}, {0x05, 0x07, 0x07, 0x07}, {0x07, 0x05, 0x00, 0x07},
         {0x01, 0x02, 0x04, 0x07}, {0x07, 0x07, 0x07, 0x02}, {0x07, 0x07, 0x07, 0x05},
     };
-    u8 local_68[6][5] = {
+    s8 local_68[6][5] = {
         {1, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 1, 0, 0, 1},
         {0, 0, 1, 0, 0}, {1, 0, 0, 0, 0}, {0, 0, 0, 0, 1},
     };
@@ -1210,11 +1407,4 @@ bool J2DWindowEx::isUsed(ResFONT const* param_0) {
 /* 8030361C-8030363C 2FDF5C 0020+00 1/0 0/0 0/0 .text setAnimation__11J2DWindowExFP10J2DAnmBase */
 void J2DWindowEx::setAnimation(J2DAnmBase* param_0) {
     J2DPane::setAnimation(param_0);
-}
-
-/* 8030363C-80303640 2FDF7C 0004+00 0/0 1/0 0/0 .text getColor__14J2DAnmVtxColorCFUcUsP8_GXColor
- */
-// void J2DAnmVtxColor::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
-extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor() {
-    /* empty function */
 }

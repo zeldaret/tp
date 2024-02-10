@@ -6,7 +6,13 @@
 
 class J2DWindowEx : public J2DWindow {
 public:
-    enum stage_enum {};
+    enum stage_enum {
+        STAGE_ENUM_0,
+        STAGE_ENUM_1,
+        STAGE_ENUM_2,
+        STAGE_ENUM_3,
+        STAGE_ENUM_4,
+    };
 
     /* 80300C94 */ J2DWindowEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
     /* 80300F80 */ void setMinSize();
