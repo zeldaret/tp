@@ -47,15 +47,6 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C5B58-803C5B68 022C78 0010+00 2/2 0/0 0/0 .data            __vt__13JASTaskThread */
-SECTION_DATA extern void* __vt__13JASTaskThread[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13JASTaskThreadFv,
-    (void*)run__13JASTaskThreadFv,
-};
-
 /* 8028F6C4-8028F724 28A004 0060+00 0/0 1/1 0/0 .text            __ct__13JASTaskThreadFiiUl */
 JASTaskThread::JASTaskThread(int param_0, int param_1, u32 param_2) : JKRThread(JASDram, param_2, param_1, param_0) {
     field_0x84 = false;
@@ -63,37 +54,25 @@ JASTaskThread::JASTaskThread(int param_0, int param_1, u32 param_2) : JKRThread(
 }
 
 /* 8028F724-8028F850 28A064 012C+00 1/0 0/0 0/0 .text            __dt__13JASTaskThreadFv */
-// vtable maybe
-#ifdef NONMATCHING
 JASTaskThread::~JASTaskThread() {
     OSMessage msg;
     BOOL received;
-    waitmsg:
-    msg = waitMessage(&received);
-    if (!received) return;
-    u32 heap = JASKernel::getCommandHeap();
-    ((ThreadMemPool*)msg)->free((void*)heap);
-    goto waitmsg;
+    while (true) {
+        msg = waitMessage(&received);
+        if (!received) {
+            return;
+        }
+        ThreadMemPool* heap = JASKernel::getCommandHeap();
+        heap->free(msg);
+    }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm JASTaskThread::~JASTaskThread() {
-extern "C" asm void __dt__13JASTaskThreadFv() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTaskThread/__dt__13JASTaskThreadFv.s"
-}
-#pragma pop
-#endif
 
 /* 8028F850-8028F9EC 28A190 019C+00 1/1 0/0 0/0 .text allocCallStack__13JASTaskThreadFPFPv_vPCvUl
  */
 void* JASTaskThread::allocCallStack(void (*param_0)(void*), void const* param_1, u32 param_2) {
     ThreadMemPool* heap;
     u32 size = param_2 + 8;
-    heap =
-        (ThreadMemPool*)JASKernel::getCommandHeap();
+    heap = JASKernel::getCommandHeap();
     JASThreadCallStack *callStack = (JASThreadCallStack*) heap->alloc(size);
     if (callStack == NULL) {
         return NULL;
@@ -108,8 +87,7 @@ void* JASTaskThread::allocCallStack(void (*param_0)(void*), void const* param_1,
 void* JASTaskThread::allocCallStack(void (*runFunc)(void*), void* param_1) {
     ThreadMemPool* heap;
     JASThreadCallStack *callStack;
-    heap =
-        (ThreadMemPool*)JASKernel::getCommandHeap();
+    heap = JASKernel::getCommandHeap();
     callStack = (JASThreadCallStack*)heap->alloc(0xc);
     if (callStack == NULL) {
         return NULL;
@@ -130,8 +108,8 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void const* param_1, u32 p
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        void* heap = JASKernel::getCommandHeap();
-       ((ThreadMemPool*)pvVar1)->free(heap);
+        ThreadMemPool* heap = JASKernel::getCommandHeap();
+        heap->free(pvVar1);
     }
     return iVar2;
 }
@@ -146,8 +124,8 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        void* heap = JASKernel::getCommandHeap();
-       ((ThreadMemPool*)pvVar1)->free(heap);
+        ThreadMemPool* heap = JASKernel::getCommandHeap();
+        heap->free(pvVar1);
     }
     return iVar2;
 }
@@ -155,7 +133,7 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
 /* 8028FD4C-8028FE88 28A68C 013C+00 1/0 0/0 0/0 .text            run__13JASTaskThreadFv */
 // Regalloc
 #ifdef NONMATCHING
-void JASTaskThread::run() {
+void* JASTaskThread::run() {
     OSInitFastCast();
     do {
         JASThreadCallStack* ppcVar1 = (JASThreadCallStack*)waitMessageBlock();
@@ -167,15 +145,15 @@ void JASTaskThread::run() {
         } else {
             ppcVar1->mRunFunc(ppcVar1->field_0x8.pBuffer);
         }
-        u32 heap = JASKernel::getCommandHeap();
-       ((ThreadMemPool*)ppcVar1)->free((void*)heap);
+        ThreadMemPool* heap = JASKernel::getCommandHeap();
+        heap->free(ppcVar1);
     } while (true);
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTaskThread::run() {
+asm void* JASTaskThread::run() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/run__13JASTaskThreadFv.s"
 }

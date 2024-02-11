@@ -80,7 +80,7 @@ struct JASBasicWaveBank : public JASWaveBank {
     /* 0x24 */ u16 mHandleCount;
     /* 0x26 */ u16 mGroupCount;
 
-    static u8 mNoLoad[4 + 4 /* padding */];
+    static u32 mNoLoad;
 };
 
 #endif /* JASBASICWAVEBANK_H */

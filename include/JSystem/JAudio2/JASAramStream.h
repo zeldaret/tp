@@ -1,8 +1,10 @@
 #ifndef JASARAMSTREAM_H
 #define JASARAMSTREAM_H
 
+#include "JSystem/JAudio2/JASTaskThread.h"
 #include "dolphin/os/OSMessage.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#include "dolphin/dvd.h"
 
 class JASChannel;
 
@@ -14,31 +16,71 @@ namespace JASDsp {
 
 class JASAramStream {
 public:
+    typedef void (*StreamCallback)(u32, JASAramStream*, void*);
+
+    enum CallbackType {
+        /* 0 */ CB_START,
+        /* 1 */ CB_STOP,
+    };
+
+    // Used internally for passing data to task functions
+    struct TaskData {
+        /* 0x0 */ JASAramStream* stream;
+        /* 0x4 */ u32 field_0x4;
+        /* 0x8 */ int field_0x8;
+    };
+
+    struct Header {
+        /* 0x00 */ u32 tag;
+        /* 0x04 */ u8 field_0x4[5];
+        /* 0x09 */ u8 format;
+        /* 0x0A */ u8 bits;
+        /* 0x0C */ u16 channels;
+        /* 0x0E */ u16 loop;
+        /* 0x10 */ int field_0x10;
+        /* 0x14 */ u8 field_0x14[4];
+        /* 0x18 */ int loop_start;
+        /* 0x1C */ int loop_end;
+        /* 0x20 */ u32 block_size;
+        /* 0x24 */ u8 field_0x24[4];
+        /* 0x28 */ u8 field_0x28;
+        /* 0x29 */ u8 field_0x29[0x17];
+    };  // Size: 0x40
+
+    struct BlockHeader {
+        /* 0x00 */ u32 tag;
+        /* 0x04 */ u32 field_0x4;
+        /* 0x08 */ struct {
+            s16 field_0x0;
+            s16 field_0x2;
+        } field_0x8[6];
+    };  // Size: 0x20
+
     /* 8029631C */ static void initSystem(u32, u32);
     /* 802963A8 */ JASAramStream();
-    /* 8029649C */ void init(u32, u32, void (*)(u32, JASAramStream*, void*), void*);
+    /* 8029649C */ void init(u32, u32, StreamCallback, void*);
     /* 8029655C */ bool prepare(s32, int);
     /* 80296618 */ bool start();
-    /* 8029664C */ void stop(u16);
-    /* 80296684 */ void pause(bool);
-    /* 802966CC */ void cancel();
-    /* 80296710 */ void getBlockSamples() const;
-    /* 8029673C */ void headerLoadTask(void*);
-    /* 8029676C */ void firstLoadTask(void*);
-    /* 80296848 */ void loadToAramTask(void*);
-    /* 80296868 */ void finishTask(void*);
-    /* 802968C8 */ void prepareFinishTask(void*);
-    /* 80296920 */ void headerLoad(u32, int);
-    /* 80296AE8 */ void load();
-    /* 80296D74 */ void channelProcCallback(void*);
-    /* 80296D94 */ void dvdErrorCheck(void*);
-    /* 80296DF0 */ void channelCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
+    /* 8029664C */ bool stop(u16);
+    /* 80296684 */ bool pause(bool);
+    /* 802966CC */ bool cancel();
+    /* 80296710 */ u32 getBlockSamples() const;
+    /* 8029673C */ static void headerLoadTask(void*);
+    /* 8029676C */ static void firstLoadTask(void*);
+    /* 80296848 */ static void loadToAramTask(void*);
+    /* 80296868 */ static void finishTask(void*);
+    /* 802968C8 */ static void prepareFinishTask(void*);
+    /* 80296920 */ bool headerLoad(u32, int);
+    /* 80296AE8 */ bool load();
+    /* 80296D74 */ static s32 channelProcCallback(void*);
+    /* 80296D94 */ static s32 dvdErrorCheck(void*);
+    /* 80296DF0 */ static void channelCallback(u32, JASChannel*, JASDsp::TChannel*, void*);
     /* 80296E2C */ void updateChannel(u32, JASChannel*, JASDsp::TChannel*);
-    /* 802974AC */ void channelProc();
+    /* 802974AC */ s32 channelProc();
     /* 80297658 */ void channelStart();
     /* 80297870 */ void channelStop(u16);
 
-    void setPitch(f32 pitch) { field_0x178 = pitch; }
+    void setPitch(f32 pitch) { mPitch = pitch; }
     void setVolume(f32 volume) { 
         for (int i = 0; i < 6; i++) {
             mChannelVolume[i] = volume; 
@@ -53,7 +95,7 @@ public:
 
     void setFxmix(f32 fxMix) { 
         for (int i = 0; i < 6; i++) {
-            mchannelFxMix[i] = fxMix; 
+            mChannelFxMix[i] = fxMix; 
         }
     }
 
@@ -75,7 +117,7 @@ public:
 
     void setChannelFxmix(int channel, f32 fxMix) {
         JUT_ASSERT(302, channel < CHANNEL_MAX);
-        mchannelFxMix[channel] = fxMix;
+        mChannelFxMix[channel] = fxMix;
     }
 
     void setChannelDolby(int channel, f32 dolby) {
@@ -83,66 +125,61 @@ public:
         mChannelDolby[channel] = dolby;
     }
 
+    static u32 getBlockSize() { return sBlockSize; }
+
     /* 0x000 */ OSMessageQueue field_0x000;
     /* 0x020 */ OSMessageQueue field_0x020;
     /* 0x040 */ void* field_0x040[16];
     /* 0x080 */ void* field_0x080[4];
-    /* 0x090 */ JASChannel* field_0x090[6];
-    /* 0x0A8 */ int field_0x0a8;
-    /* 0x0AC */ u8 field_0x0ac;
-    /* 0x0AD */ u8 field_0x0ad;
+    /* 0x090 */ JASChannel* mChannels[CHANNEL_MAX];
+    /* 0x0A8 */ JASChannel* field_0x0a8;
+    /* 0x0AC */ bool field_0x0ac;
+    /* 0x0AD */ bool field_0x0ad;
     /* 0x0AE */ u8 field_0x0ae;
-    /* 0x0AF */ u8 field_0x0AF[0x0B0 - 0x0AF];
     /* 0x0B0 */ int field_0x0b0;
     /* 0x0B4 */ int field_0x0b4;
-    /* 0x0B8 */ int field_0x0b8;
+    /* 0x0B8 */ u32 field_0x0b8;
     /* 0x0BC */ int field_0x0bc;
-    /* 0x0C0 */ u8 field_0x0c0;
-    /* 0x0C1 */ u8 field_0x0C1[0x0C4 - 0x0C1];
-    /* 0x0C4 */ int field_0x0c4;
+    /* 0x0C0 */ bool field_0x0c0;
+    /* 0x0C4 */ u32 field_0x0c4;
     /* 0x0C8 */ f32 field_0x0c8;
-    /* 0x0CC */ u8 field_0x0CC[0x108 - 0x0CC];
-    /* 0x108 */ int field_0x108;
+    /* 0x0CC */ DVDFileInfo mDvdFileInfo;
+    /* 0x108 */ u32 field_0x108;
     /* 0x10C */ int field_0x10c;
-    /* 0x110 */ int field_0x110;
+    /* 0x110 */ u32 mBlock;
     /* 0x114 */ u8 field_0x114;
-    /* 0x115 */ u8 field_0x115[0x118 - 0x115];
-    /* 0x118 */ int field_0x118;
+    /* 0x118 */ u32 field_0x118;
     /* 0x11C */ int field_0x11c;
     /* 0x120 */ int field_0x120;
     /* 0x124 */ int field_0x124;
-    /* 0x128 */ short field_0x128;
-    /* 0x12A */ u8 field_0x12A[0x12C - 0x12A];
+    /* 0x128 */ u16 field_0x128;
     /* 0x12C */ int field_0x12c;
-    /* 0x130 */ short field_0x130[CHANNEL_MAX];
-    /* 0x13C */ short field_0x13c[CHANNEL_MAX];
+    /* 0x130 */ s16 field_0x130[CHANNEL_MAX];
+    /* 0x13C */ s16 field_0x13c[CHANNEL_MAX];
     /* 0x148 */ int field_0x148;
-    /* 0x14C */ int field_0x14c;
-    /* 0x150 */ void* field_0x150;
-    /* 0x154 */ int field_0x154;
-    /* 0x158 */ short field_0x158;
-    /* 0x15A */ short field_0x15a;
-    /* 0x15C */ int field_0x15c;
-    /* 0x160 */ int field_0x160;
-    /* 0x164 */ int field_0x164;
-    /* 0x168 */ u8 field_0x168;
-    /* 0x169 */ u8 field_0x169[0x16C - 0x169];
-    /* 0x16C */ int field_0x16c;
-    /* 0x170 */ int field_0x170;
-    /* 0x174 */ f32 field_0x174;
-    /* 0x178 */ f32 field_0x178;
-    /* 0x17C */ float mChannelVolume[CHANNEL_MAX];
-    /* 0x194 */ float mChannelPan[CHANNEL_MAX];
-    /* 0x1AC */ float mchannelFxMix[CHANNEL_MAX];
-    /* 0x1C4 */ float mChannelDolby[CHANNEL_MAX];
-    /* 0x1DC */ short field_0x1dc[CHANNEL_MAX];
+    /* 0x14C */ u32 field_0x14c;
+    /* 0x150 */ StreamCallback mCallback;
+    /* 0x154 */ void* mCallbackData;
+    /* 0x158 */ u16 field_0x158;
+    /* 0x15A */ u16 mChannelNum;
+    /* 0x15C */ u32 mBufCount;
+    /* 0x160 */ u32 field_0x160;
+    /* 0x164 */ u32 field_0x164;
+    /* 0x168 */ bool mLoop;
+    /* 0x16C */ u32 mLoopStart;
+    /* 0x170 */ u32 mLoopEnd;
+    /* 0x174 */ f32 mVolume;
+    /* 0x178 */ f32 mPitch;
+    /* 0x17C */ f32 mChannelVolume[CHANNEL_MAX];
+    /* 0x194 */ f32 mChannelPan[CHANNEL_MAX];
+    /* 0x1AC */ f32 mChannelFxMix[CHANNEL_MAX];
+    /* 0x1C4 */ f32 mChannelDolby[CHANNEL_MAX];
+    /* 0x1DC */ u16 field_0x1dc[CHANNEL_MAX];
 
-    u32 getBlockSize() { return sBlockSize; }
-
-    static u8 sLoadThread[4];
-    static u8 sReadBuffer[4];
+    static JASTaskThread* sLoadThread;
+    static u8* sReadBuffer;
     static u32 sBlockSize;
-    static u8 sChannelMax[4];
+    static u32 sChannelMax;
 };
 
 #endif /* JASARAMSTREAM_H */
