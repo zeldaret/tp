@@ -3,7 +3,7 @@
 
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "dolphin/types.h"
+#include "d/particle/d_particle_name.h"
 #include "d/kankyo/d_kankyo.h"
 
 class J3DAnmTexPattern;
