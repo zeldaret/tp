@@ -1,6 +1,6 @@
 /**
  * d_bg_s_roof_chk.cpp
- *
+ * BG Collision Roof Check
  */
 
 #include "d/bg/d_bg_s_roof_chk.h"

@@ -1079,5 +1079,6 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/kankyo/d_kankyo.o \
 	$(BUILD_DIR)/src/d/msg/d_msg_object.o \
 	$(BUILD_DIR)/src/d/bg/d_bg_s_acch.o \
+	$(BUILD_DIR)/src/d/bg/d_bg_s_poly_pass_chk.o \
 	$(BUILD_DIR)/src/f_op/f_op_actor_mng.o \
 	
