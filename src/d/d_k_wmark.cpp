@@ -88,10 +88,6 @@ static int dkWmark_Delete(dkWmark_c* i_this) {
     return 1;
 }
 
-inline bool fopAcM_gc_c::getTriPla(cM3dGPla* i_plane) {
-    return dComIfG_Bgsp().GetTriPla(*(dBgS_GndChk*)mGndCheck, i_plane);
-}
-
 /* 802616C4-80261964 25C004 02A0+00 2/2 0/0 0/0 .text            setMatrix__9dkWmark_cFv */
 BOOL dkWmark_c::setMatrix() {
     cXyz chk_pos(mPos.x, mPos.y + 100.0f, mPos.z);

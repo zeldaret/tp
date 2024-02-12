@@ -31,4 +31,11 @@ public:
     /* 80140E40 */ virtual ~dBgS_LinkRoofChk() {}
 };
 
+class dBgS_ObjRoofChk : public dBgS_RoofChk {
+public:
+    dBgS_ObjRoofChk() { SetObj(); }
+
+    virtual ~dBgS_ObjRoofChk() {}
+};
+
 #endif /* D_BG_D_BG_S_ROOF_CHK_H */

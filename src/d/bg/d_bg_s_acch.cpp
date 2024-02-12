@@ -9,6 +9,7 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
@@ -113,7 +114,6 @@ extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__11dBgS_WtrChk[12];
 extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern s8 data_80450F68;
 
 //
@@ -235,7 +235,7 @@ dBgS_Acch::dBgS_Acch() {
     field_0xbc = 0.0f;
 
     m_tbl_size = 0;
-    field_0x8c = NULL;
+    pm_acch_cir = NULL;
 
     m_roof_height = 1000000000.0f;
     m_roof_crr_height = 0.0f;
@@ -265,8 +265,8 @@ asm dBgS_Acch::dBgS_Acch() {
 void dBgS_Acch::Init() {
     ClrWallHit();
     for (int i = 0; i < m_tbl_size; i++) {
-        static_cast<dBgS_AcchCir*>(field_0x8c + i)->ClrWallHit();
-        static_cast<dBgS_AcchCir*>(field_0x8c + i)->ClrWallHDirect();
+        static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->ClrWallHit();
+        static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->ClrWallHDirect();
     }
 }
 
@@ -280,7 +280,7 @@ void dBgS_Acch::Set(cXyz* p_pos, cXyz* p_old_pos, fopAc_ac_c* p_actor, int table
     SetActorPid(fopAcM_GetID(p_actor));
     pm_speed = p_speed;
     m_tbl_size = table_size;
-    field_0x8c = param_4;
+    pm_acch_cir = param_4;
     pm_angle = p_angle;
     pm_shape_angle = p_shape_angle;
 }
@@ -289,7 +289,7 @@ void dBgS_Acch::Set(cXyz* p_pos, cXyz* p_old_pos, fopAc_ac_c* p_actor, int table
  * Set__9dBgS_AcchFP10fopAc_ac_ciP12dBgS_AcchCir                */
 void dBgS_Acch::Set(fopAc_ac_c* p_actor, int table_size, dBgS_AcchCir* param_2) {
     m_tbl_size = table_size;
-    field_0x8c = param_2;
+    pm_acch_cir = param_2;
     m_my_ac = p_actor;
 
     SetActorPid(fopAcM_GetID(p_actor));
@@ -317,11 +317,8 @@ void dBgS_Acch::GroundCheckInit(dBgS& param_0) {
 s8 data_80450F68;
 
 /* 80076350-8007654C 070C90 01FC+00 2/2 0/0 0/0 .text            GroundCheck__9dBgS_AcchFR4dBgS */
-// issues with tmpRoofChk
+// matches with literals
 #ifdef NONMATCHING
-/* 80424B2C-80424B80 05184C 0050+04 1/1 0/0 0/0 .bss             tmpRoofChk$4165 */
-static dBgS_RoofChk tmpRoofChk;
-
 void dBgS_Acch::GroundCheck(dBgS& param_0) {
     if (!(m_flags & GRND_NONE)) {
         cXyz grnd_pos;
@@ -331,10 +328,7 @@ void dBgS_Acch::GroundCheck(dBgS& param_0) {
         grnd_pos.y += field_0x94 + (field_0x9c - field_0x90);
 
         if (!ChkGndThinCellingOff()) {
-            if (data_80450F68 == 0) {
-                dBgS_RoofChk tmpRoofChk;
-                data_80450F68 = 1;
-            }
+            static dBgS_RoofChk tmpRoofChk;
             tmpRoofChk.SetActorPid(m_gnd.GetActorPid());
             tmpRoofChk.i_SetPos(*pm_pos);
             f32 tmp = param_0.RoofChk(&tmpRoofChk);
@@ -346,7 +340,7 @@ void dBgS_Acch::GroundCheck(dBgS& param_0) {
         m_gnd.SetPos(&grnd_pos);
         m_ground_h = param_0.GroundCross(&m_gnd);
 
-        if (lit_4089 != m_ground_h) {
+        if (m_ground_h != -1000000000.0f) {
             field_0xbc = m_ground_h + field_0x90;
             if (field_0xbc > field_0xb8) {
                 pm_pos->y = field_0xbc;
@@ -364,9 +358,10 @@ void dBgS_Acch::GroundCheck(dBgS& param_0) {
                     SetGroundLanding();
                 }
             }
-            if (field_0xb4 && !ChkGroundHit()) {
-                SetGroundAway();
-            }
+        }
+
+        if (field_0xb4 && !i_ChkGroundHit()) {
+            SetGroundAway();
         }
     }
 }
@@ -414,6 +409,112 @@ void dBgS_Acch::GroundRoofProc(dBgS& param_0) {
 SECTION_SDATA2 static f32 lit_4424 = 1.0f;
 
 /* 80076624-80076AAC 070F64 0488+00 1/1 0/0 0/0 .text            LineCheck__9dBgS_AcchFR4dBgS */
+// matches with literals
+#ifdef NONMATCHING
+void dBgS_Acch::LineCheck(dBgS& i_bgs) {
+    dBgS_RoofChk roof_chk;
+    roof_chk.SetActorPid(m_gnd.GetActorPid());
+    roof_chk.i_SetPos(*GetOldPos());
+
+    f32 temp_f31 = dComIfG_Bgsp().RoofChk(&roof_chk);
+
+    f32 var_f30 = 1000000000.0f;
+    bool var_r30 = false;
+    bool var_r29 = false;
+
+    for (int i = 0; i < GetTblSize(); i++) {
+        cBgS_LinChk lin_chk;
+        cXyz old_pos;
+        cXyz pos;
+
+        old_pos = *pm_old_pos;
+        pos = *pm_pos;
+
+        f32 temp_f0 = GetWallH(i);
+        f32 var_f2 = temp_f0;
+        if (temp_f31 < old_pos.y + temp_f0) {
+            if (var_r29) {
+                continue;
+            } else {
+                var_f2 = (temp_f31 - old_pos.y) - 1.0f;
+                var_r29 = true;
+            }
+        }
+
+        if (var_f30 > var_f2) {
+            var_f30 = var_f2;
+        }
+
+        old_pos.y += var_f2;
+        pos.y += var_f2;
+
+        if (GetSpeedY() < 0.0f) {
+            if (m_my_ac != NULL && fopAcM_GetName(m_my_ac) == PROC_ALINK &&
+                !static_cast<daPy_py_c*>(m_my_ac)->checkPlayerFly() && ChkLink())
+            {
+                pos.y -= GetSpeedY();
+            }
+        }
+
+        lin_chk.Set2(&old_pos, &pos, GetActorPid());
+        lin_chk.SetExtChk(*this);
+
+        if (i_bgs.LineCross(&lin_chk)) {
+            *GetPos() = lin_chk.i_GetCross();
+            OnLineCheckHit();
+
+            if (pm_out_poly_info != NULL)
+                *pm_out_poly_info = lin_chk;
+
+            cM3dGPla plane;
+            i_bgs.GetTriPla(lin_chk, &plane);
+            if (!cBgW_CheckBGround(plane.mNormal.y)) {
+                VECAdd(GetPos(), &plane.mNormal, GetPos());
+                if (!cM3d_IsZero(JMAFastSqrt(plane.mNormal.x * plane.mNormal.x +
+                                             plane.mNormal.z * plane.mNormal.z)))
+                {
+                    pm_acch_cir[i].SetWallHDirect(GetPos()->y);
+                }
+
+                GetPos()->y -= pm_acch_cir[i].GetWallH();
+            } else {
+                GetPos()->y -= 1.0f;
+                GroundCheck(i_bgs);
+                var_r30 = true;
+            }
+        }
+    }
+
+    if (ChkLineDown()) {
+        f32 temp_f1 = GetOldPos()->y - GetPos()->y;
+
+        if (var_f30 != 1000000000.0f && !var_r30 && !cM3d_IsZero(temp_f1)) {
+            cBgS_LinChk lin_chk;
+            cXyz old_pos;
+            cXyz pos;
+
+            old_pos = *GetPos();
+            pos = old_pos;
+
+            old_pos.y += var_f30;
+
+            lin_chk.Set2(&old_pos, &pos, GetActorPid());
+            lin_chk.SetExtChk(*this);
+
+            if (i_bgs.LineCross(&lin_chk)) {
+                *GetPos() = lin_chk.i_GetCross();
+                OnLineCheckHit();
+
+                if (pm_out_poly_info != NULL)
+                    *pm_out_poly_info = lin_chk;
+
+                GetPos()->y -= 1.0f;
+                GroundCheck(i_bgs);
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -422,6 +523,7 @@ asm void dBgS_Acch::LineCheck(dBgS& param_0) {
 #include "asm/d/bg/d_bg_s_acch/LineCheck__9dBgS_AcchFR4dBgS.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804526D8-804526DC 000CD8 0004+00 1/1 0/0 0/0 .sdata2          @4554 */
@@ -431,7 +533,7 @@ SECTION_SDATA2 static f32 lit_4554 = 50.0f;
 SECTION_SDATA2 static f32 lit_4555 = 1000000.0f;
 
 /* 80076AAC-80076F84 0713EC 04D8+00 0/0 15/15 414/414 .text            CrrPos__9dBgS_AcchFR4dBgS */
-// close
+// matches with literals
 #ifdef NONMATCHING
 void dBgS_Acch::CrrPos(dBgS& param_0) {
     bool bvar9;
@@ -443,8 +545,8 @@ void dBgS_Acch::CrrPos(dBgS& param_0) {
 
             if (ChkWallHit()) {
                 for (int i = 0; i < m_tbl_size; i++) {
-                    if (static_cast<dBgS_AcchCir*>(field_0x8c + i)->ChkWallHit()) {
-                        param_0.MoveBgCrrPos(*static_cast<dBgS_AcchCir*>(field_0x8c + i), true,
+                    if (static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->ChkWallHit()) {
+                        param_0.MoveBgCrrPos(*static_cast<dBgS_AcchCir*>(pm_acch_cir + i), true,
                                              pm_pos, pm_angle, pm_shape_angle, true, false);
                         bvar9 = true;
                         break;
@@ -472,7 +574,8 @@ void dBgS_Acch::CrrPos(dBgS& param_0) {
 
         OffLineCheckHit();
         if (!ChkLineCheckNone() && !cM3d_IsZero(tmp) &&
-            (dvar10 > (tmp * tmp) || fvar12 > fvar1 || dvar11 > field_0x9c || ChkLineCheck())) {
+            (dvar10 > (tmp * tmp) || fvar12 > fvar1 || dvar11 > field_0x9c || ChkLineCheck()))
+        {
             bvar2 = true;
             LineCheck(param_0);
         }
@@ -501,10 +604,13 @@ void dBgS_Acch::CrrPos(dBgS& param_0) {
             m_roof.i_SetPos(roof_pos);
             m_roof_height = param_0.RoofChk(&m_roof);
 
-            // register issues
-            if (1000000000.0f != m_roof_height && GetPos()->y > 1000000000.0f + m_roof_crr_height) {
-                field_0xcc = m_roof_height - m_roof_crr_height;
-                SetRoofHit();
+            if (m_roof_height != 1000000000.0f) {
+                f32 y = GetPos()->y;
+
+                if (y + m_roof_crr_height > m_roof_height) {
+                    field_0xcc = m_roof_height - m_roof_crr_height;
+                    SetRoofHit();
+                }
             }
         }
 
@@ -521,34 +627,34 @@ void dBgS_Acch::CrrPos(dBgS& param_0) {
         if (!(m_flags & 0x400)) {
             ClrWaterHit();
             ClrWaterIn();
-            f32 tmp4 = -1000000000.0f;
             m_wtr.SetHeight(-1000000000.0f);
 
-            f32 tmp3 = m_ground_h;
-            if (tmp4 == tmp3) {
-                tmp3 = GetPos()->y - 50.0f;  // register issues
+            f32 var_f29;
+            f32 var_f30;
+            
+            f32 temp_f1_5 = m_ground_h;
+            if (temp_f1_5 != -1000000000.0f) {
+                var_f29 = GetPos()->y - 50.0f;
             } else {
-                tmp3 = 50.0f;  // needs to be fmr
+                var_f29 = temp_f1_5;
             }
 
             if (m_wtr_mode == 1) {
-                tmp4 = tmp3 + m_wtr_chk_offset;
+                var_f30 = var_f29 + m_wtr_chk_offset;
             } else {
                 dBgS_RoofChk roof_chk;
                 roof_chk.SetUnderwaterRoof();
                 roof_chk.i_SetPos(*pm_pos);
-                tmp4 = param_0.RoofChk(&roof_chk);
-                if (1000000000.0f == tmp4) {
-                    tmp4 = GetPos()->y + 1000000.0f;
+                var_f30 = param_0.RoofChk(&roof_chk);
+                if (var_f30 == 1000000000.0f) {
+                    var_f30 = GetPos()->y + 1000000.0f;
                 }
             }
             cXyz xyz;
-            xyz.x = pm_pos->x;
-            xyz.y = pm_pos->y;
-            xyz.z = pm_pos->z;
-            xyz.y = tmp3;
+            xyz = *pm_pos;
+            xyz.y = var_f29;
 
-            m_wtr.Set(xyz, tmp4);
+            m_wtr.Set(xyz, var_f30);
             m_wtr.SetPassChkInfo(static_cast<dBgS_PolyPassChk&>(*this));
             if (param_0.WaterChk(&m_wtr)) {
                 SetWaterHit();
@@ -575,7 +681,7 @@ f32 dBgS_Acch::GetWallAllR() {
     f32 ret = FLOAT_LABEL(lit_4025);
 
     for (int i = 0; i < m_tbl_size; i++) {
-        f32 wall_r = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallR();
+        f32 wall_r = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallR();
         if (ret < wall_r) {
             ret = wall_r;
         }
@@ -586,7 +692,7 @@ f32 dBgS_Acch::GetWallAllR() {
 /* 80076FC0-8007703C 071900 007C+00 1/1 0/0 0/0 .text            SetWallCir__9dBgS_AcchFv */
 void dBgS_Acch::SetWallCir() {
     for (int i = 0; i < m_tbl_size; i++) {
-        static_cast<dBgS_AcchCir*>(field_0x8c + i)->SetCir(*pm_pos);
+        static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->SetCir(*pm_pos);
     }
 }
 
@@ -598,18 +704,18 @@ void dBgS_Acch::CalcWallBmdCyl() {
         m_wall_cyl.Set(*pm_pos, 0.0f, 0.0f);
     } else {
         f32 dvar8 = GetWallAllR();
-        f32 dvar9 = field_0x8c->GetWallH();
-        f32 dvar10 = field_0x8c->GetWallH();
+        f32 dvar9 = pm_acch_cir->GetWallH();
+        f32 dvar10 = pm_acch_cir->GetWallH();
         if (m_tbl_size >= 1) {
             for (int i = 0; i < m_tbl_size; i++) {
-                f32 tmp = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+                f32 tmp = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
                 if (dvar9 > tmp) {
-                    dvar9 = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+                    dvar9 = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
                 }
 
-                f32 tmp2 = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+                f32 tmp2 = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
                 if (dvar10 < tmp2) {
-                    dvar10 = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+                    dvar10 = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
                 }
             }
         }
@@ -645,11 +751,11 @@ f32 dBgS_Acch::GetWallAllLowH() {
         return FLOAT_LABEL(lit_4025);
     }
 
-    f32 tmp = field_0x8c->GetWallH();
+    f32 tmp = pm_acch_cir->GetWallH();
     for (int i = 1; i < m_tbl_size; i++) {
-        f32 tmp2 = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+        f32 tmp2 = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
         if (tmp > tmp2) {
-            tmp = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+            tmp = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
         }
     }
     return tmp;
@@ -662,15 +768,15 @@ f32 dBgS_Acch::GetWallAllLowH_R() {
     }
 
     int index = 0;
-    f32 tmp = field_0x8c->GetWallH();
+    f32 tmp = pm_acch_cir->GetWallH();
     for (int i = 1; i < m_tbl_size; i++) {
-        f32 tmp2 = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+        f32 tmp2 = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
         if (tmp > tmp2) {
-            tmp = static_cast<dBgS_AcchCir*>(field_0x8c + i)->GetWallH();
+            tmp = static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->GetWallH();
             index = i;
         }
     }
-    return static_cast<dBgS_AcchCir*>(field_0x8c + index)->GetWallR();
+    return static_cast<dBgS_AcchCir*>(pm_acch_cir + index)->GetWallR();
 }
 
 /* 800771E4-80077200 071B24 001C+00 1/1 4/4 0/0 .text            GetSpeedY__9dBgS_AcchFv */
@@ -727,9 +833,9 @@ void dBgS_Acch::SetNowActorInfo(int bg_index, void* param_1, unsigned int param_
 
 /* 80077288-800772E8 071BC8 0060+00 0/0 4/4 0/0 .text            SetWallPolyIndex__9dBgS_AcchFii */
 void dBgS_Acch::SetWallPolyIndex(int index, int poly_index) {
-    static_cast<dBgS_AcchCir*>(field_0x8c + index)
+    static_cast<dBgS_AcchCir*>(pm_acch_cir + index)
         ->SetActorInfo(m_bg_index, field_0x7c, field_0x80);
-    static_cast<dBgS_AcchCir*>(field_0x8c + index)->SetPolyIndex(poly_index);
+    static_cast<dBgS_AcchCir*>(pm_acch_cir + index)->SetPolyIndex(poly_index);
 }
 
 /* 800772E8-8007732C 071C28 0044+00 0/0 6/6 0/0 .text            CalcMovePosWork__9dBgS_AcchFv */
@@ -742,7 +848,7 @@ void dBgS_Acch::CalcMovePosWork() {
 /* 8007732C-80077388 071C6C 005C+00 0/0 2/2 0/0 .text            CalcWallRR__9dBgS_AcchFv */
 void dBgS_Acch::CalcWallRR() {
     for (int i = 0; i < m_tbl_size; i++) {
-        static_cast<dBgS_AcchCir*>(field_0x8c + i)->CalcWallRR();
+        static_cast<dBgS_AcchCir*>(pm_acch_cir + i)->CalcWallRR();
     }
 }
 
