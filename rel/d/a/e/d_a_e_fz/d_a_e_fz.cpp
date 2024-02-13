@@ -511,14 +511,9 @@ asm void daE_FZ_c::draw() {
 #pragma pop
 
 /* 806BEAD8-806BEAF8 000278 0020+00 1/0 0/0 0/0 .text            daE_FZ_Draw__FP8daE_FZ_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_FZ_Draw(daE_FZ_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/daE_FZ_Draw__FP8daE_FZ_c.s"
+static void daE_FZ_Draw(daE_FZ_c* i_this) {
+    i_this->draw();
 }
-#pragma pop
 
 /* 806BEAF8-806BEB04 000298 000C+00 9/9 0/0 0/0 .text            setActionMode__8daE_FZ_cFii */
 void daE_FZ_c::setActionMode(int i_actionMode1, int i_actionMode2) {
