@@ -4,236 +4,245 @@
 //
 
 #include "JSystem/JAudio2/JASDSPChannel.h"
-#include "dolphin/types.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 
-//
-// Types:
-//
-
-struct JKRHeap {};
-
-struct JASDsp {
-    struct TChannel {
-        /* 8029DCA4 */ void init();
-        /* 8029DCE0 */ void playStart();
-        /* 8029DD44 */ void playStop();
-        /* 8029DD50 */ void replyFinishRequest();
-        /* 8029DD60 */ void forceStop();
-        /* 8029DD7C */ void isFinish() const;
-        /* 8029DF8C */ void flush();
-    };
-
-    /* 8029D9A4 */ void releaseHalt(u32);
-    /* 8029DA38 */ void getDSPHandle(int);
-};
-
-struct JASDSPChannel {
-    /* 8029D2F4 */ JASDSPChannel();
-    /* 8029D320 */ void free();
-    /* 8029D330 */ void start();
-    /* 8029D340 */ void drop();
-    /* 8029D3C8 */ void initAll();
-    /* 8029D44C */ void alloc(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
-    /* 8029D4BC */ void allocForce(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
-    /* 8029D534 */ void setPriority(u8);
-    /* 8029D540 */ void getLowestChannel(int);
-    /* 8029D5D0 */ void getLowestActiveChannel();
-    /* 8029D65C */ void updateProc();
-    /* 8029D89C */ void updateAll();
-    /* 8029D910 */ void killActiveChannel();
-    /* 8029D948 */ void getHandle(u32);
-
-    static u8 sDspChannels[4 + 4 /* padding */];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__13JASDSPChannelFv();
-extern "C" void free__13JASDSPChannelFv();
-extern "C" void start__13JASDSPChannelFv();
-extern "C" void drop__13JASDSPChannelFv();
-extern "C" void initAll__13JASDSPChannelFv();
-extern "C" void alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv();
-extern "C" void allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv();
-extern "C" void setPriority__13JASDSPChannelFUc();
-extern "C" void getLowestChannel__13JASDSPChannelFi();
-extern "C" void getLowestActiveChannel__13JASDSPChannelFv();
-extern "C" void updateProc__13JASDSPChannelFv();
-extern "C" void updateAll__13JASDSPChannelFv();
-extern "C" void killActiveChannel__13JASDSPChannelFv();
-extern "C" void getHandle__13JASDSPChannelFUl();
-extern "C" u8 sDspChannels__13JASDSPChannel[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void releaseHalt__6JASDspFUl();
-extern "C" void getDSPHandle__6JASDspFi();
-extern "C" void init__Q26JASDsp8TChannelFv();
-extern "C" void playStart__Q26JASDsp8TChannelFv();
-extern "C" void playStop__Q26JASDsp8TChannelFv();
-extern "C" void replyFinishRequest__Q26JASDsp8TChannelFv();
-extern "C" void forceStop__Q26JASDsp8TChannelFv();
-extern "C" void isFinish__Q26JASDsp8TChannelCFv();
-extern "C" void flush__Q26JASDsp8TChannelFv();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" extern u8 JASDram[4];
-
-//
-// Declarations:
-//
+/* 804512E0-804512E8 0007E0 0004+04 5/5 0/0 0/0 .sbss            sDspChannels__13JASDSPChannel */
+JASDSPChannel* JASDSPChannel::sDspChannels;
 
 /* 8029D2F4-8029D320 297C34 002C+00 1/1 0/0 0/0 .text            __ct__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASDSPChannel::JASDSPChannel() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/__ct__13JASDSPChannelFv.s"
+JASDSPChannel::JASDSPChannel() :
+    mStatus(STATUS_INACTIVE),
+    mPriority(-1),
+    mFlags(0),
+    field_0xc(0),
+    mCallback(NULL),
+    mCallbackData(NULL),
+    mChannel(NULL)
+{
+    /* empty function */
 }
-#pragma pop
 
 /* 8029D320-8029D330 297C60 0010+00 0/0 3/3 0/0 .text            free__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::free() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/free__13JASDSPChannelFv.s"
+void JASDSPChannel::free() {
+    mCallback = NULL;
+    mCallbackData = NULL;
 }
-#pragma pop
 
 /* 8029D330-8029D340 297C70 0010+00 0/0 2/2 0/0 .text            start__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::start() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/start__13JASDSPChannelFv.s"
+void JASDSPChannel::start() {
+    mFlags |= 1;
 }
-#pragma pop
 
 /* 8029D340-8029D3C8 297C80 0088+00 3/3 2/2 0/0 .text            drop__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::drop() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/drop__13JASDSPChannelFv.s"
+void JASDSPChannel::drop() {
+    if (mCallback != NULL) {
+        mCallback(CB_DROP, NULL, mCallbackData);
+    }
+    mCallback = NULL;
+    mCallbackData = NULL;
+    mPriority = -1;
+    mFlags &= ~1;
+    if (mStatus == STATUS_ACTIVE) {
+        mFlags |= 2;
+        mStatus = STATUS_DROP;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804512E0-804512E8 0007E0 0004+04 5/5 0/0 0/0 .sbss            sDspChannels__13JASDSPChannel */
-u8 JASDSPChannel::sDspChannels[4 + 4 /* padding */];
 
 /* 8029D3C8-8029D44C 297D08 0084+00 0/0 1/1 0/0 .text            initAll__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::initAll() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/initAll__13JASDSPChannelFv.s"
+void JASDSPChannel::initAll() {
+    sDspChannels = new (JASDram, 0x20) JASDSPChannel[0x40];
+    for (int i = 0; i < 0x40; i++) {
+        sDspChannels[i].mChannel = JASDsp::getDSPHandle(i);
+    }
 }
-#pragma pop
 
 /* 8029D44C-8029D4BC 297D8C 0070+00 0/0 1/1 0/0 .text
  * alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::alloc(u8 param_0, s32 (*param_1)(u32, JASDsp::TChannel*, void*),
-                              void* param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv.s"
+JASDSPChannel* JASDSPChannel::alloc(u8 i_priority, Callback i_callback, void* i_callbackData) {
+    JASDSPChannel* channel = getLowestChannel(i_priority);
+    if (channel == NULL) {
+        return NULL;
+    }
+    channel->drop();
+    channel->mPriority = i_priority;
+    channel->field_0xc = 0;
+    channel->mCallback = i_callback;
+    channel->mCallbackData = i_callbackData;
+    return channel;
 }
-#pragma pop
 
 /* 8029D4BC-8029D534 297DFC 0078+00 0/0 1/1 0/0 .text
  * allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::allocForce(u8 param_0, s32 (*param_1)(u32, JASDsp::TChannel*, void*),
-                                   void* param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv.s"
+JASDSPChannel* JASDSPChannel::allocForce(u8 i_priority, Callback i_callback, void* i_callbackData) {
+    JASDSPChannel* channel = getLowestChannel(i_priority);
+    if (channel == NULL) {
+        return NULL;
+    }
+    channel->mStatus = STATUS_INACTIVE;
+    channel->drop();
+    channel->mPriority = i_priority;
+    channel->field_0xc = 0;
+    channel->mCallback = i_callback;
+    channel->mCallbackData = i_callbackData;
+    return channel;
 }
-#pragma pop
 
 /* 8029D534-8029D540 297E74 000C+00 0/0 1/1 0/0 .text            setPriority__13JASDSPChannelFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::setPriority(u8 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/setPriority__13JASDSPChannelFUc.s"
+void JASDSPChannel::setPriority(u8 i_priority) {
+    mPriority = i_priority;
 }
-#pragma pop
 
 /* 8029D540-8029D5D0 297E80 0090+00 2/2 0/0 0/0 .text            getLowestChannel__13JASDSPChannelFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::getLowestChannel(int param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/getLowestChannel__13JASDSPChannelFi.s"
+JASDSPChannel* JASDSPChannel::getLowestChannel(int i_priority) {
+    s16 best_priority = 0xff;
+    int best_index = -1;
+    int best_unknown = 0;
+    for (int i = 0; i < 0x40; i++) {
+        JASDSPChannel* channel = &sDspChannels[i];
+        s16 priority = channel->mPriority;
+        if (priority < 0) {
+            return channel;
+        }
+        if (priority <= i_priority && priority <= best_priority) {
+            if (priority != best_priority || channel->field_0xc > best_unknown) {
+                best_unknown = channel->field_0xc;
+                best_index = i;
+                best_priority = priority;
+            }
+        }
+    }
+    if (best_index < 0) {
+        return NULL;
+    }
+    return &sDspChannels[best_index];
 }
-#pragma pop
 
 /* 8029D5D0-8029D65C 297F10 008C+00 1/1 0/0 0/0 .text getLowestActiveChannel__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::getLowestActiveChannel() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/getLowestActiveChannel__13JASDSPChannelFv.s"
+JASDSPChannel* JASDSPChannel::getLowestActiveChannel() {
+    s16 best_priority = 0xff;
+    int best_index = -1;
+    int best_unknown = 0;
+    for (int i = 0; i < 0x40; i++) {
+        JASDSPChannel* channel = &sDspChannels[i];
+        if (channel->mStatus == STATUS_ACTIVE) {
+            s16 priority = channel->mPriority;
+            if (priority < 0x7f && priority <= best_priority) {
+                if (priority != best_priority || channel->field_0xc > best_unknown) {
+                    best_unknown = channel->field_0xc;
+                    best_index = i;
+                    best_priority = priority;
+                }
+            }
+        }
+    }
+    if (best_index < 0) {
+        return NULL;
+    }
+    return &sDspChannels[best_index];
 }
-#pragma pop
 
 /* 8029D65C-8029D89C 297F9C 0240+00 1/1 0/0 0/0 .text            updateProc__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::updateProc() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/updateProc__13JASDSPChannelFv.s"
+void JASDSPChannel::updateProc() {
+    int ret;
+    if (mChannel->isFinish()) {
+        mFlags &= ~2;
+        if (mStatus == STATUS_ACTIVE) {
+            if (mCallback != NULL) {
+                ret = mCallback(CB_STOP, NULL, mCallbackData);
+            } else {
+                ret = -1;
+            }
+            if (ret < 0) {
+                mPriority = -1;
+            }
+        }
+        mStatus = STATUS_INACTIVE;
+        mChannel->replyFinishRequest();
+        mChannel->flush();
+    } else if (mFlags & 2) {
+        mFlags &= ~2;
+        mChannel->forceStop();
+        mChannel->flush();
+    } else if (mStatus != STATUS_DROP) {
+        if ((mFlags & 1) && mStatus == STATUS_INACTIVE) {
+            mFlags &= ~1;
+            mStatus = STATUS_ACTIVE;
+            mChannel->init();
+            if (mCallback != NULL) {
+                ret = mCallback(CB_START, mChannel, mCallbackData);
+            } else {
+                ret = 0;
+            }
+            if (ret < 0) {
+                mStatus = STATUS_INACTIVE;
+                if (mCallback != NULL) {
+                    ret = mCallback(CB_STOP, NULL, mCallbackData);
+                } else {
+                    ret = -1;
+                }
+                if (ret < 0) {
+                    mPriority = -1;
+                }
+                mChannel->flush();
+            } else {
+                mChannel->playStart();
+                mChannel->flush();
+            }
+        } else if (mStatus != STATUS_INACTIVE) {
+            bool flush = false;
+            if (mCallback != NULL) {
+                ret = mCallback(CB_PLAY, mChannel, mCallbackData);
+                flush = true;
+            } else {
+                ret = 0;
+            }
+            if (ret < 0) {
+                mStatus = STATUS_INACTIVE;
+                if (mCallback != NULL) {
+                    ret = mCallback(CB_STOP, NULL, mCallbackData);
+                } else {
+                    ret = -1;
+                }
+                if (ret < 0) {
+                    mPriority = -1;
+                }
+                mChannel->playStop();
+                mChannel->flush();
+            } else {
+                field_0xc++;
+                if (flush) {
+                    mChannel->flush();
+                }
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 8029D89C-8029D910 2981DC 0074+00 0/0 1/1 0/0 .text            updateAll__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::updateAll() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/updateAll__13JASDSPChannelFv.s"
+void JASDSPChannel::updateAll() {
+    for (u32 i = 0; i < 0x40; i++) {
+        if ((i & 0xf) == 0 && i != 0) {
+            JASDsp::releaseHalt((i - 1) >> 4);
+        }
+        sDspChannels[i].updateProc();
+    }
+    JASDsp::releaseHalt(3);
 }
-#pragma pop
 
 /* 8029D910-8029D948 298250 0038+00 0/0 1/1 0/0 .text killActiveChannel__13JASDSPChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::killActiveChannel() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/killActiveChannel__13JASDSPChannelFv.s"
+int JASDSPChannel::killActiveChannel() {
+    JASDSPChannel* channel = getLowestActiveChannel();
+    if (channel == NULL) {
+        return 0;
+    } else {
+        channel->drop();
+        return 1;
+    }
 }
-#pragma pop
 
 /* 8029D948-8029D958 298288 0010+00 0/0 1/1 0/0 .text            getHandle__13JASDSPChannelFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDSPChannel::getHandle(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPChannel/getHandle__13JASDSPChannelFUl.s"
+JASDSPChannel* JASDSPChannel::getHandle(u32 i_index) {
+    return &sDspChannels[i_index];
 }
-#pragma pop

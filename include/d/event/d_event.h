@@ -143,7 +143,7 @@ public:
     /* 807E2908 */ void startCheckSkipEdge(void*);
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
-    bool runCheck() { return mEventStatus != 0; }
+    BOOL runCheck() { return mEventStatus != 0; }
     f32 getCullRate() { return mCullRate; }
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     void onEventFlag(u16 flag) { mEventFlag |= flag; }

@@ -445,6 +445,11 @@ struct TUtil {
 };
 
 template<>
+struct TUtil<f32> {
+    static inline f32 PI() { return 3.1415927f; }
+};
+
+template<>
 struct TUtil<double> {
     static inline double epsilon() { return 32.0f * FLT_EPSILON; }
     static inline double one() { return 1.0; }

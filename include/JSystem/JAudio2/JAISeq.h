@@ -9,7 +9,7 @@
 class JAISeqMgr;
 class JAISoundChild;
 
-class JAISeq : public JAISound, JSULink<JAISeq> {
+class JAISeq : public JASPoolAllocObject<JAISeq>, public JAISound, public JSULink<JAISeq> {
 public:
     class TInner {
     public:
@@ -46,6 +46,8 @@ public:
     /* 802A1180 */ void die_();
     /* 802A1348 */ void mixOut_(JASSoundParams const&, JAISoundActivity);
     /* 802A14FC */ void JAISeqMgr_mixOut_(JASSoundParams const&, JAISoundActivity);
+
+    JAISeqData& getSeqData() { return inner_.mSeqData; }
 
     /* 0x0a8 */ TInner inner_;
     /* 0x3A8 */ JAISoundStrategyMgr__unknown<JAISeq>* field_0x3a8;

@@ -161,7 +161,7 @@ void JAISeq::JAISeqMgr_startID_(JAISoundID param_0, JGeometry::TVec3<f32> const*
     reserveChildTracks_(param_4);
     start_JAISound_(param_0, param_1, param_2);
     if (inner_.strategyMgr) {
-        field_0x3a8 = inner_.strategyMgr->virtual3(param_0);
+        field_0x3a8 = inner_.strategyMgr->calc(param_0);
     } else {
         field_0x3a8 = NULL;
     }
@@ -301,7 +301,7 @@ void JAISeq::JAISeqMgr_calc_() {
             }
         }
         if (field_0x3a8) {
-            field_0x3a8->virtual3(this);
+            field_0x3a8->calc(this);
         }
     }
 }

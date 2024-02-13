@@ -47,7 +47,7 @@ struct JAISoundStatus_ {
         user_data = 0;
     }
 
-    bool isAlive();  // used in assert
+    bool isAlive() { return state.unk != 6; }
     bool isDead() { return state.unk == 6;}
 
     inline bool isPlaying() { return state.unk == 5; }
@@ -138,14 +138,14 @@ struct JAISoundFader {
 template <typename A0>
 struct JAISoundStrategyMgr__unknown {
     virtual void virtual2();
-    virtual void virtual3(A0*);
+    virtual void calc(A0*);
     virtual void virtual4(A0*, const JASSoundParams&);
 };
 
 template <typename A0>
 struct JAISoundStrategyMgr {
     virtual void virtual2();
-    virtual JAISoundStrategyMgr__unknown<A0>* virtual3(JAISoundID);
+    virtual JAISoundStrategyMgr__unknown<A0>* calc(JAISoundID);
     virtual void virtual4(JAISoundStrategyMgr__unknown<A0>*);
 };
 /* JAISoundStrategyMgr<JAISe> */

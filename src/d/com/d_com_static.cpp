@@ -4,7 +4,6 @@
 //
 
 #include "d/com/d_com_static.h"
-#include "stdio.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "rel/d/a/d_a_dshutter/d_a_dshutter.h"
@@ -12,21 +11,13 @@
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
 #include "rel/d/a/d_a_set_bgobj/d_a_set_bgobj.h"
+#include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
-#include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
-
-//
-// Types:
-//
-
-struct daObjMovebox {
-    struct Act_c {
-        static void* M_dir_base[2];
-    };
-};
+#include "stdio.h"
 
 //
 // Forward References:

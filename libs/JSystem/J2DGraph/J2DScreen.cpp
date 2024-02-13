@@ -7,6 +7,8 @@
 #include "JSystem/J2DGraph/J2DPictureEx.h"
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
 #include "JSystem/J2DGraph/J2DWindowEx.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
@@ -205,10 +207,10 @@ SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
 };
 
 /* 802F8498-802F8540 2F2DD8 00A8+00 0/0 59/59 4/4 .text            __ct__9J2DScreenFv */
-// almost
+// Matches with literals
 #ifdef NONMATCHING
 J2DScreen::J2DScreen()
-    : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(0.0f, 0.0f, 640.0f, 480.0f)), mColor() {
+    : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(0.0f, 0.0f), JGeometry::TVec2<f32>(640.0f, 480.0f))), mColor() {
     field_0x4 = -1;
     mScissor = false;
     mMaterialNum = 0;

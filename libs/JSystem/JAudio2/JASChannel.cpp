@@ -4,46 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JASChannel.h"
+#include "JSystem/JAudio2/JASAiCtrl.h"
+#include "JSystem/JAudio2/JASCalc.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASDSPChannel.h"
+#include "JSystem/JSupport/JSupport.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "JSystem/JGeometry.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-namespace JASDsp {
-    struct TChannel {
-        /* 8029DD8C */ void setWaveInfo(JASWaveInfo const&, u32, u32);
-        /* 8029DEAC */ void setOscInfo(u32);
-        /* 8029DEC4 */ void initAutoMixer();
-        /* 8029DEF0 */ void setAutoMixer(u16, u8, u8, u8, u8);
-        /* 8029DF1C */ void setPitch(u16);
-        /* 8029DF34 */ void setMixerInitVolume(u8, s16);
-        /* 8029DF54 */ void setMixerVolume(u8, s16);
-        /* 8029DF80 */ void setPauseFlag(u8);
-        /* 8029E09C */ void setBusConnect(u8, u8);
-    };
-};
-
-struct JASDriver {
-    /* 8029C9E8 */ void getDacRate();
-};
-
-struct JASDSPChannel {
-    /* 8029D320 */ void free();
-    /* 8029D330 */ void start();
-    /* 8029D340 */ void drop();
-    /* 8029D44C */ void alloc(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
-    /* 8029D4BC */ void allocForce(u8, s32 (*)(u32, JASDsp::TChannel*, void*), void*);
-    /* 8029D534 */ void setPriority(u8);
-};
-
-struct JASCalc {
-    /* 8028F578 */ void pow2(f32);
-};
 
 //
 // Forward References:
@@ -129,38 +97,6 @@ extern "C" extern u8 struct_80451260[8];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80455680-80455684 003C80 0004+00 6/6 0/0 0/0 .sdata2          @544 */
-SECTION_SDATA2 static f32 lit_544 = 1.0f;
-
-/* 80455684-80455688 003C84 0004+00 7/7 0/0 0/0 .sdata2          @545 */
-SECTION_SDATA2 static u8 lit_545[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455688-80455690 003C88 0004+04 6/6 0/0 0/0 .sdata2          @546 */
-SECTION_SDATA2 static f32 lit_546[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
-/* 8029A800-8029A918 295140 0118+00 0/0 3/3 0/0 .text
- * __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JASChannel::JASChannel(void (*param_0)(u32, JASChannel*, JASDsp::TChannel*, void*),
-                           void* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
 /* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
 OSMessageQueue JASChannel::sBankDisposeMsgQ;
 
@@ -168,12 +104,55 @@ OSMessageQueue JASChannel::sBankDisposeMsgQ;
 OSMessage JASChannel::sBankDisposeMsg[16];
 
 /* 80431BF0-80431C30 05E910 0040+00 2/2 0/3 0/0 .bss             sBankDisposeList__10JASChannel */
-u32 JASChannel::sBankDisposeList[16];
+OSMessage JASChannel::sBankDisposeList[16];
+
+/* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
+ */
+int JASChannel::sBankDisposeListSize;
+
+/* 8029A800-8029A918 295140 0118+00 0/0 3/3 0/0 .text
+ * __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
+JASChannel::JASChannel(Callback i_callback, void* i_callbackData) :
+    mStatus(STATUS_INACTIVE),
+    mDspCh(NULL),
+    mCallback(i_callback),
+    mCallbackData(i_callbackData),
+    mUpdateTimer(0),
+    mBankDisposeID(NULL),
+    mKey(0),
+    mVelocity(0x7f),
+    mKeySweep(0.0f),
+    mKeySweepTarget(0.0f),
+    mKeySweepCount(0),
+    mSkipSamples(0)
+{
+    field_0xdc.field_0x0 = 0;
+    field_0x104 = 0;
+    mMixConfig[0].whole = 0x150;
+    mMixConfig[1].whole = 0x210;
+    mMixConfig[2].whole = 0x352;
+    mMixConfig[3].whole = 0x412;
+    mMixConfig[4].whole = 0;
+    mMixConfig[5].whole = 0;
+    mPriority = 0x13f;
+    mPauseFlag = false;
+}
 
 /* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
 static u8 lit_556[12 + 4 /* padding */];
 
 /* 8029A918-8029A9F0 295258 00D8+00 5/5 0/0 0/0 .text            __dt__10JASChannelFv */
+#ifdef NONMATCHING
+// matches with static data
+JASChannel::~JASChannel() {
+    if (mDspCh != NULL) {
+        mDspCh->drop();
+    }
+    if (mCallback != NULL) {
+        mCallback(CB_STOP, this, NULL, mCallbackData);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -182,309 +161,480 @@ asm JASChannel::~JASChannel() {
 #include "asm/JSystem/JAudio2/JASChannel/__dt__10JASChannelFv.s"
 }
 #pragma pop
+#endif
 
 /* 8029A9F0-8029AA60 295330 0070+00 0/0 2/2 0/0 .text            play__10JASChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JASChannel::play() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/play__10JASChannelFv.s"
+int JASChannel::play() {
+    JASDSPChannel* channel = JASDSPChannel::alloc(JSULoByte(mPriority), dspUpdateCallback, this);
+    if (channel == NULL) {
+        delete this;
+        return 0;
+    }
+    mDspCh = channel;
+    channel->start();
+    mStatus = STATUS_ACTIVE;
+    return 1;
 }
-#pragma pop
 
 /* 8029AA60-8029AAD0 2953A0 0070+00 0/0 1/1 0/0 .text            playForce__10JASChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::playForce() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/playForce__10JASChannelFv.s"
+int JASChannel::playForce() {
+    JASDSPChannel* channel = JASDSPChannel::allocForce(JSULoByte(mPriority),
+                                                       dspUpdateCallback, this);
+    if (channel == NULL) {
+        delete this;
+        return 0;
+    }
+    mDspCh = channel;
+    channel->start();
+    mStatus = STATUS_ACTIVE;
+    return 1;
 }
-#pragma pop
 
 /* 8029AAD0-8029AB64 295410 0094+00 0/0 4/4 0/0 .text            release__10JASChannelFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::release(u16 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/release__10JASChannelFUs.s"
+void JASChannel::release(u16 i_directRelease) {
+    if (mStatus == STATUS_ACTIVE) {
+        if (i_directRelease != 0) {
+            setDirectRelease(i_directRelease);
+        }
+        for (u32 i = 0; i < 2; i++) {
+            if (mOscillators[i].isValid()) {
+                mOscillators[i].release();
+            }
+        }
+        mDspCh->setPriority(JSUHiByte(mPriority));
+        mStatus = STATUS_RELEASE;
+    }
 }
-#pragma pop
 
 /* 8029AB64-8029AB98 2954A4 0034+00 0/0 4/4 0/0 .text
  * setOscInit__10JASChannelFUlPCQ213JASOscillator4Data          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::setOscInit(u32 param_0, JASOscillator::Data const* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/setOscInit__10JASChannelFUlPCQ213JASOscillator4Data.s"
+void JASChannel::setOscInit(u32 i_index, JASOscillator::Data const* i_data) {
+    mOscillators[i_index].initStart(i_data);
 }
-#pragma pop
 
 /* 8029AB98-8029ABA8 2954D8 0010+00 0/0 2/2 0/0 .text            setMixConfig__10JASChannelFUlUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::setMixConfig(u32 param_0, u16 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/setMixConfig__10JASChannelFUlUs.s"
+void JASChannel::setMixConfig(u32 i_index, u16 i_config) {
+    mMixConfig[i_index].whole = i_config;
 }
-#pragma pop
 
 /* 8029ABA8-8029ABC0 2954E8 0018+00 1/1 0/0 0/0 .text
  * calcEffect__10JASChannelFPCQ210JASChannel9PanVector          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::calcEffect(JASChannel::PanVector const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/calcEffect__10JASChannelFPCQ210JASChannel9PanVector.s"
+f32 JASChannel::calcEffect(JASChannel::PanVector const* i_vector) {
+    return i_vector->mSound + i_vector->mEffect + i_vector->mChannel;
 }
-#pragma pop
 
 /* 8029ABC0-8029ABEC 295500 002C+00 1/1 0/0 0/0 .text
  * calcPan__10JASChannelFPCQ210JASChannel9PanVector             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::calcPan(JASChannel::PanVector const* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/calcPan__10JASChannelFPCQ210JASChannel9PanVector.s"
+f32 JASChannel::calcPan(JASChannel::PanVector const* i_vector) {
+    return 0.5f + (i_vector->mSound - 0.5f) + (i_vector->mEffect - 0.5f)
+        + (i_vector->mChannel - 0.5f);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803C7848-803C7864 -00001 001C+00 1/1 0/0 0/0 .data            @662 */
-SECTION_DATA static void* lit_662[7] = {
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x68),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x58),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x78),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x94),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0xA4),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0xB4),
-    (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0xC4),
-};
-
-/* 80455690-80455698 003C90 0008+00 1/1 0/0 0/0 .sdata2          @661 */
-SECTION_SDATA2 static f64 lit_661 = 0.5;
 
 /* 8029ABEC-8029ACD4 29552C 00E8+00 3/2 0/0 0/0 .text
  * effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::effectOsc(u32 param_0, JASOscillator::EffectParams* param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams.s"
+void JASChannel::effectOsc(u32 i_index, JASOscillator::EffectParams* i_params) {
+    f32 value = mOscillators[i_index].getValue();
+    switch (mOscillators[i_index].getTarget()) {
+    case JASOscillator::TARGET_PITCH:
+        i_params->mPitch *= value;
+        break;
+    case JASOscillator::TARGET_VOLUME:
+        i_params->mVolume *= value;
+        break;
+    case JASOscillator::TARGET_PAN:
+        value -= 0.5;
+        i_params->mPan += value;
+        break;
+    case JASOscillator::TARGET_FXMIX:
+        i_params->mFxMix += value;
+        break;
+    case JASOscillator::TARGET_DOLBY:
+        i_params->mDolby += value;
+        break;
+    case JASOscillator::TARGET_5:
+        i_params->_14 *= value;
+        break;
+    case JASOscillator::TARGET_6:
+        i_params->_18 *= value;
+        break;
+    }
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80455698-804556A0 003C98 0008+00 3/3 0/0 0/0 .sdata2          @685 */
-SECTION_SDATA2 static f64 lit_685 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8029ACD4-8029AD38 295614 0064+00 0/0 1/1 0/0 .text            setKeySweepTarget__10JASChannelFlUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::setKeySweepTarget(s32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/setKeySweepTarget__10JASChannelFlUl.s"
+void JASChannel::setKeySweepTarget(s32 i_target, u32 i_count) {
+    if (i_count == 0) {
+        mKeySweep = i_target;
+    } else {
+        mKeySweep = 0.0f;
+        mKeySweepTarget = i_target;
+    }
+    mKeySweepCount = i_count;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804556A0-804556A8 003CA0 0004+04 1/1 0/0 0/0 .sdata2          @711 */
-SECTION_SDATA2 static f32 lit_711[1 + 1 /* padding */] = {
-    127.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804556A8-804556B0 003CA8 0008+00 4/4 0/0 0/0 .sdata2          @714 */
-SECTION_SDATA2 static f64 lit_714 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029AD38-8029AF78 295678 0240+00 2/2 0/0 0/0 .text
  * updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::updateEffectorParam(JASDsp::TChannel* param_0, u16* param_1,
-                                         JASOscillator::EffectParams const& param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/func_8029AD38.s"
+void JASChannel::updateEffectorParam(JASDsp::TChannel* i_channel, u16* i_mixerVolume,
+                                     JASOscillator::EffectParams const& i_params) {
+    PanVector pan_vector, fxmix_vector, dolby_vector;
+    pan_vector.mSound = mSoundParams.mPan;
+    pan_vector.mChannel = mParams.mPan;
+    pan_vector.mEffect = i_params.mPan;
+    fxmix_vector.mSound = mSoundParams.mFxMix;
+    fxmix_vector.mChannel = mParams.mFxMix;
+    fxmix_vector.mEffect = i_params.mFxMix;
+    dolby_vector.mSound = mSoundParams.mDolby;
+    dolby_vector.mChannel = mParams.mDolby;
+    dolby_vector.mEffect = i_params.mDolby;
+
+    f32 pan = 0.5f;
+    f32 dolby = 0.0f;
+    switch (JASDriver::getOutputMode()) {
+    case 0:
+        break;
+    case 1:
+        pan = calcPan(&pan_vector);
+        break;
+    case 2:
+        pan = calcPan(&pan_vector);
+        dolby = calcEffect(&dolby_vector);
+        break;
+    }
+    f32 fxmix = calcEffect(&fxmix_vector);
+    f32 volume = mVelocity / 127.0f;
+    volume = volume * volume;
+    volume = mSoundParams.mVolume * i_params.mVolume * mParams.mVolume
+        * (i_params._18 * mTremolo.getValue() + 1.0f) * volume;
+    
+    if (volume < 0.0f) {
+        volume = 0.0f;
+    }
+    pan = JASCalc::clamp01(pan);
+    fxmix = JASCalc::clamp01(fxmix);
+    dolby = JASCalc::clamp01(dolby);
+
+    if (isDolbyMode()) {
+        updateAutoMixer(i_channel, volume, pan, fxmix, dolby);
+    } else {
+        updateMixer(volume, pan, fxmix, dolby, i_mixerVolume);
+    }
 }
-#pragma pop
 
 /* 8029AF78-8029B004 2958B8 008C+00 2/2 0/0 0/0 .text
  * dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::dspUpdateCallback(u32 param_0, JASDsp::TChannel* param_1, void* param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv.s"
+s32 JASChannel::dspUpdateCallback(u32 i_type, JASDsp::TChannel* i_channel, void* i_this) {
+    JASChannel* _this = static_cast<JASChannel*>(i_this);
+    switch (i_type) {
+    case JASDSPChannel::CB_PLAY:
+        return _this->updateDSPChannel(i_channel);
+    case JASDSPChannel::CB_START:
+        return _this->initialUpdateDSPChannel(i_channel);
+    case JASDSPChannel::CB_STOP:
+    case JASDSPChannel::CB_DROP:
+        _this->mDspCh->free();
+        _this->mDspCh = NULL;
+        delete _this;
+        return -1;
+    }
+    return 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804556B0-804556B4 003CB0 0004+00 2/2 0/0 0/0 .sdata2          @775 */
-SECTION_SDATA2 static f32 lit_775 = 12.0f;
-
-/* 804556B4-804556B8 003CB4 0004+00 2/2 0/0 0/0 .sdata2          @776 */
-SECTION_SDATA2 static f32 lit_776 = 4096.0f;
 
 /* 8029B004-8029B324 295944 0320+00 1/1 0/0 0/0 .text
  * initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel.s"
+s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
+    if (isDolbyMode()) {
+        i_channel->initAutoMixer();
+    }
+    
+    if (mCallback != NULL) {
+        mCallback(CB_START, this, i_channel, mCallbackData);
+    }
+
+    if (field_0xdc.field_0x4.field_0x20[0] == 0) {
+        mDspCh->free();
+        mDspCh = NULL;
+        delete this;
+        return -1;
+    }
+    
+    if (checkBankDispose()) {
+        mDspCh->free();
+        mDspCh = NULL;
+        delete this;
+        return -1;
+    }
+
+    switch (field_0xdc.field_0x0) {
+    case 0:
+        i_channel->setWaveInfo(field_0xdc.field_0x4, field_0x104, mSkipSamples);
+        break;
+    case 2:
+        i_channel->setOscInfo(field_0x104);
+        break;
+    }
+
+    for (u8 i = 0; i < 6; i++) {
+        MixConfig mix_config = mMixConfig[i];
+        u32 output_mode = JASDriver::getOutputMode();
+        if (output_mode == 0) {
+            switch (mix_config.parts.upper) {
+            case 8:
+                mix_config.parts.upper = 11;
+                break;
+            case 9:
+                mix_config.parts.upper = 2;
+                break;
+            }
+        } else if (output_mode == 1 && mix_config.parts.upper == 8) {
+            mix_config.parts.upper = 11;
+        }
+        i_channel->setBusConnect(i, mix_config.parts.upper);
+    }
+
+    JASOscillator::EffectParams effect_params;
+    for (u32 i = 0; i < 2; i++) {
+        if (mOscillators[i].isValid()) {
+            mOscillators[i].update();
+            effectOsc(i, &effect_params);
+        }
+    }
+    mVibrate.resetCounter();
+    mTremolo.resetCounter();
+    u16 mixer_volume[6];
+    updateEffectorParam(i_channel, mixer_volume, effect_params);
+    for (u8 i = 0; i < 6; i++) {
+        i_channel->setMixerInitVolume(i, mixer_volume[i]);
+    }
+
+    f32 pitch = JASCalc::pow2(mParams.field_0x8 + (mKey + mKeySweep) / 12.0f
+                                                + effect_params._14 * mVibrate.getValue());
+    pitch = mSoundParams.mPitch * effect_params.mPitch * pitch * mParams.mPitch * 4096.0f;
+    if (pitch < 0.0f) {
+        pitch = 0.0f;
+    }
+    i_channel->setPitch(pitch);
+
+    i_channel->setPauseFlag(mPauseFlag);
+    i_channel->field_0x066 = 0;
+    return 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804556B8-804556BC 003CB8 0004+00 1/1 0/0 0/0 .sdata2          @832 */
-SECTION_SDATA2 static f32 lit_832 = 32028.5f;
-
-/* 804556BC-804556C0 003CBC 0004+00 1/1 0/0 0/0 .sdata2          @833 */
-SECTION_SDATA2 static f32 lit_833 = 48000.0f;
 
 /* 8029B324-8029B6A0 295C64 037C+00 1/1 0/0 0/0 .text
  * updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::updateDSPChannel(JASDsp::TChannel* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel.s"
+s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
+    if (mCallback != NULL) {
+        mCallback(CB_PLAY, this, i_channel, mCallbackData);
+    }
+
+    if (field_0xdc.field_0x4.field_0x20[0] == 0) {
+        mDspCh->free();
+        mDspCh = NULL;
+        delete this;
+        return -1;
+    }
+    
+    if (checkBankDispose()) {
+        mDspCh->free();
+        mDspCh = NULL;
+        delete this;
+        return -1;
+    }
+
+    i_channel->setPauseFlag(mPauseFlag);
+    JASOscillator::EffectParams effect_params;
+    if (mPauseFlag) {
+        if (mOscillators[0].isRelease()) {
+            mDspCh->free();
+            mDspCh = NULL;
+            delete this;
+            return -1;
+        }
+    } else {
+        f32 inc = 32028.5f / JASDriver::getDacRate();
+        mVibrate.incCounter(inc);
+        mTremolo.incCounter(inc);
+        if (mUpdateTimer != 0) {
+            mUpdateTimer--;
+            if (mUpdateTimer == 0 && mCallback != NULL) {
+                mCallback(CB_TIMER, this, i_channel, mCallbackData);
+            }
+        }
+        inc = 48000.0f / JASDriver::getDacRate();
+        for (u32 i = 0; i < 2; i++) {
+            if (mOscillators[i].isValid()) {
+                mOscillators[i].incCounter(inc);
+                effectOsc(i, &effect_params);
+                if (i == 0 && mOscillators[i].isStop()) {
+                    mDspCh->free();
+                    mDspCh = NULL;
+                    delete this;
+                    return -1;
+                }
+            }
+        }
+    }
+
+    u16 mixer_volume[6];
+    updateEffectorParam(i_channel, mixer_volume, effect_params);
+    for (u8 i = 0; i < 6; i++) {
+        i_channel->setMixerVolume(i, mixer_volume[i]);
+    }
+
+    f32 pitch = JASCalc::pow2(mParams.field_0x8 + (mKey + mKeySweep) / 12.0f
+                                                + effect_params._14 * mVibrate.getValue());
+    pitch = mSoundParams.mPitch * effect_params.mPitch * pitch * mParams.mPitch * 4096.0f;
+    if (pitch < 0.0f) {
+        pitch = 0.0f;
+    }
+    i_channel->setPitch(pitch);
+
+    if (!mPauseFlag && mKeySweepCount != 0) {
+        mKeySweep += (mKeySweepTarget - mKeySweep) / mKeySweepCount;
+        mKeySweepCount--;
+    }
+    return 0;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804556C0-804556C4 003CC0 0004+00 1/1 0/0 0/0 .sdata2          @846 */
-SECTION_SDATA2 static f32 lit_846 = 0.7070000171661377f;
-
-/* 804556C4-804556C8 003CC4 0004+00 1/1 0/0 0/0 .sdata2          @847 */
-SECTION_SDATA2 static f32 lit_847 = 127.5f;
 
 /* 8029B6A0-8029B7D8 295FE0 0138+00 1/1 0/0 0/0 .text
  * updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::updateAutoMixer(JASDsp::TChannel* param_0, f32 param_1, f32 param_2,
-                                     f32 param_3, f32 param_4) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff.s"
+void JASChannel::updateAutoMixer(JASDsp::TChannel* i_channel, f32 param_1, f32 param_2,
+                                 f32 param_3, f32 param_4) {
+    if (JASDriver::getOutputMode() == 0) {
+        param_1 *= 0.707f;
+    }
+    f32 fvar1 = JASCalc::clamp01(param_1);
+    i_channel->setAutoMixer(fvar1 * JASDriver::getChannelLevel_dsp(), param_2 * 127.5f,
+                            param_4 * 127.5f, param_3 * 127.5f, 0);
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 803C7864-803C7884 -00001 0020+00 1/1 0/0 0/0 .data            @977 */
-SECTION_DATA static void* lit_977[8] = {
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x210),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1E4),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1EC),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1F4),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x210),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1FC),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x204),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x20C),
-};
-
-/* 803C7884-803C78A8 -00001 0020+04 1/1 0/0 0/0 .data            @974 */
-SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x114),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0xE8),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0xF0),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0xF8),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x114),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x100),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x108),
-    (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x110),
-    /* padding */
-    NULL,
-};
-
-/* 804556C8-804556CC 003CC8 0004+00 1/1 0/0 0/0 .sdata2          @969 */
-SECTION_SDATA2 static f32 lit_969 = -1303.7972412109375f;
-
-/* 804556CC-804556D0 003CCC 0004+00 1/1 0/0 0/0 .sdata2          @970 */
-SECTION_SDATA2 static f32 lit_970 = 1303.7972412109375f;
-
-/* 804556D0-804556D4 003CD0 0004+00 1/1 0/0 0/0 .sdata2          @971 */
-SECTION_SDATA2 static f32 lit_971 = 3.1415927410125732f;
-
-/* 804556D4-804556D8 003CD4 0004+00 1/1 0/0 0/0 .sdata2          @972 */
-SECTION_SDATA2 static f32 lit_972 = 0.326119989156723f;
-
-/* 804556D8-804556E0 003CD8 0004+04 1/1 0/0 0/0 .sdata2          @973 */
-SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {
-    0.34775999188423157f,
-    /* padding */
-    0.0f,
-};
 
 /* 8029B7D8-8029BBFC 296118 0424+00 3/1 0/0 0/0 .text            updateMixer__10JASChannelFffffPUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::updateMixer(f32 param_0, f32 param_1, f32 param_2, f32 param_3, u16* param_4) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/updateMixer__10JASChannelFffffPUs.s"
+void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, u16* i_volumeOut) {
+    for (u32 i = 0; i < 6; i++) {
+        f32 volume = i_volume;
+        MixConfig config = mMixConfig[i];
+        if (config.parts.upper == 0) {
+            i_volumeOut[i] = 0;
+        } else {
+            f32 scale;
+
+            if (config.parts.lower0 != 0) {
+                switch (config.parts.lower0) {
+                case 1:
+                    scale = i_pan;
+                    break;
+                case 2:
+                    scale = i_fxmix;
+                    break;
+                case 3:
+                    scale = i_dolby;
+                    break;
+                case 5:
+                    scale = 1.0f - i_pan;
+                    break;
+                case 6:
+                    scale = 1.0f - i_fxmix;
+                    break;
+                case 7:
+                    scale = 1.0f - i_dolby;
+                    break;
+                }
+
+                switch (config.parts.lower0) {
+                case 2:
+                case 6:
+                    volume *= scale;
+                    break;
+                default:
+                    if (JASDriver::getOutputMode() == 0) {
+                        volume *= scale;
+                    } else {
+                        volume *= JMASinRadian(scale * JGeometry::TUtil<f32>::PI() * 0.5f);
+                    }
+                    break;
+                }
+            }
+
+            if (config.parts.lower1 != 0) {
+                switch (config.parts.lower1) {
+                case 1:
+                    scale = i_pan;
+                    break;
+                case 2:
+                    scale = i_fxmix;
+                    break;
+                case 3:
+                    scale = i_dolby;
+                    break;
+                case 5:
+                    scale = 1.0f - i_pan;
+                    break;
+                case 6:
+                    scale = 1.0f - i_fxmix;
+                    break;
+                case 7:
+                    scale = 1.0f - i_dolby;
+                    break;
+                }
+
+                switch (config.parts.lower1) {
+                case 3:
+                case 7:
+                    volume *= JMASinRadian((scale * 0.34776f + 0.32612f)
+                                           * JGeometry::TUtil<f32>::PI() * 0.5f);
+                    break;
+                case 2:
+                case 6:
+                    volume *= scale;
+                    break;
+                default:
+                    if (JASDriver::getOutputMode() == 0) {
+                        volume *= scale;
+                    } else {
+                        volume *= JMASinRadian(scale * JGeometry::TUtil<f32>::PI() * 0.5f);
+                    }
+                    break;
+                }
+            }
+
+            i_volumeOut[i] = JASCalc::clamp01(volume) * JASDriver::getChannelLevel_dsp();
+        }
+    }
 }
-#pragma pop
 
 /* 8029BBFC-8029BC0C 29653C 0010+00 0/0 3/3 0/0 .text            free__10JASChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::free() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/free__10JASChannelFv.s"
+void JASChannel::free() {
+    mCallback = NULL;
+    mCallbackData = NULL;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
- */
-u32 JASChannel::sBankDisposeListSize;
 
 /* 8029BC0C-8029BC48 29654C 003C+00 0/0 1/1 0/0 .text initBankDisposeMsgQueue__10JASChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::initBankDisposeMsgQueue() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/initBankDisposeMsgQueue__10JASChannelFv.s"
+void JASChannel::initBankDisposeMsgQueue() {
+    OSInitMessageQueue(&sBankDisposeMsgQ, sBankDisposeMsg, 0x10);
+    sBankDisposeListSize = 0;
 }
-#pragma pop
 
 /* 8029BC48-8029BCC0 296588 0078+00 0/0 1/1 0/0 .text receiveBankDisposeMsg__10JASChannelFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::receiveBankDisposeMsg() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/receiveBankDisposeMsg__10JASChannelFv.s"
+void JASChannel::receiveBankDisposeMsg() {
+    OSMessage msg;
+    for (sBankDisposeListSize = 0;
+         OSReceiveMessage(&sBankDisposeMsgQ, &msg, OS_MESSAGE_NOBLOCK);
+         sBankDisposeListSize++)
+    {
+        sBankDisposeList[sBankDisposeListSize] = msg;
+    }
 }
-#pragma pop
 
 /* 8029BCC0-8029BD14 296600 0054+00 2/2 0/0 0/0 .text            checkBankDispose__10JASChannelCFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASChannel::checkBankDispose() const {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASChannel/checkBankDispose__10JASChannelCFv.s"
+bool JASChannel::checkBankDispose() const {
+    if (mBankDisposeID == NULL) {
+        return false;
+    }
+    for (int i = 0; i < sBankDisposeListSize; i++) {
+        if (mBankDisposeID == sBankDisposeList[i]) {
+            return true;
+        }
+    }
+    return false;
 }
-#pragma pop

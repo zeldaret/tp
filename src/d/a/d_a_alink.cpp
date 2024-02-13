@@ -7,10 +7,12 @@
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/JAudio2/JAISeq.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_npc.h"
+#include "d/a/d_a_obj.h"
 #include "d/d_item.h"
 #include "d/d_procname.h"
 #include "d/meter/d_meter2_draw.h"
@@ -28,34 +30,13 @@
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
 #include "rel/d/a/e/d_a_e_wb/d_a_e_wb.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.h"
+#include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
 #include "rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.h"
 #include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
 #include "rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.h"
 #include "rel/d/a/tag/d_a_tag_mist/d_a_tag_mist.h"
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
-#include "rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.h"
-
-//
-// Types:
-//
-
-struct daObjMovebox {
-    struct Act_c {
-        struct Prm_e {};
-    };
-};
-
-struct daObj {
-    template <typename A1>
-    void PrmAbstract(/* ... */);
-    /* 80141ACC */ /* daObj::PrmAbstract<daObjMovebox::Act_c::Prm_e> */
-    void func_80141ACC(void* _this, fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
-                       daObjMovebox::Act_c::Prm_e);
-};
-
-struct JAISeq {
-    /* 802A0A8C */ JAISeq(JAISeqMgr*, JAISoundStrategyMgr<JAISeq>*);
-};
 
 //
 // Forward References:
@@ -4784,27 +4765,21 @@ COMPILER_STRIP_GATE(0x8038FAC0, &l_crawlTopUpOffset);
 /* 8038FACC-8038FAD8 01C12C 000C+00 0/1 0/0 0/0 .rodata          l_wolfLieTopUpOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static Vec const l_wolfLieTopUpOffset = {
-    0.0f, 75.0f, 0.0f
-};
+SECTION_RODATA static Vec const l_wolfLieTopUpOffset = {0.0f, 75.0f, 0.0f};
 COMPILER_STRIP_GATE(0x8038FACC, &l_wolfLieTopUpOffset);
 #pragma pop
 
 /* 8038FAD8-8038FAE4 01C138 000C+00 0/1 0/0 0/0 .rodata          l_crawlSideOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static Vec const l_crawlSideOffset = {
-    55.0f, 80.0f, 0.0f
-};
+SECTION_RODATA static Vec const l_crawlSideOffset = {55.0f, 80.0f, 0.0f};
 COMPILER_STRIP_GATE(0x8038FAD8, &l_crawlSideOffset);
 #pragma pop
 
 /* 8038FAE4-8038FAF0 01C144 000C+00 0/1 0/0 0/0 .rodata          l_wolfLieSideOffset */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static Vec const l_wolfLieSideOffset = {
-    55.0f, 75.0f, 0.0f
-};
+SECTION_RODATA static Vec const l_wolfLieSideOffset = {55.0f, 75.0f, 0.0f};
 COMPILER_STRIP_GATE(0x8038FAE4, &l_wolfLieSideOffset);
 #pragma pop
 
@@ -5815,7 +5790,9 @@ COMPILER_STRIP_GATE(0x80391A08, &hookRoot);
 
 /* 80391A14-80391A20 01E074 000C+00 1/1 0/0 0/0 .rodata          bottleTop$32160 */
 SECTION_RODATA static Vec const bottleTop = {
-    0.0f, 25.0f, 0.0f,
+    0.0f,
+    25.0f,
+    0.0f,
 };
 COMPILER_STRIP_GATE(0x80391A14, &bottleTop);
 
@@ -18798,7 +18775,8 @@ asm int daAlink_c::changeItemTriggerKeepProc(u8 param_0, int param_1) {
 /**
  * Determines whether an item action can occur, and which action to use.
  *
- * @return a `daAlink_ItemProc` value corresponding to the `PROC` function to run in `changeItemTriggerKeepProc`
+ * @return a `daAlink_ItemProc` value corresponding to the `PROC` function to run in
+ * `changeItemTriggerKeepProc`
  */
 // matches with literals
 #ifdef NONMATCHING

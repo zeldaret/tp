@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "utility.h"
 
+template<typename T>
+struct TAngleConstant_;
+
+template<>
+struct TAngleConstant_<f32> {
+    static inline f32 RADIAN_DEG360() { return 6.2831855f; }
+};
+
 struct TSinCosTable {
     std::pair<f32, f32> table[0x2000];
 
@@ -29,6 +37,13 @@ struct TSinCosTable {
             degree = -degree;
         } 
         return table[(u16)(22.755556106567383f * degree) & 0x1fffU].second;
+    }
+
+    inline f32 sinRadian(f32 radian) {
+        if (radian < 0.0f) {
+            return -table[(u16)(-8192.0f / TAngleConstant_<f32>::RADIAN_DEG360() * radian) & 0x1fffU].first;
+        }
+        return table[(u16)(8192.0f / TAngleConstant_<f32>::RADIAN_DEG360() * radian) & 0x1fffU].first;
     }
 };
 
@@ -72,6 +87,10 @@ inline f32 JMASinDegree(f32 degree) {
 
 inline f32 JMACosDegree(f32 degree) {
     return JMath::sincosTable_.cosDegree(degree);
+}
+
+inline f32 JMASinRadian(f32 radian) {
+    return JMath::sincosTable_.sinRadian(radian);
 }
 
 #endif /* JMATRIGONOMETRIC_H */

@@ -340,7 +340,7 @@ u32 JASKernel::sAramBase;
 JKRHeap* JASKernel::sSystemHeap;
 
 /* 8045121C-80451220 00071C 0004+00 2/1 0/0 0/0 .sbss            sCommandHeap__9JASKernel */
-void* JASKernel::sCommandHeap;
+JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* JASKernel::sCommandHeap;
 
 /* 802909B8-80290AC0 28B2F8 0108+00 0/0 1/1 0/0 .text setupRootHeap__9JASKernelFP12JKRSolidHeapUl
  */
@@ -371,7 +371,7 @@ JKRHeap* JASKernel::getSystemHeap() {
 }
 
 /* 80290AC8-80290AD0 -00001 0008+00 0/0 0/0 0/0 .text            getCommandHeap__9JASKernelFv */
-void* JASKernel::getCommandHeap() {
+JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* JASKernel::getCommandHeap() {
     return JASKernel::sCommandHeap;
 }
 

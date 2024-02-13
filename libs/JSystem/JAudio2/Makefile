@@ -150,7 +150,7 @@ LIBJAUDIO2_A_LDFLAGS := \
 	-proc gekko \
 	-linkmode moreram \
 
-DSP_CFLAGS := -pragma "function_align 32" -Cpp_exceptions off -proc gekko -fp hard -O4,p -nodefaults -str nopool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
+DSP_CFLAGS := -pragma "function_align 32" -Cpp_exceptions off -proc gekko -fp hard -O4 -nodefaults -str nopool,readonly,reuse -RTTI off -maxerrors 5 -enum int $(INCLUDES)
 
 $(BUILD_DIR)/libs/JSystem/JAudio2/dspproc.o: CFLAGS := $(DSP_CFLAGS)
 $(BUILD_DIR)/libs/JSystem/JAudio2/osdsp.o: CFLAGS := $(DSP_CFLAGS)

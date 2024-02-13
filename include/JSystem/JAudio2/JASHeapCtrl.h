@@ -33,19 +33,6 @@ public:
     /* 0x40 */ JASHeap* field_0x40;
 };
 
-namespace JASKernel {
-    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
-    /* 80290AC0 */ JKRHeap* getSystemHeap();
-    /* 80290AC8 */ void* getCommandHeap();
-    /* 80290AD0 */ void setupAramHeap(u32, u32);
-    /* 80290B08 */ JASHeap* getAramHeap();
-
-    extern u8 audioAramHeap[68];
-    extern u32 sAramBase;
-    extern JKRHeap* sSystemHeap;
-    extern void* sCommandHeap;
-};
-
 struct JASGenericMemPool {
     /* 80290848 */ JASGenericMemPool();
     /* 80290860 */ ~JASGenericMemPool();
@@ -185,13 +172,13 @@ public:
     }
 
     void free(void* ptr) {
-        T::Lock lock(&((JASMemChunkPool<ChunkSize,T>*)ptr)->mMutex);
-        MemoryChunk* chunk = ((JASMemChunkPool<ChunkSize,T>*)ptr)->field_0x18;
+        T::Lock lock(&mMutex);
+        MemoryChunk* chunk = field_0x18;
         MemoryChunk* prevChunk = NULL;
         while (chunk != NULL) {
-            if (chunk->checkArea(this)) {
+            if (chunk->checkArea(ptr)) {
                 chunk->free();
-                if (chunk != ((JASMemChunkPool<ChunkSize,T>*)ptr)->field_0x18 && chunk->isEmpty()) {
+                if (chunk != field_0x18 && chunk->isEmpty()) {
                     MemoryChunk* nextChunk = chunk->getNextChunk();
                     delete chunk;
                     prevChunk->setNextChunk(nextChunk);
@@ -207,12 +194,28 @@ public:
     /* 0x18 */ MemoryChunk* field_0x18;
 };
 
+namespace JASKernel {
+    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
+    /* 80290AC0 */ JKRHeap* getSystemHeap();
+    /* 80290AC8 */ JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* getCommandHeap();
+    /* 80290AD0 */ void setupAramHeap(u32, u32);
+    /* 80290B08 */ JASHeap* getAramHeap();
+
+    extern u8 audioAramHeap[68];
+    extern u32 sAramBase;
+    extern JKRHeap* sSystemHeap;
+    extern JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* sCommandHeap;
+};
+
 template <typename T>
 class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
         JASMemPool<T>* memPool = getMemPool();
         return memPool->alloc(sizeof(T));
+    }
+    static void* operator new(size_t n, void* ptr) {
+        return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool<T>* memPool_ = getMemPool();
@@ -255,6 +258,9 @@ public:
     static void* operator new(size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
         return memPool_->alloc(sizeof(T));
+    }
+    static void* operator new(size_t n, void* ptr) {
+        return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();

@@ -126,7 +126,7 @@ void JAISe::JAISeCategoryMgr_calc_() {
     if (calc_JAISound_()) {
         inner_.mTempoMgr.calc();
         if (inner_.field_0x278) {
-            inner_.field_0x278->virtual3(this);
+            inner_.field_0x278->calc(this);
         }
     }
     if (isStopping() || mPriority == -1) {
@@ -159,7 +159,7 @@ void JAISe::JAISeMgr_startID_(JAISoundID param_0, JGeometry::TVec3<f32> const* p
     start_JAISound_(param_0, param_1, param_2);
     inner_.field_0x26c = 0;
     if (inner_.mSoundStrategyMgr) {
-        inner_.field_0x278 = inner_.mSoundStrategyMgr->virtual3(param_0);
+        inner_.field_0x278 = inner_.mSoundStrategyMgr->calc(param_0);
     } else {
         inner_.field_0x278 = NULL;
     }

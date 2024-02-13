@@ -11,14 +11,9 @@
 static const u32 l_dzbidx[2] = {8, 9};
 static const char* l_arcName = "K_jgjs";
 
-inline request_of_phase_process_class* daObjKJgjs_getRes(daObjKJgjs_c* i_kjgjs) {
-    daObjKJgjs_c* mpKjgjs = (daObjKJgjs_c*)i_kjgjs;
-    return i_kjgjs ? &mpKjgjs->mPhaseReq : (request_of_phase_process_class*)mpKjgjs;
-}
-
 /* 80C46098-80C4616C 000078 00D4+00 1/1 0/0 0/0 .text            create1st__12daObjKJgjs_cFv */
 int daObjKJgjs_c::create1st() {
-    int phase = dComIfG_resLoad(daObjKJgjs_getRes(this), l_arcName);
+    int phase = dComIfG_resLoad(this, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         setMtx();
         field_0x60c = getType();
@@ -96,7 +91,7 @@ int daObjKJgjs_c::Draw() {
 
 /* 80C463C4-80C46400 0003A4 003C+00 1/0 0/0 0/0 .text            Delete__12daObjKJgjs_cFv */
 int daObjKJgjs_c::Delete() {
-    dComIfG_resDelete(daObjKJgjs_getRes(this), l_arcName);
+    dComIfG_resDelete(this, l_arcName);
     return 1;
 }
 

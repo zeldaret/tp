@@ -641,18 +641,16 @@ asm JASChannel* JASTrack::channelStart(JASTrack::TChannelMgr* param_0, u32 param
 #endif
 
 /* 80291F38-80292008 28C878 00D0+00 0/0 1/1 0/0 .text            noteOn__8JASTrackFUlUlUl */
-#ifdef NONMATCHING
-// regalloc
 int JASTrack::noteOn(u32 i_noteID, u32 param_1, u32 param_2) {
     if (isMute()) {
         return 0;
     }
     int ret = 1;
-    int var1 = param_1 + getTransposeTotal();
+    param_1 += getTransposeTotal();
     for (u32 i = 0; i < mChannelMgrCount; i++) {
         if (mChannelMgrs[i] != NULL) {
             mChannelMgrs[i]->noteOff(i_noteID, 0);
-            JASChannel* channel = channelStart(mChannelMgrs[i], var1, param_2, 0);
+            JASChannel* channel = channelStart(mChannelMgrs[i], param_1, param_2, 0);
             if (channel == NULL) {
                 ret = 0;
             }
@@ -661,16 +659,6 @@ int JASTrack::noteOn(u32 i_noteID, u32 param_1, u32 param_2) {
     }
     return ret;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int JASTrack::noteOn(u32 param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASTrack/noteOn__8JASTrackFUlUlUl.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 804555AC-804555B0 003BAC 0004+00 1/1 0/0 0/0 .sdata2          @952 */
@@ -681,9 +669,9 @@ SECTION_SDATA2 static f64 lit_954 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80292008-80292198 28C948 0190+00 0/0 1/1 0/0 .text            gateOn__8JASTrackFUlUlfUl */
 #ifdef NONMATCHING
-// regalloc
+// matches with literals
 int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
-    int uvar5 = param_0 + getTransposeTotal();
+    param_0 += getTransposeTotal();
     if (mGateRate != 100) {
         i_time *= mGateRate / 100.0f;
     }
@@ -693,7 +681,7 @@ int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
     if (i_flags & 1) {
         uvar7 = field_0x22b;
     } else {
-        uvar7 = uvar5;
+        uvar7 = param_0;
     }
     for (u32 i = 0; i < mChannelMgrCount; i++) {
         TChannelMgr* channel_mgr = mChannelMgrs[i];
@@ -713,12 +701,12 @@ int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
                 }
             }
             if ((i_flags & 1) && channel_mgr->mChannels[0] != NULL) {
-                channel_mgr->mChannels[0]->setKeySweepTarget(uvar5 - uvar7, uvar2);
+                channel_mgr->mChannels[0]->setKeySweepTarget(param_0 - uvar7, uvar2);
             }
         }
     }
     mFlags.flag4 = (i_flags >> 1) & 1;
-    field_0x22b = uvar5;
+    field_0x22b = param_0;
     return 1;
 }
 #else
