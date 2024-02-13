@@ -32,13 +32,7 @@ public:
     void setFrame(f32 frame) { mFrameCtrl.setFrame(frame); }
     void setPlayMode(int i_mode) { mFrameCtrl.setAttribute(i_mode); }
     void setLoopFrame(f32 i_frame) { mFrameCtrl.setLoop(i_frame); }
-    bool isStop() {
-        bool stopped = true;
-        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
-            stopped = false;
-        }
-        return stopped;
-    }
+    bool isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
     void reset() { mFrameCtrl.reset(); }
 
 private:
@@ -152,7 +146,9 @@ public:
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
 
-    void remove(J3DModelData* i_modelData) { i_modelData->getJointNodePointer(0)->setMtxCalc(NULL); }
+    void remove(J3DModelData* i_modelData) {
+        i_modelData->getJointNodePointer(0)->setMtxCalc(NULL);
+    }
 
     J3DAnmTransform* getBckAnm() { return mAnm; }
 
@@ -264,7 +260,8 @@ public:
     virtual void execute(u16) = 0;
 };
 
-class mDoExt_morf_c : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
+class mDoExt_morf_c
+    : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
 public:
     /* 8000F950 */ mDoExt_morf_c();
     /* 8000FB7C */ void setMorf(f32 i_morf);
@@ -276,13 +273,7 @@ public:
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     void setPlayMode(int mode) { mFrameCtrl.setAttribute(mode); }
-    bool isStop() {
-        bool stopped = true;
-        if (!mFrameCtrl.checkState(1) && mFrameCtrl.getRate() != 0.0f) {
-            stopped = false;
-        }
-        return stopped;
-    }
+    bool isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getStartFrame() { return mFrameCtrl.getStart(); }
     void setStartFrame(f32 frame) { mFrameCtrl.setStart(frame); }
@@ -315,7 +306,8 @@ public:
                                     int, Z2Creature*, u32, u32);
     /* 800108F0 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
                               J3DAnmTransform*, int, f32, int, int, Z2Creature*, u32, u32);
-    /* 80010E70 */ void setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate, f32 i_start, f32 i_end);
+    /* 80010E70 */ void setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate,
+                               f32 i_start, f32 i_end);
     /* 800110B0 */ int play(u32, s8);
     /* 80011154 */ void updateDL();
     /* 800111C0 */ void entryDL();
@@ -345,9 +337,8 @@ public:
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                   mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
                                   int, void*, u32, u32);
-    /* 8000FD94 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                               mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int, int,
-                               int, void*, u32, u32);
+    /* 8000FD94 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
+                              J3DAnmTransform*, int, f32, int, int, int, void*, u32, u32);
     /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
     /* 800105C8 */ u32 play(Vec*, u32, s8);
     /* 80010680 */ void entryDL();
@@ -424,7 +415,8 @@ private:
     /* 0x20 */ Quaternion* mOldFrameQuaternion;
 };  // Size: 0x24
 
-struct mDoExt_MtxCalcAnmBlendTbl : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
+struct mDoExt_MtxCalcAnmBlendTbl
+    : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> {
     mDoExt_MtxCalcAnmBlendTbl(int num, mDoExt_AnmRatioPack* anmRatio) {
         mNum = num;
         mAnmRatio = anmRatio;
@@ -447,7 +439,9 @@ struct mDoExt_MtxCalcAnmBlendTbl : public J3DMtxCalcNoAnm<J3DMtxCalcCalcTransfor
 STATIC_ASSERT(sizeof(mDoExt_MtxCalcAnmBlendTbl) == 0x0C);
 
 struct mDoExt_MtxCalcAnmBlendTblOld : public mDoExt_MtxCalcAnmBlendTbl {
-    mDoExt_MtxCalcAnmBlendTblOld(mDoExt_MtxCalcOldFrame* oldFrame, int num, mDoExt_AnmRatioPack* anmRatio) : mDoExt_MtxCalcAnmBlendTbl(num, anmRatio) {
+    mDoExt_MtxCalcAnmBlendTblOld(mDoExt_MtxCalcOldFrame* oldFrame, int num,
+                                 mDoExt_AnmRatioPack* anmRatio)
+        : mDoExt_MtxCalcAnmBlendTbl(num, anmRatio) {
         mOldFrame = oldFrame;
     }
     /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld();
@@ -475,13 +469,13 @@ public:
 
 class mDoExt_3DlineMat_c {
 public:
-    #ifndef NON_VIRTUAL_3DLINEMAT
+#ifndef NON_VIRTUAL_3DLINEMAT
     virtual int getMaterialID() = 0;
     virtual void setMaterial() = 0;
     virtual void draw() = 0;
-    #else
+#else
     /* 0x0 */ void* field_0x0;
-    #endif
+#endif
     /* 0x4 */ mDoExt_3DlineMat_c* field_0x4;
 };
 
@@ -623,7 +617,8 @@ JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
 void mDoExt_modelUpdate(J3DModel* i_model);
 void mDoExt_modelUpdateDL(J3DModel* i_model);
-J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u32 i_differedDlistFlag);
+J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag,
+                                  u32 i_differedDlistFlag);
 void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);

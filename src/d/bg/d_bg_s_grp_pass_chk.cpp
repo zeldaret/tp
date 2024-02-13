@@ -1,6 +1,7 @@
-//
-// d/bg/d_bg_s_grp_pass_chk.cpp
-//
+/**
+ * d_bg_s_grp_pass_chk.cpp
+ * 
+ */
 
 #include "d/bg/d_bg_s_grp_pass_chk.h"
 

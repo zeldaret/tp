@@ -117,6 +117,7 @@ public:
     cXyz* GetOldPos() { return pm_old_pos; }
     f32 GetGroundH() const { return m_ground_h; }
     f32 GetRoofHeight() const { return m_roof_height; }
+    int GetTblSize() { return m_tbl_size; }
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
     bool ChkGroundHit() { return m_flags & GROUND_HIT; }
@@ -142,7 +143,7 @@ public:
     void ClrGroundFind() { m_flags &= ~GROUND_FIND; }
     u32 MaskRoofHit() { return m_flags & ROOF_HIT; }
     bool ChkRoofHit() { return MaskRoofHit(); }
-    bool ChkClrSpeedY() { return m_flags & CLR_SPEED_Y; }
+    bool ChkClrSpeedY() { return !(m_flags & CLR_SPEED_Y); }
     void SetGroundFind() { m_flags |= GROUND_FIND; }
     void SetGroundHit() { m_flags |= GROUND_HIT; }
     void SetGroundLanding() { m_flags |= GROUND_LANDING; }
@@ -163,7 +164,9 @@ public:
     void OnLineCheckNone() { m_flags |= LINE_CHECK_NONE; }
     void OffLineCheckNone() { m_flags &= ~LINE_CHECK_NONE; }
     void SetWallNone() { m_flags |= WALL_NONE; }
+    void OnLineCheckHit() { m_flags |= LINE_CHECK_HIT; }
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
+    f32 GetWallH(int i_no) { return pm_acch_cir[i_no].GetWallH(); }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
@@ -183,7 +186,7 @@ public:
     /* 0x080 */ u32 field_0x80;
     /* 0x084 */ fopAc_ac_c* m_my_ac;
     /* 0x088 */ int m_tbl_size;
-    /* 0x08C */ dBgS_AcchCir* field_0x8c;
+    /* 0x08C */ dBgS_AcchCir* pm_acch_cir;
     /* 0x090 */ f32 field_0x90;
     /* 0x094 */ f32 field_0x94;
     /* 0x098 */ f32 m_ground_h;
@@ -197,7 +200,7 @@ public:
     /* 0x0C8 */ f32 m_roof_crr_height;
     /* 0x0CC */ f32 field_0xcc;
     /* 0x0D0 */ f32 m_wtr_chk_offset;
-    /* 0x0D4 */ int field_0xd4;
+    /* 0x0D4 */ cBgS_PolyInfo* pm_out_poly_info;
     /* 0x0D8 */ f32 field_0xd8;
     /* 0x0DC */ dBgS_GndChk m_gnd;
     /* 0x130 */ dBgS_RoofChk m_roof;

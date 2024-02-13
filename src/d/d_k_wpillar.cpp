@@ -15,14 +15,6 @@
 /* 80454FF0-80454FF8 0035F0 0007+01 1/1 0/0 0/0 .sdata2          l_arcName */
 static const char l_arcName[] = "Always";
 
-inline int fopAcM_gc_c::getRoomId() {
-    return dComIfG_Bgsp().GetRoomId(*(dBgS_GndChk*)mGndCheck);
-}
-
-inline int fopAcM_gc_c::getPolyColor() {
-    return dComIfG_Bgsp().GetPolyColor(*(dBgS_GndChk*)mGndCheck);
-}
-
 /* 80261B54-80261F04 25C494 03B0+00 1/1 0/0 0/0 .text            create__11dkWpillar_cFv */
 int dkWpillar_c::create() {
     new (this) dkWpillar_c();

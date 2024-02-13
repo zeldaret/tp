@@ -13,7 +13,7 @@ public:
 class cBgS_PolyPassChk;
 
 class cBgS_Chk {
-private:
+public:
     /* 0x0 */ cBgS_PolyPassChk* mPolyPassChk;
     /* 0x4 */ cBgS_GrpPassChk* mGrpPassChk;
     /* 0x8 */ u32 mActorPid;

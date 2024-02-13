@@ -1,6 +1,6 @@
 /**
  * d_bg_s_sph_chk.cpp
- *
+ * BG Collision Sphere Check
  */
 
 #include "d/bg/d_bg_s_sph_chk.h"

@@ -5,7 +5,7 @@
 
 class cBgS_PolyPassChk {
 public:
-    virtual ~cBgS_PolyPassChk();
+    virtual ~cBgS_PolyPassChk() {}
 };
 
 class dBgS_PolyPassChk : public cBgS_PolyPassChk {

@@ -39,6 +39,7 @@ public:
     bool GetPreGroundChk() const { return mPreGroundChk; }
     bool GetPreRoofChk() const { return mPreRoofChk; }
     cXyz* GetStartP() { return &mLin.GetStartP(); }
+    void ClrSttsRoofOff() { field_0x4c &= ~0x20000000; }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */
