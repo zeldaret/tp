@@ -35,7 +35,7 @@ private:
     /* 0x5AC */ request_of_phase_process_class field_0x5ac;
     /* 0x5B4 */ J3DModel* field_0x5b4;
     /* 0x5B8 */ mDoExt_invisibleModel field_0x5b8;
-    /* 0x5C0 */ Z2CreatureEnemy field_0x5c0;
+    /* 0x5C0 */ Z2CreatureEnemy mCreature;
     /* 0x664 */ cXyz field_0x664;
     /* 0x670 */ cXyz field_0x670;
     /* 0x67C */ cXyz field_0x67c[4];

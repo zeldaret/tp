@@ -539,14 +539,15 @@ void daE_FZ_c::setReflectAngle() {
 }
 
 /* 806BEBA0-806BEC08 000340 0068+00 2/2 0/0 0/0 .text            mBoundSoundset__8daE_FZ_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::mBoundSoundset() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/mBoundSoundset__8daE_FZ_cFv.s"
+void daE_FZ_c::mBoundSoundset() {
+    u32 speed = speedF;
+
+    if (speed < 1) {
+        speed = 1;
+    }
+
+    mCreature.startCreatureSound(Z2SE_EN_FZ_BOUND,speed,-1);
 }
-#pragma pop
 
 /* 806BEC08-806BED34 0003A8 012C+00 2/2 0/0 0/0 .text            deadnextSet__8daE_FZ_cFb */
 #pragma push
