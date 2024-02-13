@@ -1,6 +1,6 @@
 /**
  * d_bg_s_spl_grp_chk.cpp
- *
+ * BG Collision Special Group Check
  */
 
 #include "d/bg/d_bg_s_spl_grp_chk.h"

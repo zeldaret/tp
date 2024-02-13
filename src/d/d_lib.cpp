@@ -385,12 +385,3 @@ void dLib_time_c::startTime() {
         m_timeStopped = false;
     }
 }
-
-/* ############################################################################################## */
-/* 80450DF0-80450DF8 -00001 0008+00 0/0 4/4 0/0 .sbss            None */
-/* 80450DF0 0001+00 data_80450DF0 None */
-/* 80450DF1 0001+00 data_80450DF1 None */
-/* 80450DF2 0001+00 data_80450DF2 None */
-/* 80450DF3 0005+00 data_80450DF3 None */
-extern u8 struct_80450DF0[8];
-u8 struct_80450DF0[8] ALIGN_DECL(8);

@@ -20,7 +20,7 @@ class dBgS_ObjGndChk : public dBgS_GndChk {
 public:
     dBgS_ObjGndChk() { SetObj(); }
 
-    /* 8001E020 */ virtual ~dBgS_ObjGndChk(); // should be inlined
+    /* 8001E020 */ virtual ~dBgS_ObjGndChk() {}
 };
 
 class dBgS_ObjGndChk_Wtr : public dBgS_ObjGndChk {

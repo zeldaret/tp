@@ -36,6 +36,7 @@ enum cCcD_ObjAtType {
     /* 0x00001000 */ AT_TYPE_1000 = (1 << 12),
     /* 0x00002000 */ AT_TYPE_ARROW = (1 << 13),
     /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
+    /* 0x00008000 */ AT_TYPE_8000 = (1 << 15),
     /* 0x00010000 */ AT_TYPE_BOOMERANG = (1 << 16),
     /* 0x00040000 */ AT_TYPE_40000 = (1 << 18),
     /* 0x00080000 */ AT_TYPE_SPINNER = (1 << 19),

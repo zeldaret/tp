@@ -53,7 +53,7 @@ int daTagSpring_c::execute() {
 
     if (checkArea() && fopAcM_wt_c::waterCheck(&player_p->current.pos) &&
         (!i_dComIfGp_checkPlayerStatus0(0, 0x100000) &&
-             fopAcM_wt_c::mWaterY[0] > player_p->current.pos.y ||
+             fopAcM_wt_c::mWaterY > player_p->current.pos.y ||
          i_dComIfGp_checkPlayerStatus0(0, 0x100000)))
     {
         if (mTimer != 0) {

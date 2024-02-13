@@ -8,7 +8,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
@@ -21,6 +20,7 @@
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 #include "rel/d/a/tag/d_a_tag_stream/d_a_tag_stream.h"
+#include "d/a/d_a_player.h"
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
@@ -29,9 +29,6 @@
 // Types:
 //
 
-struct l_HIO {
-    /* 8001E098 */ ~l_HIO();
-};
 
 //
 // Forward References:
@@ -2022,9 +2019,10 @@ s32 fopAcM_plAngleCheck(fopAc_ac_c const* i_actor, s16 i_angle) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 803F1C00-803F1C0C 01E920 000C+00 1/1 0/0 0/0 .bss             @4176 */
-static u8 lit_4176[12];
+/* 80450CCC-80450CD0 0001CC 0001+03 1/1 0/0 0/0 .sbss            l_hio */
+static l_HIO l_hio;
+
+static fopAcM_lc_c l_actorLC;
 
 /* 803F1C0C-803F1C18 01E92C 000C+00 0/0 0/0 0/0 .bss             @5078 */
 #pragma push
@@ -2050,26 +2048,11 @@ static u8 lit_5115[12];
 static u8 max[12];
 #pragma pop
 
-/* 803F1C3C-803F1C48 01E95C 000C+00 0/1 0/0 0/0 .bss             @6481 */
-#pragma push
-#pragma force_active on
-static u8 lit_6481[12];
-#pragma pop
-
 /* 803F1C48-803F1CB8 01E968 0070+00 1/2 4/4 9/9 .bss             mLineCheck__11fopAcM_lc_c */
-u8 fopAcM_lc_c::mLineCheck[112];
-
-/* 803F1CB8-803F1CC4 01E9D8 000C+00 0/1 0/0 0/0 .bss             @6503 */
-#pragma push
-#pragma force_active on
-static u8 lit_6503[12];
-#pragma pop
+dBgS_ObjLinChk fopAcM_lc_c::mLineCheck;
 
 /* 803F1CC4-803F1D18 01E9E4 0054+00 2/3 6/6 26/26 .bss             mGndCheck__11fopAcM_gc_c */
-u8 fopAcM_gc_c::mGndCheck[84];
-
-/* 80450CCC-80450CD0 0001CC 0001+03 1/1 0/0 0/0 .sbss            l_hio */
-static u8 l_hio[1 + 3 /* padding */];
+dBgS_ObjGndChk fopAcM_gc_c::mGndCheck;
 
 /* 80450CD0-80450CD4 0001D0 0004+00 2/2 7/7 103/103 .sbss            mGroundY__11fopAcM_gc_c */
 f32 fopAcM_gc_c::mGroundY;
@@ -2340,30 +2323,17 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObject4EventCB, &prm);
 }
 
-/* ############################################################################################## */
-/* 803F1D18-803F1D24 01EA38 000C+00 0/1 0/0 0/0 .bss             @6509 */
-#pragma push
-#pragma force_active on
-static u8 lit_6509[12];
-#pragma pop
-
 /* 803F1D24-803F1D74 01EA44 0050+00 1/2 1/1 1/1 .bss             mRoofCheck__11fopAcM_rc_c */
-u8 fopAcM_rc_c::mRoofCheck[80];
-
-/* 803F1D74-803F1D80 01EA94 000C+00 0/1 0/0 0/0 .bss             @6519 */
-#pragma push
-#pragma force_active on
-static u8 lit_6519[12];
-#pragma pop
+dBgS_ObjRoofChk fopAcM_rc_c::mRoofCheck;
 
 /* 803F1D80-803F1DD8 01EAA0 0054+04 2/3 3/3 4/4 .bss             mWaterCheck__11fopAcM_wt_c */
-u8 fopAcM_wt_c::mWaterCheck[84 + 4 /* padding */];
+dBgS_WtrChk fopAcM_wt_c::mWaterCheck;
 
 /* 80450CD4-80450CD8 0001D4 0004+00 1/1 0/0 3/3 .sbss            mRoofY__11fopAcM_rc_c */
 f32 fopAcM_rc_c::mRoofY;
 
 /* 80450CD8-80450CE0 0001D8 0004+04 2/2 4/4 19/19 .sbss            mWaterY__11fopAcM_wt_c */
-f32 fopAcM_wt_c::mWaterY[1 + 1 /* padding */];
+f32 fopAcM_wt_c::mWaterY;
 
 /* 80451C58-80451C5C 000258 0004+00 2/2 0/0 0/0 .sdata2          @6353 */
 SECTION_SDATA2 static f32 lit_6353 = -1000000000.0f;
@@ -2497,8 +2467,8 @@ asm s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1) {
 /* 8001DC68-8001DCBC 0185A8 0054+00 0/0 5/5 21/21 .text
  * lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c        */
 bool fopAcM_lc_c::lineCheck(cXyz const* param_0, cXyz const* param_1, fopAc_ac_c const* param_2) {
-    ((dBgS_LinChk*)mLineCheck)->Set(param_0, param_1, param_2);
-    dComIfG_Bgsp().LineCross((cBgS_LinChk*)mLineCheck);
+    mLineCheck.Set(param_0, param_1, param_2);
+    dComIfG_Bgsp().LineCross(&mLineCheck);
 }
 
 /* 8001DCBC-8001DD1C 0185FC 0060+00 1/1 10/10 108/108 .text gndCheck__11fopAcM_gc_cFPC4cXyz */
@@ -2558,232 +2528,4 @@ void fopAcM_initManager() {
     /* empty function */
 }
 
-/* ############################################################################################## */
-/* 803A37CC-803A37FC 0008EC 0030+00 2/2 0/0 0/0 .data            __vt__15dBgS_ObjRoofChk */
-SECTION_DATA extern void* __vt__15dBgS_ObjRoofChk[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dBgS_ObjRoofChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E104,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E114,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E10C,
-};
-
-/* 803A37FC-803A382C 00091C 0030+00 1/1 2/2 0/0 .data            __vt__11dBgS_WtrChk */
-SECTION_DATA extern void* __vt__11dBgS_WtrChk[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11dBgS_WtrChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0EC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0FC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0F4,
-};
-
-/* 803A382C-803A3860 00094C 0030+04 2/2 10/10 0/0 .data            __vt__14dBgS_ObjGndChk */
-SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14dBgS_ObjGndChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0D4,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0E4,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_8001E0DC,
-    /* padding */
-    NULL,
-};
-
-/* 8001DE14-8001DF30 018754 011C+00 0/0 1/0 0/0 .text            __sinit_f_op_actor_mng_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_f_op_actor_mng_cpp(){nofralloc
-#include "asm/f_op/f_op_actor_mng/__sinit_f_op_actor_mng_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8001DE14, __sinit_f_op_actor_mng_cpp);
-#pragma pop
-
-/* 8001DF30-8001DFA8 018870 0078+00 5/4 0/0 0/0 .text            __dt__11dBgS_WtrChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dBgS_WtrChk::~dBgS_WtrChk() {
-extern "C" asm void __dt__11dBgS_WtrChkFv() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/__dt__11dBgS_WtrChkFv.s"
-}
-#pragma pop
-
-/* 8001DFA8-8001E020 0188E8 0078+00 5/4 0/0 0/0 .text            __dt__15dBgS_ObjRoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dBgS_ObjRoofChk::~dBgS_ObjRoofChk() {
-extern "C" asm void __dt__15dBgS_ObjRoofChkFv() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/__dt__15dBgS_ObjRoofChkFv.s"
-}
-#pragma pop
-
-/* 8001E020-8001E098 018960 0078+00 5/4 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
-extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/__dt__14dBgS_ObjGndChkFv.s"
-}
-#pragma pop
-
-/* 8001E098-8001E0D4 0189D8 003C+00 1/1 0/0 0/0 .text            __dt__5l_HIOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm l_HIO::~l_HIO() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/__dt__5l_HIOFv.s"
-}
-#pragma pop
-
-/* 8001E0D4-8001E0DC 018A14 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0D4() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0D4.s"
-}
-#pragma pop
-
-/* 8001E0DC-8001E0E4 018A1C 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0DC() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0DC.s"
-}
-#pragma pop
-
-/* 8001E0E4-8001E0EC 018A24 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0E4() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0E4.s"
-}
-#pragma pop
-
-/* 8001E0EC-8001E0F4 018A2C 0008+00 1/0 0/0 0/0 .text            @16@__dt__11dBgS_WtrChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0EC() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0EC.s"
-}
-#pragma pop
-
-/* 8001E0F4-8001E0FC 018A34 0008+00 1/0 0/0 0/0 .text            @52@__dt__11dBgS_WtrChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0F4() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0F4.s"
-}
-#pragma pop
-
-/* 8001E0FC-8001E104 018A3C 0008+00 1/0 0/0 0/0 .text            @36@__dt__11dBgS_WtrChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E0FC() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E0FC.s"
-}
-#pragma pop
-
-/* 8001E104-8001E10C 018A44 0008+00 1/0 0/0 0/0 .text            @16@__dt__15dBgS_ObjRoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E104() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E104.s"
-}
-#pragma pop
-
-/* 8001E10C-8001E114 018A4C 0008+00 1/0 0/0 0/0 .text            @52@__dt__15dBgS_ObjRoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E10C() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E10C.s"
-}
-#pragma pop
-
-/* 8001E114-8001E11C 018A54 0008+00 1/0 0/0 0/0 .text            @36@__dt__15dBgS_ObjRoofChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8001E114() {
-    nofralloc
-#include "asm/f_op/f_op_actor_mng/func_8001E114.s"
-}
-#pragma pop
-
-/* 8001E11C-8001E120 018A5C 0004+00 0/0 1/0 0/0 .text            onFrollCrashFlg__9daPy_py_cFUci */
-// void daPy_py_c::onFrollCrashFlg(u8 param_0, int param_1) {
-extern "C" void onFrollCrashFlg__9daPy_py_cFUci() {
-    /* empty function */
-}
-
-/* 8001E120-8001E128 018A60 0008+00 0/0 1/0 0/0 .text            checkWolfDash__9daPy_py_cCFv */
-// int daPy_py_c::checkWolfDash() const {
-extern "C" int checkWolfDash__9daPy_py_cCFv() {
-    return false;
-}
-
-/* 8001E128-8001E130 018A68 0008+00 0/0 1/0 0/0 .text            checkFrontRoll__9daPy_py_cCFv */
-// int daPy_py_c::checkFrontRoll() const {
-extern "C" int checkFrontRoll__9daPy_py_cCFv() {
-    return false;
-}
-
-/* 8001E130-8001E138 018A70 0008+00 0/0 1/0 0/0 .text            checkHorseRide__9daPy_py_cCFv */
-// u32 daPy_py_c::checkHorseRide() const {
-extern "C" u32 checkHorseRide__9daPy_py_cCFv() {
-    return false;
-}
-
-/* 8001E138-8001E140 018A78 0008+00 0/0 1/0 0/0 .text            getGrabActorID__9daPy_py_cCFv */
-// s32 daPy_py_c::getGrabActorID() const {
-extern "C" s32 getGrabActorID__9daPy_py_cCFv() {
-    return -1;
-}
-
-/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma nosyminline on

@@ -98,10 +98,6 @@ int daNocrm_c::execute() {
     return 1;
 }
 
-inline int fopAcM_gc_c::getRoomId() {
-    return dComIfG_Bgsp().GetRoomId(*(dBgS_GndChk*)mGndCheck);
-}
-
 /* 80145508-801455A8 13FE48 00A0+00 1/1 0/0 0/0 .text            getRoomNo__9daNocrm_cFi */
 int daNocrm_c::getRoomNo(int param_0) {
     if (mRoomNo[param_0] < 0) {

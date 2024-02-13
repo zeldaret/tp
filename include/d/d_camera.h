@@ -357,6 +357,7 @@ public:
     f32 TrimHeight() { return mTrimHeight; }
     int Type() { return mCurType; }
     int Mode() { return mNextMode; }
+    f32 Fovy() { return mFovY + mShake.field_0x3c; }
 
     bool i_chkFlag(u32 i_flag) { return mEventFlags & i_flag; }
     void i_setFlag(u32 i_flag) { mEventFlags |= i_flag; }

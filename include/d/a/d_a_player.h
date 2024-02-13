@@ -567,8 +567,8 @@ public:
     virtual MtxP getBottleMtx();
     virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const { return 0; }
-    virtual BOOL checkFrontRoll() const { return false; }
-    virtual BOOL checkWolfDash() const { return false; }
+    virtual BOOL checkFrontRoll() const;  // weak
+    virtual BOOL checkWolfDash() const;  // weak
     virtual BOOL checkAutoJump() const;
     virtual bool checkSideStep() const;
     virtual bool checkWolfTriggerJump() const;
@@ -612,7 +612,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const { return -1; }
+    virtual s32 getGrabActorID() const;  // weak
     virtual bool exchangeGrabActor(fopAc_ac_c*);
     virtual bool setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -624,7 +624,7 @@ public:
     virtual void setOutPower(f32, short, int);
     virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onMagneGrab(f32, f32);
-    virtual void onFrollCrashFlg(u8, int) {}
+    virtual void onFrollCrashFlg(u8, int);  // weak
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);

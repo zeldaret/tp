@@ -1,6 +1,6 @@
 /**
  * d_bg_s_chk.cpp
- *
+ * BG Collision Check Base
  */
 
 #include "d/bg/d_bg_s_chk.h"

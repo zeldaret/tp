@@ -713,7 +713,7 @@ public:
     u8 getAttribute() const { return mAttribute; }
     void setAttribute(u8 attr) { mAttribute = attr; }
     u8 getState() const { return mState; }
-    bool checkState(u8 state) const { return mState & state; }
+    bool checkState(u8 state) const { return mState & state ? true : false; }
     s16 getStart() const { return mStart; }
     void setStart(s16 start) {
         mStart = start;
