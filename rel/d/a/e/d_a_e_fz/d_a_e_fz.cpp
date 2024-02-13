@@ -900,6 +900,21 @@ SECTION_DEAD static char const* const stringBase_806C19F4 = "E_FZ";
 #pragma pop
 
 /* 806C0B94-806C0C08 002334 0074+00 1/1 0/0 0/0 .text            _delete__8daE_FZ_cFv */
+#ifndef NONMATCHING
+s32 daE_FZ_c::_delete() {
+    dComIfG_resDelete(&mPhase,"E_FZ");
+
+    if (field_0xc21 != 0) {
+        data_806C1BA0[0] = 0;
+    }
+
+    if (mHeap) {
+        mCreature.deleteObject();
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -908,16 +923,12 @@ asm void daE_FZ_c::_delete() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/_delete__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806C0C08-806C0C28 0023A8 0020+00 1/0 0/0 0/0 .text            daE_FZ_Delete__FP8daE_FZ_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_FZ_Delete(daE_FZ_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/daE_FZ_Delete__FP8daE_FZ_c.s"
+static void daE_FZ_Delete(daE_FZ_c* i_this) {
+    i_this->_delete();
 }
-#pragma pop
 
 /* 806C0C28-806C0CB0 0023C8 0088+00 1/1 0/0 0/0 .text            CreateHeap__8daE_FZ_cFv */
 #pragma push

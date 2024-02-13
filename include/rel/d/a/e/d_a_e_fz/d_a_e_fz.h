@@ -46,7 +46,7 @@ public:
     /* 806C0760 */ void cc_set();
     /* 806C08C4 */ s32 execute();
     /* 806C0B20 */ void demoDelete();
-    /* 806C0B94 */ void _delete();
+    /* 806C0B94 */ s32 _delete();
     /* 806C0C28 */ void CreateHeap();
     /* 806C0CD0 */ void create();
 
@@ -86,7 +86,10 @@ private:
     /* 0x98C */ dCcD_Sph mSph1;
     /* 0xAC4 */ dCcD_Sph mSph2;
     /* 0xBFC */ dCcU_AtInfo mAtInfo;
-    /* 0xC20 */ u8 field_0xc20[4];
+    /* 0xC20 */ u8 field_0xc20;
+    /* 0xC21 */ u8 field_0xc21;
+    /* 0xC22 */ u8 field_0xc22;
+    /* 0xC23 */ u8 field_0xc23;
 };
 STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
 
