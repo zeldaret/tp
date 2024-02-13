@@ -478,6 +478,25 @@ SECTION_DATA extern void* __vt__12daE_FZ_HIO_c[3] = {
 };
 
 /* 806BE94C-806BE9D4 0000EC 0088+00 1/1 0/0 0/0 .text            __ct__12daE_FZ_HIO_cFv */
+#ifdef NONMATCHING
+// matches except extra vtable?
+daE_FZ_HIO_c::daE_FZ_HIO_c() {
+    field_0x04 = -1;
+    field_0x0c = FLOAT_LABEL(lit_3824);
+    field_0x10 = FLOAT_LABEL(lit_3825);
+    field_0x14 = FLOAT_LABEL(lit_3826);
+    field_0x18 = FLOAT_LABEL(lit_3827);
+    field_0x1c = FLOAT_LABEL(lit_3828);
+    field_0x20 = FLOAT_LABEL(lit_3829);
+    field_0x24 = FLOAT_LABEL(lit_3830);
+    field_0x28 = FLOAT_LABEL(lit_3831);
+    field_0x2c = FLOAT_LABEL(lit_3832);
+    field_0x06 = 0x28;
+    field_0x30 = FLOAT_LABEL(lit_3833);
+    field_0x08 = 0x78;
+    field_0x34 = FLOAT_LABEL(lit_3834);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -486,6 +505,7 @@ asm daE_FZ_HIO_c::daE_FZ_HIO_c() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/__ct__12daE_FZ_HIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C1990-806C1994 000058 0004+00 0/3 0/0 0/0 .rodata          @3863 */
@@ -584,6 +604,11 @@ static u8 lit_3819[12];
 static u8 l_HIO[56];
 
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::damage_check() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -592,6 +617,7 @@ asm void daE_FZ_c::damage_check() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/damage_check__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C1998-806C199C 000060 0004+00 0/3 0/0 0/0 .rodata          @4139 */
@@ -609,6 +635,11 @@ COMPILER_STRIP_GATE(0x806C199C, &lit_4140);
 #pragma pop
 
 /* 806BF444-806BF58C 000BE4 0148+00 3/3 0/0 0/0 .text            way_gake_check__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::way_gake_check() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -617,6 +648,7 @@ asm void daE_FZ_c::way_gake_check() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/way_gake_check__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19A0-806C19A4 000068 0004+00 0/3 0/0 0/0 .rodata          @4200 */
@@ -657,6 +689,11 @@ COMPILER_STRIP_GATE(0x806C19B0, &lit_4205);
 #pragma pop
 
 /* 806BF58C-806BF8E8 000D2C 035C+00 1/1 0/0 0/0 .text            executeWait__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::executeWait() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -665,8 +702,14 @@ asm void daE_FZ_c::executeWait() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/executeWait__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806BF8E8-806BFA64 001088 017C+00 1/1 0/0 0/0 .text            executeMove__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::executeMove() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -675,6 +718,7 @@ asm void daE_FZ_c::executeMove() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/executeMove__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19B8-806C19BC 000080 0004+00 0/1 0/0 0/0 .rodata          @4243 */
@@ -685,6 +729,11 @@ COMPILER_STRIP_GATE(0x806C19B8, &lit_4243);
 #pragma pop
 
 /* 806BFA64-806BFB60 001204 00FC+00 1/1 0/0 0/0 .text            executeAttack__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::executeAttack() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -693,6 +742,7 @@ asm void daE_FZ_c::executeAttack() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/executeAttack__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806BFB60-806BFF94 001300 0434+00 2/1 0/0 0/0 .text            executeDamage__8daE_FZ_cFv */
 #ifdef NONMATCHING
@@ -747,6 +797,11 @@ COMPILER_STRIP_GATE(0x806C19CC, &lit_4421);
 #pragma pop
 
 /* 806BFF94-806C0224 001734 0290+00 1/1 0/0 0/0 .text            executeRollMove__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::executeRollMove() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -755,6 +810,7 @@ asm void daE_FZ_c::executeRollMove() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/executeRollMove__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19D0-806C19D4 000098 0004+00 0/2 0/0 0/0 .rodata          @4517 */
@@ -765,6 +821,11 @@ COMPILER_STRIP_GATE(0x806C19D0, &lit_4517);
 #pragma pop
 
 /* 806C0224-806C06DC 0019C4 04B8+00 1/1 0/0 0/0 .text            action__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::action() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -773,8 +834,14 @@ asm void daE_FZ_c::action() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/action__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806C06DC-806C0760 001E7C 0084+00 2/2 0/0 0/0 .text            mtx_set__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::mtx_set() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -783,6 +850,7 @@ asm void daE_FZ_c::mtx_set() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/mtx_set__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19D4-806C19D8 00009C 0004+00 0/1 0/0 0/0 .rodata          @4562 */
@@ -793,6 +861,38 @@ COMPILER_STRIP_GATE(0x806C19D4, &lit_4562);
 #pragma pop
 
 /* 806C0760-806C08C4 001F00 0164+00 1/1 0/0 0/0 .text            cc_set__8daE_FZ_cFv */
+#ifdef NONMATCHING
+// float literals
+void daE_FZ_c::cc_set() {
+    cXyz pos;
+    cXyz pos2;
+
+    pos.set(0.0f,60.0f,0.0f);
+    mDoMtx_stack_c::multVec(&pos,&mEyePos);
+    mAttentionInfo.mPosition = mEyePos;
+    mAttentionInfo.mPosition.y += 25.0f;
+
+    mDoMtx_stack_c::copy(mpModel->getBaseTRMtx());
+
+    pos.set(0.0f,40.0f,0.0f);
+    mDoMtx_stack_c::multVec(&pos,&pos2);
+
+    mSph1.SetC(pos2);
+    mSph1.SetR(mRadiusBase * 60.0f);
+
+    dComIfG_Ccsp()->Set(&mSph1); // wrong member?
+    
+    mDoMtx_stack_c::copy(mpModel->getBaseTRMtx());
+
+    pos.set(0.0f,25.0f,0.0f);
+    mDoMtx_stack_c::multVec(&pos,&pos2);
+
+    mSph2.SetC(pos2);
+    mSph2.SetR(mRadiusBase * 40.0f);
+
+    dComIfG_Ccsp()->Set(&mSph2);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -801,6 +901,7 @@ asm void daE_FZ_c::cc_set() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/cc_set__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19D8-806C19DC 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4627 */
@@ -932,20 +1033,9 @@ bool daE_FZ_c::CreateHeap() {
 }
 
 /* 806C0CB0-806C0CD0 002450 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#ifndef NONMATCHING
 static void useHeapInit(fopAc_ac_c* i_this) {
     static_cast<daE_FZ_c*>(i_this)->CreateHeap();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/useHeapInit__FP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 806C19DC-806C19E0 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4847 */
@@ -997,6 +1087,11 @@ SECTION_DEAD static char const* const stringBase_806C19F9 = "E_fz";
 #pragma pop
 
 /* 806C0CD0-806C1208 002470 0538+00 1/1 0/0 0/0 .text            create__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::create() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1005,6 +1100,7 @@ asm void daE_FZ_c::create() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/create__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806C1208-806C1250 0029A8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
@@ -1068,14 +1164,9 @@ asm void __ct__4cXyzFv() {
 }
 
 /* 806C13D8-806C13F8 002B78 0020+00 1/0 0/0 0/0 .text            daE_FZ_Create__FP8daE_FZ_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_FZ_Create(daE_FZ_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/daE_FZ_Create__FP8daE_FZ_c.s"
+static void daE_FZ_Create(daE_FZ_c* i_this) {
+    i_this->create();
 }
-#pragma pop
 
 /* 806C13F8-806C1440 002B98 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push

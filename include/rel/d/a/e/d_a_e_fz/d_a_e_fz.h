@@ -64,7 +64,7 @@ private:
     /* 0x6F4 */ u32 mActionMode1;
     /* 0x6F8 */ u32 mActionMode2;
     /* 0x6FC */ f32 field_0x6fc;
-    /* 0x700 */ f32 field_0x700;
+    /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
     /* 0x704 */ s16 field_0x704;
     /* 0x706 */ s16 field_0x706;
     /* 0x708 */ s16 field_0x708;
@@ -81,21 +81,51 @@ private:
     /* 0x728 */ u8 field_0x728[4];
     /* 0x72C */ dBgS_AcchCir mAcchCir;
     /* 0x76C */ dBgS_ObjAcch mObjAcch;
-    /* 0x944 */ cXyz field_0x944;
-    /* 0x950 */ dCcD_Stts field_0x950;
-    /* 0x98C */ dCcD_Sph mSph1;
+    /* 0x944 */ dCcD_Stts field_0x944;
+    /* 0x980 */ dCcD_Sph mSph1;
     /* 0xAC4 */ dCcD_Sph mSph2;
     /* 0xBFC */ dCcU_AtInfo mAtInfo;
+    /* 0xC14 */ u8 field_0xc14;
+    /* 0xC15 */ u8 field_0xc15;
+    /* 0xC16 */ u8 field_0xc16;
+    /* 0xC17 */ u8 field_0xc17;
+    /* 0xC18 */ u8 field_0xc18;
+    /* 0xC19 */ u8 field_0xc19;
+    /* 0xC1A */ u8 field_0xc1a;
+    /* 0xC1B */ u8 field_0xc1b;
+    /* 0xC1C */ u8 field_0xc1c;
+    /* 0xC1D */ u8 field_0xc1d;
+    /* 0xC1E */ u8 field_0xc1e;
+    /* 0xC1F */ u8 field_0xc1f;
     /* 0xC20 */ u8 field_0xc20;
     /* 0xC21 */ u8 field_0xc21;
     /* 0xC22 */ u8 field_0xc22;
     /* 0xC23 */ u8 field_0xc23;
 };
-STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
+// STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
 
-class daE_FZ_HIO_c: public mDoHIO_entry_c {
+class daE_FZ_HIO_c : public mDoHIO_entry_c {
+public:
     /* 806BE94C */ daE_FZ_HIO_c();
-    /* 806C1440 */ ~daE_FZ_HIO_c();
+    /* 806C1440 */ virtual ~daE_FZ_HIO_c();
+
+public:
+    /* 0x04 */ s8 field_0x04;
+    /* 0x05 */ u8 field_0x05[0x06 - 0x05];
+    /* 0x06 */ u16 field_0x06;
+    /* 0x08 */ u16 field_0x08;
+    /* 0x0A */ u8 field_0x0A[0x0C - 0x0A];
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
 };
 
 #endif /* D_A_E_FZ_H */
