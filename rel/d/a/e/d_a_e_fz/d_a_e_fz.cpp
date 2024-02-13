@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/e/d_a_e_fz/d_a_e_fz.h"
+#include "d/d_item.h"
 #include "dol2asm.h"
 
 //
@@ -387,16 +388,10 @@ SECTION_DATA static void* lit_4324[7] = {
 };
 
 /* 806C1AD4-806C1ADC 0000D4 0006+02 1/1 0/0 0/0 .data            ice_name$4578 */
-SECTION_DATA static u8 ice_name[6 + 2 /* padding */] = {
-    0x82,
-    0x21,
-    0x82,
-    0x22,
-    0x82,
-    0x23,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_DATA static u16 ice_name[3] = {
+    0x8221,
+    0x8222,
+    0x8223,
 };
 
 /* 806C1ADC-806C1AFC -00001 0020+00 1/0 0/0 0/0 .data            l_daE_FZ_Method */
@@ -550,6 +545,20 @@ void daE_FZ_c::mBoundSoundset() {
 }
 
 /* 806BEC08-806BED34 0003A8 012C+00 2/2 0/0 0/0 .text            deadnextSet__8daE_FZ_cFb */
+#ifdef NONMATCHING
+// unfinished
+u32 daE_FZ_c::deadnextSet(bool param_0) {
+    mHealth = 0;
+
+    if (!param_0) {
+        if (field_0x714 != 3) {
+            cXyz pos = cXyz(0.0f,1.0f,0.0f);
+            dComIfGp_getVibration().StartShock(2,0x1f,pos);
+        }
+        mCreature.startCollisionSE(Z2SE_HIT_HAMMER,0x20);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -558,6 +567,7 @@ asm void daE_FZ_c::deadnextSet(bool param_0) {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/deadnextSet__8daE_FZ_cFb.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C1994-806C1998 00005C 0004+00 1/3 0/0 0/0 .rodata          @4109 */
@@ -801,24 +811,72 @@ COMPILER_STRIP_GATE(0x806C19D8, &lit_4627);
 #pragma pop
 
 /* 806C08C4-806C0B00 002064 023C+00 1/1 0/0 0/0 .text            execute__8daE_FZ_cFv */
+#ifdef NONMATCHING
+// float literals
+s32 daE_FZ_c::execute() {
+    if (field_0x714 == 2) {
+        if (checkItemGet(IRONBALL,1) == 0) {
+            return 1;
+        }
+
+        if (mAttentionInfo.field_0x0[2] == 0) {
+            mAttentionInfo.field_0x0[2] = 69;
+            fopAcM_SetGroup(this,2);
+            #if DEBUG
+            fopAcM_OnStatus(this,0);
+            #endif
+            mAttentionInfo.mFlags |= 4;
+        }
+    }
+
+    if (field_0x710 != 0)
+        field_0x710 -= 1;
+
+    if (field_0x711 != 0)
+        field_0x711 -= 1;
+
+    if (field_0x712 != 0)
+        field_0x712 -= 1;
+
+    action();
+    mtx_set();
+    cc_set();
+
+    mCreature.framework(0,dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    field_0x664 = current.pos - next.pos;
+    field_0x664 *= FLOAT_LABEL(lit_4627);
+
+    for (int i = 0; i < 3; i++) {
+        field_0x71c[i] = dComIfGp_particle_set(field_0x71c[i],ice_name[i],&current.pos,0,0);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x71c[i]);
+
+        if (emitter) {
+            mDoMtx_stack_c::copy(field_0x5b4->getBaseTRMtx());
+            mDoMtx_stack_c::transM(FLOAT_LABEL(lit_3804),FLOAT_LABEL(lit_3833),FLOAT_LABEL(lit_3804));
+            emitter->setGlobalSRTMatrix(mDoMtx_stack_c::get());
+            emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
+            emitter->setUserWork((u32)(&field_0x664));
+        }
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daE_FZ_c::execute() {
+asm s32 daE_FZ_c::execute() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/execute__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806C0B00-806C0B20 0022A0 0020+00 1/0 0/0 0/0 .text            daE_FZ_Execute__FP8daE_FZ_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daE_FZ_Execute(daE_FZ_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/daE_FZ_Execute__FP8daE_FZ_c.s"
+static void daE_FZ_Execute(daE_FZ_c* i_this) {
+    i_this->execute();
 }
-#pragma pop
 
 /* 806C0B20-806C0B8C 0022C0 006C+00 0/0 0/0 1/1 .text            demoDelete__8daE_FZ_cFv */
 #pragma push

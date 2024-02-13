@@ -259,6 +259,10 @@ inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
     actor->mGravity = gravity;
 }
 
+inline void fopAcM_SetGroup(fopAc_ac_c* actor, u8 group) {
+    actor->mGroup = group;
+}
+
 inline void fopAcM_SetMaxFallSpeed(fopAc_ac_c* actor, f32 speed) {
     actor->mMaxFallSpeed = speed;
 }

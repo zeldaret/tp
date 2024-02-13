@@ -104,6 +104,13 @@ public:
     void setRate(f32 rate) { mRate = rate; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+    void setGlobalSRTMatrix(const Mtx m) { 
+        JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
+
+        // set is actually used here in debug
+        mGlobalPScl.x = mGlobalScl.x;
+        mGlobalPScl.y = mGlobalScl.y;
+    }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
