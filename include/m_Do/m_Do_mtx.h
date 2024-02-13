@@ -111,6 +111,10 @@ inline void mDoMtx_quatSlerp(const Quaternion* a, const Quaternion* b, Quaternio
     C_QUATSlerp(a,b,ab,param_4);
 }
 
+inline void mDoMtx_quatRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
+    C_QUATRotAxisRad(q, axis, rad);
+}
+
 inline void mDoMtx_identity(Mtx m) {
     MTXIdentity(m);
 }
