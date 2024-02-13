@@ -522,14 +522,21 @@ void daE_FZ_c::setActionMode(int i_actionMode1, int i_actionMode2) {
 }
 
 /* 806BEB04-806BEBA0 0002A4 009C+00 2/2 0/0 0/0 .text            setReflectAngle__8daE_FZ_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::setReflectAngle() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/setReflectAngle__8daE_FZ_cFv.s"
+void daE_FZ_c::setReflectAngle() {
+    s16 x = current.angle.y - field_0x708;
+
+    if (abs(x) > 18432) {
+        current.angle.y = (field_0x708 << 1) - (current.angle.y + 32768);
+    } else {
+        if (x > 14336) {
+            current.angle.y = field_0x708 + 14336;
+        } else {
+            if (x < -14336) {
+                current.angle.y = field_0x708 - 14336;
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 806BEBA0-806BEC08 000340 0068+00 2/2 0/0 0/0 .text            mBoundSoundset__8daE_FZ_cFv */
 #pragma push
