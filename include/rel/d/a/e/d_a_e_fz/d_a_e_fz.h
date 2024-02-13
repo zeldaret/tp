@@ -47,13 +47,13 @@ public:
     /* 806C08C4 */ s32 execute();
     /* 806C0B20 */ void demoDelete();
     /* 806C0B94 */ s32 _delete();
-    /* 806C0C28 */ void CreateHeap();
+    /* 806C0C28 */ bool CreateHeap();
     /* 806C0CD0 */ void create();
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ J3DModel* field_0x5b4;
-    /* 0x5B8 */ mDoExt_invisibleModel field_0x5b8;
+    /* 0x5B4 */ J3DModel* mpModel;
+    /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
     /* 0x5C0 */ Z2CreatureEnemy mCreature;
     /* 0x664 */ cXyz field_0x664;
     /* 0x670 */ cXyz field_0x670;

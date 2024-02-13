@@ -900,7 +900,6 @@ SECTION_DEAD static char const* const stringBase_806C19F4 = "E_FZ";
 #pragma pop
 
 /* 806C0B94-806C0C08 002334 0074+00 1/1 0/0 0/0 .text            _delete__8daE_FZ_cFv */
-#ifndef NONMATCHING
 s32 daE_FZ_c::_delete() {
     dComIfG_resDelete(&mPhase,"E_FZ");
 
@@ -914,16 +913,6 @@ s32 daE_FZ_c::_delete() {
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/_delete__8daE_FZ_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 806C0C08-806C0C28 0023A8 0020+00 1/0 0/0 0/0 .text            daE_FZ_Delete__FP8daE_FZ_c */
 static void daE_FZ_Delete(daE_FZ_c* i_this) {
@@ -931,14 +920,16 @@ static void daE_FZ_Delete(daE_FZ_c* i_this) {
 }
 
 /* 806C0C28-806C0CB0 0023C8 0088+00 1/1 0/0 0/0 .text            CreateHeap__8daE_FZ_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/CreateHeap__8daE_FZ_cFv.s"
+bool daE_FZ_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_FZ", 3);
+    mpModel = mDoExt_J3DModel__create(model_data, 0, 0x11020203);
+
+    if (mpModel == 0) {
+        return false;
+    }
+
+    return mInvisibleModel.create(mpModel, 1) != 0;
 }
-#pragma pop
 
 /* 806C0CB0-806C0CD0 002450 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
