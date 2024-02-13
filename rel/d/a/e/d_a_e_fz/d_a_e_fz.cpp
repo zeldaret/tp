@@ -879,17 +879,16 @@ static void daE_FZ_Execute(daE_FZ_c* i_this) {
 }
 
 /* 806C0B20-806C0B8C 0022C0 006C+00 0/0 0/0 1/1 .text            demoDelete__8daE_FZ_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::demoDelete() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/demoDelete__8daE_FZ_cFv.s"
+void daE_FZ_c::demoDelete() {
+    for (int i = 0; i < 3; i++) {
+        dComIfGp_particle_levelEmitterOnEventMove(field_0x71c[i]);
+    }
+
+    fopAcM_delete(this);
 }
-#pragma pop
 
 /* 806C0B8C-806C0B94 00232C 0008+00 1/0 0/0 0/0 .text            daE_FZ_IsDelete__FP8daE_FZ_c */
-static bool daE_FZ_IsDelete(daE_FZ_c* param_0) {
+static bool daE_FZ_IsDelete(daE_FZ_c* i_this) {
     return true;
 }
 
