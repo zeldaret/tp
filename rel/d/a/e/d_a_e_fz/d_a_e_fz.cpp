@@ -932,6 +932,11 @@ bool daE_FZ_c::CreateHeap() {
 }
 
 /* 806C0CB0-806C0CD0 002450 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+#ifndef NONMATCHING
+static void useHeapInit(fopAc_ac_c* i_this) {
+    static_cast<daE_FZ_c*>(i_this)->CreateHeap();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -940,6 +945,7 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 806C19DC-806C19E0 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4847 */
