@@ -601,7 +601,7 @@ static u8 data_806C1BA0[4];
 static u8 lit_3819[12];
 
 /* 806C1BB0-806C1BE8 000018 0038+00 8/8 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[56];
+static daE_FZ_HIO_c_tmp l_HIO;
 
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
 #ifdef NONMATCHING
@@ -837,20 +837,13 @@ asm void daE_FZ_c::action() {
 #endif
 
 /* 806C06DC-806C0760 001E7C 0084+00 2/2 0/0 0/0 .text            mtx_set__8daE_FZ_cFv */
-#ifdef NONMATCHING
 void daE_FZ_c::mtx_set() {
-
+  mDoMtx_stack_c::transS(current.pos.x,current.pos.y,current.pos.z);
+  mDoMtx_stack_c::ZXYrotM(shape_angle);
+  mDoMtx_stack_c::scaleM(l_HIO.field_0x0c,l_HIO.field_0x0c,l_HIO.field_0x0c);
+  mDoMtx_stack_c::scaleM(mRadiusBase,mRadiusBase,mRadiusBase);
+  mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daE_FZ_c::mtx_set() {
-    nofralloc
-#include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/mtx_set__8daE_FZ_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 806C19D4-806C19D8 00009C 0004+00 0/1 0/0 0/0 .rodata          @4562 */

@@ -27,6 +27,31 @@ enum daE_FZ_Action {
     ACT_ROLLMOVE   /**< Freezard is rollmove. (confirm) */
 };
 
+/**
+ * \brief Temporary HIO struct to get a match. Remove later. 
+ * 
+ */
+struct daE_FZ_HIO_c_tmp {
+    void* vtable;
+    /* 0x04 */ s8 field_0x04;
+    /* 0x05 */ u8 field_0x05[0x06 - 0x05];
+    /* 0x06 */ u16 field_0x06;
+    /* 0x08 */ u16 field_0x08;
+    /* 0x0A */ u8 field_0x0A[0x0C - 0x0A];
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+};
+
+
 class daE_FZ_c : public fopEn_enemy_c {
 public:
     /* 806BE9D4 */ void draw();
