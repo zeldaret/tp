@@ -822,8 +822,121 @@ COMPILER_STRIP_GATE(0x806C19D0, &lit_4517);
 
 /* 806C0224-806C06DC 0019C4 04B8+00 1/1 0/0 0/0 .text            action__8daE_FZ_cFv */
 #ifdef NONMATCHING
+// close. stack frame too big, missing one clrrwi instruction, float literals
 void daE_FZ_c::action() {
+    int linkSearch;
 
+    if (field_0x714 == 1 && mObjAcch.ChkGroundHit()) {
+        fopAcM_OffStatus(this,0x4000);
+        field_0x714 = 0;
+    }
+
+    if (!fopAcM_otherBgCheck(this,dComIfGp_getPlayer(0))) {
+        fopAcM_OnStatus(this,0);
+        mAttentionInfo.mFlags |= 4;
+    } else {
+        fopAcM_OffStatus(this,0);
+        mAttentionInfo.mFlags &= 0xfffffffb;
+    }
+
+    linkSearch = false;
+    damage_check();
+
+    switch (mActionMode1) {
+        case ACT_WAIT:
+            executeWait();
+            break;
+        case ACT_MOVE:
+            executeMove();
+            break;
+        case ACT_ATTACK:    
+            executeAttack();
+            linkSearch = 1;
+            break;
+        case ACT_DAMAGE:
+            executeDamage();
+            break;
+        case ACT_ROLLMOVE:
+            executeRollMove();
+            linkSearch = 1;
+    }
+    
+    mCreature.setLinkSearch(linkSearch);
+    fopAcM_posMoveF(this,field_0x944.GetCCMoveP());
+    field_0x714 == 3 ? mAcchCir.SetWall(35.0f,70.0f) : mAcchCir.SetWall(35.0f,60.0f);
+    mObjAcch.CrrPos(dComIfG_Bgsp());
+
+    if (1 < mHealth) {
+        u32 speed = speedF;
+
+        if (speed < 1)
+            speed = 1;
+
+        mCreature.startCreatureSoundLevel(Z2SE_EN_FZ_MOVE,speed,-1);
+        
+        for (int i = 0; i < 4; i++) {
+            // missing clrrwi instruction here
+            cMtx_YrotS((MtxP)calc_mtx,current.angle.y + (i * 0x4000));
+
+            MtxPosition(&cXyz(0.0f,100.0f,70.0f), &field_0x67c[i]);
+            field_0x67c[i] += current.pos;
+
+            MtxPosition(&cXyz(0.0f,100.0f,40.0f), &field_0x6ac[i]);
+            field_0x6ac[i] += current.pos;
+        }
+
+        if (1 < mHealth && mAcchCir.ChkWallHit()) {
+            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir.GetBgIndex())) != PROC_BG) {
+                dBgS_LinChk lin_chk;
+                dBgS_LinChk lin_chk2;
+
+                for (int i = 0; i < 2; i++) {
+                    lin_chk.Set(&field_0x67c[i],&field_0x6ac[i], this);
+                    lin_chk2.Set(&field_0x67c[i+2],&field_0x6ac[i+2], this);
+
+                    if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+                        if (dComIfG_Bgsp().LineCross(&lin_chk2)) {
+                            deadnextSet(false);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (field_0x714 != 3) {
+            if (mHealth > 1 && !mObjAcch.ChkGroundHit()) {
+                dBgS_GndChk gnd_chk;
+                cXyz pos;
+
+                pos.set(current.pos);
+                pos.y += 300.0f;
+                gnd_chk.SetPos(&pos);
+                pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+                
+                if (pos.y != -1e+09f) {
+                    field_0x710 = 0;
+
+                    if (current.pos.y - pos.y > 400.0f && field_0x713 == 0) {
+                        field_0x713 = 1;
+                    }
+                } else {
+                    field_0x710 = 0xfa;
+                    setActionMode(ACT_DAMAGE,6);
+                }
+
+                if (field_0x713 != 0) {
+                    field_0x713++;
+
+                    if (10 < field_0x713) {
+                        setActionMode(ACT_DAMAGE,6);
+                    }
+                }
+            } else {
+                field_0x713 = 0;
+            }
+        }
+    }
 }
 #else
 #pragma push
