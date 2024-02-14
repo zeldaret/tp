@@ -134,7 +134,7 @@ int daObj_SSItem_c::Execute() {
             mTgCyl.SetC(currentPos);
             dComIfG_Ccsp()->Set(&mTgCyl);
             mAtCyl.SetAtType(0);
-            mAtCyl.SetAtSprm(0);
+            mAtCyl.SetAtSPrm(0);
             mAtCyl.SetR(8.0f);
             mAtCyl.SetH(62.0f);
             mAtCyl.SetC(current.pos);
