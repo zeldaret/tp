@@ -60,7 +60,7 @@ public:
     /* 806BEBA0 */ void mBoundSoundset();
     /* 806BEC08 */ void deadnextSet(bool);
     /* 806BED34 */ void damage_check();
-    /* 806BF444 */ void way_gake_check();
+    /* 806BF444 */ bool way_gake_check();
     /* 806BF58C */ void executeWait();
     /* 806BF8E8 */ void executeMove();
     /* 806BFA64 */ void executeAttack();
@@ -86,8 +86,8 @@ private:
     /* 0x6AC */ cXyz field_0x6ac[4];
     /* 0x6DC */ cXyz field_0x6dc;
     /* 0x6E8 */ cXyz field_0x6e8;
-    /* 0x6F4 */ u32 mActionMode1;
-    /* 0x6F8 */ u32 mActionMode2;
+    /* 0x6F4 */ s32 mActionMode1;
+    /* 0x6F8 */ s32 mActionMode2;
     /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
     /* 0x704 */ s16 field_0x704;

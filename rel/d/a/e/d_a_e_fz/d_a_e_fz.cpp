@@ -636,14 +636,44 @@ COMPILER_STRIP_GATE(0x806C199C, &lit_4140);
 
 /* 806BF444-806BF58C 000BE4 0148+00 3/3 0/0 0/0 .text            way_gake_check__8daE_FZ_cFv */
 #ifdef NONMATCHING
-void daE_FZ_c::way_gake_check() {
+// float literals
+bool daE_FZ_c::way_gake_check() {
+    cXyz pos;
+    dBgS_GndChk gnd_chk;
+    
+    if (mObjAcch.ChkWallHit()) {
+        return false;
+    }
 
+    cMtx_YrotS((MtxP)calc_mtx,current.angle.y);
+
+    pos.x = 0.0f;
+    pos.y = 300.0f;
+    pos.z = 70.0f;
+
+    MtxPosition(&pos,&field_0x6dc);
+
+    field_0x6dc += current.pos;
+    field_0x6e8.set(field_0x6dc);
+    gnd_chk.SetPos(&field_0x6e8);
+    
+    field_0x6e8.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+    f32 tmp = field_0x6e8.y;
+    
+    if (tmp == -1e+09f) {
+        field_0x6e8.y = current.pos.y;
+        return true;
+    } else if (current.pos.y - tmp > 100.0f) {
+        return true;
+    }
+
+    return false;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daE_FZ_c::way_gake_check() {
+asm bool daE_FZ_c::way_gake_check() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/way_gake_check__8daE_FZ_cFv.s"
 }
@@ -730,8 +760,26 @@ COMPILER_STRIP_GATE(0x806C19B8, &lit_4243);
 
 /* 806BFA64-806BFB60 001204 00FC+00 1/1 0/0 0/0 .text            executeAttack__8daE_FZ_cFv */
 #ifdef NONMATCHING
+// float literals
 void daE_FZ_c::executeAttack() {
+    switch (mActionMode2) {
+    case 0:
+        cLib_addCalcAngleS2(&current.angle.y,fopAcM_searchPlayerAngleY(this),8,0x300);
+        if (way_gake_check() == 0) {
+            cLib_addCalc2(&speedF,l_HIO.field_0x20,0.7f,1.0f);
+        } else {
+            speedF = 0.0f;
+        }
+    default:
+        shape_angle.y = current.angle.y;
+        if (!(fopAcM_searchPlayerDistance(this) >= l_HIO.field_0x10)) {
+            if (fopAcM_otherBgCheck(this,dComIfGp_getPlayer(0)) == 0) {
+                return;
+            }
+        }
+    }
 
+    setActionMode(ACT_WAIT,0);
 }
 #else
 #pragma push
