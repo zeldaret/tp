@@ -498,7 +498,7 @@ public:
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
-    void SetAtSprm(u32 prm) { mObjAt.SetSPrm(prm); }
+    void SetAtSPrm(u32 prm) { mObjAt.SetSPrm(prm); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }
     void ClrAtHit() { mObjAt.ClrHit(); }
