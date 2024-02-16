@@ -131,6 +131,9 @@ public:
         mCornerColor[2] = c2;
         mCornerColor[3] = c3;
     }
+    void setCornerColor(JUtility::TColor c0) {
+        setCornerColor(c0, c0, c0, c0);
+    }
 
 protected:
     /* 0x100 */ JUTTexture* mTexture[2];
