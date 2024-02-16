@@ -413,6 +413,7 @@ public:
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_8 = 0x8,
         RFLG0_UNK_2 = 0x2,
+        RFLG0_UNK_1 = 0x1,
     };
 
     enum daPy_RFLG1 {
@@ -761,6 +762,7 @@ public:
     void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { i_onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
+    BOOL checkStickArrowReset() const { return i_checkResetFlg0(RFLG0_UNK_1); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {

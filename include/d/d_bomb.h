@@ -41,12 +41,16 @@ public:
     bool checkWaterBomb(fopAc_ac_c*);
     bool checkInsectBombMove(fopAc_ac_c*);
 
-    static fopAc_ac_c* createNormalBombPlayer(cXyz* p_pos) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 8, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+    static fopAc_ac_c* createNormalBombPlayer(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 8, i_pos, -1, NULL, NULL, -1, NULL, NULL);
     }
 
-    static fopAc_ac_c* createWaterBombPlayer(cXyz* p_pos) {
-        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 9, p_pos, -1, NULL, NULL, -1, NULL, NULL);
+    static fopAc_ac_c* createNormalBombExplode(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 0, i_pos, -1, NULL, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createWaterBombPlayer(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 9, i_pos, -1, NULL, NULL, -1, NULL, NULL);
     }
 
     static fopAc_ac_c* createFlowerBomb(cXyz* i_pos, csXyz* i_angle, int param_2) {
