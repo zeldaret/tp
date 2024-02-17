@@ -46,10 +46,10 @@ public:
     /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);
     /* 8003CBBC */ void rendering(dDrawPath_c::floor_class const*);
 
-    /* 8002AD3C */ virtual ~dDrawPath_c();
-    /* 8002ABF0 */ virtual bool isDrawType(int);
-    virtual GXColor* getColor(int) = 0;
-    /* 8002AD84 */ virtual GXColor* getLineColor(int, int);
+    /* 8002AD3C */ virtual ~dDrawPath_c() {}
+    /* 8002ABF0 */ virtual bool isDrawType(int) { return true; }
+    virtual const GXColor* getColor(int) = 0;
+    /* 8002AD84 */ virtual GXColor* getLineColor(int param_0, int) { return (GXColor*)getColor(param_0); }
     virtual int getLineWidth(int) = 0;
     virtual bool isSwitch(dDrawPath_c::group_class const*) = 0;
     virtual bool isRenderingFloor(int) = 0;
@@ -63,7 +63,7 @@ public:
 
 class dDrawPathWithNormalPattern_c : public dDrawPath_c {
 public:
-    /* 8002ACE0 */ virtual ~dDrawPathWithNormalPattern_c();
+    /* 8002ACE0 */ virtual ~dDrawPathWithNormalPattern_c() {}
 };
 
 class dRenderingMap_c : public dDrawPathWithNormalPattern_c {
@@ -71,15 +71,15 @@ public:
     /* 8003CD38 */ void makeResTIMG(ResTIMG*, u16, u16, u8*, u8*, u16) const;
     /* 8003CDAC */ void renderingMap();
 
-    /* 8002AC74 */ virtual ~dRenderingMap_c();
+    /* 8002AC74 */ virtual ~dRenderingMap_c() {}
     virtual void beforeDrawPath() = 0;
     virtual void afterDrawPath() = 0;
+
     virtual void preDrawPath() = 0;
     virtual void postDrawPath() = 0;
     virtual bool isDrawPath() = 0;
     virtual void preRenderingMap() = 0;
     virtual void postRenderingMap() = 0;
-    virtual GXColor* getBackColor() const = 0;
 };
 
 class dRenderingFDAmap_c : public dRenderingMap_c {
@@ -102,10 +102,11 @@ public:
     /* 8003D0AC */ void drawBack() const;
     /* 8003D3C0 */ void renderingDecoration(dDrawPath_c::line_class const*);
 
-    /* 8002ABF8 */ virtual ~dRenderingFDAmap_c();
+    /* 8002ABF8 */ virtual ~dRenderingFDAmap_c() {}
     /* 8003D188 */ virtual void preRenderingMap();
     /* 8003D320 */ virtual void postRenderingMap();
-    /* 8003D68C */ virtual GXColor* getDecoLineColor(int, int);
+    virtual GXColor* getBackColor() const = 0;
+    /* 8003D68C */ virtual const GXColor* getDecoLineColor(int, int);
     /* 8003D6B8 */ virtual s32 getDecorationLineWidth(int);
 
     bool isDrawAreaCheck(const Vec& param_0) {

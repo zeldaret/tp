@@ -1085,4 +1085,5 @@ O_FILES_SYM_ON := \
 	$(BUILD_DIR)/src/d/bg/d_bg_s_acch.o \
 	$(BUILD_DIR)/src/d/bg/d_bg_s_poly_pass_chk.o \
 	$(BUILD_DIR)/src/f_op/f_op_actor_mng.o \
+	$(BUILD_DIR)/src/d/map/d_map.o \
 	

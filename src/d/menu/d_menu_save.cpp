@@ -3,6 +3,8 @@
 // Translation Unit: d/menu/d_menu_save
 //
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/menu/d_menu_save.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"

@@ -21,6 +21,11 @@ public:
         return (mLayerList + 0x40*layerNo)[roomNo];
     }
 
+    static f32 getMinX() { return mMinX; }
+    static f32 getMinZ() { return mMinZ; }
+    static f32 getMaxX() { return mMaxX; }
+    static f32 getMaxZ() { return mMaxZ; }
+
     static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
     static f32 mMaxX;
@@ -61,6 +66,19 @@ public:
     /* 8003F734 */ static void create();
     /* 8003F754 */ static void remove();
 
+    static s8 getNowStayFloorNo() {
+        JUT_ASSERT(mNowStayFloorNoDecisionFlg);
+
+        s8 floor_no = 0;
+        if (mNowStayFloorNoDecisionFlg) {
+            floor_no = mNowStayFloorNo;
+        }
+        return floor_no;
+    }
+
+    static void setNextRoomNoForMapPat0(int i_roomNo) { mNextRoomNo = i_roomNo; }
+    static int getNextRoomNoForMapPat0() { return mNextRoomNo; }
+
     static int mNextRoomNo;
     static int mNowStayRoomNo;
     static s8 mNowStayFloorNo;
@@ -85,7 +103,7 @@ public:
     /* 80040094 */ int getNextDrawRoomNo(int);
 
     /* 8003FE18 */ virtual void draw();
-    /* 8002B150 */ virtual ~renderingDAmap_c();
+    /* 8002B150 */ virtual ~renderingDAmap_c() {}
     /* 8003FD9C */ virtual bool isSwitch(dDrawPath_c::group_class const*);
     /* 8003FE54 */ virtual bool isRenderingFloor(int);
     /* 80040134 */ virtual dDrawPath_c::room_class* getFirstRoomPointer();
@@ -121,13 +139,14 @@ class stage_tgsc_data_class;
 
 class renderingPlusDoor_c : public renderingDAmap_c {
 public:
+    renderingPlusDoor_c() {}
     /* 80040574 */ void drawDoor1();
     /* 800405B8 */ void drawDoor2();
     /* 800405FC */ void drawDoorCommon(stage_tgsc_data_class const*, int, bool);
     /* 80040710 */ bool checkDispDoorS(int, int, f32);
     /* 80040838 */ void drawNormalDoorS(stage_tgsc_data_class const*, int, int, bool);
 
-    /* 8002B0B4 */ virtual ~renderingPlusDoor_c();
+    /* 8002B0B4 */ virtual ~renderingPlusDoor_c() {}
     /* 8004145C */ virtual void beforeDrawPath();
     /* 80040518 */ virtual void afterDrawPath();
     virtual bool isRendRestart() const = 0;
@@ -141,8 +160,9 @@ public:
     /* 80040E84 */ void drawTreasureAfterPlayer();
     /* 80041208 */ void drawIconSingle(Vec const&, f32, f32);
     /* 800412C0 */ void drawCursor(Vec const&, s16, int, f32);
+    renderingPlusDoorAndCursor_c() {}
 
-    /* 8002B008 */ virtual ~renderingPlusDoorAndCursor_c();
+    /* 8002B008 */ virtual ~renderingPlusDoorAndCursor_c() {}
     /* 800402FC */ virtual void afterDrawPath();
     virtual f32 getIconSize(u8) const = 0;
     /* 80040ADC */ virtual const Vec* getIconPosition(dTres_c::typeGroupData_c*) const;

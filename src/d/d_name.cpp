@@ -3,6 +3,8 @@
 // Translation Unit: d/d_name
 //
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"

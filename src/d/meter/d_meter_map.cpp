@@ -5,6 +5,7 @@
 
 #include "d/meter/d_meter_map.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "d/map/d_map.h"
 #include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
