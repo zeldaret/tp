@@ -1899,6 +1899,7 @@ static dAttCatch_c* dComIfGp_att_getCatghTarget();
 static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
 bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
 void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
+bool dComIfGp_isLightDropMapVisible();
 
 inline void dComIfGp_itemDataInit() {
     g_dComIfG_gameInfo.play.itemInit();

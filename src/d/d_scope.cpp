@@ -3,6 +3,8 @@
 // Translation Unit: d/d_scope
 //
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/d_scope.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"

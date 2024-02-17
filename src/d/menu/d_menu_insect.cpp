@@ -3,6 +3,8 @@
  * Menu - Insect List
  */
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/menu/d_menu_insect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"

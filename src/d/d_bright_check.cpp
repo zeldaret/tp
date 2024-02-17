@@ -3,6 +3,8 @@
  *
  */
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/d_bright_check.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

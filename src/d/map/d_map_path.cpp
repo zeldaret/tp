@@ -373,7 +373,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
 }
 
 /* 8003D68C-8003D6B8 037FCC 002C+00 1/0 6/0 0/0 .text getDecoLineColor__18dRenderingFDAmap_cFii */
-GXColor* dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
+const GXColor* dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {
     return getLineColor(param_0, param_1);
 }
 

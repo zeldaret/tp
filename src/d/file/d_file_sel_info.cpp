@@ -3,6 +3,8 @@
  * File Select Screen File Info
  */
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"

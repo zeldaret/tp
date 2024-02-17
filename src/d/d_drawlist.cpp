@@ -3,6 +3,8 @@
 // Translation Unit: d/d_drawlist
 //
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/d_drawlist.h"
 #include "d/s/d_s_play.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
