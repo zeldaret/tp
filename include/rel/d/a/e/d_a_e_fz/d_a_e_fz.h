@@ -1,6 +1,6 @@
 /**
 * @file d_a_e_fz.h
-* This header contains information about the Freezard actor.
+* This header contains information about the Mini Freezard actor.
 *
 */
 
@@ -16,15 +16,15 @@
 
 /**
  * \enum daE_FZ_Action
- * \brief Freezard current action. 
+ * \brief Mini Freezard current action. 
  * 
  */
 enum daE_FZ_Action {
-    ACT_WAIT,      /**< Freezard is waiting. (confirm) */ 
-    ACT_MOVE,      /**< Freezard is moving. (confirm) */
-    ACT_ATTACK,    /**< Freezard is attacking. (confirm) */
-    ACT_DAMAGE,    /**< Freezard is damaged. (confirm) */
-    ACT_ROLLMOVE   /**< Freezard is rollmove. (confirm) */
+    ACT_WAIT,      /**< Mini Freezard is waiting. (confirm) */ 
+    ACT_MOVE,      /**< Mini Freezard is moving. (confirm) */
+    ACT_ATTACK,    /**< Mini Freezard is attacking. (confirm) */
+    ACT_DAMAGE,    /**< Mini Freezard is damaged. (confirm) */
+    ACT_ROLLMOVE   /**< Mini Freezard is rollmove. (confirm) */
 };
 
 /**
@@ -101,7 +101,9 @@ private:
     /* 0x713 */ u8 field_0x713;
     /* 0x714 */ u8 field_0x714;
     /* 0x715 */ u8 field_0x715;
-    /* 0x716 */ u8 field_0x716[0x71C - 0x716];
+    /* 0x716 */ u8 field_0x716;
+    /* 0x717 */ u8 field_0x717;
+    /* 0x718 */ fopAc_ac_c* field_0x718; // Blizzeta???
     /* 0x71C */ u32 field_0x71c[3];
     /* 0x728 */ u8 field_0x728[4];
     /* 0x72C */ dBgS_AcchCir mAcchCir;
@@ -151,6 +153,28 @@ public:
     /* 0x2C */ f32 field_0x2c;
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
+};
+
+/**
+ * \brief Blizzeta's actor class. Reference in proper header later when it's been reversed.
+ * 
+ */
+class daB_YO_c : public fopEn_enemy_c {
+public:
+    u8 getModelNo() { return mModelNo;}
+    s16 getFrizadRollAngle() { return mRollAngle;}
+    f32 getModeRarius() { return mModeRarius;}
+    u8 getFrizadAttack() { return mFrizadAttack;}
+
+private:
+    /* 0x5AC */ u8 field_0x5ac[0xF54 - 0x5AC];
+    /* 0xF54 */ f32 mModeRarius;
+    /* 0xF58 */ u8 field_0xf58[0xF5C - 0xF58];
+    /* 0xF5C */ s16 mRollAngle;
+    /* 0xF5E */ u8 field_0xf5e[0xFA8 - 0xF5E];
+    /* 0xFA8 */ u8 mModelNo;
+    /* 0xFA9 */ u8 field_0xfa9[0xFAD - 0xFA9];
+    /* 0xFAD */ u8 mFrizadAttack;
 };
 
 #endif /* D_A_E_FZ_H */

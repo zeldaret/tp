@@ -1,10 +1,11 @@
 /**
  * @file d_a_obj_carry.cpp
- * @brief Enemy - Freezard
+ * @brief Enemy - Mini Freezard
  */
 
 #include "rel/d/a/e/d_a_e_fz/d_a_e_fz.h"
 #include "d/d_item.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 //
@@ -516,6 +517,11 @@ COMPILER_STRIP_GATE(0x806C1990, &lit_3863);
 #pragma pop
 
 /* 806BE9D4-806BEAD8 000174 0104+00 1/1 0/0 0/0 .text            draw__8daE_FZ_cFv */
+#ifdef NONMATCHING
+void daE_FZ_c::draw() {
+
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -524,6 +530,7 @@ asm void daE_FZ_c::draw() {
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/draw__8daE_FZ_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 806BEAD8-806BEAF8 000278 0020+00 1/0 0/0 0/0 .text            daE_FZ_Draw__FP8daE_FZ_c */
 static void daE_FZ_Draw(daE_FZ_c* i_this) {
@@ -566,17 +573,29 @@ void daE_FZ_c::mBoundSoundset() {
 
 /* 806BEC08-806BED34 0003A8 012C+00 2/2 0/0 0/0 .text            deadnextSet__8daE_FZ_cFb */
 #ifdef NONMATCHING
-// unfinished
-u32 daE_FZ_c::deadnextSet(bool param_0) {
+// float literals
+void daE_FZ_c::deadnextSet(bool param_0) {
     mHealth = 0;
 
     if (!param_0) {
         if (field_0x714 != 3) {
-            cXyz pos = cXyz(0.0f,1.0f,0.0f);
-            dComIfGp_getVibration().StartShock(2,0x1f,pos);
+            dComIfGp_getVibration().StartShock(2,0x1f,cXyz(0.0f,1.0f,0.0f));
         }
         mCreature.startCollisionSE(Z2SE_HIT_HAMMER,0x20);
     }
+
+    mSph1.ClrTgHit();
+    fopAcM_OffStatus(this,0);
+    mAttentionInfo.mFlags &= 0xfffffffb;
+
+    mSph2.OffAtSetBit();
+    mSph1.OffTgSetBit();
+    
+    mCreature.startCreatureSound(Z2SE_EN_FZ_DEATH,0,-1);
+    
+    speedF = 0.0f;
+    field_0x6fc = 0;
+    setActionMode(ACT_DAMAGE,0);
 }
 #else
 #pragma push
@@ -737,7 +756,7 @@ asm void daE_FZ_c::executeWait() {
 /* 806BF8E8-806BFA64 001088 017C+00 1/1 0/0 0/0 .text            executeMove__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::executeMove() {
-
+    
 }
 #else
 #pragma push
@@ -795,7 +814,132 @@ asm void daE_FZ_c::executeAttack() {
 /* 806BFB60-806BFF94 001300 0434+00 2/1 0/0 0/0 .text            executeDamage__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::executeDamage() {
-
+      uVar7 = 0;
+  __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
+  __psq_st1(&local_8,(int)in_f31,0);
+  ::cXyz::cXyz(&cStack48);
+  ::cXyz::cXyz(&cStack60);
+  ::cXyz::cXyz(&cStack72,DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
+  uVar4 = DAT_80ac4b50;
+  switch(*(undefined4 *)(this + 0x730)) {
+  case 0:
+    f_op_kankyo_mng::dComIfGp_particle_set
+              (0x85b8,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack72);
+    f_op_kankyo_mng::dComIfGp_particle_set
+              (0x85b9,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack72);
+    if (this[0x74c] == (daE_FZ_c)0x3) {
+      dVar8 = (double)SComponentD::cM_rnd();
+      if (dVar8 < 0.2000000029802322) {
+        f_op_actor_mng::fopAcM_createItem
+                  ((cXyz *)(this + 0x4d4),0,0xffffffff,0xffffffff,0,(cXyz *)0x0,0);
+      }
+    }
+    else {
+      this[0x56c] = (daE_FZ_c)0x19;
+      f_op_actor_mng::fopAcM_createItemFromEnemyID
+                (this[0x56c],this + 0x4d4,0xffffffff,0xffffffff,0,0,0,0);
+    }
+    f_op_actor_mng::fopAcM_delete(this);
+    break;
+  case 1:
+    *(undefined4 *)(this + 0x530) = DAT_80ac4b50;
+    *(undefined4 *)(this + 0x734) = uVar4;
+  case 5:
+    cCcD_Stts::SetWeight((cCcD_Stts *)(this + 0x994),'v');
+    if (*(short *)(this + 0x4e2) < 0) {
+      *(undefined2 *)(this + 0x73c) = 0;
+    }
+    else {
+      *(undefined2 *)(this + 0x73c) = 1;
+    }
+    *(undefined4 *)(this + 0x730) = 2;
+switchD_80ac2aa4_caseD_2:
+    if (d_s_play::g_regHIO.mChildReg[8].mShortReg[0] == 0) {
+      iVar5 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
+      if (iVar5 != 0) {
+        this_00 = (dBgS *)f_op_actor::dComIfG_Bgsp();
+        iVar5 = dBgS::GetPolyAtt0(this_00,(cBgS_PolyInfo *)(this + 0x8ac));
+        if (iVar5 == 8) goto LAB_80ac2bdc;
+      }
+      fVar3 = d_s_play::g_regHIO.mChildReg[8].mFloatReg[11] + 1.0;
+    }
+    else {
+LAB_80ac2bdc:
+      fVar3 = d_s_play::g_regHIO.mChildReg[8].mFloatReg[10] + 0.2;
+    }
+    SComponentD::cLib_addCalc0(0x3fb99999a0000000,(double)fVar3,this + 0x530);
+    if (*(short *)(this + 0x73c) == 0) {
+      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
+                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
+      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) - (short)iVar5;
+    }
+    else {
+      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
+                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
+      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) + (short)iVar5;
+    }
+    local_20 = (longlong)iVar5;
+    iVar5 = ::dBgS_Acch::ChkWallHit((dBgS_Acch *)(this + 0x7a4));
+    if (iVar5 != 0) {
+      uVar6 = dBgS_AcchCir::GetWallAngleY((dBgS_AcchCir *)(this + 0x764));
+      *(undefined2 *)(this + 0x740) = uVar6;
+      setReflectAngle(this);
+      mBoundSoundset(this);
+    }
+    if (*(float *)(this + 0x530) < 0.3) {
+      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
+      cCcD_Stts::SetWeight((cCcD_Stts *)(this + 0x994),'d');
+      setActionMode(this,0,0);
+    }
+    break;
+  case 2:
+    goto switchD_80ac2aa4_caseD_2;
+  case 3:
+    uVar6 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+    *(undefined2 *)(this + 0x73e) = uVar6;
+    if (*(short *)(this + 0x4e2) < 0) {
+      *(undefined2 *)(this + 0x73c) = 0;
+    }
+    else {
+      *(undefined2 *)(this + 0x73c) = 1;
+    }
+    uVar4 = DAT_80ac4b4c;
+    *(undefined4 *)(this + 0x530) = DAT_80ac4b4c;
+    *(undefined4 *)(this + 0x734) = uVar4;
+    *(undefined4 *)(this + 0x730) = 4;
+  case 4:
+    if (*(short *)(this + 0x73c) == 0) {
+      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
+                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
+      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) - (short)iVar5;
+    }
+    else {
+      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
+                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
+      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) + (short)iVar5;
+    }
+    local_20 = (longlong)iVar5;
+    SComponentD::cLib_addCalcAngleS2(this + 0x4e2,(int)*(short *)(this + 0x73e),1,0x200);
+    SComponentD::cLib_addCalc0(0x3fb99999a0000000,0x3fb99999a0000000,this + 0x530);
+    iVar5 = ::dBgS_Acch::ChkWallHit((dBgS_Acch *)(this + 0x7a4));
+    if (iVar5 != 0) {
+      uVar6 = dBgS_AcchCir::GetWallAngleY((dBgS_AcchCir *)(this + 0x764));
+      *(undefined2 *)(this + 0x740) = uVar6;
+      setReflectAngle(this);
+      mBoundSoundset(this);
+    }
+    if (*(float *)(this + 0x530) < 0.2) {
+      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
+      setActionMode(this,2,0);
+    }
+    break;
+  case 6:
+    *(undefined2 *)(this + 0x56a) = 0;
+    if ((this[0x748] == (daE_FZ_c)0x1) ||
+       (iVar5 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4)), iVar5 != 0)) {
+      *(undefined4 *)(this + 0x730) = 0;
+    }
+  }
 }
 #else
 #pragma push
@@ -846,8 +990,71 @@ COMPILER_STRIP_GATE(0x806C19CC, &lit_4421);
 
 /* 806BFF94-806C0224 001734 0290+00 1/1 0/0 0/0 .text            executeRollMove__8daE_FZ_cFv */
 #ifdef NONMATCHING
+// float literals
 void daE_FZ_c::executeRollMove() {
+    if (fopAcM_SearchByID(fopAcM_GetLinkId(this),&field_0x718) == 0 || !field_0x718) return;
+    u32 model_no = static_cast<daB_YO_c*>(field_0x718)->getModelNo();
+    
+    if (model_no < 4 || 6 < model_no) {
+        fopAcM_delete(this);
+        return;
+    }
 
+    cXyz pos;
+
+    s16 roll_angle = static_cast<daB_YO_c*>(field_0x718)->getFrizadRollAngle();
+    f32 mode_rarius = static_cast<daB_YO_c*>(field_0x718)->getModeRarius();
+
+    mode_rarius = 100.0f + mode_rarius;
+    if (mode_rarius < 400.0f)
+        mode_rarius = 400.0f;
+
+    switch (mActionMode2) {
+    case 0:
+        field_0x704 = 0;
+        speedF = 0.0f;
+        mRadiusBase = 0;
+        mActionMode2 = 1;
+        field_0x710 = (20 - field_0x715) * 2;
+    case 1:
+        if (field_0x710 == 0) {
+            cLib_chaseF(&mRadiusBase,0.0f,0.03f);
+        }
+
+        cLib_chaseAngleS(&field_0x704,1024,16);
+        pos = field_0x718->current.pos;
+
+        pos.x += (f32)(mode_rarius * cM_ssin(roll_angle + field_0x715 * 0xccc));
+        pos.z += (f32)(mode_rarius * cM_scos(roll_angle + field_0x715 * 0xccc));
+
+        current.pos = pos;
+        u32 frizad_attack = static_cast<daB_YO_c*>(field_0x718)->getFrizadAttack();
+
+        if (frizad_attack == 3) {
+            mActionMode2 = 2;
+            speedF = 60.0f;
+            current.angle.y = cLib_targetAngleY(&static_cast<daB_YO_c*>(field_0x718)->current.pos,&current.pos);
+        }
+        break;
+    case 2:
+        cLib_chaseF(&mRadiusBase,1.0,0.1);
+        cLib_chaseAngleS(&field_0x704,512,16);
+        
+        if (mObjAcch.ChkWallHit() || !mObjAcch.ChkGroundHit()) {
+            setActionMode(ACT_DAMAGE,0);
+            mCreature.startCreatureSound(Z2SE_EN_FZ_DEATH,0,-1);
+            return;
+        }
+
+        if (mSph2.ChkAtHit()) {
+            if ((fopAcM_GetName(mSph2.GetAtHitAc()) == PROC_ALINK) || mSph2.ChkAtShieldHit()) {
+                setActionMode(ACT_DAMAGE,0);
+                return;
+            }
+        }
+    }
+
+    shape_angle.y += field_0x704;
 }
 #else
 #pragma push
@@ -870,7 +1077,7 @@ COMPILER_STRIP_GATE(0x806C19D0, &lit_4517);
 
 /* 806C0224-806C06DC 0019C4 04B8+00 1/1 0/0 0/0 .text            action__8daE_FZ_cFv */
 #ifdef NONMATCHING
-// close. stack frame too big, missing one clrrwi instruction, float literals
+// close. stack wrong, missing one clrrwi instruction, float literals
 void daE_FZ_c::action() {
     int linkSearch;
 

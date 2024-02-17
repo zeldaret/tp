@@ -210,6 +210,10 @@ inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
     return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
 }
 
+inline u32 fopAcM_GetLinkId(const fopAc_ac_c* pActor) {
+    return pActor->mParentPcId;
+}
+
 inline cXyz& fopAcM_GetPosition_p(fopAc_ac_c* pActor) {
     return pActor->current.pos;
 }
