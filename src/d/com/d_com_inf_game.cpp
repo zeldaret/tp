@@ -2255,13 +2255,13 @@ u8 dComIfG_getNowCalcRegion() {
     return 0xFF;
 }
 
-BOOL dComIfGp_isLightDropMapVisible() {
+bool dComIfGp_isLightDropMapVisible() {
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_isLightDropGetFlag(i) != FALSE && dComIfGs_getLightDropNum(i) < 16) {
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 /* 8002EE60-8002EEB0 0297A0 0050+00 1/1 11/11 0/0 .text            dComIfGp_getNowLevel__Fv */

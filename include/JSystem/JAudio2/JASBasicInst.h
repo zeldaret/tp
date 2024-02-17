@@ -32,7 +32,7 @@ struct JASInst {
 struct JASBasicInst : public JASInst {
     struct TKeymap {
         /* 80298250 */ ~TKeymap();
-        /* 802982D4 */ TKeymap();
+        /* 802982D4 */ TKeymap() { field_0x0 = -1; }
 
         s32 field_0x0;
         u16 field_0x4;

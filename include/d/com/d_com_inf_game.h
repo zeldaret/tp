@@ -822,6 +822,7 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_nam
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
+bool dComIfGp_isLightDropMapVisible();
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
