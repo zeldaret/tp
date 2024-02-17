@@ -54,7 +54,10 @@ public:
     /* 802FD098 */ virtual bool prepareTexture(u8);
     /* 801BDD40 */ virtual bool append(ResTIMG const*, f32);
     /* 802FF238 */ virtual bool append(ResTIMG const*, JUTPalette*, f32);
-    /* 80020338 */ virtual bool append(char const*, f32);
+    /* 80020338 */ virtual bool append(char const* param_0, f32 param_1) {
+        return insert(param_0, mTextureNum, param_1);
+    }
+
     /* 802FF2F0 */ virtual bool append(char const*, JUTPalette*, f32);
     /* 802FF208 */ virtual bool append(JUTTexture*, f32);
     /* 802FF3E0 */ virtual void prepend(ResTIMG const*, f32);
@@ -64,7 +67,9 @@ public:
     /* 802FF320 */ virtual void prepend(JUTTexture*, f32);
     /* 801BDD70 */ virtual void insert(ResTIMG const*, u8, f32);
     /* 802FD168 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
-    /* 80020368 */ virtual bool insert(char const*, u8, f32);
+    /* 80020368 */ virtual bool insert(char const* param_0, u8 param_1, f32 param_2) {
+        return insert(param_0, NULL, param_1, param_2);
+    }
     /* 802FD4B4 */ virtual bool insert(char const*, JUTPalette*, u8, f32);
     /* 802FD524 */ virtual bool insert(JUTTexture*, u8, f32);
     /* 802FD6F4 */ virtual bool remove(u8);
@@ -78,7 +83,10 @@ public:
     /* 802FDF88 */ virtual void drawOut(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
     /* 802FF29C */ virtual void load(_GXTexMapID, u8);
     /* 802FF268 */ virtual void load(u8);
-    /* 800202CC */ virtual void setBlendRatio(f32, f32);
+    /* 800202CC */ virtual void setBlendRatio(f32 param_0, f32 param_1) {
+        setBlendColorRatio(param_0, param_1);
+        setBlendAlphaRatio(param_0, param_1);
+    }
     /* 802FEA74 */ virtual void setBlendColorRatio(f32, f32);
     /* 802FEA9C */ virtual void setBlendAlphaRatio(f32, f32);
     /* 802FD874 */ virtual const ResTIMG* changeTexture(ResTIMG const*, u8);
@@ -122,6 +130,9 @@ public:
         mCornerColor[1] = c1;
         mCornerColor[2] = c2;
         mCornerColor[3] = c3;
+    }
+    void setCornerColor(JUtility::TColor c0) {
+        setCornerColor(c0, c0, c0, c0);
     }
 
 protected:

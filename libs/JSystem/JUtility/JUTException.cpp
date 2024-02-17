@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
+#include "JSystem/JUtility/JUTDirectFile.h"
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -997,7 +998,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
         return false;
     }
 
-    int result = 0;
+    bool result = 0;
     do {
         char* src = buffer;
         int found_section = 0;
@@ -1012,11 +1013,10 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
                         break;
                 }
 
-                char* dst = section_name;
                 int i = 0;
                 char* src = buffer + 1;
-                for (; *src != '\0'; i++, dst++, src++) {
-                    *dst = *src;
+                for (; *src != '\0'; i++, src++) {
+                    section_name[i] = *src;
                     if (*src == ' ' || i == 0xf)
                         break;
                 }
@@ -1100,7 +1100,8 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
     }
 
 end:
-    bool bresult = (file.fclose() & 0xFF) != 0;
+    file.fclose();
+    bool bresult = result != false;
     return bresult;
 }
 #else

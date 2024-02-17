@@ -175,6 +175,8 @@ public:
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
     }
+    void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
+    bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -700,6 +702,13 @@ inline bool dMeter2Info_isShopTalkFlag() {
     return g_meter2_info.isShopTalkFlag();
 }
 
+inline void dMeter2Info_setMapDrugFlag(u8 flag) {
+    g_meter2_info.setMapDrugFlag(flag);
+}
+
+inline bool dMeter2Info_isTempBit(int bit) {
+    return g_meter2_info.isTempBit(bit);
+}
 
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();

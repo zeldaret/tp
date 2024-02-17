@@ -46,6 +46,7 @@ public:
     /* 800325A0 */ bool checkDownTrigger();
 
     void setFirstWaitTime(s16 time) { mFirstWaitTime = time; }
+    s16 getYwaitTimer() { return mYwaitTimer; }
 
     /* 0x04 */ f32 mThreshold;
     /* 0x08 */ f32 field_0x08;

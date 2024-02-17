@@ -1094,6 +1094,10 @@ inline u8 dStage_stagInfo_GetWolfDashType(stage_stag_info_class* pstag) {
     return (pstag->field_0x09 >> 6) & 3;
 }
 
+inline u16 dStage_stagInfo_GetStageTitleNo(stage_stag_info_class* pstag) {
+    return pstag->mStageTitleNo;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }

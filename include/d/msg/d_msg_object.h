@@ -99,9 +99,9 @@ public:
     /* 80237A88 */ static void setNowTalkFlowNo(s16);
     /* 80237A9C */ void getNowTalkFlowNo();
     /* 80237AB0 */ void setDemoMessage(u32);
-    /* 80237AE0 */ void setTalkHeap(void*);
+    /* 80237AE0 */ static void setTalkHeap(void*);
     /* 80237B10 */ void setTalkHeapLocal(void*);
-    /* 80237B54 */ void getTalkHeap();
+    /* 80237B54 */ static void* getTalkHeap();
     /* 80237B68 */ void isDraw();
     /* 80237BFC */ void setButtonStatusLocal();
     /* 80237D88 */ void setDemoMessageLocal(u32);
@@ -389,6 +389,14 @@ inline void dMsgObject_onMsgSend() {
 
 inline bool dMsgObject_isFukidashiCheck() {
     return dMsgObject_getMsgObjectClass()->getScrnDrawPtr() != NULL ? true : false;
+}
+
+inline void* dMsgObject_getTalkHeap() {
+    return dMsgObject_c::getTalkHeap();
+}
+
+inline void dMsgObject_setTalkHeap(void* heap) {
+    dMsgObject_c::setTalkHeap(heap);
 }
 
 class dMsgObject_HowlHIO_c {

@@ -1471,7 +1471,7 @@ asm void dMsgObject_c::setTalkHeapLocal(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getTalkHeap() {
+asm void* dMsgObject_c::getTalkHeap() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getTalkHeap__12dMsgObject_cFv.s"
 }
