@@ -3,6 +3,8 @@
  * Hidden Skills - Menu
  */
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/menu/d_menu_skill.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
