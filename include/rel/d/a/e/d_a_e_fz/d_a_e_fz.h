@@ -54,7 +54,7 @@ struct daE_FZ_HIO_c_tmp {
 
 class daE_FZ_c : public fopEn_enemy_c {
 public:
-    /* 806BE9D4 */ void draw();
+    /* 806BE9D4 */ s32 draw();
     /* 806BEAF8 */ void setActionMode(int, int);
     /* 806BEB04 */ void setReflectAngle();
     /* 806BEBA0 */ void mBoundSoundset();
@@ -94,7 +94,7 @@ private:
     /* 0x706 */ s16 field_0x706;
     /* 0x708 */ s16 field_0x708;
     /* 0x70A */ u8 field_0x70A[0x70C - 0x70A];
-    /* 0x70C */ u32 field_0x70c;
+    /* 0x70C */ s32 field_0x70c;
     /* 0x710 */ u8 field_0x710;
     /* 0x711 */ u8 field_0x711;
     /* 0x712 */ u8 field_0x712;

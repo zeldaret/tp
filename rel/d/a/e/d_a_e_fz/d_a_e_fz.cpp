@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/e/d_a_e_fz/d_a_e_fz.h"
+#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "d/d_item.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
@@ -518,14 +519,61 @@ COMPILER_STRIP_GATE(0x806C1990, &lit_3863);
 
 /* 806BE9D4-806BEAD8 000174 0104+00 1/1 0/0 0/0 .text            draw__8daE_FZ_cFv */
 #ifdef NONMATCHING
-void daE_FZ_c::draw() {
+// float literals + dComIfGd_setShadow param issue maybe
+s32 daE_FZ_c::draw() {
+    if (field_0x714 != 2 || !checkItemGet(IRONBALL,1)) {
+        return 1;
+    }
 
+    J3DModel* model = mpModel;
+    
+    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+
+
+    mDoExt_modelUpdateDL(mpModel);
+    daMirror_c::entry(mpModel);
+
+    cXyz pos;
+
+    pos.set(current.pos.x,current.pos.y+10.0f,current.pos.z);
+    field_0x70c = dComIfGd_setShadow(field_0x70c,1,model,&pos,0.0f,1.0f,2.0f,mObjAcch.GetGroundH(),*(mObjAcch.pm_out_poly_info),&mTevStr,0,0.0f,&dDlst_shadowControl_c::mSimpleTexObj);
+    return 1;
+
+    #if DEBUG
+    if (d_s_play::g_regHIO.mChildReg[13].mShortReg[0] != 0) {
+        if (*(int *)(this + 0x72c) == 4) {
+            local_28 = -1;
+            local_27 = 0x82;
+            local_26 = 0x82;
+            local_25 = 0xfa;
+            d_drawlist::dDbVw_drawLineXlu(this + 0x4d4,this + 0x6a8,&local_28,1,0xc);
+        }
+        if (d_s_play::g_regHIO.mChildReg[13].mShortReg[1] != 0) {
+            for (iVar1 = 0; iVar1 < 4; iVar1 = iVar1 + 1) {
+            local_28 = (char)iVar1 * '\x19' + -0x7e;
+            local_27 = 0xff;
+            local_26 = (char)iVar1 * '\x19' + -0x7e;
+            local_25 = 0xfa;
+            d_drawlist::dDbVw_drawLineXlu
+                        (this + iVar1 * 0xc + 0x6b4,this + iVar1 * 0xc + 0x6e4,&local_28,1,0xc);
+            }
+        }
+        if (d_s_play::g_regHIO.mChildReg[13].mShortReg[2] != 0) {
+            local_28 = -1;
+            local_27 = 0x82;
+            local_26 = 0xff;
+            local_25 = 0xfa;
+            d_drawlist::dDbVw_drawLineXlu(this + 0x714,this + 0x720,&local_28,1,0xc);
+        }
+    }
+    #endif
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daE_FZ_c::draw() {
+asm s32 daE_FZ_c::draw() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/draw__8daE_FZ_cFv.s"
 }
@@ -625,7 +673,208 @@ static daE_FZ_HIO_c_tmp l_HIO;
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::damage_check() {
-
+  if (1 < *(short *)(this + 0x56a)) {
+    ::cXyz::set((cXyz *)(this + 0x4f0),DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
+    d_a_e_fz::setMidnaBindEffect(this,this + 0x5c8,this + 0x4d4,this + 0x4f0);
+    if (this[0x74a] == (daE_FZ_c)0x0) {
+      ::cXyz::cXyz(acStack48);
+      pfVar2 = m_Do_graphic::dComIfGp_getPlayer(0);
+      ::cXyz::set(acStack48,(Vec *)&pfVar2->current);
+      dCcD_GStts::Move((dCcD_GStts *)(this + 0x9b0));
+      if (this[0x74c] == (daE_FZ_c)0x3) {
+        iVar3 = ::dCcD_GObjInf::ChkTgHit((dCcD_GObjInf *)(this + 0x9d0));
+        if (iVar3 != 0) {
+          uVar4 = ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+          *(undefined4 *)(this + 0xc40) = uVar4;
+          pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+          iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x400000);
+          if (iVar3 != 0) {
+            deadnextSet(this,false);
+          }
+        }
+      }
+      else {
+        iVar3 = ::dCcD_GObjInf::ChkTgHit((dCcD_GObjInf *)(this + 0x9d0));
+        if (iVar3 == 0) {
+          iVar3 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
+          if ((iVar3 != 0) &&
+             (iVar3 = ::dCcD_GObjInf::ChkCoHit((dCcD_GObjInf *)(this + 0x9d0)), iVar3 != 0)) {
+            iVar3 = ::dCcD_GObjInf::GetCoHitAc((dCcD_GObjInf *)(this + 0x9d0));
+            iVar7 = f_ap_game::fopAcM_IsActor(iVar3);
+            if ((iVar7 != 0) && (sVar9 = c_damagereaction::fopAcM_GetName(iVar3), sVar9 == 0x1de)) {
+              ::dCcD_GObjInf::GetCoHitAc((dCcD_GObjInf *)(this + 0x9d0));
+              ::cXyz::operator_-(&cStack108,(cXyz *)(this + 0x4d4));
+              ::cXyz::operator_=(acStack48,&cStack108);
+              ::cXyz::~cXyz(&cStack108);
+              (**(code **)(*(int *)(this + 0xa0c) + 0x28))();
+              if ((DAT_80ac4b50 * 0.2 < *(float *)(iVar3 + 0x530)) ||
+                 (DAT_80ac4b50 * 0.2 < *(float *)(this + 0x530))) {
+                ::cXyz::operator_-(&cStack120,(cXyz *)(this + 0x4d4));
+                ::cXyz::operator_=(acStack48,&cStack120);
+                ::cXyz::~cXyz(&cStack120);
+                uVar10 = ::cXyz::atan2sX_Z(acStack48);
+                *(undefined2 *)(this + 0x740) = uVar10;
+                setReflectAngle(this);
+                if (*(float *)(this + 0x530) <= *(float *)(iVar3 + 0x530)) {
+                  uVar4 = *(undefined4 *)(iVar3 + 0x530);
+                  *(undefined4 *)(this + 0x530) = uVar4;
+                  *(undefined4 *)(this + 0x734) = uVar4;
+                }
+                else {
+                  uVar4 = *(undefined4 *)(this + 0x530);
+                  *(undefined4 *)(iVar3 + 0x530) = uVar4;
+                  *(undefined4 *)(iVar3 + 0x734) = uVar4;
+                }
+                mBoundSoundset(this);
+                setActionMode(this,3,5);
+                return;
+              }
+            }
+          }
+          iVar3 = ::dCcD_GObjInf::ChkAtHit((dCcD_GObjInf *)(this + 0xb08));
+          if (iVar3 != 0) {
+            pfVar2 = m_Do_graphic::dComIfGp_getPlayer(0);
+            pfVar8 = (fopAc_ac_c *)::dCcD_GObjInf::GetAtHitAc((dCcD_GObjInf *)(this + 0xb08));
+            sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+            *(short *)(this + 0x4e2) = sVar9 + -0x8000;
+            if (pfVar2 == pfVar8) {
+              iVar3 = ::dCcD_GObjInf::ChkAtShieldHit((dCcD_GObjInf *)(this + 0xb08));
+              fVar1 = DAT_80ac4b50;
+              if (iVar3 == 0) {
+                if (*(int *)(this + 0x72c) != 3) {
+                  this[0x74a] = (daE_FZ_c)0xa;
+                  setActionMode(this,3,3);
+                }
+              }
+              else {
+                *(float *)(this + 0x530) = DAT_80ac4b50;
+                *(float *)(this + 0x734) = fVar1;
+                setActionMode(this,3,1);
+              }
+              mBoundSoundset(this);
+              (**(code **)(*(int *)(this + 0xb44) + 0x20))();
+            }
+            else {
+              (**(code **)(*(int *)(this + 0xb44) + 0x20))();
+            }
+          }
+        }
+        else {
+          uVar4 = ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+          *(undefined4 *)(this + 0xc40) = uVar4;
+          pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+          iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x40);
+          if (iVar3 == 0) {
+            pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+            iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x10000);
+            if (iVar3 == 0) {
+              csXyz::csXyz(&local_80);
+              ::cXyz::cXyz(&cStack60);
+              ::cXyz::cXyz(&cStack72);
+              ::dCcD_GObjInf::GetTgHitPosP((dCcD_GObjInf *)(this + 0x9d0));
+              ::cXyz::operator_-(&cStack96,(cXyz *)(this + 0x4d4));
+              ::cXyz::operator_=(&cStack60,&cStack96);
+              ::cXyz::~cXyz(&cStack96);
+              pVVar6 = (Vec *)::dCcD_GObjInf::GetTgHitPosP((dCcD_GObjInf *)(this + 0x9d0));
+              ::cXyz::set(&cStack72,pVVar6);
+              local_80.x = 0;
+              local_80.y = ::cXyz::atan2sX_Z(&cStack60);
+              local_80.z = 0;
+              pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0))
+              ;
+              iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x80000);
+              if (iVar3 == 0) {
+                pcVar5 = (cCcD_ObjHitInf *)
+                         ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+                iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x2000);
+                if (iVar3 == 0) {
+                  ::cXyz::cXyz(&cStack84,DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
+                  f_op_kankyo_mng::dComIfGp_particle_set
+                            (0x85ba,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack84);
+                  pcVar5 = (cCcD_ObjHitInf *)
+                           ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+                  iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x4000);
+                  if (iVar3 != 0) {
+                    *(short *)(this + 0x56a) = *(short *)(this + 0x56a) + -0x14;
+                    if (1 < *(short *)(this + 0x56a)) {
+                      sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+                      *(short *)(this + 0x4e2) = sVar9 + -0x8000;
+                      fVar1 = DAT_80ac4b50;
+                      *(float *)(this + 0x530) = DAT_80ac4b50;
+                      *(float *)(this + 0x734) = fVar1;
+                      uVar4 = JAISoundID::JAISoundID(aJStack132,0x70321);
+                      (**(code **)(*(int *)(this + 0x5c8) + 0x14))(this + 0x5c8,uVar4,0,0xffffffff);
+                      fVar1 = DAT_80ac4b50;
+                      *(float *)(this + 0x530) = DAT_80ac4b50;
+                      *(float *)(this + 0x734) = fVar1;
+                      setActionMode(this,3,1);
+                      d_cc_s::dComIfGp_setHitMark
+                                (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+                      return;
+                    }
+                    deadnextSet(this,true);
+                    d_cc_s::dComIfGp_setHitMark
+                              (1,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+                    return;
+                  }
+                  pcVar5 = (cCcD_ObjHitInf *)
+                           ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
+                  iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x400000);
+                  if (iVar3 != 0) {
+                    deadnextSet(this,false);
+                    (**(code **)(*(int *)(this + 0xa0c) + 0x24))();
+                    d_cc_s::dComIfGp_setHitMark
+                              (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+                    return;
+                  }
+                  d_cc_uty::cc_at_check(this,this + 0xc40);
+                  if (this[0xc5f] == (daE_FZ_c)0x0) {
+                    d_cc_s::dComIfGp_setHitMark
+                              (1,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+                  }
+                  else {
+                    d_cc_s::dComIfGp_setHitMark
+                              (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+                  }
+                  *(undefined2 *)(this + 0x740) = *(undefined2 *)(this + 0xc4e);
+                  setReflectAngle(this);
+                  *(short *)(this + 0x4e2) = *(short *)(this + 0x4e2) + -0x8000;
+                  this[0x74a] = (daE_FZ_c)0xa;
+                  if (1 < *(short *)(this + 0x56a)) {
+                    uVar4 = JAISoundID::JAISoundID(aJStack136,0x70321);
+                    (**(code **)(*(int *)(this + 0x5c8) + 0x14))(this + 0x5c8,uVar4,0,0xffffffff);
+                    fVar1 = DAT_80ac4b50;
+                    *(float *)(this + 0x530) = DAT_80ac4b50;
+                    *(float *)(this + 0x734) = fVar1;
+                    setActionMode(this,3,1);
+                    return;
+                  }
+                  deadnextSet(this,true);
+                  return;
+                }
+              }
+              sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+              *(short *)(this + 0x4e2) = sVar9 + -0x8000;
+              fVar1 = DAT_80ac4b50;
+              *(float *)(this + 0x530) = DAT_80ac4b50;
+              *(float *)(this + 0x734) = fVar1;
+              mBoundSoundset(this);
+              d_cc_s::dComIfGp_setHitMark(2,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
+              setActionMode(this,3,1);
+              return;
+            }
+          }
+          sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+          *(short *)(this + 0x4e2) = sVar9 + -0x8000;
+          fVar1 = DAT_80ac4b50;
+          *(float *)(this + 0x530) = DAT_80ac4b50;
+          *(float *)(this + 0x734) = fVar1;
+          mBoundSoundset(this);
+          setActionMode(this,3,1);
+        }
+      }
+    }
+  }
 }
 #else
 #pragma push
@@ -740,7 +989,101 @@ COMPILER_STRIP_GATE(0x806C19B0, &lit_4205);
 /* 806BF58C-806BF8E8 000D2C 035C+00 1/1 0/0 0/0 .text            executeWait__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::executeWait() {
-
+  uVar7 = 0;
+  __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
+  __psq_st1(&local_8,(int)in_f31,0);
+  ::cXyz::cXyz(&cStack68);
+  ::cXyz::cXyz(&local_50);
+  dVar9 = (double)DAT_80ac4b3c;
+  iVar3 = *(int *)(this + 0x730);
+  if (iVar3 != 1) {
+    if ((0 < iVar3) || (iVar3 < 0)) goto LAB_80ac2704;
+    iVar3 = f_op_actor_mng::fopAcM_wayBgCheck(0x4069000000000000,0x4049000000000000,this);
+    if (iVar3 == 0) {
+      dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b38);
+      local_50.x = (float)((double)*(float *)(this + 0x4ac) + dVar8);
+      local_50.y = *(float *)(this + 0x4b0);
+      dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b38);
+      local_50.z = (float)((double)*(float *)(this + 0x4b4) + dVar8);
+      ::cXyz::operator_-(&cStack92,&local_50);
+      ::cXyz::operator_=(&cStack68,&cStack92);
+      ::cXyz::~cXyz(&cStack92);
+      sVar5 = ::cXyz::atan2sX_Z(&cStack68);
+      sVar5 = sVar5 - *(short *)(this + 0x4e2);
+      if (sVar5 < 0x3001) {
+        if (sVar5 < -0x3000) {
+          sVar5 = -0x3000;
+        }
+      }
+      else {
+        sVar5 = 0x3000;
+      }
+    }
+    else {
+      dVar8 = (double)SComponentD::cM_rndFX(0x40c3880000000000);
+      local_38 = (double)(longlong)(int)(dVar8 + 32768.0);
+      sVar5 = (short)(int)(dVar8 + 32768.0);
+    }
+    *(short *)(this + 0x73e) = *(short *)(this + 0x4e2) + sVar5;
+    dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b58);
+    local_38 = (double)CONCAT44(0x43300000,(int)DAT_80ac4b2e ^ 0x80000000);
+    iVar3 = (int)((double)(float)(local_38 - 4503601774854144.0) + dVar8);
+    local_30 = (longlong)iVar3;
+    this[0x748] = SUB41(iVar3,0);
+    *(undefined4 *)(this + 0x730) = 1;
+  }
+  iVar3 = way_gake_check(this);
+  if (iVar3 != 0) {
+    ::cXyz::operator_-(&cStack104,(cXyz *)(this + 0x4d4));
+    ::cXyz::operator_=(&local_50,&cStack104);
+    ::cXyz::~cXyz(&cStack104);
+    uVar6 = ::cXyz::atan2sX_Z(&local_50);
+    *(undefined2 *)(this + 0x73e) = uVar6;
+    *(undefined2 *)(this + 0x4e2) = uVar6;
+  }
+  if (this[0x74c] == (daE_FZ_c)0x4) {
+    this[0x748] = (daE_FZ_c)0xa;
+    *(undefined4 *)(this + 0x530) = 0;
+    uVar6 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
+    *(undefined2 *)(this + 0x73e) = uVar6;
+    *(undefined2 *)(this + 0x4e2) = uVar6;
+    dVar9 = (double)DAT_80ac4b40;
+  }
+  if (d_s_play::g_regHIO.mChildReg[8].mShortReg[0] == 0) {
+    iVar3 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
+    if (iVar3 != 0) {
+      this_00 = (dBgS *)f_op_actor::dComIfG_Bgsp();
+      iVar3 = dBgS::GetPolyAtt0(this_00,(cBgS_PolyInfo *)(this + 0x8ac));
+      if (iVar3 == 8) goto LAB_80ac2660;
+    }
+    SComponentD::cLib_addCalc0(0x3fb99999a0000000,(double)DAT_80ac4b54,this + 0x530);
+  }
+  else {
+LAB_80ac2660:
+    iVar3 = MSL_C.PPCEABI.bare.H::abs
+                      ((int)(short)(*(short *)(this + 0x4ea) - *(short *)(this + 0x73e)));
+    if ((iVar3 < 0x200) && (this[0x748] == (daE_FZ_c)0x0)) {
+      SComponentD::cLib_addCalc0(0x3fb99999a0000000,0x3fb99999a0000000,this + 0x530);
+    }
+  }
+  if (((this[0x748] == (daE_FZ_c)0x0) && (*(float *)(this + 0x530) < 0.2)) &&
+     (iVar3 = MSL_C.PPCEABI.bare.H::abs
+                        ((int)(short)(*(short *)(this + 0x4ea) - *(short *)(this + 0x73e))),
+     iVar3 < 0x200)) {
+    *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
+    setActionMode(this,1,0);
+  }
+LAB_80ac2704:
+  SComponentD::cLib_addCalcAngleS2(this + 0x4ea,(int)*(short *)(this + 0x73e),8,0x500);
+  dVar8 = (double)d_a_obj_item::fopAcM_searchPlayerDistance(this);
+  if ((dVar8 <= dVar9) && (iVar3 = way_gake_check(this), iVar3 == 0)) {
+    pfVar4 = m_Do_graphic::dComIfGp_getPlayer(0);
+    iVar3 = f_op_actor_mng::fopAcM_otherBgCheck(this,pfVar4);
+    if (iVar3 == 0) {
+      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
+      setActionMode(this,2,0);
+    }
+  }
 }
 #else
 #pragma push
@@ -760,8 +1103,7 @@ void daE_FZ_c::executeMove() {
     switch (mActionMode2) {
         case 0:
             field_0x710 = l_HIO.field_0x08 + cM_rndFX(l_HIO.field_0x34);
-            mActionMode2 = 1;
-            
+            mActionMode2 = 1; 
         case 1:
             cLib_addCalcAngleS2(&current.angle.y,field_0x706,8,256);
             cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
@@ -838,9 +1180,6 @@ asm void daE_FZ_c::executeAttack() {
 /* 806BFB60-806BFF94 001300 0434+00 2/1 0/0 0/0 .text            executeDamage__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::executeDamage() {
-      uVar7 = 0;
-  __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
-  __psq_st1(&local_8,(int)in_f31,0);
   ::cXyz::cXyz(&cStack48);
   ::cXyz::cXyz(&cStack60);
   ::cXyz::cXyz(&cStack72,DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
@@ -1474,7 +1813,121 @@ SECTION_DEAD static char const* const stringBase_806C19F9 = "E_fz";
 /* 806C0CD0-806C1208 002470 0538+00 1/1 0/0 0/0 .text            create__8daE_FZ_cFv */
 #ifdef NONMATCHING
 void daE_FZ_c::create() {
-
+  
+  iVar1 = f_op_actor::fopAcM_CheckCondition(this,8);
+  if (iVar1 == 0) {
+    this_00 = (daE_FZ_c *)d_attention::operator_new(0xc74,this);
+    if (this_00 != (daE_FZ_c *)0x0) {
+      daE_FZ_c(this_00);
+    }
+    f_op_actor::fopAcM_OnCondition(this,8);
+  }
+  iVar1 = d_com_inf_game::dComIfG_resLoad(this + 0x5b4,&d_a_e_fz::@118430);
+  if (iVar1 == 4) {
+    iVar2 = f_op_actor_mng::fopAcM_GetParam((fopAc_ac_c *)this);
+    m_Do_printf::OSReport(d_a_e_fz::@118557,iVar2);
+    m_Do_printf::OSReport(d_a_e_fz::@118558);
+    iVar2 = f_op_actor_mng::fopAcM_entrySolidHeap(this,d_a_e_fz::useHeapInit,0x1950);
+    if (iVar2 == 0) {
+      m_Do_printf::OSReport(d_a_e_fz::@118559);
+      iVar1 = 5;
+    }
+    else {
+      m_Do_printf::OSReport(d_a_e_fz::@118560);
+      if (DAT_80ac4b20 == '\0') {
+        DAT_80ac4b20 = '\x01';
+        this[0xc71] = (daE_FZ_c)0x1;
+        DAT_80ac4b2c = m_Do_main::mDoHIO_createChild(&d_a_e_fz::@118561,&d_a_e_fz::l_HIO);
+      }
+      *(undefined4 *)(this + 0x564) = 4;
+      this[0x54a] = (daE_FZ_c)0x45;
+      uVar3 = J3DModel::getBaseTRMtx(*(J3DModel **)(this + 0x5bc));
+      d_a_alink::fopAcM_SetMtx(this,uVar3);
+      f_op_actor_mng::fopAcM_SetMin(0xc069000000000000,0xc069000000000000,0xc069000000000000,this);
+      f_op_actor_mng::fopAcM_SetMax(0x4069000000000000,0x4069000000000000,0x4069000000000000,this);
+      dCcD_Stts::Init((dCcD_Stts *)(this + 0x994),100,0,(fopAc_ac_c *)this);
+      *(undefined2 *)(this + 0x56a) = 0x50;
+      *(undefined2 *)(this + 0x568) = 0x50;
+      iVar2 = f_op_actor_mng::fopAcM_GetParam((fopAc_ac_c *)this);
+      this[0x74c] = SUB41(iVar2,0);
+      iVar2 = f_op_actor_mng::fopAcM_GetParam((fopAc_ac_c *)this);
+      this[0x74d] = SUB41((uint)iVar2 >> 8,0);
+      if (d_s_play::g_regHIO.mChildReg[8].mShortReg[9] != 0) {
+        this[0x74c] = SUB21(d_s_play::g_regHIO.mChildReg[8].mShortReg[9],0);
+      }
+      if (this[0x74c] == (daE_FZ_c)0xff) {
+        this[0x74c] = (daE_FZ_c)0x0;
+      }
+      if ((this[0x74c] == (daE_FZ_c)0x1) || (this[0x74c] == (daE_FZ_c)0x3)) {
+        dVar8 = (double)SComponentD::cM_rndFX(0x4024000000000000);
+        *(float *)(this + 0x500) = (float)(dVar8 + 30.0);
+        dVar8 = (double)SComponentD::cM_rndFX(0x3ff0000000000000);
+        *(float *)(this + 0x530) = (float)(dVar8 + 4.0);
+        *(float *)(this + 0x734) = (float)(dVar8 + 4.0);
+        if (this[0x74c] == (daE_FZ_c)0x1) {
+          d_com_static::fopAcM_OnStatus(this,0x4000);
+        }
+      }
+      uVar6 = f_op_actor_mng::fopAcM_GetSpeed_p((fopAc_ac_c *)this);
+      uVar7 = d_bg_s_acch::fopAcM_GetOldPosition_p(this);
+      pcVar4 = f_op_actor_mng::fopAcM_GetPosition_p((fopAc_ac_c *)this);
+      ::dBgS_Acch::Set((dBgS_Acch *)(this + 0x7a4),(char)pcVar4,uVar7,(fopAc_ac_c *)this,1,
+                       (dBgS_AcchCir *)(this + 0x764),uVar6,(csXyz *)0x0,(csXyz *)0x0);
+      if (this[0x74c] == (daE_FZ_c)0x3) {
+        dBgS_AcchCir::SetWall((dBgS_AcchCir *)(this + 0x764),35.0,70.0);
+      }
+      else {
+        dBgS_AcchCir::SetWall((dBgS_AcchCir *)(this + 0x764),20.0,60.0);
+      }
+      pdVar5 = (dBgS *)f_op_actor::dComIfG_Bgsp();
+      ::dBgS_Acch::CrrPos((dBgS_Acch *)(this + 0x7a4),pdVar5);
+      dCcD_Sph::Set((dCcD_Sph *)(this + 0x9d0),(dCcD_SrcSph *)&@unnamed@d_a_e_fz_cpp@::cc_fz_src);
+      cCcD_Obj::SetStts((cCcD_Obj *)(this + 0x9d0),(cCcD_Stts *)(this + 0x994));
+      dCcD_Sph::Set((dCcD_Sph *)(this + 0xb08),(dCcD_SrcSph *)&@unnamed@d_a_e_fz_cpp@::cc_fz_at_src)
+      ;
+      cCcD_Obj::SetStts((cCcD_Obj *)(this + 0xb08),(cCcD_Stts *)(this + 0x994));
+      Z2CreatureEnemy::init((Z2CreatureEnemy *)(this + 0x5c8),(EVP_PKEY_CTX *)(this + 0x4d4));
+      Z2CreatureEnemy::setEnemyName((Z2CreatureEnemy *)(this + 0x5c8),&d_a_e_fz::@118566);
+      *(daE_FZ_c **)(this + 0xc48) = this + 0x5c8;
+      this[0xc5e] = (daE_FZ_c)0x1;
+      *(undefined4 *)(this + 0x534) = 0xc0a00000;
+      *(undefined2 *)(this + 0x4ec) = 0;
+      *(undefined2 *)(this + 0x4e8) = 0;
+      dVar8 = (double)SComponentD::cM_rndFX(0x40c3880000000000);
+      *(short *)(this + 0x4ea) = (short)(int)dVar8;
+      *(short *)(this + 0x4e2) = (short)(int)dVar8;
+      ::cXyz::set((cXyz *)(this + 0x6a8),(Vec *)(this + 0x4d4));
+      for (iVar2 = 0; iVar2 < 4; iVar2 = iVar2 + 1) {
+        ::cXyz::set((cXyz *)(this + iVar2 * 0xc + 0x6b4),(Vec *)(this + 0x4d4));
+      }
+      if ((this[0x74c] == (daE_FZ_c)0x2) && (iVar2 = d_item::checkItemGet(0x42,1), iVar2 == 0)) {
+        this[0x54a] = (daE_FZ_c)0x0;
+        d_a_e_fz::fopAcM_SetGroup(this,0);
+        f_op_actor::fopAcM_OffStatus(this,0);
+        *(uint *)(this + 0x564) = *(uint *)(this + 0x564) & 0xfffffffb;
+      }
+      if (this[0x74c] == (daE_FZ_c)0x3) {
+        *(undefined4 *)(this + 0x738) = 0;
+        *(uint *)(this + 0x564) = *(uint *)(this + 0x564) & 0xfffffffb;
+        ::cCcD_ObjHitInf::SetAtType((cCcD_ObjHitInf *)(this + 0xb08),0x400);
+        ::dCcD_GObjInf::SetAtSpl((dCcD_GObjInf *)(this + 0xb08),1);
+        setActionMode(this,4,0);
+      }
+      else {
+        ::dCcD_GObjInf::SetAtMtrl((dCcD_GObjInf *)(this + 0xb08),'\x02');
+        *(undefined4 *)(this + 0x738) = 0x3f800000;
+        dVar8 = (double)SComponentD::cM_rnd();
+        if (0.5 <= dVar8) {
+          setActionMode(this,1,0);
+        }
+        else {
+          setActionMode(this,0,0);
+        }
+      }
+      mtx_set(this);
+    }
+  }
+  return iVar1;
 }
 #else
 #pragma push
