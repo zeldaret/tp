@@ -755,8 +755,32 @@ asm void daE_FZ_c::executeWait() {
 
 /* 806BF8E8-806BFA64 001088 017C+00 1/1 0/0 0/0 .text            executeMove__8daE_FZ_cFv */
 #ifdef NONMATCHING
+// float literals
 void daE_FZ_c::executeMove() {
-    
+    switch (mActionMode2) {
+        case 0:
+            field_0x710 = l_HIO.field_0x08 + cM_rndFX(l_HIO.field_0x34);
+            mActionMode2 = 1;
+            
+        case 1:
+            cLib_addCalcAngleS2(&current.angle.y,field_0x706,8,256);
+            cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
+            
+            if (fopAcM_wayBgCheck(this, 200.0f,500.0f) != 0 || field_0x710 == 0) {
+                setActionMode(ACT_WAIT,0);
+            }
+        default:
+            if (way_gake_check()) {
+                speedF = 0;
+                setActionMode(ACT_WAIT,0);
+            } else {
+                shape_angle.y = current.angle.y;
+                
+                if (fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x14) {
+                    setActionMode(ACT_ATTACK,0);
+                }
+            }
+    }
 }
 #else
 #pragma push
