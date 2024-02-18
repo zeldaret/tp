@@ -76,7 +76,7 @@ public:
     /* 806C0CD0 */ void create();
 
 private:
-    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq;
     /* 0x5B4 */ J3DModel* mpModel;
     /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
     /* 0x5C0 */ Z2CreatureEnemy mCreature;

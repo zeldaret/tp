@@ -1701,7 +1701,7 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     bool tmp_lantern_check = false;
     u16 current_lantern_oil = 0;
     
-    // If haven't gotten then lantern back from the monkey
+    // If haven't gotten the lantern back from the monkey
     if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         // Store whether or not it's stolen and dropped
         lantern_dropped = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
