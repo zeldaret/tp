@@ -91,8 +91,8 @@ private:
     /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
     /* 0x704 */ s16 field_0x704;
-    /* 0x706 */ s16 field_0x706;
-    /* 0x708 */ s16 field_0x708;
+    /* 0x706 */ s16 mAngleFromPlayer; /**< Angle the mini freezard is from the player. */
+    /* 0x708 */ s16 mLastWallHitAngle; /**< Angle of the last wall the mini freezard hit. */
     /* 0x70A */ u8 field_0x70A[0x70C - 0x70A];
     /* 0x70C */ s32 field_0x70c;
     /* 0x710 */ u8 field_0x710;
@@ -108,7 +108,7 @@ private:
     /* 0x728 */ u8 field_0x728[4];
     /* 0x72C */ dBgS_AcchCir mAcchCir;
     /* 0x76C */ dBgS_ObjAcch mObjAcch;
-    /* 0x944 */ dCcD_Stts field_0x944;
+    /* 0x944 */ dCcD_Stts mStts;
     /* 0x980 */ dCcD_Sph mSph1;
     /* 0xAC4 */ dCcD_Sph mSph2;
     /* 0xBFC */ dCcU_AtInfo mAtInfo;

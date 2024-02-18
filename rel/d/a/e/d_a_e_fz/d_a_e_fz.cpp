@@ -593,16 +593,16 @@ void daE_FZ_c::setActionMode(int i_actionMode1, int i_actionMode2) {
 
 /* 806BEB04-806BEBA0 0002A4 009C+00 2/2 0/0 0/0 .text            setReflectAngle__8daE_FZ_cFv */
 void daE_FZ_c::setReflectAngle() {
-    s16 x = current.angle.y - field_0x708;
+    s16 x = current.angle.y - mLastWallHitAngle;
 
     if (abs(x) > 18432) {
-        current.angle.y = (field_0x708 << 1) - (current.angle.y + 32768);
+        current.angle.y = (mLastWallHitAngle << 1) - (current.angle.y + 32768);
     } else {
         if (x > 14336) {
-            current.angle.y = field_0x708 + 14336;
+            current.angle.y = mLastWallHitAngle + 14336;
         } else {
             if (x < -14336) {
-                current.angle.y = field_0x708 - 14336;
+                current.angle.y = mLastWallHitAngle - 14336;
             }
         }
     }
@@ -1105,7 +1105,7 @@ void daE_FZ_c::executeMove() {
             field_0x710 = l_HIO.field_0x08 + cM_rndFX(l_HIO.field_0x34);
             mActionMode2 = 1; 
         case 1:
-            cLib_addCalcAngleS2(&current.angle.y,field_0x706,8,256);
+            cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,8,256);
             cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
             
             if (fopAcM_wayBgCheck(this, 200.0f,500.0f) != 0 || field_0x710 == 0) {
@@ -1179,128 +1179,103 @@ asm void daE_FZ_c::executeAttack() {
 
 /* 806BFB60-806BFF94 001300 0434+00 2/1 0/0 0/0 .text            executeDamage__8daE_FZ_cFv */
 #ifdef NONMATCHING
+// float literals
 void daE_FZ_c::executeDamage() {
-  ::cXyz::cXyz(&cStack48);
-  ::cXyz::cXyz(&cStack60);
-  ::cXyz::cXyz(&cStack72,DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
-  uVar4 = DAT_80ac4b50;
-  switch(*(undefined4 *)(this + 0x730)) {
+  cXyz pos;
+  pos.set(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
+
+  switch(mActionMode2) {
   case 0:
-    f_op_kankyo_mng::dComIfGp_particle_set
-              (0x85b8,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack72);
-    f_op_kankyo_mng::dComIfGp_particle_set
-              (0x85b9,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack72);
-    if (this[0x74c] == (daE_FZ_c)0x3) {
-      dVar8 = (double)SComponentD::cM_rnd();
-      if (dVar8 < 0.2000000029802322) {
-        f_op_actor_mng::fopAcM_createItem
-                  ((cXyz *)(this + 0x4d4),0,0xffffffff,0xffffffff,0,(cXyz *)0x0,0);
+    dComIfGp_particle_set(0x85b8,&current.pos,&shape_angle,&pos);
+    dComIfGp_particle_set(0x85b9,&current.pos,&shape_angle,&pos);
+
+    if (field_0x714 != 3) {
+      field_0x564 = 25;
+      fopAcM_createItemFromEnemyID(field_0x564,&current.pos,-1,-1,0,0,0,0);
+    } else {
+      if (cM_rnd() < 0.2f) {
+        fopAcM_createItem(&current.pos,0,-1,-1,0,0,0);
       }
     }
-    else {
-      this[0x56c] = (daE_FZ_c)0x19;
-      f_op_actor_mng::fopAcM_createItemFromEnemyID
-                (this[0x56c],this + 0x4d4,0xffffffff,0xffffffff,0,0,0,0);
-    }
-    f_op_actor_mng::fopAcM_delete(this);
+    fopAcM_delete(this);
     break;
   case 1:
-    *(undefined4 *)(this + 0x530) = DAT_80ac4b50;
-    *(undefined4 *)(this + 0x734) = uVar4;
+    f32 tmp = l_HIO.field_0x28; 
+    speedF = tmp;
+    field_0x6fc = tmp;
   case 5:
-    cCcD_Stts::SetWeight((cCcD_Stts *)(this + 0x994),'v');
-    if (*(short *)(this + 0x4e2) < 0) {
-      *(undefined2 *)(this + 0x73c) = 0;
+    mStts.SetWeight(118);
+    current.angle.y < 0 ? field_0x704 = 0 : field_0x704 = 1;
+    mActionMode2 = 2;
+  case 2:
+    if (mObjAcch.ChkGroundHit() && dComIfG_Bgsp().GetPolyAtt0(mObjAcch.m_gnd) == 8) {
+      tmp = 1.0f;
+    } else {
+      tmp = 0.3f;
     }
-    else {
-      *(undefined2 *)(this + 0x73c) = 1;
+
+    cLib_addCalc0(&speedF,0.1f,tmp);
+
+    if (field_0x704 == 0) {
+      s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
+      shape_angle.y -= value;
+    } else {
+      s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
+      shape_angle.y += value;
     }
-    *(undefined4 *)(this + 0x730) = 2;
-switchD_80ac2aa4_caseD_2:
-    if (d_s_play::g_regHIO.mChildReg[8].mShortReg[0] == 0) {
-      iVar5 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
-      if (iVar5 != 0) {
-        this_00 = (dBgS *)f_op_actor::dComIfG_Bgsp();
-        iVar5 = dBgS::GetPolyAtt0(this_00,(cBgS_PolyInfo *)(this + 0x8ac));
-        if (iVar5 == 8) goto LAB_80ac2bdc;
-      }
-      fVar3 = d_s_play::g_regHIO.mChildReg[8].mFloatReg[11] + 1.0;
+
+    if (mObjAcch.ChkWallHit()) {
+      mLastWallHitAngle = mAcchCir.GetWallAngleY();
+      setReflectAngle();
+      mBoundSoundset();
     }
-    else {
-LAB_80ac2bdc:
-      fVar3 = d_s_play::g_regHIO.mChildReg[8].mFloatReg[10] + 0.2;
-    }
-    SComponentD::cLib_addCalc0(0x3fb99999a0000000,(double)fVar3,this + 0x530);
-    if (*(short *)(this + 0x73c) == 0) {
-      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
-                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
-      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) - (short)iVar5;
-    }
-    else {
-      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
-                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
-      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) + (short)iVar5;
-    }
-    local_20 = (longlong)iVar5;
-    iVar5 = ::dBgS_Acch::ChkWallHit((dBgS_Acch *)(this + 0x7a4));
-    if (iVar5 != 0) {
-      uVar6 = dBgS_AcchCir::GetWallAngleY((dBgS_AcchCir *)(this + 0x764));
-      *(undefined2 *)(this + 0x740) = uVar6;
-      setReflectAngle(this);
-      mBoundSoundset(this);
-    }
-    if (*(float *)(this + 0x530) < 0.3) {
-      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
-      cCcD_Stts::SetWeight((cCcD_Stts *)(this + 0x994),'d');
-      setActionMode(this,0,0);
+
+    if (speedF < 0.3f) {
+      current.angle.y = shape_angle.y;
+      mStts.SetWeight(100);
+      setActionMode(ACT_WAIT,0);
     }
     break;
-  case 2:
-    goto switchD_80ac2aa4_caseD_2;
   case 3:
-    uVar6 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-    *(undefined2 *)(this + 0x73e) = uVar6;
-    if (*(short *)(this + 0x4e2) < 0) {
-      *(undefined2 *)(this + 0x73c) = 0;
+    mAngleFromPlayer = fopAcM_searchPlayerAngleY(this);
+    if (current.angle.y < 0) {
+      field_0x704 = 0;
     }
     else {
-      *(undefined2 *)(this + 0x73c) = 1;
+      field_0x704 = 1;
     }
-    uVar4 = DAT_80ac4b4c;
-    *(undefined4 *)(this + 0x530) = DAT_80ac4b4c;
-    *(undefined4 *)(this + 0x734) = uVar4;
-    *(undefined4 *)(this + 0x730) = 4;
+    tmp = l_HIO.field_0x24;
+    speedF = tmp;
+    field_0x6fc = tmp;
+    mActionMode2 = 4;
   case 4:
-    if (*(short *)(this + 0x73c) == 0) {
-      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
-                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
-      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) - (short)iVar5;
+    if (field_0x704 == 0) {
+      s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
+      shape_angle.y -= value;
     }
     else {
-      iVar5 = (int)(4096.0 - (4096.0 / *(float *)(this + 0x734)) *
-                             (*(float *)(this + 0x734) - *(float *)(this + 0x530)));
-      *(short *)(this + 0x4ea) = *(short *)(this + 0x4ea) + (short)iVar5;
+      s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
+      shape_angle.y += value;
     }
-    local_20 = (longlong)iVar5;
-    SComponentD::cLib_addCalcAngleS2(this + 0x4e2,(int)*(short *)(this + 0x73e),1,0x200);
-    SComponentD::cLib_addCalc0(0x3fb99999a0000000,0x3fb99999a0000000,this + 0x530);
-    iVar5 = ::dBgS_Acch::ChkWallHit((dBgS_Acch *)(this + 0x7a4));
-    if (iVar5 != 0) {
-      uVar6 = dBgS_AcchCir::GetWallAngleY((dBgS_AcchCir *)(this + 0x764));
-      *(undefined2 *)(this + 0x740) = uVar6;
-      setReflectAngle(this);
-      mBoundSoundset(this);
+    
+    cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,1,512);
+    cLib_addCalc0(&speedF,0.1f,0.1f);
+    
+    if (mObjAcch.ChkWallHit()) {
+      mLastWallHitAngle = mAcchCir.GetWallAngleY();
+      setReflectAngle();
+      mBoundSoundset();
     }
-    if (*(float *)(this + 0x530) < 0.2) {
-      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
-      setActionMode(this,2,0);
+
+    if (speedF < 0.2f) {
+      current.angle.y = shape_angle.y;
+      setActionMode(ACT_ATTACK,0);
     }
     break;
   case 6:
-    *(undefined2 *)(this + 0x56a) = 0;
-    if ((this[0x748] == (daE_FZ_c)0x1) ||
-       (iVar5 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4)), iVar5 != 0)) {
-      *(undefined4 *)(this + 0x730) = 0;
+    mHealth = 0;
+    if (field_0x710 == 1 || mObjAcch.ChkGroundHit()) {
+      mActionMode2 = 0;
     }
   }
 }
@@ -1480,7 +1455,7 @@ void daE_FZ_c::action() {
     }
     
     mCreature.setLinkSearch(linkSearch);
-    fopAcM_posMoveF(this,field_0x944.GetCCMoveP());
+    fopAcM_posMoveF(this,mStts.GetCCMoveP());
     field_0x714 == 3 ? mAcchCir.SetWall(35.0f,70.0f) : mAcchCir.SetWall(35.0f,60.0f);
     mObjAcch.CrrPos(dComIfG_Bgsp());
 
