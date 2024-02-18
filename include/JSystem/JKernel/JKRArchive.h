@@ -117,9 +117,9 @@ public:
 protected:
     JKRArchive();
     JKRArchive(s32, EMountMode);
-    virtual ~JKRArchive();
 
 public:
+    virtual ~JKRArchive();
     bool getDirEntry(SDirEntry*, u32) const;
     void* getIdxResource(u32);
     void* getResource(u16);
