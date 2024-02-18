@@ -569,6 +569,8 @@ def post_process(filename):
         f.writelines(lines)
 
 def search_file(target,pattern):
+    file_matches = []
+
     # if target is a file, search the file
     if os.path.isfile(target):
         with open(target, 'r') as f:
@@ -578,11 +580,12 @@ def search_file(target,pattern):
                 for match in matches:
                     # Extract the desired part of the match and append it to the file_matches list
                     variable_name = match[2]
-                    return (target, variable_name)
+                    file_matches.append((target, variable_name))
+                    return file_matches
+            print("No matches found in the file.")
+            return None
     # if target is a directory, search all files in the directory
     elif os.path.isdir(target):
-        file_matches = []
-
         for root, dirs, files in os.walk(target):
             for file in files:
                 if file.endswith('.cpp'):
@@ -596,9 +599,10 @@ def search_file(target,pattern):
                                 variable_name = match[2]
                                 file_matches.append((filepath, variable_name))
         return file_matches
+    print("Target is neither a file nor a directory.")
     return None
 
-def search_files(shape, size, target, variable_name=None):
+def search_files(shape, target, variable_name=None):
     """
     Returns a pairing of filename and shape data lines that have not been setup.
     If variable_name is not set, the function will attempt to find and setup all variables with the specified shape.
@@ -608,7 +612,7 @@ def search_files(shape, size, target, variable_name=None):
     else:
         search_shape = shape
 
-    pattern = re.compile(f'(SECTION_DATA|SECTION_RODATA).*static\s+u8\s+(const\s+)?(\w*{search_shape}\w*)\[{size}\]', re.I)
+    pattern = re.compile(f'(SECTION_DATA|SECTION_RODATA).*static\\s+u8\\s+(const\\s+)?(\\w*{search_shape}\\w*)\\[\\d+\\]', re.I)
     return search_file(target,pattern)
 
 def run_make_command(wibo_path=None, thread_num=1):
@@ -633,12 +637,16 @@ def process_file(shape, variable_name, target, wibo_path, thread_num):
 
     match shape.lower():
         case "cylinder":
-            filenames = search_files("cyl", 68, target, variable_name)
+            filenames = search_files("cyl", target, variable_name)
+
+            if filenames is None:
+                sys.exit(0)
 
             for file in filenames:
                 cylinder_data = None
                 f_name = file[0]
                 var_name = file[1]
+                print(f_name)
                 data = fetch_shape_data(f_name, var_name)
                 if data is not None:
                     cylinder_data = unpack_cylinder_data(data["data"])
@@ -648,54 +656,63 @@ def process_file(shape, variable_name, target, wibo_path, thread_num):
                     write_cylinder_shape_data(f_name, cylinder_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
                     post_process(f_name)
                     run_make_command(wibo_path, thread_num)
-        # case "sphere":
-        #     filenames = search_files("sph", 64)
+        case "sphere":
+            filenames = search_files("sph", target, variable_name)
 
-        #     for filename in filenames:
-        #         sphere_data = None
-        #         f_name = filename[0]
-        #         variable_name = filename[1]
-        #         data = fetch_shape_data(f_name, variable_name)
-        #         if data is not None:
-        #             sphere_data = unpack_sphere_data(data["data"])
+            if filenames is None:
+                sys.exit(0)
 
-        #         if sphere_data is not None:
-        #             print("Updating", f_name)
-        #             write_sphere_shape_data(f_name, sphere_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
-        #             post_process(f_name)
-        #             run_make_command()
-        # case "triangle":
-        #     filenames = search_files("tri", 84)
+            for filename in filenames:
+                sphere_data = None
+                f_name = filename[0]
+                variable_name = filename[1]
+                data = fetch_shape_data(f_name, variable_name)
+                if data is not None:
+                    sphere_data = unpack_sphere_data(data["data"])
 
-        #     for filename in filenames:
-        #         triangle_data = None
-        #         f_name = filename[0]
-        #         variable_name = filename[1]
-        #         data = fetch_shape_data(f_name, variable_name)
-        #         if data is not None:
-        #             triangle_data = unpack_triangle_data(data["data"])
+                if sphere_data is not None:
+                    print("Updating", f_name)
+                    write_sphere_shape_data(f_name, sphere_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
+                    post_process(f_name)
+                    run_make_command()
+        case "triangle":
+            filenames = search_files("tri", target, variable_name)
 
-        #         if triangle_data is not None:
-        #             print("Updating", f_name)
-        #             write_triangle_shape_data(f_name, triangle_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
-        #             post_process(f_name)
-        #             run_make_command()
-        # case "capsule":
-        #     filenames = search_files("cps", 76)
+            if filenames is None:
+                sys.exit(0)
 
-        #     for filename in filenames:
-        #         capsule_data = None
-        #         f_name = filename[0]
-        #         variable_name = filename[1]
-        #         data = fetch_shape_data(f_name, variable_name)
-        #         if data is not None:
-        #             capsule_data = unpack_capsule_data(data["data"])
+            for filename in filenames:
+                triangle_data = None
+                f_name = filename[0]
+                variable_name = filename[1]
+                data = fetch_shape_data(f_name, variable_name)
+                if data is not None:
+                    triangle_data = unpack_triangle_data(data["data"])
 
-        #         if capsule_data is not None:
-        #             print("Updating", f_name)
-        #             write_capsule_shape_data(f_name, capsule_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
-        #             post_process(f_name)
-        #             run_make_command()
+                if triangle_data is not None:
+                    print("Updating", f_name)
+                    write_triangle_shape_data(f_name, triangle_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
+                    post_process(f_name)
+                    run_make_command()
+        case "capsule":
+            filenames = search_files("cps", target, variable_name)
+
+            if filenames is None:
+                sys.exit(0)
+
+            for filename in filenames:
+                capsule_data = None
+                f_name = filename[0]
+                variable_name = filename[1]
+                data = fetch_shape_data(f_name, variable_name)
+                if data is not None:
+                    capsule_data = unpack_capsule_data(data["data"])
+
+                if capsule_data is not None:
+                    print("Updating", f_name)
+                    write_capsule_shape_data(f_name, capsule_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
+                    post_process(f_name)
+                    run_make_command()
         case _:
             raise ValueError(f"Unknown shape: {shape}")
         

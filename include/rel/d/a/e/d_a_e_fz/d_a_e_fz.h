@@ -72,8 +72,8 @@ public:
     /* 806C08C4 */ s32 execute();
     /* 806C0B20 */ void demoDelete();
     /* 806C0B94 */ s32 _delete();
-    /* 806C0C28 */ bool CreateHeap();
-    /* 806C0CD0 */ void create();
+    /* 806C0C28 */ s32 CreateHeap();
+    /* 806C0CD0 */ s32 create();
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
@@ -110,8 +110,8 @@ private:
     /* 0x76C */ dBgS_ObjAcch mObjAcch;
     /* 0x944 */ dCcD_Stts mStts;
     /* 0x980 */ dCcD_Sph mSph1;
-    /* 0xAC4 */ dCcD_Sph mSph2;
-    /* 0xBFC */ dCcU_AtInfo mAtInfo;
+    /* 0xAB8 */ dCcD_Sph mSph2;
+    /* 0xBF0 */ dCcU_AtInfo mAtInfo;
     /* 0xC14 */ u8 field_0xc14;
     /* 0xC15 */ u8 field_0xc15;
     /* 0xC16 */ u8 field_0xc16;

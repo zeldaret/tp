@@ -363,19 +363,29 @@ SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
 
 /* 806C1A38-806C1A78 000038 0040+00 1/1 0/0 0/0 .data            cc_fz_src__22@unnamed@d_a_e_fz_cpp@
  */
-SECTION_DATA static u8 data_806C1A38[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xD0, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x43, 0x00, 0x00, 0x00, 0x65, 0x09, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_fz_src = {
+    {
+        {0x0, {{0x100, 0x1, 0x0}, {0xd0fbfdff, 0x43}, 0x65}}, // mObj
+        {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 806C1A78-806C1AB8 000078 0040+00 1/1 0/0 0/0 .data cc_fz_at_src__22@unnamed@d_a_e_fz_cpp@ */
-SECTION_DATA static u8 data_806C1A78[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_fz_at_src = {
+    {
+        {0x0, {{0x100, 0x1, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
+        {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 806C1AB8-806C1AD4 -00001 001C+00 1/1 0/0 0/0 .data            @4324 */
@@ -1720,20 +1730,20 @@ static void daE_FZ_Delete(daE_FZ_c* i_this) {
 }
 
 /* 806C0C28-806C0CB0 0023C8 0088+00 1/1 0/0 0/0 .text            CreateHeap__8daE_FZ_cFv */
-bool daE_FZ_c::CreateHeap() {
+s32 daE_FZ_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_FZ", 3);
     mpModel = mDoExt_J3DModel__create(model_data, 0, 0x11020203);
 
     if (mpModel == 0) {
-        return false;
+        return 0;
     }
 
-    return mInvisibleModel.create(mpModel, 1) != 0;
+    return mInvisibleModel.create(mpModel, 1) != 0 ? 1 : 0;
 }
 
 /* 806C0CB0-806C0CD0 002450 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    static_cast<daE_FZ_c*>(i_this)->CreateHeap();
+  return static_cast<daE_FZ_c*>(i_this)->CreateHeap();
 }
 
 /* ############################################################################################## */
@@ -1787,109 +1797,115 @@ SECTION_DEAD static char const* const stringBase_806C19F9 = "E_fz";
 
 /* 806C0CD0-806C1208 002470 0538+00 1/1 0/0 0/0 .text            create__8daE_FZ_cFv */
 #ifdef NONMATCHING
-void daE_FZ_c::create() {
+// float literals
+s32 daE_FZ_c::create() {
   fopAcM_SetupActor(this,daE_FZ_c);
 
-  s32 phase = dComIfG_resLoad(&mPhaseReq,"E_fz");
+  s32 phase = dComIfG_resLoad(&mPhaseReq,"E_FZ");
   if (phase == cPhs_COMPLEATE_e) {
-    if (fopAcM_entrySolidHeap(this,useHeapInit,6480)) {
-      if (data_806C1BA0[0] == 0) {
-        data_806C1BA0[0] = 1;
-        field_0xc21 = 1;
-        l_HIO.field_0x04 = -1;
-      }
-
-      mAttentionInfo.mFlags = 4;
-      mAttentionInfo.field_0x0[2] = 69;
-      
-      fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
-      fopAcM_SetMin(this,-200.0f,-200.0f,-200.0f);
-      fopAcM_SetMax(this,200.0f,200.0f,200.0f);
-
-      mStts.Init(100,0,this);
-      mHealth = 80;
-      field_0x560 = 80;
-
-      field_0x714 = fopAcM_GetParam(this);
-      field_0x715 = fopAcM_GetParam(this) >> 8;
-      
-      if (field_0x714 == -1)
-          field_0x714 = 0;
-      
-      if (field_0x714 == 1 || field_0x714 == 3) {
-        speed.y = cM_rndFX(10.0f) + 30.0;
-        f32 rng = cM_rndFX(1.0f);
-        speedF = rng + 4.0;
-        field_0x6fc = rng + 4.0;
-        if (field_0x714 == 1) {
-          fopAcM_OnStatus(this,fopAcM_STATUS_UNK_004000);
-        }
-      }
-
-      mObjAcch.Set(&fopAcM_GetPosition_p(),&fopAcM_GetOldPosition_p(), this, 1, mAcchCir, &fopAcM_GetSpeed_p(), 0, 0);
-      
-      if (field_0x714 == 3) {
-        mAcchCir.SetWall(35.0f,70.0f);
-      }
-      else {
-        mAcchCir.SetWall(20.0f,60.0f);
-      }
-
-      mObjAcch.CrrPos(dComIfG_Bgsp());
-
-      mSph1.Set(cc_fz_src);
-      cCcD_Obj::SetStts((cCcD_Obj *)(this + 0x9d0),(cCcD_Stts *)(this + 0x994));
-      dCcD_Sph::Set((dCcD_Sph *)(this + 0xb08),(dCcD_SrcSph *)&@unnamed@d_a_e_fz_cpp@::cc_fz_at_src)
-      ;
-      cCcD_Obj::SetStts((cCcD_Obj *)(this + 0xb08),(cCcD_Stts *)(this + 0x994));
-      Z2CreatureEnemy::init((Z2CreatureEnemy *)(this + 0x5c8),(EVP_PKEY_CTX *)(this + 0x4d4));
-      Z2CreatureEnemy::setEnemyName((Z2CreatureEnemy *)(this + 0x5c8),&d_a_e_fz::@118566);
-      *(daE_FZ_c **)(this + 0xc48) = this + 0x5c8;
-      this[0xc5e] = (daE_FZ_c)0x1;
-      *(undefined4 *)(this + 0x534) = 0xc0a00000;
-      *(undefined2 *)(this + 0x4ec) = 0;
-      *(undefined2 *)(this + 0x4e8) = 0;
-      dVar8 = (double)SComponentD::cM_rndFX(0x40c3880000000000);
-      *(short *)(this + 0x4ea) = (short)(int)dVar8;
-      *(short *)(this + 0x4e2) = (short)(int)dVar8;
-      ::cXyz::set((cXyz *)(this + 0x6a8),(Vec *)(this + 0x4d4));
-      for (iVar2 = 0; iVar2 < 4; iVar2 = iVar2 + 1) {
-        ::cXyz::set((cXyz *)(this + iVar2 * 0xc + 0x6b4),(Vec *)(this + 0x4d4));
-      }
-      if ((this[0x74c] == (daE_FZ_c)0x2) && (iVar2 = d_item::checkItemGet(0x42,1), iVar2 == 0)) {
-        this[0x54a] = (daE_FZ_c)0x0;
-        d_a_e_fz::fopAcM_SetGroup(this,0);
-        f_op_actor::fopAcM_OffStatus(this,0);
-        *(uint *)(this + 0x564) = *(uint *)(this + 0x564) & 0xfffffffb;
-      }
-      if (this[0x74c] == (daE_FZ_c)0x3) {
-        *(undefined4 *)(this + 0x738) = 0;
-        *(uint *)(this + 0x564) = *(uint *)(this + 0x564) & 0xfffffffb;
-        ::cCcD_ObjHitInf::SetAtType((cCcD_ObjHitInf *)(this + 0xb08),0x400);
-        ::dCcD_GObjInf::SetAtSpl((dCcD_GObjInf *)(this + 0xb08),1);
-        setActionMode(this,4,0);
-      }
-      else {
-        ::dCcD_GObjInf::SetAtMtrl((dCcD_GObjInf *)(this + 0xb08),'\x02');
-        *(undefined4 *)(this + 0x738) = 0x3f800000;
-        dVar8 = (double)SComponentD::cM_rnd();
-        if (0.5 <= dVar8) {
-          setActionMode(this,1,0);
-        }
-        else {
-          setActionMode(this,0,0);
-        }
-      }
-      mtx_set(this);
+    if (!fopAcM_entrySolidHeap(this,useHeapInit,6480)) {
+      return cPhs_ERROR_e;
     }
+    if (data_806C1BA0[0] == 0) {
+      data_806C1BA0[0] = 1;
+      field_0xc21 = 1;
+      l_HIO.field_0x04 = -1;
+    }
+
+    mAttentionInfo.mFlags = 4;
+    mAttentionInfo.field_0x0[2] = 69;
+    
+    fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
+    fopAcM_SetMin(this,-200.0f,-200.0f,-200.0f);
+    fopAcM_SetMax(this,200.0f,200.0f,200.0f);
+
+    mStts.Init(100,0,this);
+    mHealth = 80;
+    field_0x560 = 80;
+
+    field_0x714 = fopAcM_GetParam(this);
+    field_0x715 = fopAcM_GetParam(this) >> 8;
+    
+    if (field_0x714 == 255)
+        field_0x714 = 0;
+    
+    if (field_0x714 == 1 || field_0x714 == 3) {
+      speed.y = cM_rndFX(10.0f) + 30.0f;
+      f32 rng = cM_rndFX(1.0f);
+      speedF = rng + 4.0f;
+      field_0x6fc = rng + 4.0f;
+      if (field_0x714 == 1) {
+        fopAcM_OnStatus(this,fopAcM_STATUS_UNK_004000);
+      }
+    }
+
+    mObjAcch.Set(&fopAcM_GetPosition_p(this),&fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), 0, 0);
+    
+    if (field_0x714 == 3) {
+      mAcchCir.SetWall(35.0f,70.0f);
+    }
+    else {
+      mAcchCir.SetWall(20.0f,60.0f);
+    }
+
+    mObjAcch.CrrPos(dComIfG_Bgsp());
+
+    mSph1.Set(cc_fz_src);
+    mSph1.SetStts(&mStts);
+
+    mSph2.Set(cc_fz_at_src);
+    mSph2.SetStts(&mStts);
+
+    mCreature.init(&current.pos,&mEyePos,3,1);
+    mCreature.setEnemyName("E_fz");
+
+    mAtInfo.mpSound = &mCreature;
+    mAtInfo.mPowerType = 1;
+
+    mGravity = -5.0f;
+
+    shape_angle.z = 0;
+    shape_angle.x = 0;
+    
+    s16 random = cM_rndFX(10000.0f);
+    shape_angle.y = random;
+    current.angle.y = random;
+
+    field_0x670.set(current.pos);
+    
+    for (int i = 0; i < 4; i++) {
+      field_0x67c[i].set(current.pos);
+    }
+
+    if (field_0x714 == 2 && !checkItemGet(IRONBALL,1)) {
+      mAttentionInfo.field_0x0[2] = 0;
+      fopAcM_SetGroup(this,0);
+      fopAcM_OffStatus(this,0);
+      mAttentionInfo.mFlags &= 0xfffffffb;
+    }
+
+    if (field_0x714 == 3) {
+      mRadiusBase = 0.0f;
+      mAttentionInfo.mFlags &= 0xfffffffb;
+      mSph2.SetAtType(AT_TYPE_CSTATUE_SWING);
+      mSph2.SetAtSpl(dCcG_At_Spl_UNK_1);
+      setActionMode(ACT_ROLLMOVE,0);
+    } else {
+      mSph2.SetAtMtrl(2);
+      mRadiusBase = 1.0f;
+      cM_rnd() < 0.5f ? setActionMode(ACT_WAIT,0) : setActionMode(ACT_MOVE,0);
+    }
+
+    mtx_set();
   }
-  return iVar1;
+
+  return phase;
 }
 #else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daE_FZ_c::create() {
+asm s32 daE_FZ_c::create() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/create__8daE_FZ_cFv.s"
 }
