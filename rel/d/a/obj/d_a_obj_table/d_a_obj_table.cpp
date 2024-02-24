@@ -36,51 +36,17 @@ private:
 // Forward References:
 //
 
-extern "C" static void daObjTable_Draw__FP12daObjTable_c();
-extern "C" static void daObjTable_Execute__FP12daObjTable_c();
-extern "C" static bool daObjTable_IsDelete__FP12daObjTable_c();
-extern "C" static void daObjTable_Delete__FP12daObjTable_c();
-extern "C" static void daObjTable_Create__FP10fopAc_ac_c();
-extern "C" void CreateHeap__12daObjTable_cFv();
-extern "C" void Create__12daObjTable_cFv();
-extern "C" void Execute__12daObjTable_cFPPA3_A4_f();
-extern "C" void Draw__12daObjTable_cFv();
-extern "C" void Delete__12daObjTable_cFv();
 extern "C" extern char const* const d_a_obj_table__stringBase0;
 
 //
 // External References:
 //
 
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_isStageSwitch__Fii();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
 extern "C" void reset__14dEvt_control_cFPv();
 extern "C" void setObjectArchive__16dEvent_manager_cFPc();
 extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
 extern "C" void endCheck__16dEvent_manager_cFs();
 extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_darkworld_check__Fv();
 extern "C" void endFlowGroup__12dMsgObject_cFv();
 extern "C" void __ct__10dMsgFlow_cFv();
 extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
@@ -95,6 +61,9 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 //
 // Declarations:
 //
+
+/* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+static char* l_arcName = "Table";
 
 /* 80D06438-80D06464 000078 002C+00 1/0 0/0 0/0 .text            daObjTable_Draw__FP12daObjTable_c
  */
@@ -118,45 +87,6 @@ static int daObjTable_Delete(daObjTable_c* i_this) {
     i_this->MoveBGDelete();
     return 1;
 }
-
-/* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
-static char* l_arcName = "Table";
-
-/* 80D06C20-80D06C40 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTable_Method */
-SECTION_DATA static void* l_daObjTable_Method[8] = {
-    (void*)daObjTable_Create__FP10fopAc_ac_c,
-    (void*)daObjTable_Delete__FP12daObjTable_c,
-    (void*)daObjTable_Execute__FP12daObjTable_c,
-    (void*)daObjTable_IsDelete__FP12daObjTable_c,
-    (void*)daObjTable_Draw__FP12daObjTable_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80D06C40-80D06C70 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Table */
-SECTION_DATA extern void* g_profile_Obj_Table[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00B80000, (void*)&g_fpcLf_Method,
-    (void*)0x00000600, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02AB0000, (void*)&l_daObjTable_Method,
-    (void*)0x00040000, (void*)0x000E0000,
-};
-
-/* 80D06C70-80D06C98 000054 0028+00 1/1 0/0 0/0 .data            __vt__12daObjTable_c */
-SECTION_DATA extern void* __vt__12daObjTable_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__12daObjTable_cFv,
-    (void*)Create__12daObjTable_cFv,
-    (void*)Execute__12daObjTable_cFPPA3_A4_f,
-    (void*)Draw__12daObjTable_cFv,
-    (void*)Delete__12daObjTable_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
 
 /* 80D064B0-80D06560 0000F0 00B0+00 1/0 0/0 0/0 .text            daObjTable_Create__FP10fopAc_ac_c
  */
@@ -248,13 +178,50 @@ int daObjTable_c::Create() {
 
 /* ############################################################################################## */
 /* 80D06C0C-80D06C0C 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80D06C12 = "TABLE_MAP";
 #pragma pop
+#else
+static char* stringBase_80D06C12 = "TABLE_MAP";
+#endif
 
 /* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
  */
+#if NONMATCHING
+int daObjTable_c::Execute(Mtx** i_mtx) {
+    mEvtInfo.i_onCondition(1);
+
+    dComIfG_inf_c& gameInfo = g_dComIfG_gameInfo;
+
+    if (gameInfo.getPlay().getEvent().mEventStatus != 0) {
+        if (mEvtInfo.checkCommandTalk()) {
+            if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
+                gameInfo.getPlay().getEvent().reset(this);
+                mEvtInfo.setArchiveName(stringBase_80D06C12);
+                i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+                field_0x5fc = i_dComIfGp_getEventManager().getEventIdx(this, stringBase_80D06C12, -1);
+
+                fopAcM_orderChangeEventId(this, field_0x5fc, 1, -1);
+            }
+        } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 && 
+                    mEvtInfo.mCommand == 2 && 
+                    field_0x5fc != -1 && 
+                    i_dComIfGp_getEventManager().endCheck(field_0x5fc)) {
+            field_0x5fc = -1;                              
+            g_meter2_info.setPauseStatus(7);
+        }
+    } else {
+        mMsgFlow.init(this, (s16)fopAcM_GetParamBit(this, 0, 16), 0, NULL);
+        dMsgObject_endFlowGroup();
+    }
+
+    *i_mtx = &mBgMtx;
+    return 1;
+}
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,6 +230,7 @@ asm int daObjTable_c::Execute(Mtx** i_mtx) {
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/Execute__12daObjTable_cFPPA3_A4_f.s"
 }
 #pragma pop
+#endif
 
 /* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 int daObjTable_c::Draw() {
@@ -284,3 +252,30 @@ int daObjTable_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, l_arcName);
     return 1;
 }
+
+/* 80D06C20-80D06C40 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTable_Method */
+static actor_method_class l_daObjTable_Method = {
+    (process_method_func)daObjTable_Create,
+    (process_method_func)daObjTable_Delete,
+    (process_method_func)daObjTable_Execute,
+    (process_method_func)daObjTable_IsDelete,
+    (process_method_func)daObjTable_Draw,
+};
+
+/* 80D06C40-80D06C70 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Table */
+extern actor_process_profile_definition g_profile_Obj_Table = {
+    fpcLy_CURRENT_e,
+    3,
+    fpcPi_CURRENT_e,
+    PROC_Obj_Table,
+    &g_fpcLf_Method.mBase,
+    sizeof(daObjTable_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x02AB,
+    &l_daObjTable_Method,
+    0x40000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_CUSTOM_e,
+};
