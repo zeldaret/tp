@@ -65,35 +65,57 @@ int daObjTable_c::CreateHeap() {
 int daObjTable_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     if (dKy_darkworld_check() || dComIfGs_isStageSwitch(0x18, 0x4b)) {
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(0)->getShape()->onFlag(J3DShpFlag_Visible);
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(1)->getShape()->onFlag(J3DShpFlag_Visible);
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(2)->getShape()->onFlag(J3DShpFlag_Visible);
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(0)->getShape()->onFlag(
+            J3DShpFlag_Visible);
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(1)->getShape()->onFlag(
+            J3DShpFlag_Visible);
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(2)->getShape()->onFlag(
+            J3DShpFlag_Visible);
     } else {
         if (dComIfG_play_c::getLayerNo(0) == 4) {
             if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
-                mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(0)->getShape()->onFlag(J3DShpFlag_Visible);
+                mpModel->getModelData()
+                    ->getMaterialTable()
+                    .getMaterialNodePointer(0)
+                    ->getShape()
+                    ->onFlag(J3DShpFlag_Visible);
             }
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) && 
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) && 
-                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267])) {
-                mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(1)->getShape()->onFlag(J3DShpFlag_Visible);
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
+                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
+                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
+            {
+                mpModel->getModelData()
+                    ->getMaterialTable()
+                    .getMaterialNodePointer(1)
+                    ->getShape()
+                    ->onFlag(J3DShpFlag_Visible);
             }
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) && 
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) && 
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) && 
-                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])) {
-                mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(2)->getShape()->onFlag(J3DShpFlag_Visible);
+            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
+                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
+                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
+                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
+            {
+                mpModel->getModelData()
+                    ->getMaterialTable()
+                    .getMaterialNodePointer(2)
+                    ->getShape()
+                    ->onFlag(J3DShpFlag_Visible);
             }
         } else {
-            mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(1)->getShape()->onFlag(J3DShpFlag_Visible);
+            mpModel->getModelData()
+                ->getMaterialTable()
+                .getMaterialNodePointer(1)
+                ->getShape()
+                ->onFlag(J3DShpFlag_Visible);
         }
     }
 
     if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[103]) &&
-        !(!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) && 
-            i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264]))) {
-
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(4)->getShape()->onFlag(J3DShpFlag_Visible);
+        !(!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
+          i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
+    {
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(4)->getShape()->onFlag(
+            J3DShpFlag_Visible);
         mAttentionInfo.mFlags = 0;
     } else {
         mAttentionInfo.mFlags = 0x2000000a;
@@ -141,11 +163,11 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
 
                 fopAcM_orderChangeEventId(this, mEventID, 1, -1);
             }
-        } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 && 
-                    mEvtInfo.mCommand == 2 && 
-                    mEventID != -1 && 
-                    i_dComIfGp_getEventManager().endCheck(mEventID)) {
-            mEventID = -1;                              
+        } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
+                   mEvtInfo.mCommand == 2 && mEventID != -1 &&
+                   i_dComIfGp_getEventManager().endCheck(mEventID))
+        {
+            mEventID = -1;
             g_meter2_info.setPauseStatus(7);
         }
     } else {
@@ -167,7 +189,8 @@ int daObjTable_c::Draw() {
     dComIfGd_setList();
 
     cXyz v(current.pos.x, current.pos.y + 100.0f, current.pos.z);
-    mShadowKey = dComIfGd_setRealShadow(mShadowKey, 1, mpModel, &v, 500.0f, current.pos.y, &mTevStr);
+    mShadowKey =
+        dComIfGd_setRealShadow(mShadowKey, 1, mpModel, &v, 500.0f, current.pos.y, &mTevStr);
 
     return 1;
 }
@@ -180,10 +203,8 @@ int daObjTable_c::Delete() {
 
 /* 80D06C20-80D06C40 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTable_Method */
 static actor_method_class l_daObjTable_Method = {
-    (process_method_func)daObjTable_Create,
-    (process_method_func)daObjTable_Delete,
-    (process_method_func)daObjTable_Execute,
-    (process_method_func)daObjTable_IsDelete,
+    (process_method_func)daObjTable_Create,  (process_method_func)daObjTable_Delete,
+    (process_method_func)daObjTable_Execute, (process_method_func)daObjTable_IsDelete,
     (process_method_func)daObjTable_Draw,
 };
 
