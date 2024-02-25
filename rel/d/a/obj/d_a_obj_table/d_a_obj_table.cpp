@@ -144,7 +144,7 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
                 fopAcM_orderChangeEventId(this, mEventID, 1, -1);
             }
         } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
-                   mEvtInfo.mCommand == 2 && mEventID != -1 &&
+                   mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
                    i_dComIfGp_getEventManager().endCheck(mEventID))
         {
             mEventID = -1;
