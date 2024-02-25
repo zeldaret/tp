@@ -13,10 +13,10 @@ public:
     /* 80D06AD8 */ int Draw();
     /* 80D06BC8 */ int Delete();
 
-    request_of_phase_process_class& getPhase() { return mPhaseReq; }
+    inline void initBaseMtx();
+    inline void setBaseMtx();
 
-private:
-    inline s16 getFlowID() { return (s16)fopAcM_GetParamBit(this, 0, 16); }
+    s16 getMessageNo() { return (s16)fopAcM_GetParamBit(this, 0, 16); }
 
     /* 0x5A0 */ J3DModel* mpModel;
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;

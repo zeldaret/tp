@@ -39,15 +39,27 @@ static int daObjTable_Delete(daObjTable_c* i_this) {
 
 /* 80D064B0-80D06560 0000F0 00B0+00 1/0 0/0 0/0 .text            daObjTable_Create__FP10fopAc_ac_c
  */
-static void daObjTable_Create(fopAc_ac_c* i_this) {
-    daObjTable_c* pTable = static_cast<daObjTable_c*>(i_this);
-    fopAcM_SetupActor(pTable, daObjTable_c);
+static int daObjTable_Create(fopAc_ac_c* i_this) {
+    daObjTable_c* a_this = static_cast<daObjTable_c*>(i_this);
+    fopAcM_SetupActor(a_this, daObjTable_c);
 
-    if (dComIfG_resLoad(&pTable->getPhase(), l_arcName) == cPhs_COMPLEATE_e) {
-        if (pTable->MoveBGCreate(l_arcName, 8, NULL, 0x4000, NULL) == cPhs_ERROR_e) {
+    if (dComIfG_resLoad(&a_this->mPhaseReq, l_arcName) == cPhs_COMPLEATE_e) {
+        if (a_this->MoveBGCreate(l_arcName, 8, NULL, 0x4000, NULL) != cPhs_ERROR_e) {
             return;
         }
     }
+}
+
+void daObjTable_c::initBaseMtx() {
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    setBaseMtx();
+}
+
+void daObjTable_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D06560-80D065D0 0001A0 0070+00 1/0 0/0 0/0 .text            CreateHeap__12daObjTable_cFv */
@@ -65,29 +77,29 @@ int daObjTable_c::CreateHeap() {
 int daObjTable_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     if (dKy_darkworld_check() || dComIfGs_isStageSwitch(0x18, 0x4b)) {
-        mpModel->getMaterialNode(0)->getShape()->onFlag(J3DShpFlag_Visible);
-        mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
-        mpModel->getMaterialNode(2)->getShape()->onFlag(J3DShpFlag_Visible);
+        mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
+        mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
     } else {
         if (dComIfG_play_c::getLayerNo(0) == 4) {
             if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
-                mpModel->getMaterialNode(0)->getShape()->onFlag(J3DShpFlag_Visible);
+                mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
             }
             if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
                 !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
             {
-                mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
+                mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
             }
             if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
                 !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
             {
-                mpModel->getMaterialNode(2)->getShape()->onFlag(J3DShpFlag_Visible);
+                mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
             }
         } else {
-            mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
+            mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
         }
     }
 
@@ -95,7 +107,7 @@ int daObjTable_c::Create() {
         !(!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
           i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
     {
-        mpModel->getMaterialNode(4)->getShape()->onFlag(J3DShpFlag_Visible);
+        mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
         mAttentionInfo.mFlags = 0;
     } else {
         mAttentionInfo.mFlags = 0x2000000a;
@@ -105,23 +117,12 @@ int daObjTable_c::Create() {
         mAttentionInfo.field_0x0[3] = mAttentionInfo.field_0x0[0];
     }
 
-    f32 z = current.pos.z;
-    f32 y = current.pos.y + 100.0f;
-    mAttentionInfo.mPosition.x = current.pos.x;
-    mAttentionInfo.mPosition.y = y;
-    mAttentionInfo.mPosition.z = z;
+    mAttentionInfo.mPosition.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
 
-    mMsgFlow.init(this, getFlowID(), 0, NULL);
+    mMsgFlow.init(this, getMessageNo(), 0, NULL);
     dMsgObject_endFlowGroup();
 
-    mCullMtx = mpModel->mBaseTransformMtx;
-
-    mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
-
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
-    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
-
+    initBaseMtx();
     mEventID = -1;
 
     return cPhs_COMPLEATE_e;
@@ -133,10 +134,10 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
     mEvtInfo.i_onCondition(1);
 
     dComIfG_inf_c& gameInfo = g_dComIfG_gameInfo;
-    if (gameInfo.getPlay().getEvent().runCheck()) {
+    if (i_dComIfGp_event_runCheck()) {
         if (mEvtInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
-                gameInfo.getPlay().getEvent().reset(this);
+                gameInfo.getPlay().getEvent().reset(this);  // Fake match?
                 mEvtInfo.setArchiveName("Table");
                 i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
                 mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);
@@ -148,10 +149,10 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
                    i_dComIfGp_getEventManager().endCheck(mEventID))
         {
             mEventID = -1;
-            g_meter2_info.setPauseStatus(7);
+            dMeter2Info_setPauseStatus(7);
         }
     } else {
-        mMsgFlow.init(this, getFlowID(), 0, NULL);
+        mMsgFlow.init(this, getMessageNo(), 0, NULL);
         dMsgObject_endFlowGroup();
     }
 
