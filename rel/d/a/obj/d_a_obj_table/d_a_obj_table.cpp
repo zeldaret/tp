@@ -65,48 +65,29 @@ int daObjTable_c::CreateHeap() {
 int daObjTable_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     if (dKy_darkworld_check() || dComIfGs_isStageSwitch(0x18, 0x4b)) {
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(0)->getShape()->onFlag(
-            J3DShpFlag_Visible);
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(1)->getShape()->onFlag(
-            J3DShpFlag_Visible);
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(2)->getShape()->onFlag(
-            J3DShpFlag_Visible);
+        mpModel->getMaterialNode(0)->getShape()->onFlag(J3DShpFlag_Visible);
+        mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
+        mpModel->getMaterialNode(2)->getShape()->onFlag(J3DShpFlag_Visible);
     } else {
         if (dComIfG_play_c::getLayerNo(0) == 4) {
             if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
-                mpModel->getModelData()
-                    ->getMaterialTable()
-                    .getMaterialNodePointer(0)
-                    ->getShape()
-                    ->onFlag(J3DShpFlag_Visible);
+                mpModel->getMaterialNode(0)->getShape()->onFlag(J3DShpFlag_Visible);
             }
             if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
                 !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
             {
-                mpModel->getModelData()
-                    ->getMaterialTable()
-                    .getMaterialNodePointer(1)
-                    ->getShape()
-                    ->onFlag(J3DShpFlag_Visible);
+                mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
             }
             if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
                 !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
             {
-                mpModel->getModelData()
-                    ->getMaterialTable()
-                    .getMaterialNodePointer(2)
-                    ->getShape()
-                    ->onFlag(J3DShpFlag_Visible);
+                mpModel->getMaterialNode(2)->getShape()->onFlag(J3DShpFlag_Visible);
             }
         } else {
-            mpModel->getModelData()
-                ->getMaterialTable()
-                .getMaterialNodePointer(1)
-                ->getShape()
-                ->onFlag(J3DShpFlag_Visible);
+            mpModel->getMaterialNode(1)->getShape()->onFlag(J3DShpFlag_Visible);
         }
     }
 
@@ -114,8 +95,7 @@ int daObjTable_c::Create() {
         !(!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
           i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
     {
-        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(4)->getShape()->onFlag(
-            J3DShpFlag_Visible);
+        mpModel->getMaterialNode(4)->getShape()->onFlag(J3DShpFlag_Visible);
         mAttentionInfo.mFlags = 0;
     } else {
         mAttentionInfo.mFlags = 0x2000000a;
@@ -131,7 +111,7 @@ int daObjTable_c::Create() {
     mAttentionInfo.mPosition.y = y;
     mAttentionInfo.mPosition.z = z;
 
-    mMsgFlow.init(this, GetFlowID(), 0, NULL);
+    mMsgFlow.init(this, getFlowID(), 0, NULL);
     dMsgObject_endFlowGroup();
 
     mCullMtx = mpModel->mBaseTransformMtx;
@@ -171,7 +151,7 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
             g_meter2_info.setPauseStatus(7);
         }
     } else {
-        mMsgFlow.init(this, GetFlowID(), 0, NULL);
+        mMsgFlow.init(this, getFlowID(), 0, NULL);
         dMsgObject_endFlowGroup();
     }
 

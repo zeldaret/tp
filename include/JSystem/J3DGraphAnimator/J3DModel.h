@@ -95,6 +95,8 @@ public:
     MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
     void i_setAnmMtx(int p1, Mtx mtx) { mMtxBuffer->setAnmMtx(p1, mtx); }
 
+    inline J3DMaterial* getMaterialNode(u32 index) { return getModelData()->getMaterialTable().getMaterialNodePointer(index); }
+
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mDiffFlag;

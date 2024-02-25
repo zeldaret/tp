@@ -16,7 +16,7 @@ public:
     request_of_phase_process_class& getPhase() { return mPhaseReq; }
 
 private:
-    inline s16 GetFlowID() { return (s16)fopAcM_GetParamBit(this, 0, 16); }
+    inline s16 getFlowID() { return (s16)fopAcM_GetParamBit(this, 0, 16); }
 
     /* 0x5A0 */ J3DModel* mpModel;
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
