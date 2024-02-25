@@ -7,6 +7,7 @@
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "d/d_item.h"
 #include "SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 
 //
@@ -549,35 +550,6 @@ s32 daE_FZ_c::draw() {
     pos.set(current.pos.x,current.pos.y+10.0f,current.pos.z);
     field_0x70c = dComIfGd_setShadow(field_0x70c,1,model,&pos,0.0f,1.0f,2.0f,mObjAcch.GetGroundH(),*(mObjAcch.pm_out_poly_info),&mTevStr,0,0.0f,&dDlst_shadowControl_c::mSimpleTexObj);
     return 1;
-
-    #if DEBUG
-    if (d_s_play::g_regHIO.mChildReg[13].mShortReg[0] != 0) {
-        if (*(int *)(this + 0x72c) == 4) {
-            local_28 = -1;
-            local_27 = 0x82;
-            local_26 = 0x82;
-            local_25 = 0xfa;
-            d_drawlist::dDbVw_drawLineXlu(this + 0x4d4,this + 0x6a8,&local_28,1,0xc);
-        }
-        if (d_s_play::g_regHIO.mChildReg[13].mShortReg[1] != 0) {
-            for (iVar1 = 0; iVar1 < 4; iVar1 = iVar1 + 1) {
-            local_28 = (char)iVar1 * '\x19' + -0x7e;
-            local_27 = 0xff;
-            local_26 = (char)iVar1 * '\x19' + -0x7e;
-            local_25 = 0xfa;
-            d_drawlist::dDbVw_drawLineXlu
-                        (this + iVar1 * 0xc + 0x6b4,this + iVar1 * 0xc + 0x6e4,&local_28,1,0xc);
-            }
-        }
-        if (d_s_play::g_regHIO.mChildReg[13].mShortReg[2] != 0) {
-            local_28 = -1;
-            local_27 = 0x82;
-            local_26 = 0xff;
-            local_25 = 0xfa;
-            d_drawlist::dDbVw_drawLineXlu(this + 0x714,this + 0x720,&local_28,1,0xc);
-        }
-    }
-    #endif
 }
 #else
 #pragma push
@@ -997,60 +969,58 @@ COMPILER_STRIP_GATE(0x806C19B0, &lit_4205);
 #pragma pop
 
 /* 806BF58C-806BF8E8 000D2C 035C+00 1/1 0/0 0/0 .text            executeWait__8daE_FZ_cFv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
 void daE_FZ_c::executeWait() {
-  uVar7 = 0;
-  __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
-  __psq_st1(&local_8,(int)in_f31,0);
-  ::cXyz::cXyz(&cStack68);
-  ::cXyz::cXyz(&local_50);
-  dVar9 = (double)DAT_80ac4b3c;
-  iVar3 = *(int *)(this + 0x730);
-  if (iVar3 != 1) {
-    if ((0 < iVar3) || (iVar3 < 0)) goto LAB_80ac2704;
-    iVar3 = f_op_actor_mng::fopAcM_wayBgCheck(0x4069000000000000,0x4049000000000000,this);
-    if (iVar3 == 0) {
-      dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b38);
-      local_50.x = (float)((double)*(float *)(this + 0x4ac) + dVar8);
-      local_50.y = *(float *)(this + 0x4b0);
-      dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b38);
-      local_50.z = (float)((double)*(float *)(this + 0x4b4) + dVar8);
-      ::cXyz::operator_-(&cStack92,&local_50);
-      ::cXyz::operator_=(&cStack68,&cStack92);
-      ::cXyz::~cXyz(&cStack92);
-      sVar5 = ::cXyz::atan2sX_Z(&cStack68);
-      sVar5 = sVar5 - *(short *)(this + 0x4e2);
-      if (sVar5 < 0x3001) {
-        if (sVar5 < -0x3000) {
-          sVar5 = -0x3000;
+  // uVar7 = 0;
+  // __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
+  // __psq_st1(&local_8,(int)in_f31,0);
+  // ::cXyz::cXyz(&cStack68);
+  // ::cXyz::cXyz(&local_50);
+  // dVar9 = (double)DAT_80ac4b3c;
+  // iVar3 = *(int *)(this + 0x730);
+
+  cXyz pos;
+  cXyz pos2;
+  cXyz pos3;
+
+  switch (mActionMode2) {
+    case 0:
+    if (fopAcM_wayBgCheck(this,200.0f,50.0f)) {
+      pos.x = current.pos.x + cM_rndFX(l_HIO.field_0x10);
+      pos.y = current.pos.y;
+      pos.z = current.pos.z + cM_rndFX(l_HIO.field_0x10);
+      
+      pos2 = pos - current.pos;
+      pos3 = pos2;
+      
+      s16 angle = pos3.atan2sX_Z() - current.angle.y;
+
+      if (angle < 12289) {
+        if (angle < -12288) {
+          angle = -12288;
         }
       }
       else {
-        sVar5 = 0x3000;
+        angle = 12288;
       }
+    } else {
+      f32 random = cM_rndFX(10000.0f);
+      local_38 = random + 32768.0f;
+      sVar5 = random + 32768.0f;
     }
-    else {
-      dVar8 = (double)SComponentD::cM_rndFX(0x40c3880000000000);
-      local_38 = (double)(longlong)(int)(dVar8 + 32768.0);
-      sVar5 = (short)(int)(dVar8 + 32768.0);
-    }
-    *(short *)(this + 0x73e) = *(short *)(this + 0x4e2) + sVar5;
-    dVar8 = (double)SComponentD::cM_rndFX((double)DAT_80ac4b58);
-    local_38 = (double)CONCAT44(0x43300000,(int)DAT_80ac4b2e ^ 0x80000000);
-    iVar3 = (int)((double)(float)(local_38 - 4503601774854144.0) + dVar8);
-    local_30 = (longlong)iVar3;
-    this[0x748] = SUB41(iVar3,0);
-    *(undefined4 *)(this + 0x730) = 1;
+    mAngleFromPlayer = current.angle.y + sVar5;
+    field_0x710 = l_HIO.field_0x06 - cM_rndFX(l_HIO.field_0x30);
+    mActionMode2 = 1;
   }
-  iVar3 = way_gake_check(this);
-  if (iVar3 != 0) {
-    ::cXyz::operator_-(&cStack104,(cXyz *)(this + 0x4d4));
-    ::cXyz::operator_=(&local_50,&cStack104);
-    ::cXyz::~cXyz(&cStack104);
-    uVar6 = ::cXyz::atan2sX_Z(&local_50);
-    *(undefined2 *)(this + 0x73e) = uVar6;
-    *(undefined2 *)(this + 0x4e2) = uVar6;
+
+  if (way_gake_check()) {
+    pos = current.pos - orig.pos;
+    pos2 = pos;
+    s16 angle = pos2.atan2sX_Z();
+    mAngleFromPlayer = angle;
+    current.angle.y = angle;
   }
+
   if (this[0x74c] == (daE_FZ_c)0x4) {
     this[0x748] = (daE_FZ_c)0xa;
     *(undefined4 *)(this + 0x530) = 0;
@@ -1589,7 +1559,7 @@ void daE_FZ_c::cc_set() {
     mSph1.SetC(pos2);
     mSph1.SetR(mRadiusBase * 60.0f);
 
-    dComIfG_Ccsp()->Set(&mSph1); // wrong member?
+    dComIfG_Ccsp()->Set(&mSph1);
     
     mDoMtx_stack_c::copy(mpModel->getBaseTRMtx());
 

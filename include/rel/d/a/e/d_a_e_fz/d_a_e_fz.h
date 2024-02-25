@@ -76,18 +76,18 @@ public:
     /* 806C0CD0 */ s32 create();
 
 private:
-    /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ J3DModel* mpModel;
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq; /**< Phase request used when creating the actor. */
+    /* 0x5B4 */ J3DModel* mpModel; /**< Pointer to the Mini Freezard's model. */
     /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
-    /* 0x5C0 */ Z2CreatureEnemy mCreature;
+    /* 0x5C0 */ Z2CreatureEnemy mCreature; /**< Z2CreatureEnemy class used for playing sound effects. */
     /* 0x664 */ cXyz field_0x664;
     /* 0x670 */ cXyz field_0x670;
     /* 0x67C */ cXyz field_0x67c[4];
     /* 0x6AC */ cXyz field_0x6ac[4];
     /* 0x6DC */ cXyz field_0x6dc;
     /* 0x6E8 */ cXyz field_0x6e8;
-    /* 0x6F4 */ s32 mActionMode1;
-    /* 0x6F8 */ s32 mActionMode2;
+    /* 0x6F4 */ s32 mActionMode1; /**< Mini Freezard current action mode. */
+    /* 0x6F8 */ s32 mActionMode2; /**< Mini Freezard sub action mode. */
     /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
     /* 0x704 */ s16 field_0x704;
@@ -103,14 +103,14 @@ private:
     /* 0x715 */ u8 field_0x715;
     /* 0x716 */ u8 field_0x716;
     /* 0x717 */ u8 field_0x717;
-    /* 0x718 */ fopAc_ac_c* field_0x718; // Blizzeta???
+    /* 0x718 */ fopAc_ac_c* field_0x718; /**< Pointer to the mini freezard's parent actor? */
     /* 0x71C */ u32 field_0x71c[3];
     /* 0x728 */ u8 field_0x728[4];
     /* 0x72C */ dBgS_AcchCir mAcchCir;
     /* 0x76C */ dBgS_ObjAcch mObjAcch;
     /* 0x944 */ dCcD_Stts mStts;
-    /* 0x980 */ dCcD_Sph mSph1;
-    /* 0xAB8 */ dCcD_Sph mSph2;
+    /* 0x980 */ dCcD_Sph mSph1; /**< Mini Freezard's sphere collider used for ? */
+    /* 0xAB8 */ dCcD_Sph mSph2; /**< Mini Freezard's sphere collider used for attacking. */
     /* 0xBF0 */ dCcU_AtInfo mAtInfo;
     /* 0xC14 */ u8 field_0xc14;
     /* 0xC15 */ u8 field_0xc15;
@@ -156,7 +156,7 @@ public:
 };
 
 /**
- * \brief Blizzeta's actor class. Reference in proper header later when it's been reversed.
+ * \brief Blizzeta's actor class. Reference in proper header later when it has been reversed.
  * 
  */
 class daB_YO_c : public fopEn_enemy_c {
