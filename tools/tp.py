@@ -171,7 +171,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
         shutil.rmtree(compilers)
     if not compilers.exists() or not compilers.is_dir():
         os.mkdir(compilers)
-        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip')
+        r = requests.get('https://files.decomp.dev/compilers_20230715.zip')
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(compilers)
         gc_path = compilers.joinpath("GC")
