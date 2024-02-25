@@ -4,104 +4,73 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate.h"
+
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "SSystem/SComponent/c_phase.h"
 #include "dol2asm.h"
+
+#define NONMATCHING 0
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct cXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-
-    static u8 now[48];
-};
-
-struct J3DModelData {};
-
-struct J3DAnmTransform {};
-
-struct mDoExt_bckAnm {
-    /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
-    /* 8000D9CC */ void entry(J3DModelData*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTagLv8Gate_c {
-    /* 80D51C58 */ void createHeap();
+class daTagLv8Gate_c : public fopAc_ac_c {
+public:
+    /* 80D51C58 */ int createHeap();
     /* 80D51F48 */ void execute();
+
+    request_of_phase_process_class& getPhase() { return mPhaseReq; }
+
+    bool Draw() {
+        if (mpModel != NULL) {
+            for (u16 index = 0; index < 3; index++) {
+                J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
+                J3DTevBlock* tev_block;
+                J3DGXColor* color;
+
+                tev_block = material->getTevBlock();
+                color = (J3DGXColor*)tev_block->getTevKColor(1);
+                color->r = 128;
+                tev_block = material->getTevBlock();
+                color = (J3DGXColor*)tev_block->getTevKColor(1);
+                color->g = 120;
+                tev_block = material->getTevBlock();
+                color = (J3DGXColor*)tev_block->getTevKColor(1);
+                color->b = 100;
+            }
+
+            g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+            if (mpBck != NULL) {
+                mpBck->entry(mpModel->getModelData());
+            }
+
+            dComIfGd_setListBG();
+            mDoExt_modelUpdateDL(mpModel);
+            dComIfGd_setList();
+
+            if (mpBck != NULL) {
+                mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(NULL);
+            }
+        }
+        return TRUE;
+    }
+
+private:
+    /* 0x568 */ J3DModel* mpModel;
+    /* 0x56C */ mDoExt_bckAnm* mpBck;
+    /* 0x570 */ request_of_phase_process_class mPhaseReq;
+    /* 0x578 */ s16 field_0x578;
 };
 
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-};
-
-struct dEvent_manager_c {
-    /* 80046800 */ void setObjectArchive(char*);
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 80047A78 */ void endCheck(s16);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047F5C */ void getMyNowCutName(int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct dAttention_c {
-    /* 80070880 */ void getActionBtnB();
-    /* 80073734 */ void ActionTarget(s32);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct J3DModel {};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 80D51D80 */ ~J3DFrameCtrl();
-};
+STATIC_ASSERT(sizeof(daTagLv8Gate_c) == 0x57C);
 
 //
 // Forward References:
@@ -160,20 +129,12 @@ extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -181,14 +142,9 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 80D51C38-80D51C58 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void createSolidHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/createSolidHeap__FP10fopAc_ac_c.s"
+static void createSolidHeap(fopAc_ac_c* i_this) {
+    static_cast<daTagLv8Gate_c*>(i_this)->createHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D524CC-80D524D0 000000 0004+00 3/3 0/0 0/0 .rodata          @3749 */
@@ -203,7 +159,11 @@ SECTION_DEAD static char const* const stringBase_80D524F8 = "D_MN08";
 #pragma pop
 
 /* 80D52510-80D52514 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+#if !NONMATCHING
 SECTION_DATA static void* l_arcName = (void*)&d_a_tag_Lv8Gate__stringBase0;
+#else
+static const char* l_arcName = stringBase_80D524F0;
+#endif
 
 /* 80D52514-80D52534 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagLv8Gate_Method */
 SECTION_DATA static void* l_daTagLv8Gate_Method[8] = {
@@ -235,24 +195,48 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 };
 
 /* 80D51C58-80D51D80 000098 0128+00 1/1 0/0 0/0 .text            createHeap__14daTagLv8Gate_cFv */
+#if NONMATCHING
+int daTagLv8Gate_c::createHeap() {
+    int iVar1 = strcmp(dComIfGp_getStartStageName(), "D_MN08");
+    if (iVar1 == 0) {
+        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes((const char*)l_arcName, 8);
+        mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+
+        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes((const char*)l_arcName, 5);
+        mpBck = new mDoExt_bckAnm();
+        if (mpBck == NULL || !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagLv8Gate_c::createHeap() {
+asm int daTagLv8Gate_c::createHeap() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/createHeap__14daTagLv8Gate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D51D80-80D51DC8 0001C0 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
+#if NONMATCHING
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+//asm J3DFrameCtrl::~J3DFrameCtrl() {
+extern "C" asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/__dt__12J3DFrameCtrlFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D524D0-80D524D4 000004 0004+00 0/1 0/0 0/0 .rodata          @3805 */
@@ -355,21 +339,26 @@ asm void daTagLv8Gate_c::execute() {
 #pragma pop
 
 /* 80D522F0-80D5246C 000730 017C+00 1/0 0/0 0/0 .text daTagLv8Gate_Draw__FP14daTagLv8Gate_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagLv8Gate_Draw(daTagLv8Gate_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Draw__FP14daTagLv8Gate_c.s"
+static int daTagLv8Gate_Draw(daTagLv8Gate_c* i_this) {
+    return i_this->Draw();
 }
-#pragma pop
 
 /* 80D5246C-80D52474 0008AC 0008+00 1/0 0/0 0/0 .text daTagLv8Gate_IsDelete__FP14daTagLv8Gate_c */
-static bool daTagLv8Gate_IsDelete(daTagLv8Gate_c* param_0) {
+static bool daTagLv8Gate_IsDelete(daTagLv8Gate_c* i_this) {
     return true;
 }
 
 /* 80D52474-80D524C4 0008B4 0050+00 1/0 0/0 0/0 .text daTagLv8Gate_Delete__FP14daTagLv8Gate_c */
+#if NONMATCHING
+static int daTagLv8Gate_Delete(daTagLv8Gate_c* i_this) {
+    if (i_this != NULL) {
+        dComIfG_resDelete(&i_this->getPhase(), (char const*)l_arcName);
+        i_this->~daTagLv8Gate_c();
+    }
+    return TRUE;
+}
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -378,5 +367,6 @@ static asm void daTagLv8Gate_Delete(daTagLv8Gate_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Delete__FP14daTagLv8Gate_c.s"
 }
 #pragma pop
+#endif
 
 /* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
