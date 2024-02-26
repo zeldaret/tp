@@ -14,6 +14,32 @@
 /* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Table";
 
+void daObjTable_c::initBaseMtx() {
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    setBaseMtx();
+}
+
+void daObjTable_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+}
+
+int daObjTable_c::create() {
+    fopAcM_SetupActor(this, daObjTable_c);
+
+    int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        phase_state = MoveBGCreate(l_arcName, 8, NULL, 0x4000, NULL);
+        if (phase_state == cPhs_ERROR_e) {
+            return phase_state;
+        }
+    }
+
+    return phase_state;
+}
+
 /* 80D06438-80D06464 000078 002C+00 1/0 0/0 0/0 .text            daObjTable_Draw__FP12daObjTable_c
  */
 static int daObjTable_Draw(daObjTable_c* i_this) {
@@ -40,26 +66,7 @@ static int daObjTable_Delete(daObjTable_c* i_this) {
 /* 80D064B0-80D06560 0000F0 00B0+00 1/0 0/0 0/0 .text            daObjTable_Create__FP10fopAc_ac_c
  */
 static int daObjTable_Create(fopAc_ac_c* i_this) {
-    daObjTable_c* a_this = static_cast<daObjTable_c*>(i_this);
-    fopAcM_SetupActor(a_this, daObjTable_c);
-
-    if (dComIfG_resLoad(&a_this->mPhaseReq, l_arcName) == cPhs_COMPLEATE_e) {
-        if (a_this->MoveBGCreate(l_arcName, 8, NULL, 0x4000, NULL) != cPhs_ERROR_e) {
-            return;
-        }
-    }
-}
-
-void daObjTable_c::initBaseMtx() {
-    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-    setBaseMtx();
-}
-
-void daObjTable_c::setBaseMtx() {
-    mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::YrotM(shape_angle.y);
-    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    return static_cast<daObjTable_c*>(i_this)->create();
 }
 
 /* 80D06560-80D065D0 0001A0 0070+00 1/0 0/0 0/0 .text            CreateHeap__12daObjTable_cFv */

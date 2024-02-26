@@ -15,6 +15,7 @@ public:
 
     inline void initBaseMtx();
     inline void setBaseMtx();
+    inline int create();
 
     s16 getMessageNo() { return (s16)fopAcM_GetParamBit(this, 0, 16); }
 
