@@ -5,7 +5,9 @@
 
 #include "rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate.h"
 
+#include "rel/d/a/obj/mirror/d_a_obj_mirror_table/d_a_obj_mirror_table.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
@@ -23,51 +25,23 @@
 class daTagLv8Gate_c : public fopAc_ac_c {
 public:
     /* 80D51C58 */ int createHeap();
-    /* 80D51F48 */ void execute();
+    /* 80D51F48 */ int execute();
 
-    request_of_phase_process_class& getPhase() { return mPhaseReq; }
+#if NONMATCHING
+    inline ~daTagLv8Gate_c();
 
-    bool Draw() {
-        if (mpModel != NULL) {
-            for (u16 index = 0; index < 3; index++) {
-                J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
-                J3DTevBlock* tev_block;
-                J3DGXColor* color;
+    inline void initBaseMtx();
+    inline void create_init();
+    inline int create();
+#endif
+    inline bool draw();
 
-                tev_block = material->getTevBlock();
-                color = (J3DGXColor*)tev_block->getTevKColor(1);
-                color->r = 128;
-                tev_block = material->getTevBlock();
-                color = (J3DGXColor*)tev_block->getTevKColor(1);
-                color->g = 120;
-                tev_block = material->getTevBlock();
-                color = (J3DGXColor*)tev_block->getTevKColor(1);
-                color->b = 100;
-            }
-
-            g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-            g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
-
-            if (mpBck != NULL) {
-                mpBck->entry(mpModel->getModelData());
-            }
-
-            dComIfGd_setListBG();
-            mDoExt_modelUpdateDL(mpModel);
-            dComIfGd_setList();
-
-            if (mpBck != NULL) {
-                mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(NULL);
-            }
-        }
-        return TRUE;
-    }
-
-private:
+    inline u8 getSceneNo() const { return fopAcM_GetParam(this) & 0xff; }
+    
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm* mpBck;
     /* 0x570 */ request_of_phase_process_class mPhaseReq;
-    /* 0x578 */ s16 field_0x578;
+    /* 0x578 */ s16 mEventID;
 };
 
 STATIC_ASSERT(sizeof(daTagLv8Gate_c) == 0x57C);
@@ -142,14 +116,16 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 80D51C38-80D51C58 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static void createSolidHeap(fopAc_ac_c* i_this) {
-    static_cast<daTagLv8Gate_c*>(i_this)->createHeap();
+static int createSolidHeap(fopAc_ac_c* i_this) {
+    return static_cast<daTagLv8Gate_c*>(i_this)->createHeap();
 }
 
 /* ############################################################################################## */
 /* 80D524CC-80D524D0 000000 0004+00 3/3 0/0 0/0 .rodata          @3749 */
+#if !NONMATCHING
 SECTION_RODATA static f32 const lit_3749 = 1.0f;
 COMPILER_STRIP_GATE(0x80D524CC, &lit_3749);
+#endif
 
 /* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -187,6 +163,77 @@ SECTION_DATA extern void* g_profile_Tag_Lv8Gate[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
+#if NONMATCHING
+inline void daTagLv8Gate_c::initBaseMtx() {
+    if (mpModel != NULL) {
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());         
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::YrotM(shape_angle.y + 0x8000);
+        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    }
+}
+
+inline void daTagLv8Gate_c::create_init() {
+    fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
+    fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
+
+    mAttentionInfo.mFlags = 0x10;
+    mAttentionInfo.field_0x0[4] = 90;
+
+    mEventID = -1;
+
+    initBaseMtx();
+}
+
+inline int daTagLv8Gate_c::create() {
+    cPhs__Step step;
+
+    fopAcM_SetupActor(this, daTagLv8Gate_c);
+
+    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+        step = cPhs_ERROR_e;
+    } else {
+        step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, (const char*)l_arcName);
+        if (step == cPhs_COMPLEATE_e) {
+            if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x1600)) {
+                step = cPhs_ERROR_e;
+            } else {
+                create_init();
+            }
+        }
+    }
+
+    return step;
+}
+#endif
+
+inline bool daTagLv8Gate_c::draw() {
+            if (mpModel != NULL) {
+            for (u16 index = 0; index < 3; index++) {
+                J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
+                material->getTevKColor(1)->r = 128;
+                material->getTevKColor(1)->g = 120;
+                material->getTevKColor(1)->b = 100;
+            }
+
+            g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+            if (mpBck != NULL) {
+                mpBck->entry(mpModel->getModelData());
+            }
+
+            dComIfGd_setListBG();
+            mDoExt_modelUpdateDL(mpModel);
+            dComIfGd_setList();
+
+            if (mpBck != NULL) {
+                mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(NULL);
+            }
+        }
+        return TRUE;
+}
+
 /* 80D52564-80D52570 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
 SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
@@ -199,10 +246,10 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 int daTagLv8Gate_c::createHeap() {
     int iVar1 = strcmp(dComIfGp_getStartStageName(), "D_MN08");
     if (iVar1 == 0) {
-        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes((const char*)l_arcName, 8);
+        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
         mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
 
-        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes((const char*)l_arcName, 5);
+        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5);
         mpBck = new mDoExt_bckAnm();
         if (mpBck == NULL || !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
             return 0;
@@ -211,7 +258,6 @@ int daTagLv8Gate_c::createHeap() {
 
     return 1;
 }
-
 #else
 #pragma push
 #pragma optimization_level 0
@@ -240,6 +286,7 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 
 /* ############################################################################################## */
 /* 80D524D0-80D524D4 000004 0004+00 0/1 0/0 0/0 .rodata          @3805 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3805 = -100.0f;
@@ -266,9 +313,15 @@ COMPILER_STRIP_GATE(0x80D524D8, &lit_3807);
 SECTION_RODATA static f32 const lit_3808 = 220.0f;
 COMPILER_STRIP_GATE(0x80D524DC, &lit_3808);
 #pragma pop
+#endif
 
 /* 80D51DC8-80D51F28 000208 0160+00 1/0 0/0 0/0 .text            daTagLv8Gate_Create__FP10fopAc_ac_c
  */
+#if NONMATCHING
+static int daTagLv8Gate_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTagLv8Gate_c*>(i_this)->create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,8 +330,14 @@ static asm void daTagLv8Gate_Create(fopAc_ac_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80D51F28-80D51F48 000368 0020+00 1/0 0/0 0/0 .text daTagLv8Gate_Execute__FP14daTagLv8Gate_c */
+#if NONMATCHING
+static int daTagLv8Gate_Execute(daTagLv8Gate_c* i_this) {
+    return static_cast<daTagLv8Gate_c*>(i_this)->execute();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,9 +346,11 @@ static asm void daTagLv8Gate_Execute(daTagLv8Gate_c* param_0) {
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Execute__FP14daTagLv8Gate_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D524E0-80D524E4 000014 0004+00 0/1 0/0 0/0 .rodata          @3891 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u8 const lit_3891[4] = {
@@ -327,20 +388,107 @@ COMPILER_STRIP_GATE(0x80D524EC, &lit_3894);
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80D524FF = "LV8_GATE_ENTRY";
 #pragma pop
+#endif
 
 /* 80D51F48-80D522F0 000388 03A8+00 1/1 0/0 0/0 .text            execute__14daTagLv8Gate_cFv */
+#if NONMATCHING
+int daTagLv8Gate_c::execute() {
+    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;
+    
+    if (game_info.getPlay().getEvent().runCheck() && !mEvtInfo.checkCommandTalk()) {
+        int staffId = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
+        if (staffId != -1) {
+            char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+
+            if (dComIfGp_evmng_getIsAddvance(staffId) != 0) {
+                switch (*(int*)nowCutName) {
+                    case '0001':
+                        i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y, 0);
+                        fopAc_ac_c* mirror_table = i_fopAcM_SearchByName(PROC_Obj_MirrorTable);
+                        if (mirror_table != NULL) {
+                            static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = 1;
+                        }
+                        break;
+
+                    case '0002':
+                        dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (i_dComIfGp_getEvent().i_checkSkipEdge()) {
+                i_dComIfGp_event_reset();
+                dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+            }
+
+            if (!(
+                *(int*)nowCutName >= 0x30303033
+                ||
+                0x30303031 <= *(int*)nowCutName  
+                )) {
+                dComIfGp_evmng_cutEnd(*(int*)nowCutName);
+            }
+
+            if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
+                if (dComIfGp_evmng_endCheck(mEventID)) {
+                    mEventID = -1;
+                }
+            }
+        }
+    } else {
+        if (daPy_getPlayerActorClass()->checkPriActorOwn(this)) {
+            for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {
+                if (dComIfGp_getAttention().ActionTarget(i) == this) {
+                    if (dComIfGp_getAttention().getActionBtnB() != NULL &&
+                        dComIfGp_getAttention().getActionBtnB()->mType == 4)
+                    {
+                        dComIfGp_setDoStatusForce(7, 0);
+                    }
+                }
+            }
+        }
+
+        if (mStatus & 0x2000) {
+            fopAcM_cancelCarryNow(this);
+            mAttentionInfo.mFlags &= 0xffffffef;
+            mEvtInfo.setArchiveName((char*)l_arcName);
+            i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
+            fopAcM_orderOtherEventId(this, mEventID, -1, -1, 0, 1);
+        }
+    }
+
+    if (this->mpBck != NULL) {
+        this->mpBck->play();
+    }
+
+    cXyz v(0.0f, 400.0f, 1400.0f);
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(current.angle.y);
+    mDoMtx_stack_c::multVec(&v, &v);
+
+    Z2GetSeMgr()->seStartLevel(Z2SE_OBJ_MONOLIS_HOLE, &v, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagLv8Gate_c::execute() {
+asm int daTagLv8Gate_c::execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/execute__14daTagLv8Gate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D522F0-80D5246C 000730 017C+00 1/0 0/0 0/0 .text daTagLv8Gate_Draw__FP14daTagLv8Gate_c */
 static int daTagLv8Gate_Draw(daTagLv8Gate_c* i_this) {
-    return i_this->Draw();
+    return i_this->draw();
 }
 
 /* 80D5246C-80D52474 0008AC 0008+00 1/0 0/0 0/0 .text daTagLv8Gate_IsDelete__FP14daTagLv8Gate_c */
@@ -350,11 +498,12 @@ static bool daTagLv8Gate_IsDelete(daTagLv8Gate_c* i_this) {
 
 /* 80D52474-80D524C4 0008B4 0050+00 1/0 0/0 0/0 .text daTagLv8Gate_Delete__FP14daTagLv8Gate_c */
 #if NONMATCHING
+daTagLv8Gate_c::~daTagLv8Gate_c() {
+    dComIfG_resDelete(&mPhaseReq, (const char*)l_arcName);
+}
+
 static int daTagLv8Gate_Delete(daTagLv8Gate_c* i_this) {
-    if (i_this != NULL) {
-        dComIfG_resDelete(&i_this->getPhase(), (char const*)l_arcName);
-        i_this->~daTagLv8Gate_c();
-    }
+    i_this->~daTagLv8Gate_c();
     return TRUE;
 }
 
