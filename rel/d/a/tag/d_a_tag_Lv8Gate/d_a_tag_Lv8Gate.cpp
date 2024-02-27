@@ -72,8 +72,7 @@ inline int daTagLv8Gate_c::create() {
 inline bool daTagLv8Gate_c::draw() {
     if (mpModel != NULL) {
         for (u16 index = 0; index < 3; index++) {
-            J3DMaterial* material =
-                mpModel->getModelData()->getMaterialNodePointer(index);
+            J3DMaterial* material = mpModel->getModelData()->getMaterialNodePointer(index);
             material->getTevKColor(1)->r = 128;
             material->getTevKColor(1)->g = 120;
             material->getTevKColor(1)->b = 100;
