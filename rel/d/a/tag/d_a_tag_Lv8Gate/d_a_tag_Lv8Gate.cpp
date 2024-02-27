@@ -22,8 +22,6 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
     return static_cast<daTagLv8Gate_c*>(i_this)->createHeap();
 }
 
-daTagLv8Gate_c::daTagLv8Gate_c() {}
-
 daTagLv8Gate_c::~daTagLv8Gate_c() {
     dComIfG_resDelete(&mPhaseReq, l_arcName);
 }

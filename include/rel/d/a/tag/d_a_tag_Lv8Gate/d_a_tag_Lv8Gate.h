@@ -10,7 +10,6 @@ class mDoExt_bckAnm;
 
 class daTagLv8Gate_c : public fopAc_ac_c {
 public:
-    inline daTagLv8Gate_c();
     inline ~daTagLv8Gate_c();
 
     /* 80D51C58 */ int createHeap();
