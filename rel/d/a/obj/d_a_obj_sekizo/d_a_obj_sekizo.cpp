@@ -21,11 +21,15 @@ public:
     /* 80CCDFA4 */ void initBaseMtx();
     /* 80CCDFE0 */ void setBaseMtx();
 
+    /* 0x5A4 */ request_of_phase_process_class* mPhaseRequest;
+
     /* 0x5AC */ J3DModel* mpModel;
-    /* 0x5B0 */ u8 field_0x5b0;
-    /* 0x5B1 */ u8 field_0x5b1;
-    /* 0x5B2 */ u8 field_0x5b2;
+    /* 0x5B0 */ u8 mResNameIndex; // Used for indexing within l_resNameList?
+    /* 0x5B1 */ bool field_0x5b1;
+    /* 0x5B2 */ bool field_0x5b2;
 };  // Size: 0x5B4
+
+STATIC_ASSERT(sizeof(daObj_Sekizo_c) == 0x5B4);
 
 class daObj_Sekizo_Param_c {
 public:
