@@ -67,7 +67,7 @@ inline int daTagLv8Gate_c::create() {
     return step;
 }
 
-inline bool daTagLv8Gate_c::draw() {
+inline int daTagLv8Gate_c::draw() {
     if (mpModel != NULL) {
         for (u16 index = 0; index < 3; index++) {
             J3DMaterial* material = mpModel->getModelData()->getMaterialNodePointer(index);
@@ -215,8 +215,8 @@ static int daTagLv8Gate_Draw(daTagLv8Gate_c* i_this) {
 }
 
 /* 80D5246C-80D52474 0008AC 0008+00 1/0 0/0 0/0 .text daTagLv8Gate_IsDelete__FP14daTagLv8Gate_c */
-static bool daTagLv8Gate_IsDelete(daTagLv8Gate_c* i_this) {
-    return true;
+static int daTagLv8Gate_IsDelete(daTagLv8Gate_c* i_this) {
+    return TRUE;
 }
 
 /* 80D52474-80D524C4 0008B4 0050+00 1/0 0/0 0/0 .text daTagLv8Gate_Delete__FP14daTagLv8Gate_c */
