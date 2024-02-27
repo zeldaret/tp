@@ -25,7 +25,7 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 daTagLv8Gate_c::daTagLv8Gate_c() {}
 
 daTagLv8Gate_c::~daTagLv8Gate_c() {
-    dComIfG_resDelete(&mPhaseReq, (const char*)l_arcName);
+    dComIfG_resDelete(&mPhaseReq, l_arcName);
 }
 
 inline void daTagLv8Gate_c::initBaseMtx() {
@@ -73,7 +73,7 @@ inline bool daTagLv8Gate_c::draw() {
     if (mpModel != NULL) {
         for (u16 index = 0; index < 3; index++) {
             J3DMaterial* material =
-                mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
+                mpModel->getModelData()->getMaterialNodePointer(index);
             material->getTevKColor(1)->r = 128;
             material->getTevKColor(1)->g = 120;
             material->getTevKColor(1)->b = 100;
