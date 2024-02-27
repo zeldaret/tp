@@ -16,7 +16,7 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "dol2asm.h"
 
-#define NONMATCHING 0
+#define NONMATCHING 1
 
 //
 // Types:
@@ -27,14 +27,15 @@ public:
     /* 80D51C58 */ int createHeap();
     /* 80D51F48 */ int execute();
 
-#if NONMATCHING
+    inline daTagLv8Gate_c();
     inline ~daTagLv8Gate_c();
 
-    inline void initBaseMtx();
-    inline void create_init();
-    inline int create();
+#if NONMATCHING
+    void initBaseMtx();
+    void create_init();
+    int create();
 #endif
-    inline bool draw();
+    bool draw();
 
     inline u8 getSceneNo() const { return fopAcM_GetParam(this) & 0xff; }
     
@@ -125,7 +126,6 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 #if !NONMATCHING
 SECTION_RODATA static f32 const lit_3749 = 1.0f;
 COMPILER_STRIP_GATE(0x80D524CC, &lit_3749);
-#endif
 
 /* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -135,10 +135,9 @@ SECTION_DEAD static char const* const stringBase_80D524F8 = "D_MN08";
 #pragma pop
 
 /* 80D52510-80D52514 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
-#if !NONMATCHING
 SECTION_DATA static void* l_arcName = (void*)&d_a_tag_Lv8Gate__stringBase0;
 #else
-static const char* l_arcName = stringBase_80D524F0;
+static char* l_arcName = "Lv8Gate";
 #endif
 
 /* 80D52514-80D52534 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagLv8Gate_Method */
@@ -164,6 +163,8 @@ SECTION_DATA extern void* g_profile_Tag_Lv8Gate[12] = {
 };
 
 #if NONMATCHING
+inline daTagLv8Gate_c::daTagLv8Gate_c() {}
+
 inline void daTagLv8Gate_c::initBaseMtx() {
     if (mpModel != NULL) {
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());         
@@ -186,14 +187,13 @@ inline void daTagLv8Gate_c::create_init() {
 }
 
 inline int daTagLv8Gate_c::create() {
-    cPhs__Step step;
-
     fopAcM_SetupActor(this, daTagLv8Gate_c);
 
+    cPhs__Step step;
     if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         step = cPhs_ERROR_e;
     } else {
-        step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, (const char*)l_arcName);
+        step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
         if (step == cPhs_COMPLEATE_e) {
             if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x1600)) {
                 step = cPhs_ERROR_e;
@@ -208,38 +208,40 @@ inline int daTagLv8Gate_c::create() {
 #endif
 
 inline bool daTagLv8Gate_c::draw() {
-            if (mpModel != NULL) {
-            for (u16 index = 0; index < 3; index++) {
-                J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
-                material->getTevKColor(1)->r = 128;
-                material->getTevKColor(1)->g = 120;
-                material->getTevKColor(1)->b = 100;
-            }
-
-            g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-            g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
-
-            if (mpBck != NULL) {
-                mpBck->entry(mpModel->getModelData());
-            }
-
-            dComIfGd_setListBG();
-            mDoExt_modelUpdateDL(mpModel);
-            dComIfGd_setList();
-
-            if (mpBck != NULL) {
-                mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(NULL);
-            }
+    if (mpModel != NULL) {
+        for (u16 index = 0; index < 3; index++) {
+            J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
+            material->getTevKColor(1)->r = 128;
+            material->getTevKColor(1)->g = 120;
+            material->getTevKColor(1)->b = 100;
         }
-        return TRUE;
+
+        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+
+        if (mpBck != NULL) {
+            mpBck->entry(mpModel->getModelData());
+        }
+
+        dComIfGd_setListBG();
+        mDoExt_modelUpdateDL(mpModel);
+        dComIfGd_setList();
+
+        if (mpBck != NULL) {
+            mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(NULL);
+        }
+    }
+    return TRUE;
 }
 
 /* 80D52564-80D52570 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+#if !NONMATCHING
 SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
+#endif
 
 /* 80D51C58-80D51D80 000098 0128+00 1/1 0/0 0/0 .text            createHeap__14daTagLv8Gate_cFv */
 #if NONMATCHING
@@ -319,7 +321,8 @@ COMPILER_STRIP_GATE(0x80D524DC, &lit_3808);
  */
 #if NONMATCHING
 static int daTagLv8Gate_Create(fopAc_ac_c* i_this) {
-    return static_cast<daTagLv8Gate_c*>(i_this)->create();
+    daTagLv8Gate_c* a_this = static_cast<daTagLv8Gate_c*>(i_this);
+    return a_this->create();
 }
 #else
 #pragma push
@@ -333,20 +336,10 @@ static asm void daTagLv8Gate_Create(fopAc_ac_c* param_0) {
 #endif
 
 /* 80D51F28-80D51F48 000368 0020+00 1/0 0/0 0/0 .text daTagLv8Gate_Execute__FP14daTagLv8Gate_c */
-#if NONMATCHING
-static int daTagLv8Gate_Execute(daTagLv8Gate_c* i_this) {
-    return static_cast<daTagLv8Gate_c*>(i_this)->execute();
+static int daTagLv8Gate_Execute(fopAc_ac_c* i_this) {
+    daTagLv8Gate_c* a_this = static_cast<daTagLv8Gate_c*>(i_this);
+    return a_this->execute();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagLv8Gate_Execute(daTagLv8Gate_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Execute__FP14daTagLv8Gate_c.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 80D524E0-80D524E4 000014 0004+00 0/1 0/0 0/0 .rodata          @3891 */
@@ -396,15 +389,17 @@ int daTagLv8Gate_c::execute() {
     dComIfG_inf_c& game_info = g_dComIfG_gameInfo;
     
     if (game_info.getPlay().getEvent().runCheck() && !mEvtInfo.checkCommandTalk()) {
-        int staffId = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
-        if (staffId != -1) {
-            char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+        s32 cut_index = i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
 
-            if (dComIfGp_evmng_getIsAddvance(staffId) != 0) {
-                switch (*(int*)nowCutName) {
+        if (cut_index != -1) {
+            int* cut_name = (int*)i_dComIfGp_getEventManager().getMyNowCutName(cut_index);
+
+            if (i_dComIfGp_getEventManager().getIsAddvance(cut_index)) {
+                switch (*cut_name) {
                     case '0001':
                         i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
                         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y, 0);
+
                         fopAc_ac_c* mirror_table = i_fopAcM_SearchByName(PROC_Obj_MirrorTable);
                         if (mirror_table != NULL) {
                             static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = 1;
@@ -414,9 +409,6 @@ int daTagLv8Gate_c::execute() {
                     case '0002':
                         dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
                         break;
-
-                    default:
-                        break;
                 }
             }
 
@@ -425,12 +417,11 @@ int daTagLv8Gate_c::execute() {
                 dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
             }
 
-            if (!(
-                *(int*)nowCutName >= 0x30303033
-                ||
-                0x30303031 <= *(int*)nowCutName  
-                )) {
-                dComIfGp_evmng_cutEnd(*(int*)nowCutName);
+            switch (*cut_name) {
+                case '0001':
+                case '0002':
+                    dComIfGp_evmng_cutEnd(cut_index);
+                    break;
             }
 
             if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
@@ -455,7 +446,7 @@ int daTagLv8Gate_c::execute() {
         if (mStatus & 0x2000) {
             fopAcM_cancelCarryNow(this);
             mAttentionInfo.mFlags &= 0xffffffef;
-            mEvtInfo.setArchiveName((char*)l_arcName);
+            mEvtInfo.setArchiveName(l_arcName);
             i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
             fopAcM_orderOtherEventId(this, mEventID, -1, -1, 0, 1);
@@ -471,7 +462,7 @@ int daTagLv8Gate_c::execute() {
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::multVec(&v, &v);
 
-    Z2GetSeMgr()->seStartLevel(Z2SE_OBJ_MONOLIS_HOLE, &v, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MONOLIS_HOLE, &v, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 
     return 1;
 }
@@ -497,7 +488,6 @@ static bool daTagLv8Gate_IsDelete(daTagLv8Gate_c* i_this) {
 }
 
 /* 80D52474-80D524C4 0008B4 0050+00 1/0 0/0 0/0 .text daTagLv8Gate_Delete__FP14daTagLv8Gate_c */
-#if NONMATCHING
 daTagLv8Gate_c::~daTagLv8Gate_c() {
     dComIfG_resDelete(&mPhaseReq, (const char*)l_arcName);
 }
@@ -506,16 +496,5 @@ static int daTagLv8Gate_Delete(daTagLv8Gate_c* i_this) {
     i_this->~daTagLv8Gate_c();
     return TRUE;
 }
-
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagLv8Gate_Delete(daTagLv8Gate_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate/daTagLv8Gate_Delete__FP14daTagLv8Gate_c.s"
-}
-#pragma pop
-#endif
 
 /* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
