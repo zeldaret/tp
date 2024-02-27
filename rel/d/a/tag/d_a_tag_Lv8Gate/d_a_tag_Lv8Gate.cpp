@@ -96,8 +96,7 @@ inline int daTagLv8Gate_c::draw() {
 
 /* 80D51C58-80D51D80 000098 0128+00 1/1 0/0 0/0 .text            createHeap__14daTagLv8Gate_cFv */
 int daTagLv8Gate_c::createHeap() {
-    int iVar1 = strcmp(dComIfGp_getStartStageName(), "D_MN08");
-    if (iVar1 == 0) {
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN08") == 0) {
         J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
         mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
 
@@ -195,8 +194,8 @@ int daTagLv8Gate_c::execute() {
         }
     }
 
-    if (this->mpBck != NULL) {
-        this->mpBck->play();
+    if (mpBck != NULL) {
+        mpBck->play();
     }
 
     cXyz pos(0.0f, 400.0f, 1400.0f);

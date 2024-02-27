@@ -20,7 +20,7 @@ public:
     int create();
     int draw();
 
-    inline u8 getSceneNo() { return fopAcM_GetParam(this) & 0xff; }
+    u8 getSceneNo() { return fopAcM_GetParam(this) & 0xff; }
 
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm* mpBck;
