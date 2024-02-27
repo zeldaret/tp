@@ -13,7 +13,7 @@
 dInsect_c::dInsect_c() {
     m_itemId = -1;
     field_0x56C = 0;
-    field_0x56D = 1;
+    mDraw = true;
     m_mode = 0;
     m_itemNo = M_MAYFLY;
     field_0x584 = 0;
@@ -48,7 +48,7 @@ void dInsect_c::Insect_GetDemoMain() {
                 dComIfGp_event_setItemPartnerId(m_itemId);
             }
 
-            field_0x56D = 0;
+            mDraw = false;
             m_mode = 2;
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
@@ -61,7 +61,7 @@ void dInsect_c::Insect_GetDemoMain() {
             if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[m_saveBitNo]) ||
                 field_0x585 != 0)
             {
-                field_0x56D = 1;
+                mDraw = true;
                 m_mode = 0;
                 if (field_0x584 == 0) {
                     fopAcM_createItem(&current.pos, HEART, -1, -1, NULL, NULL, 0);
