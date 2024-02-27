@@ -2,8 +2,8 @@
 #define D_A_TAG_LV8GATE_H
 
 #include "SSystem/SComponent/c_phase.h"
-#include "f_op/f_op_actor_mng.h"
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
 class J3DModel;
 class mDoExt_bckAnm;
@@ -22,7 +22,7 @@ public:
     bool draw();
 
     inline u8 getSceneNo() const { return fopAcM_GetParam(this) & 0xff; }
-    
+
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm* mpBck;
     /* 0x570 */ request_of_phase_process_class mPhaseReq;

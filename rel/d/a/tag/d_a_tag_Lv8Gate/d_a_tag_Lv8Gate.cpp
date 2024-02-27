@@ -6,7 +6,6 @@
 #include "rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate.h"
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "SSystem/SComponent/c_phase.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
@@ -16,8 +15,6 @@
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80D524CC-80D524D0 000000 0004+00 3/3 0/0 0/0 .rodata          @3749 */
 static char* l_arcName = "Lv8Gate";
 
 /* 80D51C38-80D51C58 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
@@ -33,7 +30,7 @@ daTagLv8Gate_c::~daTagLv8Gate_c() {
 
 inline void daTagLv8Gate_c::initBaseMtx() {
     if (mpModel != NULL) {
-        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());         
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::YrotM(shape_angle.y + 0x8000);
         mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -75,7 +72,8 @@ inline int daTagLv8Gate_c::create() {
 inline bool daTagLv8Gate_c::draw() {
     if (mpModel != NULL) {
         for (u16 index = 0; index < 3; index++) {
-            J3DMaterial* material = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
+            J3DMaterial* material =
+                mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(index);
             material->getTevKColor(1)->r = 128;
             material->getTevKColor(1)->g = 120;
             material->getTevKColor(1)->b = 100;
@@ -108,7 +106,9 @@ int daTagLv8Gate_c::createHeap() {
 
         J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5);
         mpBck = new mDoExt_bckAnm();
-        if (mpBck == NULL || !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (mpBck == NULL ||
+            !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false))
+        {
             return 0;
         }
     }
@@ -130,8 +130,8 @@ static int daTagLv8Gate_Execute(daTagLv8Gate_c* i_this) {
 
 /* 80D51F48-80D522F0 000388 03A8+00 1/1 0/0 0/0 .text            execute__14daTagLv8Gate_cFv */
 int daTagLv8Gate_c::execute() {
-    dComIfG_inf_c& game_info = g_dComIfG_gameInfo; // Fake match?
-    
+    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
+
     if (game_info.getPlay().getEvent().runCheck() && !mEvtInfo.checkCommandTalk()) {
         s32 cut_index = i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
 
@@ -140,19 +140,20 @@ int daTagLv8Gate_c::execute() {
 
             if (i_dComIfGp_getEventManager().getIsAddvance(cut_index)) {
                 switch (*cut_name) {
-                    case '0001':
-                        i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
-                        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y, 0);
+                case '0001':
+                    i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y,
+                                                                     0);
 
-                        fopAc_ac_c* mirror_table = i_fopAcM_SearchByName(PROC_Obj_MirrorTable);
-                        if (mirror_table != NULL) {
-                            static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = 1;
-                        }
-                        break;
+                    fopAc_ac_c* mirror_table = i_fopAcM_SearchByName(PROC_Obj_MirrorTable);
+                    if (mirror_table != NULL) {
+                        static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = true;
+                    }
+                    break;
 
-                    case '0002':
-                        dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
-                        break;
+                case '0002':
+                    dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                    break;
                 }
             }
 
@@ -162,10 +163,10 @@ int daTagLv8Gate_c::execute() {
             }
 
             switch (*cut_name) {
-                case '0001':
-                case '0002':
-                    dComIfGp_evmng_cutEnd(cut_index);
-                    break;
+            case '0001':
+            case '0002':
+                dComIfGp_evmng_cutEnd(cut_index);
+                break;
             }
 
             if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
@@ -187,9 +188,9 @@ int daTagLv8Gate_c::execute() {
             }
         }
 
-        if (mStatus & 0x2000) {
+        if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
-            mAttentionInfo.mFlags &= 0xffffffef;
+            mAttentionInfo.mFlags &= ~0x10;
             mEvtInfo.setArchiveName(l_arcName);
             i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
@@ -201,12 +202,12 @@ int daTagLv8Gate_c::execute() {
         this->mpBck->play();
     }
 
-    cXyz v(0.0f, 400.0f, 1400.0f);
+    cXyz pos(0.0f, 400.0f, 1400.0f);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mDoMtx_stack_c::multVec(&v, &v);
+    mDoMtx_stack_c::multVec(&pos, &pos);
 
-    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MONOLIS_HOLE, &v, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MONOLIS_HOLE, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 
     return 1;
 }
@@ -229,10 +230,8 @@ static int daTagLv8Gate_Delete(daTagLv8Gate_c* i_this) {
 
 /* 80D52514-80D52534 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagLv8Gate_Method */
 static actor_method_class l_daTagLv8Gate_Method = {
-    (process_method_func)daTagLv8Gate_Create,
-    (process_method_func)daTagLv8Gate_Delete,
-    (process_method_func)daTagLv8Gate_Execute,
-    (process_method_func)daTagLv8Gate_IsDelete,
+    (process_method_func)daTagLv8Gate_Create,  (process_method_func)daTagLv8Gate_Delete,
+    (process_method_func)daTagLv8Gate_Execute, (process_method_func)daTagLv8Gate_IsDelete,
     (process_method_func)daTagLv8Gate_Draw,
 };
 
