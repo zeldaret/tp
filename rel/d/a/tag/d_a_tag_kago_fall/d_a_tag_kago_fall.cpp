@@ -23,27 +23,27 @@ int daTagKagoFall_c::create() {
     fopAcM_SetupActor(this, daTagKagoFall_c);
 
     if (dComIfG_play_c::getLayerNo(0) == 13) {
-        mExitId = 4;
+        mExitID = 4;
 
         if (dComIfGp_getStartStagePoint() == 0) {
             mStartPoint = 0;
         } else {
             mStartPoint = 12;
         }
-        setActionMode(0, 0);
+        setActionMode(ACTION_MODE_RIVER, 0);
     } else if (dComIfG_play_c::getLayerNo(0) == 14) {
-        mExitId = 2;
+        mExitID = 2;
         mStartPoint = 0;
 
-        PSMTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
+        mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::YrotM(shape_angle.y);
-        PSMTXInverse(mDoMtx_stack_c::get(), mMtx);
+        mDoMtx_inverse(mDoMtx_stack_c::get(), mMtx);
 
         mScale.x *= 75.0f;
         mScale.z *= 75.0f;
         mScale.y *= 150.0f;
 
-        setActionMode(1, 0);
+        setActionMode(ACTION_MODE_FALL, 0);
     }
 
     if (m_master_id == -1) {
@@ -55,7 +55,7 @@ int daTagKagoFall_c::create() {
 
 /* 80D59DE0-80D59E18 000200 0038+00 1/1 0/0 0/0 .text            execute__15daTagKagoFall_cFv */
 int daTagKagoFall_c::execute() {
-    if (mActionMode == 0) {
+    if (mActionMode == ACTION_MODE_RIVER) {
         actionWaitRiver();
     } else {
         actionWaitFall();
@@ -65,7 +65,7 @@ int daTagKagoFall_c::execute() {
 }
 
 /* 80D59E18-80D59E24 000238 000C+00 1/1 0/0 0/0 .text setActionMode__15daTagKagoFall_cFUcUc */
-void daTagKagoFall_c::setActionMode(u8 mode, u8 state) {
+void daTagKagoFall_c::setActionMode(ActionMode mode, u8 state) {
     mActionMode = mode;
     mActionState = state;
 }
@@ -74,83 +74,85 @@ void daTagKagoFall_c::setActionMode(u8 mode, u8 state) {
 void daTagKagoFall_c::actionWaitRiver() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     dCamera_c* camera = dCam_getBody();
-    if (field_0x5f0) {
-        field_0x5f0--;
+
+    if (mTimer) {
+        mTimer--;
     }
-    if (field_0x5f4) {
-        field_0x5f4--;
+    if (mRiverTimer) {
+        mRiverTimer--;
     }
 
     switch (mActionState) {
     case 0:
         if (m_master_id == fopAcM_GetID(this)) {
             if (!daPy_getPlayerActorClass()->checkCargoCarry()) {
-                field_0x5f2--;
+                mNoCarryTimer--;
 
-                if (field_0x5f2 == 0) {
+                if (mNoCarryTimer == 0) {
                     mActionState = 1;
-                    mActionMode = 1;
+                    mActionMode = ACTION_MODE_FALL;
                     return;
                 }
             } else {
-                field_0x5f2 = 150;
+                mNoCarryTimer = 150;
             }
         }
 
         if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) && i_dComIfGs_getLife()) {
             if (!mEvtInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(this, 1, -1, 3);
-                mEvtInfo.i_onCondition(2);
+                mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
             } else {
                 camera->Stop();
                 camera->SetTrimSize(3);
 
-                mOriginalEye = dCam_getBody()->Eye();
+                mRestartPos = dCam_getBody()->Eye();
                 mActionState = 1;
-                field_0x5f0 = 30;
-                player->i_onNoResetFlg0(0x10000);
-                field_0x5f4 = 60;
+                mTimer = 30;
+                player->i_onNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+                mRiverTimer = 60;
             }
         }
         break;
 
     case 1:
-        if (field_0x5f0 == 1) {
-            player->voiceStart(0x10041);
+        if (mTimer == 1) {
+            player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
         }
-        if (field_0x5f4 == 0) {
-            Z2GetAudioMgr()->seStart(0x33, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+        if (mRiverTimer == 0) {
+            Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
-            field_0x5f4 = 20;
+            mRiverTimer = 20;
             mActionState = 2;
         }
 
-        dCam_getBody()->Set(player->mEyePos, mOriginalEye);
+        dCam_getBody()->Set(player->mEyePos, mRestartPos);
         break;
 
     case 2:
-        if (field_0x5f4 == 0) {
-            daPy_getPlayerActorClass()->i_offNoResetFlg0(0x10000);
+        if (mRiverTimer == 0) {
+            daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
             mActionState = 3;
-            field_0x5f0 = 40;
+            mTimer = 40;
         }
-        dCam_getBody()->Set(player->mEyePos, mOriginalEye);
+        dCam_getBody()->Set(player->mEyePos, mRestartPos);
         break;
 
     case 3:
-        if (field_0x5f0 == 0) {
+        if (mTimer == 0) {
             mMsgFlow.init(this, 0x7d4, 0, NULL);
             mActionState = 4;
         }
         break;
 
     case 4:
-        daPy_getPlayerActorClass()->i_offNoResetFlg0(0x10000);
+        daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
 
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
-            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {
-                dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {  // This doesn't seem right
+                dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 int room = dStage_roomControl_c::mStayNo;
                 dComIfGp_setNextStage("F_SP112", mStartPoint, room, dComIfG_play_c::getLayerNo(0),
@@ -161,6 +163,7 @@ void daTagKagoFall_c::actionWaitRiver() {
         break;
 
     case 5:
+        // Maybe contained some stripped out debug code?
         break;
     }
 }
@@ -181,49 +184,51 @@ void daTagKagoFall_c::actionWaitFall() {
 
         if (m_master_id == fopAcM_GetID(this)) {
             if (!daPy_getPlayerActorClass()->checkCargoCarry()) {
-                field_0x5f2--;
+                mNoCarryTimer--;
 
-                if (field_0x5f2 == 0) {
+                if (mNoCarryTimer == 0) {
                     mActionState = 1;
                 }
             } else {
-                field_0x5f2 = 150;
+                mNoCarryTimer = 150;
             }
         }
         break;
 
     case 1:
         if (i_dComIfGs_getLife() == 0) {
-            player->onSceneChangeAreaJump(mExitId, -1, NULL);
+            player->onSceneChangeAreaJump(mExitID, -1, NULL);
 
-            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && field_0x5f9 == 0) {
-                Z2GetAudioMgr()->seStart(0x33, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                player->voiceStart(0x10041);
-                field_0x5f9 = 1;
+            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) &&
+                mPlayedSceneChangeSfx == 0)
+            {
+                Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
+                mPlayedSceneChangeSfx = 1;
             }
         } else if (!mEvtInfo.checkCommandDemoAccrpt()) {
-            mOriginalEye = player->current.pos;
+            mRestartPos = player->current.pos;
             fopAcM_orderPotentialEvent(this, 1, -1, 0);
-            mEvtInfo.i_onCondition(2);
+            mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
         } else {
             mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
-            field_0x5f0 = 60;
+            mTimer = 60;
             mActionState = 2;
-            Z2GetAudioMgr()->seStart(0x33, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-            player->voiceStart(0x10041);
+            Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
         }
         break;
 
     case 2:
-        if (field_0x5f0) {
-            field_0x5f0--;
+        if (mTimer) {
+            mTimer--;
         }
 
-        if (45 >= field_0x5f0) {
-            player->setPlayerPosAndAngle(&mOriginalEye, 0, 0);
+        if (45 >= mTimer) {
+            player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
         }
 
-        if (field_0x5f0 == 0) {
+        if (mTimer == 0) {
             dCam_getBody()->Stop();
             dCam_getBody()->SetTrimSize(3);
 
@@ -231,22 +236,22 @@ void daTagKagoFall_c::actionWaitFall() {
             mActionState = 3;
 
             dBgS_LinChk lin_chk;
-            mOriginalEye.y += 3000.0f;
-            lin_chk.Set(&player->current.pos, &mOriginalEye, NULL);
+            mRestartPos.y += 3000.0f;
+            lin_chk.Set(&player->current.pos, &mRestartPos, NULL);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                mOriginalEye.y = lin_chk.mLin.GetEnd().y;
+                mRestartPos.y = lin_chk.i_GetCross().y;
             }
         }
 
         break;
 
     case 3:
-        player->setPlayerPosAndAngle(&mOriginalEye, 0, 0);
+        player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
-            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {
-                dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {  // This doesn't seem right
+                dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 int room = dStage_roomControl_c::mStayNo;
                 dComIfGp_setNextStage("F_SP112", mStartPoint, room, dComIfG_play_c::getLayerNo(0),
@@ -257,6 +262,7 @@ void daTagKagoFall_c::actionWaitFall() {
         break;
 
     case 10:
+        // Maybe contained some stripped out debug code?
         break;
     }
 }
