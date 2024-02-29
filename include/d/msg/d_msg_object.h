@@ -139,7 +139,7 @@ public:
     /* 802383D0 */ static u32 getMessageID();
     /* 802383E4 */ u32 getSmellTypeMessageID();
     /* 80238410 */ static void setSmellType(u8);
-    /* 80238440 */ void getSelectCursorPos();
+    /* 80238440 */ u8 getSelectCursorPos();
     /* 8023846C */ static void setSelectCursorPos(u8);
     /* 8023849C */ void setPortalMessageID(u16);
     /* 802384B0 */ void setInsectItemNo(u8);

@@ -4,81 +4,47 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall.h"
+
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/msg/d_msg_flow.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_graphic.h"
+
+#define NONMATCHING 0
 
 //
 // Types:
 //
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct _GXColor {};
-
-struct mDoGph_gInf_c {
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daTagKagoFall_c {
-    /* 80D59C58 */ void create();
-    /* 80D59DE0 */ void execute();
+class daTagKagoFall_c : public fopAc_ac_c {
+public:
+    /* 80D59C58 */ int create();
+    /* 80D59DE0 */ int execute();
     /* 80D59E18 */ void setActionMode(u8, u8);
     /* 80D59E24 */ void actionWaitRiver();
     /* 80D5A218 */ void actionWaitFall();
-    /* 80D5A67C */ bool _delete();
-};
+    /* 80D5A67C */ int _delete();
 
-struct dMsgObject_c {
-    /* 80238440 */ void getSelectCursorPos();
-};
+    /* 0x568 */ dMsgFlow_c mMsgFlow;
+    /* 0x5b4 */ Mtx mMtx;
+    /* 0x5e4 */ cXyz mOriginalEye;
+    /* 0x5f0 */ s16 field_0x5f0;
+    /* 0x5f2 */ s16 field_0x5f2;
+    /* 0x5f4 */ u8 field_0x5f4;
+    /* 0x5f5 */ u8 mActionMode;
+    /* 0x5f6 */ u8 mActionState;
+    /* 0x5f7 */ u8 mExitId;
+    /* 0x5f8 */ u8 mStartPoint;
+    /* 0x5f9 */ u8 field_0x5f9;
 
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
+};  // Size: 0x5fc
 
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct cXyz {};
-
-struct dCamera_c {
-    /* 801614D0 */ void Stop();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180AA8 */ void Set(cXyz, cXyz);
-    /* 80181E64 */ void Eye();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
+STATIC_ASSERT(sizeof(daTagKagoFall_c) == 0x5fc);
 
 //
 // Forward References:
@@ -121,19 +87,11 @@ extern "C" void __ct__10dMsgFlow_cFv();
 extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
 extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -142,6 +100,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80D5A6EC-80D5A6F0 000000 0004+00 3/3 0/0 0/0 .rodata          @3907 */
+#if TRUE  //! NONMATCHING
 SECTION_RODATA static f32 const lit_3907 = 75.0f;
 COMPILER_STRIP_GATE(0x80D5A6EC, &lit_3907);
 
@@ -151,39 +110,76 @@ COMPILER_STRIP_GATE(0x80D5A6F0, &lit_3908);
 
 /* 80D5A710-80D5A714 000000 0004+00 3/3 0/0 0/0 .data            m_master_id */
 SECTION_DATA static u32 m_master_id = 0xFFFFFFFF;
+#else
+static u32 m_master_id = 0xFFFFFFFF;
+#endif
 
 /* 80D59C58-80D59DE0 000078 0188+00 1/1 0/0 0/0 .text            create__15daTagKagoFall_cFv */
+#if NONMATCHING
+int daTagKagoFall_c::create() {
+    fopAcM_SetupActor(this, daTagKagoFall_c);
+
+    if (dComIfG_play_c::getLayerNo(0) == 13) {
+        mExitId = 4;
+
+        if (dComIfGp_getStartStagePoint() == 0) {
+            mStartPoint = 0;
+        } else {
+            mStartPoint = 12;
+        }
+        setActionMode(0, 0);
+    } else if (dComIfG_play_c::getLayerNo(0) == 14) {
+        mExitId = 2;
+        mStartPoint = 0;
+
+        PSMTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+        PSMTXInverse(mDoMtx_stack_c::get(), mMtx);
+
+        mScale.x *= 75.0f;
+        mScale.z *= 75.0f;
+        mScale.y *= 150.0f;
+
+        setActionMode(1, 0);
+    }
+
+    if (m_master_id == -1) {
+        m_master_id = fopAcM_GetID(this);
+    }
+
+    return cPhs_COMPLEATE_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagKagoFall_c::create() {
+asm int daTagKagoFall_c::create() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/create__15daTagKagoFall_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D59DE0-80D59E18 000200 0038+00 1/1 0/0 0/0 .text            execute__15daTagKagoFall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/execute__15daTagKagoFall_cFv.s"
+int daTagKagoFall_c::execute() {
+    if (mActionMode == 0) {
+        actionWaitRiver();
+    } else {
+        actionWaitFall();
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80D59E18-80D59E24 000238 000C+00 1/1 0/0 0/0 .text setActionMode__15daTagKagoFall_cFUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::setActionMode(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/setActionMode__15daTagKagoFall_cFUcUc.s"
+void daTagKagoFall_c::setActionMode(u8 mode, u8 state) {
+    mActionMode = mode;
+    mActionState = state;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5A6F4-80D5A6F8 000008 0004+00 0/2 0/0 0/0 .rodata          @4022 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = 1.0f;
@@ -221,8 +217,104 @@ COMPILER_STRIP_GATE(0x80D5A700, &lit_4025);
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80D5A708 = "F_SP112";
 #pragma pop
+#endif
 
 /* 80D59E24-80D5A218 000244 03F4+00 1/1 0/0 0/0 .text actionWaitRiver__15daTagKagoFall_cFv */
+#if NONMATCHING
+void daTagKagoFall_c::actionWaitRiver() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camera = dCam_getBody();
+    if (field_0x5f0) {
+        field_0x5f0--;
+    }
+    if (field_0x5f4) {
+        field_0x5f4--;
+    }
+
+    switch (mActionState) {
+    case 0:
+        if (m_master_id == fopAcM_GetID(this)) {
+            if (!daPy_getPlayerActorClass()->checkCargoCarry()) {
+                field_0x5f2--;
+
+                if (field_0x5f2 == 0) {
+                    mActionState = 1;
+                    mActionMode = 1;
+                    return;
+                }
+            } else {
+                field_0x5f2 = 150;
+            }
+        }
+
+        if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) && i_dComIfGs_getLife()) {
+            if (!mEvtInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(this, 1, -1, 3);
+                mEvtInfo.i_onCondition(2);
+            } else {
+                camera->Stop();
+                camera->SetTrimSize(3);
+
+                mOriginalEye = dCam_getBody()->Eye();
+                mActionState = 1;
+                field_0x5f0 = 30;
+                player->i_onNoResetFlg0(0x10000);
+                field_0x5f4 = 60;
+            }
+        }
+        break;
+
+    case 1:
+        if (field_0x5f0 == 1) {
+            player->voiceStart(0x10041);
+        }
+        if (field_0x5f4 == 0) {
+            Z2GetAudioMgr()->seStart(0x33, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
+            field_0x5f4 = 20;
+            mActionState = 2;
+        }
+
+        dCam_getBody()->Set(mEyePos, mOriginalEye);
+        break;
+
+    case 2:
+        if (field_0x5f4 == 0) {
+            daPy_getPlayerActorClass()->i_offNoResetFlg0(0x10000);
+            mActionState = 3;
+            field_0x5f0 = 40;
+        }
+        dCam_getBody()->Set(mEyePos, mOriginalEye);
+        break;
+
+    case 3:
+        if (field_0x5f0 == 0) {
+            mMsgFlow.init(this, 0x7d4, 0, NULL);
+            mActionState = 4;
+        }
+        break;
+
+    case 4:
+        daPy_getPlayerActorClass()->i_offNoResetFlg0(0x10000);
+
+        int msg = mMsgFlow.doFlow(this, NULL, 0);
+        if (msg != 0) {
+            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {
+                dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+            } else {
+                int room = dStage_roomControl_c::mStayNo;
+                dComIfGp_setNextStage("F_SP112", mStartPoint, room, dComIfG_play_c::getLayerNo(0),
+                                      0.0f, 10, 1, 0, 0, 1, 0);
+            }
+            mActionState = 5;
+        }
+        break;
+
+    case 5:
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,6 +323,7 @@ asm void daTagKagoFall_c::actionWaitRiver() {
 #include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/actionWaitRiver__15daTagKagoFall_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D5A704-80D5A708 000018 0004+00 0/1 0/0 0/0 .rodata          @4118 */
@@ -252,40 +345,25 @@ asm void daTagKagoFall_c::actionWaitFall() {
 #pragma pop
 
 /* 80D5A67C-80D5A684 000A9C 0008+00 1/1 0/0 0/0 .text            _delete__15daTagKagoFall_cFv */
-bool daTagKagoFall_c::_delete() {
-    return true;
+int daTagKagoFall_c::_delete() {
+    return TRUE;
 }
 
 /* 80D5A684-80D5A6A4 000AA4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Execute__FP15daTagKagoFall_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Execute(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Execute__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Execute(daTagKagoFall_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D5A6A4-80D5A6C4 000AC4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Delete__FP15daTagKagoFall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Delete(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Delete__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Delete(daTagKagoFall_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D5A6C4-80D5A6E4 000AE4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Create__FP15daTagKagoFall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Create(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Create__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Create(daTagKagoFall_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5A714-80D5A734 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagKagoFall_Method */
