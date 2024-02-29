@@ -21,10 +21,15 @@ public:
     /* 80CCDFA4 */ void initBaseMtx();
     /* 80CCDFE0 */ void setBaseMtx();
 
-    /* 0x5A4 */ request_of_phase_process_class* mPhaseRequest;
+    // TODO: is this needed, or is it redundant?
+    /* 0x5A4 */ // request_of_phase_process_class mPhaseRequest;
+
+    // TODO: needed to match size, but haven't found it used yet
+    /* 0x5A8 */ u32 field_0x5a8;
+
 
     /* 0x5AC */ J3DModel* mpModel;
-    /* 0x5B0 */ u8 mResNameIndex; // Used for indexing within l_resNameList?
+    /* 0x5B0 */ u8 mResNameNo; // TODO: Used for indexing within l_resNameList?
     /* 0x5B1 */ bool field_0x5b1;
     /* 0x5B2 */ bool field_0x5b2;
 };  // Size: 0x5B4
@@ -214,24 +219,18 @@ asm int daObj_Sekizo_c::Draw() {
 #pragma pop
 
 /* 80CCDFA4-80CCDFE0 000484 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObj_Sekizo_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/initBaseMtx__14daObj_Sekizo_cFv.s"
+void daObj_Sekizo_c::initBaseMtx() {
+    mpModel->setBaseScale(mScale);
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80CCDFE0-80CCE044 0004C0 0064+00 2/2 0/0 0/0 .text            setBaseMtx__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObj_Sekizo_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/setBaseMtx__14daObj_Sekizo_cFv.s"
+void daObj_Sekizo_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-#pragma pop
 
 /* 80CCE044-80CCE064 000524 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Create__FPv */
 #pragma push
