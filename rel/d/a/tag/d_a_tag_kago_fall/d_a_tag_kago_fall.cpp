@@ -151,7 +151,7 @@ void daTagKagoFall_c::actionWaitRiver() {
 
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
-            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {  // This doesn't seem right
+            if (dMsgObject_getSelectCursorPos() != 0) {
                 dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 int room = dStage_roomControl_c::mStayNo;
@@ -199,12 +199,11 @@ void daTagKagoFall_c::actionWaitFall() {
         if (i_dComIfGs_getLife() == 0) {
             player->onSceneChangeAreaJump(mExitID, -1, NULL);
 
-            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) &&
-                mPlayedSceneChangeSfx == 0)
+            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)
             {
                 Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
-                mPlayedSceneChangeSfx = 1;
+                mPlayedSceneChangeSfx = true;
             }
         } else if (!mEvtInfo.checkCommandDemoAccrpt()) {
             mRestartPos = player->current.pos;
@@ -224,7 +223,7 @@ void daTagKagoFall_c::actionWaitFall() {
             mTimer--;
         }
 
-        if (45 >= mTimer) {
+        if (mTimer <= 45) {
             player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
         }
 
@@ -250,7 +249,7 @@ void daTagKagoFall_c::actionWaitFall() {
         player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
-            if (((dMsgObject_c*)msg)->getSelectCursorPos() != 0) {  // This doesn't seem right
+            if (dMsgObject_getSelectCursorPos() != 0) {
                 dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 int room = dStage_roomControl_c::mStayNo;
