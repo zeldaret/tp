@@ -4,310 +4,311 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall.h"
-#include "dol2asm.h"
 
-//
-// Types:
-//
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct _GXColor {};
-
-struct mDoGph_gInf_c {
-    /* 80007FD8 */ void fadeOut(f32, _GXColor&);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daTagKagoFall_c {
-    /* 80D59C58 */ void create();
-    /* 80D59DE0 */ void execute();
-    /* 80D59E18 */ void setActionMode(u8, u8);
-    /* 80D59E24 */ void actionWaitRiver();
-    /* 80D5A218 */ void actionWaitFall();
-    /* 80D5A67C */ bool _delete();
-};
-
-struct dMsgObject_c {
-    /* 80238440 */ void getSelectCursorPos();
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dComIfG_play_c {
-    /* 8002C97C */ void getLayerNo(int);
-};
-
-struct cXyz {};
-
-struct dCamera_c {
-    /* 801614D0 */ void Stop();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180AA8 */ void Set(cXyz, cXyz);
-    /* 80181E64 */ void Eye();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void create__15daTagKagoFall_cFv();
-extern "C" void execute__15daTagKagoFall_cFv();
-extern "C" void setActionMode__15daTagKagoFall_cFUcUc();
-extern "C" void actionWaitRiver__15daTagKagoFall_cFv();
-extern "C" void actionWaitFall__15daTagKagoFall_cFv();
-extern "C" bool _delete__15daTagKagoFall_cFv();
-extern "C" static void daTagKagoFall_Execute__FP15daTagKagoFall_c();
-extern "C" static void daTagKagoFall_Delete__FP15daTagKagoFall_c();
-extern "C" static void daTagKagoFall_Create__FP15daTagKagoFall_c();
-extern "C" extern char const* const d_a_tag_kago_fall__stringBase0;
-extern "C" extern void* g_profile_Tag_KagoFall[12];
-
-//
-// External References:
-//
-
-extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs();
-extern "C" void dStage_changeScene__FifUlScsi();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfGp_setNextStage__FPCcsScScfUliScsii();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void Stop__9dCamera_cFv();
-extern "C" void SetTrimSize__9dCamera_cFl();
-extern "C" void Set__9dCamera_cF4cXyz4cXyz();
-extern "C" void dCam_getBody__Fv();
-extern "C" void Eye__9dCamera_cFv();
-extern "C" void getSelectCursorPos__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void PSMTXInverse();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
+#include "d/msg/d_msg_object.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80D5A6EC-80D5A6F0 000000 0004+00 3/3 0/0 0/0 .rodata          @3907 */
-SECTION_RODATA static f32 const lit_3907 = 75.0f;
-COMPILER_STRIP_GATE(0x80D5A6EC, &lit_3907);
-
-/* 80D5A6F0-80D5A6F4 000004 0004+00 1/1 0/0 0/0 .rodata          @3908 */
-SECTION_RODATA static f32 const lit_3908 = 150.0f;
-COMPILER_STRIP_GATE(0x80D5A6F0, &lit_3908);
-
-/* 80D5A710-80D5A714 000000 0004+00 3/3 0/0 0/0 .data            m_master_id */
-SECTION_DATA static u32 m_master_id = 0xFFFFFFFF;
+static u32 m_master_id = -1;
 
 /* 80D59C58-80D59DE0 000078 0188+00 1/1 0/0 0/0 .text            create__15daTagKagoFall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::create() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/create__15daTagKagoFall_cFv.s"
+int daTagKagoFall_c::create() {
+    fopAcM_SetupActor(this, daTagKagoFall_c);
+
+    if (dComIfG_play_c::getLayerNo(0) == 13) {
+        mExitID = 4;
+
+        if (dComIfGp_getStartStagePoint() == 0) {
+            mStartPoint = 0;
+        } else {
+            mStartPoint = 12;
+        }
+        setActionMode(ACTION_MODE_RIVER, 0);
+    } else if (dComIfG_play_c::getLayerNo(0) == 14) {
+        mExitID = 2;
+        mStartPoint = 0;
+
+        mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+        mDoMtx_inverse(mDoMtx_stack_c::get(), mMtx);
+
+        mScale.x *= 75.0f;
+        mScale.z *= 75.0f;
+        mScale.y *= 150.0f;
+
+        setActionMode(ACTION_MODE_FALL, 0);
+    }
+
+    if (m_master_id == -1) {
+        m_master_id = fopAcM_GetID(this);
+    }
+
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80D59DE0-80D59E18 000200 0038+00 1/1 0/0 0/0 .text            execute__15daTagKagoFall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/execute__15daTagKagoFall_cFv.s"
+int daTagKagoFall_c::execute() {
+    if (mActionMode == ACTION_MODE_RIVER) {
+        actionWaitRiver();
+    } else {
+        actionWaitFall();
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80D59E18-80D59E24 000238 000C+00 1/1 0/0 0/0 .text setActionMode__15daTagKagoFall_cFUcUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::setActionMode(u8 param_0, u8 param_1) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/setActionMode__15daTagKagoFall_cFUcUc.s"
+void daTagKagoFall_c::setActionMode(ActionMode mode, u8 state) {
+    mActionMode = mode;
+    mActionState = state;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80D5A6F4-80D5A6F8 000008 0004+00 0/2 0/0 0/0 .rodata          @4022 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4022 = 1.0f;
-COMPILER_STRIP_GATE(0x80D5A6F4, &lit_4022);
-#pragma pop
-
-/* 80D5A6F8-80D5A6FC 00000C 0004+00 0/2 0/0 0/0 .rodata          @4023 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4023 = -1.0f;
-COMPILER_STRIP_GATE(0x80D5A6F8, &lit_4023);
-#pragma pop
-
-/* 80D5A6FC-80D5A700 000010 0004+00 0/2 0/0 0/0 .rodata          @4024 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4024 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80D5A6FC, &lit_4024);
-#pragma pop
-
-/* 80D5A700-80D5A704 000014 0004+00 0/2 0/0 0/0 .rodata          @4025 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4025[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D5A700, &lit_4025);
-#pragma pop
-
-/* 80D5A708-80D5A708 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D5A708 = "F_SP112";
-#pragma pop
 
 /* 80D59E24-80D5A218 000244 03F4+00 1/1 0/0 0/0 .text actionWaitRiver__15daTagKagoFall_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::actionWaitRiver() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/actionWaitRiver__15daTagKagoFall_cFv.s"
-}
-#pragma pop
+void daTagKagoFall_c::actionWaitRiver() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camera = dCam_getBody();
 
-/* ############################################################################################## */
-/* 80D5A704-80D5A708 000018 0004+00 0/1 0/0 0/0 .rodata          @4118 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4118 = 3000.0f;
-COMPILER_STRIP_GATE(0x80D5A704, &lit_4118);
-#pragma pop
+    if (mTimer) {
+        mTimer--;
+    }
+    if (mRiverTimer) {
+        mRiverTimer--;
+    }
+
+    switch (mActionState) {
+    case 0:
+        if (m_master_id == fopAcM_GetID(this)) {
+            if (!daPy_getPlayerActorClass()->checkCargoCarry()) {
+                mNoCarryTimer--;
+
+                if (mNoCarryTimer == 0) {
+                    mActionState = 1;
+                    mActionMode = ACTION_MODE_FALL;
+                    return;
+                }
+            } else {
+                mNoCarryTimer = 150;
+            }
+        }
+
+        if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) && i_dComIfGs_getLife()) {
+            if (!mEvtInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(this, 1, -1, 3);
+                mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            } else {
+                camera->Stop();
+                camera->SetTrimSize(3);
+
+                mRestartPos = dCam_getBody()->Eye();
+                mActionState = 1;
+                mTimer = 30;
+                player->i_onNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+                mRiverTimer = 60;
+            }
+        }
+        break;
+
+    case 1:
+        if (mTimer == 1) {
+            player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
+        }
+
+        if (mRiverTimer == 0) {
+            Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
+            mRiverTimer = 20;
+            mActionState = 2;
+        }
+
+        dCam_getBody()->Set(player->mEyePos, mRestartPos);
+        break;
+
+    case 2:
+        if (mRiverTimer == 0) {
+            daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+            mActionState = 3;
+            mTimer = 40;
+        }
+        dCam_getBody()->Set(player->mEyePos, mRestartPos);
+        break;
+
+    case 3:
+        if (mTimer == 0) {
+            mMsgFlow.init(this, 0x7d4, 0, NULL);
+            mActionState = 4;
+        }
+        break;
+
+    case 4:
+        daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+
+        int msg = mMsgFlow.doFlow(this, NULL, 0);
+        if (msg != 0) {
+            if (dMsgObject_getSelectCursorPos() != 0) {
+                dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+            } else {
+                int room = dStage_roomControl_c::mStayNo;
+                dComIfGp_setNextStage("F_SP112", mStartPoint, room, dComIfG_play_c::getLayerNo(0),
+                                      0.0f, 10, 1, 0, 0, 1, 0);
+            }
+            mActionState = 5;
+        }
+        break;
+
+    case 5:
+        // Maybe contained some stripped out debug code?
+        break;
+    }
+}
 
 /* 80D5A218-80D5A67C 000638 0464+00 1/1 0/0 0/0 .text            actionWaitFall__15daTagKagoFall_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagKagoFall_c::actionWaitFall() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/actionWaitFall__15daTagKagoFall_cFv.s"
+void daTagKagoFall_c::actionWaitFall() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz v;
+
+    switch (mActionState) {
+    case 0:
+        mDoMtx_multVec(mMtx, &player->current.pos, &v);
+
+        if (v.y <= mScale.y && v.y >= 0.0f && fabsf(v.x) <= mScale.x && fabsf(v.z) <= mScale.z) {
+            mActionState = 1;
+        }
+
+        if (m_master_id == fopAcM_GetID(this)) {
+            if (!daPy_getPlayerActorClass()->checkCargoCarry()) {
+                mNoCarryTimer--;
+
+                if (mNoCarryTimer == 0) {
+                    mActionState = 1;
+                }
+            } else {
+                mNoCarryTimer = 150;
+            }
+        }
+        break;
+
+    case 1:
+        if (i_dComIfGs_getLife() == 0) {
+            player->onSceneChangeAreaJump(mExitID, -1, NULL);
+
+            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)
+            {
+                Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
+                mPlayedSceneChangeSfx = true;
+            }
+        } else if (!mEvtInfo.checkCommandDemoAccrpt()) {
+            mRestartPos = player->current.pos;
+            fopAcM_orderPotentialEvent(this, 1, -1, 0);
+            mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        } else {
+            mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
+            mTimer = 60;
+            mActionState = 2;
+            Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
+        }
+        break;
+
+    case 2:
+        if (mTimer) {
+            mTimer--;
+        }
+
+        if (mTimer <= 45) {
+            player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
+        }
+
+        if (mTimer == 0) {
+            dCam_getBody()->Stop();
+            dCam_getBody()->SetTrimSize(3);
+
+            mMsgFlow.init(this, 0x7d4, 0, NULL);
+            mActionState = 3;
+
+            dBgS_LinChk lin_chk;
+            mRestartPos.y += 3000.0f;
+            lin_chk.Set(&player->current.pos, &mRestartPos, NULL);
+
+            if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+                mRestartPos.y = lin_chk.i_GetCross().y;
+            }
+        }
+
+        break;
+
+    case 3:
+        player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
+        int msg = mMsgFlow.doFlow(this, NULL, 0);
+        if (msg != 0) {
+            if (dMsgObject_getSelectCursorPos() != 0) {
+                dStage_changeScene(mExitID, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+            } else {
+                int room = dStage_roomControl_c::mStayNo;
+                dComIfGp_setNextStage("F_SP112", mStartPoint, room, dComIfG_play_c::getLayerNo(0),
+                                      0.0f, 10, 1, 0, 0, 1, 0);
+            }
+            mActionState = 10;
+        }
+        break;
+
+    case 10:
+        // Maybe contained some stripped out debug code?
+        break;
+    }
 }
-#pragma pop
 
 /* 80D5A67C-80D5A684 000A9C 0008+00 1/1 0/0 0/0 .text            _delete__15daTagKagoFall_cFv */
-bool daTagKagoFall_c::_delete() {
-    return true;
+int daTagKagoFall_c::_delete() {
+    return TRUE;
 }
 
 /* 80D5A684-80D5A6A4 000AA4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Execute__FP15daTagKagoFall_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Execute(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Execute__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Execute(daTagKagoFall_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D5A6A4-80D5A6C4 000AC4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Delete__FP15daTagKagoFall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Delete(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Delete__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Delete(daTagKagoFall_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D5A6C4-80D5A6E4 000AE4 0020+00 1/0 0/0 0/0 .text daTagKagoFall_Create__FP15daTagKagoFall_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTagKagoFall_Create(daTagKagoFall_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall/daTagKagoFall_Create__FP15daTagKagoFall_c.s"
+static int daTagKagoFall_Create(daTagKagoFall_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D5A714-80D5A734 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagKagoFall_Method */
-SECTION_DATA static void* l_daTagKagoFall_Method[8] = {
-    (void*)daTagKagoFall_Create__FP15daTagKagoFall_c,
-    (void*)daTagKagoFall_Delete__FP15daTagKagoFall_c,
-    (void*)daTagKagoFall_Execute__FP15daTagKagoFall_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daTagKagoFall_Method = {
+    (process_method_func)daTagKagoFall_Create,
+    (process_method_func)daTagKagoFall_Delete,
+    (process_method_func)daTagKagoFall_Execute,
 };
 
 /* 80D5A734-80D5A764 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_KagoFall */
-SECTION_DATA extern void* g_profile_Tag_KagoFall[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01810000, (void*)&g_fpcLf_Method,
-    (void*)0x000005FC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x022D0000, (void*)&l_daTagKagoFall_Method,
-    (void*)0x00040000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Tag_KagoFall = {
+    fpcLy_CURRENT_e,          // mLayerID
+    7,                        // mListID
+    fpcPi_CURRENT_e,          // mListPrio
+    PROC_Tag_KagoFall,        // mProcName
+    &g_fpcLf_Method.mBase,    // mSubMtd
+    sizeof(daTagKagoFall_c),  // mSize
+    0,                        // mSizeOther
+    0,                        // mParameters
+    &g_fopAc_Method.base,     // mSubMtd
+    557,                      // mPriority
+    &l_daTagKagoFall_Method,  // mSubMtd
+    0x40000,                  // mStatus
+    fopAc_ACTOR_e,            // mActorType
+    fopAc_CULLBOX_CUSTOM_e,   // mCullType
 };
-
-/* 80D5A708-80D5A708 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
