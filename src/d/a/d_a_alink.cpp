@@ -12785,7 +12785,7 @@ void daAlink_c::playerInit() {
     field_0x2f97 = -1;
 
     for (int i = 0; i < 0x10; i++) {
-        field_0x28b0[i] = -1;
+        mShieldArrowIDs[i] = -1;
     }
     mAtnActorID = -1;
     mMsgClassID = -1;
