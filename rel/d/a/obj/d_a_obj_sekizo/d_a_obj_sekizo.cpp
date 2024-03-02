@@ -10,9 +10,13 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 
-class daObj_Sekizo_c : public dBgS_MoveBgActor, public request_of_phase_process_class {
+// TODO: is multiple inheritance intentional?
+class daObj_Sekizo_c : public dBgS_MoveBgActor {  // , public request_of_phase_process_class
 public:
+    // TODO: pick one
     /* 80CCDC0C */ int create();
+    // /* 80CCDC0C */ cPhs__Step create();
+
     /* 80CCDD00 */ int CreateHeap();
     /* 80CCDD8C */ int Create();
     /* 80CCDDE8 */ int Delete();
@@ -21,14 +25,14 @@ public:
     /* 80CCDFA4 */ void initBaseMtx();
     /* 80CCDFE0 */ void setBaseMtx();
 
-    // TODO: is this needed, or is it redundant?
-    /* 0x5A4 */ // request_of_phase_process_class mPhaseRequest;
-
     // TODO: needed to match size, but haven't found it used yet
-    /* 0x5A8 */ u32 field_0x5a8;
+    /* 0x5A0 */ u32 field_0x5a0;
+
+    // TODO: is this needed, or is it redundant?
+    /* 0x5A4 */ request_of_phase_process_class mPhase;
 
     /* 0x5AC */ J3DModel* mpModel;
-    /* 0x5B0 */ u8 mResNameNo; // TODO: Used for indexing within l_resNameList?
+    /* 0x5B0 */ u8 mBMDDataNo;
     /* 0x5B1 */ bool field_0x5b1;
     /* 0x5B2 */ bool field_0x5b2;
 };  // Size: 0x5B4
@@ -120,6 +124,8 @@ static u32 l_dzbData[2] = {7, 1};
 /* 80CCE1AC-80CCE1B4 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
 static char* l_resNameList[2] = {"", "Sekizo"};
 
+// TODO: need to clean these up (40:00+ in video)
+
 /* 80CCE1B4-80CCE1D4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizo_MethodTable */
 SECTION_DATA static void* daObj_Sekizo_MethodTable[8] = {
     (void*)daObj_Sekizo_Create__FPv,
@@ -166,6 +172,23 @@ asm int daObj_Sekizo_c::create() {
 }
 #pragma pop
 
+// cPhs__Step daObj_Sekizo_c::create() {
+//     fopAcM_SetupActor(this, daObj_Sekizo_c);
+
+//     mBMDDataNo = 0;
+//     // int res_name_no = l_bmdData[mBMDDataNo * 8];
+//     // TODO: something to do with "dComIfG_getObjctResName2Index"? How to handle res name list? Is Ghidra wrong?
+//     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase,
+//                                                   l_resNameList[l_bmdData[mBMDDataNo * 8]]);
+//     if (step == cPhs_COMPLEATE_e) {
+//         // TODO: needs a better name
+//         u32 l_no = mBMDDataNo * 8;
+//         step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[l_no]], l_bmdData[l_no],
+//                                         dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
+//     }
+//     return step;
+// }
+
 /* 80CCDD00-80CCDD8C 0001E0 008C+00 1/0 0/0 0/0 .text            CreateHeap__14daObj_Sekizo_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -196,40 +219,38 @@ asm int daObj_Sekizo_c::Delete() {
 }
 #pragma pop
 
-/* 80CCDE3C-80CCDEF4 00031C 00B8+00 1/0 0/0 0/0 .text            Execute__14daObj_Sekizo_cFPPA3_A4_f
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/Execute__14daObj_Sekizo_cFPPA3_A4_f.s"
-}
-#pragma pop
-
-// int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
-//     if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
-//         *i_mtx = &mBgMtx;
-//         setBaseMtx();
-//         // TODO: close, but Regist() and Release() order are being swapped - ??
-//         if (!field_0x5b2) {
-//             if (!field_0x5b1) {
-//                 dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, (fopAc_ac_c*)this);
-//                 field_0x5b1 = true;
-//             }
-//         }
-//         else if (field_0x5b1) {
-//             dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
-//             field_0x5b1 = false;
-//         }
-//     }
+// TODO: ??
+// int daObj_Sekizo_c::Delete() {
+//     // TODO: not sure I have m(p)PhaseRequest correct
+//     int res_name_no = l_bmdData[mBMDDataNo];
+//     dComIfG_resDelete(&mPhase, l_resNameList[res_name_no]);
 //     return 1;
 // }
+
+/* 80CCDE3C-80CCDEF4 00031C 00B8+00 1/0 0/0 0/0 .text            Execute__14daObj_Sekizo_cFPPA3_A4_f
+ */
+int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
+    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+        *i_mtx = &mBgMtx;
+        setBaseMtx();
+        if (field_0x5b2) {
+            if (field_0x5b1) {
+                dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
+                field_0x5b1 = false;
+            }
+        }
+        else if (!field_0x5b1) {
+            dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, (fopAc_ac_c*)this);
+            field_0x5b1 = true;
+        }
+    }
+    return 1;
+}
 
 /* 80CCDEF4-80CCDFA4 0003D4 00B0+00 1/0 0/0 0/0 .text            Draw__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::Draw() {
     if (!field_0x5b2) {
-        // 0x10 literal is used to set mTevStr->field_0x37a - missing enum?
+        // TODO: 0x10 literal is used to set mTevStr->field_0x37a - missing enum?
         g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
         dComIfGd_setListBG();
@@ -255,50 +276,24 @@ void daObj_Sekizo_c::setBaseMtx() {
 }
 
 /* 80CCE044-80CCE064 000524 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Create__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObj_Sekizo_Create(void* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/daObj_Sekizo_Create__FPv.s"
+static int daObj_Sekizo_Create(void* i_this) {
+    return static_cast<daObj_Sekizo_c*>(i_this)->create();
 }
-#pragma pop
-
-// TODO: what is this?
-// void daObj_Sekizo_Create(daObj_Sekizo_c* i_this) {
-//     TODO
-//     return;
-// }
 
 /* 80CCE064-80CCE084 000544 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObj_Sekizo_Delete(void* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/daObj_Sekizo_Delete__FPv.s"
+static int daObj_Sekizo_Delete(void* i_this) {
+    return static_cast<daObj_Sekizo_c*>(i_this)->MoveBGDelete();
 }
-#pragma pop
 
 /* 80CCE084-80CCE0A4 000564 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObj_Sekizo_Execute(void* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/daObj_Sekizo_Execute__FPv.s"
+static int daObj_Sekizo_Execute(void* i_this) {
+    return static_cast<daObj_Sekizo_c*>(i_this)->MoveBGExecute();
 }
-#pragma pop
 
 /* 80CCE0A4-80CCE0D0 000584 002C+00 1/0 0/0 0/0 .text            daObj_Sekizo_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObj_Sekizo_Draw(void* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/daObj_Sekizo_Draw__FPv.s"
+static int daObj_Sekizo_Draw(void* i_this) {
+    return static_cast<daObj_Sekizo_c*>(i_this)->MoveBGDraw();
 }
-#pragma pop
 
 /* 80CCE0D0-80CCE0D8 0005B0 0008+00 1/0 0/0 0/0 .text            daObj_Sekizo_IsDelete__FPv */
 static int daObj_Sekizo_IsDelete(void* i_this) {
