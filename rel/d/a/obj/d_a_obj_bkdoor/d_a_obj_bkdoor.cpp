@@ -35,16 +35,19 @@ void daObjBkDoor_c::initBaseMtx() {
 void daObjBkDoor_c::setBaseMtx() {
     mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), field_0x5AC.x, field_0x5AC.y, field_0x5AC.z);
+    mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), mRotation.x, mRotation.y, mRotation.z);
+
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
+static char* l_arcName = "A_BkDoor";
+
 static int const l_bmd[] = {0x04, 0x05};
 static int const l_dzb[] = {0x08, 0x09};
 
+// Unused
 static f32 const l_col_offsetX[] = {
-    // Unused
     80.0f, 160.0f, 240.0f, 320.0f, 400.0f,
 };
 
@@ -78,11 +81,10 @@ int daObjBkDoor_c::Create() {
 
 /* ############################################################################################## */
 /* 80579538-80579538 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-static char* l_arcName = "A_BkDoor";
 
 /* 80578EA0-80578F20 000200 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daObjBkDoor_cFv */
 int daObjBkDoor_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[mResType]);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[mOrientation]);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     if (mpModel == NULL) {
@@ -93,11 +95,11 @@ int daObjBkDoor_c::CreateHeap() {
 
 /* 80578F20-80578FC0 000280 00A0+00 1/1 0/0 0/0 .text            create1st__13daObjBkDoor_cFv */
 int daObjBkDoor_c::create1st() {
-    mResType = fopAcM_GetParamBit(this, 0, 1);
+    mOrientation = fopAcM_GetParamBit(this, 0, 1);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
-        step = (cPhs__Step)MoveBGCreate(l_arcName, l_dzb[mResType], dBgS_MoveBGProc_TypicalRotY,
+        step = (cPhs__Step)MoveBGCreate(l_arcName, l_dzb[mOrientation], dBgS_MoveBGProc_TypicalRotY,
                                         0xBD0, NULL);
         if (step == cPhs_ERROR_e) {
             return step;
@@ -112,7 +114,7 @@ void daObjBkDoor_c::openCheck() {
     if (!mOpenCheckDone) {
         fopAc_ac_c* actor = fopAcM_Search((fopAcIt_JudgeFunc)search_door, this);
         if (actor == NULL || (orig.angle.GetY() - actor->orig.angle.GetY()) != 0) {
-            field_0x5BE = true;
+            mOpening = true;
         }
         mOpenCheckDone = true;
     }
@@ -122,42 +124,44 @@ void daObjBkDoor_c::openCheck() {
  */
 int daObjBkDoor_c::Execute(Mtx** i_mtxP) {
     daPy_py_c* player = dComIfGp_getLinkPlayer();
-    BOOL b = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
+    BOOL unk_event = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
 
-    field_0x5B8++;
+    mFrameCounter++;
     openCheck();
 
-    if (player->checkFrontRollCrash() && !b) {
-        cXyz v1;
-        cXyz v2;
+    if (player->checkFrontRollCrash() && !unk_event) {
+        cXyz check_area_posA;
+        cXyz check_area_posB;
 
-        if (mResType == 1) {
-            v1 = l_roll_crash_check_areaR[1];
-            v2 = l_roll_crash_check_areaR[3];
+        if (mOrientation == 1) {
+            check_area_posA = l_roll_crash_check_areaR[1];
+            check_area_posB = l_roll_crash_check_areaR[3];
 
-            if (field_0x5BE != 0) {
-                v1.x = -600.0f;
+            if (mOpening) {
+                check_area_posA.x = -600.0f;
             }
         } else {
-            v1 = l_roll_crash_check_areaL[0];
-            v2 = l_roll_crash_check_areaL[2];
+            check_area_posA = l_roll_crash_check_areaL[0];
+            check_area_posB = l_roll_crash_check_areaL[2];
 
-            if (field_0x5BE != 0) {
-                v2.x = 600.0f;
+            if (mOpening) {
+                check_area_posB.x = 600.0f;
             }
         }
 
-        if (dLib_checkActorInRectangle(player, this, &v1, &v2)) {
-            if (mResType == 1) {
-                field_0x5B4 = 700.0f;
-                if (field_0x5BE != 0) {
+        if (dLib_checkActorInRectangle(player, this, &check_area_posA, &check_area_posB)) {
+            if (mOrientation == 1) {
+                mSwingSpeed = 700.0f;
+
+                if (mOpening) {
                     fopAcM_seStart(this, Z2SE_OBJ_BK_DOOR_ATK_OP, 0);
                 } else {
                     fopAcM_seStart(this, Z2SE_OBJ_BK_DOOR_ATK_CL, 0);
                 }
             } else {
-                field_0x5B4 = -700.0f;
-                if (field_0x5BE != 0) {
+                mSwingSpeed = -700.0f;
+
+                if (mOpening) {
                     fopAcM_seStart(this, Z2SE_OBJ_BK_DOOR_ATK_OP, 0);
                 }
             }
@@ -167,8 +171,8 @@ int daObjBkDoor_c::Execute(Mtx** i_mtxP) {
     *i_mtxP = &mBgMtx;
     setBaseMtx();
 
-    field_0x5AC.y = field_0x5B4 * cM_ssin(field_0x5B8 * 4000);
-    cLib_addCalc0(&this->field_0x5B4, 0.1f, 20.0f);
+    mRotation.y = mSwingSpeed * cM_ssin(mFrameCounter * 4000);
+    cLib_addCalc0(&this->mSwingSpeed, 0.1f, 20.0f);
 
     return TRUE;
 }

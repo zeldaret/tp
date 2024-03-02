@@ -22,13 +22,12 @@ public:
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
-    /* 0x5AC */ csXyz field_0x5AC;
-    /* 0x5B2 */ s16 field_0x5B2;
-    /* 0x5B4 */ f32 field_0x5B4;
-    /* 0x5B8 */ s32 field_0x5B8;
-    /* 0x5BC */ u8 mResType;
+    /* 0x5AC */ csXyz mRotation;
+    /* 0x5B4 */ f32 mSwingSpeed;
+    /* 0x5B8 */ s32 mFrameCounter;
+    /* 0x5BC */ u8 mOrientation;
     /* 0x5BD */ bool mOpenCheckDone;
-    /* 0x5BE */ bool field_0x5BE;
+    /* 0x5BE */ bool mOpening;
 };  // Size: 0x5C0
 
 STATIC_ASSERT(sizeof(daObjBkDoor_c) == 0x5C0);
