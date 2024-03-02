@@ -1876,7 +1876,7 @@ asm void dMsgObject_c::setSmellType(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgObject_c::getSelectCursorPos() {
+asm u8 dMsgObject_c::getSelectCursorPos() {
     nofralloc
 #include "asm/d/msg/d_msg_object/getSelectCursorPos__12dMsgObject_cFv.s"
 }

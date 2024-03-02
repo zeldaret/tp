@@ -98,6 +98,7 @@ enum dEvt_Command_e {
 enum dEvt_Condition_e {
     dEvtCnd_NONE_e = 0x0000,
     dEvtCnd_CANTALK_e = 0x0001,
+    dEvtCnd_CANDEMO_e = 0x0002,
     dEvtCnd_CANDOOR_e = 0x0004,
     dEvtCnd_CANGETITEM_e = 0x0008,
     dEvtCnd_CANTALKITEM_e = 0x0020,
