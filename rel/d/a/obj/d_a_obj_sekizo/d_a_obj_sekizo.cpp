@@ -27,7 +27,6 @@ public:
     // TODO: needed to match size, but haven't found it used yet
     /* 0x5A8 */ u32 field_0x5a8;
 
-
     /* 0x5AC */ J3DModel* mpModel;
     /* 0x5B0 */ u8 mResNameNo; // TODO: Used for indexing within l_resNameList?
     /* 0x5B1 */ bool field_0x5b1;
@@ -178,14 +177,14 @@ asm int daObj_Sekizo_c::CreateHeap() {
 #pragma pop
 
 /* 80CCDD8C-80CCDDE8 00026C 005C+00 1/0 0/0 0/0 .text            Create__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::Create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/func_80CCDD8C.s"
+int daObj_Sekizo_c::Create() {
+    initBaseMtx();
+    mCullMtx = mpModel->getBaseTRMtx();
+    fopAcM_setCullSizeBox2((fopAc_ac_c*)this, mpModel->getModelData());
+    field_0x5b2 = false;
+    field_0x5b1 = true;
+    return 1;
 }
-#pragma pop
 
 /* 80CCDDE8-80CCDE3C 0002C8 0054+00 1/0 0/0 0/0 .text            Delete__14daObj_Sekizo_cFv */
 #pragma push
@@ -208,15 +207,37 @@ asm int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
 }
 #pragma pop
 
+// int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
+//     if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+//         *i_mtx = &mBgMtx;
+//         setBaseMtx();
+//         // TODO: close, but Regist() and Release() order are being swapped - ??
+//         if (!field_0x5b2) {
+//             if (!field_0x5b1) {
+//                 dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, (fopAc_ac_c*)this);
+//                 field_0x5b1 = true;
+//             }
+//         }
+//         else if (field_0x5b1) {
+//             dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
+//             field_0x5b1 = false;
+//         }
+//     }
+//     return 1;
+// }
+
 /* 80CCDEF4-80CCDFA4 0003D4 00B0+00 1/0 0/0 0/0 .text            Draw__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/Draw__14daObj_Sekizo_cFv.s"
+int daObj_Sekizo_c::Draw() {
+    if (!field_0x5b2) {
+        // 0x10 literal is used to set mTevStr->field_0x37a - missing enum?
+        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+        dComIfGd_setListBG();
+        mDoExt_modelUpdateDL(mpModel);
+        dComIfGd_setList();
+    }
+    return 1;
 }
-#pragma pop
 
 /* 80CCDFA4-80CCDFE0 000484 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObj_Sekizo_cFv */
 void daObj_Sekizo_c::initBaseMtx() {
@@ -228,6 +249,7 @@ void daObj_Sekizo_c::initBaseMtx() {
 void daObj_Sekizo_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
+    // "mpModel->getModelData()" doesn't match, but this does
     PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
     PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
@@ -241,6 +263,12 @@ static asm int daObj_Sekizo_Create(void* i_this) {
 #include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/daObj_Sekizo_Create__FPv.s"
 }
 #pragma pop
+
+// TODO: what is this?
+// void daObj_Sekizo_Create(daObj_Sekizo_c* i_this) {
+//     TODO
+//     return;
+// }
 
 /* 80CCE064-80CCE084 000544 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Delete__FPv */
 #pragma push
