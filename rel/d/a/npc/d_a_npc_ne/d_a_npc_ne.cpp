@@ -86,6 +86,7 @@ extern "C" extern char const* const d_a_npc_ne__stringBase0;
 // External References:
 //
 
+extern "C" void fopAcM_riverStream__FP4cXyzPsPff();
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();

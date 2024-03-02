@@ -53,7 +53,7 @@ int daTagLv7Gate_c::create() {
 
     fopAcM_SetupActor(this, daTagLv7Gate_c);
 
-    if (fopAcM_GetPosition_p(daPy_getPlayerActorClass()).y < 7500.0f) {
+    if (fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 7500.0f) {
         return cPhs_ERROR_e;
     } else {
         phase = dComIfG_resLoad(&mPhase, l_arcName);

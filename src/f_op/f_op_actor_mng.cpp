@@ -730,7 +730,7 @@ void fopAcM_setCullSizeBox2(fopAc_ac_c* i_actor, J3DModelData* i_modelData) {
 /* 8001A5DC-8001A60C 014F1C 0030+00 0/0 0/0 1/1 .text            fopAcM_addAngleY__FP10fopAc_ac_css
  */
 bool fopAcM_addAngleY(fopAc_ac_c* i_actor, s16 i_target, s16 i_step) {
-    return cLib_chaseAngleS(&fopAcM_GetAngle_p(i_actor).y, i_target, i_step);
+    return cLib_chaseAngleS(&fopAcM_GetAngle_p(i_actor)->y, i_target, i_step);
 }
 
 inline void clampMin(f32& val, f32 min) {

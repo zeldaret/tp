@@ -923,7 +923,7 @@ cPhs__Step daNpcAsh_c::Create() {
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mZ2.init(&current.pos, &mEyePos, 3, 1);
         mAcchCir.SetWall(daNpcAsh_Param_c::m.m1C, daNpcAsh_Param_c::m.m18);
-        mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), &fopAcM_GetAngle_p(this), &fopAcM_GetShapeAngle_p(this));
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
@@ -1857,7 +1857,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     }
                     daTag_EvtArea_c* evtArea = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
                     if (evtArea != NULL) {
-                        if (evtArea->chkPointInArea(fopAcM_GetPosition_p(daPy_getPlayerActorClass()))) {
+                        if (evtArea->chkPointInArea(*fopAcM_GetPosition_p(daPy_getPlayerActorClass()))) {
                             daNpcF_offTmpBit(11);
                             mOrderEvtNo = 2;
                             fopAcM_delete(evtArea);

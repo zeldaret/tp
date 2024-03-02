@@ -2594,7 +2594,7 @@ void daObjCarry_c::Create() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     mAcchCir.SetWall((f32)data(), (f32)data()); // need to map data
 
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
     mAcch.SetWtrChkMode(2);
     mAcch.ClrRoofNone();
     mAcch.SetRoofCrrHeight(80.0f);

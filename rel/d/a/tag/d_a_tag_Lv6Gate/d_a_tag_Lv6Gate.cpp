@@ -21,6 +21,10 @@ extern "C" extern char const* const d_a_tag_Lv6Gate__stringBase0;
 // External References:
 //
 
+extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
+extern "C" void fopAcM_SearchByName__FsPP10fopAc_ac_c();
+extern "C" void fopAcM_delete__FUi();
+extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();
 extern "C" void pop__14mDoMtx_stack_cFv();
@@ -232,7 +236,7 @@ bool daTagLv6Gate_c::checkOpenArea() {
         actor = (i == 0) ? daPy_getPlayerActorClass() : i_fopAcM_SearchByName(PROC_NPC_TKS);
         if (actor != NULL) {
             mDoMtx_stack_c::push();
-            mDoMtx_stack_c::multVec(&fopAcM_GetPosition_p(actor), &pos);
+            mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
             mDoMtx_stack_c::pop();
             if (pos.x >= l_minRelative[0] && pos.x <= l_maxRelative[0] &&
                 pos.z >= l_minRelative[2] && pos.z <= l_maxRelative[2])
@@ -274,8 +278,8 @@ void daTagLv6Gate_c::cut4() {
         return;
     }
 
-    fopAcM_GetOldPosition_p(actor1) = pos;
-    fopAcM_GetPosition_p(actor1) = pos;
+    *fopAcM_GetOldPosition_p(actor1) = pos;
+    *fopAcM_GetPosition_p(actor1) = pos;
 
     actor2 = NULL;
     fopAcM_SearchByName(PROC_NPC_TKC, &actor2);
@@ -285,7 +289,7 @@ void daTagLv6Gate_c::cut4() {
     }
 
     fopAcM_GetOldPosition_p(actor2) = pos;
-    fopAcM_GetPosition_p(actor2) = pos;
+    *fopAcM_GetPosition_p(actor2) = pos;
 }
 
 /* 80D4FEDC-80D5068C 0006BC 07B0+00 1/1 0/0 0/0 .text            execute__14daTagLv6Gate_cFv */

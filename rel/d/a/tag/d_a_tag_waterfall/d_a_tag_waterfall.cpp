@@ -114,7 +114,7 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
 
     f32 ellipseRadiusA = mCylinderRadiusA;
 
-    mDoMtx_stack_c::YrotS(-fopAcM_GetShapeAngle_p(this).y);
+    mDoMtx_stack_c::YrotS(-fopAcM_GetShapeAngle_p(this)->y);
 
     const cXyz& waterfallTagPos = fopAcM_GetPosition(this);
     mDoMtx_stack_c::transM(-waterfallTagPos.x, -waterfallTagPos.y, -waterfallTagPos.z);
@@ -264,14 +264,14 @@ cPhs__Step daTagWaterFall_c::create() {
         mCylinderHeight = 0.0f;
     }
 
-    mCylinderRadiusB = static_cast<f32>((fopAcM_GetAngle_p(this).x & 0x0000FFFF));
+    mCylinderRadiusB = static_cast<f32>((fopAcM_GetAngle_p(this)->x & 0x0000FFFF));
 
     if (mCylinderRadiusB <= 0.0f) {
         mCylinderRadiusB = mCylinderRadiusA;
     }
 
-    fopAcM_GetShapeAngle_p(this).x = 0;
-    fopAcM_GetAngle_p(this).x = 0;
+    fopAcM_GetShapeAngle_p(this)->x = 0;
+    fopAcM_GetAngle_p(this)->x = 0;
 
     if (m_master_id + (1 << 16) == 0xFFFF) {
         u32 id = fopAcM_GetID(this);

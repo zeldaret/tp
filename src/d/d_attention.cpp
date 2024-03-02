@@ -986,8 +986,8 @@ int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
     }
     mPlayerAttentionFlags = mpPlayer->mAttentionInfo.mFlags;
     cSGlobe acStack_40(param_0->mAttentionInfo.mPosition - mOwnerAttnPos);
-    acStack_4c = acStack_40.U() - fopAcM_GetShapeAngle_p(mpPlayer).y;
-    acStack_50 = cSAngle(acStack_40.U().Inv()) - fopAcM_GetShapeAngle_p(param_0).y;
+    acStack_4c = acStack_40.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
+    acStack_50 = cSAngle(acStack_40.U().Inv()) - fopAcM_GetShapeAngle_p(param_0)->y;
     u32 local_48;
     if ((param_0->mAttentionInfo.mFlags & 7) != 0 && chkFlag(0x4000) == 0)
     {
@@ -1136,11 +1136,11 @@ bool dAttention_c::chaseAttention() {
     if (!chkFlag(0x4000)) {
         cSGlobe g1 = actor->mAttentionInfo.mPosition - mOwnerAttnPos;
         cSAngle a1;
-        a1 = g1.U() - fopAcM_GetShapeAngle_p(mpPlayer).y;
+        a1 = g1.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
 
         cSGlobe g2(mOwnerAttnPos - actor->mAttentionInfo.mPosition);
         cSAngle a2;
-        a2 = g2.U() - fopAcM_GetShapeAngle_p(actor).y;
+        a2 = g2.U() - fopAcM_GetShapeAngle_p(actor)->y;
 
         u32 type;
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
@@ -1963,7 +1963,7 @@ f32 dAttention_c::LockonReleaseDistanse() {
 
     int idx =  actor->mAttentionInfo.field_0x0[mLockOnList[mLockOnOffset].mType];
     cSGlobe tmp_g(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
-    cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer).y);
+    cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 
     return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
 }
@@ -2132,7 +2132,7 @@ int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param
     }
     if (param_6 != 0) {
         cSGlobe acStack_50(acStack_48);
-        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p((fopAc_ac_c*)player).y;
+        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p((fopAc_ac_c*)player)->y;
         if (sVar5 < 0) {
             sVar5 = -sVar5;
         }
@@ -2203,7 +2203,7 @@ int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param
     if (param_5 != 0) {
         acStack_48 = param_1->current.pos - player->current.pos;
         cSGlobe acStack_50(acStack_48);
-        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player).y;
+        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player)->y;
         if (sVar5 < 0) {
             sVar5 = -sVar5;
         }

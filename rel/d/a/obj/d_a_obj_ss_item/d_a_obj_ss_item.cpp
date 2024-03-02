@@ -254,8 +254,8 @@ void daObj_SSItem_c::initialize() {
     mAttentionInfo.field_0x0[4] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
     mAcchCir.SetWall(24.0f, 12.0f);
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
-              &fopAcM_GetSpeed_p(this), &fopAcM_GetAngle_p(this), &fopAcM_GetShapeAngle_p(this));
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
     mStts.Init(0xFF, 0, this);
     mAtCyl.Set(mCcDCyl);
     mAtCyl.SetStts(&mStts);

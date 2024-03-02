@@ -1263,8 +1263,8 @@ int daE_PH_c::create() {
         fopAcM_setCullSizeFar(this, 3.0f);
         fopAcM_setCullSizeBox(this, -500.0f, -500.0f, -500.0f, 500.0f, 500.0f, 500.0f);
 
-        mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
-                  &fopAcM_GetSpeed_p(this), NULL, NULL);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), NULL, NULL);
 
         mAttentionInfo.mFlags = 4;
         mAttentionInfo.field_0x0[2] = 0x22;

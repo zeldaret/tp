@@ -36,7 +36,7 @@ u8 daGuardMng_c::checkMerchantNum() {
 void daGuardMng_c::checkAppearTag(daTagGuard_c* i_this) {
     cXyz pos;
     if ((u8)i_this->getAppearPoint(&pos) != 0) {
-        pos -= fopAcM_GetPosition_p(dComIfGp_getPlayer(0));
+        pos -= *fopAcM_GetPosition_p(dComIfGp_getPlayer(0));
         f32 pos_abs = pos.abs2();
 
         if (field_0x56c > pos_abs) {

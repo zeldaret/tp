@@ -1972,9 +1972,9 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
             yk->mCollisionSphere.Set(*(dCcD_SrcSph*)&e_idx); // something weird going on here
             yk->mCollisionSphere.SetStts(&yk->mCollisionStatus);
 
-            yk->field_0x708.Set(&fopAcM_GetPosition_p(yk),
-                            &fopAcM_GetOldPosition_p(yk),yk,1,
-                            &yk->field_0x6c8, &fopAcM_GetSpeed_p(yk),
+            yk->field_0x708.Set(fopAcM_GetPosition_p(yk),
+                            fopAcM_GetOldPosition_p(yk),yk,1,
+                            &yk->field_0x6c8, fopAcM_GetSpeed_p(yk),
                             0,0);
 
             yk->field_0x6c8.SetWall(50.0f,50.0f);

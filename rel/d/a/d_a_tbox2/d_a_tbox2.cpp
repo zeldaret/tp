@@ -105,8 +105,8 @@ int daTbox2_c::Create() {
     mAttentionInfo.mFlags |= 0x400000;
 
     mAcchCir.SetWall(50.0f, 0.0f);
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
-              &fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
     fopAcM_SetGravity(this, -6.0f);
 
     mCcStts2.Init(0xFF, 0xFF, this);

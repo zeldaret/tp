@@ -136,10 +136,10 @@ void posMoveF_grade(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* stream
 
     f32 speedF = fopAcM_GetSpeedF(i_actor);
     f32 gravity = fopAcM_GetGravity(i_actor);
-    cXyz& speed_p = fopAcM_GetSpeed_p(i_actor);
+    cXyz* speed_p = fopAcM_GetSpeed_p(i_actor);
 
     f32 speed_x = spB8.x + (spAC.x + (speedF * cM_ssin(i_actor->current.angle.y)));
-    f32 speed_y = spB8.y + (spAC.y + (speed_p.y + gravity));
+    f32 speed_y = spB8.y + (spAC.y + (speed_p->y + gravity));
     f32 speed_z = spB8.z + (spAC.z + (speedF * cM_scos(i_actor->current.angle.y)));
 
     if (param_8 != NULL) {

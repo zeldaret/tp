@@ -514,8 +514,8 @@ void daObjMasterSword_c::create_init() {
     dBgS_ObjAcch obj_check;
 
     cir_check.SetWall(10.0f, 30.0f);
-    obj_check.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &cir_check,
-                  &fopAcM_GetSpeed_p(this), NULL, NULL);
+    obj_check.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &cir_check,
+                  fopAcM_GetSpeed_p(this), NULL, NULL);
     obj_check.CrrPos(dComIfG_Bgsp());
 
     field_0x738 = obj_check.GetGroundH();

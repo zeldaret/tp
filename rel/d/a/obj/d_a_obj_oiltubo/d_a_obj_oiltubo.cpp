@@ -190,8 +190,8 @@ void daObj_Oiltubo_c::initialize() {
     mAttentionInfo.mFlags = 0;
 
     mAcchCir.SetWall(50.0f, 70.0f);
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
-              &fopAcM_GetSpeed_p(this), &fopAcM_GetAngle_p(this), &fopAcM_GetShapeAngle_p(this));
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
     mCcStts.Init(0xFF, 0, this);
 
     mCcAtCyl.Set(mCcDCyl);
