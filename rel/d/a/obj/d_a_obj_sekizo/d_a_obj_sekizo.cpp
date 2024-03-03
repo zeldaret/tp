@@ -10,7 +10,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 
-// TODO: is multiple inheritance intentional?
+// TODO: is multiple inheritance intentional? Haven't seen this much elsewhere
 class daObj_Sekizo_c : public dBgS_MoveBgActor {  // , public request_of_phase_process_class
 public:
     // TODO: pick one
@@ -29,10 +29,10 @@ public:
     /* 0x5A0 */ u32 field_0x5a0;
 
     // TODO: is this needed, or is it redundant?
-    /* 0x5A4 */ request_of_phase_process_class mPhase;
+    /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
 
     /* 0x5AC */ J3DModel* mpModel;
-    /* 0x5B0 */ u8 mBMDDataNo;
+    /* 0x5B0 */ u8 field_0x5b0;
     /* 0x5B1 */ bool field_0x5b1;
     /* 0x5B2 */ bool field_0x5b2;
 };  // Size: 0x5B4
@@ -113,12 +113,20 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80CCE19C-80CCE1A4 000020 0008+00 2/3 0/0 0/0 .data            l_bmdData */
-static u32 l_bmdData[2] = {4, 1};
+static struct {
+    u32 bmdIdx;
+    u32 resIdx;
+} l_bmdData[1] = {4, 1};
 
 /* 80CCE1A4-80CCE1AC 000028 0008+00 0/1 0/0 0/0 .data            l_dzbData */
+// TODO: this needs the pragmas but not l_bmdData - why? is it being being dropped
+// because it's unused?
 #pragma push
 #pragma force_active on
-static u32 l_dzbData[2] = {7, 1};
+static struct {
+    u32 dzbIdx;
+    u32 resIdx;
+} l_dzbData = {7, 1};
 #pragma pop
 
 /* 80CCE1AC-80CCE1B4 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
@@ -172,18 +180,17 @@ asm int daObj_Sekizo_c::create() {
 }
 #pragma pop
 
+// // TODO: still not sure what's happening
 // cPhs__Step daObj_Sekizo_c::create() {
 //     fopAcM_SetupActor(this, daObj_Sekizo_c);
 
-//     mBMDDataNo = 0;
-//     // int res_name_no = l_bmdData[mBMDDataNo * 8];
+//     field_0x5b0 = 0;
 //     // TODO: something to do with "dComIfG_getObjctResName2Index"? How to handle res name list? Is Ghidra wrong?
-//     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase,
-//                                                   l_resNameList[l_bmdData[mBMDDataNo * 8]]);
+//     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq,
+//                                                   l_resNameList[l_bmdData[field_0x5b0].resIdx]);
 //     if (step == cPhs_COMPLEATE_e) {
-//         // TODO: needs a better name
-//         u32 l_no = mBMDDataNo * 8;
-//         step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[l_no]], l_bmdData[l_no],
+//         step = (cPhs__Step)MoveBGCreate("test", // l_resNameList[l_dzbData[field_0x5b0].resIdx],
+//                                         (int*)(l_dzbData[field_0x5b0].dzbIdx),
 //                                         dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
 //     }
 //     return step;
@@ -219,11 +226,9 @@ asm int daObj_Sekizo_c::Delete() {
 }
 #pragma pop
 
-// TODO: ??
+// // TODO: probably similar issues as create()
 // int daObj_Sekizo_c::Delete() {
-//     // TODO: not sure I have m(p)PhaseRequest correct
-//     int res_name_no = l_bmdData[mBMDDataNo];
-//     dComIfG_resDelete(&mPhase, l_resNameList[res_name_no]);
+//     dComIfG_resDelete(&mPhaseReq, l_resNameList[l_dzbData[field_0x5b0].resIdx]);
 //     return 1;
 // }
 
