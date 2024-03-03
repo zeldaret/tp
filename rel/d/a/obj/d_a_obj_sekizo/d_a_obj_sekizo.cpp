@@ -10,8 +10,7 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 
-// TODO: is multiple inheritance intentional? Haven't seen this much elsewhere
-class daObj_Sekizo_c : public dBgS_MoveBgActor {  // , public request_of_phase_process_class
+class daObj_Sekizo_c : public dBgS_MoveBgActor {
 public:
     // TODO: pick one
     /* 80CCDC0C */ int create();
@@ -28,7 +27,6 @@ public:
     // TODO: needed to match size, but haven't found it used yet
     /* 0x5A0 */ u32 field_0x5a0;
 
-    // TODO: is this needed, or is it redundant?
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
 
     /* 0x5AC */ J3DModel* mpModel;
@@ -54,13 +52,6 @@ extern "C" void Create__14daObj_Sekizo_cFv();
 extern "C" void Delete__14daObj_Sekizo_cFv();
 extern "C" void Execute__14daObj_Sekizo_cFPPA3_A4_f();
 extern "C" void Draw__14daObj_Sekizo_cFv();
-extern "C" void initBaseMtx__14daObj_Sekizo_cFv();
-extern "C" void setBaseMtx__14daObj_Sekizo_cFv();
-extern "C" static void daObj_Sekizo_Create__FPv();
-extern "C" static void daObj_Sekizo_Delete__FPv();
-extern "C" static void daObj_Sekizo_Execute__FPv();
-extern "C" static void daObj_Sekizo_Draw__FPv();
-extern "C" static bool daObj_Sekizo_IsDelete__FPv();
 extern "C" void __sinit_d_a_obj_sekizo_cpp();
 extern "C" void __dt__20daObj_Sekizo_Param_cFv();
 extern "C" extern char const* const d_a_obj_sekizo__stringBase0;
@@ -69,16 +60,7 @@ extern "C" extern char const* const d_a_obj_sekizo__stringBase0;
 // External References:
 //
 
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
 extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
 extern "C" void __ct__16dBgS_MoveBgActorFv();
 extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
@@ -86,10 +68,6 @@ extern "C" bool ToFore__16dBgS_MoveBgActorFv();
 extern "C" bool ToBack__16dBgS_MoveBgActorFv();
 extern "C" void
 MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
 extern "C" void __dl__FPv();
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" void __register_global_object();
@@ -126,35 +104,11 @@ static struct {
 static struct {
     u32 dzbIdx;
     u32 resIdx;
-} l_dzbData = {7, 1};
+} l_dzbData[1] = {7, 1};
 #pragma pop
 
 /* 80CCE1AC-80CCE1B4 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
 static char* l_resNameList[2] = {"", "Sekizo"};
-
-// TODO: need to clean these up (40:00+ in video)
-
-/* 80CCE1B4-80CCE1D4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizo_MethodTable */
-SECTION_DATA static void* daObj_Sekizo_MethodTable[8] = {
-    (void*)daObj_Sekizo_Create__FPv,
-    (void*)daObj_Sekizo_Delete__FPv,
-    (void*)daObj_Sekizo_Execute__FPv,
-    (void*)daObj_Sekizo_IsDelete__FPv,
-    (void*)daObj_Sekizo_Draw__FPv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80CCE1D4-80CCE204 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SEKIZO */
-SECTION_DATA extern void* g_profile_OBJ_SEKIZO[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01330000, (void*)&g_fpcLf_Method,
-    (void*)0x000005B4, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00580000, (void*)&daObj_Sekizo_MethodTable,
-    (void*)0x00044000, (void*)0x000E0000,
-};
 
 /* 80CCE204-80CCE22C 000088 0028+00 1/1 0/0 0/0 .data            __vt__14daObj_Sekizo_c */
 SECTION_DATA extern void* __vt__14daObj_Sekizo_c[10] = {
@@ -180,7 +134,7 @@ asm int daObj_Sekizo_c::create() {
 }
 #pragma pop
 
-// // TODO: still not sure what's happening
+// seems like it should match, but there's a bunch of stuff at the end - revisit
 // cPhs__Step daObj_Sekizo_c::create() {
 //     fopAcM_SetupActor(this, daObj_Sekizo_c);
 
@@ -189,22 +143,28 @@ asm int daObj_Sekizo_c::create() {
 //     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq,
 //                                                   l_resNameList[l_bmdData[field_0x5b0].resIdx]);
 //     if (step == cPhs_COMPLEATE_e) {
-//         step = (cPhs__Step)MoveBGCreate("test", // l_resNameList[l_dzbData[field_0x5b0].resIdx],
-//                                         (int*)(l_dzbData[field_0x5b0].dzbIdx),
+//         step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[field_0x5b0].resIdx],
+//                                         l_dzbData[field_0x5b0].dzbIdx,
 //                                         dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
+//         if (step == cPhs_ERROR_e) {
+//             return step;
+//         }
 //     }
 //     return step;
 // }
 
 /* 80CCDD00-80CCDD8C 0001E0 008C+00 1/0 0/0 0/0 .text            CreateHeap__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/CreateHeap__14daObj_Sekizo_cFv.s"
+int daObj_Sekizo_c::CreateHeap() {
+    J3DModelData* model_data = 
+        (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[field_0x5b0].resIdx],
+                                            l_bmdData[field_0x5b0].bmdIdx);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return false;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 80CCDD8C-80CCDDE8 00026C 005C+00 1/0 0/0 0/0 .text            Create__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::Create() {
@@ -217,20 +177,10 @@ int daObj_Sekizo_c::Create() {
 }
 
 /* 80CCDDE8-80CCDE3C 0002C8 0054+00 1/0 0/0 0/0 .text            Delete__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/Delete__14daObj_Sekizo_cFv.s"
+int daObj_Sekizo_c::Delete() {
+    dComIfG_resDelete(&mPhaseReq, l_resNameList[l_bmdData[field_0x5b0].resIdx]);
+    return 1;
 }
-#pragma pop
-
-// // TODO: probably similar issues as create()
-// int daObj_Sekizo_c::Delete() {
-//     dComIfG_resDelete(&mPhaseReq, l_resNameList[l_dzbData[field_0x5b0].resIdx]);
-//     return 1;
-// }
 
 /* 80CCDE3C-80CCDEF4 00031C 00B8+00 1/0 0/0 0/0 .text            Execute__14daObj_Sekizo_cFPPA3_A4_f
  */
@@ -310,3 +260,30 @@ static u8 lit_3800[12];
 
 /* 80CCE24C-80CCE250 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daObj_Sekizo_Param_c l_HIO;
+
+/* 80CCE1B4-80CCE1D4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizo_MethodTable */
+SECTION_DATA static actor_method_class daObj_Sekizo_MethodTable = {
+    (process_method_func)daObj_Sekizo_Create,
+    (process_method_func)daObj_Sekizo_Delete,
+    (process_method_func)daObj_Sekizo_Execute,
+    (process_method_func)daObj_Sekizo_IsDelete,
+    (process_method_func)daObj_Sekizo_Draw
+};
+
+/* 80CCE1D4-80CCE204 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SEKIZO */
+extern actor_process_profile_definition g_profile_OBJ_SEKIZO = {
+    fpcLy_CURRENT_e,            // mLayerID
+    7,                          // mListID
+    fpcPi_CURRENT_e,            // mListPrio
+    PROC_OBJ_SEKIZO,            // mProcName
+    &g_fpcLf_Method.mBase,      // mSubMtd
+    sizeof(daObj_Sekizo_c),     // mSize
+    0,                          // mSizeOther
+    0,                          // mParameters
+    &g_fopAc_Method.base,       // mSubMtd
+    88,                         // mPriority
+    &daObj_Sekizo_MethodTable,  // mSubMtd
+    0x44000,                    // mStatus
+    0,                          // mActorType
+    fopAc_CULLBOX_CUSTOM_e,     // mCullType
+};
