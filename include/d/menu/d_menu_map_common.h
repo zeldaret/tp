@@ -13,7 +13,7 @@ struct dMenuMapCommon_c {
     /* 801C28D8 */ void initiate(JKRArchive*);
     /* 801C38E4 */ void drawIcon(f32, f32, f32, f32);
     /* 801C3EC4 */ void iconScale(int, f32, f32, f32);
-    /* 801C43A8 */ void setIconInfo(u8, f32, f32, f32, f32, f32, u8);
+    /* 801C43A8 */ bool setIconInfo(u8, f32, f32, f32, f32, f32, u8);
     /* 801C443C */ void clearIconInfo();
     /* 801C4494 */ void setBlendRatio(u8, f32, f32);
     /* 801C452C */ void blinkMove(s16);
@@ -38,9 +38,9 @@ struct dMenuMapCommon_c {
     /* 0x068 */ dSelect_cursor_c* mpPortalIcon;
     /* 0x06C */ u32 _6c;
     /* 0x070 */ data _70[128];
-    /* 0xC70 */ u16 _c70;
-    /* 0xC72 */ u16 _c72;
-    /* 0xC74 */ u16 _c74;
+    /* 0xC70 */ u16 mIconNum;
+    /* 0xC72 */ s16 _c72;
+    /* 0xC74 */ s16 _c74;
     /* 0xC76 */ u16 _c76;
     /* 0xC78 */ float _c78;
     /* 0xC7C */ float _c7c;

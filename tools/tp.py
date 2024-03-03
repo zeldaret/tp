@@ -122,6 +122,15 @@ def expected_copy(debug: bool, build_path: Path, expected_path: Path):
     shutil.copytree(build_path, expected_path, dirs_exist_ok=True)
 
 
+COMPILERS_TAG = "20230715"
+BINUTILS_TAG = "2.42-1"
+BINUTILS_ZIP = "linux-x86_64"
+
+if platform.system() == "Windows":
+    BINUTILS_ZIP = "windows-x86_64"
+elif platform.system() == "Darwin":
+    BINUTILS_ZIP = "macos-universal"
+
 @tp.command(name="setup")
 @click.option("--debug/--no-debug")
 @click.option(
@@ -171,7 +180,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
         shutil.rmtree(compilers)
     if not compilers.exists() or not compilers.is_dir():
         os.mkdir(compilers)
-        r = requests.get('https://cdn.discordapp.com/attachments/727918646525165659/1129759991696457728/GC_WII_COMPILERS.zip')
+        r = requests.get(f'https://files.decomp.dev/compilers_{COMPILERS_TAG}.zip')
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(compilers)
         gc_path = compilers.joinpath("GC")
@@ -182,6 +191,22 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
             dst_path = os.path.join(compilers, f)
             shutil.move(src_path, dst_path)
         os.rmdir(gc_path)
+
+    #
+    text = Text("--- Fetching binutils")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    binutils = tools_path.joinpath("binutils")
+    if force_download:
+        shutil.rmtree(binutils)
+    if not binutils.exists() or not binutils.is_dir():
+        os.mkdir(binutils)
+        r = requests.get(f'https://github.com/encounter/gc-wii-binutils/releases/download/{BINUTILS_TAG}/{BINUTILS_ZIP}.zip')
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        z.extractall(binutils)
+        if os.name == 'posix':
+            subprocess.run(['chmod', '+x'] + list(binutils.glob("*")))
 
     #
     text = Text("--- Patching compiler")

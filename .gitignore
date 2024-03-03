@@ -1,5 +1,6 @@
 # Compiler binaries
 mwcc_compiler/
+binutils/
 
 # Build artifacts
 build/
