@@ -8,12 +8,10 @@ M640_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC.map
 
 M640_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swBallC/d_a_obj_swBallC.cpp \
 
 M640_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/d_a_obj_swBallC.o \
 
 M640_LIBS := \

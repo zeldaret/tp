@@ -830,6 +830,7 @@ public:
     void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void i_onPushPullKeep() { i_onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void i_offPushPullKeep() { i_offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void onLightSwordGetEffect() { i_onEndResetFlg2(FLG2_UNK_10); }
 
     u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
