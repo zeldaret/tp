@@ -969,99 +969,84 @@ COMPILER_STRIP_GATE(0x806C19B0, &lit_4205);
 #pragma pop
 
 /* 806BF58C-806BF8E8 000D2C 035C+00 1/1 0/0 0/0 .text            executeWait__8daE_FZ_cFv */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
+// stack issues + float literals
 void daE_FZ_c::executeWait() {
-  // uVar7 = 0;
-  // __psq_st0(&local_8,(int)((ulonglong)in_f31 >> 0x20),0);
-  // __psq_st1(&local_8,(int)in_f31,0);
-  // ::cXyz::cXyz(&cStack68);
-  // ::cXyz::cXyz(&local_50);
-  // dVar9 = (double)DAT_80ac4b3c;
-  // iVar3 = *(int *)(this + 0x730);
-
   cXyz pos;
-  cXyz pos2;
-  cXyz pos3;
-
+  s16 angle;
+  f32 tmp = l_HIO.field_0x14;
+  
   switch (mActionMode2) {
-    case 0:
+  case 0:
     if (fopAcM_wayBgCheck(this,200.0f,50.0f)) {
-      pos.x = current.pos.x + cM_rndFX(l_HIO.field_0x10);
-      pos.y = current.pos.y;
-      pos.z = current.pos.z + cM_rndFX(l_HIO.field_0x10);
+      angle = cM_rndFX(10000.0f) + 32768.0f;
+    } else {
       
-      pos2 = pos - current.pos;
-      pos3 = pos2;
+      pos.x = orig.pos.x + cM_rndFX(l_HIO.field_0x10);
+      pos.y = orig.pos.y;
+      pos.z = orig.pos.z + cM_rndFX(l_HIO.field_0x10);
       
-      s16 angle = pos3.atan2sX_Z() - current.angle.y;
+      pos = pos - current.pos;
+      
+      angle = pos.atan2sX_Z() - current.angle.y;
 
-      if (angle < 12289) {
+      if (angle > 12288) {
+        angle = 12288;
+      }
+      else {
         if (angle < -12288) {
           angle = -12288;
         }
       }
-      else {
-        angle = 12288;
-      }
-    } else {
-      f32 random = cM_rndFX(10000.0f);
-      local_38 = random + 32768.0f;
-      sVar5 = random + 32768.0f;
     }
-    mAngleFromPlayer = current.angle.y + sVar5;
-    field_0x710 = l_HIO.field_0x06 - cM_rndFX(l_HIO.field_0x30);
+
+    mAngleFromPlayer = current.angle.y + angle;
+    field_0x710 = l_HIO.field_0x06 + cM_rndFX(l_HIO.field_0x30);
     mActionMode2 = 1;
+  case 1:
+    if (way_gake_check()) {
+      cXyz pos2;
+      pos2 = current.pos - orig.pos;
+      angle = pos2.atan2sX_Z();
+      mAngleFromPlayer = angle;
+      current.angle.y = angle;
+    }
+
+    if (field_0x714 == 4) {
+      field_0x710 = 10;
+      speedF = 0.0f;
+      angle = fopAcM_searchPlayerAngleY(this);
+      mAngleFromPlayer = angle;
+      current.angle.y = angle;
+      tmp = l_HIO.field_0x18;
+    }
+
+    if (mObjAcch.ChkGroundHit() && dComIfG_Bgsp().GetPolyAtt0(mObjAcch.m_gnd) == 8) {
+        angle = shape_angle.y - mAngleFromPlayer;
+    
+        if (abs(angle) < 512 && field_0x710 == 0) {
+          cLib_addCalc0(&speedF, 0.1f, 0.1f);
+        }  
+    } else {
+        cLib_addCalc0(&speedF,0.1f,l_HIO.field_0x2c);
+    }
+    
+    if (field_0x710 == 0 && speedF < 0.2f) {
+      angle = shape_angle.y - mAngleFromPlayer;
+
+      if (abs(angle) < 512) {
+        current.angle.y = shape_angle.y;
+        setActionMode(ACT_MOVE,0);
+      } 
+    }
   }
 
-  if (way_gake_check()) {
-    pos = current.pos - orig.pos;
-    pos2 = pos;
-    s16 angle = pos2.atan2sX_Z();
-    mAngleFromPlayer = angle;
-    current.angle.y = angle;
-  }
+  cLib_addCalcAngleS2(&shape_angle.y,mAngleFromPlayer,8,1280);
 
-  if (this[0x74c] == (daE_FZ_c)0x4) {
-    this[0x748] = (daE_FZ_c)0xa;
-    *(undefined4 *)(this + 0x530) = 0;
-    uVar6 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-    *(undefined2 *)(this + 0x73e) = uVar6;
-    *(undefined2 *)(this + 0x4e2) = uVar6;
-    dVar9 = (double)DAT_80ac4b40;
-  }
-  if (d_s_play::g_regHIO.mChildReg[8].mShortReg[0] == 0) {
-    iVar3 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
-    if (iVar3 != 0) {
-      this_00 = (dBgS *)f_op_actor::dComIfG_Bgsp();
-      iVar3 = dBgS::GetPolyAtt0(this_00,(cBgS_PolyInfo *)(this + 0x8ac));
-      if (iVar3 == 8) goto LAB_80ac2660;
-    }
-    SComponentD::cLib_addCalc0(0x3fb99999a0000000,(double)DAT_80ac4b54,this + 0x530);
-  }
-  else {
-LAB_80ac2660:
-    iVar3 = MSL_C.PPCEABI.bare.H::abs
-                      ((int)(short)(*(short *)(this + 0x4ea) - *(short *)(this + 0x73e)));
-    if ((iVar3 < 0x200) && (this[0x748] == (daE_FZ_c)0x0)) {
-      SComponentD::cLib_addCalc0(0x3fb99999a0000000,0x3fb99999a0000000,this + 0x530);
-    }
-  }
-  if (((this[0x748] == (daE_FZ_c)0x0) && (*(float *)(this + 0x530) < 0.2)) &&
-     (iVar3 = MSL_C.PPCEABI.bare.H::abs
-                        ((int)(short)(*(short *)(this + 0x4ea) - *(short *)(this + 0x73e))),
-     iVar3 < 0x200)) {
-    *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
-    setActionMode(this,1,0);
-  }
-LAB_80ac2704:
-  SComponentD::cLib_addCalcAngleS2(this + 0x4ea,(int)*(short *)(this + 0x73e),8,0x500);
-  dVar8 = (double)d_a_obj_item::fopAcM_searchPlayerDistance(this);
-  if ((dVar8 <= dVar9) && (iVar3 = way_gake_check(this), iVar3 == 0)) {
-    pfVar4 = m_Do_graphic::dComIfGp_getPlayer(0);
-    iVar3 = f_op_actor_mng::fopAcM_otherBgCheck(this,pfVar4);
-    if (iVar3 == 0) {
-      *(undefined2 *)(this + 0x4e2) = *(undefined2 *)(this + 0x4ea);
-      setActionMode(this,2,0);
+  if (fopAcM_searchPlayerDistance(this) <= tmp && !way_gake_check()) {
+    if (!fopAcM_otherBgCheck(this,dComIfGp_getPlayer(0))) {
+      current.angle.y = shape_angle.y;
+      setActionMode(ACT_ATTACK,0);
     }
   }
 }
