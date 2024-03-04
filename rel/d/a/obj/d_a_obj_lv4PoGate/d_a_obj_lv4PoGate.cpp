@@ -44,7 +44,7 @@ void daLv4PoGate_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(0.0f, mMoveValue, 0.0f);
 
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -259,15 +259,15 @@ void daLv4PoGate_c::setEffect(int param_0) {
     }
 
     for (int i = start_idx; i < num; i++) {
-        dComIfGp_particle_set(particle_id[i], &current.pos, &shape_angle, &mScale, 255, NULL, -1,
+        dComIfGp_particle_set(particle_id[i], &current.pos, &shape_angle, &scale, 255, NULL, -1,
                               NULL, NULL, NULL);
     }
 }
 
 /* 80C605F8-80C6069C 000AF8 00A4+00 1/0 0/0 0/0 .text            Draw__13daLv4PoGate_cFv */
 int daLv4PoGate_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

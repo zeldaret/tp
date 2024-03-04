@@ -107,14 +107,14 @@ int daWindStone_c::execute() {
 
 /* 80D37F6C-80D3806C 0005EC 0100+00 1/1 0/0 0/0 .text            draw__13daWindStone_cFv */
 int daWindStone_c::draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
     cXyz shadowPos(current.pos.x, current.pos.y, current.pos.z);
     field_0x5c0 = dComIfGd_setShadow(field_0x5c0, 1, mpModel, &shadowPos, 500.0f, 0.0f,
-                                     current.pos.y, field_0x5bc, mPolyInfo, &mTevStr, 0, 1.0f,
+                                     current.pos.y, field_0x5bc, mPolyInfo, &tevStr, 0, 1.0f,
                                      dDlst_shadowControl_c::getSimpleTex());
     return 1;
 }
@@ -177,7 +177,7 @@ bool daWindStone_c::chkEveOccur() {
 /* 80D382C4-80D3835C 000944 0098+00 1/1 0/0 0/0 .text            exeModeHowl__13daWindStone_cFv */
 void daWindStone_c::exeModeHowl() {
     if (!chkEveOccur()) {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
         field_0x5c4 = 2;
     } else {
         s8 tuneId = getTuneId();
@@ -186,10 +186,10 @@ void daWindStone_c::exeModeHowl() {
         // &current.pos);
         daAlink_getAlinkActorClass()->i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
                                                                                &current.pos);
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
         if (chkWlfInRange()) {
-            mAttentionInfo.mFlags |= 0x80;
-            mAttentionInfo.field_0x0[7] = 65;
+            attention_info.flags |= 0x80;
+            attention_info.field_0x0[7] = 65;
         }
     }
 }
@@ -288,14 +288,14 @@ extern actor_process_profile_definition g_profile_Obj_WindStone = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_WindStone,     // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daWindStone_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     732,                    // mPriority
-    &daWindStone_METHODS,   // mSubMtd
+    &daWindStone_METHODS,   // sub_method
     0x40100,                // mStatus
     fopAc_ENV_e,            // mActorType
-    fopAc_CULLBOX_0_e,      // mCullType
+    fopAc_CULLBOX_0_e,      // cullType
 };

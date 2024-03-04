@@ -271,9 +271,9 @@ int daBdoor_c::CreateInit() {
     mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
     dComIfG_Bgsp().Regist(mpBgW, this);
     setAction(ACT_CLOSE_WAIT);
-    mAttentionInfo.mPosition.y += 250.0f;
-    mEyePos.y += 250.0f;
-    mAttentionInfo.mFlags = 0x20;
+    attention_info.position.y += 250.0f;
+    eyePos.y += 250.0f;
+    attention_info.flags = 0x20;
     calcMtx();
     mpBgW->Move();
     u8 swbit = door_param2_c::getSwbit(this);
@@ -569,7 +569,7 @@ asm void daBdoor_c::calcGoal(cXyz* param_0, int param_1) {
 void daBdoor_c::smokeInit() {
     mParticlePos = current.pos;
     mParticleAngle = shape_angle;
-    dComIfGp_particle_setPolyColor(0x8156, mAcch.m_gnd, &mParticlePos, &mTevStr, &mParticleAngle,
+    dComIfGp_particle_setPolyColor(0x8156, mAcch.m_gnd, &mParticlePos, &tevStr, &mParticleAngle,
                                    NULL, 0, NULL, fopAcM_GetRoomNo(this), NULL);
 }
 #else
@@ -649,14 +649,14 @@ static char const l_staff_name[13] = "SHUTTER_DOOR";
 
 /* 80670328-806703C0 000F88 0098+00 1/0 0/0 0/0 .text            actionCloseWait__9daBdoor_cFv */
 BOOL daBdoor_c::actionCloseWait() {
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
         setAction(ACT_OPEN);
     } else {
         if (checkOpen()) {
-            mEvtInfo.setEventName((char*)l_door_open_demo);
-            mEvtInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+            eventInfo.setEventName((char*)l_door_open_demo);
+            eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
         }
     }
     return 1;
@@ -764,13 +764,13 @@ int daBdoor_c::draw() {
         if (!draw) {
             fopAcM_OffStatus(this, 0);
         }
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpDoorModel);
         dComIfGd_setList();
         if (mLocked) {
-            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &tevStr);
             mpLockAnm->entry(mpLockModel->getModelData());
             mDoExt_modelUpdateDL(mpLockModel);
         }

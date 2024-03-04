@@ -1966,16 +1966,16 @@ extern actor_process_profile_definition g_profile_Obj_Carry = {
     8,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Carry,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daObjCarry_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     244,                    // mPriority
-    &l_daObjCarry_Method,   // mSubMtd
+    &l_daObjCarry_Method,   // sub_method
     0x40500,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 8047B160-8047B16C 000B10 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
@@ -2353,11 +2353,11 @@ void daObjCarry_c::setBaseMtx() {
 
     if (mType == TYPE_BOKKURI) {
         mDoMtx_stack_c::transS(current.pos.x,current.pos.y + (f32)data(),current.pos.z);
-        mDoMtx_stack_c::transM(0.0f,mScale.x*(f32)data(),0.0f);
+        mDoMtx_stack_c::transM(0.0f,scale.x*(f32)data(),0.0f);
         mDoMtx_stack_c::concat(mStack_0x58);
-        mDoMtx_stack_c::transM(0.0f,-mScale.x*(f32)data(),0.0f);
+        mDoMtx_stack_c::transM(0.0f,-scale.x*(f32)data(),0.0f);
         mDoMtx_stack_c::ZXYrotM(shape_angle.x+field_0xd64,shape_angle.y+field_0xd6a,shape_angle.z+field_0xd66);
-        mDoMtx_stack_c::transM(0.0f,mScale.x * 35.0f * field_0xd84,field_0xd84 * -25.0f);
+        mDoMtx_stack_c::transM(0.0f,scale.x * 35.0f * field_0xd84,field_0xd84 * -25.0f);
         mDoMtx_stack_c::XrotM(field_0xd84*16384.0f);
 
     } else if (mType == TYPE_KIBAKO || mType == TYPE_TARU || mType == TYPE_DOKURO) {
@@ -2377,7 +2377,7 @@ void daObjCarry_c::setBaseMtx() {
     }
     
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
 }
 #else
 #pragma push
@@ -2590,7 +2590,7 @@ COMPILER_STRIP_GATE(0x8047A3C0, &lit_4597);
 #ifdef NONMATCHING
 // need to map data() first
 void daObjCarry_c::Create() {
-    mScale.set((f32)data(), (f32)data(), (f32)data()); // need to map data
+    scale.set((f32)data(), (f32)data(), (f32)data()); // need to map data
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     mAcchCir.SetWall((f32)data(), (f32)data()); // need to map data
 
@@ -2656,11 +2656,11 @@ s32 daObjCarry_c::CreateInit_ironball() {
 
         current.pos = getPos(l_saveID);
         next.pos = current.pos;
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = current.pos;
+        attention_info.position = current.pos;
+        eyePos = current.pos;
 
         fopAcM_SetRoomNo(this,getRoomNo(l_saveID));
-        mTevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
 
         if (chkSttsFlag(l_saveID,1)) {
             mDraw = 1;
@@ -2731,7 +2731,7 @@ s32 daObjCarry_c::CreateInit_bokkuri() {
         field_0xd76 = 255;
         speedF = FLOAT_LABEL(lit_4683);
         speed.y = FLOAT_LABEL(lit_4684);
-        mScale.set(FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685));
+        scale.set(FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685),FLOAT_LABEL(lit_4685));
         mode_init_dbDrop(1);
         break;
     case 2:

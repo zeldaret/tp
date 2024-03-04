@@ -277,7 +277,7 @@ static int daAndsw2_actionTimer(daAndsw2_c* i_this) {
 // missing mr / out of order instruction
 #ifdef NONMATCHING
 static int daAndsw2_actionOrder(daAndsw2_c* i_this) {
-    if (i_this->mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (i_this->eventInfo.i_checkCommandDemoAccrpt()) {
         i_this->setActio(daAndsw2_c::ACT_EVENT_e);
         dComIfGs_onSwitch(i_this->getSwbit(), fopAcM_GetRoomNo(i_this));
     } else if ((i_this->getType() == 1 && !i_this->chkAllSw2()) ||
@@ -404,14 +404,14 @@ extern actor_process_profile_definition g_profile_ANDSW2 = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_ANDSW2,            // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daAndsw2_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     303,                    // mPriority
-    &l_daAndsw2_Method,     // mSubMtd
+    &l_daAndsw2_Method,     // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_6_e,      // mCullType
+    fopAc_CULLBOX_6_e,      // cullType
 };

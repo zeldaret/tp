@@ -141,15 +141,15 @@ inline s16 fopAcM_GetName(void* pActor) {
 }
 
 inline MtxP fopAcM_GetMtx(const fopAc_ac_c* pActor) {
-    return pActor->mCullMtx;
+    return pActor->cullMtx;
 }
 
-inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 status) {
-    return pActor->mStatus & status;
+inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 actor_status) {
+    return pActor->actor_status & actor_status;
 }
 
 inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
-    return pActor->mStatus & 0x2000;
+    return pActor->actor_status & 0x2000;
 }
 
 enum fopAcM_CARRY {
@@ -163,7 +163,7 @@ enum fopAcM_CARRY {
 };
 
 inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
-    return actor->mCarryType & type;
+    return actor->carryType & type;
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
@@ -183,7 +183,7 @@ inline void fopAcM_SetParam(void* p_actor, u32 param) {
 }
 
 inline void fopAcM_SetJntCol(fopAc_ac_c* i_actorP, dJntCol_c* i_jntColP) {
-    i_actorP->mJntCol = i_jntColP;
+    i_actorP->jntCol = i_jntColP;
 }
 
 inline s16 fopAcM_GetProfName(const void* pActor) {
@@ -191,15 +191,15 @@ inline s16 fopAcM_GetProfName(const void* pActor) {
 }
 
 inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
-    return p_actor->mGroup;
+    return p_actor->group;
 }
 
 inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
-    pActor->mStatus |= flag;
+    pActor->actor_status |= flag;
 }
 
 inline void fopAcM_OffStatus(fopAc_ac_c* pActor, u32 flag) {
-    pActor->mStatus &= ~flag;
+    pActor->actor_status &= ~flag;
 }
 
 inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc func, void* param) {
@@ -235,15 +235,15 @@ inline csXyz* fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
 }
 
 inline bool fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
-    return p_actor->mCondition & flag;
+    return p_actor->actor_condition & flag;
 }
 
 inline void fopAcM_OnCondition(fopAc_ac_c* p_actor, u32 flag) {
-    p_actor->mCondition |= flag;
+    p_actor->actor_condition |= flag;
 }
 
 inline void fopAcM_OffCondition(fopAc_ac_c* p_actor, u32 flag) {
-    p_actor->mCondition &= ~flag;
+    p_actor->actor_condition &= ~flag;
 }
 
 inline BOOL fopAcM_IsActor(void* actor) {
@@ -267,15 +267,15 @@ inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
 }
 
 inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
-    actor->mGravity = gravity;
+    actor->gravity = gravity;
 }
 
 inline void fopAcM_SetMaxFallSpeed(fopAc_ac_c* actor, f32 speed) {
-    actor->mMaxFallSpeed = speed;
+    actor->maxFallSpeed = speed;
 }
 
 inline void fopAcM_SetMtx(fopAc_ac_c* actor, MtxP m) {
-    actor->mCullMtx = m;
+    actor->cullMtx = m;
 }
 
 inline void fopAcM_SetSpeed(fopAc_ac_c* actor, f32 x, f32 y, f32 z) {
@@ -286,8 +286,8 @@ inline void fopAcM_SetSpeedF(fopAc_ac_c* actor, f32 f) {
     actor->speedF = f;
 }
 
-inline void fopAcM_SetStatus(fopAc_ac_c* actor, u32 status) {
-    actor->mStatus = status;
+inline void fopAcM_SetStatus(fopAc_ac_c* actor, u32 actor_status) {
+    actor->actor_status = actor_status;
 }
 
 inline void fopAcM_SetModel(fopAc_ac_c* actor, J3DModel* model) {
@@ -307,11 +307,11 @@ inline f32 fopAcM_GetSpeedF(const fopAc_ac_c* p_actor) {
 }
 
 inline f32 fopAcM_GetGravity(const fopAc_ac_c* p_actor) {
-    return p_actor->mGravity;
+    return p_actor->gravity;
 }
 
 inline f32 fopAcM_GetMaxFallSpeed(const fopAc_ac_c* p_actor) {
-    return p_actor->mMaxFallSpeed;
+    return p_actor->maxFallSpeed;
 }
 
 inline const cXyz* fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
@@ -323,23 +323,23 @@ inline const cXyz* fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
 }
 
 inline dJntCol_c* fopAcM_GetJntCol(fopAc_ac_c* i_actor) {
-    return i_actor->mJntCol;
+    return i_actor->jntCol;
 }
 
 inline void fopAcM_setCullSizeFar(fopAc_ac_c* i_actor, f32 i_far) {
-    i_actor->mCullSizeFar = i_far;
+    i_actor->cullSizeFar = i_far;
 }
 
 inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
-    return i_actor->mCullSizeFar;
+    return i_actor->cullSizeFar;
 }
 
 inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, s8 i_cullsize) {
-    i_actor->mCullType = i_cullsize;
+    i_actor->cullType = i_cullsize;
 }
 
 inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
-    return i_actor->mCullType;
+    return i_actor->cullType;
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
@@ -347,11 +347,11 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
 }
 
 inline Vec fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
-    return i_actor->mCull.mSphere.mCenter;
+    return i_actor->cull.sphere.center;
 }
 
 inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
-    return i_actor->mCull.mSphere.mRadius;
+    return i_actor->cull.sphere.radius;
 }
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
@@ -390,7 +390,7 @@ inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_
 }
 
 inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
-    return p_actor->mSetID;
+    return p_actor->setID;
 }
 
 inline void dComIfGs_onActor(int bitNo, int roomNo);
@@ -638,12 +638,12 @@ inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_
 
 inline void fopAcM_seStart(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStart(sfxID, &actor->mEyePos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
-    i_mDoAud_seStartLevel(sfxID, &actor->mEyePos, param_2, dComIfGp_getReverb(roomNo));
+    i_mDoAud_seStartLevel(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
@@ -656,7 +656,7 @@ inline void fopAcM_offActor(fopAc_ac_c* pActor, u32 flag) {
 }
 
 inline void fopAcM_OnCarryType(fopAc_ac_c* pActor, fopAcM_CARRY param_2) {
-    pActor->mCarryType |= param_2;
+    pActor->carryType |= param_2;
 }
 
 #endif

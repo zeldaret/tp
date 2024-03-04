@@ -377,14 +377,14 @@ static J3DModel* ArcIX_A_crwaku_model[1];
 #ifdef NONMATCHING
 static void koro2_draw(fshop_class* param_1) {
 
-    if (param_1->mScale.x > 5.0f) {
+    if (param_1->scale.x > 5.0f) {
         dComIfGd_setListBG();
     }
-    g_env_light.setLightTevColorType_MAJI(ArcIX_A_crwaku_model[0], &param_1->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(ArcIX_A_crwaku_model[0], &param_1->tevStr);
     mDoExt_modelUpdateDL(ArcIX_A_crwaku_model[0]);
     for (s32 iVar1 = 0; iVar1 < (s32)ARRAY_SIZE(param_1->mKoro2); iVar1++) {
         if (param_1->mKoro2[iVar1].mpModel != NULL) {
-            g_env_light.setLightTevColorType_MAJI(param_1->mKoro2[iVar1].mpModel, &param_1->mTevStr);
+            g_env_light.setLightTevColorType_MAJI(param_1->mKoro2[iVar1].mpModel, &param_1->tevStr);
             mDoExt_modelUpdateDL(param_1->mKoro2[iVar1].mpModel);
         }
     }
@@ -1527,14 +1527,14 @@ static J3DModel* ArcIX_A_crsaka_model[8];
 // regalloc
 #ifdef NONMATCHING
 static int daFshop_Draw(fshop_class* param_0) {
-    g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->mTevStr);
+    g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->tevStr);
 
     if (param_0->field_0x4070 != NULL) {
-        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4070, &param_0->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4070, &param_0->tevStr);
         param_0->field_0x4070->getModelData()->getMaterialNodePointer(0)->getTevKColor(1)->r = 0;
         mDoExt_modelUpdateDL(param_0->field_0x4070);
         dComIfGd_setSimpleShadow(
-            &param_0->current.pos, param_0->field_0x40b4.GetGroundH(), 66.6f * param_0->mScale.x,
+            &param_0->current.pos, param_0->field_0x40b4.GetGroundH(), 66.6f * param_0->scale.x,
             param_0->field_0x40b4.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
        return 1;
     }
@@ -1554,7 +1554,7 @@ static int daFshop_Draw(fshop_class* param_0) {
         f32 fVar4 = param_0->mLure[iVar12].field_0x00.x - camera->mLookat.mEye.x;
         f32 fVar5 = param_0->mLure[iVar12].field_0x00.z - camera->mLookat.mEye.z;
         if (fVar4 * fVar4 + fVar5 * fVar5 > 1200.0f) {
-            g_env_light.setLightTevColorType_MAJI(param_0->mLure[iVar12].field_0x14, &param_0->mTevStr);
+            g_env_light.setLightTevColorType_MAJI(param_0->mLure[iVar12].field_0x14, &param_0->tevStr);
             mDoExt_modelUpdateDL(param_0->mLure[iVar12].field_0x14);
             if (param_0->mLure[iVar12].field_0x24 != 3) {
                 for (int local_50 = 0; local_50 < 2; local_50++) {
@@ -1565,30 +1565,30 @@ static int daFshop_Draw(fshop_class* param_0) {
     }
 
     for (int iVar9 = 0; iVar9 < 3; iVar9++) {
-        g_env_light.setLightTevColorType_MAJI(param_0->mRod[iVar9].field_0x14, &param_0->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(param_0->mRod[iVar9].field_0x14, &param_0->tevStr);
         mDoExt_modelUpdateDL(param_0->mRod[iVar9].field_0x14);
-        param_0->mRod[iVar9].line_mat.update(8, rod_color[iVar9], &param_0->mTevStr);
+        param_0->mRod[iVar9].line_mat.update(8, rod_color[iVar9], &param_0->tevStr);
         dComIfGd_set3DlineMat(&param_0->mRod[iVar9].line_mat);
         for (int local_54 = 0; local_54 < 6; local_54++) {
             dComIfGp_entrySimpleModel(param_0->mRod[iVar9].field_0x18[local_54], cVar11);
         }
     }
     for (int local_58 = 0; local_58 < 2; local_58++) {
-        g_env_light.setLightTevColorType_MAJI(param_0->mTsubo[local_58].field_0x14, &param_0->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(param_0->mTsubo[local_58].field_0x14, &param_0->tevStr);
         mDoExt_modelUpdateDL(param_0->mTsubo[local_58].field_0x14);
     }
 
-    param_0->field_0x3f88.update(0xf, 1.2f, l_color, 2, &param_0->mTevStr);
+    param_0->field_0x3f88.update(0xf, 1.2f, l_color, 2, &param_0->tevStr);
     dComIfGd_set3DlineMat(&param_0->field_0x3f88);
-    g_env_light.setLightTevColorType_MAJI(param_0->field_0x6b30, &param_0->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(param_0->field_0x6b30, &param_0->tevStr);
     mDoExt_modelUpdateDL(param_0->field_0x6b30);
-    g_env_light.setLightTevColorType_MAJI(param_0->field_0x3ff4, &param_0->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(param_0->field_0x3ff4, &param_0->tevStr);
     mDoExt_modelUpdateDL(param_0->field_0x3ff4);
     if (param_0->field_0x4004 != NULL) {
         mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
         MtxP pfVar10 = mDoMtx_stack_c::get();
         param_0->field_0x4004->i_setBaseTRMtx(pfVar10);
-        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4004, &param_0->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(param_0->field_0x4004, &param_0->tevStr);
         mDoExt_modelUpdateDL(param_0->field_0x4004);
     }
     return 1;
@@ -2095,7 +2095,7 @@ static asm void weed_control(fshop_class* param_0, fs_weed_s* param_1) {
 static void stage_copy(fshop_class* param_0, fshop_class* param_1) {
     param_0->field_0x4014 = param_1->field_0x4014;
     param_0->field_0x4020 = param_1->field_0x4020;
-    param_0->mScale = param_1->mScale;
+    param_0->scale = param_1->scale;
 }
 
 /* ############################################################################################## */
@@ -2160,7 +2160,7 @@ static void koro2_mtx_set(fshop_class* param_1) {
         mDoMtx_stack_c::YrotM(param_1->field_0x4020.y);
         mDoMtx_stack_c::XrotM(param_1->field_0x4020.x);
         mDoMtx_stack_c::ZrotM(param_1->field_0x4020.z);
-        mDoMtx_stack_c::scaleM(param_1->mScale.x, param_1->mScale.x, param_1->mScale.x);
+        mDoMtx_stack_c::scaleM(param_1->scale.x, param_1->scale.x, param_1->scale.x);
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
         param_1->mpA_crwaku_model->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -2320,7 +2320,7 @@ static u8 data_80870AC4[4];
 static void koro2_game(fshop_class* i_this) {
     cXyz sp5C;
     cXyz sp68;
-    i_this->mScale.x = 1.0f;
+    i_this->scale.x = 1.0f;
 
     switch (i_this->field_0x4010) {
     case 0:
@@ -2339,7 +2339,7 @@ static void koro2_game(fshop_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0x4020.x, 0, 2, 0x200);
         cLib_addCalcAngleS2(&i_this->field_0x4020.z, 0, 2, 0x200);
     case 2:
-        i_this->mScale.x = 10.0f;
+        i_this->scale.x = 10.0f;
         if (i_this->field_0x4010 == 2) {
             static f32 old_stick_x = 0.0f;
 
@@ -2681,7 +2681,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         return;
     }
     if (param_1->field_0x4070 != NULL) {
-        param_1->mScale.x = 0.024f;
+        param_1->scale.x = 0.024f;
         cXyz local_cc;
         cXyz local_d8;
         BOOL bVar5 = FALSE;
@@ -2706,7 +2706,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             param_1->field_0x428d = 10;
         case 2:
             bVar5 = TRUE;
-            param_1->mScale.x = 0.24f;
+            param_1->scale.x = 0.24f;
             break;
         }
 
@@ -2754,11 +2754,11 @@ static int daFshop_Execute(fshop_class* param_1) {
                     }
                 }
                 if (!bVar5) {
-                    iVar9->mHealth = 1;
+                    iVar9->health = 1;
                 } else if (param_1->field_0x567 == 1) {
-                    iVar9->mHealth = 0;
+                    iVar9->health = 0;
                 } else {
-                    iVar9->mHealth = 2;
+                    iVar9->health = 2;
                 }
                 
                 *(u16*)((u8*)iVar9 + 0x752) = 0x49;
@@ -2781,7 +2781,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                             }
 
                             if (bVar5) {
-                                uVar19->mHealth = 3;
+                                uVar19->health = 3;
                                 *(u16*)((u8*)uVar19 + 0x752) = 0x49;
                             } else {
                                 *(u16*)((u8*)uVar19 + 0x752) = 0x4c;
@@ -2845,9 +2845,9 @@ static int daFshop_Execute(fshop_class* param_1) {
         camera_class* pmVar11 = dComIfGp_getCamera(0);
         mDoMtx_stack_c::transS(param_1->current.pos.x, param_1->current.pos.y,
                                param_1->current.pos.z);
-        mDoMtx_stack_c::scaleM(param_1->mScale.x, param_1->mScale.x,
-                               param_1->mScale.x);
-        mDoMtx_stack_c::transM(0.0f, 190.0f * param_1->mScale.x, 0.0f);
+        mDoMtx_stack_c::scaleM(param_1->scale.x, param_1->scale.x,
+                               param_1->scale.x);
+        mDoMtx_stack_c::transM(0.0f, 190.0f * param_1->scale.x, 0.0f);
         local_cc = pmVar11->mLookat.mEye - param_1->current.pos;
         mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
         mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));

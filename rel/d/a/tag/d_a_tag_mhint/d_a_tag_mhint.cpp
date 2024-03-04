@@ -88,7 +88,7 @@ int daTagMhint_c::create() {
     field_0x56b = (fopAcM_GetParam(this) >> 0x1D) & 1;
 
     if (daPy_getPlayerActorClass() != NULL) {
-        field_0x572 = fopAcM_GetID(daPy_getPlayerActorClass()) == mParentPcId;
+        field_0x572 = fopAcM_GetID(daPy_getPlayerActorClass()) == parentActorID;
     } else {
         field_0x572 = 0;
     }
@@ -100,12 +100,12 @@ int daTagMhint_c::create() {
 
     mEventID = i_dComIfGp_getEventManager().getEventIdx(this, mToolEventID);
     if ((fopAcM_GetParam(this) >> 0x1E) & 1) {
-        mScale.x *= FLOAT_LABEL(lit_3741);
-        mScale.y *= FLOAT_LABEL(lit_3741);
+        scale.x *= FLOAT_LABEL(lit_3741);
+        scale.y *= FLOAT_LABEL(lit_3741);
     }
 
-    field_0x5cc = mScale.x * (mScale.x * 10000.0f);
-    field_0x5d0 = current.pos.y + mScale.y * 100.0f;
+    field_0x5cc = scale.x * (scale.x * 10000.0f);
+    field_0x5d0 = current.pos.y + scale.y * 100.0f;
 
     if (!checkNoAttention()) {
         stage_arrow_data_class* arrow_data_p =
@@ -114,9 +114,9 @@ int daTagMhint_c::create() {
                                 ->mEntries[field_0x56d]
                                 .field_0x10];
 
-        mEyePos.set(arrow_data_p->mPosition.x, arrow_data_p->mPosition.y,
+        eyePos.set(arrow_data_p->mPosition.x, arrow_data_p->mPosition.y,
                     arrow_data_p->mPosition.z);
-        mAttentionInfo.mPosition = mEyePos;
+        attention_info.position = eyePos;
     }
 
     return cPhs_COMPLEATE_e;
@@ -158,7 +158,7 @@ SECTION_DEAD static char const* const stringBase_805A604C = "D_MN04B";
 #ifdef NONMATCHING
 void daTagMhint_c::eventOrder() {
     if (!i_dComIfGp_event_runCheck()) {
-        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
 
         if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
             i_dComIfGp_checkPlayerStatus0(0, 0x100000))
@@ -224,20 +224,20 @@ int daTagMhint_c::execute() {
     }
 
     if (checkNoAttention()) {
-        mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
+        attention_info.position = midna_p->attention_info.position;
         shape_angle.y = midna_p->shape_angle.y;
-        mEyePos = mAttentionInfo.mPosition;
+        eyePos = attention_info.position;
     } else {
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
     }
 
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         if (dComIfGp_evmng_endCheck(mEventID)) {
             i_dComIfGp_event_reset();
             fopAcM_orderSpeakEvent(this, 3, 0);
             field_0x570 = 1;
         }
-    } else if (mEvtInfo.checkCommandTalk()) {
+    } else if (eventInfo.checkCommandTalk()) {
         if (!midna_p->checkShadowModeTalkWait()) {
             if (field_0x56e == 0) {
                 mMsgFlow.init(this, shape_angle.z & 0xFFFF, 0, NULL);
@@ -280,7 +280,7 @@ int daTagMhint_c::execute() {
         }
     } else {
         if (field_0x570 != 0) {
-            mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
             fopAcM_orderSpeakEvent(this, 3, 0);
             return 1;
         }
@@ -321,7 +321,7 @@ int daTagMhint_c::execute() {
         }
     }
 
-    if (!mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
+    if (!eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x56f = 0;
     }
 

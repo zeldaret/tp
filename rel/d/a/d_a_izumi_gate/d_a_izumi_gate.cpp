@@ -87,8 +87,8 @@ int daIzumiGate_c::Execute(Mtx** i_mtx) {
 
 /* 80849328-808493CC 000308 00A4+00 1/0 0/0 0/0 .text            Draw__13daIzumiGate_cFv */
 int daIzumiGate_c::Draw() {
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

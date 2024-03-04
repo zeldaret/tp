@@ -173,15 +173,15 @@ int daDbDoor00_c::CreateInit() {
     s32 fRoomNo = door_param2_c::getFRoomNo(this);
     if (fopAcM_GetRoomNo(this) == -1) {
         fopAcM_SetRoomNo(this, fRoomNo);
-        mTevStr.mRoomNo = current.roomNo;
+        tevStr.mRoomNo = current.roomNo;
     }
     dComIfG_Bgsp().Regist(mpBgW, this);
     field_0x584 = 1;
     setAction(4);
     field_0x594 = 0x1e;
-    mAttentionInfo.mPosition.y += 250.0f;
-    mEyePos.y += 250.0f;
-    mAttentionInfo.mFlags = 0x20;
+    attention_info.position.y += 250.0f;
+    eyePos.y += 250.0f;
+    attention_info.flags = 0x20;
     calcMtx();
     mpBgW->Move();
     return 1;
@@ -349,7 +349,7 @@ int daDbDoor00_c::actionLockWait() {
 
 /* 8045E000-8045E094 000D00 0094+00 1/0 0/0 0/0 .text            actionLockOff__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockOff() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(3);
@@ -373,7 +373,7 @@ int daDbDoor00_c::actionLockDemo() {
 /* 8045E108-8045E1C8 000E08 00C0+00 1/0 0/0 0/0 .text            actionCloseWait__12daDbDoor00_cFv
  */
 int daDbDoor00_c::actionCloseWait() {
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(5);
@@ -381,8 +381,8 @@ int daDbDoor00_c::actionCloseWait() {
         field_0x584 = 0;
     } else {
         if (checkArea() != 0) {
-            mEvtInfo.setEventName("DEFAULT_DOUBLE_DOOR_OPEN");
-            mEvtInfo.i_onCondition(4);
+            eventInfo.setEventName("DEFAULT_DOUBLE_DOOR_OPEN");
+            eventInfo.i_onCondition(4);
         }
     }
     return 1;
@@ -423,8 +423,8 @@ int daDbDoor00_c::draw() {
         dComIfG_Bgsp().Regist(mpBgW, this);
         field_0x584 = 1;
     }
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel2, &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel2);
     dComIfGd_setList();
@@ -484,14 +484,14 @@ extern actor_process_profile_definition g_profile_DBDOOR = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_DBDOOR,            // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daDbDoor00_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     295,                    // mPriority
-    &l_daDbdoor00_Method,   // mSubMtd
+    &l_daDbdoor00_Method,   // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_6_e,      // mCullType
+    fopAc_CULLBOX_6_e,      // cullType
 };

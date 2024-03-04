@@ -25,13 +25,13 @@ void daObjSMark_c::initBaseMtx() {
 void daObjSMark_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    MTXCopy(mDoMtx_stack_c::get(), mCullMtx);
+    MTXCopy(mDoMtx_stack_c::get(), cullMtx);
 }
 
 /* 8059A080-8059A168 0000E0 00E8+00 1/1 0/0 0/0 .text            Create__12daObjSMark_cFv */
 int daObjSMark_c::Create() {
     initBaseMtx();
-    fopAcM_SetMtx(this, mCullMtx);
+    fopAcM_SetMtx(this, cullMtx);
     fopAcM_setCullSizeSphere(this, 0.0f, 0.0f, 0.0f, 100.0f);
     mAcchCir.SetWall(30.0f, 30.0f);
     mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
@@ -106,14 +106,14 @@ extern actor_process_profile_definition g_profile_Obj_StoneMark = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_StoneMark,     // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daObjSMark_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     534,                    // mPriority
-    &l_daObjSMark_Method,   // mSubMtd
+    &l_daObjSMark_Method,   // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLSPHERE_8_e,   // mCullType
+    fopAc_CULLSPHERE_8_e,   // cullType
 };

@@ -32,7 +32,7 @@ static void* searchSwSpinSub(void* param_0, void* param_1) {
 
 /* 80C67FB4-80C67FF0 000114 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjLv4Gear_cFv */
 void daObjLv4Gear_c::initBaseMtx() {
-    mpModel->mBaseScale = mScale;
+    mpModel->mBaseScale = scale;
     setBaseMtx();
 }
 
@@ -144,8 +144,8 @@ int daObjLv4Gear_c::execute() {
 
 /* 80C683E0-80C68444 000540 0064+00 1/1 0/0 0/0 .text            draw__14daObjLv4Gear_cFv */
 int daObjLv4Gear_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }
@@ -190,16 +190,16 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Gear = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Lv4Gear,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daObjLv4Gear_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     561,                     // mPriority
-    &l_daObjLv4Gear_Method,  // mSubMtd
+    &l_daObjLv4Gear_Method,  // sub_method
     0x40100,                 // mStatus
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80C68524-80C68524 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

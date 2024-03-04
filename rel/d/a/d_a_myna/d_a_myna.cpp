@@ -1348,7 +1348,7 @@ int daMyna_c::create() {
             return cPhs_ERROR_e;
         } else {
             fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
-            mCreature.init(&current.pos, &mEyePos, 3, 1);
+            mCreature.init(&current.pos, &eyePos, 3, 1);
             initiate();
             setRoomNo();
             execute();
@@ -1426,8 +1426,8 @@ int daMyna_c::destroy() {
 int daMyna_c::draw() {
     J3DModel* model = mpMorf->getModel();
     J3DModelData* modelData = model->getModelData();
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
     if (cLib_checkBit<u16>(field_0x914, 0x40)) {
         mBtpAnm.entry(modelData);
     }
@@ -1461,8 +1461,8 @@ int daMyna_c::execute() {
         i_fpcM_Search(daMyna_searchLight, this);
     }
     setRoomNo();
-    mAttentionInfo.mPosition.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
-    mEyePos.set(mAttentionInfo.mPosition);
+    attention_info.position.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
+    eyePos.set(attention_info.position);
     if (field_0x926 > 0) {
         field_0x926--;
     }
@@ -1603,9 +1603,9 @@ void daMyna_c::attack_wait_move() {
         if (!dComIfGs_isSaveSwitch(0x3C)) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1)) {
                 if (!isEventFlag(1)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 1;
                     }
                 } else {
@@ -1615,9 +1615,9 @@ void daMyna_c::attack_wait_move() {
         } else if (field_0x92A < l_HOSTIO.field_0x24) {
             field_0x92A++;
         } else {
-            mEvtInfo.i_onCondition(1);
+            eventInfo.i_onCondition(1);
             fopAcM_orderSpeakEvent(this, 0, 0);
-            if (mEvtInfo.checkCommandTalk()) {
+            if (eventInfo.checkCommandTalk()) {
                 field_0x92C = 4;
             }
         }
@@ -1654,7 +1654,7 @@ asm void daMyna_c::attack_before_talk_init() {
 
 /* 80946B40-80946BB4 000FC0 0074+00 1/0 0/0 0/0 .text attack_before_talk_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         onEventFlag(1);
         field_0x92C = 2;
@@ -1763,7 +1763,7 @@ void daMyna_c::attack_after_talk_init() {
 /* 80946E08-80946E84 001288 007C+00 1/0 0/0 0/0 .text            attack_after_talk_move__8daMyna_cFv
  */
 void daMyna_c::attack_after_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         onEventFlag(2);
         field_0x91C = 0x139;
@@ -1800,32 +1800,32 @@ void daMyna_c::greet_wait_move() {
     if (!daPy_py_c::i_checkNowWolf()) {
         if (daMyna_evtTagActor0 != NULL) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, cXyz(cXyz(1.0f, 1.0f, 1.0f)))) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
                     }
                 }
             }
         } else {
             if (fopAcM_searchPlayerDistanceXZ(this) < 350.0f) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
                     }
                 }
@@ -1883,7 +1883,7 @@ asm void daMyna_c::greet_talk_init() {
 
 /* 8094711C-809471BC 00159C 00A0+00 1/0 0/0 0/0 .text            greet_talk_move__8daMyna_cFv */
 void daMyna_c::greet_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x937 = 20;
@@ -1929,9 +1929,9 @@ void daMyna_c::shopping_wait_move() {
             bool bVar1 = false;
             s16 nowTotalPrice = dMsgObject_getMsgObjectClass()->getNowTotalPrice();
             if (dMsgObject_getMsgObjectClass()->isPaymentFlag()) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 9;
                     dMsgObject_getMsgObjectClass()->offPaymentFlag();
                 }
@@ -1944,7 +1944,7 @@ void daMyna_c::shopping_wait_move() {
                             dMsgObject_addTotalPrice(mShopItems[i].mValueNum);
                             field_0x931 = i;
                             if (mShopItems[i].mFlowNodeNum != 0xFFFF) {
-                                mEvtInfo.i_onCondition(1);
+                                eventInfo.i_onCondition(1);
                                 fopAcM_orderSpeakEvent(this, 0, 0);
                             }
                         }
@@ -1966,13 +1966,13 @@ void daMyna_c::shopping_wait_move() {
                     cXyz stack_2c(1.0f, 1.0f, 1.0f);
                     if (chkPlayerInEvtArea(daMyna_evtTagActor1, stack_2c)) {
                         if (isEventFlag(0)) {
-                            mEvtInfo.i_onCondition(1);
+                            eventInfo.i_onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
                         } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2)
                         {
-                            mEvtInfo.i_onCondition(1);
+                            eventInfo.i_onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
@@ -1983,23 +1983,23 @@ void daMyna_c::shopping_wait_move() {
                 if (daMyna_evtTagActor0 != NULL) {
                     cXyz stack_38(1.0f, 1.0f, 1.0f);
                     if (!chkPlayerInEvtArea(daMyna_evtTagActor0, stack_38) && nowTotalPrice > 0) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
                 } else if (fopAcM_searchPlayerDistanceXZ(this) > 450.0f) {
                     if (isEventFlag(0)) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
                 }
 
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     if (!bVar1) {
                         field_0x92C = 8;
                     } else {
@@ -2030,7 +2030,7 @@ void daMyna_c::shopping_talk_init() {
 
 /* 80947630-809476A0 001AB0 0070+00 1/0 0/0 0/0 .text            shopping_talk_move__8daMyna_cFv */
 void daMyna_c::shopping_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
@@ -2053,7 +2053,7 @@ void daMyna_c::thanks_talk_init() {
 
 /* 8094772C-80947794 001BAC 0068+00 1/0 0/0 0/0 .text            thanks_talk_move__8daMyna_cFv */
 void daMyna_c::thanks_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x92C = 7;
     }
@@ -2096,7 +2096,7 @@ void daMyna_c::byebye_talk_init() {
 /* 809478D0-80947A00 001D50 0130+00 1/0 0/0 0/0 .text            byebye_talk_move__8daMyna_cFv */
 void daMyna_c::byebye_talk_move() {
     bool bVar1 = true;
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         if (field_0x933 == 0) {
             if (field_0x931 != 0xFF) {
                 mShopItems[field_0x931].mItemStatus = 3;
@@ -2432,9 +2432,9 @@ void daMyna_c::attack_wait2_move() {
             } else {
                 if (field_0x939 == 1) {
                     current.angle = orig.angle;
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 21;
                     }
                 } else if (field_0x92A < l_HOSTIO.field_0x24) {
@@ -2477,7 +2477,7 @@ asm void daMyna_c::attack_before_talk2_init() {
 
 /* 809483DC-80948444 00285C 0068+00 1/0 0/0 0/0 .text attack_before_talk2_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk2_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x92C = 19;
     }
@@ -2603,7 +2603,7 @@ void daMyna_c::attack2_talk_init() {
 
 /* 80948734-809487EC 002BB4 00B8+00 1/0 0/0 0/0 .text            attack2_talk_move__8daMyna_cFv */
 void daMyna_c::attack2_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
@@ -2818,7 +2818,7 @@ int daMyna_c::chkEvent() {
     if (daPy_py_c::i_checkNowWolf()) {
         if (!i_dComIfGp_getEvent().i_isOrderOK()) {
             retVal = 0;
-            if (mEvtInfo.checkCommandTalk()) {
+            if (eventInfo.checkCommandTalk()) {
                 if (field_0x92C == 0x10) {
                     (this->*move_proc[field_0x92C])();
                     retVal = 0;
@@ -2858,12 +2858,12 @@ int daMyna_c::orderEvent() {
         case 13:
         case 14:
         case 15:
-            mAttentionInfo.mFlags = 10;
+            attention_info.flags = 10;
         }
-        if (mAttentionInfo.mFlags == 10) {
-            mAttentionInfo.field_0x0[1] = 0x8B;
-            mAttentionInfo.field_0x0[3] = 0x8B;
-            mEvtInfo.i_onCondition(1);
+        if (attention_info.flags == 10) {
+            attention_info.field_0x0[1] = 0x8B;
+            attention_info.field_0x0[3] = 0x8B;
+            eventInfo.i_onCondition(1);
         }
     }
     return 1;
@@ -3054,10 +3054,10 @@ asm void daMyna_c::setCollision() {
 void daMyna_c::set_mtx() {
     J3DModel* model = mpMorf->getModel();
     cXyz local_18(current.pos);
-    mScale.set(l_HOSTIO.field_0x04, l_HOSTIO.field_0x04, l_HOSTIO.field_0x04);
+    scale.set(l_HOSTIO.field_0x04, l_HOSTIO.field_0x04, l_HOSTIO.field_0x04);
     mDoMtx_stack_c::transS(local_18);
     mDoMtx_stack_c::ZXYrotM(current.angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
     mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(4));
@@ -3369,14 +3369,14 @@ int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
         mDoMtx_stack_c::transM(-param_0->current.pos.x, -param_0->current.pos.y,
                                -param_0->current.pos.z);
         mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &local_6c);
-        f32 fVar1 = fabsf(param_0->mScale.x + param_1.x);
-        f32 fVar2 = fabsf(param_0->mScale.z + param_1.z);
+        f32 fVar1 = fabsf(param_0->scale.x + param_1.x);
+        f32 fVar2 = fabsf(param_0->scale.z + param_1.z);
         f32 fVar3 = fabsf(local_6c.x);
         f32 fVar4 = fabsf(local_6c.z);
         local_60 = param_0->current.pos - daPy_getPlayerActorClass()->current.pos;
         if ((fVar3 * fVar3) / (fVar1 * fVar1) + (fVar4 * fVar4) / (fVar2 * fVar2) <= 1.0f &&
-            -(param_0->mScale.y + param_1.y) < local_60.y &&
-            local_60.y < (param_0->mScale.y + param_1.y))
+            -(param_0->scale.y + param_1.y) < local_60.y &&
+            local_60.y < (param_0->scale.y + param_1.y))
         {
             retVal = 1;
         }

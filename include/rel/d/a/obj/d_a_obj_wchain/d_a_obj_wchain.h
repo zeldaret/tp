@@ -33,12 +33,12 @@ public:
     /* 80D310AC */ int execute();
     /* 80D31810 */ int draw();
 
-    GXLightObj* getLightObj() { return &mTevStr.mLightObj.mLightObj; }
+    GXLightObj* getLightObj() { return &tevStr.mLightObj.mLightObj; }
     J3DModelData* getChainModelData() { return mpChainModelData; }
     cXyz* getChainPos() { return mChainPos; }
     csXyz* getChainAngle() { return mChainAngle; }
     s16* getChainAngleZ() { return mChainRotation; }
-    cXyz& getJumpAimPos() { return mEyePos; }
+    cXyz& getJumpAimPos() { return eyePos; }
     cXyz& getTopPos() { return mTopPos; }
     cXyz& getRoofPos() { return mRoofPos; }
     f32 getPullLength() { return mPullLength; }

@@ -81,8 +81,8 @@ int daObjKJgjs_c::Execute(f32 (**i_mtx)[3][4]) {
 
 /* 80C46320-80C463C4 000300 00A4+00 1/0 0/0 0/0 .text            Draw__12daObjKJgjs_cFv */
 int daObjKJgjs_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

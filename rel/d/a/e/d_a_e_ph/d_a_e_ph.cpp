@@ -253,10 +253,10 @@ void daE_PH_c::FlyAnm() {
             SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
         }
 
-        mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &mTevStr,
+        mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &tevStr,
                                               &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mFlyTsubuEMKey =
-            dComIfGp_particle_set(mFlyTsubuEMKey, 0x878D, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mFlyTsubuEMKey, 0x878D, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
     }
 
@@ -602,10 +602,10 @@ void daE_PH_c::FlyAnm2() {
             SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
         }
 
-        mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &mTevStr,
+        mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &tevStr,
                                               &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mFlyTsubuEMKey =
-            dComIfGp_particle_set(mFlyTsubuEMKey, 0x878D, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mFlyTsubuEMKey, 0x878D, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
     }
 
@@ -613,19 +613,19 @@ void daE_PH_c::FlyAnm2() {
         if (fopAcM_searchPlayerDistance(this) < 1000.0f &&
             i_dComIfGp_checkPlayerStatus1(0, 0x10000))
         {
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
             field_0x630 = -10.0f - BREG_F(0);
             field_0x5ae = 15;
             field_0x616 = 0x1000;
             field_0x618 = 0x1000;
             SetAnm(ANM_HANG_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
         } else if (fopAcM_checkHookCarryNow(this)) {
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
         } else if (mAnmID != ANM_WAIT) {
             SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_WAIT) {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
 
         if (!fopAcM_checkHookCarryNow(this) || !i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
             SetAnm(ANM_HANG_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, mAnmSpeed);
@@ -707,7 +707,7 @@ void daE_PH_c::Action() {
         AttentionSet();
 
         if (fopAcM_searchPlayerDistance(this) > 2000.0f || other_bg_check(this, player_p)) {
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
         }
         break;
     case 2:
@@ -715,7 +715,7 @@ void daE_PH_c::Action() {
             StopAction();
 
             if (fopAcM_searchPlayerDistance(this) > 3000.0f || other_bg_check(this, player_p)) {
-                mAttentionInfo.mFlags = 0;
+                attention_info.flags = 0;
             }
 
             cXyz* cc_move_p = mCcStts.GetCCMoveP();
@@ -738,7 +738,7 @@ void daE_PH_c::Action() {
                 }
             }
         } else {
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
 
             if (dComIfGs_isSwitch(0x3F, fopAcM_GetRoomNo(this))) {
                 field_0x5b2 = 1;
@@ -749,7 +749,7 @@ void daE_PH_c::Action() {
         break;
     default:
         if (fopAcM_searchPlayerDistance(this) > 2000.0f || other_bg_check(this, player_p)) {
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
         }
 
         S_Action();
@@ -936,16 +936,16 @@ void daE_PH_c::DemoAction() {
 
     if (mAnmID == ANM_APPEAR) {
         mDemoRockEMKey =
-            dComIfGp_particle_set(mDemoRockEMKey, 0x8C6F, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mDemoRockEMKey, 0x8C6F, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mDemoTsubuEMKey =
-            dComIfGp_particle_set(mDemoTsubuEMKey, 0x8C70, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mDemoTsubuEMKey, 0x8C70, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mDemoRock2EMKey =
-            dComIfGp_particle_set(mDemoRock2EMKey, 0x8C71, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mDemoRock2EMKey, 0x8C71, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mDemoRock3EMKey =
-            dComIfGp_particle_set(mDemoRock3EMKey, 0x8C72, &current.pos, &mTevStr, &shape_angle,
+            dComIfGp_particle_set(mDemoRock3EMKey, 0x8C72, &current.pos, &tevStr, &shape_angle,
                                   NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
     }
 }
@@ -957,7 +957,7 @@ void daE_PH_c::ToumeiAction() {
     if (fopAcM_searchPlayerDistance(this) > XREG_F(1) + 2300.0f ||
         i_dComIfGp_checkPlayerStatus1(0, 0x10000))
     {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     }
 
     if (mCcSph.ChkTgHit() && field_0x5ae == 0) {
@@ -965,9 +965,9 @@ void daE_PH_c::ToumeiAction() {
         field_0x5ae = 20;
         mStopTimer = 300;
 
-        dComIfGp_particle_set(0x878C, &current.pos, &mTevStr, &shape_angle, NULL);
-        dComIfGp_particle_set(0x878D, &current.pos, &mTevStr, &shape_angle, NULL);
-        dComIfGp_particle_set(0x878E, &current.pos, &mTevStr, &shape_angle, NULL);
+        dComIfGp_particle_set(0x878C, &current.pos, &tevStr, &shape_angle, NULL);
+        dComIfGp_particle_set(0x878D, &current.pos, &tevStr, &shape_angle, NULL);
+        dComIfGp_particle_set(0x878E, &current.pos, &tevStr, &shape_angle, NULL);
 
         mSound.startCreatureSound(Z2SE_EN_PH_HIT, 0, -1);
     }
@@ -1041,26 +1041,26 @@ void daE_PH_c::AttentionSet() {
 
     if (mAnmID != ANM_HANG_START && mAnmID != ANM_HANG_WAIT && mAnmID != ANM_HANG_END) {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0) {
-            mAttentionInfo.field_0x0[2] = 0x52;
+            attention_info.field_0x0[2] = 0x52;
         } else {
-            mAttentionInfo.field_0x0[2] = 0x53;
+            attention_info.field_0x0[2] = 0x53;
         }
 
-        mAttentionInfo.mFlags = 4;
+        attention_info.flags = 4;
     } else if (current.pos.absXZ(fopAcM_GetPosition(player_p)) > 1000.0f) {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0) {
-            mAttentionInfo.field_0x0[2] = 0x52;
+            attention_info.field_0x0[2] = 0x52;
         } else {
-            mAttentionInfo.field_0x0[2] = 0x53;
+            attention_info.field_0x0[2] = 0x53;
         }
     } else {
-        mAttentionInfo.field_0x0[2] = 0;
-        mAttentionInfo.mFlags = 0;
+        attention_info.field_0x0[2] = 0;
+        attention_info.flags = 0;
     }
 
     if (player_p->checkDragonHangRide()) {
-        mAttentionInfo.field_0x0[2] = 0;
-        mAttentionInfo.mFlags = 0;
+        attention_info.field_0x0[2] = 0;
+        attention_info.flags = 0;
     }
 }
 
@@ -1107,7 +1107,7 @@ void daE_PH_c::ObjHit() {
                 SetAnm(ANM_DAMAGE_ARROW, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f);
             }
 
-            dComIfGp_particle_set(0x878E, &current.pos, &mTevStr, &shape_angle, NULL);
+            dComIfGp_particle_set(0x878E, &current.pos, &tevStr, &shape_angle, NULL);
             mSound.startCreatureSound(Z2SE_EN_PH_HIT, 0, -1);
             mCcSph.OffTgSetBit();
         }
@@ -1138,12 +1138,12 @@ void daE_PH_c::De_Timer() {
 
 /* 807411C0-80741200 003E60 0040+00 1/1 0/0 0/0 .text            EyeSet__8daE_PH_cFv */
 void daE_PH_c::EyeSet() {
-    mEyePos = current.pos;
-    mEyePos.y += TREG_F(2);
+    eyePos = current.pos;
+    eyePos.y += TREG_F(2);
 
-    mAttentionInfo.mPosition.x = current.pos.x;
-    mAttentionInfo.mPosition.z = current.pos.z;
-    mAttentionInfo.mPosition.y = current.pos.y + 170.0f + TREG_F(1);
+    attention_info.position.x = current.pos.x;
+    attention_info.position.z = current.pos.z;
+    attention_info.position.y = current.pos.y + 170.0f + TREG_F(1);
 }
 
 /* 80741200-80741268 003EA0 0068+00 1/1 0/0 0/0 .text            Delete__8daE_PH_cFv */
@@ -1179,18 +1179,18 @@ int daE_PH_c::Draw() {
             cXyz sp28;
             sp28.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
 
-            g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-            g_env_light.setLightTevColorType_MAJI(model, &mTevStr);
+            g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(model, &tevStr);
             mpMorf->entryDL();
 
             mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &sp28, BREG_F(16) + 1000.0f,
                                             BREG_F(17) + 100.0f, current.pos.y, mAcch.GetGroundH(),
-                                            mAcch.m_gnd, &mTevStr, 0, 1.0f,
+                                            mAcch.m_gnd, &tevStr, 0, 1.0f,
                                             dDlst_shadowControl_c::getSimpleTex());
         }
     } else {
-        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(model, &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     }
 
     return 1;
@@ -1228,7 +1228,7 @@ int daE_PH_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mGravity = 0.0f;
+        gravity = 0.0f;
 
         field_0x5b4 = (fopAcM_GetParam(this) >> 4) & 0xF;
         if (field_0x5b4 == 0 || field_0x5b4 == 15) {
@@ -1266,8 +1266,8 @@ int daE_PH_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
 
-        mAttentionInfo.mFlags = 4;
-        mAttentionInfo.field_0x0[2] = 0x22;
+        attention_info.flags = 4;
+        attention_info.field_0x0[2] = 0x22;
 
         cXyz sp3C(current.pos.x, current.pos.y + 200.0f, current.pos.z);
         mSound.init(&current.pos, &sp3C, 3, 1);
@@ -1297,16 +1297,16 @@ int daE_PH_c::create() {
             mCcSph.OffTgShield();
             mCcSph.OnTgNoHitMark();
 
-            mAttentionInfo.field_0x0[2] = 0;
-            mAttentionInfo.mFlags = 0;
+            attention_info.field_0x0[2] = 0;
+            attention_info.flags = 0;
 
             cXyz sp48(current.pos.x, current.pos.y, current.pos.z);
-            mAttentionInfo.mPosition.x = current.pos.x;
-            mAttentionInfo.mPosition.z = current.pos.z;
-            mAttentionInfo.mPosition.y = current.pos.y + 150.0f + TREG_F(1);
+            attention_info.position.x = current.pos.x;
+            attention_info.position.z = current.pos.z;
+            attention_info.position.y = current.pos.y + 150.0f + TREG_F(1);
         } else if (mAction == 2 || mAction == 4 || mAction == 5) {
             speedF = 0.0f;
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
         } else {
             SearchNearP();
         }

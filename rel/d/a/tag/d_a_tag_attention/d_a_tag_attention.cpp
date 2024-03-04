@@ -11,7 +11,7 @@ static const u8 l_dist_tbl[] = { 0x23, 0x24 };
 
 /* 804D5318-804D5354 000078 003C+00 1/1 0/0 0/0 .text            Create__8daAttp_cFv */
 int daAttp_c::Create() {
-    mAttentionInfo.field_0x0[0] = l_dist_tbl[daAttp_prm::getArg4(this)];
+    attention_info.field_0x0[0] = l_dist_tbl[daAttp_prm::getArg4(this)];
 
     execute();
     return 1;
@@ -113,9 +113,9 @@ int daAttp_c::execute() {
     }
 
     if (bVar1) {
-        mAttentionInfo.mFlags = mAttentionInfo.mFlags | 1;
+        attention_info.flags = attention_info.flags | 1;
     } else {
-        mAttentionInfo.mFlags = mAttentionInfo.mFlags & 0xfffffffe;
+        attention_info.flags = attention_info.flags & 0xfffffffe;
     }
 
     return 1;
@@ -166,14 +166,14 @@ extern actor_process_profile_definition g_profile_Tag_Attp = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Attp,          // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daAttp_c),       // mSize
     0,                      // mSizeOther
     0,                      // mParameter
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     440,                    // mPriority
-    &l_daAttp_Method,       // mSubMtd
+    &l_daAttp_Method,       // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_0_e,      // mCullType   
+    fopAc_CULLBOX_0_e,      // cullType   
 };

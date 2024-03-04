@@ -174,7 +174,7 @@ extern "C" extern u8 data_80C91AD0[4];
 
 /* 80C90AF8-80C90B50 000078 0058+00 1/0 0/0 0/0 .text            initWait__18daObjMasterSword_cFv */
 void daObjMasterSword_c::initWait() {
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     current.pos = orig.pos;
     current.angle = orig.angle;
     shape_angle = orig.angle;
@@ -504,11 +504,11 @@ void daObjMasterSword_c::create_init() {
     initBaseMtx();
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
-    mAttentionInfo.field_0x0[4] = 74;
-    mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mPosition.y += 100.0f;
-    mEyePos = mAttentionInfo.mPosition;
+    cLib_onBit<u32>(attention_info.flags, 0x10);
+    attention_info.field_0x0[4] = 74;
+    attention_info.position = current.pos;
+    attention_info.position.y += 100.0f;
+    eyePos = attention_info.position;
 
     dBgS_AcchCir cir_check;
     dBgS_ObjAcch obj_check;
@@ -695,8 +695,8 @@ int daObjMasterSword_c::draw() {
     }
 
     J3DModelData* modelData = mpModel->getModelData();
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mBtk.entry(modelData);
@@ -710,7 +710,7 @@ int daObjMasterSword_c::draw() {
     cXyz sp8 = cXyz(current.pos.x, current.pos.y + 50.0f, current.pos.z);
     mShadowKey =
         dComIfGd_setShadow(mShadowKey, 1, mpModel, &sp8, 200.0f, 10.0f, current.pos.y, field_0x738,
-                           field_0x728, &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+                           field_0x728, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
     return 1;
 }

@@ -306,7 +306,7 @@ void daAlink_c::setHookshotSight() {
     BOOL line_cross = checkSightLine(length, &sight_pos);
 
     if (mHookTargetAcKeep.getActor() != NULL) {
-        mSight.setPos(&mHookTargetAcKeep.getActor()->mEyePos);
+        mSight.setPos(&mHookTargetAcKeep.getActor()->eyePos);
     } else {
         mSight.setPos(&sight_pos);
     }
@@ -894,7 +894,7 @@ void daAlink_c::setHookshotPos() {
                 }
             } else {
                 if (checkChaseHookshot()) {
-                    cXyz sp188 = mTargetedActor->mEyePos - mHookshotTopPos;
+                    cXyz sp188 = mTargetedActor->eyePos - mHookshotTopPos;
                     if (sp188.inprod(mIronBallCenterPos) >= 0.0f) {
                         mIronBallCenterPos = sp188;
                         mIronBallCenterPos.normalizeZP();
@@ -979,11 +979,11 @@ void daAlink_c::setHookshotPos() {
                                      poly.mNormal.atan2sX_Z(), 0);
 
                             dComIfGp_particle_setPolyColor(
-                                particle_id, mRopeLinChk, mRopeLinChk.GetCrossP(), &mTevStr, &sp30,
+                                particle_id, mRopeLinChk, mRopeLinChk.GetCrossP(), &tevStr, &sp30,
                                 (cXyz*)&l_hookSnowSandHitScale, 0, NULL, -1, NULL);
                             if (poly_att0 == 0xD) {
                                 dComIfGp_particle_setPolyColor(
-                                    0x8820, mRopeLinChk, mRopeLinChk.GetCrossP(), &mTevStr, &sp30,
+                                    0x8820, mRopeLinChk, mRopeLinChk.GetCrossP(), &tevStr, &sp30,
                                     (cXyz*)&l_hookSnowSandHitScale, 0, NULL, -1, NULL);
                             }
                         } else {
@@ -1416,7 +1416,7 @@ int daAlink_c::procHookshotFlyInit() {
 
     setSingleAnimeBase(anm);
     mBodyAngle.x = 0;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
 
@@ -1641,7 +1641,7 @@ int daAlink_c::procHookshotRoofWaitInit(int param_0, fopAc_ac_c* param_1, int pa
 
     resetHookshotMode();
     field_0x3024 = 1;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
     current.angle.y = shape_angle.y;
@@ -1759,7 +1759,7 @@ int daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
 
     setSingleAnimeBaseSpeed(anm, 1.0f, 3.0f);
     setFastShotTimer();
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
     field_0x2b98 = 6.5f;
@@ -1880,7 +1880,7 @@ int daAlink_c::procHookshotRoofBootsInit(fopAc_ac_c* param_0) {
     setSingleAnimeBaseMorf(anm, 2.0f);
     resetHookshotMode();
     field_0x3024 = 1;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
     current.angle.y = shape_angle.y;
@@ -1984,7 +1984,7 @@ int daAlink_c::procHookshotWallWaitInit(int param_0, s16 param_1, int param_2) {
     dComIfGp_setPlayerStatus1(0, 0x2000000);
     resetHookshotMode();
     field_0x3024 = 1;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
     current.angle.y = shape_angle.y;
@@ -2098,7 +2098,7 @@ int daAlink_c::procHookshotWallShootInit() {
 
     setSingleAnimeBaseSpeed(anm, 1.0f, 3.0f);
     setFastShotTimer();
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
 

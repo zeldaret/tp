@@ -424,7 +424,7 @@ extern "C" asm void __dt__8cM3dGPlaFv() {
 /* 80C389BC-80C389F8 0003BC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__15daItemKantera_cFv */
 #ifdef NONMATCHING
 void daItemKantera_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 #else
@@ -700,9 +700,9 @@ asm int daItemKantera_c::actionInit() {
 int daItemKantera_c::actionWaitInit() {
     mCollider.OffTgSPrmBit(1);
     mCollider.OffCoSPrmBit(1);
-    cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
-    mAttentionInfo.field_0x0[4] = 16;
-    mAttentionInfo.mPosition = current.pos;
+    cLib_offBit<u32>(attention_info.flags, 0x10);
+    attention_info.field_0x0[4] = 16;
+    attention_info.position = current.pos;
     show();
     setStatus(1);
     return 1;
@@ -740,12 +740,12 @@ asm int daItemKantera_c::actionWait() {
  */
 #ifdef NONMATCHING
 int daItemKantera_c::initActionOrderGetDemo() {
-    cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, 0x10);
     mCollider.OffTgSPrmBit(1);
     mCollider.OffCoSPrmBit(1);
     hide();
     fopAcM_orderItemEvent(this, 0, 0);
-    mEvtInfo.i_onCondition(8);
+    eventInfo.i_onCondition(8);
     field_0x92c = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
                                                 NULL, NULL);
     setStatus(2);
@@ -765,14 +765,14 @@ asm int daItemKantera_c::initActionOrderGetDemo() {
 /* 80C392D0-80C3934C 000CD0 007C+00 1/0 0/0 0/0 .text actionOrderGetDemo__15daItemKantera_cFv */
 #ifdef NONMATCHING
 int daItemKantera_c::actionOrderGetDemo() {
-    if (mEvtInfo.checkCommandItem()) {
+    if (eventInfo.checkCommandItem()) {
         setStatus(3);
         if (field_0x92c != -1) {
             dComIfGp_event_setItemPartnerId(field_0x92c);
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        mEvtInfo.i_onCondition(8);
+        eventInfo.i_onCondition(8);
     }
     return 1;
 }

@@ -183,7 +183,7 @@ static void wether_tag_move(kytag00_class* i_this) {
     f32 var_f1 = i_this->current.pos.abs(spC);
 
     if (var_f1 < i_this->field_0x584 && check_pos.y >= i_this->current.pos.y - temp_f31 &&
-        check_pos.y < temp_f31 + (i_this->current.pos.y + (5000.0f * i_this->mScale.y)) &&
+        check_pos.y < temp_f31 + (i_this->current.pos.y + (5000.0f * i_this->scale.y)) &&
         i_this->field_0x588 > 0.0f)
     {
         f32 var_f9 = 1.0f;
@@ -207,7 +207,7 @@ static void wether_tag_move(kytag00_class* i_this) {
             }
         } else if (0.0f != temp_f31) {
             f32 var_f2_2 =
-                (check_pos.y - (i_this->current.pos.y + (5000.0f * i_this->mScale.y))) / temp_f31;
+                (check_pos.y - (i_this->current.pos.y + (5000.0f * i_this->scale.y))) / temp_f31;
             if (var_f2_2 < 0.0f) {
                 var_f2_2 = 0.0f;
             }
@@ -377,7 +377,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
     f32 var_f1 = i_this->current.pos.abs(spC);
 
     if (var_f1 < i_this->field_0x584 && check_pos.y >= i_this->current.pos.y - temp_f31 &&
-        check_pos.y < temp_f31 + (i_this->current.pos.y + (5000.0f * i_this->mScale.y)) &&
+        check_pos.y < temp_f31 + (i_this->current.pos.y + (5000.0f * i_this->scale.y)) &&
         i_this->field_0x588 > 0.0f)
     {
         f32 var_f9 = 1.0f;
@@ -403,7 +403,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
             }
         } else if (0.0f != temp_f31) {
             f32 var_f2_2 =
-                (check_pos.y - (i_this->current.pos.y + (5000.0f * i_this->mScale.y))) / temp_f31;
+                (check_pos.y - (i_this->current.pos.y + (5000.0f * i_this->scale.y))) / temp_f31;
             if (var_f2_2 < 0.0f) {
                 var_f2_2 = 0.0f;
             }
@@ -727,8 +727,8 @@ static int daKytag00_Create(fopAc_ac_c* i_this) {
         a_this->field_0x57c = 10;
     }
 
-    a_this->field_0x580 = a_this->mScale.x * 5000.0f;
-    a_this->field_0x584 = a_this->mScale.x * 5000.0f + a_this->field_0x578 * 100.0f;
+    a_this->field_0x580 = a_this->scale.x * 5000.0f;
+    a_this->field_0x584 = a_this->scale.x * 5000.0f + a_this->field_0x578 * 100.0f;
     a_this->field_0x56c = 0;
     a_this->field_0x56d = 0;
     g_env_light.mMoyaCount = 0;

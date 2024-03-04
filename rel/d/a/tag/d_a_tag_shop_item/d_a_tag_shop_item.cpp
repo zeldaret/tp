@@ -163,7 +163,7 @@ u8 daTag_ShopItem_c::getSwitchBit2() {
 /* 80D6105C-80D610E0 00055C 0084+00 1/1 0/0 0/0 .text            initialize__16daTag_ShopItem_cFv */
 void daTag_ShopItem_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
     current.angle.set(0, orig.angle.y, 0);
     shape_angle = current.angle;
     mProcessID = -1;
@@ -210,14 +210,14 @@ extern actor_process_profile_definition g_profile_TAG_SHOPITM = {
     7,                            // mListID
     fpcPi_CURRENT_e,              // mListPrio
     PROC_TAG_SHOPITM,             // mProcName
-    &g_fpcLf_Method.mBase,        // mSubMtd
+    &g_fpcLf_Method.mBase,        // sub_method
     sizeof(daTag_ShopItem_c),     // mSize
     0,                            // mSizeOther
     0,                            // mParameters
-    &g_fopAc_Method.base,         // mSubMtd
+    &g_fopAc_Method.base,         // sub_method
     75,                           // mPriority
-    &daTag_ShopItem_MethodTable,  // mSubMtd
+    &daTag_ShopItem_MethodTable,  // sub_method
     0x64100,                      // mStatus
     5,                            // mActorType
-    fopAc_CULLBOX_CUSTOM_e,       // mCullType
+    fopAc_CULLBOX_CUSTOM_e,       // cullType
 };

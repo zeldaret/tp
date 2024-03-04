@@ -80,9 +80,9 @@ int daTagRmbitSw_c::execute() {
 
 /* 80D5FDB8-80D5FDF0 000338 0038+00 1/1 0/0 0/0 .text            init__14daTagRmbitSw_cFv */
 void daTagRmbitSw_c::init() {
-    field_0x56c = mScale.x * 50.0f;
-    field_0x570 = mScale.y * 100.0f;
-    field_0x574 = mScale.z * 50.0f;
+    field_0x56c = scale.x * 50.0f;
+    field_0x570 = scale.y * 100.0f;
+    field_0x574 = scale.z * 50.0f;
 }
 
 /* 80D5FDF0-80D5FEEC 000370 00FC+00 1/1 0/0 0/0 .text            chkPlyrInTag__14daTagRmbitSw_cFv */

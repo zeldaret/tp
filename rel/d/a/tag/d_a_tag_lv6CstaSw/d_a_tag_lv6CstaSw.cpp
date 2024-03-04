@@ -45,7 +45,7 @@ bool daLv6CstaSw_c::areaCheck() {
     }
 
     cXyz vec_to_actor = current.pos - sekizo_p->current.pos;
-    if (vec_to_actor.absXZ() <= mScale.x * 100.0f) {
+    if (vec_to_actor.absXZ() <= scale.x * 100.0f) {
         in_area = true;
     }
 

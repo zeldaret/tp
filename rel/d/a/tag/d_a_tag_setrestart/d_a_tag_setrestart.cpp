@@ -11,17 +11,17 @@
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */
 int daTagRestart_c::Create() {
-    field_0x56c[0].x = mScale.x * -100.0f;
-    field_0x56c[0].z = mScale.z * -100.0f;
+    field_0x56c[0].x = scale.x * -100.0f;
+    field_0x56c[0].z = scale.z * -100.0f;
 
-    field_0x56c[1].x = mScale.x * 100.0f;
-    field_0x56c[1].z = mScale.z * -100.0f;
+    field_0x56c[1].x = scale.x * 100.0f;
+    field_0x56c[1].z = scale.z * -100.0f;
 
-    field_0x56c[2].x = mScale.x * 100.0f;
-    field_0x56c[2].z = mScale.z * 100.0f;
+    field_0x56c[2].x = scale.x * 100.0f;
+    field_0x56c[2].z = scale.z * 100.0f;
 
-    field_0x56c[3].x = mScale.x * -100.0f;
-    field_0x56c[3].z = mScale.z * 100.0f;
+    field_0x56c[3].x = scale.x * -100.0f;
+    field_0x56c[3].z = scale.z * 100.0f;
 
     field_0x56c[3].y = 0.0f;
     field_0x56c[2].y = 0.0f;

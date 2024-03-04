@@ -473,8 +473,8 @@ SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
 int daTagStream_c::checkArea(cXyz const* param_0) {
     cXyz relativePos;
     fpoAcM_relativePos(this, param_0, &relativePos);
-    if (relativePos.y >= 0.0f && relativePos.y <= mScale.y && fabsf(relativePos.x) <= mScale.x &&
-        fabsf(relativePos.z) <= mScale.z)
+    if (relativePos.y >= 0.0f && relativePos.y <= scale.y && fabsf(relativePos.x) <= scale.x &&
+        fabsf(relativePos.z) <= scale.z)
     {
         return 1;
     }

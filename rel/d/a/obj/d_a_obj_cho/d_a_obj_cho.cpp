@@ -117,7 +117,7 @@ static int daObjCHO_Delete(daObjCHO_c* i_this) {
 
 /* 80BCA78C-80BCA88C 00056C 0100+00 1/1 0/0 0/0 .text            SpeedSet__10daObjCHO_cFv */
 void daObjCHO_c::SpeedSet() {
-    speed.y += mGravity;
+    speed.y += gravity;
     current.pos.y += speed.y;
     cXyz vec1(0.0f, 0.0f, speedF);
     cXyz vec2(0.0f, 0.0f, 0.0f);
@@ -337,7 +337,7 @@ void daObjCHO_c::ParticleSet() {
     } else {
         cLib_addCalc2(&mParticleScale, 1.0f, 1.0f, 1.0f);
     }
-    mParticleKey1 = dComIfGp_particle_set(mParticleKey1, 0xa1b, &current.pos, &mTevStr,
+    mParticleKey1 = dComIfGp_particle_set(mParticleKey1, 0xa1b, &current.pos, &tevStr,
                                           &shape_angle, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
     f32 scale = mParticleScale;
     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleKey1);
@@ -405,9 +405,9 @@ int daObjCHO_c::Execute() {
         }
 
         checkGroundPos();
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = current.pos;
-        mEyePos.y += 10.0f;
+        attention_info.position = current.pos;
+        eyePos = current.pos;
+        eyePos.y += 10.0f;
         
         switch (mLocation) {
         case LOC_OUTSIDE:
@@ -416,16 +416,16 @@ int daObjCHO_c::Execute() {
             } else {
                 orig.pos = current.pos;
             }
-            mParticleKey2 = dComIfGp_particle_set(mParticleKey2, 0xa1c, &current.pos, &mTevStr,
+            mParticleKey2 = dComIfGp_particle_set(mParticleKey2, 0xa1c, &current.pos, &tevStr,
                                                   &shape_angle, NULL, 0xff, NULL, -1,
                                                   NULL, NULL, NULL);
             SetCcSph();
             ObjHit();
             BoomChk();
-            mEyePos = current.pos;
-            mEyePos.y += 10.0f;
-            mAttentionInfo.mPosition = mEyePos;
-            mAttentionInfo.mPosition.y += 10.0f;
+            eyePos = current.pos;
+            eyePos.y += 10.0f;
+            attention_info.position = eyePos;
+            attention_info.position.y += 10.0f;
             ParticleSet();
             break;
         case LOC_AGITHA:
@@ -485,7 +485,7 @@ int daObjCHO_c::Delete() {
 void daObjCHO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 }
@@ -494,8 +494,8 @@ int daObjCHO_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
         J3DModel* model = mpMorf->getModel();
-        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(model->mModelData, &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model->mModelData, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
         mpMorf->entryDL();
@@ -569,20 +569,20 @@ cPhs__Step daObjCHO_c::create() {
             mTargetSpeedY = -2.0f;
             mTimers[1] = 20;
             mTimers[2] = 100;
-            mScale.set(0.0f, 0.0f, 0.0f);
+            scale.set(0.0f, 0.0f, 0.0f);
         } else {
             mDraw = true;
             mAction = ACT_MOVE;
         }
-        mAttentionInfo.field_0x0[4] = 0x5D;
+        attention_info.field_0x0[4] = 0x5D;
 
         mSex = (fopAcM_GetParam(this) >> 4) & 1;
         m_itemNo = l_cho_itemno[mSex];
         m_saveBitNo = l_musiya_num[mSex];
         if (mSex == SEX_FEMALE) {
-            mScale.set(l_HIO.mScaleFemale, l_HIO.mScaleFemale, l_HIO.mScaleFemale);
+            scale.set(l_HIO.mScaleFemale, l_HIO.mScaleFemale, l_HIO.mScaleFemale);
         } else if (mSex == SEX_MALE) {
-            mScale.set(l_HIO.mScaleMale, l_HIO.mScaleMale, l_HIO.mScaleMale);
+            scale.set(l_HIO.mScaleMale, l_HIO.mScaleMale, l_HIO.mScaleMale);
         }
 
         if (!CreateChk()) {
@@ -600,7 +600,7 @@ cPhs__Step daObjCHO_c::create() {
         }
 
         mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
-        mGravity = 0.0f;
+        gravity = 0.0f;
         if (mLocation == LOC_OUTSIDE) {
             InitCcSph();
         }
@@ -613,7 +613,7 @@ cPhs__Step daObjCHO_c::create() {
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
-        mCreatureSound.init(&current.pos, &mEyePos, 3, 1);
+        mCreatureSound.init(&current.pos, &eyePos, 3, 1);
 
         daObjCHO_Execute(this);
     }

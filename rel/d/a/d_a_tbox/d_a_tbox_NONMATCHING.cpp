@@ -75,7 +75,7 @@ static cXyz l_light_offset(0.0f, 35.0f, 0.0f);
 daTbox_HIO_c::daTbox_HIO_c() {
     mItemNo = 1;
     mUseDebugItemNo = 0;
-    mGravity = -2.0f;
+    gravity = -2.0f;
     mDemoType = 0;
     mTimerDisplay = 0;
     mCheckDisplay = 0;
@@ -150,7 +150,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
             return cPhs_ERROR_e;
         }
     }
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(orig.angle.y);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -365,7 +365,7 @@ void daTbox_c::CreateInit() {
         mAcchCir.SetWall(500.0f, 0.0f);
         mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir,
                   &speed, &current.angle, &shape_angle);
-        mGravity = -2.0f;
+        gravity = -2.0f;
         field_0x97d = true;
         field_0x97c = true;
     } else if (func_type == 3) {
@@ -377,7 +377,7 @@ void daTbox_c::CreateInit() {
     mEventId = i_dComIfGp_getEventManager().getEventIdx(this, getEvent());
 
     if (getShapeType() == SHAPE_BOSSKEY) {
-        mEvtInfo.setArchiveName(getModelInfo()->mArcName);
+        eventInfo.setArchiveName(getModelInfo()->mArcName);
         field_0x984 = i_dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_TREASURE_BOSS", 0xff);
     }
 
@@ -433,8 +433,8 @@ void daTbox_c::initAnm() {
                 shape_angle.x = 0;
             }
             orig.pos = current.pos;
-            mAttentionInfo.mPosition = current.pos;
-            mEyePos = current.pos;
+            attention_info.position = current.pos;
+            eyePos = current.pos;
         }
         setAction(&actionWait);
         int tbox_no = getTboxNo();
@@ -453,8 +453,8 @@ void daTbox_c::initAnm() {
                     shape_angle.x = 0;
                 }
                 orig.pos = current.pos;
-                mAttentionInfo.mPosition = current.pos;
-                mEyePos = current.pos;
+                attention_info.position = current.pos;
+                eyePos = current.pos;
                 setAction(&actionOpenWait);
             } else {
                 setAction(&actionDropWaitForWeb);
@@ -498,7 +498,7 @@ int daTbox_c::boxCheck() {
                                                            player->getKandelaarFlamePos() == NULL) {
         return false;
     }
-    cXyz vec = player->mAttentionInfo.mPosition - current.pos;
+    cXyz vec = player->attention_info.position - current.pos;
     f32 dist2_xz = vec.abs2XZ();
     f32 dist_y = fabsf(player->current.pos.y - current.pos.y);
     if (dist2_xz < 22500.0f && fopAcM_seenPlayerAngleY(this) < 0x2000 &&
@@ -724,7 +724,7 @@ void daTbox_c::dropProc() {
         speedF = 0.0f;
         cXyz vec1(2.0f, 2.0f, 2.0f);
         s32 room_no = fopAcM_GetRoomNo(this);
-        dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &mTevStr, &orig.angle,
+        dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &tevStr &orig.angle,
                                        &vec1, 0, NULL, room_no, NULL);
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         u32 sound_id = 0;
@@ -738,7 +738,7 @@ void daTbox_c::dropProc() {
         if (bg_index >= 0 && bg_index < 0x100) {
             sound_id = dComIfG_Bgsp().GetMtrlSndId(&gnd_chk);
         }
-        mDoAud_seStart(0x8002f, &mEyePos, sound_id, dComIfGp_getReverb(orig.roomNo));
+        mDoAud_seStart(0x8002f, &eyePos, sound_id, dComIfGp_getReverb(orig.roomNo));
     }
     if (orig.pos.abs(current.pos) > 400.0f) {
         field_0x97c = true;
@@ -754,7 +754,7 @@ void daTbox_c::demoInitAppear() {
     csXyz vec2 = orig.angle;
     static u16 const eff_id[6] = {0x8840, 0x8841, 0x8842, 0x8843, 0x8844, 0x8845};
     for (u32 i = 0; i < 6; i++) {
-        dComIfGp_particle_set(eff_id[i], &vec1, &vec2, &mScale, 0xff, NULL, -1, NULL, NULL, NULL);
+        dComIfGp_particle_set(eff_id[i], &vec1, &vec2, &scale, 0xff, NULL, -1, NULL, NULL, NULL);
     }
     flagOff(0x40);
     flagOn(1);
@@ -909,7 +909,7 @@ int daTbox_c::actionWait() {
 
 /* 804939FC-80493CC8 002DBC 02CC+00 1/0 0/0 0/0 .text            actionDemo__8daTbox_cFv */
 int daTbox_c::actionDemo() {
-    if (dComIfGp_evmng_endCheck(mEvtInfo.getEventId())) {
+    if (dComIfGp_evmng_endCheck(eventInfo.getEventId())) {
         if (field_0x718) {
             mpAnm->setPlaySpeed(0.0f);
             mpAnm->setFrame(0.0f);
@@ -1255,7 +1255,7 @@ int daTbox_c::setGetDemoItem() {
 int daTbox_c::actionOpenWait() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
         if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
                                              !midna->checkMetamorphoseEnable()) {
@@ -1272,17 +1272,17 @@ int daTbox_c::actionOpenWait() {
             field_0x9f4 = 0;
         }
     } else if (boxCheck()) {
-        mEvtInfo.i_onCondition(4);
+        eventInfo.i_onCondition(4);
         if (getShapeType() == SHAPE_SMALL) {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
+            eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
         } else if (player->i_checkNowWolf() && !midna->checkMetamorphoseEnable()) {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
+            eventInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
         } else if (getShapeType() == SHAPE_BOSSKEY) {
-            mEvtInfo.setEventId(field_0x984);
+            eventInfo.setEventId(field_0x984);
         } else if (checkEnvEffectTbox()) {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_EFFECT");
+            eventInfo.setEventName("DEFAULT_TREASURE_EFFECT");
         } else {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_NORMAL");
+            eventInfo.setEventName("DEFAULT_TREASURE_NORMAL");
         }
     }
     return true;
@@ -1362,7 +1362,7 @@ void daTbox_c::settingDropDemoCamera() {
 
 /* 80494D88-80494E98 004148 0110+00 1/0 0/0 0/0 .text            actionSwOnWait__8daTbox_cFv */
 int daTbox_c::actionSwOnWait() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
         mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1372,7 +1372,7 @@ int daTbox_c::actionSwOnWait() {
         } else {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
         }
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
     return true;
 }
@@ -1393,7 +1393,7 @@ int daTbox_c::actionSwOnWait2() {
 
 /* 80494F44-80495058 004304 0114+00 1/0 0/0 0/0 .text            actionDropWait__8daTbox_cFv */
 int daTbox_c::actionDropWait() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDropDemo);
         clrDzb();
         field_0x97d = false;
@@ -1404,7 +1404,7 @@ int daTbox_c::actionDropWait() {
     } else if (checkDrop()) {
         if (mEventId != -1) {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
-            mEvtInfo.i_onCondition(2);
+            eventInfo.i_onCondition(2);
         } else {
             dropProcInitCall();
             setAction(&actionDropDemo);
@@ -1416,7 +1416,7 @@ int daTbox_c::actionDropWait() {
 
 /* 80495058-8049518C 004418 0134+00 1/0 0/0 0/0 .text            actionGenocide__8daTbox_cFv */
 int daTbox_c::actionGenocide() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
         mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1429,7 +1429,7 @@ int daTbox_c::actionGenocide() {
             } else {
                 fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
             }
-            mEvtInfo.i_onCondition(2);
+            eventInfo.i_onCondition(2);
             dComIfGs_onSwitch(getSwNo(), fopAcM_GetRoomNo(this));
         }
     }
@@ -1463,13 +1463,13 @@ int daTbox_c::actionDropForWeb() {
     fopAcM_posMoveF(this, NULL);
     mAcch.CrrPos(dComIfG_Bgsp());
     orig.pos = current.pos;
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    eyePos = current.pos;
     setBaseMtx();
     if (mAcch.ChkGroundLanding()) {
         cXyz vec(2.0f, 2.0f, 2.0f);
         s32 room_no = fopAcM_GetRoomNo(this);
-        dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &mTevStr, &orig.angle,
+        dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &tevStr, &orig.angle,
                                        &vec, 0, NULL, room_no, NULL);
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         setDzb();
@@ -1487,9 +1487,9 @@ void daTbox_c::initBaseMtx() {
     field_0x9c4 = 0;
     mRotAxis = cXyz::BaseX;
     mDoMtx_identity(field_0x988);
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     if (mpSlimeModel != NULL) {
-        mpSlimeModel->setBaseScale(mScale);
+        mpSlimeModel->setBaseScale(scale);
     }
     setBaseMtx();
     if (mpBgW != NULL) {
@@ -1577,8 +1577,8 @@ void daTbox_c::mode_exec() {
         } else {
             mAcch.i_ClrGroundHit();
         }
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = current.pos;
+        attention_info.position = current.pos;
+        eyePos = current.pos;
         setBaseMtx();
         if (mpBgCollider == mpOpenBgW) {
             mpBgCollider->Move();
@@ -1607,8 +1607,8 @@ cPhs__Step daTbox_c::create1st() {
         return step;
     }
     CreateInit();
-    mAttentionInfo.mFlags = 0x40;
-    mAttentionInfo.mFlags |= 0x400000;
+    attention_info.flags = 0x40;
+    attention_info.flags |= 0x400000;
     return step;
 }
 
@@ -1632,9 +1632,9 @@ int daTbox_c::Draw() {
     if (flagCheck(0x40)) {
         return true;
     }
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     if (mpEffectModel != NULL && mpEffectAnm->getPlaySpeed() != 0.0f) {
-        g_env_light.setLightTevColorType_MAJI(mpEffectModel, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpEffectModel, &tevStr);
         mpEffectAnm->entry(mpEffectModel->getModelData());
         mDoExt_modelUpdateDL(mpEffectModel);
         mDoExt_brkAnmRemove(mpEffectModel->getModelData());
@@ -1642,7 +1642,7 @@ int daTbox_c::Draw() {
     if (flagCheck(1)) {
         return true;
     }
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     if (mpSlimeModel != NULL) {
         dComIfGd_setXluListBG();
         mDoExt_modelUpdateDL(mpSlimeModel);

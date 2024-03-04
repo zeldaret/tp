@@ -13,10 +13,10 @@ struct actor_method_class {
 
 struct actor_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
-    /* 0x24 */ actor_method_class* mSubMtd;
-    /* 0x28 */ u32 mStatus;
+    /* 0x24 */ actor_method_class* sub_method;
+    /* 0x28 */ u32 status;
     /* 0x2C */ u8 mActorType;
-    /* 0x2D */ u8 mCullType;
+    /* 0x2D */ u8 cullType;
 };
 
 // Unclear what this is. Only appears in 4 profiles (BG,DSHUTTER,PATH,SCENE_EXIT)
@@ -156,8 +156,6 @@ public:
 };  // Size = 0x18
 
 struct actor_place {
-    /* 807E2468 */  // void operator=(actor_place const&);
-
     /* 0x00 */ cXyz pos;
     /* 0x0C */ csXyz angle;
     /* 0x12 */ s8 roomNo;
@@ -165,65 +163,63 @@ struct actor_place {
 };
 
 struct actor_attention_types {
-    void setFlag(u32 flags) { mFlags |= flags; }
-
     /* 0x00 */ u8 field_0x0[9];
     /* 0x0A */ s16 field_0xa;
-    /* 0x0C */ cXyz mPosition;
-    /* 0x18 */ u32 mFlags;
+    /* 0x0C */ cXyz position;
+    /* 0x18 */ u32 flags;
 };  // Size = 0x1C
 
 class dJntCol_c;
 
 struct cull_sphere {
-    /* 0x0 */ Vec mCenter;
-    /* 0xC */ f32 mRadius;
+    /* 0x0 */ Vec center;
+    /* 0xC */ f32 radius;
 };
 
 struct cull_box {
-    /* 0x0 */ Vec mMin;
-    /* 0xC */ Vec mMax;
+    /* 0x0 */ Vec min;
+    /* 0xC */ Vec max;
 };
 
 class fopAc_ac_c : public leafdraw_class {
 public:
-    /* 0x0C0 */ int mAcType;
-    /* 0x0C4 */ create_tag_class mAcTg;
-    /* 0x0D8 */ create_tag_class mDwTg;
-    /* 0x0EC */ profile_method_class* mSubMtd;
+    /* 0x0C0 */ int actor_type;
+    /* 0x0C4 */ create_tag_class actor_tag;
+    /* 0x0D8 */ create_tag_class draw_tag;
+    /* 0x0EC */ profile_method_class* sub_method;
     /* 0x0F0 */ JKRSolidHeap* heap;
-    /* 0x0F4 */ dEvt_info_c mEvtInfo;
-    /* 0x10C */ dKy_tevstr_c mTevStr;
-    /* 0x494 */ u16 mSetID;
-    /* 0x496 */ u8 mGroup;
-    /* 0x497 */ u8 mCullType;
-    /* 0x498 */ u8 mDemoActorId;
-    /* 0x499 */ s8 mSubtype;
-    /* 0x49A */ u8 mCarryType;
-    /* 0x49C */ u32 mStatus;
-    /* 0x4A0 */ u32 mCondition;
-    /* 0x4A4 */ u32 mParentPcId;
+    /* 0x0F4 */ dEvt_info_c eventInfo;
+    /* 0x10C */ dKy_tevstr_c tevStr;
+    /* 0x494 */ u16 setID;
+    /* 0x496 */ u8 group;
+    /* 0x497 */ u8 cullType;
+    /* 0x498 */ u8 demoActorID;
+    /* 0x499 */ s8 subtype;
+    /* 0x49A */ u8 carryType;
+    /* 0x49C */ u32 actor_status;
+    /* 0x4A0 */ u32 actor_condition;
+    /* 0x4A4 */ u32 parentActorID;
     /* 0x4A8 */ actor_place orig;
     /* 0x4BC */ actor_place next;
     /* 0x4D0 */ actor_place current;
     /* 0x4E4 */ csXyz shape_angle;
-    /* 0x4EC */ cXyz mScale;
+    /* 0x4EC */ cXyz scale;
     /* 0x4F8 */ cXyz speed;
-    /* 0x504 */ MtxP mCullMtx;
+    /* 0x504 */ MtxP cullMtx;
     union {
-        /* 0x508 */ cull_box mBox;
-        /* 0x508 */ cull_sphere mSphere;
-    } mCull;
-    /* 0x520 */ f32 mCullSizeFar;
+        /* 0x508 */ cull_box box;
+        /* 0x508 */ cull_sphere sphere;
+    } cull;
+    /* 0x520 */ f32 cullSizeFar;
     /* 0x524 */ J3DModel* model;
-    /* 0x528 */ dJntCol_c* mJntCol;
+    /* 0x528 */ dJntCol_c* jntCol;
     /* 0x52C */ f32 speedF;
-    /* 0x530 */ f32 mGravity;
-    /* 0x534 */ f32 mMaxFallSpeed;
-    /* 0x538 */ cXyz mEyePos;
-    /* 0x544 */ actor_attention_types mAttentionInfo;
+    /* 0x530 */ f32 gravity;
+    /* 0x534 */ f32 maxFallSpeed;
+    /* 0x538 */ cXyz eyePos;
+    /* 0x544 */ actor_attention_types attention_info;
     /* 0x560 */ s16 field_0x560;
-    /* 0x562 */ s16 mHealth;
+    /* 0x562 */ s16 health;
     /* 0x564 */ u8 field_0x564;
     /* 0x565 */ u8 field_0x565;
     /* 0x566 */ u8 field_0x566;

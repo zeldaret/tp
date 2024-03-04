@@ -181,9 +181,9 @@ void daTagLv6Gate_c::initBaseMtx() {
 
 void daTagLv6Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -50.0f, 0.0f, -50.0f, 50.0f, 100.0f, 50.0f);
-    mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mFlags = (i_fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
-    mAttentionInfo.field_0x0[7] = 89;
+    attention_info.position = current.pos;
+    attention_info.flags = (i_fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
+    attention_info.field_0x0[7] = 89;
     mEvtId = -1;
     field_0x76a = 0;
 
@@ -193,7 +193,7 @@ void daTagLv6Gate_c::create_init() {
     initBaseMtx();
 
     if (!i_fopAcM_isSwitch(this, getSwitchNo1())) {
-        mParentPcId = fopAcM_create(PROC_NPC_TKS, 2, &cXyz(-13.272481f, 2887.0f, -10373.718f),
+        parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &cXyz(-13.272481f, 2887.0f, -10373.718f),
                                     fopAcM_GetRoomNo(this), &csXyz(0, 0x7FFF, 0), NULL, -1);
     }
 }
@@ -272,7 +272,7 @@ void daTagLv6Gate_c::cut4() {
     fopAc_ac_c* actor1;
 
     actor1 = NULL;
-    fopAcM_SearchByID(mParentPcId, &actor1);
+    fopAcM_SearchByID(parentActorID, &actor1);
 
     if (actor1 == NULL) {
         return;
@@ -296,7 +296,7 @@ void daTagLv6Gate_c::cut4() {
 int daTagLv6Gate_c::execute() {
     // Fake match?
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (i_dComIfGp_event_runCheck() && !mEvtInfo.checkCommandTalk()) {
+    if (i_dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
         s32 cut_index = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
             // int* cut_name = (int*)i_dComIfGp_getEventManager().getMyNowCutName(cut_index);
@@ -325,7 +325,7 @@ int daTagLv6Gate_c::execute() {
                     if (!mBgW[0].ChkUsed()) {
                         dComIfG_Bgsp().Regist(&mBgW[0], this);
                     }
-                    fopAcM_delete(mParentPcId);
+                    fopAcM_delete(parentActorID);
                 }
             }
 
@@ -339,19 +339,19 @@ int daTagLv6Gate_c::execute() {
                 dComIfGp_evmng_cutEnd(cut_index);
             }
 
-            if (mEvtInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
+            if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 dComIfGp_evmng_endCheck(mEvtId)) {
                 i_dComIfGp_event_reset();
                 mEvtId = -1;
             }
         }
     } else if (field_0x76a && !i_fopAcM_isSwitch(this, getSwitchNo1())) {
-        mEvtInfo.setArchiveName(l_arcName);
-        i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+        eventInfo.setArchiveName(l_arcName);
+        i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
         mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
         fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
         i_fopAcM_onSwitch(this, getSwitchNo1());
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     }
 
     if (i_fopAcM_isSwitch(this, getSwitchNo2())) {
@@ -473,12 +473,12 @@ static int daTagLv6Gate_Draw(daTagLv6Gate_c* i_this) {
 
 /* 80D506AC-80D50848 000E8C 019C+00 1/1 0/0 0/0 .text            draw__14daTagLv6Gate_cFv */
 int daTagLv6Gate_c::draw() {
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
 
     dComIfGd_setListBG();
 
     if (i_fopAcM_isSwitch(this, getSwitchNo2())) {
-        g_env_light.setLightTevColorType_MAJI(mpModel[0], &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel[0], &tevStr);
         mpBtk[0]->entry(mpModel[0]->getModelData());
         mpBtk[1]->entry(mpModel[0]->getModelData());
         mDoExt_modelUpdateDL(mpModel[0]);
@@ -492,7 +492,7 @@ int daTagLv6Gate_c::draw() {
         model_data->getMaterialNodePointer(i)->getTevKColor(3)->a = field_0x760[i];
     }
 
-    g_env_light.setLightTevColorType_MAJI(mpModel[1], &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel[1], &tevStr);
     mDoExt_modelUpdateDL(mpModel[1]);
 
     dComIfGd_setList();
@@ -534,14 +534,14 @@ extern actor_process_profile_definition g_profile_Tag_Lv6Gate = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Lv6Gate,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daTagLv6Gate_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     262,                     // mPriority
-    &l_daTagLv6Gate_Method,  // mSubMtd
+    &l_daTagLv6Gate_Method,  // sub_method
     0x40000,                 // mStatus
     0,                       // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

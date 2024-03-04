@@ -12701,7 +12701,7 @@ void daAlink_c::playerInit() {
     mAnmHeap9.createHeap(daPy_anmHeap_c::HEAP_TYPE_3);
     resetBasAnime();
 
-    mZ2Link.init(&current.pos, &mEyePos, &field_0x3720);
+    mZ2Link.init(&current.pos, &eyePos, &field_0x3720);
     mZ2Link.initKantera(&mKandelaarFlamePos);
     mZ2Link.setKanteraState(0);
     mProcID = 0x160;
@@ -12908,16 +12908,16 @@ int daAlink_c::create() {
         if ((!checkBossOctaIealRoom() && dComIfGs_Wolf_Change_Check() == 1) || startPoint == -4 ||
             sceneMode == 9)
         {
-            mAttentionInfo.mPosition.set(current.pos.x + cM_ssin(shape_angle.y) * 70.0f,
+            attention_info.position.set(current.pos.x + cM_ssin(shape_angle.y) * 70.0f,
                                          current.pos.y + 80.0f,
                                          current.pos.z + cM_scos(shape_angle.y) * 70.0f);
             i_onNoResetFlg1(FLG1_IS_WOLF);
         } else if (horseStart) {
-            mAttentionInfo.mPosition.y = current.pos.y + 150.0f;
+            attention_info.position.y = current.pos.y + 150.0f;
         } else {
-            mAttentionInfo.mPosition.y = current.pos.y + 275.0f;
+            attention_info.position.y = current.pos.y + 275.0f;
         }
-        mAttentionInfo.mFlags = -1;
+        attention_info.flags = -1;
 
         if (!i_dComIfGp_getEventManager().dataLoaded()) {
             return cPhs_INIT_e;
@@ -13089,7 +13089,7 @@ s32 daAlink_c::setRoomInfo() {
         roomID = dComIfG_Bgsp().GetRoomId(mLinkAcch.m_gnd);
 
         if (roomID != fopAcM_GetRoomNo(this)) {
-            mTevStr.mRoomNo = roomID;
+            tevStr.mRoomNo = roomID;
             mVoiceReverbIntensity = dComIfGp_getReverb(roomID);
             field_0x814.SetRoomId(roomID);
             fopAcM_SetRoomNo(this, roomID);
@@ -13100,7 +13100,7 @@ s32 daAlink_c::setRoomInfo() {
         roomID = fopAcM_GetRoomNo(this);
     }
 
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mLinkAcch.m_gnd);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mLinkAcch.m_gnd);
     field_0x3174 = dComIfG_Bgsp().GetGroundCode(mLinkAcch.m_gnd);
     field_0x2fbb = dComIfG_Bgsp().GetPolyAtt0(mLinkAcch.m_gnd);
     field_0x2fa8 = dComIfG_Bgsp().GetSpecialCode(mLinkAcch.m_gnd);
@@ -13726,7 +13726,7 @@ BOOL daAlink_c::checkNoCollisionCorret() {
          (!strcmp(i_dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
           (fopAcM_getTalkEventPartner(this) &&
            fopAcM_getTalkEventPartner(this) == getMidnaActor()))) ||
-        mEvtInfo.i_checkCommandDoor())
+        eventInfo.i_checkCommandDoor())
     {
         return true;
     }
@@ -15204,7 +15204,7 @@ void daAlink_c::setStickData() {
         u32 demoMode = mDemo.getDemoMode();
 
         if (checkDemoMoveMode(demoMode)) {
-            if (dDemo_c::m_object->getActor(mDemoActorId) != NULL) {
+            if (dDemo_c::m_object->getActor(demoActorID) != NULL) {
                 field_0x33a8 = 1.0f;
             } else {
                 field_0x33a8 = mDemo.getStick();
@@ -15682,21 +15682,21 @@ BOOL daAlink_c::setTalkStatus() {
         if (notTalk()) {
             setDoStatus(0x90);
         } else {
-            if (field_0x27f4->mAttentionInfo.mFlags & 0x2000000) {
+            if (field_0x27f4->attention_info.flags & 0x2000000) {
                 return 0;
             }
 
-            if (field_0x27f4->mAttentionInfo.mFlags & 0x800000) {
+            if (field_0x27f4->attention_info.flags & 0x800000) {
                 setDoStatus(0x3B);
-            } else if (field_0x27f4->mAttentionInfo.mFlags & 0x20000000) {
+            } else if (field_0x27f4->attention_info.flags & 0x20000000) {
                 if (fopAcM_GetName(field_0x27f4) == PROC_OBJ_SSDRINK) {
                     setDoStatus(0x3C);
                 } else {
                     setDoStatus(8);
                 }
-            } else if (field_0x27f4->mAttentionInfo.mFlags & 0x40000000) {
+            } else if (field_0x27f4->attention_info.flags & 0x40000000) {
                 setDoStatus(0x80);
-            } else if (field_0x27f4->mAttentionInfo.mFlags & 0x8000000) {
+            } else if (field_0x27f4->attention_info.flags & 0x8000000) {
                 setDoStatus(0x1B);
             } else {
                 setDoStatus(0x1C);
@@ -17332,8 +17332,8 @@ void daAlink_c::setSpecialGravity(f32 i_gravity, f32 i_speed, int i_offFlag) {
         i_onNoResetFlg3(FLG3_UNK_4000);
     }
 
-    mGravity = i_gravity;
-    mMaxFallSpeed = i_speed;
+    gravity = i_gravity;
+    maxFallSpeed = i_speed;
 }
 
 /* 800BB7A0-800BBD40 0B60E0 05A0+00 1/1 0/0 0/0 .text            transAnimeProc__9daAlink_cFP4cXyzff
@@ -17505,14 +17505,14 @@ void daAlink_c::posMove() {
             speed.y = -var_f31 * cM_ssin(var_r26);
         } else if ((checkBootsOrArmorHeavy() && mProcID != PROC_DEAD) || mProcID == PROC_SWIM_DIVE)
         {
-            speed.y += mGravity;
+            speed.y += gravity;
 
-            if (speed.y < mMaxFallSpeed) {
-                speed.y = mMaxFallSpeed;
+            if (speed.y < maxFallSpeed) {
+                speed.y = maxFallSpeed;
             }
         } else if (speed.y > daAlinkHIO_swim_c0::m.mMaxFloatUpSpeed) {
-            speed.y += mGravity;
-        } else if (speed.y < mMaxFallSpeed) {
+            speed.y += gravity;
+        } else if (speed.y < maxFallSpeed) {
             speed.y += 1.0f;
         } else {
             if (checkZoraWearAbility() &&
@@ -17535,24 +17535,24 @@ void daAlink_c::posMove() {
         if (checkHeavyStateOn(1, 1) && mProcID != PROC_SPINNER_READY &&
             !i_checkNoResetFlg0(FLG0_UNDERWATER))
         {
-            speed.y += mGravity * 2.25f;
+            speed.y += gravity * 2.25f;
 
-            if (speed.y < mMaxFallSpeed * 1.5f) {
-                speed.y = mMaxFallSpeed * 1.5f;
+            if (speed.y < maxFallSpeed * 1.5f) {
+                speed.y = maxFallSpeed * 1.5f;
             }
         } else {
-            speed.y += mGravity;
+            speed.y += gravity;
 
-            if (speed.y < mMaxFallSpeed) {
-                speed.y = mMaxFallSpeed;
+            if (speed.y < maxFallSpeed) {
+                speed.y = maxFallSpeed
             }
         }
     } else if (checkBoardRide()) {
         mLinkAcch.OffLineCheck();
-        speed.y += mGravity;
+        speed.y += gravity;
 
-        if (speed.y < mMaxFallSpeed) {
-            speed.y = mMaxFallSpeed;
+        if (speed.y < maxFallSpeed) {
+            speed.y = maxFallSpeed;
         }
     }
 
@@ -17587,7 +17587,7 @@ void daAlink_c::posMove() {
 
     if (i_getSumouMode() && mProcID != PROC_SUMOU_WIN_LOSE) {
         current.pos.y = var_f31 - 1.0f;
-        speed.y = mGravity;
+        speed.y = gravity;
     }
 
     field_0x342c = 0.0f;
@@ -18050,8 +18050,8 @@ int daAlink_c::checkSceneChange(int exitID) {
                     if (hStop->getActiveFlg()) {
                         fpoAcM_relativePos(hStop, &current.pos, &sp8);
 
-                        if (sp8.y >= -200.0f && sp8.y <= hStop->mScale.y + 600.0f &&
-                            fabsf(sp8.x) <= hStop->mScale.x && fabsf(sp8.z) <= hStop->mScale.z)
+                        if (sp8.y >= -200.0f && sp8.y <= hStop->scale.y + 600.0f &&
+                            fabsf(sp8.x) <= hStop->scale.x && fabsf(sp8.z) <= hStop->scale.z)
                         {
                             return 0;
                         }
@@ -18107,7 +18107,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             exitMode = 0;
         }
 
-        if (mEvtInfo.i_checkCommandDoor() || mProcID == PROC_WARP || mProcID == WOLF_DIG ||
+        if (eventInfo.i_checkCommandDoor() || mProcID == PROC_WARP || mProcID == WOLF_DIG ||
             mProcID == PROC_WOLF_DIG_THROUGH || field_0x3106 != 0 ||
             dComIfGp_event_compulsory(this, NULL, -1))
         {
@@ -18141,7 +18141,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             if (sceneChanged) {
                 i_onNoResetFlg0(FLG0_UNK_4000);
 
-                if (!mEvtInfo.i_checkCommandDoor()) {
+                if (!eventInfo.i_checkCommandDoor()) {
                     mDemo.setOriginalDemoType();
 
                     if (checkUpperReadyThrowAnime()) {
@@ -19162,7 +19162,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     if (temp_r31 &&
         (mItemAcKeep.getActor() == NULL ||
-         mItemAcKeep.getActor()->mEvtInfo.i_checkCommandDemoAccrpt()) &&
+         mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt()) &&
         !i_checkEndResetFlg0(ERFLG0_UNK_1000))
     {
         deleteEquipItem(0, 0);

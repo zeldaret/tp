@@ -20,7 +20,7 @@ int daSetBgObj_c::CreateInit() {
 
     u16* spec_data_p = (u16*)dComIfG_getObjectRes(mArcName, l_specName);
     fopAcM_create(l_bg_profName[*spec_data_p], fopAcM_GetParam(this), &current.pos,
-                  fopAcM_GetRoomNo(this), &current.angle, &mScale, -1);
+                  fopAcM_GetRoomNo(this), &current.angle, &scale, -1);
 
     return 1;
 }

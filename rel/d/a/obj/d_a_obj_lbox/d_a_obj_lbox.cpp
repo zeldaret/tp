@@ -41,8 +41,8 @@ daObj_Lbox_HIO_c::daObj_Lbox_HIO_c() {
 /* 80C5359C-80C53600 00011C 0064+00 1/0 0/0 0/0 .text            daObj_Lbox_Draw__FP14obj_lbox_class
  */
 static int daObj_Lbox_Draw(obj_lbox_class* i_this) {
-    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->mTevStr);
+    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
     return 1;
 }
@@ -78,13 +78,13 @@ static void action(obj_lbox_class* i_this) {
             i_this->field_0x57a = 2;
             i_this->field_0x57c = 0;
             fopAcM_effSmokeSet1(&i_this->field_0xa84, &i_this->field_0xa88, &i_this->current.pos,
-                                &i_this->shape_angle, 3.5f, &i_this->mTevStr, 1);
+                                &i_this->shape_angle, 3.5f, &i_this->tevStr, 1);
         }
         break;
     }
 
     fopAcM_OffStatus(i_this, 0);
-    i_this->mAttentionInfo.mFlags = 0;
+    i_this->attention_info.flags = 0;
     i_this->mObjAcch.CrrPos(dComIfG_Bgsp());
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
@@ -101,8 +101,8 @@ static void action(obj_lbox_class* i_this) {
     i_this->mSph.SetC(cStack_48);
     i_this->mSph.SetR(150.0f * l_HIO.mSize);
     dComIfG_Ccsp()->Set(&i_this->mSph);
-    i_this->mEyePos = i_this->current.pos;
-    i_this->mAttentionInfo.mPosition = i_this->mEyePos;
+    i_this->eyePos = i_this->current.pos;
+    i_this->attention_info.position = i_this->eyePos;
 }
 
 /* 80C5396C-80C539C8 0004EC 005C+00 2/1 0/0 0/0 .text daObj_Lbox_Execute__FP14obj_lbox_class */
@@ -196,7 +196,7 @@ static cPhs__Step daObj_Lbox_Create(fopAc_ac_c* i_this) {
                             &a_this->mAcchCir, fopAcM_GetSpeed_p(a_this), NULL, NULL);
         a_this->mAcchCir.SetWall(50.0f, 50.0f);
 
-        a_this->mAttentionInfo.field_0x0[2] = 0x16;
+        a_this->attention_info.field_0x0[2] = 0x16;
 
         daObj_Lbox_Execute(a_this);
     }

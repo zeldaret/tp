@@ -8,7 +8,7 @@
 class daTagAssist_c : public fopAc_ac_c {
 public:
     void create_init() {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
         field_0x570 = -1;
     }
 

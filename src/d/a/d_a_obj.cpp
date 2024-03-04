@@ -24,7 +24,7 @@ void eff_break_tsubo(fopAc_ac_c* i_actor, cXyz i_scale, int i_type) {
         dPa_name::ZI_J_M_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
         (dPa_modelEcallBack*)&dPa_modelEcallBack::mEcallback, roomNo, NULL, NULL, &i_scale);
 
-    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->mTevStr, 3, tubo_btp, 0, i_type);
+    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, 0, i_type);
 
     s32 roomNo2 = fopAcM_GetRoomNo(i_actor);
     dComIfGp_particle_set(dPa_name::ZI_J_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
@@ -97,7 +97,7 @@ void posMoveF_grade_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* param_
 
     if (param_2 != NULL) {
         cXyz sp28(*param_5);
-        sp28.y += i_actor->mGravity;
+        sp28.y += i_actor->gravity;
 
         if (param_6 != NULL) {
             sp28 += *param_6;

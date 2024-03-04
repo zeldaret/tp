@@ -560,7 +560,7 @@ void daAlink_c::setDemoData() {
             mMidnaTalkDelayTimer--;
         }
     } else {
-        dDemo_actor_c* demo_actor_p = dDemo_c::getActor(mDemoActorId);
+        dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
         cXyz* pos_p = NULL;
         s16 angle;
         u32 demo_mode = 1;
@@ -1101,7 +1101,7 @@ void daAlink_c::setShapeAngleToTalkActor() {
         {
             s16 target;
             if (partner_name == PROC_Tag_Mhint || partner_name == PROC_Tag_Mstop) {
-                target = cLib_targetAngleY(&current.pos, &partner_p->mEyePos);
+                target = cLib_targetAngleY(&current.pos, &partner_p->eyePos);
             } else {
                 target = fopAcM_searchActorAngleY(this, partner_p);
             }
@@ -1137,7 +1137,7 @@ u8 daAlink_c::setTradeItemAnime() {
         }
 
         u32 partner_id = fopAcM_createItemForPresentDemo(
-            &current.pos, item_no, 3, -1, fopAcM_GetRoomNo(this), &shape_angle, &mScale);
+            &current.pos, item_no, 3, -1, fopAcM_GetRoomNo(this), &shape_angle, &scale);
         dComIfGp_event_setItemPartnerId(partner_id);
     }
 
@@ -1253,7 +1253,7 @@ void daAlink_c::setDemoBodyBck(dDemo_actor_c* param_0, u16 param_1) {
         mNowAnmPackUnder[0].setAnmTransform(bck);
         mNowAnmPackUpper[0].setAnmTransform(bck);
 
-        dDemo_actor_c* demo_actor_p = dDemo_c::getActor(mDemoActorId);
+        dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
         if (demo_actor_p->checkEnable(0x80)) {
             field_0x2060->initOldFrameMorf(demo_actor_p->getPrm_Morf(), 0, field_0x30c6);
         }
@@ -1402,7 +1402,7 @@ asm void daAlink_c::setDemoBrk(J3DAnmTevRegKey** param_0, J3DModel* param_1, u16
 #ifdef NONMATCHING
 f32 daAlink_c::setStickAnmData(J3DAnmBase* i_anm, int param_1, int param_2, u16 param_3,
                                int param_4) {
-    dDemo_actor_c* demo_actor_p = dDemo_c::getActor(mDemoActorId);
+    dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
 
     f32 var_f31;
     if (i_anm != NULL) {
@@ -1540,7 +1540,7 @@ int daAlink_c::procCoToolDemoInit() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procCoToolDemo() {
-    dDemo_actor_c* demo_actor_p = dDemo_c::getActor(mDemoActorId);
+    dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
     BOOL var_r29 = 0;
 
     i_onEndResetFlg1(ERFLG1_GANON_FINISH);
@@ -1622,7 +1622,7 @@ int daAlink_c::procCoToolDemo() {
                                 mProcVar2.field_0x300c = 2;
                             } else {
                                 field_0x3484 = 0.0f;
-                                mTevStr.field_0x344 = 0.0f;
+                                tevStr.field_0x344 = 0.0f;
                                 field_0x347c = -0.5f;
 
                                 if (i_checkWolf()) {
@@ -2697,7 +2697,7 @@ int daAlink_c::procCoLookWait() {
 
     if (look_actor_p != NULL) {
         s16 target_angle;
-        s16 svar1 = cLib_targetAngleY(&field_0x34e0, &look_actor_p->mEyePos) - shape_angle.y;
+        s16 svar1 = cLib_targetAngleY(&field_0x34e0, &look_actor_p->eyePos) - shape_angle.y;
 
         if (svar1 > 0x6000) {
             target_angle = shape_angle.y + 0x6000;
@@ -2783,7 +2783,7 @@ int daAlink_c::procMonkeyMoveInit() {
     }
 
     current.angle.y = shape_angle.y;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
@@ -3150,7 +3150,7 @@ int daAlink_c::procCoCaughtInit() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
     mBodyAngle.z = 0;
     return 1;
 }
@@ -3572,7 +3572,7 @@ int daAlink_c::procCoTwGateInit() {
 
     field_0x33b0 = field_0x3588.y;
     mNormalSpeed = 0.0f;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     return 1;
 }
@@ -3683,7 +3683,7 @@ int daAlink_c::procZoraMoveInit() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
 
     deleteEquipItem(FALSE, TRUE);
     mProcVar3.field_0x300e.y = 5000;
@@ -3928,7 +3928,7 @@ asm int daAlink_c::procNotUseItemInit(int param_0) {
 int daAlink_c::procNotUseItem() {
     if (mProcVar2.field_0x300c == 0) {
         u32 item_partner_id = fopAcM_createItemForPresentDemo(
-            &current.pos, field_0x3198, 5, -1, fopAcM_GetRoomNo(this), &shape_angle, &mScale);
+            &current.pos, field_0x3198, 5, -1, fopAcM_GetRoomNo(this), &shape_angle, &scale);
         dComIfGp_event_setItemPartnerId(item_partner_id);
         mProcVar2.field_0x300c = 1;
     }
@@ -4232,7 +4232,7 @@ int daAlink_c::procDungeonWarpInit() {
 
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e.z = 0;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
     mProcVar3.field_0x300e.x = 0;
     mProcVar3.field_0x300e.y = 0;
 
@@ -4253,21 +4253,21 @@ int daAlink_c::procDungeonWarp() {
 
     f32 sin = cM_ssin(mProcVar2.field_0x300c);
     shape_angle.y += (s16)(14336.0f * sin);
-    mProcVar3.field_0x300e.x = 8.0f * sin + 24.0f * (1.0f - mScale.x);
+    mProcVar3.field_0x300e.x = 8.0f * sin + 24.0f * (1.0f - scale.x);
 
     if (mProcVar3.field_0x300e.z != 0) {
         return 1;
     } else {
         if (mProcVar2.field_0x300c == 0x4000) {
             if (mProcVar3.field_0x300e.y == 0) {
-                dComIfGp_particle_set(0xA61, &current.pos, &mTevStr, NULL, NULL);
+                dComIfGp_particle_set(0xA61, &current.pos, &tevStr, NULL, NULL);
                 mProcVar3.field_0x300e.y = 1;
             }
 
-            cLib_addCalc(&mScale.x, 0.0f, 0.5f, 0.4f, 0.005f);
-            cLib_addCalc(&mScale.y, 2.5f, 0.5f, 0.5f, 0.1f);
+            cLib_addCalc(&scale.x, 0.0f, 0.5f, 0.4f, 0.005f);
+            cLib_addCalc(&scale.y, 2.5f, 0.5f, 0.5f, 0.1f);
 
-            if (mScale.x < 0.01f) {
+            if (scale.x < 0.01f) {
                 i_onNoResetFlg0(FLG0_UNK_8000000);
                 if (checkItemGet(DUNGEON_EXIT, 1)) {
                     int escape =
@@ -4282,13 +4282,13 @@ int daAlink_c::procDungeonWarp() {
                 mProcVar3.field_0x300e.z = 1;
             }
             current.pos.y += 5.0f;
-            field_0x2b98 = (1.0f - mScale.y) * 100.0f;
+            field_0x2b98 = (1.0f - scale.y) * 100.0f;
         } else if (mProcVar2.field_0x300c >= 0x2000) {
-            cLib_chaseF(&mScale.x, 0.8f, 0.01f);
+            cLib_chaseF(&scale.x, 0.8f, 0.01f);
         }
 
-        mScale.z = mScale.x;
-        mpLinkModel->setBaseScale(mScale);
+        scale.z = scale.x;
+        mpLinkModel->setBaseScale(scale);
     }
 
     return 1;
@@ -4311,7 +4311,7 @@ asm int daAlink_c::procDungeonWarp() {
 int daAlink_c::procDungeonWarpSceneStartInit() {
     commonProcInit(PROC_DUNGEON_WARP_SCN_START);
 
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
                             daAlinkHIO_basic_c0::m.mAnmBlendFactor);
 
@@ -4326,8 +4326,8 @@ int daAlink_c::procDungeonWarpSceneStartInit() {
     current.pos.y += 120.0f;
     shape_angle.y += 0x7F7A;
 
-    mScale.set(0.0f, 1.5f, 0.0f);
-    mpLinkModel->setBaseScale(mScale);
+    scale.set(0.0f, 1.5f, 0.0f);
+    mpLinkModel->setBaseScale(scale);
     return 1;
 }
 #else
@@ -4354,10 +4354,10 @@ int daAlink_c::procDungeonWarpSceneStart() {
         return 1;
     }
 
-    BOOL var_r31 = cLib_chaseF(&mScale.x, 1.0f, 0.05f);
-    mScale.z = mScale.x;
-    cLib_chaseF(&mScale.y, 1.0f, 0.025f);
-    mpLinkModel->setBaseScale(mScale);
+    BOOL var_r31 = cLib_chaseF(&scale.x, 1.0f, 0.05f);
+    scale.z = scale.x;
+    cLib_chaseF(&scale.y, 1.0f, 0.025f);
+    mpLinkModel->setBaseScale(scale);
 
     if (!var_r31) {
         current.pos.y -= 5.0f;
@@ -4372,7 +4372,7 @@ int daAlink_c::procDungeonWarpSceneStart() {
 
     f32 sin = cM_ssin(mProcVar2.field_0x300c);
     shape_angle.y += (s16)(sin * 14336.0f);
-    mProcVar3.field_0x300e.x = (sin * 8.0f) + ((1.0f - mScale.x) * 24.0f);
+    mProcVar3.field_0x300e.x = (sin * 8.0f) + ((1.0f - scale.x) * 24.0f);
     return 1;
 }
 #else
@@ -4497,16 +4497,16 @@ void daAlink_c::checkWarpStart() {
                 const char* portal;
                 if (!i_checkMidnaRide()) {
                     if (dComIfGp_TargetWarpPt_get() == 3) {
-                        mEvtInfo.setArchiveName("Obj_kbrg");
+                        eventInfo.setArchiveName("Obj_kbrg");
                         portal = kBridgePortal;
                     } else if (dComIfGp_TargetWarpPt_get() == 6) {
-                        mEvtInfo.setArchiveName("Obj_obrg");
+                        eventInfo.setArchiveName("Obj_obrg");
                         portal = oBridgePortal;
                     } else if (dComIfGp_TargetWarpPt_get() == 9) {
-                        mEvtInfo.setArchiveName("M_VolcBom");
+                        eventInfo.setArchiveName("M_VolcBom");
                         portal = volcBomPortal;
                     } else if (dComIfGp_TargetWarpPt_get() == 8) {
-                        mEvtInfo.setArchiveName("SCanCrs");
+                        eventInfo.setArchiveName("SCanCrs");
                         portal = cannonPortal;
                     } else {
                         portal = defaultPortal;
@@ -4642,7 +4642,7 @@ int daAlink_c::procCoWarpInit(int param_0, int param_1) {
 
         field_0x3484 = 0.0f;
         if (!mLinkAcch.ChkGroundHit()) {
-            setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+            setSpecialGravity(0.0f, maxFallSpeed, 0);
             mProcVar1.field_0x300a = 1;
         }
 
@@ -4686,7 +4686,7 @@ int daAlink_c::procCoWarp() {
             var_f1 = daAlinkHIO_autoJump_c0::m.mGravity;
         }
 
-        setSpecialGravity(var_f1, mMaxFallSpeed, 1);
+        setSpecialGravity(var_f1, maxFallSpeed, 1);
     }
 
     if (mDemo.getDemoMode() == 0x2D) {

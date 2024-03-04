@@ -235,8 +235,8 @@ static int getNowLevel() {
 
 /* 80579700-80579748 000140 0048+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjBossWarp_cFv */
 void daObjBossWarp_c::initBaseMtx() {
-    mScale.y = 0.15f;
-    mpModel->setBaseScale(mScale);
+    scale.y = 0.15f;
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -271,7 +271,7 @@ int daObjBossWarp_c::Create() {
         mAction = 0;
     }
 
-    mEvtInfo.mArchiveName = l_arcName;
+    eventInfo.mArchiveName = l_arcName;
     mWarpCheckEventId = i_dComIfGp_getEventManager().getEventIdx(this, l_warp_check_evName, 0xff);
     mWarpCancelEventId = i_dComIfGp_getEventManager().getEventIdx(this, l_warp_cancel_evName, 0xff);
 
@@ -336,7 +336,7 @@ void daObjBossWarp_c::appear(int param_0) {
     for (int i = 0; i < 4; i++) {
         if (mpParticle[i] == NULL) {
             if (i == 3) {
-                mpParticle[i] = dComIfGp_particle_set(l_eff_id[i], &mParticlePos, NULL, &mScale);
+                mpParticle[i] = dComIfGp_particle_set(l_eff_id[i], &mParticlePos, NULL, &scale);
             } else {
                 mpParticle[i] = dComIfGp_particle_set(l_eff_id[i], &mParticlePos, NULL, NULL);
                 if (i == 0) {
@@ -455,12 +455,12 @@ int daObjBossWarp_c::execute() {
     mpBtkAnm[1]->play();
 
     if (mScalingUp) {
-        cLib_chaseF(&mScale.y, 1.0f, 0.016f);
+        cLib_chaseF(&scale.y, 1.0f, 0.016f);
     }
 
     if (mpParticle[3] != NULL) {
         JGeometry::TVec3<f32> scale;
-        JGeometry::setTVec3f(&mScale.x, &scale.x);
+        JGeometry::setTVec3f(&scale.x, &scale.x);
         mpParticle[3]->setGlobalScale(scale);
     }
 
@@ -505,19 +505,19 @@ void daObjBossWarp_c::event_proc_call() {
 void daObjBossWarp_c::actionWait() {
     setAction(ACT_ORDER_EVENT);
     fopAcM_orderOtherEventId(this, mBossClearEventId, mBossClearMapToolId, 0xffff, 3, 1);
-    mEvtInfo.i_onCondition(2);
+    eventInfo.i_onCondition(2);
 }
 
 /* 8057A54C-8057A610 000F8C 00C4+00 1/0 0/0 0/0 .text actionOrderEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         dComIfGp_event_setTalkPartner(i_fopAcM_SearchByName(PROC_OBJ_YSTONE));
         setAction(ACT_EVENT);
         mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossClearEventId, mBossClearMapToolId, 0xffff, 3, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -537,19 +537,19 @@ void daObjBossWarp_c::actionWaitWarp() {
     if (checkDistance()) {
         setAction(ACT_ORDER_CHK_EVENT);
         fopAcM_orderOtherEventId(this, mWarpCheckEventId, 0xff, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
 /* 8057A6E0-8057A778 001120 0098+00 1/0 0/0 0/0 .text actionOrderWarpEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderWarpEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_WARP_EVENT);
         mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -568,16 +568,16 @@ void daObjBossWarp_c::actionDead() {
 /* 8057A7C8-8057A8B4 001208 00EC+00 1/0 0/0 0/0 .text actionOrderChkEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderChkEvent() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_CHK_EVENT);
         mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
-        mAttentionInfo.mPosition = midna->mAttentionInfo.mPosition;
-        mAttentionInfo.mPosition.y += 100.0f;
-        mEyePos = mAttentionInfo.mPosition;
+        attention_info.position = midna->attention_info.position;
+        attention_info.position.y += 100.0f;
+        eyePos = attention_info.position;
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mWarpCheckEventId, 0xff, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -589,11 +589,11 @@ void daObjBossWarp_c::actionChkEvent() {
         if (mWarpChoice == 0) {
             setAction(ACT_ORDER_WARP_EVENT);
             fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
-            mEvtInfo.i_onCondition(2);
+            eventInfo.i_onCondition(2);
         } else if (mWarpChoice == 1) {
             setAction(ACT_ORDER_CANCEL_EVENT);
             fopAcM_orderOtherEventId(this, mWarpCancelEventId, 0xff, 0xffff, 0, 1);
-            mEvtInfo.i_onCondition(2);
+            eventInfo.i_onCondition(2);
         }
     } else {
         demoProc();
@@ -603,13 +603,13 @@ void daObjBossWarp_c::actionChkEvent() {
 /* 8057A994-8057AA2C 0013D4 0098+00 1/0 0/0 0/0 .text actionOrderCancelEvent__15daObjBossWarp_cFv
  */
 void daObjBossWarp_c::actionOrderCancelEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_CANCEL_EVENT);
         mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mWarpCancelEventId, 0xff, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -1008,8 +1008,8 @@ void daObjBossWarp_c::setGoal() {
 
 /* 8057B190-8057B23C 001BD0 00AC+00 1/1 0/0 0/0 .text            draw__15daObjBossWarp_cFv */
 int daObjBossWarp_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     mpBrkAnm->entry(mpModel->getModelData());
     mpBtkAnm[0]->entry(mpModel->getModelData());
     mpBtkAnm[1]->entry(mpModel->getModelData());

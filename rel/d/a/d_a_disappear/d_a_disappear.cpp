@@ -18,7 +18,7 @@ static void* s_ks_sub(void* i_actor, void*) {
     fopAc_ac_c* actor_p = (fopAc_ac_c*)i_actor;
 
     if (fopAcM_IsActor(actor_p) && fopAcM_GetName(actor_p) == PROC_NPC_KS) {
-        actor_p->mHealth = 1;
+        actor_p->health = 1;
     }
 
     return NULL;

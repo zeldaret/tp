@@ -84,7 +84,7 @@ cPhs__Step daObjCdoor_c::create() {
             return cPhs_ERROR_e;
         }
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-        mTevStr.mRoomNo = dStage_roomControl_c::mStayNo;
+        tevStr.mRoomNo = dStage_roomControl_c::mStayNo;
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         mSw = fopAcM_GetParam(this) & 0xff;
         mChainID = -1;
@@ -113,12 +113,12 @@ cPhs__Step daObjCdoor_c::create() {
                 fopAcIt_Judge((fopAcIt_JudgeFunc)daObjCdoor_searchChain, this);
             }
         }
-        mAttentionInfo.mPosition.set(
+        attention_info.position.set(
             current.pos.x,
             current.pos.y + l_attentionOffsetY[mType],
             current.pos.z
         );
-        mEyePos = mAttentionInfo.mPosition;
+        eyePos = attention_info.position;
         setMatrix();
     }
     return step;
@@ -285,18 +285,18 @@ void daObjCdoor_c::actionWait() {
     if (mMapToolID != 0xff) {
         setAction(ACT_ORDER_EVENT);
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
 /* 80BC7B34-80BC7B9C 000DF4 0068+00 1/0 0/0 0/0 .text            actionOrderEvent__12daObjCdoor_cFv
  */
 void daObjCdoor_c::actionOrderEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_EVENT);
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -315,8 +315,8 @@ void daObjCdoor_c::actionDead() {
 
 /* 80BC7C04-80BC7CE4 000EC4 00E0+00 1/0 0/0 0/0 .text            Draw__12daObjCdoor_cFv */
 int daObjCdoor_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     if (mType == 1) {
         J3DModelData* model_data = mpModel->getModelData();
         if (mIsOpen) {

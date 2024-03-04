@@ -11,7 +11,7 @@
 
 /* 80D0BC18-80D0BC54 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjGake_cFv */
 void daObjGake_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -28,7 +28,7 @@ void daObjGake_c::setBaseMtx() {
 int daObjGake_c::Create() {
     mEventBit1 = getEventBit1();
     mEventBit2 = getEventBit2();
-    mEvtInfo.setIdx(getType());
+    eventInfo.setIdx(getType());
 
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
@@ -99,8 +99,8 @@ int daObjGake_c::Draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

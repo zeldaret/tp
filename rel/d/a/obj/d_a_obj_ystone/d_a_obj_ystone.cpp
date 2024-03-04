@@ -54,16 +54,16 @@ static int getNowLevel() {
 
 /* 80D3E090-80D3E180 0000F0 00F0+00 1/0 0/0 0/0 .text daObj_Ystone_Draw__FP16obj_ystone_class */
 static int daObj_Ystone_Draw(obj_ystone_class* i_this) {
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     if (i_this->mLevel < 3) {
         if (!i_this->field_0x59b) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->mTevStr);
+            g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->tevStr);
             i_this->mpBrkAnm->entry(i_this->mpModel->getModelData());
             mDoExt_modelUpdateDL(i_this->mpModel);
         }
     } else {
         J3DModel* model = i_this->mpMorf->getModel();
-        g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->tevStr);
         if (i_this->field_0x59a) {
             i_this->mpBtkAnm->entry(model->getModelData());
         }
@@ -109,7 +109,7 @@ static void action(obj_ystone_class* i_this) {
         setModelBaseMtx(i_this);
         i_this->mParticleKey =
             dComIfGp_particle_set(i_this->mParticleKey, 0x8403, &i_this->current.pos,
-                                  &i_this->mTevStr, &i_this->shape_angle, NULL, 0xff,
+                                  &i_this->tevStr, &i_this->shape_angle, NULL, 0xff,
                                   NULL, -1, NULL, NULL, NULL);
         i_this->mpBrkAnm->play();
     } else {
@@ -121,12 +121,12 @@ static void action(obj_ystone_class* i_this) {
         J3DAnmTextureSRTKey* btk_anm;
         switch (i_this->mMirrorMode) {
         case 0:
-            g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
+            g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
             static u16 mirror_effect_id[10] = {
                 0x89A0, 0x89A1, 0x89A2, 0x89A5, 0x89A6, 0x89A7, 0x89A8, 0x89A9, 0x89AA, 0x89AB
             };
             for (int i = 0; i < 10; i++) {
-                dComIfGp_particle_set(mirror_effect_id[i], &i_this->current.pos, &i_this->mTevStr,
+                dComIfGp_particle_set(mirror_effect_id[i], &i_this->current.pos, &i_this->tevStr,
                                       &i_this->shape_angle, NULL);
             }
             i_this->mMirrorMode = 1;
@@ -147,7 +147,7 @@ static void action(obj_ystone_class* i_this) {
         case 2:
             i_this->mParticleKey =
                 dComIfGp_particle_set(i_this->mParticleKey, 0x89a3, &i_this->current.pos,
-                                    &i_this->mTevStr, &i_this->shape_angle, NULL, 0xff,
+                                    &i_this->tevStr, &i_this->shape_angle, NULL, 0xff,
                                     NULL, -1, NULL, NULL, NULL);
             i_this->shape_angle.y += 0x100;
             break;
@@ -169,7 +169,7 @@ static void action(obj_ystone_class* i_this) {
             cXyz particle_pos;
             mDoMtx_stack_c::multVecZero(&particle_pos);
             i_this->mParticleKey =
-                dComIfGp_particle_set(i_this->mParticleKey, 0x89a4, &particle_pos, &i_this->mTevStr,
+                dComIfGp_particle_set(i_this->mParticleKey, 0x89a4, &particle_pos, &i_this->tevStr,
                                       &i_this->shape_angle, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
             break;
         }
@@ -200,8 +200,8 @@ static int daObj_Ystone_Execute(obj_ystone_class* i_this) {
         return 1;
     } else {
         action(i_this);
-        i_this->mEyePos = i_this->current.pos;
-        i_this->mAttentionInfo.mPosition = i_this->current.pos;
+        i_this->eyePos = i_this->current.pos;
+        i_this->attention_info.position = i_this->current.pos;
         return 1;
     }
 }

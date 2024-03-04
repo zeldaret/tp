@@ -74,8 +74,8 @@ void daObjMirrorSand_c::setBaseMtx() {
 }
 
 int daObjMirrorSand_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     mpBck->entry(mpModel->getModelData());
 

@@ -102,7 +102,7 @@ base_process_class* fpcBs_Create(s16 i_procTypeID, unsigned int i_procID, void* 
         procClass->mBsType = fpcBs_MakeOfType(&g_fpcBs_type);
         procClass->mProcName = procProfDef->mProcName;
         fpcPause_Init(procClass);
-        procClass->mpPcMtd = procProfDef->mSubMtd;
+        procClass->mpPcMtd = procProfDef->sub_method;
         procClass->mpProf = procProfDef;
         procClass->mpUserData = i_data;
         procClass->mParameters = procProfDef->mParameters;

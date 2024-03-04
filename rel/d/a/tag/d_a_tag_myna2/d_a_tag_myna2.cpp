@@ -84,14 +84,14 @@ extern actor_process_profile_definition g_profile_TAG_MYNA2 = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_TAG_MYNA2,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagMyna2_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     394,                    // mPriority
-    &l_daTagMyna2_Method,   // mSubMtd
+    &l_daTagMyna2_Method,   // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

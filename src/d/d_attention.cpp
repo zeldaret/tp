@@ -509,7 +509,7 @@ dAttList_c* dAttention_c::getActionBtnB() {
     dAttList_c* list = GetLockonList(0);
 
     if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth() &&
-        !(list->getActor()->mAttentionInfo.mFlags & 0x2000000)) {
+        !(list->getActor()->attention_info.flags & 0x2000000)) {
         return list;
     }
 
@@ -519,7 +519,7 @@ dAttList_c* dAttention_c::getActionBtnB() {
 
     for (i = 0; i < mActionCount; i++) {
         if (mActionList[i].mType == 3) {
-            if (!(mActionList[i].getActor()->mAttentionInfo.mFlags & 0x2000000)) {
+            if (!(mActionList[i].getActor()->attention_info.flags & 0x2000000)) {
                 return &mActionList[i];
             }
             continue;
@@ -536,7 +536,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
     dAttList_c* list = GetLockonList(0);
 
     if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth()) {
-        if (list->getActor()->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
+        if (list->getActor()->eventInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
             return list;
         }
 
@@ -549,7 +549,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
 
     for (i = 0; i < mActionCount; i++) {
         if (mActionList[i].mType == 3) {
-            if (mActionList[i].getActor()->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
+            if (mActionList[i].getActor()->eventInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
                 return &mActionList[i];
             }
         }
@@ -795,16 +795,16 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
         f32 dvar12;
         type_tbl_entry* entry = &table[i];
 
-        if (mPlayerAttentionFlags & entry->field_0x2 & param_1->mAttentionInfo.mFlags) {
-            u8 index = param_1->mAttentionInfo.field_0x0[entry->field_0x0];
+        if (mPlayerAttentionFlags & entry->field_0x2 & param_1->attention_info.flags) {
+            u8 index = param_1->attention_info.field_0x0[entry->field_0x0];
             dist_entry* d_entry = &dist_table[index];
 
             if (fopAcM_checkStatus(param_1, 0x20000000) ||
-                check_event_condition(entry->field_0x0, param_1->mEvtInfo.getCondition())) {
+                check_event_condition(entry->field_0x0, param_1->eventInfo.getCondition())) {
                 dvar12 = 0.0f;
             } else if (check_flontofplayer(d_entry->field_0x18, param_3, param_4)) {
                 dvar12 = 0.0f;
-            } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->mAttentionInfo.mPosition,
+            } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->attention_info.position,
                                       d_entry->field_0x0, d_entry->field_0x8, d_entry->field_0xc,
                                       d_entry->field_0x10)) {
                 dvar12 = 0.0f;
@@ -953,7 +953,7 @@ asm void dAttention_c::initList(u32 param_0) {
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
 static int select_attention(fopAc_ac_c* param_0, void* i_attention) {
-    if (param_0->mAttentionInfo.mFlags == 0) {
+    if (param_0->attention_info.flags == 0) {
         return 0;
     }
 
@@ -969,7 +969,7 @@ int dAttention_c::makeList() {
 
 /* 80071424-80071488 06BD64 0064+00 1/1 0/0 0/0 .text setOwnerAttentionPos__12dAttention_cFv */
 void dAttention_c::setOwnerAttentionPos() {
-    mOwnerAttnPos = mpPlayer->mAttentionInfo.mPosition;
+    mOwnerAttnPos = mpPlayer->attention_info.position;
 
     if (fopAcM_GetName(mpPlayer) == PROC_ALINK) {
         mOwnerAttnPos.y -= ((daPy_py_c*)mpPlayer)->getAttentionOffsetY();
@@ -984,21 +984,21 @@ int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
     if (param_0 == mpPlayer || mpPlayer == NULL) {
         return 0;
     }
-    mPlayerAttentionFlags = mpPlayer->mAttentionInfo.mFlags;
-    cSGlobe acStack_40(param_0->mAttentionInfo.mPosition - mOwnerAttnPos);
+    mPlayerAttentionFlags = mpPlayer->attention_info.flags;
+    cSGlobe acStack_40(param_0->attention_info.position - mOwnerAttnPos);
     acStack_4c = acStack_40.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
     acStack_50 = cSAngle(acStack_40.U().Inv()) - fopAcM_GetShapeAngle_p(param_0)->y;
     u32 local_48;
-    if ((param_0->mAttentionInfo.mFlags & 7) != 0 && chkFlag(0x4000) == 0)
+    if ((param_0->attention_info.flags & 7) != 0 && chkFlag(0x4000) == 0)
     {
         f32 dVar5 = calcWeight(0x4c, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
         setList(0x4c, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
     }
-    if ((param_0->mAttentionInfo.mFlags & 0xf8) != 0) {
+    if ((param_0->attention_info.flags & 0xf8) != 0) {
         f32 dVar5 = calcWeight(0x41, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
         setList(0x41, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
     }
-    if (((param_0->mAttentionInfo).mFlags & 0x100) != 0) {
+    if (((param_0->attention_info).flags & 0x100) != 0) {
         f32 dVar5 = calcWeight(0x43, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
         setList(0x43, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
     }
@@ -1134,11 +1134,11 @@ bool dAttention_c::chaseAttention() {
     }
 
     if (!chkFlag(0x4000)) {
-        cSGlobe g1 = actor->mAttentionInfo.mPosition - mOwnerAttnPos;
+        cSGlobe g1 = actor->attention_info.position - mOwnerAttnPos;
         cSAngle a1;
         a1 = g1.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
 
-        cSGlobe g2(mOwnerAttnPos - actor->mAttentionInfo.mPosition);
+        cSGlobe g2(mOwnerAttnPos - actor->attention_info.position);
         cSAngle a2;
         a2 = g2.U() - fopAcM_GetShapeAngle_p(actor)->y;
 
@@ -1146,15 +1146,15 @@ bool dAttention_c::chaseAttention() {
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
         if (weight <= 0.0f) {
             type = mLockOnList[offset].mType;
-            int tbl_idx = actor->mAttentionInfo.field_0x0[type];
+            int tbl_idx = actor->attention_info.field_0x0[type];
 
-            if (!chkAttMask(type, actor->mAttentionInfo.mFlags)) {
+            if (!chkAttMask(type, actor->attention_info.flags)) {
                 return false;
-            } else if (check_event_condition(type, actor->mEvtInfo.getCondition())) {
+            } else if (check_event_condition(type, actor->eventInfo.getCondition())) {
                 return false;
             } else if (check_flontofplayer(dist_table[tbl_idx].field_0x18, a1.Val(), a2.Val())) {
                 return false;
-            } else if (check_distace(&mOwnerAttnPos, a1.Val(), &actor->mAttentionInfo.mPosition,
+            } else if (check_distace(&mOwnerAttnPos, a1.Val(), &actor->attention_info.position,
                                      dist_table[tbl_idx].field_0x4, dist_table[tbl_idx].field_0x8,
                                      dist_table[tbl_idx].field_0xc,
                                      dist_table[tbl_idx].field_0x10)) {
@@ -1172,7 +1172,7 @@ bool dAttention_c::chaseAttention() {
         return true;
     }
 
-    return (actor->mAttentionInfo.mFlags & 7) != false;
+    return (actor->attention_info.flags & 7) != false;
 }
 #else
 #pragma push
@@ -1196,12 +1196,12 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
         distance = -1.0f;
     } else if (fopAcM_GetProfName(i_actor) == PROC_ALINK) {
         distance = -1.0f;
-    } else if (!(i_actor->mAttentionInfo.mFlags & 4) &&
-               !(i_actor->mAttentionInfo.mFlags & 0x4000000)) {
+    } else if (!(i_actor->attention_info.flags & 4) &&
+               !(i_actor->attention_info.flags & 0x4000000)) {
         distance = -1.0f;
     } else {
         distance = fopAcM_searchActorDistance(mpPlayer, i_actor);
-        u8 tmp = i_actor->mAttentionInfo.field_0x0[2];
+        u8 tmp = i_actor->attention_info.field_0x0[2];
 
         if (distance < dist_table[tmp].field_0x0 + dist_table[tmp].field_0x8) {
             return distance;
@@ -1696,7 +1696,7 @@ void dAttention_c::Draw() {
 
     if (!i_dComIfGp_event_runCheck()) {
         if (target != NULL) {
-            draw[0].draw(target->mAttentionInfo.mPosition, tmp);
+            draw[0].draw(target->attention_info.position, tmp);
 
             if (mLockonCount >= 2 && draw[1].field_0x173 == 2) {
                 int listIdx = mLockOnOffset;
@@ -1708,19 +1708,19 @@ void dAttention_c::Draw() {
                 }
                 if (mLockOnList[listIdx].getActor() != NULL) {
                     fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
-                    draw[1].draw(actor->mAttentionInfo.mPosition, tmp);
+                    draw[1].draw(actor->attention_info.position, tmp);
                 }
             }
 
             mTargetActorID = fopAcM_GetID(target);
-            mDrawAttnPos = target->mAttentionInfo.mPosition;
+            mDrawAttnPos = target->attention_info.position;
             field_0x328 = 0;
         } else if (field_0x328 > 0) {
             fopAc_ac_c* actor = fopAcM_SearchByID(mTargetActorID);
 
             if (actor != NULL) {
-                draw[0].draw(actor->mAttentionInfo.mPosition, tmp);
-                mDrawAttnPos = actor->mAttentionInfo.mPosition;
+                draw[0].draw(actor->attention_info.position, tmp);
+                mDrawAttnPos = actor->attention_info.position;
             } else {
                 draw[0].draw(mDrawAttnPos, tmp);
             }
@@ -1941,7 +1941,7 @@ fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
     }
 
     fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
-    if (actor == NULL || !(actor->mAttentionInfo.mFlags & 7)) {
+    if (actor == NULL || !(actor->attention_info.flags & 7)) {
         return NULL;
     }
 
@@ -1961,8 +1961,8 @@ f32 dAttention_c::LockonReleaseDistanse() {
         return 0.0f;
     }
 
-    int idx =  actor->mAttentionInfo.field_0x0[mLockOnList[mLockOnOffset].mType];
-    cSGlobe tmp_g(actor->mAttentionInfo.mPosition - mOwnerAttnPos);
+    int idx =  actor->attention_info.field_0x0[mLockOnList[mLockOnOffset].mType];
+    cSGlobe tmp_g(actor->attention_info.position - mOwnerAttnPos);
     cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 
     return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
@@ -2122,7 +2122,7 @@ int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param
     if (param_7 > field_0x4) {
         return 0;
     } 
-    cXyz acStack_48 = param_1->mAttentionInfo.mPosition - player->mAttentionInfo.mPosition;
+    cXyz acStack_48 = param_1->attention_info.position - player->attention_info.position;
     if (acStack_48.y < param_5 || acStack_48.y > param_4) {
         return 0;
     }
@@ -2192,7 +2192,7 @@ int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param
     if (param_6 > field_0x4) {
         return 0;
     } 
-    cXyz acStack_48 = param_1->mEyePos - player->mEyePos;
+    cXyz acStack_48 = param_1->eyePos - player->eyePos;
     if (acStack_48.y < param_4 || acStack_48.y > param_3) {
         return 0;
     }

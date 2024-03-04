@@ -146,16 +146,16 @@ int daObj_Oiltubo_c::Execute() {
 
 /* 80CA6EDC-80CA6FC8 00083C 00EC+00 1/1 0/0 0/0 .text            Draw__15daObj_Oiltubo_cFv */
 int daObj_Oiltubo_c::Draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpBModel, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpBModel, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     mDoExt_modelUpdateDL(mpModel);
     mBtk.entry(mpBModel->getModelData());
     mDoExt_modelUpdateDL(mpBModel);
 
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, mpModel, &current.pos, 800.0f, 120.0f,
-                                    current.pos.y, mGroundHeight, mGroundChk, &mTevStr, 0, 1.0f,
+                                    current.pos.y, mGroundHeight, mGroundChk, &tevStr, 0, 1.0f,
                                     dDlst_shadowControl_c::getSimpleTex());
     return 1;
 }
@@ -186,8 +186,8 @@ void daObj_Oiltubo_c::initialize() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     fopAcM_setCullSizeBox2(this, mpBModel->getModelData());
 
-    mEvtInfo.setArchiveName((char*)getResName());
-    mAttentionInfo.mFlags = 0;
+    eventInfo.setArchiveName((char*)getResName());
+    attention_info.flags = 0;
 
     mAcchCir.SetWall(50.0f, 70.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
@@ -232,7 +232,7 @@ int daObj_Oiltubo_c::setProcess(daObj_Oiltubo_c::processFn i_process) {
 
 /* 80CA72BC-80CA7318 000C1C 005C+00 1/1 0/0 0/0 .text            setParam__15daObj_Oiltubo_cFv */
 void daObj_Oiltubo_c::setParam() {
-    mScale.set(1.0f, 1.0f, 1.0f);
+    scale.set(1.0f, 1.0f, 1.0f);
     mAcchCir.SetWallR(50.0f);
     mAcchCir.SetWallH(70.0f);
 }
@@ -240,8 +240,8 @@ void daObj_Oiltubo_c::setParam() {
 /* 80CA7318-80CA7374 000C78 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__15daObj_Oiltubo_cFv
  */
 void daObj_Oiltubo_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGroundChk);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGroundChk);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGroundChk);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGroundChk);
 }
 
 /* 80CA7374-80CA73B8 000CD4 0044+00 2/2 0/0 0/0 .text            setRoomNo__15daObj_Oiltubo_cFv */
@@ -256,7 +256,7 @@ void daObj_Oiltubo_c::setRoomNo() {
 void daObj_Oiltubo_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
 
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mpBModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -264,9 +264,9 @@ void daObj_Oiltubo_c::setMtx() {
 
 /* 80CA7430-80CA7478 000D90 0048+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_Oiltubo_cFv */
 void daObj_Oiltubo_c::setAttnPos() {
-    mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mPosition.y += 150.0f;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    attention_info.position.y += 150.0f;
+    eyePos = current.pos;
 }
 
 /* 80CA7478-80CA74C8 000DD8 0050+00 1/1 0/0 0/0 .text            chkEvent__15daObj_Oiltubo_cFv */
@@ -276,7 +276,7 @@ BOOL daObj_Oiltubo_c::chkEvent() {
     if (!i_dComIfGp_getEvent().i_isOrderOK()) {
         var_r5 = 0;
 
-        if (mEvtInfo.i_checkCommandCatch()) {
+        if (eventInfo.i_checkCommandCatch()) {
             return var_r5;
         }
     }
@@ -288,9 +288,9 @@ BOOL daObj_Oiltubo_c::chkEvent() {
 int daObj_Oiltubo_c::wait(void* unused) {
     switch (mMode) {
     case 1:
-        if (!mEvtInfo.i_checkCommandCatch()) {
+        if (!eventInfo.i_checkCommandCatch()) {
             dComIfGp_att_CatchRequest(this, OIL_BOTTLE_2, 100.0f, 50.0f, -50.0f, 0x2000, 1);
-            mEvtInfo.i_onCondition(0x40);
+            eventInfo.i_onCondition(0x40);
         }
         break;
     case 2:

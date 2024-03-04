@@ -11,8 +11,8 @@
 /* 80C5B578-80C5B71C 000078 01A4+00 1/0 0/0 0/0 .text
  * daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class                */
 static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
-    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpBWaterModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpBWaterModel, &i_this->tevStr);
 
     i_this->mpBWaterBtk->entry(i_this->mpBWaterModel->getModelData());
 
@@ -32,7 +32,7 @@ static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
     mDoExt_modelUpdateDL(i_this->mpBWaterModel);
 
     if (i_this->mpOctHibiModel != NULL) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpOctHibiModel, &i_this->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpOctHibiModel, &i_this->tevStr);
 
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(i_this->mpOctHibiModel);

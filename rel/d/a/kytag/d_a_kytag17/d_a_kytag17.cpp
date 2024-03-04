@@ -53,14 +53,14 @@ extern actor_process_profile_definition g_profile_KYTAG17 = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_KYTAG17,           // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(kytag17_class),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     111,                    // mPriority
-    &l_daKytag17_Method,    // mSubMtd
+    &l_daKytag17_Method,    // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_0_e,      // mCullType   
+    fopAc_CULLBOX_0_e,      // cullType   
 };

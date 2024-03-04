@@ -11,8 +11,8 @@
 
 /* 80D20F58-80D20FBC 000078 0064+00 1/0 0/0 0/0 .text daObj_Usaku_Draw__FP15obj_usaku_class */
 static int daObj_Usaku_Draw(obj_usaku_class* i_this) {
-    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
 
     return 1;
@@ -92,7 +92,7 @@ static int daObj_Usaku_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        a_this->mCullMtx = a_this->mpModel->getBaseTRMtx();
+        a_this->cullMtx = a_this->mpModel->getBaseTRMtx();
         fopAcM_SetMin(a_this, -300.0f, -600.0f, -300.0f);
         fopAcM_SetMax(a_this, 300.0f, 600.0f, 300.0f);
         daObj_Usaku_Execute(a_this);

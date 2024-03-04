@@ -27,7 +27,7 @@ static void* search_door(void* i_actor, void* i_this) {
 
 /* 80578D4C-80578D88 0000AC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjBkDoor_cFv */
 void daObjBkDoor_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -179,8 +179,8 @@ int daObjBkDoor_c::Execute(Mtx** i_mtxP) {
 
 /* 805792E4-80579388 000644 00A4+00 1/0 0/0 0/0 .text            Draw__13daObjBkDoor_cFv */
 int daObjBkDoor_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
@@ -232,14 +232,14 @@ extern actor_process_profile_definition g_profile_Obj_BkDoor = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_BkDoor,         // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daObjBkDoor_c),   // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     451,                     // mPriority
-    &daObjBkDoor_METHODS,    // mSubMtd
+    &daObjBkDoor_METHODS,    // sub_method
     0x40100,                 // mStatus
     0,                       // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

@@ -33,17 +33,18 @@ static int daKytag05_Delete(kytag05_class* i_this) {
 /* 80528A78-80528B10 000098 0098+00 1/0 0/0 0/0 .text            daKytag05_Create__FP10fopAc_ac_c */
 static int daKytag05_Create(fopAc_ac_c* i_this) {
     fopAcM_SetupActor(i_this, kytag05_class);
-    kytag05_class* tag = static_cast<kytag05_class*>(i_this);
+    kytag05_class* a_this = static_cast<kytag05_class*>(i_this);
 
-    tag->field_0x56c = fopAcM_GetParam(tag) >> 8;
-    tag->mSceneListID = fopAcM_GetParam(tag);
-    tag->field_0x568 = 100.0f * tag->mScale.x;
+    a_this->field_0x56c = fopAcM_GetParam(a_this) >> 8;
+    a_this->mSceneListID = fopAcM_GetParam(a_this);
+    a_this->field_0x568 = 100.0f * a_this->scale.x;
 
-    if (!tag->field_0x56c) {
-        tag->mAttentionInfo.field_0x0[7] = 0x21;
-        tag->mAttentionInfo.setFlag(0x80);
+    if (!a_this->field_0x56c) {
+        a_this->attention_info.field_0x0[7] = 0x21;
+        a_this->attention_info.flags |= 0x80;
     }
-    return 4;
+
+    return cPhs_COMPLEATE_e;
 }
 
 /* ############################################################################################## */

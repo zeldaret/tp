@@ -32,7 +32,7 @@ static dCcD_SrcCyl l_cyl_src = {
 /* 80D38758-80D387B8 000078 0060+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjWindow_cFv */
 void daObjWindow_c::initBaseMtx() {
     mpModel->calc();
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -58,7 +58,7 @@ int daObjWindow_c::Create() {
         mCyl.Set(l_cyl_src);
         mCyl.SetStts(&mStts);
     }
-    mTevStr.field_0x364 = getLightInf();
+    tevStr.field_0x364 = getLightInf();
     return 1;
 }
 
@@ -138,8 +138,8 @@ int daObjWindow_c::Execute(Mtx** i_mtx) {
 
 /* 80D38F28-80D39000 000848 00D8+00 1/0 0/0 0/0 .text            Draw__13daObjWindow_cFv */
 int daObjWindow_c::Draw() {
-    g_env_light.settingTevStruct(0x14, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x14, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     if (mpBckAnm != NULL) {
         mpBckAnm->entry(mpModel->getModelData());

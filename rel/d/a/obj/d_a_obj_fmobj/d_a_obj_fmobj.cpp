@@ -59,8 +59,8 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 static int daObj_Fmobj_Draw(obj_fmobj_class* i_this) {
     J3DModel* model_p = i_this->mpModel;
 
-    g_env_light.settingTevStruct(0x40, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0x40, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->tevStr);
     mDoExt_modelUpdateDL(model_p);
     return 1;
 }

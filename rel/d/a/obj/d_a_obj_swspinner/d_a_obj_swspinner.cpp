@@ -19,7 +19,7 @@ static void* search_spinner_sub(void* param_0, void* param_1) {
             if (swspinner->field_0x5e8 == NULL) {
                 swspinner->field_0x5e8 = 1;
             }
-            spinner->setSpinnerTag(swspinner->mAttentionInfo.mPosition);
+            spinner->setSpinnerTag(swspinner->attention_info.position);
             return spinner;
         }
         if (swspinner->field_0x5e8 != NULL) {
@@ -34,8 +34,8 @@ static void* search_spinner_sub(void* param_0, void* param_1) {
 /* 80D00174-80D001CC 000274 0058+00 1/1 0/0 0/0 .text            initBaseMtx__16daObjSwSpinner_cFv
  */
 void daObjSwSpinner_c::initBaseMtx() {
-    mpModel1->setBaseScale(mScale);
-    mpModel2->setBaseScale(mScale);
+    mpModel1->setBaseScale(scale);
+    mpModel2->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -64,7 +64,7 @@ int daObjSwSpinner_c::Create() {
         field_0x5e4 = 30.0f;
         field_0x5ea = 1;
     }
-    mAttentionInfo.mPosition.y -= 100.0f;
+    attention_info.position.y -= 100.0f;
 
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel1->getBaseTRMtx());
@@ -173,8 +173,8 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     *param_0 = &mBgMtx;
     setBaseMtx();
     mpBgW2->Move();
-    mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mPosition.y -= 100.0f;
+    attention_info.position = current.pos;
+    attention_info.position.y -= 100.0f;
     field_0x5eb = i_fopAcM_isSwitch(this, getSwBit2()) ? 1 : 0;
     field_0x5e9 = field_0x5e8;
 
@@ -183,9 +183,9 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
 
 /* 80D00890-80D00954 000990 00C4+00 1/0 0/0 0/0 .text            Draw__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::Draw() {
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel1, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel2, &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel1, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel1);
@@ -245,16 +245,16 @@ extern actor_process_profile_definition g_profile_Obj_SwSpinner = {
     3,                         // mListID
     fpcPi_CURRENT_e,           // mListPrio
     PROC_Obj_SwSpinner,        // mProcName
-    &g_fpcLf_Method.mBase,     // mSubMtd
+    &g_fpcLf_Method.mBase,     // sub_method
     sizeof(daObjSwSpinner_c),  // mSize
     0,                         // mSizeOther
     0,                         // mParameters
-    &g_fopAc_Method.base,      // mSubMtd
+    &g_fopAc_Method.base,      // sub_method
     559,                       // mPriority
-    &daObjSwSpinner_METHODS,   // mSubMtd
+    &daObjSwSpinner_METHODS,   // sub_method
     0x40100,                   // mStatus
     fopAc_ACTOR_e,             // mActorType
-    fopAc_CULLBOX_CUSTOM_e,    // mCullType
+    fopAc_CULLBOX_CUSTOM_e,    // cullType
 };
 
 /* 80D00AD4-80D00AD4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

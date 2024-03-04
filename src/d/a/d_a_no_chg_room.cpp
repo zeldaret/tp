@@ -66,9 +66,9 @@ int daNocrm_c::execute() {
     cXyz sp14;
     mDoMtx_multVec(mInvMtx, &cur_player_pos, &sp14);
 
-    if (sp14.y < 0.0f || sp14.y > mScale.y || fabsf(sp14.x) > mScale.x || fabsf(sp14.z) > mScale.z)
+    if (sp14.y < 0.0f || sp14.y > scale.y || fabsf(sp14.x) > scale.x || fabsf(sp14.z) > scale.z)
     {
-        if (mSubtype == 0 || !mRoomLoading ||
+        if (subtype == 0 || !mRoomLoading ||
             dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 0)
         {
             return 1;
@@ -79,7 +79,7 @@ int daNocrm_c::execute() {
             return 1;
         }
 
-        sp14.z = sp14.z < 0.0f ? -mScale.z : mScale.z;
+        sp14.z = sp14.z < 0.0f ? -scale.z : scale.z;
 
         cXyz new_player_pos;
         mDoMtx_multVec(mMtx, &sp14, &new_player_pos);
@@ -88,7 +88,7 @@ int daNocrm_c::execute() {
                                                              player_p->shape_angle.y, 1);
     }
 
-    if (mSubtype == 0) {
+    if (subtype == 0) {
         dStage_roomControl_c::setRoomReadId(getReadRoomId());
     } else {
         dStage_roomControl_c::onNoChangeRoom();
@@ -101,9 +101,9 @@ int daNocrm_c::execute() {
 /* 80145508-801455A8 13FE48 00A0+00 1/1 0/0 0/0 .text            getRoomNo__9daNocrm_cFi */
 int daNocrm_c::getRoomNo(int param_0) {
     if (mRoomNo[param_0] < 0) {
-        f32 z_offset = param_0 ? -mScale.z : mScale.z;
+        f32 z_offset = param_0 ? -scale.z : scale.z;
 
-        cXyz offset(0.0f, mScale.y, z_offset);
+        cXyz offset(0.0f, scale.y, z_offset);
         cXyz check_pos;
         mDoMtx_multVec(mMtx, &offset, &check_pos);
 
@@ -120,7 +120,7 @@ int daNocrm_c::getRoomNo(int param_0) {
 }
 
 int daNocrm_c::create() {
-    if (mSubtype == 0 && getReadRoomId() < 0) {
+    if (subtype == 0 && getReadRoomId() < 0) {
         // "Room Load Rectangle: Load ID is -1, so destroy self!\n"
         OSReport_Warning("部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n");
         return cPhs_ERROR_e;
@@ -131,7 +131,7 @@ int daNocrm_c::create() {
     cMtx_copy(mDoMtx_stack_c::get(), mMtx);
     cMtx_inverse(mDoMtx_stack_c::get(), mInvMtx);
 
-    mScale *= getScaleType() ? 1000.0f : 100.0f;
+    scale *= getScaleType() ? 1000.0f : 100.0f;
     mRoomNo[0] = -1;
     mRoomNo[1] = -1;
     return cPhs_COMPLEATE_e;

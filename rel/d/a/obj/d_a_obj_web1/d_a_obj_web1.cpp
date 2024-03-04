@@ -20,8 +20,8 @@ daObj_Web1_HIO_c::daObj_Web1_HIO_c() {
 /* 80D353C4-80D35440 000104 007C+00 1/0 0/0 0/0 .text            daObj_Web1_Draw__FP14obj_web1_class
  */
 static int daObj_Web1_Draw(obj_web1_class* i_this) {
-    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
     i_this->mpBrk->entry(i_this->mpModel->getModelData());
 
     mDoExt_modelUpdateDL(i_this->mpModel);
@@ -92,10 +92,10 @@ static void action(obj_web1_class* i_this) {
         break;
     }
 
-    i_this->mScale.y = i_this->field_0x5b0 +
+    i_this->scale.y = i_this->field_0x5b0 +
                        i_this->mReboundTimer * cM_ssin(i_this->mReboundTimer * 0xF00) * 0.02f;
-    if (i_this->mScale.y < 0.1f) {
-        i_this->mScale.y = 0.1f;
+    if (i_this->scale.y < 0.1f) {
+        i_this->scale.y = 0.1f;
     }
 
     f32 target = 0.0f;
@@ -144,9 +144,9 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
     if (i_this->mDeleteTimer != 0) {
         if (i_this->mDeleteTimer == 1) {
             cXyz scale;
-            scale.x = i_this->mScale.x;
-            scale.y = i_this->mScale.x;
-            scale.z = i_this->mScale.x;
+            scale.x = i_this->scale.x;
+            scale.y = i_this->scale.x;
+            scale.z = i_this->scale.x;
 
             dComIfGp_particle_set(0x840E, &i_this->current.pos, &i_this->shape_angle, &scale);
             i_this->mpBrk->setPlaySpeed(1.0f);
@@ -166,20 +166,20 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-    mDoMtx_stack_c::scaleM(i_this->mScale.x, i_this->mScale.y * i_this->mScale.x + 0.05f,
-                           i_this->mScale.x);
+    mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y * i_this->scale.x + 0.05f,
+                           i_this->scale.x);
 
     i_this->mpBrk->play();
     i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
-    mDoMtx_stack_c::scaleM(i_this->mScale.x * 1.2f, i_this->mScale.x, i_this->mScale.x * 1.2f);
-    mDoMtx_stack_c::transM(0.0f, i_this->mScale.x * i_this->mScale.y * -15.0f + 9.0f, 0.0f);
+    mDoMtx_stack_c::scaleM(i_this->scale.x * 1.2f, i_this->scale.x, i_this->scale.x * 1.2f);
+    mDoMtx_stack_c::transM(0.0f, i_this->scale.x * i_this->scale.y * -15.0f + 9.0f, 0.0f);
     MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
     i_this->mCylCc.SetC(i_this->current.pos);
-    i_this->mCylCc.SetR(i_this->mScale.x * 150.0f);
+    i_this->mCylCc.SetR(i_this->scale.x * 150.0f);
 
     dComIfG_Ccsp()->Set(&i_this->mCylCc);
     return 1;
@@ -305,7 +305,7 @@ static int daObj_Web1_Create(fopAc_ac_c* i_this) {
         fopAcM_SetMax(_this, 1000.0f, 1000.0f, 1000.0f);
 
         if (_this->mScaleX != 0xFF && _this->mScaleX != 0) {
-            _this->mScale.x = _this->mScaleX;
+            _this->scale.x = _this->mScaleX;
         }
 
         _this->current.pos.y -= 13.0f;
@@ -315,7 +315,7 @@ static int daObj_Web1_Create(fopAc_ac_c* i_this) {
         _this->mCylCc.SetStts(&_this->mStts);
         _this->mCylCc.OnTgNoHitMark();
 
-        _this->mEyePos = _this->current.pos;
+        _this->eyePos = _this->current.pos;
         daObj_Web1_Execute(_this);
     }
 

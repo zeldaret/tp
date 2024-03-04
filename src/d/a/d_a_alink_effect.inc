@@ -12,7 +12,7 @@
 // matches with literal
 #ifdef NONMATCHING
 void daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const* param_2, csXyz const* param_3) {
-    *param_0 = dComIfGp_particle_set(*param_0, param_1, param_2, &mTevStr, param_3, NULL, 0xFF,
+    *param_0 = dComIfGp_particle_set(*param_0, param_1, param_2, &tevStr, param_3, NULL, 0xFF,
                                      NULL, 0xFF, NULL, NULL, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
     dComIfGp_particle_getEmitter(*param_0);
@@ -33,7 +33,7 @@ asm JPABaseEmitter* daAlink_c::setEmitter(u32* param_0, u16 param_1, cXyz const*
  * setEmitterPolyColor__9daAlink_cFPUlUsR13cBgS_PolyInfoPC4cXyzPC5csXyz */
 JPABaseEmitter* daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_PolyInfo& param_2,
                                                cXyz const* param_3, csXyz const* param_4) {
-    *param_0 = dComIfGp_particle_setPolyColor(*param_0, param_1, param_2, param_3, &mTevStr,
+    *param_0 = dComIfGp_particle_setPolyColor(*param_0, param_1, param_2, param_3, &tevStr,
                                               param_4, NULL, 0, NULL, -1, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
 
@@ -44,7 +44,7 @@ JPABaseEmitter* daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_P
  * setEmitterColor__9daAlink_cFPUlUsPC4cXyzPC5csXyz             */
 JPABaseEmitter* daAlink_c::setEmitterColor(u32* param_0, u16 param_1, cXyz const* param_2,
                                            csXyz const* param_3) {
-    *param_0 = dComIfGp_particle_setColor(*param_0, param_1, param_2, &mTevStr, NULL, NULL,
+    *param_0 = dComIfGp_particle_setColor(*param_0, param_1, param_2, &tevStr, NULL, NULL,
                                           FLOAT_LABEL(lit_6108), -1, param_3, NULL, NULL, -1, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
 
@@ -361,7 +361,7 @@ void daAlink_c::setCutWaterDropEffect() {
     if (field_0x32c0[0] > 0) {
         cXyz sp18;
         mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(1), &sp18);
-        dComIfGp_particle_setColor(0x2A4, &sp18, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
+        dComIfGp_particle_setColor(0x2A4, &sp18, &tevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
                                    &shape_angle, NULL, NULL, -1, NULL);
     }
 }
@@ -557,7 +557,7 @@ void daAlink_c::clearWoodShieldBurnEffect() {
 void daAlink_c::setWoodShieldBurnOutEffect() {
     for (int i = 0; i < 2; i++) {
         JPABaseEmitter* emitter = dComIfGp_particle_setColor(
-            effName_42340[i], &current.pos, &mTevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1);
+            effName_42340[i], &current.pos, &tevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1);
 
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(mShieldModel->getBaseTRMtx());

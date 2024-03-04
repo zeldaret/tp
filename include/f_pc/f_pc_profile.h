@@ -13,7 +13,7 @@ typedef struct process_profile_definition {
     /* 0x04 */ u16 mListID;
     /* 0x06 */ u16 mListPrio;
     /* 0x08 */ s16 mProcName;
-    /* 0x0C */ process_method_class* mSubMtd; // Subclass methods
+    /* 0x0C */ process_method_class* sub_method; // Subclass methods
     /* 0x10 */ s32 mSize;
     /* 0x14 */ s32 mSizeOther;
     /* 0x18 */ s32 mParameters;

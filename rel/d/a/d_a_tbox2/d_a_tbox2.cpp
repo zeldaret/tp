@@ -11,7 +11,7 @@
 
 /* 80496A18-80496A54 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__9daTbox2_cFv */
 void daTbox2_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -101,8 +101,8 @@ int daTbox2_c::Create() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-    mAttentionInfo.mFlags = 0x40;
-    mAttentionInfo.mFlags |= 0x400000;
+    attention_info.flags = 0x40;
+    attention_info.flags |= 0x400000;
 
     mAcchCir.SetWall(50.0f, 0.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
@@ -311,8 +311,8 @@ void daTbox2_c::mode_exec() {
     fopAcM_posMoveF(this, NULL);
 
     mAcch.CrrPos(dComIfG_Bgsp());
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    eyePos = current.pos;
 }
 
 /* 8049780C-804978C8 000E6C 00BC+00 1/1 0/0 0/0 .text            action__9daTbox2_cFv */
@@ -343,7 +343,7 @@ void daTbox2_c::init_actionNotOpenDemo() {
 
 /* 804978E4-8049794C 000F44 0068+00 1/0 0/0 0/0 .text            actionNotOpenDemo__9daTbox2_cFv */
 void daTbox2_c::actionNotOpenDemo() {
-    if (dComIfGp_evmng_endCheck(mEvtInfo.getEventId())) {
+    if (dComIfGp_evmng_endCheck(eventInfo.getEventId())) {
         i_dComIfGp_event_reset();
         init_actionOpenWait();
     } else {
@@ -359,7 +359,7 @@ void daTbox2_c::init_actionOpenDemo() {
 
 /* 80497958-80497A0C 000FB8 00B4+00 1/0 0/0 0/0 .text            actionOpenDemo__9daTbox2_cFv */
 void daTbox2_c::actionOpenDemo() {
-    if (dComIfGp_evmng_endCheck(mEvtInfo.getEventId())) {
+    if (dComIfGp_evmng_endCheck(eventInfo.getEventId())) {
         i_dComIfGp_event_reset();
         dKy_set_allcol_ratio(1.0f);
         dComIfGp_event_setItemPartner(NULL);
@@ -387,7 +387,7 @@ void daTbox2_c::actionOpenWait() {
     daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();  // cast needed for reg alloc
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
         if (mModelType != TYPE_SMALL_e && daPy_py_c::i_checkNowWolf() &&
@@ -404,14 +404,14 @@ void daTbox2_c::actionOpenWait() {
             init_actionOpenDemo();
         }
     } else if (boxCheck()) {
-        mEvtInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
 
         if (mModelType == TYPE_SMALL_e) {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
+            eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
         } else if (daPy_py_c::i_checkNowWolf() && !midna_p->checkMetamorphoseEnable()) {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
+            eventInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
         } else {
-            mEvtInfo.setEventName("DEFAULT_TREASURE_NORMAL");
+            eventInfo.setEventName("DEFAULT_TREASURE_NORMAL");
         }
     }
 }
@@ -445,7 +445,7 @@ BOOL daTbox2_c::boxCheck() {
         return false;
     }
 
-    cXyz dist_to_box = player_p->mAttentionInfo.mPosition - current.pos;
+    cXyz dist_to_box = player_p->attention_info.position - current.pos;
     f32 xz_dist = dist_to_box.abs2XZ();
     f32 y_dist = fabsf(player_p->current.pos.y - current.pos.y);
 
@@ -464,8 +464,8 @@ int daTbox2_c::Draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mpBck->entry(mpModel->getModelData());

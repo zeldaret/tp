@@ -251,7 +251,7 @@ const daItemBase_data& daItemBase_c::getData() {
 /* 8015B0C4-8015B108 155A04 0044+00 1/1 0/0 0/0 .text            initBaseMtx__8daItem_cFv */
 void daItem_c::initBaseMtx() {
     if (mpModel != NULL) {
-        mpModel->setBaseScale(mScale);
+        mpModel->setBaseScale(scale);
         setBaseMtx();
     }
 }
@@ -259,7 +259,7 @@ void daItem_c::initBaseMtx() {
 /* 8015B108-8015B190 155A48 0088+00 2/2 0/0 0/0 .text            setBaseMtx__8daItem_cFv */
 void daItem_c::setBaseMtx() {
     if (mpModel != NULL) {
-        mpModel->setBaseScale(mScale);
+        mpModel->setBaseScale(scale);
 
         switch (m_itemNo) {
         case GREEN_RUPEE:
@@ -295,7 +295,7 @@ SECTION_SDATA2 static f32 lit_3923 = 0.5f;
 #ifdef NONMATCHING
 void daItem_c::setBaseMtx_1() {
     f32 max_y = mpModel->getModelData()->getJointNodePointer(0)->getMax()->y;
-    f32 y = (max_y / 2) * mScale.y;
+    f32 y = (max_y / 2) * scale.y;
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(0.0f, y, 0.0f);
@@ -562,9 +562,9 @@ void daItem_c::CreateInit() {
     f32 cylHeight = dItem_data::getH(m_itemNo);
     f32 cylRadius = dItem_data::getR(m_itemNo);
 
-    if (mScale.x > 1.0f) {
-        cylHeight *= mScale.x;
-        cylRadius *= mScale.x;
+    if (scale.x > 1.0f) {
+        cylHeight *= scale.x;
+        cylRadius *= scale.x;
     }
 
     mCollider.SetR(cylRadius);
@@ -822,10 +822,10 @@ int daItem_c::_daItem_execute() {
     field_0x950 = speed;
     CountTimer();
 
-    mEyePos = current.pos;
-    mEyePos.y += (f32)dItem_data::getH(m_itemNo) / 2;
+    eyePos = current.pos;
+    eyePos.y += (f32)dItem_data::getH(m_itemNo) / 2;
 
-    mAttentionInfo.mPosition = current.pos;
+    attention_info.position = current.pos;
 
     if (mCollider.ChkTgHit()) {
         cCcD_Obj* hitObj = mCollider.GetTgHitObj();
@@ -919,14 +919,14 @@ void daItem_c::procInitNormal() {
 void daItem_c::procMainNormal() {
     move_proc_call();
 
-    if (mScale != field_0x930) {
+    if (scale != field_0x930) {
         f32 chase_x = field_0x930.x / getData().field_0xc;
         f32 chase_y = field_0x930.y / getData().field_0xc;
         f32 chase_z = field_0x930.z / getData().field_0xc;
 
-        cLib_chaseF(&mScale.x, field_0x930.x, chase_x);
-        cLib_chaseF(&mScale.y, field_0x930.y, chase_y);
-        cLib_chaseF(&mScale.z, field_0x930.z, chase_z);
+        cLib_chaseF(&scale.x, field_0x930.x, chase_x);
+        cLib_chaseF(&scale.y, field_0x930.y, chase_y);
+        cLib_chaseF(&scale.z, field_0x930.z, chase_z);
     }
 
     if (field_0x942 == 0) {
@@ -974,7 +974,7 @@ void daItem_c::procInitSimpleGetDemo() {
     current.pos.y += 15.0f;
     shape_angle.z = 0;
     shape_angle.x = 0;
-    mScale = field_0x930;
+    scale = field_0x930;
     fopAcM_SetSpeed(this, 0, getData().field_0x2c, 0);
     fopAcM_SetGravity(this, getData().field_0x30);
     show();
@@ -1015,7 +1015,7 @@ void daItem_c::procInitGetDemoEvent() {
 
     field_0x9c1 = 10;
     fopAcM_orderItemEvent(this, 0, 0);
-    mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
 
     m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
                                               NULL, NULL);
@@ -1025,7 +1025,7 @@ void daItem_c::procInitGetDemoEvent() {
 /* 8015C2A4-8015C3BC 156BE4 0118+00 1/0 0/0 0/0 .text            procWaitGetDemoEvent__8daItem_cFv
  */
 void daItem_c::procWaitGetDemoEvent() {
-    if (mEvtInfo.checkCommandItem()) {
+    if (eventInfo.checkCommandItem()) {
         setStatus(4);
         if (m_item_id != -1) {
             dComIfGp_event_setItemPartnerId(m_item_id);
@@ -1033,7 +1033,7 @@ void daItem_c::procWaitGetDemoEvent() {
     } else {
         if (m_itemNo == BOOMERANG) {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
             return;
         }
 
@@ -1048,7 +1048,7 @@ void daItem_c::procWaitGetDemoEvent() {
             }
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
         }
     }
 }
@@ -1187,7 +1187,7 @@ void daItem_c::mode_water_init() {
     shape_angle.z = 0;
     shape_angle.x = 0;
     field_0x940 = 0;
-    mScale = field_0x930;
+    scale = field_0x930;
 }
 
 /* 8015CCD0-8015CDCC 157610 00FC+00 1/0 0/0 0/0 .text            mode_wait__8daItem_cFv */
@@ -1284,8 +1284,8 @@ asm void daItem_c::mode_water() {
 
 /* 8015CE94-8015CEEC 1577D4 0058+00 1/0 0/0 0/0 .text            setTevStr__8daItem_cFv */
 void daItem_c::setTevStr() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 }
 
 /* 8015CEEC-8015D0A8 15782C 01BC+00 6/6 0/0 0/0 .text            itemGetNextExecute__8daItem_cFv */

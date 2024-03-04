@@ -80,7 +80,7 @@ public:
     /* 80B40D24 */ virtual void drawOtherMdls();
 
     int getWrestlerAction() { return mWrestlerAction; }
-    u8 getType() { return mSubtype & 0x7F; }
+    u8 getType() { return subtype & 0x7F; }
     u8 getWrestlerType() { return getType(); }
 
     static u8 mEvtSeqList[84];

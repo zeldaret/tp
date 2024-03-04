@@ -34,11 +34,11 @@ int daTagWrHowl_c::draw() {
 
 /* 80D6403C-80D64090 00017C 0054+00 1/1 0/0 0/0 .text            execute__13daTagWrHowl_cFv */
 int daTagWrHowl_c::execute() {
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
 
     if (chkWlfInTag()) {
-        mAttentionInfo.mFlags |= 0x80;
-        mAttentionInfo.field_0x0[7] = 65;
+        attention_info.flags |= 0x80;
+        attention_info.field_0x0[7] = 65;
     }
 
     return 1;
@@ -46,7 +46,7 @@ int daTagWrHowl_c::execute() {
 
 /* 80D64090-80D640B4 0001D0 0024+00 1/1 0/0 0/0 .text            init__13daTagWrHowl_cFv */
 void daTagWrHowl_c::init() {
-    field_0x56c = 50.0f * mScale.x;
+    field_0x56c = 50.0f * scale.x;
     field_0x570 = field_0x56c * field_0x56c;
 }
 

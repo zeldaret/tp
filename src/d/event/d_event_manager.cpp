@@ -379,7 +379,7 @@ void dEvent_manager_c::Sequencer() {
                 int cutType = dStage_MapEvent_dt_c_getEventSCutType(mapEvent);
                 if (iVar5 && cutType != 1) {
                     bVar1 = true;
-                    cXyz attentionPos(dComIfGp_getPlayer(0)->mAttentionInfo.mPosition);
+                    cXyz attentionPos(dComIfGp_getPlayer(0)->attention_info.position);
                     cXyz camCenter = dCam_getBody()->Center();
                     f32 distance = cXyz((attentionPos - camCenter)).abs();
 
@@ -599,9 +599,9 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 
         dEvDtBase_c* eventP = &mEventList[type];
         dEvDtBase_c event;
         if (type < 4 || 9 < type || actorRoomNo == mEventList[type].roomNo()) {
-            if (pActor != NULL && type == 2 && pActor->mEvtInfo.getArchiveName() != NULL) {
+            if (pActor != NULL && type == 2 && pActor->eventInfo.getArchiveName() != NULL) {
                 event.init(
-                    (char*)dComIfG_getObjectRes(pActor->mEvtInfo.getArchiveName(), DataFileName),
+                    (char*)dComIfG_getObjectRes(pActor->eventInfo.getArchiveName(), DataFileName),
                     -1);
                 eventP = &event;
             }
@@ -693,7 +693,7 @@ int dEvent_manager_c::getMyStaffId(char const* staffName, fopAc_ac_c* pActor, in
         return -1;
     } else {
         if (pActor != NULL) {
-            evtIdx = pActor->mEvtInfo.getIdx();
+            evtIdx = pActor->eventInfo.getIdx();
         }
         if (mCurrentEventCompositId == -1) {
             return -1;
@@ -920,9 +920,9 @@ int dEvent_manager_c::getEventPrio(fopAc_ac_c* pActor, s16 eventCompositId) {
     dEvDtEvent_c* event = NULL;
     dEvDtBase_c eventBase;
     if (getTypeCompositId(eventCompositId) == 2 && pActor != NULL &&
-        pActor->mEvtInfo.getArchiveName() != NULL)
+        pActor->eventInfo.getArchiveName() != NULL)
     {
-        char* data = (char*)dComIfG_getObjectRes(pActor->mEvtInfo.getArchiveName(), DataFileName);
+        char* data = (char*)dComIfG_getObjectRes(pActor->eventInfo.getArchiveName(), DataFileName);
         eventBase.init(data, -1);
         event = eventBase.mEventP;
     }

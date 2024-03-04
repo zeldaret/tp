@@ -52,7 +52,7 @@ s32 fpcLf_Create(leafdraw_class* i_leaf) {
     leaf_process_profile_definition* profDef;
     if (i_leaf->mBase.mInitState == 0) {
         profDef = (leaf_process_profile_definition*)i_leaf->mBase.mpProf;
-        i_leaf->mpDrawMtd = profDef->mSubMtd;
+        i_leaf->mpDrawMtd = profDef->sub_method;
         i_leaf->mBase.mSubType = fpcBs_MakeOfType(&g_fpcLf_type);
         fpcDwPi_Init(&i_leaf->mDwPi, profDef->mPriority);
         i_leaf->mbUnk0 = 0;

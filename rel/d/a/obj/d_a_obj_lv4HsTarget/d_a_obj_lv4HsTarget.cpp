@@ -16,7 +16,7 @@ void daLv4HsTarget_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -59,8 +59,8 @@ int daLv4HsTarget_c::Execute(Mtx** param_0) {
 
 /* 80C5F870-80C5F8D4 000330 0064+00 1/0 0/0 0/0 .text            Draw__15daLv4HsTarget_cFv */
 int daLv4HsTarget_c::Draw() {
-    g_env_light.settingTevStruct(0x40, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     mDoExt_modelUpdateDL(mpModel);
     return 1;

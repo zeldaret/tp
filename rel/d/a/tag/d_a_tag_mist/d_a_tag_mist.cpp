@@ -51,17 +51,17 @@ BOOL daTagMist_c::isMySw() {
 
 /* 8048F370-8048F444 000190 00D4+00 1/1 0/0 0/0 .text            Create__11daTagMist_cFv */
 int daTagMist_c::Create() {
-    mVertices[0].x = mScale.x * -50.0f;
-    mVertices[0].z = mScale.z * -50.0f;
+    mVertices[0].x = scale.x * -50.0f;
+    mVertices[0].z = scale.z * -50.0f;
 
-    mVertices[1].x = mScale.x * 50.0f;
-    mVertices[1].z = mScale.z * -50.0f;
+    mVertices[1].x = scale.x * 50.0f;
+    mVertices[1].z = scale.z * -50.0f;
 
-    mVertices[2].x = mScale.x * 50.0f;
-    mVertices[2].z = mScale.z * 50.0f;
+    mVertices[2].x = scale.x * 50.0f;
+    mVertices[2].z = scale.z * 50.0f;
 
-    mVertices[3].x = mScale.x * -50.0f;
-    mVertices[3].z = mScale.z * 50.0f;
+    mVertices[3].x = scale.x * -50.0f;
+    mVertices[3].z = scale.z * 50.0f;
 
     mVertices[3].y = 0.0f;
     mVertices[2].y = 0.0f;

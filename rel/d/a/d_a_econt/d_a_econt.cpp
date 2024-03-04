@@ -95,14 +95,14 @@ extern actor_process_profile_definition g_profile_ECONT = {
     8,                      // mListID 
     fpcPi_CURRENT_e,        // mListPrio  
     PROC_ECONT,             // mProcName          
-    &g_fpcLf_Method.mBase,  // mSubMtd                     
+    &g_fpcLf_Method.mBase,  // sub_method                     
     sizeof(econt_class),    // mSize                    
     0,                      // mSizeOther 
     0,                      // mParameters        
-    &g_fopAc_Method.base,   // mSubMtd                    
+    &g_fopAc_Method.base,   // sub_method                    
     155,                    // mPriority      
-    &l_daEcont_Method,      // mSubMtd                 
+    &l_daEcont_Method,      // sub_method                 
     0x44000,                // mStatus           
     fopAc_ACTOR_e,          // mActorType 
-    fopAc_CULLBOX_0_e,      // mCullType
+    fopAc_CULLBOX_0_e,      // cullType
 };

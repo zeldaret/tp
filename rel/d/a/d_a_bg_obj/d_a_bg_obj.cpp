@@ -1254,7 +1254,7 @@ int daBgObj_c::actionOrderWait() {
 // matches with literals
 #ifdef NONMATCHING
 int daBgObj_c::actionOrder() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(2);
 
         if (field_0xd01 < 5) {
@@ -1392,11 +1392,11 @@ int daBgObj_c::Draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0x20, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x20, &current.pos, &tevStr);
 
     for (int i = 0; i < 2; i++) {
         if (field_0x5a8[field_0xcc8][i] != NULL) {
-            g_env_light.setLightTevColorType_MAJI(field_0x5a8[field_0xcc8][i], &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(field_0x5a8[field_0xcc8][i], &tevStr);
         }
     }
 

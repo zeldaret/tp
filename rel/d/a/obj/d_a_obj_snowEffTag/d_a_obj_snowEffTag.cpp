@@ -28,7 +28,7 @@ void daSnowEffTag_c::setBaseMtx() {
 int daSnowEffTag_c::create() {
     fopAcM_SetupActor(this, daSnowEffTag_c);
 
-    mMaxSize = mScale.x * 100.0f;
+    mMaxSize = scale.x * 100.0f;
 
     switch (getArg0()) {
     case -1:
@@ -46,7 +46,7 @@ int daSnowEffTag_c::create() {
         break;
     }
 
-    s16 tan = cM_atan2s(mMaxSize - mSize, mScale.y * 100.0f);
+    s16 tan = cM_atan2s(mMaxSize - mSize, scale.y * 100.0f);
     field_0x574 = cM_ssin(tan) / cM_scos(tan);
     mPlayedSound = false;
 
@@ -61,7 +61,7 @@ bool daSnowEffTag_c::playerAreaCheck() {
     bool in_area = false;
 
     if (player_p->current.pos.y < current.pos.y ||
-        player_p->current.pos.y > current.pos.y + mScale.y * 100.0f)
+        player_p->current.pos.y > current.pos.y + scale.y * 100.0f)
     {
         return false;
     } else {

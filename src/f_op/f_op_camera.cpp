@@ -91,7 +91,7 @@ static int fopCam_Create(void* i_this) {
     if (fpcM_IsFirstCreating(i_this)) {
         camera_process_profile_definition* profile =
             (camera_process_profile_definition*)fpcM_GetProfile(i_this);
-        _this->mpMtd = profile->mSubMtd;
+        _this->mpMtd = profile->sub_method;
 
         fopDwTg_Init(&_this->mCreateTag, _this);
         u32* append = (u32*)fpcM_GetAppend(_this);

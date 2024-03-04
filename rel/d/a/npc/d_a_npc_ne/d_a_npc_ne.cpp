@@ -486,7 +486,7 @@ SECTION_DATA extern void* __vt__14daNpc_Ne_HIO_c[3] = {
 // matches with literals
 daNpc_Ne_HIO_c::daNpc_Ne_HIO_c() :
     field_0x04(-1),
-    mScale(1.0f),
+    scale(1.0f),
     mWalkSpeed(2.5f),
     mRunSpeed(12.0f),
     field_0x14(2.0f),
@@ -620,11 +620,11 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
         if (!dComIfGs_wolfeye_effect_check()) {
             return 1;
         }
-        g_env_light.settingTevStruct(4, &i_this->current.pos, &i_this->mTevStr);
+        g_env_light.settingTevStruct(4, &i_this->current.pos, &i_this->tevStr);
     } else {
-        g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
+        g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }
-    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->mTevStr);
+    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->tevStr);
 
     i_this->mpBtkAnm->entry(model->getModelData());
     i_this->mpBtpAnm->entry(model->getModelData());
@@ -634,14 +634,14 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
         cXyz vec(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
         i_this->mShadowKey = dComIfGd_setShadow(
             i_this->mShadowKey, 1, model, &vec, 0.0f, 400.0f, i_this->current.pos.y,
-            i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, &i_this->mTevStr,
+            i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, &i_this->tevStr,
             0, 1.0f, dDlst_shadowControl_c::getSimpleTex()
         );
     }
 
     if (i_this->field_0x5b4 == 3) {
         g_env_light.setLightTevColorType_MAJI(i_this->mpDishMorf->getModel()->mModelData,
-                                              &i_this->mTevStr);
+                                              &i_this->tevStr);
         i_this->mpDishMorf->entryDL();
     }
 
@@ -1125,9 +1125,9 @@ static fopAc_ac_c* search_bird(npc_ne_class* i_this) {
         while (i < target_info_count) {
             fopAc_ac_c* actor = target_info[i];
             cXyz eye_delta, delta;
-            eye_delta.x = actor->current.pos.x - i_this->mEyePos.x;
-            eye_delta.y = actor->current.pos.y + 50.0f - i_this->mEyePos.y;
-            eye_delta.z = actor->current.pos.z - i_this->mEyePos.z;
+            eye_delta.x = actor->current.pos.x - i_this->eyePos.x;
+            eye_delta.y = actor->current.pos.y + 50.0f - i_this->eyePos.y;
+            eye_delta.z = actor->current.pos.z - i_this->eyePos.z;
             delta.x = actor->current.pos.x - i_this->current.pos.x;
             delta.z = actor->current.pos.z - i_this->current.pos.z;
             f32 eye_dist = JMAFastSqrt(eye_delta.x * eye_delta.x + eye_delta.z * eye_delta.z);
@@ -1136,7 +1136,7 @@ static fopAc_ac_c* search_bird(npc_ne_class* i_this) {
                 if (target_bgc[i] || other_bg_check(i_this, actor)) {
                     target_bgc[i] = true;
                 } else {
-                    if (fabsf(actor->current.pos.y + 50.0f - i_this->mEyePos.y) <= 100.0f) {
+                    if (fabsf(actor->current.pos.y + 50.0f - i_this->eyePos.y) <= 100.0f) {
                         s16 angle = i_this->shape_angle.y - cM_atan2s(eye_delta.x, eye_delta.z);
                         if (angle < 0x4000 && angle > -0x4000) {
                             return actor;
@@ -2870,7 +2870,7 @@ static int npc_ne_home(npc_ne_class* i_this) {
         target_speed = l_HIO.mRunSpeed * 1.5f;
         ret = 0;
         i_this->speed.y = 0.0f;
-        i_this->mGravity = 0.0f;
+        i_this->gravity = 0.0f;
         vec.x = home_path[0].mPosition.x;
         vec.z = home_path[0].mPosition.z;
         vec -= i_this->current.pos;
@@ -3136,7 +3136,7 @@ static void npc_ne_swim(npc_ne_class* i_this) {
     cLib_addCalc2(&i_this->speedF, l_HIO.mSwimSpeed, 1.0f, 0.1f);
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 0x20, max_angle_step);
     i_this->speed.y = 0.0f;
-    i_this->mGravity = 0.0f;
+    i_this->gravity = 0.0f;
     cLib_addCalc2(&i_this->current.pos.y,
                   i_this->field_0x6bc - i_this->mBaseScale.z * 45.0f, 1.0f, 5.0f);
     if (i_this->mTimers[1] == 0 && i_this->mAcch.ChkWallHit()) {
@@ -3212,7 +3212,7 @@ static void npc_ne_outswim(npc_ne_class* i_this) {
 
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, 0x800);
     i_this->speed.y = 0.0f;
-    i_this->mGravity = 0.0f;
+    i_this->gravity = 0.0f;
 }
 #else
 #pragma push
@@ -3334,7 +3334,7 @@ static int npc_ne_climb(npc_ne_class* i_this) {
     if (ret == 0) {
         i_this->speed.y = 0.0f;
         i_this->speedF = 0.0f;
-        i_this->mGravity = 0.0f;
+        i_this->gravity = 0.0f;
     }
     return ret;
 }
@@ -3411,7 +3411,7 @@ static void npc_ne_s_drop(npc_ne_class* i_this) {
         i_this->field_0x67a = 3;
         i_this->speed.y = 0.0f;
         i_this->speedF = 0.0f;
-        i_this->mGravity = 0.0f;
+        i_this->gravity = 0.0f;
         if (!i_this->mpMorf->isStop()) {
             break;
         }
@@ -3520,7 +3520,7 @@ static int npc_ne_carry(npc_ne_class* i_this) {
         if (fabsf(i_this->current.pos.y - dComIfG_Bgsp().GroundCross(&gnd_chk)) < 30.0f) {
             i_this->current.pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
             i_this->field_0x91c = i_this->current.pos.y;
-            i_this->mGravity = 0.0f;
+            i_this->gravity = 0.0f;
         } else {
             i_this->mAction = npc_ne_class::ACT_DROP;
             i_this->mState = 0;
@@ -3543,7 +3543,7 @@ static int npc_ne_carry(npc_ne_class* i_this) {
     dBgS_LinChk lin_chk;
     cXyz pos = i_this->current.pos;
     pos.y += 2.0f;
-    lin_chk.Set(&player->mEyePos, &pos, i_this);
+    lin_chk.Set(&player->eyePos, &pos, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
         i_this->current.pos = lin_chk.i_GetCross();
     }
@@ -3654,7 +3654,7 @@ COMPILER_STRIP_GATE(0x80A92550, &lit_6812);
 // regalloc
 static void action(npc_ne_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    i_this->mGravity = -7.0f;
+    i_this->gravity = -7.0f;
 
     if (i_this->mResName == "Npc_net") {
         i_this->mDistToTarget = 10000.0f;
@@ -3666,7 +3666,7 @@ static void action(npc_ne_class* i_this) {
     }
     i_this->mAngleToPlayer = fopAcM_searchPlayerAngleY(i_this);
 
-    i_this->field_0x6b8 = fabsf(player->mEyePos.y - player->current.pos.y);
+    i_this->field_0x6b8 = fabsf(player->eyePos.y - player->current.pos.y);
     if (fabsf(i_this->current.pos.y - player->current.pos.y) > 50.0f) {
         i_this->field_0x6b8 = 100.0f;
     }
@@ -3807,12 +3807,12 @@ static void action(npc_ne_class* i_this) {
     }
 
     if (bvar9 && i_this->field_0x701 == 0) {
-        cLib_onBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_onBit<u32>(i_this->attention_info.flags, 0x10);
         if (ne_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
     }
 
     cXyz vec1, vec2, vec3;
@@ -3871,7 +3871,7 @@ static void action(npc_ne_class* i_this) {
     MtxPosition(&vec1, &vec2);
     i_this->speed.x = vec2.x;
     i_this->speed.z = vec2.z;
-    i_this->speed.y += i_this->mGravity;
+    i_this->speed.y += i_this->gravity;
     i_this->current.pos += i_this->speed;
     if (i_this->speed.y < -120.0f) {
         i_this->speed.y = -120.0f;
@@ -3988,7 +3988,7 @@ static void action(npc_ne_class* i_this) {
             if (i_this->field_0x668 == 2) {
                 vec1 = i_this->field_0x66c - i_this->current.pos;
             } else {
-                vec1 = player->mEyePos - i_this->current.pos;
+                vec1 = player->eyePos - i_this->current.pos;
                 if (!daPy_py_c::i_checkNowWolf()) {
                     vec1.y += i_this->mBaseScale.z * -40.0f;
                 }
@@ -4048,7 +4048,7 @@ static void action(npc_ne_class* i_this) {
     i_this->field_0x68a = 0;
 
     if (ivar5 != 0) {
-        cXyz vec4 = i_this->mEyePos;
+        cXyz vec4 = i_this->eyePos;
         vec4.y = i_this->field_0x6bc;
         if (ivar5 == 1) {
             if (i_this->field_0x658 == 0) {
@@ -4266,13 +4266,13 @@ static int message(npc_ne_class* i_this) {
             i_this->field_0xc0a = 0;
             if (i_this->field_0x5b7 == 1 && (i_this->mMsgFlow.getNowMsgNo() == 0x18a1 ||
                                            i_this->mMsgFlow.getNowMsgNo() == 0x18a2)) {
-                fopAcM_createItem(&dComIfGp_getPlayer(0)->mEyePos, SILVER_RUPEE, -1,
+                fopAcM_createItem(&dComIfGp_getPlayer(0)->eyePos, SILVER_RUPEE, -1,
                                   fopAcM_GetRoomNo(i_this), NULL, NULL, 3);
             }
         }
         return 1;
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->mEvtInfo.checkCommandTalk()) {
+        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsgFlow.init(i_this, i_this->mFlowID, 0, NULL);
             i_this->field_0xc0a = 1;
         }
@@ -4280,14 +4280,14 @@ static int message(npc_ne_class* i_this) {
         if (i_this->field_0xc08 == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf() &&
                                 !fopAcM_otherBgCheck(daPy_getLinkPlayerActorClass(), i_this)) {
             fopAcM_OnStatus(i_this, 0);
-            i_this->mAttentionInfo.mFlags |= 0xa;
+            i_this->attention_info.flags |= 0xa;
             if (i_this->mResName == "Npc_net") {
-                i_this->mAttentionInfo.mFlags |= 0xc00000;
+                i_this->attention_info.flags |= 0xc00000;
             }
-            i_this->mEvtInfo.i_onCondition(1);
+            i_this->eventInfo.i_onCondition(1);
         } else {
             fopAcM_OffStatus(i_this, 0);
-            i_this->mAttentionInfo.mFlags &= ~0xc0000a;
+            i_this->attention_info.flags &= ~0xc0000a;
         }
 
         return 0;
@@ -4369,11 +4369,11 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
-    i_this->mScale.x = i_this->mBaseScale.x * l_HIO.mScale;
-    mDoMtx_stack_c::scaleM(i_this->mScale.x, i_this->mScale.x, i_this->mScale.x);
+    i_this->scale.x = i_this->mBaseScale.x * l_HIO.scale;
+    mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
     J3DModel* model = i_this->mpMorf->getModel();
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(&i_this->mEyePos, 0, 0);
+    i_this->mpMorf->play(&i_this->eyePos, 0, 0);
     i_this->mpBtkAnm->setFrame(i_this->mBtkFrame);
     i_this->mpBtpAnm->setFrame(i_this->mBtpFrame);
     i_this->mpMorf->modelCalc();
@@ -4382,14 +4382,14 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         mDoMtx_stack_c::transS(i_this->mDishPos.x, i_this->mDishPos.y, i_this->mDishPos.z);
         mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
         i_this->mpDishMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
-        i_this->mpDishMorf->play(&i_this->mEyePos, 0, 0);
+        i_this->mpDishMorf->play(&i_this->eyePos, 0, 0);
         i_this->mpDishMorf->modelCalc();
     }
 
     PSMTXCopy(model->i_getAnmMtx(4), *calc_mtx);
-    MtxPosition(&vec1, &i_this->mEyePos);
-    i_this->mAttentionInfo.mPosition = i_this->mEyePos;
-    i_this->mAttentionInfo.mPosition.y += i_this->mBaseScale.y * 20.0f;
+    MtxPosition(&vec1, &i_this->eyePos);
+    i_this->attention_info.position = i_this->eyePos;
+    i_this->attention_info.position.y += i_this->mBaseScale.y * 20.0f;
 
     PSMTXCopy(model->i_getAnmMtx(3), *calc_mtx);
     vec1.set(i_this->field_0xbf4 + -30.0f, 0.0f, 0.0f);
@@ -4404,7 +4404,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     dComIfG_Ccsp()->Set(&i_this->mCcSph);
 
     cXyz vec3(-20000.0f, 300000.0f, -10000.0f);
-    vec2 = i_this->mEyePos;
+    vec2 = i_this->eyePos;
     if (i_this->field_0xbcc == 0) {
         vec2 += vec3;
     } else {
@@ -4422,7 +4422,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         static u16 e_name[2] = {0x8497, 0x8498};
         for (int i = 0; i < 2; i++) {
             i_this->mParticle[i] = dComIfGp_particle_set(i_this->mParticle[i], e_name[i],
-                                                        &i_this->mEyePos, NULL, NULL);
+                                                        &i_this->eyePos, NULL, NULL);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticle[i]);
             if (emitter != NULL) {
                 emitter->setGlobalAlpha(!dComIfGs_wolfeye_effect_check() ? 0xff : 0);
@@ -4447,8 +4447,8 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         }
         fish->mpMorf->play(NULL, 0, 0);
         fish->mpMorf->modelCalc();
-        fish->current.pos = i_this->mEyePos;
-        fish->mEyePos = i_this->mEyePos;
+        fish->current.pos = i_this->eyePos;
+        fish->eyePos = i_this->eyePos;
     }
 
     if (i_this->current.pos.y - i_this->orig.pos.y < -5000.0f && fopAcM_CheckCondition(i_this, 4)) {
@@ -4682,10 +4682,10 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
 
         fopAcM_OnStatus(_this, 0x100);
         fopAcM_OnCarryType(_this, fopAcM_CARRY_TYPE_8);
-        _this->mAttentionInfo.mFlags = 0;
-        _this->mAttentionInfo.field_0x0[4] = 7;
+        _this->attention_info.flags = 0;
+        _this->attention_info.field_0x0[4] = 7;
         fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
-        _this->mHealth = 1;
+        _this->health = 1;
         _this->field_0x560 = 1;
 
         /* 80A92950-80A92990 000360 0040+00 1/1 0/0 0/0 .data            cc_sph_src$7518 */

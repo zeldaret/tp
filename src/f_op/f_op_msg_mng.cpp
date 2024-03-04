@@ -177,7 +177,7 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
 
         cXyz pos;
         if (i_actorP) {
-            pos = i_actorP->mEyePos;
+            pos = i_actorP->eyePos;
         } else {
             pos.set(FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902), FLOAT_LABEL(lit_3902));
         }

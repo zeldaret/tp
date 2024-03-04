@@ -935,7 +935,7 @@ static void daKytag06_type_05_Execute(kytag06_class* i_this) {
         spX.y = i_this->current.pos.y;
         spX.z = player->current.pos.z;
 
-        if (i_this->current.pos.abs(spX) < i_this->mScale.x * 5000.0f) {
+        if (i_this->current.pos.abs(spX) < i_this->scale.x * 5000.0f) {
             g_env_light.field_0x130b = 1;
         }
     }

@@ -701,8 +701,8 @@ int daNpcCd_c::removeResrc(int idx, int param_1) {
 
 /* 80156D1C-80156D78 15165C 005C+00 0/0 0/0 1/1 .text            setEnvTevCol__9daNpcCd_cFv */
 void daNpcCd_c::setEnvTevCol() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
 }
 
 /* 80156D78-80156DBC 1516B8 0044+00 0/0 0/0 1/1 .text            setRoomNo__9daNpcCd_cFv */

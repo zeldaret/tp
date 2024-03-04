@@ -348,16 +348,16 @@ extern actor_process_profile_definition g_profile_E_YK = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio 
     PROC_E_YK,               // mProcName        
-    &g_fpcLf_Method.mBase,   // mSubMtd                    
+    &g_fpcLf_Method.mBase,   // sub_method                    
     sizeof(e_yk_class),      // mSize                 
     0,                       // mSizeOther
     0,                       // mParameters       
-    &g_fopAc_Method.base,    // mSubMtd                   
+    &g_fopAc_Method.base,    // sub_method                   
     188,                     // mPriority     
-    &l_daE_YK_Method,        // mSubMtd               
+    &l_daE_YK_Method,        // sub_method               
     0x10050100,              // mStatus          
     fopAc_ENEMY_e,           // mActorType   
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType   
+    fopAc_CULLBOX_CUSTOM_e,  // cullType   
 };
 
 /* 80807E80-80807E8C 000110 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
@@ -500,8 +500,8 @@ static asm void anm_init(e_yk_class* param_0, int param_1, f32 param_2, u8 param
 static int daE_YK_Draw(e_yk_class* i_this) {
     J3DModel* model = i_this->mpMorfSO->getModel();
 
-    g_env_light.settingTevStruct(2,&i_this->current.pos,&i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model,&i_this->mTevStr);
+    g_env_light.settingTevStruct(2,&i_this->current.pos,&i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model,&i_this->tevStr);
 
     dComIfGd_setListDark();
 
@@ -535,7 +535,7 @@ static bool other_bg_check(e_yk_class* i_this, fopAc_ac_c* i_actorP) {
     actor_pos.y += 100.0f;
     
     yk_pos = i_this->current.pos;
-    yk_pos.y = i_this->mEyePos.y;
+    yk_pos.y = i_this->eyePos.y;
     
     lin_chk.Set(&yk_pos,&actor_pos,i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
@@ -639,7 +639,7 @@ static void damage_check(e_yk_class* i_this) {
                 
                 // If keese was hit by Clawshot or Slingshot, subtract 1 from health
                 if (i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) || i_this->mAtColliderInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
-                    i_this->mHealth--;
+                    i_this->health--;
                 }
 
                 // If keese was hit by shield attack, set some fields and play controller vibration
@@ -672,7 +672,7 @@ static void damage_check(e_yk_class* i_this) {
                         i_this->field_0x698 = i_this->mAtColliderInfo.mHitDirection;
 
                         // If keese is dead, play death sound
-                        if (i_this->mHealth <= 0) {
+                        if (i_this->health <= 0) {
                             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
                             i_this->mpMorfSO->setPlaySpeed(0.2f);
                             i_this->field_0x6a0 = 1;
@@ -1395,7 +1395,7 @@ static void e_yk_chance(e_yk_class* i_this) {
             i_this->field_0x69a.y = cM_rndF(65536.0f);
             fopAcM_effSmokeSet1(&i_this->field_0xa78,&i_this->field_0xa7c,
                                 &i_this->current.pos,&i_this->shape_angle,
-                                0.8f,&i_this->mTevStr,1);
+                                0.8f,&i_this->tevStr,1);
 
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_FAINT,-1);
         }
@@ -1728,18 +1728,18 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
         if (i_this->mAction == ACT_WOLFBITE && i_this->mActionPhase < 2) {
             fopAcM_OffStatus(i_this,0);
-            i_this->mAttentionInfo.mFlags = 0;
+            i_this->attention_info.flags = 0;
 
             // need to define inline here
             MTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
             model->i_setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&i_this->current.pos);
         } else {
-            if (i_this->mHealth > 0 && i_this->field_0x6a0 == 0 && i_this->current.pos.y < player->current.pos.y) {
-                i_this->mAttentionInfo.mFlags = 4;
+            if (i_this->health > 0 && i_this->field_0x6a0 == 0 && i_this->current.pos.y < player->current.pos.y) {
+                i_this->attention_info.flags = 4;
             } else {
                 fopAcM_OffStatus(i_this,0);
-                i_this->mAttentionInfo.mFlags = 0;
+                i_this->attention_info.flags = 0;
             }
 
             mDoMtx_stack_c::transS(i_this->current.pos.x,i_this->current.pos.y,i_this->current.pos.z);
@@ -1785,9 +1785,9 @@ static int daE_YK_Execute(e_yk_class* i_this) {
         MTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
         pos.set(0.0f,0.0f,0.0f);
 
-        MtxPosition(&pos,&i_this->mEyePos);
-        i_this->mAttentionInfo.mPosition = i_this->mEyePos;
-        i_this->mAttentionInfo.mPosition.y += 20.0f;
+        MtxPosition(&pos,&i_this->eyePos);
+        i_this->attention_info.position = i_this->eyePos;
+        i_this->attention_info.position.y += 20.0f;
 
         pos.set(0.0f,0.0f,0.0f);
         MtxPosition(&pos,&pos2);
@@ -1800,7 +1800,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
         i_this->mCollisionSphere.SetR(30.0f * l_HIO.field_0x08);
 
         dComIfG_Ccsp()->Set(&i_this->mCollisionSphere);
-        setMidnaBindEffect(i_this,&i_this->mCreature,&i_this->mEyePos,&cXyz(0.5f,0.5f,0.5f));
+        setMidnaBindEffect(i_this,&i_this->mCreature,&i_this->eyePos,&cXyz(0.5f,0.5f,0.5f));
     }
 
     return 1;
@@ -1959,13 +1959,13 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
                 l_HIO.field_0x04 = -1;
             }
 
-            yk->mAttentionInfo.mFlags = 4;
+            yk->attention_info.flags = 4;
 
             fopAcM_SetMtx(yk,yk->mpMorfSO->getModel()->getBaseTRMtx());
             fopAcM_SetMin(yk,-200.0f,-200.0f,-200.0f);
             fopAcM_SetMax(yk,200.0f,200.0f,200.0f);
 
-            yk->mHealth = 1;
+            yk->health = 1;
             yk->field_0x560 = 1;
 
             yk->mCollisionStatus.Init(0x1e,0,yk);
@@ -1978,7 +1978,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
                             0,0);
 
             yk->field_0x6c8.SetWall(50.0f,50.0f);
-            yk->mCreature.init(&yk->current.pos,&yk->mEyePos,3,1);
+            yk->mCreature.init(&yk->current.pos,&yk->eyePos,3,1);
             yk->mCreature.setEnemyName("E_yk");
 
             yk->mAtColliderInfo.mpSound = &yk->mCreature;

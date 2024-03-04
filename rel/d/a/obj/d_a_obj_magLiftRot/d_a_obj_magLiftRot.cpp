@@ -409,15 +409,15 @@ extern "C" asm void __dt__14mDoHIO_entry_cFv() {
 // matches with literals
 #ifdef NONMATCHING
 void daMagLiftRot_c::setBaseMtx() {
-    mScale.x = field_0x62c;
-    mScale.y = 1.0f;
-    mScale.z = field_0x630;
+    scale.x = field_0x62c;
+    scale.y = 1.0f;
+    scale.z = field_0x630;
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
     mDoMtx_stack_c::ZXYrotM(field_0x5e6.x, field_0x5e6.y, field_0x5e6.z);
     mDoMtx_stack_c::transM(field_0x5ec.x, field_0x5ec.y, field_0x5ec.z);
-    mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+    mDoMtx_stack_c::scaleM(scale.x, scale.y, scale.z);
 
     // this generates a cXyz dtor symbol with causes issues,
     // but this function doesnt match unless it's like this??
@@ -870,8 +870,8 @@ void daMagLiftRot_c::modeMoveWait() {
 
 /* 80C8F86C-80C8F970 00100C 0104+00 1/0 0/0 0/0 .text            Draw__14daMagLiftRot_cFv */
 int daMagLiftRot_c::Draw() {
-    g_env_light.settingTevStruct(0x40, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     J3DModelData* modelData = mpModel->getModelData();
     if (l_btkIdx[mType] != -1) {

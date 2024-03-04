@@ -11,7 +11,7 @@ public:
 
     u8 getSwBit() { return fopAcM_GetParam(this) >> 8; }
     u8 getMode() { return fopAcM_GetParam(this); }
-    f32 getExtent() { return mScale.x * 100.0f;}
+    f32 getExtent() { return scale.x * 100.0f;}
 
 private:
     /* 0x568 */ u32 mSwitchNo;

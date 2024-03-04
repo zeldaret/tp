@@ -296,8 +296,8 @@ static int daB_OH_Draw(b_oh_class* i_this) {
 
     J3DModel* model_p = i_this->mpMorf->getModel();
 
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->tevStr);
 
     i_this->mpBtk->entry(model_p->getModelData());
     i_this->mpBrk->entry(model_p->getModelData());
@@ -934,7 +934,7 @@ static void action(b_oh_class* i_this) {
     i_this->mDistToPlayer = fopAcM_searchPlayerDistance(i_this);
 
     fopAcM_OffStatus(i_this, 0);
-    i_this->mAttentionInfo.mFlags = 0;
+    i_this->attention_info.flags = 0;
 
     uvar = 0;
     bvar = true;
@@ -1193,14 +1193,14 @@ static void damage_check(b_oh_class* i_this) {
         for (int i = 7; i < 15; i++) {
             if (i_this->mColliders[i].ChkTgHit()) {
                 i_this->mAtInfo.mpCollider = i_this->mColliders[i].GetTgHitObj();
-                i_this->mHealth = 1000;
+                i_this->health = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
                 MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
                           mDoMtx_stack_c::get());
-                mDoMtx_stack_c::multVecZero(&i_this->mEyePos);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->mEyePos, NULL, NULL, 0);
-                mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->mEyePos, 0, 0);
+                mDoMtx_stack_c::multVecZero(&i_this->eyePos);
+                i_dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
+                mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
 
                 bvar = true;
                 i_this->field_0x5f4 = 20;
@@ -1264,7 +1264,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     }
 
     if (i_this->field_0x5c8 == 0) {
-        boss = (b_ob_class*)fopAcM_SearchByID(i_this->mParentPcId);
+        boss = (b_ob_class*)fopAcM_SearchByID(i_this->parentActorID);
     }
 
     if (boss == NULL) {
@@ -1475,7 +1475,7 @@ static int daB_OH_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        this_->mHealth = 1000;
+        this_->health = 1000;
         this_->field_0x560 = 1000;
 
         this_->field_0x5cc = cM_rndF(65536.0f);

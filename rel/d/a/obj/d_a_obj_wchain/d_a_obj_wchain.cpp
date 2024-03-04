@@ -294,10 +294,10 @@ cPhs__Step daObjWchain_c::create() {
         if (!fopAcM_entrySolidHeap(this, daObjWchain_createHeap, 0x820)) {
             return cPhs_ERROR_e;
         }
-        mTevStr.mRoomNo = dStage_roomControl_c::mStayNo;
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = mAttentionInfo.mPosition;
-        mAttentionInfo.field_0x0[0] = 0x1c;
+        tevStr.mRoomNo = dStage_roomControl_c::mStayNo;
+        attention_info.position = current.pos;
+        eyePos = attention_info.position;
+        attention_info.field_0x0[0] = 0x1c;
         fopAcM_SetMtx(this, mpHandleModel->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -45.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 800.0f, 200.0f);
@@ -315,7 +315,7 @@ cPhs__Step daObjWchain_c::create() {
             mPullLength = 0.0f;
         }
         shape_angle.x = 0x4000;
-        mGravity = -7.0f;
+        gravity = -7.0f;
         cXyz* chain_pos = &mChainPos[0xf];
         cXyz* chain_speed = &mChainSpeed[0xf];
         csXyz* chain_angle = &mChainAngle[0xf];
@@ -434,7 +434,7 @@ void daObjWchain_c::setMatrix() {
     mDoMtx_stack_c::transM(0.0f, 0.0f, 8.75f);
     mpHandleModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     static Vec const eyeOffset = {0.0f, 0.0f, 53.75f};
-    mDoMtx_stack_c::multVec(&eyeOffset, &mEyePos);
+    mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
 }
 #else
 #pragma push
@@ -680,7 +680,7 @@ void daObjWchain_c::setChainPos() {
                 vec1 += local_90;
                 prob *= 0.5f;
             }
-            vec1.y += mGravity;
+            vec1.y += gravity;
             vec1 += *chain_speed;
             chain_angle->z += getChainAngleZ(chain_speed, abs((s16)(chain_angle->z - chain_angle[-1].z)));
             vec1.normalizeZP();
@@ -694,7 +694,7 @@ void daObjWchain_c::setChainPos() {
         shape_angle.z += getChainAngleZ(&speed, abs((s16)(shape_angle.z - mChainAngle[0xf].z)));
         prev_pos = mTopPos;
         vec1 = mTopPos - current.pos;
-        vec1.y += mGravity;
+        vec1.y += gravity;
         vec1 += speed;
         vec1.normalizeZP();
         mTopPos = current.pos + vec1 * 53.75f;
@@ -763,12 +763,12 @@ int daObjWchain_c::execute() {
     setChainPos();
     
     if (daPy_py_c::i_checkNowWolf() && !mRide && mPullLength < 0.1f) {
-        mAttentionInfo.mFlags |= 1;
+        attention_info.flags |= 1;
     } else {
-        mAttentionInfo.mFlags &= ~1;
+        attention_info.flags &= ~1;
     }
-    mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mPosition.y += 150.0f;
+    attention_info.position = current.pos;
+    attention_info.position.y += 150.0f;
     
     setMatrix();
     
@@ -827,7 +827,7 @@ void daObjWchain_shape_c::draw() {
     s16* rotation = chain->getChainAngleZ();
     J3DModelData* model_data = chain->getChainModelData();
     J3DMaterial* material = model_data->getMaterialNodePointer(0);
-    dKy_tevstr_c& tevstr = chain->mTevStr;
+    dKy_tevstr_c& tevstr = chain->tevStr;
     j3dSys.setVtxPos(model_data->getVtxPosArray());
     j3dSys.setVtxNrm(model_data->getVtxNrmArray());
     j3dSys.setVtxCol(model_data->getVtxColorArray(0));
@@ -891,10 +891,10 @@ asm void daObjWchain_shape_c::draw() {
 #ifdef NONMATCHING
 // matches once daObjWchain_shape_c inheritance is resolved
 int daObjWchain_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpHandleModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpHandleModel->mModelData, &tevStr);
     mDoExt_modelUpdateDL(mpHandleModel);
-    g_env_light.setLightTevColorType_MAJI(mpChainModelData, &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpChainModelData, &tevStr);
     dComIfGd_getOpaList()->entryImm(&mShape, 0);
     return 1;
 }

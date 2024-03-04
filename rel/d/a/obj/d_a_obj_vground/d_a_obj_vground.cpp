@@ -15,7 +15,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 /* 80D213F8-80D21448 000098 0050+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjVGnd_cFv */
 void daObjVGnd_c::initBaseMtx() {
     current.pos.y += 5.0f;
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -96,8 +96,8 @@ int daObjVGnd_c::execute() {
 
 /* 80D21878-80D2194C 000518 00D4+00 1/1 0/0 0/0 .text            draw__11daObjVGnd_cFv */
 int daObjVGnd_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     mpBrk->entry(mpModel->getModelData());
     mpBtk->entry(mpModel->getModelData());
     dComIfGd_setListDarkBG();

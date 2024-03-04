@@ -70,8 +70,8 @@ int daWarpBug_c::draw() {
     }
 
     cLib_chaseS(&field_0x57c, 255, 25);
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     J3DModelData* modelData = mpModel->getModelData();
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {

@@ -20,13 +20,13 @@ static int daE_ARROW_Draw(e_arrow_class* i_this) {
     }
 
     if (fopAcM_GetParam(i_this) & 0x80000000) {
-        g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->mTevStr);
+        g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
     } else {
-        g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
+        g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }
 
     if (i_this->mpModel != NULL) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
         mDoExt_modelUpdateDL(i_this->mpModel);
     }
 
@@ -248,7 +248,7 @@ static void hit_check(e_arrow_class* i_this) {
         cXyz sp114(0.3f, 0.3f, 0.3f);
         i_this->mStickSmokeEMKey = dComIfGp_particle_set(
             i_this->mStickSmokeEMKey, dPa_name::ZI_J_dashSmoke_a_e, &i_this->current.pos,
-            &i_this->mTevStr, &i_this->shape_angle, &sp114, 0xFF, NULL, -1, NULL, NULL, NULL);
+            &i_this->tevStr, &i_this->shape_angle, &sp114, 0xFF, NULL, -1, NULL, NULL, NULL);
     } else {
         cXyz sp120 = i_this->current.pos + (i_this->speed * 0.5f);
         i_this->mCcTgSph.SetC(sp120);
@@ -340,7 +340,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
 
         i_this->shape_angle.z = cM_rndF(0xFFFF);
 
-        fopAc_ac_c* parent_p = fopAcM_SearchByID(i_this->mParentPcId);
+        fopAc_ac_c* parent_p = fopAcM_SearchByID(i_this->parentActorID);
         if (parent_p != NULL) {
             i_this->field_0x5d0 = parent_p->speed.x;
             i_this->field_0x5d4 = parent_p->speed.z;
@@ -351,7 +351,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
 
             if (coach_p != NULL) {
                 cXyz sp30;
-                sp30 = coach_p->mEyePos - i_this->current.pos;
+                sp30 = coach_p->eyePos - i_this->current.pos;
 
                 s16 temp_r4 = cM_atan2s(sp30.x, sp30.z);
                 s16 temp_r0 = temp_r4 - i_this->current.angle.y;
@@ -678,7 +678,7 @@ static void action(e_arrow_class* i_this) {
     i_this->current.pos.y += i_this->speed.y;
     i_this->current.pos.z += i_this->speed.z + i_this->field_0x5d4;
 
-    i_this->mEyePos = i_this->current.pos;
+    i_this->eyePos = i_this->current.pos;
 }
 
 /* 8067E0BC-8067E304 0019DC 0248+00 1/0 0/0 0/0 .text daE_ARROW_Execute__FP13e_arrow_class */

@@ -288,8 +288,8 @@ static int daB_GO_Draw(b_go_class* b_go) {
     if ((*(daB_GO_HIO_c*)l_HIO).mDisplayModelImage) {
         J3DModel* model = b_go->mpMorf->getModel();
 
-        g_env_light.settingTevStruct(0, &b_go->current.pos, &b_go->mTevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &b_go->mTevStr);
+        g_env_light.settingTevStruct(0, &b_go->current.pos, &b_go->tevStr);
+        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &b_go->tevStr);
         b_go->mpMorf->entryDL();
     }
     return 1;
@@ -503,8 +503,8 @@ static void action(b_go_class* b_go) {
     b_go->mAngleToPlayer = fopAcM_searchActorAngleY(b_go, (fopAc_ac_c*)dComIfGp_getPlayer(0));
     b_go->mDistToPlayer = fopAcM_searchActorDistance(b_go, (fopAc_ac_c*)dComIfGp_getPlayer(0));
 
-    b_go->mStatus = b_go->mStatus;
-    b_go->mAttentionInfo.mFlags = 0;
+    b_go->actor_status = b_go->actor_status;
+    b_go->attention_info.flags = 0;
 
     if (b_go->field_0x688[1] == 0) {
         if (b_go->field_0x692 != 2) {
@@ -542,7 +542,7 @@ static void action(b_go_class* b_go) {
     b_go->speed.z = newSpeed.z;
 
     VECAdd(&b_go->current.pos, &b_go->speed, &b_go->current.pos);
-    b_go->speed.y += b_go->mGravity;
+    b_go->speed.y += b_go->gravity;
 
     b_go->mAcch.CrrPos(dComIfG_Bgsp());
 }
@@ -705,8 +705,8 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
             (*(daB_GO_HIO_c*)l_HIO).field_0x4 = -1;
         }
 
-        b_go->mAttentionInfo.mFlags = 4;
-        b_go->mCullMtx = b_go->mpMorf->getModel()->getBaseTRMtx();
+        b_go->attention_info.flags = 4;
+        b_go->cullMtx = b_go->mpMorf->getModel()->getBaseTRMtx();
         fopAcM_SetMin(b_go, -500.0f, -2000.0f, -500.0f);
         fopAcM_SetMax(b_go, 500.0f, 2000.0f, 500.0f);
         b_go->field_0x562 = 1000;
@@ -716,10 +716,10 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
                         &b_go->speed, NULL, NULL);
         b_go->mAcchCir.SetWall(100.0f, 300.0f);
 
-        b_go->mZ2Enemy.init(&b_go->current.pos, &b_go->mEyePos, 3, 1);
+        b_go->mZ2Enemy.init(&b_go->current.pos, &b_go->eyePos, 3, 1);
         b_go->field_0xc9c = &b_go->mZ2Enemy;
 
-        b_go->mGravity = -7.0f;
+        b_go->gravity = -7.0f;
         b_go->mActionID = ACT_WAIT;
 
         daB_GO_Execute(b_go);

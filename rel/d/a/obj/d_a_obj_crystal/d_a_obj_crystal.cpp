@@ -15,8 +15,8 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 
 /* 80BD63B8-80BD6410 000098 0058+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjCrystal_cFv */
 void daObjCrystal_c::initBaseMtx() {
-    mpModel[0]->setBaseScale(mScale);
-    mpModel[1]->setBaseScale(mScale);
+    mpModel[0]->setBaseScale(scale);
+    mpModel[1]->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -37,7 +37,7 @@ int daObjCrystal_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel[0]->getBaseTRMtx());
 
-    mpEmitter = dComIfGp_particle_set(0x8BED, &current.pos, &orig.angle, &mScale, 255, NULL, -1,
+    mpEmitter = dComIfGp_particle_set(0x8BED, &current.pos, &orig.angle, &scale, 255, NULL, -1,
                                       NULL, NULL, NULL);
     mJointID = 0xFFFF;
 
@@ -101,10 +101,10 @@ int daObjCrystal_c::execute() {
 
 /* 80BD673C-80BD67C8 00041C 008C+00 1/1 0/0 0/0 .text            draw__14daObjCrystal_cFv */
 int daObjCrystal_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
     for (int i = 0; i < 2; i++) {
-        g_env_light.setLightTevColorType_MAJI(mpModel[i], &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel[i], &tevStr);
         mDoExt_modelUpdateDL(mpModel[i]);
     }
 

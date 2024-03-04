@@ -24,11 +24,11 @@ int daTag_Howl_c::destroy() {
 /* 8048D9C4-8048DA24 0000E4 0060+00 1/1 0/0 0/0 .text            execute__12daTag_Howl_cFv */
 int daTag_Howl_c::execute() {
     fopAcM_SetRoomNo(this, dComIfGp_roomControl_getStayNo());
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
 
     if (isAreaCheck()) {
-        mAttentionInfo.mFlags |= 0x80;
-        mAttentionInfo.field_0x0[7] = 0x41;
+        attention_info.flags |= 0x80;
+        attention_info.field_0x0[7] = 0x41;
     }
 
     return 1;
@@ -49,8 +49,8 @@ u8 daTag_Howl_c::isAreaCheck() {
 
     cXyz vec_to_player = daPy_getPlayerActorClass()->current.pos - current.pos;
     if (daPy_py_c::i_checkNowWolf()) {
-        if (vec_to_player.absXZ() < mScale.x && -mScale.y < vec_to_player.y &&
-            vec_to_player.y < mScale.y)
+        if (vec_to_player.absXZ() < scale.x && -scale.y < vec_to_player.y &&
+            vec_to_player.y < scale.y)
         {
             return true;
         }
@@ -63,9 +63,9 @@ u8 daTag_Howl_c::isAreaCheck() {
 int daTag_Howl_c::getParam() {
     mCurveID = fopAcM_GetParam(this) & 0xF;
     field_0x569 = fopAcM_GetParam(this) >> 0x1E;
-    mScale.x *= 100.0f;
-    mScale.y *= 100.0f;
-    mScale.z *= 100.0f;
+    scale.x *= 100.0f;
+    scale.y *= 100.0f;
+    scale.z *= 100.0f;
     return 1;
 }
 
@@ -114,14 +114,14 @@ extern actor_process_profile_definition g_profile_TAG_HOWL = {
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio
     PROC_TAG_HOWL,            // mProcName
-    &g_fpcLf_Method.mBase,    // mSubMtd
+    &g_fpcLf_Method.mBase,    // sub_method
     sizeof(daTag_Howl_c),     // mSize
     0,                        // mSizeOther
     0,                        // mParameters
-    &g_fopAc_Method.base,     // mSubMtd
+    &g_fopAc_Method.base,     // sub_method
     283,                      // mPriority
-    &daTag_Howl_MethodTable,  // mSubMtd
+    &daTag_Howl_MethodTable,  // sub_method
     0x40000,                  // mStatus
     fopAc_ACTOR_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e,   // mCullType
+    fopAc_CULLBOX_CUSTOM_e,   // cullType
 };

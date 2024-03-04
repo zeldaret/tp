@@ -173,8 +173,8 @@ void daZrTuraRc_c::modeDropEnd() {
 
 /* 80D42160-80D421C4 0009C0 0064+00 1/1 0/0 0/0 .text            Draw__12daZrTuraRc_cFv */
 int daZrTuraRc_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }

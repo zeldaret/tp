@@ -9,17 +9,17 @@
 
 /* 80D56758-80D567E4 000078 008C+00 1/1 0/0 0/0 .text            Create__17daTagChgRestart_cFv */
 s32 daTagChgRestart_c::Create() {
-    mVertices[0].x = -100.0f * mScale.x;
-    mVertices[0].z = -100.0f * mScale.z;
+    mVertices[0].x = -100.0f * scale.x;
+    mVertices[0].z = -100.0f * scale.z;
 
-    mVertices[1].x = 100.0f * mScale.x;
-    mVertices[1].z = -100.0f * mScale.z;
+    mVertices[1].x = 100.0f * scale.x;
+    mVertices[1].z = -100.0f * scale.z;
 
-    mVertices[2].x = 100.0f * mScale.x;
-    mVertices[2].z = 100.0f * mScale.z;
+    mVertices[2].x = 100.0f * scale.x;
+    mVertices[2].z = 100.0f * scale.z;
 
-    mVertices[3].x = -100.0f * mScale.x;
-    mVertices[3].z = 100.0f * mScale.z;
+    mVertices[3].x = -100.0f * scale.x;
+    mVertices[3].z = 100.0f * scale.z;
 
     mVertices[3].y = 0.0f;
     mVertices[2].y = 0.0f;
@@ -122,14 +122,14 @@ extern actor_process_profile_definition g_profile_Tag_ChgRestart = {
     7,                          // mListID
     fpcPi_CURRENT_e,            // mListPrio
     PROC_Tag_ChgRestart,        // mProcName
-    &g_fpcLf_Method.mBase,      // mSubMtd
+    &g_fpcLf_Method.mBase,      // sub_method
     sizeof(daTagChgRestart_c),  // mSize
     0,                          // mSizeOther
     0,                          // mParameters
-    &g_fopAc_Method.base,       // mSubMtd
+    &g_fopAc_Method.base,       // sub_method
     591,                        // mPriority
-    &l_daTagChgRestart_Method,  // mSubMtd
+    &l_daTagChgRestart_Method,  // sub_method
     0x40000,                    // mStatus
     fopAc_ACTOR_e,              // mActorType
-    fopAc_CULLBOX_CUSTOM_e,     // mCullType
+    fopAc_CULLBOX_CUSTOM_e,     // cullType
 };

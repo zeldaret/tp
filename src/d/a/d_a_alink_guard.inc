@@ -38,7 +38,7 @@ BOOL daAlink_c::checkSpecialNpc(fopAc_ac_c* i_actor) {
 
 /* 800DC5DC-800DC678 0D6F1C 009C+00 1/1 0/0 0/0 .text checkShieldAttackEmphasys__9daAlink_cFv */
 BOOL daAlink_c::checkShieldAttackEmphasys() {
-    return mTargetedActor != NULL && (mTargetedActor->mAttentionInfo.mFlags & 0x200000) &&
+    return mTargetedActor != NULL && (mTargetedActor->attention_info.flags & 0x200000) &&
            !checkCutHeadState() &&
            (fopAcM_GetGroup(mTargetedActor) != fopAc_ENEMY_e ||
             !static_cast<fopEn_enemy_c*>(mTargetedActor)->checkDownFlg());

@@ -692,38 +692,38 @@ bool fopAcM_entrySolidHeap(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback,
 
 /* 8001A528-8001A538 014E68 0010+00 0/0 0/0 136/136 .text fopAcM_SetMin__FP10fopAc_ac_cfff */
 void fopAcM_SetMin(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i_minZ) {
-    i_actor->mCull.mBox.mMin.x = i_minX;
-    i_actor->mCull.mBox.mMin.y = i_minY;
-    i_actor->mCull.mBox.mMin.z = i_minZ;
+    i_actor->cull.box.min.x = i_minX;
+    i_actor->cull.box.min.y = i_minY;
+    i_actor->cull.box.min.z = i_minZ;
 }
 
 /* 8001A538-8001A548 014E78 0010+00 0/0 0/0 136/136 .text fopAcM_SetMax__FP10fopAc_ac_cfff */
 void fopAcM_SetMax(fopAc_ac_c* i_actor, f32 i_maxX, f32 i_maxY, f32 i_maxZ) {
-    i_actor->mCull.mBox.mMax.x = i_maxX;
-    i_actor->mCull.mBox.mMax.y = i_maxY;
-    i_actor->mCull.mBox.mMax.z = i_maxZ;
+    i_actor->cull.box.max.x = i_maxX;
+    i_actor->cull.box.max.y = i_maxY;
+    i_actor->cull.box.max.z = i_maxZ;
 }
 
 /* 8001A548-8001A564 014E88 001C+00 1/1 0/0 260/260 .text
  * fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff                  */
 void fopAcM_setCullSizeBox(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i_minZ, f32 i_maxX,
                            f32 i_maxY, f32 i_maxZ) {
-    i_actor->mCull.mBox.mMin.x = i_minX;
-    i_actor->mCull.mBox.mMin.y = i_minY;
-    i_actor->mCull.mBox.mMin.z = i_minZ;
+    i_actor->cull.box.min.x = i_minX;
+    i_actor->cull.box.min.y = i_minY;
+    i_actor->cull.box.min.z = i_minZ;
 
-    i_actor->mCull.mBox.mMax.x = i_maxX;
-    i_actor->mCull.mBox.mMax.y = i_maxY;
-    i_actor->mCull.mBox.mMax.z = i_maxZ;
+    i_actor->cull.box.max.x = i_maxX;
+    i_actor->cull.box.max.y = i_maxY;
+    i_actor->cull.box.max.z = i_maxZ;
 }
 
 /* 8001A564-8001A578 014EA4 0014+00 0/0 0/0 4/4 .text fopAcM_setCullSizeSphere__FP10fopAc_ac_cffff
  */
 void fopAcM_setCullSizeSphere(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i_minZ, f32 radius) {
-    i_actor->mCull.mSphere.mCenter.x = i_minX;
-    i_actor->mCull.mSphere.mCenter.y = i_minY;
-    i_actor->mCull.mSphere.mCenter.z = i_minZ;
-    i_actor->mCull.mSphere.mRadius = radius;
+    i_actor->cull.sphere.center.x = i_minX;
+    i_actor->cull.sphere.center.y = i_minY;
+    i_actor->cull.sphere.center.z = i_minZ;
+    i_actor->cull.sphere.radius = radius;
 }
 
 /* 8001A578-8001A5DC 014EB8 0064+00 0/0 0/0 123/123 .text
@@ -731,12 +731,12 @@ void fopAcM_setCullSizeSphere(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i
 void fopAcM_setCullSizeBox2(fopAc_ac_c* i_actor, J3DModelData* i_modelData) {
     J3DJoint* jointNode = i_modelData->getJointNodePointer(0);
 
-    f32 minX = i_actor->mScale.x * jointNode->getMin()->x;
-    f32 minY = i_actor->mScale.y * jointNode->getMin()->y;
-    f32 minZ = i_actor->mScale.z * jointNode->getMin()->z;
-    f32 maxX = i_actor->mScale.x * jointNode->getMax()->x;
-    f32 maxY = i_actor->mScale.y * jointNode->getMax()->y;
-    f32 maxZ = i_actor->mScale.z * jointNode->getMax()->z;
+    f32 minX = i_actor->scale.x * jointNode->getMin()->x;
+    f32 minY = i_actor->scale.y * jointNode->getMin()->y;
+    f32 minZ = i_actor->scale.z * jointNode->getMin()->z;
+    f32 maxX = i_actor->scale.x * jointNode->getMax()->x;
+    f32 maxY = i_actor->scale.y * jointNode->getMax()->y;
+    f32 maxZ = i_actor->scale.z * jointNode->getMax()->z;
 
     fopAcM_setCullSizeBox(i_actor, minX, minY, minZ, maxX, maxY, maxZ);
 }
@@ -1075,13 +1075,13 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         if (fopAcM_GetCullSize(i_actor) == 14) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax,
-                                               &i_actor->mCull.mBox.mMin);
+                u32 ret = mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max,
+                                               &i_actor->cull.box.min);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, &i_actor->mCull.mBox.mMax,
-                                            &i_actor->mCull.mBox.mMin);
+                return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max,
+                                            &i_actor->cull.box.min);
             }
         } else {
             cull_box* box = &l_cullSizeBox[cullsize];
@@ -1212,8 +1212,8 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, 
         priority = 0xFF;
     }
 
-    s16 eventID = actorB->mEvtInfo.getEventId();
-    u8 toolID = actorB->mEvtInfo.getMapToolId();
+    s16 eventID = actorB->eventInfo.getEventId();
+    u8 toolID = actorB->eventInfo.getMapToolId();
 
     if (fopAcM_GetProfName(actorB) == 0x55 && toolID != 0xFF) {
         eventID = i_dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
@@ -1960,7 +1960,7 @@ s32 fopAc_IsActor(void*);
 /* 8001C9CC-8001CA1C 01730C 0050+00 1/1 0/0 0/0 .text            enemySearchJugge__FPvPv */
 void* enemySearchJugge(void* i_actor, void* i_data) {
     if (i_actor != NULL && fopAc_IsActor(i_actor) &&
-        static_cast<fopAc_ac_c*>(i_actor)->mGroup == fopAc_ENEMY_e)
+        static_cast<fopAc_ac_c*>(i_actor)->group == fopAc_ENEMY_e)
     {
         return i_actor;
     } else {
@@ -1999,7 +1999,7 @@ s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 para
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
  */
 void fopAcM_setCarryNow(fopAc_ac_c* i_actor, int param_1) {
-    i_actor->mStatus |= 0x2000;
+    i_actor->actor_status |= 0x2000;
 
     if (param_1 != 0) {
         fopAcM_setStageLayer(i_actor);
@@ -2010,7 +2010,7 @@ void fopAcM_setCarryNow(fopAc_ac_c* i_actor, int param_1) {
 /* 8001CBA0-8001CC5C 0174E0 00BC+00 0/0 5/5 21/21 .text fopAcM_cancelCarryNow__FP10fopAc_ac_c */
 void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
     if (fopAcM_checkCarryNow(i_actor)) {
-        i_actor->mStatus &= ~0x2000;
+        i_actor->actor_status &= ~0x2000;
 
         s8 roomNo = fopAcM_GetHomeRoomNo(i_actor);
         if (roomNo != -1) {
@@ -2026,7 +2026,7 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
         i_actor->shape_angle.x = 0;
 
         if (i_dComIfGp_event_runCheck() && fopAcM_GetGroup(i_actor) != 2) {
-            i_actor->mStatus |= 0x800;
+            i_actor->actor_status |= 0x800;
         }
     }
 }
@@ -2074,7 +2074,7 @@ s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
     end.y += lit_6035;
 
     start = param_0->current.pos;
-    start.y = param_0->mEyePos.y;
+    start.y = param_0->eyePos.y;
 
     linChk.Set(&start, &end, param_0);
 
@@ -2293,11 +2293,11 @@ COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 // matches with literals
 #ifdef NONMATCHING
 void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelData) {
-    const cXyz* pEyePos = &i_actor->mEyePos;
+    const cXyz* pEyePos = &i_actor->eyePos;
     dCamera_c* camera = dCam_getCamera();
     cXyz v1 = *pEyePos - camera->field_0xd8;
     cXyz v2;
-    get_vectle_calc(&i_actor->mTevStr.field_0x32c, pEyePos, &v2);
+    get_vectle_calc(&i_actor->tevStr.field_0x32c, pEyePos, &v2);
     Vec half;
     C_VECHalfAngle(&v1, &v2, &half);
     Mtx mtx;
@@ -2339,7 +2339,7 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->mBase.mBsTypeId, i_actor->mSubtype);
+    const char* name = dStage_getName2(i_actor->mBase.mBsTypeId, i_actor->subtype);
     return name != NULL ? name : "UNKOWN";
 }
 
@@ -2351,7 +2351,7 @@ static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_
         return NULL;
     }
 
-    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->mSubtype) {
+    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->subtype) {
         if (prm->mParam0 == 0 || prm->mParam1 == (prm->mParam0 & fopAcM_GetParam(i_actor))) {
             return i_actor;
         }
@@ -2385,8 +2385,8 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->mSubtype) {
-        if (prm->mEventID < 0 || prm->mEventID == i_actor->mEvtInfo.getIdx()) {
+    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->subtype) {
+        if (prm->mEventID < 0 || prm->mEventID == i_actor->eventInfo.getIdx()) {
             return i_actor;
         }
     }

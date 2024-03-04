@@ -81,8 +81,8 @@ int daObjChandelier_c::Delete() {
 
 /* 80BC8194-80BC8238 0002D4 00A4+00 1/0 0/0 0/0 .text            Draw__17daObjChandelier_cFv */
 int daObjChandelier_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
@@ -133,7 +133,7 @@ void daObjChandelier_c::exeModeStartSwg() {
  */
 void daObjChandelier_c::exeModeDown() {
     current.pos.y += speed.y;
-    speed.y += mGravity;
+    speed.y += gravity;
     if (current.pos.y <= field_0x5f4) {
         fopAcM_seStartCurrent(this, Z2SE_OBJ_CHANDLV9_DOWN, 0);
         mMode = MODE_END_SWG;
@@ -184,7 +184,7 @@ void daObjChandelier_c::init() {
     field_0x5a8 = current.pos;
     field_0x60a = 0;
     field_0x60b = field_0x60a;
-    mGravity = -3.0f;
+    gravity = -3.0f;
     speed.x = 0.0f;
     speed.y = -1.0f;
     speed.z = 0.0f;

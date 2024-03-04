@@ -66,11 +66,11 @@ public:
     }
 
     int draw() {
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
         fopAc_ac_c* p1 = static_cast<fopAc_ac_c*>(this);
-        g_env_light.setLightTevColorType_MAJI(mDoor1.pmodel, &p1->mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mDoor2.pmodel, &p1->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mDoor1.pmodel, &p1->tevStr);
+        g_env_light.setLightTevColorType_MAJI(mDoor2.pmodel, &p1->tevStr);
 
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mDoor1.pmodel);
@@ -205,7 +205,7 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 
 /* 80BC43F4-80BC4454 0001B4 0060+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjCatDoor_cFv */
 void daObjCatDoor_c::initBaseMtx() {
-    mCullMtx = mMtx;
+    cullMtx = mMtx;
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
     MTXCopy(mDoMtx_stack_c::get(), mMtx);

@@ -638,11 +638,11 @@ extern "C" asm void __dt__12dBgS_AcchCirFv() {
 
 /* 80D22424-80D22484 000984 0060+00 1/1 0/0 0/0 .text            execute__15daObjVolcBall_cFv */
 int daObjVolcBall_c::execute() {
-    f32 gravity = getData()->mGravity;
-    f32 fall_speed = getData()->mMaxFallSpeed;
+    f32 ball_gravity = getData()->mGravity;
+    f32 ball_fall_speed = getData()->mMaxFallSpeed;
 
-    mGravity = gravity;
-    mMaxFallSpeed = fall_speed;
+    gravity = ball_gravity;
+    maxFallSpeed = ball_fall_speed;
 
     action();
     return 1;
@@ -957,7 +957,7 @@ void daObjVolcBall_c::setEruptEffect(int i_ballNo) {
     vball_s* ball = &mBall[i_ballNo];
 
     for (int i = 0; i < 6; i++) {
-        dComIfGp_particle_setColor(l_effect_id[i], &ball->field_0x4, &mTevStr, NULL, NULL,
+        dComIfGp_particle_setColor(l_effect_id[i], &ball->field_0x4, &tevStr, NULL, NULL,
                                    FLOAT_LABEL(lit_3717), 0xFF, NULL, &ball->field_0x1c, NULL, -1,
                                    NULL);
     }
@@ -979,7 +979,7 @@ void daObjVolcBall_c::setFallEffect(int i_ballNo) {
             sp28 = ball->field_0x1c;
         }
 
-        dComIfGp_particle_setColor(l_fall_effect_id[i], &ball->field_0x4, &mTevStr, NULL, NULL,
+        dComIfGp_particle_setColor(l_fall_effect_id[i], &ball->field_0x4, &tevStr, NULL, NULL,
                                    FLOAT_LABEL(lit_3717), 0xFF, &ball->field_0x34, &sp28,
                                    &ball->field_0x390[i], -1, NULL);
     }
@@ -1280,17 +1280,17 @@ COMPILER_STRIP_GATE(0x80D23E7C, &lit_4447);
 // matches with literals
 #ifdef NONMATCHING
 int daObjVolcBall_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
 
-    mTevStr.mLightPosWorld.x = mBall[8].field_0x4.x;
-    mTevStr.mLightPosWorld.y = mBall[8].field_0x4.y;
-    mTevStr.mLightPosWorld.z = mBall[8].field_0x4.z;
-    mTevStr.field_0x344 = mBall[8].field_0x50;
+    tevStr.mLightPosWorld.x = mBall[8].field_0x4.x;
+    tevStr.mLightPosWorld.y = mBall[8].field_0x4.y;
+    tevStr.mLightPosWorld.z = mBall[8].field_0x4.z;
+    tevStr.field_0x344 = mBall[8].field_0x50;
 
     vball_s* ball = mBall;
     for (int i = 0; i < 9; i++) {
         if (ball->field_0x376 != 0) {
-            g_env_light.setLightTevColorType_MAJI(ball->mpModel, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(ball->mpModel, &tevStr);
             mDoExt_modelUpdateDL(ball->mpModel);
         }
 
@@ -1300,7 +1300,7 @@ int daObjVolcBall_c::draw() {
     if (mBall[8].field_0x376 != 0) {
         mBall[8].field_0x370 = dComIfGd_setShadow(
             mBall[8].field_0x370, 0, mBall[8].mpModel, &mBall[8].field_0x364, 2000.0f, 0.0f,
-            mBall[8].field_0x364.y, mBall[8].mAcch.GetGroundH(), mBall[8].mAcch.m_gnd, &mTevStr, 0,
+            mBall[8].field_0x364.y, mBall[8].mAcch.GetGroundH(), mBall[8].mAcch.m_gnd, &tevStr, 0,
             1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
 

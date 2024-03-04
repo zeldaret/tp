@@ -258,7 +258,7 @@ int daAlink_c::procCanoeRideInit() {
                    daAlinkHIO_wallCatch_c0::m.mClimbStartFrame,
                    daAlinkHIO_wallCatch_c0::m.mClimbAnm.mEndFrame,
                    daAlinkHIO_wallCatch_c0::m.mClimbAnm.mInterpolation);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
@@ -330,7 +330,7 @@ int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
     deleteEquipItem(0, 0);
 
     mRideAcKeep.setData(canoe);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;

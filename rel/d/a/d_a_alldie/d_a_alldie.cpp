@@ -61,7 +61,7 @@ int daAlldie_c::actionTimer() {
 
 /* 804D5938-804D59A0 000198 0068+00 1/1 0/0 0/0 .text            actionOrder__10daAlldie_cFv */
 int daAlldie_c::actionOrder() {
-    if (mEvtInfo.checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         mAction = ACT_EVENT;
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, getEventNo(), -1, 0, 1);
@@ -89,7 +89,7 @@ int daAlldie_c::actionEvent() {
 
 /* 804D5A44-804D5B10 0002A4 00CC+00 1/1 0/0 0/0 .text            actionNext__10daAlldie_cFv */
 int daAlldie_c::actionNext() {
-    if (mEvtInfo.checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         mEventIdx = mNextEventIdx;
         s8 roomNo = fopAcM_GetRoomNo(this);
 
@@ -188,8 +188,8 @@ int daAlldie_c::create() {
         mNextEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
     }
 
-    mEvtInfo.setEventId(mEventIdx);
-    mEvtInfo.setMapToolId(getEventNo());
+    eventInfo.setEventId(mEventIdx);
+    eventInfo.setMapToolId(getEventNo());
 
     return cPhs_COMPLEATE_e;
 }

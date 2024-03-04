@@ -187,7 +187,7 @@ void ShopCam_action_c::setCamDataIdx(fopAc_ac_c* param_1, fopAc_ac_c* param_2, f
                                      fopAc_ac_c* param_4, cXyz* param_5, cXyz* param_6) {
     field_0xd6 = -1;
     if (field_0x18 == NULL) {
-        field_0xb0 = param_1->mEyePos;
+        field_0xb0 = param_1->eyePos;
     }
 
     field_0x18 = param_1;
@@ -222,7 +222,7 @@ void ShopCam_action_c::setCamDataIdx2(fopAc_ac_c* param_1, fopAc_ac_c* param_2, 
                                       fopAc_ac_c* param_7, cXyz* param_8, cXyz* param_9) {
     field_0xd6 = -1;
     if (field_0x18 == NULL) {
-        field_0xb0 = param_1->mEyePos;
+        field_0xb0 = param_1->eyePos;
     }
 
     field_0x18 = param_1;
@@ -297,7 +297,7 @@ void ShopCam_action_c::_debugSetCamera() {
  * setMasterCamCtrPos__16ShopCam_action_cFP4cXyz                */
 void ShopCam_action_c::setMasterCamCtrPos(cXyz* param_0) {
     if (param_0 == NULL) {
-        field_0xb0.set(field_0x18->mEyePos);
+        field_0xb0.set(field_0x18->eyePos);
     } else {
         field_0xb0.set(*param_0);
     }

@@ -537,16 +537,16 @@ extern actor_process_profile_definition g_profile_Obj_Stone = {
     8,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Stone,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daObjStone_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     511,                    // mPriority
-    &l_daObjStone_Method,   // mSubMtd
+    &l_daObjStone_Method,   // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLSPHERE_8_e,   // mCullType
+    fopAc_CULLSPHERE_8_e,   // cullType
 };
 
 /* 80CECD74-80CECDA4 000120 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
@@ -671,7 +671,7 @@ void daObjStone_c::initBaseMtx() {
     field_0x091c = 0;
     field_0x0930 = ZeroQuat;
     field_0x0920 = field_0x0930;
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -730,8 +730,8 @@ int daObjStone_c::Create() {
     }
 
     fopAcM_setCullSizeSphere(this, 0.0f, 0.0f, 0.0f, l_r[mStoneType] * 1.2f);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
-    mAttentionInfo.field_0x0[4] = 0x2A;
+    cLib_onBit<u32>(attention_info.flags, 0x10);
+    attention_info.field_0x0[4] = 0x2A;
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
     cXyz other_pos = current.pos;
@@ -756,7 +756,7 @@ int daObjStone_c::Create() {
 
     // Create the mark actor that goes under the stone
     fopAcM_createChild(PROC_Obj_StoneMark, fopAcM_GetID(this), stoneType, &pos,
-                       fopAcM_GetRoomNo(this), &shape_angle, &mScale, -1, 0);
+                       fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, 0);
 
     mSound.init(&current.pos, 1);
     mLastPosY = current.pos.y;
@@ -892,8 +892,8 @@ int daObjStone_c::execute() {
     }
 
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = mAttentionInfo.mPosition;
+    attention_info.position = current.pos;
+    eyePos = attention_info.position;
 
     setBaseMtx();
     pos = current.pos;
@@ -1032,7 +1032,7 @@ extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
 void daObjStone_c::init_modePutWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mInitialOffsetY = l_initial_offsetY[mStoneType];
     mMode = 0;
     field_0x0907 = 3;
@@ -1047,7 +1047,7 @@ void daObjStone_c::modePutWait() {
 void daObjStone_c::init_modeWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     field_0x0907 = 0;
 }
@@ -1084,7 +1084,7 @@ void daObjStone_c::modeWait() {
 void daObjStone_c::init_modeDrop() {
     mCollider.OnAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     mLastPosY = current.pos.y;
     field_0x0907 = 1;
@@ -1100,8 +1100,8 @@ void daObjStone_c::modeDrop() {
 
     if (mIsInWater != 0) {
         mCollider.OffAtSPrmBit(1);
-        mChkObj.ChkGroundHit() ? cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10) :
-                                 cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
+        mChkObj.ChkGroundHit() ? cLib_onBit<u32>(attention_info.flags, 0x10) :
+                                 cLib_offBit<u32>(attention_info.flags, 0x10);
 
         pos2.x = speedF * cM_ssin(current.angle.y);
         pos2.y = speed.y;
@@ -1253,7 +1253,7 @@ asm void daObjStone_c::modeCarry() {
 void daObjStone_c::init_modeWalk() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     field_0x0907 = 4;
 }
@@ -1588,8 +1588,8 @@ asm void daObjStone_c::effect_delete(bool param_0) {
 
 /* 80CEC888-80CEC948 003888 00C0+00 1/1 0/0 0/0 .text            draw__12daObjStone_cFv */
 int daObjStone_c::draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
     if (!model) {

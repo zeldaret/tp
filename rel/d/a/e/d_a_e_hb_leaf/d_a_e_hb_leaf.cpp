@@ -9,8 +9,8 @@
 
 /* 806DFF58-806DFFC0 000078 0068+00 1/0 0/0 0/0 .text daE_HB_LEAF_Draw__FP15e_hb_leaf_class */
 static int daE_HB_LEAF_Draw(e_hb_leaf_class* i_this) {
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->tevStr);
     i_this->mpMorf->entryDL();
     return 1;
 }

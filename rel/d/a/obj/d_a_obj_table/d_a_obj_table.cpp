@@ -115,16 +115,16 @@ int daObjTable_c::Create() {
           i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
     {
         mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     } else {
-        mAttentionInfo.mFlags = 0x2000000a;
+        attention_info.flags = 0x2000000a;
 
-        mAttentionInfo.field_0x0[0] = dKy_darkworld_check() ? 218 : 98;
-        mAttentionInfo.field_0x0[1] = mAttentionInfo.field_0x0[0];
-        mAttentionInfo.field_0x0[3] = mAttentionInfo.field_0x0[0];
+        attention_info.field_0x0[0] = dKy_darkworld_check() ? 218 : 98;
+        attention_info.field_0x0[1] = attention_info.field_0x0[0];
+        attention_info.field_0x0[3] = attention_info.field_0x0[0];
     }
 
-    mAttentionInfo.mPosition.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
+    attention_info.position.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
 
     mMsgFlow.init(this, getMessageNo(), 0, NULL);
     dMsgObject_endFlowGroup();
@@ -138,21 +138,21 @@ int daObjTable_c::Create() {
 /* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
  */
 int daObjTable_c::Execute(Mtx** i_mtx) {
-    mEvtInfo.i_onCondition(1);
+    eventInfo.i_onCondition(1);
 
     dComIfG_inf_c& gameInfo = g_dComIfG_gameInfo;
     if (i_dComIfGp_event_runCheck()) {
-        if (mEvtInfo.checkCommandTalk()) {
+        if (eventInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
                 gameInfo.getPlay().getEvent().reset(this);  // Fake match?
-                mEvtInfo.setArchiveName("Table");
-                i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+                eventInfo.setArchiveName("Table");
+                i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);
 
                 fopAcM_orderChangeEventId(this, mEventID, 1, -1);
             }
         } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
-                   mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+                   eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
                    i_dComIfGp_getEventManager().endCheck(mEventID))
         {
             mEventID = -1;
@@ -169,8 +169,8 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
 
 /* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 int daObjTable_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
@@ -178,7 +178,7 @@ int daObjTable_c::Draw() {
 
     cXyz v(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     mShadowKey =
-        dComIfGd_setRealShadow(mShadowKey, 1, mpModel, &v, 500.0f, current.pos.y, &mTevStr);
+        dComIfGd_setRealShadow(mShadowKey, 1, mpModel, &v, 500.0f, current.pos.y, &tevStr);
 
     return 1;
 }
