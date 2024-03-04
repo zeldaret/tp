@@ -1042,7 +1042,7 @@ COMPILER_STRIP_GATE(0x8066EE58, &lit_4138);
 #ifdef NONMATCHING
 // matches with literals
 static void area_check(do_class* i_this) {
-    cXyz pos_delta = i_this->orig.pos - i_this->current.pos;
+    cXyz pos_delta = i_this->home.pos - i_this->current.pos;
 
     if (i_this->field_0x5b6 != 255) {
         if ((i_this->field_0x5b6 * FLOAT_LABEL(lit_3772) * FLOAT_LABEL(lit_3665)) > pos_delta.abs())
@@ -1294,7 +1294,7 @@ static void do_walk(do_class* i_this) {
 
     switch (i_this->mStayStatus + 1) {
     case 12: {
-        i_this->field_0x5b8 = i_this->orig.pos;
+        i_this->field_0x5b8 = i_this->home.pos;
         i_this->speedF >= l_HIO.mRunSpeed ? i_this->field_0x5e8 = 1.7 : i_this->field_0x5e8 = 4.0;
 
         i_this->field_0x5ec = 1.7;
@@ -1331,7 +1331,7 @@ static void do_walk(do_class* i_this) {
             local_5c.z = cM_rndF(100.0f * i_this->field_0x5b6);
             MtxPosition(&local_5c, &i_this->field_0x5b8);
 
-            i_this->field_0x5b8 += i_this->orig.pos;
+            i_this->field_0x5b8 += i_this->home.pos;
 
             if (dansa_check(i_this, i_this->field_0x5b8, 0.0) == 0) {
                 local_5c = i_this->field_0x5b8 - i_this->current.pos;

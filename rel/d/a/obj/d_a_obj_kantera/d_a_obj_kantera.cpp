@@ -523,10 +523,10 @@ int daItemKantera_c::create() {
     fopAcM_SetupActor(this, daItemKantera_c);
 
     if (field_0x937 == 0) {
-        field_0x938 = orig.angle.x;
-        field_0x93a = orig.angle.z;
-        orig.angle.z = 0;
-        orig.angle.x = 0;
+        field_0x938 = home.angle.x;
+        field_0x93a = home.angle.z;
+        home.angle.z = 0;
+        home.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
         shape_angle.z = 0;

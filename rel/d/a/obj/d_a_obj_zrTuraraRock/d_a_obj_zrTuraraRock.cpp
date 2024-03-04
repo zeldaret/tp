@@ -85,7 +85,7 @@ cPhs__Step daZrTuraRc_c::create() {
             return cPhs_ERROR_e;
         }
         mAcchCir.SetWall(130.0f, 65.0f);
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
         mAcch.SetWaterCheckOffset(10000.0f);
         mCcStatus.Init(0xff, 0xff, this);
         mCcSph.Set(mCcDSph);

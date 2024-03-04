@@ -83,11 +83,11 @@ int daTagMist_c::create() {
     if (!mInitParams) {
         mInitParams = true;
 
-        field_0x5a2 = orig.angle.x;
-        field_0x5a4 = orig.angle.z;
+        field_0x5a2 = home.angle.x;
+        field_0x5a4 = home.angle.z;
 
-        orig.angle.z = 0;
-        orig.angle.x = 0;
+        home.angle.z = 0;
+        home.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
         shape_angle.z = 0;
@@ -109,7 +109,7 @@ int daTagMist_c::execute() {
 
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
     cXyz player_dist(player_p->current.pos);
-    player_dist -= orig.pos;
+    player_dist -= home.pos;
 
     mDoMtx_stack_c::YrotS(-current.angle.y);
     mDoMtx_stack_c::multVec(&player_dist, &player_dist);

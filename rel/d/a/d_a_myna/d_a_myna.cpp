@@ -1591,11 +1591,11 @@ asm void daMyna_c::attack_wait_init() {
 // Matches with literals
 #ifdef NONMATCHING
 void daMyna_c::attack_wait_move() {
-    if (current.angle.y != orig.angle.y) {
-        cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 32767, 1500);
-        cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 32767, 1500);
-        if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
-            current.angle = orig.angle;
+    if (current.angle.y != home.angle.y) {
+        cLib_addCalcAngleS(&current.angle.y, home.angle.y, 4, 32767, 1500);
+        cLib_addCalcAngleS(&current.angle.x, home.angle.x, 4, 32767, 1500);
+        if (abs(s16(current.angle.y - home.angle.y)) < 128) {
+            current.angle = home.angle;
         }
     }
     if (!daPy_py_c::i_checkNowWolf() && daMyna_evtTagActor0 != NULL) {
@@ -2272,7 +2272,7 @@ asm void daMyna_c::turn_on_end1_init() {
 // Matches when l_HOSTIO is the correct type
 #ifdef NONMATCHING
 void daMyna_c::turn_on_end1_move() {
-    cXyz local_18 = orig.pos - current.pos;
+    cXyz local_18 = home.pos - current.pos;
     s16 sVar2 = cM_atan2s(local_18.x, local_18.z);
     cLib_addCalcAngleS(&current.angle.y, sVar2, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
                        l_HOSTIO.field_0x2A);
@@ -2318,7 +2318,7 @@ asm void daMyna_c::turn_on_end2_init() {
 void daMyna_c::turn_on_end2_move() {
     cXyz stack_24;
     cXyz local_30;
-    cXyz local_3c = orig.pos - current.pos;
+    cXyz local_3c = home.pos - current.pos;
 
     s16 sVar2 = cM_atan2s(local_3c.x, local_3c.z);
     f32 fVar1 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
@@ -2330,10 +2330,10 @@ void daMyna_c::turn_on_end2_move() {
     cLib_offsetPos(&stack_24, &current.pos, sVar2, &local_30);
     current.pos = stack_24;
 
-    cXyz stack_48 = orig.pos - current.pos;
+    cXyz stack_48 = home.pos - current.pos;
 
     if (stack_48.abs() < l_HOSTIO.field_0x20) {
-        current.pos.set(orig.pos);
+        current.pos.set(home.pos);
         field_0x92C = 15;
     }
 }
@@ -2357,11 +2357,11 @@ void daMyna_c::turn_on_end3_init() {
 // Matches when l_HOSTIO is the correct type
 #ifdef NONMATCHING
 void daMyna_c::turn_on_end3_move() {
-    cLib_addCalcAngleS(&current.angle.y, orig.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
+    cLib_addCalcAngleS(&current.angle.y, home.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
                        l_HOSTIO.field_0x2A);
 
-    if (abs(current.angle.y - orig.angle.y) <= 16) {
-        current.angle.y = orig.angle.y;
+    if (abs(current.angle.y - home.angle.y) <= 16) {
+        current.angle.y = home.angle.y;
         field_0x92C = field_0x92D;
     }
 }
@@ -2414,11 +2414,11 @@ void daMyna_c::attack_wait2_move() {
     if (daPy_py_c::i_checkNowWolf()) {
         field_0x92C = 7;
     } else {
-        if (current.angle.y != orig.angle.y) {
-            cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 0x7FFF, 0x5DC);
-            cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 0x7FFF, 0x5DC);
-            if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
-                current.angle = orig.angle;
+        if (current.angle.y != home.angle.y) {
+            cLib_addCalcAngleS(&current.angle.y, home.angle.y, 4, 0x7FFF, 0x5DC);
+            cLib_addCalcAngleS(&current.angle.x, home.angle.x, 4, 0x7FFF, 0x5DC);
+            if (abs(s16(current.angle.y - home.angle.y)) < 128) {
+                current.angle = home.angle;
             }
         }
 
@@ -2431,7 +2431,7 @@ void daMyna_c::attack_wait2_move() {
                 }
             } else {
                 if (field_0x939 == 1) {
-                    current.angle = orig.angle;
+                    current.angle = home.angle;
                     eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                     if (eventInfo.checkCommandTalk()) {
@@ -2708,10 +2708,10 @@ bool daMyna_c::fly_return_move() {
 
         cLib_addCalcAngleS(&current.angle.y, sVar2, 4, 0x7FFF, 0x5DC);
         cLib_addCalcAngleS(&current.angle.x, sVar1, 4, 0x7FFF, 0x5DC);
-        cLib_addCalcPos2(&current.pos, orig.pos, 0.001f, 100.0f);
+        cLib_addCalcPos2(&current.pos, home.pos, 0.001f, 100.0f);
 
     } else {
-        cXyz stack_48 = orig.pos;
+        cXyz stack_48 = home.pos;
         cXyz local_30 = stack_48 - current.pos;
         f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
         s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
@@ -2723,7 +2723,7 @@ bool daMyna_c::fly_return_move() {
 
         cXyz local_44 = stack_48 - current.pos;
         if (local_44.abs() < 3.0f) {
-            current.pos.set(orig.pos);
+            current.pos.set(home.pos);
             return true;
         }
     }
@@ -3307,7 +3307,7 @@ int daMyna_c::getItemType(void* param_0) {
 
 /* 80949C0C-80949C44 00408C 0038+00 3/3 0/0 0/0 .text            getFlowNodeNum__8daMyna_cFv */
 u16 daMyna_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -3494,10 +3494,10 @@ void daMyna_c::playDefaultWaitAnime() {
         cXyz stack_70;
 
         local_58.x = daMyna_LightActor->current.pos.x;
-        local_58.y = orig.pos.y;
+        local_58.y = home.pos.y;
         local_58.z = daMyna_LightActor->current.pos.z;
 
-        cXyz stack_7c = local_58 - orig.pos;
+        cXyz stack_7c = local_58 - home.pos;
 
         s16 sVar42 = cM_atan2s(stack_7c.x, stack_7c.z);
         f32 fVar7 = stack_7c.abs();
@@ -3510,7 +3510,7 @@ void daMyna_c::playDefaultWaitAnime() {
         cLib_offsetPos(&stack_70, &current.pos, sVar42, &local_64);
         current.pos = stack_70;
 
-        cXyz stack_88 = current.pos - orig.pos;
+        cXyz stack_88 = current.pos - home.pos;
         if (fVar7 > field_0x910 * stack_88.abs()) {
             setAnimeType(1, 6.0f);
         }
@@ -3518,7 +3518,7 @@ void daMyna_c::playDefaultWaitAnime() {
     case 5:
         cXyz local_94;
         cXyz stack_a0;
-        cXyz local_ac = orig.pos - current.pos;
+        cXyz local_ac = home.pos - current.pos;
 
         s16 sVar4 = cM_atan2s(local_ac.x, local_ac.z);
         f32 fVar2 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
@@ -3530,10 +3530,10 @@ void daMyna_c::playDefaultWaitAnime() {
         cLib_offsetPos(&stack_a0, &current.pos, sVar4, &local_94);
         current.pos = stack_a0;
 
-        cXyz stack_b8 = orig.pos - current.pos;
+        cXyz stack_b8 = home.pos - current.pos;
 
         if (stack_b8.abs() < l_HOSTIO.field_0x20) {
-            current.pos.set(orig.pos);
+            current.pos.set(home.pos);
             setAnimeType(1, 6.0f);
         }
         break;
@@ -3583,7 +3583,7 @@ void daMyna_c::setDefaultWaitAnime(u8 param_0) {
                         setAnimeType(3, 0.0f);
                         break;
                     default:
-                        cXyz stack_24 = orig.pos - current.pos;
+                        cXyz stack_24 = home.pos - current.pos;
                         if (stack_24.abs() < l_HOSTIO.field_0x20) {
                             field_0x910 = cM_rnd() * 0.25f + 0.25f;
                             setAnimeType(6, 0.0f);

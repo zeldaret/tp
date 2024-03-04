@@ -387,9 +387,9 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
     case 0:
         if (npc_tr->field_0x5dc[0] == 0) {
             for (int i = 0; i < 100; i++) {
-                npc_tr->field_0x5c4.x = npc_tr->orig.pos.x + cM_rndFX(1000.0f);
-                npc_tr->field_0x5c4.y = npc_tr->orig.pos.y + cM_rndFX(200.0f);
-                npc_tr->field_0x5c4.z = npc_tr->orig.pos.z + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.x = npc_tr->home.pos.x + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.y = npc_tr->home.pos.y + cM_rndFX(200.0f);
+                npc_tr->field_0x5c4.z = npc_tr->home.pos.z + cM_rndFX(1000.0f);
 
                 cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
                 distance.y = 0.0f;

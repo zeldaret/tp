@@ -2367,7 +2367,7 @@ void daNpcT_c::setPos(cXyz i_pos) {
     i_pos.y = dComIfG_Bgsp().GroundCross(&field_0x930);
 
     current.pos = i_pos;
-    next.pos = current.pos;
+    old.pos = current.pos;
 }
 
 /* 8014A99C-8014AA18 1452DC 007C+00 0/0 0/0 29/29 .text            setAngle__8daNpcT_cF5csXyz */
@@ -2376,7 +2376,7 @@ void daNpcT_c::setAngle(csXyz i_angle) {
     shape_angle = current.angle;
     field_0xd78 = current.angle;
     field_0xd7e = field_0xd78;
-    next.angle = current.angle;
+    old.angle = current.angle;
 }
 
 /* 8014AA18-8014AA40 145358 0028+00 0/0 0/0 138/138 .text            setAngle__8daNpcT_cFs */
@@ -2385,7 +2385,7 @@ void daNpcT_c::setAngle(s16 i_angle) {
     shape_angle.y = current.angle.y;
     field_0xd78.y = current.angle.y;
     field_0xd7e.y = field_0xd78.y;
-    next.angle.y = current.angle.y;
+    old.angle.y = current.angle.y;
 }
 
 /* 8014AA40-8014AAD0 145380 0090+00 0/0 0/0 33/33 .text hitChk__8daNpcT_cFP12dCcD_GObjInfUl */

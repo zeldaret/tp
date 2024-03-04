@@ -1382,10 +1382,10 @@ void daNpcAsh_c::reset() {
     mLookMode = -1;
     field_0xf5c = 0;
     mGravity = daNpcAsh_Param_c::m.mGravity;
-    current.pos = orig.pos;
-    next.pos = current.pos;
-    current.angle.set(0, orig.angle.y, 0);
-    next.angle = current.angle;
+    current.pos = home.pos;
+    old.pos = current.pos;
+    current.angle.set(0, home.angle.y, 0);
+    old.angle = current.angle;
     shape_angle = current.angle;
     field_0x8f0 = current.angle;
     field_0x8f6 = field_0x8f0;
@@ -1816,7 +1816,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
             setExpression(7, -1.0f);
             if (!isMap()) {
                 setMotion(0, -1.0f, false);
-            } else if (field_0x8f0.y == orig.angle.y) {
+            } else if (field_0x8f0.y == home.angle.y) {
                 setMotion(1, -1.0f, false);
             }
             field_0x96c = 0;
@@ -1844,8 +1844,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     } else {
                         setLookMode(0, NULL);
                     }
-                    if (orig.angle.y != field_0x8f0.y) {
-                        if (step(orig.angle.y, true)) {
+                    if (home.angle.y != field_0x8f0.y) {
+                        if (step(home.angle.y, true)) {
                             setExpression(7, -1.0f);
                             if (!isMap()) {
                                 setMotion(0, -1.0f, false);
@@ -1865,8 +1865,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     }
                 }
             }
-            if (field_0x8f0.y != orig.angle.y) {
-                if (step(orig.angle.y, true)) {
+            if (field_0x8f0.y != home.angle.y) {
+                if (step(home.angle.y, true)) {
                     if (!isMap()) {
                         setMotion(0, -1.0f, false);
                     } else {
@@ -1970,7 +1970,7 @@ bool daNpcAsh_c::wait_type1(void* param_0) {
                 case 0:
                     if (daNpcF_chkTmpBit(0x76)) {
                         current.pos.set(-4300.0f, 0.0f, 8627.657f);
-                        next.pos = current.pos;
+                        old.pos = current.pos;
                         setAngle(-0x6000);
                         field_0xf54++;
                     }

@@ -788,7 +788,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     u32 flags = demo_actor->checkEnable(param_1);
     if (flags & 2) {
         param_0->current.pos = demo_actor->getTrans();
-        param_0->next.pos = param_0->current.pos;
+        param_0->old.pos = param_0->current.pos;
     }
 
     if (flags & 8) {

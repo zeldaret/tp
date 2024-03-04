@@ -13740,7 +13740,7 @@ void daAlink_c::decSwordBlur() {
         m_swordBlur.field_0x14 = 0;
     } else {
         m_swordBlur.field_0x14 -= 10;
-        m_swordBlur.traceBlur(&current.pos, &next.pos, shape_angle.y - field_0x2fe6);
+        m_swordBlur.traceBlur(&current.pos, &old.pos, shape_angle.y - field_0x2fe6);
     }
 }
 
@@ -15062,7 +15062,7 @@ void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, s16 i_angle, int param_2
     if (checkEventRun() || param_2 != 0 || mSpecialMode != 0) {
         if (p_pos != NULL) {
             current.pos = *p_pos;
-            next.pos = current.pos;
+            old.pos = current.pos;
             field_0x3798 = current.pos;
             i_onEndResetFlg0(ERFLG0_UNK_800000);
             i_onEndResetFlg2(ERFLG2_UNK_100);
@@ -15105,7 +15105,7 @@ void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, csXyz const* p_angle) {
     if (checkEventRun() || mSpecialMode != 0) {
         if (p_pos != NULL) {
             current.pos = *p_pos;
-            next.pos = current.pos;
+            old.pos = current.pos;
             field_0x3798 = current.pos;
             i_onEndResetFlg0(ERFLG0_UNK_800000);
             i_onEndResetFlg2(ERFLG2_UNK_100);
@@ -15128,7 +15128,7 @@ void daAlink_c::setPlayerPosAndAngle(Mtx param_0) {
         current.pos.x = param_0[0][3];
         current.pos.y = param_0[1][3];
         current.pos.z = param_0[2][3];
-        next.pos = current.pos;
+        old.pos = current.pos;
         field_0x3798 = current.pos;
         i_onEndResetFlg0(ERFLG0_UNK_800000);
         i_onEndResetFlg2(ERFLG2_UNK_100);

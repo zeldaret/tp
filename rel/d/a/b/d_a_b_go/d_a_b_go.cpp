@@ -712,7 +712,7 @@ static int daB_GO_Create(fopAc_ac_c* i_actor) {
         b_go->field_0x562 = 1000;
         b_go->field_0x560 = 1000;
 
-        b_go->mAcch.Set(&b_go->current.pos, &b_go->next.pos, b_go, 1, &b_go->mAcchCir,
+        b_go->mAcch.Set(&b_go->current.pos, &b_go->old.pos, b_go, 1, &b_go->mAcchCir,
                         &b_go->speed, NULL, NULL);
         b_go->mAcchCir.SetWall(100.0f, 300.0f);
 

@@ -1450,14 +1450,14 @@ void daObjStone_c::createItem() {
     int item_no = getItemNo();
     int item_bit = getItemBit();
 
-    csXyz angle(0, orig.angle.y, 0);
+    csXyz angle(0, home.angle.y, 0);
     u8 item_type = getItemType();
 
     if (item_type == 0) {
-        cXyz pos(orig.pos);
+        cXyz pos(home.pos);
         fopAcM_createItem(&pos, item_no, item_bit, fopAcM_GetHomeRoomNo(this), &angle, 0, 8);
     } else {
-        fopAcM_createItemFromTable(&orig.pos, item_no, item_bit, fopAcM_GetHomeRoomNo(this), &angle,
+        fopAcM_createItemFromTable(&home.pos, item_no, item_bit, fopAcM_GetHomeRoomNo(this), &angle,
                                    8, 0, 0, 0, false);
     }
 }

@@ -1007,7 +1007,7 @@ int daBg_c::create() {
     if (mHeap == NULL) {
         fopAcM_SetupActor(this, daBg_c);
 
-        orig.roomNo = roomNo;
+        home.roomNo = roomNo;
         current.roomNo = roomNo;
 
         JKRExpHeap* heap = dStage_roomControl_c::getMemoryBlock(roomNo);

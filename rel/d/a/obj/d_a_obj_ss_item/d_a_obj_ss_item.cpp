@@ -217,7 +217,7 @@ u8 daObj_SSItem_c::getTypeFromParam() {
 /* 80CE789C-80CE78D4 000CFC 0038+00 1/1 0/0 0/0 .text            getFlowNodeNum__14daObj_SSItem_cFv
  */
 u16 daObj_SSItem_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -240,7 +240,7 @@ u16 daObj_SSItem_c::getValue() {
 
 /* 80CE78E0-80CE7950 000D40 0070+00 1/1 0/0 0/0 .text            restart__14daObj_SSItem_cFv */
 void daObj_SSItem_c::restart() {
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     setProcess(&wait);
 }

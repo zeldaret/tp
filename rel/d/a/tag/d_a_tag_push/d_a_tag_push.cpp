@@ -70,7 +70,7 @@ int daTag_Push_c::Delete() {
 
 /* 804904DC-804906BC 00029C 01E0+00 1/1 0/0 0/0 .text            Execute__12daTag_Push_cFv */
 int daTag_Push_c::Execute() {
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         fopAc_ac_c* actor = mActorMngr.getActorP();
         if (isDelete()) {
             if (actor != NULL && fopAcM_GetName(actor) != PROC_NPC_JAGAR &&

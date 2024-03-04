@@ -668,7 +668,7 @@ void daE_PH_c::StopAction() {
         mSound.startCreatureSoundLevel(Z2SE_EN_PH_PROPELLER, field_0x612 + 0x500, -1);
 
         if (field_0x5ae == 0) {
-            cLib_addCalc2(&current.pos.y, orig.pos.y, 0.1f, nREG_F(1) + 30.0f);
+            cLib_addCalc2(&current.pos.y, home.pos.y, 0.1f, nREG_F(1) + 30.0f);
         }
 
         if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {

@@ -39,7 +39,7 @@ bool dShopItemCtrl_c::isHomePos(int i_itemIdx) {
         daShopItem_c* item = (daShopItem_c*)fopAcM_SearchByID(mItemIndex[i_itemIdx]);
         if (item != NULL) {
             cXyz* item_pos = item->getPosP();
-            cXyz item_home = item->orig.pos;
+            cXyz item_home = item->home.pos;
 
             if (item_pos->x == item_home.x && item_pos->y == item_home.y &&
                 item_pos->z == item_home.z)
@@ -64,7 +64,7 @@ void dShopItemCtrl_c::setRotateAnime(int i_itemIdx) {
                 if (i == i_itemIdx - 1) {
                     item_rot->y += 0x200;
                 } else {
-                    cLib_addCalcAngleS(&item_rot->y, item->orig.angle.y, 4, 0x800, 0x80);
+                    cLib_addCalcAngleS(&item_rot->y, item->home.angle.y, 4, 0x800, 0x80);
                 }
             }
         }
@@ -84,7 +84,7 @@ void dShopItemCtrl_c::setZoomAnime(int param_1, cXyz* param_2, s16 param_3, bool
         }
 
         cXyz* pos_p = shopItem->getPosP();
-        cXyz target_pos = shopItem->orig.pos;
+        cXyz target_pos = shopItem->home.pos;
         cXyz cStack_50 = *param_2 - target_pos;
         s16 x_angle = shopItem->getAngleX();
         s16 y_angle = shopItem->getAngleY();
@@ -93,13 +93,13 @@ void dShopItemCtrl_c::setZoomAnime(int param_1, cXyz* param_2, s16 param_3, bool
             cLib_addCalcPos2(pos_p, *param_2, 0.5f, 0.05f * cStack_50.abs());
             cLib_addCalcAngleS(&x_angle, param_3, 4, 0x800, 0x80);
             shopItem->setAngleX(x_angle);
-            cLib_addCalcAngleS(&y_angle, shopItem->orig.angle.y, 4, 0x800, 0x80);
+            cLib_addCalcAngleS(&y_angle, shopItem->home.angle.y, 4, 0x800, 0x80);
             shopItem->setAngleY(y_angle);
         } else {
             cLib_addCalcPos2(pos_p, target_pos, 0.5f, 0.1f * cStack_50.abs());
             cXyz cStack_5c = *pos_p - target_pos;
             if (cStack_5c.abs() < 0.01f) {
-                pos_p->set(shopItem->orig.pos);
+                pos_p->set(shopItem->home.pos);
             }
 
             cLib_addCalcAngleS(&x_angle, 0, 4, 0x800, 0x80);

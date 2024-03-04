@@ -36,7 +36,7 @@ int daTag_ShopCamera_c::Draw() {
 void daTag_ShopCamera_c::initialize() {
     fopAcM_setCullSizeBox(this,-30.0f,-15.0f,-30.0f,30.0f,45.0f,30.0f);
     attention_info.flags = 0;
-    current.angle.set(0,orig.angle.y,0);
+    current.angle.set(0,home.angle.y,0);
     shape_angle = current.angle;
 }
 

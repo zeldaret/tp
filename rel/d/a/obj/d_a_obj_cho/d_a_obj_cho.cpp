@@ -135,7 +135,7 @@ void daObjCHO_c::SpeedSet() {
 void daObjCHO_c::WallCheck() {
     dBgS_LinChk lin_chk;
     lin_chk.SetObj();
-    lin_chk.Set(&next.pos, &current.pos, NULL);
+    lin_chk.Set(&old.pos, &current.pos, NULL);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
         current.pos = lin_chk.i_GetCross();
         mTargetAngleY += 0x100;
@@ -174,7 +174,7 @@ void daObjCHO_c::WaitAction() {
             mTimers[0] = 200;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 7);
             mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
-            orig.pos = current.pos;
+            home.pos = current.pos;
         }
         mTargetAngleY = cLib_targetAngleY(&current.pos, &target);
         cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 0xc, 0x1000);
@@ -224,7 +224,7 @@ void daObjCHO_c::MoveAction() {
     }
 
     if (mTimers[0] == 0) {
-        cXyz vec = orig.pos - current.pos;
+        cXyz vec = home.pos - current.pos;
         vec.x += cM_rndFX(100.0f);
         vec.z += cM_rndFX(100.0f);
         mTargetAngleY = cM_atan2s(vec.x, vec.z);
@@ -361,8 +361,8 @@ void daObjCHO_c::BoomChk() {
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                next.pos = lin_chk.i_GetCross();
-                current.pos = next.pos;
+                old.pos = lin_chk.i_GetCross();
+                current.pos = old.pos;
                 mAction = ACT_MOVE;
                 mSubAction = 0;
                 speedF = 5.0f;
@@ -371,9 +371,9 @@ void daObjCHO_c::BoomChk() {
                 mTimers[2] = 100;
                 J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
                 mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
-                orig.pos = current.pos;
+                home.pos = current.pos;
             } else {
-                orig.pos = current.pos;
+                home.pos = current.pos;
                 mAction = ACT_MOVE;
                 mSubAction = 0;
                 mBoomerangHit = false;
@@ -382,7 +382,7 @@ void daObjCHO_c::BoomChk() {
                 mTimers[2] = 100;
                 J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
                 mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
-                current.pos.y = next.pos.y = player->current.pos.y + 100.0f;
+                current.pos.y = old.pos.y = player->current.pos.y + 100.0f;
             }
         }
     }
@@ -414,7 +414,7 @@ int daObjCHO_c::Execute() {
             if (!fopAcM_checkHookCarryNow(this)) {
                 Action();
             } else {
-                orig.pos = current.pos;
+                home.pos = current.pos;
             }
             mParticleKey2 = dComIfGp_particle_set(mParticleKey2, 0xa1c, &current.pos, &tevStr,
                                                   &shape_angle, NULL, 0xff, NULL, -1,
@@ -599,7 +599,7 @@ cPhs__Step daObjCHO_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
         gravity = 0.0f;
         if (mLocation == LOC_OUTSIDE) {
             InitCcSph();

@@ -48,7 +48,7 @@ s32 daTagChgRestart_c::execute() {
 
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz pos = player->current.pos;
-    pos -= orig.pos;
+    pos -= home.pos;
 
     mDoMtx_stack_c::YrotS(-current.angle.y);
     mDoMtx_stack_c::multVec(&pos, &pos);
@@ -56,8 +56,8 @@ s32 daTagChgRestart_c::execute() {
     if (mVertices[0].x < pos.x && mVertices[0].z < pos.z && mVertices[2].x > pos.x &&
         mVertices[2].z > pos.z)
     {
-        cXyz restart_pos = orig.pos;
-        s16 restart_angle = orig.angle.y;
+        cXyz restart_pos = home.pos;
+        s16 restart_angle = home.angle.y;
 
         u8 playerNo = daTagChgRestart_prm::getPlayerNo(this);
         if (playerNo != 0xFF) {

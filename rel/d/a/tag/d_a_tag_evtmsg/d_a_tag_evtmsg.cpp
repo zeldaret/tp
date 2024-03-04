@@ -50,8 +50,8 @@ int daTag_EvtMsg_c::create() {
     scale.y *= 100.0f;
     scale.z = scale.x;
 
-    if (orig.angle.z != 0xFFFF) {
-        mFlowID = orig.angle.z;
+    if (home.angle.z != 0xFFFF) {
+        mFlowID = home.angle.z;
     } else {
         mFlowID = -1;
     }
@@ -71,7 +71,7 @@ int daTag_EvtMsg_c::Delete() {
 int daTag_EvtMsg_c::Execute() {
     dEvent_manager_c& evt_mng = i_dComIfGp_getEventManager();
 
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         if (i_dComIfGp_event_runCheck() != 0) {
             int staff_id;
             BOOL reset = false;
@@ -163,12 +163,12 @@ u32 daTag_EvtMsg_c::getOffEvtBit() {
 
 /* 8048D35C-8048D368 00049C 000C+00 1/1 0/0 0/0 .text            getOnSwBit__14daTag_EvtMsg_cFv */
 u8 daTag_EvtMsg_c::getOnSwBit() {
-    return orig.angle.x & 0xFF;
+    return home.angle.x & 0xFF;
 }
 
 /* 8048D368-8048D374 0004A8 000C+00 2/2 0/0 0/0 .text            getOffSwBit__14daTag_EvtMsg_cFv */
 u8 daTag_EvtMsg_c::getOffSwBit() {
-    return (orig.angle.x >> 8) & 0xFF;
+    return (home.angle.x >> 8) & 0xFF;
 }
 
 /* 8048D374-8048D384 0004B4 0010+00 1/1 0/0 0/0 .text            getProcType__14daTag_EvtMsg_cFv */

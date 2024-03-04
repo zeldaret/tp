@@ -2565,7 +2565,7 @@ int daAlink_c::execute() {
                 current.angle.y = angle_y - (s16)(current.angle.y - angle_y);
             }
 
-            dComIfG_Bgsp().MoveBgCrrPos(mMagneLineChk, true, &next.pos, NULL, NULL, false, false);
+            dComIfG_Bgsp().MoveBgCrrPos(mMagneLineChk, true, &old.pos, NULL, NULL, false, false);
 
             if (getMoveBGActorName(mMagneLineChk, 0) == PROC_Obj_MagneArm) {
                 field_0x34c8.y += current.pos.y - pos_y;
@@ -2588,11 +2588,11 @@ int daAlink_c::execute() {
 
         dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &current.pos, &current.angle,
                                     &shape_angle, false, false);
-        dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &next.pos, NULL, NULL, false, false);
+        dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, uvar23, &old.pos, NULL, NULL, false, false);
         field_0x34c8.y += (current.pos.y - pos_y) * 0.1f;
     }
 
-    field_0x3798 = next.pos;
+    field_0x3798 = old.pos;
     field_0x2fe6 = shape_angle.y;
     mPrevStickAngle = mStickAngle;
     field_0x33a4 = field_0x33ac;
@@ -3471,7 +3471,7 @@ int daAlink_c::execute() {
     mEndResetFlg1 = 0;
     mEndResetFlg2 = 0;
 
-    field_0x3540 = next.pos;
+    field_0x3540 = old.pos;
     field_0x3108 = shape_angle.y;
 
     if (checkHorseRide() && checkBoarSingleBattle()) {

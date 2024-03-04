@@ -199,8 +199,8 @@ public:
     /* 0x49C */ u32 actor_status;
     /* 0x4A0 */ u32 actor_condition;
     /* 0x4A4 */ u32 parentActorID;
-    /* 0x4A8 */ actor_place orig;
-    /* 0x4BC */ actor_place next;
+    /* 0x4A8 */ actor_place home;
+    /* 0x4BC */ actor_place old;
     /* 0x4D0 */ actor_place current;
     /* 0x4E4 */ csXyz shape_angle;
     /* 0x4EC */ cXyz scale;

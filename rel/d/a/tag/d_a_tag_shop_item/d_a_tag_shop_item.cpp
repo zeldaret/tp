@@ -151,20 +151,20 @@ u8 daTag_ShopItem_c::getGroupID() {
 /* 80D61044-80D61050 000544 000C+00 3/3 0/0 1/1 .text            getSwitchBit1__16daTag_ShopItem_cFv
  */
 u8 daTag_ShopItem_c::getSwitchBit1() {
-    return orig.angle.z & 0xFF;
+    return home.angle.z & 0xFF;
 }
 
 /* 80D61050-80D6105C 000550 000C+00 3/3 0/0 0/0 .text            getSwitchBit2__16daTag_ShopItem_cFv
  */
 u8 daTag_ShopItem_c::getSwitchBit2() {
-    return orig.angle.z >> 8 & 0xFF;
+    return home.angle.z >> 8 & 0xFF;
 }
 
 /* 80D6105C-80D610E0 00055C 0084+00 1/1 0/0 0/0 .text            initialize__16daTag_ShopItem_cFv */
 void daTag_ShopItem_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     attention_info.flags = 0;
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     mProcessID = -1;
 }

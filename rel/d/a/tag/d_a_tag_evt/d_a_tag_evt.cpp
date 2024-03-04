@@ -136,11 +136,11 @@ int daTag_Evt_c::getParam() {
     }
 
     field_0x5E4 = fopAcM_GetParam(this) >> 0x1E;
-    field_0x5DD = orig.angle.x;
-    field_0x5DE = (u16)orig.angle.x >> 8;
-    field_0x5D4 = orig.angle.z & 0xFF;
-    if ((orig.angle.z & 0xFF00) != 0xFF00) {
-        field_0x5D0 = ((orig.angle.z & 0xFF00) >> 8) * 0x1E;
+    field_0x5DD = home.angle.x;
+    field_0x5DE = (u16)home.angle.x >> 8;
+    field_0x5D4 = home.angle.z & 0xFF;
+    if ((home.angle.z & 0xFF00) != 0xFF00) {
+        field_0x5D0 = ((home.angle.z & 0xFF00) >> 8) * 0x1E;
     } else {
         field_0x5D0 = 0;
     }
@@ -153,8 +153,8 @@ int daTag_Evt_c::getParam() {
         scale.y *= 10.0f;
         scale.z *= 10.0f;
     }
-    orig.angle.x = 0;
-    orig.angle.z = 0;
+    home.angle.x = 0;
+    home.angle.z = 0;
     return 1;
 }
 

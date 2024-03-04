@@ -121,8 +121,8 @@ void daObjChandelier_c::exeModeStartSwg() {
         mMode = MODE_DOWN;
         field_0x5fc = 0;
         mTimer = 0;
-        shape_angle.y = orig.angle.y;
-        shape_angle.z = orig.angle.z;
+        shape_angle.y = home.angle.y;
+        shape_angle.z = home.angle.z;
         current.pos = field_0x5a8;
     } else {
         mTimer++;
@@ -228,8 +228,8 @@ void daObjChandelier_c::moveSwing(f32 param_0, f32 param_1, f32 param_2, f32 par
         }
     }
     field_0x606 += field_0x608 * 0x200;
-    current.pos.x = orig.pos.x + cM_ssin(field_0x606) * 3.0f;
-    current.pos.z = orig.pos.z + cM_scos(field_0x606) * 3.0f;
+    current.pos.x = home.pos.x + cM_ssin(field_0x606) * 3.0f;
+    current.pos.z = home.pos.z + cM_scos(field_0x606) * 3.0f;
     u32 u1 = field_0x5f8 * field_0x5ec * 127.0f * 0.1f;
     if (u1 > 0x7f) {
         u1 = 0x7f;
@@ -260,8 +260,8 @@ void daObjChandelier_c::moveSwingFall() {
 void daObjChandelier_c::hookSwingInitParm() {
     field_0x5ec = 1.2f;
     field_0x5f0 = 0.7f;
-    shape_angle.y = orig.angle.y;
-    shape_angle.z = orig.angle.z;
+    shape_angle.y = home.angle.y;
+    shape_angle.z = home.angle.z;
     current.pos = field_0x5a8;
     field_0x604 = 30;
     field_0x5fc = 0;

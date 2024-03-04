@@ -141,7 +141,7 @@ int daTagAtkItem_c::Create() {
     mCyl.SetR(scale.x * 50.0f);
     mCyl.SetH(scale.y * 100.0f);
 
-    current.pos.y = orig.pos.y - scale.y * 100.0f;
+    current.pos.y = home.pos.y - scale.y * 100.0f;
     return 1;
 }
 
@@ -368,7 +368,7 @@ void daTagAtkItem_c::createItem() {
     for (int i = 0; i < create_num; i++) {
         angle.y += (s16)cM_rndFX(0x7FFF);
 
-        fopAcM_createItemFromTable(&orig.pos, getItemNo(), item_bit, fopAcM_GetHomeRoomNo(this),
+        fopAcM_createItemFromTable(&home.pos, getItemNo(), item_bit, fopAcM_GetHomeRoomNo(this),
                                    &angle, 0, NULL, NULL, NULL, false);
 
         if (item_bit != 0xFF) {

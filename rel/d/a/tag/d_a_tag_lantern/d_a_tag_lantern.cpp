@@ -71,13 +71,13 @@ int daTag_Lantern_c::Draw() {
 void daTag_Lantern_c::initialize() {
     fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
-    if (orig.angle.z != 0xFFFF) {
-        mFlowIndex = orig.angle.z;
+    if (home.angle.z != 0xFFFF) {
+        mFlowIndex = home.angle.z;
     } else {
         mFlowIndex = -1;
     }
 
-    orig.angle.z = 0;
+    home.angle.z = 0;
     field_0x5fc = fopAcM_GetParam(this) & 0xFFF;
 
     scale.x *= 100.0f;

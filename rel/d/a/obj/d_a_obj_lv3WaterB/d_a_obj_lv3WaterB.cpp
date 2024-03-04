@@ -56,11 +56,11 @@ static void action(obj_lv3WaterB_class* i_this) {
         dKy_custom_colset(4, 4, 0.0f);
 
         if (i_this->field_0x586 == 0) {
-            i_this->current.pos.y = (i_this->orig.pos.y - 14450.0f) + 160.0f + 4000.0f;
+            i_this->current.pos.y = (i_this->home.pos.y - 14450.0f) + 160.0f + 4000.0f;
             i_this->field_0x586 = 1;
         }
 
-        cLib_addCalc2(&i_this->current.pos.y, (i_this->orig.pos.y - 14450.0f) + 160.0f, 0.05f,
+        cLib_addCalc2(&i_this->current.pos.y, (i_this->home.pos.y - 14450.0f) + 160.0f, 0.05f,
                       10.0f);
         break;
     }
@@ -192,7 +192,7 @@ static int daObj_Lv3waterB_Create(fopAc_ac_c* i_this) {
         }
 
         if (dComIfGs_isStageBossEnemy()) {
-            a_this->current.pos.y = (a_this->orig.pos.y - 14450.0f) + 160.0f;
+            a_this->current.pos.y = (a_this->home.pos.y - 14450.0f) + 160.0f;
             a_this->mAction = 2;
             a_this->field_0x586 = 1;
             a_this->mpOctHibiModel = NULL;

@@ -114,8 +114,8 @@ int daTbox2_c::Create() {
     mCcCyl2.SetStts(&mCcStts2);
     mCcCyl2.cM3dGCyl::Set(l_cyl_info[mModelType]);
 
-    cXyz start(orig.pos);
-    cXyz end(orig.pos);
+    cXyz start(home.pos);
+    cXyz end(home.pos);
     start.y += 5.0f;
     end.y -= 30.0f;
 
@@ -287,15 +287,15 @@ void daTbox2_c::mode_exec_wait() {
     bool start_exec = false;
     mNoDraw = true;
 
-    cXyz start(orig.pos);
-    cXyz end(orig.pos);
+    cXyz start(home.pos);
+    cXyz end(home.pos);
     start.y += 5.0f;
     end.y -= 30.0f;
 
     if (fopAcM_lc_c::lineCheck(&start, &end, this) && fopAcM_lc_c::checkMoveBG()) {
         start_exec = true;
-        orig.pos = *fopAcM_lc_c::getCrossP();
-        current.pos = orig.pos;
+        home.pos = *fopAcM_lc_c::getCrossP();
+        current.pos = home.pos;
     }
 
     if (start_exec) {

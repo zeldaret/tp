@@ -2692,13 +2692,13 @@ static int daFshop_Execute(fshop_class* param_1) {
         case 0:
             param_1->current.pos = BallStartPos;
             param_1->current.pos.y += 4.0f;
-            param_1->next.pos = param_1->current.pos;
+            param_1->old.pos = param_1->current.pos;
             param_1->field_0x428d = 10;
             break;
         case 1:
             param_1->current.pos = BallStartPos;
             param_1->current.pos.y += 4.0f;
-            param_1->next.pos = param_1->current.pos;
+            param_1->old.pos = param_1->current.pos;
             param_1->speed.zero();
             param_1->field_0x0572++;
             param_1->field_0x428c = 3;

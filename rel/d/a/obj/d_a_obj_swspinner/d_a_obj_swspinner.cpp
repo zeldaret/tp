@@ -48,7 +48,7 @@ void daObjSwSpinner_c::setBaseMtx() {
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
     MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + field_0x5e4, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
 
     mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
@@ -146,7 +146,7 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
                 spinner->offSpinnerTag();
                 field_0x5e8 = NULL;
             }
-            shape_angle.y = orig.angle.y;
+            shape_angle.y = home.angle.y;
             field_0x5ea = NULL;
         }
         if (field_0x5eb == NULL) {

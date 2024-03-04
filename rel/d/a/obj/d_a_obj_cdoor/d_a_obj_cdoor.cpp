@@ -177,14 +177,14 @@ void daObjCdoor_c::execCdoor() {
                 if (chain->getEndFlg()) {
                     mChainID = -1;
                     mEnd = true;
-                    current.pos.y = orig.pos.y + l_moveOffsetY[mType];
+                    current.pos.y = home.pos.y + l_moveOffsetY[mType];
                     if (mCamLock) {
                         dCam_getBody()->ForceLockOff(this);
                         mCamLock = false;
                     }
                     fopAcM_seStartCurrent(this, Z2SE_OBJ_OPEN_CHAIN_SW_DOOR, 0);
                 } else {
-                    current.pos.y = orig.pos.y + l_moveOffsetY[mType] * chain->getMoveDisRate();
+                    current.pos.y = home.pos.y + l_moveOffsetY[mType] * chain->getMoveDisRate();
                     if (chain->checkRideFlg()) {
                         dCam_getBody()->ForceLockOn(this);
                         mCamLock = true;

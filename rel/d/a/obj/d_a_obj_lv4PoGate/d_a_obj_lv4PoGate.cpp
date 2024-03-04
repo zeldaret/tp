@@ -139,7 +139,7 @@ void daLv4PoGate_c::modeWait() {}
 /* 80C600A0-80C60150 0005A0 00B0+00 1/1 0/0 0/0 .text init_modeMoveOpen__13daLv4PoGate_cFv */
 void daLv4PoGate_c::init_modeMoveOpen() {
     cXyz sound_pos(current.pos);
-    sound_pos.y = orig.pos.y;
+    sound_pos.y = home.pos.y;
 
     mDoAud_seStart(Z2SE_OBJ_POU_GATE_OP, &sound_pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setEffect(0);
@@ -158,7 +158,7 @@ void daLv4PoGate_c::modeMoveOpen() {
 /* 80C60200-80C602B0 000700 00B0+00 1/1 0/0 0/0 .text init_modeMoveClose__13daLv4PoGate_cFv */
 void daLv4PoGate_c::init_modeMoveClose() {
     cXyz sound_pos(current.pos);
-    sound_pos.y = orig.pos.y;
+    sound_pos.y = home.pos.y;
 
     mDoAud_seStart(Z2SE_OBJ_POU_GATE_CL, &sound_pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setEffect(1);

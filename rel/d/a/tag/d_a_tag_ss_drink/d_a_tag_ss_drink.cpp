@@ -84,7 +84,7 @@ u8 daTag_SSDrink_c::getSwitchFromParam() {
 /* 80D62F8C-80D62FC8 00024C 003C+00 3/3 0/0 0/0 .text            getFlowNodeNum__15daTag_SSDrink_cFv
  */
 u16 daTag_SSDrink_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -107,7 +107,7 @@ u16 daTag_SSDrink_c::getValue() {
 
 /* 80D62FD4-80D63044 000294 0070+00 1/1 0/0 0/0 .text            restart__15daTag_SSDrink_cFv */
 void daTag_SSDrink_c::restart() {
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     setProcess(&daTag_SSDrink_c::wait);
 }

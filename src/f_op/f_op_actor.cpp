@@ -74,7 +74,7 @@ static int fopAc_Execute(void* i_this) {
                   (!fopAcM_checkStatus(a_this, fopAcStts_NOEXEC_e) || !fopAcM_CheckCondition(a_this, 4)))))
             {
                 fopAcM_OffCondition(a_this, fopAcCnd_NOEXEC_e);
-                a_this->next = a_this->current;
+                a_this->old = a_this->current;
                 ret = fpcMtd_Execute((process_method_class*)a_this->sub_method, a_this);
             } else {
                 a_this->eventInfo.suspendProc(a_this);
@@ -82,7 +82,7 @@ static int fopAc_Execute(void* i_this) {
             }
 
             if (fopAcM_checkStatus(a_this, 0x20) &&
-                a_this->orig.pos.y - a_this->current.pos.y > 5000.0f)
+                a_this->home.pos.y - a_this->current.pos.y > 5000.0f)
             {
                 fopAcM_delete(a_this);
             }
@@ -150,20 +150,20 @@ static int fopAc_Create(void* i_this) {
         fopAcM_prm_class* append = fopAcM_GetAppend(a_this);
         if (append != NULL) {
             fopAcM_SetParam(a_this, append->mParameter);
-            a_this->orig.pos = append->mPos;
-            a_this->orig.angle = append->mAngle;
+            a_this->home.pos = append->mPos;
+            a_this->home.angle = append->mAngle;
             a_this->shape_angle = append->mAngle;
             a_this->parentActorID = append->mParentPId;
             a_this->subtype = append->mSubtype;
             a_this->scale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f,
                               append->mScale[2] * 0.1f);
             a_this->setID = append->mEnemyNo;
-            a_this->orig.roomNo = append->mRoomNo;
+            a_this->home.roomNo = append->mRoomNo;
         }
 
-        a_this->next = a_this->orig;
-        a_this->current = a_this->orig;
-        a_this->eyePos = a_this->orig.pos;
+        a_this->old = a_this->home;
+        a_this->current = a_this->home;
+        a_this->eyePos = a_this->home.pos;
         a_this->maxFallSpeed = -100.0f;
         a_this->attention_info.field_0x0[0] = 1;
         a_this->attention_info.field_0x0[1] = 2;
@@ -174,9 +174,9 @@ static int fopAc_Create(void* i_this) {
         a_this->attention_info.field_0x0[5] = 15;
         a_this->attention_info.field_0x0[6] = 15;
         a_this->attention_info.field_0x0[8] = 51;
-        a_this->attention_info.position = a_this->orig.pos;
+        a_this->attention_info.position = a_this->home.pos;
         a_this->attention_info.field_0xa = 30;
-        dKy_tevstr_init(&a_this->tevStr, a_this->orig.roomNo, -1);
+        dKy_tevstr_init(&a_this->tevStr, a_this->home.roomNo, -1);
 
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo >= 0) {
@@ -184,22 +184,22 @@ static int fopAc_Create(void* i_this) {
         }
 
         dStage_FileList_dt_c* filelist = NULL;
-        if (a_this->orig.roomNo >= 0) {
+        if (a_this->home.roomNo >= 0) {
             filelist =
-                dComIfGp_roomControl_getStatusRoomDt(a_this->orig.roomNo)->mRoomDt.getFileListInfo();
+                dComIfGp_roomControl_getStatusRoomDt(a_this->home.roomNo)->mRoomDt.getFileListInfo();
         }
 
         if (filelist != NULL) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && dComIfGs_isSwitch(sw, a_this->orig.roomNo) &&
+                if (sw != 0xFF && dComIfGs_isSwitch(sw, a_this->home.roomNo) &&
                     profile->mActorType == fopAc_ENEMY_e)
                 {
                     return cPhs_ERROR_e;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && !dComIfGs_isSwitch(sw, a_this->orig.roomNo) &&
+                if (sw != 0xFF && !dComIfGs_isSwitch(sw, a_this->home.roomNo) &&
                     profile->mActorType == fopAc_ENEMY_e)
                 {
                     return cPhs_ERROR_e;

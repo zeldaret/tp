@@ -175,9 +175,9 @@ extern "C" extern u8 data_80C91AD0[4];
 /* 80C90AF8-80C90B50 000078 0058+00 1/0 0/0 0/0 .text            initWait__18daObjMasterSword_cFv */
 void daObjMasterSword_c::initWait() {
     cLib_onBit<u32>(attention_info.flags, 0x10);
-    current.pos = orig.pos;
-    current.angle = orig.angle;
-    shape_angle = orig.angle;
+    current.pos = home.pos;
+    current.angle = home.angle;
+    shape_angle = home.angle;
 }
 
 /* 80C90B50-80C90C50 0000D0 0100+00 1/0 0/0 0/0 .text            executeWait__18daObjMasterSword_cFv

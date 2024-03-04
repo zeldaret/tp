@@ -731,7 +731,7 @@ void daAlink_c::setDemoData() {
                 if (mDemo.getTimer() != 0) {
                     mDemo.decTimer();
 
-                    cXyz tmp_sp = current.pos - orig.pos;
+                    cXyz tmp_sp = current.pos - home.pos;
                     if (tmp_sp.abs2XZ() > 90000.0f) {
                         mDemo.setTimer(0);
                         dComIfGp_evmng_cutEnd(field_0x3184);

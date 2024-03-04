@@ -20,7 +20,7 @@ static int daKytag07_Execute(kytag07_class* i_this) {
     if (i_this->field_0x58c != 99) {
         cLib_addCalc(&i_this->mLightInfluence.mPow,i_this->field_0x588,0.1f,1000.0f,0.001f);
     } else {
-        if (i_this->orig.roomNo != dStage_roomControl_c::getStayNo()) {
+        if (i_this->home.roomNo != dStage_roomControl_c::getStayNo()) {
             cLib_addCalc(&i_this->mLightInfluence.mPow,0.0f,0.25f,10000.0f,1.0f);
         }
 

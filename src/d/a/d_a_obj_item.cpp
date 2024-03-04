@@ -547,7 +547,7 @@ SECTION_SDATA2 static f64 lit_4072 = 4503599627370496.0 /* cast u32 to float */;
 #ifdef NONMATCHING
 void daItem_c::CreateInit() {
     mAcchCir.SetWall(30.0f, 30.0f);
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
     mAcch.ClrWaterNone();
     mAcch.ClrRoofNone();
     mAcch.SetWtrChkMode(2);
@@ -623,7 +623,7 @@ void daItem_c::CreateInit() {
 
     mAcch.CrrPos(dComIfG_Bgsp());
 
-    if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > orig.pos.y + 150.0f) {
+    if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > home.pos.y + 150.0f) {
         field_0x9c0 = 1;
     }
 
@@ -746,10 +746,10 @@ int daItem_c::_daItem_create() {
     fopAcM_SetupActor(this, daItem_c);
 
     if (!field_0x95d) {
-        field_0x92c = orig.angle.x;
-        field_0x92e = orig.angle.z;
-        orig.angle.z = 0;
-        orig.angle.x = 0;
+        field_0x92c = home.angle.x;
+        field_0x92e = home.angle.z;
+        home.angle.z = 0;
+        home.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
         shape_angle.z = 0;
@@ -1114,7 +1114,7 @@ void daItem_c::procMainSwOnWait() {
     if (i_fopAcM_isSwitch(this, field_0x93c)) {
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + orig.pos.y) {
+        if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + home.pos.y) {
             field_0x9c0 = 1;
         }
 

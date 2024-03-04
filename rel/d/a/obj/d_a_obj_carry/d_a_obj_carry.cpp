@@ -2394,10 +2394,10 @@ asm void daObjCarry_c::setBaseMtx() {
 s32 daObjCarry_c::preInit() {
     fopAcM_SetupActor(this, daObjCarry_c);
     if (field_0xd15 == 0) {
-        mItemNo = orig.angle.x;
-        field_0xd18 = orig.angle.z;
-        orig.angle.z = 0;
-        orig.angle.x = 0;
+        mItemNo = home.angle.x;
+        field_0xd18 = home.angle.z;
+        home.angle.z = 0;
+        home.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
         shape_angle.z = 0;
@@ -2655,7 +2655,7 @@ s32 daObjCarry_c::CreateInit_ironball() {
         u8 l_saveID = getSaveID();
 
         current.pos = getPos(l_saveID);
-        next.pos = current.pos;
+        old.pos = current.pos;
         attention_info.position = current.pos;
         eyePos = current.pos;
 

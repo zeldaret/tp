@@ -126,8 +126,8 @@ void daObjMirrorScrew_c::executeDown() {
     Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_SCRW_MV, &current.pos,
                                   0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 
-    if (current.pos.y <= orig.pos.y + M_attr.mDownDist) {
-        current.pos.y = orig.pos.y + M_attr.mDownDist;
+    if (current.pos.y <= home.pos.y + M_attr.mDownDist) {
+        current.pos.y = home.pos.y + M_attr.mDownDist;
         // fake match: these should be dComIfGp_getVibration()
         gameinfo->play.getVibration().StartShock(8, 0xf, cXyz(0.0f, 1.0f, 0.0f));
         gameinfo->play.getVibration().StopQuake(0x1f);

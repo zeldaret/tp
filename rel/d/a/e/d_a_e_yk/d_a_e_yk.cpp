@@ -896,9 +896,9 @@ static void e_yk_roof(e_yk_class* i_this) {
         }
     }
 
-    cLib_addCalc2(&i_this->current.pos.x,i_this->orig.pos.x,0.5f,fabsf(i_this->speed.x));
-    cLib_addCalc2(&i_this->current.pos.y,i_this->orig.pos.y,0.5f,fabsf(i_this->speed.y));
-    cLib_addCalc2(&i_this->current.pos.z,i_this->orig.pos.z,0.5f,fabsf(i_this->speed.z));
+    cLib_addCalc2(&i_this->current.pos.x,i_this->home.pos.x,0.5f,fabsf(i_this->speed.x));
+    cLib_addCalc2(&i_this->current.pos.y,i_this->home.pos.y,0.5f,fabsf(i_this->speed.y));
+    cLib_addCalc2(&i_this->current.pos.z,i_this->home.pos.z,0.5f,fabsf(i_this->speed.z));
 
     if (pl_check(i_this,i_this->mPlayerTrigger,1)) {
         i_this->mAction = ACT_FIGHT_FLY;
@@ -1196,9 +1196,9 @@ static void e_yk_fly(e_yk_class* i_this) {
         }
 
         if (i_this->field_0x6a2[0] == 0) {
-            i_this->mPathPntPos.x = i_this->orig.pos.x + cM_rndFX(500.0f);
-            i_this->mPathPntPos.y = i_this->orig.pos.y + cM_rndFX(200.0f);
-            i_this->mPathPntPos.z = i_this->orig.pos.z + cM_rndFX(500.0f);
+            i_this->mPathPntPos.x = i_this->home.pos.x + cM_rndFX(500.0f);
+            i_this->mPathPntPos.y = i_this->home.pos.y + cM_rndFX(200.0f);
+            i_this->mPathPntPos.z = i_this->home.pos.z + cM_rndFX(500.0f);
 
             cXyz pos = i_this->mPathPntPos - i_this->current.pos;
 
@@ -1249,7 +1249,7 @@ static void e_yk_return(e_yk_class* i_this) {
 
     cLib_addCalc2(&i_this->speedF,l_HIO.field_0x0c,1.0f, 0.3f * l_HIO.field_0x0c);
 
-    i_this->mPathPntPos = i_this->orig.pos;
+    i_this->mPathPntPos = i_this->home.pos;
     fly_move(i_this);
 
     cXyz pos = i_this->current.pos - i_this->mPathPntPos;
@@ -1664,12 +1664,12 @@ static void action(e_yk_class* i_this) {
     }
 
     i_this->current.pos.y -= 30.0f; 
-    i_this->next.pos.y -= 30.0f;
+    i_this->old.pos.y -= 30.0f;
 
     i_this->field_0x708.CrrPos(dComIfG_Bgsp());
 
     i_this->current.pos.y += 30.0f;
-    i_this->next.pos.y += 30.0f;
+    i_this->old.pos.y += 30.0f;
 }
 #else
 #pragma push

@@ -322,8 +322,8 @@ int daCrod_c::execute() {
             posMove();
 
             if (fopAcM_GetParam(this) == 3) {
-                mAtCps.SetStartEnd(next.pos, current.pos);
-                sp50 = current.pos - next.pos;
+                mAtCps.SetStartEnd(old.pos, current.pos);
+                sp50 = current.pos - old.pos;
 
                 mAtCps.SetAtVec(sp50);
                 dComIfG_Ccsp()->Set(&mAtCps);

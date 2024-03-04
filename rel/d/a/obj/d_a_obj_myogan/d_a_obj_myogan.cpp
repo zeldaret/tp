@@ -40,7 +40,7 @@ static daObj_Myogan_HIO_c l_HIO;
 static void action(obj_myogan_class* i_this) {
     switch (i_this->mAction) {
     case 0:
-        cLib_addCalc2(&i_this->current.pos.y, i_this->orig.pos.y + l_HIO.mNormalHeight, 0.05f,
+        cLib_addCalc2(&i_this->current.pos.y, i_this->home.pos.y + l_HIO.mNormalHeight, 0.05f,
                       10.0f);
         break;
     case 1:

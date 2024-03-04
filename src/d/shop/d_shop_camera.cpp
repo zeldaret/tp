@@ -264,17 +264,17 @@ void ShopCam_action_c::_debugSetCamera() {
     if (field_0x1c != NULL && field_0x20 != NULL && field_0x24 != NULL && field_0x28 != NULL &&
         field_0x2c == NULL && field_0x30 == NULL)
     {
-        local_4c.x = (field_0x24->orig.pos.x + field_0x20->orig.pos.x) / 2;
-        local_4c.y = (field_0x24->orig.pos.y + field_0x20->orig.pos.y) / 2;
-        local_4c.z = (field_0x24->orig.pos.z + field_0x20->orig.pos.z) / 2;
+        local_4c.x = (field_0x24->home.pos.x + field_0x20->home.pos.x) / 2;
+        local_4c.y = (field_0x24->home.pos.y + field_0x20->home.pos.y) / 2;
+        local_4c.z = (field_0x24->home.pos.z + field_0x20->home.pos.z) / 2;
     } else {
         if (field_0x1c != NULL && field_0x20 != NULL && field_0x24 != NULL && field_0x28 != NULL &&
             field_0x2c != NULL && field_0x30 == NULL)
         {
-            local_4c.set(field_0x28->orig.pos);
+            local_4c.set(field_0x28->home.pos);
             bVar1 = true;
         } else {
-            local_4c.set(field_0x20->orig.pos);
+            local_4c.set(field_0x20->home.pos);
         }
     }
 

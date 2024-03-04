@@ -219,7 +219,7 @@ int daDsh_c::callExecute() {
 
 /* 804677D4-804677E4 0003B4 0010+00 1/0 0/0 0/0 .text            initOpenWait__7daDsh_cFv */
 int daDsh_c::initOpenWait() {
-    current.pos.y = orig.pos.y;
+    current.pos.y = home.pos.y;
     return 1;
 }
 
@@ -347,7 +347,7 @@ int daDsh_c::initOpen() {
     speed.y = 0.0f;
     gravity = getOpenAccel();
 
-    cXyz check_pos(orig.pos.x, orig.pos.y + 100.0f, orig.pos.z);
+    cXyz check_pos(home.pos.x, home.pos.y + 100.0f, home.pos.z);
     bool water_check = fopAcM_wt_c::waterCheck(&check_pos);
     bool gnd_check = fopAcM_gc_c::gndCheck(&check_pos);
 
@@ -367,12 +367,12 @@ static daDsh_c::action_c
 /* 80467988-80467A64 000568 00DC+00 1/0 0/0 0/0 .text            executeOpen__7daDsh_cFv */
 int daDsh_c::executeOpen() {
     if (mTiltTime != 0) {
-        current.pos.y = orig.pos.y + cM_rndFX(2.0f);
+        current.pos.y = home.pos.y + cM_rndFX(2.0f);
     } else {
         cLib_chaseF(&speed.y, getOpenSpeed(), gravity);
         current.pos.y += speed.y;
 
-        f32 closed_y_pos = orig.pos.y - OPEN_SIZE;
+        f32 closed_y_pos = home.pos.y - OPEN_SIZE;
         if (current.pos.y < closed_y_pos) {
             current.pos.y = closed_y_pos;
 
@@ -390,7 +390,7 @@ int daDsh_c::executeOpen() {
 
 /* 80467A64-80467A80 000644 001C+00 1/0 0/0 0/0 .text            initCloseWait__7daDsh_cFv */
 int daDsh_c::initCloseWait() {
-    current.pos.y = orig.pos.y - OPEN_SIZE;
+    current.pos.y = home.pos.y - OPEN_SIZE;
     return 1;
 }
 
@@ -419,13 +419,13 @@ int daDsh_c::initClose() {
 /* 80467B04-80467BE0 0006E4 00DC+00 1/0 0/0 0/0 .text            executeClose__7daDsh_cFv */
 int daDsh_c::executeClose() {
     if (mTiltTime != 0) {
-        current.pos.y = (orig.pos.y - OPEN_SIZE) + cM_rndFX(2.0f);
+        current.pos.y = (home.pos.y - OPEN_SIZE) + cM_rndFX(2.0f);
     } else {
         cLib_chaseF(&speed.y, getCloseSpeed(), gravity);
         current.pos.y += speed.y;
 
-        if (current.pos.y > orig.pos.y) {
-            current.pos.y = orig.pos.y;
+        if (current.pos.y > home.pos.y) {
+            current.pos.y = home.pos.y;
 
             if (speed.y > getCloseBoundSpeed()) {
                 speed.y *= getCloseBoundRatio();

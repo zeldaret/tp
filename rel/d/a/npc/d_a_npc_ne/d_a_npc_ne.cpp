@@ -2771,7 +2771,7 @@ static int npc_ne_home(npc_ne_class* i_this) {
         i_this->current.pos.x = home_path[i_this->mHomePathIdx].mPosition.x;
         i_this->current.pos.y = home_path[i_this->mHomePathIdx].mPosition.y;
         i_this->current.pos.z = home_path[i_this->mHomePathIdx].mPosition.z;
-        i_this->next.pos = i_this->current.pos;
+        i_this->old.pos = i_this->current.pos;
         anm_init(i_this, npc_ne_class::ANM_TO_JUMP, 5.0f, 0, 1.0f);
         i_this->mState = 11;
         i_this->mHomePathIdx = home_path_search(i_this, 0);
@@ -2852,7 +2852,7 @@ static int npc_ne_home(npc_ne_class* i_this) {
                     i_this->current.pos.x = home_path[i_this->mHomePathIdx].mPosition.x;
                     i_this->current.pos.y = home_path[i_this->mHomePathIdx].mPosition.y;
                     i_this->current.pos.z = home_path[i_this->mHomePathIdx].mPosition.z;
-                    i_this->next.pos = i_this->current.pos;
+                    i_this->old.pos = i_this->current.pos;
                     i_this->field_0xcb4 = 1;
                     i_this->field_0xc5e = 0x7a;
                 }
@@ -3260,7 +3260,7 @@ static int npc_ne_climb(npc_ne_class* i_this) {
             if (wall_angle != 1) {
                 anm_init(i_this, npc_ne_class::ANM_TO_JUMP, 5.0f, 0, 1.0f);
                 i_this->current.angle.y = wall_angle;
-                i_this->current.pos = i_this->next.pos;
+                i_this->current.pos = i_this->old.pos;
                 i_this->speedF = 0.0f;
                 i_this->mState++;
             } else {
@@ -3823,7 +3823,7 @@ static void action(npc_ne_class* i_this) {
                         && rod->field_0x13b4 != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
                 i_this->current.pos = ground_search(i_this);
-                i_this->next = i_this->current;
+                i_this->old = i_this->current;
             }
         } else if (!i_this->mNoFollow) {
             if (i_this->mDistToTarget > 700.0f && fopAcM_CheckCondition(i_this, 4)
@@ -3847,7 +3847,7 @@ static void action(npc_ne_class* i_this) {
                         i_this->mState = 0;
                     }
                     i_this->current.pos = vec2;
-                    i_this->next = i_this->current;
+                    i_this->old = i_this->current;
                 }
             }
         } else {
@@ -3857,7 +3857,7 @@ static void action(npc_ne_class* i_this) {
                 i_this->current.pos.set(3400.0f, 84.13f, 64.0f);
                 i_this->current.angle.y = -0x6987;
                 i_this->shape_angle.y = i_this->current.angle.y;
-                i_this->next = i_this->orig = i_this->current;
+                i_this->old = i_this->home = i_this->current;
                 i_this->speedF = 0.0f;
             }
         }
@@ -3933,7 +3933,7 @@ static void action(npc_ne_class* i_this) {
             i_this->mState = 0;
             i_this->mSound.startSound(Z2SE_CAT_CRY_ANNOY, 0, -1);
         } else if (fvar15 > 30.0f && i_this->mAction != npc_ne_class::ACT_ROOF) {
-            i_this->current.pos = i_this->next.pos;
+            i_this->current.pos = i_this->old.pos;
             i_this->mAction = npc_ne_class::ACT_S_DROP;
             i_this->mState = 0;
         }
@@ -4451,8 +4451,8 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         fish->eyePos = i_this->eyePos;
     }
 
-    if (i_this->current.pos.y - i_this->orig.pos.y < -5000.0f && fopAcM_CheckCondition(i_this, 4)) {
-        i_this->next.pos = i_this->current.pos = i_this->orig.pos;
+    if (i_this->current.pos.y - i_this->home.pos.y < -5000.0f && fopAcM_CheckCondition(i_this, 4)) {
+        i_this->old.pos = i_this->current.pos = i_this->home.pos;
     }
 
     return 1;
@@ -4655,7 +4655,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
                 if (i_dComIfGs_isEventBit(0x1001)) {
                     _this->mAction = npc_ne_class::ACT_ROOF;
                     _this->current.pos.set(1005.0f, 766.0f, -1423.0f);
-                    _this->next = _this->orig = _this->current;
+                    _this->old = _this->home = _this->current;
                     _this->current.angle.y = 0;
                     _this->mNoFollow = true;
                 } else {
@@ -4663,7 +4663,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
                     _this->current.pos.set(3400.0f, 84.13f, 64.0f);
                     _this->current.angle.y = -0x6987;
                     _this->shape_angle.y = _this->current.angle.y;
-                    _this->next = _this->orig = _this->current;
+                    _this->old = _this->home = _this->current;
                     _this->mNoFollow = true;
                     _this->field_0x701 = 1;
                 }
@@ -4739,7 +4739,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         } else {
             _this->mBaseScale.set(1.0f, 1.0f, 1.0f);
         }
-        _this->mAcch.Set(&_this->current.pos, &_this->next.pos, _this, 1,
+        _this->mAcch.Set(&_this->current.pos, &_this->old.pos, _this, 1,
                       &_this->mAcchCir, &_this->speed, NULL, NULL);
         _this->mAcchCir.SetWall(_this->mBaseScale.y * 30.0f, _this->mBaseScale.z * 35.0f);
         _this->field_0x5e0 = cM_rndFX(0.2f) + 1.0f;

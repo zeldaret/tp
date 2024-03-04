@@ -173,7 +173,7 @@ const char* daObj_Oiltubo_c::getResName() {
 
 /* 80CA6FF8-80CA7068 000958 0070+00 1/1 0/0 0/0 .text            restart__15daObj_Oiltubo_cFv */
 void daObj_Oiltubo_c::restart() {
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
 
     setProcess(&wait);

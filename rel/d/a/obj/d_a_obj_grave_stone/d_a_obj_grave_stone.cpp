@@ -137,7 +137,7 @@ int daGraveStone_c::Create() {
     setBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     mAcchCir.SetWall(0.0f, 0.0f);
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
+    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
     mColStatus.Init(0xff, 0, this);
     mColCyl.Set(mCcDCyl);
     mColCyl.SetStts(&mColStatus);

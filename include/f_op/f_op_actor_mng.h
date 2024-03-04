@@ -219,7 +219,7 @@ inline cXyz& fopAcM_GetPosition(fopAc_ac_c* pActor) {
 }
 
 inline cXyz* fopAcM_GetOldPosition_p(fopAc_ac_c* pActor) {
-    return &pActor->next.pos;
+    return &pActor->old.pos;
 }
 
 inline cXyz* fopAcM_GetSpeed_p(fopAc_ac_c* pActor) {
@@ -263,7 +263,7 @@ inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
-    return pActor->orig.roomNo;
+    return pActor->home.roomNo;
 }
 
 inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {

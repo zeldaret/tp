@@ -50,7 +50,7 @@ int daObjZraRock_c::Create() {
     fopAcM_setCullSizeBox(this, joint->getMin()->x, joint->getMin()->y, joint->getMin()->z,
                           joint->getMax()->x, joint->getMax()->y, joint->getMax()->z);
     mAcchCir.SetWall(0.0f, 0.0f);
-    mObjAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
+    mObjAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
     mObjAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mObjAcch.m_gnd;
     setEnvTevColor();

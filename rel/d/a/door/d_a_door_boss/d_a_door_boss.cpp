@@ -259,16 +259,16 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 /* 8066F738-8066F7EC 000398 00B4+00 3/3 0/0 0/0 .text            calcMtx__9daBdoor_cFv */
 void daBdoor_c::calcMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mpDoorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 300.0f, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mpLockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8066F7EC-8066F8E4 00044C 00F8+00 1/1 0/0 0/0 .text            CreateInit__9daBdoor_cFv */
 int daBdoor_c::CreateInit() {
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
     dComIfG_Bgsp().Regist(mpBgW, this);
     setAction(ACT_CLOSE_WAIT);
     attention_info.position.y += 250.0f;
@@ -691,7 +691,7 @@ BOOL daBdoor_c::actionEnd() {
         dComIfG_Bgsp().Regist(mpBgW, this);
     }
     setAction(ACT_WAIT);
-    cXyz normal(cM_ssin(orig.angle.y), 0.0f, cM_scos(orig.angle.y));
+    cXyz normal(cM_ssin(home.angle.y), 0.0f, cM_scos(home.angle.y));
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz delta = player->current.pos - current.pos;
     f32 prod = delta.inprodXZ(normal);

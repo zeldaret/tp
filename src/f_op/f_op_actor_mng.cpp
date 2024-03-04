@@ -2246,7 +2246,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
     if (dComIfG_Bgsp().LineCross(&linChk)) {
         param_0->current.pos.x = player->current.pos.x;
         param_0->current.pos.z = player->current.pos.z;
-        param_0->next.pos = param_0->current.pos;
+        param_0->old.pos = param_0->current.pos;
         param_0->speedF = FLOAT_LABEL(lit_4645);
         return 1;
     }

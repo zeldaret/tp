@@ -1563,7 +1563,7 @@ void daE_YM_c::initFly() {
     if (mTagPosP != NULL) {
         field_0x670 = mTagPos;
     } else {
-        field_0x670 = orig.pos;
+        field_0x670 = home.pos;
     }
 
     mType = 3;
@@ -2215,7 +2215,7 @@ int daE_YM_c::create() {
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
 
-        field_0x760.Set(&current.pos, &next.pos, this, 1, &field_0x720, &speed, NULL, NULL);
+        field_0x760.Set(&current.pos, &old.pos, this, 1, &field_0x720, &speed, NULL, NULL);
         field_0x760.OnLineCheck();
         field_0x720.SetWall(30.0f, 60.0f);
 

@@ -47,7 +47,7 @@ cPhs__Step daObj_Bed_c::create() {
         }
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 200.0f, 200.0f);
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir,
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir,
                   &speed, &current.angle, &shape_angle);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;

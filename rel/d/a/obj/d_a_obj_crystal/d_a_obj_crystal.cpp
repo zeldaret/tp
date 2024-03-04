@@ -37,7 +37,7 @@ int daObjCrystal_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel[0]->getBaseTRMtx());
 
-    mpEmitter = dComIfGp_particle_set(0x8BED, &current.pos, &orig.angle, &scale, 255, NULL, -1,
+    mpEmitter = dComIfGp_particle_set(0x8BED, &current.pos, &home.angle, &scale, 255, NULL, -1,
                                       NULL, NULL, NULL);
     mJointID = 0xFFFF;
 

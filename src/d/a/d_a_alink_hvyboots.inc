@@ -272,7 +272,7 @@ int daAlink_c::cancelMagneBootsOn() {
             current.pos.y = gnd_cross;
         }
 
-        next.pos = current.pos;
+        old.pos = current.pos;
         field_0x3798 = current.pos;
         mMagneBootsTopVec = cXyz::BaseY;
 

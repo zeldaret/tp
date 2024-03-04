@@ -417,7 +417,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
             raincnt_set(var_f9);
             break;
         case 2:
-            if (i_this->orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+            if (i_this->home.roomNo == dComIfGp_roomControl_getStayNo()) {
                 g_env_light.field_0xe92 = false;
 
                 if (g_env_light.mSnowCount < (int)(var_f9 * 500.0f)) {
@@ -447,7 +447,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
         case 14:
             g_env_light.field_0xea9 = 0;
 
-            if (i_this->orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+            if (i_this->home.roomNo == dComIfGp_roomControl_getStayNo()) {
                 g_env_light.mHousiCount = var_f9 * 300.0f;
             } else {
                 g_env_light.mHousiCount = 0;
@@ -510,7 +510,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
             g_env_light.field_0x1048 = var_f9 * 100.0f;
             break;
         case 16:
-            if (i_this->orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+            if (i_this->home.roomNo == dComIfGp_roomControl_getStayNo()) {
                 g_env_light.field_0xe92 = true;
 
                 if (g_env_light.mSnowCount < (int)(var_f9 * 500.0f)) {

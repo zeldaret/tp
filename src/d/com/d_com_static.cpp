@@ -192,7 +192,7 @@ u8 daSus_c::data_c::check(fopAc_ac_c* i_actor) {
 
     u8 tmp = 0x80;
 
-    if (check(i_actor->orig.pos)) {
+    if (check(i_actor->home.pos)) {
         tmp |= 1;
     }
 

@@ -92,7 +92,7 @@ int daObj_Suisya_c::create() {
         fopAcM_SetMin(this, -200.0f, -500.0f, -500.0f);
         fopAcM_SetMax(this, 200.0f, 500.0, 500.0f);
 
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
         mAcchCir.SetWall(0.0f, 0.0f);
         health = 60;
         field_0x560 = 60;

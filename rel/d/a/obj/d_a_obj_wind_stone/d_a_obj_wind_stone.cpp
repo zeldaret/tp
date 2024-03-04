@@ -76,7 +76,7 @@ int daWindStone_c::create() {
         dBgS_AcchCir acchCir;
         dBgS_ObjAcch objAcch;
         acchCir.SetWall(0.0f, 10.0f);
-        objAcch.Set(&current.pos, &next.pos, this, 1, &acchCir, fopAcM_GetSpeed_p(this), NULL,
+        objAcch.Set(&current.pos, &old.pos, this, 1, &acchCir, fopAcM_GetSpeed_p(this), NULL,
                     NULL);
         objAcch.CrrPos(dComIfG_Bgsp());
         field_0x5bc = objAcch.GetGroundH();

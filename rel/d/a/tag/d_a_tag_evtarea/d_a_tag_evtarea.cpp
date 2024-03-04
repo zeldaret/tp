@@ -25,11 +25,11 @@ u32 daTag_EvtArea_c::getOffEvtBit() {
 }
 
 u8 daTag_EvtArea_c::getBitSW() {
-    return orig.angle.x & 0xff;
+    return home.angle.x & 0xff;
 }
 
 u8 daTag_EvtArea_c::getBitSW2() {
-    return (orig.angle.x & 0xff00) >> 8;
+    return (home.angle.x & 0xff00) >> 8;
 }
 
 /* 8048C4F8-8048C728 000078 0230+00 2/1 0/0 0/0 .text            create__15daTag_EvtArea_cFv */
@@ -110,7 +110,7 @@ bool daTag_EvtArea_c::Delete() {
 
 /* 8048C730-8048C894 0002B0 0164+00 1/1 0/0 0/0 .text            Execute__15daTag_EvtArea_cFv */
 bool daTag_EvtArea_c::Execute() {
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         if (isDelete()) {
             fopAcM_delete(this);
             return true;
@@ -176,7 +176,7 @@ BOOL daTag_EvtArea_c::chkPointInArea(cXyz param_0, cXyz param_1) {
             local_84 = scale + param_1;
             if (getType() == 15 || getType() == 16) {
                 local_6c = daPy_getPlayerActorClass()->current.pos;
-                local_6c -= orig.pos;
+                local_6c -= home.pos;
                 mDoMtx_YrotS(mDoMtx_stack_c::now, -current.angle.y);
                 mDoMtx_stack_c::multVec(&local_6c, &local_6c);
                 local_48.x = -local_84.x;

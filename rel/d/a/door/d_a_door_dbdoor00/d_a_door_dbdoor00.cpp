@@ -141,7 +141,7 @@ void daDbDoor00_c::calcMtx() {
     cXyz xyz;
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
     xyz.set(0.0f, 0.0f, -150.0f);
@@ -304,7 +304,7 @@ void daDbDoor00_c::demoProc() {
 /* 8045DE44-8045DF70 000B44 012C+00 1/1 0/0 0/0 .text            checkArea__12daDbDoor00_cFv */
 int daDbDoor00_c::checkArea() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(LINK_PTR);
-    cXyz sub = player->current.pos - orig.pos;
+    cXyz sub = player->current.pos - home.pos;
     cXyz area = sub;
 
     area.x = sub.z * cM_ssin(current.angle.y) - sub.x * cM_scos(current.angle.y);

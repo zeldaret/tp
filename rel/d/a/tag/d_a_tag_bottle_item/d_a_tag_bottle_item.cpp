@@ -58,7 +58,7 @@ void daTag_BottleItem_c::setTypeFromParam() {
 
 /* 80D56100-80D56170 0001A0 0070+00 1/1 0/0 0/0 .text            restart__18daTag_BottleItem_cFv */
 void daTag_BottleItem_c::restart() {
-    current.angle.set(0,orig.angle.y,0);
+    current.angle.set(0,home.angle.y,0);
     shape_angle = current.angle;
     setProcess(&daTag_BottleItem_c::wait);
 }

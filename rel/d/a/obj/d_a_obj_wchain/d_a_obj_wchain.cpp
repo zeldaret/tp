@@ -305,7 +305,7 @@ cPhs__Step daObjWchain_c::create() {
         current.pos.y += 53.75f;
         mRoofPos.set(current.pos.x, current.pos.y + 280.0f - 100.0f, current.pos.z);
         mRealRoofY = mRoofPos.y + 250.0f;
-        mInitOutLength = mRoofPos.y - orig.pos.y;
+        mInitOutLength = mRoofPos.y - home.pos.y;
         if (!mRepeatable && i_fopAcM_isSwitch(this, mSw)) {
             current.pos.y -= 100.0f;
             mEnd = true;
@@ -751,11 +751,11 @@ int daObjWchain_c::execute() {
         mDown = false;
     }
 
-    if (fopAcM_rc_c::roofCheck(&orig.pos)) {
+    if (fopAcM_rc_c::roofCheck(&home.pos)) {
         mRealRoofY = fopAcM_rc_c::getRoofY();
         if (mRoofPos.y > mRealRoofY) {
             mRoofPos.y = mRealRoofY;
-            mInitOutLength = mRoofPos.y - orig.pos.y;
+            mInitOutLength = mRoofPos.y - home.pos.y;
         }
         mRealRoofY += 250.0f;
     }

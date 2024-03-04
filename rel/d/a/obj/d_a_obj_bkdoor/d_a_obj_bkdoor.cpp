@@ -113,7 +113,7 @@ int daObjBkDoor_c::create1st() {
 void daObjBkDoor_c::openCheck() {
     if (!mOpenCheckDone) {
         fopAc_ac_c* actor = fopAcM_Search((fopAcIt_JudgeFunc)search_door, this);
-        if (actor == NULL || (orig.angle.GetY() - actor->orig.angle.GetY()) != 0) {
+        if (actor == NULL || (home.angle.GetY() - actor->home.angle.GetY()) != 0) {
             mOpening = true;
         }
         mOpenCheckDone = true;

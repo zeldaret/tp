@@ -364,7 +364,7 @@ void daDoorPush_c::setGoal() {
         goal.set(-300.0f, 0.0f, -400.0f);
     }
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mDoMtx_stack_c::multVec(&goal, &goal);
     dComIfGp_evmng_setGoal(&goal);
 }
