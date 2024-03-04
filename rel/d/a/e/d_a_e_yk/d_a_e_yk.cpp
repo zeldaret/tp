@@ -1829,7 +1829,7 @@ static int daE_YK_Delete(e_yk_class* i_this) {
         data_80807EF8 = 0;
     }
 
-    if (i_this->mHeap) {
+    if (i_this->heap) {
         i_this->mpMorfSO->stopZelAnime();
     }
 

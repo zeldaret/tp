@@ -1153,7 +1153,7 @@ int daE_PH_c::Delete() {
         initialized = 0;
     }
 
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         mpMorf->stopZelAnime();
     }
 

@@ -214,7 +214,7 @@ static int daB_OH2_IsDelete(b_oh2_class* i_this) {
 /* 8061E4F0-8061E540 0008B0 0050+00 1/0 0/0 0/0 .text            daB_OH2_Delete__FP11b_oh2_class */
 static int daB_OH2_Delete(b_oh2_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "B_oh");
-    if (i_this->mHeap != NULL) {
+    if (i_this->heap != NULL) {
         i_this->mpMorf->stopZelAnime();
     }
 

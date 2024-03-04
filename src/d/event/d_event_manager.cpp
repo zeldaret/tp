@@ -553,7 +553,7 @@ s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 mapToolID, s32 roomN
 /* 80047698-80047758 041FD8 00C0+00 0/0 3/3 25/25 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc              */
 s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 mapToolID) {
-    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, pActor->getRoomNo());
+    dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, fopAcM_GetRoomNo(pActor));
     if (data != NULL) {
         switch (data->mType) {
         case 1:
@@ -571,7 +571,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, u8 mapToolID) {
 /* 80047758-80047930 042098 01D8+00 1/1 10/10 92/92 .text
  * getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc           */
 s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 mapToolID) {
-    s8 actorRoomNo = pActor->getRoomNo();
+    s8 actorRoomNo = fopAcM_GetRoomNo(pActor);
 
     if (mapToolID != 0xFF) {
         dStage_MapEvent_dt_c* data = dEvt_control_c::searchMapEventData(mapToolID, actorRoomNo);

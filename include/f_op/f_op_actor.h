@@ -191,12 +191,12 @@ public:
     /* 0x0C4 */ create_tag_class mAcTg;
     /* 0x0D8 */ create_tag_class mDwTg;
     /* 0x0EC */ profile_method_class* mSubMtd;
-    /* 0x0F0 */ JKRSolidHeap* mHeap;
+    /* 0x0F0 */ JKRSolidHeap* heap;
     /* 0x0F4 */ dEvt_info_c mEvtInfo;
     /* 0x10C */ dKy_tevstr_c mTevStr;
     /* 0x494 */ u16 mSetID;
     /* 0x496 */ u8 mGroup;
-    /* 0x497 */ s8 mCullType;
+    /* 0x497 */ u8 mCullType;
     /* 0x498 */ u8 mDemoActorId;
     /* 0x499 */ s8 mSubtype;
     /* 0x49A */ u8 mCarryType;
@@ -233,10 +233,6 @@ public:
     ~fopAc_ac_c();
 
     static u32 stopStatus;
-
-    const cXyz& getPosition() const { return current.pos; }
-    const csXyz& getAngle() const { return current.angle; }
-    s8 getRoomNo() const { return current.roomNo; }
 };  // Size: 0x568
 
 STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);

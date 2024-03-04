@@ -433,7 +433,7 @@ int daDbDoor00_c::draw() {
 
 /* 8045E428-8045E49C 001128 0074+00 1/1 0/0 0/0 .text            Delete__12daDbDoor00_cFv */
 int daDbDoor00_c::Delete() {
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         dComIfG_Bgsp().Release(mpBgW);
     }
     dComIfG_resDelete(&mPhaseReq, getBmdArcName());

@@ -3042,7 +3042,7 @@ static int daDo_Delete(do_class* i_this) {
         u8* tmp = (u8*)struct_8066F2B4 + 2;
         *tmp = 0;
     }
-    if (i_this->mHeap) {
+    if (i_this->heap) {
         i_this->mSound.deleteObject();
     }
     return 1;

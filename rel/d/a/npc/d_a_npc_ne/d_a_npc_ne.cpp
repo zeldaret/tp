@@ -4481,7 +4481,7 @@ static int daNpc_Ne_Delete(npc_ne_class* i_this) {
     if (i_this->field_0xcc1 != 0) {
         l_hioInit = false;
     }
-    if (i_this->mHeap != NULL) {
+    if (i_this->heap != NULL) {
         i_this->mSound.deleteObject();
     }
     return 1;

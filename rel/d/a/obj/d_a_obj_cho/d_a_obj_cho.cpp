@@ -475,7 +475,7 @@ int daObjCHO_c::Delete() {
     if (mHIOInit) {
         hioInit = false;
     }
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         mpMorf->stopZelAnime();
     }
     return 1;

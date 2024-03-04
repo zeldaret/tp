@@ -27,7 +27,7 @@ static int daE_ST_LINE_IsDelete(e_st_line_class* i_this) {
 /* 807A6FAC-807A7008 0000CC 005C+00 1/0 0/0 0/0 .text daE_ST_LINE_Delete__FP15e_st_line_class */
 static int daE_ST_LINE_Delete(e_st_line_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_st");
-    if (i_this->field_0xcc4 == 0 && i_this->mHeap != NULL) {
+    if (i_this->field_0xcc4 == 0 && i_this->heap != NULL) {
         i_this->mSound.deleteObject();
     }
 

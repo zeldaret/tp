@@ -701,12 +701,12 @@ extern "C" asm void __ct__11J3DLightObjFv() {
 daBg_c::~daBg_c() {
     int roomNo = fopAcM_GetParam(this);
 
-    if (mHeap != NULL && mpBgW != NULL) {
+    if (heap != NULL && mpBgW != NULL) {
         dComIfG_Bgsp().Release(mpBgW);
         dStage_roomControl_c::setBgW(roomNo, NULL);
     }
 
-    if (mHeap != NULL && mpKCol != NULL) {
+    if (heap != NULL && mpKCol != NULL) {
         dComIfG_Bgsp().Release(mpKCol);
         dStage_roomControl_c::setBgW(roomNo, NULL);
     }

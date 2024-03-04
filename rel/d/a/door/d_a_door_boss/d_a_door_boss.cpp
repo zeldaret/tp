@@ -780,7 +780,7 @@ int daBdoor_c::draw() {
 
 /* 80670804-80670874 001464 0070+00 1/1 0/0 0/0 .text            Delete__9daBdoor_cFv */
 int daBdoor_c::Delete() {
-    if (mHeap != NULL && mpBgW->ChkUsed()) {
+    if (heap != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
     }
     dComIfG_resDelete(&mPhaseReq, getArcName());

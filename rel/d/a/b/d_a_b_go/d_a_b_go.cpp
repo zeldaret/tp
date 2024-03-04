@@ -608,7 +608,7 @@ static int daB_GO_Delete(b_go_class* b_go) {
         data_80604140[0] = 0;
     }
 
-    if (b_go->mHeap != NULL) {
+    if (b_go->heap != NULL) {
         b_go->mpMorf->stopZelAnime();
     }
 

@@ -148,14 +148,14 @@ int daTagLv8Gate_c::execute() {
                     break;
 
                 case '0002':
-                    dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                    dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     break;
                 }
             }
 
             if (i_dComIfGp_getEvent().i_checkSkipEdge()) {
                 i_dComIfGp_event_reset();
-                dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             }
 
             switch (*cut_name) {

@@ -1995,7 +1995,7 @@ int daE_YM_c::_delete() {
         data_80815D28[0] = 0;
     }
 
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         field_0x5bc.deleteObject();
     }
 

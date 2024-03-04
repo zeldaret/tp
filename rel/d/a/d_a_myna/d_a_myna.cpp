@@ -1416,7 +1416,7 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 /* 809463B8-8094640C 000838 0054+00 1/1 0/0 0/0 .text            destroy__8daMyna_cFv */
 int daMyna_c::destroy() {
     dComIfG_resDelete(&mPhase, "Npc_myna");
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         mpMorf->stopZelAnime();
     }
     return 1;

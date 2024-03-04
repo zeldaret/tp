@@ -203,7 +203,7 @@ static int daObj_Web1_Delete(obj_web1_class* i_this) {
 
     dComIfG_Bgsp().Release(i_this->mpBgW);
 
-    if (i_this->mHeap != NULL) {
+    if (i_this->heap != NULL) {
         i_this->mZ2SoundObj.deleteObject();
     }
     return 1;
