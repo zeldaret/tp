@@ -14,10 +14,10 @@ extern scene_process_profile_definition g_profile_MENU_SCENE = {
     1,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_MENU_SCENE,        // mProcName
-    &g_fpcNd_Method.mBase,  // mSubMtd
+    &g_fpcNd_Method.mBase,  // sub_method
     0,                      // mSize
     0,                      // mSizeOther      
     0,                      // mParameters      
-    &g_fopScn_Method.mBase, // mSubMtd
+    &g_fopScn_Method.mBase, // sub_method
     NULL,                   // mpMtd
 };

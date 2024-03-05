@@ -83,9 +83,9 @@ static int daScex_Create(fopAc_ac_c* i_this) {
     mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);
     mDoMtx_stack_c::YrotM(scex->shape_angle.y);
     MTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
-    scex->mScale.x *= 75.0f;
-    scex->mScale.z *= 75.0f;
-    scex->mScale.y *= 150.0f;
+    scex->scale.x *= 75.0f;
+    scex->scale.z *= 75.0f;
+    scex->scale.y *= 150.0f;
 
     return cPhs_COMPLEATE_e;
 }
@@ -148,7 +148,7 @@ int daScex_c::execute() {
     if (checkWork()) {
         mDoMtx_multVec(mMatrix, &player->current.pos, &spC);
 
-        if (spC.y >= 0.0f && spC.y <= mScale.y && fabsf(spC.x) <= mScale.x && fabsf(spC.z) <= mScale.z) {
+        if (spC.y >= 0.0f && spC.y <= scale.y && fabsf(spC.x) <= scale.x && fabsf(spC.z) <= scale.z) {
             switch (getArg1()) {
             case 0xFF:
             case 1:

@@ -16,7 +16,7 @@ static int fopKy_Draw(void* i_this) {
     kankyo_class* _this = (kankyo_class*)i_this;
 
     if (!dComIfGp_isPauseFlag()) {
-        ret = fpcLf_DrawMethod(_this->mSubMtd, i_this);
+        ret = fpcLf_DrawMethod(_this->sub_method, i_this);
     }
 
     return ret;
@@ -28,7 +28,7 @@ static int fopKy_Execute(void* i_this) {
     kankyo_class* _this = (kankyo_class*)i_this;
 
     if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(i_this) == PROC_ENVSE)) {
-        ret = fpcMtd_Execute(&_this->mSubMtd->mBase, i_this);
+        ret = fpcMtd_Execute(&_this->sub_method->mBase, i_this);
     }
 
     return ret;
@@ -39,9 +39,9 @@ static int fopKy_IsDelete(void* i_this) {
     int ret;
     kankyo_class* _this = (kankyo_class*)i_this;
 
-    ret = fpcMtd_IsDelete(&_this->mSubMtd->mBase, _this);
+    ret = fpcMtd_IsDelete(&_this->sub_method->mBase, _this);
     if (ret == 1) {
-        fopDwTg_DrawQTo(&_this->mDwTg);
+        fopDwTg_DrawQTo(&_this->draw_tag);
     }
 
     return ret;
@@ -51,8 +51,8 @@ static int fopKy_IsDelete(void* i_this) {
 static int fopKy_Delete(void* i_this) {
     kankyo_class* _this = (kankyo_class*)i_this;
 
-    int ret = fpcMtd_Delete(&_this->mSubMtd->mBase, _this);
-    fopDwTg_DrawQTo(&_this->mDwTg);
+    int ret = fpcMtd_Delete(&_this->sub_method->mBase, _this);
+    fopDwTg_DrawQTo(&_this->draw_tag);
 
     return ret;
 }
@@ -70,9 +70,9 @@ static int fopKy_Create(void* i_this) {
             (kankyo_process_profile_definition*)fpcM_GetProfile(i_this);
 
         _this->mBsType = fpcBs_MakeOfType(&fopKy_KANKYO_TYPE);
-        _this->mSubMtd = profile->mSubMtd;
+        _this->sub_method = profile->sub_method;
 
-        fopDwTg_Init(&_this->mDwTg, _this);
+        fopDwTg_Init(&_this->draw_tag, _this);
         fopKyM_prm_class* append = (fopKyM_prm_class*)fopKyM_GetAppend(_this);
 
         if (append != NULL) {
@@ -82,10 +82,10 @@ static int fopKy_Create(void* i_this) {
         }
     }
 
-    int ret = fpcMtd_Create(&_this->mSubMtd->mBase, _this);
+    int ret = fpcMtd_Create(&_this->sub_method->mBase, _this);
     if (ret == cPhs_COMPLEATE_e) {
         s32 priority = fpcLf_GetPriority(_this);
-        fopDwTg_ToDrawQ(&_this->mDwTg, priority);
+        fopDwTg_ToDrawQ(&_this->draw_tag, priority);
     }
 
     return ret;

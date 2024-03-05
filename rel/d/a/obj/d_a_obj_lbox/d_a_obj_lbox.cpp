@@ -41,8 +41,8 @@ daObj_Lbox_HIO_c::daObj_Lbox_HIO_c() {
 /* 80C5359C-80C53600 00011C 0064+00 1/0 0/0 0/0 .text            daObj_Lbox_Draw__FP14obj_lbox_class
  */
 static int daObj_Lbox_Draw(obj_lbox_class* i_this) {
-    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->mTevStr);
+    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
     return 1;
 }
@@ -78,13 +78,13 @@ static void action(obj_lbox_class* i_this) {
             i_this->field_0x57a = 2;
             i_this->field_0x57c = 0;
             fopAcM_effSmokeSet1(&i_this->field_0xa84, &i_this->field_0xa88, &i_this->current.pos,
-                                &i_this->shape_angle, 3.5f, &i_this->mTevStr, 1);
+                                &i_this->shape_angle, 3.5f, &i_this->tevStr, 1);
         }
         break;
     }
 
     fopAcM_OffStatus(i_this, 0);
-    i_this->mAttentionInfo.mFlags = 0;
+    i_this->attention_info.flags = 0;
     i_this->mObjAcch.CrrPos(dComIfG_Bgsp());
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
@@ -101,8 +101,8 @@ static void action(obj_lbox_class* i_this) {
     i_this->mSph.SetC(cStack_48);
     i_this->mSph.SetR(150.0f * l_HIO.mSize);
     dComIfG_Ccsp()->Set(&i_this->mSph);
-    i_this->mEyePos = i_this->current.pos;
-    i_this->mAttentionInfo.mPosition = i_this->mEyePos;
+    i_this->eyePos = i_this->current.pos;
+    i_this->attention_info.position = i_this->eyePos;
 }
 
 /* 80C5396C-80C539C8 0004EC 005C+00 2/1 0/0 0/0 .text daObj_Lbox_Execute__FP14obj_lbox_class */
@@ -135,70 +135,70 @@ static int daObj_Lbox_Delete(obj_lbox_class* i_this) {
 
 /* 80C53A38-80C53B3C 0005B8 0104+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    obj_lbox_class* _this = static_cast<obj_lbox_class*>(i_this);
+    obj_lbox_class* a_this = static_cast<obj_lbox_class*>(i_this);
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lbox", 4);
     JUT_ASSERT(478, modelData != 0);
-    _this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    if (_this->mpModel == NULL) {
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (a_this->mpModel == NULL) {
         return 0;
     }
 
-    _this->mpBgW = new dBgW();
-    if (_this->mpBgW == NULL) {
+    a_this->mpBgW = new dBgW();
+    if (a_this->mpBgW == NULL) {
         return 0;
     }
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Obj_lbox", 7);
-    if (_this->mpBgW->Set(dzb, 1, &_this->mMtx) == true) {
+    if (a_this->mpBgW->Set(dzb, 1, &a_this->mMtx) == true) {
         return 0;
     }
 
-    _this->mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    a_this->mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
     return 1;
 }
 
 /* 80C53B3C-80C53E14 0006BC 02D8+00 1/0 0/0 0/0 .text            daObj_Lbox_Create__FP10fopAc_ac_c
  */
 static cPhs__Step daObj_Lbox_Create(fopAc_ac_c* i_this) {
-    obj_lbox_class* _this = static_cast<obj_lbox_class*>(i_this);
-    fopAcM_SetupActor(_this, obj_lbox_class);
-    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhaseReq, "Obj_lbox");
+    obj_lbox_class* a_this = static_cast<obj_lbox_class*>(i_this);
+    fopAcM_SetupActor(a_this, obj_lbox_class);
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "Obj_lbox");
 
     if (step == cPhs_COMPLEATE_e) {
-        _this->mParam = fopAcM_GetParam(i_this);
-        if (_this->mParam == 0xFF) {
-            _this->mParam = 0;
+        a_this->mParam = fopAcM_GetParam(i_this);
+        if (a_this->mParam == 0xFF) {
+            a_this->mParam = 0;
         }
 
-        if (!fopAcM_entrySolidHeap(_this, useHeapInit, 0x4b000)) {
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x4b000)) {
             return cPhs_ERROR_e;
         }
 
-        if (dComIfG_Bgsp().Regist(_this->mpBgW, _this)) {
+        if (dComIfG_Bgsp().Regist(a_this->mpBgW, a_this)) {
             return cPhs_ERROR_e;
         }
 
         if (data_80C540E8 == 0) {
-            _this->field_0xa8c = 1;
+            a_this->field_0xa8c = 1;
             data_80C540E8 = 1;
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(_this, _this->mpModel->getBaseTRMtx());
-        fopAcM_SetMin(_this, -200.0f, -3000.0f, -200.0f);
-        fopAcM_SetMax(_this, 200.0f, 3000.0f, 200.0f);
+        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
+        fopAcM_SetMin(a_this, -200.0f, -3000.0f, -200.0f);
+        fopAcM_SetMax(a_this, 200.0f, 3000.0f, 200.0f);
 
-        _this->mStts.Init(0xff, 0, _this);
-        _this->mSph.Set(cc_sph_src);
-        _this->mSph.SetStts(&_this->mStts);
-        _this->mObjAcch.Set(&fopAcM_GetPosition_p(_this), &fopAcM_GetOldPosition_p(_this), _this, 1,
-                            &_this->mAcchCir, &fopAcM_GetSpeed_p(_this), NULL, NULL);
-        _this->mAcchCir.SetWall(50.0f, 50.0f);
+        a_this->mStts.Init(0xff, 0, a_this);
+        a_this->mSph.Set(cc_sph_src);
+        a_this->mSph.SetStts(&a_this->mStts);
+        a_this->mObjAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1,
+                            &a_this->mAcchCir, fopAcM_GetSpeed_p(a_this), NULL, NULL);
+        a_this->mAcchCir.SetWall(50.0f, 50.0f);
 
-        _this->mAttentionInfo.field_0x0[2] = 0x16;
+        a_this->attention_info.field_0x0[2] = 0x16;
 
-        daObj_Lbox_Execute(_this);
+        daObj_Lbox_Execute(a_this);
     }
 
     return step;

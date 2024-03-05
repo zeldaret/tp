@@ -72,14 +72,14 @@ extern actor_process_profile_definition g_profile_SwTime = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_SwTime,            // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daSwTime_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     576,                    // mPriority
-    &l_daSwTime_Method,     // mSubMtd
+    &l_daSwTime_Method,     // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

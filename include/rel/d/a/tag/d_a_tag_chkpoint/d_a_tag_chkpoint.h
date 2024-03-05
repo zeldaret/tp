@@ -9,7 +9,7 @@ class daTag_Chk_c : public fopAc_ac_c {
 public:
     /* 8048A6F8 */ s32 execute();
 
-    u16 getAreaType() { return orig.angle.z & 0x100; }
+    u16 getAreaType() { return home.angle.z & 0x100; }
     u16 getHeight() { return fopAcM_GetParam(this) & 0xff; }
     u8 getSwBit() { return fopAcM_GetParam(this) >> 8; }
     u8 getSwBit2() { return fopAcM_GetParam(this) >> 16; }
@@ -18,27 +18,27 @@ public:
         fopAcM_SetupActor(this, daTag_Chk_c);
 
         if (getAreaType() == 0) {
-            mScale.x *= 50.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 50.0f;
+            scale.x *= 50.0f;
+            scale.y *= 100.0f;
+            scale.z *= 50.0f;
 
-            mPos1.set(current.pos.x - mScale.x, current.pos.y, current.pos.z - mScale.z);
-            mPos2.set(current.pos.x + mScale.x, current.pos.y + mScale.y, current.pos.z + mScale.z);
+            mPos1.set(current.pos.x - scale.x, current.pos.y, current.pos.z - scale.z);
+            mPos2.set(current.pos.x + scale.x, current.pos.y + scale.y, current.pos.z + scale.z);
         } else {
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 0.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 0.0f;
 
             mPos1.set(0.0f, current.pos.y, 0.0f);
-            mPos2.set(0.0f, current.pos.y + mScale.y, 0.0f);
+            mPos2.set(0.0f, current.pos.y + scale.y, 0.0f);
         }
 
-        mAttentionInfo.mPosition = current.pos;
+        attention_info.position = current.pos;
 
         u16 l_height = getHeight();
-        l_height != 0xff ? mAttentionInfo.mPosition.y += l_height * 10.0f : mAttentionInfo.mPosition.y += mScale.y * 0.5f;
+        l_height != 0xff ? attention_info.position.y += l_height * 10.0f : attention_info.position.y += scale.y * 0.5f;
 
-        mEyePos = mAttentionInfo.mPosition;
+        eyePos = attention_info.position;
         return cPhs_COMPLEATE_e;
     }
 private:

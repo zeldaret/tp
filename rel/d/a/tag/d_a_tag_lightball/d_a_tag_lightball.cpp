@@ -27,7 +27,7 @@ int daTagLightBall_c::Create() {
     }
 
     mInfluence.mPos = current.pos;
-    mInfluence.field_0xc = mScale.x * 100.0f;
+    mInfluence.field_0xc = scale.x * 100.0f;
 
     if (swbit != 0xFF) {
         if (getType() == 15) {
@@ -135,14 +135,14 @@ extern actor_process_profile_definition g_profile_Tag_LightBall = {
     7,                         // mListID
     fpcPi_CURRENT_e,           // mListPrio
     PROC_Tag_LightBall,        // mProcName
-    &g_fpcLf_Method.mBase,     // mSubMtd
+    &g_fpcLf_Method.mBase,     // sub_method
     sizeof(daTagLightBall_c),  // mSize
     0,                         // mSizeOther
     0,                         // mParameters
-    &g_fopAc_Method.base,      // mSubMtd
+    &g_fopAc_Method.base,      // sub_method
     547,                       // mPriority
-    &l_daTagLightBall_Method,  // mSubMtd
+    &l_daTagLightBall_Method,  // sub_method
     0x40100,                   // mStatus
     fopAc_ACTOR_e,             // mActorType
-    fopAc_CULLBOX_CUSTOM_e,    // mCullType
+    fopAc_CULLBOX_CUSTOM_e,    // cullType
 };

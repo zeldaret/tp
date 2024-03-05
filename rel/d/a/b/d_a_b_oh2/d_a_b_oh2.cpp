@@ -37,8 +37,8 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 static int daB_OH2_Draw(b_oh2_class* i_this) {
     J3DModel* model = i_this->mpMorf->getModel();
 
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
 
     i_this->mpBtk->entry(model->getModelData());
     i_this->mpBrk->entry(model->getModelData());
@@ -182,7 +182,7 @@ static int daB_OH2_Execute(b_oh2_class* i_this) {
     }
 
     if (i_this->field_0x5c8 == 0) {
-        boss = (b_ob_class*)fopAcM_SearchByID(i_this->mParentPcId);
+        boss = (b_ob_class*)fopAcM_SearchByID(i_this->parentActorID);
     }
 
     if (boss == NULL) {
@@ -214,7 +214,7 @@ static int daB_OH2_IsDelete(b_oh2_class* i_this) {
 /* 8061E4F0-8061E540 0008B0 0050+00 1/0 0/0 0/0 .text            daB_OH2_Delete__FP11b_oh2_class */
 static int daB_OH2_Delete(b_oh2_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "B_oh");
-    if (i_this->mHeap != NULL) {
+    if (i_this->heap != NULL) {
         i_this->mpMorf->stopZelAnime();
     }
 

@@ -36,11 +36,11 @@ BOOL dEvLib_callback_c::setEvent(int mapToolId, int eventIdx, int param_2) {
     if (mAction != NULL) {
         return FALSE;
     } else {
-        mActor->mEvtInfo.setMapToolId(mapToolId);
+        mActor->eventInfo.setMapToolId(mapToolId);
         if (mapToolId != 0xFF && eventIdx == 0xFF) {
             eventIdx = i_dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
         }
-        mActor->mEvtInfo.setEventId(eventIdx);
+        mActor->eventInfo.setEventId(eventIdx);
         _C = param_2;
         return setAction(&l_startAction);
     }
@@ -89,15 +89,15 @@ BOOL dEvLib_callback_c::initStart() {
 /* 80048A70-80048B1C 0433B0 00AC+00 2/1 0/0 0/0 .text            executeStart__17dEvLib_callback_cFv
  */
 BOOL dEvLib_callback_c::executeStart() {
-    if (!mActor->mEvtInfo.checkCommandDemoAccrpt()) {
-        if (mActor->mEvtInfo.getMapToolId() != 0xFF) {
-            fopAcM_orderMapToolEvent(mActor, mActor->mEvtInfo.getMapToolId(),
-                                     mActor->mEvtInfo.getEventId(), 0xFFFF, _C, 0);
+    if (!mActor->eventInfo.checkCommandDemoAccrpt()) {
+        if (mActor->eventInfo.getMapToolId() != 0xFF) {
+            fopAcM_orderMapToolEvent(mActor, mActor->eventInfo.getMapToolId(),
+                                     mActor->eventInfo.getEventId(), 0xFFFF, _C, 0);
         } else {
-            fopAcM_orderOtherEventId(mActor, mActor->mEvtInfo.getEventId(),
-                                     mActor->mEvtInfo.getMapToolId(), 0xFFFF, 0, _C);
+            fopAcM_orderOtherEventId(mActor, mActor->eventInfo.getEventId(),
+                                     mActor->eventInfo.getMapToolId(), 0xFFFF, 0, _C);
         }
-        mActor->mEvtInfo.i_onCondition(2);
+        mActor->eventInfo.i_onCondition(2);
         return TRUE;
     } else {
         return setAction(&l_runAction);
@@ -112,7 +112,7 @@ BOOL dEvLib_callback_c::initRun() {
 /* 80048B48-80048BD8 043488 0090+00 1/0 0/0 0/0 .text            executeRun__17dEvLib_callback_cFv
  */
 BOOL dEvLib_callback_c::executeRun() {
-    if (!i_dComIfGp_getEventManager().endCheck(mActor->mEvtInfo.getEventId())) {
+    if (!i_dComIfGp_getEventManager().endCheck(mActor->eventInfo.getEventId())) {
         return eventRun();
     } else {
         i_dComIfGp_getEvent().reset();

@@ -19,12 +19,12 @@ void daBkLeaf_c::setBokkuri() {
     csXyz currentAngle = current.angle;
     daObjCarry_c::make_prm(&currentAngle, 6, getItem(), getItemBit(), 1, 2);
     field_0x578 = fopAcM_createChild(PROC_Obj_Carry, fopAcM_GetID(this), 0, &current.pos,
-                                     fopAcM_GetRoomNo(this), &currentAngle, &mScale, -1, 0);
+                                     fopAcM_GetRoomNo(this), &currentAngle, &scale, -1, 0);
 }
 
 /* 80BB618C-80BB61C8 00012C 003C+00 1/1 0/0 0/0 .text            initBaseMtx__10daBkLeaf_cFv */
 void daBkLeaf_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -149,8 +149,8 @@ int daBkLeaf_c::execute() {
 
 /* 80BB65C4-80BB6654 000564 0090+00 1/1 0/0 0/0 .text            draw__10daBkLeaf_cFv */
 int daBkLeaf_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mpBckAnm->entry(mpModel->getModelData());
     mDoExt_modelUpdateDL(mpModel);
     mpBckAnm->remove(mpModel->getModelData());

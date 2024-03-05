@@ -147,11 +147,11 @@ s32 daTag_Chk_c::execute() {
             u16 areaType = getAreaType();
         }
     
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
 
         if (bVar6) {
-            daPy_py_c::setLookPos(&mAttentionInfo.mPosition);
-            mAttentionInfo.mFlags = 0x1000;
+            daPy_py_c::setLookPos(&attention_info.position);
+            attention_info.flags = 0x1000;
         }
 
         return 1;
@@ -265,14 +265,14 @@ extern actor_process_profile_definition g_profile_TAG_CHKPOINT = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_TAG_CHKPOINT,      // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTag_Chk_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     280,                    // mPriority
-    &l_daTag_Chk_Method,    // mSubMtd
+    &l_daTag_Chk_Method,    // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_6_e,      // mCullType
+    fopAc_CULLBOX_6_e,      // cullType
 };

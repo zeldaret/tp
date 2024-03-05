@@ -26,8 +26,8 @@ static int daB_ZANTS_Create(daB_ZANTS_c*);
 
 /* 806529D8-80652AAC 000078 00D4+00 1/1 0/0 0/0 .text   draw__11daB_ZANTS_cFv */
 int daB_ZANTS_c::draw() {
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mpBtkAnm->entry(mpModel->getModelData());
     mpBrkAnm->entry(mpModel->getModelData());
@@ -225,7 +225,7 @@ int daB_ZANTS_c::create() {
         if (mpBgW && dComIfG_Bgsp().Regist(mpBgW, this)) {
             return cPhs_ERROR_e;
         }
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
         field_0x588 = 150.0f;
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -500.0f, -500.0f);

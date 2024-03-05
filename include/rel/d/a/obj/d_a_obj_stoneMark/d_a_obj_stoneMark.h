@@ -20,7 +20,7 @@ public:
     /* 0x0590 */ dBgS_ObjAcch mObjAcch;
     /* 0x0768 */ dBgS_AcchCir mAcchCir;
     /* 0x07A8 */ dCcD_Stts mStts;
-    /* 0x07E4 */ Mtx mCullMtx;
+    /* 0x07E4 */ Mtx cullMtx;
 };
 
 #endif /* D_A_OBJ_STONEMARK_H */

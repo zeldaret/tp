@@ -34,7 +34,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 
 /* 80D3B998-80D3B9D4 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjWSword_cFv */
 void daObjWSword_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -87,8 +87,8 @@ int daObjWSword_c::execute() {
 
 /* 80D3BDF0-80D3BE54 0004F0 0064+00 1/1 0/0 0/0 .text            draw__13daObjWSword_cFv */
 int daObjWSword_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }

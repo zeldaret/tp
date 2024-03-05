@@ -897,7 +897,7 @@ int daAlink_c::procSumouWinLoseInit() {
 
     field_0x3198 = anm;
     mNormalSpeed = 0.0f;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     setFootEffectProcType(5);
     mProcVar3.field_0x300e.x = 0;

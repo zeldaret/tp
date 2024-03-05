@@ -71,8 +71,8 @@ int daTagWljump_c::create() {
         return 5;
     }
 
-    mAttentionInfo.field_0x0[0] = 0x32;
-    mAttentionInfo.field_0x0[7] = 0x32;
+    attention_info.field_0x0[0] = 0x32;
+    attention_info.field_0x0[7] = 0x32;
     shape_angle.z = 0;
     field_0x568 = -1;
     field_0x56c[0] = (fopAcM_GetParam(this) >> 16) & 0xf;
@@ -109,7 +109,7 @@ static int daTagWljump_Delete(daTagWljump_c* param_0) {
 // reg swap
 #ifdef NONMATCHING
 int daTagWljump_c::execute() {
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
     if (field_0x56c[1]) {
         field_0x56c[1]--;
     }
@@ -121,7 +121,7 @@ int daTagWljump_c::execute() {
         return 1;
     }
 
-    if (mEvtInfo.checkCommandTalk()) {
+    if (eventInfo.checkCommandTalk()) {
         s32 bVar2 = 1;
         if (!midnaActor->checkShadowModeTalkWait()) {
             if (shape_angle.x != 0 &&
@@ -141,7 +141,7 @@ int daTagWljump_c::execute() {
                 }
             } else {
                 field_0x568 = field_0x570;
-                if (midnaActor->current.pos.abs(mEyePos) < 5.0f) {
+                if (midnaActor->current.pos.abs(eyePos) < 5.0f) {
                     bVar2 = 0;
                 }
             } 
@@ -219,9 +219,9 @@ int daTagWljump_c::execute() {
         }
         if (field_0x568 >= 0) {
             dStage_dPnt_c* pPoint = &field_0x5c4->m_points[field_0x568];
-            mEyePos.set(pPoint->m_position.x, pPoint->m_position.y, pPoint->m_position.z);
-            mAttentionInfo.mPosition = mEyePos;
-            mAttentionInfo.mPosition.y += 220.0f;
+            eyePos.set(pPoint->m_position.x, pPoint->m_position.y, pPoint->m_position.z);
+            attention_info.position = eyePos;
+            attention_info.position.y += 220.0f;
             field_0x5c8 = pPoint->field_0x3 * 10.0f;
             if (pPoint->field_0x1 == 1) {
                 shape_angle.z = 1;
@@ -230,9 +230,9 @@ int daTagWljump_c::execute() {
             }
             if (field_0x572 == 0) {
                 if (!g_dComIfG_gameInfo.play.getEvent().runCheck()) {
-                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     if (!linkPlayer->checkPlayerFly() &&
-                        linkPlayer->mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
+                        linkPlayer->eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
                         dComIfGp_att_ZHintRequest(this, 0x1ff);
                         if (field_0x56c[2] == 0)  {
                             field_0x56c[2] = 1;
@@ -246,7 +246,7 @@ int daTagWljump_c::execute() {
                 field_0x570 = field_0x568;
                 field_0x568 = -1;
             } else {
-                mAttentionInfo.mFlags |= 0x81;
+                attention_info.flags |= 0x81;
             }
         } else {
             field_0x572 = 0;
@@ -255,8 +255,8 @@ int daTagWljump_c::execute() {
         field_0x572 = 0;
         field_0x568 = -1;
     }
-    current.pos = mAttentionInfo.mPosition;
-    if (!mEvtInfo.chkCondition(dEvtCnd_CANTALK_e)) {
+    current.pos = attention_info.position;
+    if (!eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x56c[2] = 0;
     }
     

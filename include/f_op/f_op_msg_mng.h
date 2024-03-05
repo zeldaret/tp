@@ -11,7 +11,7 @@ class msg_class;
 
 struct msg_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
-    /* 0x24 */ leafdraw_method_class* mSubMtd;  // Subclass methods
+    /* 0x24 */ leafdraw_method_class* sub_method;  // Subclass methods
 };
 
 struct fopMsg_prm_class {

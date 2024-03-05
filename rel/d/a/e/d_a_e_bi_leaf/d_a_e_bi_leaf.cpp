@@ -12,8 +12,8 @@ static int daE_BI_LEAF_Draw(e_bi_leaf_class* i_this) {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
     return 1;
 }
@@ -23,9 +23,9 @@ static void action(e_bi_leaf_class* i_this) {
     switch (i_this->mAction) {
     case 0:
         if (i_this->mTimer == 0) {
-            fopAc_ac_c* parent_p = fopAcM_SearchByID(i_this->mParentPcId);
+            fopAc_ac_c* parent_p = fopAcM_SearchByID(i_this->parentActorID);
             if (parent_p == NULL) {
-                OS_REPORT("//////////////LEAF ID 2  %d\n", i_this->mParentPcId);
+                OS_REPORT("//////////////LEAF ID 2  %d\n", i_this->parentActorID);
 
                 if (fopAcM_GetRoomNo(i_this) == 50) {
                     i_this->mTimer = 90;
@@ -41,7 +41,7 @@ static void action(e_bi_leaf_class* i_this) {
         if (i_this->mTimer == 0) {
             i_this->mAction = 0;
 
-            i_this->mParentPcId =
+            i_this->parentActorID =
                 fopAcM_createChild(PROC_E_BI, fopAcM_GetID(i_this), (i_this->field_0x5b4 << 8) | 1,
                                    &i_this->current.pos, fopAcM_GetRoomNo(i_this),
                                    &i_this->current.angle, NULL, -1, NULL);

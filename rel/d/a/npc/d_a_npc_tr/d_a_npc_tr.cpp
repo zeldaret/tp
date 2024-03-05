@@ -221,8 +221,8 @@ static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
 
 /* 80B25B78-80B25BDC 000258 0064+00 1/0 0/0 0/0 .text            daNPC_TR_Draw__FP12npc_tr_class */
 static int daNPC_TR_Draw(npc_tr_class* npc_tr) {
-    g_env_light.settingTevStruct(0, &npc_tr->current.pos, &npc_tr->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8->mModelData, &npc_tr->mTevStr);
+    g_env_light.settingTevStruct(0, &npc_tr->current.pos, &npc_tr->tevStr);
+    g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8->mModelData, &npc_tr->tevStr);
     mDoExt_modelUpdateDL(npc_tr->field_0x5b8);
     return 1;
 }
@@ -387,9 +387,9 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
     case 0:
         if (npc_tr->field_0x5dc[0] == 0) {
             for (int i = 0; i < 100; i++) {
-                npc_tr->field_0x5c4.x = npc_tr->orig.pos.x + cM_rndFX(1000.0f);
-                npc_tr->field_0x5c4.y = npc_tr->orig.pos.y + cM_rndFX(200.0f);
-                npc_tr->field_0x5c4.z = npc_tr->orig.pos.z + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.x = npc_tr->home.pos.x + cM_rndFX(1000.0f);
+                npc_tr->field_0x5c4.y = npc_tr->home.pos.y + cM_rndFX(200.0f);
+                npc_tr->field_0x5c4.z = npc_tr->home.pos.z + cM_rndFX(1000.0f);
 
                 cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
                 distance.y = 0.0f;
@@ -521,7 +521,7 @@ static int daNPC_TR_Execute(npc_tr_class* npc_tr) {
     mDoMtx_stack_c::YrotM(npc_tr->shape_angle.y + npc_tr->field_0x5f0);
     mDoMtx_stack_c::XrotM(npc_tr->shape_angle.x);
 
-    f32 scale = npc_tr->mScale.x * l_HIO.field_0x8;
+    f32 scale = npc_tr->scale.x * l_HIO.field_0x8;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
     MTXCopy(mDoMtx_stack_c::get(), npc_tr->field_0x5b8->mBaseTransformMtx);
 
@@ -587,8 +587,8 @@ static int daNPC_TR_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        npc_tr->mCullMtx = npc_tr->field_0x5b8->getBaseTRMtx();
-        npc_tr->mScale.x = cM_rndFX(0.1f) + 0.8f;
+        npc_tr->cullMtx = npc_tr->field_0x5b8->getBaseTRMtx();
+        npc_tr->scale.x = cM_rndFX(0.1f) + 0.8f;
         daNPC_TR_Execute(npc_tr);
     }
 

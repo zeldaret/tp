@@ -15,9 +15,9 @@
 int daTagHstop_c::create() {
     fopAcM_SetupActor(this, daTagHstop_c);
 
-    mScale.x *= 100.0f;
-    mScale.y *= 100.0f;
-    mScale.z *= 100.0f;
+    scale.x *= 100.0f;
+    scale.y *= 100.0f;
+    scale.z *= 100.0f;
 
     if (m_top != NULL) {
         daTagHstop_c* last = m_top;
@@ -109,7 +109,7 @@ dMsgFlow_c daTagHstop_c::m_msgFlow;
 
 /* 805A475C-805A4AA8 00045C 034C+00 1/1 0/0 0/0 .text            execute__12daTagHstop_cFv */
 int daTagHstop_c::execute() {
-    if (mEvtInfo.checkCommandTalk()) {
+    if (eventInfo.checkCommandTalk()) {
         if (field_0x573 == 2) {
             m_msgFlow.init(this, (u16)shape_angle.z, 0, NULL);
             field_0x573 = 3;
@@ -148,7 +148,7 @@ int daTagHstop_c::execute() {
                 }
             } else if (field_0x573 == 2 && !i_dComIfGp_getHorseActor()->checkTurnStand()) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
             }
         } else if (mPrm1 == 2 && !i_dComIfGp_event_runCheck()) {
             if (dComIfGs_getArrowNum() == 0 && !dComIfGs_isSwitch(0x8D, fopAcM_GetHomeRoomNo(this)))

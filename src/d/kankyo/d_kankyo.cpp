@@ -2393,7 +2393,7 @@ void dScnKy_env_light_c::setDaytime() {
                 fopAc_ac_c* ac = dMsgObject_c::getActor();
                 bool tmp = true;
 
-                if (ac != NULL && ac->mEvtInfo.mCommand >= 2) {
+                if (ac != NULL && ac->eventInfo.mCommand >= 2) {
                     tmp = false;
                 }
 

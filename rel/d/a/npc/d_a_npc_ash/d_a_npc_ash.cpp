@@ -921,9 +921,9 @@ cPhs__Step daNpcAsh_c::Create() {
 
         fopAcM_SetMtx(this, mMcaMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
-        mZ2.init(&current.pos, &mEyePos, 3, 1);
+        mZ2.init(&current.pos, &eyePos, 3, 1);
         mAcchCir.SetWall(daNpcAsh_Param_c::m.m1C, daNpcAsh_Param_c::m.m18);
-        mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &fopAcM_GetSpeed_p(this), &fopAcM_GetAngle_p(this), &fopAcM_GetShapeAngle_p(this));
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
@@ -1153,11 +1153,11 @@ int daNpcAsh_c::Draw() {
     mMcaMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(0, 0, daNpcAsh_Param_c::m.mShadow, NULL, 0);
     if (field_0xf60 == 1) {
-        g_env_light.setLightTevColorType_MAJI(mModelBow->mModelData, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mModelBow->mModelData, &tevStr);
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(16));
         mModelBow->i_setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelBow);
-        g_env_light.setLightTevColorType_MAJI(mModelQuiver->mModelData, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mModelQuiver->mModelData, &tevStr);
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(2));
         mModelQuiver->i_setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelQuiver);
@@ -1382,10 +1382,10 @@ void daNpcAsh_c::reset() {
     mLookMode = -1;
     field_0xf5c = 0;
     mGravity = daNpcAsh_Param_c::m.mGravity;
-    current.pos = orig.pos;
-    next.pos = current.pos;
-    current.angle.set(0, orig.angle.y, 0);
-    next.angle = current.angle;
+    current.pos = home.pos;
+    old.pos = current.pos;
+    current.angle.set(0, home.angle.y, 0);
+    old.angle = current.angle;
     shape_angle = current.angle;
     field_0x8f0 = current.angle;
     field_0x8f6 = field_0x8f0;
@@ -1816,7 +1816,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
             setExpression(7, -1.0f);
             if (!isMap()) {
                 setMotion(0, -1.0f, false);
-            } else if (field_0x8f0.y == orig.angle.y) {
+            } else if (field_0x8f0.y == home.angle.y) {
                 setMotion(1, -1.0f, false);
             }
             field_0x96c = 0;
@@ -1844,8 +1844,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     } else {
                         setLookMode(0, NULL);
                     }
-                    if (orig.angle.y != field_0x8f0.y) {
-                        if (step(orig.angle.y, true)) {
+                    if (home.angle.y != field_0x8f0.y) {
+                        if (step(home.angle.y, true)) {
                             setExpression(7, -1.0f);
                             if (!isMap()) {
                                 setMotion(0, -1.0f, false);
@@ -1857,7 +1857,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     }
                     daTag_EvtArea_c* evtArea = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
                     if (evtArea != NULL) {
-                        if (evtArea->chkPointInArea(fopAcM_GetPosition_p(daPy_getPlayerActorClass()))) {
+                        if (evtArea->chkPointInArea(*fopAcM_GetPosition_p(daPy_getPlayerActorClass()))) {
                             daNpcF_offTmpBit(11);
                             mOrderEvtNo = 2;
                             fopAcM_delete(evtArea);
@@ -1865,8 +1865,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     }
                 }
             }
-            if (field_0x8f0.y != orig.angle.y) {
-                if (step(orig.angle.y, true)) {
+            if (field_0x8f0.y != home.angle.y) {
+                if (step(home.angle.y, true)) {
                     if (!isMap()) {
                         setMotion(0, -1.0f, false);
                     } else {
@@ -1876,7 +1876,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                 }
             }
             if (i_dComIfGp_event_runCheck()) {
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         if (isSneaking()) {
                             mOrderEvtNo = 3;
@@ -1892,7 +1892,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                 }
             } else {
                 if (mOrderEvtNo != 0) {
-                    mEvtInfo.setArchiveName("Ash");
+                    eventInfo.setArchiveName("Ash");
                 }
                 orderEvent(mMapToolId, mOrderEvtNo != 0 ? l_evtNames[mOrderEvtNo] : NULL, -1, 40, -1, 1);
             }
@@ -1970,7 +1970,7 @@ bool daNpcAsh_c::wait_type1(void* param_0) {
                 case 0:
                     if (daNpcF_chkTmpBit(0x76)) {
                         current.pos.set(-4300.0f, 0.0f, 8627.657f);
-                        next.pos = current.pos;
+                        old.pos = current.pos;
                         setAngle(-0x6000);
                         field_0xf54++;
                     }
@@ -2076,7 +2076,7 @@ bool daNpcAsh_c::demo(void* param_0) {
             field_0xf5c = 2;
             // no break
         case 2:
-            if (i_dComIfGp_event_runCheck() && !mEvtInfo.checkCommandTalk()) {
+            if (i_dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
                 s32 cutIndex = i_dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
                 if (cutIndex != -1) {
                     mCutIndex = cutIndex;
@@ -2088,7 +2088,7 @@ bool daNpcAsh_c::demo(void* param_0) {
                         i_dComIfGp_getEventManager().cutEnd(cutIndex);
                     }
                 }
-                if (mEvtInfo.checkCommandDemoAccrpt() && field_0x9d4 != -1 && i_dComIfGp_getEventManager().endCheck(field_0x9d4)) {
+                if (eventInfo.checkCommandDemoAccrpt() && field_0x9d4 != -1 && i_dComIfGp_getEventManager().endCheck(field_0x9d4)) {
                     i_dComIfGp_event_reset();
                     mOrderEvtNo = 0;
                     field_0x9d4 = -1;
@@ -2448,21 +2448,21 @@ asm void calc__11J3DTexNoAnmCFPUs() {
 // literals
 void daNpcAsh_c::setParam() {
     searchActors();
-    mAttentionInfo.mFlags = 0xa;
+    attention_info.flags = 0xa;
     if (isSneaking()) {
-        mAttentionInfo.field_0x0[0] = 0x4e;
-        mAttentionInfo.field_0x0[1] = mAttentionInfo.field_0x0[0];
-        mAttentionInfo.field_0x0[3] = 0x4d;
-        mAttentionInfo.mFlags |= 0x800000;
+        attention_info.field_0x0[0] = 0x4e;
+        attention_info.field_0x0[1] = attention_info.field_0x0[0];
+        attention_info.field_0x0[3] = 0x4d;
+        attention_info.flags |= 0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            mAttentionInfo.field_0x0[0] = getDistTableIdx(3, 6);
-            mAttentionInfo.field_0x0[1] = mAttentionInfo.field_0x0[0];
-            mAttentionInfo.field_0x0[3] = getDistTableIdx(2, 6);
+            attention_info.field_0x0[0] = getDistTableIdx(3, 6);
+            attention_info.field_0x0[1] = attention_info.field_0x0[0];
+            attention_info.field_0x0[3] = getDistTableIdx(2, 6);
         } else {
-            mAttentionInfo.field_0x0[0] = getDistTableIdx(daNpcAsh_Param_c::m.m4C, daNpcAsh_Param_c::m.m4E);
-            mAttentionInfo.field_0x0[1] = mAttentionInfo.field_0x0[0];
-            mAttentionInfo.field_0x0[3] = getDistTableIdx(daNpcAsh_Param_c::m.m48, daNpcAsh_Param_c::m.m4A);
+            attention_info.field_0x0[0] = getDistTableIdx(daNpcAsh_Param_c::m.m4C, daNpcAsh_Param_c::m.m4E);
+            attention_info.field_0x0[1] = attention_info.field_0x0[0];
+            attention_info.field_0x0[3] = getDistTableIdx(daNpcAsh_Param_c::m.m48, daNpcAsh_Param_c::m.m4A);
         }
     }
 }
@@ -2482,7 +2482,7 @@ BOOL daNpcAsh_c::main() {
     if (mpActionFn != NULL) {
         (this->*mpActionFn)(NULL);
     }
-    if (i_dComIfGp_event_runCheck() != 0 && !mEvtInfo.checkCommandTalk() && mItemPartnerId != -1) {
+    if (i_dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);
         mItemPartnerId = -1;
     }
@@ -2596,14 +2596,14 @@ void daNpcAsh_c::setAttnPos() {
     cXyz vec(10.0f, 10.0f, 0.0f);
     mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
-    mDoMtx_stack_c::multVec(&vec, &mEyePos);
+    mDoMtx_stack_c::multVec(&vec, &eyePos);
     vec.x = 0.0f;
     mDoMtx_stack_c::multVec(&vec, &vec);
     field_0x902.x = cLib_targetAngleX(&mHeadPos, &vec);
     field_0x902.y = cLib_targetAngleY(&mHeadPos, &vec);
     cXyz* attnPos = mLookat.getAttnPos();
     if (attnPos != NULL) {
-        cXyz local_48 = *attnPos - mEyePos;
+        cXyz local_48 = *attnPos - eyePos;
         field_0x8fc.y = -(field_0x91a[2].y + field_0x8f0.y);
         field_0x8fc.y += cM_atan2s(local_48.x, local_48.z);
         field_0x8fc.x = -cM_atan2s(local_48.y, local_48.absXZ());
@@ -2612,7 +2612,7 @@ void daNpcAsh_c::setAttnPos() {
         field_0x8fc.y = 0;
         field_0x8fc.x = 0;
     }
-    mAttentionInfo.mPosition.set(mHeadPos.x, mHeadPos.y + 35.0f, mHeadPos.z);
+    attention_info.position.set(mHeadPos.x, mHeadPos.y + 35.0f, mHeadPos.z);
     cXyz center;
     mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&center);
@@ -2705,7 +2705,7 @@ void daNpcAsh_c::lookat() {
             break;
     }
     if (actor != NULL) {
-        mLookPos = actor->mAttentionInfo.mPosition;
+        mLookPos = actor->attention_info.position;
         if (mLookMode != 2 && mLookMode != 3) {
             mLookPos.y -= 40.0f;
         }

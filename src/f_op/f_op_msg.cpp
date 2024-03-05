@@ -12,7 +12,7 @@
 /* 8001F488-8001F4B0 019DC8 0028+00 1/0 0/0 0/0 .text            fopMsg_Draw__FPv */
 static int fopMsg_Draw(void* i_this) {
     msg_class* _this = static_cast<msg_class*>(i_this);
-    return fpcLf_DrawMethod(_this->mSubMtd, i_this);
+    return fpcLf_DrawMethod(_this->sub_method, i_this);
 }
 
 /* 8001F4B0-8001F4E8 019DF0 0038+00 1/0 0/0 0/0 .text            fopMsg_Execute__FPv */
@@ -21,7 +21,7 @@ static int fopMsg_Execute(void* i_this) {
 
     int stat = 1;
     if (dScnPly_c::isPause()) {
-        stat = fpcMtd_Execute(&_this->mSubMtd->mBase, i_this);
+        stat = fpcMtd_Execute(&_this->sub_method->mBase, i_this);
     }
 
     return stat;
@@ -31,9 +31,9 @@ static int fopMsg_Execute(void* i_this) {
 static int fopMsg_IsDelete(void* i_this) {
     msg_class* _this = static_cast<msg_class*>(i_this);
 
-    int stat = fpcMtd_IsDelete(&_this->mSubMtd->mBase, i_this);
+    int stat = fpcMtd_IsDelete(&_this->sub_method->mBase, i_this);
     if (stat == 1) {
-        fopDwTg_DrawQTo(&_this->mDwTg);
+        fopDwTg_DrawQTo(&_this->draw_tag);
     }
 
     return stat;
@@ -43,8 +43,8 @@ static int fopMsg_IsDelete(void* i_this) {
 static int fopMsg_Delete(void* i_this) {
     msg_class* _this = static_cast<msg_class*>(i_this);
 
-    int stat = fpcMtd_Delete(&_this->mSubMtd->mBase, i_this);
-    fopDwTg_DrawQTo(&_this->mDwTg);
+    int stat = fpcMtd_Delete(&_this->sub_method->mBase, i_this);
+    fopDwTg_DrawQTo(&_this->draw_tag);
 
     return stat;
 }
@@ -61,8 +61,8 @@ int fopMsg_Create(void* i_this) {
         msg_process_profile_definition* profile =
             (msg_process_profile_definition*)fpcM_GetProfile(i_this);
         _this->mMsgType = fpcBs_MakeOfType(&fopMsg_MSG_TYPE);
-        _this->mSubMtd = profile->mSubMtd;
-        fopDwTg_Init(&_this->mDwTg, _this);
+        _this->sub_method = profile->sub_method;
+        fopDwTg_Init(&_this->draw_tag, _this);
         fopMsg_prm_class* prm = fopMsgM_GetAppend(_this);
         if (prm != NULL) {
             _this->mpActor = prm->mpActor;
@@ -73,10 +73,10 @@ int fopMsg_Create(void* i_this) {
         }
     }
 
-    int status = fpcMtd_Create(&_this->mSubMtd->mBase, _this);
+    int status = fpcMtd_Create(&_this->sub_method->mBase, _this);
     if (status == cPhs_COMPLEATE_e) {
         s32 priority = fpcLf_GetPriority(_this);
-        fopDwTg_ToDrawQ(&_this->mDwTg, priority);
+        fopDwTg_ToDrawQ(&_this->draw_tag, priority);
     }
 
     return status;

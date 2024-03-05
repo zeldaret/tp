@@ -894,7 +894,7 @@ int daBoomerang_c::draw() {
                         pushLockList(i);
                         i--;
                     } else {
-                        mSight.setSight(&mLockActors[i]->mEyePos, i);
+                        mSight.setSight(&mLockActors[i]->eyePos, i);
                     }
 
                 } else {
@@ -911,7 +911,7 @@ int daBoomerang_c::draw() {
                 field_0x6d8 = fopAcM_SearchByID(field_0x6d4);
             }
             if (field_0x6d8 != 0) {
-                mSight.setSight(&field_0x6d8->mEyePos, 5);
+                mSight.setSight(&field_0x6d8->eyePos, 5);
             } else {
                 mSight.setSight(NULL, 5);
             }
@@ -920,16 +920,16 @@ int daBoomerang_c::draw() {
             dComIfGd_set2DXlu((dDlst_base_c*)&mSight);
         }
     }
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x568, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x568, &tevStr);
     mDoExt_modelUpdateDL(field_0x568);
     daMirror_c::entry(field_0x568);
     if (fopAcM_GetParam(this) != 0) {
-        g_env_light.setLightTevColorType_MAJI(field_0x56c, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(field_0x56c, &tevStr);
         mDoExt_modelEntryDL(field_0x56c);
         daMirror_c::entry(field_0x56c);
     } else if (i_dComIfGp_checkPlayerStatus0(0, 0x80000) != 0) {
-        g_env_light.setLightTevColorType_MAJI(field_0x590, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(field_0x590, &tevStr);
         mDoExt_modelUpdateDL(field_0x590);
     }
     return 1;
@@ -970,7 +970,7 @@ void daBoomerang_c::moveLineCallback(fopAc_ac_c* i_actorP) {
 
                 if (i == field_0x951) {
                     field_0x957 = 10;
-                    field_0x9ac = i_actorP->mEyePos;
+                    field_0x9ac = i_actorP->eyePos;
                     field_0x9c4 = current.pos;
                 }
             }
@@ -1044,7 +1044,7 @@ int daBoomerang_c::setLockActor(fopAc_ac_c* param_0, int param_1) {
         }
     }
     if (param_1 != 0) {
-        f32 squareDistance = param_0->mEyePos.abs2(current.pos);
+        f32 squareDistance = param_0->eyePos.abs2(current.pos);
         if (squareDistance > field_0x984) {
             return 0;
         }
@@ -1079,11 +1079,11 @@ void daBoomerang_c::setRoomInfo() {
     int roomNo;
     if (field_0x980 != -1000000000.0f) {
         roomNo = dComIfG_Bgsp().GetRoomId(field_0xd6c);
-        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0xd6c);
+        tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0xd6c);
     } else {
         roomNo = dComIfGp_roomControl_getStayNo();
     }
-    mTevStr.mRoomNo = roomNo;
+    tevStr.mRoomNo = roomNo;
     field_0x953 = dComIfGp_getReverb(roomNo);
     field_0x9d0.SetRoomId(roomNo);
     fopAcM_SetRoomNo(this, roomNo);
@@ -1179,7 +1179,7 @@ void daBoomerang_c::setAimPos() {
     }
     for (int i = field_0x951; i < mLockCnt; i++, field_0x951++) {
         if (mLockActors[i] != NULL) {
-            field_0x990 = mLockActors[i]->mEyePos;
+            field_0x990 = mLockActors[i]->eyePos;
             return;
         }
         if (field_0x718[i] != 0) {
@@ -1241,7 +1241,7 @@ void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
 #ifdef NONMATCHING
 // Matches with literals
 JPABaseEmitter* daBoomerang_c::setEffectTraceMatrix(u32* param_0, u16 param_1) {
-    *param_0 = dComIfGp_particle_set(*param_0, param_1, &current.pos, &mTevStr);
+    *param_0 = dComIfGp_particle_set(*param_0, param_1, &current.pos, &tevStr);
     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(*param_0);
     if (emitter != NULL) {
         emitter->setGlobalRTMatrix(field_0x568->getBaseTRMtx());

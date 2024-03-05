@@ -1348,7 +1348,7 @@ int daMyna_c::create() {
             return cPhs_ERROR_e;
         } else {
             fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
-            mCreature.init(&current.pos, &mEyePos, 3, 1);
+            mCreature.init(&current.pos, &eyePos, 3, 1);
             initiate();
             setRoomNo();
             execute();
@@ -1416,7 +1416,7 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 /* 809463B8-8094640C 000838 0054+00 1/1 0/0 0/0 .text            destroy__8daMyna_cFv */
 int daMyna_c::destroy() {
     dComIfG_resDelete(&mPhase, "Npc_myna");
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         mpMorf->stopZelAnime();
     }
     return 1;
@@ -1426,8 +1426,8 @@ int daMyna_c::destroy() {
 int daMyna_c::draw() {
     J3DModel* model = mpMorf->getModel();
     J3DModelData* modelData = model->getModelData();
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
     if (cLib_checkBit<u16>(field_0x914, 0x40)) {
         mBtpAnm.entry(modelData);
     }
@@ -1461,8 +1461,8 @@ int daMyna_c::execute() {
         i_fpcM_Search(daMyna_searchLight, this);
     }
     setRoomNo();
-    mAttentionInfo.mPosition.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
-    mEyePos.set(mAttentionInfo.mPosition);
+    attention_info.position.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
+    eyePos.set(attention_info.position);
     if (field_0x926 > 0) {
         field_0x926--;
     }
@@ -1591,11 +1591,11 @@ asm void daMyna_c::attack_wait_init() {
 // Matches with literals
 #ifdef NONMATCHING
 void daMyna_c::attack_wait_move() {
-    if (current.angle.y != orig.angle.y) {
-        cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 32767, 1500);
-        cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 32767, 1500);
-        if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
-            current.angle = orig.angle;
+    if (current.angle.y != home.angle.y) {
+        cLib_addCalcAngleS(&current.angle.y, home.angle.y, 4, 32767, 1500);
+        cLib_addCalcAngleS(&current.angle.x, home.angle.x, 4, 32767, 1500);
+        if (abs(s16(current.angle.y - home.angle.y)) < 128) {
+            current.angle = home.angle;
         }
     }
     if (!daPy_py_c::i_checkNowWolf() && daMyna_evtTagActor0 != NULL) {
@@ -1603,9 +1603,9 @@ void daMyna_c::attack_wait_move() {
         if (!dComIfGs_isSaveSwitch(0x3C)) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1)) {
                 if (!isEventFlag(1)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 1;
                     }
                 } else {
@@ -1615,9 +1615,9 @@ void daMyna_c::attack_wait_move() {
         } else if (field_0x92A < l_HOSTIO.field_0x24) {
             field_0x92A++;
         } else {
-            mEvtInfo.i_onCondition(1);
+            eventInfo.i_onCondition(1);
             fopAcM_orderSpeakEvent(this, 0, 0);
-            if (mEvtInfo.checkCommandTalk()) {
+            if (eventInfo.checkCommandTalk()) {
                 field_0x92C = 4;
             }
         }
@@ -1654,7 +1654,7 @@ asm void daMyna_c::attack_before_talk_init() {
 
 /* 80946B40-80946BB4 000FC0 0074+00 1/0 0/0 0/0 .text attack_before_talk_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         onEventFlag(1);
         field_0x92C = 2;
@@ -1763,7 +1763,7 @@ void daMyna_c::attack_after_talk_init() {
 /* 80946E08-80946E84 001288 007C+00 1/0 0/0 0/0 .text            attack_after_talk_move__8daMyna_cFv
  */
 void daMyna_c::attack_after_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         onEventFlag(2);
         field_0x91C = 0x139;
@@ -1800,32 +1800,32 @@ void daMyna_c::greet_wait_move() {
     if (!daPy_py_c::i_checkNowWolf()) {
         if (daMyna_evtTagActor0 != NULL) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, cXyz(cXyz(1.0f, 1.0f, 1.0f)))) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
                     }
                 }
             }
         } else {
             if (fopAcM_searchPlayerDistanceXZ(this) < 350.0f) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    mEvtInfo.i_onCondition(1);
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
                     }
                 }
@@ -1883,7 +1883,7 @@ asm void daMyna_c::greet_talk_init() {
 
 /* 8094711C-809471BC 00159C 00A0+00 1/0 0/0 0/0 .text            greet_talk_move__8daMyna_cFv */
 void daMyna_c::greet_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x937 = 20;
@@ -1929,9 +1929,9 @@ void daMyna_c::shopping_wait_move() {
             bool bVar1 = false;
             s16 nowTotalPrice = dMsgObject_getMsgObjectClass()->getNowTotalPrice();
             if (dMsgObject_getMsgObjectClass()->isPaymentFlag()) {
-                mEvtInfo.i_onCondition(1);
+                eventInfo.i_onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 9;
                     dMsgObject_getMsgObjectClass()->offPaymentFlag();
                 }
@@ -1944,7 +1944,7 @@ void daMyna_c::shopping_wait_move() {
                             dMsgObject_addTotalPrice(mShopItems[i].mValueNum);
                             field_0x931 = i;
                             if (mShopItems[i].mFlowNodeNum != 0xFFFF) {
-                                mEvtInfo.i_onCondition(1);
+                                eventInfo.i_onCondition(1);
                                 fopAcM_orderSpeakEvent(this, 0, 0);
                             }
                         }
@@ -1966,13 +1966,13 @@ void daMyna_c::shopping_wait_move() {
                     cXyz stack_2c(1.0f, 1.0f, 1.0f);
                     if (chkPlayerInEvtArea(daMyna_evtTagActor1, stack_2c)) {
                         if (isEventFlag(0)) {
-                            mEvtInfo.i_onCondition(1);
+                            eventInfo.i_onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
                         } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2)
                         {
-                            mEvtInfo.i_onCondition(1);
+                            eventInfo.i_onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
@@ -1983,23 +1983,23 @@ void daMyna_c::shopping_wait_move() {
                 if (daMyna_evtTagActor0 != NULL) {
                     cXyz stack_38(1.0f, 1.0f, 1.0f);
                     if (!chkPlayerInEvtArea(daMyna_evtTagActor0, stack_38) && nowTotalPrice > 0) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
                 } else if (fopAcM_searchPlayerDistanceXZ(this) > 450.0f) {
                     if (isEventFlag(0)) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2) {
-                        mEvtInfo.i_onCondition(1);
+                        eventInfo.i_onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
                 }
 
-                if (mEvtInfo.checkCommandTalk()) {
+                if (eventInfo.checkCommandTalk()) {
                     if (!bVar1) {
                         field_0x92C = 8;
                     } else {
@@ -2030,7 +2030,7 @@ void daMyna_c::shopping_talk_init() {
 
 /* 80947630-809476A0 001AB0 0070+00 1/0 0/0 0/0 .text            shopping_talk_move__8daMyna_cFv */
 void daMyna_c::shopping_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
@@ -2053,7 +2053,7 @@ void daMyna_c::thanks_talk_init() {
 
 /* 8094772C-80947794 001BAC 0068+00 1/0 0/0 0/0 .text            thanks_talk_move__8daMyna_cFv */
 void daMyna_c::thanks_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x92C = 7;
     }
@@ -2096,7 +2096,7 @@ void daMyna_c::byebye_talk_init() {
 /* 809478D0-80947A00 001D50 0130+00 1/0 0/0 0/0 .text            byebye_talk_move__8daMyna_cFv */
 void daMyna_c::byebye_talk_move() {
     bool bVar1 = true;
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         if (field_0x933 == 0) {
             if (field_0x931 != 0xFF) {
                 mShopItems[field_0x931].mItemStatus = 3;
@@ -2272,7 +2272,7 @@ asm void daMyna_c::turn_on_end1_init() {
 // Matches when l_HOSTIO is the correct type
 #ifdef NONMATCHING
 void daMyna_c::turn_on_end1_move() {
-    cXyz local_18 = orig.pos - current.pos;
+    cXyz local_18 = home.pos - current.pos;
     s16 sVar2 = cM_atan2s(local_18.x, local_18.z);
     cLib_addCalcAngleS(&current.angle.y, sVar2, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
                        l_HOSTIO.field_0x2A);
@@ -2318,7 +2318,7 @@ asm void daMyna_c::turn_on_end2_init() {
 void daMyna_c::turn_on_end2_move() {
     cXyz stack_24;
     cXyz local_30;
-    cXyz local_3c = orig.pos - current.pos;
+    cXyz local_3c = home.pos - current.pos;
 
     s16 sVar2 = cM_atan2s(local_3c.x, local_3c.z);
     f32 fVar1 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
@@ -2330,10 +2330,10 @@ void daMyna_c::turn_on_end2_move() {
     cLib_offsetPos(&stack_24, &current.pos, sVar2, &local_30);
     current.pos = stack_24;
 
-    cXyz stack_48 = orig.pos - current.pos;
+    cXyz stack_48 = home.pos - current.pos;
 
     if (stack_48.abs() < l_HOSTIO.field_0x20) {
-        current.pos.set(orig.pos);
+        current.pos.set(home.pos);
         field_0x92C = 15;
     }
 }
@@ -2357,11 +2357,11 @@ void daMyna_c::turn_on_end3_init() {
 // Matches when l_HOSTIO is the correct type
 #ifdef NONMATCHING
 void daMyna_c::turn_on_end3_move() {
-    cLib_addCalcAngleS(&current.angle.y, orig.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
+    cLib_addCalcAngleS(&current.angle.y, home.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
                        l_HOSTIO.field_0x2A);
 
-    if (abs(current.angle.y - orig.angle.y) <= 16) {
-        current.angle.y = orig.angle.y;
+    if (abs(current.angle.y - home.angle.y) <= 16) {
+        current.angle.y = home.angle.y;
         field_0x92C = field_0x92D;
     }
 }
@@ -2414,11 +2414,11 @@ void daMyna_c::attack_wait2_move() {
     if (daPy_py_c::i_checkNowWolf()) {
         field_0x92C = 7;
     } else {
-        if (current.angle.y != orig.angle.y) {
-            cLib_addCalcAngleS(&current.angle.y, orig.angle.y, 4, 0x7FFF, 0x5DC);
-            cLib_addCalcAngleS(&current.angle.x, orig.angle.x, 4, 0x7FFF, 0x5DC);
-            if (abs(s16(current.angle.y - orig.angle.y)) < 128) {
-                current.angle = orig.angle;
+        if (current.angle.y != home.angle.y) {
+            cLib_addCalcAngleS(&current.angle.y, home.angle.y, 4, 0x7FFF, 0x5DC);
+            cLib_addCalcAngleS(&current.angle.x, home.angle.x, 4, 0x7FFF, 0x5DC);
+            if (abs(s16(current.angle.y - home.angle.y)) < 128) {
+                current.angle = home.angle;
             }
         }
 
@@ -2431,10 +2431,10 @@ void daMyna_c::attack_wait2_move() {
                 }
             } else {
                 if (field_0x939 == 1) {
-                    current.angle = orig.angle;
-                    mEvtInfo.i_onCondition(1);
+                    current.angle = home.angle;
+                    eventInfo.i_onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
-                    if (mEvtInfo.checkCommandTalk()) {
+                    if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 21;
                     }
                 } else if (field_0x92A < l_HOSTIO.field_0x24) {
@@ -2477,7 +2477,7 @@ asm void daMyna_c::attack_before_talk2_init() {
 
 /* 809483DC-80948444 00285C 0068+00 1/0 0/0 0/0 .text attack_before_talk2_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk2_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x92C = 19;
     }
@@ -2603,7 +2603,7 @@ void daMyna_c::attack2_talk_init() {
 
 /* 80948734-809487EC 002BB4 00B8+00 1/0 0/0 0/0 .text            attack2_talk_move__8daMyna_cFv */
 void daMyna_c::attack2_talk_move() {
-    if (mEvtInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
+    if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         i_dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
@@ -2708,10 +2708,10 @@ bool daMyna_c::fly_return_move() {
 
         cLib_addCalcAngleS(&current.angle.y, sVar2, 4, 0x7FFF, 0x5DC);
         cLib_addCalcAngleS(&current.angle.x, sVar1, 4, 0x7FFF, 0x5DC);
-        cLib_addCalcPos2(&current.pos, orig.pos, 0.001f, 100.0f);
+        cLib_addCalcPos2(&current.pos, home.pos, 0.001f, 100.0f);
 
     } else {
-        cXyz stack_48 = orig.pos;
+        cXyz stack_48 = home.pos;
         cXyz local_30 = stack_48 - current.pos;
         f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
         s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
@@ -2723,7 +2723,7 @@ bool daMyna_c::fly_return_move() {
 
         cXyz local_44 = stack_48 - current.pos;
         if (local_44.abs() < 3.0f) {
-            current.pos.set(orig.pos);
+            current.pos.set(home.pos);
             return true;
         }
     }
@@ -2818,7 +2818,7 @@ int daMyna_c::chkEvent() {
     if (daPy_py_c::i_checkNowWolf()) {
         if (!i_dComIfGp_getEvent().i_isOrderOK()) {
             retVal = 0;
-            if (mEvtInfo.checkCommandTalk()) {
+            if (eventInfo.checkCommandTalk()) {
                 if (field_0x92C == 0x10) {
                     (this->*move_proc[field_0x92C])();
                     retVal = 0;
@@ -2858,12 +2858,12 @@ int daMyna_c::orderEvent() {
         case 13:
         case 14:
         case 15:
-            mAttentionInfo.mFlags = 10;
+            attention_info.flags = 10;
         }
-        if (mAttentionInfo.mFlags == 10) {
-            mAttentionInfo.field_0x0[1] = 0x8B;
-            mAttentionInfo.field_0x0[3] = 0x8B;
-            mEvtInfo.i_onCondition(1);
+        if (attention_info.flags == 10) {
+            attention_info.field_0x0[1] = 0x8B;
+            attention_info.field_0x0[3] = 0x8B;
+            eventInfo.i_onCondition(1);
         }
     }
     return 1;
@@ -3054,10 +3054,10 @@ asm void daMyna_c::setCollision() {
 void daMyna_c::set_mtx() {
     J3DModel* model = mpMorf->getModel();
     cXyz local_18(current.pos);
-    mScale.set(l_HOSTIO.field_0x04, l_HOSTIO.field_0x04, l_HOSTIO.field_0x04);
+    scale.set(l_HOSTIO.field_0x04, l_HOSTIO.field_0x04, l_HOSTIO.field_0x04);
     mDoMtx_stack_c::transS(local_18);
     mDoMtx_stack_c::ZXYrotM(current.angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
     mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(4));
@@ -3307,7 +3307,7 @@ int daMyna_c::getItemType(void* param_0) {
 
 /* 80949C0C-80949C44 00408C 0038+00 3/3 0/0 0/0 .text            getFlowNodeNum__8daMyna_cFv */
 u16 daMyna_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -3369,14 +3369,14 @@ int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
         mDoMtx_stack_c::transM(-param_0->current.pos.x, -param_0->current.pos.y,
                                -param_0->current.pos.z);
         mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &local_6c);
-        f32 fVar1 = fabsf(param_0->mScale.x + param_1.x);
-        f32 fVar2 = fabsf(param_0->mScale.z + param_1.z);
+        f32 fVar1 = fabsf(param_0->scale.x + param_1.x);
+        f32 fVar2 = fabsf(param_0->scale.z + param_1.z);
         f32 fVar3 = fabsf(local_6c.x);
         f32 fVar4 = fabsf(local_6c.z);
         local_60 = param_0->current.pos - daPy_getPlayerActorClass()->current.pos;
         if ((fVar3 * fVar3) / (fVar1 * fVar1) + (fVar4 * fVar4) / (fVar2 * fVar2) <= 1.0f &&
-            -(param_0->mScale.y + param_1.y) < local_60.y &&
-            local_60.y < (param_0->mScale.y + param_1.y))
+            -(param_0->scale.y + param_1.y) < local_60.y &&
+            local_60.y < (param_0->scale.y + param_1.y))
         {
             retVal = 1;
         }
@@ -3494,10 +3494,10 @@ void daMyna_c::playDefaultWaitAnime() {
         cXyz stack_70;
 
         local_58.x = daMyna_LightActor->current.pos.x;
-        local_58.y = orig.pos.y;
+        local_58.y = home.pos.y;
         local_58.z = daMyna_LightActor->current.pos.z;
 
-        cXyz stack_7c = local_58 - orig.pos;
+        cXyz stack_7c = local_58 - home.pos;
 
         s16 sVar42 = cM_atan2s(stack_7c.x, stack_7c.z);
         f32 fVar7 = stack_7c.abs();
@@ -3510,7 +3510,7 @@ void daMyna_c::playDefaultWaitAnime() {
         cLib_offsetPos(&stack_70, &current.pos, sVar42, &local_64);
         current.pos = stack_70;
 
-        cXyz stack_88 = current.pos - orig.pos;
+        cXyz stack_88 = current.pos - home.pos;
         if (fVar7 > field_0x910 * stack_88.abs()) {
             setAnimeType(1, 6.0f);
         }
@@ -3518,7 +3518,7 @@ void daMyna_c::playDefaultWaitAnime() {
     case 5:
         cXyz local_94;
         cXyz stack_a0;
-        cXyz local_ac = orig.pos - current.pos;
+        cXyz local_ac = home.pos - current.pos;
 
         s16 sVar4 = cM_atan2s(local_ac.x, local_ac.z);
         f32 fVar2 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
@@ -3530,10 +3530,10 @@ void daMyna_c::playDefaultWaitAnime() {
         cLib_offsetPos(&stack_a0, &current.pos, sVar4, &local_94);
         current.pos = stack_a0;
 
-        cXyz stack_b8 = orig.pos - current.pos;
+        cXyz stack_b8 = home.pos - current.pos;
 
         if (stack_b8.abs() < l_HOSTIO.field_0x20) {
-            current.pos.set(orig.pos);
+            current.pos.set(home.pos);
             setAnimeType(1, 6.0f);
         }
         break;
@@ -3583,7 +3583,7 @@ void daMyna_c::setDefaultWaitAnime(u8 param_0) {
                         setAnimeType(3, 0.0f);
                         break;
                     default:
-                        cXyz stack_24 = orig.pos - current.pos;
+                        cXyz stack_24 = home.pos - current.pos;
                         if (stack_24.abs() < l_HOSTIO.field_0x20) {
                             field_0x910 = cM_rnd() * 0.25f + 0.25f;
                             setAnimeType(6, 0.0f);

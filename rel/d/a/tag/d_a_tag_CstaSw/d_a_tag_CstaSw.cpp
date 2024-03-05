@@ -44,7 +44,7 @@ bool daTagCstaSw_c::areaCheck() {
     }
 
     cXyz vec_to_actor = current.pos - sekizo_p->current.pos;
-    if (vec_to_actor.absXZ() <= mScale.x * 100.0f) {
+    if (vec_to_actor.absXZ() <= scale.x * 100.0f) {
         in_area = true;
     }
 
@@ -117,14 +117,14 @@ extern actor_process_profile_definition g_profile_Tag_CstaSw = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_CstaSw,        // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagCstaSw_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     657,                    // mPriority
-    &l_daTagCstaSw_Method,  // mSubMtd
+    &l_daTagCstaSw_Method,  // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

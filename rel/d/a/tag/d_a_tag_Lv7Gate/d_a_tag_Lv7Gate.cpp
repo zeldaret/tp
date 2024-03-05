@@ -53,7 +53,7 @@ int daTagLv7Gate_c::create() {
 
     fopAcM_SetupActor(this, daTagLv7Gate_c);
 
-    if (fopAcM_GetPosition_p(daPy_getPlayerActorClass()).y < 7500.0f) {
+    if (fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 7500.0f) {
         return cPhs_ERROR_e;
     } else {
         phase = dComIfG_resLoad(&mPhase, l_arcName);
@@ -110,13 +110,13 @@ void daTagLv7Gate_c::setBaseMtx() {
         mDoMtx_stack_c::multVec(&local_34, (Vec*)&mPos1);
         MTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
 
-        mAttentionInfo.mPosition = mPos1;
+        attention_info.position = mPos1;
     }
 }
 
 /* 80D50D30-80D511A8 0002F0 0478+00 1/1 0/0 0/0 .text            create_init__14daTagLv7Gate_cFv */
 void daTagLv7Gate_c::create_init() {
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
     mLastFrame = 0;
     field_0x5ac = 0;
     mEvtId = -1;
@@ -126,7 +126,7 @@ void daTagLv7Gate_c::create_init() {
 
     setPath(getPathID() & 0xFF);
 
-    mAttentionInfo.mPosition = mPos1;
+    attention_info.position = mPos1;
 
     if (mpModel) {
         initBaseMtx();
@@ -165,8 +165,8 @@ void daTagLv7Gate_c::create_init() {
             fopAcM_create(PROC_NPC_TKJ, 0, &pos, fopAcM_GetRoomNo(this), &local_54, NULL, -1);
         }
     }
-    mEvtInfo.setArchiveName(l_arcName);
-    i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+    eventInfo.setArchiveName(l_arcName);
+    i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
     mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
     fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 2, 1);
 }
@@ -227,7 +227,7 @@ void daTagLv7Gate_c::flyAnime() {
 int daTagLv7Gate_c::execute() {
     // Fakematch
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (i_dComIfGp_event_runCheck() != 0 && !mEvtInfo.checkCommandTalk()) {
+    if (i_dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
         s32 cut_index = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
             int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index); // Fakematch
@@ -261,7 +261,7 @@ int daTagLv7Gate_c::execute() {
                 break;
             }
 
-            if (mEvtInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
+            if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 dComIfGp_evmng_endCheck(mEvtId)) {
                 // i_dComIfGp_event_reset();
                 play.getEvent().reset(); // Fakematch
@@ -273,8 +273,8 @@ int daTagLv7Gate_c::execute() {
         }
     } else {
         if (!field_0x5b0) {
-            mEvtInfo.setArchiveName(l_arcName);
-            i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+            eventInfo.setArchiveName(l_arcName);
+            i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
             mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
             fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
             field_0x5b0 = true;
@@ -341,8 +341,8 @@ void daTagLv7Gate_c::calcFly() {
 
 int daTagLv7Gate_c::draw() {
     if (field_0x5b1) {
-        g_env_light.settingTevStruct(0, &mPos1, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+        g_env_light.settingTevStruct(0, &mPos1, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         mpBck->entry(mpModel->getModelData());
         mDoExt_modelUpdateDL(mpModel);
         mpBck->remove(mpModel->getModelData());
@@ -385,14 +385,14 @@ extern actor_process_profile_definition g_profile_Tag_Lv7Gate = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Lv7Gate,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daTagLv7Gate_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     263,                     // mPriority
-    &l_daTagLv7Gate_Method,  // mSubMtd
+    &l_daTagLv7Gate_Method,  // sub_method
     0x40000,                 // mStatus
     0,                       // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

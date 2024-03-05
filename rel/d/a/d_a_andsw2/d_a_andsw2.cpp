@@ -35,7 +35,7 @@ extern "C" void isSwitch__10dSv_info_cCFii();
 
 /* 804D5DF8-804D5E04 000078 000C+00 2/2 0/0 0/0 .text            getEventNo__10daAndsw2_cFv */
 u8 daAndsw2_c::getEventNo() {
-    return orig.angle.x & 0xFF;
+    return home.angle.x & 0xFF;
 }
 
 /* 804D5E04-804D5E10 000084 000C+00 6/6 0/0 0/0 .text            getSwbit__10daAndsw2_cFv */
@@ -55,7 +55,7 @@ u8 daAndsw2_c::getType() {
 
 /* 804D5E28-804D5E34 0000A8 000C+00 1/1 0/0 0/0 .text            getTimer__10daAndsw2_cFv */
 u8 daAndsw2_c::getTimer() {
-    return orig.angle.z & 0xFF;
+    return home.angle.z & 0xFF;
 }
 
 /* 804D5E34-804D5E40 0000B4 000C+00 3/3 0/0 0/0 .text            getNum__10daAndsw2_cFv */
@@ -76,7 +76,7 @@ u8 daAndsw2_c::getTopSw() {
 
 /* 804D5EB0-804D5EBC 000130 000C+00 1/1 0/0 0/0 .text            getSwAns__10daAndsw2_cFv */
 u8 daAndsw2_c::getSwAns() {
-    return (orig.angle.x >> 8) & 0xFF;
+    return (home.angle.x >> 8) & 0xFF;
 }
 
 /* 804D5EBC-804D5F64 00013C 00A8+00 4/4 0/0 0/0 .text            chkAllSw2__10daAndsw2_cFv */
@@ -277,7 +277,7 @@ static int daAndsw2_actionTimer(daAndsw2_c* i_this) {
 // missing mr / out of order instruction
 #ifdef NONMATCHING
 static int daAndsw2_actionOrder(daAndsw2_c* i_this) {
-    if (i_this->mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (i_this->eventInfo.i_checkCommandDemoAccrpt()) {
         i_this->setActio(daAndsw2_c::ACT_EVENT_e);
         dComIfGs_onSwitch(i_this->getSwbit(), fopAcM_GetRoomNo(i_this));
     } else if ((i_this->getType() == 1 && !i_this->chkAllSw2()) ||
@@ -404,14 +404,14 @@ extern actor_process_profile_definition g_profile_ANDSW2 = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_ANDSW2,            // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daAndsw2_c),     // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     303,                    // mPriority
-    &l_daAndsw2_Method,     // mSubMtd
+    &l_daAndsw2_Method,     // sub_method
     0x44000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_6_e,      // mCullType
+    fopAc_CULLBOX_6_e,      // cullType
 };

@@ -150,7 +150,7 @@ void daAlink_c::commonInitForceRideRein() {
     field_0x30a6 = 0;
 
     initServiceWaitTime();
-    mAttentionInfo.field_0xa = 0x46;
+    attention_info.field_0xa = 0x46;
     mUnderFrameCtrl[0].onEndFlg();
 }
 
@@ -222,7 +222,7 @@ void daAlink_c::rideGetOff() {
 
     mRideStatus = 0;
     i_offNoResetFlg1(FLG1_UNK_1800);
-    mAttentionInfo.field_0xa = 10;
+    attention_info.field_0xa = 10;
     shape_angle.x = 0;
     shape_angle.z = 0;
 }
@@ -930,7 +930,7 @@ void daAlink_c::setBodyAngleRideReadyAnime() {
     s16 angle;
     if (mTargetedActor != NULL) {
         angle = cLib_minMaxLimit(
-            (s16)(cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos) - shape_angle.y),
+            (s16)(cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos) - shape_angle.y),
             (s16)-0x3800, (s16)0x3800);
     } else {
         angle = 0;

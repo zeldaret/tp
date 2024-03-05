@@ -93,8 +93,8 @@ static int daKytag14_Create(fopAc_ac_c* i_this) {
     a_this->mSwitchNo1 = a_this->current.angle.z & 0xFF;
     a_this->mSwitchNo2 = (a_this->current.angle.z >> 8) & 0xFF;
 
-    if (a_this->orig.roomNo != -1) {
-        a_this->mSaveRoomNo = a_this->orig.roomNo;
+    if (a_this->home.roomNo != -1) {
+        a_this->mSaveRoomNo = a_this->home.roomNo;
     }
 
     return cPhs_COMPLEATE_e;

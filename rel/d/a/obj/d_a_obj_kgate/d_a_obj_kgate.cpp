@@ -86,10 +86,10 @@ void daObjKGate_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     MTXCopy(mDoMtx_stack_c::get(), field_0xb18);
-    mpGateModel->setBaseScale(mScale);
+    mpGateModel->setBaseScale(scale);
 
     if (mNameArg == 0 || mNameArg == 1) {
-        mpGateModel2->setBaseScale(mScale);
+        mpGateModel2->setBaseScale(scale);
     } else if (mNameArg == 2) {
         cXyz scale(1.0f, 1.0f, -1.0f);
         mpGateModel2->setBaseScale(scale);
@@ -97,11 +97,11 @@ void daObjKGate_c::initBaseMtx() {
 
     if (getSwNo() != 0xFF) {
         if (mpKeyModel != NULL) {
-            mpKeyModel->setBaseScale(mScale);
+            mpKeyModel->setBaseScale(scale);
         }
 
         if (mpHookModel != NULL) {
-            mpHookModel->setBaseScale(mScale);
+            mpHookModel->setBaseScale(scale);
         }
     }
 
@@ -248,7 +248,7 @@ int daObjKGate_c::Create() {
 
     if (mNameArg == 0 || mNameArg == 2) {
         if (sw_no != 0xFF && !i_fopAcM_isSwitch(this, sw_no)) {
-            mEvtInfo.setArchiveName(l_arcName[mNameArg]);
+            eventInfo.setArchiveName(l_arcName[mNameArg]);
 
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
             mMapToolID = getEventID();
@@ -271,9 +271,9 @@ int daObjKGate_c::Create() {
         setAction(ACT_DEAD);
     }
 
-    mAttentionInfo.mPosition.y += 150.0f;
-    mEyePos.y += 150.0f;
-    mAttentionInfo.mFlags = 0x20;
+    attention_info.position.y += 150.0f;
+    eyePos.y += 150.0f;
+    attention_info.flags = 0x20;
 
     initBaseMtx();
     fopAcM_SetMtx(this, field_0xb18);
@@ -881,15 +881,15 @@ void daObjKGate_c::action_typeB() {
 /* 8058A1B0-8058A294 0021B0 00E4+00 1/0 0/0 0/0 .text            actionWaitEvent__12daObjKGate_cFv
  */
 void daObjKGate_c::actionWaitEvent() {
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
         i_fopAcM_onSwitch(this, getSwNo());
         fopAcM_seStart(this, Z2SE_OBJ_FLN_GATE_L_OP, 0);
     } else if (checkOpen()) {
-        mEvtInfo.setEventId(mEventID);
-        mEvtInfo.setMapToolId(mMapToolID);
-        mEvtInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.setEventId(mEventID);
+        eventInfo.setMapToolId(mMapToolID);
+        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
     }
 }
 
@@ -981,9 +981,9 @@ int daObjKGate_c::Execute(Mtx** param_0) {
 
 /* 8058A5B8-8058A6F4 0025B8 013C+00 1/0 0/0 0/0 .text            Draw__12daObjKGate_cFv */
 int daObjKGate_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpGateModel, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpGateModel2, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpGateModel, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpGateModel2, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpGateModel);
@@ -991,15 +991,15 @@ int daObjKGate_c::Draw() {
     dComIfGd_setList();
 
     if (getSwNo() != 0xFF) {
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
         if (mpHookModel != NULL) {
-            g_env_light.setLightTevColorType_MAJI(mpHookModel, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpHookModel, &tevStr);
             mDoExt_modelUpdateDL(mpHookModel);
         }
 
         if (mpKeyModel != NULL) {
-            g_env_light.setLightTevColorType_MAJI(mpKeyModel, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpKeyModel, &tevStr);
             mDoExt_modelUpdateDL(mpKeyModel);
         }
     }

@@ -99,6 +99,7 @@ void OSReportInit(void);
 #define ASSERTMSG(exp, msg) (void)((exp) || (OSPanic(__FILE__, __LINE__, (msg)), 0))
 #else
 #define OS_REPORT(...)
+#define OS_REPORT_ERROR(...)
 #define OS_PANIC(...)
 #define ASSERTMSG(exp, msg) ((void)0)
 #endif

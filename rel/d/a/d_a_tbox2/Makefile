@@ -8,12 +8,10 @@ M42_MAP := $(BUILD_DIR)/rel/d/a/d_a_tbox2.map
 
 M42_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/d_a_tbox2/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_tbox2/d_a_tbox2.cpp \
 
 M42_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox2/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_tbox2/d_a_tbox2.o \
 
 M42_LIBS := \

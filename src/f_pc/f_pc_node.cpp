@@ -98,7 +98,7 @@ s32 fpcNd_Create(process_node_class* i_procNode) {
         node_process_profile_definition* pProcProfileDef =
             (node_process_profile_definition*)pProcNode->mBase.mpProf;
         pProcNode->mBase.mSubType = fpcBs_MakeOfType(&g_fpcNd_type);
-        pProcNode->mpNodeMtd = (nodedraw_method_class*)pProcProfileDef->mSubMtd;
+        pProcNode->mpNodeMtd = (nodedraw_method_class*)pProcProfileDef->sub_method;
         fpcLy_Create(&pProcNode->mLayer, pProcNode, pProcNode->mLayerNodeLists, 0x10);
         pProcNode->mUnk0 = 0;
     }

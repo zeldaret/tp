@@ -46,12 +46,12 @@ static char* l_myName = "EvtMsg";
 int daTag_EvtMsg_c::create() {
     fopAcM_SetupActor(this, daTag_EvtMsg_c);
 
-    mScale.x *= 100.0f;
-    mScale.y *= 100.0f;
-    mScale.z = mScale.x;
+    scale.x *= 100.0f;
+    scale.y *= 100.0f;
+    scale.z = scale.x;
 
-    if (orig.angle.z != 0xFFFF) {
-        mFlowID = orig.angle.z;
+    if (home.angle.z != 0xFFFF) {
+        mFlowID = home.angle.z;
     } else {
         mFlowID = -1;
     }
@@ -71,11 +71,11 @@ int daTag_EvtMsg_c::Delete() {
 int daTag_EvtMsg_c::Execute() {
     dEvent_manager_c& evt_mng = i_dComIfGp_getEventManager();
 
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         if (i_dComIfGp_event_runCheck() != 0) {
             int staff_id;
             BOOL reset = false;
-            if (mEvtInfo.checkCommandTalk()) {
+            if (eventInfo.checkCommandTalk()) {
                 if (field_0x572 != 0) {
                     mMsgFlow.init(this, mFlowID, 0, NULL);
                 }
@@ -83,7 +83,7 @@ int daTag_EvtMsg_c::Execute() {
                 if (mMsgFlow.doFlow(this, NULL, 0)) {
                     reset = true;
                 }
-            } else if (mEvtInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
+            } else if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
                        evt_mng.endCheck(mEventID))
             {
                 mEventID = -1;
@@ -122,14 +122,14 @@ int daTag_EvtMsg_c::Execute() {
                         fopAcM_orderOtherEventId(this, mEventID, 0xFF, 0xFFFF, 0, 1);
                     }
                 } else {
-                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
             }
         }
-        mAttentionInfo.mFlags = 0;
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = mAttentionInfo.mPosition;
+        attention_info.flags = 0;
+        attention_info.position = current.pos;
+        eyePos = attention_info.position;
         return 1;
     }
 
@@ -163,12 +163,12 @@ u32 daTag_EvtMsg_c::getOffEvtBit() {
 
 /* 8048D35C-8048D368 00049C 000C+00 1/1 0/0 0/0 .text            getOnSwBit__14daTag_EvtMsg_cFv */
 u8 daTag_EvtMsg_c::getOnSwBit() {
-    return orig.angle.x & 0xFF;
+    return home.angle.x & 0xFF;
 }
 
 /* 8048D368-8048D374 0004A8 000C+00 2/2 0/0 0/0 .text            getOffSwBit__14daTag_EvtMsg_cFv */
 u8 daTag_EvtMsg_c::getOffSwBit() {
-    return (orig.angle.x >> 8) & 0xFF;
+    return (home.angle.x >> 8) & 0xFF;
 }
 
 /* 8048D374-8048D384 0004B4 0010+00 1/1 0/0 0/0 .text            getProcType__14daTag_EvtMsg_cFv */
@@ -201,7 +201,7 @@ BOOL daTag_EvtMsg_c::chkPointInArea(cXyz param_0) {
         getOnSwBit() == 0xFF ||
         (getOnSwBit() != 0xFF && !dComIfGs_isSwitch(getOnSwBit(), fopAcM_GetRoomNo(this))))
     {
-        return daNpcF_chkPointInArea(param_0, current.pos, mScale, shape_angle.y);
+        return daNpcF_chkPointInArea(param_0, current.pos, scale, shape_angle.y);
     }
 
     return 0;

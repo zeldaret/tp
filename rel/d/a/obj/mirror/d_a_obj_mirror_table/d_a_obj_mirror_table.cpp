@@ -340,11 +340,11 @@ static int daObjMirrorTable_Draw(daObjMirrorTable_c* i_this) {
 
 /* 80C9A298-80C9A4B0 0009F8 0218+00 1/1 0/0 0/0 .text            draw__18daObjMirrorTable_cFv */
 int daObjMirrorTable_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpTableModel->mModelData, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpMirrorModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpTableModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpMirrorModel->mModelData, &tevStr);
     if (mpStairModel != NULL) {
-        g_env_light.setLightTevColorType_MAJI(mpStairModel->mModelData, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpStairModel->mModelData, &tevStr);
     }
     mpTableUpBckAnm->entry(mpTableModel->getModelData());
     dComIfGd_setListBG();

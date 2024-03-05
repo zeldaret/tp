@@ -28,12 +28,16 @@
 #define JUT_LOG(LINE, ...)                                                                         \
     JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
 
+#define JUT_CONFIRM(LINE, COND)                                                                    \
+    JUTAssertion::setConfirmMessage(JUTAssertion::getSDevice(), __FILE__, LINE, COND, #COND)
+
 #else
 #define JUT_ASSERT(...)
 #define JUT_ASSERT_REPORT(...)
 #define JUT_PANIC(...)
 #define JUT_WARN(...)
 #define JUT_LOG(...)
+#define JUT_CONFIRM(...)
 #endif
 
 namespace JUTAssertion {

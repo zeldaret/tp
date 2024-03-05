@@ -9,8 +9,8 @@
 
 /* 80CA7B58-80CA7BB0 000078 0058+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjOnsen_cFv */
 void daObjOnsen_c::initBaseMtx() {
-    mpModel[0]->setBaseScale(mScale);
-    mpModel[1]->setBaseScale(mScale);
+    mpModel[0]->setBaseScale(scale);
+    mpModel[1]->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -99,9 +99,9 @@ int daObjOnsen_c::Execute(Mtx** i_mtx) {
 
 /* 80CA7F1C-80CA8008 00043C 00EC+00 1/0 0/0 0/0 .text            Draw__12daObjOnsen_cFv */
 int daObjOnsen_c::Draw() {
-    g_env_light.settingTevStruct(16, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel[0], &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel[1], &mTevStr);
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel[0], &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel[1], &tevStr);
     dKy_bg_MAxx_proc(mpModel[0]);
     mDoExt_modelUpdateDL(mpModel[0]);
     mpBtk->entry(mpModel[1]->getModelData());

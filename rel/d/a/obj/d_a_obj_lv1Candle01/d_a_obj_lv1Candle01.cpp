@@ -41,7 +41,7 @@ daLv1Cdl01_HIO_c::daLv1Cdl01_HIO_c() :
 void daLv1Cdl01_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -77,7 +77,7 @@ cPhs__Step daLv1Cdl01_c::create() {
         mIsLit = true;
         mTimer = 0;
         setLight();
-        mEyePos = mTorchPos;
+        eyePos = mTorchPos;
         mStts.Init(0xff, 0xff, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mStts);
@@ -197,8 +197,8 @@ int daLv1Cdl01_c::Execute(f32 (**param_0)[3][4]) {
 
 /* 80C575F4-80C57698 000A34 00A4+00 1/0 0/0 0/0 .text            Draw__12daLv1Cdl01_cFv */
 int daLv1Cdl01_c::Draw() {
-    g_env_light.settingTevStruct(0x40, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

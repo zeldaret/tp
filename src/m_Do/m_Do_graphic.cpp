@@ -635,7 +635,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
                     fopAcM_SearchByID(daPy_getLinkPlayerActorClass()->getAtnActorID());
 
                 if (atn_actor != NULL) {
-                    cXyz sp28 = atn_actor->mEyePos;
+                    cXyz sp28 = atn_actor->eyePos;
                     if (fabsf(sp28.y - camera_p->mLookat.mEye.y) < 400.0f) {
                         sp28.y = camera_p->mLookat.mEye.y;
                     }

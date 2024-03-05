@@ -40,7 +40,7 @@ static s32 fopOvlp_Create(void* i_this) {
             (overlap_process_profile_definition*)fpcM_GetProfile(_this);
 
         cReq_Create((request_base_class*)&_this->field_0xc4, 1);
-        _this->field_0xc0 = profile->mSubMtd;
+        _this->field_0xc0 = profile->sub_method;
         _this->field_0xc8 = -1;
     }
 

@@ -79,7 +79,7 @@ void daObjMirror6Pole_c::initBaseMtx() {
 
 void daObjMirror6Pole_c::create_init() {
     initBaseMtx();
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
     setAction(MODE_WAIT_e);
 }
 
@@ -163,8 +163,8 @@ static int daObjMirror6Pole_Execute(daObjMirror6Pole_c* i_this) {
 }
 
 int daObjMirror6Pole_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     mpBck->entry(mpModel->getModelData());
 

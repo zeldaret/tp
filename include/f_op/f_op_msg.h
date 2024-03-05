@@ -9,8 +9,8 @@ class fopAc_ac_c;
 class msg_class : public leafdraw_class {
 public:
     /* 0xC0 */ int mMsgType;
-    /* 0xC4 */ create_tag_class mDwTg;
-    /* 0xD8 */ leafdraw_method_class* mSubMtd;
+    /* 0xC4 */ create_tag_class draw_tag;
+    /* 0xD8 */ leafdraw_method_class* sub_method;
     /* 0xDC */ fopAc_ac_c* mpActor;
     /* 0xE0 */ cXyz mPos;
     /* 0xEC */ u32 mMsgID;

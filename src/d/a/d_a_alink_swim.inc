@@ -495,7 +495,7 @@ int daAlink_c::procSwimWait() {
         current.angle.y = shape_angle.y;
     }
 
-    mMaxFallSpeed = getSwimMaxFallSpeed();
+    maxFallSpeed = getSwimMaxFallSpeed();
     field_0x594 = getSwimFrontMaxSpeed();
 
     setSpeedAndAngleSwim();
@@ -628,7 +628,7 @@ int daAlink_c::procSwimMove() {
 #ifdef NONMATCHING
 int daAlink_c::procSwimDiveInit() {
     commonProcInit(PROC_SWIM_DIVE);
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
 
     if (i_checkNoResetFlg0(FLG0_UNK_100)) {
@@ -760,7 +760,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
 
 /* 80104D7C-80104EB8 0FF6BC 013C+00 1/0 0/0 0/0 .text procSwimHookshotSubject__9daAlink_cFv */
 int daAlink_c::procSwimHookshotSubject() {
-    mMaxFallSpeed = getSwimMaxFallSpeed();
+    maxFallSpeed = getSwimMaxFallSpeed();
     field_0x594 = getSwimFrontMaxSpeed();
 
     if (checkHookshotWait()) {

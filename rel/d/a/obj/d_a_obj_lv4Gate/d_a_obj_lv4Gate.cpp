@@ -42,7 +42,7 @@ void daLv4Gate_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(mMoveValue, 0.0f, 0.0f);
 
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -176,8 +176,8 @@ void daLv4Gate_c::modeMoveEnd() {}
 
 /* 80C5F1E8-80C5F28C 000768 00A4+00 1/0 0/0 0/0 .text            Draw__11daLv4Gate_cFv */
 int daLv4Gate_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

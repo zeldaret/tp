@@ -177,7 +177,7 @@ public:
 #endif
 
     /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mScale;
+    /* 0x08 */ f32 scale;
     /* 0x0C */ f32 mWalkSpeed;
     /* 0x10 */ f32 mRunSpeed;
     /* 0x14 */ f32 mSwimSpeed;

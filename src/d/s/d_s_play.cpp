@@ -760,11 +760,11 @@ scene_process_profile_definition g_profile_PLAY_SCENE = {
     1,                                         // mListID
     fpcPi_CURRENT_e,                           // mListPrio
     PROC_PLAY_SCENE,                           // mProcName
-    &g_fpcNd_Method.mBase,                     // mSubMtd
+    &g_fpcNd_Method.mBase,                     // sub_method
     sizeof(dScnPly_c),                         // mSize
     0,                                         // mSizeOther
     0,                                         // mParameters
-    &g_fopScn_Method.mBase,                    // mSubMtd
+    &g_fopScn_Method.mBase,                    // sub_method
     (process_method_class*)&l_dScnPly_Method,  // mpMtd
 };
 
@@ -774,10 +774,10 @@ scene_process_profile_definition g_profile_OPENING_SCENE = {
     1,                                         // mListID
     fpcPi_CURRENT_e,                           // mListPrio
     PROC_OPENING_SCENE,                        // mProcName
-    &g_fpcNd_Method.mBase,                     // mSubMtd
+    &g_fpcNd_Method.mBase,                     // sub_method
     sizeof(dScnPly_c),                         // mSize
     0,                                         // mSizeOther
     0,                                         // mParameters
-    &g_fopScn_Method.mBase,                    // mSubMtd
+    &g_fopScn_Method.mBase,                    // sub_method
     (process_method_class*)&l_dScnPly_Method,  // mpMtd
 };

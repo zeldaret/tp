@@ -138,10 +138,10 @@ int daTagAtkItem_c::Create() {
     mCcStts.Init(0, 0xFF, this);
     mCyl.Set(l_cyl_src);
     mCyl.SetStts(&mCcStts);
-    mCyl.SetR(mScale.x * 50.0f);
-    mCyl.SetH(mScale.y * 100.0f);
+    mCyl.SetR(scale.x * 50.0f);
+    mCyl.SetH(scale.y * 100.0f);
 
-    current.pos.y = orig.pos.y - mScale.y * 100.0f;
+    current.pos.y = home.pos.y - scale.y * 100.0f;
     return 1;
 }
 
@@ -340,8 +340,8 @@ BOOL daTagAtkItem_c::checkHit() {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
     if ((player_p->checkFrontRollCrash() || player_p->checkWolfAttackReverse()) &&
-        player_p->current.pos.absXZ(current.pos) < mScale.x * 50.0f &&
-        fabsf(player_p->current.pos.y - current.pos.y) < mScale.y * 100.0f)
+        player_p->current.pos.absXZ(current.pos) < scale.x * 50.0f &&
+        fabsf(player_p->current.pos.y - current.pos.y) < scale.y * 100.0f)
     {
 #ifdef DEBUG
         // "Attack Reaction Item: Rotate attack hit!\n"
@@ -368,7 +368,7 @@ void daTagAtkItem_c::createItem() {
     for (int i = 0; i < create_num; i++) {
         angle.y += (s16)cM_rndFX(0x7FFF);
 
-        fopAcM_createItemFromTable(&orig.pos, getItemNo(), item_bit, fopAcM_GetHomeRoomNo(this),
+        fopAcM_createItemFromTable(&home.pos, getItemNo(), item_bit, fopAcM_GetHomeRoomNo(this),
                                    &angle, 0, NULL, NULL, NULL, false);
 
         if (item_bit != 0xFF) {

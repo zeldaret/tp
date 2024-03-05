@@ -48,9 +48,9 @@ int daTagRetRm_c::execute() {
 
 /* 80D5F010-80D5F050 0001F0 0040+00 1/1 0/0 0/0 .text   init__12daTagRetRm_cFv */
 void daTagRetRm_c::init() {
-    field_0x56c = mScale.x * 50;
-    field_0x570 = mScale.y * 100;
-    field_0x574 = mScale.z * 50;
+    field_0x56c = scale.x * 50;
+    field_0x570 = scale.y * 100;
+    field_0x574 = scale.z * 50;
     field_0x578 = 0;
 }
 
@@ -109,14 +109,14 @@ extern actor_process_profile_definition g_profile_Tag_RetRoom = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_RetRoom,       // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagRetRm_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     731,                    // mPriority
-    &daTagRetRm_METHODS,    // mSubMtd
+    &daTagRetRm_METHODS,    // sub_method
     0x40000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

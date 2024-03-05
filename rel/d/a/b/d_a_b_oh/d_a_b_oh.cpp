@@ -296,8 +296,8 @@ static int daB_OH_Draw(b_oh_class* i_this) {
 
     J3DModel* model_p = i_this->mpMorf->getModel();
 
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p, &i_this->tevStr);
 
     i_this->mpBtk->entry(model_p->getModelData());
     i_this->mpBrk->entry(model_p->getModelData());
@@ -934,7 +934,7 @@ static void action(b_oh_class* i_this) {
     i_this->mDistToPlayer = fopAcM_searchPlayerDistance(i_this);
 
     fopAcM_OffStatus(i_this, 0);
-    i_this->mAttentionInfo.mFlags = 0;
+    i_this->attention_info.flags = 0;
 
     uvar = 0;
     bvar = true;
@@ -1006,7 +1006,7 @@ static void action(b_oh_class* i_this) {
         }
 
         cLib_addCalcAngleS2(&i_this->current.angle.x, -0xF2C, 4, 100);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->orig.angle.y, 4, 0x100);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->home.angle.y, 4, 0x100);
     } else if (uvar == 2) {
         f32 fvar = i_this->field_0xc8c;
         for (int i = i_this->field_0xca8; i < 30; i++) {
@@ -1054,7 +1054,7 @@ static void action(b_oh_class* i_this) {
         }
 
         cLib_addCalcAngleS2(&i_this->current.angle.x, 0xA92, 4, 0x200);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->orig.angle.y, 4, 0x800);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->home.angle.y, 4, 0x800);
     }
 
     i_this->field_0x600 =
@@ -1077,9 +1077,9 @@ static void action(b_oh_class* i_this) {
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->current.pos);
 
-    local_90.x = i_this->current.pos.x - boss->orig.pos.x;
-    local_90.z = i_this->current.pos.z - boss->orig.pos.z;
-    i_this->orig.angle.y = cM_atan2s(local_90.x, local_90.z);
+    local_90.x = i_this->current.pos.x - boss->home.pos.x;
+    local_90.z = i_this->current.pos.z - boss->home.pos.z;
+    i_this->home.angle.y = cM_atan2s(local_90.x, local_90.z);
     cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x2000);
     cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.x, 2, 0x2000);
 
@@ -1193,14 +1193,14 @@ static void damage_check(b_oh_class* i_this) {
         for (int i = 7; i < 15; i++) {
             if (i_this->mColliders[i].ChkTgHit()) {
                 i_this->mAtInfo.mpCollider = i_this->mColliders[i].GetTgHitObj();
-                i_this->mHealth = 1000;
+                i_this->health = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
                 MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
                           mDoMtx_stack_c::get());
-                mDoMtx_stack_c::multVecZero(&i_this->mEyePos);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->mEyePos, NULL, NULL, 0);
-                mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->mEyePos, 0, 0);
+                mDoMtx_stack_c::multVecZero(&i_this->eyePos);
+                i_dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
+                mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
 
                 bvar = true;
                 i_this->field_0x5f4 = 20;
@@ -1264,7 +1264,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     }
 
     if (i_this->field_0x5c8 == 0) {
-        boss = (b_ob_class*)fopAcM_SearchByID(i_this->mParentPcId);
+        boss = (b_ob_class*)fopAcM_SearchByID(i_this->parentActorID);
     }
 
     if (boss == NULL) {
@@ -1475,7 +1475,7 @@ static int daB_OH_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        this_->mHealth = 1000;
+        this_->health = 1000;
         this_->field_0x560 = 1000;
 
         this_->field_0x5cc = cM_rndF(65536.0f);

@@ -28,10 +28,10 @@ public:
     u8 getBitSW2() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
 
     u32 getFlowNodeNo() {
-        if (orig.angle.x == 0xFFFF) {
+        if (home.angle.x == 0xFFFF) {
             return 0xFFFFFFFF;
         } else {
-            return orig.angle.x & 0xFFFF;
+            return home.angle.x & 0xFFFF;
         }
     }
 

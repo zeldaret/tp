@@ -81,8 +81,8 @@ daObj_Web0_HIO_c::daObj_Web0_HIO_c() {
 /* 80D34544-80D345C0 000104 007C+00 1/0 0/0 0/0 .text            daObj_Web0_Draw__FP14obj_web0_class
  */
 static int daObj_Web0_Draw(obj_web0_class* i_this) {
-    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
     i_this->mpBrk->entry(i_this->mpModel->getModelData());
 
     mDoExt_modelUpdateDL(i_this->mpModel);
@@ -146,7 +146,7 @@ static void damage_check(obj_web0_class* i_this) {
     }
 
     if (daPy_getPlayerActorClass()->checkFrontRollCrash() &&
-        fopAcM_searchPlayerDistanceXZ(i_this) < i_this->mScale.x * 260.0f) {
+        fopAcM_searchPlayerDistanceXZ(i_this) < i_this->scale.x * 260.0f) {
         i_this->mReboundTimer = 20;
         fopAcM_seStart(i_this, Z2SE_OBJ_WEB_BOUND_L, 0);
     }
@@ -224,7 +224,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
 
     if (i_this->mDeleteTimer != 0) {
         if (i_this->mDeleteTimer == 1) {
-            cXyz sp30(i_this->mScale);
+            cXyz sp30(i_this->scale);
             sp30.z = 1.0f;
 
             dComIfGp_particle_set(0x840C, &i_this->current.pos, &i_this->shape_angle, &sp30);
@@ -248,7 +248,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
-    mDoMtx_stack_c::scaleM(i_this->mScale.x, i_this->mScale.y, i_this->mScale.z);
+    mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
 
     i_this->mpBrk->play();
     i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
@@ -257,7 +257,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
         i_this->mReboundTimer--;
     }
 
-    i_this->mScale.z = i_this->mReboundTimer * cM_ssin(i_this->mReboundTimer * 0x1900) * 0.075f;
+    i_this->scale.z = i_this->mReboundTimer * cM_ssin(i_this->mReboundTimer * 0x1900) * 0.075f;
 
     s16 tmp = (fopAcM_searchPlayerAngleY(i_this) + 0x4000) - i_this->shape_angle.y;
     if (tmp < 0) {
@@ -269,7 +269,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
 
     cXyz sp3C(i_this->current.pos);
     if (i_this->field_0x57c & 1) {
-        sp3C.y -= i_this->mScale.x * 70.0f;
+        sp3C.y -= i_this->scale.x * 70.0f;
     }
 
     s16 svar9 = i_this->shape_angle.y;
@@ -283,7 +283,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     }
 
     i_this->mSphCc.SetC(sp3C);
-    i_this->mSphCc.SetR(i_this->mScale.x * 150.0f);
+    i_this->mSphCc.SetR(i_this->scale.x * 150.0f);
 
     dComIfG_Ccsp()->Set(&i_this->mSphCc);
     return 1;
@@ -413,7 +413,7 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
         fopAcM_SetMtx(_this, _this->mpModel->getBaseTRMtx());
         fopAcM_SetMin(_this, -1000.0f, -1000.0f, -1000.0f);
         fopAcM_SetMax(_this, 1000.0f, 1000.0f, 1000.0f);
-        _this->mHealth = 30;
+        _this->health = 30;
         _this->field_0x560 = 30;
 
         _this->mStts.Init(250, 0, _this);
@@ -422,11 +422,11 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
         _this->mSphCc.OnTgNoHitMark();
 
         if (_this->mScaleXY != 0xFF && _this->mScaleXY != 0) {
-            _this->mScale.x = _this->mScaleXY;
-            _this->mScale.y = _this->mScaleXY;
+            _this->scale.x = _this->mScaleXY;
+            _this->scale.y = _this->mScaleXY;
         }
 
-        _this->mEyePos = _this->current.pos;
+        _this->eyePos = _this->current.pos;
         daObj_Web0_Execute(_this);
     }
 

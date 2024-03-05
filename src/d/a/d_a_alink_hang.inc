@@ -522,7 +522,7 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
     speed.y = FLOAT_LABEL(lit_6108);
 
     mProcVar2.field_0x300c = 0;
@@ -682,7 +682,7 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x30,
                             daAlinkHIO_ladder_c0::m.field_0x34);
     field_0x2f99 = 14;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
@@ -765,7 +765,7 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x40,
                             daAlinkHIO_ladder_c0::m.field_0x44);
     field_0x2f99 = 14;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     field_0x30a0 = 0x2800;
     field_0x33f4 = lit_6040;
@@ -1118,7 +1118,7 @@ asm int daAlink_c::procClimbWait() {
 int daAlink_c::procClimbToRoofInit() {
     commonProcInit(PROC_CLIMB_TO_ROOF);
     setSingleAnimeBase(ANM_ROOF_UP);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
@@ -1205,7 +1205,7 @@ int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& p
     field_0x2f98 = 4;
 
     deleteEquipItem(TRUE, FALSE);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
@@ -1303,7 +1303,7 @@ int daAlink_c::procRoofHangSideMoveInit() {
 
     setSingleAnimeBaseSpeed(anm_id, getRoofHangSMoveAnmSpeed(),
                             daAlinkHIO_roofHang_c0::m.field_0x40);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
@@ -1373,7 +1373,7 @@ int daAlink_c::procRoofHangTurnInit() {
     }
 
     field_0x2f98 = 4;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
@@ -1424,7 +1424,7 @@ int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     deleteEquipItem(TRUE, FALSE);
     setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.field_0x0);
 
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;

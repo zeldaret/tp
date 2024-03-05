@@ -102,11 +102,11 @@ int daTagMstop_c::create() {
         field_0x572 = 0xFFFF;
     }
 
-    f32 tmp = mScale.x;
-    tmp *= 10000.0f * mScale.x;
+    f32 tmp = scale.x;
+    tmp *= 10000.0f * scale.x;
 
     field_0x5c0 = tmp;
-    field_0x5c4 = current.pos.y + mScale.y * 100.0f;
+    field_0x5c4 = current.pos.y + scale.y * 100.0f;
 
     csXyz pos_angle;
 
@@ -121,8 +121,8 @@ int daTagMstop_c::create() {
                          ->mEntries[dComIfGp_getRoomCamera(room)->field_0x4[idx].field_0x10]
                          .mPosition;
 
-        mEyePos.set(pos->x, pos->y, pos->z);
-        mAttentionInfo.mPosition = mEyePos;
+        eyePos.set(pos->x, pos->y, pos->z);
+        attention_info.position = eyePos;
     }
 
     shape_angle.y = fopAcM_searchPlayerAngleY(this);
@@ -157,7 +157,7 @@ static int daTagMstop_Delete(daTagMstop_c* i_this) {
 
 /* 805A63C4-805A63F8 000304 0034+00 1/1 0/0 0/0 .text            eventOrder__12daTagMstop_cFv */
 void daTagMstop_c::eventOrder() {
-    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
     fopAcM_orderSpeakEvent(this, 0, 0);
 }
 
@@ -212,9 +212,9 @@ int daTagMstop_c::execute() {
     daPy_py_c* player_p = daPy_getLinkPlayerActorClass();
 
     if (checkNoAttention()) {
-        mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
+        attention_info.position = midna_p->attention_info.position;
         shape_angle.y = midna_p->shape_angle.y;
-        mEyePos = mAttentionInfo.mPosition;
+        eyePos = attention_info.position;
     } else {
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
     }
@@ -238,7 +238,7 @@ int daTagMstop_c::execute() {
 
             player_p->i_changeDemoPos0(&field_0x5c8);
         }
-    } else if (mEvtInfo.checkCommandTalk()) {
+    } else if (eventInfo.checkCommandTalk()) {
         if (field_0x56e == 2) {
             if (!midna_p->checkShadowModelDraw() || midna_p->checkShadowReturnEnd()) {
                 i_dComIfGp_getEvent().reset(this);
@@ -312,14 +312,14 @@ extern actor_process_profile_definition g_profile_Tag_Mstop = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Mstop,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagMstop_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     257 ,                   // mPriority
-    &l_daTagMstop_Method,   // mSubMtd
+    &l_daTagMstop_Method,   // sub_method
     0x44000,                // mStatus
     fopAc_ENV_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

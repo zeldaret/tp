@@ -396,5 +396,6 @@ int isBomb(u8);
 int isArrow(u8);
 int addBombCount(u8, u8);
 BOOL isBottleItem(u8 item_no);
+u8 check_itemno(int i_itemNo);
 
 #endif /* D_D_ITEM_H */

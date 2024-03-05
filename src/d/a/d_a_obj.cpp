@@ -24,7 +24,7 @@ void eff_break_tsubo(fopAc_ac_c* i_actor, cXyz i_scale, int i_type) {
         dPa_name::ZI_J_M_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
         (dPa_modelEcallBack*)&dPa_modelEcallBack::mEcallback, roomNo, NULL, NULL, &i_scale);
 
-    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->mTevStr, 3, tubo_btp, 0, i_type);
+    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, 0, i_type);
 
     s32 roomNo2 = fopAcM_GetRoomNo(i_actor);
     dComIfGp_particle_set(dPa_name::ZI_J_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
@@ -97,7 +97,7 @@ void posMoveF_grade_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* param_
 
     if (param_2 != NULL) {
         cXyz sp28(*param_5);
-        sp28.y += i_actor->mGravity;
+        sp28.y += i_actor->gravity;
 
         if (param_6 != NULL) {
             sp28 += *param_6;
@@ -136,10 +136,10 @@ void posMoveF_grade(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* stream
 
     f32 speedF = fopAcM_GetSpeedF(i_actor);
     f32 gravity = fopAcM_GetGravity(i_actor);
-    cXyz& speed_p = fopAcM_GetSpeed_p(i_actor);
+    cXyz* speed_p = fopAcM_GetSpeed_p(i_actor);
 
     f32 speed_x = spB8.x + (spAC.x + (speedF * cM_ssin(i_actor->current.angle.y)));
-    f32 speed_y = spB8.y + (spAC.y + (speed_p.y + gravity));
+    f32 speed_y = spB8.y + (spAC.y + (speed_p->y + gravity));
     f32 speed_z = spB8.z + (spAC.z + (speedF * cM_scos(i_actor->current.angle.y)));
 
     if (param_8 != NULL) {

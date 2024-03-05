@@ -34,7 +34,7 @@ int daTalk_c::create() {
         return cPhs_ERROR_e;
     }
 
-    mAttentionInfo = dMsgObject_getMsgObjectClass()->getpTalkActor()->mAttentionInfo;
+    attention_info = dMsgObject_getMsgObjectClass()->getpTalkActor()->attention_info;
     mMessageID = -1;
     return cPhs_COMPLEATE_e;
 }
@@ -43,21 +43,21 @@ int daTalk_c::create() {
 int daTalk_c::execute() {
     dComIfG_inf_c& dcomif = g_dComIfG_gameInfo;
     if (dcomif.play.getEvent().runCheck()) {
-        if (!mEvtInfo.checkCommandTalk()) {
+        if (!eventInfo.checkCommandTalk()) {
             fopAcM_delete(this);
         }
     } else {
         if (fopAcM_searchPlayerDistanceXZ(this) >
-            dAttention_c::i_getDistTable(mAttentionInfo.field_0x0[1]).field_0x4)
+            dAttention_c::i_getDistTable(attention_info.field_0x0[1]).field_0x4)
         {
             mMessageID = -1;
             fopAcM_delete(this);
         } else {
-            mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
         }
     }
 
-    if (mEvtInfo.checkCommandTalk()) {
+    if (eventInfo.checkCommandTalk()) {
         if (dMsgObject_getMsgObjectClass()->getNodeIdx() == 0xFF) {
             if (mMessageID == -1) {
                 mMessageID = messageSet();

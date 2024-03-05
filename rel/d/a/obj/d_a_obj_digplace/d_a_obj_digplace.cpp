@@ -35,12 +35,12 @@ int daObjDigpl_c::create() {
     mDoMtx_copy(mDoMtx_stack_c::get(), field_0x570);
     fopAcM_SetMtx(this, field_0x570);
 
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = mAttentionInfo.mPosition;
-    mTevStr.mRoomNo = dComIfGp_roomControl_getStayNo();
+    attention_info.position = current.pos;
+    eyePos = attention_info.position;
+    tevStr.mRoomNo = dComIfGp_roomControl_getStayNo();
     fopAcM_SetMin(this, -550.0f, -250.0f, -550.0f);
     fopAcM_SetMax(this, 550.0f, 250.0f, 550.0f);
-    mAttentionInfo.field_0x0[7] = 27;
+    attention_info.field_0x0[7] = 27;
 
     return cPhs_COMPLEATE_e;
 }
@@ -98,11 +98,11 @@ int daObjDigpl_c::execute() {
         }
     }
 
-    mAttentionInfo.mFlags &= ~0x80;
+    attention_info.flags &= ~0x80;
 
     if (mpDigPoints != NULL) {
         current.pos.y = player_p->current.pos.y + 100000.0f;
-        mAttentionInfo.mPosition.y = current.pos.y;
+        attention_info.position.y = current.pos.y;
         cXyz point_pos;
 
         dStage_dPnt_c* point_p = mpDigPoints->m_points;
@@ -127,8 +127,8 @@ int daObjDigpl_c::execute() {
 
                     mCurrentDigPoint = i;
                     current.pos = point_pos;
-                    mAttentionInfo.mPosition = point_pos;
-                    mEyePos = point_pos;
+                    attention_info.position = point_pos;
+                    eyePos = point_pos;
 
                     if (point_p->field_0x3 == 0) {
                         mType = 0;
@@ -146,13 +146,13 @@ int daObjDigpl_c::execute() {
             f32 dist_to_player = fopAcM_searchPlayerDistanceXZ2(this);
 
             if (seen_angle <= 0x2800 || dist_to_player < 1600.0f) {
-                mAttentionInfo.mFlags |= 0x80;
+                attention_info.flags |= 0x80;
             }
 
             if (dist_to_player < 250000.0f &&
                 fabsf(current.pos.y - player_p->current.pos.y) < 200.0f)
             {
-                daPy_py_c::setLookPos(&mAttentionInfo.mPosition);
+                daPy_py_c::setLookPos(&attention_info.position);
             }
         }
 

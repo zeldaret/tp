@@ -124,11 +124,11 @@ void dBgS_Acch::Set(fopAc_ac_c* i_actor, int i_tbl_size, dBgS_AcchCir* i_acchcir
     m_my_ac = i_actor;
 
     SetActorPid(fopAcM_GetID(i_actor));
-    pm_pos = &fopAcM_GetPosition_p(i_actor);
-    pm_old_pos = &fopAcM_GetOldPosition_p(i_actor);
-    pm_speed = &fopAcM_GetSpeed_p(i_actor);
-    pm_angle = &fopAcM_GetAngle_p(i_actor);
-    pm_shape_angle = &fopAcM_GetShapeAngle_p(i_actor);
+    pm_pos = fopAcM_GetPosition_p(i_actor);
+    pm_old_pos = fopAcM_GetOldPosition_p(i_actor);
+    pm_speed = fopAcM_GetSpeed_p(i_actor);
+    pm_angle = fopAcM_GetAngle_p(i_actor);
+    pm_shape_angle = fopAcM_GetShapeAngle_p(i_actor);
 }
 
 /* 800762D8-80076350 070C18 0078+00 1/1 0/0 0/0 .text            GroundCheckInit__9dBgS_AcchFR4dBgS

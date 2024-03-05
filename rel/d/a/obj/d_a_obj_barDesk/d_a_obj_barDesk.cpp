@@ -55,7 +55,7 @@ daBarDesk_HIO_c::daBarDesk_HIO_c() : field_0x4(10), field_0x5(3) {
 void daBarDesk_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -148,15 +148,15 @@ void daBarDesk_c::modeBreak() {
 void daBarDesk_c::setBreakEffect() {
     static const u16 particle_id[2] = {0x85F4, 0x85F5};
     for (int i = 0; i < 2; i++) {
-        dComIfGp_particle_set(particle_id[i], &current.pos, NULL, &mScale,
+        dComIfGp_particle_set(particle_id[i], &current.pos, NULL, &scale,
                               0xff, NULL, -1, NULL, NULL, NULL);
     }
 }
 
 /* 80BA98E8-80BA998C 000848 00A4+00 1/0 0/0 0/0 .text            Draw__11daBarDesk_cFv */
 int daBarDesk_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

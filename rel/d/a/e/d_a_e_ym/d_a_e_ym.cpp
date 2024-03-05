@@ -729,8 +729,8 @@ int daE_YM_c::draw() {
     }
 
     J3DModel* model_p = field_0x5b4->getModel();
-    g_env_light.settingTevStruct(6, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model_p->getModelData(), &mTevStr);
+    g_env_light.settingTevStruct(6, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p->getModelData(), &tevStr);
 
     J3DModelData* modelData_p = model_p->getModelData();
     for (u16 i = 0; i < modelData_p->getMaterialNum(); i++) {
@@ -750,7 +750,7 @@ int daE_YM_c::draw() {
 
         field_0x69c = dComIfGd_setShadow(field_0x69c, 1, model_p, &sp40, 400.0f, 0.0f,
                                          current.pos.y, field_0x760.GetGroundH(), field_0x760.m_gnd,
-                                         &mTevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+                                         &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
 
     return 1;
@@ -862,9 +862,9 @@ void daE_YM_c::setElecEffect1() {
     }
 
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
-    field_0xad8 = dComIfGp_particle_set(field_0xad8, 0x8393, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+    field_0xad8 = dComIfGp_particle_set(field_0xad8, 0x8393, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
                                         0xff, 0, 0xffffffff, 0, 0, 0);
-    field_0xadc = dComIfGp_particle_set(field_0xadc, 0x8394, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+    field_0xadc = dComIfGp_particle_set(field_0xadc, 0x8394, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
                                         0xff, 0, 0xffffffff, 0, 0, 0);
 }
 #else
@@ -892,9 +892,9 @@ void daE_YM_c::setElecEffect2() {
     }
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     setElecEffect1();
-    field_0xae0 = dComIfGp_particle_set(field_0xae0, 0x8395, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+    field_0xae0 = dComIfGp_particle_set(field_0xae0, 0x8395, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
                                         0xff, 0, 0xffffffff, 0, 0, 0);
-    field_0xae4 = dComIfGp_particle_set(field_0xae4, 0x8396, &cStack_38, &mTevStr, &shape_angle, &cStack_2c,
+    field_0xae4 = dComIfGp_particle_set(field_0xae4, 0x8396, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
                                         0xff, 0, 0xffffffff, 0, 0, 0);
 }
 #else
@@ -1300,7 +1300,7 @@ void daE_YM_c::damage_check() {
                 field_0x5bc.startCreatureSound(Z2SE_EN_YM_DEATH, 0, -1);
 
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
-                    i_dComIfGp_setHitMark(3, this, &mEyePos, NULL, NULL, 0);
+                    i_dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
                 }
 
                 setActionMode(ACT_DOWN);
@@ -1556,14 +1556,14 @@ asm void daE_YM_c::checkFlyTerritory() {
 
 /* 8080E630-8080E6A0 0065F0 0070+00 1/1 0/0 0/0 .text            initFly__8daE_YM_cFv */
 void daE_YM_c::initFly() {
-    mAttentionInfo.field_0x0[2] = 46;
-    mGravity = FLOAT_LABEL(lit_3926);
+    attention_info.field_0x0[2] = 46;
+    gravity = FLOAT_LABEL(lit_3926);
     field_0x6e4 = 0;
 
     if (mTagPosP != NULL) {
         field_0x670 = mTagPos;
     } else {
-        field_0x670 = orig.pos;
+        field_0x670 = home.pos;
     }
 
     mType = 3;
@@ -1995,7 +1995,7 @@ int daE_YM_c::_delete() {
         data_80815D28[0] = 0;
     }
 
-    if (mHeap != NULL) {
+    if (heap != NULL) {
         field_0x5bc.deleteObject();
     }
 
@@ -2210,23 +2210,23 @@ int daE_YM_c::create() {
         }
 
         field_0x714 = 4;
-        mAttentionInfo.field_0x0[2] = 58;
+        attention_info.field_0x0[2] = 58;
         fopAcM_SetMtx(this, field_0x5b4->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
 
-        field_0x760.Set(&current.pos, &next.pos, this, 1, &field_0x720, &speed, NULL, NULL);
+        field_0x760.Set(&current.pos, &old.pos, this, 1, &field_0x720, &speed, NULL, NULL);
         field_0x760.OnLineCheck();
         field_0x720.SetWall(30.0f, 60.0f);
 
-        mHealth = 10;
+        health = 10;
         field_0x560 = 10;
 
         field_0x938.Init(100, 0, this);
         mSphCc.Set(E_YM_n::cc_sph_src);
         mSphCc.SetStts(&field_0x938);
 
-        field_0x5bc.init(&current.pos, &mEyePos, 3, 1);
+        field_0x5bc.init(&current.pos, &eyePos, 3, 1);
         field_0x5bc.setEnemyName("E_ym");
         mAtInfo.mpSound = &field_0x5bc;
         mAtInfo.mPowerType = 1;
@@ -2255,7 +2255,7 @@ int daE_YM_c::create() {
                 mpPath = dPath_GetRoomPath(tmp0, fopAcM_GetRoomNo(this));
 
                 if (mpPath != NULL) {
-                    mAttentionInfo.field_0x0[7] = 31;
+                    attention_info.field_0x0[7] = 31;
                     field_0x6a6 = 4;
                     field_0x670 = current.pos;
                     setActionMode(ACT_WAIT);

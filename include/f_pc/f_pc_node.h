@@ -22,7 +22,7 @@ typedef struct process_node_class {
 
 typedef struct node_process_profile_definition {
     /* 0x00 */ process_profile_definition mBase;
-    /* 0x1C */ process_method_class* mSubMtd; // Subclass methods
+    /* 0x1C */ process_method_class* sub_method; // Subclass methods
 } node_process_profile_definition;
 
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData);

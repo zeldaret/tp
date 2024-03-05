@@ -444,13 +444,13 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* i_enemy, dCcU_AtInfo* i_AtInfo) {
         }
 
         if (i_AtInfo->mAttackPower != 0) {
-            i_enemy->mHealth -= i_AtInfo->mAttackPower;
+            i_enemy->health -= i_AtInfo->mAttackPower;
         }
 
         s8 pause_time = 0;
-        if (i_AtInfo->mAttackPower != 0 && i_enemy->mHealth <= 0) {
+        if (i_AtInfo->mAttackPower != 0 && i_enemy->health <= 0) {
             i_AtInfo->mHitStatus = 2;
-            i_enemy->mHealth = 0;
+            i_enemy->health = 0;
         }
 
         int uvar8;

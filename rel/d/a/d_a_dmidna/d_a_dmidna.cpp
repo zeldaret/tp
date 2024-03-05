@@ -84,8 +84,8 @@ static int daDmidna_Execute(daDmidna_c* i_this) {
 
 /* 8045D204-8045D268 0003A4 0064+00 1/1 0/0 0/0 .text            draw__10daDmidna_cFv */
 int daDmidna_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     mDoExt_modelEntryDL(model);
     return 1;
 }

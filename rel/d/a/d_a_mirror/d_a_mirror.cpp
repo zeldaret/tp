@@ -543,7 +543,7 @@ bool daMirror_c::createHeap() {
 
 /* 80871F78-80872018 001438 00A0+00 1/1 0/0 0/0 .text            setModelMtx__10daMirror_cFv */
 void daMirror_c::setModelMtx() {
-    field_0x6f8->setBaseScale(mScale);
+    field_0x6f8->setBaseScale(scale);
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::XrotM(shape_angle.x);
@@ -628,13 +628,13 @@ int daMirror_c::create() {
             {-72.5f, 145.0f, 0.0f}, {72.5f, 145.0f, 0.0f},
             {72.5f, 0.0f, 0.0f}, {-72.5f, 0.0f, 0.0f},
         };
-        mDoMtx_stack_c::scaleS(mScale);
+        mDoMtx_stack_c::scaleS(scale);
         mDoMtx_stack_c::revConcat(field_0x6f8->getBaseTRMtx());
         cMtx_multVecArray(mDoMtx_stack_c::get(), src, mPacket.getQuad(), 4);
         mPacket.getViewScale().set(-1.0f, 1.0f, 1.0f);
     } else {
         if (type == 1) {
-            mScale *= 10.0f;
+            scale *= 10.0f;
             mPacket.getViewScale().set(1.0,-1.0,1.0);
         } else {
             if (type == 3) {
@@ -657,7 +657,7 @@ int daMirror_c::create() {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::YrotM(shape_angle.y);
         mDoMtx_stack_c::XrotM(shape_angle.x);
-        mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+        mDoMtx_stack_c::scaleM(scale.x, scale.y, scale.z);
         static Vec const data_8087260Cb[4] = {
             {-50.0f, 100.0f, 0.0f}, {50.0f, 100.0f, 0.0f}, 
             {50.0f, 0.0f, 0.0f}, {-50.0f, 0.0f, 0.0f},
@@ -670,7 +670,7 @@ int daMirror_c::create() {
     static Vec const data_8087263C_a = {
         0.0f, 50.0f, 0.0f,
     };
-    mDoMtx_stack_c::multVec(&data_8087263C_a, &mEyePos);
+    mDoMtx_stack_c::multVec(&data_8087263C_a, &eyePos);
     return 4;
 }
 #else
@@ -725,7 +725,7 @@ int daMirror_c::execute() {
         fopAcM_searchActorDistance2(this, player) < 40000.0f)
     {
         if (fopAcM_seenActorAngleY(this, player) < 0x4000) {
-            daPy_py_c::setLookPos(&mEyePos);
+            daPy_py_c::setLookPos(&eyePos);
         }
     }
     return 1;
@@ -748,8 +748,8 @@ static int daMirror_draw(daMirror_c* param_0) {
     }
 
     if (param_0->field_0x6f8) {
-        g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->mTevStr);
-        g_env_light.setLightTevColorType(param_0->field_0x6f8->mModelData, &param_0->mTevStr);
+        g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->tevStr);
+        g_env_light.setLightTevColorType(param_0->field_0x6f8->mModelData, &param_0->tevStr);
         mDoExt_modelUpdateDL(param_0->field_0x6f8);
     }
 

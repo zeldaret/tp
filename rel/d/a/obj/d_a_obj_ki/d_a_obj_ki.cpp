@@ -46,8 +46,8 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 /* 80C44010-80C44080 000210 0070+00 1/0 0/0 0/0 .text            daObj_Ki_Draw__FP12obj_ki_class */
 static int daObj_Ki_Draw(obj_ki_class* i_this) {
     J3DModel* model = i_this->mpMorf->getModel();
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->tevStr);
     i_this->mpMorf->entryDL();
     return 1;
 }
@@ -76,7 +76,7 @@ static int daObj_Ki_Execute(obj_ki_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
-    mDoMtx_stack_c::scaleM(i_this->mScale.x, i_this->mScale.y, i_this->mScale.z);
+    mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
     i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
     i_this->mpBgW->Move();
@@ -184,24 +184,24 @@ static cPhs__Step daObj_Ki_Create(fopAc_ac_c* i_this) {
         fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
 
         if (_this->mScaleXZ != 0xff) {
-            _this->mScale.x = _this->mScaleXZ * 0.1f;
-            _this->mScale.z = _this->mScale.x;
+            _this->scale.x = _this->mScaleXZ * 0.1f;
+            _this->scale.z = _this->scale.x;
         } else {
-            _this->mScale.x = cM_rndFX(0.2f) + 1.0f;
-            _this->mScale.z = _this->mScale.x;
+            _this->scale.x = cM_rndFX(0.2f) + 1.0f;
+            _this->scale.z = _this->scale.x;
         }
 
         if (_this->mScaleY != 0xff) {
-            _this->mScale.y = _this->mScaleY * 0.1f;
+            _this->scale.y = _this->mScaleY * 0.1f;
         } else {
-            _this->mScale.y = cM_rndFX(0.2f) + 1.0f;
+            _this->scale.y = cM_rndFX(0.2f) + 1.0f;
         }
 
         cXyz vec;
         for (int i = 0; i < 3; i++) {
             MtxTrans(_this->current.pos.x, _this->current.pos.y, _this->current.pos.z, 0);
             mDoMtx_YrotM(*calc_mtx, _this->shape_angle.y + i * 0x5555 + 6000);
-            MtxScale(_this->mScale.x, _this->mScale.y, _this->mScale.z, 1);
+            MtxScale(_this->scale.x, _this->scale.y, _this->scale.z, 1);
             vec.x = 0.0f;
             vec.y = 0.0f;
             vec.z = 50.0f;

@@ -329,7 +329,7 @@ void dEvt_control_c::setParam(dEvt_order_c* p_order) {
 s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* p_order) {
     fopAc_ac_c* actor = p_order->mActor2;
 
-    if (p_order->mFlag & 4 && actor->mEvtInfo.chkCondition(dEvtCnd_CANTALK_e) != true) {
+    if (p_order->mFlag & 4 && actor->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != true) {
         return 0;
     }
 
@@ -357,10 +357,10 @@ int dEvt_control_c::commonCheck(dEvt_order_c* p_order, u16 condition, u16 comman
     fopAc_ac_c* actor1 = p_order->mActor1;
     fopAc_ac_c* actor2 = p_order->mActor2;
 
-    if ((actor1 != NULL && actor1->mEvtInfo.chkCondition(condition)) &&
-        (actor2 != NULL && actor2->mEvtInfo.chkCondition(condition))) {
-        actor1->mEvtInfo.setCommand(command);
-        actor2->mEvtInfo.setCommand(command);
+    if ((actor1 != NULL && actor1->eventInfo.chkCondition(condition)) &&
+        (actor2 != NULL && actor2->eventInfo.chkCondition(condition))) {
+        actor1->eventInfo.setCommand(command);
+        actor2->eventInfo.setCommand(command);
         setParam(p_order);
         return 1;
     }
@@ -395,8 +395,8 @@ int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
     if (commonCheck(p_order, 1, 1)) {
         mMode = EVT_MODE_TALK;
         if (mSpecifiedEvent == -1) {
-            if (actor != NULL && actor->mEvtInfo.getEventName() != NULL) {
-                mSpecifiedEvent = actor->mEvtInfo.getEventId();
+            if (actor != NULL && actor->eventInfo.getEventName() != NULL) {
+                mSpecifiedEvent = actor->eventInfo.getEventId();
             } else {
                 mSpecifiedEvent = i_dComIfGp_getEventManager().getEventIdx(event, 0xFF, -1);
             }
@@ -443,7 +443,7 @@ int dEvt_control_c::talkXyCheck(dEvt_order_c* p_order) {
         return 0;
     }
 
-    if (pActor2 == NULL || !pActor2->mEvtInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
+    if (pActor2 == NULL || !pActor2->eventInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
         return 0;
     }
 
@@ -464,13 +464,13 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
     fopAc_ac_c* actor2 = p_order->mActor2;
     fopAc_ac_c* actor1 = p_order->mActor1;
 
-    if (actor1 == NULL || (actor2 != NULL && !actor2->mEvtInfo.chkCondition(0x40))) {
+    if (actor1 == NULL || (actor2 != NULL && !actor2->eventInfo.chkCondition(0x40))) {
         return 0;
     }
 
-    actor1->mEvtInfo.setCommand(dEvtCmd_INCATCH_e);
+    actor1->eventInfo.setCommand(dEvtCmd_INCATCH_e);
     if (actor2 != NULL) {
-        actor2->mEvtInfo.setCommand(dEvtCmd_INCATCH_e);
+        actor2->eventInfo.setCommand(dEvtCmd_INCATCH_e);
     }
 
     setParam(p_order);
@@ -487,12 +487,12 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
 int dEvt_control_c::talkEnd() {
     fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
+        actor->eventInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     actor = getPt2();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
+        actor->eventInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     if (mSpecifiedEvent != -1) {
@@ -519,11 +519,11 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
     }
 
     if (!(p_order->mFlag & 0x10)) {
-        if (actor1 != NULL && !actor1->mEvtInfo.chkCondition(2)) {
+        if (actor1 != NULL && !actor1->eventInfo.chkCondition(2)) {
             return 0;
         }
 
-        if (actor2 != NULL && !actor2->mEvtInfo.chkCondition(2)) {
+        if (actor2 != NULL && !actor2->eventInfo.chkCondition(2)) {
             return 0;
         }
     }
@@ -533,7 +533,7 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
     }
 
     if (actor1 != NULL) {
-        i_dComIfGp_getEventManager().setObjectArchive(actor1->mEvtInfo.getArchiveName());
+        i_dComIfGp_getEventManager().setObjectArchive(actor1->eventInfo.getArchiveName());
     }
 
     if (!i_dComIfGp_getEventManager().order(eventId)) {
@@ -541,11 +541,11 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
     }
 
     if (actor1 != NULL) {
-        actor1->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
+        actor1->eventInfo.setCommand(dEvtCmd_INDEMO_e);
     }
 
     if (actor2 != NULL) {
-        actor2->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
+        actor2->eventInfo.setCommand(dEvtCmd_INDEMO_e);
     }
 
     mMode = EVT_MODE_DEMO;
@@ -558,12 +558,12 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
 int dEvt_control_c::demoEnd() {
     fopAc_ac_c* actor = getPt1();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
+        actor->eventInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     actor = getPt2();
     if (actor != NULL) {
-        actor->mEvtInfo.setCommand(dEvtCmd_NONE_e);
+        actor->eventInfo.setCommand(dEvtCmd_NONE_e);
     }
 
     if (mSpecifiedEvent != -1) {
@@ -579,7 +579,7 @@ int dEvt_control_c::potentialCheck(dEvt_order_c* p_order) {
     if (!beforeFlagProc(p_order)) {
         return 0;
     } else {
-        actor->mEvtInfo.setCommand(dEvtCmd_INDEMO_e);
+        actor->eventInfo.setCommand(dEvtCmd_INDEMO_e);
         mMode = EVT_MODE_DEMO;
         setParam(p_order);
         afterFlagProc(p_order);
@@ -595,11 +595,11 @@ int dEvt_control_c::doorCheck(dEvt_order_c* p_order) {
 
         fopAc_ac_c* actor2 = getPt2();
         if (actor2 != NULL) {
-            i_dComIfGp_getEventManager().setObjectArchive(actor2->mEvtInfo.getArchiveName());
+            i_dComIfGp_getEventManager().setObjectArchive(actor2->eventInfo.getArchiveName());
         }
 
-        if (mSpecifiedEvent == -1 && actor2 != NULL && actor2->mEvtInfo.getEventId() != -1) {
-            mSpecifiedEvent = actor2->mEvtInfo.getEventId();
+        if (mSpecifiedEvent == -1 && actor2 != NULL && actor2->eventInfo.getEventId() != -1) {
+            mSpecifiedEvent = actor2->eventInfo.getEventId();
         }
 
         if (mSpecifiedEvent != -1 &&
@@ -1134,7 +1134,7 @@ int dEvt_control_c::moveApproval(void* param_0) {
             return 2;
         }
 
-        if (actor->mDemoActorId != 0) {
+        if (actor->demoActorID != 0) {
             return 2;
         }
         break;

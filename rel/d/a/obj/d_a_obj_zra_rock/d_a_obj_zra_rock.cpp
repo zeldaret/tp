@@ -17,8 +17,8 @@ static char const* l_arcName = "H_ZraRock";
 void daObjZraRock_c::setAttnPos() {
     cXyz vec(10.0f, 152.3f, 0.0f);
     mDoMtx_stack_c::ZXYrotS(current.angle.x, current.angle.y, current.angle.z);
-    mDoMtx_stack_c::multVec(&vec, &mAttentionInfo.mPosition);
-    mAttentionInfo.mPosition += current.pos;
+    mDoMtx_stack_c::multVec(&vec, &attention_info.position);
+    attention_info.position += current.pos;
 }
 
 /* 80D44D3C-80D44DCC 0000FC 0090+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjZraRock_cFv */
@@ -33,8 +33,8 @@ void daObjZraRock_c::setBaseMtx() {
 /* 80D44DCC-80D44E28 00018C 005C+00 1/1 0/0 0/0 .text            setEnvTevColor__14daObjZraRock_cFv
  */
 void daObjZraRock_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80D44E28-80D44E68 0001E8 0040+00 1/1 0/0 0/0 .text            setRoomNo__14daObjZraRock_cFv */
@@ -50,7 +50,7 @@ int daObjZraRock_c::Create() {
     fopAcM_setCullSizeBox(this, joint->getMin()->x, joint->getMin()->y, joint->getMin()->z,
                           joint->getMax()->x, joint->getMax()->y, joint->getMax()->z);
     mAcchCir.SetWall(0.0f, 0.0f);
-    mObjAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
+    mObjAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
     mObjAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mObjAcch.m_gnd;
     setEnvTevColor();
@@ -107,16 +107,16 @@ int daObjZraRock_c::Execute(Mtx** i_mtx) {
 
 /* 80D45374-80D454AC 000734 0138+00 1/0 0/0 0/0 .text            Draw__14daObjZraRock_cFv */
 int daObjZraRock_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     if (mDemoStart) {
-        g_env_light.setLightTevColorType_MAJI(mpModelXlu->mModelData, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelXlu->mModelData, &tevStr);
         dComIfGd_setListBG();
         mBrkAnm.entry(mpModelXlu->getModelData());
         mDoExt_modelUpdateDL(mpModelXlu);
         mBrkAnm.remove(mpModelXlu->getModelData());
         dComIfGd_setList();
     } else {
-        g_env_light.setLightTevColorType_MAJI(mpModelOpa->mModelData, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelOpa->mModelData, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModelOpa);
         dComIfGd_setList();

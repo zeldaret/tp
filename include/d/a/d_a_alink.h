@@ -1813,7 +1813,7 @@ public:
     /* 800DC474 */ int procCoSwimFreezeReturn();
     /* 800DC548 */ static BOOL checkEnemyGroup(fopAc_ac_c*);
     /* 800DC5A4 */ static BOOL checkSpecialNpc(fopAc_ac_c*);
-    /* 800DC5DC */ bool checkShieldAttackEmphasys();
+    /* 800DC5DC */ BOOL checkShieldAttackEmphasys();
     /* 800DC678 */ BOOL checkGuardActionChange();
     /* 800DC79C */ void stickArrowIncrement(int);
     /* 800DC8C4 */ void setArrowShieldActor(fopAc_ac_c*, int);
@@ -3262,7 +3262,7 @@ public:
             var_r5 = 0;
 
             if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->mEvtInfo.i_checkCommandDemoAccrpt() != 0) {
+                mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt() != 0) {
                 var_r5 = 1;
             }
 
@@ -3559,7 +3559,7 @@ private:
     /* 0x02854 */ daPy_actorKeep_c mCargoCarryAcKeep;
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
-    /* 0x028B0 */ int field_0x28b0[0x10];
+    /* 0x028B0 */ unsigned int mShieldArrowIDs[16];
     /* 0x028F0 */ unsigned int mMsgClassID;
     /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ int field_0x28f8;

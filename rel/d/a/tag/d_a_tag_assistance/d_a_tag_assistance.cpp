@@ -44,14 +44,14 @@ extern actor_process_profile_definition g_profile_Tag_Assist = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Assist,        // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagAssist_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters    
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     266,                    // mPriority
-    &l_daTagAssist_Method,  // mSubMtd
+    &l_daTagAssist_Method,  // sub_method
     0x40000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

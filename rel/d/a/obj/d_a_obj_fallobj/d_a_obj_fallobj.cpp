@@ -37,7 +37,7 @@ public:
 
     u32 getTime() { return fopAcM_GetParamBit(this, 8, 8); }
     u32 getPos() { return fopAcM_GetParamBit(this, 0x14, 8); }
-    BOOL checkFallStart() { return fopAcM_SearchByID(mParentPcId)->speed.y != 0.0f; }
+    BOOL checkFallStart() { return fopAcM_SearchByID(parentActorID)->speed.y != 0.0f; }
 
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ Mtx mMtx;

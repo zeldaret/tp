@@ -40,8 +40,8 @@ static void PPCallBack2(fopAc_ac_c* i_this, fopAc_ac_c* i_unused, s16 i_unused2,
 
 /* 80677E08-80677F38 0000C8 0130+00 1/1 0/0 0/0 .text            initBaseMtx__12daDoorPush_cFv */
 void daDoorPush_c::initBaseMtx() {
-    mpModel[0]->setBaseScale(mScale);
-    mpModel[1]->setBaseScale(mScale);
+    mpModel[0]->setBaseScale(scale);
+    mpModel[1]->setBaseScale(scale);
     mXyz[0].set(-550.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::YrotS(shape_angle.y);
     mDoMtx_stack_c::multVec(&mXyz[0], &mXyz[0]);
@@ -122,7 +122,7 @@ int daDoorPush_c::Create() {
                           l_cull_box[1].y, l_cull_box[1].z);
     mpBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack);
     mpDoorBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack2);
-    mEvtInfo.setArchiveName(l_arcName);
+    eventInfo.setArchiveName(l_arcName);
     for (int i = 0; i < 2; i++) {
         field_0x63a[i] = i_dComIfGp_getEventManager().getEventIdx(this, "PUSH_DOOR_L", 0xff);
         field_0x63e[i] = 0xff;
@@ -250,19 +250,19 @@ void daDoorPush_c::actionOpenWait() {
     if (mIndex != 2) {
         setAction(1);
         fopAcM_orderOtherEventId(this, field_0x63a[mIndex], field_0x63e[mIndex], 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
 /* 8067877C-806787F8 000A3C 007C+00 1/0 0/0 0/0 .text            actionOrderEvent__12daDoorPush_cFv
  */
 void daDoorPush_c::actionOrderEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(2);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, field_0x63a[mIndex], field_0x63e[mIndex], 0xffff, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -364,16 +364,16 @@ void daDoorPush_c::setGoal() {
         goal.set(-300.0f, 0.0f, -400.0f);
     }
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mDoMtx_stack_c::multVec(&goal, &goal);
     dComIfGp_evmng_setGoal(&goal);
 }
 
 /* 80678C70-80678D2C 000F30 00BC+00 1/0 0/0 0/0 .text            Draw__12daDoorPush_cFv */
 int daDoorPush_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     for (int i = 0; i < 2; i++) {
-        g_env_light.setLightTevColorType_MAJI(mpModel[i], &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel[i], &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel[i]);
         dComIfGd_setList();
