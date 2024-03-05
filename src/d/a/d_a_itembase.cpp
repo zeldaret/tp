@@ -185,7 +185,7 @@ void daItemBase_c::setShadow() {
             shadowSize = 150.0f;
         }
 
-        field_0x91c = dComIfGd_setShadow(field_0x91c, 3, mpModel, &current.pos, shadowSize, 0.0f,
+        mShadowKey = dComIfGd_setShadow(mShadowKey, 3, mpModel, &current.pos, shadowSize, 0.0f,
                                          current.pos.y, mAcch.GetGroundH(), mAcch.m_gnd, &tevStr,
                                          0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }

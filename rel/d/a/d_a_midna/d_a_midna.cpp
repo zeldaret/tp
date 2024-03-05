@@ -10,17 +10,6 @@
 // Types:
 //
 
-struct fopAcM_lc_c {
-    /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct fopAcM_gc_c {
-    /* 8001DCBC */ void gndCheck(cXyz const*);
-
-    static u8 mGndCheck[84];
-    static f32 mGroundY;
-};
-
 struct J3DMaterial {};
 
 struct daMidna_matAnm_c {
