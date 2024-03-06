@@ -12,9 +12,7 @@
 
 class daObj_Sekizo_c : public dBgS_MoveBgActor {
 public:
-    // TODO: pick one
-    /* 80CCDC0C */ int create();
-    // /* 80CCDC0C */ cPhs__Step create();
+    /* 80CCDC0C */ cPhs__Step create();
 
     /* 80CCDD00 */ int CreateHeap();
     /* 80CCDD8C */ int Create();
@@ -125,39 +123,37 @@ SECTION_DATA extern void* __vt__14daObj_Sekizo_c[10] = {
 };
 
 /* 80CCDC0C-80CCDD00 0000EC 00F4+00 1/1 0/0 0/0 .text            create__14daObj_Sekizo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObj_Sekizo_c::create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/create__14daObj_Sekizo_cFv.s"
-}
-#pragma pop
-
-// seems like it should match, but there's a bunch of stuff at the end - revisit
-// cPhs__Step daObj_Sekizo_c::create() {
-//     fopAcM_SetupActor(this, daObj_Sekizo_c);
-
-//     field_0x5b0 = 0;
-//     // TODO: something to do with "dComIfG_getObjctResName2Index"? How to handle res name list? Is Ghidra wrong?
-//     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq,
-//                                                   l_resNameList[l_bmdData[field_0x5b0].resIdx]);
-//     if (step == cPhs_COMPLEATE_e) {
-//         step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[field_0x5b0].resIdx],
-//                                         l_dzbData[field_0x5b0].dzbIdx,
-//                                         dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
-//         if (step == cPhs_ERROR_e) {
-//             return step;
-//         }
-//     }
-//     return step;
+// #pragma push
+// #pragma optimization_level 0
+// #pragma optimizewithasm off
+// asm int daObj_Sekizo_c::create() {
+//     nofralloc
+// #include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/create__14daObj_Sekizo_cFv.s"
 // }
+// #pragma pop
+
+cPhs__Step daObj_Sekizo_c::create() {
+    fopAcM_SetupActor(this, daObj_Sekizo_c);
+
+    field_0x5b0 = 0;
+    // TODO: something to do with "dComIfG_getObjctResName2Index"? How to handle res name list?
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq,
+                                                  l_resNameList[l_bmdData[field_0x5b0].resIdx]);
+    if (step == cPhs_COMPLEATE_e) {
+        step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[field_0x5b0].resIdx],
+                                        l_dzbData[field_0x5b0].dzbIdx,
+                                        dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
+        if (step == cPhs_ERROR_e) {
+            return step;
+        }
+    }
+    return step;
+}
 
 /* 80CCDD00-80CCDD8C 0001E0 008C+00 1/0 0/0 0/0 .text            CreateHeap__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::CreateHeap() {
-    J3DModelData* model_data = 
-        (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[field_0x5b0].resIdx],
-                                            l_bmdData[field_0x5b0].bmdIdx);
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(
+        l_resNameList[l_bmdData[field_0x5b0].resIdx], l_bmdData[field_0x5b0].bmdIdx);
     mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return false;
@@ -169,7 +165,7 @@ int daObj_Sekizo_c::CreateHeap() {
 /* 80CCDD8C-80CCDDE8 00026C 005C+00 1/0 0/0 0/0 .text            Create__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::Create() {
     initBaseMtx();
-    mCullMtx = mpModel->getBaseTRMtx();
+    cullMtx = mpModel->getBaseTRMtx();
     fopAcM_setCullSizeBox2((fopAc_ac_c*)this, mpModel->getModelData());
     field_0x5b2 = false;
     field_0x5b1 = true;
@@ -185,7 +181,7 @@ int daObj_Sekizo_c::Delete() {
 /* 80CCDE3C-80CCDEF4 00031C 00B8+00 1/0 0/0 0/0 .text            Execute__14daObj_Sekizo_cFPPA3_A4_f
  */
 int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         *i_mtx = &mBgMtx;
         setBaseMtx();
         if (field_0x5b2) {
@@ -193,8 +189,7 @@ int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
                 dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
                 field_0x5b1 = false;
             }
-        }
-        else if (!field_0x5b1) {
+        } else if (!field_0x5b1) {
             dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, (fopAc_ac_c*)this);
             field_0x5b1 = true;
         }
@@ -206,8 +201,8 @@ int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
 int daObj_Sekizo_c::Draw() {
     if (!field_0x5b2) {
         // TODO: 0x10 literal is used to set mTevStr->field_0x37a - missing enum?
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);
         dComIfGd_setList();
@@ -217,7 +212,7 @@ int daObj_Sekizo_c::Draw() {
 
 /* 80CCDFA4-80CCDFE0 000484 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObj_Sekizo_cFv */
 void daObj_Sekizo_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -263,12 +258,9 @@ static daObj_Sekizo_Param_c l_HIO;
 
 /* 80CCE1B4-80CCE1D4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizo_MethodTable */
 SECTION_DATA static actor_method_class daObj_Sekizo_MethodTable = {
-    (process_method_func)daObj_Sekizo_Create,
-    (process_method_func)daObj_Sekizo_Delete,
-    (process_method_func)daObj_Sekizo_Execute,
-    (process_method_func)daObj_Sekizo_IsDelete,
-    (process_method_func)daObj_Sekizo_Draw
-};
+    (process_method_func)daObj_Sekizo_Create, (process_method_func)daObj_Sekizo_Delete,
+    (process_method_func)daObj_Sekizo_Execute, (process_method_func)daObj_Sekizo_IsDelete,
+    (process_method_func)daObj_Sekizo_Draw};
 
 /* 80CCE1D4-80CCE204 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SEKIZO */
 extern actor_process_profile_definition g_profile_OBJ_SEKIZO = {
