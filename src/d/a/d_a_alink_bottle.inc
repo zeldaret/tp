@@ -618,7 +618,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
     BOOL temp_r3;
     s16 temp_r30;
     if (var_r31 != NULL) {
-        if (var_r31->mAttentionInfo.mPosition.y > field_0x3834.y - 30.0f) {
+        if (var_r31->attention_info.position.y > field_0x3834.y - 30.0f) {
             temp_r3 = false;
         } else {
             temp_r3 = true;
@@ -697,7 +697,7 @@ int daAlink_c::procBottleSwing() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {
-        if (mEvtInfo.i_checkCommandCatch()) {
+        if (eventInfo.i_checkCommandCatch()) {
             if (mProcVar3.field_0x300e.x == 0) {
                 dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
                 mProcVar3.field_0x300e.x = 1;

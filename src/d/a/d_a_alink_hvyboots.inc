@@ -272,7 +272,7 @@ int daAlink_c::cancelMagneBootsOn() {
             current.pos.y = gnd_cross;
         }
 
-        next.pos = current.pos;
+        old.pos = current.pos;
         field_0x3798 = current.pos;
         mMagneBootsTopVec = cXyz::BaseY;
 
@@ -398,7 +398,7 @@ int daAlink_c::procMagneBootsFlyInit() {
     mPolyInfo2.SetPolyInfo(mMagneLineChk);
     field_0x37c8 = mMagneLineChk.i_GetCross();
 
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     mNormalSpeed = 0.0f;
 

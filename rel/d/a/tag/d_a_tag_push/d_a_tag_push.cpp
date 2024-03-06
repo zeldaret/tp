@@ -53,9 +53,9 @@ void* daTag_Push_c::srchActor(void* param_0, void* param_1) {
 /* 80490418-804904D4 0001D8 00BC+00 1/1 0/0 0/0 .text            create__12daTag_Push_cFv */
 int daTag_Push_c::create() {
     fopAcM_SetupActor(this, daTag_Push_c);
-    mScale.x *= 100.0f;
-    mScale.y *= 100.0f;
-    mScale.z = mScale.x;
+    scale.x *= 100.0f;
+    scale.y *= 100.0f;
+    scale.z = scale.x;
     if (isDelete()) {
         return cPhs_ERROR_e;
     } else {
@@ -70,7 +70,7 @@ int daTag_Push_c::Delete() {
 
 /* 804904DC-804906BC 00029C 01E0+00 1/1 0/0 0/0 .text            Execute__12daTag_Push_cFv */
 int daTag_Push_c::Execute() {
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         fopAc_ac_c* actor = mActorMngr.getActorP();
         if (isDelete()) {
             if (actor != NULL && fopAcM_GetName(actor) != PROC_NPC_JAGAR &&
@@ -89,7 +89,7 @@ int daTag_Push_c::Execute() {
                     }
                 }
                 if (actor != NULL &&
-                    daPy_getPlayerActorClass()->mEvtInfo.chkCondition(dEvtCnd_CANTALK_e) != false)
+                    daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != false)
                 {
                     if (chkPointInArea(cXyz(daPy_getPlayerActorClass()->current.pos))) {
                         if (fopAcM_GetName(actor) == PROC_NPC_GRS ||
@@ -104,9 +104,9 @@ int daTag_Push_c::Execute() {
                     }
                 }
             }
-            mAttentionInfo.mFlags = 0;
-            mAttentionInfo.mPosition = current.pos;
-            mEyePos = mAttentionInfo.mPosition;
+            attention_info.flags = 0;
+            attention_info.position = current.pos;
+            eyePos = attention_info.position;
             return 1;
         }
     }
@@ -134,7 +134,7 @@ int daTag_Push_c::chkPointInArea(cXyz param_0) {
     if ((getBitSW() != 0xFF && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) ||
         getBitSW() == 0xFF)
     {
-        return daNpcT_chkPointInArea(param_0, current.pos, mScale, shape_angle.y, 1);
+        return daNpcT_chkPointInArea(param_0, current.pos, scale, shape_angle.y, 1);
     } else {
         return 0;
     }

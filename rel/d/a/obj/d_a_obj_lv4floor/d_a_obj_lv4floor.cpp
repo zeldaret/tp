@@ -10,7 +10,7 @@
 
 /* 80C677F8-80C67834 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjLv4Floor_cFv */
 void daObjLv4Floor_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -135,8 +135,8 @@ void daObjLv4Floor_c::mode_dead() {
 
 /* 80C67BD4-80C67C78 000454 00A4+00 1/0 0/0 0/0 .text            Draw__15daObjLv4Floor_cFv */
 int daObjLv4Floor_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

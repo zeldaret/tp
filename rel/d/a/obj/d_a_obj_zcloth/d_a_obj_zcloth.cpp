@@ -13,7 +13,7 @@
 
 /* 80D3EE18-80D3EE54 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__13daObjZCloth_cFv */
 void daObjZCloth_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 

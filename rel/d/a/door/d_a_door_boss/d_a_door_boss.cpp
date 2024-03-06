@@ -259,21 +259,21 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 /* 8066F738-8066F7EC 000398 00B4+00 3/3 0/0 0/0 .text            calcMtx__9daBdoor_cFv */
 void daBdoor_c::calcMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mpDoorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 300.0f, current.pos.z);
-    mDoMtx_stack_c::YrotM(orig.angle.y);
+    mDoMtx_stack_c::YrotM(home.angle.y);
     mpLockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8066F7EC-8066F8E4 00044C 00F8+00 1/1 0/0 0/0 .text            CreateInit__9daBdoor_cFv */
 int daBdoor_c::CreateInit() {
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
     dComIfG_Bgsp().Regist(mpBgW, this);
     setAction(ACT_CLOSE_WAIT);
-    mAttentionInfo.mPosition.y += 250.0f;
-    mEyePos.y += 250.0f;
-    mAttentionInfo.mFlags = 0x20;
+    attention_info.position.y += 250.0f;
+    eyePos.y += 250.0f;
+    attention_info.flags = 0x20;
     calcMtx();
     mpBgW->Move();
     u8 swbit = door_param2_c::getSwbit(this);
@@ -569,7 +569,7 @@ asm void daBdoor_c::calcGoal(cXyz* param_0, int param_1) {
 void daBdoor_c::smokeInit() {
     mParticlePos = current.pos;
     mParticleAngle = shape_angle;
-    dComIfGp_particle_setPolyColor(0x8156, mAcch.m_gnd, &mParticlePos, &mTevStr, &mParticleAngle,
+    dComIfGp_particle_setPolyColor(0x8156, mAcch.m_gnd, &mParticlePos, &tevStr, &mParticleAngle,
                                    NULL, 0, NULL, fopAcM_GetRoomNo(this), NULL);
 }
 #else
@@ -649,14 +649,14 @@ static char const l_staff_name[13] = "SHUTTER_DOOR";
 
 /* 80670328-806703C0 000F88 0098+00 1/0 0/0 0/0 .text            actionCloseWait__9daBdoor_cFv */
 BOOL daBdoor_c::actionCloseWait() {
-    if (mEvtInfo.i_checkCommandDoor()) {
+    if (eventInfo.i_checkCommandDoor()) {
         mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
         setAction(ACT_OPEN);
     } else {
         if (checkOpen()) {
-            mEvtInfo.setEventName((char*)l_door_open_demo);
-            mEvtInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+            eventInfo.setEventName((char*)l_door_open_demo);
+            eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
         }
     }
     return 1;
@@ -691,7 +691,7 @@ BOOL daBdoor_c::actionEnd() {
         dComIfG_Bgsp().Regist(mpBgW, this);
     }
     setAction(ACT_WAIT);
-    cXyz normal(cM_ssin(orig.angle.y), 0.0f, cM_scos(orig.angle.y));
+    cXyz normal(cM_ssin(home.angle.y), 0.0f, cM_scos(home.angle.y));
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz delta = player->current.pos - current.pos;
     f32 prod = delta.inprodXZ(normal);
@@ -764,13 +764,13 @@ int daBdoor_c::draw() {
         if (!draw) {
             fopAcM_OffStatus(this, 0);
         }
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpDoorModel);
         dComIfGd_setList();
         if (mLocked) {
-            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &tevStr);
             mpLockAnm->entry(mpLockModel->getModelData());
             mDoExt_modelUpdateDL(mpLockModel);
         }
@@ -780,7 +780,7 @@ int daBdoor_c::draw() {
 
 /* 80670804-80670874 001464 0070+00 1/1 0/0 0/0 .text            Delete__9daBdoor_cFv */
 int daBdoor_c::Delete() {
-    if (mHeap != NULL && mpBgW->ChkUsed()) {
+    if (heap != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
     }
     dComIfG_resDelete(&mPhaseReq, getArcName());

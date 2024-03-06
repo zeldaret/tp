@@ -46,7 +46,7 @@ int daObjProp_c::create() {
         } else {
             init();
             setModelMtx();
-            mCullMtx = mpModel->getBaseTRMtx();
+            cullMtx = mpModel->getBaseTRMtx();
             fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         }
     }
@@ -61,8 +61,8 @@ int daObjProp_c::Delete() {
 
 /* 80CB543C-80CB54A0 0002DC 0064+00 1/1 0/0 0/0 .text            draw__11daObjProp_cFv */
 int daObjProp_c::draw() {
-    g_env_light.settingTevStruct(NULL, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(NULL, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     mDoExt_modelUpdate(mpModel);
     return 1;
 }

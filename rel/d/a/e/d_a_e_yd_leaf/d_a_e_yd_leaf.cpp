@@ -8,8 +8,8 @@
 
 /* 807F7E18-807F7EC0 000078 00A8+00 1/0 0/0 0/0 .text daE_YD_LEAF_Draw__FP15e_yd_leaf_class */
 static int daE_YD_LEAF_Draw(e_yd_leaf_class* i_this) {
-    g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->mTevStr);
+    g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->tevStr);
 
     dComIfGd_setListDark();
     i_this->mpMorf->entryDL();
@@ -22,14 +22,14 @@ static int daE_YD_LEAF_Execute(e_yd_leaf_class* i_this) {
     if (i_this->field_0x5ba == 0) {
         stage_stag_info_class* pstag = i_dComIfGp_getStage()->getStagInfo();
         if (dStage_stagInfo_GetSTType(pstag) != ST_FIELD &&
-            fopAcM_SearchByID(i_this->mParentPcId) == NULL)
+            fopAcM_SearchByID(i_this->parentActorID) == NULL)
         {
             i_this->field_0x5ba = 1;
         }
     } else {
-        cLib_addCalc0(&i_this->mScale.y, 1.0f, 0.08f);
+        cLib_addCalc0(&i_this->scale.y, 1.0f, 0.08f);
 
-        if (i_this->mScale.y <= 0.01f) {
+        if (i_this->scale.y <= 0.01f) {
             fopAcM_delete(i_this);
         }
     }
@@ -37,7 +37,7 @@ static int daE_YD_LEAF_Execute(e_yd_leaf_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
-    mDoMtx_stack_c::scaleM(i_this->mScale.y, i_this->mScale.y, i_this->mScale.y);
+    mDoMtx_stack_c::scaleM(i_this->scale.y, i_this->scale.y, i_this->scale.y);
     i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->modelCalc();
     return 1;
@@ -86,7 +86,7 @@ static int daE_YD_LEAF_Create(fopAc_ac_c* i_this) {
         OS_REPORT("//////////////E_YD_LEAF SET 2 !!\n");
 
         fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
-        a_this->mScale.y = 1.0f;
+        a_this->scale.y = 1.0f;
         daE_YD_LEAF_Execute(a_this);
     }
 

@@ -72,7 +72,7 @@ int daTagSpring_c::execute() {
 /* 805A6C84-805A6DFC 0002A4 0178+00 1/1 0/0 0/0 .text            checkArea__13daTagSpring_cFv */
 u8 daTagSpring_c::checkArea() {
     fopAc_ac_c* player_p = daPy_getPlayerActorClass();
-    return player_p->current.pos.absXZ(current.pos) < (mScale.x * 1000);
+    return player_p->current.pos.absXZ(current.pos) < (scale.x * 1000);
 }
 
 /* 805A6DFC-805A6E04 00041C 0008+00 1/1 0/0 0/0 .text            _delete__13daTagSpring_cFv */
@@ -110,14 +110,14 @@ extern actor_process_profile_definition g_profile_Tag_Spring = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Spring,        // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagSpring_c),  // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     587,                    // mPriority
-    &l_daTagSpring_Method,  // mSubMtd
+    &l_daTagSpring_Method,  // sub_method
     0x40000,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

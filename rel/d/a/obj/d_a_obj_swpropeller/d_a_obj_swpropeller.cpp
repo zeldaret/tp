@@ -39,7 +39,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 
 /* 8059A5E8-8059A624 000148 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjSwPr_cFv */
 void daObjSwPr_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -116,7 +116,7 @@ int daObjSwPr_c::Create() {
     jnt->setCallBack(nodeCallBack);
     mpModel->setUserArea((u32)this);
 
-    mEyePos.y += 100.0f;
+    eyePos.y += 100.0f;
 
     // Set CullSizeFar for Outside Bridge room in Forest Temple
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") == 0 && fopAcM_GetRoomNo(this) == 4) {
@@ -314,8 +314,8 @@ int daObjSwPr_c::execute() {
 
 /* 8059B148-8059B1AC 000CA8 0064+00 1/1 0/0 0/0 .text            draw__11daObjSwPr_cFv */
 int daObjSwPr_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     mDoExt_modelUpdateDL(mpModel);
     return 1;

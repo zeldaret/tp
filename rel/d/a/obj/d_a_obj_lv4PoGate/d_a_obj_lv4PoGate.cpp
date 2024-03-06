@@ -44,7 +44,7 @@ void daLv4PoGate_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(0.0f, mMoveValue, 0.0f);
 
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -139,7 +139,7 @@ void daLv4PoGate_c::modeWait() {}
 /* 80C600A0-80C60150 0005A0 00B0+00 1/1 0/0 0/0 .text init_modeMoveOpen__13daLv4PoGate_cFv */
 void daLv4PoGate_c::init_modeMoveOpen() {
     cXyz sound_pos(current.pos);
-    sound_pos.y = orig.pos.y;
+    sound_pos.y = home.pos.y;
 
     mDoAud_seStart(Z2SE_OBJ_POU_GATE_OP, &sound_pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setEffect(0);
@@ -158,7 +158,7 @@ void daLv4PoGate_c::modeMoveOpen() {
 /* 80C60200-80C602B0 000700 00B0+00 1/1 0/0 0/0 .text init_modeMoveClose__13daLv4PoGate_cFv */
 void daLv4PoGate_c::init_modeMoveClose() {
     cXyz sound_pos(current.pos);
-    sound_pos.y = orig.pos.y;
+    sound_pos.y = home.pos.y;
 
     mDoAud_seStart(Z2SE_OBJ_POU_GATE_CL, &sound_pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setEffect(1);
@@ -259,15 +259,15 @@ void daLv4PoGate_c::setEffect(int param_0) {
     }
 
     for (int i = start_idx; i < num; i++) {
-        dComIfGp_particle_set(particle_id[i], &current.pos, &shape_angle, &mScale, 255, NULL, -1,
+        dComIfGp_particle_set(particle_id[i], &current.pos, &shape_angle, &scale, 255, NULL, -1,
                               NULL, NULL, NULL);
     }
 }
 
 /* 80C605F8-80C6069C 000AF8 00A4+00 1/0 0/0 0/0 .text            Draw__13daLv4PoGate_cFv */
 int daLv4PoGate_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

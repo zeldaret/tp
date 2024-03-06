@@ -150,8 +150,8 @@ int daObj_SSItem_c::Draw() {
     if (field_0xB0E == 2) {
         return 1;
     } else {
-        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
         if (field_0xB00 != -1000000000.0f) {
             cM3dGPla plane;
@@ -217,7 +217,7 @@ u8 daObj_SSItem_c::getTypeFromParam() {
 /* 80CE789C-80CE78D4 000CFC 0038+00 1/1 0/0 0/0 .text            getFlowNodeNum__14daObj_SSItem_cFv
  */
 u16 daObj_SSItem_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -240,7 +240,7 @@ u16 daObj_SSItem_c::getValue() {
 
 /* 80CE78E0-80CE7950 000D40 0070+00 1/1 0/0 0/0 .text            restart__14daObj_SSItem_cFv */
 void daObj_SSItem_c::restart() {
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     setProcess(&wait);
 }
@@ -249,13 +249,13 @@ void daObj_SSItem_c::restart() {
 void daObj_SSItem_c::initialize() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
-    mEvtInfo.setArchiveName(getResName());
-    mAttentionInfo.mFlags = 0;
-    mAttentionInfo.field_0x0[4] = 6;
+    eventInfo.setArchiveName(getResName());
+    attention_info.flags = 0;
+    attention_info.field_0x0[4] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
     mAcchCir.SetWall(24.0f, 12.0f);
-    mAcch.Set(&fopAcM_GetPosition_p(this), &fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
-              &fopAcM_GetSpeed_p(this), &fopAcM_GetAngle_p(this), &fopAcM_GetShapeAngle_p(this));
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
     mStts.Init(0xFF, 0, this);
     mAtCyl.Set(mCcDCyl);
     mAtCyl.SetStts(&mStts);
@@ -288,18 +288,18 @@ int daObj_SSItem_c::setProcess(ProcessFunc i_process) {
 
 /* 80CE7BB4-80CE7C24 001014 0070+00 1/1 0/0 0/0 .text            setParam__14daObj_SSItem_cFv */
 void daObj_SSItem_c::setParam() {
-    mScale.set(1.4f, 1.4f, 1.4f);
-    cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+    scale.set(1.4f, 1.4f, 1.4f);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mAcchCir.SetWallR(24.0f);
     mAcchCir.SetWallH(12.0f);
-    mGravity = -5.0f;
+    gravity = -5.0f;
 }
 
 /* 80CE7C24-80CE7C80 001084 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__14daObj_SSItem_cFv
  */
 void daObj_SSItem_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80CE7C80-80CE7CC4 0010E0 0044+00 2/2 0/0 0/0 .text            setRoomNo__14daObj_SSItem_cFv */
@@ -313,14 +313,14 @@ void daObj_SSItem_c::setRoomNo() {
 void daObj_SSItem_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CE7D28-80CE7D5C 001188 0034+00 1/1 0/0 0/0 .text            setAttnPos__14daObj_SSItem_cFv */
 void daObj_SSItem_c::setAttnPos() {
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    eyePos = current.pos;
 }
 
 /* 80CE7D5C-80CE7D8C 0011BC 0030+00 1/0 0/0 0/0 .text            wait__14daObj_SSItem_cFPv */

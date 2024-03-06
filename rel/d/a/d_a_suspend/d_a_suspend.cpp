@@ -20,16 +20,16 @@ int daSus_c::create() {
     u8 arg1 = getArg1();
 
     if (getScale() != 0) {
-        mScale.x *= 1250.0f;
-        mScale.y *= 2500.0f;
-        mScale.z *= 1250.0f;
+        scale.x *= 1250.0f;
+        scale.y *= 2500.0f;
+        scale.z *= 1250.0f;
     } else {
-        mScale.x *= 125.0f;
-        mScale.y *= 250.0f;
-        mScale.z *= 125.0f;
+        scale.x *= 125.0f;
+        scale.y *= 250.0f;
+        scale.z *= 125.0f;
     }
 
-    newData(roomNo, current.pos, mScale, sw, arg0, arg1);
+    newData(roomNo, current.pos, scale, sw, arg0, arg1);
     return cPhs_COMPLEATE_e;
 }
 

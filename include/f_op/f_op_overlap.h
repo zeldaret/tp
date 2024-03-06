@@ -12,7 +12,7 @@ public:
 
 struct overlap_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition base;
-    /* 0x24 */ leafdraw_method_class* mSubMtd;
+    /* 0x24 */ leafdraw_method_class* sub_method;
 };  // Size: 0x28
 
 static s32 fopOvlp_Draw(void* param_1);

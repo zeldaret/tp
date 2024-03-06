@@ -41,14 +41,14 @@ static Vec const l_roll_crash_check_areaL2[4] = {
 /* 805935B8-80593630 000078 0078+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjMGate_cFv */
 void daObjMGate_c::initBaseMtx() {
     if (mpKeyModel != NULL) {
-        mpKeyModel->setBaseScale(mScale);
+        mpKeyModel->setBaseScale(scale);
     }
 
     if (getType() == TYPE_LEFT) {
-        mScale.z = -1.0f;
+        scale.z = -1.0f;
     }
 
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -235,15 +235,15 @@ int daObjMGate_c::Execute(Mtx** param_0) {
 
 /* 80593C4C-80593D18 00070C 00CC+00 1/0 0/0 0/0 .text            Draw__12daObjMGate_cFv */
 int daObjMGate_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
 
     if (mpKeyModel != NULL) {
-        g_env_light.setLightTevColorType_MAJI(mpKeyModel, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(mpKeyModel, &tevStr);
         mDoExt_modelUpdateDL(mpKeyModel);
     }
 

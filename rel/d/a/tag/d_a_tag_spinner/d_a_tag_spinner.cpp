@@ -40,8 +40,8 @@ void daTagSpinner_c::setBaseMtx() {
 /* 80D6191C-80D6196C 00029C 0050+00 1/1 0/0 0/0 .text            Create__14daTagSpinner_cFv */
 int daTagSpinner_c::Create() {
     initBaseMtx();
-    mRadius = mScale.x * 100.0f;
-    field_0x56c = mScale.y * 100.0f;
+    mRadius = scale.x * 100.0f;
+    field_0x56c = scale.y * 100.0f;
     return 1;
 }
 
@@ -118,14 +118,14 @@ extern actor_process_profile_definition g_profile_Tag_Spinner = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Spinner,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daTagSpinner_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     605,                     // mPriority
-    &l_daTagSpinner_Method,  // mSubMtd
+    &l_daTagSpinner_Method,  // sub_method
     0x40100,                 // mStatus
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

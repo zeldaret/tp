@@ -11,17 +11,17 @@
 
 /* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */
 int daTagRestart_c::Create() {
-    field_0x56c[0].x = mScale.x * -100.0f;
-    field_0x56c[0].z = mScale.z * -100.0f;
+    field_0x56c[0].x = scale.x * -100.0f;
+    field_0x56c[0].z = scale.z * -100.0f;
 
-    field_0x56c[1].x = mScale.x * 100.0f;
-    field_0x56c[1].z = mScale.z * -100.0f;
+    field_0x56c[1].x = scale.x * 100.0f;
+    field_0x56c[1].z = scale.z * -100.0f;
 
-    field_0x56c[2].x = mScale.x * 100.0f;
-    field_0x56c[2].z = mScale.z * 100.0f;
+    field_0x56c[2].x = scale.x * 100.0f;
+    field_0x56c[2].z = scale.z * 100.0f;
 
-    field_0x56c[3].x = mScale.x * -100.0f;
-    field_0x56c[3].z = mScale.z * 100.0f;
+    field_0x56c[3].x = scale.x * -100.0f;
+    field_0x56c[3].z = scale.z * 100.0f;
 
     field_0x56c[3].y = 0.0f;
     field_0x56c[2].y = 0.0f;
@@ -48,7 +48,7 @@ int daTagRestart_c::execute() {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     cXyz player_pos = player->current.pos;
-    player_pos -= orig.pos;
+    player_pos -= home.pos;
     mDoMtx_stack_c::YrotS(-current.angle.y);
     mDoMtx_stack_c::multVec(&player_pos, &player_pos);
 
@@ -60,15 +60,15 @@ int daTagRestart_c::execute() {
             cXyz pos_offset;
             s16 restart_angle;
             if (roomNo == daTagRestart_prm::getFRoomNo(this)) {
-                restart_angle = orig.angle.y;
+                restart_angle = home.angle.y;
                 pos_offset.set(0.0f, 0.0f, 100.0f);
             } else {
-                restart_angle = orig.angle.y + 0x8000;
+                restart_angle = home.angle.y + 0x8000;
                 pos_offset.set(0.0f, 0.0f, -100.0f);
             }
 
             pos_offset.y += 100.0f;
-            mDoMtx_stack_c::YrotS(orig.angle.y);
+            mDoMtx_stack_c::YrotS(home.angle.y);
             mDoMtx_stack_c::multVec(&pos_offset, &pos_offset);
             cXyz restart_pos = current.pos + pos_offset;
 

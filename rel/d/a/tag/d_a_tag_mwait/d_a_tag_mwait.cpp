@@ -38,7 +38,7 @@ int daTagMwait_c::create() {
         field_0x56d = 0;
     }
 
-    mScale *= 100.0f;
+    scale *= 100.0f;
 
     u32 wait_y_offset = (fopAcM_GetParam(this) >> 0x18) & 0xFF;
     if (wait_y_offset == 0 || wait_y_offset == 0xFF) {
@@ -46,11 +46,11 @@ int daTagMwait_c::create() {
     }
 
     mWaitPosition.set(current.pos.x, current.pos.y + (wait_y_offset * 10.0f), current.pos.z);
-    mAttentionInfo.mPosition.set(mWaitPosition.x, mWaitPosition.y + 220.0f, mWaitPosition.z);
-    mEyePos.set(mWaitPosition.x, mWaitPosition.y + 150.0f, mWaitPosition.z);
+    attention_info.position.set(mWaitPosition.x, mWaitPosition.y + 220.0f, mWaitPosition.z);
+    eyePos.set(mWaitPosition.x, mWaitPosition.y + 150.0f, mWaitPosition.z);
 
-    mAttentionInfo.field_0x0[1] = 54;
-    mAttentionInfo.mFlags = 0;
+    attention_info.field_0x0[1] = 54;
+    attention_info.flags = 0;
     return cPhs_COMPLEATE_e;
 }
 
@@ -79,9 +79,9 @@ int daTagMwait_c::execute() {
         return 1;
     }
 
-    mAttentionInfo.mFlags = 0;
+    attention_info.flags = 0;
 
-    if (mEvtInfo.checkCommandTalk()) {
+    if (eventInfo.checkCommandTalk()) {
         if (!mEnteredTrigger || !midna_p->checkReturnAnime()) {
             if (!mInitMsgFlow) {
                 mMsgFlow.init(this, (u16)shape_angle.z, 0, NULL);
@@ -97,9 +97,9 @@ int daTagMwait_c::execute() {
         }
     } else if (mEnteredTrigger) {
         fopAcM_orderSpeakEvent(this, 0, 0);
-        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
-        mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
-        mEyePos = mAttentionInfo.mPosition;
+        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        attention_info.position = midna_p->attention_info.position;
+        eyePos = attention_info.position;
     } else {
         mInitMsgFlow = false;
 
@@ -117,9 +117,9 @@ int daTagMwait_c::execute() {
                 }
 
                 f32 player_dist = player_p->current.pos.abs2XZ(current.pos);
-                if ((player_dist <= mScale.x * mScale.x &&
+                if ((player_dist <= scale.x * scale.x &&
                      player_p->current.pos.y >= current.pos.y &&
-                     player_p->current.pos.y <= current.pos.y + mScale.y) ||
+                     player_p->current.pos.y <= current.pos.y + scale.y) ||
                     i_fopAcM_isSwitch(this, mEnterSw))
                 {
                     midna_p->offTagWaitPos();
@@ -129,17 +129,17 @@ int daTagMwait_c::execute() {
                     if (shape_angle.z == 0) {
                         fopAcM_delete(this);
                     } else {
-                        mAttentionInfo.mPosition = midna_p->mAttentionInfo.mPosition;
-                        mEyePos = mAttentionInfo.mPosition;
+                        attention_info.position = midna_p->attention_info.position;
+                        eyePos = attention_info.position;
                         fopAcM_orderSpeakEvent(this, 0, 0);
-                        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
                     }
                 } else if (field_0x570 > 0.0f && player_dist < field_0x570 &&
                            player_p->current.pos.y >= current.pos.y &&
-                           player_p->current.pos.y <= current.pos.y + mScale.y)
+                           player_p->current.pos.y <= current.pos.y + scale.y)
                 {
-                    mAttentionInfo.mFlags = 2;
-                    mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    attention_info.flags = 2;
+                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
                 }
             }
         }

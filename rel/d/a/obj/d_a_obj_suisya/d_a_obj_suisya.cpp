@@ -10,15 +10,15 @@
 
 /* 80CF0078-80CF0148 000078 00D0+00 1/1 0/0 0/0 .text            draw__14daObj_Suisya_cFv */
 int daObj_Suisya_c::draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
     cXyz sp18;
     sp18.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
 
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, mpModel, &sp18, 400.0f, 0.0f, current.pos.y,
-                                    mAcch.GetGroundH(), mAcch.m_gnd, &mTevStr, 0, 1.0f,
+                                    mAcch.GetGroundH(), mAcch.m_gnd, &tevStr, 0, 1.0f,
                                     dDlst_shadowControl_c::getSimpleTex());
     return 1;
 }
@@ -87,14 +87,14 @@ int daObj_Suisya_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mAttentionInfo.mFlags = 0;
-        mCullMtx = mpModel->getBaseTRMtx();
+        attention_info.flags = 0;
+        cullMtx = mpModel->getBaseTRMtx();
         fopAcM_SetMin(this, -200.0f, -500.0f, -500.0f);
         fopAcM_SetMax(this, 200.0f, 500.0, 500.0f);
 
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
         mAcchCir.SetWall(0.0f, 0.0f);
-        mHealth = 60;
+        health = 60;
         field_0x560 = 60;
 
         daObj_Suisya_Execute(this);

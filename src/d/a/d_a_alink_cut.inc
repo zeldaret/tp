@@ -134,8 +134,8 @@ bool daAlink_c::checkCutFastReady() {
         if (i_checkModeFlg(1) && !i_checkRideOn() && i_checkSwordGet() && i_checkModeFlg(4) &&
             !i_checkModeFlg(0x40000) && mTargetedActor == NULL && checkEnemyGroup(target_p))
         {
-            f32 xz_dist = target_p->mEyePos.abs2XZ(current.pos);
-            f32 y_dist = fabsf(target_p->mEyePos.y - current.pos.y);
+            f32 xz_dist = target_p->eyePos.abs2XZ(current.pos);
+            f32 y_dist = fabsf(target_p->eyePos.y - current.pos.y);
 
             if ((xz_dist < 160000.0f && y_dist < 300.0f) ||
                 (i_checkNoResetFlg0(FLG0_UNK_1000000) && xz_dist < 202500.0f && y_dist < 350.0f))
@@ -751,19 +751,19 @@ void daAlink_c::setCutJumpSpeed(int i_airAt) {
     }
 
     if (mTargetedActor != NULL && !i_airAt) {
-        shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
-        cXyz targetPos(mTargetedActor->mEyePos.x - (cM_ssin(shape_angle.y) * 70.0f),
-                       mTargetedActor->mEyePos.y + 50.0f,
-                       mTargetedActor->mEyePos.z - (cM_scos(shape_angle.y) * 70.0f));
+        shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos);
+        cXyz targetPos(mTargetedActor->eyePos.x - (cM_ssin(shape_angle.y) * 70.0f),
+                       mTargetedActor->eyePos.y + 50.0f,
+                       mTargetedActor->eyePos.z - (cM_scos(shape_angle.y) * 70.0f));
 
         if (fopAcM_gc_c::gndCheck(&targetPos)) {
             targetPos.y = fopAcM_gc_c::getGroundY();
         } else {
-            targetPos.y = mTargetedActor->mEyePos.y;
+            targetPos.y = mTargetedActor->eyePos.y;
         }
 
-        f32 dvar12 = speed.y + mGravity;
-        f32 dvar10 = 1.0f / mGravity;
+        f32 dvar12 = speed.y + gravity;
+        f32 dvar10 = 1.0f / gravity;
         f32 fvar1 = targetPos.y - (current.pos.y - (dvar10 * (dvar12 * dvar12) * 0.5f));
 
         if (fvar1 > 0.0f) {
@@ -1948,8 +1948,8 @@ int daAlink_c::procCutDownInit() {
             speed.y *= 1.5f;
         }
 
-        f32 var_f4 = speed.y + mGravity;
-        f32 var_f5 = 1.0f / mGravity;
+        f32 var_f4 = speed.y + gravity;
+        f32 var_f5 = 1.0f / gravity;
 
         f32 temp_f1 = sp2C.y - (current.pos.y - var_f5 * (var_f4 * var_f4) * 0.5f);
         if (temp_f1 > 0.0f) {
@@ -2128,7 +2128,7 @@ int daAlink_c::procCutHeadInit() {
     commonProcInit(PROC_CUT_HEAD);
     resetCombo(1);
     setSingleAnimeParam(ANM_CUT_HEAD_JUMP, &daAlinkHIO_cutHead_c0::m.mJumpAnm);
-    setSpecialGravity(daAlinkHIO_cutHead_c0::m.mGravity, mMaxFallSpeed, 0);
+    setSpecialGravity(daAlinkHIO_cutHead_c0::m.mGravity, maxFallSpeed, 0);
 
     cXyz sp2C;
     if (enemy_p != NULL) {
@@ -2140,8 +2140,8 @@ int daAlink_c::procCutHeadInit() {
     }
 
     f32 fvar9 = cLib_minMaxLimit(sp2C.y, 30.0f, daAlinkHIO_cutHead_c0::m.mMaxHeight);
-    f32 fvar10 = JMAFastSqrt((fvar9 * -2.0f) / mGravity);
-    speed.y = fvar10 * -mGravity;
+    f32 fvar10 = JMAFastSqrt((fvar9 * -2.0f) / gravity);
+    speed.y = fvar10 * -gravity;
 
     f32 fvar5 = sp2C.absXZ();
     if (fvar5 > daAlinkHIO_cutHead_c0::m.mMaxDistance) {
@@ -2183,7 +2183,7 @@ int daAlink_c::procCutHead() {
             f32 tmp_0 = FLOAT_LABEL(lit_6108);
             mNormalSpeed = tmp_0;
             speed.y = tmp_0;
-            setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+            setSpecialGravity(tmp_0, maxFallSpeed, 0);
             mProcVar3.field_0x300e.x = 1;
             setCutWaterDropEffect();
             setSwordVoiceSe(Z2SE_AL_V_KABUTO_ATK);

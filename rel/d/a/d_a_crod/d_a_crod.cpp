@@ -211,8 +211,8 @@ int daCrod_c::execute() {
     if (fopAcM_GetParam(this) == 6) {
         if (player->getIronBallCenterPos() != NULL) {
             current.pos = *player->getIronBallCenterPos();
-            mAttentionInfo.mPosition = current.pos;
-            mEyePos = current.pos;
+            attention_info.position = current.pos;
+            eyePos = current.pos;
         }
         return 1;
     } else {
@@ -322,8 +322,8 @@ int daCrod_c::execute() {
             posMove();
 
             if (fopAcM_GetParam(this) == 3) {
-                mAtCps.SetStartEnd(next.pos, current.pos);
-                sp50 = current.pos - next.pos;
+                mAtCps.SetStartEnd(old.pos, current.pos);
+                sp50 = current.pos - old.pos;
 
                 mAtCps.SetAtVec(sp50);
                 dComIfG_Ccsp()->Set(&mAtCps);
@@ -360,8 +360,8 @@ int daCrod_c::execute() {
             }
         }
 
-        mEyePos = current.pos;
-        mAttentionInfo.mPosition = current.pos;
+        eyePos = current.pos;
+        attention_info.position = current.pos;
 
         daAlink_c::simpleAnmPlay(mpBallBrk);
         daAlink_c::simpleAnmPlay(mpBallBtk);
@@ -389,8 +389,8 @@ int daCrod_c::draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpBallModel, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpBallModel, &tevStr);
     mDoExt_modelUpdateDL(mpBallModel);
     return 1;
 }

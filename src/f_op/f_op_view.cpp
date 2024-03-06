@@ -8,23 +8,23 @@
 
 /* 8001F1A8-8001F1D0 019AE8 0028+00 1/0 0/0 0/0 .text            fopVw_Draw__FP10view_class */
 void fopVw_Draw(view_class* i_this) {
-    fpcLf_DrawMethod(i_this->mSubMtd, i_this);
+    fpcLf_DrawMethod(i_this->sub_method, i_this);
 }
 
 /* 8001F1D0-8001F1F8 019B10 0028+00 1/0 0/0 0/0 .text            fopVw_Execute__FP10view_class */
 void fopVw_Execute(view_class* i_this) {
-    fpcMtd_Execute(&i_this->mSubMtd->mBase, i_this);
+    fpcMtd_Execute(&i_this->sub_method->mBase, i_this);
 }
 
 /* 8001F1F8-8001F220 019B38 0028+00 1/0 0/0 0/0 .text            fopVw_IsDelete__FPv */
 s32 fopVw_IsDelete(void* i_this) {
     view_class* _this = (view_class*)i_this;
-    return fpcMtd_IsDelete(&_this->mSubMtd->mBase, _this);
+    return fpcMtd_IsDelete(&_this->sub_method->mBase, _this);
 }
 
 /* 8001F220-8001F248 019B60 0028+00 1/0 0/0 0/0 .text            fopVw_Delete__FP10view_class */
 s32 fopVw_Delete(view_class* i_this) {
-    return fpcMtd_Delete(&i_this->mSubMtd->mBase, i_this);
+    return fpcMtd_Delete(&i_this->sub_method->mBase, i_this);
 }
 
 /* 8001F248-8001F284 019B88 003C+00 1/0 0/0 0/0 .text            fopVw_Create__FPv */
@@ -33,10 +33,10 @@ s32 fopVw_Create(void* i_this) {
 
     view_process_profile_definition* pProf =
         (view_process_profile_definition*)fpcM_GetProfile(_this);
-    _this->mSubMtd = pProf->mSubMtd;
+    _this->sub_method = pProf->sub_method;
     _this->field_0xc4 = pProf->unk28;
 
-    return fpcMtd_Create(&_this->mSubMtd->mBase, _this);
+    return fpcMtd_Create(&_this->sub_method->mBase, _this);
 }
 
 /* ############################################################################################## */

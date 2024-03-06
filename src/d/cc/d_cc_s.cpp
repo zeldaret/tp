@@ -165,7 +165,7 @@ bool dCcS::ChkShieldFrontRange(cCcD_Obj* i_atObj, cCcD_Obj* i_tgObj, int param_2
     if (tgObj->GetTgShieldFrontRangeYAngle() != NULL) {
         var_r4 = *tgObj->GetTgShieldFrontRangeYAngle();
     } else {
-        var_r4 = fopAcM_GetShapeAngle_p(tgActor).y;
+        var_r4 = fopAcM_GetShapeAngle_p(tgActor)->y;
     }
 
     s16 shield_range = tgObj->GetTgShieldRange();

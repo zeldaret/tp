@@ -20,7 +20,7 @@ static int daKytag07_Execute(kytag07_class* i_this) {
     if (i_this->field_0x58c != 99) {
         cLib_addCalc(&i_this->mLightInfluence.mPow,i_this->field_0x588,0.1f,1000.0f,0.001f);
     } else {
-        if (i_this->orig.roomNo != dStage_roomControl_c::getStayNo()) {
+        if (i_this->home.roomNo != dStage_roomControl_c::getStayNo()) {
             cLib_addCalc(&i_this->mLightInfluence.mPow,0.0f,0.25f,10000.0f,1.0f);
         }
 
@@ -62,7 +62,7 @@ static int daKytag07_Create(fopAc_ac_c* i_this) {
     kytag07->mLightInfluence.mColor.b = fopAcM_GetParam(i_this) >> 16 & 0xFF;
     kytag07->mLightInfluence.mPow = 1e-10;
     kytag07->mLightInfluence.mFluctuation = 1.0f;
-    kytag07->field_0x588 = 1000.0f * kytag07->mScale.x;
+    kytag07->field_0x588 = 1000.0f * kytag07->scale.x;
     kytag07->field_0x58c = 0;
 
 
@@ -86,14 +86,14 @@ extern actor_process_profile_definition g_profile_KYTAG07 = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio 
     PROC_KYTAG07,            // mProcName     
-    &g_fpcLf_Method.mBase,   // mSubMtd                    
+    &g_fpcLf_Method.mBase,   // sub_method                    
     sizeof(kytag07_class),   // mSize                     
     0,                       // mSizeOther
     0,                       // mParameters       
-    &g_fopAc_Method.base,    // mSubMtd                   
+    &g_fopAc_Method.base,    // sub_method                   
     101,                     // mPriority     
-    &l_daKytag07_Method,     // mSubMtd                  
+    &l_daKytag07_Method,     // sub_method                  
     0x44000,                 // mStatus          
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_0_e,       // mCullType
+    fopAc_CULLBOX_0_e,       // cullType
 };

@@ -1809,8 +1809,8 @@ int daNpcCd2_c::removeResrc(int idx, int param_1) {
 
 /* 80158D88-80158DE4 1536C8 005C+00 0/0 0/0 4/4 .text   setEnvTevCol__10daNpcCd2_cFv */
 void daNpcCd2_c::setEnvTevCol() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
 }
 
 /* 80158DE4-80158E28 153724 0044+00 0/0 0/0 4/4 .text   setRoomNo__10daNpcCd2_cFv */
@@ -1872,7 +1872,7 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     u32 x = !isM_();
     s32 jntNum = a_jntNumTbl[idx][x];
     if (i_model && jntNum >= 0) {
-        g_env_light.setLightTevColorType_MAJI(i_model, &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
         mDoMtx_copy(mpMorf->getModel()->i_getAnmMtx(jntNum), mDoMtx_stack_c::now);
         mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
         i_model->i_setBaseTRMtx(mDoMtx_stack_c::now);
@@ -1894,15 +1894,15 @@ asm int daNpcCd2_c::drawObj(int param_0, J3DModel* param_1, f32 param_2) {
 /* 801590FC-80159258 153A3C 015C+00 0/0 0/0 4/4 .text            drawNpc__10daNpcCd2_cFv */
 int daNpcCd2_c::drawNpc() {
     if (field_0xac6) {
-        g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
+        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
     } else {
-        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     }
     if (field_0xac6 && !daPy_py_c::checkNowWolfEyeUp()) {
         setHitodamaParticle();
         return 1;
     }
-    g_env_light.setLightTevColorType_MAJI(mpMorf->getModel(), &mTevStr);
+    g_env_light.setLightTevColorType_MAJI(mpMorf->getModel(), &tevStr);
     if (field_0xac6) {
         dComIfGd_setListDark();
     }

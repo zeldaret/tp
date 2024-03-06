@@ -57,8 +57,8 @@ static int dShopSystem_searchItemActor(void* i_actor, void* param_1) {
                 dShopSystem_itemActor[4] != i_actor && dShopSystem_itemActor[5] != i_actor &&
                 dShopSystem_itemActor[6] != i_actor)
             {
-                u8 sw = static_cast<fopAc_ac_c*>(i_actor)->orig.angle.z;
-                u8 sw2 = ((u16) static_cast<fopAc_ac_c*>(i_actor)->orig.angle.z) >> 8;
+                u8 sw = static_cast<fopAc_ac_c*>(i_actor)->home.angle.z;
+                u8 sw2 = ((u16) static_cast<fopAc_ac_c*>(i_actor)->home.angle.z) >> 8;
                 u8 item_no = fopAcM_GetParam(i_actor) & 0xFF;
 
                 if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) &&
@@ -772,32 +772,32 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
 
         if (dShopSystem_itemActor[1] != NULL && dShopSystem_cameraActor[1] != NULL) {
             cXyz local_40;
-            local_40.set(dShopSystem_itemActor[1]->orig.pos);
+            local_40.set(dShopSystem_itemActor[1]->home.pos);
 
             f32 tmp_05 = 0.5f;
             if (dShopSystem_sellItemMax == 4) {
                 if (dShopSystem_itemActor[2] != NULL) {
-                    f32 tmp = (dShopSystem_itemActor[2]->orig.pos.x +
-                               dShopSystem_itemActor[1]->orig.pos.x);
+                    f32 tmp = (dShopSystem_itemActor[2]->home.pos.x +
+                               dShopSystem_itemActor[1]->home.pos.x);
                     local_40.x = tmp * tmp_05;
 
-                    f32 tmp2 = (dShopSystem_itemActor[2]->orig.pos.y +
-                                dShopSystem_itemActor[1]->orig.pos.y);
+                    f32 tmp2 = (dShopSystem_itemActor[2]->home.pos.y +
+                                dShopSystem_itemActor[1]->home.pos.y);
                     local_40.y = tmp2 * tmp_05;
 
-                    f32 tmp3 = (dShopSystem_itemActor[2]->orig.pos.z +
-                                dShopSystem_itemActor[1]->orig.pos.z);
+                    f32 tmp3 = (dShopSystem_itemActor[2]->home.pos.z +
+                                dShopSystem_itemActor[1]->home.pos.z);
                     local_40.z = tmp3 * tmp_05;
                 }
             } else if (dShopSystem_sellItemMax == 5) {
                 f32 tmp =
-                    (dShopSystem_itemActor[2]->orig.pos.x + dShopSystem_itemActor[3]->orig.pos.x);
+                    (dShopSystem_itemActor[2]->home.pos.x + dShopSystem_itemActor[3]->home.pos.x);
                 local_40.x = tmp * tmp_05;
 
-                local_40.y = dShopSystem_itemActor[0]->orig.pos.y;
+                local_40.y = dShopSystem_itemActor[0]->home.pos.y;
 
                 f32 tmp3 =
-                    (dShopSystem_itemActor[2]->orig.pos.z + dShopSystem_itemActor[3]->orig.pos.z);
+                    (dShopSystem_itemActor[2]->home.pos.z + dShopSystem_itemActor[3]->home.pos.z);
                 local_40.z = tmp3 * tmp_05;
             }
 
@@ -1405,7 +1405,7 @@ void dShopSystem_c::setSoldOutFlag() {
 void dShopSystem_c::setSoldOut() {
     if (mSoldOutFlag != 0xFF) {
         if (field_0xf60 < 0) {
-            u8 sw = (u8)dShopSystem_itemActor[mSoldOutFlag]->orig.angle.z & 0xFF;
+            u8 sw = (u8)dShopSystem_itemActor[mSoldOutFlag]->home.angle.z & 0xFF;
             if (sw != 0xFF && !dComIfGs_isSaveSwitch(sw)) {
                 dComIfGs_onSaveSwitch(sw);
             }
@@ -1532,8 +1532,8 @@ int dShopSystem_c::searchItemActor() {
         for (int i = 0; i < dShopSystem_sellItemMax; i++) {
             u32 processId = dShopSystem_itemActor[i]->getProcessID();
             mItemCtrl.setItemIndex(i, processId);
-            mItemCtrl.setMessageIndex(i, (u16)dShopSystem_itemActor[i]->orig.angle.x != 0xFFFF ?
-                                             (u16)dShopSystem_itemActor[i]->orig.angle.x :
+            mItemCtrl.setMessageIndex(i, (u16)dShopSystem_itemActor[i]->home.angle.x != 0xFFFF ?
+                                             (u16)dShopSystem_itemActor[i]->home.angle.x :
                                              -1);
 
             if (processId + 0x10000 == 0xFFFF) {
@@ -1569,8 +1569,8 @@ int dShopSystem_c::searchItemActor() {
 
             for (int i = 0; i < 7; i++) {
                 if (dShopSystem_itemActor[i] != NULL) {
-                    u8 sw0 = dShopSystem_itemActor[i]->orig.angle.z;
-                    u8 sw1 = ((u16)dShopSystem_itemActor[i]->orig.angle.z) >> 8;
+                    u8 sw0 = dShopSystem_itemActor[i]->home.angle.z;
+                    u8 sw1 = ((u16)dShopSystem_itemActor[i]->home.angle.z) >> 8;
 
                     if ((sw0 != 0xFF && !dComIfGs_isSaveSwitch(sw0)) &&
                         (sw1 != 0xFF && !dComIfGs_isSaveSwitch(sw1)))
@@ -1589,8 +1589,8 @@ int dShopSystem_c::searchItemActor() {
 
             for (int i = 0; i < 7; i++) {
                 if (dShopSystem_itemActor[i] != NULL) {
-                    u8 sw0 = dShopSystem_itemActor[i]->orig.angle.z;
-                    u8 sw1 = ((u16)dShopSystem_itemActor[i]->orig.angle.z) >> 8;
+                    u8 sw0 = dShopSystem_itemActor[i]->home.angle.z;
+                    u8 sw1 = ((u16)dShopSystem_itemActor[i]->home.angle.z) >> 8;
 
                     if ((sw0 != 0xFF && !dComIfGs_isSaveSwitch(sw0)) &&
                         (sw1 != 0xFF && !dComIfGs_isSaveSwitch(sw1)))
@@ -1611,7 +1611,7 @@ int dShopSystem_c::searchItemActor() {
 /* 8019AB00-8019AB1C 195440 001C+00 1/1 0/0 0/0 .text            getFlowNodeNum__13dShopSystem_cFv
  */
 int dShopSystem_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     if (num == 0xFFFF) {
         return -1;
     }

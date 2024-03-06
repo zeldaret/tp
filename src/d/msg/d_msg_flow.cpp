@@ -1213,10 +1213,10 @@ int dMsgFlow_c::query006(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 #ifdef NONMATCHING
 int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     u32 uVar3 = *(u16*)(flow_node->params);
-    cXyz this_00 = daPy_getPlayerActorClass()->mAttentionInfo.mPosition;
+    cXyz this_00 = daPy_getPlayerActorClass()->attention_info.position;
     this_00.y -= daPy_getPlayerActorClass()->getAttentionOffsetY();
-    s16 uVar8 = (cSGlobe(param_1->mAttentionInfo.mPosition - this_00).U() - daPy_getPlayerActorClass()->shape_angle.GetY());
-    u8 attentionId = param_1->mAttentionInfo.field_0x0[3];
+    s16 uVar8 = (cSGlobe(param_1->attention_info.position - this_00).U() - daPy_getPlayerActorClass()->shape_angle.GetY());
+    u8 attentionId = param_1->attention_info.field_0x0[3];
     f32 fVar1 = dAttention_c::getDistTable(attentionId).field_0x4;
     u16 x = uVar3;
     if (x != 0) {
@@ -1224,7 +1224,7 @@ int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
     }
 
     return (u16) dComIfGp_getAttention().checkDistance(
-        &this_00, uVar8, &param_1->mAttentionInfo.mPosition, fVar1,
+        &this_00, uVar8, &param_1->attention_info.position, fVar1,
         dAttention_c::getDistTable(attentionId).field_0x8,
         dAttention_c::getDistTable(attentionId).field_0xc,
         dAttention_c::getDistTable(attentionId).field_0x10);

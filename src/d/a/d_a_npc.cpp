@@ -1801,26 +1801,26 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
         return 1;
     }
 
-    mTevStr.mFogColor.r = 0;
-    mTevStr.mFogColor.g = 0;
-    mTevStr.mFogColor.b = 0;
-    mTevStr.mFogColor.a = 0;
+    tevStr.mFogColor.r = 0;
+    tevStr.mFogColor.g = 0;
+    tevStr.mFogColor.b = 0;
+    tevStr.mFogColor.a = 0;
 
     if (i_color != NULL) {
-        mTevStr.mFogColor.r = i_color->r;
-        mTevStr.mFogColor.g = i_color->g;
-        mTevStr.mFogColor.b = i_color->b;
-        mTevStr.mFogColor.a = i_color->a;
+        tevStr.mFogColor.r = i_color->r;
+        tevStr.mFogColor.g = i_color->g;
+        tevStr.mFogColor.b = i_color->b;
+        tevStr.mFogColor.a = i_color->a;
     }
 
     if (field_0xdb8 != 0 && mTimer != 0) {
         f32 r = (f32)mTimer / (f32)field_0xdb8;
 
         if (cM3d_IsZero(r) == false) {
-            mTevStr.mFogColor.r = r * 20.0f;
+            tevStr.mFogColor.r = r * 20.0f;
         }
     } else if (param_0 != 0) {
-        mTevStr.mFogColor.g = 20;
+        tevStr.mFogColor.g = 20;
     }
 
     if (field_0xd98 & 0x800) {
@@ -1846,14 +1846,14 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
     if (i_drawGhost) {
         drawGhost();
     } else if (field_0xa89 != 0) {
-        g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
         dComIfGd_setListDark();
         mMcaMorfAnm[0]->entryDL();
         dComIfGd_setList();
     } else {
-        g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
         mMcaMorfAnm[0]->entryDL();
     }
 
@@ -1876,7 +1876,7 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
     if (param_6 == 0) {
         if (param_7 == 0) {
             field_0xd94 = dComIfGd_setShadow(field_0xd94, 1, model, &current.pos, param_2, param_4,
-                                             current.pos.y, field_0xdf4, field_0x930, &mTevStr, 0,
+                                             current.pos.y, field_0xdf4, field_0x930, &tevStr, 0,
                                              1.0f, dDlst_shadowControl_c::getSimpleTex());
         } else {
             dComIfGd_setSimpleShadow(&current.pos, field_0xdf4, param_4, field_0x930, 0, 1.0f,
@@ -1901,8 +1901,8 @@ asm int daNpcT_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param
 
 /* 80148C70-80148CCC 1435B0 005C+00 1/1 0/0 58/58 .text            setEnvTevColor__8daNpcT_cFv */
 void daNpcT_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0x930);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(field_0x930);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0x930);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(field_0x930);
 }
 
 /* 80148CCC-80148D10 14360C 0044+00 1/1 0/0 58/58 .text            setRoomNo__8daNpcT_cFv */
@@ -2109,7 +2109,7 @@ void daNpcT_c::setMtx() {
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(field_0xd78);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
 
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((u32)this);
@@ -2198,21 +2198,21 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
     *param_0 = -1;
     *param_1 = -1;
 
-    if (param_3 != 0 || mEvtInfo.checkCommandTalk() || field_0xdac != -1) {
+    if (param_3 != 0 || eventInfo.checkCommandTalk() || field_0xdac != -1) {
         fopAc_ac_c* talk_partner = dComIfGp_event_getTalkPartner();
         dMsgObject_c* talk_partner_conv = (dMsgObject_c*)talk_partner;
 
         if (talk_partner == param_2) {
             fopAc_ac_c* conv_actor = talk_partner_conv->getActor();
-            u16 actor_command = conv_actor->mEvtInfo.mCommand;
+            u16 actor_command = conv_actor->eventInfo.mCommand;
 
             if (actor_command == 2 || actor_command == 3) {
-                mSubMtd = (profile_method_class*)-1;
+                sub_method = (profile_method_class*)-1;
             } else if (actor_command == 6) {
-                if (conv_actor->mSubMtd != mSubMtd) {
+                if (conv_actor->sub_method != sub_method) {
                     *param_0 = dComIfGp_getMesgFaceAnimeAttrInfo();
                     *param_1 = dComIfGp_getMesgAnimeAttrInfo();
-                    mSubMtd = conv_actor->mSubMtd;
+                    sub_method = conv_actor->sub_method;
                 }
 
                 if (dMsgObject_c::isMouthCheck()) {
@@ -2226,10 +2226,10 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
                 if (field_0xd98 & 0x4000) {
                     field_0xd98 &= ~0x4000;
                 }
-                mSubMtd = (profile_method_class*)-1;
+                sub_method = (profile_method_class*)-1;
             }
         } else {
-            mSubMtd = (profile_method_class*)-1;
+            sub_method = (profile_method_class*)-1;
             if (field_0xdb4) {
                 field_0xdb4 = 1;
             }
@@ -2301,9 +2301,9 @@ bool daNpcT_c::checkCullDraw() {
 /* 8014A064-8014A0B0 1449A4 004C+00 1/0 1/0 60/0 .text            twilight__8daNpcT_cFv */
 void daNpcT_c::twilight() {
     if (field_0xa89 != 0) {
-        mAttentionInfo.mFlags |= 0x400000;
+        attention_info.flags |= 0x400000;
         field_0xe2b = 0;
-        mAttentionInfo.mFlags |= 0x800000;
+        attention_info.flags |= 0x800000;
         setHitodamaPrtcl();
     }
 }
@@ -2367,7 +2367,7 @@ void daNpcT_c::setPos(cXyz i_pos) {
     i_pos.y = dComIfG_Bgsp().GroundCross(&field_0x930);
 
     current.pos = i_pos;
-    next.pos = current.pos;
+    old.pos = current.pos;
 }
 
 /* 8014A99C-8014AA18 1452DC 007C+00 0/0 0/0 29/29 .text            setAngle__8daNpcT_cF5csXyz */
@@ -2376,7 +2376,7 @@ void daNpcT_c::setAngle(csXyz i_angle) {
     shape_angle = current.angle;
     field_0xd78 = current.angle;
     field_0xd7e = field_0xd78;
-    next.angle = current.angle;
+    old.angle = current.angle;
 }
 
 /* 8014AA18-8014AA40 145358 0028+00 0/0 0/0 138/138 .text            setAngle__8daNpcT_cFs */
@@ -2385,7 +2385,7 @@ void daNpcT_c::setAngle(s16 i_angle) {
     shape_angle.y = current.angle.y;
     field_0xd78.y = current.angle.y;
     field_0xd7e.y = field_0xd78.y;
-    next.angle.y = current.angle.y;
+    old.angle.y = current.angle.y;
 }
 
 /* 8014AA40-8014AAD0 145380 0090+00 0/0 0/0 33/33 .text hitChk__8daNpcT_cFP12dCcD_GObjInfUl */
@@ -3568,7 +3568,7 @@ void daBaseNpc_c::attnSttsOn(int param_0, int param_1) {
         tmp = 1;
     }
 
-    mAttentionInfo.mFlags = tmp;
+    attention_info.flags = tmp;
 }
 
 /* 8014EFF0-8014EFF4 149930 0004+00 2/0 0/0 1/0 .text            setParam__11daBaseNpc_cFv */
@@ -3582,7 +3582,7 @@ void daBaseNpc_c::orderEvent(int param_0, char* i_evtName) {
         mEvtIdx = i_dComIfGp_getEventManager().getEventIdx(this, i_evtName, -1);
         fopAcM_orderOtherEventId(this, mEvtIdx, -1, -1, 0, 1);
     } else {
-        if ((mUnk >= 0 && mAttentionInfo.mFlags == 10) && (mEvtInfo.mCondition |= 1, param_0 != 0))
+        if ((mUnk >= 0 && attention_info.flags == 10) && (eventInfo.mCondition |= 1, param_0 != 0))
         {
             fopAcM_orderSpeakEvent(this, 0, 0);
         }
@@ -3595,8 +3595,8 @@ void daBaseNpc_c::mainProc() {
 
 /* 8014F0A0-8014F0FC 1499E0 005C+00 1/1 0/0 2/2 .text            setEnvTevColor__11daBaseNpc_cFv */
 void daBaseNpc_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mBgSPolyInfo);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mBgSPolyInfo);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mBgSPolyInfo);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mBgSPolyInfo);
 }
 
 /* 8014F0FC-8014F140 149A3C 0044+00 1/1 0/0 2/2 .text            setRoomNo__11daBaseNpc_cFv */
@@ -3700,7 +3700,7 @@ void daBaseNpc_c::setMtx(int param_0) {
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(field_0x91a);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
 
     model->i_setBaseTRMtx(mDoMtx_stack_c::get());
 
@@ -4594,8 +4594,8 @@ BOOL daNpcF_c::execute() {
     cLib_chaseF(&field_0x978, 0.0f, 1.0f);
     setCollisions();
     if (field_0x9f4 != 0) {
-        mAttentionInfo.mFlags |= 0x400000;
-        mAttentionInfo.mFlags |= 0x800000;
+        attention_info.flags |= 0x400000;
+        attention_info.flags |= 0x800000;
         setHitodamaPrtcl();
     }
     field_0x8f6 = field_0x8f0;
@@ -4644,27 +4644,27 @@ BOOL daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3,
             fVar1 = 0.0f;
         }
         if (cM3d_IsZero_inverted(fVar1)) {
-            mTevStr.mFogColor.r = (s16)(fVar1 * 20.0f);
-            mTevStr.mFogColor.g = 0;
+            tevStr.mFogColor.r = (s16)(fVar1 * 20.0f);
+            tevStr.mFogColor.g = 0;
         } else if (param_0) {
-            mTevStr.mFogColor.g = 20;
-            mTevStr.mFogColor.r = 0;
+            tevStr.mFogColor.g = 20;
+            tevStr.mFogColor.r = 0;
         } else if (param_3 != NULL) {
-            mTevStr.mFogColor.r = param_3->r;
-            mTevStr.mFogColor.g = param_3->g;
-            mTevStr.mFogColor.b = param_3->b;
-            mTevStr.mFogColor.a = param_3->a;
+            tevStr.mFogColor.r = param_3->r;
+            tevStr.mFogColor.g = param_3->g;
+            tevStr.mFogColor.b = param_3->b;
+            tevStr.mFogColor.a = param_3->a;
         } else {
-            mTevStr.mFogColor.g = 0;
-            mTevStr.mFogColor.r = 0;
+            tevStr.mFogColor.g = 0;
+            tevStr.mFogColor.r = 0;
         }
 
         if (field_0x9f4) {
-            g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
+            g_env_light.settingTevStruct(4, &current.pos, &tevStr);
         } else {
-            g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
+            g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         }
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &mTevStr);
+        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
 
         if (!drawDbgInfo()) {
             if (mAnmFlags & ANM_PLAY_BTP) {
@@ -4702,7 +4702,7 @@ BOOL daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3,
             }
 
             field_0x9a0 = dComIfGd_setShadow(field_0x9a0, true, model, &current.pos, param_2, 20.0f,
-                                             current.pos.y, field_0x980, field_0xa44, &mTevStr, 0,
+                                             current.pos.y, field_0x980, field_0xa44, &tevStr, 0,
                                              1.0f, dDlst_shadowControl_c::getSimpleTex());
 
             drawOtherMdls();
@@ -5228,17 +5228,17 @@ asm void daNpcF_c::setDamage(int param_0, int param_1, int param_2) {
 int daNpcF_c::ctrlMsgAnm(int& expression, int& motion, fopAc_ac_c* param_2, int param_3) {
     expression = -1;
     motion = -1;
-    if (param_3 || mEvtInfo.checkCommandTalk() || mCutIndex != -1) {
+    if (param_3 || eventInfo.checkCommandTalk() || mCutIndex != -1) {
         fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
         if (talkPartner == param_2) {
             fopAc_ac_c* actor = dMsgObject_c::getActor();
-            if (actor->mEvtInfo.mCommand == 2 || actor->mEvtInfo.mCommand == 3) {
+            if (actor->eventInfo.mCommand == 2 || actor->eventInfo.mCommand == 3) {
                 field_0x9a4 = (profile_method_class*)-1;
-            } else if (actor->mEvtInfo.mCommand == 6) {
-                if (actor->mSubMtd != field_0x9a4) {
+            } else if (actor->eventInfo.mCommand == 6) {
+                if (actor->sub_method != field_0x9a4) {
                     expression = dComIfGp_getMesgFaceAnimeAttrInfo();
                     motion = dComIfGp_getMesgAnimeAttrInfo();
-                    field_0x9a4 = actor->mSubMtd;
+                    field_0x9a4 = actor->sub_method;
                 }
                 if (dMsgObject_c::isMouthCheck()) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
@@ -5508,7 +5508,7 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*),
         mFindCount = 0;
         fpcEx_Search((fpcLyIt_JudgeFunc)param_1, this);
         for (int i = 0; i < mFindCount; i++) {
-            if (chkPointInArea(getAttentionPos(mFindActorPList[i]), mAttentionInfo.mPosition,
+            if (chkPointInArea(getAttentionPos(mFindActorPList[i]), attention_info.position,
                                param_2, param_3, param_4, 0) &&
                 chkActorInSight2(mFindActorPList[i], param_5, param_6))
             {
@@ -5634,7 +5634,7 @@ BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 para
 
 /* 8015496C-801549E0 14F2AC 0074+00 3/3 0/0 0/0 .text getAttentionPos__8daNpcF_cFP10fopAc_ac_c */
 cXyz daNpcF_c::getAttentionPos(fopAc_ac_c* i_ActorP) {
-    cXyz pos = i_ActorP->mAttentionInfo.mPosition;
+    cXyz pos = i_ActorP->attention_info.position;
 
     if (fopAcM_GetName(i_ActorP) == PROC_ALINK) {
         pos.y -= daPy_py_c::getAttentionOffsetY();
@@ -5674,9 +5674,9 @@ void daNpcF_c::setHitodamaPrtcl() {
 
     field_0x9b8.x *= cM_scos(shape_angle.y);
     field_0x9d2 += 0x400;
-    local_20.x = mEyePos.x + field_0x9b8.x + field_0x9c4.x;
-    local_20.y = mEyePos.y + field_0x9b8.y + field_0x9c4.y;
-    local_20.z = mEyePos.z + field_0x9b8.z + field_0x9c4.z;
+    local_20.x = eyePos.x + field_0x9b8.x + field_0x9c4.x;
+    local_20.y = eyePos.y + field_0x9b8.y + field_0x9c4.y;
+    local_20.z = eyePos.z + field_0x9b8.z + field_0x9c4.z;
 
     for (int i = 0; i < 2; i++) {
         field_0x9a8[i] =

@@ -47,7 +47,7 @@ static char* l_evName = "RIVER_BACK";
 /* 80D5F2F8-80D5F360 000078 0068+00 1/1 0/0 0/0 .text            Create__16daTagRiverBack_cFv */
 int daTagRiverBack_c::Create() {
     mMapToolID = -1;
-    mEvtInfo.setArchiveName(l_arcName);
+    eventInfo.setArchiveName(l_arcName);
     mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, -1);
     return 1;
 }
@@ -103,21 +103,21 @@ void daTagRiverBack_c::actionWait() {
         mCount = 0;
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xFFFF, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
 /* 80D5F5BC-80D5F66C 00033C 00B0+00 1/0 0/0 0/0 .text actionOrderEvent__16daTagRiverBack_cFv */
 void daTagRiverBack_c::actionOrderEvent() {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (mEvtInfo.checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
         mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
         player->mNoResetFlg0 |= 0x10000;
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xFFFF, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -214,16 +214,16 @@ extern actor_process_profile_definition g_profile_Tag_RiverBack = {
     7,                         // mListID
     fpcPi_CURRENT_e,           // mListPrio
     PROC_Tag_RiverBack,        // mProcName
-    &g_fpcLf_Method.mBase,     // mSubMtd
+    &g_fpcLf_Method.mBase,     // sub_method
     sizeof(daTagRiverBack_c),  // mSize
     0,                         // mSizeOther
     0,                         // mParameters
-    &g_fopAc_Method.base,      // mSubMtd
+    &g_fopAc_Method.base,      // sub_method
     556,                       // mPriority
-    &l_daTagRiverBack_Method,  // mSubMtd
+    &l_daTagRiverBack_Method,  // sub_method
     0x40000,                   // mStatus
     fopAc_ACTOR_e,             // mActorType
-    fopAc_CULLBOX_CUSTOM_e,    // mCullType
+    fopAc_CULLBOX_CUSTOM_e,    // cullType
 };
 
 /* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

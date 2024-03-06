@@ -170,16 +170,16 @@ extern actor_process_profile_definition g_profile_Obj_Lv3R10Saka = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Lv3R10Saka,     // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daObjLv3saka_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     528,                     // mPriority
-    &daObjLv3saka_METHODS,   // mSubMtd
+    &daObjLv3saka_METHODS,   // sub_method
     0x40100,                 // mStatus
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80C5C3DC-80C5C3DC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

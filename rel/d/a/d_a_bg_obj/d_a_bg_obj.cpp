@@ -855,12 +855,12 @@ int daBgObj_c::CreateHeap() {
 /* 8045A9E8-8045AAF0 001408 0108+00 1/1 0/0 0/0 .text            create1st__9daBgObj_cFv */
 int daBgObj_c::create1st() {
     if (field_0xcc9 == 0) {
-        field_0xcca = orig.angle.x;
-        field_0xccc = orig.angle.z;
+        field_0xcca = home.angle.x;
+        field_0xccc = home.angle.z;
         field_0xcc9 = 1;
 
-        orig.angle.z = 0;
-        orig.angle.x = 0;
+        home.angle.z = 0;
+        home.angle.x = 0;
         current.angle.z = 0;
         current.angle.x = 0;
         shape_angle.z = 0;
@@ -1254,7 +1254,7 @@ int daBgObj_c::actionOrderWait() {
 // matches with literals
 #ifdef NONMATCHING
 int daBgObj_c::actionOrder() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(2);
 
         if (field_0xd01 < 5) {
@@ -1392,11 +1392,11 @@ int daBgObj_c::Draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0x20, &current.pos, &mTevStr);
+    g_env_light.settingTevStruct(0x20, &current.pos, &tevStr);
 
     for (int i = 0; i < 2; i++) {
         if (field_0x5a8[field_0xcc8][i] != NULL) {
-            g_env_light.setLightTevColorType_MAJI(field_0x5a8[field_0xcc8][i], &mTevStr);
+            g_env_light.setLightTevColorType_MAJI(field_0x5a8[field_0xcc8][i], &tevStr);
         }
     }
 

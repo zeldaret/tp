@@ -129,8 +129,8 @@ u32 daTag_MynaLight_c::getTurnOffTime() {
  */
 void daTag_MynaLight_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0, -15.0, -30.0, 30.0, 45.0, 30.0);
-    mAttentionInfo.mFlags = 0;
-    current.angle.set(0, orig.angle.y, 0);
+    attention_info.flags = 0;
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     field_0x56c = 0.0f;
     mTurnOnFlag = false;

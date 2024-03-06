@@ -43,18 +43,18 @@ u32 door_param2_c::getBRoomNo(fopAc_ac_c* i_actor) {
 
 /* 8003A1D0-8003A1DC 034B10 000C+00 0/0 0/0 25/25 .text getSwbit__13door_param2_cFP10fopAc_ac_c */
 u32 door_param2_c::getSwbit(fopAc_ac_c* i_actor) {
-    return i_actor->orig.angle.z & 0xFF;
+    return i_actor->home.angle.z & 0xFF;
 }
 
 /* 8003A1DC-8003A1E8 034B1C 000C+00 0/0 0/0 12/12 .text getSwbit2__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getSwbit2(fopAc_ac_c* i_actor) {
-    return (i_actor->orig.angle.z >> 8) & 0xFF;
+    return (i_actor->home.angle.z >> 8) & 0xFF;
 }
 
 /* 8003A1E8-8003A1F4 034B28 000C+00 0/0 0/0 3/3 .text getSwbit3__13door_param2_cFP10fopAc_ac_c */
 u32 door_param2_c::getSwbit3(fopAc_ac_c* i_actor) {
-    return (i_actor->orig.angle.x >> 8) & 0xFF;
+    return (i_actor->home.angle.x >> 8) & 0xFF;
 }
 
 /* 8003A1F4-8003A200 034B34 000C+00 0/0 0/0 4/4 .text isMsgDoor__13door_param2_cFP10fopAc_ac_c */
@@ -64,18 +64,18 @@ u32 door_param2_c::isMsgDoor(fopAc_ac_c* i_actor) {
 
 /* 8003A200-8003A20C 034B40 000C+00 0/0 0/0 3/3 .text getEventNo__13door_param2_cFP10fopAc_ac_c */
 u32 door_param2_c::getEventNo(fopAc_ac_c* i_actor) {
-    return i_actor->orig.angle.x & 0xFF;
+    return i_actor->home.angle.x & 0xFF;
 }
 
 /* 8003A20C-8003A218 034B4C 000C+00 0/0 0/0 2/2 .text getEventNo2__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getEventNo2(fopAc_ac_c* i_actor) {
-    return (i_actor->orig.angle.x >> 8) & 0xFF;
+    return (i_actor->home.angle.x >> 8) & 0xFF;
 }
 
 /* 8003A218-8003A224 034B58 000C+00 0/0 0/0 2/2 .text getMsgNo__13door_param2_cFP10fopAc_ac_c */
 u16 door_param2_c::getMsgNo(fopAc_ac_c* i_actor) {
-    return i_actor->orig.angle.x;
+    return i_actor->home.angle.x;
 }
 
 /* 8003A224-8003A230 034B64 000C+00 0/0 0/0 6/6 .text getExitNo__13door_param2_cFP10fopAc_ac_c */

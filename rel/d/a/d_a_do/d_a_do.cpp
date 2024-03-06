@@ -71,6 +71,7 @@ extern "C" extern char const* const d_a_do__stringBase0;
 // External References:
 //
 
+extern "C" void fopAcM_riverStream__FP4cXyzPsPff();
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -524,7 +525,7 @@ static int daDo_other_bg_check(do_class* i_this, fopAc_ac_c* i_actorP) {
         actor_pos.y += FLOAT_LABEL(lit_3816);
 
         dog_pos = dog->current.pos;
-        dog_pos.y = dog->mEyePos.y;
+        dog_pos.y = dog->eyePos.y;
 
         lin_chk.Set((cXyz*)&dog_pos, (cXyz*)&actor_pos, dog);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
@@ -724,8 +725,8 @@ static u32 search_food(do_class* i_this) {
         do {
             // for (int j = 0; j != target_info_count; j++) {
             fopAc_ac_c* actorP = target_info[i];
-            f32 x_pos = actorP->current.pos.x - i_this->mEyePos.x;
-            f32 z_pos = actorP->current.pos.z - i_this->mEyePos.z;
+            f32 x_pos = actorP->current.pos.x - i_this->eyePos.x;
+            f32 z_pos = actorP->current.pos.z - i_this->eyePos.z;
             f32 f_pos = JMAFastSqrt(x_pos * x_pos + z_pos * z_pos);
 
             if (f_pos < tmp) {
@@ -1041,7 +1042,7 @@ COMPILER_STRIP_GATE(0x8066EE58, &lit_4138);
 #ifdef NONMATCHING
 // matches with literals
 static void area_check(do_class* i_this) {
-    cXyz pos_delta = i_this->orig.pos - i_this->current.pos;
+    cXyz pos_delta = i_this->home.pos - i_this->current.pos;
 
     if (i_this->field_0x5b6 != 255) {
         if ((i_this->field_0x5b6 * FLOAT_LABEL(lit_3772) * FLOAT_LABEL(lit_3665)) > pos_delta.abs())
@@ -1293,7 +1294,7 @@ static void do_walk(do_class* i_this) {
 
     switch (i_this->mStayStatus + 1) {
     case 12: {
-        i_this->field_0x5b8 = i_this->orig.pos;
+        i_this->field_0x5b8 = i_this->home.pos;
         i_this->speedF >= l_HIO.mRunSpeed ? i_this->field_0x5e8 = 1.7 : i_this->field_0x5e8 = 4.0;
 
         i_this->field_0x5ec = 1.7;
@@ -1330,7 +1331,7 @@ static void do_walk(do_class* i_this) {
             local_5c.z = cM_rndF(100.0f * i_this->field_0x5b6);
             MtxPosition(&local_5c, &i_this->field_0x5b8);
 
-            i_this->field_0x5b8 += i_this->orig.pos;
+            i_this->field_0x5b8 += i_this->home.pos;
 
             if (dansa_check(i_this, i_this->field_0x5b8, 0.0) == 0) {
                 local_5c = i_this->field_0x5b8 - i_this->current.pos;
@@ -2219,12 +2220,12 @@ static void do_swim(do_class* i_this) {
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 16, 0x100);
 
     i_this->speed.y = FLOAT_LABEL(lit_3682);
-    i_this->mGravity = FLOAT_LABEL(lit_3682);
+    i_this->gravity = FLOAT_LABEL(lit_3682);
 
     cLib_addCalc2(&i_this->current.pos.y, i_this->field_0x65c - FLOAT_LABEL(lit_4992),
                   FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
 
-    pos = i_this->mEyePos;
+    pos = i_this->eyePos;
     pos.y = i_this->field_0x65c;
 
     fopAcM_effHamonSet(&i_this->field_0xbcc, (cXyz*)&pos, FLOAT_LABEL(lit_4993),
@@ -2549,7 +2550,7 @@ static void action(do_class* i_this) {
 
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    i_this->mGravity = FLOAT_LABEL(lit_5948);
+    i_this->gravity = FLOAT_LABEL(lit_5948);
     i_this->mDistFromPlayer = fopAcM_searchPlayerDistance(i_this);
 
     daPy_py_c* player2 = daPy_getPlayerActorClass();
@@ -2559,7 +2560,7 @@ static void action(do_class* i_this) {
     }
 
     i_this->mAngleYFromPlayer = fopAcM_searchPlayerAngleY(i_this);
-    i_this->mEyePosYDistFromPlayer = fabsf(i_this->mEyePos.y - player->current.pos.y);
+    i_this->mEyePosYDistFromPlayer = fabsf(i_this->eyePos.y - player->current.pos.y);
 
     if (!mDoCPd_c::getHoldR(PAD_1) ||
         fabsf(i_this->current.pos.y - player->current.pos.y) > FLOAT_LABEL(lit_3816))
@@ -2696,13 +2697,13 @@ static void action(do_class* i_this) {
     }
 
     if (tmp2 != 0 && player->mSpeedF < FLOAT_LABEL(lit_3665)) {
-        cLib_onBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_onBit<u32>(i_this->attention_info.flags, 0x10);
 
         if (do_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit<u32>(i_this->mAttentionInfo.mFlags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
     }
 
     cLib_addCalcAngleS2(&i_this->current.angle.x, 0, 1, 0x400);
@@ -2719,7 +2720,7 @@ static void action(do_class* i_this) {
 
         i_this->speed.x = pos2.x;
         i_this->speed.z = pos2.z;
-        i_this->speed.y += i_this->mGravity;
+        i_this->speed.y += i_this->gravity;
         ;
 
         i_this->current.pos += i_this->speed;
@@ -2830,7 +2831,7 @@ static void action(do_class* i_this) {
                     for (int i = 0; i < 4; i++) {
                         // wrong
                         i_this->mMsg.setMsg(dComIfGp_particle_set(
-                            (u32)0, (u16)l_HIO.field_0x1c, &pos, &i_this->mTevStr, (csXyz*)0,
+                            (u32)0, (u16)l_HIO.field_0x1c, &pos, &i_this->tevStr, (csXyz*)0,
                             (cXyz*)&scc, (u8)0xFF, (dPa_levelEcallBack*)0, (s8)-1, (GXColor*)0,
                             (GXColor*)0, (cXyz*)0));
                     }
@@ -2862,11 +2863,11 @@ static void action(do_class* i_this) {
             cXyz eyePosDiff;
 
             if (i_this->field_0x624 == 0) {
-                eyePosDiff = player->mEyePos - i_this->mEyePos;
+                eyePosDiff = player->eyePos - i_this->eyePos;
 
             } else {
                 i_this->field_0x624++;
-                eyePosDiff = i_this->mUnkPos - i_this->mEyePos;
+                eyePosDiff = i_this->mUnkPos - i_this->eyePos;
             }
 
             eyePosDiff.y += i_this->field_0x674.z * FLOAT_LABEL(lit_5952);
@@ -2994,18 +2995,18 @@ static void message(do_class* i_this) {
         }
 
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->mEvtInfo.checkCommandTalk()) {
+        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsg.init(i_this, i_this->field_0xc08, 0, 0);
             i_this->field_0xc06 = 1;
         }
 
         if (i_this->field_0xc05 == 2 && i_this->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
-            cLib_onBit<u32>(i_this->mAttentionInfo.mFlags, 0xa);
-            i_this->mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
+            i_this->eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
-            cLib_offBit<u32>(i_this->mAttentionInfo.mFlags, 0xa);
+            cLib_offBit<u32>(i_this->attention_info.flags, 0xa);
         }
     }
 }
@@ -3041,7 +3042,7 @@ static int daDo_Delete(do_class* i_this) {
         u8* tmp = (u8*)struct_8066F2B4 + 2;
         *tmp = 0;
     }
-    if (i_this->mHeap) {
+    if (i_this->heap) {
         i_this->mSound.deleteObject();
     }
     return 1;

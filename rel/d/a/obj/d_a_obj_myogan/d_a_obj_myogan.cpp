@@ -20,8 +20,8 @@ daObj_Myogan_HIO_c::daObj_Myogan_HIO_c() {
 
 /* 80C9EBDC-80C9EC70 00011C 0094+00 1/0 0/0 0/0 .text daObj_Myogan_Draw__FP16obj_myogan_class */
 static int daObj_Myogan_Draw(obj_myogan_class* i_this) {
-    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
 
     i_this->mpBrk->entry(i_this->mpModel->getModelData());
     i_this->mpBtk->entry(i_this->mpModel->getModelData());
@@ -40,7 +40,7 @@ static daObj_Myogan_HIO_c l_HIO;
 static void action(obj_myogan_class* i_this) {
     switch (i_this->mAction) {
     case 0:
-        cLib_addCalc2(&i_this->current.pos.y, i_this->orig.pos.y + l_HIO.mNormalHeight, 0.05f,
+        cLib_addCalc2(&i_this->current.pos.y, i_this->home.pos.y + l_HIO.mNormalHeight, 0.05f,
                       10.0f);
         break;
     case 1:

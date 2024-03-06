@@ -39,9 +39,9 @@ int daTagKagoFall_c::create() {
         mDoMtx_stack_c::YrotM(shape_angle.y);
         mDoMtx_inverse(mDoMtx_stack_c::get(), mMtx);
 
-        mScale.x *= 75.0f;
-        mScale.z *= 75.0f;
-        mScale.y *= 150.0f;
+        scale.x *= 75.0f;
+        scale.z *= 75.0f;
+        scale.y *= 150.0f;
 
         setActionMode(ACTION_MODE_FALL, 0);
     }
@@ -99,9 +99,9 @@ void daTagKagoFall_c::actionWaitRiver() {
         }
 
         if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) && i_dComIfGs_getLife()) {
-            if (!mEvtInfo.checkCommandDemoAccrpt()) {
+            if (!eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(this, 1, -1, 3);
-                mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+                eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
             } else {
                 camera->Stop();
                 camera->SetTrimSize(3);
@@ -127,7 +127,7 @@ void daTagKagoFall_c::actionWaitRiver() {
             mActionState = 2;
         }
 
-        dCam_getBody()->Set(player->mEyePos, mRestartPos);
+        dCam_getBody()->Set(player->eyePos, mRestartPos);
         break;
 
     case 2:
@@ -136,7 +136,7 @@ void daTagKagoFall_c::actionWaitRiver() {
             mActionState = 3;
             mTimer = 40;
         }
-        dCam_getBody()->Set(player->mEyePos, mRestartPos);
+        dCam_getBody()->Set(player->eyePos, mRestartPos);
         break;
 
     case 3:
@@ -178,7 +178,7 @@ void daTagKagoFall_c::actionWaitFall() {
     case 0:
         mDoMtx_multVec(mMtx, &player->current.pos, &v);
 
-        if (v.y <= mScale.y && v.y >= 0.0f && fabsf(v.x) <= mScale.x && fabsf(v.z) <= mScale.z) {
+        if (v.y <= scale.y && v.y >= 0.0f && fabsf(v.x) <= scale.x && fabsf(v.z) <= scale.z) {
             mActionState = 1;
         }
 
@@ -205,10 +205,10 @@ void daTagKagoFall_c::actionWaitFall() {
                 player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);
                 mPlayedSceneChangeSfx = true;
             }
-        } else if (!mEvtInfo.checkCommandDemoAccrpt()) {
+        } else if (!eventInfo.checkCommandDemoAccrpt()) {
             mRestartPos = player->current.pos;
             fopAcM_orderPotentialEvent(this, 1, -1, 0);
-            mEvtInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
         } else {
             mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
             mTimer = 60;
@@ -301,14 +301,14 @@ extern actor_process_profile_definition g_profile_Tag_KagoFall = {
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio
     PROC_Tag_KagoFall,        // mProcName
-    &g_fpcLf_Method.mBase,    // mSubMtd
+    &g_fpcLf_Method.mBase,    // sub_method
     sizeof(daTagKagoFall_c),  // mSize
     0,                        // mSizeOther
     0,                        // mParameters
-    &g_fopAc_Method.base,     // mSubMtd
+    &g_fopAc_Method.base,     // sub_method
     557,                      // mPriority
-    &l_daTagKagoFall_Method,  // mSubMtd
+    &l_daTagKagoFall_Method,  // sub_method
     0x40000,                  // mStatus
     fopAc_ACTOR_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e,   // mCullType
+    fopAc_CULLBOX_CUSTOM_e,   // cullType
 };

@@ -166,8 +166,8 @@ int daDsh_c::CreateHeap() {
 
 /* 8046759C-80467640 00017C 00A4+00 1/0 0/0 0/0 .text            Draw__7daDsh_cFv */
 int daDsh_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
@@ -219,7 +219,7 @@ int daDsh_c::callExecute() {
 
 /* 804677D4-804677E4 0003B4 0010+00 1/0 0/0 0/0 .text            initOpenWait__7daDsh_cFv */
 int daDsh_c::initOpenWait() {
-    current.pos.y = orig.pos.y;
+    current.pos.y = home.pos.y;
     return 1;
 }
 
@@ -345,9 +345,9 @@ COMPILER_STRIP_GATE(0x80467F1C, &l_heap_size);
 int daDsh_c::initOpen() {
     mTiltTime = getOpenTiltTime();
     speed.y = 0.0f;
-    mGravity = getOpenAccel();
+    gravity = getOpenAccel();
 
-    cXyz check_pos(orig.pos.x, orig.pos.y + 100.0f, orig.pos.z);
+    cXyz check_pos(home.pos.x, home.pos.y + 100.0f, home.pos.z);
     bool water_check = fopAcM_wt_c::waterCheck(&check_pos);
     bool gnd_check = fopAcM_gc_c::gndCheck(&check_pos);
 
@@ -367,18 +367,18 @@ static daDsh_c::action_c
 /* 80467988-80467A64 000568 00DC+00 1/0 0/0 0/0 .text            executeOpen__7daDsh_cFv */
 int daDsh_c::executeOpen() {
     if (mTiltTime != 0) {
-        current.pos.y = orig.pos.y + cM_rndFX(2.0f);
+        current.pos.y = home.pos.y + cM_rndFX(2.0f);
     } else {
-        cLib_chaseF(&speed.y, getOpenSpeed(), mGravity);
+        cLib_chaseF(&speed.y, getOpenSpeed(), gravity);
         current.pos.y += speed.y;
 
-        f32 closed_y_pos = orig.pos.y - OPEN_SIZE;
+        f32 closed_y_pos = home.pos.y - OPEN_SIZE;
         if (current.pos.y < closed_y_pos) {
             current.pos.y = closed_y_pos;
 
             if (speed.y < getOpenBoundSpeed()) {
                 speed.y *= getOpenBoundRatio();
-                mGravity = 8.0f;
+                gravity = 8.0f;
             } else {
                 setAction(&l_closeWaitAction);
             }
@@ -390,7 +390,7 @@ int daDsh_c::executeOpen() {
 
 /* 80467A64-80467A80 000644 001C+00 1/0 0/0 0/0 .text            initCloseWait__7daDsh_cFv */
 int daDsh_c::initCloseWait() {
-    current.pos.y = orig.pos.y - OPEN_SIZE;
+    current.pos.y = home.pos.y - OPEN_SIZE;
     return 1;
 }
 
@@ -411,7 +411,7 @@ int daDsh_c::executeCloseWait() {
 int daDsh_c::initClose() {
     mTiltTime = getCloseTiltTime();
     speed.y = 0.0f;
-    mGravity = getCloseAccel();
+    gravity = getCloseAccel();
 
     return 1;
 }
@@ -419,17 +419,17 @@ int daDsh_c::initClose() {
 /* 80467B04-80467BE0 0006E4 00DC+00 1/0 0/0 0/0 .text            executeClose__7daDsh_cFv */
 int daDsh_c::executeClose() {
     if (mTiltTime != 0) {
-        current.pos.y = (orig.pos.y - OPEN_SIZE) + cM_rndFX(2.0f);
+        current.pos.y = (home.pos.y - OPEN_SIZE) + cM_rndFX(2.0f);
     } else {
-        cLib_chaseF(&speed.y, getCloseSpeed(), mGravity);
+        cLib_chaseF(&speed.y, getCloseSpeed(), gravity);
         current.pos.y += speed.y;
 
-        if (current.pos.y > orig.pos.y) {
-            current.pos.y = orig.pos.y;
+        if (current.pos.y > home.pos.y) {
+            current.pos.y = home.pos.y;
 
             if (speed.y > getCloseBoundSpeed()) {
                 speed.y *= getCloseBoundRatio();
-                mGravity = 8.0f;
+                gravity = 8.0f;
             } else {
                 setAction(&l_openWaitAction);
             }
@@ -704,16 +704,16 @@ extern actor_process_profile_definition2 g_profile_DSHUTTER = {
         7,                      // mListID
         fpcPi_CURRENT_e,        // mListPrio
         PROC_DSHUTTER,          // mProcName
-        &g_fpcLf_Method.mBase,  // mSubMtd
+        &g_fpcLf_Method.mBase,  // sub_method
         sizeof(daDsh_c),        // mSize
         0,                      // mSizeOther
         0,                      // mParameters
-        &g_fopAc_Method.base,   // mSubMtd
+        &g_fopAc_Method.base,   // sub_method
         296,                    // mPriority
-        &l_daDsh_Method,        // mSubMtd
+        &l_daDsh_Method,        // sub_method
         0x44000,                // mStatus
         fopAc_ACTOR_e,          // mActorType
-        fopAc_CULLBOX_0_e,      // mCullType
+        fopAc_CULLBOX_0_e,      // cullType
     },
     0,
 };

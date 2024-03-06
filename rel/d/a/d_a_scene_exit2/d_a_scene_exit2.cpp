@@ -46,11 +46,11 @@ static char* l_evName = "SCENE_EXIT";
 
 /* 8059E1B0-8059E230 0000D0 0080+00 1/1 0/0 0/0 .text            Create__10daScExit_cFv */
 int daScExit_c::Create() {
-    mRadius = mScale.x * 100.0f;
+    mRadius = scale.x * 100.0f;
     initBaseMtx();
 
     mToolID = 0xFF;
-    mEvtInfo.setArchiveName(l_arcName);
+    eventInfo.setArchiveName(l_arcName);
     mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
     return 1;
 }
@@ -89,19 +89,19 @@ void daScExit_c::actionWait() {
     if (checkArea()) {
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventID, mToolID, 0xFFFF, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
 /* 8059E408-8059E488 000328 0080+00 1/0 0/0 0/0 .text            actionOrderEvent__10daScExit_cFv */
 void daScExit_c::actionOrderEvent() {
-    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
         demoProc();
         dComIfGp_setPlayerStatus1(0, 0x4000000);
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mToolID, 0xFFFF, 0, 1);
-        mEvtInfo.i_onCondition(2);
+        eventInfo.i_onCondition(2);
     }
 }
 
@@ -139,8 +139,8 @@ int daScExit_c::demoProc() {
             break;
         case START_e:
             fopAcM_seStart(this, Z2SE_SY_WARP_FADE, 0);
-            mAttentionInfo.mPosition.y = current.pos.y + 800.0f;
-            mEyePos.y = mAttentionInfo.mPosition.y;
+            attention_info.position.y = current.pos.y + 800.0f;
+            eyePos.y = attention_info.position.y;
             break;
         case SCENE_CHG_e:
             break;

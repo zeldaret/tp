@@ -46,7 +46,7 @@ int daTagHjump_c::create() {
 
             if (phase == cPhs_COMPLEATE_e) {
                 fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-                mTevStr.mRoomNo = fopAcM_GetRoomNo(this);
+                tevStr.mRoomNo = fopAcM_GetRoomNo(this);
 
                 mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
@@ -56,13 +56,13 @@ int daTagHjump_c::create() {
                 current.pos.y -= 100.0f;
 
                 mpBgW->SetLock();
-                mScale.x = 250.0f;
-                mScale.y = 350.0f;
-                mScale.z = 400.0f;
+                scale.x = 250.0f;
+                scale.y = 350.0f;
+                scale.z = 400.0f;
                 field_0x5b8 = 200.0f;
 
-                fopAcM_SetMin(this, -mScale.x, 0.0f, -50.0f);
-                fopAcM_SetMax(this, mScale.x, 200.0f, 50.0f);
+                fopAcM_SetMin(this, -scale.x, 0.0f, -50.0f);
+                fopAcM_SetMax(this, scale.x, 200.0f, 50.0f);
 
                 field_0x5ae = 0x2000;
                 fopAcM_setCullSizeFar(this, 5.0f);
@@ -71,9 +71,9 @@ int daTagHjump_c::create() {
         }
     } else {
         phase = cPhs_COMPLEATE_e;
-        mScale.x *= 100.0f;
-        mScale.z *= 100.0f;
-        mScale.y *= 100.0f;
+        scale.x *= 100.0f;
+        scale.z *= 100.0f;
+        scale.y *= 100.0f;
 
         if (field_0x5ad == 0 || field_0x5ad == 1) {
             field_0x5b8 = 50.0f;
@@ -84,7 +84,7 @@ int daTagHjump_c::create() {
         }
     }
 
-    field_0x5b4 = current.pos.y + mScale.y;
+    field_0x5b4 = current.pos.y + scale.y;
     return phase;
 }
 
@@ -140,8 +140,8 @@ int daTagHjump_c::execute() {
             fpoAcM_relativePos(this, &horse_p->current.pos, &rel_pos);
 
             f32 temp_f3 = fabsf(rel_pos.z);
-            if (rel_pos.y >= 0.0f && rel_pos.y <= mScale.y && fabsf(rel_pos.x) <= mScale.x) {
-                if (temp_f3 >= (mScale.z - field_0x5b8) && temp_f3 <= (mScale.z + field_0x5b8) &&
+            if (rel_pos.y >= 0.0f && rel_pos.y <= scale.y && fabsf(rel_pos.x) <= scale.x) {
+                if (temp_f3 >= (scale.z - field_0x5b8) && temp_f3 <= (scale.z + field_0x5b8) &&
                     ((rel_pos.z > 0.0f && abs_angle > 0x8000 - field_0x5ae) ||
                      (rel_pos.z < 0.0f && abs_angle < field_0x5ae)))
                 {
@@ -155,7 +155,7 @@ int daTagHjump_c::execute() {
                     }
 
                     rel_pos.x += (temp_f3_2 * cM_ssin(angle_diff)) + (var_f4 * cM_ssin(angle_diff));
-                    if (fabsf(rel_pos.x) <= mScale.x ||
+                    if (fabsf(rel_pos.x) <= scale.x ||
                         (mType == TYPE_TRIGGER_e && field_0x5ad == 4))
                     {
                         horse_p->onTagJump(temp_f3_2, field_0x5b4, var_f4);
@@ -176,8 +176,8 @@ static int daTagHjump_Execute(daTagHjump_c* i_this) {
 /* 805A4154-805A4204 000714 00B0+00 1/0 0/0 0/0 .text            Draw__12daTagHjump_cFv */
 int daTagHjump_c::Draw() {
     if (mType != TYPE_TRIGGER_e) {
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);

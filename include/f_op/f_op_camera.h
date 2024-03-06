@@ -7,7 +7,7 @@ class camera_class;
 
 struct camera_process_profile_definition {
     /* 0x00 */ view_process_profile_definition mBase;
-    /* 0x3C */ leafdraw_method_class* mSubMtd; // Subclass methods
+    /* 0x3C */ leafdraw_method_class* sub_method; // Subclass methods
 };
 
 static s32 fopCam_Draw(camera_class* param_1);

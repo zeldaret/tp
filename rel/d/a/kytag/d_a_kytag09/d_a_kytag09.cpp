@@ -12,12 +12,12 @@
  */
 static int daKytag09_Draw(kytag09_class* i_this) {
     J3DModelData* modelData = i_this->mpModel->getModelData();
-    g_env_light.settingTevStruct(0x10, NULL, &i_this->mTevStr);
-    g_env_light.setLightTevColorType_MAJI(modelData, &i_this->mTevStr);
+    g_env_light.settingTevStruct(0x10, NULL, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(modelData, &i_this->tevStr);
 
     if (i_this->mType != 1) {
         modelData = i_this->mpModel2->getModelData();
-        g_env_light.setLightTevColorType_MAJI(modelData, &i_this->mTevStr);
+        g_env_light.setLightTevColorType_MAJI(modelData, &i_this->tevStr);
     }
 
     mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);

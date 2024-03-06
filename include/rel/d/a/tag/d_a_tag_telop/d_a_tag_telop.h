@@ -11,7 +11,7 @@ public:
     int create();
     void execute();
 
-    u16 getMessageNo() { return orig.angle.z; }
+    u16 getMessageNo() { return home.angle.z; }
 
 private:
     /* 0x568 */ u16 mMessageNo;

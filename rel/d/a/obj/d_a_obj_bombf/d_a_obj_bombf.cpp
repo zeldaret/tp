@@ -33,9 +33,9 @@ int daObjBombf_c::create() {
         }
 
         fopAcM_SetMtx(this, field_0x570->getBaseTRMtx());
-        mTevStr.mRoomNo = fopAcM_GetRoomNo(this);
-        mAttentionInfo.mPosition = current.pos;
-        mEyePos = mAttentionInfo.mPosition;
+        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        attention_info.position = current.pos;
+        eyePos = attention_info.position;
         field_0x574 = 0xffffffff;
         setMatrix();
         fopAcM_SetMin(this, -75.0f, 0.0f, -75.0f);
@@ -108,8 +108,8 @@ static int daObjBombf_Execute(daObjBombf_c* i_this) {
 
 /* 80BBADF8-80BBAE5C 000478 0064+00 1/1 0/0 0/0 .text            draw__12daObjBombf_cFv */
 int daObjBombf_c::draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x570->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x570->mModelData, &tevStr);
     mDoExt_modelUpdateDL(field_0x570);
     return 1;
 }
@@ -132,14 +132,14 @@ extern actor_process_profile_definition g_profile_Obj_Bombf = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Bombf,         // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daObjBombf_c),   // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     251,                    // mPriority
-    &l_daObjBombf_Method,   // mSubMtd
+    &l_daObjBombf_Method,   // sub_method
     0x40100,                // mStatus
     fopAc_ENV_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

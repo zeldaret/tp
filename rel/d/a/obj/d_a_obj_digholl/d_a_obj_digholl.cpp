@@ -24,9 +24,9 @@ int daObjDigholl_c::create() {
     }
     fopAcM_SetMin(this, -60.0f, 0.0f, -100.0f);
     fopAcM_SetMax(this, 60.0f, 10.0f, 100.0f);
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = mAttentionInfo.mPosition;
-    mAttentionInfo.field_0x0[7] = 0x20;
+    attention_info.position = current.pos;
+    eyePos = attention_info.position;
+    attention_info.field_0x0[7] = 0x20;
     return cPhs_COMPLEATE_e;
 }
 
@@ -51,9 +51,9 @@ int daObjDigholl_c::execute() {
         (field_0x56a == 0xff || i_fopAcM_isSwitch(this, field_0x56a)) &&
         (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {
-        mAttentionInfo.mFlags = 0x80;
+        attention_info.flags = 0x80;
     } else {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     }
     if (field_0x568 == 1) {
         if (cLib_distanceAngleS(player->shape_angle.y, shape_angle.y) < 0x6000) {
@@ -74,7 +74,7 @@ int daObjDigholl_c::execute() {
         if ((player->current.pos.abs2XZ(current.pos) < 250000.0f) &&
             (fabsf(current.pos.y - player->current.pos.y) < 200.0f))
         {
-            daPy_py_c::setLookPos(&mAttentionInfo.mPosition);
+            daPy_py_c::setLookPos(&attention_info.position);
         }
     }
 

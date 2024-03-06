@@ -26,10 +26,10 @@ void dInsect_c::Insect_GetDemoMain() {
     switch (m_mode) {
     case 0:
         if (fopAcM_checkCarryNow(this)) {
-            cLib_offBit<u32>(mAttentionInfo.mFlags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, 0x10);
             fopAcM_cancelCarryNow(this);
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
 
             m_itemId = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1,
                                                      fopAcM_GetRoomNo(this), NULL, NULL);
@@ -39,11 +39,11 @@ void dInsect_c::Insect_GetDemoMain() {
                 field_0x585 = 1;
             }
         } else {
-            cLib_onBit<u32>(mAttentionInfo.mFlags, 0x10);
+            cLib_onBit<u32>(attention_info.flags, 0x10);
         }
         break;
     case 1:
-        if (mEvtInfo.checkCommandItem()) {
+        if (eventInfo.checkCommandItem()) {
             if (m_itemId != fpcM_ERROR_PROCESS_ID_e) {
                 dComIfGp_event_setItemPartnerId(m_itemId);
             }
@@ -52,7 +52,7 @@ void dInsect_c::Insect_GetDemoMain() {
             m_mode = 2;
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
-            mEvtInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
         }
         break;
     case 2:

@@ -47,7 +47,7 @@ cPhs__Step daObj_Bed_c::create() {
         }
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 200.0f, 200.0f);
-        mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir,
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir,
                   &speed, &current.angle, &shape_angle);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
@@ -103,20 +103,20 @@ int daObj_Bed_c::Execute() {
         PSMTXCopy(mpModel->getBaseTRMtx(), mMtx);
         mpCollider->Move();
     }
-    mEyePos = mAttentionInfo.mPosition = current.pos;
-    mAttentionInfo.mFlags = 0;
+    eyePos = attention_info.position = current.pos;
+    attention_info.flags = 0;
     return 1;
 }
 
 /* 80BADDF4-80BADEB8 000874 00C4+00 1/1 0/0 0/0 .text            Draw__11daObj_Bed_cFv */
 int daObj_Bed_c::Draw() {
-    g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     if (mGroundH != -1e9f) {
         mShadow = dComIfGd_setShadow(mShadow, 1, mpModel, &current.pos,
                                      daObj_Bed_Param_c::m.field_0xc, 20.0f,
-                                     current.pos.y, mGroundH, mGndChk, &mTevStr, 0,
+                                     current.pos.y, mGroundH, mGndChk, &tevStr, 0,
                                      1.0f, &dDlst_shadowControl_c::mSimpleTexObj);
     }
     return 1;
@@ -150,8 +150,8 @@ int daObj_Bed_c::isDelete() {
 
 /* 80BADF34-80BADF90 0009B4 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__11daObj_Bed_cFv */
 void daObj_Bed_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80BADF90-80BADFD0 000A10 0040+00 2/2 0/0 0/0 .text            setRoomNo__11daObj_Bed_cFv */
@@ -163,7 +163,7 @@ void daObj_Bed_c::setRoomNo() {
 void daObj_Bed_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 

@@ -515,12 +515,12 @@ void daSpinner_c::setRoomInfo() {
     int roomNo;
     if (mAcch.GetGroundH() != -1000000000.0f) {
         roomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
-        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
+        tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
     } else {
         roomNo = dComIfGp_roomControl_getStayNo();
         
     }
-    mTevStr.mRoomNo = roomNo;
+    tevStr.mRoomNo = roomNo;
     field_0xa6e = dComIfGp_getReverb(roomNo);
     mStts.SetRoomId(roomNo);
     fopAcM_SetRoomNo(this, roomNo);

@@ -19,7 +19,7 @@ static int daKytag02_Execute(kytag02_class* i_this) {
     dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
     cXyz* wind_vec = dKyw_get_wind_vec();
 
-    if (dComIfGs_isSwitch(i_this->field_0x577, i_this->orig.roomNo)) {
+    if (dComIfGs_isSwitch(i_this->field_0x577, i_this->home.roomNo)) {
         dKyw_evt_wind_set_go();
         dKyw_evt_wind_set(0, i_this->current.angle.y);
 
@@ -115,7 +115,7 @@ static int daKytag02_Create(fopAc_ac_c* i_this) {
 
     this_->field_0x578 = fopAcM_GetParam(this_) & 0xFF;
 
-    if (dComIfGs_isSwitch(this_->field_0x577, this_->orig.roomNo)) {
+    if (dComIfGs_isSwitch(this_->field_0x577, this_->home.roomNo)) {
         dKyw_evt_wind_set_go();
         dKyw_evt_wind_set(0, this_->current.angle.y);
 

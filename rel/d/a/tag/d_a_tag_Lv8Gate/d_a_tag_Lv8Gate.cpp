@@ -39,8 +39,8 @@ inline void daTagLv8Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
-    mAttentionInfo.mFlags = 0x10;
-    mAttentionInfo.field_0x0[4] = 90;
+    attention_info.flags = 0x10;
+    attention_info.field_0x0[4] = 90;
 
     mEventID = -1;
 
@@ -76,8 +76,8 @@ inline int daTagLv8Gate_c::draw() {
             material->getTevKColor(1)->b = 100;
         }
 
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
         if (mpBck != NULL) {
             mpBck->entry(mpModel->getModelData());
@@ -128,7 +128,7 @@ static int daTagLv8Gate_Execute(daTagLv8Gate_c* i_this) {
 int daTagLv8Gate_c::execute() {
     dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
 
-    if (game_info.getPlay().getEvent().runCheck() && !mEvtInfo.checkCommandTalk()) {
+    if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
         s32 cut_index = i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
 
         if (cut_index != -1) {
@@ -148,14 +148,14 @@ int daTagLv8Gate_c::execute() {
                     break;
 
                 case '0002':
-                    dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                    dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     break;
                 }
             }
 
             if (i_dComIfGp_getEvent().i_checkSkipEdge()) {
                 i_dComIfGp_event_reset();
-                dStage_changeScene(getSceneNo(), 0.0f, 0, getRoomNo(), 0, -1);
+                dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             }
 
             switch (*cut_name) {
@@ -165,7 +165,7 @@ int daTagLv8Gate_c::execute() {
                 break;
             }
 
-            if (mEvtInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
+            if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
                 if (dComIfGp_evmng_endCheck(mEventID)) {
                     mEventID = -1;
                 }
@@ -186,9 +186,9 @@ int daTagLv8Gate_c::execute() {
 
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
-            mAttentionInfo.mFlags &= ~0x10;
-            mEvtInfo.setArchiveName(l_arcName);
-            i_dComIfGp_getEventManager().setObjectArchive(mEvtInfo.getArchiveName());
+            attention_info.flags &= ~0x10;
+            eventInfo.setArchiveName(l_arcName);
+            i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
             fopAcM_orderOtherEventId(this, mEventID, -1, -1, 0, 1);
         }
@@ -237,14 +237,14 @@ extern actor_process_profile_definition g_profile_Tag_Lv8Gate = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Lv8Gate,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daTagLv8Gate_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     0x108,                   // mPriority
-    &l_daTagLv8Gate_Method,  // mSubMtd
+    &l_daTagLv8Gate_Method,  // sub_method
     0x40000,                 // mStatus
     0,                       // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

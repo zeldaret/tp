@@ -155,7 +155,7 @@ int daZraFreeze_c::CreateHeap() {
         "zrA_pain_TW.bmd",
         "zrA_sol_TW.bmd",
     };
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName[mSubtype]);
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName[subtype]);
     mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -256,7 +256,7 @@ int daZraFreeze_c::Execute() {
                 }
             } else {
                 if (i_dComIfGp_event_runCheck()) {
-                    if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+                    if (eventInfo.i_checkCommandDemoAccrpt()) {
                         daPy_getPlayerActorClass()->onWolfEyeKeep();
                     } else if (field_0x5cf == 1) {
                         dComIfGs_sense_type_change_Set(-1);
@@ -276,8 +276,8 @@ int daZraFreeze_c::Execute() {
 int daZraFreeze_c::Draw() {
     if (field_0x5b0 == 0xff || dComIfGs_isSwitch(field_0x5b0, fopAcM_GetRoomNo(this))) {
         if (mTwilight != 0 && dComIfGs_wolfeye_effect_check() == true) {
-            g_env_light.settingTevStruct(4, &current.pos, &mTevStr);
-            g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+            g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
             mDoExt_modelUpdateDL(mpModel);
         }
     }

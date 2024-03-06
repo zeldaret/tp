@@ -1,9 +1,9 @@
 /**
  * d_a_obj_stone.cpp
  * Actor - Object Stone
- * 
+ *
  * Small and large rocks
- * 
+ *
  */
 
 #include "rel/d/a/obj/d_a_obj_stone/d_a_obj_stone.h"
@@ -178,10 +178,7 @@ extern "C" extern u8 data_80CECE10[4];
 
 /* ############################################################################################## */
 /* 80CECAB4-80CECABC 000000 0008+00 14/14 0/0 0/0 .rodata          l_bmdIdx */
-const static int l_bmdIdx[2] = {
-    3, 
-    3
-};
+const static int l_bmdIdx[2] = {3, 3};
 COMPILER_STRIP_GATE(0x80CECAB4, &l_bmdIdx);
 
 /* 80CECABC-80CECAFC 000008 0040+00 0/1 0/0 0/0 .rodata          l_sph_src */
@@ -199,8 +196,7 @@ const static dCcD_SrcSph l_sph_src = {
             {0.0f, 0.0f, 0.0f},
             50.0f,
         },
-    }
-};
+    }};
 COMPILER_STRIP_GATE(0x80CECABC, &l_sph_src);
 #pragma pop
 
@@ -209,7 +205,7 @@ COMPILER_STRIP_GATE(0x80CECABC, &l_sph_src);
 #pragma force_active on
 // radius
 const static f32 l_r[2] = {
-    30.0f, 
+    30.0f,
     50.0f,
 };
 COMPILER_STRIP_GATE(0x80CECAFC, &l_r);
@@ -218,10 +214,7 @@ COMPILER_STRIP_GATE(0x80CECAFC, &l_r);
 /* 80CECB04-80CECB0C 000050 0008+00 0/1 0/0 0/0 .rodata          l_rolling_speedF */
 #pragma push
 #pragma force_active on
-const static f32 l_rolling_speedF[2] = {
-    9.0f,
-    9.0f
-};
+const static f32 l_rolling_speedF[2] = {9.0f, 9.0f};
 COMPILER_STRIP_GATE(0x80CECB04, &l_rolling_speedF);
 #pragma pop
 
@@ -229,41 +222,32 @@ COMPILER_STRIP_GATE(0x80CECB04, &l_rolling_speedF);
 #pragma push
 #pragma force_active on
 const static u32 l_rolling_time[2] = {
-    0x0000001E, 
+    0x0000001E,
     0x00000017,
 };
 COMPILER_STRIP_GATE(0x80CECB0C, &l_rolling_time);
 #pragma pop
 
 /* 80CECB14-80CECB1C 000060 0008+00 1/2 0/0 0/0 .rodata          l_initial_offsetY */
-const static f32 l_initial_offsetY[2] = {
-    10.0f,
-    20.0f
-};
+const static f32 l_initial_offsetY[2] = {10.0f, 20.0f};
 COMPILER_STRIP_GATE(0x80CECB14, &l_initial_offsetY);
 
 /* 80CECB1C-80CECB24 000068 0008+00 0/3 0/0 0/0 .rodata          l_put_offsetY */
 #pragma push
 #pragma force_active on
-const static f32 l_put_offsetY[2] = {
-    20.0f,
-    30.0f
-};
+const static f32 l_put_offsetY[2] = {20.0f, 30.0f};
 COMPILER_STRIP_GATE(0x80CECB1C, &l_put_offsetY);
 #pragma pop
 
 /* 80CECB24-80CECB28 000070 0002+02 1/2 0/0 0/0 .rodata          l_weight */
-const static u8 l_weight[2] = {
-    0x78,
-    0xC8
-};
+const static u8 l_weight[2] = {0x78, 0xC8};
 COMPILER_STRIP_GATE(0x80CECB24, &l_weight);
 
 /* 80CECB28-80CECB30 000074 0008+00 0/1 0/0 0/0 .rodata          l_speedH */
 #pragma push
 #pragma force_active on
 const static f32 l_speedH[2] = {
-    36.0f, 
+    36.0f,
     43.0f,
 };
 COMPILER_STRIP_GATE(0x80CECB28, &l_speedH);
@@ -273,7 +257,7 @@ COMPILER_STRIP_GATE(0x80CECB28, &l_speedH);
 #pragma push
 #pragma force_active on
 const static f32 l_speedV[2] = {
-    27.0f, 
+    27.0f,
     22.0f,
 };
 COMPILER_STRIP_GATE(0x80CECB30, &l_speedV);
@@ -283,7 +267,7 @@ COMPILER_STRIP_GATE(0x80CECB30, &l_speedV);
 #pragma push
 #pragma force_active on
 const static f32 l_water_speedH[2] = {
-    5.0f, 
+    5.0f,
     5.0f,
 };
 COMPILER_STRIP_GATE(0x80CECB38, &l_water_speedH);
@@ -293,7 +277,7 @@ COMPILER_STRIP_GATE(0x80CECB38, &l_water_speedH);
 #pragma push
 #pragma force_active on
 const static f32 l_water_speedV[2] = {
-    5.0f, 
+    5.0f,
     5.0f,
 };
 COMPILER_STRIP_GATE(0x80CECB40, &l_water_speedV);
@@ -303,7 +287,7 @@ COMPILER_STRIP_GATE(0x80CECB40, &l_water_speedV);
 #pragma push
 #pragma force_active on
 const static f32 l_water_resist[2] = {
-    0.02f, 
+    0.02f,
     0.02f,
 };
 COMPILER_STRIP_GATE(0x80CECB48, &l_water_resist);
@@ -313,7 +297,7 @@ COMPILER_STRIP_GATE(0x80CECB48, &l_water_resist);
 #pragma push
 #pragma force_active on
 const static f32 l_water_walk_resist[2] = {
-    0.15f, 
+    0.15f,
     0.15f,
 };
 COMPILER_STRIP_GATE(0x80CECB50, &l_water_walk_resist);
@@ -323,24 +307,21 @@ COMPILER_STRIP_GATE(0x80CECB50, &l_water_walk_resist);
 #pragma push
 #pragma force_active on
 const static f32 l_buoyancy[2] = {
-    5.9f, 
+    5.9f,
     5.9f,
 };
 COMPILER_STRIP_GATE(0x80CECB58, &l_buoyancy);
 #pragma pop
 
 /* 80CECB60-80CECB68 0000AC 0008+00 1/1 0/0 0/0 .rodata          l_shadow_size */
-const static f32 l_shadow_size[2] = {
-    40.0f,
-    65.0f
-};
+const static f32 l_shadow_size[2] = {40.0f, 65.0f};
 COMPILER_STRIP_GATE(0x80CECB60, &l_shadow_size);
 
 /* 80CECB68-80CECB70 0000B4 0008+00 0/1 0/0 0/0 .rodata          l_wpillar_scl */
 #pragma push
 #pragma force_active on
 const static f32 l_wpillar_scl[2] = {
-    0.65f, 
+    0.65f,
     1.1f,
 };
 COMPILER_STRIP_GATE(0x80CECB68, &l_wpillar_scl);
@@ -350,7 +331,7 @@ COMPILER_STRIP_GATE(0x80CECB68, &l_wpillar_scl);
 #pragma push
 #pragma force_active on
 const static f32 l_hamon_scl[2] = {
-    0.7f, 
+    0.7f,
     1.2f,
 };
 COMPILER_STRIP_GATE(0x80CECB70, &l_hamon_scl);
@@ -360,7 +341,7 @@ COMPILER_STRIP_GATE(0x80CECB70, &l_hamon_scl);
 #pragma push
 #pragma force_active on
 const static f32 l_yogan_eff_scl[2] = {
-    0.6f, 
+    0.6f,
     1.1f,
 };
 COMPILER_STRIP_GATE(0x80CECB78, &l_yogan_eff_scl);
@@ -370,7 +351,7 @@ COMPILER_STRIP_GATE(0x80CECB78, &l_yogan_eff_scl);
 #pragma push
 #pragma force_active on
 const static f32 l_wall_h[2] = {
-    30.0f, 
+    30.0f,
     50.0f,
 };
 COMPILER_STRIP_GATE(0x80CECB80, &l_wall_h);
@@ -379,30 +360,21 @@ COMPILER_STRIP_GATE(0x80CECB80, &l_wall_h);
 /* 80CECB88-80CECB90 0000D4 0008+00 0/1 0/0 0/0 .rodata          l_wall_r */
 #pragma push
 #pragma force_active on
-const static f32 l_wall_r[2] = {
-    30.0f, 
-    50.0f
-};
+const static f32 l_wall_r[2] = {30.0f, 50.0f};
 COMPILER_STRIP_GATE(0x80CECB88, &l_wall_r);
 #pragma pop
 
 /* 80CECB90-80CECB94 0000DC 0004+00 0/1 0/0 0/0 .rodata          l_rot_angle */
 #pragma push
 #pragma force_active on
-const static s16 l_rot_angle[2] = {
-    35,
-    18
-};
+const static s16 l_rot_angle[2] = {35, 18};
 COMPILER_STRIP_GATE(0x80CECB90, &l_rot_angle);
 #pragma pop
 
 /* 80CECB94-80CECB98 0000E0 0004+00 0/1 0/0 0/0 .rodata          l_walk_rot_angle */
 #pragma push
 #pragma force_active on
-const static s16 l_walk_rot_angle[2] = {
-    40,
-    40
-}; 
+const static s16 l_walk_rot_angle[2] = {40, 40};
 COMPILER_STRIP_GATE(0x80CECB94, &l_walk_rot_angle);
 #pragma pop
 
@@ -465,8 +437,8 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 
 /* 80CECC74-80CECC7C -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {
-    "D_Srock", // small rock
-    "D_Brock", // big rock
+    "D_Srock",  // small rock
+    "D_Brock",  // big rock
 };
 
 /* 80CECC7C-80CECC88 -00001 000C+00 0/1 0/0 0/0 .data            @4015 */
@@ -556,27 +528,25 @@ SECTION_DATA static u8 l_func[84] = {
 static actor_method_class l_daObjStone_Method = {
     (process_method_func)daObjStone_Create__FP10fopAc_ac_c,
     (process_method_func)daObjStone_Delete__FP12daObjStone_c,
-    (process_method_func)daObjStone_Execute__FP12daObjStone_c,
-    (process_method_func)0,
-    (process_method_func)daObjStone_Draw__FP12daObjStone_c
-};
+    (process_method_func)daObjStone_Execute__FP12daObjStone_c, (process_method_func)0,
+    (process_method_func)daObjStone_Draw__FP12daObjStone_c};
 
 /* 80CECD44-80CECD74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Stone */
 extern actor_process_profile_definition g_profile_Obj_Stone = {
-    fpcLy_CURRENT_e,         // mLayerID  
-    8,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio 
-    PROC_Obj_Stone,          // mProcName             
-    &g_fpcLf_Method.mBase,   // mSubMtd                    
-    sizeof(daObjStone_c),    // mSize                    
-    0,                       // mSizeOther
-    0,                       // mParameters       
-    &g_fopAc_Method.base,    // mSubMtd                   
-    511,                     // mPriority     
-    &l_daObjStone_Method,    // mSubMtd                   
-    0x40100,                 // mStatus          
-    fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLSPHERE_8_e,    // mCullType 
+    fpcLy_CURRENT_e,        // mLayerID
+    8,                      // mListID
+    fpcPi_CURRENT_e,        // mListPrio
+    PROC_Obj_Stone,         // mProcName
+    &g_fpcLf_Method.mBase,  // sub_method
+    sizeof(daObjStone_c),   // mSize
+    0,                      // mSizeOther
+    0,                      // mParameters
+    &g_fopAc_Method.base,   // sub_method
+    511,                    // mPriority
+    &l_daObjStone_Method,   // sub_method
+    0x40100,                // mStatus
+    fopAc_ACTOR_e,          // mActorType
+    fopAc_CULLSPHERE_8_e,   // cullType
 };
 
 /* 80CECD74-80CECDA4 000120 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
@@ -656,11 +626,11 @@ SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
 static f32 bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
     cM3dGPla plane;
     f32 ret;
-    if (dComIfG_Bgsp().GetTriPla(param_1,&plane)) {
+    if (dComIfG_Bgsp().GetTriPla(param_1, &plane)) {
         cXyz pos;
         f32 abs = param_0->abs();
 
-        C_VECReflect(param_0,(Vec*)&plane,&pos);
+        C_VECReflect(param_0, (Vec*)&plane, &pos);
         *param_0 = pos * abs * param_2;
 
         return param_0->absXZ();
@@ -701,16 +671,16 @@ void daObjStone_c::initBaseMtx() {
     field_0x091c = 0;
     field_0x0930 = ZeroQuat;
     field_0x0920 = field_0x0930;
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
 /* 80CE9468-80CE9540 000468 00D8+00 2/2 0/0 0/0 .text            setBaseMtx__12daObjStone_cFv */
 void daObjStone_c::setBaseMtx() {
-    mDoMtx_quatMultiply(&field_0x0920,&field_0x0930,&field_0x0920);
-    mDoMtx_stack_c::transS(current.pos.x,current.pos.y+mInitialOffsetY,current.pos.z);
+    mDoMtx_quatMultiply(&field_0x0920, &field_0x0930, &field_0x0920);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mInitialOffsetY, current.pos.z);
     mDoMtx_stack_c::quatM(&field_0x0920);
-    mDoMtx_stack_c::ZXYrotM(shape_angle.x,shape_angle.y,shape_angle.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::ZXYrotM(mShapeAngle);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
     field_0x0930 = field_0x0920;
@@ -736,18 +706,19 @@ int daObjStone_c::Create() {
     mShapeAngle = shape_angle;
     shape_angle.setall(0);
 
-    fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
 
     // set chkCirlce wall bounds
-    mChkCircle.SetWall(l_wall_h[mStoneType],l_wall_r[mStoneType]);
+    mChkCircle.SetWall(l_wall_h[mStoneType], l_wall_r[mStoneType]);
 
     // setup chkobj
-    mChkObj.Set(&fopAcM_GetPosition_p(this),&fopAcM_GetOldPosition_p(this),this,1,&mChkCircle,&fopAcM_GetSpeed_p(this),0,0);
+    mChkObj.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mChkCircle,
+                fopAcM_GetSpeed_p(this), 0, 0);
     mChkObj.SetWtrChkMode(2);
     mChkObj.ClrObj();
     mChkObj.SetBomb();
 
-    mStatus.Init(l_weight[mStoneType],0xFF,this);
+    mStatus.Init(l_weight[mStoneType], 0xFF, this);
 
     // setup collider
     mCollider.Set(l_sph_src);
@@ -758,10 +729,10 @@ int daObjStone_c::Create() {
         mCollider.SetAtAtp(2);
     }
 
-    fopAcM_setCullSizeSphere(this,0.0f,0.0f,0.0f,l_r[mStoneType]*1.2f);
-    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
-    mAttentionInfo.field_0x0[4] = 0x2A;
-    fopAcM_OnCarryType(this,fopAcM_CARRY_LIGHT);
+    fopAcM_setCullSizeSphere(this, 0.0f, 0.0f, 0.0f, l_r[mStoneType] * 1.2f);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
+    attention_info.field_0x0[4] = 0x2A;
+    fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
     cXyz other_pos = current.pos;
 
@@ -772,7 +743,7 @@ int daObjStone_c::Create() {
 
     // Set heavy carry type if big stone
     if (mStoneType == OBJ_STONE_TYPE_BIG) {
-        fopAcM_OnCarryType(this,fopAcM_CARRY_HEAVY);
+        fopAcM_OnCarryType(this, fopAcM_CARRY_HEAVY);
     }
 
     init_modePutWait();
@@ -784,9 +755,10 @@ int daObjStone_c::Create() {
     pos.y += 1.0f;
 
     // Create the mark actor that goes under the stone
-    fopAcM_createChild(PROC_Obj_StoneMark,fopAcM_GetID(this),stoneType,&pos,fopAcM_GetRoomNo(this),&shape_angle,&mScale,-1,0);
+    fopAcM_createChild(PROC_Obj_StoneMark, fopAcM_GetID(this), stoneType, &pos,
+                       fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, 0);
 
-    mSound.init(&current.pos,1);
+    mSound.init(&current.pos, 1);
     mLastPosY = current.pos.y;
 
     return 1;
@@ -804,7 +776,9 @@ asm int daObjStone_c::Create() {
 
 /* 80CE97C0-80CE9840 0007C0 0080+00 1/1 0/0 0/0 .text            CreateHeap__12daObjStone_cFv */
 bool daObjStone_c::CreateHeap() {
-    mpModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName[mStoneType],l_bmdIdx[mStoneType]),0x80000,0x11000084);
+    mpModel = mDoExt_J3DModel__create(
+        (J3DModelData*)dComIfG_getObjectRes(l_arcName[mStoneType], l_bmdIdx[mStoneType]), 0x80000,
+        0x11000084);
     return mpModel != NULL;
 }
 
@@ -816,11 +790,11 @@ int daObjStone_c::create() {
 
     mStoneType = getType();
 
-    int phase = dComIfG_resLoad(&mPhase,l_arcName[mStoneType]);
+    int phase = dComIfG_resLoad(&mPhase, l_arcName[mStoneType]);
 
     if (phase == cPhs_COMPLEATE_e) {
         // Allocate solid heap on GAME and load rock's model into it
-        if (!fopAcM_entrySolidHeap(this,(heapCallbackFunc)CheckCreateHeap,0x860)) {
+        if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x860)) {
             return cPhs_ERROR_e;
         }
 
@@ -910,21 +884,21 @@ int daObjStone_c::execute() {
     cXyz pos;
 
     mStatus.SetWeight(l_weight[this->mStoneType]);
-    fopAcM_SetGravity(this,FLOAT_LABEL(lit_4010));
+    fopAcM_SetGravity(this, FLOAT_LABEL(lit_4010));
     mode_proc_call();
 
     if (mCollider.ChkTgHit() && mCollider.GetTgHitObj()) {
-        mSound.startCollisionSE(mCollider.GetTgHitObjHitSeID(1),2,0);
+        mSound.startCollisionSE(mCollider.GetTgHitObjHitSeID(1), 2, 0);
     }
 
-    mSound.framework(0,dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = mAttentionInfo.mPosition;
+    mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    attention_info.position = current.pos;
+    eyePos = attention_info.position;
 
     setBaseMtx();
     pos = current.pos;
     pos.y += mInitialOffsetY;
-    
+
     mCollider.SetC(pos);
     dComIfG_Ccsp()->Set(&mCollider);
     mChkObj.OffLineCheck();
@@ -1058,7 +1032,7 @@ extern "C" asm void __dt__14dBgS_ObjGndChkFv() {
 void daObjStone_c::init_modePutWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mInitialOffsetY = l_initial_offsetY[mStoneType];
     mMode = 0;
     field_0x0907 = 3;
@@ -1073,7 +1047,7 @@ void daObjStone_c::modePutWait() {
 void daObjStone_c::init_modeWait() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     field_0x0907 = 0;
 }
@@ -1098,8 +1072,8 @@ void daObjStone_c::modeWait() {
     mMode++;
     speedF *= FLOAT_LABEL(lit_4678);
 
-    fopAcM_posMoveF(this,mStatus.GetCCMoveP());
-    cLib_chaseF(&mInitialOffsetY,l_put_offsetY[mStoneType],FLOAT_LABEL(lit_4679));
+    fopAcM_posMoveF(this, mStatus.GetCCMoveP());
+    cLib_chaseF(&mInitialOffsetY, l_put_offsetY[mStoneType], FLOAT_LABEL(lit_4679));
 
     if (mMode > 5 && checkRollAngle()) {
         init_modeWalk();
@@ -1110,7 +1084,7 @@ void daObjStone_c::modeWait() {
 void daObjStone_c::init_modeDrop() {
     mCollider.OnAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_offBit<u32>(mAttentionInfo.mFlags,0x10);
+    cLib_offBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     mLastPosY = current.pos.y;
     field_0x0907 = 1;
@@ -1126,7 +1100,8 @@ void daObjStone_c::modeDrop() {
 
     if (mIsInWater != 0) {
         mCollider.OffAtSPrmBit(1);
-        mChkObj.ChkGroundHit() ? cLib_onBit<u32>(mAttentionInfo.mFlags,0x10) : cLib_offBit<u32>(mAttentionInfo.mFlags,0x10);
+        mChkObj.ChkGroundHit() ? cLib_onBit<u32>(attention_info.flags, 0x10) :
+                                 cLib_offBit<u32>(attention_info.flags, 0x10);
 
         pos2.x = speedF * cM_ssin(current.angle.y);
         pos2.y = speed.y;
@@ -1136,16 +1111,15 @@ void daObjStone_c::modeDrop() {
         pos.x = -pos.x * l_water_resist[mStoneType];
         pos.y = -pos.y * l_water_resist[mStoneType];
         pos.z = -pos.z * l_water_resist[mStoneType];
-        
-        
+
         pos2 += pos;
-        speedF = sqrtf(pos2.x*pos2.x + pos2.z*pos2.z);
+        speedF = sqrtf(pos2.x * pos2.x + pos2.z * pos2.z);
         speed.y = pos2.y;
 
-        fopAcM_SetGravity(this,-6.0f + l_buoyancy[mStoneType]);
+        fopAcM_SetGravity(this, -6.0f + l_buoyancy[mStoneType]);
     }
 
-    fopAcM_posMoveF(this,mStatus.GetCCMoveP());
+    fopAcM_posMoveF(this, mStatus.GetCCMoveP());
     mLastSpeedY = speed.y;
     calcRotBaseMtx(0);
 }
@@ -1166,17 +1140,17 @@ asm void daObjStone_c::modeDrop() {
 void daObjStone_c::init_modeCarry() {
     mCollider.OffCoSPrmBit(1);
     mCollider.OffAtSPrmBit(1);
-    fopAcM_SetModel(this,mpModel);
+    fopAcM_SetModel(this, mpModel);
     mMode = 0;
     field_0x0950 = field_0x0907;
     if (mIsInWater == 0) {
         if (mStoneType == OBJ_STONE_TYPE_BIG) {
-            fopAcM_seStart(this,Z2SE_OBJ_CMN_L_ROCK_LIFT,0); // literals inline
+            fopAcM_seStart(this, Z2SE_OBJ_CMN_L_ROCK_LIFT, 0);  // literals inline
         } else {
-            fopAcM_seStart(this,Z2SE_OBJ_CMN_ROCK_LIFT,0); // literals inline
+            fopAcM_seStart(this, Z2SE_OBJ_CMN_ROCK_LIFT, 0);  // literals inline
         }
     }
-    
+
     field_0x0907 = 2;
 }
 #else
@@ -1226,7 +1200,9 @@ void daObjStone_c::modeCarry() {
         }
     }
 
-    if ((mStoneType == OBJ_STONE_TYPE_SMALL && mMode > 8) ||  (mStoneType == OBJ_STONE_TYPE_BIG && mMode > 17)) { 
+    if ((mStoneType == OBJ_STONE_TYPE_SMALL && mMode > 8) ||
+        (mStoneType == OBJ_STONE_TYPE_BIG && mMode > 17))
+    {
         f32 frame_rate = daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate() * 0.25f;
         mDoMtx_quatSlerp(&field_0x0930, &ZeroQuat, &field_0x0930, frame_rate);
     }
@@ -1245,7 +1221,7 @@ void daObjStone_c::modeCarry() {
 
                 if (speed.y < -10.0f)
                     speed.y = -10.0f;
-                
+
                 if (speed.y > 10.0f)
                     speed.y = 10.0f;
 
@@ -1261,7 +1237,6 @@ void daObjStone_c::modeCarry() {
 
         model = 0;
     }
-    
 }
 #else
 #pragma push
@@ -1278,7 +1253,7 @@ asm void daObjStone_c::modeCarry() {
 void daObjStone_c::init_modeWalk() {
     mCollider.OffAtSPrmBit(1);
     mCollider.OnCoSPrmBit(1);
-    cLib_onBit<u32>(mAttentionInfo.mFlags,0x10);
+    cLib_onBit<u32>(attention_info.flags, 0x10);
     mMode = 0;
     field_0x0907 = 4;
 }
@@ -1337,9 +1312,9 @@ void daObjStone_c::init_modePushWolfNonBreak() {
 
     if (mIsInWater == 0) {
         if (mStoneType == OBJ_STONE_TYPE_BIG) {
-            fopAcM_seStart(this,Z2SE_OBJ_CMN_L_ROCK_ROLL,0); // literals inline
+            fopAcM_seStart(this, Z2SE_OBJ_CMN_L_ROCK_ROLL, 0);  // literals inline
         } else {
-            fopAcM_seStart(this,Z2SE_OBJ_CMN_ROCK_ROLL,0); // literals inline
+            fopAcM_seStart(this, Z2SE_OBJ_CMN_ROCK_ROLL, 0);  // literals inline
         }
     }
 
@@ -1377,8 +1352,8 @@ void daObjStone_c::init_modeYogan() {
     mCollider.OnCoSPrmBit(1);
     mInitialOffsetY = l_initial_offsetY[mStoneType];
     mMode = 0;
-    fopAcM_SetGravity(this,FLOAT_LABEL(lit_5063));
-    fopAcM_SetMaxFallSpeed(this,FLOAT_LABEL(lit_5064));
+    fopAcM_SetGravity(this, FLOAT_LABEL(lit_5063));
+    fopAcM_SetMaxFallSpeed(this, FLOAT_LABEL(lit_5064));
     current.pos.y = mChkObj.m_wtr.GetHeight();
     field_0x0907 = 6;
 }
@@ -1401,8 +1376,8 @@ void daObjStone_c::modeYogan() {
     bool gnd_landing = mChkObj.ChkGroundLanding();
 
     speedF *= FLOAT_LABEL(lit_5075);
-    fopAcM_posMoveF(this,0);
-    
+    fopAcM_posMoveF(this, 0);
+
     if (pos_check || gnd_landing) {
         fopAcM_delete(this);
     }
@@ -1415,12 +1390,7 @@ void daObjStone_c::modeYogan() {
 #pragma push
 #pragma force_active on
 const static u8 l_eff_id[10] = {
-    0x85,
-    0x9B,
-    0x85,
-    0x9C,
-    0x85,
-    0x9D,
+    0x85, 0x9B, 0x85, 0x9C, 0x85, 0x9D,
 };
 COMPILER_STRIP_GATE(0x80CECC20, &l_eff_id);
 #pragma pop
@@ -1454,12 +1424,10 @@ void daObjStone_c::CrrPos() {
 
     cXyz pos = current.pos;
     u8 mode = field_0x0907;
-    
-    
+
     if (mode == 2) {
         check1 = true;
         pos = current.pos;
-        
     }
 
     if (field_0x0907 == 3) {
@@ -1467,9 +1435,9 @@ void daObjStone_c::CrrPos() {
     }
 
     if (!check2) {
-        mChkObj.CrrPos(dComIfG_Bgsp());  
-    } 
-    
+        mChkObj.CrrPos(dComIfG_Bgsp());
+    }
+
     if (check1) {
         current.pos = pos;
     }
@@ -1481,15 +1449,16 @@ void daObjStone_c::CrrPos() {
 void daObjStone_c::createItem() {
     int item_no = getItemNo();
     int item_bit = getItemBit();
-    
-    csXyz angle(0,orig.angle.y,0);
+
+    csXyz angle(0, home.angle.y, 0);
     u8 item_type = getItemType();
 
     if (item_type == 0) {
-        cXyz pos(orig.pos);
-        fopAcM_createItem(&pos,item_no,item_bit,fopAcM_GetHomeRoomNo(this),&angle,0,8);
+        cXyz pos(home.pos);
+        fopAcM_createItem(&pos, item_no, item_bit, fopAcM_GetHomeRoomNo(this), &angle, 0, 8);
     } else {
-        fopAcM_createItemFromTable(&orig.pos,item_no,item_bit,fopAcM_GetHomeRoomNo(this),&angle,8,0,0,0,false);
+        fopAcM_createItemFromTable(&home.pos, item_no, item_bit, fopAcM_GetHomeRoomNo(this), &angle,
+                                   8, 0, 0, 0, false);
     }
 }
 #else
@@ -1526,25 +1495,30 @@ asm void daObjStone_c::calcRotBaseMtx(s16* param_0) {
 
 /* 80CEC5BC-80CEC6D8 0035BC 011C+00 1/1 0/0 0/0 .text            checkRollAngle__12daObjStone_cFv */
 #ifdef NONMATCHING
-// matches but cM3dGPla dtor will be generated in wrong place until TU is finished (due to bound function float literal inlines)
+// matches but cM3dGPla dtor will be generated in wrong place until TU is finished (due to bound
+// function float literal inlines)
 int daObjStone_c::checkRollAngle() {
     cXyz pos = current.pos;
     pos.y += FLOAT_LABEL(lit_4644);
     cM3dGPla plane;
 
     bool gnd_chk = fopAcM_gc_c::gndCheck(&pos);
-    bool triPla = dComIfG_Bgsp().GetTriPla(*(dBgS_GndChk*)&fopAcM_gc_c::mGndCheck,&plane); // there's an inline here but it can be used until fopAcM_gc_c::mGndCheck is properly setup
+    bool triPla =
+        dComIfG_Bgsp().GetTriPla(*(dBgS_GndChk*)&fopAcM_gc_c::mGndCheck,
+                                 &plane);  // there's an inline here but it can be used until
+                                           // fopAcM_gc_c::mGndCheck is properly setup
     f32 ground_y = fopAcM_gc_c::getGroundY();
 
     if (gnd_chk && FLOAT_LABEL(lit_4637) != ground_y && triPla) {
-        f32 tmp2 = cM_scos(i_cM_deg2s(FLOAT_LABEL(lit_5018))); // not sure what happened here. debug implies there's a multiply happening in cM_deg2s, but retail has no such instructions
+        f32 tmp2 = cM_scos(i_cM_deg2s(FLOAT_LABEL(
+            lit_5018)));  // not sure what happened here. debug implies there's a multiply happening
+                          // in cM_deg2s, but retail has no such instructions
 
         cXyz pos2 = plane.mNormal;
 
         if (pos2.y < tmp2) {
             return 1;
         }
-
     }
 
     return 0;
@@ -1564,11 +1538,7 @@ asm int daObjStone_c::checkRollAngle() {
 /* 80CECC34-80CECC3C 000180 0006+02 0/1 0/0 0/0 .rodata          l_carry_eff_id$5307 */
 #pragma push
 #pragma force_active on
-const static u16 l_carry_eff_id[3] = {
-    0x859E,
-    0x859F,
-    0x85A0
-};
+const static u16 l_carry_eff_id[3] = {0x859E, 0x859F, 0x85A0};
 COMPILER_STRIP_GATE(0x80CECC34, &l_carry_eff_id);
 #pragma pop
 
@@ -1586,9 +1556,9 @@ void daObjStone_c::set_carry_eff() {
 
     if (field_0x0950 == 3) {
         for (int i = 0; i < 3; i++) {
-            field_0x0964[i] = dComIfGp_particle_set(l_carry_eff_id[i],
-                                &current.pos,0,&pos,0xFF,0,0xFFFFFFFF,
-                                0,0,0); // float literal inline
+            field_0x0964[i] =
+                dComIfGp_particle_set(l_carry_eff_id[i], &current.pos, 0, &pos, 0xFF, 0, 0xFFFFFFFF,
+                                      0, 0, 0);  // float literal inline
             if (field_0x0964[i] != 0) {
                 field_0x0964[i]->becomeImmortalEmitter();
             }
@@ -1618,8 +1588,8 @@ asm void daObjStone_c::effect_delete(bool param_0) {
 
 /* 80CEC888-80CEC948 003888 00C0+00 1/1 0/0 0/0 .text            draw__12daObjStone_cFv */
 int daObjStone_c::draw() {
-    g_env_light.settingTevStruct(8,&current.pos,&mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel,&mTevStr);
+    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
     if (!model) {
@@ -1627,13 +1597,8 @@ int daObjStone_c::draw() {
         GXTexObj* pTex = dDlst_shadowControl_c::getSimpleTex();
         cXyz pos = current.pos;
 
-        dComIfGd_setSimpleShadow(&pos,
-                        mChkObj.GetGroundH(),
-                        shadow_size,
-                        mChkObj.m_gnd,
-                        0,
-                        FLOAT_LABEL(lit_3845),
-                        pTex);
+        dComIfGd_setSimpleShadow(&pos, mChkObj.GetGroundH(), shadow_size, mChkObj.m_gnd, 0,
+                                 FLOAT_LABEL(lit_3845), pTex);
     }
     return 1;
 }
@@ -1642,9 +1607,9 @@ int daObjStone_c::draw() {
 int daObjStone_c::_delete() {
     mSound.deleteObject();
     u16 setid = fopAcM_GetSetId(this);
-    fopAcM_offActor(this,setid);
+    fopAcM_offActor(this, setid);
     effect_delete(true);
-    dComIfG_resDelete(&mPhase,l_arcName[mStoneType]);
+    dComIfG_resDelete(&mPhase, l_arcName[mStoneType]);
     return 1;
 }
 

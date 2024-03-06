@@ -23,7 +23,7 @@ int daObjSmoke_c::Create() {
     initBaseMtx();
 
     if (i_fopAcM_isSwitch(this, getSwbit())) {
-        mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &mScale, 255, NULL,
+        mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &scale, 255, NULL,
                                           -1, NULL, NULL, NULL);
     }
 
@@ -42,7 +42,7 @@ int daObjSmoke_c::create() {
 /* 80CDD004-80CDD0B8 000204 00B4+00 1/1 0/0 0/0 .text            execute__12daObjSmoke_cFv */
 int daObjSmoke_c::execute() {
     if (i_fopAcM_isSwitch(this, getSwbit()) && !mParticle) {
-        mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &mScale, 255, NULL,
+        mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &scale, 255, NULL,
                                           -1, NULL, NULL, NULL);
     }
 
@@ -90,14 +90,14 @@ extern actor_process_profile_definition g_profile_Obj_Smoke = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Smoke,          // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daObjSmoke_c),    // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     632,                     // mPriority
-    &l_daObjSmoke_Method,    // mSubMtd
+    &l_daObjSmoke_Method,    // sub_method
     0x40100,                 // mStatus
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

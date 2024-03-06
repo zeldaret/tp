@@ -627,7 +627,7 @@ asm dDemo_actor_c::dDemo_actor_c() {
 dDemo_actor_c::~dDemo_actor_c() {
     fopAc_ac_c* actor = getActor();
     if (actor != NULL) {
-        actor->mDemoActorId = 0;
+        actor->demoActorID = 0;
     }
 
     mActorId = -1;
@@ -779,7 +779,7 @@ SECTION_SDATA2 static f32 lit_4152 = -1.0f;
 #ifdef NONMATCHING
 int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, char const* param_3,
                       int param_4, u16* param_5, u32 param_6, s8 param_7) {
-    dDemo_actor_c* demo_actor = dDemo_c::getActor(param_0->mDemoActorId);
+    dDemo_actor_c* demo_actor = dDemo_c::getActor(param_0->demoActorID);
 
     if (demo_actor == NULL) {
         return 0;
@@ -788,7 +788,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     u32 flags = demo_actor->checkEnable(param_1);
     if (flags & 2) {
         param_0->current.pos = demo_actor->getTrans();
-        param_0->next.pos = param_0->current.pos;
+        param_0->old.pos = param_0->current.pos;
     }
 
     if (flags & 8) {
@@ -800,7 +800,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     }
 
     if (flags & 0x80) {
-        param_0->mGravity = demo_actor->getPrm_Morf();
+        param_0->gravity = demo_actor->getPrm_Morf();
     }
 
     if (param_2 == NULL) {
@@ -1232,7 +1232,7 @@ dDemo_object_c::~dDemo_object_c() {
 /* 80038FC0-80039088 033900 00C8+00 1/1 0/0 0/0 .text appendActor__14dDemo_object_cFP10fopAc_ac_c
  */
 JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
-    dDemo_actor_c* demoActor = dDemo_c::getActor(p_actor->mDemoActorId);
+    dDemo_actor_c* demoActor = dDemo_c::getActor(p_actor->demoActorID);
 
     if (demoActor != NULL) {
         return demoActor;
@@ -1251,7 +1251,7 @@ JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
     mActorNum++;
     mpActors[curActorNum] = demoActor;
     demoActor->setActor(p_actor);
-    p_actor->mDemoActorId = mActorNum;
+    p_actor->demoActorID = mActorNum;
 
     if (p_actor->model != NULL) {
         demoActor->setModel((J3DModel*)p_actor->model);

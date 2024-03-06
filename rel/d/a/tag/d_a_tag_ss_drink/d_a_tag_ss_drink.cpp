@@ -84,7 +84,7 @@ u8 daTag_SSDrink_c::getSwitchFromParam() {
 /* 80D62F8C-80D62FC8 00024C 003C+00 3/3 0/0 0/0 .text            getFlowNodeNum__15daTag_SSDrink_cFv
  */
 u16 daTag_SSDrink_c::getFlowNodeNum() {
-    u16 num = orig.angle.x;
+    u16 num = home.angle.x;
     bool bVar1 = false;
     if (num == 0xFFFF || num == 0) {
         bVar1 = true;
@@ -107,7 +107,7 @@ u16 daTag_SSDrink_c::getValue() {
 
 /* 80D62FD4-80D63044 000294 0070+00 1/1 0/0 0/0 .text            restart__15daTag_SSDrink_cFv */
 void daTag_SSDrink_c::restart() {
-    current.angle.set(0, orig.angle.y, 0);
+    current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
     setProcess(&daTag_SSDrink_c::wait);
 }
@@ -115,8 +115,8 @@ void daTag_SSDrink_c::restart() {
 /* 80D63044-80D630BC 000304 0078+00 1/1 0/0 0/0 .text            initialize__15daTag_SSDrink_cFv */
 void daTag_SSDrink_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
-    mAttentionInfo.mFlags = 0;
-    mAttentionInfo.field_0x0[4] = 6;
+    attention_info.flags = 0;
+    attention_info.field_0x0[4] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
     restart();
     Execute();
@@ -153,8 +153,8 @@ int daTag_SSDrink_c::setProcess(ProcessFunc i_processFunc) {
 
 /* 80D631D4-80D63208 000494 0034+00 1/1 0/0 0/0 .text            setAttnPos__15daTag_SSDrink_cFv */
 void daTag_SSDrink_c::setAttnPos() {
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    eyePos = current.pos;
 }
 
 /* 80D63208-80D63384 0004C8 017C+00 1/1 0/0 0/0 .text            chkEvent__15daTag_SSDrink_cFv */
@@ -162,7 +162,7 @@ int daTag_SSDrink_c::chkEvent() {
     int retVal = 1;
     if (!i_dComIfGp_getEvent().i_isOrderOK()) {
         retVal = 0;
-        if (mEvtInfo.checkCommandTalk()) {
+        if (eventInfo.checkCommandTalk()) {
             if (!checkProcess(&daTag_SSDrink_c::talk) == 0) {
                 retVal = (this->*mProcessFunc)(0);
             } else {
@@ -171,7 +171,7 @@ int daTag_SSDrink_c::chkEvent() {
                 }
             }
             return retVal;
-        } else if (mEvtInfo.i_checkCommandCatch()) {
+        } else if (eventInfo.i_checkCommandCatch()) {
             if (field_0x5D4 == 0) {
                 if (getParentPtr() != NULL) {
                     ((daMyna_c*)getParentPtr())->onEventFlag(0);
@@ -190,16 +190,16 @@ int daTag_SSDrink_c::orderEvent() {
     if (!dComIfGp_getLinkPlayer()->i_checkWolf() && i_fopAcM_isSwitch(this, getSwitchFromParam()) &&
         field_0x5D3 != 0x60 && getFlowNodeNum() != 0xFFFF)
     {
-        mAttentionInfo.mFlags = 0x40000008;
+        attention_info.flags = 0x40000008;
     } else {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     }
 
-    if (mAttentionInfo.mFlags == 0x40000008) {
+    if (attention_info.flags == 0x40000008) {
         if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f && fopAcM_seenPlayerAngleY() <= 0x2000) {
-            mAttentionInfo.field_0x0[1] = 0x9D;
-            mAttentionInfo.field_0x0[3] = 0x9D;
-            mEvtInfo.i_onCondition(1);
+            attention_info.field_0x0[1] = 0x9D;
+            attention_info.field_0x0[3] = 0x9D;
+            eventInfo.i_onCondition(1);
         }
     }
 
@@ -210,16 +210,16 @@ int daTag_SSDrink_c::orderEvent() {
 int daTag_SSDrink_c::wait(void* param_0) {
     switch (mEventType) {
     case 1:
-        if (!mEvtInfo.i_checkCommandCatch()) {
+        if (!eventInfo.i_checkCommandCatch()) {
             if (i_fopAcM_isSwitch(this, getSwitchFromParam())) {
                 if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f &&
                     fopAcM_seenPlayerAngleY() <= 0x2000)
                 {
                     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-                    cXyz local_28 = mAttentionInfo.mPosition - player->mAttentionInfo.mPosition;
+                    cXyz local_28 = attention_info.position - player->attention_info.position;
                     dComIfGp_att_CatchRequest(this, field_0x5D3, 200.0f, local_28.y + 100.0f,
                                               local_28.y - 100.0f, 0x4000, 1);
-                    mEvtInfo.i_onCondition(0x40);
+                    eventInfo.i_onCondition(0x40);
                 }
                 if (field_0x5D4 != 0) {
                     field_0x5D4 = 0;

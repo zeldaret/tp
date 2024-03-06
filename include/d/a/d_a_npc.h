@@ -259,7 +259,7 @@ public:
     /* 0xD90 */ u32 field_0xd90;
     /* 0xD94 */ u32 field_0xd94;
     /* 0xD98 */ u32 field_0xd98;
-    /* 0xD9C */ profile_method_class* mSubMtd;
+    /* 0xD9C */ profile_method_class* sub_method;
     /* 0xDA0 */ u8 field_0xda0[8];
     /* 0xDA8 */ u32 field_0xda8;
     /* 0xDAC */ int field_0xdac;
@@ -640,13 +640,13 @@ public:
     /* 80155BCC */ virtual void drawOtherMdls();
 
     BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
-        return chkActorInAttnArea(i_actorCheck, i_actorArea, mAttentionInfo.field_0x0[3]);
+        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.field_0x0[3]);
     }
     BOOL chkPlayerInSpeakArea(fopAc_ac_c* i_actor) {
         return chkActorInSpeakArea(daPy_getPlayerActorClass(), i_actor);
     }
     BOOL chkActorInTalkArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
-        return chkActorInAttnArea(i_actorCheck, i_actorArea, mAttentionInfo.field_0x0[1]);
+        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.field_0x0[1]);
     }
     BOOL chkPlayerInTalkArea(fopAc_ac_c* i_actor) {
         return chkActorInTalkArea(daPy_getPlayerActorClass(), i_actor);

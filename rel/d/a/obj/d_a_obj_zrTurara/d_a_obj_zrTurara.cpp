@@ -360,12 +360,12 @@ cPhs__Step daZrTurara_c::create() {
         J3DJoint* rock_joint = mpRockModel->getModelData()->getJointNodePointer(0);
         fopAcM_setCullSizeBox(
             this,
-            mScale.x * rock_joint->getMin()->x,
-            mScale.y * rock_joint->getMin()->y,
-            mScale.z * rock_joint->getMin()->z,
-            mScale.x * base_joint->getMax()->x,
-            mScale.y * base_joint->getMax()->y,
-            mScale.z * base_joint->getMax()->z
+            scale.x * rock_joint->getMin()->x,
+            scale.y * rock_joint->getMin()->y,
+            scale.z * rock_joint->getMin()->z,
+            scale.x * base_joint->getMax()->x,
+            scale.y * base_joint->getMax()->y,
+            scale.z * base_joint->getMax()->z
         );
         u8 scale = getScale();
         if (scale == 0xff) {
@@ -598,9 +598,9 @@ void daZrTurara_c::modeEnd() {
 
 /* 80D412B0-80D41380 000E30 00D0+00 1/0 0/0 0/0 .text            Draw__12daZrTurara_cFv */
 int daZrTurara_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpBaseModel->mModelData, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpRockModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpBaseModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpRockModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpBaseModel);
     if (mDrawRock) {

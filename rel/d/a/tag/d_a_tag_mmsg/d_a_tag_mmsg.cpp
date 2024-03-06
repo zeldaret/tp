@@ -22,12 +22,12 @@ int daTagMmsg_c::create() {
     field_0x569 = (shape_angle.x >> 8) & 0xFF;
 
     if ((fpcM_GetParam(this) >> 30) & 1) {
-        mScale.x *= 10.0f;
-        mScale.y *= 10.0f;
+        scale.x *= 10.0f;
+        scale.y *= 10.0f;
     }
 
-    field_0x574 = mScale.x * (10000.0f * mScale.x);
-    field_0x578 = current.pos.y + mScale.y * 100.0f;
+    field_0x574 = scale.x * (10000.0f * scale.x);
+    field_0x578 = current.pos.y + scale.y * 100.0f;
     mAttention = shape_angle.y;
 
     if (!checkNoAttention()) {
@@ -36,8 +36,8 @@ int daTagMmsg_c::create() {
             &dComIfGp_getRoomArrow(roomNo)
                  ->mEntries[dComIfGp_getRoomCamera(roomNo)->mEntries[mAttention].field_0x10]
                  .mPosition;
-        mEyePos.set(tmp->x, tmp->y, tmp->z);
-        mAttentionInfo.mPosition = mEyePos;
+        eyePos.set(tmp->x, tmp->y, tmp->z);
+        attention_info.position = eyePos;
     }
 
     shape_angle.y = fopAcM_searchPlayerAngleY(this);
@@ -119,14 +119,14 @@ extern actor_process_profile_definition g_profile_Tag_Mmsg = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Tag_Mmsg,          // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daTagMmsg_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     255,                    // mPriority
-    &l_daTagMmsg_Method,    // mSubMtd
+    &l_daTagMmsg_Method,    // sub_method
     0x44000,                // mStatus
     fopAc_ENV_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

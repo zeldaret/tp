@@ -18,9 +18,9 @@ void daCowdoor_c::setBaseMtx() {
 /* 80BCC86C-80BCC8C4 0000EC 0058+00 1/0 0/0 0/0 .text            Create__11daCowdoor_cFv */
 int daCowdoor_c::Create() {
     setBaseMtx();
-    mCullMtx = field_0x5a8->mBaseTransformMtx;
+    cullMtx = field_0x5a8->mBaseTransformMtx;
     fopAcM_setCullSizeBox2(this, field_0x5a8->getModelData());
-    mCullSizeFar = 5.0f;
+    cullSizeFar = 5.0f;
     return 1;
 }
 
@@ -64,8 +64,8 @@ int daCowdoor_c::Execute(f32 (**param_0)[3][4]) {
 
 /* 80BCCA48-80BCCAEC 0002C8 00A4+00 1/0 0/0 0/0 .text            Draw__11daCowdoor_cFv */
 int daCowdoor_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x5a8->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x5a8->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(field_0x5a8);
     dComIfGd_setList();
@@ -113,14 +113,14 @@ extern actor_process_profile_definition g_profile_Obj_Cowdoor = {
     3,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_Obj_Cowdoor,       // mProcName
-    &g_fpcLf_Method.mBase,  // mSubMtd
+    &g_fpcLf_Method.mBase,  // sub_method
     sizeof(daCowdoor_c),    // mSize
     0,                      // mSizeOther
     0,                      // mParameters
-    &g_fopAc_Method.base,   // mSubMtd
+    &g_fopAc_Method.base,   // sub_method
     447,                    // mPriority
-    &l_daCowdoor_Method,    // mSubMtd
+    &l_daCowdoor_Method,    // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // mCullType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
 };

@@ -33,7 +33,7 @@ int daTag_Evt_c::create() {
     fopAcM_SetupActor(this, daTag_Evt_c);
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_resFileName);
     if (phase == cPhs_COMPLEATE_e) {
-        mEvtInfo.setArchiveName(l_resFileName);
+        eventInfo.setArchiveName(l_resFileName);
         strcpy(field_0x568, "TagEvt");
         getParam();
         field_0x572 = -1;
@@ -50,16 +50,16 @@ int daTag_Evt_c::destroy() {
 /* 8048BA0C-8048BE44 00016C 0438+00 1/1 0/0 0/0 .text            execute__11daTag_Evt_cFv */
 int daTag_Evt_c::execute() {
     BOOL bVar = true;
-    mEyePos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
-    mAttentionInfo.mPosition = mEyePos;
+    eyePos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
+    attention_info.position = eyePos;
     fopAcM_SetRoomNo(this, dComIfGp_roomControl_getStayNo());
     if (field_0x5E4 == 0 || field_0x5E4 == 1) {
         dComIfG_inf_c* pGameInfo = &g_dComIfG_gameInfo;
         if (i_dComIfGp_event_runCheck() != 0) {
             bVar = false;
             int iVar1 = i_dComIfGp_evmng_getMyStaffId(field_0x568, 0, 0);
-            if (!mEvtInfo.checkCommandTalk()) {
-                if (mEvtInfo.i_checkCommandDemoAccrpt()) {
+            if (!eventInfo.checkCommandTalk()) {
+                if (eventInfo.i_checkCommandDemoAccrpt()) {
                     if (i_dComIfGp_getEventManager().endCheck(field_0x572)) {
                         i_dComIfGp_event_reset();
                         field_0x570 = 0;
@@ -105,7 +105,7 @@ int daTag_Evt_c::execute() {
         }
         if (!isDelete() && cLib_calcTimer(&field_0x5D0) == 0) {
             cXyz var1 = daPy_getPlayerActorClass()->current.pos - current.pos;
-            if (var1.absXZ() < mScale.x && -mScale.y < var1.y && var1.y < mScale.y) {
+            if (var1.absXZ() < scale.x && -scale.y < var1.y && var1.y < scale.y) {
                 field_0x570 = 1;
             }
         }
@@ -136,25 +136,25 @@ int daTag_Evt_c::getParam() {
     }
 
     field_0x5E4 = fopAcM_GetParam(this) >> 0x1E;
-    field_0x5DD = orig.angle.x;
-    field_0x5DE = (u16)orig.angle.x >> 8;
-    field_0x5D4 = orig.angle.z & 0xFF;
-    if ((orig.angle.z & 0xFF00) != 0xFF00) {
-        field_0x5D0 = ((orig.angle.z & 0xFF00) >> 8) * 0x1E;
+    field_0x5DD = home.angle.x;
+    field_0x5DE = (u16)home.angle.x >> 8;
+    field_0x5D4 = home.angle.z & 0xFF;
+    if ((home.angle.z & 0xFF00) != 0xFF00) {
+        field_0x5D0 = ((home.angle.z & 0xFF00) >> 8) * 0x1E;
     } else {
         field_0x5D0 = 0;
     }
     field_0x574 = -1;
-    mScale.x *= 100.0f;
-    mScale.y *= 100.0f;
-    mScale.z *= 100.0f;
+    scale.x *= 100.0f;
+    scale.y *= 100.0f;
+    scale.z *= 100.0f;
     if (field_0x5E4 == 1) {
-        mScale.x *= 10.0f;
-        mScale.y *= 10.0f;
-        mScale.z *= 10.0f;
+        scale.x *= 10.0f;
+        scale.y *= 10.0f;
+        scale.z *= 10.0f;
     }
-    orig.angle.x = 0;
-    orig.angle.z = 0;
+    home.angle.x = 0;
+    home.angle.z = 0;
     return 1;
 }
 

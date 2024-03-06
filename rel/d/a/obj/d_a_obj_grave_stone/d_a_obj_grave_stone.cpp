@@ -51,7 +51,7 @@ void daGraveStone_c::moveCalc() {
             setEnvTevColor();
             setRoomNo();
         }
-        mAttentionInfo.mPosition = current.pos;
+        attention_info.position = current.pos;
         PSMTXCopy(mpModel->getBaseTRMtx(), mDoMtx_stack_c::get());
         
         cXyz vec(0.0f, 0.0f, 0.0f);
@@ -98,7 +98,7 @@ void daGraveStone_c::moveCalc() {
 int daGraveStone_c::setPrtcl() {
     for (int i = 0; i < 4; i++) {
         mPrtclMngr[i].field_0x24.setEffectCenter(
-            &mTevStr, &mPrtclMngr[i].mPos, 0, 0,
+            &tevStr, &mPrtclMngr[i].mPos, 0, 0,
             mPrtclMngr[i].field_0x00 == true ? &mPrtclMngr[i].mPos : NULL,
             mPrtclMngr[i].field_0x00 == true ? &mPrtclMngr[i].mAngle : NULL,
             NULL, fopAcM_GetRoomNo(this), 0.0f, speedF
@@ -106,10 +106,10 @@ int daGraveStone_c::setPrtcl() {
         if (mPrtclMngr[i].field_0x00) {
             JPABaseEmitter* emitter = mPrtclMngr[i].field_0x24.getCenterEmitter(0, 0);
             if (emitter != NULL) {
-                mPrtclMngr[i].mScale.set(2.5f, 2.5f, 2.5f);
-                // JGeometry::TVec3<f32> scale(mPrtclMngr[i].mScale);
+                mPrtclMngr[i].scale.set(2.5f, 2.5f, 2.5f);
+                // JGeometry::TVec3<f32> scale(mPrtclMngr[i].scale);
                 JGeometry::TVec3<f32> scale;
-                JGeometry::setTVec3f(&mPrtclMngr[i].mScale.x, &scale.x);
+                JGeometry::setTVec3f(&mPrtclMngr[i].scale.x, &scale.x);
                 emitter->setGlobalParticleScale(scale);
             }
         }
@@ -121,8 +121,8 @@ int daGraveStone_c::setPrtcl() {
 /* 80C12A38-80C12A94 0004B8 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__14daGraveStone_cFv
  */
 void daGraveStone_c::setEnvTevColor() {
-    mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80C12A94-80C12AD8 000514 0044+00 2/2 0/0 0/0 .text            setRoomNo__14daGraveStone_cFv */
@@ -137,7 +137,7 @@ int daGraveStone_c::Create() {
     setBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     mAcchCir.SetWall(0.0f, 0.0f);
-    mAcch.Set(&current.pos, &next.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
+    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
     mColStatus.Init(0xff, 0, this);
     mColCyl.Set(mCcDCyl);
     mColCyl.SetStts(&mColStatus);
@@ -145,7 +145,7 @@ int daGraveStone_c::Create() {
     mGndChk = mAcch.m_gnd;
     setEnvTevColor();
     setRoomNo();
-    mAttentionInfo.mPosition = current.pos;
+    attention_info.position = current.pos;
     for (int i = 0; i < 4; i++) {
         mPrtclMngr[i].field_0x24.init(&mAcch, 0.0f, 0.0f);
     }
@@ -193,8 +193,8 @@ int daGraveStone_c::Execute(Mtx** i_mtxP) {
 
 /* 80C13078-80C1311C 000AF8 00A4+00 1/0 0/0 0/0 .text            Draw__14daGraveStone_cFv */
 int daGraveStone_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

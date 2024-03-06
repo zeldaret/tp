@@ -187,7 +187,7 @@ void ShopCam_action_c::setCamDataIdx(fopAc_ac_c* param_1, fopAc_ac_c* param_2, f
                                      fopAc_ac_c* param_4, cXyz* param_5, cXyz* param_6) {
     field_0xd6 = -1;
     if (field_0x18 == NULL) {
-        field_0xb0 = param_1->mEyePos;
+        field_0xb0 = param_1->eyePos;
     }
 
     field_0x18 = param_1;
@@ -222,7 +222,7 @@ void ShopCam_action_c::setCamDataIdx2(fopAc_ac_c* param_1, fopAc_ac_c* param_2, 
                                       fopAc_ac_c* param_7, cXyz* param_8, cXyz* param_9) {
     field_0xd6 = -1;
     if (field_0x18 == NULL) {
-        field_0xb0 = param_1->mEyePos;
+        field_0xb0 = param_1->eyePos;
     }
 
     field_0x18 = param_1;
@@ -264,17 +264,17 @@ void ShopCam_action_c::_debugSetCamera() {
     if (field_0x1c != NULL && field_0x20 != NULL && field_0x24 != NULL && field_0x28 != NULL &&
         field_0x2c == NULL && field_0x30 == NULL)
     {
-        local_4c.x = (field_0x24->orig.pos.x + field_0x20->orig.pos.x) / 2;
-        local_4c.y = (field_0x24->orig.pos.y + field_0x20->orig.pos.y) / 2;
-        local_4c.z = (field_0x24->orig.pos.z + field_0x20->orig.pos.z) / 2;
+        local_4c.x = (field_0x24->home.pos.x + field_0x20->home.pos.x) / 2;
+        local_4c.y = (field_0x24->home.pos.y + field_0x20->home.pos.y) / 2;
+        local_4c.z = (field_0x24->home.pos.z + field_0x20->home.pos.z) / 2;
     } else {
         if (field_0x1c != NULL && field_0x20 != NULL && field_0x24 != NULL && field_0x28 != NULL &&
             field_0x2c != NULL && field_0x30 == NULL)
         {
-            local_4c.set(field_0x28->orig.pos);
+            local_4c.set(field_0x28->home.pos);
             bVar1 = true;
         } else {
-            local_4c.set(field_0x20->orig.pos);
+            local_4c.set(field_0x20->home.pos);
         }
     }
 
@@ -297,7 +297,7 @@ void ShopCam_action_c::_debugSetCamera() {
  * setMasterCamCtrPos__16ShopCam_action_cFP4cXyz                */
 void ShopCam_action_c::setMasterCamCtrPos(cXyz* param_0) {
     if (param_0 == NULL) {
-        field_0xb0.set(field_0x18->mEyePos);
+        field_0xb0.set(field_0x18->eyePos);
     } else {
         field_0xb0.set(*param_0);
     }

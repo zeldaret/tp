@@ -226,7 +226,7 @@ void daAlink_c::changeWolf() {
     field_0x32c4 = 1;
     field_0x32c6 = 2;
     field_0x30b6 = 2;
-    mAttentionInfo.field_0xa = 50;
+    attention_info.field_0xa = 50;
 
     dCcD_Cyl* cyl_p = field_0x850;
     for (int i = 0; i < 3; i++) {
@@ -522,7 +522,7 @@ void daAlink_c::changeLink(int param_0) {
         field_0x30b6 = 5;
         field_0x32c4 = 2;
         field_0x32c6 = 16;
-        mAttentionInfo.field_0xa = 10;
+        attention_info.field_0xa = 10;
 
         dCcD_Cyl* cyl_p = field_0x850;
         for (int i = 0; i < 3; i++) {
@@ -1884,7 +1884,7 @@ int daAlink_c::procWolfSideStepInit(int param_0) {
 
     if (field_0x2f98 == 1) {
         if (mTargetedActor != NULL) {
-            mProcVar2.field_0x300c = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
+            mProcVar2.field_0x300c = cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos);
         } else {
             mProcVar2.field_0x300c = shape_angle.y;
         }
@@ -2030,7 +2030,7 @@ int daAlink_c::procWolfBackJumpInit(int param_0) {
     }
 
     if (mTargetedActor != NULL && param_0 == 0) {
-        mProcVar2.field_0x300c = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
+        mProcVar2.field_0x300c = cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos);
     } else {
         mProcVar2.field_0x300c = shape_angle.y;
     }
@@ -2273,7 +2273,7 @@ int daAlink_c::procWolfAutoJump() {
         field_0x2f99 = 12;
         setSingleAnimeWolfBaseSpeed(WANM_FALL_LAND, 0.0f, daAlinkHIO_wlDamFall_c0::m.field_0x3C);
     } else if (checkUnderMove0BckNoArcWolf(WANM_JUMP_ATTACK_START)) {
-        if (speed.y < -mGravity) {
+        if (speed.y < -gravity) {
             field_0x2f99 = 12;
             setSingleAnimeWolfParam(WANM_JUMP_ATTACK, &daAlinkHIO_wlAutoJump_c0::m.field_0x28);
         } else if (checkAnmEnd(frameCtrl_p)) {
@@ -2285,7 +2285,7 @@ int daAlink_c::procWolfAutoJump() {
             mProcVar2.field_0x300c = 0;
         }
     } else if (mProcVar2.field_0x300c == 0 && checkUnderMove0BckNoArcWolf(WANM_JUMP_ATTACK) &&
-               speed.y < -mGravity)
+               speed.y < -gravity)
     {
         mProcVar2.field_0x300c = 1;
         frameCtrl_p->setRate(daAlinkHIO_wlAutoJump_c0::m.field_0x28.mSpeed);
@@ -3145,8 +3145,8 @@ int daAlink_c::procWolfHowlDemoInit() {
 
         cXyz sp14;
         cXyz sp8;
-        sp14.set(mAttentionInfo.mPosition.x, mAttentionInfo.mPosition.y - 50.0f,
-                 mAttentionInfo.mPosition.z);
+        sp14.set(attention_info.position.x, attention_info.position.y - 50.0f,
+                 attention_info.position.z);
         sp8.set(sp14.x + var_f31, sp14.y, sp14.z + var_f30);
 
         if (commonLineCheck(&sp14, &sp8)) {
@@ -3727,7 +3727,7 @@ int daAlink_c::procWolfRopeMoveInit(int param_0, int param_1) {
         getNowAnmPackUnder(UNDER_0)->setFrame(13.5f);
     }
 
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
 
     if (param_1) {
@@ -3817,7 +3817,7 @@ int daAlink_c::procWolfRopeHangInit(int param_0) {
     mProcVar0.field_0x3008 = 0;
     setWolfRopePosY();
     setWolfRopeOffsetY(0);
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     mNormalSpeed = 0.0f;
     shape_angle.x = 0;
@@ -3852,7 +3852,7 @@ int daAlink_c::procWolfRopeTurnInit() {
     commonProcInit(PROC_WOLF_ROPE_TURN);
     setSingleAnimeWolfParam(WANM_ROPE_TURN, &daAlinkHIO_wlRope_c0::m.field_0x0);
     voiceStart(Z2SE_WL_V_BREATH_JUMP);
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     mNormalSpeed = 0.0f;
 
@@ -3905,7 +3905,7 @@ int daAlink_c::procWolfRopeStaggerInit(int param_0) {
 
     mProcVar3.field_0x300e.y = param_0;
     mProcVar2.field_0x300c = initWolfRopeShapeAngle();
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     current.angle.y = shape_angle.y;
 
@@ -3953,7 +3953,7 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
     mProcVar2.field_0x300c = initWolfRopeShapeAngle();
     current.angle.y = shape_angle.y;
 
-    setSpecialGravity(FLOAT_LABEL(lit_6108), mMaxFallSpeed, 0);
+    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
 
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
@@ -4015,7 +4015,7 @@ asm int daAlink_c::getWolfTagJumpTime() const {
 /* 80133EF0-80134000 12E830 0110+00 3/3 1/1 1/1 .text checkMidnaLockJumpPoint__9daAlink_cCFv */
 const cXyz* daAlink_c::checkMidnaLockJumpPoint() const {
     if ((!mLinkAcch.i_ChkGroundHit() && mProcID != PROC_WOLF_TAG_JUMP) || checkMidnaUseAbility() ||
-        getMidnaActor()->mEvtInfo.checkCommandTalk())
+        getMidnaActor()->eventInfo.checkCommandTalk())
     {
         return NULL;
     }
@@ -4806,7 +4806,7 @@ BOOL daAlink_c::checkMidnaDisappearMode() const {
     return mProcID == PROC_WOLF_DIG_THROUGH ||
            (i_checkWolf() && i_dComIfGp_checkPlayerStatus0(0, 0x8000000) &&
             !i_dComIfGp_checkPlayerStatus0(0, 0x10) &&
-            (mTargetedActor == NULL || !(mTargetedActor->mAttentionInfo.mFlags & 0x800000)));
+            (mTargetedActor == NULL || !(mTargetedActor->attention_info.flags & 0x800000)));
 }
 
 /* 801371FC-801372B4 131B3C 00B8+00 3/3 0/0 0/0 .text            checkWolfLieContinue__9daAlink_cFi
@@ -4817,7 +4817,7 @@ BOOL daAlink_c::checkWolfLieContinue(int param_0) {
     cM3dGPla slide_poly;
 
     if ((param_0 ||
-         ((mTargetedActor != NULL && (mTargetedActor->mAttentionInfo.mFlags & 0x800000)) &&
+         ((mTargetedActor != NULL && (mTargetedActor->attention_info.flags & 0x800000)) &&
           (fopAcM_GetName(mTargetedActor) == PROC_NPC_JAGAR ||
            fopAcM_GetName(mTargetedActor) == PROC_NPC_BOU))) &&
         !getSlidePolygon(&slide_poly) && !checkWolfLieWaterIn())
@@ -5544,8 +5544,8 @@ void daAlink_c::resetWolfBallGrab() {
             resetUpperAnime(UPPER_2, 3.0f);
         }
 
-        dComIfGp_particle_setColor(0x86CE, &mHeldItemRootPos, &mTevStr, NULL, NULL, 0.0f, 0xFF);
-        dComIfGp_particle_setColor(0x86CF, &mHeldItemRootPos, &mTevStr, NULL, NULL, 0.0f, 0xFF);
+        dComIfGp_particle_setColor(0x86CE, &mHeldItemRootPos, &tevStr, NULL, NULL, 0.0f, 0xFF);
+        dComIfGp_particle_setColor(0x86CF, &mHeldItemRootPos, &tevStr, NULL, NULL, 0.0f, 0xFF);
         i_onEndResetFlg0(ERFLG0_UNK_20000000);
         i_offNoResetFlg3(FLG3_UNK_200000);
     }
@@ -5636,12 +5636,12 @@ void daAlink_c::searchWolfLockEnemy(fopAc_ac_c* i_actor, void* i_data) {
     }
 
     fopEn_enemy_c* enemy_p = static_cast<fopEn_enemy_c*>(i_actor);
-    if (fopAcM_GetGroup(enemy_p) == 2 && enemy_p->mAttentionInfo.mFlags & 5 &&
+    if (fopAcM_GetGroup(enemy_p) == 2 && enemy_p->attention_info.flags & 5 &&
         !enemy_p->checkWolfNoLock())
     {
-        f32 dist_to_enemy = current.pos.abs2(enemy_p->mEyePos);
+        f32 dist_to_enemy = current.pos.abs2(enemy_p->eyePos);
 
-        if (enemy_p->mEyePos.y >= current.pos.y - lit_6895 && dist_to_enemy < field_0x3478) {
+        if (enemy_p->eyePos.y >= current.pos.y - lit_6895 && dist_to_enemy < field_0x3478) {
             field_0x3478 = dist_to_enemy;
             *lock_actor_pp = i_actor;
         }
@@ -5862,7 +5862,7 @@ int daAlink_c::procWolfRollAttackMove() {
 
     if (!swordButton() || mProcVar1.field_0x300a == 0) {
         if (mTargetedActor != NULL) {
-            shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
+            shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos);
             current.angle.y = shape_angle.y;
         }
 
@@ -6084,7 +6084,7 @@ int daAlink_c::procWolfJumpAttackKickInit() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
 
     voiceStart(Z2SE_WL_V_ATTACK_S);
     seStartOnlyReverb(Z2SE_WOLFATTACK_WIND_S);
@@ -6294,7 +6294,7 @@ int daAlink_c::procWolfWaitAttackInit(int i_attackType) {
                        atk_hio->field_0x0.mEndFrame, atk_hio->field_0x0.mInterpolation);
 
     if (mTargetedActor != NULL) {
-        shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->mEyePos);
+        shape_angle.y = cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos);
     }
 
     current.angle.y = shape_angle.y;
@@ -6523,12 +6523,12 @@ int daAlink_c::procWolfDownAttackInit() {
 
     speed.y = daAlinkHIO_wlAtDown_c0::m.field_0x90;
 
-    f32 temp_f3 = speed.y + mGravity;
-    f32 var_f0 = temp_f3 * temp_f3 + mGravity * 2.0f * (sp24.y - current.pos.y);
+    f32 temp_f3 = speed.y + gravity;
+    f32 var_f0 = temp_f3 * temp_f3 + gravity * 2.0f * (sp24.y - current.pos.y);
     if (var_f0 < 0.0f) {
-        mNormalSpeed = (var_f1 * mGravity) / -temp_f3;
+        mNormalSpeed = (var_f1 * gravity) / -temp_f3;
     } else {
-        mNormalSpeed = (var_f1 * mGravity) / (-JMAFastSqrt(var_f0) - temp_f3);
+        mNormalSpeed = (var_f1 * gravity) / (-JMAFastSqrt(var_f0) - temp_f3);
     }
 
     mProcVar2.field_0x300c = 0;
@@ -6556,7 +6556,7 @@ int daAlink_c::procWolfDownAttack() {
         fopEn_enemy_c* enemy_p = (fopEn_enemy_c*)field_0x280c.getActor();
 
         if (enemy_p != NULL && enemy_p->checkDownFlg() &&
-            mEyePos.abs2XZ(enemy_p->getDownPos()) < 10000.0f &&
+            eyePos.abs2XZ(enemy_p->getDownPos()) < 10000.0f &&
             fabsf(enemy_p->current.pos.y - current.pos.y) < 50.0f)
         {
             procWolfDownAtLandInit(enemy_p);
@@ -6633,11 +6633,11 @@ int daAlink_c::procWolfDownAtLand() {
             if (enemy_p != NULL) {
                 enemy_p->onWolfDownPullEndFlg();
 
-                dComIfGp_particle_setColor(0x86CA, &enemy_p->getDownPos(), &mTevStr, NULL, NULL,
+                dComIfGp_particle_setColor(0x86CA, &enemy_p->getDownPos(), &tevStr, NULL, NULL,
                                            0.0f, 0xFF);
-                dComIfGp_particle_setColor(0x86CB, &enemy_p->getDownPos(), &mTevStr, NULL, NULL,
+                dComIfGp_particle_setColor(0x86CB, &enemy_p->getDownPos(), &tevStr, NULL, NULL,
                                            0.0f, 0xFF);
-                dComIfGp_particle_setColor(0x86CC, &enemy_p->getDownPos(), &mTevStr, NULL, NULL,
+                dComIfGp_particle_setColor(0x86CC, &enemy_p->getDownPos(), &tevStr, NULL, NULL,
                                            0.0f, 0xFF);
             }
 
@@ -6750,7 +6750,7 @@ int daAlink_c::procWolfLockAttack() {
         mProcVar0.field_0x3008--;
 
         if (mProcVar0.field_0x3008 == 0) {
-            setSpecialGravity(daAlinkHIO_wlAtLock_c0::m.field_0x48, mMaxFallSpeed, 0);
+            setSpecialGravity(daAlinkHIO_wlAtLock_c0::m.field_0x48, maxFallSpeed, 0);
         }
     } else if (mNormalSpeed > 30.0f) {
         cLib_addCalc(&mNormalSpeed, 30.0f, 0.3f, 5.0f, 1.0f);
@@ -6800,7 +6800,7 @@ asm int daAlink_c::procWolfLockAttack() {
 int daAlink_c::procWolfLockAttackTurnInit(int param_0) {
     commonProcInit(PROC_WOLF_LOCK_ATTACK_TURN);
 
-    if (abs((s16)(cLib_targetAngleY(&current.pos, &mWolfLockAcKeep[0].getActor()->mEyePos) -
+    if (abs((s16)(cLib_targetAngleY(&current.pos, &mWolfLockAcKeep[0].getActor()->eyePos) -
                   shape_angle.y)) > 0x4000)
     {
         setSingleAnimeWolfParam(WANM_ATTACK_A_END_BACK, &daAlinkHIO_wlAtLock_c0::m.field_0x14);
@@ -6852,7 +6852,7 @@ int daAlink_c::procWolfLockAttackTurn() {
     }
 
     if (mWolfLockNum != 0) {
-        s16 target_angle = cLib_targetAngleY(&current.pos, &mWolfLockAcKeep[0].getActor()->mEyePos);
+        s16 target_angle = cLib_targetAngleY(&current.pos, &mWolfLockAcKeep[0].getActor()->eyePos);
         if (mProcVar2.field_0x300c != 0) {
             target_angle += 0x8000;
         }
@@ -7037,7 +7037,7 @@ int daAlink_c::procWolfEnemyHangBiteInit() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
 
     if (!setWolfEnemyHangBitePos((fopEn_enemy_c*)field_0x281c.getActor())) {
         return procWolfJumpAttackKickInit();
@@ -7461,7 +7461,7 @@ int daAlink_c::procWolfCargoCarryInit() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
-    setSpecialGravity(tmp_0, mMaxFallSpeed, 0);
+    setSpecialGravity(tmp_0, maxFallSpeed, 0);
 
     daAlink_WANM anm;
     if (checkCargoCarry()) {
@@ -7587,7 +7587,7 @@ int daAlink_c::procWolfGanonCatchInit() {
     }
 
     mDemo.i_setSpecialDemoType();
-    field_0x27f4->mStatus |= 0x800;
+    field_0x27f4->actor_status |= 0x800;
 
     commonProcInit(PROC_WOLF_GANON_CATCH);
     field_0x280c.setData(field_0x27f4);
@@ -7724,7 +7724,7 @@ int daAlink_c::procWolfChainReady() {
         mProcVar2.field_0x300c = angle >> 1;
         mNormalSpeed = dist_xz * 40.0f / dist + 1.0f;
         mProcVar0.field_0x3008 = dist_xz / mNormalSpeed + 1.0f;
-        speed.y = (vec1.y - mGravity * 0.5f * mProcVar0.field_0x3008 * mProcVar0.field_0x3008)
+        speed.y = (vec1.y - gravity * 0.5f * mProcVar0.field_0x3008 * mProcVar0.field_0x3008)
             / mProcVar0.field_0x3008;
     } else {
         mProcVar0.field_0x3008--;
@@ -7759,7 +7759,7 @@ int daAlink_c::procWolfChainWaitInit() {
     chain->onRide();
     field_0x2f99 = 0x50;
     current.pos = chain->getTopPos();
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
     mProcVar3.field_0x300e.y = 0;
     mProcVar0.field_0x3008 = daAlinkHIO_wlChain_c0::m.field_0x3C + 20;

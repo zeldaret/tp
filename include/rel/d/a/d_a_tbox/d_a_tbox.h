@@ -7,12 +7,13 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
-#include "dolphin/types.h"
 
 class dBgW;
 
 class daTboxBase_c : public dBgS_MoveBgActor {
 protected:
+    virtual BOOL checkSmallTbox() = 0;
+
     /* 0x5A0 */ dCcD_Stts mStts;
     /* 0x5DC */ dCcD_Cyl mCyl;
 };

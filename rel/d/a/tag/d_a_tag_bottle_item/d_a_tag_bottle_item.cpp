@@ -58,7 +58,7 @@ void daTag_BottleItem_c::setTypeFromParam() {
 
 /* 80D56100-80D56170 0001A0 0070+00 1/1 0/0 0/0 .text            restart__18daTag_BottleItem_cFv */
 void daTag_BottleItem_c::restart() {
-    current.angle.set(0,orig.angle.y,0);
+    current.angle.set(0,home.angle.y,0);
     shape_angle = current.angle;
     setProcess(&daTag_BottleItem_c::wait);
 }
@@ -67,8 +67,8 @@ void daTag_BottleItem_c::restart() {
  */
 void daTag_BottleItem_c::initialize() {
     fopAcM_setCullSizeBox(this,-30.0f,-15.0f,-30.0f,30.0f,45.0f,30.0f);
-    mAttentionInfo.mFlags = 0;
-    mAttentionInfo.field_0x0[4] = 6;
+    attention_info.flags = 0;
+    attention_info.field_0x0[4] = 6;
     fopAcM_OnCarryType(this,fopAcM_CARRY_SIDE);
     restart();
     Execute();
@@ -108,8 +108,8 @@ int daTag_BottleItem_c::setProcess(ProcessFunc i_processFunc) {
 /* 80D56300-80D56334 0003A0 0034+00 1/1 0/0 0/0 .text            setAttnPos__18daTag_BottleItem_cFv
  */
 void daTag_BottleItem_c::setAttnPos() {
-    mAttentionInfo.mPosition = current.pos;
-    mEyePos = current.pos;
+    attention_info.position = current.pos;
+    eyePos = current.pos;
 }
 
 /* 80D56334-80D56384 0003D4 0050+00 1/1 0/0 0/0 .text            chkEvent__18daTag_BottleItem_cFv */
@@ -119,7 +119,7 @@ s32 daTag_BottleItem_c::chkEvent() {
     if (!i_dComIfGp_getEvent().i_isOrderOK()) {
         uVar2 = 0;
         
-        if (mEvtInfo.i_checkCommandCatch()) {
+        if (eventInfo.i_checkCommandCatch()) {
             return uVar2;
         }
     }
@@ -132,15 +132,15 @@ s32 daTag_BottleItem_c::orderEvent() {
     makeSoup();
 
     if (!daPy_py_c::i_checkNowWolf() && mBottleItemType != EMPTY_BOTTLE) {
-        mAttentionInfo.mFlags = 0x20000008;
+        attention_info.flags = 0x20000008;
     } else {
-        mAttentionInfo.mFlags = 0;
+        attention_info.flags = 0;
     }
 
-    if (mAttentionInfo.mFlags == 0x20000008) {
-        mAttentionInfo.field_0x0[1] = EMPTY_BOTTLE;
-        mAttentionInfo.field_0x0[3] = EMPTY_BOTTLE;
-        mEvtInfo.i_onCondition(dEvtCnd_CANTALK_e);
+    if (attention_info.flags == 0x20000008) {
+        attention_info.field_0x0[1] = EMPTY_BOTTLE;
+        attention_info.field_0x0[3] = EMPTY_BOTTLE;
+        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
     }
 
     return 1;
@@ -161,12 +161,12 @@ void daTag_BottleItem_c::makeSoup() {
 int daTag_BottleItem_c::wait(void* param_0) {
     switch(mEventType) {
     case 1:
-        if (mEvtInfo.i_checkCommandCatch() == 0){
+        if (eventInfo.i_checkCommandCatch() == 0){
             fopAc_ac_c* player = dComIfGp_getPlayer(0);
-            cXyz pos = mAttentionInfo.mPosition - player->mAttentionInfo.mPosition;
+            cXyz pos = attention_info.position - player->attention_info.position;
         
             dComIfGp_att_CatchRequest(this,mBottleItemType,140.0f,pos.y+100.0f,pos.y-100.0f,0x2000,1);
-            mEvtInfo.i_onCondition(0x40);
+            eventInfo.i_onCondition(0x40);
         }
     case 2:
     case 0:
@@ -218,14 +218,14 @@ extern actor_process_profile_definition g_profile_TAG_BTLITM = {
     7,                              // mListID
     fpcPi_CURRENT_e,                // mListPri
     PROC_TAG_SSDRINK,               // mProcName
-    &g_fpcLf_Method.mBase,          // mSubMtd
+    &g_fpcLf_Method.mBase,          // sub_method
     sizeof(daTag_BottleItem_c),     // mSize
     0,                              // mSizeOther
     0,                              // mParameters
-    &g_fopAc_Method.base,           // mSubMtd
+    &g_fopAc_Method.base,           // sub_method
     70,                             // mPriority
-    &daTag_BottleItem_MethodTable,  // mSubMtd
+    &daTag_BottleItem_MethodTable,  // sub_method
     0x64100,                        // mStatus
     5,                              // mActorType
-    fopAc_CULLBOX_CUSTOM_e,         // mCullType
+    fopAc_CULLBOX_CUSTOM_e,         // cullType
 };

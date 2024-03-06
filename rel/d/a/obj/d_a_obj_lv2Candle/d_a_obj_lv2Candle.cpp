@@ -75,7 +75,7 @@ static u32 const l_bmdIdx[3] = {
 void daLv2Candle_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -121,7 +121,7 @@ cPhs__Step daLv2Candle_c::create() {
         if (mSwType == 0xf) {
             mSwType = 0;
         }
-        mEyePos = mTorchPos;
+        eyePos = mTorchPos;
         mSw = getSw();
         if (mSw == 0xff) {
             mIsLit = true;
@@ -368,8 +368,8 @@ int daLv2Candle_c::Execute() {
 
 /* 8058EEC8-8058EF6C 000F68 00A4+00 1/1 0/0 0/0 .text            Draw__13daLv2Candle_cFv */
 int daLv2Candle_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

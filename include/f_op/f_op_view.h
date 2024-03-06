@@ -7,7 +7,7 @@
 
 struct view_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition mBase;
-    /* 0x24 */ leafdraw_method_class* mSubMtd; // Subclass methods
+    /* 0x24 */ leafdraw_method_class* sub_method; // Subclass methods
     /* 0x28 */ u8 unk28;
     /* 0x29 */ u8 unk29[3]; // pad
     /* 0x2C */ u32 unk2C;
@@ -41,7 +41,7 @@ struct view_port_class {
 };
 
 struct view_class : public leafdraw_class {
-    /* 0x0C0 */ leafdraw_method_class* mSubMtd;
+    /* 0x0C0 */ leafdraw_method_class* sub_method;
     /* 0x0C4 */ u8 field_0xc4;
     /* 0x0C8 */ f32 mNear;
     /* 0x0CC */ f32 mFar;

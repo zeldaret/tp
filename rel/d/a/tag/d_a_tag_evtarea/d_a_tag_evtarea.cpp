@@ -25,11 +25,11 @@ u32 daTag_EvtArea_c::getOffEvtBit() {
 }
 
 u8 daTag_EvtArea_c::getBitSW() {
-    return orig.angle.x & 0xff;
+    return home.angle.x & 0xff;
 }
 
 u8 daTag_EvtArea_c::getBitSW2() {
-    return (orig.angle.x & 0xff00) >> 8;
+    return (home.angle.x & 0xff00) >> 8;
 }
 
 /* 8048C4F8-8048C728 000078 0230+00 2/1 0/0 0/0 .text            create__15daTag_EvtArea_cFv */
@@ -50,50 +50,50 @@ cPhs__Step daTag_EvtArea_c::create() {
         case 10:
         case 11:
         case 12:
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 100.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 100.0f;
             break;
         case 13:
-            mScale.x *= 200.0f;
-            mScale.y *= 200.0f;
-            mScale.z *= 200.0f;
+            scale.x *= 200.0f;
+            scale.y *= 200.0f;
+            scale.z *= 200.0f;
             break;
         case 14:
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 100.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 100.0f;
             break;
         case 15:
-            mScale.x *= 0.5f;
-            mScale.z *= 0.5f;
-            mScale.x *= 1000.0f;
-            mScale.y *= 1000.0f;
-            mScale.z *= 1000.0f;
+            scale.x *= 0.5f;
+            scale.z *= 0.5f;
+            scale.x *= 1000.0f;
+            scale.y *= 1000.0f;
+            scale.z *= 1000.0f;
             break;
         case 16:
         case 17:
         case 18:
         case 19:
         case 20:
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 100.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 100.0f;
             break;
         case 21:
-            mScale.x *= 1000.0f;
-            mScale.z *= 1000.0f;
+            scale.x *= 1000.0f;
+            scale.z *= 1000.0f;
             break;
         case 22:
         case 23:
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 100.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 100.0f;
             break;
         default:
-            mScale.x *= 100.0f;
-            mScale.y *= 100.0f;
-            mScale.z *= 100.0f;
+            scale.x *= 100.0f;
+            scale.y *= 100.0f;
+            scale.z *= 100.0f;
     }
     if (isDelete()) {
         return cPhs_ERROR_e;
@@ -110,24 +110,24 @@ bool daTag_EvtArea_c::Delete() {
 
 /* 8048C730-8048C894 0002B0 0164+00 1/1 0/0 0/0 .text            Execute__15daTag_EvtArea_cFv */
 bool daTag_EvtArea_c::Execute() {
-    if (orig.roomNo == dComIfGp_roomControl_getStayNo()) {
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
         if (isDelete()) {
             fopAcM_delete(this);
             return true;
         } else {
-            mAttentionInfo.mPosition = current.pos;
+            attention_info.position = current.pos;
             if (getType() == 8) {
-                mAttentionInfo.mPosition.y += 100.0f;
+                attention_info.position.y += 100.0f;
             }
-            mGroup = 0;
-            mEyePos = mAttentionInfo.mPosition;
+            group = 0;
+            eyePos = attention_info.position;
             if (getType() == 15) {
                 if (chkPointInArea(daPy_getPlayerActorClass()->current.pos)) {
-                    mEyePos = daPy_getPlayerActorClass()->mEyePos;
-                    mGroup = 4;
+                    eyePos = daPy_getPlayerActorClass()->eyePos;
+                    group = 4;
                 }
             }
-            mAttentionInfo.mFlags = 0;
+            attention_info.flags = 0;
             return true;
         }
     } else {
@@ -173,10 +173,10 @@ BOOL daTag_EvtArea_c::chkPointInArea(cXyz param_0, cXyz param_1) {
         if ((getOnEvtBit() != -1 && daNpcT_chkEvtBit(getOnEvtBit()))
             || (getBitSW() != 0xff && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this)))
             || (getOnEvtBit() == -1 && getBitSW() == 0xff)) {
-            local_84 = mScale + param_1;
+            local_84 = scale + param_1;
             if (getType() == 15 || getType() == 16) {
                 local_6c = daPy_getPlayerActorClass()->current.pos;
-                local_6c -= orig.pos;
+                local_6c -= home.pos;
                 mDoMtx_YrotS(mDoMtx_stack_c::now, -current.angle.y);
                 mDoMtx_stack_c::multVec(&local_6c, &local_6c);
                 local_48.x = -local_84.x;

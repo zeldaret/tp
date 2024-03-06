@@ -514,12 +514,12 @@ void daPy_py_c::setMidnaMsgNum(fopAc_ac_c* param_0, u16 param_1) {
 
 /* 8014150C-80141514 13BE4C 0008+00 1/0 0/0 0/0 .text            getModelMtx__9daPy_py_cFv */
 MtxP daPy_py_c::getModelMtx() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 80141514-8014151C 13BE54 0008+00 1/0 0/0 0/0 .text            getInvMtx__9daPy_py_cFv */
 MtxP daPy_py_c::getInvMtx() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 8014151C-80141524 13BE5C 0008+00 1/0 0/0 0/0 .text            getShadowTalkAtnPos__9daPy_py_cFv
@@ -530,37 +530,37 @@ cXyz* daPy_py_c::getShadowTalkAtnPos() {
 
 /* 80141524-8014152C 13BE64 0008+00 1/0 0/0 0/0 .text            getLeftItemMatrix__9daPy_py_cFv */
 MtxP daPy_py_c::getLeftItemMatrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 8014152C-80141534 13BE6C 0008+00 1/0 0/0 0/0 .text            getRightItemMatrix__9daPy_py_cFv */
 MtxP daPy_py_c::getRightItemMatrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 80141534-8014153C 13BE74 0008+00 1/0 0/0 0/0 .text            getLeftHandMatrix__9daPy_py_cFv */
 MtxP daPy_py_c::getLeftHandMatrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 8014153C-80141544 13BE7C 0008+00 1/0 0/0 0/0 .text            getRightHandMatrix__9daPy_py_cFv */
 MtxP daPy_py_c::getRightHandMatrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 80141544-8014154C 13BE84 0008+00 1/0 0/0 0/0 .text getLinkBackBone1Matrix__9daPy_py_cFv */
 MtxP daPy_py_c::getLinkBackBone1Matrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 8014154C-80141554 13BE8C 0008+00 1/0 0/0 0/0 .text            getWolfMouthMatrix__9daPy_py_cFv */
 MtxP daPy_py_c::getWolfMouthMatrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 80141554-8014155C 13BE94 0008+00 1/0 0/0 0/0 .text getWolfBackbone2Matrix__9daPy_py_cFv */
 MtxP daPy_py_c::getWolfBackbone2Matrix() {
-    return mCullMtx;
+    return cullMtx;
 }
 
 /* 8014155C-80141564 13BE9C 0008+00 1/0 0/0 0/0 .text            getBottleMtx__9daPy_py_cFv */

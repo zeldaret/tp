@@ -26,7 +26,7 @@ static int g_fopAc_type;
 
 /* 80018CE0-80018D0C 013620 002C+00 0/0 12/12 391/391 .text            fopAc_IsActor__FPv */
 s32 fopAc_IsActor(void* i_this) {
-    return fpcM_IsJustType(g_fopAc_type, ((fopAc_ac_c*)i_this)->mAcType);
+    return fpcM_IsJustType(g_fopAc_type, ((fopAc_ac_c*)i_this)->actor_type);
 }
 
 /* ############################################################################################## */
@@ -45,7 +45,7 @@ static int fopAc_Draw(void* i_this) {
             !fopAcM_checkStatus(a_this, 0x21000000))
         {
             fopAcM_OffCondition(a_this, fopAcCnd_NODRAW_e);
-            ret = fpcLf_DrawMethod((leafdraw_method_class*)a_this->mSubMtd, a_this);
+            ret = fpcLf_DrawMethod((leafdraw_method_class*)a_this->sub_method, a_this);
         } else {
             fopAcM_OnCondition(a_this, fopAcCnd_NODRAW_e);
         }
@@ -64,7 +64,7 @@ static int fopAc_Execute(void* i_this) {
     if (!dComIfGp_isPauseFlag() && dScnPly_c::isPause()) {
         if (!dComIfA_PauseCheck()) {
             daSus_c::check(a_this);
-            a_this->mEvtInfo.beforeProc();
+            a_this->eventInfo.beforeProc();
             s32 move = dComIfGp_event_moveApproval(i_this);
             fopAcM_OffStatus(a_this, 0x40000000);
 
@@ -74,15 +74,15 @@ static int fopAc_Execute(void* i_this) {
                   (!fopAcM_checkStatus(a_this, fopAcStts_NOEXEC_e) || !fopAcM_CheckCondition(a_this, 4)))))
             {
                 fopAcM_OffCondition(a_this, fopAcCnd_NOEXEC_e);
-                a_this->next = a_this->current;
-                ret = fpcMtd_Execute((process_method_class*)a_this->mSubMtd, a_this);
+                a_this->old = a_this->current;
+                ret = fpcMtd_Execute((process_method_class*)a_this->sub_method, a_this);
             } else {
-                a_this->mEvtInfo.suspendProc(a_this);
+                a_this->eventInfo.suspendProc(a_this);
                 fopAcM_OnCondition(a_this, fopAcCnd_NOEXEC_e);
             }
 
             if (fopAcM_checkStatus(a_this, 0x20) &&
-                a_this->orig.pos.y - a_this->current.pos.y > 5000.0f)
+                a_this->home.pos.y - a_this->current.pos.y > 5000.0f)
             {
                 fopAcM_delete(a_this);
             }
@@ -102,9 +102,9 @@ static int fopAc_Execute(void* i_this) {
 static int fopAc_IsDelete(void* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    int isDelete = fpcMtd_IsDelete((process_method_class*)a_this->mSubMtd, a_this);
+    int isDelete = fpcMtd_IsDelete((process_method_class*)a_this->sub_method, a_this);
     if (isDelete == true) {
-        fopDwTg_DrawQTo(&a_this->mDwTg);
+        fopDwTg_DrawQTo(&a_this->draw_tag);
     }
 
     return isDelete;
@@ -114,13 +114,13 @@ static int fopAc_IsDelete(void* i_this) {
 static int fopAc_Delete(void* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    int deleted = fpcMtd_Delete((process_method_class*)a_this->mSubMtd, a_this);
+    int deleted = fpcMtd_Delete((process_method_class*)a_this->sub_method, a_this);
     if (deleted == true) {
-        fopAcTg_ActorQTo(&a_this->mAcTg);
-        fopDwTg_DrawQTo(&a_this->mDwTg);
+        fopAcTg_ActorQTo(&a_this->actor_tag);
+        fopDwTg_DrawQTo(&a_this->draw_tag);
         fopAcM_DeleteHeap(a_this);
 
-        dDemo_actor_c* demoAc = dDemo_c::getActor(a_this->mDemoActorId);
+        dDemo_actor_c* demoAc = dDemo_c::getActor(a_this->demoActorID);
         if (demoAc != NULL) {
             demoAc->setActor(NULL);
         }
@@ -136,47 +136,47 @@ static int fopAc_Create(void* i_this) {
     if (fpcM_IsFirstCreating(i_this)) {
         actor_process_profile_definition* profile =
             (actor_process_profile_definition*)fpcM_GetProfile(i_this);
-        a_this->mAcType = fpcBs_MakeOfType(&g_fopAc_type);
-        a_this->mSubMtd = (profile_method_class*)profile->mSubMtd;
+        a_this->actor_type = fpcBs_MakeOfType(&g_fopAc_type);
+        a_this->sub_method = (profile_method_class*)profile->sub_method;
 
-        fopAcTg_Init(&a_this->mAcTg, a_this);
-        fopAcTg_ToActorQ(&a_this->mAcTg);
-        fopDwTg_Init(&a_this->mDwTg, a_this);
+        fopAcTg_Init(&a_this->actor_tag, a_this);
+        fopAcTg_ToActorQ(&a_this->actor_tag);
+        fopDwTg_Init(&a_this->draw_tag, a_this);
 
-        a_this->mStatus = profile->mStatus;
-        a_this->mGroup = profile->mActorType;
-        a_this->mCullType = profile->mCullType;
+        a_this->actor_status = profile->status;
+        a_this->group = profile->mActorType;
+        a_this->cullType = profile->cullType;
 
         fopAcM_prm_class* append = fopAcM_GetAppend(a_this);
         if (append != NULL) {
             fopAcM_SetParam(a_this, append->mParameter);
-            a_this->orig.pos = append->mPos;
-            a_this->orig.angle = append->mAngle;
+            a_this->home.pos = append->mPos;
+            a_this->home.angle = append->mAngle;
             a_this->shape_angle = append->mAngle;
-            a_this->mParentPcId = append->mParentPId;
-            a_this->mSubtype = append->mSubtype;
-            a_this->mScale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f,
+            a_this->parentActorID = append->mParentPId;
+            a_this->subtype = append->mSubtype;
+            a_this->scale.set(append->mScale[0] * 0.1f, append->mScale[1] * 0.1f,
                               append->mScale[2] * 0.1f);
-            a_this->mSetID = append->mEnemyNo;
-            a_this->orig.roomNo = append->mRoomNo;
+            a_this->setID = append->mEnemyNo;
+            a_this->home.roomNo = append->mRoomNo;
         }
 
-        a_this->next = a_this->orig;
-        a_this->current = a_this->orig;
-        a_this->mEyePos = a_this->orig.pos;
-        a_this->mMaxFallSpeed = -100.0f;
-        a_this->mAttentionInfo.field_0x0[0] = 1;
-        a_this->mAttentionInfo.field_0x0[1] = 2;
-        a_this->mAttentionInfo.field_0x0[2] = 3;
-        a_this->mAttentionInfo.field_0x0[3] = 5;
-        a_this->mAttentionInfo.field_0x0[4] = 6;
-        a_this->mAttentionInfo.field_0x0[7] = 14;
-        a_this->mAttentionInfo.field_0x0[5] = 15;
-        a_this->mAttentionInfo.field_0x0[6] = 15;
-        a_this->mAttentionInfo.field_0x0[8] = 51;
-        a_this->mAttentionInfo.mPosition = a_this->orig.pos;
-        a_this->mAttentionInfo.field_0xa = 30;
-        dKy_tevstr_init(&a_this->mTevStr, a_this->orig.roomNo, -1);
+        a_this->old = a_this->home;
+        a_this->current = a_this->home;
+        a_this->eyePos = a_this->home.pos;
+        a_this->maxFallSpeed = -100.0f;
+        a_this->attention_info.field_0x0[0] = 1;
+        a_this->attention_info.field_0x0[1] = 2;
+        a_this->attention_info.field_0x0[2] = 3;
+        a_this->attention_info.field_0x0[3] = 5;
+        a_this->attention_info.field_0x0[4] = 6;
+        a_this->attention_info.field_0x0[7] = 14;
+        a_this->attention_info.field_0x0[5] = 15;
+        a_this->attention_info.field_0x0[6] = 15;
+        a_this->attention_info.field_0x0[8] = 51;
+        a_this->attention_info.position = a_this->home.pos;
+        a_this->attention_info.field_0xa = 30;
+        dKy_tevstr_init(&a_this->tevStr, a_this->home.roomNo, -1);
 
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo >= 0) {
@@ -184,22 +184,22 @@ static int fopAc_Create(void* i_this) {
         }
 
         dStage_FileList_dt_c* filelist = NULL;
-        if (a_this->orig.roomNo >= 0) {
+        if (a_this->home.roomNo >= 0) {
             filelist =
-                dComIfGp_roomControl_getStatusRoomDt(a_this->orig.roomNo)->mRoomDt.getFileListInfo();
+                dComIfGp_roomControl_getStatusRoomDt(a_this->home.roomNo)->mRoomDt.getFileListInfo();
         }
 
         if (filelist != NULL) {
             if (!dStage_FileList_dt_GetEnemyAppear1Flag(filelist)) {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && dComIfGs_isSwitch(sw, a_this->orig.roomNo) &&
+                if (sw != 0xFF && dComIfGs_isSwitch(sw, a_this->home.roomNo) &&
                     profile->mActorType == fopAc_ENEMY_e)
                 {
                     return cPhs_ERROR_e;
                 }
             } else {
                 u32 sw = dStage_FileList_dt_GetBitSw(filelist);
-                if (sw != 0xFF && !dComIfGs_isSwitch(sw, a_this->orig.roomNo) &&
+                if (sw != 0xFF && !dComIfGs_isSwitch(sw, a_this->home.roomNo) &&
                     profile->mActorType == fopAc_ENEMY_e)
                 {
                     return cPhs_ERROR_e;
@@ -208,10 +208,10 @@ static int fopAc_Create(void* i_this) {
         }
     }
 
-    int ret = fpcMtd_Create((process_method_class*)a_this->mSubMtd, a_this);
+    int ret = fpcMtd_Create((process_method_class*)a_this->sub_method, a_this);
     if (ret == cPhs_COMPLEATE_e) {
         s32 priority = fpcLf_GetPriority(a_this);
-        fopDwTg_ToDrawQ(&a_this->mDwTg, priority);
+        fopDwTg_ToDrawQ(&a_this->draw_tag, priority);
     } else if (ret == cPhs_ERROR_e) {
         fopAcM_OnCondition(a_this, 0x10);
     }

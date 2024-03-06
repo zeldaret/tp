@@ -17,7 +17,7 @@ void daObjBoard_c::initBaseMtx() {
 void daObjBoard_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(mScale);
+    mDoMtx_stack_c::scaleM(scale);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -38,15 +38,15 @@ static Vec l_cull_box[2] = {
 /* 8057B9C8-8057BA70 0000E8 00A8+00 1/0 0/0 0/0 .text            Create__12daObjBoard_cFv */
 int daObjBoard_c::Create() {
     if (getNameArg() == 1) {
-        mScale.x *= 10.0f;
-        mScale.z *= 10.0f;
+        scale.x *= 10.0f;
+        scale.z *= 10.0f;
     }
 
     initBaseMtx();
     fopAcM_SetMtx(this, field_0x5a8);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x * mScale.x, l_cull_box[0].y,
-                          l_cull_box[0].z * mScale.z, l_cull_box[1].x * mScale.x, l_cull_box[1].y,
-                          l_cull_box[1].z * mScale.z);
+    fopAcM_setCullSizeBox(this, l_cull_box[0].x * scale.x, l_cull_box[0].y,
+                          l_cull_box[0].z * scale.z, l_cull_box[1].x * scale.x, l_cull_box[1].y,
+                          l_cull_box[1].z * scale.z);
     return 1;
 }
 

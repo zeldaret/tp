@@ -162,7 +162,7 @@ static dCcD_SrcCyl l_cc_cyl_src = {
 // matches with vtables setup
 #ifdef NONMATCHING
 int daObjHBombkoya_c::Create() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     fopAcM_SetMtx(this, NULL);
 
     cM3dGAab aab(*mpBgW->GetBnd());
@@ -172,7 +172,7 @@ int daObjHBombkoya_c::Create() {
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mDoMtx_stack_c::scaleM(mScale.x, mScale.y, mScale.z);
+    mDoMtx_stack_c::scaleM(scale.x, scale.y, scale.z);
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
     for (int i = 0; i < 9; i++) {
@@ -354,8 +354,8 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
 /* 80C1C098-80C1C16C 000898 00D4+00 1/0 0/0 0/0 .text            Draw__16daObjHBombkoya_cFv */
 int daObjHBombkoya_c::Draw() {
     if (mActive && !i_fopAcM_isSwitch(this, getSw2No())) {
-        g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);

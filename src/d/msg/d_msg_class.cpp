@@ -847,7 +847,7 @@ void jmessage_tReference::calcDistance() {
         mDistanceScale = 1.0f;
     } else {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
-        (mActorPos - player->mAttentionInfo.mPosition).absXZ();
+        (mActorPos - player->attention_info.position).absXZ();
         mDistanceScale = 1.0f;
     }
 }

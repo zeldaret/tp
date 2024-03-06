@@ -35,8 +35,8 @@ int daTagAJnot_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     f32 y_dist_to_player = player->current.pos.y - current.pos.y;
 
-    if (y_dist_to_player >= 0.0f && y_dist_to_player <= mScale.y * 100.0f &&
-        player->current.pos.abs2XZ(current.pos) <= mScale.x * (10000.0f * mScale.x))
+    if (y_dist_to_player >= 0.0f && y_dist_to_player <= scale.y * 100.0f &&
+        player->current.pos.abs2XZ(current.pos) <= scale.x * (10000.0f * scale.x))
     {
         int prm = (fopAcM_GetParam(this) & 0xF);
 

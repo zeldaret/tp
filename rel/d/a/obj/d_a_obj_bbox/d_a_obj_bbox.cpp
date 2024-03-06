@@ -28,7 +28,7 @@ static char* l_arcName = "M_BBox";
 
 /* 80BACD38-80BACD74 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjBBox_cFv */
 void daObjBBox_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -85,7 +85,7 @@ int daObjBBox_c::Execute(Mtx** i_mtx) {
         if (hitObj != NULL) {
             if (hitObj->ChkAtType(0xd8000000)) {
                 for (int i = 0; i < 5; i++) {
-                    dComIfGp_particle_set(particle_id[i], &current.pos, NULL, &mScale, 0xff, NULL,
+                    dComIfGp_particle_set(particle_id[i], &current.pos, NULL, &scale, 0xff, NULL,
                                           -1, NULL, NULL, NULL);
                 }
                 fopAcM_seStart(this, Z2SE_OBJ_WOODBOX_BREAK, 0);
@@ -103,8 +103,8 @@ int daObjBBox_c::Execute(Mtx** i_mtx) {
 
 /* 80BAD234-80BAD2D8 000574 00A4+00 1/0 0/0 0/0 .text            Draw__11daObjBBox_cFv */
 int daObjBBox_c::Draw() {
-    g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

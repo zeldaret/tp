@@ -105,7 +105,7 @@ static bool hitCheck(daSwc00_c* i_swc) {
         f32 xz_dist = fopAcM_searchActorDistanceXZ2(i_swc, player);
         f32 y_dist = fopAcM_searchActorDistanceY(i_swc, player);
 
-        if (xz_dist < i_swc->mScale.x && -100.0f < y_dist && y_dist < i_swc->mScale.y) {
+        if (xz_dist < i_swc->scale.x && -100.0f < y_dist && y_dist < i_swc->scale.y) {
             return true;
         }
     } else if (shape == 0) {

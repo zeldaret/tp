@@ -15,7 +15,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 
 /* 80D12BB8-80D12BF4 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjTMoon_cFv */
 void daObjTMoon_c::initBaseMtx() {
-    mpModel->setBaseScale(mScale);
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -66,12 +66,12 @@ int daObjTMoon_c::execute() {
         (field_0x574 != 0x3ff) &&
             (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
-        fopDwTg_DrawQTo(&mDwTg);
+        fopDwTg_DrawQTo(&draw_tag);
         return 1;
     } else if ((field_0x574 != 0x3ff) &&
                (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
-        fopDwTg_ToDrawQ(&mDwTg, fpcLf_GetPriority(this));
+        fopDwTg_ToDrawQ(&draw_tag, fpcLf_GetPriority(this));
         return 1;
     }
     return 1;
@@ -125,14 +125,14 @@ extern actor_process_profile_definition g_profile_Obj_TMoon = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_TMoon,          // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.mBase,   // sub_method
     sizeof(daObjTMoon_c),    // mSize
     0,                       // mSizeOther
     0,                       // mParameters
-    &g_fopAc_Method.base,    // mSubMtd
+    &g_fopAc_Method.base,    // sub_method
     569,                     // mPriority
-    &l_daObjTMoon_Method,    // mSubMtd
+    &l_daObjTMoon_Method,    // sub_method
     0x40000,                 // mStatus
     fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // mCullType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

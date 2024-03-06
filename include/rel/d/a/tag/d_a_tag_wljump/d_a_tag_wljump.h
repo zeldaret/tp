@@ -17,7 +17,7 @@ public:
         if (field_0x568 < 0) {
             return NULL;
         } else {
-            return &mEyePos;
+            return &eyePos;
         }
     }
 

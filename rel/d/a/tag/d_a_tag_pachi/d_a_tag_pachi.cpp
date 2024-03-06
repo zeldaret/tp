@@ -50,7 +50,7 @@ int daTagPati_c::Execute() {
 void daTagPati_c::col_set() {
     mCyl.SetR(1350.f);
     mCyl.SetH(300000.0f);
-    mCyl.SetC(orig.pos);
+    mCyl.SetC(home.pos);
     dComIfG_Ccsp()->Set(&mCyl);
 }
 

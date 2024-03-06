@@ -17,7 +17,7 @@ public:
         /* 0x00 */ bool field_0x00;
         /* 0x04 */ cXyz mPos;
         /* 0x10 */ csXyz mAngle;
-        /* 0x18 */ cXyz mScale;
+        /* 0x18 */ cXyz scale;
         /* 0x24 */ dPaPo_c field_0x24;
     };  // Size: 0x5C
 

@@ -200,7 +200,7 @@ int daAlink_c::procSpinnerWaitInit() {
     setBgCheckParam();
     setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, daAlinkHIO_board_c0::m.mSitAnmSpeed, 4.0f);
     speed.y = 0.0f;
-    setSpecialGravity(0.0f, mMaxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     mProcVar2.field_0x300c = 0;
 
