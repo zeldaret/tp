@@ -4217,7 +4217,7 @@ int daNpcF_Path_c::setNextIdx() {
 }
 
 /* 80150C18-80150C60 14B558 0048+00 0/0 0/0 9/9 .text            getNextIdx__13daNpcF_Path_cFv */
-u16 daNpcF_Path_c::getNextIdx() {
+int daNpcF_Path_c::getNextIdx() {
     u16 ret = mIdx;
 
     daNpcF_incIdx(mpRoomPath->m_num, ret, chkClose(), field_0x02);

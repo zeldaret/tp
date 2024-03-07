@@ -867,7 +867,13 @@ private:
 
 public:
     /* 80150870 */ void initialize(dPath*, int);
-};
+
+    daNpcF_SPCurve_c() {
+        initialize(NULL, 0);
+    }
+
+    virtual ~daNpcF_SPCurve_c() {}
+};  // Size: 0x60C
 
 class daNpcF_Path_c {
 private:
@@ -888,17 +894,23 @@ public:
     /* 80150A7C */ void chkPassedDst(cXyz);
     /* 80150BBC */ void reverse();
     /* 80150BE0 */ int setNextIdx();
-    /* 80150C18 */ u16 getNextIdx();
+    /* 80150C18 */ int getNextIdx();
     /* 80150C60 */ u16 getBeforeIdx();
     /* 80150CA8 */ int getBeforePos(cXyz&);
     /* 80150D44 */ int getNextPos(cXyz&);
     /* 80150DE0 */ int getDstPos(cXyz, cXyz&);
     /* 80150EB4 */ void setNextIdxDst(cXyz);
 
-    u16& getIdx() { return mIdx; };
-    inline Vec getPntPos(int i_idx) { return mpRoomPath->m_points[i_idx].m_position; }
+    daNpcF_Path_c() {
+        initialize();
+    }
+
+    virtual ~daNpcF_Path_c() {}
+
+    int getIdx() { return mIdx; };
+    Vec getPntPos(int i_idx) { return mpRoomPath->m_points[i_idx].m_position; }
     int chkClose() { return dPath_ChkClose(mpRoomPath); }
-};
+};  // Size: 0x630
 
 class daNpcF_Lookat_c {
 private:
