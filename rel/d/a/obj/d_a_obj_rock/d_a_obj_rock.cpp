@@ -4,8 +4,15 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_rock/d_a_obj_rock.h"
+
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
+#include "SSystem/SComponent/c_math.h"
+
+#define NONMATCHING 0
 
 //
 // Types:
@@ -14,71 +21,47 @@
 struct rock_ss {
     /* 80CBE5A4 */ ~rock_ss();
     /* 80CBE678 */ rock_ss();
-};
 
-struct request_of_phase_process_class {};
+    /* 0x00 */ J3DModel* mpModel;
+    /* 0x04 */ cXyz mPos;
+    /* 0x10 */ cXyz mScale;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ s16 mRot;
+    /* 0x24 */ dCcD_Sph field_0x24;
+    /* 0x15C */ s8 mActive;
+}; // Size: 0x160
 
-struct obj_rock_class {};
+STATIC_ASSERT(sizeof(rock_ss) == 0x160);
 
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
+class obj_rock_class : public fopAc_ac_c {
+public:
+    int set_pos_check(int);
+    
+    /* 0x568  */ request_of_phase_process_class mPhaseReq;
+    /* 0x570  */ u8 field_0x570;
+    /* 0x571  */ u8 field_0x571;
+    /* 0x572  */ u8 field_0x572;
+    /* 0x574  */ s16 field_0x574;
+    /* 0x578  */ rock_ss mRockArr[0x10];
+    /* 0x1B78 */ s32 mCount;
+    /* 0x1B7C */ dCcD_Stts mStts;
+    /* 0x1BB9 */ u8 field_0x1bb8;
+    /* 0x1BB9 */ bool mInitialized;
+}; // Size: 0x1BBC
 
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct J3DModel {};
-
-struct J3DModelData {};
-
-struct dComIfG_play_c {
-    /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
-    /* 8002CB30 */ void removeSimpleModel(J3DModelData*, int);
-    /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
-};
-
-struct dBgS_ObjGndChk_Spl {
-    /* 800777B0 */ dBgS_ObjGndChk_Spl();
-    /* 80077848 */ ~dBgS_ObjGndChk_Spl();
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cBgS_GndChk {
-    /* 80267D0C */ void SetPos(Vec const*);
-};
-
-struct cBgS {
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-};
+STATIC_ASSERT(sizeof(obj_rock_class) == 0x1BBC);
 
 //
 // Forward References:
 //
 
-extern "C" static void daObj_Rock_Draw__FP14obj_rock_class();
-extern "C" static void daObj_Rock_Execute__FP14obj_rock_class();
+extern "C" static int daObj_Rock_Draw__FP14obj_rock_class();
+extern "C" static int daObj_Rock_Execute__FP14obj_rock_class();
 extern "C" static bool daObj_Rock_IsDelete__FP14obj_rock_class();
-extern "C" static void daObj_Rock_Delete__FP14obj_rock_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
+extern "C" static int daObj_Rock_Delete__FP14obj_rock_class();
+extern "C" static int useHeapInit__FP10fopAc_ac_c();
 extern "C" static void set_pos_check__FP14obj_rock_classi();
-extern "C" static void daObj_Rock_Create__FP10fopAc_ac_c();
+extern "C" static int daObj_Rock_Create__FP10fopAc_ac_c();
 extern "C" void __dt__7rock_ssFv();
 extern "C" void __ct__7rock_ssFv();
 extern "C" void __dt__8cM3dGSphFv();
@@ -122,8 +105,6 @@ extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void MtxPush__Fv();
 extern "C" void MtxPull__Fv();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __construct_array();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_26();
@@ -133,16 +114,12 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -150,29 +127,62 @@ extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 /* 80CBDC98-80CBDD20 000078 0088+00 1/0 0/0 0/0 .text            daObj_Rock_Draw__FP14obj_rock_class
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObj_Rock_Draw(obj_rock_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/daObj_Rock_Draw__FP14obj_rock_class.s"
+static int daObj_Rock_Draw(obj_rock_class* i_this) {
+    int room = fopAcM_GetRoomNo(i_this);
+    rock_ss* rock = i_this->mRockArr;
+
+    for(int i = 0; i < i_this->mCount; i++, rock++) {
+        if (rock->mActive) {
+            dComIfGp_entrySimpleModel(rock->mpModel, room);
+        }
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80CBE7A4-80CBE7A8 000000 0004+00 3/3 0/0 0/0 .rodata          @3814 */
+#if !NONMATCHING
 SECTION_RODATA static f32 const lit_3814 = 100.0f;
 COMPILER_STRIP_GATE(0x80CBE7A4, &lit_3814);
+#endif
 
 /* 80CBDD20-80CBDE48 000100 0128+00 2/1 0/0 0/0 .text daObj_Rock_Execute__FP14obj_rock_class */
+#if NONMATCHING
+static int daObj_Rock_Execute(obj_rock_class* i_this) {
+    if (i_this->field_0x574 == 0) {
+        rock_ss* rock = i_this->mRockArr;
+        for(int i = 0; i < i_this->mCount; i++, rock++) {
+            if (rock->mActive) {
+                mDoMtx_trans(mDoMtx_stack_c::get(), rock->mPos.x, rock->mPos.y + rock->field_0x1c, rock->mPos.z);
+                mDoMtx_YrotM(mDoMtx_stack_c::get(), rock->mRot);
+                mDoMtx_stack_c::scaleM(rock->mScale.x, rock->mScale.y, rock->mScale.z);
+
+                rock->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+
+                rock->field_0x24.SetC(rock->mPos);
+                rock->field_0x24.SetR(rock->mScale.x * 100.0f);
+            }
+        }
+        i_this->field_0x574 = 1;
+    } else {
+        rock_ss* rock = i_this->mRockArr;
+        for(int i = 0; i < i_this->mCount; i++, rock++) {
+            dComIfG_Ccsp2().Set(&rock->field_0x24);
+        }
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObj_Rock_Execute(obj_rock_class* param_0) {
+static asm int daObj_Rock_Execute(obj_rock_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/daObj_Rock_Execute__FP14obj_rock_class.s"
 }
 #pragma pop
+#endif
 
 /* 80CBDE48-80CBDE50 000228 0008+00 1/0 0/0 0/0 .text daObj_Rock_IsDelete__FP14obj_rock_class */
 static bool daObj_Rock_IsDelete(obj_rock_class* param_0) {
@@ -181,33 +191,42 @@ static bool daObj_Rock_IsDelete(obj_rock_class* param_0) {
 
 /* ############################################################################################## */
 /* 80CBE7E4-80CBE7E4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80CBE7E4 = "Obj_rock";
 #pragma pop
+#endif
 
 /* 80CBDE50-80CBDED8 000230 0088+00 1/0 0/0 0/0 .text daObj_Rock_Delete__FP14obj_rock_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObj_Rock_Delete(obj_rock_class* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/daObj_Rock_Delete__FP14obj_rock_class.s"
+static int daObj_Rock_Delete(obj_rock_class* i_this) {
+    if (i_this->mInitialized) {
+        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Obj_rock", 3);
+        dComIfGp_removeSimpleModel(model_data, fopAcM_GetRoomNo(i_this));
+    }
+    dComIfG_resDelete(&i_this->mPhaseReq, "Obj_rock");
+    return TRUE;
 }
-#pragma pop
 
 /* 80CBDED8-80CBDF84 0002B8 00AC+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void useHeapInit(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/useHeapInit__FP10fopAc_ac_c.s"
+static int useHeapInit(fopAc_ac_c* i_this) {
+    obj_rock_class* a_this = static_cast<obj_rock_class*>(i_this);
+
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Obj_rock", 3);
+
+    for (int i = 0; i < a_this->mCount; i++) {
+        a_this->mRockArr[i].mpModel = mDoExt_J3DModel__create(model_data, 0x20000, 0x11000084);
+        if (a_this->mRockArr[i].mpModel == NULL) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80CBE7A8-80CBE7AC 000004 0004+00 0/2 0/0 0/0 .rodata          @3894 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u8 const lit_3894[4] = {
@@ -252,20 +271,35 @@ COMPILER_STRIP_GATE(0x80CBE7BC, &lit_3897);
 SECTION_RODATA static f32 const lit_3898 = 200.0f;
 COMPILER_STRIP_GATE(0x80CBE7C4, &lit_3898);
 #pragma pop
+#endif
 
 /* 80CBDF84-80CBE138 000364 01B4+00 1/1 0/0 0/0 .text            set_pos_check__FP14obj_rock_classi
  */
+#if NONMATCHING
+static int set_pos_check(obj_rock_class* i_this, int index) {
+    for (int i = 0; i < index; i++) {
+        cXyz dir = i_this->mRockArr[i].mPos - i_this->mRockArr[index].mPos;
+        if (dir.abs() < 200.0f) {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void set_pos_check(obj_rock_class* param_0, int param_1) {
+static asm int set_pos_check(obj_rock_class* param_0, int index) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/set_pos_check__FP14obj_rock_classi.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80CBE7C8-80CBE7CC 000024 0004+00 0/1 0/0 0/0 .rodata          @4012 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4012 = 65536.0f;
@@ -308,6 +342,7 @@ SECTION_RODATA static u8 const lit_4018[8] = {
 };
 COMPILER_STRIP_GATE(0x80CBE7DC, &lit_4018);
 #pragma pop
+#endif
 
 /* 80CBE7F0-80CBE830 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3926 */
 static dCcD_SrcSph cc_sph_src = {
@@ -324,14 +359,105 @@ static dCcD_SrcSph cc_sph_src = {
 
 /* 80CBE138-80CBE5A4 000518 046C+00 1/0 0/0 0/0 .text            daObj_Rock_Create__FP10fopAc_ac_c
  */
+#if NONMATCHING
+static int daObj_Rock_Create(fopAc_ac_c* i_this) {
+    obj_rock_class* a_this = static_cast<obj_rock_class*>(i_this);
+    fopAcM_SetupActor(a_this, obj_rock_class);
+
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "Obj_rock");
+    if (step == cPhs_COMPLEATE_e) {
+        a_this->field_0x570 = fopAcM_GetParam(a_this);
+        a_this->field_0x571 = fopAcM_GetParamBit(a_this, 8, 8);
+        a_this->field_0x572 = fopAcM_GetParamBit(a_this, 16, 8);
+
+        if (a_this->field_0x572 == 0xFF) {
+            a_this->field_0x572 = 0;
+        }
+
+        a_this->mCount = a_this->field_0x570 + 1;
+        if (a_this->mCount > 0x10) {
+            a_this->mCount = 0x10;
+        }
+        
+        if (!fopAcM_entrySolidHeap(a_this, (heapCallbackFunc)useHeapInit, 0x4B000)) {
+            return cPhs_ERROR_e;
+        } else {
+            MtxTrans(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z, 0);
+
+            cXyz init_pos(0.0f, 0.0f, 0.0f);
+            dBgS_GndChk gnd_chk;
+            dBgS_ObjGndChk_Spl obj_gnd_chk;
+
+            int count = 0;
+            cM_initRnd2(0x10, 0x7b, 0x50);
+
+            cXyz pos = a_this->current.pos;
+            pos.y += 100.0f;
+            obj_gnd_chk.SetPos((Vec*)&pos);
+
+            f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
+            for (int i = 0; i < a_this->mCount; i++) {
+                MtxPush();
+                mDoMtx_YrotM(*calc_mtx, cM_rndF2(65536.0f));
+                MtxPosition(&init_pos, &a_this->mRockArr[i].mPos);
+                MtxPull();
+
+                pos.x = a_this->mRockArr[i].mPos.x;
+                pos.y = a_this->mRockArr[i].mPos.y + 100.0f;
+                pos.z = a_this->mRockArr[i].mPos.z;
+                gnd_chk.SetPos((Vec*)&pos);
+                
+                a_this->mRockArr[i].mPos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+                if (a_this->set_pos_check(i) && a_this->mRockArr[i].mPos.y < gnd_height) {
+                    a_this->mRockArr[i].mActive = 1;
+                    a_this->mRockArr[i].mScale.x = cM_rndF2(0.4f) + 0.5f;
+                    a_this->mRockArr[i].mScale.z = cM_rndF2(0.4f) + 0.5f;
+                    a_this->mRockArr[i].mScale.y = cM_rndF2(0.4f) + 0.5f;
+                    a_this->mRockArr[i].field_0x1c = -cM_rndF2(70.0f);
+                    a_this->mRockArr[i].mRot = cM_rndF2(65536.0f);
+
+                } else {
+                    count++;
+                    i--;
+                    if (count > 10000) {
+                        return cPhs_ERROR_e;
+                    }
+                }
+
+                init_pos.z = cM_rndF2(1.0f);
+                init_pos.z = 1.0f - (init_pos.z * init_pos.z);
+                init_pos.z *= 100.0f * a_this->field_0x571;
+            }
+
+            a_this->mStts.Init(0xff, 0, a_this);
+
+            for (int i = 0; i < a_this->mCount; i++) {
+                a_this->mRockArr[i].field_0x24.Set(cc_sph_src);
+                a_this->mRockArr[i].field_0x24.SetStts(&a_this->mStts);
+            }
+
+            daObj_Rock_Execute(a_this);
+
+            J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Obj_rock", 3);
+            dComIfGp_addSimpleModel(model_data, fopAcM_GetRoomNo(a_this), 0);
+
+            a_this->mInitialized = 1;
+        }
+    }
+
+    return step;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObj_Rock_Create(fopAc_ac_c* param_0) {
+static asm int daObj_Rock_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/daObj_Rock_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80CBE830-80CBE850 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Rock_Method */
@@ -356,6 +482,7 @@ SECTION_DATA extern void* g_profile_OBJ_ROCK[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
+#if !NONMATCHING
 /* 80CBE880-80CBE88C 000090 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
 SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL /* RTTI */,
@@ -369,8 +496,12 @@ SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
     (void*)NULL,
     (void*)__dt__8cM3dGSphFv,
 };
+#endif
 
 /* 80CBE5A4-80CBE678 000984 00D4+00 1/1 0/0 0/0 .text            __dt__7rock_ssFv */
+#if NONMATCHING
+rock_ss::~rock_ss() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -379,8 +510,12 @@ asm rock_ss::~rock_ss() {
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/__dt__7rock_ssFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CBE678-80CBE70C 000A58 0094+00 1/1 0/0 0/0 .text            __ct__7rock_ssFv */
+#if NONMATCHING
+rock_ss::rock_ss() {}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -389,7 +524,9 @@ asm rock_ss::rock_ss() {
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/__ct__7rock_ssFv.s"
 }
 #pragma pop
+#endif
 
+#if !NONMATCHING
 /* 80CBE70C-80CBE754 000AEC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
@@ -411,5 +548,6 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #include "asm/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CBE7E4-80CBE7E4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
