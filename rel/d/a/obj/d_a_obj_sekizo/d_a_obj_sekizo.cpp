@@ -4,71 +4,13 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/bg/d_bg_s.h"
-#include "d/bg/d_bg_w.h"
-#include "d/d_procname.h"
-#include "dol2asm.h"
+#include "d/com/d_com_inf_game.h"
 
-class daObj_Sekizo_c : public dBgS_MoveBgActor {
-public:
-    /* 80CCDC0C */ cPhs__Step create();
-
-    /* 80CCDD00 */ int CreateHeap();
-    /* 80CCDD8C */ int Create();
-    /* 80CCDDE8 */ int Delete();
-    /* 80CCDE3C */ int Execute(Mtx**);
-    /* 80CCDEF4 */ int Draw();
-    /* 80CCDFA4 */ void initBaseMtx();
-    /* 80CCDFE0 */ void setBaseMtx();
-
-    // TODO: needed to match size, but haven't found it used yet
-    /* 0x5A0 */ u32 field_0x5a0;
-
-    /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
-
-    /* 0x5AC */ J3DModel* mpModel;
-    /* 0x5B0 */ u8 field_0x5b0;
-    /* 0x5B1 */ bool field_0x5b1;
-    /* 0x5B2 */ bool field_0x5b2;
-};  // Size: 0x5B4
-
-STATIC_ASSERT(sizeof(daObj_Sekizo_c) == 0x5B4);
-
-class daObj_Sekizo_Param_c {
-public:
-    /* 80CCE118 */ virtual ~daObj_Sekizo_Param_c() {}
-};
-
-//
-// Forward References:
-//
-
-extern "C" void create__14daObj_Sekizo_cFv();
-extern "C" void CreateHeap__14daObj_Sekizo_cFv();
-extern "C" void Create__14daObj_Sekizo_cFv();
-extern "C" void Delete__14daObj_Sekizo_cFv();
-extern "C" void Execute__14daObj_Sekizo_cFPPA3_A4_f();
-extern "C" void Draw__14daObj_Sekizo_cFv();
-extern "C" void __sinit_d_a_obj_sekizo_cpp();
-extern "C" void __dt__20daObj_Sekizo_Param_cFv();
-extern "C" extern char const* const d_a_obj_sekizo__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void __dl__FPv();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" void __register_global_object();
+// TODO: remove? or am I missing something?
+// #include "JSystem/JKernel/JKRHeap.h"
+// #include "d/bg/d_bg_s.h"
+// #include "d/bg/d_bg_w.h"
+// #include "d/d_procname.h"
 
 /* 80CCE17C-80CCE188 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
@@ -76,9 +18,7 @@ static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 80CCE188-80CCE19C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -86,7 +26,6 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
 
 /* 80CCE19C-80CCE1A4 000020 0008+00 2/3 0/0 0/0 .data            l_bmdData */
 static struct {
@@ -95,54 +34,25 @@ static struct {
 } l_bmdData[1] = {4, 1};
 
 /* 80CCE1A4-80CCE1AC 000028 0008+00 0/1 0/0 0/0 .data            l_dzbData */
-// TODO: this needs the pragmas but not l_bmdData - why? is it being being dropped
-// because it's unused?
-#pragma push
-#pragma force_active on
 static struct {
     u32 dzbIdx;
     u32 resIdx;
 } l_dzbData[1] = {7, 1};
-#pragma pop
 
 /* 80CCE1AC-80CCE1B4 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
 static char* l_resNameList[2] = {"", "Sekizo"};
 
-/* 80CCE204-80CCE22C 000088 0028+00 1/1 0/0 0/0 .data            __vt__14daObj_Sekizo_c */
-SECTION_DATA extern void* __vt__14daObj_Sekizo_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__14daObj_Sekizo_cFv,
-    (void*)Create__14daObj_Sekizo_cFv,
-    (void*)Execute__14daObj_Sekizo_cFPPA3_A4_f,
-    (void*)Draw__14daObj_Sekizo_cFv,
-    (void*)Delete__14daObj_Sekizo_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
 /* 80CCDC0C-80CCDD00 0000EC 00F4+00 1/1 0/0 0/0 .text            create__14daObj_Sekizo_cFv */
-// #pragma push
-// #pragma optimization_level 0
-// #pragma optimizewithasm off
-// asm int daObj_Sekizo_c::create() {
-//     nofralloc
-// #include "asm/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo/create__14daObj_Sekizo_cFv.s"
-// }
-// #pragma pop
-
 cPhs__Step daObj_Sekizo_c::create() {
     fopAcM_SetupActor(this, daObj_Sekizo_c);
 
     field_0x5b0 = 0;
-    // TODO: something to do with "dComIfG_getObjctResName2Index"? How to handle res name list?
-    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq,
-                                                  l_resNameList[l_bmdData[field_0x5b0].resIdx]);
+    cPhs__Step step =
+        (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_resNameList[l_bmdData[field_0x5b0].resIdx]);
     if (step == cPhs_COMPLEATE_e) {
         step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[field_0x5b0].resIdx],
-                                        l_dzbData[field_0x5b0].dzbIdx,
-                                        dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
+                                        l_dzbData[field_0x5b0].dzbIdx, dBgS_MoveBGProc_TypicalRotY,
+                                        0x4000, NULL);
         if (step == cPhs_ERROR_e) {
             return step;
         }
@@ -200,7 +110,6 @@ int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
 /* 80CCDEF4-80CCDFA4 0003D4 00B0+00 1/0 0/0 0/0 .text            Draw__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::Draw() {
     if (!field_0x5b2) {
-        // TODO: 0x10 literal is used to set mTevStr->field_0x37a - missing enum?
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
         dComIfGd_setListBG();
@@ -251,13 +160,14 @@ static int daObj_Sekizo_IsDelete(void* i_this) {
 }
 
 /* 80CCE240-80CCE24C 000008 000C+00 1/1 0/0 0/0 .bss             @3800 */
+// Needed for __sinit to match
 static u8 lit_3800[12];
 
 /* 80CCE24C-80CCE250 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daObj_Sekizo_Param_c l_HIO;
 
 /* 80CCE1B4-80CCE1D4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizo_MethodTable */
-SECTION_DATA static actor_method_class daObj_Sekizo_MethodTable = {
+static actor_method_class daObj_Sekizo_MethodTable = {
     (process_method_func)daObj_Sekizo_Create, (process_method_func)daObj_Sekizo_Delete,
     (process_method_func)daObj_Sekizo_Execute, (process_method_func)daObj_Sekizo_IsDelete,
     (process_method_func)daObj_Sekizo_Draw};
@@ -268,14 +178,14 @@ extern actor_process_profile_definition g_profile_OBJ_SEKIZO = {
     7,                          // mListID
     fpcPi_CURRENT_e,            // mListPrio
     PROC_OBJ_SEKIZO,            // mProcName
-    &g_fpcLf_Method.mBase,      // mSubMtd
+    &g_fpcLf_Method.mBase,      // sub_method
     sizeof(daObj_Sekizo_c),     // mSize
     0,                          // mSizeOther
     0,                          // mParameters
     &g_fopAc_Method.base,       // mSubMtd
     88,                         // mPriority
     &daObj_Sekizo_MethodTable,  // mSubMtd
-    0x44000,                    // mStatus
-    0,                          // mActorType
-    fopAc_CULLBOX_CUSTOM_e,     // mCullType
+    0x44000,                    // status
+    fopAc_ACTOR_e,              // mActorType
+    fopAc_CULLBOX_CUSTOM_e,     // cullType
 };
