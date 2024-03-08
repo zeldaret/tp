@@ -10,7 +10,7 @@
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "string.h"
 #include "dolphin/dvd.h"
-#include "global.h"
+#include "dolphin/os.h"
 
 //
 // Forward References:

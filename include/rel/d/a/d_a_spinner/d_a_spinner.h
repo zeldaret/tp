@@ -19,7 +19,7 @@ public:
     /* 804D3174 */ void setWallHit(s16, u32);
     /* 804D34B0 */ void setAnm();
     /* 804D3618 */ int setNextPathNum();
-    /* 804D3694 */ cXyz* getPathNextPos();
+    /* 804D3694 */ Vec* getPathNextPos();
     /* 804D36F4 */ int checkLineWallHit(cXyz*, cXyz*);
     /* 804D3774 */ int checkPathMove();
     /* 804D3D60 */ void setSpreadEffect();

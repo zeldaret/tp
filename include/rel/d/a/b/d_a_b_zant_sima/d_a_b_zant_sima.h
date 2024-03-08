@@ -20,10 +20,12 @@ public:
     /* 0x578 */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x57C */ u32 mPlayerID;
     /* 0x580 */ u32 mBossID;
-    /* 0x584 */ u8 field_0x584[4];
-    /* 0x588 */ f32 field_0x588;
-    /* 0x58C */ csXyz field_0x58c;
-    /* 0x594 */ Mtx field_0x594;
+    /* 0x584 */ u8 mSinkTimers[2];
+    /* 0x586 */ bool mSinkPlayer;
+    /* 0x587 */ bool mSinkZant;
+    /* 0x588 */ f32 mHeight;
+    /* 0x58C */ csXyz mRotation;
+    /* 0x594 */ Mtx mMtx;
     /* 0x5C4 */ dBgW* mpBgW;
 };
 
