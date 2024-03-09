@@ -17,6 +17,14 @@
 
 class daHeavySw_c : public dBgS_MoveBgActor {
 public:
+    enum Mode_e {
+        MODE_WAIT,
+        MODE_RIDE,
+        MODE_MOVE_INIT,
+        MODE_MOVE,
+        MODE_MOVE_END
+    };
+
     /* 80C1CBC8 */ void setBaseMtx();
     /* 80C1CC70 */ int CreateHeap();
     /* 80C1CCDC */ int create();
@@ -170,66 +178,6 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80C1DA94-80C1DA98 000000 0004+00 7/7 0/0 0/0 .rodata          @3647 */
-SECTION_RODATA static f32 const lit_3647 = 150.0f;
-COMPILER_STRIP_GATE(0x80C1DA94, &lit_3647);
-
-/* 80C1DA98-80C1DA9C 000004 0004+00 0/1 0/0 0/0 .rodata          @3648 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3648 = 450.0f;
-COMPILER_STRIP_GATE(0x80C1DA98, &lit_3648);
-#pragma pop
-
-/* 80C1DA9C-80C1DAA0 000008 0004+00 0/1 0/0 0/0 .rodata          @3649 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3649 = 100.0f;
-COMPILER_STRIP_GATE(0x80C1DA9C, &lit_3649);
-#pragma pop
-
-/* 80C1DAA0-80C1DAA4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3650 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3650 = 50.0f;
-COMPILER_STRIP_GATE(0x80C1DAA0, &lit_3650);
-#pragma pop
-
-/* 80C1DAA4-80C1DAA8 000010 0004+00 0/1 0/0 0/0 .rodata          @3651 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3651 = 20.0f;
-COMPILER_STRIP_GATE(0x80C1DAA4, &lit_3651);
-#pragma pop
-
-/* 80C1DAA8-80C1DAAC 000014 0004+00 1/8 0/0 0/0 .rodata          @3652 */
-SECTION_RODATA static u8 const lit_3652[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C1DAA8, &lit_3652);
-
-/* 80C1DAAC-80C1DAB0 000018 0004+00 0/1 0/0 0/0 .rodata          @3653 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3653 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C1DAAC, &lit_3653);
-#pragma pop
-
-/* 80C1DAB0-80C1DAB4 00001C 0004+00 0/1 0/0 0/0 .rodata          @3654 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3654 = 15.0f;
-COMPILER_STRIP_GATE(0x80C1DAB0, &lit_3654);
-#pragma pop
-
 /* 80C1DAE8-80C1DAF4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -248,147 +196,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
-#ifndef NONMATCHING
-typedef void (daHeavySw_c::*modeProcessFunc)();
-static modeProcessFunc mode_proc[] = {
-    &daHeavySw_c::modeWait, &daHeavySw_c::modeRide,    &daHeavySw_c::modeMoveInit,
-    &daHeavySw_c::modeMove, &daHeavySw_c::modeMoveEnd,
-};
-#else
-/* 80C1DB08-80C1DB14 -00001 000C+00 0/1 0/0 0/0 .data            @3770 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3770[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__11daHeavySw_cFv,
-};
-#pragma pop
-
-/* 80C1DB14-80C1DB20 -00001 000C+00 0/1 0/0 0/0 .data            @3771 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3771[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeRide__11daHeavySw_cFv,
-};
-#pragma pop
-
-/* 80C1DB20-80C1DB2C -00001 000C+00 0/1 0/0 0/0 .data            @3772 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3772[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMoveInit__11daHeavySw_cFv,
-};
-#pragma pop
-
-/* 80C1DB2C-80C1DB38 -00001 000C+00 0/1 0/0 0/0 .data            @3773 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3773[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove__11daHeavySw_cFv,
-};
-#pragma pop
-
-/* 80C1DB38-80C1DB44 -00001 000C+00 0/1 0/0 0/0 .data            @3774 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3774[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMoveEnd__11daHeavySw_cFv,
-};
-#pragma pop
-
-/* 80C1DB44-80C1DB80 00005C 003C+00 0/1 0/0 0/0 .data            mode_proc$3769 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[60] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-#endif
-
-/* 80C1DB80-80C1DBA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daHeavySw_Method */
-SECTION_DATA static void* l_daHeavySw_Method[8] = {
-    (void*)daHeavySw_Create__FP10fopAc_ac_c,
-    (void*)daHeavySw_Delete__FP11daHeavySw_c,
-    (void*)daHeavySw_Execute__FP11daHeavySw_c,
-    (void*)NULL,
-    (void*)daHeavySw_Draw__FP11daHeavySw_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80C1DBA0-80C1DBD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_HeavySw */
-SECTION_DATA extern void* g_profile_Obj_HeavySw[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x003D0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000800, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01F70000, (void*)&l_daHeavySw_Method,
-    (void*)0x00040100, (void*)0x000E0000,
-};
-
-/* 80C1DBD0-80C1DBDC 0000E8 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80C1DBDC-80C1DC00 0000F4 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C1DA78,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C1DA70,
-};
-
-/* 80C1DC00-80C1DC28 000118 0028+00 1/1 0/0 0/0 .data            __vt__11daHeavySw_c */
-SECTION_DATA extern void* __vt__11daHeavySw_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__11daHeavySw_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__11daHeavySw_cFPPA3_A4_f,
-    (void*)Draw__11daHeavySw_cFv,
-    (void*)Delete__11daHeavySw_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80C1DC28-80C1DC34 000140 000C+00 2/2 0/0 0/0 .data            __vt__15daHeavySw_HIO_c */
-SECTION_DATA extern void* __vt__15daHeavySw_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daHeavySw_HIO_cFv,
-};
-
-/* 80C1DC34-80C1DC40 00014C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
 /* 80C1CAEC-80C1CB80 0000EC 0094+00 1/1 0/0 0/0 .text            __ct__15daHeavySw_HIO_cFv */
-#ifndef NONMATCHING
 daHeavySw_HIO_c::daHeavySw_HIO_c() {
     field_0x04 = 150.0f;
     field_0x08 = 450.0f;
@@ -407,27 +215,6 @@ daHeavySw_HIO_c::daHeavySw_HIO_c() {
     field_0x33 = 5;
     field_0x34 = 4;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daHeavySw_HIO_c::daHeavySw_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__ct__15daHeavySw_HIO_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 80C1CB80-80C1CBC8 000180 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// mDoHIO_entry_c::~mDoHIO_entry_c()
-extern "C" asm void __dt__14mDoHIO_entry_cFv() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__14mDoHIO_entry_cFv.s"
-}
-#pragma pop
 
 /* 80C1CBC8-80C1CC70 0001C8 00A8+00 2/2 0/0 0/0 .text            setBaseMtx__11daHeavySw_cFv */
 void daHeavySw_c::setBaseMtx() {
@@ -448,13 +235,7 @@ int daHeavySw_c::CreateHeap() {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80C1DAB4-80C1DAB8 000020 0004+00 1/2 0/0 0/0 .rodata          @3741 */
-SECTION_RODATA static f32 const lit_3741 = 300.0f;
-COMPILER_STRIP_GATE(0x80C1DAB4, &lit_3741);
-
 /* 80C1CCDC-80C1CEB0 0002DC 01D4+00 1/1 0/0 0/0 .text            create__11daHeavySw_cFv */
-#ifdef NONMATCHING
 int daHeavySw_c::create() {
     fopAcM_SetupActor(this, daHeavySw_c);
 
@@ -488,38 +269,6 @@ int daHeavySw_c::create() {
     }
     return phase;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daHeavySw_c::create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/create__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 80C1CEB0-80C1CF20 0004B0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// dBgS_ObjAcch::~dBgS_ObjAcch()
-extern "C" asm void __dt__12dBgS_ObjAcchFv() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__12dBgS_ObjAcchFv.s"
-}
-#pragma pop
-
-/* 80C1CF20-80C1CF90 000520 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// dBgS_AcchCir::~dBgS_AcchCir()
-extern "C" asm void __dt__12dBgS_AcchCirFv() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__12dBgS_AcchCirFv.s"
-}
-#pragma pop
 
 /* 80C1CF90-80C1CFC0 000590 0030+00 1/1 0/0 0/0 .text
  * rideCallBack__11daHeavySw_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
@@ -542,56 +291,6 @@ int daHeavySw_c::Execute(Mtx** i_mtx) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80C1DAB8-80C1DABC 000024 0004+00 0/1 0/0 0/0 .rodata          @3811 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3811 = 0.5f;
-COMPILER_STRIP_GATE(0x80C1DAB8, &lit_3811);
-#pragma pop
-
-/* 80C1DABC-80C1DAC0 000028 0004+00 0/6 0/0 0/0 .rodata          @3812 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3812 = 1.0f;
-COMPILER_STRIP_GATE(0x80C1DABC, &lit_3812);
-#pragma pop
-
-/* 80C1DAC0-80C1DAC4 00002C 0004+00 0/5 0/0 0/0 .rodata          @3813 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3813 = -1.0f;
-COMPILER_STRIP_GATE(0x80C1DAC0, &lit_3813);
-#pragma pop
-
-/* 80C1DAC4-80C1DAC8 000030 0004+00 0/1 0/0 0/0 .rodata          @3814 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3814 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C1DAC4, &lit_3814);
-#pragma pop
-
-/* 80C1DAC8-80C1DACC 000034 0004+00 0/1 0/0 0/0 .rodata          @3815 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3815 = 10.0f;
-COMPILER_STRIP_GATE(0x80C1DAC8, &lit_3815);
-#pragma pop
-
-/* 80C1DACC-80C1DAD0 000038 0004+00 0/1 0/0 0/0 .rodata          @3816 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3816 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80C1DACC, &lit_3816);
-#pragma pop
-
-/* 80C1DAD0-80C1DAD4 00003C 0004+00 0/4 0/0 0/0 .rodata          @3817 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3817 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C1DAD0, &lit_3817);
-#pragma pop
-
 /* 80C1DC48-80C1DC54 000008 000C+00 1/1 0/0 0/0 .bss             @3641 */
 static u8 lit_3641[12];
 
@@ -602,12 +301,16 @@ static daHeavySw_HIO_c l_HIO;
 static u8 data_80C1DC8C[4];
 
 /* 80C1D02C-80C1D274 00062C 0248+00 1/1 0/0 0/0 .text            moveSwitch__11daHeavySw_cFv */
-// Might need to fix the data issue here
-#ifdef NONMATCHING
 void daHeavySw_c::moveSwitch() {
+    typedef void (daHeavySw_c::*modeProcessFunc)();
+    static modeProcessFunc mode_proc[] = {
+        &daHeavySw_c::modeWait, &daHeavySw_c::modeRide,    &daHeavySw_c::modeMoveInit,
+        &daHeavySw_c::modeMove, &daHeavySw_c::modeMoveEnd,
+    };
+
     (this->*mode_proc[mMode])();
     if (field_0x5d8 == 0 && field_0x5c5 == 0) {
-        if (mMode != 0) {
+        if (mMode != MODE_WAIT) {
             init_modeWait();
             field_0x7fc = 0;
             field_0x5b8 = field_0x5bc;
@@ -629,20 +332,10 @@ void daHeavySw_c::moveSwitch() {
     cLib_addCalc0(&field_0x5b0, 0.1f, 10.0f);
     field_0x5c8++;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::moveSwitch() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/moveSwitch__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D274-80C1D280 000874 000C+00 2/2 0/0 0/0 .text            init_modeWait__11daHeavySw_cFv */
 void daHeavySw_c::init_modeWait() {
-    mMode = 0;
+    mMode = MODE_WAIT;
 }
 
 /* 80C1D280-80C1D2AC 000880 002C+00 1/0 0/0 0/0 .text            modeWait__11daHeavySw_cFv */
@@ -657,20 +350,10 @@ void daHeavySw_c::init_modeRide() {
     field_0x5c4 = l_HIO.field_0x33;
     fopAcM_SetSpeedF(this, l_HIO.field_0x18);
     field_0x5d4 = l_HIO.field_0x1c;
-    mMode = 1;
+    mMode = MODE_RIDE;
 }
 
-/* ############################################################################################## */
-/* 80C1DAD4-80C1DAD8 000040 0004+00 0/3 0/0 0/0 .rodata          @3860 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3860 = 30.0f;
-COMPILER_STRIP_GATE(0x80C1DAD4, &lit_3860);
-#pragma pop
-
 /* 80C1D2D8-80C1D408 0008D8 0130+00 1/0 0/0 0/0 .text            modeRide__11daHeavySw_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void daHeavySw_c::modeRide() {
     if (field_0x5c4 != 0) {
         field_0x5c4--;
@@ -690,16 +373,6 @@ void daHeavySw_c::modeRide() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::modeRide() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeRide__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D408-80C1D434 000A08 002C+00 1/1 0/0 0/0 .text            init_modeMoveInit__11daHeavySw_cFv
  */
@@ -707,12 +380,10 @@ void daHeavySw_c::init_modeMoveInit() {
     fopAcM_SetSpeedF(this, l_HIO.field_0x20);
     field_0x5d4 = l_HIO.field_0x24;
     field_0x5c4 = l_HIO.field_0x31;
-    mMode = 2;
+    mMode = MODE_MOVE_INIT;
 }
 
 /* 80C1D434-80C1D54C 000A34 0118+00 1/0 0/0 0/0 .text            modeMoveInit__11daHeavySw_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void daHeavySw_c::modeMoveInit() {
     if (field_0x5dc == 0) {
         init_modeRide();
@@ -726,22 +397,13 @@ void daHeavySw_c::modeMoveInit() {
         }
     } else {
         cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
-        f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10 + l_HIO.field_0x14, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
+        f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10 + l_HIO.field_0x14, 1.0f,
+                                fopAcM_GetSpeedF(this), 0.1f);
         if (calc == 0.0f) {
             init_modeMove();
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::modeMoveInit() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeMoveInit__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D54C-80C1D588 000B4C 003C+00 1/1 0/0 0/0 .text            init_modeMove__11daHeavySw_cFv */
 void daHeavySw_c::init_modeMove() {
@@ -750,12 +412,10 @@ void daHeavySw_c::init_modeMove() {
     fopAcM_SetSpeedF(this, l_HIO.field_0x28);
     field_0x5d4 = l_HIO.field_0x2c;
     field_0x7fc = 0;
-    mMode = 3;
+    mMode = MODE_MOVE;
 }
 
 /* 80C1D588-80C1D688 000B88 0100+00 1/0 0/0 0/0 .text            modeMove__11daHeavySw_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void daHeavySw_c::modeMove() {
     if (field_0x5dc == 0) {
         init_modeRide();
@@ -775,21 +435,9 @@ void daHeavySw_c::modeMove() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::modeMove() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeMove__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D688-80C1D788 000C88 0100+00 2/2 0/0 0/0 .text            init_modeMoveEnd__11daHeavySw_cFv
  */
-// Matches with literals
-#ifdef NONMATCHING
 void daHeavySw_c::init_modeMoveEnd() {
     field_0x5c5 = 1;
     u8 param = fopAcM_GetParam(this);
@@ -799,18 +447,8 @@ void daHeavySw_c::init_modeMoveEnd() {
         dComIfGp_getVibration().StartShock(l_HIO.field_0x34, 0xF, cXyz(0.0f, 1.0f, 0.0f));
     }
     field_0x5c4 = l_HIO.field_0x32;
-    mMode = 4;
+    mMode = MODE_MOVE_END;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::init_modeMoveEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeMoveEnd__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D788-80C1D808 000D88 0080+00 1/0 0/0 0/0 .text            modeMoveEnd__11daHeavySw_cFv */
 void daHeavySw_c::modeMoveEnd() {
@@ -824,24 +462,7 @@ void daHeavySw_c::modeMoveEnd() {
     }
 }
 
-/* ############################################################################################## */
-/* 80C1DAD8-80C1DADC 000044 0004+00 0/1 0/0 0/0 .rodata          @3998 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3998 = 170.0f;
-COMPILER_STRIP_GATE(0x80C1DAD8, &lit_3998);
-#pragma pop
-
-/* 80C1DADC-80C1DAE0 000048 0004+00 0/1 0/0 0/0 .rodata          @3999 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3999 = 500.0f;
-COMPILER_STRIP_GATE(0x80C1DADC, &lit_3999);
-#pragma pop
-
 /* 80C1D808-80C1D91C 000E08 0114+00 1/0 0/0 0/0 .text            Draw__11daHeavySw_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 int daHeavySw_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
@@ -850,20 +471,10 @@ int daHeavySw_c::Draw() {
     dComIfGd_setList();
     cXyz curPos = cXyz(current.pos.x + 170.0f, current.pos.y, current.pos.z);
     field_0x7f8 = dComIfGd_setShadow(field_0x7f8, true, mpModel, &curPos, 500.0f, 0.0f,
-                                     current.pos.y, field_0x620.GetGroundH(), field_0x620.m_gnd, &tevStr, 0,
-                                     1.0f, dDlst_shadowControl_c::getSimpleTex());
+                                     current.pos.y, field_0x620.GetGroundH(), field_0x620.m_gnd,
+                                     &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daHeavySw_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/Draw__11daHeavySw_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80C1D91C-80C1D94C 000F1C 0030+00 1/0 0/0 0/0 .text            Delete__11daHeavySw_cFv */
 int daHeavySw_c::Delete() {
@@ -893,36 +504,24 @@ static int daHeavySw_Create(fopAc_ac_c* i_this) {
     return static_cast<daHeavySw_c*>(i_this)->create();
 }
 
-/* 80C1DA34-80C1DA70 001034 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_heavySw_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_obj_heavySw_cpp(){nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__sinit_d_a_obj_heavySw_cpp.s"
-}
-#pragma pop
+/* 80C1DB80-80C1DBA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daHeavySw_Method */
+SECTION_DATA static void* l_daHeavySw_Method[8] = {
+    (void*)daHeavySw_Create__FP10fopAc_ac_c,
+    (void*)daHeavySw_Delete__FP11daHeavySw_c,
+    (void*)daHeavySw_Execute__FP11daHeavySw_c,
+    (void*)NULL,
+    (void*)daHeavySw_Draw__FP11daHeavySw_c,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)NULL,
+};
 
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C1DA34, __sinit_d_a_obj_heavySw_cpp);
-#pragma pop
-
-/* 80C1DA70-80C1DA78 001070 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80C1DA70() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/func_80C1DA70.s"
-}
-#pragma pop
-
-/* 80C1DA78-80C1DA80 001078 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80C1DA78() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/func_80C1DA78.s"
-}
-#pragma pop
+/* 80C1DBA0-80C1DBD0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_HeavySw */
+SECTION_DATA extern void* g_profile_Obj_HeavySw[12] = {
+    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
+    (void*)0x003D0000, (void*)&g_fpcLf_Method,
+    (void*)0x00000800, (void*)NULL,
+    (void*)NULL,       (void*)&g_fopAc_Method,
+    (void*)0x01F70000, (void*)&l_daHeavySw_Method,
+    (void*)0x00040100, (void*)0x000E0000,
+};
