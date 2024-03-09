@@ -5,9 +5,9 @@
 
 #include "rel/d/a/obj/d_a_obj_rock/d_a_obj_rock.h"
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/com/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Declarations:
@@ -19,7 +19,7 @@ static int daObj_Rock_Draw(obj_rock_class* i_this) {
     int room = fopAcM_GetRoomNo(i_this);
     rock_ss* rock = i_this->mRocks;
 
-    for(int i = 0; i < i_this->mCount; i++, rock++) {
+    for (int i = 0; i < i_this->mCount; i++, rock++) {
         if (rock->mActive) {
             dComIfGp_entrySimpleModel(rock->mpModel, room);
         }
@@ -32,9 +32,10 @@ static int daObj_Rock_Draw(obj_rock_class* i_this) {
 static int daObj_Rock_Execute(obj_rock_class* i_this) {
     if (i_this->field_0x574 == 0) {
         rock_ss* rock = i_this->mRocks;
-        for(int i = 0; i < i_this->mCount; i++, rock++) {
+        for (int i = 0; i < i_this->mCount; i++, rock++) {
             if (rock->mActive) {
-                mDoMtx_trans(mDoMtx_stack_c::get(), rock->mPos.x, rock->mPos.y + rock->mOffsetY, rock->mPos.z);
+                mDoMtx_trans(mDoMtx_stack_c::get(), rock->mPos.x, rock->mPos.y + rock->mOffsetY,
+                             rock->mPos.z);
                 mDoMtx_YrotM(mDoMtx_stack_c::get(), rock->mRot);
                 mDoMtx_stack_c::scaleM(rock->mScale.x, rock->mScale.y, rock->mScale.z);
 
@@ -47,7 +48,7 @@ static int daObj_Rock_Execute(obj_rock_class* i_this) {
         i_this->field_0x574 = 1;
     } else {
         rock_ss* rock = i_this->mRocks;
-        for(int i = 0; i < i_this->mCount; i++, rock++) {
+        for (int i = 0; i < i_this->mCount; i++, rock++) {
             dComIfG_Ccsp2().Set(&rock->mCollider);
         }
     }
@@ -101,14 +102,14 @@ static int set_pos_check(obj_rock_class* i_this, int index) {
 /* 80CBE7F0-80CBE830 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3926 */
 static dCcD_SrcSph cc_sph_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x11}, 0x79}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_METAL, 0x2, 0x0, 0x0, 0x3}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x11}, 0x79}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                  // mGObjAt
+        {dCcD_SE_METAL, 0x2, 0x0, 0x0, 0x3},                 // mGObjTg
+        {0x0},                                               // mGObjCo
+    },                                                       // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-    } // mSphAttr
+        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+    }                                // mSphAttr
 };
 
 /* 80CBE138-80CBE5A4 000518 046C+00 1/0 0/0 0/0 .text            daObj_Rock_Create__FP10fopAc_ac_c
@@ -131,7 +132,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
         if (a_this->mCount > 0x10) {
             a_this->mCount = 0x10;
         }
-        
+
         if (!fopAcM_entrySolidHeap(i_this, (heapCallbackFunc)useHeapInit, 0x4B000)) {
             return cPhs_ERROR_e;
         } else {
@@ -151,7 +152,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
             f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
             for (int i = 0; i < a_this->mCount; i++) {
                 MtxPush();
-                mDoMtx_YrotM(*calc_mtx, cM_rndF2(65536.0f)); 
+                mDoMtx_YrotM(*calc_mtx, cM_rndF2(65536.0f));
                 MtxPosition(&init_pos, &a_this->mRocks[i].mPos);
                 MtxPull();
 
@@ -159,7 +160,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
                 pos.y = a_this->mRocks[i].mPos.y + 100.0f;
                 pos.z = a_this->mRocks[i].mPos.z;
                 gnd_chk.SetPos((Vec*)&pos);
-                
+
                 a_this->mRocks[i].mPos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
                 if (set_pos_check(a_this, i) && a_this->mRocks[i].mPos.y < gnd_height) {
@@ -210,26 +211,23 @@ rock_ss::rock_ss() {}
 
 /* 80CBE830-80CBE850 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Rock_Method */
 static actor_method_class l_daObj_Rock_Method = {
-    (process_method_func)daObj_Rock_Create,
-    (process_method_func)daObj_Rock_Delete,
-    (process_method_func)daObj_Rock_Execute,
-    (process_method_func)daObj_Rock_IsDelete,
-    (process_method_func)daObj_Rock_Draw
-};
+    (process_method_func)daObj_Rock_Create, (process_method_func)daObj_Rock_Delete,
+    (process_method_func)daObj_Rock_Execute, (process_method_func)daObj_Rock_IsDelete,
+    (process_method_func)daObj_Rock_Draw};
 
 extern actor_process_profile_definition g_profile_OBJ_ROCK = {
-    fpcLy_CURRENT_e,          // mLayerID
-    7,                        // mListID
-    fpcPi_CURRENT_e,          // mListPrio
-    PROC_OBJ_ROCK,            // mProcName
-    &g_fpcLf_Method.mBase,    // sub_method
-    sizeof(obj_rock_class),   // mSize
-    0,                        // mSizeOther
-    0,                        // mParameters
-    &g_fopAc_Method.base,     // sub_method
-    710,                      // mPriority
-    &l_daObj_Rock_Method,     // sub_method
-    0x40000,                  // mStatus
-    fopAc_ACTOR_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e,   // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_OBJ_ROCK,           // mProcName
+    &g_fpcLf_Method.mBase,   // sub_method
+    sizeof(obj_rock_class),  // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    710,                     // mPriority
+    &l_daObj_Rock_Method,    // sub_method
+    0x40000,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
