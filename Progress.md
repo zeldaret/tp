@@ -592,7 +592,7 @@ d_a_obj_scannon |  35.209799% | 5404 | 15348
 d_a_obj_scannon_crs |  35.204678% | 3612 | 10260
 d_a_obj_scannon_ten |  37.738049% | 3884 | 10292
 d_a_obj_sekidoor |  43.834383% | 1948 | 4444
-d_a_obj_sekizo |  58.276334% | 1704 | 2924
+d_a_obj_sekizo | 100.000000% | 2924 | 2924
 d_a_obj_sekizoa |  32.789446% | 15112 | 46088
 d_a_obj_shield |  34.160959% | 3192 | 9344
 d_a_obj_sm_door |  39.302885% | 2616 | 6656
