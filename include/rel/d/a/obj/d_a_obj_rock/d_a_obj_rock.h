@@ -26,14 +26,14 @@ STATIC_ASSERT(sizeof(rock_ss) == 0x160);
 class obj_rock_class : public fopAc_ac_c {
 public:
     /* 0x568  */ request_of_phase_process_class mPhaseReq;
-    /* 0x570  */ u8 field_0x570;
-    /* 0x571  */ u8 field_0x571;
-    /* 0x572  */ u8 field_0x572;
-    /* 0x574  */ s16 field_0x574;
+    /* 0x570  */ u8 mDesiredRockNum;
+    /* 0x571  */ u8 mRockSpacing;
+    /* 0x572  */ u8 field_0x572; // Unused?
+    /* 0x574  */ s16 mRocksInitialized;
     /* 0x578  */ rock_ss mRocks[0x10];
     /* 0x1B78 */ s32 mCount;
     /* 0x1B7C */ dCcD_Stts mStts;
-    /* 0x1BB9 */ u8 field_0x1bb8;
+    /* 0x1BB8 */ u8 field_0x1bb8; // Unused?
     /* 0x1BB9 */ bool mInitialized;
 };  // Size: 0x1BBC
 
