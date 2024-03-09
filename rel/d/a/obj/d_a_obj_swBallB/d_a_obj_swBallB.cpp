@@ -421,13 +421,13 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 #ifdef NONMATCHING
 int daObjSwBallB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    ASSERT(427, modelData != 0);
+    JUT_ASSERT(427, modelData != 0);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == 0) {
         return 0;
     }
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 9);
-    ASSERT(441, pbtk != 0);
+    JUT_ASSERT(441, pbtk != 0);
     field_0x588 = new mDoExt_btkAnm();
     if (field_0x588 == NULL || field_0x588->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
