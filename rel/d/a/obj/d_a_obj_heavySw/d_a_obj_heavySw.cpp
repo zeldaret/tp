@@ -4,32 +4,24 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw.h"
+#include "JSystem/JKernel/JKRHeap.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/a/d_a_player.h"
+#include "d/bg/d_bg_s.h"
+#include "d/bg/d_bg_s_movebg_actor.h"
+#include "d/bg/d_bg_w.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_procname.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 80C1CB80 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {};
-
-struct dBgW {};
-
-struct daHeavySw_c {
+class daHeavySw_c : public dBgS_MoveBgActor {
+public:
     /* 80C1CBC8 */ void setBaseMtx();
-    /* 80C1CC70 */ void CreateHeap();
-    /* 80C1CCDC */ void create();
-    /* 80C1CF90 */ void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80C1CFC0 */ void Execute(f32 (**)[3][4]);
+    /* 80C1CC70 */ int CreateHeap();
+    /* 80C1CCDC */ int create();
+    /* 80C1CF90 */ static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
+    /* 80C1CFC0 */ int Execute(Mtx**);
     /* 80C1D02C */ void moveSwitch();
     /* 80C1D274 */ void init_modeWait();
     /* 80C1D280 */ void modeWait();
@@ -41,113 +33,52 @@ struct daHeavySw_c {
     /* 80C1D588 */ void modeMove();
     /* 80C1D688 */ void init_modeMoveEnd();
     /* 80C1D788 */ void modeMoveEnd();
-    /* 80C1D808 */ void Draw();
-    /* 80C1D91C */ void Delete();
+    /* 80C1D808 */ int Draw();
+    /* 80C1D91C */ int Delete();
+
+    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
+    /* 0x5A8 */ J3DModel* mpModel;
+    /* 0x5AC */ u8 mMode;
+    /* 0x5B0 */ f32 field_0x5b0;
+    /* 0x5B4 */ f32 field_0x5b4;
+    /* 0x5B8 */ f32 field_0x5b8;
+    /* 0x5BC */ f32 field_0x5bc;
+    /* 0x5C0 */ u8 field_0x5C0[0x5C4 - 0x5C0];
+    /* 0x5C4 */ u8 field_0x5c4;
+    /* 0x5C5 */ u8 field_0x5c5;
+    /* 0x5C8 */ s32 field_0x5c8;
+    /* 0x5CC */ csXyz field_0x5cc;
+    /* 0x5D4 */ f32 field_0x5d4;
+    /* 0x5D8 */ u8 field_0x5d8;
+    /* 0x5DC */ u32 field_0x5dc;
+    /* 0x5E0 */ dBgS_AcchCir field_0x5e0;
+    /* 0x620 */ dBgS_ObjAcch field_0x620;
+    /* 0x7F8 */ u32 field_0x7f8;
+    /* 0x7FC */ u8 field_0x7fc;
 };
 
-struct daHeavySw_HIO_c {
+class daHeavySw_HIO_c : public mDoHIO_entry_c {
+public:
     /* 80C1CAEC */ daHeavySw_HIO_c();
-    /* 80C1D9D8 */ ~daHeavySw_HIO_c();
+    /* 80C1D9D8 */ virtual ~daHeavySw_HIO_c() {}
+
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ u8 field_0x30;
+    /* 0x31 */ u8 field_0x31;
+    /* 0x32 */ u8 field_0x32;
+    /* 0x33 */ u8 field_0x33;
+    /* 0x34 */ u8 field_0x34;
 };
-
-struct cXyz {};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80C1CEB0 */ ~dBgS_ObjAcch();
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct csXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 80078690 */ bool Create();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80C1CF20 */ ~dBgS_AcchCir();
-};
-
-struct dBgS {};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct _GXTexObj {};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AD8B0 */ void seStop(JAISoundID, u32);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
 
 //
 // Forward References:
@@ -230,18 +161,11 @@ extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStop__7Z2SeMgrF10JAISoundIDUl();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -324,6 +248,13 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
+#ifndef NONMATCHING
+typedef void (daHeavySw_c::*modeProcessFunc)();
+static modeProcessFunc mode_proc[] = {
+    &daHeavySw_c::modeWait, &daHeavySw_c::modeRide,    &daHeavySw_c::modeMoveInit,
+    &daHeavySw_c::modeMove, &daHeavySw_c::modeMoveEnd,
+};
+#else
 /* 80C1DB08-80C1DB14 -00001 000C+00 0/1 0/0 0/0 .data            @3770 */
 #pragma push
 #pragma force_active on
@@ -384,6 +315,7 @@ SECTION_DATA static u8 mode_proc[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 #pragma pop
+#endif
 
 /* 80C1DB80-80C1DBA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daHeavySw_Method */
 SECTION_DATA static void* l_daHeavySw_Method[8] = {
@@ -456,6 +388,26 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 };
 
 /* 80C1CAEC-80C1CB80 0000EC 0094+00 1/1 0/0 0/0 .text            __ct__15daHeavySw_HIO_cFv */
+#ifndef NONMATCHING
+daHeavySw_HIO_c::daHeavySw_HIO_c() {
+    field_0x04 = 150.0f;
+    field_0x08 = 450.0f;
+    field_0x0c = 100.0f;
+    field_0x10 = 50.0f;
+    field_0x14 = 20.0f;
+    field_0x28 = 0.0f;
+    field_0x2c = 20.0f;
+    field_0x18 = 0.0f;
+    field_0x1c = 0.8f;
+    field_0x20 = 0.0f;
+    field_0x24 = 15.0f;
+    field_0x30 = 30;
+    field_0x31 = 8;
+    field_0x32 = 30;
+    field_0x33 = 5;
+    field_0x34 = 4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -464,43 +416,37 @@ asm daHeavySw_HIO_c::daHeavySw_HIO_c() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__ct__15daHeavySw_HIO_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1CB80-80C1CBC8 000180 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+// mDoHIO_entry_c::~mDoHIO_entry_c()
+extern "C" asm void __dt__14mDoHIO_entry_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__14mDoHIO_entry_cFv.s"
 }
 #pragma pop
 
 /* 80C1CBC8-80C1CC70 0001C8 00A8+00 2/2 0/0 0/0 .text            setBaseMtx__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/setBaseMtx__11daHeavySw_cFv.s"
+void daHeavySw_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y - field_0x5bc, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::ZXYrotM(field_0x5cc.x, field_0x5cc.y, field_0x5cc.z);
+    mpModel->setBaseScale(scale);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80C1DAE0-80C1DAE0 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C1DAE0 = "Hswitch";
-#pragma pop
 
 /* 80C1CC70-80C1CCDC 000270 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/CreateHeap__11daHeavySw_cFv.s"
+int daHeavySw_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Hswitch", 4);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mpModel != NULL) {
+        return 1;
+    }
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C1DAB4-80C1DAB8 000020 0004+00 1/2 0/0 0/0 .rodata          @3741 */
@@ -508,20 +454,57 @@ SECTION_RODATA static f32 const lit_3741 = 300.0f;
 COMPILER_STRIP_GATE(0x80C1DAB4, &lit_3741);
 
 /* 80C1CCDC-80C1CEB0 0002DC 01D4+00 1/1 0/0 0/0 .text            create__11daHeavySw_cFv */
+#ifdef NONMATCHING
+int daHeavySw_c::create() {
+    fopAcM_SetupActor(this, daHeavySw_c);
+
+    int phase = dComIfG_resLoad(&mPhaseReq, "Hswitch");
+    if (phase == cPhs_COMPLEATE_e) {
+        int movebg_create = MoveBGCreate("Hswitch", 7, dBgS_MoveBGProc_TypicalRotY, 0xC80, NULL);
+        if (movebg_create == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        }
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+        mpBgW->SetRideCallback(rideCallBack);
+        field_0x5e0.SetWall(0.0f, 0.0f);
+        field_0x620.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                        &field_0x5e0, fopAcM_GetSpeed_p(this), NULL, NULL);
+        field_0x5bc = 0.0f;
+        field_0x5b4 = 0.0f;
+        field_0x5c8 = 0.0f;
+        field_0x5cc.x = 0;
+        field_0x5cc.y = 0;
+        field_0x5cc.z = 0;
+        u8 param = fopAcM_GetParam(this);
+        if (i_fopAcM_isSwitch(this, param)) {
+            field_0x5bc = 300.0f;
+            init_modeMoveEnd();
+        } else {
+            field_0x5c5 = 0;
+            init_modeWait();
+        }
+        setBaseMtx();
+    }
+    return phase;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHeavySw_c::create() {
+asm int daHeavySw_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/create__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1CEB0-80C1CF20 0004B0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// dBgS_ObjAcch::~dBgS_ObjAcch()
+extern "C" asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -531,7 +514,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// dBgS_AcchCir::~dBgS_AcchCir()
+extern "C" asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__12dBgS_AcchCirFv.s"
 }
@@ -539,24 +523,24 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 
 /* 80C1CF90-80C1CFC0 000590 0030+00 1/1 0/0 0/0 .text
  * rideCallBack__11daHeavySw_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/rideCallBack__11daHeavySw_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
+void daHeavySw_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+    if (fopAcM_GetName(param_2) == PROC_ALINK) {
+        daHeavySw_c* heavySw = static_cast<daHeavySw_c*>(param_1);
+        heavySw->field_0x5d8 = 1;
+        heavySw->field_0x5dc =
+            static_cast<daPy_py_c*>(dComIfGp_getLinkPlayer())->i_checkEquipHeavyBoots();
+    }
 }
-#pragma pop
 
 /* 80C1CFC0-80C1D02C 0005C0 006C+00 1/0 0/0 0/0 .text            Execute__11daHeavySw_cFPPA3_A4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::Execute(f32 (**param_0)[3][4]) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/Execute__11daHeavySw_cFPPA3_A4_f.s"
+int daHeavySw_c::Execute(Mtx** i_mtx) {
+    moveSwitch();
+    field_0x620.CrrPos(dComIfG_Bgsp());
+    *i_mtx = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    field_0x5d8 = 0;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C1DAB8-80C1DABC 000024 0004+00 0/1 0/0 0/0 .rodata          @3811 */
@@ -612,12 +596,40 @@ COMPILER_STRIP_GATE(0x80C1DAD0, &lit_3817);
 static u8 lit_3641[12];
 
 /* 80C1DC54-80C1DC8C 000014 0038+00 7/7 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[56];
+static daHeavySw_HIO_c l_HIO;
 
 /* 80C1DC8C-80C1DC90 00004C 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C1DC8C[4];
 
 /* 80C1D02C-80C1D274 00062C 0248+00 1/1 0/0 0/0 .text            moveSwitch__11daHeavySw_cFv */
+// Might need to fix the data issue here
+#ifdef NONMATCHING
+void daHeavySw_c::moveSwitch() {
+    (this->*mode_proc[mMode])();
+    if (field_0x5d8 == 0 && field_0x5c5 == 0) {
+        if (mMode != 0) {
+            init_modeWait();
+            field_0x7fc = 0;
+            field_0x5b8 = field_0x5bc;
+        }
+        if (field_0x7fc == 0 && field_0x5bc < field_0x5b8 / 2) {
+            s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+            mDoAud_seStart(Z2SE_OBJ_HEAVYSW_UP, &current.pos, 0, reverb);
+            field_0x7fc = 1;
+        }
+        cLib_addCalc0(&field_0x5bc, 0.3f, 10.0f);
+        if (field_0x5bc < 0.01f) {
+            field_0x5bc = 0.0f;
+        }
+    }
+    f32 cos = cM_scos(field_0x5c8 * 0x3000);
+    field_0x5cc.x = field_0x5b0 * cos;
+    f32 sin = cM_ssin(field_0x5c8 * 0x3000);
+    field_0x5cc.y = field_0x5b0 * sin;
+    cLib_addCalc0(&field_0x5b0, 0.1f, 10.0f);
+    field_0x5c8++;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -626,36 +638,27 @@ asm void daHeavySw_c::moveSwitch() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/moveSwitch__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D274-80C1D280 000874 000C+00 2/2 0/0 0/0 .text            init_modeWait__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::init_modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeWait__11daHeavySw_cFv.s"
+void daHeavySw_c::init_modeWait() {
+    mMode = 0;
 }
-#pragma pop
 
 /* 80C1D280-80C1D2AC 000880 002C+00 1/0 0/0 0/0 .text            modeWait__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeWait__11daHeavySw_cFv.s"
+void daHeavySw_c::modeWait() {
+    if (field_0x5d8 != 0) {
+        init_modeRide();
+    }
 }
-#pragma pop
 
 /* 80C1D2AC-80C1D2D8 0008AC 002C+00 3/3 0/0 0/0 .text            init_modeRide__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::init_modeRide() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeRide__11daHeavySw_cFv.s"
+void daHeavySw_c::init_modeRide() {
+    field_0x5c4 = l_HIO.field_0x33;
+    fopAcM_SetSpeedF(this, l_HIO.field_0x18);
+    field_0x5d4 = l_HIO.field_0x1c;
+    mMode = 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C1DAD4-80C1DAD8 000040 0004+00 0/3 0/0 0/0 .rodata          @3860 */
@@ -666,6 +669,28 @@ COMPILER_STRIP_GATE(0x80C1DAD4, &lit_3860);
 #pragma pop
 
 /* 80C1D2D8-80C1D408 0008D8 0130+00 1/0 0/0 0/0 .text            modeRide__11daHeavySw_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daHeavySw_c::modeRide() {
+    if (field_0x5c4 != 0) {
+        field_0x5c4--;
+        if (field_0x5c4 == 0) {
+            field_0x5b0 = l_HIO.field_0x04;
+        }
+    } else {
+        s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+        i_mDoAud_seStartLevel(Z2SE_OBJ_HEAVYSW_MOVE, &current.pos, 0, reverb);
+        cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
+        f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
+        if (calc == 0.0f) {
+            mDoAud_seStop(Z2SE_OBJ_HEAVYSW_MOVE, 0);
+        }
+        if (field_0x5dc != 0) {
+            init_modeMoveInit();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -674,19 +699,40 @@ asm void daHeavySw_c::modeRide() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeRide__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D408-80C1D434 000A08 002C+00 1/1 0/0 0/0 .text            init_modeMoveInit__11daHeavySw_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::init_modeMoveInit() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeMoveInit__11daHeavySw_cFv.s"
+void daHeavySw_c::init_modeMoveInit() {
+    fopAcM_SetSpeedF(this, l_HIO.field_0x20);
+    field_0x5d4 = l_HIO.field_0x24;
+    field_0x5c4 = l_HIO.field_0x31;
+    mMode = 2;
 }
-#pragma pop
 
 /* 80C1D434-80C1D54C 000A34 0118+00 1/0 0/0 0/0 .text            modeMoveInit__11daHeavySw_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daHeavySw_c::modeMoveInit() {
+    if (field_0x5dc == 0) {
+        init_modeRide();
+    }
+    if (field_0x5c4 != 0) {
+        field_0x5c4--;
+        if (field_0x5c4 == 0) {
+            field_0x5b0 = l_HIO.field_0x08;
+            s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+            mDoAud_seStart(Z2SE_OBJ_HEAVYSW_ON, &current.pos, 0, reverb);
+        }
+    } else {
+        cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
+        f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10 + l_HIO.field_0x14, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
+        if (calc == 0.0f) {
+            init_modeMove();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -695,18 +741,41 @@ asm void daHeavySw_c::modeMoveInit() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeMoveInit__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D54C-80C1D588 000B4C 003C+00 1/1 0/0 0/0 .text            init_modeMove__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::init_modeMove() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeMove__11daHeavySw_cFv.s"
+void daHeavySw_c::init_modeMove() {
+    field_0x5b0 = l_HIO.field_0x0c;
+    field_0x5c4 = l_HIO.field_0x30;
+    fopAcM_SetSpeedF(this, l_HIO.field_0x28);
+    field_0x5d4 = l_HIO.field_0x2c;
+    field_0x7fc = 0;
+    mMode = 3;
 }
-#pragma pop
 
 /* 80C1D588-80C1D688 000B88 0100+00 1/0 0/0 0/0 .text            modeMove__11daHeavySw_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daHeavySw_c::modeMove() {
+    if (field_0x5dc == 0) {
+        init_modeRide();
+    }
+    if (field_0x5c4 != 0) {
+        field_0x5c4--;
+    } else {
+        if (field_0x7fc == 0) {
+            s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+            mDoAud_seStart(Z2SE_OBJ_HEAVYSW_DOWN, &current.pos, 0, reverb);
+            field_0x7fc = 1;
+        }
+        cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
+        f32 calc = cLib_addCalc(&field_0x5bc, 300.0f, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
+        if (calc == 0.0f) {
+            init_modeMoveEnd();
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -715,9 +784,24 @@ asm void daHeavySw_c::modeMove() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeMove__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D688-80C1D788 000C88 0100+00 2/2 0/0 0/0 .text            init_modeMoveEnd__11daHeavySw_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void daHeavySw_c::init_modeMoveEnd() {
+    field_0x5c5 = 1;
+    u8 param = fopAcM_GetParam(this);
+    if (!i_fopAcM_isSwitch(this, param)) {
+        s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+        mDoAud_seStart(Z2SE_OBJ_HEAVYSW_STOP, &current.pos, 0, reverb);
+        dComIfGp_getVibration().StartShock(l_HIO.field_0x34, 0xF, cXyz(0.0f, 1.0f, 0.0f));
+    }
+    field_0x5c4 = l_HIO.field_0x32;
+    mMode = 4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -726,16 +810,19 @@ asm void daHeavySw_c::init_modeMoveEnd() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/init_modeMoveEnd__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D788-80C1D808 000D88 0080+00 1/0 0/0 0/0 .text            modeMoveEnd__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::modeMoveEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/modeMoveEnd__11daHeavySw_cFv.s"
+void daHeavySw_c::modeMoveEnd() {
+    if (field_0x5c4 != 0) {
+        field_0x5c4--;
+    } else {
+        BOOL is_switch = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+        if (!is_switch) {
+            i_fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C1DAD8-80C1DADC 000044 0004+00 0/1 0/0 0/0 .rodata          @3998 */
@@ -753,83 +840,64 @@ COMPILER_STRIP_GATE(0x80C1DADC, &lit_3999);
 #pragma pop
 
 /* 80C1D808-80C1D91C 000E08 0114+00 1/0 0/0 0/0 .text            Draw__11daHeavySw_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daHeavySw_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    cXyz curPos = cXyz(current.pos.x + 170.0f, current.pos.y, current.pos.z);
+    field_0x7f8 = dComIfGd_setShadow(field_0x7f8, true, mpModel, &curPos, 500.0f, 0.0f,
+                                     current.pos.y, field_0x620.GetGroundH(), field_0x620.m_gnd, &tevStr, 0,
+                                     1.0f, dDlst_shadowControl_c::getSimpleTex());
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHeavySw_c::Draw() {
+asm int daHeavySw_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/Draw__11daHeavySw_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C1D91C-80C1D94C 000F1C 0030+00 1/0 0/0 0/0 .text            Delete__11daHeavySw_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daHeavySw_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/Delete__11daHeavySw_cFv.s"
+int daHeavySw_c::Delete() {
+    dComIfG_resDelete(&mPhaseReq, "Hswitch");
+    return 1;
 }
-#pragma pop
 
 /* 80C1D94C-80C1D978 000F4C 002C+00 1/0 0/0 0/0 .text            daHeavySw_Draw__FP11daHeavySw_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daHeavySw_Draw(daHeavySw_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/daHeavySw_Draw__FP11daHeavySw_c.s"
+static int daHeavySw_Draw(daHeavySw_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80C1D978-80C1D998 000F78 0020+00 1/0 0/0 0/0 .text            daHeavySw_Execute__FP11daHeavySw_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daHeavySw_Execute(daHeavySw_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/daHeavySw_Execute__FP11daHeavySw_c.s"
+static int daHeavySw_Execute(daHeavySw_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80C1D998-80C1D9B8 000F98 0020+00 1/0 0/0 0/0 .text            daHeavySw_Delete__FP11daHeavySw_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daHeavySw_Delete(daHeavySw_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/daHeavySw_Delete__FP11daHeavySw_c.s"
+static int daHeavySw_Delete(daHeavySw_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 80C1D9B8-80C1D9D8 000FB8 0020+00 1/0 0/0 0/0 .text            daHeavySw_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daHeavySw_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/daHeavySw_Create__FP10fopAc_ac_c.s"
+static int daHeavySw_Create(fopAc_ac_c* i_this) {
+    return static_cast<daHeavySw_c*>(i_this)->create();
 }
-#pragma pop
-
-/* 80C1D9D8-80C1DA34 000FD8 005C+00 2/1 0/0 0/0 .text            __dt__15daHeavySw_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daHeavySw_HIO_c::~daHeavySw_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__dt__15daHeavySw_HIO_cFv.s"
-}
-#pragma pop
 
 /* 80C1DA34-80C1DA70 001034 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_heavySw_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_a_obj_heavySw_cpp() {
-    nofralloc
+asm void __sinit_d_a_obj_heavySw_cpp(){nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/__sinit_d_a_obj_heavySw_cpp.s"
 }
 #pragma pop
@@ -858,5 +926,3 @@ static asm void func_80C1DA78() {
 #include "asm/rel/d/a/obj/d_a_obj_heavySw/d_a_obj_heavySw/func_80C1DA78.s"
 }
 #pragma pop
-
-/* 80C1DAE0-80C1DAE0 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
