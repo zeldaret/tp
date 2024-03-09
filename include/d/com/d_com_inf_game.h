@@ -1614,6 +1614,10 @@ inline void dComIfGs_removeZone(int i_zoneNo) {
     g_dComIfG_gameInfo.info.removeZone(i_zoneNo);
 }
 
+inline void dComIfGp_addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 i_drawBG) {
+    g_dComIfG_gameInfo.play.addSimpleModel(i_modelData, roomNo, i_drawBG);
+}
+
 inline void dComIfGp_removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
     g_dComIfG_gameInfo.play.removeSimpleModel(i_modelData, roomNo);
 }
