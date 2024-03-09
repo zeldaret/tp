@@ -6,12 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo.h"
 #include "d/com/d_com_inf_game.h"
 
-// TODO: remove? or am I missing something?
-// #include "JSystem/JKernel/JKRHeap.h"
-// #include "d/bg/d_bg_s.h"
-// #include "d/bg/d_bg_w.h"
-// #include "d/d_procname.h"
-
 /* 80CCE17C-80CCE188 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -129,9 +123,8 @@ void daObj_Sekizo_c::initBaseMtx() {
 void daObj_Sekizo_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    // "mpModel->getModelData()" doesn't match, but this does
-    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80CCE044-80CCE064 000524 0020+00 1/0 0/0 0/0 .text            daObj_Sekizo_Create__FPv */
@@ -160,7 +153,6 @@ static int daObj_Sekizo_IsDelete(void* i_this) {
 }
 
 /* 80CCE240-80CCE24C 000008 000C+00 1/1 0/0 0/0 .bss             @3800 */
-// Needed for __sinit to match
 static u8 lit_3800[12];
 
 /* 80CCE24C-80CCE250 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */

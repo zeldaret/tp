@@ -16,7 +16,6 @@ public:
     /* 80CCDFA4 */ void initBaseMtx();
     /* 80CCDFE0 */ void setBaseMtx();
 
-    // TODO: needed to match size, but haven't found it used yet
     /* 0x5A0 */ u32 field_0x5a0;
 
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
