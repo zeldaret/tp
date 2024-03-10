@@ -87,6 +87,10 @@ inline void i_mDoAud_seStartLevel(u32 i_sfxID, const Vec* i_sePos, u32 param_2, 
                                                     -1.0f, -1.0f, 0);
 }
 
+inline void mDoAud_seStop(u32 i_sfxID, u32 param_1) {
+    Z2AudioMgr::getInterface()->seStop(i_sfxID, param_1);
+}
+
 inline void mDoAud_messageSePlay(u16 param_0, Vec* position, s8 param_2) {
     Z2AudioMgr::getInterface()->messageSePlay(param_0, position, param_2);
 }
