@@ -47,7 +47,7 @@ void J3DUClipper::calcViewFrustum() {
 }
 
 /* 802738FC-80273A44 26E23C 0148+00 0/0 3/3 2/2 .text            clip__11J3DUClipperCFPA4_Cf3Vecf */
-u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
+int J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
     Vec vec1;
     MTXMultVec(param_0, &param_1, &vec1);
     if (-vec1.z < mNear - param_2) {
@@ -80,7 +80,7 @@ u32 J3DUClipper::clip(f32 const (*param_0)[4], Vec param_1, f32 param_2) const {
 /* ############################################################################################## */
 
 /* 80273A44-80273E08 26E384 03C4+00 0/0 3/3 2/2 .text clip__11J3DUClipperCFPA4_CfP3VecP3Vec */
-u32 J3DUClipper::clip(f32 const (*param_1)[4], Vec* param_2, Vec* param_3) const {
+int J3DUClipper::clip(f32 const (*param_1)[4], Vec* param_2, Vec* param_3) const {
     s32 local_98[6];
     for (int i = 0; i < 6; i++) {
         local_98[i] = 0;
