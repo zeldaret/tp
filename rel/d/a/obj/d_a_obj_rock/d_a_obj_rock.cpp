@@ -19,7 +19,7 @@ static int daObj_Rock_Draw(obj_rock_class* i_this) {
     int room = fopAcM_GetRoomNo(i_this);
     rock_ss* rock = i_this->mRocks;
 
-    for (int i = 0; i < i_this->mCount; i++, rock++) {
+    for (int i = 0; i < i_this->mRockNum; i++, rock++) {
         if (rock->mActive) {
             dComIfGp_entrySimpleModel(rock->mpModel, room);
         }
@@ -30,9 +30,9 @@ static int daObj_Rock_Draw(obj_rock_class* i_this) {
 
 /* 80CBDD20-80CBDE48 000100 0128+00 2/1 0/0 0/0 .text daObj_Rock_Execute__FP14obj_rock_class */
 static int daObj_Rock_Execute(obj_rock_class* i_this) {
-    if (i_this->mRocksInitialized == FALSE) {
+    if (i_this->mPatchInitialized == FALSE) {
         rock_ss* rock = i_this->mRocks;
-        for (int i = 0; i < i_this->mCount; i++, rock++) {
+        for (int i = 0; i < i_this->mRockNum; i++, rock++) {
             if (rock->mActive) {
                 mDoMtx_trans(mDoMtx_stack_c::get(), rock->mPos.x, rock->mPos.y + rock->mOffsetY,
                              rock->mPos.z);
@@ -45,10 +45,10 @@ static int daObj_Rock_Execute(obj_rock_class* i_this) {
                 rock->mCollider.SetR(rock->mScale.x * 100.0f);
             }
         }
-        i_this->mRocksInitialized = TRUE;
+        i_this->mPatchInitialized = TRUE;
     } else {
         rock_ss* rock = i_this->mRocks;
-        for (int i = 0; i < i_this->mCount; i++, rock++) {
+        for (int i = 0; i < i_this->mRockNum; i++, rock++) {
             dComIfG_Ccsp2().Set(&rock->mCollider);
         }
     }
@@ -76,7 +76,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Obj_rock", 3);
 
-    for (int i = 0; i < a_this->mCount; i++) {
+    for (int i = 0; i < a_this->mRockNum; i++) {
         a_this->mRocks[i].mpModel = mDoExt_J3DModel__create(model_data, 0x20000, 0x11000084);
         if (a_this->mRocks[i].mpModel == NULL) {
             return FALSE;
@@ -120,7 +120,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "Obj_rock");
     if (step == cPhs_COMPLEATE_e) {
-        a_this->mDesiredRockNum = fopAcM_GetParam(a_this);
+        a_this->mPatchRockNum = fopAcM_GetParam(a_this);
         a_this->mRockSpacing = fopAcM_GetParamBit(a_this, 8, 8);
         a_this->field_0x572 = fopAcM_GetParamBit(a_this, 16, 8);
 
@@ -129,9 +129,9 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
         }
 
         // Unclear why a separate counter is used here, or why it adds 1
-        a_this->mCount = a_this->mDesiredRockNum + 1;
-        if (a_this->mCount > 0x10) {
-            a_this->mCount = 0x10;
+        a_this->mRockNum = a_this->mPatchRockNum + 1;
+        if (a_this->mRockNum > 16) {
+            a_this->mRockNum = 16;
         }
 
         if (!fopAcM_entrySolidHeap(i_this, (heapCallbackFunc)useHeapInit, 0x4B000)) {
@@ -151,7 +151,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
             obj_gnd_chk.SetPos((Vec*)&pos);
 
             f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
-            for (int i = 0; i < a_this->mCount; i++) {
+            for (int i = 0; i < a_this->mRockNum; i++) {
                 MtxPush();
                 mDoMtx_YrotM(*calc_mtx, cM_rndF2(65536.0f));
                 MtxPosition(&init_pos, &a_this->mRocks[i].mPos);
@@ -187,7 +187,7 @@ static int daObj_Rock_Create(fopAc_ac_c* i_this) {
 
             a_this->mStts.Init(0xff, 0, i_this);
 
-            for (int i = 0; i < a_this->mCount; i++) {
+            for (int i = 0; i < a_this->mRockNum; i++) {
                 a_this->mRocks[i].mCollider.Set(cc_sph_src);
                 a_this->mRocks[i].mCollider.SetStts(&a_this->mStts);
             }
