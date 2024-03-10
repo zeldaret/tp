@@ -8,12 +8,10 @@ M437_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow.map
 
 M437_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_digsnow/d_a_obj_digsnow.cpp \
 
 M437_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/d_a_obj_digsnow.o \
 
 M437_LIBS := \
