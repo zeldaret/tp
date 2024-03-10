@@ -20,10 +20,10 @@ void daObjDigSnow_c::initBaseMtx() {
 
 /* 80BDCC94-80BDCD08 0000B4 0074+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjDigSnow_cFv */
 void daObjDigSnow_c::setBaseMtx() {
-    mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80BDCD08-80BDCD64 000128 005C+00 1/0 0/0 0/0 .text            Create__14daObjDigSnow_cFv */
@@ -147,13 +147,12 @@ void daObjDigSnow_c::mode_init_dig() {
         mGroundHeight = gnd_height;
     }
 
-    mAction = ACTION_DIG_e;
+    startDig();
 }
 
 /* 80BDD124-80BDD1BC 000544 0098+00 1/0 0/0 0/0 .text            mode_dig__14daObjDigSnow_cFv */
 void daObjDigSnow_c::mode_dig() {
-    f32 ftmp = fabs(((current.pos.y - mGroundHeight) + 10.0f) / 35.0f);
-    f32 step = ftmp;
+    f32 step = fabsf(((current.pos.y - mGroundHeight) + 10.0f) / 35.0f);
     if (step < 1.0f) {
         step = 1.0f;
     }
@@ -168,7 +167,7 @@ void daObjDigSnow_c::mode_dig() {
 void daObjDigSnow_c::mode_init_end() {
     dComIfGs_onSwitch(getSwNo(), fopAcM_GetHomeRoomNo(this));
     fopAcM_delete(this);
-    mAction = ACTION_END_e;
+    endDig();
 }
 
 /* 80BDD210-80BDD214 000630 0004+00 1/0 0/0 0/0 .text            mode_end__14daObjDigSnow_cFv */
