@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo.h"
+#include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 
 /* 80CCE17C-80CCE188 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -69,8 +70,8 @@ int daObj_Sekizo_c::CreateHeap() {
 /* 80CCDD8C-80CCDDE8 00026C 005C+00 1/0 0/0 0/0 .text            Create__14daObj_Sekizo_cFv */
 int daObj_Sekizo_c::Create() {
     initBaseMtx();
-    cullMtx = mpModel->getBaseTRMtx();
-    fopAcM_setCullSizeBox2((fopAc_ac_c*)this, mpModel->getModelData());
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     field_0x5b2 = false;
     field_0x5b1 = true;
     return 1;
@@ -90,11 +91,11 @@ int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
         setBaseMtx();
         if (field_0x5b2) {
             if (field_0x5b1) {
-                dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
+                dComIfG_Bgsp().Release(mpBgW);
                 field_0x5b1 = false;
             }
         } else if (!field_0x5b1) {
-            dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, (fopAc_ac_c*)this);
+            dComIfG_Bgsp().Regist(mpBgW, this);
             field_0x5b1 = true;
         }
     }
