@@ -202,6 +202,9 @@ public:
     u8 getSaveID() { return getItemNo(); }
     u32 getSetType() { return (u32)(field_0xd18 << 16) >> 29;} // fake match?
     s8 prm_chk_type_ironball() { return (s8)(getType() == TYPE_IRON_BALL); }
+    s8 prm_chk_type_lightball() { return (getType() == TYPE_BALL_S || getType() == TYPE_BALL_S_2); }
+    void startCtrl() { mCtrl = 1; }
+    void endCtrl() { mCtrl = 0; }
 
     static void make_prm(csXyz* param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5, u8 param_6=0) {
         param_1->x = (param_4 << 8) | param_3;

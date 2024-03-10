@@ -1,6 +1,6 @@
 /**
  * d_a_shop_item_static.cpp
- * 
+ *
  */
 
 #include "d/a/d_a_shop_item_static.h"
@@ -43,15 +43,16 @@ ResourceData const daShopItem_c::mData[23] = {
 };
 
 /* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
-void CheckShopItemCreateHeap(fopAc_ac_c* actor) {
-    daShopItem_c* item = static_cast<daShopItem_c*>(actor);
+int CheckShopItemCreateHeap(fopAc_ac_c* i_this) {
+    daShopItem_c* a_this = static_cast<daShopItem_c*>(i_this);
 
-    u8 item_id = item->getShopItemID();
-    item->CreateItemHeap(
-        daShopItem_c::mData[item_id].get_arcName(), daShopItem_c::mData[item_id].get_bmdName(),
-        daShopItem_c::mData[item_id].get_btk1Name(), daShopItem_c::mData[item_id].get_bpk1Name(),
-        daShopItem_c::mData[item_id].get_bck1Name(), daShopItem_c::mData[item_id].get_bxa1Name(),
-        daShopItem_c::mData[item_id].get_brk1Name(), daShopItem_c::mData[item_id].get_btp1Name());
+    u8 a_ShopItemID = a_this->getShopItemID();
+    return a_this->CreateItemHeap(daShopItem_c::mData[a_ShopItemID].get_arcName(),
+                                  daShopItem_c::mData[a_ShopItemID].get_bmdName(),
+                                  daShopItem_c::mData[a_ShopItemID].get_btk1Name(),
+                                  daShopItem_c::mData[a_ShopItemID].get_bpk1Name(),
+                                  daShopItem_c::mData[a_ShopItemID].get_bck1Name(),
+                                  daShopItem_c::mData[a_ShopItemID].get_bxa1Name(),
+                                  daShopItem_c::mData[a_ShopItemID].get_brk1Name(),
+                                  daShopItem_c::mData[a_ShopItemID].get_btp1Name());
 }
-
-/* 80379738-80379738 005D98 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

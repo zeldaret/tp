@@ -6,7 +6,7 @@
 class daB_OH_HIO_c {
 public:
     /* 8061B72C */ daB_OH_HIO_c();
-    /* 8061D93C */ virtual ~daB_OH_HIO_c();
+    /* 8061D93C */ virtual ~daB_OH_HIO_c();  // supposed to be inlined
 
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 mModelSize;

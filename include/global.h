@@ -13,7 +13,6 @@
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
 #define JUT_EXPECT(...)
-#define ASSERT(...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)
 
 #define FLOAT_LABEL(x) (*(f32*)&x)

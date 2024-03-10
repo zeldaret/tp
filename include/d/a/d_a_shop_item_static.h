@@ -12,6 +12,18 @@ struct ResourceData {
     s16 get_bxa1Name() const { return mBxaName; }
     s16 get_brk1Name() const { return mBrkName; }
     s16 get_btp1Name() const { return mBtpName; }
+    f32 get_scale() const { return mScale; }
+    f32 get_offsetY() const { return mOffsetY; }
+    s16 get_angleX() const { return mAngle.x; }
+    s16 get_angleY() const { return mAngle.y; }
+    s16 get_angleZ() const { return mAngle.z; }
+    s16 get_angleOffsetX() const { return mAngleOffsetX; }
+    u32 get_flag() const { return mFlag; }
+    s8 get_tevfrm() const { return mTevFrm; }
+    s8 get_btpfrm() const { return mBtpFrm; }
+    u8 get_shadowSize() const { return mShadowSize; }
+    u8 get_collisionH() const { return mCollisionH; }
+    u8 get_collisionR() const { return mCollisionR; }
 
     /* 0x00 */ const char* mArcName;
     /* 0x04 */ s16 mBmdName;
@@ -37,6 +49,24 @@ class daShopItem_c : public daItemBase_c {
 public:
     /* 80037C14 */ csXyz* getRotateP();
     /* 80037C1C */ cXyz* getPosP();
+    /* 8059E9B8 */ const char* getShopArcname();
+    /* 8059EC04 */ u16 getHeapSize();
+    /* 8059EC1C */ void CreateInit();
+    /* 8059ED58 */ void set_mtx();
+    /* 8059EEF4 */ bool _execute();
+    /* 8059EF48 */ bool _draw();
+
+    inline int _create();
+    inline int _delete();
+    
+    /* 8059EF9C */ virtual void setListStart();
+    /* 8059EFA0 */ virtual void setShadow();
+    /* 8059F024 */ virtual BOOL chkFlag(int);
+    /* 8059F044 */ virtual s8 getTevFrm();
+    /* 8059F064 */ virtual s8 getBtpFrm();
+    /* 8059F084 */ virtual u8 getShadowSize();
+    /* 8059F0A0 */ virtual u8 getCollisionH();
+    /* 8059F0BC */ virtual u8 getCollisionR();
 
     u8 getShopItemID() const { return mShopItemID; }
     s16 getAngleX() const { return mAngleX; }
@@ -45,6 +75,34 @@ public:
     void setAngleY(s16 angle) { mAngleY = angle;}
 
     static ResourceData const mData[23];
+    static f32 const m_cullfar_max;
+
+    enum {
+        SHOP_ITEMNO_SOLD,
+        SHOP_ITEMNO_OIL,
+        SHOP_ITEMNO_RED,
+        SHOP_ITEMNO_MILK,
+        SHOP_ITEMNO_HALF_MILK,
+        SHOP_ITEMNO_ARROW,
+        SHOP_ITEMNO_SHIELD_B,
+        SHOP_ITEMNO_SHIELD_A,
+        SHOP_ITEMNO_BOMB,
+        SHOP_ITEMNO_WATER_BOMB,
+        SHOP_ITEMNO_POKE_BOMB,
+        SHOP_ITEMNO_BOMB_BAG,
+        SHOP_ITEMNO_BOMB_BAG_LV2,
+        SHOP_ITEMNO_LAND_MINE,
+        SHOP_ITEMNO_BOTTLE2,
+        SHOP_ITEMNO_BEE_CHILD,
+        SHOP_ITEMNO_PACHINKO,
+        SHOP_ITEMNO_BLUE,
+        SHOP_ITEMNO_HAWKEYE,
+        SHOP_ITEMNO_ARMOR,
+        SHOP_ITEMNO_ARMOR_SOLD,
+        SHOP_ITEMNO_GREEN,
+        SHOP_ITEMNO_DROP,
+        SHOP_ITEMNO_MAX,
+    };
 
 private:
     /* 0x92C */ Mtx mMtx;
@@ -53,5 +111,7 @@ private:
     /* 0x962 */ s16 mAngleY;
     /* 0x964 */ u8 mShopItemID;
 };
+
+int CheckShopItemCreateHeap(fopAc_ac_c* i_this);
 
 #endif /* D_A_D_A_SHOP_ITEM_STATIC_H */

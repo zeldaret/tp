@@ -4,7 +4,7 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 
 struct daItemBase_data {
     /* 0x00 */ f32 mGravity;
@@ -71,7 +71,7 @@ public:
     /* 0x764 */ dBgS_AcchCir mAcchCir;
     /* 0x7A4 */ dCcD_Stts mColStatus;
     /* 0x7E0 */ dCcD_Cyl mCollider;
-    /* 0x91C */ u32 field_0x91c;
+    /* 0x91C */ u32 mShadowKey;
     /* 0x920 */ u32 field_0x920;
     /* 0x924 */ int field_0x924;
     /* 0x928 */ s16 field_0x928;
