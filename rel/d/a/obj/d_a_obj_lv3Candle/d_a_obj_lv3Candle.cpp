@@ -4,68 +4,11 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle.h"
+
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
-#include "f_op/f_op_actor.h"
-#include "d/cc/d_cc_d.h"
-#include "Z2AudioLib/Z2SoundObject.h"
-#include "m_Do/m_Do_hostIO.h"
 #include "dol2asm.h"
 
 #define NONMATCHING 0
-
-//
-// Types:
-//
-
-class daLv3Candle_HIO_c : public mDoHIO_entry_c {
-public:    
-    /* 80C57ACC */ daLv3Candle_HIO_c();
-    /* 80C58484 */ virtual ~daLv3Candle_HIO_c();
-
-    /* 0x00 vtable */
-    /* 0x04 */ u8 field_0x04;
-};
-
-class daLv3Candle_c : public fopAc_ac_c {
-public:
-    /* 80C57B38 */ void setBaseMtx();
-    /* 80C57BC0 */ int CreateHeap();
-    /* 80C57C40 */ int create();
-    /* 80C57F6C */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 80C57F8C */ void lightInit();
-    /* 80C58018 */ void pointLightProc();
-    /* 80C580A0 */ int Execute();
-    /* 80C582FC */ int Draw();
-    /* 80C583A0 */ int Delete();
-
-    u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }
-    u8 getType() { return fopAcM_GetParamBit(this, 8, 8); }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-    /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ u8 mType;
-    /* 0x578 */ dCcD_Stts mStts;
-    /* 0x5B4 */ dCcD_Sph mSph;
-    /* 0x6EC */ cXyz mTorchPos;
-    /* 0x6F8 */ u32 field_0x6f8; // Unused?
-    /* 0x6FC */ cXyz mLightPos;
-    /* 0x708 */ u8 mIsLit;
-    /* 0x70C */ f32 mIntensity;
-    /* 0x710 */ LIGHT_INFLUENCE mLight;
-    /* 0x730 */ u8 mTgHit;
-    /* 0x734 */ Z2SoundObjSimple mSound;
-
-    static dCcD_SrcGObjInf const mCcDObjInfo;
-#if !NONMATCHING
-    static u8 mCcDSph[64];
-#else
-    static dCcD_SrcSph mCcDSph;
-#endif
-
-}; // Size: 0x754
-
-STATIC_ASSERT(sizeof(daLv3Candle_c) == 0x754);
 
 //
 // Forward References:
@@ -76,6 +19,7 @@ extern "C" static void daLv3Candle_Execute__FP13daLv3Candle_c();
 extern "C" static void daLv3Candle_Delete__FP13daLv3Candle_c();
 extern "C" static void daLv3Candle_Create__FP10fopAc_ac_c();
 
+#if !NONMATCHING
 extern "C" void __ct__17daLv3Candle_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__13daLv3Candle_cFv();
@@ -94,6 +38,7 @@ extern "C" void __sinit_d_a_obj_lv3Candle_cpp();
 extern "C" u8 const mCcDObjInfo__13daLv3Candle_c[48];
 extern "C" u8 mCcDSph__13daLv3Candle_c[64];
 extern "C" extern char const* const d_a_obj_lv3Candle__stringBase0;
+#endif
 
 //
 // External References:
@@ -152,37 +97,17 @@ extern "C" void __dl__FPv();
 // Declarations:
 //
 
-
 /* 80C57ACC-80C57AF0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv3Candle_HIO_cFv */
 daLv3Candle_HIO_c::daLv3Candle_HIO_c() {
     field_0x04 = 0x1e;
 }
 
-#if !NONMATCHING
-/* ############################################################################################## */
-/* 80C586C0-80C586CC 000008 000C+00 1/1 0/0 0/0 .bss             @3623 */
-static u8 lit_3623[12];
-
-/* 80C586CC-80C586D4 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[8];
-#else
 static daLv3Candle_HIO_c l_HIO;
-#endif
 
-#if !NONMATCHING
-/* 80C585F0-80C58630 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daLv3Candle_c */
-SECTION_DATA u8 daLv3Candle_c::mCcDSph[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#else
 dCcD_SrcSph daLv3Candle_c::mCcDSph = {
-    mCcDObjInfo,
+    daLv3Candle_c::mCcDObjInfo,
     {{{0.0f, 0.0f, 0.0f}, 0.0f}}
 };
-#endif
 
 /* 80C58630-80C58638 -00001 0008+00 3/3 0/0 0/0 .data            l_resNameIdx */
 static char* l_resNameIdx[] = {
@@ -191,25 +116,30 @@ static char* l_resNameIdx[] = {
 };
 
 /* 80C58638-80C58658 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv3Candle_Method */
-SECTION_DATA static void* l_daLv3Candle_Method[8] = {
-    (void*)daLv3Candle_Create__FP10fopAc_ac_c,
-    (void*)daLv3Candle_Delete__FP13daLv3Candle_c,
-    (void*)daLv3Candle_Execute__FP13daLv3Candle_c,
-    (void*)NULL,
-    (void*)daLv3Candle_Draw__FP13daLv3Candle_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daLv3Candle_Method = {
+    (process_method_func)daLv3Candle_Create__FP10fopAc_ac_c,
+    (process_method_func)daLv3Candle_Delete__FP13daLv3Candle_c,
+    (process_method_func)daLv3Candle_Execute__FP13daLv3Candle_c,
+    NULL,
+    (process_method_func)daLv3Candle_Draw__FP13daLv3Candle_c,
 };
 
 /* 80C58658-80C58688 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv3Candle */
-SECTION_DATA extern void* g_profile_Obj_Lv3Candle[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01720000, (void*)&g_fpcLf_Method,
-    (void*)0x00000754, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x026C0000, (void*)&l_daLv3Candle_Method,
-    (void*)0x00060000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_Lv3Candle = {
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_Lv3Candle,      // mProcName
+    &g_fpcLf_Method.mBase,   // sub_method
+    sizeof(daLv3Candle_c),   // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    620,                     // mPriority
+    &l_daLv3Candle_Method,   // sub_method
+    0x60000,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 #if !NONMATCHING
@@ -320,6 +250,7 @@ int daLv3Candle_c::create() {
             setBaseMtx();
             fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
             fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+
             mStts.Init(0xff, 0xff, this);
             mSph.Set(mCcDSph);
             mSph.SetStts(&mStts);
@@ -643,22 +574,3 @@ static int daLv3Candle_Create(fopAc_ac_c* i_this) {
 
 /* 80C58484-80C584E0 000AA4 005C+00 2/1 0/0 0/0 .text            __dt__17daLv3Candle_HIO_cFv */
 daLv3Candle_HIO_c::~daLv3Candle_HIO_c() {}
-
-/* 80C584E0-80C58550 000B00 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv3Candle_cpp */
-#if !NONMATCHING
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_obj_lv3Candle_cpp() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__sinit_d_a_obj_lv3Candle_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C584E0, __sinit_d_a_obj_lv3Candle_cpp);
-#pragma pop
-#endif
-
-/* 80C585DC-80C585DC 000078 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
