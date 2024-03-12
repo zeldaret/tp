@@ -4,167 +4,101 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle.h"
+#include "d/com/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
+#include "d/cc/d_cc_d.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "m_Do/m_Do_hostIO.h"
 #include "dol2asm.h"
+
+#define NONMATCHING 0
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
+class daLv3Candle_HIO_c : public mDoHIO_entry_c {
+public:    
+    /* 80C57ACC */ daLv3Candle_HIO_c();
+    /* 80C58484 */ virtual ~daLv3Candle_HIO_c();
 
-struct mDoMtx_stack_c {
-    static u8 now[48];
+    /* 0x00 vtable */
+    /* 0x04 */ u8 field_0x04;
 };
 
-struct mDoHIO_entry_c {
-    /* 80C57AF0 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daLv3Candle_c {
+class daLv3Candle_c : public fopAc_ac_c {
+public:
     /* 80C57B38 */ void setBaseMtx();
-    /* 80C57BC0 */ void CreateHeap();
-    /* 80C57C40 */ void create();
-    /* 80C57F6C */ void createHeapCallBack(fopAc_ac_c*);
+    /* 80C57BC0 */ int CreateHeap();
+    /* 80C57C40 */ int create();
+    /* 80C57F6C */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80C57F8C */ void lightInit();
     /* 80C58018 */ void pointLightProc();
-    /* 80C580A0 */ void Execute();
-    /* 80C582FC */ void Draw();
-    /* 80C583A0 */ void Delete();
+    /* 80C580A0 */ int Execute();
+    /* 80C582FC */ int Draw();
+    /* 80C583A0 */ int Delete();
 
-    static u8 const mCcDObjInfo[48];
+    u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getType() { return fopAcM_GetParamBit(this, 8, 8); }
+
+    /* 0x568 */ request_of_phase_process_class mPhaseReq;
+    /* 0x570 */ J3DModel* mpModel;
+    /* 0x574 */ u8 mType;
+    /* 0x578 */ dCcD_Stts mStts;
+    /* 0x5B4 */ dCcD_Sph mSph;
+    /* 0x6EC */ cXyz mTorchPos;
+    /* 0x6F8 */ u32 field_0x6f8; // Unused?
+    /* 0x6FC */ cXyz mLightPos;
+    /* 0x708 */ u8 mIsLit;
+    /* 0x70C */ f32 mIntensity;
+    /* 0x710 */ LIGHT_INFLUENCE mLight;
+    /* 0x730 */ u8 mTgHit;
+    /* 0x734 */ Z2SoundObjSimple mSound;
+
+    static dCcD_SrcGObjInf const mCcDObjInfo;
+#if !NONMATCHING
     static u8 mCcDSph[64];
-};
+#else
+    static dCcD_SrcSph mCcDSph;
+#endif
 
-struct daLv3Candle_HIO_c {
-    /* 80C57ACC */ daLv3Candle_HIO_c();
-    /* 80C58484 */ ~daLv3Candle_HIO_c();
-};
+}; // Size: 0x754
 
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
-                                  _GXColor const&, int, f32);
-};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-    /* 80084548 */ void GetTgHitGObj();
-    /* 8008457C */ void GetTgHitObjSe();
-    /* 800845B0 */ void getHitSeID(u8, int);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80C57EDC */ ~cM3dGSph();
-};
-
-struct cM3dGAab {
-    /* 80C57F24 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDFF8 */ void deleteObject();
-    /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct LIGHT_INFLUENCE {};
-
-struct J3DModel {};
+STATIC_ASSERT(sizeof(daLv3Candle_c) == 0x754);
 
 //
 // Forward References:
 //
 
+extern "C" static void daLv3Candle_Draw__FP13daLv3Candle_c();
+extern "C" static void daLv3Candle_Execute__FP13daLv3Candle_c();
+extern "C" static void daLv3Candle_Delete__FP13daLv3Candle_c();
+extern "C" static void daLv3Candle_Create__FP10fopAc_ac_c();
+
 extern "C" void __ct__17daLv3Candle_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__13daLv3Candle_cFv();
 extern "C" void CreateHeap__13daLv3Candle_cFv();
-extern "C" void create__13daLv3Candle_cFv();
+extern "C" int create__13daLv3Candle_cFv();
 extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" void createHeapCallBack__13daLv3Candle_cFP10fopAc_ac_c();
+extern "C" int createHeapCallBack__13daLv3Candle_cFP10fopAc_ac_c();
 extern "C" void lightInit__13daLv3Candle_cFv();
 extern "C" void pointLightProc__13daLv3Candle_cFv();
 extern "C" void Execute__13daLv3Candle_cFv();
 extern "C" void Draw__13daLv3Candle_cFv();
 extern "C" void Delete__13daLv3Candle_cFv();
-extern "C" static void daLv3Candle_Draw__FP13daLv3Candle_c();
-extern "C" static void daLv3Candle_Execute__FP13daLv3Candle_c();
-extern "C" static void daLv3Candle_Delete__FP13daLv3Candle_c();
-extern "C" static void daLv3Candle_Create__FP10fopAc_ac_c();
 extern "C" void __dt__17daLv3Candle_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv3Candle_cpp();
 extern "C" u8 const mCcDObjInfo__13daLv3Candle_c[48];
-extern "C" extern char const* const d_a_obj_lv3Candle__stringBase0;
 extern "C" u8 mCcDSph__13daLv3Candle_c[64];
+extern "C" extern char const* const d_a_obj_lv3Candle__stringBase0;
 
 //
 // External References:
 //
-
+#if !NONMATCHING
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -199,42 +133,43 @@ extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void deleteObject__14Z2SoundObjBaseFv();
 extern "C" void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
-extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
-extern "C" extern u32 g_whiteColor;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
+extern "C" void __dl__FPv();
+#endif
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80C585DC-80C585DC 000078 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C585DC = "L3candl";
-SECTION_DEAD static char const* const stringBase_80C585E4 = "L3candl2";
-#pragma pop
 
+/* 80C57ACC-80C57AF0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv3Candle_HIO_cFv */
+daLv3Candle_HIO_c::daLv3Candle_HIO_c() {
+    field_0x04 = 0x1e;
+}
+
+#if !NONMATCHING
+/* ############################################################################################## */
+/* 80C586C0-80C586CC 000008 000C+00 1/1 0/0 0/0 .bss             @3623 */
+static u8 lit_3623[12];
+
+/* 80C586CC-80C586D4 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
+static u8 l_HIO[8];
+#else
+static daLv3Candle_HIO_c l_HIO;
+#endif
+
+#if !NONMATCHING
 /* 80C585F0-80C58630 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daLv3Candle_c */
 SECTION_DATA u8 daLv3Candle_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -242,11 +177,17 @@ SECTION_DATA u8 daLv3Candle_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#else
+dCcD_SrcSph daLv3Candle_c::mCcDSph = {
+    mCcDObjInfo,
+    {{{0.0f, 0.0f, 0.0f}, 0.0f}}
+};
+#endif
 
 /* 80C58630-80C58638 -00001 0008+00 3/3 0/0 0/0 .data            l_resNameIdx */
-SECTION_DATA static void* l_resNameIdx[2] = {
-    (void*)&d_a_obj_lv3Candle__stringBase0,
-    (void*)(((char*)&d_a_obj_lv3Candle__stringBase0) + 0x8),
+static char* l_resNameIdx[] = {
+    "L3candl",
+    "L3candl2"
 };
 
 /* 80C58638-80C58658 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv3Candle_Method */
@@ -271,6 +212,7 @@ SECTION_DATA extern void* g_profile_Obj_Lv3Candle[12] = {
     (void*)0x00060000, (void*)0x000E0000,
 };
 
+#if !NONMATCHING
 /* 80C58688-80C58694 000098 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
 SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
     (void*)NULL /* RTTI */,
@@ -284,76 +226,47 @@ SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
-
-/* 80C586A0-80C586AC 0000B0 000C+00 2/2 0/0 0/0 .data            __vt__17daLv3Candle_HIO_c */
-SECTION_DATA extern void* __vt__17daLv3Candle_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daLv3Candle_HIO_cFv,
-};
-
-/* 80C586AC-80C586B8 0000BC 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 80C57ACC-80C57AF0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv3Candle_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daLv3Candle_HIO_c::daLv3Candle_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__ct__17daLv3Candle_HIO_cFv.s"
-}
-#pragma pop
-
-/* 80C57AF0-80C57B38 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__dt__14mDoHIO_entry_cFv.s"
-}
-#pragma pop
+#endif
 
 /* 80C57B38-80C57BC0 000158 0088+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv3Candle_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daLv3Candle_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/setBaseMtx__13daLv3Candle_cFv.s"
+void daLv3Candle_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
+    mpModel->setBaseScale(scale);
+    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80C58564-80C58594 000000 0030+00 5/5 0/0 0/0 .rodata          mCcDObjInfo__13daLv3Candle_c */
-SECTION_RODATA u8 const daLv3Candle_c::mCcDObjInfo[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcGObjInf const daLv3Candle_c::mCcDObjInfo = { 
+    {
+        0, {
+            {0x200, 0, 0x13},
+            {0xd8fbfdff, 0x1f},
+            {0x79}
+        }
+    },
+    {1, 0, 0, 0, 0},
+    {0xa, 0, 0, 0, 6},
+    {0},
 };
-COMPILER_STRIP_GATE(0x80C58564, &daLv3Candle_c::mCcDObjInfo);
 
 /* 80C58594-80C5859C 000030 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
-SECTION_RODATA static u8 const l_bmdIdx[8] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
-};
-COMPILER_STRIP_GATE(0x80C58594, &l_bmdIdx);
+static u32 const l_bmdIdx[] = { 0x03, 0x03 };
 
 /* 80C57BC0-80C57C40 0001E0 0080+00 1/1 0/0 0/0 .text            CreateHeap__13daLv3Candle_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daLv3Candle_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/CreateHeap__13daLv3Candle_cFv.s"
-}
-#pragma pop
+int daLv3Candle_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mType], l_bmdIdx[mType]);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
 
+    if (mpModel == NULL) {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+#if !NONMATCHING
 /* ############################################################################################## */
 /* 80C5859C-80C585A0 000038 0004+00 0/3 0/0 0/0 .rodata          @3753 */
 #pragma push
@@ -387,22 +300,73 @@ COMPILER_STRIP_GATE(0x80C585A4, &lit_3755);
 SECTION_RODATA static f32 const lit_3756 = 200.0f;
 COMPILER_STRIP_GATE(0x80C585A8, &lit_3756);
 #pragma pop
+#endif
 
 /* 80C57C40-80C57EDC 000260 029C+00 1/1 0/0 0/0 .text            create__13daLv3Candle_cFv */
+#if NONMATCHING
+int daLv3Candle_c::create() {
+    fopAcM_SetupActor(this, daLv3Candle_c);
+
+    mType = getType();
+    if (mType == 0xff) {
+        mType = 0;
+    }
+
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_resNameIdx[mType]);
+    if (step == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x900)) {
+            return cPhs_ERROR_e;
+        } else {
+            setBaseMtx();
+            fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+            fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+            mStts.Init(0xff, 0xff, this);
+            mSph.Set(mCcDSph);
+            mSph.SetStts(&mStts);
+            mTorchPos = current.pos;
+
+            if (mType == 0) {
+                cXyz v(0.0f, 20.0f, 125.0f);
+                mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
+                mDoMtx_stack_c::multVec(&v, &v);
+                mTorchPos += v;
+            } else {
+                mTorchPos.y -= 200.0f;
+            }
+
+            mIsLit = getSwBit();
+            if (mIsLit == 0xff) {
+                mIsLit = 0;
+            }
+
+            lightInit();
+
+            eyePos = mTorchPos;
+            mSound.init(&current.pos, 1);
+            mTgHit = 0;
+        }
+    }
+
+    return step;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daLv3Candle_c::create() {
+asm int daLv3Candle_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/create__13daLv3Candle_cFv.s"
 }
 #pragma pop
+#endif
 
+#if !NONMATCHING
 /* 80C57EDC-80C57F24 0004FC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+extern "C" asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__dt__8cM3dGSphFv.s"
 }
@@ -412,23 +376,21 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+extern "C" asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__dt__8cM3dGAabFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C57F6C-80C57F8C 00058C 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daLv3Candle_cFP10fopAc_ac_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daLv3Candle_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/createHeapCallBack__13daLv3Candle_cFP10fopAc_ac_c.s"
+int daLv3Candle_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return static_cast<daLv3Candle_c*>(i_this)->CreateHeap();
 }
-#pragma pop
 
+#if !NONMATCHING
 /* ############################################################################################## */
 /* 80C585AC-80C585B0 000048 0004+00 0/1 0/0 0/0 .rodata          @3846 */
 #pragma push
@@ -450,8 +412,27 @@ COMPILER_STRIP_GATE(0x80C585B0, &lit_3847);
 SECTION_RODATA static f32 const lit_3848 = 1.0f;
 COMPILER_STRIP_GATE(0x80C585B4, &lit_3848);
 #pragma pop
+#endif
 
 /* 80C57F8C-80C58018 0005AC 008C+00 1/1 0/0 0/0 .text            lightInit__13daLv3Candle_cFv */
+#if NONMATCHING
+void daLv3Candle_c::lightInit() {
+    mLightPos = mTorchPos;
+    mLightPos.y += 10.0f;
+
+    if (mIsLit) {
+        mLight.mPosition = mLightPos;
+        mLight.mColor.r = 188;
+        mLight.mColor.g = 102;
+        mLight.mColor.b = 66;
+        mLight.mPow = 500.0f;
+        mLight.mFluctuation = 1.0f;
+        return;
+    }
+
+    mIntensity = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -460,7 +441,9 @@ asm void daLv3Candle_c::lightInit() {
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/lightInit__13daLv3Candle_cFv.s"
 }
 #pragma pop
+#endif
 
+#if !NONMATCHING
 /* ############################################################################################## */
 /* 80C585B8-80C585BC 000054 0004+00 0/1 0/0 0/0 .rodata          @3866 */
 #pragma push
@@ -496,9 +479,22 @@ COMPILER_STRIP_GATE(0x80C585C4, &lit_3873);
 SECTION_RODATA static u32 const lit_3874 = 0x358637BD;
 COMPILER_STRIP_GATE(0x80C585C8, &lit_3874);
 #pragma pop
+#endif
 
 /* 80C58018-80C580A0 000638 0088+00 1/1 0/0 0/0 .text            pointLightProc__13daLv3Candle_cFv
  */
+#if NONMATCHING
+void daLv3Candle_c::pointLightProc() {
+    if (mIsLit == 0) {
+        GXColor color = { 188, 102, 66, 255 };
+        cLib_addCalc(&mIntensity, 1.0f, 0.5f, 0.1f, 0.0001f);
+
+        if (mIntensity >= 0.000001f) {
+            dKy_BossLight_set(&mLightPos, &color, mIntensity, 0);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -507,9 +503,11 @@ asm void daLv3Candle_c::pointLightProc() {
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/pointLightProc__13daLv3Candle_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80C585CC-80C585D0 000068 0004+00 0/1 0/0 0/0 .rodata          @3922 */
+#if !NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3922 = -1.0f;
@@ -536,97 +534,118 @@ COMPILER_STRIP_GATE(0x80C585D4, &lit_3924);
 SECTION_RODATA static f32 const lit_3925 = 60.0f;
 COMPILER_STRIP_GATE(0x80C585D8, &lit_3925);
 #pragma pop
+#endif
 
 /* 80C580A0-80C582FC 0006C0 025C+00 1/1 0/0 0/0 .text            Execute__13daLv3Candle_cFv */
+#if NONMATCHING
+int daLv3Candle_c::Execute() {
+    dComIfGp_particle_setSimple(0x100, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
+    dComIfGp_particle_setSimple(0x101, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
+    dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
+    
+    i_mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    if (mSph.ChkTgHit()) {
+        cCcD_Obj* obj = mSph.GetTgHitObj();
+        if (obj) {
+            bool play_sound = true;
+            fopAc_ac_c* actor = obj->GetAc();
+            if (fopAcM_GetName(actor) == PROC_ALINK) {
+                dCcD_GObjInf* gobj = mSph.GetTgHitGObj();
+                if (gobj->GetAtType() & AT_TYPE_NORMAL_SWORD && mTgHit != 0) {
+                    play_sound = false;
+                }
+            }
+
+            if (play_sound) {
+                u32 se_id = mSph.GetTgHitObjHitSeID(1);
+                mSound.startCollisionSE(se_id, 9, NULL);
+            }
+        }
+    } else {
+        mTgHit = 0;
+    }
+
+    mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    setBaseMtx();
+
+    cXyz pos = current.pos;
+    if (mType == 0) {
+        mSph.SetR(90.0f);
+        pos.z += 70.0f;
+    } else {
+        mSph.SetR(60.0f);
+        pos.y -= 200.0f;
+    }
+
+    mSph.SetC(pos);
+    dComIfG_Ccsp()->Set(&mSph);
+
+    pointLightProc();
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daLv3Candle_c::Execute() {
+asm int daLv3Candle_c::Execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/Execute__13daLv3Candle_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80C582FC-80C583A0 00091C 00A4+00 1/1 0/0 0/0 .text            Draw__13daLv3Candle_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daLv3Candle_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/Draw__13daLv3Candle_cFv.s"
+int daLv3Candle_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80C583A0-80C58404 0009C0 0064+00 1/1 0/0 0/0 .text            Delete__13daLv3Candle_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daLv3Candle_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/Delete__13daLv3Candle_cFv.s"
+int daLv3Candle_c::Delete() {
+    mSound.deleteObject();
+    dComIfG_resDelete(&mPhaseReq, l_resNameIdx[mType]);
+
+    if (mIsLit) {
+        dKy_plight_cut(&mLight);
+    }
+    return TRUE;
 }
-#pragma pop
 
 /* 80C58404-80C58424 000A24 0020+00 1/0 0/0 0/0 .text            daLv3Candle_Draw__FP13daLv3Candle_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daLv3Candle_Draw(daLv3Candle_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/daLv3Candle_Draw__FP13daLv3Candle_c.s"
+static int daLv3Candle_Draw(daLv3Candle_c* i_this) {
+    return static_cast<daLv3Candle_c*>(i_this)->Draw();
 }
-#pragma pop
 
 /* 80C58424-80C58444 000A44 0020+00 1/0 0/0 0/0 .text daLv3Candle_Execute__FP13daLv3Candle_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daLv3Candle_Execute(daLv3Candle_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/daLv3Candle_Execute__FP13daLv3Candle_c.s"
+static int daLv3Candle_Execute(daLv3Candle_c* i_this) {
+    return static_cast<daLv3Candle_c*>(i_this)->Execute();
 }
-#pragma pop
 
 /* 80C58444-80C58464 000A64 0020+00 1/0 0/0 0/0 .text daLv3Candle_Delete__FP13daLv3Candle_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daLv3Candle_Delete(daLv3Candle_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/daLv3Candle_Delete__FP13daLv3Candle_c.s"
+static int daLv3Candle_Delete(daLv3Candle_c* i_this) {
+    return static_cast<daLv3Candle_c*>(i_this)->Delete();
 }
-#pragma pop
 
 /* 80C58464-80C58484 000A84 0020+00 1/0 0/0 0/0 .text            daLv3Candle_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daLv3Candle_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/daLv3Candle_Create__FP10fopAc_ac_c.s"
+static int daLv3Candle_Create(fopAc_ac_c* i_this) {
+    return static_cast<daLv3Candle_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80C58484-80C584E0 000AA4 005C+00 2/1 0/0 0/0 .text            __dt__17daLv3Candle_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daLv3Candle_HIO_c::~daLv3Candle_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle/__dt__17daLv3Candle_HIO_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80C586C0-80C586CC 000008 000C+00 1/1 0/0 0/0 .bss             @3623 */
-static u8 lit_3623[12];
-
-/* 80C586CC-80C586D4 000014 0008+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[8];
+daLv3Candle_HIO_c::~daLv3Candle_HIO_c() {}
 
 /* 80C584E0-80C58550 000B00 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv3Candle_cpp */
+#if !NONMATCHING
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -640,5 +659,6 @@ asm void __sinit_d_a_obj_lv3Candle_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x80C584E0, __sinit_d_a_obj_lv3Candle_cpp);
 #pragma pop
+#endif
 
 /* 80C585DC-80C585DC 000078 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
