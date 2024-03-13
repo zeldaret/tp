@@ -30,5 +30,6 @@ struct dCcU_AtInfo {
 };
 
 fopAc_ac_c* cc_at_check(fopAc_ac_c*,dCcU_AtInfo*);
+fopAc_ac_c* at_power_check(dCcU_AtInfo* i_AtInfo);
 
 #endif /* D_CC_D_CC_UTY_H */
