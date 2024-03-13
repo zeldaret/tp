@@ -51,7 +51,7 @@ public:
     /* 801DA3B4 */ void setBButtonString(u16);
     /* 801DA464 */ void setHIO(bool);
 
-    /* 801DA630 */ virtual void draw();
+    /* 801DA630 */ virtual void draw() { _draw(); }
     /* 801D82F4 */ virtual ~dMenu_Insect_c();
 
     u8 getStatus() { return mStatus; }
