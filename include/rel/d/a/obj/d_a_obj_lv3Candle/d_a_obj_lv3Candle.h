@@ -9,7 +9,7 @@
 class daLv3Candle_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C57ACC */ daLv3Candle_HIO_c();
-    /* 80C58484 */ virtual ~daLv3Candle_HIO_c();
+    /* 80C58484 */ virtual ~daLv3Candle_HIO_c() {}
 
     /* 0x00 vtable */
     /* 0x04 */ u8 field_0x04;
@@ -19,7 +19,7 @@ class daLv3Candle_c : public fopAc_ac_c {
 public:
     /* 80C57B38 */ void setBaseMtx();
     /* 80C57BC0 */ int CreateHeap();
-    /* 80C57C40 */ int create();
+    /* 80C57C40 */ cPhs__Step create();
     /* 80C57F6C */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80C57F8C */ void lightInit();
     /* 80C58018 */ void pointLightProc();
