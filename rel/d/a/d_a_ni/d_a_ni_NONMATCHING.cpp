@@ -21,6 +21,34 @@
 #include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/d_a_ni/d_a_ni.h"
 
+#define BCK_FALL 5
+#define BCK_FLY 6
+#define BCK_IKAKU 7
+#define BCK_MIWATASI 8
+#define BCK_MOGAKU 9
+#define BCK_NAKU 10
+#define BCK_WAIT1 11
+#define BCK_WALK_A 12
+#define BCK_WALK_B 13
+
+#define JNT_WAIST 0
+#define JNT_LEGL 1
+#define JNT_FOOTL 2
+#define JNT_LEGR 3
+#define JNT_FOOTR 4
+#define JNT_NECK 5
+#define JNT_HEAD 6
+#define JNT_WINGL 7
+#define JNT_WINGR 8
+
+enum daNi_color {
+    COLOR_WHITE,
+    COLOR_BLACK,
+    COLOR_BROWN,
+    COLOR_GOLD,
+    COLOR_RANDOM = 0xFF,
+};
+
 //
 // Types:
 //
@@ -42,28 +70,28 @@ enum daNi_action {
 
 class ni_class : public fopEn_enemy_c {
 public:
-    bool checkGold() { return mType == 3; }
+    bool checkGold() { return mColor == COLOR_GOLD; }
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 field_0x5b4;
-    /* 0x5B5 */ u8 field_0x5b5;
+    /* 0x5B5 */ u8 mType;
     /* 0x5B6 */ u8 field_0x5b6[0x5C0 - 0x5B6];
     /* 0x5C0 */ cXyz field_0x5c0;
-    /* 0x5CC */ cXyz field_0x5cc;
+    /* 0x5CC */ cXyz mDemoInitPos;
     /* 0x5D8 */ f32 field_0x5d8;
-    /* 0x5DC */ s16 field_0x5dc;
+    /* 0x5DC */ s16 mMoveAngle;
     /* 0x5E0 */ f32 mDistToPlayer;
     /* 0x5E4 */ s16 mAngleToPlayer;
     /* 0x5E8 */ mDoExt_McaMorf* mpMorf;
     /* 0x5EC */ mDoExt_btkAnm* mpBtk;
-    /* 0x5F0 */ s8 mType;
+    /* 0x5F0 */ s8 mColor;
     /* 0x5F4 */ int mAnmID;
-    /* 0x5F8 */ s16 field_0x5f8;
+    /* 0x5F8 */ s16 mCounter;
     /* 0x5FA */ s16 mAction;
     /* 0x5FC */ s16 mMode;
     /* 0x5FE */ s16 field_0x5fe;
     /* 0x600 */ u32 mShadowKey;
-    /* 0x604 */ s16 field_0x604[4];
+    /* 0x604 */ s16 mTimers[4];
     /* 0x60C */ s16 field_0x60c;
     /* 0x60E */ s16 field_0x60e;
     /* 0x610 */ f32 field_0x610;
@@ -79,7 +107,7 @@ public:
     /* 0x626 */ s16 field_0x626;
     /* 0x628 */ s16 field_0x628;
     /* 0x62A */ s16 field_0x62a;
-    /* 0x62C */ int field_0x62c;
+    /* 0x62C */ int mTargetActorID;
     /* 0x630 */ dBgS_AcchCir mAcchCir;
     /* 0x670 */ dBgS_ObjAcch mAcch;
     /* 0x848 */ s8 field_0x848;
@@ -91,21 +119,21 @@ public:
     /* 0x9E8 */ f32 field_0x9e8;
     /* 0x9EC */ s16 field_0x9ec;
     /* 0x9EE */ s16 field_0x9ee[4];
-    /* 0x9F8 */ f32 field_0x9f8;
-    /* 0x9FC */ f32 field_0x9fc;
+    /* 0x9F8 */ f32 mSplGroundH;
+    /* 0x9FC */ f32 mBoomerangMoveMaxStep;
     /* 0xA00 */ f32 field_0xa00;
     /* 0xA04 */ s16 field_0xa04;
     /* 0xA06 */ s8 field_0xa06;
     /* 0xA08 */ u32 field_0xa08[4];
-    /* 0xA18 */ u32 field_0xa18;
+    /* 0xA18 */ u32 mHamonEmtrID;
     /* 0xA1C */ u8 field_0xA1C[0xA20 - 0xA1C];
-    /* 0xA20 */ u32 field_0xa20[2];
+    /* 0xA20 */ u32 mEnoEmtrIDs[2];
     /* 0xA28 */ Z2SoundObjSimple mSound;
     /* 0xA48 */ s8 field_0xa48;
     /* 0xA4C */ u32 mHaneEmitterID;
     /* 0xA50 */ s8 field_0xa50;
     /* 0xA52 */ s16 field_0xa52;
-    /* 0xA54 */ s16 field_0xa54;
+    /* 0xA54 */ s16 mFlowNo;
     /* 0xA58 */ dMsgFlow_c mMsgFlow;
     /* 0xAA4 */ f32 mPadMainStickX;
     /* 0xAA8 */ f32 mPadMainStickY;
@@ -114,9 +142,9 @@ public:
     /* 0xAB4 */ f32 mPadAnalogL;
     /* 0xAB8 */ u32 mPadHoldL;
     /* 0xABC */ f32 field_0xabc;
-    /* 0xAC0 */ f32 field_0xac0;
-    /* 0xAC4 */ s16 field_0xac4;
-    /* 0xAC6 */ s16 field_0xac6;
+    /* 0xAC0 */ f32 mPlayAnmSpeed;
+    /* 0xAC4 */ s16 mPlayCamMode;
+    /* 0xAC6 */ s16 mPlayCamModeTimer;
     /* 0xAC8 */ cXyz field_0xac8;
     /* 0xAD4 */ cXyz field_0xad4;
     /* 0xAE0 */ u8 field_0xAE0[0xAEC - 0xAE0];
@@ -128,7 +156,7 @@ public:
     /* 0xB00 */ f32 field_0xb00;
     /* 0xB04 */ f32 field_0xb04;
     /* 0xB08 */ u8 field_0xb08;
-    /* 0xB09 */ u8 field_0xb09;
+    /* 0xB09 */ u8 mInitHIO;
 };
 
 class daNi_HIO_c {
@@ -149,7 +177,7 @@ public:
     /* 0x2C */ f32 mThrowSpeed;
     /* 0x30 */ f32 mThrowJumpPower;
     /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ u8 mSquirmModelShake;
+    /* 0x38 */ u8 mMogakuModelShake;
     /* 0x39 */ u8 field_0x39;
 };
 
@@ -370,7 +398,7 @@ daNi_HIO_c::daNi_HIO_c() {
     mFleeJumpGravity = -1.0f;
     mThrowSpeed = 20.0f;
     mThrowJumpPower = 15.0f;
-    mSquirmModelShake = 0;
+    mMogakuModelShake = 0;
     field_0x39 = 1;
 }
 
@@ -387,7 +415,7 @@ static void anm_init(ni_class* i_this, int i_resID, f32 i_morf, u8 i_mode, f32 i
 static void hane_set(ni_class* i_this, f32 i_rate, f32 i_speed) {
     static u16 hane_id[] = {0x82C2, 0x82C0, 0x82C1, 0x82C3};
 
-    i_this->mHaneEmitterID = dComIfGp_particle_set(i_this->mHaneEmitterID, hane_id[i_this->mType],
+    i_this->mHaneEmitterID = dComIfGp_particle_set(i_this->mHaneEmitterID, hane_id[i_this->mColor],
                                                    &i_this->current.pos, NULL, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(i_this->mHaneEmitterID);
 
@@ -407,17 +435,17 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         ni_class* a_this = (ni_class*)model->getUserArea();
         if (a_this != NULL) {
             MTXCopy(model->i_getAnmMtx(joint_no), *calc_mtx);
-            if (joint_no == 6) {
+            if (joint_no == JNT_HEAD) {
                 cMtx_YrotM(*calc_mtx, a_this->field_0x61c);
                 cMtx_XrotM(*calc_mtx, a_this->field_0x61a);
-            } else if (joint_no == 5) {
+            } else if (joint_no == JNT_NECK) {
                 cMtx_XrotM(*calc_mtx, a_this->field_0x61a / 2);
                 cMtx_ZrotM(*calc_mtx, a_this->field_0x618);
-            } else if (joint_no == 7) {
+            } else if (joint_no == JNT_WINGL) {
                 cMtx_YrotM(*calc_mtx, a_this->field_0x626);
-            } else if (joint_no == 8) {
+            } else if (joint_no == JNT_WINGR) {
                 cMtx_YrotM(*calc_mtx, a_this->field_0x624);
-            } else if (joint_no >= 1 && joint_no <= 4) {
+            } else if (joint_no >= JNT_LEGL && joint_no <= JNT_FOOTR) {
                 cMtx_ZrotM(*calc_mtx, a_this->field_0x9ee[joint_no - 1]);
             }
 
@@ -495,7 +523,7 @@ static void damage_check(ni_class* i_this) {
             i_this->field_0x60c = 6;
             i_this->mAtInfo.mpCollider = i_this->mCcSph.GetTgHitObj();
 
-            anm_init(i_this, 9, 1.5f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
+            anm_init(i_this, BCK_MOGAKU, 1.5f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
 
             if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                 i_this->mAction = ACTION_WINDSPIN_e;
@@ -744,40 +772,40 @@ static void ni_normal(ni_class* i_this) {
     cXyz sp50;
     cXyz sp5C;
 
-    f32 var_f31 = 0.0f;
+    f32 move_speed = 0.0f;
     switch (i_this->mMode) {
     case 0:
-        i_this->field_0x604[0] = cM_rndF(70) + 50.0f;
-        anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, var_f31);
+        i_this->mTimers[0] = cM_rndF(70) + 50.0f;
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, move_speed);
         i_this->mMode++;
         break;
     case 1:
-        if (i_this->field_0x604[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mMode = 10;
 
             if (fopAcM_wayBgCheck(a_this, 100.0f, 30.0f) || move_gake_check(i_this, 100.0f)) {
-                i_this->field_0x5dc =
+                i_this->mMoveAngle =
                     (a_this->current.angle.y + 0x10000 + (s16)cM_rndFX(8000)) - 0x8000;
-                i_this->field_0x604[1] = 30;
+                i_this->mTimers[1] = 30;
             } else {
                 sp50 = a_this->home.pos - a_this->current.pos;
                 sp50.x += cM_rndFX(500);
                 sp50.z += cM_rndFX(500);
 
-                i_this->field_0x5dc = cM_atan2s(sp50.x, sp50.z);
+                i_this->mMoveAngle = cM_atan2s(sp50.x, sp50.z);
             }
 
-            i_this->field_0x604[0] = cM_rndF(60) + 30.0f;
-            anm_init(i_this, 12, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.mMotionSpeed);
+            i_this->mTimers[0] = cM_rndF(60) + 30.0f;
+            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.mMotionSpeed);
         }
         break;
     case 10:
-        var_f31 = l_HIO.mMoveSpeed;
-        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5dc, 4, 0x400);
+        move_speed = l_HIO.mMoveSpeed;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mMoveAngle, 4, 0x400);
 
-        if (i_this->field_0x604[0] == 0 ||
+        if (i_this->mTimers[0] == 0 ||
             ((fopAcM_wayBgCheck(a_this, 100.0f, 30.0f) || move_gake_check(i_this, 100.0f)) &&
-             i_this->field_0x604[1] == 0))
+             i_this->mTimers[1] == 0))
         {
             i_this->mMode = 0;
         }
@@ -788,7 +816,7 @@ static void ni_normal(ni_class* i_this) {
         break;
     }
 
-    cLib_addCalc2(&a_this->speedF, var_f31, 1.0f, 5.0f);
+    cLib_addCalc2(&a_this->speedF, move_speed, 1.0f, 5.0f);
 
     if (fabsf(player->speedF) < 20.0f && i_this->field_0x60e == 0) {
         i_this->field_0x60e = 1;
@@ -805,15 +833,15 @@ static void ni_normal(ni_class* i_this) {
     }
 
     s8 var_r29 = false;
-    i_this->field_0x62c = -1;
+    i_this->mTargetActorID = -1;
 
-    if (!(i_this->field_0x5f8 & 31)) {
+    if (!(i_this->mCounter & 31)) {
         fopAc_ac_c* target = search_test(i_this);
         if (target != NULL) {
             sp50 = target->current.pos - a_this->current.pos;
 
             if (sp50.abs() < l_HIO.mRecognizeRange) {
-                i_this->field_0x62c = fopAcM_GetID(target);
+                i_this->mTargetActorID = fopAcM_GetID(target);
                 var_r29 = true;
             }
         }
@@ -853,11 +881,11 @@ static void ni_away(ni_class* i_this) {
     cXyz sp4C;
     cXyz sp58;
 
-    f32 var_f31 = 0.0f;
-    f32 var_f30 = 2.0f;
-    s16 var_r28 = 0x1800;
+    f32 move_speed = 0.0f;
+    f32 speed_max_step = 2.0f;
+    s16 angle_max_step = 0x1800;
 
-    fopAc_ac_c* target = fopAcM_SearchByID(a_this->field_0x62c);
+    fopAc_ac_c* target = fopAcM_SearchByID(a_this->mTargetActorID);
     if (target != NULL) {
         sp4C = i_this->current.pos - target->current.pos;
         a_this->mDistToPlayer = sp4C.abs();
@@ -867,49 +895,49 @@ static void ni_away(ni_class* i_this) {
 
     switch (a_this->mMode) {
     case 0:
-        anm_init(a_this, 13, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
+        anm_init(a_this, BCK_WALK_B, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
         a_this->mMode++;
 
         if (target == NULL) {
-            a_this->field_0x604[0] = 20;
+            a_this->mTimers[0] = 20;
         } else {
-            a_this->field_0x604[0] = 20;
+            a_this->mTimers[0] = 20;
         }
     case 1:
-        var_f31 = l_HIO.mFleeWalkSpeed;
+        move_speed = l_HIO.mFleeWalkSpeed;
 
         if (a_this->mpMorf->checkFrame(1.0f) || a_this->mpMorf->checkFrame(8.0f)) {
             a_this->mSound.startSound(Z2SE_CHICKEN_WALK, 0, -1);
         }
 
-        if (a_this->field_0x604[0] == 0) {
+        if (a_this->mTimers[0] == 0) {
             if (a_this->mDistToPlayer > l_HIO.mRecognizeRange + 50.0f) {
                 a_this->mAction = ACTION_NORMAL_e;
                 a_this->mMode = 0;
             } else if (a_this->mAcch.i_ChkGroundHit() &&
                        (target != NULL || a_this->mDistToPlayer < l_HIO.mRecognizeRange - 100.0f))
             {
-                anm_init(a_this, 6, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(a_this, BCK_FLY, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
                 a_this->speed.y = l_HIO.mFleeJumpPower;
                 a_this->mMode++;
                 hane_set(a_this, 5.0f, 25.0f);
             }
         }
 
-        if (a_this->field_0x604[1] == 0) {
-            a_this->field_0x5dc = cM_atan2s(sp4C.x, sp4C.z);
+        if (a_this->mTimers[1] == 0) {
+            a_this->mMoveAngle = cM_atan2s(sp4C.x, sp4C.z);
 
             if (fopAcM_wayBgCheck(a_this, 100.0f, 30.0f)) {
-                a_this->field_0x604[1] = 30;
-                a_this->field_0x5dc =
+                a_this->mTimers[1] = 30;
+                a_this->mMoveAngle =
                     (i_this->current.angle.y + 0x10000 + (s16)cM_rndFX(10000)) - 0x8000;
             }
         }
         break;
     case 2:
-        var_f31 = l_HIO.mFleeFlySpeed;
-        var_r28 = 0x400;
-        var_f30 = 10.0f;
+        move_speed = l_HIO.mFleeFlySpeed;
+        angle_max_step = 0x400;
+        speed_max_step = 10.0f;
 
         if (i_this->speed.y <= 0.0f) {
             i_this->gravity = l_HIO.mFleeJumpGravity;
@@ -921,8 +949,8 @@ static void ni_away(ni_class* i_this) {
         break;
     }
 
-    cLib_addCalc2(&i_this->speedF, var_f31, 1.0f, var_f30);
-    cLib_addCalcAngleS2(&i_this->current.angle.y, a_this->field_0x5dc, 2, var_r28);
+    cLib_addCalc2(&i_this->speedF, move_speed, 1.0f, speed_max_step);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, a_this->mMoveAngle, 2, angle_max_step);
 }
 
 /* 8094D2A4-8094D60C 001764 0368+00 1/1 0/0 0/0 .text            ni_swim__FP8ni_class */
@@ -931,36 +959,35 @@ static void ni_swim(ni_class* i_this) {
     cXyz sp48;
     cXyz sp54;
 
-    f32 var_f31 = 0.0f;
+    f32 move_speed = 0.0f;
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, var_f31);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, move_speed);
         i_this->mMode++;
-        i_this->field_0x9e8 = var_f31;
+        i_this->field_0x9e8 = move_speed;
     case 1:
         if (fopAcM_wayBgCheck(i_this, 100.0f, 30.0f)) {
-            i_this->field_0x5dc =
-                (i_this->current.angle.y + 0x10000 + (s16)cM_rndFX(8000)) - 0x8000;
-            i_this->field_0x604[1] = 0x80;
-            i_this->field_0x604[0] = 0x80;
+            i_this->mMoveAngle = (i_this->current.angle.y + 0x10000 + (s16)cM_rndFX(8000)) - 0x8000;
+            i_this->mTimers[1] = 128;
+            i_this->mTimers[0] = 128;
         } else {
             sp48 = i_this->home.pos - i_this->current.pos;
             sp48.x += cM_rndFX(500);
             sp48.z += cM_rndFX(500);
 
-            i_this->field_0x5dc = cM_atan2s(sp48.x, sp48.z);
-            i_this->field_0x604[0] = cM_rndF(60) + 30.0f;
+            i_this->mMoveAngle = cM_atan2s(sp48.x, sp48.z);
+            i_this->mTimers[0] = cM_rndF(60) + 30.0f;
         }
 
         i_this->mMode++;
         break;
     case 2:
-        var_f31 = 2.0f;
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x5dc, 4, 0x100);
+        move_speed = 2.0f;
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mMoveAngle, 4, 0x100);
 
-        if (i_this->field_0x604[0] == 0 ||
-            (fopAcM_wayBgCheck(i_this, 100.0f, 30.0f) && i_this->field_0x604[1] == 0))
+        if (i_this->mTimers[0] == 0 ||
+            (fopAcM_wayBgCheck(i_this, 100.0f, 30.0f) && i_this->mTimers[1] == 0))
         {
             i_this->mMode = 1;
         }
@@ -969,35 +996,35 @@ static void ni_swim(ni_class* i_this) {
             i_this->field_0x560 = 0;
             i_this->mMode++;
 
-            anm_init(i_this, 9, 1.0f, 2, 1.0f);
+            anm_init(i_this, BCK_MOGAKU, 1.0f, 2, 1.0f);
             i_this->field_0x60c = 10;
-            i_this->field_0x604[2] = cM_rndF(10) + 5.0f;
+            i_this->mTimers[2] = cM_rndF(10) + 5.0f;
 
             i_this->mSound.startSound(Z2SE_CHICKEN_CRY, 0, -1);
             hane_set(i_this, 5.0f, 25.0f);
-            i_this->field_0x5dc = cM_rndF(0x10000);
+            i_this->mMoveAngle = cM_rndF(0x10000);
         }
         break;
     case 3:
-        var_f31 = 2.0f;
-        i_this->current.angle.z = cM_ssin(i_this->field_0x5f8 * 9000) * 3000.0f;
+        move_speed = 2.0f;
+        i_this->current.angle.z = cM_ssin(i_this->mCounter * 9000) * 3000.0f;
 
-        if (i_this->field_0x604[2] == 0) {
+        if (i_this->mTimers[2] == 0) {
             i_this->mMode = 1;
-            anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
         }
 
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x5dc, 4, 0x400);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mMoveAngle, 4, 0x400);
         break;
     }
 
-    cLib_addCalc2(&i_this->speedF, var_f31, 1.0f, 1.0f);
+    cLib_addCalc2(&i_this->speedF, move_speed, 1.0f, 1.0f);
 
     if (i_this->field_0x9e4 == 0 && i_this->field_0x848 == 0) {
         i_this->mAction = ACTION_AWAY_e;
         i_this->mMode = 2;
 
-        anm_init(i_this, 6, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_FLY, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         i_this->speed.y = 20.0f;
         hane_set(i_this, 5.0f, 25.0f);
         i_this->field_0x9e4 = 30;
@@ -1015,10 +1042,10 @@ static int ni_carry(ni_class* i_this) {
     i_this->mCcSph.OffCoSetBit();
     i_this->speed.y = 0.0f;
 
-    int var_r29 = 0;
+    BOOL update_position = false;
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 9, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         i_this->mMode++;
         // fallthrough
     case 1:
@@ -1026,7 +1053,7 @@ static int ni_carry(ni_class* i_this) {
         break;
     }
 
-    if (l_HIO.mSquirmModelShake) {
+    if (l_HIO.mMogakuModelShake) {
         f32 var_f1;
         if (daPy_getPlayerActorClass()->checkPlayerFly()) {
             var_f1 = 1000.0f;
@@ -1034,7 +1061,7 @@ static int ni_carry(ni_class* i_this) {
             var_f1 = 2500.0f;
         }
 
-        a_this->current.angle.z = var_f1 * cM_ssin(i_this->field_0x5f8 * 9000);
+        a_this->current.angle.z = var_f1 * cM_ssin(i_this->mCounter * 9000);
     }
 
     if (!fopAcM_checkCarryNow(a_this)) {
@@ -1056,10 +1083,10 @@ static int ni_carry(ni_class* i_this) {
         }
 
         fopAcM_carryOffRevise(a_this);
-        var_r29 = 1;
+        update_position = true;
     }
 
-    return var_r29;
+    return update_position;
 }
 
 /* 8094D7BC-8094D8EC 001C7C 0130+00 1/1 0/0 0/0 .text            ni_fly__FP8ni_class */
@@ -1068,9 +1095,9 @@ static void ni_fly(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 5, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
         i_this->mMode++;
-        i_this->field_0x604[0] = 40;
+        i_this->mTimers[0] = 40;
         i_this->field_0x5c0 = player->current.pos;
         // fallthrough
     case 1:
@@ -1083,7 +1110,7 @@ static void ni_fly(ni_class* i_this) {
         i_this->speed.y = -20.0f;
     }
 
-    if (i_this->checkGold() && i_this->field_0x604[0] == 0) {
+    if (i_this->checkGold() && i_this->mTimers[0] == 0) {
         i_this->mAction = ACTION_RETURN_e;
         i_this->mMode = 0;
     } else if (i_this->mAcch.i_ChkGroundHit() || i_this->mAcch.ChkWallHit() ||
@@ -1100,7 +1127,7 @@ static void ni_drop(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 5, 1.0f, 0, 1.0f);
+        anm_init(i_this, BCK_FALL, 1.0f, 0, 1.0f);
         i_this->mMode++;
         // fallthrough
     case 1:
@@ -1130,7 +1157,7 @@ static void ni_return(ni_class* i_this) {
     sp38.x = i_this->field_0x5c0.x - i_this->current.pos.x;
     sp38.z = i_this->field_0x5c0.z - i_this->current.pos.z;
 
-    i_this->field_0x5dc = cM_atan2s(sp38.x, sp38.z);
+    i_this->mMoveAngle = cM_atan2s(sp38.x, sp38.z);
     f32 var_f31 = JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z);
 
     switch (i_this->mMode) {
@@ -1138,8 +1165,8 @@ static void ni_return(ni_class* i_this) {
         break;
     case 0:
         i_this->mMode++;
-        i_this->field_0x604[0] = 200;
-        anm_init(i_this, 6, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 2.0f);
+        i_this->mTimers[0] = 200;
+        anm_init(i_this, BCK_FLY, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 2.0f);
         break;
     }
 
@@ -1157,9 +1184,9 @@ static void ni_return(ni_class* i_this) {
         }
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x5dc, 4, 0x400);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mMoveAngle, 4, 0x400);
 
-    if (i_this->field_0x604[0] == 0 || var_f31 < 100.0f) {
+    if (i_this->mTimers[0] == 0 || var_f31 < 100.0f) {
         i_this->mAction = ACTION_DROP_e;
         i_this->mMode = 0;
     }
@@ -1171,17 +1198,17 @@ static void ni_damage(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 13, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         i_this->mMode++;
 
-        i_this->field_0x604[0] = cM_rndF(20.0f) + 40.0f;
-        i_this->field_0x604[1] = 10;
+        i_this->mTimers[0] = cM_rndF(20.0f) + 40.0f;
+        i_this->mTimers[1] = 10;
         i_this->current.angle.y = i_this->mAngleToPlayer + 0x8000;
         // fallthrough
     case 1:
-        if (i_this->field_0x604[1] == 0) {
-            i_this->field_0x5dc = i_this->current.angle.y + (s16)cM_rndFX(10000.0f);
-            i_this->field_0x604[1] = cM_rndF(15.0f) + 5.0f;
+        if (i_this->mTimers[1] == 0) {
+            i_this->mMoveAngle = i_this->current.angle.y + (s16)cM_rndFX(10000.0f);
+            i_this->mTimers[1] = cM_rndF(15.0f) + 5.0f;
 
             if (cM_rndF(1.0f) < 0.35f) {
                 i_this->speed.y = cM_rndF(15.0f) + 15.0f;
@@ -1190,7 +1217,7 @@ static void ni_damage(ni_class* i_this) {
 
         hane_set(i_this, 0.1f, 20.0f);
 
-        if (i_this->field_0x604[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mAction = 0;
             i_this->mMode = 0;
         }
@@ -1198,7 +1225,7 @@ static void ni_damage(ni_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->speedF, l_HIO.mFleeWalkSpeed, 1.0f, 2.0f);
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x5dc, 2, 0x2000);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mMoveAngle, 2, 0x2000);
 }
 
 /* 8094DD10-8094DD74 0021D0 0064+00 1/1 0/0 0/0 .text            s_b_sub__FPvPv */
@@ -1221,11 +1248,11 @@ static void ni_windspin(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 5, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
         i_this->mMode++;
 
         hane_set(i_this, 0.1f, 20.0f);
-        i_this->field_0x9fc = 0.0f;
+        i_this->mBoomerangMoveMaxStep = 0.0f;
         // fallthrough
     case 1:
         i_this->current.angle.y -= 0x2200;
@@ -1234,18 +1261,20 @@ static void ni_windspin(ni_class* i_this) {
     }
 
     if (boomerang == NULL) {
-        i_this->mAction = 8;
+        i_this->mAction = ACTION_DAMAGE_e;
         i_this->mMode = 0;
         return;
     }
 
-    if (i_this->field_0x9fc >= 100.0f) {
+    if (i_this->mBoomerangMoveMaxStep >= 100.0f) {
         i_this->current.pos.x = boomerang->current.pos.x;
         i_this->current.pos.z = boomerang->current.pos.z;
     } else {
-        cLib_addCalc2(&i_this->current.pos.x, boomerang->current.pos.x, 1.0f, i_this->field_0x9fc);
-        cLib_addCalc2(&i_this->current.pos.z, boomerang->current.pos.z, 1.0f, i_this->field_0x9fc);
-        cLib_addCalc2(&i_this->field_0x9fc, 200.0f, 1.0f, 20.0f);
+        cLib_addCalc2(&i_this->current.pos.x, boomerang->current.pos.x, 1.0f,
+                      i_this->mBoomerangMoveMaxStep);
+        cLib_addCalc2(&i_this->current.pos.z, boomerang->current.pos.z, 1.0f,
+                      i_this->mBoomerangMoveMaxStep);
+        cLib_addCalc2(&i_this->mBoomerangMoveMaxStep, 200.0f, 1.0f, 20.0f);
     }
 
     cLib_addCalc2(&i_this->current.pos.y, boomerang->current.pos.y - 60.0f, 0.2f, 10.0f);
@@ -1266,7 +1295,7 @@ static int ni_demo0(ni_class* i_this) {
     cXyz sp34;
     daNpcMoiR_c* moi = (daNpcMoiR_c*)i_fopAcM_SearchByName(PROC_NPC_MOIR);
 
-    if (i_this->field_0x604[0] == 0 && moi != NULL) {
+    if (i_this->mTimers[0] == 0 && moi != NULL) {
         mDoMtx_stack_c::copy(moi->getHandRMtx());
         mDoMtx_stack_c::transM(-5.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&sp34);
@@ -1287,9 +1316,9 @@ static int ni_demo0(ni_class* i_this) {
 
         i_this->mMode = 1;
         i_this->field_0x5fe = 0;
-        i_this->field_0x5cc.set(-37864.0f, 1012.0f, -22106.0f);
-        i_this->current.pos = i_this->field_0x5cc;
-        anm_init(i_this, 6, 1.0f, 2, 1.0f);
+        i_this->mDemoInitPos.set(-37864.0f, 1012.0f, -22106.0f);
+        i_this->current.pos = i_this->mDemoInitPos;
+        anm_init(i_this, BCK_FLY, 1.0f, 2, 1.0f);
         // fallthrough
     case 1:
         i_this->field_0x5c0 = sp34;
@@ -1305,18 +1334,18 @@ static int ni_demo0(ni_class* i_this) {
 
         if (sp28.abs() < 30.0f) {
             i_this->mMode = 2;
-            i_this->field_0x604[1] = 20;
+            i_this->mTimers[1] = 20;
         }
         break;
     case 2:
         i_this->field_0x5c0 = sp34;
-        if (i_this->field_0x604[1] != 0) {
+        if (i_this->mTimers[1] != 0) {
             cLib_addCalc2(&i_this->current.pos.x, i_this->field_0x5c0.x, 0.1f, 5.0f);
             cLib_addCalc2(&i_this->current.pos.y, i_this->field_0x5c0.y, 0.1f, 5.0f);
             cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x5c0.z, 0.1f, 5.0f);
 
-            if (i_this->field_0x604[1] == 1) {
-                anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+            if (i_this->mTimers[1] == 1) {
+                anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
             }
         } else {
             i_this->current.pos = i_this->field_0x5c0;
@@ -1341,7 +1370,7 @@ static void ni_message(ni_class* i_this) {
     case 1:
         break;
     case 0:
-        anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
         i_this->mMode++;
         break;
     }
@@ -1359,25 +1388,25 @@ static void ni_message(ni_class* i_this) {
 static BOOL playwallcheck(ni_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     dBgS_LinChk lin_chk;
-    f32 var_f31 = a_this->current.pos.x - a_this->old.pos.x;
-    f32 var_f30 = a_this->current.pos.z - a_this->old.pos.z;
+    f32 x_diff = a_this->current.pos.x - a_this->old.pos.x;
+    f32 z_diff = a_this->current.pos.z - a_this->old.pos.z;
 
-    if (var_f31 * var_f31 + var_f30 * var_f30 > 0.0f) {
-        cXyz spB4;
-        cXyz spC0;
-        cXyz spCC;
-        spC0 = a_this->current.pos;
-        spC0.y += 100.0f;
+    if (x_diff * x_diff + z_diff * z_diff > 0.0f) {
+        cXyz offset;
+        cXyz line_start;
+        cXyz line_end;
+        line_start = a_this->current.pos;
+        line_start.y += 100.0f;
 
-        cMtx_YrotS(*calc_mtx, cM_atan2s(var_f31, var_f30));
-        spB4.x = 0.0f;
-        spB4.y = 0.0f;
-        spB4.z = 50.0f;
-        MtxPosition(&spB4, &spCC);
-        spCC += spC0;
+        cMtx_YrotS(*calc_mtx, cM_atan2s(x_diff, z_diff));
+        offset.x = 0.0f;
+        offset.y = 0.0f;
+        offset.z = 50.0f;
+        MtxPosition(&offset, &line_end);
+        line_end += line_start;
 
         for (int i = 0; i < 2; i++) {
-            lin_chk.Set(&spC0, &spCC, a_this);
+            lin_chk.Set(&line_start, &line_end, a_this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 a_this->current.pos.x = a_this->old.pos.x;
                 a_this->current.pos.z = a_this->old.pos.z;
@@ -1385,8 +1414,8 @@ static BOOL playwallcheck(ni_class* i_this) {
                 return true;
             }
 
-            spC0.y += 50.0f;
-            spCC.y += 50.0f;
+            line_start.y += 50.0f;
+            line_end.y += 50.0f;
         }
     }
 
@@ -1427,8 +1456,8 @@ static int ni_play(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        i_this->field_0xac0 = 0.0f;
-        anm_init(i_this, 12, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->field_0xac0);
+        i_this->mPlayAnmSpeed = 0.0f;
+        anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
         i_this->mMode++;
         // fallthrough
     case 1:
@@ -1437,8 +1466,8 @@ static int ni_play(ni_class* i_this) {
         }
 
         if (i_this->speedF > 10.0f) {
-            i_this->field_0xac0 = 1.0f;
-            anm_init(i_this, 13, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->field_0xac0);
+            i_this->mPlayAnmSpeed = 1.0f;
+            anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
             i_this->mMode++;
         }
         break;
@@ -1448,8 +1477,8 @@ static int ni_play(ni_class* i_this) {
         }
 
         if (i_this->speedF < 10.0f) {
-            i_this->field_0xac0 = 1.5f;
-            anm_init(i_this, 12, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->field_0xac0);
+            i_this->mPlayAnmSpeed = 1.5f;
+            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
             i_this->mMode = 1;
         }
         break;
@@ -1487,11 +1516,11 @@ static int ni_play(ni_class* i_this) {
         break;
     case 30:
         var_r30 = 1;
-        i_this->current.angle.z = cM_ssin(i_this->field_0x5f8 * 9000) * 3000.0f;
+        i_this->current.angle.z = cM_ssin(i_this->mCounter * 9000) * 3000.0f;
 
         if (i_this->field_0x60c == 0) {
             i_this->mMode = 1;
-            anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
         }
         break;
     }
@@ -1543,32 +1572,32 @@ static int ni_play(ni_class* i_this) {
     }
 
     if (i_this->mMode < 5) {
-        if (i_this->mAnmID == 12) {
-            i_this->field_0xac0 = var_f30_2 * 5.0f;
+        if (i_this->mAnmID == BCK_WALK_A) {
+            i_this->mPlayAnmSpeed = var_f30_2 * 5.0f;
         } else {
-            i_this->field_0xac0 = var_f30_2 * 2.0f;
+            i_this->mPlayAnmSpeed = var_f30_2 * 2.0f;
         }
 
-        i_this->mpMorf->setPlaySpeed(i_this->field_0xac0);
+        i_this->mpMorf->setPlaySpeed(i_this->mPlayAnmSpeed);
 
         if (i_this->speed.y <= -15.0f) {
             i_this->speed.y = 0.0f;
             i_this->mMode = 10;
-            anm_init(i_this, 9, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
             hane_set(i_this, 5.0f, 25.0f);
         }
     }
 
     if (i_this->mMode < 20 && i_this->field_0x848 != 0) {
         i_this->mMode = 20;
-        anm_init(i_this, 11, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
         i_this->speedF *= 0.5f;
     }
 
     if ((var_r29 != 0 || var_r30 != 0) && mDoCPd_c::getTrigA(PAD_1)) {
         i_this->speed.y = 20.0f;
         i_this->mMode = 10;
-        anm_init(i_this, 9, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         hane_set(i_this, 5.0f, 25.0f);
     }
 
@@ -1578,7 +1607,7 @@ static int ni_play(ni_class* i_this) {
         if (i_this->field_0x60c == 0) {
             i_this->field_0x60c = cM_rndF(10.0f) + 5.0f;
             i_this->mMode = 30;
-            anm_init(i_this, 9, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
             i_this->mSound.startSound(Z2SE_CHICKEN_CRY, 0, -1);
             hane_set(i_this, 5.0f, 25.0f);
         }
@@ -1586,8 +1615,8 @@ static int ni_play(ni_class* i_this) {
 
     if (fabsf(i_this->current.pos.y - i_this->mAcch.GetGroundH()) < 5.0f) {
         i_this->field_0xa00 = i_this->mAcch.GetGroundH();
-    } else if (fabsf(i_this->current.pos.y - i_this->field_0x9f8) < 40.0f) {
-        i_this->field_0xa00 = i_this->field_0x9f8;
+    } else if (fabsf(i_this->current.pos.y - i_this->mSplGroundH) < 40.0f) {
+        i_this->field_0xa00 = i_this->mSplGroundH;
     }
 
     if (i_this->field_0xa00 >= i_this->current.pos.y) {
@@ -1630,16 +1659,16 @@ static void play_camera(ni_class* i_this) {
 
     int var_r27 = 0;
 
-    f32 temp_f30 = i_this->mPadAnalogL;
+    f32 analog_l = i_this->mPadAnalogL;
     f32 var_f31;
 
-    BOOL temp_r26 = i_this->mPadHoldL;
+    BOOL hold_l = i_this->mPadHoldL;
     cXyz sp208(0.0f, 0.0f, 0.0f);
 
     int var_r25 = 0;
-    switch (i_this->field_0xac4) {
+    switch (i_this->mPlayCamMode) {
     case 0:
-        i_this->field_0xac4 = 1;
+        i_this->mPlayCamMode = 1;
         i_this->field_0xa00 = a_this->current.pos.y;
         // fallthrough
     case 1:
@@ -1649,8 +1678,8 @@ static void play_camera(ni_class* i_this) {
             return;
         }
 
-        i_this->field_0xac4 = 2;
-        i_this->field_0xac6 = 0;
+        i_this->mPlayCamMode = 2;
+        i_this->mPlayCamModeTimer = 0;
         camera->mCamera.Stop();
 
         i_this->field_0xafc = 500.0f;
@@ -1664,13 +1693,13 @@ static void play_camera(ni_class* i_this) {
         mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
         // fallthrough
     case 2:
-        if (i_this->field_0xac6 != 30) {
+        if (i_this->mPlayCamModeTimer != 30) {
             break;
         }
 
         mDoGph_gInf_c::fadeOut(-0.05f, g_blackColor);
-        i_this->field_0xac4 = 3;
-        i_this->field_0xac6 = 0;
+        i_this->mPlayCamMode = 3;
+        i_this->mPlayCamModeTimer = 0;
         // fallthrough
     case 3:
         var_r25 = 1;
@@ -1683,10 +1712,11 @@ static void play_camera(ni_class* i_this) {
         f32 var_f28 = 180.0f;
         f32 var_f27 = 100.0f;
 
-        if (temp_f30 > TREG_F(12) + 0.5f) {
+        if (analog_l > TREG_F(12) + 0.5f) {
             var_r4_2 = a_this->shape_angle.y;
             var_f31 = NREG_F(5) + 0.5f;
-            if (temp_r26 != 0) {
+
+            if (hold_l) {
                 var_r27 = 1;
                 var_f29 = 300.0f;
                 var_f28 = 230.0f;
@@ -1743,20 +1773,20 @@ static void play_camera(ni_class* i_this) {
                       200.0f * i_this->field_0xaf0);
         cLib_addCalc2(&i_this->field_0xad4.z, sp1FC.z, NREG_F(4) + 0.3f, 200.0f);
 
-        if (i_this->field_0xac6 < 2) {
+        if (i_this->mPlayCamModeTimer < 2) {
             i_this->field_0xac8 = sp1F0;
             i_this->field_0xad4 = sp1FC;
         }
 
-        if (i_this->field_0xac6 == 350 || (a_this->home.pos.y - a_this->current.pos.y) > 2000.0f) {
-            i_this->field_0xac4 = 4;
-            i_this->field_0xac6 = 0;
+        if (i_this->mPlayCamModeTimer == 350 || (a_this->home.pos.y - a_this->current.pos.y) > 2000.0f) {
+            i_this->mPlayCamMode = 4;
+            i_this->mPlayCamModeTimer = 0;
             mDoGph_gInf_c::fadeOut(0.05f, g_blackColor);
         }
         break;
     case 4:
         var_r25 = 1;
-        if (i_this->field_0xac6 == 30) {
+        if (i_this->mPlayCamModeTimer == 30) {
             player = (daPy_py_c*)dComIfGp_getPlayer(0);
             mDoGph_gInf_c::fadeOut(-0.05f, g_blackColor);
 
@@ -1777,7 +1807,7 @@ static void play_camera(ni_class* i_this) {
 
             player->i_cancelOriginalDemo();
 
-            i_this->field_0xac4 = 0;
+            i_this->mPlayCamMode = 0;
             i_this->mAction = ACTION_NORMAL_e;
             i_this->mMode = 0;
             a_this->health = 10;
@@ -1785,8 +1815,8 @@ static void play_camera(ni_class* i_this) {
         break;
     }
 
-    if (i_this->field_0xac4 != 0) {
-        i_this->field_0xac6++;
+    if (i_this->mPlayCamMode != 0) {
+        i_this->mPlayCamModeTimer++;
 
         cXyz sp214(i_this->field_0xac8);
         cXyz sp220(i_this->field_0xad4);
@@ -1857,12 +1887,12 @@ static void action(ni_class* i_this) {
 
     damage_check(i_this);
 
-    int var_r27 = 0;
-    int var_r26 = 0;
-    int var_r25 = 0;
-    int var_r24 = 0;
-    int var_r23 = 1;
-    int var_r22 = 1;
+    BOOL var_r27 = false;
+    BOOL var_r26 = false;
+    BOOL var_r25 = false;
+    BOOL var_r24 = false;
+    BOOL update_position = true;
+    int demo_state = 1;
 
     if (i_this->field_0x610 < 1.0f) {
         i_this->field_0xa50 = 0;
@@ -1870,54 +1900,54 @@ static void action(ni_class* i_this) {
         switch (i_this->mAction) {
         case ACTION_NORMAL_e:
             ni_normal(i_this);
-            var_r27 = 1;
-            var_r26 = 1;
-            var_r25 = 1;
+            var_r27 = true;
+            var_r26 = true;
+            var_r25 = true;
             i_this->field_0xa50 = 1;
             break;
         case ACTION_AWAY_e:
             ni_away(i_this);
-            var_r27 = 1;
-            var_r26 = 1;
-            var_r25 = 1;
+            var_r27 = true;
+            var_r26 = true;
+            var_r25 = true;
             break;
         case ACTION_SWIM_e:
             ni_swim(i_this);
             i_this->field_0xa50 = 1;
-            var_r25 = 1;
-            var_r24 = 1;
+            var_r25 = true;
+            var_r24 = true;
             break;
         case ACTION_CARRY_e:
-            var_r23 = ni_carry(i_this);
+            update_position = ni_carry(i_this);
             break;
         case ACTION_FLY_e:
             ni_fly(i_this);
-            var_r25 = 1;
+            var_r25 = true;
             break;
         case ACTION_DROP_e:
             ni_drop(i_this);
-            var_r25 = 1;
+            var_r25 = true;
             break;
         case ACTION_RETURN_e:
             ni_return(i_this);
             break;
         case ACTION_DAMAGE_e:
             ni_damage(i_this);
-            var_r27 = 1;
-            var_r26 = 1;
+            var_r27 = true;
+            var_r26 = true;
             break;
         case ACTION_WINDSPIN_e:
             ni_windspin(i_this);
-            var_r25 = 1;
+            var_r25 = true;
             break;
         case ACTION_DEMO0_e:
-            var_r22 = ni_demo0(i_this);
+            demo_state = ni_demo0(i_this);
             break;
         case ACTION_MESSAGE_e:
             ni_message(i_this);
-            var_r27 = 1;
-            var_r25 = 1;
-            var_r26 = 1;
+            var_r27 = true;
+            var_r25 = true;
+            var_r26 = true;
             i_this->field_0xa50 = 2;
             break;
         case ACTION_PLAY_e:
@@ -1929,7 +1959,7 @@ static void action(ni_class* i_this) {
             i_this->mAction = ACTION_DROP_e;
             i_this->mMode = 0;
             a_this->speed.y = 0.0f;
-            var_r25 = 1;
+            var_r25 = true;
         }
 
         if (i_this->field_0x9e4 == 0 && var_r26 && i_this->field_0x848 != 0) {
@@ -1937,7 +1967,7 @@ static void action(ni_class* i_this) {
             i_this->mMode = 0;
             i_this->field_0x9e4 = 30;
             a_this->speedF *= 0.5f;
-            var_r25 = 1;
+            var_r25 = true;
         }
 
         if (i_this->field_0xa50 == 1 && daPy_py_c::i_checkNowWolf() &&
@@ -1945,7 +1975,7 @@ static void action(ni_class* i_this) {
         {
             i_this->mAction = ACTION_MESSAGE_e;
             i_this->mMode = 0;
-            var_r25 = 1;
+            var_r25 = true;
         }
 
         if (var_r25) {
@@ -1964,7 +1994,7 @@ static void action(ni_class* i_this) {
         i_this->field_0x610 = 0.0f;
     }
 
-    if (var_r22 == 1) {
+    if (demo_state == 1) {
         cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
         sp148.x = 0.0f;
         sp148.y = 0.0f;
@@ -1993,7 +2023,7 @@ static void action(ni_class* i_this) {
         }
 
         cLib_addCalc0(&i_this->field_0x5d8, 1.0f, 5.0f);
-    } else if (var_r22 == 2) {
+    } else if (demo_state == 2) {
         cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
         cMtx_XrotM(*calc_mtx, i_this->current.angle.x);
 
@@ -2004,7 +2034,7 @@ static void action(ni_class* i_this) {
         MtxPosition(&sp148, &sp154);
         a_this->current.pos += sp154;
 
-        sp148 = i_this->field_0x5c0 - i_this->field_0x5cc;
+        sp148 = i_this->field_0x5c0 - i_this->mDemoInitPos;
         f32 var_f31 = sp148.abs();
 
         sp148 = i_this->field_0x5c0 - a_this->current.pos;
@@ -2035,7 +2065,7 @@ static void action(ni_class* i_this) {
         }
     }
 
-    if (var_r23) {
+    if (update_position) {
         if (i_this->mAction == ACTION_PLAY_e) {
             playwallcheck(i_this);
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP103") == 0) {
@@ -2053,7 +2083,7 @@ static void action(ni_class* i_this) {
         }
     }
 
-    if (!(i_this->field_0x5f8 & 3)) {
+    if (!(i_this->mCounter & 3)) {
         if (cM_rndF(1.0f) < 0.3f) {
             i_this->field_0x620 = cM_rndFX(5000.0f);
         }
@@ -2089,7 +2119,7 @@ static void action(ni_class* i_this) {
         if (var_r24 != 0) {
             i_this->field_0x9ee[i] =
                 j_a[i] + (j_w[i] * (0.5f * a_this->speedF *
-                                    cM_ssin(i_this->field_0x5f8 * 0x1000 + (s32) - (i * 0x4000))));
+                                    cM_ssin(i_this->mCounter * 0x1000 + (s32)-(i * 0x4000))));
         } else {
             i_this->field_0x9ee[i] = 0;
         }
@@ -2097,19 +2127,19 @@ static void action(ni_class* i_this) {
 
     if (var_r24 != 0) {
         i_this->field_0x9ec =
-            (a_this->speedF * (cM_ssin(i_this->field_0x5f8 * 0x1000) * 800.0f)) * 0.5f;
+            (a_this->speedF * (cM_ssin(i_this->mCounter * 0x1000) * 800.0f)) * 0.5f;
 
-        cXyz sp16C(a_this->current.pos);
-        sp16C.y = i_this->field_0x9f8;
+        cXyz hamon_pos(a_this->current.pos);
+        hamon_pos.y = i_this->mSplGroundH;
 
-        f32 var_f2;
+        f32 emit_rate;
         if (a_this->speedF >= 10.0f) {
-            var_f2 = 0.2f;
+            emit_rate = 0.2f;
         } else {
-            var_f2 = 0.05f;
+            emit_rate = 0.05f;
         }
 
-        fopAcM_effHamonSet(&i_this->field_0xa18, &sp16C, 1.0f, var_f2);
+        fopAcM_effHamonSet(&i_this->mHamonEmtrID, &hamon_pos, 1.0f, emit_rate);
         fopAcM_riverStream(&a_this->current.pos, &i_this->field_0x9e6, &i_this->field_0x9e8, 0.5f);
     } else {
         i_this->field_0x9ec = 0;
@@ -2129,10 +2159,10 @@ static void action(ni_class* i_this) {
     }
 
     gnd_chk_spl.SetPos(&sp148);
-    i_this->field_0x9f8 = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    i_this->mSplGroundH = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
 
-    if (a_this->current.pos.y <= i_this->field_0x9f8 - 30.0f) {
-        cLib_addCalc2(&a_this->current.pos.y, i_this->field_0x9f8 - 30.0f, 0.5f, 5.0f);
+    if (a_this->current.pos.y <= i_this->mSplGroundH - 30.0f) {
+        cLib_addCalc2(&a_this->current.pos.y, i_this->mSplGroundH - 30.0f, 0.5f, 5.0f);
 
         if (a_this->speed.y <= -10.0f) {
             i_this->field_0xa06 = 1;
@@ -2144,7 +2174,7 @@ static void action(ni_class* i_this) {
 
     if (i_this->field_0xa06) {
         cXyz sp178(a_this->current.pos);
-        sp178.y = i_this->field_0x9f8;
+        sp178.y = i_this->mSplGroundH;
 
         static cXyz sc(0.5f, 0.5f, 0.5f);
 
@@ -2174,12 +2204,12 @@ static int message(ni_class* i_this) {
     }
 
     if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
-        i_this->mMsgFlow.init(i_this, i_this->field_0xa54, 0, NULL);
+        i_this->mMsgFlow.init(i_this, i_this->mFlowNo, 0, NULL);
         i_this->field_0xa52 = 1;
-        OS_REPORT("////////NI MSG FNO %d\n", i_this->field_0xa54);
+        OS_REPORT("////////NI MSG FNO %d\n", i_this->mFlowNo);
     }
 
-    if (i_this->field_0xa50 == 2 && i_this->field_0xa54 != -1 && daPy_py_c::i_checkNowWolf()) {
+    if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::i_checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 10);
         i_this->eventInfo.i_onCondition(1);
@@ -2198,14 +2228,14 @@ static int daNi_Execute(ni_class* i_this) {
     }
 
     cXyz sp30(0.0f, 0.0f, 0.0f);
-    cXyz sp3C;
+    cXyz eno_pos;
 
-    i_this->field_0x5f8++;
+    i_this->mCounter++;
     i_this->field_0xa50 = 0;
 
     for (int i = 0; i < 4; i++) {
-        if (i_this->field_0x604[i] != 0) {
-            i_this->field_0x604[i]--;
+        if (i_this->mTimers[i] != 0) {
+            i_this->mTimers[i]--;
         }
     }
 
@@ -2237,7 +2267,7 @@ static int daNi_Execute(ni_class* i_this) {
     }
 
     i_this->mpMorf->play(&i_this->eyePos, 0, 0);
-    i_this->mpBtk->setFrame(i_this->mType);
+    i_this->mpBtk->setFrame(i_this->mColor);
     i_this->mpMorf->modelCalc();
 
     MTXCopy(model->i_getAnmMtx(5), *calc_mtx);
@@ -2253,7 +2283,7 @@ static int daNi_Execute(ni_class* i_this) {
 
     i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
-    if (i_this->mAnmID == 9 || i_this->mAnmID == 6 || i_this->mAnmID == 5) {
+    if (i_this->mAnmID == BCK_MOGAKU || i_this->mAnmID == BCK_FLY || i_this->mAnmID == BCK_FALL) {
         if (i_this->mpMorf->checkFrame(1) || i_this->mpMorf->checkFrame(5) ||
             i_this->mpMorf->checkFrame(9) || i_this->mpMorf->checkFrame(13) ||
             i_this->mpMorf->checkFrame(17) || i_this->mpMorf->checkFrame(21) ||
@@ -2273,15 +2303,15 @@ static int daNi_Execute(ni_class* i_this) {
         play_camera(i_this);
     }
 
-    if (i_this->mType == 3) {
-        sp3C = i_this->current.pos;
-        sp3C.y += 40.0f;
+    if (i_this->mColor == COLOR_GOLD) {
+        eno_pos = i_this->current.pos;
+        eno_pos.y += 40.0f;
 
         static u16 key_eno[] = {0x827A, 0x827B};
 
         for (int i = 0; i < 2; i++) {
-            i_this->field_0xa20[i] =
-                dComIfGp_particle_set(i_this->field_0xa20[i], key_eno[i], &sp3C, NULL, NULL);
+            i_this->mEnoEmtrIDs[i] =
+                dComIfGp_particle_set(i_this->mEnoEmtrIDs[i], key_eno[i], &eno_pos, NULL, NULL);
         }
     }
 
@@ -2297,7 +2327,7 @@ static int daNi_IsDelete(ni_class* i_this) {
 static int daNi_Delete(ni_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Ni");
 
-    if (i_this->field_0xb09) {
+    if (i_this->mInitHIO) {
         data_8095158d = 0;
     }
 
@@ -2354,23 +2384,23 @@ static int daNi_Create(fopAc_ac_c* i_this) {
         OS_REPORT("NI PARAM %x\n", fopAcM_GetParam(a_this));
 
         a_this->field_0x5b4 = fopAcM_GetParam(a_this);
-        a_this->field_0x5b5 = fopAcM_GetParam(a_this) >> 8;
+        a_this->mType = fopAcM_GetParam(a_this) >> 8;
 
-        if (a_this->field_0x5b5 == 0xFF) {
-            a_this->mType = cM_rndF(2.999f);
+        if (a_this->mType == COLOR_RANDOM) {
+            a_this->mColor = cM_rndF(2.999f);
         } else {
-            a_this->mType = a_this->field_0x5b5;
-            if (a_this->mType > 3) {
-                a_this->mType = 3;
+            a_this->mColor = a_this->mType;
+            if (a_this->mColor > COLOR_GOLD) {
+                a_this->mColor = COLOR_GOLD;
             }
         }
 
         u32 params = fopAcM_GetParam(i_this);
         params &= 0xFFFF00FF;
-        params |= (a_this->mType << 8);
+        params |= (a_this->mColor << 8);
         fopAcM_SetParam(i_this, params);
 
-        a_this->field_0xa54 = i_this->current.angle.x;
+        a_this->mFlowNo = i_this->current.angle.x;
         i_this->shape_angle.x = 0;
         i_this->current.angle.x = 0;
 
@@ -2384,7 +2414,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
         OS_REPORT("NI//////////////NI SET 2 !!\n");
 
         if (data_8095158d == 0) {
-            a_this->field_0xb09 = 1;
+            a_this->mInitHIO = true;
             data_8095158d = 1;
             l_HIO.field_0x04 = -1;
         }
@@ -2422,7 +2452,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
         }
 
         i_this->attention_info.field_0x0[4] = 7;
-        a_this->field_0x5f8 = cM_rndF(0x10000);
+        a_this->mCounter = cM_rndF(0x10000);
 
         cXyz sp34(i_this->current.pos);
         sp34.y += 50.0f;
@@ -2436,10 +2466,10 @@ static int daNi_Create(fopAc_ac_c* i_this) {
             !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[528]))
         {
             a_this->mAction = ACTION_DEMO0_e;
-            a_this->field_0x604[0] = 10;
+            a_this->mTimers[0] = 10;
         }
 
-        a_this->field_0x9f8 = -1000000000.0f;
+        a_this->mSplGroundH = -1000000000.0f;
 
         daNi_Execute(a_this);
     }
