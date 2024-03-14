@@ -14,8 +14,6 @@
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_scrn_3select.h"
 #include "d/msg/d_msg_string.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "stdio.h"
