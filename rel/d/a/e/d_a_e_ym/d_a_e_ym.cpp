@@ -1858,7 +1858,7 @@ static void* s_ym_sub(void* param_0, void* param_1) {
 void daE_YM_c::checkFrinedSamePos() {
     if (mFriendFlag == 0) {
         setFriendFlag(0x80);
-        i_fpcM_Search(s_ym_sub, this);
+        fpcM_Search(s_ym_sub, this);
     }
 }
 
@@ -2111,7 +2111,7 @@ void daE_YM_c::setHideType() {
     m_near_obj = NULL;
     m_obj_dist = FLOAT_LABEL(lit_3925);
 
-    i_fpcM_Search(s_obj_sub, this);
+    fpcM_Search(s_obj_sub, this);
 
     if (m_near_obj != NULL) {
         cXyz obj_pos(m_near_obj->current.pos);

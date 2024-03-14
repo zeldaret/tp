@@ -761,6 +761,7 @@ extern s8 mOldStayNo__20dStage_roomControl_c;
 extern s8 mNextStayNo__20dStage_roomControl_c;
 extern s8 m_time_pass__20dStage_roomControl_c;
 extern u8 mNoChangeRoom__20dStage_roomControl_c;
+extern s8 data_804505F0;  // roomReadId
 
 class dStage_roomControl_c {
 public:

@@ -2668,7 +2668,7 @@ asm void daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
 fopAc_ac_c* daNpcT_c::getShopItemTagP() {
     mFindCount = 0;
     mSrchName = 0x127;
-    i_fpcM_Search((fopAcIt_JudgeFunc)srchActor, (void*)this);
+    fpcM_Search((fopAcIt_JudgeFunc)srchActor, (void*)this);
 
     for (s32 i = 0; i < mFindCount; i++) {
         if ((fopAcM_GetParam(mFindActorPtrs[i]) & 0xf0000000) == 0xf0000000) {

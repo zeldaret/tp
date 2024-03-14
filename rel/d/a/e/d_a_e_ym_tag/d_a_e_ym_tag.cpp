@@ -29,7 +29,7 @@ static void* s_e_ym(void* i_actorP1, void* i_actorP2) {
 
 /* 80815E8C-80815EF8 00010C 006C+00 1/1 0/0 0/0 .text            execute__12daE_YM_TAG_cFv */
 int daE_YM_TAG_c::execute() {
-    daE_YM_c* shadow_insectP = (daE_YM_c*)i_fpcM_Search(s_e_ym,this);
+    daE_YM_c* shadow_insectP = (daE_YM_c*)fpcM_Search(s_e_ym,this);
 
     if (shadow_insectP) {
         shadow_insectP->setTagPos(current.pos);

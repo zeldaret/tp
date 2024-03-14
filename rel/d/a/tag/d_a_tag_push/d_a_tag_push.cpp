@@ -83,7 +83,7 @@ int daTag_Push_c::Execute() {
         } else {
             if (!i_dComIfGp_event_runCheck()) {
                 if (actor == NULL) {
-                    actor = (fopAc_ac_c*)(i_fpcM_Search(srchActor, this));
+                    actor = (fopAc_ac_c*)(fpcM_Search(srchActor, this));
                     if (actor != NULL) {
                         mActorMngr.entry(actor);
                     }

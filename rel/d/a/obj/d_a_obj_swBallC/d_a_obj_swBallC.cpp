@@ -343,7 +343,7 @@ int daObjSwBallC_c::demoProc() {
 void daObjSwBallC_c::setLightOnSwB() {
     for (u8 i = 0; i < 6; i++) {
         field_0x582 = i;
-        daObjSwBallB_c* ball = (daObjSwBallB_c*)i_fpcM_Search(s_swb_sub, this);
+        daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOn();
         }
@@ -355,7 +355,7 @@ void daObjSwBallC_c::setLightOnSwB() {
 void daObjSwBallC_c::setLightOffSwB() {
     for (u8 i = 0; i < 6; i++) {
         field_0x582 = i;
-        daObjSwBallB_c* ball = (daObjSwBallB_c*)i_fpcM_Search(s_swb_sub, this);
+        daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOff();
         }
@@ -371,7 +371,7 @@ void daObjSwBallC_c::deleteLightBall() {
 
 /* 80CF692C-80CF6964 000E0C 0038+00 1/1 0/0 0/0 .text deleteLightBallA__14daObjSwBallC_cFv */
 void daObjSwBallC_c::deleteLightBallA() {
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballA_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballA_sub, this);
     if (ball != NULL) {
         fopAcM_delete(ball);
     }
@@ -379,7 +379,7 @@ void daObjSwBallC_c::deleteLightBallA() {
 
 /* 80CF6964-80CF699C 000E44 0038+00 1/1 0/0 0/0 .text deleteLightBallB__14daObjSwBallC_cFv */
 void daObjSwBallC_c::deleteLightBallB() {
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballB_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballB_sub, this);
     if (ball != NULL) {
         fopAcM_delete(ball);
     }
@@ -388,14 +388,14 @@ void daObjSwBallC_c::deleteLightBallB() {
 /* 80CF699C-80CF6A74 000E7C 00D8+00 1/1 0/0 0/0 .text calcLightBallScale__14daObjSwBallC_cFv */
 int daObjSwBallC_c::calcLightBallScale() {
     int uVar3 = 0;
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballA_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballA_sub, this);
     if (ball != NULL) {
         fopAcM_OnStatus(ball, 0x800);
         uVar3 = cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);
         ball->scale.y = ball->scale.x;
         ball->scale.z = ball->scale.x;
     }
-    ball = (fopAc_ac_c*)i_fpcM_Search(s_ballB_sub, this);
+    ball = (fopAc_ac_c*)fpcM_Search(s_ballB_sub, this);
     if (ball != NULL) {
         fopAcM_OnStatus(ball, 0x800);
         uVar3 &= cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);

@@ -1994,7 +1994,7 @@ static void* s_sub1(void* param_0, void* param_1) {
 void* daNpcCd2_c::getEscapeTag() {
     target = NULL;
     wolfAngle = fopAcM_searchPlayerAngleY(this);
-    i_fpcM_Search(s_sub1, this);
+    fpcM_Search(s_sub1, this);
     return target;
 }
 
@@ -2190,7 +2190,7 @@ fopAc_ac_c* PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
     if (fopAcM_CheckCondition(field_0x00, 4)) {
         return NULL;
     }
-    i_fpcM_Search(s_sub, this);
+    fpcM_Search(s_sub, this);
     if (field_0x04) {
         setAvoidPoint();
     }

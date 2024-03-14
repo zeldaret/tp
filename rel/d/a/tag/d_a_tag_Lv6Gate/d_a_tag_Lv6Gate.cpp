@@ -21,6 +21,7 @@ extern "C" extern char const* const d_a_tag_Lv6Gate__stringBase0;
 // External References:
 //
 
+extern "C" void fpcSch_JudgeForPName__FPvPv(void);
 extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
 extern "C" void fopAcM_SearchByName__FsPP10fopAc_ac_c();
 extern "C" void fopAcM_delete__FUi();

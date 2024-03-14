@@ -81,7 +81,7 @@ static void set_disappear(disappear_class* i_this, f32 i_scale) {
 
     dKy_Sound_set(i_this->current.pos, 120, fopAcM_GetID(i_this), 10);
 
-    i_fpcM_Search(s_ks_sub, i_this);
+    fpcM_Search(s_ks_sub, i_this);
 
     if (i_this->field_0x567 == 3) {
         fopAcM_seStart(i_this, JA_SE_CM_MONS_EXPLODE, 0);

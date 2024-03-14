@@ -2388,12 +2388,12 @@ static void koro2_game(fshop_class* i_this) {
         break;
     }
 
-    i_this->field_0x4008 = (fshop_class*)i_fpcM_Search(s_sel_sub, i_this);
+    i_this->field_0x4008 = (fshop_class*)fpcM_Search(s_sel_sub, i_this);
     if (i_this->field_0x4008 != NULL) {
         stage_copy(i_this->field_0x4008, i_this);
         i_this->field_0x4008->field_0x400d = 0;
 
-        fshop_class* ball_p = (fshop_class*)i_fpcM_Search(s_ball_sub, i_this);
+        fshop_class* ball_p = (fshop_class*)fpcM_Search(s_ball_sub, i_this);
         if (ball_p != NULL) {
             ball_p->field_0x4008 = i_this->field_0x4008;
         }
@@ -2864,7 +2864,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             for (s32 local_150 = 0; local_150 < 15; local_150++, local_148++) {
                 *local_148 = pWeed[local_14c].field_0x00[local_150];
             }
-            i_fpcM_Search(s_fish_sub, &pWeed[local_14c]);
+            fpcM_Search(s_fish_sub, &pWeed[local_14c]);
         }
         cXyz cStack_f0(-720.0f, 30.0f, 70.0f);
         cXyz cStack_fc(0.5f, 0.5f, 0.5f);

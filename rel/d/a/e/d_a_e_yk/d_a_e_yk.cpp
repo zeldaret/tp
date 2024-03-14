@@ -1535,7 +1535,7 @@ COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
 #ifdef NONMATCHING
 // matches with literals
 static void e_yk_wind(e_yk_class* i_this) {
-    e_yk_class* yk = (e_yk_class*)i_fpcM_Search(shot_b_sub,i_this);
+    e_yk_class* yk = (e_yk_class*)fpcM_Search(shot_b_sub,i_this);
     i_this->speedF = 0.0f;
   
     switch(i_this->mActionPhase) {

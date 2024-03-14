@@ -172,7 +172,7 @@ extern "C" void changeDemoMode__9daHorse_cFUli();
 extern "C" void setHorsePosAndAngle__9daHorse_cFPC4cXyzs();
 extern "C" void startCheckSkipEdge__14dEvt_control_cFPv();
 extern "C" static void dComIfGp_getEvent__Fv();
-extern "C" static void fpcM_Search__FPFPvPv_PvPv();
+extern "C" static void fpcM_Search__FPFPvPv_PvPv(void* (*param_0)(void*, void*), void* param_1);
 extern "C" void changeOriginalDemo__9daHorse_cFv();
 extern "C" extern char const* const d_a_e_wb__stringBase0;
 
@@ -4996,7 +4996,7 @@ static asm dEvt_control_c& dComIfGp_getEvent() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fpcM_Search(void* (*param_0)(void*, void*), void* param_1) {
+static asm void fpcM_Search__FPFPvPv_PvPv(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fpcM_Search__FPFPvPv_PvPv.s"
 }

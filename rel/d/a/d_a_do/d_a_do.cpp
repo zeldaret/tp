@@ -715,7 +715,7 @@ static u32 search_food(do_class* i_this) {
         target_bgc[i] = 0;
     }
 
-    i_fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_this);
+    fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_this);
     f32 tmp = FLOAT_LABEL(lit_3662);
 
     if (target_info_count != 0) {

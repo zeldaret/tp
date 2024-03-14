@@ -208,7 +208,7 @@ void daObjSwBallA_c::search_ball() {
     for (int i = 0; i < 8; i++) {
         l_target_info[i] = NULL;
     }
-    i_fpcM_Search(s_ball_sub, this);
+    fpcM_Search(s_ball_sub, this);
     for (int i = 0; i < l_target_info_count; i++) {
         if (l_target_info[i] != 0) {
             u32 id = fopAcM_GetID(l_target_info[i]);

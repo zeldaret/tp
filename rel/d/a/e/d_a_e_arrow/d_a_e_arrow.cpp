@@ -508,7 +508,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
                 }
             }
 
-            if (i_this->field_0xa0c == 0 && i_fpcM_Search(s_limit_sub, i_this) != NULL) {
+            if (i_this->field_0xa0c == 0 && fpcM_Search(s_limit_sub, i_this) != NULL) {
                 dBgS_ObjGndChk gnd_chk;
                 sp9C = player_p->current.pos;
                 sp9C.y += 200.0f;

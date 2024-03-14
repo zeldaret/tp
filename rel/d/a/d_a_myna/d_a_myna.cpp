@@ -1458,7 +1458,7 @@ int daMyna_c::execute() {
     setItemInfo();
     int iVar1 = chkEvent();
     if (daMyna_LightActor == NULL) {
-        i_fpcM_Search(daMyna_searchLight, this);
+        fpcM_Search(daMyna_searchLight, this);
     }
     setRoomNo();
     attention_info.position.set(current.pos.x, current.pos.y + 40.0f, current.pos.z);
@@ -3002,10 +3002,10 @@ asm void daMyna_c::initiate() {
 void daMyna_c::setItemInfo() {
     if (daMyna_actor_count != -1 && mNumShopItems > daMyna_actor_count) {
         daMyna_actor_count = 0;
-        i_fpcM_Search(daMyna_searchSSItem, this);
+        fpcM_Search(daMyna_searchSSItem, this);
     }
     if (daMyna_evtTagActor0 == NULL) {
-        i_fpcM_Search(daMyna_searchEvtTag, this);
+        fpcM_Search(daMyna_searchEvtTag, this);
     }
     if (daMyna_actor_count != -1 && mNumShopItems <= daMyna_actor_count) {
         for (int i = 0; i < mNumShopItems; i++) {

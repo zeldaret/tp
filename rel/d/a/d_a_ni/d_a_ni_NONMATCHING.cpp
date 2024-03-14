@@ -555,7 +555,7 @@ static void damage_check(ni_class* i_this) {
                         i_this->health = 0;
 
                         if (!i_dComIfGp_event_runCheck() &&
-                            i_fpcM_Search(s_play_sub, i_this) == NULL)
+                            fpcM_Search(s_play_sub, i_this) == NULL)
                         {
                             i_this->mAction = ACTION_PLAY_e;
                             i_this->mMode = 0;
@@ -693,7 +693,7 @@ static fopAc_ac_c* search_test(ni_class* i_this) {
         target_info[i] = NULL;
     }
 
-    i_fpcM_Search(s_t_sub, i_this);
+    fpcM_Search(s_t_sub, i_this);
 
     f32 search_range = 100.0f;
     if (target_info_count != 0) {
@@ -1244,7 +1244,7 @@ static void* s_b_sub(void* i_actor, void* i_data) {
 /* 8094DD74-8094DED0 002234 015C+00 1/1 0/0 0/0 .text            ni_windspin__FP8ni_class */
 static void ni_windspin(ni_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    fopAc_ac_c* boomerang = (fopAc_ac_c*)i_fpcM_Search(s_b_sub, i_this);
+    fopAc_ac_c* boomerang = (fopAc_ac_c*)fpcM_Search(s_b_sub, i_this);
 
     switch (i_this->mMode) {
     case 0:

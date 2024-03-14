@@ -29,7 +29,7 @@ static void* s_rd_sub(void* i_this, void* param_1) {
 static void rider_game(econt_class* i_this) {
     if (dComIfGs_isSwitch(0x2e,fopAcM_GetRoomNo(i_this)) && i_dComIfGp_event_runCheck() == 0) {
         data_805197E0[0] = 0;
-        i_fpcM_Search(s_rd_sub,i_this);
+        fpcM_Search(s_rd_sub,i_this);
 
         if (i_this->field_0x5b4 == 0) {
             if (i_this->field_0x5b8[0] == 0) {
