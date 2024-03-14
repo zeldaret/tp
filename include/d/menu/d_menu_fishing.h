@@ -30,7 +30,7 @@ public:
     /* 801C605C */ void setFishParam(int, u16, u8);
     /* 801C6210 */ void setHIO(bool);
 
-    /* 801C659C */ virtual void draw();
+    /* 801C659C */ virtual void draw() { _draw(); }
     /* 801C4D98 */ virtual ~dMenu_Fishing_c();
 
     u8 getStatus() { return mStatus; }

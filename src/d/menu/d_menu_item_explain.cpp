@@ -27,22 +27,6 @@
 #include "d/msg/d_msg_scrn_3select.h"
 #include "d/msg/d_msg_scrn_arrow.h"
 
-/* 80396950-80396970 022FB0 0020+00 1/1 0/0 0/0 .rodata          name_tag$3883 */
-static const u64 name_tag[4] = {
-    'item_n04',
-    'item_n05',
-    'item_n06',
-    'item_n07',
-};
-
-/* 80396970-80396990 022FD0 0020+00 1/1 0/0 0/0 .rodata          fame_tag$3884 */
-static const u64 fame_tag[4] = {
-    'f_item_1',
-    'f_item_2',
-    'f_item_3',
-    'f_item_4',
-};
-
 /* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -66,6 +50,20 @@ static moveFunc move_process[] = {
  * __ct__19dMenu_ItemExplain_cFP10JKRExpHeapP10JKRArchiveP9STControlb */
 dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archive,
                                          STControl* i_stick, bool param_3) {
+    static const u64 name_tag[4] = {
+        'item_n04',
+        'item_n05',
+        'item_n06',
+        'item_n07',
+    };
+
+    static const u64 fame_tag[4] = {
+        'f_item_1',
+        'f_item_2',
+        'f_item_3',
+        'f_item_4',
+    };
+    
     mpHeap = i_heap;
     mpArchive = dComIfGp_getDemoMsgArchive();
     mpStick = i_stick;
