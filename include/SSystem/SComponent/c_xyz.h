@@ -52,6 +52,13 @@ struct cXyz : Vec {
         y -= f;
         z -= f;
     }
+
+    void operator*=(const Vec& other) {
+        x *= other.x;
+        y *= other.y;
+        z *= other.z;
+    }
+
     void operator-=(const Vec& other) { VECSubtract(this, &other, this); }
     void operator+=(const Vec& other) { VECAdd(this, &other, this); }
     void operator*=(f32 scale) { VECScale(this, this, scale); }

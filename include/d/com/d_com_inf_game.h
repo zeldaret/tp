@@ -489,7 +489,7 @@ public:
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
     bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
 
-    s8 getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
+    int getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
     void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
     void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
     const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
@@ -1982,7 +1982,7 @@ inline fopAc_ac_c* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
 }
 
-inline s8 i_dComIfGp_getPlayerCameraID(int idx) {
+inline int i_dComIfGp_getPlayerCameraID(int idx) {
     return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
 }
 
