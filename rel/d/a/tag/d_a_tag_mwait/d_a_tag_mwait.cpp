@@ -15,7 +15,7 @@ int daTagMwait_c::create() {
 
     mEnterSw = fopAcM_GetParam(this) >> 8;
 
-    if (i_fopAcM_isSwitch(this, mEnterSw)) {
+    if (fopAcM_isSwitch(this, mEnterSw)) {
         return cPhs_ERROR_e;
     }
 
@@ -103,7 +103,7 @@ int daTagMwait_c::execute() {
     } else {
         mInitMsgFlow = false;
 
-        if (daPy_py_c::i_checkNowWolf() && midna_p != NULL && i_fopAcM_isSwitch(this, mOnSw))
+        if (daPy_py_c::i_checkNowWolf() && midna_p != NULL && fopAcM_isSwitch(this, mOnSw))
         {
             if (mWarpToPos == 1) {
                 midna_p->onTagWaitPosWarp(&mWaitPosition);
@@ -120,10 +120,10 @@ int daTagMwait_c::execute() {
                 if ((player_dist <= scale.x * scale.x &&
                      player_p->current.pos.y >= current.pos.y &&
                      player_p->current.pos.y <= current.pos.y + scale.y) ||
-                    i_fopAcM_isSwitch(this, mEnterSw))
+                    fopAcM_isSwitch(this, mEnterSw))
                 {
                     midna_p->offTagWaitPos();
-                    i_fopAcM_onSwitch(this, mEnterSw);
+                    fopAcM_onSwitch(this, mEnterSw);
                     mEnteredTrigger = true;
 
                     if (shape_angle.z == 0) {

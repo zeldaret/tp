@@ -168,7 +168,7 @@ void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* i_polyinfo, int param_1) {
     } else {
         // D_MN54 is the E3 Goron Mines Demo map
         if (checkStageName("D_MN54") && getMoveBGActorName(*i_polyinfo, 1) == PROC_Obj_MagneArm) {
-            i_fopAcM_onSwitch(this, 0x93);
+            fopAcM_onSwitch(this, 0x93);
         }
 
         field_0x3114 = var_r28;

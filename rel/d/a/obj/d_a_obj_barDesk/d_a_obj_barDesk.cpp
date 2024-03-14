@@ -72,7 +72,7 @@ int daBarDesk_c::CreateHeap() {
 /* 80BA92F4-80BA94B8 000254 01C4+00 1/1 0/0 0/0 .text            create__11daBarDesk_cFv */
 cPhs__Step daBarDesk_c::create() {
     fopAcM_SetupActor(this, daBarDesk_c);
-    if (i_fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
+    if (fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
         return cPhs_ERROR_e;
     }
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "KHdesk");
@@ -135,7 +135,7 @@ void daBarDesk_c::init_modeBreak() {
                    dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBreakEffect();
     dComIfGp_getVibration().StartShock(l_HIO.field_0x5, 15, cXyz(0.0f, 1.0f, 0.0f));
-    i_fopAcM_onSwitch(this, (u8)fopAcM_GetParam(this));
+    fopAcM_onSwitch(this, (u8)fopAcM_GetParam(this));
     mMode = 1;
 }
 

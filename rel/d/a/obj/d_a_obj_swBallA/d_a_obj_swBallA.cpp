@@ -266,11 +266,11 @@ int daObjSwBallA_c::Create() {
         field_0x58c[i] = -1;
     }
     field_0x5c0 = -1;
-    if (i_fopAcM_isSwitch(this, getSwbit2())) {
+    if (fopAcM_isSwitch(this, getSwbit2())) {
         field_0x588->setFrame(field_0x588->getEndFrame());
         field_0x5ae = 2;
     } else {
-        i_fopAcM_offSwitch(this, getSwbit());
+        fopAcM_offSwitch(this, getSwbit());
         field_0x588->setFrame(0.0f);
         field_0x5ae = 0;
     }
@@ -531,11 +531,11 @@ void daObjSwBallA_c::actionRun() {
         if (field_0x5c0 == -1) {
             fopAcM_seStart(this, Z2SE_OBJ_L8_L_BALL_SW_OFF, 0);
             field_0x588->setPlaySpeed(-1.0f);
-            i_fopAcM_offSwitch(this, getSwbit());
+            fopAcM_offSwitch(this, getSwbit());
             field_0x5ae = 0;
         } else {
             if (field_0x588->play() != 0) {
-                i_fopAcM_onSwitch(this, getSwbit());
+                fopAcM_onSwitch(this, getSwbit());
                 if (getEvent() != 0xff) {
                     orderEvent(getEvent(), 0xff, 1);
                 }
@@ -693,8 +693,8 @@ asm int daObjSwBallA_c::draw() {
 
 /* 80CF41F4-80CF4274 000F74 0080+00 1/1 0/0 0/0 .text            _delete__14daObjSwBallA_cFv */
 int daObjSwBallA_c::_delete() {
-    if (!i_fopAcM_isSwitch(this, getSwbit2())) {
-        i_fopAcM_offSwitch(this, getSwbit());
+    if (!fopAcM_isSwitch(this, getSwbit2())) {
+        fopAcM_offSwitch(this, getSwbit());
     }
     dComIfG_resDelete(&field_0x57c, l_arcName);
     return 1;

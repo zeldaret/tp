@@ -27,12 +27,12 @@ int daSwTime_c::create() {
 
 /* 80D4F6C8-80D4F758 000108 0090+00 1/1 0/0 0/0 .text            execute__10daSwTime_cFv */
 int daSwTime_c::execute() {
-    if (mSwbit2 != 0xFF && !i_fopAcM_isSwitch(this,mSwbit2)) {
+    if (mSwbit2 != 0xFF && !fopAcM_isSwitch(this,mSwbit2)) {
         return 1;
     }
 
     if (dKy_getdaytime_hour() == mTime && dKy_getdaytime_minute() == 0) {
-        i_fopAcM_onSwitch(this,mSwbit);
+        fopAcM_onSwitch(this,mSwbit);
     }
 
     return 1;

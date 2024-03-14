@@ -3818,7 +3818,7 @@ static void action(npc_ne_class* i_this) {
     cXyz vec1, vec2, vec3;
     if (i_this->field_0x701 != 0 && i_this->mAction != npc_ne_class::ACT_SANBASI
                                && player->current.pos.z > -2800.0f) {
-        dmg_rod_class* rod = static_cast<dmg_rod_class*>(i_fopAcM_SearchByName(PROC_MG_ROD));
+        dmg_rod_class* rod = static_cast<dmg_rod_class*>(fopAcM_SearchByName(PROC_MG_ROD));
         if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5
                         && rod->field_0x13b4 != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
@@ -4337,7 +4337,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     if (i_this->field_0x701 != 0 && (i_this->field_0x640 & 0xf) == 0) {
         if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
-            if (i_fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
+            if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
                 i_this->mNoFollow = false;
             } else {
                 i_this->mNoFollow = true;

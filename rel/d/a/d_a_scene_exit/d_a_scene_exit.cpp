@@ -42,11 +42,11 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
 int daScex_c::checkWork() {
     if (getArg1() == 0xFF || getArg1() == 0 || getArg1() == 3) {
-        if (i_fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
             return 0;
         }
     } else if ((getArg1() == 1 || getArg1() == 2 || getArg1() == 4) && getSwNo() != 0xFF) {
-        if (!i_fopAcM_isSwitch(this, getSwNo())) {
+        if (!fopAcM_isSwitch(this, getSwNo())) {
             return 0;
         }
     }
@@ -175,7 +175,7 @@ int daScex_c::execute() {
 
         if (getArg1() == 0xFF || getArg1() == 0 || getArg1() == 3) {
             if (getSwNo() != 0xFF) {
-                i_fopAcM_onSwitch(this, getSwNo());
+                fopAcM_onSwitch(this, getSwNo());
             }
         }
     }

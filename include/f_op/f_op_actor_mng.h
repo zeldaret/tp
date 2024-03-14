@@ -360,19 +360,19 @@ inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offActor(int i_no, int i_roomNo);
 
-inline void i_fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
+inline void fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
+inline void fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline BOOL i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+inline BOOL fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
-inline fopAc_ac_c* i_fopAcM_SearchByName(s16 proc_id) {
+inline fopAc_ac_c* fopAcM_SearchByName(s16 proc_id) {
     return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeForPName, &proc_id);
 }
 
@@ -510,7 +510,6 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 fopAc_ac_c* fopAcM_getTalkEventPartner(const fopAc_ac_c*);
 fopAc_ac_c* fopAcM_getItemEventPartner(const fopAc_ac_c*);
 fopAc_ac_c* fopAcM_getEventPartner(const fopAc_ac_c*);
-static void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1);
 
 s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
                                     int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);

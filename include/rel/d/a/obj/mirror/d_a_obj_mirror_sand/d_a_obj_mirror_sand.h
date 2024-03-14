@@ -23,7 +23,7 @@ public:
     void setAnmSpeed(f32 speed) { mpBck->setPlaySpeed(speed); }
 
     bool isSwitch() {
-        return i_fopAcM_isSwitch(this, getSwitchNo()) ||
+        return fopAcM_isSwitch(this, getSwitchNo()) ||
                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     }

@@ -456,7 +456,7 @@ int daObjVolcBall_c::Create() {
     fopAcM_setCullSizeBox(this, -1000.0f, 0.0f, -1000.0f, 1000.0f, 1000.0f, 1000.0f);
 
     if (mIsBigVolc == 0) {
-        if (i_fopAcM_isSwitch(this, getSwBit())) {
+        if (fopAcM_isSwitch(this, getSwBit())) {
             initActionWarning();
         } else {
             initActionSwWait();
@@ -501,7 +501,7 @@ int daObjVolcBall_c::create() {
 
     mIsBigVolc = checkBigVolc();
     if (mIsBigVolc == 1) {
-        if (i_fopAcM_isSwitch(this, getSwBit2())) {
+        if (fopAcM_isSwitch(this, getSwBit2())) {
             return cPhs_ERROR_e;
         }
 
@@ -720,7 +720,7 @@ asm void daObjVolcBall_c::actionPlayerWait() {
 /* 80D2267C-80D22724 000BDC 00A8+00 1/0 0/0 0/0 .text            actionSwWait__15daObjVolcBall_cFv
  */
 void daObjVolcBall_c::actionSwWait() {
-    if (i_fopAcM_isSwitch(this, getSwBit())) {
+    if (fopAcM_isSwitch(this, getSwBit())) {
         setAction(MODE_STOP);
         mTime = getData()->mNormalWaitTime * FLOAT_LABEL(lit_3715) +
                 cM_rndFX(getData()->mRandWaitTime * FLOAT_LABEL(lit_3715));
@@ -729,7 +729,7 @@ void daObjVolcBall_c::actionSwWait() {
 
 /* 80D22724-80D227E4 000C84 00C0+00 1/0 0/0 0/0 .text            actionStop__15daObjVolcBall_cFv */
 void daObjVolcBall_c::actionStop() {
-    if (!i_fopAcM_isSwitch(this, getSwBit())) {
+    if (!fopAcM_isSwitch(this, getSwBit())) {
         setAction(MODE_SWITCH_WAIT);
     }
 
@@ -762,7 +762,7 @@ void daObjVolcBall_c::actionWarning() {
     }
 
     if (getSwBit() != 0xFF) {
-        if (!i_fopAcM_isSwitch(this, getSwBit())) {
+        if (!fopAcM_isSwitch(this, getSwBit())) {
             dComIfGp_getVibration().StopQuake(31);
             setAction(MODE_SWITCH_WAIT);
         }
@@ -826,7 +826,7 @@ void daObjVolcBall_c::actionEruption() {
 
     if (timer != 0) {
         bool bvar2 = false;
-        if (getSwBit() != 0xFF && !i_fopAcM_isSwitch(this, getSwBit())) {
+        if (getSwBit() != 0xFF && !fopAcM_isSwitch(this, getSwBit())) {
             bvar2 = true;
         }
 
@@ -910,7 +910,7 @@ void daObjVolcBall_c::initActionEnd() {
 
 /* 80D22CD4-80D22DDC 001234 0108+00 1/0 0/0 0/0 .text            actionEnd__15daObjVolcBall_cFv */
 void daObjVolcBall_c::actionEnd() {
-    if (mIsBigVolc != 1 || (mIsBigVolc == 1 && i_fopAcM_isSwitch(this, getSwBit()))) {
+    if (mIsBigVolc != 1 || (mIsBigVolc == 1 && fopAcM_isSwitch(this, getSwBit()))) {
         return;
     }
 

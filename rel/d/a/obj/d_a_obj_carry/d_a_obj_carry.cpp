@@ -2691,7 +2691,7 @@ s32 daObjCarry_c::CreateInit_taru() {
  */
 bool daObjCarry_c::CreateInit_dokuro() {
     mode_init_wait();
-    return !i_fopAcM_isSwitch(this,getSwbit());
+    return !fopAcM_isSwitch(this,getSwbit());
 }
 
 /* ############################################################################################## */
@@ -2809,7 +2809,7 @@ s32 daObjCarry_c::CreateInit_Lv8Ball() {
     field_0x7c8.OffTgNoHitMark();
     field_0x7c8.OnTgShieldHit();
 
-    if (i_fopAcM_isSwitch(this,getSwbit())) {
+    if (fopAcM_isSwitch(this,getSwbit())) {
         mode_init_fit();
     } else {
         mode_init_wait();

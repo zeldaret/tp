@@ -268,7 +268,7 @@ int daObjMirrorChain_c::createHeap() {
     } else {
         J3DAnmTransform* bck_anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
         mpBckAnm = new mDoExt_bckAnm();
-        bool b = i_fopAcM_isSwitch(this, getSwitchNo())
+        bool b = fopAcM_isSwitch(this, getSwitchNo())
              || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
         f32 rate = b ? 1.0f : 0.0f;
         if (mpBckAnm == NULL
@@ -276,7 +276,7 @@ int daObjMirrorChain_c::createHeap() {
         {
             return 0;
         }
-        if (i_fopAcM_isSwitch(this, getSwitchNo())
+        if (fopAcM_isSwitch(this, getSwitchNo())
              || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
         {
             mpBckAnm->setFrame(bck_anm->getFrameMax());
@@ -568,7 +568,7 @@ void daObjMirrorChain_c::create_init() {
     mBgW[0].SetRoomId(fopAcM_GetRoomNo(this));
     mBgW[1].SetCrrFunc(NULL);
     mBgW[1].SetRoomId(fopAcM_GetRoomNo(this));
-    bool b = i_fopAcM_isSwitch(this, getSwitchNo())
+    bool b = fopAcM_isSwitch(this, getSwitchNo())
              || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
     mpActiveBgW = b ? &mBgW[1] : &mBgW[0];
     dComIfG_Bgsp().Regist(mpActiveBgW, this);

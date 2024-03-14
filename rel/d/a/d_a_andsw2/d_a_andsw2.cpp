@@ -288,7 +288,7 @@ static int daAndsw2_actionOrder(daAndsw2_c* i_this) {
         i_this->setActio(daAndsw2_c::ACT_ON_ALL_e);
     } else {
         if (i_this->getType() == 5 &&
-            i_fopAcM_isSwitch(i_this, dLib_getEventSwitchNo(i_this->getEventNo())))
+            fopAcM_isSwitch(i_this, dLib_getEventSwitchNo(i_this->getEventNo())))
         {
             dComIfGs_onSwitch(i_this->getSwbit(), fopAcM_GetRoomNo(i_this));
             i_this->setActio(daAndsw2_c::ACT_OFF_e);

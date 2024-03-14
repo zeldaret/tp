@@ -293,12 +293,12 @@ int daObjSwBallB_c::Create() {
     }
     field_0x59c = -1;
 
-    if (fopAcM_GetRoomNo(this) == 0 && i_fopAcM_isSwitch(this, 0x3f)) {
+    if (fopAcM_GetRoomNo(this) == 0 && fopAcM_isSwitch(this, 0x3f)) {
         field_0x588->setFrame(field_0x588->getEndFrame());
         if (getArg1() == 1) {
-            i_fopAcM_onSwitch(this, getSwbit2());
+            fopAcM_onSwitch(this, getSwbit2());
         }
-        i_fopAcM_onSwitch(this, getSwbit());
+        fopAcM_onSwitch(this, getSwbit());
         field_0x596 = 5;
     }
     GXColor* color = mModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1);
@@ -551,7 +551,7 @@ void daObjSwBallB_c::actionRun() {
         if (field_0x59c == -1) {
             field_0x588->setPlaySpeed(-1.0f);
             if (dComIfGp_roomControl_getStayNo() != 0) {
-                i_fopAcM_offSwitch(this, getSwbit());
+                fopAcM_offSwitch(this, getSwbit());
             }
             fopAcM_seStart(this, Z2SE_OBJ_L8_L_BALL_SW_OFF, 0);
             field_0x5a8 = -1;
@@ -562,10 +562,10 @@ void daObjSwBallB_c::actionRun() {
                     daObjCarry_c* carryObj = (daObjCarry_c*)fopAcM_SearchByID(field_0x59c);
                     if (carryObj != NULL) {
                         if (getArg1() == 1) {
-                            i_fopAcM_onSwitch(this, getSwbit2());
+                            fopAcM_onSwitch(this, getSwbit2());
                         }
                         if (carryObj->getType() == 8) {
-                            i_fopAcM_onSwitch(this, getSwbit());
+                            fopAcM_onSwitch(this, getSwbit());
                             dComIfGs_onEventBit(l_event_bitA[getID()]);
                             field_0x5a8 = 0;
                         } else {
@@ -574,7 +574,7 @@ void daObjSwBallB_c::actionRun() {
                         }
                     }
                 } else {
-                    i_fopAcM_onSwitch(this, getSwbit());
+                    fopAcM_onSwitch(this, getSwbit());
                 }
                 if (getEvent() != 0xff) {
                     orderEvent(getEvent(), 0xff, 1);

@@ -403,7 +403,7 @@ COMPILER_STRIP_GATE(0x8057B488, &lit_4119);
 int daObjBossWarp_c::execute() {
     if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
         u8 sw = getSwNo();
-        if (sw == 0xff || i_fopAcM_isSwitch(this, sw)) {
+        if (sw == 0xff || fopAcM_isSwitch(this, sw)) {
             field_0x591 = true;
         } else {
             field_0x591 = false;
@@ -427,7 +427,7 @@ int daObjBossWarp_c::execute() {
         if (field_0x595 && midna != NULL) {
             midna->onTagWaitPos(&field_0x620);
         }
-        obj_ystone_class* ystone = (obj_ystone_class*)i_fopAcM_SearchByName(PROC_OBJ_YSTONE);
+        obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
         int level = getNowLevel();
 
         if (ystone != NULL && midna != NULL) {
@@ -511,7 +511,7 @@ void daObjBossWarp_c::actionWait() {
 /* 8057A54C-8057A610 000F8C 00C4+00 1/0 0/0 0/0 .text actionOrderEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderEvent() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        dComIfGp_event_setTalkPartner(i_fopAcM_SearchByName(PROC_OBJ_YSTONE));
+        dComIfGp_event_setTalkPartner(fopAcM_SearchByName(PROC_OBJ_YSTONE));
         setAction(ACT_EVENT);
         mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
@@ -735,10 +735,10 @@ int daObjBossWarp_c::demoProc() {
     };
 
     daPy_py_c* player = daPy_getPlayerActorClass();
-    obj_ystone_class* ystone = (obj_ystone_class*)i_fopAcM_SearchByName(PROC_OBJ_YSTONE);
+    obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
     cXyz unused(100000.0f, 0.0f, 0.0f);
     daMidna_c* midna = daPy_py_c::getMidnaActor();
-    daObjLife_c* life_container = (daObjLife_c*)i_fopAcM_SearchByName(PROC_Obj_LifeContainer);
+    daObjLife_c* life_container = (daObjLife_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
     cXyz life_pos(900.0f, 0.0f, 0.0f);
     int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 15, 0, 0);
 

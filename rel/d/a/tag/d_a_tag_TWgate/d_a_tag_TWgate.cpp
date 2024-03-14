@@ -468,7 +468,7 @@ void daTagTWGate_c::executeWait() {
 
             switch (mType) {
             case TYPE_FILONE:
-                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                if (fopAcM_isSwitch(this, getSwitch())) {
                     mActionID = ACT_DEMO_FILONE_2;
                     mAction = &ActionTable[mActionID][0];
                     (this->**mAction)();
@@ -479,7 +479,7 @@ void daTagTWGate_c::executeWait() {
                 }
                 break;
             case TYPE_ORDIN:
-                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                if (fopAcM_isSwitch(this, getSwitch())) {
                     mActionID = ACT_DEMO_ORDIN_2;
                     mAction = &ActionTable[mActionID][0];
                     (this->**mAction)();
@@ -490,7 +490,7 @@ void daTagTWGate_c::executeWait() {
                 }
                 break;
             case TYPE_RANAIL:
-                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                if (fopAcM_isSwitch(this, getSwitch())) {
                     mActionID = ACT_DEMO_RANAIL_2;
                     mAction = &ActionTable[mActionID][0];
                     (this->**mAction)();
@@ -501,7 +501,7 @@ void daTagTWGate_c::executeWait() {
                 }
                 break;
             case TYPE_HYRAL:
-                if (i_fopAcM_isSwitch(this, getSwitch())) {
+                if (fopAcM_isSwitch(this, getSwitch())) {
                     mActionID = ACT_DEMO_HYRAL_2;
                     mAction = &ActionTable[mActionID][0];
                     (this->**mAction)();
@@ -577,7 +577,7 @@ asm void daTagTWGate_c::executeDemoFilone1() {
  */
 #ifdef NONMATCHING
 void daTagTWGate_c::initDemoFilone2() {
-    i_fopAcM_onSwitch(this, getSwitch());
+    fopAcM_onSwitch(this, getSwitch());
     eventInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
     i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
     mEventID =

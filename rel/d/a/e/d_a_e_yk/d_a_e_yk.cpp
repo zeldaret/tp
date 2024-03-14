@@ -1928,7 +1928,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
         
         yk->mPlayerTrigger = 100.0f * yk->mPlayerTriggerBase;
         
-        if (i_fopAcM_SearchByName(PROC_E_PZ)) {
+        if (fopAcM_SearchByName(PROC_E_PZ)) {
             // For phantom zant fights. Used in pl_check above
             yk->mPlayerTrigger = 100000.0f; 
         }

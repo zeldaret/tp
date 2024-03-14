@@ -60,7 +60,7 @@ cPhs__Step daBsGate_c::create() {
         }
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
-        mOpen = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+        mOpen = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
         mSide = (fopAcM_GetParam(this) >> 8) & 0xff;
         mTargetDist = -250.0f;
         if (mSide == 1) {
@@ -96,7 +96,7 @@ void daBsGate_c::moveGate() {
         &modeClose,
     };
     u8 was_open = mOpen;
-    mOpen = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+    mOpen = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
     if (mOpen != was_open) {
         if (mOpen) {
             init_modeOpen();

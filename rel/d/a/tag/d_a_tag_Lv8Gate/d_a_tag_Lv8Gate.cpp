@@ -141,7 +141,7 @@ int daTagLv8Gate_c::execute() {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y,
                                                                      0);
 
-                    fopAc_ac_c* mirror_table = i_fopAcM_SearchByName(PROC_Obj_MirrorTable);
+                    fopAc_ac_c* mirror_table = fopAcM_SearchByName(PROC_Obj_MirrorTable);
                     if (mirror_table != NULL) {
                         static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = true;
                     }

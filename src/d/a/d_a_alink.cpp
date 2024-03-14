@@ -2022,7 +2022,7 @@ extern "C" void onCondition__11dEvt_info_cFUs();
 extern "C" void __ct__8cM3dGPlaFv();
 extern "C" void offCondition__11dEvt_info_cFUs();
 extern "C" void checkShieldGet__9daPy_py_cFv();
-extern "C" static void fopAcM_onSwitch__FPC10fopAc_ac_ci();
+extern "C" static void fopAcM_onSwitch__FPC10fopAc_ac_ci(fopAc_ac_c const* param_0, int param_1);
 extern "C" void dComIfGs_isItemFirstBit__FUc(u8);
 extern "C" static void dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class();
 extern "C" static void dComIfGp_getStage__Fv();
@@ -13057,9 +13057,9 @@ int daAlink_c::create() {
         if (!i_dComIfGs_isItemFirstBit(HYLIA_SHIELD) && !i_dComIfGs_isItemFirstBit(SHIELD) &&
             !i_dComIfGs_isItemFirstBit(WOOD_SHIELD))
         {
-            i_fopAcM_onSwitch(this, 0x6F);
+            fopAcM_onSwitch(this, 0x6F);
         } else {
-            i_fopAcM_offSwitch(this, 0x6F);
+            fopAcM_offSwitch(this, 0x6F);
         }
     }
 
@@ -18801,8 +18801,8 @@ int daAlink_c::checkNewItemChange(u8 param_0) {
         (checkBossRoom() && checkDungeonWarpItem(sel_item)) ||
         (sel_item == DUNGEON_EXIT &&
          (checkLv7DungeonShop() ||
-          (checkStageName("D_MN07") && i_fopAcM_isSwitch(this, 0x4D) &&
-           !i_fopAcM_isSwitch(this, 0x18)) ||
+          (checkStageName("D_MN07") && fopAcM_isSwitch(this, 0x4D) &&
+           !fopAcM_isSwitch(this, 0x18)) ||
           (checkStageName("D_MN10") && fopAcM_GetRoomNo(this) == 15))) ||
         (i_checkMagneBootsOn() && sel_item != 0x103 && !checkDrinkBottleItem(sel_item) &&
          sel_item != HVY_BOOTS && !checkBowItem(sel_item)))

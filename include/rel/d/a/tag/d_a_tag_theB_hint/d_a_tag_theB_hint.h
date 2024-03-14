@@ -76,7 +76,7 @@ public:
     }
 
     int execute() {
-        if (i_fopAcM_isSwitch(this,getSwitchNo())) {
+        if (fopAcM_isSwitch(this,getSwitchNo())) {
             fopAcM_delete(this);
             return 1;
         } else {

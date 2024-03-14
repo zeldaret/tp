@@ -257,7 +257,7 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 
 /* 80C99F7C-80C9A040 0006DC 00C4+00 1/1 0/0 0/0 .text            isSwitch__18daObjMirrorTable_cFv */
 bool daObjMirrorTable_c::isSwitch() {
-    return i_fopAcM_isSwitch(this, getSwitchNo())
+    return fopAcM_isSwitch(this, getSwitchNo())
         || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
         || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
         ? 1 : 0;

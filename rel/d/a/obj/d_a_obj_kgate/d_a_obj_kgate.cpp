@@ -247,7 +247,7 @@ int daObjKGate_c::Create() {
     u8 sw_no = getSwNo();
 
     if (mNameArg == 0 || mNameArg == 2) {
-        if (sw_no != 0xFF && !i_fopAcM_isSwitch(this, sw_no)) {
+        if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no)) {
             eventInfo.setArchiveName(l_arcName[mNameArg]);
 
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
@@ -354,7 +354,7 @@ int daObjKGate_c::CreateHeap() {
 int daObjKGate_c::create1st() {
     mNameArg = getNameArg();
     if (mNameArg == 1) {
-        if (i_fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
             return cPhs_ERROR_e;
         }
     }
@@ -637,7 +637,7 @@ void daObjKGate_c::action_typeA() {
     u8 sw_no = getSwNo();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (i_fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
+    if (fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
         cXyz unused1;
         cXyz unused2;
 
@@ -826,7 +826,7 @@ void daObjKGate_c::action_typeB() {
     u8 sw_no = getSwNo();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (!i_fopAcM_isSwitch(this, sw_no)) {
+    if (!fopAcM_isSwitch(this, sw_no)) {
         cXyz unused1;
         cXyz unused2;
         int chk_l = checkAreaL(&unused1, &unused2);
@@ -858,7 +858,7 @@ void daObjKGate_c::action_typeB() {
                 cCcD_Obj* hit_obj = field_0x5f4[i].GetTgHitObj();
 
                 if (hit_obj != NULL && hit_obj->ChkAtType(AT_TYPE_BOMB)) {
-                    i_fopAcM_onSwitch(this, sw_no);
+                    fopAcM_onSwitch(this, sw_no);
                     fopAcM_delete(this);
                     break;
                 }
@@ -884,7 +884,7 @@ void daObjKGate_c::actionWaitEvent() {
     if (eventInfo.i_checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
-        i_fopAcM_onSwitch(this, getSwNo());
+        fopAcM_onSwitch(this, getSwNo());
         fopAcM_seStart(this, Z2SE_OBJ_FLN_GATE_L_OP, 0);
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);

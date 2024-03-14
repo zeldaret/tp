@@ -595,7 +595,7 @@ void daItem_c::CreateInit() {
     default:
     case 6:
         field_0x93c = daItem_prm::getSwitchNo(this);
-        if (field_0x93c != 0xFF && !i_fopAcM_isSwitch(this, field_0x93c)) {
+        if (field_0x93c != 0xFF && !fopAcM_isSwitch(this, field_0x93c)) {
             hide();
             setFlag(8);
             procInitSwOnWait();
@@ -1111,7 +1111,7 @@ void daItem_c::procInitSwOnWait() {
 
 /* 8015C648-8015C708 156F88 00C0+00 1/0 0/0 0/0 .text            procMainSwOnWait__8daItem_cFv */
 void daItem_c::procMainSwOnWait() {
-    if (i_fopAcM_isSwitch(this, field_0x93c)) {
+    if (fopAcM_isSwitch(this, field_0x93c)) {
         mAcch.CrrPos(dComIfG_Bgsp());
 
         if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > lit_4070[0] + home.pos.y) {

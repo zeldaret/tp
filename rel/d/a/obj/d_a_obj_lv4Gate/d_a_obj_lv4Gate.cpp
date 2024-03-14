@@ -71,7 +71,7 @@ int daLv4Gate_c::create() {
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-        mInitMove = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xFF);
+        mInitMove = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xFF);
         mMoveType = fopAcM_GetParam(this) >> 8;
 
         f32 target;
@@ -125,7 +125,7 @@ void daLv4Gate_c::init_modeWait() {
 
 /* 80C5EF54-80C5EFB0 0004D4 005C+00 1/0 0/0 0/0 .text            modeWait__11daLv4Gate_cFv */
 void daLv4Gate_c::modeWait() {
-    mInitMove = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xFF);
+    mInitMove = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xFF);
     if (mInitMove) {
         init_modeMove();
     }

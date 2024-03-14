@@ -104,7 +104,7 @@ int daObjChandelier_c::Execute(f32 (**param_0)[3][4]) {
 void daObjChandelier_c::exeModeWait() {
     exeModeHookSwg();
     u8 sw = getSW_0();
-    if (i_fopAcM_isSwitch(this, sw)) {
+    if (fopAcM_isSwitch(this, sw)) {
         mMode = MODE_START_SWG;
         field_0x5ec = 0.5f;
         field_0x5f0 = 0.0f;
@@ -195,7 +195,7 @@ void daObjChandelier_c::init() {
     field_0x5f4 = current.pos.y - 800.0f;
     if (getArg_0() == 0) {
         u8 sw = getSW_0();
-        if (i_fopAcM_isSwitch(this, sw)) {
+        if (fopAcM_isSwitch(this, sw)) {
             mMode = MODE_HOOK_SWG;
             current.pos.y = field_0x5f4;
             field_0x5a8 = current.pos;

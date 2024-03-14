@@ -347,7 +347,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
         }
     case 1:
         if (i_this->mFlags & 0x20) {
-            fopAc_ac_c* coach_p = i_fopAcM_SearchByName(PROC_NPC_COACH);
+            fopAc_ac_c* coach_p = fopAcM_SearchByName(PROC_NPC_COACH);
 
             if (coach_p != NULL) {
                 cXyz sp30;

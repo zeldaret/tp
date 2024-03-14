@@ -135,7 +135,7 @@ void daObjMirrorScrew_c::executeDown() {
                                  0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         u8 sw = getSwitchNo();
         if (sw != 0xff) {
-            i_fopAcM_onSwitch(this, sw);
+            fopAcM_onSwitch(this, sw);
         }
         fopAcM_delete(this);
     }
@@ -168,7 +168,7 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
-    if (i_fopAcM_isSwitch(this, getSwitchNo())
+    if (fopAcM_isSwitch(this, getSwitchNo())
         || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
         || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
@@ -230,22 +230,22 @@ int daObjMirrorScrew_c::Create() {
 /* 80C99490-80C99608 000A30 0178+00 1/0 0/0 0/0 .text Execute__18daObjMirrorScrew_cFPPA3_A4_f */
 int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
     if (mpSwSpinner == NULL) {
-        mpSwSpinner = static_cast<daObjSwSpinner_c*>(i_fopAcM_SearchByName(PROC_Obj_SwSpinner));
+        mpSwSpinner = static_cast<daObjSwSpinner_c*>(fopAcM_SearchByName(PROC_Obj_SwSpinner));
     }
     if (mpSpPath == NULL) {
-        mpSpPath = static_cast<daTagSppath_c*>(i_fopAcM_SearchByName(PROC_Tag_Sppath));
+        mpSpPath = static_cast<daTagSppath_c*>(fopAcM_SearchByName(PROC_Tag_Sppath));
     }
     if (mpChain == NULL) {
-        mpChain = static_cast<daObjMirrorChain_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorChain));
+        mpChain = static_cast<daObjMirrorChain_c*>(fopAcM_SearchByName(PROC_Obj_MirrorChain));
     }
     if (mpTable == NULL) {
-        mpTable = static_cast<daObjMirrorTable_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorTable));
+        mpTable = static_cast<daObjMirrorTable_c*>(fopAcM_SearchByName(PROC_Obj_MirrorTable));
     }
     if (mp6Pole == NULL) {
-        mp6Pole = static_cast<daObjMirror6Pole_c*>(i_fopAcM_SearchByName(PROC_Obj_Mirror6Pole));
+        mp6Pole = static_cast<daObjMirror6Pole_c*>(fopAcM_SearchByName(PROC_Obj_Mirror6Pole));
     }
     if (mpSand == NULL) {
-        mpSand = static_cast<daObjMirrorSand_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorSand));
+        mpSand = static_cast<daObjMirrorSand_c*>(fopAcM_SearchByName(PROC_Obj_MirrorSand));
     }
     callExecute();
     setBaseMtx();

@@ -83,7 +83,7 @@ int daWindStone_c::create() {
         mPolyInfo = objAcch.m_gnd;
 
         if (field_0x5c4 == 0) {
-            i_fopAcM_onSwitch(this, getSwBit1());
+            fopAcM_onSwitch(this, getSwBit1());
         }
     }
     return phase;
@@ -121,8 +121,8 @@ int daWindStone_c::draw() {
 
 /* 80D3806C-80D3811C 0006EC 00B0+00 1/1 0/0 0/0 .text            Delete__13daWindStone_cFv */
 int daWindStone_c::Delete() {
-    if (i_fopAcM_isSwitch(this, getSwBit1())) {
-        i_fopAcM_offSwitch(this, getSwBit1());
+    if (fopAcM_isSwitch(this, getSwBit1())) {
+        fopAcM_offSwitch(this, getSwBit1());
     }
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
@@ -200,7 +200,7 @@ void daWindStone_c::exeModeMapDisp() {
     if (i_dComIfGp_getEvent().i_isOrderOK() || !i_dComIfGp_event_runCheck()) {
         dMeter2Info_setGoldWolfMapType(getGoldWolfIdx());
         dMeter2Info_setPauseStatus(5);
-        i_fopAcM_onSwitch(this, getSwBit2());
+        fopAcM_onSwitch(this, getSwBit2());
         field_0x5c4 = 2;
     }
 }
@@ -208,7 +208,7 @@ void daWindStone_c::exeModeMapDisp() {
 /* 80D383FC-80D384C4 000A7C 00C8+00 1/1 0/0 0/0 .text            chkMapDispMode__13daWindStone_cFv
  */
 bool daWindStone_c::chkMapDispMode() {
-    if (i_fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwBit2())) {
         return false;
     }
     s16 start_point = dComIfGs_getStartPoint();

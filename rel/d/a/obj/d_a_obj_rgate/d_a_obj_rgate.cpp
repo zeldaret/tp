@@ -242,7 +242,7 @@ int daObjRgate_c::Create() {
     static char* l_evName = "RIDER_GATE_OPEN00";
 
     u8 sw_no = getSwNo();
-    if (sw_no != 0xFF && !i_fopAcM_isSwitch(this, sw_no) &&
+    if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no) &&
         !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68]))
     {
         eventInfo.setArchiveName(l_arcName);
@@ -583,7 +583,7 @@ void daObjRgate_c::action_typeA() {
     u8 sw_no = getSwNo();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (i_fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
+    if (fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
         cXyz unused1;
         cXyz unused2;
 
@@ -770,7 +770,7 @@ void daObjRgate_c::actionWaitEvent() {
     if (eventInfo.i_checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
-        i_fopAcM_onSwitch(this, getSwNo());
+        fopAcM_onSwitch(this, getSwNo());
         fopAcM_seStart(this, Z2SE_OBJ_RIDER_GATE_L_OP, 0);
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);

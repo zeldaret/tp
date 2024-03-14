@@ -847,7 +847,7 @@ static void ni_normal(ni_class* i_this) {
         }
     }
 
-    fopAc_ac_c* cow = i_fopAcM_SearchByName(PROC_COW);
+    fopAc_ac_c* cow = fopAcM_SearchByName(PROC_COW);
     if (cow != NULL && cow->speedF > 1.0f) {
         sp50 = cow->current.pos - a_this->current.pos;
         f32 var_f30 = sp50.abs();
@@ -1293,7 +1293,7 @@ public:
 static int ni_demo0(ni_class* i_this) {
     cXyz sp28;
     cXyz sp34;
-    daNpcMoiR_c* moi = (daNpcMoiR_c*)i_fopAcM_SearchByName(PROC_NPC_MOIR);
+    daNpcMoiR_c* moi = (daNpcMoiR_c*)fopAcM_SearchByName(PROC_NPC_MOIR);
 
     if (i_this->mTimers[0] == 0 && moi != NULL) {
         mDoMtx_stack_c::copy(moi->getHandRMtx());

@@ -26,7 +26,7 @@ int daObjDigpl_c::create() {
         mType = 0;
     }
 
-    if (mSwitch != 0xFF && i_fopAcM_isSwitch(this, mSwitch)) {
+    if (mSwitch != 0xFF && fopAcM_isSwitch(this, mSwitch)) {
         return cPhs_ERROR_e;
     }
 
@@ -67,7 +67,7 @@ int daObjDigpl_c::execute() {
 
     if (mDigFlg == 1) {
         if (mSwitch != 0xFF) {
-            i_fopAcM_onSwitch(this, mSwitch);
+            fopAcM_onSwitch(this, mSwitch);
         }
 
         cXyz item_pos(current.pos.x, current.pos.y - 30.0f, current.pos.z);

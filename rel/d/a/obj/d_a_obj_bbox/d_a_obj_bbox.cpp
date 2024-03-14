@@ -62,7 +62,7 @@ int daObjBBox_c::CreateHeap() {
 int daObjBBox_c::create1st() {
     fopAcM_SetupActor(this, daObjBBox_c);
 
-    if (i_fopAcM_isSwitch(this, getSwNo())) {
+    if (fopAcM_isSwitch(this, getSwNo())) {
         return cPhs_ERROR_e;
     }
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
@@ -89,7 +89,7 @@ int daObjBBox_c::Execute(Mtx** i_mtx) {
                                           -1, NULL, NULL, NULL);
                 }
                 fopAcM_seStart(this, Z2SE_OBJ_WOODBOX_BREAK, 0);
-                i_fopAcM_onSwitch(this, getSwNo());
+                fopAcM_onSwitch(this, getSwNo());
                 fopAcM_delete(this);
             }
         }

@@ -90,7 +90,7 @@ cPhs__Step daObjCdoor_c::create() {
         mChainID = -1;
         mEnd = false;
         if (mType == 1) {
-            mIsOpen = i_fopAcM_isSwitch(this, mSw);
+            mIsOpen = fopAcM_isSwitch(this, mSw);
             mMapToolID = (fopAcM_GetParam(this) >> 0xc) & 0xff;
             mEventID = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
             setAction(ACT_WAIT);
@@ -106,7 +106,7 @@ cPhs__Step daObjCdoor_c::create() {
             }
             init_modeWait();
         } else {
-            if (i_fopAcM_isSwitch(this, mSw)) {
+            if (fopAcM_isSwitch(this, mSw)) {
                 mEnd = 1;
                 current.pos.y += l_moveOffsetY[mType];
             } else {
@@ -208,7 +208,7 @@ void daObjCdoor_c::execWgate() {
         &modeClose,
     };
     u8 was_open = mIsOpen;
-    mIsOpen = i_fopAcM_isSwitch(this, mSw);
+    mIsOpen = fopAcM_isSwitch(this, mSw);
     if (mIsOpen != was_open) {
         if (mIsOpen) {
             init_modeOpen();

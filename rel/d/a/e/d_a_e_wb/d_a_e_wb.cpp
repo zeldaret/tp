@@ -146,7 +146,7 @@ extern "C" void set__4cXyzFfff();
 extern "C" void onCondition__11dEvt_info_cFUs();
 extern "C" void checkCommandDemoAccrpt__11dEvt_info_cFv();
 extern "C" void __ct__4cXyzFv();
-extern "C" static void fopAcM_SearchByName__Fs();
+extern "C" static void fopAcM_SearchByName__Fs(s16);
 extern "C" static void fopAcM_SearchByID__FUi(unsigned int);
 extern "C" static daHorse_c* dComIfGp_getHorseActor__Fv();
 extern "C" static void dComIfGp_getPlayer__Fi(int);
@@ -4741,7 +4741,7 @@ extern "C" void __ct__4cXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_SearchByName(s16 param_0) {
+static asm void fopAcM_SearchByName__Fs(s16 param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fopAcM_SearchByName__Fs.s"
 }

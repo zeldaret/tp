@@ -40,7 +40,7 @@ int daTagSpring_c::create() {
 /* 805A6B5C-805A6C84 00017C 0128+00 1/1 0/0 0/0 .text            execute__13daTagSpring_cFv */
 int daTagSpring_c::execute() {
     if (getSwbit() != 0xFF) {
-        if (!i_fopAcM_isSwitch(this, getSwbit())) {
+        if (!fopAcM_isSwitch(this, getSwbit())) {
             return 1;
         }
     }

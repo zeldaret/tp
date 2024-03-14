@@ -42,7 +42,7 @@ s32 daTagChgRestart_c::create() {
 
 /* 80D568B8-80D56A84 0001D8 01CC+00 1/1 0/0 0/0 .text            execute__17daTagChgRestart_cFv */
 s32 daTagChgRestart_c::execute() {
-    if (i_fopAcM_isSwitch(this, daTagChgRestart_prm::getSwNo(this))) {
+    if (fopAcM_isSwitch(this, daTagChgRestart_prm::getSwNo(this))) {
         return 1;
     }
 
@@ -80,7 +80,7 @@ s32 daTagChgRestart_c::execute() {
 
         s32 l_roomNo = fopAcM_GetRoomNo(player);
         dComIfGs_setRestartRoom(restart_pos, restart_angle, l_roomNo);
-        i_fopAcM_onSwitch(this, daTagChgRestart_prm::getSwNo(this));
+        fopAcM_onSwitch(this, daTagChgRestart_prm::getSwNo(this));
     }
 
     return 1;

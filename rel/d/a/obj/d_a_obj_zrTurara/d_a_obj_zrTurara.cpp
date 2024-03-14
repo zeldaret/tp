@@ -343,7 +343,7 @@ cPhs__Step daZrTurara_c::create() {
         mCcCyl.Set(mCcDCyl);
         mCcCyl.SetStts(&mCcStatus);
         u8 sw1 = getSwBit1();
-        if (i_fopAcM_isSwitch(this, sw1)) {
+        if (fopAcM_isSwitch(this, sw1)) {
             if (mpRockBgW != NULL) {
                 dComIfG_Bgsp().Release(mpRockBgW);
                 mpRockBgW->Move();
@@ -487,7 +487,7 @@ asm void daZrTurara_c::move() {
 
 /* 80D40D88-80D40E0C 000908 0084+00 1/0 0/0 0/0 .text            modeWait__12daZrTurara_cFv */
 void daZrTurara_c::modeWait() {
-    if (mSw2 != 0xff && i_fopAcM_isSwitch(this, mSw2)) {
+    if (mSw2 != 0xff && fopAcM_isSwitch(this, mSw2)) {
         init_modeBreak();
     }
     if (mCcCyl.ChkTgHit() && mCcCyl.GetTgHitGObj()->GetAtType() == AT_TYPE_BOMB) {
@@ -519,7 +519,7 @@ void daZrTurara_c::init_modeBreak() {
     dComIfGp_particle_set(0x8a97, &current.pos, NULL, &scale);
     mParticleKey = dComIfGp_particle_set(mParticleKey, 0x8a98, &current.pos, NULL, &scale);
     u8 sw1 = getSwBit1();
-    i_fopAcM_onSwitch(this, sw1);
+    fopAcM_onSwitch(this, sw1);
     mDebrisCount = 0;
     mBreakTimer = 0;
     mMode = 1;

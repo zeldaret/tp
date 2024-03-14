@@ -582,7 +582,7 @@ int daBgObj_c::CreateInitType0() {
 
 /* 8045A160-8045A2B8 000B80 0158+00 3/0 0/0 0/0 .text            CreateInitType1__9daBgObj_cFv */
 int daBgObj_c::CreateInitType1() {
-    if (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
+    if (fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
         field_0xcc8 = 1;
         release(mpBgW);
         regist(mpBgW2);
@@ -1024,12 +1024,12 @@ BOOL daBgObj_c::checkDestroy() {
         return false;
     }
 
-    if (!i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) &&
+    if (!fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) &&
         (daBgObj_prm::getSwBit2(this) == 0xFF ||
-         (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
+         (fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
           daBgObj_prm::getObjArg0(this) == 0xFF) ||
          (daBgObj_prm::getSwBit2(this) != 0xFF &&
-          !i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
+          !fopAcM_isSwitch(this, daBgObj_prm::getSwBit2(this)) &&
           daBgObj_prm::getObjArg0(this) == 0)))
     {
         return true;
@@ -1242,7 +1242,7 @@ int daBgObj_c::actionOrderWait() {
             orderWait_cyl();
             break;
         }
-    } else if (i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
+    } else if (fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
         orderWait_spec();
         field_0xd00 = 1;
     }
@@ -1267,7 +1267,7 @@ int daBgObj_c::actionOrder() {
             setAction(3);
         }
 
-        if (!i_fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) || field_0xd00 != 0 ||
+        if (!fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this)) || field_0xd00 != 0 ||
             field_0xcc8 == 0)
         {
             release(mpBgW);
@@ -1281,7 +1281,7 @@ int daBgObj_c::actionOrder() {
                 setAttentionInfo(attn_actor_p);
             }
 
-            i_fopAcM_onSwitch(this, daBgObj_prm::getSwBit(this));
+            fopAcM_onSwitch(this, daBgObj_prm::getSwBit(this));
             field_0xd00 = 0;
         }
     }
@@ -1321,7 +1321,7 @@ int daBgObj_c::ExecuteType0() {
 
     if (swBit != 0xFF) {
         if (arg0 == 0xFF) {
-            if (i_fopAcM_isSwitch(this, swBit)) {
+            if (fopAcM_isSwitch(this, swBit)) {
                 if (field_0xcc8 == 1) {
                     regist(mpBgW);
                     field_0xcc8 = 0;
@@ -1331,7 +1331,7 @@ int daBgObj_c::ExecuteType0() {
                 field_0xcc8 = 1;
             }
         } else if (arg0 == 0) {
-            if (i_fopAcM_isSwitch(this, swBit)) {
+            if (fopAcM_isSwitch(this, swBit)) {
                 if (field_0xcc8 == 0) {
                     release(mpBgW);
                     field_0xcc8 = 1;

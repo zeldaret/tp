@@ -488,7 +488,7 @@ static int daMirror_create(daMirror_c* i_this) {
 
 /* 8087206C-80872344 00152C 02D8+00 2/2 0/0 0/0 .text            create__10daMirror_cFv */
 int daMirror_c::create() {
-    if (getSw() != 0xFF && !i_fopAcM_isSwitch(this, getSw())) {
+    if (getSw() != 0xFF && !fopAcM_isSwitch(this, getSw())) {
         return cPhs_COMPLEATE_e;
     }
 

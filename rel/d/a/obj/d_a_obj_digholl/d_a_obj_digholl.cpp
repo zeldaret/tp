@@ -18,7 +18,7 @@ int daObjDigholl_c::create() {
     if (field_0x56c == 0xff) {
         field_0x56c = -1;
     }
-    if (i_fopAcM_isSwitch(this, field_0x569)) {
+    if (fopAcM_isSwitch(this, field_0x569)) {
         field_0x568 = 2;
         field_0x56b = 1;
     }
@@ -48,7 +48,7 @@ static int daObjDigholl_Delete(daObjDigholl_c* i_this) {
 int daObjDigholl_c::execute() {
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
     if (player->i_checkNowWolf() &&
-        (field_0x56a == 0xff || i_fopAcM_isSwitch(this, field_0x56a)) &&
+        (field_0x56a == 0xff || fopAcM_isSwitch(this, field_0x56a)) &&
         (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {
         attention_info.flags = 0x80;
@@ -60,7 +60,7 @@ int daObjDigholl_c::execute() {
             shape_angle.y = player->shape_angle.y + 0x10000 - 0x8000;
             current.angle.y = shape_angle.y;
         }
-        i_fopAcM_onSwitch(this, field_0x569);
+        fopAcM_onSwitch(this, field_0x569);
 
         if (i_dComIfGp_event_runCheck()) {
             if (player->getBaseAnimeFrame() > 35.0f) {

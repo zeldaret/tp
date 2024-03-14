@@ -89,7 +89,7 @@ int daHeavySw_c::create() {
         field_0x5cc.y = 0;
         field_0x5cc.z = 0;
         u8 param = fopAcM_GetParam(this);
-        if (i_fopAcM_isSwitch(this, param)) {
+        if (fopAcM_isSwitch(this, param)) {
             field_0x5bc = 300.0f;
             init_modeMoveEnd();
         } else {
@@ -266,7 +266,7 @@ void daHeavySw_c::modeMove() {
 void daHeavySw_c::init_modeMoveEnd() {
     field_0x5c5 = 1;
     u8 param = fopAcM_GetParam(this);
-    if (!i_fopAcM_isSwitch(this, param)) {
+    if (!fopAcM_isSwitch(this, param)) {
         s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
         mDoAud_seStart(Z2SE_OBJ_HEAVYSW_STOP, &current.pos, 0, reverb);
         dComIfGp_getVibration().StartShock(l_HIO.field_0x34, 0xF, cXyz(0.0f, 1.0f, 0.0f));
@@ -280,9 +280,9 @@ void daHeavySw_c::modeMoveEnd() {
     if (field_0x5c4 != 0) {
         field_0x5c4--;
     } else {
-        BOOL is_switch = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+        BOOL is_switch = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
         if (!is_switch) {
-            i_fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
+            fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
         }
     }
 }

@@ -75,7 +75,7 @@ int daLv4PoGate_c::create() {
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
         mSw = getSw();
-        mInitMove = i_fopAcM_isSwitch(this, mSw);
+        mInitMove = fopAcM_isSwitch(this, mSw);
 
         mMoveTarget = 1000.0f;
         mMoveValue = 0.0f;
@@ -115,7 +115,7 @@ void daLv4PoGate_c::moveGate() {
     };
 
     u8 current_state = mInitMove;
-    mInitMove = i_fopAcM_isSwitch(this, mSw);
+    mInitMove = fopAcM_isSwitch(this, mSw);
 
     if (mInitMove != current_state) {
         if (mInitMove) {

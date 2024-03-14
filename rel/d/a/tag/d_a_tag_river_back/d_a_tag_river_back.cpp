@@ -68,12 +68,12 @@ int daTagRiverBack_c::create() {
 /* 80D5F3F0-80D5F48C 000170 009C+00 1/1 0/0 0/0 .text            execute__16daTagRiverBack_cFv */
 int daTagRiverBack_c::execute() {
     u8 swBit = getSwBit();
-    if (swBit != 0xFF && i_fopAcM_isSwitch(this, swBit) != 0) {
+    if (swBit != 0xFF && fopAcM_isSwitch(this, swBit) != 0) {
         return 1;
     }
 
     u8 swBit2 = getSwBit2();
-    if (swBit2 != 0xFF && i_fopAcM_isSwitch(this, swBit2) == 0) {
+    if (swBit2 != 0xFF && fopAcM_isSwitch(this, swBit2) == 0) {
         return 1;
     }
 

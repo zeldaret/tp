@@ -14,7 +14,7 @@ int daTagHinit_c::create() {
 
     field_0x569 = shape_angle.x;
 
-    if (field_0x569 != 0xFF && i_fopAcM_isSwitch(this, field_0x569)) {
+    if (field_0x569 != 0xFF && fopAcM_isSwitch(this, field_0x569)) {
         return cPhs_ERROR_e;
     }
 
@@ -47,10 +47,10 @@ int daTagHinit_c::execute() {
          i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56c])) &&
         (field_0x56e == 0xFFFF ||
          !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56e])) &&
-        (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568)))
+        (field_0x568 == 0xFF || fopAcM_isSwitch(this, field_0x568)))
     {
         if (field_0x569 != 0xFF) {
-            i_fopAcM_onSwitch(this, field_0x569);
+            fopAcM_onSwitch(this, field_0x569);
         }
 
         daHorse_c* horse = i_dComIfGp_getHorseActor();

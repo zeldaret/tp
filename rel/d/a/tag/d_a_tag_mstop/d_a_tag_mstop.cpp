@@ -259,13 +259,13 @@ int daTagMstop_c::execute() {
                 }
             }
         }
-    } else if ((mSwitch != 0xFF && i_fopAcM_isSwitch(this, mSwitch)) ||
+    } else if ((mSwitch != 0xFF && fopAcM_isSwitch(this, mSwitch)) ||
                (field_0x572 != 0xFFFF &&
                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])))
     {
         fopAcM_delete(this);
         return 1;
-    } else if ((field_0x568 != 0xFF && !i_fopAcM_isSwitch(this, field_0x568)) ||
+    } else if ((field_0x568 != 0xFF && !fopAcM_isSwitch(this, field_0x568)) ||
                (field_0x570 != 0xFFFF &&
                 !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])))
     {

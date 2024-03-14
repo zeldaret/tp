@@ -82,7 +82,7 @@ int daObjVGnd_c::execute() {
         mpBrk->setFrame(2.0f);
         mpBtk->setFrame(2.0f);
     } else {
-        if (i_fopAcM_isSwitch(this, getSwbit())) {
+        if (fopAcM_isSwitch(this, getSwbit())) {
             mpBrk->setFrame(1.0f);
             mpBtk->setFrame(1.0f);
         } else {

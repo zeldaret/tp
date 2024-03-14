@@ -824,7 +824,7 @@ void daE_PH_c::CamAction() {
         SetReleaseCam();
 
         Z2GetAudioMgr()->bgmStart(Z2BGM_DRAGON_BTL02, 0, 0);
-        i_fopAcM_onSwitch(this, 0x3F);
+        fopAcM_onSwitch(this, 0x3F);
         break;
     }
 }
@@ -1331,8 +1331,8 @@ int daE_PH_c::create() {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0 && mAction == 2) {
             if (!dComIfGs_isZoneSwitch(2, fopAcM_GetRoomNo(this))) {
                 field_0x5b2 = 0;
-                i_fopAcM_offSwitch(this, 0x10);
-                i_fopAcM_offSwitch(this, 0x3F);
+                fopAcM_offSwitch(this, 0x10);
+                fopAcM_offSwitch(this, 0x3F);
             }
         }
 

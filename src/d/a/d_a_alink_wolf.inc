@@ -7972,9 +7972,9 @@ void daAlink_c::setSmellSave() {
     if (mProcVar3.field_0x300e.z == SMELL_MEDICINE) {
         dComIfGs_onEventBit(0x2F04);  // ON: Got Medicine Scent
     } else if (mProcVar3.field_0x300e.z == SMELL_CHILDREN) {
-        i_fopAcM_onSwitch(this, 102);
+        fopAcM_onSwitch(this, 102);
     } else if (mProcVar3.field_0x300e.z == SMELL_YELIA_POUCH) {
-        i_fopAcM_onSwitch(this, 103);
+        fopAcM_onSwitch(this, 103);
     } else if (mProcVar3.field_0x300e.z == SMELL_FISH) {
         dComIfGs_onEventBit(0x6120);  // ON: Got Reekfish scent
     } else if (mProcVar3.field_0x300e.z == SMELL_POH) {

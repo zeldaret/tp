@@ -82,7 +82,7 @@ cPhs__Step daLv1Cdl00_c::create() {
             mSwType = 0;
         }
         eyePos = mTorchPos;
-        mIsSwitch = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+        mIsSwitch = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
         mIsLit = false;
         if (!mSwType) {
             if (mIsSwitch) {
@@ -159,7 +159,7 @@ void daLv1Cdl00_c::pointLightProc() {
 
 /* 80C56388-80C567EC 000768 0464+00 1/1 0/0 0/0 .text            Execute__12daLv1Cdl00_cFv */
 int daLv1Cdl00_c::Execute() {
-    u8 sw = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+    u8 sw = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
     if (mIsSwitch != sw) {
         mIsLit = false;
         mCyl.SetAtMtrl(0);
@@ -198,9 +198,9 @@ int daLv1Cdl00_c::Execute() {
             mIsLit = true;
             mCyl.SetAtMtrl(1);
             if (!mSwType) {
-                i_fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
+                fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
             } else {
-                i_fopAcM_offSwitch(this, fopAcM_GetParam(this) & 0xff);
+                fopAcM_offSwitch(this, fopAcM_GetParam(this) & 0xff);
             }
             mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             setLight();
@@ -209,9 +209,9 @@ int daLv1Cdl00_c::Execute() {
             mIsLit = false;
             mCyl.SetAtMtrl(0);
             if (!mSwType) {
-                i_fopAcM_offSwitch(this, fopAcM_GetParam(this) & 0xff);
+                fopAcM_offSwitch(this, fopAcM_GetParam(this) & 0xff);
             } else {
-                i_fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
+                fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
             }
             mDoAud_seStart(0x80019, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             cutLight();

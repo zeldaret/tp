@@ -100,7 +100,7 @@ int daObjSwBallC_c::Create() {
         joint->getMin()->x, joint->getMin()->y, joint->getMin()->z,
         joint->getMax()->x, joint->getMax()->y, joint->getMax()->z);
     
-    if (i_fopAcM_isSwitch(this, 0x3d) && i_fopAcM_isSwitch(this, 0x3e)) {
+    if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
         field_0x574->setPlaySpeed(1.0f);
         field_0x574->setFrame(field_0x574->getEndFrame());
     }
@@ -111,7 +111,7 @@ int daObjSwBallC_c::Create() {
     field_0x57e = -1;
     eventInfo.setArchiveName(l_arcName);
     field_0x57c = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
-    if (i_fopAcM_isSwitch(this, 0x3f)) {
+    if (fopAcM_isSwitch(this, 0x3f)) {
         setLightOnSwB();
         setAction(3);
     }
@@ -176,7 +176,7 @@ static char* action_table[13] = {
 
 /* 80CF6200-80CF629C 0006E0 009C+00 1/0 0/0 0/0 .text            actionWait__14daObjSwBallC_cFv */
 void daObjSwBallC_c::actionWait() {
-    if (i_fopAcM_isSwitch(this, 0x3d) && i_fopAcM_isSwitch(this, 0x3e)) {
+    if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
         setAction(1);
         fopAcM_orderOtherEventId(this, field_0x57c, field_0x57e, 0xffff, 0, 1);
         eventInfo.i_onCondition(2);
@@ -188,7 +188,7 @@ void daObjSwBallC_c::actionOrderEvent() {
     if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(2);
         demoProc();
-        i_fopAcM_onSwitch(this, 0x3f);
+        fopAcM_onSwitch(this, 0x3f);
         dComIfGs_onTbox(10);
         dComIfGs_onTbox(11);
     } else {
@@ -202,9 +202,9 @@ void daObjSwBallC_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(field_0x57c)) {
         setAction(3);
         i_dComIfGp_event_reset();
-        i_fopAcM_onSwitch(this, 0x58);
+        fopAcM_onSwitch(this, 0x58);
         for (int i = 0; i < 8; i++) {
-            i_fopAcM_onSwitch(this, i + 0x50);
+            fopAcM_onSwitch(this, i + 0x50);
         }
     } else {
         demoProc();

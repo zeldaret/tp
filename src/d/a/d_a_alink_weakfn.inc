@@ -254,7 +254,7 @@ BOOL daPy_py_c::checkShieldGet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1) {
+static asm void fopAcM_onSwitch__FPC10fopAc_ac_ci(fopAc_ac_c const* param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/fopAcM_onSwitch__FPC10fopAc_ac_ci.s"
 }

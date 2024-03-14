@@ -126,7 +126,7 @@ int daTagWljump_c::execute() {
         if (!midnaActor->checkShadowModeTalkWait()) {
             if (shape_angle.x != 0 &&
                 (field_0x571 == 0xff ||
-                !i_fopAcM_isSwitch(this, field_0x571)))
+                !fopAcM_isSwitch(this, field_0x571)))
             {
                 if (field_0x56c[3] == 0) {
                     mMsgFlow.init(this, shape_angle.x & 0xffff, 0, NULL);
@@ -154,7 +154,7 @@ int daTagWljump_c::execute() {
         field_0x56c[0] = 0;
         field_0x572 = 1;
         if (field_0x571 != 0xff) {
-            i_fopAcM_onSwitch(this, field_0x571);
+            fopAcM_onSwitch(this, field_0x571);
         }
     } else if (!i_dComIfGp_getEvent().i_isOrderOK()) {
         field_0x572 = 0;
@@ -174,7 +174,7 @@ int daTagWljump_c::execute() {
         midnaActor->i_checkMidnaTired()) {
         return 1;
     } 
-    if (field_0x571 != 0xff && i_fopAcM_isSwitch(this, field_0x571)) {
+    if (field_0x571 != 0xff && fopAcM_isSwitch(this, field_0x571)) {
         field_0x56c[0] = 0;
         if (field_0x573) {
             field_0x573 = 0;
@@ -183,7 +183,7 @@ int daTagWljump_c::execute() {
         }
     }
     if (field_0x56c[0] != 0 || field_0x572 != 0 || field_0x571 == 0xff ||
-        i_fopAcM_isSwitch(this, field_0x571))
+        fopAcM_isSwitch(this, field_0x571))
     {
         s32 uVar6;
         dStage_dPnt_c* pbVar7 = field_0x5c4->m_points;

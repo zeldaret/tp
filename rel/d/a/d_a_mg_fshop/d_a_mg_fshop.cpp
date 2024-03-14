@@ -1986,7 +1986,7 @@ static void tsubo_set(fshop_class* param_1) {
             }
             pTsubo->field_0x20 = cM_rndF(65536.0f);
             pTsubo->field_0x22 = cM_rndF(65536.0f);
-            fopAc_ac_c* henna = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+            fopAc_ac_c* henna = fopAcM_SearchByName(PROC_NPC_HENNA);
             if (henna != NULL) {
                 // TODO: include henna header file
                 ((u8*)henna)[0x7b5] = 0x3c;
@@ -2742,7 +2742,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             }
             
             // TODO: include henna npc header
-            fopAc_ac_c* iVar9 = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+            fopAc_ac_c* iVar9 = fopAcM_SearchByName(PROC_NPC_HENNA);
             if (iVar9 != NULL && ((u8*)iVar9)[0x7b9] != 0 &&
                 (param_1->field_0x567 == 1 || dTimer_getRestTimeMs() == 0))
             {
@@ -2770,7 +2770,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                     local_cc = *(cXyz*)&BallEndPos - param_1->current.pos;
                     if (local_cc.abs() < 65.0f) {
                         // TODO: include henna npc header
-                        fopAc_ac_c* uVar19 = i_fopAcM_SearchByName(PROC_NPC_HENNA);
+                        fopAc_ac_c* uVar19 = fopAcM_SearchByName(PROC_NPC_HENNA);
                         if (uVar19 != NULL) {
                             BOOL bVar5 = FALSE;
                             for (int local_13c = 0; local_13c < 100; local_13c++) {

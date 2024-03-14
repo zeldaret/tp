@@ -256,16 +256,16 @@ void daNpcAsh_c::setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner) {
 
 void daNpcAsh_c::searchActors() {
     if (!mActorMngr[1].getActorP()) {
-        mActorMngr[1].entry(i_fopAcM_SearchByName(PROC_NPC_SHAD));
+        mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_SHAD));
     }
     if (!mActorMngr[2].getActorP()) {
-        mActorMngr[2].entry(i_fopAcM_SearchByName(PROC_NPC_RAFREL));
+        mActorMngr[2].entry(fopAcM_SearchByName(PROC_NPC_RAFREL));
     }
     if (!mActorMngr[3].getActorP()) {
-        mActorMngr[3].entry(i_fopAcM_SearchByName(PROC_NPC_MOIR));
+        mActorMngr[3].entry(fopAcM_SearchByName(PROC_NPC_MOIR));
     }
     if (isMap() && !mActorMngr[4].getActorP()) {
-        mActorMngr[4].entry(i_fopAcM_SearchByName(PROC_Obj_Table));
+        mActorMngr[4].entry(fopAcM_SearchByName(PROC_Obj_Table));
     }
     if (!mActorMngr[5].getActorP()) {
         mActorMngr[5].entry(getEvtAreaTagP(17, 0));

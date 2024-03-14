@@ -269,7 +269,7 @@ int daTagMhint_c::execute() {
 
                     if (field_0x572 != 0 || (field_0x56b != 0 && mSwitch != 0xFF)) {
                         if (field_0x56b != 0) {
-                            i_fopAcM_onSwitch(this, mSwitch);
+                            fopAcM_onSwitch(this, mSwitch);
                         }
 
                         fopAcM_delete(this);
@@ -291,7 +291,7 @@ int daTagMhint_c::execute() {
             return 1;
         }
 
-        if (mSwitch != 0xFF && i_fopAcM_isSwitch(this, mSwitch)) {
+        if (mSwitch != 0xFF && fopAcM_isSwitch(this, mSwitch)) {
             fopAcM_delete(this);
             return 1;
         }
@@ -304,7 +304,7 @@ int daTagMhint_c::execute() {
         {
             if ((field_0x574 == 0x3FF ||
                  i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])) &&
-                (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568)))
+                (field_0x568 == 0xFF || fopAcM_isSwitch(this, field_0x568)))
             {
                 if (field_0x578 != 0x1FF && field_0x578 != 0 && !i_dComIfGp_event_runCheck()) {
                     field_0x578--;

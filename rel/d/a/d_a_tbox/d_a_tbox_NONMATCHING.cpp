@@ -445,7 +445,7 @@ void daTbox_c::initAnm() {
         if (func_type == 6 && !checkDrop()) {
             setAction(&actionDropWait);
         } else if (func_type == 3) {
-            if (i_fopAcM_isSwitch(this, getSwNo())) {
+            if (fopAcM_isSwitch(this, getSwNo())) {
                 cXyz pos = current.pos;
                 if (fopAcM_gc_c::gndCheck(&pos)) {
                     current.pos.y = fopAcM_gc_c::getGroundY();
@@ -664,7 +664,7 @@ int daTbox_c::getDir() {
         u16 bit = 1;
         u16 dir = 0;
         for (int i = 0; i < 4; i++) {
-            if (i_fopAcM_isSwitch(this, getSwNo() + i)) {
+            if (fopAcM_isSwitch(this, getSwNo() + i)) {
                 dir += bit;
             }
             bit = bit << 1;
@@ -1307,7 +1307,7 @@ int daTbox_c::checkDrop() {
         }
     } else if (getSwType() == 0) {
         for (int i = 0; i < 4; i++) {
-            if (i_fopAcM_isSwitch(this, getSwNo() + i)) {
+            if (fopAcM_isSwitch(this, getSwNo() + i)) {
                 return true;
             }
         }
@@ -1450,7 +1450,7 @@ int daTbox_c::actionDropWaitForWeb() {
             shape_angle.z = 0;
             shape_angle.x = 0;
             fopAcM_SetGravity(this, -2.0f);
-            i_fopAcM_onSwitch(this, getSwNo());
+            fopAcM_onSwitch(this, getSwNo());
         }
     }
     setBaseMtx();
@@ -1620,7 +1620,7 @@ int daTbox_c::Execute(f32 (**param_0)[3][4]) {
     mDoMtx_stack_c::YrotS(shape_angle.y);
     mDoMtx_stack_c::multVec(&center, &center);
     center += current.pos;
-    if ((getSwNo() != 0xff && i_fopAcM_isSwitch(this, getSwNo())) || getSwNo() == 0xff) {
+    if ((getSwNo() != 0xff && fopAcM_isSwitch(this, getSwNo())) || getSwNo() == 0xff) {
         mCyl.SetC(center);
         dComIfG_Ccsp()->Set(&mCyl);
     }

@@ -89,7 +89,7 @@ int daTagLv6Gate_c::createHeap() {
         return 0;
     }
 
-    if (i_fopAcM_isSwitch(this, getSwitchNo2())) {
+    if (fopAcM_isSwitch(this, getSwitchNo2())) {
         mpBtk[0]->setFrame(mpBtk[0]->getEndFrame());
     }
 
@@ -182,7 +182,7 @@ void daTagLv6Gate_c::initBaseMtx() {
 void daTagLv6Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -50.0f, 0.0f, -50.0f, 50.0f, 100.0f, 50.0f);
     attention_info.position = current.pos;
-    attention_info.flags = (i_fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
+    attention_info.flags = (fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
     attention_info.field_0x0[7] = 89;
     mEvtId = -1;
     field_0x76a = 0;
@@ -192,7 +192,7 @@ void daTagLv6Gate_c::create_init() {
 
     initBaseMtx();
 
-    if (!i_fopAcM_isSwitch(this, getSwitchNo1())) {
+    if (!fopAcM_isSwitch(this, getSwitchNo1())) {
         parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &cXyz(-13.272481f, 2887.0f, -10373.718f),
                                     fopAcM_GetRoomNo(this), &csXyz(0, 0x7FFF, 0), NULL, -1);
     }
@@ -225,7 +225,7 @@ bool daTagLv6Gate_c::checkOpenArea() {
     fopAc_ac_c* actor;
     cXyz pos;
     
-    if (!i_fopAcM_isSwitch(this, getSwitchNo2())) {
+    if (!fopAcM_isSwitch(this, getSwitchNo2())) {
         return false;
     }
 
@@ -233,7 +233,7 @@ bool daTagLv6Gate_c::checkOpenArea() {
     mDoMtx_stack_c::inverse();
 
     for (int i = 0; i < 2; i++) {
-        actor = (i == 0) ? daPy_getPlayerActorClass() : i_fopAcM_SearchByName(PROC_NPC_TKS);
+        actor = (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
         if (actor != NULL) {
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
@@ -313,14 +313,14 @@ int daTagLv6Gate_c::execute() {
                     cut2();
                     break;
                 case '0003':
-                    i_fopAcM_onSwitch(this, getSwitchNo2());
+                    fopAcM_onSwitch(this, getSwitchNo2());
                     seStair();
                     break;
                 case '0004':
                     cut4();
                     break;
                 case '0006':
-                    i_fopAcM_onSwitch(this, getSwitchNo2());
+                    fopAcM_onSwitch(this, getSwitchNo2());
                     mpBtk[0]->setFrame(mpBtk[0]->getEndFrame());
                     if (!mBgW[0].ChkUsed()) {
                         dComIfG_Bgsp().Regist(&mBgW[0], this);
@@ -345,16 +345,16 @@ int daTagLv6Gate_c::execute() {
                 mEvtId = -1;
             }
         }
-    } else if (field_0x76a && !i_fopAcM_isSwitch(this, getSwitchNo1())) {
+    } else if (field_0x76a && !fopAcM_isSwitch(this, getSwitchNo1())) {
         eventInfo.setArchiveName(l_arcName);
         i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
         mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
         fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
-        i_fopAcM_onSwitch(this, getSwitchNo1());
+        fopAcM_onSwitch(this, getSwitchNo1());
         attention_info.flags = 0;
     }
 
-    if (i_fopAcM_isSwitch(this, getSwitchNo2())) {
+    if (fopAcM_isSwitch(this, getSwitchNo2())) {
         if (!mBgW[0].ChkUsed()) {
             dComIfG_Bgsp().Regist(&mBgW[0], this);
         }
@@ -477,7 +477,7 @@ int daTagLv6Gate_c::draw() {
 
     dComIfGd_setListBG();
 
-    if (i_fopAcM_isSwitch(this, getSwitchNo2())) {
+    if (fopAcM_isSwitch(this, getSwitchNo2())) {
         g_env_light.setLightTevColorType_MAJI(mpModel[0], &tevStr);
         mpBtk[0]->entry(mpModel[0]->getModelData());
         mpBtk[1]->entry(mpModel[0]->getModelData());
