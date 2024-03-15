@@ -1885,6 +1885,7 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
 void dComIfGp_calcNowRegion();
+
 daHorse_c* dComIfGp_getHorseActor();
 static BOOL dComIfGp_event_runCheck();
 static s32 dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2);
@@ -1902,6 +1903,7 @@ static u8 dComIfGp_getDoStatus();
 static u8 dComIfGp_getRStatus();
 static dAttCatch_c* dComIfGp_att_getCatghTarget();
 static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
+
 bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
 void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
 bool dComIfGp_isLightDropMapVisible();
