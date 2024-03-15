@@ -97,7 +97,11 @@ public:
     /* 802FF634 */ virtual u8 getTextureCount() const;
     /* 80053C6C */ virtual bool setBlack(JUtility::TColor);
     /* 80053C44 */ virtual bool setWhite(JUtility::TColor);
-    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
+    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white) {
+        mBlack = i_black;
+        mWhite = i_white;
+        return 1;
+    }
     /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
     /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
     /* 8025603C */ virtual bool getMaterial() const;
