@@ -106,6 +106,7 @@ public:
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
+    void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
     void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
         JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
@@ -130,6 +131,10 @@ public:
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalScl.set(scale);
         mGlobalPScl.set(scale.x ,scale.y);
+    }
+    void setGlobalSRTMatrix(const MtxP matrix) {
+        JPASetRMtxSTVecfromMtx(matrix, mGlobalRot, &mGlobalScl, &mGlobalTrs);
+        mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
 
     f32 get_r_f() { return mRndm.get_rndm_f(); }

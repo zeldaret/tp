@@ -251,6 +251,7 @@ public:
     void onWolfBiteDamage() { mFlags |= 0x40; }
     void onWolfDownStartFlg() { mFlags |= 0x14; }
     void onWolfDownPullEndFlg() { mFlags |= 0x20; }
+    void onWolfNoLock() { mFlags |= 0x200; }
 
     void setThrowModeCatch() { mThrowMode |= 2; }
     void setThrowModeDash() { mThrowMode |= 4; }

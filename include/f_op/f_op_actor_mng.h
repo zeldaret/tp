@@ -195,6 +195,10 @@ inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
     return p_actor->group;
 }
 
+inline void fopAcM_SetGroup(fopAc_ac_c* p_actor, u8 group) {
+    p_actor->group = group;
+}
+
 inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
     pActor->actor_status |= flag;
 }

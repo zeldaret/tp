@@ -10,6 +10,7 @@
 #include "d/d_procname.h"
 #include "d/s/d_s_room.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
+#include "rel/d/a/d_a_spinner/d_a_spinner.h"
 
 /* 801451EC-801452DC 13FB2C 00F0+00 1/1 0/0 0/0 .text            isLoadRoom__Fi */
 static bool isLoadRoom(int i_roomNo) {
@@ -56,7 +57,7 @@ int daNocrm_c::execute() {
     if (player_p->checkHorseRide()) {
         cur_player_pos.y = i_dComIfGp_getHorseActor()->current.pos.y;
     } else if (player_p->checkSpinnerRide()) {
-        fopAc_ac_c* spinner_actor = player_p->getSpinnerActor();
+        daSpinner_c* spinner_actor = player_p->getSpinnerActor();
 
         if (spinner_actor != NULL) {
             cur_player_pos.y = spinner_actor->current.pos.y;
