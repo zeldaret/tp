@@ -5594,7 +5594,7 @@ asm void daAlink_c::checkWolfLockData() {
 #endif
 
 /* 8013911C-8013916C 133A5C 0050+00 1/0 0/0 0/0 .text checkWolfLock__9daAlink_cCFP10fopAc_ac_c */
-bool daAlink_c::checkWolfLock(fopAc_ac_c* i_actor) const {
+BOOL daAlink_c::checkWolfLock(fopAc_ac_c* i_actor) const {
     u32 actor_id = fopAcM_GetID(i_actor);
 
     for (int i = 0; i < mWolfLockNum; i++) {

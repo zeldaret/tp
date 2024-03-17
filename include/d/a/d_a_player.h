@@ -183,6 +183,7 @@ private:
 };  // Size: 0x24
 
 class daMidna_c;
+class daSpinner_c;
 class daPy_py_c;
 inline daPy_py_c* dComIfGp_getLinkPlayer();
 inline BOOL i_dComIfGs_isEventBit(const u16);
@@ -340,7 +341,7 @@ public:
         ERFLG0_UNK_20000000 = 0x20000000,
         ERFLG0_UNK_10000000 = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
-        ERFLG0_UNK_2000000 = 0x2000000,
+        ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
         ERFLG0_UNK_1000000 = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
         ERFLG0_UNK_400000 = 0x400000,
@@ -610,7 +611,7 @@ public:
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(f32);
-    virtual bool checkWolfLock(fopAc_ac_c*) const;
+    virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
@@ -654,7 +655,7 @@ public:
     virtual u32 checkCanoeRide() const { return 0; }
     virtual u32 checkBoardRide() const { return 0; }
     virtual u32 checkSpinnerRide() const { return 0; }
-    virtual fopAc_ac_c* getSpinnerActor();
+    virtual daSpinner_c* getSpinnerActor();
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;
@@ -748,6 +749,7 @@ public:
     bool i_checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
+    s16 getDamageWaitTimer() const { return mDamageTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
     bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
@@ -757,6 +759,7 @@ public:
     bool getGrabUpEnd() const { return i_checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return i_checkResetFlg0(RFLG0_GRAB_PUT_START); }
 
+    void onBossRoomWait() { i_onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }

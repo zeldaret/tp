@@ -2508,7 +2508,7 @@ SECTION_DEAD static char const* const pad_8039263C = "\0\0\0";
 int daAlink_c::execute() {
     loadModelDVD();
 
-    if (checkEndResetFlg0(ERFLG0_UNK_2000000) && getMidnaActor() != NULL) {
+    if (checkEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT) && getMidnaActor() != NULL) {
         getMidnaActor()->onNoServiceWait();
     }
 
@@ -4696,7 +4696,7 @@ bool daAlink_c::checkAcceptDungeonWarpAlink(int param_0) {
 }
 
 /* 800D0228-800D0274 0CAB68 004C+00 1/0 0/0 0/0 .text            getSpinnerActor__9daAlink_cFv */
-fopAc_ac_c* daAlink_c::getSpinnerActor() {
+daSpinner_c* daAlink_c::getSpinnerActor() {
     fopAc_ac_c* spinnerActor;
 
     if (!checkSpinnerRide()) {
@@ -4704,7 +4704,7 @@ fopAc_ac_c* daAlink_c::getSpinnerActor() {
     } else {
         spinnerActor = mRideAcKeep.getActor();
     }
-    return spinnerActor;
+    return static_cast<daSpinner_c*>(spinnerActor);
 }
 
 /* 800D0274-800D027C 0CABB4 0008+00 1/0 0/0 0/0 .text            getSumouCounter__9daAlink_cCFv */

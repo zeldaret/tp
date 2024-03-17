@@ -580,7 +580,7 @@ f32 daPy_py_c::getSpinnerRideSpeed() const {
 
 /* 8015F814-8015F89C 15A154 0088+00 0/0 0/0 1/1 .text checkSpinnerReflectEffect__9daPy_py_cFv */
 bool daPy_py_c::checkSpinnerReflectEffect() {
-    daSpinner_c* spinner_p = (daSpinner_c*)getSpinnerActor();
+    daSpinner_c* spinner_p = getSpinnerActor();
 
     if (spinner_p != NULL && spinner_p->reflectAccept()) {
         return true;

@@ -824,6 +824,7 @@ int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
 bool dComIfGp_isLightDropMapVisible();
 int dComIfG_TimerEnd(int i_mode, int param_1);
+void dComIfGs_onStageBossEnemy(int i_stageNo);
 
 inline void dComIfG_setBrightness(u8 brightness) {
     g_dComIfG_gameInfo.mFadeBrightness = brightness;
@@ -1342,6 +1343,10 @@ inline s32 dComIfGs_isDungeonItemWarp() {
 
 inline s32 dComIfGs_isStageBossEnemy() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isStageBossEnemy();
+}
+
+inline s32 dComIfGs_isStageLife() {
+    return g_dComIfG_gameInfo.info.getMemory().getBit().isStageLife();
 }
 
 inline void dComIfGs_setKeyNum(u8 i_keyNum) {

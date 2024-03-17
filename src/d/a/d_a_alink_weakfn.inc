@@ -780,7 +780,7 @@ void daPy_py_c::setAnimeFrame(f32 param_0) {
 }
 
 /* 801416A0-801416A8 13BFE0 0008+00 1/0 0/0 0/0 .text checkWolfLock__9daPy_py_cCFP10fopAc_ac_c */
-bool daPy_py_c::checkWolfLock(fopAc_ac_c* param_0) const {
+BOOL daPy_py_c::checkWolfLock(fopAc_ac_c* param_0) const {
     return false;
 }
 
@@ -969,7 +969,7 @@ void daPy_py_c::onSceneChangeDead(u8 param_0, int param_1) {
 }
 
 /* 80141770-80141778 13C0B0 0008+00 1/0 0/0 0/0 .text            getSpinnerActor__9daPy_py_cFv */
-fopAc_ac_c* daPy_py_c::getSpinnerActor() {
+daSpinner_c* daPy_py_c::getSpinnerActor() {
     return NULL;
 }
 
