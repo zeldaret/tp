@@ -3309,7 +3309,7 @@ bool daAlink_c::modelCallBack(int i_jointNo) {
     if (i_jointNo == 0) {
         setUpperFront();
     } else if (i_jointNo == 26) {
-        if (!i_getSumouMode()) {
+        if (!getSumouMode()) {
             setFootMatrix();
         }
         setArmMatrix();
@@ -16980,7 +16980,7 @@ BOOL daAlink_c::checkGroundSpecialMode() {
         return procSumouReadyInit();
     }
 
-    if (i_checkGoronSideMove()) {
+    if (checkGoronSideMove()) {
         return procGoronMoveInit();
     }
 
@@ -17585,7 +17585,7 @@ void daAlink_c::posMove() {
         current.pos.y -= speedF * cM_ssin(var_r26);
     }
 
-    if (i_getSumouMode() && mProcID != PROC_SUMOU_WIN_LOSE) {
+    if (getSumouMode() && mProcID != PROC_SUMOU_WIN_LOSE) {
         current.pos.y = var_f31 - 1.0f;
         speed.y = gravity;
     }

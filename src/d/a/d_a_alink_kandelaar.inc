@@ -452,7 +452,7 @@ int daAlink_c::procKandelaarPourInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_KANDELAAR_POUR);
     current.angle.y = shape_angle.y;
     mNormalSpeed = FLOAT_LABEL(lit_6108);

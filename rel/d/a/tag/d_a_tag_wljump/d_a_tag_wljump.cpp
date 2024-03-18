@@ -156,7 +156,7 @@ int daTagWljump_c::execute() {
         if (field_0x571 != 0xff) {
             fopAcM_onSwitch(this, field_0x571);
         }
-    } else if (!dComIfGp_getEvent().i_isOrderOK()) {
+    } else if (!dComIfGp_getEvent().isOrderOK()) {
         field_0x572 = 0;
     } else {
         if (!midnaActor->checkWolfNoPos()) {

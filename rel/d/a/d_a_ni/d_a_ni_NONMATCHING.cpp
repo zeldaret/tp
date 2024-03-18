@@ -1805,7 +1805,7 @@ static void play_camera(ni_class* i_this) {
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
 
-            player->i_cancelOriginalDemo();
+            player->cancelOriginalDemo();
 
             i_this->mPlayCamMode = 0;
             i_this->mAction = ACTION_NORMAL_e;

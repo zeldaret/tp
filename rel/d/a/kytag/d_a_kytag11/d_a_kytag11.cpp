@@ -17,7 +17,7 @@ static int daKytag11_Draw(kytag11_class* i_this) {
 
 /* 80529520-80529798 000080 0278+00 1/0 0/0 0/0 .text daKytag11_Execute__FP13kytag11_class */
 static int daKytag11_Execute(kytag11_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     i_this->mChangeTime = false;
     i_this->mChangeTime = true;

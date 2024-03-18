@@ -2188,11 +2188,11 @@ BOOL daMidna_c::checkMidnaRealBody() {
 int daAlink_c::procCoMetamorphoseInit() {
     int var_r29 = 0;
 
-    if (dComIfGp_getEvent().i_isOrderOK()) {
+    if (dComIfGp_getEvent().isOrderOK()) {
         if (!dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
             return 0;
         }
-        mDemo.i_setSpecialDemoType();
+        mDemo.setSpecialDemoType();
         mDamageTimer = 0;
         var_r29 = 1;
     }

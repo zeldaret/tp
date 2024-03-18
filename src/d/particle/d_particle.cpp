@@ -919,7 +919,7 @@ static asm void drawSecond_light8(JPABaseEmitter* param_0) {
 
 /* 80049E40-80049FEC 044780 01AC+00 2/2 0/0 0/0 .text drawSecond_b_light8__FP14JPABaseEmitter */
 static void drawSecond_b_light8(JPABaseEmitter* param_0) {
-    dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+    dScnKy_env_light_c* envLight = dKy_getEnvlight();
     dKy_setLight_nowroom(dComIfGp_roomControl_getStayNo());
     GXSetColorUpdate(true);
     GXSetNumChans(1);

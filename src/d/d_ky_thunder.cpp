@@ -70,7 +70,7 @@ static int dThunder_Draw(dThunder_c* i_this) {
 }
 
 int dThunder_c::execute(dThunder_c* i_thunder) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (env_light->mThunderEff.mStateTimer < 10) {
         cLib_addCalc(&mBrkSpeed, 0.1f, 0.05f, 0.017f, 9.999999747378752e-06f);
@@ -149,7 +149,7 @@ static int dThunder_Create(kankyo_class* i_this) {
 
 /* 801AE458-801AE938 1A8D98 04E0+00 1/1 0/0 0/0 .text            create__10dThunder_cFv */
 int dThunder_c::create() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     camera_class* camera_p = dComIfGp_getCamera(0);
     cXyz spB8;
     cXyz spC4;

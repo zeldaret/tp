@@ -873,7 +873,7 @@ SECTION_SDATA2 static f64 lit_4444 = 4503601774854144.0 /* cast s32 to float */;
 // matches with literals
 #ifdef NONMATCHING
 static void dKy_twi_wolflight_set(int i_lightIdx) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     camera_class* camera_p = dComIfGp_getCamera(0);
     cXyz vectle;
 
@@ -1297,7 +1297,7 @@ SECTION_SDATA2 static f32 lit_4732 = 255.0f;
 // matches with literals
 #ifdef NONMATCHING
 static void dKy_FiveSenses_fullthrottle_dark_static1() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     int temp_r30 = 0;
 
     cXyz sp18;
@@ -1751,7 +1751,7 @@ SECTION_SDATA2 static f32 lit_5194 = 0.0010000000474974513f;
 // matches with literals
 #ifdef NONMATCHING
 static void dungeonlight_init() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     for (int i = 0; i < 8; i++) {
         env_light->mDungeonLights[i].mPosition = cXyz(test_pos_tbl[i]);
@@ -3974,7 +3974,7 @@ SECTION_SDATA2 static f32 lit_7027 = 6.0f / 5.0f;
 // almost, just some regalloc + literals
 #ifdef NONMATCHING
 void dScnKy_env_light_c::settingTevStruct(int i_tevstrType, cXyz* param_1, dKy_tevstr_c* i_tevstr) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     u8 var_r30 = i_tevstr->mInitTimer;
 
     GXColorS10 sp30;
@@ -5417,7 +5417,7 @@ SND_INFLUENCE* dKy_Sound_get() {
 // matches with literals
 #ifdef NONMATCHING
 void dKy_SordFlush_set(cXyz param_0, int param_1) {
-    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* light = dKy_getEnvlight();
 
     if (!dKy_darkworld_check() &&
         (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f))
@@ -5805,7 +5805,7 @@ SECTION_SDATA2 static f32 lit_9677 = 1.5f;
 #ifdef NONMATCHING
 int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, GXColor* param_4,
                          f32 param_5, u8 param_6, u8 param_7) {
-    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* light = dKy_getEnvlight();
 
     light->field_0x0c18[0].mPos = *param_0;
 
@@ -5965,7 +5965,7 @@ asm u8 dKy_pol_efftype2_get(cBgS_PolyInfo const* param_0) {
 
 /* 801AB4C0-801AB59C 1A5E00 00DC+00 0/0 9/9 21/21 .text dKy_pol_sound_get__FPC13cBgS_PolyInfo */
 u8 dKy_pol_sound_get(cBgS_PolyInfo const* p_poly) {
-    dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+    dScnKy_env_light_c* envLight = dKy_getEnvlight();
 
     if (p_poly == NULL || &dComIfG_Bgsp() == NULL) {
         return 0;
@@ -6587,7 +6587,7 @@ SECTION_SDATA2 static f32 lit_10932[1 + 1 /* padding */] = {
 // stack / couple instructions at the end
 #ifdef NONMATCHING
 void dKy_bg_MAxx_proc(void* param_0) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     s8 cam_id = dComIfGp_getWindow(0)->getCameraID();
     camera_class* camera_p = dComIfGp_getCamera(cam_id);
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);

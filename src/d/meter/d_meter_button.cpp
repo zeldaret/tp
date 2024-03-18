@@ -366,7 +366,7 @@ void dMeterButton_c::draw() {
                         mDoAud_seStart(Z2SE_SY_HINT_BUTTON_BLINK, NULL, 0, 0);
                     }
 
-                    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+                    if (daPy_getPlayerActorClass()->getSumouMode()) {
                         dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                             vtx.x, vtx.y, &field_0x2e8[i], 1.8f,
                             g_drawHIO.mEmpButton.mPikariListenFrontOuter,

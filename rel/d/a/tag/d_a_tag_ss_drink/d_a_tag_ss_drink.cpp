@@ -160,7 +160,7 @@ void daTag_SSDrink_c::setAttnPos() {
 /* 80D63208-80D63384 0004C8 017C+00 1/1 0/0 0/0 .text            chkEvent__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::chkEvent() {
     int retVal = 1;
-    if (!dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().isOrderOK()) {
         retVal = 0;
         if (eventInfo.checkCommandTalk()) {
             if (!checkProcess(&daTag_SSDrink_c::talk) == 0) {

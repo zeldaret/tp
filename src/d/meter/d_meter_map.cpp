@@ -546,7 +546,7 @@ bool dMeterMap_c::isShow(u32 param_0) {
     if ((param_0 & 0x4000) || fopOvlpM_IsDoingReq() ||
         ((param_0 & 0x40) && dComIfGp_event_checkHind(0x100) &&
          !dComIfGp_event_chkEventFlag(0x40)) ||
-        daPy_getPlayerActorClass()->i_getSumouMode() || (param_0 & 0x200000) || (param_0 & 0x100) ||
+        daPy_getPlayerActorClass()->getSumouMode() || (param_0 & 0x200000) || (param_0 & 0x100) ||
         (param_0 & 0x80) || (param_0 & 0x40000000) || (param_0 & 0x1000) || (param_0 & 0x100000) ||
         (param_0 & 0x20000) || (param_0 & 8) || (param_0 & 0x10) || (param_0 & 0x1000000) ||
         (param_0 & 0x800000) || (param_0 & 0x20) || (param_0 & 0x4000000) ||

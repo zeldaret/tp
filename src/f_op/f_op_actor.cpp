@@ -294,7 +294,7 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* i_tevstr) {
 
         if (base_scale->x > 0.01f) {
             mDoMtx_trans(mBallModel->getBaseTRMtx(), mDownPos.x, mDownPos.y, mDownPos.z);
-            i_dKy_getEnvlight()->setLightTevColorType_MAJI(mBallModel, i_tevstr);
+            dKy_getEnvlight()->setLightTevColorType_MAJI(mBallModel, i_tevstr);
 
             mBtk->setFrame(field_0x590);
             mBallModel->getModelData()->entryTexMtxAnimator(mBtk);

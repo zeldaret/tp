@@ -1902,7 +1902,7 @@ cXyz dKyw_get_wind_vecpow() {
 /* 8005AB64-8005AC30 0554A4 00CC+00 0/0 0/0 1/1 .text dKyw_plight_collision_set__FP4cXyzssfffff */
 void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 param_3, f32 param_4,
                                f32 param_5, f32 param_6, f32 param_7) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     for (int i = 0; i < 5; i++) {
         if (!env_light->mWindInfluenceEntity[i].mInUse) {
@@ -1934,7 +1934,7 @@ SECTION_SDATA2 static f32 lit_5630 = 1.0f / 5.0f;
 // matches with literals
 #ifdef NONMATCHING
 static void squal_proc() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     WIND_INFLUENCE* influence;
 
     for (int i = 0; i < 5; i++) {
@@ -2132,7 +2132,7 @@ SECTION_SDATA2 static f32 lit_5855[1 + 1 /* padding */] = {
 // matches with literals
 #ifdef NONMATCHING
 void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* i_direction, f32* i_power) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     dKyw_pntwind_get_info(param_0, i_direction, i_power);
 
     cXyz sp54;

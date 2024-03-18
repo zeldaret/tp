@@ -1888,7 +1888,7 @@ SECTION_SDATA2 static f32 lit_5156 = 13.0f / 20.0f;
 // matches with literals
 #ifdef NONMATCHING
 static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (param_0 != NULL) {
         *param_1 *= param_0->field_0x344;
@@ -2037,7 +2037,7 @@ asm u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 pa
  * set__18dDlst_shadowReal_cFUlP8J3DModelP4cXyzffP12dKy_tevstr_cff */
 u32 dDlst_shadowReal_c::set(u32 i_key, J3DModel* i_model, cXyz* param_2, f32 param_3, f32 param_4,
                             dKy_tevstr_c* param_5, f32 i_cameraZ, f32 param_7) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (mModelNum == 0) {
         cXyz sp60;

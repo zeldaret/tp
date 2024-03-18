@@ -3700,7 +3700,7 @@ void dKyr_shstar_move() {}
 // matches with literals
 #ifdef NONMATCHING
 void dKyr_odour_init() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     dKankyo_odour_Packet* odour_p = env_light->mpOdourPacket;
 
     for (int i = 0; i < 2000; i++) {
@@ -3759,7 +3759,7 @@ asm void dKyr_odour_draw(Mtx param_0, u8** param_1) {
 // matches with literals
 #ifdef NONMATCHING
 void dKyr_mud_init() {
-    dScnKy_env_light_c* light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* light = dKy_getEnvlight();
     light->mpMudPacket->mpMoyaRes = (u8*)dComIfG_getObjectRes("Always", 0x53);
 
     for (int i = 0; i < 100; i++) {
@@ -3895,7 +3895,7 @@ SECTION_SDATA2 static f32 lit_11953 = 10000000.0f;
 #ifdef NONMATCHING
 static f32 dKyr_near_bosslight_check(cXyz param_0) {
     f32 dist = 10000000.0f;
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     for (int i = 0; i < 6; i++) {
         if (env_light->field_0x0c18[i].field_0x26 == 1) {

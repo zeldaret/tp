@@ -1479,7 +1479,7 @@ bool dMeter2Info_isMapOpenCheck() {
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
 bool dMeter2Info_isItemOpenCheck() {
     if (daPy_getPlayerActorClass()->checkCanoeSlider() ||
-        daPy_getPlayerActorClass()->i_getSumouMode() || dMeter2Info_isSub2DStatus(1))
+        daPy_getPlayerActorClass()->getSumouMode() || dMeter2Info_isSub2DStatus(1))
     {
         return false;
     }

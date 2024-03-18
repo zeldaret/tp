@@ -2591,7 +2591,7 @@ bool dComIfGs_shake_kandelaar_check() {
 /* 8002FA54-8002FA84 02A394 0030+00 0/0 4/4 96/96 .text            dComIfGs_wolfeye_effect_check__Fv
  */
 BOOL dComIfGs_wolfeye_effect_check() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     BOOL ret = false;
 
     if (env_light->field_0xf3d == 1 && env_light->field_0xf40 > 0.6) {

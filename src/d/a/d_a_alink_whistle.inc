@@ -134,7 +134,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
         return checkNextAction(0);
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_GRASS_WHISTLE_WAIT);
 
     if (param_0 == 3) {

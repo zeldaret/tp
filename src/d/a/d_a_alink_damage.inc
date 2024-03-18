@@ -150,7 +150,7 @@ bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_
         i_onEndResetFlg1(ERFLG1_UNK_80);
     }
 
-    if (i_getSumouMode()) {
+    if (getSumouMode()) {
         cancelSumouMode();
     }
 
@@ -678,7 +678,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     u32 chk_40000 = i_checkModeFlg(0x40000);
 
     if (!commonProcInitNotSameProc(PROC_SWIM_FREEZE_RETURN)) {

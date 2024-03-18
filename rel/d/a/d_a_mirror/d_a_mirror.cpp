@@ -205,7 +205,7 @@ void dMirror_packet_c::modelDraw(J3DModel* i_model, Mtx param_1) {
         return;
     }
 
-    dScnKy_env_light_c* kankyo = i_dKy_getEnvlight();
+    dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     JUT_ASSERT(kankyo != 0);
 
     GXColor color = {0};

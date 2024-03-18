@@ -1465,7 +1465,7 @@ void dMeter2_c::moveButtonA() {
         dComIfGp_setDoStatusForce(0, 0);
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
         if (dComIfGp_getDoStatus() == 0) {
             dComIfGp_setDoStatus(0x15, 0);
             emphasis_a = true;
@@ -1632,7 +1632,7 @@ void dMeter2_c::moveButtonB() {
         dComIfGp_setAStatusForce(0, 0);
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
         if (dComIfGp_getAStatus() == 0 || dComIfGp_getAStatus() == 0x26) {
             dComIfGp_setAStatus(0x44, 0);
             emphasis_b = true;
@@ -2596,7 +2596,7 @@ void dMeter2_c::checkSubContents() {
         }
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode() != 0) {
+    if (daPy_getPlayerActorClass()->getSumouMode() != 0) {
         killSubContents(5);
 
         if (mSubContentType == 0) {
@@ -2979,7 +2979,7 @@ void dMeter2_c::alphaAnimeLife() {
     if ((mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x10) &&
          !dComIfGp_checkPlayerStatus1(0, 0x2000)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) || (mStatus & 0x100000) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) || (mStatus & 0x100000) ||
          (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) || (mStatus & 0x01000000) ||
          (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x08000000) ||
          (mStatus & 0x10000000)))
@@ -2998,7 +2998,7 @@ void dMeter2_c::alphaAnimeKantera() {
     if (dComIfGs_getMaxOil() == 0 || dComIfGs_getItem(SLOT_1, true) != KANTERA ||
         !daPy_getPlayerActorClass()->checkUseKandelaar(0) || (mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x400)) || dComIfGp_getOxygenShowFlag() ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) ||
          (daPy_getPlayerActorClass()->checkCanoeSlider() &&
           (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
          (mStatus & 0x100000) || (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3017,7 +3017,7 @@ void dMeter2_c::alphaAnimeKantera() {
 void dMeter2_c::alphaAnimeOxygen() {
     if (!dComIfGp_getOxygenShowFlag() || (mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x800)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) ||
          (daPy_getPlayerActorClass()->checkCanoeSlider() &&
           (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
          (mStatus & 0x100000) || (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3071,7 +3071,7 @@ SECTION_DEAD static char const* const pad_8039934F = "";
 #ifdef NONMATCHING
 void dMeter2_c::alphaAnimeRupee() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x80)) ||
-        daPy_getPlayerActorClass()->i_getSumouMode() ||
+        daPy_getPlayerActorClass()->getSumouMode() ||
         (daPy_getPlayerActorClass()->checkCanoeSlider() && dComIfG_getTimerMode() == 4) ||
         ((strcmp(dComIfGp_getStartStageName(), "R_SP127") != 0 || dComIfGp_event_checkHind(0x80)) &&
          (((mStatus & 0x40000000) && !(mStatus & 0x100)) || (mStatus & 0x1000) ||
@@ -3104,7 +3104,7 @@ asm void dMeter2_c::alphaAnimeRupee() {
 void dMeter2_c::alphaAnimeKey() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x40)) ||
         !isKeyVisible() || (mStatus & 0x40000000) || (mStatus & 0x1000) || (mStatus & 0x100000) ||
-        (mStatus & 0x80000000) || daPy_getPlayerActorClass()->i_getSumouMode() ||
+        (mStatus & 0x80000000) || daPy_getPlayerActorClass()->getSumouMode() ||
         (daPy_getPlayerActorClass()->checkCanoeSlider() &&
          (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
         (mStatus & 0x100) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3217,7 +3217,7 @@ void dMeter2_c::alphaAnimeButton() {
  */
 void dMeter2_c::alphaAnimeButtonCross() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x100)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) || (mStatus & 0x100) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) || (mStatus & 0x100) ||
          (mStatus & 0x80) || (mStatus & 0x40000000) || (mStatus & 0x1000) || (mStatus & 0x100000) ||
          (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) || (mStatus & 0x01000000) ||
          (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x08000000) ||
@@ -3257,7 +3257,7 @@ bool dMeter2_c::isShowLightDrop() {
         if ((mStatus & 0x4000) || !dComIfGs_isLightDropGetFlag(dComIfGp_getStartStageDarkArea()) ||
             dMeter2Info_getLightDropGetFlag(dComIfGp_getStartStageDarkArea()) <= 1 ||
             !dKy_darkworld_check() || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x200)) ||
-            daPy_getPlayerActorClass()->i_getSumouMode() ||
+            daPy_getPlayerActorClass()->getSumouMode() ||
             (daPy_getPlayerActorClass()->checkCanoeSlider() &&
              (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
             (mStatus & 0x40000000) || (mStatus & 0x00001000) || (mStatus & 0x00100000) ||

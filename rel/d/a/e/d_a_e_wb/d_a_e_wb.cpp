@@ -2798,7 +2798,7 @@ asm void mDoGph_gInf_c::fadeIn(f32 param_0, _GXColor& param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::checkSkipEdge() {
+extern "C" asm void checkSkipEdge__14dEvt_control_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/checkSkipEdge__14dEvt_control_cFv.s"
 }
@@ -4973,7 +4973,7 @@ asm void daHorse_c::setHorsePosAndAngle(cXyz const* param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
+extern "C" asm void startCheckSkipEdge__14dEvt_control_cFPv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/startCheckSkipEdge__14dEvt_control_cFPv.s"
 }

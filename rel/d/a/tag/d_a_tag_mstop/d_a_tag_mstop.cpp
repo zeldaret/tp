@@ -222,7 +222,7 @@ int daTagMstop_c::execute() {
     if (field_0x56e == 4) {
         if (field_0x5c8.abs2(player_p->current.pos) < 2500.0f) {
             dComIfGp_event_reset();
-            player_p->i_cancelOriginalDemo();
+            player_p->cancelOriginalDemo();
             field_0x56e = 0;
         }
     } else if (field_0x56e == 3) {

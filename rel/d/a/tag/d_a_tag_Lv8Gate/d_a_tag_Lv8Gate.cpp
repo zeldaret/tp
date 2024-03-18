@@ -153,7 +153,7 @@ int daTagLv8Gate_c::execute() {
                 }
             }
 
-            if (dComIfGp_getEvent().i_checkSkipEdge()) {
+            if (dComIfGp_getEvent().checkSkipEdge()) {
                 dComIfGp_event_reset();
                 dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             }

@@ -2283,7 +2283,7 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
 
     JUT_ASSERT(std::strlen(mp_string) < (64));
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
         mpTextA->show();
         mp_string = getActionString(0x15, 1, NULL);
 

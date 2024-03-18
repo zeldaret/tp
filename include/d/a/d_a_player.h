@@ -143,8 +143,6 @@ public:
         DEMO_NEW_ANM0_e = 0x200,
     };
 
-    void setSpecialDemoType();
-
     void setDemoType(u16 pType) { mDemoType = pType; }
     int getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
@@ -152,7 +150,7 @@ public:
     int getParam1() const { return mParam1; }
     s16 getParam2() const { return mParam2; }
     void setOriginalDemoType() { setDemoType(3); }
-    void i_setSpecialDemoType() { setDemoType(5); }
+    void setSpecialDemoType() { setDemoType(5); }
     void setSystemDemoType() { setDemoType(2); }
     void setStick(f32 stick) { mStick = stick; }
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
@@ -524,7 +522,6 @@ public:
     void onNoResetFlg2(daPy_py_c::daPy_FLG2);
     void offNoResetFlg0(daPy_py_c::daPy_FLG0);
     int checkEndResetFlg2(daPy_py_c::daPy_ERFLG2) const;
-    bool getSumouMode() const;
     int checkNoResetFlg3(daPy_py_c::daPy_FLG3) const;
     BOOL checkShieldGet();
     void onNoResetFlg0(daPy_py_c::daPy_FLG0);
@@ -539,7 +536,6 @@ public:
     void changeDemoPos0(cXyz const*);
     void changeDemoMode(u32, int, int, s16);
     void changeDemoParam2(s16);
-    void cancelOriginalDemo();
     void changeOriginalDemo();
     cXyz getHeadTopPos() const;
     /* 801829E0 */ BOOL checkThrowDamage() const { return i_checkNoResetFlg1(FLG1_THROW_DAMAGE); }
@@ -733,8 +729,8 @@ public:
         return sumouCameraMode;
     }
 
-    bool i_getSumouMode() const { return getSumouCameraMode(); }
-    void i_cancelOriginalDemo() {
+    bool getSumouMode() const { return getSumouCameraMode(); }
+    void cancelOriginalDemo() {
         mDemo.setSystemDemoType();
         mDemo.setDemoMode(1);
     }
@@ -745,7 +741,6 @@ public:
     bool checkEnemyAttentionLock() const { return i_checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
-    bool i_checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
@@ -772,7 +767,7 @@ public:
     }
 
     void offGoronSideMove() {
-        if (i_checkGoronSideMove()) {
+        if (checkGoronSideMove()) {
             mSpecialMode = 0;
         }
     }

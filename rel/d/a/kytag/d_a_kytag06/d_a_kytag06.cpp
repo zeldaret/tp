@@ -12,7 +12,7 @@
 
 /* 8085786C-80857918 0000EC 00AC+00 1/1 0/0 0/0 .text            dice_wether_init__FUcff */
 static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     env_light->mDiceWeatherMode = i_weatherMode;
     env_light->mDiceWeatherTime =
@@ -25,7 +25,7 @@ static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentT
 
 /* 80857918-808579EC 000198 00D4+00 1/1 0/0 0/0 .text            dice_wether_execute__FUcff */
 static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     env_light->mDiceWeatherMode = i_weatherMode;
 
     if (env_light->mDiceWeatherMode != DICE_MODE_DONE_e) {
@@ -45,7 +45,7 @@ static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_curre
 
 /* 808579EC-80857A50 00026C 0064+00 3/3 0/0 0/0 .text            dice_rain_minus__Fv */
 static void dice_rain_minus() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if ((g_Counter.mCounter0 & 3) == 0) {
         // run block every 4 frames
@@ -98,7 +98,7 @@ static void dKy_event_proc() {
     static u8 S_wether_mode_pat05[4] = {1, 5, 1, 0xFF};
     static f32 S_wether_time_pat05[3] = {3.75f, 7.5f, 3.75f};
 
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     if (!g_env_light.mCameraInWater) {
         if (g_env_light.mInitAnmTimer == 0) {
@@ -322,7 +322,7 @@ static int daKytag06_Draw(kytag06_class* i_this) {
 /* 8085814C-8085824C 0009CC 0100+00 1/1 0/0 0/0 .text
  * daKytag06_lv7_boss_wether_proc__FP13kytag06_classUc          */
 static void daKytag06_lv7_boss_wether_proc(kytag06_class* i_this, u8 param_1) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     g_env_light.mThunderEff.mMode = 0;
 
     u8 weather_colpat = g_env_light.mColpatWeather;
@@ -360,7 +360,7 @@ static void daKytag06_lv7_boss_wether_proc(kytag06_class* i_this, u8 param_1) {
 /* 8085824C-808584B4 000ACC 0268+00 1/1 0/0 0/0 .text
  * daKytag06_Ganon_wether_proc__FP13kytag06_classUc             */
 static void daKytag06_Ganon_wether_proc(kytag06_class* i_this, u8 param_1) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     g_env_light.mThunderEff.mMode = 0;
     dKyw_evt_wind_set(0, -0x4000);
@@ -433,7 +433,7 @@ static void daKytag06_Ganon_wether_proc(kytag06_class* i_this, u8 param_1) {
 /* 808584B4-808586C4 000D34 0210+00 3/2 0/0 0/0 .text daKytag06_wether_proc__FP13kytag06_classUc
  */
 static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     g_env_light.mThunderEff.mMode = 0;
 
     u8 weather_colpat = env_light->mColpatWeather;
@@ -537,7 +537,7 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
 /* 808586C4-808586F0 000F44 002C+00 1/1 0/0 0/0 .text
  * daKytag06_type_07_wether_Execute__FP13kytag06_class          */
 static void daKytag06_type_07_wether_Execute(kytag06_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     daKytag06_wether_proc(i_this, env_light->field_0x12cc);
 }
 
@@ -546,7 +546,7 @@ static void daKytag06_type_07_wether_Execute(kytag06_class* i_this) {
 static void daKytag06_type_07_Execute(kytag06_class* i_this) {
     cXyz spX;
     f32 current_time = dComIfGs_getTime();
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     camera_class* camera = dComIfGp_getCamera(0);
 
     if (i_this->field_0x574 == 0) {
@@ -726,7 +726,7 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
     };
 
     dComIfGs_getTime();
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     daKytag06_wether_proc(i_this, env_light->field_0x12cc);
     cXyz spX;
@@ -792,14 +792,14 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
 /* 80858CD4-80858D00 001554 002C+00 1/1 0/0 0/0 .text daKytag06_type_08_Execute__FP13kytag06_class
  */
 static void daKytag06_type_08_Execute(kytag06_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     daKytag06_lv7_boss_wether_proc(i_this, env_light->field_0x12cc);
 }
 
 /* 80858D00-80858D2C 001580 002C+00 1/1 0/0 0/0 .text daKytag06_type_09_Execute__FP13kytag06_class
  */
 static void daKytag06_type_09_Execute(kytag06_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     daKytag06_Ganon_wether_proc(i_this, env_light->field_0x12cc);
 }
 

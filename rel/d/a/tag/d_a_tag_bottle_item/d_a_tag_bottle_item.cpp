@@ -116,7 +116,7 @@ void daTag_BottleItem_c::setAttnPos() {
 s32 daTag_BottleItem_c::chkEvent() {
     s32 uVar2 = 1;
   
-    if (!dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().isOrderOK()) {
         uVar2 = 0;
         
         if (eventInfo.i_checkCommandCatch()) {

@@ -285,7 +285,7 @@ COMPILER_STRIP_GATE(0x8085B30C, &lit_4041);
 // matches with literals
 #ifdef NONMATCHING
 static int daKytag08_Execute(kytag08_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     JGeometry::TVec3<f32> particle_scale;
 
@@ -552,7 +552,7 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 #ifdef NONMATCHING
 static int daKytag08_Create(fopAc_ac_c* i_this) {
     cXyz sp(1.0f, 1.0f, 1.0f);
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     
     fopAcM_SetupActor(i_this, kytag08_class);
     

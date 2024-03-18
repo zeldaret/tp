@@ -83,7 +83,7 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
 // matches with literals / a fix for g_dComIfG_gameInfo.play.mEvent load
 #ifdef NONMATCHING
 int daAlink_c::checkDemoAction() {
-    if (dComIfGp_getEvent().i_isOrderOK()) {
+    if (dComIfGp_getEvent().isOrderOK()) {
         if (!dComIfGp_event_runCheck()) {
             i_offNoResetFlg0(FLG0_UNK_200000);
         }
@@ -551,7 +551,7 @@ asm void daAlink_c::setNoDrawSwordShield(int param_0, u16 param_1) {
 // matches with literals
 #ifdef NONMATCHING
 void daAlink_c::setDemoData() {
-    if (dComIfGp_getEvent().i_isOrderOK()) {
+    if (dComIfGp_getEvent().isOrderOK()) {
         if (checkPlayerDemoMode() && mClothesChangeWaitTimer == 0) {
             endDemoMode();
         }
@@ -2841,7 +2841,7 @@ int daAlink_c::procCoDeadInit(int param_0) {
     }
 
     dComIfGp_event_compulsory(this, NULL, 0xFFFF);
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     mNormalSpeed = 0.0f;
     mDamageTimer = 0;
 
@@ -3890,7 +3890,7 @@ int daAlink_c::procNotUseItemInit(int param_0) {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_NOT_USE_ITEM);
     setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
 
@@ -4200,7 +4200,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_DUNGEON_WARP_READY);
     setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
     mNormalSpeed = FLOAT_LABEL(lit_6108);
@@ -4517,7 +4517,7 @@ void daAlink_c::checkWarpStart() {
                 }
                 fopAcM_orderOtherEvent(this, portal, 0xFFFF, 1, 1);
             } else {
-                mDemo.i_setSpecialDemoType();
+                mDemo.setSpecialDemoType();
                 if (dMeter2Info_getWarpStatus() == 1) {
                     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
                     u32 exitID = dStage_stagInfo_GetEscapeWarp(stag_info);

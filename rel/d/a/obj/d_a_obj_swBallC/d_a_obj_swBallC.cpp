@@ -321,7 +321,7 @@ int daObjSwBallC_c::demoProc() {
     case 11:
     case 12:
         if (cLib_calcTimer(&field_0x580) == 0) {
-            player->i_cancelOriginalDemo();
+            player->cancelOriginalDemo();
             dComIfGp_evmng_cutEnd(field_0x578);
         }
         break;

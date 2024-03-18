@@ -3127,7 +3127,7 @@ int daAlink_c::procWolfHowlDemoInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
 
     s16 name;
     if (field_0x27f4 != NULL) {
@@ -3268,7 +3268,7 @@ int daAlink_c::procWolfHowlDemo() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
     daNpc_GWolf_c* gwolf_p = (daNpc_GWolf_c*)field_0x280c.getActor();
 
-    BOOL skip_edge = dComIfGp_getEvent().i_checkSkipEdge();
+    BOOL skip_edge = dComIfGp_getEvent().checkSkipEdge();
     if (skip_edge) {
         mZ2WolfHowlMgr.skipCorrectDemo();
     }
@@ -3313,11 +3313,11 @@ int daAlink_c::procWolfHowlDemo() {
 
         if (checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS)) {
             if (gwolf_p == NULL) {
-                dComIfGp_getEvent().i_startCheckSkipEdge(this);
+                dComIfGp_getEvent().startCheckSkipEdge(this);
             }
         } else if (checkUnderMove0BckNoArcWolf(WANM_HOWL_END)) {
             if (gwolf_p == NULL) {
-                dComIfGp_getEvent().i_startCheckSkipEdge(this);
+                dComIfGp_getEvent().startCheckSkipEdge(this);
             }
         } else if ((var_r26 || mZ2WolfHowlMgr.getTimer() != 0) &&
                    mZ2WolfHowlMgr.getReleaseTimer() != 30)
@@ -3444,7 +3444,7 @@ int daAlink_c::procWolfHowlDemo() {
 
                 dCam_getBody()->EndEventCamera(fopAcM_GetID(this));
             } else {
-                dComIfGp_getEvent().i_startCheckSkipEdge(this);
+                dComIfGp_getEvent().startCheckSkipEdge(this);
             }
         }
 
@@ -7586,7 +7586,7 @@ int daAlink_c::procWolfGanonCatchInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     field_0x27f4->actor_status |= 0x800;
 
     commonProcInit(PROC_WOLF_GANON_CATCH);
@@ -7993,7 +7993,7 @@ int daAlink_c::procWolfGetSmellInit() {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_WOLF_GET_SMELL);
     setSingleAnimeWolfBaseSpeed(WANM_SMELL, daAlinkHIO_wlChain_c0::m.field_0x54,
                                 daAlinkHIO_wlChain_c0::m.field_0x58);

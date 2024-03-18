@@ -1861,7 +1861,7 @@ extern "C" asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::checkSkipEdge() {
+extern "C" asm void checkSkipEdge__14dEvt_control_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/checkSkipEdge__14dEvt_control_cFv.s"
 }
@@ -2812,7 +2812,7 @@ static asm void func_8061A894() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::cancelOriginalDemo() {
+extern "C" asm void cancelOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/cancelOriginalDemo__9daPy_py_cFv.s"
 }

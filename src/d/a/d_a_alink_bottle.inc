@@ -398,7 +398,7 @@ int daAlink_c::procBottleDrinkInit(u16 i_itemNo) {
             return 0;
         }
 
-        mDemo.i_setSpecialDemoType();
+        mDemo.setSpecialDemoType();
     }
 
     commonProcInit(PROC_BOTTLE_DRINK);
@@ -440,7 +440,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
         return 0;
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_BOTTLE_OPEN);
     current.angle.y = shape_angle.y;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
@@ -742,7 +742,7 @@ int daAlink_c::procBottleSwing() {
                     mHeldItemModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
                 }
 
-                mDemo.i_setSpecialDemoType();
+                mDemo.setSpecialDemoType();
             }
         } else if (frameCtrl_p->getFrame() <= field_0x347c) {
             if (getReadyItem() == EMPTY_BOTTLE &&

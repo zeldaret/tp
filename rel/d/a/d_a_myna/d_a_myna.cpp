@@ -2816,7 +2816,7 @@ asm void daMyna_c::talkAnime(msg_class* param_0) {
 int daMyna_c::chkEvent() {
     int retVal = 1;
     if (daPy_py_c::i_checkNowWolf()) {
-        if (!dComIfGp_getEvent().i_isOrderOK()) {
+        if (!dComIfGp_getEvent().isOrderOK()) {
             retVal = 0;
             if (eventInfo.checkCommandTalk()) {
                 if (field_0x92C == 0x10) {

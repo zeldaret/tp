@@ -1082,7 +1082,7 @@ asm int daAlink_c::procOctaIealSpitInit() {
 /* 80105A00-80105A84 100340 0084+00 1/0 0/0 0/0 .text            procOctaIealSpit__9daAlink_cFv */
 int daAlink_c::procOctaIealSpit() {
     if (mDemo.getDemoMode() == 0x2E) {
-        i_cancelOriginalDemo();
+        cancelOriginalDemo();
     }
 
     cLib_addCalc(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_5943, field_0x3478, lit_9054);
