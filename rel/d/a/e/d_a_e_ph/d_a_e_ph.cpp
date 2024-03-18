@@ -136,14 +136,14 @@ void daE_PH_c::SetReleaseCam() {
 /* 8073D850-8073D904 0004F0 00B4+00 1/1 0/0 0/0 .text ctrlJoint__8daE_PH_cFP8J3DJointP8J3DModel */
 int daE_PH_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jnt_no = i_joint->getJntNo();
-    mDoMtx_stack_c::copy(i_model->i_getAnmMtx(jnt_no));
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(jnt_no));
 
     if (jnt_no == PH_JNT_HEAD) {
         mDoMtx_stack_c::YrotM(mHeadRotY);
         mDoMtx_stack_c::XrotM(-mHeadRotX);
     }
 
-    i_model->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+    i_model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
 }
@@ -785,7 +785,7 @@ void daE_PH_c::SetHeadAngle(s16 i_targetAngle) {
 void daE_PH_c::CamAction() {
     cXyz sp20(0.0f, 0.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(2));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVec(&sp20, &sp20);
     sp20.y += yREG_F(3);
 
@@ -1167,7 +1167,7 @@ void daE_PH_c::setBaseMtx() {
     mDoMtx_stack_c::XrotM(shape_angle.x);
     mDoMtx_stack_c::ZrotM(shape_angle.z);
 
-    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 }
 

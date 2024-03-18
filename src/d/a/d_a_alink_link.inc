@@ -4384,7 +4384,7 @@ u32 daAlink_c::checkHorseRide() const {
 
 /* 800CF298-800CF2B4 0C9BD8 001C+00 1/0 0/0 0/0 .text            getLeftItemMatrix__9daAlink_cFv */
 MtxP daAlink_c::getLeftItemMatrix() {
-    return mpLinkModel->i_getAnmMtx(field_0x30c0);
+    return mpLinkModel->getAnmMtx(field_0x30c0);
 }
 
 /* 800CF2B4-800CF2C8 0C9BF4 0014+00 1/0 0/0 0/0 .text            checkBoarRide__9daAlink_cCFv */
@@ -4399,12 +4399,12 @@ u32 daAlink_c::checkSpinnerRide() const {
 
 /* 800CF2DC-800CF2F8 0C9C1C 001C+00 1/0 0/0 0/0 .text            getLeftHandMatrix__9daAlink_cFv */
 MtxP daAlink_c::getLeftHandMatrix() {
-    return mpLinkModel->i_getAnmMtx(field_0x30b8);
+    return mpLinkModel->getAnmMtx(field_0x30b8);
 }
 
 /* 800CF2F8-800CF314 0C9C38 001C+00 1/0 0/0 0/0 .text            getRightHandMatrix__9daAlink_cFv */
 MtxP daAlink_c::getRightHandMatrix() {
-    return mpLinkModel->i_getAnmMtx(field_0x30ba);
+    return mpLinkModel->getAnmMtx(field_0x30ba);
 }
 
 /* 800CF314-800CF328 0C9C54 0014+00 1/0 0/0 0/0 .text
@@ -4417,7 +4417,7 @@ void daAlink_c::onSceneChangeArea(u8 exitID, u8 exitDirection, fopAc_ac_c* scexA
 
 /* 800CF328-800CF344 0C9C68 001C+00 1/0 0/0 0/0 .text            getRightItemMatrix__9daAlink_cFv */
 MtxP daAlink_c::getRightItemMatrix() {
-    return mpLinkModel->i_getAnmMtx(field_0x30c2);
+    return mpLinkModel->getAnmMtx(field_0x30c2);
 }
 
 /* 800CF344-800CF380 0C9C84 003C+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daAlink_cFv */
@@ -4731,17 +4731,17 @@ extern "C" MtxP getInvMtx__9daAlink_cFv(daAlink_c* this_) {
 
 /* 800D02A4-800D02B8 0CABE4 0014+00 1/0 0/0 0/0 .text getLinkBackBone1Matrix__9daAlink_cFv */
 extern "C" MtxP getLinkBackBone1Matrix__9daAlink_cFv(daAlink_c* this_) {
-    return this_->mpLinkModel->i_getAnmMtx(1);
+    return this_->mpLinkModel->getAnmMtx(1);
 }
 
 /* 800D02B8-800D02CC 0CABF8 0014+00 1/0 0/0 0/0 .text            getWolfMouthMatrix__9daAlink_cFv */
 extern "C" MtxP getWolfMouthMatrix__9daAlink_cFv(daAlink_c* this_) {
-    return this_->mpLinkModel->i_getAnmMtx(13);
+    return this_->mpLinkModel->getAnmMtx(13);
 }
 
 /* 800D02CC-800D02E0 0CAC0C 0014+00 1/0 0/0 0/0 .text getWolfBackbone2Matrix__9daAlink_cFv */
 extern "C" MtxP getWolfBackbone2Matrix__9daAlink_cFv(daAlink_c* this_) {
-    return this_->mpLinkModel->i_getAnmMtx(2);
+    return this_->mpLinkModel->getAnmMtx(2);
 }
 
 /* 800D02E0-800D0334 0CAC20 0054+00 1/0 0/0 0/0 .text            getBottleMtx__9daAlink_cFv */
@@ -4755,7 +4755,7 @@ extern "C" MtxP getBottleMtx__9daAlink_cFv(daAlink_c* this_) {
 
 /* 800D0334-800D0350 0CAC74 001C+00 1/0 0/0 0/0 .text            getHeadMtx__9daAlink_cFv */
 extern "C" MtxP getHeadMtx__9daAlink_cFv(daAlink_c* this_) {
-    return this_->mpLinkModel->i_getAnmMtx(this_->field_0x30b4);
+    return this_->mpLinkModel->getAnmMtx(this_->field_0x30b4);
 }
 
 /* 800D0350-800D0358 0CAC90 0008+00 1/0 0/0 0/0 .text            getGroundY__9daAlink_cFv */

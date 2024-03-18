@@ -5059,7 +5059,7 @@ void dFile_select3D_c::set_mtx() {
     mDoMtx_stack_c::transS(field_0x03a4.x, field_0x03a4.y, field_0x03a4.z);
     mDoMtx_stack_c::XYZrotM(field_0x03b0.x, field_0x03b0.y, field_0x03b0.z);
     mpModel->setBaseScale(stack_8);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 #else
 #pragma push

@@ -546,7 +546,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model = j3dSys.getModel();
         npc_ne_class* _this = (npc_ne_class*)model->getUserArea();
         if (_this != NULL) {
-            PSMTXCopy(model->i_getAnmMtx(jnt_no), *calc_mtx);
+            PSMTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
 
             // head
             if (jnt_no == 4) {
@@ -582,7 +582,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
                 mDoMtx_ZrotM(*calc_mtx, 0);
             }
 
-            model->i_setAnmMtx(jnt_no, *calc_mtx);
+            model->setAnmMtx(jnt_no, *calc_mtx);
             PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
@@ -4372,7 +4372,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->scale.x = i_this->mBaseScale.x * l_HIO.scale;
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
     J3DModel* model = i_this->mpMorf->getModel();
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->play(&i_this->eyePos, 0, 0);
     i_this->mpBtkAnm->setFrame(i_this->mBtkFrame);
     i_this->mpBtpAnm->setFrame(i_this->mBtpFrame);
@@ -4381,17 +4381,17 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     if (i_this->field_0x5b4 == 3) {
         mDoMtx_stack_c::transS(i_this->mDishPos.x, i_this->mDishPos.y, i_this->mDishPos.z);
         mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-        i_this->mpDishMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->mpDishMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         i_this->mpDishMorf->play(&i_this->eyePos, 0, 0);
         i_this->mpDishMorf->modelCalc();
     }
 
-    PSMTXCopy(model->i_getAnmMtx(4), *calc_mtx);
+    PSMTXCopy(model->getAnmMtx(4), *calc_mtx);
     MtxPosition(&vec1, &i_this->eyePos);
     i_this->attention_info.position = i_this->eyePos;
     i_this->attention_info.position.y += i_this->mBaseScale.y * 20.0f;
 
-    PSMTXCopy(model->i_getAnmMtx(3), *calc_mtx);
+    PSMTXCopy(model->getAnmMtx(3), *calc_mtx);
     vec1.set(i_this->field_0xbf4 + -30.0f, 0.0f, 0.0f);
     cLib_addCalc0(&i_this->field_0xbf4, 1.0f, 5.0f);
     cXyz vec2;
@@ -4432,11 +4432,11 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
 
     if (i_this->mFishID != -1 && i_this->field_0xcc0 != 0) {
         mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
-        PSMTXCopy(model->i_getAnmMtx(4), mDoMtx_stack_c::get());
+        PSMTXCopy(model->getAnmMtx(4), mDoMtx_stack_c::get());
         mDoMtx_stack_c::ZrotM(-19000);
         mDoMtx_stack_c::scaleM(0.5f, 0.5f, 0.5f);
         mDoMtx_stack_c::transM(5.0f, 35.0f, 15.0f);
-        fish->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        fish->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         int ivar3 = cM_ssin(g_Counter.mTimer * 15000) * 1500.0f;
         for (int i = 0; i <= fish->field_0x72c; i++) {
             fish->field_0x718[i] = ivar3;

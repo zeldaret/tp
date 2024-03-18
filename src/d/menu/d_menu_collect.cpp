@@ -3420,7 +3420,7 @@ void dMenu_Collect3D_c::set_mtx() {
     mDoMtx_stack_c::YrotM(mMaskMirrorAngle.y);
     mDoMtx_stack_c::XrotM(mMaskMirrorAngle.x);
     mDoMtx_stack_c::ZrotM(mMaskMirrorAngle.z);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 #else
 #pragma push

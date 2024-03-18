@@ -22,7 +22,7 @@ void daObjDigSnow_c::initBaseMtx() {
 void daObjDigSnow_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 

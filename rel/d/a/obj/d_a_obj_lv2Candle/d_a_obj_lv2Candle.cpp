@@ -76,7 +76,7 @@ void daLv2Candle_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8058E1C4-8058E244 000264 0080+00 1/1 0/0 0/0 .text            CreateHeap__13daLv2Candle_cFv */
@@ -282,7 +282,7 @@ int daLv2Candle_c::Execute() {
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
         dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff,
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
-        i_mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     if (field_0x734 != NULL) {

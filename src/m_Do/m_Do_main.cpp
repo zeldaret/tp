@@ -515,7 +515,7 @@ void main() {
     mDoRstData* reset_data = (mDoRstData*)OSAllocFromArenaLo(0x18, 4);
     mDoRst::setResetData(reset_data);
 
-    if (!mDoRst::i_getResetData()) {
+    if (!mDoRst::getResetData()) {
         do {
         } while (true);
     }

@@ -1873,9 +1873,9 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     s32 jntNum = a_jntNumTbl[idx][x];
     if (i_model && jntNum >= 0) {
         g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
-        mDoMtx_copy(mpMorf->getModel()->i_getAnmMtx(jntNum), mDoMtx_stack_c::now);
+        mDoMtx_copy(mpMorf->getModel()->getAnmMtx(jntNum), mDoMtx_stack_c::now);
         mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
-        i_model->i_setBaseTRMtx(mDoMtx_stack_c::now);
+        i_model->setBaseTRMtx(mDoMtx_stack_c::now);
         mDoExt_modelUpdateDL(i_model);
     }
     return 1;

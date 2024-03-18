@@ -423,7 +423,7 @@ void daMagLiftRot_c::setBaseMtx() {
     // but this function doesnt match unless it's like this??
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 #else

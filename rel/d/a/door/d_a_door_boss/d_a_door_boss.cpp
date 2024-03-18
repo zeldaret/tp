@@ -260,10 +260,10 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 void daBdoor_c::calcMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpDoorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpDoorModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 300.0f, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpLockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpLockModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8066F7EC-8066F8E4 00044C 00F8+00 1/1 0/0 0/0 .text            CreateInit__9daBdoor_cFv */

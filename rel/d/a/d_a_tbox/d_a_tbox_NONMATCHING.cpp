@@ -153,9 +153,9 @@ cPhs__Step daTbox_c::commonShapeSet() {
     mpModel->setBaseScale(scale);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpEffectModel != NULL) {
-        mpEffectModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpEffectModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
     return cPhs_COMPLEATE_e;
@@ -1520,16 +1520,16 @@ void daTbox_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -50.0f, 0.0f);
     if (field_0x9fc != 0) {
-        mpModel->i_setBaseTRMtx(field_0xa00);
+        mpModel->setBaseTRMtx(field_0xa00);
     } else {
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     mDoMtx_concat(mtx, field_0x988, field_0x988);
     mDoMtx_copy(mpModel->getBaseTRMtx(), mBgMtx);
     if (mpSlimeModel != NULL) {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 15.0f, current.pos.z);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
-        mpSlimeModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpSlimeModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 

@@ -11,10 +11,10 @@
  */
 int daAlink_c::bottleModelCallBack() {
     if (mItemMode != 0) {
-        mDoMtx_stack_c::copy(mpLinkModel->i_getAnmMtx(field_0x30c2));
+        mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c2));
         mDoMtx_stack_c::transM(lit_14616, lit_6041, lit_16570);
         mDoMtx_stack_c::XYZrotM(cM_deg2s(102.0f), cM_deg2s(-0.5f), cM_deg2s(-122.0f));
-        mDoMtx_copy(mDoMtx_stack_c::get(), mHeldItemModel->i_getAnmMtx(1));
+        mDoMtx_copy(mDoMtx_stack_c::get(), mHeldItemModel->getAnmMtx(1));
     }
 
     return 1;

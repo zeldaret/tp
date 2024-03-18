@@ -477,7 +477,7 @@ void daMirror_c::setModelMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::XrotM(shape_angle.x);
     mDoMtx_stack_c::ZrotM(0x2000);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80872018-8087206C 0014D8 0054+00 1/0 0/0 0/0 .text            daMirror_create__FP10daMirror_c */

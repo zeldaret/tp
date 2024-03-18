@@ -485,7 +485,7 @@ void daObjCHO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 }
 

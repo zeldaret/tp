@@ -22,9 +22,9 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         daObjSwPr_c* swpr_p = (daObjSwPr_c*)model_p->getUserArea();
 
         if (jnt_no == swpr_p->mKaitenJntID) {
-            cMtx_copy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
+            cMtx_copy(model_p->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
             mDoMtx_stack_c::YrotM(swpr_p->field_0x82c);
-            model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+            model_p->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
             mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
         }
     }
@@ -47,7 +47,7 @@ void daObjSwPr_c::initBaseMtx() {
 void daObjSwPr_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8059B2C8-8059B2D0 000000 0008+00 3/3 0/0 0/0 .rodata          l_bmdName */

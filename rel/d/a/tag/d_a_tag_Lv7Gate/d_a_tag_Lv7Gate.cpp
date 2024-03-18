@@ -252,7 +252,7 @@ int daTagLv7Gate_c::execute() {
                 dComIfGp_evmng_cutEnd(cut_index);
                 break;
             case '0002':
-                i_mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
+                mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
                 if (!field_0x5b1) {
                     dComIfGp_evmng_cutEnd(cut_index);
                 }

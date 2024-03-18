@@ -277,7 +277,7 @@ void daObjSwBallB_c::initBaseMtx() {
 void daObjSwBallB_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CF49F0-80CF4B74 0004B0 0184+00 1/1 0/0 0/0 .text            Create__14daObjSwBallB_cFv */

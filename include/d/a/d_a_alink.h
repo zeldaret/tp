@@ -3278,7 +3278,7 @@ public:
 
     MtxP getCopyRodMtx() {
         if (mHeldItemModel != NULL) {
-            return mHeldItemModel->i_getAnmMtx(0);
+            return mHeldItemModel->getAnmMtx(0);
         }
         return NULL;
     }

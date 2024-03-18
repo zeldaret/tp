@@ -1955,7 +1955,7 @@ SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n"
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     if (mWaitTimer != 0) {
         mWaitTimer--;
@@ -1983,7 +1983,7 @@ asm void dMenu_save_c::memCardDataSaveWait() {
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait2() {
     if (mWaitTimer != 0) {
-        i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+        mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
         mWaitTimer--;
         return;
     }
@@ -2732,7 +2732,7 @@ asm void dMenu_save_c::yesnoSelectStart() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool yesnoAnmComplete = yesnoMenuMoveAnm();
@@ -2762,7 +2762,7 @@ asm void dMenu_save_c::saveMoveDisp() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp2() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool dataMoveAnm = selectDataMoveAnm();

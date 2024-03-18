@@ -22,7 +22,7 @@ public:
     BOOL checkNormalRideMode() const;
     void setRunRideMode();
 
-    MtxP getRideMtx() { return field_0x5e0->getModel()->i_getAnmMtx(15); }
+    MtxP getRideMtx() { return field_0x5e0->getModel()->getAnmMtx(15); }
     f32 nowAnimeFrame() const { return field_0x5e0->getFrame(); }
     s16 getWaitRollAngle() const { return mWaitRollAngle; }
     bool checkGetOff() const { return speedF < 3.0f; }

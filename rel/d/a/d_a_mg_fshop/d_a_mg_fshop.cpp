@@ -196,7 +196,7 @@ static int Reel_CallBack(J3DJoint* param_0, int param_1) {
         u16 uVar1 = param_0->getJntNo();
         J3DModel* model = j3dSys.getModel();
         s32 iVar2 = model->getUserArea();
-        MTXCopy(model->i_getAnmMtx(uVar1), (MtxP)calc_mtx);
+        MTXCopy(model->getAnmMtx(uVar1), (MtxP)calc_mtx);
         cMtx_XrotM((MtxP)calc_mtx, (int)*(short*)(iVar2 + 0x58));
         model->setAnmMtx(uVar1, (MtxP)calc_mtx);
         PSMTXCopy((MtxP)calc_mtx, (MtxP) J3DSys::mCurrentMtx);
@@ -232,11 +232,11 @@ static int frog_CallBack(J3DJoint* param_0, int param_1) {
         J3DModel* model = j3dSys.getModel();
         model->getUserArea();
         if (sVar2 == 1) {
-            MtxP uVar1 = model->i_getAnmMtx(sVar2);
+            MtxP uVar1 = model->getAnmMtx(sVar2);
             MTXCopy(uVar1, (MtxP)calc_mtx);
             cMtx_YrotM((MtxP)calc_mtx, -8800);
             MtxScale(2.0f, 1.0f, 1.5f, 1);
-            model->i_setAnmMtx(sVar2, (MtxP)calc_mtx);
+            model->setAnmMtx(sVar2, (MtxP)calc_mtx);
             MTXCopy((MtxP)calc_mtx, (MtxP)J3DSys::mCurrentMtx);
         }
     }
@@ -1587,7 +1587,7 @@ static int daFshop_Draw(fshop_class* param_0) {
     if (param_0->field_0x4004 != NULL) {
         mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
         MtxP pfVar10 = mDoMtx_stack_c::get();
-        param_0->field_0x4004->i_setBaseTRMtx(pfVar10);
+        param_0->field_0x4004->setBaseTRMtx(pfVar10);
         g_env_light.setLightTevColorType_MAJI(param_0->field_0x4004, &param_0->tevStr);
         mDoExt_modelUpdateDL(param_0->field_0x4004);
     }
@@ -1741,17 +1741,17 @@ static void lure_set(fshop_class* param_0) {
         mDoMtx_stack_c::ZrotM(pLure->field_0x10);
         mDoMtx_stack_c::scaleM(pLure->field_0x2c, pLure->field_0x2c, pLure->field_0x28);
         mDoMtx_stack_c::transM(0.0f, 0.0f, 0.0f);
-        pLure->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        pLure->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
         if (pLure->field_0x24 != 3) {
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::transM(0.0f, hook_1_offy[pLure->field_0x24], 1.0f);
             mDoMtx_stack_c::XrotM(-10000);
-            pLure->field_0x18[0]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            pLure->field_0x18[0]->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::pop();
             mDoMtx_stack_c::transM(0.0f, hook_2_offy[pLure->field_0x24],
                                    hook_2_offz[pLure->field_0x24]);
             mDoMtx_stack_c::XrotM(0x4000);
-            pLure->field_0x18[1]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            pLure->field_0x18[1]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
     }
 }
@@ -1816,7 +1816,7 @@ static void rod_set(fshop_class* param_0) {
         }
         mDoMtx_stack_c::XrotM(1300);
         mDoMtx_stack_c::YrotM(0);
-        pRod->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        pRod->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
         cXyz* local_64 = pRod->line_mat.getPos(0);
         if (pRod->field_0x4c == 0) {
             mDoMtx_stack_c::transM(0.0f, 15.0f, 0.0f);
@@ -1844,7 +1844,7 @@ static void rod_set(fshop_class* param_0) {
             mDoMtx_stack_c::scaleM(guide_s[local_6c], guide_s[local_6c], guide_s[local_6c]);
             mDoMtx_stack_c::transM(0.0f, 4.0f, 0.0f);
             mDoMtx_stack_c::YrotM(0x4000);
-            pRod->field_0x18[local_6c]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            pRod->field_0x18[local_6c]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
     }
 }
@@ -2001,7 +2001,7 @@ static void tsubo_set(fshop_class* param_1) {
         mDoMtx_stack_c::XrotM(xrot);
         mDoMtx_stack_c::ZrotM(zrot);
         mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
-        pTsubo->field_0x14->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        pTsubo->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
         cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f);
     }
 }
@@ -2163,7 +2163,7 @@ static void koro2_mtx_set(fshop_class* param_1) {
         mDoMtx_stack_c::scaleM(param_1->scale.x, param_1->scale.x, param_1->scale.x);
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
-        param_1->mpA_crwaku_model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        param_1->mpA_crwaku_model->setBaseTRMtx(mDoMtx_stack_c::get());
         MTXCopy(mDoMtx_stack_c::get(), param_1->field_0x4030);
         param_1->field_0x402c->Move();
         mDoMtx_stack_c::pop();
@@ -2179,7 +2179,7 @@ static void koro2_mtx_set(fshop_class* param_1) {
                                        param_1->mKoro2[iVar8].field_0x44.z);
                 mDoMtx_stack_c::push();
                 mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
-                param_1->mKoro2[iVar8].mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                param_1->mKoro2[iVar8].mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
                 MTXCopy(mDoMtx_stack_c::get(), param_1->mKoro2[iVar8].field_0x04);
                 param_1->mKoro2[iVar8].mpBgW->Move();
                 mDoMtx_stack_c::pop();
@@ -2851,7 +2851,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         local_cc = pmVar11->mLookat.mEye - param_1->current.pos;
         mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
         mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));
-        param_1->field_0x4070->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        param_1->field_0x4070->setBaseTRMtx(mDoMtx_stack_c::get());
         return 1;
     } else {
         lure_set(param_1);
@@ -2887,7 +2887,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         mDoMtx_stack_c::transS(-450.0f, 25.0f, -250.0f);
         mDoMtx_stack_c::YrotM(0x4000);
         mDoMtx_stack_c::ZrotM(iVar6 + 2000);
-        param_1->field_0x6b30->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        param_1->field_0x6b30->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoMtx_stack_c::transS(-450.0f, 0.0f, -250.0f);
         mDoMtx_stack_c::scaleM(4.0f, 1.5f, 1.0f);
         MTXCopy(mDoMtx_stack_c::get(), param_1->field_0x6b38);
@@ -2912,7 +2912,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         mDoMtx_stack_c::XrotM(iVar10);
         mDoMtx_stack_c::ZrotM(iVar11);
         mDoMtx_stack_c::transM(-10.0f, -7.0f, 65.0f);
-        param_1->field_0x3ff4->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        param_1->field_0x3ff4->setBaseTRMtx(mDoMtx_stack_c::get());
         koro2_game(param_1);
     }
     return 1;

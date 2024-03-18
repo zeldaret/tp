@@ -264,7 +264,7 @@ void daAlink_c::statusWindowExecute(cXyz const* param_0, s16 param_1) {
 
         mDoMtx_stack_c::transS(*param_0);
         mDoMtx_stack_c::YrotM(param_1);
-        mpLinkModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpLinkModel->setBaseTRMtx(mDoMtx_stack_c::get());
         m_sWindowBck->play();
         m_sWindowBck->entry(field_0x064C);
         mpLinkModel->calc();

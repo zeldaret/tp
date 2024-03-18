@@ -244,7 +244,7 @@ void daObjBossWarp_c::initBaseMtx() {
 void daObjBossWarp_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 2.0f, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 805797B8-80579934 0001F8 017C+00 1/1 0/0 0/0 .text            Create__15daObjBossWarp_cFv */
@@ -465,7 +465,7 @@ int daObjBossWarp_c::execute() {
     }
 
     if (mpBrkAnm != NULL && mpBrkAnm->getFrame() != 0.0f) {
-        i_mDoAud_seStartLevel(Z2SE_OBJ_MDN_ESCAPE_HOLE, &current.pos, 0, 0);
+        mDoAud_seStartLevel(Z2SE_OBJ_MDN_ESCAPE_HOLE, &current.pos, 0, 0);
     }
 
     setBaseMtx();

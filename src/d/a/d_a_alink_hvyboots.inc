@@ -456,7 +456,7 @@ int daAlink_c::procMagneBootsFly() {
         procLandDamageInit(0);
     } else {
         cXyz sp24;
-        mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &sp24);
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &sp24);
         sp24 = field_0x37c8 - sp24;
 
         cLib_addCalcAngleS(&shape_angle.x, sp24.atan2sY_XZ() + -0x4000, 5, 0x1000, 0x100);

@@ -674,7 +674,7 @@ static Vec l_hookSnowSandHitScale;
 // almost, just stack order
 #ifdef NONMATCHING
 void daAlink_c::setHookshotPos() {
-    mDoMtx_stack_c::copy(mpLinkModel->i_getAnmMtx(field_0x30c0));
+    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c0));
     mDoMtx_stack_c::transM(-2.0f, 1.0f, 1.0f);
     mDoMtx_stack_c::XYZrotM(cM_deg2s(5.7f), cM_deg2s(162.0f), 0);
 
@@ -684,9 +684,9 @@ void daAlink_c::setHookshotPos() {
     } else {
         var_r27 = field_0x0710;
     }
-    var_r27->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    var_r27->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    mDoMtx_stack_c::copy(mpLinkModel->i_getAnmMtx(field_0x30c2));
+    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c2));
     mDoMtx_stack_c::transM(-2.0f, 0.0f, 1.0f);
     mDoMtx_stack_c::XYZrotM(cM_deg2s(-78.0f), cM_deg2s(182.0f), cM_deg2s(-99.0f));
 
@@ -696,7 +696,7 @@ void daAlink_c::setHookshotPos() {
     } else {
         var_r27_2 = mHeldItemModel;
     }
-    var_r27_2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    var_r27_2->setBaseTRMtx(mDoMtx_stack_c::get());
 
     cXyz sp134;
 
@@ -1022,7 +1022,7 @@ void daAlink_c::setHookshotPos() {
     }
 
     mHookTipBck.entry(mpHookTipModel->getModelData(), field_0x33e0);
-    mpHookTipModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpHookTipModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mpHookTipModel->calc();
 
     f32 bck_frame;
@@ -1059,7 +1059,7 @@ void daAlink_c::setHookshotPos() {
     }
 
     mHookTipBck.entry(field_0x0714->getModelData(), bck_frame);
-    field_0x0714->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    field_0x0714->setBaseTRMtx(mDoMtx_stack_c::get());
     field_0x0714->calc();
 }
 #else

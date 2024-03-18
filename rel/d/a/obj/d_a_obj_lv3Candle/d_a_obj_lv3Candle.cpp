@@ -37,7 +37,7 @@ void daLv3Candle_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C58594-80C5859C 000030 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
@@ -147,7 +147,7 @@ int daLv3Candle_c::Execute() {
     dComIfGp_particle_setSimple(0x101, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
     dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
 
-    i_mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
     if (mSph.ChkTgHit()) {
         cCcD_Obj* obj = mSph.GetTgHitObj();

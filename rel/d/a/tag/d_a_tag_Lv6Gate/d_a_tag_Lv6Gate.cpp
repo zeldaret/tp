@@ -170,13 +170,13 @@ void daTagLv6Gate_c::initBaseMtx() {
     mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::YrotM(0);
     MTXCopy(mDoMtx_stack_c::get(), field_0x6f8[0]);
-    mpModel[0]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel[0]->setBaseTRMtx(mDoMtx_stack_c::get());
     mBgW[0].Move();
 
     mDoMtx_stack_c::transS(0.0f, 2887.0f, -8330.0f);
     mDoMtx_stack_c::YrotM(0);
     MTXCopy(mDoMtx_stack_c::get(), field_0x6f8[1]);
-    mpModel[1]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
     mBgW[1].Move();
 }
 

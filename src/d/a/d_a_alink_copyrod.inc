@@ -120,7 +120,7 @@ void daAlink_c::setCopyRodModel() {
     mAtCps[0].OnAtSetBit();
     mAtCps[0].SetAtHitCallback(NULL);
     mAtCps[0].SetAtMtrl(0);
-    mHeldItemModel->i_setBaseTRMtx(mpLinkModel->i_getAnmMtx(field_0x30c0));
+    mHeldItemModel->setBaseTRMtx(mpLinkModel->getAnmMtx(field_0x30c0));
     mHeldItemModel->calc();
 }
 

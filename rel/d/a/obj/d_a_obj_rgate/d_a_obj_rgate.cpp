@@ -53,15 +53,15 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         daObjRgate_c* actor_p = (daObjRgate_c*)model_p->getUserArea();
 
         if (jnt_no == GATE_L_JNT) {
-            MTXCopy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
+            MTXCopy(model_p->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
             mDoMtx_stack_c::YrotM(actor_p->mGateLAngle);
-            model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+            model_p->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
 
             MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
         } else if (jnt_no == GATE_R_JNT) {
-            MTXCopy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
+            MTXCopy(model_p->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
             mDoMtx_stack_c::YrotM(actor_p->mGateRAngle);
-            model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+            model_p->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
 
             MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
         }
@@ -123,7 +123,7 @@ void daObjRgate_c::initBaseMtx() {
 void daObjRgate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mpGateModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpGateModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
     cXyz sp30(-350.0f, 0.0f, 0.0f);
     cXyz sp3C(350.0f, 0.0f, 0.0f);
@@ -180,7 +180,7 @@ void daObjRgate_c::setBaseMtx() {
         mDoMtx_stack_c::ZrotM(field_0xbae);
         mDoMtx_stack_c::ZrotM(var_r29);
         mDoMtx_stack_c::transM(-14.0f, 0.0f, 0.0f);
-        mpHookModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpHookModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (mpKeyModel != NULL) {
             if (field_0xbae == 0) {
@@ -189,7 +189,7 @@ void daObjRgate_c::setBaseMtx() {
                 mDoMtx_stack_c::YrotM(current.angle.y + mGateLAngle);
                 mDoMtx_stack_c::XrotM(-0xE38);
                 mDoMtx_stack_c::XrotM(-field_0xbaa);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             } else {
                 field_0xbe4 += -2.5f;
                 if (field_0xbe4 < -20.0f) {
@@ -210,7 +210,7 @@ void daObjRgate_c::setBaseMtx() {
                 cLib_addCalcAngleS(&mKeyRot.x, -0x4000, 5, 0xC00, 0x400);
                 mDoMtx_stack_c::transS(mEffPos);
                 mDoMtx_stack_c::ZXYrotM(mKeyRot);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             }
         }
     }

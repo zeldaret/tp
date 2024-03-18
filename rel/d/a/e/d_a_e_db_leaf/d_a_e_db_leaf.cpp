@@ -17,7 +17,7 @@ static int daE_DB_LEAF_Execute(e_db_leaf_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
-    i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::now);
+    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::now);
     i_this->mpMorf->modelCalc();
     return 1;
 }

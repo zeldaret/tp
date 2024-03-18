@@ -32,11 +32,11 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model = j3dSys.getModel();
         obj_ki_class* _this = (obj_ki_class*)model->getUserArea();
         if (_this != NULL && jnt_no >= 2 && jnt_no <= 4) {
-            PSMTXCopy(model->i_getAnmMtx(jnt_no), *calc_mtx);
+            PSMTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
             mDoMtx_YrotM(*calc_mtx, _this->field_0x58c[jnt_no - 2].y);
             mDoMtx_XrotM(*calc_mtx, _this->field_0x58c[jnt_no - 2].x);
             mDoMtx_ZrotM(*calc_mtx, _this->field_0x58c[jnt_no - 2].z);
-            model->i_setAnmMtx(jnt_no, *calc_mtx);
+            model->setAnmMtx(jnt_no, *calc_mtx);
             PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
@@ -77,7 +77,7 @@ static int daObj_Ki_Execute(obj_ki_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
-    i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
     i_this->mpBgW->Move();
     i_this->mpMorf->modelCalc();

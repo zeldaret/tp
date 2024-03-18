@@ -432,7 +432,7 @@ void daObjWchain_c::setMatrix() {
     mDoMtx_stack_c::ZrotM(mHandleRotation);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(0.0f, 0.0f, 8.75f);
-    mpHandleModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpHandleModel->setBaseTRMtx(mDoMtx_stack_c::get());
     static Vec const eyeOffset = {0.0f, 0.0f, 53.75f};
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
 }

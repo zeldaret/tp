@@ -43,7 +43,7 @@ void daLv4Gate_c::setBaseMtx() {
     mDoMtx_stack_c::transM(mMoveValue, 0.0f, 0.0f);
 
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C5EC80-80C5ECEC 000200 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daLv4Gate_cFv */
@@ -144,7 +144,7 @@ void daLv4Gate_c::modeMove() {
     mDoMtx_stack_c::multVec(&sound_pos, &sound_pos);
     sound_pos += current.pos;
 
-    i_mDoAud_seStartLevel(Z2SE_OBJ_GORONGATE_MOVE, &sound_pos, 0,
+    mDoAud_seStartLevel(Z2SE_OBJ_GORONGATE_MOVE, &sound_pos, 0,
                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
     if (cLib_addCalc(&mMoveValue, mMoveTarget, 0.2f, l_HIO.mMoveSpeed, 0.5f) == 0.0f) {

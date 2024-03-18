@@ -202,7 +202,7 @@ void daObjMirrorScrew_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 void daObjMirrorScrew_c::initBaseMtx() {

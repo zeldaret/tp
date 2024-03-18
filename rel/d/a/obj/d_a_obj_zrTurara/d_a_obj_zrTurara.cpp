@@ -279,13 +279,13 @@ void daZrTurara_c::setBaseMtx() {
     // cXyz scale(1.0f, 1.0f, 1.0f);
     cXyz scale(FLOAT_LABEL(lit_3699), FLOAT_LABEL(lit_3699), FLOAT_LABEL(lit_3699));
     mpBaseModel->setBaseScale(scale);
-    mpBaseModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpBaseModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::scaleM(mScaleF, mScaleF, mScaleF);
     mpRockModel->setBaseScale(scale);
-    mpRockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpRockModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mRockBgMtx);
 }
 

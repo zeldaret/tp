@@ -147,7 +147,7 @@ static int daObjCdoor_Delete(daObjCdoor_c* i_this) {
 void daObjCdoor_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BC7424-80BC7478 0006E4 0054+00 1/0 0/0 0/0 .text            Execute__12daObjCdoor_cFPPA3_A4_f

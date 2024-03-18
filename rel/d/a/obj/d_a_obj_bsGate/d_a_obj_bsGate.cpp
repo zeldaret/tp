@@ -37,7 +37,7 @@ void daBsGate_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(mOpenDist, 0.0f, 0.0f);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BC29AC-80BC2A18 00020C 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daBsGate_cFv */
@@ -125,7 +125,7 @@ void daBsGate_c::init_modeOpen() {
 /* 80BC2CE0-80BC2E34 000540 0154+00 1/0 0/0 0/0 .text            modeOpen__10daBsGate_cFv */
 void daBsGate_c::modeOpen() {
     if (mSide == 0) {
-        i_mDoAud_seStartLevel(Z2SE_OBJ_SW_W_DR_OP, &current.pos, 0,
+        mDoAud_seStartLevel(Z2SE_OBJ_SW_W_DR_OP, &current.pos, 0,
                             dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
     if (cLib_addCalc(&mOpenDist, mTargetDist, 0.2f, l_HIO.mOpenSpeed, 0.5f) == 0.0f) {
@@ -146,7 +146,7 @@ void daBsGate_c::init_modeClose() {
 /* 80BC2E40-80BC2F94 0006A0 0154+00 1/0 0/0 0/0 .text            modeClose__10daBsGate_cFv */
 void daBsGate_c::modeClose() {
     if (mSide == 0) {
-        i_mDoAud_seStartLevel(Z2SE_OBJ_SW_W_DR_CL, &current.pos, 0,
+        mDoAud_seStartLevel(Z2SE_OBJ_SW_W_DR_CL, &current.pos, 0,
                             dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
     if (cLib_addCalc(&mOpenDist, 0.0f, 0.4f, l_HIO.mCloseSpeed, 0.5f) == 0.0f) {

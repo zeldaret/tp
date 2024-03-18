@@ -134,7 +134,7 @@ int daObjHBombkoya_c::CreateHeap() {
 
     Mtx m;
     MTXIdentity(m);
-    mpModel->i_setBaseTRMtx(m);
+    mpModel->setBaseTRMtx(m);
     return 1;
 }
 

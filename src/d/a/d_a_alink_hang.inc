@@ -67,7 +67,7 @@ asm bool daAlink_c::checkHangFootWall() {
 #ifdef NONMATCHING
 void daAlink_c::setHangGroundY() {
     cXyz pos;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &pos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &pos);
 
     pos.x -= cM_ssin(shape_angle.y) * 15.0f;
     pos.z -= cM_scos(shape_angle.y) * 15.0f;
@@ -487,7 +487,7 @@ int daAlink_c::setOctaIealHangPos() {
         return 0;
     }
 
-    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->i_getAnmMtx(0));
+    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->getAnmMtx(0));
     mDoMtx_stack_c::transM(FLOAT_LABEL(lit_6108), lit_24400, lit_24401);
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);

@@ -92,7 +92,7 @@ public:
 
     void callExecute() {
         (this->*mAction[1])();
-        i_mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &current.pos, 0, 0);
+        mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &current.pos, 0, 0);
     }
 
     int execute() {
@@ -1012,7 +1012,7 @@ void daTagTWGate_c::initBaseMtx() {
     current.pos.y = mDoMtx_stack_c::get()[1][3];
     current.pos.z = mDoMtx_stack_c::get()[2][3];
 
-    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 #else
 #pragma push

@@ -38,7 +38,7 @@ static int daE_YD_LEAF_Execute(e_yd_leaf_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(i_this->scale.y, i_this->scale.y, i_this->scale.y);
-    i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->modelCalc();
     return 1;
 }

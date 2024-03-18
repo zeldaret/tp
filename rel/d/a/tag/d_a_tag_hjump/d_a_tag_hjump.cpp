@@ -50,7 +50,7 @@ int daTagHjump_c::create() {
 
                 mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
-                mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
                 mDoMtx_stack_c::get()[1][3] -= 100.0f;
                 current.pos.y -= 100.0f;

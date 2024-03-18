@@ -276,7 +276,7 @@ void daItem_c::setBaseMtx() {
             break;
         }
 
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 

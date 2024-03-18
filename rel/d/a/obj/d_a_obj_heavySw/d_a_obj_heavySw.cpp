@@ -53,7 +53,7 @@ void daHeavySw_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::ZXYrotM(field_0x5cc.x, field_0x5cc.y, field_0x5cc.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C1CC70-80C1CCDC 000270 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daHeavySw_cFv */
@@ -187,7 +187,7 @@ void daHeavySw_c::modeRide() {
         }
     } else {
         s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-        i_mDoAud_seStartLevel(Z2SE_OBJ_HEAVYSW_MOVE, &current.pos, 0, reverb);
+        mDoAud_seStartLevel(Z2SE_OBJ_HEAVYSW_MOVE, &current.pos, 0, reverb);
         cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
         f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
         if (calc == 0.0f) {

@@ -31,7 +31,7 @@ inline void daTagLv8Gate_c::initBaseMtx() {
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::YrotM(shape_angle.y + 0x8000);
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 

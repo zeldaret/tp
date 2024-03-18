@@ -1882,7 +1882,7 @@ static asm void daMP_ActivePlayer_Finish() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void JKRFree(void* param_0) {
+extern "C" asm void JKRFree__FPv() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/JKRFree__FPv.s"
 }

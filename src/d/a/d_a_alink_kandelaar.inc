@@ -43,7 +43,7 @@ void daAlink_c::setKandelaarMtx(Mtx i_mtx, int param_1, int param_2) {
 
         onEndResetFlg1(ERFLG1_UNK_4);
 
-        mpKanteraModel->i_setBaseTRMtx(i_mtx);
+        mpKanteraModel->setBaseTRMtx(i_mtx);
         if (param_1 == 0) {
             onEndResetFlg1(ERFLG1_UNK_8);
         }
@@ -214,7 +214,7 @@ void daAlink_c::setKandelaarModel() {
     if (!checkNoResetFlg2(FLG2_UNK_1)) {
         onNoResetFlg2(FLG2_UNK_1);
 
-        mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(field_0x30c0), &mKandelaarFlamePos);
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(field_0x30c0), &mKandelaarFlamePos);
         mKandelaarFlamePos.y -= 30.0f;
 
         field_0x3630 = field_0x3624;

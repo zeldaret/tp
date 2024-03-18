@@ -115,7 +115,7 @@ int daB_ZANTS_c::execute() {
     mDoMtx_stack_c::YrotM(-mRotation.y);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), mMtx);
 
     if (mpBgW != NULL) {

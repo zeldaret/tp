@@ -167,7 +167,7 @@ static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
 
         mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
         mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
-        a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        a_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
         MTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);

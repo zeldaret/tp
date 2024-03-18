@@ -738,7 +738,7 @@ static int daE_ARROW_Execute(e_arrow_class* i_this) {
     mDoMtx_stack_c::XrotM(-2000);
     mDoMtx_stack_c::transM(-60.0f, -10.0f, 40.0f);
 
-    i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
     return 1;
 }
@@ -869,7 +869,7 @@ static int daE_ARROW_Create(fopAc_ac_c* i_this) {
         }
 
         mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
-        a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        a_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
     return phase_state;

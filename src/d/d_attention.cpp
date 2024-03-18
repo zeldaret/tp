@@ -1877,7 +1877,7 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
 
     mDoMtx_stack_c::transS(param_0.x, param_0.y + field_0x164.z, param_0.z);
     mDoMtx_stack_c::concat(param_1);
-    mModel[field_0x170]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel[field_0x170]->setBaseTRMtx(mDoMtx_stack_c::get());
 
     view_class* view = dComIfGd_getView();
     f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->mFovy));

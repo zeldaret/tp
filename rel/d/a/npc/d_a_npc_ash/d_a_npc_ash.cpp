@@ -1154,12 +1154,12 @@ int daNpcAsh_c::Draw() {
     draw(0, 0, daNpcAsh_Param_c::m.mShadow, NULL, 0);
     if (field_0xf60 == 1) {
         g_env_light.setLightTevColorType_MAJI(mModelBow->mModelData, &tevStr);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(16));
-        mModelBow->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(16));
+        mModelBow->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelBow);
         g_env_light.setLightTevColorType_MAJI(mModelQuiver->mModelData, &tevStr);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(2));
-        mModelQuiver->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(2));
+        mModelQuiver->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelQuiver);
     }
     return 1;
@@ -1173,14 +1173,14 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jointNo = i_joint->getJntNo();
     int lookatJoints[3] = {1, 3, 4};
     if (jointNo == 0) {
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(1));
+        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(3));
+        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(4));
+        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
-    mDoMtx_stack_c::copy(i_model->i_getAnmMtx(jointNo));
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(jointNo));
     switch (jointNo) {
         case 1:
         case 3:
@@ -2594,7 +2594,7 @@ void daNpcAsh_c::setAttnPos() {
     setMtx2();
     lookat();
     cXyz vec(10.0f, 10.0f, 0.0f);
-    mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(4));
+    mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&vec, &eyePos);
     vec.x = 0.0f;
@@ -2614,7 +2614,7 @@ void daNpcAsh_c::setAttnPos() {
     }
     attention_info.position.set(mHeadPos.x, mHeadPos.y + 35.0f, mHeadPos.z);
     cXyz center;
-    mDoMtx_stack_c::copy(mMcaMorf->getModel()->i_getAnmMtx(2));
+    mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&center);
     center.y = current.pos.y;
     mCcCyl[0].SetC(center);

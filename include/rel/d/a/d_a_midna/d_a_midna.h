@@ -138,7 +138,7 @@ public:
     }
 
     MtxP getMtxHairTop() {
-        return field_0x574->i_getAnmMtx(10);
+        return field_0x574->getAnmMtx(10);
     }
 
     bool checkReturnAnime() const {

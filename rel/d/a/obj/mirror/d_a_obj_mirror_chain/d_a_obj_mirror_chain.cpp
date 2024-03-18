@@ -340,9 +340,9 @@ void daObjMirrorChain_c::initBaseMtx() {
 void daObjMirrorChain_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpPortalModel != NULL) {
-        mpPortalModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpPortalModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
     mpActiveBgW->Move();
@@ -511,12 +511,12 @@ int daObjMirrorChain_c::execute() {
         if (mpEmitter == NULL) {
             mpEmitter = dComIfGp_particle_set(0x8acc, &current.pos, &shape_angle, NULL);
             cXyz pos;
-            mDoMtx_stack_c::copy(mpModel->i_getAnmMtx(1));
+            mDoMtx_stack_c::copy(mpModel->getAnmMtx(1));
             mDoMtx_stack_c::multVecZero(&pos);
             Z2GetAudioMgr()->seStart(Z2SE_OBJ_MR_CHIN, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         } else {
             cXyz pos;
-            mDoMtx_stack_c::copy(mpModel->i_getAnmMtx(26));
+            mDoMtx_stack_c::copy(mpModel->getAnmMtx(26));
             mDoMtx_stack_c::multVecZero(&pos);
             mpEmitter->setGlobalTranslation(pos.x, pos.y, pos.z);
         }

@@ -174,7 +174,7 @@ extern "C" asm void offNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3) {
+extern "C" asm void mDoAud_seStartLevel__FUlPC3VecUlSc() {
     nofralloc
 #include "asm/d/a/d_a_alink/mDoAud_seStartLevel__FUlPC3VecUlSc.s"
 }

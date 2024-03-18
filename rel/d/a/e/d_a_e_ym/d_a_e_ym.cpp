@@ -856,9 +856,9 @@ void daE_YM_c::setElecEffect1() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(0);
     }
 
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
@@ -886,9 +886,9 @@ void daE_YM_c::setElecEffect2() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(0);
     }
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     setElecEffect1();
@@ -1879,7 +1879,7 @@ void daE_YM_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(field_0x68c, field_0x68c, field_0x68c);
 
-    field_0x5b4->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    field_0x5b4->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     field_0x5b4->modelCalc();
 }
 

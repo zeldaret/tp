@@ -210,7 +210,7 @@ void daObjChandelier_c::setModelMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZrotM(shape_angle.z);
     PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BC8780-80BC89B0 0008C0 0230+00 2/2 0/0 0/0 .text            moveSwing__17daObjChandelier_cFffff

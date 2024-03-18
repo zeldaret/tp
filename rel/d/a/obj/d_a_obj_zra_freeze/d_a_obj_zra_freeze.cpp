@@ -84,7 +84,7 @@ static f32 const l_DATA[2] = { 800.0f, 0.0f };
 void daZraFreeze_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::XYZrotM(shape_angle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
 }
 

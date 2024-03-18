@@ -242,7 +242,7 @@ void daObjSwBallA_c::initBaseMtx() {
 void daObjSwBallA_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */

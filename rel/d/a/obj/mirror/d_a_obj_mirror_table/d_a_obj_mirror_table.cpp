@@ -380,18 +380,18 @@ int daObjMirrorTable_c::draw() {
 void daObjMirrorTable_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpTableModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpTableModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpStairModel != NULL) {
-        mpStairModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpStairModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpPanelModel != NULL) {
-        mpPanelModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpPanelModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpLightModel != NULL) {
-        mpLightModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpLightModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpMSquareModel != NULL) {
-        mpMSquareModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpMSquareModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mBgW[0].ChkUsed()) {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[0]);
@@ -401,8 +401,8 @@ void daObjMirrorTable_c::setBaseMtx() {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[2]);
         mBgW[2].Move();
     }
-    mDoMtx_stack_c::copy(mpTableModel->i_getAnmMtx(1));
-    mpMirrorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoMtx_stack_c::copy(mpTableModel->getAnmMtx(1));
+    mpMirrorModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mBgW[0].ChkUsed()) {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[1]);
         mBgW[1].Move();
@@ -467,7 +467,7 @@ int daObjMirrorTable_c::execute() {
     mpTableUpBckAnm->play();
     if (!mpTableUpBckAnm->isStop()) {
         cXyz pos;
-        mDoMtx_stack_c::copy(mpTableModel->i_getAnmMtx(0));
+        mDoMtx_stack_c::copy(mpTableModel->getAnmMtx(0));
         mDoMtx_stack_c::multVecZero(&pos);
         Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_TBLE, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     }

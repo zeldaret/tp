@@ -85,7 +85,7 @@ static void setModelBaseMtx(obj_ystone_class* i_this) {
         mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
         mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
         mDoMtx_stack_c::scaleM(i_this->mScaleF, i_this->mScaleF, i_this->mScaleF);
-        model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        model->setBaseTRMtx(mDoMtx_stack_c::get());
     } else {
         i_this->field_0x598 = 0;
         mDoMtx_stack_c::copy(model->getBaseTRMtx());
@@ -165,7 +165,7 @@ static void action(obj_ystone_class* i_this) {
 
         case 4: {
             i_this->shape_angle.y += 0x100;
-            mDoMtx_stack_c::copy(i_this->mpMorf->getModel()->i_getAnmMtx(0));
+            mDoMtx_stack_c::copy(i_this->mpMorf->getModel()->getAnmMtx(0));
             cXyz particle_pos;
             mDoMtx_stack_c::multVecZero(&particle_pos);
             i_this->mParticleKey =
@@ -286,7 +286,7 @@ static cPhs__Step daObj_Ystone_Create(fopAc_ac_c* i_this) {
                 _this->field_0x59b = true;
             }
             mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
-            _this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            _this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
         } else {
             fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
             _this->mMirrorMode = fopAcM_GetParam(_this) & 0xff;

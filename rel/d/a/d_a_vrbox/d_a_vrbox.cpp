@@ -41,7 +41,7 @@ static int daVrbox_Draw(vrbox_class* i_this) {
     mDoMtx_stack_c::transS(dComIfGd_getInvViewMtx()[0][3], dComIfGd_getInvViewMtx()[1][3] - fvar,
                            dComIfGd_getInvViewMtx()[2][3]);
 
-    soraModel_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    soraModel_p->setBaseTRMtx(mDoMtx_stack_c::get());
     dKy_GxFog_set();
 
     // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?

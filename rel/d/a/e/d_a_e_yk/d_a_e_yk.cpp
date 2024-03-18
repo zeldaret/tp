@@ -1732,7 +1732,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
             // need to define inline here
             MTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
-            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            model->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&i_this->current.pos);
         } else {
             if (i_this->health > 0 && i_this->field_0x6a0 == 0 && i_this->current.pos.y < player->current.pos.y) {
@@ -1747,7 +1747,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
             mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
             mDoMtx_stack_c::scaleM(l_HIO.field_0x08,l_HIO.field_0x08,l_HIO.field_0x08);
 
-            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            model->setBaseTRMtx(mDoMtx_stack_c::get());
         }
 
         i_this->mpMorfSO->modelCalc();
@@ -1774,7 +1774,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
                     
                     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleEmitterIds[i]);
                     if (emitter) {
-                        emitter->setGlobalRTMatrix(model->i_getAnmMtx(e_idx[i]));
+                        emitter->setGlobalRTMatrix(model->getAnmMtx(e_idx[i]));
                     };
                 }
             }
@@ -1782,7 +1782,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
         
 
-        MTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
+        MTXCopy(model->getAnmMtx(2),(MtxP)calc_mtx);
         pos.set(0.0f,0.0f,0.0f);
 
         MtxPosition(&pos,&i_this->eyePos);

@@ -45,7 +45,7 @@ void daLv4PoGate_c::setBaseMtx() {
     mDoMtx_stack_c::transM(0.0f, mMoveValue, 0.0f);
 
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C5FD40-80C5FDAC 000240 006C+00 1/0 0/0 0/0 .text            CreateHeap__13daLv4PoGate_cFv */

@@ -679,7 +679,7 @@ void daObjKABUTO_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0x72a);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 }
 

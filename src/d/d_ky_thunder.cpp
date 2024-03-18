@@ -55,7 +55,7 @@ int dThunder_c::draw() {
     MTXCopy(mDoMtx_stack_c::get(), m);
 
     mModelInfo.mpModel->setBaseScale(field_0x138);
-    mModelInfo.mpModel->i_setBaseTRMtx(m);
+    mModelInfo.mpModel->setBaseTRMtx(m);
     mModelInfo.mBrk.entry(mModelInfo.mpModel->getModelData());
 
     dComIfGd_setList();

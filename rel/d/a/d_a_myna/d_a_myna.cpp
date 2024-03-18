@@ -1563,7 +1563,7 @@ asm int daMyna_c::createHeap() {
 /* 8094686C-809468EC 000CEC 0080+00 1/1 0/0 0/0 .text jntNodeCB__8daMyna_cFP8J3DJointP8J3DModel */
 int daMyna_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
     u16 jntNo = i_jnt->getJntNo();
-    mDoMtx_stack_c::copy(i_model->i_getAnmMtx(jntNo));
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
@@ -3058,13 +3058,13 @@ void daMyna_c::set_mtx() {
     mDoMtx_stack_c::transS(local_18);
     mDoMtx_stack_c::ZXYrotM(current.angle);
     mDoMtx_stack_c::scaleM(scale);
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(4));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&field_0x82C);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(4));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&field_0x838);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(0x10));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x10));
     mDoMtx_stack_c::multVecZero(&field_0x85C);
     field_0x82C -= current.pos;
     field_0x838 -= current.pos;

@@ -160,7 +160,7 @@ void daCrod_c::setRoomInfo() {}
 void daCrod_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpBallModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpBallModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 804A3500-804A3580 000740 0080+00 1/1 0/0 0/0 .text            posMove__8daCrod_cFv */

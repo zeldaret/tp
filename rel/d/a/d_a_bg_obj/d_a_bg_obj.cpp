@@ -516,7 +516,7 @@ void daBgObj_c::initBaseMtx() {
 void daBgObj_c::setBaseMtx() {
     for (int i = 0; i < 2; i++) {
         if (field_0x5a8[field_0xcc8][i] != NULL) {
-            field_0x5a8[field_0xcc8][i]->i_setBaseTRMtx(mBgMtx);
+            field_0x5a8[field_0xcc8][i]->setBaseTRMtx(mBgMtx);
         }
     }
 }

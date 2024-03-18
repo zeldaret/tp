@@ -776,7 +776,7 @@ void daObjVolcBall_c::actionWarning() {
         mSearchBallCreateTimer = getData()->mSearchBallCreateTime * 30;
     }
 
-    i_mDoAud_seStartLevel(Z2SE_ENV_VOLCANO_SHAKE, NULL, 0,
+    mDoAud_seStartLevel(Z2SE_ENV_VOLCANO_SHAKE, NULL, 0,
                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 #else
@@ -880,7 +880,7 @@ void daObjVolcBall_c::actionEruption() {
         dComIfGp_getVibration().StopQuake(31);
     }
 
-    i_mDoAud_seStartLevel(Z2SE_ENV_VOLCANO_SHAKE, NULL, 0,
+    mDoAud_seStartLevel(Z2SE_ENV_VOLCANO_SHAKE, NULL, 0,
                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 #else
@@ -1203,7 +1203,7 @@ int daObjVolcBall_c::executeBall() {
             mDoMtx_stack_c::transS(ball->field_0x4);
             mDoMtx_stack_c::ZXYrotM(ball->field_0x34);
 
-            ball->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            ball->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
             ball->mpModel->setBaseScale(ball->field_0x28);
 
             ball->mAcch.CrrPos(dComIfG_Bgsp());
@@ -1216,10 +1216,10 @@ int daObjVolcBall_c::executeBall() {
                 ball->field_0x376 = 0;
             } else {
                 if (i == 8) {
-                    i_mDoAud_seStartLevel(Z2SE_OBJ_ROCK_FALL_DIRECT, &ball->field_0x4, 0,
+                    mDoAud_seStartLevel(Z2SE_OBJ_ROCK_FALL_DIRECT, &ball->field_0x4, 0,
                                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
                 } else {
-                    i_mDoAud_seStartLevel(Z2SE_OBJ_ROCK_FALL_DUMMY, &ball->field_0x4, 0,
+                    mDoAud_seStartLevel(Z2SE_OBJ_ROCK_FALL_DUMMY, &ball->field_0x4, 0,
                                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
                 }
 

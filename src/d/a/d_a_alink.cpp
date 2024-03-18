@@ -13896,7 +13896,7 @@ void daAlink_c::cancelLockAt() {
 /* 800ABB84-800ABDB8 0A64C4 0234+00 1/1 0/0 0/0 .text            setCollisionPos__9daAlink_cFv */
 void daAlink_c::setCollisionPos() {
     cXyz sp74;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &sp74);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &sp74);
     cXyz sp68 = (sp74 + mHeadTopPos) * lit_5943;
 
     f32 var_f31;
@@ -17207,7 +17207,7 @@ void daAlink_c::getBodyAngleXBasePos(cXyz* o_pos) {
         mtx_id = 1;
     }
 
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(mtx_id), o_pos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(mtx_id), o_pos);
 }
 
 /* 800BB084-800BB2B0 0B59C4 022C+00 3/3 0/0 0/0 .text            getBodyAngleXAtnActor__9daAlink_cFi
@@ -18994,7 +18994,7 @@ MtxP daAlink_c::getModelJointMtx(u16 param_0) {
     if (param_0 >= field_0x30c6) {
         return mpLinkModel->mBaseTransformMtx;
     }
-    return mpLinkModel->i_getAnmMtx(param_0);
+    return mpLinkModel->getAnmMtx(param_0);
 }
 
 /* 800C1DE0-800C1E0C 0BC720 002C+00 1/0 0/0 0/0 .text            onFrollCrashFlg__9daAlink_cFUci */

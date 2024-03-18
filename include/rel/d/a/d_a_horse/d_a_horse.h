@@ -170,8 +170,8 @@ public:
     void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
     bool checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
-    MtxP getSaddleMtx() { return field_0x570->i_getAnmMtx(21); }
-    MtxP getRootMtx() { return field_0x570->i_getAnmMtx(0); }
+    MtxP getSaddleMtx() { return field_0x570->getAnmMtx(21); }
+    MtxP getRootMtx() { return field_0x570->getAnmMtx(0); }
     f32 getAnmFrameMax(int i_idx) const { return field_0x5b0[i_idx].getEnd(); }
     f32 getAnmFrame(int i_idx) const { return field_0x5b0[i_idx].getFrame(); }
     s16 getAimNeckAngleY() const { return mAimNeckAngleY; }

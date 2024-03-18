@@ -137,7 +137,7 @@ void daObjKGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::YrotM(mGateLAngle);
 
-    mpGateModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpGateModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     field_0xbf0 = current.pos + sp30;
 
@@ -147,7 +147,7 @@ void daObjKGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(0x7FFF);
     mDoMtx_stack_c::YrotM(mGateRAngle);
 
-    mpGateModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpGateModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), field_0xae8);
     field_0xbfc = sp3C;
 
@@ -178,7 +178,7 @@ void daObjKGate_c::setBaseMtx() {
         mDoMtx_stack_c::ZrotM(field_0xbb2);
         mDoMtx_stack_c::ZrotM(var_r29);
         mDoMtx_stack_c::transM(-14.0f, 0.0f, 0.0f);
-        mpHookModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpHookModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (mpKeyModel != NULL) {
             if (field_0xbb2 == 0) {
@@ -188,7 +188,7 @@ void daObjKGate_c::setBaseMtx() {
                 mDoMtx_stack_c::YrotM(current.angle.y + mGateLAngle);
                 mDoMtx_stack_c::XrotM(-0xE38);
                 mDoMtx_stack_c::XrotM(-field_0xbae);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             } else {
                 field_0xbe8 += -2.5f;
                 if (field_0xbe8 < -20.0f) {
@@ -209,7 +209,7 @@ void daObjKGate_c::setBaseMtx() {
                 cLib_addCalcAngleS(&mKeyRot.x, -0x4000, 5, 0xC00, 0x400);
                 mDoMtx_stack_c::transS(mEffPos);
                 mDoMtx_stack_c::ZXYrotM(mKeyRot);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             }
         }
     }

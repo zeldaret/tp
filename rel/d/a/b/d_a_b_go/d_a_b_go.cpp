@@ -225,7 +225,7 @@ static int daB_GO_Execute(b_go_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mSmallSize, l_HIO.mSmallSize, l_HIO.mSmallSize);
-    i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
     i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
     i_this->mpMorf->modelCalc();

@@ -14,11 +14,11 @@ public:
         field_0x598 = 1;
         if (mLevel < 3) {
             if (mpModel != NULL) {
-                mpModel->i_setBaseTRMtx(i_mtx);
+                mpModel->setBaseTRMtx(i_mtx);
             }
         } else {
             if (mpMorf != NULL) {
-                mpMorf->getModel()->i_setBaseTRMtx(i_mtx);
+                mpMorf->getModel()->setBaseTRMtx(i_mtx);
             }
         }
     }

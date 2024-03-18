@@ -135,7 +135,7 @@ int daWindStone_c::Delete() {
 void daWindStone_c::setModelMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D38180-80D381EC 000800 006C+00 1/1 0/0 0/0 .text            init__13daWindStone_cFv */

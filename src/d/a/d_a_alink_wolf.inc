@@ -4274,7 +4274,7 @@ asm int daAlink_c::procWolfGiantPuzzle() {
 /* 80135458-801354C8 12FD98 0070+00 2/2 0/0 0/0 .text            setWolfHangGroundY__9daAlink_cFv */
 void daAlink_c::setWolfHangGroundY() {
     cXyz pos;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &pos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &pos);
 
     mLinkGndChk.SetPos(&pos);
     field_0x33d8 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
@@ -4383,7 +4383,7 @@ int daAlink_c::procWolfHangWallCatch() {
     }
 
     f32 temp_f2 = field_0x3478;
-    field_0x3478 = mpLinkModel->i_getAnmMtx(0)[1][3];
+    field_0x3478 = mpLinkModel->getAnmMtx(0)[1][3];
     if (temp_f2 < field_0x33b8 && field_0x3478 >= field_0x33b8) {
         seStartMapInfo(Z2SE_WL_OUTOF_WATER);
     }
@@ -5381,7 +5381,7 @@ int daAlink_c::procWolfSwimEndWaitInit(int param_0) {
     setSingleAnimeWolfParam(WANM_WAIT_SHAKE, &daAlinkHIO_wlSwim_c0::m.field_0x14);
     setFaceBasicTexture(FTANM_UNK_8F);
 
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(3), &field_0x37c8);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &field_0x37c8);
 
     if (param_0 == 0) {
         mProcVar3.field_0x300e.x = 0;
@@ -5412,7 +5412,7 @@ int daAlink_c::procWolfSwimEndWaitInit(int param_0) {
  */
 int daAlink_c::procWolfSwimEndWait() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(3), &field_0x37c8);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &field_0x37c8);
 
     if (frameCtrl_p->checkPass(lit_7977)) {
         if (mProcVar2.field_0x300c == 0) {
@@ -5523,7 +5523,7 @@ void daAlink_c::setWolfBallModel() {
 
     mEquipItem = 0x10A;
     field_0x33dc = FLOAT_LABEL(lit_6108);
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(6), &mHeldItemRootPos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(6), &mHeldItemRootPos);
     mIronBallCenterPos = mHeldItemRootPos;
     mHookshotTopPos = mHeldItemRootPos;
 
@@ -5781,7 +5781,7 @@ void daAlink_c::setWolfBiteDamage(fopEn_enemy_c* i_enemy) {
     i_enemy->onWolfBiteDamage();
 
     cXyz pos;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(13), &pos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(13), &pos);
     dComIfGp_setHitMark(1, i_enemy, &pos, &shape_angle, (cXyz*)&l_wolfBiteHitMarkScale, 0);
     dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
 }

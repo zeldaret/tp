@@ -2376,7 +2376,7 @@ void daObjCarry_c::setBaseMtx() {
         field_0xd3c = field_0xd4c;
     }
     
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mpModel->setBaseScale(scale);
 }
 #else

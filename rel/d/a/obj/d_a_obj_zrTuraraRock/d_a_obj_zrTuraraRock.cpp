@@ -63,7 +63,7 @@ void daZrTuraRc_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::scaleM(mScaleF, mScaleF, mScaleF);
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D419D4-80D41A40 000234 006C+00 1/1 0/0 0/0 .text            CreateHeap__12daZrTuraRc_cFv */

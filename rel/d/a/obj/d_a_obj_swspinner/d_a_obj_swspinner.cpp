@@ -44,13 +44,13 @@ void daObjSwSpinner_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel1->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
     MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + field_0x5e4, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
 
-    mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 

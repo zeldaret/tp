@@ -37,7 +37,7 @@ void daObjBkDoor_c::setBaseMtx() {
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
     mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), mRotation.x, mRotation.y, mRotation.z);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 

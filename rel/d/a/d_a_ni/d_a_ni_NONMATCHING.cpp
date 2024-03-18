@@ -434,7 +434,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model = j3dSys.getModel();
         ni_class* a_this = (ni_class*)model->getUserArea();
         if (a_this != NULL) {
-            MTXCopy(model->i_getAnmMtx(joint_no), *calc_mtx);
+            MTXCopy(model->getAnmMtx(joint_no), *calc_mtx);
             if (joint_no == JNT_HEAD) {
                 cMtx_YrotM(*calc_mtx, a_this->field_0x61c);
                 cMtx_XrotM(*calc_mtx, a_this->field_0x61a);
@@ -449,26 +449,26 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
                 cMtx_ZrotM(*calc_mtx, a_this->field_0x9ee[joint_no - 1]);
             }
 
-            model->i_setAnmMtx(joint_no, *calc_mtx);
+            model->setAnmMtx(joint_no, *calc_mtx);
             MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
 
             if (joint_no == TREG_S(0)) {
-                MTXCopy(model->i_getAnmMtx(joint_no), *calc_mtx);
+                MTXCopy(model->getAnmMtx(joint_no), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, TREG_S(1));
                 cMtx_XrotM(*calc_mtx, TREG_S(2));
                 cMtx_ZrotM(*calc_mtx, TREG_S(3));
 
-                model->i_setAnmMtx(joint_no, *calc_mtx);
+                model->setAnmMtx(joint_no, *calc_mtx);
                 MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
             }
 
             if (joint_no == TREG_S(4)) {
-                MTXCopy(model->i_getAnmMtx(joint_no), *calc_mtx);
+                MTXCopy(model->getAnmMtx(joint_no), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, TREG_S(5));
                 cMtx_XrotM(*calc_mtx, TREG_S(6));
                 cMtx_ZrotM(*calc_mtx, TREG_S(7));
 
-                model->i_setAnmMtx(joint_no, *calc_mtx);
+                model->setAnmMtx(joint_no, *calc_mtx);
                 MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
             }
         }
@@ -1284,7 +1284,7 @@ static void ni_windspin(ni_class* i_this) {
 
 class daNpcMoiR_c : public fopAc_ac_c {
 public:
-    MtxP getHandRMtx() { return mpMorf->getModel()->i_getAnmMtx(0x11); }
+    MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(0x11); }
 
     /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
 };
@@ -2263,14 +2263,14 @@ static int daNi_Execute(ni_class* i_this) {
         mDoMtx_stack_c::YrotM(i_this->shape_angle.y + i_this->field_0x9ec);
         mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
         mDoMtx_stack_c::scaleM(l_HIO.mBaseSize, l_HIO.mBaseSize, l_HIO.mBaseSize);
-        model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        model->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
     i_this->mpMorf->play(&i_this->eyePos, 0, 0);
     i_this->mpBtk->setFrame(i_this->mColor);
     i_this->mpMorf->modelCalc();
 
-    MTXCopy(model->i_getAnmMtx(5), *calc_mtx);
+    MTXCopy(model->getAnmMtx(5), *calc_mtx);
     MtxPosition(&sp30, &i_this->eyePos);
     i_this->attention_info.position = i_this->eyePos;
     i_this->attention_info.position.y += 30.0f;
