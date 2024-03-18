@@ -300,7 +300,7 @@ static int daKytag08_Execute(kytag08_class* i_this) {
         i_this->current.pos.z = env_light->field_0x0c18[0].mPos.z;
     }
 
-    if (i_this->field_0x5b8.abs(i_this->current.pos) < 2000.0f && !i_dComIfGp_event_runCheck()) {
+    if (i_this->field_0x5b8.abs(i_this->current.pos) < 2000.0f && !dComIfGp_event_runCheck()) {
         if (i_this->field_0x5d4 > 100) {
             f32 var_f30;
             f32 var_f31;
@@ -334,12 +334,12 @@ static int daKytag08_Execute(kytag08_class* i_this) {
     }
 
     if (!dKy_shadow_mode_check(2)) {
-        if (!i_dComIfGp_event_runCheck()) {
+        if (!dComIfGp_event_runCheck()) {
             cLib_addCalc(&i_this->field_0x5d0, 0.0f, 0.2f, 0.005f, 0.001f);
         }
     } else if (i_this->field_0x5d4 != 0) {
         cLib_addCalc(&i_this->field_0x5d0, 1.0f, 0.5f, 0.01f, 0.001f);
-    } else if (!i_dComIfGp_event_runCheck()) {
+    } else if (!dComIfGp_event_runCheck()) {
         cLib_addCalc(&i_this->field_0x5d0, 0.25f, 0.01f, 0.002f, 0.001f);
     }
 

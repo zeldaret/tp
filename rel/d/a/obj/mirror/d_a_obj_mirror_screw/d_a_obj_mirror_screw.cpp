@@ -96,7 +96,7 @@ void daObjMirrorScrew_c::initDown() {
  */
 void daObjMirrorScrew_c::executeDown() {
     dComIfG_inf_c* gameinfo = &g_dComIfG_gameInfo;
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         daPy_py_c* player = daPy_getPlayerActorClass();
         player->i_changeOriginalDemo();
         player->i_changeDemoMode(0xe, 1, 0, 0);
@@ -169,8 +169,8 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
     if (fopAcM_isSwitch(this, getSwitchNo())
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
         return cPhs_ERROR_e;
     }

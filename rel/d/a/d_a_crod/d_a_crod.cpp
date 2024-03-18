@@ -287,12 +287,12 @@ int daCrod_c::execute() {
                 setReturn();
             }
         } else if (fopAcM_GetParam(this) == 0) {
-            if (i_dComIfGp_checkPlayerStatus0(0, 0x80)) {
+            if (dComIfGp_checkPlayerStatus0(0, 0x80)) {
                 fopAcM_SetParam(this, 1);
                 setBckAnm(ANM_WAIT_A_T_START);
             }
         } else if (fopAcM_GetParam(this) == 1) {
-            if (!i_dComIfGp_checkPlayerStatus0(0, 0x80)) {
+            if (!dComIfGp_checkPlayerStatus0(0, 0x80)) {
                 fopAcM_SetParam(this, 0);
                 setBckAnm(ANM_WAIT_A);
             }

@@ -45,22 +45,22 @@ int daTagSpring_c::execute() {
         }
     }
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         return 1;
     }
 
     fopAc_ac_c* player_p = daPy_getPlayerActorClass();
 
     if (checkArea() && fopAcM_wt_c::waterCheck(&player_p->current.pos) &&
-        (!i_dComIfGp_checkPlayerStatus0(0, 0x100000) &&
+        (!dComIfGp_checkPlayerStatus0(0, 0x100000) &&
              fopAcM_wt_c::mWaterY > player_p->current.pos.y ||
-         i_dComIfGp_checkPlayerStatus0(0, 0x100000)))
+         dComIfGp_checkPlayerStatus0(0, 0x100000)))
     {
         if (mTimer != 0) {
             mTimer--;
         } else {
             mTimer = 30;
-            i_dComIfGp_setItemLifeCount(1.0f, 1);
+            dComIfGp_setItemLifeCount(1.0f, 1);
         }
     } else {
         mTimer = 30;

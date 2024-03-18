@@ -13,7 +13,7 @@ void daAlink_c::getArrowFlyData(f32* o_distance, f32* o_speed, int i_forceCharge
     if (mEquipItem == PACHINKO) {
         *o_distance = daAlinkHIO_bow_c0::m.mSlingshotDistance;
         *o_speed = daAlinkHIO_bow_c0::m.mSlingshotSpeed;
-    } else if (i_dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+    } else if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
         *o_distance = daAlinkHIO_bow_c0::m.mScopeArrowDistance;
         *o_speed = daAlinkHIO_bow_c0::m.mScopeArrowSpeed;
     } else if (field_0x301c == 0 || i_forceCharge) {
@@ -79,8 +79,8 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
     }
 
     s16 var_28;
-    if (checkHorseRide() && i_checkBoarSingleBattle() && i_dComIfGp_getHorseActor() != NULL) {
-        var_28 = i_dComIfGp_getHorseActor()->shape_angle.y;
+    if (checkHorseRide() && i_checkBoarSingleBattle() && dComIfGp_getHorseActor() != NULL) {
+        var_28 = dComIfGp_getHorseActor()->shape_angle.y;
     } else if (i_checkMagneBootsOn()) {
         var_28 = field_0x3118;
     } else {
@@ -174,7 +174,7 @@ void daAlink_c::changeArrowType() {
 
     if (arrowChangeTrigger()) {
         if (mEquipItem == HAWK_ARROW) {
-            if (i_dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+            if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
                 dComIfGp_clearPlayerStatus0(0, 0x200000);
                 seStartSystem(Z2SE_AL_HAWK_EYE_PUTOFF);
             } else {
@@ -608,7 +608,7 @@ void daAlink_c::setBowNormalAnime() {
 
 /* 800DFCD8-800DFD6C 0DA618 0094+00 3/3 0/0 0/0 .text            setBowSight__9daAlink_cFv */
 void daAlink_c::setBowSight() {
-    if (checkBowChargeWaitAnime() && !i_dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+    if (checkBowChargeWaitAnime() && !dComIfGp_checkPlayerStatus0(0, 0x200000)) {
         cXyz sight_pos;
         f32 dist;
         f32 speed;

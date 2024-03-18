@@ -273,7 +273,7 @@ void daObj_Oiltubo_c::setAttnPos() {
 BOOL daObj_Oiltubo_c::chkEvent() {
     BOOL var_r5 = 1;
 
-    if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().i_isOrderOK()) {
         var_r5 = 0;
 
         if (eventInfo.i_checkCommandCatch()) {

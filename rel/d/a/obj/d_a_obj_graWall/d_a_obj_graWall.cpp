@@ -18,7 +18,7 @@ int daObjGraWall_c::Create() {
             return cPhs_ERROR_e;
         }
     } else {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[62]) != 0) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[62]) != 0) {
             return cPhs_ERROR_e;
         }
     }
@@ -35,7 +35,7 @@ int daObjGraWall_c::Execute() {
             return 1;
         }
     } else {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[62]) != 0) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[62]) != 0) {
             fopAcM_delete(this);
             return 1;
         }

@@ -124,7 +124,7 @@ int daDoorPush_c::Create() {
     mpDoorBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack2);
     eventInfo.setArchiveName(l_arcName);
     for (int i = 0; i < 2; i++) {
-        field_0x63a[i] = i_dComIfGp_getEventManager().getEventIdx(this, "PUSH_DOOR_L", 0xff);
+        field_0x63a[i] = dComIfGp_getEventManager().getEventIdx(this, "PUSH_DOOR_L", 0xff);
         field_0x63e[i] = 0xff;
     }
     fopAcM_setCullSizeFar(this, 5.0f);
@@ -278,7 +278,7 @@ static char* action_table[3] = {"WAIT", "OPEN", "SCENE_CHG"};
 int daDoorPush_c::demoProc() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    field_0x644 = i_dComIfGp_evmng_getMyStaffId("pdoor", NULL, 0);
+    field_0x644 = dComIfGp_evmng_getMyStaffId("pdoor", NULL, 0);
 
     s32 actIdx =
         dComIfGp_evmng_getMyActIdx(field_0x644, action_table, ARRAY_SIZE(action_table), 0, 0);

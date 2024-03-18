@@ -251,7 +251,7 @@ bool daTagLv6Gate_c::checkOpenArea() {
 }
 
 void daTagLv6Gate_c::cut1() {
-    i_dComIfGp_getEvent().setSkipZev(this, "LV6_GATE_APPEAR_SKIP");
+    dComIfGp_getEvent().setSkipZev(this, "LV6_GATE_APPEAR_SKIP");
 
     cXyz pos(0.0f, 0.0f, 78.0f);
 
@@ -297,10 +297,10 @@ void daTagLv6Gate_c::cut4() {
 int daTagLv6Gate_c::execute() {
     // Fake match?
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (i_dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
+        s32 cut_index = dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
-            // int* cut_name = (int*)i_dComIfGp_getEventManager().getMyNowCutName(cut_index);
+            // int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
             int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index);
 
             daPy_getPlayerActorClass()->onShieldBackBone();
@@ -342,14 +342,14 @@ int daTagLv6Gate_c::execute() {
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 dComIfGp_evmng_endCheck(mEvtId)) {
-                i_dComIfGp_event_reset();
+                dComIfGp_event_reset();
                 mEvtId = -1;
             }
         }
     } else if (field_0x76a && !fopAcM_isSwitch(this, getSwitchNo1())) {
         eventInfo.setArchiveName(l_arcName);
-        i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-        mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
+        dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+        mEvtId = dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
         fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
         fopAcM_onSwitch(this, getSwitchNo1());
         attention_info.flags = 0;

@@ -69,10 +69,10 @@ int daTag_EvtMsg_c::Delete() {
 
 /* 8048D01C-8048D31C 00015C 0300+00 1/1 0/0 0/0 .text            Execute__14daTag_EvtMsg_cFv */
 int daTag_EvtMsg_c::Execute() {
-    dEvent_manager_c& evt_mng = i_dComIfGp_getEventManager();
+    dEvent_manager_c& evt_mng = dComIfGp_getEventManager();
 
     if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
-        if (i_dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_event_runCheck() != 0) {
             int staff_id;
             BOOL reset = false;
             if (eventInfo.checkCommandTalk()) {
@@ -103,7 +103,7 @@ int daTag_EvtMsg_c::Execute() {
                     dComIfGs_onSwitch(getOffSwBit(), fopAcM_GetRoomNo(this));
                 }
 
-                i_dComIfGp_event_reset();
+                dComIfGp_event_reset();
             }
         } else if (isDelete()) {
             fopAcM_delete(this);
@@ -209,7 +209,7 @@ BOOL daTag_EvtMsg_c::chkPointInArea(cXyz param_0) {
 
 /* 8048D54C-8048D5CC 00068C 0080+00 1/0 0/0 0/0 .text            ECut_talk__14daTag_EvtMsg_cFi */
 BOOL daTag_EvtMsg_c::ECut_talk(int i_staffID) {
-    if (i_dComIfGp_getEventManager().getIsAddvance(i_staffID)) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_staffID)) {
         mMsgFlow.init(this, mFlowID, 0, NULL);
     }
 
@@ -222,7 +222,7 @@ BOOL daTag_EvtMsg_c::ECut_talk(int i_staffID) {
 
 /* 8048D5CC-8048D668 00070C 009C+00 1/0 0/0 0/0 .text            ECut_wait__14daTag_EvtMsg_cFi */
 BOOL daTag_EvtMsg_c::ECut_wait(int i_staffID) {
-    dEvent_manager_c& evt_mng = i_dComIfGp_getEventManager();
+    dEvent_manager_c& evt_mng = dComIfGp_getEventManager();
     int timer = 0;
 
     int* data_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "timer");

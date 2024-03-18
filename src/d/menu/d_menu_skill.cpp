@@ -733,7 +733,7 @@ void dMenu_Skill_c::setNameString(u16 i_stringID) {
 u8 dMenu_Skill_c::getSkillNum() {
     u8 skillNum = 0;
     for (int i = 0; i < 7; i++) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[evt_id[i]])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[evt_id[i]])) {
             skillNum++;
         }
     }

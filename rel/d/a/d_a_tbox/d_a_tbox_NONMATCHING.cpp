@@ -374,11 +374,11 @@ void daTbox_c::CreateInit() {
     }
 
     mTboxNo = getTboxNo();
-    mEventId = i_dComIfGp_getEventManager().getEventIdx(this, getEvent());
+    mEventId = dComIfGp_getEventManager().getEventIdx(this, getEvent());
 
     if (getShapeType() == SHAPE_BOSSKEY) {
         eventInfo.setArchiveName(getModelInfo()->mArcName);
-        field_0x984 = i_dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_TREASURE_BOSS", 0xff);
+        field_0x984 = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_TREASURE_BOSS", 0xff);
     }
 
     initBaseMtx();
@@ -917,7 +917,7 @@ int daTbox_c::actionDemo() {
         } else {
             setAction(&actionWait);
         }
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         dKy_set_allcol_ratio(1.0f);
         flagOff(0x18);
         dComIfGp_event_setItemPartner(NULL);
@@ -927,10 +927,10 @@ int daTbox_c::actionDemo() {
                 if (fopAcM_GetRoomNo(this) == 0) {
                     switch (getTboxNo()) {
                         case 3:
-                            dComIfGs_setEventReg(0xedff, i_dComIfGs_getEventReg(0xedff) | 0x40);
+                            dComIfGs_setEventReg(0xedff, dComIfGs_getEventReg(0xedff) | 0x40);
                             break;
                         case 2:
-                            dComIfGs_setEventReg(0xebff, i_dComIfGs_getEventReg(0xebff) | 0x10);
+                            dComIfGs_setEventReg(0xebff, dComIfGs_getEventReg(0xebff) | 0x10);
                             break;
                         default:
                             OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
@@ -939,7 +939,7 @@ int daTbox_c::actionDemo() {
                 } else if (fopAcM_GetRoomNo(this) == 3) {
                     switch (getTboxNo()) {
                         case 5:
-                            dComIfGs_setEventReg(0xf0ff, i_dComIfGs_getEventReg(0xf0ff) | 0x80);
+                            dComIfGs_setEventReg(0xf0ff, dComIfGs_getEventReg(0xf0ff) | 0x80);
                             break;
                         default:
                             OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
@@ -948,7 +948,7 @@ int daTbox_c::actionDemo() {
                 }
             } else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109")) {
                 if (fopAcM_GetRoomNo(this) == 0 && getTboxNo() == 0x15) {
-                    dComIfGs_setEventReg(0xefff, i_dComIfGs_getEventReg(0xefff) | 0x10);
+                    dComIfGs_setEventReg(0xefff, dComIfGs_getEventReg(0xefff) | 0x10);
                 }
             }
         }
@@ -964,7 +964,7 @@ int daTbox_c::actionDemo2() {
     if ((getEvent() == 0xff && dComIfGp_evmng_endCheck("DEFAULT_TREASURE_APPEAR")) ||
                 (getEvent() != 0xff && dComIfGp_evmng_endCheck(mEventId))) {
         setAction(&actionOpenWait);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -976,11 +976,11 @@ int daTbox_c::actionDropDemo() {
     if (mEventId != -1) {
         if (dComIfGp_evmng_endCheck(mEventId)) {
             setAction(&actionOpenWait);
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             setDzb();
             home.pos = current.pos;
             if (field_0x9c9 != 0) {
-                camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+                camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
                 camera->mCamera.Start();
                 camera->mCamera.SetTrimSize(0);
                 field_0x9c9 = 0;
@@ -1260,14 +1260,14 @@ int daTbox_c::actionOpenWait() {
         if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
                                              !midna->checkMetamorphoseEnable()) {
             setAction(&actionNotOpenDemo);
-            mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             demoProc();
             field_0x9f4 = 0;
         } else {
             field_0x718 = player->checkTreasureRupeeReturn(getItemNo());
             setGetDemoItem();
             setAction(&actionDemo);
-            mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             demoProc();
             field_0x9f4 = 0;
         }
@@ -1292,7 +1292,7 @@ int daTbox_c::actionOpenWait() {
 int daTbox_c::actionNotOpenDemo() {
     if (dComIfGp_evmng_endCheck(mEventId)) {
         setAction(&actionOpenWait);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -1319,7 +1319,7 @@ int daTbox_c::checkDrop() {
  */
 // nonmatching (regalloc)
 void daTbox_c::settingDropDemoCamera() {
-    camera_class* player_camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     player_camera->mCamera.Stop();
     dStage_MapEvent_dt_c* event_data =
         dEvt_control_c::searchMapEventData(getEvent(), fopAcM_GetRoomNo(this));
@@ -1364,7 +1364,7 @@ void daTbox_c::settingDropDemoCamera() {
 int daTbox_c::actionSwOnWait() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
         if (getEvent() == 0xff) {
@@ -1397,7 +1397,7 @@ int daTbox_c::actionDropWait() {
         setAction(&actionDropDemo);
         clrDzb();
         field_0x97d = false;
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         if (getSwType() == 0) {
             settingDropDemoCamera();
         }
@@ -1418,7 +1418,7 @@ int daTbox_c::actionDropWait() {
 int daTbox_c::actionGenocide() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (!fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
         if (mTimer != 0) {

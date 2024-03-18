@@ -160,7 +160,7 @@ int dTimer_c::_create() {
 
 /* 8025CF04-8025D33C 257844 0438+00 1/1 0/0 0/0 .text            _execute__8dTimer_cFv */
 int dTimer_c::_execute() {
-    if (m_timer_mode == 6 && i_dComIfGs_getLife() == 0) {
+    if (m_timer_mode == 6 && dComIfGs_getLife() == 0) {
         fopMsgM_Delete(this);
     }
 

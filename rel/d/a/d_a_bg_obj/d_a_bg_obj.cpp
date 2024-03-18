@@ -611,7 +611,7 @@ int daBgObj_c::CreateInitType1() {
 
     settingCullSizeBoxForCull(field_0xcc8);
 
-    mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, daBgObj_prm::getEvId(this));
+    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, daBgObj_prm::getEvId(this));
 
     if (mpBgW2 != NULL) {
         mpBgW2->Move();
@@ -1303,7 +1303,7 @@ asm int daBgObj_c::actionOrder() {
 int daBgObj_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventIdx)) {
         setAction(3);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 
     return 1;

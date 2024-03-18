@@ -87,7 +87,7 @@ int daTagMwait_c::execute() {
                 mMsgFlow.init(this, (u16)shape_angle.z, 0, NULL);
                 mInitMsgFlow = true;
             } else if (mMsgFlow.doFlow(this, NULL, 0)) {
-                i_dComIfGp_event_reset();
+                dComIfGp_event_reset();
 
                 if (mEnteredTrigger) {
                     fopAcM_delete(this);

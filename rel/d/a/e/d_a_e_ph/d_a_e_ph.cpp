@@ -96,14 +96,14 @@ static BOOL other_bg_check(daE_PH_c* i_this, fopAc_ac_c* i_other) {
 
 /* 8073D5C4-8073D648 000264 0084+00 1/1 0/0 0/0 .text            SetStopingCam__8daE_PH_cFv */
 void daE_PH_c::SetStopingCam() {
-    camera_class* camera_p = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera_p = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
     camera_p->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
 }
 
 /* 8073D648-8073D768 0002E8 0120+00 1/1 0/0 0/0 .text            SetStopCam__8daE_PH_cF4cXyzffs */
 void daE_PH_c::SetStopCam(cXyz i_center, f32 i_offsetZ, f32 i_offsetY, s16 i_offsetAngle) {
-    camera_class* camera_p = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera_p = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz offset(0.0f, i_offsetY, i_offsetZ);
     cXyz eye_offset(0.0f, 0.0f, 0.0f);
 
@@ -125,12 +125,12 @@ void daE_PH_c::SetCMoveCam(cXyz i_target, f32 i_scale, f32 i_maxStep) {
 
 /* 8073D7AC-8073D850 00044C 00A4+00 1/1 0/0 0/0 .text            SetReleaseCam__8daE_PH_cFv */
 void daE_PH_c::SetReleaseCam() {
-    camera_class* camera_p = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera_p = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
     camera_p->mCamera.Reset(mCamCenter, mCamEye);
     camera_p->mCamera.Start();
     camera_p->mCamera.SetTrimSize(0);
-    i_dComIfGp_event_reset();
+    dComIfGp_event_reset();
 }
 
 /* 8073D850-8073D904 0004F0 00B4+00 1/1 0/0 0/0 .text ctrlJoint__8daE_PH_cFP8J3DJointP8J3DModel */
@@ -261,7 +261,7 @@ void daE_PH_c::FlyAnm() {
     }
 
     if (mAnmID == ANM_HANG_START || mAnmID == ANM_WAIT) {
-        if (fopAcM_checkHookCarryNow(this) && i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+        if (fopAcM_checkHookCarryNow(this) && dComIfGp_checkPlayerStatus1(0, 0x10000)) {
             field_0x630 = -10.0f - BREG_F(0);
             field_0x5ae = 15;
             field_0x616 = 0x1000;
@@ -271,7 +271,7 @@ void daE_PH_c::FlyAnm() {
             SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_WAIT) {
-        if (!fopAcM_checkHookCarryNow(this) || !i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+        if (!fopAcM_checkHookCarryNow(this) || !dComIfGp_checkPlayerStatus1(0, 0x10000)) {
             SetAnm(ANM_HANG_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
@@ -611,7 +611,7 @@ void daE_PH_c::FlyAnm2() {
 
     if (mAnmID == ANM_WAIT) {
         if (fopAcM_searchPlayerDistance(this) < 1000.0f &&
-            i_dComIfGp_checkPlayerStatus1(0, 0x10000))
+            dComIfGp_checkPlayerStatus1(0, 0x10000))
         {
             attention_info.flags = 0;
             field_0x630 = -10.0f - BREG_F(0);
@@ -627,7 +627,7 @@ void daE_PH_c::FlyAnm2() {
     } else if (mAnmID == ANM_HANG_WAIT) {
         attention_info.flags = 0;
 
-        if (!fopAcM_checkHookCarryNow(this) || !i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+        if (!fopAcM_checkHookCarryNow(this) || !dComIfGp_checkPlayerStatus1(0, 0x10000)) {
             SetAnm(ANM_HANG_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
@@ -920,7 +920,7 @@ void daE_PH_c::DemoAction() {
 
         mpMorf->setPlaySpeed(speed.y / 20.0f + 1.0f);
 
-        if (mTimers[1] == 0 || !i_dComIfGp_event_runCheck()) {
+        if (mTimers[1] == 0 || !dComIfGp_event_runCheck()) {
             fopAcM_delete(this);
         }
         break;
@@ -955,7 +955,7 @@ void daE_PH_c::ToumeiAction() {
     cXyz hs_offset;
 
     if (fopAcM_searchPlayerDistance(this) > XREG_F(1) + 2300.0f ||
-        i_dComIfGp_checkPlayerStatus1(0, 0x10000))
+        dComIfGp_checkPlayerStatus1(0, 0x10000))
     {
         attention_info.flags = 0;
     }
@@ -1073,7 +1073,7 @@ void daE_PH_c::ObjHit() {
 
     cXyz hs_offset(0.0f, y + KREG_F(8), 0.0f);
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x4000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x4000)) {
         mCcSph.OffTgShield();
     } else {
         mCcSph.OnTgShield();

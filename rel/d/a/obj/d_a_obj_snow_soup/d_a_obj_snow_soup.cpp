@@ -94,7 +94,7 @@ int daObjSnowSoup_c::execute() {
     i_mDoAud_seStartLevel(Z2SE_OBJ_FIREWOOD_BURNING, &mFirewoodPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     switch (mState) {
     case 0:
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
             deleteSmkEmtChange(mState);
             mState = 1;
             createSmkEmtChange(mState);
@@ -104,7 +104,7 @@ int daObjSnowSoup_c::execute() {
         }
         break;
     case 1:
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
             deleteSmkEmtChange(mState);
             mState = 2;
             createSmkEmtChange(mState);
@@ -123,9 +123,9 @@ int daObjSnowSoup_c::execute() {
 /* 80CDFE14-80CDFEA4 000634 0090+00 1/1 0/0 0/0 .text            init__15daObjSnowSoup_cFv */
 void daObjSnowSoup_c::init() {
     mState = 0;
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
         mState = 2;
-    } else if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
+    } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
         mState = 1;
     }
 }

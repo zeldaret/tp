@@ -1336,7 +1336,7 @@ static void wether_move_vrkumo() {
         if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) == 0 ||
             strcmp(dComIfGp_getStartStageName(), "F_SP114") == 0 ||
             (strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0 &&
-             (g_env_light.field_0x12cc != 0 || i_dComIfGp_event_runCheck())))
+             (g_env_light.field_0x12cc != 0 || dComIfGp_event_runCheck())))
         {
             cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 &&

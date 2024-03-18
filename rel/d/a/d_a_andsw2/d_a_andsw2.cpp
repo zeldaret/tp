@@ -152,7 +152,7 @@ int daAndsw2_c::create() {
             setActio(ACT_ON_ALL_e);
         }
 
-        mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
         break;
     case 1:
     case 6:
@@ -164,7 +164,7 @@ int daAndsw2_c::create() {
             setActio(ACT_ON_ALL_e);
         }
 
-        mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
         break;
     case 2:
         if (sw == 0xFF || dComIfGs_isSwitch(sw, fopAcM_GetRoomNo(this))) {
@@ -173,7 +173,7 @@ int daAndsw2_c::create() {
             setActio(ACT_ON_ALL_e);
         }
 
-        mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
         break;
     case 3:
         if (sw == 0xFF || dComIfGs_isSwitch(sw, fopAcM_GetRoomNo(this))) {
@@ -182,14 +182,14 @@ int daAndsw2_c::create() {
             setActio(ACT_ON_ALL_e);
         }
 
-        mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
         break;
     case 4:
         setActio(ACT_ON_ALL_e);
         break;
     case 5:
         setActio(ACT_ON_ALL_e);
-        mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
         break;
     default:
         setActio(ACT_WAIT_e);
@@ -321,7 +321,7 @@ static int daAndsw2_actionEvent(daAndsw2_c* i_this) {
             i_this->setActio(daAndsw2_c::ACT_WAIT_e);
         }
 
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 
     return 1;

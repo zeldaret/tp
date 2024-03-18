@@ -1961,7 +1961,7 @@ static void envcolor_init() {
     g_env_light.field_0x126c = 999999.0f;
     g_env_light.field_0x127c = 200.0f;
 
-    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM) {
+    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM) {
         g_env_light.mpSchedule = dKyd_schejule_boss_getp();
     } else {
         g_env_light.mpSchedule = dKyd_schejule_getp();
@@ -2060,7 +2060,7 @@ static void envcolor_init() {
     g_env_light.field_0x1302 = -1;
     g_env_light.mWaterSurfaceShineRate = 1.0f;
 
-    int timeH = dStage_stagInfo_GetTimeH(i_dComIfGp_getStage()->getStagInfo());
+    int timeH = dStage_stagInfo_GetTimeH(dComIfGp_getStage()->getStagInfo());
     if (timeH >= 0) {
         dComIfGs_setTime(timeH * 15.0f);
     }
@@ -2389,7 +2389,7 @@ void dScnKy_env_light_c::setDaytime() {
 
     if (field_0x12fb == 0) {
         if (!dKy_darkworld_check()) {
-            if (!i_dComIfGp_event_runCheck()) {
+            if (!dComIfGp_event_runCheck()) {
                 fopAc_ac_c* ac = dMsgObject_c::getActor();
                 bool tmp = true;
 
@@ -4580,7 +4580,7 @@ void dScnKy_env_light_c::exeKankyo() {
 
     g_env_light.mColPatMode = g_env_light.mColPatModeGather;
 
-    if (!i_dComIfGp_event_runCheck() && g_env_light.mColPatModeGather != 0) {
+    if (!dComIfGp_event_runCheck() && g_env_light.mColPatModeGather != 0) {
         if (g_env_light.mColPatModeGather >= 3) {
             g_env_light.mColPatModeGather = 0;
         } else {
@@ -4679,7 +4679,7 @@ void dScnKy_env_light_c::exeKankyo() {
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
         if ((dCam_getBody()->mCurMode == 4 || dCam_getBody()->mCurMode == 7) &&
-            i_dComIfGp_event_runCheck())
+            dComIfGp_event_runCheck())
         {
             cLib_addCalc(&g_env_light.mDemoAttentionPoint, 0.0f, 0.5f, 0.1f, 1E-05f);
         } else {
@@ -6159,8 +6159,8 @@ static int dKy_Outdoor_check() {
     BOOL outdoors = false;
     u32 type = ST_FIELD;
 
-    if (i_dComIfGp_getStage() != NULL) {
-        type = dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    if (dComIfGp_getStage() != NULL) {
+        type = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
     }
 
     if (type == ST_FIELD) {
@@ -6174,7 +6174,7 @@ static int dKy_Outdoor_check() {
 static int dKy_Indoor_check() {
     BOOL indoors = false;
 
-    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_FIELD) {
+    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != ST_FIELD) {
         indoors = true;
     }
 
@@ -6282,7 +6282,7 @@ static int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, i
 
     // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
     // Lantern Shop, Faron Woods Cave) but haven't finished Ordon Day 2.
-    if (darkworldTbl[tblIndex].darkLv == FARON && !i_dComIfGs_isEventBit(0x4510)) {
+    if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
 

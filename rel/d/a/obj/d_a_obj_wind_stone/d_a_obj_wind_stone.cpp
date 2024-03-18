@@ -168,7 +168,7 @@ bool daWindStone_c::chkWlfInRange() {
 
 /* 80D38278-80D382C4 0008F8 004C+00 2/2 0/0 0/0 .text            chkEveOccur__13daWindStone_cFv */
 bool daWindStone_c::chkEveOccur() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getDelEveFlgId()]) == false) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getDelEveFlgId()]) == false) {
         return true;
     }
     return false;
@@ -197,7 +197,7 @@ void daWindStone_c::exeModeHowl() {
 /* 80D3835C-80D383FC 0009DC 00A0+00 1/1 0/0 0/0 .text            exeModeMapDisp__13daWindStone_cFv
  */
 void daWindStone_c::exeModeMapDisp() {
-    if (i_dComIfGp_getEvent().i_isOrderOK() || !i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_getEvent().i_isOrderOK() || !dComIfGp_event_runCheck()) {
         dMeter2Info_setGoldWolfMapType(getGoldWolfIdx());
         dMeter2Info_setPauseStatus(5);
         fopAcM_onSwitch(this, getSwBit2());

@@ -15,7 +15,7 @@ int daTag_ShopItem_c::create() {
 
     if (strcmp("F_SP109", dComIfGp_getStartStageName()) == 0) {
         // saveBitLabels[64] = Goron Mines completed
-        if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
             return cPhs_ERROR_e;
         }
 

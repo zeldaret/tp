@@ -554,7 +554,7 @@ static void damage_check(ni_class* i_this) {
                     if (i_this->mAtInfo.mHitType == 1 && i_this->health <= 0) {
                         i_this->health = 0;
 
-                        if (!i_dComIfGp_event_runCheck() &&
+                        if (!dComIfGp_event_runCheck() &&
                             fpcM_Search(s_play_sub, i_this) == NULL)
                         {
                             i_this->mAction = ACTION_PLAY_e;
@@ -822,7 +822,7 @@ static void ni_normal(ni_class* i_this) {
         i_this->field_0x60e = 1;
     }
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
         i_this->field_0x60e = 30;
     }
 
@@ -1378,7 +1378,7 @@ static void ni_message(ni_class* i_this) {
     cLib_addCalc0(&i_this->speedF, 1.0f, 2.0f);
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleToPlayer, 2, 0x1000);
 
-    if (!i_dComIfGp_event_runCheck() && i_this->mDistToPlayer > 400.0f) {
+    if (!dComIfGp_event_runCheck() && i_this->mDistToPlayer > 400.0f) {
         i_this->mAction = ACTION_NORMAL_e;
         i_this->mMode = 0;
     }
@@ -1649,7 +1649,7 @@ static int ni_play(ni_class* i_this) {
 static void play_camera(ni_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;  // necessary for reg alloc
 
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = (camera_class*)dComIfGp_getCamera(0);
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz sp1D8;
@@ -1803,7 +1803,7 @@ static void play_camera(ni_class* i_this) {
             camera->mCamera.Reset(i_this->field_0xad4, i_this->field_0xac8, i_this->field_0xaec, 0);
             camera->mCamera.Start();
             camera->mCamera.SetTrimSize(0);
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
 
             player->i_cancelOriginalDemo();
 
@@ -2197,13 +2197,13 @@ static int message(ni_class* i_this) {
         i_this->field_0x60c = 10;
 
         if (i_this->mMsgFlow.doFlow(i_this, NULL, 0)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             i_this->field_0xa52 = 0;
         }
         return 1;
     }
 
-    if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+    if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
         i_this->mMsgFlow.init(i_this, i_this->mFlowNo, 0, NULL);
         i_this->field_0xa52 = 1;
         OS_REPORT("////////NI MSG FNO %d\n", i_this->mFlowNo);
@@ -2463,7 +2463,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0 &&
-            !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[528]))
+            !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[528]))
         {
             a_this->mAction = ACTION_DEMO0_e;
             a_this->mTimers[0] = 10;

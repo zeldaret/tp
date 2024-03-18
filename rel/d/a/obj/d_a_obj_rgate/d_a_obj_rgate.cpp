@@ -243,11 +243,11 @@ int daObjRgate_c::Create() {
 
     u8 sw_no = getSwNo();
     if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no) &&
-        !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68]))
+        !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68]))
     {
         eventInfo.setArchiveName(l_arcName);
 
-        mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
+        mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
         mMapToolID = getEventID();
         setAction(ACT_WAIT_EVENT);
     } else {
@@ -375,7 +375,7 @@ int daObjRgate_c::checkAreaL(cXyz const* unused1, cXyz const* unused2) {
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -452,7 +452,7 @@ int daObjRgate_c::checkAreaR(cXyz const* unused1, cXyz const* unused2) {
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -570,7 +570,7 @@ void daObjRgate_c::setCrkSE() {
 
 /* 80CBB308-80CBB370 0016E8 0068+00 1/1 0/0 0/0 .text            action__12daObjRgate_cFv */
 void daObjRgate_c::action() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
         mGateLAngle = 0x4000;
         mGateRAngle = -0x4000;
     } else {
@@ -618,7 +618,7 @@ void daObjRgate_c::action_typeA() {
             }
         }
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL && horse_p->speedF != 0.0f) {
             if (chk_l == AREA_CHECK_HORSE) {
                 switch (checkDirL(horse_p)) {
@@ -783,7 +783,7 @@ void daObjRgate_c::actionWaitEvent() {
 void daObjRgate_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACT_DEAD);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -804,7 +804,7 @@ void daObjRgate_c::event_proc_call() {
 
 /* 80CBBC04-80CBBD68 001FE4 0164+00 1/1 0/0 0/0 .text            demoProc__12daObjRgate_cFv */
 void daObjRgate_c::demoProc() {
-    mStaffID = i_dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
+    mStaffID = dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
     int demo_action = getDemoAction();
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {

@@ -1875,7 +1875,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                     field_0x96c = 0;
                 }
             }
-            if (i_dComIfGp_event_runCheck()) {
+            if (dComIfGp_event_runCheck()) {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         if (isSneaking()) {
@@ -1886,7 +1886,7 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                         }
                     }
                 } else {
-                    if (i_dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
+                    if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
                         setAction(&demo);
                     }
                 }
@@ -2045,7 +2045,7 @@ bool daNpcAsh_c::talk(void* param_0) {
         case 3:
             setExpression(7, -1.0f);
             if (field_0x9ec == 0) {
-                i_dComIfGp_event_reset();
+                dComIfGp_event_reset();
             }
             break;
     }
@@ -2076,20 +2076,20 @@ bool daNpcAsh_c::demo(void* param_0) {
             field_0xf5c = 2;
             // no break
         case 2:
-            if (i_dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
-                s32 cutIndex = i_dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+            if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
+                s32 cutIndex = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
                 if (cutIndex != -1) {
                     mCutIndex = cutIndex;
-                    s32 eventIdx = i_dComIfGp_getEventManager().getMyActIdx(cutIndex, l_evtNames, 6, 0, 0);
+                    s32 eventIdx = dComIfGp_getEventManager().getMyActIdx(cutIndex, l_evtNames, 6, 0, 0);
                     if (eventIdx >= 1 && eventIdx < 6) {
                         mOrderEvtNo = eventIdx;
                     }
                     if ((this->*(mEvtSeqList[mOrderEvtNo]))(cutIndex)) {
-                        i_dComIfGp_getEventManager().cutEnd(cutIndex);
+                        dComIfGp_getEventManager().cutEnd(cutIndex);
                     }
                 }
-                if (eventInfo.checkCommandDemoAccrpt() && field_0x9d4 != -1 && i_dComIfGp_getEventManager().endCheck(field_0x9d4)) {
-                    i_dComIfGp_event_reset();
+                if (eventInfo.checkCommandDemoAccrpt() && field_0x9d4 != -1 && dComIfGp_getEventManager().endCheck(field_0x9d4)) {
+                    dComIfGp_event_reset();
                     mOrderEvtNo = 0;
                     field_0x9d4 = -1;
                     if (field_0xf60 == 0) {
@@ -2218,7 +2218,7 @@ BOOL daNpcAsh_c::EvCut_Introduction(int cutIndex) {
     if (prm == NULL) {
         return false;
     }
-    if (i_dComIfGp_getEventManager().getIsAddvance(cutIndex)) {
+    if (dComIfGp_getEventManager().getIsAddvance(cutIndex)) {
         switch (*prm) {
             case 0:
             case 2:
@@ -2246,7 +2246,7 @@ COMPILER_STRIP_GATE(0x8095D8C0, &lit_5254);
 BOOL daNpcAsh_c::EvCut_Meeting(int cutIndex) {
     int expression, motion;
     fopAc_ac_c* talkPartner;
-    dEvent_manager_c& evtMgr = i_dComIfGp_getEventManager();
+    dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
     fopAc_ac_c* actors[4] = {
         mActorMngr[2].getActorP(),
         (fopAc_ac_c*)this,
@@ -2315,7 +2315,7 @@ COMPILER_STRIP_GATE(0x8095D8D0, &lit_5295);
 BOOL daNpcAsh_c::EvCut_WiretapSponsor(int cutIndex) {
     int expression, motion;
     fopAc_ac_c* talkPartner;
-    dEvent_manager_c& evtMgr = i_dComIfGp_getEventManager();
+    dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
     fopAc_ac_c* actors[4] = {
         mActorMngr[2].getActorP(),
         (fopAc_ac_c*)this,
@@ -2372,7 +2372,7 @@ BOOL daNpcAsh_c::EvCut_WiretapEntrant(int cutIndex) {
     if (prm == NULL) {
         return false;
     }
-    if (i_dComIfGp_getEventManager().getIsAddvance(cutIndex)) {
+    if (dComIfGp_getEventManager().getIsAddvance(cutIndex)) {
         switch (*prm) {
             case 0:
                 setExpression(7, -1.0f);
@@ -2482,7 +2482,7 @@ BOOL daNpcAsh_c::main() {
     if (mpActionFn != NULL) {
         (this->*mpActionFn)(NULL);
     }
-    if (i_dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
+    if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);
         mItemPartnerId = -1;
     }

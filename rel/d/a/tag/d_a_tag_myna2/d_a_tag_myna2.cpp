@@ -18,7 +18,7 @@ s32 daTagMyna2_c::create() {
 
 /* 80D5C708-80D5C9A8 0000E8 02A0+00 1/1 0/0 0/0 .text            execute__12daTagMyna2_cFv */
 s32 daTagMyna2_c::execute() {
-    if (!i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_event_runCheck()) {
         if (!dComIfGs_isSwitch(mSwitchNo,fopAcM_GetRoomNo(this))) {
             if ((dComIfGp_getPlayer(0)->current.pos - current.pos).absXZ() < getExtent()) {
                 s16 angle_y = (s16)fopAcM_searchPlayerAngleY(this);
@@ -43,7 +43,7 @@ s32 daTagMyna2_c::execute() {
         }
     }
   
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         mTimer = 5;
     } else {
         cLib_calcTimer(&mTimer);

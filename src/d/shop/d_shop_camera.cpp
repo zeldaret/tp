@@ -72,7 +72,7 @@ int ShopCam_action_c::shop_cam_action_init() {
 
 /* 80195E18-8019630C 190758 04F4+00 1/0 0/0 0/0 .text shop_cam_action__16ShopCam_action_cFv */
 int ShopCam_action_c::shop_cam_action() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera->mCamera.Stay();
     camera->mCamera.SetTrimSize(1);
 
@@ -158,7 +158,7 @@ void ShopCam_action_c::Reset() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     player->i_offPlayerNoDraw();
 
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera->mCamera.Set(field_0x98, field_0xa4, field_0xbc, 0);
     camera->mCamera.Stay();
     camera->mCamera.Reset(field_0x98, field_0xa4, field_0xbc, 0);

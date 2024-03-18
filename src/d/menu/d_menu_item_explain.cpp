@@ -665,7 +665,7 @@ u8 dMenu_ItemExplain_c::openExplainDmap(u8 param_0, u8 param_1, u8 param_2, bool
             itemNo = 0xfd;
         }
     }
-    if (itemNo == 0x50 && i_dComIfGs_isItemFirstBit(0x4f) && dMeter2Info_getRentalBombBag() == 0xff)
+    if (itemNo == 0x50 && dComIfGs_isItemFirstBit(0x4f) && dMeter2Info_getRentalBombBag() == 0xff)
     {
         itemNo = 0x4f;
     }

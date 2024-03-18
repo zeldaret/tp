@@ -114,7 +114,7 @@ int daTagHstop_c::execute() {
             m_msgFlow.init(this, (u16)shape_angle.z, 0, NULL);
             field_0x573 = 3;
         } else if (m_msgFlow.doFlow(this, NULL, 0)) {
-            i_dComIfGp_getEvent().reset();
+            dComIfGp_getEvent().reset();
             field_0x573 = 0;
 
             s16 arrow_num = dComIfGp_getItemMaxArrowNumCount();
@@ -136,21 +136,21 @@ int daTagHstop_c::execute() {
         setActive();
 
         if (field_0x573) {
-            daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+            daHorse_c* horse_p = dComIfGp_getHorseActor();
 
             if (mPrm1 != 2 || dComIfGs_getArrowNum() != 0 || horse_p == NULL) {
                 field_0x573 = 0;
             } else if (field_0x573 == 1) {
-                if (i_dComIfGp_getHorseActor()->checkTurnStand() &&
-                    !i_dComIfGp_getHorseActor()->checkTurnStandCamera())
+                if (dComIfGp_getHorseActor()->checkTurnStand() &&
+                    !dComIfGp_getHorseActor()->checkTurnStandCamera())
                 {
                     field_0x573 = 2;
                 }
-            } else if (field_0x573 == 2 && !i_dComIfGp_getHorseActor()->checkTurnStand()) {
+            } else if (field_0x573 == 2 && !dComIfGp_getHorseActor()->checkTurnStand()) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
                 eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
             }
-        } else if (mPrm1 == 2 && !i_dComIfGp_event_runCheck()) {
+        } else if (mPrm1 == 2 && !dComIfGp_event_runCheck()) {
             if (dComIfGs_getArrowNum() == 0 && !dComIfGs_isSwitch(0x8D, fopAcM_GetHomeRoomNo(this)))
             {
                 dComIfGs_onSwitch(0x8D, fopAcM_GetHomeRoomNo(this));

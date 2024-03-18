@@ -497,126 +497,126 @@ extern "C" void __dt__29dAlink_bottleWaterPcallBack_cFv();
 extern "C" void __dt__14daAlink_blur_cFv();
 extern "C" void __dt__15daAlink_sight_cFv();
 extern "C" void __dt__20daAlink_lockCursor_cFv();
-extern "C" void checkRideOn__9daAlink_cCFv();
-extern "C" static void dComIfGp_att_getCatghTarget__Fv();
-extern "C" static void mDoAud_setLinkHp__Fll();
-extern "C" static void dComIfGs_getLife__Fv();
-extern "C" static void dComIfGp_getRStatus__Fv();
-extern "C" void checkAttentionLock__9daAlink_cFv();
+extern "C" BOOL checkRideOn__9daAlink_cCFv(daAlink_c* this_);
+extern "C" static dAttCatch_c* dComIfGp_att_getCatghTarget__Fv();
+extern "C" static void mDoAud_setLinkHp__Fll(s32 param_0, s32 param_1);
+extern "C" static u16 dComIfGs_getLife__Fv();
+extern "C" static u8 dComIfGp_getRStatus__Fv();
+extern "C" BOOL checkAttentionLock__9daAlink_cFv(daAlink_c* this_);
 extern "C" void dComIfGp_setItemLifeCount__FfUc(f32, u8);
 extern "C" static void cMtx_multVec__FPA4_CfPC3VecP3Vec();
 static void cMtx_multVec(f32 const (*param_0)[4], Vec const* param_1, Vec* param_2);
-extern "C" void getAnmMtx__8J3DModelFi();
-extern "C" void setBaseTRMtx__8J3DModelFPA4_f();
-extern "C" void checkFmChainGrabAnime__9daAlink_cCFv();
-extern "C" void checkSmallUpperGuardAnime__9daAlink_cCFv();
+extern "C" MtxP getAnmMtx__8J3DModelFi(J3DModel* this_, int i);
+extern "C" void setBaseTRMtx__8J3DModelFPA4_f(J3DModel* this_, MtxP matrix);
+extern "C" BOOL checkFmChainGrabAnime__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkSmallUpperGuardAnime__9daAlink_cCFv(daAlink_c* this_);
 extern "C" static void dComIfGp_evmng_startCheck__FPCc();
-extern "C" static void mDoAud_setLinkGroupInfo__FUc();
+extern "C" static void mDoAud_setLinkGroupInfo__FUc(u8 param_0);
 extern "C" void getAnm__25mDoExt_MtxCalcAnmBlendTblFi();
-extern "C" void ChkRoofHit__9dBgS_AcchCFv();
-extern "C" void ClrGroundHit__9dBgS_AcchFv();
-extern "C" void checkReinRide__9daAlink_cCFv();
-extern "C" void checkWolfEnemyThrowAnime__9daAlink_cCFv();
-extern "C" void checkSpecialDemoMode__9daAlink_cCFv();
-extern "C" void setMidnaTalkStatus__9daAlink_cFUc();
-extern "C" void set3DStatus__9daAlink_cFUcUc();
-extern "C" void offSetFlg__16daAlink_matAnm_cFv();
-extern "C" void checkModeFlg__9daAlink_cCFUl();
-extern "C" void getShieldChangeWaitTimer__9daAlink_cCFv();
-extern "C" void getClothesChangeWaitTimer__9daAlink_cCFv();
-extern "C" void checkHorseStart__9daAlink_cFv();
-extern "C" void checkCutTurnCharge__9daAlink_cCFv();
-extern "C" void checkAcceptDungeonWarpAlink__9daAlink_cFi();
-extern "C" void getSpinnerActor__9daAlink_cFv();
-extern "C" void getSumouCounter__9daAlink_cCFv();
-extern "C" void checkSumouWithstand__9daAlink_cCFv();
-extern "C" void setMidnaMsgNum__9daAlink_cFP10fopAc_ac_cUs();
-extern "C" void getModelMtx__9daAlink_cFv();
-extern "C" void getInvMtx__9daAlink_cFv();
-extern "C" void getLinkBackBone1Matrix__9daAlink_cFv();
-extern "C" void getWolfMouthMatrix__9daAlink_cFv();
-extern "C" void getWolfBackbone2Matrix__9daAlink_cFv();
-extern "C" void getBottleMtx__9daAlink_cFv();
-extern "C" void getHeadMtx__9daAlink_cFv();
-extern "C" void getGroundY__9daAlink_cFv();
-extern "C" void getBaseAnimeFrameRate__9daAlink_cCFv();
-extern "C" void getAtnActorID__9daAlink_cCFv();
-extern "C" void getItemID__9daAlink_cCFv();
-extern "C" void getGrabActorID__9daAlink_cCFv();
-extern "C" void setForcePutPos__9daAlink_cFRC4cXyz();
-extern "C" void checkPlayerFly__9daAlink_cCFv();
-extern "C" void checkFrontRoll__9daAlink_cCFv();
-extern "C" void checkWolfDash__9daAlink_cCFv();
-extern "C" void checkAutoJump__9daAlink_cCFv();
-extern "C" void checkSideStep__9daAlink_cCFv();
-extern "C" void checkWolfTriggerJump__9daAlink_cCFv();
-extern "C" void checkGuardBreakMode__9daAlink_cCFv();
-extern "C" void checkLv3Slide__9daAlink_cCFv();
-extern "C" void checkWolfHowlDemoMode__9daAlink_cCFv();
-extern "C" void checkElecDamage__9daAlink_cCFv();
-extern "C" void checkEmptyBottleSwing__9daAlink_cCFv();
-extern "C" void checkBottleSwingMode__9daAlink_cCFv();
-extern "C" void checkHawkWait__9daAlink_cCFv();
-extern "C" void checkGoatThrow__9daAlink_cCFv();
-extern "C" void checkGoatThrowAfter__9daAlink_cCFv();
-extern "C" void checkWolfTagLockJump__9daAlink_cCFv();
-extern "C" void checkWolfTagLockJumpLand__9daAlink_cCFv();
-extern "C" void checkWolfRopeHang__9daAlink_cCFv();
-extern "C" void checkRollJump__9daAlink_cCFv();
-extern "C" void checkGoronRideWait__9daAlink_cCFv();
-extern "C" void checkWolfChain__9daAlink_cCFv();
-extern "C" void checkWolfWait__9daAlink_cCFv();
-extern "C" void checkWolfJumpAttack__9daAlink_cCFv();
-extern "C" void checkWolfRSit__9daAlink_cCFv();
-extern "C" void checkBottleDrinkEnd__9daAlink_cCFv();
-extern "C" void checkWolfDig__9daAlink_cCFv();
-extern "C" void checkCutCharge__9daAlink_cCFv();
-extern "C" void checkCutLargeJumpCharge__9daAlink_cCFv();
-extern "C" void checkComboCutTurn__9daAlink_cCFv();
-extern "C" void checkClimbMove__9daAlink_cCFv();
-extern "C" void checkGrassWhistle__9daAlink_cCFv();
-extern "C" void checkBoarRun__9daAlink_cCFv();
-extern "C" void checkHorseRideNotReady__9daAlink_cCFv();
-extern "C" void getSearchBallScale__9daAlink_cCFv();
-extern "C" void checkFastShotTime__9daAlink_cFv();
-extern "C" void checkCutJumpCancelTurn__9daAlink_cCFv();
-extern "C" void checkSingleBoarBattleSecondBowReady__9daAlink_cCFv();
-extern "C" void cancelDungeonWarpReadyNeck__9daAlink_cFv();
-extern "C" void onSceneChangeAreaJump__9daAlink_cFUcUcP10fopAc_ac_c();
-extern "C" void onSceneChangeDead__9daAlink_cFUci();
-extern "C" void checkNoEquipItem__9daAlink_cCFv();
-extern "C" void getBoardCutTurnOffsetAngleY__9daAlink_cCFv();
-extern "C" void getMagneBootsTopVec__9daAlink_cFv();
-extern "C" void setCargoCarry__9daAlink_cFP10fopAc_ac_c();
-extern "C" void setGoronSideMove__9daAlink_cFP10fopAc_ac_c();
-extern "C" void setSumouReady__9daAlink_cFP10fopAc_ac_c();
-extern "C" void setSumouPushBackDirection__9daAlink_cFs();
-extern "C" void setSumouLoseHeadUp__9daAlink_cFv();
-extern "C" void checkPriActorOwn__9daAlink_cCFPC10fopAc_ac_c();
-extern "C" void checkWolfEnemyBiteAllOwn__9daAlink_cCFPC10fopAc_ac_c();
-extern "C" void setWolfEnemyHangBiteAngle__9daAlink_cFs();
-extern "C" void setSumouGraspCancelCount__9daAlink_cFi();
-extern "C" void checkItemSwordEquip__9daAlink_cCFv();
-extern "C" void getSinkShapeOffset__9daAlink_cCFv();
-extern "C" void checkSinkDead__9daAlink_cCFv();
-extern "C" void checkCutJumpMode__9daAlink_cCFv();
-extern "C" void getGiantPuzzleAimAngle__9daAlink_cCFv();
-extern "C" void getSwordChangeWaitTimer__9daAlink_cCFv();
-extern "C" void checkMetamorphose__9daAlink_cCFv();
-extern "C" void checkWolfDownAttackPullOut__9daAlink_cCFv();
+extern "C" bool ChkRoofHit__9dBgS_AcchCFv(dBgS_Acch* this_);
+extern "C" void ClrGroundHit__9dBgS_AcchFv(dBgS_Acch* this_);
+extern "C" u32 checkReinRide__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfEnemyThrowAnime__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkSpecialDemoMode__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void setMidnaTalkStatus__9daAlink_cFUc(daAlink_c* this_, u8 status);
+extern "C" void set3DStatus__9daAlink_cFUcUc(daAlink_c* this_, u8 status, u8 direction);
+extern "C" void offSetFlg__16daAlink_matAnm_cFv(daAlink_matAnm_c*);
+extern "C" u32 checkModeFlg__9daAlink_cCFUl(daAlink_c* this_, u32);
+extern "C" u8 getShieldChangeWaitTimer__9daAlink_cCFv(daAlink_c* this_);
+extern "C" u8 getClothesChangeWaitTimer__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkHorseStart__9daAlink_cFv(daAlink_c* this_);
+extern "C" BOOL checkCutTurnCharge__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkAcceptDungeonWarpAlink__9daAlink_cFi(daAlink_c* this_);
+extern "C" daSpinner_c* getSpinnerActor__9daAlink_cFv(daAlink_c* this_);
+extern "C" s16 getSumouCounter__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s16 checkSumouWithstand__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void setMidnaMsgNum__9daAlink_cFP10fopAc_ac_cUs(daAlink_c* this_, fopAc_ac_c* param_0, u16 pMsgNum);
+extern "C" MtxP getModelMtx__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getInvMtx__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getLinkBackBone1Matrix__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getWolfMouthMatrix__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getWolfBackbone2Matrix__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getBottleMtx__9daAlink_cFv(daAlink_c* this_);
+extern "C" MtxP getHeadMtx__9daAlink_cFv(daAlink_c* this_);
+extern "C" f32 getGroundY__9daAlink_cFv(daAlink_c* this_);
+extern "C" f32 getBaseAnimeFrameRate__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s32 getAtnActorID__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s32 getItemID__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s32 getGrabActorID__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void setForcePutPos__9daAlink_cFRC4cXyz(daAlink_c* this_, cXyz const& pPutPos);
+extern "C" u32 checkPlayerFly__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkFrontRoll__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfDash__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkAutoJump__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkSideStep__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkWolfTriggerJump__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkGuardBreakMode__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkLv3Slide__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkWolfHowlDemoMode__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkElecDamage__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkEmptyBottleSwing__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkBottleSwingMode__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkHawkWait__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkGoatThrow__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkGoatThrowAfter__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfTagLockJump__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfTagLockJumpLand__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfRopeHang__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkRollJump__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkGoronRideWait__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfChain__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfWait__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfJumpAttack__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfRSit__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkBottleDrinkEnd__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfDig__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkCutCharge__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkCutLargeJumpCharge__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkComboCutTurn__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkClimbMove__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkGrassWhistle__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkBoarRun__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkHorseRideNotReady__9daAlink_cCFv(daAlink_c* this_);
+extern "C" f32 getSearchBallScale__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s16 checkFastShotTime__9daAlink_cFv(daAlink_c* this_);
+extern "C" BOOL checkCutJumpCancelTurn__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkSingleBoarBattleSecondBowReady__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void cancelDungeonWarpReadyNeck__9daAlink_cFv(daAlink_c* this_);
+extern "C" void onSceneChangeAreaJump__9daAlink_cFUcUcP10fopAc_ac_c(daAlink_c* this_, u8 exitID, u8 exitDirection, fopAc_ac_c* scexAc);
+extern "C" void onSceneChangeDead__9daAlink_cFUci(daAlink_c* this_, u8 param_0, int param_1);
+extern "C" bool checkNoEquipItem__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s16 getBoardCutTurnOffsetAngleY__9daAlink_cCFv(daAlink_c* this_);
+extern "C" cXyz* getMagneBootsTopVec__9daAlink_cFv(daAlink_c* this_);
+extern "C" void setCargoCarry__9daAlink_cFP10fopAc_ac_c(daAlink_c* this_, fopAc_ac_c* p_actor);
+extern "C" void setGoronSideMove__9daAlink_cFP10fopAc_ac_c(daAlink_c* this_, fopAc_ac_c* p_actor);
+extern "C" void setSumouReady__9daAlink_cFP10fopAc_ac_c(daAlink_c* this_, fopAc_ac_c* p_actor);
+extern "C" void setSumouPushBackDirection__9daAlink_cFs(daAlink_c* this_, s16 param_0);
+extern "C" void setSumouLoseHeadUp__9daAlink_cFv(daAlink_c* this_);
+extern "C" bool checkPriActorOwn__9daAlink_cCFPC10fopAc_ac_c(daAlink_c* this_, const fopAc_ac_c* p_actor);
+extern "C" bool checkWolfEnemyBiteAllOwn__9daAlink_cCFPC10fopAc_ac_c(daAlink_c* this_, const fopAc_ac_c* p_actor);
+extern "C" void setWolfEnemyHangBiteAngle__9daAlink_cFs(daAlink_c* this_, s16 angle);
+extern "C" void setSumouGraspCancelCount__9daAlink_cFi(daAlink_c* this_, int param_0);
+extern "C" bool checkItemSwordEquip__9daAlink_cCFv(daAlink_c* this_);
+extern "C" f32 getSinkShapeOffset__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkSinkDead__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkCutJumpMode__9daAlink_cCFv(daAlink_c* this_);
+extern "C" s16 getGiantPuzzleAimAngle__9daAlink_cCFv(daAlink_c* this_);
+extern "C" u8 getSwordChangeWaitTimer__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkMetamorphose__9daAlink_cCFv(daAlink_c* this_);
+extern "C" BOOL checkWolfDownAttackPullOut__9daAlink_cCFv(daAlink_c* this_);
 extern "C" void getMidnaAtnPos__9daAlink_cCFv();
-extern "C" void checkCopyRodEquip__9daAlink_cCFv();
-extern "C" void checkCanoeFishingGetLeft__9daAlink_cCFv();
-extern "C" void checkCanoeFishingGetRight__9daAlink_cCFv();
-extern "C" void checkBeeChildDrink__9daAlink_cCFv();
-extern "C" void getWolfHowlMgrP__9daAlink_cFv();
-extern "C" void checkWolfHowlSuccessAnime__9daAlink_cCFv();
-extern "C" void checkOctaIealHang__9daAlink_cCFv();
-extern "C" void cancelOctaIealHang__9daAlink_cFv();
-extern "C" void cancelDragonHangBackJump__9daAlink_cFv();
-extern "C" void setOctaIealWildHang__9daAlink_cFv();
-extern "C" void checkDragonHangRide__9daAlink_cCFv();
-extern "C" void playerStartCollisionSE__9daAlink_cFUlUl();
+extern "C" bool checkCopyRodEquip__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkCanoeFishingGetLeft__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkCanoeFishingGetRight__9daAlink_cCFv(daAlink_c* this_);
+extern "C" u8 checkBeeChildDrink__9daAlink_cCFv(daAlink_c* this_);
+extern "C" Z2WolfHowlMgr* getWolfHowlMgrP__9daAlink_cFv(daAlink_c* this_);
+extern "C" BOOL checkWolfHowlSuccessAnime__9daAlink_cCFv(daAlink_c* this_);
+extern "C" bool checkOctaIealHang__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void cancelOctaIealHang__9daAlink_cFv(daAlink_c* this_);
+extern "C" void cancelDragonHangBackJump__9daAlink_cFv(daAlink_c* this_);
+extern "C" void setOctaIealWildHang__9daAlink_cFv(daAlink_c* this_);
+extern "C" bool checkDragonHangRide__9daAlink_cCFv(daAlink_c* this_);
+extern "C" void playerStartCollisionSE__9daAlink_cFUlUl(daAlink_c* this_, u32 param_0, u32 param_1);
 extern "C" void __dt__16daAlink_matAnm_cFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__Q29daAlink_c14hsChainShape_cFv();
@@ -12887,7 +12887,7 @@ int daAlink_c::create() {
 
     if (!bgWaitFlg) {
         // Event Flag: Finished Sewers
-        if (checkCasualWearFlg() && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
+        if (checkCasualWearFlg() && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[47])) {
             dComIfGs_setSelectEquipClothes(WEAR_KOKIRI);
         }
 
@@ -12919,7 +12919,7 @@ int daAlink_c::create() {
         }
         attention_info.flags = -1;
 
-        if (!i_dComIfGp_getEventManager().dataLoaded()) {
+        if (!dComIfGp_getEventManager().dataLoaded()) {
             return cPhs_INIT_e;
         }
 
@@ -12940,7 +12940,7 @@ int daAlink_c::create() {
         }
 
         mAttention = &dComIfGp_getAttention();
-        field_0x317c = i_dComIfGp_getPlayerCameraID(0);
+        field_0x317c = dComIfGp_getPlayerCameraID(0);
 
         playerInit();
         bgWaitFlg = 1;
@@ -12970,13 +12970,13 @@ int daAlink_c::create() {
          (!mLinkAcch.ChkWaterHit() || mLinkAcch.m_wtr.GetHeight() < current.pos.y)) ||
         ((checkCarryStartLightBallA() || checkCarryStartLightBallB()) &&
          !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchLightBall, NULL)) ||
-        (horseStart && i_dComIfGp_getHorseActor() == NULL))
+        (horseStart && dComIfGp_getHorseActor() == NULL))
     {
         return cPhs_INIT_e;
     }
 
     if (var_r24) {
-        i_dComIfGp_getEvent().setPtD(var_r24);
+        dComIfGp_getEvent().setPtD(var_r24);
     }
 
     bgWaitFlg = 0;
@@ -13053,9 +13053,9 @@ int daAlink_c::create() {
         daTagMhint_c::createPortalWarpMissTag(fopAcM_GetID(this), fopAcM_GetRoomNo(this));
     }
 
-    if (i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) == 0x11) {
-        if (!i_dComIfGs_isItemFirstBit(HYLIA_SHIELD) && !i_dComIfGs_isItemFirstBit(SHIELD) &&
-            !i_dComIfGs_isItemFirstBit(WOOD_SHIELD))
+    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) == 0x11) {
+        if (!dComIfGs_isItemFirstBit(HYLIA_SHIELD) && !dComIfGs_isItemFirstBit(SHIELD) &&
+            !dComIfGs_isItemFirstBit(WOOD_SHIELD))
         {
             fopAcM_onSwitch(this, 0x6F);
         } else {
@@ -13723,7 +13723,7 @@ void daAlink_c::setSwordAtCollision(int param_0) {
 BOOL daAlink_c::checkNoCollisionCorret() {
     if (i_checkModeFlg(0x12800) || mDemo.getDemoType() == 1 || mProcID == PROC_DOOR_OPEN ||
         (checkEventRun() &&
-         (!strcmp(i_dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
+         (!strcmp(dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
           (fopAcM_getTalkEventPartner(this) &&
            fopAcM_getTalkEventPartner(this) == getMidnaActor()))) ||
         eventInfo.i_checkCommandDoor())
@@ -15086,7 +15086,7 @@ void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, s16 i_angle, int param_2
         }
 
         if (checkHorseRide()) {
-            i_dComIfGp_getHorseActor()->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
+            dComIfGp_getHorseActor()->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
         } else if (checkSpinnerRide()) {
             fopAc_ac_c* rideAc = mRideAcKeep.getActor();
             rideAc->current.pos = current.pos;
@@ -15216,7 +15216,7 @@ void daAlink_c::setStickData() {
 
                 if (checkHorseRide()) {
                     s16 angle = mDemo.getMoveAngle();
-                    i_dComIfGp_getHorseActor()->changeDemoMoveAngle(angle);
+                    dComIfGp_getHorseActor()->changeDemoMoveAngle(angle);
                 }
             } else {
                 field_0x33a8 = 0.0f;
@@ -15450,7 +15450,7 @@ BOOL daAlink_c::checkAtnWaitAnime() {
  * setTiredVoice__9daAlink_cFP16daPy_frameCtrl_c                */
 void daAlink_c::setTiredVoice(daPy_frameCtrl_c* i_frameCtrl) {
     if (i_frameCtrl->checkPass(lit_7448)) {
-        if (i_dComIfGs_getLife() <= 2) {
+        if (dComIfGs_getLife() <= 2) {
             voiceStart(Z2SE_AL_V_TIRED_L);
         } else {
             voiceStart(Z2SE_AL_V_TIRED_S);
@@ -15462,7 +15462,7 @@ void daAlink_c::setTiredVoice(daPy_frameCtrl_c* i_frameCtrl) {
 BOOL daAlink_c::checkRestHPAnime() {
     if (!checkPlayerGuard() && (checkNoUpperAnime() || checkHorseTiredAnime()) &&
         mTargetedActor == NULL && !checkWindSpeedOnAngle() &&
-        ((!checkPlayerDemoMode() && i_dComIfGs_getLife() <= 4) || mDemo.getDemoMode() == 0x12))
+        ((!checkPlayerDemoMode() && dComIfGs_getLife() <= 4) || mDemo.getDemoMode() == 0x12))
     {
         return true;
     }
@@ -15723,7 +15723,7 @@ f32 daAlink_c::getFrontRollRate() {
 // almost, small branch issues
 #ifdef NONMATCHING
 void daAlink_c::decideCommonDoStatus() {
-    if (!i_checkFmChainGrabAnime() && i_dComIfGp_getDoStatus() == 0) {
+    if (!i_checkFmChainGrabAnime() && dComIfGp_getDoStatus() == 0) {
         bool temp_r3 = checkStageName("R_SP127");
 
         if (checkRoomOnly() && !i_checkWolf() && !temp_r3) {
@@ -15770,9 +15770,9 @@ void daAlink_c::decideCommonDoStatus() {
             }
 
             if (checkNotJumpSinkLimit() &&
-                (i_dComIfGp_getDoStatus() == 0x8B || i_dComIfGp_getDoStatus() == 0x30 ||
-                 i_dComIfGp_getDoStatus() == 0x77 || i_dComIfGp_getDoStatus() == 0x19 ||
-                 i_dComIfGp_getDoStatus() == 9 || i_dComIfGp_getDoStatus() == 0x93))
+                (dComIfGp_getDoStatus() == 0x8B || dComIfGp_getDoStatus() == 0x30 ||
+                 dComIfGp_getDoStatus() == 0x77 || dComIfGp_getDoStatus() == 0x19 ||
+                 dComIfGp_getDoStatus() == 9 || dComIfGp_getDoStatus() == 0x93))
             {
                 setDoStatus(0);
             }
@@ -15831,13 +15831,13 @@ void daAlink_c::decideCommonDoStatus() {
             }
 
             if ((((i_checkMagneBootsOn() || checkIronBallWaitAnime() || checkNotJumpSinkLimit()) ||
-                  (i_dComIfGp_getDoStatus() == 0x79 || i_dComIfGp_getDoStatus() == 0x86 ||
-                   i_dComIfGp_getDoStatus() == 0x30 || i_dComIfGp_getDoStatus() == 0x77 ||
-                   i_dComIfGp_getDoStatus() == 0x19)) ||
-                 (i_dComIfGp_getDoStatus() == 0x79 &&
+                  (dComIfGp_getDoStatus() == 0x79 || dComIfGp_getDoStatus() == 0x86 ||
+                   dComIfGp_getDoStatus() == 0x30 || dComIfGp_getDoStatus() == 0x77 ||
+                   dComIfGp_getDoStatus() == 0x19)) ||
+                 (dComIfGp_getDoStatus() == 0x79 &&
                   (checkKandelaarSwingAnime() || field_0x2fa8 == 6 || checkCopyRodThrowAnime() ||
                    checkBoomerangThrowAnime()))) &&
-                (!i_checkMagneBootsOn() || i_dComIfGp_getDoStatus() != 0x79 ||
+                (!i_checkMagneBootsOn() || dComIfGp_getDoStatus() != 0x79 ||
                  !cBgW_CheckBGround(mMagneBootsTopVec.y)))
             {
                 if (mEquipItem == 0x42 && i_checkModeFlg(4)) {
@@ -15847,11 +15847,11 @@ void daAlink_c::decideCommonDoStatus() {
                 }
             }
 
-            if (temp_r3 && i_dComIfGp_getDoStatus() == 0x19) {
+            if (temp_r3 && dComIfGp_getDoStatus() == 0x19) {
                 setDoStatus(0);
             }
 
-            if (i_dComIfGp_getDoStatus() == 4 && checkCopyRodControllAnime()) {
+            if (dComIfGp_getDoStatus() == 4 && checkCopyRodControllAnime()) {
                 setDoStatus(0x2A);
             }
         }
@@ -16205,7 +16205,7 @@ int daAlink_c::checkItemChangeAutoAction() {
 
 /* 800B7168-800B7190 0B1AA8 0028+00 7/7 0/0 0/0 .text            setFastShotTimer__9daAlink_cFv */
 void daAlink_c::setFastShotTimer() {
-    if (!i_dComIfGp_checkPlayerStatus0(0, 0x2000)) {
+    if (!dComIfGp_checkPlayerStatus0(0, 0x2000)) {
         mFastShotTime = daAlinkHIO_item_c0::m.mItemFPTransitionTimer;
     }
 }
@@ -16222,7 +16222,7 @@ void daAlink_c::cancelItemUseQuake(int param_0) {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::cancelUpperItemReadyAnime(int param_0) {
-    if ((i_dComIfGp_getDoStatus() == 0x12 || param_0 != 0) &&
+    if ((dComIfGp_getDoStatus() == 0x12 || param_0 != 0) &&
         ((param_0 == 0 && doTrigger()) ||
          (checkCanoeSlider() &&
           (subjectCancelTrigger() || i_checkEndResetFlg1(ERFLG1_UNK_20000000)))))
@@ -16350,9 +16350,9 @@ int daAlink_c::orderTalk(int i_checkZTalk) {
         return 0;
     }
 
-    if ((i_dComIfGp_getDoStatus() == 0x1C || i_dComIfGp_getDoStatus() == 0x1B ||
-         i_dComIfGp_getDoStatus() == 0x80 || i_dComIfGp_getDoStatus() == 0x3B ||
-         i_dComIfGp_getDoStatus() == 0x3C || i_dComIfGp_getDoStatus() == 0x8) &&
+    if ((dComIfGp_getDoStatus() == 0x1C || dComIfGp_getDoStatus() == 0x1B ||
+         dComIfGp_getDoStatus() == 0x80 || dComIfGp_getDoStatus() == 0x3B ||
+         dComIfGp_getDoStatus() == 0x3C || dComIfGp_getDoStatus() == 0x8) &&
         talkTrigger())
     {
         fopAcM_orderTalkEvent(this, field_0x27f4, 0, 0);
@@ -16437,12 +16437,12 @@ int daAlink_c::checkNormalAction() {
     }
 
     if (doTrigger()) {
-        if (i_dComIfGp_getDoStatus() == 0x89) {
+        if (dComIfGp_getDoStatus() == 0x89) {
             orderPeep();
             return 1;
         }
 
-        if (i_dComIfGp_getDoStatus() == 7) {
+        if (dComIfGp_getDoStatus() == 7) {
             if (i_checkWolf()) {
                 return procWolfLieStartInit(1);
             } else {
@@ -16450,19 +16450,19 @@ int daAlink_c::checkNormalAction() {
             }
         }
 
-        if (i_dComIfGp_getDoStatus() == 12) {
+        if (dComIfGp_getDoStatus() == 12) {
             return procWolfGrabUpInit();
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x7B) {
+        if (dComIfGp_getDoStatus() == 0x7B) {
             return procWolfChainReadyInit();
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x47) {
+        if (dComIfGp_getDoStatus() == 0x47) {
             return procWolfPushInit();
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x17) {
+        if (dComIfGp_getDoStatus() == 0x17) {
             if (fopAcM_GetName(field_0x27f4) == PROC_Obj_IceLeaf) {
                 return procBoardRideInit();
             }
@@ -16484,7 +16484,7 @@ int daAlink_c::checkNormalAction() {
             }
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x20) {
+        if (dComIfGp_getDoStatus() == 0x20) {
             if (i_checkWolf()) {
                 return procWolfHangReadyInit();
             } else {
@@ -16496,7 +16496,7 @@ int daAlink_c::checkNormalAction() {
             }
         }
 
-        if (i_dComIfGp_getDoStatus() == 6) {
+        if (dComIfGp_getDoStatus() == 6) {
             if (mAttList->mType == 5) {
                 if (!checkStageName("F_SP103") ||
                     !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBouDoor, NULL))
@@ -16511,15 +16511,15 @@ int daAlink_c::checkNormalAction() {
             return 1;
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x2B) {
+        if (dComIfGp_getDoStatus() == 0x2B) {
             return procGrassWhistleGetInit();
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x38) {
+        if (dComIfGp_getDoStatus() == 0x38) {
             return procGoatStrokeInit();
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x63) {
+        if (dComIfGp_getDoStatus() == 0x63) {
             if (fopAcM_GetName(field_0x27f4) == PROC_Tag_Lv6Gate) {
                 static_cast<daTagLv6Gate_c*>(field_0x27f4)->stabMasterSword();
             } else {
@@ -16530,7 +16530,7 @@ int daAlink_c::checkNormalAction() {
             return 1;
         }
 
-        if (i_dComIfGp_getDoStatus() == 0x91) {
+        if (dComIfGp_getDoStatus() == 0x91) {
             i_onNoResetFlg0(FLG0_UNK_10000000);
 
             if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
@@ -16540,10 +16540,10 @@ int daAlink_c::checkNormalAction() {
                     return procGoatCatchInit(field_0x27f4, 0.0f);
                 }
             }
-        } else if (i_dComIfGp_getDoStatus() == 0x98) {
+        } else if (dComIfGp_getDoStatus() == 0x98) {
             return procInsectCatchInit();
-        } else if (i_dComIfGp_getDoStatus() == 0x1F || i_dComIfGp_getDoStatus() == 0x39 ||
-                   i_dComIfGp_getDoStatus() == 0x34)
+        } else if (dComIfGp_getDoStatus() == 0x1F || dComIfGp_getDoStatus() == 0x39 ||
+                   dComIfGp_getDoStatus() == 0x34)
         {
             if (i_checkWolf()) {
                 return procWolfGrabUpInit();
@@ -16554,35 +16554,35 @@ int daAlink_c::checkNormalAction() {
                     return procGrabReadyInit();
                 }
             }
-        } else if (i_dComIfGp_getDoStatus() == 0x99) {
+        } else if (dComIfGp_getDoStatus() == 0x99) {
             return procHangLeverDownInit();
-        } else if (i_dComIfGp_getDoStatus() == 0x30) {
+        } else if (dComIfGp_getDoStatus() == 0x30) {
             if (i_checkWolf()) {
                 return procWolfDownAttackInit();
             } else {
                 return checkDoCutAction();
             }
-        } else if (i_dComIfGp_getDoStatus() == 0x77) {
+        } else if (dComIfGp_getDoStatus() == 0x77) {
             if (i_checkWolf()) {
                 return procWolfJumpAttackInit(1);
             } else {
                 return checkDoCutAction();
             }
-        } else if (i_dComIfGp_getDoStatus() == 0x8B) {
+        } else if (dComIfGp_getDoStatus() == 0x8B) {
             return procWolfJumpAttackInit(1);
-        } else if (i_dComIfGp_getDoStatus() == 0x62) {
+        } else if (dComIfGp_getDoStatus() == 0x62) {
             changeCutFast();
             return 1;
-        } else if (i_dComIfGp_getDoStatus() == 0x86) {
+        } else if (dComIfGp_getDoStatus() == 0x86) {
             return checkDoCutAction();
-        } else if (i_dComIfGp_getDoStatus() == 5) {
+        } else if (dComIfGp_getDoStatus() == 5) {
             return procWolfHowlDemoInit();
-        } else if (i_dComIfGp_getDoStatus() == 0x45) {
+        } else if (dComIfGp_getDoStatus() == 0x45) {
             return procWolfGetSmellInit();
-        } else if (i_dComIfGp_getDoStatus() == 0x93) {
+        } else if (dComIfGp_getDoStatus() == 0x93) {
             return procWolfTagJumpInit(field_0x27f4);
         }
-    } else if (i_checkNoResetFlg0(FLG0_UNK_10000000) && i_dComIfGp_getDoStatus() == 0x91) {
+    } else if (i_checkNoResetFlg0(FLG0_UNK_10000000) && dComIfGp_getDoStatus() == 0x91) {
         if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
             if (i_checkWolf()) {
                 return procWolfGanonCatchInit();
@@ -16861,7 +16861,7 @@ BOOL daAlink_c::checkItemChangeFromButton() {
                 }
             }
 
-            if (doTrigger() && i_dComIfGp_getDoStatus() == 4) {
+            if (doTrigger() && dComIfGp_getDoStatus() == 4) {
                 if (mEquipItem != KANTERA && i_checkNoResetFlg2(FLG2_UNK_1)) {
                     offKandelaarModel();
                 } else if (mSwordFlourishTimer != 0 && mEquipItem == EQUIP_SWORD &&
@@ -16886,9 +16886,9 @@ BOOL daAlink_c::checkItemChangeFromButton() {
                        mEquipItem != 0x102 && (!checkCanoeRide() || !checkFisingRodLure()))
             {
                 if (!checkEventRun() ||
-                    strcmp(i_dComIfGp_getEventManager().getRunEventName(), "ANGER"))
+                    strcmp(dComIfGp_getEventManager().getRunEventName(), "ANGER"))
                 {
-                    if (strcmp(i_dComIfGp_getEventManager().getRunEventName(), "ANGER2") &&
+                    if (strcmp(dComIfGp_getEventManager().getRunEventName(), "ANGER2") &&
                         checkItemSetButton(mEquipItem) == 2)
                     {
                         allUnequip(1);
@@ -16916,7 +16916,7 @@ BOOL daAlink_c::checkNextActionFromButton() {
     }
 
     if (i_checkModeFlg(0x400)) {
-        if (i_dComIfGp_getDoStatus() == 0 && checkCanoeRide() && checkFisingRodLure()) {
+        if (dComIfGp_getDoStatus() == 0 && checkCanoeRide() && checkFisingRodLure()) {
             setDoStatus(4);
         }
     } else if (!i_checkModeFlg(0x40000)) {
@@ -17253,7 +17253,7 @@ void daAlink_c::setMagicArmorBrk(int param_0) {
 /* 800BB408-800BB458 0B5D48 0050+00 6/6 0/0 0/0 .text            checkMagicArmorHeavy__9daAlink_cCFv
  */
 BOOL daAlink_c::checkMagicArmorHeavy() const {
-    return checkMagicArmorWearAbility() && i_dComIfGs_getRupee() == 0;
+    return checkMagicArmorWearAbility() && dComIfGs_getRupee() == 0;
 }
 
 /* 800BB458-800BB4B8 0B5D98 0060+00 1/0 0/0 0/0 .text checkBootsOrArmorHeavy__9daAlink_cCFv */
@@ -17484,7 +17484,7 @@ void daAlink_c::posMove() {
         if (i_checkNoResetFlg0(FLG0_UNK_100) && mProcID != PROC_SWIM_DIVE) {
             current.pos.y = mWaterY;
         } else if (mDemo.getDemoType() == 4 || mProcID == PROC_ELEC_DAMAGE ||
-                   i_dComIfGp_checkPlayerStatus0(0, 0x10))
+                   dComIfGp_checkPlayerStatus0(0, 0x10))
         {
             speed.y = 0.0f;
         } else if (i_checkWolf()) {
@@ -17894,7 +17894,7 @@ int daAlink_c::startRestartRoom(u32 i_mode, int param_1, int i_dmgAmount, int i_
             }
 
             // event flag 0x2008 = cleared snowpeak ruins
-            if (!i_dComIfGs_isEventBit(0x2008) && (checkBoardRide() || checkBoardRestart())) {
+            if (!dComIfGs_isEventBit(0x2008) && (checkBoardRide() || checkBoardRestart())) {
                 i_mode = 11;
             } else if (i_checkBoarSingleBattle() ||
                        (start_mode == 2 && !checkFinalBattle() && i_mode == 5))
@@ -18072,7 +18072,7 @@ int daAlink_c::checkSceneChange(int exitID) {
                 exitSpeed = 15.0f;
                 demoStick = 0.6f;
             } else {
-                exitSpeed = i_dComIfGp_getHorseActor()->getNormalMaxSpeedF();
+                exitSpeed = dComIfGp_getHorseActor()->getNormalMaxSpeedF();
                 demoStick = 0.6f;
             }
         } else if (i_checkWolf()) {
@@ -18157,7 +18157,7 @@ int daAlink_c::checkSceneChange(int exitID) {
 
                     mDemo.setMoveAngle(getSceneExitMoveAngle());
                     if (ridingHorse) {
-                        daHorse_c* horse = i_dComIfGp_getHorseActor();
+                        daHorse_c* horse = dComIfGp_getHorseActor();
                         horse->i_changeOriginalDemo();
                         horse->i_changeDemoMode(6, 0);
                         horse->changeDemoMoveAngle(mDemo.getMoveAngle());
@@ -18394,7 +18394,7 @@ BOOL daAlink_c::setItemActor() {
 
     if (checkBombItem(mEquipItem)) {
         if (checkHorseRide()) {
-            if (!i_dComIfGp_getHorseActor()->checkNoBombProc() &&
+            if (!dComIfGp_getHorseActor()->checkNoBombProc() &&
                 (mProcID != PROC_HORSE_TURN || !i_checkModeFlg(MODE_DISABLE_ITEMS)))
             {
                 mEquipItem = NO_ITEM;
@@ -18590,32 +18590,32 @@ int daAlink_c::checkItemSetButton(int i_itemNo) {
 
 /* 800C0284-800C02C8 0BABC4 0044+00 1/1 0/0 0/0 .text            checkField__9daAlink_cFv */
 bool daAlink_c::checkField() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_FIELD;
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_FIELD;
 }
 
 /* 800C02C8-800C0310 0BAC08 0048+00 6/6 0/0 0/0 .text            checkBossRoom__9daAlink_cFv */
 bool daAlink_c::checkBossRoom() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM;
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM;
 }
 
 /* 800C0310-800C0358 0BAC50 0048+00 4/4 0/0 0/0 .text            checkDungeon__9daAlink_cFv */
 bool daAlink_c::checkDungeon() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_DUNGEON;
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_DUNGEON;
 }
 
 /* 800C0358-800C03A0 0BAC98 0048+00 3/3 0/0 0/0 .text            checkCastleTown__9daAlink_cFv */
 bool daAlink_c::checkCastleTown() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_CASTLE_TOWN;
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_CASTLE_TOWN;
 }
 
 /* 800C03A0-800C03E8 0BACE0 0048+00 6/6 0/0 1/1 .text            checkCloudSea__9daAlink_cFv */
 bool daAlink_c::checkCloudSea() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_CLOUD_SEA;
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_CLOUD_SEA;
 }
 
 /* 800C03E8-800C044C 0BAD28 0064+00 5/5 0/0 0/0 .text            checkRoomOnly__9daAlink_cFv */
 bool daAlink_c::checkRoomOnly() {
-    return dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_ROOM ||
+    return dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_ROOM ||
            checkLv7DungeonShop();
 }
 
@@ -18746,7 +18746,7 @@ int daAlink_c::changeItemTriggerKeepProc(u8 i_selItemIdx, int i_procType) {
         field_0x2fde = NO_ITEM;
         itemEquip(sel_item);
 
-        if (i_dComIfGp_checkPlayerStatus0(0, 0x2000) &&
+        if (dComIfGp_checkPlayerStatus0(0, 0x2000) &&
             ((checkBowAndSlingItem(field_0x2fde) || checkHookshotItem(field_0x2fde) ||
               field_0x2fde == COPY_ROD) ||
              field_0x2fde == BOOMERANG))
@@ -19071,7 +19071,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
         cancelHookshotCarry();
         setOldRootQuaternion(shape_angle.x, 0, 0);
         cancelItemUseQuake(1);
-    } else if (i_dComIfGp_checkPlayerStatus1(0x02010000)) {
+    } else if (dComIfGp_checkPlayerStatus1(0x02010000)) {
         if (mProcID != PROC_HOOKSHOT_FLY) {
             cancelItemUseQuake(0);
         }
@@ -19299,8 +19299,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
         cancelHookshotCarry();
     }
 
-    if ((i_dComIfGp_checkPlayerStatus0(0, 8) && !i_checkModeFlg(MODE_VINE_CLIMB) && mProcID != PROC_HANG_CLIMB) ||
-        ((i_dComIfGp_checkPlayerStatus1(0, 0x2000000) && mProcID != PROC_HOOKSHOT_WALL_SHOOT && mProcID != PROC_HOOKSHOT_WALL_WAIT)) {
+    if ((dComIfGp_checkPlayerStatus0(0, 8) && !i_checkModeFlg(MODE_VINE_CLIMB) && mProcID != PROC_HANG_CLIMB) ||
+        ((dComIfGp_checkPlayerStatus1(0, 0x2000000) && mProcID != PROC_HOOKSHOT_WALL_SHOOT && mProcID != PROC_HOOKSHOT_WALL_WAIT)) {
         if (mProcID == PROC_CLIMB_TO_ROOF) {
             current.pos.x += 10.0f * cM_ssin(shape_angle.y);
             current.pos.z += 10.0f * cM_scos(shape_angle.y);
@@ -19310,17 +19310,17 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
         }
     }
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
         seStartSystem(Z2SE_AL_HAWK_EYE_PUTOFF);
     }
 
     if (checkUpperReadyThrowAnime() && mEquipItem != 0x102) {
-        i_dComIfGp_clearPlayerStatus0(0, 0xfeb5ab0f);
+        dComIfGp_clearPlayerStatus0(0, 0xfeb5ab0f);
     } else {
-        i_dComIfGp_clearPlayerStatus0(0, 0xffbfffcf);
+        dComIfGp_clearPlayerStatus0(0, 0xffbfffcf);
     }
 
-    i_dComIfGp_clearPlayerStatus1(0,0x7fb7b78);
+    dComIfGp_clearPlayerStatus1(0,0x7fb7b78);
 
     cancelHookshotShot();
     if (mEquipItem == noentry77) {

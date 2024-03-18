@@ -73,7 +73,7 @@ int daAlldie_c::actionOrder() {
 /* 804D59A0-804D5A44 000200 00A4+00 2/2 0/0 0/0 .text            actionEvent__10daAlldie_cFv */
 int daAlldie_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventIdx)) {
-        i_dComIfGp_getEvent().reset();
+        dComIfGp_getEvent().reset();
 
         if (mNextEventIdx != -1) {
             mAction = ACT_NEXT;
@@ -98,7 +98,7 @@ int daAlldie_c::actionNext() {
 
         if (map_evt != NULL) {
             mMapToolID = map_evt->field_0x5;
-            mNextEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+            mNextEventIdx = dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
         } else {
             mMapToolID = -1;
         }
@@ -178,14 +178,14 @@ int daAlldie_c::create() {
     current.angle.z = 0;
     current.angle.x = 0;
 
-    mEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, getEventNo());
+    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, getEventNo());
     mMapToolID = -1;
     mNextEventIdx = -1;
 
     dStage_MapEvent_dt_c* map_evt = dEvt_control_c::searchMapEventData(getEventNo(), roomNo);
     if (map_evt != NULL) {
         mMapToolID = map_evt->field_0x5;
-        mNextEventIdx = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+        mNextEventIdx = dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
     }
 
     eventInfo.setEventId(mEventIdx);

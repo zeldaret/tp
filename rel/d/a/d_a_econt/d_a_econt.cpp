@@ -27,7 +27,7 @@ static void* s_rd_sub(void* i_this, void* param_1) {
 
 /* 80519578-80519664 0000D8 00EC+00 1/1 0/0 0/0 .text            rider_game__FP11econt_class */
 static void rider_game(econt_class* i_this) {
-    if (dComIfGs_isSwitch(0x2e,fopAcM_GetRoomNo(i_this)) && i_dComIfGp_event_runCheck() == 0) {
+    if (dComIfGs_isSwitch(0x2e,fopAcM_GetRoomNo(i_this)) && dComIfGp_event_runCheck() == 0) {
         data_805197E0[0] = 0;
         fpcM_Search(s_rd_sub,i_this);
 

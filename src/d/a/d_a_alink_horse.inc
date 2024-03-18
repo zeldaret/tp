@@ -32,19 +32,19 @@ static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* i_actor, void*) {
 
 /* 800EC76C-800EC7B0 0E70AC 0044+00 3/3 0/0 0/0 .text checkHorseZeldaBowMode__9daAlink_cFv */
 BOOL daAlink_c::checkHorseZeldaBowMode() {
-    if (i_dComIfGp_getHorseActor() == NULL) {
+    if (dComIfGp_getHorseActor() == NULL) {
         return false;
     }
 
-    daHoZelda_c* zelda_p = i_dComIfGp_getHorseActor()->i_getZeldaActor();
+    daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->i_getZeldaActor();
     return zelda_p != NULL && zelda_p->checkBowMode();
 }
 
 /* 800EC7B0-800EC7DC 0E70F0 002C+00 4/4 0/0 0/0 .text            setHorseZeldaDamage__9daAlink_cFv
  */
 void daAlink_c::setHorseZeldaDamage() {
-    if (i_dComIfGp_getHorseActor() != NULL) {
-        daHoZelda_c* zelda_p = i_dComIfGp_getHorseActor()->i_getZeldaActor();
+    if (dComIfGp_getHorseActor() != NULL) {
+        daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->i_getZeldaActor();
         if (zelda_p != NULL) {
             zelda_p->setDamageInit();
         }
@@ -177,16 +177,16 @@ int daAlink_c::initForceRideBoar() {
 void daAlink_c::initForceRideHorse() {
     commonInitForceRideRein();
     mRideStatus = 1;
-    mRideAcKeep.setData(i_dComIfGp_getHorseActor());
+    mRideAcKeep.setData(dComIfGp_getHorseActor());
     field_0x384c = (cXyz*)&l_horseBaseAnime;
-    i_dComIfGp_getHorseActor()->onRideFlg();
+    dComIfGp_getHorseActor()->onRideFlg();
     mZ2Link.setRiding(true);
 }
 
 /* 800ECBD0-800ECD90 0E7510 01C0+00 5/5 0/0 0/0 .text            rideGetOff__9daAlink_cFv */
 void daAlink_c::rideGetOff() {
     if (checkHorseRide()) {
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             horse_p->offRideFlg();
         }
@@ -262,7 +262,7 @@ BOOL daAlink_c::checkHorseLieAnime() const {
 
 /* 800ECF5C-800ECF9C 0E789C 0040+00 0/0 0/0 3/3 .text checkHorseSubjectivity__9daAlink_cCFv */
 BOOL daAlink_c::checkHorseSubjectivity() const {
-    return i_dComIfGp_checkPlayerStatus0(0, 0x2000) || mProcID == PROC_HORSE_BOW_SUBJECT ||
+    return dComIfGp_checkPlayerStatus0(0, 0x2000) || mProcID == PROC_HORSE_BOW_SUBJECT ||
            mProcID == PROC_HORSE_HOOKSHOT_SUBJECT || mProcID == PROC_HORSE_BOOMERANG_SUBJECT;
 }
 
@@ -328,7 +328,7 @@ void daAlink_c::changeBoarRunRide() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::setSyncHorsePos() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (horse_p == NULL) {
         if (mProcID == PROC_DEAD || mProcID == PROC_GET_ITEM) {
@@ -514,7 +514,7 @@ asm void daAlink_c::getBaseHorseAnime(daAlink_c::daAlink_ANM* param_0) {
 /* 800EDD6C-800EDE8C 0E86AC 0120+00 9/9 0/0 0/0 .text            checkHorseSpecialProc__9daAlink_cFv
  */
 int daAlink_c::checkHorseSpecialProc() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (!checkHorseRide()) {
         return 0;
@@ -553,7 +553,7 @@ BOOL daAlink_c::checkHorseServiceWaitAnime() {
 // matches with literals?
 #ifdef NONMATCHING
 int daAlink_c::setSyncHorse(int param_0) {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
     BOOL mode_1 = i_checkModeFlg(1);
 
     setSyncHorsePos();
@@ -809,8 +809,8 @@ asm int daAlink_c::setSyncBoar(int param_0) {
 /* 800EE918-800EEAE8 0E9258 01D0+00 12/12 0/0 0/0 .text            setSyncRide__9daAlink_cFi */
 int daAlink_c::setSyncRide(int param_0) {
     BOOL var_r31;
-    if (param_0 && mMidnaTalkDelayTimer == 0 && i_dComIfGp_getDoStatus() == 0 &&
-        (!checkHorseRide() || i_dComIfGp_getHorseActor()->getAnmIdx(0) != 7))
+    if (param_0 && mMidnaTalkDelayTimer == 0 && dComIfGp_getDoStatus() == 0 &&
+        (!checkHorseRide() || dComIfGp_getHorseActor()->getAnmIdx(0) != 7))
     {
         var_r31 = TRUE;
     } else {
@@ -869,7 +869,7 @@ asm void daAlink_c::setBaseBoarAnime() {
 #ifdef NONMATCHING
 void daAlink_c::setBaseRideAnime() {
     if (checkHorseRide()) {
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         daAlink_ANM sp8[2];
         getBaseHorseAnime(sp8);
         setDoubleAnime(horse_p->getBlendRate(), 1.0f, 1.0f, sp8[0], sp8[1], 10,
@@ -892,7 +892,7 @@ asm void daAlink_c::setBaseRideAnime() {
 
 /* 800EEE30-800EEE5C 0E9770 002C+00 1/1 0/0 0/0 .text checkHorseSwordUpSpped__9daAlink_cFv */
 bool daAlink_c::checkHorseSwordUpSpped() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
     return horse_p->speedF > horse_p->getLashMaxSpeedF() * lit_18847;
 }
 
@@ -1092,8 +1092,8 @@ int daAlink_c::checkNextActionHorse() {
         return procHorseComebackInit();
     }
 
-    if (mProcID == PROC_HORSE_JUMP && i_dComIfGp_getHorseActor() != NULL &&
-        i_dComIfGp_getHorseActor()->checkJump())
+    if (mProcID == PROC_HORSE_JUMP && dComIfGp_getHorseActor() != NULL &&
+        dComIfGp_getHorseActor()->checkJump())
     {
         return 1;
     }
@@ -1109,8 +1109,8 @@ int daAlink_c::checkNextActionHorse() {
 // regalloc
 #ifdef NONMATCHING
 BOOL daAlink_c::checkHorseGetOff() {
-    return (checkHorseRide() && i_dComIfGp_getHorseActor() != NULL &&
-            i_dComIfGp_getHorseActor()->checkGetOff()) ||
+    return (checkHorseRide() && dComIfGp_getHorseActor() != NULL &&
+            dComIfGp_getHorseActor()->checkGetOff()) ||
            (checkBoarRide() && static_cast<e_wb_class*>(mRideAcKeep.getActor()) != NULL &&
             static_cast<e_wb_class*>(mRideAcKeep.getActor())->checkGetOff());
 }
@@ -1138,9 +1138,9 @@ asm void daAlink_c::checkHorseGetOffAndSetDoStatus() {
 
 /* 800EF884-800EF95C 0EA1C4 00D8+00 2/2 0/0 0/0 .text            setHorseGetOff__9daAlink_cFi */
 int daAlink_c::setHorseGetOff(int param_0) {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
-    if (i_dComIfGp_getDoStatus() == 0x32 && doTrigger()) {
+    if (dComIfGp_getDoStatus() == 0x32 && doTrigger()) {
         if ((checkHorseRide() && horse_p->checkEnemySearch()) || checkHorseLieAnime()) {
             resetUpperAnime(UPPER_2, lit_6041);
             procBackJumpInit(0);
@@ -1257,7 +1257,7 @@ int daAlink_c::procHorseJumpInit() {
 
 /* 800F10F8-800F1188 0EBA38 0090+00 1/0 0/0 0/0 .text            procHorseJump__9daAlink_cFv */
 int daAlink_c::procHorseJump() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (!setSyncRidePos()) {
         return 1;
@@ -1289,7 +1289,7 @@ int daAlink_c::procHorseLandInit() {
 
 /* 800F1204-800F1294 0EBB44 0090+00 1/0 0/0 0/0 .text            procHorseLand__9daAlink_cFv */
 int daAlink_c::procHorseLand() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (!setSyncRidePos()) {
         return 1;
@@ -1747,7 +1747,7 @@ asm int daAlink_c::procHorseBottleDrinkInit(u16 param_0) {
 /* 800F2AD8-800F2B4C 0ED418 0074+00 1/0 0/0 0/0 .text            procHorseBottleDrink__9daAlink_cFv
  */
 int daAlink_c::procHorseBottleDrink() {
-    i_dComIfGp_getHorseActor();
+    dComIfGp_getHorseActor();
 
     if (!setSyncRidePos()) {
         resetUpperAnime(UPPER_2, lit_6109);

@@ -453,7 +453,7 @@ static void attack(b_oh_class* i_this) {
                     if (i_this->mColliders[i].ChkCoHit()) {
                         cCcD_Obj* obj_p = i_this->mColliders[i].GetCoHitObj();
                         if (fopAcM_GetName(obj_p->GetAc()) == PROC_ALINK &&
-                            !i_dComIfGp_event_runCheck())
+                            !dComIfGp_event_runCheck())
                         {
                             if (!player_p->checkHookshotShootReturnMode() &&
                                 boss->field_0x4744 == 0)
@@ -770,7 +770,7 @@ static void damage_check(b_oh_class* i_this) {
 
                 MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&i_this->eyePos);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
+                dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
                 mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
 
                 bvar = true;

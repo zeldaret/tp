@@ -1571,7 +1571,7 @@ void dStage_roomControl_c::zoneCountCheck(int i_roomNo) const {
             dComIfGs_clearRoomSwitch(status->mZoneNo);
             dComIfGs_clearRoomItem(status->mZoneNo);
 
-            if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_FIELD &&
+            if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != ST_FIELD &&
                 i_roomNo != mOldStayNo)
             {
                 if (--status->mZoneCount == 0) {
@@ -2652,8 +2652,8 @@ static void readMult(dStage_dt_c* stageDt, dStage_Multi_c* multi, bool useOldRes
     if (multi != NULL) {
         dStage_Mult_info* info = multi->mInfo;
 
-        if (dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 0 ||
-            dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo()) == 6)
+        if (dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 0 ||
+            dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 6)
         {
             dStage_roomControl_c::m_roomDzs.create(multi->field_0x0);
         }
@@ -2808,7 +2808,7 @@ static void layerTableLoader(void* i_data, dStage_dt_c* stageDt, int roomNo) {
                            dComIfG_play_c::getLayerNo(0));
     dStage_dt_c_decode(i_data, stageDt, l_layerFuncTableA, ARRAY_SIZE(l_layerFuncTableA));
 
-    dStage_Elst_c* elst = i_dComIfGp_getStage()->getElst();
+    dStage_Elst_c* elst = dComIfGp_getStage()->getElst();
     if (elst != NULL && newRoomNo >= 0 && elst->m_entryNum > newRoomNo) {
         dStage_Elst_data* d = elst->m_entries;
         int layer = dComIfG_play_c::getLayerNo(0);
@@ -2924,7 +2924,7 @@ void dStage_infoCreate() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
 
     dComIfGp_roomControl_init();
-    dStage_dt_c_stageInitLoader(stageRsrc, i_dComIfGp_getStage());
+    dStage_dt_c_stageInitLoader(stageRsrc, dComIfGp_getStage());
 }
 
 /* 80406194-804061A0 032EB4 000A+02 2/2 14/14 7/7 .bss mDemoArcName__20dStage_roomControl_c */
@@ -2933,7 +2933,7 @@ char dStage_roomControl_c::mDemoArcName[10];
 /* 80026D38-80026DF8 021678 00C0+00 0/0 1/1 0/0 .text            dStage_Create__Fv */
 void dStage_Create() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
-    dStage_dt_c_stageLoader(stageRsrc, i_dComIfGp_getStage());
+    dStage_dt_c_stageLoader(stageRsrc, dComIfGp_getStage());
     daSus_c::execute();
 
     if (dComIfGp_getStartStageRoomNo() >= 0) {
@@ -2980,7 +2980,7 @@ void dStage_Delete() {
     dComIfG_deleteObjectResMain("Event");
     dComIfG_deleteObjectResMain(dComIfGp_getCameraParamFileName(0));
     dComIfGp_evmng_remove();
-    i_dComIfGp_getStage()->init();
+    dComIfGp_getStage()->init();
 }
 
 /* 80026FDC-80026FE8 02191C 000C+00 1/0 0/0 0/0 .text            setOldMulti__16dStage_stageDt_cFv

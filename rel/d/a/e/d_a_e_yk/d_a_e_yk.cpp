@@ -513,7 +513,7 @@ static int daE_YK_Draw(e_yk_class* i_this) {
 /* 80804B38-80804BB0 0003F8 0078+00 1/1 0/0 0/0 .text            shot_b_sub__FPvPv */
 static void* shot_b_sub(void* param_0, void* param_1) {
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_BOOMERANG &&
-                                !i_dComIfGp_checkPlayerStatus0(0,0x80000) &&
+                                !dComIfGp_checkPlayerStatus0(0,0x80000) &&
                                 daPy_py_c::checkBoomerangCharge() &&
                                 fopAcM_GetParam(param_0) == 1) {
             return param_0;

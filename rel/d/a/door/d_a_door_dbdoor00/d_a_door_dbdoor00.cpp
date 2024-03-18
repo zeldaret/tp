@@ -350,7 +350,7 @@ int daDbDoor00_c::actionLockWait() {
 /* 8045E000-8045E094 000D00 0094+00 1/0 0/0 0/0 .text            actionLockOff__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockOff() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
+        field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(3);
     } else {
@@ -362,7 +362,7 @@ int daDbDoor00_c::actionLockOff() {
 /* 8045E094-8045E108 000D94 0074+00 1/0 0/0 0/0 .text            actionLockDemo__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockDemo() {
     if (dComIfGp_evmng_endCheck("DBDOOR00_STOP_OPEN")) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         setAction(4);
     } else {
         demoProc();
@@ -374,7 +374,7 @@ int daDbDoor00_c::actionLockDemo() {
  */
 int daDbDoor00_c::actionCloseWait() {
     if (eventInfo.i_checkCommandDoor()) {
-        field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
+        field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(5);
         dComIfG_Bgsp().Release(mpBgW);

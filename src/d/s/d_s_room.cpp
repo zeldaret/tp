@@ -239,7 +239,7 @@ static int dScnRoom_Execute(room_of_scene_class* i_this) {
         if (dComIfGp_roomControl_checkStatusFlag(roomNo, 4)) {
             fopScnM_DeleteReq(i_this);
         } else if (i_this->field_0x1d4 < 0 && i_this->field_0x1d5 != 0 &&
-                   !i_dComIfGp_event_runCheck() &&
+                   !dComIfGp_event_runCheck() &&
                    (int)fopScnM_GetParam(i_this) == dComIfGp_roomControl_getStayNo())
         {
             if (isCreating(fpcM_LayerID(i_this))) {
@@ -335,7 +335,7 @@ static int phase_1(room_of_scene_class* i_this) {
                 return cPhs_INIT_e;
             }
         } else {
-            stage_stag_info_class* stagInfo = i_dComIfGp_getStage()->getStagInfo();
+            stage_stag_info_class* stagInfo = dComIfGp_getStage()->getStagInfo();
 
             if (dStage_staginfo_GetArchiveHeap(stagInfo) != NULL) {
                 heap = mDoExt_getArchiveHeap();

@@ -221,7 +221,7 @@ int daAlink_c::procGrassWhistleWait() {
         mProcVar0.field_0x3008--;
 
         if (mProcVar0.field_0x3008 == 0) {
-            daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+            daHorse_c* horse_p = dComIfGp_getHorseActor();
             daNPC_TK_c* tk_p = (daNPC_TK_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchWhistle, NULL);
 
             if (tk_p != NULL) {
@@ -269,8 +269,8 @@ int daAlink_c::procGrassWhistleWait() {
                 voiceStart(Z2SE_PLAY_REED_TOBIKUSA);
                 mProcVar0.field_0x3008 = 100;
 
-                if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0700) &&
-                    i_dComIfGs_isEventBit(dSv_event_flag_c::F_0037))
+                if (dComIfGs_isEventBit(dSv_event_flag_c::F_0700) &&
+                    dComIfGs_isEventBit(dSv_event_flag_c::F_0037))
                 {
                     dComIfGs_onEventBit(dSv_event_flag_c::F_0581);
                 }

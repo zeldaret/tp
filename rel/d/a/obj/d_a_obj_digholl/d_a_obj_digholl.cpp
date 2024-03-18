@@ -62,7 +62,7 @@ int daObjDigholl_c::execute() {
         }
         fopAcM_onSwitch(this, field_0x569);
 
-        if (i_dComIfGp_event_runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             if (player->getBaseAnimeFrame() > 35.0f) {
                 field_0x56b = 1;
             }

@@ -163,7 +163,7 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
             fopAcM_create(PROC_FR, 0, &pos, fopAcM_GetRoomNo(i_this), &angle, NULL, -1);
         }
     }
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
         fish_set(i_this, fish_d127);
     } else {
         fish_set(i_this, fish_d127_S);

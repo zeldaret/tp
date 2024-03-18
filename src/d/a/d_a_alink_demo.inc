@@ -18,7 +18,7 @@
 
 /* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
 BOOL daAlink_c::checkEventRun() const {
-    return i_dComIfGp_event_runCheck() || checkPlayerDemoMode();
+    return dComIfGp_event_runCheck() || checkPlayerDemoMode();
 }
 
 /* 80115C50-80115D08 110590 00B8+00 2/2 0/0 0/0 .text            createNpcTks__9daAlink_cFP4cXyziUl
@@ -48,8 +48,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
     u32 scene_mode = getLastSceneMode();
 
     if (param_2 != 0 && checkDungeon() &&
-        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17 &&
-        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x18 &&
+        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
+        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
         (checkItemGet(TKS_LETTER, 1) ||
          (checkItemGet(DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
         dComIfGs_isDungeonItemWarp())
@@ -83,8 +83,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
 // matches with literals / a fix for g_dComIfG_gameInfo.play.mEvent load
 #ifdef NONMATCHING
 int daAlink_c::checkDemoAction() {
-    if (i_dComIfGp_getEvent().i_isOrderOK()) {
-        if (!i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_getEvent().i_isOrderOK()) {
+        if (!dComIfGp_event_runCheck()) {
             i_offNoResetFlg0(FLG0_UNK_200000);
         }
         return 0;
@@ -112,7 +112,7 @@ int daAlink_c::checkDemoAction() {
         demoMode != 4 && demoMode != 0x38 && demoMode != 0x45 && demoMode != 0xA &&
         demoMode != 0x2D && demoMode != 0x23 && demoMode != 0x43 && demoMode != 0x34 &&
         (demoMode != 0xB || !i_checkModeFlg(0x10040)) &&
-        !i_dComIfGp_checkPlayerStatus0(0, 0x100000) && !checkFlyAtnWait() &&
+        !dComIfGp_checkPlayerStatus0(0, 0x100000) && !checkFlyAtnWait() &&
         ((!mLinkAcch.ChkGroundHit() && !i_checkMagneBootsOn()) || i_checkModeFlg(0x70C52)))
     {
         return 0;
@@ -158,7 +158,7 @@ int daAlink_c::checkDemoAction() {
 
             if (checkHorseRide()) {
                 if (fopAcM_getTalkEventPartner(this) == daPy_py_c::getMidnaActor()) {
-                    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+                    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
                     if (!horse_p->checkOriginalDemo()) {
                         horse_p->i_changeOriginalDemo();
@@ -447,7 +447,7 @@ int daAlink_c::checkDemoAction() {
 
                 commonInitForceRideRein();
 
-                if (rideAc_p == i_dComIfGp_getHorseActor()) {
+                if (rideAc_p == dComIfGp_getHorseActor()) {
                     static_cast<daHorse_c*>(rideAc_p)->onRideFlg();
                     mZ2Link.setRiding(true);
                 } else {
@@ -551,7 +551,7 @@ asm void daAlink_c::setNoDrawSwordShield(int param_0, u16 param_1) {
 // matches with literals
 #ifdef NONMATCHING
 void daAlink_c::setDemoData() {
-    if (i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (dComIfGp_getEvent().i_isOrderOK()) {
         if (checkPlayerDemoMode() && mClothesChangeWaitTimer == 0) {
             endDemoMode();
         }
@@ -598,7 +598,7 @@ void daAlink_c::setDemoData() {
                 mDemo.setDemoMode(1);
                 freeGrabItem();
 
-                if (i_dComIfGp_evmng_startCheck("R22-opening")) {
+                if (dComIfGp_evmng_startCheck("R22-opening")) {
                     if (mEquipItem == IRONBALL) {
                         deleteEquipItem(FALSE, FALSE);
                     }
@@ -868,7 +868,7 @@ void daAlink_c::endHighModel() {
 /* 80117C90-80117CF8 1125D0 0068+00 21/21 0/0 0/0 .text            resetSpecialEvent__9daAlink_cFv
  */
 void daAlink_c::resetSpecialEvent() {
-    i_dComIfGp_event_reset();
+    dComIfGp_event_reset();
     dCam_getBody()->EndEventCamera(fopAcM_GetID(this));
     endDemoMode();
 }
@@ -948,7 +948,7 @@ void daAlink_c::endDemoMode() {
                     return;
                 }
 
-                if (mProcID == PROC_TALK && i_dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
+                if (mProcID == PROC_TALK && dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
                     procWolfLieMoveInit(0);
                 } else {
                     checkWaitAction();
@@ -1223,7 +1223,7 @@ u8 daAlink_c::setDemoLeftHandIndex(u16 param_0) {
 
 /* 8011894C-801189F8 11328C 00AC+00 1/1 0/0 0/0 .text            setDemoRide__9daAlink_cFUs */
 void daAlink_c::setDemoRide(u16 param_0) {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (param_0 == 1) {
         if (horse_p != NULL && !i_checkModeFlg(0x400)) {
@@ -1283,7 +1283,7 @@ BOOL daAlink_c::checkFinalBattle() {
 BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int i_checkZoraMag) {
     i_dmgAmount *= (int)damageMagnification(i_checkZoraMag, 1);
 
-    if (mProcID != PROC_DEAD && i_dmgAmount >= i_dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
+    if (mProcID != PROC_DEAD && i_dmgAmount >= dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
         !dComIfGs_checkBottle(FAIRY))
     {
         i_onNoResetFlg2(FLG2_UNK_40000);
@@ -1309,7 +1309,7 @@ void daAlink_c::setDeadRideSyncPos() {
 
 /* 80118C98-80118D7C 1135D8 00E4+00 5/5 0/0 0/0 .text            checkDeadHP__9daAlink_cFv */
 BOOL daAlink_c::checkDeadHP() {
-    return ((i_dComIfGs_getLife() == 0 && !i_checkResetFlg0(RFLG0_UNK_400)) &&
+    return ((dComIfGs_getLife() == 0 && !i_checkResetFlg0(RFLG0_UNK_400)) &&
             !dComIfGs_checkBottle(FAIRY)) ||
            i_checkNoResetFlg2(FLG2_UNK_40000) ||
            (dComIfGp_getOxygenShowFlag() && dComIfGp_getNowOxygen() == 0);
@@ -1835,7 +1835,7 @@ asm int daAlink_c::procCoTalkInit() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procCoTalk() {
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
         field_0x2f99 = 13;
     }
 
@@ -2083,7 +2083,7 @@ BOOL daAlink_c::checkTreasureRupeeReturn(int i_itemNo) const {
         return false;
     }
 
-    return dComIfGs_getRupeeMax() < rupeeCount[i_itemNo] + i_dComIfGs_getRupee();
+    return dComIfGs_getRupeeMax() < rupeeCount[i_itemNo] + dComIfGs_getRupee();
 }
 
 /* 8011A798-8011AC28 1150D8 0490+00 2/1 0/0 0/0 .text            procCoGetItemInit__9daAlink_cFv */
@@ -2109,7 +2109,7 @@ int daAlink_c::procCoGetItemInit() {
 
     if (!i_checkWolf() && mEquipItem != NO_ITEM && var_r30 == 0) {
         if (i_checkModeFlg(0x400) || (checkStageName("D_MN05B") && mEquipItem == BOOMERANG &&
-                                      !i_dComIfGs_isItemFirstBit(BOOMERANG)))
+                                      !dComIfGs_isItemFirstBit(BOOMERANG)))
         {
             deleteEquipItem(0, 0);
         } else {
@@ -2388,7 +2388,7 @@ int daAlink_c::procCoGetItem() {
                 if (field_0x32cc != 0 && checkEndMessage(field_0x32cc)) {
                     if (field_0x32cc < 0x164) {
                         if (mProcVar2.field_0x300c >= 0xC0 && mProcVar2.field_0x300c <= 0xD7 &&
-                            i_dComIfGs_isItemFirstBit(mProcVar2.field_0x300c))
+                            dComIfGs_isItemFirstBit(mProcVar2.field_0x300c))
                         {
                             field_0x32cc += 2000;
                             mMsgClassID = -1;
@@ -2887,7 +2887,7 @@ int daAlink_c::procCoDeadInit(int param_0) {
                     }
 
                     if (checkHorseRide()) {
-                        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+                        daHorse_c* horse_p = dComIfGp_getHorseActor();
                         horse_p->i_changeOriginalDemo();
                         horse_p->i_changeDemoMode(5, 0);
                     } else {
@@ -3003,7 +3003,7 @@ int daAlink_c::procCoDead() {
         if (mProcVar2.field_0x300c != 0 && dComIfGp_getGameoverStatus() == 2 &&
             !i_checkNoResetFlg0(FLG0_UNK_4000))
         {
-            i_dComIfGp_setItemLifeCount(-(i_dComIfGs_getLife() - 12), 0);
+            dComIfGp_setItemLifeCount(-(dComIfGs_getLife() - 12), 0);
 
             u32 var_r31;
             int room_no = fopAcM_GetRoomNo(this);
@@ -3022,7 +3022,7 @@ int daAlink_c::procCoDead() {
             } else if (checkBossRoom() &&
                        (((room_no == 50 && !dComIfGs_isStageBossEnemy()) ||
                          (room_no == 51 && !dComIfGs_isStageMiddleBoss())) ||
-                        (checkStageName("D_MN08C") && !i_dComIfGs_isEventBit(0x2880))))
+                        (checkStageName("D_MN08C") && !dComIfGs_isEventBit(0x2880))))
             {
                 var_r3_2 = 0;
             } else if (mProcVar3.field_0x300e.z != 0x3F) {
@@ -4271,7 +4271,7 @@ int daAlink_c::procDungeonWarp() {
                 i_onNoResetFlg0(FLG0_UNK_8000000);
                 if (checkItemGet(DUNGEON_EXIT, 1)) {
                     int escape =
-                        dStage_stagInfo_GetEscapeWarp(i_dComIfGp_getStage()->getStagInfo());
+                        dStage_stagInfo_GetEscapeWarp(dComIfGp_getStage()->getStagInfo());
                     dStage_changeScene(escape, 0.0f, 12, -1, shape_angle.y, -1);
                     dMeter2Info_warpOutProc();
                 } else {
@@ -4423,10 +4423,10 @@ bool daAlink_c::checkAcceptWarp() {
             if (i_checkMidnaRide() || getMidnaActor()->checkPortalObjRide()) {
                 if ((checkField() || checkCastleTown()) && !checkStageName("R_SP161")) {
                     if ((i_checkWolf() && (i_checkModeFlg(MODE_UNK_1000) ||
-                                           i_dComIfGp_checkPlayerStatus0(0, 0x10))) ||
+                                           dComIfGp_checkPlayerStatus0(0, 0x10))) ||
                         (!i_checkWolf() &&
                          (checkEventRun() || getMidnaActor()->checkMetamorphoseEnable()) &&
-                         (i_checkModeFlg(4) || i_dComIfGp_checkPlayerStatus0(0, 0x10))))
+                         (i_checkModeFlg(4) || dComIfGp_checkPlayerStatus0(0, 0x10))))
                     {
                         return true;
                     }

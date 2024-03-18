@@ -73,7 +73,7 @@ BOOL daAlink_c::checkForestOldCentury() {
 /* 800E145C-800E1530 0DBD9C 00D4+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daAlink_cFv */
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
-    return (i_dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e.x != 0)) ||
+    return (dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e.x != 0)) ||
            i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }

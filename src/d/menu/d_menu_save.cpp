@@ -2219,12 +2219,12 @@ void dMenu_save_c::retryQuestion2() {
 /* 801F30B8-801F31B0 1ED9F8 00F8+00 2/2 0/0 0/0 .text            restartInit__12dMenu_save_cFv */
 void dMenu_save_c::restartInit() {
     // if monkey lantern sequence not completed
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);  // Lantern stolen
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);  // Monkey dropped lantern
     }
 
-    if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
         dComIfGs_setItem(SLOT_1, KANTERA);
         dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
     }

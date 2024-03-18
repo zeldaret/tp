@@ -307,7 +307,7 @@ static void hit_check(e_arrow_class* i_this) {
 
             if (i_this->mCcAtSph.ChkAtHit()) {
                 cXyz sp12C(0.4f, 0.4f, 0.4f);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->current.pos, &i_this->shape_angle, &sp12C,
+                dComIfGp_setHitMark(1, i_this, &i_this->current.pos, &i_this->shape_angle, &sp12C,
                                       0);
 
                 fopAcM_delete(i_this);
@@ -499,7 +499,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
             }
 
             if (!player_p->checkWolfDig() &&
-                (!i_dComIfGp_event_runCheck() ||
+                (!dComIfGp_event_runCheck() ||
                  fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass()) !=
                      (fopAc_ac_c*)daPy_py_c::getMidnaActor()))
             {
@@ -522,7 +522,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
 
             cLib_addCalc2(&i_this->field_0xa10, 10.0f, 1.0f, 1.0f);
 
-            if (!i_dComIfGp_event_runCheck()) {
+            if (!dComIfGp_event_runCheck()) {
                 sp9C.y = 0.0f;
                 sp9C.x = 0.0f;
 

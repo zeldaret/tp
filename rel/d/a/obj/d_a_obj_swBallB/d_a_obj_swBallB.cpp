@@ -640,7 +640,7 @@ void daObjSwBallB_c::PutCrrPos() {
             fopAcM_GetName(carryObj) == PROC_Obj_Carry && carryObj->prm_chk_type_lightball())
         {
             player->setForcePutPos(current.pos);
-            if (!i_dComIfGp_event_runCheck()) {
+            if (!dComIfGp_event_runCheck()) {
                 dComIfGp_setDoStatus(0x14, 2);
             }
         }

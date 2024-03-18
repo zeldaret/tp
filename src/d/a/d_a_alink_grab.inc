@@ -697,7 +697,7 @@ asm void daAlink_c::setWallGrabStatus(u8 param_0, u8 param_1) {
 
 /* 800E7EE4-800E7EF4 0E2824 0010+00 2/2 0/0 0/0 .text            getWallGrabStatus__9daAlink_cFv */
 int daAlink_c::getWallGrabStatus() {
-    return i_dComIfGp_getRStatus();
+    return dComIfGp_getRStatus();
 }
 
 /* 800E7EF4-800E7F18 0E2834 0024+00 1/1 0/0 0/0 .text            wallGrabTrigger__9daAlink_cFv */
@@ -860,7 +860,7 @@ static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
 void daAlink_c::cancelGoronThrowEvent() {
     if (mProcID == PROC_GOAT_CATCH && mProcVar3.field_0x300e.z == 0) {
         mProcVar3.field_0x300e.z = 1;
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 }
 

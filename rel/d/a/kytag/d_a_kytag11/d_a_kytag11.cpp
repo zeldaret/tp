@@ -23,7 +23,7 @@ static int daKytag11_Execute(kytag11_class* i_this) {
     i_this->mChangeTime = true;
 
     if (i_this->mOnEventID != 0xFFF) {
-        if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mOnEventID])) {
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mOnEventID])) {
             i_this->mChangeTime = false;
         }
     } else if (i_this->mOnSwitchNo != 0xFF) {
@@ -34,7 +34,7 @@ static int daKytag11_Execute(kytag11_class* i_this) {
     }
 
     if (i_this->mOffEventID != 0xFFF) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mOffEventID])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mOffEventID])) {
             i_this->mChangeTime = false;
         }
     } else if (i_this->mOffSwitchNo != 0xFF) {

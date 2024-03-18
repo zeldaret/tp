@@ -143,7 +143,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
-    int mirror_res_id = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 13 : 14;
+    int mirror_res_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 13 : 14;
     J3DModelData* mirror_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, mirror_res_id);
     mpMirrorModel = mDoExt_J3DModel__create(mirror_model_data, 0, 0x11000084);
     if (mpMirrorModel == NULL) {
@@ -165,7 +165,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
-    int mirror_dzb_id = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 31 : 32;
+    int mirror_dzb_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 31 : 32;
     cBgD_t* mirror_dzb = (cBgD_t*)dComIfG_getObjectRes(l_arcName, mirror_dzb_id);
     if (mBgW[1].Set(mirror_dzb, 1, &mMtx[1])) {
         return 0;
@@ -180,7 +180,7 @@ int daObjMirrorTable_c::createHeap() {
     mpMSquareBckAnm = NULL;
     mpLightBtkAnm = NULL;
 
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         J3DModelData* stair_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 20);
         mpStairModel = mDoExt_J3DModel__create(stair_model_data, 0x80000, 0x11000084);
 
@@ -258,8 +258,8 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 /* 80C99F7C-80C9A040 0006DC 00C4+00 1/1 0/0 0/0 .text            isSwitch__18daObjMirrorTable_cFv */
 bool daObjMirrorTable_c::isSwitch() {
     return fopAcM_isSwitch(this, getSwitchNo())
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
         ? 1 : 0;
 }
 
@@ -472,7 +472,7 @@ int daObjMirrorTable_c::execute() {
         Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_TBLE, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     }
 
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         if (!mBgW[0].ChkUsed() && mpTableUpBckAnm->getPlaySpeed() > 0.0f) {
             dComIfG_Bgsp().Regist(&mBgW[0], this);
             dComIfG_Bgsp().Regist(&mBgW[1], this);
@@ -608,7 +608,7 @@ SECTION_DEAD static char const* const stringBase_80C9B299 = "F_SP125";
 #ifdef NONMATCHING
 // matches with literals once isSwitch is properly inlined
 void daObjMirrorTable_c::create_init() {
-    bool mirror_complete_flag = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
+    bool mirror_complete_flag = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     mpTableUpBckAnm->setPlaySpeed(0.0f);
 
     mBgW[0].SetCrrFunc(NULL);
@@ -648,8 +648,8 @@ void daObjMirrorTable_c::create_init() {
 
     field_0x874 = false;
 
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
-        && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
+        && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
     {
         cXyz pos(1760.0f, 4714.3f, -20624.0f);
         csXyz angle(0, 0x8000, 0);

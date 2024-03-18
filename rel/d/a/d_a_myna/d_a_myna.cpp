@@ -1655,7 +1655,7 @@ asm void daMyna_c::attack_before_talk_init() {
 /* 80946B40-80946BB4 000FC0 0074+00 1/0 0/0 0/0 .text attack_before_talk_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         onEventFlag(1);
         field_0x92C = 2;
     }
@@ -1764,7 +1764,7 @@ void daMyna_c::attack_after_talk_init() {
  */
 void daMyna_c::attack_after_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         onEventFlag(2);
         field_0x91C = 0x139;
         field_0x92C = 5;
@@ -1884,8 +1884,8 @@ asm void daMyna_c::greet_talk_init() {
 /* 8094711C-809471BC 00159C 00A0+00 1/0 0/0 0/0 .text            greet_talk_move__8daMyna_cFv */
 void daMyna_c::greet_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+        dComIfGp_event_reset();
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x937 = 20;
             field_0x92C = 19;
         } else {
@@ -1921,7 +1921,7 @@ COMPILER_STRIP_GATE(0x8094B204, &lit_4655);
 #ifdef NONMATCHING
 void daMyna_c::shopping_wait_move() {
     if (!daPy_py_c::i_checkNowWolf()) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x92C = 17;
             field_0x937 = 20;
         } else {
@@ -1960,7 +1960,7 @@ void daMyna_c::shopping_wait_move() {
                     }
                 }
 
-                if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203]) &&
+                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203]) &&
                     daMyna_evtTagActor1 != NULL)
                 {
                     cXyz stack_2c(1.0f, 1.0f, 1.0f);
@@ -2031,7 +2031,7 @@ void daMyna_c::shopping_talk_init() {
 /* 80947630-809476A0 001AB0 0070+00 1/0 0/0 0/0 .text            shopping_talk_move__8daMyna_cFv */
 void daMyna_c::shopping_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
     }
@@ -2054,7 +2054,7 @@ void daMyna_c::thanks_talk_init() {
 /* 8094772C-80947794 001BAC 0068+00 1/0 0/0 0/0 .text            thanks_talk_move__8daMyna_cFv */
 void daMyna_c::thanks_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x92C = 7;
     }
 }
@@ -2112,8 +2112,8 @@ void daMyna_c::byebye_talk_move() {
             bVar1 = false;
         }
 
-        i_dComIfGp_event_reset();
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+        dComIfGp_event_reset();
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x92C = 0x11;
             field_0x937 = 0x14;
         } else if (bVar1) {
@@ -2384,7 +2384,7 @@ void daMyna_c::wolf_talk_init() {
 /* 80948118-80948174 002598 005C+00 1/0 0/0 0/0 .text            wolf_talk_move__8daMyna_cFv */
 void daMyna_c::wolf_talk_move() {
     if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x92C = field_0x92E;
     }
 }
@@ -2424,7 +2424,7 @@ void daMyna_c::attack_wait2_move() {
 
         if (daMyna_evtTagActor0 != NULL) {
             cXyz stack_1c(1.0f, 1.0f, 1.0f);
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
                 if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_1c)) {
                     field_0x937 = 20;
                     field_0x92C = 19;
@@ -2478,7 +2478,7 @@ asm void daMyna_c::attack_before_talk2_init() {
 /* 809483DC-80948444 00285C 0068+00 1/0 0/0 0/0 .text attack_before_talk2_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk2_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x92C = 19;
     }
 }
@@ -2577,7 +2577,7 @@ void daMyna_c::attack2_move() {
         mSph.OffAtVsPlayerBit();
         if (field_0x937 != 0) {
             field_0x937--;
-            if (i_dComIfGs_getLife() <= 1) {
+            if (dComIfGs_getLife() <= 1) {
                 dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[802]);
                 field_0x937 = 0;
             }
@@ -2604,7 +2604,7 @@ void daMyna_c::attack2_talk_init() {
 /* 80948734-809487EC 002BB4 00B8+00 1/0 0/0 0/0 .text            attack2_talk_move__8daMyna_cFv */
 void daMyna_c::attack2_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x828 = NULL;
         field_0x92C = 7;
         dMsgObject_setTotalPayment(0);
@@ -2816,7 +2816,7 @@ asm void daMyna_c::talkAnime(msg_class* param_0) {
 int daMyna_c::chkEvent() {
     int retVal = 1;
     if (daPy_py_c::i_checkNowWolf()) {
-        if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+        if (!dComIfGp_getEvent().i_isOrderOK()) {
             retVal = 0;
             if (eventInfo.checkCommandTalk()) {
                 if (field_0x92C == 0x10) {
@@ -2948,7 +2948,7 @@ void daMyna_c::initiate() {
     field_0x920 = 0;
     field_0x922 = 0;
 
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
         field_0x932 = 0;
         field_0x938 = 0;
     } else {
@@ -3337,7 +3337,7 @@ void daMyna_c::checkDead() {
             if (daMyna_evtTagActor0 == NULL ||
                 (daMyna_evtTagActor0 != NULL && !chkPlayerInEvtArea(daMyna_evtTagActor0, var1)))
             {
-                if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203])) {
+                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203])) {
                     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[203]);
                 }
             }

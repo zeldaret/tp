@@ -377,7 +377,7 @@ void daAlink_c::initKandelaarSwing() {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procKandelaarSwingInit() {
-    fopAc_ac_c* catch_target_p = i_dComIfGp_att_getCatghTarget();
+    fopAc_ac_c* catch_target_p = dComIfGp_att_getCatghTarget();
     if (catch_target_p != NULL) {
         s16 name = fopAcM_GetName(catch_target_p);
         BOOL is_sm2 = name == PROC_E_SM2;

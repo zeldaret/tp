@@ -91,7 +91,7 @@ static bool hitCheck(daSwc00_c* i_swc) {
     fopAc_ac_c* player;
 
     if (daSwc00_getCondition(i_swc) == 2) {
-        player = (fopAc_ac_c*)i_dComIfGp_getHorseActor();
+        player = (fopAc_ac_c*)dComIfGp_getHorseActor();
     } else {
         player = playerAc;
     }

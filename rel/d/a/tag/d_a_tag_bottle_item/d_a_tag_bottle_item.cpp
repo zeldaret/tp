@@ -116,7 +116,7 @@ void daTag_BottleItem_c::setAttnPos() {
 s32 daTag_BottleItem_c::chkEvent() {
     s32 uVar2 = 1;
   
-    if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().i_isOrderOK()) {
         uVar2 = 0;
         
         if (eventInfo.i_checkCommandCatch()) {
@@ -148,11 +148,11 @@ s32 daTag_BottleItem_c::orderEvent() {
 
 /* 80D56418-80D564A0 0004B8 0088+00 2/2 0/0 0/0 .text            makeSoup__18daTag_BottleItem_cFv */
 void daTag_BottleItem_c::makeSoup() {
-    if (mBottleItemType == LV1_SOUP && i_dComIfGs_isEventBit(2)) {
+    if (mBottleItemType == LV1_SOUP && dComIfGs_isEventBit(2)) {
         mBottleItemType = LV2_SOUP;
     }
 
-    if (mBottleItemType == LV2_SOUP && i_dComIfGs_isEventBit(1)) {
+    if (mBottleItemType == LV2_SOUP && dComIfGs_isEventBit(1)) {
         mBottleItemType = LV3_SOUP;
     }
 }

@@ -171,7 +171,7 @@ public:
     inline static BOOL checkMidnaRealBody();
 
     static bool i_checkMidnaTired() {
-        return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1E08);
+        return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 
     void resetRatBody() {}

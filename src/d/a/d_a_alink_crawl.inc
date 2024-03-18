@@ -325,7 +325,7 @@ asm int daAlink_c::procCrawlMove() {
 // r30 / r31 swap
 #ifdef NONMATCHING
 int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
-    BOOL var_r30 = i_dComIfGp_checkPlayerStatus0(0, 0x2000);
+    BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000);
     commonProcInit(PROC_CRAWL_AUTO_MOVE);
     field_0x37c8 = *param_1;
     field_0x33cc = lit_6040;

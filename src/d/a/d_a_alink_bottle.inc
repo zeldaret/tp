@@ -186,26 +186,26 @@ int daAlink_c::commonBottleDrink(int param_0) {
                 mEquipItem != CHUCHU_PURPLE)
             {
                 if (mEquipItem == LV1_SOUP) {
-                    i_dComIfGp_setItemLifeCount(8, 0);
+                    dComIfGp_setItemLifeCount(8, 0);
                 } else if (mEquipItem == LV2_SOUP) {
-                    i_dComIfGp_setItemLifeCount(16, 0);
+                    dComIfGp_setItemLifeCount(16, 0);
                 } else if (mEquipItem == LV3_SOUP) {
-                    i_dComIfGp_setItemLifeCount(32, 0);
+                    dComIfGp_setItemLifeCount(32, 0);
                 } else if (mEquipItem == BEE_CHILD) {
                     field_0x2fd3 = 3;
-                    i_dComIfGp_setItemLifeCount(dComIfGp_getSelectItemNum(mSelectItemId), 0);
+                    dComIfGp_setItemLifeCount(dComIfGp_getSelectItemNum(mSelectItemId), 0);
                 } else if (mEquipItem == RED_BOTTLE || mEquipItem == CHUCHU_RED ||
                            mEquipItem == RED_BOTTLE_2)
                 {
-                    i_dComIfGp_setItemLifeCount(32, 0);
+                    dComIfGp_setItemLifeCount(32, 0);
                 } else if (mEquipItem == MILK_BOTTLE || mEquipItem == HALF_MILK_BOTTLE) {
-                    i_dComIfGp_setItemLifeCount(12, 0);
+                    dComIfGp_setItemLifeCount(12, 0);
                 } else if (mEquipItem == BLUE_BOTTLE || mEquipItem == CHUCHU_BLUE ||
                            mEquipItem == HOT_SPRING)
                 {
-                    i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
+                    dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
                 } else if (mEquipItem == CHUCHU_RARE || mEquipItem == FAIRY_DROP) {
-                    i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
+                    dComIfGp_setItemLifeCount(dComIfGs_getMaxLifeGauge(), 0);
                 }
             }
             voiceStart(Z2SE_AL_V_DRINK);
@@ -214,7 +214,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
             mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x071c);
         }
     } else if (current_anm == getMainBckData(ANM_BOTTLE_DRINK)->m_underID) {
-        if (dComIfGp_getItemNowLife() == i_dComIfGs_getLife()) {
+        if (dComIfGp_getItemNowLife() == dComIfGs_getLife()) {
             mpHookTipModel = NULL;
 
             if (mEquipItem == MILK_BOTTLE) {
@@ -236,12 +236,12 @@ int daAlink_c::commonBottleDrink(int param_0) {
                 mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0720);
             } else if (simpleAnmPlay(field_0x0720)) {
                 if (mEquipItem == UGLY_SOUP) {
-                    if (i_dComIfGs_getLife() <= 2) {
+                    if (dComIfGs_getLife() <= 2) {
                         mItemVar0.mBottleItemHealAmount = dComIfGs_getMaxLifeGauge();
-                    } else if (i_dComIfGs_getLife() <= 4) {
+                    } else if (dComIfGs_getLife() <= 4) {
                         mItemVar0.mBottleItemHealAmount =
-                            (dComIfGs_getMaxLifeGauge() / 2) - i_dComIfGs_getLife();
-                    } else if (i_dComIfGs_getLife() == dComIfGs_getMaxLifeGauge() ||
+                            (dComIfGs_getMaxLifeGauge() / 2) - dComIfGs_getLife();
+                    } else if (dComIfGs_getLife() == dComIfGs_getMaxLifeGauge() ||
                                cM_rnd() < 0.5f)
                     {
                         mItemVar0.mBottleItemHealAmount = -4;
@@ -254,7 +254,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
                     if (rnd < 1.0f) {
                         mItemVar0.mBottleItemHealAmount = dComIfGs_getMaxLifeGauge();
                     } else if (rnd < 2.0f) {
-                        mItemVar0.mBottleItemHealAmount = -(i_dComIfGs_getLife() - 1);
+                        mItemVar0.mBottleItemHealAmount = -(dComIfGs_getLife() - 1);
                         if (mItemVar0.mBottleItemHealAmount == 0) {
                             mItemVar0.mBottleItemHealAmount = -1;
                         }
@@ -308,7 +308,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
             mHeldItemModel->getModelData()->entryTexMtxAnimator(field_0x0718);
         } else if (mItemVar0.mBottleItemHealAmount >= 0 && frameCtrl_p->checkPass(21.0f)) {
             if (mItemVar0.mBottleItemHealAmount > 0) {
-                i_dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
+                dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
             }
 
             voiceStart(Z2SE_AL_V_DRINK_2);
@@ -318,10 +318,10 @@ int daAlink_c::commonBottleDrink(int param_0) {
             } else if (frameCtrl_p->checkPass(17.0f)) {
                 mDoAud_seStart(Z2SE_AL_DAMAGE_SMALL, NULL, 0, 0);
 
-                if (i_dComIfGs_getLife() <= -mItemVar0.mBottleItemHealAmount) {
-                    i_dComIfGp_setItemLifeCount(-(i_dComIfGs_getLife() - 1), 0);
+                if (dComIfGs_getLife() <= -mItemVar0.mBottleItemHealAmount) {
+                    dComIfGp_setItemLifeCount(-(dComIfGs_getLife() - 1), 0);
                 } else {
-                    i_dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
+                    dComIfGp_setItemLifeCount(mItemVar0.mBottleItemHealAmount, 0);
                 }
             }
         }
@@ -612,7 +612,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
     if (var_r31 != NULL) {
         field_0x280c.setData(var_r31);
     } else {
-        var_r31 = i_dComIfGp_att_getCatghTarget();
+        var_r31 = dComIfGp_att_getCatghTarget();
     }
 
     BOOL temp_r3;
@@ -705,8 +705,8 @@ int daAlink_c::procBottleSwing() {
 
             dComIfGp_setPlayerStatus1(0, 0x4000000);
 
-            if (i_dComIfGp_att_getCatghTarget() != NULL) {
-                fopAcM_OnStatus(i_dComIfGp_att_getCatghTarget(), 0x800);
+            if (dComIfGp_att_getCatghTarget() != NULL) {
+                fopAcM_OnStatus(dComIfGp_att_getCatghTarget(), 0x800);
             } else if (field_0x280c.getActor() != NULL) {
                 fopAcM_OnStatus(field_0x280c.getActor(), 0x800);
             }
@@ -746,10 +746,10 @@ int daAlink_c::procBottleSwing() {
             }
         } else if (frameCtrl_p->getFrame() <= field_0x347c) {
             if (getReadyItem() == EMPTY_BOTTLE &&
-                (i_dComIfGp_att_getCatghTarget() != NULL ||
+                (dComIfGp_att_getCatghTarget() != NULL ||
                  (field_0x2fbc != 11 && field_0x2fbc != 6 && mWaterY > current.pos.y + 10.0f)))
             {
-                fopAcM_orderCatchEvent(this, i_dComIfGp_att_getCatghTarget(), 0, 0);
+                fopAcM_orderCatchEvent(this, dComIfGp_att_getCatghTarget(), 0, 0);
             } else if (mEquipItem == KANTERA) {
                 if (field_0x280c.getActor() != NULL) {
                     fopAcM_orderCatchEvent(this, field_0x280c.getActor(), 0, 0);
@@ -838,7 +838,7 @@ int daAlink_c::procBottleGetInit(int param_0) {
     }
 
     // event flag 0x4A40: Ordon Day 1 completed
-    if (mEquipItem == BEE_CHILD && i_dComIfGs_isEventBit(0x4A40)) {
+    if (mEquipItem == BEE_CHILD && dComIfGs_isEventBit(0x4A40)) {
         dComIfGs_onEventBit(0x4C80);  // event flag 0x4C80: Collected Bee Larva on Ordon Day 2
     }
 

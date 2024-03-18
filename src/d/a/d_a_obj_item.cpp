@@ -1053,10 +1053,6 @@ void daItem_c::procWaitGetDemoEvent() {
     }
 }
 
-inline void dComIfGp_event_reset() {
-    g_dComIfG_gameInfo.play.getEvent().reset();
-}
-
 /* 8015C3BC-8015C41C 156CFC 0060+00 1/0 0/0 0/0 .text            procMainGetDemoEvent__8daItem_cFv
  */
 void daItem_c::procMainGetDemoEvent() {
@@ -1413,7 +1409,7 @@ BOOL daItem_c::checkCountTimer() {
         count = false;
     }
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         count = false;
     }
 

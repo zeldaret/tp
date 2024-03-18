@@ -364,7 +364,7 @@ void dRes_info_c::setWarpSRT(J3DModelData* modelData, cXyz const& param_1, f32 t
     texMtxInfo.mSRT.mTranslationX = translationX;
     texMtxInfo.mSRT.mTranslationY = translationY;
     mDoMtx_stack_c::transS(-param_1.x, -param_1.y, -param_1.z);
-    s16 angleY = fopCamM_GetAngleY(dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0)));
+    s16 angleY = fopCamM_GetAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     mDoMtx_stack_c::YrotM(angleY);
     MtxP stackMtx = mDoMtx_stack_c::get();
     cMtx_concat(l_texMtxInfo.mEffectMtx, stackMtx, texMtxInfo.mEffectMtx);

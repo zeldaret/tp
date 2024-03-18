@@ -156,7 +156,6 @@ public:
 
     static u8 m_morf_frame;
 
-private:
     /* 0x0F4 */ f32 field_0xf4;
     /* 0x0F8 */ f32 field_0xf8;
     /* 0x0FC */ f32 mNowOffsetX;
@@ -3242,7 +3241,7 @@ public:
 
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
     BOOL i_checkSpecialDemoMode() const { return mDemo.getDemoType() == 5; }
-    static bool checkMidnaChargeAttack() { return i_dComIfGs_isEventBit(0x501); }
+    static bool checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
 
@@ -3399,7 +3398,6 @@ public:
 
     static u8 m_fEffParamProc[72];
 
-private:
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
     /* 0x00634 */ char* mArcName;
     /* 0x00638 */ JKRExpHeap* field_0x0638;
@@ -6250,7 +6248,7 @@ public:
 };
 
 inline BOOL dComIfGs_isTransformLV(int i_no);
-inline BOOL i_dComIfGs_isEventBit(const u16);
+inline BOOL dComIfGs_isEventBit(const u16);
 
 static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);

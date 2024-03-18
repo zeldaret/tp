@@ -68,9 +68,9 @@ int daObjGake_c::create1st() {
 /* 80D0BE24-80D0BF7C 000284 0158+00 1/0 0/0 0/0 .text            Execute__11daObjGake_cFPPA3_A4_f */
 int daObjGake_c::Execute(Mtx** param_0) {
     if ((mEventBit2 != 0x3FF &&
-         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit2])) ||
+         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit2])) ||
         (mEventBit1 != 0x3FF &&
-         !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])))
+         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])))
     {
         if (mpBgW != NULL && mpBgW->ChkUsed()) {
             dComIfG_Bgsp().Release(mpBgW);
@@ -80,7 +80,7 @@ int daObjGake_c::Execute(Mtx** param_0) {
         return 1;
     }
 
-    if (mEventBit1 != 0x3FF && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])) {
+    if (mEventBit1 != 0x3FF && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mEventBit1])) {
         if (mpBgW != NULL && !mpBgW->ChkUsed()) {
             dComIfG_Bgsp().Regist(mpBgW, this);
         }

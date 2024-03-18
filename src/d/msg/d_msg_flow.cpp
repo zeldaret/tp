@@ -1131,7 +1131,7 @@ int dMsgFlow_c::getParam(u8* params) {
 /* 8024B138-8024B180 245A78 0048+00 1/0 0/0 0/0 .text
  * query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[flow_node->params[0] & 0xFFFF]) == false;
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[flow_node->params[0] & 0xFFFF]) == false;
 }
 
 BOOL daPy_py_c::checkNowWolf() {
@@ -1183,11 +1183,11 @@ int dMsgFlow_c::query004(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 
     if ( uVar1 == 0 ) {
         uVar2 = dComIfGs_getRupeeMax();
-        uVar1 = i_dComIfGs_getRupee();
+        uVar1 = dComIfGs_getRupee();
         ret = uVar1 < uVar2;
         
     } else {
-        ret = i_dComIfGs_getRupee() < (u16)p0;
+        ret = dComIfGs_getRupee() < (u16)p0;
     }
 
     return ret;    
@@ -1459,7 +1459,7 @@ int dMsgFlow_c::query030(mesg_flow_node_branch*, fopAc_ac_c*, int) {
  * query031__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query031(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     u16 uVar3 = *(u16*)(flow_node->params);
-    return (0x14 - i_dComIfGs_getEventReg(0xff1f)) < uVar3;
+    return (0x14 - dComIfGs_getEventReg(0xff1f)) < uVar3;
 }
 
 /* 8024BB74-8024BB9C 2464B4 0028+00 1/0 0/0 0/0 .text
@@ -1467,7 +1467,7 @@ int dMsgFlow_c::query031(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 int dMsgFlow_c::query032(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
     u8 rv = 1;
     u16 uVar1 = *(u16*)flow_node->params;
-    if (i_dComIfGs_getLife() >= (int)uVar1) {
+    if (dComIfGs_getLife() >= (int)uVar1) {
         rv = 0;
     }
 
@@ -1737,7 +1737,7 @@ int dMsgFlow_c::query051(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 int dMsgFlow_c::query052(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     bool phi_r4 = false;
     if (daPy_getPlayerActorClass()->checkWaterInMove() ||
-        i_dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+        dComIfGp_checkPlayerStatus0(0, 0x100000)) {
         phi_r4 = true;
     }
 
@@ -1792,7 +1792,7 @@ int dMsgFlow_c::event001(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 int dMsgFlow_c::event002(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     int prm0 = getParam(flow_node->params);
 
-    i_dComIfGp_setItemRupeeCount(prm0);
+    dComIfGp_setItemRupeeCount(prm0);
     return 1;
 }
 
@@ -1801,7 +1801,7 @@ int dMsgFlow_c::event002(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 int dMsgFlow_c::event003(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     int prm0 = getParam(flow_node->params);
 
-    i_dComIfGp_setItemRupeeCount(-prm0);
+    dComIfGp_setItemRupeeCount(-prm0);
     return 1;
 }
 
@@ -1816,7 +1816,7 @@ SECTION_SDATA2 static f64 lit_6040 = 4503601774854144.0 /* cast s32 to float */;
 int dMsgFlow_c::event004(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     f32 prm0 = getParam(flow_node->params);
 
-    i_dComIfGp_setItemLifeCount(prm0, 0);
+    dComIfGp_setItemLifeCount(prm0, 0);
     return 1;
 }
 #else
@@ -1838,7 +1838,7 @@ int dMsgFlow_c::event005(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     f32 prm0 = getParam(flow_node->params);
 
     f32 prm1 = -prm0;
-    i_dComIfGp_setItemLifeCount(prm1, 0);
+    dComIfGp_setItemLifeCount(prm1, 0);
     return 1;
 }
 #else
@@ -2349,7 +2349,7 @@ int dMsgFlow_c::event028(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     u8 bagID = dMsgObject_c::getSelectBombBagID();
     s16 bombPrice = dMsgObject_c::getSelectBombPrice();
 
-    i_dComIfGp_setItemRupeeCount(bombPrice);
+    dComIfGp_setItemRupeeCount(bombPrice);
     dComIfGs_setBombNum(bagID, 0);
 
     if (dComIfGs_getItem((u8)(SLOT_15 + bagID), true) != BOMB_ARROW) {

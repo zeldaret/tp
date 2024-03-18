@@ -37,8 +37,8 @@ public:
 
     bool isSwitch() {
         return fopAcM_isSwitch(this, getSwitchNo()) ||
-               i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
-               i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
+               dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
+               dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     }
 
     void setAction(Mode_e i_action) {

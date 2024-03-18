@@ -150,13 +150,13 @@ int daTagWljump_c::execute() {
             return 1;
         }
         field_0x56c[3] = 0;
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         field_0x56c[0] = 0;
         field_0x572 = 1;
         if (field_0x571 != 0xff) {
             fopAcM_onSwitch(this, field_0x571);
         }
-    } else if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    } else if (!dComIfGp_getEvent().i_isOrderOK()) {
         field_0x572 = 0;
     } else {
         if (!midnaActor->checkWolfNoPos()) {

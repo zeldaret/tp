@@ -650,7 +650,7 @@ static char const l_staff_name[13] = "SHUTTER_DOOR";
 /* 80670328-806703C0 000F88 0098+00 1/0 0/0 0/0 .text            actionCloseWait__9daBdoor_cFv */
 BOOL daBdoor_c::actionCloseWait() {
     if (eventInfo.i_checkCommandDoor()) {
-        mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
         setAction(ACT_OPEN);
     } else {
@@ -733,7 +733,7 @@ int daBdoor_c::execute() {
         &actionEnd,
     };
     if (fopAcM_checkStatus(this, 0x1000)) {
-        mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else {
         (this->*l_action[mAction])();

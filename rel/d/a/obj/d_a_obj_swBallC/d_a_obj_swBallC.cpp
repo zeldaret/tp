@@ -110,7 +110,7 @@ int daObjSwBallC_c::Create() {
     color->b = l_color.b;
     field_0x57e = -1;
     eventInfo.setArchiveName(l_arcName);
-    field_0x57c = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
+    field_0x57c = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
     if (fopAcM_isSwitch(this, 0x3f)) {
         setLightOnSwB();
         setAction(3);
@@ -201,7 +201,7 @@ void daObjSwBallC_c::actionOrderEvent() {
 void daObjSwBallC_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(field_0x57c)) {
         setAction(3);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         fopAcM_onSwitch(this, 0x58);
         for (int i = 0; i < 8; i++) {
             fopAcM_onSwitch(this, i + 0x50);
@@ -221,7 +221,7 @@ int daObjSwBallC_c::demoProc() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz acStack_38;
     int uVar1 = dComIfGp_evmng_getMyActIdx(field_0x578, action_table, 13, 0, 0);
-    field_0x578 = i_dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
+    field_0x578 = dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
     player->onShieldBackBone();
     if (dComIfGp_evmng_getIsAddvance(field_0x578)) {
         switch (uVar1) {

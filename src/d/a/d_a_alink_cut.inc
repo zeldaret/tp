@@ -129,7 +129,7 @@ bool daAlink_c::checkCutFastReady() {
 
     fopAc_ac_c* target_p = mAttention->LockonTarget(0);
 
-    if (mEquipItem == NO_ITEM && (i_dComIfGs_isEventBit(0x2A80) || i_checkNoResetFlg3(FLG3_UNK_80)))
+    if (mEquipItem == NO_ITEM && (dComIfGs_isEventBit(0x2A80) || i_checkNoResetFlg3(FLG3_UNK_80)))
     {
         if (i_checkModeFlg(1) && !i_checkRideOn() && i_checkSwordGet() && i_checkModeFlg(4) &&
             !i_checkModeFlg(0x40000) && mTargetedActor == NULL && checkEnemyGroup(target_p))
@@ -490,7 +490,7 @@ int daAlink_c::commonCutAction() {
         resetCombo(1);
     }
 
-    if (i_dComIfGp_getDoStatus() == 4) {
+    if (dComIfGp_getDoStatus() == 4) {
         setDoStatus(0);
     }
     mComboCutCount++;
@@ -647,7 +647,7 @@ BOOL daAlink_c::checkCutCancelNextMode(int param_0) {
 /* 800D27E4-800D2890 0CD124 00AC+00 4/4 0/0 0/0 .text            checkDoCutAction__9daAlink_cFv */
 BOOL daAlink_c::checkDoCutAction() {
     // event flag 0x2A40: Learned Jump Strike
-    if (doButton() && (i_dComIfGs_isEventBit(0x2A40) || i_checkNoResetFlg3(FLG3_UNK_200))) {
+    if (doButton() && (dComIfGs_isEventBit(0x2A40) || i_checkNoResetFlg3(FLG3_UNK_200))) {
         return procCutLargeJumpChargeInit();
     } else if (checkDownAttackState()) {
         return procCutDownInit();
@@ -661,7 +661,7 @@ BOOL daAlink_c::checkDoCutAction() {
 /* 800D2890-800D28F4 0CD1D0 0064+00 2/2 0/0 0/0 .text            checkCutBackState__9daAlink_cFv */
 BOOL daAlink_c::checkCutBackState() {
     // event flag 0x2902: Learned Backslice
-    return i_dComIfGs_isEventBit(0x2902) || i_checkNoResetFlg3(FLG3_UNK_20);
+    return dComIfGs_isEventBit(0x2902) || i_checkNoResetFlg3(FLG3_UNK_20);
 }
 
 /* 800D28F4-800D29D4 0CD234 00E0+00 6/6 0/0 0/0 .text            checkCutHeadState__9daAlink_cFv */
@@ -670,7 +670,7 @@ BOOL daAlink_c::checkCutHeadState() {
 
     // event flag 0x2901: Learned Helm Splitter
     return ((!checkBootsOrArmorHeavy() && (temp_r27 != NULL) &&
-             (i_dComIfGs_isEventBit(0x2901) || i_checkNoResetFlg3(FLG3_UNK_40))) &&
+             (dComIfGs_isEventBit(0x2901) || i_checkNoResetFlg3(FLG3_UNK_40))) &&
             fopAcM_GetGroup(temp_r27) == 2) &&
            temp_r27->checkHeadLockFlg();
 }
@@ -682,7 +682,7 @@ BOOL daAlink_c::checkDownAttackState() {
 
     if (enemy != NULL &&
         (fopAcM_GetGroup(enemy) == 2 && enemy->checkDownFlg() &&
-         ((!i_checkWolf() && (i_dComIfGs_isEventBit(0x2904) || i_checkNoResetFlg3(FLG3_UNK_10)) &&
+         ((!i_checkWolf() && (dComIfGs_isEventBit(0x2904) || i_checkNoResetFlg3(FLG3_UNK_10)) &&
            enemy->getDownPos().abs2(current.pos) < lit_7174) ||
           (i_checkWolf() &&
            (fopAcM_GetName(mTargetedActor) == PROC_E_PO ||
@@ -698,8 +698,8 @@ BOOL daAlink_c::checkDownAttackState() {
 /* 800D2ABC-800D2B88 0CD3FC 00CC+00 1/1 1/1 0/0 .text checkCutLargeTurnState__9daAlink_cCFv */
 BOOL daAlink_c::checkCutLargeTurnState() const {
     // event flag 0x2A20: Learned Great Spin
-    return ((i_dComIfGs_isEventBit(0x2A20) || i_checkNoResetFlg3(FLG3_UNK_100)) &&
-            i_dComIfGs_getLife() == dComIfGs_getMaxLifeGauge()) ||
+    return ((dComIfGs_isEventBit(0x2A20) || i_checkNoResetFlg3(FLG3_UNK_100)) &&
+            dComIfGs_getLife() == dComIfGs_getMaxLifeGauge()) ||
            (mDemo.getDemoMode() == 0x24 && mDemo.getParam0() == 0x33);
 }
 
@@ -2012,7 +2012,7 @@ int daAlink_c::procCutDownLandInit(fopEn_enemy_c* i_enemy) {
             i_enemy->onCutDownHitFlg();
 
             csXyz angle(0x4000, shape_angle.y, 0);
-            i_dComIfGp_setHitMark(3, NULL, &i_enemy->getDownPos(), &angle, NULL, 0);
+            dComIfGp_setHitMark(3, NULL, &i_enemy->getDownPos(), &angle, NULL, 0);
         }
 
         var_r30 = 0x20;

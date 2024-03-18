@@ -980,10 +980,6 @@ void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_PolyDamageOff_Set(s8 param_0);
 u8 dComIfGs_staffroll_next_go_check();
-BOOL dComIfGs_isEventBit(u16 i_flag);
-int dComIfGs_isItemFirstBit(u8 i_no);
-u16 dComIfGs_getRupee();
-static u16 dComIfGs_getLife();
 s8 dComIfGs_BossLife_public_Get();
 u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
@@ -992,11 +988,11 @@ inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
 }
 
-inline int i_dComIfGs_isItemFirstBit(u8 i_no) {
+inline int dComIfGs_isItemFirstBit(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
 
-inline u16 i_dComIfGs_getRupee() {
+inline u16 dComIfGs_getRupee() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getRupee();
 }
 
@@ -1123,7 +1119,7 @@ inline void dComIfGs_onEventBit(u16 i_flag) {
 
 // debug rom says `i_flag` is not const, but it's needed to match in some places?
 // missing some other inline maybe?
-inline BOOL i_dComIfGs_isEventBit(const u16 i_flag) {
+inline BOOL dComIfGs_isEventBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(i_flag);
 }
 
@@ -1220,7 +1216,7 @@ inline u16 dComIfGs_getMaxLife() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMaxLife();
 }
 
-inline u16 i_dComIfGs_getLife() {
+inline u16 dComIfGs_getLife() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
 
@@ -1686,7 +1682,7 @@ inline u8 dComIfGs_getTmpReg(u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
-inline u8 i_dComIfGs_getEventReg(u16 reg) {
+inline u8 dComIfGs_getEventReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
@@ -1885,25 +1881,6 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 void dComIfGp_world_dark_set(u8);
 u8 dComIfGp_getNowLevel();
 void dComIfGp_calcNowRegion();
-
-daHorse_c* dComIfGp_getHorseActor();
-static BOOL dComIfGp_event_runCheck();
-static s32 dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2);
-static u16 dComIfGp_event_chkEventFlag(u16 flag);
-static s8 dComIfGp_getPlayerCameraID(int idx);
-static dEvent_manager_c& dComIfGp_getEventManager();
-static u32 dComIfGp_checkPlayerStatus0(int param_0, u32 param_1);
-static u32 dComIfGp_checkPlayerStatus1(int param_0, u32 param_1);
-static dEvt_control_c& dComIfGp_getEvent();
-static bool dComIfGp_evmng_startCheck(char const* param_0);
-static dStage_stageDt_c* dComIfGp_getStage();
-void dComIfGp_setItemLifeCount(f32 amount, u8 type);
-void dComIfGp_setItemRupeeCount(s32 param_0);
-static u8 dComIfGp_getDoStatus();
-static u8 dComIfGp_getRStatus();
-static dAttCatch_c* dComIfGp_att_getCatghTarget();
-static void dComIfGp_setBottleStatus(u8 param_0, u8 param_1);
-
 bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
 void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
 bool dComIfGp_isLightDropMapVisible();
@@ -1916,19 +1893,19 @@ inline void dComIfGp_init() {
     g_dComIfG_gameInfo.play.init();
 }
 
-inline bool i_dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
+inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
 }
 
-inline bool i_dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
+inline bool dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
 }
 
-inline void i_dComIfGp_setItemLifeCount(float amount, u8 type) {
+inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
     g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
 }
 
-inline void i_dComIfGp_setItemRupeeCount(int amount) {
+inline void dComIfGp_setItemRupeeCount(int amount) {
     g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
 }
 
@@ -1948,7 +1925,7 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention().getCatchChgItem();
 }
 
-inline fopAc_ac_c* i_dComIfGp_att_getCatghTarget() {
+inline fopAc_ac_c* dComIfGp_att_getCatghTarget() {
     return dComIfGp_getAttention().getCatghTarget();
 }
 
@@ -1984,11 +1961,11 @@ inline fopAc_ac_c* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
 }
 
-inline int i_dComIfGp_getPlayerCameraID(int idx) {
+inline int dComIfGp_getPlayerCameraID(int idx) {
     return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
 }
 
-inline daHorse_c* i_dComIfGp_getHorseActor() {
+inline daHorse_c* dComIfGp_getHorseActor() {
     return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
 }
 
@@ -2625,7 +2602,7 @@ inline void dComIfGp_clearPlayerStatus1(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 1, flag);
 }
 
-inline dStage_stageDt_c* i_dComIfGp_getStage() {
+inline dStage_stageDt_c* dComIfGp_getStage() {
     return &g_dComIfG_gameInfo.play.getStage();
 }
 
@@ -3000,7 +2977,7 @@ inline void dComIfGp_deleteSimpleModel() {
     g_dComIfG_gameInfo.play.deleteSimpleModel();
 }
 
-inline void i_dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
+inline void dComIfGp_setHitMark(u16 i_hitmark, fopAc_ac_c* param_1, const cXyz* param_2,
                                   const csXyz* param_3, const cXyz* param_4, u32 i_atType) {
     g_dComIfG_gameInfo.play.getParticle()->setHitMark(i_hitmark, param_1, param_2, param_3, param_4,
                                                       i_atType);
@@ -3105,11 +3082,11 @@ inline void dComIfGp_roomControl_zoneCountCheck(int i_roomNo) {
     g_dComIfG_gameInfo.play.mRoomControl.zoneCountCheck(i_roomNo);
 }
 
-inline u8 i_dComIfGp_getRStatus() {
+inline u8 dComIfGp_getRStatus() {
     return g_dComIfG_gameInfo.play.getRStatus();
 }
 
-inline void i_dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
+inline void dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
     g_dComIfG_gameInfo.play.setBottleStatus(param_0, param_1);
 }
 
@@ -3117,7 +3094,7 @@ inline void dComIfGp_setBottleStatusForce(u8 param_0, u8 param_1) {
     g_dComIfG_gameInfo.play.setBottleStatusForce(param_0, param_1);
 }
 
-inline u8 i_dComIfGp_getDoStatus() {
+inline u8 dComIfGp_getDoStatus() {
     return g_dComIfG_gameInfo.play.getDoStatus();
 }
 
@@ -3125,11 +3102,11 @@ inline u8 dComIfGp_getAdvanceDirection() {
     return g_dComIfG_gameInfo.play.getDirection();
 }
 
-inline dEvt_control_c& i_dComIfGp_getEvent() {
+inline dEvt_control_c& dComIfGp_getEvent() {
     return g_dComIfG_gameInfo.play.getEvent();
 }
 
-inline dEvent_manager_c& i_dComIfGp_getEventManager() {
+inline dEvent_manager_c& dComIfGp_getEventManager() {
     return g_dComIfG_gameInfo.play.getEvtManager();
 }
 
@@ -3167,11 +3144,11 @@ inline void dComIfGp_event_setGtItm(int i_itemNo) {
     g_dComIfG_gameInfo.play.getEvent().setGtItm(i_itemNo);
 }
 
-inline void i_dComIfGp_event_reset() {
+inline void dComIfGp_event_reset() {
     g_dComIfG_gameInfo.play.getEvent().reset();
 }
 
-inline void i_dComIfGp_event_remove() {
+inline void dComIfGp_event_remove() {
     g_dComIfG_gameInfo.play.getEvent().remove();
 }
 
@@ -3191,7 +3168,7 @@ inline cXyz* dComIfGp_evmng_getGoal() {
     return dComIfGp_getPEvtManager()->getGoal();
 }
 
-inline BOOL i_dComIfGp_evmng_startCheck(char const* i_event) {
+inline BOOL dComIfGp_evmng_startCheck(char const* i_event) {
     return g_dComIfG_gameInfo.play.getEvtManager().startCheckOld(i_event);
 }
 
@@ -3247,7 +3224,7 @@ inline fopAc_ac_c* dComIfGp_event_getPt2() {
     return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
 }
 
-inline BOOL i_dComIfGp_event_runCheck() {
+inline BOOL dComIfGp_event_runCheck() {
     return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
 
@@ -3256,13 +3233,13 @@ inline f32 dComIfGp_event_getCullRate() {
 }
 
 inline u16 dComIfGp_event_checkHind(u16 flag) {
-    if (!i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_event_runCheck()) {
         return false;
     }
     return g_dComIfG_gameInfo.play.getEvent().checkHind(flag);
 }
 
-inline u16 i_dComIfGp_event_chkEventFlag(u16 flag) {
+inline u16 dComIfGp_event_chkEventFlag(u16 flag) {
     return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(flag);
 }
 
@@ -3278,7 +3255,7 @@ inline u8 dComIfGp_event_getMode() {
     return g_dComIfG_gameInfo.play.getEvent().getMode();
 }
 
-inline int i_dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
+inline int dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
     return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
 }
 

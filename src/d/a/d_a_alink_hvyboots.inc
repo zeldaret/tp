@@ -64,7 +64,7 @@ int daAlink_c::setHeavyBoots(int param_0) {
             deleteEquipItem(TRUE, FALSE);
         }
 
-        if (i_checkNoResetFlg0(FLG0_UNDERWATER) && !i_dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
+        if (i_checkNoResetFlg0(FLG0_UNDERWATER) && !dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
             return procSwimWaitInit(0);
         }
 

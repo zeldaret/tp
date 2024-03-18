@@ -38,7 +38,7 @@ BOOL dEvLib_callback_c::setEvent(int mapToolId, int eventIdx, int param_2) {
     } else {
         mActor->eventInfo.setMapToolId(mapToolId);
         if (mapToolId != 0xFF && eventIdx == 0xFF) {
-            eventIdx = i_dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
+            eventIdx = dComIfGp_getEventManager().getEventIdx(mActor, mapToolId);
         }
         mActor->eventInfo.setEventId(eventIdx);
         _C = param_2;
@@ -112,10 +112,10 @@ BOOL dEvLib_callback_c::initRun() {
 /* 80048B48-80048BD8 043488 0090+00 1/0 0/0 0/0 .text            executeRun__17dEvLib_callback_cFv
  */
 BOOL dEvLib_callback_c::executeRun() {
-    if (!i_dComIfGp_getEventManager().endCheck(mActor->eventInfo.getEventId())) {
+    if (!dComIfGp_getEventManager().endCheck(mActor->eventInfo.getEventId())) {
         return eventRun();
     } else {
-        i_dComIfGp_getEvent().reset();
+        dComIfGp_getEvent().reset();
         setAction(NULL);
         return eventEnd();
     }

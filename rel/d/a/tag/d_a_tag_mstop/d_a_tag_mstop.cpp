@@ -221,14 +221,14 @@ int daTagMstop_c::execute() {
 
     if (field_0x56e == 4) {
         if (field_0x5c8.abs2(player_p->current.pos) < 2500.0f) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             player_p->i_cancelOriginalDemo();
             field_0x56e = 0;
         }
     } else if (field_0x56e == 3) {
         if (player_p->checkHorseRide()) {
             player_p->setPlayerPosAndAngle(&field_0x5c8, player_p->shape_angle.y, 0);
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             field_0x56e = 0;
         } else {
             field_0x56e = 4;
@@ -241,7 +241,7 @@ int daTagMstop_c::execute() {
     } else if (eventInfo.checkCommandTalk()) {
         if (field_0x56e == 2) {
             if (!midna_p->checkShadowModelDraw() || midna_p->checkShadowReturnEnd()) {
-                i_dComIfGp_getEvent().reset(this);
+                dComIfGp_getEvent().reset(this);
                 fopAcM_orderPotentialEvent(this, 0x400, 0x14f, 1);
                 field_0x56e = 3;
             }
@@ -261,13 +261,13 @@ int daTagMstop_c::execute() {
         }
     } else if ((mSwitch != 0xFF && fopAcM_isSwitch(this, mSwitch)) ||
                (field_0x572 != 0xFFFF &&
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])))
+                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572])))
     {
         fopAcM_delete(this);
         return 1;
     } else if ((field_0x568 != 0xFF && !fopAcM_isSwitch(this, field_0x568)) ||
                (field_0x570 != 0xFFFF &&
-                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])))
+                !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])))
     {
         return 1;
     } else if (current.pos.y <= player_p->current.pos.y && field_0x5c4 >= player_p->current.pos.y &&

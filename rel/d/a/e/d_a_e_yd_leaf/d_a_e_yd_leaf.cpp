@@ -20,7 +20,7 @@ static int daE_YD_LEAF_Draw(e_yd_leaf_class* i_this) {
 /* 807F7EC0-807F7FEC 000120 012C+00 2/1 0/0 0/0 .text daE_YD_LEAF_Execute__FP15e_yd_leaf_class */
 static int daE_YD_LEAF_Execute(e_yd_leaf_class* i_this) {
     if (i_this->field_0x5ba == 0) {
-        stage_stag_info_class* pstag = i_dComIfGp_getStage()->getStagInfo();
+        stage_stag_info_class* pstag = dComIfGp_getStage()->getStagInfo();
         if (dStage_stagInfo_GetSTType(pstag) != ST_FIELD &&
             fopAcM_SearchByID(i_this->parentActorID) == NULL)
         {

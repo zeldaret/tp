@@ -425,7 +425,7 @@ static void daKytag06_Ganon_wether_proc(kytag06_class* i_this, u8 param_1) {
         break;
     }
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         g_env_light.mThunderEff.mMode = 1;
     }
 }
@@ -807,13 +807,13 @@ static void daKytag06_type_09_Execute(kytag06_class* i_this) {
  */
 static void daKytag06_type_10_Execute(kytag06_class* i_this) {
     u8 tmp = 0;
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0266)) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::F_0266)) {
         // 2008: Snowpeak Ruins completed
         tmp = 0;
-    } else if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0065)) {
+    } else if (dComIfGs_isEventBit(dSv_event_flag_c::F_0065)) {
         // 1420: Talked to Yeta after giving cheese
         tmp = 2;
-    } else if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0064)) {
+    } else if (dComIfGs_isEventBit(dSv_event_flag_c::F_0064)) {
         // 1440: Talked to Yeta after giving pumpkin
         tmp = 1;
     }
@@ -948,7 +948,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
         switch (i_this->mMode) {
         case 0:
             // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::M_071) && !i_dComIfGs_isEventBit(dSv_event_flag_c::F_0250)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::M_071) && !dComIfGs_isEventBit(dSv_event_flag_c::F_0250)) {
                 i_this->mMode = 1;
                 i_this->field_0x578 = 450;
                 dKy_change_colpat(i_this->field_0x591);
@@ -1167,7 +1167,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
                     if (time < 255.0f) {
                         time += 0.03f;
 
-                        if (i_dComIfGp_event_runCheck()) {
+                        if (dComIfGp_event_runCheck()) {
                             time += 0.1f;
                         }
 
@@ -1246,7 +1246,7 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
 
     if (this_->field_0x597 == 0) {
         // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
-        if (i_dComIfGs_isEventBit(0x0C01) && !i_dComIfGs_isEventBit(0x1E08) && this_->mSwNo != 0xFF)
+        if (dComIfGs_isEventBit(0x0C01) && !dComIfGs_isEventBit(0x1E08) && this_->mSwNo != 0xFF)
         {
             s32 stayNo = dComIfGp_roomControl_getStayNo();
 

@@ -89,19 +89,19 @@ int daObjTable_c::Create() {
         mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
     } else {
         if (dComIfG_play_c::getLayerNo(0) == 4) {
-            if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
+            if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
                 mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
             }
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
-                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
+                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
+                !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
             {
                 mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
             }
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
-                i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
-                !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
+                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
+                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
+                !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
             {
                 mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
             }
@@ -110,9 +110,9 @@ int daObjTable_c::Create() {
         }
     }
 
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[103]) &&
-        !(!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
-          i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[103]) &&
+        !(!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
+          dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
     {
         mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
         attention_info.flags = 0;
@@ -141,19 +141,19 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
     eventInfo.i_onCondition(1);
 
     dComIfG_inf_c& gameInfo = g_dComIfG_gameInfo;
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
                 gameInfo.getPlay().getEvent().reset(this);  // Fake match?
                 eventInfo.setArchiveName("Table");
-                i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-                mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);
+                dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+                mEventID = dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);
 
                 fopAcM_orderChangeEventId(this, mEventID, 1, -1);
             }
-        } else if (i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
+        } else if (dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
                    eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
-                   i_dComIfGp_getEventManager().endCheck(mEventID))
+                   dComIfGp_getEventManager().endCheck(mEventID))
         {
             mEventID = -1;
             dMeter2Info_setPauseStatus(7);

@@ -92,7 +92,7 @@ cPhs__Step daObjCdoor_c::create() {
         if (mType == 1) {
             mIsOpen = fopAcM_isSwitch(this, mSw);
             mMapToolID = (fopAcM_GetParam(this) >> 0xc) & 0xff;
-            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+            mEventID = dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
             setAction(ACT_WAIT);
             if (mMapToolID == 0xff) {
                 setAction(ACT_DEAD);
@@ -304,7 +304,7 @@ void daObjCdoor_c::actionOrderEvent() {
 void daObjCdoor_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACT_DEAD);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 }
 

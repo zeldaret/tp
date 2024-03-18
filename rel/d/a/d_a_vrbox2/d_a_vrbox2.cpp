@@ -305,7 +305,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
     kumo_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
     mDoExt_modelUpdateDL(kumo_model_p);
 
-    if (dStage_stagInfo_GetArg0(i_dComIfGp_getStage()->getStagInfo()) != 0 && sun_model_p != NULL &&
+    if (dStage_stagInfo_GetArg0(dComIfGp_getStage()->getStagInfo()) != 0 && sun_model_p != NULL &&
         sun_p != NULL && sun_p->mSunAlpha > 0.0f)
     {
         sp14 = sun_p->mPos[0];
@@ -473,7 +473,7 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 
     wind_vec = *windVec_p;
 
-    dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     cam_eye = camera_p->mLookat.mEye;
     cam_center = camera_p->mLookat.mCenter;

@@ -160,7 +160,7 @@ void daTag_SSDrink_c::setAttnPos() {
 /* 80D63208-80D63384 0004C8 017C+00 1/1 0/0 0/0 .text            chkEvent__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::chkEvent() {
     int retVal = 1;
-    if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().i_isOrderOK()) {
         retVal = 0;
         if (eventInfo.checkCommandTalk()) {
             if (!checkProcess(&daTag_SSDrink_c::talk) == 0) {
@@ -242,7 +242,7 @@ int daTag_SSDrink_c::talk(void* param_0) {
         break;
     case 1:
         if (field_0x578.doFlow(this, NULL, 0) != 0) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             setProcess(&daTag_SSDrink_c::wait);
             retVal = 1;
         }

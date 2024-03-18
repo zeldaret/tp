@@ -186,7 +186,7 @@ f32 daAlink_c::damageMagnification(int i_checkZoraMag, int param_1) {
 #ifdef NONMATCHING
 int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgTimer, int param_3) {
     if (i_dmgAmount <= 0) {
-        i_dComIfGp_setItemLifeCount(-i_dmgAmount, 0);
+        dComIfGp_setItemLifeCount(-i_dmgAmount, 0);
         return 0;
     }
 
@@ -201,9 +201,9 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
     }
 
     if (checkMagicArmorNoDamage()) {
-        i_dComIfGp_setItemRupeeCount(-magnified_dmg * 10);
+        dComIfGp_setItemRupeeCount(-magnified_dmg * 10);
     } else {
-        i_dComIfGp_setItemLifeCount(-magnified_dmg, 0);
+        dComIfGp_setItemLifeCount(-magnified_dmg, 0);
     }
 
     i_onResetFlg1(0x400);

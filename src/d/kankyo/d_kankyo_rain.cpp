@@ -582,7 +582,7 @@ void dKyr_sun_move() {
     u8 var_r21 = 0;
     s32 var_r20 = 0;
 
-    u32 st_type = dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    u32 st_type = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     if (g_env_light.mBaseLightInfluence.mColor.r == 0 && st_type != ST_ROOM) {
         dKyr_get_vectle_calc(&camera_p2->mLookat.mEye, &g_env_light.mBaseLightInfluence.mPosition,
@@ -608,8 +608,8 @@ void dKyr_sun_move() {
     var_f1 *= var_f1;
     temp_f31 = 1.0f - var_f1;
 
-    if (i_dComIfGp_getStage()->getStagInfo() != NULL) {
-        dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    if (dComIfGp_getStage()->getStagInfo() != NULL) {
+        dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
     }
 
     if (sun_p->field_0x28) {
@@ -715,7 +715,7 @@ void dKyr_sun_move() {
     }
 
     if (sp54.y > 0.0f && g_env_light.mpSunLenzPacket->mDrawLenzInSky == 0) {
-        if (dStage_stagInfo_GetArg0(i_dComIfGp_getStage()->getStagInfo()) != 0) {
+        if (dStage_stagInfo_GetArg0(dComIfGp_getStage()->getStagInfo()) != 0) {
             f32 var_f1_3;
             if (S_parcent_bak < var_f30) {
                 var_f1_3 = var_f30 - S_parcent_bak;
@@ -1130,7 +1130,7 @@ void dKyr_rain_move() {
     var_r21 = 0;
     var_r20 = 0;
 
-    dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     cXyz spA4;
     cXyz sp98;

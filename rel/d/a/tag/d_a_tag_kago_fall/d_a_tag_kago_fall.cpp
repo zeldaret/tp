@@ -98,7 +98,7 @@ void daTagKagoFall_c::actionWaitRiver() {
             }
         }
 
-        if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) && i_dComIfGs_getLife()) {
+        if (dComIfGp_checkPlayerStatus0(0, 0x100000) && dComIfGs_getLife()) {
             if (!eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(this, 1, -1, 3);
                 eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
@@ -196,7 +196,7 @@ void daTagKagoFall_c::actionWaitFall() {
         break;
 
     case 1:
-        if (i_dComIfGs_getLife() == 0) {
+        if (dComIfGs_getLife() == 0) {
             player->onSceneChangeAreaJump(mExitID, -1, NULL);
 
             if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)

@@ -1300,7 +1300,7 @@ void daE_YM_c::damage_check() {
                 field_0x5bc.startCreatureSound(Z2SE_EN_YM_DEATH, 0, -1);
 
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
-                    i_dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
+                    dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
                 }
 
                 setActionMode(ACT_DOWN);

@@ -51,7 +51,7 @@ inline int daTagLv8Gate_c::create() {
     fopAcM_SetupActor(this, daTagLv8Gate_c);
 
     cPhs__Step step;
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         step = cPhs_ERROR_e;
     } else {
         step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
@@ -129,15 +129,15 @@ int daTagLv8Gate_c::execute() {
     dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
 
     if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = i_dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
+        s32 cut_index = dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
 
         if (cut_index != -1) {
-            int* cut_name = (int*)i_dComIfGp_getEventManager().getMyNowCutName(cut_index);
+            int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
 
-            if (i_dComIfGp_getEventManager().getIsAddvance(cut_index)) {
+            if (dComIfGp_getEventManager().getIsAddvance(cut_index)) {
                 switch (*cut_name) {
                 case '0001':
-                    i_dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                    dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y,
                                                                      0);
 
@@ -153,8 +153,8 @@ int daTagLv8Gate_c::execute() {
                 }
             }
 
-            if (i_dComIfGp_getEvent().i_checkSkipEdge()) {
-                i_dComIfGp_event_reset();
+            if (dComIfGp_getEvent().i_checkSkipEdge()) {
+                dComIfGp_event_reset();
                 dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             }
 
@@ -188,8 +188,8 @@ int daTagLv8Gate_c::execute() {
             fopAcM_cancelCarryNow(this);
             attention_info.flags &= ~0x10;
             eventInfo.setArchiveName(l_arcName);
-            i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
+            dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+            mEventID = dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);
             fopAcM_orderOtherEventId(this, mEventID, -1, -1, 0, 1);
         }
     }

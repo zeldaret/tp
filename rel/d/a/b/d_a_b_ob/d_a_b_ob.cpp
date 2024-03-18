@@ -2822,7 +2822,7 @@ asm void daPy_py_c::cancelOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_event_reset() {
+static asm void dComIfGp_event_reset__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_event_reset__Fv.s"
 }

@@ -250,7 +250,7 @@ int daObjKGate_c::Create() {
         if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no)) {
             eventInfo.setArchiveName(l_arcName[mNameArg]);
 
-            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
+            mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
             mMapToolID = getEventID();
             setAction(ACT_WAIT_EVENT);
         } else {
@@ -414,7 +414,7 @@ int daObjKGate_c::checkAreaL(cXyz const* param_0, cXyz const* param_1) {
 
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -499,7 +499,7 @@ int daObjKGate_c::checkAreaR(cXyz const* param_0, cXyz const* param_1) {
 
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -672,7 +672,7 @@ void daObjKGate_c::action_typeA() {
             }
         }
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL && horse_p->speedF != 0.0f) {
             if (chk_l == AREA_CHECK_HORSE) {
                 switch (checkDirL(horse_p)) {
@@ -897,7 +897,7 @@ void daObjKGate_c::actionWaitEvent() {
 void daObjKGate_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACT_DEAD);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -918,7 +918,7 @@ void daObjKGate_c::event_proc_call() {
 
 /* 8058A3A4-8058A508 0023A4 0164+00 1/1 0/0 0/0 .text            demoProc__12daObjKGate_cFv */
 void daObjKGate_c::demoProc() {
-    mStaffID = i_dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
+    mStaffID = dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
     int demo_action = getDemoAction();
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {

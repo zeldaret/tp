@@ -1928,7 +1928,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
 
         i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
             if (fpcEx_Search(s_fish_sub, i_this) != NULL) {
                 i_this->mAction = npc_ne_class::ACT_HOME;
                 i_this->mState = 10;
@@ -3583,7 +3583,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
 
     case 1:
     default:
-        if (!i_dComIfGs_isEventBit(0x1001)) {
+        if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
             fopAcM_OffStatus(i_this, 0x100);
@@ -4262,7 +4262,7 @@ static int message(npc_ne_class* i_this) {
     if (i_this->field_0xc0a != 0) {
         i_this->field_0x656 = 10;
         if (i_this->mMsgFlow.doFlow(i_this, NULL, 0)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             i_this->field_0xc0a = 0;
             if (i_this->field_0x5b7 == 1 && (i_this->mMsgFlow.getNowMsgNo() == 0x18a1 ||
                                            i_this->mMsgFlow.getNowMsgNo() == 0x18a2)) {
@@ -4272,7 +4272,7 @@ static int message(npc_ne_class* i_this) {
         }
         return 1;
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsgFlow.init(i_this, i_this->mFlowID, 0, NULL);
             i_this->field_0xc0a = 1;
         }
@@ -4335,7 +4335,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->field_0x640++;
 
     if (i_this->field_0x701 != 0 && (i_this->field_0x640 & 0xf) == 0) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
             if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
                 i_this->mNoFollow = false;
@@ -4531,7 +4531,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     
     if (_this->field_0x5b4 == 3) {
         static int dish_bck[2] = {9, 8};
-        int dish_flag = i_dComIfGs_isEventBit(0x1001) ? 1 : 0;
+        int dish_flag = dComIfGs_isEventBit(0x1001) ? 1 : 0;
         _this->mpDishMorf =
             new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes(_this->mResName, 29), NULL, NULL,
                     (J3DAnmTransform*)dComIfG_getObjectRes(_this->mResName, dish_bck[dish_flag]),
@@ -4628,7 +4628,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         _this->field_0x5b7 = (u8)(fopAcM_GetParam(_this) >> 0x18);
 
         if (_this->field_0x5b7 == 1 &&
-                        !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
+                        !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
             return cPhs_ERROR_e;
         }
 
@@ -4652,7 +4652,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             if (_this->field_0x5b4 == 1) {
                 _this->mAction = npc_ne_class::ACT_TAME;
             } else if (_this->field_0x5b4 == 2) {
-                if (i_dComIfGs_isEventBit(0x1001)) {
+                if (dComIfGs_isEventBit(0x1001)) {
                     _this->mAction = npc_ne_class::ACT_ROOF;
                     _this->current.pos.set(1005.0f, 766.0f, -1423.0f);
                     _this->old = _this->home = _this->current;

@@ -7,7 +7,7 @@
 
 /* 800DFFE0-800E0010 0DA920 0030+00 0/0 0/0 1/1 .text checkBoomerangLockAccept__9daAlink_cFv */
 BOOL daAlink_c::checkBoomerangLockAccept() {
-    return mSight.getDrawFlg() && i_dComIfGp_checkPlayerStatus0(0, 0x80000);
+    return mSight.getDrawFlg() && dComIfGp_checkPlayerStatus0(0, 0x80000);
 }
 
 /* 800E0010-800E00B0 0DA950 00A0+00 0/0 0/0 1/1 .text            getBoomSpeed__9daAlink_cFv */

@@ -404,7 +404,7 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 int daObjMasterSword_c::create() {
     fopAcM_SetupActor(this, daObjMasterSword_c);
 
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()])) {
         return cPhs_ERROR_e;
     }
 
@@ -651,7 +651,7 @@ int daObjMasterSword_c::execute() {
         dMeter2Info_setSword(MASTER_SWORD, false);
         dComIfGs_setSelectEquipSword(MASTER_SWORD);
 
-        i_dComIfGp_setItemLifeCount(dComIfGs_getMaxLife(), 0);
+        dComIfGp_setItemLifeCount(dComIfGs_getMaxLife(), 0);
         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()]);
         fopAcM_delete(this);
     }

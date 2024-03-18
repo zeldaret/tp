@@ -331,8 +331,8 @@ bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* param_2,
             if (polypass->ChkNoHorse()) {
                 return true;
             }
-            if (polypass->ChkHorse() && i_dComIfGp_getHorseActor() != NULL) {
-                if (!i_dComIfGp_getHorseActor()->checkSpecialWallHit(param_4)) {
+            if (polypass->ChkHorse() && dComIfGp_getHorseActor() != NULL) {
+                if (!dComIfGp_getHorseActor()->checkSpecialWallHit(param_4)) {
                     return true;
                 }
             }

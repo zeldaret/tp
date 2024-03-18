@@ -219,7 +219,7 @@ asm void daAlink_c::setHookshotCatchNow() {
 /* 80108A90-80108B34 1033D0 00A4+00 1/0 0/0 0/0 .text setHookshotCarryOffset__9daAlink_cFUiPC4cXyz
  */
 bool daAlink_c::setHookshotCarryOffset(unsigned int i_carryActorID, cXyz const* i_posOffset) {
-    if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+    if (dComIfGp_checkPlayerStatus1(0, 0x10000)) {
         fopAc_ac_c* carryActor_p = mCargoCarryAcKeep.getActor();
 
         if (carryActor_p != NULL && fopAcM_checkHookCarryNow(carryActor_p) &&
@@ -943,7 +943,7 @@ void daAlink_c::setHookshotPos() {
                         mItemMode = HS_MODE_FLY_e;
                         hit_se = Z2SE_HIT_HOOKSHOT_STICK;
 
-                        if (i_dComIfGp_checkPlayerStatus1(0, 0x2010000) != 0 &&
+                        if (dComIfGp_checkPlayerStatus1(0, 0x2010000) != 0 &&
                             mCargoCarryAcKeep.getActor() == NULL)
                         {
                             mPolyInfo3.SetPolyInfo(mPolyInfo2);
@@ -989,7 +989,7 @@ void daAlink_c::setHookshotPos() {
                         } else {
                             sp30.set(cM_atan2s(poly.mNormal.y, poly.mNormal.absXZ()),
                                      cM_atan2s(-poly.mNormal.x, -poly.mNormal.z), 0);
-                            i_dComIfGp_setHitMark(9, NULL, mRopeLinChk.GetCrossP(), &sp30, NULL, 0);
+                            dComIfGp_setHitMark(9, NULL, mRopeLinChk.GetCrossP(), &sp30, NULL, 0);
                         }
                     }
 
@@ -1026,11 +1026,11 @@ void daAlink_c::setHookshotPos() {
     mpHookTipModel->calc();
 
     f32 bck_frame;
-    if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+    if (dComIfGp_checkPlayerStatus1(0, 0x10000)) {
         mDoMtx_stack_c::transS(mIronBallBgChkPos);
         mDoMtx_stack_c::ZXYrotM(-0x4000, field_0x3022, 0);
         bck_frame = 14.0f;
-    } else if (i_dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
+    } else if (dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
         mDoMtx_stack_c::transS(mIronBallBgChkPos);
         mDoMtx_stack_c::ZXYrotM(0, field_0x3022, 0);
         bck_frame = 14.0f;
@@ -1113,7 +1113,7 @@ void daAlink_c::setHookshotWallWaitAnime() {
 #ifdef NONMATCHING
 void daAlink_c::hookshotRoofTurn() {
     BOOL play_sound = false;
-    if (!i_dComIfGp_checkPlayerStatus0(0, 0x2000)) {
+    if (!dComIfGp_checkPlayerStatus0(0, 0x2000)) {
         f32 max_rise_y = (mIronBallBgChkPos.y + 15.0f) - 1.5f;
         f32 min_descend_y = mIronBallBgChkPos.y - daAlinkHIO_hookshot_c0::m.mMaxLength;
 
@@ -1219,7 +1219,7 @@ int daAlink_c::checkNextHookPoint() {
             field_0x3026 = 0;
             return procHookshotFlyInit();
         }
-    } else if (i_dComIfGp_checkPlayerStatus1(0, 0x10000) && checkHookshotRoofLv7Boss()) {
+    } else if (dComIfGp_checkPlayerStatus1(0, 0x10000) && checkHookshotRoofLv7Boss()) {
         if (!fopAcM_checkHookCarryNow(mCargoCarryAcKeep.getActor())) {
             field_0x3102 = shape_angle.y;
             return procCoLargeDamageInit(-6, 1, 0, 0, NULL, 0);
@@ -1247,7 +1247,7 @@ int daAlink_c::checkLandHookshotHang() {
         (!checkHookshotRoofLv7Boss() || !i_checkEquipHeavyBoots()) &&
         checkSetItemTrigger(HVY_BOOTS))
     {
-        if (i_dComIfGp_checkPlayerStatus1(0, 0x10000)) {
+        if (dComIfGp_checkPlayerStatus1(0, 0x10000)) {
             return procHookshotRoofBootsInit(mCargoCarryAcKeep.getActor());
         }
         setHeavyBoots(1);
@@ -1680,7 +1680,7 @@ int daAlink_c::procHookshotRoofWait() {
             mBodyAngle.y = 0;
             mBodyAngle.x = 0;
             offModeFlg(0x60000000);
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x2000)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x2000)) {
             setBodyAngleToCamera();
         }
     } else if (dCam_getBody()->ChangeModeOK(4)) {
@@ -2017,7 +2017,7 @@ int daAlink_c::procHookshotWallWait() {
             dComIfGp_clearPlayerStatus0(0, 0x2000);
             mBodyAngle.x = 0;
             offModeFlg(0x60000000);
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x2000)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x2000)) {
             s16 old_angle = shape_angle.y;
             shape_angle.y = field_0x310c;
             setBodyAngleToCamera();

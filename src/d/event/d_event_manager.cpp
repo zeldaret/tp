@@ -303,15 +303,15 @@ void dEvent_manager_c::endProc(s16 eventID, int close) {
             event->mEventState = 0;
             mCurrentEventType = 0;
             mCurrentEventCompositId = -1;
-            i_dComIfGp_getEvent().setPtD(NULL);
-            i_dComIfGp_getEvent().setPtI(NULL);
+            dComIfGp_getEvent().setPtD(NULL);
+            dComIfGp_getEvent().setPtI(NULL);
         }
     }
 }
 
 /* 80046E64-800473FC 0417A4 0598+00 0/0 1/1 0/0 .text            Sequencer__16dEvent_manager_cFv */
 void dEvent_manager_c::Sequencer() {
-    dEvt_control_c& evtControl = i_dComIfGp_getEvent();
+    dEvt_control_c& evtControl = dComIfGp_getEvent();
     dEvDtEvent_c* event = getEventData(mCurrentEventCompositId);
     dStage_MapEvent_dt_c* mapEvent = evtControl.getStageEventDt();
 
@@ -666,7 +666,7 @@ int dEvent_manager_c::startCheckOld(char const* name) {
 /* 80047A78-80047ADC 0423B8 0064+00 1/1 2/2 122/122 .text            endCheck__16dEvent_manager_cFs
  */
 int dEvent_manager_c::endCheck(s16 eventID) {
-    dEvDtEvent_c* event = getEventData(i_dComIfGp_getEvent().runningEventID(eventID));
+    dEvDtEvent_c* event = getEventData(dComIfGp_getEvent().runningEventID(eventID));
     if (event == NULL) {
         return 0;
     } else {
@@ -689,7 +689,7 @@ int dEvent_manager_c::getMyStaffId(char const* staffName, fopAc_ac_c* pActor, in
     int staffNum;
     int i;
     int evtIdx = -1;
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return -1;
     } else {
         if (pActor != NULL) {
@@ -758,7 +758,7 @@ int dEvent_manager_c::getMyStaffId(char const* staffName, fopAc_ac_c* pActor, in
 
 /* 80047D4C-80047DAC 04268C 0060+00 0/0 9/9 417/417 .text getIsAddvance__16dEvent_manager_cFi */
 int dEvent_manager_c::getIsAddvance(int staffIdx) {
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return 0;
     } else if (staffIdx == -1) {
         return 0;
@@ -793,7 +793,7 @@ static int dEvmng_strcmp(char const* strA, char* strB) {
  * getMyActIdx__16dEvent_manager_cFiPCPCciii                    */
 int dEvent_manager_c::getMyActIdx(int staffIdx, char const* const* param_1, int param_2,
                                   int param_3, int param_4) {
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return 0;
     } else if (staffIdx == -1) {
         return -1;
@@ -837,7 +837,7 @@ int dEvent_manager_c::getMyActIdx(int staffIdx, char const* const* param_1, int 
 
 /* 80047F5C-80047FC8 04289C 006C+00 1/1 9/9 62/62 .text getMyNowCutName__16dEvent_manager_cFi */
 char* dEvent_manager_c::getMyNowCutName(int cutIndex) {
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return NULL;
     } else if (cutIndex == -1) {
         return NULL;
@@ -850,7 +850,7 @@ char* dEvent_manager_c::getMyNowCutName(int cutIndex) {
 
 /* 80047FC8-800480EC 042908 0124+00 2/2 0/0 0/0 .text getMyDataP__16dEvent_manager_cFiPCci */
 dEvDtData_c* dEvent_manager_c::getMyDataP(int index, char const* name, int type) {
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return NULL;
     } else if (index == -1) {
         return NULL;
@@ -901,7 +901,7 @@ int dEvent_manager_c::getMySubstanceNum(int index, char const* name) {
 /* 8004817C-800481F4 042ABC 0078+00 1/1 78/78 182/182 .text            cutEnd__16dEvent_manager_cFi
  */
 void dEvent_manager_c::cutEnd(int cutIndex) {
-    if (i_dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
+    if (dComIfGp_getEvent().getMode() == EVT_MODE_NONE) {
         return;
     } else if (cutIndex == -1) {
         return;
@@ -1024,8 +1024,8 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
         goal.x += cM_ssin(angle) * 100;
         goal.z += cM_scos(angle) * 100;
         setGoal(&goal);
-        i_dComIfGp_getEvent().setPt2(shutterActor);
-        i_dComIfGp_getEvent().setPtD(shutterActor);
+        dComIfGp_getEvent().setPt2(shutterActor);
+        dComIfGp_getEvent().setPtD(shutterActor);
     }
     return shutterActor;
 }
@@ -1052,7 +1052,7 @@ fopAc_ac_c* dEvent_manager_c::specialCast(char const* name, int param_1) {
             shutterActor = specialCast_Shutter(0x22B, param_1);
         }
         if (shutterActor != NULL) {
-            i_dComIfGp_getEvent().onEventFlag(0x10);
+            dComIfGp_getEvent().onEventFlag(0x10);
         }
     }
 
@@ -1068,7 +1068,7 @@ fopAc_ac_c* dEvent_manager_c::specialCast(char const* name, int param_1) {
 
 /* 80048748-800487F0 043088 00A8+00 1/1 0/0 0/0 .text            dEv_talkman_get_action__Fi */
 static int dEv_talkman_get_action(int param_0) {
-    int staffId = i_dComIfGp_getEventManager().getMyStaffId("TALKMAN", NULL, -1);
+    int staffId = dComIfGp_getEventManager().getMyStaffId("TALKMAN", NULL, -1);
     if (staffId == -1) {
         return -1;
     } else {
@@ -1078,10 +1078,10 @@ static int dEv_talkman_get_action(int param_0) {
             "TALK0",
             "TALK1",
         };
-        int actIdx = i_dComIfGp_getEventManager().getMyActIdx(staffId, action_table,
+        int actIdx = dComIfGp_getEventManager().getMyActIdx(staffId, action_table,
                                                               ARRAY_SIZE(action_table), 0, 0);
         if (actIdx == param_0) {
-            i_dComIfGp_getEventManager().cutEnd(staffId);
+            dComIfGp_getEventManager().cutEnd(staffId);
         }
         return actIdx;
     }
@@ -1094,7 +1094,7 @@ int dEvent_manager_c::ChkPresentEnd() {
 
 /* 8004882C-8004886C 04316C 0040+00 0/0 2/2 2/2 .text checkStartDemo__16dEvent_manager_cFv */
 int dEvent_manager_c::checkStartDemo() {
-    if (!i_dComIfGp_getEvent().runCheck()) {
+    if (!dComIfGp_getEvent().runCheck()) {
         return 0;
     }
 

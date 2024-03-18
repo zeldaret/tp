@@ -2448,7 +2448,7 @@ static void do_message(do_class* i_this) {
     i_this->field_0x616 = 1;
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 2, 0x1000);
 
-    if (i_dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
+    if (dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
         i_this->mAction = ACT_STAY;
         i_this->mStayStatus = 0;
     }
@@ -2990,12 +2990,12 @@ static void message(do_class* i_this) {
         i_this->field_0x604 = 10;
 
         if (i_this->mMsg.doFlow(i_this, 0, 0)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             i_this->field_0xc06 = 0;
         }
 
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsg.init(i_this, i_this->field_0xc08, 0, 0);
             i_this->field_0xc06 = 1;
         }
