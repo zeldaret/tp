@@ -11,6 +11,9 @@ typedef struct _GXColor GXColor;
 class fopAc_ac_c;
 
 enum CcG_Tg_HitMark {
+    CcG_Tg_UNK_MARK_0 = 0,
+    CcG_Tg_UNK_MARK_2 = 2,
+    CcG_Tg_UNK_MARK_3 = 3,
     CcG_Tg_UNK_MARK_6 = 6,
     CcG_Tg_UNK_MARK_8 = 8,
 };

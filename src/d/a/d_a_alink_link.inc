@@ -2508,7 +2508,7 @@ SECTION_DEAD static char const* const pad_8039263C = "\0\0\0";
 int daAlink_c::execute() {
     loadModelDVD();
 
-    if (checkEndResetFlg0(ERFLG0_UNK_2000000) && getMidnaActor() != NULL) {
+    if (checkEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT) && getMidnaActor() != NULL) {
         getMidnaActor()->onNoServiceWait();
     }
 
@@ -4698,7 +4698,7 @@ extern "C" daSpinner_c* getSpinnerActor__9daAlink_cFv(daAlink_c* this_) {
     } else {
         spinnerActor = (daSpinner_c*)this_->mRideAcKeep.getActor();
     }
-    return spinnerActor;
+    return static_cast<daSpinner_c*>(spinnerActor);
 }
 
 /* 800D0274-800D027C 0CABB4 0008+00 1/0 0/0 0/0 .text            getSumouCounter__9daAlink_cCFv */

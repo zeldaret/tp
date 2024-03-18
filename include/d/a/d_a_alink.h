@@ -3023,7 +3023,7 @@ public:
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(f32);
-    virtual bool checkWolfLock(fopAc_ac_c*) const;
+    virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
     virtual s32 getItemID() const;
@@ -3062,7 +3062,7 @@ public:
     virtual u32 checkCanoeRide() const;
     virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual fopAc_ac_c* getSpinnerActor();
+    virtual daSpinner_c* getSpinnerActor();
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;

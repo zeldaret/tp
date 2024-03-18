@@ -49,7 +49,7 @@ public:
     /* 801F9470 */ u8 getSkillNum();
     /* 801F9500 */ void setHIO(bool);
 
-    /* 801F9A08 */ virtual void draw();
+    /* 801F9A08 */ virtual void draw() { _draw(); }
     /* 801F7348 */ virtual ~dMenu_Skill_c();
 
     u8 getStatus() { return mStatus; }
@@ -96,6 +96,6 @@ private:
     /* 0x209 */ u8 field_0x209;
     /* 0x20A */ u8 field_0x20a;
     /* 0x20B */ u8 mTotalSkillNum;
-};     // Size: 0x20C
+};  // Size: 0x20C
 
 #endif /* D_MENU_D_MENU_SKILL_H */

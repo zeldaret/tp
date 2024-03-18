@@ -237,6 +237,7 @@ public:
     void SetRVec(cXyz& vec) { mRVec = vec; }
     cXyz* GetVecP() { return &mVec; }
     void SetHitPos(cXyz& pos) { mHitPos = pos; }
+    cXyz* GetHitPosP() { return &mHitPos; }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -294,6 +295,9 @@ public:
     void OnAtNoConHit() { mGObjAt.OnSPrm(1); }
     void OffAtNoConHit() { mGObjAt.OffSPrm(1); }
     void OnTgNoConHit() { mGObjTg.OnSPrm(2); }
+    void OffTgNoConHit() { mGObjTg.OffSPrm(2); }
+    void OnTgStopNoConHit() { mGObjTg.OnSPrm(0x2000); }
+    void OffTgStopNoConHit() { mGObjTg.OffSPrm(0x2000); }
     void SetAtHitMark(u8 mark) { mGObjAt.SetHitMark(mark); }
     void SetAtSe(u8 se) { mGObjAt.SetSe(se); }
     void SetTgSe(u8 se) { mGObjTg.SetSe(se); }
@@ -324,7 +328,11 @@ public:
     void OffTgShieldFrontRange() { mGObjTg.OffSPrm(0x8); }
     void OnTgSmallShield() { mGObjTg.OnSPrm(0x10); }
     void OffTgSmallShield() { mGObjTg.OffSPrm(0x10); }
+    void OnTgIronBallRebound() { mGObjTg.OnSPrm(0x100); }
+    void OffTgIronBallRebound() { mGObjTg.OffSPrm(0x100); }
     bool ChkTgIronBallRebound() { return mGObjTg.ChkSPrm(0x100); }
+    void OnTgSpinnerReflect() { mGObjTg.OnSPrm(0x200); }
+    void OffTgSpinnerReflect() { mGObjTg.OffSPrm(0x200); }
     s16* GetTgShieldFrontRangeYAngle() { return mGObjTg.GetShieldFrontRangeYAngle(); }
     s16 GetTgShieldRange() { return mGObjTg.GetShieldRange(); }
     bool ChkTgShield() { return mGObjTg.ChkSPrm(1); }
@@ -380,6 +388,7 @@ public:
     void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
     u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
     cXyz* GetAtHitPosP() { return mGObjAt.GetHitPosP(); }
+    cXyz* GetTgHitPosP() { return mGObjTg.GetHitPosP(); }
     bool ChkTgHookshotThrough() { return mGObjTg.ChkSPrm(0x80); }
     
     static const Z2SoundID m_hitSeID[24];

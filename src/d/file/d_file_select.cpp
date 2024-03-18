@@ -117,7 +117,7 @@ extern "C" void backDatSelWait__14dFile_select_cFv();
 extern "C" void backDatSelWait2__14dFile_select_cFv();
 extern "C" void nextModeWait__14dFile_select_cFv();
 extern "C" void screenSet__14dFile_select_cFv();
-extern "C" void setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor();
+extern "C" bool setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor();
 extern "C" void setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey();
 extern "C" void screenSetCopySel__14dFile_select_cFv();
 extern "C" void screenSetYesNo__14dFile_select_cFv();
@@ -3878,7 +3878,8 @@ asm void dFile_select_c::screenSet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J2DPicture::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
+// J2DPicture::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1)
+extern "C" asm bool setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor() {
     nofralloc
 #include "asm/d/file/d_file_select/setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor.s"
 }
