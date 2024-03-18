@@ -221,7 +221,7 @@ void daAlink_c::rideGetOff() {
     }
 
     mRideStatus = 0;
-    i_offNoResetFlg1(FLG1_UNK_1800);
+    offNoResetFlg1(FLG1_UNK_1800);
     attention_info.field_0xa = 10;
     shape_angle.x = 0;
     shape_angle.z = 0;
@@ -236,7 +236,7 @@ BOOL daAlink_c::checkHorseNotDamageReaction() const {
 
 /* 800ECDC4-800ECDEC 0E7704 0028+00 1/1 0/0 2/2 .text checkHorseWaitLashAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkHorseWaitLashAnime() const {
-    return checkHorseUnderDashStartAnime() && i_checkModeFlg(1);
+    return checkHorseUnderDashStartAnime() && checkModeFlg(1);
 }
 
 /* 800ECDEC-800ECE10 0E772C 0024+00 1/1 0/0 0/0 .text checkHorseReinLeftOnly__9daAlink_cCFv */
@@ -520,7 +520,7 @@ int daAlink_c::checkHorseSpecialProc() {
         return 0;
     }
 
-    if (i_checkEndResetFlg2(ERFLG2_UNK_2)) {
+    if (checkEndResetFlg2(ERFLG2_UNK_2)) {
         current.pos = horse_p->current.pos;
         return procWaitInit();
     }
@@ -554,7 +554,7 @@ BOOL daAlink_c::checkHorseServiceWaitAnime() {
 #ifdef NONMATCHING
 int daAlink_c::setSyncHorse(int param_0) {
     daHorse_c* horse_p = dComIfGp_getHorseActor();
-    BOOL mode_1 = i_checkModeFlg(1);
+    BOOL mode_1 = checkModeFlg(1);
 
     setSyncHorsePos();
     if (checkHorseSpecialProc()) {
@@ -574,7 +574,7 @@ int daAlink_c::setSyncHorse(int param_0) {
         {
             field_0x3004 = daAlinkHIO_horse_c0::m.mNoWalkTime;
             setSingleAnimeParam(ANM_WSTARTH, &daAlinkHIO_horse_c0::m.mWalkAnm);
-            i_offNoResetFlg1(FLG1_UNK_1000);
+            offNoResetFlg1(FLG1_UNK_1000);
         }
     }
 
@@ -605,7 +605,7 @@ int daAlink_c::setSyncHorse(int param_0) {
                 setDoStatus(40);
 
                 if (doTrigger()) {
-                    i_onResetFlg0(RFLG0_UNK_200);
+                    onResetFlg0(RFLG0_UNK_200);
                     voiceStart(Z2SE_AL_V_RUSH_HORSE);
                     field_0x30a6 = daAlinkHIO_horse_c0::m.mWhipWaitTime;
                     setHorseSwordUpAnime();
@@ -627,12 +627,12 @@ int daAlink_c::setSyncHorse(int param_0) {
 
                 setUnderAnimeParam(getMainBckData(ANM_HORSE_LASH)->m_underID, UNDER_2,
                                    &daAlinkHIO_horse_c0::m.mWhipAnm);
-                i_onNoResetFlg1(FLG1_UNK_1000);
+                onNoResetFlg1(FLG1_UNK_1000);
                 horse_p->offPlayerBackRideLash();
                 voiceStart(Z2SE_AL_V_RUSH_HORSE);
 
                 if (horse_p->speedF <= horse_p->getNormalMaxSpeedF()) {
-                    i_onNoResetFlg1(FLG1_UNK_800);
+                    onNoResetFlg1(FLG1_UNK_800);
                 }
 
                 field_0x30a6 = daAlinkHIO_horse_c0::m.mWhipWaitTime;
@@ -647,11 +647,11 @@ int daAlink_c::setSyncHorse(int param_0) {
         horse_p->onMoveAccept();
     }
 
-    if (i_checkNoResetFlg1(FLG1_UNK_1000) &&
+    if (checkNoResetFlg1(FLG1_UNK_1000) &&
         ((checkHorseUnderDashStartAnime() && mUnderFrameCtrl[2].getFrame() > 13.0f) ||
          (checkHorseUnderLashAnime() && mUnderFrameCtrl[2].getFrame() > 13.0f)))
     {
-        i_offNoResetFlg1(FLG1_UNK_1000);
+        offNoResetFlg1(FLG1_UNK_1000);
         horse_p->onPlayerLash();
     }
 
@@ -680,7 +680,7 @@ int daAlink_c::setSyncHorse(int param_0) {
     BOOL var_r28 =
         checkAnmEnd(mUnderFrameCtrl) ||
         (checkHorseServiceWaitAnime() &&
-         (!checkNoUpperAnime() || horse_p->getAimNeckAngleY() != 0 || !i_checkModeFlg(1)));
+         (!checkNoUpperAnime() || horse_p->getAimNeckAngleY() != 0 || !checkModeFlg(1)));
 
     if (((var_r28 || sp8[0] == ANM_HORSE_TURN_LEFT || sp8[0] == ANM_HORSE_TURN_RIGHT ||
           sp8[0] == ANM_HORSE_DASH_START ||
@@ -737,7 +737,7 @@ asm int daAlink_c::setSyncHorse(int param_0) {
 #ifdef NONMATCHING
 int daAlink_c::setSyncBoar(int param_0) {
     e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
-    BOOL mode_1 = i_checkModeFlg(1);
+    BOOL mode_1 = checkModeFlg(1);
 
     if (!setSyncBoarPos()) {
         return 0;
@@ -761,7 +761,7 @@ int daAlink_c::setSyncBoar(int param_0) {
     }
 
     if ((checkAnmEnd(mUnderFrameCtrl) && mProcID != PROC_HORSE_CUT_TURN) ||
-        (checkHorseServiceWaitAnime() && (!checkNoUpperAnime() || !i_checkModeFlg(1))))
+        (checkHorseServiceWaitAnime() && (!checkNoUpperAnime() || !checkModeFlg(1))))
     {
         setBaseBoarAnime();
     } else if (mUnderAnmHeap[0].getIdx() == 0x1B3) {
@@ -821,7 +821,7 @@ int daAlink_c::setSyncRide(int param_0) {
         !checkBowAndSlingItem(mEquipItem) && checkZeroSpeedF() &&
         !checkUnderMove0BckNoArc(ANM_HORSE_TURN_LEFT) &&
         !checkUnderMove0BckNoArc(ANM_HORSE_TURN_RIGHT) && !checkUnderMove0BckNoArc(ANM_WSTARTH) &&
-        i_checkModeFlg(1))
+        checkModeFlg(1))
     {
         if (field_0x30ca != 0) {
             field_0x30ca--;
@@ -901,13 +901,13 @@ void daAlink_c::setHorseSwordUp(int param_0) {
     if (checkHorseRide() && checkNoUpperAnime() && mEquipItem == 0x103 &&
         !checkHorseZeldaBowMode() &&
         ((param_0 && checkHorseSwordUpSpped()) ||
-         (!param_0 && checkEnemyGroup(mTargetedActor) && i_checkNoResetFlg1(FLG1_UNK_800))))
+         (!param_0 && checkEnemyGroup(mTargetedActor) && checkNoResetFlg1(FLG1_UNK_800))))
     {
         setHorseSwordUpAnime();
         field_0x3002 = daAlinkHIO_horse_c0::m.mSwordUpTime;
     }
 
-    i_offNoResetFlg1(FLG1_UNK_800);
+    offNoResetFlg1(FLG1_UNK_800);
 }
 
 /* 800EEF30-800EF050 0E9870 0120+00 9/9 0/0 0/0 .text            setRideSubjectAngle__9daAlink_cFs
@@ -1319,7 +1319,7 @@ int daAlink_c::procHorseSubjectivityInit() {
 /* 800F12F8-800F13D8 0EBC38 00E0+00 1/0 0/0 0/0 .text            procHorseSubjectivity__9daAlink_cFv
  */
 int daAlink_c::procHorseSubjectivity() {
-    i_onResetFlg0(RFLG0_UNK_4000000);
+    onResetFlg0(RFLG0_UNK_4000000);
     s16 old_shape_angle = shape_angle.y;
     s16 old_angle = current.angle.y;
     int old_3190 = field_0x3190;
@@ -1380,7 +1380,7 @@ int daAlink_c::procHorseCutChargeReadyInit() {
 
     mProcVar2.field_0x300c = daAlinkHIO_cut_c0::m.mNormalSwingDuration;
     field_0x3004 = 0;
-    i_onNoResetFlg1(FLG1_UNK_10000000);
+    onNoResetFlg1(FLG1_UNK_10000000);
     return 1;
 }
 

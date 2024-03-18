@@ -462,7 +462,7 @@ BOOL daPy_py_c::checkWoodShieldEquip() {
 }
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8015F3FC-8015F424 159D3C 0028+00 0/0 4/4 3/3 .text            getAttentionOffsetY__9daPy_py_cFv

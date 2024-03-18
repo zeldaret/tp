@@ -49,7 +49,7 @@ int ShopCam_action_c::shop_cam_action_init() {
     Save();
 
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    player->i_onPlayerNoDraw();
+    player->onPlayerNoDraw();
 
     setCamAction(&ShopCam_action_c::shop_cam_action);
     if (field_0xd6 >= 0) {
@@ -156,7 +156,7 @@ void ShopCam_action_c::EventRecoverNotime() {
 /* 801963B4-801964C8 190CF4 0114+00 0/0 0/0 9/9 .text            Reset__16ShopCam_action_cFv */
 void ShopCam_action_c::Reset() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    player->i_offPlayerNoDraw();
+    player->offPlayerNoDraw();
 
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera->mCamera.Set(field_0x98, field_0xa4, field_0xbc, 0);
@@ -175,7 +175,7 @@ void ShopCam_action_c::move() {
     if (field_0xd8 > 0) {
         --field_0xd8;
         if (field_0xd8 == 0) {
-            ((daPy_py_c*)dComIfGp_getPlayer(0))->i_offPlayerNoDraw();
+            ((daPy_py_c*)dComIfGp_getPlayer(0))->offPlayerNoDraw();
         }
     }
 }

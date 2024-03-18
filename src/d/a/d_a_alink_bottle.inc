@@ -360,10 +360,10 @@ asm int daAlink_c::commonBottleDrink(int param_0) {
 fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
     cXyz fairy_pos;
 
-    if (i_checkModeFlg(0x40000)) {
+    if (checkModeFlg(0x40000)) {
         fairy_pos = *i_pos;
 
-        if (i_checkWolf()) {
+        if (checkWolf()) {
             fairy_pos.y -= lit_8247;
         } else {
             fairy_pos.y -= lit_6896;
@@ -377,7 +377,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
                                        &shape_angle, NULL, -1, NULL, NULL);
 
     field_0x285c.setData(fairy_actor);
-    i_onResetFlg0(RFLG0_UNK_400);
+    onResetFlg0(RFLG0_UNK_400);
 
     if (checkEventRun() && field_0x285c.getActor() != NULL) {
         fopAcM_OnStatus(field_0x285c.getActor(), 0x800);
@@ -641,7 +641,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
         setSingleAnimeParam(ANM_BOTTLE_SCOOP, &daAlinkHIO_bottle_c0::m.mScoopAnm);
 
         if (mEquipItem == KANTERA) {
-            i_onNoResetFlg2(FLG2_UNK_10000000);
+            onNoResetFlg2(FLG2_UNK_10000000);
 
             JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(field_0x31c4);
             if (emitter_p != NULL) {

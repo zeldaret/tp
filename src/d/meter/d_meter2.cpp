@@ -639,7 +639,7 @@ void dMeter2_c::checkStatus() {
     field_0x12c = field_0x128;
 
     // supposed to be daPy_py_c::checkNowWolf, but it messes with reg alloc?
-    field_0x128 = ((daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR))->i_checkWolf();
+    field_0x128 = ((daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR))->checkWolf();
 
     if (!dComIfGp_2dShowCheck() || dMsgObject_getMsgObjectClass()->isPlaceMessage()) {
         mStatus |= 0x4000;

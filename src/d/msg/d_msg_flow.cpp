@@ -1135,7 +1135,7 @@ int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
 }
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8024B180-8024B208 245AC0 0088+00 1/0 0/0 0/0 .text
@@ -1748,7 +1748,7 @@ int dMsgFlow_c::query052(mesg_flow_node_branch*, fopAc_ac_c*, int) {
  * query053__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query053(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     bool phi_r4 = false;
-    if (daPy_getPlayerActorClass()->i_checkEquipHeavyBoots()) {
+    if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
         phi_r4 = true;
     }
 

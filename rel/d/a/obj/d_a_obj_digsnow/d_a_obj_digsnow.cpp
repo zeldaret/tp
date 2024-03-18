@@ -95,7 +95,7 @@ int daObjDigSnow_c::create1st() {
 /* 80BDCE84-80BDCF00 0002A4 007C+00 1/0 0/0 0/0 .text            Execute__14daObjDigSnow_cFPPA3_A4_f
  */
 int daObjDigSnow_c::Execute(Mtx** i_mtx) {
-    if (dComIfGp_getLinkPlayer()->i_checkWolf()) {
+    if (dComIfGp_getLinkPlayer()->checkWolf()) {
         attention_info.flags = 0x80;
     } else {
         attention_info.flags = 0;

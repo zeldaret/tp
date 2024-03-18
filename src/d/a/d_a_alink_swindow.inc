@@ -62,7 +62,7 @@ void daAlink_c::setOriginalHeap(JKRExpHeap** p_heap, u32 param_1) {
 
 /* 80140038-80140064 13A978 002C+00 1/0 0/0 0/0 .text            setClothesChange__9daAlink_cFi */
 void daAlink_c::setClothesChange(int param_0) {
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         return;
     }
 
@@ -71,7 +71,7 @@ void daAlink_c::setClothesChange(int param_0) {
         return;
     }
 
-    i_onNoResetFlg2(FLG2_UNK_200000);
+    onNoResetFlg2(FLG2_UNK_200000);
 }
 
 /* 80140064-80140070 13A9A4 000C+00 0/0 1/1 0/0 .text            setShieldChange__9daAlink_cFv */
@@ -92,19 +92,19 @@ int daAlink_c::loadModelDVD() {
             mpWlMidnaHandModel = NULL;
             mpWlMidnaHairModel = NULL;
 
-            if (!i_checkNoResetFlg2(FLG2_UNK_280000)) {
+            if (!checkNoResetFlg2(FLG2_UNK_280000)) {
                 dComIfG_resDelete(&mPhaseReq, mArcName);
                 cPhs_Reset(&mPhaseReq);
                 field_0x0638->freeAll();
 
                 if (mProcID == PROC_METAMORPHOSE || mProcID == PROC_METAMORPHOSE_ONLY) {
-                    setArcName(!i_checkWolf());
+                    setArcName(!checkWolf());
                 } else {
-                    setArcName(i_checkWolf());
+                    setArcName(checkWolf());
                 }
             }
         } else if (mClothesChangeWaitTimer == 1) {
-            if (i_checkNoResetFlg2(FLG2_UNK_280000)) {
+            if (checkNoResetFlg2(FLG2_UNK_280000)) {
                 mClothesChangeWaitTimer = 0;
                 changeLink(1);
             } else {
@@ -112,7 +112,7 @@ int daAlink_c::loadModelDVD() {
                     mClothesChangeWaitTimer = 0;
 
                     if (mProcID == PROC_METAMORPHOSE || mProcID == PROC_METAMORPHOSE_ONLY) {
-                        if (i_checkWolf()) {
+                        if (checkWolf()) {
                             changeLink(0);
                         } else {
                             changeWolf();
@@ -197,11 +197,11 @@ void daAlink_c::initStatusWindow() {
     u16 var_r30;
     u16 var_r31;
 
-    i_onNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
+    onNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
     
     void* tmpBuffer = new (0x20) void*[0x500];
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         var_r28 = 0x2FF;
         var_r31 = 0x408;
         var_r30 = 0x3A7;
@@ -269,7 +269,7 @@ void daAlink_c::statusWindowExecute(cXyz const* param_0, s16 param_1) {
         m_sWindowBck->entry(field_0x064C);
         mpLinkModel->calc();
 
-        if (i_checkWolf()) {
+        if (checkWolf()) {
             setWolfItemMatrix();
         } else {
             setItemMatrix(1);
@@ -283,19 +283,19 @@ void daAlink_c::statusWindowDraw() {
         g_env_light.settingTevStruct(12, &current.pos, &tevStr);
         initTevCustomColor();
 
-        if (!i_checkWolf()) {
+        if (!checkWolf()) {
             setWaterDropColor((J3DGXColorS10*)&waterColor);
             setDrawHand();
         }
 
         basicModelDraw(mpLinkModel);
 
-        if (!i_checkWolf()) {
+        if (!checkWolf()) {
             basicModelDraw(mpLinkHandModel);
             basicModelDraw(mpLinkHatModel);
             basicModelDraw(mpLinkFaceModel);
 
-            if (i_checkEquipHeavyBoots()) {
+            if (checkEquipHeavyBoots()) {
                 for (int i = 0; i < 2; i++) {
                     basicModelDraw(mpLinkBootModels[i]);
                 }
@@ -317,9 +317,9 @@ void daAlink_c::statusWindowDraw() {
 
 /* 80140AC8-80140B88 13B408 00C0+00 0/0 1/1 0/0 .text            resetStatusWindow__9daAlink_cFv */
 void daAlink_c::resetStatusWindow() {
-    i_offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
+    offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         changeModelDataDirectWolf(1);
     } else {
         changeModelDataDirect(1);
@@ -327,15 +327,15 @@ void daAlink_c::resetStatusWindow() {
 
     setMatrix();
     mpLinkModel->calc();
-    i_onNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
+    onNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
     setSelectEquipItem(0);
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setWolfItemMatrix();
     } else {
         setItemMatrix(0);
     }
 
-    i_offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
+    offNoResetFlg2(FLG2_STATUS_WINDOW_DRAW);
     m_sWindowBck = NULL;
 }

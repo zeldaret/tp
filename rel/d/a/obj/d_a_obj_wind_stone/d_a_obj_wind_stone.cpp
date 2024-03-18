@@ -182,7 +182,7 @@ void daWindStone_c::exeModeHowl() {
     } else {
         s8 tuneId = getTuneId();
         // Fake match. Should be:
-        // daAlink_getAlinkActorClass()->daAlink_c::getWolfHowlMgrP()->startWindStoneSound(tuneId,
+        // daAlink_getAlinkActorClass()->daAlink_c::i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
         // &current.pos);
         daAlink_getAlinkActorClass()->i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
                                                                                &current.pos);

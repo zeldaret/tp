@@ -316,7 +316,7 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
         mProcVar3.field_0x300e.y = 0x10;
     }
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, lit_6109);
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, lit_6109);

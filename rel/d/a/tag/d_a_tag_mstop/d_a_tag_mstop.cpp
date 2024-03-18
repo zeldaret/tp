@@ -232,11 +232,11 @@ int daTagMstop_c::execute() {
             field_0x56e = 0;
         } else {
             field_0x56e = 4;
-            player_p->i_changeOriginalDemo();
-            field_0x56a == 0 ? player_p->i_changeDemoMode(3, 0, 0, 0) :
-                               player_p->i_changeDemoMode(2, 0, 0, 0);
+            player_p->changeOriginalDemo();
+            field_0x56a == 0 ? player_p->changeDemoMode(3, 0, 0, 0) :
+                               player_p->changeDemoMode(2, 0, 0, 0);
 
-            player_p->i_changeDemoPos0(&field_0x5c8);
+            player_p->changeDemoPos0(&field_0x5c8);
         }
     } else if (eventInfo.checkCommandTalk()) {
         if (field_0x56e == 2) {

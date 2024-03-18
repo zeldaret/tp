@@ -79,9 +79,9 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
     }
 
     s16 var_28;
-    if (checkHorseRide() && i_checkBoarSingleBattle() && dComIfGp_getHorseActor() != NULL) {
+    if (checkHorseRide() && checkBoarSingleBattle() && dComIfGp_getHorseActor() != NULL) {
         var_28 = dComIfGp_getHorseActor()->shape_angle.y;
-    } else if (i_checkMagneBootsOn()) {
+    } else if (checkMagneBootsOn()) {
         var_28 = field_0x3118;
     } else {
         var_28 = shape_angle.y;
@@ -136,7 +136,7 @@ void daAlink_c::deleteArrow() {
 
     if (arrow_p != NULL && fopAcM_GetName(arrow_p) == PROC_ARROW) {
         if (arrow_p->checkBombArrow() &&
-            (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || i_checkModeFlg(8)))
+            (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || checkModeFlg(8)))
         {
             arrow_p->setBombArrowExplode();
             dComIfGp_addSelectItemNum(mSelectItemId, -1);
@@ -165,7 +165,7 @@ void daAlink_c::changeArrowType() {
     if (checkCanoeSlider() || (mEquipItem == BOW && field_0x301e == 0) ||
         (mEquipItem == BOMB_ARROW && field_0x301e == 0 &&
          dComIfGp_getSelectItemNum(mSelectItemId) == 0) ||
-        (mEquipItem == HAWK_ARROW && i_checkAttentionLock()))
+        (mEquipItem == HAWK_ARROW && checkAttentionLock()))
     {
         return;
     }
@@ -209,12 +209,12 @@ asm void daAlink_c::changeArrowType() {
 
 /* 800DED88-800DEE1C 0D96C8 0094+00 1/1 0/0 0/0 .text cancelBowMoveRideNotAtn__9daAlink_cFv */
 BOOL daAlink_c::cancelBowMoveRideNotAtn() {
-    return i_checkModeFlg(0x400) && i_checkAttentionLock() && mTargetedActor == NULL;
+    return checkModeFlg(0x400) && checkAttentionLock() && mTargetedActor == NULL;
 }
 
 /* 800DEE1C-800DEEDC 0D975C 00C0+00 3/3 0/0 0/0 .text            cancelBowMove__9daAlink_cFv */
 BOOL daAlink_c::cancelBowMove() {
-    if (mTargetedActor == NULL && !i_checkAttentionLock() && mFastShotTime == 0 &&
+    if (mTargetedActor == NULL && !checkAttentionLock() && mFastShotTime == 0 &&
         !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd()))
     {
         resetUpperAnime(UPPER_2, lit_6041);
@@ -240,7 +240,7 @@ void daAlink_c::setBowReadyAnime() {
 
     setUpperAnimeBase(0xD);
 
-    if (i_checkResetFlg0(RFLG0_UNK_80)) {
+    if (checkResetFlg0(RFLG0_UNK_80)) {
         mItemMode = 0;
     } else {
         mItemMode = 3;
@@ -299,7 +299,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
                     frameCtrl_p->setRate(1.0f);
                 }
             } else {
-                i_onResetFlg0(RFLG0_UNK_10);
+                onResetFlg0(RFLG0_UNK_10);
                 cancelItemUseQuake(0);
             }
         }
@@ -367,7 +367,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
 
                     dComIfGp_setItemArrowNumCount(-1);
                     mItemAcKeep.clearData();
-                    i_onResetFlg0(RFLG0_UNK_20000000);
+                    onResetFlg0(RFLG0_UNK_20000000);
                     field_0x30a4 = daAlinkHIO_bow_c0::m.mBombArrowHoldTime;
                 } else {
                     seStartOnlyReverb(Z2SE_AL_ARROW_EMPTY);
@@ -392,7 +392,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
             if (mEquipItem != PACHINKO) {
                 changeItemBck(0x42, 0.0f);
                 dComIfGp_getVibration().StartQuake(1, 1, cXyz(0.0f, 1.0f, 0.0f));
-                i_onNoResetFlg3(FLG3_UNK_4);
+                onNoResetFlg3(FLG3_UNK_4);
             }
         }
     } else if (checkBowWaitAnime()) {
@@ -490,7 +490,7 @@ int daAlink_c::checkNextActionBow() {
         setBowReadyAnime();
         setFastShotTimer();
 
-        if (!i_checkAttentionLock()) {
+        if (!checkAttentionLock()) {
             field_0x2fe4 = shape_angle.y;
         }
 
@@ -502,24 +502,24 @@ int daAlink_c::checkNextActionBow() {
             mFastShotTime = 0;
         }
 
-        if ((!i_checkAttentionLock() && !checkDashAnime()) || i_checkModeFlg(0x400)) {
+        if ((!checkAttentionLock() && !checkDashAnime()) || checkModeFlg(0x400)) {
             mFastShotTime = 0;
 
-            if (i_checkAttentionLock() && i_checkModeFlg(0x400)) {
+            if (checkAttentionLock() && checkModeFlg(0x400)) {
                 mItemVar0.field_0x3018 = 1;
             } else {
                 mItemVar0.field_0x3018 = 0;
             }
 
-            if (!i_checkResetFlg0(RFLG0_UNK_80)) {
+            if (!checkResetFlg0(RFLG0_UNK_80)) {
                 mItemMode = 3;
             }
         }
     }
 
     BOOL rt;
-    if (!i_checkAttentionLock() && mFastShotTime == 0) {
-        if (i_checkModeFlg(0x400)) {
+    if (!checkAttentionLock() && mFastShotTime == 0) {
+        if (checkModeFlg(0x400)) {
             if (checkCanoeRide()) {
                 rt = procCanoeBowSubjectInit();
             } else {
@@ -529,7 +529,7 @@ int daAlink_c::checkNextActionBow() {
             rt = procBowSubjectInit();
         }
     } else {
-        if (i_checkModeFlg(0x400)) {
+        if (checkModeFlg(0x400)) {
             if (checkCanoeRide()) {
                 rt = procCanoeBowMoveInit();
             } else {
@@ -587,7 +587,7 @@ asm void daAlink_c::setBowModel() {
 /* 800DFBC8-800DFC28 0DA508 0060+00 4/4 0/0 0/0 .text            checkBowGrabLeftHand__9daAlink_cCFv
  */
 bool daAlink_c::checkBowGrabLeftHand() const {
-    return i_checkReinRide() && !checkBowAnime();
+    return checkReinRide() && !checkBowAnime();
 }
 
 /* 800DFC28-800DFC70 0DA568 0048+00 6/6 0/0 0/0 .text            setBowHangAnime__9daAlink_cFv */
@@ -670,7 +670,7 @@ int daAlink_c::procBowMove() {
     }
 
     mProcVar2.field_0x300c = 1;
-    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (!checkNextAction(0)) {
         f32 var_f31 = lit_6041;

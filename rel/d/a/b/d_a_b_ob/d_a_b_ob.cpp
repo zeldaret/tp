@@ -2899,7 +2899,7 @@ extern "C" asm void __as__4cXyzFRC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 param_3) {
+extern "C" asm void changeDemoMode__9daPy_py_cFUliis() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/changeDemoMode__9daPy_py_cFUliis.s"
 }
@@ -2909,7 +2909,7 @@ asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeOriginalDemo() {
+extern "C" asm void changeOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/changeOriginalDemo__9daPy_py_cFv.s"
 }

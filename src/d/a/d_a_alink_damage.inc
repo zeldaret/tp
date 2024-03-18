@@ -25,8 +25,8 @@ bool daAlink_c::checkMiddleBossGoronRoom() {
 
 /* 800D6DF0-800D6E24 0D1730 0034+00 1/0 0/0 0/0 .text setDkCaught__9daAlink_cFP10fopAc_ac_c */
 void daAlink_c::setDkCaught(fopAc_ac_c* param_0) {
-    if (!i_checkNoResetFlg1(FLG1_UNK_1)) {
-        i_onNoResetFlg1(FLG1_UNK_1);
+    if (!checkNoResetFlg1(FLG1_UNK_1)) {
+        onNoResetFlg1(FLG1_UNK_1);
         field_0x28f8 = fopAcM_GetID(param_0);
     }
 }
@@ -55,7 +55,7 @@ void daAlink_c::freezeTimerDamage() {
 
 /* 800D6F00-800D6F2C 0D1840 002C+00 1/0 0/0 0/0 .text onPressedDamage__9daAlink_cFRC4cXyzs */
 void daAlink_c::onPressedDamage(cXyz const& param_0, s16 param_1) {
-    i_onNoResetFlg2(FLG2_UNK_1000);
+    onNoResetFlg2(FLG2_UNK_1000);
     field_0x3104 = param_1;
     field_0x3744 = param_0;
 }
@@ -111,10 +111,10 @@ void daAlink_c::checkCutLandDamage() {
 
 /* 800D70A0-800D7160 0D19E0 00C0+00 2/2 0/0 0/0 .text checkCaughtEscapeCutTurn__9daAlink_cFv */
 BOOL daAlink_c::checkCaughtEscapeCutTurn() {
-    if (mLinkAcch.ChkGroundHit() && (i_checkSwordGet() || i_checkWolf()) &&
+    if (mLinkAcch.ChkGroundHit() && (i_checkSwordGet() || checkWolf()) &&
         checkCutTurnInputTrigger())
     {
-        if (i_checkWolf()) {
+        if (checkWolf()) {
             return procWolfRollAttackInit(2, 0);
         }
 
@@ -139,15 +139,15 @@ bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_
     field_0x2ffe = param_0;
 
     if (param_4) {
-        i_onEndResetFlg0(ERFLG0_UNK_40);
+        onEndResetFlg0(ERFLG0_UNK_40);
     } else {
-        i_onEndResetFlg0(ERFLG0_UNK_80);
+        onEndResetFlg0(ERFLG0_UNK_80);
     }
 
     if (param_5 == 1) {
-        i_onEndResetFlg0(ERFLG0_UNK_40000000);
+        onEndResetFlg0(ERFLG0_UNK_40000000);
     } else if (param_5 == 2) {
-        i_onEndResetFlg1(ERFLG1_UNK_80);
+        onEndResetFlg1(ERFLG1_UNK_80);
     }
 
     if (getSumouMode()) {
@@ -162,15 +162,15 @@ bool daAlink_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_
 f32 daAlink_c::damageMagnification(int i_checkZoraMag, int param_1) {
     f32 base_mag;
 
-    if (param_1 == 0 && i_checkNoResetFlg3(FLG3_UNK_40000000) &&
-        !i_checkEndResetFlg2(ERFLG2_UNK_40))
+    if (param_1 == 0 && checkNoResetFlg3(FLG3_UNK_40000000) &&
+        !checkEndResetFlg2(ERFLG2_UNK_40))
     {
         base_mag = lit_7624; /* 1.5 */
     } else {
         base_mag = lit_6040; /* 1.0 */
     }
 
-    if (i_checkWolf() && !checkCargoCarry() && param_1 == 0) {
+    if (checkWolf() && !checkCargoCarry() && param_1 == 0) {
         return /* 2.0 */ lit_7307 * base_mag;
     }
 
@@ -196,7 +196,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         magnified_dmg++;
     }
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         offWolfEyeUp();
     }
 
@@ -206,7 +206,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         dComIfGp_setItemLifeCount(-magnified_dmg, 0);
     }
 
-    i_onResetFlg1(0x400);
+    onResetFlg1(0x400);
     mSwordUpTimer = 0;
 
     if (i_setDmgTimer) {
@@ -237,9 +237,9 @@ void daAlink_c::setDamagePointNormal(int i_dmgAmount) {
 
 /* 800D74A4-800D74F4 0D1DE4 0050+00 3/3 0/0 0/0 .text            setLandDamagePoint__9daAlink_cFi */
 void daAlink_c::setLandDamagePoint(int i_dmgAmount) {
-    i_onEndResetFlg2(ERFLG2_UNK_40);
+    onEndResetFlg2(ERFLG2_UNK_40);
     setDamagePoint(i_dmgAmount, FALSE, TRUE, 0);
-    i_offEndResetFlg2(ERFLG2_UNK_40);
+    offEndResetFlg2(ERFLG2_UNK_40);
 }
 
 /* 800D74F4-800D76C4 0D1E34 01D0+00 11/11 0/0 0/0 .text getDamageVec__9daAlink_cFP12dCcD_GObjInf
@@ -305,18 +305,18 @@ bool daAlink_c::checkElecReturnDamage(dCcD_GObjInf& param_0, fopAc_ac_c** param_
 
 /* 800D7B18-800D7BE8 0D2458 00D0+00 1/1 0/0 0/0 .text            damageTimerCount__9daAlink_cFv */
 void daAlink_c::damageTimerCount() {
-    if (!i_checkModeFlg(8)) {
+    if (!checkModeFlg(8)) {
         if (mDamageColorTime != 0) {
             mDamageColorTime--;
         }
         mDamageTimer--;
 
-        if (mProcID != PROC_DK_CAUGHT && i_checkNoResetFlg1(FLG1_UNK_1)) {
-            i_offNoResetFlg1(1);
+        if (mProcID != PROC_DK_CAUGHT && checkNoResetFlg1(FLG1_UNK_1)) {
+            offNoResetFlg1(FLG1_UNK_1);
         }
 
-        if (!checkDkCaught2Anime() && i_checkNoResetFlg0(FLG0_UNK_20000)) {
-            i_offNoResetFlg0(FLG0_UNK_20000);
+        if (!checkDkCaught2Anime() && checkNoResetFlg0(FLG0_UNK_20000)) {
+            offNoResetFlg0(FLG0_UNK_20000);
         }
     } else if (mDamageColorTime != 0) {
         mDamageColorTime--;
@@ -436,7 +436,7 @@ int daAlink_c::procCoLargeDamageWall() {
 int daAlink_c::procCoPolyDamageInit() {
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
 
-    if (!i_checkWolf()) {
+    if (!checkWolf()) {
         voiceStart(Z2SE_AL_V_DAMAGE_S);
     }
 
@@ -446,7 +446,7 @@ int daAlink_c::procCoPolyDamageInit() {
 
     commonProcInit(PROC_POLY_DAMAGE);
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setSingleAnimeWolfParam(WANM_DMG_SMALL, &daAlinkHIO_wlDamage_c0::m.field_0x14);
         voiceStart(Z2SE_WL_V_DAMAGE);
         field_0x3478 = daAlinkHIO_wlDamage_c0::m.field_0x14.mCheckFrame;
@@ -464,7 +464,7 @@ int daAlink_c::procCoPolyDamage() {
     if (mUnderFrameCtrl[0].checkAnmEnd()) {
         commonCheckNextAction(0);
     } else if (mUnderFrameCtrl[0].getFrame() > field_0x3478) {
-        if (!i_checkWolf()) {
+        if (!checkWolf()) {
             onModeFlg(4);
         }
 
@@ -546,7 +546,7 @@ int daAlink_c::procStEscapeInit() {
 /* 800DB610-800DB6A4 0D5F50 0094+00 1/0 0/0 0/0 .text            procStEscape__9daAlink_cFv */
 int daAlink_c::procStEscape() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
@@ -592,7 +592,7 @@ void daAlink_c::setScreamWaitAnime() {
 int daAlink_c::procScreamWaitInit() {
     commonProcInit(PROC_SCREAM_WAIT);
 
-    if (i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+    if (checkEndResetFlg1(ERFLG1_UNK_2)) {
         setScreamWaitAnime();
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
@@ -607,11 +607,11 @@ int daAlink_c::procScreamWaitInit() {
 
 /* 800DBDA4-800DBE00 0D66E4 005C+00 1/0 0/0 0/0 .text            procScreamWait__9daAlink_cFv */
 int daAlink_c::procScreamWait() {
-    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    onEndResetFlg0(ERFLG0_UNK_8000000);
 
-    if (!i_checkEndResetFlg1(ERFLG1_UNK_1)) {
+    if (!checkEndResetFlg1(ERFLG1_UNK_1)) {
         checkNextAction(0);
-    } else if (mProcVar2.field_0x300c == 0 && i_checkEndResetFlg1(ERFLG1_UNK_2)) {
+    } else if (mProcVar2.field_0x300c == 0 && checkEndResetFlg1(ERFLG1_UNK_2)) {
         setScreamWaitAnime();
     }
 
@@ -625,7 +625,7 @@ int daAlink_c::procCoSandWallHitInit() {
         return 1;
     }
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setSingleAnimeWolfBase(WANM_WAIT_WIND);
     } else {
         setSingleAnimeBase(ANM_WAIT_WIND);
@@ -642,7 +642,7 @@ int daAlink_c::procCoSandWallHit() {
         offModeFlg(2);
     }
 
-    if (!i_checkEndResetFlg1(ERFLG1_UNK_400)) {
+    if (!checkEndResetFlg1(ERFLG1_UNK_400)) {
         setDamagePointNormal(1);
         procCoPolyDamageInit();
     }
@@ -679,17 +679,17 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
     }
 
     mDemo.setSpecialDemoType();
-    u32 chk_40000 = i_checkModeFlg(0x40000);
+    u32 chk_40000 = checkModeFlg(0x40000);
 
     if (!commonProcInitNotSameProc(PROC_SWIM_FREEZE_RETURN)) {
         return 1;
     }
 
-    i_onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_UNK_100);
     J3DTransformInfo* transInfo = field_0x2060->getOldFrameTransInfo(0);
 
     f32 var_f31;
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlDamNormal_c0::m.field_0x5C,
                                     lit_7625);
         mUnderFrameCtrl[0].setEnd(3);
@@ -714,7 +714,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
     field_0x3080 = 0;
     mDamageTimer = 0;
     mNormalSpeed = FLOAT_LABEL(lit_6108);
-    i_onNoResetFlg1(FLG1_UNK_40000000);
+    onNoResetFlg1(FLG1_UNK_40000000);
     field_0x3194 = 1;
 
     u32 id = fopAcM_GetID(this);
@@ -729,7 +729,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 int daAlink_c::procCoSwimFreezeReturn() {
     if (mProcVar2.field_0x300c == 0) {
         if (checkRestartDead(4, 1)) {
-            i_onNoResetFlg1(FLG1_UNK_40000000);
+            onNoResetFlg1(FLG1_UNK_40000000);
         } else {
             u32 mode = 4;
             setLastSceneDamage(4, &mode);

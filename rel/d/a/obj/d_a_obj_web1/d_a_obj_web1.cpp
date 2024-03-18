@@ -43,7 +43,7 @@ static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_actor)
                 _this->mReboundTimer = 60;
             }
 
-            if (daPy_getPlayerActorClass()->i_checkEquipHeavyBoots()) {
+            if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
                 _this->field_0x5aa = 120;
             } else {
                 _this->field_0x5aa = 6;

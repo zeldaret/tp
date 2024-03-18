@@ -169,7 +169,7 @@ void daTagMhint_c::eventOrder() {
                 } else {
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
-            } else if (!daPy_getPlayerActorClass()->i_checkMagneBootsOn() ||
+            } else if (!daPy_getPlayerActorClass()->checkMagneBootsOn() ||
                        strcmp(dComIfGp_getStartStageName(), "D_MN04B") == 0)
             {
                 dComIfGp_att_ZHintRequest(this, 0x1FF);

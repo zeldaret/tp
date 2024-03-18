@@ -187,7 +187,7 @@ int daTag_SSDrink_c::chkEvent() {
 
 /* 80D63384-80D63490 000644 010C+00 1/1 0/0 0/0 .text            orderEvent__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::orderEvent() {
-    if (!dComIfGp_getLinkPlayer()->i_checkWolf() && fopAcM_isSwitch(this, getSwitchFromParam()) &&
+    if (!dComIfGp_getLinkPlayer()->checkWolf() && fopAcM_isSwitch(this, getSwitchFromParam()) &&
         field_0x5D3 != 0x60 && getFlowNodeNum() != 0xFFFF)
     {
         attention_info.flags = 0x40000008;

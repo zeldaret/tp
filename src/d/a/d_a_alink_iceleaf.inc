@@ -65,7 +65,7 @@ int daAlink_c::checkNextActionBoard() {
 /* 80106618-80106650 100F58 0038+00 2/2 0/0 0/0 .text checkBoardSwordTriggerAction__9daAlink_cFv
  */
 int daAlink_c::checkBoardSwordTriggerAction() {
-    if (i_checkModeFlg(2)) {
+    if (checkModeFlg(2)) {
         return procBoardCutInit();
     } else {
         return procBoardWaitInit(NULL);
@@ -79,7 +79,7 @@ int daAlink_c::commonProcBoardInit(daAlink_c::daAlink_PROC i_procID) {
         return 0;
     }
 
-    u32 check = i_checkModeFlg(2);
+    u32 check = checkModeFlg(2);
     commonProcInit(i_procID);
 
     if (check) {
@@ -159,7 +159,7 @@ asm int daAlink_c::procBoardWait() {
 int daAlink_c::procBoardRowInit() {
     commonProcInit(PROC_BOARD_ROW);
     setSingleAnimeBaseSpeed(ANM_RIDE_KICK, getBoardRowAnmSpeed(), daAlinkHIO_board_c0::m.mPushInterpolation);
-    i_onResetFlg1(0x40);
+    onResetFlg1(RFLG1_UNK_40);
     mProcVar0.field_0x3008 = 4;
     mProcVar3.field_0x300e.y = 1;
     mProcVar3.field_0x300e.z = 0;
@@ -237,7 +237,7 @@ int daAlink_c::procBoardJump() {
     }
 
     if (!checkNextActionBoard()) {
-        if (!i_checkModeFlg(2)) {
+        if (!checkModeFlg(2)) {
             setBoardLandAnime();
             procBoardWaitInit(NULL);
         } else if (mProcVar3.field_0x300e.z != 0 && mProcVar3.field_0x300e.y == 0 && field_0x2060->getOldFrameRate() < lit_8782) {
@@ -264,7 +264,7 @@ int daAlink_c::procBoardSubjectivityInit() {
 /* 80107418-801074AC 101D58 0094+00 1/0 0/0 0/0 .text            procBoardSubjectivity__9daAlink_cFv
  */
 int daAlink_c::procBoardSubjectivity() {
-    i_onResetFlg0(0x4000000);
+    onResetFlg0(RFLG0_UNK_4000000);
     s16 old_shape_angle = shape_angle.y;
     s16 old_angle = current.angle.y;
 

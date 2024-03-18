@@ -12,7 +12,7 @@
 #include "stdio.h"
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 void dEvent_exception_c::init() {

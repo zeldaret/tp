@@ -298,7 +298,7 @@ extern "C" asm void dComIfGp_getStage__Fv() {
 /* 801412B0-801412BC 13BBF0 000C+00 1/1 0/0 0/0 .text            checkEquipHeavyBoots__9daPy_py_cCFv
  */
 extern "C" u32 checkEquipHeavyBoots__9daPy_py_cCFv(daPy_py_c* this_) {
-    return this_->i_checkNoResetFlg0(daPy_py_c::FLG0_EQUIP_HVY_BOOTS);
+    return this_->checkNoResetFlg0(daPy_py_c::FLG0_EQUIP_HVY_BOOTS);
 }
 
 /* 801412BC-801412C4 13BBFC 0008+00 1/1 4/4 0/0 .text            fopAcM_GetName__FPv */
@@ -411,7 +411,7 @@ extern "C" BOOL dComIfGs_isEventBit__FUs(u16 id) {
 
 /* 801413CC-801413D8 13BD0C 000C+00 1/1 0/0 0/0 .text            checkWolf__9daPy_py_cCFv */
 extern "C" u32 checkWolf__9daPy_py_cCFv(daPy_py_c* this_) {
-    return this_->i_checkNoResetFlg1(daPy_py_c::FLG1_IS_WOLF);
+    return this_->checkNoResetFlg1(daPy_py_c::FLG1_IS_WOLF);
 }
 
 /* 801413D8-801413F8 13BD18 0020+00 1/1 0/0 0/0 .text            checkSwordGet__9daPy_py_cFv */
@@ -476,7 +476,7 @@ extern "C" u32 checkNoResetFlg2__9daPy_py_cCFQ29daPy_py_c9daPy_FLG2(daPy_py_c* t
 
 /* 801414CC-801414D8 13BE0C 000C+00 1/1 2/2 0/0 .text            checkMagneBootsOn__9daPy_py_cCFv */
 extern "C" u32 checkMagneBootsOn__9daPy_py_cCFv(daPy_py_c* this_) {
-    return this_->i_checkNoResetFlg0(daPy_py_c::FLG0_MAGNE_BOOTS_ON);
+    return this_->checkNoResetFlg0(daPy_py_c::FLG0_MAGNE_BOOTS_ON);
 }
 
 /* 801414D8-801414E8 13BE18 0010+00 1/1 2/2 0/0 .text            dComIfGp_getHorseActor__Fv */
@@ -486,7 +486,7 @@ extern "C" daHorse_c* dComIfGp_getHorseActor__Fv() {
 
 /* 801414E8-801414F4 13BE28 000C+00 1/1 0/0 0/0 .text checkBoarSingleBattle__9daPy_py_cCFv */
 extern "C" u32 checkBoarSingleBattle__9daPy_py_cCFv(daPy_py_c* this_) {
-    return this_->i_checkNoResetFlg2(daPy_py_c::FLG2_BOAR_SINGLE_BATTLE);
+    return this_->checkNoResetFlg2(daPy_py_c::FLG2_BOAR_SINGLE_BATTLE);
 }
 
 /* 801414F4-80141500 13BE34 000C+00 1/1 0/0 0/0 .text

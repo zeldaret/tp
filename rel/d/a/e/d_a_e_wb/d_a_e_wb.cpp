@@ -4953,7 +4953,7 @@ asm void daHorse_c::changeDemoPos0(cXyz const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::changeDemoMode(u32 param_0, int param_1) {
+extern "C" asm void changeDemoMode__9daHorse_cFUli() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeDemoMode__9daHorse_cFUli.s"
 }
@@ -5003,7 +5003,7 @@ static asm void fpcM_Search__FPFPvPv_PvPv(void* (*param_0)(void*, void*), void* 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::changeOriginalDemo() {
+extern "C" asm void changeOriginalDemo__9daHorse_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeOriginalDemo__9daHorse_cFv.s"
 }

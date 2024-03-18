@@ -19,7 +19,7 @@ f32 daAlink_c::getBoomSpeed() {
         speed = daAlinkHIO_boom_c0::m.mFlySpeed;
     }
 
-    if (i_checkModeFlg(0x400)) {
+    if (checkModeFlg(0x400)) {
         fopAc_ac_c* ride_actor = mRideAcKeep.getActor();
         if (ride_actor != NULL && ride_actor->speedF > FLOAT_LABEL(lit_6108)) {
             speed += ride_actor->speedF;
@@ -36,7 +36,7 @@ f32 daAlink_c::getBoomCatchSpeed() const {
 
 /* 800E00C0-800E011C 0DAA00 005C+00 1/1 0/0 1/1 .text            getBoomFlyMax__9daAlink_cCFv */
 f32 daAlink_c::getBoomFlyMax() const {
-    if (i_checkModeFlg(0x400) && !checkCanoeRide()) {
+    if (checkModeFlg(0x400) && !checkCanoeRide()) {
         return daAlinkHIO_boom_c0::m.mHorsebackFlyDistMax;
     } else {
         return daAlinkHIO_boom_c0::m.mFlyDistMax;
@@ -107,12 +107,12 @@ bool daAlink_c::checkBoomerangChargeEnd() {
 /* 800E02B8-800E03D0 0DABF8 0118+00 0/0 1/1 0/0 .text
  * checkBoomerangCarry__9daAlink_cFP10fopAc_ac_c                */
 BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
-    if (i_checkNoResetFlg0(FLG0_UNK_20) && !checkEventRun() && !i_checkWolf() &&
-        i_checkModeFlg(0x10000000) &&
+    if (checkNoResetFlg0(FLG0_UNK_20) && !checkEventRun() && !checkWolf() &&
+        checkModeFlg(0x10000000) &&
         (checkHorseNoUpperAnime() || checkHorseTurnAnime() || checkBoomerangThrowAnime())) {
         deleteEquipItem(FALSE, FALSE);
         seStartOnlyReverb(JA_SE_LK_BOOM_CATCH);
-        i_offNoResetFlg0(FLG0_UNK_20);
+        offNoResetFlg0(FLG0_UNK_20);
 
         setGrabItemActor(i_grabActor);
         field_0x33e4 = lit_8785;
@@ -146,7 +146,7 @@ BOOL daAlink_c::checkBoomerangAnime() const {
 
 /* 800E04AC-800E04E8 0DADEC 003C+00 13/13 0/0 0/0 .text checkBoomerangThrowAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkBoomerangThrowAnime() const {
-    return (mEquipItem == BOOMERANG || i_checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == noentry71) &&
+    return (mEquipItem == BOOMERANG || checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == noentry71) &&
            checkUpperAnime(0x53);
 }
 
@@ -155,14 +155,14 @@ void daAlink_c::setBoomerangReadyQuake() {
     f32 tmp_0 = FLOAT_LABEL(lit_6108);
     dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
 
-    i_onNoResetFlg3(FLG3_UNK_4);
+    onNoResetFlg3(FLG3_UNK_4);
     mItemVar0.field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
 }
 
 /* 800E055C-800E05E8 0DAE9C 008C+00 2/2 0/0 0/0 .text setBoomerangReadyAnime__9daAlink_cFv */
 void daAlink_c::setBoomerangReadyAnime() {
     f32 var_f31;
-    if (i_checkAttentionLock()) {
+    if (checkAttentionLock()) {
         var_f31 = daAlinkHIO_boom_c0::m.mIdleAnmSpeed;
     } else {
         var_f31 = FLOAT_LABEL(lit_6108);
@@ -192,7 +192,7 @@ void daAlink_c::setBoomerangCatchAnime() {
 /* 800E06B8-800E08C4 0DAFF8 020C+00 1/1 0/0 0/0 .text            throwBoomerang__9daAlink_cFv */
 void daAlink_c::throwBoomerang() {
     daBoomerang_c* item = (daBoomerang_c*)mItemAcKeep.getActor();
-    i_onNoResetFlg1(FLG1_UNK_2);
+    onNoResetFlg1(FLG1_UNK_2);
 
     //! @bug `item` pointer is being accessed without checking if NULL first
     BOOL boomerang_item = fopAcM_GetName(item) == PROC_BOOMERANG;
@@ -231,7 +231,7 @@ void daAlink_c::throwBoomerang() {
 
     voiceStart(Z2SE_AL_V_ATTACK_S);
 
-    if (i_checkModeFlg(MODE_RIDING)) {
+    if (checkModeFlg(MODE_RIDING)) {
         if (checkCanoeRide()) {
             procCanoeWaitInit(0);
         } else {
@@ -258,18 +258,18 @@ void daAlink_c::throwBoomerang() {
 int daAlink_c::returnBoomerang(int param_0) {
     dComIfGp_clearPlayerStatus0(0, 0x400000);
 
-    if (mEquipItem == NO_ITEM && !i_checkMagneBootsOn() && mItemAcKeep.getActor() == NULL &&
-        !checkBoardRide() && !checkBoarRide() && !i_checkWolf() &&
+    if (mEquipItem == NO_ITEM && !checkMagneBootsOn() && mItemAcKeep.getActor() == NULL &&
+        !checkBoardRide() && !checkBoarRide() && !checkWolf() &&
         (mProcID != PROC_HANG_READY || field_0x3198 != 3) && (!checkEventRun() || param_0 != 0) &&
         (checkNoUpperAnime() || checkPlayerGuard() || checkHorseTurnAnime() ||
          checkDashDamageAnime() || checkBoomerangAnime()) &&
-        !i_checkModeFlg(0x1BD0810)) {
+        !checkModeFlg(0x1BD0810)) {
         mItemAcKeep = mThrowBoomerangAcKeep;
         mThrowBoomerangAcKeep.clearData();
 
         mEquipItem = BOOMERANG;
         field_0x2f94 = 2;
-        i_onNoResetFlg0(FLG0_UNK_20);
+        onNoResetFlg0(FLG0_UNK_20);
 
         f32 tmp_0 = FLOAT_LABEL(lit_6108);
         dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
@@ -313,7 +313,7 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
-        i_checkNoResetFlg1(FLG1_UNK_2)) {
+        checkNoResetFlg1(FLG1_UNK_2)) {
         return 0;
     }
 
@@ -325,13 +325,13 @@ int daAlink_c::checkNextActionBoomerang() {
         setBoomerangReadyAnime();
         setFastShotTimer();
 
-        if (!i_checkAttentionLock()) {
+        if (!checkAttentionLock()) {
             field_0x2fe4 = shape_angle.y;
         }
     }
 
-    if (!i_checkAttentionLock() && mFastShotTime == 0) {
-        if (i_checkModeFlg(0x400)) {
+    if (!checkAttentionLock() && mFastShotTime == 0) {
+        if (checkModeFlg(0x400)) {
             if (checkCanoeRide()) {
                 return procCanoeBoomerangSubjectInit();
             } else {
@@ -340,7 +340,7 @@ int daAlink_c::checkNextActionBoomerang() {
         } else {
             return procBoomerangSubjectInit();
         }
-    } else if (i_checkModeFlg(0x400)) {
+    } else if (checkModeFlg(0x400)) {
         if (checkCanoeRide()) {
             return procCanoeBoomerangMoveInit();
         } else {
@@ -353,10 +353,10 @@ int daAlink_c::checkNextActionBoomerang() {
 
 /* 800E0D8C-800E0E64 0DB6CC 00D8+00 1/1 0/0 0/0 .text checkBoomerangCatchAction__9daAlink_cFv */
 int daAlink_c::checkBoomerangCatchAction() {
-    if (i_checkNoResetFlg0(FLG0_UNK_20)) {
-        if (!checkEventRun() && !i_checkWolf() && i_checkModeFlg(0x10000000)) {
+    if (checkNoResetFlg0(FLG0_UNK_20)) {
+        if (!checkEventRun() && !checkWolf() && checkModeFlg(0x10000000)) {
             if (checkNoUpperAnime() || checkHorseTurnAnime() || checkBoomerangThrowAnime()) {
-                if (i_checkModeFlg(0x1) && !i_checkModeFlg(0x400)) {
+                if (checkModeFlg(0x1) && !checkModeFlg(0x400)) {
                     return procBoomerangCatchInit();
                 }
 
@@ -364,7 +364,7 @@ int daAlink_c::checkBoomerangCatchAction() {
             }
         }
 
-        i_offNoResetFlg0(FLG0_UNK_20);
+        offNoResetFlg0(FLG0_UNK_20);
     }
 
     return FALSE;
@@ -484,7 +484,7 @@ int daAlink_c::procBoomerangCatchInit() {
 
     setSingleAnimeParam(ANM_BOOMERANG_CATCH, &daAlinkHIO_boom_c0::m.mCatchAnm);
     setBoomerangCatchAnime();
-    i_offNoResetFlg0(FLG0_UNK_20);
+    offNoResetFlg0(FLG0_UNK_20);
 
     return 1;
 }
@@ -492,7 +492,7 @@ int daAlink_c::procBoomerangCatchInit() {
 /* 800E1248-800E12E0 0DBB88 0098+00 1/0 0/0 0/0 .text            procBoomerangCatch__9daAlink_cFv */
 int daAlink_c::procBoomerangCatch() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) {
         onModeFlg(4);

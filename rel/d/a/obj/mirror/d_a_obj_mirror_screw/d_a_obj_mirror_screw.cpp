@@ -98,8 +98,8 @@ void daObjMirrorScrew_c::executeDown() {
     dComIfG_inf_c* gameinfo = &g_dComIfG_gameInfo;
     if (dComIfGp_event_runCheck()) {
         daPy_py_c* player = daPy_getPlayerActorClass();
-        player->i_changeOriginalDemo();
-        player->i_changeDemoMode(0xe, 1, 0, 0);
+        player->changeOriginalDemo();
+        player->changeDemoMode(0xe, 1, 0, 0);
     }
 
     if (mSpinCount >= 0) {

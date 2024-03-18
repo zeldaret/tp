@@ -66,9 +66,7 @@ public:
     /* 807E27BC */ void cancelOriginalDemo();
     /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
     /* 807E28B8 */ void changeDemoPos0(cXyz const*);
-    /* 807E28D4 */ void changeDemoMode(u32, int);
     /* 807E28E0 */ void setHorsePosAndAngle(cXyz const*, s16);
-    /* 807E2964 */ void changeOriginalDemo();
     /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
     /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
     /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);
@@ -162,8 +160,8 @@ public:
     f32 getLashMaxSpeedF() { return mLashMaxSpeedF; }
     void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     void setDemoStickR(f32 stick) { mDemoStickR = stick; }
-    void i_changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
-    void i_changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
+    void changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
+    void changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
     void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
     void onRideFlg() { (this->*mpOnRideFlgFn)(); }
     void offRideFlg() { (this->*mpOffRideFlgFn)(); }

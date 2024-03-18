@@ -109,7 +109,7 @@ void daTagKagoFall_c::actionWaitRiver() {
                 mRestartPos = dCam_getBody()->Eye();
                 mActionState = 1;
                 mTimer = 30;
-                player->i_onNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+                player->onNoResetFlg0(daPy_py_c::FLG0_UNK_10000);
                 mRiverTimer = 60;
             }
         }
@@ -132,7 +132,7 @@ void daTagKagoFall_c::actionWaitRiver() {
 
     case 2:
         if (mRiverTimer == 0) {
-            daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+            daPy_getPlayerActorClass()->offNoResetFlg0(daPy_py_c::FLG0_UNK_10000);
             mActionState = 3;
             mTimer = 40;
         }
@@ -147,7 +147,7 @@ void daTagKagoFall_c::actionWaitRiver() {
         break;
 
     case 4:
-        daPy_getPlayerActorClass()->i_offNoResetFlg0(daPy_py_c::RFLG0_UNK_10000);
+        daPy_getPlayerActorClass()->offNoResetFlg0(daPy_py_c::FLG0_UNK_10000);
 
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
@@ -199,7 +199,7 @@ void daTagKagoFall_c::actionWaitFall() {
         if (dComIfGs_getLife() == 0) {
             player->onSceneChangeAreaJump(mExitID, -1, NULL);
 
-            if (player->i_checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)
+            if (player->checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)
             {
                 Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);

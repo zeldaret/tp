@@ -383,7 +383,7 @@ void daE_PH_c::DownBoots() {
     speedF = 0.0f;
     current.pos.y += -10.0f;
 
-    if (!player_p->i_checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
+    if (!player_p->checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
         mCAction++;
         mAnmSpeed = nREG_F(0) + 3.0f;
         field_0x620 = nREG_F(0) + 3.0f;
@@ -402,7 +402,7 @@ void daE_PH_c::UpBoots() {
     mTargetSpeedY = 0.0f;
     current.pos.y += 10.0f;
 
-    if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
+    if (player_p->checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
         mCAction--;
         mAnmSpeed = nREG_F(0) + 3.0f;
         field_0x620 = nREG_F(0) + 3.0f;
@@ -421,14 +421,14 @@ void daE_PH_c::C_Action() {
 
     switch (mCAction) {
     case 0:
-        if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
+        if (player_p->checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
             mCAction++;
             field_0x640 = current.pos.y;
             mAnmSpeed = nREG_F(0) + 6.0f;
             field_0x620 = nREG_F(0) + 6.0f;
         }
 
-        if (!player_p->i_checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
+        if (!player_p->checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
             field_0x620 = field_0x5b8;
         }
 
@@ -446,7 +446,7 @@ void daE_PH_c::C_Action() {
         break;
     case 1:
         DownBoots();
-        if (!player_p->i_checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
+        if (!player_p->checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
             field_0x620 = field_0x5b8;
         }
         break;
@@ -464,7 +464,7 @@ void daE_PH_c::C_Action() {
         }
 
         UpBoots();
-        if (!player_p->i_checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
+        if (!player_p->checkEquipHeavyBoots() || mAnmID != ANM_HANG_WAIT) {
             field_0x620 = field_0x5b8;
         }
         break;
@@ -671,7 +671,7 @@ void daE_PH_c::StopAction() {
             cLib_addCalc2(&current.pos.y, home.pos.y, 0.1f, nREG_F(1) + 30.0f);
         }
 
-        if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
+        if (player_p->checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
             mCAction++;
             field_0x640 = current.pos.y;
             mAnmSpeed = nREG_F(0) + 6.0f;
@@ -680,7 +680,7 @@ void daE_PH_c::StopAction() {
         break;
     case 1:
         DownBoots();
-        if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
+        if (player_p->checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
             mAnmSpeed = nREG_F(0) + 6.0f;
             field_0x620 = nREG_F(0) + 6.0f;
         }
@@ -688,7 +688,7 @@ void daE_PH_c::StopAction() {
     case 2:
         UpBoots();
 
-        if (player_p->i_checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
+        if (player_p->checkEquipHeavyBoots() && mAnmID == ANM_HANG_WAIT) {
             mAnmSpeed = nREG_F(0) + 6.0f;
             field_0x620 = nREG_F(0) + 6.0f;
         }

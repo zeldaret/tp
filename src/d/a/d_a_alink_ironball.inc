@@ -71,7 +71,7 @@ void daAlink_c::checkIronBallDelete() {
     if (mItemVar0.field_0x3018 == 1 || mItemVar0.field_0x3018 == 2 || mItemVar0.field_0x3018 == 3 ||
         ((mItemVar0.field_0x3018 == 0 || mItemVar0.field_0x3018 == 8) && !checkIronBallWaitAnime() &&
          !checkEquipAnime() &&
-         (!i_checkModeFlg(4) || i_checkModeFlg(0x70C52) || !mLinkAcch.ChkGroundHit()))) {
+         (!checkModeFlg(4) || checkModeFlg(0x70C52) || !mLinkAcch.ChkGroundHit()))) {
         deleteEquipItem(1, 0);
     }
 }
@@ -208,7 +208,7 @@ BOOL daAlink_c::checkUpperItemActionIronBall() {
         }
 
         if (frameCtrl->checkAnmEnd()) {
-            if (i_checkModeFlg(1)) {
+            if (checkModeFlg(1)) {
                 setSingleAnimeBaseSpeed(ANM_IRONBALL_TURN, daAlinkHIO_ironBall_c0::m.mTurnAnmSpeed, daAlinkHIO_ironBall_c0::m.mTurnInterpolation);
             }
 
@@ -245,12 +245,12 @@ int daAlink_c::checkNextActionIronBall() {
         setIronBallReadyAnime();
         setFastShotTimer();
         
-        if (!i_checkAttentionLock()) {
+        if (!checkAttentionLock()) {
             field_0x2fe4 = shape_angle.y;
         }
     }
 
-    if (!i_checkAttentionLock() && mFastShotTime == 0) {
+    if (!checkAttentionLock() && mFastShotTime == 0) {
         return procIronBallSubjectInit();
     } else {
         return procIronBallMoveInit();
@@ -335,7 +335,7 @@ int daAlink_c::procIronBallMove() {
             offModeFlg(1);
         }
 
-        if (i_checkModeFlg(1)) {
+        if (checkModeFlg(1)) {
             setIronBallBaseAnime();
         } else {
             setBlendAtnMoveAnime(var_f31);

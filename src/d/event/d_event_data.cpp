@@ -770,9 +770,9 @@ void dEvDtStaff_c::specialProcDirector() {
             break;
         case 'PLAY':
             if (strcmp(nowCutName, "PLAYER_NODRAW") == 0) {
-                player->i_onPlayerNoDraw();
+                player->onPlayerNoDraw();
             } else if (strcmp(nowCutName, "PLAYER_DRAW") == 0) {
-                player->i_offPlayerNoDraw();
+                player->offPlayerNoDraw();
             }
             break;
         case 'NEXT':

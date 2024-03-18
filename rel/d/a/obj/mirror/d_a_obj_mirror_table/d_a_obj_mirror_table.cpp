@@ -279,10 +279,10 @@ void daObjMirrorTable_c::checkOnPanel() {
                 pos = player->getRightHandPosP();
                 break;
             case 2:
-                pos = player->i_getLeftFootPosP();
+                pos = player->getLeftFootPosP();
                 break;
             case 3:
-                pos = player->i_getRightFootPosP();
+                pos = player->getRightFootPosP();
                 break;
             }
             mDoMtx_stack_c::push();
@@ -299,9 +299,9 @@ void daObjMirrorTable_c::checkOnPanel() {
         for (int i = 0; i < 2; i++) {
             cXyz* pos;
             if (i == 0) {
-                pos = player->i_getLeftFootPosP();
+                pos = player->getLeftFootPosP();
             } else {
-                pos = player->i_getRightFootPosP();
+                pos = player->getRightFootPosP();
             }
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::multVec(pos, &rel_pos);

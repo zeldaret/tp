@@ -3556,7 +3556,7 @@ void daBaseNpc_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1, f3
 void daBaseNpc_c::attnSttsOn(int param_0, int param_1) {
     u32 tmp;
 
-    if (dComIfGp_getLinkPlayer()->i_checkWolf()) {
+    if (dComIfGp_getLinkPlayer()->checkWolf()) {
         if (param_1 != 0) {
             tmp = 10;
         } else {

@@ -108,7 +108,7 @@ void daHeavySw_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* p
         daHeavySw_c* heavySw = static_cast<daHeavySw_c*>(param_1);
         heavySw->field_0x5d8 = 1;
         heavySw->field_0x5dc =
-            static_cast<daPy_py_c*>(dComIfGp_getLinkPlayer())->i_checkEquipHeavyBoots();
+            static_cast<daPy_py_c*>(dComIfGp_getLinkPlayer())->checkEquipHeavyBoots();
     }
 }
 

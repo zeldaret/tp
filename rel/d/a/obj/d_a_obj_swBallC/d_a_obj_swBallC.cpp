@@ -258,16 +258,16 @@ int daObjSwBallC_c::demoProc() {
             dMeter2Info_setSword(0x29, 0);
             break;
         case 11:
-            player->i_changeOriginalDemo();
+            player->changeOriginalDemo();
             field_0x580 = 2;
             acStack_38.set(262.5f, -188.0f, 10712.5f);
             player->setPlayerPosAndAngle(&acStack_38, 0, 0);
-            player->i_changeDemoMode(4, 1, 0, 0);
+            player->changeDemoMode(4, 1, 0, 0);
             break;
         case 12:
-            player->i_changeOriginalDemo();
+            player->changeOriginalDemo();
             field_0x580 = 2;
-            player->i_changeDemoMode(4, 1, 0, 0);
+            player->changeDemoMode(4, 1, 0, 0);
             break;
         case 9:
             field_0x588 = -1;

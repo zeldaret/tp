@@ -37,19 +37,19 @@ static fopAc_ac_c* daAlink_searchTagKtOnFire(fopAc_ac_c* i_actor, void* i_data) 
  */
 void daAlink_c::setKandelaarMtx(Mtx i_mtx, int param_1, int param_2) {
     if (mpKanteraModel != NULL) {
-        if (i_checkNoResetFlg2(FLG2_UNK_1)) {
+        if (checkNoResetFlg2(FLG2_UNK_1)) {
             deleteEquipItem(0, 1);
         }
 
-        i_onEndResetFlg1(ERFLG1_UNK_4);
+        onEndResetFlg1(ERFLG1_UNK_4);
 
         mpKanteraModel->i_setBaseTRMtx(i_mtx);
         if (param_1 == 0) {
-            i_onEndResetFlg1(ERFLG1_UNK_8);
+            onEndResetFlg1(ERFLG1_UNK_8);
         }
 
         if (param_2 != 0) {
-            i_onEndResetFlg1(ERFLG1_UNK_10);
+            onEndResetFlg1(ERFLG1_UNK_10);
         }
     }
 }
@@ -58,7 +58,7 @@ void daAlink_c::setKandelaarMtx(Mtx i_mtx, int param_1, int param_2) {
 BOOL daAlink_c::checkWaterInKandelaarOffset(f32 param_0) {
     f32 tmp_65 = lit_17593;  // tmp can be removed with literals
     f32 base_y_pos;
-    if (i_checkModeFlg(0x40)) {
+    if (checkModeFlg(0x40)) {
         base_y_pos = mRightFootPos.y;
     } else {
         base_y_pos = current.pos.y;
@@ -70,7 +70,7 @@ BOOL daAlink_c::checkWaterInKandelaarOffset(f32 param_0) {
 /* 801107BC-80110840 10B0FC 0084+00 2/2 0/0 0/0 .text            checkWaterInKandelaar__9daAlink_cFf
  */
 void daAlink_c::checkWaterInKandelaar(f32 param_0) {
-    if (i_checkNoResetFlg2(FLG2_UNK_1) && checkWaterInKandelaarOffset(param_0)) {
+    if (checkNoResetFlg2(FLG2_UNK_1) && checkWaterInKandelaarOffset(param_0)) {
         if (mEquipItem == KANTERA) {
             deleteEquipItem(TRUE, TRUE);
         } else {
@@ -83,13 +83,13 @@ void daAlink_c::checkWaterInKandelaar(f32 param_0) {
 /* 80110840-8011087C 10B180 003C+00 13/13 0/0 0/0 .text            offKandelaarModel__9daAlink_cFv
  */
 void daAlink_c::offKandelaarModel() {
-    i_offNoResetFlg2(0x10000001);
+    offNoResetFlg2(FLG2_UNK_10000001);
     mZ2Link.setKanteraState(0);
 }
 
 /* 8011087C-801108B4 10B1BC 0038+00 1/0 0/0 0/0 .text            checkUseKandelaar__9daAlink_cFi */
 bool daAlink_c::checkUseKandelaar(int param_0) {
-    return (param_0 == 0 && i_checkNoResetFlg2(FLG2_UNK_1)) ||
+    return (param_0 == 0 && checkNoResetFlg2(FLG2_UNK_1)) ||
            (param_0 != 0 && mEquipItem == KANTERA);
 }
 
@@ -130,8 +130,8 @@ static int daAlink_kandelaarModelCallBack(J3DJoint* param_0, int param_1) {
 /* 80110C28-80110C6C 10B568 0044+00 1/0 0/0 0/0 .text            getKandelaarFlamePos__9daAlink_cFv
  */
 cXyz* daAlink_c::getKandelaarFlamePos() {
-    if ((!i_checkNoResetFlg2((daPy_FLG2)0x20001) && !i_checkEndResetFlg1(ERFLG1_UNK_4)) ||
-        i_checkWolf() || !i_checkNoResetFlg1(FLG1_UNK_80))
+    if ((!checkNoResetFlg2((daPy_FLG2)0x20001) && !checkEndResetFlg1(ERFLG1_UNK_4)) ||
+        checkWolf() || !checkNoResetFlg1(FLG1_UNK_80))
     {
         return NULL;
     }
@@ -211,8 +211,8 @@ void J3DTevBlock::setTevColor(u32 param_0, J3DGXColorS10 const* param_1) {}
 void daAlink_c::setKandelaarModel() {
     field_0x2f94 = 0;
 
-    if (!i_checkNoResetFlg2(FLG2_UNK_1)) {
-        i_onNoResetFlg2(FLG2_UNK_1);
+    if (!checkNoResetFlg2(FLG2_UNK_1)) {
+        onNoResetFlg2(FLG2_UNK_1);
 
         mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(field_0x30c0), &mKandelaarFlamePos);
         mKandelaarFlamePos.y -= 30.0f;
@@ -256,7 +256,7 @@ void daAlink_c::resetOilBottleModel() {
 
 /* 80110FE0-801110B8 10B920 00D8+00 3/3 0/0 0/0 .text commonKandelaarPourInit__9daAlink_cFv */
 void daAlink_c::commonKandelaarPourInit() {
-    if (i_checkNoResetFlg2(FLG2_UNK_1)) {
+    if (checkNoResetFlg2(FLG2_UNK_1)) {
         mProcVar3.field_0x300e.x = 1;
     } else {
         mProcVar3.field_0x300e.x = 0;
@@ -290,7 +290,7 @@ int daAlink_c::commonKandelaarPour(int param_0) {
         current_anm = mUnderAnmHeap[0].getIdx();
     }
 
-    i_onNoResetFlg2(FLG2_UNK_10000000);
+    onNoResetFlg2(FLG2_UNK_10000000);
 
     if (current_anm == getMainBckData(ANM_OIL_BOTTLE_POUR_START)->m_underID) {
         if (checkAnmEnd(frameCtrl_p)) {
@@ -330,7 +330,7 @@ int daAlink_c::commonKandelaarPour(int param_0) {
 
         resetOilBottleModel();
         resetSpecialEvent();
-        i_offNoResetFlg2(FLG2_UNK_10000000);
+        offNoResetFlg2(FLG2_UNK_10000000);
         return 1;
     }
 

@@ -576,7 +576,7 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
             mSpecialMode = 0x13;
             anm = ANM_SUMOU_PUNCH;
         }
-    } else if (wrestler_p->getWrestlerType() != 0 && !i_checkEquipHeavyBoots()) {
+    } else if (wrestler_p->getWrestlerType() != 0 && !checkEquipHeavyBoots()) {
         if (i_doTrigger) {
             mSpecialMode = 0x12;
             anm = ANM_SUMOU_TACKLE_SHOCK_RETURN;

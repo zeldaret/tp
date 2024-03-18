@@ -1687,8 +1687,8 @@ static void play_camera(ni_class* i_this) {
         i_this->field_0xad4 = camera0->mLookat.mCenter;
         i_this->field_0xaec = dComIfGd_getView()->mFovy;
 
-        player->i_changeOriginalDemo();
-        player->i_changeDemoMode(1, 1, 0, 0);
+        player->changeOriginalDemo();
+        player->changeDemoMode(1, 1, 0, 0);
 
         mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
         // fallthrough

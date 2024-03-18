@@ -147,7 +147,7 @@ void daAlink_c::decideCrawlDoStatus() {
         dCamera_c* camera = dCam_getBody();
 
         if (camera->ChangeModeOK(4) && mWaterY <= current.pos.y) {
-            i_onResetFlg0(RFLG0_UNK_4000000);
+            onResetFlg0(RFLG0_UNK_4000000);
 
             if (dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x1000) && !checkEventRun()) {
                 setSubjectMode();

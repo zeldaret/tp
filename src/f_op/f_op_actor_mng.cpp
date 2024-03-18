@@ -913,7 +913,7 @@ asm f32 fopAcM_searchActorDistanceXZ2(fopAc_ac_c const* param_0,
 #endif
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8001AAE0-8001AC40 015420 0160+00 0/0 0/0 2/2 .text
