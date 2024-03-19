@@ -19,7 +19,7 @@ void daObjLv4Floor_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mMoveYPos, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -69,7 +69,7 @@ int daObjLv4Floor_c::create1st() {
         return phase;
     }
 
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         return cPhs_ERROR_e;
     }
 
@@ -101,7 +101,7 @@ void daObjLv4Floor_c::action() {
 
 /* 80C67AD4-80C67B28 000354 0054+00 1/0 0/0 0/0 .text            mode_wait__15daObjLv4Floor_cFv */
 void daObjLv4Floor_c::mode_wait() {
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         mode_init_move();
     }
 }

@@ -53,7 +53,7 @@ void daHeavySw_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::ZXYrotM(field_0x5cc.x, field_0x5cc.y, field_0x5cc.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C1CC70-80C1CCDC 000270 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daHeavySw_cFv */
@@ -89,7 +89,7 @@ int daHeavySw_c::create() {
         field_0x5cc.y = 0;
         field_0x5cc.z = 0;
         u8 param = fopAcM_GetParam(this);
-        if (i_fopAcM_isSwitch(this, param)) {
+        if (fopAcM_isSwitch(this, param)) {
             field_0x5bc = 300.0f;
             init_modeMoveEnd();
         } else {
@@ -108,7 +108,7 @@ void daHeavySw_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* p
         daHeavySw_c* heavySw = static_cast<daHeavySw_c*>(param_1);
         heavySw->field_0x5d8 = 1;
         heavySw->field_0x5dc =
-            static_cast<daPy_py_c*>(dComIfGp_getLinkPlayer())->i_checkEquipHeavyBoots();
+            static_cast<daPy_py_c*>(dComIfGp_getLinkPlayer())->checkEquipHeavyBoots();
     }
 }
 
@@ -187,7 +187,7 @@ void daHeavySw_c::modeRide() {
         }
     } else {
         s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-        i_mDoAud_seStartLevel(Z2SE_OBJ_HEAVYSW_MOVE, &current.pos, 0, reverb);
+        mDoAud_seStartLevel(Z2SE_OBJ_HEAVYSW_MOVE, &current.pos, 0, reverb);
         cLib_chaseF(&speedF, field_0x5d4, field_0x5d4 / 30.0f);
         f32 calc = cLib_addCalc(&field_0x5bc, l_HIO.field_0x10, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
         if (calc == 0.0f) {
@@ -266,7 +266,7 @@ void daHeavySw_c::modeMove() {
 void daHeavySw_c::init_modeMoveEnd() {
     field_0x5c5 = 1;
     u8 param = fopAcM_GetParam(this);
-    if (!i_fopAcM_isSwitch(this, param)) {
+    if (!fopAcM_isSwitch(this, param)) {
         s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
         mDoAud_seStart(Z2SE_OBJ_HEAVYSW_STOP, &current.pos, 0, reverb);
         dComIfGp_getVibration().StartShock(l_HIO.field_0x34, 0xF, cXyz(0.0f, 1.0f, 0.0f));
@@ -280,9 +280,9 @@ void daHeavySw_c::modeMoveEnd() {
     if (field_0x5c4 != 0) {
         field_0x5c4--;
     } else {
-        BOOL is_switch = i_fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+        BOOL is_switch = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
         if (!is_switch) {
-            i_fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
+            fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
         }
     }
 }

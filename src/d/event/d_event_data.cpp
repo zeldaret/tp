@@ -13,11 +13,11 @@
 #include "m_Do/m_Do_graphic.h"
 
 inline BOOL dEvDtFlagCheck(int flag) {
-    return i_dComIfGp_getEventManager().flagCheck(flag);
+    return dComIfGp_getEventManager().flagCheck(flag);
 }
 
 inline void dEvDtFlagSet(int flag) {
-    i_dComIfGp_getEventManager().setFlag(flag);
+    dComIfGp_getEventManager().setFlag(flag);
 }
 
 struct TelopDataStruct {
@@ -92,7 +92,7 @@ static u16 getStartTelopNo() {
     if (telopData == NULL || telopData->_8 == 0) {
         return 0xFFFF;
     } else if (telopData->_8 == 2 && telopData->_6 != 0xFFFF &&
-               !i_dComIfGs_isEventBit(telopData->_6))
+               !dComIfGs_isEventBit(telopData->_6))
     {
         return 0xFFFF;
     } else if (telopData->_8 == 3 && telopData->_6 != 0xFFFF &&
@@ -277,7 +277,7 @@ int dEvDtEvent_c::finishCheck() {
             return 1;
         }
 
-        if (!i_dComIfGp_getEventManager().flagCheck(tmp)) {
+        if (!dComIfGp_getEventManager().flagCheck(tmp)) {
             return 0;
         }
     }
@@ -292,7 +292,7 @@ int dEvDtEvent_c::forceFinish() {
             return 1;
         }
 
-        i_dComIfGp_getEventManager().setFlag(flag);
+        dComIfGp_getEventManager().setFlag(flag);
     }
     return 1;
 }
@@ -365,7 +365,7 @@ void dEvDtStaff_c::init() {
     field_0x41 = false;
     field_0x3c = -1;
     if (mType == TYPE_CAMERA) {
-        i_dComIfGp_getEventManager().setCameraPlay(1);
+        dComIfGp_getEventManager().setCameraPlay(1);
     }
 }
 
@@ -380,9 +380,9 @@ void dEvDtStaff_c::advanceCut(int cut) {
 /* 80044190-80044324 03EAD0 0194+00 1/1 0/0 0/0 .text            specialProcLight__12dEvDtStaff_cFv
  */
 void dEvDtStaff_c::specialProcLight() {
-    int staffId = i_dComIfGp_evmng_getMyStaffId("LIGHT", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("LIGHT", NULL, 0);
     if (staffId != -1) {
-        char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+        char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
 
         if (dComIfGp_evmng_getIsAddvance(staffId)) {
             f32* hourP;
@@ -423,12 +423,12 @@ void dEvDtStaff_c::specialProcLight() {
 void dEvDtStaff_c::specialProcMessage() {
     MessageData* data = (MessageData*)&mData;
     StaffWork* work = &mWork;
-    int staffId = i_dComIfGp_evmng_getMyStaffId("MESSAGE", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("MESSAGE", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
         case 'WAIT':
@@ -606,12 +606,12 @@ void dEvDtStaff_c::specialProcMessage() {
 void dEvDtStaff_c::specialProcSound() {
     SoundData* data = (SoundData*)&mData;
 
-    int staffId = i_dComIfGp_evmng_getMyStaffId("SOUND", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("SOUND", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
         case 'WAIT':
@@ -663,12 +663,12 @@ void dEvDtStaff_c::specialProcCreate() {
     cXyz scale;
     dStage_objectNameInf* objNameInf;
 
-    int staffId = i_dComIfGp_evmng_getMyStaffId("CREATER", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("CREATER", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
         case 'WAIT':
@@ -717,14 +717,14 @@ void dEvDtStaff_c::specialProcCreate() {
 void dEvDtStaff_c::specialProcDirector() {
     DirectorData* data = (DirectorData*)mData;
     daPy_py_c* player = dComIfGp_getLinkPlayer();
-    dEvt_control_c& evtControl = i_dComIfGp_getEvent();
+    dEvt_control_c& evtControl = dComIfGp_getEvent();
 
-    int staffId = i_dComIfGp_evmng_getMyStaffId("DIRECTOR", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("DIRECTOR", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         int* eventFlagP = dComIfGp_evmng_getMyIntegerP(staffId, "EventFlag");
         if (eventFlagP != NULL) {
@@ -770,9 +770,9 @@ void dEvDtStaff_c::specialProcDirector() {
             break;
         case 'PLAY':
             if (strcmp(nowCutName, "PLAYER_NODRAW") == 0) {
-                player->i_onPlayerNoDraw();
+                player->onPlayerNoDraw();
             } else if (strcmp(nowCutName, "PLAYER_DRAW") == 0) {
-                player->i_offPlayerNoDraw();
+                player->offPlayerNoDraw();
             }
             break;
         case 'NEXT':
@@ -885,11 +885,11 @@ void dEvDtStaff_c::specialProcDirector() {
             if (specTypeP != NULL) {
                 switch (*specTypeP) {
                 case 8:
-                    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[506])) {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[506])) {
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[566]);
                     }
 
-                    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[507])) {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[507])) {
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[567]);
                     }
                 }
@@ -957,12 +957,12 @@ void dEvDtStaff_c::specialProcPackage() {
         dMsgObject_demoMessageGroup();
     }
 
-    int staffId = i_dComIfGp_evmng_getMyStaffId("PACKAGE", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("PACKAGE", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
         case 'WAIT':
@@ -997,7 +997,7 @@ void dEvDtStaff_c::specialProcPackage() {
         specialProc_WaitProc(staffId);
         break;
     case 'PLAY':
-        dEvt_control_c& evtControl = i_dComIfGp_getEvent();
+        dEvt_control_c& evtControl = dComIfGp_getEvent();
         if (dDemo_c::getMode() == 2) {
             dStage_MapEvent_dt_c* event = evtControl.getStageEventDt();
             if (event != NULL && event->field_0x7 != 0xFF && !evtControl.chkFlag2(1)) {
@@ -1021,12 +1021,12 @@ void dEvDtStaff_c::specialProcPackage() {
 /* 80045AFC-80045C34 04043C 0138+00 1/1 0/0 0/0 .text specialProcTimekeeper__12dEvDtStaff_cFv */
 void dEvDtStaff_c::specialProcTimekeeper() {
     TimerKeeperData* dataP = (TimerKeeperData*)&mData;
-    int staffId = i_dComIfGp_evmng_getMyStaffId("TIMEKEEPER", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("TIMEKEEPER", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         switch (*(int*)nowCutName) {
         case 'COUN':
@@ -1055,12 +1055,12 @@ void dEvDtStaff_c::specialProcTimekeeper() {
  */
 void dEvDtStaff_c::specialProcEffect() {
     EffectData* data = (EffectData*)mData;
-    int staffId = i_dComIfGp_evmng_getMyStaffId("EFFECT", NULL, 0);
+    int staffId = dComIfGp_evmng_getMyStaffId("EFFECT", NULL, 0);
     if (staffId == -1) {
         return;
     }
 
-    char* nowCutName = i_dComIfGp_getEventManager().getMyNowCutName(staffId);
+    char* nowCutName = dComIfGp_getEventManager().getMyNowCutName(staffId);
     if (dComIfGp_evmng_getIsAddvance(staffId)) {
         data->unk = 0;
         switch (*(int*)nowCutName) {

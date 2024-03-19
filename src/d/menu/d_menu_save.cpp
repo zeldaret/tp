@@ -1955,7 +1955,7 @@ SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n"
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     if (mWaitTimer != 0) {
         mWaitTimer--;
@@ -1983,7 +1983,7 @@ asm void dMenu_save_c::memCardDataSaveWait() {
 #ifdef NONMATCHING
 void dMenu_save_c::memCardDataSaveWait2() {
     if (mWaitTimer != 0) {
-        i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+        mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
         mWaitTimer--;
         return;
     }
@@ -2219,12 +2219,12 @@ void dMenu_save_c::retryQuestion2() {
 /* 801F30B8-801F31B0 1ED9F8 00F8+00 2/2 0/0 0/0 .text            restartInit__12dMenu_save_cFv */
 void dMenu_save_c::restartInit() {
     // if monkey lantern sequence not completed
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);  // Lantern stolen
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);  // Monkey dropped lantern
     }
 
-    if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
         dComIfGs_setItem(SLOT_1, KANTERA);
         dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
     }
@@ -2732,7 +2732,7 @@ asm void dMenu_save_c::yesnoSelectStart() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool yesnoAnmComplete = yesnoMenuMoveAnm();
@@ -2762,7 +2762,7 @@ asm void dMenu_save_c::saveMoveDisp() {
 // matches with literals
 #ifdef NONMATCHING
 void dMenu_save_c::saveMoveDisp2() {
-    i_mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
+    mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
 
     bool headerTxtChanged = headerTxtChangeAnm();
     bool dataMoveAnm = selectDataMoveAnm();

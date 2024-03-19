@@ -50,8 +50,7 @@ public:
     static void on3ButtonReset() { mResetData->m3ButtonReset = 1; }
     static void onShutdown() { mResetData->mShutdown = true; }
 
-    static mDoRstData* getResetData();
-    static mDoRstData* i_getResetData() { return mResetData; }
+    static mDoRstData* getResetData() { return mResetData; }
     static void setResetData(mDoRstData* rstData) { mResetData = rstData; }
 
     static mDoRstData* mResetData;

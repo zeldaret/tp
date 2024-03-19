@@ -17,7 +17,7 @@ void daLv4HsTarget_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C5F718-80C5F784 0001D8 006C+00 1/0 0/0 0/0 .text            CreateHeap__15daLv4HsTarget_cFv */

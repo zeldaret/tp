@@ -101,7 +101,7 @@ int daObjBoard_c::Execute(Mtx** param_0) {
     case 5:
     case 7:
     case 15:
-        if (i_fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
             if (!mpBgW->ChkUsed()) {
                 dComIfG_Bgsp().Regist(mpBgW, this);
             }
@@ -116,7 +116,7 @@ int daObjBoard_c::Execute(Mtx** param_0) {
     case 4:
     case 6:
     case 8:
-        if (i_fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
             if (mpBgW->ChkUsed()) {
                 dComIfG_Bgsp().Release(mpBgW);
             }

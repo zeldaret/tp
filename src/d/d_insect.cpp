@@ -57,8 +57,8 @@ void dInsect_c::Insect_GetDemoMain() {
         break;
     case 2:
         if (dComIfGp_evmng_endCheck("DEFAULT_GETITEM")) {
-            i_dComIfGp_event_reset();
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[m_saveBitNo]) ||
+            dComIfGp_event_reset();
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[m_saveBitNo]) ||
                 field_0x585 != 0)
             {
                 mDraw = true;

@@ -2142,7 +2142,7 @@ void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     if (param_0 == NULL) {
         cXyz tmp;
         for (u16 i = 0; i < modelData->getJointNum(); i++) {
-            MtxP anmMtx = mModel->i_getAnmMtx(i);
+            MtxP anmMtx = mModel->getAnmMtx(i);
             tmp.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
             dComIfGd_entryZSortListZxlu(packet, tmp);
             packet++;
@@ -4004,7 +4004,7 @@ void mDoExt_removeMesgFont() {
             delete mDoExt_font0;
             mDoExt_font0 = NULL;
             if (mDoExt_resfont0 != NULL) {
-                i_JKRFree(mDoExt_resfont0);
+                JKRFree(mDoExt_resfont0);
                 mDoExt_resfont0 = NULL;
             }
         }
@@ -4091,7 +4091,7 @@ void mDoExt_removeSubFont() {
             delete mDoExt_font2;
             mDoExt_font2 = NULL;
             if (mDoExt_resfont2 != NULL) {
-                i_JKRFree(mDoExt_resfont2);
+                JKRFree(mDoExt_resfont2);
                 mDoExt_resfont2 = NULL;
             }
         }

@@ -57,7 +57,7 @@ void daObjMGate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZXYrotM(mGateAngle.x, mGateAngle.y, mGateAngle.z);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 
     if (mpKeyModel != NULL) {
@@ -68,7 +68,7 @@ void daObjMGate_c::setBaseMtx() {
         mDoMtx_stack_c::ZXYrotM(mGateAngle.x, mGateAngle.y, mGateAngle.z);
         mDoMtx_stack_c::transM(key_offset);
         mDoMtx_stack_c::XrotM(mGateKeyAngle);
-        mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 

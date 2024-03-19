@@ -1991,8 +1991,8 @@ bool dBgW::ChkPolyThrough(int poly_index, cBgS_PolyPassChk* ppass_chk) {
         }
 
         cXyz pos(pm_tri[poly_index].m_plane.mNormal);
-        if (chk->ChkHorse() && i_dComIfGp_getHorseActor() != NULL) {
-            if (!i_dComIfGp_getHorseActor()->checkSpecialWallHit(pos)) {
+        if (chk->ChkHorse() && dComIfGp_getHorseActor() != NULL) {
+            if (!dComIfGp_getHorseActor()->checkSpecialWallHit(pos)) {
                 return true;
             }
         }

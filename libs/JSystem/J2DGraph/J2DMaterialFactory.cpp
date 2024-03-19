@@ -103,7 +103,7 @@ J2DMaterialFactory::J2DMaterialFactory(J2DMaterialBlock const& param_0) {
     field_0x28 = JSUConvertOffsetToPtr<u16>(&param_0, (void*)param_0.field_0x38);
     field_0x2c = JSUConvertOffsetToPtr<u16>(&param_0, (void*)param_0.field_0x3c);
     field_0x34 = JSUConvertOffsetToPtr<J2DTevOrderInfo>(&param_0, (void*)param_0.field_0x40);
-    field_0x38 = JSUConvertOffsetToPtr<J2DGXColorS10>(&param_0, (void*)param_0.field_0x44);
+    field_0x38 = JSUConvertOffsetToPtr<_GXColorS10>(&param_0, (void*)param_0.field_0x44);
     field_0x3c = JSUConvertOffsetToPtr<GXColor>(&param_0, (void*)param_0.field_0x48);
     field_0x40 = JSUConvertOffsetToPtr<u8>(&param_0, (void*)param_0.field_0x4c);
     field_0x44 = JSUConvertOffsetToPtr<J2DTevStageInfo>(&param_0, (void*)param_0.field_0x50);

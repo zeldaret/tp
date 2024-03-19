@@ -5,7 +5,7 @@
 
 /* 800E23FC-800E243C 0DCD3C 0040+00 6/6 0/0 0/0 .text            concatMagneBootMtx__9daAlink_cFv */
 void daAlink_c::concatMagneBootMtx() {
-    if (i_checkMagneBootsOn()) {
+    if (checkMagneBootsOn()) {
         mDoMtx_stack_c::concat(mMagneBootMtx);
     }
 }
@@ -13,14 +13,14 @@ void daAlink_c::concatMagneBootMtx() {
 /* 800E243C-800E247C 0DCD7C 0040+00 1/1 0/0 0/0 .text            concatMagneBootInvMtx__9daAlink_cFv
  */
 void daAlink_c::concatMagneBootInvMtx() {
-    if (i_checkMagneBootsOn()) {
+    if (checkMagneBootsOn()) {
         mDoMtx_stack_c::concat(mMagneBootInvMtx);
     }
 }
 
 /* 800E247C-800E24B0 0DCDBC 0034+00 8/8 0/0 0/0 .text multVecMagneBootInvMtx__9daAlink_cFP4cXyz */
 void daAlink_c::multVecMagneBootInvMtx(cXyz* vec) {
-    if (i_checkMagneBootsOn()) {
+    if (checkMagneBootsOn()) {
         mDoMtx_multVecSR(mMagneBootInvMtx, vec, vec);
     }
 }
@@ -40,7 +40,7 @@ bool daAlink_c::commonMagneLineCheck(cXyz* i_start, cXyz* i_end) {
 /* 800E251C-800E2580 0DCE5C 0064+00 2/2 0/0 0/0 .text            checkBootsMoveAnime__9daAlink_cFi
  */
 BOOL daAlink_c::checkBootsMoveAnime(int param_0) {
-    return (checkHeavyStateOn(param_0, 1) && !i_checkNoResetFlg0(FLG0_UNDERWATER)) ||
+    return (checkHeavyStateOn(param_0, 1) && !checkNoResetFlg0(FLG0_UNDERWATER)) ||
            checkDkCaught2Anime();
 }
 
@@ -48,8 +48,8 @@ BOOL daAlink_c::checkBootsMoveAnime(int param_0) {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::setHeavyBoots(int param_0) {
-    if (i_checkEquipHeavyBoots()) {
-        i_offNoResetFlg0(FLG0_EQUIP_HVY_BOOTS);
+    if (checkEquipHeavyBoots()) {
+        offNoResetFlg0(FLG0_EQUIP_HVY_BOOTS);
         mZ2Link.setLinkBootsType(0);
 
         if (field_0x06e0 != NULL) {
@@ -60,15 +60,15 @@ int daAlink_c::setHeavyBoots(int param_0) {
             }
         }
 
-        if (i_checkModeFlg(0x40000) && !checkHookshotItem(mEquipItem)) {
+        if (checkModeFlg(0x40000) && !checkHookshotItem(mEquipItem)) {
             deleteEquipItem(TRUE, FALSE);
         }
 
-        if (i_checkNoResetFlg0(FLG0_UNDERWATER) && !i_dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
+        if (checkNoResetFlg0(FLG0_UNDERWATER) && !dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
             return procSwimWaitInit(0);
         }
 
-        if (i_checkMagneBootsOn()) {
+        if (checkMagneBootsOn()) {
             if (cancelMagneBootsOn()) {
                 return procFallInit(1, 5.0f);
             }
@@ -80,7 +80,7 @@ int daAlink_c::setHeavyBoots(int param_0) {
             }
         }
     } else if (param_0) {
-        i_onNoResetFlg0(FLG0_EQUIP_HVY_BOOTS);
+        onNoResetFlg0(FLG0_EQUIP_HVY_BOOTS);
         mZ2Link.setLinkBootsType(1);
 
         if (field_0x06e0 != NULL) {
@@ -91,8 +91,8 @@ int daAlink_c::setHeavyBoots(int param_0) {
             }
         }
 
-        if (i_checkModeFlg(0x40000)) {
-            i_offNoResetFlg0(FLG0_UNK_100);
+        if (checkModeFlg(0x40000)) {
+            offNoResetFlg0(FLG0_UNK_100);
             mZ2Link.setInWater(true);
         }
     }
@@ -168,7 +168,7 @@ void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* i_polyinfo, int param_1) {
     } else {
         // D_MN54 is the E3 Goron Mines Demo map
         if (checkStageName("D_MN54") && getMoveBGActorName(*i_polyinfo, 1) == PROC_Obj_MagneArm) {
-            i_fopAcM_onSwitch(this, 0x93);
+            fopAcM_onSwitch(this, 0x93);
         }
 
         field_0x3114 = var_r28;
@@ -248,7 +248,7 @@ asm void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* param_0, int param_1) {
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::cancelMagneBootsOn() {
-    i_offNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
+    offNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
     mZ2Link.setMagnetized(false);
 
     if (field_0x3114 == -0x8000) {
@@ -299,7 +299,7 @@ asm int daAlink_c::cancelMagneBootsOn() {
 
 /* 800E2F88-800E3048 0DD8C8 00C0+00 1/1 0/0 0/0 .text            checkMagneBootsFly__9daAlink_cFv */
 int daAlink_c::checkMagneBootsFly() {
-    if (field_0x2fb8 != 0 && i_checkEquipHeavyBoots() && !checkDeadHP() &&
+    if (field_0x2fb8 != 0 && checkEquipHeavyBoots() && !checkDeadHP() &&
         mProcID != PROC_MAGNE_BOOTS_FLY && !checkEventRun())
     {
         cXyz vec(field_0x369c);
@@ -334,14 +334,14 @@ int daAlink_c::procBootsEquipInit() {
 #ifdef NONMATCHING
 int daAlink_c::procBootsEquip() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
-    i_onEndResetFlg0(ERFLG0_UNK_8000000);
+    onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (checkAnmEnd(frameCtrl_p)) {
         checkNextAction(0);
     } else if (frameCtrl_p->checkPass(10.0f)) {
         setHeavyBoots(1);
     } else if (frameCtrl_p->checkPass(16.0f)) {
-        if (i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS)) {
+        if (checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS)) {
             dComIfGp_getVibration().StartShock(3, 1, cXyz(0.0f, 1.0f, 0.0f));
         }
 
@@ -387,8 +387,8 @@ int daAlink_c::procMagneBootsFlyInit() {
         return 0;
     }
 
-    if (i_checkMagneBootsOn()) {
-        i_offNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
+    if (checkMagneBootsOn()) {
+        offNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
         mZ2Link.setMagnetized(true);
     }
 
@@ -435,7 +435,7 @@ int daAlink_c::procMagneBootsFly() {
         field_0x3478 = field_0x594;
     }
 
-    if (dComIfG_Bgsp().ChkPolySafe(mPolyInfo2) && i_checkEquipHeavyBoots()) {
+    if (dComIfG_Bgsp().ChkPolySafe(mPolyInfo2) && checkEquipHeavyBoots()) {
         if (dComIfG_Bgsp().ChkMoveBG(mPolyInfo2)) {
             cXyz old_37c8(field_0x37c8);
             dComIfG_Bgsp().MoveBgTransPos(mPolyInfo2, true, &field_0x37c8, NULL, NULL);
@@ -451,12 +451,12 @@ int daAlink_c::procMagneBootsFly() {
     cLib_chasePos(&current.pos, field_0x37c8, field_0x3478);
     if (field_0x37c8.abs(current.pos) < 50.0f) {
         current.pos = field_0x37c8;
-        i_onNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
+        onNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
         mZ2Link.setMagnetized(true);
         procLandDamageInit(0);
     } else {
         cXyz sp24;
-        mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &sp24);
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &sp24);
         sp24 = field_0x37c8 - sp24;
 
         cLib_addCalcAngleS(&shape_angle.x, sp24.atan2sY_XZ() + -0x4000, 5, 0x1000, 0x100);

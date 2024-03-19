@@ -137,7 +137,7 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* parent, bool errorFlag) {
         new (memory) JKRExpHeap(dataPtr, alignedSize - expHeapSize, parent, errorFlag);
 
     if (newHeap == NULL) {
-        i_JKRFree(memory);
+        JKRFree(memory);
         return NULL;
     }
 

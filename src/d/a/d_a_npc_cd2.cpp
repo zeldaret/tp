@@ -1873,9 +1873,9 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     s32 jntNum = a_jntNumTbl[idx][x];
     if (i_model && jntNum >= 0) {
         g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
-        mDoMtx_copy(mpMorf->getModel()->i_getAnmMtx(jntNum), mDoMtx_stack_c::now);
+        mDoMtx_copy(mpMorf->getModel()->getAnmMtx(jntNum), mDoMtx_stack_c::now);
         mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
-        i_model->i_setBaseTRMtx(mDoMtx_stack_c::now);
+        i_model->setBaseTRMtx(mDoMtx_stack_c::now);
         mDoExt_modelUpdateDL(i_model);
     }
     return 1;
@@ -1994,7 +1994,7 @@ static void* s_sub1(void* param_0, void* param_1) {
 void* daNpcCd2_c::getEscapeTag() {
     target = NULL;
     wolfAngle = fopAcM_searchPlayerAngleY(this);
-    i_fpcM_Search(s_sub1, this);
+    fpcM_Search(s_sub1, this);
     return target;
 }
 
@@ -2190,7 +2190,7 @@ fopAc_ac_c* PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
     if (fopAcM_CheckCondition(field_0x00, 4)) {
         return NULL;
     }
-    i_fpcM_Search(s_sub, this);
+    fpcM_Search(s_sub, this);
     if (field_0x04) {
         setAvoidPoint();
     }

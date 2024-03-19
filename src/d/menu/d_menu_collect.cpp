@@ -1073,13 +1073,13 @@ bool dMenu_Collect2D_c::isFishIconVisible() {
 
 /* 801B061C-801B071C 1AAF5C 0100+00 2/2 0/0 0/0 .text isSkillIconVisible__17dMenu_Collect2D_cFv */
 bool dMenu_Collect2D_c::isSkillIconVisible() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[338]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[339]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[340]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[341]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[342]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[343]) ||
-        i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[344]))
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[338]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[339]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[340]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[341]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[342]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[343]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[344]))
     {
         return true;
     }
@@ -1232,23 +1232,23 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x22d[0][0] = 0;
     field_0x22d[1][0] = 0;
     field_0x22d[2][0] = 0;
-    field_0x22d[3][0] = i_dComIfGs_isItemFirstBit(0x28) ||
-                                (i_dComIfGs_isItemFirstBit(0x3F) && !i_dComIfGs_isEventBit(0x302)) ?
+    field_0x22d[3][0] = dComIfGs_isItemFirstBit(0x28) ||
+                                (dComIfGs_isItemFirstBit(0x3F) && !dComIfGs_isEventBit(0x302)) ?
                             true :
                             false;
 
     if (field_0x22d[3][0] != 0) {
-        if (i_dComIfGs_isItemFirstBit(0x28)) {
+        if (dComIfGs_isItemFirstBit(0x28)) {
             mpScreen->search('ken_00')->hide();
             mpScreen->search('ken_01')->show();
-        } else if (i_dComIfGs_isItemFirstBit(0x3F) && !i_dComIfGs_isEventBit(0x302)) {
+        } else if (dComIfGs_isItemFirstBit(0x3F) && !dComIfGs_isEventBit(0x302)) {
             mpScreen->search('ken_00')->show();
             mpScreen->search('ken_01')->hide();
         }
     }
 
     field_0x22d[4][0] =
-        i_dComIfGs_isItemFirstBit(0x29) || i_dComIfGs_isItemFirstBit(0x49) ? true : false;
+        dComIfGs_isItemFirstBit(0x29) || dComIfGs_isItemFirstBit(0x49) ? true : false;
     if (dComIfGs_getMaxLife() > 15) {
         field_0x22d[5][0] = 1;
     } else {
@@ -1260,17 +1260,17 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x22d[2][1] = 0;
 
     field_0x22d[3][1] =
-        i_dComIfGs_isItemFirstBit(0x2B) || i_dComIfGs_isItemFirstBit(0x2A) ? true : false;
+        dComIfGs_isItemFirstBit(0x2B) || dComIfGs_isItemFirstBit(0x2A) ? true : false;
     if (field_0x22d[3][1] != 0) {
-        if (i_dComIfGs_isItemFirstBit(0x2B)) {
+        if (dComIfGs_isItemFirstBit(0x2B)) {
             mpScreen->search('tate_00')->show();
             mpScreen->search('tate_01')->hide();
-        } else if (i_dComIfGs_isItemFirstBit(0x2A)) {
+        } else if (dComIfGs_isItemFirstBit(0x2A)) {
             mpScreen->search('tate_00')->hide();
             mpScreen->search('tate_01')->show();
         }
     }
-    field_0x22d[4][1] = i_dComIfGs_isItemFirstBit(0x2C);
+    field_0x22d[4][1] = dComIfGs_isItemFirstBit(0x2C);
     field_0x22d[5][1] = 0;
     field_0x22d[6][1] = 0;
     field_0x22d[0][2] = 0;
@@ -1281,9 +1281,9 @@ void dMenu_Collect2D_c::screenSet() {
         field_0x22d[4][2] = 0;
         field_0x22d[5][2] = 0;
     } else {
-        field_0x22d[3][2] = i_dComIfGs_isItemFirstBit(0x2F);
-        field_0x22d[4][2] = i_dComIfGs_isItemFirstBit(0x31);
-        field_0x22d[5][2] = i_dComIfGs_isItemFirstBit(0x30);
+        field_0x22d[3][2] = dComIfGs_isItemFirstBit(0x2F);
+        field_0x22d[4][2] = dComIfGs_isItemFirstBit(0x31);
+        field_0x22d[5][2] = dComIfGs_isItemFirstBit(0x30);
     }
     field_0x22d[6][2] = 0;
     field_0x22d[0][3] = 1;
@@ -1334,12 +1334,12 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x184[0][0] = 0;
     field_0x184[1][0] = 0;
     field_0x184[2][0] = 0;
-    if (i_dComIfGs_isItemFirstBit(0x28)) {
+    if (dComIfGs_isItemFirstBit(0x28)) {
         field_0x184[3][0] = 0x18d;
     } else {
         field_0x184[3][0] = 0x1a4;
     }
-    if (i_dComIfGs_isItemFirstBit(0x49)) {
+    if (dComIfGs_isItemFirstBit(0x49)) {
         field_0x184[4][0] = 0x1ae;
     } else {
         field_0x184[4][0] = 0x18e;
@@ -1365,7 +1365,7 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x184[0][1] = 0;
     field_0x184[1][1] = 0;
     field_0x184[2][1] = 0;
-    if (i_dComIfGs_isItemFirstBit(0x2B)) {
+    if (dComIfGs_isItemFirstBit(0x2B)) {
         field_0x184[3][1] = 0x190;
     } else {
         field_0x184[3][1] = 0x18f;
@@ -1458,7 +1458,7 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x1d8[5][3] = 0;
     field_0x1d8[6][3] = 0;
     field_0x1d8[0][4] = dMsgObject_getSmellTypeMessageID() + 0x100;
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[456])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[456])) {
         field_0x1d8[1][4] = 0x12d8;
     } else {
         field_0x1d8[1][4] = field_0x184[1][4] + 0x100;
@@ -1834,7 +1834,7 @@ asm void dMenu_Collect2D_c::cursorPosSet() {
 void dMenu_Collect2D_c::changeSword() {
     switch (mCursorX) {
     case 3:
-        if (i_dComIfGs_isItemFirstBit(SWORD)) {
+        if (dComIfGs_isItemFirstBit(SWORD)) {
             if (dComIfGs_getSelectEquipSword() != SWORD) {
                 dMeter2Info_setSword(SWORD, false);
                 setEquipItemFrameColorSword(0);
@@ -1849,7 +1849,7 @@ void dMenu_Collect2D_c::changeSword() {
         }
         break;
     case 4:
-        if (i_dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
+        if (dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
             if (dComIfGs_getSelectEquipSword() != LIGHT_SWORD) {
                 dMeter2Info_setSword(LIGHT_SWORD, false);
                 setEquipItemFrameColorSword(1);
@@ -1892,7 +1892,7 @@ asm void dMenu_Collect2D_c::changeSword() {
 void dMenu_Collect2D_c::changeShield() {
     switch (mCursorX) {
     case 3:
-        if (i_dComIfGs_isItemFirstBit(SHIELD)) {
+        if (dComIfGs_isItemFirstBit(SHIELD)) {
             if (dComIfGs_getSelectEquipShield() != SHIELD) {
                 dMeter2Info_setShield(SHIELD, false);
                 setEquipItemFrameColorShield(0);
@@ -1901,7 +1901,7 @@ void dMenu_Collect2D_c::changeShield() {
                                          0);
                 dMeter2Info_set2DVibration();
             }
-        } else if (i_dComIfGs_isItemFirstBit(WOOD_SHIELD)) {
+        } else if (dComIfGs_isItemFirstBit(WOOD_SHIELD)) {
             if (dComIfGs_getSelectEquipShield() != WOOD_SHIELD) {
                 dMeter2Info_setShield(WOOD_SHIELD, false);
                 setEquipItemFrameColorShield(0);
@@ -2143,7 +2143,7 @@ void dMenu_Collect2D_c::setEquipItemFrameColorSword(int i_frame) {
                 break;
 
             case LIGHT_SWORD:
-                if (i_dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
+                if (dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
                     i_frame = 1;
                 }
                 break;
@@ -3417,7 +3417,7 @@ void dMenu_Collect3D_c::set_mtx() {
     mDoMtx_stack_c::YrotM(mMaskMirrorAngle.y);
     mDoMtx_stack_c::XrotM(mMaskMirrorAngle.x);
     mDoMtx_stack_c::ZrotM(mMaskMirrorAngle.z);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 #else
 #pragma push
@@ -3669,8 +3669,8 @@ u8 dMenu_Collect3D_c::getMirrorNum() {
 /* 801B7504-801B75E8 1B1E44 00E4+00 4/4 0/0 0/0 .text getMaskMdlVisible__17dMenu_Collect3D_cFv */
 u8 dMenu_Collect3D_c::getMaskMdlVisible() {
     if ((getCrystalNum() == 0 && getMirrorNum() == 0) ||
-        (i_dComIfGs_isEventBit(0xC01) && !dComIfGs_isCollectMirror(0)) ||
-        (i_dComIfGs_isEventBit(0x2B08) && !dComIfGs_isCollectCrystal(3)))
+        (dComIfGs_isEventBit(0xC01) && !dComIfGs_isCollectMirror(0)) ||
+        (dComIfGs_isEventBit(0x2B08) && !dComIfGs_isCollectCrystal(3)))
     {
         return 0;
     }

@@ -799,7 +799,7 @@ SECTION_DEAD static char const* const stringBase_80C396CC = "DEFAULT_GETITEM";
 #ifdef NONMATCHING
 int daItemKantera_c::actionGetDemo() {
     if (dComIfGp_evmng_endCheck("DEFAULT_GETITEM")) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         fopAcM_delete(this);
     }
     return 1;

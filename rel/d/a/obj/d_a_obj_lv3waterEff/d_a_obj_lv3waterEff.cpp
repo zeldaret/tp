@@ -56,7 +56,7 @@ int daObjWaterEff_c::execute() {
     }
 
     for (int i = 0; i < 2; i++) {
-        i_mDoAud_seStartLevel(Z2SE_OBJ_WTR_STREAM, &mSePositions[i], 0, 0);
+        mDoAud_seStartLevel(Z2SE_OBJ_WTR_STREAM, &mSePositions[i], 0, 0);
     }
 
     return 1;

@@ -626,7 +626,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
         f32 var_f30 = -255.0f;
 
         if (dCam_getBody()->Mode() != 4 && dCam_getBody()->Mode() != 7) {
-            camera_class* temp_r4 = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+            camera_class* temp_r4 = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
             dAttention_c& local_12c = dComIfGp_getAttention();
 
             f32 temp_f31 = 60.0f / (temp_r4 ? fopCamM_GetFovy(temp_r4) : 48.0f);

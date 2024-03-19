@@ -44,7 +44,7 @@ static void zants_ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_
 /* 80652B28-80652DA8 0001C8 0280+00 1/1 0/0 0/0 .text   action__11daB_ZANTS_cFv */
 void daB_ZANTS_c::action() {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (player->i_checkMagneBootsOn()) {
+    if (player->checkMagneBootsOn()) {
         mSinkTimers[TIMER_PLAYER] = 3;
         mPlayerID = fopAcM_GetID(player);
     }
@@ -115,7 +115,7 @@ int daB_ZANTS_c::execute() {
     mDoMtx_stack_c::YrotM(-mRotation.y);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), mMtx);
 
     if (mpBgW != NULL) {

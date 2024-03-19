@@ -98,7 +98,7 @@ static cXyz get_check_pos(kytag00_class* i_this) {
         f32 temp_f2 = i_this->current.pos.abs(player_p->current.pos);
 
         ret = player_p->current.pos;
-        if (i_dComIfGp_event_runCheck() && temp_f < temp_f2) {
+        if (dComIfGp_event_runCheck() && temp_f < temp_f2) {
             ret = camera_p->mLookat.mEye;
         }
     } else {

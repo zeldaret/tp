@@ -190,7 +190,7 @@ void dMeterHakusha_c::alphaAnimeHakusha(u32 i_flags) {
         (i_flags & 0x08000000) || (i_flags & 0x01000000) || !(i_flags & 0x02000000) ||
         (strcmp(dComIfGp_getStartStageName(), "F_SP00") == 0 &&
          dComIfG_play_c::getLayerNo(0) == 4) ||
-        (i_dComIfGp_getDoStatus() != 9 && i_dComIfGp_getDoStatus() != 0))
+        (dComIfGp_getDoStatus() != 9 && dComIfGp_getDoStatus() != 0))
     {
         setAlphaHakushaAnimeMin();
         setAlphaButtonAnimeMin();
@@ -198,7 +198,7 @@ void dMeterHakusha_c::alphaAnimeHakusha(u32 i_flags) {
     }
 
     setAlphaHakushaAnimeMax();
-    if (i_dComIfGp_getDoStatus() == 9) {
+    if (dComIfGp_getDoStatus() == 9) {
         setAlphaButtonAnimeMax();
     } else {
         setAlphaButtonAnimeMin();

@@ -574,7 +574,7 @@ u8 dMenu_Insect_c::getGetInsectNum() {
         u8 insectId = *insectList;
         insectList++;
 
-        if (i_dComIfGs_isItemFirstBit(insectId) != 0) {
+        if (dComIfGs_isItemFirstBit(insectId) != 0) {
             insectNum++;
         }
     }
@@ -596,7 +596,7 @@ u8 dMenu_Insect_c::getInsectItemID(int param_0, int param_1) {
 
 /* 801D9DE4-801D9E20 1D4724 003C+00 4/4 0/0 0/0 .text            isGetInsect__14dMenu_Insect_cFii */
 bool dMenu_Insect_c::isGetInsect(int param_0, int param_1) {
-    return i_dComIfGs_isItemFirstBit(getInsectItemID(param_0, param_1)) != 0;
+    return dComIfGs_isItemFirstBit(getInsectItemID(param_0, param_1)) != 0;
 }
 
 /* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
@@ -607,7 +607,7 @@ bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
         0x193, 0x194, 0x19F, 0x1A0, 0x1A1, 0x1A2, 0x199, 0x19A, 0x197, 0x198, 0x1A3, 0x1A4,
     };
 
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
            0;
 }
 
@@ -615,7 +615,7 @@ bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
  */
 bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
     if (i_insectID >= M_BEETLE && i_insectID <= F_MAYFLY) {
-        return i_dComIfGs_isItemFirstBit(i_insectID);
+        return dComIfGs_isItemFirstBit(i_insectID);
     }
     return false;
 }
@@ -625,7 +625,7 @@ bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
 bool dMenu_Insect_c::isGiveInsect(u8 i_insectID) {
     if (i_insectID >= M_BEETLE && i_insectID <= F_MAYFLY) {
         int label = i_insectID + 0xd1;
-        return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[label]);
+        return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[label]);
     }
     return false;
 }

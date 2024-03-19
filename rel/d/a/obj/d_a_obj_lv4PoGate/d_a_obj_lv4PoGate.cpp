@@ -45,7 +45,7 @@ void daLv4PoGate_c::setBaseMtx() {
     mDoMtx_stack_c::transM(0.0f, mMoveValue, 0.0f);
 
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C5FD40-80C5FDAC 000240 006C+00 1/0 0/0 0/0 .text            CreateHeap__13daLv4PoGate_cFv */
@@ -75,7 +75,7 @@ int daLv4PoGate_c::create() {
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
         mSw = getSw();
-        mInitMove = i_fopAcM_isSwitch(this, mSw);
+        mInitMove = fopAcM_isSwitch(this, mSw);
 
         mMoveTarget = 1000.0f;
         mMoveValue = 0.0f;
@@ -115,7 +115,7 @@ void daLv4PoGate_c::moveGate() {
     };
 
     u8 current_state = mInitMove;
-    mInitMove = i_fopAcM_isSwitch(this, mSw);
+    mInitMove = fopAcM_isSwitch(this, mSw);
 
     if (mInitMove != current_state) {
         if (mInitMove) {

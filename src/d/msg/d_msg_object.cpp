@@ -937,7 +937,7 @@ asm void dMsgObject_c::isSend() {
 void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount) {
     static char arcName[22];
 
-    int msgGroup = dStage_stagInfo_GetMsgGroup(i_dComIfGp_getStage()->getStagInfo());
+    int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
     sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
 
     *p_arcMount = mDoDvdThd_mountXArchive_c::create(arcName, 0, JKRArchive::MOUNT_MEM, NULL);

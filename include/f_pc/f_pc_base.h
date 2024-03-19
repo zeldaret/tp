@@ -43,9 +43,4 @@ s32 fpcBs_Delete(base_process_class* pProc);
 base_process_class* fpcBs_Create(s16 pProcTypeID, unsigned int pProcID, void* pData);
 s32 fpcBs_SubCreate(base_process_class* pProc);
 
-extern "C" {
-void fpcBs_MakeOfType__FPi(void);
-void fpcBs_Is_JustOfType__Fii(void);
-}
-
 #endif

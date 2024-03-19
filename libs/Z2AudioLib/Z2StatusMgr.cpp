@@ -38,7 +38,7 @@ void Z2StatusMgr::heartGaugeOn() {
 
 /* 802B5F7C-802B60CC 2B08BC 0150+00 0/0 1/1 0/0 .text processHeartGaugeSound__11Z2StatusMgrFv */
 void Z2StatusMgr::processHeartGaugeSound() {
-    if (!i_dComIfGp_event_runCheck() && mHeartGaugeOn != 0) {
+    if (!dComIfGp_event_runCheck() && mHeartGaugeOn != 0) {
         if (dScnPly_c::isPause()) {
             mHeartGaugeOn--;
         }

@@ -142,7 +142,7 @@ private:
     /* 0x2C */ u16* field_0x2c;
     /* 0x30 */ _GXCullMode* field_0x30;
     /* 0x34 */ J2DTevOrderInfo* field_0x34;
-    /* 0x38 */ J2DGXColorS10* field_0x38;
+    /* 0x38 */ _GXColorS10* field_0x38;
     /* 0x3C */ GXColor* field_0x3c;
     /* 0x40 */ u8* field_0x40;
     /* 0x44 */ J2DTevStageInfo* field_0x44;

@@ -296,7 +296,7 @@ asm void dMeter2Info_c::init() {
 
 /* 8021C0E0-8021C11C 216A20 003C+00 0/0 1/1 2/2 .text setFloatingMessage__13dMeter2Info_cFUssb */
 int dMeter2Info_c::setFloatingMessage(u16 msgID, s16 msgTimer, bool wakuVisible) {
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         return 0;
     }
 
@@ -309,7 +309,7 @@ int dMeter2Info_c::setFloatingMessage(u16 msgID, s16 msgTimer, bool wakuVisible)
 
 /* 8021C11C-8021C1DC 216A5C 00C0+00 0/0 0/0 1/1 .text setFloatingFlow__13dMeter2Info_cFUssb */
 int dMeter2Info_c::setFloatingFlow(u16 flowID, s16 msgTimer, bool wakuVisible) {
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         return 0;
     }
 
@@ -1479,7 +1479,7 @@ bool dMeter2Info_isMapOpenCheck() {
 /* 8021E688-8021E6E4 218FC8 005C+00 0/0 2/2 0/0 .text            dMeter2Info_isItemOpenCheck__Fv */
 bool dMeter2Info_isItemOpenCheck() {
     if (daPy_getPlayerActorClass()->checkCanoeSlider() ||
-        daPy_getPlayerActorClass()->i_getSumouMode() || dMeter2Info_isSub2DStatus(1))
+        daPy_getPlayerActorClass()->getSumouMode() || dMeter2Info_isSub2DStatus(1))
     {
         return false;
     }
@@ -1542,7 +1542,7 @@ u8 dMeter2Info_getNewLetterNum() {
     for (int i = 0; i < 0x40; i++) {
         if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
             u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
                 letterNum++;
             }
         }
@@ -1560,7 +1560,7 @@ int dMeter2Info_setNewLetterSender() {
     for (int i = 0; i < 0x40; i++) {
         if (!dComIfGs_isLetterGetFlag(i) && dMenu_Letter::getLetterName(i) != 0) {
             u16 letterEvent = dMenu_Letter::getLetterEventFlag(i);
-            if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[letterEvent])) {
                 if (check == 0) {
                     u16 letterName = dMenu_Letter::getLetterName(i);
                     dMsgObject_c::setLetterNameID(letterName);

@@ -37,7 +37,7 @@ void daObjBkDoor_c::setBaseMtx() {
     mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
     mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), mRotation.x, mRotation.y, mRotation.z);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -67,7 +67,7 @@ static Vec const l_roll_crash_check_areaR[] = {
 
 /* 80578E14-80578EA0 000174 008C+00 1/0 0/0 0/0 .text            Create__13daObjBkDoor_cFv */
 int daObjBkDoor_c::Create() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15])) {
         shape_angle.y -= 0x8000;
     }
 
@@ -124,7 +124,7 @@ void daObjBkDoor_c::openCheck() {
  */
 int daObjBkDoor_c::Execute(Mtx** i_mtxP) {
     daPy_py_c* player = dComIfGp_getLinkPlayer();
-    BOOL unk_event = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
+    BOOL unk_event = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
 
     mFrameCounter++;
     openCheck();

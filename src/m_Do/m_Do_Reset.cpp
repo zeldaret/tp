@@ -147,11 +147,6 @@ void mDoRst_resetCallBack(int port, void*) {
     }
 }
 
-/* 800157F4-800157FC -00001 0008+00 0/0 0/0 0/0 .text            getResetData__6mDoRstFv */
-mDoRstData* mDoRst::getResetData() {
-    return mResetData;
-}
-
 /* ############################################################################################## */
 /* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
 /* 80450C80 0001+00 data_80450C80 None */

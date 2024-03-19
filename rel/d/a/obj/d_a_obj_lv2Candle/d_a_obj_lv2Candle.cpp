@@ -76,7 +76,7 @@ void daLv2Candle_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8058E1C4-8058E244 000264 0080+00 1/1 0/0 0/0 .text            CreateHeap__13daLv2Candle_cFv */
@@ -149,7 +149,7 @@ cPhs__Step daLv2Candle_c::create() {
 
 /* 8058E5BC-8058E608 00065C 004C+00 2/2 0/0 0/0 .text            isSwitch__13daLv2Candle_cFv */
 u8 daLv2Candle_c::isSwitch() {
-    return mSwType ^ i_fopAcM_isSwitch(this, mSw);
+    return mSwType ^ fopAcM_isSwitch(this, mSw);
 }
 
 /* 8058E608-8058E628 0006A8 0020+00 1/1 0/0 0/0 .text
@@ -282,7 +282,7 @@ int daLv2Candle_c::Execute() {
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
         dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff,
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
-        i_mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     if (field_0x734 != NULL) {
@@ -303,9 +303,9 @@ int daLv2Candle_c::Execute() {
             mIsLit = true;
             mCyl.SetAtMtrl(1);
             if (!mSwType) {
-                i_fopAcM_onSwitch(this, mSw);
+                fopAcM_onSwitch(this, mSw);
             } else {
-                i_fopAcM_offSwitch(this, mSw);
+                fopAcM_offSwitch(this, mSw);
             }
             mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             setLight();
@@ -320,9 +320,9 @@ int daLv2Candle_c::Execute() {
                 mTimer = l_HIO.mTimer;
             }
             else if (!mSwType) {
-                i_fopAcM_offSwitch(this, mSw);
+                fopAcM_offSwitch(this, mSw);
             } else {
-                i_fopAcM_onSwitch(this, mSw);
+                fopAcM_onSwitch(this, mSw);
             }
         }
         cCcD_Obj* obj = mCyl.GetTgHitObj();

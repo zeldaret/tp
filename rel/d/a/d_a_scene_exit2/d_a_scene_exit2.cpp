@@ -51,7 +51,7 @@ int daScExit_c::Create() {
 
     mToolID = 0xFF;
     eventInfo.setArchiveName(l_arcName);
-    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
+    mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
     return 1;
 }
 
@@ -109,7 +109,7 @@ void daScExit_c::actionOrderEvent() {
 void daScExit_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACTION_DEAD_e);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
         dComIfGp_setPlayerStatus1(0, 0x4000000);

@@ -34,7 +34,7 @@ int daTagRmbitSw_c::draw() {
 int daTagRmbitSw_c::execute() {
     if (chkPlyrInTag()) {
         if (getArg3_CngBitFlg() == 1) {
-            if ((s32)getSwBit() == 0xff || i_fopAcM_isSwitch(this, getSwBit())) {
+            if ((s32)getSwBit() == 0xff || fopAcM_isSwitch(this, getSwBit())) {
                 if (getArg2_CngBitVal() == 1) {
                     if (getArg0_RoomSaveTableNo() == -1) {
                         dComIfGs_onVisitedRoom(getArg1_RoomNo());
@@ -54,7 +54,7 @@ int daTagRmbitSw_c::execute() {
             }
         } else {
             if (!getArg3_CngBitFlg()) {
-                if ((s32)getSwBit() == 0xff || !i_fopAcM_isSwitch(this, getSwBit())) {
+                if ((s32)getSwBit() == 0xff || !fopAcM_isSwitch(this, getSwBit())) {
                     if (getArg2_CngBitVal() == 1) {
                         if (getArg0_RoomSaveTableNo() == -1) {
                             dComIfGs_onVisitedRoom(getArg1_RoomNo());

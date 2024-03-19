@@ -770,13 +770,13 @@ void dGameover_c::saveClose_proc() {
         dComIfGp_offPauseFlag();
 
         // Reset Monkey lantern steal sequence flags if player hasn't regained lantern
-        if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
             dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
             dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);
         }
 
         // Reset Lantern and oil status back into inventory if gameover during monkey steal sequence
-        if (i_dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
+        if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
             dComIfGs_setItem(SLOT_1, KANTERA);
             dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
         }

@@ -43,7 +43,7 @@ int daObjRCircle_c::createHeap() {
 /* 80CB8928-80CB8A28 000348 0100+00 1/1 0/0 0/0 .text            create__14daObjRCircle_cFv */
 int daObjRCircle_c::create() {
     fopAcM_SetupActor(this, daObjRCircle_c);
-    if (i_fopAcM_isSwitch(this, getSwBit())) {
+    if (fopAcM_isSwitch(this, getSwBit())) {
         return cPhs_ERROR_e;
     }
     
@@ -88,7 +88,7 @@ int daObjRCircle_c::execute() {
             fopAcM_delete(this);
         }
     } else {
-        if (i_fopAcM_isSwitch(this, getSwBit())) {
+        if (fopAcM_isSwitch(this, getSwBit())) {
             mSwitch = 1;
             mBrk.setPlaySpeed(1.0f);
         }

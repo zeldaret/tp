@@ -100,7 +100,7 @@ int daObjCatDoor_c::create() {
 void daObjCatDoor_c::create_init() {
     ASSERT(getSwitchNo() != 0xff);
     fopAcM_setCullSizeBox(this, -200.0f, 0.0f, -20.0f, 200.0f, 260.0f, 100.0f);
-    if (i_fopAcM_isSwitch(this, getSwitchNo())) {
+    if (fopAcM_isSwitch(this, getSwitchNo())) {
         mDoor1.angle = 0x8800;
         mDoor2.angle = 0x7800;
     } else {
@@ -155,7 +155,7 @@ void daObjCatDoor_c::calcOpen() {
     }
 
     if (prev != 0 && res != 0) {
-        i_fopAcM_onSwitch(this, getSwitchNo());
+        fopAcM_onSwitch(this, getSwitchNo());
     }
 }
 

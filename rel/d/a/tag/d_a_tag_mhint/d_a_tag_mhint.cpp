@@ -98,7 +98,7 @@ int daTagMhint_c::create() {
     field_0x56d = shape_angle.y & 0xFF;
     mToolEventID = (shape_angle.y >> 8) & 0xFF;
 
-    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, mToolEventID);
+    mEventID = dComIfGp_getEventManager().getEventIdx(this, mToolEventID);
     if ((fopAcM_GetParam(this) >> 0x1E) & 1) {
         scale.x *= FLOAT_LABEL(lit_3741);
         scale.y *= FLOAT_LABEL(lit_3741);
@@ -157,11 +157,11 @@ SECTION_DEAD static char const* const stringBase_805A604C = "D_MN04B";
 // literals / player ptr re-loads
 #ifdef NONMATCHING
 void daTagMhint_c::eventOrder() {
-    if (!i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_event_runCheck()) {
         eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
 
         if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
-            i_dComIfGp_checkPlayerStatus0(0, 0x100000))
+            dComIfGp_checkPlayerStatus0(0, 0x100000))
         {
             if (field_0x56a != 0) {
                 if (checkEventID()) {
@@ -169,7 +169,7 @@ void daTagMhint_c::eventOrder() {
                 } else {
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
-            } else if (!daPy_getPlayerActorClass()->i_checkMagneBootsOn() ||
+            } else if (!daPy_getPlayerActorClass()->checkMagneBootsOn() ||
                        strcmp(dComIfGp_getStartStageName(), "D_MN04B") == 0)
             {
                 dComIfGp_att_ZHintRequest(this, 0x1FF);
@@ -233,7 +233,7 @@ int daTagMhint_c::execute() {
 
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         if (dComIfGp_evmng_endCheck(mEventID)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             fopAcM_orderSpeakEvent(this, 3, 0);
             field_0x570 = 1;
         }
@@ -264,12 +264,12 @@ int daTagMhint_c::execute() {
                 }
 
                 if (tmp) {
-                    i_dComIfGp_event_reset();
+                    dComIfGp_event_reset();
                     field_0x570 = 0;
 
                     if (field_0x572 != 0 || (field_0x56b != 0 && mSwitch != 0xFF)) {
                         if (field_0x56b != 0) {
-                            i_fopAcM_onSwitch(this, mSwitch);
+                            fopAcM_onSwitch(this, mSwitch);
                         }
 
                         fopAcM_delete(this);
@@ -286,12 +286,12 @@ int daTagMhint_c::execute() {
         }
 
         if (field_0x57c != 0x3FF &&
-            i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x57c]))
+            dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x57c]))
         {
             return 1;
         }
 
-        if (mSwitch != 0xFF && i_fopAcM_isSwitch(this, mSwitch)) {
+        if (mSwitch != 0xFF && fopAcM_isSwitch(this, mSwitch)) {
             fopAcM_delete(this);
             return 1;
         }
@@ -303,10 +303,10 @@ int daTagMhint_c::execute() {
             fopAcM_searchPlayerDistanceXZ2(this) < field_0x5cc)
         {
             if ((field_0x574 == 0x3FF ||
-                 i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])) &&
-                (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568)))
+                 dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])) &&
+                (field_0x568 == 0xFF || fopAcM_isSwitch(this, field_0x568)))
             {
-                if (field_0x578 != 0x1FF && field_0x578 != 0 && !i_dComIfGp_event_runCheck()) {
+                if (field_0x578 != 0x1FF && field_0x578 != 0 && !dComIfGp_event_runCheck()) {
                     field_0x578--;
                 }
 

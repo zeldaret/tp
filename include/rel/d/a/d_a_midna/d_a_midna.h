@@ -138,7 +138,7 @@ public:
     }
 
     MtxP getMtxHairTop() {
-        return field_0x574->i_getAnmMtx(10);
+        return field_0x574->getAnmMtx(10);
     }
 
     bool checkReturnAnime() const {
@@ -171,7 +171,7 @@ public:
     inline static BOOL checkMidnaRealBody();
 
     static bool i_checkMidnaTired() {
-        return dComIfGs_isTransformLV(3) && !i_dComIfGs_isEventBit(0x1E08);
+        return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 
     void resetRatBody() {}

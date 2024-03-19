@@ -1466,7 +1466,7 @@ void dMenu_DmapBg_c::baseScreenInit() {
     mBaseScreen->search('t_t00')->hide();
     uVar9->setFont(mDoExt_getSubFont());
     uVar9->setString(32, "");
-    u32 stageTitleNo = dStage_stagInfo_GetStageTitleNo(i_dComIfGp_getStage()->getStagInfo());
+    u32 stageTitleNo = dStage_stagInfo_GetStageTitleNo(dComIfGp_getStage()->getStagInfo());
     if (stageTitleNo != 0) {
         mString->getString((u16)stageTitleNo, uVar9, NULL, NULL, NULL, 0);
     } else {
@@ -2360,11 +2360,11 @@ void dMenu_Dmap_c::screenInit() {
                 local_140 = 0xf6;
                 field_0x174[2] = (u8)dComIfGs_isDungeonItemBossKey() ? 0xf6 : 0;
             } else {
-                if (checkItemGet(0xf4, 1) && !i_dComIfGs_isEventBit(2)) {
+                if (checkItemGet(0xf4, 1) && !dComIfGs_isEventBit(2)) {
                     local_140 = 0xf4;
                     field_0x174[2] = 0xf4;
                 } else {
-                    if (checkItemGet(0xf5, 1) && !i_dComIfGs_isEventBit(1)) {
+                    if (checkItemGet(0xf5, 1) && !dComIfGs_isEventBit(1)) {
                         local_140 = 0xf5;
                         field_0x174[2] = 0xf5;
                     }

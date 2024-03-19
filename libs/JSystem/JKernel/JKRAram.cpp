@@ -243,7 +243,7 @@ u8* JKRAram::aramToMainRam(u32 address, u8* buf, u32 p3, JKRExpandSwitch expandS
             }
 
             if (rv == NULL) {
-                i_JKRFree(szpSpace);
+                JKRFree(szpSpace);
                 return NULL;
             } else {
                 changeGroupIdIfNeed(rv, id);
@@ -358,9 +358,9 @@ static int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32
     *tsPtr = 0;
 
     decompSZS_subroutine(firstSrcData(), (u8*)dst);
-    i_JKRFree(szpBuf);
+    JKRFree(szpBuf);
     if (refBuf) {
-        i_JKRFree(refBuf);
+        JKRFree(refBuf);
     }
 
     DCStoreRangeNoSync(dst, *tsPtr);

@@ -134,7 +134,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
             {
                 if (hasAllocated == true)
                 {
-                    i_JKRFree(dst);
+                    JKRFree(dst);
                     return NULL;
                 }
             }
@@ -172,7 +172,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
                 {
                     if (hasAllocated == true)
                     {
-                        i_JKRFree(dst);
+                        JKRFree(dst);
                     }
                     return NULL;
                 }
@@ -196,7 +196,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
                 if (readBytes == -3 || !errorRetry)
                 {
                     if (hasAllocated == true)
-                        i_JKRFree(dst);
+                        JKRFree(dst);
                     return NULL;
                 }
                 VIWaitForRetrace();
@@ -232,16 +232,16 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
             if (readBytes == -3 || !errorRetry)
             {
                 if (hasAllocated == true)
-                    i_JKRFree(dst);
+                    JKRFree(dst);
 
-                i_JKRFree(mem);
+                JKRFree(mem);
                 return NULL;
             }
             VIWaitForRetrace();
         }
         DCInvalidateRange(mem, fileSizeAligned);
         JKRDecompress(mem, dst, expandSize, offset);
-        i_JKRFree(mem);
+        JKRFree(mem);
         if (param_8)
         {
             *param_8 = expandSize;
@@ -253,14 +253,14 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
         if (JKRDecompressFromDVD(dvdFile, dst, fileSizeAligned, expandSize, offset, 0, param_8) != 0u)
         {
             if (hasAllocated)
-                i_JKRFree(dst);
+                JKRFree(dst);
             dst = NULL;
         }
         return dst;
     }
     else if (hasAllocated)
     {
-        i_JKRFree(dst);
+        JKRFree(dst);
         dst = NULL;
     }
     return NULL;
@@ -367,10 +367,10 @@ static int JKRDecompressFromDVD(JKRDvdFile* dvdFile, void* dst, u32 fileSize, u3
     *tsPtr = 0;
     u8 *data = firstSrcData();
     u32 result = (data != NULL) ? decompSZS_subroutine(data, (u8 *)dst) : -1; // figure out correct datatypes
-    i_JKRFree(szpBuf);
+    JKRFree(szpBuf);
     if (refBuf)
     {
-        i_JKRFree(refBuf);
+        JKRFree(refBuf);
     }
     DCStoreRangeNoSync(dst, *tsPtr);
     OSUnlockMutex(&decompMutex);

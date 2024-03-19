@@ -48,10 +48,10 @@ int daTag_MynaLight_c::Execute() {
 
     if (mTurnOnFlag) {
         if (dComIfGp_roomControl_getStayNo() != 0) {
-            i_mDoAud_seStartLevel(Z2SE_OBJ_MYNA_LIGHT_BURNING, (Vec*)&current.pos, 0,
+            mDoAud_seStartLevel(Z2SE_OBJ_MYNA_LIGHT_BURNING, (Vec*)&current.pos, 0,
                                   dComIfGp_getReverb(dComIfGp_roomControl_getStayNo()));
         } else {
-            i_mDoAud_seStartLevel(Z2SE_OBJ_MYNA_LIGHT_BURNING, (Vec*)&current.pos, 0, 0);
+            mDoAud_seStartLevel(Z2SE_OBJ_MYNA_LIGHT_BURNING, (Vec*)&current.pos, 0, 0);
         }
     }
     return 1;

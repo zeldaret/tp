@@ -5,7 +5,7 @@
 
 class e_yc_class : public fopEn_enemy_c {
 public:
-    MtxP getLegR3Mtx() { return field_0x5B8->getModel()->i_getAnmMtx(28); }
+    MtxP getLegR3Mtx() { return field_0x5B8->getModel()->getAnmMtx(28); }
 
     /* 0x5AC */ u8 field_0x5ac[0x5B8 - 0x5AC];
     /* 0x5B8 */ mDoExt_McaMorfSO* field_0x5B8;

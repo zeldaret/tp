@@ -65,7 +65,7 @@ int daAttp_c::execute() {
         break;
     }
 
-    if (i_fopAcM_isSwitch(this, daAttp_prm::getSw1(this))) {
+    if (fopAcM_isSwitch(this, daAttp_prm::getSw1(this))) {
         switch (daAttp_prm::getArg1(this)) {
         case 0:
             break;
@@ -102,7 +102,7 @@ int daAttp_c::execute() {
         }
 
         if (daAttp_prm::getSw2(this) != 0xff) {
-            if (i_fopAcM_isSwitch(this, daAttp_prm::getSw2(this))) {
+            if (fopAcM_isSwitch(this, daAttp_prm::getSw2(this))) {
                 if (daAttp_prm::getArg3(this) == 0) {
                     bVar1 = false;
                 }

@@ -40,9 +40,9 @@ void daObjWindow_c::initBaseMtx() {
 void daObjWindow_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpBckAnm != NULL) {
-        MTXCopy(mpModel->i_getAnmMtx(0), mBgMtx);
+        MTXCopy(mpModel->getAnmMtx(0), mBgMtx);
     } else {
         MTXCopy(mpModel->getBaseTRMtx(), mBgMtx);
     }

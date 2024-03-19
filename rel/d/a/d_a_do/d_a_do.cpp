@@ -443,7 +443,7 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
         do_class* user_area = (do_class*)model->getUserArea();
 
         if (user_area) {
-            MTXCopy(model->i_getAnmMtx(joint_num), *calc_mtx);
+            MTXCopy(model->getAnmMtx(joint_num), *calc_mtx);
 
             if (joint_num == 9 || joint_num == 10) {
                 cMtx_YrotM(*calc_mtx, user_area->field_0x60e.y + user_area->field_0x626.y);
@@ -715,7 +715,7 @@ static u32 search_food(do_class* i_this) {
         target_bgc[i] = 0;
     }
 
-    i_fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_this);
+    fpcM_Search((fpcLyIt_JudgeFunc)s_w_sub, i_this);
     f32 tmp = FLOAT_LABEL(lit_3662);
 
     if (target_info_count != 0) {
@@ -2448,7 +2448,7 @@ static void do_message(do_class* i_this) {
     i_this->field_0x616 = 1;
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 2, 0x1000);
 
-    if (i_dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
+    if (dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
         i_this->mAction = ACT_STAY;
         i_this->mStayStatus = 0;
     }
@@ -2990,12 +2990,12 @@ static void message(do_class* i_this) {
         i_this->field_0x604 = 10;
 
         if (i_this->mMsg.doFlow(i_this, 0, 0)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             i_this->field_0xc06 = 0;
         }
 
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsg.init(i_this, i_this->field_0xc08, 0, 0);
             i_this->field_0xc06 = 1;
         }

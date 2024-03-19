@@ -1861,7 +1861,7 @@ extern "C" asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::checkSkipEdge() {
+extern "C" asm void checkSkipEdge__14dEvt_control_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/checkSkipEdge__14dEvt_control_cFv.s"
 }
@@ -2812,7 +2812,7 @@ static asm void func_8061A894() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::cancelOriginalDemo() {
+extern "C" asm void cancelOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/cancelOriginalDemo__9daPy_py_cFv.s"
 }
@@ -2822,7 +2822,7 @@ asm void daPy_py_c::cancelOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_event_reset() {
+static asm void dComIfGp_event_reset__Fv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/dComIfGp_event_reset__Fv.s"
 }
@@ -2899,7 +2899,7 @@ extern "C" asm void __as__4cXyzFRC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 param_3) {
+extern "C" asm void changeDemoMode__9daPy_py_cFUliis() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/changeDemoMode__9daPy_py_cFUliis.s"
 }
@@ -2909,7 +2909,7 @@ asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeOriginalDemo() {
+extern "C" asm void changeOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/changeOriginalDemo__9daPy_py_cFv.s"
 }

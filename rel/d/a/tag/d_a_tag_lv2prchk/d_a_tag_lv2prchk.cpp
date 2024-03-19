@@ -15,7 +15,7 @@ int daTagLv2PrChk_c::Create() {
         return 0;
     }
 
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         mAction = ACTION_END_e;
     } else {
         mAction = ACTION_CHECK_e;
@@ -70,10 +70,10 @@ void daTagLv2PrChk_c::action() {
 
 /* 805A4DF4-805A5290 000214 049C+00 1/0 0/0 0/0 .text            actionCheck__15daTagLv2PrChk_cFv */
 void daTagLv2PrChk_c::actionCheck() {
-    bool switch_1 = i_fopAcM_isSwitch(this, mSwbit2);
-    bool switch_2 = i_fopAcM_isSwitch(this, mSwbit2 + 1);
-    bool switch_3 = i_fopAcM_isSwitch(this, mSwbit2 + 2);
-    bool switch_4 = i_fopAcM_isSwitch(this, mSwbit2 + 3);
+    bool switch_1 = fopAcM_isSwitch(this, mSwbit2);
+    bool switch_2 = fopAcM_isSwitch(this, mSwbit2 + 1);
+    bool switch_3 = fopAcM_isSwitch(this, mSwbit2 + 2);
+    bool switch_4 = fopAcM_isSwitch(this, mSwbit2 + 3);
     int active_switch_num = switch_1 + switch_2 + switch_3 + switch_4;
 
     switch (mMode) {
@@ -141,7 +141,7 @@ void daTagLv2PrChk_c::actionCheck() {
         }
         break;
     case MODE_PUZZLE_CLEAR:
-        i_fopAcM_onSwitch(this, getSwbit());
+        fopAcM_onSwitch(this, getSwbit());
         mAction = ACTION_END_e;
         break;
     case MODE_CHECK_RESET:
@@ -149,7 +149,7 @@ void daTagLv2PrChk_c::actionCheck() {
             mMode = MODE_CHECK_FIRST_SW;
             field_0x56d = 0;
         } else if (active_switch_num > 1 || field_0x56d == 1) {
-            i_fopAcM_onSwitch(this, getSwbit3());
+            fopAcM_onSwitch(this, getSwbit3());
         }
         break;
     case MODE_CHECK_WRONG_ORDER:

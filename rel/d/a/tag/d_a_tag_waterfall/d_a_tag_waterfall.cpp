@@ -157,7 +157,7 @@ int daTagWaterFall_c::execute() {
 
     if (masterId == waterfallId) {
         if (mFrameCountdown) {
-            const dScnKy_env_light_c* const envLight = i_dKy_getEnvlight();
+            const dScnKy_env_light_c* const envLight = dKy_getEnvlight();
             mFogNear = envLight->mFogNear;
             mFogFar = envLight->mFogFar;
             mFrameCountdown--;

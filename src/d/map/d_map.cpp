@@ -119,7 +119,7 @@ void renderingAmap_c::draw() {
 int renderingAmap_c::getDispType() const {
     int disp_type;
 
-    switch (dStage_stagInfo_GetUpButton(i_dComIfGp_getStage()->getStagInfo())) {
+    switch (dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo())) {
     case 7:
         disp_type = 1;
         break;
@@ -525,7 +525,7 @@ bool renderingAmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
                 if (dComIfGp_getStartStageDarkArea() == 2) {
                     int temp_r3 = i_data->mNo;
                     if (temp_r3 == 0x33 || temp_r3 == 0x34 || temp_r3 == 0x35) {
-                        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[119])) {
+                        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[119])) {
                             temp_r23_2 = true;
                         }
                     } else {
@@ -937,7 +937,7 @@ void dMap_c::calcMapCmPerTexel(int i_roomNo, f32* ip_cmPerTexel) {
         } else {
             f32 var_f31 = 0.0f;
 
-            stage_stag_info_class* pstag = i_dComIfGp_getStage()->getStagInfo();
+            stage_stag_info_class* pstag = dComIfGp_getStage()->getStagInfo();
             JUT_ASSERT(pstag != 0);
 
             if (pstag != NULL) {

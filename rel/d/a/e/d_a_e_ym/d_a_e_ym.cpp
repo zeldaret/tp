@@ -856,9 +856,9 @@ void daE_YM_c::setElecEffect1() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(0);
     }
 
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
@@ -886,9 +886,9 @@ void daE_YM_c::setElecEffect2() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(8);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = field_0x5b4->getModel()->i_getAnmMtx(0);
+        iVar5 = field_0x5b4->getModel()->getAnmMtx(0);
     }
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     setElecEffect1();
@@ -1300,7 +1300,7 @@ void daE_YM_c::damage_check() {
                 field_0x5bc.startCreatureSound(Z2SE_EN_YM_DEATH, 0, -1);
 
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
-                    i_dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
+                    dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
                 }
 
                 setActionMode(ACT_DOWN);
@@ -1858,7 +1858,7 @@ static void* s_ym_sub(void* param_0, void* param_1) {
 void daE_YM_c::checkFrinedSamePos() {
     if (mFriendFlag == 0) {
         setFriendFlag(0x80);
-        i_fpcM_Search(s_ym_sub, this);
+        fpcM_Search(s_ym_sub, this);
     }
 }
 
@@ -1879,7 +1879,7 @@ void daE_YM_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(field_0x68c, field_0x68c, field_0x68c);
 
-    field_0x5b4->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    field_0x5b4->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     field_0x5b4->modelCalc();
 }
 
@@ -2111,7 +2111,7 @@ void daE_YM_c::setHideType() {
     m_near_obj = NULL;
     m_obj_dist = FLOAT_LABEL(lit_3925);
 
-    i_fpcM_Search(s_obj_sub, this);
+    fpcM_Search(s_obj_sub, this);
 
     if (m_near_obj != NULL) {
         cXyz obj_pos(m_near_obj->current.pos);

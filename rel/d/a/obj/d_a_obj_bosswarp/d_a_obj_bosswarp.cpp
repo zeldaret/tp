@@ -244,7 +244,7 @@ void daObjBossWarp_c::initBaseMtx() {
 void daObjBossWarp_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 2.0f, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 805797B8-80579934 0001F8 017C+00 1/1 0/0 0/0 .text            Create__15daObjBossWarp_cFv */
@@ -256,24 +256,24 @@ int daObjBossWarp_c::Create() {
         mBossClearEventId = -1;
     } else {
         mBossClearEventId =
-            i_dComIfGp_getEventManager().getEventIdx(this, l_clearEvName[level], 0xff);
+            dComIfGp_getEventManager().getEventIdx(this, l_clearEvName[level], 0xff);
     }
     mBossClearMapToolId = 0xff;
 
     if (!isFirst() || level == 8) {
-        mBossWarpInEventId = i_dComIfGp_getEventManager().getEventIdx(this, "BOSS_WARPIN", 0xff);
+        mBossWarpInEventId = dComIfGp_getEventManager().getEventIdx(this, "BOSS_WARPIN", 0xff);
         mBossWarpInMapToolId = 0xff;
         mAction = 3;
         set_appear();
     } else {
-        mBossWarpInEventId = i_dComIfGp_getEventManager().getEventIdx(this, "BOSS_WARPIN_M", 0xff);
+        mBossWarpInEventId = dComIfGp_getEventManager().getEventIdx(this, "BOSS_WARPIN_M", 0xff);
         mBossWarpInMapToolId = 0xff;
         mAction = 0;
     }
 
     eventInfo.mArchiveName = l_arcName;
-    mWarpCheckEventId = i_dComIfGp_getEventManager().getEventIdx(this, l_warp_check_evName, 0xff);
-    mWarpCancelEventId = i_dComIfGp_getEventManager().getEventIdx(this, l_warp_cancel_evName, 0xff);
+    mWarpCheckEventId = dComIfGp_getEventManager().getEventIdx(this, l_warp_check_evName, 0xff);
+    mWarpCancelEventId = dComIfGp_getEventManager().getEventIdx(this, l_warp_cancel_evName, 0xff);
 
     mScaleF = 1.0f;
     execute();
@@ -401,9 +401,9 @@ COMPILER_STRIP_GATE(0x8057B488, &lit_4119);
 #ifdef NONMATCHING
 // regalloc
 int daObjBossWarp_c::execute() {
-    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         u8 sw = getSwNo();
-        if (sw == 0xff || i_fopAcM_isSwitch(this, sw)) {
+        if (sw == 0xff || fopAcM_isSwitch(this, sw)) {
             field_0x591 = true;
         } else {
             field_0x591 = false;
@@ -427,7 +427,7 @@ int daObjBossWarp_c::execute() {
         if (field_0x595 && midna != NULL) {
             midna->onTagWaitPos(&field_0x620);
         }
-        obj_ystone_class* ystone = (obj_ystone_class*)i_fopAcM_SearchByName(PROC_OBJ_YSTONE);
+        obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
         int level = getNowLevel();
 
         if (ystone != NULL && midna != NULL) {
@@ -465,7 +465,7 @@ int daObjBossWarp_c::execute() {
     }
 
     if (mpBrkAnm != NULL && mpBrkAnm->getFrame() != 0.0f) {
-        i_mDoAud_seStartLevel(Z2SE_OBJ_MDN_ESCAPE_HOLE, &current.pos, 0, 0);
+        mDoAud_seStartLevel(Z2SE_OBJ_MDN_ESCAPE_HOLE, &current.pos, 0, 0);
     }
 
     setBaseMtx();
@@ -511,9 +511,9 @@ void daObjBossWarp_c::actionWait() {
 /* 8057A54C-8057A610 000F8C 00C4+00 1/0 0/0 0/0 .text actionOrderEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderEvent() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        dComIfGp_event_setTalkPartner(i_fopAcM_SearchByName(PROC_OBJ_YSTONE));
+        dComIfGp_event_setTalkPartner(fopAcM_SearchByName(PROC_OBJ_YSTONE));
         setAction(ACT_EVENT);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossClearEventId, mBossClearMapToolId, 0xffff, 3, 1);
@@ -525,7 +525,7 @@ void daObjBossWarp_c::actionOrderEvent() {
 void daObjBossWarp_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mBossClearEventId)) {
         setAction(ACT_WAIT_WARP);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -545,7 +545,7 @@ void daObjBossWarp_c::actionWaitWarp() {
 void daObjBossWarp_c::actionOrderWarpEvent() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_WARP_EVENT);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
@@ -570,7 +570,7 @@ void daObjBossWarp_c::actionOrderChkEvent() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_CHK_EVENT);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         attention_info.position = midna->attention_info.position;
         attention_info.position.y += 100.0f;
         eyePos = attention_info.position;
@@ -585,7 +585,7 @@ void daObjBossWarp_c::actionOrderChkEvent() {
  */
 void daObjBossWarp_c::actionChkEvent() {
     if (dComIfGp_evmng_endCheck(mWarpCheckEventId)) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         if (mWarpChoice == 0) {
             setAction(ACT_ORDER_WARP_EVENT);
             fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
@@ -605,7 +605,7 @@ void daObjBossWarp_c::actionChkEvent() {
 void daObjBossWarp_c::actionOrderCancelEvent() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(ACT_CANCEL_EVENT);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mWarpCancelEventId, 0xff, 0xffff, 0, 1);
@@ -616,7 +616,7 @@ void daObjBossWarp_c::actionOrderCancelEvent() {
 /* 8057AA2C-8057AA94 00146C 0068+00 1/0 0/0 0/0 .text actionCancelEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionCancelEvent() {
     if (dComIfGp_evmng_endCheck(mWarpCancelEventId)) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         setAction(ACT_WAIT_WARP);
     } else {
         demoProc();
@@ -735,10 +735,10 @@ int daObjBossWarp_c::demoProc() {
     };
 
     daPy_py_c* player = daPy_getPlayerActorClass();
-    obj_ystone_class* ystone = (obj_ystone_class*)i_fopAcM_SearchByName(PROC_OBJ_YSTONE);
+    obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
     cXyz unused(100000.0f, 0.0f, 0.0f);
     daMidna_c* midna = daPy_py_c::getMidnaActor();
-    daObjLife_c* life_container = (daObjLife_c*)i_fopAcM_SearchByName(PROC_Obj_LifeContainer);
+    daObjLife_c* life_container = (daObjLife_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
     cXyz life_pos(900.0f, 0.0f, 0.0f);
     int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 15, 0, 0);
 

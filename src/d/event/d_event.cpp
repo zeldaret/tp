@@ -214,7 +214,7 @@ dEvt_order_c::dEvt_order_c() {}
  */
 s32 dEvt_control_c::orderOld(u16 eventType, u16 priority, u16 flag, u16 hind, void* param_4,
                              void* param_5, void const* eventName) {
-    int eventIdx = i_dComIfGp_getEventManager().getEventIdx((char*)eventName, -1, -1);
+    int eventIdx = dComIfGp_getEventManager().getEventIdx((char*)eventName, -1, -1);
     return order(eventType, priority, flag, hind, param_4, param_5, eventIdx, -1);
 }
 
@@ -347,7 +347,7 @@ SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
 void dEvt_control_c::afterFlagProc(dEvt_order_c* p_order) {
     if (p_order->mFlag & 2) {
-        i_dComIfGp_getEventManager().issueStaff("ALL");
+        dComIfGp_getEventManager().issueStaff("ALL");
     }
 }
 
@@ -398,10 +398,10 @@ int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
             if (actor != NULL && actor->eventInfo.getEventName() != NULL) {
                 mSpecifiedEvent = actor->eventInfo.getEventId();
             } else {
-                mSpecifiedEvent = i_dComIfGp_getEventManager().getEventIdx(event, 0xFF, -1);
+                mSpecifiedEvent = dComIfGp_getEventManager().getEventIdx(event, 0xFF, -1);
             }
         }
-        i_dComIfGp_getEventManager().order(mSpecifiedEvent);
+        dComIfGp_getEventManager().order(mSpecifiedEvent);
         return 1;
     } else {
         return 0;
@@ -450,8 +450,8 @@ int dEvt_control_c::talkXyCheck(dEvt_order_c* p_order) {
     if (commonCheck(p_order, 1, 1)) {
         mMode = EVT_MODE_TALK;
         mPreItemNo = dComIfGp_getSelectItem(itemIndex);
-        mSpecifiedEvent = i_dComIfGp_getEventManager().getEventIdx(event, 0xFF, -1);
-        i_dComIfGp_getEventManager().order(mSpecifiedEvent);
+        mSpecifiedEvent = dComIfGp_getEventManager().getEventIdx(event, 0xFF, -1);
+        dComIfGp_getEventManager().order(mSpecifiedEvent);
         return 1;
     } else {
         return 0;
@@ -478,7 +478,7 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
     mMode = EVT_MODE_DEMO;
 
     if (mSpecifiedEvent != -1) {
-        i_dComIfGp_getEventManager().order(mSpecifiedEvent);
+        dComIfGp_getEventManager().order(mSpecifiedEvent);
     }
     return 1;
 }
@@ -496,7 +496,7 @@ int dEvt_control_c::talkEnd() {
     }
 
     if (mSpecifiedEvent != -1) {
-        i_dComIfGp_getEventManager().endProc(mSpecifiedEvent, 1);
+        dComIfGp_getEventManager().endProc(mSpecifiedEvent, 1);
         mSpecifiedEvent = -1;
     }
 
@@ -533,10 +533,10 @@ int dEvt_control_c::demoCheck(dEvt_order_c* p_order) {
     }
 
     if (actor1 != NULL) {
-        i_dComIfGp_getEventManager().setObjectArchive(actor1->eventInfo.getArchiveName());
+        dComIfGp_getEventManager().setObjectArchive(actor1->eventInfo.getArchiveName());
     }
 
-    if (!i_dComIfGp_getEventManager().order(eventId)) {
+    if (!dComIfGp_getEventManager().order(eventId)) {
         return 0;
     }
 
@@ -567,7 +567,7 @@ int dEvt_control_c::demoEnd() {
     }
 
     if (mSpecifiedEvent != -1) {
-        i_dComIfGp_getEventManager().endProc(mSpecifiedEvent, 1);
+        dComIfGp_getEventManager().endProc(mSpecifiedEvent, 1);
         mSpecifiedEvent = -1;
     }
     return 1;
@@ -595,7 +595,7 @@ int dEvt_control_c::doorCheck(dEvt_order_c* p_order) {
 
         fopAc_ac_c* actor2 = getPt2();
         if (actor2 != NULL) {
-            i_dComIfGp_getEventManager().setObjectArchive(actor2->eventInfo.getArchiveName());
+            dComIfGp_getEventManager().setObjectArchive(actor2->eventInfo.getArchiveName());
         }
 
         if (mSpecifiedEvent == -1 && actor2 != NULL && actor2->eventInfo.getEventId() != -1) {
@@ -603,8 +603,8 @@ int dEvt_control_c::doorCheck(dEvt_order_c* p_order) {
         }
 
         if (mSpecifiedEvent != -1 &&
-            i_dComIfGp_getEventManager().getEventData(mSpecifiedEvent) != NULL) {
-            i_dComIfGp_getEventManager().order(mSpecifiedEvent);
+            dComIfGp_getEventManager().getEventData(mSpecifiedEvent) != NULL) {
+            dComIfGp_getEventManager().order(mSpecifiedEvent);
         } else {
             mSpecifiedEvent = -1;
             reset();
@@ -629,8 +629,8 @@ int dEvt_control_c::itemCheck(dEvt_order_c* p_order) {
 
     if (commonCheck(p_order, 8, 4)) {
         mMode = EVT_MODE_DEMO;
-        mSpecifiedEvent = i_dComIfGp_getEventManager().getEventIdx(event, -1, -1);
-        i_dComIfGp_getEventManager().order(mSpecifiedEvent);
+        mSpecifiedEvent = dComIfGp_getEventManager().getEventIdx(event, -1, -1);
+        dComIfGp_getEventManager().order(mSpecifiedEvent);
         return 1;
     } else {
         return 0;
@@ -658,7 +658,7 @@ int dEvt_control_c::endProc() {
     field_0xed = 0;
     mEventID = 255;
     mPreItemNo = NO_ITEM;
-    i_dComIfGp_getEventManager().setStartDemo(-2);
+    dComIfGp_getEventManager().setStartDemo(-2);
     return 1;
 }
 
@@ -698,18 +698,18 @@ int dEvt_control_c::entry() {
 
             switch (order->mEventType) {
             case EVT_TYPE_TALK:
-                if (i_dComIfGs_getLife() != 0 && talkCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && talkCheck(order) != 0) {
                     return 1;
                 }
                 break;
             case EVT_TYPE_OTHER:
-                if (i_dComIfGs_getLife() != 0 && demoCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && demoCheck(order) != 0) {
                     return 1;
                 }
                 break;
             case EVT_TYPE_DOOR:
             case EVT_TYPE_TREASURE:
-                if (i_dComIfGs_getLife() != 0 && doorCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && doorCheck(order) != 0) {
                     return 1;
                 }
                 break;
@@ -718,23 +718,23 @@ int dEvt_control_c::entry() {
                 setParam(order);
                 return 1;
             case EVT_TYPE_POTENTIAL:
-                if (i_dComIfGs_getLife() != 0 && potentialCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && potentialCheck(order) != 0) {
                     return 1;
                 }
                 break;
             case EVT_TYPE_ITEM:
-                if (i_dComIfGs_getLife() != 0 && itemCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && itemCheck(order) != 0) {
                     return 1;
                 }
                 break;
             case EVT_TYPE_SHOWITEM_X:
             case EVT_TYPE_SHOWITEM_Y:
-                if (i_dComIfGs_getLife() != 0 && talkXyCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && talkXyCheck(order) != 0) {
                     return 1;
                 }
                 break;
             case EVT_TYPE_CATCH:
-                if (i_dComIfGs_getLife() != 0 && catchCheck(order) != 0) {
+                if (dComIfGs_getLife() != 0 && catchCheck(order) != 0) {
                     return 1;
                 }
                 break;
@@ -751,7 +751,7 @@ int dEvt_control_c::entry() {
 void dEvt_control_c::reset() {
     if (field_0xec != 0xFF) {
         fopAc_ac_c* pt1 = getPt1();
-        s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx(NULL, field_0xec, -1);
+        s16 eventIdx = dComIfGp_getEventManager().getEventIdx(NULL, field_0xec, -1);
         fopAc_ac_c* pt2 = getPt2();
 
         order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, pt1, pt2, eventIdx, field_0xec);
@@ -764,7 +764,7 @@ void dEvt_control_c::reset() {
 /* 80042518-800425B4 03CE58 009C+00 3/3 3/3 46/46 .text            reset__14dEvt_control_cFPv */
 void dEvt_control_c::reset(void* param_0) {
     if (field_0xec != 0xFF) {
-        s16 eventIdx = i_dComIfGp_getEventManager().getEventIdx((fopAc_ac_c*)param_0, field_0xec);
+        s16 eventIdx = dComIfGp_getEventManager().getEventIdx((fopAc_ac_c*)param_0, field_0xec);
         fopAc_ac_c* pt2 = getPt2();
         order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, param_0, pt2, eventIdx, field_0xec);
     }
@@ -787,13 +787,13 @@ void dEvt_control_c::clearSkipSystem() {
 
 /* 800425E8-8004261C 03CF28 0034+00 0/0 2/2 5/5 .text            dEv_defaultSkipProc__FPvi */
 int dEv_defaultSkipProc(void* param_0, int) {
-    i_dComIfGp_getEvent().reset(param_0);
+    dComIfGp_getEvent().reset(param_0);
     return 1;
 }
 
 /* 8004261C-80042778 03CF5C 015C+00 1/1 1/1 0/0 .text            dEv_defaultSkipZev__FPvi */
 int dEv_defaultSkipZev(void* param_0, int param_1) {
-    dEvt_control_c* evControl = &i_dComIfGp_getEvent();
+    dEvt_control_c* evControl = &dComIfGp_getEvent();
 
     s16 eventID = -1;
     dStage_MapEvent_dt_c* data = evControl->getStageEventDt();
@@ -812,11 +812,11 @@ int dEv_defaultSkipZev(void* param_0, int param_1) {
         char eventName[32];
         strcpy(eventName, data->mName);
         strcat(eventName, "$0");
-        eventID = i_dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
+        eventID = dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
         break;
     case 1:
-        char* skipName = i_dComIfGp_getEvent().getSkipEventName();
-        eventID = i_dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
+        char* skipName = dComIfGp_getEvent().getSkipEventName();
+        eventID = dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
         break;
     }
 
@@ -836,7 +836,7 @@ int dEv_defaultSkipZev(void* param_0, int param_1) {
 
 /* 80042778-800428DC 03D0B8 0164+00 0/0 1/1 0/0 .text            dEv_defaultSkipStb__FPvi */
 int dEv_defaultSkipStb(void* param_0, int param_1) {
-    dEvt_control_c* evControl = &i_dComIfGp_getEvent();
+    dEvt_control_c* evControl = &dComIfGp_getEvent();
 
     s16 eventID = -1;
     dStage_MapEvent_dt_c* data = evControl->getStageEventDt();
@@ -855,11 +855,11 @@ int dEv_defaultSkipStb(void* param_0, int param_1) {
         char eventName[32];
         strcpy(eventName, data->mName);
         strcat(eventName, "$0");
-        eventID = i_dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
+        eventID = dComIfGp_getEventManager().getEventIdx(eventName, 0xFF, -1);
         break;
     case 1:
-        char* skipName = i_dComIfGp_getEvent().getSkipEventName();
-        eventID = i_dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
+        char* skipName = dComIfGp_getEvent().getSkipEventName();
+        eventID = dComIfGp_getEventManager().getEventIdx(skipName, 0xFF, -1);
         break;
     }
 
@@ -881,7 +881,7 @@ int dEv_defaultSkipStb(void* param_0, int param_1) {
 
 /* 800428DC-8004290C 03D21C 0030+00 0/0 1/1 33/33 .text            dEv_noFinishSkipProc__FPvi */
 int dEv_noFinishSkipProc(void*, int) {
-    i_dComIfGp_getEvent().offSkipFade();
+    dComIfGp_getEvent().offSkipFade();
     return 0;
 }
 
@@ -995,7 +995,7 @@ SECTION_SDATA2 static f32 lit_5013 = -1.0f / 20.0f;
 
 /* 80042BBC-80042FA8 03D4FC 03EC+00 0/0 1/1 0/0 .text            Step__14dEvt_control_cFv */
 int dEvt_control_c::Step() {
-    dEvent_manager_c* evtMng = &i_dComIfGp_getEventManager();
+    dEvent_manager_c* evtMng = &dComIfGp_getEventManager();
 
     field_0xe7 = 0;
     field_0xe8 = mNum;
@@ -1153,8 +1153,8 @@ int dEvt_control_c::moveApproval(void* param_0) {
         return 1;
     }
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x20000000) ||
-        i_dComIfGp_checkPlayerStatus1(0, 0x4002000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x20000000) ||
+        dComIfGp_checkPlayerStatus1(0, 0x4002000)) {
         return 0;
     }
 
@@ -1285,7 +1285,7 @@ void dEvt_info_c::setEventName(char* name) {
     if (name == NULL) {
         mEventId = -1;
     } else {
-        mEventId = i_dComIfGp_getEventManager().getEventIdx(name, -1, -1);
+        mEventId = dComIfGp_getEventManager().getEventIdx(name, -1, -1);
     }
 }
 
@@ -1294,7 +1294,7 @@ char* dEvt_info_c::getEventName() {
     if (mEventId == -1) {
         return NULL;
     } else {
-        dEvDtEvent_c* data = i_dComIfGp_getEventManager().getEventData(mEventId);
+        dEvDtEvent_c* data = dComIfGp_getEventManager().getEventData(mEventId);
         if (data == NULL) {
             return NULL;
         } else {
@@ -1331,7 +1331,7 @@ dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 mapToolID, s32 roomN
         }
     }
 
-    dStage_MapEventInfo_c* stageDt = i_dComIfGp_getStage()->getMapEventInfo();
+    dStage_MapEventInfo_c* stageDt = dComIfGp_getStage()->getMapEventInfo();
     if (stageDt != NULL) {
         for (int i = 0; i < stageDt->mCount; i++) {
             if (mapToolID == stageDt->mData[i].field_0x4) {

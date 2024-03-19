@@ -163,7 +163,7 @@ static void stick(b_gos_class* i_this) {
     cLib_addCalc2(&i_this->speedF, 200, 1, 1);
 
     J3DModel* boss_model = boss->mpMorf->getModel();
-    MTXCopy(boss_model->i_getAnmMtx(j_info[i_this->mJointIndex].joint_no & 0xFF), *calc_mtx);
+    MTXCopy(boss_model->getAnmMtx(j_info[i_this->mJointIndex].joint_no & 0xFF), *calc_mtx);
 
     offset.x = 0.0f;
     offset.y = 0.0f;
@@ -172,7 +172,7 @@ static void stick(b_gos_class* i_this) {
 
     if (j_info[i_this->mJointIndex].field_0x4 < 1.0f) {
         cXyz sp60;
-        MTXCopy(boss_model->i_getAnmMtx((j_info[i_this->mJointIndex].joint_no >> 8) & 0xFF),
+        MTXCopy(boss_model->getAnmMtx((j_info[i_this->mJointIndex].joint_no >> 8) & 0xFF),
                 *calc_mtx);
 
         offset.x = 0.0f;
@@ -306,7 +306,7 @@ static int daB_GOS_Execute(b_gos_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
     mDoMtx_stack_c::transM(0.0f, i_this->field_0x698, i_this->field_0x69c);
-    i_this->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
     i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
     i_this->mpMorf->modelCalc();

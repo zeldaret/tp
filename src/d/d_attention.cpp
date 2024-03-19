@@ -1277,8 +1277,8 @@ void dAttention_c::runDrawProc() {
         draw[0].field_0x164.z = mAttParam.mAttnCursorOffsetY;
         draw[0].field_0x175 = 1;
 
-        if (!i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
-            i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+        if (!dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
+            dComIfGp_checkPlayerStatus1(0, 0x11)) {
             lockSoundStart(Z2SE_SY_L_FOCUS_SET);
         }
     } else if (chkFlag(0x10)) {
@@ -1288,8 +1288,8 @@ void dAttention_c::runDrawProc() {
             setFlag(0x40000000);
         }
 
-        if (!i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
-            i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+        if (!dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
+            dComIfGp_checkPlayerStatus1(0, 0x11)) {
             lockSoundStart(Z2SE_SY_L_FOCUS_RESET);
         }
     } else if (chkFlag(0x1)) {
@@ -1341,7 +1341,7 @@ void dAttention_c::checkButton() {
         }
     }
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x36a02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x36a02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
         switch (field_0x32b) {
         case 0:
         case 1:
@@ -1618,7 +1618,7 @@ int dAttention_c::Run() {
 
     setOwnerAttentionPos();
 
-    if (i_dComIfGp_event_runCheck() || chkFlag(0x10000)) {
+    if (dComIfGp_event_runCheck() || chkFlag(0x10000)) {
         mAttnStatus = ST_NONE;
         field_0x32b = 4;
         field_0x32c = 0;
@@ -1694,7 +1694,7 @@ void dAttention_c::Draw() {
     MTXInverse(dComIfGd_getViewRotMtx(), tmp);
     fopAc_ac_c* target = LockonTarget(0);
 
-    if (!i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_event_runCheck()) {
         if (target != NULL) {
             draw[0].draw(target->attention_info.position, tmp);
 
@@ -1877,7 +1877,7 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
 
     mDoMtx_stack_c::transS(param_0.x, param_0.y + field_0x164.z, param_0.z);
     mDoMtx_stack_c::concat(param_1);
-    mModel[field_0x170]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel[field_0x170]->setBaseTRMtx(mDoMtx_stack_c::get());
 
     view_class* view = dComIfGd_getView();
     f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->mFovy));
@@ -1927,7 +1927,7 @@ asm void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
 /* 8007353C-800735DC 06DE7C 00A0+00 8/8 13/13 21/21 .text            LockonTarget__12dAttention_cFl
  */
 fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x36A02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x36A02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
         return NULL;
     }
 
@@ -1981,7 +1981,7 @@ asm f32 dAttention_c::LockonReleaseDistanse() {
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
  */
 u32 dAttention_c::LockonTargetPId(s32 param_0) {
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x36A02311) || i_dComIfGp_checkPlayerStatus1(0, 0x11)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x36A02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
         return -1;
     }
 

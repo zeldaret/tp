@@ -485,7 +485,7 @@ void daObjCHO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 }
 
@@ -528,8 +528,8 @@ bool daObjCHO_c::CreateChk() {
 
     if (mLocation != LOC_UNK_2) {
         if (param != 0) {
-            if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]])
-                || !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]))
+            if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]])
+                || !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]))
             {
                 return false;
             }
@@ -540,9 +540,9 @@ bool daObjCHO_c::CreateChk() {
                 if (dMenu_Insect_c::isCatchNotGiveInsect(l_cho_itemno[mSex])) {
                     return false;
                 }
-                if ((mSex == SEX_MALE && !i_dComIfGs_isEventBit(
+                if ((mSex == SEX_MALE && !dComIfGs_isEventBit(
                         dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]))
-                    || (mSex == SEX_FEMALE && !i_dComIfGs_isEventBit(
+                    || (mSex == SEX_FEMALE && !dComIfGs_isEventBit(
                         dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]])))
                 {
                     return false;

@@ -14,7 +14,7 @@ static char* l_arcName = "Lv7Gate";
 
 int daTagLv7Gate_c::createHeap() {
     // Watched City in the Sky start cutscene
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
         return 1;
     }
 
@@ -134,11 +134,11 @@ void daTagLv7Gate_c::create_init() {
     }
 
     // City in the Sky clear
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])) {
         mEvName = "LV7_NORMAL_START";
     } else {
         // Watched City in the Sky start cutscene
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
             if (dComIfGs_isDungeonItemWarp()) {
                 mEvName = "LV7_CANNON_BACK";
             } else {
@@ -166,8 +166,8 @@ void daTagLv7Gate_c::create_init() {
         }
     }
     eventInfo.setArchiveName(l_arcName);
-    i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-    mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
+    dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+    mEvtId = dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
     fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 2, 1);
 }
 
@@ -227,8 +227,8 @@ void daTagLv7Gate_c::flyAnime() {
 int daTagLv7Gate_c::execute() {
     // Fakematch
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (i_dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = i_dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
+    if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+        s32 cut_index = dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
             int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index); // Fakematch
 
@@ -252,7 +252,7 @@ int daTagLv7Gate_c::execute() {
                 dComIfGp_evmng_cutEnd(cut_index);
                 break;
             case '0002':
-                i_mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
+                mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
                 if (!field_0x5b1) {
                     dComIfGp_evmng_cutEnd(cut_index);
                 }
@@ -263,7 +263,7 @@ int daTagLv7Gate_c::execute() {
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 dComIfGp_evmng_endCheck(mEvtId)) {
-                // i_dComIfGp_event_reset();
+                // dComIfGp_event_reset();
                 play.getEvent().reset(); // Fakematch
                 mEvtId = -1;
                 fopAcM_delete(this);
@@ -274,8 +274,8 @@ int daTagLv7Gate_c::execute() {
     } else {
         if (!field_0x5b0) {
             eventInfo.setArchiveName(l_arcName);
-            i_dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-            mEvtId = i_dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
+            dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+            mEvtId = dComIfGp_getEventManager().getEventIdx(this, mEvName, -1);
             fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
             field_0x5b0 = true;
         } else {

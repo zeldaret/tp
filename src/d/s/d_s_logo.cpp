@@ -426,7 +426,7 @@ dScnLogo_c::~dScnLogo_c() {
 
     field_0x1d4->destroy();
     field_0x1d0->destroy();
-    i_JKRFree(buffer);
+    JKRFree(buffer);
 
     dComIfGp_particle_createCommon(mParticleCommand->getMemAddress());
     dComIfGp_setFieldMapArchive2(mpField0Command->getArchive());

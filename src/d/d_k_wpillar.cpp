@@ -79,7 +79,7 @@ int dkWpillar_c::create() {
 
     mpModel->setBaseScale(mScale);
     mDoMtx_stack_c::transS(mPos.x, mPos.y, mPos.z);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     return cPhs_COMPLEATE_e;
 }
 

@@ -160,7 +160,7 @@ void daTag_SSDrink_c::setAttnPos() {
 /* 80D63208-80D63384 0004C8 017C+00 1/1 0/0 0/0 .text            chkEvent__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::chkEvent() {
     int retVal = 1;
-    if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().isOrderOK()) {
         retVal = 0;
         if (eventInfo.checkCommandTalk()) {
             if (!checkProcess(&daTag_SSDrink_c::talk) == 0) {
@@ -187,7 +187,7 @@ int daTag_SSDrink_c::chkEvent() {
 
 /* 80D63384-80D63490 000644 010C+00 1/1 0/0 0/0 .text            orderEvent__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::orderEvent() {
-    if (!dComIfGp_getLinkPlayer()->i_checkWolf() && i_fopAcM_isSwitch(this, getSwitchFromParam()) &&
+    if (!dComIfGp_getLinkPlayer()->checkWolf() && fopAcM_isSwitch(this, getSwitchFromParam()) &&
         field_0x5D3 != 0x60 && getFlowNodeNum() != 0xFFFF)
     {
         attention_info.flags = 0x40000008;
@@ -211,7 +211,7 @@ int daTag_SSDrink_c::wait(void* param_0) {
     switch (mEventType) {
     case 1:
         if (!eventInfo.i_checkCommandCatch()) {
-            if (i_fopAcM_isSwitch(this, getSwitchFromParam())) {
+            if (fopAcM_isSwitch(this, getSwitchFromParam())) {
                 if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f &&
                     fopAcM_seenPlayerAngleY() <= 0x2000)
                 {
@@ -242,7 +242,7 @@ int daTag_SSDrink_c::talk(void* param_0) {
         break;
     case 1:
         if (field_0x578.doFlow(this, NULL, 0) != 0) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             setProcess(&daTag_SSDrink_c::wait);
             retVal = 1;
         }

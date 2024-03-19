@@ -62,14 +62,14 @@ int daObjTMoon_c::create() {
 /* 80D12DC0-80D12EB4 0002A0 00F4+00 1/1 0/0 0/0 .text            execute__12daObjTMoon_cFv */
 int daObjTMoon_c::execute() {
     if ((field_0x576 != 0x3ff) &&
-            (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x576])) ||
+            (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x576])) ||
         (field_0x574 != 0x3ff) &&
-            (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
+            (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
         fopDwTg_DrawQTo(&draw_tag);
         return 1;
     } else if ((field_0x574 != 0x3ff) &&
-               (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
+               (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
         fopDwTg_ToDrawQ(&draw_tag, fpcLf_GetPriority(this));
         return 1;

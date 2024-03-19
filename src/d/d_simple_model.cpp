@@ -134,7 +134,7 @@ BOOL diff_model_c::create(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
                 mDoExt_restoreCurrentHeap();
             } else {
                 mpModel->setBaseScale(cXyz(0.0f, 0.0f, 0.0f));
-                mpModel->i_setBaseTRMtx(g_mDoMtx_identity);
+                mpModel->setBaseTRMtx(g_mDoMtx_identity);
                 mCreateNum++;
                 mDoExt_adjustSolidHeapToSystem(mpHeap);
                 mRoomNo = roomNo;

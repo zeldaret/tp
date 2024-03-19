@@ -16,7 +16,7 @@ bool daPy_py_c::checkWoodSwordEquip() {
 }
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 803AC418-803AC500 009538 00E8+00 1/1 0/0 0/0 .data            plCutLRC */

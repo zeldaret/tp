@@ -39,7 +39,7 @@ static int daObj_Rock_Execute(obj_rock_class* i_this) {
                 mDoMtx_YrotM(mDoMtx_stack_c::get(), rock->mRot);
                 mDoMtx_stack_c::scaleM(rock->mScale.x, rock->mScale.y, rock->mScale.z);
 
-                rock->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                rock->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
                 rock->mCollider.SetC(rock->mPos);
                 rock->mCollider.SetR(rock->mScale.x * 100.0f);
