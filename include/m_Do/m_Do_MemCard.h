@@ -40,6 +40,8 @@ public:
     bool isCardCommNone() { return mCardCommand == CARD_NO_COMMAND; }
     u8 getProbeStat() { return mProbeStat; }
     void clearProbeStat() { mProbeStat = 2; }
+    void setCopyToPos(u8 param_0) { mCopyToPos = param_0; }
+    u32 getDataVersion() { return mDataVersion; }
 
     /* 0x0000 */ u8 mData[0x1FBC];
     /* 0x1FBC */ u8 mChannel;
@@ -79,6 +81,38 @@ inline void mDoMemCd_clearProbeStat() {
 
 inline void mDoMemCd_save(void* i_data, u32 param_1, u32 param_2) {
     g_mDoMemCd_control.save(i_data,param_1,param_2);
+}
+
+inline void mDoMemCd_Format() {
+    g_mDoMemCd_control.command_format();
+}
+
+inline s32 mDoMemCd_FormatSync() {
+    return g_mDoMemCd_control.FormatSync();
+}
+
+inline s32 mDoMemCd_SaveSync() {
+    return g_mDoMemCd_control.SaveSync();
+}
+
+inline void mDoMemCd_Load() {
+    g_mDoMemCd_control.load();
+}
+
+inline void mDoMemCd_setCopyToPos(u8 param_0) {
+    g_mDoMemCd_control.setCopyToPos(param_0);
+}
+
+inline u32 mDoMemCd_getStatus(u8 param_0) {
+    return g_mDoMemCd_control.getStatus(param_0);
+}
+
+inline u32 mDoMemCd_LoadSync(void* buffer, u32 size, u32 index) {
+    return g_mDoMemCd_control.LoadSync(buffer, size, index);
+}
+
+inline s32 mDoMemCd_getDataVersion() {
+    return g_mDoMemCd_control.getDataVersion();
 }
 
 #endif /* M_DO_M_DO_MEMCARD_H */

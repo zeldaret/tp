@@ -158,7 +158,7 @@ private:
     /* 0x2B5 */ char mInputStr[23];
     /* 0x2CC */ ChrInfo_c mChrInfo[8];
     /* 0x30C */ u8 field_0x30c[4][4];  // ?
-    /* 0x31C */ char mNextNameStr[28];
-};  // Size: 0x338
+    /* 0x31C */ char mNextNameStr[24];
+};  // Size: 0x334
 
 #endif /* D_D_NAME_H */
