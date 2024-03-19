@@ -33,8 +33,10 @@ public:
     /* 801924A0 */ virtual ~dFile_info_c();
 
     // fake? needed to get vtable size correct
+    #ifdef DFILE_INFO_C_DUMMY_VIRTUAL
     virtual void dummy() = 0;
     virtual void dummy2() = 0;
+    #endif
 
     void setBasePane(J2DPane* pane) { mFileInfo.mBasePane = pane; }
     CPaneMgrAlpha* getDatBase() { return mDatBase; }
