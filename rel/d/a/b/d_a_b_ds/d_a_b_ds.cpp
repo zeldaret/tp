@@ -2128,7 +2128,7 @@ asm void daB_DS_c::mCreateTrap(bool param_0) {
 // matches with literals
 void daB_DS_c::mChangeVer2() {
     if (mBitSw != 0xff) {
-        i_fopAcM_offSwitch(this, mBitSw);
+        fopAcM_offSwitch(this, mBitSw);
     }
     field_0x7ec = 0.0f;
     shape_angle.x = 0;
@@ -4351,7 +4351,7 @@ asm void daB_DS_c::executeCircle() {
 /* 805D02F8-805D0374 0051B8 007C+00 1/1 0/0 0/0 .text            mBreakBoneSUB__8daB_DS_cFv */
 void daB_DS_c::mBreakBoneSUB() {
     if (mBitSw3 != 0xff) {
-        i_fopAcM_offSwitch(this, mBitSw3);
+        fopAcM_offSwitch(this, mBitSw3);
         mSoundPos = current.pos;
         mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1f);
     }
@@ -5093,7 +5093,7 @@ void daB_DS_c::executeDamage() {
             i_dComIfGp_event_reset();
 
             if (mBitSw3 != 0xff) {
-                i_fopAcM_offSwitch(this, mBitSw3);
+                fopAcM_offSwitch(this, mBitSw3);
             }
             mBirthTrapTimerF = 0x1e;
             shape_angle.y = current.angle.y = fopAcM_searchPlayerAngleY(this) + 0xc000;
@@ -5110,7 +5110,7 @@ void daB_DS_c::executeDamage() {
 
         if (cLib_calcTimer(&mActionTimer) == 0 && field_0x7dc[mBackboneJoint] == 0.0f) {
             if (mBitSw != 0xff) {
-                i_fopAcM_offSwitch(this, mBitSw);
+                fopAcM_offSwitch(this, mBitSw);
             }
             setBck(Ds_damage_id[mBackboneJoint], 0, 3.0f, 1.0f);
             for (int i = 0; i < 4; i++) {
@@ -9981,7 +9981,7 @@ cPhs__Step daB_DS_c::create() {
                     field_0x7e8 = 0.0f;
                     field_0x7ec = 255.0f;
                     if (mBitSw != 0xff) {
-                        i_fopAcM_offSwitch(this, mBitSw);
+                        fopAcM_offSwitch(this, mBitSw);
                     }
                     attention_info.field_0x0[2] = 0;
                     attention_info.flags &= ~4;
@@ -9998,7 +9998,7 @@ cPhs__Step daB_DS_c::create() {
                     dComIfGs_onZoneSwitch(5, fopAcM_GetRoomNo(this));
                 }
                 if (mBitSw3 != 0xff) {
-                    i_fopAcM_offSwitch(this, mBitSw3);
+                    fopAcM_offSwitch(this, mBitSw3);
                 }
                 if (mAction != ACT_OPENING_DEMO) {
                     field_0x7f8 = 0.5f;
@@ -10254,7 +10254,7 @@ extern "C" asm void __dt__4cXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoPos0(cXyz const* param_0) {
+extern "C" asm void changeDemoPos0__9daPy_py_cFPC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ds/d_a_b_ds/changeDemoPos0__9daPy_py_cFPC4cXyz.s"
 }
@@ -10275,7 +10275,7 @@ extern "C" asm void __as__4cXyzFRC4cXyz() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 param_3) {
+extern "C" asm void changeDemoMode__9daPy_py_cFUliis() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ds/d_a_b_ds/changeDemoMode__9daPy_py_cFUliis.s"
 }

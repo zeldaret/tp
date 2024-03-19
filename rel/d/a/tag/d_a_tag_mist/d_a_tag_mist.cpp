@@ -17,7 +17,7 @@ void daTagMist_c::offSw() {
     sw_no_num = daTagMist_prm::getSwNoNum(this);
 
     for (int i = 0; i < sw_no_num; i++) {
-        i_fopAcM_offSwitch(this, top_sw_no + i);
+        fopAcM_offSwitch(this, top_sw_no + i);
     }
 }
 
@@ -30,7 +30,7 @@ void daTagMist_c::onMySw() {
     my_sw_no = daTagMist_prm::getMySwNo(this);
 
     if (my_sw_no != 0xFF) {
-        i_fopAcM_onSwitch(this, top_sw_no + my_sw_no);
+        fopAcM_onSwitch(this, top_sw_no + my_sw_no);
     }
 }
 
@@ -42,7 +42,7 @@ BOOL daTagMist_c::isMySw() {
     top_sw_no = daTagMist_prm::getTopSwNo(this);
     my_sw_no = daTagMist_prm::getMySwNo(this);
 
-    if (my_sw_no != 0xFF && i_fopAcM_isSwitch(this, top_sw_no + my_sw_no)) {
+    if (my_sw_no != 0xFF && fopAcM_isSwitch(this, top_sw_no + my_sw_no)) {
         return TRUE;
     } else {
         return FALSE;
@@ -103,7 +103,7 @@ int daTagMist_c::create() {
 
 /* 8048F558-8048F690 000378 0138+00 1/1 0/0 0/0 .text            execute__11daTagMist_cFv */
 int daTagMist_c::execute() {
-    if (i_fopAcM_isSwitch(this, daTagMist_prm::getSwNo2(this))) {
+    if (fopAcM_isSwitch(this, daTagMist_prm::getSwNo2(this))) {
         return 1;
     }
 

@@ -234,7 +234,7 @@ void daObjSwBallB_c::search_ball() {
     for (int i = 0; i < 2; i++) {
         l_target_info[i] = NULL;
     }
-    i_fpcM_Search(s_ball_sub, this);
+    fpcM_Search(s_ball_sub, this);
     for (int i = 0; i < l_target_info_count; i++) {
         if (l_target_info[i] != 0) {
             u32 id = fopAcM_GetID(l_target_info[i]);
@@ -277,7 +277,7 @@ void daObjSwBallB_c::initBaseMtx() {
 void daObjSwBallB_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CF49F0-80CF4B74 0004B0 0184+00 1/1 0/0 0/0 .text            Create__14daObjSwBallB_cFv */
@@ -293,12 +293,12 @@ int daObjSwBallB_c::Create() {
     }
     field_0x59c = -1;
 
-    if (fopAcM_GetRoomNo(this) == 0 && i_fopAcM_isSwitch(this, 0x3f)) {
+    if (fopAcM_GetRoomNo(this) == 0 && fopAcM_isSwitch(this, 0x3f)) {
         field_0x588->setFrame(field_0x588->getEndFrame());
         if (getArg1() == 1) {
-            i_fopAcM_onSwitch(this, getSwbit2());
+            fopAcM_onSwitch(this, getSwbit2());
         }
-        i_fopAcM_onSwitch(this, getSwbit());
+        fopAcM_onSwitch(this, getSwbit());
         field_0x596 = 5;
     }
     GXColor* color = mModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1);
@@ -551,7 +551,7 @@ void daObjSwBallB_c::actionRun() {
         if (field_0x59c == -1) {
             field_0x588->setPlaySpeed(-1.0f);
             if (dComIfGp_roomControl_getStayNo() != 0) {
-                i_fopAcM_offSwitch(this, getSwbit());
+                fopAcM_offSwitch(this, getSwbit());
             }
             fopAcM_seStart(this, Z2SE_OBJ_L8_L_BALL_SW_OFF, 0);
             field_0x5a8 = -1;
@@ -562,10 +562,10 @@ void daObjSwBallB_c::actionRun() {
                     daObjCarry_c* carryObj = (daObjCarry_c*)fopAcM_SearchByID(field_0x59c);
                     if (carryObj != NULL) {
                         if (getArg1() == 1) {
-                            i_fopAcM_onSwitch(this, getSwbit2());
+                            fopAcM_onSwitch(this, getSwbit2());
                         }
                         if (carryObj->getType() == 8) {
-                            i_fopAcM_onSwitch(this, getSwbit());
+                            fopAcM_onSwitch(this, getSwbit());
                             dComIfGs_onEventBit(l_event_bitA[getID()]);
                             field_0x5a8 = 0;
                         } else {
@@ -574,7 +574,7 @@ void daObjSwBallB_c::actionRun() {
                         }
                     }
                 } else {
-                    i_fopAcM_onSwitch(this, getSwbit());
+                    fopAcM_onSwitch(this, getSwbit());
                 }
                 if (getEvent() != 0xff) {
                     orderEvent(getEvent(), 0xff, 1);
@@ -640,7 +640,7 @@ void daObjSwBallB_c::PutCrrPos() {
             fopAcM_GetName(carryObj) == PROC_Obj_Carry && carryObj->prm_chk_type_lightball())
         {
             player->setForcePutPos(current.pos);
-            if (!i_dComIfGp_event_runCheck()) {
+            if (!dComIfGp_event_runCheck()) {
                 dComIfGp_setDoStatus(0x14, 2);
             }
         }

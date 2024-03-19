@@ -160,7 +160,7 @@ void daShopItem_c::set_mtx() {
         mDoMtx_stack_c::XrotM(mData[mShopItemID].get_angleOffsetX());
     }
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8059EEF4-8059EF48 0005B4 0054+00 1/1 0/0 0/0 .text            _execute__12daShopItem_cFv */

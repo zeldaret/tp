@@ -36,9 +36,9 @@ public:
     void setAnmSpeed(f32 speed) { mpBck->setPlaySpeed(speed); }
 
     bool isSwitch() {
-        return i_fopAcM_isSwitch(this, getSwitchNo()) ||
-               i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
-               i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
+        return fopAcM_isSwitch(this, getSwitchNo()) ||
+               dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
+               dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     }
 
     void setAction(Mode_e i_action) {

@@ -33,6 +33,4 @@ s32 fpcPi_Handler(void);
 s32 fpcPi_Init(process_priority_class* pPi, void* pUserData, unsigned int layer, u16 listID,
                u16 priority);
 
-extern s8 data_804505F0;  // roomReadId
-
 #endif

@@ -55,7 +55,7 @@ int daNocrm_c::execute() {
     cXyz cur_player_pos(player_p->current.pos);
 
     if (player_p->checkHorseRide()) {
-        cur_player_pos.y = i_dComIfGp_getHorseActor()->current.pos.y;
+        cur_player_pos.y = dComIfGp_getHorseActor()->current.pos.y;
     } else if (player_p->checkSpinnerRide()) {
         daSpinner_c* spinner_actor = player_p->getSpinnerActor();
 
@@ -70,7 +70,7 @@ int daNocrm_c::execute() {
     if (sp14.y < 0.0f || sp14.y > scale.y || fabsf(sp14.x) > scale.x || fabsf(sp14.z) > scale.z)
     {
         if (subtype == 0 || !mRoomLoading ||
-            dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != 0)
+            dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 0)
         {
             return 1;
         }

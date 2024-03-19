@@ -48,7 +48,7 @@ static char* l_evName = "RIVER_BACK";
 int daTagRiverBack_c::Create() {
     mMapToolID = -1;
     eventInfo.setArchiveName(l_arcName);
-    mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, -1);
+    mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName, -1);
     return 1;
 }
 
@@ -68,12 +68,12 @@ int daTagRiverBack_c::create() {
 /* 80D5F3F0-80D5F48C 000170 009C+00 1/1 0/0 0/0 .text            execute__16daTagRiverBack_cFv */
 int daTagRiverBack_c::execute() {
     u8 swBit = getSwBit();
-    if (swBit != 0xFF && i_fopAcM_isSwitch(this, swBit) != 0) {
+    if (swBit != 0xFF && fopAcM_isSwitch(this, swBit) != 0) {
         return 1;
     }
 
     u8 swBit2 = getSwBit2();
-    if (swBit2 != 0xFF && i_fopAcM_isSwitch(this, swBit2) == 0) {
+    if (swBit2 != 0xFF && fopAcM_isSwitch(this, swBit2) == 0) {
         return 1;
     }
 
@@ -99,7 +99,7 @@ void daTagRiverBack_c::event_proc_call() {
 
 /* 80D5F548-80D5F5BC 0002C8 0074+00 1/0 0/0 0/0 .text            actionWait__16daTagRiverBack_cFv */
 void daTagRiverBack_c::actionWait() {
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x100000) != 0) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x100000) != 0) {
         mCount = 0;
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xFFFF, 0, 1);
@@ -112,7 +112,7 @@ void daTagRiverBack_c::actionOrderEvent() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
-        mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
+        mStaffID = dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
         player->mNoResetFlg0 |= 0x10000;
         demoProc();
     } else {
@@ -128,7 +128,7 @@ void daTagRiverBack_c::actionEvent() {
     mCount += 1;
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACTION_DEAD_e);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
         if (mCount == 30) {

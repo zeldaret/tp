@@ -251,7 +251,7 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
 
     i_this->mpBrk->play();
-    i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (i_this->mReboundTimer != 0) {
         i_this->mReboundTimer--;

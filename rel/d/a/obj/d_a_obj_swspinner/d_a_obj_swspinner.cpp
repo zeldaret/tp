@@ -44,20 +44,20 @@ void daObjSwSpinner_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel1->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
     MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + field_0x5e4, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
 
-    mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* ############################################################################################## */
 /* 80D00284-80D0035C 000384 00D8+00 1/0 0/0 0/0 .text            Create__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::Create() {
-    if (i_fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwBit2())) {
         field_0x5e4 = 50.0f;
         field_0x5ea = 0;
     } else {
@@ -140,7 +140,7 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
         mCount += 1;
     }
 
-    if (i_fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwBit2())) {
         if (cLib_addCalc(&field_0x5e4, 50.0f, 0.1f, 10.0f, 2.0f) == 0.0f && field_0x5ea != NULL) {
             if (field_0x5e8 != NULL) {
                 spinner->offSpinnerTag();
@@ -155,9 +155,9 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     } else if (field_0x5e8 != NULL) {
         if (mCount > 200) {
             if (mRotSpeedY > 3000) {
-                i_fopAcM_onSwitch(this, getSwBit());
+                fopAcM_onSwitch(this, getSwBit());
             } else {
-                i_fopAcM_offSwitch(this, getSwBit());
+                fopAcM_offSwitch(this, getSwBit());
             }
         }
     } else {
@@ -175,7 +175,7 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     mpBgW2->Move();
     attention_info.position = current.pos;
     attention_info.position.y -= 100.0f;
-    field_0x5eb = i_fopAcM_isSwitch(this, getSwBit2()) ? 1 : 0;
+    field_0x5eb = fopAcM_isSwitch(this, getSwBit2()) ? 1 : 0;
     field_0x5e9 = field_0x5e8;
 
     return 1;

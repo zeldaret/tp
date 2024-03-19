@@ -76,9 +76,9 @@ int daTagSpinner_c::execute() {
 
     if (mpSpinner) {
         mpSpinner->setSpinnerTag(current.pos);
-        i_fopAcM_onSwitch(this, daTagSpinner_prm::getSwNo(this));
+        fopAcM_onSwitch(this, daTagSpinner_prm::getSwNo(this));
     } else {
-        i_fopAcM_offSwitch(this, daTagSpinner_prm::getSwNo(this));
+        fopAcM_offSwitch(this, daTagSpinner_prm::getSwNo(this));
     }
     return 1;
 }

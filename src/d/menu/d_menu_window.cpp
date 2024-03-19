@@ -2426,7 +2426,7 @@ BOOL dMw_c::dMw_isPush_S_Button() {
 
 /* 801FCDD8-801FCE08 1F7718 0030+00 1/1 0/0 0/0 .text            isPauseReady__5dMw_cFv */
 bool dMw_c::isPauseReady() {
-    if (i_dComIfGp_getEvent().checkCompulsory() || i_dComIfGs_getLife() == 0) {
+    if (dComIfGp_getEvent().checkCompulsory() || dComIfGs_getLife() == 0) {
         return false;
     }
     return true;
@@ -2470,7 +2470,7 @@ bool dMw_c::isEventCheck() {
             field_0x148 = 0;
         }
 
-        if (i_dComIfGp_event_runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             if (!dMsgObject_isTalkNowCheck() &&
                 (dMeter2Info_getMapStatus() == 4 || dMeter2Info_getMapStatus() == 5 ||
                  dMeter2Info_getMapStatus() == 7 || dMeter2Info_getMapStatus() == 8 ||
@@ -2572,7 +2572,7 @@ int dMw_c::_execute() {
         checkCStickTrigger();
     }
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         field_0x148 = 5;
     } else if (field_0x148 > 0) {
         field_0x148--;

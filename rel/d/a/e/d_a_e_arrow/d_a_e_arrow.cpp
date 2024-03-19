@@ -307,7 +307,7 @@ static void hit_check(e_arrow_class* i_this) {
 
             if (i_this->mCcAtSph.ChkAtHit()) {
                 cXyz sp12C(0.4f, 0.4f, 0.4f);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->current.pos, &i_this->shape_angle, &sp12C,
+                dComIfGp_setHitMark(1, i_this, &i_this->current.pos, &i_this->shape_angle, &sp12C,
                                       0);
 
                 fopAcM_delete(i_this);
@@ -347,7 +347,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
         }
     case 1:
         if (i_this->mFlags & 0x20) {
-            fopAc_ac_c* coach_p = i_fopAcM_SearchByName(PROC_NPC_COACH);
+            fopAc_ac_c* coach_p = fopAcM_SearchByName(PROC_NPC_COACH);
 
             if (coach_p != NULL) {
                 cXyz sp30;
@@ -499,7 +499,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
             }
 
             if (!player_p->checkWolfDig() &&
-                (!i_dComIfGp_event_runCheck() ||
+                (!dComIfGp_event_runCheck() ||
                  fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass()) !=
                      (fopAc_ac_c*)daPy_py_c::getMidnaActor()))
             {
@@ -508,7 +508,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
                 }
             }
 
-            if (i_this->field_0xa0c == 0 && i_fpcM_Search(s_limit_sub, i_this) != NULL) {
+            if (i_this->field_0xa0c == 0 && fpcM_Search(s_limit_sub, i_this) != NULL) {
                 dBgS_ObjGndChk gnd_chk;
                 sp9C = player_p->current.pos;
                 sp9C.y += 200.0f;
@@ -522,7 +522,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
 
             cLib_addCalc2(&i_this->field_0xa10, 10.0f, 1.0f, 1.0f);
 
-            if (!i_dComIfGp_event_runCheck()) {
+            if (!dComIfGp_event_runCheck()) {
                 sp9C.y = 0.0f;
                 sp9C.x = 0.0f;
 
@@ -738,7 +738,7 @@ static int daE_ARROW_Execute(e_arrow_class* i_this) {
     mDoMtx_stack_c::XrotM(-2000);
     mDoMtx_stack_c::transM(-60.0f, -10.0f, 40.0f);
 
-    i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
     return 1;
 }
@@ -869,7 +869,7 @@ static int daE_ARROW_Create(fopAc_ac_c* i_this) {
         }
 
         mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
-        a_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        a_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
     return phase_state;

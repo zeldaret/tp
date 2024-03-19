@@ -56,7 +56,7 @@ void daObjSwBallC_c::initBaseMtx() {
 void daObjSwBallC_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */
@@ -100,7 +100,7 @@ int daObjSwBallC_c::Create() {
         joint->getMin()->x, joint->getMin()->y, joint->getMin()->z,
         joint->getMax()->x, joint->getMax()->y, joint->getMax()->z);
     
-    if (i_fopAcM_isSwitch(this, 0x3d) && i_fopAcM_isSwitch(this, 0x3e)) {
+    if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
         field_0x574->setPlaySpeed(1.0f);
         field_0x574->setFrame(field_0x574->getEndFrame());
     }
@@ -110,8 +110,8 @@ int daObjSwBallC_c::Create() {
     color->b = l_color.b;
     field_0x57e = -1;
     eventInfo.setArchiveName(l_arcName);
-    field_0x57c = i_dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
-    if (i_fopAcM_isSwitch(this, 0x3f)) {
+    field_0x57c = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
+    if (fopAcM_isSwitch(this, 0x3f)) {
         setLightOnSwB();
         setAction(3);
     }
@@ -176,7 +176,7 @@ static char* action_table[13] = {
 
 /* 80CF6200-80CF629C 0006E0 009C+00 1/0 0/0 0/0 .text            actionWait__14daObjSwBallC_cFv */
 void daObjSwBallC_c::actionWait() {
-    if (i_fopAcM_isSwitch(this, 0x3d) && i_fopAcM_isSwitch(this, 0x3e)) {
+    if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
         setAction(1);
         fopAcM_orderOtherEventId(this, field_0x57c, field_0x57e, 0xffff, 0, 1);
         eventInfo.i_onCondition(2);
@@ -188,7 +188,7 @@ void daObjSwBallC_c::actionOrderEvent() {
     if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(2);
         demoProc();
-        i_fopAcM_onSwitch(this, 0x3f);
+        fopAcM_onSwitch(this, 0x3f);
         dComIfGs_onTbox(10);
         dComIfGs_onTbox(11);
     } else {
@@ -201,10 +201,10 @@ void daObjSwBallC_c::actionOrderEvent() {
 void daObjSwBallC_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(field_0x57c)) {
         setAction(3);
-        i_dComIfGp_event_reset();
-        i_fopAcM_onSwitch(this, 0x58);
+        dComIfGp_event_reset();
+        fopAcM_onSwitch(this, 0x58);
         for (int i = 0; i < 8; i++) {
-            i_fopAcM_onSwitch(this, i + 0x50);
+            fopAcM_onSwitch(this, i + 0x50);
         }
     } else {
         demoProc();
@@ -221,7 +221,7 @@ int daObjSwBallC_c::demoProc() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz acStack_38;
     int uVar1 = dComIfGp_evmng_getMyActIdx(field_0x578, action_table, 13, 0, 0);
-    field_0x578 = i_dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
+    field_0x578 = dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
     player->onShieldBackBone();
     if (dComIfGp_evmng_getIsAddvance(field_0x578)) {
         switch (uVar1) {
@@ -258,16 +258,16 @@ int daObjSwBallC_c::demoProc() {
             dMeter2Info_setSword(0x29, 0);
             break;
         case 11:
-            player->i_changeOriginalDemo();
+            player->changeOriginalDemo();
             field_0x580 = 2;
             acStack_38.set(262.5f, -188.0f, 10712.5f);
             player->setPlayerPosAndAngle(&acStack_38, 0, 0);
-            player->i_changeDemoMode(4, 1, 0, 0);
+            player->changeDemoMode(4, 1, 0, 0);
             break;
         case 12:
-            player->i_changeOriginalDemo();
+            player->changeOriginalDemo();
             field_0x580 = 2;
-            player->i_changeDemoMode(4, 1, 0, 0);
+            player->changeDemoMode(4, 1, 0, 0);
             break;
         case 9:
             field_0x588 = -1;
@@ -321,7 +321,7 @@ int daObjSwBallC_c::demoProc() {
     case 11:
     case 12:
         if (cLib_calcTimer(&field_0x580) == 0) {
-            player->i_cancelOriginalDemo();
+            player->cancelOriginalDemo();
             dComIfGp_evmng_cutEnd(field_0x578);
         }
         break;
@@ -343,7 +343,7 @@ int daObjSwBallC_c::demoProc() {
 void daObjSwBallC_c::setLightOnSwB() {
     for (u8 i = 0; i < 6; i++) {
         field_0x582 = i;
-        daObjSwBallB_c* ball = (daObjSwBallB_c*)i_fpcM_Search(s_swb_sub, this);
+        daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOn();
         }
@@ -355,7 +355,7 @@ void daObjSwBallC_c::setLightOnSwB() {
 void daObjSwBallC_c::setLightOffSwB() {
     for (u8 i = 0; i < 6; i++) {
         field_0x582 = i;
-        daObjSwBallB_c* ball = (daObjSwBallB_c*)i_fpcM_Search(s_swb_sub, this);
+        daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOff();
         }
@@ -371,7 +371,7 @@ void daObjSwBallC_c::deleteLightBall() {
 
 /* 80CF692C-80CF6964 000E0C 0038+00 1/1 0/0 0/0 .text deleteLightBallA__14daObjSwBallC_cFv */
 void daObjSwBallC_c::deleteLightBallA() {
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballA_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballA_sub, this);
     if (ball != NULL) {
         fopAcM_delete(ball);
     }
@@ -379,7 +379,7 @@ void daObjSwBallC_c::deleteLightBallA() {
 
 /* 80CF6964-80CF699C 000E44 0038+00 1/1 0/0 0/0 .text deleteLightBallB__14daObjSwBallC_cFv */
 void daObjSwBallC_c::deleteLightBallB() {
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballB_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballB_sub, this);
     if (ball != NULL) {
         fopAcM_delete(ball);
     }
@@ -388,14 +388,14 @@ void daObjSwBallC_c::deleteLightBallB() {
 /* 80CF699C-80CF6A74 000E7C 00D8+00 1/1 0/0 0/0 .text calcLightBallScale__14daObjSwBallC_cFv */
 int daObjSwBallC_c::calcLightBallScale() {
     int uVar3 = 0;
-    fopAc_ac_c* ball = (fopAc_ac_c*)i_fpcM_Search(s_ballA_sub, this);
+    fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballA_sub, this);
     if (ball != NULL) {
         fopAcM_OnStatus(ball, 0x800);
         uVar3 = cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);
         ball->scale.y = ball->scale.x;
         ball->scale.z = ball->scale.x;
     }
-    ball = (fopAc_ac_c*)i_fpcM_Search(s_ballB_sub, this);
+    ball = (fopAc_ac_c*)fpcM_Search(s_ballB_sub, this);
     if (ball != NULL) {
         fopAcM_OnStatus(ball, 0x800);
         uVar3 &= cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);

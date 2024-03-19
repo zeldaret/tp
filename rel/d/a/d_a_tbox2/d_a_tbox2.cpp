@@ -19,7 +19,7 @@ void daTbox2_c::initBaseMtx() {
 void daTbox2_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -344,7 +344,7 @@ void daTbox2_c::init_actionNotOpenDemo() {
 /* 804978E4-8049794C 000F44 0068+00 1/0 0/0 0/0 .text            actionNotOpenDemo__9daTbox2_cFv */
 void daTbox2_c::actionNotOpenDemo() {
     if (dComIfGp_evmng_endCheck(eventInfo.getEventId())) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         init_actionOpenWait();
     } else {
         demoProc();
@@ -360,7 +360,7 @@ void daTbox2_c::init_actionOpenDemo() {
 /* 80497958-80497A0C 000FB8 00B4+00 1/0 0/0 0/0 .text            actionOpenDemo__9daTbox2_cFv */
 void daTbox2_c::actionOpenDemo() {
     if (dComIfGp_evmng_endCheck(eventInfo.getEventId())) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         dKy_set_allcol_ratio(1.0f);
         dComIfGp_event_setItemPartner(NULL);
 
@@ -393,13 +393,13 @@ void daTbox2_c::actionOpenWait() {
         if (mModelType != TYPE_SMALL_e && daPy_py_c::i_checkNowWolf() &&
             !midna_p->checkMetamorphoseEnable())
         {
-            mStaffIdx = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+            mStaffIdx = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
             demoProc();
             init_actionNotOpenDemo();
         } else {
             mReturnRupee = player_p->checkTreasureRupeeReturn(getItemNo());
             setGetDemoItem();
-            mStaffIdx = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+            mStaffIdx = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
             demoProc();
             init_actionOpenDemo();
         }

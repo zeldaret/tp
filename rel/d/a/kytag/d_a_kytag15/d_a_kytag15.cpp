@@ -35,7 +35,7 @@ static int daKytag15_Draw(kytag15_class* i_this) {
 
         mat_p->setTevColor(0, &color);
         i_this->mpModel->setBaseScale(scale);
-        i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         i_this->mBtk.entry(i_this->mpModel->getModelData());
         i_this->mBtk.play();

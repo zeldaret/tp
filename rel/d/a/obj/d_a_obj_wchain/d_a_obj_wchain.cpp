@@ -306,7 +306,7 @@ cPhs__Step daObjWchain_c::create() {
         mRoofPos.set(current.pos.x, current.pos.y + 280.0f - 100.0f, current.pos.z);
         mRealRoofY = mRoofPos.y + 250.0f;
         mInitOutLength = mRoofPos.y - home.pos.y;
-        if (!mRepeatable && i_fopAcM_isSwitch(this, mSw)) {
+        if (!mRepeatable && fopAcM_isSwitch(this, mSw)) {
             current.pos.y -= 100.0f;
             mEnd = true;
             mPullLength = 100.0f;
@@ -432,7 +432,7 @@ void daObjWchain_c::setMatrix() {
     mDoMtx_stack_c::ZrotM(mHandleRotation);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(0.0f, 0.0f, 8.75f);
-    mpHandleModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpHandleModel->setBaseTRMtx(mDoMtx_stack_c::get());
     static Vec const eyeOffset = {0.0f, 0.0f, 53.75f};
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
 }
@@ -637,7 +637,7 @@ void daObjWchain_c::setChainPos() {
                 mReset = false;
                 mEnd = false;
             }
-        } else if (mRepeatable || !i_fopAcM_isSwitch(this, mSw)) {
+        } else if (mRepeatable || !fopAcM_isSwitch(this, mSw)) {
             cLib_chaseF(&mPullLength, 0.0f, 5.0f);
         } else {
             mPullLength = 100.0f;
@@ -777,13 +777,13 @@ int daObjWchain_c::execute() {
         mNowSwitch = false;
         if (mRepeatable) {
             mReset = true;
-            if (i_fopAcM_isSwitch(this, mSw)) {
-                i_fopAcM_offSwitch(this, mSw);
+            if (fopAcM_isSwitch(this, mSw)) {
+                fopAcM_offSwitch(this, mSw);
             } else {
-                i_fopAcM_onSwitch(this, mSw);
+                fopAcM_onSwitch(this, mSw);
             }
         } else {
-            i_fopAcM_onSwitch(this, mSw);
+            fopAcM_onSwitch(this, mSw);
         }
         field_0x77e = 20;
     } else if (mRide && !mDown) {

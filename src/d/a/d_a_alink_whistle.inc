@@ -134,7 +134,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
         return checkNextAction(0);
     }
 
-    mDemo.i_setSpecialDemoType();
+    mDemo.setSpecialDemoType();
     commonProcInit(PROC_GRASS_WHISTLE_WAIT);
 
     if (param_0 == 3) {
@@ -221,7 +221,7 @@ int daAlink_c::procGrassWhistleWait() {
         mProcVar0.field_0x3008--;
 
         if (mProcVar0.field_0x3008 == 0) {
-            daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+            daHorse_c* horse_p = dComIfGp_getHorseActor();
             daNPC_TK_c* tk_p = (daNPC_TK_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchWhistle, NULL);
 
             if (tk_p != NULL) {
@@ -269,8 +269,8 @@ int daAlink_c::procGrassWhistleWait() {
                 voiceStart(Z2SE_PLAY_REED_TOBIKUSA);
                 mProcVar0.field_0x3008 = 100;
 
-                if (i_dComIfGs_isEventBit(dSv_event_flag_c::F_0700) &&
-                    i_dComIfGs_isEventBit(dSv_event_flag_c::F_0037))
+                if (dComIfGs_isEventBit(dSv_event_flag_c::F_0700) &&
+                    dComIfGs_isEventBit(dSv_event_flag_c::F_0037))
                 {
                     dComIfGs_onEventBit(dSv_event_flag_c::F_0581);
                 }
@@ -316,7 +316,7 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
         mProcVar3.field_0x300e.y = 0x10;
     }
 
-    if (i_checkWolf()) {
+    if (checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, lit_6109);
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, lit_6109);

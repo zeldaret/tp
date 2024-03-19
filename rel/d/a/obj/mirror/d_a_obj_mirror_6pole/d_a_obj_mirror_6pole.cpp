@@ -45,7 +45,7 @@ static actionFunc daObjMirror6Pole_c::ActionTable[][2] = {
 /* 80C95E2C-80C95E88 00008C 005C+00 1/0 0/0 0/0 .text            executeWait__18daObjMirror6Pole_cFv
  */
 void daObjMirror6Pole_c::executeWait() {
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         setAction(MODE_DEMO_e);
     }
 }
@@ -56,7 +56,7 @@ void daObjMirror6Pole_c::initDemo() {}
 /* 80C95E8C-80C95EFC 0000EC 0070+00 1/0 0/0 0/0 .text            executeDemo__18daObjMirror6Pole_cFv
  */
 void daObjMirror6Pole_c::executeDemo() {
-    if (!i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_event_runCheck()) {
         setAction(MODE_WAIT_e);
     }
 
@@ -69,7 +69,7 @@ void daObjMirror6Pole_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 void daObjMirror6Pole_c::initBaseMtx() {

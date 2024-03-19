@@ -264,14 +264,14 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
         b_oh_class* this_ = (b_oh_class*)model_p->getUserArea();
 
         if (this_ != NULL && jnt_no >= this_->field_0xca8 && jnt_no <= 29) {
-            MTXCopy(model_p->i_getAnmMtx(jnt_no), *calc_mtx);
+            MTXCopy(model_p->getAnmMtx(jnt_no), *calc_mtx);
             mDoMtx_YrotM(*calc_mtx, this_->field_0x61c[jnt_no].y + this_->field_0x784[jnt_no].y);
             mDoMtx_ZrotM(*calc_mtx, this_->field_0x61c[jnt_no].x + this_->field_0x784[jnt_no].x);
             MtxTrans(this_->mTentacleLength + -100.0f, 1.0f, 1.0f, 1);
             MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
             MtxScale(1.0f, this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no],
                      this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no], 1);
-            model_p->i_setAnmMtx(jnt_no, *calc_mtx);
+            model_p->setAnmMtx(jnt_no, *calc_mtx);
         }
     }
 
@@ -475,7 +475,7 @@ static void start(b_oh_class* i_this) {
     case 1:
         if (i_this->field_0xcac < -100.0f) {
             for (int i = 0; i < 28; i++) {
-                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i), mDoMtx_stack_c::get());
+                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&sp28);
 
                 if (sp28.y > boss->field_0x47a0) {
@@ -761,7 +761,7 @@ static void attack(b_oh_class* i_this) {
                     if (i_this->mColliders[i].ChkCoHit()) {
                         cCcD_Obj* obj_p = i_this->mColliders[i].GetCoHitObj();
                         if (fopAcM_GetName(obj_p->GetAc()) == PROC_ALINK &&
-                            !i_dComIfGp_event_runCheck())
+                            !dComIfGp_event_runCheck())
                         {
                             if (!player_p->checkHookshotShootReturnMode() &&
                                 boss->field_0x4744 == 0)
@@ -1074,7 +1074,7 @@ static void action(b_oh_class* i_this) {
         cLib_addCalc2(&a_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
     }
 
-    MTXCopy(boss->mParts[0].field_0x0->getModel()->i_getAnmMtx(a_this->field_0x5c8 + 8),
+    MTXCopy(boss->mParts[0].field_0x0->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&a_this->current.pos);
 
@@ -1197,10 +1197,10 @@ static void damage_check(b_oh_class* i_this) {
                 i_this->health = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
-                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
+                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i * 2 + 1),
                           mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&i_this->eyePos);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
+                dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
                 mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
 
                 bvar = true;
@@ -1301,7 +1301,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
     J3DModel* model_p = i_this->mpMorf->getModel();
-    model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model_p->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)), 0);
     i_this->mpBtk->play();
     i_this->mpBrk->play();
@@ -1313,7 +1313,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     }
 
     for (int i = 0; i < 15; i++) {
-        MTXCopy(model_p->i_getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
+        MTXCopy(model_p->getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&collider_center);
 
         if (i_this->mAction >= ACTION_END) {

@@ -99,7 +99,7 @@ int daPy_boomerangMove_c::posMove(cXyz* param_0, s16* param_1, fopAc_ac_c* param
             return 0;
         }
 
-        if (i_dComIfGp_event_runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             field_0x0 = 1;
         } else if (m_eventKeepFlg != 0 && field_0x0 == 0) {
             return 0;
@@ -462,7 +462,7 @@ BOOL daPy_py_c::checkWoodShieldEquip() {
 }
 
 BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->i_checkWolf();
+    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8015F3FC-8015F424 159D3C 0028+00 0/0 4/4 3/3 .text            getAttentionOffsetY__9daPy_py_cFv
@@ -485,7 +485,7 @@ int daPy_py_c::checkNowWolfEyeUp() {
  */
 
 void daAlink_c::startRestartRoomFromOut(int param_0, u32 param_1, int param_2) {
-    startRestartRoom(param_1, param_2, param_0, i_dComIfGp_event_runCheck());
+    startRestartRoom(param_1, param_2, param_0, dComIfGp_event_runCheck());
 }
 
 void daPy_py_c::forceRestartRoom(int param_0, u32 param_1, int param_2) {
@@ -518,7 +518,7 @@ void daPy_py_c::setPlayerSe(u32 i_sfxID) {
 bool daPy_py_c::linkGrabSubjectNoDraw(fopAc_ac_c* i_actor) {
     return (fopAcM_checkCarryNow(i_actor) &&
             daPy_getPlayerActorClass()->getGrabActorID() == fopAcM_GetID(i_actor)) &&
-           dComIfGp_checkCameraAttentionStatus(i_dComIfGp_getPlayerCameraID(0), 2);
+           dComIfGp_checkCameraAttentionStatus(dComIfGp_getPlayerCameraID(0), 2);
 }
 
 /* 8015F60C-8015F660 159F4C 0054+00 0/0 0/0 2/2 .text
@@ -544,9 +544,9 @@ bool daPy_py_c::checkRoomRestartStart() {
 
 /* 8015F698-8015F730 159FD8 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallA__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallA() {
-    if (checkRoomRestartStart() || !i_dComIfGp_getStage() ||
-        !i_dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17)
+    if (checkRoomRestartStart() || !dComIfGp_getStage() ||
+        !dComIfGp_getStage()->getStagInfo() ||
+        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }
@@ -556,9 +556,9 @@ u32 daPy_py_c::checkCarryStartLightBallA() {
 
 /* 8015F730-8015F7C8 15A070 0098+00 0/0 2/2 1/1 .text checkCarryStartLightBallB__9daPy_py_cFv */
 u32 daPy_py_c::checkCarryStartLightBallB() {
-    if (checkRoomRestartStart() || !i_dComIfGp_getStage() ||
-        !i_dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(i_dComIfGp_getStage()->getStagInfo()) != 0x17)
+    if (checkRoomRestartStart() || !dComIfGp_getStage() ||
+        !dComIfGp_getStage()->getStagInfo() ||
+        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }

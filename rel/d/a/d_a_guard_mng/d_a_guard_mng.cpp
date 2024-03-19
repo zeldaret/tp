@@ -27,7 +27,7 @@ static void* s_sub(void* i_actorP, void* i_this) {
 u8 daGuardMng_c::checkMerchantNum() {
     field_0x56c = 1000000000.0f;
     mMerchantNum = 0;
-    i_fpcM_Search(s_sub,this);
+    fpcM_Search(s_sub,this);
     return mMerchantNum;
 }
 

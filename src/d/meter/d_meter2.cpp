@@ -295,7 +295,7 @@ int dMeter2_c::_create() {
     field_0x1ed = 0;
     mLifeCountType = 0;
 
-    mNowLifeGauge = i_dComIfGs_getLife();
+    mNowLifeGauge = dComIfGs_getLife();
     dComIfGp_setItemNowLife((u8)mNowLifeGauge);
 
     mMaxLife = dComIfGs_getMaxLife();
@@ -322,10 +322,10 @@ int dMeter2_c::_create() {
 
     mNeedLightDropNum = dComIfGp_getNeedLightDropNum();
 
-    mRupeeNum = i_dComIfGs_getRupee();
+    mRupeeNum = dComIfGs_getRupee();
     mKeyNum = dComIfGs_getKeyNum();
 
-    mDoStatus = i_dComIfGp_getDoStatus();
+    mDoStatus = dComIfGp_getDoStatus();
     mDoSetFlag = dComIfGp_isDoSetFlag(2);
 
     for (int i = 0; i < 2; i++) {
@@ -355,7 +355,7 @@ int dMeter2_c::_create() {
     field_0x201 = 0;
 
     mCollectSmell = dComIfGs_getCollectSmell();
-    mRStatus = i_dComIfGp_getRStatus();
+    mRStatus = dComIfGp_getRStatus();
     mRSetFlag = dComIfGp_isRSetFlag(2);
     mXSetFlag = dComIfGp_isXSetFlag(2);
     mYSetFlag = dComIfGp_isYSetFlag(2);
@@ -463,11 +463,11 @@ int dMeter2_c::_create() {
 int dMeter2_c::_execute() {
     JKRHeap* heap = mDoExt_setCurrentHeap(mpHeap);
 
-    if (!dComIfGs_isCollectMirror(0) && i_dComIfGs_isEventBit(dSv_event_flag_c::F_0685)) {
+    if (!dComIfGs_isCollectMirror(0) && dComIfGs_isEventBit(dSv_event_flag_c::F_0685)) {
         dComIfGs_onCollectMirror(0);
     }
 
-    if (!dComIfGs_isCollectCrystal(3) && i_dComIfGs_isEventBit(dSv_event_flag_c::F_0686)) {
+    if (!dComIfGs_isCollectCrystal(3) && dComIfGs_isEventBit(dSv_event_flag_c::F_0686)) {
         dComIfGs_onCollectCrystal(3);
     }
 
@@ -504,7 +504,7 @@ int dMeter2_c::_execute() {
     moveSubContents();
     move2DContents();
 
-    if (!dComIfGp_isPauseFlag() && !i_dComIfGp_event_runCheck()) {
+    if (!dComIfGp_isPauseFlag() && !dComIfGp_event_runCheck()) {
         dMeter2Info_decHotSpringTimer();
     }
 
@@ -515,7 +515,7 @@ int dMeter2_c::_execute() {
     dComIfGp_setRemoConStatus(0, 0, 0);
     dComIfGp_setNunZStatus(0, 0);
     dComIfGp_setNunCStatus(0, 0);
-    i_dComIfGp_setBottleStatus(0, 0);
+    dComIfGp_setBottleStatus(0, 0);
     dComIfGp_setCStickStatus(0, 0, 0);
 
     mDoExt_setCurrentHeap(heap);
@@ -630,7 +630,7 @@ int dMeter2_c::emphasisButtonDelete() {
 void dMeter2_c::setLifeZero() {
     dComIfGs_setLife(1);
     setNowLifeGauge(1);
-    i_dComIfGp_setItemLifeCount(-1.0f, 0);
+    dComIfGp_setItemLifeCount(-1.0f, 0);
 }
 
 /* 8021F7B0-8021FD60 21A0F0 05B0+00 2/1 0/0 0/0 .text            checkStatus__9dMeter2_cFv */
@@ -639,13 +639,13 @@ void dMeter2_c::checkStatus() {
     field_0x12c = field_0x128;
 
     // supposed to be daPy_py_c::checkNowWolf, but it messes with reg alloc?
-    field_0x128 = ((daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR))->i_checkWolf();
+    field_0x128 = ((daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR))->checkWolf();
 
     if (!dComIfGp_2dShowCheck() || dMsgObject_getMsgObjectClass()->isPlaceMessage()) {
         mStatus |= 0x4000;
-    } else if (i_dComIfGp_checkPlayerStatus1(0, 1) && dComIfGp_getAStatus() == 0x12) {
+    } else if (dComIfGp_checkPlayerStatus1(0, 1) && dComIfGp_getAStatus() == 0x12) {
         mStatus |= 0x200000;
-    } else if (i_dComIfGp_event_runCheck()) {
+    } else if (dComIfGp_event_runCheck()) {
         mStatus |= 0x40;
 
         if (dDemo_c::getMode() != 1 && dComIfGp_isHeapLockFlag() != 6 &&
@@ -686,27 +686,27 @@ void dMeter2_c::checkStatus() {
 
         if (dComIfGp_checkCameraAttentionStatus(0, 8)) {
             mStatus |= 0x80;
-        } else if (dComIfGp_checkCameraAttentionStatus(i_dComIfGp_getPlayerCameraID(0), 0x10) &&
+        } else if (dComIfGp_checkCameraAttentionStatus(dComIfGp_getPlayerCameraID(0), 0x10) &&
                    dCam_getBody()->CalcSubjectAngle(&sp8, &spA))
         {
             mStatus |= 0x20000000;
         } else if (daPy_getPlayerActorClass()->checkCanoeRide()) {
             mStatus |= 0x400;
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x8000000) ||
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x8000000) ||
                    daPy_getPlayerActorClass()->checkSpinnerRide())
         {
             mStatus |= 0x200;
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x800000)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x800000)) {
             mStatus |= 0x800;
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x100000)) {
             mStatus |= 0x2000;
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x2000108)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x2000108)) {
             mStatus |= 0x8000;
-        } else if (i_dComIfGp_checkPlayerStatus0(0, 0x4000000)) {
+        } else if (dComIfGp_checkPlayerStatus0(0, 0x4000000)) {
             mStatus |= 0x10000;
         } else if (daPy_getPlayerActorClass()->checkHorseRideNotReady() &&
-                   i_dComIfGp_getHorseActor() != NULL &&
-                   !i_dComIfGp_getHorseActor()->checkRodeoMode())
+                   dComIfGp_getHorseActor() != NULL &&
+                   !dComIfGp_getHorseActor()->checkRodeoMode())
         {
             mStatus |= 0x2000000;
         }
@@ -753,7 +753,7 @@ void dMeter2_c::checkStatus() {
         break;
     }
 
-    switch (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo())) {
+    switch (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo())) {
     case ST_DUNGEON:
         mStatus |= 0x4;
         break;
@@ -783,8 +783,8 @@ void dMeter2_c::moveLife() {
         life_count = (max_count / 5) * 4;
         dComIfGs_setMaxLife(max_count);
 
-        s16 current_life = life_count - i_dComIfGs_getLife();
-        i_dComIfGp_setItemLifeCount(current_life, 0);
+        s16 current_life = life_count - dComIfGs_getLife();
+        dComIfGp_setItemLifeCount(current_life, 0);
         dComIfGp_clearItemMaxLifeCount();
         draw_life = true;
     }
@@ -797,7 +797,7 @@ void dMeter2_c::moveLife() {
             life_count = (dComIfGs_getMaxLife() / 5) * 4;
         }
 
-        s16 new_life = i_dComIfGs_getLife() + dComIfGp_getItemLifeCount();
+        s16 new_life = dComIfGs_getLife() + dComIfGp_getItemLifeCount();
         if (new_life > life_count) {
             new_life = life_count;
         } else if (new_life < 0) {
@@ -807,7 +807,7 @@ void dMeter2_c::moveLife() {
         dComIfGs_setLife((u8)new_life);
         dComIfGp_clearItemLifeCount();
 
-        if (mNowLifeGauge == i_dComIfGs_getLife() && mLifeCountType != 0) {
+        if (mNowLifeGauge == dComIfGs_getLife() && mLifeCountType != 0) {
             mLifeCountType = 0;
         }
         draw_life = true;
@@ -825,12 +825,12 @@ void dMeter2_c::moveLife() {
         }
     }
 
-    u16 current_life = i_dComIfGs_getLife();
+    u16 current_life = dComIfGs_getLife();
     if (mNowLifeGauge != current_life) {
         if (mNowLifeGauge < current_life) {
             mNowLifeGauge++;
-            if (i_dComIfGp_checkPlayerStatus1(0, 0x2000) ||
-                i_dComIfGp_checkPlayerStatus0(0, 0x20000000) || dMeter2Info_getLifeGaugeSE())
+            if (dComIfGp_checkPlayerStatus1(0, 0x2000) ||
+                dComIfGp_checkPlayerStatus0(0, 0x20000000) || dMeter2Info_getLifeGaugeSE())
             {
                 if (mNowLifeGauge % 4 == 0) {
                     mDoAud_seStart(Z2SE_HP_GAUGE_INC, 0, 0, 0);
@@ -839,7 +839,7 @@ void dMeter2_c::moveLife() {
                 mDoAud_seStart(Z2SE_HP_GAUGE_INC, 0, 0, 0);
             }
 
-            u16 life = i_dComIfGs_getLife();
+            u16 life = dComIfGs_getLife();
             if (mNowLifeGauge == life && mLifeCountType != 0) {
                 mLifeCountType = 0;
             }
@@ -1242,7 +1242,7 @@ void dMeter2_c::moveRupee() {
 
     // using dComIfGp_getItemRupeeCount() here swaps r3/r4 reg alloc?
     if (g_dComIfG_gameInfo.play.mItemRupeeCount != 0) {
-        var_r6 = i_dComIfGs_getRupee() + dComIfGp_getItemRupeeCount();
+        var_r6 = dComIfGs_getRupee() + dComIfGp_getItemRupeeCount();
         if (var_r6 > temp_r5) {
             var_r6 = temp_r5;
         } else if (var_r6 < 0) {
@@ -1268,13 +1268,13 @@ void dMeter2_c::moveRupee() {
         }
     }
 
-    if (mRupeeNum != i_dComIfGs_getRupee()) {
-        if (mRupeeNum < i_dComIfGs_getRupee()) {
+    if (mRupeeNum != dComIfGs_getRupee()) {
+        if (mRupeeNum < dComIfGs_getRupee()) {
             mRupeeNum++;
             draw_rupee = true;
 
             if (isRupeeSoundBit(2) & 1) {
-                if (mRupeeNum != i_dComIfGs_getRupee()) {
+                if (mRupeeNum != dComIfGs_getRupee()) {
                     if (!isRupeeSoundBit(0)) {
                         onRupeeSoundBit(0);
                         mDoAud_seStart(Z2SE_LUPY_INC_CNT_1, NULL, 0, 0);
@@ -1287,12 +1287,12 @@ void dMeter2_c::moveRupee() {
                     offRupeeSoundBit(0);
                 }
             }
-        } else if (mRupeeNum > i_dComIfGs_getRupee()) {
+        } else if (mRupeeNum > dComIfGs_getRupee()) {
             mRupeeNum--;
             draw_rupee = true;
 
             if (isRupeeSoundBit(3) & 1) {
-                if (mRupeeNum != i_dComIfGs_getRupee()) {
+                if (mRupeeNum != dComIfGs_getRupee()) {
                     if (!isRupeeSoundBit(1)) {
                         onRupeeSoundBit(1);
                         mDoAud_seStart(Z2SE_LUPY_DEC_CNT_1, NULL, 0, 0);
@@ -1465,18 +1465,18 @@ void dMeter2_c::moveButtonA() {
         dComIfGp_setDoStatusForce(0, 0);
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
-        if (i_dComIfGp_getDoStatus() == 0) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
+        if (dComIfGp_getDoStatus() == 0) {
             dComIfGp_setDoStatus(0x15, 0);
             emphasis_a = true;
-        } else if (i_dComIfGp_getDoStatus() == 0x15 && !mpMeterDraw->isEmphasisA()) {
+        } else if (dComIfGp_getDoStatus() == 0x15 && !mpMeterDraw->isEmphasisA()) {
             var_r29 = 1;
             draw_buttonA = true;
         }
     }
 
-    if (mDoStatus != i_dComIfGp_getDoStatus()) {
-        mDoStatus = i_dComIfGp_getDoStatus();
+    if (mDoStatus != dComIfGp_getDoStatus()) {
+        mDoStatus = dComIfGp_getDoStatus();
 
         if (mDoStatus == 0x2D || mDoStatus == 0x2E) {
             dComIfGp_setDoStatus(mDoStatus, 1);
@@ -1632,7 +1632,7 @@ void dMeter2_c::moveButtonB() {
         dComIfGp_setAStatusForce(0, 0);
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
         if (dComIfGp_getAStatus() == 0 || dComIfGp_getAStatus() == 0x26) {
             dComIfGp_setAStatus(0x44, 0);
             emphasis_b = true;
@@ -1841,8 +1841,8 @@ void dMeter2_c::moveButtonR() {
         dComIfGp_setRStatusForce(0, 0);
     }
 
-    if (mRStatus != i_dComIfGp_getRStatus()) {
-        mRStatus = i_dComIfGp_getRStatus();
+    if (mRStatus != dComIfGp_getRStatus()) {
+        mRStatus = dComIfGp_getRStatus();
 
         if (mRStatus == 0x2D || mRStatus == 0x2E) {
             dComIfGp_setRStatus(mRStatus, 1);
@@ -1946,7 +1946,7 @@ void dMeter2_c::moveButtonZ() {
     dComIfGp_setZStatus(0, 0);
 
     if (dComIfGp_getBottleStatusForce() != 0) {
-        i_dComIfGp_setBottleStatus(dComIfGp_getBottleStatusForce(),
+        dComIfGp_setBottleStatus(dComIfGp_getBottleStatusForce(),
                                    dComIfGp_getBottleSetFlagForce());
         dComIfGp_setBottleStatusForce(0, 0);
     }
@@ -2596,7 +2596,7 @@ void dMeter2_c::checkSubContents() {
         }
     }
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode() != 0) {
+    if (daPy_getPlayerActorClass()->getSumouMode() != 0) {
         killSubContents(5);
 
         if (mSubContentType == 0) {
@@ -2978,8 +2978,8 @@ void dMeter2_c::movePachinkoNum() {
 void dMeter2_c::alphaAnimeLife() {
     if ((mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x10) &&
-         !i_dComIfGp_checkPlayerStatus1(0, 0x2000)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) || (mStatus & 0x100000) ||
+         !dComIfGp_checkPlayerStatus1(0, 0x2000)) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) || (mStatus & 0x100000) ||
          (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) || (mStatus & 0x01000000) ||
          (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x08000000) ||
          (mStatus & 0x10000000)))
@@ -2998,7 +2998,7 @@ void dMeter2_c::alphaAnimeKantera() {
     if (dComIfGs_getMaxOil() == 0 || dComIfGs_getItem(SLOT_1, true) != KANTERA ||
         !daPy_getPlayerActorClass()->checkUseKandelaar(0) || (mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x400)) || dComIfGp_getOxygenShowFlag() ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) ||
          (daPy_getPlayerActorClass()->checkCanoeSlider() &&
           (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
          (mStatus & 0x100000) || (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3017,7 +3017,7 @@ void dMeter2_c::alphaAnimeKantera() {
 void dMeter2_c::alphaAnimeOxygen() {
     if (!dComIfGp_getOxygenShowFlag() || (mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x800)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) ||
          (daPy_getPlayerActorClass()->checkCanoeSlider() &&
           (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
          (mStatus & 0x100000) || (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3071,7 +3071,7 @@ SECTION_DEAD static char const* const pad_8039934F = "";
 #ifdef NONMATCHING
 void dMeter2_c::alphaAnimeRupee() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x80)) ||
-        daPy_getPlayerActorClass()->i_getSumouMode() ||
+        daPy_getPlayerActorClass()->getSumouMode() ||
         (daPy_getPlayerActorClass()->checkCanoeSlider() && dComIfG_getTimerMode() == 4) ||
         ((strcmp(dComIfGp_getStartStageName(), "R_SP127") != 0 || dComIfGp_event_checkHind(0x80)) &&
          (((mStatus & 0x40000000) && !(mStatus & 0x100)) || (mStatus & 0x1000) ||
@@ -3104,7 +3104,7 @@ asm void dMeter2_c::alphaAnimeRupee() {
 void dMeter2_c::alphaAnimeKey() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x40)) ||
         !isKeyVisible() || (mStatus & 0x40000000) || (mStatus & 0x1000) || (mStatus & 0x100000) ||
-        (mStatus & 0x80000000) || daPy_getPlayerActorClass()->i_getSumouMode() ||
+        (mStatus & 0x80000000) || daPy_getPlayerActorClass()->getSumouMode() ||
         (daPy_getPlayerActorClass()->checkCanoeSlider() &&
          (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
         (mStatus & 0x100) || (mStatus & 8) || (mStatus & 0x10) ||
@@ -3217,7 +3217,7 @@ void dMeter2_c::alphaAnimeButton() {
  */
 void dMeter2_c::alphaAnimeButtonCross() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x100)) ||
-        ((daPy_getPlayerActorClass()->i_getSumouMode() != 0) || (mStatus & 0x100) ||
+        ((daPy_getPlayerActorClass()->getSumouMode() != 0) || (mStatus & 0x100) ||
          (mStatus & 0x80) || (mStatus & 0x40000000) || (mStatus & 0x1000) || (mStatus & 0x100000) ||
          (mStatus & 0x80000000) || (mStatus & 8) || (mStatus & 0x10) || (mStatus & 0x01000000) ||
          (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x08000000) ||
@@ -3226,7 +3226,7 @@ void dMeter2_c::alphaAnimeButtonCross() {
     {
         mpMeterDraw->setAlphButtonACrossAnimeMin();
 
-        if ((!i_dComIfGp_event_chkEventFlag(0x40) || dMeter2Info_isGameStatus(2) ||
+        if ((!dComIfGp_event_chkEventFlag(0x40) || dMeter2Info_isGameStatus(2) ||
              (mStatus & 0x100)) &&
             field_0x190 > 0)
         {
@@ -3257,7 +3257,7 @@ bool dMeter2_c::isShowLightDrop() {
         if ((mStatus & 0x4000) || !dComIfGs_isLightDropGetFlag(dComIfGp_getStartStageDarkArea()) ||
             dMeter2Info_getLightDropGetFlag(dComIfGp_getStartStageDarkArea()) <= 1 ||
             !dKy_darkworld_check() || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x200)) ||
-            daPy_getPlayerActorClass()->i_getSumouMode() ||
+            daPy_getPlayerActorClass()->getSumouMode() ||
             (daPy_getPlayerActorClass()->checkCanoeSlider() &&
              (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
             (mStatus & 0x40000000) || (mStatus & 0x00001000) || (mStatus & 0x00100000) ||
@@ -3301,8 +3301,8 @@ void dMeter2_c::killSubContents(u8 param_0) {
 
 /* 80225960-802259F8 2202A0 0098+00 1/1 0/0 0/0 .text            isKeyVisible__9dMeter2_cFv */
 u8 dMeter2_c::isKeyVisible() {
-    if (dStage_stagInfo_ChkKeyDisp(i_dComIfGp_getStage()->getStagInfo())) {
-        if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) == ST_FIELD) {
+    if (dStage_stagInfo_ChkKeyDisp(dComIfGp_getStage()->getStagInfo())) {
+        if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_FIELD) {
             return dComIfGs_getKeyNum() != 0;
         } else {
             return true;

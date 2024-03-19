@@ -153,7 +153,7 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
     int i = i_soundInf->num;
     stage_sound_data* data_p = i_soundInf->entries;
 
-    cXyz cam_eye = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0))->mCamera.Eye();
+    cXyz cam_eye = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0))->mCamera.Eye();
 
     if (param_2 == 0) {
         path_roomNo = -1;
@@ -278,9 +278,9 @@ int dEnvSe_c::execute() {
 
     execute_common(roomDt_p->getSoundInfCL(), &field_0xfc, 1);
     execute_common(roomDt_p->getSoundInf(), &field_0xfd, 1);
-    execute_common(i_dComIfGp_getStage()->getSoundInfCL(), &field_0xfe, 0);
+    execute_common(dComIfGp_getStage()->getSoundInfCL(), &field_0xfe, 0);
 
-    return execute_common(i_dComIfGp_getStage()->getSoundInf(), &field_0xff, 0);
+    return execute_common(dComIfGp_getStage()->getSoundInf(), &field_0xff, 0);
 }
 
 /* 801835A0-801835C0 17DEE0 0020+00 1/0 0/0 0/0 .text            dEnvSe_Execute__FP8dEnvSe_c */

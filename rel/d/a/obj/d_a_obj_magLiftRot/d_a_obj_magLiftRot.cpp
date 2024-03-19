@@ -423,7 +423,7 @@ void daMagLiftRot_c::setBaseMtx() {
     // but this function doesnt match unless it's like this??
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 #else
@@ -860,7 +860,7 @@ void daMagLiftRot_c::init_modeMoveWait() {
 
 /* 80C8F810-80C8F86C 000FB0 005C+00 1/0 0/0 0/0 .text            modeMoveWait__14daMagLiftRot_cFv */
 void daMagLiftRot_c::modeMoveWait() {
-    u8 sw_on = i_fopAcM_isSwitch(this, (fopAcM_GetParam(this) >> 0x18) & 0xFF);
+    u8 sw_on = fopAcM_isSwitch(this, (fopAcM_GetParam(this) >> 0x18) & 0xFF);
 
     if (sw_on) {
         mTimer = 15;

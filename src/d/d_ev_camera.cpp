@@ -250,8 +250,8 @@ int dCamera_c::EndEventCamera(int param_0) {
         i_clrFlag(0x20000000);
         mEventData.field_0x0 = 1;
 
-        if (i_dComIfGp_getEvent().runCheck()) {
-            i_dComIfGp_getEventManager().setCameraPlay(2);
+        if (dComIfGp_getEvent().runCheck()) {
+            dComIfGp_getEventManager().setCameraPlay(2);
         }
 
         return 1;

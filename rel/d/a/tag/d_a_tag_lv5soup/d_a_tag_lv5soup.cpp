@@ -25,13 +25,13 @@ int daTag_Lv5Soup_c::Delete() {
 int daTag_Lv5Soup_c::Execute() {
     if (isAreaCheck()) {
         // Yeto took pumpkin and pumpkin not in soup
-        if (i_dComIfGs_isEventBit(0x0020) && !i_dComIfGs_isEventBit(0x0002)) {
+        if (dComIfGs_isEventBit(0x0020) && !dComIfGs_isEventBit(0x0002)) {
             // Pumpkin in soup
             dComIfGs_onEventBit(0x0002);
         }
 
         // Yeto took cheese and cheese not in soup
-        if (i_dComIfGs_isEventBit(0x0010) && !i_dComIfGs_isEventBit(0x0001)) {
+        if (dComIfGs_isEventBit(0x0010) && !dComIfGs_isEventBit(0x0001)) {
             // Cheese in soup
             dComIfGs_onEventBit(0x0001);
         }

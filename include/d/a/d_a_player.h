@@ -143,8 +143,6 @@ public:
         DEMO_NEW_ANM0_e = 0x200,
     };
 
-    void setSpecialDemoType();
-
     void setDemoType(u16 pType) { mDemoType = pType; }
     int getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
@@ -152,7 +150,7 @@ public:
     int getParam1() const { return mParam1; }
     s16 getParam2() const { return mParam2; }
     void setOriginalDemoType() { setDemoType(3); }
-    void i_setSpecialDemoType() { setDemoType(5); }
+    void setSpecialDemoType() { setDemoType(5); }
     void setSystemDemoType() { setDemoType(2); }
     void setStick(f32 stick) { mStick = stick; }
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
@@ -186,7 +184,7 @@ class daMidna_c;
 class daSpinner_c;
 class daPy_py_c;
 inline daPy_py_c* dComIfGp_getLinkPlayer();
-inline BOOL i_dComIfGs_isEventBit(const u16);
+inline BOOL dComIfGs_isEventBit(const u16);
 
 class daPy_py_c : public fopAc_ac_c {
 public:
@@ -231,6 +229,7 @@ public:
         FLG0_UNK_80000 = 0x80000,
         FLG0_UNK_40000 = 0x40000,
         FLG0_UNK_20000 = 0x20000,
+        FLG0_UNK_10000 = 0x10000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
         FLG0_UNK_2000 = 0x2000,
@@ -260,6 +259,7 @@ public:
         FLG1_IS_WOLF = 0x2000000,
         FLG1_UNK_800000 = 0x800000,
         FLG1_DASH_MODE = 0x400000,
+        FLG1_UNK_100000 = 0x100000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
@@ -276,6 +276,7 @@ public:
         FLG1_UNK_1 = 1,
 
         FLG1_UNK_1800 = 0x1800,
+        FLG1_UNK_10100000 = FLG1_UNK_10000000 | FLG1_UNK_100000,
     };
 
     enum daPy_FLG2 {
@@ -310,6 +311,7 @@ public:
         FLG2_UNK_1 = 1,
 
         FLG2_UNK_58 = FLG2_UNK_40 | FLG2_UNK_10 | FLG2_UNK_8,
+        FLG2_UNK_10000001 = FLG2_UNK_10000000 | FLG2_UNK_1,
     };
 
     enum daPy_FLG3 {
@@ -391,6 +393,7 @@ public:
         ERFLG2_UNK_100 = 0x100,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
+        ERFLG2_UNK_10 = 0x10,
         ERFLG2_UNK_2 = 2,
     };
 
@@ -420,6 +423,7 @@ public:
 
     enum daPy_RFLG1 {
         RFLG1_UNK_100 = 0x100,
+        RFLG1_UNK_40 = 0x40,
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
@@ -518,41 +522,19 @@ public:
     static void setPlayerDamage(int, int);
     static void setMidnaMotionNum(int);
     static void setMidnaFaceNum(int);
-    u32 checkNoResetFlg0(daPy_FLG0) const;
-    u32 checkEquipHeavyBoots() const;
-    u32 checkBoarSingleBattle() const;
-    u32 checkEndResetFlg0(daPy_ERFLG0) const;
-    void onNoResetFlg2(daPy_py_c::daPy_FLG2);
-    void offNoResetFlg0(daPy_py_c::daPy_FLG0);
-    int checkEndResetFlg2(daPy_py_c::daPy_ERFLG2) const;
-    bool getSumouMode() const;
-    int checkNoResetFlg3(daPy_py_c::daPy_FLG3) const;
     BOOL checkShieldGet();
-    void onNoResetFlg0(daPy_py_c::daPy_FLG0);
-    u32 checkEndResetFlg1(daPy_py_c::daPy_ERFLG1) const;
-    void offNoResetFlg1(daPy_py_c::daPy_FLG1);
-    void offNoResetFlg2(daPy_py_c::daPy_FLG2);
-    u32 checkWolf() const;
     BOOL checkSwordGet();
-    u32 checkResetFlg0(daPy_py_c::daPy_RFLG0) const;
-    u32 checkNoResetFlg2(daPy_py_c::daPy_FLG2) const;
-    u32 checkMagneBootsOn() const;
-    void changeDemoPos0(cXyz const*);
-    void changeDemoMode(u32, int, int, s16);
     void changeDemoParam2(s16);
-    void cancelOriginalDemo();
-    void changeOriginalDemo();
     cXyz getHeadTopPos() const;
-    /* 801829E0 */ BOOL checkThrowDamage() const { return i_checkNoResetFlg1(FLG1_THROW_DAMAGE); }
-    /* 80182A10 */ BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
-    /* 80182AAC */ cXyz* getRightFootPosP() { return &mRightFootPos; }
-    /* 80182AB4 */ cXyz* getLeftFootPosP() { return &mLeftFootPos; }
-    /* 80182AC4 */ BOOL checkCopyRodThrowAfter() const { return i_checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
-    /* 80182AD8 */ BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
-    /* 80182B9C */ const cXyz& getRightHandPos() const { return mRightHandPos; }
-    /* 8015DFD8 */ const cXyz* getItemPos() const { return &mItemPos; }
-    /* 8015DFF4 */ const cXyz* getLeftHandPos() const { return &mLeftHandPos; }
-    /* 800977B4 */ bool checkMidnaRide() const;
+    BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
+    BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
+    cXyz* getRightFootPosP() { return &mRightFootPos; }
+    cXyz* getLeftFootPosP() { return &mLeftFootPos; }
+    BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
+    BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
+    const cXyz& getRightHandPos() const { return mRightHandPos; }
+    const cXyz* getItemPos() const { return &mItemPos; }
+    const cXyz* getLeftHandPos() const { return &mLeftHandPos; }
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -734,39 +716,38 @@ public:
         return sumouCameraMode;
     }
 
-    bool i_getSumouMode() const { return getSumouCameraMode(); }
-    void i_cancelOriginalDemo() {
+    bool getSumouMode() const { return getSumouCameraMode(); }
+    void cancelOriginalDemo() {
         mDemo.setSystemDemoType();
         mDemo.setDemoMode(1);
     }
 
-    bool checkStatusWindowDraw() { return i_checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
+    bool checkStatusWindowDraw() { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
-    bool getHeavyStateAndBoots() { return i_checkNoResetFlg0(FLG0_HVY_STATE); }
-    bool checkEnemyAttentionLock() const { return i_checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
+    bool getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
+    bool checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
-    bool i_checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
-    bool checkWaterInMove() const { return i_checkNoResetFlg0(FLG0_UNDERWATER); }
-    bool checkSceneChangeAreaStart() const { return i_checkNoResetFlg2(FLG2_SCN_CHG_START); }
-    bool checkFrontRollCrash() const { return i_checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
+    bool checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
+    bool checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    bool checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
-    bool checkFreezeDamage() const { return i_checkNoResetFlg1(FLG1_UNK_40000000); }
-    bool checkWolfTagLockJumpReady() const { return i_checkResetFlg0(RFLG0_UNK_20000); }
-    bool getGrabUpEnd() const { return i_checkResetFlg0(RFLG0_GRAB_UP_END); }
-    bool getGrabPutStart() const { return i_checkResetFlg0(RFLG0_GRAB_PUT_START); }
+    bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_UNK_40000000); }
+    bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
+    bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
+    bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
 
-    void onBossRoomWait() { i_onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
-    void onForceAutoJump() { i_onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
-    void onNotAutoJump() { i_onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
-    void onNotHang() { i_onEndResetFlg0(ERFLG0_NOT_HANG); }
-    void onShieldBackBone() { i_onEndResetFlg1(ERFLG1_GANON_FINISH); }
-    void onWolfEyeKeep() { i_onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
-    void onFogFade() { i_onNoResetFlg2(FLG2_UNK_4000); }
-    BOOL checkStickArrowReset() const { return i_checkResetFlg0(RFLG0_UNK_1); }
+    void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
+    void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
+    void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
+    void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
+    void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
+    void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
+    BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {
@@ -775,7 +756,7 @@ public:
     }
 
     void offGoronSideMove() {
-        if (i_checkGoronSideMove()) {
+        if (checkGoronSideMove()) {
             mSpecialMode = 0;
         }
     }
@@ -785,71 +766,67 @@ public:
 
     BOOL checkMidnaWarp() const { return 0; }
 
-    // some functions use these function as an inline
-    // is there a better way to handle this?
-    u32 i_checkNoResetFlg0(daPy_FLG0 i_flag) const { return mNoResetFlg0 & i_flag; }
-    u32 i_checkNoResetFlg1(daPy_FLG1 i_flag) const { return mNoResetFlg1 & i_flag; }
-    u32 i_checkNoResetFlg2(daPy_FLG2 i_flag) const { return mNoResetFlg2 & i_flag; }
-    u32 i_checkNoResetFlg3(daPy_FLG3 i_flag) const { return mNoResetFlg3 & i_flag; }
+    u32 checkNoResetFlg0(daPy_FLG0 i_flag) const { return mNoResetFlg0 & i_flag; }
+    u32 checkNoResetFlg1(daPy_FLG1 i_flag) const { return mNoResetFlg1 & i_flag; }
+    u32 checkNoResetFlg2(daPy_FLG2 i_flag) const { return mNoResetFlg2 & i_flag; }
+    u32 checkNoResetFlg3(daPy_FLG3 i_flag) const { return mNoResetFlg3 & i_flag; }
 
-    void i_onNoResetFlg0(int i_flag) { mNoResetFlg0 |= i_flag; }
-    void i_onNoResetFlg1(int i_flag) { mNoResetFlg1 |= i_flag; }
-    void i_onNoResetFlg2(int i_flag) { mNoResetFlg2 |= i_flag; }
-    void i_onNoResetFlg3(int i_flag) { mNoResetFlg3 |= i_flag; }
+    void onNoResetFlg0(daPy_FLG0 i_flag) { mNoResetFlg0 |= i_flag; }
+    void onNoResetFlg1(daPy_FLG1 i_flag) { mNoResetFlg1 |= i_flag; }
+    void onNoResetFlg2(daPy_FLG2 i_flag) { mNoResetFlg2 |= i_flag; }
+    void onNoResetFlg3(daPy_FLG3 i_flag) { mNoResetFlg3 |= i_flag; }
 
-    void i_offNoResetFlg0(int i_flag) { mNoResetFlg0 &= ~i_flag; }
-    void i_offNoResetFlg1(int i_flag) { mNoResetFlg1 &= ~i_flag; }
-    void i_offNoResetFlg2(int i_flag) { mNoResetFlg2 &= ~i_flag; }
-    void i_offNoResetFlg3(int i_flag) { mNoResetFlg3 &= ~i_flag; }
+    void offNoResetFlg0(daPy_FLG0 i_flag) { mNoResetFlg0 &= ~i_flag; }
+    void offNoResetFlg1(daPy_FLG1 i_flag) { mNoResetFlg1 &= ~i_flag; }
+    void offNoResetFlg2(daPy_FLG2 i_flag) { mNoResetFlg2 &= ~i_flag; }
+    void offNoResetFlg3(daPy_FLG3 i_flag) { mNoResetFlg3 &= ~i_flag; }
 
-    void i_offResetFlg0(int flag) { mResetFlg0 &= ~flag; }
-    void i_offResetFlg1(int flag) { mResetFlg1 &= ~flag; }
-    void i_onResetFlg0(int flag) { mResetFlg0 |= flag; }
-    void i_onResetFlg1(int flag) { mResetFlg1 |= flag; }
+    void offResetFlg0(daPy_RFLG0 flag) { mResetFlg0 &= ~flag; }
+    void offResetFlg1(daPy_RFLG1 flag) { mResetFlg1 &= ~flag; }
+    void onResetFlg0(daPy_RFLG0 flag) { mResetFlg0 |= flag; }
+    void onResetFlg1(daPy_RFLG1 flag) { mResetFlg1 |= flag; }
 
-    void i_onEndResetFlg0(int i_flag) { mEndResetFlg0 |= i_flag; }
-    void i_onEndResetFlg2(int i_flag) { mEndResetFlg2 |= i_flag; }
-    void i_offEndResetFlg2(daPy_ERFLG2 i_flag) { mEndResetFlg2 &= ~i_flag; }
+    void onEndResetFlg0(daPy_ERFLG0 i_flag) { mEndResetFlg0 |= i_flag; }
+    void onEndResetFlg2(daPy_ERFLG2 i_flag) { mEndResetFlg2 |= i_flag; }
+    void offEndResetFlg2(daPy_ERFLG2 i_flag) { mEndResetFlg2 &= ~i_flag; }
 
-    u32 i_checkResetFlg0(daPy_py_c::daPy_RFLG0 i_flag) const { return mResetFlg0 & i_flag; }
-    u32 checkResetFlg1(daPy_py_c::daPy_RFLG1 i_flag) const { return mResetFlg1 & i_flag; }
+    u32 checkResetFlg0(daPy_RFLG0 i_flag) const { return mResetFlg0 & i_flag; }
+    u32 checkResetFlg1(daPy_RFLG1 i_flag) const { return mResetFlg1 & i_flag; }
 
-    u32 i_checkEndResetFlg0(daPy_py_c::daPy_ERFLG0 i_flag) const { return mEndResetFlg0 & i_flag; }
-    u32 i_checkEndResetFlg1(daPy_py_c::daPy_ERFLG1 i_flag) const { return mEndResetFlg1 & i_flag; }
-    u32 i_checkEndResetFlg2(daPy_py_c::daPy_ERFLG2 i_flag) const { return mEndResetFlg2 & i_flag; }
+    u32 checkEndResetFlg0(daPy_ERFLG0 i_flag) const { return mEndResetFlg0 & i_flag; }
+    u32 checkEndResetFlg1(daPy_ERFLG1 i_flag) const { return mEndResetFlg1 & i_flag; }
+    u32 checkEndResetFlg2(daPy_ERFLG2 i_flag) const { return mEndResetFlg2 & i_flag; }
 
-    void i_onEndResetFlg1(daPy_ERFLG1 i_flag) { mEndResetFlg1 |= i_flag; }
+    void onEndResetFlg1(daPy_ERFLG1 i_flag) { mEndResetFlg1 |= i_flag; }
 
     cXyz* getLeftHandPosP() { return &mLeftHandPos; }
     cXyz* getRightHandPosP() { return &mRightHandPos; }
-    cXyz* i_getLeftFootPosP() { return &mLeftFootPos; }
-    cXyz* i_getRightFootPosP() { return &mRightFootPos; }
 
-    u32 i_checkWolf() const { return i_checkNoResetFlg1(FLG1_IS_WOLF); }
-    BOOL i_checkEquipHeavyBoots() const { return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
-    BOOL i_checkMagneBootsOn() const { return i_checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
-    bool i_checkMidnaRide() const { return i_checkNoResetFlg0(FLG0_MIDNA_RIDE); }
-    void i_onPlayerNoDraw() { i_onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
-    void i_offPlayerNoDraw() { i_offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
-    void i_onPushPullKeep() { i_onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
-    void i_offPushPullKeep() { i_offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
-    void onLightSwordGetEffect() { i_onEndResetFlg2(FLG2_UNK_10); }
+    u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
+    BOOL checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
+    BOOL checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
+    bool checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
+    void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
+    void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void offPushPullKeep() { offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
 
-    u32 i_checkBoarSingleBattle() const { return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
-    void i_changeOriginalDemo() {
+    void changeOriginalDemo() {
         mDemo.setOriginalDemoType();
         mDemo.setParam0(0);
     }
 
-    void i_changeDemoMode(u32 i_demoMode, int i_param0, int i_param1, s16 i_param2) {
+    void changeDemoMode(u32 i_demoMode, int i_param0, int i_param1, s16 i_param2) {
         mDemo.setDemoMode(i_demoMode);
         mDemo.setParam0(i_param0);
         mDemo.setParam1(i_param1);
         mDemo.setParam2(i_param2);
     }
 
-    void i_changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
+    void changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
 
     void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
 
@@ -860,10 +837,10 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
-    inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->i_checkWolf(); }
+    inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
-    inline static BOOL i_checkFirstMidnaDemo() { return i_dComIfGs_isEventBit(0xc10); }
+    inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
@@ -872,7 +849,7 @@ public:
     // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
 
     bool checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
-    bool checkWolfEnemyLeftThrow() const { return i_checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
+    bool checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
 
     static daMidna_c* m_midnaActor;
 };

@@ -916,7 +916,7 @@ int daBoomerang_c::draw() {
                 mSight.setSight(NULL, 5);
             }
         }
-        if (i_dComIfGp_event_runCheck() == 0) {
+        if (dComIfGp_event_runCheck() == 0) {
             dComIfGd_set2DXlu((dDlst_base_c*)&mSight);
         }
     }
@@ -928,7 +928,7 @@ int daBoomerang_c::draw() {
         g_env_light.setLightTevColorType_MAJI(field_0x56c, &tevStr);
         mDoExt_modelEntryDL(field_0x56c);
         daMirror_c::entry(field_0x56c);
-    } else if (i_dComIfGp_checkPlayerStatus0(0, 0x80000) != 0) {
+    } else if (dComIfGp_checkPlayerStatus0(0, 0x80000) != 0) {
         g_env_light.setLightTevColorType_MAJI(field_0x590, &tevStr);
         mDoExt_modelUpdateDL(field_0x590);
     }

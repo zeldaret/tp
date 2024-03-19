@@ -682,7 +682,7 @@ void daObjStone_c::setBaseMtx() {
     mDoMtx_stack_c::quatM(&field_0x0920);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::ZXYrotM(mShapeAngle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     field_0x0930 = field_0x0920;
     field_0x0920 = ZeroQuat;
 }

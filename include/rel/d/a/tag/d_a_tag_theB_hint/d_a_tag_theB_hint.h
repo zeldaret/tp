@@ -76,14 +76,14 @@ public:
     }
 
     int execute() {
-        if (i_fopAcM_isSwitch(this,getSwitchNo())) {
+        if (fopAcM_isSwitch(this,getSwitchNo())) {
             fopAcM_delete(this);
             return 1;
         } else {
             f32 distance = fopAcM_searchPlayerDistanceXZ2(this);
 
             if (distance < field_0x568) {
-                daNpcTheB_c* the_b = (daNpcTheB_c*)i_fpcM_SearchByName(PROC_NPC_THEB);
+                daNpcTheB_c* the_b = (daNpcTheB_c*)fpcM_SearchByName(PROC_NPC_THEB);
                 if (the_b) {
                     s8 roomNo = getRoomNo();
                     

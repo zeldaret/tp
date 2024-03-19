@@ -146,18 +146,17 @@ extern "C" void set__4cXyzFfff();
 extern "C" void onCondition__11dEvt_info_cFUs();
 extern "C" void checkCommandDemoAccrpt__11dEvt_info_cFv();
 extern "C" void __ct__4cXyzFv();
-extern "C" static void fopAcM_SearchByName__Fs();
+extern "C" static void fopAcM_SearchByName__Fs(s16);
 extern "C" static void fopAcM_SearchByID__FUi(unsigned int);
 extern "C" static daHorse_c* dComIfGp_getHorseActor__Fv();
 extern "C" static void dComIfGp_getPlayer__Fi(int);
 extern "C" static void dComIfGp_getCamera__Fi(int);
-extern "C" static void dComIfGp_getPlayerCameraID__Fi();
+extern "C" static void dComIfGp_getPlayerCameraID__Fi(int);
 extern "C" static void dMsgObject_isTalkNowCheck__Fv();
 extern "C" void abs__4cXyzCFv();
 extern "C" static void cMtx_XrotM__FPA4_fs();
 extern "C" static void JMAFastSqrt__Ff();
-extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz(u32 param_0, u16 param_1, cXyz const* param_2,
-                                      csXyz const* param_3, cXyz const* param_4);
+extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz();
 extern "C" void cancelOriginalDemo__9daHorse_cFv();
 extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0);
 extern "C" static void dComIfGp_getVibration__Fv();
@@ -172,7 +171,7 @@ extern "C" void changeDemoMode__9daHorse_cFUli();
 extern "C" void setHorsePosAndAngle__9daHorse_cFPC4cXyzs();
 extern "C" void startCheckSkipEdge__14dEvt_control_cFPv();
 extern "C" static void dComIfGp_getEvent__Fv();
-extern "C" static void fpcM_Search__FPFPvPv_PvPv();
+extern "C" static void fpcM_Search__FPFPvPv_PvPv(void* (*param_0)(void*, void*), void* param_1);
 extern "C" void changeOriginalDemo__9daHorse_cFv();
 extern "C" extern char const* const d_a_e_wb__stringBase0;
 
@@ -2799,7 +2798,7 @@ asm void mDoGph_gInf_c::fadeIn(f32 param_0, _GXColor& param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::checkSkipEdge() {
+extern "C" asm void checkSkipEdge__14dEvt_control_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/checkSkipEdge__14dEvt_control_cFv.s"
 }
@@ -4540,8 +4539,7 @@ static asm void func_807E22B0() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_setHitMark(u16 param_0, fopAc_ac_c* param_1, cXyz const* param_2,
-                                    csXyz const* param_3, cXyz const* param_4, u32 param_5) {
+extern "C" asm void dComIfGp_setHitMark__FUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_setHitMark__FUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl.s"
 }
@@ -4552,7 +4550,7 @@ static asm void dComIfGp_setHitMark(u16 param_0, fopAc_ac_c* param_1, cXyz const
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoPos0(cXyz const* param_0) {
+extern "C" asm void changeDemoPos0__9daPy_py_cFPC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeDemoPos0__9daPy_py_cFPC4cXyz.s"
 }
@@ -4562,7 +4560,7 @@ asm void daPy_py_c::changeDemoPos0(cXyz const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 param_3) {
+extern "C" asm void changeDemoMode__9daPy_py_cFUliis() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeDemoMode__9daPy_py_cFUliis.s"
 }
@@ -4577,7 +4575,7 @@ void daPy_py_c::changeDemoParam2(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::fabsf(f32 param_0) {
+extern "C" asm void fabsf__3stdFf() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fabsf__3stdFf.s"
 }
@@ -4619,7 +4617,7 @@ static asm void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c(fopAc_ac_c const* par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGs_onEventBit__FUs(u16 param_0) {
+extern "C" asm void dComIfGs_onEventBit__FUs(u16) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGs_onEventBit__FUs.s"
 }
@@ -4640,7 +4638,7 @@ extern "C" asm void Z2GetAudioMgr__Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::cancelOriginalDemo() {
+extern "C" asm void cancelOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/cancelOriginalDemo__9daPy_py_cFv.s"
 }
@@ -4650,7 +4648,7 @@ asm void daPy_py_c::cancelOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_event_reset() {
+extern "C" asm void dComIfGp_event_reset__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_event_reset__Fv.s"
 }
@@ -4660,7 +4658,7 @@ static asm void dComIfGp_event_reset() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::changeOriginalDemo() {
+extern "C" asm void changeOriginalDemo__9daPy_py_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeOriginalDemo__9daPy_py_cFv.s"
 }
@@ -4670,7 +4668,7 @@ asm void daPy_py_c::changeOriginalDemo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daPy_getPlayerActorClass__Fv() {
+extern "C" asm void daPy_getPlayerActorClass__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/daPy_getPlayerActorClass__Fv.s"
 }
@@ -4714,7 +4712,7 @@ extern "C" asm void set__4cXyzFfff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::onCondition(u16 param_0) {
+extern "C" asm void onCondition__11dEvt_info_cFUs() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/onCondition__11dEvt_info_cFUs.s"
 }
@@ -4741,7 +4739,7 @@ extern "C" void __ct__4cXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_SearchByName(s16 param_0) {
+extern "C" asm void fopAcM_SearchByName__Fs(s16) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fopAcM_SearchByName__Fs.s"
 }
@@ -4751,7 +4749,7 @@ static asm void fopAcM_SearchByName(s16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" static asm void fopAcM_SearchByID__FUi(unsigned int param_0) {
+extern "C" asm void fopAcM_SearchByID__FUi(unsigned int) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fopAcM_SearchByID__FUi.s"
 }
@@ -4761,7 +4759,7 @@ extern "C" static asm void fopAcM_SearchByID__FUi(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm daHorse_c* dComIfGp_getHorseActor__Fv() {
+extern "C" asm daHorse_c* dComIfGp_getHorseActor__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getHorseActor__Fv.s"
 }
@@ -4771,7 +4769,7 @@ static asm daHorse_c* dComIfGp_getHorseActor__Fv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getPlayer__Fi(int param_0) {
+extern "C" asm void dComIfGp_getPlayer__Fi(int) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getPlayer__Fi.s"
 }
@@ -4781,7 +4779,7 @@ static asm void dComIfGp_getPlayer__Fi(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getCamera__Fi(int param_0) {
+extern "C" asm void dComIfGp_getCamera__Fi(int) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getCamera__Fi.s"
 }
@@ -4791,7 +4789,7 @@ static asm void dComIfGp_getCamera__Fi(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm s8 dComIfGp_getPlayerCameraID(int param_0) {
+extern "C" asm void dComIfGp_getPlayerCameraID__Fi(int) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getPlayerCameraID__Fi.s"
 }
@@ -4801,7 +4799,7 @@ static asm s8 dComIfGp_getPlayerCameraID(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dMsgObject_isTalkNowCheck() {
+extern "C" asm void dMsgObject_isTalkNowCheck__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dMsgObject_isTalkNowCheck__Fv.s"
 }
@@ -4845,8 +4843,7 @@ static asm void JMAFastSqrt__Ff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz(u32 param_0, u16 param_1, cXyz const* param_2,
-                                      csXyz const* param_3, cXyz const* param_4) {
+extern "C" asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz.s"
 }
@@ -4856,7 +4853,7 @@ static asm void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz(u32 param_0, 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::cancelOriginalDemo() {
+extern "C" asm void cancelOriginalDemo__9daHorse_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/cancelOriginalDemo__9daHorse_cFv.s"
 }
@@ -4871,7 +4868,7 @@ extern "C" void __ct__10JAISoundIDFUl(u32* this_replacement, u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_getVibration__Fv() {
+extern "C" asm void dComIfGp_getVibration__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getVibration__Fv.s"
 }
@@ -4956,7 +4953,7 @@ asm void daHorse_c::changeDemoPos0(cXyz const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::changeDemoMode(u32 param_0, int param_1) {
+extern "C" asm void changeDemoMode__9daHorse_cFUli() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeDemoMode__9daHorse_cFUli.s"
 }
@@ -4976,7 +4973,7 @@ asm void daHorse_c::setHorsePosAndAngle(cXyz const* param_0, s16 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
+extern "C" asm void startCheckSkipEdge__14dEvt_control_cFPv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/startCheckSkipEdge__14dEvt_control_cFPv.s"
 }
@@ -4986,7 +4983,7 @@ asm void dEvt_control_c::startCheckSkipEdge(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm dEvt_control_c& dComIfGp_getEvent() {
+extern "C" asm void dComIfGp_getEvent__Fv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/dComIfGp_getEvent__Fv.s"
 }
@@ -4996,7 +4993,7 @@ static asm dEvt_control_c& dComIfGp_getEvent() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fpcM_Search(void* (*param_0)(void*, void*), void* param_1) {
+static asm void fpcM_Search__FPFPvPv_PvPv(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/fpcM_Search__FPFPvPv_PvPv.s"
 }
@@ -5006,7 +5003,7 @@ static asm void fpcM_Search(void* (*param_0)(void*, void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::changeOriginalDemo() {
+extern "C" asm void changeOriginalDemo__9daHorse_cFv() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_wb/d_a_e_wb/changeOriginalDemo__9daHorse_cFv.s"
 }

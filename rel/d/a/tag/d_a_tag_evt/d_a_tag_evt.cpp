@@ -55,19 +55,19 @@ int daTag_Evt_c::execute() {
     fopAcM_SetRoomNo(this, dComIfGp_roomControl_getStayNo());
     if (field_0x5E4 == 0 || field_0x5E4 == 1) {
         dComIfG_inf_c* pGameInfo = &g_dComIfG_gameInfo;
-        if (i_dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_event_runCheck() != 0) {
             bVar = false;
-            int iVar1 = i_dComIfGp_evmng_getMyStaffId(field_0x568, 0, 0);
+            int iVar1 = dComIfGp_evmng_getMyStaffId(field_0x568, 0, 0);
             if (!eventInfo.checkCommandTalk()) {
                 if (eventInfo.i_checkCommandDemoAccrpt()) {
-                    if (i_dComIfGp_getEventManager().endCheck(field_0x572)) {
-                        i_dComIfGp_event_reset();
+                    if (dComIfGp_getEventManager().endCheck(field_0x572)) {
+                        dComIfGp_event_reset();
                         field_0x570 = 0;
                         field_0x572 = -1;
                         bVar = true;
                     } else {
                         if (iVar1 != -1) {
-                            int actIdx = i_dComIfGp_getEventManager().getMyActIdx(
+                            int actIdx = dComIfGp_getEventManager().getMyActIdx(
                                 iVar1, mEvtCutList, 3, 0, 0);
                             int iVar2 = 0;
                             switch (actIdx) {
@@ -81,14 +81,14 @@ int daTag_Evt_c::execute() {
                                 iVar2 = doEvtCutNext(iVar1);
                             }
                             if (iVar2 != 0) {
-                                i_dComIfGp_getEventManager().cutEnd(iVar1);
+                                dComIfGp_getEventManager().cutEnd(iVar1);
                             }
                         }
                     }
                 }
             } else if (field_0x5DC != 0) {
                 if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
-                    i_dComIfGp_event_reset();
+                    dComIfGp_event_reset();
                     u16 eventId = mMsgFlow.getEventId(NULL);
                     if (eventId != 0) {
                         daNpcMsg_setEvtNum(eventId);
@@ -163,10 +163,10 @@ int daTag_Evt_c::isDelete() {
     if (field_0x5E0 != 0xFFF || field_0x5E2 != 0xFFF) {
         if (field_0x5E0 == 0xFFF ||
             (field_0x5E0 != 0xFFF &&
-             i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x5E0]) != 0))
+             dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x5E0]) != 0))
         {
             if (field_0x5E2 != 0xFFF) {
-                return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x5E2]);
+                return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x5E2]);
             } else {
                 return false;
             }
@@ -192,7 +192,7 @@ int daTag_Evt_c::isDelete() {
 
 /* 8048C090-8048C124 0007F0 0094+00 1/1 0/0 0/0 .text            doEvtCutWait__11daTag_Evt_cFi */
 int daTag_Evt_c::doEvtCutWait(int param_0) {
-    if (i_dComIfGp_getEventManager().getIsAddvance(param_0)) {
+    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
         int* pTimer = dComIfGp_evmng_getMyIntegerP(param_0, "timer");
         mTimer = (pTimer == NULL ? 0 : *pTimer);
     }
@@ -201,7 +201,7 @@ int daTag_Evt_c::doEvtCutWait(int param_0) {
 
 /* 8048C124-8048C1C8 000884 00A4+00 1/1 0/0 0/0 .text            doEvtCutTalk__11daTag_Evt_cFi */
 int daTag_Evt_c::doEvtCutTalk(int param_0) {
-    if (i_dComIfGp_getEventManager().getIsAddvance(param_0)) {
+    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
         mMsgFlow.init(this, *dComIfGp_evmng_getMyIntegerP(param_0, "flowNodeNo"), 0, NULL);
         return 0;
     } else {
@@ -211,7 +211,7 @@ int daTag_Evt_c::doEvtCutTalk(int param_0) {
 
 /* 8048C1C8-8048C27C 000928 00B4+00 1/1 0/0 0/0 .text            doEvtCutNext__11daTag_Evt_cFi */
 int daTag_Evt_c::doEvtCutNext(int param_0) {
-    if (i_dComIfGp_getEventManager().getIsAddvance(param_0)) {
+    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
         if ((field_0x5E4 == 0 || field_0x5E4 == 1) && field_0x5DE != 0xFF) {
             dComIfGs_onSwitch(field_0x5DE, fopAcM_GetRoomNo(this));
         }

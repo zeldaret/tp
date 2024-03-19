@@ -49,7 +49,7 @@ public:
     u8 getSwNG() { return fopAcM_GetParamBit(this, 0x10, 8); }
     u8 getSwTotal() { return fopAcM_GetParamBit(this, 0x18, 8); }
     int getEventID() { return shape_angle.x & 0xff; }
-    u8 getNGSwStat() { return i_fopAcM_isSwitch(this, mSwNG); }
+    u8 getNGSwStat() { return fopAcM_isSwitch(this, mSwNG); }
 
     /* 0x584 */ u8 mMode;
     /* 0x585 */ u8 mSwTop;

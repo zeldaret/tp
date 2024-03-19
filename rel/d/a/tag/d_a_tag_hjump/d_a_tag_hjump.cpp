@@ -50,7 +50,7 @@ int daTagHjump_c::create() {
 
                 mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
-                mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
                 mDoMtx_stack_c::get()[1][3] -= 100.0f;
                 current.pos.y -= 100.0f;
@@ -111,14 +111,14 @@ static int daTagHjump_Delete(daTagHjump_c* i_this) {
 
 /* 805A3E70-805A4134 000430 02C4+00 1/1 0/0 0/0 .text            execute__12daTagHjump_cFv */
 int daTagHjump_c::execute() {
-    daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+    daHorse_c* horse_p = dComIfGp_getHorseActor();
 
     if (horse_p != NULL &&
         (mType != TYPE_TRIGGER_e ||
          ((mOnFlagID == 0xFFF ||
-           i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mOnFlagID])) &&
+           dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mOnFlagID])) &&
           (mOffFlagID == 0xFFF ||
-           !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mOffFlagID])))))
+           !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[mOffFlagID])))))
     {
         s16 angle_diff = horse_p->shape_angle.y - shape_angle.y;
         int abs_angle = abs(angle_diff);

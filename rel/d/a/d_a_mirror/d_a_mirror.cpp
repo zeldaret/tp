@@ -205,7 +205,7 @@ void dMirror_packet_c::modelDraw(J3DModel* i_model, Mtx param_1) {
         return;
     }
 
-    dScnKy_env_light_c* kankyo = i_dKy_getEnvlight();
+    dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     JUT_ASSERT(kankyo != 0);
 
     GXColor color = {0};
@@ -477,7 +477,7 @@ void daMirror_c::setModelMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::XrotM(shape_angle.x);
     mDoMtx_stack_c::ZrotM(0x2000);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80872018-8087206C 0014D8 0054+00 1/0 0/0 0/0 .text            daMirror_create__FP10daMirror_c */
@@ -488,7 +488,7 @@ static int daMirror_create(daMirror_c* i_this) {
 
 /* 8087206C-80872344 00152C 02D8+00 2/2 0/0 0/0 .text            create__10daMirror_cFv */
 int daMirror_c::create() {
-    if (getSw() != 0xFF && !i_fopAcM_isSwitch(this, getSw())) {
+    if (getSw() != 0xFF && !fopAcM_isSwitch(this, getSw())) {
         return cPhs_COMPLEATE_e;
     }
 

@@ -10,7 +10,7 @@ public:
     /* 80D5C01C */ ~daTagMwait_c();
     /* 80D5C0A8 */ int execute();
 
-    bool checkEndMessage() {return i_fopAcM_isSwitch(this, mEnterSw); }
+    bool checkEndMessage() {return fopAcM_isSwitch(this, mEnterSw); }
 
     /* 0x568 */ u8 mOnSw;
     /* 0x569 */ u8 mEnterSw;

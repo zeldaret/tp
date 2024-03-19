@@ -55,12 +55,12 @@ bool daLv6CstaSw_c::areaCheck() {
 /* 80D5B600-80D5B6B0 000400 00B0+00 1/1 0/0 0/0 .text            Execute__13daLv6CstaSw_cFv */
 int daLv6CstaSw_c::Execute() {
     if (areaCheck() == true) {
-        if (!i_fopAcM_isSwitch(this, mSwitch)) {
-            i_fopAcM_onSwitch(this, mSwitch);
+        if (!fopAcM_isSwitch(this, mSwitch)) {
+            fopAcM_onSwitch(this, mSwitch);
         }
     } else {
-        if (i_fopAcM_isSwitch(this, mSwitch)) {
-            i_fopAcM_offSwitch(this, mSwitch);
+        if (fopAcM_isSwitch(this, mSwitch)) {
+            fopAcM_offSwitch(this, mSwitch);
         }
     }
 

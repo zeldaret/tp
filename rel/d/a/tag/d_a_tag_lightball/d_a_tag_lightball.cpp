@@ -21,8 +21,8 @@ int daTagLightBall_c::Create() {
     initBaseMtx();
     u8 swbit = getSwBit();
     if (fopAcM_GetRoomNo(this) == 7) {
-        if (!i_fopAcM_isSwitch(this, 70)) {
-            i_fopAcM_offSwitch(this, swbit);
+        if (!fopAcM_isSwitch(this, 70)) {
+            fopAcM_offSwitch(this, swbit);
         }
     }
 
@@ -31,19 +31,19 @@ int daTagLightBall_c::Create() {
 
     if (swbit != 0xFF) {
         if (getType() == 15) {
-            if (i_fopAcM_isSwitch(this, swbit)) {
+            if (fopAcM_isSwitch(this, swbit)) {
                 dKy_dalkmist_inf_set(&mInfluence);
                 mInfSet = true;
             }
         } else {
-            if (!i_fopAcM_isSwitch(this, swbit)) {
+            if (!fopAcM_isSwitch(this, swbit)) {
                 dKy_dalkmist_inf_set(&mInfluence);
                 mInfSet = true;
             }
         }
     }
 
-    field_0x57c = i_fopAcM_isSwitch(this, swbit);
+    field_0x57c = fopAcM_isSwitch(this, swbit);
     return 1;
 }
 
@@ -63,24 +63,24 @@ int daTagLightBall_c::execute() {
     u8 swbit = getSwBit();
     if (swbit != 0xFF) {
         if (getType() == 15) {
-            if (field_0x57c && !i_fopAcM_isSwitch(this, swbit)) {
+            if (field_0x57c && !fopAcM_isSwitch(this, swbit)) {
                 dKy_dalkmist_inf_cut(&mInfluence);
                 mInfSet = false;
-            } else if (!field_0x57c && i_fopAcM_isSwitch(this, swbit)) {
+            } else if (!field_0x57c && fopAcM_isSwitch(this, swbit)) {
                 dKy_dalkmist_inf_set(&mInfluence);
                 mInfSet = true;
             }
-        } else if (!field_0x57c && i_fopAcM_isSwitch(this, swbit)) {
+        } else if (!field_0x57c && fopAcM_isSwitch(this, swbit)) {
             dKy_dalkmist_inf_cut(&mInfluence);
             mInfSet = false;
-        } else if (field_0x57c && !i_fopAcM_isSwitch(this, swbit)) {
+        } else if (field_0x57c && !fopAcM_isSwitch(this, swbit)) {
             dKy_dalkmist_inf_set(&mInfluence);
             mInfSet = true;
         }
     }
 
     mInfluence.mPos = current.pos;
-    field_0x57c = i_fopAcM_isSwitch(this, swbit);
+    field_0x57c = fopAcM_isSwitch(this, swbit);
     return 1;
 }
 

@@ -66,7 +66,7 @@ static void action(obj_lv3WaterB_class* i_this) {
     }
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
-    i_this->mpBWaterModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpBWaterModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), i_this->mpBWaterMtx);
 
     i_this->mpBWaterBgW->Move();
@@ -74,7 +74,7 @@ static void action(obj_lv3WaterB_class* i_this) {
 
     if (i_this->mpOctHibiModel != NULL) {
         mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
-        i_this->mpOctHibiModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->mpOctHibiModel->setBaseTRMtx(mDoMtx_stack_c::get());
         MTXCopy(mDoMtx_stack_c::get(), i_this->mpOctHibiMtx);
 
         i_this->mpOctHibiBgW->Move();

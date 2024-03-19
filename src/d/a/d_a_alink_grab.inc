@@ -75,9 +75,9 @@ bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
 
 /* 800E3A9C-800E3BCC 0DE3DC 0130+00 1/0 0/0 0/0 .text setForceGrab__9daAlink_cFP10fopAc_ac_cii */
 bool daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
-    if (((param_1 != 0 || !checkEventRun()) && !i_checkWolf()) &&
+    if (((param_1 != 0 || !checkEventRun()) && !checkWolf()) &&
         (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
-         ((i_checkModeFlg(MODE_UNK_10000000) &&
+         ((checkModeFlg(MODE_UNK_10000000) &&
            (checkHorseNoUpperAnime() || checkHorseTurnAnime())) ||
           param_2 != 0 && checkHookshotAnime())))
     {
@@ -629,7 +629,7 @@ asm void daAlink_c::setFmChainPosFromOut(fopAc_ac_c* param_0, cXyz* param_1, int
 
 /* 800E7BD0-800E7C30 0E2510 0060+00 1/0 0/0 0/0 .text checkChainBlockPushPull__9daAlink_cFv */
 bool daAlink_c::checkChainBlockPushPull() {
-    if (i_checkFmChainGrabAnime()) {
+    if (checkFmChainGrabAnime()) {
         fopAc_ac_c* actor = field_0x2844.getActor();
         if (actor != NULL) {
             s16 name = fopAcM_GetName(actor);
@@ -697,7 +697,7 @@ asm void daAlink_c::setWallGrabStatus(u8 param_0, u8 param_1) {
 
 /* 800E7EE4-800E7EF4 0E2824 0010+00 2/2 0/0 0/0 .text            getWallGrabStatus__9daAlink_cFv */
 int daAlink_c::getWallGrabStatus() {
-    return i_dComIfGp_getRStatus();
+    return dComIfGp_getRStatus();
 }
 
 /* 800E7EF4-800E7F18 0E2834 0024+00 1/1 0/0 0/0 .text            wallGrabTrigger__9daAlink_cFv */
@@ -860,7 +860,7 @@ static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
 void daAlink_c::cancelGoronThrowEvent() {
     if (mProcID == PROC_GOAT_CATCH && mProcVar3.field_0x300e.z == 0) {
         mProcVar3.field_0x300e.z = 1;
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 }
 

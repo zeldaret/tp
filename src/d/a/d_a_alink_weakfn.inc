@@ -49,7 +49,8 @@ extern "C" asm void __ct__16daPy_frameCtrl_cFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_anmHeap_c::__defctor() {
+// asm void daPy_anmHeap_c::__defctor() {
+extern "C" asm void __defctor__14daPy_anmHeap_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__defctor__14daPy_anmHeap_cFv.s"
 }
@@ -59,7 +60,7 @@ asm void daPy_anmHeap_c::__defctor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_AnmRatioPack::~mDoExt_AnmRatioPack() {
+extern "C" asm void __dt__19mDoExt_AnmRatioPackFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__dt__19mDoExt_AnmRatioPackFv.s"
 }
@@ -69,7 +70,7 @@ asm mDoExt_AnmRatioPack::~mDoExt_AnmRatioPack() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoExt_AnmRatioPack::mDoExt_AnmRatioPack() {
+extern "C" asm void __ct__19mDoExt_AnmRatioPackFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/__ct__19mDoExt_AnmRatioPackFv.s"
 }
@@ -153,34 +154,27 @@ extern "C" asm void __ct__16daPy_actorKeep_cFv() {
 
 /* 8014111C-8014112C 13BA5C 0010+00 1/1 0/0 0/0 .text
  * onNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2             */
-void daPy_py_c::onNoResetFlg2(daPy_FLG2 pFlag) {
-    mNoResetFlg2 |= pFlag;
+extern "C" void onNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2(daPy_py_c* this_, daPy_py_c::daPy_FLG2 pFlag) {
+    this_->mNoResetFlg2 |= pFlag;
 }
 
 /* 8014112C-8014113C 13BA6C 0010+00 1/1 0/0 0/0 .text
  * offNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0            */
-// weird regalloc
-#ifdef NONMATCHING
-void daPy_py_c::offNoResetFlg0(daPy_FLG0 pFlag) {
-    mNoResetFlg0 &= ~pFlag;
-}
-#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::offNoResetFlg0(daPy_py_c::daPy_FLG0 param_0) {
+extern "C" asm void offNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0() {
     nofralloc
 #include "asm/d/a/d_a_alink/offNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0.s"
 }
 #pragma pop
-#endif
 
 /* 8014113C-80141190 13BA7C 0054+00 1/1 0/0 0/0 .text            mDoAud_seStartLevel__FUlPC3VecUlSc
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3) {
+extern "C" asm void mDoAud_seStartLevel__FUlPC3VecUlSc() {
     nofralloc
 #include "asm/d/a/d_a_alink/mDoAud_seStartLevel__FUlPC3VecUlSc.s"
 }
@@ -188,36 +182,51 @@ static asm void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2
 
 /* 80141190-8014119C 13BAD0 000C+00 1/1 0/0 0/0 .text
  * checkEndResetFlg2__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG2     */
-int daPy_py_c::checkEndResetFlg2(daPy_ERFLG2 pFlag) const {
-    return mEndResetFlg2 & pFlag;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void checkEndResetFlg2__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG2() {
+    nofralloc
+#include "asm/d/a/d_a_alink/checkEndResetFlg2__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG2.s"
 }
+#pragma pop
 
 /* 8014119C-801411B0 13BADC 0014+00 1/1 0/0 0/0 .text            dComIfGp_setBottleStatus__FUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_setBottleStatus(u8 param_0, u8 param_1) {
+static asm void dComIfGp_setBottleStatus__FUcUc(u8 param_0, u8 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_setBottleStatus__FUcUc.s"
 }
 #pragma pop
 
 /* 801411B0-801411D4 13BAF0 0024+00 1/1 0/0 0/0 .text            getSumouMode__9daPy_py_cCFv */
-bool daPy_py_c::getSumouMode() const {
-    return getSumouCameraMode();
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getSumouMode__9daPy_py_cCFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getSumouMode__9daPy_py_cCFv.s"
 }
+#pragma pop
 
 /* 801411D4-801411E0 13BB14 000C+00 1/1 0/0 0/0 .text
  * checkNoResetFlg3__9daPy_py_cCFQ29daPy_py_c9daPy_FLG3         */
-int daPy_py_c::checkNoResetFlg3(daPy_FLG3 pFlag) const {
-    return mNoResetFlg3 & pFlag;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void checkNoResetFlg3__9daPy_py_cCFQ29daPy_py_c9daPy_FLG3() {
+    nofralloc
+#include "asm/d/a/d_a_alink/checkNoResetFlg3__9daPy_py_cCFQ29daPy_py_c9daPy_FLG3.s"
 }
+#pragma pop
 
 /* 801411E0-801411F0 13BB20 0010+00 1/1 0/0 0/0 .text            onCondition__11dEvt_info_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::onCondition(u16 param_0) {
+extern "C" asm void onCondition__11dEvt_info_cFUs() {
     nofralloc
 #include "asm/d/a/d_a_alink/onCondition__11dEvt_info_cFUs.s"
 }
@@ -238,14 +247,14 @@ extern "C" asm void __ct__8cM3dGPlaFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_info_c::offCondition(u16 param_0) {
+extern "C" asm void offCondition__11dEvt_info_cFUs() {
     nofralloc
 #include "asm/d/a/d_a_alink/offCondition__11dEvt_info_cFUs.s"
 }
 #pragma pop
 
 /* 80141210-80141230 13BB50 0020+00 1/1 0/0 0/0 .text            checkShieldGet__9daPy_py_cFv */
-BOOL daPy_py_c::checkShieldGet() {
+extern "C" BOOL checkShieldGet__9daPy_py_cFv() {
     return dComIfGs_getSelectEquipShield() != NO_ITEM;
 }
 
@@ -254,14 +263,14 @@ BOOL daPy_py_c::checkShieldGet() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1) {
+extern "C" asm void fopAcM_onSwitch__FPC10fopAc_ac_ci(fopAc_ac_c const* param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/fopAcM_onSwitch__FPC10fopAc_ac_ci.s"
 }
 #pragma pop
 
 /* 80141264-80141294 13BBA4 0030+00 1/1 0/0 0/0 .text            dComIfGs_isItemFirstBit__FUc */
-int dComIfGs_isItemFirstBit(u8 i_no) {
+extern "C" int dComIfGs_isItemFirstBit__FUc(u8 i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getGetItem().isFirstBit(i_no);
 }
 
@@ -270,7 +279,7 @@ int dComIfGs_isItemFirstBit(u8 i_no) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
+extern "C" asm void dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class() {
     nofralloc
 #include "asm/d/a/d_a_alink/dStage_stagInfo_GetSaveTbl__FP21stage_stag_info_class.s"
 }
@@ -280,7 +289,7 @@ static asm s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm dStage_stageDt_c* dComIfGp_getStage() {
+extern "C" asm void dComIfGp_getStage__Fv() {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_getStage__Fv.s"
 }
@@ -288,15 +297,14 @@ static asm dStage_stageDt_c* dComIfGp_getStage() {
 
 /* 801412B0-801412BC 13BBF0 000C+00 1/1 0/0 0/0 .text            checkEquipHeavyBoots__9daPy_py_cCFv
  */
-u32 daPy_py_c::checkEquipHeavyBoots() const {
-    return i_checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS);
+extern "C" u32 checkEquipHeavyBoots__9daPy_py_cCFv(daPy_py_c* this_) {
+    return this_->checkNoResetFlg0(daPy_py_c::FLG0_EQUIP_HVY_BOOTS);
 }
 
 /* 801412BC-801412C4 13BBFC 0008+00 1/1 4/4 0/0 .text            fopAcM_GetName__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-// asm void fopAcM_GetName(void* param_0) {
 extern "C" asm void fopAcM_GetName__FPv() {
     nofralloc
 #include "asm/d/a/d_a_alink/fopAcM_GetName__FPv.s"
@@ -305,22 +313,22 @@ extern "C" asm void fopAcM_GetName__FPv() {
 
 /* 801412C4-801412D4 13BC04 0010+00 1/1 0/0 0/0 .text
  * onNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0             */
-void daPy_py_c::onNoResetFlg0(daPy_FLG0 pFlag) {
-    mNoResetFlg0 |= pFlag;
+extern "C" void onNoResetFlg0__9daPy_py_cFQ29daPy_py_c9daPy_FLG0(daPy_py_c* this_, daPy_py_c::daPy_FLG0 pFlag) {
+    this_->mNoResetFlg0 |= pFlag;
 }
 
 /* 801412D4-801412F8 13BC14 0024+00 1/1 0/0 0/0 .text            isOrderOK__14dEvt_control_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm BOOL dEvt_control_c::isOrderOK() {
+extern "C" asm void isOrderOK__14dEvt_control_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/isOrderOK__14dEvt_control_cFv.s"
 }
 #pragma pop
 
 /* 801412F8-80141308 13BC38 0010+00 1/1 0/0 0/0 .text            dComIfGp_getEvent__Fv */
-static dEvt_control_c& dComIfGp_getEvent() {
+extern "C" dEvt_control_c& dComIfGp_getEvent__Fv() {
     return g_dComIfG_gameInfo.play.getEvent();
 }
 
@@ -329,7 +337,7 @@ static dEvt_control_c& dComIfGp_getEvent() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u32 dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
+extern "C" asm u32 dComIfGp_checkPlayerStatus0__FiUl(int param_0, u32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_checkPlayerStatus0__FiUl.s"
 }
@@ -340,7 +348,7 @@ static asm u32 dComIfGp_checkPlayerStatus0(int param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u32 dComIfGp_checkPlayerStatus1(int param_0, u32 param_1) {
+extern "C" asm u32 dComIfGp_checkPlayerStatus1__FiUl(int param_0, u32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_checkPlayerStatus1__FiUl.s"
 }
@@ -348,12 +356,12 @@ static asm u32 dComIfGp_checkPlayerStatus1(int param_0, u32 param_1) {
 
 /* 80141340-8014134C 13BC80 000C+00 1/1 0/0 0/0 .text
  * checkEndResetFlg1__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG1     */
-u32 daPy_py_c::checkEndResetFlg1(daPy_ERFLG1 pFlag) const {
-    return mEndResetFlg1 & pFlag;
+extern "C" u32 checkEndResetFlg1__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG1(daPy_py_c* this_, daPy_py_c::daPy_ERFLG1 pFlag) {
+    return this_->mEndResetFlg1 & pFlag;
 }
 
 /* 8014134C-8014135C 13BC8C 0010+00 1/1 0/0 0/0 .text            dComIfGp_getEventManager__Fv */
-static dEvent_manager_c& dComIfGp_getEventManager() {
+extern "C" dEvent_manager_c& dComIfGp_getEventManager__Fv() {
     return g_dComIfG_gameInfo.play.getEvtManager();
 }
 
@@ -362,7 +370,7 @@ static dEvent_manager_c& dComIfGp_getEventManager() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::offNoResetFlg1(daPy_py_c::daPy_FLG1 param_0) {
+extern "C" asm void offNoResetFlg1__9daPy_py_cFQ29daPy_py_c9daPy_FLG1() {
     nofralloc
 #include "asm/d/a/d_a_alink/offNoResetFlg1__9daPy_py_cFQ29daPy_py_c9daPy_FLG1.s"
 }
@@ -370,26 +378,19 @@ asm void daPy_py_c::offNoResetFlg1(daPy_py_c::daPy_FLG1 param_0) {
 
 /* 8014136C-8014137C 13BCAC 0010+00 1/1 0/0 0/0 .text
  * offNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2            */
-// regalloc
-#ifdef NONMATCHING
-void daPy_py_c::offNoResetFlg2(daPy_py_c::daPy_FLG2 param_0) {
-    mNoResetFlg2 &= ~param_0;
-}
-#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPy_py_c::offNoResetFlg2(daPy_py_c::daPy_FLG2 param_0) {
+extern "C" asm void offNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2() {
     nofralloc
 #include "asm/d/a/d_a_alink/offNoResetFlg2__9daPy_py_cFQ29daPy_py_c9daPy_FLG2.s"
 }
 #pragma pop
-#endif
 
 /* 8014137C-80141388 13BCBC 000C+00 1/1 0/0 0/0 .text            setSpecialDemoType__11daPy_demo_cFv
  */
-void daPy_demo_c::setSpecialDemoType() {
-    setDemoType(5);
+extern "C" void setSpecialDemoType__11daPy_demo_cFv(daPy_demo_c* this_) {
+    this_->setDemoType(5);
 }
 
 /* 80141388-8014139C 13BCC8 0014+00 1/1 0/0 0/0 .text            checkCommandCatch__11dEvt_info_cFv
@@ -397,944 +398,996 @@ void daPy_demo_c::setSpecialDemoType() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dEvt_info_c::checkCommandCatch() {
+extern "C" asm void checkCommandCatch__11dEvt_info_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkCommandCatch__11dEvt_info_cFv.s"
 }
 #pragma pop
 
 /* 8014139C-801413CC 13BCDC 0030+00 1/1 1/1 0/0 .text            dComIfGs_isEventBit__FUs */
-BOOL dComIfGs_isEventBit(u16 id) {
+extern "C" BOOL dComIfGs_isEventBit__FUs(u16 id) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(id);
 }
 
 /* 801413CC-801413D8 13BD0C 000C+00 1/1 0/0 0/0 .text            checkWolf__9daPy_py_cCFv */
-u32 daPy_py_c::checkWolf() const {
-    return i_checkNoResetFlg1(FLG1_IS_WOLF);
+extern "C" u32 checkWolf__9daPy_py_cCFv(daPy_py_c* this_) {
+    return this_->checkNoResetFlg1(daPy_py_c::FLG1_IS_WOLF);
 }
 
 /* 801413D8-801413F8 13BD18 0020+00 1/1 0/0 0/0 .text            checkSwordGet__9daPy_py_cFv */
-BOOL daPy_py_c::checkSwordGet() {
+extern "C" BOOL checkSwordGet__9daPy_py_cFv() {
     return dComIfGs_getSelectEquipSword() != 0xFF;
 }
 
 /* 801413F8-80141404 13BD38 000C+00 1/1 0/0 0/0 .text
  * checkResetFlg0__9daPy_py_cCFQ29daPy_py_c10daPy_RFLG0         */
-u32 daPy_py_c::checkResetFlg0(daPy_RFLG0 pFlag) const {
-    return mResetFlg0 & pFlag;
+extern "C" u32 checkResetFlg0__9daPy_py_cCFQ29daPy_py_c10daPy_RFLG0(daPy_py_c* this_, daPy_py_c::daPy_RFLG0 pFlag) {
+    return this_->mResetFlg0 & pFlag;
 }
 
 /* 80141404-80141410 13BD44 000C+00 1/1 0/0 0/0 .text            ChkGroundHit__9dBgS_AcchCFv */
-bool dBgS_Acch::ChkGroundHit() const {
-    return m_flags & GROUND_HIT;
+extern "C" bool ChkGroundHit__9dBgS_AcchCFv(dBgS_Acch* this_) {
+    return this_->m_flags & dBgS_Acch::GROUND_HIT;
 }
 
 /* 80141410-8014141C 13BD50 000C+00 1/1 0/0 0/0 .text
  * checkNoResetFlg0__9daPy_py_cCFQ29daPy_py_c9daPy_FLG0         */
-u32 daPy_py_c::checkNoResetFlg0(daPy_FLG0 pFlag) const {
-    return mNoResetFlg0 & pFlag;
+extern "C" u32 checkNoResetFlg0__9daPy_py_cCFQ29daPy_py_c9daPy_FLG0(daPy_py_c* this_, daPy_py_c::daPy_FLG0 pFlag) {
+    return this_->mNoResetFlg0 & pFlag;
 }
 
 /* 8014141C-80141438 13BD5C 001C+00 1/1 0/0 0/0 .text            dComIfGp_getPlayerCameraID__Fi */
-#ifdef NONMATCHING
-static s32 dComIfGp_getPlayerCameraID(int i) {
-    return g_dComIfG_gameInfo.play.getPlayerCameraID(i);
-}
-#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm s8 dComIfGp_getPlayerCameraID(int param_0) {
+static asm int dComIfGp_getPlayerCameraID__Fi(int param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_getPlayerCameraID__Fi.s"
 }
 #pragma pop
-#endif
 
 /* 80141438-80141450 13BD78 0018+00 1/1 0/0 0/0 .text            dComIfGp_event_chkEventFlag__FUs */
-static u16 dComIfGp_event_chkEventFlag(u16 flag) {
+extern "C" u16 dComIfGp_event_chkEventFlag__FUs(u16 flag) {
     return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(flag);
 }
 
 /* 80141450-80141464 13BD90 0014+00 1/1 0/0 0/0 .text            checkCommandDoor__11dEvt_info_cFv
  */
-BOOL dEvt_info_c::checkCommandDoor() {
-    return mCommand == 3;
+extern "C" BOOL checkCommandDoor__11dEvt_info_cFv(dEvt_info_c* this_) {
+    return this_->mCommand == 3;
 }
 
 /* 80141464-801414A4 13BDA4 0040+00 1/1 0/0 0/0 .text
  * dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci              */
-static s32 dComIfGp_evmng_getMyStaffId(char const* param_0, fopAc_ac_c* param_1, int param_2) {
+extern "C" s32 dComIfGp_evmng_getMyStaffId__FPCcP10fopAc_ac_ci(char const* param_0, fopAc_ac_c* param_1, int param_2) {
     return dComIfGp_getPEvtManager()->getMyStaffId(param_0, param_1, param_2);
 }
 
 /* 801414A4-801414C0 13BDE4 001C+00 1/1 0/0 0/0 .text            dComIfGp_event_runCheck__Fv */
-static BOOL dComIfGp_event_runCheck() {
+extern "C" BOOL dComIfGp_event_runCheck__Fv() {
     return g_dComIfG_gameInfo.play.getEvent().runCheck();
 }
 
 /* 801414C0-801414CC 13BE00 000C+00 1/1 0/0 0/0 .text
  * checkNoResetFlg2__9daPy_py_cCFQ29daPy_py_c9daPy_FLG2         */
-u32 daPy_py_c::checkNoResetFlg2(daPy_FLG2 pFlag) const {
-    return mNoResetFlg2 & pFlag;
+extern "C" u32 checkNoResetFlg2__9daPy_py_cCFQ29daPy_py_c9daPy_FLG2(daPy_py_c* this_, daPy_py_c::daPy_FLG2 pFlag) {
+    return this_->mNoResetFlg2 & pFlag;
 }
 
 /* 801414CC-801414D8 13BE0C 000C+00 1/1 2/2 0/0 .text            checkMagneBootsOn__9daPy_py_cCFv */
-u32 daPy_py_c::checkMagneBootsOn() const {
-    return i_checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON);
+extern "C" u32 checkMagneBootsOn__9daPy_py_cCFv(daPy_py_c* this_) {
+    return this_->checkNoResetFlg0(daPy_py_c::FLG0_MAGNE_BOOTS_ON);
 }
 
 /* 801414D8-801414E8 13BE18 0010+00 1/1 2/2 0/0 .text            dComIfGp_getHorseActor__Fv */
-daHorse_c* dComIfGp_getHorseActor() {
+extern "C" daHorse_c* dComIfGp_getHorseActor__Fv() {
     return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
 }
 
 /* 801414E8-801414F4 13BE28 000C+00 1/1 0/0 0/0 .text checkBoarSingleBattle__9daPy_py_cCFv */
-u32 daPy_py_c::checkBoarSingleBattle() const {
-    return i_checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE);
+extern "C" u32 checkBoarSingleBattle__9daPy_py_cCFv(daPy_py_c* this_) {
+    return this_->checkNoResetFlg2(daPy_py_c::FLG2_BOAR_SINGLE_BATTLE);
 }
 
 /* 801414F4-80141500 13BE34 000C+00 1/1 0/0 0/0 .text
  * checkEndResetFlg0__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG0     */
-u32 daPy_py_c::checkEndResetFlg0(daPy_ERFLG0 pFlag) const {
-    return mEndResetFlg0 & pFlag;
+extern "C" u32 checkEndResetFlg0__9daPy_py_cCFQ29daPy_py_c11daPy_ERFLG0(daPy_py_c* this_, daPy_py_c::daPy_ERFLG0 pFlag) {
+    return this_->mEndResetFlg0 & pFlag;
 }
 
 /* 80141500-80141508 13BE40 0008+00 1/0 0/0 0/0 .text            getMidnaAtnPos__9daPy_py_cCFv */
 extern "C" bool getMidnaAtnPos__9daPy_py_cCFv() {
-    // bool daPy_py_c::getMidnaAtnPos() const {
     return false;
 }
 
 /* 80141508-8014150C 13BE48 0004+00 1/0 0/0 0/0 .text setMidnaMsgNum__9daPy_py_cFP10fopAc_ac_cUs
  */
-void daPy_py_c::setMidnaMsgNum(fopAc_ac_c* param_0, u16 param_1) {
+extern "C" void setMidnaMsgNum__9daPy_py_cFP10fopAc_ac_cUs() {
     /* empty function */
 }
 
 /* 8014150C-80141514 13BE4C 0008+00 1/0 0/0 0/0 .text            getModelMtx__9daPy_py_cFv */
-MtxP daPy_py_c::getModelMtx() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getModelMtx__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getModelMtx__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 80141514-8014151C 13BE54 0008+00 1/0 0/0 0/0 .text            getInvMtx__9daPy_py_cFv */
-MtxP daPy_py_c::getInvMtx() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getInvMtx__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getInvMtx__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 8014151C-80141524 13BE5C 0008+00 1/0 0/0 0/0 .text            getShadowTalkAtnPos__9daPy_py_cFv
  */
-cXyz* daPy_py_c::getShadowTalkAtnPos() {
-    return &current.pos;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getShadowTalkAtnPos__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getShadowTalkAtnPos__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 80141524-8014152C 13BE64 0008+00 1/0 0/0 0/0 .text            getLeftItemMatrix__9daPy_py_cFv */
-MtxP daPy_py_c::getLeftItemMatrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getLeftItemMatrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getLeftItemMatrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 8014152C-80141534 13BE6C 0008+00 1/0 0/0 0/0 .text            getRightItemMatrix__9daPy_py_cFv */
-MtxP daPy_py_c::getRightItemMatrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getRightItemMatrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getRightItemMatrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 80141534-8014153C 13BE74 0008+00 1/0 0/0 0/0 .text            getLeftHandMatrix__9daPy_py_cFv */
-MtxP daPy_py_c::getLeftHandMatrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getLeftHandMatrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getLeftHandMatrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 8014153C-80141544 13BE7C 0008+00 1/0 0/0 0/0 .text            getRightHandMatrix__9daPy_py_cFv */
-MtxP daPy_py_c::getRightHandMatrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getRightHandMatrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getRightHandMatrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 80141544-8014154C 13BE84 0008+00 1/0 0/0 0/0 .text getLinkBackBone1Matrix__9daPy_py_cFv */
-MtxP daPy_py_c::getLinkBackBone1Matrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getLinkBackBone1Matrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getLinkBackBone1Matrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 8014154C-80141554 13BE8C 0008+00 1/0 0/0 0/0 .text            getWolfMouthMatrix__9daPy_py_cFv */
-MtxP daPy_py_c::getWolfMouthMatrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getWolfMouthMatrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getWolfMouthMatrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 80141554-8014155C 13BE94 0008+00 1/0 0/0 0/0 .text getWolfBackbone2Matrix__9daPy_py_cFv */
-MtxP daPy_py_c::getWolfBackbone2Matrix() {
-    return cullMtx;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getWolfBackbone2Matrix__9daPy_py_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getWolfBackbone2Matrix__9daPy_py_cFv.s"
 }
+#pragma pop
 
 /* 8014155C-80141564 13BE9C 0008+00 1/0 0/0 0/0 .text            getBottleMtx__9daPy_py_cFv */
-MtxP daPy_py_c::getBottleMtx() {
+extern "C" bool getBottleMtx__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141564-8014156C 13BEA4 0008+00 1/0 0/0 0/0 .text            checkPlayerGuard__9daPy_py_cCFv */
-BOOL daPy_py_c::checkPlayerGuard() const {
+extern "C" bool checkPlayerGuard__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014156C-80141574 13BEAC 0008+00 1/0 0/0 0/0 .text            checkAutoJump__9daPy_py_cCFv */
-BOOL daPy_py_c::checkAutoJump() const {
+extern "C" bool checkAutoJump__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141574-8014157C 13BEB4 0008+00 1/0 0/0 0/0 .text            checkSideStep__9daPy_py_cCFv */
-bool daPy_py_c::checkSideStep() const {
+extern "C" bool checkSideStep__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014157C-80141584 13BEBC 0008+00 1/0 0/0 0/0 .text            checkWolfTriggerJump__9daPy_py_cCFv
  */
-bool daPy_py_c::checkWolfTriggerJump() const {
+extern "C" bool checkWolfTriggerJump__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141584-8014158C 13BEC4 0008+00 1/0 0/0 0/0 .text            checkGuardBreakMode__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkGuardBreakMode() const {
+extern "C" bool checkGuardBreakMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014158C-80141594 13BECC 0008+00 1/0 0/0 0/0 .text            checkLv3Slide__9daPy_py_cCFv */
-bool daPy_py_c::checkLv3Slide() const {
+extern "C" bool checkLv3Slide__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141594-8014159C 13BED4 0008+00 1/0 0/0 0/0 .text checkWolfHowlDemoMode__9daPy_py_cCFv */
-bool daPy_py_c::checkWolfHowlDemoMode() const {
+extern "C" bool checkWolfHowlDemoMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014159C-801415A4 13BEDC 0008+00 1/0 0/0 0/0 .text checkChainBlockPushPull__9daPy_py_cFv */
-bool daPy_py_c::checkChainBlockPushPull() {
+extern "C" bool checkChainBlockPushPull__9daPy_py_cFv() {
     return false;
 }
 
 /* 801415A4-801415AC 13BEE4 0008+00 1/0 0/0 0/0 .text            checkElecDamage__9daPy_py_cCFv */
-BOOL daPy_py_c::checkElecDamage() const {
+extern "C" bool checkElecDamage__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415AC-801415B4 13BEEC 0008+00 1/0 0/0 0/0 .text checkEmptyBottleSwing__9daPy_py_cCFv */
-BOOL daPy_py_c::checkEmptyBottleSwing() const {
+extern "C" bool checkEmptyBottleSwing__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415B4-801415BC 13BEF4 0008+00 1/0 0/0 0/0 .text            checkBottleSwingMode__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkBottleSwingMode() const {
+extern "C" bool checkBottleSwingMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415BC-801415C4 13BEFC 0008+00 1/0 0/0 0/0 .text            checkHawkWait__9daPy_py_cCFv */
-BOOL daPy_py_c::checkHawkWait() const {
+extern "C" bool checkHawkWait__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415C4-801415CC 13BF04 0008+00 1/0 0/0 0/0 .text            checkGoatThrow__9daPy_py_cCFv */
-BOOL daPy_py_c::checkGoatThrow() const {
+extern "C" bool checkGoatThrow__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415CC-801415D4 13BF0C 0008+00 1/0 0/0 0/0 .text            checkGoatThrowAfter__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkGoatThrowAfter() const {
+extern "C" bool checkGoatThrowAfter__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415D4-801415DC 13BF14 0008+00 1/0 0/0 0/0 .text            checkWolfTagLockJump__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkWolfTagLockJump() const {
+extern "C" bool checkWolfTagLockJump__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415DC-801415E4 13BF1C 0008+00 1/0 0/0 0/0 .text checkWolfTagLockJumpLand__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfTagLockJumpLand() const {
+extern "C" bool checkWolfTagLockJumpLand__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415E4-801415EC 13BF24 0008+00 1/0 0/0 0/0 .text            checkWolfRope__9daPy_py_cFv */
-BOOL daPy_py_c::checkWolfRope() {
+extern "C" bool checkWolfRope__9daPy_py_cFv() {
     return false;
 }
 
 /* 801415EC-801415F4 13BF2C 0008+00 1/0 0/0 0/0 .text            checkWolfRopeHang__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfRopeHang() const {
+extern "C" bool checkWolfRopeHang__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415F4-801415FC 13BF34 0008+00 1/0 0/0 0/0 .text            checkRollJump__9daPy_py_cCFv */
-BOOL daPy_py_c::checkRollJump() const {
+extern "C" bool checkRollJump__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801415FC-80141604 13BF3C 0008+00 1/0 0/0 0/0 .text            checkGoronRideWait__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkGoronRideWait() const {
+extern "C" bool checkGoronRideWait__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141604-8014160C 13BF44 0008+00 1/0 0/0 0/0 .text            checkWolfChain__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfChain() const {
+extern "C" bool checkWolfChain__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014160C-80141614 13BF4C 0008+00 1/0 0/0 0/0 .text            checkWolfWait__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfWait() const {
+extern "C" bool checkWolfWait__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141614-8014161C 13BF54 0008+00 1/0 0/0 0/0 .text            checkWolfJumpAttack__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkWolfJumpAttack() const {
+extern "C" bool checkWolfJumpAttack__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014161C-80141624 13BF5C 0008+00 1/0 0/0 0/0 .text            checkWolfRSit__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfRSit() const {
+extern "C" bool checkWolfRSit__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141624-8014162C 13BF64 0008+00 2/0 0/0 0/0 .text            checkBubbleFly__9daPy_py_cCFv */
-bool daPy_py_c::checkBubbleFly() const {
+extern "C" bool checkBubbleFly__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014162C-80141634 13BF6C 0008+00 1/0 0/0 0/0 .text            checkBottleDrinkEnd__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkBottleDrinkEnd() const {
+extern "C" bool checkBottleDrinkEnd__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141634-8014163C 13BF74 0008+00 1/0 0/0 0/0 .text            checkWolfDig__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfDig() const {
+extern "C" bool checkWolfDig__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014163C-80141644 13BF7C 0008+00 1/0 0/0 0/0 .text            checkCutCharge__9daPy_py_cCFv */
-BOOL daPy_py_c::checkCutCharge() const {
+extern "C" bool checkCutCharge__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141644-8014164C 13BF84 0008+00 1/0 0/0 0/0 .text            checkCutTurnCharge__9daPy_py_cCFv
  */
-BOOL daPy_py_c::checkCutTurnCharge() const {
+extern "C" bool checkCutTurnCharge__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014164C-80141654 13BF8C 0008+00 1/0 0/0 0/0 .text checkCutLargeJumpCharge__9daPy_py_cCFv */
-BOOL daPy_py_c::checkCutLargeJumpCharge() const {
+extern "C" bool checkCutLargeJumpCharge__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141654-8014165C 13BF94 0008+00 2/0 0/0 0/0 .text            getBokoFlamePos__9daPy_py_cFP4cXyz
  */
-bool daPy_py_c::getBokoFlamePos(cXyz* param_0) {
+extern "C" bool getBokoFlamePos__9daPy_py_cFP4cXyz() {
     return false;
 }
 
 /* 8014165C-80141664 13BF9C 0008+00 1/0 0/0 0/0 .text            checkComboCutTurn__9daPy_py_cCFv */
-BOOL daPy_py_c::checkComboCutTurn() const {
+extern "C" bool checkComboCutTurn__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141664-8014166C 13BFA4 0008+00 1/0 0/0 0/0 .text            checkClimbMove__9daPy_py_cCFv */
-BOOL daPy_py_c::checkClimbMove() const {
+extern "C" bool checkClimbMove__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014166C-80141674 13BFAC 0008+00 1/0 0/0 0/0 .text            checkGrassWhistle__9daPy_py_cCFv */
-BOOL daPy_py_c::checkGrassWhistle() const {
+extern "C" bool checkGrassWhistle__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141674-8014167C 13BFB4 0008+00 1/0 0/0 0/0 .text            checkBoarRun__9daPy_py_cCFv */
-BOOL daPy_py_c::checkBoarRun() const {
+extern "C" bool checkBoarRun__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014167C-80141684 13BFBC 0008+00 2/0 0/0 0/0 .text            checkFmChainPut__9daPy_py_cCFv */
-bool daPy_py_c::checkFmChainPut() const {
+extern "C" bool checkFmChainPut__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141684-8014168C 13BFC4 0008+00 2/0 0/0 0/0 .text            checkHorseElecDamage__9daPy_py_cCFv
  */
-bool daPy_py_c::checkHorseElecDamage() const {
+extern "C" bool checkHorseElecDamage__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014168C-80141694 13BFCC 0008+00 1/0 0/0 0/0 .text getBaseAnimeFrameRate__9daPy_py_cCFv */
-float daPy_py_c::getBaseAnimeFrameRate() const {
+extern "C" f32 getBaseAnimeFrameRate__9daPy_py_cCFv() {
     return lit_6040;
 }
 
 /* 80141694-8014169C 13BFD4 0008+00 1/0 0/0 0/0 .text            getBaseAnimeFrame__9daPy_py_cCFv */
-f32 daPy_py_c::getBaseAnimeFrame() const {
+extern "C" f32 getBaseAnimeFrame__9daPy_py_cCFv() {
     return FLOAT_LABEL(lit_6108);
 }
 
 /* 8014169C-801416A0 13BFDC 0004+00 1/0 0/0 0/0 .text            setAnimeFrame__9daPy_py_cFf */
-void daPy_py_c::setAnimeFrame(f32 param_0) {
+extern "C" void setAnimeFrame__9daPy_py_cFf() {
     /* empty function */
 }
 
 /* 801416A0-801416A8 13BFE0 0008+00 1/0 0/0 0/0 .text checkWolfLock__9daPy_py_cCFP10fopAc_ac_c */
-BOOL daPy_py_c::checkWolfLock(fopAc_ac_c* param_0) const {
+extern "C" bool checkWolfLock__9daPy_py_cCFP10fopAc_ac_c() {
     return false;
 }
 
 /* 801416A8-801416B0 13BFE8 0008+00 1/0 0/0 0/0 .text cancelWolfLock__9daPy_py_cFP10fopAc_ac_c */
-bool daPy_py_c::cancelWolfLock(fopAc_ac_c* param_0) {
+extern "C" bool cancelWolfLock__9daPy_py_cFP10fopAc_ac_c() {
     return false;
 }
 
 /* 801416B0-801416B8 13BFF0 0008+00 1/0 0/0 0/0 .text            getItemID__9daPy_py_cCFv */
-s32 daPy_py_c::getItemID() const {
+extern "C" s32 getItemID__9daPy_py_cCFv() {
     return -1;
 }
 
 /* 801416B8-801416C0 13BFF8 0008+00 1/0 0/0 0/0 .text exchangeGrabActor__9daPy_py_cFP10fopAc_ac_c
  */
-bool daPy_py_c::exchangeGrabActor(fopAc_ac_c* param_0) {
+extern "C" bool exchangeGrabActor__9daPy_py_cFP10fopAc_ac_c() {
     return false;
 }
 
 /* 801416C0-801416C8 13C000 0008+00 1/0 0/0 0/0 .text setForceGrab__9daPy_py_cFP10fopAc_ac_cii */
-bool daPy_py_c::setForceGrab(fopAc_ac_c* param_0, int param_1, int param_2) {
+extern "C" bool setForceGrab__9daPy_py_cFP10fopAc_ac_cii() {
     return false;
 }
 
 /* 801416C8-801416CC 13C008 0004+00 1/0 0/0 0/0 .text            setForcePutPos__9daPy_py_cFRC4cXyz
  */
-void daPy_py_c::setForcePutPos(cXyz const& param_0) {
+extern "C" void setForcePutPos__9daPy_py_cFRC4cXyz() {
     /* empty function */
 }
 
 /* 801416CC-801416D4 13C00C 0008+00 1/0 0/0 0/0 .text            checkPlayerNoDraw__9daPy_py_cFv */
-u32 daPy_py_c::checkPlayerNoDraw() {
+extern "C" bool checkPlayerNoDraw__9daPy_py_cFv() {
     return false;
 }
 
 /* 801416D4-801416DC 13C014 0008+00 2/0 0/0 0/0 .text            checkRopeTag__9daPy_py_cFv */
-bool daPy_py_c::checkRopeTag() {
+extern "C" bool checkRopeTag__9daPy_py_cFv() {
     return false;
 }
 
 /* 801416DC-801416E0 13C01C 0004+00 1/0 0/0 0/0 .text            voiceStart__9daPy_py_cFUl */
-void daPy_py_c::voiceStart(u32 param_0) {
+extern "C" void voiceStart__9daPy_py_cFUl() {
     /* empty function */
 }
 
 /* 801416E0-801416E4 13C020 0004+00 1/0 0/0 0/0 .text            seStartOnlyReverb__9daPy_py_cFUl */
-void daPy_py_c::seStartOnlyReverb(u32 param_0) {
+extern "C" void seStartOnlyReverb__9daPy_py_cFUl() {
     /* empty function */
 }
 
 /* 801416E4-801416E8 13C024 0004+00 1/0 0/0 0/0 .text seStartOnlyReverbLevel__9daPy_py_cFUl */
-void daPy_py_c::seStartOnlyReverbLevel(u32 param_0) {
+extern "C" void seStartOnlyReverbLevel__9daPy_py_cFUl() {
     /* empty function */
 }
 
 /* 801416E8-801416EC 13C028 0004+00 1/0 0/0 0/0 .text            setOutPower__9daPy_py_cFfsi */
-void daPy_py_c::setOutPower(f32 param_0, s16 param_1, int param_2) {
+extern "C" void setOutPower__9daPy_py_cFfsi() {
     /* empty function */
 }
 
 /* 801416EC-801416F0 13C02C 0004+00 1/0 0/0 0/0 .text
  * setGrabCollisionOffset__9daPy_py_cFffP13cBgS_PolyInfo        */
-void daPy_py_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* param_2) {
+extern "C" void setGrabCollisionOffset__9daPy_py_cFffP13cBgS_PolyInfo() {
     /* empty function */
 }
 
 /* 801416F0-801416F4 13C030 0004+00 2/0 0/0 0/0 .text            onMagneGrab__9daPy_py_cFff */
-void daPy_py_c::onMagneGrab(f32 param_0, f32 param_1) {
+extern "C" void onMagneGrab__9daPy_py_cFff() {
     /* empty function */
 }
 
 /* 801416F4-801416FC 13C034 0008+00 1/0 0/0 0/0 .text            getModelJointMtx__9daPy_py_cFUs */
-MtxP daPy_py_c::getModelJointMtx(u16 param_0) {
+extern "C" bool getModelJointMtx__9daPy_py_cFUs() {
     return NULL;
 }
 
 /* 801416FC-80141704 13C03C 0008+00 1/0 0/0 0/0 .text            getHeadMtx__9daPy_py_cFv */
-MtxP daPy_py_c::getHeadMtx() {
+extern "C" bool getHeadMtx__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141704-8014170C 13C044 0008+00 1/0 0/0 0/0 .text setHookshotCarryOffset__9daPy_py_cFUiPC4cXyz
  */
-bool daPy_py_c::setHookshotCarryOffset(unsigned int param_0, cXyz const* param_1) {
+extern "C" bool setHookshotCarryOffset__9daPy_py_cFUiPC4cXyz() {
     return false;
 }
 
 /* 8014170C-80141714 13C04C 0008+00 1/0 0/0 0/0 .text            checkIronBallReturn__9daPy_py_cCFv
  */
-bool daPy_py_c::checkIronBallReturn() const {
+extern "C" bool checkIronBallReturn__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141714-8014171C 13C054 0008+00 1/0 0/0 0/0 .text checkIronBallGroundStop__9daPy_py_cCFv */
-bool daPy_py_c::checkIronBallGroundStop() const {
+extern "C" bool checkIronBallGroundStop__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014171C-80141724 13C05C 0008+00 1/0 0/0 0/0 .text
  * checkSingleBoarBattleSecondBowReady__9daPy_py_cCFv           */
-BOOL daPy_py_c::checkSingleBoarBattleSecondBowReady() const {
+extern "C" bool checkSingleBoarBattleSecondBowReady__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141724-8014172C 13C064 0008+00 2/0 0/0 0/0 .text checkPointSubWindowMode__9daPy_py_cCFv */
-bool daPy_py_c::checkPointSubWindowMode() const {
+extern "C" bool checkPointSubWindowMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014172C-80141730 13C06C 0004+00 1/0 0/0 0/0 .text            setClothesChange__9daPy_py_cFi */
-void daPy_py_c::setClothesChange(int param_0) {
+extern "C" void setClothesChange__9daPy_py_cFi() {
     /* empty function */
 }
 
 /* 80141730-80141734 13C070 0004+00 1/0 0/0 0/0 .text setPlayerPosAndAngle__9daPy_py_cFPA4_f */
-void daPy_py_c::setPlayerPosAndAngle(f32 (*param_0)[4]) {
+extern "C" void setPlayerPosAndAngle__9daPy_py_cFPA4_f() {
     /* empty function */
 }
 
 /* 80141734-80141738 13C074 0004+00 1/0 0/0 0/0 .text
  * setPlayerPosAndAngle__9daPy_py_cFPC4cXyzPC5csXyz             */
-void daPy_py_c::setPlayerPosAndAngle(cXyz const* param_0, csXyz const* param_1) {
+extern "C" void setPlayerPosAndAngle__9daPy_py_cFPC4cXyzPC5csXyz() {
     /* empty function */
 }
 
 /* 80141738-8014173C 13C078 0004+00 1/0 0/0 0/0 .text setPlayerPosAndAngle__9daPy_py_cFPC4cXyzsi
  */
-void daPy_py_c::setPlayerPosAndAngle(cXyz const* param_0, s16 param_1, int param_2) {
+extern "C" void setPlayerPosAndAngle__9daPy_py_cFPC4cXyzsi() {
     /* empty function */
 }
 
 /* 8014173C-80141744 13C07C 0008+00 1/0 0/0 0/0 .text            setThrowDamage__9daPy_py_cFsffiii
  */
-bool daPy_py_c::setThrowDamage(s16 param_0, f32 param_1, f32 param_2, int param_3, int param_4,
-                               int param_5) {
+extern "C" bool setThrowDamage__9daPy_py_cFsffiii() {
     return false;
 }
 
 /* 80141744-8014174C 13C084 0008+00 1/0 0/0 0/0 .text            checkSetNpcTks__9daPy_py_cFP4cXyzii
  */
-bool daPy_py_c::checkSetNpcTks(cXyz* param_0, int param_1, int param_2) {
+extern "C" bool checkSetNpcTks__9daPy_py_cFP4cXyzii() {
     return false;
 }
 
 /* 8014174C-80141754 13C08C 0008+00 1/0 0/0 0/0 .text            setRollJump__9daPy_py_cFffs */
-int daPy_py_c::setRollJump(f32 param_0, f32 param_1, s16 param_2) {
+extern "C" bool setRollJump__9daPy_py_cFffs() {
     return 0;
 }
 
 /* 80141754-80141758 13C094 0004+00 1/0 0/0 0/0 .text playerStartCollisionSE__9daPy_py_cFUlUl */
-void daPy_py_c::playerStartCollisionSE(u32 param_0, u32 param_1) {
+extern "C" void playerStartCollisionSE__9daPy_py_cFUlUl() {
     /* empty function */
 }
 
 /* 80141758-8014175C 13C098 0004+00 2/0 0/0 0/0 .text changeTextureAnime__9daPy_py_cFUsUsi */
-void daPy_py_c::changeTextureAnime(u16 param_0, u16 param_1, int param_2) {
+extern "C" void changeTextureAnime__9daPy_py_cFUsUsi() {
     /* empty function */
 }
 
 /* 8014175C-80141760 13C09C 0004+00 2/0 0/0 0/0 .text cancelChangeTextureAnime__9daPy_py_cFv */
-void daPy_py_c::cancelChangeTextureAnime() {
+extern "C" void cancelChangeTextureAnime__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141760-80141764 13C0A0 0004+00 1/0 0/0 0/0 .text cancelDungeonWarpReadyNeck__9daPy_py_cFv */
-void daPy_py_c::cancelDungeonWarpReadyNeck() {
+extern "C" void cancelDungeonWarpReadyNeck__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141764-80141768 13C0A4 0004+00 1/0 0/0 0/0 .text
  * onSceneChangeArea__9daPy_py_cFUcUcP10fopAc_ac_c              */
-void daPy_py_c::onSceneChangeArea(u8 param_0, u8 param_1, fopAc_ac_c* param_2) {
+extern "C" void onSceneChangeArea__9daPy_py_cFUcUcP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 80141768-8014176C 13C0A8 0004+00 1/0 0/0 0/0 .text
  * onSceneChangeAreaJump__9daPy_py_cFUcUcP10fopAc_ac_c          */
-void daPy_py_c::onSceneChangeAreaJump(u8 param_0, u8 param_1, fopAc_ac_c* param_2) {
+extern "C" void onSceneChangeAreaJump__9daPy_py_cFUcUcP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 8014176C-80141770 13C0AC 0004+00 1/0 0/0 0/0 .text            onSceneChangeDead__9daPy_py_cFUci
  */
-void daPy_py_c::onSceneChangeDead(u8 param_0, int param_1) {
+extern "C" void onSceneChangeDead__9daPy_py_cFUci() {
     /* empty function */
 }
 
 /* 80141770-80141778 13C0B0 0008+00 1/0 0/0 0/0 .text            getSpinnerActor__9daPy_py_cFv */
-daSpinner_c* daPy_py_c::getSpinnerActor() {
+extern "C" bool getSpinnerActor__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141778-80141780 13C0B8 0008+00 1/0 0/0 0/0 .text checkHorseRideNotReady__9daPy_py_cCFv */
-BOOL daPy_py_c::checkHorseRideNotReady() const {
+extern "C" bool checkHorseRideNotReady__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141780-80141788 13C0C0 0008+00 1/0 0/0 0/0 .text            checkArrowChargeEnd__9daPy_py_cCFv
  */
-bool daPy_py_c::checkArrowChargeEnd() const {
+extern "C" bool checkArrowChargeEnd__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141788-80141790 13C0C8 0008+00 1/0 0/0 0/0 .text            getSearchBallScale__9daPy_py_cCFv
  */
-f32 daPy_py_c::getSearchBallScale() const {
+extern "C" f32 getSearchBallScale__9daPy_py_cCFv() {
     return FLOAT_LABEL(lit_6108);
 }
 
 /* 80141790-80141798 13C0D0 0008+00 1/0 0/0 0/0 .text            checkFastShotTime__9daPy_py_cFv */
-s16 daPy_py_c::checkFastShotTime() {
+extern "C" bool checkFastShotTime__9daPy_py_cFv() {
     return 0;
 }
 
 /* 80141798-801417A0 13C0D8 0008+00 1/0 0/0 0/0 .text            checkNoEquipItem__9daPy_py_cCFv */
-bool daPy_py_c::checkNoEquipItem() const {
+extern "C" bool checkNoEquipItem__9daPy_py_cCFv() {
     return true;
 }
 
 /* 801417A0-801417A8 13C0E0 0008+00 2/0 0/0 0/0 .text            checkFireMaterial__9daPy_py_cCFv */
-bool daPy_py_c::checkFireMaterial() const {
+extern "C" bool checkFireMaterial__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801417A8-801417B0 13C0E8 0008+00 1/0 0/0 0/0 .text            checkKandelaarSwing__9daPy_py_cCFi
  */
-bool daPy_py_c::checkKandelaarSwing(int param_0) const {
+extern "C" bool checkKandelaarSwing__9daPy_py_cCFi() {
     return false;
 }
 
 /* 801417B0-801417B8 13C0F0 0008+00 1/0 0/0 0/0 .text getBoardCutTurnOffsetAngleY__9daPy_py_cCFv
  */
-s16 daPy_py_c::getBoardCutTurnOffsetAngleY() const {
+extern "C" bool getBoardCutTurnOffsetAngleY__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 801417B8-801417C0 13C0F8 0008+00 2/0 0/0 0/0 .text            getMagneHitPos__9daPy_py_cFv */
-cXyz* daPy_py_c::getMagneHitPos() {
-    return &mSwordTopPos;
+extern "C" cXyz* getMagneHitPos__9daPy_py_cFv(daPy_py_c* this_) {
+    return &this_->mSwordTopPos;
 }
 
 /* 801417C0-801417C8 13C100 0008+00 1/0 0/0 0/0 .text            getMagneBootsTopVec__9daPy_py_cFv
  */
-cXyz* daPy_py_c::getMagneBootsTopVec() {
-    return &current.pos;
+extern "C" cXyz* getMagneBootsTopVec__9daPy_py_cFv(daPy_py_c* this_) {
+    return &this_->current.pos;
 }
 
 /* 801417C8-801417D0 13C108 0008+00 1/0 0/0 0/0 .text            checkUseKandelaar__9daPy_py_cFi */
-bool daPy_py_c::checkUseKandelaar(int param_0) {
+extern "C" bool checkUseKandelaar__9daPy_py_cFi() {
     return false;
 }
 
 /* 801417D0-801417D4 13C110 0004+00 1/0 0/0 0/0 .text setDkCaught__9daPy_py_cFP10fopAc_ac_c */
-void daPy_py_c::setDkCaught(fopAc_ac_c* param_0) {
+extern "C" void setDkCaught__9daPy_py_cFP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 801417D4-801417D8 13C114 0004+00 1/0 0/0 0/0 .text onPressedDamage__9daPy_py_cFRC4cXyzs */
-void daPy_py_c::onPressedDamage(cXyz const& param_0, s16 param_1) {
+extern "C" void onPressedDamage__9daPy_py_cFRC4cXyzs() {
     /* empty function */
 }
 
 /* 801417D8-801417E0 13C118 0008+00 1/0 0/0 0/0 .text checkPriActorOwn__9daPy_py_cCFPC10fopAc_ac_c
  */
-bool daPy_py_c::checkPriActorOwn(fopAc_ac_c const* param_0) const {
+extern "C" bool checkPriActorOwn__9daPy_py_cCFPC10fopAc_ac_c() {
     return false;
 }
 
 /* 801417E0-801417E8 13C120 0008+00 1/0 0/0 0/0 .text
  * onWolfEnemyBiteAll__9daPy_py_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2 */
-bool daPy_py_c::onWolfEnemyBiteAll(fopAc_ac_c* param_0, daPy_py_c::daPy_FLG2 param_1) {
+extern "C" bool onWolfEnemyBiteAll__9daPy_py_cFP10fopAc_ac_cQ29daPy_py_c9daPy_FLG2() {
     return false;
 }
 
 /* 801417E8-801417F0 13C128 0008+00 1/0 0/0 0/0 .text
  * checkWolfEnemyBiteAllOwn__9daPy_py_cCFPC10fopAc_ac_c         */
-bool daPy_py_c::checkWolfEnemyBiteAllOwn(fopAc_ac_c const* param_0) const {
+extern "C" bool checkWolfEnemyBiteAllOwn__9daPy_py_cCFPC10fopAc_ac_c() {
     return false;
 }
 
 /* 801417F0-801417F4 13C130 0004+00 1/0 0/0 0/0 .text setWolfEnemyHangBiteAngle__9daPy_py_cFs */
-void daPy_py_c::setWolfEnemyHangBiteAngle(s16 param_0) {
+extern "C" void setWolfEnemyHangBiteAngle__9daPy_py_cFs() {
     /* empty function */
 }
 
 /* 801417F4-801417F8 13C134 0004+00 1/0 0/0 0/0 .text            setKandelaarMtx__9daPy_py_cFPA4_fii
  */
-void daPy_py_c::setKandelaarMtx(f32 (*param_0)[4], int param_1, int param_2) {
+extern "C" void setKandelaarMtx__9daPy_py_cFPA4_fii() {
     /* empty function */
 }
 
 /* 801417F8-80141800 13C138 0008+00 1/0 0/0 0/0 .text getStickAngleFromPlayerShape__9daPy_py_cCFPs
  */
-bool daPy_py_c::getStickAngleFromPlayerShape(s16* param_0) const {
+extern "C" bool getStickAngleFromPlayerShape__9daPy_py_cCFPs() {
     return false;
 }
 
 /* 80141800-80141808 13C140 0008+00 1/0 0/0 0/0 .text            checkSpinnerPathMove__9daPy_py_cFv
  */
-bool daPy_py_c::checkSpinnerPathMove() {
+extern "C" bool checkSpinnerPathMove__9daPy_py_cFv() {
     return false;
 }
 
 /* 80141808-80141810 13C148 0008+00 1/0 0/0 0/0 .text checkSpinnerTriggerAttack__9daPy_py_cFv */
-bool daPy_py_c::checkSpinnerTriggerAttack() {
+extern "C" bool checkSpinnerTriggerAttack__9daPy_py_cFv() {
     return false;
 }
 
 /* 80141810-80141814 13C150 0004+00 1/0 0/0 0/0 .text onSpinnerPathForceRemove__9daPy_py_cFv */
-void daPy_py_c::onSpinnerPathForceRemove() {
+extern "C" void onSpinnerPathForceRemove__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141814-8014181C 13C154 0008+00 1/0 0/0 0/0 .text            getIronBallBgHit__9daPy_py_cCFv */
-s16 daPy_py_c::getIronBallBgHit() const {
+extern "C" bool getIronBallBgHit__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 8014181C-80141824 13C15C 0008+00 1/0 0/0 0/0 .text            getIronBallCenterPos__9daPy_py_cFv
  */
-cXyz* daPy_py_c::getIronBallCenterPos() {
+extern "C" bool getIronBallCenterPos__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141824-8014182C 13C164 0008+00 1/0 0/0 0/0 .text checkCanoeFishingGetLeft__9daPy_py_cCFv */
-bool daPy_py_c::checkCanoeFishingGetLeft() const {
+extern "C" bool checkCanoeFishingGetLeft__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014182C-80141834 13C16C 0008+00 1/0 0/0 0/0 .text checkCanoeFishingGetRight__9daPy_py_cCFv */
-bool daPy_py_c::checkCanoeFishingGetRight() const {
+extern "C" bool checkCanoeFishingGetRight__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141834-8014183C 13C174 0008+00 1/0 0/0 0/0 .text            checkBeeChildDrink__9daPy_py_cCFv
  */
-u8 daPy_py_c::checkBeeChildDrink() const {
+extern "C" bool checkBeeChildDrink__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014183C-80141840 13C17C 0004+00 1/0 0/0 0/0 .text            skipPortalObjWarp__9daPy_py_cFv */
-void daPy_py_c::skipPortalObjWarp() {
+extern "C" void skipPortalObjWarp__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141840-80141848 13C180 0008+00 1/0 0/0 0/0 .text checkTreasureRupeeReturn__9daPy_py_cCFi */
-BOOL daPy_py_c::checkTreasureRupeeReturn(int param_0) const {
+extern "C" bool checkTreasureRupeeReturn__9daPy_py_cCFi() {
     return false;
 }
 
 /* 80141848-8014184C 13C188 0004+00 1/0 0/0 0/0 .text setSumouReady__9daPy_py_cFP10fopAc_ac_c */
-void daPy_py_c::setSumouReady(fopAc_ac_c* param_0) {
+extern "C" void setSumouReady__9daPy_py_cFP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 8014184C-80141854 13C18C 0008+00 1/0 0/0 0/0 .text checkAcceptDungeonWarpAlink__9daPy_py_cFi */
-bool daPy_py_c::checkAcceptDungeonWarpAlink(int param_0) {
+extern "C" bool checkAcceptDungeonWarpAlink__9daPy_py_cFi() {
     return false;
 }
 
 /* 80141854-8014185C 13C194 0008+00 1/0 0/0 0/0 .text            getSumouCounter__9daPy_py_cCFv */
-s16 daPy_py_c::getSumouCounter() const {
+extern "C" bool getSumouCounter__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 8014185C-80141864 13C19C 0008+00 1/0 0/0 0/0 .text            checkSumouWithstand__9daPy_py_cCFv
  */
-s16 daPy_py_c::checkSumouWithstand() const {
+extern "C" bool checkSumouWithstand__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 80141864-80141868 13C1A4 0004+00 1/0 0/0 0/0 .text            cancelGoronThrowEvent__9daPy_py_cFv
  */
-void daPy_py_c::cancelGoronThrowEvent() {
+extern "C" void cancelGoronThrowEvent__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141868-8014186C 13C1A8 0004+00 1/0 0/0 0/0 .text setSumouGraspCancelCount__9daPy_py_cFi */
-void daPy_py_c::setSumouGraspCancelCount(int param_0) {
+extern "C" void setSumouGraspCancelCount__9daPy_py_cFi() {
     /* empty function */
 }
 
 /* 8014186C-80141870 13C1AC 0004+00 1/0 0/0 0/0 .text setSumouPushBackDirection__9daPy_py_cFs */
-void daPy_py_c::setSumouPushBackDirection(s16 param_0) {
+extern "C" void setSumouPushBackDirection__9daPy_py_cFs() {
     /* empty function */
 }
 
 /* 80141870-80141874 13C1B0 0004+00 1/0 0/0 0/0 .text            setSumouLoseHeadUp__9daPy_py_cFv */
-void daPy_py_c::setSumouLoseHeadUp() {
+extern "C" void setSumouLoseHeadUp__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 80141874-8014187C 13C1B4 0008+00 1/0 0/0 0/0 .text getGiantPuzzleAimAngle__9daPy_py_cCFv */
-s16 daPy_py_c::getGiantPuzzleAimAngle() const {
-    return shape_angle.y;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getGiantPuzzleAimAngle__9daPy_py_cCFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getGiantPuzzleAimAngle__9daPy_py_cCFv.s"
 }
+#pragma pop
 
 /* 8014187C-80141880 13C1BC 0004+00 1/0 0/0 0/0 .text setGoronSideMove__9daPy_py_cFP10fopAc_ac_c
  */
-void daPy_py_c::setGoronSideMove(fopAc_ac_c* param_0) {
+extern "C" void setGoronSideMove__9daPy_py_cFP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 80141880-80141884 13C1C0 0004+00 1/0 0/0 0/0 .text setCargoCarry__9daPy_py_cFP10fopAc_ac_c */
-void daPy_py_c::setCargoCarry(fopAc_ac_c* param_0) {
+extern "C" void setCargoCarry__9daPy_py_cFP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 80141884-8014188C 13C1C4 0008+00 2/0 0/0 0/0 .text            getDpdFarFlg__9daPy_py_cCFv */
-bool daPy_py_c::getDpdFarFlg() const {
+extern "C" bool getDpdFarFlg__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014188C-80141894 13C1CC 0008+00 1/0 0/0 0/0 .text            getHookshotTopPos__9daPy_py_cFv */
-cXyz* daPy_py_c::getHookshotTopPos() {
+extern "C" bool getHookshotTopPos__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141894-8014189C 13C1D4 0008+00 1/0 0/0 0/0 .text checkHookshotReturnMode__9daPy_py_cCFv */
-bool daPy_py_c::checkHookshotReturnMode() const {
+extern "C" bool checkHookshotReturnMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014189C-801418A4 13C1DC 0008+00 1/0 0/0 0/0 .text checkHookshotShootReturnMode__9daPy_py_cCFv
  */
-bool daPy_py_c::checkHookshotShootReturnMode() const {
+extern "C" bool checkHookshotShootReturnMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418A4-801418AC 13C1E4 0008+00 1/0 0/0 0/0 .text            checkOctaIealHang__9daPy_py_cCFv */
-bool daPy_py_c::checkOctaIealHang() const {
+extern "C" bool checkOctaIealHang__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418AC-801418B0 13C1EC 0004+00 1/0 0/0 0/0 .text            cancelOctaIealHang__9daPy_py_cFv */
-void daPy_py_c::cancelOctaIealHang() {
+extern "C" void cancelOctaIealHang__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 801418B0-801418B4 13C1F0 0004+00 1/0 0/0 0/0 .text cancelDragonHangBackJump__9daPy_py_cFv */
-void daPy_py_c::cancelDragonHangBackJump() {
+extern "C" void cancelDragonHangBackJump__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 801418B4-801418B8 13C1F4 0004+00 1/0 0/0 0/0 .text            setOctaIealWildHang__9daPy_py_cFv
  */
-void daPy_py_c::setOctaIealWildHang() {
+extern "C" void setOctaIealWildHang__9daPy_py_cFv() {
     /* empty function */
 }
 
 /* 801418B8-801418C0 13C1F8 0008+00 1/0 0/0 0/0 .text            checkDragonHangRide__9daPy_py_cCFv
  */
-bool daPy_py_c::checkDragonHangRide() const {
+extern "C" bool checkDragonHangRide__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418C0-801418C4 13C200 0004+00 1/0 0/0 0/0 .text changeDragonActor__9daPy_py_cFP10fopAc_ac_c
  */
-void daPy_py_c::changeDragonActor(fopAc_ac_c* param_0) {
+extern "C" void changeDragonActor__9daPy_py_cFP10fopAc_ac_c() {
     /* empty function */
 }
 
 /* 801418C4-801418CC 13C204 0008+00 1/0 0/0 0/0 .text getClothesChangeWaitTimer__9daPy_py_cCFv */
-u8 daPy_py_c::getClothesChangeWaitTimer() const {
+extern "C" bool getClothesChangeWaitTimer__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 801418CC-801418D4 13C20C 0008+00 1/0 0/0 0/0 .text getShieldChangeWaitTimer__9daPy_py_cCFv */
-u8 daPy_py_c::getShieldChangeWaitTimer() const {
+extern "C" bool getShieldChangeWaitTimer__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 801418D4-801418DC 13C214 0008+00 1/0 0/0 0/0 .text getSwordChangeWaitTimer__9daPy_py_cCFv */
-u8 daPy_py_c::getSwordChangeWaitTimer() const {
+extern "C" bool getSwordChangeWaitTimer__9daPy_py_cCFv() {
     return 0;
 }
 
 /* 801418DC-801418E4 13C21C 0008+00 1/0 0/0 0/0 .text            checkMetamorphose__9daPy_py_cCFv */
-BOOL daPy_py_c::checkMetamorphose() const {
+extern "C" bool checkMetamorphose__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418E4-801418EC 13C224 0008+00 1/0 0/0 0/0 .text checkWolfDownAttackPullOut__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfDownAttackPullOut() const {
+extern "C" bool checkWolfDownAttackPullOut__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418EC-801418F4 13C22C 0008+00 1/0 0/0 0/0 .text checkBootsOrArmorHeavy__9daPy_py_cCFv */
-BOOL daPy_py_c::checkBootsOrArmorHeavy() const {
+extern "C" bool checkBootsOrArmorHeavy__9daPy_py_cCFv() {
     return false;
 }
 
 /* 801418F4-801418FC 13C234 0008+00 1/0 0/0 0/0 .text getBottleOpenAppearItem__9daPy_py_cCFv */
-s32 daPy_py_c::getBottleOpenAppearItem() const {
+extern "C" s32 getBottleOpenAppearItem__9daPy_py_cCFv() {
     return -1;
 }
 
 /* 801418FC-80141904 13C23C 0008+00 1/0 0/0 0/0 .text            checkItemSwordEquip__9daPy_py_cCFv
  */
-bool daPy_py_c::checkItemSwordEquip() const {
+extern "C" bool checkItemSwordEquip__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141904-8014190C 13C244 0008+00 1/0 0/0 0/0 .text            getSinkShapeOffset__9daPy_py_cCFv
  */
-f32 daPy_py_c::getSinkShapeOffset() const {
+extern "C" f32 getSinkShapeOffset__9daPy_py_cCFv() {
     return FLOAT_LABEL(lit_6108);
 }
 
 /* 8014190C-80141914 13C24C 0008+00 1/0 0/0 0/0 .text            checkSinkDead__9daPy_py_cCFv */
-BOOL daPy_py_c::checkSinkDead() const {
+extern "C" bool checkSinkDead__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141914-8014191C 13C254 0008+00 1/0 0/0 0/0 .text            checkHorseStart__9daPy_py_cFv */
-BOOL daPy_py_c::checkHorseStart() {
+extern "C" bool checkHorseStart__9daPy_py_cFv() {
     return false;
 }
 
 /* 8014191C-80141924 13C25C 0008+00 1/0 0/0 0/0 .text            getWolfHowlMgrP__9daPy_py_cFv */
-Z2WolfHowlMgr* daPy_py_c::getWolfHowlMgrP() {
+extern "C" bool getWolfHowlMgrP__9daPy_py_cFv() {
     return NULL;
 }
 
 /* 80141924-8014192C 13C264 0008+00 1/0 0/0 0/0 .text checkWolfHowlSuccessAnime__9daPy_py_cCFv */
-BOOL daPy_py_c::checkWolfHowlSuccessAnime() const {
+extern "C" bool checkWolfHowlSuccessAnime__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014192C-80141934 13C26C 0008+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daPy_py_cFv */
-BOOL daPy_py_c::checkCopyRodTopUse() {
+extern "C" bool checkCopyRodTopUse__9daPy_py_cFv() {
     return false;
 }
 
 /* 80141934-8014193C 13C274 0008+00 1/0 0/0 0/0 .text            checkCopyRodEquip__9daPy_py_cCFv */
-bool daPy_py_c::checkCopyRodEquip() const {
+extern "C" bool checkCopyRodEquip__9daPy_py_cCFv() {
     return false;
 }
 
 /* 8014193C-80141944 13C27C 0008+00 1/0 0/0 0/0 .text            checkCutJumpMode__9daPy_py_cCFv */
-BOOL daPy_py_c::checkCutJumpMode() const {
+extern "C" bool checkCutJumpMode__9daPy_py_cCFv() {
     return false;
 }
 
 /* 80141944-8014194C 13C284 0008+00 1/1 0/0 0/0 .text            getZeldaActor__9daHorse_cFv */
-fopAc_ac_c* daHorse_c::getZeldaActor() {
-    return mZeldaActorKeep.getActor();
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void getZeldaActor__9daHorse_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/getZeldaActor__9daHorse_cFv.s"
 }
+#pragma pop
 
 /* 8014194C-8014195C 13C28C 0010+00 1/1 0/0 0/0 .text            dComIfGp_getDoStatus__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm u8 dComIfGp_getDoStatus() {
+static asm u8 dComIfGp_getDoStatus__Fv() {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_getDoStatus__Fv.s"
 }
@@ -1351,21 +1404,26 @@ extern "C" asm void __ct__4cXyzFfff(f32 param_0, f32 param_1, f32 param_2) {
 #pragma pop
 
 /* 8014196C-80141988 13C2AC 001C+00 1/1 0/0 0/0 .text            dMeter2Info_offUseButton__Fi */
-static void dMeter2Info_offUseButton(int pButton) {
-    g_meter2_info.offUseButton(pButton);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void dMeter2Info_offUseButton__Fi() {
+    nofralloc
+#include "asm/d/a/d_a_alink/dMeter2Info_offUseButton__Fi.s"
 }
+#pragma pop
 
 /* 80141988-80141990 -00001 0008+00 0/0 0/0 0/0 .text            setLinkState__14Z2CreatureLinkFUc
  */
-void Z2CreatureLink::setLinkState(u8 pState) {
-    mLinkState = pState;
+extern "C" void setLinkState__14Z2CreatureLinkFUc(Z2CreatureLink* this_, u8 param_0) {
+    *(u8*)(((u8*)this_) + 192) /* this->field_0xc0 */ = (u8)(param_0);
 }
 
 /* 80141990-801419A0 13C2D0 0010+00 1/1 0/0 0/0 .text            dComIfGs_getRupee__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u16 dComIfGs_getRupee() {
+asm u16 dComIfGs_getRupee__Fv() {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGs_getRupee__Fv.s"
 }
@@ -1375,54 +1433,79 @@ asm u16 dComIfGs_getRupee() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dComIfGp_setItemRupeeCount(s32 param_0) {
+asm void dComIfGp_setItemRupeeCount__Fl(s32 param_0) {
     nofralloc
 #include "asm/d/a/d_a_alink/dComIfGp_setItemRupeeCount__Fl.s"
 }
 #pragma pop
 
 /* 801419B8-801419F4 13C2F8 003C+00 1/1 0/0 0/0 .text dMeter2Info_setFloatingMessage__FUssb */
-static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible) {
-    g_meter2_info.setFloatingMessage(pMessageID, pMessageTimer, pWakuVisible);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void dMeter2Info_setFloatingMessage__FUssb() {
+    nofralloc
+#include "asm/d/a/d_a_alink/dMeter2Info_setFloatingMessage__FUssb.s"
 }
+#pragma pop
 
 /* 801419F4-80141A04 13C334 0010+00 1/1 0/0 0/0 .text            onForcePanic__9daMidna_cFv */
-void daMidna_c::onForcePanic() {
-    onEndResetStateFlg0(ERFLG0_FORCE_PANIC);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void onForcePanic__9daMidna_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/onForcePanic__9daMidna_cFv.s"
 }
+#pragma pop
 
 /* 80141A04-80141A10 13C344 000C+00 1/1 0/0 0/0 .text checkForceNormalColor__9daMidna_cCFv */
-u32 daMidna_c::checkForceNormalColor() const {
-    return checkStateFlg1(FLG1_FORCE_NORMAL_COL);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void checkForceNormalColor__9daMidna_cCFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/checkForceNormalColor__9daMidna_cCFv.s"
 }
+#pragma pop
 
 /* 80141A10-80141A1C 13C350 000C+00 1/1 0/0 0/0 .text            checkForceTiredColor__9daMidna_cCFv
  */
-u32 daMidna_c::checkForceTiredColor() const {
-    return checkStateFlg1(FLG1_FORCE_TIRED_COL);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void checkForceTiredColor__9daMidna_cCFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/checkForceTiredColor__9daMidna_cCFv.s"
 }
+#pragma pop
 
 /* 80141A1C-80141A84 13C35C 0068+00 1/1 0/0 0/0 .text            checkMidnaTired__9daMidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool daMidna_c::checkMidnaTired() {
+extern "C" asm void checkMidnaTired__9daMidna_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/checkMidnaTired__9daMidna_cFv.s"
 }
 #pragma pop
 
 /* 80141A84-80141A94 13C3C4 0010+00 1/1 0/0 0/0 .text            onNoServiceWait__9daMidna_cFv */
-void daMidna_c::onNoServiceWait() {
-    onEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT);
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void onNoServiceWait__9daMidna_cFv() {
+    nofralloc
+#include "asm/d/a/d_a_alink/onNoServiceWait__9daMidna_cFv.s"
 }
+#pragma pop
 
 /* 80141A94-80141ACC 13C3D4 0038+00 1/1 0/0 0/0 .text            setControllActorData__8daCrod_cFv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daCrod_c::setControllActorData() {
+extern "C" asm void setControllActorData__8daCrod_cFv() {
     nofralloc
 #include "asm/d/a/d_a_alink/setControllActorData__8daCrod_cFv.s"
 }
@@ -1443,12 +1526,14 @@ extern "C" asm void func_80141ACC(void* _this, fopAc_ac_c const* param_0,
 #pragma pop
 
 /* 80141AE8-80141B04 13C428 001C+00 1/1 4/4 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-extern "C" int func_80141AE8(u8* pTimer) {
-    if (*pTimer != 0) {
-        *pTimer -= 1;
-    }
-    return *pTimer;
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm u8 func_80141AE8(u8*) {
+    nofralloc
+#include "asm/d/a/d_a_alink/func_80141AE8.s"
 }
+#pragma pop
 
 /* ############################################################################################## */
 /* 80453344-80453348 001944 0004+00 1/1 0/0 0/0 .sdata2          @77808 */

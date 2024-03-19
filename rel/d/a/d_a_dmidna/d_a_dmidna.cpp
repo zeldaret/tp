@@ -66,7 +66,7 @@ static int daDmidna_Delete(daDmidna_c* i_this) {
 void daDmidna_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
     mpModelMorf->modelCalc();
 }
 

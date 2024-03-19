@@ -522,7 +522,7 @@ extern dScnKy_env_light_c g_env_light;
 
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 
-inline dScnKy_env_light_c* i_dKy_getEnvlight() {
+inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
 

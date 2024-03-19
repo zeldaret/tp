@@ -159,7 +159,7 @@ void daAlink_c::setArmReelAnime() {
     mUpperFrameCtrl[2].setRate(FLOAT_LABEL(lit_6108));
     mNowAnmPackUpper[2].setRatio(lit_6040);
     field_0x2f97 = 8;
-    i_offNoResetFlg1(FLG1_UNK_8000);
+    offNoResetFlg1(FLG1_UNK_8000);
 }
 
 /* 800F4140-800F4490 0EEA80 0350+00 1/1 0/0 0/0 .text            setFishingWaitAction__9daAlink_cFv

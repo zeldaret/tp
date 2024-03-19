@@ -197,7 +197,7 @@ static int dScnPly_Execute(dScnPly_c* i_this) {
     dKy_itudemo_se();
     if (!dComIfGp_isPauseFlag()) {
         dDemo_c::update();
-        i_dComIfGp_getEvent().Step();
+        dComIfGp_getEvent().Step();
         dComIfGp_getAttention().Run();
     }
     return 1;
@@ -249,7 +249,7 @@ static int dScnPly_Delete(dScnPly_c* i_this) {
     dComIfG_Ccsp()->Dt();
     dStage_Delete();
 
-    i_dComIfGp_event_remove();
+    dComIfGp_event_remove();
 
     dComIfGp_particle_removeScene(0);
 
@@ -550,10 +550,10 @@ static int phase_2(dScnPly_c* i_this) {
         return cPhs_INIT_e;
     }
 
-    u8 particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo(),
+    u8 particle_no = dStage_stagInfo_GetParticleNo(dComIfGp_getStage()->getStagInfo(),
                                                    dComIfG_play_c::getLayerNo(0));
     if (particle_no == 255) {
-        particle_no = dStage_stagInfo_GetParticleNo(i_dComIfGp_getStage()->getStagInfo());
+        particle_no = dStage_stagInfo_GetParticleNo(dComIfGp_getStage()->getStagInfo());
     }
 
     dComIfGp_particle_readScene(particle_no, &i_this->sceneCommand);

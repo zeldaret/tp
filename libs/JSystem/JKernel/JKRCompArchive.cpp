@@ -49,7 +49,7 @@ JKRCompArchive::~JKRCompArchive() {
     }
 
     if (mExpandedSize != NULL) {
-        i_JKRFree(mExpandedSize);
+        JKRFree(mExpandedSize);
         mExpandedSize = NULL;
     }
 

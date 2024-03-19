@@ -1774,7 +1774,7 @@ int daNpcT_c::execute() {
     setCollision();
 
     if (!field_0xe2c) {
-        if ((field_0xe33 && i_dComIfGp_getEvent().i_isOrderOK()) || i_dComIfGp_event_runCheck() == 0) {
+        if ((field_0xe33 && dComIfGp_getEvent().isOrderOK()) || dComIfGp_event_runCheck() == 0) {
             evtOrder();
         }
     }
@@ -2111,7 +2111,7 @@ void daNpcT_c::setMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0xd78);
     mDoMtx_stack_c::scaleM(scale);
 
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((u32)this);
 
     mMcaMorfAnm[0]->onMorfNone();
@@ -2668,7 +2668,7 @@ asm void daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
 fopAc_ac_c* daNpcT_c::getShopItemTagP() {
     mFindCount = 0;
     mSrchName = 0x127;
-    i_fpcM_Search((fopAcIt_JudgeFunc)srchActor, (void*)this);
+    fpcM_Search((fopAcIt_JudgeFunc)srchActor, (void*)this);
 
     for (s32 i = 0; i < mFindCount; i++) {
         if ((fopAcM_GetParam(mFindActorPtrs[i]) & 0xf0000000) == 0xf0000000) {
@@ -2803,7 +2803,7 @@ asm void daNpcT_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz* para
 bool daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP) {
     bool ret = 0;
 
-    if (i_dComIfGp_getDoStatus() == 0x1c) {
+    if (dComIfGp_getDoStatus() == 0x1c) {
         if (daPy_getPlayerActorClass()->checkPriActorOwn(i_ActorP)) {
             for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {
                 if (dComIfGp_getAttention().ActionTarget(i) == i_ActorP &&
@@ -2856,7 +2856,7 @@ void daNpcT_offEvtBit(u32 i_idx) {
 
 /* 8014CAAC-8014CAEC 1473EC 0040+00 0/0 0/0 155/155 .text            daNpcT_chkEvtBit__FUl */
 BOOL daNpcT_chkEvtBit(u32 i_idx) {
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_idx]);
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_idx]);
 }
 
 /* 8014CAEC-8014CB2C 14742C 0040+00 0/0 0/0 26/26 .text            daNpcT_onTmpBit__FUl */
@@ -3556,7 +3556,7 @@ void daBaseNpc_c::setBtpAnm(J3DAnmTexPattern* param_0, J3DModelData* param_1, f3
 void daBaseNpc_c::attnSttsOn(int param_0, int param_1) {
     u32 tmp;
 
-    if (dComIfGp_getLinkPlayer()->i_checkWolf()) {
+    if (dComIfGp_getLinkPlayer()->checkWolf()) {
         if (param_1 != 0) {
             tmp = 10;
         } else {
@@ -3579,7 +3579,7 @@ void daBaseNpc_c::setParam() {
 /* 8014EFF4-8014F09C 149934 00A8+00 0/0 0/0 1/1 .text            orderEvent__11daBaseNpc_cFiPc */
 void daBaseNpc_c::orderEvent(int param_0, char* i_evtName) {
     if (i_evtName) {
-        mEvtIdx = i_dComIfGp_getEventManager().getEventIdx(this, i_evtName, -1);
+        mEvtIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, -1);
         fopAcM_orderOtherEventId(this, mEvtIdx, -1, -1, 0, 1);
     } else {
         if ((mUnk >= 0 && attention_info.flags == 10) && (eventInfo.mCondition |= 1, param_0 != 0))
@@ -3702,7 +3702,7 @@ void daBaseNpc_c::setMtx(int param_0) {
     mDoMtx_stack_c::ZXYrotM(field_0x91a);
     mDoMtx_stack_c::scaleM(scale);
 
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (param_0) {
         model->setUserArea((u32)this);
@@ -5772,7 +5772,7 @@ s16 daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
 
 /* 80155634-80155674 14FF74 0040+00 0/0 0/0 69/69 .text            daNpcF_chkEvtBit__FUl */
 BOOL daNpcF_chkEvtBit(u32 i_idx) {
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_idx]);
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_idx]);
 }
 
 /* 80155674-801556B4 14FFB4 0040+00 0/0 0/0 13/13 .text            daNpcF_onEvtBit__FUl */

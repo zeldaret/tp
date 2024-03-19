@@ -110,7 +110,7 @@ void JPTraceParticleCallBack4::draw(JPABaseEmitter* param_0, JPABaseParticle* pa
 
 /* 800182A8-80018328 012BE8 0080+00 0/0 0/0 22/22 .text            cDmrNowMidnaTalk__Fv */
 BOOL cDmrNowMidnaTalk() {
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass());
         if (actor) {
             if (fopAcM_GetName(actor) == PROC_MIDNA || fopAcM_GetName(actor) == PROC_Tag_Mhint ||

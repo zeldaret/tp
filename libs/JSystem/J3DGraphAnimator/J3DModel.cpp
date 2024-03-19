@@ -369,7 +369,7 @@ void J3DModel::calcMaterial() {
         }
 
         int jntNo = material->getJoint()->getJntNo();
-        material->calc(i_getAnmMtx(jntNo));
+        material->calc(getAnmMtx(jntNo));
     }
 }
 
@@ -384,7 +384,7 @@ void J3DModel::calcDiffTexMtx() {
     for (u16 i = 0; i < num; i++) {
         j3dSys.setMatPacket(getMatPacket(i));
         J3DMaterial* materialNode = getModelData()->getMaterialNodePointer(i);
-        materialNode->calcDiffTexMtx(i_getAnmMtx(materialNode->getJoint()->getJntNo()));
+        materialNode->calcDiffTexMtx(getAnmMtx(materialNode->getJoint()->getJntNo()));
     }
 
     num = getModelData()->getShapeNum();

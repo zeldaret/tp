@@ -105,7 +105,7 @@ static char* l_arcName = "H_Bombkoy";
 
 /* 80C1B878-80C1B938 000078 00C0+00 1/1 0/0 0/0 .text            create1st__16daObjHBombkoya_cFv */
 int daObjHBombkoya_c::create1st() {
-    if (i_fopAcM_isSwitch(this, getSw2No())) {
+    if (fopAcM_isSwitch(this, getSw2No())) {
         return cPhs_ERROR_e;
     }
 
@@ -134,7 +134,7 @@ int daObjHBombkoya_c::CreateHeap() {
 
     Mtx m;
     MTXIdentity(m);
-    mpModel->i_setBaseTRMtx(m);
+    mpModel->setBaseTRMtx(m);
     return 1;
 }
 
@@ -241,8 +241,8 @@ bool daObjHBombkoya_c::setParticle(u16* i_particleIDs, int i_particleMax,
 int daObjHBombkoya_c::Execute(Mtx** param_0) {
     *param_0 = &mBgMtx;
 
-    if (i_fopAcM_isSwitch(this, getSwNo())) {
-        if (i_fopAcM_isSwitch(this, getSw2No())) {
+    if (fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSw2No())) {
             mActive = false;
             fopAcM_delete(this);
         } else {
@@ -284,7 +284,7 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
                 Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_BOMB_HOUSE_BURN, &current.pos, 900, 0,
                                                      1.0f, 1.0f, -1.0f, -1.0f, 0);
             } else {
-                i_fopAcM_onSwitch(this, getSw2No());
+                fopAcM_onSwitch(this, getSw2No());
 
                 if (mTimer == 170) {
                     Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOMB_HOUSE_EXPLD, &current.pos, 0, 0,
@@ -353,7 +353,7 @@ int daObjHBombkoya_c::Execute(Mtx** param_0) {
 
 /* 80C1C098-80C1C16C 000898 00D4+00 1/0 0/0 0/0 .text            Draw__16daObjHBombkoya_cFv */
 int daObjHBombkoya_c::Draw() {
-    if (mActive && !i_fopAcM_isSwitch(this, getSw2No())) {
+    if (mActive && !fopAcM_isSwitch(this, getSw2No())) {
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 

@@ -84,7 +84,7 @@ static f32 const l_DATA[2] = { 800.0f, 0.0f };
 void daZraFreeze_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::XYZrotM(shape_angle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
 }
 
@@ -246,7 +246,7 @@ int daZraFreeze_c::Execute() {
                 if (mTwilight != 0 && daPy_py_c::checkNowWolfEyeUp()) {
                     cXyz delta = current.pos - daPy_getPlayerActorClass()->current.pos;
                     if (delta.absXZ() < l_DATA[0] && chkActorInScreen()) {
-                        mEventId = i_dComIfGp_getEventManager().getEventIdx(this, "zora_koori", 0xff);
+                        mEventId = dComIfGp_getEventManager().getEventIdx(this, "zora_koori", 0xff);
                         fopAcM_orderOtherEventId(this, mEventId, mMapToolId, 0xffff, 4, 1);
                         dComIfGs_onSwitch(field_0x5b2, fopAcM_GetRoomNo(this));
                         daPy_getPlayerActorClass()->onWolfEyeKeep();
@@ -255,7 +255,7 @@ int daZraFreeze_c::Execute() {
                     }
                 }
             } else {
-                if (i_dComIfGp_event_runCheck()) {
+                if (dComIfGp_event_runCheck()) {
                     if (eventInfo.i_checkCommandDemoAccrpt()) {
                         daPy_getPlayerActorClass()->onWolfEyeKeep();
                     } else if (field_0x5cf == 1) {

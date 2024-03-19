@@ -716,9 +716,9 @@ void dMeter2Draw_c::draw() {
 
 /* 80211BEC-80211E64 20C52C 0278+00 1/1 0/0 0/0 .text            initLife__13dMeter2Draw_cFv */
 void dMeter2Draw_c::initLife() {
-    if (i_dComIfGs_getLife() > dComIfGs_getMaxLifeGauge()) {
+    if (dComIfGs_getLife() > dComIfGs_getMaxLifeGauge()) {
         // "●●●●●●Heart Count adjust======>%d, %d\n"
-        OS_REPORT("●●●●●●ハートの数調整======>%d, %d\n", i_dComIfGs_getLife(),
+        OS_REPORT("●●●●●●ハートの数調整======>%d, %d\n", dComIfGs_getLife(),
                   dComIfGs_getMaxLifeGauge());
         dComIfGs_setLife(dComIfGs_getMaxLifeGauge());
     }
@@ -785,7 +785,7 @@ void dMeter2Draw_c::initLife() {
         var_f2 = g_drawHIO.mLifeTopPosY;
     }
 
-    drawLife(dComIfGs_getMaxLife(), i_dComIfGs_getLife(), g_drawHIO.mLifeGaugePosX + var_f1,
+    drawLife(dComIfGs_getMaxLife(), dComIfGs_getLife(), g_drawHIO.mLifeGaugePosX + var_f1,
              g_drawHIO.mLifeGaugePosY + var_f2);
     setAlphaLifeChange(true);
 }
@@ -955,7 +955,7 @@ void dMeter2Draw_c::initRupeeKey() {
     JUT_ASSERT(mpKeyParent != 0);
     mpKeyParent->setAlphaRate(0.0f);
 
-    drawRupee(i_dComIfGs_getRupee());
+    drawRupee(dComIfGs_getRupee());
     drawKey(dComIfGs_getKeyNum());
     setAlphaRupeeChange(true);
     setAlphaKeyChange(true);
@@ -1201,9 +1201,9 @@ void dMeter2Draw_c::initButton() {
 
     drawButtonXY(0, dComIfGp_getSelectItem(0), dComIfGp_getXStatus(), true, false);
     drawButtonXY(1, dComIfGp_getSelectItem(1), dComIfGp_getYStatus(), true, false);
-    drawButtonA(i_dComIfGp_getDoStatus(), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, false, false);
+    drawButtonA(dComIfGp_getDoStatus(), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, false, false);
     drawButtonB(dComIfGp_getAStatus(), true, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, false);
-    drawButtonR(dComIfGs_getCollectSmell(), i_dComIfGp_getRStatus(), true, false);
+    drawButtonR(dComIfGs_getCollectSmell(), dComIfGp_getRStatus(), true, false);
     drawButtonZ(dComIfGp_getZStatus());
     drawButton3D(dComIfGp_get3DStatus());
     drawButtonC(dComIfGp_getCStickStatus(), true);
@@ -2271,8 +2271,8 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
         }
     }
 
-    if (*mp_string != 0 && ((i_dComIfGp_getDoStatus() != dComIfGp_getAStatus() &&
-                             i_dComIfGp_getDoStatus() != dComIfGp_getAStatusForce()) ||
+    if (*mp_string != 0 && ((dComIfGp_getDoStatus() != dComIfGp_getAStatus() &&
+                             dComIfGp_getDoStatus() != dComIfGp_getAStatusForce()) ||
                             !isEmphasisA()))
     {
         mpTextA->show();
@@ -2283,7 +2283,7 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
 
     JUT_ASSERT(std::strlen(mp_string) < (64));
 
-    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+    if (daPy_getPlayerActorClass()->getSumouMode()) {
         mpTextA->show();
         mp_string = getActionString(0x15, 1, NULL);
 
@@ -2325,9 +2325,9 @@ void dMeter2Draw_c::drawButtonB(u8 i_action, bool param_1, f32 i_posX, f32 i_pos
     }
 
     if (*mp_string != 0 && i_action != 0 && i_action != 0x2E &&
-        ((i_dComIfGp_getDoStatus() == 0 ||
-          (i_dComIfGp_getDoStatus() != dComIfGp_getAStatus() &&
-           i_dComIfGp_getDoStatus() != dComIfGp_getAStatusForce())) ||
+        ((dComIfGp_getDoStatus() == 0 ||
+          (dComIfGp_getDoStatus() != dComIfGp_getAStatus() &&
+           dComIfGp_getDoStatus() != dComIfGp_getAStatusForce())) ||
          !isEmphasisB()))
     {
         mpTextB->show();
@@ -3159,8 +3159,8 @@ void dMeter2Draw_c::setButtonIconMidonaAlpha(u32 param_0) {
         bool var_r31 = 1;
 
         if (getCanoeFishing() ||
-            (!i_dComIfGs_isEventBit(0x0540) && !dMeter2Info_isUseButton(0x800)) ||
-            !i_dComIfGs_isEventBit(0x0C10) || i_dComIfGs_isEventBit(0x6140))
+            (!dComIfGs_isEventBit(0x0540) && !dMeter2Info_isUseButton(0x800)) ||
+            !dComIfGs_isEventBit(0x0C10) || dComIfGs_isEventBit(0x6140))
         {
             var_f29 = 0.0f;
         } else if (dComIfGp_isPauseFlag()) {
@@ -4034,7 +4034,7 @@ bool dMeter2Draw_c::getItemSubject() {
 /* 8021BCAC-8021BCC0 2165EC 0014+00 0/0 1/1 0/0 .text            getPlayerSubject__13dMeter2Draw_cFv
  */
 bool dMeter2Draw_c::getPlayerSubject() {
-    return i_dComIfGp_checkPlayerStatus0(0, 0x8000000);
+    return dComIfGp_checkPlayerStatus0(0, 0x8000000);
 }
 
 /* 8021BCC0-8021BDD0 216600 0110+00 2/2 2/2 0/0 .text            isButtonBShow__13dMeter2Draw_cFb */
@@ -4046,7 +4046,7 @@ bool dMeter2Draw_c::isButtonBShow(bool param_0) {
     if (dMeter2Info_isShopTalkFlag() || dMsgObject_getMsgObjectClass()->isHowlMessage() ||
         daPy_getPlayerActorClass()->checkHawkWait() || dMeter2Info_getItemExplainWindowStatus() ||
         (daPy_getPlayerActorClass()->checkGrassWhistle() && param_0) ||
-        (!dComIfGp_event_checkHind(4) && i_dComIfGp_event_runCheck()))
+        (!dComIfGp_event_checkHind(4) && dComIfGp_event_runCheck()))
     {
         return true;
     }

@@ -32,7 +32,7 @@ void daBkLeaf_c::initBaseMtx() {
 void daBkLeaf_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BB621C-80BB629C 0001BC 0080+00 1/1 0/0 0/0 .text            Create__10daBkLeaf_cFv */

@@ -71,7 +71,7 @@ void dNpcLib_lookat_c::init(J3DModel* i_mdl_p, int* param_1, csXyz* param_2, csX
             break;
         }
 
-        mDoMtx_stack_c::copy(i_mdl_p->i_getAnmMtx(a_jntNum));
+        mDoMtx_stack_c::copy(i_mdl_p->getAnmMtx(a_jntNum));
         mDoMtx_stack_c::multVecZero(&field_0x04[mCount]);
         field_0xbc[i] = a_jntNum;
         field_0x94[i] = param_2[i];

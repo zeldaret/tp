@@ -22,7 +22,7 @@ void daObjSmoke_c::setBaseMtx() {
 int daObjSmoke_c::Create() {
     initBaseMtx();
 
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &scale, 255, NULL,
                                           -1, NULL, NULL, NULL);
     }
@@ -41,7 +41,7 @@ int daObjSmoke_c::create() {
 
 /* 80CDD004-80CDD0B8 000204 00B4+00 1/1 0/0 0/0 .text            execute__12daObjSmoke_cFv */
 int daObjSmoke_c::execute() {
-    if (i_fopAcM_isSwitch(this, getSwbit()) && !mParticle) {
+    if (fopAcM_isSwitch(this, getSwbit()) && !mParticle) {
         mParticle = dComIfGp_particle_set(0x85A6, &current.pos, &current.angle, &scale, 255, NULL,
                                           -1, NULL, NULL, NULL);
     }

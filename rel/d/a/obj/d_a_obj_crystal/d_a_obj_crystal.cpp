@@ -25,8 +25,8 @@ void daObjCrystal_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
 
-    mpModel[0]->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mpModel[1]->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel[0]->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BD68F0-80BD68F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -51,7 +51,7 @@ int daObjCrystal_c::Create() {
     mpModel[0]->calc();
 
     if (mpEmitter != NULL) {
-        mpEmitter->setGlobalRTMatrix(mpModel[0]->i_getAnmMtx(mJointID));
+        mpEmitter->setGlobalRTMatrix(mpModel[0]->getAnmMtx(mJointID));
     }
 
     return 1;

@@ -43,7 +43,7 @@ static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_actor)
                 _this->mReboundTimer = 60;
             }
 
-            if (daPy_getPlayerActorClass()->i_checkEquipHeavyBoots()) {
+            if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
                 _this->field_0x5aa = 120;
             } else {
                 _this->field_0x5aa = 6;
@@ -170,7 +170,7 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
                            i_this->scale.x);
 
     i_this->mpBrk->play();
-    i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::scaleM(i_this->scale.x * 1.2f, i_this->scale.x, i_this->scale.x * 1.2f);
