@@ -3332,7 +3332,7 @@ void dMenu_Collect3D_c::draw() {
 }
 
 /* 801B6A30-801B6D30 1B1370 0300+00 2/2 0/0 0/0 .text setJ3D__17dMenu_Collect3D_cFPCcPCcPCc */
-// b issue and regalloc
+// regalloc
 #ifdef NONMATCHING
 void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const char* param_2) {
     JKRArchive* resArchive = dComIfGp_getCollectResArchive();
@@ -3349,10 +3349,7 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
         J3DAnmTransform* pbck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(
             resArchive->getResource('BCK ', param_1), J3DLOADER_UNK_FLAG0);
         mpBckAnm = new mDoExt_bckAnm();
-        if (mpBckAnm == NULL) {
-            return;
-        }
-        if (mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false) != 0) {
+        if (mpBckAnm == NULL || !mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
             return;
         }
     }
@@ -3361,8 +3358,8 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
             resArchive->getResource('BRK ', param_2), J3DLOADER_UNK_FLAG0);
         pbrk->searchUpdateMaterialID(modelData);
         mpBrkAnm = new mDoExt_brkAnm();
-        if (mpBrkAnm != NULL) {
-            mpBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1);
+        if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1)) {
+            return;
         }
     }
 }

@@ -5,87 +5,13 @@
 
 #include "d/meter/d_meter_map.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "d/a/d_a_player.h"
 #include "d/map/d_map.h"
 #include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "f_op/f_op_overlap_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
-
-//
-// Forward References:
-//
-
-extern "C" void isEnableDispMap__11dMeterMap_cFv();
-extern "C" void getMapDispSizeTypeNo__11dMeterMap_cFv();
-extern "C" void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv();
-extern "C" void getMapDispEdgeBottomY_Layout__11dMeterMap_cFv();
-extern "C" void isEventRunCheck__11dMeterMap_cFv();
-extern "C" void getMapDispEdgeLeftX_Layout__11dMeterMap_cFv();
-extern "C" void getMapDispEdgeTop__11dMeterMap_cFv();
-extern "C" bool getDispPosInside_OffsetX__11dMeterMap_cFv();
-extern "C" void getDispPosOutSide_OffsetX__11dMeterMap_cFv();
-extern "C" void setDispPosInsideFlg_SE_On__11dMeterMap_cFv();
-extern "C" void setDispPosOutsideFlg_SE_On__11dMeterMap_cFv();
-extern "C" void setMapAlpha__11dMeterMap_cFUc();
-extern "C" void isMapOpenCheck__11dMeterMap_cFv();
-extern "C" void __ct__11dMeterMap_cFP9J2DScreen();
-extern "C" void __dt__11dMeterMap_cFv();
-extern "C" void _create__11dMeterMap_cFP9J2DScreen();
-extern "C" void _delete__11dMeterMap_cFv();
-extern "C" void _move__11dMeterMap_cFUl();
-extern "C" void _draw__11dMeterMap_cFv();
-extern "C" void draw__11dMeterMap_cFv();
-extern "C" void ctrlShowMap__11dMeterMap_cFv();
-extern "C" void checkMoveStatus__11dMeterMap_cFv();
-extern "C" void isShow__11dMeterMap_cFUl();
-extern "C" void isFmapScreen__11dMeterMap_cFv();
-extern "C" void isDmapScreen__11dMeterMap_cFv();
-extern "C" void meter_map_move__11dMeterMap_cFUl();
-extern "C" void keyCheck__11dMeterMap_cFv();
-extern "C" extern char const* const d_meter_d_meter_map__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void fopOvlpM_IsDoingReq__Fv();
-extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void __ct__6dMap_cFiiii();
-extern "C" void _move__6dMap_cFffif();
-extern "C" void _draw__6dMap_cFv();
-extern "C" void dComIfGp_mapShow__Fv();
-extern "C" void dComIfGp_mapHide__Fv();
-extern "C" void dComIfGp_checkMapShow__Fv();
-extern "C" void isDungeonItem__12dSv_memBit_cCFi();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getMapPlayerPos__10dMapInfo_nFv();
-extern "C" void isExistMapPathData__8dMpath_cFv();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void dMw_LEFT_TRIGGER__Fv();
-extern "C" void dMw_RIGHT_TRIGGER__Fv();
-extern "C" void dMeter2Info_set2DVibration__Fv();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 8020D49C-8020D528 207DDC 008C+00 1/1 0/0 0/0 .text            isEnableDispMap__11dMeterMap_cFv */
 bool dMeterMap_c::isEnableDispMap() {
@@ -168,8 +94,6 @@ f32 dMeterMap_c::getMapDispEdgeBottomY_Layout() {
 }
 
 /* 8020D698-8020D72C 207FD8 0094+00 2/2 0/0 0/0 .text            isEventRunCheck__11dMeterMap_cFv */
-// missing gameinfo load
-#ifdef NONMATCHING
 bool dMeterMap_c::isEventRunCheck() {
     if (i_dComIfGp_event_runCheck()) {
         return true;
@@ -179,16 +103,6 @@ bool dMeterMap_c::isEventRunCheck() {
 
     return i_dComIfGp_event_runCheck() != field_0x30 ? 1 : 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMeterMap_c::isEventRunCheck() {
-    nofralloc
-#include "asm/d/meter/d_meter_map/isEventRunCheck__11dMeterMap_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8020D72C-8020D75C 20806C 0030+00 2/2 0/0 0/0 .text getMapDispEdgeLeftX_Layout__11dMeterMap_cFv
  */
@@ -540,8 +454,6 @@ u8 dMeterMap_c::checkMoveStatus() {
 }
 
 /* 8020E4C8-8020E620 208E08 0158+00 2/2 0/0 0/0 .text            isShow__11dMeterMap_cFUl */
-// extra gameinfo label load for dComIfGp_event_checkHind
-#ifdef NONMATCHING
 bool dMeterMap_c::isShow(u32 param_0) {
     if ((param_0 & 0x4000) || fopOvlpM_IsDoingReq() ||
         ((param_0 & 0x40) && dComIfGp_event_checkHind(0x100) &&
@@ -557,16 +469,6 @@ bool dMeterMap_c::isShow(u32 param_0) {
     }
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMeterMap_c::isShow(u32 param_0) {
-    nofralloc
-#include "asm/d/meter/d_meter_map/isShow__11dMeterMap_cFUl.s"
-}
-#pragma pop
-#endif
 
 /* 8020E620-8020E70C 208F60 00EC+00 3/3 0/0 0/0 .text            isFmapScreen__11dMeterMap_cFv */
 bool dMeterMap_c::isFmapScreen() {

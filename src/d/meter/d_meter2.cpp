@@ -22,223 +22,6 @@
 #include "f_op/f_op_msg_mng.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
-//
-// Forward References:
-//
-
-extern "C" void _create__9dMeter2_cFv();
-extern "C" void _execute__9dMeter2_cFv();
-extern "C" void _draw__9dMeter2_cFv();
-extern "C" void _delete__9dMeter2_cFv();
-extern "C" void emphasisButtonDelete__9dMeter2_cFv();
-extern "C" void setLifeZero__9dMeter2_cFv();
-extern "C" void checkStatus__9dMeter2_cFv();
-extern "C" void moveLife__9dMeter2_cFv();
-extern "C" void moveKantera__9dMeter2_cFv();
-extern "C" void moveOxygen__9dMeter2_cFv();
-extern "C" void moveLightDrop__9dMeter2_cFv();
-extern "C" void moveRupee__9dMeter2_cFv();
-extern "C" void moveKey__9dMeter2_cFv();
-extern "C" void moveButtonA__9dMeter2_cFv();
-extern "C" void moveButtonB__9dMeter2_cFv();
-extern "C" void moveButtonR__9dMeter2_cFv();
-extern "C" void moveButtonZ__9dMeter2_cFv();
-extern "C" void moveButton3D__9dMeter2_cFv();
-extern "C" void moveButtonC__9dMeter2_cFv();
-extern "C" void moveButtonS__9dMeter2_cFv();
-extern "C" void moveButtonXY__9dMeter2_cFv();
-extern "C" void moveButtonCross__9dMeter2_cFv();
-extern "C" void moveTouchSubMenu__9dMeter2_cFv();
-extern "C" void moveSubContents__9dMeter2_cFv();
-extern "C" void move2DContents__9dMeter2_cFv();
-extern "C" void checkSubContents__9dMeter2_cFv();
-extern "C" void check2DContents__9dMeter2_cFv();
-extern "C" void moveBombNum__9dMeter2_cFv();
-extern "C" void moveBottleNum__9dMeter2_cFv();
-extern "C" void moveArrowNum__9dMeter2_cFv();
-extern "C" void movePachinkoNum__9dMeter2_cFv();
-extern "C" void alphaAnimeLife__9dMeter2_cFv();
-extern "C" void alphaAnimeKantera__9dMeter2_cFv();
-extern "C" void alphaAnimeOxygen__9dMeter2_cFv();
-extern "C" void alphaAnimeLightDrop__9dMeter2_cFv();
-extern "C" void alphaAnimeRupee__9dMeter2_cFv();
-extern "C" void alphaAnimeKey__9dMeter2_cFv();
-extern "C" void alphaAnimeButton__9dMeter2_cFv();
-extern "C" void alphaAnimeButtonCross__9dMeter2_cFv();
-extern "C" void isShowLightDrop__9dMeter2_cFv();
-extern "C" void killSubContents__9dMeter2_cFUc();
-extern "C" void isKeyVisible__9dMeter2_cFv();
-extern "C" void isArrowEquip__9dMeter2_cFv();
-extern "C" void isPachinkoEquip__9dMeter2_cFv();
-extern "C" static void dMeter2_Draw__FP9dMeter2_c();
-extern "C" static void dMeter2_Execute__FP9dMeter2_c();
-extern "C" static bool dMeter2_IsDelete__FP9dMeter2_c();
-extern "C" static void dMeter2_Delete__FP9dMeter2_c();
-extern "C" static void dMeter2_Create__FP9msg_class();
-extern "C" extern char const* const d_meter_d_meter2__stringBase0;
-// extern "C" extern void* g_profile_METER2[10];
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void fopMsgM_setStageLayer__FPv();
-extern "C" void fopMsgM_setMessageID__FUi();
-extern "C" void fopMsgM_Create__FsPFPv_iPv();
-extern "C" void fopMsgM_createExpHeap__FUlP7JKRHeap();
-extern "C" void fopMsgM_destroyExpHeap__FP10JKRExpHeap();
-extern "C" void setItemBombNumCount__14dComIfG_play_cFUcs();
-extern "C" void getItemBombNumCount__14dComIfG_play_cFUc();
-extern "C" void clearItemBombNumCount__14dComIfG_play_cFUc();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void getTimerMode__14dComIfG_play_cFv();
-extern "C" void dComIfGs_setSelectItemIndex__FiUc();
-extern "C" void dComIfGs_setMixItemIndex__FiUc();
-extern "C" void dComIfGs_getSelectMixItemNoArrowIndex__Fi();
-extern "C" void dComIfGs_getMixItemIndex__Fi();
-extern "C" void dComIfGp_setSelectItem__Fi();
-extern "C" void dComIfGp_getSelectItem__Fi();
-extern "C" void dComIfGp_setHeapLockFlag__FUc();
-extern "C" void dComIfGp_offHeapLockFlag__Fi();
-extern "C" void dComIfGp_getSubHeap2D__Fi();
-extern "C" void dComIfGp_getSelectItemNum__Fi();
-extern "C" void dComIfGp_getSelectItemMaxNum__Fi();
-extern "C" void getSelectItemIndex__21dSv_player_status_a_cCFi();
-extern "C" void getRupeeMax__21dSv_player_status_a_cCFv();
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void setBombNum__24dSv_player_item_record_cFUcUc();
-extern "C" void getBombNum__24dSv_player_item_record_cCFUc();
-extern "C" void getBottleNum__24dSv_player_item_record_cCFUc();
-extern "C" void getBombNum__21dSv_player_item_max_cCFUc();
-extern "C" void onCollectCrystal__20dSv_player_collect_cFUc();
-extern "C" void isCollectCrystal__20dSv_player_collect_cCFUc();
-extern "C" void onCollectMirror__20dSv_player_collect_cFUc();
-extern "C" void isCollectMirror__20dSv_player_collect_cCFUc();
-extern "C" void getLightDropNum__16dSv_light_drop_cCFUc();
-extern "C" void isLightDropGetFlag__16dSv_light_drop_cCFUc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" bool CalcSubjectAngle__9dCamera_cFPsPs();
-extern "C" void dCam_getBody__Fv();
-extern "C" void __ct__8dScope_cFUc();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" bool getBombFlag__9dMw_HIO_cFv();
-extern "C" bool getArrowFlag__9dMw_HIO_cFv();
-extern "C" bool getPachinkoFlag__9dMw_HIO_cFv();
-extern "C" void __ct__14dMeterButton_cFv();
-extern "C" void _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb();
-extern "C" void isClose__14dMeterButton_cFv();
-extern "C" void setString__14dMeterButton_cFPcUcUcUc();
-extern "C" void hideAll__14dMeterButton_cFv();
-extern "C" void __ct__14dMeterHaihai_cFUc();
-extern "C" void __ct__15dMeterHakusha_cFPv();
-extern "C" void isEnableDispMapAndMapDispSizeTypeNo__11dMeterMap_cFv();
-extern "C" void getMapDispEdgeTop__11dMeterMap_cFv();
-extern "C" void setMapAlpha__11dMeterMap_cFUc();
-extern "C" void __ct__11dMeterMap_cFP9J2DScreen();
-extern "C" void _move__11dMeterMap_cFUl();
-extern "C" void _draw__11dMeterMap_cFv();
-extern "C" void meter_map_move__11dMeterMap_cFUl();
-extern "C" void __ct__14dMeterString_cFi();
-extern "C" void createString__14dMeterString_cFi();
-extern "C" void __ct__13dMeter2Draw_cFP10JKRExpHeap();
-extern "C" void exec__13dMeter2Draw_cFUl();
-extern "C" void drawLife__13dMeter2Draw_cFssff();
-extern "C" void setAlphaLifeChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaLifeAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaLifeAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawKantera__13dMeter2Draw_cFllff();
-extern "C" void setAlphaKanteraChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaKanteraAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaKanteraAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawOxygen__13dMeter2Draw_cFllff();
-extern "C" void setAlphaOxygenChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaOxygenAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaOxygenAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawLightDrop__13dMeter2Draw_cFUcUcffffUc();
-extern "C" void setAlphaLightDropChange__13dMeter2Draw_cFb();
-extern "C" void getNowLightDropRateCalc__13dMeter2Draw_cFv();
-extern "C" void setAlphaLightDropAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaLightDropAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawRupee__13dMeter2Draw_cFs();
-extern "C" void setAlphaRupeeChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaRupeeAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaRupeeAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawKey__13dMeter2Draw_cFs();
-extern "C" void setAlphaKeyChange__13dMeter2Draw_cFb();
-extern "C" void setAlphaKeyAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphaKeyAnimeMax__13dMeter2Draw_cFv();
-extern "C" void drawButtonA__13dMeter2Draw_cFUcfffffbb();
-extern "C" void drawButtonB__13dMeter2Draw_cFUcbfffffb();
-extern "C" void drawButtonR__13dMeter2Draw_cFUcUcbb();
-extern "C" void drawButtonZ__13dMeter2Draw_cFUc();
-extern "C" void drawButton3D__13dMeter2Draw_cFUc();
-extern "C" void drawButtonC__13dMeter2Draw_cFUcb();
-extern "C" void drawButtonS__13dMeter2Draw_cFUc();
-extern "C" void drawButtonBin__13dMeter2Draw_cFUc();
-extern "C" void drawButtonXY__13dMeter2Draw_cFiUcUcbb();
-extern "C" void getButtonCrossParentInitTransY__13dMeter2Draw_cFv();
-extern "C" void drawButtonCross__13dMeter2Draw_cFff();
-extern "C" void setAlphButtonACrossAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonACrossAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonAChange__13dMeter2Draw_cFb();
-extern "C" void setAlphButtonAAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonAAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonAAAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonAAAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonABAnimeMin__13dMeter2Draw_cFv();
-extern "C" void setAlphButtonABAnimeMax__13dMeter2Draw_cFv();
-extern "C" void setButtonIconAAlpha__13dMeter2Draw_cFUcUlb();
-extern "C" void setButtonIconBAlpha__13dMeter2Draw_cFUcUlb();
-extern "C" void setButtonIconMidonaAlpha__13dMeter2Draw_cFUl();
-extern "C" void setButtonIconAlpha__13dMeter2Draw_cFiUcUlb();
-extern "C" void getActionString__13dMeter2Draw_cFUcUcPUc();
-extern "C" void setItemNum__13dMeter2Draw_cFUcUcUc();
-extern "C" void drawItemNum__13dMeter2Draw_cFUcf();
-extern "C" void drawKanteraMeter__13dMeter2Draw_cFUcf();
-extern "C" void isButtonVisible__13dMeter2Draw_cFv();
-extern "C" void getCameraSubject__13dMeter2Draw_cFv();
-extern "C" void getItemSubject__13dMeter2Draw_cFv();
-extern "C" void getPlayerSubject__13dMeter2Draw_cFv();
-extern "C" void isButtonBShow__13dMeter2Draw_cFb();
-extern "C" void getButtonTimer__13dMeter2Draw_cFv();
-extern "C" void isFloatingMessageVisible__13dMeter2Info_cFv();
-extern "C" void isDirectUseItem__13dMeter2Info_cFi();
-extern "C" void decHotSpringTimer__13dMeter2Info_cFv();
-extern "C" bool dMeter2Info_is2DActiveTouchArea__Fv();
-extern "C" void isPlaceMessage__12dMsgObject_cFv();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void dTimer_createStockTimer__Fv();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void heartGaugeOn__11Z2StatusMgrFv();
-extern "C" void freeAll__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" u8 m_mode__7dDemo_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
 /* 8021EA14-8021F128 219354 0714+00 1/1 0/0 0/0 .text            _create__9dMeter2_cFv */
 int dMeter2_c::_create() {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
@@ -1764,7 +1547,7 @@ void dMeter2_c::moveButtonB() {
         var_f31 = 1.0f;
     }
 
-    if (mpMeterDraw->isButtonBShow(false)) {
+    if (mpMeterDraw->isBButtonShow(false)) {
         if (field_0x1ff == 0) {
             field_0x1ff = 1;
             draw_buttonB = true;
@@ -3057,18 +2840,8 @@ void dMeter2_c::alphaAnimeLightDrop() {
     mpMeterDraw->setAlphaLightDropChange(false);
 }
 
-/* ############################################################################################## */
-/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399347 = "R_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039934F = "";
-#pragma pop
 
 /* 80224DC0-80224F70 21F700 01B0+00 1/1 0/0 0/0 .text            alphaAnimeRupee__9dMeter2_cFv */
-// gameinfo loads have issues
-#ifdef NONMATCHING
 void dMeter2_c::alphaAnimeRupee() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x80)) ||
         daPy_getPlayerActorClass()->i_getSumouMode() ||
@@ -3087,20 +2860,8 @@ void dMeter2_c::alphaAnimeRupee() {
 
     mpMeterDraw->setAlphaRupeeChange(false);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2_c::alphaAnimeRupee() {
-    nofralloc
-#include "asm/d/meter/d_meter2/alphaAnimeRupee__9dMeter2_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80224F70-802250F4 21F8B0 0184+00 1/1 0/0 0/0 .text            alphaAnimeKey__9dMeter2_cFv */
-// masking issues
-#ifdef NONMATCHING
 void dMeter2_c::alphaAnimeKey() {
     if ((mStatus & 0x4000) || ((mStatus & 0x40) && dComIfGp_event_checkHind(0x40)) ||
         !isKeyVisible() || (mStatus & 0x40000000) || (mStatus & 0x1000) || (mStatus & 0x100000) ||
@@ -3108,7 +2869,7 @@ void dMeter2_c::alphaAnimeKey() {
         (daPy_getPlayerActorClass()->checkCanoeSlider() &&
          (dComIfG_getTimerMode() == 3 || dComIfG_getTimerMode() == 4)) ||
         (mStatus & 0x100) || (mStatus & 8) || (mStatus & 0x10) ||
-        (mStatus & 0x1000000) | (mStatus & 0x20) || (mStatus & 0x4000000) ||
+        (mStatus & 0x1000000) || (mStatus & 0x20) || (mStatus & 0x4000000) ||
         (mStatus & 0x8000000) || (mStatus & 0x10000000) || dMeter2Info_isSub2DStatus(1))
     {
         mpMeterDraw->setAlphaKeyAnimeMin();
@@ -3118,16 +2879,6 @@ void dMeter2_c::alphaAnimeKey() {
 
     mpMeterDraw->setAlphaKeyChange(false);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMeter2_c::alphaAnimeKey() {
-    nofralloc
-#include "asm/d/meter/d_meter2/alphaAnimeKey__9dMeter2_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 802250F4-802254C0 21FA34 03CC+00 1/1 0/0 0/0 .text            alphaAnimeButton__9dMeter2_cFv */
 void dMeter2_c::alphaAnimeButton() {
@@ -3139,41 +2890,41 @@ void dMeter2_c::alphaAnimeButton() {
         ((mStatus & 0x40000000) && !(mStatus & 0x100)) || (mStatus & 0x80000000) || (mStatus & 8) ||
         (mStatus & 0x10) || (mStatus & 0x20) || (mStatus & 0x04000000) || (mStatus & 0x10000000))
     {
-        mpMeterDraw->setAlphButtonAAnimeMin();
-        mpMeterDraw->setAlphButtonAAAnimeMin();
-        mpMeterDraw->setAlphButtonABAnimeMin();
+        mpMeterDraw->setAlphaButtonAnimeMin();
+        mpMeterDraw->setAlphaButtonAAnimeMin();
+        mpMeterDraw->setAlphaButtonBAnimeMin();
     } else if (!(mStatus & 0x1000000) &&
                ((mStatus & 0x100) || daPy_getPlayerActorClass()->checkHawkWait() ||
                 (mStatus & 0x40) && dComIfGp_event_checkHind(1)))
     {
-        mpMeterDraw->setAlphButtonAAnimeMin();
+        mpMeterDraw->setAlphaButtonAnimeMin();
         var_31 = 1;
     } else if (dMeter2Info_getItemExplainWindowStatus()) {
-        mpMeterDraw->setAlphButtonAAnimeMin();
+        mpMeterDraw->setAlphaButtonAnimeMin();
         var_31 = 1;
     } else {
-        mpMeterDraw->setAlphButtonAAnimeMax();
+        mpMeterDraw->setAlphaButtonAnimeMax();
     }
 
     field_0x1e6 = 0;
 
     if (var_31 == 1) {
         if (dMeter2Info_getItemExplainWindowStatus()) {
-            mpMeterDraw->setAlphButtonAAAnimeMin();
+            mpMeterDraw->setAlphaButtonAAnimeMin();
         } else if ((mStatus & 0x100) || daPy_getPlayerActorClass()->checkHawkWait() ||
                    !dComIfGp_event_checkHind(2))
         {
-            mpMeterDraw->setAlphButtonAAAnimeMax();
+            mpMeterDraw->setAlphaButtonAAnimeMax();
             onShowFlag(0);
         } else {
-            mpMeterDraw->setAlphButtonAAAnimeMin();
+            mpMeterDraw->setAlphaButtonAAnimeMin();
         }
 
-        if (mpMeterDraw->isButtonBShow(false)) {
-            mpMeterDraw->setAlphButtonABAnimeMax();
+        if (mpMeterDraw->isBButtonShow(false)) {
+            mpMeterDraw->setAlphaButtonBAnimeMax();
             onShowFlag(1);
         } else {
-            mpMeterDraw->setAlphButtonABAnimeMin();
+            mpMeterDraw->setAlphaButtonBAnimeMin();
         }
     }
 
@@ -3210,7 +2961,7 @@ void dMeter2_c::alphaAnimeButton() {
         }
     }
 
-    mpMeterDraw->setAlphButtonAChange(false);
+    mpMeterDraw->setAlphaButtonChange(false);
 }
 
 /* 802254C0-802256DC 21FE00 021C+00 1/1 0/0 0/0 .text            alphaAnimeButtonCross__9dMeter2_cFv
@@ -3224,7 +2975,7 @@ void dMeter2_c::alphaAnimeButtonCross() {
          (mStatus & 0x10000000) || (mStatus & 0x20000000)) ||
         daPy_getPlayerActorClass()->checkEnemyAttentionLock() || dMeter2Info_isGameStatus(1))
     {
-        mpMeterDraw->setAlphButtonACrossAnimeMin();
+        mpMeterDraw->setAlphaButtonCrossAnimeMin();
 
         if ((!i_dComIfGp_event_chkEventFlag(0x40) || dMeter2Info_isGameStatus(2) ||
              (mStatus & 0x100)) &&
@@ -3233,13 +2984,13 @@ void dMeter2_c::alphaAnimeButtonCross() {
             field_0x190--;
         }
     } else if (dMeter2Info_isSub2DStatus(1) || dMeter2Info_isFloatingMessageVisible()) {
-        mpMeterDraw->setAlphButtonACrossAnimeMin();
+        mpMeterDraw->setAlphaButtonCrossAnimeMin();
 
         if (field_0x190 < 5) {
             field_0x190++;
         }
     } else {
-        mpMeterDraw->setAlphButtonACrossAnimeMax();
+        mpMeterDraw->setAlphaButtonCrossAnimeMax();
 
         if (field_0x190 < 5) {
             field_0x190++;
