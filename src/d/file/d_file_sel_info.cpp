@@ -4,6 +4,7 @@
  */
 
 #define NO_INLINE_DLSTBASE_DRAW
+#define DFILE_INFO_C_DUMMY_VIRTUAL
 
 #include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

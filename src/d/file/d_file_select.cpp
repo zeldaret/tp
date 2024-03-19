@@ -7,12 +7,16 @@
 #define __dt__15J2DAnmTransformFv_DEFINED
 
 #include "d/file/d_file_select.h"
+#include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/s/d_s_play.h"
+#include "d/d_lib.h"
+#include "f_op/f_op_msg_mng.h"
 #include "dol2asm.h"
 #include "dolphin/dvd.h"
 #include "dolphin/types.h"
@@ -20,6 +24,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_MemCardRWmng.h"
 
 
 //
@@ -487,9 +492,8 @@ SECTION_DATA static s32 MenuSelEndFrameTbl[4] = {
 /* 803BA8A0-803BA8B8 0179C0 0018+00 0/2 0/0 0/0 .data            l_tagName13 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName13[24] = {
-    0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x30, 0x77, 0x5F, 0x64, 0x61,
-    0x74, 0x5F, 0x69, 0x31, 0x77, 0x5F, 0x64, 0x61, 0x74, 0x5F, 0x69, 0x32,
+SECTION_DATA static u64 l_tagName13[3] = {
+    'w_dat_i0', 'w_dat_i1', 'w_dat_i2',
 };
 #pragma pop
 
@@ -968,15 +972,15 @@ typedef void (dFile_select_c::*DataSelProcFunc)(void);
 SECTION_DATA static DataSelProcFunc DataSelProc[47] = {};
 
 /* 803BAD20-803BAD30 017E40 0010+00 1/1 0/0 0/0 .data            l_tagName101$5620 */
-SECTION_DATA static u8 l_tagName101[16] = {
-    0x00, 0x77, 0x5F, 0x6E, 0x75, 0x6E, 0x30, 0x31, 0x00, 0x77, 0x5F, 0x6E, 0x75, 0x6E, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName101[2] = {
+    'w_nun01', 'w_nun02',
 };
 
 /* 803BAD30-803BAD40 -00001 000C+04 1/1 0/0 0/0 .data            l_numTex$5621 */
-SECTION_DATA static void* l_numTex[3 + 1 /* padding */] = {
-    (void*)&d_file_d_file_select__stringBase0,
-    (void*)(((char*)&d_file_d_file_select__stringBase0) + 0x15),
-    (void*)(((char*)&d_file_d_file_select__stringBase0) + 0x2A),
+SECTION_DATA static char* l_numTex[3 + 1 /* padding */] = {
+    (char*)&d_file_d_file_select__stringBase0,
+    (char*)(((char*)&d_file_d_file_select__stringBase0) + 0x15),
+    (char*)(((char*)&d_file_d_file_select__stringBase0) + 0x2A),
     /* padding */
     NULL,
 };
@@ -984,253 +988,238 @@ SECTION_DATA static void* l_numTex[3 + 1 /* padding */] = {
 /* 803BAD40-803BAD58 017E60 0018+00 0/1 0/0 0/0 .data            l_tagName0$6517 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName0[24] = {
-    0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x73, 0x65,
-    0x6C, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName0[3] = {
+    'w_sel_00',
+    'w_sel_01',
+    'w_sel_02',
 };
 #pragma pop
 
 /* 803BAD58-803BAD70 017E78 0018+00 0/1 0/0 0/0 .data            l_tagName3$6528 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName3[24] = {
-    0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x30, 0x77, 0x5F, 0x6D, 0x6F,
-    0x79, 0x6F, 0x30, 0x31, 0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName3[3] = {
+    'w_moyo00',
+    'w_moyo01',
+    'w_moyo02',
 };
 #pragma pop
 
 /* 803BAD70-803BAD88 017E90 0018+00 0/1 0/0 0/0 .data            l_tagName4$6529 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName4[24] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
-    0x6C, 0x64, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName4[3] = {
+    'w_gold00',
+    'w_gold01',
+    'w_gold02',
 };
 #pragma pop
 
 /* 803BAD88-803BADA0 017EA8 0018+00 0/1 0/0 0/0 .data            l_tagName5$6530 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName5[24] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x30, 0x77, 0x5F, 0x67, 0x6F,
-    0x32, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x32,
-};
+SECTION_DATA static u64 l_tagName5[3] = {'w_go2_00', 'w_go2_01', 'w_go2_02'};
 #pragma pop
 
 /* 803BADA0-803BADB8 017EC0 0018+00 0/1 0/0 0/0 .data            l_tagName12$6539 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName12[24] = {
-    0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x30, 0x77, 0x5F, 0x62, 0x6B,
-    0x5F, 0x6C, 0x30, 0x31, 0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName12[3] = {
+    'w_bk_l00',
+    'w_bk_l01',
+    'w_bk_l02',
 };
 #pragma pop
 
 /* 803BADB8-803BAE30 017ED8 0078+00 0/1 0/0 0/0 .data            l_nouseTag$6546 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_nouseTag[120] = {
-    0x77, 0x5F, 0x6D, 0x63, 0x68, 0x65, 0x63, 0x6B, 0x00, 0x77, 0x5F, 0x74, 0x61, 0x62, 0x69,
-    0x31, 0x00, 0x77, 0x5F, 0x74, 0x61, 0x62, 0x69, 0x32, 0x00, 0x77, 0x5F, 0x74, 0x61, 0x62,
-    0x69, 0x33, 0x77, 0x5F, 0x64, 0x6F, 0x6B, 0x6F, 0x5F, 0x63, 0x00, 0x77, 0x5F, 0x75, 0x77,
-    0x61, 0x5F, 0x63, 0x77, 0x5F, 0x63, 0x70, 0x5F, 0x63, 0x68, 0x75, 0x77, 0x5F, 0x63, 0x70,
-    0x73, 0x69, 0x74, 0x61, 0x00, 0x00, 0x77, 0x5F, 0x63, 0x70, 0x5F, 0x78, 0x00, 0x00, 0x00,
-    0x00, 0x77, 0x5F, 0x64, 0x65, 0x77, 0x5F, 0x64, 0x65, 0x5F, 0x63, 0x68, 0x75, 0x77, 0x5F,
-    0x64, 0x65, 0x73, 0x69, 0x74, 0x61, 0x00, 0x00, 0x77, 0x5F, 0x64, 0x65, 0x5F, 0x78, 0x00,
-    0x00, 0x77, 0x5F, 0x6E, 0x61, 0x6D, 0x65, 0x77, 0x5F, 0x68, 0x5F, 0x6E, 0x61, 0x6D, 0x65,
-};
+SECTION_DATA static u64 l_nouseTag[15] = {
+    'w_mcheck', 'w_tabi1', 'w_tabi2',  'w_tabi3',  'w_doko_c', 'w_uwa_c', 'w_cp_chu', 'w_cpsita',
+    'w_cp_x',   'w_de',    'w_de_chu', 'w_desita', 'w_de_x',   'w_name',  'w_h_name'};
 #pragma pop
 
 /* 803BAE30-803BAE40 017F50 0010+00 0/1 0/0 0/0 .data            l_tagName21$6552 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName21[16] = {
-    0x00, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x00, 0x00, 0x74, 0x5F, 0x66, 0x6F, 0x72, 0x31,
+SECTION_DATA static u64 l_tagName21[2] = {
+    't_for', 't_for1',
 };
 #pragma pop
 
 /* 803BAE40-803BAE58 017F60 0018+00 0/1 0/0 0/0 .data            l_tagName18$6559 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName18[24] = {
-    0x77, 0x5F, 0x64, 0x65, 0x5F, 0x65, 0x66, 0x30, 0x77, 0x5F, 0x64, 0x65,
-    0x5F, 0x65, 0x66, 0x31, 0x77, 0x5F, 0x64, 0x65, 0x5F, 0x65, 0x66, 0x32,
+SECTION_DATA static u64 l_tagName18[3] = {
+    'w_de_ef0', 'w_de_ef1', 'w_de_ef2',
 };
 #pragma pop
 
 /* 803BAE58-803BAE70 017F78 0018+00 0/1 0/0 0/0 .data            l_tagName19$6560 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName19[24] = {
-    0x77, 0x5F, 0x63, 0x70, 0x5F, 0x65, 0x66, 0x30, 0x77, 0x5F, 0x63, 0x70,
-    0x5F, 0x65, 0x66, 0x31, 0x77, 0x5F, 0x63, 0x70, 0x5F, 0x65, 0x66, 0x32,
+SECTION_DATA static u64 l_tagName19[3] = {
+    'w_cp_ef0', 'w_cp_ef1', 'w_cp_ef2',
 };
 #pragma pop
 
 /* 803BAE70-803BAE80 017F90 0010+00 0/1 0/0 0/0 .data            l_tagName20$6568 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName20[16] = {
-    0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x30, 0x00, 0x65, 0x72, 0x5F, 0x66, 0x6F, 0x72, 0x31,
+SECTION_DATA static u64 l_tagName20[2] = {
+    'er_for0', 'er_for1',
 };
 #pragma pop
 
 /* 803BAE80-803BAE98 017FA0 0018+00 0/1 0/0 0/0 .data            l_tagName131$6576 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName131[24] = {
-    0x4E, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x30, 0x4E, 0x5F, 0x73, 0x65,
-    0x6C, 0x5F, 0x30, 0x31, 0x4E, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName131[3] = {
+    'N_sel_00', 'N_sel_01', 'N_sel_02',
 };
 #pragma pop
 
 /* 803BAE98-803BAEA8 017FB8 0010+00 0/1 0/0 0/0 .data            l_tagName000$6897 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName000[16] = {
-    0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x73, 0x65, 0x6C, 0x5F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName000[2] = {
+    'w_sel_01', 'w_sel_02',
 };
 #pragma pop
 
 /* 803BAEA8-803BAEB8 017FC8 0010+00 0/1 0/0 0/0 .data            l_tagName001$6898 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName001[16] = {
-    0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x31, 0x77, 0x5F, 0x6D, 0x6F, 0x79, 0x6F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName001[2] = {
+    'w_moyo01', 'w_moyo02',
 };
 #pragma pop
 
 /* 803BAEB8-803BAEC8 017FD8 0010+00 0/1 0/0 0/0 .data            l_tagName002$6899 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName002[16] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName002[2] = {
+    'w_gold01', 'w_gold02',
 };
 #pragma pop
 
 /* 803BAEC8-803BAED8 017FE8 0010+00 0/1 0/0 0/0 .data            l_tagName003$6900 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName003[16] = {
-    0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x31, 0x77, 0x5F, 0x67, 0x6F, 0x32, 0x5F, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName003[2] = {
+    'w_go2_01', 'w_go2_02',
 };
 #pragma pop
 
 /* 803BAED8-803BAEE8 017FF8 0010+00 0/1 0/0 0/0 .data            l_tagName004$6901 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName004[16] = {
-    0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x31, 0x77, 0x5F, 0x62, 0x6B, 0x5F, 0x6C, 0x30, 0x32,
+SECTION_DATA static u64 l_tagName004[2] = {
+    'w_bk_l01', 'w_bk_l02',
 };
 #pragma pop
 
 /* 803BAEE8-803BAEF8 018008 0010+00 0/1 0/0 0/0 .data            l_tagName005$6902 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName005[16] = {
-    0x77, 0x5F, 0x63, 0x70, 0x5F, 0x65, 0x66, 0x31, 0x77, 0x5F, 0x63, 0x70, 0x5F, 0x65, 0x66, 0x32,
+SECTION_DATA static u64 l_tagName005[2] = {
+    'w_cp_ef1', 'w_cp_ef2',
 };
 #pragma pop
 
 /* 803BAEF8-803BAF08 018018 0010+00 0/1 0/0 0/0 .data            l_tagName012$6999 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName012[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x6E, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x6E,
+SECTION_DATA static u64 l_tagName012[2] = {
+    'w_no_n', 'w_yes_n',
 };
 #pragma pop
 
 /* 803BAF08-803BAF18 018028 0010+00 0/1 0/0 0/0 .data            l_tagName013$7000 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName013[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
+SECTION_DATA static u64 l_tagName013[2] = {
+    'w_no_t', 'w_yes_t',
 };
 #pragma pop
 
 /* 803BAF18-803BAF28 018038 0010+00 0/1 0/0 0/0 .data            l_tagName013U$7001 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName013U[16] = {
-    0x00, 0x00, 0x66, 0x5F, 0x6E, 0x6F, 0x5F, 0x74, 0x00, 0x66, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x74,
+SECTION_DATA static u64 l_tagName013U[2] = {
+    'f_no_t', 'f_yes_t',
 };
 #pragma pop
 
 /* 803BAF28-803BAF38 018048 0010+00 0/1 0/0 0/0 .data            l_tagName9$7010 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName9[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x6D, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x6D,
+SECTION_DATA static u64 l_tagName9[2] = {
+    'w_no_m', 'w_yes_m',
 };
 #pragma pop
 
 /* 803BAF38-803BAF48 018058 0010+00 0/1 0/0 0/0 .data            l_tagName10$7011 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName10[16] = {
-    0x00, 0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x00, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67,
+SECTION_DATA static u64 l_tagName10[2] = {
+    'w_no_g', 'w_yes_g',
 };
 #pragma pop
 
 /* 803BAF48-803BAF58 018068 0010+00 0/1 0/0 0/0 .data            l_tagName11$7012 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName11[16] = {
-    0x00, 0x77, 0x5F, 0x6E, 0x6F, 0x5F, 0x67, 0x72, 0x77, 0x5F, 0x79, 0x65, 0x73, 0x5F, 0x67, 0x72,
+SECTION_DATA static u64 l_tagName11[2] = {
+    'w_no_gr', 'w_yes_gr',
 };
 #pragma pop
 
 /* 803BAF58-803BAF70 018078 0018+00 0/1 0/0 0/0 .data            l_tagName6$7076 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName6[24] = {
-    0x77, 0x5F, 0x73, 0x61, 0x74, 0x5F, 0x6D, 0x6F, 0x77, 0x5F, 0x64, 0x65,
-    0x6C, 0x5F, 0x6D, 0x6F, 0x77, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x6D, 0x6F,
+SECTION_DATA static u64 l_tagName6[3] = {
+    'w_sat_mo', 'w_del_mo', 'w_cop_mo',
 };
 #pragma pop
 
 /* 803BAF70-803BAF88 018090 0018+00 0/1 0/0 0/0 .data            l_tagName7$7077 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName7[24] = {
-    0x00, 0x77, 0x5F, 0x73, 0x61, 0x74, 0x5F, 0x67, 0x00, 0x77, 0x5F, 0x64,
-    0x65, 0x6C, 0x5F, 0x67, 0x00, 0x77, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x67,
+SECTION_DATA static u64 l_tagName7[3] = {
+    'w_sat_g', 'w_del_g', 'w_cop_g',
 };
 #pragma pop
 
 /* 803BAF88-803BAFA0 0180A8 0018+00 0/1 0/0 0/0 .data            l_tagName8$7078 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName8[24] = {
-    0x77, 0x5F, 0x73, 0x61, 0x74, 0x5F, 0x67, 0x72, 0x77, 0x5F, 0x64, 0x65,
-    0x6C, 0x5F, 0x67, 0x72, 0x77, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x67, 0x72,
+SECTION_DATA static u64 l_tagName8[3] = {
+    'w_sat_gr', 'w_del_gr', 'w_cop_gr',
 };
 #pragma pop
 
 /* 803BAFA0-803BAFB8 0180C0 0018+00 0/1 0/0 0/0 .data            l_tagName1$7079 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName1[24] = {
-    0x00, 0x77, 0x5F, 0x73, 0x74, 0x61, 0x5F, 0x6E, 0x00, 0x77, 0x5F, 0x64,
-    0x65, 0x6C, 0x5F, 0x6E, 0x00, 0x77, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x6E,
+SECTION_DATA static u64 l_tagName1[3] = {
+    'w_sta_n', 'w_del_n', 'w_cop_n',
 };
 #pragma pop
 
 /* 803BAFB8-803BAFD0 0180D8 0018+00 0/1 0/0 0/0 .data            l_tagName011$7080 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName011[24] = {
-    0x00, 0x00, 0x00, 0x77, 0x5F, 0x73, 0x74, 0x61, 0x00, 0x00, 0x00, 0x77,
-    0x5F, 0x64, 0x65, 0x6C, 0x00, 0x77, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x74,
+SECTION_DATA static u64 l_tagName011[3] = {
+    'w_sta', 'w_del', 'w_cop_t',
 };
 #pragma pop
 
 /* 803BAFD0-803BAFE8 0180F0 0018+00 0/1 0/0 0/0 .data            l_tagName011U$7081 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_tagName011U[24] = {
-    0x00, 0x00, 0x00, 0x66, 0x5F, 0x73, 0x74, 0x61, 0x00, 0x00, 0x00, 0x66,
-    0x5F, 0x64, 0x65, 0x6C, 0x00, 0x66, 0x5F, 0x63, 0x6F, 0x70, 0x5F, 0x74,
+SECTION_DATA static u64 l_tagName011U[3] = {
+    'f_sta', 'f_del', 'f_cop_t',
 };
 #pragma pop
 
@@ -1504,6 +1493,8 @@ SECTION_DATA static void* lit_7785[3] = {
 };
 #pragma pop
 
+typedef void (dFile_select_c::*MemCardCheckFuncT)();
+
 /* 803BB12C-803BB270 01824C 0144+00 1/2 0/0 0/0 .data            MemCardCheckProc */
 SECTION_DATA static u8 MemCardCheckProc[324] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1744,12 +1735,7 @@ SECTION_DATA extern void* __vt__9dFs_HIO_c[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80453928-8045392C 001F28 0004+00 1/1 0/0 0/0 .sdata2          @3812 */
-SECTION_SDATA2 static f32 lit_3812 = 111.0f / 100.0f;
-
 /* 801835F8-8018366C 17DF38 0074+00 1/1 0/0 0/0 .text            __ct__9dFs_HIO_cFv */
-#ifdef NONMATCHING
-// matches with literals
 dFs_HIO_c::dFs_HIO_c() {
     field_0x0006 = 5;
     field_0x0007 = 5;
@@ -1760,9 +1746,9 @@ dFs_HIO_c::dFs_HIO_c() {
     field_0x000b = 15;
     field_0x000d = 15;
     field_0x000c = 90;
-    field_0x0010 = 1.11f;
-    field_0x0014 = 1.11f;
-    field_0x0018 = 1.11f;
+    field_0x0010[0] = 1.11f;
+    field_0x0010[1] = 1.11f;
+    field_0x0010[2] = 1.11f;
     field_0x001c = 0;
     field_0x001d = 0;
     field_0x001e = 0;
@@ -1771,16 +1757,6 @@ dFs_HIO_c::dFs_HIO_c() {
     field_0x0021 = 0;
     field_0x0022 = 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dFs_HIO_c::dFs_HIO_c() {
-    nofralloc
-#include "asm/d/file/d_file_select/__ct__9dFs_HIO_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8018366C-8018375C 17DFAC 00F0+00 0/0 1/1 0/0 .text __ct__14dFile_select_cFP10JKRArchive */
 #ifdef NONMATCHING
@@ -1802,6 +1778,90 @@ asm dFile_select_c::dFile_select_c(JKRArchive* param_0) {
 #endif
 
 /* 8018375C-801841EC 17E09C 0A90+00 1/0 0/0 0/0 .text            __dt__14dFile_select_cFv */
+// I think it matches but misses all the inline dtors
+#ifdef NONMATCHING
+dFile_select_c::~dFile_select_c() {
+    for (int i = 0; i < 3; i = i + 1) {
+        delete field_0x0164[i];
+        delete field_0x0170[i];
+        delete field_0x017c[i];
+        delete mpPaneAlpha1[i];
+        delete mpPaneAlpha2[i];
+        delete mpPaneAlpha3[i];
+        delete mpPaneMgr2[i];
+        delete field_0x0188[i];
+        delete field_0x014c[i];
+        delete field_0x0158[i];
+        delete field_0x00bc[i];
+        delete field_0x0340[i];
+        delete field_0x0070[i];
+    }
+    delete field_0x00a4;
+    for (int i = 0; i < 2; i = i + 1) {
+        delete field_0x00f0[i];
+        delete field_0x01a0[i];
+        delete field_0x01a8[i];
+        delete field_0x01b0[i];
+        delete field_0x020c[i];
+        delete field_0x0138[i];
+        delete field_0x01c0[i];
+        delete mpFileInfo[i];
+        delete field_0x02a4[i];
+        delete field_0x02c0[i];
+        delete field_0x02c8[i];
+        delete field_0x02d0[i];
+        delete field_0x02d8[i];
+    }
+    delete field_0x0238;
+    delete field_0x0240;
+    delete field_0x023c;
+    delete field_0x0244;
+    delete field_0x0084;
+    delete field_0x0088;
+    delete field_0x008c;
+    delete field_0x01c8;
+    delete field_0x01d0;
+    delete field_0x01d8;
+    delete field_0x01e0;
+    delete field_0x01e8;
+    delete field_0x01f0;
+    delete field_0x01f8;
+    delete field_0x0200;
+    delete field_0x0090;
+    delete field_0x0094;
+    delete field_0x0098;
+    delete field_0x009c;
+    mDoExt_removeMesgFont();
+    mDoExt_removeSubFont();
+    delete mStick;
+    delete mSelIcon;
+    delete mSelIcon2;
+    delete mpName;
+    delete mpFileWarning;
+    delete field_0x029c;
+    delete field_0x02a0;
+    delete field_0x02e8;
+    delete field_0x02f0;
+    delete field_0x02f8;
+    delete field_0x0300;
+    delete field_0x0308;
+    delete field_0x0310;
+    delete field_0x0314;
+    delete field_0x0318;
+    delete field_0x0320;
+    delete field_0x0328;
+    delete field_0x032c;
+    delete field_0x0330;
+    delete field_0x0338;
+    delete field_0x03a0;
+    delete field_0x03a8;
+    mpFileSelect3d->_delete();
+    delete mpFileSelect3d;
+
+    dComIfGp_getMain2DArchive()->removeResourceAll();
+    dComIfGp_getCollectResArchive()->removeResourceAll();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1810,6 +1870,7 @@ asm dFile_select_c::~dFile_select_c() {
 #include "asm/d/file/d_file_select/__dt__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801841EC-80184274 17EB2C 0088+00 0/0 1/0 0/0 .text            __dt__15J2DAnmTevRegKeyFv */
 #pragma push
@@ -1875,7 +1936,7 @@ SECTION_SDATA2 static f32 lit_4166[1 + 1 /* padding */] = {
 
 /* 801843CC-801844FC 17ED0C 0130+00 0/0 1/1 0/0 .text            _create__14dFile_select_cFv */
 #ifdef NONMATCHING
-// setFadeColor instruction reordering
+// Matches with literals
 void dFile_select_c::_create() {
     mDoGph_gInf_c::setFadeColor(static_cast<JUtility::TColor&>(g_blackColor));
     mStick = new STControl(2, 2, 1, 1, 0.9f, 0.5f, 0, 0x2000);
@@ -1939,15 +2000,15 @@ void dFile_select_c::_move() {
     dataDelEffAnm();
     dataCopyEffAnm();
 
-    mFileSelectDlst.mpScreen->animation();
-    mFileSelYesNoDlst.mpScreen->animation();
-    mFileSel3mDlst.mpScreen->animation();
-    mFileSelDeleteDlst.mpScreen->animation();
+    fileSel.Scr->animation();
+    mYnSel.ScrYn->animation();
+    m3mSel.Scr3m->animation();
+    mSelDt.ScrDt->animation();
 
-    if (mFileSelCopyDlst.field_0x08) {
+    if (mCpSel.field_0x08) {
         selCopyFileWakuAnm();
         copyBookIconAnm();
-        mFileSelCopyDlst.mpScreen->animation();
+        mCpSel.Scr->animation();
     }
 
     mpFileWarning->_move();
@@ -2183,10 +2244,10 @@ asm void dFile_select_c::dataCopyEffAnm() {
 #ifdef NONMATCHING
 // matches with literals
 void dFile_select_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
-    field_0x00a4->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+    field_0x00a4->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
     field_0x00b0 = param_0;
     field_0x00b4 = param_1;
-    mpAnmBase[0]->setFrame(field_0x00b0);
+    field_0x0084->setFrame(field_0x00b0);
     field_0x00a4->getPanePtr()->animationTransform();
     field_0x00b9 = 1;
 }
@@ -2220,7 +2281,7 @@ bool dFile_select_c::selectDataBaseMoveAnm() {
 
         }
 
-        mpAnmBase[0]->setFrame(field_0x00b0);
+        field_0x0084->setFrame(field_0x00b0);
         field_0x00a4->getPanePtr()->animationTransform();
         return false;
     } else {
@@ -2250,44 +2311,31 @@ SECTION_SDATA2 static f32 lit_4611 = 1.0f;
 SECTION_SDATA2 static f32 lit_4612 = -1.0f;
 
 /* 80184E38-80185040 17F778 0208+00 1/1 0/0 0/0 .text dataSelectInAnmSet__14dFile_select_cFv */
+// Matches with literals
 #ifdef NONMATCHING
 void dFile_select_c::dataSelectInAnmSet() {
     setSaveData();
-    char* card_ptr = &mpMemCard;
-    OSTime date_ipl = mpSave->getPlayer().getPlayerStatusB().getDateIpl(); // guess
-
-    // pdVar1 = (dSv_player_c *)dSv_save_c::getPlayer((dSv_save_c *)this_00);
-    // pdVar2 = (dSv_player_status_b_c *)dSv_player_c::getPlayerStatusB(pdVar1);
-    // uVar4 = dSv_player_status_b_c::getDateIpl(pdVar2);
+    dSv_save_c* pSave = (dSv_save_c*)mSave;
+    OSTime date_ipl = pSave->getPlayer().getPlayerStatusB().getDateIpl();
     mSelectNum = 0;
     for (int i = 0; i < 3; i++) {
+        field_0x0164[i]->setAlpha(0);
+        field_0x0170[i]->setAlpha(0);
+        field_0x017c[i]->setAlpha(0);
         if (field_0x025b[i] == 0) {
-            // pdVar1 = (dSv_player_c *)dSv_save_c::getPlayer((dSv_save_c *)this_00);
-            // pdVar2 = (dSv_player_status_b_c *)dSv_player_c::getPlayerStatusB(pdVar1);
-            // uVar5 = dSv_player_status_b_c::getDateIpl(pdVar2);
+            OSTime date_ipl2 = pSave->getPlayer().getPlayerStatusB().getDateIpl();
+            OSTime date2Secs = OSTicksToSeconds(date_ipl2);
+            OSTime dateSec = OSTicksToSeconds(date_ipl);
 
-            OSTime date_ipl2 = mpSave->getPlayer().getPlayerStatusB().getDateIpl();
-            OSTime div_res = date_ipl2 / date_ipl;
-
-            // wrong, fix
-            if (div_res < date_ipl) {
+            if (dateSec < date2Secs) {
                 date_ipl = date_ipl2;
                 mSelectNum = i;
             }
-            // uVar6 = Runtime.PPCEABI.H::__div2i
-            //                     ((int)((ulonglong)uVar5 >> 0x20),(int)uVar5,0,DAT_800000f8 >> 2);
-            // uVar7 = Runtime.PPCEABI.H::__div2i
-            //                     ((int)((ulonglong)uVar4 >> 0x20),(int)uVar4,0,DAT_800000f8 >> 2);
-            // if (((uint)((ulonglong)uVar7 >> 0x20) ^ 0x80000000) <
-            //     (uint)((uint)uVar7 < (uint)uVar6) + ((uint)((ulonglong)uVar6 >> 0x20) ^ 0x80000000)) {
-            //     mSelectNum = (byte)iVar3;
-            //     uVar4 = uVar5;
-            // }
         }
 
-        card_ptr += 0xa94;
+        (char*)pSave += 0xa94;
 
-        if (field_0x025b[i] == 0 && mDataNew[i] != 0) {
+        if (field_0x025b[i] != 0 || mDataNew[i] != 0) {
             field_0x0220[i]->setAlpha(0);
             field_0x022c[i]->setAlpha(0xFF);
         } else {
@@ -2328,7 +2376,7 @@ void dFile_select_c::dataSelectIn() {
     }
 
     bool nameMove = true;
-    if (field_0x0128 || mFileSelCopyDlst.field_0x08) {
+    if (field_0x0128 || mCpSel.field_0x08) {
         nameMove = nameMoveAnm();
     }
 
@@ -2349,7 +2397,7 @@ void dFile_select_c::dataSelectIn() {
 
         headerTxtSet(0x43,1,0);
         mLastSelectNum = mSelectNum;
-        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
         field_0x00e0[mSelectNum] = SelStartFrameTbl[mSelectNum];
         field_0x0188[mSelectNum]->alphaAnimeStart(0);
         ketteiTxtDispAnmInit(1);
@@ -2377,7 +2425,7 @@ void dFile_select_c::dataSelectInit() {
             if (field_0x00e0[mSelectNum] > SelEndFrameTbl[mSelectNum])
                 field_0x00e0[mSelectNum] = SelEndFrameTbl[mSelectNum];
              
-            mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+            field_0x0084->setFrame(field_0x00e0[mSelectNum]);
             field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
             check = false;
         }
@@ -2448,13 +2496,13 @@ asm void dFile_select_c::dataSelect() {
 
 /* ############################################################################################## */
 /* 804506B0-804506B8 000130 0008+00 2/2 0/0 0/0 .sdata           YnSelStartFrameTbl */
-SECTION_SDATA static u32 YnSelStartFrameTbl[2] = {
+SECTION_SDATA static s32 YnSelStartFrameTbl[2] = {
     0x000004E3, 
     0x000004D4,
 };
 
 /* 804506B8-804506C0 000138 0008+00 2/2 0/0 0/0 .sdata           YnSelEndFrameTbl */
-SECTION_SDATA static u32 YnSelEndFrameTbl[2] = {
+SECTION_SDATA static s32 YnSelEndFrameTbl[2] = {
     0x000004D4, 
     0x000004E3,
 };
@@ -2476,9 +2524,60 @@ SECTION_SDATA2 static u8 lit_4778[4] = {
 
 /* 80185508-80185994 17FE48 048C+00 1/1 0/0 0/0 .text            dataSelectStart__14dFile_select_cFv
  */
+// Matches with literals
 #ifdef NONMATCHING
 void dFile_select_c::dataSelectStart() {
-    
+    mSelIcon->setAlphaRate(0.0f);
+    if (field_0x025b[mSelectNum] != 0) {
+        headerTxtSet(0x52, 0, 0);
+        selectDataMoveAnmInitSet(SelOpenStartFrameTbl[mSelectNum], SelOpenEndFrameTbl[mSelectNum]);
+        yesnoMenuMoveAnmInitSet(0x473, 0x47d);
+        selectWakuAlpahAnmInit(mSelectNum, 0xff, 0, g_fsHIO.field_0x0008);
+        mSelDt.ScrDt->search('ken_00')->hide();
+        mSelDt.ScrDt->search('ken_01')->hide();
+        mSelDt.ScrDt->search('ken_02')->hide();
+        mSelDt.ScrDt->search('tate_00')->hide();
+        mSelDt.ScrDt->search('tate_01')->hide();
+        mSelDt.ScrDt->search('tate_02')->hide();
+        mSelDt.ScrDt->search('fuku_00')->hide();
+        mSelDt.ScrDt->search('fuku_01')->hide();
+        mSelDt.ScrDt->search('fuku_02')->hide();
+        mpFileSelect3d->drawOff();
+        field_0x026f = 7;
+    } else if (mDataNew[mSelectNum] != 0) {
+        dComIfGs_setNewFile(0x80);
+        dComIfGs_setDataNum(mSelectNum);
+        mDoAud_seStart(Z2SE_SY_NEW_FILE, 0, 0, 0);
+        headerTxtSet(0x385, 1, 0);
+        fileRecScaleAnmInitSet2(1.0f,
+                                -1.0f);
+        nameMoveAnmInitSet(3359, 3369);
+        field_0x0164[mSelectNum]->setAlpha(0);
+        field_0x0170[mSelectNum]->setAlpha(0);
+        field_0x017c[mSelectNum]->setAlpha(0);
+        char auStack_28[32];
+        dMeter2Info_getString(0x382, auStack_28, 0);
+        dComIfGs_setPlayerName(auStack_28);
+        mpName->setNextNameStr(dComIfGs_getPlayerName());
+        mpName->initial();
+        modoruTxtChange(1);
+        field_0x026f = 6;
+    } else {
+        dComIfGs_setNewFile(0);
+        mDoAud_seStart(Z2SE_SY_CURSOR_OK, 0, 0, 0);
+        mSelectMenuNum = 1;
+        mLastSelectMenuNum = mSelectMenuNum;
+        headerTxtSet(msgTbl[mSelectNum],
+                        1, 0);
+        selectDataMoveAnmInitSet(
+            SelOpenStartFrameTbl[mSelectNum],
+            SelOpenEndFrameTbl[mSelectNum]);
+        menuMoveAnmInitSet(799, 809);
+        selectWakuAlpahAnmInit(mSelectNum, 0xff, 0, g_fsHIO.field_0x0008);
+        makeRecInfo(mSelectNum);
+        field_0x026f = 5;
+    }
+    modoruTxtDispAnmInit(1);
 }
 #else
 #pragma push
@@ -2496,13 +2595,13 @@ asm void dFile_select_c::dataSelectStart() {
 #ifdef NONMATCHING
 // matches with literals
 void dFile_select_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
-    field_0x00bc[0]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
-    field_0x00bc[1]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
-    field_0x00bc[2]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
-    mpPane->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+    field_0x00bc[0]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
+    field_0x00bc[1]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
+    field_0x00bc[2]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
+    mpPane->setAnimation((J2DAnmTransform*)field_0x0084);
     field_0x00e0[mSelectNum] = param_0;
     field_0x00ec = (s32*)param_1;
-    mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+    field_0x0084->setFrame(field_0x00e0[mSelectNum]);
     field_0x00bc[0]->getPanePtr()->animationTransform();
     field_0x00bc[1]->getPanePtr()->animationTransform();
     field_0x00bc[2]->getPanePtr()->animationTransform();
@@ -2537,7 +2636,7 @@ bool dFile_select_c::selectDataMoveAnm() {
                 field_0x00e0[mSelectNum] = field_0x00ec;
         }
 
-        mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+        field_0x0084->setFrame(field_0x00e0[mSelectNum]);
 
         for (int i = 0; i < 3; i++) {
             field_0x00bc[i]->getPanePtr()->animationTransform();
@@ -2571,21 +2670,21 @@ asm bool dFile_select_c::selectDataMoveAnm() {
 // matches with literals
 void dFile_select_c::dataSelectAnmSet() {
     if (mSelectNum != 0xff) {
-        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[0]);
+        field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0084);
         field_0x00e0[mSelectNum] = SelStartFrameTbl[mSelectNum];
-        mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+        field_0x0084->setFrame(field_0x00e0[mSelectNum]);
         field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
         field_0x0188[mSelectNum]->alphaAnimeStart(0);
     }
 
     if (mLastSelectNum != 0xff) {
         selectWakuAlpahAnmInit(mLastSelectNum,0xff,0,g_fsHIO.field_0x0008);
-        field_0x00bc[mLastSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)mpAnmBase[1]); // wrong?
+        field_0x00bc[mLastSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)field_0x0088); // wrong?
         field_0x00e0[mLastSelectNum] = SelEndFrameTbl[mLastSelectNum];
-        mpAnmBase[1]->setFrame(field_0x00e0[mLastSelectNum]);
+        field_0x0088->setFrame(field_0x00e0[mLastSelectNum]);
         field_0x00bc[mLastSelectNum]->getPanePtr()->animationTransform();
         field_0x0188[mLastSelectNum]->alphaAnimeStart(0);
-        mpCursor1->setAlphaRate(0.0f);
+        mSelIcon->setAlphaRate(0.0f);
     }
 }
 #else
@@ -2616,7 +2715,7 @@ void dFile_select_c::dataSelectMoveAnime() {
             if (field_0x00e0[mLastSelectNum] < SelStartFrameTbl[mLastSelectNum])
                 field_0x00e0[mLastSelectNum] = SelStartFrameTbl[mLastSelectNum];
         
-            mpAnmBase[1]->setFrame(field_0x00e0[mLastSelectNum]);
+            field_0x0088->setFrame(field_0x00e0[mLastSelectNum]);
             field_0x00bc[mLastSelectNum]->getPanePtr()->animationTransform();
             bVar1 = false;
         }
@@ -2634,7 +2733,7 @@ void dFile_select_c::dataSelectMoveAnime() {
             if (SelEndFrameTbl[mSelectNum] < field_0x00e0[mSelectNum])
                 field_0x00e0[mSelectNum] = SelEndFrameTbl[mSelectNum];
 
-            mpAnmBase[0]->setFrame(field_0x00e0[mSelectNum]);
+            field_0x0084->setFrame(field_0x00e0[mSelectNum]);
             field_0x00bc[mSelectNum]->getPanePtr()->animationTransform();
             bVar2 = false;
         }
@@ -2665,14 +2764,96 @@ asm void dFile_select_c::dataSelectMoveAnime() {
 #endif
 
 /* 80186088-801864DC 1809C8 0454+00 2/2 0/0 0/0 .text            makeRecInfo__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::makeRecInfo(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/makeRecInfo__14dFile_select_cFUc.s"
+void dFile_select_c::makeRecInfo(u8 param_1) {
+    dSv_save_c* pSave = (dSv_save_c*)&mSave[param_1];
+    J2DPane* ken0 = mSelDt.ScrDt->search('ken_00');
+    J2DPane* ken1 = mSelDt.ScrDt->search('ken_01');
+    ken0->hide();
+    ken1->hide();
+    if (pSave->getPlayer().getGetItem().isFirstBit(40)) {
+        ken0->hide();
+        ken1->show();
+    } else if (pSave->getPlayer().getGetItem().isFirstBit(63) && !pSave->getEvent().isEventBit(0x302)) {
+        ken0->show();
+        ken1->hide();
+    }
+
+    J2DPane* ken2 = mSelDt.ScrDt->search('ken_02');
+    if (pSave->getPlayer().getGetItem().isFirstBit(41) || pSave->getPlayer().getGetItem().isFirstBit(73)) {
+        ken2->show();
+    } else {
+        ken2->hide();
+    }
+
+    J2DPane* tate0 = mSelDt.ScrDt->search('tate_00');
+    J2DPane* tate1 = mSelDt.ScrDt->search('tate_01');
+    tate0->hide();
+    tate1->hide();
+
+    if (pSave->getPlayer().getGetItem().isFirstBit(43)) {
+        tate0->show();
+        tate1->hide();
+    } else if (pSave->getPlayer().getGetItem().isFirstBit(42)) {
+        tate0->hide();
+        tate1->show();
+    }
+
+    J2DPane* tate2 = mSelDt.ScrDt->search('tate_02');
+    if (pSave->getPlayer().getGetItem().isFirstBit(44)) {
+        tate2->show();
+    } else {
+        tate2->hide();
+    }
+
+    J2DPane* fuku0 = mSelDt.ScrDt->search('fuku_00');
+    if (pSave->getPlayer().getGetItem().isFirstBit(47)) {
+        fuku0->show();
+    } else {
+        fuku0->hide();
+    }
+
+    J2DPane* fuku1 = mSelDt.ScrDt->search('fuku_01');
+    if (pSave->getPlayer().getGetItem().isFirstBit(49)) {
+        fuku1->show();
+    } else {
+        fuku1->hide();
+    }
+
+    J2DPane* fuku2 = mSelDt.ScrDt->search('fuku_02');
+    if (pSave->getPlayer().getGetItem().isFirstBit(48)) {
+        fuku2->show();
+    } else {
+        fuku2->hide();
+    }
+
+    u8 mirrorsCollected = 0;
+    for (int i = 0; i < 4; i++) {
+        if (!pSave->getPlayer().getCollect().isCollectMirror(i)) {
+            break;
+        }
+        mirrorsCollected++;
+    }
+    u8 crystalCollected = 0;
+    for (int i = 0; i < 4; i++) {
+        if (!pSave->getPlayer().getCollect().isCollectCrystal(i)) {
+            break;
+        }
+        crystalCollected++;
+    }
+
+    if ((crystalCollected == 0 && mirrorsCollected == 0) || (pSave->getEvent().isEventBit(0xc01) && !pSave->getPlayer().getCollect().isCollectMirror(0)) ||
+        (pSave->getEvent().isEventBit(0x2b08) && !pSave->getPlayer().getCollect().isCollectCrystal(3))) {
+        mpFileSelect3d->drawOff();
+    } else {
+        mpFileSelect3d->freeHeap();
+        if (pSave->getPlayer().getCollect().isCollectCrystal(3) || mirrorsCollected == 0) {
+            mpFileSelect3d->_create(0, crystalCollected);
+        } else {
+            mpFileSelect3d->_create(mirrorsCollected, 0);
+        }
+    
+    }
 }
-#pragma pop
 
 /* 801864DC-80186638 180E1C 015C+00 1/0 0/0 0/0 .text selectDataOpenMove__14dFile_select_cFv */
 #ifdef NONMATCHING
@@ -2789,13 +2970,13 @@ void dFile_select_c::menuSelectStart() {
     mDoAud_seStart(Z2SE_SY_CURSOR_OK,0,0,0);
 
     if (mSelectMenuNum == 1) {
-        dComIfGs_setCardToMemory(&mpMemCard,mSelectNum);
+        dComIfGs_setCardToMemory((char*)mSave,mSelectNum);
         field_0x0270 = 1;
         field_0x026f = 46;
         dComIfGs_setDataNum(mSelectNum);
     }
     else if (mSelectMenuNum == 0) {
-        mpCursor1->setAlphaRate(0.0f);
+        mSelIcon->setAlphaRate(0.0f);
         yesnoMenuMoveAnmInitSet(0x473,0x47d);
         headerTxtSet(0x49, 0,0);
         field_0x026e = 1;
@@ -2805,7 +2986,7 @@ void dFile_select_c::menuSelectStart() {
         field_0x026a = mSelectNum;
         menuMoveAnmInitSet(0x329,799);
         headerTxtSet(0x44,0,0);
-        mpCursor1->setAlphaRate(0.0f);
+        mSelIcon->setAlphaRate(0.0f);
         selectDataMoveAnmInitSet(SelOpenEndFrameTbl[mSelectNum],SelOpenStartFrameTbl[mSelectNum]);
         selectWakuAlpahAnmInit(mSelectNum,0,255,g_fsHIO.field_0x0008);
         copySelMoveAnmInitSet(0xd1f,0xd29);
@@ -2834,7 +3015,7 @@ void dFile_select_c::menuSelectCansel() {
     menuMoveAnmInitSet(0x329,799);
     modoruTxtDispAnmInit(0);
     headerTxtSet(0x43,1,0);
-    mpCursor1->setAlphaRate(0.0);
+    mSelIcon->setAlphaRate(0.0);
     field_0x026f = 0xd;
 }
 #else
@@ -2959,7 +3140,7 @@ void dFile_select_c::menuSelectAnmSet() {
         field_0x032c->setFrame(field_0x034c[mLastSelectMenuNum]);
         (&field_0x0340)[mLastSelectMenuNum]->getPanePtr()->animationTransform();
         menuWakuAlpahAnmInit(mLastSelectMenuNum,0xFF,0,g_fsHIO.field_0x0008);
-        mpCursor1->setAlphaRate(0.0f);
+        mSelIcon->setAlphaRate(0.0f);
     }
 }
 #else
@@ -3310,21 +3491,23 @@ asm void dFile_select_c::backNameInputMove() {
 
 /* 801879B8-80187ADC 1822F8 0124+00 1/0 0/0 0/0 .text            ToCopyPaneMove__14dFile_select_cFv
  */
+// Matches with literals
 #ifdef NONMATCHING
-// unfinished
 void dFile_select_c::ToCopyPaneMove() {
-    cPaneMgr* pPane;
-    
     bool headerTxtChange = headerTxtChangeAnm();
     bool menuMove = menuMoveAnm();
     bool selectDataMove = selectDataMoveAnm();
     bool selectWakuAlpha = selectWakuAlpahAnm(mSelectNum);
     bool nameMove = nameMoveAnm();
 
-    if (headerTxtChange == true && menuMove == true && selectDataMove == true && selectWakuAlpha == true && nameMove == true) {
+    if (headerTxtChange == true && menuMove == true && selectDataMove == true &&
+        selectWakuAlpha == true && nameMove == true)
+    {
         field_0x026b = 0;
-        Vec vec = pPane->getGlobalVtxCenter();
-
+        Vec local_2c = field_0x02a4[field_0x026b]->getGlobalVtxCenter(false, 0);
+        mSelIcon2->setPos(local_2c.x, local_2c.y, field_0x02a4[field_0x026b]->getPanePtr(), true);
+        mSelIcon2->setAlphaRate(1.0f);
+        field_0x026f = 22;
     }
 }
 #else
@@ -3378,12 +3561,12 @@ SECTION_SDATA2 static f32 lit_5615 = 109.0f;
 // matches with literals
 void dFile_select_c::copySelMoveAnmInitSet(int param_0, int param_1) {
     if (param_0 == 0xd1f) {
-        field_0x02c0->setAlpha(0xff);
-        field_0x02c8->setAlpha(0xff);
-        field_0x02d0->setAlpha(0xff);
-        field_0x02c4->setAlpha(0);
-        field_0x02cc->setAlpha(0);
-        field_0x02d4->setAlpha(0);
+        field_0x02c0[0]->setAlpha(0xff);
+        field_0x02c8[0]->setAlpha(0xff);
+        field_0x02d0[0]->setAlpha(0xff);
+        field_0x02c0[1]->setAlpha(0);
+        field_0x02c8[1]->setAlpha(0);
+        field_0x02d0[1]->setAlpha(0);
 
         field_0x02a4[0]->getPanePtr()->setAnimation(field_0x029c);
         field_0x029c->setFrame(99.0f);
@@ -3396,13 +3579,13 @@ void dFile_select_c::copySelMoveAnmInitSet(int param_0, int param_1) {
         field_0x02a4[1]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
         
         setSaveDataForCopySel();
-        mFileSelCopyDlst.field_0x08 = true;
+        mCpSel.field_0x08 = true;
     }
 
-    field_0x011c->setAnimation(mpAnmBase[4]);
+    field_0x011c->setAnimation(field_0x0094);
     field_0x0120 = param_0;
     field_0x0124 = param_1;
-    mpAnmBase[4]->setFrame(field_0x0120);
+    field_0x0094->setFrame(field_0x0120);
     field_0x011c->animationTransform();
 }
 #else
@@ -3417,16 +3600,62 @@ asm void dFile_select_c::copySelMoveAnmInitSet(int param_0, int param_1) {
 #endif
 
 /* 80187DB8-80187ED4 1826F8 011C+00 1/1 0/0 0/0 .text setSaveDataForCopySel__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::setSaveDataForCopySel() {
-    nofralloc
-#include "asm/d/file/d_file_select/setSaveDataForCopySel__14dFile_select_cFv.s"
+void dFile_select_c::setSaveDataForCopySel() {
+    SaveData* pSave = mSave;
+    int notSelectedIndex = 0;
+    for (int i = 0; i < 3; i++) {
+        if (i == mSelectNum) {
+            pSave++;
+            continue;
+        }
+        J2DPicture* tagName = (J2DPicture*) mCpSel.Scr->search(l_tagName101[notSelectedIndex]);
+        tagName->changeTexture(l_numTex[i], 0);
+        CPaneMgrAlpha* datBase = mpFileInfo[notSelectedIndex]->getDatBase();
+        CPaneMgrAlpha* noDatBase = mpFileInfo[notSelectedIndex]->getNoDatBase();
+        int saveResult =
+            mpFileInfo[notSelectedIndex]->setSaveData((dSv_save_c*)*pSave, field_0x025b[i] == 0, i);
+        if (saveResult == -1 || saveResult == 1) {
+            datBase->hide();
+            noDatBase->show();
+        } else {
+            datBase->show();
+            noDatBase->hide();
+        }
+        pSave++;
+        notSelectedIndex++;
+    }
 }
-#pragma pop
 
 /* 80187ED4-8018801C 182814 0148+00 1/0 0/0 0/0 .text copyDataToSelect__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyDataToSelect() {
+    mStick->checkTrigger();
+    if (mDoCPd_c::getTrigA(0) != 0) {
+        copyDataToSelectStart();
+        return;
+    }
+    if (mDoCPd_c::getTrigB(0) != 0) {
+        copyDataToSelectCansel();
+        return;
+    }
+    if (mStick->checkUpTrigger()) {
+        if (field_0x026b != 0) {
+            mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR, 0, 0, 0);
+            field_0x026c = field_0x026b;
+            field_0x026b = 0;
+            copyDataToSelectMoveAnmSet();
+            field_0x026f = 23;
+        }
+    } else if (mStick->checkDownTrigger() && field_0x026b != 1) {
+        mDoAud_seStart(Z2SE_FILE_SELECT_CURSOR, 0, 0, 0);
+        field_0x026c = field_0x026b;
+        field_0x026b = 1;
+        copyDataToSelectMoveAnmSet();
+        field_0x026f = 23;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3435,8 +3664,40 @@ asm void dFile_select_c::copyDataToSelect() {
 #include "asm/d/file/d_file_select/copyDataToSelect__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018801C-80188234 18295C 0218+00 1/1 0/0 0/0 .text copyDataToSelectStart__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyDataToSelectStart() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_OK, 0, 0, 0);
+    field_0x026d = getCptoNum(field_0x026b);
+    mSelIcon2->setAlphaRate(0.0f);
+    if (mDataNew[field_0x026d] != 0) {
+        headerTxtSet(70, 0, 0);
+        mpFileWarning->openInit();
+        field_0x0158[mSelectNum]->getPanePtr()->scale(1.0f, 1.0f);
+        field_0x0158[mSelectNum]->alphaAnimeStart(0);
+        field_0x0158[mSelectNum]->setAlpha(0);
+        field_0x0158[field_0x026d]->getPanePtr()->scale(1.0f, 1.0f);
+        field_0x0158[field_0x026d]->alphaAnimeStart(0);
+        field_0x0158[field_0x026d]->setAlpha(0);
+        selectWakuAlpahAnmInit(field_0x026d, 0, 0xff, g_fsHIO.field_0x0008);
+        copySelMoveAnmInitSet(3369, 3359);
+        field_0x01fc = 0;
+        field_0x0204 = 0;
+        field_0x0209 = 1;
+        field_0x03b1 = 1;
+        modoruTxtDispAnmInit(0);
+        ketteiTxtDispAnmInit(0);
+        field_0x026f = 29;
+    } else {
+        yesnoMenuMoveAnmInitSet(1139, 1149);
+        headerTxtSet(69, 0, 0);
+        field_0x026f = 25;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3445,9 +3706,23 @@ asm void dFile_select_c::copyDataToSelectStart() {
 #include "asm/d/file/d_file_select/copyDataToSelectStart__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80188234-8018832C 182B74 00F8+00 1/1 0/0 0/0 .text copyDataToSelectCansel__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyDataToSelectCansel() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_CANCEL, 0, 0, 0);
+    selectDataMoveAnmInitSet(SelOpenStartFrameTbl[mSelectNum], SelOpenEndFrameTbl[mSelectNum]);
+    menuMoveAnmInitSet(799, 809);
+    copySelMoveAnmInitSet(3369, 3359);
+    headerTxtSet(msgTbl[mSelectNum], 1, 0);
+    mSelIcon2->setAlphaRate(0.0f);
+    selectWakuAlpahAnmInit(mSelectNum, 0xff, 0, g_fsHIO.field_0x0008);
+    field_0x026f = 24;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3456,9 +3731,31 @@ asm void dFile_select_c::copyDataToSelectCansel() {
 #include "asm/d/file/d_file_select/copyDataToSelectCansel__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018832C-801884D0 182C6C 01A4+00 1/1 0/0 0/0 .text
  * copyDataToSelectMoveAnmSet__14dFile_select_cFv               */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyDataToSelectMoveAnmSet() {
+    if (field_0x026b != 0xff) {
+        field_0x02d8[field_0x026b]->alphaAnimeStart(0);
+        field_0x02a4[field_0x026b]->getPanePtr()->setAnimation(field_0x029c);
+        field_0x02b4[field_0x026b] = 109;
+        field_0x029c->setFrame(field_0x02b4[field_0x026b]);
+        field_0x02a4[field_0x026b]->getPanePtr()->animationTransform();
+    }
+    if (field_0x026c != 0xff) {
+        copySelectWakuAlpahAnmInit(field_0x026c, 0xff, 0, g_fsHIO.field_0x0008);
+        field_0x02d8[field_0x026c]->alphaAnimeStart(0);
+        field_0x02a4[field_0x026c]->getPanePtr()->setAnimation(field_0x02a0);
+        field_0x02b4[field_0x026c] = 99;
+        field_0x02a0->setFrame(field_0x02b4[field_0x026c]);
+        field_0x02a4[field_0x026c]->getPanePtr()->animationTransform();
+        mSelIcon2->setAlphaRate(0.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3467,9 +3764,62 @@ asm void dFile_select_c::copyDataToSelectMoveAnmSet() {
 #include "asm/d/file/d_file_select/copyDataToSelectMoveAnmSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801884D0-80188834 182E10 0364+00 1/0 0/0 0/0 .text copyDataToSelectMoveAnm__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyDataToSelectMoveAnm() {
+    bool iVar7 = true;
+    bool iVar6 = true;
+    bool bVar1 = true;
+    if (field_0x026c != 0xff) {
+        iVar7 = field_0x02d8[field_0x026c]->alphaAnime(g_fsHIO.field_0x0006, 0xff, 0, 1);
+        iVar6 = copySelectWakuAlpahAnm(field_0x026c);
+        if (field_0x02b4[field_0x026c] != 109) {
+            field_0x02b4[field_0x026c] += 2;
+            if (field_0x02b4[field_0x026c] > 109) {
+                field_0x02b4[field_0x026c] = 109;
+            }
+            field_0x02a0->setFrame(field_0x02b4[field_0x026c]);
+            field_0x02a4[field_0x026c]->getPanePtr()->animationTransform();
+            bVar1 = false;
+        }
+    }
+    bool iVar5 = true;
+    bool bVar2 = true;
+    if (field_0x026b != 0xff) {
+        iVar5 = field_0x02d8[field_0x026b]->alphaAnime(g_fsHIO.field_0x0006, 0, 0xff, 1);
+        if (field_0x02b4[field_0x026b] != 99) {
+                field_0x02b4[field_0x026b] -= 2;
+                if (field_0x02b4[field_0x026b] < 99) {
+                    field_0x02b4[field_0x026b] = 99;
+                }
+                field_0x029c->setFrame(field_0x02b4[field_0x026b]);
+                field_0x02a4[field_0x026b]->getPanePtr()->animationTransform();
+                bVar2 = false;
+            }
+    }
+
+    if (iVar7 == true && iVar6 == true && bVar1 == true && iVar5 == true && bVar2 == true) {
+        if (field_0x026c != 0xff) {
+            field_0x02a4[field_0x026c]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+        }
+        if (field_0x026b != 0xff) {
+            field_0x02a4[field_0x026b]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+            field_0x02c0[field_0x026b]->setAlpha(0xff);
+            field_0x02c8[field_0x026b]->setAlpha(0xff);
+            field_0x02d0[field_0x026b]->setAlpha(0xff);
+            Vec local_3c = field_0x02a4[field_0x026b]->getGlobalVtxCenter(false, 0);
+            mSelIcon2->setPos(local_3c.x, local_3c.y, field_0x02a4[field_0x026b]->getPanePtr(),
+                                true);
+            mSelIcon2->setAlphaRate(1.0f);
+        }
+        field_0x026f = 22;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3478,42 +3828,79 @@ asm void dFile_select_c::copyDataToSelectMoveAnm() {
 #include "asm/d/file/d_file_select/copyDataToSelectMoveAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80188834-80188878 183174 0044+00 1/1 0/0 0/0 .text
  * copySelectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::copySelectWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2,
-                                                    u8 param_3) {
-    nofralloc
-#include "asm/d/file/d_file_select/copySelectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc.s"
+void dFile_select_c::copySelectWakuAlpahAnmInit(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
+    if (param_1 != 0xff) {
+        field_0x02c0[param_1]->alphaAnimeStart(0);
+        field_0x02c8[param_1]->alphaAnimeStart(0);
+        field_0x02d0[param_1]->alphaAnimeStart(0);
+        field_0x02e0[param_1] = param_2;
+        field_0x02e2[param_1] = param_3;
+        field_0x02e4[param_1] = param_4;
+    }
 }
-#pragma pop
 
 /* 80188878-80188950 1831B8 00D8+00 1/1 0/0 0/0 .text copySelectWakuAlpahAnm__14dFile_select_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::copySelectWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/copySelectWakuAlpahAnm__14dFile_select_cFUc.s"
+bool dFile_select_c::copySelectWakuAlpahAnm(u8 param_1) {
+    if (param_1 == 0xff) {
+        return true;
+    }
+    bool rv = false;
+    bool iVar2 = field_0x02c0[param_1]->alphaAnime(field_0x02e4[param_1], field_0x02e0[param_1], field_0x02e2[param_1], 0);
+    bool iVar3 = field_0x02c8[param_1]->alphaAnime(field_0x02e4[param_1], field_0x02e0[param_1], field_0x02e2[param_1], 0);
+    bool iVar4 = field_0x02d0[param_1]->alphaAnime(field_0x02e4[param_1], field_0x02e0[param_1], field_0x02e2[param_1], 0);
+    if (iVar2 == true && iVar3 == true && iVar4 == true) {
+        rv = true;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 80188950-80188994 183290 0044+00 1/1 0/0 0/0 .text            getCptoNum__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::getCptoNum(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/getCptoNum__14dFile_select_cFUc.s"
+u8 dFile_select_c::getCptoNum(u8 param_0) {
+    // !@bug It returns the value in this if field_0x026a is not in the range
+    switch (field_0x026a) {
+    case 0:
+        return param_0 + 1;
+    case 1:
+        return param_0 * 2;
+    case 2:
+        return param_0;
+    }
 }
-#pragma pop
 
 /* 80188994-80188B54 1832D4 01C0+00 1/0 0/0 0/0 .text            copyToSelBack__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::copyToSelBack() {
+    bool txtChanged = headerTxtChangeAnm();
+    bool selectDataMoved = selectDataMoveAnm();
+    bool menuMoved = menuMoveAnm();
+    bool selectWakuAnimated = selectWakuAlpahAnm(mSelectNum);
+    bool nameMoved = nameMoveAnm();
+    if (txtChanged == true && selectDataMoved == true && menuMoved == true &&
+        selectWakuAnimated == true && nameMoved == true)
+    {
+        for (int i = 0; i < 3; i++) {
+            field_0x0340[i]->getPanePtr()->setAnimation(field_0x0328);
+            if (i == mSelectMenuNum) {
+                field_0x0328->setFrame(MenuSelStartFrameTbl[i]);
+            } else {
+                field_0x0328->setFrame(MenuSelEndFrameTbl[i]);
+            }
+            field_0x0340[i]->getPanePtr()->animationTransform();
+            field_0x0340[i]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+            ((J2DTextBox*)mpPaneMgr2[i]->getPanePtr())->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xff));
+        }
+        menuCursorShow();
+        field_0x026f = 8;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3522,29 +3909,92 @@ asm void dFile_select_c::copyToSelBack() {
 #include "asm/d/file/d_file_select/copyToSelBack__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80188B54-80188BBC 183494 0068+00 1/0 0/0 0/0 .text copyToSelPaneMove__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::copyToSelPaneMove() {
-    nofralloc
-#include "asm/d/file/d_file_select/copyToSelPaneMove__14dFile_select_cFv.s"
+void dFile_select_c::copyToSelPaneMove() {
+    bool txtChanged = headerTxtChangeAnm();
+    bool menuMoved = yesnoMenuMoveAnm();
+    if (txtChanged == true && menuMoved == true) {
+        yesnoCursorShow();
+        field_0x026f = 26;
+    }
 }
-#pragma pop
 
 /* 80188BBC-80188D38 1834FC 017C+00 14/14 0/0 0/0 .text
  * yesnoMenuMoveAnmInitSet__14dFile_select_cFii                 */
+// Matches with literals
+#ifdef NONMATCHING
+bool dFile_select_c::yesnoMenuMoveAnmInitSet(int param_1, int param_2) {
+    if (!field_0x0108) {
+        field_0x0268 = false;
+        field_0x0269 = true;
+    }
+    if (param_1 == 1139) {
+        field_0x0281 = true;
+        ((J2DTextBox*)field_0x01c0[field_0x0268]->getPanePtr())->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
+        ((J2DTextBox*)field_0x01c0[field_0x0269]->getPanePtr())->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xff));
+    }
+    mSelIcon->setAlphaRate(0.0f);
+    field_0x00f0[0]->getPanePtr()->setAnimation(field_0x008c);
+    field_0x00f0[1]->getPanePtr()->setAnimation(field_0x008c);
+    field_0x0100 = param_1;
+    field_0x0104 = param_2;
+    field_0x008c->setFrame(field_0x0100);
+    field_0x00f0[0]->getPanePtr()->animationTransform();
+    field_0x00f0[1]->getPanePtr()->animationTransform();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dFile_select_c::yesnoMenuMoveAnmInitSet(int param_0, int param_1) {
+asm bool dFile_select_c::yesnoMenuMoveAnmInitSet(int param_0, int param_1) {
     nofralloc
 #include "asm/d/file/d_file_select/yesnoMenuMoveAnmInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 80188D38-80188ED0 183678 0198+00 15/15 0/0 0/0 .text yesnoMenuMoveAnm__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+bool dFile_select_c::yesnoMenuMoveAnm() {
+    bool rv;
+    if (field_0x0100 != field_0x0104) {
+        if (field_0x0100 < field_0x0104) {
+            field_0x0100 += 2;
+            if (field_0x0100 > field_0x0104) {
+                field_0x0100 = field_0x0104;
+            }
+        } else {
+            field_0x0100 -= 2;
+            if (field_0x0100 < field_0x0104) {
+                field_0x0100 = field_0x0104;
+            }
+        }
+        field_0x008c->setFrame(field_0x0100);
+        field_0x00f0[0]->getPanePtr()->animationTransform();
+        field_0x00f0[1]->getPanePtr()->animationTransform();
+        rv = false;
+    } else {
+        field_0x00f0[0]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+        field_0x00f0[1]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+        if (field_0x0100 == 1149) {
+            field_0x0108 = true;
+            field_0x0281 = false;
+        } else {
+            field_0x0108 = false;
+            if (field_0x0268 != 0xff) {
+                field_0x01a0[field_0x0268]->setAlpha(0);
+                field_0x01a8[field_0x0268]->setAlpha(0);
+                field_0x01b0[field_0x0268]->setAlpha(0);
+            }
+        }
+        rv = true;
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3553,16 +4003,69 @@ asm bool dFile_select_c::yesnoMenuMoveAnm() {
 #include "asm/d/file/d_file_select/yesnoMenuMoveAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80188ED0-8018912C 183810 025C+00 3/3 0/0 0/0 .text yesnoSelectMoveAnm__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+bool dFile_select_c::yesnoSelectMoveAnm() {
+    bool rv = false;
+    bool bVar1 = true;
+    if (field_0x0269 != 0xff && field_0x00f8[field_0x0269] != YnSelStartFrameTbl[field_0x0269]) {
+        if (field_0x00f8[field_0x0269] < YnSelStartFrameTbl[field_0x0269]) {
+            field_0x00f8[field_0x0269] += 2;
+            if (field_0x00f8[field_0x0269] > YnSelStartFrameTbl[field_0x0269]) {
+                field_0x00f8[field_0x0269] = YnSelStartFrameTbl[field_0x0269];
+            }
+        } else {
+            field_0x00f8[field_0x0269] -= 2;
+            if (field_0x00f8[field_0x0269] < YnSelStartFrameTbl[field_0x0269]) {
+                field_0x00f8[field_0x0269] = YnSelStartFrameTbl[field_0x0269];
+            }
+        }
+        field_0x0310->setFrame(field_0x00f8[field_0x0269]);
+        field_0x00f0[field_0x0269]->getPanePtr()->animationTransform();
+        bVar1 = false;
+    }
+    bool bVar2 = true;
+    if (field_0x0268 != 0xff && YnSelEndFrameTbl[field_0x0268] != field_0x00f8[field_0x0268])
+    {
+        if (field_0x00f8[field_0x0268] < YnSelEndFrameTbl[field_0x0268]) {
+            field_0x00f8[field_0x0268] += 2;
+            if (field_0x00f8[field_0x0268] > YnSelEndFrameTbl[field_0x0268]) {
+                field_0x00f8[field_0x0268] = YnSelEndFrameTbl[field_0x0268];
+            }
+        } else {
+            field_0x00f8[field_0x0268] -= 2;
+            if (field_0x00f8[field_0x0268] < YnSelEndFrameTbl[field_0x0268]) {
+                field_0x00f8[field_0x0268] = YnSelEndFrameTbl[field_0x0268];
+            }
+        }
+        field_0x0314->setFrame(field_0x00f8[field_0x0268]);
+        field_0x00f0[field_0x0268]->getPanePtr()->animationTransform();
+        bVar2 = false;
+    }
+    if (bVar1 == true && bVar2 == true) {
+        if (field_0x0269 != 0xff) {
+            field_0x00f0[field_0x0269]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+        }
+        if (field_0x0268 != 0xff) {
+            field_0x00f0[field_0x0268]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+        }
+        rv = true;
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dFile_select_c::yesnoSelectMoveAnm() {
+asm bool dFile_select_c::yesnoSelectMoveAnm() {
     nofralloc
 #include "asm/d/file/d_file_select/yesnoSelectMoveAnm__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453968-8045396C 001F68 0004+00 6/6 0/0 0/0 .sdata2          @6069 */
@@ -3576,6 +4079,22 @@ SECTION_SDATA2 static f32 lit_6071 = 3.0f / 50.0f;
 
 /* 8018912C-8018929C 183A6C 0170+00 9/9 0/0 0/0 .text            yesnoCursorShow__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::yesnoCursorShow() {
+    if (field_0x0268 == 0xff) {
+        return;
+    }
+    ((J2DTextBox*)field_0x01c0[field_0x0268]->getPanePtr())->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
+    field_0x01a0[field_0x0268]->setAlpha(0xff);
+    field_0x01a8[field_0x0268]->setAlpha(0xff);
+    field_0x01b0[field_0x0268]->setAlpha(0xff);
+    Vec local_24 = field_0x00f0[field_0x0268]->getGlobalVtxCenter(0, 0);
+    mSelIcon->setPos(local_24.x, local_24.y, field_0x00f0[field_0x0268]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(1.0f);
+    mSelIcon->setParam(0.96f, 0.84f, 0.06f, 0.5f, 0.5f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3584,8 +4103,40 @@ asm void dFile_select_c::yesnoCursorShow() {
 #include "asm/d/file/d_file_select/yesnoCursorShow__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018929C-801893E4 183BDC 0148+00 1/0 0/0 0/0 .text            YesNoSelect__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::YesNoSelect() {
+    mStick->checkTrigger();
+    if (mDoCPd_c::getTrigA(0) != 0) {
+        yesNoSelectStart();
+        return;  
+    }
+
+    if (mDoCPd_c::getTrigB(0) != 0) {
+        yesnoCancelAnmSet();
+        return;
+    }
+
+    if (mStick->checkRightTrigger()) {
+        if (field_0x0268 != 0) {
+            mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, 0, 0, 0);
+            field_0x0269 = field_0x0268;
+            field_0x0268 = 0;
+            yesnoSelectAnmSet();
+            field_0x026f = 28;
+        }
+    } else if (mStick->checkLeftTrigger() && field_0x0268 != 1) {
+        mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, 0, 0, 0);
+        field_0x0269 = field_0x0268;
+        field_0x0268 = 1;
+        yesnoSelectAnmSet();
+        field_0x026f = 28;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3594,8 +4145,68 @@ asm void dFile_select_c::YesNoSelect() {
 #include "asm/d/file/d_file_select/YesNoSelect__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801893E4-8018978C 183D24 03A8+00 1/1 0/0 0/0 .text yesNoSelectStart__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::yesNoSelectStart() {
+    if (field_0x0268 != 0) {
+        mDoAud_seStart(Z2SE_SY_CURSOR_OK, 0, 0, 0);
+        field_0x03b1 = 1;
+        switch(field_0x026e) {
+        case 1:
+            headerTxtSet(74, 0, 0);
+            mpFileWarning->openInit();
+            field_0x014c[mSelectNum]->getPanePtr()->scale(1.0f, 1.0f);
+            field_0x014c[mSelectNum]->alphaAnimeStart(0);
+            field_0x014c[mSelectNum]->setAlpha(0);
+            menuMoveAnmInitSet(809, 799);
+            yesnoMenuMoveAnmInitSet(1149, 1139);
+            mSelIcon->setAlphaRate(0.0f);
+            field_0x01f4 = 0;
+            field_0x0204 = 0;
+            field_0x0208 = 1;
+            break;
+        case 2:
+            headerTxtSet(0x4a, 0, 0);
+            mpFileWarning->openInit();
+            field_0x014c[mSelectNum]->getPanePtr()->scale(1.0f, 1.0f);
+            field_0x014c[mSelectNum]->alphaAnimeStart(0);
+            field_0x014c[mSelectNum]->setAlpha(0);
+            yesnoMenuMoveAnmInitSet(1149, 1139);
+            mSelIcon->setAlphaRate(0.0f);
+            field_0x01f4 = 0;
+            field_0x0204 = 0;
+            field_0x0208 = 1;
+            break;
+        case 0:
+            headerTxtSet(0x46, 0, 0);
+            mpFileWarning->openInit();
+            field_0x0158[mSelectNum]->getPanePtr()->scale(1.0f, 1.0f);
+            field_0x0158[mSelectNum]->alphaAnimeStart(0);
+            field_0x0158[mSelectNum]->setAlpha(0);
+            field_0x0158[field_0x026d]->getPanePtr()->scale(1.0f, 1.0f);
+            field_0x0158[field_0x026d]->alphaAnimeStart(0);
+            field_0x0158[field_0x026d]->setAlpha(0);
+            yesnoMenuMoveAnmInitSet(1149, 1139);
+            mSelIcon->setAlphaRate(0.0f);
+            mSelIcon2->setAlphaRate(0.0f);
+            selectWakuAlpahAnmInit(field_0x026d, 0, 0xff, g_fsHIO.field_0x0008);
+            copySelMoveAnmInitSet(0xd29, 0xd1f);
+            field_0x01fc = 0;
+            field_0x0204 = 0;
+            field_0x0209 = 1;
+            break;
+        }
+        modoruTxtDispAnmInit(0);
+        ketteiTxtDispAnmInit(0);
+        field_0x026f = 29;
+    } else {
+        yesnoCancelAnmSet();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3604,8 +4215,28 @@ asm void dFile_select_c::yesNoSelectStart() {
 #include "asm/d/file/d_file_select/yesNoSelectStart__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018978C-80189904 1840CC 0178+00 3/3 0/0 0/0 .text yesnoSelectAnmSet__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::yesnoSelectAnmSet() {
+    if (field_0x0269 != 0xff) {
+        yesnoWakuAlpahAnmInit(field_0x0269, 0xff, 0, g_fsHIO.field_0x0008);
+        field_0x00f0[field_0x0269]->getPanePtr()->setAnimation(field_0x0310);
+        field_0x00f8[field_0x0269] = YnSelEndFrameTbl[field_0x0269];
+        field_0x0310->setFrame(field_0x00f8[field_0x0269]);
+        field_0x00f0[field_0x0269]->getPanePtr()->animationTransform();
+        mSelIcon->setAlphaRate(0.0f);
+    }
+    if (field_0x0268 != 0xff) {
+        field_0x00f0[field_0x0268]->getPanePtr()->setAnimation(field_0x0314);
+        field_0x00f8[field_0x0268] = YnSelStartFrameTbl[field_0x0268];
+        field_0x0314->setFrame(field_0x00f8[field_0x0268]);
+        field_0x00f0[field_0x0268]->getPanePtr()->animationTransform();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3614,8 +4245,30 @@ asm void dFile_select_c::yesnoSelectAnmSet() {
 #include "asm/d/file/d_file_select/yesnoSelectAnmSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80189904-80189A24 184244 0120+00 2/2 0/0 0/0 .text yesnoCancelAnmSet__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::yesnoCancelAnmSet() {
+    mDoAud_seStart(Z2SE_SY_CURSOR_CANCEL, 0, 0, 0);
+    mSelIcon->setAlphaRate(0.0f);
+    switch (field_0x026e) {
+    case 1:
+        headerTxtSet(msgTbl[mSelectNum], 1, 0);
+        break;
+    case 2:
+        headerTxtSet(67, 1, 0);
+        selectDataMoveAnmInitSet(SelOpenEndFrameTbl[mSelectNum], SelOpenStartFrameTbl[mSelectNum]);
+        break;
+    case 0:
+        headerTxtSet(68, 0, 0);
+        break;
+    }
+    yesnoMenuMoveAnmInitSet(1149, 1139);
+    field_0x026f = 27;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3624,9 +4277,52 @@ asm void dFile_select_c::yesnoCancelAnmSet() {
 #include "asm/d/file/d_file_select/yesnoCancelAnmSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80189A24-80189BA8 184364 0184+00 1/0 0/0 0/0 .text            YesNoCancelMove__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::YesNoCancelMove() {
+    bool txtChanged = headerTxtChangeAnm();
+    bool moveAnimated = yesnoMenuMoveAnm();
+    bool selectMoveAnimated;
+    switch (field_0x026e) {
+    case 1:
+        selectMoveAnimated = true;
+        break;
+    case 2:
+        selectMoveAnimated = selectDataMoveAnm();
+        break;
+    case 0:
+        selectMoveAnimated = true;
+        break;
+    }
+    if (txtChanged == true && moveAnimated == true && selectMoveAnimated == true) {
+        switch (field_0x026e) {
+        case 1:
+            if (mSelectMenuNum != 0xff) {
+                Vec vtxCenter;
+                vtxCenter = field_0x0340[mSelectMenuNum]->getGlobalVtxCenter(false, 0);
+                mSelIcon->setPos(vtxCenter.x, vtxCenter.y, field_0x0340[mSelectMenuNum]->getPanePtr(),
+                                 true);
+                mSelIcon->setAlphaRate(1.0f);
+                mSelIcon->setParam(0.96f, 0.84f, 0.06f, 0.5f, 0.5f);
+            }
+            field_0x026f = 8;
+            break;
+        case 2:
+            selFileCursorShow();
+            field_0x026f = 3;
+            break;
+        case 0:
+            mSelIcon2->setAlphaRate(1.0f);
+            field_0x026f = 22;
+            break;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3635,28 +4331,88 @@ asm void dFile_select_c::YesNoCancelMove() {
 #include "asm/d/file/d_file_select/YesNoCancelMove__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80189BA8-80189C14 1844E8 006C+00 1/0 0/0 0/0 .text yesNoCursorMoveAnm__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::yesNoCursorMoveAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/yesNoCursorMoveAnm__14dFile_select_cFv.s"
+void dFile_select_c::yesNoCursorMoveAnm() {
+    bool moveAnimated = yesnoSelectMoveAnm();
+    bool wakuAnimated = yesnoWakuAlpahAnm(field_0x0269);
+    if (moveAnimated == true && wakuAnimated == true) {
+        yesnoCursorShow();
+        field_0x026f = 26;
+    }
 }
-#pragma pop
 
 /* 80189C14-80189E28 184554 0214+00 1/0 0/0 0/0 .text CmdExecPaneMove0__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::CmdExecPaneMove0() {
-    nofralloc
-#include "asm/d/file/d_file_select/CmdExecPaneMove0__14dFile_select_cFv.s"
+void dFile_select_c::CmdExecPaneMove0() {
+    int txtChanged = headerTxtChangeAnm();
+    int unaff_r29;
+    int unaff_r28;
+    int unaff_r30;
+    int unaff_r27;
+    int nameMoved;
+    switch (field_0x026e) {
+    case 1:
+        unaff_r29 = field_0x014c[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0, 0xff, 0);
+        unaff_r28 = yesnoMenuMoveAnm();
+        unaff_r30 = menuMoveAnm();
+        unaff_r27 = true;
+        nameMoved = true;
+        break;
+    case 2:
+        unaff_r29 = field_0x014c[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0, 0xff, 0);
+        unaff_r28 = true;
+        unaff_r30 = yesnoMenuMoveAnm();
+        unaff_r27 = true;
+        nameMoved = true;
+        break;
+    case 0:
+        unaff_r29 = field_0x0158[field_0x026d]->alphaAnime(g_fsHIO.field_0x0009, 0, 0xff, 0);
+        unaff_r28 = field_0x0158[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0, 0xff, 0);
+        if (field_0x0108) {
+            unaff_r30 = yesnoMenuMoveAnm();
+        } else {
+            unaff_r30 = true;
+        }
+        unaff_r27 = selectWakuAlpahAnm(field_0x026d);
+        nameMoved = nameMoveAnm();
+        break;
+    }
+    int modoruTxt = modoruTxtDispAnm();
+    int kettaiTxt = ketteiTxtDispAnm();
+    int warningStatus = mpFileWarning->getStatus() != 0;
+    if (txtChanged == true && unaff_r29 == true && unaff_r28 == true && unaff_r30 == true &&
+        unaff_r27 == true && nameMoved == true && modoruTxt == true && kettaiTxt == true && warningStatus == true)
+    {
+        field_0x026f = 30;
+    }
 }
-#pragma pop
 
 /* 80189E28-80189F68 184768 0140+00 1/0 0/0 0/0 .text            CommandExec__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::CommandExec() {
+    switch (field_0x026e) {
+    case 1:
+    case 2:
+        mDoAud_seStartLevel(Z2SE_SY_FILE_DELETE_LEVEL, 0, 0, 0);
+        dComIfGs_setInitDataToCard((u8*)mSave, mSelectNum);
+        mDoMemCdRWm_SetCheckSumGameData((u8*)mSave, mSelectNum);
+        dataSave();
+        field_0x026f = 31;
+        break;
+    case 0:
+        mDoAud_seStartLevel(Z2SE_SY_FILE_COPY_LEVEL, 0, 0, 0);
+        memcpy(&mSave[field_0x026d], &mSave[field_0x026a], sizeof(SaveData));
+        mDoMemCdRWm_SetCheckSumGameData((u8*)mSave, field_0x026d);
+        mDoMemCd_setCopyToPos(field_0x026d);
+        dataSave();
+        field_0x026f = 33;
+        break;
+    }
+    field_0x03ac = g_fsHIO.field_0x000c;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3665,9 +4421,23 @@ asm void dFile_select_c::CommandExec() {
 #include "asm/d/file/d_file_select/CommandExec__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80189F68-80189FFC 1848A8 0094+00 1/0 0/0 0/0 .text            DataEraseWait__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::DataEraseWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    }
+    mDoAud_seStartLevel(Z2SE_SY_FILE_DELETE_LEVEL, 0, 0, 0);
+    field_0x03b4 = mDoMemCd_SaveSync();
+    if (field_0x03b4 != 0) {
+        field_0x026f = 32;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3676,9 +4446,34 @@ asm void dFile_select_c::DataEraseWait() {
 #include "asm/d/file/d_file_select/DataEraseWait__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80189FFC-8018A194 18493C 0198+00 1/0 0/0 0/0 .text            DataEraseWait2__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::DataEraseWait2() {
+    if (field_0x03ac != 0) {
+        mDoAud_seStartLevel(Z2SE_SY_FILE_DELETE_LEVEL, 0, 0, 0);
+        field_0x03ac--;
+    } else if (field_0x03b4 == 2) {
+        mDoAud_seStart(Z2SE_SY_FILE_ERROR, 0, 0, 0);
+        headerTxtSet(76, 0, 0);
+        mpFileWarning->closeInit();
+        modoruTxtDispAnmInit(1);
+        ketteiTxtDispAnmInit(1);
+        field_0x014c[mSelectNum]->alphaAnimeStart(0);
+        field_0x026f = 39;
+    } else if (field_0x03b4 == 1) {
+        mDoAud_seStart(Z2SE_SY_FILE_DELETE_OK, 0, 0, 0);
+        field_0x03b1 = 0;
+        field_0x014c[mSelectNum]->alphaAnimeStart(0);
+        field_0x022c[mSelectNum]->alphaAnimeStart(0);
+        field_0x0220[mSelectNum]->alphaAnimeStart(0);
+        field_0x026f = 37;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3687,50 +4482,84 @@ asm void dFile_select_c::DataEraseWait2() {
 #include "asm/d/file/d_file_select/DataEraseWait2__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018A194-8018A2DC 184AD4 0148+00 1/0 0/0 0/0 .text            ErasePaneMoveOk__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::ErasePaneMoveOk() {
-    nofralloc
-#include "asm/d/file/d_file_select/ErasePaneMoveOk__14dFile_select_cFv.s"
+void dFile_select_c::ErasePaneMoveOk() {
+    int iVar1 = field_0x014c[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    int iVar2;
+    if (field_0x025b[mSelectNum] != 0) {
+        iVar2 = field_0x022c[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    } else {
+        iVar2 = field_0x0220[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    }
+    if (iVar1 == 1 && iVar2 == 1) {
+        field_0x0208 = 0;
+        setSaveData();
+        makeRecInfo(mSelectNum);
+        headerTxtSet(0x4b, 0, 0);
+        mpFileWarning->closeInit();
+        field_0x022c[mSelectNum]->alphaAnimeStart(0);
+        selectWakuAlpahAnmInit(mSelectNum, 0, 0xff, g_fsHIO.field_0x0007);
+        field_0x026f = 38;
+    }
 }
-#pragma pop
 
 /* 8018A2DC-8018A3B0 184C1C 00D4+00 1/0 0/0 0/0 .text ErasePaneMoveOk2__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::ErasePaneMoveOk2() {
-    nofralloc
-#include "asm/d/file/d_file_select/ErasePaneMoveOk2__14dFile_select_cFv.s"
+void dFile_select_c::ErasePaneMoveOk2() {
+    bool txtChanged = headerTxtChangeAnm();
+    bool iVar2 =
+        field_0x022c[mSelectNum]->alphaAnime(
+                                  g_fsHIO.field_0x0007, 0, 0xff, 0);
+    bool wakuAnm = selectWakuAlpahAnm(mSelectNum);
+    bool warningStatus = mpFileWarning->getStatus();
+    if (txtChanged == true && iVar2 == true && wakuAnm == true && warningStatus == true) {
+        field_0x03ac = g_fsHIO.field_0x000a;
+        mSelectMenuNum = 0;
+        field_0x026f = 40;
+    }
 }
-#pragma pop
 
 /* 8018A3B0-8018A444 184CF0 0094+00 1/0 0/0 0/0 .text eraseEndBackSelectWait__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::eraseEndBackSelectWait() {
-    nofralloc
-#include "asm/d/file/d_file_select/eraseEndBackSelectWait__14dFile_select_cFv.s"
+void dFile_select_c::eraseEndBackSelectWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    } else if (field_0x03ac == 0) {
+        selectDataMoveAnmInitSet(SelOpenEndFrameTbl[mSelectNum], SelOpenStartFrameTbl[mSelectNum]);
+        headerTxtSet(67, 1, 0);
+        ketteiTxtDispAnmInit(1);
+        field_0x026f = 41;
+    }
 }
-#pragma pop
 
 /* 8018A444-8018A4D0 184D84 008C+00 1/0 0/0 0/0 .text eraseEndBackSelect__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::eraseEndBackSelect() {
-    nofralloc
-#include "asm/d/file/d_file_select/eraseEndBackSelect__14dFile_select_cFv.s"
+void dFile_select_c::eraseEndBackSelect() {
+    bool txtChanged = headerTxtChangeAnm();
+    bool dataMoved = selectDataMoveAnm();
+    bool ketteiTxtAnm = ketteiTxtDispAnm();
+    if (txtChanged == true && dataMoved == true && ketteiTxtAnm == true) {
+        selFileCursorShow();
+        mpFileSelect3d->drawOff();
+        field_0x026f = 3;
+    }
 }
-#pragma pop
 
 /* 8018A4D0-8018A564 184E10 0094+00 1/0 0/0 0/0 .text            DataCopyWait__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::DataCopyWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    }
+    mDoAud_seStartLevel(Z2SE_SY_FILE_COPY_LEVEL, 0, 0, 0);
+    field_0x03b4 = mDoMemCd_SaveSync();
+    if (field_0x03b4 != 0) {
+        field_0x026f = 34;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3739,9 +4568,37 @@ asm void dFile_select_c::DataCopyWait() {
 #include "asm/d/file/d_file_select/DataCopyWait__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018A564-8018A6F8 184EA4 0194+00 1/0 0/0 0/0 .text            DataCopyWait2__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::DataCopyWait2() {
+    if (field_0x03ac != 0) {
+        mDoAud_seStartLevel(Z2SE_SY_FILE_COPY_LEVEL, 0, 0, 0);
+        field_0x03ac--;
+    } else {
+        if (field_0x03b4 == 2) {
+            mDoAud_seStart(Z2SE_SY_FILE_ERROR, 0, 0, 0);
+            headerTxtSet(0x48, 0, 0);
+            mpFileWarning->closeInit();
+            modoruTxtDispAnmInit(1);
+            ketteiTxtDispAnmInit(1);
+            field_0x026f = 39;
+        } else if (field_0x03b4 == 1) {
+            mDoAud_seStart(Z2SE_SY_FILE_COPY_OK, 0, 0, 0);
+            field_0x03b1 = 0;
+            field_0x0158[mSelectNum]->alphaAnimeStart(0);
+            field_0x0158[field_0x026d]->alphaAnimeStart(0);
+            field_0x022c[field_0x026d]->alphaAnimeStart(0);
+            field_0x0220[field_0x026d]->alphaAnimeStart(0);
+            field_0x026f = 35;
+        }
+        
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3750,40 +4607,103 @@ asm void dFile_select_c::DataCopyWait2() {
 #include "asm/d/file/d_file_select/DataCopyWait2__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018A6F8-8018A868 185038 0170+00 1/0 0/0 0/0 .text            copyPaneMoveOk__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::copyPaneMoveOk() {
-    nofralloc
-#include "asm/d/file/d_file_select/copyPaneMoveOk__14dFile_select_cFv.s"
+void dFile_select_c::copyPaneMoveOk() {
+    bool iVar1 = field_0x0158[field_0x026d]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    bool iVar2 = field_0x0158[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    bool iVar3;
+    if (field_0x025b[field_0x026d] != 0 || mDataNew[field_0x026d] != 0) {
+        iVar3 = field_0x022c[field_0x026d]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    } else {
+        iVar3 = field_0x0220[field_0x026d]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+    }
+    if (iVar1 == true && iVar2 == true && iVar3 == true) {
+        field_0x0209 = 0;
+        headerTxtSet(71, 0, 0);
+        mpFileWarning->closeInit();
+        setSaveData();
+        field_0x022c[field_0x026d]->alphaAnimeStart(0);
+        field_0x0220[field_0x026d]->alphaAnimeStart(0);
+        field_0x026f = 36;
+    }
 }
-#pragma pop
 
 /* 8018A868-8018A960 1851A8 00F8+00 1/0 0/0 0/0 .text            copyPaneMoveOk2__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::copyPaneMoveOk2() {
-    nofralloc
-#include "asm/d/file/d_file_select/copyPaneMoveOk2__14dFile_select_cFv.s"
+void dFile_select_c::copyPaneMoveOk2() {
+    bool iVar1 = headerTxtChangeAnm();
+    bool iVar2;
+    if (field_0x025b[field_0x026d] != 0 || mDataNew[field_0x026d] != 0) {
+        iVar2 = field_0x022c[field_0x026d]->alphaAnime(g_fsHIO.field_0x0007, 0, 0xff, 0);
+    } else {
+        iVar2 = field_0x0220[field_0x026d]->alphaAnime(g_fsHIO.field_0x0007, 0, 0xff, 0);
+    }
+    bool iVar3 = mpFileWarning->getStatus();
+    if (iVar1 == true && iVar2 == true && iVar3 == true) {
+        field_0x03ac = g_fsHIO.field_0x000a;
+        field_0x026f = 42;
+    }
 }
-#pragma pop
 
 /* 8018A960-8018AAC4 1852A0 0164+00 1/0 0/0 0/0 .text ErrorMsgPaneMove__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::ErrorMsgPaneMove() {
-    nofralloc
-#include "asm/d/file/d_file_select/ErrorMsgPaneMove__14dFile_select_cFv.s"
+void dFile_select_c::ErrorMsgPaneMove() {
+    int txtChanged = headerTxtChangeAnm();
+    int unaff_r30;
+    int unaff_r29;
+    switch (field_0x026e) {
+    case 1:
+    case 2:
+        unaff_r30 = field_0x014c[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+        unaff_r29 = 1;
+        break;
+
+    case 0:
+        unaff_r30 = field_0x0158[field_0x026d]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+        unaff_r29 = field_0x0158[mSelectNum]->alphaAnime(g_fsHIO.field_0x0009, 0xff, 0, 0);
+        break;
+    }
+    int modoruTxtAnm = modoruTxtDispAnm();
+    int ketteiTxtAnm = ketteiTxtDispAnm();
+    int warningStatus = mpFileWarning->getStatus() != 0;
+    if (txtChanged == 1 && unaff_r30 == 1 && unaff_r29 == 1 && modoruTxtAnm == 1 && ketteiTxtAnm == 1 &&
+        warningStatus == 1)
+    {
+        field_0x0208 = 0;
+        field_0x0209 = 0;
+        field_0x03b1 = 0;
+        field_0x03ac = g_fsHIO.field_0x000a;
+        field_0x026f = 43;
+    }
 }
-#pragma pop
 
 /* 8018AAC4-8018AC3C 185404 0178+00 1/0 0/0 0/0 .text backDatSelPaneMove__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::backDatSelPaneMove() {
+    int headerTxtAnm = headerTxtChangeAnm();
+    int menuMoved = menuMoveAnm();
+    int selectDataMoved = selectDataMoveAnm();
+    int wakuAlpha1 = selectWakuAlpahAnm(mSelectNum);
+    int wakuAlpha2 = selectWakuAlpahAnm(field_0x026d);
+    int modoruTxtAnm = modoruTxtDispAnm();
+    int ketteiTxtAnm = ketteiTxtDispAnm();
+    if (headerTxtAnm == 1 && menuMoved == 1 && selectDataMoved == 1 && wakuAlpha1 == 1 &&
+        wakuAlpha2 == 1 && modoruTxtAnm == 1 && ketteiTxtAnm == 1)
+    {
+        if (mSelectMenuNum != 0xff) {
+            field_0x0340[mSelectMenuNum]->getPanePtr()->setAnimation(field_0x0328);
+            field_0x0328->setFrame(MenuSelStartFrameTbl[mSelectMenuNum]);
+            field_0x0340[mSelectMenuNum]->getPanePtr()->animationTransform();
+            field_0x0340[mSelectMenuNum]->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+            menuCursorShow();
+        }
+        field_0x026f = 8;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3792,28 +4712,36 @@ asm void dFile_select_c::backDatSelPaneMove() {
 #include "asm/d/file/d_file_select/backDatSelPaneMove__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018AC3C-8018AD38 18557C 00FC+00 1/0 0/0 0/0 .text            backDatSelWait__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::backDatSelWait() {
-    nofralloc
-#include "asm/d/file/d_file_select/backDatSelWait__14dFile_select_cFv.s"
+void dFile_select_c::backDatSelWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    } else if (field_0x03ac == 0) {
+        headerTxtSet(msgTbl[mSelectNum], 1, 0);
+        selectWakuAlpahAnmInit(field_0x026d, 0xff, 0, g_fsHIO.field_0x0008);
+        selectWakuAlpahAnmInit(mSelectNum, 0xff, 0, g_fsHIO.field_0x0008);
+        menuMoveAnmInitSet(799, 809);
+        selectDataMoveAnmInitSet(SelOpenStartFrameTbl[mSelectNum], SelOpenEndFrameTbl[mSelectNum]);
+        modoruTxtDispAnmInit(1);
+        ketteiTxtDispAnmInit(1);
+        field_0x026f = 44;
+    }
 }
-#pragma pop
 
 /* 8018AD38-8018AD9C 185678 0064+00 1/0 0/0 0/0 .text            backDatSelWait2__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::backDatSelWait2() {
-    nofralloc
-#include "asm/d/file/d_file_select/backDatSelWait2__14dFile_select_cFv.s"
+void dFile_select_c::backDatSelWait2() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    }
+    if (cAPICPad_ANY_BUTTON(0) != 0 || field_0x03ac == 0) {
+        field_0x026f = 0;
+        field_0x0271 = 0;
+    }
 }
-#pragma pop
 
 /* 8018AD9C-8018ADA0 1856DC 0004+00 1/0 0/0 0/0 .text            nextModeWait__14dFile_select_cFv */
 void dFile_select_c::nextModeWait() {
@@ -3864,6 +4792,188 @@ SECTION_SDATA2 static f32 lit_6879 = 608.0f;
 SECTION_SDATA2 static f32 lit_6880 = 448.0f;
 
 /* 8018ADA0-8018BEE0 1856E0 1140+00 1/1 0/0 0/0 .text            screenSet__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::screenSet() {
+    fileSel.Scr = new J2DScreen();
+    JUT_ASSERT(4917, fileSel.Scr != 0);
+    fileSel.Scr->setPriority("zelda_file_select.blo", 0x1100000, mpArchive);
+    dPaneClass_showNullPane(fileSel.Scr);
+    void* uVar14 = JKRGetNameResource("zelda_file_select.bck", mpArchive);
+    field_0x0084 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x0088 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x0090 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x0094 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x0098 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x009c = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(uVar14);
+    field_0x0084->searchUpdateMaterialID(fileSel.Scr);
+    field_0x0088->searchUpdateMaterialID(fileSel.Scr);
+    field_0x0090->searchUpdateMaterialID(fileSel.Scr);
+    field_0x009c->searchUpdateMaterialID(fileSel.Scr);
+    field_0x00a4 = new CPaneMgr(fileSel.Scr, 'w_move_n', 0, NULL);
+    mpPane = fileSel.Scr->search('w_sub_n');
+    for (int i = 0; i < 3; i++) {
+        field_0x00bc[i] = new CPaneMgr(fileSel.Scr, l_tagName0[i], 1, NULL);
+    }
+    fileSel.Scr->search('Wi_btn_n')->hide();
+    field_0x0238 = new CPaneMgrAlpha(fileSel.Scr, 'w_n_bbtn', 2, NULL);
+    field_0x023c = new CPaneMgrAlpha(fileSel.Scr, 'w_n_abtn', 2, NULL);
+    field_0x0240 = new CPaneMgrAlpha(fileSel.Scr, 'f_modo', 2, NULL);
+    field_0x0244 = new CPaneMgrAlpha(fileSel.Scr, 'f_kete', 2, NULL);
+    fileSel.Scr->search('w_modo')->hide();
+    fileSel.Scr->search('w_kete')->hide();
+    ((J2DTextBox*)field_0x0240->getPanePtr())->setFont(mpMessageFont);
+    ((J2DTextBox*)field_0x0244->getPanePtr())->setFont(mpMessageFont);
+    ((J2DTextBox*)field_0x0240->getPanePtr())->setString(32, "");
+    field_0x0250 = ((J2DTextBox*)field_0x0240->getPanePtr())->getStringPtr();
+    fopMsgM_messageGet(field_0x0250, 0x54);
+    field_0x024c = 0;
+    char acStack_38[32];
+    fopMsgM_messageGet(acStack_38, 0x55);
+    ((J2DTextBox*)field_0x0244->getPanePtr())->setString(acStack_38);
+    void* bpk = JKRGetNameResource("zelda_file_select.bpk", mpArchive);
+    JUT_ASSERT(4994, bpk != 0);
+    field_0x01c8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x01c8->searchUpdateMaterialID(fileSel.Scr);
+    field_0x01cc = 0;
+    void* btk = JKRGetNameResource("zelda_file_select_05.btk", mpArchive);
+    JUT_ASSERT(5004, btk != 0);
+    field_0x01d0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x01d0->searchUpdateMaterialID(fileSel.Scr);
+    field_0x01d4 = 0;
+    for (int i = 0; i < 3; i++) {
+        field_0x0164[i] = new CPaneMgr(fileSel.Scr, l_tagName3[i], 0, NULL);
+        field_0x0170[i] = new CPaneMgr(fileSel.Scr, l_tagName4[i], 0, NULL);
+        field_0x017c[i] = new CPaneMgr(fileSel.Scr, l_tagName5[i], 0, NULL);
+        field_0x0164[i]->getPanePtr()->setAnimation(field_0x01c8);
+        field_0x0170[i]->getPanePtr()->setAnimation(field_0x01c8);
+        field_0x017c[i]->getPanePtr()->setAnimation(field_0x01c8);
+        field_0x0170[i]->getPanePtr()->setAnimation(field_0x01d0);
+        field_0x017c[i]->getPanePtr()->setAnimation(field_0x01d0);
+    }
+    field_0x01d8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x01d8->searchUpdateMaterialID(fileSel.Scr);
+    btk = JKRGetNameResource("zelda_file_select.btk", mpArchive);
+    JUT_ASSERT(5039, btk != 0);
+    field_0x01e0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x01e0->searchUpdateMaterialID(fileSel.Scr);
+    void* brk = JKRGetNameResource("zelda_file_select.brk", mpArchive);
+    JUT_ASSERT(5048, brk != 0);
+    field_0x01e8 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
+    field_0x0200 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
+    field_0x01e8->searchUpdateMaterialID(fileSel.Scr);
+    field_0x0200->searchUpdateMaterialID(fileSel.Scr);
+    field_0x01dc = 0;
+    field_0x01e4 = 0;
+    field_0x01ec = 0;
+    for (int i = 0; i < 3; i++) {
+        field_0x0188[i] = new CPaneMgr(fileSel.Scr, l_tagName12[i], 0, NULL);
+        field_0x0188[i]->getPanePtr()->setAnimation(field_0x01d8);
+        field_0x0188[i]->getPanePtr()->setAnimation(field_0x01e0);
+        field_0x0188[i]->getPanePtr()->setAnimation(field_0x01e8);
+    }
+    for (int i = 0; i < 15; i++) {
+        fileSel.Scr->search(l_nouseTag[i])->hide();
+    }
+    fileSel.Scr->search('w_tabi_s')->hide();
+    fileSel.Scr->search('w_tabi_x')->hide();
+    fileSel.Scr->search('w_mgn1')->hide();
+    fileSel.Scr->search('w_mgn2')->hide();
+    for (int i = 0; i < 2; i++) {
+        field_0x020c[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName21[i], 0, NULL);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFont(mpMessageFont);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setString(512, "");
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFontSize(24.0f, 24.0f);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setLineSpace(20.0f);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setCharSpace(0.0f);
+        field_0x0214[i] = ((J2DTextBox*)field_0x020c[i]->getPanePtr())->getStringPtr();
+    }
+    field_0x020c[0]->setAlpha(0xff);
+    field_0x020c[1]->setAlpha(0);
+    field_0x021c = 0;
+    bpk = JKRGetNameResource("zelda_file_select_02.btk", mpArchive);
+    JUT_ASSERT(5124, bpk != 0);
+    field_0x01f8 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x01f8->searchUpdateMaterialID(fileSel.Scr);
+    bpk = JKRGetNameResource("zelda_file_select_03.btk", mpArchive);
+    JUT_ASSERT(5133, bpk != 0);
+    field_0x01f0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x01f0->searchUpdateMaterialID(fileSel.Scr);
+    field_0x01f4 = 0;
+    field_0x01fc = 0;
+    field_0x0204 = 0;
+    for (int i = 0; i < 3; i++) {
+        field_0x014c[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName18[i], 0, NULL);
+        field_0x0158[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName19[i], 0, NULL);
+        field_0x014c[i]->getPanePtr()->setAnimation(field_0x01f0);
+        field_0x014c[i]->getPanePtr()->setAnimation(field_0x0200);
+        field_0x0158[i]->getPanePtr()->setAnimation(field_0x01f8);
+        field_0x0158[i]->getPanePtr()->setAnimation(field_0x0200);
+    }
+    field_0x0208 = 0;
+    field_0x0209 = 0;
+    field_0x012c = fileSel.Scr->search('w_er_n');
+    fileSel.Scr->search('w_er_msg')->hide();
+    fileSel.Scr->search('w_er_msR')->hide();
+    fileSel.Scr->search('w_er_msE')->hide();
+    for (int i = 0; i < 2; i++) {
+        field_0x0138[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName20[i], 0, NULL);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFont(mpMessageFont);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setString(512, "");
+        field_0x0138[i]->getPanePtr()->resize(440.0f, 198.0f);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFontSize(21.0f, 21.0f);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setLineSpace(21.0f);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setCharSpace(1.0f);
+        field_0x0140[i] = ((J2DTextBox*)field_0x0138[i]->getPanePtr())->getStringPtr();
+        field_0x0138[i]->show();
+    }
+    field_0x0148 = 0;
+    field_0x0138[field_0x0148]->setAlpha(0xff);
+    field_0x0138[field_0x0148 ^ 1]->setAlpha(0);
+    mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
+    JUT_ASSERT(5209, mSelIcon != 0);
+    mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
+    Vec vtxCenter;
+    vtxCenter = field_0x00bc[mSelectNum]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(vtxCenter.x, vtxCenter.y, field_0x00bc[mSelectNum]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(0.0f);
+    J2DPane* piVar5 = fileSel.Scr->search('Nm_02');
+    piVar5->setAnimation(field_0x0084);
+    setWakuAnm();
+    field_0x00a0 = 1;
+    field_0x0084->setFrame(field_0x00a0);
+    piVar5->animationTransform();
+    piVar5->setAnimation((J2DAnmTransform*)NULL);
+    field_0x020c[0]->getPanePtr()->scale(1.0f, 1.0f);
+    field_0x020c[1]->getPanePtr()->scale(1.0f, 1.0f);
+    J2DPane* apJStack_54[3];
+    for (int i = 0; i < 3; i++) {
+        apJStack_54[i] = new J2DPane(l_tagName13[i], JGeometry::TBox2<f32>(238.0f, 43.0f, 712.0f, 130.0f));
+        apJStack_54[i]->setUserInfo('n_43');
+        field_0x00bc[i]->getPanePtr()->insertChild(fileSel.Scr->search(l_tagName131[i]), apJStack_54[i]);
+    }
+    for (int i = 0; i < 3; i++) {
+        field_0x0070[i] = new dFile_info_c(mpArchive, 0);
+        field_0x0070[i]->setBasePane(apJStack_54[i]);
+        field_0x0220[i] = field_0x0070[i]->getDatBase();
+        field_0x022c[i] = field_0x0070[i]->getNoDatBase();
+    }
+
+    field_0x011c = fileSel.Scr->search('name_n');
+    mpName = new dName_c(field_0x011c);
+    field_0x0128 = false;
+    mpFileWarning = new dFile_warning_c(mpArchive, 0);
+    mSelDt.mpPane = fileSel.Scr->search('w_moyo03');
+    JUtility::TColor black = mDoGph_gInf_c::getFadeColor();
+    JUtility::TColor white = mDoGph_gInf_c::getFadeColor();
+    black.a = 0;
+    white.a = 0xff;
+    ResTIMG* uVar20 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    field_0x2378 = new J2DPicture('PICT01', JGeometry::TBox2<f32>(0.0f, 608.0f, 0.0f, 448.0f), uVar20, NULL);
+    field_0x2378->setBlackWhite(black, white);
+    field_0x2378->setAlpha(0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3872,6 +4982,7 @@ asm void dFile_select_c::screenSet() {
 #include "asm/d/file/d_file_select/screenSet__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018BEE0-8018BF28 186820 0048+00 0/0 1/0 0/0 .text
  * setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor */
@@ -3893,6 +5004,80 @@ extern "C" void setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey() {
 }
 
 /* 8018BF2C-8018C524 18686C 05F8+00 1/1 0/0 0/0 .text screenSetCopySel__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::screenSetCopySel() {
+    mCpSel.Scr = new J2DScreen();
+    JUT_ASSERT(5286, mCpSel.Scr != 0);
+    mCpSel.Scr->setPriority("zelda_file_select_copy_select.blo", 0x1100000, mpArchive);
+    dPaneClass_showNullPane(mCpSel.Scr);
+    mCpSel.mpPane2 = mCpSel.Scr->search('name_n');
+    mCpSel.mpPane1 = fileSel.Scr->search('name_n');
+    void* bck = JKRGetNameResource("zelda_file_select_copy_select.bck",
+                                          mpArchive);
+    field_0x029c = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x02a0 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x029c->searchUpdateMaterialID(mCpSel.Scr);
+    field_0x02a0->searchUpdateMaterialID(mCpSel.Scr);
+    void* bpk = JKRGetNameResource("zelda_file_select_copy_select.bpk", mpArchive);
+    JUT_ASSERT(5315, bpk != 0);
+    field_0x02e8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x02e8->searchUpdateMaterialID(mCpSel.Scr);
+    field_0x02ec = 0;
+    void* btk = JKRGetNameResource("zelda_file_select_copy_select_03.btk", mpArchive);
+    JUT_ASSERT(5325, btk != 0);
+    field_0x02f0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x02f0->searchUpdateMaterialID(mCpSel.Scr);
+    field_0x02f4 = 0;
+    field_0x02f8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x02f8->searchUpdateMaterialID(mCpSel.Scr);
+    btk = JKRGetNameResource("zelda_file_select_copy_select.btk", mpArchive);
+    JUT_ASSERT(5343, btk != 0);
+    field_0x0300 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x0300->searchUpdateMaterialID(mCpSel.Scr);
+    void* brk = JKRGetNameResource("zelda_file_select_copy_select.brk", mpArchive);
+    JUT_ASSERT(5352, brk != 0);
+    field_0x0308 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
+    field_0x0308->searchUpdateMaterialID(mCpSel.Scr);
+    field_0x02fc = 0;
+    field_0x0304 = 0;
+    field_0x030c = 0;
+    for (int i = 0; i < 2; i++) {
+        field_0x02a4[i] = new CPaneMgr(mCpSel.Scr, l_tagName000[i], 0, NULL);
+        field_0x02c0[i] = new CPaneMgr(mCpSel.Scr, l_tagName001[i], 0, NULL);
+        field_0x02c8[i] = new CPaneMgr(mCpSel.Scr, l_tagName002[i], 0, NULL);
+        field_0x02d0[i] = new CPaneMgr(mCpSel.Scr, l_tagName003[i], 0, NULL);
+        field_0x02d8[i] = new CPaneMgr(mCpSel.Scr, l_tagName004[i], 0, NULL);
+
+        field_0x02c0[i]->getPanePtr()->setAnimation(field_0x02e8);
+        field_0x02c8[i]->getPanePtr()->setAnimation(field_0x02e8);
+        field_0x02d0[i]->getPanePtr()->setAnimation(field_0x02e8);
+        field_0x02c8[i]->getPanePtr()->setAnimation(field_0x02f0);
+        field_0x02d0[i]->getPanePtr()->setAnimation(field_0x02f0);
+        field_0x02d8[i]->getPanePtr()->setAnimation(field_0x02f8);
+        field_0x02d8[i]->getPanePtr()->setAnimation(field_0x0300);
+        field_0x02d8[i]->getPanePtr()->setAnimation(field_0x0308);
+
+        mCpSel.Scr->search(l_tagName005[i])->hide();
+    }
+    J2DPane* namePane = mCpSel.Scr->search('name_n');
+    namePane->setAnimation(field_0x029c);
+    field_0x029c->setFrame(0.0f);
+    namePane->animationTransform();
+    namePane->setAnimation((J2DAnmTransform*)NULL);
+    mSelIcon2 = new dSelect_cursor_c(0, 1.0f, NULL);
+    JUT_ASSERT(5406, mSelIcon2 != 0);
+    mSelIcon2->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
+    Vec local_24 = field_0x02a4[0]->getGlobalVtxCenter(false, 0);
+    mSelIcon2->setPos(local_24.x, local_24.y, field_0x02a4[0]->getPanePtr(), true);
+    mSelIcon2->setAlphaRate(0.0f);
+    for (int i = 0; i < 2; i++) {
+        mpFileInfo[i] = new dFile_info_c(mpArchive, 0);
+        mpFileInfo[i]->setBasePane(mCpSel.Scr->search(l_tagName13[i + 1]));
+    }
+    mCpSel.field_0x08 = false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3901,6 +5086,7 @@ asm void dFile_select_c::screenSetCopySel() {
 #include "asm/d/file/d_file_select/screenSetCopySel__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804506C8-804506CC 000148 0002+02 1/1 0/0 0/0 .sdata           l_msgNum2$7002 */
@@ -3914,6 +5100,52 @@ SECTION_SDATA static u8 l_msgNum2[2 + 2 /* padding */] = {
 
 /* 8018C524-8018C8F4 186E64 03D0+00 1/1 0/0 0/0 .text            screenSetYesNo__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::screenSetYesNo() {
+    mYnSel.ScrYn = new J2DScreen();
+    JUT_ASSERT(5435, mYnSel.ScrYn != 0);
+    mYnSel.ScrYn->setPriority("zelda_file_select_yes_no_window.blo", 0x1100000, mpArchive);
+    dPaneClass_showNullPane(mYnSel.ScrYn);
+    void* bck = JKRGetNameResource("zelda_file_select_yes_no_window.bck", mpArchive);
+    field_0x0310 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x0314 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x008c = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x0310->searchUpdateMaterialID(mYnSel.ScrYn);
+    field_0x0314->searchUpdateMaterialID(mYnSel.ScrYn);
+    field_0x008c->searchUpdateMaterialID(mYnSel.ScrYn);
+    for (int i = 0; i < 2; i++) {
+        field_0x00f0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName012[i], 0, NULL);
+        field_0x01c0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName013U[i], 0, NULL);
+        mYnSel.ScrYn->search(l_tagName013[i])->hide();
+        ((J2DTextBox*)field_0x01c0[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        char acStack_30[16];
+        fopMsgM_messageGet(acStack_30, l_msgNum2[i]);
+        ((J2DTextBox*)field_0x01c0[i]->getPanePtr())->setString(acStack_30);
+    }
+    void* bpk = JKRGetNameResource("zelda_file_select_yes_no_window.bpk", mpArchive);
+    JUT_ASSERT(5483, bpk != 0);
+    field_0x0318 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x0318->searchUpdateMaterialID(mYnSel.ScrYn);
+    field_0x031c = 0;
+    void* btk = JKRGetNameResource("zelda_file_select_yes_no_window.btk", mpArchive);
+    JUT_ASSERT(5493, btk != 0);
+    field_0x0320 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x0320->searchUpdateMaterialID(mYnSel.ScrYn);
+    field_0x0324 = 0;
+    for (int i = 0; i < 2; i++) {
+        field_0x01a0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName9[i], 0, NULL);
+        field_0x01a8[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName10[i], 0, NULL);
+        field_0x01b0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName11[i], 0, NULL);
+
+        field_0x01a0[i]->getPanePtr()->setAnimation(field_0x0318);
+        field_0x01a8[i]->getPanePtr()->setAnimation(field_0x0318);
+        field_0x01b0[i]->getPanePtr()->setAnimation(field_0x0318);
+        field_0x01a8[i]->getPanePtr()->setAnimation(field_0x0320);
+        field_0x01b0[i]->getPanePtr()->setAnimation(field_0x0320);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3922,6 +5154,7 @@ asm void dFile_select_c::screenSetYesNo() {
 #include "asm/d/file/d_file_select/screenSetYesNo__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804506CC-804506D0 00014C 0003+01 1/1 0/0 0/0 .sdata           l_msgNum$7082 */
@@ -3938,6 +5171,54 @@ SECTION_SDATA2 static f32 lit_7146 = 799.0f;
 
 /* 8018C8F4-8018CCD0 187234 03DC+00 1/1 0/0 0/0 .text            screenSet3Menu__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::screenSet3Menu() {
+    m3mSel.Scr3m = new J2DScreen();
+    JUT_ASSERT(5530, m3mSel.Scr3m != 0);
+    m3mSel.Scr3m->setPriority("zelda_file_select_3menu_window.blo", 0x1100000, mpArchive);
+    dPaneClass_showNullPane(m3mSel.Scr3m);
+    void* bck = JKRGetNameResource("zelda_file_select_3menu_window.bck", mpArchive);
+    field_0x0328 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x032c = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x0328->searchUpdateMaterialID(m3mSel.Scr3m);
+    field_0x032c->searchUpdateMaterialID(m3mSel.Scr3m);
+    void* bpk = JKRGetNameResource("zelda_file_select_3menu_window.bpk", mpArchive);
+    JUT_ASSERT(5552, bpk != 0);
+    field_0x0330 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
+    field_0x0330->searchUpdateMaterialID(m3mSel.Scr3m);
+    field_0x0334 = 0;
+    void* btk = JKRGetNameResource("zelda_file_select_3menu_window.btk", mpArchive);
+    JUT_ASSERT(5562, btk != 0);
+    field_0x0338 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    field_0x0338->searchUpdateMaterialID(m3mSel.Scr3m);
+    field_0x033c = 0;
+    field_0x0118 = m3mSel.Scr3m->search('wmenu_n');
+    field_0x0118->setAnimation(field_0x0328);
+    field_0x0328->setFrame(799.0f);
+    field_0x0118->animationTransform();
+    for (int i = 0; i < 3; i++) {
+        field_0x0340[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName1[i], 0, NULL);
+        mpPaneMgr2[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName011U[i], 0, NULL);
+        m3mSel.Scr3m->search(l_tagName011[i])->hide();
+
+        ((J2DTextBox*)mpPaneMgr2[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        char acStack_30[32];
+        fopMsgM_messageGet(acStack_30, l_msgNum[i]);
+        ((J2DTextBox*)mpPaneMgr2[i]->getPanePtr())->setString(acStack_30);
+
+        mpPaneAlpha1[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName6[i], 0, NULL);
+        mpPaneAlpha2[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName7[i], 0, NULL);
+        mpPaneAlpha3[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName8[i], 0, NULL);
+
+        mpPaneAlpha1[i]->getPanePtr()->setAnimation(field_0x0330);
+        mpPaneAlpha2[i]->getPanePtr()->setAnimation(field_0x0330);
+        mpPaneAlpha3[i]->getPanePtr()->setAnimation(field_0x0330);
+        mpPaneAlpha2[i]->getPanePtr()->setAnimation(field_0x0338);
+        mpPaneAlpha3[i]->getPanePtr()->setAnimation(field_0x0338);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3946,51 +5227,84 @@ asm void dFile_select_c::screenSet3Menu() {
 #include "asm/d/file/d_file_select/screenSet3Menu__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018CCD0-8018CE38 187610 0168+00 1/1 0/0 0/0 .text            screenSetDetail__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::screenSetDetail() {
-    nofralloc
-#include "asm/d/file/d_file_select/screenSetDetail__14dFile_select_cFv.s"
+void dFile_select_c::screenSetDetail() {
+    mSelDt.ScrDt = new J2DScreen();
+    JUT_ASSERT(5622, mSelDt.ScrDt != 0);
+    mSelDt.ScrDt->setPriority("zelda_file_select_details.blo", 0x1100000, mpArchive);
+    void* btk = JKRGetNameResource("zelda_file_select_details.btk", mpArchive);
+    JUT_ASSERT(5628, btk != 0);
+    field_0x03a0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
+    mSelDt.ScrDt->setAnimation(field_0x03a0);
+    field_0x03a4 = 0;
+    mSelDt.mpPane2 = mSelDt.ScrDt->search('n_all');
+    field_0x03a8 = new CPaneMgr(mSelDt.ScrDt, 'mset_p_n', 0, NULL);
+    mpFileSelect3d->setBasePane(field_0x03a8);
+    mpFileSelect3d->setBase2Pane(fileSel.Scr->search('w_sub_n'));
+    mSelDt.ScrDt->search('d_win_n')->setUserInfo('n_43');
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 804539B0-804539B4 001FB0 0004+00 1/1 0/0 0/0 .sdata2          @7201 */
-SECTION_SDATA2 static f32 lit_7201 = 3000.0f;
 
 /* 8018CE38-8018CF50 187778 0118+00 2/2 0/0 0/0 .text            setWakuAnm__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::setWakuAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/setWakuAnm__14dFile_select_cFv.s"
+void dFile_select_c::setWakuAnm() {
+    field_0x0098->setFrame(3000.0f);
+    for (int i = 0; i < 3; i++) {
+        field_0x0164[i]->getPanePtr()->setAnimation(field_0x0098);
+        field_0x0170[i]->getPanePtr()->setAnimation(field_0x0098);
+        field_0x017c[i]->getPanePtr()->setAnimation(field_0x0098);
+        field_0x0164[i]->getPanePtr()->animationTransform();
+        field_0x0170[i]->getPanePtr()->animationTransform();
+        field_0x017c[i]->getPanePtr()->animationTransform();
+        field_0x0164[i]->setAlpha(0);
+        field_0x0170[i]->setAlpha(0);
+        field_0x017c[i]->setAlpha(0);
+    }
 }
-#pragma pop
 
 /* 8018CF50-8018D044 187890 00F4+00 1/1 0/0 0/0 .text            displayInit__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::displayInit() {
-    nofralloc
-#include "asm/d/file/d_file_select/displayInit__14dFile_select_cFv.s"
+void dFile_select_c::displayInit() {
+    field_0x03b1 = 0;
+    mSelectEnd = false;
+    field_0x03ac = g_fsHIO.field_0x000b;
+    field_0x00b8 = 0;
+    field_0x014a = false;
+    field_0x0360 = false;
+    field_0x0108 = false;
+    field_0x021e = 0;
+    field_0x00b9 = 0;
+    field_0x014b = false;
+    field_0x0281 = false;
+    field_0x0283 = false;
+    mDoMemCd_clearProbeStat();
+    field_0x0248 = false;
+    field_0x024a = false;
+    field_0x0249 = false;
+    field_0x024b = false;
+    field_0x0240->setAlpha(0);
+    field_0x0244->setAlpha(0);
+    field_0x0238->setAlpha(0x80);
+    field_0x023c->setAlpha(0x80);
+    field_0x026f = 0;
+    field_0x0271 = 0;
 }
-#pragma pop
 
 /* 8018D044-8018D0E4 187984 00A0+00 3/3 0/0 0/0 .text            setSaveData__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::setSaveData() {
-    nofralloc
-#include "asm/d/file/d_file_select/setSaveData__14dFile_select_cFv.s"
+void dFile_select_c::setSaveData() {
+    dSv_save_c* pSave = (dSv_save_c*)mSave;
+    for (int i = 0; i < 3; i++) {
+        int res = field_0x0070[i]->setSaveData(pSave, mDoMemCdRWm_TestCheckSumGameData(pSave), i);
+        if (res == -1) {
+            field_0x025b[i] = 1;
+            mDataNew[i] = 0;
+        } else {
+            mDataNew[i] = res;
+            field_0x025b[i] = 0;
+        }
+        (char*)pSave += 0xa94;
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804506D0-804506D8 000150 0008+00 1/1 0/0 0/0 .sdata           fontsize$7230 */
@@ -4012,6 +5326,29 @@ static f32 charspace[2] = {
 };
 
 /* 8018D0E4-8018D25C 187A24 0178+00 20/20 0/0 0/0 .text headerTxtSet__14dFile_select_cFUsUcUc */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::headerTxtSet(u16 param_1, u8 param_2, u8 param_3) {
+    u8 uVar1 = field_0x021c ^ 1;
+    if (param_3 != 0) {
+        uVar1 = field_0x021c;
+    }
+    if (param_1 == 0xffff) {
+        strcpy(field_0x0214[uVar1], "");
+    } else {
+        ((J2DTextBox*)field_0x020c[uVar1]->getPanePtr())->setFont((&mpMessageFont)[param_2]);
+        ((J2DTextBox*)field_0x020c[uVar1]->getPanePtr())->setFontSize(fontsize[param_2], fontsize[param_2]);
+        ((J2DTextBox*)field_0x020c[uVar1]->getPanePtr())->setLineSpace(linespace[param_2]);
+        ((J2DTextBox*)field_0x020c[uVar1]->getPanePtr())->setCharSpace(charspace[param_2]);
+        mpMessageString->getString(param_1, ((J2DTextBox*)field_0x020c[uVar1]->getPanePtr()), NULL, (&mpMessageFont)[param_2], NULL, 0);
+    }
+    if (param_3 == 0) {
+        field_0x020c[field_0x021c]->alphaAnimeStart(0);
+        field_0x020c[field_0x021c ^ 1]->alphaAnimeStart(0);
+        field_0x021d = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4020,6 +5357,7 @@ asm void dFile_select_c::headerTxtSet(u16 param_0, u8 param_1, u8 param_2) {
 #include "asm/d/file/d_file_select/headerTxtSet__14dFile_select_cFUsUcUc.s"
 }
 #pragma pop
+#endif
 
 /* 8018D25C-8018D344 187B9C 00E8+00 21/21 0/0 0/0 .text headerTxtChangeAnm__14dFile_select_cFv */
 bool dFile_select_c::headerTxtChangeAnm() {
@@ -4028,8 +5366,9 @@ bool dFile_select_c::headerTxtChangeAnm() {
     } else {
         bool ret = false;
 
-        bool alphaAnime1 = (&field_0x020c)[field_0x021c]->alphaAnime(g_fsHIO.field_0x0007,0xFF,0,0);
-        bool alphaAnime2 = (&field_0x020c)[field_0x021c^1]->alphaAnime(g_fsHIO.field_0x0007,0,0xFF,0);
+        bool alphaAnime1 = field_0x020c[field_0x021c]->alphaAnime(g_fsHIO.field_0x0007, 0xFF, 0, 0);
+        bool alphaAnime2 =
+            field_0x020c[field_0x021c ^ 1]->alphaAnime(g_fsHIO.field_0x0007, 0, 0xFF, 0);
         int msgKeyWaitTimer = dMeter2Info_getMsgKeyWaitTimer();
 
         if (alphaAnime1 == true && alphaAnime2 == true && msgKeyWaitTimer == 0) {
@@ -4043,79 +5382,122 @@ bool dFile_select_c::headerTxtChangeAnm() {
 }
 
 /* 8018D344-8018D3A0 187C84 005C+00 7/7 0/0 0/0 .text modoruTxtChange__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::modoruTxtChange(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/modoruTxtChange__14dFile_select_cFUc.s"
+void dFile_select_c::modoruTxtChange(u8 param_1) {
+    if (param_1 != 0) {
+        fopMsgM_messageGet(field_0x0250, 981);
+        field_0x024c = 1;
+    } else {
+        fopMsgM_messageGet(field_0x0250, 84);
+        field_0x024c = 0;
+    }
 }
-#pragma pop
 
 /* 8018D3A0-8018D41C 187CE0 007C+00 11/11 0/0 0/0 .text modoruTxtDispAnmInit__14dFile_select_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::modoruTxtDispAnmInit(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/modoruTxtDispAnmInit__14dFile_select_cFUc.s"
+void dFile_select_c::modoruTxtDispAnmInit(u8 param_1) {
+    field_0x024a = param_1;
+    if ((param_1 != 0 || field_0x0240->getAlpha() != 0) &&
+        (param_1 != 1 || field_0x0240->getAlpha() != 0xff))
+    {
+        field_0x0240->alphaAnimeStart(0);
+        field_0x0238->alphaAnimeStart(0);
+    } else {
+        field_0x0240->alphaAnimeStart(g_fsHIO.field_0x0007);
+        field_0x0238->alphaAnimeStart(g_fsHIO.field_0x0007);
+    }
 }
-#pragma pop
 
 /* 8018D41C-8018D4F8 187D5C 00DC+00 11/11 0/0 0/0 .text modoruTxtDispAnm__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::modoruTxtDispAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/modoruTxtDispAnm__14dFile_select_cFv.s"
+bool dFile_select_c::modoruTxtDispAnm() {
+    bool iVar1;
+    bool iVar2;
+    if (field_0x024a != 0) {
+        iVar1 = field_0x0240->alphaAnime(g_fsHIO.field_0x0007, 0, 0xff, 0);
+        iVar2 = field_0x0238->alphaAnime(g_fsHIO.field_0x0007, 0x80, 0xff, 0);
+    } else {
+        iVar1 = field_0x0240->alphaAnime(g_fsHIO.field_0x0007, 0xff, 0, 0);
+        iVar2 = field_0x0238->alphaAnime(g_fsHIO.field_0x0007, 0xff, 0x80, 0);
+    }
+
+    if (iVar1 == true && iVar2 == true) {
+        return true;
+    } 
+    return false;
 }
-#pragma pop
 
 /* 8018D4F8-8018D574 187E38 007C+00 13/13 0/0 0/0 .text ketteiTxtDispAnmInit__14dFile_select_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::ketteiTxtDispAnmInit(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/ketteiTxtDispAnmInit__14dFile_select_cFUc.s"
+void dFile_select_c::ketteiTxtDispAnmInit(u8 param_1) {
+    field_0x024b = param_1;
+    if ((param_1 != 0 || field_0x0244->getAlpha() != 0) &&
+        (param_1 != 1 || field_0x0244->getAlpha() != 0xff))
+    {
+        field_0x0244->alphaAnimeStart(0);
+        field_0x023c->alphaAnimeStart(0);
+    } else {
+        field_0x0244->alphaAnimeStart(g_fsHIO.field_0x0007);
+        field_0x023c->alphaAnimeStart(g_fsHIO.field_0x0007);
+    }
 }
-#pragma pop
 
 /* 8018D574-8018D650 187EB4 00DC+00 12/12 0/0 0/0 .text ketteiTxtDispAnm__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::ketteiTxtDispAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/ketteiTxtDispAnm__14dFile_select_cFv.s"
+bool dFile_select_c::ketteiTxtDispAnm() {
+    bool iVar1;
+    bool iVar2;
+    if (field_0x024b != 0) {
+        iVar1 = field_0x0244->alphaAnime(g_fsHIO.field_0x0007, 0, 0xff, 0);
+        iVar2 = field_0x023c->alphaAnime(g_fsHIO.field_0x0007, 0x80, 0xff, 0);
+    } else {
+        iVar1 = field_0x0244->alphaAnime(g_fsHIO.field_0x0007, 0xff, 0, 0);
+        iVar2 = field_0x023c->alphaAnime(g_fsHIO.field_0x0007, 0xff, 0x80, 0);
+    }
+
+    if (iVar1 == true && iVar2 == true) {
+        return true;
+    } 
+    return false;
 }
-#pragma pop
 
 /* 8018D650-8018D68C 187F90 003C+00 8/8 0/0 0/0 .text
  * selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::selectWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/file/d_file_select/selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc.s"
+void dFile_select_c::selectWakuAlpahAnmInit(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
+    field_0x0164[param_1]->alphaAnimeStart(0);
+    field_0x0170[param_1]->alphaAnimeStart(0);
+    field_0x017c[param_1]->alphaAnimeStart(0);
+    field_0x0194[param_1] = param_2;
+    field_0x0197[param_1] = param_3;
+    field_0x019a[param_1] = param_4;
 }
-#pragma pop
 
 /* 8018D68C-8018D764 187FCC 00D8+00 8/8 0/0 0/0 .text selectWakuAlpahAnm__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::selectWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/selectWakuAlpahAnm__14dFile_select_cFUc.s"
+bool dFile_select_c::selectWakuAlpahAnm(u8 param_1) {
+    if (param_1 == 0xff) {
+        return true;
+    }
+    bool rv = false;
+    bool iVar2 = field_0x0164[param_1]->alphaAnime(field_0x019a[param_1], field_0x0194[param_1], field_0x0197[param_1], 0);
+    bool iVar3 = field_0x0170[param_1]->alphaAnime(field_0x019a[param_1], field_0x0194[param_1], field_0x0197[param_1], 0);
+    bool iVar4 = field_0x017c[param_1]->alphaAnime(field_0x019a[param_1], field_0x0194[param_1], field_0x0197[param_1], 0);
+    if (iVar2 == true && iVar3 == true && iVar4 == true) {
+        rv = true;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 8018D764-8018D884 1880A4 0120+00 6/6 0/0 0/0 .text selFileCursorShow__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::selFileCursorShow() {
+    field_0x0164[mSelectNum]->setAlpha(0xff);
+    field_0x0170[mSelectNum]->setAlpha(0xff);
+    field_0x017c[mSelectNum]->setAlpha(0xff);
+
+    Vec local_1c = field_0x00bc[mSelectNum]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(local_1c.x, local_1c.y, field_0x00bc[mSelectNum]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(1.0f);
+    mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4124,31 +5506,58 @@ asm void dFile_select_c::selFileCursorShow() {
 #include "asm/d/file/d_file_select/selFileCursorShow__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018D884-8018D8C8 1881C4 0044+00 1/1 0/0 0/0 .text
  * menuWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc              */
 void dFile_select_c::menuWakuAlpahAnmInit(u8 i_idx, u8 param_1, u8 param_2, u8 param_3) {
-    (&mpPaneAlpha1)[i_idx]->alphaAnimeStart(0);
-    (&mpPaneAlpha2)[i_idx]->alphaAnimeStart(0);
-    (&mpPaneAlpha3)[i_idx]->alphaAnimeStart(0);
-    (&field_0x0388)[i_idx] = param_1;
-    (&field_0x038b)[i_idx] = param_2;
-    (&field_0x038e)[i_idx] = param_3;
-    (&mpPaneMgr2)[i_idx]->colorAnimeStart(0);
+    mpPaneAlpha1[i_idx]->alphaAnimeStart(0);
+    mpPaneAlpha2[i_idx]->alphaAnimeStart(0);
+    mpPaneAlpha3[i_idx]->alphaAnimeStart(0);
+    field_0x0388[i_idx] = param_1;
+    field_0x038b[i_idx] = param_2;
+    field_0x038e[i_idx] = param_3;
+    mpPaneMgr2[i_idx]->colorAnimeStart(0);
 }
 
 /* 8018D8C8-8018DA10 188208 0148+00 1/1 0/0 0/0 .text menuWakuAlpahAnm__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::menuWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/menuWakuAlpahAnm__14dFile_select_cFUc.s"
+bool dFile_select_c::menuWakuAlpahAnm(u8 param_1) {
+    bool rv = false;
+    bool iVar1 = mpPaneAlpha1[param_1]->alphaAnime(field_0x038e[param_1], field_0x0388[param_1],
+                                                   field_0x038b[param_1], 0);
+    bool iVar2 = mpPaneAlpha2[param_1]->alphaAnime(field_0x038e[param_1], field_0x0388[param_1],
+                                                   field_0x038b[param_1], 0);
+    bool iVar3 = mpPaneAlpha3[param_1]->alphaAnime(field_0x038e[param_1], field_0x0388[param_1],
+                                                   field_0x038b[param_1], 0);
+    mpPaneMgr2[param_1]->colorAnime(field_0x038e[param_1], mpPaneMgr2[param_1]->getInitBlack(),
+                                    mpPaneMgr2[param_1]->getInitBlack(),
+                                    JUtility::TColor(0xff, 0xff, 0xff, 0xff),
+                                    JUtility::TColor(0x96, 0x96, 0x96, 0xff), 0);
+    if (((iVar1 == 1) && (iVar2 == 1)) && (iVar3 == 1)) {
+        rv = true;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 8018DA10-8018DB80 188350 0170+00 4/4 0/0 0/0 .text            menuCursorShow__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::menuCursorShow() {
+    if (mSelectMenuNum == 0xff) {
+        return;
+    }
+    ((J2DTextBox*)mpPaneMgr2[mSelectMenuNum]->getPanePtr())
+        ->setWhite(JUtility::TColor(0xff, 0xff, 0xff, 0xff));
+    mpPaneAlpha1[mSelectMenuNum]->setAlpha(0xff);
+    mpPaneAlpha2[mSelectMenuNum]->setAlpha(0xff);
+    mpPaneAlpha3[mSelectMenuNum]->setAlpha(0xff);
+    Vec local_24 = field_0x0340[mSelectMenuNum]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(local_24.x, local_24.y, field_0x0340[mSelectMenuNum]->getPanePtr(), true);
+    mSelIcon->setAlphaRate(1.0f);
+    mSelIcon->setParam(0.96f, 0.84f, 0.06f, 0.5f, 0.5f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4157,58 +5566,78 @@ asm void dFile_select_c::menuCursorShow() {
 #include "asm/d/file/d_file_select/menuCursorShow__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018DB80-8018DBCC 1884C0 004C+00 2/2 0/0 0/0 .text
  * yesnoWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::yesnoWakuAlpahAnmInit(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/file/d_file_select/yesnoWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc.s"
+void dFile_select_c::yesnoWakuAlpahAnmInit(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
+    if (param_1 != 0xff) {
+        field_0x01a0[param_1]->alphaAnimeStart(0);
+        field_0x01a8[param_1]->alphaAnimeStart(0);
+        field_0x01b0[param_1]->alphaAnimeStart(0);
+        field_0x01b8[param_1] = param_2;
+        field_0x01ba[param_1] = param_3;
+        field_0x01bc[param_1] = param_4;
+        field_0x01c0[param_1]->colorAnimeStart(0);
+    }
 }
-#pragma pop
 
 /* 8018DBCC-8018DD38 18850C 016C+00 4/4 0/0 0/0 .text yesnoWakuAlpahAnm__14dFile_select_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::yesnoWakuAlpahAnm(u8 param_0) {
-    nofralloc
-#include "asm/d/file/d_file_select/yesnoWakuAlpahAnm__14dFile_select_cFUc.s"
+bool dFile_select_c::yesnoWakuAlpahAnm(u8 param_1) {
+    bool rv = false;
+    bool iVar5 = true;
+    bool iVar4 = true;
+    bool iVar3 = true;
+    bool iVar2 = true;
+    if (param_1 != 0xff) {
+        iVar5 = field_0x01a0[param_1]->alphaAnime(field_0x01bc[param_1], field_0x01b8[param_1],
+                                                  field_0x01ba[param_1], 0);
+        iVar4 = field_0x01a8[param_1]->alphaAnime(field_0x01bc[param_1], field_0x01b8[param_1],
+                                                  field_0x01ba[param_1], 0);
+        iVar3 = field_0x01b0[param_1]->alphaAnime(field_0x01bc[param_1], field_0x01b8[param_1],
+                                                  field_0x01ba[param_1], 0);
+        iVar2 = field_0x01c0[param_1]->colorAnime(
+            field_0x01bc[param_1], field_0x01c0[param_1]->getInitBlack(),
+            field_0x01c0[param_1]->getInitBlack(), JUtility::TColor(0xff, 0xff, 0xff, 0xff),
+            JUtility::TColor(0x96, 0x96, 0x96, 0xff), 0);
+    }
+    if (iVar5 == true && iVar4 == true && iVar3 == true && iVar2 == true) {
+        rv = true;
+    }
+    return rv;
 }
-#pragma pop
 
 /* 8018DD38-8018DEBC 188678 0184+00 0/0 1/1 0/0 .text            _draw__14dFile_select_cFv */
+// Need to fix dDlst inheritances
 #ifdef NONMATCHING
 void dFile_select_c::_draw() {
     if (!mHasDrawn) {
-        dComIfGd_set2DOpa(&mFileSelectDlst);
+        dComIfGd_set2DOpa(&fileSel);
 
         for (int i = 0; i < 3; i++) {
             mpFileInfo[i]->draw();
         }
 
-        dComIfGd_set2DOpa(&mFileSelDeleteDlst);
+        dComIfGd_set2DOpa(&mSelDt);
         mpFileSelect3d.draw();
 
-        if (mFileSelCopyDlst.field_0x08 != false) {
-            dComIfGd_set2DOpa(&mFileSelCopyDlst);
+        if (mCpSel.field_0x08 != false) {
+            dComIfGd_set2DOpa(&mCpSel);
 
             for (int i = 0; i < 2; i++) {
                 mpFileInfo[i]->draw();
             }
         }
 
-        if (field137_0x128 != false) {
+        if (field_0x0128 != false) {
             mpName.draw();
         }
 
-        dComIfGd_set2DOpa(&mFileSel3mDlst);
-        dComIfGd_set2DOpa(&mFileSelYesNoDlst);
+        dComIfGd_set2DOpa(&m3mSel);
+        dComIfGd_set2DOpa(&mYnSel);
         mpFileWarning.draw();
-        dComIfGd_set2DOpa(mpCursor1);
-        dComIfGd_set2DOpa(mpCursor2);
+        dComIfGd_set2DOpa(mSelIcon);
+        dComIfGd_set2DOpa(mSelIcon2);
     }
 }
 #else
@@ -4224,6 +5653,13 @@ asm void dFile_select_c::_draw() {
 #endif
 
 /* 8018DEBC-8018DEF4 1887FC 0038+00 1/0 0/0 0/0 .text            draw__15dDlst_FileSel_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dDlst_FileSel_c::draw() {
+    J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+    Scr->draw(0.0f, 0.0f, graf);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4232,8 +5668,25 @@ asm void dDlst_FileSel_c::draw() {
 #include "asm/d/file/d_file_select/draw__15dDlst_FileSel_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018DEF4-8018DFFC 188834 0108+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSelDt_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dDlst_FileSelDt_c::draw() {
+    J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
+    MtxP local_98 = (MtxP)&mpPane->getGlbMtx()[0][0];
+    Mtx auStack_60;
+    Mtx auStack_90;
+    MTXTrans(auStack_60, mpPane->getWidth() / 2, mpPane->getHeight() / 2,
+                     0.0f);
+    MTXConcat(local_98, auStack_60, local_98);
+    MTXScale(auStack_90, mpPane->getWidth() / mpPane2->getWidth(), mpPane->getHeight() / mpPane2->getHeight(), 1.0f);
+    MTXConcat(local_98, auStack_90, local_98);
+    mpPane2->setMtx(local_98);
+    mpScreen->draw(0.0f, 0.0f, grafContext);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4242,8 +5695,21 @@ asm void dDlst_FileSelDt_c::draw() {
 #include "asm/d/file/d_file_select/draw__17dDlst_FileSelDt_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018DFFC-8018E0C0 18893C 00C4+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSelCp_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dDlst_FileSelCp_c::draw() {
+    J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
+    MtxP local_98 = (MtxP)&mpPane1->getGlbMtx()[0][0];
+    Mtx auStack_90;
+    MTXScale(auStack_90, mpPane1->getWidth() / mpPane2->getWidth(), mpPane1->getHeight() / mpPane2->getHeight(), 1.0f);
+    MTXConcat(local_98, auStack_90, local_98);
+    mpPane2->setMtx(local_98);
+    mpScreen->draw(0.0f, 0.0f, grafContext);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4252,8 +5718,15 @@ asm void dDlst_FileSelCp_c::draw() {
 #include "asm/d/file/d_file_select/draw__17dDlst_FileSelCp_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018E0C0-8018E0F8 188A00 0038+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSelYn_cFv */
+#ifdef NONMATCHING
+void dDlst_FileSelYn_c::draw() {
+    J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+    mpScreen->draw(0.0f, 0.0f, graf);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4262,8 +5735,15 @@ asm void dDlst_FileSelYn_c::draw() {
 #include "asm/d/file/d_file_select/draw__17dDlst_FileSelYn_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018E0F8-8018E130 188A38 0038+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSel3m_cFv */
+#ifdef NONMATCHING
+void dDlst_FileSel3m_c::draw() {
+    J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+    mpScreen->draw(0.0f, 0.0f, graf);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4272,8 +5752,20 @@ asm void dDlst_FileSel3m_c::draw() {
 #include "asm/d/file/d_file_select/draw__17dDlst_FileSel3m_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018E130-8018E1C0 188A70 0090+00 4/4 0/0 0/0 .text errorMoveAnmInitSet__14dFile_select_cFii */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::errorMoveAnmInitSet(int param_1, int param_2) {
+    field_0x012c->setAnimation(field_0x0090);
+    field_0x0130 = param_1;
+    field_0x0134 = param_2;
+    field_0x0090->setFrame(field_0x0130);
+    field_0x012c->animationTransform();
+    field_0x014b = true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4282,6 +5774,7 @@ asm void dFile_select_c::errorMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/file/d_file_select/errorMoveAnmInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 8018E1C0-8018E2B4 188B00 00F4+00 5/5 0/0 0/0 .text            errorMoveAnm__14dFile_select_cFv */
 #ifdef NONMATCHING
@@ -4300,7 +5793,7 @@ bool dFile_select_c::errorMoveAnm() {
                 field_0x0130 = field_0x0134;
         }
 
-        mpAnmBase[3]->setFrame(field_0x0130);
+        field_0x0090->setFrame(field_0x0130);
         field_0x012c->animationTransform();
         return false;
     } else {
@@ -4323,6 +5816,46 @@ asm bool dFile_select_c::errorMoveAnm() {
 
 /* 8018E2B4-8018E4CC 188BF4 0218+00 1/1 0/0 0/0 .text            errDispInitSet__14dFile_select_cFii
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::errDispInitSet(int param_1, int param_2) {
+    if (param_2 != 0) {
+        headerTxtSet(0xffff, 0, 0);
+    } else {
+        headerTxtSet(1, 0, 0);
+    }
+    field_0x021e = 0;
+    field_0x0138[field_0x0148]->setAlpha(0xff);
+    field_0x0138[field_0x0148 ^ 1]->setAlpha(0);
+    mpMessageString->getString(param_1, (J2DTextBox*)field_0x0138[field_0x0148]->getPanePtr(), NULL,
+                               mpMessageFont, NULL, 0);
+    if (field_0x014a || field_0x014b) {
+        errorMoveAnmInitSet(2859, 2849);
+    }
+    if (field_0x00b8 != 0 || field_0x00b9 != 0) {
+        mpFileSelect3d->drawOff();
+        selectDataBaseMoveAnmInitSet(33, 1);
+    }
+    if (field_0x0108 || field_0x0281) {
+        yesnoMenuMoveAnmInitSet(1149, 1139);
+    }
+    if (field_0x0360 || field_0x0283) {
+        menuMoveAnmInitSet(809, 799);
+    }
+    if (field_0x0128 != 0) {
+        nameMoveAnmInitSet(3369, 3359);
+    }
+    if (mCpSel.field_0x08) {
+        copySelMoveAnmInitSet(3369, 3359);
+    }
+    modoruTxtDispAnmInit(0);
+    ketteiTxtDispAnmInit(0);
+    mpFileWarning->init();
+    mSelIcon->setAlphaRate(0.0f);
+    mSelIcon2->setAlphaRate(0.0f);
+    field_0x0271 = 22;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4331,18 +5864,81 @@ asm void dFile_select_c::errDispInitSet(int param_0, int param_1) {
 #include "asm/d/file/d_file_select/errDispInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 8018E4CC-8018E504 188E0C 0038+00 1/0 0/0 0/0 .text MemCardCheckMain__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardCheckMain() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardCheckMain__14dFile_select_cFv.s"
+void dFile_select_c::MemCardCheckMain() {
+    (this->*(((MemCardCheckFuncT*)MemCardCheckProc)[field_0x0271]))();
 }
-#pragma pop
 
 /* 8018E504-8018E7C4 188E44 02C0+00 2/0 0/0 0/0 .text MemCardStatCheck__14dFile_select_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardStatCheck() {
+    u32 status = mDoMemCd_getStatus(0);
+    if (status == 14) {
+        return;
+    }
+    switch(status) {
+    case 0:
+        errDispInitSet(2, 0);
+        field_0x0280 = false;
+        field_0x0284 = NULL;
+        field_0x0273 = 2;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 3;
+        break;
+    case 8:
+        errDispInitSet(3, 0);
+        field_0x0280 = false;
+        field_0x0284 = NULL;
+        field_0x0273 = 2;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 3;
+        break;
+    case 9:
+        errDispInitSet(4, 0);
+        field_0x0280 = false;
+        field_0x0284 = NULL;
+        field_0x0273 = 2;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 3;
+        break;
+    case 10:
+        errDispInitSet(5, 0);
+        field_0x0280 = false;
+        field_0x0284 = NULL;
+        field_0x0273 = 2;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 3;
+        break;
+    case 6:
+    case 7:
+        errDispInitSet(6, 0);
+        field_0x0280 = true;
+        field_0x0273 = 5;
+        break;
+    case 11:
+    case 12:
+        errDispInitSet(9, 0);
+        field_0x0280 = false;
+        field_0x0284 = NULL;
+        field_0x0273 = 2;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 18;
+        break;
+    case 2:
+        mDoMemCd_Load();
+        field_0x0271 = 1;
+        break;
+    case 1:
+        errDispInitSet(22, 0);
+        field_0x0280 = true;
+        field_0x0273 = 13;
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4351,9 +5947,48 @@ asm void dFile_select_c::MemCardStatCheck() {
 #include "asm/d/file/d_file_select/MemCardStatCheck__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018E7C4-8018E93C 189104 0178+00 1/0 0/0 0/0 .text            MemCardLoadWait__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardLoadWait() {
+    int loadRes = mDoMemCd_LoadSync(mSave, sizeof(mSave), 0);
+    if (loadRes == 0) {
+        return;
+    }
+    if (loadRes == 1) {
+        if (dComIfGs_getNoFile() != 0) {
+            dComIfGs_setNoFile(0);
+        }
+        dataSelectInAnmSet();
+        if (field_0x014a || field_0x014b) {
+            errorMoveAnmInitSet(2859, 2849);
+        }
+        if (field_0x0108 || field_0x0281) {
+            yesnoMenuMoveAnmInitSet(1149, 1139);
+        }
+        if (field_0x0128) {
+            nameMoveAnmInitSet(3369, 3359);
+        }
+        if (mCpSel.field_0x08) {
+            mSelIcon2->setAlphaRate(0.0f);
+            copySelMoveAnmInitSet(3369, 3359);
+        }
+
+        if (field_0x0360 || field_0x0283) {
+            menuMoveAnmInitSet(809, 799);
+        }
+        modoruTxtDispAnmInit(0);
+        headerTxtSet(0xffff, 0, 0);
+        field_0x021e = 0;
+        field_0x026f = 1;
+    } else if (loadRes == 2) {
+        field_0x0271 = 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4362,29 +5997,35 @@ asm void dFile_select_c::MemCardLoadWait() {
 #include "asm/d/file/d_file_select/MemCardLoadWait__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018E93C-8018E9B0 18927C 0074+00 1/0 0/0 0/0 .text MemCardErrMsgWaitKey__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardErrMsgWaitKey() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardErrMsgWaitKey__14dFile_select_cFv.s"
+void dFile_select_c::MemCardErrMsgWaitKey() {
+    if (cAPICPad_ANY_BUTTON(0) != 0 && dMeter2Info_getMsgKeyWaitTimer() == 0) {
+        if (field_0x0290 != NULL) {
+            (this->*field_0x0290)();
+        }
+        field_0x0271 = field_0x0274;
+    }
 }
-#pragma pop
 
 /* 8018E9B0-8018E9D4 1892F0 0024+00 1/0 0/0 0/0 .text noFileSpaceDispInit__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::noFileSpaceDispInit() {
-    nofralloc
-#include "asm/d/file/d_file_select/noFileSpaceDispInit__14dFile_select_cFv.s"
+void dFile_select_c::noFileSpaceDispInit() {
+    errorTxtSet(10);
 }
-#pragma pop
 
 /* 8018E9D4-8018EA3C 189314 0068+00 1/0 0/0 0/0 .text MemCardNoFileSpaceDisp__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardNoFileSpaceDisp() {
+    if (errorTxtChangeAnm() == true) {
+        field_0x0290 = &dFile_select_c::iplSelDispInit;
+        field_0x0274 = 19;
+        field_0x0271 = 2;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4393,72 +6034,135 @@ asm void dFile_select_c::MemCardNoFileSpaceDisp() {
 #include "asm/d/file/d_file_select/MemCardNoFileSpaceDisp__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018EA3C-8018EA90 18937C 0054+00 1/0 0/0 0/0 .text            iplSelDispInit__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::iplSelDispInit() {
-    nofralloc
-#include "asm/d/file/d_file_select/iplSelDispInit__14dFile_select_cFv.s"
+void dFile_select_c::iplSelDispInit() {
+    errorTxtSet(18);
+    ketteiTxtDispAnmInit(1);
+    field_0x0280 = true;
+    yesnoMenuMoveAnmInitSet(0x473, 0x47d);
 }
-#pragma pop
 
 /* 8018EA90-8018EB10 1893D0 0080+00 1/0 0/0 0/0 .text MemCardGotoIPLSelectDisp__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardGotoIPLSelectDisp() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardGotoIPLSelectDisp__14dFile_select_cFv.s"
+void dFile_select_c::MemCardGotoIPLSelectDisp() {
+    bool txhChanged = errorTxtChangeAnm();
+    bool yesNoMenuMoved = yesnoMenuMoveAnm();
+    bool ketteiTxtDisplayed = ketteiTxtDispAnm();
+    if (txhChanged == true && yesNoMenuMoved == true && ketteiTxtDisplayed == true) {
+        yesnoCursorShow();
+        field_0x0271 = 20;
+    }
 }
-#pragma pop
 
 /* 8018EB10-8018EBCC 189450 00BC+00 1/0 0/0 0/0 .text MemCardGotoIPLSelect__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardGotoIPLSelect() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardGotoIPLSelect__14dFile_select_cFv.s"
+void dFile_select_c::MemCardGotoIPLSelect() {
+    if (errYesNoSelect()) {
+        if (field_0x0268) {
+            field_0x03b1 = 1;
+            field_0x03ac = g_fsHIO.field_0x000d;
+            mDoGph_gInf_c::startFadeOut(field_0x03ac);
+            mFadeFlag = true;
+            field_0x0271 = 21;
+        } else {
+            yesnoWakuAlpahAnmInit(field_0x0268, 0xff, 0, g_fsHIO.field_0x0008);
+            noSaveSelDispInit();
+            field_0x0271 = 3;
+        }
+    }
 }
-#pragma pop
 
 /* 8018EBCC-8018EC4C 18950C 0080+00 1/0 0/0 0/0 .text            MemCardGotoIPL__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardGotoIPL() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardGotoIPL__14dFile_select_cFv.s"
+void dFile_select_c::MemCardGotoIPL() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    } else {
+        mHasDrawn = true;
+        mDoGph_gInf_c::startFadeIn(0);
+        mFadeFlag = false;
+        mDoRst::onShutdown();
+    }
 }
-#pragma pop
 
 /* 8018EC4C-8018ECBC 18958C 0070+00 7/1 0/0 0/0 .text noSaveSelDispInit__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::noSaveSelDispInit() {
-    nofralloc
-#include "asm/d/file/d_file_select/noSaveSelDispInit__14dFile_select_cFv.s"
+void dFile_select_c::noSaveSelDispInit() {
+    errorTxtSet(19);
+    field_0x0282 = false;
+    if (!field_0x0108) {
+        ketteiTxtDispAnmInit(1);
+        field_0x0280 = true;
+        yesnoMenuMoveAnmInitSet(0x473, 0x47d);
+        field_0x0282 = true;
+    }
 }
-#pragma pop
 
 /* 8018ECBC-8018ED80 1895FC 00C4+00 1/0 0/0 0/0 .text MemCardNoSaveSelDisp__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardNoSaveSelDisp() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardNoSaveSelDisp__14dFile_select_cFv.s"
+void dFile_select_c::MemCardNoSaveSelDisp() {
+    bool iVar1 = errorTxtChangeAnm();
+    bool iVar3 = true;
+    bool iVar2 = true;
+    if (field_0x0282) {
+        if (field_0x0280) {
+            iVar3 = yesnoMenuMoveAnm();
+            iVar2 = ketteiTxtDispAnm();
+        }
+    } else {
+        iVar3 = yesnoWakuAlpahAnm(field_0x0268);
+    }
+    if (iVar1 == true && iVar3 == true && iVar2 == true) {
+        if (field_0x0280) {
+            yesnoCursorShow();
+        }
+        field_0x0271 = 4;
+    }
 }
-#pragma pop
 
 /* 8018ED80-8018EF5C 1896C0 01DC+00 1/0 0/0 0/0 .text
  * MemCardErrMsgWaitNoSaveSel__14dFile_select_cFv               */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardErrMsgWaitNoSaveSel() {
+    if (!errYesNoSelect()) {
+        return;
+    }
+
+    if (field_0x0268 != 0) {
+        setInitSaveData();
+        dComIfGs_setCardToMemory((char*)mSave, 0);
+        dComIfGs_setNoFile(1);
+        dComIfGs_setDataNum(0);
+        for (int i = 0; i < 3; i++) {
+            mDataNew[i] = 1;
+        }
+        headerTxtSet(901, 1, 0);
+        mSelIcon->setAlphaRate(1.0f);
+        char auStack_38[32];
+        dMeter2Info_getString(0x382, auStack_38, 0);
+        dComIfGs_setPlayerName(auStack_38);
+        dMeter2Info_getString(899, auStack_38, 0);
+        dComIfGs_setHorseName(auStack_38);
+        mpName->setNextNameStr(dComIfGs_getPlayerName());
+        mpName->initial();
+        modoruTxtChange(1);
+        nameMoveAnmInitSet(3359, 3369);
+        yesnoMenuMoveAnmInitSet(1149, 1139);
+        errorMoveAnmInitSet(2859, 2849);
+        modoruTxtDispAnmInit(1);
+        ketteiTxtDispAnmInit(1);
+        field_0x026f = 45;
+    } else {
+        field_0x0284 = NULL;
+        field_0x0273 = 0;
+        ketteiTxtDispAnmInit(0);
+        errorMoveAnmInitSet(2859, 2849);
+        yesnoMenuMoveAnmInitSet(1149, 1139);
+        field_0x0271 = 24;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4467,42 +6171,54 @@ asm void dFile_select_c::MemCardErrMsgWaitNoSaveSel() {
 #include "asm/d/file/d_file_select/MemCardErrMsgWaitNoSaveSel__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018EF5C-8018EFAC 18989C 0050+00 1/1 0/0 0/0 .text formatYesSelDispInitSet__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::formatYesSelDispInitSet() {
-    nofralloc
-#include "asm/d/file/d_file_select/formatYesSelDispInitSet__14dFile_select_cFv.s"
+void dFile_select_c::formatYesSelDispInitSet() {
+    errorTxtSet(14);
+    field_0x0268 = 0;
+    field_0x0269 = 1;
+    yesnoSelectAnmSet();
+    field_0x0271 = 6;
 }
-#pragma pop
 
 /* 8018EFAC-8018EFFC 1898EC 0050+00 2/2 0/0 0/0 .text formatNoSelDispInitSet__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::formatNoSelDispInitSet() {
-    nofralloc
-#include "asm/d/file/d_file_select/formatNoSelDispInitSet__14dFile_select_cFv.s"
+void dFile_select_c::formatNoSelDispInitSet() {
+    errorTxtSet(17);
+    field_0x0280 = false;
+    yesnoMenuMoveAnmInitSet(0x47d, 0x473);
+    field_0x0271 = 7;
 }
-#pragma pop
 
 /* 8018EFFC-8018F080 18993C 0084+00 1/0 0/0 0/0 .text MemCardFormatYesSelDisp__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardFormatYesSelDisp() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardFormatYesSelDisp__14dFile_select_cFv.s"
+void dFile_select_c::MemCardFormatYesSelDisp() {
+    bool iVar1 = errorTxtChangeAnm();
+    bool iVar2 = yesnoSelectMoveAnm();
+    bool iVar3 = yesnoWakuAlpahAnm(field_0x0269);
+    if (iVar1 == true && iVar2 == true && iVar3 == true) {
+        yesnoCursorShow();
+        field_0x0271 = 8;
+    }
 }
-#pragma pop
 
 /* 8018F080-8018F128 1899C0 00A8+00 1/0 0/0 0/0 .text MemCardFormatNoSelDisp__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardFormatNoSelDisp() {
+    bool iVar1 = errorTxtChangeAnm();
+    bool iVar2 = yesnoMenuMoveAnm();
+    if (iVar1 == true && iVar2 == true) {
+        field_0x0284 = NULL;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0274 = 3;
+        field_0x0271 = 2;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4511,95 +6227,131 @@ asm void dFile_select_c::MemCardFormatNoSelDisp() {
 #include "asm/d/file/d_file_select/MemCardFormatNoSelDisp__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018F128-8018F17C 189A68 0054+00 1/0 0/0 0/0 .text
  * MemCardErrMsgWaitFormatSel__14dFile_select_cFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardErrMsgWaitFormatSel() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardErrMsgWaitFormatSel__14dFile_select_cFv.s"
+void dFile_select_c::MemCardErrMsgWaitFormatSel() {
+    if (errYesNoSelect()) {
+        if (field_0x0268) {
+            formatYesSelDispInitSet();
+        } else {
+            formatNoSelDispInitSet();
+        }
+    }
 }
-#pragma pop
 
 /* 8018F17C-8018F1CC 189ABC 0050+00 1/1 0/0 0/0 .text formatYesSel2DispInitSet__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::formatYesSel2DispInitSet() {
-    nofralloc
-#include "asm/d/file/d_file_select/formatYesSel2DispInitSet__14dFile_select_cFv.s"
+void dFile_select_c::formatYesSel2DispInitSet() {
+    errorTxtSet(13);
+    field_0x0280 = false;
+    yesnoMenuMoveAnmInitSet(0x47d, 0x473);
+    field_0x0271 = 9;
 }
-#pragma pop
 
 /* 8018F1CC-8018F228 189B0C 005C+00 1/0 0/0 0/0 .text
  * MemCardErrMsgWaitFormatSel2__14dFile_select_cFv              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardErrMsgWaitFormatSel2() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardErrMsgWaitFormatSel2__14dFile_select_cFv.s"
+void dFile_select_c::MemCardErrMsgWaitFormatSel2() {
+    if (errYesNoSelect()) {
+        if (field_0x0268) {
+            field_0x03b1 = 1;
+            formatYesSel2DispInitSet();
+        } else {
+            formatNoSelDispInitSet();
+        }
+    }
 }
-#pragma pop
 
 /* 8018F228-8018F2A4 189B68 007C+00 1/0 0/0 0/0 .text MemCardFormatYesSel2Disp__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardFormatYesSel2Disp() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardFormatYesSel2Disp__14dFile_select_cFv.s"
+void dFile_select_c::MemCardFormatYesSel2Disp() {
+    bool iVar1 = errorTxtChangeAnm();
+    bool iVar2 = yesnoMenuMoveAnm();
+    if (iVar1 == true && iVar2 == true) {
+        field_0x03ac = g_fsHIO.field_0x000c;
+        mDoMemCd_Format();
+        field_0x0271 = 10;
+    }
 }
-#pragma pop
 
 /* 8018F2A4-8018F304 189BE4 0060+00 1/0 0/0 0/0 .text            MemCardFormat__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardFormat() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardFormat__14dFile_select_cFv.s"
+void dFile_select_c::MemCardFormat() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    }
+    field_0x03b4 = mDoMemCd_FormatSync();
+    if (field_0x03b4 != 0) {
+        field_0x0271 = 11;
+    }
 }
-#pragma pop
 
 /* 8018F304-8018F374 189C44 0070+00 1/0 0/0 0/0 .text MemCardFormatWait__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardFormatWait() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardFormatWait__14dFile_select_cFv.s"
+void dFile_select_c::MemCardFormatWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    } else {
+        if (field_0x03b4 == 2) {
+            errorTxtSet(11);
+        } else if (field_0x03b4 == 1) {
+            errorTxtSet(12);
+        }
+        field_0x0271 = 12;
+    }
 }
-#pragma pop
 
 /* 8018F374-8018F400 189CB4 008C+00 1/0 0/0 0/0 .text MemCardFormatCheck__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardFormatCheck() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardFormatCheck__14dFile_select_cFv.s"
+void dFile_select_c::MemCardFormatCheck() {
+    if (errorTxtChangeAnm() == true) {
+        field_0x0284 = NULL;
+        field_0x0290 = NULL;
+        field_0x0273 = 0;
+        field_0x0274 = 24;
+        field_0x0271 = 2;
+        field_0x03b1 = 0;
+    }
 }
-#pragma pop
 
 /* 8018F400-8018F488 189D40 0088+00 1/0 0/0 0/0 .text MemCardMakeGameFileSel__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMakeGameFileSel() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMakeGameFileSel__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMakeGameFileSel() {
+    if (errYesNoSelect()) {
+        if (field_0x0268 != 0) {
+            errorTxtSet(27);
+            field_0x03b1 = 1;
+        } else {
+            errorTxtSet(25);
+        }
+        ketteiTxtDispAnmInit(0);
+        yesnoMenuMoveAnmInitSet(0x47d, 0x473);
+        field_0x0271 = 14;
+    }
 }
-#pragma pop
 
 /* 8018F488-8018F580 189DC8 00F8+00 1/0 0/0 0/0 .text
  * MemCardMakeGameFileSelDisp__14dFile_select_cFv               */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::MemCardMakeGameFileSelDisp() {
+    bool iVar1 = errorTxtChangeAnm();
+    bool iVar2 = yesnoMenuMoveAnm();
+    bool iVar3 = ketteiTxtDispAnm();
+    if (iVar1 == true && iVar2 == true && iVar3 == true) {
+        if (field_0x0268 != 0) {
+            field_0x03ac = g_fsHIO.field_0x000c;
+            setInitSaveData();
+            dataSave();
+            field_0x0271 = 15;
+        } else {
+            field_0x0284 = NULL;
+            field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+            field_0x0274 = 3;
+            field_0x0271 = 2;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4608,82 +6360,177 @@ asm void dFile_select_c::MemCardMakeGameFileSelDisp() {
 #include "asm/d/file/d_file_select/MemCardMakeGameFileSelDisp__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018F580-8018F5E0 189EC0 0060+00 1/0 0/0 0/0 .text MemCardMakeGameFile__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMakeGameFile() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMakeGameFile__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMakeGameFile() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    }
+    field_0x03b4 = mDoMemCd_SaveSync();
+    if (field_0x03b4 != 0) {
+        field_0x0271 = 16;
+    }
 }
-#pragma pop
 
 /* 8018F5E0-8018F650 189F20 0070+00 1/0 0/0 0/0 .text MemCardMakeGameFileWait__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMakeGameFileWait() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMakeGameFileWait__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMakeGameFileWait() {
+    if (field_0x03ac != 0) {
+        field_0x03ac--;
+    } else {
+        if (field_0x03b4 == 1) {
+            errorTxtSet(0x1c);
+        } else if (field_0x03b4 == 2) {
+            errorTxtSet(0x1a);
+        }
+        field_0x0271 = 17;
+    }
 }
-#pragma pop
 
 /* 8018F650-8018F6DC 189F90 008C+00 1/0 0/0 0/0 .text MemCardMakeGameFileCheck__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMakeGameFileCheck() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMakeGameFileCheck__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMakeGameFileCheck() {
+    if (errorTxtChangeAnm() == 1) {
+        field_0x0284 = NULL;
+        field_0x0290 = NULL;
+        field_0x0273 = 0;
+        field_0x0274 = 24;
+        field_0x0271 = 2;
+        field_0x03b1 = 0;
+    }
 }
-#pragma pop
 
 /* 8018F6DC-8018F8D8 18A01C 01FC+00 1/0 0/0 0/0 .text MemCardMsgWindowInitOpen__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMsgWindowInitOpen() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMsgWindowInitOpen__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMsgWindowInitOpen() {
+    bool iVar1;
+    if (field_0x021e == 0x0) {
+        iVar1 = headerTxtChangeAnm();
+    } else {
+        iVar1 = true;
+    }
+    bool iVar8 = true;
+    bool iVar7 = true;
+    bool iVar6 = true;
+    bool iVar5 = true;
+    if (field_0x00b8 || field_0x00b9) {
+        iVar8 = selectDataBaseMoveAnm();
+    }
+    if (field_0x0108 || field_0x0281) {
+        iVar7 = yesnoMenuMoveAnm();
+    }
+    if (field_0x0360 || field_0x0283) {
+        iVar6 = menuMoveAnm();
+    }
+    if (field_0x014a || field_0x014b) {
+        iVar5 = errorMoveAnm();
+    }
+    bool iVar2 = modoruTxtDispAnm();
+    bool iVar3 = ketteiTxtDispAnm();
+    bool iVar4 = true;
+    if (field_0x0128 || mCpSel.field_0x08) {
+        iVar4 = nameMoveAnm();
+    }
+    if (iVar1 == true && iVar8 == true && iVar7 == true && iVar6 == true && iVar5 == true &&
+        iVar2 == true && iVar3 == true && iVar4 == true)
+    {
+        fileSel.Scr->clearAnmTransform();
+        setWakuAnm();
+        errorMoveAnmInitSet(0xb21, 0xb2b);
+        if (field_0x0280) {
+            yesnoMenuMoveAnmInitSet(0x473, 0x47d);
+            ketteiTxtDispAnmInit(1);
+        } else {
+            ketteiTxtDispAnmInit(0);
+        }
+        field_0x021e = 1;
+        field_0x0271 = 23;
+    }
 }
-#pragma pop
 
 /* 8018F8D8-8018F974 18A218 009C+00 1/0 0/0 0/0 .text MemCardMsgWindowOpen__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMsgWindowOpen() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMsgWindowOpen__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMsgWindowOpen() {
+    bool iVar1 = errorMoveAnm();
+    bool iVar3 = true;
+    if (field_0x0280) {
+        iVar3 = yesnoMenuMoveAnm();
+    }
+    bool iVar2 = ketteiTxtDispAnm();
+    if (iVar1 == true && iVar3 == true && iVar2 == true) {
+        if (field_0x0280) {
+            yesnoCursorShow();
+        }
+        field_0x0271 = field_0x0273;
+    }
 }
-#pragma pop
 
 /* 8018F974-8018FA2C 18A2B4 00B8+00 1/0 0/0 0/0 .text MemCardMsgWindowClose__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardMsgWindowClose() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardMsgWindowClose__14dFile_select_cFv.s"
+void dFile_select_c::MemCardMsgWindowClose() {
+    bool errorRes = errorMoveAnm();
+    bool menuMoveRes = true;
+    bool textAnmRes = true;
+    if (field_0x0108) {
+        menuMoveRes = yesnoMenuMoveAnm();
+        textAnmRes = ketteiTxtDispAnm();
+    }
+    if (errorRes == true && menuMoveRes == true && textAnmRes == true) {
+        field_0x0280 = false;
+        if (field_0x0284 != NULL) {
+            (this->*field_0x0284)();
+        } else {
+            field_0x0271 = field_0x0273;
+        }
+    }
 }
-#pragma pop
 
 /* 8018FA2C-8018FB80 18A36C 0154+00 5/5 0/0 0/0 .text            errYesNoSelect__14dFile_select_cFv
  */
+// Matches with literals
+#ifdef NONMATCHING
+bool dFile_select_c::errYesNoSelect() {
+    bool rv = false;
+    mStick->checkTrigger();
+    if (mDoCPd_c::getTrigA(0) != 0) {
+        if (field_0x0268 != 0) {
+            mDoAud_seStart(Z2SE_SY_CURSOR_OK, 0, 0, 0);
+        } else {
+            mDoAud_seStart(Z2SE_SY_CURSOR_CANCEL, 0, 0, 0);
+        }
+        mSelIcon->setAlphaRate(0.0f);
+        rv = true;
+    } else if (mStick->checkRightTrigger() && field_0x0268) {
+        field_0x0269 = field_0x0268;
+        field_0x0268 = field_0x0268 ^ 1;
+        errCurMove(0);
+    } else if (mStick->checkLeftTrigger() && field_0x0268 != 1) {
+        field_0x0269 = field_0x0268;
+        field_0x0268 = field_0x0268 ^ 1;
+        errCurMove(0);
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dFile_select_c::errYesNoSelect() {
+asm bool dFile_select_c::errYesNoSelect() {
     nofralloc
 #include "asm/d/file/d_file_select/errYesNoSelect__14dFile_select_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8018FB80-8018FBF8 18A4C0 0078+00 1/1 0/0 0/0 .text            errCurMove__14dFile_select_cFUc */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::errCurMove(u8 param_1) {
+    mDoAud_seStart(Z2SE_SY_MENU_CURSOR_COMMON, 0, param_1, 0);
+    yesnoSelectAnmSet();
+    field_0x0272 = field_0x0271;
+    field_0x0271 = 25;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4692,19 +6539,35 @@ asm void dFile_select_c::errCurMove(u8 param_0) {
 #include "asm/d/file/d_file_select/errCurMove__14dFile_select_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8018FBF8-8018FC64 18A538 006C+00 1/0 0/0 0/0 .text
  * MemCardErrYesNoCursorMoveAnm__14dFile_select_cFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardErrYesNoCursorMoveAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardErrYesNoCursorMoveAnm__14dFile_select_cFv.s"
+void dFile_select_c::MemCardErrYesNoCursorMoveAnm() {
+    bool moveRes = yesnoSelectMoveAnm();
+    bool anmRes = yesnoWakuAlpahAnm(field_0x0269);
+    if (moveRes == true && anmRes == true) {
+        yesnoCursorShow();
+        field_0x0271 = field_0x0272;
+    }
 }
-#pragma pop
 
 /* 8018FC64-8018FD30 18A5A4 00CC+00 9/9 0/0 0/0 .text            errorTxtSet__14dFile_select_cFUs */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::errorTxtSet(u16 param_1) {
+    if (param_1 == 0xffff) {
+        strcpy(field_0x0140[field_0x0148 ^ 1], "");
+    } else {
+        mpMessageString->getString(param_1,
+                                   (J2DTextBox*)field_0x0138[field_0x0148 ^ 1]->getPanePtr(), NULL,
+                                   mpMessageFont, NULL, 0);
+    }
+    field_0x0138[field_0x0148]->alphaAnimeStart(0);
+    field_0x0138[field_0x0148 ^ 1]->alphaAnimeStart(0);
+    field_0x0149 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4713,25 +6576,52 @@ asm void dFile_select_c::errorTxtSet(u16 param_0) {
 #include "asm/d/file/d_file_select/errorTxtSet__14dFile_select_cFUs.s"
 }
 #pragma pop
+#endif
 
 /* 8018FD30-8018FE18 18A670 00E8+00 9/9 0/0 0/0 .text errorTxtChangeAnm__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::errorTxtChangeAnm() {
-    nofralloc
-#include "asm/d/file/d_file_select/errorTxtChangeAnm__14dFile_select_cFv.s"
+bool dFile_select_c::errorTxtChangeAnm() {
+    if (field_0x0149) {
+        return true;
+    }
+    bool rv = false;
+    bool animeRes1 = field_0x0138[field_0x0148]->alphaAnime(g_fsHIO.field_0x0007, 0xff, 0, 0);
+    bool animeRes2 = field_0x0138[field_0x0148 ^ 1]->alphaAnime(g_fsHIO.field_0x0007, 0, 0xff, 0);
+    s32 timer = dMeter2Info_getMsgKeyWaitTimer();
+    if (animeRes1 == true && animeRes2 == true && timer == 0) {
+        field_0x0148 ^= 1;
+        field_0x0149 = 1;
+        rv = true;
+    }
+
+    return rv;
 }
-#pragma pop
 
 /* 8018FE18-8018FE64 18A758 004C+00 1/1 0/0 0/0 .text            fileRecScaleAnm__14dFile_select_cFv
  */
 bool dFile_select_c::fileRecScaleAnm() {
-    return field_0x00bc[mSelectNum]->scaleAnime(g_fsHIO.field_0x0005,field_0x00c8,field_0x00d4,0);
+    return field_0x00bc[mSelectNum]->scaleAnime(g_fsHIO.field_0x0005, field_0x00c8[0],
+                                                field_0x00d4[0], 0);
 }
 
 /* 8018FE64-8018FEF4 18A7A4 0090+00 2/2 0/0 0/0 .text fileRecScaleAnmInitSet2__14dFile_select_cFff
  */
+#ifdef NONMATCHING
+void dFile_select_c::fileRecScaleAnmInitSet2(f32 param_1, f32 param_2) {
+    for (int i = 0; (int)i < 3; i++) {
+        field_0x00c8[i] = param_1;
+        field_0x00d4[i] = param_2;
+        if (i == mSelectNum) {
+            if (param_1 > 0.0f) {
+                field_0x00c8[i] = g_fsHIO.field_0x0010[mSelectNum];
+            }
+            if (param_2 > 0.0f) {
+                field_0x00d4[i] = g_fsHIO.field_0x0010[mSelectNum];
+            }
+        }
+        field_0x00bc[i]->scaleAnimeStart(0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4740,16 +6630,20 @@ asm void dFile_select_c::fileRecScaleAnmInitSet2(f32 param_0, f32 param_1) {
 #include "asm/d/file/d_file_select/fileRecScaleAnmInitSet2__14dFile_select_cFff.s"
 }
 #pragma pop
+#endif
 
 /* 8018FEF4-8018FF9C 18A834 00A8+00 2/2 0/0 0/0 .text fileRecScaleAnm2__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dFile_select_c::fileRecScaleAnm2() {
-    nofralloc
-#include "asm/d/file/d_file_select/fileRecScaleAnm2__14dFile_select_cFv.s"
+bool dFile_select_c::fileRecScaleAnm2() {
+    bool scaleRes[3];
+    for (int i = 0; i < 3; i++) {
+        scaleRes[i] =
+            field_0x00bc[i]->scaleAnime(g_fsHIO.field_0x0005, field_0x00c8[i], field_0x00d4[i], 0);
+    }
+    if (scaleRes[0] == true && scaleRes[1] == true && scaleRes[2] == true) {
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 8018FF9C-80190074 18A8DC 00D8+00 1/1 0/0 0/0 .text fileInfoScaleAnm__14dFile_select_cFv */
 #ifdef NONMATCHING
@@ -4770,7 +6664,7 @@ bool dFile_select_c::fileInfoScaleAnm() {
                 field_0x0110 = field_0x0114;
         }
 
-        mpAnmBase[6]->setFrame(field_0x0110);
+        field_0x0098->setFrame(field_0x0110);
         mpPane->animationTransform();
         ret = false;
     }
@@ -4794,6 +6688,22 @@ asm bool dFile_select_c::fileInfoScaleAnm() {
 #endif
 
 /* 80190074-80190124 18A9B4 00B0+00 5/5 0/0 0/0 .text nameMoveAnmInitSet__14dFile_select_cFii */
+// Matches with literals
+#ifdef NONMATCHING
+void dFile_select_c::nameMoveAnmInitSet(int param_1, int param_2) {
+    if (param_1 == 3359) {
+        field_0x0128 = true;
+    }
+    if (param_1 == 3369) {
+        mpName->hideIcon();
+    }
+    field_0x011c->setAnimation(field_0x0094);
+    field_0x0120 = param_1;
+    field_0x0124 = param_2;
+    field_0x0094->setFrame(field_0x0120);
+    field_0x011c->animationTransform();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4802,6 +6712,7 @@ asm void dFile_select_c::nameMoveAnmInitSet(int param_0, int param_1) {
 #include "asm/d/file/d_file_select/nameMoveAnmInitSet__14dFile_select_cFii.s"
 }
 #pragma pop
+#endif
 
 /* 80190124-80190208 18AA64 00E4+00 9/9 0/0 0/0 .text            nameMoveAnm__14dFile_select_cFv */
 #ifdef NONMATCHING
@@ -4821,7 +6732,7 @@ bool dFile_select_c::nameMoveAnm() {
                 field_0x0120 = field_0x0124;
             }
         }
-        mpAnmBase[4]->setFrame(field_0x0120);
+        field_0x0094->setFrame(field_0x0120);
         field_0x011c->animationTransform();
         return false;
     } else {
@@ -4829,7 +6740,7 @@ bool dFile_select_c::nameMoveAnm() {
 
         if (field_0x0124 == 0xd1f) {
             field_0x0128 = false;
-            mFileSelCopyDlst.field_0x08 = false;
+            mCpSel.field_0x08 = false;
         }
         return true;
     }
@@ -4846,41 +6757,26 @@ asm bool dFile_select_c::nameMoveAnm() {
 #endif
 
 /* 80190208-80190254 18AB48 004C+00 1/0 0/0 0/0 .text MemCardSaveDataClear__14dFile_select_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::MemCardSaveDataClear() {
-    nofralloc
-#include "asm/d/file/d_file_select/MemCardSaveDataClear__14dFile_select_cFv.s"
+void dFile_select_c::MemCardSaveDataClear() {
+    field_0x03b4 = mDoMemCd_SaveSync();
+    if (field_0x03b4 != 0) {
+        field_0x0271 = 0;
+    }
 }
-#pragma pop
 
 /* 80190254-801902B8 18AB94 0064+00 2/2 0/0 0/0 .text            setInitSaveData__14dFile_select_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::setInitSaveData() {
-    nofralloc
-#include "asm/d/file/d_file_select/setInitSaveData__14dFile_select_cFv.s"
+void dFile_select_c::setInitSaveData() {
+    for (int i = 0; i < 3; i++) {
+        dComIfGs_setInitDataToCard((u8*)mSave, i);
+        mDoMemCdRWm_SetCheckSumGameData((u8*)mSave, i);
+    }
 }
-#pragma pop
 
 /* 801902B8-801902F0 18ABF8 0038+00 2/2 0/0 0/0 .text            dataSave__14dFile_select_cFv */
-#ifndef NONMATCHING
 void dFile_select_c::dataSave() {
-    mDoMemCd_save(&mpMemCard,0x1fbc,0);
+    mDoMemCd_save(mSave, sizeof(mSave), 0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dFile_select_c::dataSave() {
-    nofralloc
-#include "asm/d/file/d_file_select/dataSave__14dFile_select_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 801902F0-80190380 18AC30 0090+00 1/1 0/0 0/0 .text            __ct__16dFile_select3D_cFv */
 // vtable data
@@ -5003,22 +6899,22 @@ void dFile_select3D_c::draw() {
 
 /* 8019065C-8019095C 18AF9C 0300+00 2/2 0/0 0/0 .text setJ3D__16dFile_select3D_cFPCcPCcPCc */
 #ifdef NONMATCHING
-// double branch, regswap
+// regswap
 void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char const* param_2) {
     JKRArchive* archive = dComIfGp_getCollectResArchive();
     J3DModelData* modelData = (J3DModelData*)J3DModelLoaderDataBase::load(
         archive->getResource('BMD ', param_0), 0x51020010);
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
-        J3DMaterialAnm* local_48 = new J3DMaterialAnm();
+        J3DMaterialAnm* material = new J3DMaterialAnm();
         modelData->getMaterialNodePointer(i)->change();
-        modelData->getMaterialNodePointer(i)->setMaterialAnm(local_48);
+        modelData->getMaterialNodePointer(i)->setMaterialAnm(material);
     }
     mpModel = new J3DModel(modelData, 0, 1);
     if (param_1) {
         J3DAnmTransform* pbck =
             (J3DAnmTransform*)J3DAnmLoaderDataBase::load(archive->getResource('BCK ', param_1));
         mBckAnm = new mDoExt_bckAnm();
-        if (mBckAnm && !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
+        if (mBckAnm == NULL || !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
             return;
         }
     }
