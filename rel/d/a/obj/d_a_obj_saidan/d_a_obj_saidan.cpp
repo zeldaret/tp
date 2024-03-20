@@ -18,9 +18,10 @@
 //
 
 class daSaidan_c : public dBgS_MoveBgActor {
+public:
     /* 80CC3E28 */ void setBaseMtx();
     /* 80CC3EB0 */ virtual int CreateHeap();
-    /* 80CC3F1C */ void create();
+    /* 80CC3F1C */ cPhs__Step create();
     /* 80CC4054 */ virtual int Execute(Mtx**);
     /* 80CC40A4 */ void moveProc();
     /* 80CC4148 */ void init_modeWait();
@@ -56,85 +57,29 @@ static daSaidan_HIO_c l_HIO;
 // Forward References:
 //
 
-extern "C" void __ct__14daSaidan_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__10daSaidan_cFv();
-extern "C" int CreateHeap__10daSaidan_cFv();
-extern "C" int create__10daSaidan_cFv();
-extern "C" int Execute__10daSaidan_cFPPA3_A4_f();
-extern "C" void moveProc__10daSaidan_cFv();
-extern "C" void init_modeWait__10daSaidan_cFv();
 extern "C" void modeWait__10daSaidan_cFv();
-extern "C" void init_modeMove__10daSaidan_cFv();
 extern "C" void modeMove__10daSaidan_cFv();
-extern "C" void init_modeMoveEnd__10daSaidan_cFv();
 extern "C" void modeMoveEnd__10daSaidan_cFv();
-extern "C" int Draw__10daSaidan_cFv();
-extern "C" int Delete__10daSaidan_cFv();
-extern "C" static int daSaidan_Draw__FP10daSaidan_c();
-extern "C" static int daSaidan_Execute__FP10daSaidan_c();
-extern "C" static int daSaidan_Delete__FP10daSaidan_c();
-extern "C" static int daSaidan_Create__FP10fopAc_ac_c();
-extern "C" void __dt__14daSaidan_HIO_cFv();
-extern "C" void __sinit_d_a_obj_saidan_cpp();
-extern "C" extern char const* const d_a_obj_saidan__stringBase0;
 
 //
 // External References:
 //
 
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
 extern "C" void __ptmf_scall();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80CC4524-80CC4528 000000 0004+00 2/2 0/0 0/0 .rodata          @3625 */
-SECTION_RODATA static f32 const lit_3625 = 2.0f;
-COMPILER_STRIP_GATE(0x80CC4524, &lit_3625);
-
-/* 80CC4528-80CC452C 000004 0004+00 1/1 0/0 0/0 .rodata          @3626 */
-SECTION_RODATA static f32 const lit_3626 = 250.0f;
-COMPILER_STRIP_GATE(0x80CC4528, &lit_3626);
-
 /* 80CC454C-80CC4558 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80CC4558-80CC456C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -144,6 +89,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
+#if !NONMATCHING
 /* 80CC456C-80CC4578 -00001 000C+00 0/1 0/0 0/0 .data            @3718 */
 #pragma push
 #pragma force_active on
@@ -183,101 +129,89 @@ SECTION_DATA static u8 mode_proc[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 #pragma pop
-
-/* 80CC45B4-80CC45D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daSaidan_Method */
-SECTION_DATA static void* l_daSaidan_Method[8] = {
-    (void*)daSaidan_Create__FP10fopAc_ac_c,
-    (void*)daSaidan_Delete__FP10daSaidan_c,
-    (void*)daSaidan_Execute__FP10daSaidan_c,
-    (void*)NULL,
-    (void*)daSaidan_Draw__FP10daSaidan_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80CC45D4-80CC4604 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Saidan */
-SECTION_DATA extern void* g_profile_Obj_Saidan[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00400000, (void*)&g_fpcLf_Method,
-    (void*)0x000005B4, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01FC0000, (void*)&l_daSaidan_Method,
-    (void*)0x00040000, (void*)0x000E0000,
-};
-
-/* 80CC4604-80CC462C 0000B8 0028+00 1/1 0/0 0/0 .data            __vt__10daSaidan_c */
-SECTION_DATA extern void* __vt__10daSaidan_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__10daSaidan_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__10daSaidan_cFPPA3_A4_f,
-    (void*)Draw__10daSaidan_cFv,
-    (void*)Delete__10daSaidan_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
+#endif
 
 /* 80CC3DAC-80CC3DE0 0000EC 0034+00 1/1 0/0 0/0 .text            __ct__14daSaidan_HIO_cFv */
 daSaidan_HIO_c::daSaidan_HIO_c() {
-    field_0x04 = *((f32*)&lit_3625);
-    field_0x08 = *((f32*)&lit_3626);
+    field_0x04 = 2.0f;
+    field_0x08 = 250.0f;
 }
 
 /* 80CC3E28-80CC3EB0 000168 0088+00 2/2 0/0 0/0 .text            setBaseMtx__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/setBaseMtx__10daSaidan_cFv.s"
+void daSaidan_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mpModel->setBaseScale(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80CC4540-80CC4540 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80CC4540 = "H_Saidan";
-#pragma pop
 
 /* 80CC3EB0-80CC3F1C 0001F0 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSaidan_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/CreateHeap__10daSaidan_cFv.s"
+int daSaidan_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("H_Saidan", 4);
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+
+    if (mpModel == NULL) {
+        return FALSE;
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80CC3F1C-80CC4054 00025C 0138+00 1/1 0/0 0/0 .text            create__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/create__10daSaidan_cFv.s"
+cPhs__Step daSaidan_c::create() {
+    fopAcM_SetupActor(this, daSaidan_c);
+
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "H_Saidan");
+    if (step == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate("H_Saidan", 7, dBgS_MoveBGProc_TypicalRotY, 0x21b0, NULL) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        } else {
+            fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+            fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+            field_0x5AD = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
+            field_0x5B0 = current.pos.x;
+
+            if (field_0x5AD != 0) {
+                current.pos.x = field_0x5B0 - l_HIO.field_0x08;
+                init_modeMoveEnd();
+            } else {
+                init_modeWait();
+            }
+            setBaseMtx();
+        }
+    }
+
+    return step;
 }
-#pragma pop
 
 /* 80CC4054-80CC40A4 000394 0050+00 1/0 0/0 0/0 .text            Execute__10daSaidan_cFPPA3_A4_f */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSaidan_c::Execute(Mtx** i_mtx) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Execute__10daSaidan_cFPPA3_A4_f.s"
-}
-#pragma pop
+int daSaidan_c::Execute(Mtx** i_mtx) {
+    moveProc();
+    *i_mtx = &mpModel->getBaseTRMtx();
+    setBaseMtx();
 
+    return TRUE;
+}
+
+#if !NONMATCHING
 /* ############################################################################################## */
 /* 80CC4668-80CC466C 000020 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80CC4668[4];
+#endif
 
 /* 80CC40A4-80CC4148 0003E4 00A4+00 1/1 0/0 0/0 .text            moveProc__10daSaidan_cFv */
+#if NONMATCHING
+void daSaidan_c::moveProc() {
+    typedef void (daSaidan_c::*proc_func)();
+    static proc_func mode_proc[] = {
+        &daSaidan_c::init_modeWait,
+        &daSaidan_c::init_modeMove,
+        &daSaidan_c::init_modeMoveEnd,
+    };
+
+    (this->*mode_proc[field_0x5AC])();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -286,91 +220,43 @@ asm void daSaidan_c::moveProc() {
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/moveProc__10daSaidan_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CC4148-80CC4154 000488 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::init_modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/init_modeWait__10daSaidan_cFv.s"
+void daSaidan_c::init_modeWait() {
+    field_0x5AC = 0;
 }
-#pragma pop
 
 /* 80CC4154-80CC41B0 000494 005C+00 1/0 0/0 0/0 .text            modeWait__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::modeWait() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/modeWait__10daSaidan_cFv.s"
+void daSaidan_c::modeWait() {
+    field_0x5AD = fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this));
+    if (field_0x5AD != 0) {
+        init_modeMove();
+    }
 }
-#pragma pop
 
 /* 80CC41B0-80CC41BC 0004F0 000C+00 1/1 0/0 0/0 .text            init_modeMove__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::init_modeMove() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/init_modeMove__10daSaidan_cFv.s"
+void daSaidan_c::init_modeMove() {
+    field_0x5AC = 1;
 }
-#pragma pop
-
-/* ############################################################################################## */
-/* 80CC452C-80CC4530 000008 0004+00 0/1 0/0 0/0 .rodata          @3758 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3758 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80CC452C, &lit_3758);
-#pragma pop
-
-/* 80CC4530-80CC4534 00000C 0004+00 0/1 0/0 0/0 .rodata          @3759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3759 = 0.5f;
-COMPILER_STRIP_GATE(0x80CC4530, &lit_3759);
-#pragma pop
-
-/* 80CC4534-80CC4538 000010 0004+00 1/2 0/0 0/0 .rodata          @3760 */
-SECTION_RODATA static f32 const lit_3760 = 1.0f;
-COMPILER_STRIP_GATE(0x80CC4534, &lit_3760);
-
-/* 80CC4538-80CC453C 000014 0004+00 1/2 0/0 0/0 .rodata          @3761 */
-SECTION_RODATA static f32 const lit_3761 = -1.0f;
-COMPILER_STRIP_GATE(0x80CC4538, &lit_3761);
-
-/* 80CC453C-80CC4540 000018 0004+00 0/1 0/0 0/0 .rodata          @3762 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3762[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80CC453C, &lit_3762);
-#pragma pop
 
 /* 80CC41BC-80CC4290 0004FC 00D4+00 1/0 0/0 0/0 .text            modeMove__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::modeMove() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/modeMove__10daSaidan_cFv.s"
+void daSaidan_c::modeMove() {
+    f32 curr = cLib_addCalc(&current.pos.x, field_0x5B0 - l_HIO.field_0x08, 0.2f, l_HIO.field_0x04, 0.5f);
+    
+    fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_CHURCH_ALTER_MOVE, 0);
+
+    if (curr == 0.0f) {
+        init_modeMoveEnd();
+    }
 }
-#pragma pop
 
 /* 80CC4290-80CC4314 0005D0 0084+00 2/2 0/0 0/0 .text            init_modeMoveEnd__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::init_modeMoveEnd() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/init_modeMoveEnd__10daSaidan_cFv.s"
+void daSaidan_c::init_modeMoveEnd() {
+    fopAcM_seStartCurrent(this, Z2SE_OBJ_CHURCH_ALTER_STOP, 0);
+
+    field_0x5AC = 2;
 }
-#pragma pop
 
 /* 80CC4314-80CC4318 000654 0004+00 1/0 0/0 0/0 .text            modeMoveEnd__10daSaidan_cFv */
 void daSaidan_c::modeMoveEnd() {
@@ -378,61 +264,66 @@ void daSaidan_c::modeMoveEnd() {
 }
 
 /* 80CC4318-80CC43BC 000658 00A4+00 1/0 0/0 0/0 .text            Draw__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSaidan_c::Draw() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Draw__10daSaidan_cFv.s"
+int daSaidan_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+
+    return TRUE;
 }
-#pragma pop
 
 /* 80CC43BC-80CC43EC 0006FC 0030+00 1/0 0/0 0/0 .text            Delete__10daSaidan_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daSaidan_c::Delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Delete__10daSaidan_cFv.s"
+int daSaidan_c::Delete() {
+    dComIfG_resDelete(&mPhaseReq, "H_Saidan");
+    return TRUE;
 }
-#pragma pop
 
 /* 80CC43EC-80CC4418 00072C 002C+00 1/0 0/0 0/0 .text            daSaidan_Draw__FP10daSaidan_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daSaidan_Draw(daSaidan_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Draw__FP10daSaidan_c.s"
+static int daSaidan_Draw(daSaidan_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-#pragma pop
 
 /* 80CC4418-80CC4438 000758 0020+00 1/0 0/0 0/0 .text            daSaidan_Execute__FP10daSaidan_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daSaidan_Execute(daSaidan_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Execute__FP10daSaidan_c.s"
+static int daSaidan_Execute(daSaidan_c* i_this) {
+    return i_this->MoveBGExecute();
 }
-#pragma pop
 
 /* 80CC4438-80CC4458 000778 0020+00 1/0 0/0 0/0 .text            daSaidan_Delete__FP10daSaidan_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daSaidan_Delete(daSaidan_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Delete__FP10daSaidan_c.s"
+static int daSaidan_Delete(daSaidan_c* i_this) {
+    return i_this->MoveBGDelete();
 }
-#pragma pop
 
 /* 80CC4458-80CC4478 000798 0020+00 1/0 0/0 0/0 .text            daSaidan_Create__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daSaidan_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Create__FP10fopAc_ac_c.s"
+static int daSaidan_Create(fopAc_ac_c* i_this) {
+    return static_cast<daSaidan_c*>(i_this)->create();
 }
-#pragma pop
+
+/* 80CC45B4-80CC45D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daSaidan_Method */
+static actor_method_class l_daSaidan_Method = {
+    (process_method_func)daSaidan_Create,
+    (process_method_func)daSaidan_Delete,
+    (process_method_func)daSaidan_Execute,
+    NULL,
+    (process_method_func)daSaidan_Draw,
+};
+
+/* 80CC45D4-80CC4604 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Saidan */
+extern actor_process_profile_definition g_profile_Obj_Saidan = {
+    fpcLy_CURRENT_e,         // mLayerID
+    3,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_Saidan,         // mProcName
+    &g_fpcLf_Method.mBase,   // sub_method
+    sizeof(daSaidan_c),      // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    508,                     // mPriority
+    &l_daSaidan_Method,      // sub_method
+    0x40000,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
