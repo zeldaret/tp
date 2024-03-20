@@ -4,29 +4,24 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan.h"
+
+#include "SSystem/SComponent/c_phase.h"
+#include "d/bg/d_bg_s_movebg_actor.h"
+#include "d/com/d_com_inf_game.h"
+#include "m_Do/m_Do_hostIO.h"
 #include "dol2asm.h"
+
+#define NONMATCHING 0
 
 //
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct mDoMtx_stack_c {
-    static u8 now[48];
-};
-
-struct mDoHIO_entry_c {
-    /* 80CC3DE0 */ ~mDoHIO_entry_c();
-};
-
-struct fopAc_ac_c {};
-
-struct daSaidan_c {
+class daSaidan_c : public dBgS_MoveBgActor {
     /* 80CC3E28 */ void setBaseMtx();
-    /* 80CC3EB0 */ void CreateHeap();
+    /* 80CC3EB0 */ virtual int CreateHeap();
     /* 80CC3F1C */ void create();
-    /* 80CC4054 */ void Execute(f32 (**)[3][4]);
+    /* 80CC4054 */ virtual int Execute(Mtx**);
     /* 80CC40A4 */ void moveProc();
     /* 80CC4148 */ void init_modeWait();
     /* 80CC4154 */ void modeWait();
@@ -34,70 +29,28 @@ struct daSaidan_c {
     /* 80CC41BC */ void modeMove();
     /* 80CC4290 */ void init_modeMoveEnd();
     /* 80CC4314 */ void modeMoveEnd();
-    /* 80CC4318 */ void Draw();
-    /* 80CC43BC */ void Delete();
-};
+    /* 80CC4318 */ virtual int Draw();
+    /* 80CC43BC */ virtual int Delete();
 
-struct daSaidan_HIO_c {
+    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
+    /* 0x5A8 */ J3DModel* mpModel;
+    /* 0x5AC */ u8 field_0x5AC;
+    /* 0x5AD */ u8 field_0x5AD;
+    /* 0x5B0 */ f32 field_0x5B0;
+}; // Size: 0x5B4
+
+STATIC_ASSERT(sizeof(daSaidan_c) == 0x5B4);
+
+struct daSaidan_HIO_c : public mDoHIO_entry_c {
     /* 80CC3DAC */ daSaidan_HIO_c();
-    /* 80CC4478 */ ~daSaidan_HIO_c();
+    /* 80CC4478 */ virtual ~daSaidan_HIO_c() {}
+
+    /* 0x00 vtable */
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
 };
 
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dBgW {};
-
-struct cBgS_PolyInfo {};
-
-struct csXyz {};
-
-struct dBgS_MoveBgActor {
-    /* 80078624 */ dBgS_MoveBgActor();
-    /* 80078690 */ bool Create();
-    /* 800786B0 */ bool IsDelete();
-    /* 800786B8 */ bool ToFore();
-    /* 800786C0 */ bool ToBack();
-    /* 800787BC */ void MoveBGCreate(char const*, int,
-                                     void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*,
-                                              csXyz*, csXyz*),
-                                     u32, f32 (*)[3][4]);
-    /* 800788DC */ void MoveBGDelete();
-    /* 80078950 */ void MoveBGExecute();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct J3DModel {};
+static daSaidan_HIO_c l_HIO;
 
 //
 // Forward References:
@@ -106,9 +59,9 @@ struct J3DModel {};
 extern "C" void __ct__14daSaidan_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__10daSaidan_cFv();
-extern "C" void CreateHeap__10daSaidan_cFv();
-extern "C" void create__10daSaidan_cFv();
-extern "C" void Execute__10daSaidan_cFPPA3_A4_f();
+extern "C" int CreateHeap__10daSaidan_cFv();
+extern "C" int create__10daSaidan_cFv();
+extern "C" int Execute__10daSaidan_cFPPA3_A4_f();
 extern "C" void moveProc__10daSaidan_cFv();
 extern "C" void init_modeWait__10daSaidan_cFv();
 extern "C" void modeWait__10daSaidan_cFv();
@@ -116,12 +69,12 @@ extern "C" void init_modeMove__10daSaidan_cFv();
 extern "C" void modeMove__10daSaidan_cFv();
 extern "C" void init_modeMoveEnd__10daSaidan_cFv();
 extern "C" void modeMoveEnd__10daSaidan_cFv();
-extern "C" void Draw__10daSaidan_cFv();
-extern "C" void Delete__10daSaidan_cFv();
-extern "C" static void daSaidan_Draw__FP10daSaidan_c();
-extern "C" static void daSaidan_Execute__FP10daSaidan_c();
-extern "C" static void daSaidan_Delete__FP10daSaidan_c();
-extern "C" static void daSaidan_Create__FP10fopAc_ac_c();
+extern "C" int Draw__10daSaidan_cFv();
+extern "C" int Delete__10daSaidan_cFv();
+extern "C" static int daSaidan_Draw__FP10daSaidan_c();
+extern "C" static int daSaidan_Execute__FP10daSaidan_c();
+extern "C" static int daSaidan_Delete__FP10daSaidan_c();
+extern "C" static int daSaidan_Create__FP10fopAc_ac_c();
 extern "C" void __dt__14daSaidan_HIO_cFv();
 extern "C" void __sinit_d_a_obj_saidan_cpp();
 extern "C" extern char const* const d_a_obj_saidan__stringBase0;
@@ -155,15 +108,8 @@ extern "C" void cLib_addCalc__FPfffff();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __ptmf_scall();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
@@ -274,39 +220,11 @@ SECTION_DATA extern void* __vt__10daSaidan_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80CC462C-80CC4638 0000E0 000C+00 2/2 0/0 0/0 .data            __vt__14daSaidan_HIO_c */
-SECTION_DATA extern void* __vt__14daSaidan_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14daSaidan_HIO_cFv,
-};
-
-/* 80CC4638-80CC4644 0000EC 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
 /* 80CC3DAC-80CC3DE0 0000EC 0034+00 1/1 0/0 0/0 .text            __ct__14daSaidan_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daSaidan_HIO_c::daSaidan_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/__ct__14daSaidan_HIO_cFv.s"
+daSaidan_HIO_c::daSaidan_HIO_c() {
+    field_0x04 = *((f32*)&lit_3625);
+    field_0x08 = *((f32*)&lit_3626);
 }
-#pragma pop
-
-/* 80CC3DE0-80CC3E28 000120 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/__dt__14mDoHIO_entry_cFv.s"
-}
-#pragma pop
 
 /* 80CC3E28-80CC3EB0 000168 0088+00 2/2 0/0 0/0 .text            setBaseMtx__10daSaidan_cFv */
 #pragma push
@@ -329,18 +247,11 @@ SECTION_DEAD static char const* const stringBase_80CC4540 = "H_Saidan";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSaidan_c::CreateHeap() {
+asm int daSaidan_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/CreateHeap__10daSaidan_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 80CC4650-80CC465C 000008 000C+00 1/1 0/0 0/0 .bss             @3619 */
-static u8 lit_3619[12];
-
-/* 80CC465C-80CC4668 000014 000C+00 3/3 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[12];
 
 /* 80CC3F1C-80CC4054 00025C 0138+00 1/1 0/0 0/0 .text            create__10daSaidan_cFv */
 #pragma push
@@ -356,7 +267,7 @@ asm void daSaidan_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSaidan_c::Execute(f32 (**param_0)[3][4]) {
+asm int daSaidan_c::Execute(Mtx** i_mtx) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Execute__10daSaidan_cFPPA3_A4_f.s"
 }
@@ -470,7 +381,7 @@ void daSaidan_c::modeMoveEnd() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSaidan_c::Draw() {
+asm int daSaidan_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Draw__10daSaidan_cFv.s"
 }
@@ -480,7 +391,7 @@ asm void daSaidan_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daSaidan_c::Delete() {
+asm int daSaidan_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/Delete__10daSaidan_cFv.s"
 }
@@ -490,7 +401,7 @@ asm void daSaidan_c::Delete() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daSaidan_Draw(daSaidan_c* param_0) {
+static asm int daSaidan_Draw(daSaidan_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Draw__FP10daSaidan_c.s"
 }
@@ -500,7 +411,7 @@ static asm void daSaidan_Draw(daSaidan_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daSaidan_Execute(daSaidan_c* param_0) {
+static asm int daSaidan_Execute(daSaidan_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Execute__FP10daSaidan_c.s"
 }
@@ -510,7 +421,7 @@ static asm void daSaidan_Execute(daSaidan_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daSaidan_Delete(daSaidan_c* param_0) {
+static asm int daSaidan_Delete(daSaidan_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Delete__FP10daSaidan_c.s"
 }
@@ -520,35 +431,8 @@ static asm void daSaidan_Delete(daSaidan_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daSaidan_Create(fopAc_ac_c* param_0) {
+static asm int daSaidan_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/daSaidan_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
-
-/* 80CC4478-80CC44D4 0007B8 005C+00 2/1 0/0 0/0 .text            __dt__14daSaidan_HIO_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm daSaidan_HIO_c::~daSaidan_HIO_c() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/__dt__14daSaidan_HIO_cFv.s"
-}
-#pragma pop
-
-/* 80CC44D4-80CC4510 000814 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_saidan_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_a_obj_saidan_cpp() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/__sinit_d_a_obj_saidan_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80CC44D4, __sinit_d_a_obj_saidan_cpp);
-#pragma pop
-
-/* 80CC4540-80CC4540 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
