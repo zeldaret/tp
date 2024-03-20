@@ -369,7 +369,7 @@ int daLv2Candle_c::Execute() {
 /* 8058EEC8-8058EF6C 000F68 00A4+00 1/1 0/0 0/0 .text            Draw__13daLv2Candle_cFv */
 int daLv2Candle_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

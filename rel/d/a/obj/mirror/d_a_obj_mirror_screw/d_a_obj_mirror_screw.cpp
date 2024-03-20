@@ -256,7 +256,7 @@ int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
 /* 80C99608-80C996AC 000BA8 00A4+00 1/0 0/0 0/0 .text            Draw__18daObjMirrorScrew_cFv */
 int daObjMirrorScrew_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

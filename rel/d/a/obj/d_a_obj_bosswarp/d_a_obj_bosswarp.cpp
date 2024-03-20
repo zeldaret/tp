@@ -1009,7 +1009,7 @@ void daObjBossWarp_c::setGoal() {
 /* 8057B190-8057B23C 001BD0 00AC+00 1/1 0/0 0/0 .text            draw__15daObjBossWarp_cFv */
 int daObjBossWarp_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mpBrkAnm->entry(mpModel->getModelData());
     mpBtkAnm[0]->entry(mpModel->getModelData());
     mpBtkAnm[1]->entry(mpModel->getModelData());

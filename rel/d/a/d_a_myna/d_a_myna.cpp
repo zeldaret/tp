@@ -1427,7 +1427,7 @@ int daMyna_c::draw() {
     J3DModel* model = mpMorf->getModel();
     J3DModelData* modelData = model->getModelData();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     if (cLib_checkBit<u16>(field_0x914, 0x40)) {
         mBtpAnm.entry(modelData);
     }

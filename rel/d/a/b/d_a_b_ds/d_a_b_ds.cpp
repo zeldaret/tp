@@ -1369,7 +1369,7 @@ int daB_DS_c::draw() {
 
     J3DModel* model = mpMorf->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(model->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     J3DModelData* model_data = model->getModelData();
 
     if (mType == PHASE_2) {
@@ -1392,7 +1392,7 @@ int daB_DS_c::draw() {
         if (!mNoDrawSword) {
             J3DModel* sword_model = mpSwordMorf->getModel();
             g_env_light.settingTevStruct(0, &mSwordPos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(sword_model->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(sword_model, &tevStr);
             mpSwordBrkAnm->entry(sword_model->getModelData());
             mpSwordMorf->entryDL();
         }
@@ -1450,7 +1450,7 @@ int daB_DS_c::draw() {
         if (!mNoDrawSword) {
             J3DModel* sword_model = mpSwordMorf->getModel();
             g_env_light.settingTevStruct(0, &mSwordPos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(sword_model->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(sword_model, &tevStr);
             mpSwordBrkAnm->entry(sword_model->getModelData());
             mpSwordMorf->entryDL();
         }
@@ -1464,7 +1464,7 @@ int daB_DS_c::draw() {
         if (mDrawZant) {
             J3DModel* zant_model = mpZantMorf->getModel();
             g_env_light.settingTevStruct(3, &mSwordPos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(zant_model->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(zant_model, &tevStr);
             J3DShape* shape =
                 mpZantMorf->getModel()->getModelData()->getMaterialNodePointer(2)->getShape();
             if (shape != NULL) {

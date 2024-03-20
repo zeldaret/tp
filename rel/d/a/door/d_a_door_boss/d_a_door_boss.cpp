@@ -765,12 +765,12 @@ int daBdoor_c::draw() {
             fopAcM_OffStatus(this, 0);
         }
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpDoorModel, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpDoorModel);
         dComIfGd_setList();
         if (mLocked) {
-            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(mpLockModel, &tevStr);
             mpLockAnm->entry(mpLockModel->getModelData());
             mDoExt_modelUpdateDL(mpLockModel);
         }

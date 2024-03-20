@@ -83,7 +83,7 @@ int daObjSnowSoup_c::Delete() {
 /* 80CDFBC4-80CDFC40 0003E4 007C+00 1/1 0/0 0/0 .text            draw__15daObjSnowSoup_cFv */
 int daObjSnowSoup_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel[mState]->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel[mState], &tevStr);
     mDoExt_modelUpdate(mpModel[mState]);
     return 1;
 }

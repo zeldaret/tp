@@ -277,7 +277,7 @@ int daZraFreeze_c::Draw() {
     if (field_0x5b0 == 0xff || dComIfGs_isSwitch(field_0x5b0, fopAcM_GetRoomNo(this))) {
         if (mTwilight != 0 && dComIfGs_wolfeye_effect_check() == true) {
             g_env_light.settingTevStruct(4, &current.pos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
             mDoExt_modelUpdateDL(mpModel);
         }
     }

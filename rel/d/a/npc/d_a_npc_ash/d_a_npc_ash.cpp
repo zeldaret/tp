@@ -1153,11 +1153,11 @@ int daNpcAsh_c::Draw() {
     mMcaMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(0, 0, daNpcAsh_Param_c::m.mShadow, NULL, 0);
     if (field_0xf60 == 1) {
-        g_env_light.setLightTevColorType_MAJI(mModelBow->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mModelBow, &tevStr);
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(16));
         mModelBow->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelBow);
-        g_env_light.setLightTevColorType_MAJI(mModelQuiver->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mModelQuiver, &tevStr);
         mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(2));
         mModelQuiver->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelQuiver);

@@ -151,7 +151,7 @@ int daObj_SSItem_c::Draw() {
         return 1;
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
         if (field_0xB00 != -1000000000.0f) {
             cM3dGPla plane;

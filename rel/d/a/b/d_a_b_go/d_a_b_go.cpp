@@ -65,7 +65,7 @@ static int daB_GO_Draw(b_go_class* i_this) {
         J3DModel* model = i_this->mpMorf->getModel();
 
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
         i_this->mpMorf->entryDL();
     }
 

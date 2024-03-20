@@ -245,7 +245,7 @@ int daLv1Cdl00_c::Execute() {
 /* 80C567EC-80C56890 000BCC 00A4+00 1/1 0/0 0/0 .text            Draw__12daLv1Cdl00_cFv */
 int daLv1Cdl00_c::Draw() {
     g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
