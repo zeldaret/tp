@@ -156,7 +156,7 @@ void daBarDesk_c::setBreakEffect() {
 /* 80BA98E8-80BA998C 000848 00A4+00 1/0 0/0 0/0 .text            Draw__11daBarDesk_cFv */
 int daBarDesk_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

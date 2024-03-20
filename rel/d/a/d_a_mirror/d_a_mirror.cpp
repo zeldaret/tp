@@ -617,7 +617,7 @@ int daMirror_c::draw() {
 
     if (mpModel != NULL) {
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType(mpModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType(mpModel, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
     }
 

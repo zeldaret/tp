@@ -688,7 +688,7 @@ int daObjKABUTO_c::Draw() {
         Z_BufferChk();
         J3DModel* model = mpMorf->getModel();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(model->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
         mpMorf->entryDL();

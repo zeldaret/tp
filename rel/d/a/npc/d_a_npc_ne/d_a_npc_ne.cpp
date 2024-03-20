@@ -624,7 +624,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
     } else {
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }
-    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
 
     i_this->mpBtkAnm->entry(model->getModelData());
     i_this->mpBtpAnm->entry(model->getModelData());
@@ -640,8 +640,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
     }
 
     if (i_this->field_0x5b4 == 3) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpDishMorf->getModel()->mModelData,
-                                              &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpDishMorf->getModel(), &i_this->tevStr);
         i_this->mpDishMorf->entryDL();
     }
 

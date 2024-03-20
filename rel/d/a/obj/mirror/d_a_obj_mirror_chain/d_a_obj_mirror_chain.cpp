@@ -361,9 +361,9 @@ int daObjMirrorChain_c::draw() {
     static f32 const SCISSOR_CENTER_Z = -23024.53f;
     static f32 const SCISSOR_SIZE = 984.0f;
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
-        g_env_light.setLightTevColorType_MAJI(mpPortalModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpPortalModel, &tevStr);
         if (mpBckAnm != NULL) {
             mpBckAnm->entry(mpPortalModel->getModelData());
         }

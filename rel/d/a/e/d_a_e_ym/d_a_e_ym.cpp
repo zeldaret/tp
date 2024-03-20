@@ -730,7 +730,7 @@ int daE_YM_c::draw() {
 
     J3DModel* model_p = field_0x5b4->getModel();
     g_env_light.settingTevStruct(6, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(model_p->getModelData(), &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
     J3DModelData* modelData_p = model_p->getModelData();
     for (u16 i = 0; i < modelData_p->getMaterialNum(); i++) {

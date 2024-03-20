@@ -892,7 +892,7 @@ asm void daObjWchain_shape_c::draw() {
 // matches once daObjWchain_shape_c inheritance is resolved
 int daObjWchain_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpHandleModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpHandleModel, &tevStr);
     mDoExt_modelUpdateDL(mpHandleModel);
     g_env_light.setLightTevColorType_MAJI(mpChainModelData, &tevStr);
     dComIfGd_getOpaList()->entryImm(&mShape, 0);

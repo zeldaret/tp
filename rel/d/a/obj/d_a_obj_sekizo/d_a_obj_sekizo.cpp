@@ -106,7 +106,7 @@ int daObj_Sekizo_c::Execute(Mtx** i_mtx) {
 int daObj_Sekizo_c::Draw() {
     if (!field_0x5b2) {
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);
         dComIfGd_setList();

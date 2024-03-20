@@ -42,7 +42,7 @@ daObj_Lbox_HIO_c::daObj_Lbox_HIO_c() {
  */
 static int daObj_Lbox_Draw(obj_lbox_class* i_this) {
     g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
     return 1;
 }

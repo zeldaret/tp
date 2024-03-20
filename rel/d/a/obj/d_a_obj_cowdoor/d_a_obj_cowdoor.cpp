@@ -65,7 +65,7 @@ int daCowdoor_c::Execute(f32 (**param_0)[3][4]) {
 /* 80BCCA48-80BCCAEC 0002C8 00A4+00 1/0 0/0 0/0 .text            Draw__11daCowdoor_cFv */
 int daCowdoor_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x5a8->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x5a8, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(field_0x5a8);
     dComIfGd_setList();

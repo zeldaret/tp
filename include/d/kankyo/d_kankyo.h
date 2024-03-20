@@ -277,6 +277,9 @@ public:
 
     /* 801ADBBC */ virtual ~dScnKy_env_light_c();
 
+    void setLightTevColorType(J3DModel* i_model, dKy_tevstr_c* tevstr) {
+        setLightTevColorType(i_model->getModelData(), tevstr);
+    }
     void setLightTevColorType_MAJI(J3DModel* i_model, dKy_tevstr_c* tevstr) {
         setLightTevColorType_MAJI(i_model->getModelData(), tevstr);
     }

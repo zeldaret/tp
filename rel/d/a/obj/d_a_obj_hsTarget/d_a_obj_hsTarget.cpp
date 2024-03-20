@@ -69,7 +69,7 @@ int daHsTarget_c::Execute(f32 (**param_0)[3][4]) {
 /* 80C1F6C4-80C1F728 000384 0064+00 1/0 0/0 0/0 .text            Draw__12daHsTarget_cFv */
 int daHsTarget_c::Draw() {
     g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }

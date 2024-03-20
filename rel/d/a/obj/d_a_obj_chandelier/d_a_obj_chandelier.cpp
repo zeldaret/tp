@@ -82,7 +82,7 @@ int daObjChandelier_c::Delete() {
 /* 80BC8194-80BC8238 0002D4 00A4+00 1/0 0/0 0/0 .text            Draw__17daObjChandelier_cFv */
 int daObjChandelier_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
