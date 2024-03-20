@@ -1209,7 +1209,7 @@ void dMeter2Draw_c::initButton() {
     drawButtonC(dComIfGp_getCStickStatus(), true);
     drawButtonS(dComIfGp_getSButtonStatus());
 
-    setAlphButtonAChange(true);
+    setAlphaButtonChange(true);
     mpButtonParent->setAlphaRate(0.0f);
 }
 
@@ -2245,7 +2245,7 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
     f32 var_f31 = g_drawHIO.mButtonAScale;
     f32 var_f30 = g_drawHIO.mButtonATextScale;
 
-    if (isButtonBShow(false)) {
+    if (isBButtonShow(false)) {
         var_f31 = g_drawHIO.mButtonATalkScale[0];
         var_f30 = g_drawHIO.mButtonATalkScale[1];
     } else if (param_7) {
@@ -2310,7 +2310,7 @@ void dMeter2Draw_c::drawButtonB(u8 i_action, bool param_1, f32 i_posX, f32 i_pos
     f32 var_f31 = g_drawHIO.mButtonBScale;
     f32 var_f30 = g_drawHIO.mButtonBFontScale;
 
-    if (isButtonBShow(true)) {
+    if (isBButtonShow(true)) {
         var_f31 = g_drawHIO.mButtonBTalkScale[0];
         var_f30 = g_drawHIO.mButtonBTalkScale[1];
     }
@@ -2660,41 +2660,41 @@ void dMeter2Draw_c::drawButtonCross(f32 i_posX, f32 i_posY) {
 }
 
 /* 80218338-802183A8 212C78 0070+00 0/0 1/1 0/0 .text
- * setAlphButtonACrossAnimeMin__13dMeter2Draw_cFv               */
-void dMeter2Draw_c::setAlphButtonACrossAnimeMin() {
+ * setAlphaButtonCrossAnimeMin__13dMeter2Draw_cFv               */
+void dMeter2Draw_c::setAlphaButtonCrossAnimeMin() {
     if (mpButtonCrossParent->getAlphaRate() != 0.0f) {
         mpButtonCrossParent->setAlphaRate(g_drawHIO.mParentAlpha);
         setAlphaAnimeMin(mpButtonCrossParent, 5);
     }
 
-    setAlphButtonACrossItemAnimeMin();
-    setAlphButtonACrossMapAnimeMin();
+    setAlphaButtonCrossItemAnimeMin();
+    setAlphaButtonCrossMapAnimeMin();
 }
 
 /* 802183A8-80218448 212CE8 00A0+00 0/0 1/1 0/0 .text
- * setAlphButtonACrossAnimeMax__13dMeter2Draw_cFv               */
-void dMeter2Draw_c::setAlphButtonACrossAnimeMax() {
+ * setAlphaButtonCrossAnimeMax__13dMeter2Draw_cFv               */
+void dMeter2Draw_c::setAlphaButtonCrossAnimeMax() {
     if (g_drawHIO.mParentAlpha != mpButtonCrossParent->getAlphaRate()) {
         mpButtonCrossParent->setAlphaRate(g_drawHIO.mParentAlpha);
         setAlphaAnimeMax(mpButtonCrossParent, 5);
     }
 
     if (dMeter2Info_isItemOpenCheck()) {
-        setAlphButtonACrossItemAnimeMax();
+        setAlphaButtonCrossItemAnimeMax();
     } else {
-        setAlphButtonACrossItemAnimeMin();
+        setAlphaButtonCrossItemAnimeMin();
     }
 
     if (dMeter2Info_isMapOpenCheck()) {
-        setAlphButtonACrossMapAnimeMax();
+        setAlphaButtonCrossMapAnimeMax();
     } else {
-        setAlphButtonACrossMapAnimeMin();
+        setAlphaButtonCrossMapAnimeMin();
     }
 }
 
 /* 80218448-80218524 212D88 00DC+00 2/2 0/0 0/0 .text
- * setAlphButtonACrossItemAnimeMin__13dMeter2Draw_cFv           */
-void dMeter2Draw_c::setAlphButtonACrossItemAnimeMin() {
+ * setAlphaButtonCrossItemAnimeMin__13dMeter2Draw_cFv           */
+void dMeter2Draw_c::setAlphaButtonCrossItemAnimeMin() {
     if (mpTextI->getAlphaRate() != 0.0f) {
         mpTextI->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossITEMAlpha);
         setAlphaAnimeMin(mpTextI, 5);
@@ -2709,8 +2709,8 @@ void dMeter2Draw_c::setAlphButtonACrossItemAnimeMin() {
 }
 
 /* 80218524-802185E8 212E64 00C4+00 1/1 0/0 0/0 .text
- * setAlphButtonACrossItemAnimeMax__13dMeter2Draw_cFv           */
-void dMeter2Draw_c::setAlphButtonACrossItemAnimeMax() {
+ * setAlphaButtonCrossItemAnimeMax__13dMeter2Draw_cFv           */
+void dMeter2Draw_c::setAlphaButtonCrossItemAnimeMax() {
     if (g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossITEMAlpha != mpTextI->getAlphaRate()) {
         mpTextI->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossITEMAlpha);
         setAlphaAnimeMax(mpTextI, 5);
@@ -2725,8 +2725,8 @@ void dMeter2Draw_c::setAlphButtonACrossItemAnimeMax() {
 }
 
 /* 802185E8-802186C4 212F28 00DC+00 2/2 0/0 0/0 .text
- * setAlphButtonACrossMapAnimeMin__13dMeter2Draw_cFv            */
-void dMeter2Draw_c::setAlphButtonACrossMapAnimeMin() {
+ * setAlphaButtonCrossMapAnimeMin__13dMeter2Draw_cFv            */
+void dMeter2Draw_c::setAlphaButtonCrossMapAnimeMin() {
     if (mpTextM->getAlphaRate() != 0.0f) {
         mpTextM->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossMAPAlpha);
         setAlphaAnimeMin(mpTextM, 5);
@@ -2741,8 +2741,8 @@ void dMeter2Draw_c::setAlphButtonACrossMapAnimeMin() {
 }
 
 /* 802186C4-80218788 213004 00C4+00 1/1 0/0 0/0 .text
- * setAlphButtonACrossMapAnimeMax__13dMeter2Draw_cFv            */
-void dMeter2Draw_c::setAlphButtonACrossMapAnimeMax() {
+ * setAlphaButtonCrossMapAnimeMax__13dMeter2Draw_cFv            */
+void dMeter2Draw_c::setAlphaButtonCrossMapAnimeMax() {
     if (g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossMAPAlpha != mpTextM->getAlphaRate()) {
         mpTextM->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mButtonCrossMAPAlpha);
         setAlphaAnimeMax(mpTextM, 5);
@@ -2756,8 +2756,8 @@ void dMeter2Draw_c::setAlphButtonACrossMapAnimeMax() {
     }
 }
 
-/* 80218788-8021901C 2130C8 0894+00 1/1 1/1 0/0 .text setAlphButtonAChange__13dMeter2Draw_cFb */
-void dMeter2Draw_c::setAlphButtonAChange(bool param_0) {
+/* 80218788-8021901C 2130C8 0894+00 1/1 1/1 0/0 .text setAlphaButtonChange__13dMeter2Draw_cFb */
+void dMeter2Draw_c::setAlphaButtonChange(bool param_0) {
     bool set_parent = false;
     bool set_buttonA = false;
     bool set_buttonB = false;
@@ -2955,8 +2955,8 @@ void dMeter2Draw_c::setAlphButtonAChange(bool param_0) {
     }
 }
 
-/* 8021901C-802190A8 21395C 008C+00 0/0 1/1 0/0 .text setAlphButtonAAnimeMin__13dMeter2Draw_cFv */
-void dMeter2Draw_c::setAlphButtonAAnimeMin() {
+/* 8021901C-802190A8 21395C 008C+00 0/0 1/1 0/0 .text setAlphaButtonAnimeMin__13dMeter2Draw_cFv */
+void dMeter2Draw_c::setAlphaButtonAnimeMin() {
     if (mpButtonParent->getAlphaRate() != 0.0f) {
         mpButtonParent->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha);
         setAlphaAnimeMin(mpButtonParent, 5);
@@ -2967,8 +2967,8 @@ void dMeter2Draw_c::setAlphButtonAAnimeMin() {
     }
 }
 
-/* 802190A8-80219174 2139E8 00CC+00 0/0 1/1 0/0 .text setAlphButtonAAnimeMax__13dMeter2Draw_cFv */
-void dMeter2Draw_c::setAlphButtonAAnimeMax() {
+/* 802190A8-80219174 2139E8 00CC+00 0/0 1/1 0/0 .text setAlphaButtonAnimeMax__13dMeter2Draw_cFv */
+void dMeter2Draw_c::setAlphaButtonAnimeMax() {
     if (g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha != mpButtonParent->getAlphaRate()) {
         mpButtonParent->setAlphaRate(g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha);
         setAlphaAnimeMax(mpButtonParent, 5);
@@ -2985,9 +2985,9 @@ void dMeter2Draw_c::setAlphButtonAAnimeMax() {
     }
 }
 
-/* 80219174-80219258 213AB4 00E4+00 0/0 1/1 0/0 .text setAlphButtonAAAnimeMin__13dMeter2Draw_cFv
+/* 80219174-80219258 213AB4 00E4+00 0/0 1/1 0/0 .text setAlphaButtonAAnimeMin__13dMeter2Draw_cFv
  */
-void dMeter2Draw_c::setAlphButtonAAAnimeMin() {
+void dMeter2Draw_c::setAlphaButtonAAnimeMin() {
     if (mpButtonA->getAlphaRate() != 0.0f) {
         mpButtonA->setAlphaRate(g_drawHIO.mButtonAAlpha *
                                 (g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha));
@@ -3002,9 +3002,9 @@ void dMeter2Draw_c::setAlphButtonAAAnimeMin() {
     }
 }
 
-/* 80219258-80219324 213B98 00CC+00 0/0 1/1 0/0 .text setAlphButtonAAAnimeMax__13dMeter2Draw_cFv
+/* 80219258-80219324 213B98 00CC+00 0/0 1/1 0/0 .text setAlphaButtonAAnimeMax__13dMeter2Draw_cFv
  */
-void dMeter2Draw_c::setAlphButtonAAAnimeMax() {
+void dMeter2Draw_c::setAlphaButtonAAnimeMax() {
     if (g_drawHIO.mButtonAAlpha * (g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha) !=
         mpButtonA->getAlphaRate())
     {
@@ -3021,9 +3021,9 @@ void dMeter2Draw_c::setAlphButtonAAAnimeMax() {
     }
 }
 
-/* 80219324-80219474 213C64 0150+00 0/0 1/1 0/0 .text setAlphButtonABAnimeMin__13dMeter2Draw_cFv
+/* 80219324-80219474 213C64 0150+00 0/0 1/1 0/0 .text setAlphaButtonBAnimeMin__13dMeter2Draw_cFv
  */
-void dMeter2Draw_c::setAlphButtonABAnimeMin() {
+void dMeter2Draw_c::setAlphaButtonBAnimeMin() {
     if (mpButtonB->getAlphaRate() != 0.0f) {
         mpButtonB->setAlphaRate(g_drawHIO.mButtonBAlpha *
                                 (g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha));
@@ -3047,9 +3047,9 @@ void dMeter2Draw_c::setAlphButtonABAnimeMin() {
     }
 }
 
-/* 80219474-802195A4 213DB4 0130+00 0/0 1/1 0/0 .text setAlphButtonABAnimeMax__13dMeter2Draw_cFv
+/* 80219474-802195A4 213DB4 0130+00 0/0 1/1 0/0 .text setAlphaButtonBAnimeMax__13dMeter2Draw_cFv
  */
-void dMeter2Draw_c::setAlphButtonABAnimeMax() {
+void dMeter2Draw_c::setAlphaButtonBAnimeMax() {
     if (mpButtonB->getAlphaRate() !=
         g_drawHIO.mButtonBAlpha * (g_drawHIO.mParentAlpha * g_drawHIO.mMainHUDButtonsAlpha))
     {
@@ -4037,8 +4037,8 @@ bool dMeter2Draw_c::getPlayerSubject() {
     return dComIfGp_checkPlayerStatus0(0, 0x8000000);
 }
 
-/* 8021BCC0-8021BDD0 216600 0110+00 2/2 2/2 0/0 .text            isButtonBShow__13dMeter2Draw_cFb */
-bool dMeter2Draw_c::isButtonBShow(bool param_0) {
+/* 8021BCC0-8021BDD0 216600 0110+00 2/2 2/2 0/0 .text            isBButtonShow__13dMeter2Draw_cFb */
+bool dMeter2Draw_c::isBButtonShow(bool param_0) {
     if (dMsgObject_getMsgObjectClass() == NULL) {
         return false;
     }

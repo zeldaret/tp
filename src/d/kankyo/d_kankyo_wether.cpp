@@ -1324,7 +1324,7 @@ SECTION_SDATA2 static f32 lit_5193 = 0.00139999995008111f;
 u8 data_80450EE0;
 
 /* 80059728-80059E38 054068 0710+00 1/1 0/0 0/0 .text            wether_move_vrkumo__Fv */
-// gameinfo load issue, cmath instruction order / reg alloc
+// Matches with literals
 #ifdef NONMATCHING
 static void wether_move_vrkumo() {
     BOOL var_r31 = false;
@@ -1431,9 +1431,9 @@ static void wether_move_vrkumo() {
 
         temp_f27_2 += 24575.0f;
 
-        sp8.x = cM_ssin(temp_f27_2) * cM_scos(temp_r4_2);
+        sp8.x = cM_scos(temp_r4_2) * cM_ssin(temp_f27_2);
         sp8.y = cM_ssin(temp_r4_2);
-        sp8.z = cM_scos(temp_f27_2) * cM_scos(temp_r4_2);
+        sp8.z = cM_scos(temp_r4_2) * cM_scos(temp_f27_2);
 
         g_env_light.mpVrkumoPacket->field_0x1150 += (sp8.x * var_f31) * 0.0014f;
         g_env_light.mpVrkumoPacket->field_0x1154 += (sp8.z * var_f31) * 0.0014f;

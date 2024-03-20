@@ -41,7 +41,7 @@ public:
     /* 801ED2BC */ void stick_wait_init();
     /* 801ED31C */ void stick_wait_proc();
     /* 801ED490 */ void stick_move_init();
-    /* 801ED53C */ void stick_move_proc();
+    /* 801ED53C */ f32 stick_move_proc();
     /* 801ED934 */ void stick_explain_init();
     /* 801ED938 */ void stick_explain_force_init();
     /* 801ED93C */ void stick_explain_proc();
@@ -52,7 +52,7 @@ public:
     /* 801EDFDC */ s32 getCursorPos(u8);
     /* 801EE058 */ u8 getItemNum(u8);
     /* 801EE15C */ u8 getItemMaxNum(u8);
-    /* 801EE228 */ void checkExplainForce();
+    /* 801EE228 */ bool checkExplainForce();
     /* 801EE63C */ bool checkCombineBomb(int);
     /* 801EE644 */ void setCombineBomb(int);
     /* 801EE648 */ void drawNumber(int, int, f32, f32);
