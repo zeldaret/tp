@@ -752,8 +752,8 @@ int daB_DS_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     csXyz rot;
 
     u16 joint_no = i_joint->getJntNo();
-    mDoMtx_stack_c::copy(i_model->i_getAnmMtx(joint_no));
-    
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(joint_no));
+
     if (mBossPhase == 0) {
         switch (joint_no) {
         case DS_JNT_NECK1:
@@ -812,7 +812,7 @@ int daB_DS_c::draw() {
 
     J3DModel* model = mpMorf->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model->mModelData, &tevStr);
     J3DModelData* model_data = model->getModelData();
 
     if (arg0 == TYPE_BATTLE_2) {
@@ -835,7 +835,7 @@ int daB_DS_c::draw() {
         if (!mNoDrawSword) {
             J3DModel* sword_model = mpSwordMorf->getModel();
             g_env_light.settingTevStruct(0, &mSwordPos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(sword_model, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(sword_model->mModelData, &tevStr);
             mpSwordBrkAnm->entry(sword_model->getModelData());
             mpSwordMorf->entryDL();
         }
@@ -893,7 +893,7 @@ int daB_DS_c::draw() {
         if (!mNoDrawSword) {
             J3DModel* sword_model = mpSwordMorf->getModel();
             g_env_light.settingTevStruct(0, &mSwordPos, &tevStr);
-            g_env_light.setLightTevColorType_MAJI(sword_model, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(sword_model->mModelData, &tevStr);
             mpSwordBrkAnm->entry(sword_model->getModelData());
             mpSwordMorf->entryDL();
         }
@@ -908,6 +908,7 @@ int daB_DS_c::draw() {
             J3DModel* zant_model = mpZantMorf->getModel();
             g_env_light.settingTevStruct(3, &mSwordPos, &tevStr);
             g_env_light.setLightTevColorType_MAJI(zant_model->mModelData, &tevStr);
+
             J3DShape* shape =
                 mpZantMorf->getModel()->getModelData()->getMaterialNodePointer(2)->getShape();
             if (shape != NULL) {
@@ -1075,8 +1076,6 @@ void daB_DS_c::hand_smokeSet(u8 i_hand) {
 }
 
 /* 805CC1C4-805CC454 001084 0290+00 1/1 0/0 0/0 .text            mZsMoveChk__8daB_DS_cFv */
-#ifdef NONMATCHING
-// regalloc
 void daB_DS_c::mZsMoveChk() {
     cXyz offset, zs_pos;
 
@@ -1557,9 +1556,10 @@ void daB_DS_c::damage_check() {
             mHandAtRCyl.OffAtSetBit();
             mHandAtLCyl.OffTgShield();
             mHandAtRCyl.OffTgShield();
-            mActionTimer = 0;
-            if (mBitSw3 != 0xff) {
-                i_fopAcM_onSwitch(this, mBitSw3);
+
+            mModeTimer = 0;
+            if (bitSw3 != 0xFF) {
+                fopAcM_onSwitch(this, bitSw3);
             }
 
             def_se_set(&mSound, mAtInfo.mpCollider, 0x1f, NULL);
@@ -1639,22 +1639,29 @@ void daB_DS_c::neck_set() {
 
 /* 805CD844-805CD8D8 002704 0094+00 1/1 0/0 0/0 .text            mCutTypeCheck__8daB_DS_cFv */
 bool daB_DS_c::mCutTypeCheck() {
-    u8 cut_type = daPy_getPlayerActorClass()->getCutType();
-    if (cut_type == daPy_py_c::CUT_TYPE_TURN_RIGHT || cut_type == daPy_py_c::CUT_TYPE_JUMP
-        || cut_type == daPy_py_c::CUT_TYPE_TWIRL || cut_type == daPy_py_c::CUT_TYPE_TURN_LEFT)
+    daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
+
+    if (pla->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_JUMP ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_TWIRL ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_TURN_LEFT)
     {
         return true;
     }
-    if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP
-        || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH
-        || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT
-        || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT
-        || cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_A
-        || cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_B)
+
+    if (pla->getCutType() == daPy_py_c::CUT_TYPE_LARGE_JUMP ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_MORTAL_DRAW_A ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_MORTAL_DRAW_B)
     {
         return true;
     }
-    if (cut_type == daPy_py_c::CUT_TYPE_HEAD_JUMP || cut_type == daPy_py_c::CUT_TYPE_TWIRL) {
+
+    if (pla->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP ||
+        pla->getCutType() == daPy_py_c::CUT_TYPE_TWIRL)
+    {
         return true;
     }
 
@@ -1663,7 +1670,8 @@ bool daB_DS_c::mCutTypeCheck() {
 
 /* 805CD8D8-805CDA08 002798 0130+00 5/5 0/0 0/0 .text            startDemoCheck__8daB_DS_cFv */
 bool daB_DS_c::startDemoCheck() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+
     if (daPy_py_c::i_checkNowWolf()) {
         return false;
     }
@@ -1709,8 +1717,9 @@ bool daB_DS_c::doYoMessage() {
 /* 805CDAC0-805CFA08 002980 1F48+00 2/1 0/0 0/0 .text            executeOpeningDemo__8daB_DS_cFv */
 // r25 / r25 swap
 void daB_DS_c::executeOpeningDemo() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    daPy_py_c* pla = daPy_getPlayerActorClass();
+
     dBgS_GndChk gnd_chk;
     cXyz sp298, sp28C, sp280, sp274, sp268;
     csXyz particle_angle;
@@ -1787,21 +1796,27 @@ void daB_DS_c::executeOpeningDemo() {
         Z2GetAudioMgr()->setDemoName("force_start");
 
         if (mMode == 10) {
-            i_dComIfGp_getEvent().i_startCheckSkipEdge(this);
-            vec1.set(mOpPlayerDt[1]);
-            daPy_getPlayerActorClass()->i_changeDemoMode(4, 2, 0, 0);
-            vec1.set(player->current.pos);
-            vec2 = mZantPos - player->current.pos;
-            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&vec1, vec2.atan2sX_Z(), 0);
+            dComIfGp_getEvent().startCheckSkipEdge(this);
+
+            sp298.set(mOpPlayerDt[1]);
+            daPy_getPlayerActorClass()->changeDemoMode(4, 2, 0, 0);
+
+            sp298.set(pla->current.pos);
+            sp28C = mZantPos - pla->current.pos;
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp298, sp28C.atan2sX_Z(), 0);
+
             mCameraCenter.set(mOpCenterDt[14]);
             mCameraEye.set(mOpEyeDt[14]);
             mMode++;
         } else {
-            daPy_getPlayerActorClass()->i_changeDemoMode(20, 0, 0, 0);
-            vec1.set(mOpPlayerDt[0]);
-            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&vec1, -0x8000, 0);
-            vec3.set(vec1.x, vec1.y, 4700.0f);
-            player->i_changeDemoPos0(&vec3);
+            daPy_getPlayerActorClass()->changeDemoMode(20, 0, 0, 0);
+
+            sp298.set(mOpPlayerDt[0]);
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp298, -0x8000, 0);
+
+            sp280.set(sp298.x, sp298.y, 4700.0f);
+            pla->changeDemoPos0(&sp280);
+
             mCameraCenter.set(mOpCenterDt[0]);
             mCameraEye.set(mOpEyeDt[0]);
             mModeTimer = 10;
@@ -1822,17 +1837,19 @@ void daB_DS_c::executeOpeningDemo() {
         camera->mCamera.Reset(sp280, sp274);
         camera->mCamera.Start();
         camera->mCamera.SetTrimSize(0);
-        i_dComIfGp_event_reset();
+
+        dComIfGp_event_reset();
         dComIfGs_onZoneSwitch(0, fopAcM_GetRoomNo(this));
         fopAcM_OffStatus(this, 0x4000);
         mMode++;
         // fallthrough
     case 3:
         mPedestalFallTimer = l_HIO.mPedestalFallTime;
-        if (!daPy_py_c::i_checkNowWolf()
-            && player->current.pos.z > 1800.0f && player->current.pos.z < 2200.0f
-            && player->current.pos.y > 780.0f
-            && player->current.pos.x > -420.0f && player->current.pos.x < 350.0f)
+
+        // supposed to be daPy_py_c::checkNowWolf, but not getting inlined. fix later
+        if (!dComIfGp_getLinkPlayer()->checkWolf() && pla->current.pos.z > 1800.0f &&
+            pla->current.pos.z < 2200.0f && pla->current.pos.y > 780.0f &&
+            pla->current.pos.x > -420.0f && pla->current.pos.x < 350.0f)
         {
             dComIfGs_onOneZoneSwitch(8, fopAcM_GetRoomNo(this));
             mMode = 10;
@@ -1850,8 +1867,8 @@ void daB_DS_c::executeOpeningDemo() {
             cLib_addCalcPos(&mCameraEye, mOpEyeDt[2], 0.3f, 4.0f, 2.0f);
             break;
         }
-        daPy_getPlayerActorClass()->i_changeDemoMode(1, 0, 0, 0);
-        mActionTimer = 60;
+        daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
+        mModeTimer = 60;
         mMode++;
         // fallthrough
     case 13:
@@ -1866,7 +1883,9 @@ void daB_DS_c::executeOpeningDemo() {
         mZantScale.set(0.0f, 5.0f, 0.0f);
         mZantEyePos.set(mZantPos);
         mZantEyePos.y += 200.0f;
-        daPy_getPlayerActorClass()->i_changeDemoMode(47, 1, 0, 0);
+
+        daPy_getPlayerActorClass()->changeDemoMode(47, 1, 0, 0);
+
         particle_angle.x = 0;
         particle_angle.y = field_0x7ca + 5000;
         particle_angle.z = 0;
@@ -1888,8 +1907,8 @@ void daB_DS_c::executeOpeningDemo() {
         }
 
         mZantScale.set(1.0f, 1.0f, 1.0f);
-        daPy_getPlayerActorClass()->i_changeDemoMode(23, 1, 2, 0);
-        mActionTimer = 100;
+        daPy_getPlayerActorClass()->changeDemoMode(23, 1, 2, 0);
+        mModeTimer = 100;
         mMode++;
         // fallthrough
     case 15:
@@ -2194,7 +2213,7 @@ void daB_DS_c::executeOpeningDemo() {
             dCam_getBody()->StartBlure(40, this, 0.8f, 1.2f);
             fopMsgM_messageSetDemo(0x482);
             dComIfGp_getVibration().StartQuake(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            player->i_changeDemoMode(34, 0, 0, 0);
+            pla->changeDemoMode(34, 0, 0, 0);
         }
 
         if (mpMorf->checkFrame(770.0f)) {
@@ -2206,7 +2225,8 @@ void daB_DS_c::executeOpeningDemo() {
 
             camera->mCamera.Start();
             camera->mCamera.SetTrimSize(0);
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
+
             attention_info.field_0x0[2] = 0;
             attention_info.flags = 4;
             fopAcM_SetGroup(this, 2);
@@ -2398,8 +2418,8 @@ void daB_DS_c::damageSet() {
 
 /* 805D03EC-805D0584 0052AC 0198+00 1/1 0/0 0/0 .text            damageHitCamera__8daB_DS_cFv */
 void daB_DS_c::damageHitCamera() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
-    cXyz vec1, vec2;
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    cXyz offset, pos;
 
     mDoMtx_YrotS(*calc_mtx, field_0x7d0);
 
@@ -2465,8 +2485,6 @@ void daB_DS_c::damageDownCheck() {
 }
 
 /* 805D074C-805D1E30 00560C 16E4+00 1/1 0/0 0/0 .text            executeDamage__8daB_DS_cFv */
-#ifdef NONMATCHING
-// regalloc, bss/data ordering, and an instruction out of order
 void daB_DS_c::executeDamage() {
     static cXyz down_center_dt[5] = {
         cXyz(345.0f, 2100.0f, -1575.0f),   cXyz(1490.0f, 1160.0f, -2050.0f),
@@ -2493,8 +2511,8 @@ void daB_DS_c::executeDamage() {
     static u16 eff_spHit_id[2] = {0x8BD9, 0x8BDA};
     static u16 eff_LastSmoke_id[4] = {0x8C25, 0x8C26, 0x8C27, 0x8C28};
 
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    daPy_py_c* pla = daPy_getPlayerActorClass();
     csXyz angle = shape_angle;
     cXyz sp1BC, sp1B0;
     cXyz particle_scale(1.0f, 1.0f, 1.0f);
@@ -2521,10 +2539,12 @@ void daB_DS_c::executeDamage() {
 
         field_0x84d = 0;
         mClearTrap(true);
-        daPy_getPlayerActorClass()->i_changeOriginalDemo();
-        daPy_getPlayerActorClass()->i_changeDemoMode(14, 1, 0, 0);
-        angle_to_player = fopAcM_searchPlayerAngleY(this);
-        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, angle_to_player, 0);
+
+        daPy_getPlayerActorClass()->changeOriginalDemo();
+        daPy_getPlayerActorClass()->changeDemoMode(14, 1, 0, 0);
+        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pla->current.pos,
+                                                         fopAcM_searchPlayerAngleY(this), 0);
+
         dComIfGp_getVibration().StartShock(5, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         field_0x7d0 = fopAcM_searchPlayerAngleY(this);
         setBck(Ds_damage_wait_id[mBackboneLevel], 2, 3.0f, 1.0f);
@@ -2542,8 +2562,10 @@ void daB_DS_c::executeDamage() {
         if (cLib_calcTimer(&mModeTimer) != 0) {
             break;
         }
-        daPy_getPlayerActorClass()->i_changeDemoMode(14, 2, 0, 0);
-        mActionTimer = 41;
+
+        daPy_getPlayerActorClass()->changeDemoMode(14, 2, 0, 0);
+
+        mModeTimer = 41;
         mIsOpeningDemo = false;
 
         if (mBackboneLevel < 2) {
@@ -2692,20 +2714,25 @@ void daB_DS_c::executeDamage() {
         }
         damageHitCamera();
 
-        if (cLib_calcTimer(&mActionTimer) == 0 && field_0x7dc[mBackboneJoint] == 0.0f) {
-            if (mBitSw != 0xff) {
-                fopAcM_offSwitch(this, mBitSw);
+        if (cLib_calcTimer(&mModeTimer) == 0) {
+            if (!mBackboneCrackAlpha[mBackboneLevel]) {
+                if (bitSw != 0xff) {
+                    fopAcM_offSwitch(this, bitSw);
+                }
+
+                setBck(Ds_damage_id[mBackboneLevel], 0, 3.0f, 1.0f);
+
+                for (int i = 0; i < 4; i++) {
+                    dComIfGp_particle_set(eff_LastSmoke_id[i], &current.pos, &home.angle, NULL);
+                }
+
+                sp1BC.x = 0.0f;
+                sp1BC.y = -1600.0f;
+                sp1BC.z = 2315.0f;
+                daPy_getPlayerActorClass()->changeDemoMode(4, 2, 0, 0);
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp1BC, -0x8000, 0);
+                mMode++;
             }
-            setBck(Ds_damage_id[mBackboneJoint], 0, 3.0f, 1.0f);
-            for (int i = 0; i < 4; i++) {
-                dComIfGp_particle_set(eff_LastSmoke_id[i], &current.pos, &home.angle, NULL);
-            }
-            vec1.x = 0.0f;
-            vec1.y = -1600.0f;
-            vec1.z = 2315.0f;
-            daPy_getPlayerActorClass()->i_changeDemoMode(4, 2, 0, 0);
-            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&vec1, -0x8000, 0);
-            mMode++;
         }
         break;
     case 11:
@@ -2864,7 +2891,8 @@ void daB_DS_c::executeDamage() {
         camera->mCamera.Reset(sp1BC, sp1B0);
         camera->mCamera.Start();
         camera->mCamera.SetTrimSize(0);
-        i_dComIfGp_event_reset();
+
+        dComIfGp_event_reset();
         fopAcM_delete(this);
     }
 
@@ -2932,7 +2960,7 @@ void daB_DS_c::breath_smokeSet() {
                                                            &mHeadPos, &mHeadAngle, &particle_scale);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mBreathSmokeParticleKey[i]);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(mpMorf->getModel()->i_getAnmMtx(6));
+            emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_JNT_HEAD));
         }
     }
 
@@ -3088,8 +3116,8 @@ void daB_DS_c::executeBreathSearch() {
 
 /* 805D28D0-805D3900 007790 1030+00 2/1 0/0 0/0 .text executeBattle2OpeningDemo__8daB_DS_cFv */
 void daB_DS_c::executeBattle2OpeningDemo() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    daPy_py_c* pla = daPy_getPlayerActorClass();
     cXyz vec, center, eye, unused;
     center.zero();
 
@@ -3181,10 +3209,6 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         if (cLib_calcTimer(&mModeTimer) != 0) {
             break;
         }
-        mActionTimer = 18;
-        daPy_getPlayerActorClass()->i_changeDemoMode(25, 0, 0, 0);
-        mMode++;
-        // no break
 
         mModeTimer = 18;
         daPy_getPlayerActorClass()->changeDemoMode(25, 0, 0, 0);
@@ -3198,7 +3222,8 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         gravity = 0.0f;
         speed.y = 0.0f;
         mSound.startCreatureSoundLevel(Z2SE_EN_DS_H_FLOAT, 0, -1);
-        daPy_getPlayerActorClass()->i_changeDemoMode(23, 1, 0, 0);
+
+        daPy_getPlayerActorClass()->changeDemoMode(23, 1, 0, 0);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&mOp2PlayerDt[0], -0x8000, 0);
 
         vec = mOp2PlayerDt[0];
@@ -3213,10 +3238,6 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         shape_angle.y = 0x1000;
         current.angle.y = 0x1000;
         shape_angle.z = 0;
-        cLib_addCalc2(&field_0x7e8, 255.0f, 0.7f, 5.0f);
-        daPy_getPlayerActorClass()->i_changeDemoMode(23, 1, 2, 0);
-        mMode++;
-        // no break
 
         cLib_addCalc2(&mEyeColorAlpha, 255.0f, 0.7f, 5.0f);
         daPy_getPlayerActorClass()->changeDemoMode(23, 1, 2, 0);
@@ -3229,7 +3250,7 @@ void daB_DS_c::executeBattle2OpeningDemo() {
                                                         &current.pos, &shape_angle, NULL);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mSandParticleKey[i]);
             if (emitter != NULL) {
-                emitter->setGlobalSRTMatrix(mpMorf->getModel()->i_getAnmMtx(0));
+                emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
             }
         }
 
@@ -3290,18 +3311,14 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         }
 
         field_0x6f4 = current.pos;
-        daPy_getPlayerActorClass()->i_changeDemoMode(25, 0, 0, 0);
-        mActionTimer = 30;
+        daPy_getPlayerActorClass()->changeDemoMode(25, 0, 0, 0);
+        mModeTimer = 30;
         mMode++;
         break;
     case 12:
         if (cLib_calcTimer(&mModeTimer) != 0) {
             break;
         }
-        mActionTimer = 30;
-        daPy_getPlayerActorClass()->i_changeDemoMode(23, 1, 2, 0);
-        mMode++;
-        // no break
 
         mModeTimer = 30;
         daPy_getPlayerActorClass()->changeDemoMode(23, 1, 2, 0);
@@ -3337,7 +3354,8 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         if (mpMorf->checkFrame(35.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_DS_H_V_ATK, -1);
         }
-        daPy_getPlayerActorClass()->i_changeDemoMode(9, 1, 0, 0);
+
+        daPy_getPlayerActorClass()->changeDemoMode(9, 1, 0, 0);
         speedF = 150.0f;
 
         dCam_getBody()->StartBlure(40, this, 0.8f, 1.2f);
@@ -3818,8 +3836,9 @@ void daB_DS_c::executeBattle2Tired() {
 /* 805D52D4-805D60BC 00A194 0DE8+00 1/1 0/0 0/0 .text            executeBattle2Damage__8daB_DS_cFv
  */
 void daB_DS_c::executeBattle2Damage() {
-    camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    daPy_py_c* pla = daPy_getPlayerActorClass();
+
     JPABaseEmitter* emitter;
     dBgS_LinChk lin_chk;
     dBgS_GndChk gnd_chk;
@@ -3875,9 +3894,9 @@ void daB_DS_c::executeBattle2Damage() {
 
         shape_angle.x = 0;
         mTimerCount = 0;
-        daPy_getPlayerActorClass()->i_changeOriginalDemo();
-        daPy_getPlayerActorClass()->i_changeDemoMode(14, 0, 0, 0);
-        
+        daPy_getPlayerActorClass()->changeOriginalDemo();
+        daPy_getPlayerActorClass()->changeDemoMode(14, 0, 0, 0);
+
         vec2 = field_0x6f4 - home.pos;
         vec2.y = 0.0f;
         vec1 = home.pos - field_0x6f4;
@@ -3953,7 +3972,7 @@ void daB_DS_c::executeBattle2Damage() {
         // fallthrough
     case 2:
         mCameraCenter = current.pos;
-        if (!mAcch.i_ChkGroundHit() && current.pos.y - 100.0f > pos.y) {
+        if (!mAcch.i_ChkGroundHit() && current.pos.y - 100.0f > chk_pos.y) {
             break;
         }
 
@@ -3985,7 +4004,8 @@ void daB_DS_c::executeBattle2Damage() {
         camera->mCamera.Reset(mCameraCenter, mCameraEye);
         camera->mCamera.Start();
         camera->mCamera.SetTrimSize(0);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
+
         attention_info.field_0x0[2] = 0x16;
         mWeakSph.OnTgSetBit();
         mP2FallTimer = l_HIO.mP2FallTime;
@@ -4005,7 +4025,7 @@ void daB_DS_c::executeBattle2Damage() {
                 dComIfGp_particle_set(mParticleKey1, 0x8bf5, &current.pos, &shape_angle, NULL);
             emitter = dComIfGp_particle_getEmitter(mParticleKey1);
             if (emitter != NULL) {
-                emitter->setGlobalSRTMatrix(mpMorf->getModel()->i_getAnmMtx(0));
+                emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
             }
 
             Z2GetAudioMgr()->seStartLevel(Z2SE_EN_DS_SMOKE_2, &mSwordPos, 0, 0, 1.0f, 1.0f, -1.0f,
@@ -4238,7 +4258,8 @@ void daB_DS_c::executeBattle2Dead() {
         speed.y = 0.0f;
         gravity = 0.0f;
         current.angle.y = field_0x7d2;
-        daPy_getPlayerActorClass()->i_changeDemoMode(4, 1, 0, 0);
+        daPy_getPlayerActorClass()->changeDemoMode(4, 1, 0, 0);
+
         mDoMtx_YrotS(*calc_mtx, field_0x7d2);
 
         mae.x = 0.0f;
@@ -4461,8 +4482,8 @@ void daB_DS_c::executeBattle2Dead() {
 
         dComIfGp_getVibration().StartShock(7, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
         mSound.startCreatureSound(Z2SE_EN_DS_END_COL_LAST, 0, -1);
-        daPy_getPlayerActorClass()->i_changeDemoMode(4, 1, 0, 0);
-        mActionTimer = 80;
+        daPy_getPlayerActorClass()->changeDemoMode(4, 1, 0, 0);
+        mModeTimer = 80;
         mMode++;
         // fallthrough
     case 17:
@@ -4473,18 +4494,18 @@ void daB_DS_c::executeBattle2Dead() {
         mDead = true;
         shape_angle.x = 0;
         shape_angle.z = 0;
-        vec2.set(0.0f, 1800.0f, -900.0f);
-        daPy_getPlayerActorClass()->i_changeDemoMode(2, 0, 0, 0);
-        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&vec2, 0x8000, 0);
-        
-        vec1.set(0.0f, 1800.0f, -1140.0f);
-        vec2 = vec1 - home.pos;
-        vec2.y = 0.0f;
-        mDoMtx_YrotS(*calc_mtx, (s16)vec2.atan2sX_Z());
-        vec1.x = 0.0f;
-        vec1.y = -500.0f;
-        vec1.z = l_HIO.mP2MoveAxis - 600.0f;
-        MtxPosition(&vec1, &current.pos);
+        ato.set(0.0f, 1800.0f, -900.0f);
+        daPy_getPlayerActorClass()->changeDemoMode(2, 0, 0, 0);
+        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&ato, 0x8000, 0);
+
+        mae.set(0.0f, 1800.0f, -1140.0f);
+        ato = mae - home.pos;
+        ato.y = 0.0f;
+        mDoMtx_YrotS(*calc_mtx, (s16)ato.atan2sX_Z());
+        mae.x = 0.0f;
+        mae.y = -500.0f;
+        mae.z = l_HIO.mP2MoveAxis - 600.0f;
+        MtxPosition(&mae, &current.pos);
         current.pos += home.pos;
 
         shape_angle.y = 0x4000;
@@ -4603,17 +4624,14 @@ void daB_DS_c::executeBattle2Dead() {
                 ato.y = 1800.0f;
                 fopAcM_createItemForBoss(&ato, 0x22, fopAcM_GetRoomNo(this), &shape_angle,
                                          &item_scale, 0.0f, 0.0f, -1);
-                daPy_getPlayerActorClass()->i_changeDemoMode(30, 0, 0, 0);
+
+                daPy_getPlayerActorClass()->changeDemoMode(30, 0, 0, 0);
             }
 
             cLib_addCalcPos(&mCameraCenter, mEd2CenterDt[1], 0.3f, 50.0f, 10.0f);
             cLib_addCalcPos(&mCameraEye, mEd22EyeDt[1], 0.3f, 50.0f, 10.0f);
             break;
         }
-        daPy_getPlayerActorClass()->i_changeDemoMode(1, 0, 0, 0);
-        mActionTimer = 80;
-        mMode++;
-        // no break
 
         daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
         mModeTimer = 80;
@@ -4623,10 +4641,6 @@ void daB_DS_c::executeBattle2Dead() {
         if (cLib_calcTimer(&mModeTimer) != 0) {
             break;
         }
-        i_fopAcM_onSwitch(this, 0x70);
-        mActionTimer = 140;
-        mMode++;
-        // no break
 
         fopAcM_onSwitch(this, 0x70);
         mModeTimer = 140;
@@ -4640,10 +4654,6 @@ void daB_DS_c::executeBattle2Dead() {
         if (cLib_calcTimer(&mModeTimer) != 0) {
             break;
         }
-        i_fopAcM_onSwitch(this, 0x7b);
-        mActionTimer = 140;
-        mMode++;
-        // no break
 
         fopAcM_onSwitch(this, 0x7b);
         mModeTimer = 140;
@@ -5022,9 +5032,12 @@ void daB_DS_c::action() {
 
     int joint = mBackboneLevel;
     if (mAction != ACT_OPENING_DEMO && joint < 3 && mBossPhase == 0) {
+        cXyz pos;
+
+        joint *= 2;
         for (int i = 0; i < 2; i++) {
-            mDoMtx_stack_c::copy(model->i_getAnmMtx(SEBONE_EFF_DT[joint * 2 + i].joint));
-            cXyz pos;
+            mDoMtx_stack_c::copy(model->getAnmMtx(SEBONE_EFF_DT[joint + i].joint));
+
             mDoMtx_stack_c::multVecZero(&pos);
             mBackboneParticleKey[i] =
                 dComIfGp_particle_set(mBackboneParticleKey[i], SEBONE_EFF_DT[joint + i].particle,
@@ -5056,8 +5069,8 @@ void daB_DS_c::action() {
 
     if (arg0 == TYPE_BATTLE_1 && dComIfGs_isZoneSwitch(8, fopAcM_GetRoomNo(this))) {
         cLib_calcTimer(&mSandFallTimer);
-        if (mSandFallTimer >= 1 && mSandFallTimer <= 3 && mBitSw != 0xff) {
-            i_fopAcM_onSwitch(this, mBitSw);
+        if (mSandFallTimer >= 1 && mSandFallTimer <= 3 && bitSw != 0xff) {
+            fopAcM_onSwitch(this, bitSw);
             mSandFallTimer = 0;
         }
     }
@@ -5146,18 +5159,18 @@ void daB_DS_c::mtx_set() {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(6));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(7));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_JAW));
     cXyz vec(0.0f, 100.0f, 0.0f);
     mDoMtx_stack_c::multVec(&vec, &mMouthPos);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(7));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_JAW));
     vec.set(100.0f, 20.0f, 0.0f);
     mDoMtx_stack_c::multVec(&vec, &mBulletPos);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(6));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HEAD));
     if (mAction == ACT_OPENING_DEMO || cLib_calcTimer(&mSwordTimer) != 0) {
         vec.set(594.0f, -196.0f, 0.0f);
     } else {
@@ -5213,7 +5226,7 @@ void daB_DS_c::cc_set() {
     J3DModel* model = mpMorf->getModel();
     cXyz center_base, center;
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(6));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HEAD));
     center_base.set(660.0f, -230.0f, 0.0f);
     mDoMtx_stack_c::multVec(&center_base, &center);
 
@@ -5230,8 +5243,8 @@ void daB_DS_c::cc_set() {
         dComIfG_Ccsp()->Set(&mHeadSph[i]);
     }
 
-    if (mBackboneJoint < 3) {
-        mDoMtx_stack_c::copy(model->i_getAnmMtx(mBackboneJoint));
+    if (mBackboneLevel < 3) {
+        mDoMtx_stack_c::copy(model->getAnmMtx(mBackboneLevel));
         center_base.set(-20.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::multVec(&center_base, &center);
         mBackboneCyl.SetC(center);
@@ -5240,10 +5253,10 @@ void daB_DS_c::cc_set() {
         dComIfG_Ccsp()->Set(&mBackboneCyl);
     }
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(3));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_BACKBONE4));
     mDoMtx_stack_c::multVecZero(&mBackbonePos);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(11));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HAND_L));
     mDoMtx_stack_c::multVecZero(&mHandPos[0]);
 
     if (mAction == ACT_OPENING_DEMO) {
@@ -5262,10 +5275,10 @@ void daB_DS_c::cc_set() {
 
     dComIfG_Ccsp()->Set(&mHandAtLCyl);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(20));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_LYUBI_C3));
     mDoMtx_stack_c::multVecZero(&mFingerPos[0]);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(30));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HAND_R));
     mDoMtx_stack_c::multVecZero(&mHandPos[1]);
 
     center_base.set(400.0f, -100.0f, -100.0f);
@@ -5275,7 +5288,7 @@ void daB_DS_c::cc_set() {
     mHandAtRCyl.SetR(500.0f);
     dComIfG_Ccsp()->Set(&mHandAtRCyl);
 
-    mDoMtx_stack_c::copy(model->i_getAnmMtx(39));
+    mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_RYUBI_C3));
     mDoMtx_stack_c::multVecZero(&mFingerPos[1]);
 }
 
@@ -5565,20 +5578,22 @@ void daB_DS_c::mBattle2_mtx_set() {
         mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
         model->setBaseTRMtx(mDoMtx_stack_c::get());
         mpMorf->modelCalc();
-        mDoMtx_stack_c::copy(model->i_getAnmMtx(0));
+
+        mDoMtx_stack_c::copy(model->getAnmMtx(DS_HEAD_JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mHeadPos);
 
         if (mPlayPatternAnm) {
-            mDoMtx_stack_c::copy(model->i_getAnmMtx(0));
-            mpPatternModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            mDoMtx_stack_c::copy(model->getAnmMtx(DS_HEAD_JNT_HEAD));
+            mpPatternModel->setBaseTRMtx(mDoMtx_stack_c::get());
         }
-        mDoMtx_stack_c::copy(model->i_getAnmMtx(0));
+
+        mDoMtx_stack_c::copy(model->getAnmMtx(DS_HEAD_JNT_HEAD));
         vec1.set(0.0f, 100.0f, 0.0f);
         mDoMtx_stack_c::multVec(&vec1, &mMouthPos);
     }
 
     if (!mDead) {
-        mDoMtx_stack_c::copy(model->i_getAnmMtx(0));
+        mDoMtx_stack_c::copy(model->getAnmMtx(DS_HEAD_JNT_HEAD));
         vec1.set(590.0f, 175.0f, 0.0f);
         mDoMtx_stack_c::transM(vec1.x, vec1.y, vec1.z);
         mDoMtx_stack_c::YrotM(0x4000);
@@ -5626,29 +5641,10 @@ void daB_DS_c::mBattle2_mtx_set() {
             dComIfGp_particle_set(mParticleKey2, 0x8bfa, &current.pos, &shape_angle, NULL);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleKey2);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(mpMorf->getModel()->i_getAnmMtx(0));
+            emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daB_DS_c::mBattle2_mtx_set() {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_ds/d_a_b_ds/mBattle2_mtx_set__8daB_DS_cFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 805DD1E0-805DD208 00078C 0028+00 1/1 0/0 0/0 .rodata          B2_ETC_CC_DT$10792 */
-SECTION_RODATA static u8 const B2_ETC_CC_DT[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC2, 0xF0,
-    0x00, 0x00, 0x43, 0xCD, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x91, 0x00, 0x00,
-    0x43, 0xC8, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x805DD1E0, &B2_ETC_CC_DT);
 
 /* 805DA9A4-805DAA98 00F864 00F4+00 1/1 0/0 0/0 .text            mBattle2_cc_etc_set__8daB_DS_cFv */
 void daB_DS_c::mBattle2_cc_etc_set() {
@@ -5689,7 +5685,12 @@ void daB_DS_c::mBattle2_cc_set() {
         300.0f, 350.0f, 270.0f, 190.0f, 190.0f,
     };
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->i_getAnmMtx(0));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
+
+    csXyz hit_angle;
+    cXyz delta_pos;
+    cXyz hit_pos;
+
     cLib_calcTimer(&mHitTimer);
 
     for (int i = 0; i < 5; i++) {
@@ -5762,15 +5763,16 @@ int daB_DS_c::execute() {
 
         // fake match?
         while (true) {
-            bvar3 = false;
-            mDoMtx_stack_c::copy(model->i_getAnmMtx(11));
-            mDoMtx_stack_c::multVecZero(&vec2);
-            vec1 = vec2;
-            vec2.y += 3000.0f;
-            gnd_chk.SetPos(&vec2);
-            vec2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-            if (vec2.y == -1e9f) {
-                vec2.y = vec1.y;
+            var_r25 = false;
+            mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HAND_L));
+            mDoMtx_stack_c::multVecZero(&chk_pos);
+            jnt_pos = chk_pos;
+
+            chk_pos.y += 3000.0f;
+            gnd_chk.SetPos(&chk_pos);
+            chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            if (chk_pos.y == -1000000000.0f) {
+                chk_pos.y = jnt_pos.y;
             }
 
             if (jnt_pos.y < chk_pos.y) {
@@ -5784,14 +5786,16 @@ int daB_DS_c::execute() {
                     }
                 }
             }
-            mDoMtx_stack_c::copy(model->i_getAnmMtx(30));
-            mDoMtx_stack_c::multVecZero(&vec2);
-            vec1 = vec2;
-            vec2.y += 3000.0f;
-            gnd_chk.SetPos(&vec2);
-            vec2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-            if (vec2.y == -1e9f) {
-                vec2.y = vec1.y;
+
+            mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HAND_R));
+            mDoMtx_stack_c::multVecZero(&chk_pos);
+            jnt_pos = chk_pos;
+
+            chk_pos.y += 3000.0f;
+            gnd_chk.SetPos(&chk_pos);
+            chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            if (chk_pos.y == -1000000000.0f) {
+                chk_pos.y = jnt_pos.y;
             }
 
             if (jnt_pos.y < chk_pos.y) {
@@ -5874,8 +5878,6 @@ static int daB_DS_Delete(daB_DS_c* i_this) {
 }
 
 /* 805DB264-805DB90C 010124 06A8+00 1/1 0/0 0/0 .text            CreateHeap__8daB_DS_cFv */
-#ifdef NONMATCHING
-// regalloc
 int daB_DS_c::CreateHeap() {
     if (arg0 == TYPE_BATTLE_1) {
         if (dComIfGs_isZoneSwitch(6, fopAcM_GetRoomNo(this)) &&
@@ -5886,11 +5888,25 @@ int daB_DS_c::CreateHeap() {
             current.pos.set(0.0f, 1900.0f, 0.0f);
         }
 
-    J3DModelData* model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 70));
-    int anm_index = 60;
-    if (mType == PHASE_2) {
-        model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 71));
-        anm_index = 44;
+        if (BREG_S(9)) {
+            arg0 = TYPE_BATTLE_2;
+            home.pos.set(0.0f, 1900.0f, 0.0f);
+            current.pos.set(0.0f, 1900.0f, 0.0f);
+
+            attention_info.field_0x0[2] = 0;
+            attention_info.flags = 4;
+
+            fopAcM_SetGroup(this, 2);
+            fopAcM_OnStatus(this, 0);
+        }
+    }
+
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 70));
+
+    int anm_res = ANM_WAIT01_A;
+    if (arg0 == TYPE_BATTLE_2) {
+        modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 71));
+        anm_res = ANM_HEAD_FWAIT;
     }
 
     JUT_ASSERT(modelData != 0);
@@ -5910,11 +5926,12 @@ int daB_DS_c::CreateHeap() {
         }
     }
 
-    J3DModelData* sword_model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 74));
-    mpSwordMorf =
-        new mDoExt_McaMorfSO(sword_model_data, NULL, NULL,
-                             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 63)),
-                             0, 1.0f, 0, -1, NULL, 0, 0x11000084);
+    modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 74);
+    JUT_ASSERT(modelData != 0);
+
+    mpSwordMorf = new mDoExt_McaMorfSO(
+        modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 63)), 0,
+        1.0f, 0, -1, NULL, 0, 0x11000084);
     if (mpSwordMorf == NULL || mpSwordMorf->getModel() == NULL) {
         return 0;
     }
@@ -5931,18 +5948,20 @@ int daB_DS_c::CreateHeap() {
         return 0;
     }
 
-    J3DModelData* zant_model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 75));
-    mpZantMorf =
-        new mDoExt_McaMorfSO(zant_model_data, NULL, NULL,
-                             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 66)),
-                             2, 1.0f, 0, -1, NULL, 0, 0x11000084);
+    modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 75);
+    JUT_ASSERT(modelData != 0);
+
+    mpZantMorf = new mDoExt_McaMorfSO(
+        modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 66)), 2,
+        1.0f, 0, -1, NULL, 0, 0x11000084);
     if (mpZantMorf == NULL || mpZantMorf->getModel() == NULL) {
         return 0;
     }
 
-    J3DModelData* op_pattern_model_data =
-        static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 73));
-    mpOpPatternModel = mDoExt_J3DModel__create(op_pattern_model_data, 0, 0x11000284);
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 73));
+    JUT_ASSERT(modelData != 0);
+
+    mpOpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpOpPatternModel == NULL) {
         return 0;
     }
@@ -5971,8 +5990,10 @@ int daB_DS_c::CreateHeap() {
         return 0;
     }
 
-    J3DModelData* pattern_model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 72));
-    mpPatternModel = mDoExt_J3DModel__create(pattern_model_data, 0, 0x11000284);
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 72));
+    JUT_ASSERT(modelData != 0);
+
+    mpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpPatternModel == NULL) {
         return 0;
     }
@@ -6182,8 +6203,9 @@ cPhs__Step daB_DS_c::create() {
 
             if (arg0 == TYPE_BATTLE_1) {
                 gravity = -1.0f;
-                if (mBitSw != 0xff) {
-                    i_fopAcM_onSwitch(this, mBitSw);
+
+                if (bitSw != 0xff) {
+                    fopAcM_onSwitch(this, bitSw);
                 }
 
                 fopAcM_OnStatus(this, 0x4000);
