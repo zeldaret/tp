@@ -35,4 +35,6 @@ inline BOOL checkEqual(s32 a, s32 b) {
     return (u32)__cntlzw(a - b) >> 5;
 }
 
+#define FAST_DIV(x, n) (x >> (n / 2))
+
 #endif
