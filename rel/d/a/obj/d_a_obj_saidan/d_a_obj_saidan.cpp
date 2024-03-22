@@ -5,75 +5,13 @@
 
 #include "rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan.h"
 
-#include "SSystem/SComponent/c_phase.h"
-#include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
-#include "m_Do/m_Do_hostIO.h"
-#include "dol2asm.h"
-
-#define NONMATCHING 0
-
-//
-// Types:
-//
-
-class daSaidan_c : public dBgS_MoveBgActor {
-public:
-    enum Mode_e {
-        /* 0 */ MODE_WAIT_e,
-        /* 1 */ MODE_MOVE_e,
-        /* 2 */ MODE_MOVE_END_e,
-    };
-
-    /* 80CC3E28 */ void setBaseMtx();
-    /* 80CC3EB0 */ virtual int CreateHeap();
-    /* 80CC3F1C */ cPhs__Step create();
-    /* 80CC4054 */ virtual int Execute(Mtx**);
-    /* 80CC40A4 */ void moveProc();
-    /* 80CC4148 */ void init_modeWait();
-    /* 80CC4154 */ void modeWait();
-    /* 80CC41B0 */ void init_modeMove();
-    /* 80CC41BC */ void modeMove();
-    /* 80CC4290 */ void init_modeMoveEnd();
-    /* 80CC4314 */ void modeMoveEnd();
-    /* 80CC4318 */ virtual int Draw();
-    /* 80CC43BC */ virtual int Delete();
-
-    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
-    /* 0x5A8 */ J3DModel* mpModel;
-    /* 0x5AC */ u8 mMode;
-    /* 0x5AD */ u8 mIsSwitch;
-    /* 0x5B0 */ f32 mOriginalPosX;
-}; // Size: 0x5B4
-
-STATIC_ASSERT(sizeof(daSaidan_c) == 0x5B4);
-
-struct daSaidan_HIO_c : public mDoHIO_entry_c {
-    /* 80CC3DAC */ daSaidan_HIO_c();
-    /* 80CC4478 */ virtual ~daSaidan_HIO_c() {}
-
-    /* 0x00 vtable */
-    /* 0x04 */ f32 mMaxStep;
-    /* 0x08 */ f32 mTargetPosX;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void modeWait__10daSaidan_cFv();
-extern "C" void modeMove__10daSaidan_cFv();
-extern "C" void modeMoveEnd__10daSaidan_cFv();
-
-//
-// External References:
-//
-
-extern "C" void __ptmf_scall();
 
 //
 // Declarations:
 //
+
+static daSaidan_HIO_c l_HIO;
 
 /* 80CC454C-80CC4558 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
@@ -92,48 +30,6 @@ static u32 lit_1787[1 + 4 /* padding */] = {
     0x00000000,
 };
 #pragma pop
-
-#if !NONMATCHING
-/* 80CC456C-80CC4578 -00001 000C+00 0/1 0/0 0/0 .data            @3718 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3718[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__10daSaidan_cFv,
-};
-#pragma pop
-
-/* 80CC4578-80CC4584 -00001 000C+00 0/1 0/0 0/0 .data            @3719 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3719[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove__10daSaidan_cFv,
-};
-#pragma pop
-
-/* 80CC4584-80CC4590 -00001 000C+00 0/1 0/0 0/0 .data            @3720 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3720[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMoveEnd__10daSaidan_cFv,
-};
-#pragma pop
-
-/* 80CC4590-80CC45B4 000044 0024+00 0/1 0/0 0/0 .data            mode_proc$3717 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-#endif
 
 /* 80CC3DAC-80CC3DE0 0000EC 0034+00 1/1 0/0 0/0 .text            __ct__14daSaidan_HIO_cFv */
 daSaidan_HIO_c::daSaidan_HIO_c() {
@@ -161,15 +57,14 @@ int daSaidan_c::CreateHeap() {
     return TRUE;
 }
 
-static daSaidan_HIO_c l_HIO;
-
 /* 80CC3F1C-80CC4054 00025C 0138+00 1/1 0/0 0/0 .text            create__10daSaidan_cFv */
 cPhs__Step daSaidan_c::create() {
     fopAcM_SetupActor(this, daSaidan_c);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "H_Saidan");
     if (step == cPhs_COMPLEATE_e) {
-        if (MoveBGCreate("H_Saidan", 7, dBgS_MoveBGProc_TypicalRotY, 0x21b0, NULL) == cPhs_ERROR_e) {
+        if (MoveBGCreate("H_Saidan", 7, dBgS_MoveBGProc_TypicalRotY, 0x21b0, NULL) == cPhs_ERROR_e)
+        {
             return cPhs_ERROR_e;
         } else {
             fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
@@ -199,34 +94,17 @@ int daSaidan_c::Execute(Mtx** i_mtx) {
     return TRUE;
 }
 
-#if !NONMATCHING
-/* ############################################################################################## */
-/* 80CC4668-80CC466C 000020 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80CC4668[4];
-#endif
-
 /* 80CC40A4-80CC4148 0003E4 00A4+00 1/1 0/0 0/0 .text            moveProc__10daSaidan_cFv */
-#if NONMATCHING // Matches, but TU does not
 void daSaidan_c::moveProc() {
     typedef void (daSaidan_c::*proc_func)();
     static proc_func mode_proc[] = {
-        &daSaidan_c::init_modeWait,
-        &daSaidan_c::init_modeMove,
-        &daSaidan_c::init_modeMoveEnd,
+        &daSaidan_c::modeWait,
+        &daSaidan_c::modeMove,
+        &daSaidan_c::modeMoveEnd,
     };
 
     (this->*mode_proc[mMode])();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daSaidan_c::moveProc() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_saidan/d_a_obj_saidan/moveProc__10daSaidan_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80CC4148-80CC4154 000488 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daSaidan_cFv */
 void daSaidan_c::init_modeWait() {
@@ -248,11 +126,12 @@ void daSaidan_c::init_modeMove() {
 
 /* 80CC41BC-80CC4290 0004FC 00D4+00 1/0 0/0 0/0 .text            modeMove__10daSaidan_cFv */
 void daSaidan_c::modeMove() {
-    f32 curr = cLib_addCalc(&current.pos.x, mOriginalPosX - l_HIO.mTargetPosX, 0.2f, l_HIO.mMaxStep, 0.5f);
-    
+    f32 currX =
+        cLib_addCalc(&current.pos.x, mOriginalPosX - l_HIO.mTargetPosX, 0.2f, l_HIO.mMaxStep, 0.5f);
+
     fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_CHURCH_ALTER_MOVE, 0);
 
-    if (curr == 0.0f) {
+    if (currX == 0.0f) {
         init_modeMoveEnd();
     }
 }
@@ -309,10 +188,8 @@ static int daSaidan_Create(fopAc_ac_c* i_this) {
 
 /* 80CC45B4-80CC45D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daSaidan_Method */
 static actor_method_class l_daSaidan_Method = {
-    (process_method_func)daSaidan_Create,
-    (process_method_func)daSaidan_Delete,
-    (process_method_func)daSaidan_Execute,
-    NULL,
+    (process_method_func)daSaidan_Create,  (process_method_func)daSaidan_Delete,
+    (process_method_func)daSaidan_Execute, NULL,
     (process_method_func)daSaidan_Draw,
 };
 
