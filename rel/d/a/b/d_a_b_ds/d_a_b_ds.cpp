@@ -18,6 +18,48 @@
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 #include "dol2asm.h"
 
+class daB_DS_HIO_c {
+public:
+    /* 805CB22C */ daB_DS_HIO_c();
+#ifdef NONMATCHING
+    /* 805DC89C */ virtual ~daB_DS_HIO_c() {}
+#else
+    /* 805DC89C */ ~daB_DS_HIO_c();
+#endif
+
+#ifndef NONMATCHING
+    /* 0x00 */ void* _vtable;
+#endif
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mModelSize;
+    /* 0x0C */ f32 mHandRange;
+    /* 0x10 */ f32 mBreathRange;
+    /* 0x14 */ f32 mGuardSpawnRange;
+    /* 0x18 */ f32 mNoSearchRange;
+    /* 0x1C */ f32 mP2MoveAxis;
+    /* 0x20 */ f32 mP2ModelSize;
+    /* 0x24 */ f32 mP2AttackHeight;
+    /* 0x28 */ s16 mP2FallTime;
+    /* 0x2A */ s16 mPedestalFallTime;
+    /* 0x2C */ s16 mSandFallWaitTime;
+    /* 0x2E */ s16 mP2BulletFireTime;
+    /* 0x30 */ s16 mP2OuterWallAttackTime;
+    /* 0x32 */ s16 mP2TrapCreateWaitTime1;
+    /* 0x34 */ s16 mP2TrapCreateWaitTime2;
+    /* 0x36 */ s16 mP2TrapCreateID1;
+    /* 0x38 */ s16 mP2TrapCreateID2;
+    /* 0x3A */ s16 mHintTime1;
+    /* 0x3C */ s16 mHintTime2;
+    /* 0x3E */ s16 mP2OuterWallTrapSpeed;
+    /* 0x40 */ s16 mTowerTrapSpeed;
+    /* 0x42 */ s16 mP2ApproachAccel;
+    /* 0x44 */ s16 mP2ApproachSpeedMax;
+    /* 0x46 */ s16 mP2ApproachAfterBullet;
+    /* 0x48 */ s16 mP2ApproachDist;
+    /* 0x4A */ s16 mP2Health;
+    /* 0x4C */ bool mP2HealthDebugOn;
+};
+
 //
 // Forward References:
 //
@@ -1363,7 +1405,7 @@ COMPILER_STRIP_GATE(0x805DCAA8, &lit_4271);
 #ifdef NONMATCHING
 // matches with literals
 int daB_DS_c::draw() {
-    if (mType == BULLET_A || mType == BULLET_B || mType == BULLET_C || mBossPhase == 100) {
+    if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C || mBossPhase == 100) {
         return 1;
     }
 
@@ -1372,7 +1414,7 @@ int daB_DS_c::draw() {
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     J3DModelData* model_data = model->getModelData();
 
-    if (mType == PHASE_2) {
+    if (arg0 == TYPE_BATTLE_2) {
         if (!mDead) {
             if (model_data->getMaterialNodePointer(2) != NULL) {
                 model_data->getMaterialNodePointer(2)->getTevColor(2)->a = (u8)field_0x7e8;
@@ -2128,8 +2170,8 @@ asm void daB_DS_c::mCreateTrap(bool param_0) {
 #ifdef NONMATCHING
 // matches with literals
 void daB_DS_c::mChangeVer2() {
-    if (mBitSw != 0xff) {
-        fopAcM_offSwitch(this, mBitSw);
+    if (bitSw != 0xff) {
+        fopAcM_offSwitch(this, bitSw);
     }
     field_0x7ec = 0.0f;
     shape_angle.x = 0;
@@ -2289,8 +2331,8 @@ void daB_DS_c::damage_check() {
             mHandAtLCyl.OffTgShield();
             mHandAtRCyl.OffTgShield();
             mActionTimer = 0;
-            if (mBitSw3 != 0xff) {
-                fopAcM_onSwitch(this, mBitSw3);
+            if (bitSw3 != 0xff) {
+                fopAcM_onSwitch(this, bitSw3);
             }
             def_se_set(&mSound, mAtInfo.mpCollider, 0x1f, NULL);
             i_dComIfGp_setHitMark(3, this, &hit_pos, &hit_angle, NULL, 0);
@@ -4340,8 +4382,8 @@ asm void daB_DS_c::executeCircle() {
 
 /* 805D02F8-805D0374 0051B8 007C+00 1/1 0/0 0/0 .text            mBreakBoneSUB__8daB_DS_cFv */
 void daB_DS_c::mBreakBoneSUB() {
-    if (mBitSw3 != 0xff) {
-        fopAcM_offSwitch(this, mBitSw3);
+    if (bitSw3 != 0xff) {
+        fopAcM_offSwitch(this, bitSw3);
         mSoundPos = current.pos;
         mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1f);
     }
@@ -5082,8 +5124,8 @@ void daB_DS_c::executeDamage() {
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
 
-            if (mBitSw3 != 0xff) {
-                fopAcM_offSwitch(this, mBitSw3);
+            if (bitSw3 != 0xff) {
+                fopAcM_offSwitch(this, bitSw3);
             }
             mBirthTrapTimerF = 0x1e;
             shape_angle.y = current.angle.y = fopAcM_searchPlayerAngleY(this) + 0xc000;
@@ -5100,8 +5142,8 @@ void daB_DS_c::executeDamage() {
 
         if (cLib_calcTimer(&mActionTimer) == 0 ) {
             if (!field_0x7dc[mBackboneJoint]) {
-                if (mBitSw != 0xff) {
-                    fopAcM_offSwitch(this, mBitSw);
+                if (bitSw != 0xff) {
+                    fopAcM_offSwitch(this, bitSw);
                 }
                 setBck(Ds_damage_id[mBackboneJoint], 0, 3.0f, 1.0f);
                 for (int i = 0; i < 4; i++) {
@@ -5239,7 +5281,7 @@ void daB_DS_c::executeDamage() {
         p2_angle.z = 0;
         p2_angle.y = 0;
         p2_angle.x = 0;
-        fopAcM_create(PROC_B_DS, param | PHASE_2, &current.pos,
+        fopAcM_create(PROC_B_DS, param | TYPE_BATTLE_2, &current.pos,
                       fopAcM_GetRoomNo(this), &p2_angle, NULL, 0xff);
         mMode = 101;
         // no break
@@ -5374,7 +5416,7 @@ void daB_DS_c::breath_smokeSet() {
         bullet_angle.y = vec.atan2sX_Z();
         bullet_angle.z = 0;
         cXyz bullet_pos = mBulletPos;
-        fopAcM_create(PROC_B_DS, BULLET_A, &bullet_pos, fopAcM_GetRoomNo(this),
+        fopAcM_create(PROC_B_DS, TYPE_BULLET_A, &bullet_pos, fopAcM_GetRoomNo(this),
                       &bullet_angle, NULL, 0xff);
     }
 }
@@ -8015,7 +8057,7 @@ void daB_DS_c::executeBullet() {
     cXyz vec1, vec2;
     switch (mMode) {
     case 0:
-        if (mType == BULLET_A) {
+        if (arg0 == TYPE_BULLET_A) {
             speedF = -100.0f;
             mBulletRadius = 100.0f;
             mActionTimer = breathTimerBase;
@@ -8060,7 +8102,7 @@ void daB_DS_c::executeBullet() {
 
     case 2:
         mDoMtx_YrotS(*calc_mtx, current.angle.y);
-        if (mType == BULLET_A) {
+        if (arg0 == TYPE_BULLET_A) {
             mDoMtx_XrotM(*calc_mtx, -current.angle.x);
         } else {
             mDoMtx_XrotM(*calc_mtx, current.angle.x);
@@ -8084,7 +8126,7 @@ void daB_DS_c::executeBullet() {
     mBreathAtSph.SetR(mBulletRadius);
     dComIfG_Ccsp()->Set(&mBreathAtSph);
 
-    if (mType == BULLET_B || mType == BULLET_C) {
+    if (arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
         cXyz scale(l_HIO.mP2ModelSize, l_HIO.mP2ModelSize, l_HIO.mP2ModelSize);
         field_0x724 = current.pos - old.pos;
         VECScale(&field_0x724, &field_0x724, 0.8f);
@@ -8122,7 +8164,7 @@ asm void daB_DS_c::executeBullet() {
 void daB_DS_c::mBulletAction() {
     executeBullet();
     fopAcM_posMove(this, mCcStts.GetCCMoveP());
-    if (mType == BULLET_B || mType == BULLET_C) {
+    if (arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
         mAcchCir.SetWall(0.0f, 100.0f);
         mAcch.CrrPos(dComIfG_Bgsp());
     }
@@ -8544,10 +8586,10 @@ void daB_DS_c::action() {
         mSandFallTimer = l_HIO.mSandFallWaitTime;
     }
 
-    if (mType == PHASE_1 && dComIfGs_isZoneSwitch(8, fopAcM_GetRoomNo(this))) {
+    if (arg0 == TYPE_BATTLE_1 && dComIfGs_isZoneSwitch(8, fopAcM_GetRoomNo(this))) {
         cLib_calcTimer(&mSandFallTimer);
-        if (mSandFallTimer >= 1 && mSandFallTimer <= 3 && mBitSw != 0xff) {
-            fopAcM_onSwitch(this, mBitSw);
+        if (mSandFallTimer >= 1 && mSandFallTimer <= 3 && bitSw != 0xff) {
+            fopAcM_onSwitch(this, bitSw);
             mSandFallTimer = 0;
         }
     }
@@ -9325,7 +9367,7 @@ void daB_DS_c::mBattle2_mtx_set() {
     }
 
     if (mCreateFireBreath) {
-        mBattle2BreathFireSet(BULLET_C);
+        mBattle2BreathFireSet(TYPE_BULLET_C);
     }
 
     if (mAction == ACT_B2_F_MOVE && mMode >= 3 && mMode <= 4) {
@@ -9511,10 +9553,10 @@ asm void daB_DS_c::mBattle2_cc_set() {
 #ifdef NONMATCHING
 // an extra `extsh`
 int daB_DS_c::execute() {
-    if (mType == BULLET_A || mType == BULLET_B || mType == BULLET_C) {
+    if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
         mBulletAction();
         return 1;
-    } else if (mType == PHASE_2) {
+    } else if (arg0 == TYPE_BATTLE_2) {
         mBattle2Action();
         mBattle2_mtx_set();
         mBattle2_cc_set();
@@ -9629,7 +9671,7 @@ static int daB_DS_IsDelete(daB_DS_c* i_this) {
 /* 805DB1AC-805DB244 01006C 0098+00 1/1 0/0 0/0 .text            _delete__8daB_DS_cFv */
 int daB_DS_c::_delete() {
     dComIfG_resDelete(&mPhase, "B_DS");
-    if (mType == BULLET_A || mType == BULLET_B || mType == BULLET_C) {
+    if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
         return 1;
     }
     if (mHIOInit) {
@@ -9650,16 +9692,16 @@ static int daB_DS_Delete(daB_DS_c* i_this) {
 #ifdef NONMATCHING
 // Matches with literals
 int daB_DS_c::CreateHeap() {
-    if (mType == PHASE_1 && dComIfGs_isZoneSwitch(6, fopAcM_GetRoomNo(this))
+    if (arg0 == TYPE_BATTLE_1 && dComIfGs_isZoneSwitch(6, fopAcM_GetRoomNo(this))
                          && dComIfGs_isZoneSwitch(7, fopAcM_GetRoomNo(this))) {
-        mType = PHASE_2;
+        arg0 = TYPE_BATTLE_2;
         home.pos.set(0.0f, 1900.0f, 0.0f);
         current.pos.set(0.0f, 1900.0f, 0.0f);
     }
 
     J3DModelData* model_data = (J3DModelData*)(dComIfG_getObjectRes("B_DS", 70));
     int anm_index = 60;
-    if (mType == PHASE_2) {
+    if (arg0 == TYPE_BATTLE_2) {
         model_data = (J3DModelData*)(dComIfG_getObjectRes("B_DS", 71));
         anm_index = 44;
     }
@@ -9847,7 +9889,7 @@ cPhs__Step daB_DS_c::create() {
     fopAcM_SetupActor(this, daB_DS_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "B_DS");
     if (step == cPhs_COMPLEATE_e) {
-        if (mType == PHASE_1 && dComIfGs_isStageBossEnemy()) {
+        if (arg0 == TYPE_BATTLE_1 && dComIfGs_isStageBossEnemy()) {
             dComIfGs_onZoneSwitch(8, fopAcM_GetRoomNo(this));
             g_env_light.mColpatPrevGather = 4;
             g_env_light.mColpatCurrGather = 4;
@@ -9863,14 +9905,14 @@ cPhs__Step daB_DS_c::create() {
             }
             return cPhs_ERROR_e;
         }
-        mType = fopAcM_GetParamBit(this, 0, 8);
-        mBitSw = fopAcM_GetParamBit(this, 8, 8);
-        mBitSw2 = fopAcM_GetParamBit(this, 16, 8);
-        mBitSw3 = fopAcM_GetParamBit(this, 24, 8);
-        if (mType == 0xff) {
-            mType = PHASE_1;
+        arg0 = fopAcM_GetParamBit(this, 0, 8);
+        bitSw = fopAcM_GetParamBit(this, 8, 8);
+        bitSw2 = fopAcM_GetParamBit(this, 16, 8);
+        bitSw3 = fopAcM_GetParamBit(this, 24, 8);
+        if (arg0 == 0xff) {
+            arg0 = TYPE_BATTLE_1;
         }
-        if (mType == BULLET_A || mType == BULLET_B || mType == BULLET_C) {
+        if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
             attention_info.field_0x0[2] = 0;
             attention_info.flags &= ~4;
             fopAcM_SetGroup(this, 0);
@@ -9881,14 +9923,14 @@ cPhs__Step daB_DS_c::create() {
             mBreathAtSph.SetStts(&mCcStts);
             fopAcM_OffStatus(this, 0);
             attention_info.flags &= ~4;
-            if (mType == BULLET_B || mType == BULLET_C) {
+            if (arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
                 mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
                 mAcch.CrrPos(dComIfG_Bgsp());
                 fopAcM_OnStatus(this, 0x4000);
             }
             setActionMode(8, 0);
         } else {
-            if (mType != BULLET_A && mType != BULLET_B && mType != BULLET_C
+            if (arg0 != TYPE_BULLET_A && arg0 != TYPE_BULLET_B && arg0 != TYPE_BULLET_C
                         && !fopAcM_entrySolidHeap(this, useHeapInit, 0xfac0)) {
                 return cPhs_ERROR_e;
             }
@@ -9959,10 +10001,10 @@ cPhs__Step daB_DS_c::create() {
             onWolfNoLock();
             mHintTimer1 = l_HIO.mHintTime1;
             mHintTimer2 = l_HIO.mHintTime1;
-            if (mType == PHASE_1) {
+            if (arg0 == TYPE_BATTLE_1) {
                 gravity = -1.0f;
-                if (mBitSw != 0xff) {
-                    fopAcM_onSwitch(this, mBitSw);
+                if (bitSw != 0xff) {
+                    fopAcM_onSwitch(this, bitSw);
                 }
                 fopAcM_OnStatus(this, 0x4000);
                 if (!cDmr_SkipInfo && !dComIfGs_isZoneSwitch(5, fopAcM_GetRoomNo(this))) {
@@ -9972,8 +10014,8 @@ cPhs__Step daB_DS_c::create() {
                     mIsOpeningDemo = true;
                     field_0x7e8 = 0.0f;
                     field_0x7ec = 255.0f;
-                    if (mBitSw != 0xff) {
-                        fopAcM_offSwitch(this, mBitSw);
+                    if (bitSw != 0xff) {
+                        fopAcM_offSwitch(this, bitSw);
                     }
                     attention_info.field_0x0[2] = 0;
                     attention_info.flags &= ~4;
@@ -9989,8 +10031,8 @@ cPhs__Step daB_DS_c::create() {
                     cDmr_SkipInfo = 0;
                     dComIfGs_onZoneSwitch(5, fopAcM_GetRoomNo(this));
                 }
-                if (mBitSw3 != 0xff) {
-                    fopAcM_offSwitch(this, mBitSw3);
+                if (bitSw3 != 0xff) {
+                    fopAcM_offSwitch(this, bitSw3);
                 }
                 if (mAction != ACT_OPENING_DEMO) {
                     field_0x7f8 = 0.5f;

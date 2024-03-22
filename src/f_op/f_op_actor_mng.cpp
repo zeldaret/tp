@@ -1668,10 +1668,10 @@ s32 fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, cons
 
 /* 8001C0D4-8001C174 016A14 00A0+00 0/0 0/0 18/18 .text
  * fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi       */
-s32 fopAcM_createItemForBoss(const cXyz* i_pos, int param_2, int i_roomNo, const csXyz* i_angle,
+s32 fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
                              const cXyz* i_scale, f32 speedF, f32 speedY, int param_8) {
     fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(
-        PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (param_2 & 0xFF), i_pos, i_roomNo,
+        PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (i_itemNo & 0xFF), i_pos, i_roomNo,
         i_angle, i_scale, -1, NULL, NULL);
     if (actor != NULL) {
         actor->speedF = speedF;

@@ -534,7 +534,7 @@ s32 fopAcM_createItemFromTable(cXyz const* p_pos, int i_tableNo, int i_itemBitNo
 s32 fopAcM_createDemoItem(const cXyz* p_pos, int itemNo, int itemBitNo, const csXyz* p_angle,
                           int roomNo, const cXyz* scale, u8 param_7);
 
-s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const csXyz* p_angle,
+s32 fopAcM_createItemForBoss(const cXyz* p_pos, int i_itemNo, int roomNo, const csXyz* p_angle,
                              const cXyz* p_scale, f32 speedF, f32 speedY, int param_8);
 
 s32 fopAcM_createItemForMidBoss(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
