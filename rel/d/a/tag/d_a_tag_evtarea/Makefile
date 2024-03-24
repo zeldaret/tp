@@ -19,6 +19,7 @@ M32_LIBS := \
 M32_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M32_LDFLAGS := \
 	-nodefaults \
