@@ -109,14 +109,14 @@ int daObjZraRock_c::Execute(Mtx** i_mtx) {
 int daObjZraRock_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     if (mDemoStart) {
-        g_env_light.setLightTevColorType_MAJI(mpModelXlu->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelXlu, &tevStr);
         dComIfGd_setListBG();
         mBrkAnm.entry(mpModelXlu->getModelData());
         mDoExt_modelUpdateDL(mpModelXlu);
         mBrkAnm.remove(mpModelXlu->getModelData());
         dComIfGd_setList();
     } else {
-        g_env_light.setLightTevColorType_MAJI(mpModelOpa->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelOpa, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModelOpa);
         dComIfGd_setList();

@@ -1847,13 +1847,13 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
         drawGhost();
     } else if (field_0xa89 != 0) {
         g_env_light.settingTevStruct(4, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         dComIfGd_setListDark();
         mMcaMorfAnm[0]->entryDL();
         dComIfGd_setList();
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mMcaMorfAnm[0]->entryDL();
     }
 

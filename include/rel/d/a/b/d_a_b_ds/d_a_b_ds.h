@@ -12,12 +12,12 @@
 
 class daB_DS_c : public fopEn_enemy_c {
 public:
-    enum Type {
-        /* 0 */ PHASE_1,
-        /* 1 */ BULLET_A,
-        /* 2 */ PHASE_2,
-        /* 3 */ BULLET_B,
-        /* 4 */ BULLET_C,
+    enum Arg0 {
+        /* 0 */ TYPE_BATTLE_1,
+        /* 1 */ TYPE_BULLET_A,
+        /* 2 */ TYPE_BATTLE_2,
+        /* 3 */ TYPE_BULLET_B,
+        /* 4 */ TYPE_BULLET_C,
     };
 
     enum Action {
@@ -225,9 +225,9 @@ public:
     /* 0x07D2 */ s16 field_0x7d2;
     /* 0x07D4 */ f32 mBreathTimerBase;
     /* 0x07D8 */ f32 mBulletRadius;
-    /* 0x07DC */ f32 field_0x7dc[3];
-    /* 0x07E8 */ f32 field_0x7e8;
-    /* 0x07EC */ f32 field_0x7ec;
+    /* 0x07DC */ f32 mBackboneCrackAlpha[3];
+    /* 0x07E8 */ f32 mEyeColorAlpha;
+    /* 0x07EC */ f32 mCrackAlpha;
     /* 0x07F0 */ f32 mBulletDistance;
     /* 0x07F4 */ f32 mChkHigh;
     /* 0x07F8 */ f32 field_0x7f8;
@@ -239,7 +239,7 @@ public:
     /* 0x0810 */ f32 mWallR;
     /* 0x0814 */ int mBrokenBone;
     /* 0x0818 */ int mTimerCount;
-    /* 0x081C */ int mActionTimer;
+    /* 0x081C */ int mModeTimer;
     /* 0x0820 */ int mHitTimer;
     /* 0x0824 */ u8 field_0x824[4];
     /* 0x0828 */ int mP2FallTimer;
@@ -254,17 +254,17 @@ public:
     /* 0x084C */ u8 mAttackingHand;
     /* 0x084D */ u8 field_0x84d;
     /* 0x084E */ u8 mDamageTimer;
-    /* 0x084F */ u8 mBackboneJoint;
+    /* 0x084F */ u8 mBackboneLevel;
     /* 0x0850 */ bool mDead;
     /* 0x0851 */ bool mIsDemo;
     /* 0x0852 */ u8 mBossPhase;
     /* 0x0853 */ bool mIsOpeningDemo;
     /* 0x0854 */ bool mIsAppear;
     /* 0x0855 */ bool mIsAppearG;
-    /* 0x0856 */ u8 mType;
-    /* 0x0857 */ u8 mBitSw;
-    /* 0x0858 */ u8 mBitSw2;
-    /* 0x0859 */ u8 mBitSw3;
+    /* 0x0856 */ u8 arg0;
+    /* 0x0857 */ u8 bitSw;
+    /* 0x0858 */ u8 bitSw2;
+    /* 0x0859 */ u8 bitSw3;
     /* 0x085A */ bool mCreateFireBreath;
     /* 0x085B */ bool mNoDrawSword;
     /* 0x085C */ bool mDrawZant;
@@ -313,47 +313,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daB_DS_c) == 0x2F28);
-
-class daB_DS_HIO_c {
-public:
-    /* 805CB22C */ daB_DS_HIO_c();
-#ifdef NONMATCHING
-    /* 805DC89C */ virtual ~daB_DS_HIO_c() {}
-#else
-    /* 805DC89C */ ~daB_DS_HIO_c();
-#endif
-
-#ifndef NONMATCHING
-    /* 0x00 */ void* _vtable;
-#endif
-    /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mModelSize;
-    /* 0x0C */ f32 mHandRange;
-    /* 0x10 */ f32 mBreathRange;
-    /* 0x14 */ f32 mGuardSpawnRange;
-    /* 0x18 */ f32 mNoSearchRange;
-    /* 0x1C */ f32 mP2MoveAxis;
-    /* 0x20 */ f32 mP2ModelSize;
-    /* 0x24 */ f32 mP2AttackHeight;
-    /* 0x28 */ s16 mP2FallTime;
-    /* 0x2A */ s16 mPedestalFallTime;
-    /* 0x2C */ s16 mSandFallWaitTime;
-    /* 0x2E */ s16 mP2BulletFireTime;
-    /* 0x30 */ s16 mP2OuterWallAttackTime;
-    /* 0x32 */ s16 mP2TrapCreateWaitTime1;
-    /* 0x34 */ s16 mP2TrapCreateWaitTime2;
-    /* 0x36 */ s16 mP2TrapCreateID1;
-    /* 0x38 */ s16 mP2TrapCreateID2;
-    /* 0x3A */ s16 mHintTime1;
-    /* 0x3C */ s16 mHintTime2;
-    /* 0x3E */ s16 mP2OuterWallTrapSpeed;
-    /* 0x40 */ s16 mTowerTrapSpeed;
-    /* 0x42 */ s16 mP2ApproachAccel;
-    /* 0x44 */ s16 mP2ApproachSpeedMax;
-    /* 0x46 */ s16 mP2ApproachAfterBullet;
-    /* 0x48 */ s16 mP2ApproachDist;
-    /* 0x4A */ s16 mP2Health;
-    /* 0x4C */ bool mP2HealthDebugOn;
-};
 
 #endif /* D_A_B_DS_H */

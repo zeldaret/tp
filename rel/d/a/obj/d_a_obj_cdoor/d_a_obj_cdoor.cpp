@@ -316,7 +316,7 @@ void daObjCdoor_c::actionDead() {
 /* 80BC7C04-80BC7CE4 000EC4 00E0+00 1/0 0/0 0/0 .text            Draw__12daObjCdoor_cFv */
 int daObjCdoor_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     if (mType == 1) {
         J3DModelData* model_data = mpModel->getModelData();
         if (mIsOpen) {

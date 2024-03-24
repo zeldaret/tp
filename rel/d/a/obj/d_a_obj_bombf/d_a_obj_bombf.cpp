@@ -109,7 +109,7 @@ static int daObjBombf_Execute(daObjBombf_c* i_this) {
 /* 80BBADF8-80BBAE5C 000478 0064+00 1/1 0/0 0/0 .text            draw__12daObjBombf_cFv */
 int daObjBombf_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x570->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(field_0x570, &tevStr);
     mDoExt_modelUpdateDL(field_0x570);
     return 1;
 }

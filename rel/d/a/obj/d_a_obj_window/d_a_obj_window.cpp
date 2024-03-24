@@ -139,7 +139,7 @@ int daObjWindow_c::Execute(Mtx** i_mtx) {
 /* 80D38F28-80D39000 000848 00D8+00 1/0 0/0 0/0 .text            Draw__13daObjWindow_cFv */
 int daObjWindow_c::Draw() {
     g_env_light.settingTevStruct(0x14, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     if (mpBckAnm != NULL) {
         mpBckAnm->entry(mpModel->getModelData());

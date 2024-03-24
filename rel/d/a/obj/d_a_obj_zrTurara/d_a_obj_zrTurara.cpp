@@ -599,8 +599,8 @@ void daZrTurara_c::modeEnd() {
 /* 80D412B0-80D41380 000E30 00D0+00 1/0 0/0 0/0 .text            Draw__12daZrTurara_cFv */
 int daZrTurara_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpBaseModel->mModelData, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpRockModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpBaseModel, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpRockModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpBaseModel);
     if (mDrawRock) {

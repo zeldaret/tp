@@ -8,12 +8,10 @@ M133_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt.map
 
 M133_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_bss.cpp \
 	rel/d/a/tag/d_a_tag_statue_evt/d_a_tag_statue_evt.cpp \
 
 M133_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_statue_evt/d_a_tag_statue_evt.o \
 
 M133_LIBS := \
