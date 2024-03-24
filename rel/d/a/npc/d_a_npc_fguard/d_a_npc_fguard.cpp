@@ -3,7 +3,9 @@
 // Translation Unit: d_a_npc_fguard
 //
 
-#include "rel/d/a/npc/d_a_npc_fguard/d_a_npc_fguard.h"
+// Causes vtable issues
+//#include "rel/d/a/npc/d_a_npc_fguard/d_a_npc_fguard.h"
+#include "dolphin/types.h"
 #include "dol2asm.h"
 
 //

@@ -556,6 +556,8 @@ static int dKy_Outdoor_check();
 s32 dKy_getdaytime_hour();
 s32 dKy_getdaytime_minute();
 s32 dKy_get_dayofweek();
+s32 dKy_getDarktime_minute();
+s32 dKy_getDarktime_hour();
 static void dKy_Sound_init();
 void dKy_setLight_nowroom(char);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
