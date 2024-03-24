@@ -8,7 +8,7 @@
 
 /* 805A6F58-805A6F78 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    daTagStatue_c* tag_statue = reinterpret_cast<daTagStatue_c*>(i_this);
+    daTagStatue_c* tag_statue = static_cast<daTagStatue_c*>(i_this);
     return tag_statue->CreateHeap();
 }
 
@@ -88,8 +88,8 @@ static char* l_evArcName[6] = {
 
 /* 805A8258-805A8270 00005C 0018+00 0/1 0/0 0/0 .data            l_cull_box */
 static Vec l_cull_box[2] = {
-    -300.0f, -100.0f, -300.0f, // Min
-    300.0f, 400.0f, 300.0f     // Max
+    {-300.0f, -100.0f, -300.0f}, // Min
+    {300.0f, 400.0f, 300.0f}     // Max
 };
 
 /* 805A7068-805A7230 000188 01C8+00 1/1 0/0 0/0 .text            Create__13daTagStatue_cFv */
@@ -140,7 +140,7 @@ cPhs__Step daTagStatue_c::Create() {
 
 /* 805A7230-805A73DC 000350 01AC+00 1/1 0/0 0/0 .text            CreateHeap__13daTagStatue_cFv */
 int daTagStatue_c::CreateHeap() {
-    J3DModelData* model_data = reinterpret_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, 6));
+    J3DModelData* model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, 6));
     mpModel = mDoExt_J3DModel__create(model_data, 0x00080000, 0x11000284);
 
     if(!mpModel) return 0;
@@ -209,10 +209,8 @@ int daTagStatue_c::execute() {
 /* 805A759C-805A76AC 0006BC 0110+00 1/1 0/0 0/0 .text            event_proc_call__13daTagStatue_cFv */
 void daTagStatue_c::event_proc_call() {
     typedef void (daTagStatue_c::*actionFunc)(void);
-    static actionFunc l_func[4] = {
-    &daTagStatue_c::actionWait, &daTagStatue_c::actionOrderEvent,
-    &daTagStatue_c::actionEvent, &daTagStatue_c::actionDead
-    };
+    static actionFunc l_func[4] = {&daTagStatue_c::actionWait, &daTagStatue_c::actionOrderEvent,
+                                   &daTagStatue_c::actionEvent, &daTagStatue_c::actionDead};
 
     (this->*l_func[mCurrentAction])();
 

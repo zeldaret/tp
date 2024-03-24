@@ -3,7 +3,7 @@
 
 #include "f_op/f_op_actor_mng.h"
 
-class daTagStatue_c : fopAc_ac_c {
+class daTagStatue_c : public fopAc_ac_c {
 public:
     /* 805A6FC4 */ void initBaseMtx();
     /* 805A7000 */ void setBaseMtx();
