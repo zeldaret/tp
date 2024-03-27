@@ -722,6 +722,8 @@ public:
         mDemo.setDemoMode(1);
     }
 
+    u8 getCutCount() const { return mComboCutCount; }
+
     bool checkStatusWindowDraw() { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
@@ -805,6 +807,7 @@ public:
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
     BOOL checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
     BOOL checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
+    BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_UNK_80000); }
     bool checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
