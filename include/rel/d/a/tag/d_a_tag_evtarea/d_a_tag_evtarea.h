@@ -11,8 +11,12 @@ public:
     /* 8048C894 */ bool Draw();
     /* 8048C89C */ BOOL isDelete();
     /* 8048C94C */ BOOL chkPointInArea(cXyz, cXyz);
-    /* 8048CD08 */ BOOL chkPointInArea(cXyz);
-    /* 8048CD68 */ virtual ~daTag_EvtArea_c();
+    /* 8048CD08 */ BOOL chkPointInArea(cXyz param_0) {
+        cXyz local_28;
+        local_28.set(0.0f, 0.0f, 0.0f);
+        return chkPointInArea(param_0, local_28);
+    }
+    /* 8048CD68 */ virtual ~daTag_EvtArea_c() {}
 
     inline s32 getType();
     inline u32 getOnEvtBit();
