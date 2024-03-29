@@ -31,6 +31,7 @@ void dKyw_wether_proc();
 void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2);
 void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind);
 cXyz dKyw_pntwind_get_vecpow(cXyz* param_0);
+void dKyw_pntwind_set(WIND_INFLUENCE* i_pntwind);
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
