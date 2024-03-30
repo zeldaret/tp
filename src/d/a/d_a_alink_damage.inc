@@ -685,7 +685,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         return 1;
     }
 
-    onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_SWIM_UP);
     J3DTransformInfo* transInfo = field_0x2060->getOldFrameTransInfo(0);
 
     f32 var_f31;
