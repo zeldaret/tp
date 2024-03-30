@@ -10,7 +10,7 @@
 /* 80101890-801018E4 0FC1D0 0054+00 6/6 0/0 0/0 .text            checkZoraWearMaskDraw__9daAlink_cFv
  */
 BOOL daAlink_c::checkZoraWearMaskDraw() {
-    return checkZoraWearAbility() && !checkNoResetFlg0(FLG0_UNK_100);
+    return checkZoraWearAbility() && !checkNoResetFlg0(FLG0_SWIM_UP);
 }
 
 /* 801018E4-80101934 0FC224 0050+00 1/1 0/0 0/0 .text checkAcceptUseItemInWater__9daAlink_cCFUs */
@@ -66,7 +66,7 @@ f32 daAlink_c::getSwimMaxFallSpeed() const {
 void daAlink_c::checkOxygenTimer() {
     BOOL hide_timer;
 
-    if (!checkNoResetFlg0(FLG0_UNK_100) ||
+    if (!checkNoResetFlg0(FLG0_SWIM_UP) ||
         (checkModeFlg(MODE_SWIMMING) && mWaterY > lit_7808 + current.pos.y))
     {
         hide_timer = false;
@@ -234,7 +234,7 @@ int daAlink_c::checkNextActionSwim() {
         field_0x3000 = 30;
     }
 
-    if ((checkZoraWearAbility() && !checkHeavyStateOn(1, 1)) || checkNoResetFlg0(FLG0_UNK_100)) {
+    if ((checkZoraWearAbility() && !checkHeavyStateOn(1, 1)) || checkNoResetFlg0(FLG0_SWIM_UP)) {
         setTalkStatus();
     }
 
@@ -242,7 +242,7 @@ int daAlink_c::checkNextActionSwim() {
         return 1;
     }
 
-    if (mAttList != NULL && mAttList->mType == 7 && checkNoResetFlg0(FLG0_UNK_100) &&
+    if (mAttList != NULL && mAttList->mType == 7 && checkNoResetFlg0(FLG0_SWIM_UP) &&
         fopAcM_GetName(field_0x27f4) == PROC_CANOE)
     {
         setDoStatus(0x17);
@@ -284,7 +284,7 @@ asm int daAlink_c::checkSwimUpAction() {
 
 /* 801032C8-80103398 0FDC08 00D0+00 8/8 0/0 0/0 .text            swimOutAfter__9daAlink_cFi */
 void daAlink_c::swimOutAfter(int param_0) {
-    onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_SWIM_UP);
     onEndResetFlg1(ERFLG1_UNK_100);
     mZ2Link.setInWater(false);
 
@@ -347,7 +347,7 @@ bool daAlink_c::checkUpSwimButtonAccept() {
 /* 80103F24-80103F94 0FE864 0070+00 2/2 0/0 0/0 .text            checkSwimButtonMove__9daAlink_cFv
  */
 BOOL daAlink_c::checkSwimButtonMove() {
-    return !checkNoResetFlg0(FLG0_UNK_100) &&
+    return !checkNoResetFlg0(FLG0_SWIM_UP) &&
            (checkSwimButtonAccept() || checkUpSwimButtonAccept()) && doButton();
 }
 
@@ -359,7 +359,7 @@ BOOL daAlink_c::checkZoraSwimMove() {
 /* 80103FE8-80104034 0FE928 004C+00 2/2 0/0 0/0 .text            checkSwimNeckUpDown__9daAlink_cCFv
  */
 BOOL daAlink_c::checkSwimNeckUpDown() const {
-    return !checkNoResetFlg0(FLG0_UNK_100) && checkUnderMove0BckNoArc(ANM_SWIM_WAIT);
+    return !checkNoResetFlg0(FLG0_SWIM_UP) && checkUnderMove0BckNoArc(ANM_SWIM_WAIT);
 }
 
 /* 80104034-801040F8 0FE974 00C4+00 3/3 0/0 0/0 .text            setSwimUpDownOffset__9daAlink_cFv
@@ -392,7 +392,7 @@ int daAlink_c::procSwimUpInit() {
     speed.y = FLOAT_LABEL(lit_6108);
     current.pos.y = mWaterY;
     field_0x3080 = 0;
-    onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_SWIM_UP);
     mZ2Link.setInWater(false);
     setSingleAnimeParam(ANM_SWIM_RESURFACE, &daAlinkHIO_swim_c0::m.mResurfaceAnm);
     dComIfGp_setPlayerStatus0(0, 0x100000);
@@ -477,7 +477,7 @@ int daAlink_c::procSwimWaitInit(int param_0) {
 
     dComIfGp_setPlayerStatus0(0, 0x100000);
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
         speed.y = FLOAT_LABEL(lit_6108);
     }
@@ -573,7 +573,7 @@ int daAlink_c::procSwimMoveInit() {
     field_0x2f98 = 5;
     setSwimMoveAnime();
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
         speed.y = FLOAT_LABEL(lit_6108);
     }
@@ -631,7 +631,7 @@ int daAlink_c::procSwimDiveInit() {
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         mProcVar2.field_0x300c = 1;
         setSingleAnimeParam(ANM_SWIM_DIVE, &daAlinkHIO_swim_c0::m.mDiveAnm);
         voiceStart(Z2SE_AL_V_DIVING);
@@ -670,8 +670,8 @@ int daAlink_c::procSwimDive() {
 
     if (mProcVar2.field_0x300c == 0) {
         setDoStatus(0x4C);
-    } else if (checkNoResetFlg0(FLG0_UNK_100) && frame_ctrl->getFrame() > 20.0f) {
-        offNoResetFlg0(FLG0_UNK_100);
+    } else if (checkNoResetFlg0(FLG0_SWIM_UP) && frame_ctrl->getFrame() > 20.0f) {
+        offNoResetFlg0(FLG0_SWIM_UP);
         mZ2Link.setInWater(true);
     }
 
@@ -740,7 +740,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
         field_0x3080 = 0;
     }
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
         speed.y = FLOAT_LABEL(lit_6108);
     }
@@ -815,7 +815,7 @@ int daAlink_c::procSwimHookshotMoveInit() {
         setSwimMoveAnime();
     }
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
         speed.y = FLOAT_LABEL(lit_6108);
     }
@@ -898,7 +898,7 @@ int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     dComIfGp_getVibration().StartShock(2, 31, cXyz(0.0f, 1.0f, 0.0f));
 
     BOOL bvar4 =
-        checkNoResetFlg0(FLG0_UNK_100) || ((param_0 != NULL && param_0->GetTgHitAc() != NULL) &&
+        checkNoResetFlg0(FLG0_SWIM_UP) || ((param_0 != NULL && param_0->GetTgHitAc() != NULL) &&
                                              fopAcM_GetName(param_0->GetTgHitAc()) == PROC_E_SG);
 
     if (!getZoraSwim() && bvar4 && mProcID != PROC_SWIM_WAIT) {
@@ -1057,7 +1057,7 @@ int daAlink_c::procOctaIealSpitInit() {
     }
 
     field_0x3588 = l_waitBaseAnime;
-    offNoResetFlg0(FLG0_UNK_100);
+    offNoResetFlg0(FLG0_SWIM_UP);
     current.angle.y = field_0x2ffe;
 
     if (mNormalSpeed > 0.0f) {

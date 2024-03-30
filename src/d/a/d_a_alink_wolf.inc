@@ -5207,7 +5207,7 @@ int daAlink_c::procWolfSwimUpInit() {
     commonProcInit(PROC_WOLF_SWIM_UP);
     speed.y = FLOAT_LABEL(lit_6108);
     current.pos.y = mWaterY;
-    onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_SWIM_UP);
 
     mZ2Link.setInWater(false);
     setSingleAnimeWolfParam(WANM_SWIM_RESURFACE, &daAlinkHIO_wlSwim_c0::m.field_0x0);
@@ -5325,7 +5325,7 @@ int daAlink_c::procWolfSwimMoveInit() {
     setSingleAnimeWolfBaseSpeed(WANM_SWIM, getWolfSwimMoveAnmSpeed(),
                                 daAlinkHIO_wlSwim_c0::m.field_0x78);
 
-    if (checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
         speed.y = FLOAT_LABEL(lit_6108);
     }
