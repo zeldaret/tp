@@ -138,7 +138,7 @@ private:
     /* 0x624 */ f32 field_0x624;
     /* 0x628 */ u32 field_0x628;
     /* 0x62C */ u32 mPlayerIsWolf;
-    /* 0x630 */ u32 field_0x630;
+    /* 0x630 */ u32 mNameStringID;
     /* 0x634 */ s32 field_0x634;
     /* 0x638 */ s16 field_0x638;
     /* 0x63A */ s16 field_0x63a;

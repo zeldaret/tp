@@ -6,7 +6,7 @@
 // the stringbase doesn't generate the required padding
 // might be that some weak functions after the ctor break the match too
 
-//#define NONMATCHING
+// #define NONMATCHING
 
 #include "d/menu/d_menu_ring.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
@@ -300,7 +300,6 @@ SECTION_DEAD static char const* const pad_8039795A = "\0\0\0\0\0";
 #pragma pop
 #endif
 
-
 /* 803BDE70-803BDE7C 01AF90 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -502,7 +501,7 @@ SECTION_SDATA2 static f64 lit_4312 = 4503599627370496.0 /* cast u32 to float */;
  * __ct__12dMenu_Ring_cFP10JKRExpHeapP9STControlP10CSTControlUc */
 // literals
 #ifdef NONMATCHING
-dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick,
+dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cStick,
                            u8 param_3) {
     static const u64 xy_text[5] = {
         'yx_text', 'yx_te_s1', 'yx_te_s2', 'yx_te_s3', 'yx_te_s4',
@@ -534,10 +533,10 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     static const u64 ft_off[5] = {
         'fr_t_of', 'f_tof_s1', 'f_tof_s2', 'f_tof_s3', 'f_tof_s4',
     };
-    
+
     mpHeap = i_heap;
     mpStick = i_stick;
-    mpCStick = i_cstick;
+    mpCStick = i_cStick;
     field_0x6bc = param_3;
     dMeter2Info_setItemExplainWindowStatus(0);
     mpHeap->getTotalFreeSize();
@@ -574,7 +573,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     field_0x620 = 1.0f;
     field_0x624 = 1.0f;
     mPlayerIsWolf = daPy_py_c::i_checkNowWolf();
-    field_0x630 = 0;
+    mNameStringID = 0;
     field_0x63a = 0;
     field_0x63c = 0;
     field_0x638 = 0;
@@ -737,7 +736,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
             mpItemBuf[i][j] = (ResTIMG*)mpHeap->alloc(0xC00, 0x20);
         }
         u8 item = dComIfGs_getItem(field_0x690[i], false);
-        if (item != 0xff) {
+        if (item != NO_ITEM) {
             if (item == 0x53) {
                 item = 0x43;
             }
@@ -846,7 +845,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     mpItemExplain = new dMenu_ItemExplain_c(mpHeap, dComIfGp_getRingResArchive(), i_stick, true);
     setRotate();
     mpDrawCursor->setPos(field_0x38c[0] + field_0x568, field_0x3ec[0] + field_0x56c);
-    if (dComIfGs_getItem(field_0x690[0], false) != 0xff) {
+    if (dComIfGs_getItem(field_0x690[0], false) != NO_ITEM) {
         mpDrawCursor->setParam(field_0x44c[0], field_0x4ac[0], 0.1f, 0.6f, 0.5f);
     } else {
         mpDrawCursor->setParam(1.0f, 1.0f, 0.1f, 0.6f, 0.5f);
@@ -1073,9 +1072,8 @@ void dMenu_Ring_c::_draw() {
             CPaneMgr paneMgr;
             pos = paneMgr.getGlobalVtxCenter(mpScreen->search('gr_btn'), true, 0);
             dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
-                pos.x, pos.y, &field_0x570, g_ringHIO.mPikariScale,
-                g_ringHIO.mPikariFrontOuter, g_ringHIO.mPikariFrontInner,
-                g_ringHIO.mPikariBackOuter, g_ringHIO.mPikariBackInner,
+                pos.x, pos.y, &field_0x570, g_ringHIO.mPikariScale, g_ringHIO.mPikariFrontOuter,
+                g_ringHIO.mPikariFrontInner, g_ringHIO.mPikariBackOuter, g_ringHIO.mPikariBackInner,
                 g_ringHIO.mPikariAnimSpeed, 2);
         }
         mDrawFlag = 1;
@@ -1143,7 +1141,7 @@ bool dMenu_Ring_c::isOpen() {
     }
     setScale();
     mpDrawCursor->setPos(field_0x38c[0] + field_0x568, field_0x3ec[0] + field_0x56c);
-    if (dComIfGs_getItem(field_0x690[0], false) != 0xff) {
+    if (dComIfGs_getItem(field_0x690[0], false) != NO_ITEM) {
         mpDrawCursor->setParam(field_0x44c[0], field_0x4ac[0], 0.1f, 0.6f, 0.5f);
     } else {
         mpDrawCursor->setParam(1.0f, 1.0f, 0.1f, 0.6f, 0.5f);
@@ -1230,7 +1228,7 @@ bool dMenu_Ring_c::isClose() {
     }
     mpDrawCursor->setPos(field_0x38c[field_0x6a8] + field_0x568,
                          field_0x3ec[field_0x6a8] + field_0x56c);
-    if (dComIfGs_getItem(field_0x690[field_0x6a8], false) != 0xff) {
+    if (dComIfGs_getItem(field_0x690[field_0x6a8], false) != NO_ITEM) {
         mpDrawCursor->setParam(field_0x44c[field_0x6a8], field_0x4ac[field_0x6a8], 0.1f, 0.6f,
                                0.5f);
     } else {
@@ -1266,7 +1264,7 @@ u8 dMenu_Ring_c::getStickInfo(STControl* i_stick) {
         s16 stick_angle = i_stick->getAngleStick();
         s16 abs_stick_angle = stick_angle + 0x8000;
         int something_stick = abs_stick_angle + 0x8000;
-        
+
         s32 temp;
         u32 uVar3 = field_0x6ae / 2;
         u8 val2 = uVar3;
@@ -1274,8 +1272,7 @@ u8 dMenu_Ring_c::getStickInfo(STControl* i_stick) {
 
         if ((val % 2) != 0) {
             temp = field_0x634;
-        }
-        else {
+        } else {
             temp = (s16)(field_0x634 / 2);
         }
 
@@ -1287,8 +1284,7 @@ u8 dMenu_Ring_c::getStickInfo(STControl* i_stick) {
 
             if (val2 <= 0) {
                 val2 = val - 1;
-            }
-            else {
+            } else {
                 val2--;
             }
         }
@@ -1314,12 +1310,12 @@ u8 dMenu_Ring_c::getStickInfo(STControl* i_stick) {
             } else {
                 u8 max = field_0x6a8 + uVar3;
                 if (val2 > field_0x6a8 && val2 <= max) {
-                    if (field_0x6a8 == (u8)(field_0x6ae -1)) {
+                    if (field_0x6a8 == (u8)(field_0x6ae - 1)) {
                         field_0x6a8 = 0;
                     } else {
                         field_0x6a8++;
                     }
-                } else if (field_0x6a8 == 0 ) {
+                } else if (field_0x6a8 == 0) {
                     field_0x6a8 = field_0x6ae - 1;
                 } else {
                     field_0x6a8--;
@@ -1444,10 +1440,10 @@ void dMenu_Ring_c::setItemScale(int i_idx, f32 i_scale) {
 
 /* 801EBAB8-801EBB10 1E63F8 0058+00 2/2 0/0 0/0 .text            setButtonScale__12dMenu_Ring_cFif
  */
-void dMenu_Ring_c::setButtonScale(int i_idx, f32 i_value) {
+void dMenu_Ring_c::setButtonScale(int i_idx, f32 i_scale) {
     i_idx += 8;
     if (mpTextParent[i_idx] != NULL) {
-        f32 buttonScale = i_value * field_0x5e8[i_idx];
+        f32 buttonScale = i_scale * field_0x5e8[i_idx];
         mpTextParent[i_idx]->scale(buttonScale, buttonScale);
     }
 }
@@ -1459,25 +1455,25 @@ void dMenu_Ring_c::setItem() {
     u8 uVar3;
     u8 uVar4;
 
-    if (field_0x6aa != 0xff) {
+    if (field_0x6aa != NO_ITEM) {
         uVar1 = field_0x690[field_0x6aa];
     } else {
-        uVar1 = 0xff;
+        uVar1 = NO_ITEM;
     }
-    if (field_0x6ab != 0xff) {
+    if (field_0x6ab != NO_ITEM) {
         uVar2 = field_0x690[field_0x6ab];
     } else {
-        uVar2 = 0xff;
+        uVar2 = NO_ITEM;
     }
-    if (field_0x6ac != 0xff) {
+    if (field_0x6ac != NO_ITEM) {
         uVar3 = field_0x690[field_0x6ac];
     } else {
-        uVar3 = 0xff;
+        uVar3 = NO_ITEM;
     }
-    if (field_0x6ad != 0xff) {
+    if (field_0x6ad != NO_ITEM) {
         uVar4 = field_0x690[field_0x6ad];
     } else {
-        uVar4 = 0xff;
+        uVar4 = NO_ITEM;
     }
 
     u8 mixItemIndex0 = dComIfGs_getMixItemIndex(0);
@@ -1493,30 +1489,30 @@ void dMenu_Ring_c::setItem() {
         if (field_0x690[field_0x6a8] == uVar1) {
             uVar2 = dComIfGs_getSelectItemIndex(0);
             mixItemIndex1 = dComIfGs_getMixItemIndex(0);
-            if (uVar2 == 0xff) {
-                field_0x6ab = 0xff;
+            if (uVar2 == NO_ITEM) {
+                field_0x6ab = NO_ITEM;
             } else {
                 field_0x6ab = field_0x6aa;
             }
             field_0x6aa = field_0x6a8;
             uVar1 = field_0x690[field_0x6aa];
-            mixItemIndex0 = 0xff;
+            mixItemIndex0 = NO_ITEM;
         } else {
             if (dComIfGs_getMixItemIndex(1) == field_0x690[field_0x6a8]) {
                 uVar2 = dComIfGs_getSelectItemIndex(0);
-                mixItemIndex1 = 0xff;
-                if (uVar2 == 0xff) {
-                    field_0x6ab = 0xff;
+                mixItemIndex1 = NO_ITEM;
+                if (uVar2 == NO_ITEM) {
+                    field_0x6ab = NO_ITEM;
                 } else {
                     field_0x6ab = field_0x6aa;
                 }
                 field_0x6aa = field_0x6a8;
                 uVar1 = field_0x690[field_0x6aa];
-                mixItemIndex0 = 0xff;
+                mixItemIndex0 = NO_ITEM;
             } else {
                 field_0x6aa = field_0x6a8;
                 uVar1 = field_0x690[field_0x6aa];
-                mixItemIndex0 = 0xff;
+                mixItemIndex0 = NO_ITEM;
             }
         }
     } else if (field_0x6b3 == 1) {
@@ -1524,30 +1520,30 @@ void dMenu_Ring_c::setItem() {
             u8 temp = dComIfGs_getSelectItemIndex(1);
             uVar1 = temp;
             mixItemIndex0 = dComIfGs_getMixItemIndex(1);
-            if (temp == 0xff) {
-                field_0x6aa = 0xff;
+            if (temp == NO_ITEM) {
+                field_0x6aa = NO_ITEM;
             } else {
                 field_0x6aa = field_0x6ab;
             }
             field_0x6ab = field_0x6a8;
             uVar2 = field_0x690[field_0x6ab];
-            mixItemIndex1 = 0xff;
+            mixItemIndex1 = NO_ITEM;
         } else {
             if (dComIfGs_getMixItemIndex(0) == field_0x690[field_0x6a8]) {
                 uVar1 = dComIfGs_getSelectItemIndex(1);
-                mixItemIndex0 = 0xff;
-                if (uVar1 == 0xff) {
-                    field_0x6aa = 0xff;
+                mixItemIndex0 = NO_ITEM;
+                if (uVar1 == NO_ITEM) {
+                    field_0x6aa = NO_ITEM;
                 } else {
                     field_0x6aa = field_0x6ab;
                 }
                 field_0x6ab = field_0x6a8;
                 uVar2 = field_0x690[field_0x6ab];
-                mixItemIndex1 = 0xff;
+                mixItemIndex1 = NO_ITEM;
             } else {
                 field_0x6ab = field_0x6a8;
                 uVar2 = field_0x690[field_0x6ab];
-                mixItemIndex1 = 0xff;
+                mixItemIndex1 = NO_ITEM;
             }
         }
     }
@@ -1557,9 +1553,9 @@ void dMenu_Ring_c::setItem() {
     field_0x6b4[3] = uVar4;
     field_0x6b8[0] = mixItemIndex0;
     field_0x6b8[1] = mixItemIndex1;
-    field_0x6b8[2] = 0xff;
-    field_0x6b8[3] = 0xff;
-    field_0x6cd = 0xff;
+    field_0x6b8[2] = NO_ITEM;
+    field_0x6b8[3] = NO_ITEM;
+    field_0x6cd = NO_ITEM;
     setJumpItem(true);
 }
 
@@ -1576,19 +1572,19 @@ void dMenu_Ring_c::setJumpItem(bool i_useVibrationM) {
             setSelectItem(i, getItem(field_0x6b4[i], field_0x6b8[i]));
         }
     }
-    if (field_0x6aa != 0xff) {
+    if (field_0x6aa != NO_ITEM) {
         field_0x518[0] = field_0x38c[field_0x6aa];
         field_0x528[0] = field_0x3ec[field_0x6aa];
     }
-    if (field_0x6ab != 0xff) {
+    if (field_0x6ab != NO_ITEM) {
         field_0x518[1] = field_0x38c[field_0x6ab];
         field_0x528[1] = field_0x3ec[field_0x6ab];
     }
-    if (field_0x6ac != 0xff) {
+    if (field_0x6ac != NO_ITEM) {
         field_0x518[2] = field_0x38c[field_0x6ac];
         field_0x528[2] = field_0x3ec[field_0x6ac];
     }
-    if (field_0x6ad != 0xff) {
+    if (field_0x6ad != NO_ITEM) {
         field_0x518[3] = field_0x38c[field_0x6ad];
         field_0x528[3] = field_0x3ec[field_0x6ad];
     }
@@ -1696,7 +1692,7 @@ void dMenu_Ring_c::setNameString(u32 i_stringID) {
     textBox[1] = (J2DTextBox*)mpCenterScreen->search('fitem_n2');
     textBox[2] = (J2DTextBox*)mpCenterScreen->search('fitem_n3');
     textBox[3] = (J2DTextBox*)mpCenterScreen->search('fitem_n4');
-    if (field_0x630 != i_stringID) {
+    if (mNameStringID != i_stringID) {
         for (int i = 0; i < 4; i++) {
             if (i_stringID == 0) {
                 strcpy(textBox[i]->getStringPtr(), "");
@@ -1704,7 +1700,7 @@ void dMenu_Ring_c::setNameString(u32 i_stringID) {
                 mpString->getString(i_stringID, textBox[i], NULL, NULL, NULL, 0);
             }
         }
-        field_0x630 = i_stringID;
+        mNameStringID = i_stringID;
     }
 }
 #else
@@ -1725,12 +1721,12 @@ asm void dMenu_Ring_c::setNameString(u32 param_0) {
 void dMenu_Ring_c::setActiveCursor() {
     u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], false);
     if (mStatus == 0 && field_0x6b1 != 3 && field_0x6b1 != 2 && mpItemExplain->getStatus() == 0) {
-        if (mDoCPd_c::getTrigR(PAD_1) && mPlayerIsWolf == 0 && item != 0xff) {
+        if (mDoCPd_c::getTrigR(PAD_1) && mPlayerIsWolf == 0 && item != NO_ITEM) {
             for (int i = 0; i < MAX_SELECT_ITEM; i++) {
                 setSelectItemForce(i);
             }
             setMixItem();
-        } else if (mDoCPd_c::getTrigX(PAD_1) && mPlayerIsWolf == 0 && item != 0xff) {
+        } else if (mDoCPd_c::getTrigX(PAD_1) && mPlayerIsWolf == 0 && item != NO_ITEM) {
             for (int i = 0; i < MAX_SELECT_ITEM; i++) {
                 setSelectItemForce(i);
             }
@@ -1742,7 +1738,7 @@ void dMenu_Ring_c::setActiveCursor() {
                     (this->*stick_init[mStatus])();
                 }
             }
-        } else if (mDoCPd_c::getTrigY(PAD_1) && mPlayerIsWolf == 0 && item != 0xff) {
+        } else if (mDoCPd_c::getTrigY(PAD_1) && mPlayerIsWolf == 0 && item != NO_ITEM) {
             for (int i = 0; i < MAX_SELECT_ITEM; i++) {
                 setSelectItemForce(i);
             }
@@ -1785,9 +1781,11 @@ void dMenu_Ring_c::setMixItem() {
     bool bVar1 = false;
     u8 selectItemIndex0 = dComIfGs_getSelectItemIndex(0);
     u8 selectItemIndex1 = dComIfGs_getSelectItemIndex(1);
-    u8 local_28[4] = {0xff, 0xff, 0xff, 0xff};
+    u8 local_28[4] = {NO_ITEM, NO_ITEM, NO_ITEM, NO_ITEM};
 
-    if (dComIfGs_getMixItemIndex(0) == 4  && field_0x690[field_0x6a8] == dComIfGs_getSelectItemIndex(0)) {
+    if (dComIfGs_getMixItemIndex(0) == 4 &&
+        field_0x690[field_0x6a8] == dComIfGs_getSelectItemIndex(0))
+    {
         Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_OFF, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         field_0x6cb = selectItemIndex0;
         selectItemIndex0 = 4;
@@ -1796,7 +1794,9 @@ void dMenu_Ring_c::setMixItem() {
         field_0x6b3 = 0;
         field_0x6cd = 0;
         bVar1 = true;
-    } else if (dComIfGs_getMixItemIndex(1) == 4 && field_0x690[field_0x6a8] == dComIfGs_getSelectItemIndex(1)) {
+    } else if (dComIfGs_getMixItemIndex(1) == 4 &&
+               field_0x690[field_0x6a8] == dComIfGs_getSelectItemIndex(1))
+    {
         Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_OFF, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         field_0x6cb = selectItemIndex1;
         selectItemIndex1 = 4;
@@ -1807,46 +1807,53 @@ void dMenu_Ring_c::setMixItem() {
         bVar1 = true;
     } else {
         switch (item) {
-            case 0x70:
-            case 0x71:
-            case 0x72:
-            case 0x3e:
-                if ((dComIfGs_getSelectItemIndex(0) == 4 && dComIfGs_getMixItemIndex(0) == 0xff) || (dComIfGs_getMixItemIndex(0) == 4)) {
-                    Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                    selectItemIndex0 = field_0x690[field_0x6a8];
-                    field_0x6b8[0] = 4;
-                    field_0x6b3 = 0;
-                    field_0x6aa = field_0x6a8;
-                    field_0x6cd = 0xff;
-                    bVar1 = true;
-                    if (selectItemIndex1 == field_0x690[field_0x6a8]) {
-                        selectItemIndex1 = 0xff;
-                        field_0x6ab = 0xff;
-                    }
-                } else if ((dComIfGs_getSelectItemIndex(1) == 4 && dComIfGs_getMixItemIndex(1) == 0xff) || (dComIfGs_getMixItemIndex(1) == 4)) {
-                    Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                    selectItemIndex1 = field_0x690[field_0x6a8];
-                    field_0x6b8[1] = 4;
-                    field_0x6b3 = 1;
-                    field_0x6ab = field_0x6a8;
-                    field_0x6cd = 0xff;
-                    bVar1 = true;
-                    if (selectItemIndex0 == field_0x690[field_0x6a8]) {
-                        selectItemIndex0 = 0xff;
-                        field_0x6aa = 0xff;
-                    }
+        case NORMAL_BOMB:
+        case WATER_BOMB:
+        case POKE_BOMB:
+        case HAWK_EYE:
+            if ((dComIfGs_getSelectItemIndex(0) == 4 && dComIfGs_getMixItemIndex(0) == NO_ITEM) ||
+                (dComIfGs_getMixItemIndex(0) == 4))
+            {
+                Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
+                selectItemIndex0 = field_0x690[field_0x6a8];
+                field_0x6b8[0] = 4;
+                field_0x6b3 = 0;
+                field_0x6aa = field_0x6a8;
+                field_0x6cd = 0xff;
+                bVar1 = true;
+                if (selectItemIndex1 == field_0x690[field_0x6a8]) {
+                    selectItemIndex1 = 0xff;
+                    field_0x6ab = 0xff;
                 }
-                break;
+            } else if ((dComIfGs_getSelectItemIndex(1) == 4 &&
+                        dComIfGs_getMixItemIndex(1) == NO_ITEM) ||
+                       (dComIfGs_getMixItemIndex(1) == 4))
+            {
+                Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_COMBINE_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
+                selectItemIndex1 = field_0x690[field_0x6a8];
+                field_0x6b8[1] = 4;
+                field_0x6b3 = 1;
+                field_0x6ab = field_0x6a8;
+                field_0x6cd = 0xff;
+                bVar1 = true;
+                if (selectItemIndex0 == field_0x690[field_0x6a8]) {
+                    selectItemIndex0 = 0xff;
+                    field_0x6aa = 0xff;
+                }
+            }
+            break;
         }
     }
     if (bVar1) {
         field_0x6b4[0] = selectItemIndex0;
         field_0x6b4[1] = selectItemIndex1;
         setJumpItem(false);
-        if (local_28[0] != 0xff) {
+        if (local_28[0] != NO_ITEM) {
             field_0x6aa = local_28[0];
         }
-        if (local_28[1] != 0xff) {
+        if (local_28[1] != NO_ITEM) {
             field_0x6ab = local_28[1];
         }
     }
@@ -1896,10 +1903,12 @@ void dMenu_Ring_c::drawItem() {
     } else {
         fVar16 = (g_ringHIO.mItemAlphaFlashDuration - field_0x684) / (f32)halfFlashDuration;
     }
-    f32 ringAlpha = (g_ringHIO.mItemAlphaMin + fVar16 * (g_ringHIO.mItemAlphaMax - g_ringHIO.mItemAlphaMin));
+    f32 ringAlpha =
+        (g_ringHIO.mItemAlphaMin + fVar16 * (g_ringHIO.mItemAlphaMax - g_ringHIO.mItemAlphaMin));
     for (int i = 0; i < field_0x6ae; i++) {
         if (i != field_0x6a8 || (mStatus != 0 && mStatus != 2 && mStatus != 3)) {
-            J2DDrawFrame(field_0x38c[i] -24.0f + field_0x568, field_0x3ec[i] - 24.0f + field_0x56c, 48.0f, 48.0f, g_ringHIO.mItemFrame[g_ringHIO.UNSELECT_FRAME], 6);
+            J2DDrawFrame(field_0x38c[i] - 24.0f + field_0x568, field_0x3ec[i] - 24.0f + field_0x56c,
+                         48.0f, 48.0f, g_ringHIO.mItemFrame[g_ringHIO.UNSELECT_FRAME], 6);
             f32 fVar17 = 1.0f;
             if (i != field_0x6a8) {
                 fVar17 = ringAlpha / 255.0f;
@@ -1913,8 +1922,8 @@ void dMenu_Ring_c::drawItem() {
                     }
                     f32 f0 = field_0x44c[i] * 48.0f;
                     f32 f1 = field_0x4ac[i] * 48.0f;
-                    f32 x =  (48.0f - f0)  * 0.5f  + (field_0x38c[i] - 24.0f + field_0x568);
-                    f32 y = (48.0f - f1)  * 0.5f + (field_0x3ec[i] - 24.0f + field_0x56c);
+                    f32 x = (48.0f - f0) * 0.5f + (field_0x38c[i] - 24.0f + field_0x568);
+                    f32 y = (48.0f - f1) * 0.5f + (field_0x3ec[i] - 24.0f + field_0x56c);
                     mpItemTex[i][j]->draw(x, y, f0, f1, 0, 0, 0);
                     u8 item = dComIfGs_getItem(field_0x690[i], false);
                     if ((j == 0 && item != BEE_CHILD) || (j == 2 && item == BEE_CHILD)) {
@@ -1954,7 +1963,8 @@ asm void dMenu_Ring_c::drawItem() {
 void dMenu_Ring_c::drawItem2() {
     s32 idx = field_0x6a8;
     if (mStatus == 0 || mStatus == 2 || mStatus == 3) {
-        J2DDrawFrame(field_0x38c[idx] - 24.0f + field_0x568, field_0x3ec[idx] - 24.0f + field_0x56c, 48.0f, 48.0f, g_ringHIO.mItemFrame[g_ringHIO.SELECT_FRAME], 6);
+        J2DDrawFrame(field_0x38c[idx] - 24.0f + field_0x568, field_0x3ec[idx] - 24.0f + field_0x56c,
+                     48.0f, 48.0f, g_ringHIO.mItemFrame[g_ringHIO.SELECT_FRAME], 6);
 
         for (int i = 0; i < 3; i++) {
             if (mpItemTex[idx][i] != NULL) {
@@ -1963,11 +1973,11 @@ void dMenu_Ring_c::drawItem2() {
                 } else {
                     mpItemTex[idx][i]->setAlpha(field_0x514 * 255.0f);
                 }
-                
+
                 f32 f0 = field_0x44c[idx] * 48.0f;
                 f32 f1 = field_0x4ac[idx] * 48.0f;
-                f32 x =  (48.0f - f0)  * 0.5f  + (field_0x38c[idx] - 24.0f + field_0x568);
-                f32 y = (48.0f - f1)  * 0.5f + (field_0x3ec[idx] - 24.0f + field_0x56c);
+                f32 x = (48.0f - f0) * 0.5f + (field_0x38c[idx] - 24.0f + field_0x568);
+                f32 y = (48.0f - f1) * 0.5f + (field_0x3ec[idx] - 24.0f + field_0x56c);
                 mpItemTex[idx][i]->draw(x, y, f0, f1, 0, 0, 0);
                 u8 item = dComIfGs_getItem(field_0x690[idx], false);
                 if ((i == 0 && item != BEE_CHILD) || (i == 2 && item == BEE_CHILD)) {
@@ -2023,7 +2033,7 @@ void dMenu_Ring_c::stick_wait_init() {
 void dMenu_Ring_c::stick_wait_proc() {
     u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], false);
 
-    if (item != 0xff) {
+    if (item != NO_ITEM) {
         setDoStatus(0x24);
     } else {
         setDoStatus(0);
@@ -2118,7 +2128,7 @@ void dMenu_Ring_c::stick_move_proc() {
             field_0x66e = field_0x670;
             mpDrawCursor->setPos(field_0x38c[field_0x6a8], field_0x3ec[field_0x6a8]);
             u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], false);
-            if (item != 0xff) {
+            if (item != NO_ITEM) {
                 mpDrawCursor->setParam(field_0x44c[field_0x6a8], field_0x4ac[field_0x6a8], 0.1f,
                                        0.6f, 0.5f);
             } else {
@@ -2145,7 +2155,7 @@ void dMenu_Ring_c::stick_move_proc() {
             field_0x66e = field_0x670;
             mpDrawCursor->setPos(field_0x38c[field_0x6a8], field_0x3ec[field_0x6a8]);
             u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], false);
-            if (item != 0xff) {
+            if (item != NO_ITEM) {
                 mpDrawCursor->setParam(field_0x44c[field_0x6a8], field_0x4ac[field_0x6a8], 0.1f,
                                        0.6f, 0.5f);
             } else {
@@ -2256,7 +2266,7 @@ asm void dMenu_Ring_c::stick_explain_force_proc() {
 void dMenu_Ring_c::setSelectItem(int i_idx, u8 i_itemNo) {
     f32 texScale = 1.0f;
 
-    if (i_itemNo != 0xff) {
+    if (i_itemNo != NO_ITEM) {
         if (field_0x6be[i_idx] == 0) {
             field_0x6be[i_idx] = 1;
         } else {
@@ -2286,7 +2296,8 @@ asm void dMenu_Ring_c::setSelectItem(int param_0, u8 param_1) {
 
 #ifdef NONMATCHING
 #else
-/* #e############################################################################################# */
+/* #e#############################################################################################
+ */
 /* 80454414-80454418 002A14 0004+00 1/1 0/0 0/0 .sdata2          @5811 */
 SECTION_SDATA2 static f32 lit_5811 = 17.0f / 10.0f;
 #endif
@@ -2302,7 +2313,8 @@ void dMenu_Ring_c::drawSelectItem() {
                 f32 initSizeY = dMeter2Info_getMeterItemPanePtr(i)->getInitSizeY() * 1.7f;
                 f32 initScaleX = dMeter2Info_getMeterItemPanePtr(i)->getInitScaleX();
                 f32 initScaleY = dMeter2Info_getMeterItemPanePtr(i)->getInitScaleY();
-                Vec pos = dMeter2Info_getMeterItemPanePtr(i)->getGlobalVtxCenter(dMeter2Info_getMeterItemPanePtr(i)->mPane, true, 0);
+                Vec pos = dMeter2Info_getMeterItemPanePtr(i)->getGlobalVtxCenter(
+                    dMeter2Info_getMeterItemPanePtr(i)->mPane, true, 0);
 
                 f32 fVar14 = field_0x674[i] / 10.0f;
                 if (field_0x6cd != 0xff) {
@@ -2318,10 +2330,11 @@ void dMenu_Ring_c::drawSelectItem() {
                 for (int j = 0; j < field_0x686[i]; j++) {
                     if (mpSelectItemTex[i][j] != NULL) {
                         mpSelectItemTex[i][j]->setAlpha(field_0x514 * 255.0f);
-                        f32 f3 = field_0x548[i] * initSizeX * fVar3; 
+                        f32 f3 = field_0x548[i] * initSizeX * fVar3;
                         f32 f4 = field_0x558[i] * initSizeY * fVar4;
                         mpSelectItemTex[i][j]->draw(fVar5 + (initSizeX - f3) * 0.5f,
-                            fVar6 + (initSizeY - f4) * 0.5f, f3, f4, 0, 0, 0);
+                                                    fVar6 + (initSizeY - f4) * 0.5f, f3, f4, 0, 0,
+                                                    0);
                     }
                 }
                 field_0x674[i]++;
@@ -2343,18 +2356,18 @@ asm void dMenu_Ring_c::drawSelectItem() {
 #endif
 
 /* 801EDF2C-801EDFDC 1E886C 00B0+00 4/4 0/0 0/0 .text setSelectItemForce__12dMenu_Ring_cFi */
-void dMenu_Ring_c::setSelectItemForce(int param_0) {
-    if (param_0 == 2) {
-        if (field_0x674[param_0] != 0) {
-            dComIfGs_setSelectItemIndex(param_0, field_0x6b4[param_0]);
-            field_0x674[param_0] = 0;
+void dMenu_Ring_c::setSelectItemForce(int i_idx) {
+    if (i_idx == 2) {
+        if (field_0x674[i_idx] != 0) {
+            dComIfGs_setSelectItemIndex(i_idx, field_0x6b4[i_idx]);
+            field_0x674[i_idx] = 0;
         }
-    } else if (field_0x674[param_0] != 0) {
+    } else if (field_0x674[i_idx] != 0) {
         for (int i = 0; i < 2; i++) {
             dComIfGs_setMixItemIndex(i, field_0x6b8[i]);
             dComIfGs_setSelectItemIndex(i, field_0x6b4[i]);
         }
-        field_0x674[param_0] = 0;
+        field_0x674[i_idx] = 0;
     }
 }
 
@@ -2374,26 +2387,26 @@ u8 dMenu_Ring_c::getItemNum(u8 i_slotNo) {
     u8 ret = 0;
 
     switch (item) {
-    case 0x50:
+    case BOMB_BAG_LV1:
         ret = 0;
         break;
-    case 0x70:
-    case 0x71:
-    case 0x72:
+    case NORMAL_BOMB:
+    case WATER_BOMB:
+    case POKE_BOMB:
         ret = dComIfGs_getBombNum(i_slotNo - 0xF);
         break;
 
-    case 0x76:
+    case BEE_CHILD:
         ret = dComIfGs_getBottleNum(i_slotNo - 0xB);
         break;
-    case 0x43:
-    case 0x53:
-    case 0x54:
-    case 0x55:
-    case 0x56:
+    case BOW:
+    case LIGHT_ARROW:
+    case ARROW_LV1:
+    case ARROW_LV2:
+    case ARROW_LV3:
         ret = dComIfGs_getArrowNum();
         break;
-    case 0x4B:
+    case PACHINKO:
         ret = dComIfGs_getPachinkoNum();
         break;
     }
@@ -2406,26 +2419,26 @@ u8 dMenu_Ring_c::getItemMaxNum(u8 i_slotNo) {
     u8 ret = 0;
 
     switch (item) {
-    case 0x50:
+    case BOMB_BAG_LV1:
         ret = 1;
         break;
-    case 0x70:
-    case 0x71:
-    case 0x72:
+    case NORMAL_BOMB:
+    case WATER_BOMB:
+    case POKE_BOMB:
         ret = dComIfGs_getBombMax(item);
         break;
 
-    case 0x76:
+    case BEE_CHILD:
         ret = dComIfGs_getBottleMax();
         break;
-    case 0x43:
-    case 0x53:
-    case 0x54:
-    case 0x55:
-    case 0x56:
+    case BOW:
+    case LIGHT_ARROW:
+    case ARROW_LV1:
+    case ARROW_LV2:
+    case ARROW_LV3:
         ret = dComIfGs_getArrowMax();
         break;
-    case 0x4B:
+    case PACHINKO:
         ret = dComIfGs_getPachinkoMax();
         break;
     }
@@ -2444,101 +2457,105 @@ bool dMenu_Ring_c::checkExplainForce() {
     u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], true);
 
     for (int i = 0; i < 4; i++) {
-        local_18[i] = 0xff;
+        local_18[i] = NO_ITEM;
     }
 
     switch (item) {
-        case 0x43:
-            switch (item0) {
-                case 0x70:
-                case 0x71:
-                case 0x72:
-                    local_18[0] = 0x59;
-                    break;
-                case 0x3E:
-                    local_18[0] = 0x5A;
-                    break;
-            }
-            switch (item1) {
-                case 0x70:
-                case 0x71:
-                case 0x72:
-                    local_18[1] = 0x59;
-                    break;
-                case 0x3E:
-                    local_18[1] = 0x5A;
-                    break;
-            }
+    case BOW:
+        switch (item0) {
+        case NORMAL_BOMB:
+        case WATER_BOMB:
+        case POKE_BOMB:
+            local_18[0] = BOMB_ARROW;
             break;
-        case 0x70:
-        case 0x71:
-        case 0x72:
-            if (item0 == 0x43) {
-                local_18[0] = 0x59;
-            } else if (item1 == 0x43) {
-                local_18[1] = 0x59;
-            }
+        case HAWK_EYE:
+            local_18[0] = HAWK_ARROW;
             break;
-        case 0x3E:
-            if (item0 == 0x43) {
-                local_18[0] = 0x5A;
-            } else if (item1 == 0x43) {
-                local_18[1] = 0x5A;
-            }
+        }
+        switch (item1) {
+        case NORMAL_BOMB:
+        case WATER_BOMB:
+        case POKE_BOMB:
+            local_18[1] = BOMB_ARROW;
             break;
-        case 0x76:
-            if (item0 == 0x4A) {
-                local_18[0] = 0x5B;
-            } else if (item1 == 0x4A) {
-                local_18[1] = 0x5B;
-            }
+        case HAWK_EYE:
+            local_18[1] = HAWK_ARROW;
             break;
-        case 0x74:
-            if (item0 == 0x4A) {
-                local_18[0] = 0x5D;
-            } else if (item1 == 0x4A) {
-                local_18[1] = 0x5D;
-            }
-            break;
-        case 0x3D:
-            if (item0 == 0x4A) {
-                local_18[0] = 0x5C;
-            } else if (item1 == 0x4A) {
-                local_18[1] = 0x5C;
-            }
-            break;
-        case 0x4A:
-            if (item0 == 0x76) {
-                local_18[0] = 0x5B;
-            } else if (item1 == 0x76) {
-                local_18[1] = 0x5B;
-            } else if (item0 == 0x3D) {
-                local_18[0] = 0x5C;
-            } else if (item1 == 0x3D) {
-                local_18[1] = 0x5C;
-            } else if (item0 == 0x74) {
-                local_18[0] = 0x5D;
-            } else if (item1 == 0x74) {
-                local_18[1] = 0x5D;
-            }
-            break;
+        }
+        break;
+    case NORMAL_BOMB:
+    case WATER_BOMB:
+    case POKE_BOMB:
+        if (item0 == BOW) {
+            local_18[0] = BOMB_ARROW;
+        } else if (item1 == BOW) {
+            local_18[1] = BOMB_ARROW;
+        }
+        break;
+    case HAWK_EYE:
+        if (item0 == BOW) {
+            local_18[0] = HAWK_ARROW;
+        } else if (item1 == BOW) {
+            local_18[1] = HAWK_ARROW;
+        }
+        break;
+    case BEE_CHILD:
+        if (item0 == FISHING_ROD_1) {
+            local_18[0] = BEE_ROD;
+        } else if (item1 == FISHING_ROD_1) {
+            local_18[1] = BEE_ROD;
+        }
+        break;
+    case WORM:
+        if (item0 == FISHING_ROD_1) {
+            local_18[0] = WORM_ROD;
+        } else if (item1 == FISHING_ROD_1) {
+            local_18[1] = WORM_ROD;
+        }
+        break;
+    case ZORAS_JEWEL:
+        if (item0 == FISHING_ROD_1) {
+            local_18[0] = JEWEL_ROD;
+        } else if (item1 == FISHING_ROD_1) {
+            local_18[1] = JEWEL_ROD;
+        }
+        break;
+    case FISHING_ROD_1:
+        if (item0 == BEE_CHILD) {
+            local_18[0] = BEE_ROD;
+        } else if (item1 == BEE_CHILD) {
+            local_18[1] = BEE_ROD;
+        } else if (item0 == ZORAS_JEWEL) {
+            local_18[0] = JEWEL_ROD;
+        } else if (item1 == ZORAS_JEWEL) {
+            local_18[1] = JEWEL_ROD;
+        } else if (item0 == WORM) {
+            local_18[0] = WORM_ROD;
+        } else if (item1 == WORM) {
+            local_18[1] = WORM_ROD;
+        }
+        break;
     }
 
-    if (local_18[0] != 0xff && local_18[1] == 0xff && local_18[2] == 0xff && local_18[3] == 0xff && dComIfGs_getMixItemIndex(0) == 0xff) {
+    if (local_18[0] != NO_ITEM && local_18[1] == NO_ITEM && local_18[2] == NO_ITEM && local_18[3] == NO_ITEM &&
+        dComIfGs_getMixItemIndex(0) == NO_ITEM)
+    {
         field_0x6c7[0] = local_18[0];
-        field_0x6c7[1] = 0xff;
-        field_0x6c7[2] = 0xff;
-        field_0x6c7[3] = 0xff;
-    } else if (local_18[0] == 0xff && local_18[1] != 0xff && local_18[2] == 0xff && local_18[3] == 0xff && dComIfGs_getMixItemIndex(1) == 0xff) {
-        field_0x6c7[0] = 0xff;
+        field_0x6c7[1] = NO_ITEM;
+        field_0x6c7[2] = NO_ITEM;
+        field_0x6c7[3] = NO_ITEM;
+    } else if (local_18[0] == NO_ITEM && local_18[1] != NO_ITEM && local_18[2] == NO_ITEM &&
+               local_18[3] == NO_ITEM && dComIfGs_getMixItemIndex(1) == NO_ITEM)
+    {
+        field_0x6c7[0] = NO_ITEM;
         field_0x6c7[1] = local_18[1];
-        field_0x6c7[2] = 0xff;
-        field_0x6c7[3] = 0xff;
+        field_0x6c7[2] = NO_ITEM;
+        field_0x6c7[3] = NO_ITEM;
     } else {
-        field_0x6c7[0] = 0xff;
-        field_0x6c7[1] = 0xff;
-        field_0x6c7[2] = 0xff;
-        field_0x6c7[3] = 0xff;
+        field_0x6c7[0] = NO_ITEM;
+        field_0x6c7[1] = NO_ITEM;
+        field_0x6c7[2] = NO_ITEM;
+        field_0x6c7[3] = NO_ITEM;
     }
     return 0;
 }
@@ -2605,7 +2622,8 @@ void dMenu_Ring_c::drawNumber(int param_0, int param_1, f32 param_2, f32 param_3
         mpItemNumTex[2]->changeTexture(texture, 0);
         mpItemNumTex[2]->show();
     }
-    u8 itemIconAlpha = mPlayerIsWolf != 0 ? g_ringHIO.mItemIconAlpha_Wolf : g_ringHIO.mItemIconAlpha;
+    u8 itemIconAlpha =
+        mPlayerIsWolf != 0 ? g_ringHIO.mItemIconAlpha_Wolf : g_ringHIO.mItemIconAlpha;
     for (int i = 0; i < 3; i++) {
         mpItemNumTex[i]->setAlpha(itemIconAlpha * field_0x514);
         mpItemNumTex[i]->draw(param_2 + i * 16.0f, param_3 - 16.0f, 16.0f, 16.0f, 0, 0, 0);
@@ -2649,19 +2667,19 @@ void dMenu_Ring_c::setDoStatus(u8 param_0) {
 
 /* 801EEB58-801EEC98 1E9498 0140+00 1/1 0/0 0/0 .text            isMixItemOn__12dMenu_Ring_cFv */
 bool dMenu_Ring_c::isMixItemOn() {
-    if (mPlayerIsWolf == 0 && dComIfGs_getItem(field_0x690[field_0x6a8], 0) != 0xff) {
+    if (mPlayerIsWolf == 0 && dComIfGs_getItem(field_0x690[field_0x6a8], 0) != NO_ITEM) {
         u8 item = dComIfGs_getItem(field_0x690[field_0x6a8], 0);
         switch (item) {
-        case 0x3E:
-        case 0x70:
-        case 0x71:
-        case 0x72:
-            if ((dComIfGs_getSelectItemIndex(0) == 4) && (dComIfGs_getMixItemIndex(0) == 0xff) ||
+        case HAWK_EYE:
+        case NORMAL_BOMB:
+        case WATER_BOMB:
+        case POKE_BOMB:
+            if ((dComIfGs_getSelectItemIndex(0) == 4) && (dComIfGs_getMixItemIndex(0) == NO_ITEM) ||
                 (dComIfGs_getMixItemIndex(0) == 4))
             {
                 return 1;
             }
-            if ((dComIfGs_getSelectItemIndex(1) == 4) && (dComIfGs_getMixItemIndex(1) == 0xff) ||
+            if ((dComIfGs_getSelectItemIndex(1) == 4) && (dComIfGs_getMixItemIndex(1) == NO_ITEM) ||
                 (dComIfGs_getMixItemIndex(1) == 4))
             {
                 return 1;
@@ -2674,7 +2692,7 @@ bool dMenu_Ring_c::isMixItemOn() {
 
 /* 801EEC98-801EED84 1E95D8 00EC+00 1/1 0/0 0/0 .text            isMixItemOff__12dMenu_Ring_cFv */
 bool dMenu_Ring_c::isMixItemOff() {
-    if ((!mPlayerIsWolf) && (dComIfGs_getItem(field_0x690[field_0x6a8], 0) != 0xff)) {
+    if ((!mPlayerIsWolf) && (dComIfGs_getItem(field_0x690[field_0x6a8], 0) != NO_ITEM)) {
         if ((dComIfGs_getMixItemIndex(0) == 4) &&
             (field_0x690[field_0x6a8] == dComIfGs_getSelectItemIndex(0)))
         {
@@ -2840,11 +2858,11 @@ void dMenu_Ring_c::clacEllipsePlotAverage(int param_0, f32 param_1, f32 param_2)
     f32 fVar8 = 0.0f;
     f32 temp2;
     f32 fVar3;
-    
+
     f32* ptr = (f32*)operator new[](16000);
     f32* ptr_00 = (f32*)operator new[](16000);
     f32* ptr_01 = (f32*)operator new[](16000);
-    
+
     f32 fVar9 = 0.0f;
     for (int i = 0; i <= 0x3E8; i++) {
         ptr[i] = fVar8;
@@ -2858,7 +2876,7 @@ void dMenu_Ring_c::clacEllipsePlotAverage(int param_0, f32 param_1, f32 param_2)
             ptr_01[i + 1999] = ptr_01[i - 1];
             ptr_01[4000 - i] = ptr_01[i - 1];
             fVar9 = fVar9 + ptr_01[2000 - i] + ptr_01[i + 1999] + ptr_01[4000 - i] + ptr_01[i - 1];
-            
+
             if (i < 1000) {
                 ptr[2000 - i] = ptr[i];
                 ptr_00[2000 - i] = -ptr_00[i];
@@ -2867,14 +2885,14 @@ void dMenu_Ring_c::clacEllipsePlotAverage(int param_0, f32 param_1, f32 param_2)
             }
         }
     }
-    
+
     fVar8 = fVar9 / param_0;
     fVar3 = 0.0f;
     temp2 = 0.0f;
     s32 j = 0;
     field_0x38c[0] = ptr[0] + param_1;
     field_0x3ec[0] = ptr_00[0] + param_2;
-    
+
     for (int i = 0; i < 4000; i++) {
         f510 = ptr_01[i];
         fVar3 += f510;
@@ -2892,8 +2910,8 @@ void dMenu_Ring_c::clacEllipsePlotAverage(int param_0, f32 param_1, f32 param_2)
         }
         f50c = fVar8;
         temp2 = fVar3;
-        if (j >= param_0 - 1) break;
-        
+        if (j >= param_0 - 1)
+            break;
     }
     operator delete[](ptr);
     operator delete[](ptr_00);
