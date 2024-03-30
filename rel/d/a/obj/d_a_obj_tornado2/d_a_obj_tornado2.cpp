@@ -11,46 +11,11 @@
 // Types:
 //
 
-struct csXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daObjTrnd2_c {
-    /* 80D1C4D8 */ void setPntWind();
-    /* 80D1C54C */ void cutPntWind();
-    /* 80D1C570 */ void movePntWind();
-    /* 80D1C780 */ void setCpsInfo();
-    /* 80D1C924 */ void initBaseMtx();
-    /* 80D1C944 */ void setBaseMtx();
-    /* 80D1C98C */ void Create();
-    /* 80D1CC80 */ void create();
-    /* 80D1CDC0 */ void execute();
-    /* 80D1D0AC */ void setParticle();
-    /* 80D1D214 */ void endParticle();
-    /* 80D1D278 */ void startParticle();
-    /* 80D1D2AC */ void stopParticle();
-    /* 80D1D2E0 */ bool draw();
-    /* 80D1D2E8 */ void _delete();
-};
-
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
 struct dPa_levelEcallBack {};
-
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -61,8 +26,6 @@ struct dPa_control_c {
 struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
-
-struct WIND_INFLUENCE {};
 
 //
 // Forward References:
@@ -119,16 +82,12 @@ extern "C" void Set__8cM3dGCpsFRC9cM3dGCpsS();
 extern "C" void cLib_addCalc__FPfffff();
 extern "C" void cLib_chaseF__FPfff();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_26();
 extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cps[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
@@ -136,7 +95,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" f32 Zero__4cXyz[3];
 
 //

@@ -41,6 +41,14 @@ public:
     bool checkWaterBomb(fopAc_ac_c*);
     bool checkInsectBombMove(fopAc_ac_c*);
 
+    bool checkStateExplode() {
+        return fopAcM_GetParam(this) == 0;
+    }
+
+    static bool checkBombActor(fopAc_ac_c* i_actor) {
+        return fopAcM_GetName(i_actor) == PROC_NBOMB;
+    }
+
     static fopAc_ac_c* createNormalBombPlayer(cXyz* i_pos) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 8, i_pos, -1, NULL, NULL, -1, NULL, NULL);
     }

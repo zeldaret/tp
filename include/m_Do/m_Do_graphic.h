@@ -69,6 +69,7 @@ public:
     static u8 isFade() { return mFade; }
     static void offBlure() { mBlureFlag = false; }
     static bool isBlure() { return mBlureFlag; }
+    static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }
     static u8 getBlureRate() { return mBlureRate; }
     static MtxP getBlureMtx() { return mBlureMtx; }
     static void offAutoForcus() { data_80450BE7 = 0; }

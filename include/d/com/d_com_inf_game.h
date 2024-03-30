@@ -129,7 +129,7 @@ public:
     dVibration_c& getVibration() { return mVibration; }
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx]; }
+    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx * 2]; }
     dPa_control_c* getParticle() { return mParticle; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c& getAttention() { return mAttention; }
@@ -490,7 +490,7 @@ public:
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
     bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
 
-    int getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
+    int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
     void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
     void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
     const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }

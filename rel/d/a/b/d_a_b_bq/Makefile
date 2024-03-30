@@ -21,6 +21,7 @@ M139_LIBS := \
 M139_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+#	-sym on \
 
 M139_LDFLAGS := \
 	-nodefaults \
