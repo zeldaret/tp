@@ -19,6 +19,11 @@
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
 #include "m_Do/m_Do_mtx.h"
+#include "SSystem/SComponent/c_math.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/JParticle/JPADrawInfo.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "JSystem/JFramework/JFWSystem.h"
 
 //
 // Types:
@@ -591,19 +596,19 @@ SECTION_SDATA2 static f32 lit_4442 = -0.0025f;
 
 /* 80008630-80009184 002F70 0B54+00 1/1 0/0 0/0 .text
  * drawDepth2__FP10view_classP15view_port_classi                */
-// regalloc
+// Matches with literals
 #ifdef NONMATCHING
 static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_2) {
     s16 x_orig;
-    s16 y_orig;
     s16 y_orig_pos;
-    s16 width;
-    s16 height;
+    s16 y_orig;
     void* zBufferTex;
+    s16 width;
     void* frameBufferTex;
-
     u16 halfWidth;
     u16 halfHeight;
+    s16 height;
+
 
     f32* temp_r20;
 
@@ -664,9 +669,8 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
             }
         }
 
-        temp_r20 = &g_env_light.field_0x1264;
-        cLib_addCalc(temp_r20, var_f30, 0.1f, 100.0f, 0.0001f);
-        l_tevColor0.a = *temp_r20;
+        cLib_addCalc(&g_env_light.field_0x1264, var_f30, 0.1f, 100.0f, 0.0001f);
+        l_tevColor0.a = g_env_light.field_0x1264;
         if (l_tevColor0.a <= -254) {
             l_tevColor0.a = -255;
         }
@@ -789,9 +793,9 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
         if (l_tevColor0.a > -255) {
             GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-            GXPosition3s16(x_orig, y_orig, -5);
+            GXPosition3s16(x_orig, y_orig_pos, -5);
             GXTexCoord2s8(0, 0);
-            GXPosition3s16(width, y_orig, -5);
+            GXPosition3s16(width, y_orig_pos, -5); 
             GXTexCoord2s8(1, 0);
             GXPosition3s16(width, height, -5);
             GXTexCoord2s8(1, 1);
@@ -874,12 +878,12 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 8);
         GXPosition3s16(0, 0, -5);
         GXPosition3s16(0x260, 0, -5);
-        GXPosition3s16(0x280, sc_top, -5);
+        GXPosition3s16(0x260, sc_top, -5);
         GXPosition3s16(0, sc_top, -5);
         GXPosition3s16(0, sc_bottom, -5);
-        GXPosition3s16(0x280, sc_bottom, -5);
-        GXPosition3s16(0x280, 0x1c0, -5);
-        GXPosition3s16(0, 0x1c8, -5);
+        GXPosition3s16(0x260, sc_bottom, -5);
+        GXPosition3s16(0x260, 0x1c0, -5);
+        GXPosition3s16(0, 0x1c0, -5);
         GXEnd();
     }
     GXSetScissor(param_1->mScissor.mXOrig, param_1->mScissor.mYOrig, param_1->mScissor.mWidth,
