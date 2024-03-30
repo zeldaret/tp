@@ -4990,7 +4990,7 @@ asm void dFile_select_c::screenSet() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 // J2DPicture::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1)
-extern "C" asm bool setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor() {
+asm bool J2DPicture::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
     nofralloc
 #include "asm/d/file/d_file_select/setBlackWhite__10J2DPictureFQ28JUtility6TColorQ28JUtility6TColor.s"
 }
