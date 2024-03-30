@@ -69,11 +69,7 @@ public:
     /* 801EF484 */ bool dpdMove();
     /* 801EF48C */ u8 openExplain(u8);
 
-    #ifdef NONMATCHING
     virtual void draw() { _draw(); }
-    #else
-    /* 801EF560 */ virtual void draw();
-    #endif
     /* 801EA708 */ virtual ~dMenu_Ring_c();
 
     void drawFlag0() { mDrawFlag = 0; }
