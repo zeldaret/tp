@@ -3,6 +3,9 @@
  * Menu - Item Wheel
  */
 
+// the stringbase doesn't generate the required padding
+// might be that some weak functions after the ctor break the match too
+
 //#define NONMATCHING
 
 #include "d/menu/d_menu_ring.h"
