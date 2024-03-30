@@ -201,36 +201,83 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 #ifdef NONMATCHING
 #else
+/* 80397738-80397760 023D98 0028+00 1/1 0/0 0/0 .rodata          xy_text$4015 */
 static const u64 xy_text[5] = {
-        'yx_text', 'yx_te_s1', 'yx_te_s2', 'yx_te_s3', 'yx_te_s4',
-    };
-    static const u64 fxy_text[5] = {
-        'fyx_tex', 'fyx_te_1', 'fyx_te_2', 'fyx_te_3', 'fyx_te_4',
-    };
-    static const u64 c_text[5] = {
-        'c_text', 'c_te_s1', 'c_te_s2', 'c_te_s3', 'c_te_s4',
-    };
-    static const u64 fc_text[5] = {
-        'fc_text', 'fc_te_s1', 'fc_te_s2', 'fc_te_s3', 'fc_te_s4',
-    };
-    static const u64 c_text1[5] = {
-        'c_text1', 'c_texs1', 'c_texs2', 'c_texs3', 'c_texs4',
-    };
-    static const u64 fc_text1[5] = {
-        'fc_text1', 'fc_texs1', 'fc_texs2', 'fc_texs3', 'fc_texs4',
-    };
-    static const u64 t_on[5] = {
-        'gr_t_on', 'g_tof_s5', 'g_tof_s6', 'g_tof_s7', 'g_tof_s8',
-    };
-    static const u64 ft_on[5] = {
-        'fr_t_on', 'f_tof_s5', 'f_tof_s6', 'f_tof_s7', 'f_tof_s8',
-    };
-    static const u64 t_off[5] = {
-        'gr_t_of', 'g_tof_s1', 'g_tof_s2', 'g_tof_s3', 'g_tof_s4',
-    };
-    static const u64 ft_off[5] = {
-        'fr_t_of', 'f_tof_s1', 'f_tof_s2', 'f_tof_s3', 'f_tof_s4',
-    };
+    'yx_text', 'yx_te_s1', 'yx_te_s2', 'yx_te_s3', 'yx_te_s4',
+};
+
+/* 80397760-80397788 023DC0 0028+00 0/1 0/0 0/0 .rodata          fxy_text$4016 */
+#pragma push
+#pragma force_active on
+static const u64 fxy_text[5] = {
+    'fyx_tex', 'fyx_te_1', 'fyx_te_2', 'fyx_te_3', 'fyx_te_4',
+};
+#pragma pop
+
+/* 80397788-803977B0 023DE8 0028+00 0/1 0/0 0/0 .rodata          c_text$4022 */
+#pragma push
+#pragma force_active on
+static const u64 c_text[5] = {
+    'c_text', 'c_te_s1', 'c_te_s2', 'c_te_s3', 'c_te_s4',
+};
+#pragma pop
+
+/* 803977B0-803977D8 023E10 0028+00 0/1 0/0 0/0 .rodata          fc_text$4023 */
+#pragma push
+#pragma force_active on
+static const u64 fc_text[5] = {
+    'fc_text', 'fc_te_s1', 'fc_te_s2', 'fc_te_s3', 'fc_te_s4',
+};
+#pragma pop
+
+/* 803977D8-80397800 023E38 0028+00 0/1 0/0 0/0 .rodata          c_text1$4029 */
+#pragma push
+#pragma force_active on
+static const u64 c_text1[5] = {
+    'c_text1', 'c_texs1', 'c_texs2', 'c_texs3', 'c_texs4',
+};
+#pragma pop
+
+/* 80397800-80397828 023E60 0028+00 0/1 0/0 0/0 .rodata          fc_text1$4030 */
+#pragma push
+#pragma force_active on
+static const u64 fc_text1[5] = {
+    'fc_text1', 'fc_texs1', 'fc_texs2', 'fc_texs3', 'fc_texs4',
+};
+#pragma pop
+
+/* 80397828-80397850 023E88 0028+00 0/1 0/0 0/0 .rodata          t_on$4036 */
+#pragma push
+#pragma force_active on
+static const u64 t_on[5] = {
+    'gr_t_on', 'g_tof_s5', 'g_tof_s6', 'g_tof_s7', 'g_tof_s8',
+};
+#pragma pop
+
+/* 80397850-80397878 023EB0 0028+00 0/1 0/0 0/0 .rodata          ft_on$4037 */
+#pragma push
+#pragma force_active on
+static const u64 ft_on[5] = {
+    'fr_t_on', 'f_tof_s5', 'f_tof_s6', 'f_tof_s7', 'f_tof_s8',
+};
+#pragma pop
+
+/* 80397878-803978A0 023ED8 0028+00 0/1 0/0 0/0 .rodata          t_off$4043 */
+#pragma push
+#pragma force_active on
+static const u64 t_off[5] = {
+    'gr_t_of', 'g_tof_s1', 'g_tof_s2', 'g_tof_s3', 'g_tof_s4',
+};
+#pragma pop
+
+/* 803978A0-803978C8 023F00 0028+00 0/1 0/0 0/0 .rodata          ft_off$4044 */
+#pragma push
+#pragma force_active on
+static const u64 ft_off[5] = {
+    'fr_t_of', 'f_tof_s1', 'f_tof_s2', 'f_tof_s3', 'f_tof_s4',
+};
+#pragma pop
+
 #endif
 
 #ifdef NONMATCHING
