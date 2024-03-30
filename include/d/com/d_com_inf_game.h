@@ -386,6 +386,7 @@ public:
     s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
     void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
     u8 getNeedLightDropNum() { return mNeedLightDropNum; }
+    u8 getWolfAbility(int i_idx) { return mWolfAbility[i_idx]; }
 
     const char* getStartStageName() { return mStartStage.getName(); }
     s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
@@ -731,8 +732,7 @@ public:
     /* 0x04F58 */ u8 mSubHeapLockFlag[2];
     /* 0x04F5A */ u8 mNowVibration;
     /* 0x04F5B */ u8 field_0x4f5b[2];
-    /* 0x04F5D */ u8 mWolfAbility;
-    /* 0x04F5E */ u8 field_0x4f5e[11];
+    /* 0x04F5D */ u8 mWolfAbility[12];
     /* 0x04F69 */ u8 mNeedLightDropNum;
     /* 0x04F6A */ u8 field_0x4f6a[18];
     /* 0x04F7C */ u8 mMesgBgm;
@@ -1079,6 +1079,10 @@ inline void dComIfGs_setArrowMax(u8 i_arrowMax) {
 
 inline u8 dComIfGs_getPachinkoMax() {
     return 50;
+}
+
+inline u8 dComIfGs_getWolfAbility(int i_idx) {
+    return g_dComIfG_gameInfo.play.getWolfAbility(i_idx);
 }
 
 inline void dComIfGs_setEmptyBombBag() {
