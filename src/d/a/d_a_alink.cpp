@@ -12732,7 +12732,7 @@ void daAlink_c::playerInit() {
 
     field_0x3184 = -1;
     mExitID = 0x3F;
-    onNoResetFlg0(FLG0_UNK_100);
+    onNoResetFlg0(FLG0_SWIM_UP);
     offOxygenTimer();
 
     int startMode = getStartMode();
@@ -15674,7 +15674,7 @@ BOOL daAlink_c::notTalk() {
 
 /* 800B4A08-800B4B2C 0AF348 0124+00 11/11 0/0 0/0 .text            setTalkStatus__9daAlink_cFv */
 BOOL daAlink_c::setTalkStatus() {
-    if (checkEndResetFlg0(ERFLG0_UNK_400000) || field_0x27f4 == NULL) {
+    if (checkEndResetFlg0(ERFLG0_BEE_FOLLOW) || field_0x27f4 == NULL) {
         return 0;
     }
 
@@ -17481,7 +17481,7 @@ void daAlink_c::posMove() {
         cLib_chasePos(&field_0x3750, cXyz::Zero, daAlinkHIO_damSwim_c0::m.field_0x84);
         current.pos += field_0x3750;
 
-        if (checkNoResetFlg0(FLG0_UNK_100) && mProcID != PROC_SWIM_DIVE) {
+        if (checkNoResetFlg0(FLG0_SWIM_UP) && mProcID != PROC_SWIM_DIVE) {
             current.pos.y = mWaterY;
         } else if (mDemo.getDemoType() == 4 || mProcID == PROC_ELEC_DAMAGE ||
                    dComIfGp_checkPlayerStatus0(0, 0x10))
@@ -17658,7 +17658,7 @@ void daAlink_c::posMove() {
         }
     }
 
-    if (checkModeFlg(MODE_SWIMMING) && checkNoResetFlg0(FLG0_UNK_100)) {
+    if (checkModeFlg(MODE_SWIMMING) && checkNoResetFlg0(FLG0_SWIM_UP)) {
         cXyz sp84 = current.pos - field_0x3798;
 
         f32 temp_f3 = sp84.absXZ();

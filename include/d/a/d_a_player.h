@@ -236,7 +236,7 @@ public:
         FLG0_MAGNE_BOOTS_ON = 0x1000,
         FLG0_PUSH_PULL_KEEP = 0x800,
         FLG0_UNK_400 = 0x400,
-        FLG0_UNK_100 = 0x100,
+        FLG0_SWIM_UP = 0x100,
         FLG0_UNK_80 = 0x80,
         FLG0_UNK_40 = 0x40,
         FLG0_UNK_20 = 0x20,
@@ -346,7 +346,7 @@ public:
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
         ERFLG0_UNK_1000000 = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
-        ERFLG0_UNK_400000 = 0x400000,
+        ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_2000 = 0x2000,
@@ -741,8 +741,10 @@ public:
     bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
     bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
+    bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
+    void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }

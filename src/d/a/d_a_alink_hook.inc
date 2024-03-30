@@ -1403,7 +1403,7 @@ int daAlink_c::procHookshotMove() {
 int daAlink_c::procHookshotFlyInit() {
     commonProcInit(PROC_HOOKSHOT_FLY);
 
-    if (!checkNoResetFlg0(FLG0_UNK_100)) {
+    if (!checkNoResetFlg0(FLG0_SWIM_UP)) {
         onNoResetFlg0(FLG0_UNDERWATER);
     }
 
