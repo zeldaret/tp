@@ -2933,12 +2933,6 @@ bool dMenu_Ring_c::dpdMove() {
     return false;
 }
 
-/* 80454424-8045442C 002A24 0008+00 1/1 0/0 0/0 .sdata2          i_nameID$6472 */
-SECTION_SDATA2 static u32 i_nameID[2] = {0x4DE, 0x4E0};
-
-/* 8045442C-80454434 002A2C 0008+00 1/1 0/0 0/0 .sdata2          i_expID$6473 */
-SECTION_SDATA2 static u32 i_expID[2] = {0x4DF, 0x4E1};
-
 /* 801EF48C-801EF560 1E9DCC 00D4+00 1/1 0/0 0/0 .text            openExplain__12dMenu_Ring_cFUc */
 u8 dMenu_Ring_c::openExplain(u8 param_0) {
     if (field_0x6cf == 0xff && field_0x6d0 == 0xff) {
@@ -2950,6 +2944,8 @@ u8 dMenu_Ring_c::openExplain(u8 param_0) {
         return 0;
     }
     u8 idx = field_0x6d0 != 0xff ? field_0x6d0 : field_0x6cf;
+    static const u32 i_nameID[2] = {0x4DE, 0x4E0};
+    static const u32 i_expID[2] = {0x4DF, 0x4E1};
     return mpItemExplain->openExplainTx(i_nameID[idx], i_expID[idx]);
 }
 
