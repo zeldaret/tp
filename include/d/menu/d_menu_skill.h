@@ -93,8 +93,8 @@ private:
     /* 0x206 */ u8 mIndex;
     /* 0x207 */ u8 mSkillNum;
     /* 0x208 */ u8 mRemainder;
-    /* 0x209 */ u8 field_0x209;
-    /* 0x20A */ u8 field_0x20a;
+    /* 0x209 */ u8 field_0x209; // Initialized but never used
+    /* 0x20A */ u8 field_0x20a; // Initialized but never used
     /* 0x20B */ u8 mTotalSkillNum;
 };  // Size: 0x20C
 

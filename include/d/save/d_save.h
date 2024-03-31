@@ -33,6 +33,12 @@
 #define WALLET_MAX 300
 #define BIG_WALLET_MAX 600
 #define GIANT_WALLET_MAX 1000
+#define MAX_FINDABLE_FISHES 6
+
+enum ButtonIndexes {
+    /* 0 */ A_BUTTON,
+    /* 1 */ B_BUTTON,
+};
 
 enum Wallets {
     /* 0x0 */ WALLET,

@@ -1835,7 +1835,7 @@ void dMw_c::collect_letter_close_proc() {
 /* 801FB91C-801FB9AC 1F625C 0090+00 1/0 0/0 0/0 .text            collect_fishing_open_proc__5dMw_cFv
  */
 void dMw_c::collect_fishing_open_proc() {
-    if (mpMenuFishing->getStatus() == 1) {
+    if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_OPEN) {
         mpMenuFishing->_open();
 
         if (field_0x152 == 0 && mpMenuFishing->isSync()) {
@@ -1844,7 +1844,7 @@ void dMw_c::collect_fishing_open_proc() {
         }
     }
 
-    if (mpMenuFishing->getStatus() == 2 && field_0x152 == 1) {
+    if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_MOVE && field_0x152 == 1) {
         mMenuStatus = FISHING_MOVE;
         field_0x152 = 0;
     }
@@ -1853,11 +1853,11 @@ void dMw_c::collect_fishing_open_proc() {
 /* 801FB9AC-801FBA00 1F62EC 0054+00 1/0 0/0 0/0 .text            collect_fishing_move_proc__5dMw_cFv
  */
 void dMw_c::collect_fishing_move_proc() {
-    if (mpMenuFishing->getStatus() == 2) {
+    if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_MOVE) {
         mpMenuFishing->_move();
     }
 
-    if (mpMenuFishing->getStatus() == 3) {
+    if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_CLOSE) {
         mMenuStatus = FISHING_CLOSE;
     }
 }
