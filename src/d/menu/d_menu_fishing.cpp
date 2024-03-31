@@ -33,15 +33,15 @@ moveFunc map_move_process[] = {
 
 /* 801C4D54-801C4D98 1BF694 0044+00 0/0 2/2 0/0 .text
  * __ct__15dMenu_Fishing_cFP10JKRExpHeapP9STControlP10CSTControl */
-dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* heap, STControl* stControl, CSTControl* cstControl) {
-    mpHeap = heap;
+dMenu_Fishing_c::dMenu_Fishing_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cStick) {
+    mpHeap = i_heap;
     mpArchive = 0;
     mpMount = 0;
-    mpStick = stControl;
-    mpCStick = cstControl;
-    mStatus = 1;
-    field_0x1fb = 0;
-    field_0x1f8 = 0;
+    mpStick = i_stick;
+    mpCStick = i_cStick;
+    mStatus = READY_OPEN;
+    mProcess = 0;
+    mFishListScreenFrames = 0;
 }
 
 /* 801C4D98-801C504C 1BF6D8 02B4+00 1/0 0/0 0/0 .text            __dt__15dMenu_Fishing_cFv */
@@ -58,11 +58,11 @@ dMenu_Fishing_c::~dMenu_Fishing_c() {
     delete mpParent;
     mpParent = NULL;
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
         delete mpFishParent[i];
         mpFishParent[i] = NULL;
 
-        for (int j = 0; j < 6; j++) {
+        for (int j = 0; j < MAX_FINDABLE_FISHES; j++) {
             delete mpFishParts[j][i];
             mpFishParts[j][i] = NULL;
         }
@@ -111,13 +111,13 @@ void dMenu_Fishing_c::_create() {
 /* 801C50B4-801C514C 1BF9F4 0098+00 0/0 2/2 0/0 .text            _move__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::_move() {
     JKRHeap* heap = mDoExt_setCurrentHeap((JKRHeap*)mpHeap);
-    u8 uVar = field_0x1fb;
-    (this->*map_move_process[field_0x1fb])();
-    if (uVar != field_0x1fb) {
-        (this->*map_init_process[field_0x1fb])();
+    u8 old_process = mProcess;
+    (this->*map_move_process[mProcess])();
+    if (old_process != mProcess) {
+        (this->*map_init_process[mProcess])();
     }
     setHIO(false);
-    mDoExt_setCurrentHeap((JKRHeap*)heap);
+    mDoExt_setCurrentHeap(heap);
 }
 
 /* 801C514C-801C5204 1BFA8C 00B8+00 1/1 1/1 0/0 .text            _draw__15dMenu_Fishing_cFv */
@@ -133,7 +133,7 @@ void dMenu_Fishing_c::_draw() {
 
 /* 801C5204-801C522C 1BFB44 0028+00 0/0 2/2 0/0 .text            isSync__15dMenu_Fishing_cFv */
 bool dMenu_Fishing_c::isSync() {
-    if (mpMount && !mpMount->sync()) {
+    if (mpMount != NULL && !mpMount->sync()) {
         return false;
     }
     return true;
@@ -141,25 +141,27 @@ bool dMenu_Fishing_c::isSync() {
 
 /* 801C522C-801C52E4 1BFB6C 00B8+00 1/1 0/0 0/0 .text            init__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::init() {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
         if (dComIfGs_getFishNum(i) != 0) {
+            // Fish has been caught once, display it along with it's params
             setFishParam(i, dComIfGs_getFishNum(i), dComIfGs_getFishSize(i));
             mpFishParent[i]->show();
         } else {
+            // Fish hasn't been caught yet, don't display it and also hide params
             mpFishParent[i]->hide();
         }
     }
-    (this->*map_init_process[field_0x1fb])();
+    (this->*map_init_process[mProcess])();
 }
 
 /* 801C52E4-801C5470 1BFC24 018C+00 0/0 2/2 0/0 .text            _open__15dMenu_Fishing_cFv */
 int dMenu_Fishing_c::_open() {
-    if (!mpMount) {
+    if (mpMount == NULL) {
         mpMount = mDoDvdThd_mountArchive_c::create("/res/Layout/fishres.arc", 0, NULL);
     }
-    if (!mpArchive) {
-        if (mpMount->sync() != 0) {
-            if (!mpArchive) {
+    if (mpArchive == NULL) {
+        if (mpMount->sync()) {
+            if (mpArchive == NULL) {
                 mpArchive = (JKRArchive*)mpMount->getArchive();
                 delete mpMount;
                 mpMount = NULL;
@@ -171,15 +173,15 @@ int dMenu_Fishing_c::_open() {
     }
     s16 openFrames = g_drawHIO.mFishListScreen.mOpenFrames;
     s16 closeFrames = g_drawHIO.mFishListScreen.mCloseFrames;
-    field_0x1f8 = g_drawHIO.mFishListScreen.mOpenFrames;
-    if (field_0x1f8 >= openFrames) {
-        field_0x1f8 = closeFrames;
-        mStatus = 2;
+    mFishListScreenFrames = g_drawHIO.mFishListScreen.mOpenFrames;
+    if (mFishListScreenFrames >= openFrames) {
+        mFishListScreenFrames = closeFrames;
+        mStatus = READY_MOVE;
         mpParent->scale(1.0f, 1.0f);
         mpParent->setAlphaRate(1.0f);
         return 1;
     } else {
-        f32 div = field_0x1f8 / (f32)openFrames;
+        f32 div = mFishListScreenFrames / (f32)openFrames;
         mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         return 0;
@@ -189,32 +191,32 @@ int dMenu_Fishing_c::_open() {
 /* 801C5470-801C556C 1BFDB0 00FC+00 0/0 1/1 0/0 .text            _close__15dMenu_Fishing_cFv */
 int dMenu_Fishing_c::_close() {
     s16 closeFrames = g_drawHIO.mFishListScreen.mCloseFrames;
-    field_0x1f8 = 0;
-    if (field_0x1f8 <= 0) {
-        field_0x1f8 = 0;
-        mStatus = 0;
+    mFishListScreenFrames = 0;
+    if (mFishListScreenFrames <= 0) {
+        mFishListScreenFrames = 0;
+        mStatus = CLOSED;
         mpParent->scale(0.0f, 0.0f);
         mpParent->setAlphaRate(0.0f);
         return 1;
     } else {
-        f32 div = field_0x1f8 / (f32)closeFrames;
+        f32 div = mFishListScreenFrames / (f32)closeFrames;
         mpParent->scale(div, div);
         mpParent->setAlphaRate(div);
         return 0;
     }
-    return field_0x1f8 <= 0;
 }
 
 /* 801C556C-801C55A8 1BFEAC 003C+00 1/0 0/0 0/0 .text            wait_init__15dMenu_Fishing_cFv */
+// While the fishing menu is open, 
 void dMenu_Fishing_c::wait_init() {
     setAButtonString(0);
-    setBButtonString(0x3f9);
+    setBButtonString(0x3F9); // "Back"
 }
 
 /* 801C55A8-801C55D8 1BFEE8 0030+00 1/0 0/0 0/0 .text            wait_move__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::wait_move() {
     if (mDoGph_gInf_c::getFader()->getStatus() == 1 && mDoCPd_c::getTrigB(PAD_1)) {
-        mStatus = 3;
+        mStatus = READY_CLOSE;
     }
 }
 
@@ -279,13 +281,13 @@ void dMenu_Fishing_c::screenSetBase() {
     ResTIMG* TIMG = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBlackTex = new J2DPicture(TIMG);
 
-    mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 0xff));
+    mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 0xFF));
     mpScreen = new J2DScreen();
     mpScreen->setPriority("zelda_fish_window.blo", 0x20000, mpArchive);
     dPaneClass_showNullPane(mpScreen);
     mpParent = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
     mpParent->setAlphaRate(0.0f);
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
         mpFishParent[i] = new CPaneMgr(mpScreen, fish_n[i], 0, NULL);
         mpFishParts[0][i] = new CPaneMgr(mpScreen, fish_p0[i], 0, NULL);
         mpFishParts[1][i] = new CPaneMgr(mpScreen, fish_p1[i], 0, NULL);
@@ -301,7 +303,7 @@ void dMenu_Fishing_c::screenSetBase() {
     textBox->setFont(mDoExt_getSubFont());
     textBox->setString(0x200, "");
     mpString->getString(0x5a1, textBox, NULL, NULL, NULL, 0);
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
         field_0x10c[1][i] = (J2DTextBox*)mpScreen->search(size_1[i]);
         field_0x10c[1][i]->setFont(mDoExt_getSubFont());
         field_0x10c[1][i]->setString(0x20, "");
@@ -318,20 +320,20 @@ void dMenu_Fishing_c::screenSetBase() {
         field_0x19c[1][i]->setFont(mDoExt_getSubFont());
         field_0x19c[1][i]->setString(0x20, "");
 
-        field_0x1cc[i] = (J2DTextBox*)mpScreen->search(name_0[i]);
+        mpFishNameString[i] = (J2DTextBox*)mpScreen->search(name_0[i]);
         mpScreen->search(fname_0[i])->hide();
-        field_0x1cc[i]->setFont(mDoExt_getSubFont());
-        field_0x1cc[i]->setString(0x20, "");
-        dMeter2Info_getStringKanji(name_id[i], field_0x1cc[i]->getStringPtr(), NULL);
+        mpFishNameString[i]->setFont(mDoExt_getSubFont());
+        mpFishNameString[i]->setString(0x20, "");
+        dMeter2Info_getStringKanji(name_id[i], mpFishNameString[i]->getStringPtr(), NULL);
     }
-    field_0x1e4 = (J2DTextBox*)mpScreen->search('inf_size');
-    field_0x1e8 = (J2DTextBox*)mpScreen->search('inf_cou');
-    field_0x1e4->setFont(mDoExt_getMesgFont());
-    field_0x1e8->setFont(mDoExt_getMesgFont());
-    field_0x1e4->setString(0x20, "");
-    dMeter2Info_getStringKanji(0x59f, field_0x1e4->getStringPtr(), NULL);
-    field_0x1e8->setString(0x20, "");
-    dMeter2Info_getStringKanji(0x5a0, field_0x1e8->getStringPtr(), NULL);
+    mpInfoLargestString = (J2DTextBox*)mpScreen->search('inf_size');
+    mpInfoNumCaughtString = (J2DTextBox*)mpScreen->search('inf_cou');
+    mpInfoLargestString->setFont(mDoExt_getMesgFont());
+    mpInfoNumCaughtString->setFont(mDoExt_getMesgFont());
+    mpInfoLargestString->setString(0x20, "");
+    dMeter2Info_getStringKanji(0x59f, mpInfoLargestString->getStringPtr(), NULL); // "Largest"
+    mpInfoNumCaughtString->setString(0x20, "");
+    dMeter2Info_getStringKanji(0x5a0, mpInfoNumCaughtString->getStringPtr(), NULL); // "No. Caught"
 }
 
 /* 801C5D3C-801C5EB8 1C067C 017C+00 1/1 0/0 0/0 .text screenSetDoIcon__15dMenu_Fishing_cFv */
@@ -400,46 +402,46 @@ u8 dMenu_Fishing_c::getFigure(int param_0) {
 }
 
 /* 801C605C-801C6210 1C099C 01B4+00 1/1 0/0 0/0 .text setFishParam__15dMenu_Fishing_cFiUsUc */
-void dMenu_Fishing_c::setFishParam(int param_0, u16 param_1, u8 param_2) {
-    u8 figure1 = getFigure(param_1);
-    u8 figure2 = getFigure(param_2);
+void dMenu_Fishing_c::setFishParam(int i_fishIdx, u16 i_fishCount, u8 i_fishSize) {
+    u8 fishCountFigure = getFigure(i_fishCount);
+    u8 fishSizeFigure = getFigure(i_fishSize);
     char strBuff1[32];
     char strBuff2[32];
-    for (int j = 1; j < 2; j++) {
-        // part one, param_2
-        dComIfGp_setMessageCountNumber(param_2);
-        mpString->getString(0x597, field_0x10c[j][param_0], NULL, NULL, NULL, 0);
-        char* x = field_0x10c[j][param_0]->getStringPtr();
-        strcpy(strBuff1, x);
-        int i;
-        for (i = 0; strBuff1[i + figure2] != 0; i++) {
-            strBuff2[i] = strBuff1[i + figure2];
+    for (int i = 1; i < 2; i++) {
+        // part one, i_fishSize
+        dComIfGp_setMessageCountNumber(i_fishSize);
+        mpString->getString(0x597, field_0x10c[i][i_fishIdx], NULL, NULL, NULL, 0); // "inches"
+        char* stringPtr = field_0x10c[i][i_fishIdx]->getStringPtr();
+        strcpy(strBuff1, stringPtr);
+        int j;
+        for (j = 0; strBuff1[j + fishSizeFigure] != 0; j++) {
+            strBuff2[j] = strBuff1[j + fishSizeFigure];
         }
-        strBuff2[i] = 0;
-        strBuff1[figure2] = 0;
-        strcpy(field_0x10c[j][param_0]->getStringPtr(), strBuff1);
-        strcpy(field_0x16c[j][param_0]->getStringPtr(), strBuff2);
+        strBuff2[j] = 0;
+        strBuff1[fishSizeFigure] = 0;
+        strcpy(field_0x10c[i][i_fishIdx]->getStringPtr(), strBuff1);
+        strcpy(field_0x16c[i][i_fishIdx]->getStringPtr(), strBuff2);
 
-        // part two, param_1
-        dComIfGp_setMessageCountNumber(param_1);
-        mpString->getString(0x598, field_0x13c[j][param_0], NULL, NULL, NULL, 0);
-        x = field_0x13c[j][param_0]->getStringPtr();
-        strcpy(strBuff1, x);
+        // part two, i_fishCount
+        dComIfGp_setMessageCountNumber(i_fishCount);
+        mpString->getString(0x598, field_0x13c[i][i_fishIdx], NULL, NULL, NULL, 0); // "fish"
+        stringPtr = field_0x13c[i][i_fishIdx]->getStringPtr();
+        strcpy(strBuff1, stringPtr);
         int k;
-        for (k = 0; strBuff1[k + figure1] != 0; k++) {
-            strBuff2[k] = strBuff1[k + figure1];
+        for (k = 0; strBuff1[k + fishCountFigure] != 0; k++) {
+            strBuff2[k] = strBuff1[k + fishCountFigure];
         }
         strBuff2[k] = 0;
-        strBuff1[figure1] = 0;
-        strcpy(field_0x13c[j][param_0]->getStringPtr(), strBuff1);
-        strcpy(field_0x19c[j][param_0]->getStringPtr(), strBuff2);
+        strBuff1[fishCountFigure] = 0;
+        strcpy(field_0x13c[i][i_fishIdx]->getStringPtr(), strBuff1);
+        strcpy(field_0x19c[i][i_fishIdx]->getStringPtr(), strBuff2);
     }
 }
 
 /* 801C6210-801C659C 1C0B50 038C+00 2/2 0/0 0/0 .text            setHIO__15dMenu_Fishing_cFb */
-void dMenu_Fishing_c::setHIO(bool param_0) {
-    if (param_0 || g_drawHIO.mFishListScreen.mDebug != 0) {
-        for (int i = 0; i < 6; i++) {
+void dMenu_Fishing_c::setHIO(bool i_useHIO) {
+    if (i_useHIO || g_drawHIO.mFishListScreen.mDebug) {
+        for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
             mpFishParent[i]->paneTrans(g_drawHIO.mFishListScreen.mFishInfoPosX[i],
                                        g_drawHIO.mFishListScreen.mFishInfoPosY[i]);
             mpFishParent[i]->scale(g_drawHIO.mFishListScreen.mFishInfoScale[i],
@@ -482,29 +484,29 @@ void dMenu_Fishing_c::setHIO(bool param_0) {
                                        g_drawHIO.mFishListScreen.mScale[i]);
         }
     }
-    if (g_drawHIO.mCollectScreen.mButtonDebugON != false || param_0) {
-        if (mpButtonAB[0] != NULL) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
+    if (g_drawHIO.mCollectScreen.mButtonDebugON || i_useHIO) {
+        if (mpButtonAB[A_BUTTON] != NULL) {
+            mpButtonAB[A_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
                                      g_drawHIO.mCollectScreen.mButtonAPosY);
-            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mButtonAScale,
+            mpButtonAB[A_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonAScale,
                                  g_drawHIO.mCollectScreen.mButtonAScale);
         }
-        if (mpButtonAB[1] != NULL) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
+        if (mpButtonAB[B_BUTTON] != NULL) {
+            mpButtonAB[B_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
                                      g_drawHIO.mCollectScreen.mButtonBPosY);
-            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mButtonBScale,
+            mpButtonAB[B_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonBScale,
                                  g_drawHIO.mCollectScreen.mButtonBScale);
         }
-        if (mpButtonText[0] != NULL) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
+        if (mpButtonText[A_BUTTON] != NULL) {
+            mpButtonText[A_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
                                        g_drawHIO.mCollectScreen.mButtonATextPosY);
-            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
+            mpButtonText[A_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
                                    g_drawHIO.mCollectScreen.mButtonATextScale);
         }
-        if (mpButtonText[1] != NULL) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
+        if (mpButtonText[B_BUTTON] != NULL) {
+            mpButtonText[B_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
                                        g_drawHIO.mCollectScreen.mButtonBTextPosY);
-            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
+            mpButtonText[B_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
                                    g_drawHIO.mCollectScreen.mButtonBTextScale);
         }
     }
