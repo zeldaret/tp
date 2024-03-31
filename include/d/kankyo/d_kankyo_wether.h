@@ -28,7 +28,7 @@ void dKyw_evt_wind_set(s16 angleX, s16 angleY);
 void dKyw_custom_windpower(f32 pow);
 void dKyw_evt_wind_set_go();
 void dKyw_wether_proc();
-void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* param_1, f32* param_2);
+void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power);
 void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind);
 cXyz dKyw_pntwind_get_vecpow(cXyz* param_0);
 
