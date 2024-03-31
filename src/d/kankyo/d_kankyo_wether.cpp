@@ -2131,7 +2131,7 @@ SECTION_SDATA2 static f32 lit_5855[1 + 1 /* padding */] = {
 /* 8005B2F8-8005B530 055C38 0238+00 0/0 3/3 13/13 .text dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf */
 // matches with literals
 #ifdef NONMATCHING
-void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* i_direction, f32* i_power) {
+void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
     dKyw_pntwind_get_info(param_0, i_direction, i_power);
 

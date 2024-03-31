@@ -4,7 +4,113 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa.h"
+
+#include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
+#include "f_op/f_op_actor_mng.h"
 #include "dol2asm.h"
+
+#define NONMATCHING
+
+class daObjYobikusa_c : public fopAc_ac_c {
+public:
+    typedef void (daObjYobikusa_c::*actionFunc)();
+    enum Mode_e {
+        /* 0 */ MODE_SWING_WIND,
+        /* 1 */ MODE_PUSH_DOWN,
+        /* 2 */ MODE_PICK_LEAF,
+    };
+
+    typedef struct actionFuncEntry {
+        actionFunc initFn;
+        actionFunc execFn;
+    };
+
+    /* 8059C9F8 */ void setAction(daObjYobikusa_c::Mode_e);
+    /* 8059CA2C */ void callInit();
+    /* 8059CA54 */ void callExecute();
+    /* 8059CA80 */ void initSwingWind();
+    /* 8059CA8C */ void executeSwingWind();
+    /* 8059CC54 */ void initPushDown();
+    /* 8059CC60 */ void executePushDown();
+    /* 8059CD44 */ void initPickLeaf();
+    /* 8059CD80 */ void executePickLeaf();
+    /* 8059CE7C */ void create_init();
+    /* 8059D120 */ void initBaseMtx();
+    /* 8059D198 */ void getJointAngle(csXyz*, int);
+    /* 8059D1BC */ f32 getJointScale(int);
+    /* 8059D320 */ void initCcCylinder();
+    /* 8059D380 */ void setCcCylinder();
+    /* 8059D3B4 */ bool toPickLeaf();
+    /* 8059D454 */ bool setNewLeaf();
+    /* 8059D738 */ int execute();
+
+    inline int createHeap();
+    inline int draw();
+    inline int create();
+
+    inline ~daObjYobikusa_c();
+
+#ifdef NONMATCHING
+    typedef struct a {
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0c;
+        /* 0x10 */ f32 field_0x10;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ f32 field_0x18;
+        /* 0x1C */ f32 field_0x1c;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ f32 field_0x28;
+        /* 0x2C */ f32 field_0x2c;
+        /* 0x30 */ f32 field_0x30;
+        /* 0x34 */ f32 field_0x34;
+        /* 0x38 */ s16 field_0x38;
+        /* 0x3A */ s16 field_0x3a;
+        /* 0x3C */ s16 field_0x3c;
+        /* 0x3E */ s16 field_0x3e;
+    };
+
+    const a& attr() { return M_attr; }
+
+    static a const M_attr;
+    static actionFuncEntry ActionTable[3];
+#else
+    static u8 const M_attr[64];
+    static u8 ActionTable[72];
+#endif
+
+
+    int getType() { return subtype & 0x7F; }
+    u8 getPathID() { return fopAcM_GetParam(this); }
+    bool isPlayerCorrect() { return (s8)(u8)(fopAcM_GetParam(this) >> 8) > 0; }
+
+private:
+    /* 0x568 */ J3DModel* mpModel[3];
+    /* 0x574 */ Mtx mMtx;
+    /* 0x5A4 */ request_of_phase_process_class mPhase;
+    /* 0x5AC */ actionFuncEntry* mActionEntry;
+    /* 0x5B0 */ int field_0x5b0;
+    /* 0x5B4 */ dCcD_Stts mStts;
+    /* 0x5F0 */ dCcD_Cyl mCcCyl;
+    /* 0x72C */ cBgS_PolyInfo mPolyInfo;
+    /* 0x73C */ f32 field_0x73c;
+    /* 0x740 */ f32 mJointScale;
+    /* 0x744 */ f32 field_0x744;
+    /* 0x748 */ f32 field_0x748;
+    /* 0x74C */ csXyz field_0x74c[3];
+    /* 0x760 */ char* mResName;
+    /* 0x764 */ s16 field_0x764;
+    /* 0x766 */ s16 field_0x766;
+    /* 0x768 */ s16 field_0x768;
+    /* 0x76A */ s16 field_0x76a;
+    /* 0x76C */ s16 field_0x76c;
+};
+
+STATIC_ASSERT(sizeof(daObjYobikusa_c) == 0x770);
 
 //
 // Forward References:
@@ -32,12 +138,12 @@ extern "C" void setCcCylinder__15daObjYobikusa_cFv();
 extern "C" void toPickLeaf__15daObjYobikusa_cFv();
 extern "C" void setNewLeaf__15daObjYobikusa_cFv();
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" static void daObjYobikusa_Draw__FP15daObjYobikusa_c();
-extern "C" static void daObjYobikusa_Execute__FP15daObjYobikusa_c();
-extern "C" void execute__15daObjYobikusa_cFv();
+extern "C" static int daObjYobikusa_Draw__FP15daObjYobikusa_c();
+extern "C" static int daObjYobikusa_Execute__FP15daObjYobikusa_c();
+extern "C" int execute__15daObjYobikusa_cFv();
 extern "C" static bool daObjYobikusa_IsDelete__FP15daObjYobikusa_c();
-extern "C" static void daObjYobikusa_Delete__FP15daObjYobikusa_c();
-extern "C" static void daObjYobikusa_Create__FP10fopAc_ac_c();
+extern "C" static int daObjYobikusa_Delete__FP15daObjYobikusa_c();
+extern "C" static int daObjYobikusa_Create__FP10fopAc_ac_c();
 extern "C" void __ct__5csXyzFv();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
@@ -145,6 +251,7 @@ SECTION_DATA static const char* l_arcName1 = "J_Tobi";
 /* 8059DF8C-8059DF90 -00001 0004+00 1/1 0/0 0/0 .data            l_arcName2 */
 SECTION_DATA static const char* l_arcName2 = "J_Umak";
 
+#ifndef NONMATCHING
 /* 8059DF90-8059DF9C -00001 000C+00 0/1 0/0 0/0 .data            @3641 */
 #pragma push
 #pragma force_active on
@@ -213,18 +320,22 @@ SECTION_DATA u8 daObjYobikusa_c::ActionTable[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-
-/* SECTION_DATA actionFunc daObjYobikusa_c::ActionTable[72] = {
-    &daObjYobikusa_c::initSwingWind,
-    &daObjYobikusa_c::executeSwingWind,
-    &daObjYobikusa_c::initPushDown,
-    &daObjYobikusa_c::executePushDown,
-    &daObjYobikusa_c::initPickLeaf,
-    &daObjYobikusa_c::executePickLeaf,
-}; */
+#else
+daObjYobikusa_c::actionFuncEntry daObjYobikusa_c::ActionTable[] = {
+    {&daObjYobikusa_c::initSwingWind, &daObjYobikusa_c::executeSwingWind},
+    {&daObjYobikusa_c::initPushDown, &daObjYobikusa_c::executePushDown},
+    {&daObjYobikusa_c::initPickLeaf, &daObjYobikusa_c::executePickLeaf},
+};
+#endif
 
 /* 8059C9F8-8059CA2C 000078 0034+00 5/5 0/0 0/0 .text
  * setAction__15daObjYobikusa_cFQ215daObjYobikusa_c6Mode_e      */
+#ifdef NONMATCHING
+void daObjYobikusa_c::setAction(daObjYobikusa_c::Mode_e param_0) {
+    mActionEntry = &ActionTable[param_0];
+    callInit();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -233,8 +344,14 @@ asm void daObjYobikusa_c::setAction(daObjYobikusa_c::Mode_e param_0) {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/setAction__15daObjYobikusa_cFQ215daObjYobikusa_c6Mode_e.s"
 }
 #pragma pop
+#endif
 
 /* 8059CA2C-8059CA54 0000AC 0028+00 1/1 0/0 0/0 .text            callInit__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::callInit() {
+    (this->*(mActionEntry->initFn))();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -243,8 +360,14 @@ asm void daObjYobikusa_c::callInit() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/callInit__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059CA54-8059CA80 0000D4 002C+00 1/1 0/0 0/0 .text            callExecute__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::callExecute() {
+    (this->*(mActionEntry->execFn))();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,19 +376,16 @@ asm void daObjYobikusa_c::callExecute() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/callExecute__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059CA80-8059CA8C 000100 000C+00 1/0 0/0 0/0 .text            initSwingWind__15daObjYobikusa_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::initSwingWind() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/initSwingWind__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::initSwingWind() {
+    field_0x5b0 = 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
+#ifndef NONMATCHING
 /* 8059DE7C-8059DEBC 000000 0040+00 6/6 0/0 0/0 .rodata          M_attr__15daObjYobikusa_c */
 SECTION_RODATA u8 const daObjYobikusa_c::M_attr[64] = {
     0x44, 0x7A, 0x00, 0x00, 0x45, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0xBB, 0x80, 0x00,
@@ -274,7 +394,30 @@ SECTION_RODATA u8 const daObjYobikusa_c::M_attr[64] = {
     0x45, 0x9C, 0x40, 0x00, 0x43, 0x16, 0x00, 0x00, 0x04, 0x00, 0x00, 0x40, 0x27, 0x10, 0x19, 0xB6,
 };
 COMPILER_STRIP_GATE(0x8059DE7C, &daObjYobikusa_c::M_attr);
+#else
+daObjYobikusa_c::a const daObjYobikusa_c::M_attr = {
+    1000.0f,
+    4000.0f,
+    0.0f,
+    1500.0f,
+    500.0f,
+    1152.0f,
+    512.0f,
+    200.0f,
+    400.0f,
+    0.02f,
+    0.0f,
+    0.0f,
+    5000.0f,
+    150.0f,
+    1024,
+    64,
+    10000,
+    6582
+};
+#endif
 
+#ifndef NONMATCHING
 /* 8059DEBC-8059DEC0 000040 0004+00 2/5 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static u8 const lit_3699[4] = {
     0x00,
@@ -283,8 +426,43 @@ SECTION_RODATA static u8 const lit_3699[4] = {
     0x00,
 };
 COMPILER_STRIP_GATE(0x8059DEBC, &lit_3699);
+#endif
 
 /* 8059CA8C-8059CC54 00010C 01C8+00 1/0 0/0 0/0 .text executeSwingWind__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::executeSwingWind() {
+    f32 wind_pow;
+    cXyz wind_dir;
+
+    dKyw_get_AllWind_vec(&current.pos, &wind_dir, &wind_pow);
+
+    f32 fVar1 = cM_ssin(field_0x766) * M_attr.field_0x1c + wind_pow * attr().field_0x00;
+    if (fVar1 < 0.0f) {
+        fVar1 = 0.0f;
+    }
+
+    f32 fVar2 = fVar1 * cM_ssin(field_0x764);
+    field_0x74c[0].y = fVar2 * wind_dir.z;
+    field_0x74c[0].z = fVar2 * wind_dir.x;
+    
+    fVar1 = attr().field_0x20 * cM_ssin(field_0x766) + (attr().field_0x10 + wind_pow * (attr().field_0x0c - attr().field_0x10));
+    if (fVar1 < 0.0f) {
+        fVar1 = 0.0f;
+    }
+
+    fVar2 = fVar1 * cM_ssin(field_0x764);
+    field_0x74c[1].y = fVar2 * wind_dir.z;
+    field_0x74c[1].z = fVar2 * wind_dir.x;
+
+    field_0x764 += (int)(attr().field_0x18 + wind_pow * (attr().field_0x14 - attr().field_0x18));
+    field_0x766 += attr().field_0x3a;
+
+    setNewLeaf();
+    if (mCcCyl.ChkCoHit()) {
+        setAction(MODE_PUSH_DOWN);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -293,24 +471,40 @@ asm void daObjYobikusa_c::executeSwingWind() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/executeSwingWind__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059CC54-8059CC60 0002D4 000C+00 1/0 0/0 0/0 .text            initPushDown__15daObjYobikusa_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::initPushDown() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/initPushDown__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::initPushDown() {
+    field_0x5b0 = 1;
 }
-#pragma pop
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8059DEC0-8059DEC4 000044 0004+00 1/1 0/0 0/0 .rodata          @3724 */
 SECTION_RODATA static f32 const lit_3724 = 65.0f;
 COMPILER_STRIP_GATE(0x8059DEC0, &lit_3724);
+#endif
 
 /* 8059CC60-8059CD44 0002E0 00E4+00 1/0 0/0 0/0 .text executePushDown__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::executePushDown() {
+    if (!mCcCyl.ChkCoHit()) {
+        setAction(MODE_SWING_WIND);
+    } else {
+        fopAc_ac_c* actor = mCcCyl.GetCoHitAc();
+        s16 angle = fopAcM_searchActorAngleY(this, actor);
+        f32 distance = fopAcM_searchActorDistanceXZ(this, actor);
+        f32 tmp1 = (distance * -(attr().field_0x04 / 65.0f));
+        f32 val = tmp1 + M_attr.field_0x04;
+
+        field_0x74c[0].y = val * cM_scos(angle);
+        field_0x74c[0].z = val * cM_ssin(angle);
+
+        setNewLeaf();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,19 +513,36 @@ asm void daObjYobikusa_c::executePushDown() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/executePushDown__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059CD44-8059CD80 0003C4 003C+00 1/0 0/0 0/0 .text            initPickLeaf__15daObjYobikusa_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::initPickLeaf() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/initPickLeaf__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::initPickLeaf() {
+    field_0x5b0 = 2;
+    fopAcM_cancelCarryNow(this);
+    toPickLeaf();
 }
-#pragma pop
 
 /* 8059CD80-8059CE7C 000400 00FC+00 1/0 0/0 0/0 .text executePickLeaf__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::executePickLeaf() {
+    f32 fVar1 = field_0x748 * cM_ssin(field_0x76a);
+    field_0x74c[1].y = fVar1 * cM_scos(field_0x76c);
+    field_0x74c[1].z = fVar1 * cM_ssin(field_0x76c);
+
+    cLib_chaseF(&field_0x748, 0.0f, attr().field_0x34);
+
+    field_0x76a += attr().field_0x3e;
+
+    if (field_0x748 == 0.0f) {
+        if (mCcCyl.ChkCoHit()) {
+            setAction(MODE_PUSH_DOWN);
+        } else {
+            setAction(MODE_SWING_WIND);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -340,7 +551,9 @@ asm void daObjYobikusa_c::executePickLeaf() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/executePickLeaf__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8059DEC4-8059DEC8 000048 0004+00 0/1 0/0 0/0 .rodata          @3773 */
 #pragma push
@@ -387,6 +600,7 @@ COMPILER_STRIP_GATE(0x8059DED8, &lit_3778);
 SECTION_RODATA static f32 const lit_3779 = 65535.0f;
 COMPILER_STRIP_GATE(0x8059DEDC, &lit_3779);
 #pragma pop
+#endif
 
 /* 8059E020-8059E040 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjYobikusa_Method */
 SECTION_DATA static void* l_daObjYobikusa_Method[8] = {
@@ -410,6 +624,7 @@ SECTION_DATA extern void* g_profile_Obj_Yobikusa[12] = {
     (void*)0x00040180, (void*)0x000E0000,
 };
 
+#ifndef NONMATCHING
 /* 8059E070-8059E07C 000108 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
 SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
     (void*)NULL /* RTTI */,
@@ -457,8 +672,39 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
     (void*)NULL,
     (void*)func_8059DE60,
 };
+#endif
 
 /* 8059CE7C-8059D040 0004FC 01C4+00 1/1 0/0 0/0 .text            create_init__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+void daObjYobikusa_c::create_init() {
+    initBaseMtx();
+    fopAcM_setCullSizeBox(this, -50.0f, -30.0f, -50.0f, 50.0f, 120.0f, 50.0f);
+                  
+    dBgS_AcchCir dStack_240;
+    dBgS_ObjAcch dStack_200;
+
+    dStack_240.SetWall(0.0f, 30.0f);
+    dStack_200.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &dStack_240, fopAcM_GetSpeed_p(this), NULL, NULL);
+    dStack_200.CrrPos(dComIfG_Bgsp());
+    field_0x73c = dStack_200.GetGroundH();
+
+    //field_0x72c.SetPolyInfo(dStack_240);
+    mPolyInfo = dStack_200.m_gnd;
+
+    fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
+    
+    attention_info.flags |= 0x10;
+    attention_info.field_0x0[4] = 42;
+
+    initCcCylinder();
+    setAction(MODE_SWING_WIND);
+
+    mJointScale = 1.0f;
+
+    field_0x764 = cM_rnd() * 65535.0f;
+    field_0x766 = cM_rnd() * 65535.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -467,7 +713,9 @@ asm void daObjYobikusa_c::create_init() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/create_init__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* 8059D040-8059D0B0 0006C0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
@@ -489,48 +737,78 @@ extern "C" asm void __dt__12dBgS_AcchCirFv() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/__dt__12dBgS_AcchCirFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059D120-8059D198 0007A0 0078+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjYobikusa_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/initBaseMtx__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::initBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel[2]->setBaseTRMtx(mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), mMtx);
 }
-#pragma pop
 
 /* 8059D198-8059D1BC 000818 0024+00 1/1 0/0 0/0 .text getJointAngle__15daObjYobikusa_cFP5csXyzi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::getJointAngle(csXyz* param_0, int param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/getJointAngle__15daObjYobikusa_cFP5csXyzi.s"
+void daObjYobikusa_c::getJointAngle(csXyz* param_0, int index) {
+    *param_0 = field_0x74c[index];
 }
-#pragma pop
 
 /* 8059D1BC-8059D1C4 00083C 0008+00 1/1 0/0 0/0 .text            getJointScale__15daObjYobikusa_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::getJointScale(int param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/getJointScale__15daObjYobikusa_cFi.s"
+f32 daObjYobikusa_c::getJointScale(int _unused) {
+    return mJointScale;
 }
-#pragma pop
 
 /* 8059D1C4-8059D2E4 000844 0120+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
+#ifdef NONMATCHING
+static int nodeCallBack(J3DJoint* i_jnt, int i_param) {
+    if (i_param != 0) {
+        return 1;
+    }
+    
+    int jnt_no = i_jnt->getJntNo();
+    
+    J3DModel* model = j3dSys.getModel();
+    daObjYobikusa_c* i_this = (daObjYobikusa_c*)model->getUserArea();
+
+    cMtx_copy(model->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
+
+    csXyz angle;
+    i_this->getJointAngle(&angle, jnt_no);
+
+    if (angle.x != 0) {
+        mDoMtx_stack_c::XrotM(angle.x);
+    }
+    if (angle.z != 0) {
+        mDoMtx_stack_c::ZrotM(angle.z);
+    }
+    if (angle.y != 0) {
+        mDoMtx_stack_c::YrotM(angle.y);
+    }
+
+    if (jnt_no == 2) {
+        cXyz scale_vec;
+        scale_vec.setAll(i_this->getJointScale(jnt_no));
+        mDoMtx_stack_c::scaleM(scale_vec);
+    }
+
+    model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), j3dSys.mCurrentMtx);
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* 8059D2E4-8059D320 000964 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
@@ -541,6 +819,7 @@ extern "C" asm void __dt__5csXyzFv() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/__dt__5csXyzFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8059DEE0-8059DF24 000064 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3880 */
@@ -560,46 +839,75 @@ const static dCcD_SrcCyl ccCylSrc = {
 
 /* 8059D320-8059D380 0009A0 0060+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjYobikusa_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::initCcCylinder() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/initCcCylinder__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::initCcCylinder() {
+    mStts.Init(0xff, 0xff, this);
+    mCcCyl.Set(ccCylSrc);
+    mCcCyl.SetStts(&mStts);
+    mCcCyl.SetC(current.pos);
 }
-#pragma pop
 
 /* 8059D380-8059D3B4 000A00 0034+00 1/1 0/0 0/0 .text            setCcCylinder__15daObjYobikusa_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjYobikusa_c::setCcCylinder() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/setCcCylinder__15daObjYobikusa_cFv.s"
+void daObjYobikusa_c::setCcCylinder() {
+    dComIfG_Ccsp()->Set(&mCcCyl);
 }
-#pragma pop
 
 /* 8059D3B4-8059D454 000A34 00A0+00 1/1 0/0 0/0 .text            toPickLeaf__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+bool daObjYobikusa_c::toPickLeaf() {
+    if (mJointScale == 1.0f) {
+        mJointScale = 0.0f;
+        field_0x744 = attr().field_0x28;
+        field_0x768 = 0;
+        field_0x748 = attr().field_0x30;
+        field_0x76a = 0;
+        field_0x76c = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0));
+        field_0x76c -= 0x2000;
+
+        cLib_offBit<u32>(attention_info.flags, 0x10);
+        return true;
+    }
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYobikusa_c::toPickLeaf() {
+asm bool daObjYobikusa_c::toPickLeaf() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/toPickLeaf__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059D454-8059D520 000AD4 00CC+00 2/2 0/0 0/0 .text            setNewLeaf__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+bool daObjYobikusa_c::setNewLeaf() {
+    cLib_chaseF(&mJointScale, 1.0f, attr().field_0x24);
+
+    field_0x744 = attr().field_0x28;
+
+    field_0x74c[2].x = (int)(field_0x744 * cM_ssin(field_0x768));
+    field_0x768 += attr().field_0x3c;
+
+    if (mJointScale == 1.0f && field_0x744 == 0.0f) {
+        cLib_onBit<u32>(attention_info.flags, 0x10);
+        return true;
+    }
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYobikusa_c::setNewLeaf() {
+asm bool daObjYobikusa_c::setNewLeaf() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/setNewLeaf__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8059DF24-8059DF24 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -609,74 +917,221 @@ SECTION_DEAD static char const* const stringBase_8059DF3D = "J_Tobi_c.bmd";
 SECTION_DEAD static char const* const stringBase_8059DF4A = "J_Umakusa.bmd";
 SECTION_DEAD static char const* const stringBase_8059DF58 = "J_Umakusa_c.bmd";
 #pragma pop
+#endif
+
+int daObjYobikusa_c::createHeap() {
+    char* res_name1;
+    char* res_name2;
+    J3DModelData* model_data1;
+    J3DModelData* model_data2;
+
+    switch(getType()) {
+        case 0:
+            res_name1 = "J_Tobi.bmd";
+            res_name2 = "J_Tobi_c.bmd";
+            break;
+
+        case 1:
+            res_name1 = "J_Umakusa.bmd";
+            res_name2 = "J_Umakusa_c.bmd";
+            break;
+
+        default:
+        break;
+    }
+
+    model_data1 = (J3DModelData*)dComIfG_getObjectRes(mResName, res_name1);
+    model_data2 = (J3DModelData*)dComIfG_getObjectRes(mResName, res_name2);
+
+    mpModel[1] = mDoExt_J3DModel__create(model_data1, 0x80000, 0x11000084);
+    mpModel[2] = mDoExt_J3DModel__create(model_data2, 0x80000, 0x11000084);
+
+    if (mpModel[1] == NULL || mpModel[2] == NULL) {
+        return FALSE;
+    } else {
+        for (u16 i = 0; i < 3; i++) {
+            J3DJoint* joint = mpModel[1]->getModelData()->getJointNodePointer(i);
+            if (joint != NULL) {
+                joint->setCallBack(nodeCallBack);
+                mpModel[1]->setUserArea((u32)this);
+            }
+        }
+
+        mpModel[0] = mpModel[1];
+    }
+
+    return TRUE;
+}
 
 /* 8059D520-8059D674 000BA0 0154+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
+#ifdef NONMATCHING
+static int createSolidHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjYobikusa_c*>(i_this)->createHeap();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void createSolidHeap(fopAc_ac_c* param_0) {
+static asm int createSolidHeap(fopAc_ac_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
+
+int daObjYobikusa_c::draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel[0], &tevStr);
+
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel[0]);
+    dComIfGd_setList();
+
+    return TRUE;
+}
 
 /* 8059D674-8059D718 000CF4 00A4+00 1/0 0/0 0/0 .text daObjYobikusa_Draw__FP15daObjYobikusa_c */
+#ifdef NONMATCHING
+static int daObjYobikusa_Draw(daObjYobikusa_c* i_this) {
+    return i_this->draw();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObjYobikusa_Draw(daObjYobikusa_c* param_0) {
+static asm int daObjYobikusa_Draw(daObjYobikusa_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/daObjYobikusa_Draw__FP15daObjYobikusa_c.s"
 }
 #pragma pop
+#endif
 
 /* 8059D718-8059D738 000D98 0020+00 1/0 0/0 0/0 .text daObjYobikusa_Execute__FP15daObjYobikusa_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjYobikusa_Execute(daObjYobikusa_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/daObjYobikusa_Execute__FP15daObjYobikusa_c.s"
+static int daObjYobikusa_Execute(daObjYobikusa_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 8059D738-8059D9A0 000DB8 0268+00 1/1 0/0 0/0 .text            execute__15daObjYobikusa_cFv */
+#ifdef NONMATCHING
+int daObjYobikusa_c::execute() {
+    if (mpModel[0] == mpModel[2]) {
+        if (!(!fopAcM_CheckCondition(this, 4) && (!dComIfGp_event_runCheck() || eventInfo.checkCommandTalk()))) {
+            mpModel[0] = mpModel[1];
+            fopAcM_OnStatus(this, 0x80);
+        } else {
+            return TRUE;
+        }
+    }
+
+    if (mCcCyl.ChkTgHit()) {
+        mpModel[0] = mpModel[2];
+
+        fopAcM_OffStatus(this, 0x80);
+        cLib_offBit<u32>(attention_info.flags, 0x10);
+
+        if (getType() == 0) {
+            dComIfGp_particle_set(0x8347, &current.pos, NULL, NULL);
+            dComIfGp_particle_set(0x8348, &current.pos, NULL, NULL);
+        } else if (getType() == 1) {
+            dComIfGp_particle_set(0x8349, &current.pos, NULL, NULL);
+            dComIfGp_particle_set(0x834a, &current.pos, NULL, NULL);
+        }
+    } else {
+        if (fopAcM_checkCarryNow(this)) {
+            setAction(MODE_PICK_LEAF);
+        }
+        
+        attention_info.field_0x0[4] = daPy_py_c::i_checkNowWolf() ? 73 : 42;
+        callExecute();
+    }
+
+    setCcCylinder();
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYobikusa_c::execute() {
+asm int daObjYobikusa_c::execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/execute__15daObjYobikusa_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059D9A0-8059D9A8 001020 0008+00 1/0 0/0 0/0 .text daObjYobikusa_IsDelete__FP15daObjYobikusa_c
  */
-static bool daObjYobikusa_IsDelete(daObjYobikusa_c* param_0) {
+static bool daObjYobikusa_IsDelete(daObjYobikusa_c* i_this) {
     return true;
 }
 
+daObjYobikusa_c::~daObjYobikusa_c() {
+    dComIfG_resDelete(&mPhase, mResName);
+}
+
 /* 8059D9A8-8059DAF4 001028 014C+00 1/0 0/0 0/0 .text daObjYobikusa_Delete__FP15daObjYobikusa_c */
+#ifdef NONMATCHING
+static int daObjYobikusa_Delete(daObjYobikusa_c* i_this) {
+    i_this->~daObjYobikusa_c();
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObjYobikusa_Delete(daObjYobikusa_c* param_0) {
+static asm int daObjYobikusa_Delete(daObjYobikusa_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/daObjYobikusa_Delete__FP15daObjYobikusa_c.s"
 }
 #pragma pop
+#endif
+
+int daObjYobikusa_c::create() {
+    fopAcM_SetupActor(this, daObjYobikusa_c);
+
+    switch (getType()) {
+        case 0:
+            mResName = (char*)l_arcName1;
+            break;
+            
+        case 1:
+            mResName = (char*)l_arcName2;
+            break;
+
+        default:
+        break;
+    }
+
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, mResName);
+    if (step == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x1080)) {
+            step = cPhs_ERROR_e;
+        } else {
+            create_init();
+            fopAcM_SetMtx(this, mMtx);
+        }
+    }
+    return step;
+}
 
 /* 8059DAF4-8059DC88 001174 0194+00 1/0 0/0 0/0 .text daObjYobikusa_Create__FP10fopAc_ac_c */
+#ifdef NONMATCHING
+static int daObjYobikusa_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjYobikusa_c*>(i_this)->create();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void daObjYobikusa_Create(fopAc_ac_c* param_0) {
+static asm int daObjYobikusa_Create(fopAc_ac_c* i_this) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/daObjYobikusa_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* 8059DC88-8059DC8C 001308 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
 extern "C" void __ct__5csXyzFv() {
     /* empty function */
@@ -725,8 +1180,10 @@ extern "C" asm void __dt__10cCcD_GSttsFv() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/__dt__10cCcD_GSttsFv.s"
 }
 #pragma pop
+#endif
 
 /* 8059DDC0-8059DE60 001440 00A0+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_yobikusa_cpp */
+#ifndef NONMATCHING
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -740,7 +1197,9 @@ asm void __sinit_d_a_obj_yobikusa_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x8059DDC0, __sinit_d_a_obj_yobikusa_cpp);
 #pragma pop
+#endif
 
+#ifndef NONMATCHING
 /* 8059DE60-8059DE68 0014E0 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
@@ -760,5 +1219,6 @@ static asm void func_8059DE68() {
 #include "asm/rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa/func_8059DE68.s"
 }
 #pragma pop
+#endif
 
 /* 8059DF24-8059DF24 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
