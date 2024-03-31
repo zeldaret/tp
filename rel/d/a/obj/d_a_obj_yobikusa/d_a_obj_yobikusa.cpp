@@ -6,8 +6,8 @@
 #include "rel/d/a/obj/d_a_obj_yobikusa/d_a_obj_yobikusa.h"
 
 #include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -46,8 +46,8 @@ daObjYobikusa_c::actionFuncEntry daObjYobikusa_c::ActionTable[] = {
 
 /* 8059C9F8-8059CA2C 000078 0034+00 5/5 0/0 0/0 .text
  * setAction__15daObjYobikusa_cFQ215daObjYobikusa_c6Mode_e      */
-void daObjYobikusa_c::setAction(daObjYobikusa_c::Mode_e param_0) {
-    mActionEntry = &ActionTable[param_0];
+void daObjYobikusa_c::setAction(daObjYobikusa_c::Mode_e i_mode) {
+    mActionEntry = &ActionTable[i_mode];
     callInit();
 }
 
@@ -64,29 +64,12 @@ void daObjYobikusa_c::callExecute() {
 /* 8059CA80-8059CA8C 000100 000C+00 1/0 0/0 0/0 .text            initSwingWind__15daObjYobikusa_cFv
  */
 void daObjYobikusa_c::initSwingWind() {
-    field_0x5b0 = 0;
+    mMode = MODE_SWING_WIND;
 }
 
 daObjYobikusa_c::attributes const daObjYobikusa_c::M_attr = {
-    1000.0f,
-    4000.0f,
-    0.0f,
-    1500.0f,
-    500.0f,
-    1152.0f,
-    512.0f,
-    200.0f,
-    400.0f,
-    0.02f,
-    0.0f,
-    0.0f,
-    5000.0f,
-    150.0f,
-    1024,
-    64,
-    10000,
-    6582
-};
+    1000.0f, 4000.0f, 0.0f, 1500.0f, 500.0f, 1152.0f, 512.0f, 200.0f, 400.0f,
+    0.02f,   0.0f,    0.0f, 5000.0f, 150.0f, 1024,    64,     10000,  6582};
 
 /* 8059CA8C-8059CC54 00010C 01C8+00 1/0 0/0 0/0 .text executeSwingWind__15daObjYobikusa_cFv */
 void daObjYobikusa_c::executeSwingWind() {
@@ -95,26 +78,27 @@ void daObjYobikusa_c::executeSwingWind() {
 
     dKyw_get_AllWind_vec(&current.pos, &wind_dir, &wind_pow);
 
-    f32 fVar1 = cM_ssin(field_0x766) * M_attr.field_0x1c + wind_pow * attr().field_0x00;
+    f32 fVar1 = cM_ssin(field_0x766) * M_attr.field_0x1c + wind_pow * attr()->field_0x00;
     if (fVar1 < 0.0f) {
         fVar1 = 0.0f;
     }
 
     f32 fVar2 = fVar1 * cM_ssin(field_0x764);
-    field_0x74c[0].y = fVar2 * wind_dir.z;
-    field_0x74c[0].z = fVar2 * wind_dir.x;
-    
-    fVar1 = attr().field_0x20 * cM_ssin(field_0x766) + (attr().field_0x10 + wind_pow * (attr().field_0x0c - attr().field_0x10));
+    mLeafAngles[0].y = fVar2 * wind_dir.z;
+    mLeafAngles[0].z = fVar2 * wind_dir.x;
+
+    fVar1 = attr()->field_0x20 * cM_ssin(field_0x766) +
+            (attr()->field_0x10 + wind_pow * (attr()->field_0x0c - attr()->field_0x10));
     if (fVar1 < 0.0f) {
         fVar1 = 0.0f;
     }
 
     fVar2 = fVar1 * cM_ssin(field_0x764);
-    field_0x74c[1].y = fVar2 * wind_dir.z;
-    field_0x74c[1].z = fVar2 * wind_dir.x;
+    mLeafAngles[1].y = fVar2 * wind_dir.z;
+    mLeafAngles[1].z = fVar2 * wind_dir.x;
 
-    field_0x764 += (int)(attr().field_0x18 + wind_pow * (attr().field_0x14 - attr().field_0x18));
-    field_0x766 += attr().field_0x3a;
+    field_0x764 += (int)(attr()->field_0x18 + wind_pow * (attr()->field_0x14 - attr()->field_0x18));
+    field_0x766 += attr()->field_0x3a;
 
     setNewLeaf();
     if (mCcCyl.ChkCoHit()) {
@@ -125,7 +109,7 @@ void daObjYobikusa_c::executeSwingWind() {
 /* 8059CC54-8059CC60 0002D4 000C+00 1/0 0/0 0/0 .text            initPushDown__15daObjYobikusa_cFv
  */
 void daObjYobikusa_c::initPushDown() {
-    field_0x5b0 = 1;
+    mMode = MODE_PUSH_DOWN;
 }
 
 /* 8059CC60-8059CD44 0002E0 00E4+00 1/0 0/0 0/0 .text executePushDown__15daObjYobikusa_cFv */
@@ -136,11 +120,11 @@ void daObjYobikusa_c::executePushDown() {
         fopAc_ac_c* actor = mCcCyl.GetCoHitAc();
         s16 angle = fopAcM_searchActorAngleY(this, actor);
         f32 distance = fopAcM_searchActorDistanceXZ(this, actor);
-        f32 tmp1 = (distance * -(attr().field_0x04 / 65.0f));
-        f32 val = tmp1 + M_attr.field_0x04;
+        distance = (distance * -(attr()->field_0x04 / 65.0f));
+        f32 val = distance + attr()->field_0x04;
 
-        field_0x74c[0].y = val * cM_scos(angle);
-        field_0x74c[0].z = val * cM_ssin(angle);
+        mLeafAngles[0].y = val * cM_scos(angle);
+        mLeafAngles[0].z = val * cM_ssin(angle);
 
         setNewLeaf();
     }
@@ -149,22 +133,22 @@ void daObjYobikusa_c::executePushDown() {
 /* 8059CD44-8059CD80 0003C4 003C+00 1/0 0/0 0/0 .text            initPickLeaf__15daObjYobikusa_cFv
  */
 void daObjYobikusa_c::initPickLeaf() {
-    field_0x5b0 = 2;
+    mMode = MODE_PICK_LEAF;
     fopAcM_cancelCarryNow(this);
     toPickLeaf();
 }
 
 /* 8059CD80-8059CE7C 000400 00FC+00 1/0 0/0 0/0 .text executePickLeaf__15daObjYobikusa_cFv */
 void daObjYobikusa_c::executePickLeaf() {
-    f32 fVar1 = field_0x748 * cM_ssin(field_0x76a);
-    field_0x74c[1].y = fVar1 * cM_scos(field_0x76c);
-    field_0x74c[1].z = fVar1 * cM_ssin(field_0x76c);
+    f32 amplitude = mPickLeafAmplitude * cM_ssin(mPickLeafTick);
+    mLeafAngles[1].y = amplitude * cM_scos(mPlayerDeltaAngle);
+    mLeafAngles[1].z = amplitude * cM_ssin(mPlayerDeltaAngle);
 
-    cLib_chaseF(&field_0x748, 0.0f, attr().field_0x34);
+    cLib_chaseF(&mPickLeafAmplitude, 0.0f, attr()->mPickLeafAmplitudeDecay);
 
-    field_0x76a += attr().field_0x3e;
+    mPickLeafTick += attr()->mPickLeafTickSpeed;
 
-    if (field_0x748 == 0.0f) {
+    if (mPickLeafAmplitude == 0.0f) {
         if (mCcCyl.ChkCoHit()) {
             setAction(MODE_PUSH_DOWN);
         } else {
@@ -177,20 +161,20 @@ void daObjYobikusa_c::executePickLeaf() {
 void daObjYobikusa_c::create_init() {
     initBaseMtx();
     fopAcM_setCullSizeBox(this, -50.0f, -30.0f, -50.0f, 50.0f, 120.0f, 50.0f);
-                  
-    dBgS_AcchCir dStack_240;
-    dBgS_ObjAcch dStack_200;
 
-    dStack_240.SetWall(0.0f, 30.0f);
-    dStack_200.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &dStack_240, fopAcM_GetSpeed_p(this), NULL, NULL);
-    dStack_200.CrrPos(dComIfG_Bgsp());
-    field_0x73c = dStack_200.GetGroundH();
+    dBgS_AcchCir acch_cir;
+    dBgS_ObjAcch obj_acch;
 
-    //field_0x72c.SetPolyInfo(dStack_240);
-    mPolyInfo = dStack_200.m_gnd;
+    acch_cir.SetWall(0.0f, 30.0f);
+    obj_acch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &acch_cir,
+                 fopAcM_GetSpeed_p(this), NULL, NULL);
+    obj_acch.CrrPos(dComIfG_Bgsp());
+    mGroundH = obj_acch.GetGroundH();
+
+    mPolyInfo = obj_acch.m_gnd;
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
-    
+
     attention_info.flags |= 0x10;
     attention_info.field_0x0[4] = 42;
 
@@ -207,14 +191,14 @@ void daObjYobikusa_c::create_init() {
 void daObjYobikusa_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpModel[2]->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModelTypeA->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModelTypeB->setBaseTRMtx(mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), mMtx);
 }
 
 /* 8059D198-8059D1BC 000818 0024+00 1/1 0/0 0/0 .text getJointAngle__15daObjYobikusa_cFP5csXyzi */
-void daObjYobikusa_c::getJointAngle(csXyz* param_0, int index) {
-    *param_0 = field_0x74c[index];
+void daObjYobikusa_c::getJointAngle(csXyz* i_angle, int i_index) {
+    *i_angle = mLeafAngles[i_index];
 }
 
 /* 8059D1BC-8059D1C4 00083C 0008+00 1/1 0/0 0/0 .text            getJointScale__15daObjYobikusa_cFi
@@ -228,9 +212,9 @@ static int nodeCallBack(J3DJoint* i_jnt, int i_param) {
     if (i_param != 0) {
         return 1;
     }
-    
+
     int jnt_no = i_jnt->getJntNo();
-    
+
     J3DModel* model = j3dSys.getModel();
     daObjYobikusa_c* i_this = (daObjYobikusa_c*)model->getUserArea();
 
@@ -250,9 +234,9 @@ static int nodeCallBack(J3DJoint* i_jnt, int i_param) {
     }
 
     if (jnt_no == 2) {
-        cXyz scale_vec;
-        scale_vec.setAll(i_this->getJointScale(jnt_no));
-        mDoMtx_stack_c::scaleM(scale_vec);
+        cXyz scale;
+        scale.setAll(i_this->getJointScale(jnt_no));
+        mDoMtx_stack_c::scaleM(scale);
     }
 
     model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
@@ -265,16 +249,16 @@ static int nodeCallBack(J3DJoint* i_jnt, int i_param) {
 /* 8059DEE0-8059DF24 000064 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3880 */
 const static dCcD_SrcCyl ccCylSrc = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0xd8480422, 0x11}, 0x139}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x2}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0xd8480422, 0x11}, 0x139}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                   // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4},                   // mGObjTg
+        {0x2},                                                // mGObjCo
+    },                                                        // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        30.0f, // mRadius
-        80.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        30.0f,               // mRadius
+        80.0f                // mHeight
+    }                        // mCyl
 };
 
 /* 8059D320-8059D380 0009A0 0060+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjYobikusa_cFv
@@ -296,12 +280,12 @@ void daObjYobikusa_c::setCcCylinder() {
 bool daObjYobikusa_c::toPickLeaf() {
     if (mJointScale == 1.0f) {
         mJointScale = 0.0f;
-        field_0x744 = attr().field_0x28;
-        field_0x768 = 0;
-        field_0x748 = attr().field_0x30;
-        field_0x76a = 0;
-        field_0x76c = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0));
-        field_0x76c -= 0x2000;
+        mNewLeafAmplitude = attr()->mNewLeafInitialAmplitude;
+        mNewLeafTick = 0;
+        mPickLeafAmplitude = attr()->mPickLeafInitialAmplitude;
+        mPickLeafTick = 0;
+        mPlayerDeltaAngle = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0));
+        mPlayerDeltaAngle -= 0x2000;
 
         cLib_offBit<u32>(attention_info.flags, 0x10);
         return true;
@@ -311,14 +295,14 @@ bool daObjYobikusa_c::toPickLeaf() {
 
 /* 8059D454-8059D520 000AD4 00CC+00 2/2 0/0 0/0 .text            setNewLeaf__15daObjYobikusa_cFv */
 bool daObjYobikusa_c::setNewLeaf() {
-    cLib_chaseF(&mJointScale, 1.0f, attr().field_0x24);
+    cLib_chaseF(&mJointScale, 1.0f, attr()->mJointScaleStep);
 
-    field_0x744 = attr().field_0x28;
+    mNewLeafAmplitude = attr()->mNewLeafInitialAmplitude;
 
-    field_0x74c[2].x = (int)(field_0x744 * cM_ssin(field_0x768));
-    field_0x768 += attr().field_0x3c;
+    mLeafAngles[2].x = (int)(mNewLeafAmplitude * cM_ssin(mNewLeafTick));
+    mNewLeafTick += attr()->mNewLeafTickSpeed;
 
-    if (mJointScale == 1.0f && field_0x744 == 0.0f) {
+    if (mJointScale == 1.0f && mNewLeafAmplitude == 0.0f) {
         cLib_onBit<u32>(attention_info.flags, 0x10);
         return true;
     }
@@ -331,39 +315,39 @@ int daObjYobikusa_c::createHeap() {
     J3DModelData* model_data1;
     J3DModelData* model_data2;
 
-    switch(getType()) {
-        case 0:
-            res_name1 = "J_Tobi.bmd";
-            res_name2 = "J_Tobi_c.bmd";
-            break;
+    switch (getType()) {
+    case CALL_TYPE_FLY:
+        res_name1 = "J_Tobi.bmd";
+        res_name2 = "J_Tobi_c.bmd";
+        break;
 
-        case 1:
-            res_name1 = "J_Umakusa.bmd";
-            res_name2 = "J_Umakusa_c.bmd";
-            break;
+    case CALL_TYPE_HORSE:
+        res_name1 = "J_Umakusa.bmd";
+        res_name2 = "J_Umakusa_c.bmd";
+        break;
 
-        default:
+    default:
         break;
     }
 
     model_data1 = (J3DModelData*)dComIfG_getObjectRes(mResName, res_name1);
     model_data2 = (J3DModelData*)dComIfG_getObjectRes(mResName, res_name2);
 
-    mpModel[1] = mDoExt_J3DModel__create(model_data1, 0x80000, 0x11000084);
-    mpModel[2] = mDoExt_J3DModel__create(model_data2, 0x80000, 0x11000084);
+    mpModelTypeA = mDoExt_J3DModel__create(model_data1, 0x80000, 0x11000084);
+    mpModelTypeB = mDoExt_J3DModel__create(model_data2, 0x80000, 0x11000084);
 
-    if (mpModel[1] == NULL || mpModel[2] == NULL) {
+    if (mpModelTypeA == NULL || mpModelTypeB == NULL) {
         return FALSE;
     } else {
         for (u16 i = 0; i < 3; i++) {
-            J3DJoint* joint = mpModel[1]->getModelData()->getJointNodePointer(i);
+            J3DJoint* joint = mpModelTypeA->getModelData()->getJointNodePointer(i);
             if (joint != NULL) {
                 joint->setCallBack(nodeCallBack);
-                mpModel[1]->setUserArea((u32)this);
+                mpModelTypeA->setUserArea((u32)this);
             }
         }
 
-        mpModel[0] = mpModel[1];
+        mpActiveModel = mpModelTypeA;
     }
 
     return TRUE;
@@ -376,10 +360,10 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 
 int daObjYobikusa_c::draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel[0], &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpActiveModel, &tevStr);
 
     dComIfGd_setListBG();
-    mDoExt_modelUpdateDL(mpModel[0]);
+    mDoExt_modelUpdateDL(mpActiveModel);
     dComIfGd_setList();
 
     return TRUE;
@@ -398,9 +382,11 @@ static int daObjYobikusa_Execute(daObjYobikusa_c* i_this) {
 
 /* 8059D738-8059D9A0 000DB8 0268+00 1/1 0/0 0/0 .text            execute__15daObjYobikusa_cFv */
 int daObjYobikusa_c::execute() {
-    if (mpModel[0] == mpModel[2]) {
-        if (!(!fopAcM_CheckCondition(this, 4) && (!dComIfGp_event_runCheck() || eventInfo.checkCommandTalk()))) {
-            mpModel[0] = mpModel[1];
+    if (mpActiveModel == mpModelTypeB) {
+        if (!(!fopAcM_CheckCondition(this, 4) &&
+              (!dComIfGp_event_runCheck() || eventInfo.checkCommandTalk())))
+        {
+            mpActiveModel = mpModelTypeA;
             fopAcM_OnStatus(this, 0x80);
         } else {
             return TRUE;
@@ -408,15 +394,15 @@ int daObjYobikusa_c::execute() {
     }
 
     if (mCcCyl.ChkTgHit()) {
-        mpModel[0] = mpModel[2];
+        mpActiveModel = mpModelTypeB;
 
         fopAcM_OffStatus(this, 0x80);
         cLib_offBit<u32>(attention_info.flags, 0x10);
 
-        if (getType() == 0) {
+        if (getType() == CALL_TYPE_FLY) {
             dComIfGp_particle_set(0x8347, &current.pos, NULL, NULL);
             dComIfGp_particle_set(0x8348, &current.pos, NULL, NULL);
-        } else if (getType() == 1) {
+        } else if (getType() == CALL_TYPE_HORSE) {
             dComIfGp_particle_set(0x8349, &current.pos, NULL, NULL);
             dComIfGp_particle_set(0x834a, &current.pos, NULL, NULL);
         }
@@ -424,7 +410,7 @@ int daObjYobikusa_c::execute() {
         if (fopAcM_checkCarryNow(this)) {
             setAction(MODE_PICK_LEAF);
         }
-        
+
         attention_info.field_0x0[4] = daPy_py_c::i_checkNowWolf() ? 73 : 42;
         callExecute();
     }
@@ -453,15 +439,15 @@ cPhs__Step daObjYobikusa_c::create() {
     fopAcM_SetupActor(this, daObjYobikusa_c);
 
     switch (getType()) {
-        case 0:
-            mResName = (char*)l_arcName1;
-            break;
-            
-        case 1:
-            mResName = (char*)l_arcName2;
-            break;
+    case CALL_TYPE_FLY:
+        mResName = (char*)l_arcName1;
+        break;
 
-        default:
+    case CALL_TYPE_HORSE:
+        mResName = (char*)l_arcName2;
+        break;
+
+    default:
         break;
     }
 
@@ -484,27 +470,25 @@ static int daObjYobikusa_Create(fopAc_ac_c* i_this) {
 
 /* 8059E020-8059E040 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjYobikusa_Method */
 static actor_method_class l_daObjYobikusa_Method = {
-    (process_method_func)daObjYobikusa_Create,
-    (process_method_func)daObjYobikusa_Delete,
-    (process_method_func)daObjYobikusa_Execute,
-    (process_method_func)daObjYobikusa_IsDelete,
+    (process_method_func)daObjYobikusa_Create,  (process_method_func)daObjYobikusa_Delete,
+    (process_method_func)daObjYobikusa_Execute, (process_method_func)daObjYobikusa_IsDelete,
     (process_method_func)daObjYobikusa_Draw,
 };
 
 /* 8059E040-8059E070 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Yobikusa */
 extern actor_process_profile_definition g_profile_Obj_Yobikusa = {
-    fpcLy_CURRENT_e,         // mLayerID
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_Obj_Yobikusa,       // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
-    sizeof(daObjYobikusa_c), // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    29,                      // mPriority
-    &l_daObjYobikusa_Method, // sub_method
-    0x40180,                 // mStatus
-    fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    fpcLy_CURRENT_e,          // mLayerID
+    7,                        // mListID
+    fpcPi_CURRENT_e,          // mListPrio
+    PROC_Obj_Yobikusa,        // mProcName
+    &g_fpcLf_Method.mBase,    // sub_method
+    sizeof(daObjYobikusa_c),  // mSize
+    0,                        // mSizeOther
+    0,                        // mParameters
+    &g_fopAc_Method.base,     // sub_method
+    29,                       // mPriority
+    &l_daObjYobikusa_Method,  // sub_method
+    0x40180,                  // mStatus
+    fopAc_ACTOR_e,            // mActorType
+    fopAc_CULLBOX_CUSTOM_e,   // cullType
 };

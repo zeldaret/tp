@@ -12,6 +12,11 @@ public:
         /* 2 */ MODE_PICK_LEAF,
     };
 
+    enum CallType_e {
+        /* 0 */ CALL_TYPE_FLY,
+        /* 1 */ CALL_TYPE_HORSE,
+    };
+
     typedef void (daObjYobikusa_c::*actionFunc)();
     typedef struct actionFuncEntry {
         actionFunc initFn;
@@ -28,15 +33,15 @@ public:
         /* 0x18 */ f32 field_0x18;
         /* 0x1C */ f32 field_0x1c;
         /* 0x20 */ f32 field_0x20;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ s16 field_0x38;
+        /* 0x24 */ f32 mJointScaleStep;
+        /* 0x28 */ f32 mNewLeafInitialAmplitude;
+        /* 0x2C */ f32 field_0x2c;  // Unused?
+        /* 0x30 */ f32 mPickLeafInitialAmplitude;
+        /* 0x34 */ f32 mPickLeafAmplitudeDecay;
+        /* 0x38 */ s16 field_0x38;  // Unused?
         /* 0x3A */ s16 field_0x3a;
-        /* 0x3C */ s16 field_0x3c;
-        /* 0x3E */ s16 field_0x3e;
+        /* 0x3C */ s16 mNewLeafTickSpeed;
+        /* 0x3E */ s16 mPickLeafTickSpeed;
     };
 
     /* 8059C9F8 */ void setAction(daObjYobikusa_c::Mode_e);
@@ -66,32 +71,34 @@ public:
     static attributes const M_attr;
     static actionFuncEntry ActionTable[3];
 
-    const attributes& attr() const { return M_attr; }
+    const attributes* attr() const { return &M_attr; }
     int getType() { return subtype & 0x7F; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     bool isPlayerCorrect() { return (s8)(u8)(fopAcM_GetParam(this) >> 8) > 0; }
 
 private:
-    /* 0x568 */ J3DModel* mpModel[3];
+    /* 0x568 */ J3DModel* mpActiveModel;
+    /* 0x56C */ J3DModel* mpModelTypeA;
+    /* 0x570 */ J3DModel* mpModelTypeB;
     /* 0x574 */ Mtx mMtx;
     /* 0x5A4 */ request_of_phase_process_class mPhase;
     /* 0x5AC */ actionFuncEntry* mActionEntry;
-    /* 0x5B0 */ int field_0x5b0;
+    /* 0x5B0 */ int mMode;
     /* 0x5B4 */ dCcD_Stts mStts;
     /* 0x5F0 */ dCcD_Cyl mCcCyl;
     /* 0x72C */ cBgS_PolyInfo mPolyInfo;
-    /* 0x73C */ f32 field_0x73c;
+    /* 0x73C */ f32 mGroundH;
     /* 0x740 */ f32 mJointScale;
-    /* 0x744 */ f32 field_0x744;
-    /* 0x748 */ f32 field_0x748;
-    /* 0x74C */ csXyz field_0x74c[3];
+    /* 0x744 */ f32 mNewLeafAmplitude;
+    /* 0x748 */ f32 mPickLeafAmplitude;
+    /* 0x74C */ csXyz mLeafAngles[3];
     /* 0x760 */ char* mResName;
     /* 0x764 */ s16 field_0x764;
     /* 0x766 */ s16 field_0x766;
-    /* 0x768 */ s16 field_0x768;
-    /* 0x76A */ s16 field_0x76a;
-    /* 0x76C */ s16 field_0x76c;
-}; // Size: 0x770
+    /* 0x768 */ s16 mNewLeafTick;
+    /* 0x76A */ s16 mPickLeafTick;
+    /* 0x76C */ s16 mPlayerDeltaAngle;
+};  // Size: 0x770
 
 STATIC_ASSERT(sizeof(daObjYobikusa_c) == 0x770);
 
