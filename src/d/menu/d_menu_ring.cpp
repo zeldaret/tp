@@ -3,9 +3,6 @@
  * Menu - Item Wheel
  */
 
-// the stringbase doesn't generate the required padding
-// might be that some weak functions after the ctor break the match too
-
 #include "d/menu/d_menu_ring.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
