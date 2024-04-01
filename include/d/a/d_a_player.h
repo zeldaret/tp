@@ -610,7 +610,7 @@ public:
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(f32);
-    virtual bool checkWolfLock(fopAc_ac_c*) const;
+    virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;

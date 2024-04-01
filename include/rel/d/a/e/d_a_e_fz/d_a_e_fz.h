@@ -20,11 +20,11 @@
  * 
  */
 enum daE_FZ_Action {
-    ACT_WAIT,      /**< Mini Freezard is waiting. (confirm) */ 
-    ACT_MOVE,      /**< Mini Freezard is moving. (confirm) */
-    ACT_ATTACK,    /**< Mini Freezard is attacking. (confirm) */
-    ACT_DAMAGE,    /**< Mini Freezard is damaged. (confirm) */
-    ACT_ROLLMOVE   /**< Mini Freezard is rollmove. (confirm) */
+    ACT_WAIT,      /**< Mini Freezard is waiting. */ 
+    ACT_MOVE,      /**< Mini Freezard is moving to attack. */
+    ACT_ATTACK,    /**< Mini Freezard is attacking. */
+    ACT_DAMAGE,    /**< Mini Freezard is damaged. */
+    ACT_ROLLMOVE   /**< Mini Freezard is spinning around Blizzeta.  This action is only taken when actor is loaded in with parameter 3 (aka, during the Blizzeta fight).*/
 };
 
 /**
@@ -86,8 +86,8 @@ private:
     /* 0x6AC */ cXyz field_0x6ac[4];
     /* 0x6DC */ cXyz field_0x6dc;
     /* 0x6E8 */ cXyz field_0x6e8;
-    /* 0x6F4 */ s32 mActionMode1; /**< Mini Freezard current action mode. */
-    /* 0x6F8 */ s32 mActionMode2; /**< Mini Freezard sub action mode. */
+    /* 0x6F4 */ s32 mActionMode; /**< Mini Freezard current action mode. */
+    /* 0x6F8 */ s32 mActionPhase; /**< Mini Freezard phase of current action mode. */
     /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
     /* 0x704 */ s16 field_0x704;
@@ -103,7 +103,7 @@ private:
     /* 0x715 */ u8 field_0x715;
     /* 0x716 */ u8 field_0x716;
     /* 0x717 */ u8 field_0x717;
-    /* 0x718 */ fopAc_ac_c* field_0x718; /**< Pointer to the mini freezard's parent actor? */
+    /* 0x718 */ fopAc_ac_c* mpBlizzetaActor; /**< Pointer to Blizzeta's actor (if used). Used to figure out what the mini freezard's angle and positioning should be when Blizzeta is attacking with them.*/
     /* 0x71C */ u32 field_0x71c[3];
     /* 0x728 */ u8 field_0x728[4];
     /* 0x72C */ dBgS_AcchCir mAcchCir;
@@ -129,7 +129,7 @@ private:
     /* 0xC22 */ u8 field_0xc22;
     /* 0xC23 */ u8 field_0xc23;
 };
-// STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
+STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
 
 class daE_FZ_HIO_c : public mDoHIO_entry_c {
 public:
@@ -139,8 +139,8 @@ public:
 public:
     /* 0x04 */ s8 field_0x04;
     /* 0x05 */ u8 field_0x05[0x06 - 0x05];
-    /* 0x06 */ u16 field_0x06;
-    /* 0x08 */ u16 field_0x08;
+    /* 0x06 */ s16 field_0x06;
+    /* 0x08 */ s16 field_0x08;
     /* 0x0A */ u8 field_0x0A[0x0C - 0x0A];
     /* 0x0C */ f32 field_0x0c;
     /* 0x10 */ f32 field_0x10;

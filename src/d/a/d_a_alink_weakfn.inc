@@ -780,8 +780,8 @@ void daPy_py_c::setAnimeFrame(f32 param_0) {
 }
 
 /* 801416A0-801416A8 13BFE0 0008+00 1/0 0/0 0/0 .text checkWolfLock__9daPy_py_cCFP10fopAc_ac_c */
-bool daPy_py_c::checkWolfLock(fopAc_ac_c* param_0) const {
-    return false;
+BOOL daPy_py_c::checkWolfLock(fopAc_ac_c* param_0) const {
+    return 0;
 }
 
 /* 801416A8-801416B0 13BFE8 0008+00 1/0 0/0 0/0 .text cancelWolfLock__9daPy_py_cFP10fopAc_ac_c */

@@ -244,6 +244,9 @@ public:
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
+
+    u32* getMidnaBindID(u8 i_idx) { return mMidnaBindID + i_idx; }
+    u8 getMidnaBindMode() { return mMidnaBindMode; }
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
@@ -252,6 +255,8 @@ public:
     void onWolfDownStartFlg() { mFlags |= 0x14; }
     void onWolfDownPullEndFlg() { mFlags |= 0x20; }
 
+    void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
+    void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
     void setThrowModeCatch() { mThrowMode |= 2; }
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
@@ -269,7 +274,7 @@ public:
     /* 0x594 */ u32 mEffectID1;
     /* 0x598 */ u32 mEffectID2;
     /* 0x59C */ u32 mMidnaBindID[3];
-    /* 0x5A8 */ u8 field_0x5a8;
+    /* 0x5A8 */ u8 mMidnaBindMode;
 };  // Size: 0x5AC
 
 s32 fopAc_IsActor(void* actor);

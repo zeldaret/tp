@@ -6,6 +6,9 @@
 #include "rel/d/a/e/d_a_e_fz/d_a_e_fz.h"
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "d/d_item.h"
+#include "d/a/d_a_player.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
+#include "d/com/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
@@ -333,32 +336,32 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 /* 806C1A20-806C1A28 000020 0008+00 0/1 0/0 0/0 .data            e_prim$3682 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 e_prim[8] = {
-    0xFF, 0x78, 0x00, 0x00, 0xFF, 0x64, 0x78, 0x00,
+SECTION_DATA static GXColor e_prim[2] = {
+    {0xFF, 0x78, 0x00, 0x00}, 
+    {0xFF, 0x64, 0x78, 0x00},
 };
 #pragma pop
 
 /* 806C1A28-806C1A30 000028 0008+00 0/1 0/0 0/0 .data            e_env$3683 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 e_env[8] = {
-    0x5A, 0x2D, 0x2D, 0x00, 0x3C, 0x1E, 0x1E, 0x00,
+SECTION_DATA static GXColor e_env[2] = {
+    {0x5A, 0x2D, 0x2D, 0x00}, 
+    {0x3C, 0x1E, 0x1E, 0x00},
 };
 #pragma pop
+
 
 /* 806C1A30-806C1A38 000030 0006+02 0/1 0/0 0/0 .data            eff_id$3691 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
-    0x02,
-    0x9D,
-    0x02,
-    0x9E,
-    0x02,
-    0x9F,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_DATA static u16 eff_id[3] = {
+    0x029D,
+    0x029E,
+    0x029F,
+    // /* padding */
+    // 0x00,
+    // 0x00,
 };
 #pragma pop
 
@@ -568,9 +571,9 @@ static void daE_FZ_Draw(daE_FZ_c* i_this) {
 }
 
 /* 806BEAF8-806BEB04 000298 000C+00 9/9 0/0 0/0 .text            setActionMode__8daE_FZ_cFii */
-void daE_FZ_c::setActionMode(int i_actionMode1, int i_actionMode2) {
-    mActionMode1 = i_actionMode1;
-    mActionMode2 = i_actionMode2;
+void daE_FZ_c::setActionMode(int i_actionMode, int i_actionPhase) {
+    mActionMode = i_actionMode;
+    mActionPhase = i_actionPhase;
 }
 
 /* 806BEB04-806BEBA0 0002A4 009C+00 2/2 0/0 0/0 .text            setReflectAngle__8daE_FZ_cFv */
@@ -594,9 +597,8 @@ void daE_FZ_c::setReflectAngle() {
 void daE_FZ_c::mBoundSoundset() {
     u32 speed = speedF;
 
-    if (speed < 1) {
+    if (speed < 1)
         speed = 1;
-    }
 
     mCreature.startCreatureSound(Z2SE_EN_FZ_BOUND,speed,-1);
 }
@@ -653,62 +655,62 @@ static u8 lit_3819[12];
 static daE_FZ_HIO_c_tmp l_HIO;
 
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
-#ifdef NONMATCHING
+#ifndef NONMATCHING
+// fwd ref to function at bottom of TU
+static int setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
+                                   cXyz* param_3);
+
 void daE_FZ_c::damage_check() {
-  if (1 < *(short *)(this + 0x56a)) {
-    ::cXyz::set((cXyz *)(this + 0x4f0),DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
-    d_a_e_fz::setMidnaBindEffect(this,this + 0x5c8,this + 0x4d4,this + 0x4f0);
-    if (this[0x74a] == (daE_FZ_c)0x0) {
-      ::cXyz::cXyz(acStack48);
-      pfVar2 = m_Do_graphic::dComIfGp_getPlayer(0);
-      ::cXyz::set(acStack48,(Vec *)&pfVar2->current);
-      dCcD_GStts::Move((dCcD_GStts *)(this + 0x9b0));
-      if (this[0x74c] == (daE_FZ_c)0x3) {
-        iVar3 = ::dCcD_GObjInf::ChkTgHit((dCcD_GObjInf *)(this + 0x9d0));
-        if (iVar3 != 0) {
-          uVar4 = ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-          *(undefined4 *)(this + 0xc40) = uVar4;
-          pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-          iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x400000);
-          if (iVar3 != 0) {
-            deadnextSet(this,false);
+  f32 tmp = l_HIO.field_0x0c;
+  
+  if (1 < health) {
+    scale.set(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
+    setMidnaBindEffect(this, &mCreature, &current.pos, &scale);
+
+    if (field_0x712 == 0) {
+      cXyz pos;
+      
+      pos.set(dComIfGp_getPlayer(0)->current.pos);
+      mStts.Move();
+      
+      if (field_0x714 == 3) {
+        if (mSph1.ChkTgHit()) {
+          mAtInfo.mpCollider = mSph1.GetTgHitObj();
+          
+          if (mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_IRON_BALL)) {
+            deadnextSet(false);
           }
         }
-      }
-      else {
-        iVar3 = ::dCcD_GObjInf::ChkTgHit((dCcD_GObjInf *)(this + 0x9d0));
-        if (iVar3 == 0) {
-          iVar3 = ::dBgS_Acch::ChkGroundHit((dBgS_Acch *)(this + 0x7a4));
-          if ((iVar3 != 0) &&
-             (iVar3 = ::dCcD_GObjInf::ChkCoHit((dCcD_GObjInf *)(this + 0x9d0)), iVar3 != 0)) {
-            iVar3 = ::dCcD_GObjInf::GetCoHitAc((dCcD_GObjInf *)(this + 0x9d0));
-            iVar7 = f_ap_game::fopAcM_IsActor(iVar3);
-            if ((iVar7 != 0) && (sVar9 = c_damagereaction::fopAcM_GetName(iVar3), sVar9 == 0x1de)) {
-              ::dCcD_GObjInf::GetCoHitAc((dCcD_GObjInf *)(this + 0x9d0));
-              ::cXyz::operator_-(&cStack108,(cXyz *)(this + 0x4d4));
-              ::cXyz::operator_=(acStack48,&cStack108);
-              ::cXyz::~cXyz(&cStack108);
-              (**(code **)(*(int *)(this + 0xa0c) + 0x28))();
+      } else {
+        
+        if (mSph1.ChkTgHit()) {
+          // early load, fix later
+          fopAc_ac_c* co_hit_actor = mSph1.GetCoHitAc();
+          if (mObjAcch.ChkGroundHit() && mSph1.ChkCoHit() && co_hit_actor) {
+
+            if (fopAcM_IsActor(co_hit_actor) && fopAcM_GetName(co_hit_actor) == PROC_E_FZ) {
+              co_hit_actor = mSph1.GetCoHitAc();
+              pos = pos - current.pos;
+              
+              mSph1.ClrCoHit();
+
               if ((DAT_80ac4b50 * 0.2 < *(float *)(iVar3 + 0x530)) ||
                  (DAT_80ac4b50 * 0.2 < *(float *)(this + 0x530))) {
-                ::cXyz::operator_-(&cStack120,(cXyz *)(this + 0x4d4));
-                ::cXyz::operator_=(acStack48,&cStack120);
-                ::cXyz::~cXyz(&cStack120);
-                uVar10 = ::cXyz::atan2sX_Z(acStack48);
-                *(undefined2 *)(this + 0x740) = uVar10;
-                setReflectAngle(this);
+                pos = pos - current.pos;
+                mLastWallHitAngle = pos.atan2sX_Z();
+                setReflectAngle();
+
                 if (*(float *)(this + 0x530) <= *(float *)(iVar3 + 0x530)) {
                   uVar4 = *(undefined4 *)(iVar3 + 0x530);
                   *(undefined4 *)(this + 0x530) = uVar4;
                   *(undefined4 *)(this + 0x734) = uVar4;
-                }
-                else {
+                } else {
                   uVar4 = *(undefined4 *)(this + 0x530);
                   *(undefined4 *)(iVar3 + 0x530) = uVar4;
                   *(undefined4 *)(iVar3 + 0x734) = uVar4;
                 }
-                mBoundSoundset(this);
-                setActionMode(this,3,5);
+                mBoundSoundset();
+                setActionMode(ACT_DAMAGE,5);
                 return;
               }
             }
@@ -976,7 +978,7 @@ void daE_FZ_c::executeWait() {
   s16 angle;
   f32 tmp = l_HIO.field_0x14;
   
-  switch (mActionMode2) {
+  switch (mActionPhase) {
   case 0:
     if (fopAcM_wayBgCheck(this,200.0f,50.0f)) {
       angle = cM_rndFX(10000.0f) + 32768.0f;
@@ -986,7 +988,7 @@ void daE_FZ_c::executeWait() {
       pos.y = orig.pos.y;
       pos.z = orig.pos.z + cM_rndFX(l_HIO.field_0x10);
       
-      pos = pos - current.pos;
+      pos = pos - current.pos; // -= doesn't appear to work here
       
       angle = pos.atan2sX_Z() - current.angle.y;
 
@@ -994,15 +996,14 @@ void daE_FZ_c::executeWait() {
         angle = 12288;
       }
       else {
-        if (angle < -12288) {
+        if (angle < -12288)
           angle = -12288;
-        }
       }
     }
 
     mAngleFromPlayer = current.angle.y + angle;
     field_0x710 = l_HIO.field_0x06 + cM_rndFX(l_HIO.field_0x30);
-    mActionMode2 = 1;
+    mActionPhase = 1;
   case 1:
     if (way_gake_check()) {
       cXyz pos2;
@@ -1065,10 +1066,10 @@ asm void daE_FZ_c::executeWait() {
 #ifdef NONMATCHING
 // float literals
 void daE_FZ_c::executeMove() {
-    switch (mActionMode2) {
+    switch (mActionPhase) {
         case 0:
             field_0x710 = l_HIO.field_0x08 + cM_rndFX(l_HIO.field_0x34);
-            mActionMode2 = 1; 
+            mActionPhase = 1; 
         case 1:
             cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,8,256);
             cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
@@ -1112,7 +1113,7 @@ COMPILER_STRIP_GATE(0x806C19B8, &lit_4243);
 #ifdef NONMATCHING
 // float literals
 void daE_FZ_c::executeAttack() {
-    switch (mActionMode2) {
+    switch (mActionPhase) {
     case 0:
         cLib_addCalcAngleS2(&current.angle.y,fopAcM_searchPlayerAngleY(this),8,0x300);
         if (way_gake_check() == 0) {
@@ -1149,7 +1150,7 @@ void daE_FZ_c::executeDamage() {
   cXyz pos;
   pos.set(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
 
-  switch(mActionMode2) {
+  switch(mActionPhase) {
   case 0:
     dComIfGp_particle_set(0x85b8,&current.pos,&shape_angle,&pos);
     dComIfGp_particle_set(0x85b9,&current.pos,&shape_angle,&pos);
@@ -1171,7 +1172,7 @@ void daE_FZ_c::executeDamage() {
   case 5:
     mStts.SetWeight(118);
     current.angle.y < 0 ? field_0x704 = 0 : field_0x704 = 1;
-    mActionMode2 = 2;
+    mActionPhase = 2;
   case 2:
     if (mObjAcch.ChkGroundHit() && dComIfG_Bgsp().GetPolyAtt0(mObjAcch.m_gnd) == 8) {
       tmp = 1.0f;
@@ -1212,7 +1213,7 @@ void daE_FZ_c::executeDamage() {
     tmp = l_HIO.field_0x24;
     speedF = tmp;
     field_0x6fc = tmp;
-    mActionMode2 = 4;
+    mActionPhase = 4;
   case 4:
     if (field_0x704 == 0) {
       s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
@@ -1240,7 +1241,7 @@ void daE_FZ_c::executeDamage() {
   case 6:
     mHealth = 0;
     if (field_0x710 == 1 || mObjAcch.ChkGroundHit()) {
-      mActionMode2 = 0;
+      mActionPhase = 0;
     }
   }
 }
@@ -1295,8 +1296,8 @@ COMPILER_STRIP_GATE(0x806C19CC, &lit_4421);
 #ifdef NONMATCHING
 // float literals
 void daE_FZ_c::executeRollMove() {
-    if (fopAcM_SearchByID(fopAcM_GetLinkId(this),&field_0x718) == 0 || !field_0x718) return;
-    u32 model_no = static_cast<daB_YO_c*>(field_0x718)->getModelNo();
+    if (fopAcM_SearchByID(fopAcM_GetLinkId(this),&mpBlizzetaActor) == 0 || !mpBlizzetaActor) return;
+    u32 model_no = static_cast<daB_YO_c*>(mpBlizzetaActor)->getModelNo();
     
     if (model_no < 4 || 6 < model_no) {
         fopAcM_delete(this);
@@ -1305,19 +1306,19 @@ void daE_FZ_c::executeRollMove() {
 
     cXyz pos;
 
-    s16 roll_angle = static_cast<daB_YO_c*>(field_0x718)->getFrizadRollAngle();
-    f32 mode_rarius = static_cast<daB_YO_c*>(field_0x718)->getModeRarius();
+    s16 roll_angle = static_cast<daB_YO_c*>(mpBlizzetaActor)->getFrizadRollAngle();
+    f32 mode_rarius = static_cast<daB_YO_c*>(mpBlizzetaActor)->getModeRarius();
 
     mode_rarius = 100.0f + mode_rarius;
     if (mode_rarius < 400.0f)
         mode_rarius = 400.0f;
 
-    switch (mActionMode2) {
+    switch (mActionPhase) {
     case 0:
         field_0x704 = 0;
         speedF = 0.0f;
         mRadiusBase = 0;
-        mActionMode2 = 1;
+        mActionPhase = 1;
         field_0x710 = (20 - field_0x715) * 2;
     case 1:
         if (field_0x710 == 0) {
@@ -1325,18 +1326,18 @@ void daE_FZ_c::executeRollMove() {
         }
 
         cLib_chaseAngleS(&field_0x704,1024,16);
-        pos = field_0x718->current.pos;
+        pos = mpBlizzetaActor->current.pos;
 
         pos.x += (f32)(mode_rarius * cM_ssin(roll_angle + field_0x715 * 0xccc));
         pos.z += (f32)(mode_rarius * cM_scos(roll_angle + field_0x715 * 0xccc));
 
         current.pos = pos;
-        u32 frizad_attack = static_cast<daB_YO_c*>(field_0x718)->getFrizadAttack();
+        u32 frizad_attack = static_cast<daB_YO_c*>(mpBlizzetaActor)->getFrizadAttack();
 
         if (frizad_attack == 3) {
-            mActionMode2 = 2;
+            mActionPhase = 2;
             speedF = 60.0f;
-            current.angle.y = cLib_targetAngleY(&static_cast<daB_YO_c*>(field_0x718)->current.pos,&current.pos);
+            current.angle.y = cLib_targetAngleY(&static_cast<daB_YO_c*>(mpBlizzetaActor)->current.pos,&current.pos);
         }
         break;
     case 2:
@@ -1400,7 +1401,7 @@ void daE_FZ_c::action() {
     linkSearch = false;
     damage_check();
 
-    switch (mActionMode1) {
+    switch (mActionMode) {
         case ACT_WAIT:
             executeWait();
             break;
@@ -1672,7 +1673,7 @@ s32 daE_FZ_c::_delete() {
         data_806C1BA0[0] = 0;
     }
 
-    if (mHeap) {
+    if (heap) {
         mCreature.deleteObject();
     }
 
@@ -1991,15 +1992,118 @@ static asm void func_806C14CC() {
 
 /* 806C14D4-806C18E8 002C74 0414+00 1/1 0/0 0/0 .text
  * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
+#ifdef NONMATCHING
+// gave up on this one, it's a mess. 
+// it appears to be actually defined in f_op_actor header and is in ~60 enemy actor TUs
+// so needs to be solved eventually
+static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* param_2,
+                                   cXyz* param_3) {
+  int ret;
+  cXyz pos3;
+  daPy_py_c* player_actor = daPy_getPlayerActorClass();
+  
+  if (player_actor->getMidnaActor() && player_actor->checkWolfLock(i_actorP)) {
+    cXyz pos;
+    bool darkworld_check = dKy_darkworld_check() != false;
+    
+    if (i_actorP->getMidnaBindMode() == 0) {
+      i_actorP->setMidnaBindMode(1);
+
+      csXyz s_pos;
+      PSMTXCopy(player_actor->getMidnaActor()->getMtxHairTop(),mDoMtx_stack_c::get());
+      mDoMtx_stack_c::multVec(&cXyz(100.0f,0.0f,0.0f),&pos3);
+
+      pos = pos3 - *param_2;
+
+      s_pos.y = cM_atan2s(pos.x,pos.z);
+      s_pos.x = -cM_atan2s(pos.y,JMAFastSqrt(pos.x * pos.x + pos.z * pos.z));
+      s_pos.z = 0;
+
+      s32 room_no = fopAcM_GetRoomNo(i_actorP);
+
+      JPABaseEmitter* emitter = dComIfGp_particle_set(
+        0x29b,
+        param_3,
+        &i_actorP->tevStr,
+        &s_pos,
+        param_3,
+        0xff,
+        0,
+        room_no,
+        &e_prim[darkworld_check],
+        &e_env[darkworld_check],
+        0
+      );
+
+      if (emitter) {
+        emitter->setGlobalParticleHeightScale(0.01f * pos.abs());
+      }
+
+      room_no = fopAcM_GetRoomNo(i_actorP);
+
+      dComIfGp_particle_set(
+        0x29c,
+        param_3,
+        &i_actorP->tevStr,
+        &i_actorP->shape_angle,
+        param_3,
+        0xff,
+        0,
+        room_no,
+        &e_prim[darkworld_check],
+        &e_env[darkworld_check],
+        0
+      );
+      
+      i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
+    }
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    do {
+      u32* bind_id = i_actorP->getMidnaBindID(k);
+      s32 room_no = fopAcM_GetRoomNo(i_actorP);
+
+      *bind_id = dComIfGp_particle_set(
+        *bind_id,
+        eff_id[i],
+        param_2,
+        &i_actorP->tevStr,
+        &i_actorP->shape_angle,
+        param_3,
+        0xff,
+        0,
+        room_no,
+        &e_prim[darkworld_check],
+        &e_env[darkworld_check],
+        0
+      );
+
+      i += 1;
+      j += 2;
+      k += 4;
+    } while( i < 3);
+
+    i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
+    ret = 1;
+  } else {
+    i_actorP->setMidnaBindMode(0);
+    ret = 0;
+  }
+
+  return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
+static asm int setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
                                    cXyz* param_3) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_fz/d_a_e_fz/setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 806C18E8-806C1924 003088 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push

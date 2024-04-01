@@ -124,6 +124,9 @@ public:
     void setVolumeSize(u16 size) { mVolumeSize = size; }
     void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 
+    void setGlobalParticleHeightScale(f32 height) {
+        mGlobalPScl.y = height;
+    }
     void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalPScl.set(scale.x, scale.y);
     }
