@@ -7,39 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-
-class daObjTrnd_c : public fopAc_ac_c {
-public:
-    /* 80D1B998 */ void setPntWind();
-    /* 80D1BA0C */ void cutPntWind();
-    /* 80D1BA30 */ void movePntWind();
-    /* 80D1BC40 */ void setCpsInfo();
-    /* 80D1BE04 */ void initBaseMtx();
-    /* 80D1BE24 */ void setBaseMtx();
-    /* 80D1BE6C */ int Create();
-    /* 80D1BFB0 */ int create();
-    /* 80D1C0F0 */ int execute();
-    /* 80D1C290 */ int draw();
-    /* 80D1C298 */ int _delete();
-
-    u32 checkSE() { return fopAcM_GetParamBit(this, 8, 1); }
-    u32 getTimer() { return fopAcM_GetParamBit(this, 0, 8); }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 0x18, 8); }
-
-    /* 0x568 */ dCcD_Stts mStts;
-    /* 0x5A4 */ dCcD_Cps mCps;
-    /* 0x6E8 */ Vec field_0x6e8;
-    /* 0x6F4 */ f32 field_0x6f4;
-    /* 0x6F8 */ f32 field_0x6f8;
-    /* 0x6FC */ f32 field_0x6fc;
-    /* 0x700 */ f32 field_0x700;
-    /* 0x704 */ f32 field_0x704;
-    /* 0x708 */ Mtx field_0x708;
-    /* 0x738 */ s16 field_0x738;
-    /* 0x73C */ f32 field_0x73c;
-    /* 0x740 */ WIND_INFLUENCE mWindInfluence;
-    /* 0x76C */ f32 field_0x76c;
-};  // Size: 0x770
+#include "d/kankyo/d_kankyo_rain.h"
 
 //
 // Forward References:
@@ -136,6 +104,19 @@ COMPILER_STRIP_GATE(0x80D1C360, &lit_3631);
 #pragma pop
 
 /* 80D1B998-80D1BA0C 000078 0074+00 2/2 0/0 0/0 .text            setPntWind__11daObjTrnd_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daObjTrnd_c::setPntWind() {
+    mWindInfluence.position = current.pos;
+    mWindInfluence.mDirection.x = 0.0f;
+    mWindInfluence.mDirection.y = 1.0f;
+    mWindInfluence.mDirection.z = 0.0f;
+    mWindInfluence.mRadius = 300.0f * scale.x;
+    mWindInfluence.field_0x20 = 0.0f;
+    mWindInfluence.mStrength = 0.2f;
+    dKyw_pntwind_set(&mWindInfluence);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -144,16 +125,12 @@ asm void daObjTrnd_c::setPntWind() {
 #include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/setPntWind__11daObjTrnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D1BA0C-80D1BA30 0000EC 0024+00 2/2 0/0 0/0 .text            cutPntWind__11daObjTrnd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjTrnd_c::cutPntWind() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/cutPntWind__11daObjTrnd_cFv.s"
+void daObjTrnd_c::cutPntWind() {
+    dKyw_pntwind_cut(&mWindInfluence);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D1C364-80D1C368 000010 0004+00 0/1 0/0 0/0 .rodata          @3679 */
@@ -209,6 +186,33 @@ COMPILER_STRIP_GATE(0x80D1C384, &lit_3684);
 #pragma pop
 
 /* 80D1BA30-80D1BC40 000110 0210+00 1/1 0/0 0/0 .text            movePntWind__11daObjTrnd_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daObjTrnd_c::movePntWind() {
+    cXyz local_20;
+    cXyz local_2c;
+    cXyz cStack_38;
+    local_20.x = field_0x6e8.mStart.x;
+    local_20.y = field_0x6e8.mStart.y;
+    local_20.z = field_0x6e8.mStart.z;
+    local_2c.x = field_0x6e8.mEnd.x;
+    local_2c.y = field_0x6e8.mEnd.y;
+    local_2c.z = field_0x6e8.mEnd.z;
+    dKyr_get_vectle_calc(&local_20, &local_2c, &cStack_38);
+    mWindInfluence.mDirection = cStack_38;
+    mWindInfluence.mRadius = field_0x6e8.mRadius * 2.0f;
+    mWindInfluence.field_0x20 = 0.0f;
+    cLib_addCalc(&mWindInfluence.position.x, field_0x6e8.mEnd.x, 0.1f, mWindInfluence.mRadius,
+                 mWindInfluence.mRadius * 0.5f);
+    cLib_addCalc(&mWindInfluence.position.y, field_0x6e8.mEnd.y, 0.1f, mWindInfluence.mRadius,
+                 mWindInfluence.mRadius * 0.5f);
+    cLib_addCalc(&mWindInfluence.position.z, field_0x6e8.mEnd.z, 0.1f, mWindInfluence.mRadius,
+                 mWindInfluence.mRadius * 0.5f);
+    if (mWindInfluence.position.abs(field_0x6e8.mEnd) < mWindInfluence.mRadius) {
+        mWindInfluence.position = field_0x6e8.mStart;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,6 +221,7 @@ asm void daObjTrnd_c::movePntWind() {
 #include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/movePntWind__11daObjTrnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D1C38C-80D1C390 000038 0004+00 0/1 0/0 0/0 .rodata          @3724 */
@@ -255,6 +260,34 @@ COMPILER_STRIP_GATE(0x80D1C39C, &lit_3728);
 #pragma pop
 
 /* 80D1BC40-80D1BE04 000320 01C4+00 1/1 0/0 0/0 .text            setCpsInfo__11daObjTrnd_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daObjTrnd_c::setCpsInfo() {
+    cLib_chaseF(&field_0x704, field_0x73c, scale.y * 3000.0f * 0.05f);
+    field_0x6e8.mEnd.x = 0;
+    field_0x6e8.mEnd.y = field_0x704;
+    field_0x6e8.mEnd.z = 0;
+    mDoMtx_stack_c::transS(field_0x6e8.mStart);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::multVec(&field_0x6e8.mEnd, &field_0x6e8.mEnd);
+    mCps.cM3dGCps::Set(field_0x6e8);
+    cXyz local_20;
+    local_20.x = field_0x6e8.mEnd.x - field_0x6e8.mStart.x;
+    local_20.y = field_0x6e8.mEnd.y - field_0x6e8.mStart.y;
+    local_20.z = field_0x6e8.mEnd.z - field_0x6e8.mStart.z;
+    if (!local_20.isZero()) {
+        local_20.normalize();
+    } else {
+        local_20 = cXyz::Zero;
+    }
+    local_20 *= scale.z * 30.0f;
+    mCps.SetAtVec(local_20);
+    movePntWind();
+    if (!checkSE()) {
+        mDoAud_seStartLevel(Z2SE_ENV_WIND_SARUDAN, 0, (field_0x704 / (scale.y * 3000.0f)) * 127.0f, 0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -263,26 +296,19 @@ asm void daObjTrnd_c::setCpsInfo() {
 #include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/setCpsInfo__11daObjTrnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D1BE04-80D1BE24 0004E4 0020+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjTrnd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjTrnd_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/initBaseMtx__11daObjTrnd_cFv.s"
+void daObjTrnd_c::initBaseMtx() {
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80D1BE24-80D1BE6C 000504 0048+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjTrnd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjTrnd_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/setBaseMtx__11daObjTrnd_cFv.s"
+void daObjTrnd_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x708);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D1C3A0-80D1C3A4 00004C 0004+00 0/1 0/0 0/0 .rodata          @3762 */
@@ -306,6 +332,42 @@ static dCcD_SrcCps l_cps_src = {
 };
 
 /* 80D1BE6C-80D1BFB0 00054C 0144+00 1/1 0/0 0/0 .text            Create__11daObjTrnd_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjTrnd_c::Create() {
+    current.angle.z = 0;
+    shape_angle.z = 0;
+    home.angle.z = 0;
+    initBaseMtx();
+    fopAcM_SetMtx(this, field_0x708);
+    mStts.Init(0xff, 0xff, this);
+    mCps.Set(l_cps_src);
+    mCps.SetStts(&mStts);
+    cXyz local_1c;
+    cXyz local_28;
+    local_1c.x = scale.x * -300.0f;
+    local_1c.y = 0.0;
+    local_1c.z = scale.x * -300.0f;
+    local_28.x = scale.x * 300.0f;
+    local_28.y = scale.y * 3000.0f;
+    local_28.z = scale.x * 300.0f;
+    fopAcM_setCullSizeBox(this, local_1c.x, 0, local_1c.z,
+                                          local_28.x, local_28.y,
+                                          local_28.z);
+    u32 timer = getTimer();
+    if (timer == 0xff || timer == 0) {
+        field_0x738 = 0xffff;
+    } else {
+        field_0x738 = timer * 15;
+    }
+    field_0x6e8.mRadius = scale.x * 300.0f;
+    field_0x6e8.mStart = current.pos;
+    field_0x73c = scale.y * 3000.0f;
+    field_0x704 = field_0x73c;
+    setPntWind();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -314,6 +376,7 @@ asm int daObjTrnd_c::Create() {
 #include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/Create__11daObjTrnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D1C400-80D1C420 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTrnd_Method */
@@ -346,14 +409,13 @@ SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
 };
 
 /* 80D1BFB0-80D1C0A8 000690 00F8+00 1/1 0/0 0/0 .text            create__11daObjTrnd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObjTrnd_c::create() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/func_80D1BFB0.s"
+int daObjTrnd_c::create() {
+    fopAcM_SetupActor(this, daObjTrnd_c);
+    if (Create() == 0) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e;
 }
-#pragma pop
 
 /* 80D1C0A8-80D1C0F0 000788 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
@@ -389,6 +451,43 @@ COMPILER_STRIP_GATE(0x80D1C3AC, &lit_3910);
 #pragma pop
 
 /* 80D1C0F0-80D1C290 0007D0 01A0+00 1/1 0/0 0/0 .text            execute__11daObjTrnd_cFv */
+// regalloc
+#ifdef NONMATCHING
+int daObjTrnd_c::execute() {
+    if (getSwbit() != 0xff && !fopAcM_isSwitch(this, getSwbit())) {
+        if (field_0x73c != 0.0f) {
+            field_0x73c = 0;
+            cutPntWind();
+        }
+        cLib_addCalc(&mWindPower, 0.3f, 0.2f, 0.1f, 0.001f);
+    } else if (field_0x738 > 0) {
+        field_0x738--;
+        if (field_0x73c == 0.0f) {
+            cLib_addCalc(&mWindPower, 0.3f, 0.2f, 0.1f, 0.001f);
+        } else {
+            cLib_addCalc(&mWindPower, 0.9f, 0.5f, 0.1f, 0.001f);
+        }
+    } else if (field_0x738 == 0) {
+        field_0x738 = 15 * getTimer();
+        if (field_0x73c == 0.0f) {
+            field_0x73c = scale.y * 3000.0f;
+            setPntWind();
+        } else {
+            field_0x73c = 0.0f;
+            cutPntWind();
+        }
+    }
+    dKyw_evt_wind_set(0, home.angle.y);
+    dKyw_custom_windpower(mWindPower);
+    setCpsInfo();
+    setBaseMtx();
+    if (field_0x704 != 0.0f) {
+        mCps.cM3dGCps::Set(field_0x6e8);
+        dComIfG_Ccsp()->Set(&mCps);
+    }
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -397,6 +496,7 @@ asm int daObjTrnd_c::execute() {
 #include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/execute__11daObjTrnd_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D1C290-80D1C298 000970 0008+00 1/1 0/0 0/0 .text            draw__11daObjTrnd_cFv */
 int daObjTrnd_c::draw() {
@@ -404,57 +504,34 @@ int daObjTrnd_c::draw() {
 }
 
 /* 80D1C298-80D1C2CC 000978 0034+00 1/1 0/0 0/0 .text            _delete__11daObjTrnd_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObjTrnd_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/_delete__11daObjTrnd_cFv.s"
+int daObjTrnd_c::_delete() {
+    dKy_getEnvlight()->mEvtWindSet = 0;
+    cutPntWind();
+    return 1;
 }
-#pragma pop
 
 /* 80D1C2CC-80D1C2EC 0009AC 0020+00 1/0 0/0 0/0 .text            daObjTrnd_Draw__FP11daObjTrnd_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObjTrnd_Draw(daObjTrnd_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/daObjTrnd_Draw__FP11daObjTrnd_c.s"
+static int daObjTrnd_Draw(daObjTrnd_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80D1C2EC-80D1C30C 0009CC 0020+00 1/0 0/0 0/0 .text            daObjTrnd_Execute__FP11daObjTrnd_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObjTrnd_Execute(daObjTrnd_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/daObjTrnd_Execute__FP11daObjTrnd_c.s"
+static int daObjTrnd_Execute(daObjTrnd_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80D1C30C-80D1C32C 0009EC 0020+00 1/0 0/0 0/0 .text            daObjTrnd_Delete__FP11daObjTrnd_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObjTrnd_Delete(daObjTrnd_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/daObjTrnd_Delete__FP11daObjTrnd_c.s"
+static int daObjTrnd_Delete(daObjTrnd_c* i_this) {
+    return i_this->_delete();
 }
-#pragma pop
 
 /* 80D1C32C-80D1C34C 000A0C 0020+00 1/0 0/0 0/0 .text            daObjTrnd_Create__FP11daObjTrnd_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int daObjTrnd_Create(daObjTrnd_c* i_this) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_tornado/d_a_obj_tornado/daObjTrnd_Create__FP11daObjTrnd_c.s"
+static int daObjTrnd_Create(daObjTrnd_c* i_this) {
+    return i_this->create();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80D1C3B0-80D1C3B1 00005C 0001+00 0/0 0/0 0/0 .rodata          None */
