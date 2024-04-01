@@ -919,7 +919,7 @@ static asm void drawSecond_light8(JPABaseEmitter* param_0) {
 
 /* 80049E40-80049FEC 044780 01AC+00 2/2 0/0 0/0 .text drawSecond_b_light8__FP14JPABaseEmitter */
 static void drawSecond_b_light8(JPABaseEmitter* param_0) {
-    dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+    dScnKy_env_light_c* envLight = dKy_getEnvlight();
     dKy_setLight_nowroom(dComIfGp_roomControl_getStayNo());
     GXSetColorUpdate(true);
     GXSetNumChans(1);
@@ -1555,7 +1555,7 @@ void dPa_windPcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* param_
 void dPa_control_c::level_c::emitter_c::onActive() {
     mStatus |= 1;
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         onEventMove();
     } else {
         offEventMove();
@@ -1620,7 +1620,7 @@ dPa_control_c::level_c::level_c() {
  * execute__Q213dPa_control_c7level_cFPQ313dPa_control_c7level_c9emitter_c */
 void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* i_emitter) {
     if (!i_emitter->isActive()) {
-        if (i_emitter->isEventMove() || !i_dComIfGp_event_runCheck()) {
+        if (i_emitter->isEventMove() || !dComIfGp_event_runCheck()) {
             i_emitter->getEmitter()->playCalcEmitter();
             cutTable(i_emitter);
             mFreeNo = ((i_emitter - mEmitter) / sizeof(emitter_c));

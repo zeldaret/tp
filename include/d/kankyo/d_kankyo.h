@@ -277,6 +277,9 @@ public:
 
     /* 801ADBBC */ virtual ~dScnKy_env_light_c();
 
+    void setLightTevColorType(J3DModel* i_model, dKy_tevstr_c* tevstr) {
+        setLightTevColorType(i_model->getModelData(), tevstr);
+    }
     void setLightTevColorType_MAJI(J3DModel* i_model, dKy_tevstr_c* tevstr) {
         setLightTevColorType_MAJI(i_model->getModelData(), tevstr);
     }
@@ -522,7 +525,7 @@ extern dScnKy_env_light_c g_env_light;
 
 STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 
-inline dScnKy_env_light_c* i_dKy_getEnvlight() {
+inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
 
@@ -553,6 +556,8 @@ static int dKy_Outdoor_check();
 s32 dKy_getdaytime_hour();
 s32 dKy_getdaytime_minute();
 s32 dKy_get_dayofweek();
+s32 dKy_getDarktime_minute();
+s32 dKy_getDarktime_hour();
 static void dKy_Sound_init();
 void dKy_setLight_nowroom(char);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c*);

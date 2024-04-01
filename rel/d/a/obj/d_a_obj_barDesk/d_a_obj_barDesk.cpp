@@ -56,7 +56,7 @@ void daBarDesk_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BA9288-80BA92F4 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daBarDesk_cFv */
@@ -72,7 +72,7 @@ int daBarDesk_c::CreateHeap() {
 /* 80BA92F4-80BA94B8 000254 01C4+00 1/1 0/0 0/0 .text            create__11daBarDesk_cFv */
 cPhs__Step daBarDesk_c::create() {
     fopAcM_SetupActor(this, daBarDesk_c);
-    if (i_fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
+    if (fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
         return cPhs_ERROR_e;
     }
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "KHdesk");
@@ -135,7 +135,7 @@ void daBarDesk_c::init_modeBreak() {
                    dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBreakEffect();
     dComIfGp_getVibration().StartShock(l_HIO.field_0x5, 15, cXyz(0.0f, 1.0f, 0.0f));
-    i_fopAcM_onSwitch(this, (u8)fopAcM_GetParam(this));
+    fopAcM_onSwitch(this, (u8)fopAcM_GetParam(this));
     mMode = 1;
 }
 
@@ -156,7 +156,7 @@ void daBarDesk_c::setBreakEffect() {
 /* 80BA98E8-80BA998C 000848 00A4+00 1/0 0/0 0/0 .text            Draw__11daBarDesk_cFv */
 int daBarDesk_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

@@ -39,7 +39,6 @@ public:
         entryModelData(param_0, param_1, param_2);
     }
 
-    /* 800CFFF4 */ void setBaseTRMtx(f32 (*)[4]);
     /* 80327100 */ void initialize();
     /* 80327184 */ s32 entryModelData(J3DModelData*, u32, u32);
     /* 80327300 */ s32 createShapePacket(J3DModelData*);
@@ -56,7 +55,6 @@ public:
     /* 803281B4 */ void calcBumpMtx();
     /* 803282B8 */ void calcBBoardMtx();
     /* 803282EC */ void prepareShapePackets();
-    MtxP getAnmMtx(int);
 
     /* 80327CA4 */ virtual void update();
     /* 80327E4C */ virtual void entry();
@@ -75,7 +73,7 @@ public:
     bool isCpuSkinningOn() const { return (mFlags & J3DMdlFlag_SkinPosCpu) && (mFlags & J3DMdlFlag_SkinNrmCpu); }
 
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
-    void i_setBaseTRMtx(Mtx m) { MTXCopy(m, mBaseTransformMtx); }
+    void setBaseTRMtx(Mtx m) { MTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
     J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
@@ -89,11 +87,8 @@ public:
     void setUserArea(u32 area) { mUserArea = area; }
     u32 getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
-    void setAnmMtx(int i, Mtx m) { mMtxBuffer->setAnmMtx(i, m); }
-
-    // is there a better way to handle inlines with same name as non-inlines?
-    MtxP i_getAnmMtx(int p1) { return mMtxBuffer->getAnmMtx(p1); }
-    void i_setAnmMtx(int p1, Mtx mtx) { mMtxBuffer->setAnmMtx(p1, mtx); }
+    void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
+    MtxP getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;

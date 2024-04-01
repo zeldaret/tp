@@ -8,12 +8,10 @@ M686_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover.map
 
 M686_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_well_cover/d_a_obj_well_cover.cpp \
 
 M686_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_well_cover/d_a_obj_well_cover.o \
 
 M686_LIBS := \

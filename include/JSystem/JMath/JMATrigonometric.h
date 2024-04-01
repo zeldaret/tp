@@ -15,8 +15,8 @@ struct TAngleConstant_<f32> {
 struct TSinCosTable {
     std::pair<f32, f32> table[0x2000];
 
-    f32 sinShort(s16 v) const { return table[static_cast<u16>(v) >> 3].first; }
-    f32 cosShort(s16 v) const { return table[static_cast<u16>(v) >> 3].second; }
+    f32 sinShort(s16 v) const { return table[(u16)v >> 3U].first; }
+    f32 cosShort(s16 v) const { return table[(u16)v >> 3U].second; }
 
     inline f32 sinLap(f32 v) {
         if (v < 0.0f) {

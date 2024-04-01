@@ -546,7 +546,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model = j3dSys.getModel();
         npc_ne_class* _this = (npc_ne_class*)model->getUserArea();
         if (_this != NULL) {
-            PSMTXCopy(model->i_getAnmMtx(jnt_no), *calc_mtx);
+            PSMTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
 
             // head
             if (jnt_no == 4) {
@@ -582,7 +582,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
                 mDoMtx_ZrotM(*calc_mtx, 0);
             }
 
-            model->i_setAnmMtx(jnt_no, *calc_mtx);
+            model->setAnmMtx(jnt_no, *calc_mtx);
             PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
@@ -624,7 +624,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
     } else {
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }
-    g_env_light.setLightTevColorType_MAJI(model->mModelData, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
 
     i_this->mpBtkAnm->entry(model->getModelData());
     i_this->mpBtpAnm->entry(model->getModelData());
@@ -640,8 +640,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
     }
 
     if (i_this->field_0x5b4 == 3) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpDishMorf->getModel()->mModelData,
-                                              &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpDishMorf->getModel(), &i_this->tevStr);
         i_this->mpDishMorf->entryDL();
     }
 
@@ -1928,7 +1927,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
 
         i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
             if (fpcEx_Search(s_fish_sub, i_this) != NULL) {
                 i_this->mAction = npc_ne_class::ACT_HOME;
                 i_this->mState = 10;
@@ -3583,7 +3582,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
 
     case 1:
     default:
-        if (!i_dComIfGs_isEventBit(0x1001)) {
+        if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
             fopAcM_OffStatus(i_this, 0x100);
@@ -3818,7 +3817,7 @@ static void action(npc_ne_class* i_this) {
     cXyz vec1, vec2, vec3;
     if (i_this->field_0x701 != 0 && i_this->mAction != npc_ne_class::ACT_SANBASI
                                && player->current.pos.z > -2800.0f) {
-        dmg_rod_class* rod = static_cast<dmg_rod_class*>(i_fopAcM_SearchByName(PROC_MG_ROD));
+        dmg_rod_class* rod = static_cast<dmg_rod_class*>(fopAcM_SearchByName(PROC_MG_ROD));
         if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5
                         && rod->field_0x13b4 != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
@@ -4262,7 +4261,7 @@ static int message(npc_ne_class* i_this) {
     if (i_this->field_0xc0a != 0) {
         i_this->field_0x656 = 10;
         if (i_this->mMsgFlow.doFlow(i_this, NULL, 0)) {
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             i_this->field_0xc0a = 0;
             if (i_this->field_0x5b7 == 1 && (i_this->mMsgFlow.getNowMsgNo() == 0x18a1 ||
                                            i_this->mMsgFlow.getNowMsgNo() == 0x18a2)) {
@@ -4272,7 +4271,7 @@ static int message(npc_ne_class* i_this) {
         }
         return 1;
     } else {
-        if (i_dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
             i_this->mMsgFlow.init(i_this, i_this->mFlowID, 0, NULL);
             i_this->field_0xc0a = 1;
         }
@@ -4335,9 +4334,9 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->field_0x640++;
 
     if (i_this->field_0x701 != 0 && (i_this->field_0x640 & 0xf) == 0) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
-            if (i_fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
+            if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
                 i_this->mNoFollow = false;
             } else {
                 i_this->mNoFollow = true;
@@ -4372,7 +4371,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->scale.x = i_this->mBaseScale.x * l_HIO.scale;
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
     J3DModel* model = i_this->mpMorf->getModel();
-    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->play(&i_this->eyePos, 0, 0);
     i_this->mpBtkAnm->setFrame(i_this->mBtkFrame);
     i_this->mpBtpAnm->setFrame(i_this->mBtpFrame);
@@ -4381,17 +4380,17 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     if (i_this->field_0x5b4 == 3) {
         mDoMtx_stack_c::transS(i_this->mDishPos.x, i_this->mDishPos.y, i_this->mDishPos.z);
         mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-        i_this->mpDishMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->mpDishMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         i_this->mpDishMorf->play(&i_this->eyePos, 0, 0);
         i_this->mpDishMorf->modelCalc();
     }
 
-    PSMTXCopy(model->i_getAnmMtx(4), *calc_mtx);
+    PSMTXCopy(model->getAnmMtx(4), *calc_mtx);
     MtxPosition(&vec1, &i_this->eyePos);
     i_this->attention_info.position = i_this->eyePos;
     i_this->attention_info.position.y += i_this->mBaseScale.y * 20.0f;
 
-    PSMTXCopy(model->i_getAnmMtx(3), *calc_mtx);
+    PSMTXCopy(model->getAnmMtx(3), *calc_mtx);
     vec1.set(i_this->field_0xbf4 + -30.0f, 0.0f, 0.0f);
     cLib_addCalc0(&i_this->field_0xbf4, 1.0f, 5.0f);
     cXyz vec2;
@@ -4432,11 +4431,11 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
 
     if (i_this->mFishID != -1 && i_this->field_0xcc0 != 0) {
         mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
-        PSMTXCopy(model->i_getAnmMtx(4), mDoMtx_stack_c::get());
+        PSMTXCopy(model->getAnmMtx(4), mDoMtx_stack_c::get());
         mDoMtx_stack_c::ZrotM(-19000);
         mDoMtx_stack_c::scaleM(0.5f, 0.5f, 0.5f);
         mDoMtx_stack_c::transM(5.0f, 35.0f, 15.0f);
-        fish->mpMorf->getModel()->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        fish->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         int ivar3 = cM_ssin(g_Counter.mTimer * 15000) * 1500.0f;
         for (int i = 0; i <= fish->field_0x72c; i++) {
             fish->field_0x718[i] = ivar3;
@@ -4531,7 +4530,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     
     if (_this->field_0x5b4 == 3) {
         static int dish_bck[2] = {9, 8};
-        int dish_flag = i_dComIfGs_isEventBit(0x1001) ? 1 : 0;
+        int dish_flag = dComIfGs_isEventBit(0x1001) ? 1 : 0;
         _this->mpDishMorf =
             new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes(_this->mResName, 29), NULL, NULL,
                     (J3DAnmTransform*)dComIfG_getObjectRes(_this->mResName, dish_bck[dish_flag]),
@@ -4628,7 +4627,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         _this->field_0x5b7 = (u8)(fopAcM_GetParam(_this) >> 0x18);
 
         if (_this->field_0x5b7 == 1 &&
-                        !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
+                        !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
             return cPhs_ERROR_e;
         }
 
@@ -4652,7 +4651,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             if (_this->field_0x5b4 == 1) {
                 _this->mAction = npc_ne_class::ACT_TAME;
             } else if (_this->field_0x5b4 == 2) {
-                if (i_dComIfGs_isEventBit(0x1001)) {
+                if (dComIfGs_isEventBit(0x1001)) {
                     _this->mAction = npc_ne_class::ACT_ROOF;
                     _this->current.pos.set(1005.0f, 766.0f, -1423.0f);
                     _this->old = _this->home = _this->current;

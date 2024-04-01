@@ -16,7 +16,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         J3DModel* model = j3dSys.getModel();
         daObjKKanban_c* userArea = (daObjKKanban_c*)model->getUserArea();
         if (jointNo == userArea->mJointIdx) {
-            cMtx_copy(model->i_getAnmMtx(jointNo), mDoMtx_stack_c::get());
+            cMtx_copy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
             mDoMtx_stack_c::XrotM(userArea->mRotX);
             mDoMtx_stack_c::ZrotM(userArea->mRotZ);
             model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
@@ -37,7 +37,7 @@ void daObjKKanban_c::initBaseMtx() {
 void daObjKKanban_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C46F98-80C46F9C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */

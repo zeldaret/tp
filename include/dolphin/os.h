@@ -97,11 +97,13 @@ void OSReportInit(void);
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
 #define OS_PANIC(msg) OSPanic(__FILE__, __LINE__, msg)
 #define ASSERTMSG(exp, msg) (void)((exp) || (OSPanic(__FILE__, __LINE__, (msg)), 0))
+#define ASSERT(cond) ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
 #else
 #define OS_REPORT(...)
 #define OS_REPORT_ERROR(...)
 #define OS_PANIC(...)
 #define ASSERTMSG(exp, msg) ((void)0)
+#define ASSERT(cond) ((void)0)
 #endif
 
 extern u8 __OSReport_disable;

@@ -88,7 +88,7 @@ static int daTagStream_Delete(daTagStream_c* i_this) {
 
 /* 80D63B58-80D63BC0 0002D8 0068+00 1/1 0/0 0/0 .text            execute__13daTagStream_cFv */
 int daTagStream_c::execute() {
-    if (field_0x56b == 0xFF || i_fopAcM_isSwitch(this,field_0x56b)) {
+    if (field_0x56b == 0xFF || fopAcM_isSwitch(this,field_0x56b)) {
         mStreamOn = 1;
     } else {
         mStreamOn = 0;

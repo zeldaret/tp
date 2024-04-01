@@ -829,7 +829,7 @@ int daBg_c::draw() {
                             field_0x5f0 = 0;
                         }
 
-                        if (i_dComIfGs_isEventBit(dSv_event_flag_c::M_077)) {
+                        if (dComIfGs_isEventBit(dSv_event_flag_c::M_077)) {
                             field_0x5f0 = 9;
                         }
                     } else if (!memcmp(&name[3], "MA15", 4)) {
@@ -1050,7 +1050,7 @@ int daBg_c::create() {
                 if (model != NULL) {
                     mDoMtx_stack_c::transS(transX, 0.0f, transY);
                     mDoMtx_stack_c::YrotM(angle);
-                    model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                    model->setBaseTRMtx(mDoMtx_stack_c::get());
 
                     J3DModelData* modelData = model->getModelData();
                     for (u16 j = 0; j < modelData->getMaterialNum(); j++) {

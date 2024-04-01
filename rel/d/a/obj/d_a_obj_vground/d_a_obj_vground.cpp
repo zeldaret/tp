@@ -78,11 +78,11 @@ int daObjVGnd_c::create() {
 
 /* 80D217A8-80D21878 000448 00D0+00 2/2 0/0 0/0 .text            execute__11daObjVGnd_cFv */
 int daObjVGnd_c::execute() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
         mpBrk->setFrame(2.0f);
         mpBtk->setFrame(2.0f);
     } else {
-        if (i_fopAcM_isSwitch(this, getSwbit())) {
+        if (fopAcM_isSwitch(this, getSwbit())) {
             mpBrk->setFrame(1.0f);
             mpBtk->setFrame(1.0f);
         } else {
@@ -97,7 +97,7 @@ int daObjVGnd_c::execute() {
 /* 80D21878-80D2194C 000518 00D4+00 1/1 0/0 0/0 .text            draw__11daObjVGnd_cFv */
 int daObjVGnd_c::draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mpBrk->entry(mpModel->getModelData());
     mpBtk->entry(mpModel->getModelData());
     dComIfGd_setListDarkBG();

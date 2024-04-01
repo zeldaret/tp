@@ -1,5 +1,6 @@
 #include "dolphin/gx/GXTransform.h"
 #include "dolphin/gx.h"
+#include "dolphin/os.h"
 
 void __GXSetMatrixIndex();
 
@@ -42,9 +43,7 @@ void GXProject(f32 model_x, f32 model_y, f32 model_z, Mtx model_mtx, f32* proj_m
     f32 var_f28;
     f32 var_f31;
 
-    ASSERT(proj_mtx != NULL && viewpoint != NULL && screen_x != NULL && screen_y != NULL &&
-               screen_z != NULL,
-           "GXGet*: invalid null pointer");
+    ASSERTMSG(proj_mtx != NULL && viewpoint != NULL && screen_x != NULL && screen_y != NULL && screen_z != NULL, "GXGet*: invalid null pointer");
 
     sp10[0] = (model_mtx[0][0] * model_x) + (model_mtx[0][1] * model_y) +
               (model_mtx[0][2] * model_z) + model_mtx[0][3];

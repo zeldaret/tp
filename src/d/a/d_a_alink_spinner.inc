@@ -231,7 +231,7 @@ int daAlink_c::procSpinnerWait() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
     if (spinner == NULL || spinner->getDeleteFlg() || checkWindSpeedOnXZ() ||
-        i_checkEndResetFlg1(ERFLG1_UNK_1) || i_checkEndResetFlg0(ERFLG0_UNK_2)) {
+        checkEndResetFlg1(ERFLG1_UNK_1) || checkEndResetFlg0(ERFLG0_UNK_2)) {
         mNormalSpeed = 0.0f;
         setJumpMode();
         return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);

@@ -1324,7 +1324,7 @@ SECTION_SDATA2 static f32 lit_5193 = 0.00139999995008111f;
 u8 data_80450EE0;
 
 /* 80059728-80059E38 054068 0710+00 1/1 0/0 0/0 .text            wether_move_vrkumo__Fv */
-// gameinfo load issue, cmath instruction order / reg alloc
+// Matches with literals
 #ifdef NONMATCHING
 static void wether_move_vrkumo() {
     BOOL var_r31 = false;
@@ -1336,7 +1336,7 @@ static void wether_move_vrkumo() {
         if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) == 0 ||
             strcmp(dComIfGp_getStartStageName(), "F_SP114") == 0 ||
             (strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0 &&
-             (g_env_light.field_0x12cc != 0 || i_dComIfGp_event_runCheck())))
+             (g_env_light.field_0x12cc != 0 || dComIfGp_event_runCheck())))
         {
             cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 &&
@@ -1431,9 +1431,9 @@ static void wether_move_vrkumo() {
 
         temp_f27_2 += 24575.0f;
 
-        sp8.x = cM_ssin(temp_f27_2) * cM_scos(temp_r4_2);
+        sp8.x = cM_scos(temp_r4_2) * cM_ssin(temp_f27_2);
         sp8.y = cM_ssin(temp_r4_2);
-        sp8.z = cM_scos(temp_f27_2) * cM_scos(temp_r4_2);
+        sp8.z = cM_scos(temp_r4_2) * cM_scos(temp_f27_2);
 
         g_env_light.mpVrkumoPacket->field_0x1150 += (sp8.x * var_f31) * 0.0014f;
         g_env_light.mpVrkumoPacket->field_0x1154 += (sp8.z * var_f31) * 0.0014f;
@@ -1902,7 +1902,7 @@ cXyz dKyw_get_wind_vecpow() {
 /* 8005AB64-8005AC30 0554A4 00CC+00 0/0 0/0 1/1 .text dKyw_plight_collision_set__FP4cXyzssfffff */
 void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 param_3, f32 param_4,
                                f32 param_5, f32 param_6, f32 param_7) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     for (int i = 0; i < 5; i++) {
         if (!env_light->mWindInfluenceEntity[i].mInUse) {
@@ -1934,7 +1934,7 @@ SECTION_SDATA2 static f32 lit_5630 = 1.0f / 5.0f;
 // matches with literals
 #ifdef NONMATCHING
 static void squal_proc() {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     WIND_INFLUENCE* influence;
 
     for (int i = 0; i < 5; i++) {
@@ -2131,8 +2131,8 @@ SECTION_SDATA2 static f32 lit_5855[1 + 1 /* padding */] = {
 /* 8005B2F8-8005B530 055C38 0238+00 0/0 3/3 13/13 .text dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf */
 // matches with literals
 #ifdef NONMATCHING
-void dKyw_get_AllWind_vec(cXyz* param_0, cXyz* i_direction, f32* i_power) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power) {
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     dKyw_pntwind_get_info(param_0, i_direction, i_power);
 
     cXyz sp54;

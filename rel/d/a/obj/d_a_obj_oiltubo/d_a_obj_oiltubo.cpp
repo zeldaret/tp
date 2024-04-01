@@ -258,8 +258,8 @@ void daObj_Oiltubo_c::setMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mpBModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpBModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CA7430-80CA7478 000D90 0048+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_Oiltubo_cFv */
@@ -273,7 +273,7 @@ void daObj_Oiltubo_c::setAttnPos() {
 BOOL daObj_Oiltubo_c::chkEvent() {
     BOOL var_r5 = 1;
 
-    if (!i_dComIfGp_getEvent().i_isOrderOK()) {
+    if (!dComIfGp_getEvent().isOrderOK()) {
         var_r5 = 0;
 
         if (eventInfo.i_checkCommandCatch()) {

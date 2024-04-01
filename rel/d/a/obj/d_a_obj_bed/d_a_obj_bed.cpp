@@ -111,7 +111,7 @@ int daObj_Bed_c::Execute() {
 /* 80BADDF4-80BADEB8 000874 00C4+00 1/1 0/0 0/0 .text            Draw__11daObj_Bed_cFv */
 int daObj_Bed_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     if (mGroundH != -1e9f) {
         mShadow = dComIfGd_setShadow(mShadow, 1, mpModel, &current.pos,
@@ -164,7 +164,7 @@ void daObj_Bed_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BAE034-80BAE054 000AB4 0020+00 1/0 0/0 0/0 .text            daObj_Bed_Create__FPv */

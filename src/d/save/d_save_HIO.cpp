@@ -224,7 +224,7 @@ void dSvBit_HIO_c::init() {
     mDarkness.init();
     mTransform.init();
     mOther.init();
-    mTransformFlag = field_0x49d = i_dComIfGs_isEventBit(dSv_event_flag_c::M_077);
+    mTransformFlag = field_0x49d = dComIfGs_isEventBit(dSv_event_flag_c::M_077);
 }
 
 /* 804307EC-80430C90 05D50C 04A0+04 1/1 2/2 0/0 .bss             g_save_bit_HIO */

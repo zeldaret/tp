@@ -46,7 +46,7 @@ BOOL daAlink_c::checkShieldAttackEmphasys() {
 
 /* 800DC678-800DC79C 0D6FB8 0124+00 5/5 0/0 0/0 .text checkGuardActionChange__9daAlink_cFv */
 /* BOOL daAlink_c::checkGuardActionChange() {
-    return i_checkAttentionLock() && !checkIronBallWaitAnime() && !checkGrabAnime() &&
+    return checkAttentionLock() && !checkIronBallWaitAnime() && !checkGrabAnime() &&
 !checkCopyRodControllAnime() && mTargetedActor != NULL && !checkSpecialNpc(mTargetedActor) &&
 (fopAcM_GetGroup(mTargetedActor) != 3 && fopAcM_GetGroup(mTargetedActor) != fopAc_NPC_e);
 } */
@@ -65,7 +65,7 @@ asm BOOL daAlink_c::checkGuardActionChange() {
 // matches with literals
 #ifdef NONMATCHING
 void daAlink_c::stickArrowIncrement(int param_0) {
-    if (!i_checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW)) {
+    if (!checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW)) {
         s16 arrow_num = 0;
 
         for (int i = 0; i < 16; i++) {
@@ -89,7 +89,7 @@ void daAlink_c::stickArrowIncrement(int param_0) {
                                                0.0f);
             }
 
-            i_onResetFlg0(RFLG0_UNK_1);
+            onResetFlg0(RFLG0_UNK_1);
         }
     }
 }
@@ -218,14 +218,14 @@ void daAlink_c::setArrowShieldPos(cXyz* param_0, csXyz* param_1, cXyz const* par
 
 /* 800DCDF0-800DCE6C 0D7730 007C+00 17/17 0/0 0/0 .text checkUpperGuardAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkUpperGuardAnime() const {
-    return i_checkNoResetFlg2(FLG2_UNK_8000000) && !checkEventRun() &&
-           !i_checkNoResetFlg0(FLG0_UNK_2) && mProcID != PROC_GUARD_BREAK &&
+    return checkNoResetFlg2(FLG2_UNK_8000000) && !checkEventRun() &&
+           !checkNoResetFlg0(FLG0_UNK_2) && mProcID != PROC_GUARD_BREAK &&
            mProcID != PROC_CUT_REVERSE && mProcID != PROC_GUARD_ATTACK;
 }
 
 /* 800DCE6C-800DCF04 0D77AC 0098+00 1/0 0/0 0/0 .text            checkPlayerGuard__9daAlink_cCFv */
 BOOL daAlink_c::checkPlayerGuard() const {
-    return (i_checkSmallUpperGuardAnime() || (i_checkShieldGet() && checkHorseLieAnime())) ||
+    return (checkSmallUpperGuardAnime() || (i_checkShieldGet() && checkHorseLieAnime())) ||
            checkUpperGuardAnime();
 }
 
@@ -236,27 +236,27 @@ BOOL daAlink_c::checkPlayerGuardAndAttack() const {
 
 /* 800DCF64-800DD008 0D78A4 00A4+00 2/2 0/0 0/0 .text            checkGuardAccept__9daAlink_cFv */
 BOOL daAlink_c::checkGuardAccept() {
-    return i_checkModeFlg(0x80) && i_checkShieldGet() && !i_checkFmChainGrabAnime() &&
+    return checkModeFlg(0x80) && i_checkShieldGet() && !checkFmChainGrabAnime() &&
            !checkNotBattleStage();
 }
 
 /* 800DD008-800DD018 0D7948 0010+00 11/11 0/0 0/0 .text            setUpperGuardAnime__9daAlink_cFf
  */
 void daAlink_c::setUpperGuardAnime(f32) {
-    i_onNoResetFlg2(FLG2_UNK_8000000);
+    onNoResetFlg2(FLG2_UNK_8000000);
 }
 
 /* 800DD018-800DD114 0D7958 00FC+00 1/1 0/0 0/0 .text            setShieldGuard__9daAlink_cFv */
 void daAlink_c::setShieldGuard() {
-    if ((mProcID == PROC_GUARD_SLIP && mEquipItem != IRONBALL) || i_checkSmallUpperGuardAnime() ||
+    if ((mProcID == PROC_GUARD_SLIP && mEquipItem != IRONBALL) || checkSmallUpperGuardAnime() ||
         (checkGuardAccept() && !checkGrabAnime() && !checkUpperReadyThrowAnime() &&
          !checkDkCaught2Anime() && !checkKandelaarSwingAnime() && !checkCutDashAnime() &&
          !checkCutDashChargeAnime() && (!checkEquipAnime() || checkUpperGuardAnime()) &&
-         !i_checkRideOn() && checkGuardActionChange()))
+         !checkRideOn() && checkGuardActionChange()))
     {
-        i_onNoResetFlg2(FLG2_UNK_8000000);
+        onNoResetFlg2(FLG2_UNK_8000000);
     } else {
-        i_offNoResetFlg2(FLG2_UNK_8000000);
+        offNoResetFlg2(FLG2_UNK_8000000);
     }
 }
 

@@ -83,7 +83,7 @@ int daWindStone_c::create() {
         mPolyInfo = objAcch.m_gnd;
 
         if (field_0x5c4 == 0) {
-            i_fopAcM_onSwitch(this, getSwBit1());
+            fopAcM_onSwitch(this, getSwBit1());
         }
     }
     return phase;
@@ -121,8 +121,8 @@ int daWindStone_c::draw() {
 
 /* 80D3806C-80D3811C 0006EC 00B0+00 1/1 0/0 0/0 .text            Delete__13daWindStone_cFv */
 int daWindStone_c::Delete() {
-    if (i_fopAcM_isSwitch(this, getSwBit1())) {
-        i_fopAcM_offSwitch(this, getSwBit1());
+    if (fopAcM_isSwitch(this, getSwBit1())) {
+        fopAcM_offSwitch(this, getSwBit1());
     }
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
@@ -135,7 +135,7 @@ int daWindStone_c::Delete() {
 void daWindStone_c::setModelMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D38180-80D381EC 000800 006C+00 1/1 0/0 0/0 .text            init__13daWindStone_cFv */
@@ -168,7 +168,7 @@ bool daWindStone_c::chkWlfInRange() {
 
 /* 80D38278-80D382C4 0008F8 004C+00 2/2 0/0 0/0 .text            chkEveOccur__13daWindStone_cFv */
 bool daWindStone_c::chkEveOccur() {
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getDelEveFlgId()]) == false) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getDelEveFlgId()]) == false) {
         return true;
     }
     return false;
@@ -182,7 +182,7 @@ void daWindStone_c::exeModeHowl() {
     } else {
         s8 tuneId = getTuneId();
         // Fake match. Should be:
-        // daAlink_getAlinkActorClass()->daAlink_c::getWolfHowlMgrP()->startWindStoneSound(tuneId,
+        // daAlink_getAlinkActorClass()->daAlink_c::i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
         // &current.pos);
         daAlink_getAlinkActorClass()->i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
                                                                                &current.pos);
@@ -197,10 +197,10 @@ void daWindStone_c::exeModeHowl() {
 /* 80D3835C-80D383FC 0009DC 00A0+00 1/1 0/0 0/0 .text            exeModeMapDisp__13daWindStone_cFv
  */
 void daWindStone_c::exeModeMapDisp() {
-    if (i_dComIfGp_getEvent().i_isOrderOK() || !i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_getEvent().isOrderOK() || !dComIfGp_event_runCheck()) {
         dMeter2Info_setGoldWolfMapType(getGoldWolfIdx());
         dMeter2Info_setPauseStatus(5);
-        i_fopAcM_onSwitch(this, getSwBit2());
+        fopAcM_onSwitch(this, getSwBit2());
         field_0x5c4 = 2;
     }
 }
@@ -208,7 +208,7 @@ void daWindStone_c::exeModeMapDisp() {
 /* 80D383FC-80D384C4 000A7C 00C8+00 1/1 0/0 0/0 .text            chkMapDispMode__13daWindStone_cFv
  */
 bool daWindStone_c::chkMapDispMode() {
-    if (i_fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwBit2())) {
         return false;
     }
     s16 start_point = dComIfGs_getStartPoint();

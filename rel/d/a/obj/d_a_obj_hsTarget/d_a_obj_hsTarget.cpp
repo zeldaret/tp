@@ -19,7 +19,7 @@ void daHsTarget_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mpModel->setBaseScale(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C1F8A0-80C1F8A8 000000 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
@@ -69,7 +69,7 @@ int daHsTarget_c::Execute(f32 (**param_0)[3][4]) {
 /* 80C1F6C4-80C1F728 000384 0064+00 1/0 0/0 0/0 .text            Draw__12daHsTarget_cFv */
 int daHsTarget_c::Draw() {
     g_env_light.settingTevStruct(0x40, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }

@@ -45,7 +45,7 @@ dEyeHL_c* dEyeHL_mng_c::m_obj;
 void dEyeHL_mng_c::update() {
     dEyeHL_c* obj = m_obj;
 
-    if (g_envHIO.mOther.mLODBias == 0 || !i_dComIfGp_event_runCheck()) {
+    if (g_envHIO.mOther.mLODBias == 0 || !dComIfGp_event_runCheck()) {
         for (; obj != NULL; obj = obj->m_next) {
             obj->m_timg->LODBias = obj->m_lodBias;
         }

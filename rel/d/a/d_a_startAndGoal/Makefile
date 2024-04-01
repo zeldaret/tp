@@ -19,6 +19,7 @@ M706_LIBS := \
 M706_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M706_LDFLAGS := \
 	-nodefaults \

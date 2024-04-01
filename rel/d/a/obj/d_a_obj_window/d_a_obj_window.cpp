@@ -40,9 +40,9 @@ void daObjWindow_c::initBaseMtx() {
 void daObjWindow_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpBckAnm != NULL) {
-        MTXCopy(mpModel->i_getAnmMtx(0), mBgMtx);
+        MTXCopy(mpModel->getAnmMtx(0), mBgMtx);
     } else {
         MTXCopy(mpModel->getBaseTRMtx(), mBgMtx);
     }
@@ -139,7 +139,7 @@ int daObjWindow_c::Execute(Mtx** i_mtx) {
 /* 80D38F28-80D39000 000848 00D8+00 1/0 0/0 0/0 .text            Draw__13daObjWindow_cFv */
 int daObjWindow_c::Draw() {
     g_env_light.settingTevStruct(0x14, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     if (mpBckAnm != NULL) {
         mpBckAnm->entry(mpModel->getModelData());

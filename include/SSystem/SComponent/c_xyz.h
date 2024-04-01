@@ -1,8 +1,8 @@
 #ifndef C_XYZ_H
 #define C_XYZ_H
 
-#include "math.h"
 #include "dolphin/mtx/vec.h"
+#include "math.h"
 
 struct cXyz : Vec {
     static const cXyz Zero;
@@ -40,7 +40,6 @@ struct cXyz : Vec {
     /* 80266B84 */ cXyz operator*(f32) const;
     /* 80266BD0 */ cXyz operator*(Vec const&) const;
     /* 80266C18 */ cXyz operator/(f32) const;
-    /* 800977D8 */ // void operator=(cXyz const&);
 
     void operator+=(f32 f) {
         x += f;
@@ -52,8 +51,18 @@ struct cXyz : Vec {
         y -= f;
         z -= f;
     }
+
+    void operator*=(const Vec& other) {
+        x *= other.x;
+        y *= other.y;
+        z *= other.z;
+    }
+
     void operator-=(const Vec& other) { VECSubtract(this, &other, this); }
-    void operator+=(const Vec& other) { VECAdd(this, &other, this); }
+    cXyz* operator+=(const Vec& other) {
+        VECAdd(this, &other, this);
+        return this;
+    }
     void operator*=(f32 scale) { VECScale(this, this, scale); }
     void operator/=(f32 scale) { VECScale(this, this, 1.0f / scale); }
     /* 80266C6C */ cXyz getCrossProduct(Vec const&) const;

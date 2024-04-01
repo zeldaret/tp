@@ -157,7 +157,7 @@ asm void daAlink_c::setWolfFootOn(int param_0) {
  */
 void daAlink_c::setFootMark(cXyz* i_pos, u16 i_mtxNo, int param_2) {
     cXyz sp8;
-    mDoMtx_multVecSR(mpLinkModel->i_getAnmMtx(i_mtxNo), &cXyz::BaseX, &sp8);
+    mDoMtx_multVecSR(mpLinkModel->getAnmMtx(i_mtxNo), &cXyz::BaseX, &sp8);
     dkWmark_c::setFootMark(i_pos, sp8.atan2sX_Z(), param_2);
 }
 
@@ -360,7 +360,7 @@ asm void daAlink_c::setWolfBarrierHitEffect(dBgS_LinChk& param_0) {
 void daAlink_c::setCutWaterDropEffect() {
     if (field_0x32c0[0] > 0) {
         cXyz sp18;
-        mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(1), &sp18);
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(1), &sp18);
         dComIfGp_particle_setColor(0x2A4, &sp18, &tevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
                                    &shape_angle, NULL, NULL, -1, NULL);
     }

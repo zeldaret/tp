@@ -279,13 +279,13 @@ void daZrTurara_c::setBaseMtx() {
     // cXyz scale(1.0f, 1.0f, 1.0f);
     cXyz scale(FLOAT_LABEL(lit_3699), FLOAT_LABEL(lit_3699), FLOAT_LABEL(lit_3699));
     mpBaseModel->setBaseScale(scale);
-    mpBaseModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpBaseModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::scaleM(mScaleF, mScaleF, mScaleF);
     mpRockModel->setBaseScale(scale);
-    mpRockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpRockModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mRockBgMtx);
 }
 
@@ -343,7 +343,7 @@ cPhs__Step daZrTurara_c::create() {
         mCcCyl.Set(mCcDCyl);
         mCcCyl.SetStts(&mCcStatus);
         u8 sw1 = getSwBit1();
-        if (i_fopAcM_isSwitch(this, sw1)) {
+        if (fopAcM_isSwitch(this, sw1)) {
             if (mpRockBgW != NULL) {
                 dComIfG_Bgsp().Release(mpRockBgW);
                 mpRockBgW->Move();
@@ -487,7 +487,7 @@ asm void daZrTurara_c::move() {
 
 /* 80D40D88-80D40E0C 000908 0084+00 1/0 0/0 0/0 .text            modeWait__12daZrTurara_cFv */
 void daZrTurara_c::modeWait() {
-    if (mSw2 != 0xff && i_fopAcM_isSwitch(this, mSw2)) {
+    if (mSw2 != 0xff && fopAcM_isSwitch(this, mSw2)) {
         init_modeBreak();
     }
     if (mCcCyl.ChkTgHit() && mCcCyl.GetTgHitGObj()->GetAtType() == AT_TYPE_BOMB) {
@@ -519,7 +519,7 @@ void daZrTurara_c::init_modeBreak() {
     dComIfGp_particle_set(0x8a97, &current.pos, NULL, &scale);
     mParticleKey = dComIfGp_particle_set(mParticleKey, 0x8a98, &current.pos, NULL, &scale);
     u8 sw1 = getSwBit1();
-    i_fopAcM_onSwitch(this, sw1);
+    fopAcM_onSwitch(this, sw1);
     mDebrisCount = 0;
     mBreakTimer = 0;
     mMode = 1;
@@ -599,8 +599,8 @@ void daZrTurara_c::modeEnd() {
 /* 80D412B0-80D41380 000E30 00D0+00 1/0 0/0 0/0 .text            Draw__12daZrTurara_cFv */
 int daZrTurara_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpBaseModel->mModelData, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpRockModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpBaseModel, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpRockModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpBaseModel);
     if (mDrawRock) {

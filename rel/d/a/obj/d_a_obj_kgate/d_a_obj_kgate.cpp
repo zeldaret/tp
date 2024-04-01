@@ -137,7 +137,7 @@ void daObjKGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::YrotM(mGateLAngle);
 
-    mpGateModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpGateModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     field_0xbf0 = current.pos + sp30;
 
@@ -147,7 +147,7 @@ void daObjKGate_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(0x7FFF);
     mDoMtx_stack_c::YrotM(mGateRAngle);
 
-    mpGateModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpGateModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), field_0xae8);
     field_0xbfc = sp3C;
 
@@ -178,7 +178,7 @@ void daObjKGate_c::setBaseMtx() {
         mDoMtx_stack_c::ZrotM(field_0xbb2);
         mDoMtx_stack_c::ZrotM(var_r29);
         mDoMtx_stack_c::transM(-14.0f, 0.0f, 0.0f);
-        mpHookModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpHookModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (mpKeyModel != NULL) {
             if (field_0xbb2 == 0) {
@@ -188,7 +188,7 @@ void daObjKGate_c::setBaseMtx() {
                 mDoMtx_stack_c::YrotM(current.angle.y + mGateLAngle);
                 mDoMtx_stack_c::XrotM(-0xE38);
                 mDoMtx_stack_c::XrotM(-field_0xbae);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             } else {
                 field_0xbe8 += -2.5f;
                 if (field_0xbe8 < -20.0f) {
@@ -209,7 +209,7 @@ void daObjKGate_c::setBaseMtx() {
                 cLib_addCalcAngleS(&mKeyRot.x, -0x4000, 5, 0xC00, 0x400);
                 mDoMtx_stack_c::transS(mEffPos);
                 mDoMtx_stack_c::ZXYrotM(mKeyRot);
-                mpKeyModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+                mpKeyModel->setBaseTRMtx(mDoMtx_stack_c::get());
             }
         }
     }
@@ -247,10 +247,10 @@ int daObjKGate_c::Create() {
     u8 sw_no = getSwNo();
 
     if (mNameArg == 0 || mNameArg == 2) {
-        if (sw_no != 0xFF && !i_fopAcM_isSwitch(this, sw_no)) {
+        if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no)) {
             eventInfo.setArchiveName(l_arcName[mNameArg]);
 
-            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
+            mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName[mNameArg], 0xFF);
             mMapToolID = getEventID();
             setAction(ACT_WAIT_EVENT);
         } else {
@@ -354,7 +354,7 @@ int daObjKGate_c::CreateHeap() {
 int daObjKGate_c::create1st() {
     mNameArg = getNameArg();
     if (mNameArg == 1) {
-        if (i_fopAcM_isSwitch(this, getSwNo())) {
+        if (fopAcM_isSwitch(this, getSwNo())) {
             return cPhs_ERROR_e;
         }
     }
@@ -414,7 +414,7 @@ int daObjKGate_c::checkAreaL(cXyz const* param_0, cXyz const* param_1) {
 
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -499,7 +499,7 @@ int daObjKGate_c::checkAreaR(cXyz const* param_0, cXyz const* param_1) {
 
         offset.set(0.0f, 0.0f, 250.0f);
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL) {
             mDoMtx_stack_c::transS(horse_p->current.pos);
             mDoMtx_stack_c::YrotM(horse_p->shape_angle.y);
@@ -637,7 +637,7 @@ void daObjKGate_c::action_typeA() {
     u8 sw_no = getSwNo();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (i_fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
+    if (fopAcM_isSwitch(this, sw_no) || sw_no == 0xFF) {
         cXyz unused1;
         cXyz unused2;
 
@@ -672,7 +672,7 @@ void daObjKGate_c::action_typeA() {
             }
         }
 
-        daHorse_c* horse_p = i_dComIfGp_getHorseActor();
+        daHorse_c* horse_p = dComIfGp_getHorseActor();
         if (horse_p != NULL && horse_p->speedF != 0.0f) {
             if (chk_l == AREA_CHECK_HORSE) {
                 switch (checkDirL(horse_p)) {
@@ -826,7 +826,7 @@ void daObjKGate_c::action_typeB() {
     u8 sw_no = getSwNo();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (!i_fopAcM_isSwitch(this, sw_no)) {
+    if (!fopAcM_isSwitch(this, sw_no)) {
         cXyz unused1;
         cXyz unused2;
         int chk_l = checkAreaL(&unused1, &unused2);
@@ -858,7 +858,7 @@ void daObjKGate_c::action_typeB() {
                 cCcD_Obj* hit_obj = field_0x5f4[i].GetTgHitObj();
 
                 if (hit_obj != NULL && hit_obj->ChkAtType(AT_TYPE_BOMB)) {
-                    i_fopAcM_onSwitch(this, sw_no);
+                    fopAcM_onSwitch(this, sw_no);
                     fopAcM_delete(this);
                     break;
                 }
@@ -884,7 +884,7 @@ void daObjKGate_c::actionWaitEvent() {
     if (eventInfo.i_checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
-        i_fopAcM_onSwitch(this, getSwNo());
+        fopAcM_onSwitch(this, getSwNo());
         fopAcM_seStart(this, Z2SE_OBJ_FLN_GATE_L_OP, 0);
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);
@@ -897,7 +897,7 @@ void daObjKGate_c::actionWaitEvent() {
 void daObjKGate_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACT_DEAD);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -918,7 +918,7 @@ void daObjKGate_c::event_proc_call() {
 
 /* 8058A3A4-8058A508 0023A4 0164+00 1/1 0/0 0/0 .text            demoProc__12daObjKGate_cFv */
 void daObjKGate_c::demoProc() {
-    mStaffID = i_dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
+    mStaffID = dComIfGp_evmng_getMyStaffId("K_GATE", NULL, 0);
     int demo_action = getDemoAction();
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {

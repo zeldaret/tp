@@ -6,6 +6,7 @@
 #include "f_pc/f_pc_leaf.h"
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_stdcreate_req.h"
+#include "f_pc/f_pc_searcher.h"
 
 enum {
     fpcM_ERROR_PROCESS_ID_e = -1,
@@ -70,22 +71,26 @@ inline void* fpcM_LyJudge(process_node_class* i_node, fpcLyIt_JudgeFunc i_func, 
     return fpcLyIt_Judge(&i_node->mLayer, i_func, i_data);
 }
 
+inline base_process_class* fpcM_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData) {
+    return fpcEx_Search(pFunc, pUserData);
+}
+
+inline base_process_class* fpcM_SearchByName(s16 name) {
+    return (base_process_class*)fpcLyIt_AllJudge(fpcSch_JudgeForPName, &name);
+}
+
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 s32 fpcM_Execute(void* pProc);
 s32 fpcM_Delete(void* pProc);
 BOOL fpcM_IsCreating(unsigned int pID);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2);
-void fpcM_Init(void);
+void fpcM_Init();
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
                                     void* pData);
 s32 fpcM_IsPause(void* pProc, u8 param_2);
 void fpcM_PauseEnable(void* pProc, u8 param_2);
 void fpcM_PauseDisable(void* pProc, u8 param_2);
 void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData);
-
-extern "C" {
-void fpcM_Delete__FPv(void);
-}
 
 #endif

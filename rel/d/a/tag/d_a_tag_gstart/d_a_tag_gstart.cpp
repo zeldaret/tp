@@ -42,7 +42,7 @@ int daTagGstart_c::execute() {
     if ((mSwNo == 0xFF || dComIfGs_isSwitch(mSwNo, fopAcM_GetHomeRoomNo(this))) &&
         (mSwNo2 == 0xFF || !dComIfGs_isSwitch(mSwNo2, fopAcM_GetHomeRoomNo(this))))
     {
-        if (mType != 0 || dComIfGp_getLinkPlayer()->i_checkWolf()) {
+        if (mType != 0 || dComIfGp_getLinkPlayer()->checkWolf()) {
             dComIfGp_getLinkPlayer()->onSceneChangeDead(field_0x56a, fopAcM_GetRoomNo(this));
         }
     }

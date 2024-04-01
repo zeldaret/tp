@@ -81,6 +81,7 @@ inline float atan2f(float y, float x) {
 
 inline float i_sinf(float x) { return sin(x); }
 inline float i_cosf(float x) { return cos(x); }
+inline float i_tanf(float x) { return tan(x); }
 
 #ifdef __cplusplus
 };

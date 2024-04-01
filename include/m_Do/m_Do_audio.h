@@ -33,7 +33,6 @@ void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);
 s32 mDoAud_load1stDynamicWave();
 static void mDoAud_setLinkGroupInfo(u8 param_0);
 static void mDoAud_setLinkHp(s32 param_0, s32 param_1);
-static void mDoAud_seStartLevel(u32 param_0, Vec const* param_1, u32 param_2, s8 param_3);
 void mDoAud_setFadeInStart(u8 param_0);
 void mDoAud_setFadeOutStart(u8 param_0);
 
@@ -82,9 +81,13 @@ inline void mDoAud_seStart(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_re
                                                -1.0f, -1.0f, 0);
 }
 
-inline void i_mDoAud_seStartLevel(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
+inline void mDoAud_seStartLevel(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
     Z2AudioMgr::getInterface()->seStartLevel(i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f,
                                                     -1.0f, -1.0f, 0);
+}
+
+inline void mDoAud_seStop(u32 i_sfxID, u32 param_1) {
+    Z2AudioMgr::getInterface()->seStop(i_sfxID, param_1);
 }
 
 inline void mDoAud_messageSePlay(u16 param_0, Vec* position, s8 param_2) {

@@ -82,7 +82,7 @@ int daObjChandelier_c::Delete() {
 /* 80BC8194-80BC8238 0002D4 00A4+00 1/0 0/0 0/0 .text            Draw__17daObjChandelier_cFv */
 int daObjChandelier_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
@@ -104,7 +104,7 @@ int daObjChandelier_c::Execute(f32 (**param_0)[3][4]) {
 void daObjChandelier_c::exeModeWait() {
     exeModeHookSwg();
     u8 sw = getSW_0();
-    if (i_fopAcM_isSwitch(this, sw)) {
+    if (fopAcM_isSwitch(this, sw)) {
         mMode = MODE_START_SWG;
         field_0x5ec = 0.5f;
         field_0x5f0 = 0.0f;
@@ -195,7 +195,7 @@ void daObjChandelier_c::init() {
     field_0x5f4 = current.pos.y - 800.0f;
     if (getArg_0() == 0) {
         u8 sw = getSW_0();
-        if (i_fopAcM_isSwitch(this, sw)) {
+        if (fopAcM_isSwitch(this, sw)) {
             mMode = MODE_HOOK_SWG;
             current.pos.y = field_0x5f4;
             field_0x5a8 = current.pos;
@@ -210,7 +210,7 @@ void daObjChandelier_c::setModelMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZrotM(shape_angle.z);
     PSMTXCopy(mDoMtx_stack_c::get(), mMtx);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BC8780-80BC89B0 0008C0 0230+00 2/2 0/0 0/0 .text            moveSwing__17daObjChandelier_cFffff

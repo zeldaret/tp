@@ -884,7 +884,7 @@ int daSpinner_c::setNextPathNum() {
 }
 
 /* 804D3694-804D36F4 001DF4 0060+00 1/1 0/0 0/0 .text            getPathNextPos__11daSpinner_cFv */
-cXyz* daSpinner_c::getPathNextPos() {
+Vec* daSpinner_c::getPathNextPos() {
     s32 add = field_0xa72 + field_0xa73;
     if (add < 0) {
         return &(mpPathMove->m_points + mpPathMove->m_num - 1)->m_position;

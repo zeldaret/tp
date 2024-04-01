@@ -4,6 +4,7 @@
  */
 
 #define NO_INLINE_DLSTBASE_DRAW
+#define DFILE_INFO_C_DUMMY_VIRTUAL
 
 #include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -86,7 +87,7 @@ int dFile_info_c::setSaveData(dSv_save_c* i_savedata, BOOL i_validChksum, u8 i_d
         char* player_name = i_savedata->getPlayer().getPlayerInfo().getLinkName();
         if (*player_name == 0) {
             if (field_0x22 == 1 && i_dataNo == dComIfGs_getDataNum()) {
-                i_savedata->getPlayer().getPlayerStatusA().setLife(i_dComIfGs_getLife());
+                i_savedata->getPlayer().getPlayerStatusA().setLife(dComIfGs_getLife());
                 setHeartCnt(i_savedata);
                 i_savedata->getPlayer().getPlayerStatusA().setLife(12);
                 strcpy(mPlayerName, dComIfGs_getPlayerName());

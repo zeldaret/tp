@@ -189,7 +189,7 @@ void daDsh_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -325,7 +325,7 @@ static daDsh_c::action_c l_openAction /* (&daDsh_c::initOpen, &daDsh_c::executeO
 
 /* 804677E4-80467840 0003C4 005C+00 1/0 0/0 0/0 .text            executeOpenWait__7daDsh_cFv */
 int daDsh_c::executeOpenWait() {
-    if (i_fopAcM_isSwitch(this, mSw)) {
+    if (fopAcM_isSwitch(this, mSw)) {
         setAction(&l_openAction);
     }
 
@@ -400,7 +400,7 @@ static daDsh_c::action_c l_closeAction /* (&daDsh_c::initClose, &daDsh_c::execut
 
 /* 80467A80-80467ADC 000660 005C+00 1/0 0/0 0/0 .text            executeCloseWait__7daDsh_cFv */
 int daDsh_c::executeCloseWait() {
-    if (!i_fopAcM_isSwitch(this, mSw)) {
+    if (!fopAcM_isSwitch(this, mSw)) {
         setAction(&l_closeAction);
     }
 

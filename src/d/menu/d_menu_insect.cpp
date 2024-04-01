@@ -3,144 +3,20 @@
  * Menu - Insect List
  */
 
-#define NO_INLINE_DLSTBASE_DRAW
-
 #include "d/menu/d_menu_insect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "stdio.h"
 #include "d/d_lib.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_scrn_3select.h"
 #include "d/msg/d_msg_string.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "d/msg/d_msg_scrn_3select.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14dMenu_Insect_cFP10JKRExpHeapP9STControlP10CSTControlUc();
-extern "C" void __dt__14dMenu_Insect_cFv();
-extern "C" void _create__14dMenu_Insect_cFv();
-extern "C" void _move__14dMenu_Insect_cFv();
-extern "C" void _draw__14dMenu_Insect_cFv();
-extern "C" void isSync__14dMenu_Insect_cFv();
-extern "C" void init__14dMenu_Insect_cFv();
-extern "C" void _open__14dMenu_Insect_cFv();
-extern "C" void _close__14dMenu_Insect_cFv();
-extern "C" void wait_init__14dMenu_Insect_cFv();
-extern "C" void wait_move__14dMenu_Insect_cFv();
-extern "C" void explain_open_init__14dMenu_Insect_cFv();
-extern "C" void explain_open_move__14dMenu_Insect_cFv();
-extern "C" void explain_move_init__14dMenu_Insect_cFv();
-extern "C" void explain_move_move__14dMenu_Insect_cFv();
-extern "C" void select_move_init__14dMenu_Insect_cFv();
-extern "C" void select_move_move__14dMenu_Insect_cFv();
-extern "C" void explain_close_init__14dMenu_Insect_cFv();
-extern "C" void explain_close_move__14dMenu_Insect_cFv();
-extern "C" void screenSetBase__14dMenu_Insect_cFv();
-extern "C" void screenSetExplain__14dMenu_Insect_cFv();
-extern "C" void screenSetDoIcon__14dMenu_Insect_cFv();
-extern "C" void getGetInsectNum__14dMenu_Insect_cFv();
-extern "C" void getInsectItemID__14dMenu_Insect_cFii();
-extern "C" void isGetInsect__14dMenu_Insect_cFii();
-extern "C" void isGiveInsect__14dMenu_Insect_cFii();
-extern "C" void isCatchInsect__14dMenu_Insect_cFUc();
-extern "C" void isGiveInsect__14dMenu_Insect_cFUc();
-extern "C" void isCatchNotGiveInsect__14dMenu_Insect_cFUc();
-extern "C" void cursorMove__14dMenu_Insect_cFv();
-extern "C" void setCursorPos__14dMenu_Insect_cFv();
-extern "C" bool dpdMove__14dMenu_Insect_cFv();
-extern "C" void setAButtonString__14dMenu_Insect_cFUs();
-extern "C" void setBButtonString__14dMenu_Insect_cFUs();
-extern "C" void setHIO__14dMenu_Insect_cFb();
-extern "C" void draw__14dMenu_Insect_cFv();
-extern "C" void __sinit_d_menu_insect_cpp();
-extern "C" extern char const* const d_menu_d_menu_insect__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
-extern "C" void checkTrigger__9STControlFv();
-extern "C" void checkLeftTrigger__9STControlFv();
-extern "C" void checkRightTrigger__9STControlFv();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setScale__16dSelect_cursor_cFf();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void getStringLength__13dMeter2Info_cFP7JUTFontffPc();
-extern "C" void
-readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei();
-extern "C" void dMeter2Info_set2DVibration__Fv();
-extern "C" void __ct__17dMsgScrn3Select_cFv();
-extern "C" void isSelect__17dMsgScrn3Select_cFv();
-extern "C" void setString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void setRubyString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void translate__17dMsgScrn3Select_cFff();
-extern "C" void draw__17dMsgScrn3Select_cFff();
-extern "C" void selAnimeInit__17dMsgScrn3Select_cFUcUcUcfUc();
-extern "C" void selAnimeMove__17dMsgScrn3Select_cFUcUcb();
-extern "C" void selAnimeEnd__17dMsgScrn3Select_cFv();
-extern "C" void getTextBoxWidth__17dMsgScrn3Select_cFv();
-extern "C" void getFontSize__17dMsgScrn3Select_cFv();
-extern "C" void getCharSpace__17dMsgScrn3Select_cFv();
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void getAlphaRate__13CPaneMgrAlphaFv();
-extern "C" void alphaAnime__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+#include "stdio.h"
 
 /* 803BD780-803BD78C 01A8A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
@@ -159,34 +35,6 @@ static moveFunc map_move_process[] = {
     &dMenu_Insect_c::wait_move,          &dMenu_Insect_c::explain_open_move,
     &dMenu_Insect_c::explain_move_move,  &dMenu_Insect_c::select_move_move,
     &dMenu_Insect_c::explain_close_move,
-};
-
-/* 803BD87C-803BD894 01A99C 0018+00 1/1 0/0 0/0 .data            l_itemno$4346 */
-static u8 l_itemno_4346[MAX_INSECT_NUM] = {
-    M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
-    M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
-    M_MANTIS,      F_MANTIS,      M_LADYBUG,   F_LADYBUG,   M_SNAIL,       F_SNAIL,
-    M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
-};
-
-/* 803BD894-803BD8AC 01A9B4 0018+00 1/1 0/0 0/0 .data            l_itemno$4364 */
-static u8 l_itemno_4364[MAX_INSECT_NUM] = {
-    M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,      M_BEETLE,     F_BEETLE,
-    M_MANTIS,    F_MANTIS,    M_STAG_BEETLE, F_STAG_BEETLE, M_DANGOMUSHI, F_DANGOMUSHI,
-    M_BUTTERFLY, F_BUTTERFLY, M_LADYBUG,     F_LADYBUG,     M_SNAIL,      F_SNAIL,
-    M_NANAFUSHI, F_NANAFUSHI, M_GRASSHOPPER, F_GRASSHOPPER, M_DRAGONFLY,  F_DRAGONFLY,
-};
-
-/* 803BD8AC-803BD8C8 01A9CC 0010+0C 2/2 0/0 0/0 .data            __vt__14dMenu_Insect_c */
-SECTION_DATA extern void* __vt__14dMenu_Insect_c[4 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMenu_Insect_cFv,
-    (void*)__dt__14dMenu_Insect_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
 };
 
 /* 801D8114-801D82F4 1D2A54 01E0+00 0/0 2/2 0/0 .text
@@ -350,12 +198,12 @@ void dMenu_Insect_c::init() {
 
 /* 801D894C-801D8B2C 1D328C 01E0+00 0/0 3/3 0/0 .text            _open__14dMenu_Insect_cFv */
 int dMenu_Insect_c::_open() {
-    if (!mpMount) {
+    if (mpMount == NULL) {
         mpMount = mDoDvdThd_mountArchive_c::create("/res/Layout/insectRes.arc", 0, NULL);
     }
-    if (!mpArchive) {
+    if (mpArchive == NULL) {
         if (mpMount->sync() != 0) {
-            if (!mpArchive) {
+            if (mpArchive == NULL) {
                 mpArchive = (JKRArchive*)mpMount->getArchive();
                 delete mpMount;
                 mpMount = NULL;
@@ -612,23 +460,20 @@ void dMenu_Insect_c::explain_close_move() {
     }
 }
 
-/* 80396690-80396750 022CF0 00C0+00 1/1 0/0 0/0 .rodata          insect_tag$4249 */
-static const u64 insect_tag[MAX_INSECT_NUM] = {
-    'ari_os',  'ari_ms',   'kag_os',  'kag_ms',   'kab_os', 'kab_ms',  'kam_os',  'kam_mes',
-    'kuwa_os', 'kuwa_mes', 'dan_os',  'dan_mes',  'cho_os', 'cho_ms',  'tent_os', 'tent_mes',
-    'kata_os', 'kata_mes', 'nana_os', 'nana_mes', 'bat_os', 'bat_mes', 'tonb_os', 'tonb_mes',
-};
-
-/* 80396750-80396810 022DB0 00C0+00 1/1 0/0 0/0 .rodata          ageha_tag$4250 */
-static const u64 ageha_tag[MAX_INSECT_NUM] = {
-    'ageha00', 'ageha01', 'ageha02', 'ageha03', 'ageha04', 'ageha05', 'ageha06', 'ageha07',
-    'ageha08', 'ageha09', 'ageha10', 'ageha11', 'ageha12', 'ageha13', 'ageha14', 'ageha15',
-    'ageha16', 'ageha17', 'ageha18', 'ageha19', 'ageha20', 'ageha21', 'ageha22', 'ageha23',
-};
-
 /* 801D9644-801D98F0 1D3F84 02AC+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Insect_cFv
  */
 void dMenu_Insect_c::screenSetBase() {
+    static const u64 insect_tag[MAX_INSECT_NUM] = {
+        'ari_os',  'ari_ms',   'kag_os',  'kag_ms',   'kab_os', 'kab_ms',  'kam_os',  'kam_mes',
+        'kuwa_os', 'kuwa_mes', 'dan_os',  'dan_mes',  'cho_os', 'cho_ms',  'tent_os', 'tent_mes',
+        'kata_os', 'kata_mes', 'nana_os', 'nana_mes', 'bat_os', 'bat_mes', 'tonb_os', 'tonb_mes',
+    };
+    static const u64 ageha_tag[MAX_INSECT_NUM] = {
+        'ageha00', 'ageha01', 'ageha02', 'ageha03', 'ageha04', 'ageha05', 'ageha06', 'ageha07',
+        'ageha08', 'ageha09', 'ageha10', 'ageha11', 'ageha12', 'ageha13', 'ageha14', 'ageha15',
+        'ageha16', 'ageha17', 'ageha18', 'ageha19', 'ageha20', 'ageha21', 'ageha22', 'ageha23',
+    };
+
     mpScreen = new J2DScreen();
     mpScreen->setPriority("zelda_gold_insects.blo", 0x20000, mpArchive);
     dPaneClass_showNullPane(mpScreen);
@@ -686,19 +531,16 @@ void dMenu_Insect_c::screenSetExplain() {
     field_0x5c->setString(0x100, "");
 }
 
-/* 80396810-80396838 022E70 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$4328 */
-static const u64 text_a_tag[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
-
-/* 80396838-80396860 022E98 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4329 */
-static const u64 text_b_tag[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-
 /* 801D9BD0-801D9D4C 1D4510 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Insect_cFv
  */
 void dMenu_Insect_c::screenSetDoIcon() {
+    static const u64 text_a_tag[5] = {
+        'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
+    };
+    static const u64 text_b_tag[5] = {
+        'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
+    };
+
     mpIconScreen = new J2DScreen();
     mpIconScreen->setPriority("zelda_collect_soubi_do_icon_parts.blo", 0x20000, mpArchive);
     for (int i = 0; i < 2; i++) {
@@ -719,13 +561,20 @@ void dMenu_Insect_c::screenSetDoIcon() {
 /* 801D9D4C-801D9DCC 1D468C 0080+00 0/0 1/1 0/0 .text            getGetInsectNum__14dMenu_Insect_cFv
  */
 u8 dMenu_Insect_c::getGetInsectNum() {
+    static u8 l_itemno[MAX_INSECT_NUM] = {
+        M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
+        M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
+        M_MANTIS,      F_MANTIS,      M_LADYBUG,   F_LADYBUG,   M_SNAIL,       F_SNAIL,
+        M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
+    };
+
     u8 insectNum = 0;
-    u8* insectList = l_itemno_4346;
+    u8* insectList = l_itemno;
     for (u32 i = 0; i < MAX_INSECT_NUM; i++) {
         u8 insectId = *insectList;
         insectList++;
 
-        if (i_dComIfGs_isItemFirstBit(insectId) != 0) {
+        if (dComIfGs_isItemFirstBit(insectId) != 0) {
             insectNum++;
         }
     }
@@ -734,25 +583,31 @@ u8 dMenu_Insect_c::getGetInsectNum() {
 
 /* 801D9DCC-801D9DE4 1D470C 0018+00 3/3 0/0 0/0 .text getInsectItemID__14dMenu_Insect_cFii */
 u8 dMenu_Insect_c::getInsectItemID(int param_0, int param_1) {
+    static u8 l_itemno[MAX_INSECT_NUM] = {
+        M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,      M_BEETLE,     F_BEETLE,
+        M_MANTIS,    F_MANTIS,    M_STAG_BEETLE, F_STAG_BEETLE, M_DANGOMUSHI, F_DANGOMUSHI,
+        M_BUTTERFLY, F_BUTTERFLY, M_LADYBUG,     F_LADYBUG,     M_SNAIL,      F_SNAIL,
+        M_NANAFUSHI, F_NANAFUSHI, M_GRASSHOPPER, F_GRASSHOPPER, M_DRAGONFLY,  F_DRAGONFLY,
+    };
+
     int index = param_0 + param_1 * 6;
-    return l_itemno_4364[index];
+    return l_itemno[index];
 }
 
 /* 801D9DE4-801D9E20 1D4724 003C+00 4/4 0/0 0/0 .text            isGetInsect__14dMenu_Insect_cFii */
 bool dMenu_Insect_c::isGetInsect(int param_0, int param_1) {
-    return i_dComIfGs_isItemFirstBit(getInsectItemID(param_0, param_1)) != 0;
+    return dComIfGs_isItemFirstBit(getInsectItemID(param_0, param_1)) != 0;
 }
-
-/* 80396860-803968C0 022EC0 0060+00 1/1 0/0 0/0 .rodata          i_evtID$4383 */
-static const u32 i_evtID[MAX_INSECT_NUM] = {
-    0x1A5, 0x1A6, 0x1A7, 0x1A8, 0x191, 0x192, 0x19D, 0x19E, 0x195, 0x196, 0x19B, 0x19C,
-    0x193, 0x194, 0x19F, 0x1A0, 0x1A1, 0x1A2, 0x199, 0x19A, 0x197, 0x198, 0x1A3, 0x1A4,
-};
 
 /* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
  */
 bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
-    return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
+    static const u32 i_evtID[MAX_INSECT_NUM] = {
+        0x1A5, 0x1A6, 0x1A7, 0x1A8, 0x191, 0x192, 0x19D, 0x19E, 0x195, 0x196, 0x19B, 0x19C,
+        0x193, 0x194, 0x19F, 0x1A0, 0x1A1, 0x1A2, 0x199, 0x19A, 0x197, 0x198, 0x1A3, 0x1A4,
+    };
+
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
            0;
 }
 
@@ -760,7 +615,7 @@ bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
  */
 bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
     if (i_insectID >= M_BEETLE && i_insectID <= F_MAYFLY) {
-        return i_dComIfGs_isItemFirstBit(i_insectID);
+        return dComIfGs_isItemFirstBit(i_insectID);
     }
     return false;
 }
@@ -770,7 +625,7 @@ bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
 bool dMenu_Insect_c::isGiveInsect(u8 i_insectID) {
     if (i_insectID >= M_BEETLE && i_insectID <= F_MAYFLY) {
         int label = i_insectID + 0xd1;
-        return i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[label]);
+        return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[label]);
     }
     return false;
 }
@@ -924,14 +779,3 @@ void dMenu_Insect_c::setHIO(bool i_useHIO) {
         }
     }
 }
-
-/* 801DA630-801DA650 1D4F70 0020+00 1/0 0/0 0/0 .text            draw__14dMenu_Insect_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dMenu_Insect_c::draw() {
-extern "C" asm void draw__14dMenu_Insect_cFv() {
-    nofralloc
-#include "asm/d/menu/d_menu_insect/draw__14dMenu_Insect_cFv.s"
-}
-#pragma pop

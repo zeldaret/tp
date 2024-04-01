@@ -151,7 +151,7 @@ int daObj_SSItem_c::Draw() {
         return 1;
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
         if (field_0xB00 != -1000000000.0f) {
             cM3dGPla plane;
@@ -314,7 +314,7 @@ void daObj_SSItem_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CE7D28-80CE7D5C 001188 0034+00 1/1 0/0 0/0 .text            setAttnPos__14daObj_SSItem_cFv */

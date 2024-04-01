@@ -54,12 +54,12 @@ bool daTagCstaSw_c::areaCheck() {
 /* 805A2340-805A23F0 000400 00B0+00 1/1 0/0 0/0 .text            Execute__13daTagCstaSw_cFv */
 int daTagCstaSw_c::Execute() {
     if (areaCheck() == 1) {
-        if (!i_fopAcM_isSwitch(this, mSwitch)) {
-            i_fopAcM_onSwitch(this, mSwitch);
+        if (!fopAcM_isSwitch(this, mSwitch)) {
+            fopAcM_onSwitch(this, mSwitch);
         }
     } else {
-        if (i_fopAcM_isSwitch(this, mSwitch)) {
-            i_fopAcM_offSwitch(this, mSwitch);
+        if (fopAcM_isSwitch(this, mSwitch)) {
+            fopAcM_offSwitch(this, mSwitch);
         }
     }
     return 1;

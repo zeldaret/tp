@@ -138,9 +138,6 @@ public:
     void setPtI_Id(unsigned int id);
     void setPtD(void* ptr);
     void setGtItm(u8 itemNo);
-    BOOL isOrderOK();
-    /* 807DFAD8 */ void checkSkipEdge();
-    /* 807E2908 */ void startCheckSkipEdge(void*);
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
     BOOL runCheck() { return mEventStatus != 0; }
@@ -158,15 +155,15 @@ public:
     void setCullRate(f32 f) { mCullRate = f; }
     BOOL chkTalkXY() { return field_0xed == 1 || field_0xed == 2; }
 
-    bool i_isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
+    bool isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
     fopAc_ac_c* getPt1() { return convPId(mPt1); }
     fopAc_ac_c* getPt2() { return convPId(mPt2); }
     fopAc_ac_c* getPtT() { return convPId(mPtT); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
     u8 getGtItm() { return mGtItm; }
-    void i_startCheckSkipEdge(void* param_0) { setSkipProc(param_0, dEv_noFinishSkipProc, 0); }
-    bool i_checkSkipEdge() { return chkFlag2(8) != false; }
+    void startCheckSkipEdge(void* param_0) { setSkipProc(param_0, dEv_noFinishSkipProc, 0); }
+    bool checkSkipEdge() { return chkFlag2(8) != false; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

@@ -243,7 +243,7 @@ void JAISound::initTrack_JAISound_(JASTrack* track) {
             numChannels++;
         }
     }
-    ASSERT(numChannels >= 1)
+    ASSERT(numChannels >= 1);
     track->setChannelMgrCount(numChannels);
     for (size_t i = 0; i < track->getChannelMgrCount(); i++) {
         track->assignExtBuffer(i, soundParams[i]);

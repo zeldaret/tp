@@ -27,8 +27,8 @@ static int daKytag09_Draw(kytag09_class* i_this) {
     dComIfGd_setListBG();
 
     if (i_this->mType != 1) {
-        i_this->mpModel->i_setBaseTRMtx(m);
-        i_this->mpModel2->i_setBaseTRMtx(m);
+        i_this->mpModel->setBaseTRMtx(m);
+        i_this->mpModel2->setBaseTRMtx(m);
 
         if (!dComIfGs_isDarkClearLV(1)) {
             i_this->mBtk_2.entry(i_this->mpModel->getModelData());
@@ -40,7 +40,7 @@ static int daKytag09_Draw(kytag09_class* i_this) {
             mDoExt_modelUpdateDL(i_this->mpModel2);
         }
     } else {
-        i_this->mpModel->i_setBaseTRMtx(m);
+        i_this->mpModel->setBaseTRMtx(m);
 
         if (!dComIfGs_isDarkClearLV(0)) {
             i_this->mBtk_2.entry(i_this->mpModel->getModelData());

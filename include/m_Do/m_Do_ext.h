@@ -273,7 +273,7 @@ public:
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
     u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
     void setPlayMode(int mode) { mFrameCtrl.setAttribute(mode); }
-    bool isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
+    BOOL isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
     bool isLoop() { return mFrameCtrl.checkState(2); }
     f32 getStartFrame() { return mFrameCtrl.getStart(); }
     void setStartFrame(f32 frame) { mFrameCtrl.setStart(frame); }
@@ -339,7 +339,7 @@ public:
                                   int, void*, u32, u32);
     /* 8000FD94 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*, mDoExt_McaMorfCallBack2_c*,
                               J3DAnmTransform*, int, f32, int, int, int, void*, u32, u32);
-    /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
+    /* 8001037C */ void setAnm(J3DAnmTransform* i_bck, int i_mode, f32 i_morf, f32 i_speed, f32 i_startF, f32 i_endF, void* i_bas);
     /* 800105C8 */ u32 play(Vec*, u32, s8);
     /* 80010680 */ void entryDL();
     /* 800106AC */ void modelCalc();
@@ -626,6 +626,7 @@ void mDoExt_brkAnmRemove(J3DModelData* i_modelData);
 void mDoExt_setupStageTexture(J3DModelData* i_modelData);
 OSThread* mDoExt_GetCurrentRunningThread();
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData);
+void mDoExt_btkAnmRemove(J3DModelData* i_modelData);
 
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();

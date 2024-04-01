@@ -33,6 +33,12 @@
 #define WALLET_MAX 300
 #define BIG_WALLET_MAX 600
 #define GIANT_WALLET_MAX 1000
+#define MAX_FINDABLE_FISHES 6
+
+enum ButtonIndexes {
+    /* 0 */ A_BUTTON,
+    /* 1 */ B_BUTTON,
+};
 
 enum Wallets {
     /* 0x0 */ WALLET,
@@ -852,6 +858,7 @@ public:
     }
     s32 isStageBossEnemy() const { return isDungeonItem(STAGE_BOSS_ENEMY); }
     s32 isStageBossEnemy2() const { return isDungeonItem(STAGE_BOSS_ENEMY_2); }
+    s32 isStageLife() const { return isDungeonItem(STAGE_LIFE); }
     s32 isDungeonItemWarp() const { return isDungeonItem(OOCCOO_NOTE); }
     void onStageLife() { onDungeonItem(STAGE_LIFE); }
 

@@ -723,7 +723,7 @@ void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
 
 /* 8003FB70-8003FBD0 03A4B0 0060+00 0/0 1/1 0/0 .text            create__8dMpath_cFv */
 void dMpath_c::create() {
-    stage_stag_info_class* p_stag = i_dComIfGp_getStage()->getStagInfo();
+    stage_stag_info_class* p_stag = dComIfGp_getStage()->getStagInfo();
     if (dStage_stagInfo_GetSTType(p_stag) != ST_BOSS_ROOM) {
         reset();
         data_80450E88 = false;

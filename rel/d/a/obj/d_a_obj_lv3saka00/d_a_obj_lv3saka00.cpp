@@ -23,7 +23,7 @@ void daObjLv3saka_c::setBaseMtx() {
 
 /* 80C5BED8-80C5BFA0 0000F8 00C8+00 1/0 0/0 0/0 .text            Create__14daObjLv3saka_cFv */
 int daObjLv3saka_c::Create() {
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         if (mpBgW->ChkUsed()) {
             dComIfG_Bgsp().Release(mpBgW);
         }
@@ -33,7 +33,7 @@ int daObjLv3saka_c::Create() {
 
     initBaseMtx();
 
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         mpBgW2->Move();
     }
 
@@ -84,7 +84,7 @@ int daObjLv3saka_c::create1st() {
 /* 80C5C0FC-80C5C17C 00031C 0080+00 1/0 0/0 0/0 .text            Execute__14daObjLv3saka_cFPPA3_A4_f
  */
 int daObjLv3saka_c::Execute(Mtx** param_0) {
-    if (i_fopAcM_isSwitch(this, getSwbit())) {
+    if (fopAcM_isSwitch(this, getSwbit())) {
         setWtrDzb();
     } else {
         setNrmDzb();

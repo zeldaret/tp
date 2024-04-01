@@ -52,7 +52,7 @@ public:
     /* 801EDFDC */ s32 getCursorPos(u8);
     /* 801EE058 */ u8 getItemNum(u8);
     /* 801EE15C */ u8 getItemMaxNum(u8);
-    /* 801EE228 */ void checkExplainForce();
+    /* 801EE228 */ bool checkExplainForce();
     /* 801EE63C */ bool checkCombineBomb(int);
     /* 801EE644 */ void setCombineBomb(int);
     /* 801EE648 */ void drawNumber(int, int, f32, f32);
@@ -69,7 +69,7 @@ public:
     /* 801EF484 */ bool dpdMove();
     /* 801EF48C */ u8 openExplain(u8);
 
-    /* 801EF560 */ virtual void draw();
+    virtual void draw() { _draw(); }
     /* 801EA708 */ virtual ~dMenu_Ring_c();
 
     void drawFlag0() { mDrawFlag = 0; }
@@ -133,9 +133,9 @@ private:
     /* 0x620 */ f32 field_0x620;
     /* 0x624 */ f32 field_0x624;
     /* 0x628 */ u32 field_0x628;
-    /* 0x62C */ u32 field_0x62c;
-    /* 0x630 */ u32 field_0x630;
-    /* 0x634 */ u32 field_0x634;
+    /* 0x62C */ u32 mPlayerIsWolf;
+    /* 0x630 */ u32 mNameStringID;
+    /* 0x634 */ s32 field_0x634;
     /* 0x638 */ s16 field_0x638;
     /* 0x63A */ s16 field_0x63a;
     /* 0x63C */ s16 field_0x63c;
@@ -152,7 +152,7 @@ private:
     /* 0x686 */ s16 field_0x686[4];
     /* 0x68E */ s16 field_0x68e;
     /* 0x690 */ u8 field_0x690[MAX_ITEM_SLOTS];
-    /* 0x6A8 */ u8 mStatus;
+    /* 0x6A8 */ u8 field_0x6a8;
     /* 0x6A9 */ u8 field_0x6a9;
     /* 0x6AA */ u8 field_0x6aa;
     /* 0x6AB */ u8 field_0x6ab;
@@ -160,7 +160,7 @@ private:
     /* 0x6AD */ u8 field_0x6ad;
     /* 0x6AE */ u8 field_0x6ae;
     /* 0x6AF */ u8 field_0x6af;
-    /* 0x6B0 */ u8 field_0x6b0;
+    /* 0x6B0 */ u8 mStatus;
     /* 0x6B1 */ u8 field_0x6b1;
     /* 0x6B2 */ u8 field_0x6b2;
     /* 0x6B3 */ u8 field_0x6b3;

@@ -4,31 +4,11 @@
 //
 
 #include "JSystem/JMath/JMath.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
-extern "C" void JMAFastVECNormalize__FPC3VecP3Vec();
-extern "C" void JMAVECScaleAdd__FPC3VecPC3VecP3Vecf();
-extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff();
-
-//
-// External References:
-//
-
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
 
 /* 80339878-80339938 3341B8 00C0+00 0/0 11/11 2/2 .text            JMAEulerToQuat__FsssP10Quaternion
  */
-#ifdef NONMATCHING
 void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
     f32 cosX = JMASCos(x / 2);
     f32 cosY = JMASCos(y / 2);
@@ -44,16 +24,6 @@ void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
     quat->y = cosZ * (cosX * sinY) + sinZ * (sinX * cosY);
     quat->z = sinZ * (cosX * cosY) - cosZ * (sinX * sinY);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JMAEulerToQuat(s16 param_0, s16 param_1, s16 param_2, Quaternion* param_3) {
-    nofralloc
-#include "asm/JSystem/JMath/JMath/JMAEulerToQuat__FsssP10Quaternion.s"
-}
-#pragma pop
-#endif
 
 /* 80339938-80339A30 334278 00F8+00 0/0 5/5 0/0 .text
  * JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion     */

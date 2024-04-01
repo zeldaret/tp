@@ -27,7 +27,7 @@ int daTag_Lantern_c::Delete() {
 int daTag_Lantern_c::Execute() {
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();  // fake match
 
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (!field_0x604) {
                 mMsgFlow.init(this, mFlowIndex, 0, NULL);

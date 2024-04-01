@@ -43,7 +43,7 @@ int daObjRCircle_c::createHeap() {
 /* 80CB8928-80CB8A28 000348 0100+00 1/1 0/0 0/0 .text            create__14daObjRCircle_cFv */
 int daObjRCircle_c::create() {
     fopAcM_SetupActor(this, daObjRCircle_c);
-    if (i_fopAcM_isSwitch(this, getSwBit())) {
+    if (fopAcM_isSwitch(this, getSwBit())) {
         return cPhs_ERROR_e;
     }
     
@@ -71,8 +71,8 @@ int daObjRCircle_c::Delete() {
 /* 80CB8A5C-80CB8B28 00047C 00CC+00 1/1 0/0 0/0 .text            draw__14daObjRCircle_cFv */
 int daObjRCircle_c::draw() {
     g_env_light.settingTevStruct(16, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
-    J3DModelData* modelData = mpModel->mModelData;
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    J3DModelData* modelData = mpModel->getModelData();
     mBtk.entry(modelData);
     mBrk.entry(modelData);
     dComIfGd_setListBG();
@@ -88,7 +88,7 @@ int daObjRCircle_c::execute() {
             fopAcM_delete(this);
         }
     } else {
-        if (i_fopAcM_isSwitch(this, getSwBit())) {
+        if (fopAcM_isSwitch(this, getSwBit())) {
             mSwitch = 1;
             mBrk.setPlaySpeed(1.0f);
         }

@@ -29,6 +29,13 @@ struct dCcU_AtInfo {
     /* 0x20 */ u8 mHitType;
 };
 
-fopAc_ac_c* cc_at_check(fopAc_ac_c*,dCcU_AtInfo*);
+u16 cc_pl_cut_bit_get();
+fopAc_ac_c* cc_at_check(fopAc_ac_c*, dCcU_AtInfo*);
+fopAc_ac_c* at_power_check(dCcU_AtInfo* i_AtInfo);
+void def_se_set(Z2Creature* p_sound, cCcD_Obj* p_collider, u32 map_info, fopAc_ac_c* p_actor);
+
+inline fopAc_ac_c* dCc_GetAc(void* i_actor) {
+    return static_cast<fopAc_ac_c*>(i_actor);
+}
 
 #endif /* D_CC_D_CC_UTY_H */

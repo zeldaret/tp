@@ -14,7 +14,7 @@ int daTagHinit_c::create() {
 
     field_0x569 = shape_angle.x;
 
-    if (field_0x569 != 0xFF && i_fopAcM_isSwitch(this, field_0x569)) {
+    if (field_0x569 != 0xFF && fopAcM_isSwitch(this, field_0x569)) {
         return cPhs_ERROR_e;
     }
 
@@ -44,16 +44,16 @@ static int daTagHinit_Delete(daTagHinit_c* i_this) {
 /* 805A389C-805A39B8 0001BC 011C+00 1/1 0/0 0/0 .text            execute__12daTagHinit_cFv */
 int daTagHinit_c::execute() {
     if ((field_0x56c == 0xFFFF ||
-         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56c])) &&
+         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56c])) &&
         (field_0x56e == 0xFFFF ||
-         !i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56e])) &&
-        (field_0x568 == 0xFF || i_fopAcM_isSwitch(this, field_0x568)))
+         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x56e])) &&
+        (field_0x568 == 0xFF || fopAcM_isSwitch(this, field_0x568)))
     {
         if (field_0x569 != 0xFF) {
-            i_fopAcM_onSwitch(this, field_0x569);
+            fopAcM_onSwitch(this, field_0x569);
         }
 
-        daHorse_c* horse = i_dComIfGp_getHorseActor();
+        daHorse_c* horse = dComIfGp_getHorseActor();
         horse->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
         horse->offNoDrawWait();
         fopAcM_delete(this);

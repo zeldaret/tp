@@ -4,89 +4,12 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA.h"
+#include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
+#include "d/d_lib.h"
+#include "d/a/d_a_player.h"
+#include "f_pc/f_pc_executor.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-// struct request_of_phase_process_class {};
-
-// struct mDoMtx_stack_c {
-//     /* 8000CD9C */ void transM(f32, f32, f32);
-
-//     static u8 now[48];
-// };
-
-// struct J3DMaterialTable {};
-
-// struct J3DAnmTextureSRTKey {};
-
-// struct mDoExt_btkAnm {
-//     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-//     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-// };
-
-// struct mDoExt_baseAnm {
-//     /* 8000D428 */ void play();
-// };
-
-// struct fopAc_ac_c {
-//     /* 80018B64 */ fopAc_ac_c();
-//     /* 80018C8C */ ~fopAc_ac_c();
-// };
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-// struct dKy_tevstr_c {};
-
-// struct J3DModelData {};
-
-// struct cXyz {};
-
-// struct dScnKy_env_light_c {
-//     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-//     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-// };
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dEvLib_callback_c {
-    /* 8004886C */ void eventUpdate();
-    /* 80048940 */ void orderEvent(int, int, int);
-    /* 80CF42F4 */ ~dEvLib_callback_c();
-    /* 80CF433C */ bool eventStart();
-    /* 80CF4344 */ bool eventRun();
-    /* 80CF434C */ bool eventEnd();
-};
-
-// struct JAISoundID {};
-
-// struct Vec {};
-
-// struct Z2SeMgr {
-//     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-//     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-// };
-
-// struct Z2AudioMgr {
-//     static u8 mAudioMgrPtr[4 + 4 /* padding */];
-// };
-
-// struct J3DModel {};
-
-// struct J3DFrameCtrl {
-//     /* 803283FC */ void init(s16);
-//     /* 80CF3928 */ ~J3DFrameCtrl();
-// };
 
 //
 // Forward References:
@@ -161,21 +84,12 @@ extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void init__12J3DFrameCtrlFs();
-// extern "C" void PSMTXCopy();
-// extern "C" void PSMTXConcat();
-// extern "C" void PSMTXTrans();
-// extern "C" void C_MTXLightOrtho();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_22();
 extern "C" void _restgpr_28();
-// extern "C" extern void* g_fopAc_Method[8];
-// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-// extern "C" extern u8 g_env_light[4880];
-// extern "C" extern u8 j3dSys[284];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
@@ -184,34 +98,32 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80CF4508-80CF4528 000000 0020+00 2/2 0/0 0/0 .bss             l_target_info */
-static u8 l_target_info[32];
+static daObjCarry_c* l_target_info[8];
 
 /* 80CF4528-80CF452C 000020 0004+00 2/2 0/0 0/0 .bss             l_target_info_count */
-static u8 l_target_info_count[4];
+static int l_target_info_count;
 
 /* 80CF32F8-80CF3374 000078 007C+00 1/1 0/0 0/0 .text            s_ball_sub__FPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void s_ball_sub(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/s_ball_sub__FPvPv.s"
+static void* s_ball_sub(void* param_1, void* param_2) {
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Obj_Carry &&
+        ((daObjCarry_c*)param_1)->getType() == daObjCarry_c::TYPE_LV8_BALL)
+    {
+        if (l_target_info_count < 8) {
+            l_target_info[l_target_info_count] = (daObjCarry_c*)param_1;
+            l_target_info_count++;
+        }
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 80CF3374-80CF3394 0000F4 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/CheckCreateHeap__FP10fopAc_ac_c.s"
+static int CheckCreateHeap(fopAc_ac_c* param_0) {
+    return ((daObjSwBallA_c*)param_0)->CreateHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80CF43E4-80CF43E8 000000 0004+00 4/4 0/0 0/0 .rodata          l_color */
-SECTION_RODATA static u32 const l_color = 0x0396FFFF;
+SECTION_RODATA static GXColor const l_color = {0x3,0x96,0xFF,0xFF};
 COMPILER_STRIP_GATE(0x80CF43E4, &l_color);
 
 /* 80CF43E8-80CF43EC 000004 0004+00 0/2 0/0 0/0 .rodata          @3730 */
@@ -251,44 +163,87 @@ COMPILER_STRIP_GATE(0x80CF43F4, &lit_3733);
 
 /* 80CF3394-80CF34E4 000114 0150+00 1/1 0/0 0/0 .text
  * checkArea_sub__14daObjSwBallA_cFP10fopAc_ac_c                */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjSwBallA_c::checkArea_sub(fopAc_ac_c* param_1) {
+    if (param_1 == NULL) {
+        return 0;
+    }
+    if (getType() == 0) {
+        if (param_1->current.pos.y >= current.pos.y - 10.0f &&
+            param_1->current.pos.y < current.pos.y + mScale.y * 100.0f &&
+            fopAcM_searchActorDistanceXZ(this, param_1) < mScale.x * 100.0f)
+        {
+            return 1;
+        }
+    } else {
+        if (getType() == 1) {
+            cXyz cStack_1c(mScale.x * -100.0f, 0.0f, mScale.z * -100.0f);
+            cXyz cStack_28(mScale.x * 100.0f, mScale.y * 100.0f, mScale.z * 100.0f);
+            cStack_1c.y += current.pos.y - 10.0f;
+            cStack_28.y += current.pos.y;
+            if (param_1->current.pos.y >= cStack_1c.y && param_1->current.pos.y < cStack_28.y &&
+                dLib_checkActorInRectangle(param_1, this, &cStack_1c, &cStack_28))
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::checkArea_sub(fopAc_ac_c* param_0) {
+asm int daObjSwBallA_c::checkArea_sub(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/checkArea_sub__14daObjSwBallA_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80CF34E4-80CF3610 000264 012C+00 1/1 0/0 0/0 .text            search_ball__14daObjSwBallA_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjSwBallA_c::search_ball() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/search_ball__14daObjSwBallA_cFv.s"
+void daObjSwBallA_c::search_ball() {
+    l_target_info_count = 0;
+    for (int i = 0; i < 8; i++) {
+        l_target_info[i] = NULL;
+    }
+    fpcM_Search(s_ball_sub, this);
+    for (int i = 0; i < l_target_info_count; i++) {
+        if (l_target_info[i] != 0) {
+            u32 id = fopAcM_GetID(l_target_info[i]);
+            if (id != -1) {
+                int idIndex = -1;
+                for (int j = 0; j < 8; j++) {
+                    if (id == field_0x58c[j]) {
+                        idIndex = j;
+                        break;
+                    }
+                }
+                if (idIndex < 0) {
+                    for (int j = 0; j < 8; j++) {
+                        if (field_0x58c[j] == -1) {
+                            field_0x58c[j] = id;
+                            break;
+                        }
+                    }
+                }
+            }
+        } 
+    }
 }
-#pragma pop
 
 /* 80CF3610-80CF3630 000390 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjSwBallA_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjSwBallA_c::initBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/initBaseMtx__14daObjSwBallA_cFv.s"
+void daObjSwBallA_c::initBaseMtx() {
+    setBaseMtx();
 }
-#pragma pop
 
 /* 80CF3630-80CF3694 0003B0 0064+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjSwBallA_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjSwBallA_c::setBaseMtx() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/setBaseMtx__14daObjSwBallA_cFv.s"
+void daObjSwBallA_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80CF43FC-80CF4404 000018 0008+00 1/1 0/0 0/0 .rodata          @3884 */
@@ -298,14 +253,43 @@ SECTION_RODATA static u8 const lit_3884[8] = {
 COMPILER_STRIP_GATE(0x80CF43FC, &lit_3884);
 
 /* 80CF3694-80CF37FC 000414 0168+00 1/1 0/0 0/0 .text            Create__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjSwBallA_c::Create() {
+    initBaseMtx();
+    fopAcM_SetMtx(this, mModel->getBaseTRMtx());
+    J3DJoint* joint = mModel->getModelData()->getJointNodePointer(0);
+    fopAcM_setCullSizeBox(this,
+        joint->getMin()->x, joint->getMin()->y, joint->getMin()->z,
+        joint->getMax()->x, joint->getMax()->y, joint->getMax()->z);
+    for (int i = 0; i < 8; i++) {
+        field_0x58c[i] = -1;
+    }
+    field_0x5c0 = -1;
+    if (fopAcM_isSwitch(this, getSwbit2())) {
+        field_0x588->setFrame(field_0x588->getEndFrame());
+        field_0x5ae = 2;
+    } else {
+        fopAcM_offSwitch(this, getSwbit());
+        field_0x588->setFrame(0.0f);
+        field_0x5ae = 0;
+    }
+    GXColor* color = mModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1);
+    color->r = l_color.r;
+    color->g = l_color.g;
+    color->b = l_color.b;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::Create() {
+asm int daObjSwBallA_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/Create__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80CF4404-80CF4408 000020 0004+00 2/3 0/0 0/0 .rodata          @3918 */
@@ -337,7 +321,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80CF4438-80CF443C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_swBallA__stringBase0;
+SECTION_DATA static char* l_arcName = (char*)&d_a_obj_swBallA__stringBase0;
 
 /* 80CF443C-80CF4448 -00001 000C+00 0/1 0/0 0/0 .data            @3956 */
 #pragma push
@@ -421,14 +405,34 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 };
 
 /* 80CF37FC-80CF3928 00057C 012C+00 1/1 0/0 0/0 .text            CreateHeap__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjSwBallA_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(381, modelData != 0);
+    mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (mModel == 0) {
+        return 0;
+    }
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 7);
+    JUT_ASSERT(381, pbtk != 0);
+    field_0x588 = new mDoExt_btkAnm();
+    if (field_0x588 == NULL || field_0x588->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
+        return 0;
+    }
+    field_0x588->setPlaySpeed(0.0f);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::CreateHeap() {
+asm int daObjSwBallA_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/CreateHeap__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CF3928-80CF3970 0006A8 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
@@ -442,28 +446,66 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 #pragma pop
 
 /* 80CF3970-80CF3A90 0006F0 0120+00 1/1 0/0 0/0 .text            create__14daObjSwBallA_cFv */
+#ifdef NONMATCHING
+int daObjSwBallA_c::create() {
+    fopAcM_SetupActor(this, daObjSwBallA_c);
+    if (field_0x5c4 == 0) {
+        field_0x5c4 = 1;
+        field_0x5c6 = orig.angle.x;
+        field_0x5c8 = orig.angle.z;
+        shape_angle.x = 0;
+        current.angle.x = 0;
+        orig.angle.x = 0;
+        shape_angle.z = 0;
+        current.angle.z = 0;
+        orig.angle.z = 0;
+    }
+    int res = dComIfG_resLoad(&field_0x57c, l_arcName);
+    if (res == cPhs_COMPLEATE_e) {
+        if (fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x940) == 0) {
+            return cPhs_ERROR_e;
+        } else if (Create() == 0) {
+            return cPhs_ERROR_e;
+        }
+    }
+    return res;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::create() {
+asm int daObjSwBallA_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/func_80CF3970.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80CF452C-80CF4530 000024 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80CF452C[4];
 
 /* 80CF3A90-80CF3B40 000810 00B0+00 1/1 0/0 0/0 .text            execute__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjSwBallA_c::execute() {
+    typedef void (daObjSwBallA_c::*ballfunc)();
+    static ballfunc l_func[2] = {&daObjSwBallA_c::actionRun, &daObjSwBallA_c::actionStop};
+    (this->*l_func[field_0x5ad])();
+    eventUpdate();
+    field_0x588->play();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::execute() {
+asm int daObjSwBallA_c::execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/execute__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80CF4408-80CF440C 000024 0004+00 1/1 0/0 0/0 .rodata          @4032 */
@@ -471,6 +513,42 @@ SECTION_RODATA static f32 const lit_4032 = -1.0f;
 COMPILER_STRIP_GATE(0x80CF4408, &lit_4032);
 
 /* 80CF3B40-80CF3D80 0008C0 0240+00 1/0 0/0 0/0 .text            actionRun__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daObjSwBallA_c::actionRun() {
+    u32 iVar4 = field_0x5c0;
+    search_ball();
+    PutCrrPos();
+    switch (field_0x5ae) {
+    case 0:
+        if (iVar4 == -1 && field_0x5c0 != -1) {
+            fopAcM_seStart(this, Z2SE_OBJ_L8_L_BALL_SW_ON, 0);
+            field_0x588->setPlaySpeed(1.0f);
+            field_0x5ae = 1;
+        }
+        break;
+    case 1:
+        if (field_0x5c0 == -1) {
+            fopAcM_seStart(this, Z2SE_OBJ_L8_L_BALL_SW_OFF, 0);
+            field_0x588->setPlaySpeed(-1.0f);
+            fopAcM_offSwitch(this, getSwbit());
+            field_0x5ae = 0;
+        } else {
+            if (field_0x588->play() != 0) {
+                fopAcM_onSwitch(this, getSwbit());
+                if (getEvent() != 0xff) {
+                    orderEvent(getEvent(), 0xff, 1);
+                }
+                if (getArg0() == 1) {
+                    field_0x5ae = 2;
+                }
+            }
+            fopAcM_seStartLevel(this, Z2SE_OBJ_L8_L_BALL_SW, 0);
+        }
+        break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -479,6 +557,7 @@ asm void daObjSwBallA_c::actionRun() {
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/actionRun__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CF3D80-80CF3D84 000B00 0004+00 1/0 0/0 0/0 .text            actionStop__14daObjSwBallA_cFv */
 void daObjSwBallA_c::actionStop() {
@@ -494,6 +573,79 @@ COMPILER_STRIP_GATE(0x80CF440C, &lit_4122);
 #pragma pop
 
 /* 80CF3D84-80CF406C 000B04 02E8+00 1/1 0/0 0/0 .text            PutCrrPos__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daObjSwBallA_c::PutCrrPos() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    s16 sVar5 = cLib_targetAngleY(&player->current.pos, &current.pos) - player->shape_angle.y;
+    if (fopAcM_searchPlayerDistanceXZ(this) < 300.0f && sVar5 < 0x4000) {
+        daObjCarry_c* carryObj = (daObjCarry_c*)fopAcM_SearchByID(player->getGrabActorID());
+        if (carryObj != NULL &&
+            fopAcM_IsActor(carryObj)
+                && fopAcM_GetName(carryObj) == PROC_Obj_Carry &&
+              carryObj->getType() == daObjCarry_c::TYPE_LV8_BALL)
+        {
+            player->setForcePutPos(current.pos);
+        }
+    }
+    daObjCarry_c* carryObj;
+    for (u8 i = 0; i < 8; i++) {
+        bool isArea = false;
+        u8 carryNow = 0;
+        u8 hookCarryNow = 0;
+        if (field_0x58c[i] != -1) {
+            carryObj = (daObjCarry_c*)fopAcM_SearchByID(field_0x58c[i]);
+            isArea = checkArea_sub(carryObj);
+            carryNow = fopAcM_checkCarryNow(carryObj) >> 13;
+            hookCarryNow = fopAcM_checkHookCarryNow(carryObj) >> 20;
+            if (field_0x5c0 == -1 || field_0x5c0 == field_0x58c[i]) {
+                switch(field_0x5b7[i]) {
+                case 0:
+                    if ((isArea && ((carryNow == 0 && checkFlag(i, 1)) ||
+                                        (hookCarryNow == 0 && checkFlag(i, 4)))) ||
+                        (isArea && !checkFlag(i, 2) && carryNow == 0 && hookCarryNow == 0))
+                    {
+                        carryObj->startCtrl();
+                        field_0x5c0 = field_0x58c[i];
+                        field_0x5b7[i] = 1;
+                    } else {
+                        if (!isArea) {
+                            field_0x5c0 = 0xffffffff;
+                        }
+                    }
+                    break;
+                case 1:
+                    if (isArea != 0 && carryNow == 0 && hookCarryNow == 0) {
+                        cLib_chaseF(&carryObj->current.pos.x, current.pos.x,
+                                                 10.0f);
+                        cLib_chaseF(&carryObj->current.pos.z, current.pos.z,
+                                                 10.0f);
+                        if (fopAcM_searchActorDistanceXZ(this, carryObj) == 0.0f) {
+                            carryObj->endCtrl();
+                            field_0x5b7[i] = 0;
+                        }
+                    } else {
+                        carryObj->endCtrl();
+                        field_0x5b7[i] = 0;
+                        field_0x5c0 = 0xffffffff;
+                    }
+                    break;
+                }
+            }
+        }
+        clrFlag(i);
+        if (isArea) {
+            onFlag(i, 2);
+        }
+        if (carryNow) {
+            onFlag(i, 1);
+        }
+        if (hookCarryNow) {
+            onFlag(i, 4);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -502,73 +654,78 @@ asm void daObjSwBallA_c::PutCrrPos() {
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/PutCrrPos__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CF406C-80CF41F4 000DEC 0188+00 1/1 0/0 0/0 .text            draw__14daObjSwBallA_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjSwBallA_c::draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
+    dComIfGd_setListDarkBG();
+    J3DMaterial* material = mModel->getModelData()->getMaterialNodePointer(0);
+    if (material->getTexGenBlock()->getTexMtx(1) != NULL) {
+        J3DTexMtxInfo* texMtxInfo = &material->getTexGenBlock()->getTexMtx(1)->getTexMtxInfo();
+        if (texMtxInfo != NULL) {
+            Mtx auStack_48;
+            C_MTXLightOrtho(auStack_48, 100.0f, -100.0f, -100.0f, 100.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+            mDoMtx_stack_c::XrotS(0x4000);
+            mDoMtx_stack_c::transM(-current.pos.x, -current.pos.y, -current.pos.z);
+            cMtx_concat(auStack_48, mDoMtx_stack_c::get(), texMtxInfo->mEffectMtx);
+        }
+    }
+    field_0x588->entry(mModel->getModelData());
+    mDoExt_modelUpdateDL(mModel);
+    mDoExt_btkAnmRemove(mModel->getModelData());
+    dComIfGd_setList();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjSwBallA_c::draw() {
+asm int daObjSwBallA_c::draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/draw__14daObjSwBallA_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80CF41F4-80CF4274 000F74 0080+00 1/1 0/0 0/0 .text            _delete__14daObjSwBallA_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjSwBallA_c::_delete() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/_delete__14daObjSwBallA_cFv.s"
+int daObjSwBallA_c::_delete() {
+    if (!fopAcM_isSwitch(this, getSwbit2())) {
+        fopAcM_offSwitch(this, getSwbit());
+    }
+    dComIfG_resDelete(&field_0x57c, l_arcName);
+    return 1;
 }
-#pragma pop
 
 /* 80CF4274-80CF4294 000FF4 0020+00 1/0 0/0 0/0 .text daObjSwBallA_Draw__FP14daObjSwBallA_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjSwBallA_Draw(daObjSwBallA_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/daObjSwBallA_Draw__FP14daObjSwBallA_c.s"
+static int daObjSwBallA_Draw(daObjSwBallA_c* param_0) {
+    return param_0->draw();
 }
-#pragma pop
 
 /* 80CF4294-80CF42B4 001014 0020+00 1/0 0/0 0/0 .text daObjSwBallA_Execute__FP14daObjSwBallA_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjSwBallA_Execute(daObjSwBallA_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/daObjSwBallA_Execute__FP14daObjSwBallA_c.s"
+static int daObjSwBallA_Execute(daObjSwBallA_c* param_0) {
+    return param_0->execute();
 }
-#pragma pop
 
 /* 80CF42B4-80CF42D4 001034 0020+00 1/0 0/0 0/0 .text daObjSwBallA_Delete__FP14daObjSwBallA_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjSwBallA_Delete(daObjSwBallA_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/daObjSwBallA_Delete__FP14daObjSwBallA_c.s"
+static int daObjSwBallA_Delete(daObjSwBallA_c* param_0) {
+    return param_0->_delete();
 }
-#pragma pop
 
 /* 80CF42D4-80CF42F4 001054 0020+00 1/0 0/0 0/0 .text            daObjSwBallA_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjSwBallA_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/daObjSwBallA_Create__FP10fopAc_ac_c.s"
+static int daObjSwBallA_Create(fopAc_ac_c* param_0) {
+    return ((daObjSwBallA_c*)param_0)->create();
 }
-#pragma pop
 
 /* 80CF42F4-80CF433C 001074 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dEvLib_callback_c::~dEvLib_callback_c() {
+asm void __dt__17dEvLib_callback_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA/__dt__17dEvLib_callback_cFv.s"
 }
@@ -576,17 +733,17 @@ asm dEvLib_callback_c::~dEvLib_callback_c() {
 
 /* 80CF433C-80CF4344 0010BC 0008+00 2/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80CF4344-80CF434C 0010C4 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80CF434C-80CF4354 0010CC 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 

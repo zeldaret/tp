@@ -243,6 +243,7 @@ public:
     bool checkWolfNoLock() const { return mFlags & 0x200; }
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkDownFlg() const { return mFlags & 0x1; }
+    bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
 
     u32* getMidnaBindID(u8 i_idx) { return mMidnaBindID + i_idx; }
@@ -254,6 +255,11 @@ public:
     void onWolfBiteDamage() { mFlags |= 0x40; }
     void onWolfDownStartFlg() { mFlags |= 0x14; }
     void onWolfDownPullEndFlg() { mFlags |= 0x20; }
+    void onWolfNoLock() { mFlags |= 0x200; }
+    void onDownFlg() { mFlags |= 1; }
+
+    void offCutDownHitFlg() { mFlags &= ~0x2; }
+    void offDownFlg() { mFlags &= ~0x17; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
@@ -261,6 +267,7 @@ public:
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
     void setThrowModeThrowLeft() { mThrowMode |= 8; }
+    void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
 
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;

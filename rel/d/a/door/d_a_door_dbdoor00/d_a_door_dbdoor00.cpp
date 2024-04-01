@@ -20,13 +20,13 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         u16 jointNo = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         daDbDoor00_c* area = (daDbDoor00_c*)model->getUserArea();
-        MTXCopy(model->i_getAnmMtx(jointNo), mDoMtx_stack_c::get());
+        MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
         if (jointNo == area->field_0x5c0 && area->field_0x585 == 1) {
             mDoMtx_stack_c::YrotM(-area->field_0x58a);
         } else if (jointNo == area->field_0x5c1 && area->field_0x585 == 0) {
             mDoMtx_stack_c::YrotM(area->field_0x58a);
         }
-        model->i_setAnmMtx(jointNo, mDoMtx_stack_c::get());
+        model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
         mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     }
     return 1;
@@ -142,8 +142,8 @@ void daDbDoor00_c::calcMtx() {
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mpModel2->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     xyz.set(0.0f, 0.0f, -150.0f);
     mDoMtx_stack_c::multVec(&xyz, &field_0x5a8);
     xyz.set(0.0f, 0.0f, -400.0f);
@@ -350,7 +350,7 @@ int daDbDoor00_c::actionLockWait() {
 /* 8045E000-8045E094 000D00 0094+00 1/0 0/0 0/0 .text            actionLockOff__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockOff() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
+        field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(3);
     } else {
@@ -362,7 +362,7 @@ int daDbDoor00_c::actionLockOff() {
 /* 8045E094-8045E108 000D94 0074+00 1/0 0/0 0/0 .text            actionLockDemo__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockDemo() {
     if (dComIfGp_evmng_endCheck("DBDOOR00_STOP_OPEN")) {
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         setAction(4);
     } else {
         demoProc();
@@ -374,7 +374,7 @@ int daDbDoor00_c::actionLockDemo() {
  */
 int daDbDoor00_c::actionCloseWait() {
     if (eventInfo.i_checkCommandDoor()) {
-        field_0x598 = i_dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
+        field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(5);
         dComIfG_Bgsp().Release(mpBgW);

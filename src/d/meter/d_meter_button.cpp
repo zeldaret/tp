@@ -301,8 +301,8 @@ void dMeterButton_c::draw() {
             f32 temp_f0 = (g_drawHIO.mEmpButton.mRepeatHitScale - 1.0f) * var_f2 + 1.0f;
             mpButtonA->scale(mButtonAScale * temp_f0, mButtonAScale * temp_f0);
         } else if ((field_0x4be[i] == BUTTON_A_e &&
-                    (i_dComIfGp_getDoStatus() == 0x3B || i_dComIfGp_getDoStatus() == 0x3F ||
-                     i_dComIfGp_getDoStatus() == 0x40) &&
+                    (dComIfGp_getDoStatus() == 0x3B || dComIfGp_getDoStatus() == 0x3F ||
+                     dComIfGp_getDoStatus() == 0x40) &&
                     dMeter2Info_isBlinkButton(1)) ||
                    (field_0x4be[i] == BUTTON_B_e && dComIfGp_getAStatus() == 0x3A &&
                     dMeter2Info_isBlinkButton(2)))
@@ -366,7 +366,7 @@ void dMeterButton_c::draw() {
                         mDoAud_seStart(Z2SE_SY_HINT_BUTTON_BLINK, NULL, 0, 0);
                     }
 
-                    if (daPy_getPlayerActorClass()->i_getSumouMode()) {
+                    if (daPy_getPlayerActorClass()->getSumouMode()) {
                         dMeter2Info_getMeterClass()->getMeterDrawPtr()->drawPikari(
                             vtx.x, vtx.y, &field_0x2e8[i], 1.8f,
                             g_drawHIO.mEmpButton.mPikariListenFrontOuter,

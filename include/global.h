@@ -13,7 +13,6 @@
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
 #define JUT_EXPECT(...)
-#define ASSERT(...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
@@ -35,5 +34,7 @@ extern int __cntlzw(unsigned int);
 inline BOOL checkEqual(s32 a, s32 b) {
     return (u32)__cntlzw(a - b) >> 5;
 }
+
+#define FAST_DIV(x, n) (x >> (n / 2))
 
 #endif

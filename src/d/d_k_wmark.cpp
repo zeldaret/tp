@@ -104,7 +104,7 @@ BOOL dkWmark_c::setMatrix() {
         mDoMtx_stack_c::transS(mPos.x, mPos.y + 1.0f, mPos.z);
         mDoMtx_stack_c::ZXYrotM(cM_atan2s(var_f31 * cM_scos(temp_r26), poly.mNormal.y), field_0x48a,
                                 cM_atan2s(var_f31 * -cM_ssin(temp_r26), poly.mNormal.y));
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (dComIfG_Bgsp().ChkMoveBG(*fopAcM_gc_c::getGroundCheck())) {
             field_0x48c = 1;

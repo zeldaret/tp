@@ -277,11 +277,11 @@ int dalv4CandleDemoTag_c::create() {
 
     mSwNG = getSwNG();
     mSwDest = getSwDest();
-    i_fopAcM_offSwitch(this, mSwDest);
+    fopAcM_offSwitch(this, mSwDest);
 
     setBaseMtx();
 
-    if (i_fopAcM_isSwitch(this, getSwOK())) {
+    if (fopAcM_isSwitch(this, getSwOK())) {
         init_modeEnd();
     } else {
         init_modeWatch();
@@ -355,7 +355,7 @@ void dalv4CandleDemoTag_c::modeWatch() {
         var3 = mpShutterActor->getStatus();
     }
 
-    if (i_fopAcM_isSwitch(this, mSwNG) && var3 != 0) {
+    if (fopAcM_isSwitch(this, mSwNG) && var3 != 0) {
         if (mEnemyWaitTime == 0) {
             if (getEventID() != 0xFF) {
                 orderEvent(getEventID(), 0xFF, 1);
@@ -367,7 +367,7 @@ void dalv4CandleDemoTag_c::modeWatch() {
         }
     }
 
-    if (i_fopAcM_isSwitch(this, getSwOK())) {
+    if (fopAcM_isSwitch(this, getSwOK())) {
         init_modeEnd();
     }
 }
@@ -406,8 +406,8 @@ void dalv4CandleDemoTag_c::init_modeNG() {
 /* 80C5CEC0-80C5CF34 0005C0 0074+00 1/0 0/0 0/0 .text            modeNG__20dalv4CandleDemoTag_cFv */
 void dalv4CandleDemoTag_c::modeNG() {
     if (!fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
-        i_fopAcM_onSwitch(this, mSwDest);
-        i_fopAcM_offSwitch(this, mSwNG);
+        fopAcM_onSwitch(this, mSwDest);
+        fopAcM_offSwitch(this, mSwNG);
         init_modeWatch();
     }
 }
@@ -420,7 +420,7 @@ void dalv4CandleDemoTag_c::init_modeEnd() {
 /* 80C5CF40-80C5CF78 000640 0038+00 1/0 0/0 0/0 .text            modeEnd__20dalv4CandleDemoTag_cFv
  */
 void dalv4CandleDemoTag_c::modeEnd() {
-    i_fopAcM_offSwitch(this, mSwNG);
+    fopAcM_offSwitch(this, mSwNG);
 }
 
 /* 80C5CF78-80C5CF9C 000678 0024+00 2/1 0/0 0/0 .text eventStart__20dalv4CandleDemoTag_cFv */

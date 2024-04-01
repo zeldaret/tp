@@ -67,7 +67,7 @@ asm bool daAlink_c::checkHangFootWall() {
 #ifdef NONMATCHING
 void daAlink_c::setHangGroundY() {
     cXyz pos;
-    mDoMtx_multVecZero(mpLinkModel->i_getAnmMtx(0), &pos);
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0), &pos);
 
     pos.x -= cM_ssin(shape_angle.y) * 15.0f;
     pos.z -= cM_scos(shape_angle.y) * 15.0f;
@@ -141,7 +141,7 @@ int daAlink_c::procHangStartInit() {
     BOOL hang_ready = mProcID == PROC_HANG_READY;
     commonProcInit(PROC_HANG_START);
     current.pos = sp38;
-    i_offNoResetFlg2(FLG2_UNK_2000);
+    offNoResetFlg2(FLG2_UNK_2000);
 
     if (checkHangFootWall()) {
         if (!hang_ready && cM_rnd() < 0.7f) {
@@ -487,7 +487,7 @@ int daAlink_c::setOctaIealHangPos() {
         return 0;
     }
 
-    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->i_getAnmMtx(0));
+    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->getAnmMtx(0));
     mDoMtx_stack_c::transM(FLOAT_LABEL(lit_6108), lit_24400, lit_24401);
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);
@@ -535,7 +535,7 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     field_0x280c.setData(param_0);
     setBossBodyHangPos();
 
-    i_onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_GANON_FINISH);
     return 1;
 }
 
@@ -559,9 +559,9 @@ int daAlink_c::getLadderUnitCount() const {
 // loop issue
 #ifdef NONMATCHING
 int daAlink_c::setLadderInit() {
-    i_onNoResetFlg3(FLG3_UNK_400000);
+    onNoResetFlg3(FLG3_UNK_400000);
 
-    if (i_checkModeFlg(0x40000)) {
+    if (checkModeFlg(0x40000)) {
         setLadderPos(getLadderUnitCount() - 2);
 
         while (mWaterY - current.pos.y > daAlinkHIO_swim_c0::m.mInitHeight) {
@@ -858,9 +858,9 @@ BOOL daAlink_c::checkClimbCode(cBgS_PolyInfo& i_poly) {
 
 /* 800FE114-800FE174 0F8A54 0060+00 1/1 0/0 0/0 .text            setClimbInit__9daAlink_cFv */
 void daAlink_c::setClimbInit() {
-    i_onNoResetFlg3(FLG3_UNK_400000);
+    onNoResetFlg3(FLG3_UNK_400000);
 
-    if (i_checkModeFlg(0x40000)) {
+    if (checkModeFlg(0x40000)) {
         shape_angle.y = field_0x306e + 0x8000;
         current.pos.y -= lit_23595;
         setClimbStartNotGround();
@@ -950,7 +950,7 @@ int daAlink_c::checkBgCorrectClimbMove(cXyz* i_startPos, cXyz* i_endPos) {
         dComIfG_Bgsp().GetTriPla(mLinkLinChk, &tri_plane);
 
         if (cLib_distanceAngleS(tri_plane.mNormal.atan2sX_Z(), shape_angle.y) < 0x549F ||
-            (i_checkModeFlg(0x10000) && !checkClimbCode(mLinkLinChk)))
+            (checkModeFlg(0x10000) && !checkClimbCode(mLinkLinChk)))
         {
             current.pos += mLinkLinChk.i_GetCross() - *i_endPos;
             return 1;

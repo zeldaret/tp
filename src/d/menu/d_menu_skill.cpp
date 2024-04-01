@@ -1,9 +1,7 @@
 /**
  * d_menu_skill.cpp
- * Hidden Skills - Menu
+ * Menu - Hidden Skills
  */
-
-#define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/menu/d_menu_skill.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -14,13 +12,8 @@
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-
-extern "C" void __dt__13dMenu_Skill_cFv();
-extern "C" void _draw__13dMenu_Skill_cFv();
-extern "C" void draw__13dMenu_Skill_cFv();
 
 /* 803BE7D8-803BE7E4 01B8F8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
@@ -41,24 +34,6 @@ static moveFunc map_move_process[] = {
     &dMenu_Skill_c::read_open_move,
     &dMenu_Skill_c::read_move_move,
     &dMenu_Skill_c::read_close_move,
-};
-
-/* 803BE8A4-803BE8C0 01B9C4 001C+00 1/1 0/0 0/0 .data            evt_id$4557 */
-static u32 evt_id[7] = {
-    339, 338, 340, 341, 342, 343, 344,
-};
-
-/* 803BE8C0-803BE8E0 01B9E0 0010+10 2/2 0/0 0/0 .data            __vt__13dMenu_Skill_c */
-SECTION_DATA extern void* __vt__13dMenu_Skill_c[4 + 4 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__13dMenu_Skill_cFv,
-    (void*)__dt__13dMenu_Skill_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
 };
 
 /* 801F7224-801F7348 1F1B64 0124+00 0/0 2/2 0/0 .text
@@ -307,20 +282,18 @@ void dMenu_Skill_c::wait_move() {
             mStatus = 3;
         } else if (mDoCPd_c::getTrigA(PAD_1)) {
             mProcess = PROC_WAIT_MOVE;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_OPEN, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
         } else if (mpStick->checkUpTrigger()) {
             if (mIndex) {
                 mIndex--;
-                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                                -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                         0);
             }
 
         } else if (mpStick->checkDownTrigger() && mIndex < mSkillNum - 1) {
             mIndex++;
-            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
-                                            -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
         if (oldIndex != mIndex) {
             changeActiveColor();
@@ -328,24 +301,21 @@ void dMenu_Skill_c::wait_move() {
     }
 }
 
-/* 80397A18-80397A34 024078 001C+00 2/2 0/0 0/0 .rodata          i_id$4087 */
-static const u32 i_id[7] = {
-    1716, 1715, 1717, 1718, 1719, 1720, 1721,
-};
-
-/* 80397A34-80397A50 024094 001C+00 1/1 0/0 0/0 .rodata          i_id1$4088 */
-static const u32 i_id1_4088[7] = {
-    1709, 1708, 1710, 1711, 1712, 1713, 1714,
-};
-
 /* 801F7F24-801F7FF8 1F2864 00D4+00 1/0 0/0 0/0 .text            read_open_init__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_open_init() {
+    static const u32 i_id[7] = {
+        1716, 1715, 1717, 1718, 1719, 1720, 1721,
+    };
+    static const u32 i_id1[7] = {
+        1709, 1708, 1710, 1711, 1712, 1713, 1714,
+    };
+
     mProcFrame = 0;
     int index = mIndex;
     mStringID = i_id[index];
     mpTextParent->setAlphaRate(0.0f);
-    setNameString(i_id1_4088[index]);
+    setNameString(i_id1[index]);
     mpString->getString(mStringID, (J2DTextBox*)mpTextPane->getPanePtr(), NULL, NULL, NULL, 0);
     setAButtonString(0);
     setBButtonString(0);
@@ -355,7 +325,8 @@ void dMenu_Skill_c::read_open_init() {
 /* 801F7FF8-801F8114 1F2938 011C+00 1/0 0/0 0/0 .text            read_open_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_open_move() {
-    s16 openSkillDescFrame = g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
+    s16 openSkillDescFrame =
+        g_drawHIO.mSkillListScreen.mOpenFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame++;
     if (mProcFrame >= openSkillDescFrame) {
         mProcess = PROC_OPEN_MOVE;
@@ -379,14 +350,12 @@ void dMenu_Skill_c::read_move_init() {
  */
 void dMenu_Skill_c::read_move_move() {
     if (mDoCPd_c::getTrigA(PAD_1) != 0) {
-        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
-                                        0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
 
     } else if (mDoCPd_c::getTrigB(PAD_1) != 0) {
-        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
-                                        0);
+        Z2GetAudioMgr()->seStart(Z2SE_SY_EXP_WIN_CLOSE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibration();
         mProcess = PROC_MOVE_MOVE;
     }
@@ -404,7 +373,8 @@ void dMenu_Skill_c::read_close_init() {
 /* 801F826C-801F8388 1F2BAC 011C+00 1/0 0/0 0/0 .text            read_close_move__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::read_close_move() {
-    s16 closeSkillDescFrame = g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
+    s16 closeSkillDescFrame =
+        g_drawHIO.mSkillListScreen.mCloseFrame[dMeter_drawSkillHIO_c::SKILL_DESC];
     mProcFrame--;
     if (mProcFrame <= 0) {
         mProcess = PROC_CLOSE_MOVE;
@@ -417,104 +387,56 @@ void dMenu_Skill_c::read_close_move() {
     }
 }
 
-/* 80397A50-80397A88 0240B0 0038+00 0/1 0/0 0/0 .rodata          tag_sub0$4148 */
-#pragma push
-#pragma force_active on
-static const u64 tag_sub0[7] = {
-    'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s', 'menu_t51',
-};
-#pragma pop
-
-/* 80397A88-80397AC0 0240E8 0038+00 0/1 0/0 0/0 .rodata          tag_sub1$4149 */
-#pragma push
-#pragma force_active on
-static const u64 tag_sub1[7] = {
-    'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5', 'menu_t6',
-};
-#pragma pop
-
-/* 80397AC0-80397AF8 024120 0038+00 0/1 0/0 0/0 .rodata          tag_name0$4150 */
-#pragma push
-#pragma force_active on
-static const u64 tag_name0[7] = {
-    'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s', 'menu_112',
-};
-#pragma pop
-
-/* 80397AF8-80397B30 024158 0038+00 0/1 0/0 0/0 .rodata          tag_name1$4151 */
-#pragma push
-#pragma force_active on
-static const u64 tag_name1[7] = {
-    'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11', 'menu_t01',
-};
-#pragma pop
-
-/* 80397B30-80397B68 024190 0038+00 0/1 0/0 0/0 .rodata          ftag_sub0$4152 */
-#pragma push
-#pragma force_active on
-static const u64 ftag_sub0[7] = {
-    'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s', 'fenu_t6s',
-};
-#pragma pop
-
-/* 80397B68-80397BA0 0241C8 0038+00 0/1 0/0 0/0 .rodata          ftag_sub1$4153 */
-#pragma push
-#pragma force_active on
-static const u64 ftag_sub1[7] = {
-    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5', 'fenu_t6',
-};
-#pragma pop
-
-/* 80397BA0-80397BD8 024200 0038+00 0/1 0/0 0/0 .rodata          ftag_name0$4154 */
-#pragma push
-#pragma force_active on
-static const u64 ftag_name0[7] = {
-    'fenu_t7s', 'fenu_t8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s', 'fenu_12s', 'fenu_13s',
-};
-#pragma pop
-
-/* 80397BD8-80397C10 024238 0038+00 0/1 0/0 0/0 .rodata          ftag_name1$4155 */
-#pragma push
-#pragma force_active on
-static const u64 ftag_name1[7] = {
-    'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_10', 'fenu_11', 'fenu_12', 'fenu_13',
-};
-#pragma pop
-
-/* 80397C10-80397C48 024270 0038+00 0/1 0/0 0/0 .rodata          tag_letter$4166 */
-#pragma push
-#pragma force_active on
-static const u64 tag_letter[7] = {
-    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n', 'let_06_n',
-};
-#pragma pop
-
-/* 80397C48-80397C80 0242A8 0038+00 0/1 0/0 0/0 .rodata          tag_frame$4173 */
-#pragma push
-#pragma force_active on
-static const u64 tag_frame[7] = {
-    'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05', 'flame_06',
-};
-#pragma pop
-
-/* 80397C80-80397CB8 0242E0 0038+00 0/1 0/0 0/0 .rodata          tag_maki$4174 */
-#pragma push
-#pragma force_active on
-static const u64 tag_maki[7] = {
-    'maki_0n', 'maki_1n', 'maki_2n', 'maki_3n', 'maki_4n', 'maki_5n', 'maki_6n',
-};
-#pragma pop
-
-/* 80397CB8-80397CF0 024318 0038+00 0/1 0/0 0/0 .rodata          tag_makic$4175 */
-#pragma push
-#pragma force_active on
-static const u64 tag_makic[7] = {
-    'maki_0', 'maki_1', 'maki_2', 'maki_3', 'maki_4', 'maki_5', 'maki_6',
-};
-#pragma pop
-
 /* 801F8388-801F8A18 1F2CC8 0690+00 1/1 0/0 0/0 .text            screenSetMenu__13dMenu_Skill_cFv */
 void dMenu_Skill_c::screenSetMenu() {
+    static const u64 tag_sub0[7] = {
+        'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s', 'menu_t51',
+    };
+
+    static const u64 tag_sub1[7] = {
+        'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5', 'menu_t6',
+    };
+
+    static const u64 tag_name0[7] = {
+        'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s', 'menu_112',
+    };
+
+    static const u64 tag_name1[7] = {
+        'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11', 'menu_t01',
+    };
+
+    static const u64 ftag_sub0[7] = {
+        'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s', 'fenu_t6s',
+    };
+
+    static const u64 ftag_sub1[7] = {
+        'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5', 'fenu_t6',
+    };
+
+    static const u64 ftag_name0[7] = {
+        'fenu_t7s', 'fenu_t8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s', 'fenu_12s', 'fenu_13s',
+    };
+
+    static const u64 ftag_name1[7] = {
+        'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_10', 'fenu_11', 'fenu_12', 'fenu_13',
+    };
+
+    static const u64 tag_letter[7] = {
+        'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n', 'let_06_n',
+    };
+
+    static const u64 tag_frame[7] = {
+        'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05', 'flame_06',
+    };
+
+    static const u64 tag_maki[7] = {
+        'maki_0n', 'maki_1n', 'maki_2n', 'maki_3n', 'maki_4n', 'maki_5n', 'maki_6n',
+    };
+
+    static const u64 tag_makic[7] = {
+        'maki_0', 'maki_1', 'maki_2', 'maki_3', 'maki_4', 'maki_5', 'maki_6',
+    };
+
     mpMenuScreen = new J2DScreen();
     mpMenuScreen->setPriority("zelda_ougi_window.blo", 0x20000, mpArchive);
     dPaneClass_showNullPane(mpMenuScreen);
@@ -572,23 +494,22 @@ void dMenu_Skill_c::screenSetMenu() {
     mpString->getString(0x6a4, textBox, NULL, NULL, NULL, 0);
 }
 
-static const u64 name_tag[4] = {
-    'item_n04',
-    'item_n05',
-    'item_n06',
-    'item_n07',
-};
-
-static const u64 fame_tag[4] = {
-    'f_item_1',
-    'f_item_2',
-    'f_item_3',
-    'f_item_4',
-};
-
 /* 801F8A18-801F8D20 1F3358 0308+00 1/1 0/0 0/0 .text            screenSetLetter__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::screenSetLetter() {
+    static const u64 name_tag[4] = {
+        'item_n04',
+        'item_n05',
+        'item_n06',
+        'item_n07',
+    };
+    static const u64 fame_tag[4] = {
+        'f_item_1',
+        'f_item_2',
+        'f_item_3',
+        'f_item_4',
+    };
+
     mpLetterScreen = new J2DScreen();
     mpLetterScreen->setPriority("zelda_ougi_info.blo", 0x20000, mpArchive);
     dPaneClass_showNullPane(mpLetterScreen);
@@ -613,19 +534,15 @@ void dMenu_Skill_c::screenSetLetter() {
     mpBlackTex->setAlpha(0);
 }
 
-/* 80397D30-80397D58 024390 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$4365 */
-static const u64 text_a_tag[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
-
-/* 80397D58-80397D80 0243B8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4366 */
-static const u64 text_b_tag[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-
 /* 801F8D20-801F8E9C 1F3660 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__13dMenu_Skill_cFv
  */
 void dMenu_Skill_c::screenSetDoIcon() {
+    static const u64 text_a_tag[5] = {
+        'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
+    };
+    static const u64 text_b_tag[5] = {
+        'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
+    };
     mpIconScreen = new J2DScreen();
     mpIconScreen->setPriority("zelda_collect_soubi_do_icon_parts.blo", 0x20000, mpArchive);
     for (int i = 0; i < 2; i++) {
@@ -669,23 +586,20 @@ void dMenu_Skill_c::changeActiveColor() {
     }
 }
 
-/* 80397D80-80397D9C 0243E0 001C+00 1/1 0/0 0/0 .rodata          i_id0$4478 */
-static const u32 i_id0[7] = {
-    1701, 1702, 1703, 1704, 1705, 1706, 1707,
-};
-
-/* 80397D9C-80397DB8 0243FC 001C+00 1/1 0/0 0/0 .rodata          i_id1$4479 */
-static const u32 i_id1_4479[7] = {
-    1709, 1708, 1710, 1711, 1712, 1713, 1714,
-};
-
 /* 801F9144-801F9260 1F3A84 011C+00 1/1 0/0 0/0 .text            setPageText__13dMenu_Skill_cFv */
 void dMenu_Skill_c::setPageText() {
+    static const u32 i_id0[7] = {
+        1701, 1702, 1703, 1704, 1705, 1706, 1707,
+    };
+    static const u32 i_id1[7] = {
+        1709, 1708, 1710, 1711, 1712, 1713, 1714,
+    };
+
     for (int i = 0; i < mSkillNum; i++) {
         mpString->getString(i_id0[i], mpFTagPicture[i][0], NULL, NULL, NULL, 0);
         mpString->getString(i_id0[i], mpFTagPicture[i][1], NULL, NULL, NULL, 0);
-        mpString->getString(i_id1_4479[i], mpFTagPicture[i][2], NULL, NULL, NULL, 0);
-        mpString->getString(i_id1_4479[i], mpFTagPicture[i][3], NULL, NULL, NULL, 0);
+        mpString->getString(i_id1[i], mpFTagPicture[i][2], NULL, NULL, NULL, 0);
+        mpString->getString(i_id1[i], mpFTagPicture[i][3], NULL, NULL, NULL, 0);
     }
 }
 
@@ -731,9 +645,13 @@ void dMenu_Skill_c::setNameString(u16 i_stringID) {
 
 /* 801F9470-801F9500 1F3DB0 0090+00 1/1 0/0 0/0 .text            getSkillNum__13dMenu_Skill_cFv */
 u8 dMenu_Skill_c::getSkillNum() {
+    static u32 evt_id[7] = {
+        339, 338, 340, 341, 342, 343, 344,
+    };
+
     u8 skillNum = 0;
     for (int i = 0; i < 7; i++) {
-        if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[evt_id[i]])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[evt_id[i]])) {
             skillNum++;
         }
     }
@@ -777,48 +695,30 @@ void dMenu_Skill_c::setHIO(bool i_useHIO) {
         mpExpName->scale(g_drawHIO.mSkillListScreen.mSkillTitleScale,
                          g_drawHIO.mSkillListScreen.mSkillTitleScale);
     }
-    if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
-        if (mpButtonAB[0]) {
-            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
+    if (g_drawHIO.mCollectScreen.mButtonDebugON || i_useHIO) {
+        if (mpButtonAB[A_BUTTON]) {
+            mpButtonAB[A_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX,
                                      g_drawHIO.mCollectScreen.mButtonAPosY);
-            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mButtonAScale,
+            mpButtonAB[A_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonAScale,
                                  g_drawHIO.mCollectScreen.mButtonAScale);
         }
-        if (mpButtonAB[1]) {
-            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
+        if (mpButtonAB[B_BUTTON]) {
+            mpButtonAB[B_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX,
                                      g_drawHIO.mCollectScreen.mButtonBPosY);
-            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mButtonBScale,
+            mpButtonAB[B_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonBScale,
                                  g_drawHIO.mCollectScreen.mButtonBScale);
         }
-        if (mpButtonText[0]) {
-            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
+        if (mpButtonText[A_BUTTON]) {
+            mpButtonText[A_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX,
                                        g_drawHIO.mCollectScreen.mButtonATextPosY);
-            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
+            mpButtonText[A_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonATextScale,
                                    g_drawHIO.mCollectScreen.mButtonATextScale);
         }
-        if (mpButtonText[1]) {
-            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
+        if (mpButtonText[B_BUTTON]) {
+            mpButtonText[B_BUTTON]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX,
                                        g_drawHIO.mCollectScreen.mButtonBTextPosY);
-            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
+            mpButtonText[B_BUTTON]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale,
                                    g_drawHIO.mCollectScreen.mButtonBTextScale);
         }
     }
 }
-
-/* 801F9A08-801F9A28 1F4348 0020+00 1/0 0/0 0/0 .text            draw__13dMenu_Skill_cFv */
-#ifdef NONMATCHING
-// Size of vtable doesn't match. Same padding occours in d_menu_calibration
-void dMenu_Skill_c::draw() {
-    _draw();
-}
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dMenu_Skill_c::draw() {
-extern "C" asm void draw__13dMenu_Skill_cFv() {
-    nofralloc
-#include "asm/d/menu/d_menu_skill/draw__13dMenu_Skill_cFv.s"
-}
-#pragma pop
-#endif

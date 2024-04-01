@@ -184,6 +184,7 @@ enum fopAcM_CARRY {
     /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
     /* 0x20 */ fopAcM_CARRY_ITEM = 32,
     /* 0x30 */ fopAcM_CARRY_UNK_30 = 0x30,
+    /* 0x80 */ fopAcM_CARRY_CHICKEN = 0x80,
 };
 
 inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
@@ -216,6 +217,10 @@ inline s16 fopAcM_GetProfName(const void* pActor) {
 
 inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
     return p_actor->group;
+}
+
+inline void fopAcM_SetGroup(fopAc_ac_c* p_actor, u8 group) {
+    p_actor->group = group;
 }
 
 inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
@@ -391,19 +396,19 @@ inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offActor(int i_no, int i_roomNo);
 
-inline void i_fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
+inline void fopAcM_onSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_onSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline void i_fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
+inline void fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline BOOL i_fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
+inline BOOL fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
     return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
 }
 
-inline fopAc_ac_c* i_fopAcM_SearchByName(s16 proc_id) {
+inline fopAc_ac_c* fopAcM_SearchByName(s16 proc_id) {
     return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeForPName, &proc_id);
 }
 
@@ -541,7 +546,6 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c*, fopAc_ac_c*, u16, u16);
 fopAc_ac_c* fopAcM_getTalkEventPartner(const fopAc_ac_c*);
 fopAc_ac_c* fopAcM_getItemEventPartner(const fopAc_ac_c*);
 fopAc_ac_c* fopAcM_getEventPartner(const fopAc_ac_c*);
-static void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1);
 
 s32 fopAcM_createItemForPresentDemo(cXyz const* p_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
                                     int i_roomNo, csXyz const* p_angle, cXyz const* p_scale);
@@ -562,7 +566,7 @@ s32 fopAcM_createItemFromTable(cXyz const* p_pos, int i_tableNo, int i_itemBitNo
 s32 fopAcM_createDemoItem(const cXyz* p_pos, int itemNo, int itemBitNo, const csXyz* p_angle,
                           int roomNo, const cXyz* scale, u8 param_7);
 
-s32 fopAcM_createItemForBoss(const cXyz* p_pos, int param_2, int roomNo, const csXyz* p_angle,
+s32 fopAcM_createItemForBoss(const cXyz* p_pos, int i_itemNo, int roomNo, const csXyz* p_angle,
                              const cXyz* p_scale, f32 speedF, f32 speedY, int param_8);
 
 s32 fopAcM_createItemForMidBoss(const cXyz* p_pos, int i_itemNo, int i_roomNo, const csXyz* p_angle,
@@ -675,12 +679,12 @@ inline void fopAcM_seStart(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
 
 inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
-    i_mDoAud_seStartLevel(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStartLevel(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     s8 roomNo = fopAcM_GetRoomNo(actor);
-    i_mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
 }
 
 inline void fopAcM_offActor(fopAc_ac_c* pActor, u32 flag) {

@@ -25,8 +25,8 @@ void daObjZraRock_c::setAttnPos() {
 void daObjZraRock_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    mpModelOpa->i_setBaseTRMtx(mDoMtx_stack_c::get());
-    mpModelXlu->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModelOpa->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModelXlu->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -109,14 +109,14 @@ int daObjZraRock_c::Execute(Mtx** i_mtx) {
 int daObjZraRock_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     if (mDemoStart) {
-        g_env_light.setLightTevColorType_MAJI(mpModelXlu->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelXlu, &tevStr);
         dComIfGd_setListBG();
         mBrkAnm.entry(mpModelXlu->getModelData());
         mDoExt_modelUpdateDL(mpModelXlu);
         mBrkAnm.remove(mpModelXlu->getModelData());
         dComIfGd_setList();
     } else {
-        g_env_light.setLightTevColorType_MAJI(mpModelOpa->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModelOpa, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModelOpa);
         dComIfGd_setList();

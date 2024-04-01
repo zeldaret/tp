@@ -195,7 +195,7 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
         J3DModel* sysModel = j3dSys.mModel;
         npc_tr_class* npc_tr = (npc_tr_class*)sysModel->mUserArea;
 
-        MTXCopy(sysModel->i_getAnmMtx(jointNo), *calc_mtx);
+        MTXCopy(sysModel->getAnmMtx(jointNo), *calc_mtx);
 
         if (jointNo == 1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[0] + (s16)(npc_tr->field_0x5f8 * 0.3f));
@@ -222,7 +222,7 @@ static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
 /* 80B25B78-80B25BDC 000258 0064+00 1/0 0/0 0/0 .text            daNPC_TR_Draw__FP12npc_tr_class */
 static int daNPC_TR_Draw(npc_tr_class* npc_tr) {
     g_env_light.settingTevStruct(0, &npc_tr->current.pos, &npc_tr->tevStr);
-    g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8->mModelData, &npc_tr->tevStr);
+    g_env_light.setLightTevColorType_MAJI(npc_tr->field_0x5b8, &npc_tr->tevStr);
     mDoExt_modelUpdateDL(npc_tr->field_0x5b8);
     return 1;
 }

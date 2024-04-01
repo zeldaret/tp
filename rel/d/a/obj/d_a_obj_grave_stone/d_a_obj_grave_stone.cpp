@@ -37,7 +37,7 @@ dCcD_SrcCyl const daGraveStone_c::mCcDCyl = {
 void daGraveStone_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -194,7 +194,7 @@ int daGraveStone_c::Execute(Mtx** i_mtxP) {
 /* 80C13078-80C1311C 000AF8 00A4+00 1/0 0/0 0/0 .text            Draw__14daGraveStone_cFv */
 int daGraveStone_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

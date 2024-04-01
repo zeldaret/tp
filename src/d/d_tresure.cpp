@@ -31,7 +31,7 @@ int dTres_c::createWork() {
 
 /* 8009BC18-8009BC60 096558 0048+00 0/0 1/1 0/0 .text            create__7dTres_cFv */
 void dTres_c::create() {
-    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_BOSS_ROOM) {
+    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != ST_BOSS_ROOM) {
         reset();
     }
 }
@@ -65,7 +65,7 @@ void dTres_c::reset() {
 /* 8009BCB4-8009BE28 0965F4 0174+00 0/0 1/1 0/0 .text addData__7dTres_cFPQ27dTres_c10list_classSc
  */
 void dTres_c::addData(dTres_c::list_class* p_list, s8 roomNo) {
-    if (dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo()) != ST_BOSS_ROOM) {
+    if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != ST_BOSS_ROOM) {
         reset();
 
         data_s* listData = p_list->field_0x4->getDataPointer();

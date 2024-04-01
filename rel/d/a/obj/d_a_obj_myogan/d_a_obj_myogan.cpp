@@ -51,7 +51,7 @@ static void action(obj_myogan_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
 
-    i_this->mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), i_this->mBgMtx);
 
     i_this->mpBgW->Move();

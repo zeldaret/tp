@@ -96,10 +96,10 @@ void daObjMirrorScrew_c::initDown() {
  */
 void daObjMirrorScrew_c::executeDown() {
     dComIfG_inf_c* gameinfo = &g_dComIfG_gameInfo;
-    if (i_dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck()) {
         daPy_py_c* player = daPy_getPlayerActorClass();
-        player->i_changeOriginalDemo();
-        player->i_changeDemoMode(0xe, 1, 0, 0);
+        player->changeOriginalDemo();
+        player->changeDemoMode(0xe, 1, 0, 0);
     }
 
     if (mSpinCount >= 0) {
@@ -135,7 +135,7 @@ void daObjMirrorScrew_c::executeDown() {
                                  0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         u8 sw = getSwitchNo();
         if (sw != 0xff) {
-            i_fopAcM_onSwitch(this, sw);
+            fopAcM_onSwitch(this, sw);
         }
         fopAcM_delete(this);
     }
@@ -168,9 +168,9 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
-    if (i_fopAcM_isSwitch(this, getSwitchNo())
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
+    if (fopAcM_isSwitch(this, getSwitchNo())
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
         return cPhs_ERROR_e;
     }
@@ -202,7 +202,7 @@ void daObjMirrorScrew_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 void daObjMirrorScrew_c::initBaseMtx() {
@@ -230,22 +230,22 @@ int daObjMirrorScrew_c::Create() {
 /* 80C99490-80C99608 000A30 0178+00 1/0 0/0 0/0 .text Execute__18daObjMirrorScrew_cFPPA3_A4_f */
 int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
     if (mpSwSpinner == NULL) {
-        mpSwSpinner = static_cast<daObjSwSpinner_c*>(i_fopAcM_SearchByName(PROC_Obj_SwSpinner));
+        mpSwSpinner = static_cast<daObjSwSpinner_c*>(fopAcM_SearchByName(PROC_Obj_SwSpinner));
     }
     if (mpSpPath == NULL) {
-        mpSpPath = static_cast<daTagSppath_c*>(i_fopAcM_SearchByName(PROC_Tag_Sppath));
+        mpSpPath = static_cast<daTagSppath_c*>(fopAcM_SearchByName(PROC_Tag_Sppath));
     }
     if (mpChain == NULL) {
-        mpChain = static_cast<daObjMirrorChain_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorChain));
+        mpChain = static_cast<daObjMirrorChain_c*>(fopAcM_SearchByName(PROC_Obj_MirrorChain));
     }
     if (mpTable == NULL) {
-        mpTable = static_cast<daObjMirrorTable_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorTable));
+        mpTable = static_cast<daObjMirrorTable_c*>(fopAcM_SearchByName(PROC_Obj_MirrorTable));
     }
     if (mp6Pole == NULL) {
-        mp6Pole = static_cast<daObjMirror6Pole_c*>(i_fopAcM_SearchByName(PROC_Obj_Mirror6Pole));
+        mp6Pole = static_cast<daObjMirror6Pole_c*>(fopAcM_SearchByName(PROC_Obj_Mirror6Pole));
     }
     if (mpSand == NULL) {
-        mpSand = static_cast<daObjMirrorSand_c*>(i_fopAcM_SearchByName(PROC_Obj_MirrorSand));
+        mpSand = static_cast<daObjMirrorSand_c*>(fopAcM_SearchByName(PROC_Obj_MirrorSand));
     }
     callExecute();
     setBaseMtx();
@@ -256,7 +256,7 @@ int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
 /* 80C99608-80C996AC 000BA8 00A4+00 1/0 0/0 0/0 .text            Draw__18daObjMirrorScrew_cFv */
 int daObjMirrorScrew_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();

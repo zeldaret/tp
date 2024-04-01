@@ -39,8 +39,10 @@ public:
     /* 80191C18 */ virtual ~dFile_warning_c();
 
     // fake? needed to get vtable size correct
+    #ifdef DFILE_WARNING_C_DUMMY_VIRTUAL
     virtual void dummy() = 0;
     virtual void dummy2() = 0;
+    #endif
 
     u8 getStatus() { return mStatus; }
     void draw() { _draw(); }

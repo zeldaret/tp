@@ -155,7 +155,9 @@ func_802FC800
 func_802FAA5C
 func_802782D0
 func_80301994
-func_80282284"""
+func_80282284
+func_802F42C0
+func_802F4260"""
 
 def lcf_generate(output_path,shiftable,map_file):
     """Script for generating .lcf files"""

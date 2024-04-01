@@ -65,7 +65,7 @@ int daTagMmsg_c::execute() {
         return 1;
     }
 
-    if (field_0x572 != 0x3FF && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572]))
+    if (field_0x572 != 0x3FF && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x572]))
     {
         return 1;
     }
@@ -75,7 +75,7 @@ int daTagMmsg_c::execute() {
         return 1;
     }
 
-    if (mUseFlg && !i_dComIfGp_event_runCheck() && field_0x56b && field_0x569 != 0xFF) {
+    if (mUseFlg && !dComIfGp_event_runCheck() && field_0x56b && field_0x569 != 0xFF) {
         dComIfGs_onSwitch(field_0x569, fopAcM_GetHomeRoomNo(this));
         fopAcM_delete(this);
         return 1;
@@ -85,7 +85,7 @@ int daTagMmsg_c::execute() {
     if ((current.pos.y <= player->current.pos.y) && (field_0x578 >= player->current.pos.y) &&
         (fopAcM_searchPlayerDistanceXZ2(this) < field_0x574) &&
         (field_0x570 == 0x3FF ||
-         i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])) &&
+         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x570])) &&
         (field_0x568 == 0xFF || dComIfGs_isSwitch(field_0x568, fopAcM_GetHomeRoomNo(this))))
     {
         player->setMidnaMsgNum(this, shape_angle.z);

@@ -160,7 +160,7 @@ int dTimer_c::_create() {
 
 /* 8025CF04-8025D33C 257844 0438+00 1/1 0/0 0/0 .text            _execute__8dTimer_cFv */
 int dTimer_c::_execute() {
-    if (m_timer_mode == 6 && i_dComIfGs_getLife() == 0) {
+    if (m_timer_mode == 6 && dComIfGs_getLife() == 0) {
         fopMsgM_Delete(this);
     }
 
@@ -480,7 +480,7 @@ int dTimer_c::getRestTimeMs() {
 }
 
 /* 8025DB10-8025DB38 258450 0028+00 1/1 0/0 4/4 .text            isStart__8dTimer_cFv */
-int dTimer_c::isStart() {
+u8 dTimer_c::isStart() {
     if (field_0x16A != 1 && m_mode == 4) {
         return 1;
     }
@@ -1618,7 +1618,7 @@ static int dTimer_createStart2D(s32 param_0, u16 param_1) {
 }
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
-int dTimer_isStart() {
+u8 dTimer_isStart() {
     if (dComIfG_getTimerPtr() != NULL) {
         return dComIfG_getTimerPtr()->isStart();
     }
@@ -1650,7 +1650,7 @@ void dTimer_hide() {
 }
 
 /* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
-u32 dTimer_isReadyFlag() {
+u8 dTimer_isReadyFlag() {
     if (dComIfG_getTimerPtr() != NULL) {
         return dComIfG_getTimerPtr()->isReadyFlag();
     }

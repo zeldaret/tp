@@ -185,7 +185,7 @@ J3DJoint::J3DJoint() {
 
 /* 8032F254-8032F3F8 329B94 01A4+00 0/0 1/1 0/0 .text            entryIn__8J3DJointFv */
 void J3DJoint::entryIn() {
-    MtxP anmMtx = j3dSys.getModel()->i_getAnmMtx(mJntNo);
+    MtxP anmMtx = j3dSys.getModel()->getAnmMtx(mJntNo);
     j3dSys.getDrawBuffer(0)->setZMtx(anmMtx);
     j3dSys.getDrawBuffer(1)->setZMtx(anmMtx);
     for (J3DMaterial* mesh = mMesh; mesh != NULL;) {

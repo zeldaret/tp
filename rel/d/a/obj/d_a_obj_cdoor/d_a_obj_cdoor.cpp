@@ -90,9 +90,9 @@ cPhs__Step daObjCdoor_c::create() {
         mChainID = -1;
         mEnd = false;
         if (mType == 1) {
-            mIsOpen = i_fopAcM_isSwitch(this, mSw);
+            mIsOpen = fopAcM_isSwitch(this, mSw);
             mMapToolID = (fopAcM_GetParam(this) >> 0xc) & 0xff;
-            mEventID = i_dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
+            mEventID = dComIfGp_getEventManager().getEventIdx(this, mMapToolID);
             setAction(ACT_WAIT);
             if (mMapToolID == 0xff) {
                 setAction(ACT_DEAD);
@@ -106,7 +106,7 @@ cPhs__Step daObjCdoor_c::create() {
             }
             init_modeWait();
         } else {
-            if (i_fopAcM_isSwitch(this, mSw)) {
+            if (fopAcM_isSwitch(this, mSw)) {
                 mEnd = 1;
                 current.pos.y += l_moveOffsetY[mType];
             } else {
@@ -147,7 +147,7 @@ static int daObjCdoor_Delete(daObjCdoor_c* i_this) {
 void daObjCdoor_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80BC7424-80BC7478 0006E4 0054+00 1/0 0/0 0/0 .text            Execute__12daObjCdoor_cFPPA3_A4_f
@@ -208,7 +208,7 @@ void daObjCdoor_c::execWgate() {
         &modeClose,
     };
     u8 was_open = mIsOpen;
-    mIsOpen = i_fopAcM_isSwitch(this, mSw);
+    mIsOpen = fopAcM_isSwitch(this, mSw);
     if (mIsOpen != was_open) {
         if (mIsOpen) {
             init_modeOpen();
@@ -304,7 +304,7 @@ void daObjCdoor_c::actionOrderEvent() {
 void daObjCdoor_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventID)) {
         setAction(ACT_DEAD);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     }
 }
 
@@ -316,7 +316,7 @@ void daObjCdoor_c::actionDead() {
 /* 80BC7C04-80BC7CE4 000EC4 00E0+00 1/0 0/0 0/0 .text            Draw__12daObjCdoor_cFv */
 int daObjCdoor_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     if (mType == 1) {
         J3DModelData* model_data = mpModel->getModelData();
         if (mIsOpen) {

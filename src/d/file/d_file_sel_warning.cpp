@@ -3,6 +3,8 @@
 // Translation Unit: d/file/d_file_sel_warning
 //
 
+#define DFILE_WARNING_C_DUMMY_VIRTUAL
+
 // #include "d/file/d_file_sel_warning.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"

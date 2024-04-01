@@ -22,9 +22,9 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         daObjSwPr_c* swpr_p = (daObjSwPr_c*)model_p->getUserArea();
 
         if (jnt_no == swpr_p->mKaitenJntID) {
-            cMtx_copy(model_p->i_getAnmMtx(jnt_no), mDoMtx_stack_c::get());
+            cMtx_copy(model_p->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
             mDoMtx_stack_c::YrotM(swpr_p->field_0x82c);
-            model_p->i_setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+            model_p->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
             mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
         }
     }
@@ -47,7 +47,7 @@ void daObjSwPr_c::initBaseMtx() {
 void daObjSwPr_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8059B2C8-8059B2D0 000000 0008+00 3/3 0/0 0/0 .rodata          l_bmdName */
@@ -176,9 +176,9 @@ void daObjSwPr_c::switchCtrl() {
     int sw = getSwbit();
 
     if (mRotateSpeed == 0) {
-        i_fopAcM_offSwitch(this, sw);
+        fopAcM_offSwitch(this, sw);
     } else if (cLib_calcTimer(&mSwDelayTimer) == 0) {
-        i_fopAcM_onSwitch(this, sw);
+        fopAcM_onSwitch(this, sw);
     }
 }
 
@@ -248,9 +248,9 @@ void daObjSwPr_c::execute_type_wind() {
 
                 field_0x834++;
                 if (field_0x834 == 20) {
-                    i_fopAcM_onSwitch(this, sw);
+                    fopAcM_onSwitch(this, sw);
                 } else if (field_0x834 == 25) {
-                    i_fopAcM_offSwitch(this, sw);
+                    fopAcM_offSwitch(this, sw);
                 }
             }
         }
@@ -267,16 +267,16 @@ void daObjSwPr_c::execute_type_wind() {
             {
                 mRotateSpeed = 7000;
                 mRotateInitSpeed = mRotateSpeed;
-                i_fopAcM_onSwitch(this, sw);
+                fopAcM_onSwitch(this, sw);
                 mSwOffDelayTimer = 10;
 
                 if (getSwbit2() != 0xFF) {
-                    i_fopAcM_onSwitch(this, getSwbit2());
+                    fopAcM_onSwitch(this, getSwbit2());
                 }
             }
         }
     } else if (mSwOffDelayTimer != 0 && cLib_calcTimer(&mSwOffDelayTimer) == 0) {
-        i_fopAcM_offSwitch(this, sw);
+        fopAcM_offSwitch(this, sw);
     }
 
     cLib_addCalcAngleS(&mRotateSpeed, target_speed, 30, 100, 50);

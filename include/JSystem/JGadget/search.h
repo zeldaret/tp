@@ -1,7 +1,7 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
-#include "global.h"
+#include "dolphin/os.h"
 
 namespace JGadget {
 

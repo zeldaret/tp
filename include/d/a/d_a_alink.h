@@ -156,7 +156,6 @@ public:
 
     static u8 m_morf_frame;
 
-private:
     /* 0x0F4 */ f32 field_0xf4;
     /* 0x0F8 */ f32 field_0xf8;
     /* 0x0FC */ f32 mNowOffsetX;
@@ -1669,16 +1668,9 @@ public:
     /* 800CF100 */ int procCoPeepSubjectivityInit();
     /* 800CF1B8 */ int procCoPeepSubjectivity();
     /* 800CF380 */ daAlink_c();
-    /* 800CFEB0 */ BOOL checkRideOn() const;
-    /* 800CFF4C */ BOOL checkAttentionLock();
-    /* 800D0020 */ BOOL checkFmChainGrabAnime() const;
-    /* 800D0048 */ BOOL checkSmallUpperGuardAnime() const;
-    /* 800D00EC */ u32 checkReinRide() const;
     /* 800D0110 */ BOOL checkWolfEnemyThrowAnime() const;
-    /* 800D0138 */ int checkSpecialDemoMode() const;
     /* 800D014C */ void setMidnaTalkStatus(u8);
     /* 800D0164 */ void set3DStatus(u8, u8);
-    /* 800D018C */ u32 checkModeFlg(u32) const;
     /* 800D2684 */ void checkCutTurnCharge();
     /* 800D0E08 */ void checkLightSwordMtrl();
     /* 800D0E98 */ BOOL checkSwordEquipAnime() const;
@@ -3031,7 +3023,7 @@ public:
     virtual f32 getBaseAnimeFrameRate() const;
     virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(f32);
-    virtual bool checkWolfLock(fopAc_ac_c*) const;
+    virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
     virtual s32 getItemID() const;
@@ -3070,7 +3062,7 @@ public:
     virtual u32 checkCanoeRide() const;
     virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual fopAc_ac_c* getSpinnerActor();
+    virtual daSpinner_c* getSpinnerActor();
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;
@@ -3136,15 +3128,14 @@ public:
     virtual bool checkCopyRodEquip() const;
     virtual BOOL checkCutJumpMode() const;
 
-    // inlined dupes
-    u32 i_checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
-    bool i_checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
-    bool i_checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
+    u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
+    bool checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
+    bool checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
     Z2WolfHowlMgr* i_getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
 
     // this might be a fake match, but helps fix usage in many functions
 #pragma optimization_level 2
-    BOOL i_checkAttentionLock() { return mAttention->Lockon(); }
+    BOOL checkAttentionLock() { return mAttention->Lockon(); }
 #pragma optimization_level 3
 
     bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
@@ -3241,15 +3232,15 @@ public:
     }
 
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
-    BOOL i_checkSpecialDemoMode() const { return mDemo.getDemoType() == 5; }
-    static bool checkMidnaChargeAttack() { return i_dComIfGs_isEventBit(0x501); }
+    BOOL checkSpecialDemoMode() const { return mDemo.getDemoType() == 5; }
+    static bool checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
 
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
-    BOOL i_checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+    BOOL checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
 
@@ -3273,7 +3264,7 @@ public:
 
         if (!var_r3) {
             bool var_r3_2 = 0;
-            if (mProcID != PROC_FISHING_CAST && i_checkNoResetFlg2(FLG2_UNK_20000000)) {
+            if (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000)) {
                 var_r3_2 = 1;
             }
 
@@ -3287,7 +3278,7 @@ public:
 
     MtxP getCopyRodMtx() {
         if (mHeldItemModel != NULL) {
-            return mHeldItemModel->i_getAnmMtx(0);
+            return mHeldItemModel->getAnmMtx(0);
         }
         return NULL;
     }
@@ -3298,7 +3289,7 @@ public:
 
     void clearIronBallActor() { field_0x173c.SetActor(this); }
     BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const { return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0; }
-    bool checkWolfDashMode() const { return i_checkNoResetFlg1(FLG1_DASH_MODE); }
+    bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
 
     J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) {
@@ -3317,9 +3308,9 @@ public:
     bool checkHorseGetOffMode() const { return mProcID == PROC_HORSE_GETOFF; }
     bool checkHorseRideOn() const { return mProcID == PROC_HORSE_RIDE; }
 
-    BOOL i_checkRideOn() const { return mRideStatus != 0; }
+    BOOL checkRideOn() const { return mRideStatus != 0; }
 
-    bool checkSwimDashMode() const { return i_checkNoResetFlg1(FLG1_DASH_MODE); }
+    bool checkSwimDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
 
     bool talkTrigger() const { return mItemTrigger & BTN_A; }
     J3DAnmTransform* getNowAnmPackUnder(daAlink_UNDER i_idx) {
@@ -3399,7 +3390,6 @@ public:
 
     static u8 m_fEffParamProc[72];
 
-private:
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
     /* 0x00634 */ char* mArcName;
     /* 0x00638 */ JKRExpHeap* field_0x0638;
@@ -6250,7 +6240,7 @@ public:
 };
 
 inline BOOL dComIfGs_isTransformLV(int i_no);
-inline BOOL i_dComIfGs_isEventBit(const u16);
+inline BOOL dComIfGs_isEventBit(const u16);
 
 static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);

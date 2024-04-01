@@ -260,10 +260,10 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 void daBdoor_c::calcMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpDoorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpDoorModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 300.0f, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpLockModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpLockModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8066F7EC-8066F8E4 00044C 00F8+00 1/1 0/0 0/0 .text            CreateInit__9daBdoor_cFv */
@@ -650,7 +650,7 @@ static char const l_staff_name[13] = "SHUTTER_DOOR";
 /* 80670328-806703C0 000F88 0098+00 1/0 0/0 0/0 .text            actionCloseWait__9daBdoor_cFv */
 BOOL daBdoor_c::actionCloseWait() {
     if (eventInfo.i_checkCommandDoor()) {
-        mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
         setAction(ACT_OPEN);
     } else {
@@ -733,7 +733,7 @@ int daBdoor_c::execute() {
         &actionEnd,
     };
     if (fopAcM_checkStatus(this, 0x1000)) {
-        mStaffID = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else {
         (this->*l_action[mAction])();
@@ -765,12 +765,12 @@ int daBdoor_c::draw() {
             fopAcM_OffStatus(this, 0);
         }
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-        g_env_light.setLightTevColorType_MAJI(mpDoorModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpDoorModel, &tevStr);
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpDoorModel);
         dComIfGd_setList();
         if (mLocked) {
-            g_env_light.setLightTevColorType_MAJI(mpLockModel->mModelData, &tevStr);
+            g_env_light.setLightTevColorType_MAJI(mpLockModel, &tevStr);
             mpLockAnm->entry(mpLockModel->getModelData());
             mDoExt_modelUpdateDL(mpLockModel);
         }

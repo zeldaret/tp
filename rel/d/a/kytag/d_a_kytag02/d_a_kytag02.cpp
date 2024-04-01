@@ -16,7 +16,7 @@ static int daKytag02_Draw(kytag02_class* i_this) {
 
 /* 80855AC0-80855CC4 000080 0204+00 1/0 0/0 0/0 .text daKytag02_Execute__FP13kytag02_class */
 static int daKytag02_Execute(kytag02_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     cXyz* wind_vec = dKyw_get_wind_vec();
 
     if (dComIfGs_isSwitch(i_this->field_0x577, i_this->home.roomNo)) {
@@ -63,7 +63,7 @@ static int daKytag02_Execute(kytag02_class* i_this) {
             env_light->custom_windpower = 0.3f;
         }
     } else {
-        env_light = i_dKy_getEnvlight();
+        env_light = dKy_getEnvlight();
         env_light->mEvtWindSet = 0;
 
         if (i_this->field_0x578 != 99) {
@@ -91,7 +91,7 @@ static int daKytag02_IsDelete(kytag02_class* i_this) {
 /* 80855CCC-80855CEC 00028C 0020+00 1/0 0/0 0/0 .text            daKytag02_Delete__FP13kytag02_class
  */
 static int daKytag02_Delete(kytag02_class* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     env_light->mEvtWindSet = 0;
     env_light->mMoyaCount = 0;
@@ -101,7 +101,7 @@ static int daKytag02_Delete(kytag02_class* i_this) {
 
 /* 80855CEC-80855DF4 0002AC 0108+00 1/0 0/0 0/0 .text            daKytag02_Create__FP10fopAc_ac_c */
 static int daKytag02_Create(fopAc_ac_c* i_this) {
-    dScnKy_env_light_c* env_light = i_dKy_getEnvlight();
+    dScnKy_env_light_c* env_light = dKy_getEnvlight();
     dKyw_get_wind_vec();
 
     fopAcM_SetupActor(i_this, kytag02_class);

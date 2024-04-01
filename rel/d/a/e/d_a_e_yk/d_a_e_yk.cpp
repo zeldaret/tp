@@ -513,7 +513,7 @@ static int daE_YK_Draw(e_yk_class* i_this) {
 /* 80804B38-80804BB0 0003F8 0078+00 1/1 0/0 0/0 .text            shot_b_sub__FPvPv */
 static void* shot_b_sub(void* param_0, void* param_1) {
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_BOOMERANG &&
-                                !i_dComIfGp_checkPlayerStatus0(0,0x80000) &&
+                                !dComIfGp_checkPlayerStatus0(0,0x80000) &&
                                 daPy_py_c::checkBoomerangCharge() &&
                                 fopAcM_GetParam(param_0) == 1) {
             return param_0;
@@ -1535,7 +1535,7 @@ COMPILER_STRIP_GATE(0x80807D44, &lit_4725);
 #ifdef NONMATCHING
 // matches with literals
 static void e_yk_wind(e_yk_class* i_this) {
-    e_yk_class* yk = (e_yk_class*)i_fpcM_Search(shot_b_sub,i_this);
+    e_yk_class* yk = (e_yk_class*)fpcM_Search(shot_b_sub,i_this);
     i_this->speedF = 0.0f;
   
     switch(i_this->mActionPhase) {
@@ -1732,7 +1732,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
             // need to define inline here
             MTXCopy(daPy_getLinkPlayerActorClass()->getWolfMouthMatrix(),mDoMtx_stack_c::now);
-            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            model->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&i_this->current.pos);
         } else {
             if (i_this->health > 0 && i_this->field_0x6a0 == 0 && i_this->current.pos.y < player->current.pos.y) {
@@ -1747,7 +1747,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
             mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
             mDoMtx_stack_c::scaleM(l_HIO.field_0x08,l_HIO.field_0x08,l_HIO.field_0x08);
 
-            model->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            model->setBaseTRMtx(mDoMtx_stack_c::get());
         }
 
         i_this->mpMorfSO->modelCalc();
@@ -1774,7 +1774,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
                     
                     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleEmitterIds[i]);
                     if (emitter) {
-                        emitter->setGlobalRTMatrix(model->i_getAnmMtx(e_idx[i]));
+                        emitter->setGlobalRTMatrix(model->getAnmMtx(e_idx[i]));
                     };
                 }
             }
@@ -1782,7 +1782,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
         
 
-        MTXCopy(model->i_getAnmMtx(2),(MtxP)calc_mtx);
+        MTXCopy(model->getAnmMtx(2),(MtxP)calc_mtx);
         pos.set(0.0f,0.0f,0.0f);
 
         MtxPosition(&pos,&i_this->eyePos);
@@ -1928,7 +1928,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
         
         yk->mPlayerTrigger = 100.0f * yk->mPlayerTriggerBase;
         
-        if (i_fopAcM_SearchByName(PROC_E_PZ)) {
+        if (fopAcM_SearchByName(PROC_E_PZ)) {
             // For phantom zant fights. Used in pl_check above
             yk->mPlayerTrigger = 100000.0f; 
         }

@@ -216,7 +216,7 @@ int dScope_c::_execute(u32) {
     if (mProcess != PROC_CLOSE) {
         dComIfGp_setCStickStatusForce(61, 10, 3);
 
-        if (i_dComIfGp_checkPlayerStatus0(0, 0x1000)) {
+        if (dComIfGp_checkPlayerStatus0(0, 0x1000)) {
             dComIfGp_setRStatusForce(0x11, 3);
         }
     }
@@ -250,7 +250,7 @@ void dScope_c::draw() {
     f32 temp_f30 = mHeight * temp_f1;
     u8 alpha = mAlpha * 255.0f;
 
-    if (i_dComIfGp_checkPlayerStatus0(0, 0x1000)) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x1000)) {
         J2DDrawLine(304.0f, mDoGph_gInf_c::getMinYF(), 304.0f, mDoGph_gInf_c::getMaxYF(),
                     JUtility::TColor(255, 0, 0, alpha), 6);
         J2DDrawLine(mDoGph_gInf_c::getMinXF(), 224.0f, mDoGph_gInf_c::getMaxXF(), 224.0f,

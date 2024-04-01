@@ -1111,11 +1111,11 @@ void jmessage_tReference::inputNumber() {
     s16 new_input_val = input_val;
 
     u8 max_figure = 0;
-    if (i_dComIfGs_getRupee() >= 1000) {
+    if (dComIfGs_getRupee() >= 1000) {
         max_figure = 3;
-    } else if (i_dComIfGs_getRupee() >= 100) {
+    } else if (dComIfGs_getRupee() >= 100) {
         max_figure = 2;
-    } else if (i_dComIfGs_getRupee() >= 10) {
+    } else if (dComIfGs_getRupee() >= 10) {
         max_figure = 1;
     }
 
@@ -1167,8 +1167,8 @@ void jmessage_tReference::inputNumber() {
         new_input_val = 0;
     }
 
-    if (new_input_val > i_dComIfGs_getRupee()) {
-        new_input_val = i_dComIfGs_getRupee();
+    if (new_input_val > dComIfGs_getRupee()) {
+        new_input_val = dComIfGs_getRupee();
     }
 
     if (new_input_val != input_val) {
@@ -1864,7 +1864,7 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             dMsgUnit_setTag(0x10000, dComIfGp_getNeedLightDropNum(), buffer_0);
             break;
         case 6:
-            dMsgUnit_setTag(6, 20 - i_dComIfGs_getEventReg(0xFF1F), buffer_0);
+            dMsgUnit_setTag(6, 20 - dComIfGs_getEventReg(0xFF1F), buffer_0);
             break;
         case 8:
             dMsgUnit_setTag(9, (u32)dComIfGp_getMessageCountNumber(), buffer_0);

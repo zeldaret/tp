@@ -29,7 +29,7 @@ static int daNpc_Fish_Delete(npc_fish_class* i_this) {
 
 /* 80542198-80542254 000098 00BC+00 1/1 0/0 0/0 .text fish_set__FP10fopAc_ac_cP11fish_data_s */
 static void fish_set(fopAc_ac_c* i_this, fish_data_s* data) {
-    dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+    dScnKy_env_light_c* envLight = dKy_getEnvlight();
     cXyz pos;
     for (int i = 0; i < 100; i++, data++) {
         if (data->param < 0) {
@@ -143,7 +143,7 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
         return 5;
     } else {
-        dScnKy_env_light_c* envLight = i_dKy_getEnvlight();
+        dScnKy_env_light_c* envLight = dKy_getEnvlight();
         s32 param = 0;
         if (envLight->mPondSeason == 2) {
             param = 160;
@@ -163,7 +163,7 @@ static int daNpc_Fish_Create(fopAc_ac_c* i_this) {
             fopAcM_create(PROC_FR, 0, &pos, fopAcM_GetRoomNo(i_this), &angle, NULL, -1);
         }
     }
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
         fish_set(i_this, fish_d127);
     } else {
         fish_set(i_this, fish_d127_S);

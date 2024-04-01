@@ -229,9 +229,9 @@ asm int dJntCol_c::getHitmarkPosAndAngle(cXyz const* param_0, csXyz const* param
 void dJntCol_c::setArrowPosAndAngle(cXyz const* param_0, cXyz const* i_srcPos, int i_anmMtxIdx,
                                     cXyz* param_3, csXyz* i_arrowPosP) {
     cXyz dst_pos;
-    mDoMtx_multVecSR(mModel->i_getAnmMtx(i_anmMtxIdx), i_srcPos, &dst_pos);
+    mDoMtx_multVecSR(mModel->getAnmMtx(i_anmMtxIdx), i_srcPos, &dst_pos);
 
     i_arrowPosP->x = dst_pos.atan2sY_XZ();
     i_arrowPosP->y = dst_pos.atan2sX_Z();
-    mDoMtx_multVec(mModel->i_getAnmMtx(i_anmMtxIdx), param_0, param_3);
+    mDoMtx_multVec(mModel->getAnmMtx(i_anmMtxIdx), param_0, param_3);
 }

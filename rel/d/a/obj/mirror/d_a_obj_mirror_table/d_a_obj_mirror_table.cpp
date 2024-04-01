@@ -143,7 +143,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
-    int mirror_res_id = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 13 : 14;
+    int mirror_res_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 13 : 14;
     J3DModelData* mirror_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, mirror_res_id);
     mpMirrorModel = mDoExt_J3DModel__create(mirror_model_data, 0, 0x11000084);
     if (mpMirrorModel == NULL) {
@@ -165,7 +165,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
-    int mirror_dzb_id = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 31 : 32;
+    int mirror_dzb_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 31 : 32;
     cBgD_t* mirror_dzb = (cBgD_t*)dComIfG_getObjectRes(l_arcName, mirror_dzb_id);
     if (mBgW[1].Set(mirror_dzb, 1, &mMtx[1])) {
         return 0;
@@ -180,7 +180,7 @@ int daObjMirrorTable_c::createHeap() {
     mpMSquareBckAnm = NULL;
     mpLightBtkAnm = NULL;
 
-    if (i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         J3DModelData* stair_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 20);
         mpStairModel = mDoExt_J3DModel__create(stair_model_data, 0x80000, 0x11000084);
 
@@ -257,9 +257,9 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 
 /* 80C99F7C-80C9A040 0006DC 00C4+00 1/1 0/0 0/0 .text            isSwitch__18daObjMirrorTable_cFv */
 bool daObjMirrorTable_c::isSwitch() {
-    return i_fopAcM_isSwitch(this, getSwitchNo())
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
-        || i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
+    return fopAcM_isSwitch(this, getSwitchNo())
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
         ? 1 : 0;
 }
 
@@ -279,10 +279,10 @@ void daObjMirrorTable_c::checkOnPanel() {
                 pos = player->getRightHandPosP();
                 break;
             case 2:
-                pos = player->i_getLeftFootPosP();
+                pos = player->getLeftFootPosP();
                 break;
             case 3:
-                pos = player->i_getRightFootPosP();
+                pos = player->getRightFootPosP();
                 break;
             }
             mDoMtx_stack_c::push();
@@ -299,9 +299,9 @@ void daObjMirrorTable_c::checkOnPanel() {
         for (int i = 0; i < 2; i++) {
             cXyz* pos;
             if (i == 0) {
-                pos = player->i_getLeftFootPosP();
+                pos = player->getLeftFootPosP();
             } else {
-                pos = player->i_getRightFootPosP();
+                pos = player->getRightFootPosP();
             }
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::multVec(pos, &rel_pos);
@@ -341,10 +341,10 @@ static int daObjMirrorTable_Draw(daObjMirrorTable_c* i_this) {
 /* 80C9A298-80C9A4B0 0009F8 0218+00 1/1 0/0 0/0 .text            draw__18daObjMirrorTable_cFv */
 int daObjMirrorTable_c::draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpTableModel->mModelData, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpMirrorModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpTableModel, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpMirrorModel, &tevStr);
     if (mpStairModel != NULL) {
-        g_env_light.setLightTevColorType_MAJI(mpStairModel->mModelData, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpStairModel, &tevStr);
     }
     mpTableUpBckAnm->entry(mpTableModel->getModelData());
     dComIfGd_setListBG();
@@ -380,18 +380,18 @@ int daObjMirrorTable_c::draw() {
 void daObjMirrorTable_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpTableModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpTableModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpStairModel != NULL) {
-        mpStairModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpStairModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpPanelModel != NULL) {
-        mpPanelModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpPanelModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpLightModel != NULL) {
-        mpLightModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpLightModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mpMSquareModel != NULL) {
-        mpMSquareModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpMSquareModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     if (mBgW[0].ChkUsed()) {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[0]);
@@ -401,8 +401,8 @@ void daObjMirrorTable_c::setBaseMtx() {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[2]);
         mBgW[2].Move();
     }
-    mDoMtx_stack_c::copy(mpTableModel->i_getAnmMtx(1));
-    mpMirrorModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoMtx_stack_c::copy(mpTableModel->getAnmMtx(1));
+    mpMirrorModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mBgW[0].ChkUsed()) {
         MTXCopy(mDoMtx_stack_c::get(), mMtx[1]);
         mBgW[1].Move();
@@ -467,12 +467,12 @@ int daObjMirrorTable_c::execute() {
     mpTableUpBckAnm->play();
     if (!mpTableUpBckAnm->isStop()) {
         cXyz pos;
-        mDoMtx_stack_c::copy(mpTableModel->i_getAnmMtx(0));
+        mDoMtx_stack_c::copy(mpTableModel->getAnmMtx(0));
         mDoMtx_stack_c::multVecZero(&pos);
         Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_TBLE, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     }
 
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         if (!mBgW[0].ChkUsed() && mpTableUpBckAnm->getPlaySpeed() > 0.0f) {
             dComIfG_Bgsp().Regist(&mBgW[0], this);
             dComIfG_Bgsp().Regist(&mBgW[1], this);
@@ -608,7 +608,7 @@ SECTION_DEAD static char const* const stringBase_80C9B299 = "F_SP125";
 #ifdef NONMATCHING
 // matches with literals once isSwitch is properly inlined
 void daObjMirrorTable_c::create_init() {
-    bool mirror_complete_flag = i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
+    bool mirror_complete_flag = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     mpTableUpBckAnm->setPlaySpeed(0.0f);
 
     mBgW[0].SetCrrFunc(NULL);
@@ -648,8 +648,8 @@ void daObjMirrorTable_c::create_init() {
 
     field_0x874 = false;
 
-    if (!i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
-        && i_dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
+        && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
     {
         cXyz pos(1760.0f, 4714.3f, -20624.0f);
         csXyz angle(0, 0x8000, 0);

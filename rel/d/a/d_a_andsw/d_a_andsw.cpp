@@ -29,13 +29,13 @@ int daAndsw_c::create() {
 
 /* 80457A20-80457ABC 000120 009C+00 1/1 0/0 0/0 .text            execute__9daAndsw_cFv */
 int daAndsw_c::execute() {
-    if (i_fopAcM_isSwitch(this,mSwNo2)) {
+    if (fopAcM_isSwitch(this,mSwNo2)) {
         if (0 < mTimer) {
             mTimer--;
         }
 
         if (mTimer == 0) {
-            i_fopAcM_offSwitch(this,mSwNo);
+            fopAcM_offSwitch(this,mSwNo);
         
             if (getType() == 1) {
                 fopAcM_delete(this);

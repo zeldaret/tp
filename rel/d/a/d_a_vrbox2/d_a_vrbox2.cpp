@@ -297,15 +297,15 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
     dComIfGd_setListSky();
     mDoMtx_stack_c::transS(dComIfGd_getInvViewMtx()[0][3], dComIfGd_getInvViewMtx()[1][3] - var_f31,
                            dComIfGd_getInvViewMtx()[2][3]);
-    kasumim_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    kasumim_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoExt_modelUpdateDL(kasumim_model_p);
 
     mDoMtx_stack_c::transS(dComIfGd_getInvViewMtx()[0][3], dComIfGd_getInvViewMtx()[1][3] - var_f31,
                            dComIfGd_getInvViewMtx()[2][3]);
-    kumo_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    kumo_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoExt_modelUpdateDL(kumo_model_p);
 
-    if (dStage_stagInfo_GetArg0(i_dComIfGp_getStage()->getStagInfo()) != 0 && sun_model_p != NULL &&
+    if (dStage_stagInfo_GetArg0(dComIfGp_getStage()->getStagInfo()) != 0 && sun_model_p != NULL &&
         sun_p != NULL && sun_p->mSunAlpha > 0.0f)
     {
         sp14 = sun_p->mPos[0];
@@ -343,7 +343,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         }
 
         mDoMtx_stack_c::scaleM(scale, scale, scale);
-        sun_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        sun_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(sun_model_p);
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
@@ -359,7 +359,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
 
             mDoMtx_stack_c::scaleM(scale, scale + 0.15f, scale);
             mDoMtx_stack_c::ZrotM(-mangZ);
-            sun2_model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+            sun2_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoExt_modelUpdateDL(sun2_model_p);
             mangZ += (s16)(483.0f + cM_rndF(100.0f));
         }
@@ -473,7 +473,7 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 
     wind_vec = *windVec_p;
 
-    dStage_stagInfo_GetSTType(i_dComIfGp_getStage()->getStagInfo());
+    dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     cam_eye = camera_p->mLookat.mEye;
     cam_center = camera_p->mLookat.mCenter;

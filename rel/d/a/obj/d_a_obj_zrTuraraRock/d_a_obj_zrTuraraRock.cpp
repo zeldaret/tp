@@ -63,7 +63,7 @@ void daZrTuraRc_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::scaleM(mScaleF, mScaleF, mScaleF);
     mpModel->setBaseScale(cXyz(1.0f, 1.0f, 1.0f));
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D419D4-80D41A40 000234 006C+00 1/1 0/0 0/0 .text            CreateHeap__12daZrTuraRc_cFv */
@@ -174,7 +174,7 @@ void daZrTuraRc_c::modeDropEnd() {
 /* 80D42160-80D421C4 0009C0 0064+00 1/1 0/0 0/0 .text            Draw__12daZrTuraRc_cFv */
 int daZrTuraRc_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }

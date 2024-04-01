@@ -264,14 +264,14 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
         b_oh_class* this_ = (b_oh_class*)model_p->getUserArea();
 
         if (this_ != NULL && jnt_no >= this_->field_0xca8 && jnt_no <= 29) {
-            MTXCopy(model_p->i_getAnmMtx(jnt_no), *calc_mtx);
+            MTXCopy(model_p->getAnmMtx(jnt_no), *calc_mtx);
             mDoMtx_YrotM(*calc_mtx, this_->field_0x61c[jnt_no].y + this_->field_0x784[jnt_no].y);
             mDoMtx_ZrotM(*calc_mtx, this_->field_0x61c[jnt_no].x + this_->field_0x784[jnt_no].x);
             MtxTrans(this_->mTentacleLength + -100.0f, 1.0f, 1.0f, 1);
             MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
             MtxScale(1.0f, this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no],
                      this_->field_0x8ec[jnt_no] + this_->field_0x9dc[jnt_no], 1);
-            model_p->i_setAnmMtx(jnt_no, *calc_mtx);
+            model_p->setAnmMtx(jnt_no, *calc_mtx);
         }
     }
 
@@ -475,7 +475,7 @@ static void start(b_oh_class* i_this) {
     case 1:
         if (i_this->field_0xcac < -100.0f) {
             for (int i = 0; i < 28; i++) {
-                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i), mDoMtx_stack_c::get());
+                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&sp28);
 
                 if (sp28.y > boss->field_0x47a0) {
@@ -761,7 +761,7 @@ static void attack(b_oh_class* i_this) {
                     if (i_this->mColliders[i].ChkCoHit()) {
                         cCcD_Obj* obj_p = i_this->mColliders[i].GetCoHitObj();
                         if (fopAcM_GetName(obj_p->GetAc()) == PROC_ALINK &&
-                            !i_dComIfGp_event_runCheck())
+                            !dComIfGp_event_runCheck())
                         {
                             if (!player_p->checkHookshotShootReturnMode() &&
                                 boss->field_0x4744 == 0)
@@ -921,192 +921,193 @@ static void non(b_oh_class* i_this) {
 }
 
 /* 8061C2C4-8061CB4C 000C84 0888+00 2/1 0/0 0/0 .text            action__FP10b_oh_class */
-// close-ish
+// matches with literals
 #ifdef NONMATCHING
 static void action(b_oh_class* i_this) {
-    BOOL bvar;
-    int uvar;
+    b_oh_class* a_this = (b_oh_class*)i_this;
+    int var_r28;
+    BOOL var_r27;
+    
+    cXyz sp90;
+    cXyz sp9C;
 
-    cXyz local_90;
-    cXyz cstack_9c;
+    a_this->mAngleToPlayer = fopAcM_searchPlayerAngleY(a_this);
+    a_this->mDistToPlayer = fopAcM_searchPlayerDistance(a_this);
 
-    i_this->mAngleToPlayer = fopAcM_searchPlayerAngleY(i_this);
-    i_this->mDistToPlayer = fopAcM_searchPlayerDistance(i_this);
+    fopAcM_OffStatus(a_this, 0);
+    a_this->attention_info.flags = 0;
 
-    fopAcM_OffStatus(i_this, 0);
-    i_this->attention_info.flags = 0;
+    var_r28 = 0;
+    var_r27 = true;
 
-    uvar = 0;
-    bvar = true;
+    cLib_addCalcAngleS2(&a_this->field_0xc98, 0x800, 1, 0x10);
 
-    cLib_addCalcAngleS2(&i_this->field_0xc98, 0x800, 1, 0x10);
-
-    switch (i_this->mAction) {
+    switch (a_this->mAction) {
     case ACTION_START:
-        start(i_this);
-        uvar = 1;
+        start(a_this);
+        var_r28 = 1;
         break;
     case ACTION_WAIT:
-        wait(i_this);
-        uvar = 1;
+        wait(a_this);
+        var_r28 = 1;
         break;
     case ACTION_ATTACK:
-        attack(i_this);
-        uvar = 2;
+        attack(a_this);
+        var_r28 = 2;
         boss->field_0x4794 = 180;
         break;
     case ACTION_CAUGHT:
-        caught(i_this);
-        bvar = false;
-        uvar = 3;
+        caught(a_this);
+        var_r27 = false;
+        var_r28 = 3;
         boss->field_0x4794 = 180;
         break;
     case ACTION_END:
-        end(i_this);
-        uvar = 1;
+        end(a_this);
+        var_r28 = 1;
         break;
     case ACTION_NON:
-        non(i_this);
+        non(a_this);
         return;
     }
 
     if (boss->field_0x4752 == 2) {
-        cLib_addCalc2(&i_this->field_0x60c, 500.0f, 1.0f, 80.0f);
+        cLib_addCalc2(&a_this->field_0x60c, 500.0f, 1.0f, 80.0f);
     }
 
-    if (uvar == 1) {
-        f32 fvar15 = i_this->field_0x608 * 500.0f;
-        f32 fvar14 = i_this->field_0x608 * 1500.0f;
-        s16 tmp = 2000;
+    if (var_r28 == 1) {
+        f32 var_f29 = a_this->field_0x608 * 500.0f;
+        f32 var_f28 = a_this->field_0x608 * 1500.0f;
+        s16 var_r5 = 2000;
 
         for (int i = i_this->field_0xca8; i < 30; i++) {
-            f32 fvar = 1.0f;
+            f32 var_f31 = 1.0f;
             if (i < 5) {
-                fvar = i * 0.2f;
+                var_f31 = i * 0.2f;
             } else if (i >= 20) {
-                fvar = (i - 20) * 0.3f + 1.0f;
+                var_f31 = (i - 20) * 0.3f + 1.0f;
             }
 
-            i_this->field_0x6d0[i].x = fvar * (fvar15 * cM_ssin(i_this->field_0x5f8 + (i * 1800)));
-            i_this->field_0x6d0[i].y = fvar * (fvar14 * cM_ssin(i_this->field_0x5fa + (i * 1800)));
+            a_this->field_0x6d0[i].x = var_f31 * (var_f29 * cM_ssin( i_this->field_0x5f8 + (i * 1800) ));
+            a_this->field_0x6d0[i].y = var_f31 * (var_f28 * cM_ssin( i_this->field_0x5fa + (i * 1800) ));
 
-            i_this->field_0x838[i].x =
-                tmp + fvar * (fvar15 * cM_ssin(i_this->field_0x5fa + (i * 7000)) * 0.5f);
-            i_this->field_0x838[i].y =
-                fvar * (fvar14 * cM_ssin(i_this->field_0x5f8 + (i * 7000)) * 0.5f);
+            a_this->field_0x838[i].x =
+                var_r5 + var_f31 * (var_f29 * cM_ssin(a_this->field_0x5fa + (i * 7000)) * 0.5f);
+            a_this->field_0x838[i].y =
+                var_f31 * (var_f28 * cM_ssin(a_this->field_0x5f8 + (i * 7000)) * 0.5f);
 
-            tmp -= 200;
-            if (tmp < 0) {
-                tmp = 0;
+            var_r5 -= 200;
+            if (var_r5 < 0) {
+                var_r5 = 0;
             }
 
-            i_this->field_0x964[i] =
-                i_this->field_0x610 + 1.0f +
-                i_this->field_0x610 * cM_ssin(i_this->field_0x5f6 + i * -10000);
+            a_this->field_0x964[i] =
+                a_this->field_0x610 + 1.0f +
+                a_this->field_0x610 * cM_ssin(a_this->field_0x5f6 + i * -10000);
         }
 
-        cLib_addCalcAngleS2(&i_this->current.angle.x, -0xF2C, 4, 100);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->home.angle.y, 4, 0x100);
-    } else if (uvar == 2) {
-        f32 fvar = i_this->field_0xc8c;
-        for (int i = i_this->field_0xca8; i < 30; i++) {
-            if (i >= 30 - i_this->field_0xca2) {
-                i_this->field_0x6d0[i].y = i_this->field_0xca4;
+        cLib_addCalcAngleS2(&a_this->current.angle.x, -0xF2C, 4, 100);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y, 4, 0x100);
+    } else if (var_r28 == 2) {
+        f32 var_f4 = a_this->field_0xc8c;
+        for (int i = a_this->field_0xca8; i < 30; i++) {
+            if (i >= 30 - a_this->field_0xca2) {
+                a_this->field_0x6d0[i].y = a_this->field_0xca4;
             } else {
-                i_this->field_0x6d0[i].y = 0;
+                a_this->field_0x6d0[i].y = 0;
             }
 
             if (i >= 13) {
-                fvar *= i_this->field_0xc90 + 1.0f;
+                var_f4 *= a_this->field_0xc90 + 1.0f;
             }
 
-            i_this->field_0x6d0[i].x =
-                fvar * cM_ssin(i_this->field_0xc94 + i * i_this->field_0xc96);
+            a_this->field_0x6d0[i].x =
+                var_f4 * cM_ssin(a_this->field_0xc94 + i * a_this->field_0xc96);
 
             if (i >= 18) {
-                i_this->field_0x838[i].x =
-                    i_this->field_0xc9c * cM_ssin(i_this->field_0x5cc * 1000 + i * -4000);
+                a_this->field_0x838[i].x =
+                    a_this->field_0xc9c * cM_ssin(a_this->field_0x5cc * 1000 + i * -4000);
             } else {
-                i_this->field_0x838[i].x = 0;
+                a_this->field_0x838[i].x = 0;
             }
 
-            i_this->field_0x838[i].y = 0;
-            i_this->field_0x964[i] =
-                i_this->field_0x610 + 1.0f +
-                i_this->field_0x610 * cM_ssin(i_this->field_0x5f6 + i * -10000);
+            a_this->field_0x838[i].y = 0;
+            a_this->field_0x964[i] =
+                a_this->field_0x610 + 1.0f +
+                a_this->field_0x610 * cM_ssin(a_this->field_0x5f6 + i * -10000);
         }
-    } else if (uvar == 3) {
-        for (int i = i_this->field_0xca8; i < 30; i++) {
-            i_this->field_0x838[i].y = 0;
-            i_this->field_0x838[i].x = 0;
+    } else if (var_r28 == 3) {
+        for (int i = a_this->field_0xca8; i < 30; i++) {
+            a_this->field_0x838[i].y = 0;
+            a_this->field_0x838[i].x = 0;
 
-            if (i >= 30 - i_this->field_0xca2) {
-                i_this->field_0x6d0[i].y = i_this->field_0xca4;
-                i_this->field_0x6d0[i].x = 0;
-                i_this->field_0x964[i] = 1.0f;
+            if (i >= 30 - a_this->field_0xca2) {
+                a_this->field_0x6d0[i].y = a_this->field_0xca4;
+                a_this->field_0x6d0[i].x = 0;
+                a_this->field_0x964[i] = 1.0f;
             } else {
-                i_this->field_0x6d0[i].y = 0;
-                i_this->field_0x6d0[i].x = 2250;
-                i_this->field_0x964[i] =
-                    i_this->field_0x610 + 1.0f +
-                    i_this->field_0x610 * cM_ssin(i_this->field_0x5f6 + i * -10000);
+                a_this->field_0x6d0[i].y = 0;
+                a_this->field_0x6d0[i].x = 2250;
+                a_this->field_0x964[i] =
+                    a_this->field_0x610 + 1.0f +
+                    a_this->field_0x610 * cM_ssin(a_this->field_0x5f6 + i * -10000);
             }
         }
 
-        cLib_addCalcAngleS2(&i_this->current.angle.x, 0xA92, 4, 0x200);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->home.angle.y, 4, 0x800);
+        cLib_addCalcAngleS2(&a_this->current.angle.x, 0xA92, 4, 0x200);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y, 4, 0x800);
     }
 
-    i_this->field_0x600 =
-        (-i_this->field_0x614 - i_this->field_0x60c) + cM_ssin(i_this->field_0x5cc * 200) * 100.0f;
-    i_this->field_0x604 = ((100.0f - i_this->field_0x614) - i_this->field_0x60c) +
-                          cM_ssin(i_this->field_0x5cc * 200) * 100.0f;
-    i_this->field_0x5f8 += (s16)i_this->field_0x600;
-    i_this->field_0x5fa += (s16)i_this->field_0x604;
-    i_this->field_0x5fc = i_this->field_0x60c + 2000.0f;
-    i_this->field_0x5f6 += (s16)i_this->field_0x5fc;
+    a_this->field_0x600 =
+        (-a_this->field_0x614 - a_this->field_0x60c) + cM_ssin(a_this->field_0x5cc * 200) * 100.0f;
+    a_this->field_0x604 = ((100.0f - a_this->field_0x614) - a_this->field_0x60c) +
+                          cM_ssin(a_this->field_0x5cc * 200) * 100.0f;
+    a_this->field_0x5f8 += (s16)a_this->field_0x600;
+    a_this->field_0x5fa += (s16)a_this->field_0x604;
+    a_this->field_0x5fc = a_this->field_0x60c + 2000.0f;
+    a_this->field_0x5f6 += (s16)a_this->field_0x5fc;
 
-    cLib_addCalc0(&i_this->field_0x60c, 0.1f, 50.0f);
-    cLib_addCalc2(&i_this->field_0x610, 0.2f, 0.1f, 0.01f);
-
-    if (uvar <= 3) {
-        cLib_addCalc2(&i_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
+    cLib_addCalc0(&a_this->field_0x60c, 0.1f, 50.0f);
+    cLib_addCalc2(&a_this->field_0x610, 0.2f, 0.1f, 0.01f);
+    
+    if (var_r28 <= 3) {
+        cLib_addCalc2(&a_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
     }
 
-    MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i_this->field_0x5c8 + 8),
+    MTXCopy(boss->mParts[0].field_0x0->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
-    mDoMtx_stack_c::multVecZero(&i_this->current.pos);
+    mDoMtx_stack_c::multVecZero(&a_this->current.pos);
 
-    local_90.x = i_this->current.pos.x - boss->home.pos.x;
-    local_90.z = i_this->current.pos.z - boss->home.pos.z;
-    i_this->home.angle.y = cM_atan2s(local_90.x, local_90.z);
-    cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x2000);
-    cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.x, 2, 0x2000);
+    sp90.x = a_this->current.pos.x - boss->home.pos.x;
+    sp90.z = a_this->current.pos.z - boss->home.pos.z;
+    a_this->home.angle.y = cM_atan2s(sp90.x, sp90.z);
+    cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y, 2, 0x2000);
+    cLib_addCalcAngleS2(&a_this->shape_angle.x, a_this->current.angle.x, 2, 0x2000);
 
-    for (int i = i_this->field_0xca8; i < 30; i++) {
+    for (int i = a_this->field_0xca8; i < 30; i++) {
         if (Cinit) {
-            i_this->field_0x61c[i] = i_this->field_0x6d0[i];
-            i_this->field_0x784[i] = i_this->field_0x838[i];
-            i_this->field_0x8ec[i] = i_this->field_0x964[i];
+            a_this->field_0x61c[i] = a_this->field_0x6d0[i];
+            a_this->field_0x784[i] = a_this->field_0x838[i];
+            a_this->field_0x8ec[i] = a_this->field_0x964[i];
         } else {
-            cLib_addCalcAngleS2(&i_this->field_0x61c[i].x, i_this->field_0x6d0[i].x, 2,
-                                i_this->field_0xc98);
-            cLib_addCalcAngleS2(&i_this->field_0x61c[i].y, i_this->field_0x6d0[i].y, 2,
-                                i_this->field_0xc98);
-            cLib_addCalcAngleS2(&i_this->field_0x784[i].x, i_this->field_0x838[i].x, 2,
-                                i_this->field_0xc98);
-            cLib_addCalcAngleS2(&i_this->field_0x784[i].y, i_this->field_0x838[i].y, 2,
-                                i_this->field_0xc98);
-            cLib_addCalc2(&i_this->field_0x8ec[i], i_this->field_0x964[i], 0.5f, 0.2f);
-            cLib_addCalc0(&i_this->field_0x9dc[i], 0.1f, 0.2f);
+            cLib_addCalcAngleS2(&a_this->field_0x61c[i].x, a_this->field_0x6d0[i].x, 2,
+                                a_this->field_0xc98);
+            cLib_addCalcAngleS2(&a_this->field_0x61c[i].y, a_this->field_0x6d0[i].y, 2,
+                                a_this->field_0xc98);
+            cLib_addCalcAngleS2(&a_this->field_0x784[i].x, a_this->field_0x838[i].x, 2,
+                                a_this->field_0xc98);
+            cLib_addCalcAngleS2(&a_this->field_0x784[i].y, a_this->field_0x838[i].y, 2,
+                                a_this->field_0xc98);
+            cLib_addCalc2(&a_this->field_0x8ec[i], a_this->field_0x964[i], 0.5f, 0.2f);
+            cLib_addCalc0(&a_this->field_0x9dc[i], 0.1f, 0.2f);
         }
     }
 
     for (int i = 0; i < 15; i++) {
-        if (bvar && boss->mDemoAction == 0) {
-            i_this->mColliders[i].OnCoSetBit();
+        if (var_r27 && boss->mDemoAction == 0) {
+            a_this->mColliders[i].OnCoSetBit();
         } else {
-            i_this->mColliders[i].OffCoSetBit();
+            a_this->mColliders[i].OffCoSetBit();
         }
     }
 
@@ -1196,10 +1197,10 @@ static void damage_check(b_oh_class* i_this) {
                 i_this->health = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
-                MTXCopy(i_this->mpMorf->getModel()->i_getAnmMtx(i * 2 + 1),
+                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i * 2 + 1),
                           mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&i_this->eyePos);
-                i_dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
+                dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
                 mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
 
                 bvar = true;
@@ -1300,7 +1301,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
     J3DModel* model_p = i_this->mpMorf->getModel();
-    model_p->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    model_p->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)), 0);
     i_this->mpBtk->play();
     i_this->mpBrk->play();
@@ -1312,7 +1313,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     }
 
     for (int i = 0; i < 15; i++) {
-        MTXCopy(model_p->i_getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
+        MTXCopy(model_p->getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&collider_center);
 
         if (i_this->mAction >= ACTION_END) {
@@ -1592,7 +1593,8 @@ extern "C" void __ct__5csXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daB_OH_HIO_c::~daB_OH_HIO_c() {
+// asm daB_OH_HIO_c::~daB_OH_HIO_c() {
+extern "C" asm void __dt__12daB_OH_HIO_cFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_oh/d_a_b_oh/__dt__12daB_OH_HIO_cFv.s"
 }

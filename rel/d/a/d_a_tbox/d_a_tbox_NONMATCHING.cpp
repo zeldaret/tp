@@ -153,9 +153,9 @@ cPhs__Step daTbox_c::commonShapeSet() {
     mpModel->setBaseScale(scale);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(home.angle.y);
-    mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     if (mpEffectModel != NULL) {
-        mpEffectModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpEffectModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
     return cPhs_COMPLEATE_e;
@@ -374,11 +374,11 @@ void daTbox_c::CreateInit() {
     }
 
     mTboxNo = getTboxNo();
-    mEventId = i_dComIfGp_getEventManager().getEventIdx(this, getEvent());
+    mEventId = dComIfGp_getEventManager().getEventIdx(this, getEvent());
 
     if (getShapeType() == SHAPE_BOSSKEY) {
         eventInfo.setArchiveName(getModelInfo()->mArcName);
-        field_0x984 = i_dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_TREASURE_BOSS", 0xff);
+        field_0x984 = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_TREASURE_BOSS", 0xff);
     }
 
     initBaseMtx();
@@ -445,7 +445,7 @@ void daTbox_c::initAnm() {
         if (func_type == 6 && !checkDrop()) {
             setAction(&actionDropWait);
         } else if (func_type == 3) {
-            if (i_fopAcM_isSwitch(this, getSwNo())) {
+            if (fopAcM_isSwitch(this, getSwNo())) {
                 cXyz pos = current.pos;
                 if (fopAcM_gc_c::gndCheck(&pos)) {
                     current.pos.y = fopAcM_gc_c::getGroundY();
@@ -664,7 +664,7 @@ int daTbox_c::getDir() {
         u16 bit = 1;
         u16 dir = 0;
         for (int i = 0; i < 4; i++) {
-            if (i_fopAcM_isSwitch(this, getSwNo() + i)) {
+            if (fopAcM_isSwitch(this, getSwNo() + i)) {
                 dir += bit;
             }
             bit = bit << 1;
@@ -917,7 +917,7 @@ int daTbox_c::actionDemo() {
         } else {
             setAction(&actionWait);
         }
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
         dKy_set_allcol_ratio(1.0f);
         flagOff(0x18);
         dComIfGp_event_setItemPartner(NULL);
@@ -927,10 +927,10 @@ int daTbox_c::actionDemo() {
                 if (fopAcM_GetRoomNo(this) == 0) {
                     switch (getTboxNo()) {
                         case 3:
-                            dComIfGs_setEventReg(0xedff, i_dComIfGs_getEventReg(0xedff) | 0x40);
+                            dComIfGs_setEventReg(0xedff, dComIfGs_getEventReg(0xedff) | 0x40);
                             break;
                         case 2:
-                            dComIfGs_setEventReg(0xebff, i_dComIfGs_getEventReg(0xebff) | 0x10);
+                            dComIfGs_setEventReg(0xebff, dComIfGs_getEventReg(0xebff) | 0x10);
                             break;
                         default:
                             OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
@@ -939,7 +939,7 @@ int daTbox_c::actionDemo() {
                 } else if (fopAcM_GetRoomNo(this) == 3) {
                     switch (getTboxNo()) {
                         case 5:
-                            dComIfGs_setEventReg(0xf0ff, i_dComIfGs_getEventReg(0xf0ff) | 0x80);
+                            dComIfGs_setEventReg(0xf0ff, dComIfGs_getEventReg(0xf0ff) | 0x80);
                             break;
                         default:
                             OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
@@ -948,7 +948,7 @@ int daTbox_c::actionDemo() {
                 }
             } else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109")) {
                 if (fopAcM_GetRoomNo(this) == 0 && getTboxNo() == 0x15) {
-                    dComIfGs_setEventReg(0xefff, i_dComIfGs_getEventReg(0xefff) | 0x10);
+                    dComIfGs_setEventReg(0xefff, dComIfGs_getEventReg(0xefff) | 0x10);
                 }
             }
         }
@@ -964,7 +964,7 @@ int daTbox_c::actionDemo2() {
     if ((getEvent() == 0xff && dComIfGp_evmng_endCheck("DEFAULT_TREASURE_APPEAR")) ||
                 (getEvent() != 0xff && dComIfGp_evmng_endCheck(mEventId))) {
         setAction(&actionOpenWait);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -976,11 +976,11 @@ int daTbox_c::actionDropDemo() {
     if (mEventId != -1) {
         if (dComIfGp_evmng_endCheck(mEventId)) {
             setAction(&actionOpenWait);
-            i_dComIfGp_event_reset();
+            dComIfGp_event_reset();
             setDzb();
             home.pos = current.pos;
             if (field_0x9c9 != 0) {
-                camera_class* camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+                camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
                 camera->mCamera.Start();
                 camera->mCamera.SetTrimSize(0);
                 field_0x9c9 = 0;
@@ -1260,14 +1260,14 @@ int daTbox_c::actionOpenWait() {
         if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
                                              !midna->checkMetamorphoseEnable()) {
             setAction(&actionNotOpenDemo);
-            mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             demoProc();
             field_0x9f4 = 0;
         } else {
             field_0x718 = player->checkTreasureRupeeReturn(getItemNo());
             setGetDemoItem();
             setAction(&actionDemo);
-            mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             demoProc();
             field_0x9f4 = 0;
         }
@@ -1292,7 +1292,7 @@ int daTbox_c::actionOpenWait() {
 int daTbox_c::actionNotOpenDemo() {
     if (dComIfGp_evmng_endCheck(mEventId)) {
         setAction(&actionOpenWait);
-        i_dComIfGp_event_reset();
+        dComIfGp_event_reset();
     } else {
         demoProc();
     }
@@ -1307,7 +1307,7 @@ int daTbox_c::checkDrop() {
         }
     } else if (getSwType() == 0) {
         for (int i = 0; i < 4; i++) {
-            if (i_fopAcM_isSwitch(this, getSwNo() + i)) {
+            if (fopAcM_isSwitch(this, getSwNo() + i)) {
                 return true;
             }
         }
@@ -1319,7 +1319,7 @@ int daTbox_c::checkDrop() {
  */
 // nonmatching (regalloc)
 void daTbox_c::settingDropDemoCamera() {
-    camera_class* player_camera = dComIfGp_getCamera(i_dComIfGp_getPlayerCameraID(0));
+    camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     player_camera->mCamera.Stop();
     dStage_MapEvent_dt_c* event_data =
         dEvt_control_c::searchMapEventData(getEvent(), fopAcM_GetRoomNo(this));
@@ -1364,7 +1364,7 @@ void daTbox_c::settingDropDemoCamera() {
 int daTbox_c::actionSwOnWait() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
         if (getEvent() == 0xff) {
@@ -1397,7 +1397,7 @@ int daTbox_c::actionDropWait() {
         setAction(&actionDropDemo);
         clrDzb();
         field_0x97d = false;
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         if (getSwType() == 0) {
             settingDropDemoCamera();
         }
@@ -1418,7 +1418,7 @@ int daTbox_c::actionDropWait() {
 int daTbox_c::actionGenocide() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
         setAction(&actionDemo2);
-        mStaffId = i_dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (!fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
         if (mTimer != 0) {
@@ -1450,7 +1450,7 @@ int daTbox_c::actionDropWaitForWeb() {
             shape_angle.z = 0;
             shape_angle.x = 0;
             fopAcM_SetGravity(this, -2.0f);
-            i_fopAcM_onSwitch(this, getSwNo());
+            fopAcM_onSwitch(this, getSwNo());
         }
     }
     setBaseMtx();
@@ -1520,16 +1520,16 @@ void daTbox_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -50.0f, 0.0f);
     if (field_0x9fc != 0) {
-        mpModel->i_setBaseTRMtx(field_0xa00);
+        mpModel->setBaseTRMtx(field_0xa00);
     } else {
-        mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     mDoMtx_concat(mtx, field_0x988, field_0x988);
     mDoMtx_copy(mpModel->getBaseTRMtx(), mBgMtx);
     if (mpSlimeModel != NULL) {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 15.0f, current.pos.z);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
-        mpSlimeModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+        mpSlimeModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 
@@ -1620,7 +1620,7 @@ int daTbox_c::Execute(f32 (**param_0)[3][4]) {
     mDoMtx_stack_c::YrotS(shape_angle.y);
     mDoMtx_stack_c::multVec(&center, &center);
     center += current.pos;
-    if ((getSwNo() != 0xff && i_fopAcM_isSwitch(this, getSwNo())) || getSwNo() == 0xff) {
+    if ((getSwNo() != 0xff && fopAcM_isSwitch(this, getSwNo())) || getSwNo() == 0xff) {
         mCyl.SetC(center);
         dComIfG_Ccsp()->Set(&mCyl);
     }
