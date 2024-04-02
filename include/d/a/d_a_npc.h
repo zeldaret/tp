@@ -10,22 +10,15 @@
 #include "d/particle/d_particle_copoly.h"
 #include "global.h"
 
-struct bckGetParam {
-    /* 0x00 */ int bckIdx;
-    /* 0x04 */ int bckAttr;
-    /* 0x08 */ int arcIdx;
+struct daNpc_GetParam1 {  // name unknown
+    /* 0x0 */ int fileIdx;
+    /* 0x4 */ int arcIdx;
 };
 
-struct btpGetParam {
-    /* 0x00 */ int btpIdx;
-    /* 0x04 */ int btpAttr;
-    /* 0x08 */ int arcIdx;
-};
-
-struct btkGetParam {
-    /* 0x00 */ int btkIdx;
-    /* 0x04 */ int btkAttr;
-    /* 0x08 */ int arcIdx;
+struct daNpc_GetParam2 {  // name unknown
+    /* 0x0 */ int fileIdx;
+    /* 0x4 */ int attr;
+    /* 0x8 */ int arcIdx;
 };
 
 struct dPnt {};
@@ -216,7 +209,7 @@ public:
     /* 0x56C */ daNpcT_motionAnmData_c* field_0x56c;
     /* 0x570 */ daNpcT_evtData_c* field_0x570;
     /* 0x574 */ char** field_0x574;
-    /* 0x578 */ mDoExt_McaMorfSO* mMcaMorfAnm[2];
+    /* 0x578 */ mDoExt_McaMorfSO* mpMorf[2];
     /* 0x580 */ Z2Creature field_0x580;
     /* 0x610 */ mDoExt_bckAnm mBckAnm;
     /* 0x62C */ mDoExt_btpAnm mBtpAnm;
@@ -449,16 +442,16 @@ public:
 
 class daNpcF_c : public fopAc_ac_c {
 protected:
-    /* 0x568 */ mDoExt_McaMorfSO* mMcaMorf;
+    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ mDoExt_btpAnm mBtpAnm;
     /* 0x5A0 */ mDoExt_btkAnm mBtkAnm;
     /* 0x5B8 */ mDoExt_brkAnm mBrkAnm;
     /* 0x5D0 */ dBgS_ObjAcch mAcch;
-    /* 0x7A8 */ dCcD_Stts mStts;
+    /* 0x7A8 */ dCcD_Stts mCcStts;
     /* 0x7E4 */ dBgS_AcchCir mAcchCir;
     /* 0x824 */ daNpcF_ActorMngr_c field_0x824;
-    /* 0x82C */ daNpcF_ActorMngr_c field_0x82c[5];
+    /* 0x82C */ daNpcF_ActorMngr_c mAttnActor[5];
     /* 0x854 */ cXyz mLookatPos[3];
     /* 0x878 */ cXyz mLookPos;
     /* 0x884 */ cXyz field_0x884;
@@ -472,17 +465,17 @@ protected:
     /* 0x8E4 */ cXyz mHeadPos;
     /* 0x8F0 */ csXyz field_0x8f0;
     /* 0x8F6 */ csXyz field_0x8f6;
-    /* 0x8FC */ csXyz field_0x8fc;
-    /* 0x902 */ csXyz field_0x902;
+    /* 0x8FC */ csXyz mEyeAngle;
+    /* 0x902 */ csXyz mHeadAngle;
     /* 0x908 */ csXyz field_0x908[3];
     /* 0x91A */ csXyz field_0x91a[3];
     /* 0x92C */ int mCutIndex;
     /* 0x930 */ u32 field_0x930;
-    /* 0x934 */ int field_0x934;     // index in 0x93c to not decrement timer (if 0x938 is nonzero)
-    /* 0x938 */ int field_0x938;     // controls whether to use field 0x934
-    /* 0x93C */ int field_0x93c[5];  // timers for removing actors from 0x82c
+    /* 0x934 */ int mAttnIdx;
+    /* 0x938 */ int mAttnChangeTimer;
+    /* 0x93C */ int mAttnActorTimer[5];
     /* 0x950 */ int field_0x950;
-    /* 0x954 */ int field_0x954;  // a timer
+    /* 0x954 */ int field_0x954;
     /* 0x958 */ int field_0x958;
     /* 0x95C */ int field_0x95c;
     /* 0x960 */ int field_0x960;
@@ -502,15 +495,15 @@ protected:
     /* 0x998 */ u16 field_0x998;
     /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 field_0x9a0;
-    /* 0x9A4 */ profile_method_class* field_0x9a4;
-    /* 0x9A8 */ int field_0x9a8[2];
+    /* 0x9A4 */ u32 field_0x9a4;
+    /* 0x9A8 */ u32 mHitodamaParticleKey[2];
     /* 0x9B0 */ u32 field_0x9b0;
     /* 0x9B4 */ int mFlowNodeNo;
     /* 0x9B8 */ cXyz field_0x9b8;
     /* 0x9C4 */ cXyz field_0x9c4;
     /* 0x9D0 */ s16 field_0x9d0;
     /* 0x9D2 */ s16 field_0x9d2;
-    /* 0x9D4 */ s16 field_0x9d4;
+    /* 0x9D4 */ s16 mEventIdx;
     /* 0x9D6 */ s16 mExpressionPhase;
     /* 0x9D8 */ s16 mExpressionPrevPhase;
     /* 0x9DA */ s16 mMotionPhase;
@@ -523,16 +516,16 @@ protected:
     /* 0x9E8 */ s8 field_0x9e8;
     /* 0x9E9 */ u8 field_0x9e9;
     /* 0x9EA */ u8 field_0x9ea;
-    /* 0x9EB */ u8 field_0x9eb;
+    /* 0x9EB */ bool field_0x9eb;
     /* 0x9EC */ u8 field_0x9ec;
-    /* 0x9ED */ u8 field_0x9ed;
-    /* 0x9EE */ u8 field_0x9ee;
+    /* 0x9ED */ bool field_0x9ed;
+    /* 0x9EE */ bool field_0x9ee;
     /* 0x9EF */ u8 field_0x9ef;
     /* 0x9F0 */ u8 field_0x9f0;
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9f3 */ u8 field_0x9f3;
-    /* 0x9F4 */ bool field_0x9f4;  // controls whether setHitodamaPrtcl is called
+    /* 0x9F4 */ bool mTwilight;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
     /* 0x9F8 */ dMsgFlow_c mFlow;
@@ -572,8 +565,8 @@ public:
     /* 80152014 */ BOOL execute();
     /* 801522AC */ BOOL draw(int, int, f32, _GXColorS10*, int);
     /* 80152614 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-    /* 80152654 */ void srchAttnActor1(void*, void*);
-    /* 801526E8 */ void* srchActor(void*, void*);
+    /* 80152654 */ static void* srchAttnActor1(void*, void*);
+    /* 801526E8 */ static void* srchActor(void*, void*);
 
     /* 801528C8 */ void initialize();
     /* 80152B2C */ J3DAnmTransformKey* getTrnsfrmKeyAnmP(char*, int);
@@ -607,19 +600,19 @@ public:
     /* 80153A78 */ BOOL chkActorInArea(fopAc_ac_c*, cXyz, cXyz, s16);
     /* 80153BDC */ BOOL chkActorInAttnArea(fopAc_ac_c*, fopAc_ac_c*, int);
     /* 80153D1C */ int initTalk(int, fopAc_ac_c**);
-    /* 80153D84 */ BOOL talkProc(int*, int, fopAc_ac_c**);
+    /* 80153D84 */ BOOL talkProc(int*, BOOL, fopAc_ac_c**);
     /* 80153EF4 */ BOOL turn(s16, f32, int);
-    /* 801540A4 */ void step(s16, int, int, int);
+    /* 801540A4 */ BOOL step(s16, int, int, int);
     /* 80154250 */ void setAngle(s16);
     /* 80154278 */ u8 getDistTableIdx(int, int);
     /* 801542A0 */ fopAc_ac_c* getEvtAreaTagP(int, int);
-    /* 8015436C */ fopAc_ac_c* getAttnActorP(int, void* (*)(void*, void*), f32, f32, f32, f32, s16,
+    /* 8015436C */ fopAc_ac_c* getAttnActorP(int, fpcLyIt_JudgeFunc, f32, f32, f32, f32, s16,
                                              int, int);
     /* 80154730 */ BOOL chkActorInSight2(fopAc_ac_c*, f32, s16);
     /* 80154834 */ BOOL chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
     /* 801548F4 */ BOOL chkPointInArea(cXyz, cXyz, cXyz, s16);
     /* 8015496C */ cXyz getAttentionPos(fopAc_ac_c*);
-    /* 801549E0 */ void chkFindPlayer2(int, s16);
+    /* 801549E0 */ BOOL chkFindPlayer2(int, s16);
     /* 80154BD8 */ void setHitodamaPrtcl();
 
     /* 80155BF4 */ virtual ~daNpcF_c();
@@ -651,7 +644,7 @@ public:
     BOOL chkPlayerInTalkArea(fopAc_ac_c* i_actor) {
         return chkActorInTalkArea(daPy_getPlayerActorClass(), i_actor);
     }
-    BOOL checkHide() { return mHide || (field_0x9f4 && !dComIfGs_wolfeye_effect_check()); }
+    BOOL checkHide() { return mHide || (mTwilight && !dComIfGs_wolfeye_effect_check()); }
     void setIntDemander(fopAc_ac_c* i_actor) { field_0x824.entry(i_actor); }
     void setIntFlowNodeNo(int i_flowNodeNo) { mFlowNodeNo = i_flowNodeNo; }
     void onInterrupt(u8 param_0) { field_0x9ef = param_0; }
@@ -744,7 +737,7 @@ private:
     /* 0x568 */ void* vtable;
     /* 0x56C */ dBgS_Acch field_0x56c;
     /* 0x744 */ u8 field_0x744[16];
-    /* 0x754 */ mDoExt_McaMorfSO* mMcaMorfAnm[2];
+    /* 0x754 */ mDoExt_McaMorfSO* mpMorf[2];
     /* 0x758 */ Z2Creature mCreature;
     /* 0x7EC */ mDoExt_bckAnm mBckAnm;
     /* 0x808 */ mDoExt_btpAnm mBtpAnm;
@@ -855,6 +848,7 @@ public:
     void setNowOffsetX(float i_nowOffsetX) { mNowOffsetX = i_nowOffsetX; }
     void setNowOffsetY(float i_nowOffsetY) { mNowOffsetY = i_nowOffsetY; }
     void onEyeMoveFlag() { mEyeMoveFlag = 1; }
+    void offEyeMoveFlag() { mEyeMoveFlag = 0; }
 };
 
 class daNpcF_SPCurve_c {
@@ -934,6 +928,7 @@ public:
     /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, int);
     /* 80151F54 */ void setRotAngle();
     /* 80151FE0 */ void clrRotAngle();
+    daNpcF_Lookat_c() { initialize(); }
     virtual ~daNpcF_Lookat_c() {}
     cXyz* getAttnPos() { return mAttnPos; }
     void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }

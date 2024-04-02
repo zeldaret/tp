@@ -1549,9 +1549,9 @@ void daObjStone_c::set_carry_eff() {
     cXyz pos;
 
     if (mStoneType == 1) {
-        pos.setAll(FLOAT_LABEL(lit_3845));
+        pos.setall(FLOAT_LABEL(lit_3845));
     } else {
-        pos.setAll(FLOAT_LABEL(lit_4634));
+        pos.setall(FLOAT_LABEL(lit_4634));
     }
 
     if (field_0x0950 == 3) {

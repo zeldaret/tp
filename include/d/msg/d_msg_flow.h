@@ -162,6 +162,7 @@ public:
     int getSelectNum() { return query005(NULL, NULL, 0); }
     s16 getChoiceNo() { return mChoiceNo; }
     void setMsg(u32 msg) { mMsg = msg; }
+    bool checkEndFlow() { return field_0x26 == 1; }
 
     static queryFunc mQueryList[53];
     static eventFunc mEventList[43];

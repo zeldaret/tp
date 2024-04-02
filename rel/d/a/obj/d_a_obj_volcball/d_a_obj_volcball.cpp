@@ -974,7 +974,7 @@ void daObjVolcBall_c::setFallEffect(int i_ballNo) {
         cXyz sp28;
 
         if (i_ballNo == 8) {
-            sp28.setAll(field_0x291c);
+            sp28.setall(field_0x291c);
         } else {
             sp28 = ball->field_0x1c;
         }
