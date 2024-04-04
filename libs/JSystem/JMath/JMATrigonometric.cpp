@@ -31,12 +31,13 @@ inline f64 getConst() {
     return 6.2831854820251465;
 }
 
+template<int N, typename T>
 struct TSinCosTable {
-    std::pair<f32, f32> table[0x2000];
+    std::pair<T, T> table[1 << N];
     TSinCosTable() {
-        for (int i = 0; i < 0x2000; i++) {
-            table[i].a1 = sin((i * getConst()) / 8192.0);
-            table[i].b1 = cos((i * getConst()) / 8192.0);
+        for (int i = 0; i < 1 << N; i++) {
+            table[i].a1 = sin((i * getConst()) / (1 << N));
+            table[i].b1 = cos((i * getConst()) / (1 << N));
         }
     }
 };
@@ -78,7 +79,7 @@ namespace JMath {
 
 /* ############################################################################################## */
 /* 80439A20-80449A20 066740 10000+00 1/1 265/265 705/705 .bss             sincosTable___5JMath */
-TSinCosTable sincosTable_;
+TSinCosTable<13, f32> sincosTable_;
 
 /* 80449A20-8044AA40 076740 1020+00 1/1 0/0 0/0 .bss             atanTable___5JMath */
 TAtanTable atanTable_;

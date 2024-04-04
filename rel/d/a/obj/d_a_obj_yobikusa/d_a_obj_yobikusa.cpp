@@ -235,7 +235,7 @@ static int nodeCallBack(J3DJoint* i_jnt, int i_param) {
 
     if (jnt_no == 2) {
         cXyz scale;
-        scale.setAll(i_this->getJointScale(jnt_no));
+        scale.setall(i_this->getJointScale(jnt_no));
         mDoMtx_stack_c::scaleM(scale);
     }
 

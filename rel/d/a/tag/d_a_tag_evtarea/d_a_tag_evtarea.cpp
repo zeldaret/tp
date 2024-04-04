@@ -7,11 +7,6 @@
 #include "d/a/d_a_npc.h"
 #include "d/d_procname.h"
 
-s32 daTag_EvtArea_c::getType() {
-    u8 type = (u8)shape_angle.z;
-    return type == 0xff ? 0 : type;
-}
-
 u32 daTag_EvtArea_c::getOnEvtBit() {
     u32 ret = fopAcM_GetParam(this) & 0xfff;
     return ret == 0xfff ? -1 : ret;

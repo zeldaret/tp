@@ -701,7 +701,7 @@ void dEvDtStaff_c::specialProcCreate() {
 
             cXyz* scaleP = dComIfGp_evmng_getMyXyzP(staffId, "SCALE");
             if (scaleP == NULL) {
-                scale.setAll(1.0f);
+                scale.setall(1.0f);
             } else {
                 scale = *scaleP;
             }
