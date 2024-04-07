@@ -18,7 +18,16 @@ public:
     }
     /* 8048CD68 */ virtual ~daTag_EvtArea_c() {}
 
-    inline s32 getType();
+    inline s32 getType() {
+        u8 type = (u8)shape_angle.z;
+        return type == 0xff ? 0 : type;
+    }
+
+    inline s32 getNo() {
+        u16 no = (shape_angle.z & 0xff00) >> 8;
+        return no == 0xff ? 0 : no;
+    }
+
     inline u32 getOnEvtBit();
     inline u32 getOffEvtBit();
     inline u8 getBitSW();

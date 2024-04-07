@@ -12,38 +12,39 @@ struct TAngleConstant_<f32> {
     static inline f32 RADIAN_DEG360() { return 6.2831855f; }
 };
 
+template<int N, typename T>
 struct TSinCosTable {
-    std::pair<f32, f32> table[0x2000];
+    std::pair<T, T> table[1 << N];
 
-    f32 sinShort(s16 v) const { return table[(u16)v >> 3U].first; }
-    f32 cosShort(s16 v) const { return table[(u16)v >> 3U].second; }
+    T sinShort(s16 v) const { return table[(u16)v >> (16U - N)].first; }
+    T cosShort(s16 v) const { return table[(u16)v >> (16U - N)].second; }
 
-    inline f32 sinLap(f32 v) {
-        if (v < 0.0f) {
-            return -table[(u16)(-8192.0f * v) & 0x1fff].first;
+    inline T sinLap(T v) {
+        if (v < (T)0.0) {
+            return -table[(u16)(-(T)(1 << N) * v) & ((1 << N) - 1)].first;
         }
-        return table[(u16)(8192.0f * v) & 0x1fff].first;
+        return table[(u16)((T)(1 << N) * v) & ((1 << N) - 1)].first;
     }
 
-    inline f32 sinDegree(f32 degree) {
-        if (degree < 0.0f) {
-            return -table[(u16)(-22.755556106567383f * degree) & 0x1fffU].first;
+    inline T sinDegree(T degree) {
+        if (degree < (T)0.0) {
+            return -table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].first;
         } 
-        return table[(u16)(22.755556106567383f * degree) & 0x1fffU].first;
+        return table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].first;
     }
 
-    inline f32 cosDegree(f32 degree) {
-        if (degree < 0.0f) {
+    inline T cosDegree(T degree) {
+        if (degree < (T)0.0) {
             degree = -degree;
         } 
-        return table[(u16)(22.755556106567383f * degree) & 0x1fffU].second;
+        return table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].second;
     }
 
-    inline f32 sinRadian(f32 radian) {
-        if (radian < 0.0f) {
-            return -table[(u16)(-8192.0f / TAngleConstant_<f32>::RADIAN_DEG360() * radian) & 0x1fffU].first;
+    inline T sinRadian(T radian) {
+        if (radian < (T)0.0) {
+            return -table[(u16)(-(T)(1 << N) / TAngleConstant_<T>::RADIAN_DEG360() * radian) & ((1 << N) - 1)].first;
         }
-        return table[(u16)(8192.0f / TAngleConstant_<f32>::RADIAN_DEG360() * radian) & 0x1fffU].first;
+        return table[(u16)((T)(1 << N) / TAngleConstant_<T>::RADIAN_DEG360() * radian) & ((1 << N) - 1)].first;
     }
 };
 
@@ -58,7 +59,7 @@ struct TAsinAcosTable {
 };
 
 namespace JMath {
-extern TSinCosTable sincosTable_;
+extern TSinCosTable<13, f32> sincosTable_;
 extern TAtanTable atanTable_;
 extern TAsinAcosTable asinAcosTable_;
 };  // namespace JMath

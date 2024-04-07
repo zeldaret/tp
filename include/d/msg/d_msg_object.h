@@ -112,11 +112,9 @@ public:
     /* 80237F10 */ void setTalkActorLocal(fopAc_ac_c*);
     /* 8023800C */ static void readMessageGroup(mDoDvdThd_mountXArchive_c**);
     /* 8023803C */ static void changeFlowGroup(s32);
-    /* 8023806C */ void demoMessageGroup();
+    /* 8023806C */ static void demoMessageGroup();
     /* 80238098 */ static void endFlowGroup();
     /* 802380C4 */ static void changeGroup(s16);
-    /* 8023806C */ static void demoMessageGroup();
-    /* 80238098 */ void endFlowGroup();
     /* 802380F4 */ static bool getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                          char*, char*, char*, s16*);
     /* 80238174 */ static u8* getMsgDtPtr();
@@ -129,8 +127,8 @@ public:
     /* 8023822C */ static u16 getStatus();
     /* 80238258 */ static dMsgScrnBase_c* getScrnDrawPtr();
     /* 8023826C */ static void setTalkActor(fopAc_ac_c*);
-    /* 8023829C */ void onMsgSendControl();
-    /* 802382C8 */ void offMsgSendControl();
+    /* 8023829C */ static void onMsgSendControl();
+    /* 802382C8 */ static void offMsgSendControl();
     /* 802382F4 */ static int isMsgSendControl();
     /* 80238320 */ static void onMsgSend();
     /* 8023834C */ void offMsgSend();

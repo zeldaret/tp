@@ -356,7 +356,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 8095D9B0-8095DA88 000020 00D8+00 1/2 0/0 0/0 .data            l_bckGetParamList */
-static bckGetParam l_bckGetParamList[18] = {
+static daNpc_GetParam2 l_bckGetParamList[18] = {
     {-1, 2, 0}, // <none>
     {7, 0, 0},  // ash_f_talk_a
     {12, 0, 1}, // ash_f_talk_b
@@ -378,14 +378,14 @@ static bckGetParam l_bckGetParamList[18] = {
 };
 
 /* 8095DA88-8095DA94 0000F8 000C+00 1/1 0/0 0/0 .data            l_btpGetParamList */
-static btpGetParam l_btpGetParamList[1] = {
+static daNpc_GetParam2 l_btpGetParamList[1] = {
     {17, 2, 0}, // ash
 };
 
 /* 8095DA94-8095DAA0 000104 000C+00 0/1 0/0 0/0 .data            l_btkGetParamList */
 #pragma push
 #pragma force_active on
-static btkGetParam l_btkGetParamList[1] = {
+static daNpc_GetParam2 l_btkGetParamList[1] = {
     {14, 2, 0}, // ash
 };
 #pragma pop
@@ -838,7 +838,7 @@ SECTION_RODATA daNpcAsh_Param_c::param const daNpcAsh_Param_c::m = {
     -3.0f,      // mGravity
     1.0f,
     400.0f,     // mShadow
-    255.0f,     // mSttsWeight
+    255.0f,     // mCcSttsWeight
     200.0f,
     35.0f,
     30.0f,
@@ -919,7 +919,7 @@ cPhs__Step daNpcAsh_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mMcaMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mZ2.init(&current.pos, &eyePos, 3, 1);
         mAcchCir.SetWall(daNpcAsh_Param_c::m.m1C, daNpcAsh_Param_c::m.m18);
@@ -927,14 +927,14 @@ cPhs__Step daNpcAsh_c::Create() {
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
-        mStts.Init((int)daNpcAsh_Param_c::m.mSttsWeight, 0, this);
+        mCcStts.Init((int)daNpcAsh_Param_c::m.mCcSttsWeight, 0, this);
         mCcCyl[0].Set(daNpcF_c::mCcDCyl);
-        mCcCyl[0].SetStts(&mStts);
+        mCcCyl[0].SetStts(&mCcStts);
         mCcCyl[0].SetTgType(0);
         mCcCyl[0].SetTgSPrm(0);
         if (field_0xf60 == 0) {
             mCcCyl[1].Set(daNpcF_c::mCcDCyl);
-            mCcCyl[1].SetStts(&mStts);
+            mCcCyl[1].SetStts(&mCcStts);
             mCcCyl[1].SetTgType(0);
             mCcCyl[1].SetTgSPrm(0);
             mCcCyl[1].SetCoSPrm(0x19);
@@ -943,7 +943,7 @@ cPhs__Step daNpcAsh_c::Create() {
         field_0x980 = mAcch.GetGroundH();
         setEnvTevColor();
         setRoomNo();
-        mMcaMorf->modelCalc();
+        mpMorf->modelCalc();
         reset();
         Execute();
     }
@@ -964,16 +964,16 @@ COMPILER_STRIP_GATE(0x8095D6C0, &lit_4301);
 #ifdef NONMATCHING
 BOOL daNpcAsh_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 11);
-    mMcaMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mZ2, 0x80000, 0x11020284);
-    if (mMcaMorf != NULL && mMcaMorf->mpModel == NULL) {
-        mMcaMorf->stopZelAnime();
-        mMcaMorf = NULL;
+    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mZ2, 0x80000, 0x11020284);
+    if (mpMorf != NULL && mpMorf->mpModel == NULL) {
+        mpMorf->stopZelAnime();
+        mpMorf = NULL;
     }
-    if (mMcaMorf == NULL) {
+    if (mpMorf == NULL) {
         return false;
     }
 
-    J3DModel* model = mMcaMorf->getModel();
+    J3DModel* model = mpMorf->getModel();
     for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
         modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
@@ -1150,15 +1150,15 @@ int daNpcAsh_c::Execute() {
 
 /* 8095911C-80959238 000F1C 011C+00 1/1 0/0 0/0 .text            Draw__10daNpcAsh_cFv */
 int daNpcAsh_c::Draw() {
-    mMcaMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(0, 0, daNpcAsh_Param_c::m.mShadow, NULL, 0);
     if (field_0xf60 == 1) {
         g_env_light.setLightTevColorType_MAJI(mModelBow, &tevStr);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(16));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(16));
         mModelBow->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelBow);
         g_env_light.setLightTevColorType_MAJI(mModelQuiver, &tevStr);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
         mModelQuiver->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mModelQuiver);
     }
@@ -1173,11 +1173,11 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jointNo = i_joint->getJntNo();
     int lookatJoints[3] = {1, 3, 4};
     if (jointNo == 0) {
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jointNo));
@@ -1192,14 +1192,14 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     if ((jointNo == 4 || jointNo == 12) && (mAnmFlags & 0x100) != 0) {
         J3DAnmTransform* bckAnm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mMcaMorf->getAnm());
-        mMcaMorf->changeAnm(bckAnm);
+        mBckAnm.changeBckOnly(mpMorf->getAnm());
+        mpMorf->changeAnm(bckAnm);
     }
     if (cM3d_IsZero_inverted(mExpressionMorf)) {
         if (jointNo == 12) {
-            mMcaMorf->onMorfNone();
+            mpMorf->onMorfNone();
         } else if (jointNo == 4) {
-            mMcaMorf->offMorfNone();
+            mpMorf->offMorfNone();
         }
     }
     return true;
@@ -1236,12 +1236,12 @@ bool daNpcAsh_c::setExpressionAnm(int i_idx, bool i_modify) {
         return false;
     }
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
-    if (l_bckGetParamList[i_idx].bckIdx >= 0) {
-        bckAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].bckIdx);
+    if (l_bckGetParamList[i_idx].fileIdx >= 0) {
+        bckAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
     } else {
         bckAnm = NULL;
     }
-    s32 attr = l_bckGetParamList[i_idx].bckAttr;
+    s32 attr = l_bckGetParamList[i_idx].attr;
     bool res = false;
     switch (i_idx) {
         case 0:
@@ -1300,13 +1300,13 @@ asm bool daNpcAsh_c::setExpressionAnm(int param_0, bool param_1) {
 #ifdef NONMATCHING
 // literals
 bool daNpcAsh_c::setExpressionBtp(int i_idx) {
-    J3DAnmTexPattern* btpAnm = getTexPtrnAnmP(l_arcNames[l_btpGetParamList[i_idx].arcIdx], l_btpGetParamList[i_idx].btpIdx);
-    s32 attr = l_btpGetParamList[i_idx].btpAttr;
+    J3DAnmTexPattern* btpAnm = getTexPtrnAnmP(l_arcNames[l_btpGetParamList[i_idx].arcIdx], l_btpGetParamList[i_idx].fileIdx);
+    s32 attr = l_btpGetParamList[i_idx].attr;
     mAnmFlags &= ~(ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800);
     if (btpAnm == NULL) {
         return true;
     }
-    if (setBtpAnm(btpAnm, mMcaMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(btpAnm, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -1337,10 +1337,10 @@ void daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
     if (i_idx < 8 || i_idx >= 18) {
         return;
     }
-    morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].bckIdx);
-    btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].btkIdx);
-    morfAttr = l_bckGetParamList[i_idx].bckAttr;
-    btkAttr = l_btkGetParamList[0].btkAttr;
+    morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
+    btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
+    morfAttr = l_bckGetParamList[i_idx].attr;
+    btkAttr = l_btkGetParamList[0].attr;
     mAnmFlags &= ~ANM_MOTION_FLAGS;
     if (morfAnm != NULL) {
         if (setMcaMorfAnm(morfAnm, 1.0f, i_morf, morfAttr, 0, -1)) {
@@ -1349,7 +1349,7 @@ void daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
         }
     }
     if (btkAnm != NULL) {
-        if (setBtkAnm(btkAnm, mMcaMorf->getModel()->getModelData(), 1.0f, btkAttr)) {
+        if (setBtkAnm(btkAnm, mpMorf->getModel()->getModelData(), 1.0f, btkAttr)) {
             mAnmFlags |= ANM_PAUSE_BTK | ANM_PLAY_BTK;
         }
     }
@@ -1390,7 +1390,7 @@ void daNpcAsh_c::reset() {
     field_0x8f0 = current.angle;
     field_0x8f6 = field_0x8f0;
     speedF = 0.0f;
-    speed.setAll(0.0f);
+    speed.setall(0.0f);
     mItemPartnerId = -1;
     mOrderEvtNo = 0;
     mExpressionMorfOverride = 0;
@@ -1916,7 +1916,7 @@ asm bool daNpcAsh_c::wait_type0(void* param_0) {
 /* 8095A67C-8095A6C0 00247C 0044+00 1/0 0/0 0/0 .text            setMotion__10daNpcAsh_cFifi */
 void daNpcAsh_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
     s16 motion = (s16)i_motion;
-    if ((i_restart || mMotion != motion)) {
+    if (i_restart || mMotion != motion) {
         if (i_motion >= 0 && i_motion < 10) {
             mMotion = motion;
             mMotionMorfOverride = i_morf;
@@ -2088,10 +2088,10 @@ bool daNpcAsh_c::demo(void* param_0) {
                         dComIfGp_getEventManager().cutEnd(cutIndex);
                     }
                 }
-                if (eventInfo.checkCommandDemoAccrpt() && field_0x9d4 != -1 && dComIfGp_getEventManager().endCheck(field_0x9d4)) {
+                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && dComIfGp_getEventManager().endCheck(mEventIdx)) {
                     dComIfGp_event_reset();
                     mOrderEvtNo = 0;
-                    field_0x9d4 = -1;
+                    mEventIdx = -1;
                     if (field_0xf60 == 0) {
                         setAction(&wait_type0);
                     } else {
@@ -2100,7 +2100,7 @@ bool daNpcAsh_c::demo(void* param_0) {
                 }
             } else {
                 mOrderEvtNo = 0;
-                field_0x9d4 = -1;
+                mEventIdx = -1;
                 if (field_0xf60 == 0) {
                     setAction(&wait_type0);
                 } else {
@@ -2522,8 +2522,8 @@ COMPILER_STRIP_GATE(0x8095D8E4, &lit_5493);
 #ifdef NONMATCHING
 BOOL daNpcAsh_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
-        mpMatAnm->setNowOffsetX(cM_ssin(field_0x8fc.y) * 0.2f * -1.0f);
-        mpMatAnm->setNowOffsetY(cM_ssin(field_0x8fc.x) * 0.4f);
+        mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
+        mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.4f);
         mpMatAnm->onEyeMoveFlag();
     }
     return mpMatAnm != NULL;
@@ -2591,37 +2591,44 @@ void daNpcAsh_c::setAttnPos() {
             field_0x91a[i].setall(0);
         }
     }
+
     setMtx2();
     lookat();
+
     cXyz vec(10.0f, 10.0f, 0.0f);
-    mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&vec, &eyePos);
     vec.x = 0.0f;
     mDoMtx_stack_c::multVec(&vec, &vec);
-    field_0x902.x = cLib_targetAngleX(&mHeadPos, &vec);
-    field_0x902.y = cLib_targetAngleY(&mHeadPos, &vec);
+    mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &vec);
+    mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &vec);
     cXyz* attnPos = mLookat.getAttnPos();
+
     if (attnPos != NULL) {
         cXyz local_48 = *attnPos - eyePos;
-        field_0x8fc.y = -(field_0x91a[2].y + field_0x8f0.y);
-        field_0x8fc.y += cM_atan2s(local_48.x, local_48.z);
-        field_0x8fc.x = -cM_atan2s(local_48.y, local_48.absXZ());
-        field_0x8fc.x += field_0x902.x;
+        mEyeAngle.y = -(field_0x91a[2].y + field_0x8f0.y);
+        mEyeAngle.y += cM_atan2s(local_48.x, local_48.z);
+        mEyeAngle.x = -cM_atan2s(local_48.y, local_48.absXZ());
+        mEyeAngle.x += mHeadAngle.x;
     } else {
-        field_0x8fc.y = 0;
-        field_0x8fc.x = 0;
+        mEyeAngle.y = 0;
+        mEyeAngle.x = 0;
     }
-    attention_info.position.set(mHeadPos.x, mHeadPos.y + 35.0f, mHeadPos.z);
+
+    attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcAsh_Param_c::m.m00, mHeadPos.z);
+
     cXyz center;
-    mDoMtx_stack_c::copy(mMcaMorf->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&center);
     center.y = current.pos.y;
     mCcCyl[0].SetC(center);
     mCcCyl[0].SetH(daNpcAsh_Param_c::m.m14);
     mCcCyl[0].SetR(daNpcAsh_Param_c::m.m1C);
     dComIfG_Ccsp()->Set(&mCcCyl[0]);
-    if (field_0xf60 == 0 && (!daNpcF_chkEvtBit(0x169) || !daNpcF_chkEvtBit(0x10a) || !daNpcF_chkEvtBit(0x10b) || daNpcF_chkEvtBit(0x10c))) {
+
+    if (field_0xf60 == 0 && (!daNpcF_chkEvtBit(0x169) || !daNpcF_chkEvtBit(0x10a)
+                            || !daNpcF_chkEvtBit(0x10b) || daNpcF_chkEvtBit(0x10c))) {
         center.set(3070.0f, -1150.0f, 2446.0f);
         mCcCyl[1].SetC(center);
         mCcCyl[1].SetH(170.0f);
@@ -2674,7 +2681,7 @@ COMPILER_STRIP_GATE(0x8095D90C, &lit_5652);
 // literals
 void daNpcAsh_c::lookat() {
     fopAc_ac_c* actor = NULL;
-    J3DModel* model = mMcaMorf->getModel();
+    J3DModel* model = mpMorf->getModel();
     BOOL iv7 = false;
     f32 fv13 = daNpcAsh_Param_c::m.m24;
     f32 fv12 = daNpcAsh_Param_c::m.m20;

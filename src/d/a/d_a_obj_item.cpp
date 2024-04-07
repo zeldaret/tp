@@ -578,7 +578,7 @@ void daItem_c::CreateInit() {
     procInitNormal();
     show();
 
-    field_0x930.setAll(1.0f);
+    field_0x930.setall(1.0f);
 
     switch (daItem_prm::getType(this)) {
     case 5:

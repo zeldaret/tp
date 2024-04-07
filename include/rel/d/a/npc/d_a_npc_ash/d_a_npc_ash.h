@@ -94,7 +94,7 @@ public:
         /* 0x04 */ f32 mGravity;
         /* 0x08 */ f32 m08;
         /* 0x0C */ f32 mShadow;
-        /* 0x10 */ f32 mSttsWeight;
+        /* 0x10 */ f32 mCcSttsWeight;
         /* 0x14 */ f32 m14;
         /* 0x18 */ f32 m18;
         /* 0x1C */ f32 m1C;

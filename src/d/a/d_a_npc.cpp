@@ -12,6 +12,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
+#include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"
 
 //
 // Forward References:
@@ -772,60 +773,53 @@ s32 daNpcT_MotionSeqMngr_c::checkEndSequence() {
 }
 
 /* 80145A38-80145A78 140378 0040+00 2/2 0/0 0/0 .text            daNpcT_addIdx__FiiRUsi */
-static int daNpcT_addIdx(int param_0, int param_1, u16& param_2, int param_3) {
-    int tmp = 0;
-    int tmp2 = param_2;
-    tmp2 += param_0;
+static int daNpcT_addIdx(int i_delta, int i_num, u16& i_idx, int i_closed) {
+    int end = 0;
+    int new_idx = i_idx;
+    new_idx += i_delta;
 
-    if (param_1 <= tmp2) {
-        if (param_3) {
-            int tmp3 = tmp2 / param_1;
-            tmp2 -= (tmp3 * param_1);
+    if (i_num <= new_idx) {
+        if (i_closed) {
+            new_idx %= i_num;
         } else {
-            tmp2 = param_1 + -1;
-            tmp = 1;
+            new_idx = i_num + -1;
+            end = 1;
         }
     }
 
-    param_2 = tmp2;
-    return tmp;
+    i_idx = new_idx;
+    return end;
 }
 
 /* 80145A78-80145AC4 1403B8 004C+00 2/2 0/0 0/0 .text            daNpcT_subIdx__FiiRUsi */
-static int daNpcT_subIdx(int param_0, int param_1, u16& param_2, int param_3) {
-    int tmp = 0;
-    int tmp2 = param_2;
-    tmp2 -= param_0;
+static int daNpcT_subIdx(int i_delta, int i_num, u16& i_idx, int i_closed) {
+    int end = 0;
+    int new_idx = i_idx;
+    new_idx -= i_delta;
 
-    if (0 > tmp2) {
-        if (param_3) {
-            int tmp3 = tmp2 / param_1;
-            int tmp4 = tmp2 - tmp3 * param_1;
-            param_0 = param_1 + tmp4;
-
-            int tmp5 = param_0 / param_1;
-            tmp2 = param_0 - (tmp5 * param_1);
-
+    if (0 > new_idx) {
+        if (i_closed) {
+            new_idx = (i_num + new_idx % i_num) % i_num;
         } else {
-            tmp2 = 0;
-            tmp = 1;
+            new_idx = 0;
+            end = 1;
         }
     }
 
-    param_2 = tmp2;
-    return tmp;
+    i_idx = new_idx;
+    return end;
 }
 
 /* 80145AC4-80145B20 140404 005C+00 5/5 0/0 0/0 .text            daNpcT_incIdx__FiRUsii */
-static int daNpcT_incIdx(int param_0, u16& param_1, int param_2, int param_3) {
-    return param_3 ? daNpcT_subIdx(1, param_0, param_1, param_2) :
-                     daNpcT_addIdx(1, param_0, param_1, param_2);
+static int daNpcT_incIdx(int i_num, u16& i_idx, int i_closed, int i_direction) {
+    return i_direction ? daNpcT_subIdx(1, i_num, i_idx, i_closed) :
+                         daNpcT_addIdx(1, i_num, i_idx, i_closed);
 }
 
 /* 80145B20-80145B7C 140460 005C+00 3/3 0/0 0/0 .text            daNpcT_decIdx__FiRUsii */
-static int daNpcT_decIdx(int param_0, u16& param_1, int param_2, int param_3) {
-    return param_3 ? daNpcT_addIdx(1, param_0, param_1, param_2) :
-                     daNpcT_subIdx(1, param_0, param_1, param_2);
+static int daNpcT_decIdx(int i_num, u16& i_idx, int i_closed, int i_direction) {
+    return i_direction ? daNpcT_addIdx(1, i_num, i_idx, i_closed) :
+                         daNpcT_subIdx(1, i_num, i_idx, i_closed);
 }
 
 /* 80145B7C-80145C40 1404BC 00C4+00 1/1 0/0 0/0 .text
@@ -983,60 +977,50 @@ SECTION_SDATA2 static f32 lit_4513 = 100.0f;
  */
 // one instruction order swap, otherwise matches with literals
 #ifdef NONMATCHING
-int daNpcT_Path_c::chkPassed1(cXyz param_0, int param_1) {
-    cXyz sp80;
-    cXyz sp74;
-    cXyz sp68;
+int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
+    cXyz prev_pos, cur_pos, next_pos;
     cXyz sp5C;
 
-    u16 temp_r30 = getIdx() & 0xFFFF;
-    u16 spA;
-    u16 sp8;
+    u16 cur_idx = getIdx() & 0xFFFF;
+    u16 prev_idx, next_idx;
+    prev_idx = next_idx = cur_idx;
 
-    sp8 = temp_r30;
-    spA = sp8;
-
-    if (chkClose() && param_1 == getNumPnts()) {
-        daNpcT_decIdx(getNumPnts(), spA, 1, chkReverse());
-        daNpcT_incIdx(getNumPnts(), sp8, 1, chkReverse());
+    if (chkClose() && i_num == getNumPnts()) {
+        daNpcT_decIdx(getNumPnts(), prev_idx, 1, chkReverse());
+        daNpcT_incIdx(getNumPnts(), next_idx, 1, chkReverse());
     } else {
-        daNpcT_decIdx(param_1, spA, 0, chkReverse());
-        daNpcT_incIdx(param_1, sp8, 0, chkReverse());
+        daNpcT_decIdx(i_num, prev_idx, 0, chkReverse());
+        daNpcT_incIdx(i_num, next_idx, 0, chkReverse());
     }
 
-    sp80 = getPntPos(spA);
-    sp74 = getPntPos(temp_r30);
-    sp68 = getPntPos(sp8);
+    prev_pos = getPntPos(prev_idx);
+    cur_pos = getPntPos(cur_idx);
+    next_pos = getPntPos(next_idx);
 
-    if (spA == temp_r30) {
+    if (prev_idx == cur_idx) {
         sp5C.set(0.0f, 0.0f, 100.0f);
 
-        mDoMtx_stack_c::YrotS(cLib_targetAngleY(&sp68, &sp74));
+        mDoMtx_stack_c::YrotS(cLib_targetAngleY(&next_pos, &cur_pos));
         mDoMtx_stack_c::multVec(&sp5C, &sp5C);
-        sp80 = sp5C + sp74;
+        prev_pos = sp5C + cur_pos;
     }
 
-    if (temp_r30 == sp8) {
+    if (cur_idx == next_idx) {
         sp5C.set(0.0f, 0.0f, 100.0f);
 
-        mDoMtx_stack_c::YrotS(cLib_targetAngleY(&sp80, &sp74));
+        mDoMtx_stack_c::YrotS(cLib_targetAngleY(&prev_pos, &cur_pos));
         mDoMtx_stack_c::multVec(&sp5C, &sp5C);
-        sp68 = sp5C + sp74;
+        next_pos = sp5C + cur_pos;
     }
 
-    f32 sp1C;
-    f32 sp18;
-    f32 sp14;
-    f32 sp10;
-    f32 spC;
-
-    if (cM3d_Len2dSqPntAndSegLine(param_0.x, param_0.z, sp80.x, sp80.z, sp68.x, sp68.z, &sp1C,
-                                  &sp14, &spC) &&
-        cM3d_Len2dSqPntAndSegLine(sp74.x, sp74.z, sp80.x, sp80.z, sp68.x, sp68.z, &sp18, &sp10,
-                                  &spC))
+    f32 proj_pnt_x, proj_cur_x, proj_pnt_z, proj_cur_z, spC;
+    if (cM3d_Len2dSqPntAndSegLine(i_pnt.x, i_pnt.z, prev_pos.x, prev_pos.z,
+                                  next_pos.x, next_pos.z, &proj_pnt_x, &proj_pnt_z, &spC) &&
+        cM3d_Len2dSqPntAndSegLine(cur_pos.x, cur_pos.z, prev_pos.x, prev_pos.z,
+                                  next_pos.x, next_pos.z, &proj_cur_x, &proj_cur_z, &spC))
     {
-        if (0x4000 < (u16)abs((s16)(cM_atan2s(sp68.x - sp80.x, sp68.z - sp80.z) -
-                                    cM_atan2s(sp18 - sp1C, sp10 - sp14))))
+        if (0x4000 < (u16)abs((s16)(cM_atan2s(next_pos.x - prev_pos.x, next_pos.z - prev_pos.z) -
+                                    cM_atan2s(proj_cur_x - proj_pnt_x, proj_cur_z - proj_pnt_z))))
         {
             return 1;
         }
@@ -1646,10 +1630,10 @@ int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* bck, f32 morf, f32 frame, int mo
     f32 start = startF;
     f32 end = endF;
 
-    mMcaMorfAnm[0]->setAnm(bck, mode, frame, morf, start, end);
+    mpMorf[0]->setAnm(bck, mode, frame, morf, start, end);
 
-    if (mMcaMorfAnm[1] != NULL) {
-        mMcaMorfAnm[1]->setAnm(bck, mode, frame, morf, start, end);
+    if (mpMorf[1] != NULL) {
+        mpMorf[1]->setAnm(bck, mode, frame, morf, start, end);
     }
 
     return 1;
@@ -1793,7 +1777,7 @@ SECTION_SDATA2 static f32 lit_5794 = 20.0f;
 #ifdef NONMATCHING
 int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_color, f32 param_4,
                    int i_drawGhost, int param_6, int param_7) {
-    J3DModel* model = mMcaMorfAnm[0]->getModel();
+    J3DModel* model = mpMorf[0]->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0xe34 = 1;
 
@@ -1849,12 +1833,12 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
         g_env_light.settingTevStruct(4, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         dComIfGd_setListDark();
-        mMcaMorfAnm[0]->entryDL();
+        mpMorf[0]->entryDL();
         dComIfGd_setList();
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-        mMcaMorfAnm[0]->entryDL();
+        mpMorf[0]->entryDL();
     }
 
     if (field_0xd98 & 0x800) {
@@ -1914,17 +1898,15 @@ void daNpcT_c::setRoomNo() {
 }
 
 /* 80148D10-80148DD0 143650 00C0+00 1/1 0/0 0/0 .text            checkEndAnm__8daNpcT_cFf */
-// this looks much better with -O2? something weird going on here
 #ifdef NONMATCHING
-#pragma push
-#pragma optimization_level 2
+// matches with literals
 int daNpcT_c::checkEndAnm(f32 param_0) {
-    switch (mMcaMorfAnm[0]->getPlayMode()) {
+    switch (mpMorf[0]->getPlayMode()) {
     case 2:
-        return mMcaMorfAnm[0]->isLoop();
+        return mpMorf[0]->isLoop();
     case 0:
     case 1:
-        return mMcaMorfAnm[0]->isStop() && cM3d_IsZero(mMcaMorfAnm[0]->getPlaySpeed()) &&
+        return mpMorf[0]->isStop() && cM3d_IsZero(mpMorf[0]->getPlaySpeed()) &&
                !cM3d_IsZero(param_0);
     case 3:
     case 4:
@@ -1933,7 +1915,6 @@ int daNpcT_c::checkEndAnm(f32 param_0) {
 
     return 0;
 }
-#pragma pop
 #else
 #pragma push
 #pragma optimization_level 0
@@ -1946,24 +1927,21 @@ asm int daNpcT_c::checkEndAnm(f32 param_0) {
 #endif
 
 /* 80148DD0-80148E4C 143710 007C+00 1/1 0/0 0/0 .text checkEndAnm__8daNpcT_cFP12J3DFrameCtrlf */
-// weird mr
 #ifdef NONMATCHING
-#pragma push
-#pragma optimization_level 2
+// matches with literals
 int daNpcT_c::checkEndAnm(J3DFrameCtrl* param_0, f32 param_1) {
     switch (param_0->getAttribute()) {
     case 2:
         return param_0->checkState(2);
     case 0:
     case 1:
-        return (param_0->checkState(1) || param_0->getRate() == 0.0f) && param_1 != 0.0f;
+        return (param_0->checkState(1) && param_0->getRate() == 0.0f) && param_1 != 0.0f;
     case 3:
         break;
     }
 
     return 0;
 }
-#pragma pop
 #else
 #pragma push
 #pragma optimization_level 0
@@ -2024,22 +2002,22 @@ void daNpcT_c::playAllAnm() {
     }
 
     if (field_0xd98 & 0x40) {
-        f32 morf_speed = mMcaMorfAnm[0]->getPlaySpeed();
+        f32 morf_speed = mpMorf[0]->getPlaySpeed();
         if (field_0xd98 & 0x1) {
-            mMcaMorfAnm[0]->setPlaySpeed(0.0f);
-            mMcaMorfAnm[0]->play(field_0xda8, field_0xe24);
-            mMcaMorfAnm[0]->setPlaySpeed(morf_speed);
+            mpMorf[0]->setPlaySpeed(0.0f);
+            mpMorf[0]->play(field_0xda8, field_0xe24);
+            mpMorf[0]->setPlaySpeed(morf_speed);
 
-            if (mMcaMorfAnm[1] != NULL) {
-                mMcaMorfAnm[1]->setPlaySpeed(0.0f);
-                mMcaMorfAnm[1]->play(0, 0);
-                mMcaMorfAnm[1]->setPlaySpeed(morf_speed);
+            if (mpMorf[1] != NULL) {
+                mpMorf[1]->setPlaySpeed(0.0f);
+                mpMorf[1]->play(0, 0);
+                mpMorf[1]->setPlaySpeed(morf_speed);
             }
         } else {
-            mMcaMorfAnm[0]->play(field_0xda8, field_0xe24);
+            mpMorf[0]->play(field_0xda8, field_0xe24);
 
-            if (mMcaMorfAnm[1] != NULL) {
-                mMcaMorfAnm[1]->play(0, 0);
+            if (mpMorf[1] != NULL) {
+                mpMorf[1]->play(0, 0);
             }
 
             if (checkEndAnm(morf_speed)) {
@@ -2104,7 +2082,7 @@ asm void daNpcT_c::ctrlBtk() {
 
 /* 80149190-8014924C 143AD0 00BC+00 0/0 0/0 57/57 .text            setMtx__8daNpcT_cFv */
 void daNpcT_c::setMtx() {
-    J3DModel* model = mMcaMorfAnm[0]->getModel();
+    J3DModel* model = mpMorf[0]->getModel();
     J3DModelData* modelData = model->getModelData();
 
     mDoMtx_stack_c::transS(current.pos);
@@ -2114,16 +2092,16 @@ void daNpcT_c::setMtx() {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((u32)this);
 
-    mMcaMorfAnm[0]->onMorfNone();
+    mpMorf[0]->onMorfNone();
     if (cM3d_IsZero(field_0xdfc) != 0) {
-        mMcaMorfAnm[0]->offMorfNone();
+        mpMorf[0]->offMorfNone();
     }
 
     if (field_0xd98 & 0x400) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
     }
 
-    mMcaMorfAnm[0]->modelCalc();
+    mpMorf[0]->modelCalc();
 }
 
 /* 8014924C-80149300 143B8C 00B4+00 1/1 0/0 0/0 .text            ctrlFaceMotion__8daNpcT_cFv */
@@ -2135,18 +2113,18 @@ void daNpcT_c::ctrlFaceMotion() {
         setFaceMotionAnm(l_int, true);
 
         if (l_float < FLOAT_LABEL(lit_4116)) {
-            mMcaMorfAnm[0]->setMorf(field_0xa80);
+            mpMorf[0]->setMorf(field_0xa80);
             field_0xdfc = field_0xa80;
 
-            if (mMcaMorfAnm[1]) {
-                mMcaMorfAnm[1]->setMorf(field_0xa80);
+            if (mpMorf[1]) {
+                mpMorf[1]->setMorf(field_0xa80);
             }
         } else {
-            mMcaMorfAnm[0]->setMorf(l_float);
+            mpMorf[0]->setMorf(l_float);
             field_0xdfc = l_float;
 
-            if (mMcaMorfAnm[1]) {
-                mMcaMorfAnm[1]->setMorf(l_float);
+            if (mpMorf[1]) {
+                mpMorf[1]->setMorf(l_float);
             }
         }
     }
@@ -2172,12 +2150,12 @@ void daNpcT_c::ctrlMotion() {
         field_0xdfc = 0.0f;
 
         if (field_0xa88) {
-            mMcaMorfAnm[0]->setMorf(0.0f);
+            mpMorf[0]->setMorf(0.0f);
 
             field_0xdfc = 0.0f;
 
-            if (mMcaMorfAnm[1]) {
-                mMcaMorfAnm[1]->setMorf(0.0f);
+            if (mpMorf[1]) {
+                mpMorf[1]->setMorf(0.0f);
             }
         }
     }
@@ -3615,14 +3593,14 @@ bool daBaseNpc_c::btkCtrl() {
 // weird condition mr
 #ifdef NONMATCHING
 int daBaseNpc_c::checkEndAnm(f32 param_0) {
-    switch (mMcaMorfAnm[0]->getPlayMode()) {
+    switch (mpMorf[0]->getPlayMode()) {
     case 2:
-        return mMcaMorfAnm[0]->isLoop();
+        return mpMorf[0]->isLoop();
     case 0:
     case 1:
         bool state = false;
 
-        if (mMcaMorfAnm[0]->isStop() && param_0 != mMcaMorfAnm[0]->getPlaySpeed()) {
+        if (mpMorf[0]->isStop() && param_0 != mpMorf[0]->getPlaySpeed()) {
             state = true;
         }
         return state;
@@ -3694,7 +3672,7 @@ void daBaseNpc_c::adjustShapeAngle() {
 
 /* 8014F390-8014F4A0 149CD0 0110+00 2/0 0/0 1/0 .text            setMtx__11daBaseNpc_cFi */
 void daBaseNpc_c::setMtx(int param_0) {
-    J3DModel* model = mMcaMorfAnm[0]->getModel();
+    J3DModel* model = mpMorf[0]->getModel();
     ;
     J3DModelData* modelData = model->getModelData();
 
@@ -3718,7 +3696,7 @@ void daBaseNpc_c::setMtx(int param_0) {
             tmp++;
         }
 
-        mMcaMorfAnm[0]->modelCalc();
+        mpMorf[0]->modelCalc();
 
         u16 tmp2 = 0;
 
@@ -3728,7 +3706,7 @@ void daBaseNpc_c::setMtx(int param_0) {
         }
 
     } else {
-        mMcaMorfAnm[0]->modelCalc();
+        mpMorf[0]->modelCalc();
     }
 }
 
@@ -4573,7 +4551,7 @@ asm void daNpcF_Lookat_c::clrRotAngle() {
 BOOL daNpcF_c::execute() {
     setParam();
     if (main()) {
-        fopAcM_posMoveF(this, mStts.GetCCMoveP());
+        fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
         mAcch.CrrPos(dComIfG_Bgsp());
         field_0xa44 = mAcch.m_gnd;
         field_0x980 = mAcch.GetGroundH();
@@ -4582,7 +4560,7 @@ BOOL daNpcF_c::execute() {
             setEnvTevColor();
             setRoomNo();
             field_0x9b0 = dKy_pol_sound_get(&mAcch.m_gnd);
-            field_0x9e8 = dComIfGp_getReverb(mStts.GetRoomId());
+            field_0x9e8 = dComIfGp_getReverb(mCcStts.GetRoomId());
             if (mAcch.ChkWaterHit() && mAcch.m_wtr.GetHeight() > field_0x980) {
                 field_0x9b0 = dKy_pol_sound_get(&mAcch.m_wtr);
             }
@@ -4593,7 +4571,7 @@ BOOL daNpcF_c::execute() {
     setAttnPos();
     cLib_chaseF(&field_0x978, 0.0f, 1.0f);
     setCollisions();
-    if (field_0x9f4 != 0) {
+    if (mTwilight != 0) {
         attention_info.flags |= 0x400000;
         attention_info.flags |= 0x800000;
         setHitodamaPrtcl();
@@ -4602,14 +4580,14 @@ BOOL daNpcF_c::execute() {
     field_0x930 = 0;
     field_0x9e9 = 0;
     field_0x9ed = 0;
-    field_0x9eb = 0;
+    field_0x9eb = false;
     field_0x9ef = 0;
     field_0x9f3 = 0;
     for (int i = 0; i < 5; i++) {
-        if ((field_0x938 == 0 || field_0x934 != i) && field_0x93c[i] != 0 &&
-            cLib_calcTimer(&field_0x93c[i]) == 0)
+        if ((mAttnChangeTimer == 0 || mAttnIdx != i) && mAttnActorTimer[i] != 0 &&
+            cLib_calcTimer(&mAttnActorTimer[i]) == 0)
         {
-            field_0x82c[i].remove();
+            mAttnActor[i].remove();
         }
     }
     if (field_0x954 != 0) {
@@ -4633,7 +4611,7 @@ asm BOOL daNpcF_c::execute() {
 // literals
 BOOL daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3, int param_4) {
     f32 fVar1, frame;
-    J3DModel* model = mMcaMorf->getModel();
+    J3DModel* model = mpMorf->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0x9f3 = 1;
 
@@ -4659,7 +4637,7 @@ BOOL daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3,
             tevStr.mFogColor.r = 0;
         }
 
-        if (field_0x9f4) {
+        if (mTwilight) {
             g_env_light.settingTevStruct(4, &current.pos, &tevStr);
         } else {
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
@@ -4683,12 +4661,12 @@ BOOL daNpcF_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_3,
                 fopAcM_setEffectMtx(this, modelData);
             }
 
-            if (field_0x9f4) {
+            if (mTwilight) {
                 dComIfGd_setListDark();
-                mMcaMorf->entryDL();
+                mpMorf->entryDL();
                 dComIfGd_setList();
             } else {
-                mMcaMorf->entryDL();
+                mpMorf->entryDL();
             }
 
             if (mAnmFlags & ANM_PLAY_BTP) {
@@ -4741,54 +4719,157 @@ fopAc_ac_c* daNpcF_c::mFindActorPList[100];
 s32 daNpcF_c::mFindCount;
 
 /* 80152654-801526E8 14CF94 0094+00 0/0 0/0 12/12 .text            srchAttnActor1__8daNpcF_cFPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::srchAttnActor1(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_npc/srchAttnActor1__8daNpcF_cFPvPv.s"
+void* daNpcF_c::srchAttnActor1(void* i_proc, void* param_1) {
+    if (mFindCount < 100 && fopAcM_IsActor(i_proc)
+        && (fopAcM_GetName(i_proc) == PROC_NI || fopAcM_GetName(i_proc) == PROC_COW
+            || fopAcM_GetName(i_proc) == PROC_NPC_NE || fopAcM_GetName(i_proc) == PROC_DO
+            || fopAcM_GetName(i_proc) == PROC_SQ || fopAcM_GetName(i_proc) == PROC_BD))
+    {
+        mFindActorPList[mFindCount] = static_cast<fopAc_ac_c*>(i_proc);
+        mFindCount++;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450FF4-80450FF8 0004F4 0002+02 2/2 0/0 0/0 .sbss            mSrchActorName__8daNpcF_c */
 s16 daNpcF_c::mSrchActorName;
 
 /* 801526E8-8015276C 14D028 0084+00 1/1 0/0 0/0 .text            srchActor__8daNpcF_cFPvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void* daNpcF_c::srchActor(void* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/a/d_a_npc/srchActor__8daNpcF_cFPvPv.s"
+void* daNpcF_c::srchActor(void* i_proc, void* i_this) {
+    if (mFindCount < 100 && fopAc_IsActor(i_proc) && i_proc != i_this
+        && mSrchActorName == fopAcM_GetName(i_proc))
+    {
+        mFindActorPList[mFindCount] = static_cast<fopAc_ac_c*>(i_proc);
+        mFindCount++;
+    }
+    return NULL;
 }
-#pragma pop
 
 /* 8015276C-801527FC 14D0AC 0090+00 2/0 0/0 40/9 .text            setMtx__8daNpcF_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::setMtx() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setMtx__8daNpcF_cFv.s"
+void daNpcF_c::setMtx() {
+    J3DModel* model = mpMorf->getModel();
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(field_0x8f0);
+    mDoMtx_stack_c::scaleM(scale);
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setUserArea((u32)this);
+    if (mAnmFlags & 0x100) {
+        mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
+        mpMorf->modelCalc();
+    } else {
+        mpMorf->modelCalc();
+    }
 }
-#pragma pop
 
 /* 801527FC-801528C8 14D13C 00CC+00 2/0 0/0 38/0 .text            setMtx2__8daNpcF_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::setMtx2() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setMtx2__8daNpcF_cFv.s"
+void daNpcF_c::setMtx2() {
+    J3DModel* model = mpMorf->getModel();
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(field_0x8f0);
+    mDoMtx_stack_c::scaleM(scale);
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setUserArea((u32)this);
+    if (cM3d_IsZero_inverted(mExpressionMorf)) {
+        mpMorf->onMorfNone();
+    } else {
+        mpMorf->offMorfNone();
+    }
+    if (mAnmFlags & 0x100) {
+        mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
+        mpMorf->modelCalc();
+    } else {
+        mpMorf->modelCalc();
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804534A0-804534A4 001AA0 0004+00 1/1 0/0 0/0 .sdata2          @10745 */
 SECTION_SDATA2 static f32 lit_10745 = 65536.0f;
 
 /* 801528C8-80152B2C 14D208 0264+00 0/0 0/0 76/76 .text            initialize__8daNpcF_cFv */
+#ifdef NONMATCHING
+// matches with literals
+void daNpcF_c::initialize() {
+    field_0x824.remove();
+    for (int i = 0; i < 5; i++) {
+        mAttnActor[i].remove();
+    }
+    for (int i = 0; i < 3; i++) {
+        mLookatPos[i].setall(0.0f);
+    }
+    mLookPos.setall(0.0f);
+    field_0x884.setall(0.0f);
+    field_0x890.setall(0.0f);
+    field_0x89c.setall(0.0f);
+    field_0x8a8.setall(0.0f);
+    mHeadPos.setall(0.0f);
+    field_0x8f0.setall(0);
+    field_0x8f6.setall(0);
+    mEyeAngle.setall(0);
+    mHeadAngle.setall(0);
+    for (int i = 0; i < 3; i++) {
+        field_0x908[i].setall(0);
+        field_0x91a[i].setall(0);
+    }
+    mCutIndex = -1;
+    field_0x930 = 0;
+    mAttnIdx = 0;
+    mAttnChangeTimer = 0;
+    for (int i = 0; i < 5; i++) {
+        mAttnActorTimer[i] = 0;
+    }
+    field_0x950 = 0;
+    field_0x954 = 0;
+    field_0x958 = 0;
+    field_0x95c = 0;
+    field_0x960 = 0;
+    field_0x964 = 0;
+    field_0x968 = 0;
+    field_0x96c = 0;
+    field_0x970 = 0.0f;
+    mExpressionMorfOverride = 0.0f;
+    mMotionMorfOverride = 0.0f;
+    field_0x980 = 0.0f;
+    for (int i = 0; i < 3; i++) {
+        field_0x984[i] = 0.0f;
+    }
+    field_0x990 = 0;
+    field_0x992 = 0;
+    field_0x994 = 0;
+    field_0x996 = 0;
+    field_0x998 = 0;
+    mAnmFlags = 0;
+    field_0x9a0 = 0;
+    field_0x9a4 = -1;
+    mHitodamaParticleKey[0] = -1;
+    mHitodamaParticleKey[1] = -1;
+    mEventIdx = -1;
+    mExpressionPhase = 0;
+    mExpressionPrevPhase = 0;
+    mMotionPhase = 0;
+    mMotionPrevPhase = 0;
+    mExpression = -1;
+    mMotion = -1;
+    mMotionLoops = 0;
+    mExpressionLoops = 0;
+    mOrderEvtNo = 0;
+    field_0x9e9 = 0;
+    field_0x9ea = 0;
+    field_0x9eb = false;
+    field_0x9ec = 0;
+    field_0x9ed = false;
+    field_0x9ee = false;
+    field_0x9ef = 0;
+    field_0x9f0 = 0;
+    field_0x9f1 = 0;
+    mHide = false;
+    field_0x9f3 = 0;
+    field_0x9f5 = 1;
+    field_0x9f6 = 1;
+    field_0x9d2 = cM_rndF(0x10000);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4797,6 +4878,7 @@ asm void daNpcF_c::initialize() {
 #include "asm/d/a/d_a_npc/initialize__8daNpcF_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80152B2C-80152B68 14D46C 003C+00 0/0 0/0 69/69 .text            getTrnsfrmKeyAnmP__8daNpcF_cFPci
  */
@@ -4826,7 +4908,7 @@ J3DAnmTevRegKey* daNpcF_c::getTevRegKeyAnmP(char* arcName, int fileIdx) {
 // literals
 BOOL daNpcF_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr,
                              int i_start, int i_end) {
-    mMcaMorf->setAnm(i_anm, i_attr, i_morf, i_rate, (f32)i_start, (f32)i_end);
+    mpMorf->setAnm(i_anm, i_attr, i_morf, i_rate, (f32)i_start, (f32)i_end);
     return true;
 }
 #else
@@ -4870,42 +4952,28 @@ BOOL daNpcF_c::setBrkAnm(J3DAnmTevRegKey* i_brk, J3DModelData* i_modelData, f32 
 }
 
 /* 80152D84-80152DE0 14D6C4 005C+00 1/1 0/0 40/40 .text            setEnvTevColor__8daNpcF_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::setEnvTevColor() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setEnvTevColor__8daNpcF_cFv.s"
+void daNpcF_c::setEnvTevColor() {
+    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0xa44);
+    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(field_0xa44);
 }
-#pragma pop
 
 /* 80152DE0-80152E24 14D720 0044+00 1/1 0/0 40/40 .text            setRoomNo__8daNpcF_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::setRoomNo() {
-    nofralloc
-#include "asm/d/a/d_a_npc/setRoomNo__8daNpcF_cFv.s"
+void daNpcF_c::setRoomNo() {
+    int room_id = dComIfG_Bgsp().GetRoomId(field_0xa44);
+    fopAcM_SetRoomNo(this, room_id);
+    mCcStts.SetRoomId(room_id);
 }
-#pragma pop
 
 /* 80152E24-80152EC4 14D764 00A0+00 1/1 0/0 0/0 .text            chkEndAnm__8daNpcF_cFf */
 #ifdef NONMATCHING
+// matches with literals
 BOOL daNpcF_c::chkEndAnm(f32 param_0) {
-    switch (mMcaMorf->getPlayMode()) {
+    switch (mpMorf->getPlayMode()) {
     case 2:
-        return mMcaMorf->isLoop();
+        return mpMorf->isLoop();
     case 0:
     case 1:
-        bool b = false;
-        bool ret = false;
-        if (mMcaMorf->isStop() && mMcaMorf->getPlaySpeed() == 0.0f) {
-            b = true;
-        }
-        if (b && param_0 != 0.0f) {
-            ret = true;
-        }
-        return ret;
+        return mpMorf->isStop() && mpMorf->getPlaySpeed() == 0.0f && param_0 != 0.0f;
     case 3:
     default:
         return false;
@@ -4931,21 +4999,14 @@ asm BOOL daNpcF_c::chkEndAnm(f32 param_0) {
  * `false` if the animation is two-way (attribute 3 or 4).
  */
 #ifdef NONMATCHING
+// matches with literals
 BOOL daNpcF_c::chkEndAnm(J3DFrameCtrl* frameCtrl, f32 prevRate) {
     switch (frameCtrl->getAttribute()) {
     case 2:
-        return (frameCtrl->getState() >> 1) & 1;
+        return frameCtrl->checkState(2);
     case 0:
     case 1:
-        bool b = false;
-        bool ret = false;
-        if (frameCtrl->getState() & 1 && frameCtrl->getRate() == 0.0f) {
-            b = true;
-        }
-        if (b && prevRate != 0.0f) {
-            ret = true;
-        }
-        return ret;
+        return frameCtrl->checkState(1) && frameCtrl->getRate() == 0.0f && prevRate != 0.0f;
     case 3:
     default:
         return false;
@@ -5000,13 +5061,13 @@ BOOL daNpcF_c::playAllAnm() {
         }
     }
     if (mAnmFlags & ANM_PLAY_MORF) {
-        rate = mMcaMorf->getPlaySpeed();
+        rate = mpMorf->getPlaySpeed();
         if (mAnmFlags & ANM_PAUSE_MORF) {
-            mMcaMorf->setPlaySpeed(0.0f);
-            mMcaMorf->play(field_0x9b0, field_0x9e8);
-            mMcaMorf->setPlaySpeed(rate);
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->play(field_0x9b0, field_0x9e8);
+            mpMorf->setPlaySpeed(rate);
         } else {
-            mMcaMorf->play(field_0x9b0, field_0x9e8);
+            mpMorf->play(field_0x9b0, field_0x9e8);
             if (chkEndAnm(rate)) {
                 motionLoops++;
             }
@@ -5054,6 +5115,7 @@ asm BOOL daNpcF_c::playAllAnm() {
  *  before moving on to the next phase (or 0 for the last phase).
  */
 #ifdef NONMATCHING
+// regalloc
 void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
     daNpcF_anmPlayData* playData = NULL;
     if (anm[mExpression] != NULL) {
@@ -5073,7 +5135,7 @@ void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
                 morf = mExpressionMorfOverride;
             }
             mExpressionMorf = morf;
-            mMcaMorf->setMorf(morf);
+            mpMorf->setMorf(morf);
         }
     }
     mExpressionPrevPhase = mExpressionPhase;
@@ -5099,6 +5161,7 @@ asm void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** param_0) {
  *  before moving on to the next phase (or 0 for the last phase).
  */
 #ifdef NONMATCHING
+// regalloc
 void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
     daNpcF_anmPlayData* playData = NULL;
     if (anm[mMotion] != NULL) {
@@ -5106,7 +5169,7 @@ void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
     }
     if (playData != NULL) {
         if (mMotionPrevPhase == mMotionPhase && playData->numLoops > 0 &&
-            playData->numLoops <= motionLoops)
+            playData->numLoops <= mMotionLoops)
         {
             mMotionPhase++;
             playData = anm[mMotion][mMotionPhase];
@@ -5118,7 +5181,7 @@ void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
                 morf = mMotionMorfOverride;
             }
             mExpressionMorf = 0.0f;
-            mMcaMorf->setMorf(morf);
+            mpMorf->setMorf(morf);
         }
     }
     mMotionPrevPhase = mMotionPhase;
@@ -5136,7 +5199,7 @@ asm void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** param_0) {
 
 /* 8015337C-80153578 14DCBC 01FC+00 0/0 0/0 34/34 .text            setLookatMtx__8daNpcF_cFiPif */
 /**
- * Compute the animation matrix for one of the "lookat" joints (lower body, upper body, head).
+ * Compute the animation matrix for one of the "lookat" joints (backbone, neck, head).
  * This matrix is applied to the matrix in `mDoMtx_stack_c::now`.
  * @param jointNo The index of the joint in question.
  * @param jointList An array of the three indices of the joints for the lower body, the upper body,
@@ -5154,7 +5217,7 @@ void daNpcF_c::setLookatMtx(int jointNo, int* jointList, f32 param_2) {
         field_0x91a[1].y = (s16)((f32)field_0x91a[2].y * param_2);
         field_0x91a[1].z = (s16)((f32)field_0x91a[2].z * param_2);
 
-        cMtx_copy(mDoMtx_stack_c::get(), baseMtx);
+        MTXCopy(mDoMtx_stack_c::get(), baseMtx);
         pos.set(baseMtx[0][3], baseMtx[1][3], baseMtx[2][3]);
         baseMtx[0][3] = baseMtx[1][3] = baseMtx[2][3] = 0.0f;
 
@@ -5167,7 +5230,7 @@ void daNpcF_c::setLookatMtx(int jointNo, int* jointList, f32 param_2) {
             }
         }
         mDoMtx_stack_c::inverse();
-        cMtx_copy(mDoMtx_stack_c::get(), invParentMtx);
+        MTXCopy(mDoMtx_stack_c::get(), invParentMtx);
 
         mDoMtx_stack_c::transS(pos);
         mDoMtx_stack_c::XYZrotM(field_0x8f0);
@@ -5233,12 +5296,12 @@ int daNpcF_c::ctrlMsgAnm(int& expression, int& motion, fopAc_ac_c* param_2, int 
         if (talkPartner == param_2) {
             fopAc_ac_c* actor = dMsgObject_c::getActor();
             if (actor->eventInfo.mCommand == 2 || actor->eventInfo.mCommand == 3) {
-                field_0x9a4 = (profile_method_class*)-1;
+                field_0x9a4 = -1;
             } else if (actor->eventInfo.mCommand == 6) {
-                if (actor->sub_method != field_0x9a4) {
+                if ((u32)actor->sub_method != field_0x9a4) {
                     expression = dComIfGp_getMesgFaceAnimeAttrInfo();
                     motion = dComIfGp_getMesgAnimeAttrInfo();
-                    field_0x9a4 = actor->sub_method;
+                    field_0x9a4 = (u32)actor->sub_method;
                 }
                 if (dMsgObject_c::isMouthCheck()) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
@@ -5250,10 +5313,10 @@ int daNpcF_c::ctrlMsgAnm(int& expression, int& motion, fopAc_ac_c* param_2, int 
                 if (mAnmFlags & ANM_PAUSE_EXPRESSION) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
                 }
-                field_0x9a4 = (profile_method_class*)-1;
+                field_0x9a4 = -1;
             }
         } else {
-            field_0x9a4 = (profile_method_class*)-1;
+            field_0x9a4 = -1;
             if (field_0x950 != 0) {
                 field_0x950 = 1;
             }
@@ -5277,29 +5340,44 @@ asm int daNpcF_c::ctrlMsgAnm(int& param_0, int& param_1, fopAc_ac_c* param_2, in
 
 /* 8015387C-80153954 14E1BC 00D8+00 0/0 0/0 45/45 .text            orderEvent__8daNpcF_cFiPcUsUsUcUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::orderEvent(int param_0, char* param_1, u16 param_2, u16 param_3, u8 param_4,
-                              u16 param_5) {
-    nofralloc
-#include "asm/d/a/d_a_npc/orderEvent__8daNpcF_cFiPcUsUsUcUs.s"
+void daNpcF_c::orderEvent(int param_0, char* i_evtName, u16 param_2, u16 i_priority, u8 i_mapToolID,
+                          u16 i_flag) {
+    if (i_evtName != NULL) {
+        mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xff);
+        fopAcM_orderOtherEventId(this, mEventIdx, i_mapToolID, param_2, i_priority, i_flag);
+    } else if (!mTwilight || daPy_py_c::checkNowWolfEyeUp()) {
+        if ((attention_info.flags & 8) || (attention_info.flags & 2)) {
+            eventInfo.i_onCondition(1);
+            if (param_0) {
+                fopAcM_orderSpeakEvent(this, 0, 0);
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 80153954-801539F0 14E294 009C+00 0/0 0/0 31/31 .text            changeEvent__8daNpcF_cFPcPcUsUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::changeEvent(char* param_0, char* param_1, u16 param_2, u16 param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/changeEvent__8daNpcF_cFPcPcUsUs.s"
+void daNpcF_c::changeEvent(char* i_arcName, char* i_evtName, u16 param_2, u16 param_3) {
+    if (i_arcName != NULL) {
+        eventInfo.setArchiveName(i_arcName);
+        dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+    }
+    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xff);
+    dComIfGp_getEvent().reset(this);
+    fopAcM_orderChangeEventId(this, mEventIdx, param_2, param_3);
 }
-#pragma pop
 
 /* 801539F0-80153A78 14E330 0088+00 0/0 0/0 21/21 .text chkActorInSight__8daNpcF_cFP10fopAc_ac_cf
  */
+#ifdef NONMATCHING
+// matches with literals
+BOOL daNpcF_c::chkActorInSight(fopAc_ac_c* i_actor, f32 i_maxAngle) {
+    s16 tmp = mHeadAngle.y;
+    s16 angle = fopAcM_searchActorAngleY(this, i_actor) - tmp;
+    s16 abs_angle = abs(angle);
+    return i_maxAngle == 180.0f || abs_angle < cM_deg2s(i_maxAngle);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5308,6 +5386,7 @@ asm BOOL daNpcF_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1) {
 #include "asm/d/a/d_a_npc/chkActorInSight__8daNpcF_cFP10fopAc_ac_cf.s"
 }
 #pragma pop
+#endif
 
 /* 80153A78-80153BDC 14E3B8 0164+00 1/1 0/0 0/0 .text
  * chkActorInArea__8daNpcF_cFP10fopAc_ac_c4cXyz4cXyzs           */
@@ -5394,8 +5473,8 @@ asm BOOL daNpcF_c::chkActorInAttnArea(fopAc_ac_c* actorCheck, fopAc_ac_c* actorA
 #endif
 
 /* 80153D1C-80153D84 14E65C 0068+00 0/0 0/0 118/118 .text initTalk__8daNpcF_cFiPP10fopAc_ac_c */
-int daNpcF_c::initTalk(int param_0, fopAc_ac_c** param_1) {
-    mFlow.init(this, param_0, 0, param_1);
+int daNpcF_c::initTalk(int i_flowID, fopAc_ac_c** param_1) {
+    mFlow.init(this, i_flowID, 0, param_1);
     f32 tmp = FLOAT_LABEL(lit_4116);
     speedF = tmp;
     speed.set(tmp, tmp, tmp);
@@ -5405,6 +5484,41 @@ int daNpcF_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 }
 
 /* 80153D84-80153EF4 14E6C4 0170+00 0/0 0/0 119/119 .text talkProc__8daNpcF_cFPiiPP10fopAc_ac_c */
+#ifdef NONMATCHING
+// matches with literals
+BOOL daNpcF_c::talkProc(int* param_0, BOOL param_1, fopAc_ac_c** i_actorP) {
+    BOOL ret = false;
+    int i1, motion, expression, i2;
+    motion = -1;
+    expression = -1;
+    if (dMsgObject_c::isMsgSendControl()) {
+        if (param_1) {
+            dMsgObject_c::offMsgSendControl();
+        }
+    } else if (mFlow.doFlow(this, i_actorP, 0)) {
+        ret = true;
+    } else {
+        if (mFlow.getMsg() != NULL && (mFlow.getMsg()->mMode == 2 || mFlow.getMsg()->mMode == 6)
+                                && param_0 != NULL) {
+            for (int i = 0; param_0[i] > 0; i++) {
+                if (param_0[i] == mFlow.getMsgNo()) {
+                    ret = true;
+                    break;
+                }
+            }
+        }
+        if (mFlow.checkEventRender(&i1, &motion, &expression, &i2)) {
+            if (expression != -1) {
+                setExpression(expression, -1.0f);
+            }
+            if (motion != -1) {
+                setMotion(motion, -1.0f, false);
+            }
+        }
+    }
+    return ret;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5413,6 +5527,7 @@ asm BOOL daNpcF_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2) {
 #include "asm/d/a/d_a_npc/talkProc__8daNpcF_cFPiiPP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80153EF4-801540A4 14E834 01B0+00 1/1 0/0 55/55 .text            turn__8daNpcF_cFsfi */
 #pragma push
@@ -5428,7 +5543,7 @@ asm BOOL daNpcF_c::turn(s16 param_0, f32 param_1, int param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcF_c::step(s16 param_0, int param_1, int param_2, int param_3) {
+asm BOOL daNpcF_c::step(s16 param_0, int param_1, int param_2, int param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/step__8daNpcF_cFsiii.s"
 }
@@ -5453,18 +5568,20 @@ u8 daNpcF_c::getDistTableIdx(int param_0, int param_1) {
 
 /* 801542A0-8015436C 14EBE0 00CC+00 0/0 0/0 6/6 .text            getEvtAreaTagP__8daNpcF_cFii */
 #ifdef NONMATCHING
-fopAc_ac_c* daNpcF_c::getEvtAreaTagP(int param_0, int param_1) {
+// regalloc
+fopAc_ac_c* daNpcF_c::getEvtAreaTagP(int i_type, int i_no) {
     mFindCount = 0;
     mSrchActorName = PROC_TAG_EVTAREA;
-    fpcM_Search((fpcLyIt_JudgeFunc)this->srchActor, (void*)this);
+    fpcM_Search(this->srchActor, this);
 
-    for (int i = 0; mFindCount >= 0; mFindCount--) {
-        if (param_0 == mFindActorPList[i] && param_1 == mFindActorPList[i]) {
-            return mFindActorPList[i];
+    for (int i = 0; i < mFindCount; i++) {
+        daTag_EvtArea_c* evt_area = static_cast<daTag_EvtArea_c*>(mFindActorPList[i]);
+        if (i_type == evt_area->getType() && i_no == evt_area->getNo()) {
+            return evt_area;
         }
     }
 
-    return 0;
+    return NULL;
 }
 #else
 #pragma push
@@ -5484,7 +5601,7 @@ SECTION_SDATA2 static f32 lit_11605 = 450.0f;
 /* 8015436C-80154730 14ECAC 03C4+00 0/0 0/0 12/12 .text getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii
  */
 #ifdef NONMATCHING
-fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
+fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, fpcLyIt_JudgeFunc param_1, f32 param_2,
                                     f32 param_3, f32 param_4, f32 param_5, s16 param_6, int param_7,
                                     int param_8) {
     fopAc_ac_c* actor = NULL;
@@ -5492,21 +5609,21 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*),
     int rnd2 = param_7 + (int)((cM_rnd() - 0.5f) * param_7);
     int r28 = 0;
     f32 minDistance = 1000000000.0f;
-    if (field_0x938) {
+    if (mAttnChangeTimer != 0) {
         daPy_py_c* player = daPy_getPlayerActorClass();
         fopAcM_SearchByID(player->getGrabActorID(), &actor);
-        if (field_0x82c[field_0x934].getActorP() != actor) {
-            func_8014D348(&field_0x938);
+        if (mAttnActor[mAttnIdx].getActorP() != actor) {
+            cLib_calcTimer(&mAttnChangeTimer);
         }
-        actor = field_0x82c[field_0x934].getActorP();
+        actor = mAttnActor[mAttnIdx].getActorP();
     }
     if (actor == NULL) {
-        field_0x938 = 0;
+        mAttnChangeTimer = 0;
         if (param_0) {
             param_2 = fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass());
         }
         mFindCount = 0;
-        fpcEx_Search((fpcLyIt_JudgeFunc)param_1, this);
+        fpcEx_Search(param_1, this);
         for (int i = 0; i < mFindCount; i++) {
             if (chkPointInArea(getAttentionPos(mFindActorPList[i]), attention_info.position,
                                param_2, param_3, param_4, 0) &&
@@ -5514,8 +5631,9 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*),
             {
                 int j;
                 for (j = 0; j < 5; j++) {
-                    // !@Bug I think field_0x93c index should be j
-                    if (mFindActorPList[i] == field_0x82c[j].getActorP() && field_0x93c[i] != 0) {
+                    // !@Bug I think mAttnActorTimer index should be j
+                    if (mFindActorPList[i] == mAttnActor[j].getActorP() && mAttnActorTimer[i] != 0)
+                    {
                         break;
                     }
                 }
@@ -5537,28 +5655,27 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*),
         }
         if (actor != NULL) {
             int minInd, j;
-            ;
             int dist3 = 900;
             minInd = 0;
             for (j = 0; j < 5; j++) {
-                if (field_0x93c[j] < dist3) {
-                    dist3 = field_0x93c[j];
+                if (mAttnActorTimer[j] < dist3) {
+                    dist3 = mAttnActorTimer[j];
                     minInd = j;
                 }
             }
-            field_0x82c[minInd].entry(actor);
+            mAttnActor[minInd].entry(actor);
             if (param_8) {
-                field_0x93c[minInd] = r28 != 1 ? 0 : rnd;
+                mAttnActorTimer[minInd] = r28 == 1 ? 0 : rnd;
             } else {
-                field_0x93c[minInd] = 0;
+                mAttnActorTimer[minInd] = 0;
             }
 
-            field_0x938 = (r28 != 1) ? rnd2 : 30;
-            field_0x934 = minInd;
+            mAttnChangeTimer = (r28 != 1) ? rnd2 : 30;
+            mAttnIdx = minInd;
         }
     }
     if (actor == NULL) {
-        field_0x938 = 0;
+        mAttnChangeTimer = 0;
     }
     return actor;
 }
@@ -5566,7 +5683,7 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*),
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
+asm fopAc_ac_c* daNpcF_c::getAttnActorP(int param_0, fpcLyIt_JudgeFunc param_1, f32 param_2,
                                         f32 param_3, f32 param_4, f32 param_5, s16 param_6,
                                         int param_7, int param_8) {
     nofralloc
@@ -5587,8 +5704,8 @@ asm BOOL daNpcF_c::chkActorInSight2(fopAc_ac_c* param_0, f32 param_1, s16 param_
 #pragma pop
 
 /* 80154834-801548F4 14F174 00C0+00 2/2 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs */
-// literal load order
 #ifdef NONMATCHING
+// matches with literals
 BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                               s16 param_5) {
     cXyz tmp_pos1;
@@ -5601,14 +5718,9 @@ BOOL daNpcF_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param
         param_3 = param_4;
     }
 
-    f32 res = fabsf(param_3 - tmp_float1) * 0.5f;
-    tmp_pos1.x = param_2;
-    tmp_pos1.y = res;
-    tmp_pos1.z = param_2;
+    tmp_pos1.set(param_2, fabsf(param_3 - tmp_float1) / 2, param_2);
 
-    tmp_pos2.x = param_1.x;
-    tmp_pos2.y = param_1.y;
-    tmp_pos2.z = param_1.z;
+    tmp_pos2 = param_1;
     tmp_pos2.y += tmp_float1;
     tmp_pos2.y += tmp_pos1.y;
 
@@ -5644,14 +5756,46 @@ cXyz daNpcF_c::getAttentionPos(fopAc_ac_c* i_ActorP) {
 }
 
 /* 801549E0-80154BD8 14F320 01F8+00 0/0 0/0 18/18 .text            chkFindPlayer2__8daNpcF_cFis */
+#ifdef NONMATCHING
+// matches with literals
+BOOL daNpcF_c::chkFindPlayer2(BOOL param_0, s16 param_1) {
+    cXyz attn_pos = getAttentionPos(daPy_getPlayerActorClass());
+    int attn_no = param_0 == false ? mAttentionInfo.field_0x0[3] : mAttentionInfo.field_0x0[1];
+    f32 fvar2 = param_0 == false ? dAttention_c::getDistTable(attn_no).field_0x0
+                                 : dAttention_c::getDistTable(attn_no).field_0x4;
+    f32 fvar3 = dAttention_c::getDistTable(attn_no).field_0x10 * -1.0f;
+    f32 fvar4 = dAttention_c::getDistTable(attn_no).field_0xc * -1.0f;
+    u32 uvar7 = dAttention_c::getDistTable(attn_no).field_0x18;
+    f32 fvar5 = 180.0f;
+    if (uvar7 & 8) {
+        fvar5 = 30.0f;
+    } else if (uvar7 & 0x10) {
+        fvar5 = 45.0f;
+    } else if (uvar7 & 0x20) {
+        fvar5 = 60.0f;
+    } else if (uvar7 & 0x40) {
+        fvar5 = 90.0f;
+    } else if (uvar7 & 0x80) {
+        fvar5 = 110.0f;
+    } else if (uvar7 & 0x100) {
+        fvar5 = 135.0f;
+    }
+    if (chkPointInArea(attn_pos, mAttentionInfo.mPosition, fvar2, fvar3, fvar4, 0)
+                    && chkActorInSight2(daPy_getPlayerActorClass(), fvar5, param_1)) {
+        return true;
+    }
+    return false;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcF_c::chkFindPlayer2(int param_0, s16 param_1) {
+asm BOOL daNpcF_c::chkFindPlayer2(int param_0, s16 param_1) {
     nofralloc
 #include "asm/d/a/d_a_npc/chkFindPlayer2__8daNpcF_cFis.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804534B4-804534B8 001AB4 0004+00 1/1 0/0 0/0 .sdata2          id$11798 */
@@ -5661,35 +5805,36 @@ SECTION_SDATA2 static u16 id_11798[2] = {
 };
 
 /* 80154BD8-80154DA8 14F518 01D0+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__8daNpcF_cFv */
-// field_0x9d2 is weird
 #ifdef NONMATCHING
+// matches with literals
 void daNpcF_c::setHitodamaPrtcl() {
-    u8 uVar3;
-    cXyz local_20;
+    cXyz pos;
 
-    field_0x9d0 = (2 * ((u16)field_0x9d2));
-    field_0x9b8.x = cM_ssin(((u16)field_0x9d2)) * 8.0f;
+    field_0x9d0 = (u16)(field_0x9d2 * 2);
+    field_0x9b8.x = cM_ssin(field_0x9d2) * 8.0f;
     field_0x9b8.y = cM_ssin(field_0x9d0) * 4.0f;
     field_0x9b8.z = field_0x9b8.x * -cM_ssin(shape_angle.y);
 
     field_0x9b8.x *= cM_scos(shape_angle.y);
     field_0x9d2 += 0x400;
-    local_20.x = eyePos.x + field_0x9b8.x + field_0x9c4.x;
-    local_20.y = eyePos.y + field_0x9b8.y + field_0x9c4.y;
-    local_20.z = eyePos.z + field_0x9b8.z + field_0x9c4.z;
+    pos.x = eyePos.x + field_0x9b8.x + field_0x9c4.x;
+    pos.y = eyePos.y + field_0x9b8.y + field_0x9c4.y;
+    pos.z = eyePos.z + field_0x9b8.z + field_0x9c4.z;
 
     for (int i = 0; i < 2; i++) {
-        field_0x9a8[i] =
-            dComIfGp_particle_set(field_0x9a8[i], id_11798[i], &local_20, &field_0x8f0, NULL);
-        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x9a8[i]);
+        static u16 id[2] = {0x8497, 0x8498};
+        mHitodamaParticleKey[i] =
+            dComIfGp_particle_set(mHitodamaParticleKey[i], id[i], &pos, &field_0x8f0, NULL);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mHitodamaParticleKey[i]);
         if (emitter != NULL) {
+            u8 alpha;
             if (dComIfGs_wolfeye_effect_check() == 0) {
-                uVar3 = 0xff;
+                alpha = 0xff;
             } else {
-                uVar3 = 0;
+                alpha = 0;
             }
-            emitter->setGlobalTranslation(local_20.x, local_20.y, local_20.z);
-            emitter->setGlobalAlpha(uVar3);
+            emitter->setGlobalTranslation(pos.x, pos.y, pos.z);
+            emitter->setGlobalAlpha(alpha);
         }
     }
 }
