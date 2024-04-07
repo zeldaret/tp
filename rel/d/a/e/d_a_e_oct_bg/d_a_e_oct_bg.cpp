@@ -36,7 +36,7 @@ static u32 lit_1787[1 + 4 /* padding */] = {
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 /* 80739E80-80739EC0 00002C 0040+00 0/1 0/0 0/0 .data cc_obg_src__26@unnamed@d_a_e_oct_bg_cpp@ */
-static dCcD_SrcSph data_80739E80 = {
+static dCcD_SrcSph cc_obg_src = {
     {
         {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
@@ -50,7 +50,7 @@ static dCcD_SrcSph data_80739E80 = {
 
 /* 80739EC0-80739F00 00006C 0040+00 0/1 0/0 0/0 .data cc_obg_at_src__26@unnamed@d_a_e_oct_bg_cpp@
  */
-static dCcD_SrcSph data_80739EC0 = {
+static dCcD_SrcSph cc_obg_at_src = {
     {
         {0x0, {{0x400, 0x1, 0xD}, {0x0, 0x0}, 0x0}},  // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},          // mGObjAt
@@ -962,9 +962,9 @@ int daE_OctBg_c::create() {
         health = 10;
         field_0x560 = 10;
         field_0x884.Init(100, 0, this);
-        field_0x8c0.Set(data_80739E80);
+        field_0x8c0.Set(cc_obg_src);
         field_0x8c0.SetStts(&field_0x884);
-        field_0x9f8.Set(data_80739EC0);
+        field_0x9f8.Set(cc_obg_at_src);
         field_0x9f8.SetStts(&field_0x884);
         field_0x5bc.init(&current.pos, &eyePos, 3, 1);
         field_0x5bc.setEnemyName("E_octbg");
