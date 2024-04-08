@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_graphic.h"
+#include "dolphin/base/PPCArch.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
@@ -25,138 +26,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JFramework/JFWSystem.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" static void createTimg__FUsUsUl();
-extern "C" void create__13mDoGph_gInf_cFv();
-extern "C" void beginRender__13mDoGph_gInf_cFv();
-extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void fadeOut_f__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void onBlure__13mDoGph_gInf_cFv();
-extern "C" void onBlure__13mDoGph_gInf_cFPA4_Cf();
-extern "C" void fadeOut__13mDoGph_gInf_cFf();
-extern "C" static void darwFilter__F8_GXColor();
-extern "C" void calcFade__13mDoGph_gInf_cFv();
-extern "C" void mDoGph_BlankingON__Fv();
-extern "C" void mDoGph_BlankingOFF__Fv();
-extern "C" static void dScnPly_BeforeOfPaint__Fv();
-extern "C" void mDoGph_BeforeOfDraw__Fv();
-extern "C" void mDoGph_AfterOfDraw__Fv();
-extern "C" static void drawDepth2__FP10view_classP15view_port_classi();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void trimming__FP10view_classP15view_port_class();
-extern "C" void mDoGph_drawFilterQuad__FScSc();
-extern "C" void create__Q213mDoGph_gInf_c7bloom_cFv();
-extern "C" void remove__Q213mDoGph_gInf_c7bloom_cFv();
-extern "C" void draw__Q213mDoGph_gInf_c7bloom_cFv();
-extern "C" static void retry_captue_frame__FP10view_classP15view_port_classi();
-extern "C" static void motionBlure__FP10view_class();
-extern "C" static void setLight__Fv();
-extern "C" static void drawItem3D__Fv();
-extern "C" void mDoGph_Painter__Fv();
-extern "C" void __dt__13J2DOrthoGraphFv();
-extern "C" void mDoGph_Create__Fv();
-extern "C" void __sinit_m_Do_graphic_cpp();
-extern "C" s32 getAtnActorID__9daPy_py_cCFv();
-extern "C" extern char const* const m_Do_m_Do_graphic__stringBase0;
-extern "C" u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" u8 mZbufferTexObj__13mDoGph_gInf_c[32];
-extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" u8 mBlureMtx__13mDoGph_gInf_c[48 + 4 /* padding */];
-extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
-extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
-extern "C" u8 mZbufferTex__13mDoGph_gInf_c[4];
-extern "C" f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" f32 mFadeSpeed__13mDoGph_gInf_c;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl();
-extern "C" void mDoExt_adjustSolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void calcMenu__13dPa_control_cFv();
-extern "C" void draw__13dPa_control_cFP11JPADrawInfoUc();
-extern "C" void imageDraw__21dDlst_shadowControl_cFPA4_f();
-extern "C" void draw__21dDlst_shadowControl_cFPA4_f();
-extern "C" void init__12dDlst_list_cFv();
-extern "C" void reset__12dDlst_list_cFv();
-extern "C" void drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer();
-extern "C" void drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer();
-extern "C" void drawOpaListItem3d__12dDlst_list_cFv();
-extern "C" void drawXluListItem3d__12dDlst_list_cFv();
-extern "C" void draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c();
-extern "C" void calcWipe__12dDlst_list_cFv();
-extern "C" void LockonTruth__12dAttention_cFv();
-extern "C" void dCam_getBody__Fv();
-extern "C" void dKy_setLight__Fv();
-extern "C" void setupItem3D__17dMenu_Collect3D_cFPA4_f();
-extern "C" void cLib_memSet__FPviUl();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void createManager__10JFWDisplayFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumberb();
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void setRenderMode__8JUTVideoFPC16_GXRenderModeObj();
-extern "C" void __ct__8JUTFaderFiiiiQ28JUtility6TColor();
-extern "C" void __ct__13J2DOrthoGraphFffffff();
-extern "C" void setPort__13J2DOrthoGraphFv();
-extern "C" void func_802E980C();
-extern "C" void setBuffer__8J2DPrintFUl();
-extern "C" void drawInit__6J3DSysFv();
-extern "C" void reinitGX__6J3DSysFv();
-extern "C" void PPCSync();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXPixModeSync();
-extern "C" void GXInvalidateTexAll();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 mPadStatus__10JUTGamePad[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern s8 data_80450580;
-extern "C" extern s8 developmentMode__7mDoMain;
-extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-extern "C" u8 systemConsole__9JFWSystem[4];
-extern "C" u8 sManager__10JFWDisplay[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" u8 sManager__8JUTVideo[4];
-extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" u8 sManager__10JUTProcBar[4];
-
-//
-// Declarations:
-//
+extern "C" u8 m_bloom__13mDoGph_gInf_c[20];  // needed for sinit for now
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
@@ -182,7 +52,6 @@ static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
     return timg;
 }
 
-/* ############################################################################################## */
 /* 80450590-80450594 000010 0004+00 2/2 1/1 0/0 .sdata           mBackColor__13mDoGph_gInf_c */
 GXColor mDoGph_gInf_c::mBackColor = {0, 0, 0, 0};
 
@@ -218,14 +87,11 @@ f32 mDoGph_gInf_c::mFadeSpeed;
 /* 80450BE7 0001+00 data_80450BE7 None */
 bool mDoGph_gInf_c::mBlureFlag;
 
-#pragma push
-#pragma force_active on
 u8 mDoGph_gInf_c::mBlureRate;
 
 u8 mDoGph_gInf_c::mFade;
 
 bool data_80450BE7;
-#pragma pop
 
 /* 80007E44-80007F90 002784 014C+00 1/1 0/0 0/0 .text            create__13mDoGph_gInf_cFv */
 void mDoGph_gInf_c::create() {
@@ -257,7 +123,6 @@ void mDoGph_gInf_c::create() {
     VISetBlack(TRUE);
 }
 
-/* ############################################################################################## */
 /* 80450BE8-80450BF0 0000E8 0008+00 1/1 0/0 0/0 .sbss            None */
 static bool data_80450BE8;
 
@@ -270,29 +135,16 @@ void mDoGph_gInf_c::beginRender() {
     JFWDisplay::getManager()->beginRender();
 }
 
-/* ############################################################################################## */
-/* 80451A38-80451A3C 000038 0004+00 11/11 0/0 0/0 .sdata2          @4062 */
-SECTION_SDATA2 static u8 lit_4062[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80451A3C-80451A40 00003C 0004+00 8/8 0/0 0/0 .sdata2          @4063 */
-SECTION_SDATA2 static f32 lit_4063 = 1.0f;
-
 /* 80007FD8-80008028 002918 0050+00 1/1 6/4 15/15 .text fadeOut__13mDoGph_gInf_cFfR8_GXColor */
 void mDoGph_gInf_c::fadeOut(f32 fadeSpeed, GXColor& fadeColor) {
     mFade = 1;
     mFadeSpeed = fadeSpeed;
     mFadeColor = fadeColor;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_4062);
-    if (fadeSpeed >= tmp_0) {
-        mFadeRate = tmp_0;
+    if (fadeSpeed >= 0.0f) {
+        mFadeRate = 0.0f;
     } else {
-        mFadeRate = lit_4063;
+        mFadeRate = 1.0f;
     }
 }
 
@@ -302,11 +154,10 @@ void mDoGph_gInf_c::fadeOut_f(f32 fadeSpeed, GXColor& fadeColor) {
     mFadeSpeed = fadeSpeed;
     mFadeColor = fadeColor;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_4062);
-    if (fadeSpeed >= tmp_0) {
-        mFadeRate = tmp_0;
+    if (fadeSpeed >= 0.0f) {
+        mFadeRate = 0.0f;
     } else {
-        mFadeRate = lit_4063;
+        mFadeRate = 1.0f;
     }
 }
 
@@ -315,7 +166,6 @@ void mDoGph_gInf_c::onBlure() {
     onBlure(g_mDoMtx_identity);
 }
 
-/* ############################################################################################## */
 /* 803DD3E8-803DD408 00A108 0020+00 3/3 3/3 0/0 .bss             mFrameBufferTexObj__13mDoGph_gInf_c
  */
 GXTexObj mDoGph_gInf_c::mFrameBufferTexObj;
@@ -340,13 +190,7 @@ void mDoGph_gInf_c::fadeOut(f32 fadeSpeed) {
     fadeOut(fadeSpeed, g_clearColor);
 }
 
-/* ############################################################################################## */
-/* 80451A40-80451A44 000040 0004+00 5/5 0/0 0/0 .sdata2          @4105 */
-SECTION_SDATA2 static f32 lit_4105 = 10.0f;
-
 /* 800080F4-80008330 002A34 023C+00 1/1 0/0 0/0 .text            darwFilter__F8_GXColor */
-// matches with literals
-#ifdef NONMATCHING
 static void darwFilter(GXColor matColor) {
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
@@ -362,16 +206,14 @@ static void darwFilter(GXColor matColor) {
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
-    f32 tmp_0 = FLOAT_LABEL(lit_4062);
-    GXSetFog(GX_FOG_NONE, tmp_0, tmp_0, tmp_0, tmp_0, g_clearColor);
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_ENABLE);
     GXSetNumIndStages(0);
 
     Mtx44 mtx;
-    f32 tmp_0_2 = FLOAT_LABEL(lit_4062);
-    C_MTXOrtho(mtx, tmp_0_2, lit_4063, tmp_0_2, lit_4063, tmp_0_2, lit_4105);
+    C_MTXOrtho(mtx, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 10.0f);
     GXSetProjection(mtx, GX_ORTHOGRAPHIC);
     GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetChanMatColor(GX_COLOR0A0, matColor);
@@ -386,24 +228,8 @@ static void darwFilter(GXColor matColor) {
     GXPosition3s8(0, 1, -5);
     GXEnd();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void darwFilter(_GXColor param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/darwFilter__F8_GXColor.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80451A44-80451A48 000044 0004+00 1/1 0/0 0/0 .sdata2          @4131 */
-SECTION_SDATA2 static f32 lit_4131 = 255.0f;
 
 /* 80008330-8000841C 002C70 00EC+00 1/1 0/0 0/0 .text            calcFade__13mDoGph_gInf_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void mDoGph_gInf_c::calcFade() {
     if (mDoGph_gInf_c::mFade != 0) {
         mFadeRate += mFadeSpeed;
@@ -416,7 +242,7 @@ void mDoGph_gInf_c::calcFade() {
                 mFadeRate = 1.0f;
             }
         }
-        mFadeColor.a = lit_4131 * mFadeRate;
+        mFadeColor.a = 255.0f * mFadeRate;
     } else {
         if (dComIfG_getBrightness() != 255) {
             mFadeColor.r = 0;
@@ -432,16 +258,6 @@ void mDoGph_gInf_c::calcFade() {
         darwFilter(mFadeColor);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::calcFade() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/calcFade__13mDoGph_gInf_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8000841C-80008420 002D5C 0004+00 0/0 1/0 0/0 .text            mDoGph_BlankingON__Fv */
 void mDoGph_BlankingON() {}
@@ -461,8 +277,6 @@ int mDoGph_BeforeOfDraw() {
 }
 
 /* 80008474-80008630 002DB4 01BC+00 0/0 1/0 0/0 .text            mDoGph_AfterOfDraw__Fv */
-// Matches with literals
-#ifdef NONMATCHING
 int mDoGph_AfterOfDraw() {
     if (fapGmHIO_isMenu()) {
         JUTProcBar::getManager()->setVisible(false);
@@ -501,104 +315,12 @@ int mDoGph_AfterOfDraw() {
     mDoGph_gInf_c::endFrame();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_AfterOfDraw() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/mDoGph_AfterOfDraw__Fv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80450598-8045059C 000018 0004+00 1/1 0/0 0/0 .sdata           l_tevColor0$4208 */
-SECTION_SDATA static GXColorS10 l_tevColor0 = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045059C-804505A0 00001C 0004+00 1/1 0/0 0/0 .sdata           None */
-// SECTION_SDATA static u8 data_8045059C[4] = {
-//     0x00,
-//     0x00,
-//     0x00,
-//     0x00,
-// };
-
-/* 80451A48-80451A4C 000048 0004+00 1/1 0/0 0/0 .sdata2          @4422 */
-SECTION_SDATA2 static f32 lit_4422 = -255.0f;
-
-/* 80451A4C-80451A50 00004C 0004+00 2/2 0/0 0/0 .sdata2          @4423 */
-SECTION_SDATA2 static f32 lit_4423 = 60.0f;
-
-/* 80451A50-80451A54 000050 0004+00 1/1 0/0 0/0 .sdata2          @4424 */
-SECTION_SDATA2 static f32 lit_4424 = 48.0f;
-
-/* 80451A54-80451A58 000054 0004+00 1/1 0/0 0/0 .sdata2          @4425 */
-SECTION_SDATA2 static f32 lit_4425 = 400.0f;
-
-/* 80451A58-80451A60 000058 0008+00 1/1 0/0 0/0 .sdata2          @4426 */
-SECTION_SDATA2 static f64 lit_4426 = 0.5;
-
-/* 80451A60-80451A68 000060 0008+00 1/1 0/0 0/0 .sdata2          @4427 */
-SECTION_SDATA2 static f64 lit_4427 = 3.0;
-
-/* 80451A68-80451A70 000068 0008+00 1/1 0/0 0/0 .sdata2          @4428 */
-SECTION_SDATA2 static u8 lit_4428[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80451A70-80451A74 000070 0004+00 1/1 0/0 0/0 .sdata2          @4429 */
-SECTION_SDATA2 static f32 lit_4429 = 280.0f;
-
-/* 80451A74-80451A78 000074 0004+00 1/1 0/0 0/0 .sdata2          @4430 */
-SECTION_SDATA2 static f32 lit_4430 = 0.8f;
-
-/* 80451A78-80451A7C 000078 0004+00 1/1 0/0 0/0 .sdata2          @4431 */
-SECTION_SDATA2 static f32 lit_4431 = -180.0f;
-
-/* 80451A7C-80451A80 00007C 0004+00 1/1 0/0 0/0 .sdata2          @4432 */
-SECTION_SDATA2 static f32 lit_4432 = 75.0f;
-
-/* 80451A80-80451A84 000080 0004+00 1/1 0/0 0/0 .sdata2          @4433 */
-SECTION_SDATA2 static f32 lit_4433 = 3.0f;
-
-/* 80451A84-80451A88 000084 0004+00 1/1 0/0 0/0 .sdata2          @4434 */
-SECTION_SDATA2 static f32 lit_4434 = 999999.0f;
-
-/* 80451A88-80451A8C 000088 0004+00 1/1 0/0 0/0 .sdata2          @4435 */
-SECTION_SDATA2 static f32 lit_4435 = 80.0f;
-
-/* 80451A8C-80451A90 00008C 0004+00 1/1 0/0 0/0 .sdata2          @4436 */
-SECTION_SDATA2 static f32 lit_4436 = 0.1f;
-
-/* 80451A90-80451A94 000090 0004+00 1/1 0/0 0/0 .sdata2          @4437 */
-SECTION_SDATA2 static f32 lit_4437 = 100.0f;
-
-/* 80451A94-80451A98 000094 0004+00 1/1 0/0 0/0 .sdata2          @4438 */
-SECTION_SDATA2 static f32 lit_4438 = 0.0001f;
-
-/* 80451A98-80451A9C 000098 0004+00 1/1 0/0 0/0 .sdata2          @4439 */
-SECTION_SDATA2 static f32 lit_4439 = -254.0f;
-
-/* 80451A9C-80451AA0 00009C 0004+00 1/1 0/0 0/0 .sdata2          @4440 */
-SECTION_SDATA2 static f32 lit_4440 = 509.0f;
-
-/* 80451AA0-80451AA4 0000A0 0004+00 1/1 0/0 0/0 .sdata2          @4441 */
-SECTION_SDATA2 static f32 lit_4441 = 0.0025f;
-
-/* 80451AA4-80451AA8 0000A4 0004+00 1/1 0/0 0/0 .sdata2          @4442 */
-SECTION_SDATA2 static f32 lit_4442 = -0.0025f;
 
 /* 80008630-80009184 002F70 0B54+00 1/1 0/0 0/0 .text
  * drawDepth2__FP10view_classP15view_port_classi                */
-// Matches with literals
-#ifdef NONMATCHING
 static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_2) {
+    static GXColorS10 l_tevColor0 = {0, 0, 0, 0};
+
     s16 x_orig;
     s16 y_orig_pos;
     s16 y_orig;
@@ -608,7 +330,6 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
     u16 halfWidth;
     u16 halfHeight;
     s16 height;
-
 
     f32* temp_r20;
 
@@ -655,7 +376,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
                     }
                     var_f30 = -180.0f - 75.0f * var_f2;
                 }
-            } else if (g_dComIfG_gameInfo.play.getEvent().runCheck() && temp_f31 < 3.0f &&
+            } else if (dComIfGp_event_runCheck() && temp_f31 < 3.0f &&
                        g_env_light.field_0x126c < 999999.0f)
             {
                 f32 var_f2 = g_env_light.field_0x126c / (80.0f * temp_f31);
@@ -809,39 +530,9 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
         GXSetProjection(param_0->mProjMtx, GX_PERSPECTIVE);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void drawDepth2(view_class* param_0, view_port_class* param_1, int param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/drawDepth2__FP10view_classP15view_port_classi.s"
-}
-#pragma pop
-#endif
-
-/* 80009184-800091C0 003AC4 003C+00 0/0 53/53 0/0 .text            __dt__4cXyzFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cXyz::~cXyz() {
-extern "C" asm void __dt__4cXyzFv() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/__dt__4cXyzFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451AA8-80451AAC 0000A8 0004+00 3/3 0/0 0/0 .sdata2          @4480 */
-SECTION_SDATA2 static f32 lit_4480 = 448.0f;
-
-/* 80451AAC-80451AB0 0000AC 0004+00 3/3 0/0 0/0 .sdata2          @4481 */
-SECTION_SDATA2 static f32 lit_4481 = 608.0f;
 
 /* 800091C0-800094B4 003B00 02F4+00 1/1 0/0 0/0 .text trimming__FP10view_classP15view_port_class
  */
-// Matches with literals
-#ifdef NONMATCHING
 static void trimming(view_class* param_0, view_port_class* param_1) {
     s16 y_orig = (int)param_1->mYOrig & ~7;
     s16 y_orig_pos = y_orig < 0 ? 0 : y_orig;
@@ -889,16 +580,6 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
     GXSetScissor(param_1->mScissor.mXOrig, param_1->mScissor.mYOrig, param_1->mScissor.mWidth,
                  param_1->mScissor.mHeight);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void trimming(view_class* param_0, view_port_class* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/trimming__FP10view_classP15view_port_class.s"
-}
-#pragma pop
-#endif
 
 /* 800094B4-80009544 003DF4 0090+00 2/2 1/1 0/0 .text            mDoGph_drawFilterQuad__FScSc */
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
@@ -939,26 +620,8 @@ void mDoGph_gInf_c::bloom_c::remove() {
     mMonoColor.a = 0;
 }
 
-/* ############################################################################################## */
-/* 80451AB4-80451AB8 0000B4 0004+00 1/1 0/0 0/0 .sdata2          @4528 */
-SECTION_SDATA2 static GXColorS10 lit_4528 = {0, 0, 0, 0x40};
-
-/* 80451ABC-80451AC0 0000BC 0004+00 1/1 0/0 0/0 .sdata2          @4592 */
-SECTION_SDATA2 static f32 lit_4592 = 4.0f;
-
-/* 80451AC0-80451AC8 0000C0 0004+04 1/1 0/0 0f/0 .sdata2          @4593 */
-SECTION_SDATA2 static f32 lit_4593 = 1.0f / 6400.0f;
-
-/* 80451AC8-80451AD0 0000C8 0008+00 1/1 0/0 0/0 .sdata2          @4595 */
-SECTION_SDATA2 static f64 lit_4595 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80456B60-80456B68 000000 0004+04 1/1 0/0 0/0 .sbss2           @4530 */
-SECTION_SBSS2 static GXColor lit_4530;
-
 /* 80009650-8000A160 003F90 0B10+00 1/1 0/0 0/0 .text            draw__Q213mDoGph_gInf_c7bloom_cFv
  */
-// Matches with literals
-#ifdef NONMATCHING
 void mDoGph_gInf_c::bloom_c::draw() {
     bool enabled = false;
     enabled = mEnable && m_buffer != NULL;
@@ -1004,7 +667,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
         }
         if (enabled) {
             GXSetTexCopySrc(0, 0, 0x130, 0xe0);
-            GXSetTexCopyDst(0x130, 0xe0, 6, 0);
+            GXSetTexCopyDst(0x130, 0xe0, GX_TF_RGBA8, 0);
             GXCopyTex(m_buffer, 0);
             GXSetNumTevStages(3);
             GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
@@ -1031,16 +694,9 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
                             GX_TEVPREV);
             GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_OR);
-            GXColorS10 tevColor0 = lit_4528;
-            tevColor0.r = -mPoint;
-            tevColor0.g = -mPoint;
-            tevColor0.b = -mPoint;
+            GXColorS10 tevColor0 = {-mPoint, -mPoint, -mPoint, 0x40};
             GXSetTevColorS10(GX_TEVREG0, tevColor0);
-            GXColor tevColor1 = lit_4530;
-            tevColor1.r = mBlureRatio;
-            tevColor1.g = mBlureRatio;
-            tevColor1.b = mBlureRatio;
-            tevColor1.a = mBlureRatio;
+            GXColor tevColor1 = {mBlureRatio, mBlureRatio, mBlureRatio, mBlureRatio};
             GXSetTevColor(GX_TEVREG1, tevColor1);
             GXPixModeSync();
             mDoGph_drawFilterQuad(2, 2);
@@ -1049,7 +705,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP0, GX_TEV_SWAP0);
             void* zBufferTex = getZbufferTex();
             GXSetTexCopySrc(0, 0, 0x130, 0xe0);
-            GXSetTexCopyDst(0x98, 0x70, 6, GX_TRUE);
+            GXSetTexCopyDst(0x98, 0x70, GX_TF_RGBA8, GX_TRUE);
             GXCopyTex(zBufferTex, 0);
             GXTexObj auStack_c0;
             GXInitTexObj(&auStack_c0, zBufferTex, 0x98, 0x70, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP,
@@ -1093,7 +749,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXPixModeSync();
             mDoGph_drawFilterQuad(1, 1);
             GXSetTexCopySrc(0, 0, 0x98, 0x70);
-            GXSetTexCopyDst(0x4c, 0x38, 6, GX_TRUE);
+            GXSetTexCopyDst(0x4c, 0x38, GX_TF_RGBA8, GX_TRUE);
             GXCopyTex(zBufferTex, GX_FALSE);
             GXTexObj auStack_e0;
             GXInitTexObj(&auStack_e0, zBufferTex, 0x4c, 0x38, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP,
@@ -1106,7 +762,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXInvalidateTexAll();
             mDoGph_drawFilterQuad(1, 1);
             GXSetTexCopySrc(0, 0, 0x98, 0x70);
-            GXSetTexCopyDst(0x98, 0x70, 6, GX_FALSE);
+            GXSetTexCopyDst(0x98, 0x70, GX_TF_RGBA8, GX_FALSE);
             GXCopyTex(zBufferTex, GX_FALSE);
             GXInitTexObj(&auStack_e0, m_buffer, 0x130, 0xe0, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP,
                          GX_FALSE);
@@ -1148,16 +804,6 @@ void mDoGph_gInf_c::bloom_c::draw() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_gInf_c::bloom_c::draw() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/draw__Q213mDoGph_gInf_c7bloom_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8000A160-8000A290 004AA0 0130+00 1/1 0/0 0/0 .text
  * retry_captue_frame__FP10view_classP15view_port_classi        */
@@ -1195,8 +841,6 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
 }
 
 /* 8000A290-8000A504 004BD0 0274+00 1/1 0/0 0/0 .text            motionBlure__FP10view_class */
-// Matches with literals
-#ifdef NONMATCHING
 static void motionBlure(view_class* param_0) {
     if (g_env_light.mIsBlure) {
         GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);
@@ -1239,26 +883,8 @@ static void motionBlure(view_class* param_0) {
         g_env_light.mIsBlure = 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void motionBlure(view_class* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/motionBlure__FP10view_class.s"
-}
-#pragma pop
-#endif
-/* ############################################################################################## */
-/* 80451AD0-80451AD4 0000D0 0004+00 1/1 0/0 0/0 .sdata2          @4641 */
-SECTION_SDATA2 static f32 lit_4641 = -35000.0f;
-
-/* 80451AD4-80451AD8 0000D4 0004+00 1/1 0/0 0/0 .sdata2          @4642 */
-SECTION_SDATA2 static f32 lit_4642 = -30000.0f;
 
 /* 8000A504-8000A58C 004E44 0088+00 1/1 0/0 0/0 .text            setLight__Fv */
-// matches with literals
-#ifdef NONMATCHING
 static void setLight() {
     GXLightObj obj;
 
@@ -1269,16 +895,6 @@ static void setLight() {
     GXInitLightSpot(&obj, 0.0f, GX_SP_FLAT);
     GXLoadLightObjImm(&obj, GX_LIGHT0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setLight() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/setLight__Fv.s"
-}
-#pragma pop
-#endif
 
 /* 8000A58C-8000A604 004ECC 0078+00 1/1 0/0 0/0 .text            drawItem3D__Fv */
 static void drawItem3D() {
@@ -1292,51 +908,7 @@ static void drawItem3D() {
     j3dSys.reinitGX();
 }
 
-/* ############################################################################################## */
-/* 80373DD0-80373DD0 000430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80373DD0 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_80373DD8 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_80373DDF = "F_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80373DE7 = "";
-#pragma pop
-
-/* 80451AD8-80451ADC 0000D8 0004+00 1/1 0/0 0/0 .sdata2          @5023 */
-SECTION_SDATA2 static f32 lit_5023 = -1.0f;
-
-/* 80451ADC-80451AE0 0000DC 0004+00 1/1 0/0 0/0 .sdata2          @5024 */
-SECTION_SDATA2 static f32 lit_5024 = 0.5f;
-
-/* 80451AE0-80451AE4 0000E0 0004+00 1/1 0/0 0/0 .sdata2          @5025 */
-SECTION_SDATA2 static f32 lit_5025 = -0.5f;
-
-/* 80451AE4-80451AE8 0000E4 0004+00 1/1 0/0 0/0 .sdata2          @5026 */
-SECTION_SDATA2 static f32 lit_5026 = 19.0f / 14.0f;
-
-/* 80451AE8-80451AEC 0000E8 0004+00 1/1 0/0 0/0 .sdata2          @5027 */
-SECTION_SDATA2 static f32 lit_5027 = 100000.0f;
-
-/* 80451AEC-80451AF0 0000EC 0004+00 1/1 0/0 0/0 .sdata2          @5028 */
-SECTION_SDATA2 static f32 lit_5028 = -2.0f;
-
-/* 80451AF0-80451AF4 0000F0 0004+00 1/1 0/0 0/0 .sdata2          @5029 */
-SECTION_SDATA2 static f32 lit_5029 = -100000.0f;
-
-/* 80451AF4-80451AF8 0000F4 0004+00 1/1 0/0 0/0 .sdata2          @5030 */
-SECTION_SDATA2 static f32 lit_5030 = 304.0f;
-
-/* 80451AF8-80451B00 0000F8 0004+04 1/1 0/0 0/0 .sdata2          @5031 */
-SECTION_SDATA2 static f32 lit_5031[1 + 1 /* padding */] = {
-    224.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 8000A604-8000B118 004F44 0B14+00 0/0 1/0 0/0 .text            mDoGph_Painter__Fv */
-// Matches without literals
-#ifdef NONMATCHING
 int mDoGph_Painter() {
     dComIfGp_particle_calcMenu();
 
@@ -1473,7 +1045,7 @@ int mDoGph_Painter() {
 
                 Mtx m2;
                 Mtx44 m;
-                C_MTXPerspective(m, 60.0f, 1.357143f, 1.0f, 100000.0f);
+                C_MTXPerspective(m, 60.0f, 1.3571428f, 1.0f, 100000.0f);
                 GXSetProjection(m, GX_PERSPECTIVE);
                 cXyz sp38c(0.0f, 0.0f, -2.0f);
                 cXyz sp398(0.0f, 1.0f, 0.0f);
@@ -1569,27 +1141,6 @@ int mDoGph_Painter() {
     mDoGph_gInf_c::endRender();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoGph_Painter() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/mDoGph_Painter__Fv.s"
-}
-#pragma pop
-#endif
-
-/* 8000B118-8000B174 005A58 005C+00 0/0 1/0 0/0 .text            __dt__13J2DOrthoGraphFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J2DOrthoGraph::~J2DOrthoGraph() {
-asm void __dt__13J2DOrthoGraphFv() {
-    nofralloc
-#include "asm/m_Do/m_Do_graphic/__dt__13J2DOrthoGraphFv.s"
-}
-#pragma pop
 
 /* 8000B174-8000B1D0 005AB4 005C+00 0/0 2/1 0/0 .text            mDoGph_Create__Fv */
 int mDoGph_Create() {
