@@ -655,21 +655,23 @@ static u8 lit_3819[12];
 static daE_FZ_HIO_c_tmp l_HIO;
 
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
-#ifndef NONMATCHING
+#ifdef NONMATCHING
 // fwd ref to function at bottom of TU
 static int setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
                                    cXyz* param_3);
 
 void daE_FZ_c::damage_check() {
-  f32 tmp = l_HIO.field_0x0c;
-  
+  // stack placement issues + float literals
+  csXyz s_pos;
+  cXyz pos;
+  cXyz pos2;
+  cXyz pos3;
+
   if (1 < health) {
     scale.set(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
     setMidnaBindEffect(this, &mCreature, &current.pos, &scale);
 
     if (field_0x712 == 0) {
-      cXyz pos;
-      
       pos.set(dComIfGp_getPlayer(0)->current.pos);
       mStts.Move();
       
@@ -682,179 +684,151 @@ void daE_FZ_c::damage_check() {
           }
         }
       } else {
-        
         if (mSph1.ChkTgHit()) {
-          // early load, fix later
-          fopAc_ac_c* co_hit_actor = mSph1.GetCoHitAc();
-          if (mObjAcch.ChkGroundHit() && mSph1.ChkCoHit() && co_hit_actor) {
+          mAtInfo.mpCollider = mSph1.GetTgHitObj();
+          
+          if (mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_40) || mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
+            current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
+            f32 tmp_l_hio = l_HIO.field_0x28;
+            speedF = tmp_l_hio;
+            field_0x6fc = tmp_l_hio;
+            mBoundSoundset();
+            setActionMode(ACT_DAMAGE,1);
+            return;
+          }
+
+          pos2 = current.pos - *mSph1.GetTgHitPosP();
+          pos3.set(*mSph1.GetTgHitPosP());
+          
+          s_pos.x = 0;
+          s_pos.y = pos2.atan2sX_Z();
+          s_pos.z = 0;
+
+          if (mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_SPINNER) || mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_ARROW)) {
+            current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
+            f32 tmp_l_hio = l_HIO.field_0x28;
+            speedF = tmp_l_hio;
+            field_0x6fc = tmp_l_hio;
+            mBoundSoundset();
+            dComIfGp_setHitMark(2,this,&pos3,&s_pos,0,AT_TYPE_0);
+            setActionMode(ACT_DAMAGE,1);
+            return;
+          }
+
+          dComIfGp_particle_set(0x85ba, &current.pos, &shape_angle, &cXyz(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c));
+              
+          if (mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) {
+            health -= 20;
+
+            if (1 < health) {
+              current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
+              
+              f32 tmp_l_hio = l_HIO.field_0x28;
+              speedF = tmp_l_hio;
+              field_0x6fc = tmp_l_hio;
+              mCreature.startCreatureSound(Z2SE_EN_FZ_DAMAGE,0,-1);
+
+              f32 tmp_l_hio2 = l_HIO.field_0x28;
+              speedF = tmp_l_hio2;
+              field_0x6fc = tmp_l_hio2;
+              setActionMode(ACT_DAMAGE,1);
+              dComIfGp_setHitMark(3,this,&pos3,&s_pos,0,AT_TYPE_0);
+              return;
+            }
+
+            deadnextSet(true);
+            dComIfGp_setHitMark(1,this,&pos3,&s_pos,0,AT_TYPE_0);
+            return;
+          }
+
+          if (mSph1.GetTgHitObj()->ChkAtType(AT_TYPE_IRON_BALL)) {
+            deadnextSet(false);
+            mSph1.ClrTgHit();
+            dComIfGp_setHitMark(3,this,&pos3,&s_pos,0,AT_TYPE_0);
+            return;
+          }
+
+          cc_at_check(this,&mAtInfo);
+
+          if (mAtInfo.mHitStatus == 0) {
+            dComIfGp_setHitMark(1,this,&pos3,&s_pos,0,AT_TYPE_0);
+          } else {
+            dComIfGp_setHitMark(3,this,&pos3,&s_pos,0,AT_TYPE_0);
+          }
+
+          mLastWallHitAngle = mAtInfo.mHitDirection;
+          setReflectAngle();
+          current.angle.y += -32768;
+          field_0x712 = 10;
+
+          if (1 < health) {
+            mCreature.startCreatureSound(Z2SE_EN_FZ_DAMAGE,0,-1);
+            f32 tmp_l_hio = l_HIO.field_0x28;
+            speedF = tmp_l_hio;
+            field_0x6fc = tmp_l_hio;
+            setActionMode(ACT_DAMAGE,1);
+            return;
+          }
+
+          deadnextSet(true);
+          return;     
+        } else {        
+          if (mObjAcch.ChkGroundHit() && mSph1.ChkCoHit()) {
+            fopAc_ac_c* co_hit_actor = mSph1.GetCoHitAc();
 
             if (fopAcM_IsActor(co_hit_actor) && fopAcM_GetName(co_hit_actor) == PROC_E_FZ) {
-              co_hit_actor = mSph1.GetCoHitAc();
-              pos = pos - current.pos;
-              
+              pos = current.pos - mSph1.GetCoHitAc()->current.pos;
               mSph1.ClrCoHit();
+              f32 co_hit_actor_speed = co_hit_actor->speedF;
 
-              if ((DAT_80ac4b50 * 0.2 < *(float *)(iVar3 + 0x530)) ||
-                 (DAT_80ac4b50 * 0.2 < *(float *)(this + 0x530))) {
-                pos = pos - current.pos;
+              if (co_hit_actor_speed  > l_HIO.field_0x28 * 0.2f || speedF > l_HIO.field_0x28 * 0.2f) {
+                pos3 = current.pos - co_hit_actor->current.pos;
                 mLastWallHitAngle = pos.atan2sX_Z();
                 setReflectAngle();
 
-                if (*(float *)(this + 0x530) <= *(float *)(iVar3 + 0x530)) {
-                  uVar4 = *(undefined4 *)(iVar3 + 0x530);
-                  *(undefined4 *)(this + 0x530) = uVar4;
-                  *(undefined4 *)(this + 0x734) = uVar4;
+                f32 tmp2 = speedF;
+                f32 tmp = co_hit_actor->speedF;
+
+                if (speedF > tmp) {
+                  co_hit_actor->speedF = tmp2;
+                  static_cast<daE_FZ_c*>(co_hit_actor)->field_0x6fc = tmp2;
                 } else {
-                  uVar4 = *(undefined4 *)(this + 0x530);
-                  *(undefined4 *)(iVar3 + 0x530) = uVar4;
-                  *(undefined4 *)(iVar3 + 0x734) = uVar4;
+                  speedF = tmp;
+                  field_0x6fc = tmp;
                 }
+
                 mBoundSoundset();
                 setActionMode(ACT_DAMAGE,5);
                 return;
               }
             }
           }
-          iVar3 = ::dCcD_GObjInf::ChkAtHit((dCcD_GObjInf *)(this + 0xb08));
-          if (iVar3 != 0) {
-            pfVar2 = m_Do_graphic::dComIfGp_getPlayer(0);
-            pfVar8 = (fopAc_ac_c *)::dCcD_GObjInf::GetAtHitAc((dCcD_GObjInf *)(this + 0xb08));
-            sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-            *(short *)(this + 0x4e2) = sVar9 + -0x8000;
-            if (pfVar2 == pfVar8) {
-              iVar3 = ::dCcD_GObjInf::ChkAtShieldHit((dCcD_GObjInf *)(this + 0xb08));
-              fVar1 = DAT_80ac4b50;
-              if (iVar3 == 0) {
-                if (*(int *)(this + 0x72c) != 3) {
-                  this[0x74a] = (daE_FZ_c)0xa;
-                  setActionMode(this,3,3);
+          
+          if (mSph2.ChkAtHit()) {
+            fopAc_ac_c* player = dComIfGp_getPlayer(0);
+            fopAc_ac_c* at_hit_actor = mSph2.GetAtHitAc();
+
+            current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
+
+            if (player != at_hit_actor) {
+              mSph2.ClrAtHit();
+            } else {
+              if (mSph2.ChkAtShieldHit()) {
+                f32 l_hio_28 = l_HIO.field_0x28;
+                speedF = l_hio_28;
+                field_0x6fc = l_hio_28;
+                setActionMode(ACT_DAMAGE,1);
+                
+              } else {
+                if (mActionMode != ACT_DAMAGE) {
+                  field_0x712 = 10;
+                  setActionMode(ACT_DAMAGE,3);
                 }
               }
-              else {
-                *(float *)(this + 0x530) = DAT_80ac4b50;
-                *(float *)(this + 0x734) = fVar1;
-                setActionMode(this,3,1);
-              }
-              mBoundSoundset(this);
-              (**(code **)(*(int *)(this + 0xb44) + 0x20))();
-            }
-            else {
-              (**(code **)(*(int *)(this + 0xb44) + 0x20))();
+              mBoundSoundset();
+              mSph2.ClrAtHit();
             }
           }
-        }
-        else {
-          uVar4 = ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-          *(undefined4 *)(this + 0xc40) = uVar4;
-          pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-          iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x40);
-          if (iVar3 == 0) {
-            pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-            iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x10000);
-            if (iVar3 == 0) {
-              csXyz::csXyz(&local_80);
-              ::cXyz::cXyz(&cStack60);
-              ::cXyz::cXyz(&cStack72);
-              ::dCcD_GObjInf::GetTgHitPosP((dCcD_GObjInf *)(this + 0x9d0));
-              ::cXyz::operator_-(&cStack96,(cXyz *)(this + 0x4d4));
-              ::cXyz::operator_=(&cStack60,&cStack96);
-              ::cXyz::~cXyz(&cStack96);
-              pVVar6 = (Vec *)::dCcD_GObjInf::GetTgHitPosP((dCcD_GObjInf *)(this + 0x9d0));
-              ::cXyz::set(&cStack72,pVVar6);
-              local_80.x = 0;
-              local_80.y = ::cXyz::atan2sX_Z(&cStack60);
-              local_80.z = 0;
-              pcVar5 = (cCcD_ObjHitInf *)::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0))
-              ;
-              iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x80000);
-              if (iVar3 == 0) {
-                pcVar5 = (cCcD_ObjHitInf *)
-                         ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-                iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x2000);
-                if (iVar3 == 0) {
-                  ::cXyz::cXyz(&cStack84,DAT_80ac4b34,DAT_80ac4b34,DAT_80ac4b34);
-                  f_op_kankyo_mng::dComIfGp_particle_set
-                            (0x85ba,(cXyz *)(this + 0x4d4),(csXyz *)(this + 0x4e8),&cStack84);
-                  pcVar5 = (cCcD_ObjHitInf *)
-                           ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-                  iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x4000);
-                  if (iVar3 != 0) {
-                    *(short *)(this + 0x56a) = *(short *)(this + 0x56a) + -0x14;
-                    if (1 < *(short *)(this + 0x56a)) {
-                      sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-                      *(short *)(this + 0x4e2) = sVar9 + -0x8000;
-                      fVar1 = DAT_80ac4b50;
-                      *(float *)(this + 0x530) = DAT_80ac4b50;
-                      *(float *)(this + 0x734) = fVar1;
-                      uVar4 = JAISoundID::JAISoundID(aJStack132,0x70321);
-                      (**(code **)(*(int *)(this + 0x5c8) + 0x14))(this + 0x5c8,uVar4,0,0xffffffff);
-                      fVar1 = DAT_80ac4b50;
-                      *(float *)(this + 0x530) = DAT_80ac4b50;
-                      *(float *)(this + 0x734) = fVar1;
-                      setActionMode(this,3,1);
-                      d_cc_s::dComIfGp_setHitMark
-                                (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-                      return;
-                    }
-                    deadnextSet(this,true);
-                    d_cc_s::dComIfGp_setHitMark
-                              (1,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-                    return;
-                  }
-                  pcVar5 = (cCcD_ObjHitInf *)
-                           ::dCcD_GObjInf::GetTgHitObj((dCcD_GObjInf *)(this + 0x9d0));
-                  iVar3 = ::cCcD_ObjHitInf::ChkAtType(pcVar5,0x400000);
-                  if (iVar3 != 0) {
-                    deadnextSet(this,false);
-                    (**(code **)(*(int *)(this + 0xa0c) + 0x24))();
-                    d_cc_s::dComIfGp_setHitMark
-                              (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-                    return;
-                  }
-                  d_cc_uty::cc_at_check(this,this + 0xc40);
-                  if (this[0xc5f] == (daE_FZ_c)0x0) {
-                    d_cc_s::dComIfGp_setHitMark
-                              (1,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-                  }
-                  else {
-                    d_cc_s::dComIfGp_setHitMark
-                              (3,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-                  }
-                  *(undefined2 *)(this + 0x740) = *(undefined2 *)(this + 0xc4e);
-                  setReflectAngle(this);
-                  *(short *)(this + 0x4e2) = *(short *)(this + 0x4e2) + -0x8000;
-                  this[0x74a] = (daE_FZ_c)0xa;
-                  if (1 < *(short *)(this + 0x56a)) {
-                    uVar4 = JAISoundID::JAISoundID(aJStack136,0x70321);
-                    (**(code **)(*(int *)(this + 0x5c8) + 0x14))(this + 0x5c8,uVar4,0,0xffffffff);
-                    fVar1 = DAT_80ac4b50;
-                    *(float *)(this + 0x530) = DAT_80ac4b50;
-                    *(float *)(this + 0x734) = fVar1;
-                    setActionMode(this,3,1);
-                    return;
-                  }
-                  deadnextSet(this,true);
-                  return;
-                }
-              }
-              sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-              *(short *)(this + 0x4e2) = sVar9 + -0x8000;
-              fVar1 = DAT_80ac4b50;
-              *(float *)(this + 0x530) = DAT_80ac4b50;
-              *(float *)(this + 0x734) = fVar1;
-              mBoundSoundset(this);
-              d_cc_s::dComIfGp_setHitMark(2,(fopAc_ac_c *)this,&cStack72,&local_80,(cXyz *)0x0,0);
-              setActionMode(this,3,1);
-              return;
-            }
-          }
-          sVar9 = f_op_actor_mng::fopAcM_searchPlayerAngleY(this);
-          *(short *)(this + 0x4e2) = sVar9 + -0x8000;
-          fVar1 = DAT_80ac4b50;
-          *(float *)(this + 0x530) = DAT_80ac4b50;
-          *(float *)(this + 0x734) = fVar1;
-          mBoundSoundset(this);
-          setActionMode(this,3,1);
         }
       }
     }
@@ -1514,7 +1488,7 @@ void daE_FZ_c::mtx_set() {
   mDoMtx_stack_c::ZXYrotM(shape_angle);
   mDoMtx_stack_c::scaleM(l_HIO.field_0x0c,l_HIO.field_0x0c,l_HIO.field_0x0c);
   mDoMtx_stack_c::scaleM(mRadiusBase,mRadiusBase,mRadiusBase);
-  mpModel->i_setBaseTRMtx(mDoMtx_stack_c::get());
+  mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */
