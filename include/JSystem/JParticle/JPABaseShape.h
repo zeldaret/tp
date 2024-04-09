@@ -125,4 +125,9 @@ public:
     /* 0x10 */ GXColor* mpEnvClrAnmTbl;
 };
 
+struct JPAClrAnmKeyData {
+    /* 0x0 */ s16 index;
+    /* 0x2 */ GXColor color;
+};
+
 #endif /* JPABASESHAPE_H */
