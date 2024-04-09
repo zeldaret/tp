@@ -6,13 +6,10 @@
 #include "d/event/d_event.h"
 #include "d/a/d_a_alink.h"
 #include "d/d_demo.h"
-#include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
 

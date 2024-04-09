@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_sand/d_a_obj_mirror_sand.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
 /* 80C989F0-80C989F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */

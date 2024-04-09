@@ -8,7 +8,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
-#include "global.h"
 
 //
 // Forward References:

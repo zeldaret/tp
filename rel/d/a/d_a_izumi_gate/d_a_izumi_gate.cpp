@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/d_a_izumi_gate/d_a_izumi_gate.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80849098-808490B8 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__13daIzumiGate_cFv */

@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:

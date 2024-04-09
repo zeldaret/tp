@@ -4,9 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"

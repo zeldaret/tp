@@ -7,7 +7,6 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
 //
 // Types:

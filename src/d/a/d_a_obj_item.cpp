@@ -9,7 +9,6 @@
 #include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

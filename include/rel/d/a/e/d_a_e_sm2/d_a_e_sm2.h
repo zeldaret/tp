@@ -1,8 +1,6 @@
 #ifndef D_A_E_SM2_H
 #define D_A_E_SM2_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 
 class e_sm2_class : public fopEn_enemy_c {

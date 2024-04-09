@@ -1,7 +1,6 @@
 #ifndef GXPERF_H
 #define GXPERF_H
 
-#include "dolphin/types.h"
 #include "dolphin/gx/GXEnum.h"
 
 #ifdef __cplusplus

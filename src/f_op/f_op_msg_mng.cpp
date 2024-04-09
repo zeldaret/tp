@@ -6,12 +6,10 @@
 #include "f_op/f_op_msg_mng.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"
 

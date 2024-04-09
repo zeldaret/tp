@@ -5,9 +5,7 @@
 
 #include "d/meter/d_meter_button.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter2_draw.h"
 #include "d/meter/d_meter2_info.h"

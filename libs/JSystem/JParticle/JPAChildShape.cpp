@@ -8,7 +8,6 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "dolphin/gx.h"
 #include "dolphin/os.h"
-#include "dolphin/types.h"
 
 //
 // Types:

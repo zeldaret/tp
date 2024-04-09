@@ -1,7 +1,6 @@
 #ifndef OSRESETSW_H
 #define OSRESETSW_H
 
-#include "dolphin/types.h"
 #include "dolphin/os/OSInterrupt.h"
 
 #ifdef __cplusplus

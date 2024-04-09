@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDCreate.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 #include "dolphin/dvd.h"
 
 static void CreateCallbackFat(s32 chan, s32 result);

@@ -2,7 +2,6 @@
 #define C_M3D_H_
 
 #include "math.h"
-#include "dolphin/types.h"
 #include "dolphin/mtx/vec.h"
 
 class cM3dGAab;

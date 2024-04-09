@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_malloc.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
 
 /* ############################################################################################## */
 /* 80451150-80451158 0004+04 s=3 e=0 z=0  None .sbss      Heap__3cMl */

@@ -2,7 +2,6 @@
 #define JUTRESFONT_H
 
 #include "JSystem/JUtility/JUTFont.h"
-#include "dolphin/gx/GXEnum.h"
 
 class JKRHeap;
 

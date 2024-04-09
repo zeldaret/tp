@@ -2,7 +2,6 @@
 #define JAUBANKTABLE_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASBankList.h"
 #include "JSystem/JSupport/JSUList.h"
 
 class JASBank;

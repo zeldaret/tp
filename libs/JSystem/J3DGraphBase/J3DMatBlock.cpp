@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
-#include "dolphin/gd.h"
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dol2asm.h"

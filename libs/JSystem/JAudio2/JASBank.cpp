@@ -4,9 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JASBank.h"
-#include "JSystem/JAudio2/JASAiCtrl.h"
-#include "JSystem/JAudio2/JASBasicInst.h"
-#include "JSystem/JAudio2/JASBasicWaveBank.h"
 #include "JSystem/JAudio2/JASChannel.h"
 #include "dol2asm.h"
 

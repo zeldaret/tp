@@ -1,6 +1,5 @@
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os.h"
-#include "dolphin/os/OSReset.h"
 
 static BOOL OnReset(BOOL param_0);
 BOOL __DVDTestAlarm(OSAlarm* alarm);

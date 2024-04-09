@@ -2,7 +2,6 @@
 #define JPATEXTURE_H
 
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/types.h"
 
 struct JPATextureData {
     // Probably magic / size / flags up top here, but they're unused.

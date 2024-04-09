@@ -3,7 +3,6 @@
 
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/kankyo/d_kankyo.h"
-#include "d/d_procname.h"
 
 class dkWmark_c : public kankyo_class {
 public:

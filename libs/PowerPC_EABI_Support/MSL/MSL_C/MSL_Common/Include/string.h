@@ -2,7 +2,6 @@
 #define _MSL_COMMON_STRING_H
 
 #include "stddef.h"
-#include "extras.h"
 
 #ifdef __cplusplus
 // TODO: std namespace should be used for C++, but it breaks asm compatibility afaict.

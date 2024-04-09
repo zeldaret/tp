@@ -1,8 +1,6 @@
 #ifndef D_A_OBJ_MIRROR_SCREW_H
 #define D_A_OBJ_MIRROR_SCREW_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/bg/d_bg_s_movebg_actor.h"
 #include "rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.h"
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole.h"
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_chain/d_a_obj_mirror_chain.h"

@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
-#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, _GXTexMtxType);

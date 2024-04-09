@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80BBAE84-80BBAE8C 000000 0006+02 3/3 0/0 0/0 .rodata          l_arcName */

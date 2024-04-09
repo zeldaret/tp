@@ -4,11 +4,8 @@
 //
 
 #include "JSystem/J2DGraph/J2DPicture.h"
-#include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTPalette.h"
-#include "JSystem/JUtility/JUTResource.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
 #include "dolphin/gx.h"

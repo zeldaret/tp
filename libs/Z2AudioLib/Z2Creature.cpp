@@ -5,10 +5,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2Param.h"
-#include "Z2AudioLib/Z2SceneMgr.h"
-#include "Z2AudioLib/Z2SeMgr.h"
-#include "Z2AudioLib/Z2SoundObjMgr.h"
-#include "Z2AudioLib/Z2StatusMgr.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "dol2asm.h"

@@ -2,7 +2,6 @@
 #define J2DWINDOWEX_H
 
 #include "JSystem/J2DGraph/J2DWindow.h"
-#include "dolphin/types.h"
 
 class J2DWindowEx : public J2DWindow {
 public:

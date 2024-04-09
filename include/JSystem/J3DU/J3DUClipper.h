@@ -2,7 +2,6 @@
 #define J3DUCLIPPER_H
 
 #include "dolphin/mtx.h"
-#include "dolphin/types.h"
 
 class J3DUClipper {
 public:

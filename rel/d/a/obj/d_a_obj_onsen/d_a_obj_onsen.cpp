@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80CA7B58-80CA7BB0 000078 0058+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjOnsen_cFv */

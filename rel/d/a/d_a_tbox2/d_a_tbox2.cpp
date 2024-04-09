@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/d_a_tbox2/d_a_tbox2.h"
-#include "d/a/d_a_player.h"
 #include "d/bg/d_bg_w.h"
-#include "d/com/d_com_inf_game.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 
 /* 80496A18-80496A54 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__9daTbox2_cFv */

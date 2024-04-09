@@ -1,11 +1,9 @@
 #ifndef D_A_OBJ_HEAVYSW_H
 #define D_A_OBJ_HEAVYSW_H
 
-#include "d/bg/d_bg_s.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
 class daHeavySw_c : public dBgS_MoveBgActor {

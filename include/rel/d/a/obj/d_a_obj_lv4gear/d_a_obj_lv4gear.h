@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_LV4GEAR_H
 #define D_A_OBJ_LV4GEAR_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.h"
 
 class daObjLv4Gear_c : public fopAc_ac_c {

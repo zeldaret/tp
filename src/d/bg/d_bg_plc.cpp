@@ -3,7 +3,6 @@
 //
 
 #include "d/bg/d_bg_plc.h"
-#include "dolphin/types.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
 /* 80074074-80074080 06E9B4 000C+00 0/0 1/1 0/0 .text            __ct__6dBgPlcFv */

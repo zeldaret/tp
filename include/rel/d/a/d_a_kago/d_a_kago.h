@@ -1,7 +1,6 @@
 #ifndef D_A_KAGO_H
 #define D_A_KAGO_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
 class daKago_c : public fopAc_ac_c {

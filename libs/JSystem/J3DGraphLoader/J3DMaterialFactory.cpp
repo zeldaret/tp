@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dol2asm.h"
 

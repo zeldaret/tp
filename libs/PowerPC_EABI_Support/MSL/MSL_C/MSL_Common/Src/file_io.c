@@ -1,5 +1,4 @@
 #include "file_io.h"
-#include "buffer_io.h"
 #include "ctype.h"
 
 /* 803659F8-80365BB4 360338 01BC+00 0/0 1/1 0/0 .text            fclose */

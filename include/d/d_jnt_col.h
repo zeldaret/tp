@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
 #include "SSystem/SComponent/c_sxyz.h"
-#include "dolphin/types.h"
 
 class fopAc_ac_c;
 

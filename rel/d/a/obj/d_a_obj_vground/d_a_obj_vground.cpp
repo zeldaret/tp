@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_vground/d_a_obj_vground.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D213D8-80D213F8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */

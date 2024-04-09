@@ -5,9 +5,7 @@
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "global.h"
 
 //

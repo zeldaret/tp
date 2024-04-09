@@ -3,8 +3,6 @@
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "d/kankyo/d_kankyo_wether.h"
-#include "dolphin/types.h"
-#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 class JPABaseEmitter;

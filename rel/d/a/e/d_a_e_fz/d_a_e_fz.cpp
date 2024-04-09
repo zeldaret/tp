@@ -4,10 +4,6 @@
  */
 
 #include "rel/d/a/e/d_a_e_fz/d_a_e_fz.h"
-#include "rel/d/a/d_a_mirror/d_a_mirror.h"
-#include "d/d_item.h"
-#include "d/a/d_a_player.h"
-#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "d/com/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"

@@ -4,13 +4,6 @@
 //
 
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/bg/d_bg_w.h"
-#include "d/a/d_a_player.h"
-#include "d/d_path.h"
-#include "d/d_stage.h"
 #include "d/d_tresure.h"
 #include "d/d_item_data.h"
 #include "f_op/f_op_actor.h"

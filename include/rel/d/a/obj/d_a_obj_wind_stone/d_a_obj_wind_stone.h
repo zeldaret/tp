@@ -1,9 +1,7 @@
 #ifndef D_A_OBJ_WIND_STONE_H
 #define D_A_OBJ_WIND_STONE_H
 
-#include "d/bg/d_bg_s.h"
 #include "d/bg/d_bg_w.h"
-#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daWindStone_c : public fopAc_ac_c, public request_of_phase_process_class {

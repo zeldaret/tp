@@ -1,7 +1,6 @@
 #ifndef JAUSEQDATABLOCKMGR_H
 #define JAUSEQDATABLOCKMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JSupport/JSUList.h"
 

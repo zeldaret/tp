@@ -1,7 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.h"
-#include "trk.h"
 
 /* 8036F278-8036F498 369BB8 0220+00 0/0 1/1 0/0 .text            TRKSuppAccessFile */
 DSError TRKSuppAccessFile(u32 file_handle, u8* data, size_t* count, DSIOResult* io_result,

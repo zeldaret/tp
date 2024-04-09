@@ -9,8 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_lib.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "string.h"
 

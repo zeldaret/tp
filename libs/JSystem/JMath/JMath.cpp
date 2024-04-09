@@ -5,7 +5,6 @@
 
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JMath/JMATrigonometric.h"
-#include "dol2asm.h"
 
 /* 80339878-80339938 3341B8 00C0+00 0/0 11/11 2/2 .text            JMAEulerToQuat__FsssP10Quaternion
  */

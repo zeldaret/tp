@@ -6,7 +6,6 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 
 class daObj_SSItem_c;
 typedef int (daObj_SSItem_c::*ProcessFunc)(void*);

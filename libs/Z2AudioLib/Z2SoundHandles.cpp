@@ -4,9 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SoundHandles.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAISoundInfo.h"
-#include "dolphin/types.h"
 #include "dol2asm.h"
 
 extern "C" void func_802AB200(void* _this);

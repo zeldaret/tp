@@ -2,7 +2,6 @@
 #define JKRDVDARAMRIPPER_H
 
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "dolphin/types.h"
 
 class JKRAramBlock;
 class JKRAramStreamCommand;

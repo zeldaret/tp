@@ -1,7 +1,6 @@
 #ifndef METROTRK_PORTABLE_SUPPORT_H
 #define METROTRK_PORTABLE_SUPPORT_H
 
-#include "dolphin/types.h"
 #include "trk.h"
 
 #ifdef __cplusplus

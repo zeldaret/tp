@@ -4,7 +4,6 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_Lv7Gate/d_a_tag_Lv7Gate.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"

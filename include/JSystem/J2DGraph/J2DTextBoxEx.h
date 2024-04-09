@@ -2,7 +2,6 @@
 #define J2DTEXTBOXEX_H
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "dolphin/types.h"
 
 class J2DMaterial;
 

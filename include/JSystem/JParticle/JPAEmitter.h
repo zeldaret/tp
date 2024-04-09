@@ -1,7 +1,6 @@
 #ifndef JPAEMITTER_H
 #define JPAEMITTER_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"

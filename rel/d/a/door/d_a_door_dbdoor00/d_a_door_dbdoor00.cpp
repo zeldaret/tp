@@ -4,12 +4,10 @@
 //
 
 #include "rel/d/a/door/d_a_door_dbdoor00/d_a_door_dbdoor00.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "printf.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/d_door_param2.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 extern "C" extern char const* const d_a_door_dbdoor00__stringBase0;

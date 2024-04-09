@@ -4,11 +4,8 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_ash/d_a_npc_ash.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 

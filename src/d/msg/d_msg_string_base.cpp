@@ -8,8 +8,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 

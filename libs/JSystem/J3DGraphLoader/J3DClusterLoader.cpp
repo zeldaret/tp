@@ -4,11 +4,7 @@
 //
 
 #include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
-#include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
-#include "JSystem/JSupport/JSupport.h"
-#include "JSystem/JUtility/JUTNameTab.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "string.h"

@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_shop_item/d_a_tag_shop_item.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D60B78-80D60D78 000078 0200+00 1/1 0/0 0/0 .text            create__16daTag_ShopItem_cFv */

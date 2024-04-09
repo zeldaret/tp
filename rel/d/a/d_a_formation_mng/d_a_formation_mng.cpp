@@ -4,8 +4,6 @@
 
 #include "rel/d/a/d_a_formation_mng/d_a_formation_mng.h"
 #include "rel/d/a/npc/d_a_npc_fguard/d_a_npc_fguard.h"
-#include "d/a/d_a_npc_cd2.h"
-#include "d/d_path.h"
 #include "d/save/d_save.h"
 #include "f_op/f_op_actor_mng.h"
 

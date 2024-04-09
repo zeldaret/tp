@@ -8,11 +8,6 @@
  * things like cCcD_ShapeAttr, dCcD/cCcD_Stts, etc
  */
 
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"

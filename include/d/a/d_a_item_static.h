@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_lib.h"
 #include "d/a/d_a_itembase.h"
-#include "d/cc/d_cc_d.h"
 #include "d/particle/d_particle.h"
 
 class daItem_c;

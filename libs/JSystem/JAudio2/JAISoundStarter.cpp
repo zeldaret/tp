@@ -4,7 +4,6 @@
 
 #include "JSystem/JAudio2/JAISoundStarter.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
-#include "dolphin/types.h"
 
 /* 802A2F6C-802A2F88 29D8AC 001C+00 0/0 1/1 0/0 .text            __ct__15JAISoundStarterFb */
 JAISoundStarter::JAISoundStarter(bool param_0) : JASGlobalInstance<JAISoundStarter>(param_0) {

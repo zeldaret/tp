@@ -4,7 +4,6 @@
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility/JUTAssert.h"
 
 struct JAIAudience;
 class JAISeq;

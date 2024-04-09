@@ -2,7 +2,6 @@
 #define GXINIT_H
 
 #include "dolphin/gx/GXTexture.h"
-#include "dolphin/mtx.h"
 
 typedef struct _GXData {
     // Bypass and vertex info

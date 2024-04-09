@@ -1,7 +1,6 @@
 #ifndef METROTRK_PORTABLE_NUBINIT_H
 #define METROTRK_PORTABLE_NUBINIT_H
 
-#include "dolphin/types.h"
 #include "trk.h"
 
 #ifdef __cplusplus

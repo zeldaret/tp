@@ -3,8 +3,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv1Candle01/d_a_obj_lv1Candle01.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

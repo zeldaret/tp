@@ -8,7 +8,6 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "stdio.h"
-#include "dolphin/vi.h"
 
 namespace JUTAssertion {
 

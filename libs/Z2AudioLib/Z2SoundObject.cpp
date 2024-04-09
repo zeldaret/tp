@@ -10,7 +10,6 @@
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2Audience.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAUSoundAnimator.h"
 
 Z2SoundObjBase::Z2SoundObjBase() {

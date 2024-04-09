@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_WFLAG_H
 #define D_A_OBJ_WFLAG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "SSystem/SComponent/c_phase.h"
 

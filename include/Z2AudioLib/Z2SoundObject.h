@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2SoundHandles.h"
 #include "JSystem/JAudio2/JAUSoundAnimator.h"
-#include "dolphin/types.h"
 
 class Z2SoundStarter;
 

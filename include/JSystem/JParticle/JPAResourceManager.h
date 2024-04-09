@@ -2,7 +2,6 @@
 #define JPARESOURCEMANAGER_H
 
 #include "JSystem/JParticle/JPATexture.h"
-#include "dolphin/types.h"
 
 class JKRHeap;
 class JPAResource;

@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/d_a_andsw/d_a_andsw.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */

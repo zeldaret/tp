@@ -8,9 +8,6 @@
 #define D_A_E_FZ_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor_mng.h"
-#include "d/bg/d_bg_s_acch.h"
-#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 #include "m_Do/m_Do_hostIO.h"
 

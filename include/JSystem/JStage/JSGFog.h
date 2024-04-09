@@ -2,7 +2,6 @@
 #define JSGFOG_H
 
 #include "JSystem/JStage/JSGObject.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 namespace JStage {

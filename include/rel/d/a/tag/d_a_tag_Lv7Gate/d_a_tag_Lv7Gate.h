@@ -2,7 +2,6 @@
 #define D_A_TAG_LV7GATE_H
 
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 
 class daTagLv7Gate_c : public fopAc_ac_c {
 public:

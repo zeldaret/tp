@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class daTag_Evt_c : public fopAc_ac_c {

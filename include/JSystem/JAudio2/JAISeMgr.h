@@ -2,8 +2,6 @@
 #define JAISEMGR_H
 
 #include "JSystem/JAudio2/JAISe.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "global.h"
 
 struct JAIAudience;

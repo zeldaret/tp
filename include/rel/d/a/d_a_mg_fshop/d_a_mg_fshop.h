@@ -1,7 +1,6 @@
 #ifndef D_A_MG_FSHOP_H
 #define D_A_MG_FSHOP_H
 
-#include "m_Do/m_Do_ext.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "f_op/f_op_actor.h"
 #include "SSystem/SComponent/c_phase.h"

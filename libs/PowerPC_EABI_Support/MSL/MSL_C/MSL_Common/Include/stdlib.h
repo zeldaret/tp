@@ -3,7 +3,6 @@
 
 #include "abort_exit.h"
 #include "arith.h"
-#include "mbstring.h"
 #include "strtoul.h"
 
 #endif

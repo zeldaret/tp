@@ -1,7 +1,6 @@
 #ifndef D_A_HOZELDA_H
 #define D_A_HOZELDA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daHoZelda_matAnm_c : public J3DMaterialAnm {

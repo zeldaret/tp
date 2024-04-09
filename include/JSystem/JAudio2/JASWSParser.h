@@ -2,7 +2,6 @@
 #define JASWSPARSER_H
 
 #include "dolphin/types.h"
-#include "JSystem/JSupport/JSupport.h"
 
 class JKRHeap;
 class JASWaveBank;

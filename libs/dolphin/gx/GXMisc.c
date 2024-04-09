@@ -1,7 +1,5 @@
 #include "dolphin/gx/GXMisc.h"
 #include "dolphin/gx.h"
-#include "dolphin/gx/GXInit.h"
-#include "dolphin/os/OSContext.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSReset.h"
 #include "dolphin/os/OSTime.h"

@@ -5,9 +5,6 @@
 
 #include "m_Do/m_Do_MemCard.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
-#include "JSystem/JKernel/JKRThread.h"
-#include "string.h"
-#include "dol2asm.h"
 #include "dolphin/card.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_MemCardRWmng.h"

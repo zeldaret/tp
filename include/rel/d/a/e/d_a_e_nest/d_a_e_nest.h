@@ -1,9 +1,6 @@
 #ifndef D_A_E_NEST_H
 #define D_A_E_NEST_H
 
-#include "f_op/f_op_actor.h"
-#include "SSystem/SComponent/c_phase.h"
-#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "Z2AudioLib/Z2Creature.h"

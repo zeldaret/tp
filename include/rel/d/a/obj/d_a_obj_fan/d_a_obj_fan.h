@@ -1,10 +1,8 @@
 #ifndef D_A_OBJ_FAN_H
 #define D_A_OBJ_FAN_H
 
-#include "dolphin/types.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
-#include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct daObjFan_c : public dBgS_MoveBgActor {

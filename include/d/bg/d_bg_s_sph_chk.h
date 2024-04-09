@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "d/bg/d_bg_s_chk.h"
-#include "dolphin/types.h"
 
 struct cBgD_Vtx_t;
 

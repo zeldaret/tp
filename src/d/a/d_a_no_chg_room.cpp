@@ -4,10 +4,6 @@
  */
 
 #include "d/a/d_a_no_chg_room.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "d/s/d_s_room.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"

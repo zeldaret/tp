@@ -6,8 +6,6 @@
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 #include "dol2asm.h"
 #include "d/a/d_a_alink.h"
-#include "m_Do/m_Do_controller_pad.h"
-#include "rel/d/a/d_a_mirror/d_a_mirror.h"
 #include "SSystem/SComponent/c_math.h"
 
 //

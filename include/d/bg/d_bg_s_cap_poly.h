@@ -1,8 +1,6 @@
 #ifndef D_BG_D_BG_S_CAPT_POLY_H
 #define D_BG_D_BG_S_CAPT_POLY_H
 
-#include "SSystem/SComponent/c_bg_s_chk.h"
-#include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/bg/d_bg_s_chk.h"
 
 struct dBgS_CaptPoly;

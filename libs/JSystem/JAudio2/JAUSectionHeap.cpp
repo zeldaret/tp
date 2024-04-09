@@ -4,14 +4,9 @@
 //
 
 #include "JSystem/JAudio2/JAUSectionHeap.h"
-#include "JSystem/JAudio2/JAIStreamDataMgr.h"
-#include "JSystem/JAudio2/JASBNKParser.h"
-#include "JSystem/JAudio2/JASBankTable.h"
-#include "JSystem/JAudio2/JASBasicWaveBank.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASResArcLoader.h"
-#include "JSystem/JAudio2/JASVoiceBank.h"
 #include "JSystem/JAudio2/JAUSeqCollection.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"

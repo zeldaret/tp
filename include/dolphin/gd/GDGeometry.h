@@ -1,7 +1,6 @@
 #ifndef GDGEOMETRY_H
 #define GDGEOMETRY_H
 
-#include "gx.h"
 
 #ifdef __cplusplus
 extern "C" {

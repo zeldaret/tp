@@ -4,10 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_wind_stone/d_a_obj_wind_stone.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/a/d_a_alink.h"
-#include "d/d_procname.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"

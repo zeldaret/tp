@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_pleaf/d_a_obj_pleaf.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 /* 80CB189C-80CB18A0 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */

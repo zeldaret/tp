@@ -4,7 +4,6 @@
 //
 
 #include "d/a/d_a_item_static.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -2,7 +2,6 @@
 #define D_MAP_D_MAP_H
 
 #include "d/map/d_map_path_dmap.h"
-#include "d/d_tresure.h"
 
 class renderingAmap_c : public renderingPlusDoorAndCursor_c {
 public:

@@ -4,7 +4,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/types.h"
 
 struct JKRThreadName_ {
     s32 id;

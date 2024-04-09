@@ -4,7 +4,6 @@
 #include "JSystem/JAudio2/JAISeMgr.h"
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
-#include "global.h"
 
 u16 seqCallback(JASTrack* param_0, u16 param_1);
 

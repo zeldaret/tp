@@ -6,7 +6,6 @@
 #include "JSystem/JAudio2/JAISe.h"
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeMgr.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "dolphin/types.h"
 
 //

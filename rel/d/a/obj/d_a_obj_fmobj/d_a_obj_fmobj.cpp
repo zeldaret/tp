@@ -4,8 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"

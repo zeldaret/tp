@@ -9,7 +9,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "string.h"
 #include "dolphin/os/OSCache.h"
-#include "global.h"
 #include "init.h"
 
 /* 80310EF8-80310F78 30B838 0080+00 0/0 1/1 0/0 .text            __ct__13J3DVertexDataFv */

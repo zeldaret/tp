@@ -5,8 +5,6 @@
 
 #include "d/meter/d_meter_haihai.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
-#include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter_HIO.h"

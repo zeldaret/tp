@@ -4,8 +4,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/file/d_file_sel_warning.h"
 #include "d/d_name.h"
-#include "d/save/d_save.h"
-#include "d/msg/d_msg_string.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 

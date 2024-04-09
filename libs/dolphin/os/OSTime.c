@@ -1,6 +1,5 @@
 #include "dolphin/os/OSTime.h"
 #include "dolphin/os.h"
-#include "dolphin/os/OSInterrupt.h"
 
 #define OS_TIME_MONTH_MAX 12
 #define OS_TIME_WEEK_DAY_MAX 7

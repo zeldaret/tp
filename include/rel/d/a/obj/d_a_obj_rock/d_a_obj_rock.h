@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class J3DModel;

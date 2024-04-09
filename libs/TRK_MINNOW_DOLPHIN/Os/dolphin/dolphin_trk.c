@@ -3,7 +3,6 @@
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
 #include "dolphin/ar.h"
-#include "dolphin/os.h"
 
 #define EXCEPTIONMASK_ADDR 0x80000044
 

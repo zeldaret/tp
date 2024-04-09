@@ -6,7 +6,6 @@
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dolphin/os/OSAlarm.h"
-#include "dolphin/types.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXRenderModeObj GXRenderModeObj;

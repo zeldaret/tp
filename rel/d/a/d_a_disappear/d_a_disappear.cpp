@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/d_a_disappear/d_a_disappear.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

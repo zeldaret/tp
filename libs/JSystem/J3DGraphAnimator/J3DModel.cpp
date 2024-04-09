@@ -8,7 +8,6 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

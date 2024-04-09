@@ -2,7 +2,6 @@
 #define JASARAMSTREAM_H
 
 #include "JSystem/JAudio2/JASTaskThread.h"
-#include "dolphin/os/OSMessage.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/dvd.h"
 

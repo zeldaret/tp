@@ -4,12 +4,6 @@
 //
 
 #include "rel/d/a/d_a_mg_fshop/d_a_mg_fshop.h"
-#include "SSystem/SComponent/c_lib.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 #include "d/bg/d_bg_w.h"
 #include "d/kankyo/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"

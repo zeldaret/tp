@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_camera.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_view.h"
 
 typedef struct leafdraw_method_class leafdraw_method_class;

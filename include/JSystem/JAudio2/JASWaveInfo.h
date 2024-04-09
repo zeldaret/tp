@@ -1,7 +1,6 @@
 #ifndef JASWAVEINFO_H
 #define JASWAVEINFO_H
 
-#include "dolphin/types.h"
 
 struct JASWaveInfo {
     JASWaveInfo() {

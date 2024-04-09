@@ -1,7 +1,6 @@
 #ifndef J3DMATBLOCK_H
 #define J3DMATBLOCK_H
 
-#include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"

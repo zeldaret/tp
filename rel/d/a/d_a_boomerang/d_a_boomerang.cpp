@@ -6,11 +6,8 @@
 #include "rel/d/a/d_a_boomerang/d_a_boomerang.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "d/pane/d_pane_class.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "rel/d/a/d_a_mirror/d_a_mirror.h"
 

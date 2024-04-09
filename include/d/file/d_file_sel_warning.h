@@ -1,7 +1,6 @@
 #ifndef D_FILE_D_FILE_SEL_WARNING_H
 #define D_FILE_D_FILE_SEL_WARNING_H
 
-#include "d/d_drawlist.h"
 
 class JKRArchive;
 class CPaneMgr;

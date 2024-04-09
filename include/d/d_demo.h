@@ -6,8 +6,6 @@
 #include "JSystem/JStudio/JStudio_JStage/object.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 
 class J3DModel;

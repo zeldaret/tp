@@ -4,7 +4,6 @@
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
-#include "JSystem/JAudio2/JAUAudibleParam.h"
 
 class Z2SoundInfo : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr, public JASGlobalInstance<Z2SoundInfo> {
 public:

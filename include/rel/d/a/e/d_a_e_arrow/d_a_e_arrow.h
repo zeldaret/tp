@@ -1,7 +1,6 @@
 #ifndef D_A_E_ARROW_H
 #define D_A_E_ARROW_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 enum e_arrow_action {

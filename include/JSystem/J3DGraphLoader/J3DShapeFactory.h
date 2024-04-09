@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "dolphin/gx/GXAttr.h"
-#include "dolphin/mtx/vec.h"
 
 class J3DShape;
 class J3DShapeMtx;

@@ -11,8 +11,6 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
-#include "global.h"
 #include "math.h"
 #include "string.h"
 

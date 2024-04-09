@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 class daZdoor_c : public dBgS_MoveBgActor {

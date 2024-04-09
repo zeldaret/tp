@@ -4,7 +4,6 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/pad.h"
-#include "dolphin/types.h"
 
 typedef void (*callbackFn)(int, void*);
 

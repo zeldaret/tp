@@ -2,7 +2,6 @@
 #define D_A_TAG_ATTENTION_H
 
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daAttp_c : public fopAc_ac_c {
