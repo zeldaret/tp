@@ -5,6 +5,10 @@
 
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeTable {
 public:
     J3DShapeTable() {

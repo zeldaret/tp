@@ -4,6 +4,10 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "bitset.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <size_t A0>
 class JAUStreamAramMgrBase_ : public JAIStreamAramMgr {
 public:
@@ -32,6 +36,10 @@ protected:
     JASHeap mHeaps[A0];
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <size_t MAX_CHUNKS_>
 class JAUStreamStaticAramMgr_ : public JAUStreamAramMgrBase_<MAX_CHUNKS_> {
 public:

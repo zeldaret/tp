@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASCalc {
     /* 8028F2E8 */ static void imixcopy(s16 const*, s16 const*, s16*, u32);
     /* 8028F318 */ static void bcopyfast(void const*, void*, u32);

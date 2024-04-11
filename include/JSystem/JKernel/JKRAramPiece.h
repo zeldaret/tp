@@ -8,6 +8,11 @@
 
 class JKRAramBlock;
 class JKRDecompCommand;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAMCommand {
 public:
     typedef void (*AsyncCallback)(u32);
@@ -37,6 +42,10 @@ public:
     /* 0x94 */ void* field_0x94;
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramPiece {
 public:
     static OSMutex mMutex;

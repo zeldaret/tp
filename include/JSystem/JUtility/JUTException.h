@@ -12,6 +12,10 @@ typedef struct _GXRenderModeObj GXRenderModeObj;
 typedef struct OSContext OSContext;
 class JUTDirectPrint;
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTExternalFB {
 public:
     /* 802E40CC */ JUTExternalFB(_GXRenderModeObj*, GXGamma, void*, u32);
@@ -34,6 +38,10 @@ STATIC_ASSERT(sizeof(JUTExternalFB) == 0x14);
 #define JUT_PRINT_FLOAT 8
 #define JUT_PRINT_STACK 16
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTException : public JKRThread {
 public:
     enum EInfoPage {
@@ -135,6 +143,10 @@ private:
 
 STATIC_ASSERT(sizeof(JUTException) == 0xA4);
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct JUTWarn {
     JUTWarn& operator<<(const char*) { return *this; }
     JUTWarn& operator<<(long) { return *this; }

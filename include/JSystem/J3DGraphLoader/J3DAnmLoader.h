@@ -9,6 +9,10 @@ enum J3DAnmLoaderDataBaseFlag {
 
 class J3DAnmBase;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ static J3DAnmBase* load(void const*, J3DAnmLoaderDataBaseFlag);
     /* 80338134 */ static void setResource(J3DAnmBase*, void const*);

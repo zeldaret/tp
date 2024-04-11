@@ -5,6 +5,13 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-items
+ * @brief Dominion Rod
+ * 
+ * Temple of Time dungeon item.
+ * 
+ */
 class daCrod_c : public fopAc_ac_c {
 public:
     /* 80141A94 */ void setControllActorData();

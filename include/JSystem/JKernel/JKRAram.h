@@ -8,6 +8,11 @@
 class JKRHeap;
 class JKRAMCommand;
 class JKRAramBlock;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAram : public JKRThread {
 private:
     JKRAram(u32, u32, s32);

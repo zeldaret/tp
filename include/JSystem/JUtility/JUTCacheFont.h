@@ -5,6 +5,10 @@
 
 class JKRAramBlock;
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTCacheFont : public JUTResFont {
 public:
     struct TGlyphCacheInfo {

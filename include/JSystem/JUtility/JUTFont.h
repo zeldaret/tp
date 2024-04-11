@@ -4,6 +4,10 @@
 #include "JSystem/JUtility/TColor.h"
 #include "string.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct ResFONT {
     struct INF1 {
         /* 0x00 */ u32 magic;
@@ -58,6 +62,10 @@ struct ResFONT {
     /* 0x20 */ u8 data[];
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTFont {
 public:
     JUTFont();

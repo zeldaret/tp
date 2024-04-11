@@ -5,12 +5,20 @@
 
 enum JUTTransparency { UNK0, UNK1 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct ResTLUT {
     u8 format;
     u8 transparency;
     u16 numColors;
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTPalette {
 public:
     JUTPalette(_GXTlut p1, _GXTlutFmt p2, JUTTransparency p3, u16 p4, void* p5) {

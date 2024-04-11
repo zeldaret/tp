@@ -7,6 +7,10 @@
 
 class JKRHeap;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 struct SArcHeader {
     /* 0x00 */ u32 signature;
     /* 0x04 */ u32 file_length;
@@ -18,6 +22,10 @@ struct SArcHeader {
     /* 0x1C */ u32 field_0x1c;
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 struct SArcDataInfo {
     /* 0x00 */ u32 num_nodes;
     /* 0x04 */ u32 node_offset;
@@ -42,6 +50,10 @@ inline u16 read_big_endian_u16(void* ptr) {
 
 extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRArchive : public JKRFileLoader {
 public:
     struct SDirEntry {

@@ -7,12 +7,20 @@ class JKRHeap;
 
 typedef bool (*IsLeadByte_func)(int);
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct BlockHeader {
     const BlockHeader* getNext() const { return reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(this) + size); }
     u32 magic;
     u32 size;
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTResFont : public JUTFont {
 public:
     /* 802DF000 */ virtual ~JUTResFont();

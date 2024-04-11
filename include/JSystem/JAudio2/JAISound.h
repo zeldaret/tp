@@ -5,6 +5,10 @@
 #include "JSystem/JAudio2/JAIAudible.h"
 #include "global.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISoundID {
 public:
     operator u32() const { return this->mId.mFullId; }
@@ -36,6 +40,10 @@ public:
 
 class JASTrack;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundStatus_ {
     /* 802A2220 */ s32 lockWhenPrepared();
     /* 802A2244 */ s32 unlockIfLocked();
@@ -99,6 +107,10 @@ struct JAISoundStatus_ {
     /* 0x4 */ u32 user_data;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundFader {
     void forceIn() {
         mIntensity = 1.0f;
@@ -135,6 +147,11 @@ struct JAISoundFader {
     /* 0x00 */ f32 mIntensity;
     /* 0x04 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size: 0x10
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename A0>
 struct JAISoundStrategyMgr__unknown {
     virtual void virtual2();
@@ -142,6 +159,10 @@ struct JAISoundStrategyMgr__unknown {
     virtual void virtual4(A0*, const JASSoundParams&);
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename A0>
 struct JAISoundStrategyMgr {
     virtual void virtual2();
@@ -155,6 +176,10 @@ struct JAISoundStrategyMgr__template1 {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISoundActivity {
 public:
     void init() { field_0x0.value = 0; }
@@ -174,6 +199,10 @@ public:
     } field_0x0;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAITempoMgr {
 public:
     /* 0x00 */ f32 mTempo;
@@ -197,6 +226,11 @@ class JAISeq;
 class JAISoundChild;
 class JAIStream;
 class JAITempoMgr;
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISound {
 public:
     /* 802A21A0 */ void releaseHandle();

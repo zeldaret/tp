@@ -58,6 +58,10 @@ inline int calcDifferedBufferSize_TevStageDirectSize(int param_1) {
     return param_1 * 5;
 }
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDisplayListObj {
 public:
     J3DDisplayListObj() {
@@ -89,6 +93,10 @@ public:
     /* 0xC */ u32 mCapacity;
 };  // Size: 0x10
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPacket {
 public:
     J3DPacket() {
@@ -120,6 +128,10 @@ public:
     /* 0x0C */ void* mpUserData;
 };  // Size: 0x10
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDrawPacket : public J3DPacket {
 public:
     J3DDrawPacket();
@@ -155,6 +167,10 @@ public:
     /* 0x24 */ J3DTexMtxObj* mpTexMtxObj;
 };  // Size: 0x28
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapePacket : public J3DDrawPacket {
 public:
     J3DShapePacket();
@@ -183,6 +199,10 @@ public:
     /* 0x38 */ J3DModel* mpModel;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMatPacket : public J3DDrawPacket {
 public:
     J3DMatPacket();

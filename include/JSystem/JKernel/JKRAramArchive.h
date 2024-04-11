@@ -6,6 +6,10 @@
 class JKRAramBlock;
 class JKRDvdFile;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramArchive : public JKRArchive {
 public:
     JKRAramArchive(s32, JKRArchive::EMountDirection);

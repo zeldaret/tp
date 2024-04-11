@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASProbe {
     /* 80290EE4 */ static void start(s32, char const*);
     /* 80290D74 */ void start(char const*);

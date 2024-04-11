@@ -6,6 +6,10 @@
 
 class JAISeMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISe : public JSULink<JAISe>, public JAISound {
 public:
     class TInner {

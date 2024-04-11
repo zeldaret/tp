@@ -16,6 +16,10 @@ class JPADynamicsBlock;
 class JPAFieldBlock;
 class JPAKeyBlock;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAResource {
 public:
     /* 80274010 */ JPAResource();

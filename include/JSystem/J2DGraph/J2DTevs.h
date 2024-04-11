@@ -4,6 +4,10 @@
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTextureSRTInfo {
     /* 0x00 */ f32 field_0x0;
     /* 0x04 */ f32 field_0x4;
@@ -12,6 +16,10 @@ struct J2DTextureSRTInfo {
     /* 0x10 */ f32 field_0x10;
 };  // Size: 0x14
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTexMtxInfo {
     enum {
         /* 0x0 */ DCC_NONE,
@@ -38,6 +46,10 @@ struct J2DTexMtxInfo {
 
 extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTexMtx {
 public:
     J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
@@ -54,6 +66,10 @@ private:
     /* 0x24 */ Mtx mTexMtx;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DIndTexOrderInfo {
     /* 0x0 */ u8 mTexCoordID;
     /* 0x1 */ u8 mTexMapID;
@@ -69,6 +85,10 @@ struct J2DIndTexOrderInfo {
 
 extern const J2DIndTexOrderInfo j2dDefaultIndTexOrderNull;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndTexOrder {
 public:
     /* 802EB378 */ J2DIndTexOrder() {
@@ -83,6 +103,10 @@ private:
     /* 0x0 */ J2DIndTexOrderInfo mInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DIndTexMtxInfo {
     /* 0x00 */ Mtx23 mMtx;
     /* 0x18 */ s8 mScaleExp;
@@ -100,6 +124,10 @@ struct J2DIndTexMtxInfo {
 
 extern J2DIndTexMtxInfo const j2dDefaultIndTexMtxInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndTexMtx {
 public:
     /* 802EB2E4 */ ~J2DIndTexMtx() {}
@@ -117,6 +145,10 @@ private:
     /* 0x0 */ J2DIndTexMtxInfo mIndTexMtxInfo;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DIndTexCoordScaleInfo {
     /* 0x0 */ u8 mScaleS;
     /* 0x1 */ u8 mScaleT;
@@ -132,6 +164,10 @@ struct J2DIndTexCoordScaleInfo {
 
 extern const J2DIndTexCoordScaleInfo j2dDefaultIndTexCoordScaleInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndTexCoordScale {
 public:
     /* 802EB290 */ ~J2DIndTexCoordScale() {}
@@ -147,6 +183,10 @@ private:
     /* 0x0 */ J2DIndTexCoordScaleInfo mInfo;
 };  // Size: 0x2
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DIndTevStageInfo {
     /* 0x0 */ u8 mIndStage;
     /* 0x1 */ u8 mIndFormat;
@@ -170,6 +210,10 @@ inline u32 J2DCalcIndTevStage(J2DIndTevStageInfo info) {
 
 extern const J2DIndTevStageInfo j2dDefaultIndTevStageInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndTevStage {
 public:
     /* 802EA044 */ void load(u8);
@@ -196,6 +240,10 @@ private:
     GXIndTexAlphaSel getAlphaSel() const { return (GXIndTexAlphaSel)((mFlags >> 22) & 0x03); }
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTexCoordInfo {
     /* 0x0 */ u8 mTexGenType;
     /* 0x1 */ u8 mTexGenSrc;
@@ -212,6 +260,10 @@ struct J2DTexCoordInfo {
 
 extern J2DTexCoordInfo const j2dDefaultTexCoordInfo[8];
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTexCoord {
 public:
     /* 802EB260 */ inline J2DTexCoord() {
@@ -230,6 +282,10 @@ private:
     /* 0x0 */ J2DTexCoordInfo mTexCoordInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTevOrderInfo {
     /* 0x0 */ u8 mTexCoord;
     /* 0x1 */ u8 mTexMap;
@@ -246,6 +302,10 @@ struct J2DTevOrderInfo {
 
 extern const J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevOrder {
 public:
     /* 802F1B70 */ J2DTevOrder() {
@@ -264,6 +324,10 @@ public:
     /* 0x0 */ J2DTevOrderInfo mTevOrderInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTevStageInfo {
     /* 0x00 */ u8 field_0x0;
     /* 0x01 */ u8 mColorA;
@@ -287,6 +351,10 @@ struct J2DTevStageInfo {
     /* 0x13 */ u8 field_0x13;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTevSwapModeInfo {
     /* 0x0 */ u8 mRasSel;
     /* 0x1 */ u8 mTexSel;
@@ -296,6 +364,10 @@ struct J2DTevSwapModeInfo {
 
 extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevStage {
 public:
     /* 802F4110 */ J2DTevStage(J2DTevStageInfo const&);
@@ -425,6 +497,10 @@ private:
     /* 0x7 */ u8 field_0x7;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTevSwapModeTableInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -438,6 +514,10 @@ inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
 
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevSwapModeTable {
 public:
     /* 802F1934 */ J2DTevSwapModeTable();

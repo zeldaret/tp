@@ -5,6 +5,10 @@
 
 class JASBank;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASBankList {
 public:
     virtual JASBank* getBank(u32 param_0) const = 0;

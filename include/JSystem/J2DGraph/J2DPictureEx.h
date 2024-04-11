@@ -6,6 +6,10 @@
 
 class J2DMaterial;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPictureEx : public J2DPicture {
 public:
     enum stage_enum {};

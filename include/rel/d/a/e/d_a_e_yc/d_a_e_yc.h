@@ -1,7 +1,11 @@
 #ifndef D_A_E_YC_H
 #define D_A_E_YC_H
 
-
+/**
+* @ingroup actors-enemies
+* @brief Twilit Kargorok
+*
+*/
 class e_yc_class : public fopEn_enemy_c {
 public:
     MtxP getLegR3Mtx() { return field_0x5B8->getModel()->getAnmMtx(28); }

@@ -7,6 +7,10 @@ class JKRHeap;
 class JPAResource;
 struct ResTIMG;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAResourceManager {
 public:
     /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);

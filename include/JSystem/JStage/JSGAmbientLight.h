@@ -5,6 +5,11 @@
 #include "dolphin/gx/GXStruct.h"
 
 namespace JStage {
+    
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TAmbientLight : public TObject {
         /* 80280B20 */ virtual ~TAmbientLight() = 0;
         /* 80280B80 */ virtual s32 JSGFGetType() const;

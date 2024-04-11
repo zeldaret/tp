@@ -3,6 +3,10 @@
 
 #include "JSystem/JAudio2/JASDSPInterface.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASDSPChannel {
     typedef s32 (*Callback)(u32, JASDsp::TChannel*, void*);
 

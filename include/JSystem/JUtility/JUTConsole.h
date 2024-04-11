@@ -6,6 +6,10 @@
 #include "JSystem/JUtility/JUTFont.h"
 #include "__va_arg.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTConsole : public JKRDisposer {
 public:
     enum EConsoleType {
@@ -113,6 +117,10 @@ public:
     /* 0x6B */ bool field_0x6b;
 };  // Size: 0x6C
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTConsoleManager {
 public:
     /* 802E81CC */ JUTConsoleManager();

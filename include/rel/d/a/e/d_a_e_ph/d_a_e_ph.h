@@ -5,6 +5,11 @@
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
+/**
+* @ingroup actors-enemies
+* @brief Peahat
+*
+*/
 class daE_PH_c : public fopEn_enemy_c {
 public:
     /* 8073D48C */ void initCcSph();

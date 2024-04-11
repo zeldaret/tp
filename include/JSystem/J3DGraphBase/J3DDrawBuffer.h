@@ -36,6 +36,10 @@ class J3DShapePacket;
 typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
 typedef void (J3DDrawBuffer::*drawFunc)() const;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDrawBuffer {
 public:
     enum EDrawType {

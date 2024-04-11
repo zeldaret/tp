@@ -3,6 +3,10 @@
 
 #include "JSystem/JAudio2/JASSoundParams.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundParamsProperty {
     void init() {
         field_0x0 = 1.0f;
@@ -15,6 +19,10 @@ struct JAISoundParamsProperty {
     /* 0x08 */ f32 field_0x8;
 };  // Size: 0xC
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundParamsTransition {
     struct TTransition {
         void zero() {
@@ -70,6 +78,10 @@ struct JAISoundParamsTransition {
     /* 0x30 */ TTransition mDolby;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundParamsMove {
     JAISoundParamsMove() : mParams() {}
 
@@ -90,6 +102,10 @@ struct JAISoundParamsMove {
     /* 0x14 */ JAISoundParamsTransition mTransition;
 };  // Size: 0x50
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundParams {
     JAISoundParams() : mMove() {}
     void mixOutAll(JASSoundParams const&, JASSoundParams*, f32);

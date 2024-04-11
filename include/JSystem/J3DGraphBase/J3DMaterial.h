@@ -9,6 +9,10 @@
 class J3DJoint;
 class J3DMaterialAnm;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterial {
 public:
     /* 803157A0 */ static J3DColorBlock* createColorBlock(u32);
@@ -99,6 +103,10 @@ public:
     /* 0x48 */ J3DDisplayListObj* mSharedDLObj;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPatchedMaterial : public J3DMaterial {
 public:
     /* 80316FB8 */ void initialize();
@@ -111,6 +119,10 @@ public:
     /* 80317040 */ virtual void change();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DLockedMaterial : public J3DMaterial {
 public:
     J3DLockedMaterial() { initialize(); }

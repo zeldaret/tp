@@ -9,6 +9,10 @@ class J3DMaterial;
 struct J3DTexCoord2Info;
 struct J3DCurrentMtxInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMaterialInitData_v21 {
     /* 0x000 */ u8 mMaterialMode;
     /* 0x001 */ u8 mCullModeIdx;
@@ -40,6 +44,10 @@ struct J3DMaterialInitData_v21 {
     /* 0x136 */ u16 mNBTScaleIdx;
 }; // size 0x138
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterialFactory_v21 {
 public:
     /* 80332DA4 */ J3DMaterialFactory_v21(J3DMaterialBlock_v21 const&);

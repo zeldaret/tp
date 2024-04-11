@@ -8,6 +8,10 @@ class JASWaveBank;
 class JASBasicWaveBank;
 class JASSimpleWaveBank;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASWSParser {
 public:
     template<class T>

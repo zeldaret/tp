@@ -5,6 +5,10 @@
 
 class JKRFile;
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUFileInputStream : public JSURandomInputStream {
 public:
     virtual ~JSUFileInputStream() {}

@@ -14,6 +14,10 @@ class JPABaseEmitter;
 class JPAEmitterManager;
 class JPAParticleCallBack;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAEmitterWorkData {
     /* 0x00 */ JPABaseEmitter* mpEmtr;
     /* 0x04 */ JPAResource* mpRes;
@@ -57,6 +61,10 @@ struct JPAEmitterWorkData {
     /* 0x216 */ u8 mDrawCount;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAEmitterCallBack {
 public:
     /* 80050368 */ virtual void execute(JPABaseEmitter*);
@@ -77,6 +85,10 @@ enum {
     JPAEmtrStts_Immortal = 0x40,
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPABaseEmitter {
 public:
     /* 8027E5EC */ ~JPABaseEmitter();

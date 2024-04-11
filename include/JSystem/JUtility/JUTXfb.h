@@ -6,6 +6,10 @@
 typedef struct _GXRenderModeObj GXRenderModeObj;
 class JKRHeap;
 
+/**
+* @ingroup jsystem-jutility
+*
+*/
 class JUTXfb {
 public:
     enum EXfbNumber {  // TODO: placeholder

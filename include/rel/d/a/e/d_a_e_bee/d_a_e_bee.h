@@ -43,6 +43,11 @@ struct bee_s {
 
 STATIC_ASSERT(sizeof(bee_s) == 0x74);
 
+/**
+* @ingroup actors-enemies
+* @brief Bee
+*
+*/
 class e_bee_class : public fopAc_ac_c {
 public:
     /* 0x0568 */ request_of_phase_process_class mPhase;

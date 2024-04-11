@@ -59,6 +59,13 @@ private:
 
 class daAlink_c;
 
+/**
+ * @ingroup actors-items
+ * @brief Gale Boomerang
+ * 
+ * Forest Temple dungeon item.
+ * 
+ */
 class daBoomerang_c : public fopAc_ac_c {
 public:
     enum daBoomerang_FLG0 {

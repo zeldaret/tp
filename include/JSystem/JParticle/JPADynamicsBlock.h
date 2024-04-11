@@ -7,6 +7,10 @@
 
 class JPAEmitterWorkData;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPADynamicsBlockData {
     // Common header.
     /* 0x00 */ u8 mMagic[4];
@@ -50,6 +54,10 @@ enum {
     JPADynFlag_FollowEmtrChld = 0x10,
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPADynamicsBlock {
 public:
     /* 8027BB18 */ JPADynamicsBlock(u8 const*);

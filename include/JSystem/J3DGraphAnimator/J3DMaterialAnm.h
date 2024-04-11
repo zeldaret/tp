@@ -6,6 +6,10 @@
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMatColorAnm {
 public:
     /* 8003B2B8 */ ~J3DMatColorAnm() {};
@@ -32,6 +36,10 @@ private:
     /* 0x4 */ J3DAnmColor* mAnmColor;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexNoAnm {
 public:
     /* 8003B1F8 */ ~J3DTexNoAnm() {};
@@ -59,6 +67,10 @@ private:
     /* 0x8 */ J3DAnmTexPattern* mAnmTexPattern;
 };  // Size: 0xC
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexMtxAnm {
 public:
     /* 8003B264 */ ~J3DTexMtxAnm() {};
@@ -87,6 +99,10 @@ private:
     /* 0x4 */ J3DAnmTextureSRTKey* mAnmTransform;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevKColorAnm {
 public:
     /* 8003B150 */ ~J3DTevKColorAnm() {}
@@ -113,6 +129,10 @@ private:
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevColorAnm {
 public:
     /* 8003B1A4 */ ~J3DTevColorAnm() {}
@@ -139,6 +159,10 @@ private:
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterialAnm {
 public:
     J3DMaterialAnm() { initialize(); }

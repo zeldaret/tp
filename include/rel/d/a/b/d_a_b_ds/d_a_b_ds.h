@@ -7,8 +7,10 @@
 #include "m_Do/m_Do_ext.h"
 
 /**
- * @ingroup actors-bosses
- * @brief Stallord Actor Class
+ * @ingroup actors-enemies
+ * @brief Stallord
+ * 
+ * Arbiter's Grounds dungeon boss.
  * 
  */
 class daB_DS_c : public fopEn_enemy_c {

@@ -5,6 +5,10 @@
 
 class JASTrack;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASPortArgs {
 	JASTrack* _00;
 	u32 _04;
@@ -19,6 +23,10 @@ struct JASPortArgs {
 	f32 _28;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASPortCmd : JSULink<JASPortCmd> {
     typedef void (*Command)(JASPortArgs*);
 

@@ -7,6 +7,10 @@
 namespace JStage {
     enum TELight {};
 
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TLight : public TObject {
         /* 80280D28 */ virtual ~TLight() = 0;
         /* 80280D88 */ virtual s32 JSGFGetType() const;

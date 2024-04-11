@@ -6,6 +6,10 @@
 
 struct J3DTextureSRTInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTransformInfo {
     /* 0x00 */ JGeometry::TVec3<f32> mScale;
     /* 0x0C */ JGeometry::TVec3<s16> mRotation;

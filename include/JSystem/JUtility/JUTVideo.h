@@ -7,6 +7,10 @@
 
 typedef u8 (*Pattern)[2];
 
+/**
+* @ingroup jsystem-jutility
+*
+*/
 class JUTVideo {
 public:
     typedef void (*Callback)(u32);

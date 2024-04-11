@@ -3,6 +3,11 @@
 
 
 namespace JMessage {
+
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct locale {
     typedef int (*parseCharacter_function)(const char**);
 

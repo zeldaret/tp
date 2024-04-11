@@ -7,6 +7,10 @@
 
 class JAIStreamMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAIStream : public JASPoolAllocObject<JAIStream>, public JAISound, public JSULink<JAIStream> {
 public:
     struct TInner {

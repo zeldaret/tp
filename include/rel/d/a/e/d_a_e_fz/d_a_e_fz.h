@@ -50,7 +50,7 @@ struct daE_FZ_HIO_c_tmp {
 
 /**
  * @ingroup actors-enemies
- * @brief Mini Freezard actor class
+ * @brief Mini Freezard
  * 
  */
 class daE_FZ_c : public fopEn_enemy_c {

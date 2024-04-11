@@ -4,6 +4,10 @@
 #include "JSystem/JAudio2/JASBank.h"
 #include "JSystem/JAudio2/JASOscillator.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASVoiceBank : public JASBank {
 public:
     /* 80297F74 */ virtual bool getInstParam(int, int, int, JASInstParam*) const;

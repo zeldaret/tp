@@ -1,7 +1,10 @@
 #ifndef JASWAVEINFO_H
 #define JASWAVEINFO_H
 
-
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASWaveInfo {
     JASWaveInfo() {
         field_0x01 = 0x3c;

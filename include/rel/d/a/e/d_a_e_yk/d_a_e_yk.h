@@ -5,53 +5,6 @@
 *
 */
 
-/**
- * @defgroup actors Actors
- * @brief All actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-bosses Bosses
- * @brief All boss actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-doors Doors
- * @brief All door actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-enemies Enemies
- * @brief All enemy actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-kytags Environment Tags
- * @brief All environment tag actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-objects Objects
- * @brief All object actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-npcs NPCs
- * @brief All NPC actor classes.
- */
-
-/**
- * @ingroup actors
- * @defgroup actors-tags Tags
- * @brief All tag actor classes.
- */
-
 #ifndef D_A_E_YK_H
 #define D_A_E_YK_H
 
@@ -112,7 +65,7 @@ public:
 
 /**
  * @ingroup actors-enemies
- * @brief Shadow Keese actor class
+ * @brief Shadow Keese
  * 
  */
 class e_yk_class : public fopEn_enemy_c {

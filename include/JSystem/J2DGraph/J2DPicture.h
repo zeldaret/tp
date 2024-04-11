@@ -25,11 +25,19 @@ enum J2DBinding {
     /* 0xF */ BIND15 = 15,  // temp, figure out later
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DPicHeader {
     /* 0x0 */ u32 mTag;
     /* 0x4 */ u32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DScrnBlockPictureParameter {
     /* 0x00 */ u16 field_0x0;
     /* 0x02 */ u16 mMaterialNum;
@@ -40,6 +48,10 @@ struct J2DScrnBlockPictureParameter {
     /* 0x20 */ u32 mCornerColor[4];
 };  // Size: 0x30
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPicture : public J2DPane {
 public:
     /* 802FCFF0 */ virtual ~J2DPicture();

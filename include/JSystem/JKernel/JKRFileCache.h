@@ -4,6 +4,11 @@
 #include "JSystem/JKernel/JKRFileLoader.h"
 
 class JKRHeap;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRFileCache : public JKRFileLoader {
 public:
     class CCacheBlock {

@@ -5,6 +5,10 @@
 
 typedef long JASCallback(void*);
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASCallbackMgr {
 	struct TCallback {
 		TCallback()

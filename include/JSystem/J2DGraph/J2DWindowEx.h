@@ -3,6 +3,10 @@
 
 #include "JSystem/J2DGraph/J2DWindow.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DWindowEx : public J2DWindow {
 public:
     enum stage_enum {

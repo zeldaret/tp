@@ -8,7 +8,7 @@
 
 /**
  * @ingroup actors-doors
- * @brief Boss Door Actor
+ * @brief Boss Door
  * 
  */
 class daBdoor_c : public fopAc_ac_c {

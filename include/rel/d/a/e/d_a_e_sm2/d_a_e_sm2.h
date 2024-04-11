@@ -3,6 +3,11 @@
 
 #include "d/cc/d_cc_d.h"
 
+/**
+* @ingroup actors-enemies
+* @brief Chuchu 2
+*
+*/
 class e_sm2_class : public fopEn_enemy_c {
 public:
     bool checkYellow() { return field_0x5b7 == 3; }

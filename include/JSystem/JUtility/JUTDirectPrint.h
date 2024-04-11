@@ -4,6 +4,10 @@
 #include "JSystem/JUtility/TColor.h"
 #include "__va_arg.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTDirectPrint {
 private:
     /* 802E41E8 */ JUTDirectPrint();

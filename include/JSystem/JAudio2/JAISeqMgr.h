@@ -8,6 +8,10 @@
 struct JAIAudience;
 class JAISeq;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeqMgr : public JASGlobalInstance<JAISeqMgr>, public JAISeqDataUser {
 public:
     enum ReleaseSeqResult {

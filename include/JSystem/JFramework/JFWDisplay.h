@@ -13,6 +13,10 @@ class JKRHeap;
 
 typedef void (*JFWDisplayUnkFunc)(void);
 
+/**
+ * @ingroup jsystem-jframework
+ * 
+ */
 class JFWAlarm : public OSAlarm {
 public:
     JFWAlarm() : mLink(this) {}
@@ -31,6 +35,10 @@ public:
     /* 0x2C */ JSULink<JFWAlarm> mLink;
 };
 
+/**
+ * @ingroup jsystem-jframework
+ * 
+ */
 class JFWDisplay {
 public:
     enum EDrawDone {

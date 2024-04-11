@@ -6,6 +6,10 @@
 class J3DTexMtx;
 class J3DTexGenBlock;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexMtxObj {
 public:
     Mtx& getMtx(u16 idx) { return mpTexMtx[idx]; }
@@ -17,6 +21,10 @@ public:
     /* 0x08 */ u16 mTexMtxNum;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDifferedTexMtx {
 public:
     /* 8031322C */ static void loadExecute(f32 const (*)[4]);
@@ -33,6 +41,10 @@ public:
 class J3DShapeMtx;
 typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtx {
 public:
     J3DShapeMtx(u16 useMtxIndex)
@@ -71,6 +83,10 @@ protected:
 class J3DShapeMtxConcatView;
 typedef void (J3DShapeMtxConcatView::*J3DShapeMtxConcatView_LoadFunc)(int, u16) const;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtxConcatView : public J3DShapeMtx {
 public:
     J3DShapeMtxConcatView(u16 useMtxIndex)
@@ -94,6 +110,10 @@ public:
     static MtxP sMtxPtrTbl[2];
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
 public:
     J3DShapeMtxYBBoardConcatView(u16 useMtxIndex)
@@ -105,6 +125,10 @@ public:
     /* 803143E4 */ virtual void load() const;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
 public:
     J3DShapeMtxBBoardConcatView(u16 useMtxIndex)
@@ -116,6 +140,10 @@ public:
     /* 803142D4 */ virtual void load() const;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtxMulti : public J3DShapeMtx {
 public:
     J3DShapeMtxMulti(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
@@ -136,6 +164,10 @@ private:
     /* 0xC */ u16* mUseMtxIndexTable;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 public:
     J3DShapeMtxMultiConcatView(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)

@@ -8,6 +8,10 @@
 class JAISeqMgr;
 class JAISoundChild;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeq : public JASPoolAllocObject<JAISeq>, public JAISound, public JSULink<JAISeq> {
 public:
     class TInner {

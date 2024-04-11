@@ -10,6 +10,10 @@
 typedef struct _GXColor GXColor;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelData {
 public:
     /* 80325D88 */ void clear();

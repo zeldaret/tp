@@ -18,26 +18,29 @@ struct daObjCarry_Data {
 
 /**
  * @ingroup actors-objects
- * @brief Generic carryable object actor
+ * @brief Carryable Object
+ * 
+ * This is a multi-use class for carryable objects. 
+ * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull, deku nut, Sols, small and large Twilight pots.
  * 
  */
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {
-        /* 0x0 */ TYPE_TSUBO,      // Small Blue Pot
-        /* 0x1 */ TYPE_OOTSUBO,    // Big Red Pot
-        /* 0x2 */ TYPE_KIBAKO,     // Box
-        /* 0x3 */ TYPE_IRON_BALL,  // Cannon Ball
-        /* 0x4 */ TYPE_TARU,       // Barrel
-        /* 0x5 */ TYPE_DOKURO,     // Skull
-        /* 0x6 */ TYPE_BOKKURI,    // Deku Nut
-        /* 0x7 */ TYPE_TSUBO_2,    // Small Red Pot
-        /* 0x8 */ TYPE_BALL_S,     // Light Ball A
-        /* 0x9 */ TYPE_BALL_S_2,   // Light Ball B
-        /* 0xA */ TYPE_AOTSUBO,    // Big Blue Pot
-        /* 0xB */ TYPE_LV8_BALL,   // Light Ball? Probably unused
-        /* 0xC */ TYPE_TSUBO_S,    // Small pot - Twilight
-        /* 0xD */ TYPE_TSUBO_B,    // Big pot - Twilight
+        /* 0x0 */ TYPE_TSUBO,      /**< Small Blue Pot */
+        /* 0x1 */ TYPE_OOTSUBO,    /**< Big Red Pot */
+        /* 0x2 */ TYPE_KIBAKO,     /**< Box */
+        /* 0x3 */ TYPE_IRON_BALL,  /**< Cannon Ball */
+        /* 0x4 */ TYPE_TARU,       /**< Barrel */
+        /* 0x5 */ TYPE_DOKURO,     /**< Skull */
+        /* 0x6 */ TYPE_BOKKURI,    /**< Deku Nut */
+        /* 0x7 */ TYPE_TSUBO_2,    /**< Small Red Pot */
+        /* 0x8 */ TYPE_BALL_S,     /**< Light Ball A */
+        /* 0x9 */ TYPE_BALL_S_2,   /**< Light Ball B */
+        /* 0xA */ TYPE_AOTSUBO,    /**< Big Blue Pot */
+        /* 0xB */ TYPE_LV8_BALL,   /**< Light Ball? Probably unused */
+        /* 0xC */ TYPE_TSUBO_S,    /**< Small pot - Twilight */
+        /* 0xD */ TYPE_TSUBO_B,    /**< Big pot - Twilight */
     };
 
     /* 80031CF8 */ static void clrSaveFlag();

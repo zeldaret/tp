@@ -6,6 +6,10 @@
 
 class JUTFont;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPrint {
 public:
     struct TSize {

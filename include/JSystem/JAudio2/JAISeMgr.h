@@ -7,21 +7,37 @@
 struct JAIAudience;
 struct JASSoundParams;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASNonCopyable {
     /* 0x0 */ int field_0x0;
 };  // Size: 0x4
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeCategoryArrangementItem {
     u8 mMaxActiveSe;
     u8 mMaxInactiveSe;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeCategoryArrangement {
     JAISeCategoryArrangementItem mItems[16];
 };
 
 class JAISeMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeCategoryMgr : public JAISeqDataUser {
 public:
     /* 8029F9C4 */ void JAISeMgr_calc_();
@@ -57,6 +73,10 @@ public:
     /* 0x68 */ int mMaxActiveSe;
 };  // Size: 0x6C
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeMgr : public JASGlobalInstance<JAISeMgr>,
                  public JAISeqDataUser,
                  public JAISoundActivity {

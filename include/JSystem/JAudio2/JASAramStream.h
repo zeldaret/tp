@@ -13,6 +13,10 @@ namespace JASDsp {
 
 #define CHANNEL_MAX 6
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASAramStream {
 public:
     typedef void (*StreamCallback)(u32, JASAramStream*, void*);

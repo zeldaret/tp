@@ -16,6 +16,10 @@ namespace JASDsp {
     extern u32 FILTER_MODE_IIR;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     enum Status {
         STATUS_FREE,

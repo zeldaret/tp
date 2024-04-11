@@ -3,6 +3,10 @@
 
 #include "dolphin/os/OSMutex.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASMutexLock {
     JASMutexLock(OSMutex* mutex) {
         mMutex = mutex;

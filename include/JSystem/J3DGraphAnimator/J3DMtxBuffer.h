@@ -5,6 +5,10 @@
 
 class J3DModelData;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMtxBuffer {
 public:
     J3DMtxBuffer() { initialize(); }

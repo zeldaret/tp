@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASAudioReseter {
     /* 8029D0B4 */ JASAudioReseter();
     /* 8029D0FC */ ~JASAudioReseter();

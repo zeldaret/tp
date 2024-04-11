@@ -4,6 +4,11 @@
 #include "JSystem/JMessage/processor.h"
 
 namespace JMessage {
+
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TControl {
     /* 802A7548 */ TControl();
     /* 802A758C */ virtual ~TControl();
@@ -65,6 +70,10 @@ struct TControl {
 };
 };  // namespace JMessage
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct jmessage_tControl : public JMessage::TControl {
     /* 802299EC */ jmessage_tControl();
 

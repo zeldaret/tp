@@ -18,6 +18,11 @@ struct mg_hook_s {
     /* 0x18 */ u8 field_0x18[0x20 - 0x18];
 };
 
+/**
+ * @ingroup actors-items
+ * @brief Fishing Rod
+ * 
+ */
 class dmg_rod_class : public fopAc_ac_c {
 public:
     /* 804BAC0C */ dmg_rod_class();

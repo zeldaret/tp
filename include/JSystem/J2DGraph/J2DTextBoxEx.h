@@ -5,6 +5,10 @@
 
 class J2DMaterial;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTextBoxEx : public J2DTextBox {
 public:
     enum stage_enum {

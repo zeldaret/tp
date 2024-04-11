@@ -5,6 +5,11 @@
 #include "dolphin/gx/GXStruct.h"
 
 namespace JStage {
+    
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TFog : public TObject {
         /* 80280C80 */ virtual ~TFog() = 0;
         /* 80280CE0 */ virtual s32 JSGFGetType() const;

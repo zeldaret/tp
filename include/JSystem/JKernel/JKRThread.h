@@ -5,12 +5,21 @@
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSTime.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 struct JKRThreadName_ {
     s32 id;
     char* name;
 };
 
 class JUTConsole;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRThread : JKRDisposer {
 public:
     class TLoad {
@@ -129,6 +138,10 @@ public:
 typedef void (*JKRThreadSwitch_PreCallback)(OSThread* current, OSThread* next);
 typedef void (*JKRThreadSwitch_PostCallback)(OSThread* current, OSThread* next);
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRThreadSwitch {
 public:
     JKRThreadSwitch(JKRHeap*);

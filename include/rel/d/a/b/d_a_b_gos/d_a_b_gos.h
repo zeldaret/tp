@@ -5,6 +5,13 @@
 #include "d/cc/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @brief Goron Golem (small)
+ * 
+ * Unused golem boss made up of several small Gorons.
+ * 
+ */
 class b_gos_class : public fopEn_enemy_c {
 public:
     /* 80605024 */ b_gos_class();

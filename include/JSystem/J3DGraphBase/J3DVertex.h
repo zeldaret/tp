@@ -9,6 +9,10 @@ class J3DModel;
 class J3DAnmVtxColor;
 class J3DVertexBuffer;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DVtxColorCalc {
     /* 8032E180 */ void calc(J3DModel*);
     virtual void calc(J3DVertexBuffer*);
@@ -18,6 +22,10 @@ struct J3DVtxColorCalc {
     /* 0x8 */ J3DAnmVtxColor* mpVtxColor;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DVertexData {
 public:
     J3DVertexData();
@@ -60,6 +68,10 @@ private:
     /* 0x58 */ GXCompType mVtxNrmType;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DVertexBuffer {
 public:
     J3DVertexBuffer() { init(); }

@@ -1,7 +1,10 @@
 #ifndef JAUAUDIBLEPARAM_H
 #define JAUAUDIBLEPARAM_H
 
-
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUAudibleParam {
     f32 getDopplerPower() const {
         return (u32)((*(u8*)&field_0x0.raw >> 4) & 0xf) * (1.0f / 15.0f);

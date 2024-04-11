@@ -11,6 +11,11 @@ enum daE_wb_ACT {
     /* 0x67 */ ACT_PL_RIDE_NOW = 0x67,
 };
 
+/**
+* @ingroup actors-enemies
+* @brief Wild Boar
+*
+*/
 class e_wb_class : public fopEn_enemy_c {
 public:
     BOOL checkWait();

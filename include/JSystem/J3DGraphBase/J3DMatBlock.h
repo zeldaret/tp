@@ -5,18 +5,30 @@
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DGXColorS10 : public GXColorS10 {
     /* 8000E460 */ J3DGXColorS10() {}
     J3DGXColorS10(J3DGXColorS10 const& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
     J3DGXColorS10(GXColorS10 const& color) : GXColorS10(color) {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
     J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
     J3DGXColor(GXColor const& color) : GXColor(color) {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DNBTScale : public J3DNBTScaleInfo {
     J3DNBTScale() {}
     J3DNBTScale(J3DNBTScaleInfo const& info) {
@@ -28,6 +40,10 @@ struct J3DNBTScale : public J3DNBTScaleInfo {
 
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexGenBlock {
 public:
     /* 80317354 */ virtual void reset(J3DTexGenBlock*);
@@ -71,6 +87,10 @@ struct J3DTexGenBlockNull : public J3DTexGenBlock {
     /* 80332AD0 */ virtual ~J3DTexGenBlockNull(); // {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexGenBlockPatched : public J3DTexGenBlock {
 public:
     J3DTexGenBlockPatched() {
@@ -107,6 +127,10 @@ public:
     /* 0x58 */ u32 mTexMtxOffset;
 };  // Size: 0x5C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 public:
     J3DTexGenBlockBasic() : mNBTScale(j3dDefaultNBTScaleInfo) {
@@ -127,6 +151,10 @@ public:
     /* 0x5C */ J3DNBTScale mNBTScale;
 };  // Size: 0x6C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 public:
     J3DTexGenBlock4() : mNBTScale(j3dDefaultNBTScaleInfo) {
@@ -147,6 +175,10 @@ public:
     /* 0x5C */ J3DNBTScale mNBTScale;
 };  // Size: 0x6C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlock {
 public:
     /* 80317350 */ virtual void reset(J3DTevBlock*);
@@ -209,6 +241,10 @@ protected:
     /* 0x4 */ u32 mTexNoOffset;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlockNull : public J3DTevBlock {
 public:
     J3DTevBlockNull() { initialize(); }
@@ -220,6 +256,10 @@ public:
     /* 80332A44 */ virtual ~J3DTevBlockNull(); // {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlockPatched : public J3DTevBlock {
 public:
     J3DTevBlockPatched() {
@@ -282,6 +322,10 @@ public:
     /* 0xD4 */ u32 mTevRegOffset;
 };  // Size: 0xD8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlock4 : public J3DTevBlock {
 public:
     J3DTevBlock4() {
@@ -354,6 +398,10 @@ public:
     /* 0x90 */ u32 mTevRegOffset;
 };  // Size: 0x94
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlock2 : public J3DTevBlock {
 public:
     J3DTevBlock2() {
@@ -426,6 +474,10 @@ public:
     /* 0x68 */ u32 mTevRegOffset;
 };  // Size: 0x6C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlock16 : public J3DTevBlock {
 public:
     J3DTevBlock16() {
@@ -498,6 +550,10 @@ public:
     /* 0x170 */ u32 mTevRegOffset;
 };  // Size: 0x174
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevBlock1 : public J3DTevBlock {
 public:
     J3DTevBlock1() {
@@ -550,6 +606,10 @@ inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) {
     return param_1 * 2 + param_0 * 0x10 + param_2;
 }
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DZModeInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -557,6 +617,10 @@ struct J3DZModeInfo {
     /* 0x3 */ u8 pad;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DZMode {
     J3DZMode() : mZModeID(j3dDefaultZModeID) {}
     J3DZMode(J3DZModeInfo const& info) : mZModeID(calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2)) {}
@@ -568,6 +632,10 @@ struct J3DZMode {
     /* 0x0 */ u16 mZModeID;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DBlendInfo {
     void operator=(J3DBlendInfo const& other) {
         *(int*)&mType = *(int*)&other.mType;
@@ -580,6 +648,10 @@ struct J3DBlendInfo {
 
 extern const J3DBlendInfo j3dDefaultBlendInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DBlend : public J3DBlendInfo {
     J3DBlend() : J3DBlendInfo(j3dDefaultBlendInfo) {}
     J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
@@ -587,12 +659,20 @@ struct J3DBlend : public J3DBlendInfo {
 
 extern const J3DFogInfo j3dDefaultFogInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DFog : public J3DFogInfo {
     J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
     J3DFogInfo* getFogInfo() { return this; }
     void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DAlphaCompInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -615,6 +695,10 @@ inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
 //     return param_1 * 0x20 + param_2 * 8 + param_3;
 // }
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DAlphaComp {
     J3DAlphaComp() : mID(j3dDefaultAlphaCmpID), mRef0(0), mRef1(0) {}
     J3DAlphaComp(u16 id) : mID(id), mRef0(0), mRef1(0) {}
@@ -640,6 +724,10 @@ struct J3DAlphaComp {
     /* 0x03 */ u8 mRef1;
 };  // Size: 0x4
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlock {
 public:
     /* 80317348 */ virtual void reset(J3DPEBlock*);
@@ -673,12 +761,20 @@ public:
     virtual ~J3DPEBlock() {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DPEBlockNull : public J3DPEBlock {
     /* 803329A0 */ virtual void load(); // {}
     /* 803329A4 */ virtual u32 getType(); // { return 'PENL'; }
     /* 803329B0 */ virtual ~J3DPEBlockNull(); // {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlockXlu : public J3DPEBlock {
 public:
     /* 8031E98C */ virtual void load();
@@ -687,6 +783,10 @@ public:
     /* 80323264 */ virtual ~J3DPEBlockXlu();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlockTexEdge : public J3DPEBlock {
 public:
     /* 8031E6C8 */ virtual void load();
@@ -695,6 +795,10 @@ public:
     /* 803232CC */ virtual ~J3DPEBlockTexEdge();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlockOpa : public J3DPEBlock {
 public:
     /* 8031E408 */ virtual void load();
@@ -703,6 +807,10 @@ public:
     /* 80323334 */ virtual ~J3DPEBlockOpa();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlockFull : public J3DPEBlock {
 public:
     J3DPEBlockFull() {
@@ -749,6 +857,10 @@ public:
     /* 0x3C */ u32 mFogOffset;
 };  // Size: 0x40
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPEBlockFogOff : public J3DPEBlock {
 public:
     J3DPEBlockFogOff() {
@@ -786,6 +898,10 @@ public:
     /* 0x0F */ u8 mDither;
 };  // Size: 0x10
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexCoordScaleInfo {
     /* 0x0 */ u8 mScaleS;
     /* 0x1 */ u8 mScaleT;
@@ -795,6 +911,10 @@ struct J3DIndTexCoordScaleInfo {
 
 extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
     /* 8000E0E4 */ J3DIndTexCoordScale() : J3DIndTexCoordScaleInfo(j3dDefaultIndTexCoordScaleInfo) {}
     J3DIndTexCoordScale(J3DIndTexCoordScaleInfo const& info) : J3DIndTexCoordScaleInfo(info) {}
@@ -803,12 +923,20 @@ struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
 
 extern J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     /* 8000E0F0 */ J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
     J3DIndTexMtx(J3DIndTexMtxInfo const& info) { *(J3DIndTexMtxInfo*)this = info; }
     /* 8000E064 */ ~J3DIndTexMtx() {}
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexOrderInfo {
     /* 0x0 */ u8 mMap;
     /* 0x1 */ u8 mCoord;
@@ -818,11 +946,19 @@ struct J3DIndTexOrderInfo {
 
 extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     /* 8000E128 */ J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
     J3DIndTexOrder(J3DIndTexOrderInfo const& info) : J3DIndTexOrderInfo(info) {}
 };  // Size: 0x04
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DIndBlock {
 public:
     /* 8031734C */ virtual void reset(J3DIndBlock*);
@@ -844,6 +980,10 @@ public:
     /* 8031726C */ virtual ~J3DIndBlock();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DIndBlockNull : public J3DIndBlock {
 public:
     /* 803173A0 */ virtual void reset(J3DIndBlock*);
@@ -853,6 +993,10 @@ public:
     /* 803173B0 */ virtual ~J3DIndBlockNull();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DIndBlockFull : public J3DIndBlock {
 public:
     J3DIndBlockFull() {
@@ -884,6 +1028,10 @@ public:
     /* 0x6C */ J3DIndTexCoordScale mIndTexCoordScale[4];
 };  // Size: 0x7C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DColorChanInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -900,6 +1048,10 @@ extern const J3DColorChanInfo j3dDefaultColorChanInfo;
     
 } */
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DColorChan {
     /* 8000E47C */ J3DColorChan() {
         setColorChanInfo(j3dDefaultColorChanInfo);
@@ -939,6 +1091,10 @@ struct J3DColorChan {
     /* 0x0 */ u16 mColorChanID;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DColorBlock {
 public:
     /* 80317324 */ virtual void load();
@@ -977,11 +1133,19 @@ public:
     /* 80317138 */ virtual ~J3DColorBlock() {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DColorBlockNull : public J3DColorBlock {
     /* 80332B2C */ virtual u32 getType(); // { return 'CLNL'; }
     /* 80332B38 */ virtual ~J3DColorBlockNull(); // {}
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DColorBlockLightOn : public J3DColorBlock {
 public:
     J3DColorBlockLightOn() {
@@ -1034,6 +1198,10 @@ public:
     /* 0x48 */ u32 mColorChanOffset;
 };  // Size: 0x4C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DColorBlockLightOff : public J3DColorBlock {
 public:
     J3DColorBlockLightOff() {
@@ -1077,6 +1245,10 @@ public:
     /* 0x1C */ u32 mColorChanOffset;
 };  // Size: 0x20
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DColorBlockAmbientOn : public J3DColorBlockLightOff {
 public:
     J3DColorBlockAmbientOn() {

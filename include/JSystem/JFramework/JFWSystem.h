@@ -12,6 +12,10 @@ class JUTDbPrint;
 class JUTResFont;
 struct ResFONT;
 
+/**
+ * @ingroup jsystem-jframework
+ * 
+ */
 struct JFWSystem {
     struct CSetUpParam {
         static s32 maxStdHeaps;

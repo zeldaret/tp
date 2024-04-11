@@ -6,6 +6,13 @@
 
 #define GORON_CHILD_MAX 31
 
+/**
+ * @ingroup actors-enemies
+ * @brief Goron Golem
+ * 
+ * Unused golem boss made up of several small Gorons.
+ * 
+ */
 class b_go_class : public fopEn_enemy_c {
 public:
     /* 80603CA0 */ b_go_class();

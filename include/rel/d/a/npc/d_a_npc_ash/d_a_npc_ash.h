@@ -10,7 +10,7 @@ typedef BOOL (daNpcAsh_c::*daNpcAsh_eventFn)(int);
 
 /**
  * @ingroup actors-npcs
- * @brief Ashei's NPC actor
+ * @brief Ashei
  * 
  */
 class daNpcAsh_c : public daNpcF_c {

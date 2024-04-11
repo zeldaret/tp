@@ -5,6 +5,10 @@
 #include "JSystem/JUtility/TColor.h"
 #include "dolphin/mtx.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DGrafContext {
 public:
     struct Blend {

@@ -8,6 +8,10 @@
 class JAIStreamAramMgr;
 class JAIStreamDataMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
     /* 802A3B68 */ JAIStreamMgr(bool);
