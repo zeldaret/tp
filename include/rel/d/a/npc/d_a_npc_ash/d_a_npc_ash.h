@@ -8,6 +8,11 @@ class daNpcAsh_c;
 typedef bool (daNpcAsh_c::*daNpcAsh_actionFn)(void*);
 typedef BOOL (daNpcAsh_c::*daNpcAsh_eventFn)(int);
 
+/**
+ * @ingroup actors-npcs
+ * @brief Ashei's NPC actor
+ * 
+ */
 class daNpcAsh_c : public daNpcF_c {
 private:
     /* 0xB48 */ Z2Creature mZ2;

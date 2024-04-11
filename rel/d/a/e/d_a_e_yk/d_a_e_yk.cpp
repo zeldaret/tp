@@ -1,6 +1,8 @@
 /**
  * @file d_a_e_yk.cpp
+ * 
  * Enemy - Shadow Keese
+ * 
  */
 
 #include "rel/d/a/e/d_a_e_yk/d_a_e_yk.h"

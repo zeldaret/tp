@@ -3,6 +3,11 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-kytags
+ * @brief Twilight Tag 0
+ * 
+ */
 class kytag00_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[0x56C - 0x568];

@@ -48,7 +48,11 @@ struct daE_FZ_HIO_c_tmp {
     /* 0x34 */ f32 field_0x34;
 };
 
-
+/**
+ * @ingroup actors-enemies
+ * @brief Mini Freezard actor class
+ * 
+ */
 class daE_FZ_c : public fopEn_enemy_c {
 public:
     /* 806BE9D4 */ s32 draw();

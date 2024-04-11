@@ -6,6 +6,11 @@
 #include "d/msg/d_msg_flow.h"
 #include "m_Do/m_Do_ext.h"
 
+/**
+ * @ingroup actors-bosses
+ * @brief Stallord Actor Class
+ * 
+ */
 class daB_DS_c : public fopEn_enemy_c {
 public:
     enum Arg0 {

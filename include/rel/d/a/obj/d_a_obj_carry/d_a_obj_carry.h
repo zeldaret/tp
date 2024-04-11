@@ -16,6 +16,11 @@ struct daObjCarry_Data {
     /* 0x0044 */ u8 field_0x0044[0x94-0x44];
 };
 
+/**
+ * @ingroup actors-objects
+ * @brief Generic carryable object actor
+ * 
+ */
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {
