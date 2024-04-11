@@ -1,4 +1,3 @@
-#include "trk.h"
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msghndlr.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/target_options.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Export/targsupp.h"

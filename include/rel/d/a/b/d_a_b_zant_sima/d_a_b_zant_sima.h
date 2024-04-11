@@ -2,7 +2,6 @@
 #define D_A_B_ZANT_SIMA_H
 
 #include "d/bg/d_bg_w.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daB_ZANTS_c : public fopAc_ac_c {

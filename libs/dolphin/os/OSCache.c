@@ -2,7 +2,6 @@
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/db.h"
 #include "dolphin/os.h"
-#include "dolphin/os/OSInterrupt.h"
 
 /* 8033B56C-8033B580 335EAC 0014+00 1/1 0/0 0/0 .text            DCEnable */
 static asm void DCEnable(void) {

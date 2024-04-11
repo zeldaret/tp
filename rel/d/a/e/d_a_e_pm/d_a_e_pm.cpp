@@ -4,7 +4,6 @@
 //
 
 // #include "rel/d/a/e/d_a_e_pm/d_a_e_pm.h"
-#include "dolphin/types.h"
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 

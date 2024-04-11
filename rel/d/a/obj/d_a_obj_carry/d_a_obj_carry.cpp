@@ -7,11 +7,8 @@
 #include "rel/d/a/obj/d_a_obj_swBallA/d_a_obj_swBallA.h"
 #include "rel/d/a/obj/d_a_obj_swBallB/d_a_obj_swBallB.h"
 #include "rel/d/a/tag/d_a_tag_setBall/d_a_tag_setBall.h"
-#include "d/d_stage.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
-#include "d/d_procname.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"
 

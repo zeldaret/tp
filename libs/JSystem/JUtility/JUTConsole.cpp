@@ -10,7 +10,6 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
 #include "stdio.h"
 
 //

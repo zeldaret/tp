@@ -2,7 +2,6 @@
 #define D_METER_D_METER2_DRAW_H
 
 #include "d/d_drawlist.h"
-#include "dolphin/types.h"
 
 class CPaneMgr;
 class CPaneMgrAlpha;

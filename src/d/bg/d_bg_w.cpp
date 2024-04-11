@@ -10,7 +10,6 @@
 #include "d/bg/d_bg_s_sph_chk.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 
 //

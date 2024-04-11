@@ -1,11 +1,9 @@
 #ifndef D_A_MYNA_H
 #define D_A_MYNA_H
 
-#include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_d.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_hostIO.h"

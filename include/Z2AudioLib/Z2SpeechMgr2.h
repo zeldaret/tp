@@ -4,7 +4,6 @@
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JMath/random.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
-#include "global.h"
 
 struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();

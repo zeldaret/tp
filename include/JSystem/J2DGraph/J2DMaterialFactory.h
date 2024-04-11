@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
-#include "dolphin/types.h"
 
 struct J2DMaterialBlock {
     u32 field_0x0;

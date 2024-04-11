@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/particle/d_particle_copoly.h"
 
 class daCstaF_c : public dBgS_MoveBgActor {

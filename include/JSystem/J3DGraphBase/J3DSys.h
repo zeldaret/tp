@@ -2,7 +2,6 @@
 #define J3DSYS_H
 
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
 // Perhaps move to a new J3DEnum.h?
 enum J3DError {

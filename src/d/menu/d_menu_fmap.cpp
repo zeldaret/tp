@@ -9,7 +9,6 @@
 #include "string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"
-#include "dolphin/types.h"
 
 struct ResTIMG;
 

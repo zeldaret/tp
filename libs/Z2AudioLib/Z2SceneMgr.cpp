@@ -9,7 +9,6 @@
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Types:

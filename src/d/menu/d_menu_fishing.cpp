@@ -6,7 +6,6 @@
 #include "d/menu/d_menu_fishing.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_dmap.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"

@@ -1,7 +1,6 @@
 #ifndef MSL_BITSET_H_
 #define MSL_BITSET_H_
 
-#include "algorithm.h"
 #include "stdio.h"
 #include "stdlib.h"
 

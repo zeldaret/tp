@@ -2,7 +2,6 @@
 #define D_D_TIMER_H
 
 #include "d/msg/d_msg_object.h"
-#include "dolphin/os/OSTime.h"
 #include "f_op/f_op_msg.h"
 
 class CPaneMgr;

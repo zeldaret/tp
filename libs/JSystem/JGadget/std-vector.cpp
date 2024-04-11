@@ -6,7 +6,6 @@
 #include "JSystem/JGadget/std-vector.h"
 #include "dolphin/types.h"
 #include "algorithm.h"
-#include "msl_memory.h"
 
 //
 // Types:

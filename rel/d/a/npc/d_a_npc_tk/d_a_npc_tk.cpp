@@ -4,7 +4,6 @@
 //
 
 // #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
-#include "dolphin/types.h"
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 

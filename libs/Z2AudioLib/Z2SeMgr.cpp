@@ -5,12 +5,7 @@
 
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2Audience.h"
-#include "Z2AudioLib/Z2Calc.h"
-#include "Z2AudioLib/Z2Param.h"
-#include "Z2AudioLib/Z2SceneMgr.h"
-#include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
-#include "Z2AudioLib/Z2SoundStarter.h"
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "dol2asm.h"

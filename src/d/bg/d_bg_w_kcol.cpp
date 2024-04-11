@@ -4,7 +4,6 @@
 //
 
 #include "d/bg/d_bg_w_kcol.h"
-#include "d/bg/d_bg_pc.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"

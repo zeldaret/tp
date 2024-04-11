@@ -11,7 +11,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:

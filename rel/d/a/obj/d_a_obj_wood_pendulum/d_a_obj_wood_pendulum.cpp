@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 class daObjWPndlm_c : public fopAc_ac_c {

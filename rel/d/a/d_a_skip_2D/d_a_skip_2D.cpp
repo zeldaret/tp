@@ -4,9 +4,6 @@
  */
 
 #include "rel/d/a/d_a_skip_2D/d_a_skip_2D.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
-#include "d/meter/d_meter2.h"
 #include "d/meter/d_meter_button.h"
 #include "f_op/f_op_actor_mng.h"
 

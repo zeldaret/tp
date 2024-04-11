@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
-#include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"

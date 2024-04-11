@@ -1,7 +1,6 @@
 #ifndef D_A_SPINNER_H
 #define D_A_SPINNER_H
 
-#include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/particle/d_particle_copoly.h"
 #include "f_op/f_op_actor_mng.h"

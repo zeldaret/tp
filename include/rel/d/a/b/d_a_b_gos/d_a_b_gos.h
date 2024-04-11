@@ -2,7 +2,6 @@
 #define D_A_B_GOS_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 

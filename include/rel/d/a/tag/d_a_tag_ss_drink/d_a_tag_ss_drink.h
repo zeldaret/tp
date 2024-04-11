@@ -2,7 +2,6 @@
 #define D_A_TAG_SS_DRINK_H
 
 #include "d/a/d_a_obj_ss_base.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "f_op/f_op_actor_mng.h"
 

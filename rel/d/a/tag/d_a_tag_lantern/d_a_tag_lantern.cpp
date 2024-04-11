@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_lantern/d_a_tag_lantern.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 8048ECAC-8048ED28 0000EC 007C+00 1/0 0/0 0/0 .text            __dt__15daTag_Lantern_cFv */

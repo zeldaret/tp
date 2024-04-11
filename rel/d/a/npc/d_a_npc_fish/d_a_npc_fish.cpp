@@ -1,10 +1,8 @@
 // Translation Unit: d_a_npc_fish
 
 #include "rel/d/a/npc/d_a_npc_fish/d_a_npc_fish.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 /* 80542178-80542180 000078 0008+00 1/0 0/0 0/0 .text daNpc_Fish_Draw__FP14npc_fish_class */

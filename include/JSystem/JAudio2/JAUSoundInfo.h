@@ -1,7 +1,6 @@
 #ifndef JAUSOUNDINFO_H
 #define JAUSOUNDINFO_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAUAudibleParam.h"
 

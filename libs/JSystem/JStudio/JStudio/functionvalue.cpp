@@ -10,7 +10,6 @@
 #include "math.h"
 #include "stdlib.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "iterator.h"
 
 //

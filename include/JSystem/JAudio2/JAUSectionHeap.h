@@ -1,8 +1,6 @@
 #ifndef JAUSECTIONHEAP_H
 #define JAUSECTIONHEAP_H
 
-#include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAUBankTable.h"
 #include "JSystem/JAudio2/JAUSeqDataBlockMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"

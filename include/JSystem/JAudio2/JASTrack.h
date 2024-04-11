@@ -3,9 +3,6 @@
 
 #include "JSystem/JAudio2/JASBankTable.h"
 #include "JSystem/JAudio2/JASChannel.h"
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JAudio2/JASOscillator.h"
 #include "JSystem/JAudio2/JASRegisterParam.h"
 #include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASTrackPort.h"

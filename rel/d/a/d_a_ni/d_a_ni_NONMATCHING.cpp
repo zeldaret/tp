@@ -8,12 +8,6 @@
  * and some extra dtors being emitted that shouldnt be after daNi_Create
  */
 
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
-#include "d/a/d_a_player.h"
-#include "d/cc/d_cc_d.h"
-#include "d/cc/d_cc_uty.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"

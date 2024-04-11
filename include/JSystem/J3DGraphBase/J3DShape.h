@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
 class J3DCurrentMtxInfo {
 public:

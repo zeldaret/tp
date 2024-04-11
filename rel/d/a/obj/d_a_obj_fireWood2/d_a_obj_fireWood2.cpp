@@ -4,9 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_fireWood2/d_a_obj_fireWood2.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/cc/d_cc_d.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_hostIO.h"
 

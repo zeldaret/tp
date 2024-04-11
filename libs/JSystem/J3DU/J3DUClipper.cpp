@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "math.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

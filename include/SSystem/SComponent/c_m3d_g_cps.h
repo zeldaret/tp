@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "global.h"
 
 struct cM3dGCpsS {
     /* 0x00 */ Vec mStart;

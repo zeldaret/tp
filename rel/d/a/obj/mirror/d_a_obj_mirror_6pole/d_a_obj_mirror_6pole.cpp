@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
 /* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */

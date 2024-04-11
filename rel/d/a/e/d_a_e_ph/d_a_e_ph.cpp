@@ -6,7 +6,6 @@
 #include "rel/d/a/e/d_a_e_ph/d_a_e_ph.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
 
 #define PH_BMD 20

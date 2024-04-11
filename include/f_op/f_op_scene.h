@@ -2,7 +2,6 @@
 #define F_F_OP_SCENE_H_
 
 #include "f_op/f_op_scene_tag.h"
-#include "f_pc/f_pc_node.h"
 
 struct request_of_phase_process_class;
 class mDoDvdThd_command_c;

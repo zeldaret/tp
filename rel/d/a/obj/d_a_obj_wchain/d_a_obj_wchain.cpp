@@ -4,11 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"

@@ -4,7 +4,6 @@
 
 #include "rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "SSystem/SComponent/c_math.h"
 
 /* 80D36B98-80D36CA0 000078 0108+00 1/0 0/0 0/0 .text daObj_Wflag_Draw__FP15obj_wflag_class */

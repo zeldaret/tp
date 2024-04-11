@@ -1,7 +1,6 @@
 #ifndef D_A_E_YC_H
 #define D_A_E_YC_H
 
-#include "f_op/f_op_actor_mng.h"
 
 class e_yc_class : public fopEn_enemy_c {
 public:

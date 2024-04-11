@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDDir.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 
 static void WriteCallback(s32 chan, s32 result);
 static void EraseCallback(s32 chan, s32 result);

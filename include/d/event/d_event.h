@@ -2,7 +2,6 @@
 #define D_EVENT_D_EVENT_H
 
 #include "d/a/d_a_itembase.h"
-#include "global.h"
 
 int dEv_noFinishSkipProc(void*, int);
 

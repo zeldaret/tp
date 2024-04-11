@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_ZRTURARAROCK_H
 #define D_A_OBJ_ZRTURARAROCK_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "m_Do/m_Do_hostIO.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"

@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_KMSG_H
 #define D_A_TAG_KMSG_H
 
-#include "f_op/f_op_actor_mng.h"
 
 struct daTag_KMsg_c : public fopAc_ac_c {
 public:

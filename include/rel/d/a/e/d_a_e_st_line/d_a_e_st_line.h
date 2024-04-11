@@ -2,7 +2,6 @@
 #define D_A_E_ST_LINE_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 
 class e_st_line_class : public fopEn_enemy_c {
 public:

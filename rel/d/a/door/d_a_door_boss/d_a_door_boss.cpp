@@ -4,13 +4,11 @@
  */
 
 #include "rel/d/a/door/d_a_door_boss/d_a_door_boss.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/d_door_param2.h"
+#include "SSystem/SComponent/c_math.h"
 
 /* 80670A20-80670A2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {

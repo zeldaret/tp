@@ -1,10 +1,8 @@
 #ifndef JAISTREAMMGR_H
 #define JAISTREAMMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAIStream.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
 class JAIStreamAramMgr;

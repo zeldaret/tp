@@ -6,7 +6,6 @@
 #include "__va_arg.h"
 #include "dolphin/gx/GXEnum.h"
 #include "dolphin/os/OSError.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 typedef struct _GXRenderModeObj GXRenderModeObj;

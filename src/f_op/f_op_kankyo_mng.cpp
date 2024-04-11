@@ -6,7 +6,6 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 
 /* 8001F660-8001F6B8 019FA0 0058+00 2/2 0/0 0/0 .text            fopKyM_CreateAppend__Fv */
 static fopKyM_prm_class* fopKyM_CreateAppend() {

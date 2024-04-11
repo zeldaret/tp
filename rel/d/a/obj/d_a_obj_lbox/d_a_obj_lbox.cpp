@@ -6,9 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_lbox/d_a_obj_lbox.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_resorce.h"
-#include "d/d_vibration.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 

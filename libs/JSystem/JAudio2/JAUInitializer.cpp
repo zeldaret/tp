@@ -4,15 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JAUInitializer.h"
-#include "JSystem/JAudio2/JAISe.h"
-#include "JSystem/JAudio2/JAISeq.h"
-#include "JSystem/JAudio2/JAISoundChild.h"
-#include "JSystem/JAudio2/JAIStream.h"
-#include "JSystem/JAudio2/JASAramStream.h"
-#include "JSystem/JAudio2/JASAudioThread.h"
-#include "JSystem/JAudio2/JASDriverIF.h"
-#include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JAudio2/JASWaveArcLoader.h"

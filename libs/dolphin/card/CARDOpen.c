@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDOpen.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 #include "dolphin/dvd.h"
 
 /* 80357C74-80357CDC 3525B4 0068+00 1/1 1/1 0/0 .text            __CARDCompareFileName */

@@ -10,7 +10,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "math.h"
 #include "string.h"
-#include "dolphin/os/OSCache.h"
 
 /* 802D87D4-802D887C 2D3114 00A8+00 0/0 1/1 0/0 .text
  * __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection      */

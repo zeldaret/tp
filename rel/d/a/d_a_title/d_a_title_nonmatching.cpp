@@ -4,10 +4,6 @@
 //
 
 #include "rel/d/a/d_a_title/d_a_title.h"
-#include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
-#include "f_op/f_op_overlap_mng.h"
-#include "f_op/f_op_msg_mng.h"
 #include "d/pane/d_pane_class_alpha.h"
 #include "d/menu/d_menu_collect.h"
 #include "m_Do/m_Do_Reset.h"

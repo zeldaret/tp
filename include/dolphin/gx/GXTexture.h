@@ -1,7 +1,6 @@
 #ifndef GXTEXTURE_H
 #define GXTEXTURE_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 #ifdef __cplusplus

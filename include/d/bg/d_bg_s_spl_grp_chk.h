@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/bg/d_bg_s_chk.h"
-#include "dolphin/types.h"
 
 class dBgS_SplGrpChk : public cBgS_PolyInfo, public cBgS_Chk, public dBgS_Chk {
 public:

@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

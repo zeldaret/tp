@@ -4,9 +4,6 @@
 //
 
 #include "Z2AudioLib/Z2SpeechMgr2.h"
-#include "Z2AudioLib/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2AudioMgr.h"
 #include "JSystem/J3DU/J3DUD.h"
 #include "dol2asm.h"
 

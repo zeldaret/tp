@@ -2,7 +2,6 @@
 #define J2DANIMATION_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "global.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;

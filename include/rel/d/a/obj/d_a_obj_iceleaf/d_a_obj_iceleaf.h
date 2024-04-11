@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_ICELEAF_H
 #define D_A_OBJ_ICELEAF_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
 class daObjIceLeaf_c : public fopAc_ac_c {

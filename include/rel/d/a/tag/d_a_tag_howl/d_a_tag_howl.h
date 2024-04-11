@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_HOWL_H
 #define D_A_TAG_HOWL_H
 
-#include "d/d_procname.h"
 #include "f_op/f_op_actor.h"
 
 class daTag_Howl_c : public fopAc_ac_c {

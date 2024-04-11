@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_cstatue/d_a_cstatue.h"
 #include "dol2asm.h"
-#include "d/com/d_com_inf_game.h"
 
 //
 // Forward References:

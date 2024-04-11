@@ -1,7 +1,6 @@
 // Translation Unit: d_a_tag_lightball
 
 #include "rel/d/a/tag/d_a_tag_lightball/d_a_tag_lightball.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

@@ -4,7 +4,6 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
-#include "f_op/f_op_actor_mng.h"
 
 class daE_PH_c : public fopEn_enemy_c {
 public:

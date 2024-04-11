@@ -5,7 +5,6 @@
 
 #include "rel/d/a/b/d_a_b_gos/d_a_b_gos.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
 
 class daB_GOS_HIO_c {

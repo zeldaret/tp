@@ -1,6 +1,5 @@
 #include "dolphin/gx/GXAttr.h"
 #include "dolphin/gx.h"
-#include "dolphin/gx/GXInit.h"
 
 static inline void SETVCDATTR(GXAttr name, GXAttrType type) {
     switch (name) {

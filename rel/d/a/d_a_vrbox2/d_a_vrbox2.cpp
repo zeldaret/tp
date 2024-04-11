@@ -4,9 +4,6 @@
 //
 
 #include "rel/d/a/d_a_vrbox2/d_a_vrbox2.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_rain.h"

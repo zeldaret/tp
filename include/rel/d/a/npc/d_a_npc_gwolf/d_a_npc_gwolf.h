@@ -1,7 +1,6 @@
 #ifndef D_A_NPC_GWOLF_H
 #define D_A_NPC_GWOLF_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/a/d_a_npc.h"
 
 class daNpc_GWolf_c : public daNpcF_c {

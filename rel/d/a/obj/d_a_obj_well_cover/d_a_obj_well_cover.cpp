@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_well_cover/d_a_obj_well_cover.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
 #include "d/a/d_a_player.h"
 

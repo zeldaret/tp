@@ -2,9 +2,7 @@
 #define D_MENU_D_MENU_DMAP_H
 
 #include "d/d_select_cursor.h"
-#include "d/d_drawlist.h"
 #include "d/msg/d_msg_flow.h"
-#include "d/menu/d_menu_map_common.h"
 #include "d/menu/d_menu_dmap_map.h"
 #include "dolphin/types.h"
 

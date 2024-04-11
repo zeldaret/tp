@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_item.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"

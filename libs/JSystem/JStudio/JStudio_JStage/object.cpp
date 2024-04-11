@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio_JStage/object.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

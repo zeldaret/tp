@@ -4,7 +4,6 @@
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
-#include "f_pc/f_pc_searcher.h"
 #include "d/bg/d_bg_s.h"
 #include "d/bg/d_bg_s_gnd_chk.h"
 #include "d/bg/d_bg_s_lin_chk.h"
@@ -128,6 +127,30 @@ struct DOUBLE_POS {
     double x, y, z;
 };
 
+enum fopAcM_STATUS {
+    /* 0x000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
+    /* 0x000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
+    /* 0x000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
+    /* 0x000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
+    /* 0x000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
+    /* 0x000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
+    /* 0x000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
+    /* 0x000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
+    /* 0x000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
+    /* 0x000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
+    /* 0x000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
+    /* 0x000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
+    /* 0x001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
+    /* 0x002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
+    /* 0x004000 */ fopAcM_STATUS_UNK_004000 =  1 << 14,
+    /* 0x008000 */ fopAcM_STATUS_UNK_008000 =  1 << 15,
+    /* 0x010000 */ fopAcM_STATUS_UNK_010000 =  1 << 16,
+    /* 0x020000 */ fopAcM_STATUS_UNK_200000 =  1 << 17,
+    /* 0x040000 */ fopAcM_STATUS_UNK_400000 =  1 << 18,
+    /* 0x080000 */ fopAcM_STATUS_UNK_800000 =  1 << 19,
+    /* 0x100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
+};
+
 inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
     return (s8)pActor->current.roomNo;
 }
@@ -149,7 +172,7 @@ inline u32 fopAcM_checkStatus(fopAc_ac_c* pActor, u32 actor_status) {
 }
 
 inline u32 fopAcM_checkCarryNow(fopAc_ac_c* pActor) {
-    return pActor->actor_status & 0x2000;
+    return pActor->actor_status & fopAcM_STATUS_CARRY_NOW;
 }
 
 enum fopAcM_CARRY {
@@ -168,7 +191,7 @@ inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* pActor) {
-    return fopAcM_checkStatus(pActor, 0x100000);
+    return fopAcM_checkStatus(pActor, fopAcM_STATUS_HOOK_CARRY_NOW);
 }
 
 inline u32 fopAcM_GetParam(const void* pActor) {
@@ -195,10 +218,6 @@ inline u8 fopAcM_GetGroup(const fopAc_ac_c* p_actor) {
     return p_actor->group;
 }
 
-inline void fopAcM_SetGroup(fopAc_ac_c* p_actor, u8 group) {
-    p_actor->group = group;
-}
-
 inline void fopAcM_OnStatus(fopAc_ac_c* pActor, u32 flag) {
     pActor->actor_status |= flag;
 }
@@ -213,6 +232,10 @@ inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc func, void* param) {
 
 inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
     return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
+}
+
+inline u32 fopAcM_GetLinkId(const fopAc_ac_c* pActor) {
+    return pActor->parentActorID;
 }
 
 inline cXyz* fopAcM_GetPosition_p(fopAc_ac_c* pActor) {
@@ -260,11 +283,11 @@ inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
 }
 
 inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OnStatus(actor, 0x100000);
+    fopAcM_OnStatus(actor, fopAcM_STATUS_HOOK_CARRY_NOW);
 }
 
 inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OffStatus(actor, 0x100000);
+    fopAcM_OffStatus(actor, fopAcM_STATUS_HOOK_CARRY_NOW);
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
@@ -273,6 +296,10 @@ inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* pActor) {
 
 inline void fopAcM_SetGravity(fopAc_ac_c* actor, f32 gravity) {
     actor->gravity = gravity;
+}
+
+inline void fopAcM_SetGroup(fopAc_ac_c* actor, u8 group) {
+    actor->group = group;
 }
 
 inline void fopAcM_SetMaxFallSpeed(fopAc_ac_c* actor, f32 speed) {
@@ -396,10 +423,6 @@ inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_
 
 inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
     return p_actor->setID;
-}
-
-inline u32 fopAcM_GetLinkId(const fopAc_ac_c* p_actor) {
-    return p_actor->parentActorID;
 }
 
 inline void dComIfGs_onActor(int bitNo, int roomNo);

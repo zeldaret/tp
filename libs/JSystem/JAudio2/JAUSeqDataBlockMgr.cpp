@@ -5,7 +5,6 @@
 #include "JSystem/JAudio2/JAUSeqDataBlockMgr.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
 #include "JSystem/JAudio2/JASResArcLoader.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/types.h"
 
 /* 802A68F4-802A6928 2A1234 0034+00 0/0 2/2 0/0 .text            __ct__15JAUSeqDataBlockFv */

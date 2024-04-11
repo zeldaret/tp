@@ -1,9 +1,6 @@
 #ifndef JAUSTREAMSTATICARAMMGR_H
 #define JAUSTREAMSTATICARAMMGR_H
 
-#include "JSystem/JAudio2/JAIStreamDataMgr.h"
-#include "JSystem/JAudio2/JASAramStream.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "bitset.h"
 

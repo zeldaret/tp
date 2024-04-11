@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "d/d_stage.h"
 
 /* 80D597F8-80D5985C 000078 0064+00 0/0 0/0 1/1 .text getAppearPoint__12daTagGuard_cFP3Vec */

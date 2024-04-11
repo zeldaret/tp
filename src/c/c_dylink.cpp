@@ -8,8 +8,6 @@
 #include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
-#include "global.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80374640-80375DE8 -00001 17A8+00 1/1 0/0 0/0 .rodata          DynamicNameTable */

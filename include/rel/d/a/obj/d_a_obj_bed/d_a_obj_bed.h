@@ -1,10 +1,8 @@
 #ifndef D_A_OBJ_BED_H
 #define D_A_OBJ_BED_H
 
-#include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_s_acch.h"
-#include "d/bg/d_bg_s_gnd_chk.h"
 #include "f_op/f_op_actor.h"
 #include "dolphin/types.h"
 

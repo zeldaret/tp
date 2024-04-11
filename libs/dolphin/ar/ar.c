@@ -1,5 +1,4 @@
 #include "dolphin/ar.h"
-#include "dolphin/base/PPCArch.h"
 #include "dolphin/dsp.h"
 #include "dolphin/os.h"
 #include "string.h"

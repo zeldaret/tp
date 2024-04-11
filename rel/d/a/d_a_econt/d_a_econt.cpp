@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/d_a_econt/d_a_econt.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "d/d_timer.h"
 #include "d/meter/d_meter2_info.h"
 #include "f_pc/f_pc_executor.h"

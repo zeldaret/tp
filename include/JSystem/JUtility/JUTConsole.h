@@ -5,7 +5,6 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "__va_arg.h"
-#include "dolphin/types.h"
 
 class JUTConsole : public JKRDisposer {
 public:

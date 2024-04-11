@@ -8,7 +8,6 @@
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JAudio2/JASTrack.h"
-#include "global.h"
 
 //
 // Forward References:

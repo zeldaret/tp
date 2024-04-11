@@ -1,7 +1,6 @@
 #ifndef J3DCLUSTERLOADER_H
 #define J3DCLUSTERLOADER_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 
 struct J3DClusterLoaderDataBase {

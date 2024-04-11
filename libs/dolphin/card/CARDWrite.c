@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDWrite.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 #include "dolphin/os/OSTime.h"
 
 static void WriteCallback(s32 chan, s32 result);

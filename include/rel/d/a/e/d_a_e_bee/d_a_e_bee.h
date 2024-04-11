@@ -5,7 +5,6 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
 
 struct bee_s {
     enum Action {

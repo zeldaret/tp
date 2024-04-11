@@ -3,7 +3,6 @@
 //
 
 #include "JSystem/JAudio2/JAUSoundTable.h"
-#include "dolphin/types.h"
 
 /* 802A7114-802A7160 2A1A54 004C+00 0/0 1/1 0/0 .text            init__13JAUSoundTableFPCv */
 void JAUSoundTable::init(void const* param_0) {

@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_onsenFire/d_a_obj_onsenFire.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80CA8278-80CA82F4 000078 007C+00 1/1 0/0 0/0 .text            create__16daObjOnsenFire_cFv */

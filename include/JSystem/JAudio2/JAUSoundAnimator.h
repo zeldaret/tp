@@ -2,7 +2,6 @@
 #define JAUSOUNDANIMATOR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
 
 class JAUSoundAnimation;
 

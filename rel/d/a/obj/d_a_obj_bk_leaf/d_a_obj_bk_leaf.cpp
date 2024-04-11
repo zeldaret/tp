@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_bk_leaf/d_a_obj_bk_leaf.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
 /* 80BB60D8-80BB60F8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */

@@ -2,7 +2,6 @@
 #define J3DDRAWBUFFER_H
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
-#include "dolphin/types.h"
 
 // matches debug
 inline f32 J3DCalcZValue(register MtxP m, register Vec v) {

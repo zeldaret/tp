@@ -4,10 +4,6 @@
 //
 
 #include "d/d_ev_camera.h"
-#include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_camera.h"
-#include "d/d_demo.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"

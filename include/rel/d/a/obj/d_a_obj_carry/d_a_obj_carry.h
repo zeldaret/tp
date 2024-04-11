@@ -1,8 +1,6 @@
 #ifndef D_A_OBJ_CARRY_H
 #define D_A_OBJ_CARRY_H
 
-#include "d/bg/d_bg_s_acch.h"
-#include "d/cc/d_cc_d.h"
 #include "d/d_jnt_col.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
@@ -18,6 +16,11 @@ struct daObjCarry_Data {
     /* 0x0044 */ u8 field_0x0044[0x94-0x44];
 };
 
+/**
+ * @ingroup actors-objects
+ * @brief Generic carryable object actor
+ * 
+ */
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {

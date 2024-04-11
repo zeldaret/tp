@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_snowEffTag/d_a_obj_snowEffTag.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"

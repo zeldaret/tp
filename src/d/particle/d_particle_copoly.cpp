@@ -4,8 +4,6 @@
  */
 
 #include "d/particle/d_particle_copoly.h"
-#include "SSystem/SComponent/c_bg_s_poly_info.h"
-#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 /* 80050C9C-80050CC4 04B5DC 0028+00 0/0 2/2 27/27 .text            init__7dPaPo_cFP9dBgS_Acchff */

@@ -7,7 +7,6 @@
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "string.h"
-#include "dolphin/types.h"
 
 struct JPAResourceLoader {
     /* 8027D8A0 */ JPAResourceLoader(u8 const*, JPAResourceManager*);

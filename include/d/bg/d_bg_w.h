@@ -2,7 +2,6 @@
 #define D_BG_D_BG_W_H
 
 #include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "d/bg/d_bg_w_base.h"
 #include "dolphin/mtx.h"

@@ -6,7 +6,6 @@
 #include "f_op/f_op_scene_mng.h"
 #include "f_op/f_op_scene_iter.h"
 #include "f_op/f_op_scene_req.h"
-#include "f_pc/f_pc_searcher.h"
 
 /* 8001ECB0-8001ECE0 0195F0 0030+00 0/0 7/7 1/1 .text            fopScnM_SearchByID__FUi */
 scene_class* fopScnM_SearchByID(unsigned int id) {

@@ -6,7 +6,6 @@
 #include "d/d_cam_param.h"
 #include "d/d_drawlist.h"
 #include "d/d_stage.h"
-#include "dolphin/gx/GXStruct.h"
 #include "dolphin/types.h"
 
 class fopAc_ac_c;

@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_dvd_thread.h"
 

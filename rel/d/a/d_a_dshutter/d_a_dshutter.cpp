@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/d_a_dshutter/d_a_dshutter.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 //

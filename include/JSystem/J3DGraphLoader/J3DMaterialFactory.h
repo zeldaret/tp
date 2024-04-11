@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 class J3DMaterial;

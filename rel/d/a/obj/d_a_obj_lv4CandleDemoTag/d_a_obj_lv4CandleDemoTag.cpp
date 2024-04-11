@@ -6,7 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_lv4CandleDemoTag/d_a_obj_lv4CandleDemoTag.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/d_procname.h"
 #include "d/event/d_event_lib.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_hostIO.h"

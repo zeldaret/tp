@@ -1,5 +1,4 @@
 #include "JSystem/JAudio2/JAISoundParams.h"
-#include "dolphin/types.h"
 
 void JAISoundParamsMove::moveVolume(f32 newValue, u32 count) {
     if (count == 0) {

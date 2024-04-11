@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JMessage/locale.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

@@ -5,7 +5,6 @@
 
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
 /* 8031204C-803121A4 30C98C 0158+00 0/0 1/1 0/0 .text loadGX__10J3DTextureCFUs11_GXTexMapID */
 void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {

@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JAISeqMgr.h"
 #include "JSystem/JAudio2/JAISeq.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "dol2asm.h"

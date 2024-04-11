@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/d_a_dmidna/d_a_dmidna.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 8045D290-8045D298 000000 0007+01 3/3 0/0 0/0 .rodata          l_arcName */

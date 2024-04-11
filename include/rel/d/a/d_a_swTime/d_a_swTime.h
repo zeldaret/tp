@@ -1,7 +1,6 @@
 #ifndef D_A_SWTIME_H
 #define D_A_SWTIME_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 class daSwTime_c : public fopAc_ac_c {

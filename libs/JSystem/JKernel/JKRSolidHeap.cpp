@@ -1,7 +1,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include "global.h"
 
 /* 802D0A24-802D0AD0 2CB364 00AC+00 0/0 4/4 1/1 .text            create__12JKRSolidHeapFUlP7JKRHeapb
  */

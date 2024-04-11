@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_digholl/d_a_obj_digholl.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80BDC618-80BDC73C 000078 0124+00 1/1 0/0 0/0 .text            create__14daObjDigholl_cFv */

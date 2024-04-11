@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
 #include "global.h"

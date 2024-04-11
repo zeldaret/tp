@@ -11,7 +11,6 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JGeometry.h"
-#include "dol2asm.h"
 
 //
 // Forward References:

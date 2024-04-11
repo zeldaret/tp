@@ -4,12 +4,6 @@
 //
 
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2SoundStarter.h"
-#include "Z2AudioLib/Z2SoundMgr.h"
-#include "Z2AudioLib/Z2StatusMgr.h"
-#include "Z2AudioLib/Z2Creature.h"
-#include "Z2AudioLib/Z2Audience.h"
-#include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "JSystem/JAudio2/JASCalc.h"
 #include "d/save/d_save.h"

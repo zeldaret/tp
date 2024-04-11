@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_LV3CANDLE_H
 #define D_A_OBJ_LV3CANDLE_H
 
-#include "Z2AudioLib/Z2SoundObject.h"
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"

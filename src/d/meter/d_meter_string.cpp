@@ -9,7 +9,6 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_timer.h"
 #include "d/meter/d_meter2_draw.h"
 #include "d/meter/d_meter2_info.h"

@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_LANTERN_H
 #define D_A_TAG_LANTERN_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/msg/d_msg_flow.h"
 

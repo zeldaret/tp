@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
 
 class daNpcCd_c : public fopAc_ac_c {
 public:

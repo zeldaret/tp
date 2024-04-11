@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JSupport/JSUList.h"
 
 class JAISeMgr;
 

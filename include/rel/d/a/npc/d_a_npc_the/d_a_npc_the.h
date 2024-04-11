@@ -2,7 +2,6 @@
 #define D_A_NPC_THE_H
 
 #include "d/a/d_a_npc.h"
-#include "f_op/f_op_actor_mng.h"
 
 // #define NONMATCHING
 

@@ -4,7 +4,6 @@
  */
 
 #include "d/s/d_s_play.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "SSystem/SComponent/c_counter.h"
@@ -14,7 +13,6 @@
 #include "d/d_eye_hl.h"
 #include "d/d_item.h"
 #include "d/d_model.h"
-#include "d/d_procname.h"
 #include "d/map/d_map_path_dmap.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
@@ -22,9 +20,7 @@
 #include "f_op/f_op_draw_iter.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_overlap_mng.h"
-#include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_Reset.h"
-#include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/d_a_suspend/d_a_suspend.h"
 #include "rel/d/a/d_a_ykgr/d_a_ykgr.h"

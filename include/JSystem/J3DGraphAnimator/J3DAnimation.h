@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include "global.h"
 
 struct JUTDataBlockHeader {
     /* 0x0 */ u32 mType;

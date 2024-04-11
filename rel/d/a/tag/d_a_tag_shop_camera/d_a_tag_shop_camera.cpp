@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_shop_camera/d_a_tag_shop_camera.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 
 

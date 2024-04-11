@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_SNOW_SOUP_H
 #define D_A_OBJ_SNOW_SOUP_H
 
-#include "JSystem/JParticle/JPAEmitter.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor.h"
 

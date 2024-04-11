@@ -1,6 +1,5 @@
 #include "dolphin/si/SIBios.h"
 #include "dolphin/os.h"
-#include "dolphin/vi.h"
 
 /* 804509C8-804509D0 -00001 0004+04 1/1 0/0 0/0 .sdata           __SIVersion */
 static char* __SIVersion = "<< Dolphin SDK - SI\trelease build: Apr  5 2004 04:14:16 (0x2301) >>";

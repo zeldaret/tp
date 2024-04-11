@@ -5,7 +5,6 @@
 
 #include "rel/d/a/kytag/d_a_kytag15/d_a_kytag15.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

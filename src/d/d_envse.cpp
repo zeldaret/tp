@@ -6,7 +6,6 @@
 #include "d/d_envse.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "string.h"
 

@@ -5,7 +5,6 @@
 
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASTaskThread.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
 

@@ -6,14 +6,12 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "JSystem/JUtility/JUTDirectFile.h"
 #include "math.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os.h"
-#include "dolphin/vi.h"
 #include "global.h"
 
 //

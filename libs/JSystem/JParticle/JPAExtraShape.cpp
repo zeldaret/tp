@@ -7,7 +7,6 @@
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "dolphin/gx.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"
 

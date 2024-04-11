@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
 #include "JSystem/JAudio2/JASWaveInfo.h"
-#include "dolphin/os/OSMutex.h"
 
 class JASWaveHandle {
 public:

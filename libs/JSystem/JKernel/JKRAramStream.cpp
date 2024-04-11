@@ -2,7 +2,6 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "global.h"
 
 /* ############################################################################################## */
 /* 80451408-8045140C 000908 0004+00 1/1 0/0 0/0 .sbss            sAramStreamObject__13JKRAramStream

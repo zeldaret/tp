@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_CROPE_H
 #define D_A_OBJ_CROPE_H
 
-#include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daObjCrope_c : public fopAc_ac_c {

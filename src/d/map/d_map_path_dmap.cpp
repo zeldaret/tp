@@ -9,7 +9,6 @@
 #include "d/map/d_map_path.h"
 #include "d/meter/d_meter_HIO.h"
 #include "dol2asm.h"
-#include "m_Do/m_Do_mtx.h"
 
 //
 // Forward References:

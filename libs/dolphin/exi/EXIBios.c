@@ -1,5 +1,4 @@
 #include "dolphin/exi/EXIBios.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
 
 /* 804509C0-804509C8 -00001 0004+04 1/1 0/0 0/0 .sdata           __EXIVersion */

@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/cc/d_cc_d.h"
 #include "d/d_procname.h"
 
 /* 80C46698-80C46768 000078 00D0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */

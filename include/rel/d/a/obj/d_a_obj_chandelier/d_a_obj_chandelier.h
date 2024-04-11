@@ -3,7 +3,6 @@
 
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "f_op/f_op_actor_mng.h"
-#include "SSystem/SComponent/c_phase.h"
 
 class daObjChandelier_c;
 typedef void (daObjChandelier_c::*daObjChandelier_proc)();
