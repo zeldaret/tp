@@ -8,12 +8,10 @@ M64_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL1.map
 
 M64_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/door/d_a_door_bossL1/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_bossL1/d_a_door_bossL1.cpp \
 
 M64_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL1/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL1/d_a_door_bossL1.o \
 
 M64_LIBS := \
