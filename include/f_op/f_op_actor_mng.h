@@ -425,10 +425,6 @@ inline u16 fopAcM_GetSetId(const fopAc_ac_c* p_actor) {
     return p_actor->setID;
 }
 
-inline u32 fopAcM_GetLinkId(const fopAc_ac_c* p_actor) {
-    return p_actor->parentActorID;
-}
-
 inline void dComIfGs_onActor(int bitNo, int roomNo);
 
 inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {

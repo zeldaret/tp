@@ -8,6 +8,7 @@
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/d_door_param2.h"
+#include "SSystem/SComponent/c_math.h"
 
 /* 80670A20-80670A2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
