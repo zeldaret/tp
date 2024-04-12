@@ -1,22 +1,19 @@
-name: run Doxygen to generate docs
-
+name: Generate Doxygen Static Site
 on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: generate docs
       uses: mattnotmitt/doxygen-action@v1
       with:
         doxyfile-path: 'Doxyfile'
     - name: deploy docs to github pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/doxygen/html
