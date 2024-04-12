@@ -245,7 +245,7 @@ public:
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
 
-    u32* getMidnaBindID(u8 i_idx) { return mMidnaBindID + i_idx; }
+    u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
     u8 getMidnaBindMode() { return mMidnaBindMode; }
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
