@@ -4,6 +4,10 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "string.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<class T>
 class JASGlobalInstance {
 public:
@@ -29,6 +33,10 @@ public:
     static T* sInstance;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<class T>
 class JASPtrTable {
 public:
@@ -59,6 +67,10 @@ private:
     /* 0x04 */ u32 mSize;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<class T, size_t N>
 class JASPtrArray : public JASPtrTable<T> {
 public:

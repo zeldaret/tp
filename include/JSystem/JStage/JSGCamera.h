@@ -4,10 +4,23 @@
 #include "JSystem/JStage/JSGObject.h"
 
 namespace JStage {
+
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TECameraProjection {};
 
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TECameraView {};
 
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TCamera : public TObject {
         /* 80280BA0 */ virtual ~TCamera() = 0;
         /* 80280C00 */ virtual s32 JSGFGetType() const;

@@ -2,7 +2,6 @@
 #define D_A_OBJ_SWBALLA_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "d/event/d_event_lib.h"
 
 // dEvLib_callback_c is not generated at the correct location.
 class daObjSwBallA_c : public fopAc_ac_c /*, public dEvLib_callback_c*/ {

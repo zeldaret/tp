@@ -4,11 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2Audience.h"
-#include "Z2AudioLib/Z2Calc.h"
-#include "Z2AudioLib/Z2SoundInfo.h"
 #include "JSystem/JAudio2/JAISound.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/J3DU/J3DUD.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "dol2asm.h"

@@ -4,13 +4,6 @@
  */
 
 #include "rel/d/a/b/d_a_b_ds/d_a_b_ds.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "c/c_damagereaction.h"
-#include "d/a/d_a_player.h"
-#include "d/cc/d_cc_uty.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"

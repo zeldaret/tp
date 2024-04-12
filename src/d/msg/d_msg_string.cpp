@@ -7,7 +7,6 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/msg/d_msg_out_font.h"
 #include "dol2asm.h"
-#include "JSystem/JGeometry.h"
 
 //
 // Forward References:

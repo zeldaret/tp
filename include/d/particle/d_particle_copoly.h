@@ -1,8 +1,6 @@
 #ifndef D_PARTICLE_D_PARTICLE_COPOLY_H
 #define D_PARTICLE_D_PARTICLE_COPOLY_H
 
-#include "SSystem/SComponent/c_sxyz.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "d/com/d_com_inf_game.h"
 
 class dBgS_Acch;

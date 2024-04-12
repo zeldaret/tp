@@ -5,7 +5,6 @@
 
 #include "dolphin/vi.h"
 #include "dol2asm.h"
-#include "dolphin/gx.h"
 #include "dolphin/os.h"
 
 #define CLAMP(x, l, h) (((x) > (h)) ? (h) : (((x) < (l)) ? (l) : (x)))

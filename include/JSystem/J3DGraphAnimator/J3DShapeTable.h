@@ -2,10 +2,13 @@
 #define J3DSHAPETABLE_H
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include "dolphin/types.h"
 
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeTable {
 public:
     J3DShapeTable() {

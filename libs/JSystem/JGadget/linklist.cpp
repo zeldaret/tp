@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JGadget/linklist.h"
-#include "dolphin/types.h"
 
 template <typename T>
 class TPRIsEqual_pointer_ {

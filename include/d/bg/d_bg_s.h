@@ -2,7 +2,6 @@
 #define D_BG_D_BG_S_H
 
 #include "d/bg/d_bg_w_base.h"
-#include "dolphin/types.h"
 #include "global.h"
 
 class dBgW;

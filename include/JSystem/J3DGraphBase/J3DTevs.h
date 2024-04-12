@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevStageInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 mTevColorOp;
@@ -28,6 +32,10 @@ struct J3DTevStageInfo {
 
 extern J3DTevStageInfo const j3dDefaultTevStageInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeTableInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -37,6 +45,10 @@ struct J3DTevSwapModeTableInfo {
 
 extern const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeInfo {
     /* 0x0 */ u8 mRasSel;
     /* 0x1 */ u8 mTexSel;
@@ -46,6 +58,10 @@ struct J3DTevSwapModeInfo {
 
 extern J3DTevSwapModeInfo const j3dDefaultTevSwapMode;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevStage {
     /* 8000E230 */ J3DTevStage();
     void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
@@ -120,6 +136,10 @@ struct J3DTevStage {
     /* 0x7 */ u8 mTevSwapModeInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTevStageInfo {
     /* 0x0 */ u8 mIndStage;
     /* 0x1 */ u8 mIndFormat;
@@ -135,6 +155,10 @@ struct J3DIndTevStageInfo {
 
 extern J3DIndTevStageInfo const j3dDefaultIndTevStageInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTevStage {
     /* 8000E14C */ J3DIndTevStage() : mInfo(0) { setIndTevStageInfo(j3dDefaultIndTevStageInfo); }
     J3DIndTevStage(J3DIndTevStageInfo const& info) : mInfo(0) { setIndTevStageInfo(info); }
@@ -162,6 +186,10 @@ struct J3DIndTevStage {
     /* 0x0 */ u32 mInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevOrderInfo {
     void operator=(const J3DTevOrderInfo& other) {
         *(u32*) this = *(u32*)&other;
@@ -175,6 +203,10 @@ struct J3DTevOrderInfo {
 
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevOrder : public J3DTevOrderInfo {
     /* 8000E140 */ J3DTevOrder() : J3DTevOrderInfo(j3dDefaultTevOrderInfoNull) {}
     J3DTevOrder(const J3DTevOrderInfo& info) : J3DTevOrderInfo(info) {}
@@ -182,6 +214,10 @@ struct J3DTevOrder : public J3DTevOrderInfo {
     u8 getTexMap() { return mTexMap; }
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeTable {
     /* 8000E134 */ J3DTevSwapModeTable();
     J3DTevSwapModeTable(J3DTevSwapModeTableInfo const& info) {

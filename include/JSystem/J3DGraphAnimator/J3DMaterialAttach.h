@@ -11,6 +11,10 @@ class J3DAnmTextureSRTKey;
 class J3DAnmTevRegKey;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterialTable {
 public:
     /* 8032F5A8 */ void clear();

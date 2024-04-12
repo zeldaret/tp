@@ -2,7 +2,6 @@
 #define D_A_TAG_PACHI_H
 
 #include "d/cc/d_cc_d.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daTagPati_c : public fopAc_ac_c {

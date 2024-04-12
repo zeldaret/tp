@@ -4,12 +4,15 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"
 
 class J3DJoint;
 class J3DMaterialAnm;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterial {
 public:
     /* 803157A0 */ static J3DColorBlock* createColorBlock(u32);
@@ -100,6 +103,10 @@ public:
     /* 0x48 */ J3DDisplayListObj* mSharedDLObj;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPatchedMaterial : public J3DMaterial {
 public:
     /* 80316FB8 */ void initialize();
@@ -112,6 +119,10 @@ public:
     /* 80317040 */ virtual void change();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DLockedMaterial : public J3DMaterial {
 public:
     J3DLockedMaterial() { initialize(); }

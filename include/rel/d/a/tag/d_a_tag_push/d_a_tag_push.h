@@ -2,7 +2,6 @@
 #define D_A_TAG_PUSH_H
 
 #include "d/a/d_a_npc.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daTag_Push_c : public fopAc_ac_c {

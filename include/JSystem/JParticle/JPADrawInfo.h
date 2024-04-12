@@ -3,6 +3,10 @@
 
 #include "dolphin/mtx.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPADrawInfo {
 public:
     JPADrawInfo(Mtx param_0, f32 fovY, f32 aspect) {

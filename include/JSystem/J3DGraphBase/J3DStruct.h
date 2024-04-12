@@ -3,9 +3,12 @@
 
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/mtx.h"
-#include "dolphin/mtx/mtx44.h"
 #include "dolphin/mtx/vec.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DLightInfo {
 public:
     /* 803256C4 */ J3DLightInfo& operator=(J3DLightInfo const&);
@@ -19,6 +22,10 @@ public:
 
 extern "C" extern J3DLightInfo const j3dDefaultLightInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DLightObj {
 public:
     /* 80018C0C */ J3DLightObj() { mInfo = j3dDefaultLightInfo; }
@@ -34,6 +41,10 @@ public:
     /* 0x34 */ GXLightObj mLightObj;
 };  // Size = 0x74
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTextureSRTInfo {
     /* 0x00 */ f32 mScaleX;
     /* 0x04 */ f32 mScaleY;
@@ -60,6 +71,10 @@ struct J3DTextureSRTInfo {
     }
 };  // Size: 0x14
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTexMtxInfo {
     /* 80325718 */ J3DTexMtxInfo& operator=(J3DTexMtxInfo const&);
     /* 80325794 */ void setEffectMtx(Mtx);
@@ -73,12 +88,20 @@ struct J3DTexMtxInfo {
     /* 0x24 */ Mtx44 mEffectMtx;    
 };  // Size: 0x64
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTexMtxInfo {
     J3DIndTexMtxInfo& operator=(J3DIndTexMtxInfo const&);
     /* 0x00 */ Mtx23 field_0x0;
     /* 0x18 */ u8 field_0x18;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DFogInfo {
     /* 80325800 */ J3DFogInfo& operator=(J3DFogInfo const&);
 
@@ -93,6 +116,10 @@ struct J3DFogInfo {
     /* 0x18 */ GXFogAdjTable field_0x18;
 };  // Size: 0x2C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DNBTScaleInfo {
     /* 8032587C */ J3DNBTScaleInfo& operator=(J3DNBTScaleInfo const&);
 

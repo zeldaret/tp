@@ -1,12 +1,15 @@
 #ifndef JPABASESHAPE_H
 #define JPABASESHAPE_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 class JPAEmitterWorkData;
 class JKRHeap;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPABaseShapeData {
     // Common header.
     /* 0x00 */ u8 mMagic[4];
@@ -36,6 +39,10 @@ struct JPABaseShapeData {
     /* 0x30 */ u8 mTexAnmRndmMask;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPABaseShape {
 public:
     /* 8027A6DC */ JPABaseShape(u8 const*, JKRHeap*);
@@ -125,6 +132,10 @@ public:
     /* 0x10 */ GXColor* mpEnvClrAnmTbl;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAClrAnmKeyData {
     /* 0x0 */ s16 index;
     /* 0x2 */ GXColor color;

@@ -1,7 +1,6 @@
 // Translation Unit: d_a_e_db_leaf
 
 #include "rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 806A1E38-806A1EA0 000078 0068+00 1/0 0/0 0/0 .text daE_DB_LEAF_Draw__FP15e_db_leaf_class */

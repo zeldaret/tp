@@ -4,6 +4,11 @@
 #include "JSystem/JGadget/binary.h"
 
 namespace JMessage {
+
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct data {
     struct TParse_THeader : public JGadget::binary::TParseData_aligned<4> {
         TParse_THeader(const void* data) : TParseData_aligned(data) {}

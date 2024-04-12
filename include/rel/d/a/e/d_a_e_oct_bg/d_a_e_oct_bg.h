@@ -9,6 +9,11 @@
 #include "d/cc/d_cc_uty.h"
 #include "SSystem/SComponent/c_phase.h"
 
+/**
+* @ingroup actors-enemies
+* @brief Morpheel Bomb Fish
+*
+*/
 struct daE_OctBg_c : public fopEn_enemy_c {
     typedef void (daE_OctBg_c::*actionFunc)();
 

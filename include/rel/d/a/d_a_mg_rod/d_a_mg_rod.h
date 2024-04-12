@@ -1,8 +1,6 @@
 #ifndef D_A_MG_ROD_H
 #define D_A_MG_ROD_H
 
-#include "d/msg/d_msg_flow.h"
-#include "f_op/f_op_actor.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
@@ -20,6 +18,11 @@ struct mg_hook_s {
     /* 0x18 */ u8 field_0x18[0x20 - 0x18];
 };
 
+/**
+ * @ingroup actors-items
+ * @brief Fishing Rod
+ * 
+ */
 class dmg_rod_class : public fopAc_ac_c {
 public:
     /* 804BAC0C */ dmg_rod_class();

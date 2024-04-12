@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUAudioArcInterpreter {
 public:
     /* 802A4244 */ JAUAudioArcInterpreter();

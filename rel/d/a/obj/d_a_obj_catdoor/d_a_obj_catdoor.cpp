@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 
 //
 // Declarations:

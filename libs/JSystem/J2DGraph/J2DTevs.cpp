@@ -4,7 +4,6 @@
 
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
-#include "JSystem/JUtility/TColor.h"
 #include "math.h"
 #include "dolphin/gx.h"
 

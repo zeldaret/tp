@@ -5,14 +5,11 @@
 
 #include "m_Do/m_Do_dvd_thread.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_ext.h"
 

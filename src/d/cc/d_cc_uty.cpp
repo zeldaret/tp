@@ -7,7 +7,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 #include "d/s/d_s_play.h"
 #include "f_op/f_op_actor_mng.h"
 

@@ -5,9 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_player.h"
-#include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 

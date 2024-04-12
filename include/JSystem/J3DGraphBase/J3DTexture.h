@@ -3,9 +3,12 @@
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexture {
 private:
     /* 0x0 */ u16 mNum;
@@ -30,6 +33,10 @@ public:
 
 extern J3DTexMtxInfo const j3dDefaultTexMtxInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexMtx {
 public:
     J3DTexMtx() {
@@ -54,6 +61,10 @@ private:
     /* 0x64 */ Mtx mMtx;
 };  // Size: 0x94
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTexCoordInfo {
     /* 0x0 */ u8 mTexGenType;
     /* 0x1 */ u8 mTexGenSrc;
@@ -63,6 +74,10 @@ struct J3DTexCoordInfo {
 
 extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTexCoord : public J3DTexCoordInfo {
     /* 8000E464 */ J3DTexCoord() {
         setTexCoordInfo(j3dDefaultTexCoordInfo[0]);

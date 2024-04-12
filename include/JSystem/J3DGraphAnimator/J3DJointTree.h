@@ -2,10 +2,13 @@
 #define J3DJOINTTREE_H
 
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
-#include "dolphin/types.h"
 
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DModelHierarchy {
     /* 0x0 */ u16 mType;
     /* 0x2 */ u16 mValue;
@@ -13,6 +16,10 @@ struct J3DModelHierarchy {
 
 class J3DMaterialTable;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DDrawMtxData {
     /* 803115E0 */ J3DDrawMtxData();
     /* 803115F4 */ ~J3DDrawMtxData();
@@ -25,6 +32,10 @@ struct J3DDrawMtxData {
 
 class J3DShapeTable;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DJointTree {
 public:
     /* 80325A18 */ J3DJointTree();

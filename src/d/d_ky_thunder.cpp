@@ -5,12 +5,9 @@
 
 #include "d/d_ky_thunder.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "JSystem/JMath/JMath.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dolphin/os/OSCache.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_rain.h"
 #include "f_op/f_op_kankyo_mng.h"
 

@@ -4,7 +4,6 @@
 //
 
 #include "d/particle/d_particle.h"
-#include "d/particle/d_particle_name.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -14,7 +13,6 @@
 #include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_graphic.h"
 #include "f_op/f_op_actor_mng.h"

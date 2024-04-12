@@ -4,14 +4,6 @@
  */
 
 #include "rel/d/a/b/d_a_b_bq/d_a_b_bq.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "SSystem/SComponent/c_math.h"
-#include "Z2AudioLib/Z2Creature.h"
-#include "c/c_damagereaction.h"
-#include "cmath.h"
-#include "d/a/d_a_player.h"
-#include "d/cc/d_cc_d.h"
-#include "d/cc/d_cc_uty.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"

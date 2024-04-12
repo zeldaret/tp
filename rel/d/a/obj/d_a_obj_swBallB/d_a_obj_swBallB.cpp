@@ -5,8 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_swBallB/d_a_obj_swBallB.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
-#include "d/a/d_a_player.h"
-#include "d/d_lib.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
 

@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_graWall/d_a_obj_graWall.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80C10BF8-80C10D48 000078 0150+00 1/1 0/0 0/0 .text            Create__14daObjGraWall_cFv */

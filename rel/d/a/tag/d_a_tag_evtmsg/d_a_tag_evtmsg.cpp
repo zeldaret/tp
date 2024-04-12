@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_evtmsg/d_a_tag_evtmsg.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_npc.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

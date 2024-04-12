@@ -6,7 +6,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "math.h"
 #include "string.h"
-#include "dolphin/os.h"
 #include "global.h"
 
 /* 802D7BF0-802D7C98 2D2530 00A8+00 0/0 1/1 0/0 .text

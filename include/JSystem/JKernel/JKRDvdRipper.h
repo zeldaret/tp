@@ -15,6 +15,10 @@ struct SYaz0Header {
     u32 length;
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDMCommand {
     JKRDMCommand();
     ~JKRDMCommand();
@@ -22,6 +26,11 @@ class JKRDMCommand {
 
 class JKRHeap;
 class JKRDvdFile;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDvdRipper {
 public:
     static JSUList<JKRDMCommand> sDvdAsyncList;

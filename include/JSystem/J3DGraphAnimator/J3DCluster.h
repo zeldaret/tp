@@ -11,6 +11,10 @@ class J3DModel;
 class J3DAnmCluster;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DCluster {
 public:
     void operator=(const J3DCluster& other) {
@@ -44,6 +48,10 @@ public:
     /* 0x20 */ J3DDeformer* mDeformer;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DClusterKey {
 public:
     void operator=(const J3DClusterKey& other) {
@@ -59,6 +67,10 @@ public:
     /* 0x08 */ void* field_0x8;
 };  // Size: 0x0C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDeformData {
 public:
     /* 8032E1F8 */ J3DDeformData();
@@ -88,6 +100,10 @@ public:
     /* 0x24 */ JUTNameTab* mClusterKeyName;
 };  // Size: 0x28
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DClusterVertex {
 public:
     void operator=(const J3DClusterVertex& other) {

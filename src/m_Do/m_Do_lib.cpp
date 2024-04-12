@@ -5,7 +5,6 @@
 
 #include "m_Do/m_Do_lib.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "dolphin/types.h"

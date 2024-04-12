@@ -4,9 +4,7 @@
 //
 
 #include "rel/d/a/kytag/d_a_kytag00/d_a_kytag00.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 //

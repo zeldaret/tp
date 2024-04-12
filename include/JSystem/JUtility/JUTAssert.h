@@ -1,7 +1,6 @@
 #ifndef JUTASSERT_H
 #define JUTASSERT_H
 
-#include "dolphin/types.h"
 #include "dolphin/os.h"
 
 #ifdef DEBUG

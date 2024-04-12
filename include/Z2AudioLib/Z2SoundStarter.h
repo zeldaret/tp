@@ -2,7 +2,6 @@
 #define Z2SOUNDSTARTER_H
 
 #include "JSystem/JAudio2/JAISoundStarter.h"
-#include "JSystem/JAudio2/JASGadget.h"
 
 struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2SoundStarter> {
     Z2SoundStarter(bool);

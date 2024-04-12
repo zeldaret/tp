@@ -7,7 +7,6 @@
 #include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 #include "global.h"
 
 /* 80075EAC-80075F14 0707EC 0068+00 0/0 4/4 336/336 .text            __ct__12dBgS_AcchCirFv */

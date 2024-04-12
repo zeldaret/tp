@@ -2,19 +2,19 @@
 * @file d_a_e_yk.h
 * This header contains information about the Shadow Keese actor.
 *
+*
 */
 
 #ifndef D_A_E_YK_H
 #define D_A_E_YK_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
 /**
- * \enum daE_YK_Action
- * \brief Shadow Keese current action. 
+ * @enum daE_YK_Action
+ * @brief Shadow Keese current action. 
  * 
  */
 enum daE_YK_Action {
@@ -31,7 +31,7 @@ enum daE_YK_Action {
 };
 
 /**
- * \brief Temporary HIO struct to get a match. Remove later. 
+ * @brief Temporary HIO struct to get a match. Remove later. 
  * 
  */
 struct daE_YK_HIO_c_tmp {
@@ -46,7 +46,7 @@ struct daE_YK_HIO_c_tmp {
 
 
 /**
- * \brief Shadow Keese Host Input Output class
+ * @brief Shadow Keese Host Input Output class
  * 
  */
 class daE_YK_HIO_c {
@@ -64,7 +64,8 @@ public:
 };
 
 /**
- * \brief Shadow Keese actor class
+ * @ingroup actors-enemies
+ * @brief Shadow Keese
  * 
  */
 class e_yk_class : public fopEn_enemy_c {

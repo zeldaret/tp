@@ -4,8 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
-#include "JSystem/TPosition3.hh"
-#include "JSystem/JGeometry.h"
 #include "dol2asm.h"
 #include "math.h"
 

@@ -32,6 +32,13 @@ struct ob_ke_s {
     /* 0x1E0 */ cXyz field_0x1e0;
 };  // Size: 0x1EC
 
+/**
+ * @ingroup actors-enemies
+ * @brief Morpheel (body)
+ * 
+ * Lakebed Temple dungeon boss. This is the body part of the boss.
+ * 
+ */
 class b_ob_class : public fopEn_enemy_c {
 public:
     /* 8061A0C0 */ b_ob_class();

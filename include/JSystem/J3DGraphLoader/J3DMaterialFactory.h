@@ -3,11 +3,14 @@
 
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 class J3DMaterial;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMaterialInitData {
     /* 0x000 */ u8 mMaterialMode;
     /* 0x001 */ u8 mCullModeIdx;
@@ -41,6 +44,10 @@ struct J3DMaterialInitData {
     /* 0x14A */ u16 mNBTScaleIdx;
 }; // size 0x14C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndInitData {
     /* 0x000 */ bool mEnabled;
     /* 0x001 */ u8 mIndTexStageNum;
@@ -53,6 +60,10 @@ struct J3DIndInitData {
     /* 0x078 */ J3DIndTevStageInfo mIndTevStageInfo[0x10];
 }; // size 0x138
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DPatchingInfo {
     /* 0x0 */ u16 mMatColorOffset;
     /* 0x2 */ u16 mColorChanOffset;
@@ -63,6 +74,10 @@ struct J3DPatchingInfo {
     /* 0xC */ u8 field_0xc[4];
 }; // size 0x10
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DDisplayListInit {
     /* 0x0 */ u32 mOffset;
     /* 0x4 */ u32 field_0x4;
@@ -71,6 +86,10 @@ struct J3DDisplayListInit {
 struct J3DTexCoord2Info;
 struct J3DCurrentMtxInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterialFactory {
 public:
     enum MaterialType {

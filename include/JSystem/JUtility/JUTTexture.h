@@ -1,16 +1,19 @@
 #ifndef JUTTEXTURE_H
 #define JUTTEXTURE_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 class JUTPalette;
 
-/*
- * Acts as the header to image data. Usually texture data immediately follows it,
- * so any pointer arithmetic to go past the end of this structure is so that a
- * variable sized allocated buffer can be accessed.
- */
+/**
+* @ingroup jsystem-jutility
+* @brief Image data header.
+*
+* Acts as the header to image data. Usually texture data immediately follows it,
+* so any pointer arithmetic to go past the end of this structure is so that a
+* variable sized allocated buffer can be accessed.
+*
+*/
 struct ResTIMG {
     /* 0x00 */ u8 format;
     /* 0x01 */ u8 alphaEnabled;
@@ -36,6 +39,10 @@ struct ResTIMG {
     /* 0x1C */ u32 imageOffset;
 };  // Size: 0x20
 
+/**
+* @ingroup jsystem-jutility
+*
+*/
 class JUTTexture {
 public:
     JUTTexture() {

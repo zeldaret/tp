@@ -2,7 +2,6 @@
 #define D_A_TAG_KAGO_FALL_H
 
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
 class daTagKagoFall_c : public fopAc_ac_c {

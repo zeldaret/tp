@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_scene_exit/d_a_scene_exit.h"
 #include "dol2asm.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

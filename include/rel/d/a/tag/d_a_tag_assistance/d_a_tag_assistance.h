@@ -1,8 +1,6 @@
 #ifndef D_A_TAG_ASSISTANCE_H
 #define D_A_TAG_ASSISTANCE_H
 
-#include "JSystem/JKernel/JKRHeap.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 class daTagAssist_c : public fopAc_ac_c {

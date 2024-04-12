@@ -2,8 +2,12 @@
 #define D_A_E_ST_LINE_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "Z2AudioLib/Z2SoundObject.h"
 
+/**
+* @ingroup actors-enemies
+* @brief Skulltula
+*
+*/
 class e_st_line_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

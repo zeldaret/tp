@@ -5,7 +5,6 @@
 
 #include "d/menu/d_menu_ring.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_math.h"
@@ -18,10 +17,8 @@
 #include "d/menu/d_menu_window.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter2_draw.h"
-#include "d/meter/d_meter2_info.h"
 #include "d/meter/d_meter_HIO.h"
 #include "d/msg/d_msg_string.h"
-#include "d/pane/d_pane_class.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "string.h"

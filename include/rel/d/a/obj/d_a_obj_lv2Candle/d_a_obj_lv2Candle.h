@@ -1,9 +1,7 @@
 #ifndef D_A_OBJ_LV2CANDLE_H
 #define D_A_OBJ_LV2CANDLE_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "d/cc/d_cc_d.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 #include "rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag.h"
 

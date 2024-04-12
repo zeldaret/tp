@@ -568,16 +568,27 @@ def post_process(filename):
     with open(filename, 'w') as f:
         f.writelines(lines)
 
-def search_files(shape, size):
-    ignore_files = ['']
-    directories = ['rel', 'src']
-    pattern = re.compile(f'(SECTION_DATA|SECTION_RODATA).*static\s+u8\s+(const\s+)?(\w*{shape}\w*)\[{size}\]', re.I)
-    
+def search_file(target,pattern):
     file_matches = []
-    for directory in directories:
-        for root, dirs, files in os.walk(directory):
+
+    # if target is a file, search the file
+    if os.path.isfile(target):
+        with open(target, 'r') as f:
+            contents = f.read()
+            matches = pattern.findall(contents)
+            if matches:
+                for match in matches:
+                    # Extract the desired part of the match and append it to the file_matches list
+                    variable_name = match[2]
+                    file_matches.append((target, variable_name))
+                    return file_matches
+            print("No matches found in the file.")
+            return None
+    # if target is a directory, search all files in the directory
+    elif os.path.isdir(target):
+        for root, dirs, files in os.walk(target):
             for file in files:
-                if file.endswith('.cpp') and file not in ignore_files:
+                if file.endswith('.cpp'):
                     filepath = os.path.join(root, file)
                     with open(filepath, 'r') as f:
                         contents = f.read()
@@ -587,30 +598,56 @@ def search_files(shape, size):
                                 # Extract the desired part of the match and append it to the file_matches list
                                 variable_name = match[2]
                                 file_matches.append((filepath, variable_name))
+        return file_matches
+    print("Target is neither a file nor a directory.")
+    return None
 
-    return file_matches
+def search_files(shape, target, variable_name=None):
+    """
+    Returns a pairing of filename and shape data lines that have not been setup.
+    If variable_name is not set, the function will attempt to find and setup all variables with the specified shape.
+    """
+    if variable_name is not None:
+        search_shape = variable_name
+    else:
+        search_shape = shape
 
-def run_make_command():
-    command = "make all rels -j$(nproc) WINE=~/git/c/wibo/build/wibo"
-    result = subprocess.run(command, shell=True)
+    pattern = re.compile(f'(SECTION_DATA|SECTION_RODATA).*static\\s+u8\\s+(const\\s+)?(\\w*{search_shape}\\w*)\\[\\d+\\]', re.I)
+    return search_file(target,pattern)
+
+def run_make_command(wibo_path=None, thread_num=1):
+    cmd = ["make", "all", "rels", f"-j{thread_num}"]
+    if wibo_path:
+        cmd.append(f"WINE={wibo_path}")
+    result = subprocess.run(cmd)
     if result.returncode != 0:
         print("Failed to run make command")
         sys.exit(1)
 
 @click.command()
-@click.option('--shape', required=True, help='Shape to unpack. Should be on of: triangle, sphere, cylinder or capsule.')
-def process_file(shape):
-    filenames = []
+@click.option('--shape', required=True, help='Shape to unpack. Should be one of: triangle, sphere, cylinder or capsule.')
+@click.option('--variable-name', default=None, required=False, help='Name of the variable in the file to transform. If not set, the script will atempt to find and setup all variables with the specified shape.')
+@click.option('--target', required=True, type=str, help='Target filename or path where the file to be processed is located.')
+@click.option('--wibo-path', default="~/git/c/wibo/build/wibo", help='Path to Wibo.')
+@click.option('--thread-num', default=1, type=int, help='Number of threads for compilation.')
+def process_file(shape, variable_name, target, wibo_path, thread_num):
+    """
+    Process the specified file(s) and unpack the shape of the variable(s).
+    """
 
     match shape.lower():
         case "cylinder":
-            filenames = search_files("cyl", 68)
+            filenames = search_files("cyl", target, variable_name)
 
-            for filename in filenames:
+            if filenames is None:
+                sys.exit(0)
+
+            for file in filenames:
                 cylinder_data = None
-                f_name = filename[0]
-                variable_name = filename[1]
-                data = fetch_shape_data(f_name, variable_name)
+                f_name = file[0]
+                var_name = file[1]
+                print(f_name)
+                data = fetch_shape_data(f_name, var_name)
                 if data is not None:
                     cylinder_data = unpack_cylinder_data(data["data"])
 
@@ -618,9 +655,12 @@ def process_file(shape):
                     print("Updating", f_name)
                     write_cylinder_shape_data(f_name, cylinder_data, variable_name, data["section_rodata_present"], data["start_index"], data["end_index"])
                     post_process(f_name)
-                    run_make_command()
+                    run_make_command(wibo_path, thread_num)
         case "sphere":
-            filenames = search_files("sph", 64)
+            filenames = search_files("sph", target, variable_name)
+
+            if filenames is None:
+                sys.exit(0)
 
             for filename in filenames:
                 sphere_data = None
@@ -636,7 +676,10 @@ def process_file(shape):
                     post_process(f_name)
                     run_make_command()
         case "triangle":
-            filenames = search_files("tri", 84)
+            filenames = search_files("tri", target, variable_name)
+
+            if filenames is None:
+                sys.exit(0)
 
             for filename in filenames:
                 triangle_data = None
@@ -652,7 +695,10 @@ def process_file(shape):
                     post_process(f_name)
                     run_make_command()
         case "capsule":
-            filenames = search_files("cps", 76)
+            filenames = search_files("cps", target, variable_name)
+
+            if filenames is None:
+                sys.exit(0)
 
             for filename in filenames:
                 capsule_data = None

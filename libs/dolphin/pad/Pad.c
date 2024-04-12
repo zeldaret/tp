@@ -1,7 +1,6 @@
 #include "dolphin/pad.h"
 #include "dolphin/os.h"
 #include "dolphin/si/SIBios.h"
-#include "dolphin/si/SISamplingRate.h"
 
 u8 UnkVal : (OS_BASE_CACHED | 0x30e3);
 u16 __OSWirelessPadFixMode : (OS_BASE_CACHED | 0x30E0);

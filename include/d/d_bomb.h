@@ -2,7 +2,6 @@
 #define D_D_BOMB_H
 
 #include "d/bg/d_bg_s_acch.h"
-#include "d/bg/d_bg_s_lin_chk.h"
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_procname.h"

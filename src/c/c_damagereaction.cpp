@@ -7,7 +7,6 @@
 #include "dol2asm.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 //

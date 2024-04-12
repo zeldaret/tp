@@ -5,6 +5,10 @@
 
 #define JUTDF_BUFSIZE (0x800)
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct JUTDirectFile {
     /* 802E8730 */ int fetch32byte();
     /* 802E87F8 */ JUTDirectFile();

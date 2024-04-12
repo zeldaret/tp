@@ -1,13 +1,18 @@
 #ifndef D_A_B_GO_H
 #define D_A_B_GO_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 
 #define GORON_CHILD_MAX 31
 
+/**
+ * @ingroup actors-enemies
+ * @brief Goron Golem
+ * 
+ * Unused golem boss made up of several small Gorons.
+ * 
+ */
 class b_go_class : public fopEn_enemy_c {
 public:
     /* 80603CA0 */ b_go_class();

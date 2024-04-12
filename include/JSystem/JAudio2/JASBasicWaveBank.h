@@ -3,8 +3,11 @@
 
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
 #include "JSystem/JAudio2/JASWaveInfo.h"
-#include "dolphin/os/OSMutex.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASWaveHandle {
 public:
     /* virtual */ ~JASWaveHandle() {};
@@ -14,6 +17,10 @@ public:
     void* vtable;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASWaveBank {
 public:
     /* 80298B88 */ /* virtual */ ~JASWaveBank() {};
@@ -24,6 +31,10 @@ public:
     void* vtable;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASBasicWaveBank : public JASWaveBank {
     struct TWaveHandle : public JASWaveHandle {
         /* 802985E4 */ ~TWaveHandle();

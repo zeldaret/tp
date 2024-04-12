@@ -1,8 +1,6 @@
 #ifndef D_A_OBJ_BK_LEAF_H
 #define D_A_OBJ_BK_LEAF_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daBkLeaf_c : public fopAc_ac_c {

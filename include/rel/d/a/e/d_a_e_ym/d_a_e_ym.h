@@ -20,6 +20,11 @@ public:
     /* 0x20 */ f32 mMoveRange;
 };
 
+/**
+* @ingroup actors-enemies
+* @brief Shadow Insect
+*
+*/
 class daE_YM_c : public fopEn_enemy_c {
 public:
     enum daE_YM_Action {

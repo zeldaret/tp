@@ -2,11 +2,14 @@
 #define JKRARAMARCHIVE_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include "dolphin/types.h"
 
 class JKRAramBlock;
 class JKRDvdFile;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramArchive : public JKRArchive {
 public:
     JKRAramArchive(s32, JKRArchive::EMountDirection);

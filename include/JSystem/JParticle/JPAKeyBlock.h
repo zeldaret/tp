@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAKeyBlock {
     /* 8027D730 */ JPAKeyBlock(u8 const*);
     /* 8027D740 */ void calc(f32);

@@ -4,12 +4,7 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_itembase_static.h"
-#include "d/cc/d_cc_d.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

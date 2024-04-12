@@ -4,6 +4,11 @@
 #include "dolphin/types.h"
 
 namespace JMath {
+    
+/**
+ * @ingroup jsystem-jmath
+ * 
+ */
 struct TRandom_fast_ {
     u32 value;
 

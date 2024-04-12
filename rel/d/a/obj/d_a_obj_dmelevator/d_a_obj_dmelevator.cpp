@@ -4,9 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_dmelevator/d_a_obj_dmelevator.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/bg/d_bg_w.h"
-#include "d/d_path.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 

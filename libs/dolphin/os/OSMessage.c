@@ -1,5 +1,4 @@
 #include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSThread.h"
 
 /* 8033E994-8033E9F4 3392D4 0060+00 0/0 13/13 5/5 .text            OSInitMessageQueue */
 void OSInitMessageQueue(OSMessageQueue* mq, OSMessage* msgArray, s32 msgCount) {

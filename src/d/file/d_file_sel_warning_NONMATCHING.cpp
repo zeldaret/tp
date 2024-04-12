@@ -7,10 +7,6 @@
 // Translation Unit: d/file/d_file_sel_warning
 //
 
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/file/d_file_sel_warning.h"
 #include "d/msg/d_msg_string.h"
 #include "d/pane/d_pane_class.h"

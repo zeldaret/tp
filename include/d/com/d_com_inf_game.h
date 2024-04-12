@@ -1,7 +1,6 @@
 #ifndef D_COM_D_COM_INF_GAME_H
 #define D_COM_D_COM_INF_GAME_H
 
-#include "d/bg/d_bg_s.h"
 #include "d/cc/d_cc_s.h"
 #include "d/d_attention.h"
 #include "d/d_resorce.h"

@@ -6,6 +6,10 @@
 class JKRArchive;
 class JSUInputStream;
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTResReference {
 private:
     /* 0x001 */ u8 mType;

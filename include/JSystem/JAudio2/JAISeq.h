@@ -2,13 +2,16 @@
 #define JAISEQ_H
 
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JSupport/JSUList.h"
 
 class JAISeqMgr;
 class JAISoundChild;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeq : public JASPoolAllocObject<JAISeq>, public JAISound, public JSULink<JAISeq> {
 public:
     class TInner {

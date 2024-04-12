@@ -2,11 +2,14 @@
 #define J3DJOINTFACTORY_H
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
-#include "dolphin/types.h"
 
 class J3DJoint;
 struct J3DJointBlock;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DJointInitData {
     /* 0x00 */ u16 mKind;
     /* 0x02 */ bool mScaleCompensate;
@@ -16,6 +19,10 @@ struct J3DJointInitData {
     /* 0x2C */ Vec mMax;
 };  // Size: 0x30
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DJointFactory {
     /* 80337178 */ J3DJointFactory(J3DJointBlock const&);
     /* 803371D0 */ J3DJoint* create(int);

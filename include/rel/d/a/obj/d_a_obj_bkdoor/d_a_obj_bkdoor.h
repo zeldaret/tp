@@ -3,7 +3,6 @@
 
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 
 class J3DModel;
 

@@ -4,10 +4,8 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_zra_freeze/d_a_obj_zra_freeze.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"

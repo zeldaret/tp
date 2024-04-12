@@ -35,11 +35,19 @@ enum J2DBasePosition {
     J2DBasePosition_4,
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DPaneHeader {
     /* 0x0 */ u32 mKind;
     /* 0x4 */ u32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPane {
 public:
     J2DPane();

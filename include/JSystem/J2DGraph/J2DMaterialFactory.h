@@ -3,8 +3,11 @@
 
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
-#include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DMaterialBlock {
     u32 field_0x0;
     u32 field_0x4;
@@ -42,6 +45,10 @@ struct J2DBlendInfo;
 struct J2DColorChanInfo;
 class J2DMaterial;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DIndInitData {
     u8 field_0x0;
     u8 field_0x1;
@@ -53,6 +60,10 @@ struct J2DIndInitData {
     u8 field_0xac[0x90];
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DMaterialInitData {
     u8 field_0x0;
     u8 field_0x1;
@@ -88,6 +99,10 @@ struct J2DTexCoordInfo;
 struct J2DTexMtxInfo;
 class JKRArchive;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DMaterialFactory {
 public:
     /* 802F2AD0 */ J2DMaterialFactory(J2DMaterialBlock const&);

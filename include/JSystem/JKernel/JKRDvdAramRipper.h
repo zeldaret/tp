@@ -2,11 +2,14 @@
 #define JKRDVDARAMRIPPER_H
 
 #include "JSystem/JKernel/JKRDvdRipper.h"
-#include "dolphin/types.h"
 
 class JKRAramBlock;
 class JKRAramStreamCommand;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRADCommand {
 public:
     JKRADCommand();
@@ -33,6 +36,11 @@ public:
 };
 
 class JKRDvdFile;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDvdAramRipper {
 public:
     static JKRAramBlock* loadToAram(s32, u32, JKRExpandSwitch, u32, u32, u32*);

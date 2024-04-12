@@ -2,10 +2,13 @@
 #define JAUSOUNDANIMATOR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include "dolphin/types.h"
 
 class JAUSoundAnimation;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSoundAnimationSound {
 public:
     bool playsOnlyForward() const { return (mFlags & 1) != 0; }
@@ -73,6 +76,10 @@ public:
     /* 0x1B */ u8 unk_0x1b[5];
 }; /* size 0x20 */
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSoundAnimationControl {
 public:
     virtual ~JAUSoundAnimationControl() = 0;
@@ -80,6 +87,10 @@ public:
     virtual u16 getNumSounds(const JAUSoundAnimation*) = 0;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSoundAnimation {
 public:
     /* 802A6F70 */ int getStartSoundIndex(f32) const;

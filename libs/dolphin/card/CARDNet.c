@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDNet.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 
 /* 80450A70 0002+00 data_80450A70 __CARDVendorID */
 u16 __CARDVendorID = 0xFFFF;

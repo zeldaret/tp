@@ -1,5 +1,4 @@
 #include "signal.h"
-#include "abort_exit.h"
 #include "critical_regions.h"
 
 #define __std(ref) ref

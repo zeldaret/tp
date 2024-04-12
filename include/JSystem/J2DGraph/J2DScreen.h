@@ -8,6 +8,10 @@
 class J2DMaterial;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DScrnHeader {
     /* 0x00 */ u32 mTag;
     /* 0x04 */ u32 mType;
@@ -16,6 +20,10 @@ struct J2DScrnHeader {
     /* 0x10 */ u8 padding[0x10];
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DScrnInfoHeader {
     /* 0x0 */ u32 mTag;
     /* 0x4 */ u32 mSize;
@@ -24,11 +32,19 @@ struct J2DScrnInfoHeader {
     /* 0xC */ u32 mColor;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DScrnBlockHeader {
     /* 0x00 */ u32 mTag;
     /* 0x04 */ s32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DScreen : public J2DPane {
 public:
     /* 802F8540 */ virtual ~J2DScreen();

@@ -2,12 +2,15 @@
 #define JPARESOURCEMANAGER_H
 
 #include "JSystem/JParticle/JPATexture.h"
-#include "dolphin/types.h"
 
 class JKRHeap;
 class JPAResource;
 struct ResTIMG;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAResourceManager {
 public:
     /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);

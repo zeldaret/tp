@@ -1,6 +1,5 @@
 #include "JSystem/JAudio2/JAISoundChild.h"
 #include "JSystem/JAudio2/JASTrack.h"
-#include "dolphin/types.h"
 
 void JAISoundChild::init() {
     mMove.init();

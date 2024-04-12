@@ -2,7 +2,6 @@
 #include "dolphin/dsp.h"
 #include "dolphin/exi/EXIBios.h"
 #include "dolphin/os.h"
-#include "string.h"
 
 vu32 __PIRegs[12] : 0xCC003000;
 vu16 __MEMRegs[64] : 0xCC004000;

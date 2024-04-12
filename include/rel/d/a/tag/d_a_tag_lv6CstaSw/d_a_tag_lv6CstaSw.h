@@ -2,7 +2,6 @@
 #define D_A_TAG_LV6CSTASW_H
 
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
 class daLv6CstaSw_c : public fopAc_ac_c {

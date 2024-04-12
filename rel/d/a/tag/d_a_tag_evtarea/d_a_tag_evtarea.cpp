@@ -3,7 +3,6 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_npc.h"
 #include "d/d_procname.h"
 

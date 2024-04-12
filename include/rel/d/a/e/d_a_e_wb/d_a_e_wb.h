@@ -2,7 +2,6 @@
 #define D_A_E_WB_H
 
 #include "rel/d/a/d_a_horse/d_a_horse.h"
-#include "SSystem/SComponent/c_phase.h"
 #include "d/cc/d_cc_uty.h"
 
 enum daE_wb_ACT {
@@ -12,6 +11,11 @@ enum daE_wb_ACT {
     /* 0x67 */ ACT_PL_RIDE_NOW = 0x67,
 };
 
+/**
+* @ingroup actors-enemies
+* @brief Wild Boar
+*
+*/
 class e_wb_class : public fopEn_enemy_c {
 public:
     BOOL checkWait();

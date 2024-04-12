@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_OILTUBO_H
 #define D_A_OBJ_OILTUBO_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 class daObj_Oiltubo_c : public fopAc_ac_c {

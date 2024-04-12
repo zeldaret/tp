@@ -1,7 +1,6 @@
 #ifndef D_BG_D_BG_PLC_H
 #define D_BG_D_BG_PLC_H
 
-#include "dolphin/types.h"
 #include "d/bg/d_bg_pc.h"
 
 enum {

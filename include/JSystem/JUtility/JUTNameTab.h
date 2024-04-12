@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct ResNTAB {
     u16 mEntryNum;
     u16 mPad0;
@@ -16,6 +20,10 @@ struct ResNTAB {
     }
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTNameTab {
 public:
     JUTNameTab();

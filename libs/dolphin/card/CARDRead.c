@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDRead.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 
 static void ReadCallback(s32 chan, s32 result);
 

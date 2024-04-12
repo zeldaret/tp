@@ -2,13 +2,16 @@
 #define JASWSPARSER_H
 
 #include "dolphin/types.h"
-#include "JSystem/JSupport/JSupport.h"
 
 class JKRHeap;
 class JASWaveBank;
 class JASBasicWaveBank;
 class JASSimpleWaveBank;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASWSParser {
 public:
     template<class T>

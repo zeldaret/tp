@@ -4,7 +4,6 @@
  */
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "math.h"
 #include "SSystem/SComponent/c_math.h"
 
 /* 80266AE4-80266B34 0050+00 s=0 e=103 z=300  None .text      __pl__4cXyzCFRC3Vec */

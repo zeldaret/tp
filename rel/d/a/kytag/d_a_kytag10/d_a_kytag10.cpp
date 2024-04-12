@@ -6,8 +6,6 @@
 #include "rel/d/a/kytag/d_a_kytag10/d_a_kytag10.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/d_procname.h"
-#include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 
 //

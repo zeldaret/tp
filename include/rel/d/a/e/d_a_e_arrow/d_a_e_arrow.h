@@ -1,7 +1,6 @@
 #ifndef D_A_E_ARROW_H
 #define D_A_E_ARROW_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 enum e_arrow_action {
@@ -19,6 +18,11 @@ enum e_arrow_type {
     ARROW_TYPE_BOMB,
 };
 
+/**
+* @ingroup actors-enemies
+* @brief Enemy arrow
+*
+*/
 class e_arrow_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

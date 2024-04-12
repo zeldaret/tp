@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_escape/d_a_tag_escape.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D587D8-80D58828 000078 0050+00 1/0 0/0 0/0 .text            daTagEscape_Create__FP10fopAc_ac_c

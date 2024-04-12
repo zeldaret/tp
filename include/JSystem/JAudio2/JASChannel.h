@@ -14,6 +14,10 @@ namespace JASDsp {
     struct TChannel;
 }
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASChannelParams {
 public:
     JASChannelParams() {
@@ -41,6 +45,10 @@ public:
     /* 0x14 */ f32 mDolby;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASChannel : public JASPoolAllocObject_MultiThreaded<JASChannel> {
 public:
     typedef void (*Callback)(u32, JASChannel*, JASDsp::TChannel*, void*);

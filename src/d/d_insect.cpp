@@ -4,9 +4,7 @@
  */
 
 #include "d/d_insect.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_insect.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 
 /* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */

@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_cc_s.h"
 #include "d/cc/d_cc_mass_s.h"
-#include "global.h"
 
 class dCcD_GObjInf;
 class dCcD_GStts;

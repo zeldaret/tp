@@ -1,13 +1,20 @@
 #ifndef J3DCLUSTERLOADER_H
 #define J3DCLUSTERLOADER_H
 
-#include "dolphin/types.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DClusterLoaderDataBase {
     /* 80334130 */ static void* load(void const*);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DClusterBlock : public JUTDataBlockHeader {
 public:
     /* 0x08 */ u16 mClusterNum;
@@ -24,6 +31,10 @@ public:
     /* 0x2C */ void* mClusterKeyName;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DClusterLoader {
 public:
     virtual void* load(const void*) = 0;
@@ -32,6 +43,10 @@ public:
 
 class J3DDeformData;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DClusterLoader_v15 : public J3DClusterLoader {
 public:
     /* 803341CC */ J3DClusterLoader_v15();

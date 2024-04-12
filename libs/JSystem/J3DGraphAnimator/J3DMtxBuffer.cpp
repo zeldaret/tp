@@ -6,7 +6,6 @@
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Forward References:

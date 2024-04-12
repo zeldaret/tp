@@ -4,9 +4,7 @@
  */
 
 #include "rel/d/a/obj/mirror/d_a_obj_mirror_chain/d_a_obj_mirror_chain.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 //

@@ -9,6 +9,10 @@ struct BinaryStreamFileTable {
     /* 0x8 */ int mFilePathOffsets[];
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUStreamFileTable {
     /* 802A7420 */ JAUStreamFileTable();
     /* 802A742C */ void init(void const*);
@@ -20,6 +24,10 @@ struct JAUStreamFileTable {
     /* 0x0 */ const BinaryStreamFileTable* mData;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUStreamDataMgr_StreamFileTable : public JAIStreamDataMgr, JAUStreamFileTable {
     /* 802A74AC */ virtual s32 getStreamFileEntry(JAISoundID);
     /* 802A74E8 */ virtual ~JAUStreamDataMgr_StreamFileTable() {}

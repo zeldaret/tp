@@ -4,9 +4,6 @@
 //
 
 #include "JSystem/JAudio2/JASWSParser.h"
-#include "JSystem/JAudio2/JASWaveInfo.h"
-#include "JSystem/JAudio2/JASWaveArcLoader.h"
-#include "JSystem/JAudio2/JASSimpleWaveBank.h"
 #include "JSystem/JAudio2/JASBasicWaveBank.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/types.h"

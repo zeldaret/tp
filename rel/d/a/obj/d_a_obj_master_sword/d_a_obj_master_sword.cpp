@@ -4,10 +4,8 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_master_sword/d_a_obj_master_sword.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "d/meter/d_meter2_info.h"
 #include "dol2asm.h"
 

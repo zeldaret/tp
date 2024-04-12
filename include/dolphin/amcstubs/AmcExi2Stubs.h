@@ -2,7 +2,6 @@
 #define AMCEXI2STUBS_H
 
 #include "dolphin/os.h"
-#include "dolphin/types.h"
 
 #ifdef __cplusplus
 extern "C" {

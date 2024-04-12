@@ -4,6 +4,11 @@
 #include "dolphin/mtx.h"
 
 namespace JStage {
+    
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TObject {
         /* 80280DD4 */ virtual ~TObject() = 0;
         virtual s32 JSGFGetType() const = 0;

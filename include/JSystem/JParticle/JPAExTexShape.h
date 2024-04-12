@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAExTexShapeData {
     // Common header.
     /* 0x00 */ u8 mMagic[4];
@@ -15,6 +19,10 @@ struct JPAExTexShapeData {
     /* 0x26 */ s8 mSecTexIdx;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAExTexShape {
 public:
     /* 8027B13C */ JPAExTexShape(u8 const*);

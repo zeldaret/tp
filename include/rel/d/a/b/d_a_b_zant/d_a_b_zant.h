@@ -1,7 +1,13 @@
 #ifndef D_A_B_ZANT_H
 #define D_A_B_ZANT_H
 
-
+/**
+ * @ingroup actors-enemies
+ * @brief Zant
+ * 
+ * Palace of Twilight dungeon boss.
+ * 
+ */
 class daB_ZANT_c : public fopAc_ac_c {
 public:
     /* 8063E19C */ void ctrlJoint(J3DJoint*, J3DModel*);

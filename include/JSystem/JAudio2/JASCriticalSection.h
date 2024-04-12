@@ -3,6 +3,10 @@
 
 #include "dolphin/os/OSInterrupt.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASCriticalSection {
 public:
     JASCriticalSection() { mInterruptState = OSDisableInterrupts(); };

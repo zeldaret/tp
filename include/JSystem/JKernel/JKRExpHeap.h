@@ -3,6 +3,10 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRExpHeap : public JKRHeap {
 public:
     enum EAllocMode {

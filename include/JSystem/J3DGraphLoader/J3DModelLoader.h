@@ -1,18 +1,25 @@
 #ifndef J3DMODELLOADER_H
 #define J3DMODELLOADER_H
 
-#include "dolphin/types.h"
 #include "dolphin/mtx.h"
 
 class J3DModelData;
 class J3DMaterialTable;
 class J3DModelHierarchy;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DModelBlock {
     /* 0x00 */ u32 mBlockType;
     /* 0x04 */ u32 mBlockSize;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DModelFileData {
     /* 0x00 */ u32 mMagic1;
     /* 0x04 */ u32 mMagic2;
@@ -22,6 +29,10 @@ struct J3DModelFileData {
     /* 0x20 */ J3DModelBlock mBlocks[1];
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DModelInfoBlock : public J3DModelBlock {
     /* 0x08 */ u16 mFlags;
     /* 0x0C */ u32 mPacketNum;
@@ -29,6 +40,10 @@ struct J3DModelInfoBlock : public J3DModelBlock {
     /* 0x14 */ void* mpHierarchy;
 }; // size 0x18
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DVertexBlock : public J3DModelBlock {
     /* 0x08 */ void* mpVtxAttrFmtList;
     /* 0x0C */ void* mpVtxPosArray;
@@ -38,6 +53,10 @@ struct J3DVertexBlock : public J3DModelBlock {
     /* 0x20 */ void* mpVtxTexCoordArray[8];
 }; // size 0x40
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DEnvelopeBlock : public J3DModelBlock {
     /* 0x08 */ u16 mWEvlpMtxNum;
     /* 0x0C */ void* mpWEvlpMixMtxNum;
@@ -46,12 +65,20 @@ struct J3DEnvelopeBlock : public J3DModelBlock {
     /* 0x18 */ void* mpInvJointMtx;
 }; // size 0x1C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DDrawBlock : public J3DModelBlock {
     /* 0x08 */ u16 mMtxNum;
     /* 0x0C */ void* mpDrawMtxFlag;
     /* 0x10 */ void* mpDrawMtxIndex;
 }; // size 0x14
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DJointBlock : public J3DModelBlock {
     /* 0x08 */ u16 mJointNum;
     /* 0x0C */ void* mpJointInitData;
@@ -59,6 +86,10 @@ struct J3DJointBlock : public J3DModelBlock {
     /* 0x14 */ void* mpNameTable;
 }; // size 0x18
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMaterialBlock : public J3DModelBlock {
     /* 0x08 */ u16 mMaterialNum;
     /* 0x0C */ void* mpMaterialInitData;
@@ -93,6 +124,10 @@ struct J3DMaterialBlock : public J3DModelBlock {
     /* 0x80 */ void* mpNBTScaleInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMaterialBlock_v21 : public J3DModelBlock {
     /* 0x08 */ u16 mMaterialNum;
     /* 0x0C */ void* mpMaterialInitData;
@@ -124,6 +159,10 @@ struct J3DMaterialBlock_v21 : public J3DModelBlock {
     /* 0x74 */ void* mpNBTScaleInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMaterialDLBlock : public J3DModelBlock {
     /* 0x08 */ u16 mMaterialNum;
     /* 0x0C */ void* mpDisplayListInit;
@@ -134,6 +173,10 @@ struct J3DMaterialDLBlock : public J3DModelBlock {
     /* 0x20 */ void* mpNameTable;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DShapeBlock : public J3DModelBlock {
     /* 0x08 */ u16 mShapeNum;
     /* 0x0C */ void* mpShapeInitData;
@@ -146,12 +189,20 @@ struct J3DShapeBlock : public J3DModelBlock {
     /* 0x28 */ void* mpDrawInitData;
 }; // size 0x2C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTextureBlock : public J3DModelBlock {
     /* 0x08 */ u16 mTextureNum;
     /* 0x0C */ void* mpTextureRes;
     /* 0x10 */ void* mpNameTable;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelLoader {
 public:
     /* 8033468C */ J3DModelLoader();
@@ -205,6 +256,10 @@ public:
     /* 0x1A */ u16 mEnvelopeSize;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelLoader_v21 { // : public J3DModelLoader {
 public:
     /* 803363F4 */ ~J3DModelLoader_v21() {}
@@ -222,6 +277,10 @@ public:
     /* 0x1A */ u16 mEnvelopeSize;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelLoader_v26 { // : public J3DModelLoader {
 public:
     /* 80336398 */ ~J3DModelLoader_v26() {}
@@ -241,6 +300,10 @@ public:
     /* 0x1A */ u16 mEnvelopeSize;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelLoaderDataBase {
 public:
     /* 803346BC */ static J3DModelData* load(void const* i_data, u32 i_flags);

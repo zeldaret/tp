@@ -4,11 +4,6 @@
 //
 
 #include "rel/d/a/d_a_ykgr/d_a_ykgr.h"
-#include "m_Do/m_Do_mtx.h"
-#include "m_Do/m_Do_hostIO.h"
-#include "d/particle/d_particle.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 #include "dol2asm.h"

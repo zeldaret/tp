@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki.h"
-#include "d/bg/d_bg_s.h"
-#include "d/bg/d_bg_w.h"
 #include "dol2asm.h"
 
 class daObjToaruMaki_c : public fopAc_ac_c, public request_of_phase_process_class {

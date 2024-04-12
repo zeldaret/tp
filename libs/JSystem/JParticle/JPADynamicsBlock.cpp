@@ -5,7 +5,6 @@
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

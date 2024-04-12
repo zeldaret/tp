@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_myna2/d_a_tag_myna2.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D5C698-80D5C708 000078 0070+00 1/1 0/0 0/0 .text            create__12daTagMyna2_cFv */

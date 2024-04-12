@@ -6,6 +6,11 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_w.h"
 
+/**
+ * @ingroup actors-doors
+ * @brief Boss Door
+ * 
+ */
 class daBdoor_c : public fopAc_ac_c {
 public:
     enum Action {

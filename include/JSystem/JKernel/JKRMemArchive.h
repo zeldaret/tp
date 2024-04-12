@@ -8,6 +8,10 @@ enum JKRMemBreakFlag {
     JKRMEMBREAK_FLAG_UNKNOWN1 = 1,
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRMemArchive : public JKRArchive {
 public:
     JKRMemArchive(s32, JKRArchive::EMountDirection);

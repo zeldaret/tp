@@ -7,6 +7,10 @@ enum EIoState {
     IOS_STATE_1 = 1,
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUIosBase {
 public:
     JSUIosBase() { mState = false; }

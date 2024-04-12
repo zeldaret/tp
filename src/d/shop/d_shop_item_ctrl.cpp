@@ -5,7 +5,6 @@
 #include "d/shop/d_shop_item_ctrl.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/a/d_a_shop_item_static.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 80196914-80196958 191254 0044+00 0/0 0/0 10/10 .text            __ct__15dShopItemCtrl_cFv */
 dShopItemCtrl_c::dShopItemCtrl_c() {

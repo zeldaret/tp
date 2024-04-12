@@ -13,7 +13,6 @@
 #include "dolphin/gx/GXPerf.h"
 #include "dolphin/gx/GXPixel.h"
 #include "dolphin/gx/GXTev.h"
-#include "dolphin/gx/GXTexture.h"
 #include "dolphin/gx/GXTransform.h"
 
 #ifdef __cplusplus

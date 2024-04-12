@@ -5,7 +5,6 @@
 
 #include "d/a/d_a_npc_cd2.h"
 #include "d/a/d_a_player.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 

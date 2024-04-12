@@ -9,6 +9,10 @@ typedef void (*JKRErrorHandler)(void*, u32, int);
 
 extern bool data_804508B0;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRHeap : public JKRDisposer {
 public:
     class TState {

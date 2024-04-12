@@ -2,7 +2,6 @@
 #define D_A_OBJ_EFF_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "d/d_procname.h"
 
 namespace daObjEff {
 class Act_c : public fopAc_ac_c {

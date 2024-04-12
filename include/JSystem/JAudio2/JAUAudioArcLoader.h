@@ -5,6 +5,10 @@
 
 struct JAUSection;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUAudioArcLoader : public JAUAudioArcInterpreter {
 public:
     /* 802A4740 */ JAUAudioArcLoader(JAUSection*);

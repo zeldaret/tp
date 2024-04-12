@@ -4,8 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_lv4gear/d_a_obj_lv4gear.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
 /* 80C67F18-80C67F38 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */

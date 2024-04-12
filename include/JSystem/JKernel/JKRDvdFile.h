@@ -11,6 +11,11 @@ struct OSThread;
 class JKRADCommand;
 class JKRAramBlock;
 class JSUFileInputStream;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDvdFile : public JKRFile {
 public:
     JKRDvdFile();

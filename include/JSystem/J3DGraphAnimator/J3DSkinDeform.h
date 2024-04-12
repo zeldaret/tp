@@ -3,7 +3,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
-#include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "dolphin/types.h"
 
 class J3DModel;
@@ -11,6 +10,10 @@ class J3DAnmCluster;
 class J3DClusterVertex;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DSkinNList {
     /* 8032C6E4 */ J3DSkinNList();
     /* 8032C85C */ void calcSkin_VtxPosF32(f32 (*)[4], void*, void*);
@@ -24,6 +27,10 @@ struct J3DSkinNList {
     /* 0x12 */ u16 field_0x12;
 };  // Size: 0x14
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DSkinDeform {
 public:
     /* 8032C96C */ J3DSkinDeform();
@@ -68,6 +75,10 @@ private:
     /* 0x24 */ J3DSkinNList* mSkinNList;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDeformer {
 public:
     /* 8032E39C */ J3DDeformer(J3DDeformData*);

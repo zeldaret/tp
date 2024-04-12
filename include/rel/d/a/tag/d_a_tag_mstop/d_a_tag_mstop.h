@@ -4,6 +4,11 @@
 #include "d/msg/d_msg_flow.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-tags
+ * @brief Midna Stop Tag
+ * 
+ */
 class daTagMstop_c : public fopAc_ac_c {
 public:
     /* 805A6138 */ int create();

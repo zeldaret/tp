@@ -1,8 +1,11 @@
 #ifndef D_A_E_PM_H
 #define D_A_E_PM_H
 
-#include "f_op/f_op_actor_mng.h"
-
+/**
+* @ingroup actors-enemies
+* @brief Skull Kid
+*
+*/
 class daE_PM_c : public fopEn_enemy_c {
 public:
     /* 80741FB4 */ void DemoSkip(int);

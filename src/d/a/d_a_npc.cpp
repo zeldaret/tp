@@ -4,12 +4,8 @@
 //
 
 #include "d/a/d_a_npc.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "SSystem/SComponent/c_math.h"
-#include "d/d_procname.h"
 #include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "rel/d/a/npc/d_a_npc_tk/d_a_npc_tk.h"
 #include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"

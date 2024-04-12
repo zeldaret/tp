@@ -5,6 +5,10 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OSMutex.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramHeap : public JKRDisposer {
 public:
     enum EAllocMode {

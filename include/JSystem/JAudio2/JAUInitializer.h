@@ -5,6 +5,10 @@
 
 class JKRSolidHeap;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAU_JASInitializer {
 public:
     /* 802A4AD0 */ JAU_JASInitializer();
@@ -25,6 +29,10 @@ public:
     /* 0x30 */ char* field_0x30;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAU_JAIInitializer {
 public:
     /* 802A4D3C */ JAU_JAIInitializer();

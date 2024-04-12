@@ -4,9 +4,6 @@
 //
 
 #include "Z2AudioLib/Z2AudioArcLoader.h"
-#include "Z2AudioLib/Z2FxLineMgr.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "dol2asm.h"
 

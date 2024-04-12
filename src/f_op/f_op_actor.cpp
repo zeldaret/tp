@@ -6,7 +6,6 @@
 #include "f_op/f_op_actor.h"
 #include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_actor.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/com/d_com_static.h"
 #include "d/d_demo.h"
 #include "d/s/d_s_play.h"

@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_SMW_STONE_H
 #define D_A_OBJ_SMW_STONE_H
 
-#include "f_op/f_op_actor_mng.h"
 
 class daSmWStone_c : public fopAc_ac_c {
 public:

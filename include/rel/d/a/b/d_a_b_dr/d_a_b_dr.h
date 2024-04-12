@@ -1,8 +1,13 @@
 #ifndef D_A_B_DR_H
 #define D_A_B_DR_H
 
-#include "f_op/f_op_actor_mng.h"
-
+/**
+ * @ingroup actors-enemies
+ * @brief Argorok
+ * 
+ * City in the Sky dungeon boss.
+ * 
+ */
 class daB_DR_c : public fopEn_enemy_c {
 public:
     /* 805BAF80 */ void ctrlJoint(J3DJoint*, J3DModel*);

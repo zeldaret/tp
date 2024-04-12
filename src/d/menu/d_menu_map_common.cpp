@@ -7,7 +7,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_select_cursor.h"
 #include "d/meter/d_meter_HIO.h"
-#include "dol2asm.h"
 #include "global.h"
 
 /* ############################################################################################## */

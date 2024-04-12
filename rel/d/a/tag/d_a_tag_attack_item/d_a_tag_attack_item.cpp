@@ -6,9 +6,7 @@
 #include "rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
-#include "d/cc/d_cc_d.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/event/d_event_lib.h"
 #include "dol2asm.h"
 
 //

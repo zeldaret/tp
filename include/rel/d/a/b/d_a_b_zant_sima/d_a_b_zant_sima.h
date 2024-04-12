@@ -2,9 +2,15 @@
 #define D_A_B_ZANT_SIMA_H
 
 #include "d/bg/d_bg_w.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @brief Zant (Goron Mines Phase)
+ * 
+ * Palace of Twilight dungeon boss. This is the actor used during the Goron Mines part of the fight.
+ * 
+ */
 class daB_ZANTS_c : public fopAc_ac_c {
 public:
     /* 806529D8 */ int draw();

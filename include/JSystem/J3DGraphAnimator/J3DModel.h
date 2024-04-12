@@ -3,8 +3,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
-#include "JSystem/J3DGraphBase/J3DVertex.h"
-#include "dolphin/mtx.h"
 #include "dolphin/types.h"
 
 enum J3DMdlFlag {
@@ -18,10 +16,18 @@ enum J3DMdlFlag {
     /* 0x80000 */ J3DMdlFlag_Unk80000 = 0x80000,
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DUnkCalc1 {
     virtual void calc(J3DModel* model);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DUnkCalc2 {
     virtual void unk();
     virtual void calc(J3DModelData* mpModelData);
@@ -29,6 +35,10 @@ struct J3DUnkCalc2 {
 
 typedef void (*J3DCalcCallBack)(J3DModel*, u32 timing);
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModel {
 public:
     J3DModel() {

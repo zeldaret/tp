@@ -3,6 +3,10 @@
 
 #include "JSystem/JSupport/JSUInputStream.h"
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSURandomInputStream : public JSUInputStream {
 public:
     JSURandomInputStream() {}

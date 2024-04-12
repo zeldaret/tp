@@ -6,6 +6,10 @@
 class JASTrack;
 class JASSeqParser;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASSeqCtrl {
 public:
     enum IntrType {

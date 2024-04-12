@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/kytag/d_a_kytag05/d_a_kytag05.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80528A58-80528A60 000078 0008+00 1/0 0/0 0/0 .text            daKytag05_Draw__FP13kytag05_class

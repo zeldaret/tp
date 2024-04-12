@@ -14,6 +14,10 @@ namespace JStage {
         /* 0x6 */ TOBJ_FOG,
     };
 
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TSystem : public TObject {
         /* 80280E90 */ virtual ~TSystem() = 0;
         /* 80280EF0 */ virtual s32 JSGFGetType() const;

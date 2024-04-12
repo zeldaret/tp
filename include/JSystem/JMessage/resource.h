@@ -7,6 +7,11 @@
 #include "JSystem/JStudio/JStudio/fvb-data.h"
 
 namespace JMessage {
+
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TResource {
     TResource()
         : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), field_0x18(NULL) {}
@@ -54,6 +59,10 @@ struct TResource {
     /* 0x18 */ data::TParse_TBlock_messageID field_0x18;
 };
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TResource_color {
     TResource_color() : field_0x0(NULL), field_0x4(NULL) {}
     void reset() { 
@@ -65,6 +74,10 @@ struct TResource_color {
     /* 0x4 */ data::TParse_TBlock_color field_0x4;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TResourceContainer {
     struct TCResource : public JGadget::TLinkList_factory<TResource, 0> {
         /* 802A8EC0 */ TCResource();
@@ -106,6 +119,10 @@ struct TResourceContainer {
     /* 0x18 */ TResource_color resColor_;
 };
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TParse : public JGadget::binary::TParse_header_block {
     /* 802A9130 */ TParse(JMessage::TResourceContainer*);
 

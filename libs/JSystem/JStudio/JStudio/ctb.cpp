@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio/ctb.h"
-#include "algorithm.h"
 #include "iterator.h"
 #include "string.h"
 #include "dol2asm.h"

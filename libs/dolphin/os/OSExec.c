@@ -5,8 +5,6 @@
 
 #include "dolphin/os/OSExec.h"
 #include "dolphin/os.h"
-#include "dolphin/os/OSReset.h"
-#include "dolphin/dvd.h"
 #include "dolphin/ai.h"
 #include "dol2asm.h"
 #include "string.h"

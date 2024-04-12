@@ -1,7 +1,6 @@
 #ifndef JPAEMITTER_H
 #define JPAEMITTER_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"
@@ -15,6 +14,10 @@ class JPABaseEmitter;
 class JPAEmitterManager;
 class JPAParticleCallBack;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAEmitterWorkData {
     /* 0x00 */ JPABaseEmitter* mpEmtr;
     /* 0x04 */ JPAResource* mpRes;
@@ -58,6 +61,10 @@ struct JPAEmitterWorkData {
     /* 0x216 */ u8 mDrawCount;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAEmitterCallBack {
 public:
     /* 80050368 */ virtual void execute(JPABaseEmitter*);
@@ -78,6 +85,10 @@ enum {
     JPAEmtrStts_Immortal = 0x40,
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPABaseEmitter {
 public:
     /* 8027E5EC */ ~JPABaseEmitter();
@@ -105,6 +116,13 @@ public:
     void setDirectionalSpeed(f32 i_speed) { mDirSpeed = i_speed; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+    void setGlobalSRTMatrix(const Mtx m) { 
+        JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
+
+        // set is actually used here in debug
+        mGlobalPScl.x = mGlobalScl.x;
+        mGlobalPScl.y = mGlobalScl.y;
+    }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
     void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
@@ -119,6 +137,9 @@ public:
     void setVolumeSize(u16 size) { mVolumeSize = size; }
     void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 
+    void setGlobalParticleHeightScale(f32 height) {
+        mGlobalPScl.y = height;
+    }
     void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalPScl.set(scale.x, scale.y);
     }
