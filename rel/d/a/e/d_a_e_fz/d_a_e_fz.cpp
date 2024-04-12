@@ -407,31 +407,30 @@ SECTION_DATA static u16 ice_name[3] = {
 };
 
 /* 806C1ADC-806C1AFC -00001 0020+00 1/0 0/0 0/0 .data            l_daE_FZ_Method */
-SECTION_DATA static void* l_daE_FZ_Method[8] = {
-    (void*)daE_FZ_Create__FP8daE_FZ_c,
-    (void*)daE_FZ_Delete__FP8daE_FZ_c,
-    (void*)daE_FZ_Execute__FP8daE_FZ_c,
-    (void*)daE_FZ_IsDelete__FP8daE_FZ_c,
-    (void*)daE_FZ_Draw__FP8daE_FZ_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daE_FZ_Method = {
+    (process_method_func)daE_FZ_Create__FP8daE_FZ_c,
+    (process_method_func)daE_FZ_Delete__FP8daE_FZ_c,
+    (process_method_func)daE_FZ_Execute__FP8daE_FZ_c,
+    (process_method_func)daE_FZ_IsDelete__FP8daE_FZ_c,
+    (process_method_func)daE_FZ_Draw__FP8daE_FZ_c,
 };
 
 /* 806C1AFC-806C1B2C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_FZ */
-SECTION_DATA extern void* g_profile_E_FZ[12] = {
-    (void*)0xFFFFFFFD, 
-    (void*)0x0007FFFD,
-    (void*)0x01DE0000, 
-    (void*)&g_fpcLf_Method,
-    (void*)0x00000C24, 
-    (void*)NULL,
-    (void*)NULL,       
-    (void*)&g_fopAc_Method,
-    (void*)0x00A90000, 
-    (void*)&l_daE_FZ_Method,
-    (void*)0x00040120, 
-    (void*)0x02000000,
+extern actor_process_profile_definition g_profile_E_FZ = {
+  fpcLy_CURRENT_e,       // mLayerID
+  7,                     // mListID
+  fpcPi_CURRENT_e,       // mListPrio
+  PROC_E_FZ,             // mProcName
+  &g_fpcLf_Method.mBase, // sub_method
+  sizeof(daE_FZ_c),      // mSize
+  0,                     // mSizeOther
+  0,                     // mParameters
+  &g_fopAc_Method.base,  // sub_method
+  169,                   // mPriority
+  &l_daE_FZ_Method,      // sub_method
+  0x00040120,            // mStatus
+  fopAc_ENEMY_e,         // mActorType
+  fopAc_CULLBOX_0_e,     // cullType
 };
 
 /* 806C1B2C-806C1B38 00012C 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
