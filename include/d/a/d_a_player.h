@@ -300,7 +300,7 @@ public:
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_UNK_1000 = 0x1000,
-        FLG2_UNK_400 = 0x400,
+        FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
         FLG2_UNK_40 = 0x40,
@@ -815,6 +815,8 @@ public:
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void offPushPullKeep() { offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW); }
+    void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
