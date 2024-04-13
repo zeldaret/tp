@@ -6,9 +6,6 @@
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
-#include "JSystem/JMath/JMath.h"
-#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 

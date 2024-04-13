@@ -1,9 +1,7 @@
 // Translation Unit: d_a_tag_myna_light
 
 #include "rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "d/d_stage.h"
 #include "d/particle/d_particle.h"
 

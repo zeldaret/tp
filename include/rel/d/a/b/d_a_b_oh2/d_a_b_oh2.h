@@ -3,6 +3,13 @@
 
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 
+/**
+ * @ingroup actors-enemies
+ * @brief Morpheel (tentacle)
+ * 
+ * Lakebed Temple dungeon boss. This is the tentacle part of the boss.
+ * 
+ */
 class b_oh2_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

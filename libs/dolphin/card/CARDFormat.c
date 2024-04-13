@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDFormat.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 #include "dolphin/os/OSRtc.h"
 #include "dolphin/vi.h"
 

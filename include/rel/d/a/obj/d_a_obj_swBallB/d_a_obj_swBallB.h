@@ -2,7 +2,6 @@
 #define D_A_OBJ_SWBALLB_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "d/event/d_event_lib.h"
 
 class daObjSwBallB_c : public fopAc_ac_c { //, public dEvLib_callback_c {
 public:

@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "string.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dolphin/mtx.h"
 
 /* 8026F93C-8026F95C 26A27C 0020+00 0/0 3/3 0/0 .text            cLib_memCpy__FPvPCvUl */
 void cLib_memCpy(void* dst, const void* src, unsigned long size) {

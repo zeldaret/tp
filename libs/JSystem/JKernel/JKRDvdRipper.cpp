@@ -7,7 +7,6 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "JSystem/JKernel/JKRArchive.h"
 #include "string.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSCache.h"

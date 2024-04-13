@@ -4,7 +4,6 @@
 //
 
 #include "d/d_npc_lib.h"
-#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 //

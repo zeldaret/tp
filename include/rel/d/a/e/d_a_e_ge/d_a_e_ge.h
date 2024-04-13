@@ -8,6 +8,11 @@ struct daE_GE_HIO_c {
     /* 806CCA58 */ ~daE_GE_HIO_c();
 };
 
+/**
+* @ingroup actors-enemies
+* @brief Guay
+*
+*/
 class daE_GE_c : public fopEn_enemy_c {
 public:
     u8 getGroupNo() {

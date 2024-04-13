@@ -2,7 +2,6 @@
 #define PPC_GENERIC_TARGIMPL_H
 
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.h"
-#include "trk.h"
 
 #ifdef __cplusplus
 extern "C" {

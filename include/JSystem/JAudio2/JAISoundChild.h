@@ -5,6 +5,10 @@
 
 struct JASTrack;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundChild {
     /* 802A2AB0 */ void init();
     /* 802A2B28 */ void mixOut(JASTrack*);

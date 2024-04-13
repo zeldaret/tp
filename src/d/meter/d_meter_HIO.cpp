@@ -8,7 +8,6 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "m_Do/m_Do_ext.h"
-#include "global.h"
 
 /* 801FE330-801FE348 1F8C70 0018+00 1/1 0/0 0/0 .text            __ct__16dMeter_menuHIO_cFv */
 dMeter_menuHIO_c::dMeter_menuHIO_c() {

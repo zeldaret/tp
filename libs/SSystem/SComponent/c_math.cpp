@@ -5,7 +5,6 @@
 
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_m3d.h"
-#include "dolphin/types.h"
 
 /* 802675E4-80267640 261F24 005C+00 0/0 23/23 11/11 .text            cM_rad2s__Ff */
 s16 cM_rad2s(float rad) {

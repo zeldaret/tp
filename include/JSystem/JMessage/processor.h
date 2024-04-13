@@ -7,6 +7,10 @@ namespace JMessage {
 struct TResource;
 struct TResourceContainer;
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TReference {
     TReference() { pcResource_ = NULL; }
 
@@ -30,6 +34,10 @@ struct TReference {
     /* 0x4 */ TResourceContainer* pcResource_;
 };
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TProcessor {
     TProcessor(const TReference* reference)
         : pReference_(reference), pResourceCache_(NULL), pszCurrent_(NULL) {}
@@ -221,6 +229,10 @@ struct TProcessor {
 
 struct TControl;
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TSequenceProcessor : public TProcessor {
     typedef const void* (*branchPfn)(const TSequenceProcessor*, u32);
     typedef const void* (*jumpPfn)(const TSequenceProcessor*);
@@ -301,6 +313,10 @@ struct TSequenceProcessor : public TProcessor {
     /* 0x40 */ TProcess_ oProcess2_;
 };
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TRenderingProcessor : public TProcessor {
     /* 802A8A84 */ TRenderingProcessor(JMessage::TReference const*);
     /* 802A8B20 */ int process(char const*);

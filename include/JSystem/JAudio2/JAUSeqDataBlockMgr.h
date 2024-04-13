@@ -1,7 +1,6 @@
 #ifndef JAUSEQDATABLOCKMGR_H
 #define JAUSEQDATABLOCKMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JSupport/JSUList.h"
 
@@ -9,6 +8,10 @@ class JAISeqData;
 class JAISeqDataUser;
 class JKRArchive;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSeqDataBlock {
     /* 802A68F4 */ JAUSeqDataBlock();
 
@@ -18,6 +21,10 @@ struct JAUSeqDataBlock {
     /* 0x1C */ int field_0x1c;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSeqDataBlocks : public JSUList<JAUSeqDataBlock> {
 public:
     /* 802A6928 */ u8* getSeqData(JAISoundID);
@@ -27,6 +34,10 @@ public:
     /* 802A6A18 */ bool hasFailedBlock(JAISoundID);
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUDynamicSeqDataBlocks {
 public:
     /* 802A6A58 */ JAUDynamicSeqDataBlocks();

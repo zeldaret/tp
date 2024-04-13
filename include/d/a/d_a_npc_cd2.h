@@ -2,7 +2,6 @@
 #define A_NPC_D_A_NPC_CD2_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_npc_lib.h"
 #include "dolphin/types.h"
 

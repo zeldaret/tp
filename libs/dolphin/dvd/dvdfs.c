@@ -1,5 +1,4 @@
 #include "dolphin/dvd/dvdfs.h"
-#include "ctype.h"
 #include "dolphin/dvd.h"
 #include "dolphin/os.h"
 

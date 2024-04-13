@@ -15,6 +15,10 @@ class JPABaseParticle;
 class JKRHeap;
 struct JPAEmitterWorkData;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAEmitterManager {
 public:
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);

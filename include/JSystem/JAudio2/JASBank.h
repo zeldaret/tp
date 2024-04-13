@@ -11,6 +11,10 @@ namespace JASDsp {
     class TChannel;
 }
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASBank {
 public:
     JASBank() { mWaveBank = NULL; }

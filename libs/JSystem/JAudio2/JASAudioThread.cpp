@@ -4,11 +4,9 @@
 //
 
 #include "JSystem/JAudio2/JASAudioThread.h"
-#include "JSystem/JAudio2/JASDriverIF.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
 #include "dolphin/dsp.h"
 
 //

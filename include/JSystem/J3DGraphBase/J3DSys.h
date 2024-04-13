@@ -2,7 +2,6 @@
 #define J3DSYS_H
 
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
 // Perhaps move to a new J3DEnum.h?
 enum J3DError {
@@ -23,6 +22,10 @@ class J3DShape;
 class J3DDrawBuffer;
 class J3DTexture;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTexCoordScaleInfo {
     /* 0x0 */ u16 field_0x00;
     /* 0x2 */ u16 field_0x02;
@@ -36,6 +39,10 @@ enum J3DSysFlag {
     J3DSysFlag_PostTexMtx = 0x40000000,
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DSys {
     /* 0x000 */ Mtx mViewMtx;
     /* 0x030 */ J3DMtxCalc* mCurrentMtxCalc;

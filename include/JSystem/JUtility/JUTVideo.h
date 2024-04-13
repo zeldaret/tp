@@ -4,10 +4,13 @@
 #include "dolphin/gx/GXStruct.h"
 #include "dolphin/os/OSMessage.h"
 #include "dolphin/os/OSTime.h"
-#include "dolphin/vi.h"
 
 typedef u8 (*Pattern)[2];
 
+/**
+* @ingroup jsystem-jutility
+*
+*/
 class JUTVideo {
 public:
     typedef void (*Callback)(u32);

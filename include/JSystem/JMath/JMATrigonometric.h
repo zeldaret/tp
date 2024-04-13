@@ -7,11 +7,19 @@
 template<typename T>
 struct TAngleConstant_;
 
+/**
+ * @ingroup jsystem-jmath
+ * 
+ */
 template<>
 struct TAngleConstant_<f32> {
     static inline f32 RADIAN_DEG360() { return 6.2831855f; }
 };
 
+/**
+ * @ingroup jsystem-jmath
+ * 
+ */
 template<int N, typename T>
 struct TSinCosTable {
     std::pair<T, T> table[1 << N];
@@ -48,11 +56,19 @@ struct TSinCosTable {
     }
 };
 
+/**
+ * @ingroup jsystem-jmath
+ * 
+ */
 struct TAtanTable {
     f32 table[1025];
     u8 pad[0x1C];
 };
 
+/**
+ * @ingroup jsystem-jmath
+ * 
+ */
 struct TAsinAcosTable {
     f32 table[1025];
     u8 pad[0x1C];

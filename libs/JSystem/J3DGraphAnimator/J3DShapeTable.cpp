@@ -1,5 +1,4 @@
 #include "JSystem/J3DGraphAnimator/J3DShapeTable.h"
-#include "dolphin/types.h"
 
 void J3DShapeTable::hide() {
     u16 shapeNum = mShapeNum;

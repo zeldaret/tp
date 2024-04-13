@@ -4,6 +4,10 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUtility/TColor.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTFader {
 public:
     enum EStatus {

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/d_a_startAndGoal/d_a_startAndGoal.h"
 #include "d/a/d_a_npc.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_timer.h"
 #include "d/meter/d_meter2_info.h"
 #include "f_op/f_op_actor_mng.h"

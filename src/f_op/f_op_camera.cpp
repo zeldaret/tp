@@ -7,7 +7,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
 #include "f_op/f_op_draw_tag.h"
-#include "f_pc/f_pc_manager.h"
 
 // TODO: this is a hack to get f_op_actor_mng.cpp weak function order correct
 // at the moment, if these are made into inlined virtuals, they incorrectly generate before thunks

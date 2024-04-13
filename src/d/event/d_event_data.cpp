@@ -8,8 +8,6 @@
 #include "d/d_demo.h"
 #include "d/d_gameover.h"
 #include "d/msg/d_msg_object.h"
-#include "f_op/f_op_actor_mng.h"
-#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 
 inline BOOL dEvDtFlagCheck(int flag) {

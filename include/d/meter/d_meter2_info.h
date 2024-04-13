@@ -111,6 +111,7 @@ public:
     bool isUseButton(int param_0) { return param_0 & mUseButton; }
     void setMeterMapClass(dMeterMap_c* p_map) { mMeterMap = p_map; }
     void resetGameStatus() { mGameStatus = 0; }
+    void onGameStatus(int status) { mGameStatus |= status; }
     void setMapStatus(u8 status) { mMapStatus = status; }
     u8 getMapStatus() { return mMapStatus; }
     void setPauseStatus(u8 status) { mPauseStatus = status; }
@@ -404,6 +405,10 @@ inline void i_dMeter2Info_offUseButton(int flag) {
 
 inline void dMeter2Info_resetGameStatus() {
     g_meter2_info.resetGameStatus();
+}
+
+inline void dMeter2Info_onGameStatus(int status) {
+    g_meter2_info.onGameStatus(status);
 }
 
 inline void dMeter2Info_setMapStatus(u8 status) {

@@ -1,5 +1,4 @@
 #include "ansi_files.h"
-#include "file_io.h"
 #include "critical_regions.h"
 
 /* 8044D778-8044D878 07A498 0100+00 1/0 0/0 0/0 .bss             stdin_buff */

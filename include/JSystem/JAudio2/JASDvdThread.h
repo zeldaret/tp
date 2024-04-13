@@ -5,6 +5,10 @@
 
 class JASTaskThread;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASDvd {
 public:
     /* 8028FEFC */ static JASTaskThread* getThreadPointer();

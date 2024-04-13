@@ -6,8 +6,6 @@
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/db.h"
 #include "dolphin/pad.h"
-#include "dolphin/exi/EXIBios.h"
-#include "dolphin/si/SIBios.h"
 #include "dolphin/dvd/dvdfs.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk.h"
 

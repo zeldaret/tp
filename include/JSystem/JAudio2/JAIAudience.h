@@ -7,6 +7,10 @@ class JAIAudible;
 class JAISoundID;
 struct JASSoundParams;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAIAudience {
     virtual ~JAIAudience();
     virtual JAIAudible* newAudible(JGeometry::TVec3<f32> const&, JAISoundID,

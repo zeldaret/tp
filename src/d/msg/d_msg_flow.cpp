@@ -10,9 +10,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/shop/d_shop_system.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg_mng.h"
-#include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 

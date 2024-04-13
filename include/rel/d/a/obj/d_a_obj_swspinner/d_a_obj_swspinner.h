@@ -3,7 +3,6 @@
 
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/bg/d_bg_w.h"
-#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 
 class daObjSwSpinner_c : public dBgS_MoveBgActor {

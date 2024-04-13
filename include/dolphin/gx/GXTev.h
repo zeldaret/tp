@@ -1,7 +1,6 @@
 #ifndef GXTEV_H
 #define GXTEV_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 #ifdef __cplusplus

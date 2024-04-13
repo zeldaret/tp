@@ -4,6 +4,11 @@
 #include "JSystem/JSupport/JSUList.h"
 
 class JKRHeap;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDisposer {
 public:
     JKRDisposer();

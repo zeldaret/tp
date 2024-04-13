@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_WINDOW_H
 #define D_A_OBJ_WINDOW_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"

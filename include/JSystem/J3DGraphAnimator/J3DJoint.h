@@ -8,6 +8,10 @@ class J3DJoint;
 class J3DMaterial;
 class J3DMtxBuffer;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMtxCalc {
 public:
     /* 80325D1C */ static void setMtxBuffer(J3DMtxBuffer*);
@@ -30,11 +34,19 @@ public:
     static J3DJoint* mJoint;
 };  // Size: 0x4
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 public:
     /* 8000FA8C */ virtual ~J3DMtxCalcNoAnmBase();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 template <class A, class B>
 class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 public:
@@ -47,6 +59,10 @@ public:
 class J3DJoint;
 typedef int (*J3DJointCallBack)(J3DJoint*, int);
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DJoint {
 public:
     /* 8032F13C */ void appendChild(J3DJoint*);
@@ -93,22 +109,42 @@ private:
     /* 0x58 */ J3DMaterial* mMesh;
 };  // Size: 0x5C
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMtxCalcJ3DSysInitMaya {
     /* 8032ECAC */ static void init(const Vec&, const Mtx& param_1);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMtxCalcJ3DSysInitBasic {
     /* 8032EC28 */ static void init(const Vec&, const Mtx& param_1);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMtxCalcCalcTransformSoftimage {
     /* 8032EE50 */ static void calcTransform(J3DTransformInfo const&);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMtxCalcCalcTransformMaya {
     /* 8032EFBC */ static void calcTransform(J3DTransformInfo const&);
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DMtxCalcCalcTransformBasic {
     /* 8032ED30 */ static void calcTransform(J3DTransformInfo const&);
 };

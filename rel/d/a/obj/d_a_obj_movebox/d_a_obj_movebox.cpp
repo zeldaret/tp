@@ -4,9 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox.h"
-#include "d/a/d_a_obj.h"
-#include "d/bg/d_bg_s.h"
-#include "d/cc/d_cc_d.h"
 #include "d/d_path.h"
 #include "dol2asm.h"
 

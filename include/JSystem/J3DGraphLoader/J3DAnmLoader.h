@@ -1,7 +1,6 @@
 #ifndef J3DANMLOADER_H
 #define J3DANMLOADER_H
 
-#include "dolphin/types.h"
 
 enum J3DAnmLoaderDataBaseFlag {
     J3DLOADER_UNK_FLAG0,
@@ -10,6 +9,10 @@ enum J3DAnmLoaderDataBaseFlag {
 
 class J3DAnmBase;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DAnmLoaderDataBase {
     /* 80337B40 */ static J3DAnmBase* load(void const*, J3DAnmLoaderDataBaseFlag);
     /* 80338134 */ static void setResource(J3DAnmBase*, void const*);

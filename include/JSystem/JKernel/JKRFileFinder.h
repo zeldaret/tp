@@ -3,6 +3,10 @@
 
 #include "dolphin/dvd.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRFileFinder {
 public:
     JKRFileFinder() {
@@ -30,6 +34,11 @@ protected:
 };
 
 class JKRArchive;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRArcFinder : public JKRFileFinder {
 public:
     JKRArcFinder(JKRArchive*, s32, s32);

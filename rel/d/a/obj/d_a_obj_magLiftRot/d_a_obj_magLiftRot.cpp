@@ -4,10 +4,6 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_magLiftRot/d_a_obj_magLiftRot.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "Z2AudioLib/Z2SeMgr.h"
-#include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"

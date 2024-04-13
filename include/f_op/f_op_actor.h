@@ -1,7 +1,6 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/kankyo/d_kankyo.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
@@ -245,6 +244,9 @@ public:
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
+
+    u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
+    u8 getMidnaBindMode() { return mMidnaBindMode; }
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
@@ -258,6 +260,8 @@ public:
     void offCutDownHitFlg() { mFlags &= ~0x2; }
     void offDownFlg() { mFlags &= ~0x17; }
 
+    void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
+    void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
     void setThrowModeCatch() { mThrowMode |= 2; }
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
@@ -276,7 +280,7 @@ public:
     /* 0x594 */ u32 mEffectID1;
     /* 0x598 */ u32 mEffectID2;
     /* 0x59C */ u32 mMidnaBindID[3];
-    /* 0x5A8 */ u8 field_0x5a8;
+    /* 0x5A8 */ u8 mMidnaBindMode;
 };  // Size: 0x5AC
 
 s32 fopAc_IsActor(void* actor);

@@ -6,7 +6,6 @@
 #include "rel/d/a/npc/d_a_npc_tr/d_a_npc_tr.h"
 #include "dol2asm.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_mtx.h"
 
 //

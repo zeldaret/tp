@@ -4,7 +4,6 @@
  */
 
 #include "d/s/d_s_menu.h"
-#include "d/d_procname.h"
 #include "f_pc/f_pc_leaf.h"
 #include "f_op/f_op_scene.h"
 

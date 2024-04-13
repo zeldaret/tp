@@ -2,12 +2,15 @@
 #define JSGLIGHT_H
 
 #include "JSystem/JStage/JSGObject.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 
 namespace JStage {
     enum TELight {};
 
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TLight : public TObject {
         /* 80280D28 */ virtual ~TLight() = 0;
         /* 80280D88 */ virtual s32 JSGFGetType() const;

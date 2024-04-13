@@ -4,7 +4,6 @@
 */
 
 #include "rel/d/a/obj/d_a_obj_prop/d_a_obj_prop.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80CB51D8-80CB51F8 000078 0020+00 1/1 0/0 0/0 .text daObjProp_c_createHeap__FP10fopAc_ac_c */

@@ -5,7 +5,6 @@
 
 #include "rel/d/a/obj/d_a_obj_zrTuraraRock/d_a_obj_zrTuraraRock.h"
 #include "SSystem/SComponent/c_math.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 

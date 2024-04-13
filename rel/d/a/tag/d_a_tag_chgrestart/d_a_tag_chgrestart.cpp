@@ -4,7 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/d_procname.h"
 
 /* 80D56758-80D567E4 000078 008C+00 1/1 0/0 0/0 .text            Create__17daTagChgRestart_cFv */

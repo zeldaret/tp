@@ -1,12 +1,8 @@
 #ifndef D_A_FORMATION_MNG_H
 #define D_A_FORMATION_MNG_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_path.h"
-#include "d/d_stage.h"
 #include "d/a/d_a_player.h"
 #include "d/kankyo/d_kankyo.h"
 #include "SSystem/SComponent/c_math.h"

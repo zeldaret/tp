@@ -1,8 +1,6 @@
 #ifndef D_A_TAG_LV8GATE_H
 #define D_A_TAG_LV8GATE_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class J3DModel;

@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/e/d_a_e_ym_tag/d_a_e_ym_tag.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80815DF8-80815E00 000078 0008+00 1/0 0/0 0/0 .text            daE_YM_TAG_Draw__FP12daE_YM_TAG_c

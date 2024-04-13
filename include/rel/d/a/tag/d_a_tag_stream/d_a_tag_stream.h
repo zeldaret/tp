@@ -1,7 +1,6 @@
 #ifndef D_A_TAG_STREAM_H
 #define D_A_TAG_STREAM_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 class daTagStream_c : public fopAc_ac_c {

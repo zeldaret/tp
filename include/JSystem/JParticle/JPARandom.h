@@ -1,7 +1,10 @@
 #ifndef JPARANDOM_H
 #define JPARANDOM_H
 
-
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPARandom {
 public:
     JPARandom() { mSeed = 0; }

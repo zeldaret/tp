@@ -4,10 +4,7 @@
 //
 
 #include "JSystem/JAudio2/JASTrack.h"
-#include "JSystem/JAudio2/JASAiCtrl.h"
-#include "JSystem/JAudio2/JASBank.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
-#include "JSystem/JAudio2/JASDSPInterface.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "dol2asm.h"
 

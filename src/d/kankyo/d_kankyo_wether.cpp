@@ -5,13 +5,11 @@
 
 #include "d/kankyo/d_kankyo_wether.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo.h"
 #include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
-#include "global.h"
 #include "string.h"
 #include "m_Do/m_Do_audio.h"
 

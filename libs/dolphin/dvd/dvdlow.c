@@ -3,7 +3,6 @@
 #include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSContext.h"
 #include "dolphin/os/OSReset.h"
-#include "dolphin/os/OSTime.h"
 
 void __DVDInitWA();
 void __DVDInterruptHandler(u32 arg0, OSContext* context);

@@ -1,8 +1,6 @@
 #ifndef D_A_OBJ_GRAVE_STONE_H
 #define D_A_OBJ_GRAVE_STONE_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 #include "d/particle/d_particle_copoly.h"

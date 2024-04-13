@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
-#include "rel/d/a/d_a_midna/d_a_midna.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"

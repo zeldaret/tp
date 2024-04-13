@@ -3,13 +3,16 @@
 
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "dolphin/gx/GXAttr.h"
-#include "dolphin/mtx/vec.h"
 
 class J3DShape;
 class J3DShapeMtx;
 class J3DShapeDraw;
 struct ResNTAB;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DShapeInitData {
     /* 0x00 */ u8 mShapeMtxType;
     /* 0x02 */ u16 mMtxGroupNum;
@@ -21,17 +24,29 @@ struct J3DShapeInitData {
     /* 0x1C */ Vec mMax;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DShapeMtxInitData {
     /* 0x00 */ u16 mUseMtxIndex;
     /* 0x02 */ u16 mUseMtxCount;
     /* 0x04 */ u32 mFirstUseMtxIndex;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DShapeDrawInitData {
     /* 0x00 */ u32 mDisplayListSize;
     /* 0x04 */ u32 mDisplayListIndex;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DShapeFactory {
     /* 80337350 */ J3DShapeFactory(J3DShapeBlock const&);
     /* 80337400 */ J3DShape* create(int, u32, GXVtxDescList*);

@@ -4,12 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SoundInfo.h"
-#include "Z2AudioLib/Z2Calc.h"
 #include "JSystem/JAudio2/JAISeq.h"
-#include "JSystem/JAudio2/JAISe.h"
-#include "JSystem/JAudio2/JAISoundChild.h"
-#include "JSystem/JAudio2/JAIStream.h"
-#include "JSystem/JAudio2/JAUAudibleParam.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"

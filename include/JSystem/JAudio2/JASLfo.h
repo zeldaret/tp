@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASLfo {
     /* 8029BD14 */ JASLfo();
     /* 8029BD44 */ f32 getValue() const;

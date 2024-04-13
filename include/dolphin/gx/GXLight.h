@@ -2,7 +2,6 @@
 #define GXLIGHT_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/gx/GXEnum.h"
 
 #ifdef __cplusplus
 extern "C" {

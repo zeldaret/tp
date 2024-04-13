@@ -1,7 +1,5 @@
 #include "direct_io.h"
 #include "critical_regions.h"
-#include "misc_io.h"
-#include "string.h"
 #include "wchar_io.h"
 
 /* 80365494-803657A0 35FDD4 030C+00 1/1 0/0 0/0 .text            __fwrite */

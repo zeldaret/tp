@@ -2,7 +2,6 @@
 #define J2DANIMATION_H
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "global.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
@@ -20,6 +19,10 @@ enum J2DAnmKind {
     KIND_VTX_COLOR = 7
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmBase {
 public:
     J2DAnmBase() {
@@ -42,6 +45,10 @@ public:
     /* 0xC */ J2DAnmKind mKind;
 };  // Size: 0x10
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColor : public J2DAnmBase {
 public:
     J2DAnmVtxColor() {
@@ -67,6 +74,10 @@ public:
 struct J3DTransformInfo;
 struct J3DTextureSRTInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColorKey : public J2DAnmVtxColor {
 public:
     J2DAnmVtxColorKey() {
@@ -84,6 +95,10 @@ public:
     /* 0x38 */ s16* mAValues;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColorFull : public J2DAnmVtxColor {
 public:
     J2DAnmVtxColorFull() {
@@ -101,6 +116,10 @@ public:
     /* 0x38 */ u8* mAValues;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVisibilityFull : public J2DAnmBase {
 public:
     J2DAnmVisibilityFull() {
@@ -119,6 +138,10 @@ public:
     /* 0x18 */ u8* mValues;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransform : public J2DAnmBase {
 public:
     J2DAnmTransform(f32* pScaleValues, s16* pRotationValues, f32* pTranslateValues) {
@@ -139,6 +162,10 @@ public:
     /* 0x18 */ f32* mTranslateValues;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
     J2DAnmTransformKey() : J2DAnmTransform(NULL, NULL, NULL) {
@@ -157,6 +184,10 @@ public:
     /* 0x28 */ J3DAnmTransformKeyTable* mInfoTable;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
     J2DAnmTransformFull() : J2DAnmTransform(NULL, NULL, NULL) { mTableInfo = NULL; }
@@ -168,6 +199,10 @@ public:
     /* 0x24 */ J3DAnmTransformFullTable* mTableInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTextureSRTKey : public J2DAnmBase {
 public:
     J2DAnmTextureSRTKey() {
@@ -227,6 +262,10 @@ public:
     /* 0x7C */ int field_0x7c;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTexPattern : public J2DAnmBase {
 public:
     struct J2DAnmTexPatternTIMGPointer {
@@ -265,6 +304,10 @@ public:
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTevRegKey : public J2DAnmBase {
 public:
     J2DAnmTevRegKey() {
@@ -331,6 +374,10 @@ public:
     /* 0x70 */ s16* mKAValues;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColor : public J2DAnmBase {
 public:
     J2DAnmColor() {
@@ -357,6 +404,10 @@ public:
     /* 0x20 */ JUTNameTab field_0x20;
 };  // Size: 0x30
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColorKey : public J2DAnmColor {
 public:
     J2DAnmColorKey() {
@@ -376,6 +427,10 @@ public:
     /* 0x40 */ J3DAnmColorKeyTable* mInfoTable;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DAnmColorFullInfo {
     /* 0x00 */ u16 mRMaxFrame;
     /* 0x02 */ u16 mROffset;
@@ -387,6 +442,10 @@ struct J2DAnmColorFullInfo {
     /* 0x0E */ u16 mAOffset;
 };  // Size = 0x10
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColorFull : public J2DAnmColor {
 public:
     J2DAnmColorFull() {

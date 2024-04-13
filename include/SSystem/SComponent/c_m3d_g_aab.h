@@ -1,7 +1,6 @@
 #ifndef C_M3D_G_AAB_H
 #define C_M3D_G_AAB_H
 
-#include "SSystem/SComponent/c_xyz.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "global.h"

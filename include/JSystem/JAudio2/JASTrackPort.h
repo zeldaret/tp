@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASTrackPort {
 public:
     /* 8029354C */ void init();

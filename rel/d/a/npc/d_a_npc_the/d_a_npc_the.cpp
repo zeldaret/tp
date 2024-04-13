@@ -4,9 +4,6 @@
 //
 
 #include "rel/d/a/npc/d_a_npc_the/d_a_npc_the.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.h"
 #include "dol2asm.h"
 

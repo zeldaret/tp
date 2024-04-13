@@ -1,6 +1,5 @@
 #include "dolphin/os/OSAudioSystem.h"
 #include "dolphin/dsp.h"
-#include "dolphin/os/OSTime.h"
 #include "string.h"
 
 /* 803CF490-803CF510 02C5B0 0080+00 1/1 0/0 0/0 .data            DSPInitCode */

@@ -9,6 +9,10 @@ class JASDisposer;
 class JKRHeap;
 class JKRSolidHeap;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASHeap {
 public:
     /* 80290140 */ JASHeap(JASDisposer* param_0 = NULL);
@@ -33,6 +37,10 @@ public:
     /* 0x40 */ JASHeap* field_0x40;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASGenericMemPool {
     /* 80290848 */ JASGenericMemPool();
     /* 80290860 */ ~JASGenericMemPool();
@@ -77,6 +85,10 @@ namespace JASThreadingModel {
     };
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename T>
 class JASMemPool : public JASGenericMemPool {
 public:
@@ -85,6 +97,10 @@ public:
     void free(void* ptr, u32 n) { JASGenericMemPool::free(ptr, n); }
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<u32 ChunkSize, typename T>
 class JASMemChunkPool {
     struct MemoryChunk {
@@ -207,6 +223,10 @@ namespace JASKernel {
     extern JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* sCommandHeap;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename T>
 class JASPoolAllocObject {
 public:
@@ -233,6 +253,10 @@ private:
     }
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename T>
 class JASMemPool_MultiThreaded : public JASGenericMemPool {
 public:
@@ -252,6 +276,10 @@ public:
     }
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template <typename T>
 class JASPoolAllocObject_MultiThreaded {
 public:

@@ -7,8 +7,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_audio.h"
 #include "stdio.h"
 
 BOOL daPy_py_c::checkNowWolf() {

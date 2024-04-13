@@ -2,7 +2,6 @@
 #define D_D_BOMB_H
 
 #include "d/bg/d_bg_s_acch.h"
-#include "d/bg/d_bg_s_lin_chk.h"
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_procname.h"
@@ -63,6 +62,18 @@ public:
 
     static fopAc_ac_c* createFlowerBomb(cXyz* i_pos, csXyz* i_angle, int param_2) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 4, i_pos, param_2, i_angle, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createWaterBombExplode(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 18, i_pos, -1, NULL, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createEnemyWaterBomb(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 14, i_pos, i_roomNo, i_angle, NULL, -1, NULL, NULL);
+    }
+
+    static fopAc_ac_c* createEnemyWaterBombHookshot(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 16, i_pos, i_roomNo, i_angle, NULL, -1, NULL, NULL);
     }
 };
 

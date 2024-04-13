@@ -1,7 +1,6 @@
 #ifndef _MSL_COMMON_ANSI_FP_H
 #define _MSL_COMMON_ANSI_FP_H
 
-#include "float.h"
 
 #define SIGDIGLEN 36
 

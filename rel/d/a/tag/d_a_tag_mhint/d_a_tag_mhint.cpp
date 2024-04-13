@@ -4,10 +4,6 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
-#include "rel/d/a/d_a_midna/d_a_midna.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/a/d_a_npc.h"
-#include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/meter/d_meter2_info.h"

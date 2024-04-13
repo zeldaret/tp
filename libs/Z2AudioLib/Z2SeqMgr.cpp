@@ -4,14 +4,12 @@
 //
 
 #include "Z2AudioLib/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
-#include "JSystem/JAudio2/JAISeq.h"
 #include "JSystem/JAudio2/JAISoundChild.h"
 #include "dol2asm.h"
 

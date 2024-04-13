@@ -4,7 +4,6 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/pad.h"
-#include "dolphin/types.h"
 
 typedef void (*callbackFn)(int, void*);
 
@@ -27,6 +26,10 @@ enum {
 
 extern bool sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset;
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct JUTGamePadRecordBase {
     virtual void unk0() {}
     virtual void unk1(PADStatus* pad) {}
@@ -35,6 +38,10 @@ struct JUTGamePadRecordBase {
     /* 0x4 */ bool mActive;
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct JUTGamePad : public JKRDisposer {
 public:
     enum EStickMode {
@@ -260,6 +267,10 @@ public:
     static u32 sRumbleSupported;
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct JUTGamePadLongPress {
     static JSUList<JUTGamePadLongPress> sPatternList;
     void checkCallback(int port, u32 timer);

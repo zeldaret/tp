@@ -5,8 +5,6 @@
 
 #include "rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
 /* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */

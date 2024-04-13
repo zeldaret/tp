@@ -5,7 +5,6 @@
 
 #include "JSystem/J2DGraph/J2DWindowEx.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dol2asm.h"
 
 //

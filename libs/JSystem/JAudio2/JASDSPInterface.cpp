@@ -11,7 +11,6 @@
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "dolphin/dsp.h"
 #include "dolphin/os/OSCache.h"
 
 //

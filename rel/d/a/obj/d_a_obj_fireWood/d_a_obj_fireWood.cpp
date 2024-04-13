@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_fireWood/d_a_obj_fireWood.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "dol2asm.h"
 
 class daFireWood_c : public fopAc_ac_c {

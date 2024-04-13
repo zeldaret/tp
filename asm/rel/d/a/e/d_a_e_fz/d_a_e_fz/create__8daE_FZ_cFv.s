@@ -226,14 +226,14 @@ lbl_806C1020:
 /* 806C102C  38 84 0F 38 */	addi r4, r4, 0xf38
 /* 806C1030  4B 9B 5A 7D */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 806C1034  38 7D 09 80 */	addi r3, r29, 0x980
-/* 806C1038  3C 80 80 6C */	lis r4, data_806C1A38@ha /* 0x806C1A38@ha */
-/* 806C103C  38 84 1A 38 */	addi r4, r4, data_806C1A38@l /* 0x806C1A38@l */
+/* 806C1038  3C 80 80 6C */	lis r4, cc_fz_src@ha /* 0x806C1A38@ha */
+/* 806C103C  38 84 1A 38 */	addi r4, r4, cc_fz_src@l /* 0x806C1A38@l */
 /* 806C1040  4B 9C 39 F5 */	bl Set__8dCcD_SphFRC11dCcD_SrcSph
 /* 806C1044  38 1D 09 44 */	addi r0, r29, 0x944
 /* 806C1048  90 1D 09 C4 */	stw r0, 0x9c4(r29)
 /* 806C104C  38 7D 0A B8 */	addi r3, r29, 0xab8
-/* 806C1050  3C 80 80 6C */	lis r4, data_806C1A78@ha /* 0x806C1A78@ha */
-/* 806C1054  38 84 1A 78 */	addi r4, r4, data_806C1A78@l /* 0x806C1A78@l */
+/* 806C1050  3C 80 80 6C */	lis r4, cc_fz_at_src@ha /* 0x806C1A78@ha */
+/* 806C1054  38 84 1A 78 */	addi r4, r4, cc_fz_at_src@l /* 0x806C1A78@l */
 /* 806C1058  4B 9C 39 DD */	bl Set__8dCcD_SphFRC11dCcD_SrcSph
 /* 806C105C  38 1D 09 44 */	addi r0, r29, 0x944
 /* 806C1060  90 1D 0A FC */	stw r0, 0xafc(r29)

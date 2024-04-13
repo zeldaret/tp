@@ -6,6 +6,10 @@
 class JKRHeap;
 
 // TODO: fix struct
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 struct unk_print {
     /* 0x00 */ unk_print* mNext;
     /* 0x04 */ s16 unk_0x04;
@@ -15,6 +19,10 @@ struct unk_print {
     /* 0x0C */ char unk_0x0C[0];
 };
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTDbPrint {
 public:
     /* 802E0148 */ JUTDbPrint(JUTFont*, JKRHeap*);

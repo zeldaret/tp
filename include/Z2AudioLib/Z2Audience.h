@@ -8,7 +8,6 @@
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JAUAudibleParam.h"
 #include "JSystem/TPosition3.hh"
-#include "dolphin/mtx.h"
 
 struct Z2Audible;
 

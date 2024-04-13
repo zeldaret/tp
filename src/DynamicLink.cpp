@@ -9,8 +9,6 @@
 #include "JSystem/JKernel/JKRFileCache.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "stdio.h"
-#include "dol2asm.h"
-#include "dolphin/os.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 

@@ -3,7 +3,6 @@
 
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
-#include "dolphin/types.h"
 
 struct cBgD_Vtx_t;
 class cM3dGPla;

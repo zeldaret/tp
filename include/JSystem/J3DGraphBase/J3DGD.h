@@ -2,7 +2,6 @@
 #define J3DGD_H
 
 #include "dolphin/gd/GDBase.h"
-#include "dolphin/gx.h"
 
 inline void J3DGDWrite_u8(u8 param) {
     __GDWrite(param);

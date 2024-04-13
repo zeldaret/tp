@@ -6,7 +6,6 @@
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "d/d_stage.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 
 //
 // Types:

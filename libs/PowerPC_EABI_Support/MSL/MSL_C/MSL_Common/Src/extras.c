@@ -1,6 +1,5 @@
 #include "extras.h"
 #include "ctype.h"
-#include "file_io.h"
 
 /* 8036CA94-8036CB20 3673D4 008C+00 0/0 1/1 0/0 .text            stricmp */
 int stricmp(const char* str1, const char* str2) {

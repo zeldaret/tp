@@ -4,6 +4,11 @@
 #include "JSystem/JSupport/JSUList.h"
 
 class JKRAramHeap;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramBlock {
 public:
     JKRAramBlock(u32, u32, u32, u8, bool);

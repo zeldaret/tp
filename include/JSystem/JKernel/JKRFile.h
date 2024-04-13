@@ -3,6 +3,10 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRFile : public JKRDisposer {
 public:
     JKRFile() : mIsAvailable(false) {}

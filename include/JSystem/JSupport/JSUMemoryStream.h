@@ -3,6 +3,10 @@
 
 #include "JSystem/JSupport/JSURandomInputStream.h"
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUMemoryInputStream : public JSURandomInputStream {
 public:
     JSUMemoryInputStream(const void* res, u32 size) { setBuffer(res, size); }

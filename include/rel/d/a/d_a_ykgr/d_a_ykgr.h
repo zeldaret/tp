@@ -1,12 +1,7 @@
 #ifndef D_A_YKGR_H
 #define D_A_YKGR_H
 
-#include "dolphin/types.h"
-#include "JSystem/JParticle/JPAParticle.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
-#include "f_op/f_op_actor.h"
-#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 #include "d/kankyo/d_kankyo_rain.h"

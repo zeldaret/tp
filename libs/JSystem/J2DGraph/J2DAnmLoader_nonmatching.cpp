@@ -7,8 +7,6 @@
 // JSUConvertOffsetToPtr<u16> needs to be emitted in J2DMaterialFactory before its used here
 
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
 #include "JSystem/JSupport/JSupport.h"
 
 //

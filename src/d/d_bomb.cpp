@@ -4,7 +4,6 @@
  */
 
 #include "d/d_bomb.h"
-#include "d/d_procname.h"
 
 bool dBomb_c::checkStateCarry() {
     return (fopAcM_checkCarryNow(this) || fopAcM_checkHookCarryNow(this) ||

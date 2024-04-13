@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dolphin/types.h"
 
 //
 // Types:

@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeDraw {
 public:
     /* 80314924 */ u32 countVertex(u32);

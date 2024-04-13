@@ -5,8 +5,6 @@
 
 #include "JSystem/JAudio2/JAIStream.h"
 #include "JSystem/JAudio2/JAIStreamMgr.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISoundChild.h"
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"
 #include "JSystem/JKernel/JKRHeap.h"

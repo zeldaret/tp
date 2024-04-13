@@ -4,9 +4,6 @@
 #include "d/a/d_a_item_static.h"
 #include "d/a/d_a_player.h"
 #include "d/msg/d_msg_flow.h"
-#include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"
 

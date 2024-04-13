@@ -2,8 +2,11 @@
 #define J2DWINDOWEX_H
 
 #include "JSystem/J2DGraph/J2DWindow.h"
-#include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DWindowEx : public J2DWindow {
 public:
     enum stage_enum {

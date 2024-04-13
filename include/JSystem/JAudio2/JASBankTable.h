@@ -4,6 +4,10 @@
 #include "JSystem/JAudio2/JASBankList.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<size_t N>
 class JASBankTable : public JASBankList {
 public:
@@ -15,6 +19,10 @@ private:
     JASPtrArray<JASBank, N> mArray;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASDefaultBankTable : public JASBankTable<256>, public JASGlobalInstance<JASDefaultBankTable> {
 public:
     JASDefaultBankTable() : JASGlobalInstance(true) {}

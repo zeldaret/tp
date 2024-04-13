@@ -5,8 +5,6 @@
 
 #include "d/ovlp/d_ovlp_fade3.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/d_procname.h"
 #include "d/s/d_s_play.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"

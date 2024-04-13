@@ -6,7 +6,6 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "stdio.h"
 #include "dolphin/os/OSCache.h"
-#include "global.h"
 
 //
 // Forward References:

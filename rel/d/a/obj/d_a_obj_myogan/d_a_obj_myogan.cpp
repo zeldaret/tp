@@ -4,11 +4,9 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/d_procname.h"
 
 /* 80C9EBAC-80C9EBDC 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__18daObj_Myogan_HIO_cFv */

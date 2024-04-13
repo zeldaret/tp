@@ -4,6 +4,10 @@
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DMaterial {
 public:
     struct J2DMaterialAnmPointer {

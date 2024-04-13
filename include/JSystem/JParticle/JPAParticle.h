@@ -2,7 +2,6 @@
 #define JPAPARTICLE_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/types.h"
 
 #include "JSystem/JGeometry.h"
 
@@ -17,6 +16,10 @@ class JPAParticleCallBack;
 class JPAResourceManager;
 struct JPAEmitterWorkData;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPABaseParticle {
 public:
     /* 8027EFEC */ void init_p(JPAEmitterWorkData*);
@@ -70,6 +73,10 @@ public:
     /* 0x96 */ u8 mPrmColorAlphaAnm;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAParticleCallBack {
 public:
     JPAParticleCallBack() {}

@@ -3,6 +3,11 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+* @ingroup actors-enemies
+* @brief Snake Baba Leaf
+*
+*/
 class e_hb_leaf_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

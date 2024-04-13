@@ -4,7 +4,6 @@
 #include "d/a/d_a_player.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 
 class daDoorPush_c : public dBgS_MoveBgActor {
 public:

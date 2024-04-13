@@ -7,6 +7,10 @@
 class JSURandomInputStream;
 class JUTTexture;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DWindow : public J2DPane {
 public:
     struct TMaterial {

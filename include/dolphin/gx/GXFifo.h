@@ -2,7 +2,6 @@
 #define GXFIFO_H
 
 #include "dolphin/gx/GXStruct.h"
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/os/OSThread.h"
 
 #ifdef __cplusplus

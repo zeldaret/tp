@@ -3,10 +3,18 @@
 
 #include "JSystem/J2DGraph/J2DAnimation.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DAnmLoaderDataBase {
     /* 80308A6C */ static J2DAnmBase* load(void const*);
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmLoader {
 public:
     virtual void* load(void const*) = 0;
@@ -27,6 +35,10 @@ struct J3DAnmVisibilityFullData;
 struct J3DAnmVtxColorFullData;
 struct J3DAnmTransformKeyData;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 public:
     /* 80309290 */ J2DAnmKeyLoader_v15();
@@ -48,6 +60,10 @@ public:
     // /* 0x04 */ void* _4;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmFullLoader_v15 : public J2DAnmLoader {
 public:
     /* 80309CE8 */ J2DAnmFullLoader_v15();

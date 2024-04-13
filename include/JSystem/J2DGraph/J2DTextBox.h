@@ -19,11 +19,19 @@ enum J2DTextBoxHBinding {
     /* 0x2 */ HBIND_LEFT
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTbxBlockHeader {
     /* 0x00 */ u32 mTag;
     /* 0x04 */ s32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTextBoxInfo {
     /* 0x00 */ u16 field_0x0;
     /* 0x02 */ u16 field_0x2;
@@ -42,6 +50,10 @@ struct J2DTextBoxInfo {
     /* 0x1E */ u16 field_0x1e;
 };  // Size: 0x20
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTextBox : public J2DPane {
 public:
     struct TFontSize {

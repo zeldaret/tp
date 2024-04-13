@@ -1,7 +1,6 @@
 #include "d/msg/d_msg_out_font.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "d/com/d_com_inf_game.h"
 #include "d/meter/d_meter2_info.h"
 #include "d/msg/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"

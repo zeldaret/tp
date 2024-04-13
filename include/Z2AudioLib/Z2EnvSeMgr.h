@@ -3,7 +3,6 @@
 
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2SeMgr.h"
-#include "global.h"
 
 enum WindType {
     WIND_TYPE_0,

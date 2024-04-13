@@ -1,7 +1,6 @@
 #ifndef MSG_SCRN_D_MSG_SCRN_HOWL_H
 #define MSG_SCRN_D_MSG_SCRN_HOWL_H
 
-#include "dolphin/types.h"
 #include "d/msg/d_msg_scrn_base.h"
 
 struct dMsgScrnHowl_c : public dMsgScrnBase_c {

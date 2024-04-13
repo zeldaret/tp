@@ -2,10 +2,8 @@
 #include "ansi_fp.h"
 #include "critical_regions.h"
 #include "ctype.h"
-#include "string.h"
 #include "scanf.h"
 #include "stdio.h"
-#include "stdlib.h"
 #include "string.h"
 #include "wchar_io.h"
 

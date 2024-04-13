@@ -26,6 +26,8 @@ class cCcD_CylAttr;
 class cCcD_SphAttr;
 
 enum cCcD_ObjAtType {
+    /* 0x00000000 */ AT_TYPE_0 = 0,
+    /* 0x00000001*/  AT_TYPE_1 = (1 << 0),
     /* 0x00000002 */ AT_TYPE_NORMAL_SWORD = (1 << 1),  // wooden or ordon
     /* 0x00000004 */ AT_TYPE_HORSE = (1 << 2),
     /* 0x00000008 */ AT_TYPE_THROW_OBJ = (1 << 3),

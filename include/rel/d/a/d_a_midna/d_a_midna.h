@@ -1,11 +1,8 @@
 #ifndef D_A_MIDNA_H
 #define D_A_MIDNA_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor.h"
-#include "d/bg/d_bg_s_lin_chk.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/msg/d_msg_flow.h"

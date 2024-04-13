@@ -4,7 +4,6 @@
 //
 
 #include "d/pane/d_pane_class_ex.h"
-#include "dolphin/types.h"
 
 //
 // Types:

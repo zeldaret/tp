@@ -1,6 +1,4 @@
 #include "char_io.h"
-#include "FILE_POS.h"
-#include "buffer_io.h"
 #include "critical_regions.h"
 #include "misc_io.h"
 #include "wchar_io.h"

@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_RCIRCLE_H
 #define D_A_OBJ_RCIRCLE_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
 class daObjRCircle_c : public fopAc_ac_c, public request_of_phase_process_class {

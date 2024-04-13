@@ -2,9 +2,13 @@
 #define JKRFILELOADER_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "dolphin/types.h"
 
 class JKRFileFinder;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRFileLoader : public JKRDisposer {
 public:
     JKRFileLoader(void);

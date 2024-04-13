@@ -1,6 +1,5 @@
 #include "dolphin/dvd/dvdqueue.h"
 #include "dolphin/dvd.h"
-#include "dolphin/os/OSInterrupt.h"
 
 void __DVDClearWaitingQueue();
 BOOL __DVDPushWaitingQueue(s32 prio, DVDCommandBlock* block);

@@ -10,6 +10,10 @@ enum JASAudioMessage {
 	AUDIOMSG_STOP = 2,
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASAudioThread : public JKRThread, public JASGlobalInstance<JASAudioThread> {
     /* 8029CCDC */ JASAudioThread(int, int, u32);
     /* 8029CD4C */ static void create(s32);

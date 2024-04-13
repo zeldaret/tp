@@ -4,7 +4,6 @@
 #include "JSystem/JUtility/TColor.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "global.h"
 
 class JKRArchive;
 

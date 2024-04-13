@@ -1,5 +1,4 @@
 #include "dolphin/os/OSReboot.h"
-#include "dolphin/os/OSArena.h"
 #include "dolphin/os/OSContext.h"
 #include "dolphin/os/OSExec.h"
 

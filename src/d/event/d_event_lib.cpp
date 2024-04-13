@@ -5,7 +5,6 @@
 
 #include "d/event/d_event_lib.h"
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {

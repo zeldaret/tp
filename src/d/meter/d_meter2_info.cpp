@@ -6,11 +6,9 @@
 #include "d/meter/d_meter2_info.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/a/d_a_npc.h"
-#include "d/d_item_data.h"
 #include "d/meter/d_meter2.h"
 #include "d/meter/d_meter_map.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
 #include "dolphin/types.h"
 #include "global.h"
 

@@ -5,8 +5,6 @@
 
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASMutex.h"
-#include "JSystem/JKernel/JKRExpHeap.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
 

@@ -4,13 +4,10 @@
 //
 
 #include "JSystem/JAudio2/JASAramStream.h"
-#include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASChannel.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
-#include "JSystem/JAudio2/JASDSPInterface.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
 

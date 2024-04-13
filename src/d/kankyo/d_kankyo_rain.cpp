@@ -4,13 +4,10 @@
 //
 
 #include "d/kankyo/d_kankyo_rain.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "string.h"
 

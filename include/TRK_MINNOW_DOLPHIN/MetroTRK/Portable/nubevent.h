@@ -1,7 +1,6 @@
 #ifndef METROTRK_PORTABLE_NUBEVENT_H
 #define METROTRK_PORTABLE_NUBEVENT_H
 
-#include "trk.h"
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.h"
 
 #ifdef __cplusplus

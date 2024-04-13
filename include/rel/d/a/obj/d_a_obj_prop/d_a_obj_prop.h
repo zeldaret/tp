@@ -2,7 +2,6 @@
 #define D_A_OBJ_PROP_H
 
 #include "d/com/d_com_inf_game.h"
-#include "f_op/f_op_actor_mng.h"
 
 class daObjProp_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:

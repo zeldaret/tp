@@ -1,7 +1,6 @@
 #include "dolphin/card/CARDStat.h"
 #include "dolphin/card.h"
 #include "dolphin/card/CARDPriv.h"
-#include "dolphin/dsp.h"
 
 static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
 

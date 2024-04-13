@@ -4,12 +4,9 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/obj/d_a_obj_eff/d_a_obj_eff.h"
 

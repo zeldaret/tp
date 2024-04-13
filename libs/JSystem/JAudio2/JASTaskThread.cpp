@@ -7,8 +7,6 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "dol2asm.h"
-#include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os.h"
 
 //

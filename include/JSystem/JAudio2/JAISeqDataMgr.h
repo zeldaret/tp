@@ -3,6 +3,10 @@
 
 #include "JSystem/JAudio2/JAISound.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeqData {
     JAISeqData(void* param_0, u32 param_1) {
         field_0x0 = param_0;
@@ -18,6 +22,10 @@ struct JAISeqData {
     /* 0x04 */ u32 field_0x4;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeqDataRegion {
     bool intersects(JAISeqData& seqData) const {
         if ((u32)addr + size < (u32)seqData.field_0x0) {
@@ -33,13 +41,20 @@ struct JAISeqDataRegion {
     /* 0x04 */ u32 size;
 };
 
-
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeqDataUser {
     virtual ~JAISeqDataUser();
     virtual bool isUsingSeqData(JAISeqDataRegion const&) = 0;
     virtual int releaseSeqData(JAISeqDataRegion const&) = 0;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeqDataMgr {
     enum SeqDataReturnValue{ SeqDataReturnValue_0 = 0, SeqDataReturnValue_1 = 1, SeqDataReturnValue_2 = 2};
     virtual ~JAISeqDataMgr();

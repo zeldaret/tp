@@ -6,7 +6,6 @@
 #include "JSystem/JStudio/JStudio/fvb.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Types:

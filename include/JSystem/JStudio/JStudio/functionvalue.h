@@ -3,7 +3,6 @@
 
 #include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/vector.h"
-#include "dolphin/os.h"
 #include "global.h"
 
 namespace JStudio {

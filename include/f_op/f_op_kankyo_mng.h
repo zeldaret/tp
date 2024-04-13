@@ -1,7 +1,6 @@
 #ifndef F_F_OP_KANKYO_MNG_H_
 #define F_F_OP_KANKYO_MNG_H_
 
-#include "SSystem/SComponent/c_xyz.h"
 #include "f_op/f_op_kankyo.h"
 #include "f_pc/f_pc_manager.h"
 

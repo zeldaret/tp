@@ -1,7 +1,6 @@
 #ifndef JSTUDIO_OBJECT_H
 #define JSTUDIO_OBJECT_H
 
-#include "JSystem/JStudio/JStudio/ctb.h"
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
 #include "limits.h"
 

@@ -4,10 +4,7 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_ss_item/d_a_obj_ss_item.h"
-#include "JSystem/JKernel/JKRHeap.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/d_drawlist.h"
-#include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
 #include "rel/d/a/d_a_myna/d_a_myna.h"
