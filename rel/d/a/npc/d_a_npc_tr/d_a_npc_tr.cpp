@@ -7,6 +7,9 @@
 #include "dol2asm.h"
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_mtx.h"
+#include "SSystem/SComponent/c_math.h"
+
+#define NONMATCHING
 
 //
 // Types:
@@ -104,6 +107,7 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 80B2657C-80B26580 000000 0004+00 4/4 0/0 0/0 .rodata          @3768 */
 SECTION_RODATA static f32 const lit_3768 = 4.0f / 5.0f;
@@ -133,6 +137,7 @@ COMPILER_STRIP_GATE(0x80B26588, &lit_3771);
 SECTION_RODATA static f32 const lit_3772 = 250.0f;
 COMPILER_STRIP_GATE(0x80B2658C, &lit_3772);
 #pragma pop
+#endif
 
 /* 80B26610-80B26630 -00001 0020+00 1/0 0/0 0/0 .data            l_daNPC_TR_Method */
 SECTION_DATA static void* l_daNPC_TR_Method[8] = {
@@ -156,12 +161,14 @@ SECTION_DATA extern void* g_profile_NPC_TR[12] = {
     (void*)0x00040100, (void*)0x02000000,
 };
 
+#ifndef NONMATCHING
 /* 80B26660-80B2666C 000050 000C+00 2/2 0/0 0/0 .data            __vt__14daNPC_TR_HIO_c */
 SECTION_DATA extern void* __vt__14daNPC_TR_HIO_c[3] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14daNPC_TR_HIO_cFv,
 };
+#endif
 
 /* 80B25A0C-80B25A54 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__14daNPC_TR_HIO_cFv */
 // matches with literals
@@ -186,15 +193,14 @@ asm daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
 #endif
 
 /* 80B25A54-80B25B78 000134 0124+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-// regalloc
 #ifdef NONMATCHING
 static int nodeCallBack(J3DJoint* p_joint, int param_1) {
     if (param_1 == 0) {
         int jointNo = p_joint->getJntNo();
-        J3DModel* sysModel = j3dSys.mModel;
-        npc_tr_class* npc_tr = (npc_tr_class*)sysModel->mUserArea;
+        J3DModel* sysModel = j3dSys.getModel();
+        npc_tr_class* npc_tr = (npc_tr_class*)sysModel->getUserArea();
 
-        MTXCopy(sysModel->getAnmMtx(jointNo), *calc_mtx);
+        mDoMtx_copy(sysModel->getAnmMtx(jointNo), *calc_mtx);
 
         if (jointNo == 1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[0] + (s16)(npc_tr->field_0x5f8 * 0.3f));
@@ -202,7 +208,7 @@ static int nodeCallBack(J3DJoint* p_joint, int param_1) {
             mDoMtx_YrotM(*calc_mtx, npc_tr->field_0x5f2[jointNo - 1] + (s16)(npc_tr->field_0x5f8));
         }
         sysModel->setAnmMtx(jointNo, *calc_mtx);
-        MTXCopy(*calc_mtx, j3dSys.mCurrentMtx);
+        mDoMtx_copy(*calc_mtx, j3dSys.mCurrentMtx);
     }
 
     return 1;
@@ -246,6 +252,7 @@ SECTION_RODATA static u8 const lit_3850[4] = {
 COMPILER_STRIP_GATE(0x80B26594, &lit_3850);
 #pragma pop
 
+#ifndef NONMATCHING
 /* 80B26598-80B2659C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3931 */
 #pragma push
 #pragma force_active on
@@ -366,6 +373,7 @@ SECTION_RODATA static u8 const lit_3947[8] = {
 };
 COMPILER_STRIP_GATE(0x80B265E4, &lit_3947);
 #pragma pop
+#endif
 
 /* 80B26678-80B2667C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80B26678;
@@ -379,6 +387,7 @@ static daNPC_TR_HIO_c l_HIO;
 /* 80B25BDC-80B25FE0 0002BC 0404+00 1/1 0/0 0/0 .text            npc_tr_move__FP12npc_tr_class */
 #ifdef NONMATCHING
 static void npc_tr_move(npc_tr_class* npc_tr) {
+    cXyz distance;
     f32 var_f31;
     s16 var_r29;
 
@@ -390,7 +399,7 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
                 npc_tr->field_0x5c4.y = npc_tr->home.pos.y + cM_rndFX(200.0f);
                 npc_tr->field_0x5c4.z = npc_tr->home.pos.z + cM_rndFX(1000.0f);
 
-                cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
+                distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
                 distance.y = 0.0f;
 
                 if (distance.abs() > 500.0f) {
@@ -427,14 +436,15 @@ static void npc_tr_move(npc_tr_class* npc_tr) {
         }
     }
 
-    cXyz distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
+    distance = npc_tr->field_0x5c4 - npc_tr->current.pos;
     s16 angle = npc_tr->current.angle.y;
     cLib_addCalcAngleS2(&npc_tr->current.angle.y, cM_atan2s(distance.x, distance.z), 4, var_r29);
     
     f32 var_f2 = JMAFastSqrt((distance.x * distance.x) + (distance.z * distance.z));
     cLib_addCalcAngleS2(&npc_tr->current.angle.x, -cM_atan2s(distance.y, var_f2), 4, var_r29);
 
-    f32 var_f1_2 = (f32)(angle - npc_tr->current.angle.y) * 5.0f;
+    angle -= npc_tr->current.angle.y;
+    f32 var_f1_2 = angle * 5.0f;
     if (var_f1_2 > 4000.0f) {
         var_f1_2 = 4000.0f;
     } else if (var_f1_2 < -4000.0f) {
@@ -455,6 +465,7 @@ static asm void npc_tr_move(npc_tr_class* param_0) {
 #pragma pop
 #endif
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 80B265EC-80B265F8 000070 000C+00 0/1 0/0 0/0 .rodata          @3953 */
 #pragma push
@@ -492,8 +503,49 @@ COMPILER_STRIP_GATE(0x80B26600, &lit_3985);
 SECTION_RODATA static f32 const lit_3986 = -3.0f / 10.0f;
 COMPILER_STRIP_GATE(0x80B26604, &lit_3986);
 #pragma pop
+#endif
 
 /* 80B25FE0-80B261D8 0006C0 01F8+00 1/1 0/0 0/0 .text            action__FP12npc_tr_class */
+#ifdef NONMATCHING
+static void action(npc_tr_class* i_this) {
+    switch(i_this->field_0x5be) {
+        case 0:
+            npc_tr_move(i_this);
+        break;
+    }
+    
+    cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.GetY(), 4, 0x2000);
+    cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.GetX(), 4, 0x2000);
+
+    mDoMtx_YrotS(*calc_mtx, i_this->current.angle.GetY());
+    mDoMtx_XrotM(*calc_mtx, i_this->current.angle.GetX());
+    
+    cXyz v;
+    v.x = 0.0f;
+    v.y = 0.0f;
+    v.z = i_this->speedF * l_HIO.field_0x8;
+    MtxPosition(&v, &i_this->speed);
+
+    i_this->current.pos += i_this->speed;
+
+    cLib_addCalc2(&i_this->field_0x5e4, i_this->field_0x5e8, 1.0f, 0.2f);
+    cLib_addCalc2(&i_this->field_0x5fc, i_this->field_0x5e4 * 2000.0f + 2000.0f, 0.5f, 200.0f);
+
+    i_this->field_0x5ee = i_this->field_0x5e4 * 13000.0f + 2000.0f;
+    i_this->field_0x5ec += i_this->field_0x5ee;
+
+    f32 local_28[3];
+    local_28[0] = 0.5f;
+    local_28[1] = 1.0f;
+    local_28[2] = 2.5f;
+
+    for (int i = 0; i < 3; ++i) {
+        i_this->field_0x5f2[i] = local_28[i] * cM_ssin(i_this->field_0x5ec + (i * -15000)) * i_this->field_0x5fc;
+    }
+
+    i_this->field_0x5f0 = cM_ssin(i_this->field_0x5ec + -7000) * i_this->field_0x5fc * -0.3f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -502,6 +554,7 @@ static asm void action(npc_tr_class* param_0) {
 #include "asm/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr/action__FP12npc_tr_class.s"
 }
 #pragma pop
+#endif
 
 /* 80B261D8-80B262D0 0008B8 00F8+00 2/1 0/0 0/0 .text            daNPC_TR_Execute__FP12npc_tr_class
  */
