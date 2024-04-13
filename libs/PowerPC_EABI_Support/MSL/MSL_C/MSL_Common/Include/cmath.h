@@ -7,8 +7,12 @@ namespace std {
     return ::fabsf(num);
 } */
 
-float fabsf(float num) {
+inline float fabsf(float num) {
     return ::fabsf(num);
+}
+
+inline float sqrt(float x) {
+    return ::sqrtf(x);
 }
 
 /* float abs(float num) {
