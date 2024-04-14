@@ -232,6 +232,7 @@ static int daNPC_TR_Draw(npc_tr_class* npc_tr) {
     return 1;
 }
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 80B26590-80B26594 000014 0004+00 0/0 0/0 0/0 .rodata          @3849 */
 #pragma push
@@ -243,14 +244,18 @@ COMPILER_STRIP_GATE(0x80B26590, &lit_3849);
 /* 80B26594-80B26598 000018 0004+00 0/2 0/0 0/0 .rodata          @3850 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lit_3850[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+SECTION_RODATA static f32 const lit_3850 = 0.0f;
 COMPILER_STRIP_GATE(0x80B26594, &lit_3850);
 #pragma pop
+#else
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const dummy[8] = {
+//     0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80B26590, &dummy);
+// #pragma pop
+#endif
 
 #ifndef NONMATCHING
 /* 80B26598-80B2659C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3931 */
@@ -270,7 +275,18 @@ SECTION_RODATA static f32 const lit_3932[1 + 1 /* padding */] = {
 };
 COMPILER_STRIP_GATE(0x80B2659C, &lit_3932);
 #pragma pop
+#endif
 
+// placeholder for daNPC_TR_HIO_c::genMessage
+static f32 dummyLiterals() {
+    f32 dummy = 50.0f;
+    dummy *= 0.0f;
+    dummy *= 1000.0f;
+    dummy *= 200.0f;
+    return dummy;
+}
+
+#ifndef NONMATCHING
 /* 80B265A4-80B265AC 000028 0008+00 0/1 0/0 0/0 .rodata          @3933 */
 #pragma push
 #pragma force_active on
@@ -377,9 +393,6 @@ COMPILER_STRIP_GATE(0x80B265E4, &lit_3947);
 
 /* 80B26678-80B2667C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80B26678;
-
-/* 80B2667C-80B26688 00000C 000C+00 1/1 0/0 0/0 .bss             @3763 */
-//static u8 lit_3763[12];
 
 /* 80B26688-80B266A4 000018 001C+00 5/5 0/0 0/0 .bss             l_HIO */
 static daNPC_TR_HIO_c l_HIO;
@@ -534,13 +547,9 @@ static void action(npc_tr_class* i_this) {
     i_this->field_0x5ee = i_this->field_0x5e4 * 13000.0f + 2000.0f;
     i_this->field_0x5ec += i_this->field_0x5ee;
 
-    f32 local_28[3];
-    local_28[0] = 0.5f;
-    local_28[1] = 1.0f;
-    local_28[2] = 2.5f;
-
+    f32 local_28[3] = {0.5f, 1.0f, 2.5f};
     for (int i = 0; i < 3; ++i) {
-        i_this->field_0x5f2[i] = local_28[i] * cM_ssin(i_this->field_0x5ec + (i * -15000)) * i_this->field_0x5fc;
+        i_this->field_0x5f2[i] = local_28[i] * (i_this->field_0x5fc * cM_ssin(i_this->field_0x5ec + (i * -15000)));
     }
 
     i_this->field_0x5f0 = cM_ssin(i_this->field_0x5ec + -7000) * i_this->field_0x5fc * -0.3f;
