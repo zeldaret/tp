@@ -833,6 +833,10 @@ public:
         mDemo.setParam2(i_param2);
     }
 
+    void i_changeDemoParam2(s16 i_param2) {
+        mDemo.setParam2(i_param2);
+    }
+
     void changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
 
     void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
