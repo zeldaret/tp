@@ -58,7 +58,7 @@ public:
         /* 0x00000080 */ NO_DRAW_WAIT = 0x80,
         /* 0x00010000 */ PLAYER_BACK_RIDE_LASH = 0x10000,
         /* 0x20000000 */ TURN_CANCEL_KEEP = 0x20000000,
-        /* 0x80000000 */ RODEO_MODE = 0x80000000
+        /* 0x80000000 */ FLG0_RODEO_MODE = 0x80000000
     };
 
     fopAc_ac_c* getZeldaActor();
@@ -183,7 +183,7 @@ public:
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
-    bool checkRodeoMode() const { return checkStateFlg0(RODEO_MODE); }
+    bool checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(TURN_CANCEL_KEEP); }
     bool checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
@@ -205,6 +205,7 @@ public:
     void onMoveAccept() { onEndResetStateFlg0(MOVE_ACCEPT); }
     void onPlayerLash() { onEndResetStateFlg0(ERFLG0_UNK_18); }
     void offPlayerBackRideLash() { offStateFlg0(PLAYER_BACK_RIDE_LASH); }
+    void onRodeoMode() { onStateFlg0(FLG0_RODEO_MODE); }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;
