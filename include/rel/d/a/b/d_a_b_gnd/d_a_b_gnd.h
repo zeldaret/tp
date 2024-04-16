@@ -13,9 +13,10 @@ struct g_himo_s {
 
 /**
  * @ingroup actors-enemies
+ * @class b_gnd_class
  * @brief Ganondorf
  * 
- * Hyrule Castle dungeon boss.
+ * @details Hyrule Castle dungeon boss.
  * 
  */
 class b_gnd_class : public fopEn_enemy_c {

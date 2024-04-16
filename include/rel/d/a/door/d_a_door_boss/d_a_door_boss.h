@@ -8,7 +8,10 @@
 
 /**
  * @ingroup actors-doors
+ * @class daBdoor_c
  * @brief Boss Door
+ * 
+ * @details The door that leads to the boss room.
  * 
  */
 class daBdoor_c : public fopAc_ac_c {

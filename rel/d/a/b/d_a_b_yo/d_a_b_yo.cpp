@@ -4,398 +4,8 @@
 //
 
 #include "rel/d/a/b/d_a_b_yo/d_a_b_yo.h"
+#include "rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B84 */ void operator*(f32) const;
-    /* 8062FB90 */ ~cXyz();
-    /* 80639578 */ cXyz();
-    /* 806396CC */ void abs(Vec const&) const;
-};
-
-struct obj_ystone_class {
-    /* 80639694 */ void setShapeAngle(csXyz);
-    /* 806396B0 */ void setCurrentPos(cXyz);
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CD64 */ void transS(cXyz const&);
-    /* 8000CD9C */ void transM(f32, f32, f32);
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct mDoGph_gInf_c {
-    /* 80008078 */ void onBlure();
-};
-
-struct J3DAnmTextureSRTKey {};
-
-struct J3DAnmTexPattern {};
-
-struct J3DAnmTevRegKey {};
-
-struct J3DMaterialTable {
-    /* 8032F6F8 */ void removeTexNoAnimator(J3DAnmTexPattern*);
-    /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
-    /* 8032F880 */ void removeTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct mDoExt_btpAnm {
-    /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
-    /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
-};
-
-struct mDoExt_btkAnm {
-    /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
-    /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_brkAnm {
-    /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
-    /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
-};
-
-struct mDoExt_baseAnm {
-    /* 8000D428 */ void play();
-};
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DAnmTransform {};
-
-struct J3DModelData {};
-
-struct Z2Creature {};
-
-struct mDoExt_McaMorfSO {
-    /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
-                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, int, f32, int,
-                                    int, Z2Creature*, u32, u32);
-    /* 80010E70 */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32);
-    /* 800110B0 */ void play(u32, s8);
-    /* 800111C0 */ void entryDL();
-    /* 800111EC */ void modelCalc();
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct J3DModel {};
-
-struct daMirror_c {
-    /* 8003194C */ void entry(J3DModel*);
-    /* 80031990 */ void remove();
-};
-
-struct daE_FZ_c {
-    /* 806C0B20 */ void demoDelete();
-};
-
-struct daB_YO_c {
-    /* 8062F51C */ void draw();
-    /* 8062FBEC */ void onIceBreak(u16);
-    /* 8062FC08 */ void setBck(int, u8, f32, f32);
-    /* 8062FE0C */ void setActionMode(int, int);
-    /* 8062FE18 */ void damage_check();
-    /* 806300F4 */ void setBreakFrizad();
-    /* 8063022C */ void setIcicleOperate(int);
-    /* 806302B4 */ void setIcicleSubNumber();
-    /* 80630330 */ void setWindowBreakEffect(int);
-    /* 8063040C */ void setHensinEffect();
-    /* 806305B8 */ void setLandingEffect(f32);
-    /* 806306F0 */ void setBreakIceEffect();
-    /* 8063089C */ void setWallHitEffect();
-    /* 80630A9C */ void setChillEffect();
-    /* 80630BF0 */ void setApperEffect();
-    /* 80630CA0 */ void setApperEffect2();
-    /* 80630DD8 */ void demo_skip(int);
-    /* 80630E3C */ void DemoSkipCallBack(void*, int);
-    /* 80630E70 */ void setYoMessage(int);
-    /* 80630EAC */ void doYoMessage();
-    /* 80630F28 */ void executeOpening();
-    /* 80632598 */ void reflectFreeMove();
-    /* 80632660 */ void calcFreeMove(f32);
-    /* 8063290C */ void setReflectAngle();
-    /* 806329CC */ void executeChase();
-    /* 806331CC */ void executeSeriousDemo();
-    /* 80633EDC */ void checkIcecleRevival();
-    /* 80633F50 */ void createIcecleRevival(u8);
-    /* 80634040 */ void executeJump();
-    /* 80634548 */ void executeAttackIce();
-    /* 8063476C */ void executeAttackYose();
-    /* 80634CEC */ void checkDamageWithIceBreak();
-    /* 80634E04 */ void executeAttackBody();
-    /* 806352C8 */ void executeDemoRevival();
-    /* 80635798 */ void executeDamage();
-    /* 80635ABC */ void executeDeath();
-    /* 80636E9C */ void reviseIceCenterPos(cXyz*);
-    /* 80637048 */ void calcPlayerBufPos();
-    /* 806374BC */ void action();
-    /* 80637990 */ void mtx_set();
-    /* 80637B30 */ void cc_set();
-    /* 80637E10 */ void execute();
-    /* 80637FC8 */ void _delete();
-    /* 806380F8 */ void CreateHeap();
-    /* 806388A0 */ void CreateHeap2();
-    /* 806389C0 */ void create();
-};
-
-struct daB_YO_HIO_c {
-    /* 8062F46C */ daB_YO_HIO_c();
-    /* 806395E4 */ ~daB_YO_HIO_c();
-};
-
-struct daB_YOI_c {
-    /* 8063A480 */ void setOperate(int);
-};
-
-struct dVibration_c {
-    /* 8006FA24 */ void StartShock(int, int, cXyz);
-    /* 8006FB10 */ void StartQuake(int, int, cXyz);
-    /* 8006FD94 */ void StopQuake(int);
-};
-
-struct dSv_memBit_c {
-    /* 80034918 */ void onDungeonItem(int);
-    /* 80034934 */ void isDungeonItem(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_danBit_c {
-    /* 80034B98 */ void onSwitch(int);
-    /* 80034BC0 */ void offSwitch(int);
-    /* 80034BE8 */ void isSwitch(int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct dPa_control_c {
-    struct level_c {
-        /* 8004B918 */ void getEmitter(u32);
-    };
-
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
-    /* 800429A8 */ void onSkipFade();
-    /* 8004368C */ void setPtT(void*);
-};
-
-struct dEvent_manager_c {
-    /* 800483E8 */ void getRunEventName();
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcU_AtInfo {};
-
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
-struct dCcD_SrcSph {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Sph {
-    /* 80084A34 */ void Set(dCcD_SrcSph const&);
-    /* 80639214 */ ~dCcD_Sph();
-    /* 806392E0 */ dCcD_Sph();
-};
-
-struct dCcD_GStts {
-    /* 80083760 */ dCcD_GStts();
-    /* 80083830 */ void Move();
-    /* 8063943C */ ~dCcD_GStts();
-};
-
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 800842C0 */ void ChkAtHit();
-    /* 80084358 */ void GetAtHitObj();
-    /* 80084460 */ void ChkTgHit();
-    /* 800844F8 */ void GetTgHitObj();
-};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct dCamera_c {
-    /* 801614AC */ void Start();
-    /* 801614D0 */ void Stop();
-    /* 8016300C */ void SetTrimSize(s32);
-    /* 80180AE0 */ void Set(cXyz, cXyz, f32, s16);
-    /* 80180C18 */ void Reset(cXyz, cXyz);
-    /* 80181500 */ void GetForceLockOnActor();
-    /* 80181534 */ void ForceLockOn(fopAc_ac_c*);
-    /* 8018159C */ void ForceLockOff(fopAc_ac_c*);
-};
-
-struct dBgW_Base {};
-
-struct dBgW {
-    /* 8007B970 */ dBgW();
-    /* 8007B9C0 */ void Move();
-};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjAcch {
-    /* 80639498 */ ~dBgS_ObjAcch();
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80639508 */ ~dBgS_AcchCir();
-};
-
-struct dBgS {
-    /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
-};
-
-struct dBgS_Acch {
-    /* 80075F94 */ ~dBgS_Acch();
-    /* 800760A0 */ dBgS_Acch();
-    /* 80076248 */ void Set(cXyz*, cXyz*, fopAc_ac_c*, int, dBgS_AcchCir*, cXyz*, csXyz*, csXyz*);
-    /* 80076AAC */ void CrrPos(dBgS&);
-};
-
-struct cM3dGSph {
-    /* 8026F648 */ void SetC(cXyz const&);
-    /* 8026F708 */ void SetR(f32);
-    /* 80639364 */ ~cM3dGSph();
-};
-
-struct cM3dGCyl {
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 806393AC */ ~cM3dGCyl();
-};
-
-struct cM3dGCir {
-    /* 8026EF18 */ ~cM3dGCir();
-};
-
-struct cM3dGAab {
-    /* 806393F4 */ ~cM3dGAab();
-};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cCcD_GStts {
-    /* 8063959C */ ~cCcD_GStts();
-};
-
-struct cBgD_t {};
-
-struct cBgW {
-    /* 80079F38 */ void Set(cBgD_t*, u32, f32 (*)[3][4]);
-};
-
-struct cBgS_PolyInfo {
-    /* 802680B0 */ ~cBgS_PolyInfo();
-};
-
-struct cBgS {
-    /* 80074250 */ void Release(dBgW_Base*);
-};
-
-struct _GXTexObj {};
-
-struct Z2SeqMgr {
-    /* 802AF010 */ void bgmStart(u32, u32, s32);
-    /* 802AF408 */ void bgmStop(u32, s32);
-    /* 802AF49C */ void subBgmStart(u32);
-    /* 802AF884 */ void subBgmStop();
-    /* 802AFB94 */ void bgmStreamPrepare(u32);
-    /* 802AFE18 */ void bgmStreamPlay();
-    /* 802AFF8C */ void changeBgmStatus(s32);
-};
-
-struct JAISoundID {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2CreatureEnemy {
-    /* 802C0F64 */ Z2CreatureEnemy();
-    /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
-    /* 802C1B90 */ void setEnemyName(char const*);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-    /* 8032842C */ void checkPass(f32);
-    /* 80638838 */ ~J3DFrameCtrl();
-};
 
 //
 // Forward References:
@@ -631,10 +241,10 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSVECSquareMag();
-extern "C" void PSVECSquareDistance();
+// extern "C" void PSMTXCopy();
+// extern "C" void PSMTXTrans();
+// extern "C" void PSVECSquareMag();
+// extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_23();
@@ -652,10 +262,10 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void abs();
-extern "C" void strcmp();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
+// extern "C" void abs();
+// extern "C" void strcmp();
+// extern "C" extern void* g_fopAc_Method[8];
+// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -666,11 +276,11 @@ extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
+// extern "C" extern u8 g_env_light[4880];
+// extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 j3dZModeTable[96];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 __float_nan;
+// extern "C" extern u32 __float_nan;
 extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
@@ -1220,7 +830,8 @@ asm void daB_YO_c::draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cXyz::~cXyz() {
+// asm cXyz::~cXyz() {
+asm void __dt__4cXyzFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__4cXyzFv.s"
 }
@@ -2696,7 +2307,8 @@ asm void daB_YO_c::CreateHeap() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
+// asm J3DFrameCtrl::~J3DFrameCtrl() {
+asm void __dt__12J3DFrameCtrlFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__12J3DFrameCtrlFv.s"
 }
@@ -2753,7 +2365,8 @@ asm void daB_YO_c::create() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::~dCcD_Sph() {
+// asm dCcD_Sph::~dCcD_Sph() {
+asm void __dt__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__8dCcD_SphFv.s"
 }
@@ -2763,7 +2376,8 @@ asm dCcD_Sph::~dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_Sph::dCcD_Sph() {
+// asm dCcD_Sph::dCcD_Sph() {
+asm void __ct__8dCcD_SphFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__ct__8dCcD_SphFv.s"
 }
@@ -2773,7 +2387,8 @@ asm dCcD_Sph::dCcD_Sph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGSph::~cM3dGSph() {
+// asm cM3dGSph::~cM3dGSph() {
+asm void __dt__8cM3dGSphFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__8cM3dGSphFv.s"
 }
@@ -2783,7 +2398,8 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
+// asm cM3dGCyl::~cM3dGCyl() {
+asm void __dt__8cM3dGCylFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__8cM3dGCylFv.s"
 }
@@ -2793,7 +2409,8 @@ asm cM3dGCyl::~cM3dGCyl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
+// asm cM3dGAab::~cM3dGAab() {
+asm void __dt__8cM3dGAabFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__8cM3dGAabFv.s"
 }
@@ -2803,7 +2420,8 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCcD_GStts::~dCcD_GStts() {
+// asm dCcD_GStts::~dCcD_GStts() {
+asm void __dt__10dCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__10dCcD_GSttsFv.s"
 }
@@ -2813,7 +2431,8 @@ asm dCcD_GStts::~dCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+// asm dBgS_ObjAcch::~dBgS_ObjAcch() {
+asm void __dt__12dBgS_ObjAcchFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__12dBgS_ObjAcchFv.s"
 }
@@ -2823,14 +2442,16 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dBgS_AcchCir::~dBgS_AcchCir() {
+// asm dBgS_AcchCir::~dBgS_AcchCir() {
+asm void __dt__12dBgS_AcchCirFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__12dBgS_AcchCirFv.s"
 }
 #pragma pop
 
 /* 80639578-8063957C 00A1F8 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-cXyz::cXyz() {
+// cXyz::cXyz() {
+asm void __ct__4cXyzFv() {
     /* empty function */
 }
 
@@ -2848,7 +2469,8 @@ static asm void daB_YO_Create(daB_YO_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm cCcD_GStts::~cCcD_GStts() {
+// asm cCcD_GStts::~cCcD_GStts() {
+asm void __dt__10cCcD_GSttsFv() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/__dt__10cCcD_GSttsFv.s"
 }
@@ -2916,7 +2538,8 @@ static asm void func_8063968C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void obj_ystone_class::setShapeAngle(csXyz param_0) {
+// asm void obj_ystone_class::setShapeAngle(csXyz param_0) {
+asm void setShapeAngle__16obj_ystone_classF5csXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/setShapeAngle__16obj_ystone_classF5csXyz.s"
 }
@@ -2926,7 +2549,8 @@ asm void obj_ystone_class::setShapeAngle(csXyz param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void obj_ystone_class::setCurrentPos(cXyz param_0) {
+// asm void obj_ystone_class::setCurrentPos(cXyz param_0) {
+asm void setCurrentPos__16obj_ystone_classF4cXyz() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/setCurrentPos__16obj_ystone_classF4cXyz.s"
 }
@@ -2936,7 +2560,8 @@ asm void obj_ystone_class::setCurrentPos(cXyz param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cXyz::abs(Vec const& param_0) const {
+// asm void cXyz::abs(Vec const& param_0) const {
+asm void abs__4cXyzCFRC3Vec() {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/abs__4cXyzCFRC3Vec.s"
 }

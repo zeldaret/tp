@@ -1,6 +1,8 @@
 /**
 * @file d_a_e_fz.h
-* This header contains information about the Mini Freezard actor.
+* @brief Freezard header file.
+*
+* @details This header contains information about the Mini Freezard actor.
 *
 */
 
@@ -10,10 +12,11 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/cc/d_cc_uty.h"
 #include "m_Do/m_Do_hostIO.h"
+#include "rel/d/a/b/d_a_b_yo/d_a_b_yo.h"
 
 /**
- * \enum daE_FZ_Action
- * \brief Mini Freezard current action. 
+ * @enum daE_FZ_Action
+ * @brief Mini Freezard current action. 
  * 
  */
 enum daE_FZ_Action {
@@ -21,11 +24,13 @@ enum daE_FZ_Action {
     ACT_MOVE,      /**< Mini Freezard is moving to attack. */
     ACT_ATTACK,    /**< Mini Freezard is attacking. */
     ACT_DAMAGE,    /**< Mini Freezard is damaged. */
-    ACT_ROLLMOVE   /**< Mini Freezard is spinning around Blizzeta.  This action is only taken when actor is loaded in with parameter 3 (aka, during the Blizzeta fight).*/
+    ACT_ROLLMOVE   /**< Mini Freezard is spinning around Blizzeta.  
+                        This action is only taken when actor is loaded in with parameter 3 
+                        (during the Blizzeta fight).*/
 };
 
 /**
- * \brief Temporary HIO struct to get a match. Remove later. 
+ * @brief Temporary HIO struct to get a match. Remove later. 
  * 
  */
 struct daE_FZ_HIO_c_tmp {
@@ -50,7 +55,10 @@ struct daE_FZ_HIO_c_tmp {
 
 /**
  * @ingroup actors-enemies
+ * @class daE_FZ_c
  * @brief Mini Freezard
+ * 
+ * @details Miniature Freezard enemy.
  * 
  */
 class daE_FZ_c : public fopEn_enemy_c {
@@ -77,65 +85,64 @@ public:
     /* 806C0CD0 */ s32 create();
 
 private:
-    /* 0x5AC */ request_of_phase_process_class mPhaseReq; /**< Phase request used when creating the actor. */
-    /* 0x5B4 */ J3DModel* mpModel; /**< Pointer to the Mini Freezard's model. */
-    /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
-    /* 0x5C0 */ Z2CreatureEnemy mCreature; /**< Z2CreatureEnemy class used for playing sound effects. */
-    /* 0x664 */ cXyz field_0x664;
-    /* 0x670 */ cXyz field_0x670;
-    /* 0x67C */ cXyz field_0x67c[4];
-    /* 0x6AC */ cXyz field_0x6ac[4];
-    /* 0x6DC */ cXyz field_0x6dc;
-    /* 0x6E8 */ cXyz field_0x6e8;
-    /* 0x6F4 */ s32 mActionMode; /**< Mini Freezard current action mode. */
-    /* 0x6F8 */ s32 mActionPhase; /**< Mini Freezard phase of current action mode. */
-    /* 0x6FC */ f32 field_0x6fc;
-    /* 0x700 */ f32 mRadiusBase; /**< Base radius value used by mSph1 and mSph2. */
-    /* 0x704 */ s16 field_0x704;
-    /* 0x706 */ s16 mAngleFromPlayer; /**< Angle the mini freezard is from the player. */
-    /* 0x708 */ s16 mLastWallHitAngle; /**< Angle of the last wall the mini freezard hit. */
-    /* 0x70A */ u8 field_0x70A[0x70C - 0x70A];
-    /* 0x70C */ s32 field_0x70c;
-    /* 0x710 */ u8 field_0x710;
-    /* 0x711 */ u8 field_0x711;
-    /* 0x712 */ u8 field_0x712;
-    /* 0x713 */ u8 field_0x713;
-    /* 0x714 */ u8 field_0x714;
-    /* 0x715 */ u8 field_0x715;
-    /* 0x716 */ u8 field_0x716;
-    /* 0x717 */ u8 field_0x717;
-    /* 0x718 */ fopAc_ac_c* mpBlizzetaActor; /**< Pointer to Blizzeta's actor (if used). Used to figure out what the mini freezard's angle and positioning should be when Blizzeta is attacking with them.*/
-    /* 0x71C */ u32 field_0x71c[3];
-    /* 0x728 */ u8 field_0x728[4];
-    /* 0x72C */ dBgS_AcchCir mAcchCir;
-    /* 0x76C */ dBgS_ObjAcch mObjAcch;
-    /* 0x944 */ dCcD_Stts mStts;
-    /* 0x980 */ dCcD_Sph mSph1; /**< Mini Freezard's sphere collider used for ? */
-    /* 0xAB8 */ dCcD_Sph mSph2; /**< Mini Freezard's sphere collider used for attacking. */
-    /* 0xBF0 */ dCcU_AtInfo mAtInfo;
-    /* 0xC14 */ u8 field_0xc14;
-    /* 0xC15 */ u8 field_0xc15;
-    /* 0xC16 */ u8 field_0xc16;
-    /* 0xC17 */ u8 field_0xc17;
-    /* 0xC18 */ u8 field_0xc18;
-    /* 0xC19 */ u8 field_0xc19;
-    /* 0xC1A */ u8 field_0xc1a;
-    /* 0xC1B */ u8 field_0xc1b;
-    /* 0xC1C */ u8 field_0xc1c;
-    /* 0xC1D */ u8 field_0xc1d;
-    /* 0xC1E */ u8 field_0xc1e;
-    /* 0xC1F */ u8 field_0xc1f;
-    /* 0xC20 */ u8 field_0xc20;
-    /* 0xC21 */ u8 field_0xc21;
-    /* 0xC22 */ u8 field_0xc22;
-    /* 0xC23 */ u8 field_0xc23;
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq;   /**< Phase request used when creating the actor. */
+    /* 0x5B4 */ J3DModel* mpModel;                          /**< Pointer to the Mini Freezard's model. */
+    /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;      /**< Invisible model used for the Mini Freezard. */
+    /* 0x5C0 */ Z2CreatureEnemy mCreature;                  /**< Z2CreatureEnemy class used for playing sound effects. */
+    /* 0x664 */ cXyz mUserWork;                             /**< ??? */
+    /* 0x670 */ cXyz field_0x670;                           /**< Appears unused. Set to current position on actor creation. */
+    /* 0x67C */ cXyz field_0x67c[4];                        /**< ??? */
+    /* 0x6AC */ cXyz field_0x6ac[4];                        /**< ??? */
+    /* 0x6DC */ cXyz field_0x6dc;                           /**< ??? */
+    /* 0x6E8 */ cXyz field_0x6e8;                           /**< ??? */
+    /* 0x6F4 */ s32 mActionMode;                            /**< Current action mode. */
+    /* 0x6F8 */ s32 mActionPhase;                           /**< Current phase of @ref mActionMode. */
+    /* 0x6FC */ f32 field_0x6fc;                            /**< ??? */
+    /* 0x700 */ f32 mRadiusBase;                            /**< Base radius value used by @ref mTgCoSph and @ref mAtSph. */
+    /* 0x704 */ s16 field_0x704;                            /**< ??? */
+    /* 0x706 */ s16 mAngleFromPlayer;                       /**< Angle the mini freezard is from the player. */
+    /* 0x708 */ s16 mLastWallHitAngle;                      /**< Angle of the last wall the mini freezard hit. */
+    /* 0x70C */ s32 field_0x70c;                            /**< ??? */
+    /* 0x710 */ u8 field_0x710;                             /**< ??? */
+    /* 0x711 */ u8 field_0x711;                             /**< ??? */
+    /* 0x712 */ u8 field_0x712;                             /**< ??? */
+    /* 0x713 */ u8 field_0x713;                             /**< ??? */
+    /* 0x714 */ u8 field_0x714;                             /**< ??? */
+    /* 0x715 */ u8 field_0x715;                             /**< ??? */
+    /* 0x716 */ u8 field_0x716;                             /**< ??? */
+    /* 0x717 */ u8 field_0x717;                             /**< ??? */
+    /* 0x718 */ fopAc_ac_c* mpBlizzetaActor;                /**< Pointer to Blizzeta's actor (if used). Used to figure out what the mini freezard's angle and positioning should be when Blizzeta is attacking with them. */
+    /* 0x71C */ u32 mParticleSet[3];                        /**< Particle set */
+    /* 0x728 */ u8 field_0x728[4];                          /**< ??? */
+    /* 0x72C */ dBgS_AcchCir mAcchCir;                      /**< Checks for actor collision with background circles? */
+    /* 0x76C */ dBgS_ObjAcch mObjAcch;                      /**< Checks for actor collision with background objects. */
+    /* 0x944 */ dCcD_Stts mStts;                            /**< Track Mini Freezard collider status. */
+    /* 0x980 */ dCcD_Sph mTgCoSph;                          /**< Sphere collider used when Mini Freezard is attacked / pushed. */
+    /* 0xAB8 */ dCcD_Sph mAtSph;                            /**< Sphere collider used when Mini Freezard is attacking. */
+    /* 0xBF0 */ dCcU_AtInfo mAtInfo;                        /**< Tracks information when the Mini Freezard is attacked. */
+    /* 0xC14 */ u8 field_0xc14;                             /**< ??? */
+    /* 0xC15 */ u8 field_0xc15;                             /**< ??? */
+    /* 0xC16 */ u8 field_0xc16;                             /**< ??? */
+    /* 0xC17 */ u8 field_0xc17;                             /**< ??? */
+    /* 0xC18 */ u8 field_0xc18;                             /**< ??? */
+    /* 0xC19 */ u8 field_0xc19;                             /**< ??? */
+    /* 0xC1A */ u8 field_0xc1a;                             /**< ??? */
+    /* 0xC1B */ u8 field_0xc1b;                             /**< ??? */
+    /* 0xC1C */ u8 field_0xc1c;                             /**< ??? */
+    /* 0xC1D */ u8 field_0xc1d;                             /**< ??? */
+    /* 0xC1E */ u8 field_0xc1e;                             /**< ??? */
+    /* 0xC1F */ u8 field_0xc1f;                             /**< ??? */
+    /* 0xC20 */ u8 field_0xc20;                             /**< ??? */
+    /* 0xC21 */ u8 field_0xc21;                             /**< ??? */
+    /* 0xC22 */ u8 field_0xc22;                             /**< ??? */
+    /* 0xC23 */ u8 field_0xc23;                             /**< ??? */
 };
 STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
 
-class daE_FZ_HIO_c : public mDoHIO_entry_c {
+class daE_FZ_HIO_c {
 public:
     /* 806BE94C */ daE_FZ_HIO_c();
-    /* 806C1440 */ virtual ~daE_FZ_HIO_c();
+    /* 806C1440 */ virtual ~daE_FZ_HIO_c() {};
 
 public:
     /* 0x04 */ s8 field_0x04;
@@ -154,28 +161,6 @@ public:
     /* 0x2C */ f32 field_0x2c;
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
-};
-
-/**
- * \brief Blizzeta's actor class. Reference in proper header later when it has been reversed.
- * 
- */
-class daB_YO_c : public fopEn_enemy_c {
-public:
-    u8 getModelNo() { return mModelNo;}
-    s16 getFrizadRollAngle() { return mRollAngle;}
-    f32 getModeRarius() { return mModeRarius;}
-    u8 getFrizadAttack() { return mFrizadAttack;}
-
-private:
-    /* 0x5AC */ u8 field_0x5ac[0xF54 - 0x5AC];
-    /* 0xF54 */ f32 mModeRarius;
-    /* 0xF58 */ u8 field_0xf58[0xF5C - 0xF58];
-    /* 0xF5C */ s16 mRollAngle;
-    /* 0xF5E */ u8 field_0xf5e[0xFA8 - 0xF5E];
-    /* 0xFA8 */ u8 mModelNo;
-    /* 0xFA9 */ u8 field_0xfa9[0xFAD - 0xFA9];
-    /* 0xFAD */ u8 mFrizadAttack;
 };
 
 #endif /* D_A_E_FZ_H */
