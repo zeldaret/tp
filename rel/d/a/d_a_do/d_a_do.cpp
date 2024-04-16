@@ -3,9 +3,12 @@
 // Translation Unit: d_a_do
 //
 
+// See d_a_do_NONMATCHING.cpp
+
 #include "rel/d/a/d_a_do/d_a_do.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
@@ -393,8 +396,8 @@ daDo_HIO_c::daDo_HIO_c() {
     mWalkSpeed = FLOAT_LABEL(lit_3663);
     mRunSpeed = FLOAT_LABEL(lit_3664);
     mSwimSpeed = FLOAT_LABEL(lit_3665);
-    mPlayerRecogniztionDist = FLOAT_LABEL(lit_3666);
-    field_0x1c = 0;
+    mPlayerRecognitionDist = FLOAT_LABEL(lit_3666);
+    mWaitType = 0;
     mSwimming = 1;
     mWaterHuntAnimType = 0;
 }
@@ -445,15 +448,15 @@ static int nodeCallBack(J3DJoint* i_jntP, int param_1) {
             MTXCopy(model->getAnmMtx(joint_num), *calc_mtx);
 
             if (joint_num == 9 || joint_num == 10) {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x60e.y + user_area->field_0x626.y);
-                cMtx_XrotM(*calc_mtx, user_area->field_0x60e.z + user_area->field_0x626.z);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x60e.x);
+                cMtx_YrotM(*calc_mtx, user_area->mHeadAngle.y + user_area->mHeadBob.y);
+                cMtx_XrotM(*calc_mtx, user_area->mHeadAngle.z + user_area->mHeadBob.z);
+                cMtx_ZrotM(*calc_mtx, user_area->mHeadAngle.x);
             } else if (joint_num == 22) {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x63e.y << 1);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e.x << 1);
+                cMtx_YrotM(*calc_mtx, user_area->mTailAngle.y << 1);
+                cMtx_ZrotM(*calc_mtx, user_area->mTailAngle.x << 1);
             } else {
-                cMtx_YrotM(*calc_mtx, user_area->field_0x63e.y);
-                cMtx_ZrotM(*calc_mtx, user_area->field_0x63e.x);
+                cMtx_YrotM(*calc_mtx, user_area->mTailAngle.y);
+                cMtx_ZrotM(*calc_mtx, user_area->mTailAngle.x);
             }
 
             model->setAnmMtx(joint_num, *calc_mtx);
@@ -749,7 +752,7 @@ static u32 search_food(do_class* i_this) {
 
             i++;
             pos_check += 100.0f;
-        } while (pos_check <= i_this->field_0x674.z * 240.0f);
+        } while (pos_check <= i_this->mScale.z * 240.0f);
     } else {
         ret = -1;
     }
@@ -773,7 +776,7 @@ static void food_check(do_class* i_this) {
 
     if (fopAcM_SearchByID(i_this->mFoodActorID)) {
         i_this->mAction = ACT_FOOD;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 }
 
@@ -781,7 +784,7 @@ static void food_check(do_class* i_this) {
 static int do_carry_check(do_class* i_this) {
     if (i_this->mAction != ACT_CARRY && fopAcM_checkCarryNow(i_this)) {
         i_this->mAction = ACT_CARRY;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
         return 1;
     }
 
@@ -819,7 +822,7 @@ static BOOL depth_check(do_class* i_this, cXyz i_pos, f32 param_2) {
 
     sub_res = f_gnd_chk_spl - f_gnd_chk;
     mul_res = FLOAT_LABEL(lit_3665) * param_2 * FLOAT_LABEL(lit_3981);
-    f_res = mul_res * i_this->field_0x674.z;
+    f_res = mul_res * i_this->mScale.z;
 
     if (sub_res > f_res) {
         return 1;
@@ -846,9 +849,9 @@ static bool water_check(do_class* i_this) {
 
     dBgS_ObjGndChk_Spl gnd_chk_spl;
     gnd_chk_spl.SetPos(&pos);
-    i_this->field_0x65c = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
-    f32 sub_res = i_this->field_0x65c - f_gnd_chk;
-    f32 mul_res = FLOAT_LABEL(lit_3994) * i_this->field_0x674.z;
+    i_this->mWaterY = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    f32 sub_res = i_this->mWaterY - f_gnd_chk;
+    f32 mul_res = FLOAT_LABEL(lit_3994) * i_this->mScale.z;
 
     if (sub_res > mul_res) {
         return 1;
@@ -955,7 +958,7 @@ static bool dansa_check2(do_class* i_this, f32 param_1) {
     mDoMtx_YrotS((MtxP)calc_mtx, i_this->current.angle.y);
     pos.x = FLOAT_LABEL(lit_3682);
     pos.y = FLOAT_LABEL(lit_4057);
-    f32 tmp = i_this->field_0x674.z;
+    f32 tmp = i_this->mScale.z;
     pos.z = tmp * (FLOAT_LABEL(lit_3981) * param_1) +
             tmp * (FLOAT_LABEL(lit_3981) * i_this->speedF) * FLOAT_LABEL(lit_4058);
 
@@ -989,9 +992,9 @@ static int move_dansa_check(do_class* i_this, f32 i_speed) {
         i_this->mAction = ACT_WAIT_1;
 
         if (i_speed > FLOAT_LABEL(lit_4069)) {
-            i_this->mStayStatus = 10;
+            i_this->mMode = 10;
         } else {
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
 
         return 1;
@@ -1047,8 +1050,8 @@ static void area_check(do_class* i_this) {
         if ((i_this->field_0x5b6 * FLOAT_LABEL(lit_3772) * FLOAT_LABEL(lit_3665)) > pos_delta.abs())
         {
             i_this->mAction = ACT_WALK;
-            i_this->mStayStatus = -1;
-            i_this->field_0x5fc[2] = cM_rndF(FLOAT_LABEL(lit_3772)) +
+            i_this->mMode = -1;
+            i_this->mTimer[2] = cM_rndF(FLOAT_LABEL(lit_3772)) +
                                      FLOAT_LABEL(lit_3772);  // random value between 100 and 200
         }
     }
@@ -1139,22 +1142,22 @@ COMPILER_STRIP_GATE(0x8066EE84, &lit_4339);
 #ifdef NONMATCHING
 // regalloc and float literals
 static void do_stay(do_class* i_this) {
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
         if (i_this->field_0x5b4 == 0) {
             anm_init(i_this, ANM_DOWN_WT, FLOAT_LABEL(lit_4069), 2, FLOAT_LABEL(lit_3662));
-            i_this->mStayStatus++;
-            i_this->field_0x5fc[0] = 10;
+            i_this->mMode++;
+            i_this->mTimer[0] = 10;
         } else {
             i_this->mAction = ACT_WALK;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
             return;
         }
     }
     case 1: {
-        if (i_this->field_0x5fc[0] == 0 && i_this->mDistFromPlayer < l_HIO.mRunSpeed) {
-            i_this->mStayStatus++;
-            i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_3816)) +
+        if (i_this->mTimer[0] == 0 && i_this->mDistFromPlayer < l_HIO.mRunSpeed) {
+            i_this->mMode++;
+            i_this->mTimer[0] = cM_rndF(FLOAT_LABEL(lit_3816)) +
                                      FLOAT_LABEL(lit_4189);  // random number between 20 and 70
         }
         break;
@@ -1162,66 +1165,66 @@ static void do_stay(do_class* i_this) {
     case 2: {
         i_this->field_0x616 = 1;
         i_this->field_0x614 = 0xe764;
-        i_this->field_0x648 = FLOAT_LABEL(lit_4190);
-        if (i_this->field_0x5fc[0] == 0) {
+        i_this->mTailWagTarget = FLOAT_LABEL(lit_4190);
+        if (i_this->mTimer[0] == 0) {
             anm_init(i_this, ANM_DOWN, FLOAT_LABEL(lit_4027), 0, FLOAT_LABEL(lit_3662));
-            i_this->mStayStatus++;
+            i_this->mMode++;
         }
         break;
     }
     case 3: {
         i_this->field_0x616 = 1;
-        i_this->field_0x648 = FLOAT_LABEL(lit_4191);
+        i_this->mTailWagTarget = FLOAT_LABEL(lit_4191);
 
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACT_WALK_RUN;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
         break;
     }
     case 10: {
         anm_init(i_this, ANM_DOWN_WT, FLOAT_LABEL(lit_4069), 2, FLOAT_LABEL(lit_3662));
-        i_this->mStayStatus++;
+        i_this->mMode++;
     }
     case 11: {
         i_this->field_0x616 = 1;
         i_this->field_0x614 = 0xe764;
-        i_this->field_0x648 = FLOAT_LABEL(lit_4190);
+        i_this->mTailWagTarget = FLOAT_LABEL(lit_4190);
 
         if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
-            i_this->mStayStatus++;
-            i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) +
+            i_this->mMode++;
+            i_this->mTimer[0] = cM_rndF(FLOAT_LABEL(lit_4192)) +
                                      FLOAT_LABEL(lit_4192);  // random number between 10 and 20
         }
 
-        if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3772) + l_HIO.mPlayerRecogniztionDist) {
+        if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3772) + l_HIO.mPlayerRecognitionDist) {
             i_this->field_0x5f4 = 0;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
         break;
     }
     case 12: {
         i_this->field_0x616 = 1;
         i_this->field_0x614 = 0xe764;
-        i_this->field_0x648 = FLOAT_LABEL(lit_4193);
+        i_this->mTailWagTarget = FLOAT_LABEL(lit_4193);
 
         if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_3846)) {
-            if (i_this->field_0x5fc[0] == 0) {
+            if (i_this->mTimer[0] == 0) {
                 anm_init(i_this, ANM_DOWN, FLOAT_LABEL(lit_4194), 0, FLOAT_LABEL(lit_3662));
-                i_this->mStayStatus = 13;
+                i_this->mMode = 13;
             }
         } else {
-            i_this->mStayStatus = 11;
+            i_this->mMode = 11;
         }
         break;
     }
     case 13: {
         i_this->field_0x616 = 1;
-        i_this->field_0x648 = FLOAT_LABEL(lit_4193);
+        i_this->mTailWagTarget = FLOAT_LABEL(lit_4193);
 
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACT_WAIT_1;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
     }
     }
@@ -1289,16 +1292,16 @@ COMPILER_STRIP_GATE(0x8066EE9C, &lit_4345);
 // float literals + regalloc
 static void do_walk(do_class* i_this) {
     cXyz local_5c;
-    i_this->field_0x648 = 1000.0;
+    i_this->mTailWagTarget = 1000.0;
 
-    switch (i_this->mStayStatus + 1) {
+    switch (i_this->mMode + 1) {
     case 12: {
-        i_this->field_0x5b8 = i_this->home.pos;
-        i_this->speedF >= l_HIO.mRunSpeed ? i_this->field_0x5e8 = 1.7 : i_this->field_0x5e8 = 4.0;
+        i_this->mTargetPos = i_this->home.pos;
+        i_this->speedF >= l_HIO.mRunSpeed ? i_this->mAnmSpeed = 1.7 : i_this->mAnmSpeed = 4.0;
 
-        i_this->field_0x5ec = 1.7;
-        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->field_0x5e8);
-        i_this->mStayStatus = 3;
+        i_this->mTargetAnmSpeed = 1.7;
+        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->mAnmSpeed);
+        i_this->mMode = 3;
         break;
     }
     case 0: {
@@ -1308,13 +1311,13 @@ static void do_walk(do_class* i_this) {
             anm_init(i_this, ANM_DOWN, 0.0, 0, 1.0);
         }
 
-        i_this->mStayStatus++;
+        i_this->mMode++;
         break;
     }
 
     case 1: {
         if (i_this->mpMorf->isStop()) {
-            i_this->mStayStatus++;
+            i_this->mMode++;
             ;
         }
         break;
@@ -1328,12 +1331,12 @@ static void do_walk(do_class* i_this) {
             mDoMtx_YrotS((MtxP)calc_mtx, cM_rndF(65536.0));
 
             local_5c.z = cM_rndF(100.0f * i_this->field_0x5b6);
-            MtxPosition(&local_5c, &i_this->field_0x5b8);
+            MtxPosition(&local_5c, &i_this->mTargetPos);
 
-            i_this->field_0x5b8 += i_this->home.pos;
+            i_this->mTargetPos += i_this->home.pos;
 
-            if (dansa_check(i_this, i_this->field_0x5b8, 0.0) == 0) {
-                local_5c = i_this->field_0x5b8 - i_this->current.pos;
+            if (dansa_check(i_this, i_this->mTargetPos, 0.0) == 0) {
+                local_5c = i_this->mTargetPos - i_this->current.pos;
 
                 if (local_5c.abs() > 300.0f)
                     break;
@@ -1341,31 +1344,31 @@ static void do_walk(do_class* i_this) {
         }
 
         f32 rnd_number = cM_rndF(0.6);
-        i_this->field_0x5ec = rnd_number + 1.3;
-        i_this->field_0x5e8 = rnd_number + 1.3;
+        i_this->mTargetAnmSpeed = rnd_number + 1.3;
+        i_this->mAnmSpeed = rnd_number + 1.3;
 
-        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->field_0x5e8);
+        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->mAnmSpeed);
 
-        i_this->mStayStatus++;
+        i_this->mMode++;
     }
 
     case 3: {
-        local_5c = i_this->field_0x5b8 - i_this->current.pos;
+        local_5c = i_this->mTargetPos - i_this->current.pos;
 
         cLib_addCalcAngleS2(&i_this->current.angle.y, (s16)cM_atan2s(local_5c.x, local_5c.z), 0x10,
                             0x100);
-        cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mWalkSpeed, 1.0,
+        cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mWalkSpeed, 1.0,
                       l_HIO.mWalkSpeed * 0.2);
 
         if (local_5c.abs() < 150.0) {
             if (i_this->field_0x5b4 == 0) {
                 i_this->mAction = ACT_STAY;
-                i_this->mStayStatus = 0;
+                i_this->mMode = 0;
             } else {
                 anm_init(i_this, ANM_WAIT, 0.0, 2, 1.0);
-                i_this->field_0x5fc[0] = cM_rndF(50.0) + 20.0;
-                i_this->field_0x5ec = 1.0;
-                i_this->mStayStatus++;
+                i_this->mTimer[0] = cM_rndF(50.0) + 20.0;
+                i_this->mTargetAnmSpeed = 1.0;
+                i_this->mMode++;
             }
         }
 
@@ -1375,8 +1378,8 @@ static void do_walk(do_class* i_this) {
     case 4: {
         cLib_addCalc0(&i_this->speedF, 1.0, 1.0);
 
-        if (i_this->field_0x5fc[0] == 0) {
-            i_this->mStayStatus = 2;
+        if (i_this->mTimer[0] == 0) {
+            i_this->mMode = 2;
         }
 
         break;
@@ -1384,22 +1387,22 @@ static void do_walk(do_class* i_this) {
 
     case 10: {
         cLib_addCalc0(&i_this->speedF, 1.0, 1.0);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 4, 0x400);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, 0x400);
 
         i_this->field_0x616 = 1;
-        i_this->field_0x648 = 2000.0;
+        i_this->mTailWagTarget = 2000.0;
 
-        s16 angle_diff = i_this->current.angle.y - i_this->mAngleYFromPlayer;
+        s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
 
         if (angle_diff < 0) {
             angle_diff *= -1;
         }
 
         if (angle_diff < 0x800) {
-            i_this->mStayStatus++;
+            i_this->mMode++;
             anm_init(i_this, ANM_WAIT, 0.0, 2, 1.0);
-            i_this->field_0x5ec = 1.0;
-            i_this->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
+            i_this->mTargetAnmSpeed = 1.0;
+            i_this->mTimer[0] = cM_rndF(10.0) + 10.0;
         }
 
         break;
@@ -1407,24 +1410,24 @@ static void do_walk(do_class* i_this) {
 
     case 11: {
         i_this->field_0x616 = 1;
-        i_this->field_0x648 = 3000.0;
-        if (i_this->field_0x5fc[0] == 0) {
+        i_this->mTailWagTarget = 3000.0;
+        if (i_this->mTimer[0] == 0) {
             i_this->mAction = ACT_WALK_RUN;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
             return;
         }
         break;
     }
     }
 
-    cLib_addCalc2(&i_this->field_0x5e8, i_this->field_0x5ec, 1.0, 0.05);
-    i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
+    cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, 1.0, 0.05);
+    i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-    if (i_this->field_0x5fc[2] == 0 && i_this->mStayStatus < 10 &&
-        i_this->mDistFromPlayer < l_HIO.mPlayerRecogniztionDist)
+    if (i_this->mTimer[2] == 0 && i_this->mMode < 10 &&
+        i_this->mDistFromPlayer < l_HIO.mPlayerRecognitionDist)
     {
         anm_init(i_this, ANM_STEP_2, 0.0, 2, 1.0);
-        i_this->mStayStatus = 10;
+        i_this->mMode = 10;
     }
 
     move_dansa_check(i_this, i_this->speedF);
@@ -1458,33 +1461,33 @@ COMPILER_STRIP_GATE(0x8066EEA4, &lit_4378);
 /* 8066973C-806698D0 001ADC 0194+00 1/1 0/0 0/0 .text            do_walk_run__FP8do_class */
 static void do_walk_run(do_class* i_this) {
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4344);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4344);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
-        i_this->field_0x5e8 = FLOAT_LABEL(lit_4377);
-        anm_init(i_this, 22, FLOAT_LABEL(lit_4192), 2, i_this->field_0x5e8);
-        i_this->mStayStatus++;
+        i_this->mAnmSpeed = FLOAT_LABEL(lit_4377);
+        anm_init(i_this, 22, FLOAT_LABEL(lit_4192), 2, i_this->mAnmSpeed);
+        i_this->mMode++;
     }
     case 1: {
-        cLib_addCalc2(&i_this->field_0x5e8, FLOAT_LABEL(lit_3665), FLOAT_LABEL(lit_3662),
+        cLib_addCalc2(&i_this->mAnmSpeed, FLOAT_LABEL(lit_3665), FLOAT_LABEL(lit_3662),
                       FLOAT_LABEL(lit_4345));
-        i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
+        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-        if (i_this->field_0x5e8 >= FLOAT_LABEL(lit_3665)) {
+        if (i_this->mAnmSpeed >= FLOAT_LABEL(lit_3665)) {
             i_this->mAction = ACT_RUN;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
             i_this->mSound.startSound(Z2SE_DOG_BARK, 0, -1);
         }
     }
     default: {
-        cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mWalkSpeed,
+        cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mWalkSpeed,
                       FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mWalkSpeed);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 8, 0x400);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
 
-        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->field_0x674.z) {
-            l_HIO.field_0x1c != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
-            i_this->mStayStatus = 0;
+        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->mScale.z) {
+            l_HIO.mWaitType != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
+            i_this->mMode = 0;
         }
 
         area_check(i_this);
@@ -1546,30 +1549,30 @@ COMPILER_STRIP_GATE(0x8066EEC0, &lit_4406);
 /* 806698D0-80669A1C 001C70 014C+00 1/1 0/0 0/0 .text            do_run__FP8do_class */
 static void do_run(do_class* i_this) {
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4400);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4400);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
-        i_this->field_0x5e8 = FLOAT_LABEL(lit_3662);
-        i_this->field_0x5ec = cM_rndF(FLOAT_LABEL(lit_4402)) + FLOAT_LABEL(lit_4401);
-        anm_init(i_this, 14, FLOAT_LABEL(lit_3665), 2, FLOAT_LABEL(lit_4403) * i_this->field_0x5e8);
-        i_this->mStayStatus++;
+        i_this->mAnmSpeed = FLOAT_LABEL(lit_3662);
+        i_this->mTargetAnmSpeed = cM_rndF(FLOAT_LABEL(lit_4402)) + FLOAT_LABEL(lit_4401);
+        anm_init(i_this, 14, FLOAT_LABEL(lit_3665), 2, FLOAT_LABEL(lit_4403) * i_this->mAnmSpeed);
+        i_this->mMode++;
     }
     case 1: {
-        cLib_addCalc2(&i_this->field_0x5e8, i_this->field_0x5ec, FLOAT_LABEL(lit_3662),
+        cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, FLOAT_LABEL(lit_3662),
                       FLOAT_LABEL(lit_4404));
-        i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
+        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4405) * i_this->field_0x674.z) {
+        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4405) * i_this->mScale.z) {
             i_this->mAction = ACT_RUN_WALK;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
     }
     default: {
         cLib_addCalc2(&i_this->speedF,
-                      i_this->field_0x5e8 * l_HIO.mRunSpeed * FLOAT_LABEL(lit_4406),
+                      i_this->mAnmSpeed * l_HIO.mRunSpeed * FLOAT_LABEL(lit_4406),
                       FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4342) * l_HIO.mRunSpeed);
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 8, 0x800);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x800);
         area_check(i_this);
         move_dansa_check(i_this, i_this->speedF);
     }
@@ -1587,31 +1590,31 @@ COMPILER_STRIP_GATE(0x8066EEC4, &lit_4435);
 /* 80669A1C-80669B80 001DBC 0164+00 1/1 0/0 0/0 .text            do_run_walk__FP8do_class */
 static void do_run_walk(do_class* i_this) {
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4344);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4344);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
-        i_this->field_0x5e8 = FLOAT_LABEL(lit_4336);
-        anm_init(i_this, 22, FLOAT_LABEL(lit_4194), 2, i_this->field_0x5e8);
-        i_this->mStayStatus++;
+        i_this->mAnmSpeed = FLOAT_LABEL(lit_4336);
+        anm_init(i_this, 22, FLOAT_LABEL(lit_4194), 2, i_this->mAnmSpeed);
+        i_this->mMode++;
     }
     case 1: {
-        cLib_addCalc2(&i_this->field_0x5e8, FLOAT_LABEL(lit_4401), FLOAT_LABEL(lit_3662),
+        cLib_addCalc2(&i_this->mAnmSpeed, FLOAT_LABEL(lit_4401), FLOAT_LABEL(lit_3662),
                       FLOAT_LABEL(lit_4345));
-        i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
+        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
     }
     default: {
-        cLib_addCalc2(&i_this->speedF, i_this->field_0x5e8 * l_HIO.mWalkSpeed,
+        cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mWalkSpeed,
                       FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 8, 0x400);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
 
-        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->field_0x674.z) {
-            l_HIO.field_0x1c != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
-            i_this->mStayStatus = 0;
+        if (i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->mScale.z) {
+            l_HIO.mWaitType != 0 ? i_this->mAction = ACT_WAIT_2 : i_this->mAction = ACT_WAIT_1;
+            i_this->mMode = 0;
         } else {
-            if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_4435) * i_this->field_0x674.z) {
+            if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_4435) * i_this->mScale.z) {
                 i_this->mAction = ACT_RUN;
-                i_this->mStayStatus = 0;
+                i_this->mMode = 0;
             }
         }
 
@@ -1626,9 +1629,9 @@ static void do_run_walk(do_class* i_this) {
 static void do_wait_1(do_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = 2000.0;
+    i_this->mTailWagTarget = 2000.0;
 
-    s16 player_angle = i_this->mAngleYFromPlayer;
+    s16 player_angle = i_this->mTargetAngleY;
     s16 angle_diff = i_this->current.angle.y - player_angle;
 
     if (angle_diff < 0) {
@@ -1641,14 +1644,14 @@ static void do_wait_1(do_class* i_this) {
         some_val = 0x1000;
     }
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
-        if (i_this->mDistFromPlayer <= i_this->field_0x674.z * 320.0) {
+        if (i_this->mDistFromPlayer <= i_this->mScale.z * 320.0) {
             anm_init(i_this, ANM_WAIT, 0.0, 2, 0.0);
-            i_this->mStayStatus++;
+            i_this->mMode++;
         } else {
             anm_init(i_this, ANM_JOYFUL, 0.0, 2, cM_rndFX(0.1) + 0.6);
-            i_this->mStayStatus = -1;
+            i_this->mMode = -1;
         }
         // goto default;
     }
@@ -1656,55 +1659,55 @@ static void do_wait_1(do_class* i_this) {
         cLib_addCalcAngleS2(&i_this->current.angle.y, player_angle, 4, 0x400);
 
         if (angle_diff < 0x800) {
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
 
         break;
     }
     case 3: {
         if (75.0 <= i_this->mEyePosYDistFromPlayer) {
-            i_this->mStayStatus = 1;
-        } else if (i_this->field_0x5fc[0] == 0) {
+            i_this->mMode = 1;
+        } else if (i_this->mTimer[0] == 0) {
             if (30.0 <= i_this->mEyePosYDistFromPlayer) {
                 i_this->mAction = ACT_SIT;
-                i_this->mStayStatus = 0;
+                i_this->mMode = 0;
             } else {
                 i_this->mAction = ACT_STAY;
-                i_this->mStayStatus = 10;
+                i_this->mMode = 10;
             }
         }
         break;
     }
     case 5: {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, player_angle + i_this->field_0x654, 4, 0x800);
-        cLib_addCalcAngleS2(&i_this->field_0x654, i_this->field_0x656, 4, 0x1000);
-        cLib_addCalc2(&i_this->current.pos.x, i_this->field_0x5b8.x, 0.2, 3.5);
-        cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x5b8.z, 0.2, 3.5);
+        cLib_addCalcAngleS2(&i_this->current.angle.y, player_angle + i_this->mRandomAngleY, 4, 0x800);
+        cLib_addCalcAngleS2(&i_this->mRandomAngleY, i_this->mRandomTargetAngleY, 4, 0x1000);
+        cLib_addCalc2(&i_this->current.pos.x, i_this->mTargetPos.x, 0.2, 3.5);
+        cLib_addCalc2(&i_this->current.pos.z, i_this->mTargetPos.z, 0.2, 3.5);
 
-        if (i_this->field_0x5fc[0] == 0) {
-            i_this->mStayStatus = 0;
+        if (i_this->mTimer[0] == 0) {
+            i_this->mMode = 0;
         }
         break;
     }
     case 6: {
-        i_this->field_0x648 = 4000.0;
+        i_this->mTailWagTarget = 4000.0;
 
-        if (i_this->field_0x674.z * 176.0 < i_this->mDistFromPlayer) {
-            i_this->mStayStatus = 0;
+        if (i_this->mScale.z * 176.0 < i_this->mDistFromPlayer) {
+            i_this->mMode = 0;
         }
     }
     default: {
         if (some_val < angle_diff) {
             anm_init(i_this, ANM_STEP_2, 0.0, 2, 0.0);
-            i_this->mStayStatus = 2;
+            i_this->mMode = 2;
         } else if (75.0 <= i_this->mEyePosYDistFromPlayer) {
-            // i_this->field_0x674.z might be a store in a variable
-            if (i_this->field_0x674.z * 96.0 <= i_this->mDistFromPlayer) {
-                if ((i_this->mStayStatus != 6) &&
-                    (i_this->mDistFromPlayer < i_this->field_0x674.z * 120.0))
+            // i_this->mScale.z might be a store in a variable
+            if (i_this->mScale.z * 96.0 <= i_this->mDistFromPlayer) {
+                if ((i_this->mMode != 6) &&
+                    (i_this->mDistFromPlayer < i_this->mScale.z * 120.0))
                 {
                     anm_init(i_this, ANM_JOYFUL, 0.0, 2, cM_rndFX(0.1) + 1.0);
-                    i_this->mStayStatus = 6;
+                    i_this->mMode = 6;
                 }
             } else {
                 cXyz local_68;
@@ -1717,51 +1720,51 @@ static void do_wait_1(do_class* i_this) {
 
                 for (int i = 0; i < 20; i++) {
                     if (i < 10) {
-                        mDoMtx_YrotS((MtxP)calc_mtx, i_this->mAngleYFromPlayer + cM_rndFX(5000.0));
+                        mDoMtx_YrotS((MtxP)calc_mtx, i_this->mTargetAngleY + cM_rndFX(5000.0));
                     } else {
                         mDoMtx_YrotS((MtxP)calc_mtx, cM_rndF(65536.0));
                     }
 
-                    local_68.z = dVar11 * i_this->field_0x674.z;
+                    local_68.z = dVar11 * i_this->mScale.z;
 
-                    MtxPosition(&local_68, &i_this->field_0x5b8);
-                    i_this->field_0x5b8 += player->current.pos;
+                    MtxPosition(&local_68, &i_this->mTargetPos);
+                    i_this->mTargetPos += player->current.pos;
 
                     if (cM_rndF(1.0) < dVar12)
                         break;
 
                     // local_74 = i_this->field6_0x5b8;
-                    if (dansa_check(i_this, i_this->field_0x5b8, 0.0) == 0)
+                    if (dansa_check(i_this, i_this->mTargetPos, 0.0) == 0)
                         break;
 
-                    i_this->mUnkPos = i_this->field_0x5b8;
+                    i_this->mUnkPos = i_this->mTargetPos;
                     i_this->field_0x624 = dVar10 + cM_rndF(10.0);
                 }
 
-                i_this->mStayStatus = 5;
-                i_this->field_0x656 = cM_rndFX(10000.0);
+                i_this->mMode = 5;
+                i_this->mRandomTargetAngleY = cM_rndFX(10000.0);
 
                 anm_init(i_this, ANM_WALK, 0.0, 2, 0.0);
-                i_this->field_0x5fc[0] = cM_rndF(10.0) + 15.0;
+                i_this->mTimer[0] = cM_rndF(10.0) + 15.0;
             }
         } else {
-            i_this->mStayStatus = 3;
-            i_this->field_0x5fc[0] = cM_rndF(10.0) + 10.0;
+            i_this->mMode = 3;
+            i_this->mTimer[0] = cM_rndF(10.0) + 10.0;
         }
         break;
     }
     case 10: {
-        i_this->field_0x5e8 = 5.0;
-        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->field_0x5e8);
+        i_this->mAnmSpeed = 5.0;
+        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->mAnmSpeed);
 
-        i_this->mStayStatus++;
+        i_this->mMode++;
     }
     case 11: {
-        cLib_addCalc2(&i_this->field_0x5e8, 2.0, 1.0, 0.2);
-        i_this->mpMorf->setPlaySpeed(i_this->field_0x5e8);
+        cLib_addCalc2(&i_this->mAnmSpeed, 2.0, 1.0, 0.2);
+        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
-        if (i_this->field_0x5e8 <= 2.2) {
-            i_this->mStayStatus = 0;
+        if (i_this->mAnmSpeed <= 2.2) {
+            i_this->mMode = 0;
         }
 
         break;
@@ -1775,19 +1778,19 @@ static void do_wait_1(do_class* i_this) {
 
     cLib_addCalc0(&i_this->speedF, 1.0, 1.0);
 
-    if (i_this->field_0x674.z * 240.0 < i_this->mDistFromPlayer && !dansa_check2(i_this, 0.0) &&
-        i_this->mStayStatus < 10)
+    if (i_this->mScale.z * 240.0 < i_this->mDistFromPlayer && !dansa_check2(i_this, 0.0) &&
+        i_this->mMode < 10)
     {
         i_this->mAction = ACT_WALK_RUN;
-        i_this->field_0x5e8 = 1.5;
-        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->field_0x5e8);
-        i_this->mStayStatus = 1;
+        i_this->mAnmSpeed = 1.5;
+        anm_init(i_this, ANM_WALK, 0.0, 2, i_this->mAnmSpeed);
+        i_this->mMode = 1;
     }
 
     // might be a seperate variable for link
     if (daPy_getLinkPlayerActorClass()->checkCanoeRide() && i_this->mDistFromPlayer < 1000.0) {
         i_this->mAction = ACT_HELP;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 
     if (i_this->field_0x5b4 == 2) {
@@ -1915,22 +1918,22 @@ static void do_wait_2(do_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4400);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4400);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
-        i_this->mStayStatus++;
+        i_this->mMode++;
     }
     case 1: {
-        if (i_this->field_0x5fc[0] == 0) {
-            i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4189)) + FLOAT_LABEL(lit_4192);
-            i_this->field_0x656 = cM_rndFX(FLOAT_LABEL(lit_4587));
+        if (i_this->mTimer[0] == 0) {
+            i_this->mTimer[0] = cM_rndF(FLOAT_LABEL(lit_4189)) + FLOAT_LABEL(lit_4192);
+            i_this->mRandomTargetAngleY = cM_rndFX(FLOAT_LABEL(lit_4587));
 
             cM_rndF(FLOAT_LABEL(lit_3662)) < FLOAT_LABEL(lit_4588) ?
-                i_this->field_0x5e8 = cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665) :
-                i_this->field_0x5e8 = -(cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665));
+                i_this->mAnmSpeed = cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665) :
+                i_this->mAnmSpeed = -(cM_rndF(FLOAT_LABEL(lit_4342)) + FLOAT_LABEL(lit_3665));
 
-            anm_init(i_this, ANM_STEP, FLOAT_LABEL(lit_4194), 2, i_this->field_0x5e8);
+            anm_init(i_this, ANM_STEP, FLOAT_LABEL(lit_4194), 2, i_this->mAnmSpeed);
             mDoMtx_YrotS((MtxP)calc_mtx, player->shape_angle.y);
 
             Vec local_38;
@@ -1939,26 +1942,26 @@ static void do_wait_2(do_class* i_this) {
             local_38.y = FLOAT_LABEL(lit_3682);
             local_38.z = cM_rndF(FLOAT_LABEL(lit_3816)) + FLOAT_LABEL(lit_4551);
 
-            MtxPosition((cXyz*)&local_38, &i_this->field_0x5b8);
-            i_this->field_0x5b8 += player->current.pos;
+            MtxPosition((cXyz*)&local_38, &i_this->mTargetPos);
+            i_this->mTargetPos += player->current.pos;
         }
 
         break;
     }
     }
 
-    cLib_addCalc2(&i_this->current.pos.x, i_this->field_0x5b8.x, FLOAT_LABEL(lit_4342),
+    cLib_addCalc2(&i_this->current.pos.x, i_this->mTargetPos.x, FLOAT_LABEL(lit_4342),
                   FLOAT_LABEL(lit_3665));
-    cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x5b8.z, FLOAT_LABEL(lit_4342),
+    cLib_addCalc2(&i_this->current.pos.z, i_this->mTargetPos.z, FLOAT_LABEL(lit_4342),
                   FLOAT_LABEL(lit_3665));
     cLib_addCalc0(&i_this->speedF, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_3665));
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer + i_this->field_0x654,
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY + i_this->mRandomAngleY,
                         4, 0x800);
-    cLib_addCalcAngleS2(&i_this->field_0x654, i_this->field_0x656, 4, 0x1000);
+    cLib_addCalcAngleS2(&i_this->mRandomAngleY, i_this->mRandomTargetAngleY, 4, 0x1000);
 
-    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3923) * i_this->field_0x674.z) {
+    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3923) * i_this->mScale.z) {
         i_this->mAction = ACT_RUN;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 
     area_check(i_this);
@@ -1969,22 +1972,22 @@ static void do_wait_2(do_class* i_this) {
 // matches except float literal in inline
 static void do_sit(do_class* i_this) {
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4190);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4190);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 0: {
         anm_init(i_this, ANM_SIT_WAIT, FLOAT_LABEL(lit_4192), 2, FLOAT_LABEL(lit_3662));
-        i_this->mStayStatus++;
+        i_this->mMode++;
     }
 
     case 1: {
         if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
-            i_this->mStayStatus = 3;
-            i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+            i_this->mMode = 3;
+            i_this->mTimer[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
         } else {
             if (i_this->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846)) {
-                i_this->mStayStatus = 2;
-                i_this->field_0x5fc[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
+                i_this->mMode = 2;
+                i_this->mTimer[0] = cM_rndF(FLOAT_LABEL(lit_4192)) + FLOAT_LABEL(lit_4192);
             }
         }
         break;
@@ -1992,24 +1995,24 @@ static void do_sit(do_class* i_this) {
 
     case 2: {
         if (i_this->mEyePosYDistFromPlayer < FLOAT_LABEL(lit_3846)) {
-            if (i_this->field_0x5fc[0] == 0) {
+            if (i_this->mTimer[0] == 0) {
                 i_this->mAction = ACT_STAY;
-                i_this->mStayStatus = 10;
+                i_this->mMode = 10;
             }
         } else {
-            i_this->mStayStatus = 1;
+            i_this->mMode = 1;
         }
         break;
     }
 
     case 3: {
         if (i_this->mEyePosYDistFromPlayer > FLOAT_LABEL(lit_4545)) {
-            if (i_this->field_0x5fc[0] == 0) {
+            if (i_this->mTimer[0] == 0) {
                 anm_init(i_this, ANM_SIT, FLOAT_LABEL(lit_4194), 0, FLOAT_LABEL(lit_3662));
-                i_this->mStayStatus++;
+                i_this->mMode++;
             }
         } else {
-            i_this->mStayStatus = 1;
+            i_this->mMode = 1;
         }
 
         break;
@@ -2018,7 +2021,7 @@ static void do_sit(do_class* i_this) {
     case 4: {
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACT_WAIT_1;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
         break;
     }
@@ -2026,10 +2029,10 @@ static void do_sit(do_class* i_this) {
 
     cLib_addCalc0(&i_this->speedF, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_3665));
 
-    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773) * i_this->field_0x674.z) {
+    if (i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773) * i_this->mScale.z) {
         i_this->mAction = ACT_STAY;
         i_this->field_0x5f4 = 8;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 
     area_check(i_this);
@@ -2200,34 +2203,34 @@ static void do_swim(do_class* i_this) {
     Vec pos;  // this is probably cXyz but defining it as such moves ~cXyz to right after this
               // function, breaking the TU match
     i_this->field_0x616 = 1;
-    i_this->field_0x648 = FLOAT_LABEL(lit_4191);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4191);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 1: {
         break;
     }
     case 0: {
         anm_init(i_this, 19, FLOAT_LABEL(lit_4027), 2,
                  cM_rndF(FLOAT_LABEL(lit_4991)) + FLOAT_LABEL(lit_4340));
-        i_this->mStayStatus++;
+        i_this->mMode++;
         break;
     }
     }
 
     cLib_addCalc2(&i_this->speedF, l_HIO.mSwimSpeed, FLOAT_LABEL(lit_3662),
                   FLOAT_LABEL(lit_4588) * l_HIO.mSwimSpeed);
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 16, 0x100);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 16, 0x100);
 
     i_this->speed.y = FLOAT_LABEL(lit_3682);
     i_this->gravity = FLOAT_LABEL(lit_3682);
 
-    cLib_addCalc2(&i_this->current.pos.y, i_this->field_0x65c - FLOAT_LABEL(lit_4992),
+    cLib_addCalc2(&i_this->current.pos.y, i_this->mWaterY - FLOAT_LABEL(lit_4992),
                   FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_4027));
 
     pos = i_this->eyePos;
-    pos.y = i_this->field_0x65c;
+    pos.y = i_this->mWaterY;
 
-    fopAcM_effHamonSet(&i_this->field_0xbcc, (cXyz*)&pos, FLOAT_LABEL(lit_4993),
+    fopAcM_effHamonSet(&i_this->mRippleKey, (cXyz*)&pos, FLOAT_LABEL(lit_4993),
                        FLOAT_LABEL(lit_4402));
 }
 
@@ -2343,10 +2346,10 @@ COMPILER_STRIP_GATE(0x8066EF5C, &lit_5407);
 /* 8066C894-8066CAA8 004C34 0214+00 1/1 0/0 0/0 .text            do_a_swim__FP8do_class */
 #ifdef NONMATCHING
 static void do_a_swim(do_class* i_this) {
-    i_this->field_0x648 = 2000.0;
+    i_this->mTailWagTarget = 2000.0;
     cLib_addCalc0(&i_this->speedF, 1.0, 1.0);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 2: {
         l_HIO.mWaterHuntAnimType == 1 ? i_this->mpMorf->setPlaySpeed(i_this->field46_0x634 * 5.0) :
                                         i_this->mpMorf->setPlaySpeed(i_this->field46_0x634 * 5.0);
@@ -2357,13 +2360,13 @@ static void do_a_swim(do_class* i_this) {
 
         i_this->field_0x634 = 0.0;
         i_this->mAction = ACT_WAIT_1;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
         break;
     }
     case 0: {
         l_HIO.mWaterHuntAnimType == 1 ? anm_init(param_1, ANM_JOYFUL, 0.0, 2, 0.0) :
                                         anm_init(param_1, ANM_BULBUL, 0.0, 2, 0.0);
-        i_this->mStayStatus = 1;
+        i_this->mMode = 1;
         i_this->field32_0x5fc[0] = 0x14;
 
         JPABaseEmitter* emitter = dComIfGp_particle_set(0x2a3, &i_this->.current.pos, 0, 0);
@@ -2376,8 +2379,8 @@ static void do_a_swim(do_class* i_this) {
     }
     }
 
-    if (i_this->field_0x5fc[0] == 0) {
-        i_this->mStayStatus = 2;
+    if (i_this->mTimer[0] == 0) {
+        i_this->mMode = 2;
         i_this->field_0x634 = 0.1;
         i_this->field_0x638 = 1.0;
     }
@@ -2430,26 +2433,26 @@ static asm u8 do_carry(do_class* i_this) {
 
 /* 8066CDEC-8066CEC4 00518C 00D8+00 1/1 0/0 0/0 .text            do_message__FP8do_class */
 static void do_message(do_class* i_this) {
-    i_this->field_0x648 = FLOAT_LABEL(lit_4191);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_4191);
 
-    switch (i_this->mStayStatus) {
+    switch (i_this->mMode) {
     case 1: {
         break;
     }
     case 0: {
         anm_init(i_this, 21, FLOAT_LABEL(lit_4027), 2, FLOAT_LABEL(lit_3662));
-        i_this->mStayStatus++;
+        i_this->mMode++;
         break;
     }
     }
 
     cLib_addCalc0(&i_this->speedF, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_3665));
     i_this->field_0x616 = 1;
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleYFromPlayer, 2, 0x1000);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 2, 0x1000);
 
     if (dComIfGp_event_runCheck() == 0 && i_this->mDistFromPlayer > FLOAT_LABEL(lit_3773)) {
         i_this->mAction = ACT_STAY;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 }
 
@@ -2558,7 +2561,7 @@ static void action(do_class* i_this) {
         i_this->mDistFromPlayer -= FLOAT_LABEL(lit_3772);
     }
 
-    i_this->mAngleYFromPlayer = fopAcM_searchPlayerAngleY(i_this);
+    i_this->mTargetAngleY = fopAcM_searchPlayerAngleY(i_this);
     i_this->mEyePosYDistFromPlayer = fabsf(i_this->eyePos.y - player->current.pos.y);
 
     if (!mDoCPd_c::getHoldR(PAD_1) ||
@@ -2576,60 +2579,60 @@ static void action(do_class* i_this) {
     i_this->mCcD_GObjInf1.OnCoSetBit();
 
     if (i_this->field_0x608 < FLOAT_LABEL(lit_3662)) {
-        i_this->field_0xc05 = 0;
+        i_this->mMessageState = 0;
 
         switch (i_this->mAction) {
         case ACT_STAY: {
             do_stay(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_WALK: {
             do_walk(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_WALK_RUN: {
             do_walk_run(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_RUN: {
             do_run(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_RUN_WALK: {
             do_run_walk(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_FOOD: {
             do_food(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_WAIT_1: {
             do_wait_1(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_WAIT_2: {
             do_wait_2(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_SIT: {
             do_sit(i_this);
             food_check(i_this);
-            i_this->field_0xc05 = 1;
+            i_this->mMessageState = 1;
             break;
         }
         case ACT_A_SWIM: {
@@ -2663,13 +2666,13 @@ static void action(do_class* i_this) {
         }
         case ACT_MESSAGE: {
             do_message(i_this);
-            i_this->field_0xc05 = 2;
+            i_this->mMessageState = 2;
         }
         }
     }
 
     if (i_this->mItemPcId != -1 &&
-        i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->field_0x674.z)
+        i_this->mDistFromPlayer < FLOAT_LABEL(lit_4378) * i_this->mScale.z)
     {
         daItem_c* item = (daItem_c*)fopAcM_SearchByID(i_this->mItemPcId);
 
@@ -2688,11 +2691,11 @@ static void action(do_class* i_this) {
         }
     }
 
-    if (i_this->field_0xc05 == 1 && daPy_py_c::i_checkNowWolf() &&
+    if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf() &&
         i_this->mDistFromPlayer < FLOAT_LABEL(lit_4339))
     {
         i_this->mAction = ACT_MESSAGE;
-        i_this->mStayStatus = 0;
+        i_this->mMode = 0;
     }
 
     if (tmp2 != 0 && player->mSpeedF < FLOAT_LABEL(lit_3665)) {
@@ -2713,7 +2716,7 @@ static void action(do_class* i_this) {
         pos1.x = FLOAT_LABEL(lit_3682);
         pos1.y = FLOAT_LABEL(lit_3682);
         pos1.z = FLOAT_LABEL(lit_3981) * i_this->speedF;
-        pos1.z *= i_this->field_0x674.z;
+        pos1.z *= i_this->mScale.z;
 
         MtxPosition(&pos1, &pos2);
 
@@ -2764,7 +2767,7 @@ static void action(do_class* i_this) {
 
                 pos1.x = FLOAT_LABEL(lit_3682);
                 pos1.y = FLOAT_LABEL(lit_3682);
-                pos1.z = FLOAT_LABEL(lit_5950) * i_this->field_0x674.z;
+                pos1.z = FLOAT_LABEL(lit_5950) * i_this->mScale.z;
 
                 MtxPosition(&pos1, &pos2);
                 pos2 += i_this->current.pos;
@@ -2794,7 +2797,7 @@ static void action(do_class* i_this) {
 
                 if (i_this->field_0x660 == 0xdcf) {
                     i_this->mAction = ACT_HANG;
-                    i_this->mStayStatus = 0;
+                    i_this->mMode = 0;
                     i_this->field_0x63c = 0;
                 }
             }
@@ -2807,30 +2810,30 @@ static void action(do_class* i_this) {
         if (i_this->mAction == ACT_CARRY) {
             if (i_this->field_0x63c != 0 && i_this->field_0x63c--, i_this->field_0x63c == 0) {
                 i_this->mAction = ACT_A_SWIM;
-                i_this->mStayStatus = 0;
+                i_this->mMode = 0;
             }
 
-            if (45.0f < i_this->field_0x65c - i_this->current.pos.y) {
+            if (45.0f < i_this->mWaterY - i_this->current.pos.y) {
                 i_this->mAction = ACT_SWIM;
-                i_this->mStayStatus = 0;
+                i_this->mMode = 0;
                 i_this->field_0x608 = FLOAT_LABEL(lit_3682);
 
                 if (i_this->field_0x606 == 0) {
                     i_this->field_0x606 = 0x14;
                     cXyz pos = i_this->current.pos;
-                    pos.y = i_this->field_0x65c;
+                    pos.y = i_this->mWaterY;
 
                     if (l_HIO.mRunSpeed == 0) {
                         scc[0] = 0;  // fix later
                         l_HIO.mWalkSpeed = FLOAT_LABEL(lit_3682);
                         l_HIO.mRunSpeed = FLOAT_LABEL(lit_3682);
-                        l_HIO.field_0x1c = 1;
+                        l_HIO.mWaitType = 1;
                     }
 
                     for (int i = 0; i < 4; i++) {
                         // wrong
                         i_this->mMsg.setMsg(dComIfGp_particle_set(
-                            (u32)0, (u16)l_HIO.field_0x1c, &pos, &i_this->tevStr, (csXyz*)0,
+                            (u32)0, (u16)l_HIO.mWaitType, &pos, &i_this->tevStr, (csXyz*)0,
                             (cXyz*)&scc, (u8)0xFF, (dPa_levelEcallBack*)0, (s8)-1, (GXColor*)0,
                             (GXColor*)0, (cXyz*)0));
                     }
@@ -2842,9 +2845,9 @@ static void action(do_class* i_this) {
     } else {
         i_this->field_0x63c = cM_rndF(FLOAT_LABEL(lit_4025)) + FLOAT_LABEL(lit_3846);
 
-        if (i_this->field_0x65c - i_this->current.pos.y < FLOAT_LABEL(lit_5951)) {
+        if (i_this->mWaterY - i_this->current.pos.y < FLOAT_LABEL(lit_5951)) {
             i_this->mAction = ACT_WAIT_1;
-            i_this->mStayStatus = 0;
+            i_this->mMode = 0;
         }
     }
 
@@ -2869,7 +2872,7 @@ static void action(do_class* i_this) {
                 eyePosDiff = i_this->mUnkPos - i_this->eyePos;
             }
 
-            eyePosDiff.y += i_this->field_0x674.z * FLOAT_LABEL(lit_5952);
+            eyePosDiff.y += i_this->mScale.z * FLOAT_LABEL(lit_5952);
 
             s16 some_angle = cM_atan2s(eyePosDiff.x, eyePosDiff.z) - i_this->shape_angle.y;
             s16 some_angle2 = cM_atan2s(eyePosDiff.y, JMAFastSqrt(eyePosDiff.x * eyePosDiff.x +
@@ -2903,7 +2906,7 @@ static void action(do_class* i_this) {
     }
 
     cLib_addCalcAngleS2(&i_this->field_0x610, tmp4 / 2, 4, 0x2000);
-    cLib_addCalcAngleS2(&i_this->field_0x60e, tmp5 / 2, 4, 0x2000);
+    cLib_addCalcAngleS2(&i_this->mHeadAngle, tmp5 / 2, 4, 0x2000);
     cLib_addCalcAngleS2(&i_this->field_0x614, 0, 2, 0x300);
     cLib_addCalcAngleS2(&i_this->field_0x628, i_this->field_0x62e, 4, 0x400);
     cLib_addCalcAngleS2(&i_this->field_0x62a, i_this->field_0x630, 4, 0x400);
@@ -2927,7 +2930,7 @@ static void action(do_class* i_this) {
     }
 
     if (0.025 <= i_this->field_0x634) {
-        if (l_HIO.field_0x1c == 0) {
+        if (l_HIO.mWaitType == 0) {
             i_this->field_0x612 = 0;
             i_this->field_0x610 = 0;
         } else {
@@ -2940,23 +2943,23 @@ static void action(do_class* i_this) {
                   FLOAT_LABEL(lit_5407));
     cLib_addCalc0(&i_this->field_0x638, FLOAT_LABEL(lit_3662), FLOAT_LABEL(lit_5954));
 
-    i_this->field_0x640 = cM_ssin(i_this->field_0x648 * i_this->field_0x64c);
-    i_this->field_0x63e = cM_ssin(i_this->field_0x648 * i_this->field_0x650);
-    i_this->field_0x64c += i_this->field_0x648 * FLOAT_LABEL(lit_3682);
+    i_this->field_0x640 = cM_ssin(i_this->mTailWagTarget * i_this->field_0x64c);
+    i_this->mTailAngle = cM_ssin(i_this->mTailWagTarget * i_this->field_0x650);
+    i_this->field_0x64c += i_this->mTailWagTarget * FLOAT_LABEL(lit_3682);
 
     if (65536.0 < i_this->field_0x64c) {
         i_this->field_0x64c -= FLOAT_LABEL(lit_4338);
     }
 
-    i_this->field_0x650 += i_this->field_0x648 * FLOAT_LABEL(lit_4401);
+    i_this->field_0x650 += i_this->mTailWagTarget * FLOAT_LABEL(lit_4401);
 
     if (65536.0 < i_this->field_0x650) {
         i_this->field_0x650 -= FLOAT_LABEL(lit_4338);
     }
 
-    cLib_addCalc2(&i_this->field_0x648, i_this->field_0x648, FLOAT_LABEL(lit_3662),
+    cLib_addCalc2(&i_this->mTailWagTarget, i_this->mTailWagTarget, FLOAT_LABEL(lit_3662),
                   FLOAT_LABEL(lit_3772));
-    i_this->field_0x648 = FLOAT_LABEL(lit_3682);
+    i_this->mTailWagTarget = FLOAT_LABEL(lit_3682);
 
     if (i_this->field_0x5e2 == 0) {
         if (i_this->field_0x5e0 == 0) {
@@ -2985,21 +2988,21 @@ static asm void action(do_class* i_this) {
 
 /* 8066DD48-8066DE64 0060E8 011C+00 1/1 0/0 0/0 .text            message__FP8do_class */
 static void message(do_class* i_this) {
-    if (i_this->field_0xc06 != 0) {
-        i_this->field_0x604 = 10;
+    if (i_this->mIsTalking != 0) {
+        i_this->mCcDisableTimer = 10;
 
         if (i_this->mMsg.doFlow(i_this, 0, 0)) {
             dComIfGp_event_reset();
-            i_this->field_0xc06 = 0;
+            i_this->mIsTalking = 0;
         }
 
     } else {
         if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
-            i_this->mMsg.init(i_this, i_this->field_0xc08, 0, 0);
-            i_this->field_0xc06 = 1;
+            i_this->mMsg.init(i_this, i_this->mFlowID, 0, 0);
+            i_this->mIsTalking = 1;
         }
 
-        if (i_this->field_0xc05 == 2 && i_this->field_0xc08 != -1 && daPy_py_c::i_checkNowWolf()) {
+        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
             cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
             i_this->eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
@@ -3179,7 +3182,8 @@ do_class::do_class() {}
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm do_class::do_class() {
+// asm do_class::do_class() {
+extern "C" asm void __ct__8do_classFv() {
     nofralloc
 #include "asm/rel/d/a/d_a_do/d_a_do/__ct__8do_classFv.s"
 }
