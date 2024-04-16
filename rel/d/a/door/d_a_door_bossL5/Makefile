@@ -8,12 +8,10 @@ M167_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5.map
 
 M167_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_bossL5/d_a_door_bossL5.cpp \
 
 M167_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/d_a_door_bossL5.o \
 
 M167_LIBS := \

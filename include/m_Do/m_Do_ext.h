@@ -33,6 +33,7 @@ public:
     void setLoopFrame(f32 i_frame) { mFrameCtrl.setLoop(i_frame); }
     bool isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
     void reset() { mFrameCtrl.reset(); }
+    BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
 
 private:
     /* 0x0 */ J3DFrameCtrl mFrameCtrl;

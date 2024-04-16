@@ -3168,6 +3168,11 @@ inline void dComIfGp_event_onHindFlag(u16 i_flag) {
     g_dComIfG_gameInfo.play.getEvent().onHindFlag(i_flag);
 }
 
+inline void dComIfGp_event_offHindFlag(u16 i_flag) {
+    g_dComIfG_gameInfo.play.getEvent().offHindFlag(i_flag);
+}
+
+
 inline void dComIfGp_evmng_cutEnd(int param_0) {
     dComIfGp_getPEvtManager()->cutEnd(param_0);
 }
