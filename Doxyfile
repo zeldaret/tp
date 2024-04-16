@@ -289,7 +289,8 @@ TAB_SIZE               = 4
 # with the commands \{ and \} for these it is advised to use the version @{ and
 # @} or use a double escape (\\{ and \\})
 
-ALIASES                = 
+ALIASES = ""
+
 
 # Commenting out for now
 # ALIASES                = "meme=\xrefitem memes \"Meme\" \"Meme List\""
@@ -1423,7 +1424,13 @@ HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome-css-2.3.2/doxygen-awesome.css \
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 HTML_EXTRA_FILES       = docs/doxygen-awesome-css-2.3.2/doxygen-awesome-darkmode-toggle.js \
-                         docs/doxygen-awesome-css-2.3.2/doxygen-awesome-interactive-toc.js
+                         docs/doxygen-awesome-css-2.3.2/doxygen-awesome-interactive-toc.js \
+                         docs/doxygen-awesome-css-2.3.2/doxygen-awesome-fragment-copy-button.js \
+                         docs/doxygen-awesome-css-2.3.2/doxygen-awesome-paragraph-link.js \
+                         docs/doxygen-awesome-css-2.3.2/doxygen-awesome-tabs.js \
+                         docs/doxygen-awesome-css-2.3.2/logo.drawio.svg \
+                         docs/doxygen-awesome-css-2.3.2/doxygen-custom/toggle-alternative-theme.js
+
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.
