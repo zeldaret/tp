@@ -289,7 +289,7 @@ TAB_SIZE               = 4
 # with the commands \{ and \} for these it is advised to use the version @{ and
 # @} or use a double escape (\\{ and \\})
 
-ALIASES = "search=\xrefitem search \"Search Terms\" \"Search Terms\""
+ALIASES = ""
 
 
 # Commenting out for now
