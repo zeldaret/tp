@@ -690,4 +690,21 @@ inline void fopAcM_OnCarryType(fopAc_ac_c* pActor, fopAcM_CARRY param_2) {
     pActor->carryType |= param_2;
 }
 
+enum fopAcM_FOOD {
+    fopAcM_FOOD_0,
+    fopAcM_FOOD_1,
+    fopAcM_FOOD_2,
+    fopAcM_FOOD_3,
+    fopAcM_FOOD_4,
+    fopAcM_FOOD_5,
+};
+
+inline void fopAcM_SetFoodStatus(fopAc_ac_c* actor, fopAcM_FOOD status) {
+    actor->field_0x567 = status;
+}
+
+inline bool fopAcM_CheckFoodStatus(const fopAc_ac_c* actor, fopAcM_FOOD status) {
+    return actor->field_0x567 == status;
+}
+
 #endif
