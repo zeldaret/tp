@@ -85,20 +85,16 @@ inline float fsqrt_step(float mag) {
 }
 
 template <>
-struct TVec3<f32> {
-    f32 x;
-    f32 y;
-    f32 z;
+struct TVec3<f32> : public Vec {
+    inline TVec3(const Vec& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    }
 
-    // inline TVec3(const Vec& i_vec) {
-    //     setTVec3f(&i_vec.x, &x);
-    // }
+    inline TVec3(const TVec3<f32>& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    }
 
-    // inline TVec3(const TVec3<f32>& i_vec) {
-    //     setTVec3f(&i_vec.x, &x);
-    // }
-
-    // TVec3() {}
+    TVec3() {}
 
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
@@ -148,10 +144,10 @@ struct TVec3<f32> {
         return *this;
     }
 
-    // inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-    //     setTVec3f(&b.x, &this->x);
-    //     return *this;
-    // }
+    inline TVec3<f32>& operator=(const TVec3<f32>& b) {
+        set(b.x, b.y, b.z);
+        return *this;
+    }    
 
     inline TVec3<f32>& operator+=(const TVec3<f32>& b) {
         add(b);
@@ -163,20 +159,6 @@ struct TVec3<f32> {
     //     res += b;
     //     return res;
     // }
-
-    inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-        register f32* dst = &x;
-        const register f32* src = &b.x;
-        register f32 x_y;
-        register f32 z;
-        asm {
-            psq_l  x_y, 0(src), 0, 0
-            psq_st x_y, 0(dst), 0, 0
-            lfs    z,   8(src)
-            stfs   z,   8(dst)
-        };
-        return *this;
-    }
 
     f32 squared() const {
         return C_VECSquareMag((Vec*)&x);

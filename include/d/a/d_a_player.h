@@ -293,7 +293,7 @@ public:
         FLG2_UNK_200000 = 0x200000,
         FLG2_UNK_100000 = 0x100000,
         FLG2_UNK_80000 = 0x80000,
-        FLG2_UNK_40000 = 0x40000,
+        FLG2_FORCE_GAMEOVER = 0x40000,
         FLG2_UNK_20000 = 0x20000,
         FLG2_UNK_10000 = 0x10000,
         FLG2_SCN_CHG_START = 0x8000,
@@ -818,6 +818,7 @@ public:
     void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
+    void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 

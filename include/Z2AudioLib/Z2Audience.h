@@ -216,9 +216,7 @@ struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
 
     Z2SpotMic* getLinkMic() { return mLinkMic; }
     JGeometry::TVec3<f32> getAudioCamPos() {
-        JGeometry::TVec3<f32> pos;
-        JGeometry::setTVec3f(*(Vec*)mAudioCamera[0].getPos(), *(Vec*)pos);
-        return pos;
+        return *mAudioCamera[0].getPos();
     }
     Z2Audience3DSetting* getSetting() { return &mSetting; }
 

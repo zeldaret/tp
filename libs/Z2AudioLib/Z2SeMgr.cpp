@@ -199,7 +199,7 @@ void Z2SeMgr::modHeightAtCamera(Vec const** param_0) {
             }
         }
         field_0x340[idx] = **param_0;
-        JGeometry::TVec3<f32> cam_pos = Z2GetAudience()->getAudioCamPos();
+        Vec cam_pos = Z2GetAudience()->getAudioCamPos();
         if (field_0x340[idx].y > cam_pos.y) {
             field_0x340[idx].y = cam_pos.y;
         }

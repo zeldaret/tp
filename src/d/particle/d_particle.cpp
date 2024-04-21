@@ -1472,7 +1472,7 @@ static u8 lit_4054[12];
 #pragma pop
 
 /* 80424728-80424734 051448 000C+00 1/1 0/0 0/0 .bss             pos$4424 */
-static JGeometry::TVec3<f32> pos;
+static Vec pos;
 
 /* 8004B064-8004B168 0459A4 0104+00 2/2 0/0 0/0 .text
  * createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager    */
