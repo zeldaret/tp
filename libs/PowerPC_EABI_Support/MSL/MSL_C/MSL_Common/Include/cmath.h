@@ -15,9 +15,9 @@ inline float sqrt(float x) {
     return ::sqrtf(x);
 }
 
-/* float abs(float num) {
-    return ::fabsf(num);
-} */
+inline float abs(float x) {
+    return ::fabsf(x);
+}
 }  // namespace std
 
 #endif

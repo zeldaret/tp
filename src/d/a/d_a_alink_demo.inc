@@ -1286,7 +1286,7 @@ BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int i_checkZoraMag) {
     if (mProcID != PROC_DEAD && i_dmgAmount >= dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
         !dComIfGs_checkBottle(FAIRY))
     {
-        onNoResetFlg2(FLG2_UNK_40000);
+        onNoResetFlg2(FLG2_FORCE_GAMEOVER);
         procCoDeadInit(0);
         return 1;
     }
@@ -1311,7 +1311,7 @@ void daAlink_c::setDeadRideSyncPos() {
 BOOL daAlink_c::checkDeadHP() {
     return ((dComIfGs_getLife() == 0 && !checkResetFlg0(RFLG0_UNK_400)) &&
             !dComIfGs_checkBottle(FAIRY)) ||
-           checkNoResetFlg2(FLG2_UNK_40000) ||
+           checkNoResetFlg2(FLG2_FORCE_GAMEOVER) ||
            (dComIfGp_getOxygenShowFlag() && dComIfGp_getNowOxygen() == 0);
 }
 
@@ -2853,7 +2853,7 @@ int daAlink_c::procCoDeadInit(int param_0) {
 
     setDeadRideSyncPos();
 
-    if (checkNoResetFlg2(FLG2_UNK_40000)) {
+    if (checkNoResetFlg2(FLG2_FORCE_GAMEOVER)) {
         if (param_0) {
             if (checkWolf()) {
                 setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, 3.0f);
@@ -2960,7 +2960,7 @@ int daAlink_c::procCoDead() {
         mDoAud_bgmStart(Z2BGM_GAME_OVER);
     }
 
-    if (!checkNoResetFlg2(FLG2_UNK_40000)) {
+    if (!checkNoResetFlg2(FLG2_FORCE_GAMEOVER)) {
         mProcVar3.field_0x300e++;
         if (mProcVar3.field_0x300e.x == 2) {
             dCam_getBody()->StartEventCamera(9, fopAcM_GetID(this), 0);
@@ -2989,7 +2989,7 @@ int daAlink_c::procCoDead() {
     setDeadRideSyncPos();
 
     if (checkAnmEnd(frameCtrl_p) || ((checkModeFlg(0x40000) && frameCtrl_p->getFrame() > 70.0f) ||
-                                     checkNoResetFlg2(FLG2_UNK_40000)))
+                                     checkNoResetFlg2(FLG2_FORCE_GAMEOVER)))
     {
         cLib_chaseF(&field_0x3478, 0.0f, 0.01f);
         if (field_0x3478 < 0.38f) {
