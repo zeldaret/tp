@@ -83,7 +83,7 @@ void dMsgString_c::resetStringLocal(J2DTextBox* p_textBox) {
 /* 80249DE4-80249ED0 244724 00EC+00 1/0 0/0 0/0 .text
  * drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf              */
 void dMsgString_c::drawOutFontLocal(J2DTextBox* p_textBox, f32 i_alpha) {
-    JGeometry::TVec3<f32> pos = p_textBox->getGlbVtx(0);
+    Vec pos = p_textBox->getGlbVtx(0);
     f32 y = pos.y;
 
     if (i_alpha == -1.0f) {

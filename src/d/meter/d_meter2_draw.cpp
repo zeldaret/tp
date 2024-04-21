@@ -589,8 +589,8 @@ void dMeter2Draw_c::draw() {
             for (int j = 0; j < 3; j++) {
                 f32 temp_f30 = mItemParams[i].num_scale * 16.0f;
 
-                JGeometry::TVec3<f32> vtx0 = mpItemXY[i]->getPanePtr()->getGlbVtx(0);
-                JGeometry::TVec3<f32> vtx3 = mpItemXY[i]->getPanePtr()->getGlbVtx(3);
+                Vec vtx0 = mpItemXY[i]->getPanePtr()->getGlbVtx(0);
+                Vec vtx3 = mpItemXY[i]->getPanePtr()->getGlbVtx(3);
 
                 mpItemNumTex[i][j]->draw(mItemParams[i].num_pos_x +
                                              (((vtx0.x + vtx3.x) * 0.5f) + (temp_f30 * j)),
@@ -3597,8 +3597,8 @@ void dMeter2Draw_c::drawKanteraMeter(u8 i_button, f32 i_alphaRate) {
         i_alphaRate = mpItemXY[i_button]->getAlphaRate();
     }
 
-    JGeometry::TVec3<f32> vtx0 = pane->getPanePtr()->getGlbVtx(0);
-    JGeometry::TVec3<f32> vtx3 = pane->getPanePtr()->getGlbVtx(3);
+    Vec vtx0 = pane->getPanePtr()->getGlbVtx(0);
+    Vec vtx3 = pane->getPanePtr()->getGlbVtx(3);
 
     mpKanteraMeter[i_button]->setPos(((vtx0.x + vtx3.x) * 0.5f) + 9.0f + sp10[i_button],
                                      vtx3.y + sp8[i_button]);

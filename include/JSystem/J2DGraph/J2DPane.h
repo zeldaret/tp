@@ -69,7 +69,7 @@ public:
     void clip(const JGeometry::TBox2<f32>& bounds);
     void setBasePosition(J2DBasePosition position);
     void setInfluencedAlpha(bool arg1, bool arg2);
-    JGeometry::TVec3<f32> getGlbVtx(u8 arg1) const;
+    Vec getGlbVtx(u8 arg1) const;
     J2DPane* getFirstChildPane();
     J2DPane* getNextChildPane();
     J2DPane* getParentPane();

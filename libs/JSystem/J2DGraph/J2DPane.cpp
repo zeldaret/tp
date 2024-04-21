@@ -610,8 +610,8 @@ void J2DPane::setInfluencedAlpha(bool influencedAlpha, bool param_1) {
 }
 
 /* 802F79A8-802F7A8C 2F22E8 00E4+00 0/0 3/3 0/0 .text            getGlbVtx__7J2DPaneCFUc */
-JGeometry::TVec3<f32> J2DPane::getGlbVtx(u8 param_0) const {
-    JGeometry::TVec3<f32> out;
+Vec J2DPane::getGlbVtx(u8 param_0) const {
+    Vec out;
     if (param_0 >= 4) {
         out.x = 0;
         out.y = 0;
