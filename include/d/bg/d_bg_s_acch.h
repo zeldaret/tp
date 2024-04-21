@@ -205,7 +205,7 @@ public:
     /* 0x130 */ dBgS_RoofChk m_roof;
     /* 0x180 */ dBgS_WtrChk m_wtr;
     /* 0x1D4 */ u8 m_wtr_mode;
-};
+}; // Size: 0x1D8
 
 class dBgS_LinkAcch : public dBgS_Acch {
 public:
