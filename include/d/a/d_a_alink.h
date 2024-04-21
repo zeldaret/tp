@@ -1762,7 +1762,7 @@ public:
     /* 800D74A4 */ void setLandDamagePoint(int);
     /* 800D74F4 */ Vec* getDamageVec(dCcD_GObjInf*);
     /* 800D76C4 */ void setDashDamage();
-    /* 800D7768 */ static bool checkIcePolygonDamage(cBgS_PolyInfo*);
+    /* 800D7768 */ static BOOL checkIcePolygonDamage(cBgS_PolyInfo*);
     /* 800D77C8 */ BOOL checkMagicArmorNoDamage();
     /* 800D7820 */ void checkPolyDamage();
     /* 800D7A98 */ bool checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
@@ -3237,6 +3237,7 @@ public:
     BOOL checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
+    MtxP getMagneBootsMtx() { return mMagneBootMtx; }
 
     bool checkFishingCastMode() const {
         bool var_r5;
@@ -3359,6 +3360,8 @@ public:
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
     s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
     SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
+
+    void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
