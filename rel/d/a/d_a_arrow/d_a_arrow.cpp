@@ -301,6 +301,7 @@ const static dCcD_SrcSph l_coSphSrc = {
 };
 #pragma pop
 
+#ifndef NONMATCHING
 /* 8049DD1C-8049DD24 000098 0004+04 2/12 0/0 0/0 .rodata          @4130 */
 SECTION_RODATA static u8 const lit_4130[4 + 4 /* padding */] = {
     0x00,
@@ -341,6 +342,7 @@ SECTION_RODATA static u8 const lit_4133[8] = {
 };
 COMPILER_STRIP_GATE(0x8049DD34, &lit_4133);
 #pragma pop
+#endif
 
 /* 80499D8C-80499F9C 00020C 0210+00 1/1 0/0 0/0 .text
  * atHitCallBack__9daArrow_cFP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
@@ -394,12 +396,12 @@ static void daArrow_atHitCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* i_atObjInf, 
 /* 80499FBC-8049A04C 00043C 0090+00 5/5 0/0 0/0 .text            decAlphaBlur__9daArrow_cFv */
 void daArrow_c::decAlphaBlur() {
     for (int i = 0; i < field_0x946; i++) {
-        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x97c);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x97c[0]);
         if (emitter != NULL) {
             u8 alpha = emitter->getGlobalAlpha();
             if (alpha > 0x33) {
                 setBlur();
-                emitter->setGlobalAlpha(alpha - 0x33);
+                emitter->setGlobalAlpha(alpha - 51);
             } else {
                 emitter->setGlobalAlpha(0);
             }
@@ -407,18 +409,19 @@ void daArrow_c::decAlphaBlur() {
     }
 }
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8049DD3C-8049DD40 0000B8 0004+00 4/10 0/0 0/0 .rodata          @4187 */
 SECTION_RODATA static f32 const lit_4187 = 1.0f;
 COMPILER_STRIP_GATE(0x8049DD3C, &lit_4187);
+#endif
 
 /* 8049A04C-8049A110 0004CC 00C4+00 5/5 0/0 0/0 .text            setBlur__9daArrow_cFv */
 #ifdef NONMATCHING
-// field_0x97c is wrong type
 void daArrow_c::setBlur() {
     for (int i = 0; i < field_0x946; i++) {
-        dComIfGp_particle_set(field_0x97c, field_0x94c, &current.pos, NULL, NULL);
-        dComIfGp_particle_levelEmitterOnEventMove(0);
+        field_0x97c[i] = dComIfGp_particle_set(field_0x97c[i], field_0x94c, &current.pos, &tevStr);
+        dComIfGp_particle_levelEmitterOnEventMove(field_0x97c[i]);
     }
 }
 #else
@@ -505,18 +508,11 @@ static Vec const localEffPos = {0.0f, 0.0f, 90.0f};
 /* 8049A1EC-8049A334 00066C 0148+00 2/2 0/0 0/0 .text            setLightChargeEffect__9daArrow_cFi
  */
 #ifdef NONMATCHING
-// regalloc, literals, instr order
+// matches with literals
 void daArrow_c::setLightChargeEffect(int param_0) {
     if (mpModel != NULL) {
-        bool bVar1 = false;
-        if (param_0 == 0) {
-            if (fopAcM_GetParam(this) == 1 || fopAcM_GetParam(this) == 2 || fopAcM_GetParam(this) == 0) {
-                bVar1 = true;
-            }
-        } 
-        // bVar1 = param_0 == 0 && (fopAcM_GetParam(this) == 1 || fopAcM_GetParam(this) == 2 || fopAcM_GetParam(this) == 0);
-
         cXyz pos;
+        BOOL bVar1 = param_0 == 0 && (fopAcM_GetParam(this) == 1 || fopAcM_GetParam(this) == 2 || fopAcM_GetParam(this) == 0);
         mDoMtx_multVec(mpModel->getBaseTRMtx(), &localEffPos, &pos);
         for (int i = 0; i < 4; i++) {
             if (bVar1) {
@@ -2019,6 +2015,51 @@ COMPILER_STRIP_GATE(0x8049DDE4, &lit_5460);
 #pragma pop
 
 /* 8049C874-8049CB70 002CF4 02FC+00 1/0 0/0 0/0 .text            procReturn__9daArrow_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int daArrow_c::procReturn() {
+    setBombMoveEffect();
+
+    speed.y -= 2.0f;
+    current.pos += speed;
+
+    shape_angle.x += field_0x954;
+
+    cXyz pos = current.pos + speed * mOutLengthRate;
+    field_0x56c.Set(&old.pos, &pos, this);
+    decAlphaBlur();
+
+    if(dComIfG_Bgsp().LineCross(&field_0x56c)) {
+        if (mArrowType == 1 && field_0x943 == 0) {
+            setBombArrowExplode(field_0x56c.GetCrossP());
+            return TRUE;
+        }
+
+        cM3dGPla cStack_34;
+        cXyz pos;
+        dComIfG_Bgsp().GetTriPla(field_0x56c, &cStack_34);
+        f32 speed_magnitude = speed.abs();
+        C_VECReflect(&speed, cStack_34.i_GetNP(), &pos);
+        speed.x = pos.x * speed_magnitude * 0.5f;
+        speed.y = pos.y * speed_magnitude * 0.5f;
+        speed.z = pos.z * speed_magnitude * 0.5f;
+        field_0x954 = -(field_0x954 >> 1);
+
+        if (dBgS_CheckBGroundPoly(field_0x56c)) {
+            field_0x93d = 1;
+        }
+    } else {
+        if ((field_0x93d != 0 && speed.y <= 1.0f) || mStartPos.y - 5000.0f > current.pos.y) {
+            field_0x93f = 1;
+            return TRUE;
+        }
+    }
+
+    setNormalMatrix();
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2027,54 +2068,112 @@ asm int daArrow_c::procReturn() {
 #include "asm/rel/d/a/d_a_arrow/d_a_arrow/procReturn__9daArrow_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049CB70-8049CC60 002FF0 00F0+00 1/0 0/0 0/0 .text            procBGStop__9daArrow_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daArrow_c::procBGStop() {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/procBGStop__9daArrow_cFv.s"
+int daArrow_c::procBGStop() {
+    if (field_0x944 != 0 || !dComIfG_Bgsp().ChkPolySafe(field_0x56c)) {
+        field_0x93f = 1;
+        return TRUE;
+    }
+
+    BOOL update_angle = FALSE;
+    s16 angle = getVibAngle();
+
+    if(field_0x952) {
+        update_angle = TRUE;
+    }
+    decAlphaBlur();
+
+    if (dComIfG_Bgsp().ChkMoveBG(field_0x56c)) {
+        dComIfG_Bgsp().MoveBgTransPos(field_0x56c, true, &current.pos, &current.angle, &shape_angle);
+        update_angle = TRUE;
+    }
+
+    if (update_angle) {
+        shape_angle.x = current.angle.x + angle;
+        setNormalMatrix();
+    }
+
+    checkReget();
+    return TRUE;
 }
-#pragma pop
 
 /* 8049CC60-8049CCCC 0030E0 006C+00 1/0 0/0 0/0 .text            procActorStop__9daArrow_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daArrow_c::procActorStop() {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/procActorStop__9daArrow_cFv.s"
+int daArrow_c::procActorStop() {
+    decAlphaBlur();
+
+    fopAc_ac_c* actor = setStopActorMatrix();
+    if (field_0x944 != 0 || actor == NULL) {
+        field_0x93f = 1;
+    } else {
+        if (actor->group != 4) {
+            checkReget();
+        }
+    }
+
+    return TRUE;
 }
-#pragma pop
 
 /* 8049CCCC-8049CCF0 00314C 0024+00 2/1 0/0 0/0 .text            procActorControllStop__9daArrow_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daArrow_c::procActorControllStop() {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/procActorControllStop__9daArrow_cFv.s"
+int daArrow_c::procActorControllStop() {
+    decAlphaBlur();
+    return TRUE;
 }
-#pragma pop
 
 /* 8049CCF0-8049CE50 003170 0160+00 1/1 0/0 0/0 .text
  * procSlingHitInit__9daArrow_cFP4cXyzP12dCcD_GObjInf           */
+#ifdef NONMATCHING
+// matches with literals
+int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
+
+    fopAc_ac_c* hit_ac;
+    if (param_1 != NULL) {
+        hit_ac = param_1->GetAtHitAc();
+    } else {
+        hit_ac = NULL;
+    }
+
+    if (!daAlink_c::notSwordHitVibActor(hit_ac)) {
+        u16 hitmark;
+        if (hit_ac != NULL && fopAcM_checkStatus(hit_ac, 0x10000) != 0) {
+            hitmark = 1;
+        } else {
+            hitmark = 9;
+            if (hit_ac != NULL && param_1->GetAtHitGObj() != NULL) {
+                if (param_1->GetAtHitGObj()->ChkTgNoSlingHitInfSet()) {
+                    mDoAud_seStart(0x40018, param_0, 0x2d, mReverb);
+                }
+            }
+        }
+        dComIfGp_setHitMark(hitmark, hit_ac, param_0, &current.angle, NULL, 0);
+    }
+
+    setBlur();
+    fopAcM_SetParam(this, 8);
+    mProcFunc = &daArrow_c::procSlingHit;
+    speedF = 0.0f;
+    field_0x956 = 5;
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
+asm int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_arrow/d_a_arrow/procSlingHitInit__9daArrow_cFP4cXyzP12dCcD_GObjInf.s"
 }
 #pragma pop
+#endif
 
 /* 8049CE50-8049CEA0 0032D0 0050+00 1/0 0/0 0/0 .text            procSlingHit__9daArrow_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daArrow_c::procSlingHit() {
+asm int daArrow_c::procSlingHit() {
     nofralloc
 #include "asm/rel/d/a/d_a_arrow/d_a_arrow/procSlingHit__9daArrow_cFv.s"
 }

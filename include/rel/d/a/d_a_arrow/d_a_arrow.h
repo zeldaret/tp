@@ -34,8 +34,8 @@ public:
     /* 8049CB70 */ int procBGStop();
     /* 8049CC60 */ int procActorStop();
     /* 8049CCCC */ int procActorControllStop();
-    /* 8049CCF0 */ void procSlingHitInit(cXyz*, dCcD_GObjInf*);
-    /* 8049CE50 */ void procSlingHit();
+    /* 8049CCF0 */ int procSlingHitInit(cXyz*, dCcD_GObjInf*);
+    /* 8049CE50 */ int procSlingHit();
     /* 8049CEA0 */ void execute();
     /* 8049D0CC */ int draw();
     /* 8049D440 */ cPhs__Step create();
@@ -103,8 +103,7 @@ public:
     /* 0x964 */ u32 field_0x964;
     /* 0x968 */ u32 field_0x968;
     /* 0x96C */ u32 field_0x96c[4];
-    /* 0x97C */ u32 field_0x97c;
-    /* 0x980 */ u8 field_0x980[0x994 - 0x980];
+    /* 0x97C */ u32 field_0x97c[6];
     /* 0x994 */ u32 mHitAcID;
     /* 0x998 */ f32 field_0x998;
     /* 0x99C */ f32 field_0x99c;
@@ -125,6 +124,6 @@ public:
     static s16 m_count;
 };
 
-// STATIC_ASSERT(sizeof(daArrow_c) == 0xA34);
+STATIC_ASSERT(sizeof(daArrow_c) == 0xA34);
 
 #endif /* D_A_ARROW_H */
