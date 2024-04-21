@@ -3726,7 +3726,7 @@ SECTION_SDATA2 static f64 lit_7963 = 0.39269909262657166;
 
 /* 801B7660-801B774C 1B1FA0 00EC+00 1/1 0/0 0/0 .text toItem3Dpos__17dMenu_Collect3D_cFfffP4cXyz
  */
-// This is mostly matching like this using O2 but still regalloc (f29/f31)
+// This is mostly matching like this using O2 but still regalloc (f29/f31). The main issue is the use of dVar12
 #ifdef NONMATCHING
 #pragma push
 #pragma optimization_level 2
@@ -3740,7 +3740,7 @@ void dMenu_Collect3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz*
     MTXInverse(adStack_98, auStack_c8);
     f32 tangent = tan(0.39269909262657166);
     f32 dVar12 = -param_2;
-    cXyz cStack_d4((dVar7 * param_2) * (tangent * mDoGph_gInf_c::getAspect()),
+    cXyz cStack_d4((dVar7 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
                    (tangent * (dVar11 * dVar12)), dVar12);
     MTXMultVec(auStack_c8, &cStack_d4, param_3);
 }
