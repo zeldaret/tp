@@ -116,7 +116,7 @@ int daBdoor_c::CreateInit() {
     attention_info.flags = 0x20;
     calcMtx();
     mpBgW->Move();
-    u8 swbit = door_param2_c::getSwbit(this);
+    u32 swbit = door_param2_c::getSwbit(this);
     if (!dComIfGs_isSwitch(swbit, fopAcM_GetRoomNo(this))) {
         mLocked = true;
     } else {
@@ -169,7 +169,7 @@ void daBdoor_c::demoProc() {
         switch (action) {
         case 1:  // UNLOCK
             if (mLocked) {
-                dComIfGs_onSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
+                dComIfGs_onSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
                 mpLockAnm->setPlaySpeed(1.0f);
             }
             break;

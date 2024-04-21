@@ -172,7 +172,7 @@ int daBdoorL5_c::create() {
         return rv;
     }
     s32 roomNo = fopAcM_GetRoomNo(this);
-    u8 swBit = door_param2_c::getSwbit(this);
+    u32 swBit = door_param2_c::getSwbit(this);
     if (dComIfGs_isSwitch(swBit, roomNo) == 0 && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         createKey();
     } else {
@@ -201,7 +201,7 @@ void daBdoorL5_c::demoProc() {
     if (dComIfGp_evmng_getIsAddvance(field_0x59c)) {
         switch (demoAction) {
         case 1:
-            if (dComIfGs_isSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this)) == 0) {
+            if (dComIfGs_isSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this)) == 0) {
                 player->onPlayerNoDraw();
                 player->onPlayerShadowNoDraw();
             }
@@ -333,7 +333,7 @@ int daBdoorL5_c::unlockInit() {
         keyHole->setOpen();
         mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN_LV5, &keyHole->current.pos, 0, 0);
     }
-    dComIfGs_onSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
+    dComIfGs_onSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
     return 1;
 }
 
@@ -445,7 +445,7 @@ int daBdoorL5_c::actionCloseWait() {
         setAction(ACTION_OPEN);
     } else {
         if (checkOpen()) {
-            if (dComIfGs_isSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))) {
+            if (dComIfGs_isSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))) {
                 eventInfo.setEventId(field_0x59a);
                 eventInfo.setMapToolId(field_0x593);
             } else {

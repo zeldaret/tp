@@ -350,7 +350,7 @@ int daBdoorL1_c::CreateInit() {
     }
     calcMtx();
     field_0x590->Move();
-    u8 swBit = door_param2_c::getSwbit(this);
+    u32 swBit = door_param2_c::getSwbit(this);
     eventInfo.setArchiveName((char*)getArcName());
     if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(this)) == 0) {
         field_0x59e = dComIfGp_getEventManager().getEventIdx(this, getDoorEventName(), 0xff);
@@ -380,7 +380,7 @@ int daBdoorL1_c::create() {
     current.angle.z = 0;
     current.angle.x = 0;
     s32 roomNo = fopAcM_GetRoomNo(this);
-    u8 swBit = door_param2_c::getSwbit(this);
+    u32 swBit = door_param2_c::getSwbit(this);
     if (dComIfGs_isSwitch(swBit, roomNo) == 0 && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         createKey();
     } else {
@@ -459,12 +459,12 @@ void daBdoorL1_c::demoProc() {
                 field_0x58c->setFrame(0.0f);
                 field_0x58c->setPlaySpeed(1.0f);
             }
-            if (dComIfGs_isSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))) {
+            if (dComIfGs_isSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))) {
                 field_0x59b = 0;
             } else {
                 field_0x59b = 1;
             }
-            dComIfGs_onSwitch((u8)door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
+            dComIfGs_onSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
             break;
         case 16:
             fopAcM_seStart(this, Z2SE_OBJ_L8_SHTR_CREST_ON, 0);
