@@ -8,12 +8,10 @@ M422_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest.map
 
 M422_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_chest/d_a_obj_chest.cpp \
 
 M422_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_chest/d_a_obj_chest.o \
 
 M422_LIBS := \
