@@ -3854,15 +3854,19 @@ bool dFile_select_c::copySelectWakuAlpahAnm(u8 param_1) {
 
 /* 80188950-80188994 183290 0044+00 1/1 0/0 0/0 .text            getCptoNum__14dFile_select_cFUc */
 u8 dFile_select_c::getCptoNum(u8 param_0) {
-    // !@bug It returns the value in this if field_0x026a is not in the range
+    u8 cptoNum;
     switch (field_0x026a) {
     case 0:
-        return param_0 + 1;
+        cptoNum = param_0 + 1;
+        break;
     case 1:
-        return param_0 * 2;
+        cptoNum = param_0 * 2;
+        break;
     case 2:
-        return param_0;
+        cptoNum = param_0;
+        break;
     }
+    return cptoNum;
 }
 
 /* 80188994-80188B54 1832D4 01C0+00 1/0 0/0 0/0 .text            copyToSelBack__14dFile_select_cFv
