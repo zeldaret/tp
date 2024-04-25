@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/d_a_arrow/d_a_arrow.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 #include "f_op/f_op_kankyo_mng.h"
@@ -14,7 +15,7 @@
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "rel/d/a/d_a_hozelda/d_a_hozelda.h"
 
-// #define NONMATCHING
+#define NONMATCHING
 
 //
 // Forward References:
@@ -64,9 +65,9 @@ extern "C" void __dt__18dPa_levelEcallBackFv();
 extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" static void daArrow_create__FP9daArrow_c();
+extern "C" static int daArrow_create__FP9daArrow_c();
 extern "C" void __dt__9daArrow_cFv();
-extern "C" static void daArrow_delete__FP9daArrow_c();
+extern "C" static int daArrow_delete__FP9daArrow_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void execute__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
@@ -418,6 +419,7 @@ COMPILER_STRIP_GATE(0x8049DD3C, &lit_4187);
 
 /* 8049A04C-8049A110 0004CC 00C4+00 5/5 0/0 0/0 .text            setBlur__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void daArrow_c::setBlur() {
     for (int i = 0; i < field_0x946; i++) {
         field_0x97c[i] = dComIfGp_particle_set(field_0x97c[i], field_0x94c, &current.pos, &tevStr);
@@ -569,7 +571,7 @@ COMPILER_STRIP_GATE(0x8049DD64, &lit_4386);
 /* 8049A370-8049A76C 0007F0 03FC+00 2/2 0/0 0/0 .text
  * setArrowWaterNextPos__9daArrow_cFP4cXyzP4cXyz                */
 #ifdef NONMATCHING
-// literals, regalloc, epilogue branch
+// matches with literals
 int daArrow_c::setArrowWaterNextPos(cXyz* i_start, cXyz* i_end) {
     field_0x5dc.Set(i_start, i_end, this);
 
@@ -577,69 +579,35 @@ int daArrow_c::setArrowWaterNextPos(cXyz* i_start, cXyz* i_end) {
         if (dComIfG_Bgsp().GetPolyAtt0(field_0x5dc) == 6) {
             *i_end = field_0x5dc.i_GetCross();
             return 2;
-        } else {
-            cXyz v = *i_end - field_0x5dc.i_GetCross();
-            f32 dis = (*i_end).abs(*i_start);
+        }
+        
+        cXyz v = *i_end - field_0x5dc.i_GetCross();
+        f32 dis = (*i_end).abs(*i_start);
 
-            if (dis > 0.0001f) {
-                dis = v.abs() / dis;
-            } else {
-                dis = 1.0f;
-            }
-            
-            *i_end = *i_start + v.normalizeZP() * 80.0f * dis;
-            return 1;
-        }
-    } else {
-        if (!fopAcM_wt_c::waterCheck(i_start) || fopAcM_wt_c::getWaterY() > i_start->y) {
-            return 0;
+        if (dis > 0.0001f) {
+            dis = v.abs() / dis;
         } else {
-            if (fopAcM_wt_c::getPolyAtt0() == 6) {
-                i_end->y = fopAcM_wt_c::getWaterY();
-                return 4;
-            } else {
-                cXyz v = *i_end - *i_start;
-                *i_end = *i_start + v.normalizeZP() * 80.0f;
-                return 3;
-            }
+            dis = 1.0f;
         }
+
+        v.normalizeZP();
+        *i_end = field_0x5dc.i_GetCross() + v * 80.0f * dis;
+        return 1;
+    } 
+    
+    if (fopAcM_wt_c::waterCheck(i_start) && fopAcM_wt_c::getWaterY() > i_start->y) {
+        if (fopAcM_wt_c::getPolyAtt0() == 6) {
+            i_end->y = fopAcM_wt_c::getWaterY();
+            return 4;
+        }
+
+        cXyz v = *i_end - *i_start;
+        v.normalizeZP();
+        *i_end = *i_start + (v * 80.0f);
+        return 3;
     }
 
     return 0;
-
-    //     field_0x5dc.Set(i_start, i_end, this);
-
-    // if (dComIfG_Bgsp().LineCross(&field_0x5dc)) {
-    //     if (dComIfG_Bgsp().GetPolyAtt0(field_0x5dc) == 6) {
-    //         *i_end = field_0x5dc.i_GetCross();
-    //         return 2;
-    //     }
-
-    //     cXyz v = *i_end - field_0x5dc.i_GetCross();
-    //     f32 dis = (*i_end).abs(*i_start);
-
-    //     if (dis > 0.0001f) {
-    //         dis = v.abs() / dis;
-    //     } else {
-    //         dis = 1.0f;
-    //     }
-        
-    //     *i_end = *i_start + v.normalizeZP() * 80.0f * dis;
-    //     return 1;
-    // }
-
-    // if (!fopAcM_wt_c::waterCheck(i_start) || fopAcM_wt_c::getWaterY() > i_start->y) {
-    //     return 0;
-    // }
-
-    // if (fopAcM_wt_c::getPolyAtt0() == 6) {
-    //     i_end->y = fopAcM_wt_c::getWaterY();
-    //     return 4;
-    // }
-
-    // cXyz v = *i_end - *i_start;
-    // *i_end = *i_start + v.normalizeZP() * 80.0f;
-    // return 3;
 }
 #else
 #pragma push
@@ -751,6 +719,7 @@ COMPILER_STRIP_GATE(0x8049DD74, &lit_4541);
 
 /* 8049A9CC-8049AC84 000E4C 02B8+00 2/2 0/0 0/0 .text            arrowShooting__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void daArrow_c::arrowShooting() {
     daAlink_c* link = daAlink_getAlinkActorClass();
 
@@ -803,7 +772,6 @@ void daArrow_c::arrowShooting() {
     if (mArrowType == 2) {
         field_0x688.SetAtMtrl(04);
         field_0x688.OnAtNoHitMark();
-
     } else {
         if (mArrowType == 4) {
             field_0x688.SetAtType(0x80);
@@ -842,6 +810,7 @@ void daArrow_c::setBombArrowExplode(cXyz* param_0) {
 
 /* 8049ACE0-8049AD74 001160 0094+00 1/1 0/0 0/0 .text            setRoomInfo__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void daArrow_c::setRoomInfo() {
     int roomNo;
 
@@ -868,22 +837,11 @@ asm void daArrow_c::setRoomInfo() {
 #endif
 
 /* 8049AD74-8049AD94 0011F4 0020+00 2/2 0/0 0/0 .text            clearNearActorData__9daArrow_cFv */
-#ifdef NONMATCHING
 void daArrow_c::clearNearActorData() {
     field_0x93e = 0;
-    field_0x998 = FLOAT_MAX;
+    field_0x998 = FLT_MAX;
     mHitAcID = -1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daArrow_c::clearNearActorData() {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/clearNearActorData__9daArrow_cFv.s"
-}
-#pragma pop
-#endif
 
 #ifndef NONMATCHING
 /* ############################################################################################## */
@@ -1019,7 +977,6 @@ COMPILER_STRIP_GATE(0x8049DDA0, &lit_4631);
 SECTION_RODATA static f32 const lit_4632 = 94.0f;
 COMPILER_STRIP_GATE(0x8049DDA4, &lit_4632);
 #pragma pop
-#endif
 
 /* 8049DDA8-8049DDAC 000124 0004+00 0/1 0/0 0/0 .rodata          @4633 */
 #pragma push
@@ -1027,6 +984,7 @@ COMPILER_STRIP_GATE(0x8049DDA4, &lit_4632);
 SECTION_RODATA static f32 const lit_4633 = 9.0f / 10.0f;
 COMPILER_STRIP_GATE(0x8049DDA8, &lit_4633);
 #pragma pop
+#endif
 
 /* 8049DF60-8049DF64 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -1139,7 +1097,7 @@ static u8 localOffset[12];
 #ifdef NONMATCHING
 // matches with literals
 void daArrow_c::setSmokePos() {
-    static cXyz localOffset(-3.3f, 3.0f, 94.0f);
+    static cXyz localOffset(-3.3f, -3.0f, 94.0f);
 
     mDoMtx_multVec(mpModel->getBaseTRMtx(), &localOffset, &field_0x9cc);
     field_0x958.y = shape_angle.y;
@@ -1157,6 +1115,7 @@ asm void daArrow_c::setSmokePos() {
 #pragma pop
 #endif
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8049DDAC-8049DDB0 000128 0004+00 0/2 0/0 0/0 .rodata          @4674 */
 #pragma push
@@ -1171,6 +1130,7 @@ COMPILER_STRIP_GATE(0x8049DDAC, &lit_4674);
 SECTION_RODATA static f32 const lit_4675 = -2.0f;
 COMPILER_STRIP_GATE(0x8049DDB0, &lit_4675);
 #pragma pop
+#endif
 
 /* 8049AFEC-8049B120 00146C 0134+00 3/3 0/0 0/0 .text            setKeepMatrix__9daArrow_cFv */
 #ifdef NONMATCHING
@@ -1210,6 +1170,7 @@ asm void daArrow_c::setKeepMatrix() {
 
 /* 8049B120-8049B214 0015A0 00F4+00 2/2 0/0 0/0 .text            setStopActorMatrix__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 fopAc_ac_c* daArrow_c::setStopActorMatrix() {
     s16 vibe_angle = getVibAngle();
     fopAc_ac_c* actor = fopAcM_SearchByID(mHitAcID);
@@ -1250,6 +1211,7 @@ COMPILER_STRIP_GATE(0x8049DDB4, &lit_4749);
 
 /* 8049B214-8049B370 001694 015C+00 4/4 0/0 0/0 .text            setBombMoveEffect__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void daArrow_c::setBombMoveEffect() {
     if (mArrowType == 1 && field_0x945 == 0 && field_0x943 == 0) {
         setSmokePos();
@@ -1314,16 +1276,20 @@ asm bool daArrow_c::checkReget() {
 #pragma pop
 #endif
 
+
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8049DDBC-8049DDC0 000138 0004+00 2/3 0/0 0/0 .rodata          @4868 */
 SECTION_RODATA static f32 const lit_4868 = 95.0f;
 COMPILER_STRIP_GATE(0x8049DDBC, &lit_4868);
+#endif
 
 /* 8049DE0C-8049DE18 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+#ifndef NONMATCHING
 /* 8049DE18-8049DE2C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
@@ -1336,6 +1302,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x00000000,
 };
 #pragma pop
+#endif
 
 #ifndef NONMATCHING
 /* 8049DE2C-8049DE38 -00001 000C+00 1/1 0/0 0/0 .data            @4777 */
@@ -1348,6 +1315,7 @@ SECTION_DATA static void* lit_4777[3] = {
 
 /* 8049B45C-8049B764 0018DC 0308+00 1/0 0/0 0/0 .text            procWait__9daArrow_cFv */
 #ifdef NONMATCHING
+// matches with literals
 int daArrow_c::procWait() {
     setKeepMatrix();
 
@@ -1456,7 +1424,6 @@ COMPILER_STRIP_GATE(0x8049DDC8, &lit_5358);
 SECTION_RODATA static f32 const lit_5359 = -5.0f;
 COMPILER_STRIP_GATE(0x8049DDCC, &lit_5359);
 #pragma pop
-#endif
 
 /* 8049DE38-8049DE44 -00001 000C+00 0/1 0/0 0/0 .data            @4874 */
 #pragma push
@@ -1515,6 +1482,7 @@ SECTION_DATA static void* lit_5716[3] = {
     (void*)0xFFFFFFFF,
     (void*)procWait__9daArrow_cFv,
 };
+#endif
 
 /* 8049DE8C-8049DEAC -00001 0020+00 1/0 0/0 0/0 .data            l_daArrowMethodTable */
 SECTION_DATA static void* l_daArrowMethodTable[8] = {
@@ -1599,7 +1567,7 @@ SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
 
 /* 8049B764-8049C6B8 001BE4 0F54+00 2/0 0/0 0/0 .text            procMove__9daArrow_cFv */
 #ifdef NONMATCHING
-// matches with literals, i think
+// matches with literals
 int daArrow_c::procMove() {
     if (fopAcM_GetParam(this) == 6) {
         setBlur();
@@ -1627,7 +1595,7 @@ int daArrow_c::procMove() {
             if (water_next_pos == 2 || water_next_pos == 4) {
                 bVar14 = TRUE;
             } else if (water_next_pos == 1) {
-                fopKyM_createWpillar(field_0x5dc.GetCrossP(), 1.0f, 0);
+                fopKyM_createWpillar(field_0x5dc.GetCrossP(), 0.3f, 0);
                 mDoAud_seStart(0x60031, field_0x5dc.GetCrossP(), 0, mReverb);
             }
 
@@ -1769,7 +1737,7 @@ int daArrow_c::procMove() {
     if (line_cross) {
         current.pos = field_0x56c.i_GetCross();
 
-        if (field_0x945 != 0 && (mArrowType == 1 || current.pos.y - field_0x9fc.y < 300.0f)) {
+        if (field_0x945 != 0 && (mArrowType == 1 || current.pos.y - field_0x9fc.y < -300.0f)) {
             field_0x93f = 1;
             return TRUE;
         }
@@ -1814,7 +1782,7 @@ int daArrow_c::procMove() {
             mProcFunc = &daArrow_c::procBGStop;
             fopAcM_SetParam(this, 4);
             speedF = 0.0f;
-            se_id = 0x40016;
+            se_id = Z2SE_HIT_AL_ARROW_STICK;
             current.angle.x = shape_angle.x;
             dComIfG_Bgsp().ArrowStickCallBack(field_0x56c, this, field_0x56c.i_GetCross());
         }
@@ -1828,7 +1796,7 @@ int daArrow_c::procMove() {
             }
 
             f32 f = current.pos.y - field_0x9fc.y;
-            if (f < 300.0f) {
+            if (f < -300.0f) {
                 field_0x688.OffAtSetBit();
                 field_0x688.ResetAtHit();
                 if (cLib_chaseF(&scale.x, 0.0f, 0.1f)) {
@@ -1849,7 +1817,7 @@ int daArrow_c::procMove() {
             }
         } else {
             f32 distance = current.pos.abs(mStartPos);
-            if (mFlyMax > distance || fopAcM_GetGravity(this) < 0.0f) {
+            if (distance > mFlyMax || fopAcM_GetGravity(this) < 0.0f) {
                 if (mArrowType == 4) {
                     fopAcM_SetGravity(this, -5.0f);
                 } else {
@@ -1878,14 +1846,14 @@ int daArrow_c::procMove() {
             } else {
                 if (fopAcM_GetParam(this) == 2) {
                     if (mArrowType == 1) {
-                        sound_id = 0x8000f;
+                        sound_id = Z2SE_OBJ_ARROWBOMB_FLYGAIN;
                     } else {
-                        sound_id = 0x80005;
+                        sound_id = Z2SE_OBJ_ARROW_FLY_GAIN;
                     }
                 } else if (mArrowType == 1) {
-                    sound_id = 0x8000e;
+                    sound_id = Z2SE_OBJ_ARROWBOMB_FLY;
                 } else {
-                    sound_id = 0x80004;
+                    sound_id = Z2SE_OBJ_ARROW_FLY_NORMAL;
                 }
             }
 
@@ -1951,31 +1919,28 @@ COMPILER_STRIP_GATE(0x8049DDD8, &lit_5387);
 
 /* 8049C700-8049C874 002B80 0174+00 1/1 0/0 0/0 .text            procReturnInit__9daArrow_cFi */
 #ifdef NONMATCHING
-// WIP
+// matches with literals
 int daArrow_c::procReturnInit(int param_0) {
     setBlur();
     setBombMoveEffect();
     fopAcM_SetParam(this, 5);
 
     mProcFunc = &daArrow_c::procReturn;
-
     speedF = 0.0f;
 
-    f32 rnd = cM_rndFX(8192.0f);
-    s16 angle = current.angle.y;
+    s16 rnd_y = cM_rndFX(8192.0f) + (current.angle.y + 0x8000);
     s16 sVar6;
-    f32 fVar9;
 
     if (param_0 != 0) {
         sVar6 = 8192.0f - cM_rndF(4096.0f);
     } else {
-        fVar9 = cM_rndF(4096.0f);
-        sVar6 = -fVar9;
+        sVar6 = -cM_rndF(4096.0f);
     }
 
     f32 f = cM_rndF(15.0f) + 15.0f;
     speed.y = f * cM_ssin(sVar6);
-    speed.x = (f * cM_ssin(angle + rnd)) * cM_scos(sVar6);
+    speed.x = (f * cM_ssin(rnd_y)) * cM_scos(sVar6);
+    speed.z = (f * cM_scos(rnd_y)) * cM_scos(sVar6);
 
     field_0x954 = 11264.0f - cM_rndF(4096.0f);
 
@@ -1992,6 +1957,7 @@ asm int daArrow_c::procReturnInit(int param_0) {
 #pragma pop
 #endif
 
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8049DDDC-8049DDE0 000158 0004+00 0/1 0/0 0/0 .rodata          @5458 */
 #pragma push
@@ -2013,6 +1979,7 @@ COMPILER_STRIP_GATE(0x8049DDE0, &lit_5459);
 SECTION_RODATA static f32 const lit_5460 = 5000.0f;
 COMPILER_STRIP_GATE(0x8049DDE4, &lit_5460);
 #pragma pop
+#endif
 
 /* 8049C874-8049CB70 002CF4 02FC+00 1/0 0/0 0/0 .text            procReturn__9daArrow_cFv */
 #ifdef NONMATCHING
@@ -2049,7 +2016,7 @@ int daArrow_c::procReturn() {
             field_0x93d = 1;
         }
     } else {
-        if ((field_0x93d != 0 && speed.y <= 1.0f) || mStartPos.y - 5000.0f > current.pos.y) {
+        if ((field_0x93d != 0 && speed.y <= 0.0f) || mStartPos.y - 5000.0f > current.pos.y) {
             field_0x93f = 1;
             return TRUE;
         }
@@ -2127,7 +2094,6 @@ int daArrow_c::procActorControllStop() {
 #ifdef NONMATCHING
 // matches with literals
 int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
-
     fopAc_ac_c* hit_ac;
     if (param_1 != NULL) {
         hit_ac = param_1->GetAtHitAc();
@@ -2170,37 +2136,93 @@ asm int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
 #endif
 
 /* 8049CE50-8049CEA0 0032D0 0050+00 1/0 0/0 0/0 .text            procSlingHit__9daArrow_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daArrow_c::procSlingHit() {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/procSlingHit__9daArrow_cFv.s"
+int daArrow_c::procSlingHit() {
+    decAlphaBlur();
+
+    if (field_0x956 != 0) {
+        field_0x956--;
+    } else {
+        field_0x93f = 1;
+    }
+    return TRUE;
 }
-#pragma pop
 
 /* 8049CEA0-8049D0AC 003320 020C+00 1/1 0/0 0/0 .text            execute__9daArrow_cFv */
+#ifdef NONMATCHING
+// matches with literals
+int daArrow_c::execute() {
+    field_0xa08.setActor();
+    mReverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
+
+    if (field_0x945 == 0 && field_0x943 == 0) {
+        field_0x9e4 = field_0x9d8;
+        field_0x9d8 = field_0x9cc;
+    }
+
+    if (field_0x93f != 0) {
+        setLightChargeEffect(1);
+        fopAcM_delete(this);
+        return TRUE;
+    } else {
+        if (field_0x94e == m_count) {
+            field_0x944 = 1;
+        }
+
+        if (field_0x942 != 0) {
+            field_0x942--;
+        }
+
+        (this->*mProcFunc)();
+
+        if (mArrowType == 1 && field_0x93f == 0) {
+            if (field_0x950 != 0) {
+                field_0x950--;
+            } else {
+                f32 amp = cM_scos(current.angle.x) * 95.0f;
+                cXyz pos(
+                    current.pos.x + amp * cM_ssin(current.angle.y),
+                    current.pos.y + cM_ssin(current.angle.x) * 95.0f,
+                    current.pos.z + amp * cM_scos(current.angle.y)
+                );
+                setBombArrowExplode(&pos);
+                return TRUE;
+            }
+        }
+
+        if (mArrowType == 2) {
+            setLightChargeEffect(0);
+        }
+
+        attention_info.position = current.pos;
+        eyePos = current.pos;
+
+        setRoomInfo();
+
+        mSoundObjArrow.framework(0, mReverb);
+    }
+
+    return TRUE;
+}
+
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daArrow_c::execute() {
+asm int daArrow_c::execute() {
     nofralloc
 #include "asm/rel/d/a/d_a_arrow/d_a_arrow/execute__9daArrow_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049D0AC-8049D0CC 00352C 0020+00 1/0 0/0 0/0 .text            daArrow_execute__FP9daArrow_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daArrow_execute(daArrow_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/daArrow_execute__FP9daArrow_c.s"
+static int daArrow_execute(daArrow_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8049DDE8-8049DDF0 000164 0008+00 0/1 0/0 0/0 .rodata          tmpColor$5589 */
+#ifndef NONMATCHING
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u8 const tmpColor[8] = {
@@ -2222,8 +2244,69 @@ COMPILER_STRIP_GATE(0x8049DDF0, &lit_5676);
 SECTION_RODATA static f32 const lit_5677 = 50.0f;
 COMPILER_STRIP_GATE(0x8049DDF4, &lit_5677);
 #pragma pop
+#endif
 
 /* 8049D0CC-8049D40C 00354C 0340+00 1/1 0/0 0/0 .text            draw__9daArrow_cFv */
+#ifdef NONMATCHING
+// regalloc, literals
+int daArrow_c::draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+
+    if (field_0x942 != 0 || field_0x93f != 0 || fopAcM_GetParam(this) == 8) {
+        return TRUE;
+    }
+    
+    GXColorS10 tmpColor = {0, 0, 0};
+    J3DGXColorS10 color = (tmpColor);
+
+    daAlink_c* link = daAlink_getAlinkActorClass();
+    if (fopAcM_GetParam(this) == 0 && field_0x940 != 0) {
+        setKeepMatrix();
+        field_0x940 = 0;
+    }
+
+    if (mArrowType == 1) {
+        if (field_0x943 != 0) {
+            color.r = link->getFreezeR();
+            color.g = link->getFreezeG();
+            color.b = link->getFreezeB();
+        } else {
+            s16 explode_time = daAlink_getAlinkActorClass()->getBombExplodeTime();
+            f32 r;
+
+            if (field_0x950 > explode_time >> 1) {
+                r = fabsf(cM_fsin((field_0x950 - (explode_time >> 1)) * M_PI / (explode_time >> 2)));
+            } else if (field_0x950 > explode_time >> 2) {
+                r = fabsf(cM_fsin((field_0x950 - (explode_time >> 1)) * M_PI / (explode_time >> 3)));
+            } else {
+                r = fabsf(cM_fsin((field_0x950 - (explode_time >> 3)) * M_PI / (explode_time >> 4)));
+            }
+
+            color.r = (u8)(r * 50.0f);
+        }
+        
+        mpModel->getModelData()->getMaterialNodePointer(1)->setTevColor(1, &color);
+    }
+
+    if (field_0x943 != 0) {
+        tevStr.mFogColor.r = link->getFreezeR();
+        tevStr.mFogColor.g = link->getFreezeG();
+        tevStr.mFogColor.b = link->getFreezeB();
+    }
+
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    mDoExt_modelUpdateDL(mpModel);
+
+    if (mArrowType == 1) {
+        color.r = 0;
+        color.g = 0;
+        color.b = 0;
+        mpModel->getModelData()->getMaterialNodePointer(1)->setTevColor(1, &color);
+    }
+
+    return TRUE;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2232,31 +2315,24 @@ asm int daArrow_c::draw() {
 #include "asm/rel/d/a/d_a_arrow/d_a_arrow/draw__9daArrow_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8049D40C-8049D42C 00388C 0020+00 1/0 0/0 0/0 .text            daArrow_draw__FP9daArrow_c */
 static int daArrow_draw(daArrow_c* i_this) {
     return i_this->draw();
 }
-// #pragma push
-// #pragma optimization_level 0
-// #pragma optimizewithasm off
-// static asm int daArrow_draw(daArrow_c* i_this) {
-//     nofralloc
-// #include "asm/rel/d/a/d_a_arrow/d_a_arrow/daArrow_draw__FP9daArrow_c.s"
-// }
-// #pragma pop
 
 /* 8049D42C-8049D440 0038AC 0014+00 1/1 0/0 0/0 .text daAlink_searchHorseZelda__FP10fopAc_ac_cPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* daAlink_searchHorseZelda(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/daAlink_searchHorseZelda__FP10fopAc_ac_cPv.s"
-}
-#pragma pop
+static void* daAlink_searchHorseZelda(fopAc_ac_c* param_0, void* param_1) {
+    if (fopAcM_GetName(param_0) == PROC_HOZELDA) {
+        return param_0;
+    }
 
+    return NULL;
+}
+
+#ifndef NONMATCHING
 /* ############################################################################################## */
 /* 8049DDF8-8049DDFC 000174 0004+00 0/1 0/0 0/0 .rodata          @5813 */
 #pragma push
@@ -2278,6 +2354,7 @@ COMPILER_STRIP_GATE(0x8049DDFC, &lit_5814);
 SECTION_RODATA static f32 const lit_5815 = 110.0f;
 COMPILER_STRIP_GATE(0x8049DE00, &lit_5815);
 #pragma pop
+#endif
 
 /* 8049D440-8049D808 0038C0 03C8+00 1/1 0/0 0/0 .text            create__9daArrow_cFv */
 #ifdef NONMATCHING
@@ -2286,7 +2363,7 @@ cPhs__Step daArrow_c::create() {
     fopAcM_SetupActor(this, daArrow_c);
 
     mArrowType = fopAcM_GetParamBit(this, 8, 8);
-    fopAcM_SetParam(this, fopAcM_GetParam(this) & 0xff);
+    fopAcM_SetParam(this, (u8)fopAcM_GetParam(this));
     
     if (!fopAcM_entrySolidHeap(this, daArrow_createHeap, mArrowType == 1 ? 0xea0 : 0x810)) {
         return cPhs_ERROR_e;
@@ -2419,14 +2496,10 @@ asm daArrow_c::~daArrow_c() {
 #pragma pop
 
 /* 8049DBD8-8049DC00 004058 0028+00 1/0 0/0 0/0 .text            daArrow_delete__FP9daArrow_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daArrow_delete(daArrow_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/d_a_arrow/d_a_arrow/daArrow_delete__FP9daArrow_c.s"
+static int daArrow_delete(daArrow_c* i_this) {
+    i_this->~daArrow_c();
+    return TRUE;
 }
-#pragma pop
 
 /* 8049DC00-8049DC48 004080 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push

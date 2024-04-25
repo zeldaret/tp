@@ -8,6 +8,13 @@
 
 class daArrow_c : public fopAc_ac_c {
 public:
+    enum ArrowType_e {
+        ARROW_TYPE_NORMAL = 0, // Needs verification
+        ARROW_TYPE_BOMB = 1,
+        ARROW_TYPE_LIGHT = 2,
+        ARROW_TYPE_SLING = 4,
+    };
+
     /* 80499C6C */ int createHeap();
     /* 80499D8C */ void atHitCallBack(dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 80499FBC */ void decAlphaBlur();
@@ -36,7 +43,7 @@ public:
     /* 8049CCCC */ int procActorControllStop();
     /* 8049CCF0 */ int procSlingHitInit(cXyz*, dCcD_GObjInf*);
     /* 8049CE50 */ int procSlingHit();
-    /* 8049CEA0 */ void execute();
+    /* 8049CEA0 */ int execute();
     /* 8049D0CC */ int draw();
     /* 8049D440 */ cPhs__Step create();
     /* 8049D98C */ ~daArrow_c();
@@ -94,7 +101,7 @@ public:
     /* 0x949 */ u8 field_0x949[0x94C - 0x949];
     /* 0x94C */ u16 field_0x94c;
     /* 0x94E */ s16 field_0x94e;
-    /* 0x950 */ u16 field_0x950;
+    /* 0x950 */ s16 field_0x950;
     /* 0x952 */ s16 field_0x952;
     /* 0x954 */ s16 field_0x954;
     /* 0x956 */ s16 field_0x956;
