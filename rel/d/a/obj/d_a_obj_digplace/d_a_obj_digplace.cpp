@@ -129,7 +129,7 @@ int daObjDigpl_c::execute() {
                     attention_info.position = point_pos;
                     eyePos = point_pos;
 
-                    if (point_p->field_0x3 == 0) {
+                    if (point_p->mArg0 == 0) {
                         mType = 0;
                     } else {
                         mType = 2;

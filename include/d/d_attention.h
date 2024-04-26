@@ -141,13 +141,13 @@ public:
 };
 
 struct dist_entry {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
-    u32 field_0x18;
+    /* 0x00 */ f32 mRadius1;
+    /* 0x04 */ f32 mRadius2;
+    /* 0x08 */ f32 mDistanceAdjust;
+    /* 0x0C */ f32 mUpperY;
+    /* 0x10 */ f32 mLowerY;
+    /* 0x14 */ f32 mWeight;
+    /* 0x18 */ u32 mAngleSelect;
 };  // Size: 0x1C
 
 struct type_tbl_entry {

@@ -753,6 +753,14 @@ public:
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
 
+    void setCanoeSlider() { mSpecialMode = 0x2D; }
+    
+    void offCanoeSlider() {
+        if (checkCanoeSlider()) {
+            mSpecialMode = 0;
+        }
+    }
+
     void offCargoCarry() {
         if (checkCargoCarry()) {
             mSpecialMode = 0;
