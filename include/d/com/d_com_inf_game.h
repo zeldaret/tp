@@ -3676,6 +3676,10 @@ inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* p
                                                        param_5, tex);
 }
 
+inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
+    return g_dComIfG_gameInfo.drawlist.addRealShadow(key, model);
+}
+
 inline void dComIfGd_drawListItem3d() {
     g_dComIfG_gameInfo.drawlist.drawOpaListItem3d();
     g_dComIfG_gameInfo.drawlist.drawXluListItem3d();

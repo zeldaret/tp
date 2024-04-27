@@ -46,7 +46,7 @@ int daTalk_c::execute() {
         }
     } else {
         if (fopAcM_searchPlayerDistanceXZ(this) >
-            dAttention_c::i_getDistTable(attention_info.field_0x0[1]).field_0x4)
+            dAttention_c::i_getDistTable(attention_info.field_0x0[1]).mRadius2)
         {
             mMessageID = -1;
             fopAcM_delete(this);

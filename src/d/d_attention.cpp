@@ -799,17 +799,17 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
             if (fopAcM_checkStatus(param_1, 0x20000000) ||
                 check_event_condition(entry->field_0x0, param_1->eventInfo.getCondition())) {
                 dvar12 = 0.0f;
-            } else if (check_flontofplayer(d_entry->field_0x18, param_3, param_4)) {
+            } else if (check_flontofplayer(d_entry->mAngleSelect, param_3, param_4)) {
                 dvar12 = 0.0f;
             } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->attention_info.position,
-                                      d_entry->field_0x0, d_entry->field_0x8, d_entry->field_0xc,
-                                      d_entry->field_0x10)) {
+                                      d_entry->mRadius1, d_entry->mDistanceAdjust, d_entry->mUpperY,
+                                      d_entry->mLowerY)) {
                 dvar12 = 0.0f;
             } else {
                 dvar12 = distace_weight(param_2, param_3, 0.5f);
             }
 
-            f32 dvar13 = d_entry->field_0x14;
+            f32 dvar13 = d_entry->mWeight;
             if (dvar12 > 0.0f && dvar13 > dvar14) {
                 dvar14 = dvar13;
                 weight = dvar12 / dvar13;
@@ -1149,12 +1149,12 @@ bool dAttention_c::chaseAttention() {
                 return false;
             } else if (check_event_condition(type, actor->eventInfo.getCondition())) {
                 return false;
-            } else if (check_flontofplayer(dist_table[tbl_idx].field_0x18, a1.Val(), a2.Val())) {
+            } else if (check_flontofplayer(dist_table[tbl_idx].mAngleSelect, a1.Val(), a2.Val())) {
                 return false;
             } else if (check_distace(&mOwnerAttnPos, a1.Val(), &actor->attention_info.position,
-                                     dist_table[tbl_idx].field_0x4, dist_table[tbl_idx].field_0x8,
-                                     dist_table[tbl_idx].field_0xc,
-                                     dist_table[tbl_idx].field_0x10)) {
+                                     dist_table[tbl_idx].mRadius2,
+                                     dist_table[tbl_idx].mDistanceAdjust,
+                                     dist_table[tbl_idx].mUpperY, dist_table[tbl_idx].mLowerY)) {
                 mLockOnList[offset].mWeight = distace_weight(g1.R(), a1.Val(), 0.5f);
                 return true;
             }

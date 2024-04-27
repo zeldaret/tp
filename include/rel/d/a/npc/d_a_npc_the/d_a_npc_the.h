@@ -3,12 +3,77 @@
 
 #include "d/a/d_a_npc.h"
 
-// #define NONMATCHING
-
 class daNpcThe_c : public daNpcF_c {
 public:
     typedef BOOL (daNpcThe_c::*ActionFn)(void*);
     typedef BOOL (daNpcThe_c::*EventFn)(int);
+
+    enum Type {
+        /* 0 */ TYPE_BAR,
+        /* 1 */ TYPE_1,
+        /* 2 */ TYPE_KAKARIKO,
+    };
+
+    enum Animation {
+        /* 0x00 */ ANM_NONE,
+        /* 0x01 */ ANM_F_TALK_A,
+        /* 0x02 */ ANM_F_SMILE,
+        /* 0x03 */ ANM_F_CHUCKLE,
+        /* 0x04 */ ANM_F_TALK_B,
+        /* 0x05 */ ANM_F_TALK_C,
+        /* 0x06 */ ANM_F_LAUGH,
+        /* 0x07 */ ANM_F_TALK_R,
+        /* 0x08 */ ANM_FH_SMILE,
+        /* 0x09 */ ANM_FH_CHUCKLE,
+        /* 0x0A */ ANM_FH_TALK_B,
+        /* 0x0B */ ANM_FH_TALK_C,
+        /* 0x0C */ ANM_FH_LAUGH,
+        /* 0x0D */ ANM_FH_TALK_R,
+        /* 0x0E */ ANM_WAIT_A,
+        /* 0x0F */ ANM_WAIT_LOOKING,
+        /* 0x10 */ ANM_TO_WAIT_B,
+        /* 0x11 */ ANM_WAIT_B,
+        /* 0x12 */ ANM_WAIT_LOOKUP,
+        /* 0x13 */ ANM_TALK_R,
+        /* 0x14 */ ANM_TALKING_R,
+        /* 0x15 */ ANM_LOOK_A,
+        /* 0x16 */ ANM_LOOK,
+        /* 0x17 */ ANM_KUNE_WAIT_A,
+        /* 0x18 */ ANM_KUNE_TALK,
+        /* 0x19 */ ANM_KUNE_WAIT_B,
+        /* 0x1A */ ANM_KUNE_SHISHI,
+    };
+
+    enum Expression {
+        /* 0x0 */ EXPR_TALK_A,
+        /* 0x1 */ EXPR_SMILE,
+        /* 0x2 */ EXPR_CHUCKLE,
+        /* 0x3 */ EXPR_TALK_B,
+        /* 0x4 */ EXPR_TALK_C,
+        /* 0x5 */ EXPR_LAUGH,
+        /* 0x6 */ EXPR_TALK_R,
+        /* 0x7 */ EXPR_H_TALK_R,
+        /* 0x8 */ EXPR_H_SMILE,
+        /* 0x9 */ EXPR_H_CHUCKLE,
+        /* 0xA */ EXPR_H_TALK_B,
+        /* 0xB */ EXPR_H_TALK_C,
+        /* 0xC */ EXPR_H_LAUGH,
+        /* 0xD */ EXPR_NONE,
+    };
+
+    enum Motion {
+        /* 0x0 */ MOT_WAIT_A,
+        /* 0x1 */ MOT_LOOK_A,
+        /* 0x2 */ MOT_TO_WAIT_B,
+        /* 0x3 */ MOT_WAIT_LOOKUP,
+        /* 0x4 */ MOT_KUNE_TALK,
+        /* 0x5 */ MOT_KUNE_WAIT_A,
+        /* 0x6 */ MOT_KUNE_SHISHI,
+        /* 0x7 */ MOT_WAIT_B,
+        /* 0x8 */ MOT_KUNE_WAIT_B,
+        /* 0x9 */ MOT_TALK_R,
+        /* 0xA */ MOT_LOOK,
+    };
 
     /* 80AF76CC */ daNpcThe_c();
     /* 80AF78E0 */ ~daNpcThe_c();
@@ -45,18 +110,18 @@ public:
     u8 getTypeFromParam() {
         switch (fopAcM_GetParam(this) & 0xff) {
         case 0:
-            return 0;
+            return TYPE_BAR;
         case 1:
-            return 1;
+            return TYPE_1;
         case 2:
-            return 2;
+            return TYPE_KAKARIKO;
         default:
-            return 0;
+            return TYPE_BAR;
         }
     }
 
     bool isDelete() {
-        if (mType == 0 || mType == 1 || mType == 2) {
+        if (mType == TYPE_BAR || mType == TYPE_1 || mType == TYPE_KAKARIKO) {
             return false;
         } else {
             return true;
@@ -83,12 +148,12 @@ public:
 
     BOOL setAction(ActionFn action) {
         if (mpActionFn != NULL) {
-            mState = 3;
+            mMode = 3;
             (this->*mpActionFn)(NULL);
         }
         if (action != NULL) {
             mpActionFn = action;
-            mState = 0;
+            mMode = 0;
             (this->*mpActionFn)(NULL);
         }
         return true;
@@ -106,6 +171,7 @@ public:
         }
     }
 
+private:
     /* 0xB48 */ Z2Creature mSound;
     /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBDC */ daNpcF_Lookat_c mLookat;
@@ -123,7 +189,7 @@ public:
     /* 0xE10 */ u32 field_0xe10;
     /* 0xE14 */ int mFlowID;
     /* 0xE18 */ s16 mLookMode;
-    /* 0xE1A */ u16 mState;
+    /* 0xE1A */ u16 mMode;
     /* 0xE1C */ bool field_0xe1c;
     /* 0xE1D */ bool field_0xe1d;
     /* 0xE1E */ u8 mType;
@@ -141,32 +207,32 @@ STATIC_ASSERT(sizeof(daNpcThe_c) == 0xE20);
 class daNpcThe_Param_c {
 public:
     struct param {
-        /* 0x00 */ f32 field_0x00;
+        /* 0x00 */ f32 mAttnOffsetY;
         /* 0x04 */ f32 mGravity;
         /* 0x08 */ f32 mScale;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ f32 field_0x10;
+        /* 0x0C */ f32 mShadowDepth;
+        /* 0x10 */ f32 mCcWeight;
         /* 0x14 */ f32 mCylH;
         /* 0x18 */ f32 mWallH;
         /* 0x1C */ f32 mWallR;
-        /* 0x20 */ f32 field_0x20;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ f32 field_0x38;
-        /* 0x3C */ f32 field_0x3c;
-        /* 0x40 */ f32 mLookatScl;
-        /* 0x44 */ f32 field_0x44;
-        /* 0x48 */ s16 field_0x48;
-        /* 0x4A */ s16 field_0x4a;
-        /* 0x4C */ s16 field_0x4c;
-        /* 0x4E */ s16 field_0x4e;
-        /* 0x50 */ f32 field_0x50;
-        /* 0x54 */ f32 field_0x54;
-        /* 0x58 */ f32 field_0x58;
-        /* 0x5C */ f32 field_0x5c;
+        /* 0x20 */ f32 mBodyUpAngle;
+        /* 0x24 */ f32 mBodyDownAngle;
+        /* 0x28 */ f32 mBodyLeftAngle;
+        /* 0x2C */ f32 mBodyRightAngle;
+        /* 0x30 */ f32 mHeadUpAngle;
+        /* 0x34 */ f32 mHeadDownAngle;
+        /* 0x38 */ f32 mHeadLeftAngle;
+        /* 0x3C */ f32 mHeadRightAngle;
+        /* 0x40 */ f32 mNeckAngleScl;
+        /* 0x44 */ f32 mMorfFrames;
+        /* 0x48 */ s16 mSpeakDistIdx;
+        /* 0x4A */ s16 mSpeakAngleIdx;
+        /* 0x4C */ s16 mTalkDistIdx;
+        /* 0x4E */ s16 mTalkAngleIdx;
+        /* 0x50 */ f32 mAttnFovY;
+        /* 0x54 */ f32 mAttnRadius;
+        /* 0x58 */ f32 mAttnUpperY;
+        /* 0x5C */ f32 mAttnLowerY;
         /* 0x60 */ s16 field_0x60;
         /* 0x62 */ s16 field_0x62;
         /* 0x64 */ s16 mTestExpression;

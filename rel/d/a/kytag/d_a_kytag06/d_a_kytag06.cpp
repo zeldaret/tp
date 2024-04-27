@@ -1014,16 +1014,16 @@ static int daKytag06_Execute(kytag06_class* i_this) {
             int target2 = 0;
             dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->mLookat.mEye);
 
-            if (pnt != NULL && pnt->field_0x3 != 0xFF) {
-                dKy_change_colpat(pnt->field_0x3);
+            if (pnt != NULL && pnt->mArg0 != 0xFF) {
+                dKy_change_colpat(pnt->mArg0);
 
-                if (pnt->field_0x3 == 0) {
+                if (pnt->mArg0 == 0) {
                     target1 = 250;
                     target2 = 25;
-                } else if (pnt->field_0x3 == 1) {
+                } else if (pnt->mArg0 == 1) {
                     target1 = 500;
                     target2 = 50;
-                } else if (pnt->field_0x3 == 2) {
+                } else if (pnt->mArg0 == 2) {
                     target1 = 125;
                     target2 = 12;
                 }
