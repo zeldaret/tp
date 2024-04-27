@@ -265,12 +265,12 @@ void daAlink_c::setDashDamage() {
 
 /* 800D7768-800D77C8 0D20A8 0060+00 2/2 0/0 3/3 .text
  * checkIcePolygonDamage__9daAlink_cFP13cBgS_PolyInfo           */
-bool daAlink_c::checkIcePolygonDamage(cBgS_PolyInfo* i_poly) {
+BOOL daAlink_c::checkIcePolygonDamage(cBgS_PolyInfo* i_poly) {
     if (dComIfG_Bgsp().GetPolyAtt0(*i_poly) == 8 && dKy_pol_argument_get(i_poly) & 0x60) {
-        return true;
+        return TRUE;
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 800D77C8-800D7820 0D2108 0058+00 8/8 0/0 0/0 .text checkMagicArmorNoDamage__9daAlink_cFv */

@@ -22,7 +22,7 @@ public:
     /* 80035CA0 */ int init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
     /* 80035CC8 */ static void setNowLine(cM3dGLin*, cXyz const*, csXyz const*, cXyz*);
     /* 80035DC8 */ void searchNearPos(cM3dGLin const*, cXyz const*, cXyz*, int) const;
-    /* 80036AEC */ void getArrowOffsetPosAndAngle(cXyz const*, csXyz const*, cXyz*, cXyz*) const;
+    /* 80036AEC */ int getArrowOffsetPosAndAngle(cXyz const*, csXyz const*, cXyz*, cXyz*) const;
     /* 80036C44 */ int getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
     /* 80036FA8 */ void setArrowPosAndAngle(cXyz const*, cXyz const*, int, cXyz*, csXyz*);
 

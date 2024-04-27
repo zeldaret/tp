@@ -204,7 +204,7 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dJntCol_c::getArrowOffsetPosAndAngle(cXyz const* param_0, csXyz const* param_1,
+asm int dJntCol_c::getArrowOffsetPosAndAngle(cXyz const* param_0, csXyz const* param_1,
                                               cXyz* param_2, cXyz* param_3) const {
     nofralloc
 #include "asm/d/d_jnt_col/getArrowOffsetPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP4cXyz.s"
