@@ -502,7 +502,7 @@ public:
     /* 0x12EC */ dKy_pol_sound_struct* mResPolSound;
     /* 0x12F0 */ dKy_pol_arg_struct* mResPolArg;
     /* 0x12F4 */ dKy_color_data_struct* mResColorDataTbl;
-    /* 0x12F8 */ s8 mFogDensity;
+    /* 0x12F8 */ u8 mFogDensity;
     /* 0x12F9 */ u8 field_0x12f9;
     /* 0x12FA */ u8 mIsBlure;
     /* 0x12FB */ u8 field_0x12fb;

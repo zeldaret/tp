@@ -28,7 +28,7 @@ SECTION_SDATA2 static f64 lit_3632 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80097878-80097904 0921B8 008C+00 0/0 7/7 0/0 .text            Init__14d2DBSplinePathFll */
 #ifdef NONMATCHING
-// regalloc
+// matches with literals
 void d2DBSplinePath::Init(s32 param_0, s32 param_1) {
     s32 tmp;
     s32 tmp2;
@@ -38,11 +38,8 @@ void d2DBSplinePath::Init(s32 param_0, s32 param_1) {
     field_0x08 = 1;
     field_0x0c = param_1;
 
-    if (field_0x0c != 0) {
-        tmp2 = field_0x0c - 1;
-    }
-
-    field_0x04 < 2 ? tmp = 1 : tmp = field_0x04 - 2;
+    tmp2 = field_0x0c != 0 ? field_0x0c - 1 : 1;
+    tmp = field_0x04 < 2 ? 1 : field_0x04 - 2;
     field_0x10 = (f32)tmp / (f32)tmp2;
 
     field_0x2c = 0;

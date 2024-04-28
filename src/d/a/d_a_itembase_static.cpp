@@ -43,25 +43,29 @@ u8 daItemBase_c::chkDead() {
 
 /* 80037B0C-80037B78 03244C 006C+00 0/0 0/0 1/1 .text            CheckItemCreateHeap__FP10fopAc_ac_c
  */
-void CheckItemCreateHeap(fopAc_ac_c* actor) {
+int CheckItemCreateHeap(fopAc_ac_c* actor) {
     daItemBase_c* item = static_cast<daItemBase_c*>(actor);
 
     u8 item_no = item->getItemNo();
-    item->CreateItemHeap(dItem_data::getArcName(item_no), dItem_data::getBmdName(item_no),
-                         dItem_data::getBtkName(item_no), dItem_data::getBpkName(item_no),
-                         dItem_data::getBckName(item_no), dItem_data::getBxaName(item_no),
-                         dItem_data::getBrkName(item_no), dItem_data::getBtpName(item_no));
+    return item->CreateItemHeap(
+        dItem_data::getArcName(item_no), dItem_data::getBmdName(item_no),
+        dItem_data::getBtkName(item_no), dItem_data::getBpkName(item_no),
+        dItem_data::getBckName(item_no), dItem_data::getBxaName(item_no),
+        dItem_data::getBrkName(item_no), dItem_data::getBtpName(item_no)
+    );
 }
 
 /* 80037B78-80037BE0 0324B8 0068+00 0/0 1/1 7/7 .text CheckFieldItemCreateHeap__FP10fopAc_ac_c */
-void CheckFieldItemCreateHeap(fopAc_ac_c* actor) {
+int CheckFieldItemCreateHeap(fopAc_ac_c* actor) {
     daItemBase_c* item = static_cast<daItemBase_c*>(actor);
 
     u8 item_no = item->getItemNo();
-    item->CreateItemHeap(dItem_data::getFieldArc(item_no), dItem_data::getItemBmdName(item_no),
-                         dItem_data::getItemBtkName(item_no), dItem_data::getItemBpkName(item_no),
-                         dItem_data::getItemBckName(item_no), dItem_data::getItemBxaName(item_no),
-                         dItem_data::getItemBrkName(item_no), dItem_data::getItemBtpName(item_no));
+    return item->CreateItemHeap(
+        dItem_data::getFieldArc(item_no), dItem_data::getItemBmdName(item_no),
+        dItem_data::getItemBtkName(item_no), dItem_data::getItemBpkName(item_no),
+        dItem_data::getItemBckName(item_no), dItem_data::getItemBxaName(item_no),
+        dItem_data::getItemBrkName(item_no), dItem_data::getItemBtpName(item_no)
+    );
 }
 
 /* ############################################################################################## */

@@ -37,7 +37,6 @@ public:
     /* 0x88 */ dDemo_ambient_c* mpAmbient;
     /* 0x8C */ dDemo_light_c* mpLights[8];
     /* 0xAC */ dDemo_fog_c* mpFog;
-    /* 0xB0 */ dDemo_camera_c* mpEditorCamera;
 };
 
 class dDemo_prm_c {
