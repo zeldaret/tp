@@ -3268,6 +3268,10 @@ inline u8 dComIfGp_event_getMode() {
     return g_dComIfG_gameInfo.play.getEvent().getMode();
 }
 
+inline fopAc_ac_c* dComIfGp_event_getDoorPartner() {
+    return g_dComIfG_gameInfo.play.getEvent().getPtD();
+}
+
 inline int dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
     return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
 }

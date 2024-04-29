@@ -162,7 +162,7 @@ void daDbDoor00_c::calcMtx() {
 
 /* 8045D8F4-8045D9A8 0005F4 00B4+00 1/1 0/0 0/0 .text            CreateInit__12daDbDoor00_cFv */
 int daDbDoor00_c::CreateInit() {
-    s32 fRoomNo = door_param2_c::getFRoomNo(this);
+    u8 fRoomNo = door_param2_c::getFRoomNo(this);
     if (fopAcM_GetRoomNo(this) == -1) {
         fopAcM_SetRoomNo(this, fRoomNo);
         tevStr.mRoomNo = current.roomNo;

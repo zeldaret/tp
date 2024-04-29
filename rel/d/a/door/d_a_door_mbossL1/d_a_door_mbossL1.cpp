@@ -1277,7 +1277,7 @@ int daMBdoorL1_c::CreateInit() {
     } else {
         lightInf = door_param2_c::getMBLightInf(this);
     }
-    tevStr.field_0x364 = lightInf;
+    tevStr.mLightInf = lightInf;
     return 1;
 }
 #else
