@@ -498,7 +498,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
     {
         if ((i_atObjInf->GetAtType() &
              (AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK |
-              AT_TYPE_HOOKSHOT | AT_TYPE_SHIELD_ATTACK | AT_TYPE_NORMAL_SWORD)) == 0 ||
+              AT_TYPE_HOOKSHOT | AT_TYPE_SHIELD_ATTACK | AT_TYPE_NORMAL_SWORD)) != 0 &&
             i_tgObjInf->GetTgSpl() == 1)
         {
             return;

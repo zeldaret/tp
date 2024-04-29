@@ -631,56 +631,24 @@ void daPy_py_c::setMidnaFaceNum(int i_faceNum) {
 }
 
 /* 8015F97C-8015FA2C 15A2BC 00B0+00 0/0 7/7 2/2 .text            daPy_addCalcShort__FPsssss */
-// 1 instruction in wrong place
-#ifdef NONMATCHING
-int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
-    s16 temp_r0;
-    s16 temp_r0_2;
-    s16 temp_r8;
-    s16 temp_r9;
-    s32 temp_r10;
-    s32 temp_r4;
-    s32 temp_r5;
-    s32 phi_r4;
+int daPy_addCalcShort(s16* i_value, s16 i_target, s16 i_scale, s16 i_maxStep, s16 i_minStep) {
+    int delta = i_target - *i_value;
 
-    temp_r8 = *param_0;
-    temp_r9 = (s16)param_1;
-    temp_r10 = temp_r9 - temp_r8;
-
-    if (temp_r8 != temp_r9) {
-        temp_r5 = temp_r10 / param_2;
-        temp_r0 = (s16)param_4;
-        if (temp_r5 > temp_r0 || temp_r5 < -temp_r0) {
-            temp_r0_2 = param_3;
-            temp_r4 = -temp_r0_2;
-            phi_r4 = temp_r4;
-            if (temp_r5 < temp_r4) {
-                phi_r4 = temp_r5;
-            } else if (temp_r5 > temp_r0_2) {
-                phi_r4 = temp_r0_2;
-            }
-            *param_0 += phi_r4;
-        } else if (temp_r10 >= 0) {
-            *param_0 = temp_r8 + param_4;
-            if (temp_r9 - *param_0 <= 0) {
-                *param_0 = param_1;
+    if (*i_value != i_target) {
+        int step = delta / i_scale;
+        if (step > i_minStep || step < -i_minStep) {
+            *i_value += cLib_minMaxLimit<int>(step, -i_maxStep, i_maxStep);
+        } else if (delta >= 0) {
+            *i_value += i_minStep;
+            if (i_target - *i_value <= 0) {
+                *i_value = i_target;
             }
         } else {
-            *param_0 = temp_r8 - param_4;
-            if (temp_r9 - *param_0 >= 0) {
-                *param_0 = param_1;
+            *i_value -= i_minStep;
+            if (i_target - *i_value >= 0) {
+                *i_value = i_target;
             }
         }
     }
-    return temp_r9 - *param_0;
+    return i_target - *i_value;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4) {
-    nofralloc
-#include "asm/d/a/d_a_player/daPy_addCalcShort__FPsssss.s"
-}
-#pragma pop
-#endif

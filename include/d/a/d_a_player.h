@@ -533,8 +533,8 @@ public:
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
     BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
     const cXyz& getRightHandPos() const { return mRightHandPos; }
-    const cXyz* getItemPos() const { return &mItemPos; }
     const cXyz* getLeftHandPos() const { return &mLeftHandPos; }
+    const cXyz getItemPos() const { return mItemPos; }
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);

@@ -9,68 +9,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void setBaseMtx__13daZraFreeze_cFv();
-extern "C" void chkActorInScreen__13daZraFreeze_cFv();
-extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" void Create__13daZraFreeze_cFv();
-extern "C" void CreateHeap__13daZraFreeze_cFv();
-extern "C" void setHitodamaPrtcl__13daZraFreeze_cFv();
-extern "C" void Execute__13daZraFreeze_cFv();
-extern "C" void Draw__13daZraFreeze_cFv();
-extern "C" void Delete__13daZraFreeze_cFv();
-extern "C" static void daZraFreeze_Draw__FP13daZraFreeze_c();
-extern "C" static void daZraFreeze_Execute__FP13daZraFreeze_c();
-extern "C" static bool daZraFreeze_IsDelete__FP13daZraFreeze_c();
-extern "C" static void daZraFreeze_Delete__FP13daZraFreeze_c();
-extern "C" static void daZraFreeze_create__FP10fopAc_ac_c();
-extern "C" extern char const* const d_a_obj_zra_freeze__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void XYZrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void mDoLib_project__FP3VecP3Vec();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_sense_type_change_Set__FSc();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void checkNowWolfEyeUp__9daPy_py_cFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_rndF__Ff();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
 
 /* 80D44BC4-80D44BC8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "zrF";
@@ -161,42 +99,8 @@ int daZraFreeze_c::CreateHeap() {
     return 1;
 }
 
-/* 80D44B60-80D44B64 000018 0004+00 0/1 0/0 0/0 .rodata          id$3856 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const id[4] = {
-    0x84,
-    0x97,
-    0x84,
-    0x98,
-};
-COMPILER_STRIP_GATE(0x80D44B60, &id);
-#pragma pop
-
-/* 80D44B64-80D44B68 00001C 0004+00 0/1 0/0 0/0 .rodata          @3917 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3917 = 8.0f;
-COMPILER_STRIP_GATE(0x80D44B64, &lit_3917);
-#pragma pop
-
-/* 80D44B68-80D44B6C 000020 0004+00 0/1 0/0 0/0 .rodata          @3918 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3918 = 4.0f;
-COMPILER_STRIP_GATE(0x80D44B68, &lit_3918);
-#pragma pop
-
-/* 80D44B6C-80D44B70 000024 0004+00 0/1 0/0 0/0 .rodata          @3919 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3919 = 1.0f;
-COMPILER_STRIP_GATE(0x80D44B6C, &lit_3919);
-#pragma pop
-
 /* 80D444C0-80D44698 000480 01D8+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__13daZraFreeze_cFv
  */
-#ifdef NONMATCHING
 void daZraFreeze_c::setHitodamaPrtcl() {
     cXyz pos = current.pos;
     field_0x5dc = (u16)(field_0x5de << 1);
@@ -219,16 +123,6 @@ void daZraFreeze_c::setHitodamaPrtcl() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daZraFreeze_c::setHitodamaPrtcl() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_zra_freeze/d_a_obj_zra_freeze/setHitodamaPrtcl__13daZraFreeze_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D44698-80D449E0 000658 0348+00 1/1 0/0 0/0 .text            Execute__13daZraFreeze_cFv */
 int daZraFreeze_c::Execute() {
