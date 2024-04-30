@@ -5,8 +5,8 @@
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Types:

@@ -6042,7 +6042,7 @@ int daAlink_c::procWolfJumpAttack() {
         return 1;
     }
 
-    if (checkNoResetFlg2(FLG2_UNK_40)) {
+    if (checkNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE)) {
         return procWolfEnemyHangBiteInit();
     }
 

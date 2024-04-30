@@ -5,6 +5,8 @@
 
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
 #include "SSystem/SComponent/c_math.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/com/d_com_inf_game.h"
 
 #define RES_IS_MODEL 0x13
 

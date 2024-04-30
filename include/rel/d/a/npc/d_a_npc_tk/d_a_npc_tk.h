@@ -1,6 +1,7 @@
 #ifndef D_A_NPC_TK_H
 #define D_A_NPC_TK_H
 
+#include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
 struct cXyz;

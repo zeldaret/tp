@@ -12,7 +12,6 @@
 #include "d/a/d_a_player.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 
 //
