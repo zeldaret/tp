@@ -30,16 +30,15 @@ static int daKytag17_Delete(kytag17_class* i_this) {
 
 /* 8046DB78-8046DBE0 000098 0068+00 1/0 0/0 0/0 .text            daKytag17_Create__FP10fopAc_ac_c */
 static int daKytag17_Create(fopAc_ac_c* i_this) {
-    kytag17_class* kytag17 = (kytag17_class*)i_this;
+    kytag17_class* a_this = (kytag17_class*)i_this;
 
-    fopAcM_SetupActor(kytag17, kytag17_class);
+    fopAcM_SetupActor(a_this, kytag17_class);
 
-    kytag17->mParameters = fopAcM_GetParam(kytag17);
-    g_env_light.field_0x1308 = kytag17->mParameters;
+    a_this->mParameters = fopAcM_GetParam(a_this);
+    g_env_light.field_0x1308 = a_this->mParameters;
     return cPhs_COMPLEATE_e;
 }
 
-/* ############################################################################################## */
 /* 8046DBE8-8046DC08 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag17_Method */
 static actor_method_class l_daKytag17_Method = {
     (process_method_func)daKytag17_Create, (process_method_func)daKytag17_Delete,

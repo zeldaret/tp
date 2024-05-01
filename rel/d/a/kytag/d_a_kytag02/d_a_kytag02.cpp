@@ -103,21 +103,21 @@ static int daKytag02_Create(fopAc_ac_c* i_this) {
     dKyw_get_wind_vec();
 
     fopAcM_SetupActor(i_this, kytag02_class);
-    kytag02_class* this_ = (kytag02_class*)i_this;
+    kytag02_class* a_this = (kytag02_class*)i_this;
 
-    this_->field_0x574 = 0;
-    this_->field_0x576 = 0;
-    this_->field_0x577 = this_->current.angle.x & 0xFF;
+    a_this->field_0x574 = 0;
+    a_this->field_0x576 = 0;
+    a_this->field_0x577 = a_this->current.angle.x & 0xFF;
 
     env_light->custom_windpower = 0.0f;
 
-    this_->field_0x578 = fopAcM_GetParam(this_) & 0xFF;
+    a_this->field_0x578 = fopAcM_GetParam(a_this) & 0xFF;
 
-    if (dComIfGs_isSwitch(this_->field_0x577, this_->home.roomNo)) {
+    if (dComIfGs_isSwitch(a_this->field_0x577, a_this->home.roomNo)) {
         dKyw_evt_wind_set_go();
-        dKyw_evt_wind_set(0, this_->current.angle.y);
+        dKyw_evt_wind_set(0, a_this->current.angle.y);
 
-        if (this_->field_0x578 == 99) {
+        if (a_this->field_0x578 == 99) {
             env_light->mTeachWindExist = 0xFF;
         } else {
             env_light->mTeachWindExist = 1;
@@ -126,14 +126,13 @@ static int daKytag02_Create(fopAc_ac_c* i_this) {
         }
     }
 
-    if (this_->field_0x578 != 99) {
+    if (a_this->field_0x578 != 99) {
         mDoAud_mEnvse_initStrongWind();
     }
 
     return cPhs_COMPLEATE_e;
 }
 
-/* ############################################################################################## */
 /* 80855E0C-80855E2C -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag02_Method */
 static actor_method_class l_daKytag02_Method = {
     (process_method_func)daKytag02_Create,  (process_method_func)daKytag02_Delete,

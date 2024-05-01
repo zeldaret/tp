@@ -98,7 +98,6 @@ static int daKytag14_Create(fopAc_ac_c* i_this) {
     return cPhs_COMPLEATE_e;
 }
 
-/* ############################################################################################## */
 /* 80529BE8-80529C08 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag14_Method */
 static actor_method_class l_daKytag14_Method = {
     (process_method_func)daKytag14_Create,  (process_method_func)daKytag14_Delete,
