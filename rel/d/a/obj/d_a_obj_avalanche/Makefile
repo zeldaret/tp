@@ -8,12 +8,10 @@ M400_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_avalanche.map
 
 M400_CPP_FILES := \
 	rel/executor.cpp \
-	rel/d/a/obj/d_a_obj_avalanche/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_avalanche/d_a_obj_avalanche.cpp \
 
 M400_O_FILES := \
 	$(BUILD_DIR)/rel/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_avalanche/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_avalanche/d_a_obj_avalanche.o \
 
 M400_LIBS := \
