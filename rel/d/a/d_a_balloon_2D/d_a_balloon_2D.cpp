@@ -16,51 +16,6 @@ struct mDoHIO_entry_c {
     /* 80655404 */ ~mDoHIO_entry_c();
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct cXyz {};
-
-struct daBalloon2D_c {
-    struct c_list {
-        /* 806534CC */ void draw();
-        /* 8065544C */ ~c_list();
-    };
-
-    struct CHeadScore {
-        /* 80655304 */ ~CHeadScore();
-        /* 80655340 */ CHeadScore();
-    };
-
-    /* 80653538 */ void createHeap();
-    /* 80653D24 */ void create();
-    /* 80653DB4 */ void destroy();
-    /* 80653E10 */ void draw();
-    /* 80653EC0 */ void execute();
-    /* 80653F04 */ void drawMeter();
-    /* 80653F58 */ void setComboCount(u8, u8);
-    /* 80653FC0 */ void setScoreCount(u32);
-    /* 80653FEC */ void addScoreCount(cXyz*, u32, u8);
-    /* 806540B4 */ void initiate();
-    /* 806540B8 */ void update();
-    /* 806540BC */ void setComboNum(u8);
-    /* 806541B4 */ void setBalloonSize(u8);
-    /* 80654258 */ void setScoreNum(int);
-    /* 80654440 */ void setAllAlpha();
-    /* 8065464C */ void setComboAlpha();
-    /* 80654730 */ void drawAddScore();
-    /* 80654E8C */ void setHIO(bool);
-    /* 80655494 */ ~daBalloon2D_c();
-
-    static u8 myclass[4];
-};
-
-struct daBalloon2D_HIO_c {
-    /* 806553A8 */ ~daBalloon2D_HIO_c();
-};
-
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -85,13 +40,7 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct ResTIMG {};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
 
 struct JKRExpHeap {};
 
@@ -169,7 +118,6 @@ extern "C" u8 myclass__13daBalloon2D_c[4];
 // External References:
 //
 
-SECTION_INIT void memcpy();
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -207,8 +155,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 sincosTable___5JMath[65536];
