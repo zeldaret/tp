@@ -7,7 +7,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_w.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80677DB8-80677DE0 000078 0028+00 1/1 0/0 0/0 .text
@@ -83,7 +82,7 @@ static u8 cNullVec__6Z2Calc[12] = {
 /* 80678F5C-80678F70 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,

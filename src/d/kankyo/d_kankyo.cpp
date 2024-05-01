@@ -4264,7 +4264,7 @@ void dScnKy_env_light_c::settingTevStruct(int i_tevstrType, cXyz* param_1, dKy_t
         if (i_tevstr->field_0x37a != 20) {
             i_tevstr->field_0x374 = g_env_light.mPaletteTerrainLightEffect;
         } else {
-            switch (i_tevstr->field_0x364) {
+            switch (i_tevstr->mLightInf) {
             case 0:
                 i_tevstr->field_0x374 = 0.2f;
                 break;
