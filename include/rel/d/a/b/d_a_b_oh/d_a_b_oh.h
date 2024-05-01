@@ -1,6 +1,9 @@
 #ifndef D_A_B_OH_H
 #define D_A_B_OH_H
 
+#include "SSystem/SComponent/c_phase.h"
+#include "f_op/f_op_actor.h"
+#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 
 class daB_OH_HIO_c {

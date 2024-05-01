@@ -1,7 +1,11 @@
 #ifndef D_A_B_GO_H
 #define D_A_B_GO_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "f_op/f_op_actor.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 
 #define GORON_CHILD_MAX 31

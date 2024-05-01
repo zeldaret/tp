@@ -241,6 +241,7 @@ public:
 
     bool checkWolfNoLock() const { return mFlags & 0x200; }
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
+    bool checkWolfBiteDamage() const { return mFlags & 0x40; }
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
@@ -257,6 +258,7 @@ public:
     void onWolfNoLock() { mFlags |= 0x200; }
     void onDownFlg() { mFlags |= 1; }
 
+    void offWolfBiteDamage() { mFlags &= ~0x40; }
     void offCutDownHitFlg() { mFlags &= ~0x2; }
     void offDownFlg() { mFlags &= ~0x17; }
 
