@@ -178,6 +178,8 @@ public:
     }
     void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
     bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
+    void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
+    void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -715,6 +717,15 @@ inline bool dMeter2Info_isTempBit(int bit) {
     return g_meter2_info.isTempBit(bit);
 }
 
+inline void dMeter2Info_offSub2DStatus(int bit) {
+    g_meter2_info.offSub2DStatus(bit);
+}
+
+inline void dMeter2Info_onSub2DStatus(int bit) {
+    g_meter2_info.onSub2DStatus(bit);
+}
+
+const char* dMeter2Info_getPlusTextureName();
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
