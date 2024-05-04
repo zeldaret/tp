@@ -4,10 +4,13 @@
 //
 
 #include "rel/d/a/b/d_a_b_bq/d_a_b_bq.h"
+#include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "f_op/f_op_actor_mng.h"
+#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "cmath.h"
 
 //
 // Types:

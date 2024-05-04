@@ -782,7 +782,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
         return 0;
     }
 
-    u32 flags = demo_actor->checkEnable(param_1);
+    u8 flags = demo_actor->checkEnable(param_1);
     if (flags & 2) {
         param_0->current.pos = demo_actor->getTrans();
         param_0->old.pos = param_0->current.pos;
@@ -793,7 +793,7 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     }
 
     if (flags & 4) {
-        param_0->mScale = demo_actor->getScale();
+        param_0->scale = demo_actor->getScale();
     }
 
     if (flags & 0x80) {
@@ -1428,18 +1428,20 @@ SECTION_SDATA2 static f64 lit_5123 = 1.0 / 29.999998435378155;
 
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
 #ifdef NONMATCHING
+// matches with data
 void dDemo_c::create() {
     m_system = new dDemo_system_c();
     m_control = new JStudio::TControl();
     m_mesgControl = new jmessage_tControl();
     m_stage = new JStudio_JStage::TCreateObject(m_system);
     m_audio = new JStudio_JAudio2::TCreateObject(Z2GetSoundStarter(), m_system);
+    m_audio->mPermit_onExit_notEnd = true;
     m_particle = new dDemo_particle_c(dPa_control_c::getEmitterManager(), m_system);
     m_message = new jstudio_tCreateObject_message();
     m_factory = new JStudio::TFactory();
     m_object = new dDemo_object_c();
 
-    m_control->setSecondPerFrame(1.0 / 29.999998435378155);
+    m_control->setSecondPerFrame(1.0f / 30.0f);
     m_control->setFactory(m_factory);
     m_factory->appendCreateObject(m_stage);
     m_factory->appendCreateObject(m_audio);

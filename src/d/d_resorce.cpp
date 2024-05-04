@@ -5,6 +5,8 @@
 
 #include "d/d_resorce.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/com/d_com_inf_game.h"
@@ -393,7 +395,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
         flags ^= 0x60020;
     }
 
-    modelData = (J3DModelData*)J3DModelLoaderDataBase::load(i_data, flags);
+    modelData = J3DModelLoaderDataBase::load(i_data, flags);
     if (modelData == NULL) {
         return NULL;
     }
@@ -447,11 +449,11 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
     }
 
     if (i_type == 'BMDR' || i_type == 'BMWR') {
-        if (modelData->newSharedDisplayList(0x40000) == 0) {
+        if (modelData->newSharedDisplayList(0x40000) != 0) {
+            return NULL;
+        } else {
             modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
             modelData->makeSharedDL();
-        } else {
-            modelData = NULL;
         }
     }
 

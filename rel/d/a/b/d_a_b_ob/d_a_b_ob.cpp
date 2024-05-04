@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
 

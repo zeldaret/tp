@@ -6,6 +6,7 @@
 #include "d/d_stage.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/d_path.h"
 #include "stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/com/d_com_inf_game.h"
@@ -1626,37 +1627,25 @@ SECTION_DEAD static char const* const stringBase_80378AF0 =
 
 /* 80024954-80024A34 01F294 00E0+00 0/0 2/2 0/2 .text resetArchiveBank__20dStage_roomControl_cFi
  */
-// regalloc
-#ifdef NONMATCHING
 bool dStage_roomControl_c::resetArchiveBank(int i_bank) {
-    for (; i_bank < 32; i_bank++) {
-        char* bank = getArcBank(i_bank);
+    for (int i = i_bank; i < 32; i++) {
+        char* bank = getArcBank(i);
 
         if (strcmp(bank, "")) {
             s32 syncStatus = dComIfG_syncObjectRes(bank);
             if (syncStatus < 0) {
-                OSReport_Error("Bank[%d] : %s.arc Sync Read Error !!\n", i_bank, bank);
+                OSReport_Error("Bank[%d] : %s.arc Sync Read Error !!\n", i, bank);
             } else {
                 if (syncStatus > 0) {
                     return 0;
                 }
                 dComIfG_deleteObjectResMain(bank);
-                setArcBank(i_bank, "");
+                setArcBank(i, "");
             }
         }
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dStage_roomControl_c::resetArchiveBank(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/resetArchiveBank__20dStage_roomControl_cFi.s"
-}
-#pragma pop
-#endif
 
 /* 80024A34-80024ABC 01F374 0088+00 1/1 0/0 0/2 .text
  * create__Q220dStage_roomControl_c9roomDzs_cFUc                */
@@ -2366,8 +2355,6 @@ static int dStage_doorInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 }
 
 /* 80025DA8-80025E40 0206E8 0098+00 2/0 0/0 0/0 .text dStage_roomReadInit__FP11dStage_dt_cPviPv */
-// close
-#ifdef NONMATCHING
 static int dStage_roomReadInit(dStage_dt_c* param_0, void* i_data, int param_2, void* param_3) {
     roomRead_class* p_node = (roomRead_class*)((int*)i_data + 1);
     roomRead_data_class** rtbl = p_node->field_0x4;
@@ -2376,24 +2363,13 @@ static int dStage_roomReadInit(dStage_dt_c* param_0, void* i_data, int param_2, 
 
     for (int i = 0; i < p_node->field_0x0; i++) {
         if ((int)rtbl[i] < 0x80000000) {
-            rtbl[i] += (int)param_3;
-            rtbl[i]->field_0x4 += (int)param_3;
+            rtbl[i] = (roomRead_data_class*)((int)rtbl[i] + (int)param_3);
+            rtbl[i]->field_0x4 = (u8*)((int)rtbl[i]->field_0x4 + (int)param_3);
         }
     }
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dStage_roomReadInit(dStage_dt_c* param_0, void* param_1, int param_2,
-                                   void* param_3) {
-    nofralloc
-#include "asm/d/d_stage/dStage_roomReadInit__FP11dStage_dt_cPviPv.s"
-}
-#pragma pop
-#endif
 
 /* 80025E40-80025E70 020780 0030+00 0/0 1/1 0/0 .text
  * dStage_roomRead_dt_c_GetReverbStage__FR14roomRead_classi     */
@@ -2412,8 +2388,6 @@ static int dStage_ppntInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 }
 
 /* 80025EA4-80025F44 0207E4 00A0+00 1/0 0/0 0/0 .text dStage_pathInfoInit__FP11dStage_dt_cPviPv */
-// close
-#ifdef NONMATCHING
 static int dStage_pathInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
     dStage_dPath_c* path_c = (dStage_dPath_c*)((char*)i_data + 4);
     dPath* path = path_c->m_path;
@@ -2422,24 +2396,14 @@ static int dStage_pathInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 
     for (int i = 0; i < path_c->m_num; i++) {
         if ((u32)path->m_points < 0x80000000) {
-            path->m_points += (int)stageDt->getPntInf();
+            // fake match?
+            path->m_points = (dStage_dPnt_c*)((int)path->m_points + *(int*)&stageDt->getPntInf()->m_position);
         }
         path++;
     }
 
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int dStage_pathInfoInit(dStage_dt_c* param_0, void* param_1, int param_2,
-                                   void* param_3) {
-    nofralloc
-#include "asm/d/d_stage/dStage_pathInfoInit__FP11dStage_dt_cPviPv.s"
-}
-#pragma pop
-#endif
 
 /* 80025F44-80025F78 020884 0034+00 2/0 0/0 0/0 .text dStage_rppnInfoInit__FP11dStage_dt_cPviPv */
 static int dStage_rppnInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum, void* param_3) {
@@ -3157,7 +3121,7 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
     }
 
     dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)layer,
-                          speed, mode, 1, wipe == 15 ? 0 : wipe, angle, param_3 != false,
+                          speed, mode, 1, wipe == 15 ? 0 : wipe, angle, param_3 ? 1 : 0,
                           wipe_time);
     return 1;
 }

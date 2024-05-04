@@ -1172,7 +1172,7 @@ bool dPa_modelEcallBack::model_c::set(J3DModelData* param_0, dKy_tevstr_c const&
     *(Arr*)&field_0x8.mColorK0 = *(Arr*)&param_1.mColorK0;
     *(Arr*)&field_0x8.mFogColor = *(Arr*)&param_1.mFogColor;
     *(int*)&field_0x8.field_0x360 = *(int*)&param_1.field_0x360;
-    *(int*)&field_0x8.field_0x364 = *(int*)&param_1.field_0x364;
+    *(int*)&field_0x8.mLightInf = *(int*)&param_1.mLightInf;
     
     field_0x8.mFogStartZ = param_1.mFogStartZ;
     field_0x8.mFogEndZ = param_1.mFogEndZ;

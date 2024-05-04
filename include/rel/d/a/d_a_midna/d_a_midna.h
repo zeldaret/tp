@@ -167,6 +167,10 @@ public:
 
     inline static BOOL checkMidnaRealBody();
 
+    inline static BOOL i_checkMidnaRealBody() {
+        return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
+    }
+
     static bool i_checkMidnaTired() {
         return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }

@@ -6,6 +6,7 @@
 #include "rel/d/a/b/d_a_b_oh2/d_a_b_oh2.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
 

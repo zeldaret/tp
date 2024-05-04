@@ -27,6 +27,7 @@ static u32 lit_1787[1 + 4 /* padding */] = {
 #include "c/c_damagereaction.h"
 #include "d/particle/d_particle.h"
 #include "d/cc/d_cc_uty.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_drawlist.h"
 #include "d/d_resorce.h"
 #include "d/d_bomb.h"

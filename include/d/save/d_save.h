@@ -994,7 +994,7 @@ public:
     dSv_zone_c() { mRoomNo = -1; }
     void init(int i_roomNo);
 
-    dSv_zoneBit_c& getZoneBit() { return mBit; }
+    dSv_zoneBit_c& getBit() { return mBit; }
     const dSv_zoneBit_c& getBit() const { return mBit; }
     dSv_zoneActor_c& getActor() { return mActor; }
     const dSv_zoneActor_c& getActor() const { return mActor; }

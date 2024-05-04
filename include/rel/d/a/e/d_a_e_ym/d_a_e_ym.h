@@ -1,8 +1,13 @@
 #ifndef D_A_E_YM_H
 #define D_A_E_YM_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "f_op/f_op_actor.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
+#include "d/d_path.h"
 
 class daE_YM_HIO_c {
 public:

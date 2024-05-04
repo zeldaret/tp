@@ -159,6 +159,7 @@ public:
     fopAc_ac_c* getPt1() { return convPId(mPt1); }
     fopAc_ac_c* getPt2() { return convPId(mPt2); }
     fopAc_ac_c* getPtT() { return convPId(mPtT); }
+    fopAc_ac_c* getPtD() { return convPId(mPtd); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
     u8 getGtItm() { return mGtItm; }

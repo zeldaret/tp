@@ -378,7 +378,7 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
     return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
 }
 
-inline Vec fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+inline const Vec& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.center;
 }
 
@@ -399,8 +399,8 @@ inline void fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline BOOL fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
-    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
+inline BOOL fopAcM_isSwitch(const fopAc_ac_c* pActor, int sw) {
+    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
 inline fopAc_ac_c* fopAcM_SearchByName(s16 proc_id) {

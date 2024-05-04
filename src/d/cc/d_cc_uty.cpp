@@ -6,8 +6,10 @@
 #include "d/cc/d_cc_uty.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "d/cc/d_cc_d.h"
 #include "d/a/d_a_player.h"
 #include "d/s/d_s_play.h"
+#include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 bool daPy_py_c::checkWoodSwordEquip() {

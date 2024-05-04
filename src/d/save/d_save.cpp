@@ -1529,12 +1529,11 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     } else if (i_no < (MEMORY_SWITCH + DAN_SWITCH)) {
         mDan.onSwitch(i_no - MEMORY_SWITCH);
     } else {
-        int zoneId = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneId = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
-            mZone[zoneId].getZoneBit().onSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
+            mZone[zoneId].getBit().onSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            mZone[zoneId].getZoneBit().onOneSwitch(i_no -
-                                                   (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+            mZone[zoneId].getBit().onOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
 }
@@ -1550,12 +1549,11 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     } else if (i_no < (MEMORY_SWITCH + DAN_SWITCH)) {
         mDan.offSwitch(i_no - MEMORY_SWITCH);
     } else {
-        int zoneId = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneId = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
-            mZone[zoneId].getZoneBit().offSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
+            mZone[zoneId].getBit().offSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            mZone[zoneId].getZoneBit().offOneSwitch(i_no -
-                                                    (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
+            mZone[zoneId].getBit().offOneSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
 }
@@ -1571,7 +1569,7 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     } else if (i_no < (MEMORY_SWITCH + DAN_SWITCH)) {
         return mDan.isSwitch(i_no - MEMORY_SWITCH);
     } else {
-        int zoneId = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneId = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (zoneId < 0 || zoneId >= ZONE_MAX) {
             return FALSE;
         } else {
@@ -1596,11 +1594,11 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     } else if (i_no < (MEMORY_SWITCH + DAN_SWITCH)) {
         return mDan.revSwitch(i_no - MEMORY_SWITCH);
     } else {
-        int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (i_no < (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH)) {
-            return mZone[zoneNo].getZoneBit().revSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
+            return mZone[zoneNo].getBit().revSwitch(i_no - (MEMORY_SWITCH + DAN_SWITCH));
         } else {
-            return mZone[zoneNo].getZoneBit().revOneSwitch(
+            return mZone[zoneNo].getBit().revOneSwitch(
                 i_no - (MEMORY_SWITCH + DAN_SWITCH + ZONE_SWITCH));
         }
     }
@@ -1617,11 +1615,11 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     } else if (i_no < (MEMORY_ITEM + DAN_ITEM)) {
         mMemory.getBit().onItem(i_no - MEMORY_ITEM);
     } else {
-        int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (i_no < (MEMORY_ITEM + DAN_ITEM + ZONE_ITEM)) {
-            mZone[zoneNo].getZoneBit().onItem(i_no - (MEMORY_ITEM + DAN_ITEM));
+            mZone[zoneNo].getBit().onItem(i_no - (MEMORY_ITEM + DAN_ITEM));
         } else {
-            mZone[zoneNo].getZoneBit().onOneItem(i_no - (MEMORY_ITEM + DAN_ITEM + ZONE_ITEM));
+            mZone[zoneNo].getBit().onOneItem(i_no - (MEMORY_ITEM + DAN_ITEM + ZONE_ITEM));
         }
     }
 }
@@ -1637,7 +1635,7 @@ BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     } else if (i_no < (MEMORY_ITEM + DAN_ITEM)) {
         return mMemory.getBit().isItem(i_no - MEMORY_ITEM);
     } else {
-        int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+        int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
         if (i_no < (MEMORY_ITEM + DAN_ITEM + ZONE_ITEM)) {
             return mZone[zoneNo].getBit().isItem(i_no - (MEMORY_ITEM + DAN_ITEM));
         } else {
@@ -1652,7 +1650,7 @@ void dSv_info_c::onActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+    int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
     mZone[zoneNo].getActor().on(i_id);
 }
 
@@ -1662,7 +1660,7 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
         return;
     }
 
-    int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+    int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
     mZone[zoneNo].getActor().off(i_id);
 }
 
@@ -1672,7 +1670,7 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
         return FALSE;
     }
 
-    int zoneNo = dStage_roomControl_c::getZoneNo(i_roomNo);
+    int zoneNo = dComIfGp_roomControl_getZoneNo(i_roomNo);
     return mZone[zoneNo].getActor().is(i_id);
 }
 

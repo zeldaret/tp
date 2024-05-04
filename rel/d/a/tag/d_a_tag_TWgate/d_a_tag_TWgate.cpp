@@ -526,15 +526,14 @@ void daTagTWGate_c::initDemoFilone1() {
 }
 
 /* 80D5297C-80D52AF4 0003FC 0178+00 1/0 0/0 0/0 .text executeDemoFilone1__13daTagTWGate_cFv */
-// swapped r30 / r31
-#ifdef NONMATCHING
 void daTagTWGate_c::executeDemoFilone1() {
-    int staffId = dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
+    dEvent_manager_c& event_manager = dComIfGp_getEventManager();
+    int staffId = event_manager.getMyStaffId(l_myName, NULL, 0);
 
     if (staffId != -1) {
-        int* cutName = (int*)dComIfGp_getEventManager().getMyNowCutName(staffId);
+        int* cutName = (int*)event_manager.getMyNowCutName(staffId);
 
-        if (dComIfGp_evmng_getIsAddvance(staffId)) {
+        if (event_manager.getIsAddvance(staffId)) {
             switch (*cutName) {
             case 0x30303031:
                 dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
@@ -550,27 +549,18 @@ void daTagTWGate_c::executeDemoFilone1() {
                 mAction = ActionTable[mActionID];
                 (this->**mAction)();
             }
-            dComIfGp_evmng_cutEnd(staffId);
+            event_manager.cutEnd(staffId);
         }
 
         if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
-            dComIfGp_evmng_endCheck(mEventID)) {
+            event_manager.endCheck(mEventID))
+        {
             mActionID = ACT_DEMO_FILONE_2;
             mAction = ActionTable[mActionID];
             (this->**mAction)();
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::executeDemoFilone1() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoFilone1__13daTagTWGate_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80D52AF4-80D52BF0 000574 00FC+00 1/0 0/0 0/0 .text            initDemoFilone2__13daTagTWGate_cFv
  */
@@ -582,7 +572,7 @@ void daTagTWGate_c::initDemoFilone2() {
     mEventID =
         dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mTalkEventName, -1);
 
-    if (g_dComIfG_gameInfo.play.mEvent.mEventStatus != 0) {
+    if (dComIfGp_event_runCheck()) {
         dComIfGp_getEvent().reset(this);
         fopAcM_orderChangeEventId(this, mEventID, 1, -1);
     } else {
@@ -1068,19 +1058,24 @@ int daTagTWGate_c::createHeapCallBack(fopAc_ac_c* i_actor) {
 
 /* 80D55180-80D55288 002C00 0108+00 1/1 0/0 0/0 .text            CreateHeap__13daTagTWGate_cFv */
 #ifdef NONMATCHING
-bool daTagTWGate_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("TWGate_Md", 7);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
-                                  (J3DAnmTransform*)dComIfG_getObjectRes("TWGate_Md", 4), 0, 0.0f,
-                                  0, -1, NULL, 0, 0x11000084);
+// matches with literals
+int daTagTWGate_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("TWGate_Md", 7));
+    mpMorf =
+        new mDoExt_McaMorfSO(modelData, NULL, NULL,
+                             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("TWGate_Md", 4)),
+                             0, 0.0f, 0, -1, NULL, 0, 0x11000084);
 
-    mDoExt_McaMorfSO* morf = mpMorf;
-    if (morf != NULL && morf->getModel() == NULL) {
-        morf->stopZelAnime();
+    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
+        mpMorf->stopZelAnime();
         mpMorf = NULL;
     }
 
-    return mpMorf != NULL;
+    if (mpMorf == NULL) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 #else
 #pragma push
