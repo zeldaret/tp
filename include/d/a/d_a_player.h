@@ -769,6 +769,8 @@ public:
         }
     }
 
+    bool onWolfEnemyCatch(fopAc_ac_c* i_actor) { return onWolfEnemyBiteAll(i_actor, FLG2_UNK_8); }
+
     void offGoronSideMove() {
         if (checkGoronSideMove()) {
             mSpecialMode = 0;
