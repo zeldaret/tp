@@ -827,6 +827,7 @@ public:
     void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
+    void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
