@@ -9,6 +9,7 @@
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_wtr_chk.h"
 #include "d/bg/d_bg_s_roof_chk.h"
+#include "m_Do/m_Do_hostIO.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
     if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
@@ -60,6 +61,17 @@ struct fopAcM_search_prm {
     /* 0x08 */ s16 mProcName;
     /* 0x0A */ s8 mSubType;
 };
+
+// define to avoid vtable mess in WIP TUs
+#ifndef HIO_entry_c_NO_VIRTUAL
+struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
+   virtual ~fOpAcm_HIO_entry_c() {}
+};
+#else
+struct fOpAcm_HIO_entry_c {
+   ~fOpAcm_HIO_entry_c();
+};
+#endif
 
 class l_HIO {
 public:

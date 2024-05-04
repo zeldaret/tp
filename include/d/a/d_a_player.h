@@ -295,7 +295,7 @@ public:
         FLG2_UNK_80000 = 0x80000,
         FLG2_FORCE_GAMEOVER = 0x40000,
         FLG2_UNK_20000 = 0x20000,
-        FLG2_UNK_10000 = 0x10000,
+        FLG2_WOLF_DASH_AUTO_JUMP = 0x10000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
@@ -831,6 +831,7 @@ public:
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
 
     void changeOriginalDemo() {
         mDemo.setOriginalDemoType();
