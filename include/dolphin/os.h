@@ -100,6 +100,7 @@ void OSReportInit(void);
 #define ASSERT(cond) ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
 #else
 #define OS_REPORT(...)
+#define OS_WARNING(...)
 #define OS_REPORT_ERROR(...)
 #define OS_PANIC(...)
 #define ASSERTMSG(exp, msg) ((void)0)

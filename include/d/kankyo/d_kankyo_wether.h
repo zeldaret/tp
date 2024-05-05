@@ -32,6 +32,9 @@ void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power);
 void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind);
 cXyz dKyw_pntwind_get_vecpow(cXyz* param_0);
 void dKyw_pntwind_set(WIND_INFLUENCE* i_pntwind);
+void dKyw_pntlight_collision_get_info(cXyz* param_0, cXyz* param_1, f32* param_2);
+void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 param_3, f32 param_4,
+                               f32 param_5, f32 param_6, f32 param_7);
 
 class dKankyo_sun_Packet : public J3DPacket {
 public:
@@ -308,11 +311,19 @@ struct EF_EVIL_EFF {
     /* 8005706C */ ~EF_EVIL_EFF();
     /* 800570A8 */ EF_EVIL_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ csXyz field_0x1c;
-    /* 0x22 */ u8 field_0x22[0x22];
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ u8 field_0x30[0x38 - 0x30];
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ u16 field_0x3c;
+    /* 0x3E */ u16 field_0x3e;
+    /* 0x40 */ u16 field_0x40;
+    /* 0x42 */ u16 field_0x42;
 };  // Size: 0x44
 
 class dKankyo_evil_Packet : public J3DPacket {

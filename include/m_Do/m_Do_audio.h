@@ -234,4 +234,8 @@ inline void mDoAud_setHyrulSewerOpen(bool i_close) {
     g_mEnvSeMgr.setHyrulSewerOpen(i_close);
 }
 
+inline void mDoAud_startFogSe() {
+    g_mEnvSeMgr.startFogSe();
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

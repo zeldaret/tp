@@ -385,6 +385,7 @@ public:
     s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
     void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
     u8 getNeedLightDropNum() { return mNeedLightDropNum; }
+    void setNeedLightDropNum(u8 i_num) { mNeedLightDropNum = i_num; }
     u8 getWolfAbility(int i_idx) { return mWolfAbility[i_idx]; }
 
     const char* getStartStageName() { return mStartStage.getName(); }
@@ -2696,6 +2697,10 @@ inline void dComIfGp_offOxygenShowFlag() {
 
 inline u8 dComIfGp_getNeedLightDropNum() {
     return g_dComIfG_gameInfo.play.getNeedLightDropNum();
+}
+
+inline void dComIfGp_setNeedLightDropNum(u8 i_num) {
+    g_dComIfG_gameInfo.play.setNeedLightDropNum(i_num);
 }
 
 inline void dComIfGp_setItemNowOil(s32 oil) {

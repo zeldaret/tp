@@ -6723,9 +6723,9 @@ void dKy_bg_MAxx_proc(void* param_0) {
                         mat_p->setTevColor(2, &color);
 
                         if (env_light->field_0x1060 != NULL) {
-                            sp98 = env_light->field_0x1060->field_0x5b8;
-                            f32 var_f29 = env_light->field_0x1060->field_0x5ac.x *
-                                          env_light->field_0x1060->field_0x5d0;
+                            sp98 = env_light->field_0x1060->mAvoidPos;
+                            f32 var_f29 = env_light->field_0x1060->mSize.x *
+                                          env_light->field_0x1060->mSizeScale;
                             if (var_f29 < 0.1f) {
                                 var_f29 = 0.1f;
                             }

@@ -40,10 +40,10 @@ static int daKytag16_Execute(kytag16_class* i_this) {
     if (var_r29) {
         var_r29 = false;
 
-        if (i_this->field_0x573 != 0xFF) {
+        if (i_this->mSwitch != 0xFF) {
             s32 room_no = dComIfGp_roomControl_getStayNo();
 
-            if (dComIfGs_isSwitch(i_this->field_0x573, room_no)) {
+            if (dComIfGs_isSwitch(i_this->mSwitch, room_no)) {
                 var_r29 = true;
             }
         } else {
@@ -72,7 +72,7 @@ static int daKytag16_Execute(kytag16_class* i_this) {
     if (i_this->field_0x568 > 0.001f) {
         dKy_BossSpotLight_set(&i_this->current.pos, i_this->field_0x578 + (12.0f * var_f31),
                               i_this->field_0x57c + (50.0f * var_f30), i_this->field_0x580,
-                              &i_this->field_0x56d, i_this->field_0x574 * i_this->field_0x568,
+                              &i_this->mColor, i_this->field_0x574 * i_this->field_0x568,
                               i_this->field_0x58c, i_this->field_0x58d);
     }
 
@@ -93,80 +93,79 @@ static int daKytag16_Delete(kytag16_class* i_this) {
 /* 80860EAC-8086112C 0002CC 0280+00 2/0 0/0 0/0 .text            daKytag16_Create__FP10fopAc_ac_c */
 static int daKytag16_Create(fopAc_ac_c* i_this) {
     fopAcM_SetupActor(i_this, kytag16_class);
-    kytag16_class* this_ = (kytag16_class*)i_this;
+    kytag16_class* a_this = (kytag16_class*)i_this;
 
-    this_->field_0x573 = fopAcM_GetParam(this_) & 0xFF;
-    this_->field_0x56c = (this_->current.angle.z >> 10) & 0x3F;
+    a_this->mSwitch = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->field_0x56c = (a_this->current.angle.z >> 10) & 0x3F;
 
-    this_->field_0x56d.r = fopAcM_GetParam(this_) >> 0x8;
-    this_->field_0x56d.g = fopAcM_GetParam(this_) >> 0x10;
-    this_->field_0x56d.b = fopAcM_GetParam(this_) >> 0x18;
+    a_this->mColor.r = fopAcM_GetParam(a_this) >> 0x8;
+    a_this->mColor.g = fopAcM_GetParam(a_this) >> 0x10;
+    a_this->mColor.b = fopAcM_GetParam(a_this) >> 0x18;
 
-    this_->field_0x571 = this_->current.angle.z & 0x1F;
-    this_->field_0x572 = (this_->current.angle.z >> 5) & 0x1F;
-    this_->field_0x578 = (this_->shape_angle.x / 32767.0f) * 180.0f;
-    this_->field_0x57c = (this_->shape_angle.y / 32767.0f) * 180.0f;
+    a_this->field_0x571 = a_this->current.angle.z & 0x1F;
+    a_this->field_0x572 = (a_this->current.angle.z >> 5) & 0x1F;
+    a_this->field_0x578 = (a_this->shape_angle.x / 32767.0f) * 180.0f;
+    a_this->field_0x57c = (a_this->shape_angle.y / 32767.0f) * 180.0f;
 
-    this_->field_0x588 = cM_rndFX(65535.0f);
-    this_->field_0x58a = cM_rndFX(65535.0f);
-    this_->field_0x584 = 1.0f;
-    this_->field_0x568 = 0.0f;
+    a_this->field_0x588 = cM_rndFX(65535.0f);
+    a_this->field_0x58a = cM_rndFX(65535.0f);
+    a_this->field_0x584 = 1.0f;
+    a_this->field_0x568 = 0.0f;
 
-    switch (this_->field_0x56c) {
+    switch (a_this->field_0x56c) {
     case 0:
-        this_->field_0x580 = 45.0f;
-        this_->field_0x574 = 1.0f;
-        this_->field_0x58c = 0;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 45.0f;
+        a_this->field_0x574 = 1.0f;
+        a_this->field_0x58c = 0;
+        a_this->field_0x58d = 3;
         break;
     case 1:
-        this_->field_0x580 = 45.0f;
-        this_->field_0x574 = 5.0f;
-        this_->field_0x58c = 0;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 45.0f;
+        a_this->field_0x574 = 5.0f;
+        a_this->field_0x58c = 0;
+        a_this->field_0x58d = 3;
         break;
     case 2:
-        this_->field_0x580 = 45.0f;
-        this_->field_0x574 = 10.0f;
-        this_->field_0x58c = 0;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 45.0f;
+        a_this->field_0x574 = 10.0f;
+        a_this->field_0x58c = 0;
+        a_this->field_0x58d = 3;
         break;
     case 3:
-        this_->field_0x580 = 25.0f;
-        this_->field_0x574 = 1.0f;
-        this_->field_0x58c = 2;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 25.0f;
+        a_this->field_0x574 = 1.0f;
+        a_this->field_0x58c = 2;
+        a_this->field_0x58d = 3;
         break;
     case 4:
-        this_->field_0x580 = 45.0f;
-        this_->field_0x574 = 5.0f;
-        this_->field_0x58c = 2;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 45.0f;
+        a_this->field_0x574 = 5.0f;
+        a_this->field_0x58c = 2;
+        a_this->field_0x58d = 3;
         break;
     case 5:
-        this_->field_0x580 = 70.0f;
-        this_->field_0x574 = 10.0f;
-        this_->field_0x58c = 2;
-        this_->field_0x58d = 3;
+        a_this->field_0x580 = 70.0f;
+        a_this->field_0x574 = 10.0f;
+        a_this->field_0x58c = 2;
+        a_this->field_0x58d = 3;
         break;
     case 6:
-        this_->field_0x580 = 60.0f;
-        this_->field_0x574 = 0.01f;
-        this_->field_0x58c = 2;
-        this_->field_0x58d = 1;
+        a_this->field_0x580 = 60.0f;
+        a_this->field_0x574 = 0.01f;
+        a_this->field_0x58c = 2;
+        a_this->field_0x58d = 1;
         break;
     case 7:
-        this_->field_0x580 = 50.0f;
-        this_->field_0x574 = 0.01f;
-        this_->field_0x58c = 2;
-        this_->field_0x58d = 1;
+        a_this->field_0x580 = 50.0f;
+        a_this->field_0x574 = 0.01f;
+        a_this->field_0x58c = 2;
+        a_this->field_0x58d = 1;
         break;
     }
 
     return cPhs_COMPLEATE_e;
 }
 
-/* ############################################################################################## */
 /* 808611BC-808611DC -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag16_Method */
 static actor_method_class l_daKytag16_Method = {
     (process_method_func)daKytag16_Create,  (process_method_func)daKytag16_Delete,
