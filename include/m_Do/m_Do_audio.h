@@ -218,6 +218,10 @@ inline void mDoAud_mEnvse_registWindowPos(const Vec* i_pos) {
     g_mEnvSeMgr.registWindowPos((Vec*)i_pos);
 }
 
+inline void mDoAud_mEnvse_registWolfSmellSePos(const Vec* i_pos) {
+    g_mEnvSeMgr.registWolfSmellSePos((Vec*)i_pos);
+}
+
 inline void mDoAud_initLv3WaterSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
     g_mEnvSeMgr.initLv3WaterSe(param_0, param_1, param_2, param_3);
 }
