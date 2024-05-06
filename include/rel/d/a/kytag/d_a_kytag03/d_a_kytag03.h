@@ -2,6 +2,7 @@
 #define D_A_KYTAG03_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_path.h"
 
 class kytag03_class : public fopAc_ac_c {
 public:

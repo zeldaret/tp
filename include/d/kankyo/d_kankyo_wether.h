@@ -268,7 +268,9 @@ struct EF_ODOUR_EFF {
     /* 0x00 */ u8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
-    /* 0x1C */ u8 field_0x1c[0x24 - 0x1C];
+    /* 0x1C */ s16 field_0x1c;
+    /* 0x1E */ s16 field_0x1e;
+    /* 0x20 */ f32 field_0x20;
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ f32 field_0x2c;
@@ -281,7 +283,8 @@ public:
 
     /* 0x00010 */ u8* mpResTex;
     /* 0x00014 */ EF_ODOUR_EFF mOdourEff[2000];
-    /* 0x17714 */ u8 field_0x17714[0x14];
+    /* 0x17714 */ cXyz field_0x17714;
+    /* 0x17720 */ u8 field_0x17720[0x17728 - 0x17720];
 };  // Size: 0x17728
 
 struct EF_MUD_EFF {
