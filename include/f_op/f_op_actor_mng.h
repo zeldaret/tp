@@ -362,6 +362,10 @@ inline const cXyz* fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
     return &p_actor->speed;
 }
 
+inline cXyz& fopAcM_GetSpeed(fopAc_ac_c* p_actor) {
+    return p_actor->speed;
+}
+
 inline const cXyz* fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
     return &p_actor->current.pos;
 }

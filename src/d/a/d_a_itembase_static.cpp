@@ -68,10 +68,24 @@ int CheckFieldItemCreateHeap(fopAc_ac_c* actor) {
     );
 }
 
-/* ############################################################################################## */
 /* 803792B0-803792E8 005910 0038+00 0/0 1/1 0/0 .rodata          m_data__12daItemBase_c */
-SECTION_RODATA daItemBase_data const daItemBase_c::m_data = {
-    -4.5f, 0.62f, 45.0f, 10.0f, 6.0f, 1,     240,   60, 4000,
-    120,   -4.0f, 3.5f,  1100,  3000, 23.0f, -6.0f, 13, 10,
+const daItemBase_data daItemBase_c::m_data = {
+    -4.5f,  // mGravity
+    0.62f,  // mGroundReflect
+    45.0f,  // mLaunchSpeed
+    10.0f,  // mScalingTime
+    6.0f,   // mSpeedH
+    1,      // mFlashCycleTime
+    240,    // mWaitTime
+    60,     // mDisappearTime
+    4000,   // mRotateXSpeed
+    120,    // mRotateYSpeed
+    -4.0f,  // mHeartFallSpeed
+    3.5f,   // mHeartAmplitude
+    1100,   // mHeartFallCycleTime
+    3000,   // mHeartTilt
+    23.0f,  // mGetDemoLaunchSpeed
+    -6.0f,  // mGetDemoGravity
+    13,     // mSimpleExistTime
+    10,     // mNoGetTime
 };
-COMPILER_STRIP_GATE(0x803792B0, &daItemBase_c::m_data);

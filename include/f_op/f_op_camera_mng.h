@@ -55,8 +55,16 @@ void fopCamM_SetBank(camera_class* cam, s16 bank) {
     cam->mBank = bank;
 } */
 
+inline s16 fopCamM_GetAngleX(camera_class* i_camera) {
+    return i_camera->mAngle.x;
+}
+
 inline s16 fopCamM_GetAngleY(camera_class* i_camera) {
     return i_camera->mAngle.y;
+}
+
+inline s16 fopCamM_GetAngleZ(camera_class* i_camera) {
+    return i_camera->mAngle.z;
 }
 
 inline f32 fopCamM_GetFovy(camera_class* i_camera) {

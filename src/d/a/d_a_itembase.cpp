@@ -142,7 +142,7 @@ int daItemBase_c::DrawBase() {
 
 /* 80144C30-80144C7C 13F570 004C+00 1/0 1/0 9/0 .text            RotateYBase__12daItemBase_cFv */
 void daItemBase_c::RotateYBase() {
-    shape_angle.y += (s16)(0xFFFF / getData().field_0x1c);
+    shape_angle.y += (s16)(0xFFFF / getData().mRotateYSpeed);
 }
 
 /* 80144C7C-80144CA0 13F5BC 0024+00 1/0 1/0 5/0 .text            setListStart__12daItemBase_cFv */
