@@ -5509,9 +5509,9 @@ BOOL daNpcF_c::chkActorInAttnArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorA
     f32 neg_upper_y = dComIfGp_getAttention().getDistTable(i_distIndex).mUpperY * -1.0f;
     cXyz center = i_actorAttn->current.pos;
     cXyz bounds;
-    bounds.x = dComIfGp_getAttention().getDistTable(i_distIndex).mRadius1;
+    bounds.x = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
     bounds.y = (fabsf(neg_lower_y) + fabsf(neg_upper_y)) / 2.0f;
-    bounds.z = dComIfGp_getAttention().getDistTable(i_distIndex).mRadius1;
+    bounds.z = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
     center.y = bounds.y + (center.y + neg_upper_y);
     if (chkActorInArea(i_actorCheck, center, bounds, i_actorAttn->shape_angle.y)) {
         ret = true;
