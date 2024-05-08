@@ -793,7 +793,7 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
         type_tbl_entry* entry = &table[i];
 
         if (mPlayerAttentionFlags & entry->field_0x2 & param_1->attention_info.flags) {
-            u8 index = param_1->attention_info.field_0x0[entry->field_0x0];
+            u8 index = param_1->attention_info.distances[entry->field_0x0];
             dist_entry* d_entry = &dist_table[index];
 
             if (fopAcM_checkStatus(param_1, 0x20000000) ||
@@ -1143,7 +1143,7 @@ bool dAttention_c::chaseAttention() {
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
         if (weight <= 0.0f) {
             type = mLockOnList[offset].mType;
-            int tbl_idx = actor->attention_info.field_0x0[type];
+            int tbl_idx = actor->attention_info.distances[type];
 
             if (!chkAttMask(type, actor->attention_info.flags)) {
                 return false;
@@ -1198,7 +1198,7 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
         distance = -1.0f;
     } else {
         distance = fopAcM_searchActorDistance(mpPlayer, i_actor);
-        u8 tmp = i_actor->attention_info.field_0x0[2];
+        u8 tmp = i_actor->attention_info.distances[fopAc_attn_BATTLE_e];
 
         if (distance < dist_table[tmp].field_0x0 + dist_table[tmp].field_0x8) {
             return distance;
@@ -1958,7 +1958,7 @@ f32 dAttention_c::LockonReleaseDistanse() {
         return 0.0f;
     }
 
-    int idx =  actor->attention_info.field_0x0[mLockOnList[mLockOnOffset].mType];
+    int idx =  actor->attention_info.distances[mLockOnList[mLockOnOffset].mType];
     cSGlobe tmp_g(actor->attention_info.position - mOwnerAttnPos);
     cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 

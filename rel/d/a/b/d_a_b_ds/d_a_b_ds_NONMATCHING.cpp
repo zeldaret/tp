@@ -2220,7 +2220,7 @@ void daB_DS_c::executeOpeningDemo() {
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
 
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = 4;
             fopAcM_SetGroup(this, 2);
             fopAcM_OnStatus(this, 0);
@@ -3376,7 +3376,7 @@ void daB_DS_c::executeBattle2OpeningDemo() {
             vec.set(644.0f, -1600.0f, 2195.0f);
             dComIfGs_setRestartRoom(vec, -0x664A, 50);
 
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = 4;
             fopAcM_SetGroup(this, 2);
 
@@ -3999,7 +3999,7 @@ void daB_DS_c::executeBattle2Damage() {
         camera->mCamera.SetTrimSize(0);
         dComIfGp_event_reset();
 
-        attention_info.field_0x0[2] = 0x16;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0x16;
         mWeakSph.OnTgSetBit();
         mP2FallTimer = l_HIO.mP2FallTime;
         mMode++;
@@ -4031,7 +4031,7 @@ void daB_DS_c::executeBattle2Damage() {
             emitter->stopDrawParticle();
         }
 
-        attention_info.field_0x0[2] = 0;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0;
         setBck(ANM_HEAD_DOWN_UP, 0, 3.0f, 1.0f);
         Z2GetAudioMgr()->changeBgmStatus(1);
         mWeakSph.OffTgSetBit();
@@ -5886,7 +5886,7 @@ int daB_DS_c::CreateHeap() {
             home.pos.set(0.0f, 1900.0f, 0.0f);
             current.pos.set(0.0f, 1900.0f, 0.0f);
 
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = 4;
 
             fopAcM_SetGroup(this, 2);
@@ -6072,7 +6072,7 @@ cPhs__Step daB_DS_c::create() {
         }
 
         if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags &= ~4;
 
             fopAcM_SetGroup(this, 0);
@@ -6115,7 +6115,7 @@ cPhs__Step daB_DS_c::create() {
             shape_angle.x = 0;
             shape_angle.y = current.angle.y;
 
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = 4;
 
             fopAcM_SetMtx(this, mpMorf->mpModel->getBaseTRMtx());
@@ -6217,7 +6217,7 @@ cPhs__Step daB_DS_c::create() {
                         fopAcM_offSwitch(this, bitSw);
                     }
 
-                    attention_info.field_0x0[2] = 0;
+                    attention_info.distances[fopAc_attn_BATTLE_e] = 0;
                     attention_info.flags &= ~4;
 
                     fopAcM_SetGroup(this, 0);
@@ -6250,7 +6250,7 @@ cPhs__Step daB_DS_c::create() {
                 mChangeVer2();
                 gravity = -1.0f;
 
-                attention_info.field_0x0[2] = 0;
+                attention_info.distances[fopAc_attn_BATTLE_e] = 0;
                 attention_info.flags &= ~4;
 
                 fopAcM_SetGroup(this, 0);

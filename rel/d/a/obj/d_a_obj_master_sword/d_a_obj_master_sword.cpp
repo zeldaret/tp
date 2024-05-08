@@ -503,7 +503,7 @@ void daObjMasterSword_c::create_init() {
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
     cLib_onBit<u32>(attention_info.flags, 0x10);
-    attention_info.field_0x0[4] = 74;
+    attention_info.distances[fopAc_attn_SPEAK_e] = 74;
     attention_info.position = current.pos;
     attention_info.position.y += 100.0f;
     eyePos = attention_info.position;

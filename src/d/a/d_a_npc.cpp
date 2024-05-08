@@ -5911,7 +5911,7 @@ cXyz daNpcF_c::getAttentionPos(fopAc_ac_c* i_ActorP) {
 // matches with literals
 BOOL daNpcF_c::chkFindPlayer2(BOOL i_hasAttn, s16 i_angle) {
     cXyz attn_pos = getAttentionPos(daPy_getPlayerActorClass());
-    int attn_no = i_hasAttn == false ? attention_info.field_0x0[3] : attention_info.field_0x0[1];
+    int attn_no = i_hasAttn == false ? attention_info.distances[fopAc_attn_SPEAK_e] : attention_info.distances[fopAc_attn_TALK_e];
     f32 fvar2 = i_hasAttn == false ? dAttention_c::getDistTable(attn_no).field_0x0
                                    : dAttention_c::getDistTable(attn_no).field_0x4;
     f32 fvar3 = dAttention_c::getDistTable(attn_no).field_0x10 * -1.0f;

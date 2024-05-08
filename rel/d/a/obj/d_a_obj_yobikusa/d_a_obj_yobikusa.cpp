@@ -176,7 +176,7 @@ void daObjYobikusa_c::create_init() {
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
     attention_info.flags |= 0x10;
-    attention_info.field_0x0[4] = 42;
+    attention_info.distances[fopAc_attn_CARRY_e] = 42;
 
     initCcCylinder();
     setAction(MODE_SWING_WIND);
@@ -411,7 +411,7 @@ int daObjYobikusa_c::execute() {
             setAction(MODE_PICK_LEAF);
         }
 
-        attention_info.field_0x0[4] = daPy_py_c::i_checkNowWolf() ? 73 : 42;
+        attention_info.distances[fopAc_attn_CARRY_e] = daPy_py_c::i_checkNowWolf() ? 73 : 42;
         callExecute();
     }
 

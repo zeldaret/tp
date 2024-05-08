@@ -38,7 +38,7 @@ static int daKytag05_Create(fopAc_ac_c* i_this) {
     a_this->field_0x568 = 100.0f * a_this->scale.x;
 
     if (!a_this->field_0x56c) {
-        a_this->attention_info.field_0x0[7] = 0x21;
+        a_this->attention_info.distances[fopAc_attn_ETC_e] = 0x21;
         a_this->attention_info.flags |= 0x80;
     }
 

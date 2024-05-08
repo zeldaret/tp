@@ -119,9 +119,9 @@ int daObjTable_c::Create() {
     } else {
         attention_info.flags = 0x2000000a;
 
-        attention_info.field_0x0[0] = dKy_darkworld_check() ? 218 : 98;
-        attention_info.field_0x0[1] = attention_info.field_0x0[0];
-        attention_info.field_0x0[3] = attention_info.field_0x0[0];
+        attention_info.distances[fopAc_attn_LOCK_e] = dKy_darkworld_check() ? 218 : 98;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     }
 
     attention_info.position.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);

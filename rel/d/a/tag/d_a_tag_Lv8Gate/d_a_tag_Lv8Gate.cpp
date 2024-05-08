@@ -40,7 +40,7 @@ inline void daTagLv8Gate_c::create_init() {
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
     attention_info.flags = 0x10;
-    attention_info.field_0x0[4] = 90;
+    attention_info.distances[fopAc_attn_CARRY_e] = 90;
 
     mEventID = -1;
 

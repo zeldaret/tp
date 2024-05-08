@@ -2856,8 +2856,8 @@ int daMyna_c::orderEvent() {
             attention_info.flags = 10;
         }
         if (attention_info.flags == 10) {
-            attention_info.field_0x0[1] = 0x8B;
-            attention_info.field_0x0[3] = 0x8B;
+            attention_info.distances[fopAc_attn_TALK_e] = 0x8B;
+            attention_info.distances[fopAc_attn_SPEAK_e] = 0x8B;
             eventInfo.i_onCondition(1);
         }
     }

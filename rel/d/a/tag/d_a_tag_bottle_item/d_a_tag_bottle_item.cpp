@@ -67,7 +67,7 @@ void daTag_BottleItem_c::restart() {
 void daTag_BottleItem_c::initialize() {
     fopAcM_setCullSizeBox(this,-30.0f,-15.0f,-30.0f,30.0f,45.0f,30.0f);
     attention_info.flags = 0;
-    attention_info.field_0x0[4] = 6;
+    attention_info.distances[fopAc_attn_CARRY_e] = 6;
     fopAcM_OnCarryType(this,fopAcM_CARRY_SIDE);
     restart();
     Execute();
@@ -137,8 +137,8 @@ s32 daTag_BottleItem_c::orderEvent() {
     }
 
     if (attention_info.flags == 0x20000008) {
-        attention_info.field_0x0[1] = EMPTY_BOTTLE;
-        attention_info.field_0x0[3] = EMPTY_BOTTLE;
+        attention_info.distances[fopAc_attn_TALK_e] = EMPTY_BOTTLE;
+        attention_info.distances[fopAc_attn_SPEAK_e] = EMPTY_BOTTLE;
         eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
     }
 
