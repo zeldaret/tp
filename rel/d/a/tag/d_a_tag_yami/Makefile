@@ -19,6 +19,7 @@ M753_LIBS := \
 M753_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M753_LDFLAGS := \
 	-nodefaults \
