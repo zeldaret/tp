@@ -46,7 +46,7 @@ int daTalk_c::execute() {
         }
     } else {
         if (fopAcM_searchPlayerDistanceXZ(this) >
-            dAttention_c::i_getDistTable(attention_info.field_0x0[1]).mRadius2)
+            dAttention_c::i_getDistTable(attention_info.distances[fopAc_attn_TALK_e]).mDistMaxRelease)
         {
             mMessageID = -1;
             fopAcM_delete(this);

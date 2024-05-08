@@ -27,7 +27,7 @@ int daTag_Howl_c::execute() {
 
     if (isAreaCheck()) {
         attention_info.flags |= 0x80;
-        attention_info.field_0x0[7] = 0x41;
+        attention_info.distances[fopAc_attn_ETC_e] = 0x41;
     }
 
     return 1;

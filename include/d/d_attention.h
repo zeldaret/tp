@@ -141,8 +141,8 @@ public:
 };
 
 struct dist_entry {
-    /* 0x00 */ f32 mRadius1;
-    /* 0x04 */ f32 mRadius2;
+    /* 0x00 */ f32 mDistMax;
+    /* 0x04 */ f32 mDistMaxRelease;
     /* 0x08 */ f32 mDistanceAdjust;
     /* 0x0C */ f32 mUpperY;
     /* 0x10 */ f32 mLowerY;

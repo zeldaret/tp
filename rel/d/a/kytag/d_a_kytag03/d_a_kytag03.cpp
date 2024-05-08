@@ -375,7 +375,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
                 if (player->current.pos.abs(a_this->current.pos) < i_this->field_0x574 &&
                     daPy_py_c::i_checkNowWolf() && !var_r28)
                 {
-                    i_this->attention_info.field_0x0[7] = 0x3D;
+                    i_this->attention_info.distances[fopAc_attn_ETC_e] = 0x3D;
                     a_this->attention_info.flags |= 0x80;
                 } else {
                     a_this->attention_info.flags &= ~0x80;

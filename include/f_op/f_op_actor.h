@@ -82,6 +82,18 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_CUSTOM_e,
 };
 
+enum fopAc_attention_type {
+    fopAc_attn_LOCK_e,
+    fopAc_attn_TALK_e,
+    fopAc_attn_BATTLE_e,
+    fopAc_attn_SPEAK_e,
+    fopAc_attn_CARRY_e,
+    fopAc_attn_DOOR_e,
+    fopAc_attn_JUEL_e,
+    fopAc_attn_ETC_e,
+    fopAc_attn_CHECK_e,
+};
+
 class JKRSolidHeap;
 
 enum dEvt_Command_e {
@@ -162,7 +174,7 @@ struct actor_place {
 };
 
 struct actor_attention_types {
-    /* 0x00 */ u8 field_0x0[9];
+    /* 0x00 */ u8 distances[9];
     /* 0x0A */ s16 field_0xa;
     /* 0x0C */ cXyz position;
     /* 0x18 */ u32 flags;

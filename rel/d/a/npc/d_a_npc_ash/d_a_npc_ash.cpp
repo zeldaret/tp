@@ -2465,20 +2465,20 @@ void daNpcAsh_c::setParam() {
     searchActors();
     attention_info.flags = 0xa;
     if (isSneaking()) {
-        attention_info.field_0x0[0] = 0x4e;
-        attention_info.field_0x0[1] = attention_info.field_0x0[0];
-        attention_info.field_0x0[3] = 0x4d;
+        attention_info.distances[fopAc_attn_LOCK_e] = 0x4e;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 0x4d;
         attention_info.flags |= 0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            attention_info.field_0x0[0] = getDistTableIdx(3, 6);
-            attention_info.field_0x0[1] = attention_info.field_0x0[0];
-            attention_info.field_0x0[3] = getDistTableIdx(2, 6);
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 6);
+            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 6);
         } else {
-            attention_info.field_0x0[0] = getDistTableIdx(daNpcAsh_Param_c::m.mTalkDistIdx,
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcAsh_Param_c::m.mTalkDistIdx,
                                                           daNpcAsh_Param_c::m.mTalkAngleIdx);
-            attention_info.field_0x0[1] = attention_info.field_0x0[0];
-            attention_info.field_0x0[3] = getDistTableIdx(daNpcAsh_Param_c::m.mSpeakDistIdx,
+            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcAsh_Param_c::m.mSpeakDistIdx,
                                                           daNpcAsh_Param_c::m.mSpeakAngleIdx);
         }
     }

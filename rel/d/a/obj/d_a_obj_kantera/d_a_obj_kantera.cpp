@@ -696,7 +696,7 @@ int daItemKantera_c::actionWaitInit() {
     mCollider.OffTgSPrmBit(1);
     mCollider.OffCoSPrmBit(1);
     cLib_offBit<u32>(attention_info.flags, 0x10);
-    attention_info.field_0x0[4] = 16;
+    attention_info.distances[fopAc_attn_SPEAK_e] = 16;
     attention_info.position = current.pos;
     show();
     setStatus(1);

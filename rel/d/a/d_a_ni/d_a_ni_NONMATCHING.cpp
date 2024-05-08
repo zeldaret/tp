@@ -2445,7 +2445,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
             a_this->mCcSph.OffTgSetBit();
         }
 
-        i_this->attention_info.field_0x0[4] = 7;
+        i_this->attention_info.distances[fopAc_attn_SPEAK_e] = 7;
         a_this->mCounter = cM_rndF(0x10000);
 
         cXyz sp34(i_this->current.pos);

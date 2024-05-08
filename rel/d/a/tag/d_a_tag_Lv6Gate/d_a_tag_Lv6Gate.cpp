@@ -181,7 +181,7 @@ void daTagLv6Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -50.0f, 0.0f, -50.0f, 50.0f, 100.0f, 50.0f);
     attention_info.position = current.pos;
     attention_info.flags = (fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
-    attention_info.field_0x0[7] = 89;
+    attention_info.distances[fopAc_attn_ETC_e] = 89;
     mEvtId = -1;
     field_0x76a = 0;
 

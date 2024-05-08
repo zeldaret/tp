@@ -5509,9 +5509,9 @@ BOOL daNpcF_c::chkActorInAttnArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorA
     f32 neg_upper_y = dComIfGp_getAttention().getDistTable(i_distIndex).mUpperY * -1.0f;
     cXyz center = i_actorAttn->current.pos;
     cXyz bounds;
-    bounds.x = dComIfGp_getAttention().getDistTable(i_distIndex).mRadius1;
+    bounds.x = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
     bounds.y = (fabsf(neg_lower_y) + fabsf(neg_upper_y)) / 2.0f;
-    bounds.z = dComIfGp_getAttention().getDistTable(i_distIndex).mRadius1;
+    bounds.z = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
     center.y = bounds.y + (center.y + neg_upper_y);
     if (chkActorInArea(i_actorCheck, center, bounds, i_actorAttn->shape_angle.y)) {
         ret = true;
@@ -5911,7 +5911,7 @@ cXyz daNpcF_c::getAttentionPos(fopAc_ac_c* i_ActorP) {
 // matches with literals
 BOOL daNpcF_c::chkFindPlayer2(BOOL i_hasAttn, s16 i_angle) {
     cXyz attn_pos = getAttentionPos(daPy_getPlayerActorClass());
-    int attn_no = i_hasAttn == false ? attention_info.field_0x0[3] : attention_info.field_0x0[1];
+    int attn_no = i_hasAttn == false ? attention_info.distances[fopAc_attn_SPEAK_e] : attention_info.distances[fopAc_attn_TALK_e];
     f32 fvar2 = i_hasAttn == false ? dAttention_c::getDistTable(attn_no).field_0x0
                                    : dAttention_c::getDistTable(attn_no).field_0x4;
     f32 fvar3 = dAttention_c::getDistTable(attn_no).field_0x10 * -1.0f;
