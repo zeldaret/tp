@@ -51,7 +51,7 @@ enum ItemSlots {
     /* 0x01 */ SLOT_1,
     /* 0x02 */ SLOT_2,
     /* 0x03 */ SLOT_3,
-    /* 0x04 */ SLOT_4,
+    /* 0x04 */ SLOT_4, // Bow Slot
     /* 0x05 */ SLOT_5,
     /* 0x06 */ SLOT_6,
     /* 0x07 */ SLOT_7,
