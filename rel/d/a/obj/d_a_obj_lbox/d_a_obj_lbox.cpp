@@ -193,7 +193,7 @@ static cPhs__Step daObj_Lbox_Create(fopAc_ac_c* i_this) {
                             &a_this->mAcchCir, fopAcM_GetSpeed_p(a_this), NULL, NULL);
         a_this->mAcchCir.SetWall(50.0f, 50.0f);
 
-        a_this->attention_info.field_0x0[2] = 0x16;
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0x16;
 
         daObj_Lbox_Execute(a_this);
     }

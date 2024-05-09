@@ -11,11 +11,11 @@ public:
     /* 0x59C */ JPABaseEmitter* mpEmitter1;
     /* 0x5A0 */ JPABaseEmitter* mpEmitter2;
     /* 0x5A4 */ request_of_phase_process_class mPhase;
-    /* 0x5AC */ cXyz field_0x5ac;
-    /* 0x5B8 */ cXyz field_0x5b8;
-    /* 0x5C4 */ cXyz field_0x5c4;
-    /* 0x5D0 */ f32 field_0x5d0;
-    /* 0x5D4 */ int field_0x5d4;
+    /* 0x5AC */ cXyz mSize;
+    /* 0x5B8 */ cXyz mAvoidPos;
+    /* 0x5C4 */ cXyz mTargetAvoidPos;
+    /* 0x5D0 */ f32 mSizeScale;
+    /* 0x5D4 */ int mSizeTimer;
     /* 0x5D8 */ u8 field_0x5d8;
 };
 

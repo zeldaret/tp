@@ -112,7 +112,7 @@ void daTag_SSDrink_c::restart() {
 void daTag_SSDrink_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     attention_info.flags = 0;
-    attention_info.field_0x0[4] = 6;
+    attention_info.distances[fopAc_attn_CARRY_e] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
     restart();
     Execute();
@@ -193,8 +193,8 @@ int daTag_SSDrink_c::orderEvent() {
 
     if (attention_info.flags == 0x40000008) {
         if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f && fopAcM_seenPlayerAngleY() <= 0x2000) {
-            attention_info.field_0x0[1] = 0x9D;
-            attention_info.field_0x0[3] = 0x9D;
+            attention_info.distances[fopAc_attn_TALK_e] = 0x9D;
+            attention_info.distances[fopAc_attn_SPEAK_e] = 0x9D;
             eventInfo.i_onCondition(1);
         }
     }

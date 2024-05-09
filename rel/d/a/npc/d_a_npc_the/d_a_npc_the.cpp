@@ -2437,22 +2437,22 @@ void daNpcThe_c::setParam() {
     int talk_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : daNpcThe_Param_c::m.mTalkAngleIdx;
     attention_info.flags = 0xa;
     if (isSneaking()) {
-        attention_info.field_0x0[0] = 0x4e;
-        attention_info.field_0x0[1] = attention_info.field_0x0[0];
-        attention_info.field_0x0[3] = 0x4d;
+        attention_info.distances[fopAc_attn_LOCK_e] = 0x4e;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 0x4d;
         attention_info.flags |= 0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            attention_info.field_0x0[0] = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx,
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx,
                                                           talk_angle_idx);
-            attention_info.field_0x0[1] = attention_info.field_0x0[0];
-            attention_info.field_0x0[3] = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx + 1,
+            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx + 1,
                                                           speak_angle_idx);
         } else {
-            attention_info.field_0x0[0] = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx,
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx,
                                                           talk_angle_idx);
-            attention_info.field_0x0[1] = attention_info.field_0x0[0];
-            attention_info.field_0x0[3] = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx,
+            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx,
                                                           speak_angle_idx);
         }
     }

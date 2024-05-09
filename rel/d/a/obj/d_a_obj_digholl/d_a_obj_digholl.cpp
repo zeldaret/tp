@@ -24,7 +24,7 @@ int daObjDigholl_c::create() {
     fopAcM_SetMax(this, 60.0f, 10.0f, 100.0f);
     attention_info.position = current.pos;
     eyePos = attention_info.position;
-    attention_info.field_0x0[7] = 0x20;
+    attention_info.distances[fopAc_attn_ETC_e] = 0x20;
     return cPhs_COMPLEATE_e;
 }
 

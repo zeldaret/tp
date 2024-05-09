@@ -578,7 +578,7 @@ static cPhs__Step daSq_Create(fopAc_ac_c* i_this) {
         _this->mAtSph.Set(at_sph_src);
         _this->mAtSph.SetStts(&_this->mCcStts);
 
-        _this->attention_info.field_0x0[4] = 7;
+        _this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
 
         if (_this->mParam1 == 0xff) {
             _this->mBtkFrame = cM_rndF(3.999f);

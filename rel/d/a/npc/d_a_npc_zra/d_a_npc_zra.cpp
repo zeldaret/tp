@@ -2745,9 +2745,9 @@ void daNpc_zrA_c::setParam() {
             attn_flags = 0;
         }
         
-        attention_info.field_0x0[0] = 64;
-        attention_info.field_0x0[1] = attention_info.field_0x0[0];
-        attention_info.field_0x0[3] = 63;
+        attention_info.distances[fopAc_attn_LOCK_e] = 64;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 63;
     } else {
         if (mType != TYPE_WAIT && mType != TYPE_SPA && mType != TYPE_SEARCH
             && (mType != TYPE_WATERFALL || mActionSelect != 0))
@@ -2758,9 +2758,9 @@ void daNpc_zrA_c::setParam() {
         field_0x14d0 = 0;
         field_0x14d4 = 0;
 
-        attention_info.field_0x0[0] = getDistTableIdx(5, 6);
-        attention_info.field_0x0[1] = attention_info.field_0x0[0];
-        attention_info.field_0x0[3] = getDistTableIdx(3, 6);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(5, 6);
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(3, 6);
     }
 
     attention_info.flags = attn_flags;

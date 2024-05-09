@@ -726,7 +726,7 @@ static void bee_nest_action(e_nest_class* i_this) {
 
     if (carry_check) {
         cLib_onBit<u32>(i_this->attention_info.flags, 0x10);
-        i_this->attention_info.field_0x0[4] = 0x2c;
+        i_this->attention_info.distances[fopAc_attn_CARRY_e] = 0x2c;
         if (fopAcM_checkCarryNow(i_this)) {
             i_this->mAction = e_nest_class::ACT_CARRY;
             i_this->mMode = 0;

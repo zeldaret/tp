@@ -47,7 +47,7 @@ int daTagMwait_c::create() {
     attention_info.position.set(mWaitPosition.x, mWaitPosition.y + 220.0f, mWaitPosition.z);
     eyePos.set(mWaitPosition.x, mWaitPosition.y + 150.0f, mWaitPosition.z);
 
-    attention_info.field_0x0[1] = 54;
+    attention_info.distances[fopAc_attn_TALK_e] = 54;
     attention_info.flags = 0;
     return cPhs_COMPLEATE_e;
 }

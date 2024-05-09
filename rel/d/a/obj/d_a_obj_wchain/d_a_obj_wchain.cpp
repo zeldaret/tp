@@ -292,7 +292,7 @@ cPhs__Step daObjWchain_c::create() {
         tevStr.mRoomNo = dStage_roomControl_c::mStayNo;
         attention_info.position = current.pos;
         eyePos = attention_info.position;
-        attention_info.field_0x0[0] = 0x1c;
+        attention_info.distances[fopAc_attn_LOCK_e] = 0x1c;
         fopAcM_SetMtx(this, mpHandleModel->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -45.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 800.0f, 200.0f);

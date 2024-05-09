@@ -809,13 +809,13 @@ public:
     /* 80155BCC */ virtual void drawOtherMdls();
 
     BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
-        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.field_0x0[3]);
+        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.distances[fopAc_attn_SPEAK_e]);
     }
     BOOL chkPlayerInSpeakArea(fopAc_ac_c* i_actor) {
         return chkActorInSpeakArea(daPy_getPlayerActorClass(), i_actor);
     }
     BOOL chkActorInTalkArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
-        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.field_0x0[1]);
+        return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.distances[fopAc_attn_TALK_e]);
     }
     BOOL chkPlayerInTalkArea(fopAc_ac_c* i_actor) {
         return chkActorInTalkArea(daPy_getPlayerActorClass(), i_actor);

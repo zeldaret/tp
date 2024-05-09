@@ -114,6 +114,7 @@ public:
     u8 getDrawTimes() const { return mDrawTimes; }
     void setRate(f32 rate) { mRate = rate; }
     void setDirectionalSpeed(f32 i_speed) { mDirSpeed = i_speed; }
+    void setRandomDirectionSpeed(f32 i_speed) { mRndmDirSpeed = i_speed; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalSRTMatrix(const Mtx m) { 
@@ -129,6 +130,7 @@ public:
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
         JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
     }
+    void setGlobalDynamicsScale(const JGeometry::TVec3<f32>& i_scale) { mGlobalScl.set(i_scale); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
     u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
     void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }

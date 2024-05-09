@@ -80,16 +80,16 @@ static int daKytag15_Delete(kytag15_class* i_this) {
 
 /* 808608E8-808609B4 000328 00CC+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    kytag15_class* this_ = (kytag15_class*)i_this;
+    kytag15_class* a_this = (kytag15_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag15", 4);
-    this_->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
-    if (this_->mpModel == NULL) {
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (a_this->mpModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag15", 7);
-    if (!this_->mBtk.init(modelData, btk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!a_this->mBtk.init(modelData, btk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -98,29 +98,29 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 808609B4-80860AF0 0003F4 013C+00 1/0 0/0 0/0 .text            daKytag15_Create__FP10fopAc_ac_c */
 static int daKytag15_Create(fopAc_ac_c* i_this) {
-    kytag15_class* this_ = (kytag15_class*)i_this;
+    kytag15_class* a_this = (kytag15_class*)i_this;
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0) {
-        this_->field_0x58c = 1;
+        a_this->field_0x58c = 1;
     } else {
-        this_->field_0x58c = 0;
+        a_this->field_0x58c = 0;
     }
 
-    fopAcM_SetupActor(this_, kytag15_class);
+    fopAcM_SetupActor(a_this, kytag15_class);
 
-    if (this_->field_0x58c == 0) {
+    if (a_this->field_0x58c == 0) {
         if (!dKy_daynight_check()) {
-            this_->field_0x590 = 1.0f;
+            a_this->field_0x590 = 1.0f;
         } else {
-            this_->field_0x590 = 0.0f;
+            a_this->field_0x590 = 0.0f;
         }
     } else {
-        this_->field_0x590 = 0.0f;
+        a_this->field_0x590 = 0.0f;
     }
 
-    int phase = dComIfG_resLoad(&this_->mPhase, "Kytag15");
+    int phase = dComIfG_resLoad(&a_this->mPhase, "Kytag15");
     if (phase == cPhs_COMPLEATE_e) {
-        if (!fopAcM_entrySolidHeap(this_, useHeapInit, 0)) {
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0)) {
             return cPhs_ERROR_e;
         }
     }
@@ -128,7 +128,6 @@ static int daKytag15_Create(fopAc_ac_c* i_this) {
     return phase;
 }
 
-/* ############################################################################################## */
 /* 80860B78-80860B98 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag15_Method */
 static actor_method_class l_daKytag15_Method = {
     (process_method_func)daKytag15_Create,  (process_method_func)daKytag15_Delete,

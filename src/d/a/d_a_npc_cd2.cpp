@@ -2330,10 +2330,3 @@ asm void __sinit_d_a_npc_cd2_cpp(){nofralloc
 #pragma force_active on
 REGISTER_CTORS(0x8015A90C, __sinit_d_a_npc_cd2_cpp);
 #pragma pop
-
-/* ############################################################################################## */
-/* 80451010-80451018 000510 0008+00 0/0 1/1 0/0 .sbss            None */
-extern u8 data_80451010[8];
-u8 data_80451010[8];
-
-/* 80393B70-80393B70 0201D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

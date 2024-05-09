@@ -38,14 +38,13 @@ static int daKytag05_Create(fopAc_ac_c* i_this) {
     a_this->field_0x568 = 100.0f * a_this->scale.x;
 
     if (!a_this->field_0x56c) {
-        a_this->attention_info.field_0x0[7] = 0x21;
+        a_this->attention_info.distances[fopAc_attn_ETC_e] = 0x21;
         a_this->attention_info.flags |= 0x80;
     }
 
     return cPhs_COMPLEATE_e;
 }
 
-/* ############################################################################################## */
 /* 80528B1C-80528B3C -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag05_Method */
 static actor_method_class l_daKytag05_Method = {
     (process_method_func)daKytag05_Create,  (process_method_func)daKytag05_Delete,

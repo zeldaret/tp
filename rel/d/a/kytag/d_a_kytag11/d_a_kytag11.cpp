@@ -98,33 +98,22 @@ static int daKytag11_Delete(kytag11_class* i_this) {
 
 /* 805297A8-80529854 000308 00AC+00 1/0 0/0 0/0 .text            daKytag11_Create__FP10fopAc_ac_c */
 static int daKytag11_Create(fopAc_ac_c* i_this) {
+    kytag11_class* a_this = (kytag11_class*)i_this;
     fopAcM_SetupActor(i_this, kytag11_class);
 
-    kytag11_class* this_ = (kytag11_class*)i_this;
-
-    this_->mNewTime = fopAcM_GetParam(this_) & 0x1F;
-    this_->mStopTime = (fopAcM_GetParam(this_) >> 5) & 0x1F;
-    this_->mEnvTime = (fopAcM_GetParam(this_) >> 10) & 0xFF;
-    this_->mOnEventID = this_->current.angle.x & 0xFFF;
-    this_->mOffEventID = this_->current.angle.y & 0xFFF;
-    this_->mOnSwitchNo = this_->current.angle.z & 0xFF;
-    this_->mOffSwitchNo = (this_->current.angle.z >> 8) & 0xFF;
-    this_->mChangeTime = false;
-    this_->mInitTimeChange = false;
+    a_this->mNewTime = fopAcM_GetParam(i_this) & 0x1F;
+    a_this->mStopTime = (fopAcM_GetParam(i_this) >> 5) & 0x1F;
+    a_this->mEnvTime = (fopAcM_GetParam(i_this) >> 10) & 0xFF;
+    a_this->mOnEventID = i_this->current.angle.x & 0xFFF;
+    a_this->mOffEventID = i_this->current.angle.y & 0xFFF;
+    a_this->mOnSwitchNo = i_this->current.angle.z & 0xFF;
+    a_this->mOffSwitchNo = (i_this->current.angle.z >> 8) & 0xFF;
+    a_this->mChangeTime = false;
+    a_this->mInitTimeChange = false;
 
     return cPhs_COMPLEATE_e;
 }
 
-/* 80529854-8052988C 0003B4 0038+00 1/1 0/0 0/0 .text            dKankyo_DayProc__Fv */
-// this is a weak func that should be compiler generated, unsure how to make it do that for now
-/* #pragma push
-#pragma force_active on
-extern "C" void dKankyo_DayProc__Fv() {
-    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[91]);
-}
-#pragma pop */
-
-/* ############################################################################################## */
 /* 805298B4-805298D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag11_Method */
 static actor_method_class l_daKytag11_Method = {
     (process_method_func)daKytag11_Create,  (process_method_func)daKytag11_Delete,
