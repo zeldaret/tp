@@ -110,9 +110,11 @@ private:
     /* 0x1F0 */ ResTIMG* mpSelectItemTexBuf[4][3][2];
     /* 0x250 */ ResTIMG* mpItemBuf[MAX_ITEM_SLOTS][3];
     /* 0x370 */ dMenu_ItemExplain_c* mpItemExplain;
-    /* 0x374 */ void* mpResData[3];  // Contains screen data from .blo files which control e.g. the
-                                     // appearance of specific sprites and where they are on the screen
-    /* 0x380 */ cXyz mCursorPos; // Positions the cursor with it's X and Z coordinates
+    /* 0x374 */ void*
+        mpResData[3];  // Contains screen data from .blo files which control e.g. the
+                       // appearance of specific sprites and where they are on the screen
+    /* 0x380 */ cXyz mDirectSelectCursorPos;  // Positions the cursor with it's X and Z coordinates
+                                              // when Direct Select is active
     /* 0x38C */ f32 mItemSlotPosX[MAX_ITEM_SLOTS];
     /* 0x3EC */ f32 mItemSlotPosY[MAX_ITEM_SLOTS];
     /* 0x44C */ f32 mItemSlotParam1[MAX_ITEM_SLOTS];

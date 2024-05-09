@@ -131,7 +131,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     mOldStatus = STATUS_WAIT;
     field_0x6b2 = 0;
     mWaitFrames = 0;
-    mCursorPos.set(0.0f, 0.0f, 0.0f);
+    mDirectSelectCursorPos.set(0.0f, 0.0f, 0.0f);
     mCurrentSlot = SLOT_0;
     field_0x6a9 = 0;
     mXButtonSlot = 0xff;
@@ -501,8 +501,8 @@ dMenu_Ring_c::~dMenu_Ring_c() {
 
 /* 801EAB7C-801EABE8 1E54BC 006C+00 0/0 1/1 0/0 .text            _create__12dMenu_Ring_cFv */
 /** @details
- * Initializes the very first status (which is STATUS_WAIT) after the ctor.
- * Also plays the item wheel opening sound
+ * Initializes the very first status (which is STATUS_WAIT) after the ctor
+ * and plays the item wheel opening sound
 */
 void dMenu_Ring_c::_create() {
     (this->*stick_init[mStatus])();
@@ -747,8 +747,8 @@ u8 dMenu_Ring_c::getStickInfo(STControl* i_stick) {
 
         if (mCurrentSlot != val2) {
             if (mDoCPd_c::getHoldL(PAD_1)) {
-                mCursorPos.x = mItemSlotPosX[mCurrentSlot];
-                mCursorPos.z = mItemSlotPosY[mCurrentSlot];
+                mDirectSelectCursorPos.x = mItemSlotPosX[mCurrentSlot];
+                mDirectSelectCursorPos.z = mItemSlotPosY[mCurrentSlot];
                 mCurrentSlot = val2;
                 mDirectSelectActive = true;
             } else if (mCurrentSlot >= uVar3) {
@@ -1395,10 +1395,10 @@ void dMenu_Ring_c::stick_move_proc() {
     if (mDirectSelectActive) {
         cXyz target;
         target.set(mItemSlotPosX[mCurrentSlot], 0.0f, mItemSlotPosY[mCurrentSlot]);
-        cLib_addCalcPosXZ(&mCursorPos, target, 1.0f, 70.0f, 1.0f);
-        cXyz sub = mCursorPos - target;
+        cLib_addCalcPosXZ(&mDirectSelectCursorPos, target, 1.0f, 70.0f, 1.0f);
+        cXyz sub = mDirectSelectCursorPos - target;
         if (sub.abs() < 0.5f) {
-            mCursorPos.set(target);
+            mDirectSelectCursorPos.set(target);
             field_0x66e = field_0x670;
             mpDrawCursor->setPos(mItemSlotPosX[mCurrentSlot], mItemSlotPosY[mCurrentSlot]);
             u8 item = dComIfGs_getItem(mItemSlots[mCurrentSlot], false);
@@ -1411,7 +1411,7 @@ void dMenu_Ring_c::stick_move_proc() {
             setStatus(field_0x6b2);
         } else {
             mpDrawCursor->setParam(1.0f, 1.0f, 0.1f, 0.6f, 0.5f);
-            mpDrawCursor->setPos(mCursorPos.x, mCursorPos.z);
+            mpDrawCursor->setPos(mDirectSelectCursorPos.x, mDirectSelectCursorPos.z);
         }
     } else {
         if (field_0x6d3 == 0xff) {
