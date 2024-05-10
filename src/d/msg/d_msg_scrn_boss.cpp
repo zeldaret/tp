@@ -18,8 +18,8 @@ dMsgScrnBoss_c::dMsgScrnBoss_c() {
     mpScreen->setPriority("zelda_boss_name.blo", 0x20000, dComIfGp_getMsgArchive(4));
     dPaneClass_showNullPane(mpScreen);
 
-    mpPmp_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
 
     mpFontParent = new CPaneMgr(mpScreen, 's_font_n', 0, NULL);
     mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
@@ -57,8 +57,8 @@ dMsgScrnBoss_c::~dMsgScrnBoss_c() {
     delete mpScreen;
     mpScreen = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     delete mpFontParent;
     mpFontParent = NULL;
@@ -76,7 +76,7 @@ dMsgScrnBoss_c::~dMsgScrnBoss_c() {
 
 /* 8023CA88-8023CB98 2373C8 0110+00 1/0 0/0 0/0 .text            exec__14dMsgScrnBoss_cFv */
 void dMsgScrnBoss_c::exec() {
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBossNameScaleX, g_MsgObject_HIO_c.mBossNameScaleY);
 
     mpFontParent->scale(g_MsgObject_HIO_c.mBossNameCharSizeX, g_MsgObject_HIO_c.mBossNameCharSizeY);
     mpFontParent->paneTrans(g_MsgObject_HIO_c.mBossNameCharPosX,
@@ -100,7 +100,7 @@ void dMsgScrnBoss_c::drawSelf() {
 
 /* 8023CBF0-8023CC7C 237530 008C+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBoss_cFf */
 void dMsgScrnBoss_c::fukiAlpha(f32 i_alpha) {
-    mpPmp_c->setAlphaRate(i_alpha);
+    mpPmP_c->setAlphaRate(i_alpha);
     mpBaseParent->setAlphaRate(i_alpha * g_MsgObject_HIO_c.mBossNameBaseAlpha);
 
     for (int i = 0; i < 7; i++) {

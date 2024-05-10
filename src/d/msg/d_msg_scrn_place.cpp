@@ -31,8 +31,8 @@ dMsgScrnPlace_c::dMsgScrnPlace_c() {
     mpScreen->setPriority("zelda_stage_title_foreign.blo", 0x20000, dComIfGp_getMsgArchive(4));
     dPaneClass_showNullPane(mpScreen);
 
-    mpPmp_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
-    mpPmp_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
 
     mpFontParent = new CPaneMgr(mpScreen, 's_font_n', 0, NULL);
     mpFontParent->scale(g_MsgObject_HIO_c.mStageTitleCharSizeX,
@@ -74,8 +74,8 @@ dMsgScrnPlace_c::~dMsgScrnPlace_c() {
     delete mpScreen;
     mpScreen = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     delete mpFontParent;
     mpFontParent = NULL;
@@ -93,7 +93,7 @@ dMsgScrnPlace_c::~dMsgScrnPlace_c() {
 
 /* 80246924-80246A44 241264 0120+00 1/0 0/0 0/0 .text            exec__15dMsgScrnPlace_cFv */
 void dMsgScrnPlace_c::exec() {
-    mpPmp_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
 
     mpFontParent->scale(g_MsgObject_HIO_c.mStageTitleCharSizeX,
                         g_MsgObject_HIO_c.mStageTitleCharSizeY);
@@ -119,7 +119,7 @@ void dMsgScrnPlace_c::drawSelf() {
 
 /* 80246A9C-80246B28 2413DC 008C+00 1/0 0/0 0/0 .text            fukiAlpha__15dMsgScrnPlace_cFf */
 void dMsgScrnPlace_c::fukiAlpha(f32 i_rate) {
-    mpPmp_c->setAlphaRate(i_rate);
+    mpPmP_c->setAlphaRate(i_rate);
     mpBaseParent->setAlphaRate(i_rate * g_MsgObject_HIO_c.mStageTitleBaseAlpha);
 
     for (int i = 0; i < 7; i++) {

@@ -39,7 +39,7 @@ public:
     /* 80238C5C */ virtual void fukiPosCalc(u8);
 
     /* 0x04 */ J2DScreen* mpScreen;
-    /* 0x08 */ CPaneMgr* mpPmp_c;
+    /* 0x08 */ CPaneMgr* mpPmP_c;
     /* 0x0C */ CPaneMgr* mpTm_c[7];
     /* 0x28 */ CPaneMgr* mpTmr_c[7];
     /* 0x44 */ COutFont_c* mpOutFont;

@@ -42,14 +42,14 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     field_0xd0->searchUpdateMaterialID(mpScreen);
     field_0xd8 = 0.0f;
 
-    mpPmp_c = new CPaneMgr(mpScreen, 'n_size', 2, NULL);
-    JUT_ASSERT(60, mpPmp_c != 0);
-    mpPmp_c->getPanePtr()->setAnimation(field_0xcc);
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_size', 2, NULL);
+    JUT_ASSERT(60, mpPmP_c != 0);
+    mpPmP_c->getPanePtr()->setAnimation(field_0xcc);
 
     field_0xcc->setFrame(1.0f);
-    mpPmp_c->getPanePtr()->animationTransform();
-    mpPmp_c->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBoxStoneScaleX, g_MsgObject_HIO_c.mBoxStoneScaleY);
+    mpPmP_c->getPanePtr()->animationTransform();
+    mpPmP_c->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxStoneScaleX, g_MsgObject_HIO_c.mBoxStoneScaleY);
 
     mpBack_c = new CPaneMgr(mpScreen, 'back_b', 0, NULL);
     JUT_ASSERT(68, mpBack_c != 0);
@@ -109,8 +109,8 @@ dMsgScrnKanban_c::~dMsgScrnKanban_c() {
     delete field_0xd0;
     field_0xd0 = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     delete mpBack_c;
     mpBack_c = NULL;
@@ -144,7 +144,7 @@ void dMsgScrnKanban_c::exec() {
         fukiAlpha(1.0f);
     }
 
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBoxStoneScaleX, g_MsgObject_HIO_c.mBoxStoneScaleY);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxStoneScaleX, g_MsgObject_HIO_c.mBoxStoneScaleY);
 }
 
 /* 80245618-802456A0 23FF58 0088+00 1/0 0/0 0/0 .text            draw__16dMsgScrnKanban_cFv */
@@ -158,7 +158,7 @@ void dMsgScrnKanban_c::draw() {
 /* 802456A0-80245754 23FFE0 00B4+00 1/0 0/0 0/0 .text            fukiAlpha__16dMsgScrnKanban_cFf */
 void dMsgScrnKanban_c::fukiAlpha(f32 param_0) {
     mpBack_c->setAlphaRate(param_0);
-    mpPmp_c->setAlphaRate(param_0 * g_MsgObject_HIO_c.mBoxStoneAlphaP);
+    mpPmP_c->setAlphaRate(param_0 * g_MsgObject_HIO_c.mBoxStoneAlphaP);
     mpSpot_c->setAlphaRate(param_0);
 
     for (int i = 0; i < 3; i++) {
