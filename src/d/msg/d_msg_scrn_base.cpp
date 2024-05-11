@@ -16,7 +16,7 @@ dMsgScrnBase_c::~dMsgScrnBase_c() {}
 /* 8023C16C-8023C234 236AAC 00C8+00 1/1 9/9 0/0 .text            init__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::init() {
     mpScreen = NULL;
-    mpPmp_c = NULL;
+    mpPmP_c = NULL;
     field_0x54 = 0;
 
     for (int i = 0; i < 7; i++) {
@@ -110,18 +110,18 @@ void dMsgScrnBase_c::setRubyString(char* i_string) {
 
 /* 8023C458-8023C480 236D98 0028+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBase_cFf */
 void dMsgScrnBase_c::fukiScale(f32 i_scale) {
-    mpPmp_c->paneScale(i_scale, i_scale);
+    mpPmP_c->paneScale(i_scale, i_scale);
 }
 
 /* 8023C480-8023C4A4 236DC0 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBase_cFff */
 void dMsgScrnBase_c::fukiTrans(f32 i_posX, f32 i_posY) {
-    mpPmp_c->paneTrans(i_posX, i_posY);
+    mpPmP_c->paneTrans(i_posX, i_posY);
 }
 
 /* 8023C4A4-8023C4F4 236DE4 0050+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBase_cFf */
 void dMsgScrnBase_c::fukiAlpha(f32 i_alpha) {
     fontAlpha(i_alpha);
-    mpPmp_c->setAlphaRate(i_alpha);
+    mpPmP_c->setAlphaRate(i_alpha);
 }
 
 /* 8023C4F4-8023C574 236E34 0080+00 1/0 5/0 0/0 .text            fontAlpha__14dMsgScrnBase_cFf */

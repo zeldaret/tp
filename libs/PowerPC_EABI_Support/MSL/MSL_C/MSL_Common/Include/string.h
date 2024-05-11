@@ -4,9 +4,6 @@
 #include "stddef.h"
 
 #ifdef __cplusplus
-// TODO: std namespace should be used for C++, but it breaks asm compatibility afaict.
-// try to fix later
-// namespace std {
 extern "C" {
 #endif
 
@@ -26,7 +23,6 @@ char* strcpy(char* dst, const char* src);
 size_t strlen(const char* str);
 
 #ifdef __cplusplus
-// }
 }
 #endif
 

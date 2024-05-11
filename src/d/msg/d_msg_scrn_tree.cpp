@@ -46,12 +46,12 @@ dMsgScrnTree_c::dMsgScrnTree_c(JUTFont* param_0, JKRExpHeap* param_1) {
     field_0xd4->searchUpdateMaterialID(mpScreen);
     field_0xe0 = 0.0f;
 
-    mpPmp_c = new CPaneMgr(mpScreen, 'n_size', 2, NULL);
-    mpPmp_c->getPanePtr()->setAnimation(field_0xcc);
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_size', 2, NULL);
+    mpPmP_c->getPanePtr()->setAnimation(field_0xcc);
     field_0xcc->setFrame(1.0f);
-    mpPmp_c->getPanePtr()->animationTransform();
-    mpPmp_c->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBoxWoodScaleX, g_MsgObject_HIO_c.mBoxWoodScaleY);
+    mpPmP_c->getPanePtr()->animationTransform();
+    mpPmP_c->getPanePtr()->setAnimation((J2DAnmTransform*)NULL);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxWoodScaleX, g_MsgObject_HIO_c.mBoxWoodScaleY);
 
     field_0xc4 = new CPaneMgr(mpScreen, 'back_b', 0, NULL);
     field_0xc8 = new CPaneMgr(mpScreen, 'spot00', 0, NULL);
@@ -112,8 +112,8 @@ dMsgScrnTree_c::~dMsgScrnTree_c() {
     delete field_0xd4;
     field_0xd4 = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     delete field_0xc4;
     field_0xc4 = NULL;
@@ -152,7 +152,7 @@ void dMsgScrnTree_c::exec() {
     if (isTalkNow()) {
         fukiAlpha(1.0f);
     }
-    mpPmp_c->scale(g_MsgObject_HIO_c.mBoxWoodScaleX, g_MsgObject_HIO_c.mBoxWoodScaleY);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxWoodScaleX, g_MsgObject_HIO_c.mBoxWoodScaleY);
 }
 
 /* 80249270-802492F8 243BB0 0088+00 1/0 0/0 0/0 .text            draw__14dMsgScrnTree_cFv */
@@ -166,7 +166,7 @@ void dMsgScrnTree_c::draw() {
 /* 802492F8-802493AC 243C38 00B4+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnTree_cFf */
 void dMsgScrnTree_c::fukiAlpha(f32 param_0) {
     field_0xc4->setAlphaRate(param_0);
-    mpPmp_c->setAlphaRate(param_0 * g_MsgObject_HIO_c.mBoxWoodAlphaP);
+    mpPmP_c->setAlphaRate(param_0 * g_MsgObject_HIO_c.mBoxWoodAlphaP);
     field_0xc8->setAlphaRate(param_0);
 
     for (int i = 0; i < 3; i++) {

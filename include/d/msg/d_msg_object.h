@@ -558,7 +558,7 @@ public:
     /* 0x2F4 */ s16 mMsgIndex;
     /* 0x2F6 */ s16 mFlowIndex;
     /* 0x2F8 */ s16 mSaveSeqMsgIndex;
-    /* 0x2FA */ u16 mSelWeightFrame;
+    /* 0x2FA */ s16 mSelWaitFrame;
     /* 0x2FC */ u16 mBoxAppearBound;
     /* 0x2FE */ u16 mBoxAppearFrame;
     /* 0x300 */ u16 mWaitFrame;

@@ -451,7 +451,7 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     JUT_ASSERT(73, fg != false);
     dPaneClass_showNullPane(mpScreen);
     mpScreen->search('line00')->hide();
-    mpPmp_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
     JUT_ASSERT(79, mpPmP_c != 0);
     mpScreen->search('ag_n')->hide();
     field_0x1994 = 0.0f;
@@ -618,8 +618,8 @@ dMsgScrnHowl_c::~dMsgScrnHowl_c() {
     delete mpScreen;
     mpScreen = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     for (int i = 0; i < 2; i++) {
         delete mpButtonIcon[i];
@@ -683,7 +683,7 @@ void dMsgScrnHowl_c::exec() {
         (this->*init_proc[field_0x2798])();
     }
     
-    f32 dVar10 = mpPmp_c->getAlphaRate();
+    f32 dVar10 = mpPmP_c->getAlphaRate();
     f32 fVar1;
     f32 fVar2;
     if (field_0x2798 == 3) {
@@ -869,12 +869,12 @@ void dMsgScrnHowl_c::fukiScale(f32 param_0) {
 
 /* 80242038-8024205C 23C978 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnHowl_cFff */
 void dMsgScrnHowl_c::fukiTrans(f32 param_0, f32 param_1) {
-    mpPmp_c->paneTrans(param_0, param_1);
+    mpPmP_c->paneTrans(param_0, param_1);
 }
 
 /* 8024205C-80242080 23C99C 0024+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnHowl_cFf */
 void dMsgScrnHowl_c::fukiAlpha(f32 param_0) {
-    mpPmp_c->setAlphaRate(param_0);
+    mpPmP_c->setAlphaRate(param_0);
 }
 
 /* 80242080-802420D4 23C9C0 0054+00 0/0 1/1 0/0 .text            isKeyCheck__14dMsgScrnHowl_cFv */

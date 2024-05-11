@@ -137,6 +137,7 @@ public:
 
     JUtility::TColor getCharColor() { return mCharColor; }
     JUtility::TColor getGradColor() { return mGradientColor; }
+    u16 getStringAllocByte() const { return mStringLength; }
 
 // private:
     /* 0x0100 */ JUTFont* mFont;
@@ -153,7 +154,7 @@ public:
     /* 0x012C */ JUtility::TColor mBlackColor;
     /* 0x0130 */ u8 mFlags;
     /* 0x0131 */ bool mTextFontOwned;
-    /* 0x0132 */ s16 mStringLength;
+    /* 0x0132 */ u16 mStringLength;
     /* 0x0134 */ u8 field_0x134[4];
 };  // Size: 0x138
 
