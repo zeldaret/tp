@@ -1,6 +1,6 @@
 /**
- * d_a_tag_yamo.cpp
- * Tag - Yami
+ * d_a_tag_yami.cpp
+ * Tag - Yami (Twili)
  */
 
 #include "rel/d/a/tag/d_a_tag_yami/d_a_tag_yami.h"
@@ -30,7 +30,7 @@ int daTagYami_c::create() {
         return cPhs_ERROR_e;
     }
 
-    // todo debug print
+    OS_REPORT("-------------- TAG YAMI CREATE!!\n");
     mStts.Init(0xff, 0xff, this);
     mCyl.Set(l_sph_src);
     mCyl.SetStts(&mStts);
@@ -110,7 +110,7 @@ void daTagYami_c::onMidnaTagSw() {
 
 /* 80D65F24-80D65F5C 0005A4 0038+00 0/0 0/0 1/1 .text            offMidnaTagSw2__11daTagYami_cFv */
 void daTagYami_c::offMidnaTagSw2() {
-    // todo debug print
+    OS_REPORT("-----------off mtag2 sw!!\n");
     fopAcM_offSwitch(this, mMTagSw2);
 }
 
@@ -130,11 +130,6 @@ int daTagYami_Execute(fopAc_ac_c* i_this) {
 int daTagYami_Delete(daTagYami_c* i_this) {
     i_this->~daTagYami_c();
     return 1;
-}
-
-/* 80D66100-80D6611C 000780 001C+00 1/1 0/0 0/0 .text            setCoC__11daTagYami_cF4cXyz */
-void daTagYami_c::setCoC(cXyz i_coC) {
-    mCoC = i_coC;
 }
 
 /* ############################################################################################## */
@@ -162,3 +157,5 @@ extern actor_process_profile_definition g_profile_TAG_YAMI = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
+
+#pragma nosyminline on

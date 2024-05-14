@@ -15,7 +15,7 @@ public:
     /* 80D65D60 */ f32 getPlDist();
     /* 80D65EEC */ void onMidnaTagSw();
     /* 80D65F24 */ void offMidnaTagSw2();
-    /* 80D66100 */ void setCoC(cXyz);
+    /* 80D66100 */ void setCoC(cXyz i_coC) { mCoC = i_coC; }
 
     u8 get_MTagSw() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 get_MTagSw2() { return fopAcM_GetParamBit(this, 16, 8); }
