@@ -893,7 +893,15 @@ static u8 lit_1010[1 + 3 /* padding */];
 /* 8061B4FC-8061B500 -00001 0004+00 1/2 0/0 0/0 .bss             None */
 /* 8061B4FC 0001+00 data_8061B4FC @1009 */
 /* 8061B4FD 0003+00 data_8061B4FD None */
-static u8 struct_8061B4FC[4];
+#pragma push
+#pragma force_active on
+static u8 struct_8061B4FC;
+#pragma pop
+
+#pragma push
+#pragma force_active on
+static u8 data_8061B4FD;
+#pragma pop
 
 /* 8061B500-8061B504 000048 0004+00 0/2 0/0 0/0 .bss             moveSW */
 #pragma push
@@ -1024,7 +1032,7 @@ static int sui_nodeCallBack(J3DJoint* i_joint, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void sui_nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm int sui_nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/sui_nodeCallBack__FP8J3DJointi.s"
 }
@@ -5661,21 +5669,218 @@ static asm int daB_OB_Execute(b_ob_class* i_this) {
 #endif
 
 /* 806193B4-806193BC 008F34 0008+00 1/0 0/0 0/0 .text            daB_OB_IsDelete__FP10b_ob_class */
-static bool daB_OB_IsDelete(b_ob_class* i_this) {
-    return true;
+static int daB_OB_IsDelete(b_ob_class* i_this) {
+    return 1;
 }
 
 /* 806193BC-80619438 008F3C 007C+00 1/0 0/0 0/0 .text            daB_OB_Delete__FP10b_ob_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daB_OB_Delete(b_ob_class* i_this) {
-    nofralloc
-#include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/daB_OB_Delete__FP10b_ob_class.s"
+static int daB_OB_Delete(b_ob_class* i_this) {
+    dComIfG_resDelete(&i_this->mPhase, "B_oh");
+
+    if (i_this->field_0x5de0) {
+        data_8061B4FD = 0;
+    }
+
+    if (i_this->heap != NULL) {
+        i_this->mSound.stopAnime();
+        i_this->mOISound.deleteObject();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80619438-80619C14 008FB8 07DC+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+// matches with literals
+#ifdef NONMATCHING
+static int useHeapInit(fopAc_ac_c* i_this) {
+    b_ob_class* a_this = (b_ob_class*)i_this;
+
+    a_this->mpCoreMorf =
+        new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x2A), NULL, NULL,
+                             (J3DAnmTransform*)dComIfG_getObjectRes("B_oh", 0x11), 2, 1.0f, 0, -1,
+                             &a_this->mSound, 0, 0x11000084);
+
+    for (int i = 0; i < 19; i++) {
+        static int p_bmd[] = {43, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+                              34, 34, 34, 34, 34, 34, 34, 34, 38};
+
+        u32 var_r31 = 0x80000;
+        if (p_bmd[i] == 43) {
+            var_r31 = 0;
+        }
+
+        a_this->mBodyParts[i].mpMorf =
+            new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", p_bmd[i]), NULL, NULL,
+                               NULL, 2, 1.0f, 0, -1, 1, NULL, var_r31, 0x11000084);
+
+        if (a_this->mBodyParts[i].mpMorf == NULL ||
+            a_this->mBodyParts[i].mpMorf->getModel() == NULL)
+        {
+            return 0;
+        }
+
+        a_this->mBodyParts[i].mpMorf->getModel()->setUserArea((u32)i_this);
+
+        for (u16 j = 0; j < a_this->mBodyParts[i].mpMorf->getModel()->getModelData()->getJointNum();
+             j++)
+        {
+            if (p_bmd[i] == 0x2B) {
+                a_this->mBodyParts[i]
+                    .mpMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(HeadCallBack);
+            } else if (p_bmd[i] == 0x26) {
+                a_this->mBodyParts[i]
+                    .mpMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(TailCallBack);
+            }
+        }
+
+        if (i >= 4 && i <= 17) {
+            a_this->mBodyParts[i].mpFinMorf =
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x23), NULL, NULL,
+                                   NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+
+            if (a_this->mBodyParts[i].mpFinMorf == NULL ||
+                a_this->mBodyParts[i].mpFinMorf->getModel() == NULL)
+            {
+                return 0;
+            }
+
+            a_this->mBodyParts[i].mpFinMorf->getModel()->setUserArea((u32)i_this);
+
+            for (u16 j = 0;
+                 j < a_this->mBodyParts[i].mpFinMorf->getModel()->getModelData()->getJointNum();
+                 j++)
+            {
+                a_this->mBodyParts[i]
+                    .mpFinMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(FinACallBack);
+            }
+
+            if (dComIfGs_isSwitch(0x1C, fopAcM_GetRoomNo(i_this))) {
+                a_this->mBodyParts[i].field_0x3e = 1;
+            } else {
+                a_this->mBodyParts[i].mFinARot.x = 0xF060;
+            }
+        }
+
+        if (i >= 7 && i <= 15) {
+            a_this->mBodyParts[i].mpFinUnkMorf =
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x23), NULL, NULL,
+                                   NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+
+            if (a_this->mBodyParts[i].mpFinUnkMorf == NULL ||
+                a_this->mBodyParts[i].mpFinUnkMorf->getModel() == NULL)
+            {
+                return 0;
+            }
+
+            a_this->mBodyParts[i].mpFinUnkMorf->getModel()->setUserArea((u32)i_this);
+
+            for (u16 j = 0;
+                 j < a_this->mBodyParts[i].mpFinUnkMorf->getModel()->getModelData()->getJointNum();
+                 j++)
+            {
+                a_this->mBodyParts[i]
+                    .mpFinUnkMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(FinACallBack);
+            }
+        }
+
+        if (i == 8) {
+            a_this->mBodyParts[i].mpFinBMorf =
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x24), NULL, NULL,
+                                   NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+
+            if (a_this->mBodyParts[i].mpFinBMorf == NULL ||
+                a_this->mBodyParts[i].mpFinBMorf->getModel() == NULL)
+            {
+                return 0;
+            }
+
+            a_this->mBodyParts[i].mpFinBMorf->getModel()->setUserArea((u32)i_this);
+
+            for (u16 j = 0;
+                 j < a_this->mBodyParts[i].mpFinBMorf->getModel()->getModelData()->getJointNum();
+                 j++)
+            {
+                a_this->mBodyParts[i]
+                    .mpFinBMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(FinBCallBack);
+            }
+        }
+
+        if (i == 0x11) {
+            a_this->mBodyParts[i].mpFinCMorf =
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x25), NULL, NULL,
+                                   NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+
+            if (a_this->mBodyParts[i].mpFinCMorf == NULL ||
+                a_this->mBodyParts[i].mpFinCMorf->getModel() == NULL)
+            {
+                return 0;
+            }
+
+            a_this->mBodyParts[i].mpFinCMorf->getModel()->setUserArea((u32)i_this);
+
+            for (u16 j = 0;
+                 j < a_this->mBodyParts[i].mpFinCMorf->getModel()->getModelData()->getJointNum();
+                 j++)
+            {
+                a_this->mBodyParts[i]
+                    .mpFinCMorf->getModel()
+                    ->getModelData()
+                    ->getJointNodePointer(j)
+                    ->setCallBack(FinCCallBack);
+            }
+        }
+    }
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_oh", 0x21);
+    JUT_ASSERT(modelData != 0);
+
+    a_this->mpSuiModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (a_this->mpSuiModel == NULL) {
+        return 0;
+    }
+
+    a_this->mpSuiModel->setUserArea((u32)i_this);
+
+    for (u16 j = 0; j < modelData->getJointNum(); j++) {
+        modelData->getJointNodePointer(j)->setCallBack(sui_nodeCallBack);
+    }
+
+    a_this->mpSuiBrk = new mDoExt_brkAnm();
+    if (a_this->mpSuiBrk == NULL) {
+        return 0;
+    }
+
+    if (!a_this->mpSuiBrk->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2E), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    a_this->mpSuiBtk = new mDoExt_btkAnm();
+    if (a_this->mpSuiBtk == NULL) {
+        return 0;
+    }
+
+    if (!a_this->mpSuiBtk->init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x35), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5684,6 +5889,7 @@ static asm int useHeapInit(fopAc_ac_c* i_this) {
 #include "asm/rel/d/a/b/d_a_b_ob/d_a_b_ob/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80619C14-80619C5C 009794 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
