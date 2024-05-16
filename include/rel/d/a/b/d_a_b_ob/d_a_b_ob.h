@@ -40,9 +40,6 @@ enum b_oh_anm {
 };
 
 struct ob_part_s {
-    /* 8061A658 */ ~ob_part_s();
-    /* 8061A72C */ ob_part_s();
-
     /* 0x00 */ mDoExt_McaMorf* mpMorf;
     /* 0x04 */ mDoExt_McaMorf* mpFinMorf;
     /* 0x08 */ mDoExt_McaMorf* mpFinUnkMorf;
@@ -61,9 +58,6 @@ struct ob_part_s {
 };  // Size: 0x178
 
 struct ob_ke_s {
-    /* 8061A3A0 */ ~ob_ke_s();
-    /* 8061A41C */ ob_ke_s();
-
     /* 0x000 */ cXyz field_0x0[20];
     /* 0x0F0 */ cXyz field_0xf0[20];
     /* 0x1E0 */ cXyz field_0x1e0;
@@ -78,8 +72,6 @@ struct ob_ke_s {
  */
 class b_ob_class : public fopEn_enemy_c {
 public:
-    /* 8061A0C0 */ b_ob_class();
-
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpCoreMorf;
     /* 0x05B8 */ s8 field_0x5b8;

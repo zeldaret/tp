@@ -21,7 +21,6 @@ M149_LIBS := \
 M149_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
-	-sym on \
 
 M149_LDFLAGS := \
 	-nodefaults \
