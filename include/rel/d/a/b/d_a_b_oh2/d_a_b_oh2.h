@@ -1,7 +1,8 @@
 #ifndef D_A_B_OH2_H
 #define D_A_B_OH2_H
 
-#include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
+#include "f_op/f_op_actor_mng.h"
+#include "Z2AudioLib/Z2Creature.h"
 
 /**
  * @ingroup actors-enemies

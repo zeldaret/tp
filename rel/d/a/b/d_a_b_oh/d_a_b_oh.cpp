@@ -9,13 +9,6 @@
 #include "dol2asm.h"
 #include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 
-#define ACTION_START 0
-#define ACTION_WAIT 1
-#define ACTION_ATTACK 2
-#define ACTION_CAUGHT 3
-#define ACTION_END 10
-#define ACTION_NON 11
-
 //
 // Forward References:
 //
@@ -288,7 +281,7 @@ static asm int nodeCallBack(J3DJoint* param_0, int param_1) {
 
 /* 8061B8B0-8061B960 000270 00B0+00 1/0 0/0 0/0 .text            daB_OH_Draw__FP10b_oh_class */
 static int daB_OH_Draw(b_oh_class* i_this) {
-    if (i_this->mAction == ACTION_NON) {
+    if (i_this->mAction == OH_ACTION_NON) {
         return 1;
     }
 
@@ -555,7 +548,7 @@ static void wait(b_oh_class* i_this) {
             i_this->mDistToPlayer < 1300.0f && i_this->mTimers[0] == 0 &&
             boss->field_0x4744 == 0 && boss->field_0x4794 == 0)
         {
-            i_this->mAction = ACTION_ATTACK;
+            i_this->mAction = OH_ACTION_ATTACK;
             i_this->mActionPhase = 0;
             i_this->field_0xc98 = 0;
             boss->field_0x4794 = 3;
@@ -705,7 +698,7 @@ static void attack(b_oh_class* i_this) {
     case 1:
     case 2:
         if (i_this->mTimers[0] == 0) {
-            i_this->mAction = ACTION_WAIT;
+            i_this->mAction = OH_ACTION_WAIT;
             i_this->mActionPhase = 0;
             i_this->field_0xc98 = 0;
             i_this->field_0xca2 = 0;
@@ -769,8 +762,8 @@ static void attack(b_oh_class* i_this) {
                                 boss->field_0x5ce8 = i_this->field_0x5c8;
                                 i_this->mTimers[1] = 20;
 
-                                if (boss->field_0x4752 != 1) {
-                                    boss->field_0x4752 = 1;
+                                if (boss->mAction != OB_ACTION_CORE_HAND_MOVE) {
+                                    boss->mAction = OB_ACTION_CORE_HAND_MOVE;
                                     boss->field_0x4754 = 0;
                                     boss->field_0x4738 = 30;
                                     boss->field_0x473c = 2;
@@ -790,7 +783,7 @@ static void attack(b_oh_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0xc94, 22500, 1, 2000);
         cLib_addCalc2(&i_this->field_0xc8c, 4000.0f, 1.0f, 400.0f);
         if (i_this->mTimers[1] == 1) {
-            i_this->mAction = ACTION_CAUGHT;
+            i_this->mAction = OH_ACTION_CAUGHT;
             i_this->mActionPhase = 0;
             i_this->field_0xc98 = 0;
         }
@@ -848,7 +841,7 @@ static void caught(b_oh_class* i_this) {
                 boss->field_0x5c82 = 0;
             }
 
-            i_this->mAction = ACTION_WAIT;
+            i_this->mAction = OH_ACTION_WAIT;
             i_this->mActionPhase = 0;
             i_this->field_0xc98 = 0;
         }
@@ -941,35 +934,35 @@ static void action(b_oh_class* i_this) {
     cLib_addCalcAngleS2(&a_this->field_0xc98, 0x800, 1, 0x10);
 
     switch (a_this->mAction) {
-    case ACTION_START:
+    case OH_ACTION_START:
         start(a_this);
         var_r28 = 1;
         break;
-    case ACTION_WAIT:
+    case OH_ACTION_WAIT:
         wait(a_this);
         var_r28 = 1;
         break;
-    case ACTION_ATTACK:
+    case OH_ACTION_ATTACK:
         attack(a_this);
         var_r28 = 2;
         boss->field_0x4794 = 180;
         break;
-    case ACTION_CAUGHT:
+    case OH_ACTION_CAUGHT:
         caught(a_this);
         var_r27 = false;
         var_r28 = 3;
         boss->field_0x4794 = 180;
         break;
-    case ACTION_END:
+    case OH_ACTION_END:
         end(a_this);
         var_r28 = 1;
         break;
-    case ACTION_NON:
+    case OH_ACTION_NON:
         non(a_this);
         return;
     }
 
-    if (boss->field_0x4752 == 2) {
+    if (boss->mAction == OB_ACTION_BOMBFISH_SET) {
         cLib_addCalc2(&a_this->field_0x60c, 500.0f, 1.0f, 80.0f);
     }
 
@@ -1072,7 +1065,7 @@ static void action(b_oh_class* i_this) {
         cLib_addCalc2(&a_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
     }
 
-    MTXCopy(boss->mParts[0].field_0x0->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
+    MTXCopy(boss->mBodyParts[0].field_0x0->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&a_this->current.pos);
 
@@ -1207,7 +1200,7 @@ static void damage_check(b_oh_class* i_this) {
             }
         }
 
-        if (i_this->mAction == ACTION_ATTACK && boss->field_0x5d10) {
+        if (i_this->mAction == OH_ACTION_ATTACK && boss->field_0x5d10) {
             boss->field_0x5d10 = 0;
             bvar = true;
         }
@@ -1216,8 +1209,8 @@ static void damage_check(b_oh_class* i_this) {
             i_this->field_0x60c = 2000.0f;
             i_this->field_0x610 = 0.5f;
 
-            if (i_this->mAction != ACTION_WAIT) {
-                i_this->mAction = ACTION_WAIT;
+            if (i_this->mAction != OH_ACTION_WAIT) {
+                i_this->mAction = OH_ACTION_WAIT;
                 i_this->mActionPhase = 0;
                 i_this->field_0xc98 = 0;
                 i_this->field_0xca2 = 0;
@@ -1270,8 +1263,8 @@ static int daB_OH_Execute(b_oh_class* i_this) {
         return 1;
     }
 
-    if (boss->field_0x4752 == 5 && i_this->mAction != ACTION_END) {
-        i_this->mAction = ACTION_END;
+    if (boss->mAction == OB_ACTION_CORE_END && i_this->mAction != OH_ACTION_END) {
+        i_this->mAction = OH_ACTION_END;
         i_this->mActionPhase = 0;
     }
 
@@ -1306,7 +1299,7 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     i_this->mpMorf->modelCalc();
 
     int tmp = 1;
-    if (i_this->mDistToPlayer > 150.0f && i_this->mAction == ACTION_WAIT) {
+    if (i_this->mDistToPlayer > 150.0f && i_this->mAction == OH_ACTION_WAIT) {
         tmp = i_this->field_0x5cc & 1;
     }
 
@@ -1314,13 +1307,13 @@ static int daB_OH_Execute(b_oh_class* i_this) {
         MTXCopy(model_p->getAnmMtx(tmp + i * 2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&collider_center);
 
-        if (i_this->mAction >= ACTION_END) {
+        if (i_this->mAction >= OH_ACTION_END) {
             collider_center.z -= 20000.0f;
         }
 
         i_this->mColliders[i].SetC(collider_center);
 
-        if (i_this->mAction == ACTION_ATTACK) {
+        if (i_this->mAction == OH_ACTION_ATTACK) {
             i_this->mColliders[i].SetR(l_HIO.mModelSize * 70.0f);
         } else {
             i_this->mColliders[i].SetR(l_HIO.mModelSize * 50.0f);
@@ -1493,14 +1486,14 @@ static int daB_OH_Create(fopAc_ac_c* i_this) {
         this_->current.angle.x = -0x3448;
 
         if (cDmr_SkipInfo) {
-            this_->mAction = ACTION_WAIT;
+            this_->mAction = OH_ACTION_WAIT;
             this_->mActionPhase = 1;
             this_->mTimers[0] = cM_rndF(100.0f) + 200.0f;
             this_->mTentacleLength = l_HIO.mLength;
             this_->field_0x608 = 1.0f;
             Cinit = 1;
         } else {
-            this_->mAction = ACTION_START;
+            this_->mAction = OH_ACTION_START;
             Cinit = 0;
         }
 

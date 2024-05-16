@@ -3,6 +3,12 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+enum obj_lv3waterB_action {
+    LV3WATERB_ACT_WAIT,
+    LV3WATERB_ACT_REMOVE,
+    LV3WATERB_ACT_END,
+};
+
 class obj_lv3WaterB_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mBWaterPhase;
