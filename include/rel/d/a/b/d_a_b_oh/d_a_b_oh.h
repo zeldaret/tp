@@ -16,6 +16,15 @@ public:
     /* 0xC */ f32 mLength;
 };
 
+enum b_oh_action {
+    OH_ACTION_START,
+    OH_ACTION_WAIT,
+    OH_ACTION_ATTACK,
+    OH_ACTION_CAUGHT,
+    OH_ACTION_END = 10,
+    OH_ACTION_NON = 11,
+};
+
 /**
  * @ingroup actors-enemies
  * @brief Morpheel (head)
@@ -79,7 +88,10 @@ public:
     /* 0x0CB0 */ dCcD_Stts mCcStts;
     /* 0x0CEC */ dCcD_Sph mColliders[15];
     /* 0x1F34 */ dCcU_AtInfo mAtInfo;
-    /* 0x1F58 */ u8 field_0x1F58[0x1F80 - 0x1F58];
+    /* 0x1F58 */ u8 field_0x1F58[0x1F68 - 0x1F58];
+    /* 0x1F68 */ cXyz field_0x1f68;
+    /* 0x1F74 */ csXyz field_0x1f74;
+    /* 0x1F7C */ f32 field_0x1f7c;
     /* 0x1F80 */ u32 field_0x1f80;
     /* 0x1F84 */ u8 field_0x1F84[0x1F86 - 0x1F84];
     /* 0x1F86 */ u8 field_0x1f86;

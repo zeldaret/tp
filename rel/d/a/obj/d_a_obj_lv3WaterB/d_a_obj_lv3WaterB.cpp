@@ -45,14 +45,14 @@ static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
 /* 80C5B71C-80C5B89C 00021C 0180+00 1/1 0/0 0/0 .text            action__FP19obj_lv3WaterB_class */
 static void action(obj_lv3WaterB_class* i_this) {
     switch (i_this->mAction) {
-    case 0:
+    case LV3WATERB_ACT_WAIT:
         break;
-    case 1:
+    case LV3WATERB_ACT_REMOVE:
         dComIfG_Bgsp().Release(i_this->mpOctHibiBgW);
         i_this->mpOctHibiModel = NULL;
-        i_this->mAction = 0;
+        i_this->mAction = LV3WATERB_ACT_WAIT;
         break;
-    case 2:
+    case LV3WATERB_ACT_END:
         dKy_custom_colset(4, 4, 0.0f);
 
         if (i_this->field_0x586 == 0) {
@@ -193,7 +193,7 @@ static int daObj_Lv3waterB_Create(fopAc_ac_c* i_this) {
 
         if (dComIfGs_isStageBossEnemy()) {
             a_this->current.pos.y = (a_this->home.pos.y - 14450.0f) + 160.0f;
-            a_this->mAction = 2;
+            a_this->mAction = LV3WATERB_ACT_END;
             a_this->field_0x586 = 1;
             a_this->mpOctHibiModel = NULL;
         }

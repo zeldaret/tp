@@ -83,6 +83,7 @@ enum {
     JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
     JPAEmtrStts_Immortal = 0x40,
+    JPAEmtrStts_Delete = 0x100,
 };
 
 /**
@@ -169,6 +170,7 @@ public:
     void playCreateParticle() { clearStatus(JPAEmtrStts_StopEmit); }
     void becomeImmortalEmitter() { setStatus(JPAEmtrStts_Immortal); }
     void becomeContinuousParticle() { mMaxFrame = 0; }
+    void becomeDeleteEmitter() { setStatus(JPAEmtrStts_Delete); }
     void becomeInvalidEmitter() {
         stopCreateParticle();
         mMaxFrame = 1;
