@@ -10,56 +10,12 @@
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
-struct csXyz {
-    /* 8026745C */ void operator+=(csXyz&);
-};
-
-struct cXyz {};
-
-struct mDoMtx_stack_c {
-    /* 8000CE38 */ void scaleM(f32, f32, f32);
-    /* 8000CE70 */ void scaleM(cXyz const&);
-    /* 8000CED4 */ void XYZrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct daObjZraMark_c {
-    /* 80D42678 */ void Create();
-    /* 80D4287C */ void CreateHeap();
-    /* 80D42A7C */ void Execute();
-    /* 80D42B0C */ void Draw();
-    /* 80D42C98 */ void Delete();
-    /* 80D42CE0 */ void getType();
-    /* 80D42D2C */ void setBaseMtx();
-    /* 80D42EE0 */ void col_init();
-    /* 80D42F5C */ void col_set();
-    /* 80D432C8 */ void schHoz();
-    /* 80D43314 */ void entryPointer(fopAc_ac_c*);
-    /* 80D43370 */ void informBlast();
-};
-
 struct daNpcF_ActorMngr_c {
     /* 801506B0 */ void initialize();
     /* 801506BC */ void entry(fopAc_ac_c*);
     /* 801506EC */ void getActorP();
     /* 80D43C6C */ ~daNpcF_ActorMngr_c();
     /* 80D43CB4 */ daNpcF_ActorMngr_c();
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
 };
 
 struct dRes_info_c {};
@@ -122,42 +78,6 @@ struct _ZraMark_Hahen_Mng_c {
     /* 80D43968 */ void create(cXyz const&, s8, s8, s8, s8);
     /* 80D439F8 */ void calc();
     /* 80D43A74 */ void draw();
-};
-
-struct Z2SoundObjSimple {
-    /* 802BE844 */ Z2SoundObjSimple();
-};
-
-struct Z2SoundObjBase {
-    /* 802BDF48 */ ~Z2SoundObjBase();
-    /* 802BDFF8 */ void deleteObject();
-    /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct J3DModel {};
-
-struct J3DLightObj {
-    /* 80D43C34 */ J3DLightObj();
-};
-
-struct J3DLightInfo {
-    /* 803256C4 */ void operator=(J3DLightInfo const&);
 };
 
 //
@@ -245,10 +165,6 @@ extern "C" void startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase();
 extern "C" void __ct__16Z2SoundObjSimpleFv();
 extern "C" void __dl__FPv();
 extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
-extern "C" void PSMTXMultVec();
-extern "C" void PSVECAdd();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_25();
@@ -260,9 +176,6 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const j3dDefaultLightInfo[52];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
@@ -271,9 +184,7 @@ extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -879,7 +790,8 @@ asm _ZraMark_Hahen_c::_ZraMark_Hahen_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DLightObj::J3DLightObj() {
+// asm J3DLightObj::J3DLightObj() {
+extern "C" asm void __ct__11J3DLightObjFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/__ct__11J3DLightObjFv.s"
 }

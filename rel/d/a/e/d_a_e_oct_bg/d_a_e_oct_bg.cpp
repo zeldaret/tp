@@ -27,6 +27,7 @@ static u32 lit_1787[1 + 4 /* padding */] = {
 #include "c/c_damagereaction.h"
 #include "d/particle/d_particle.h"
 #include "d/cc/d_cc_uty.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/d_drawlist.h"
 #include "d/d_resorce.h"
 #include "d/d_bomb.h"
@@ -424,10 +425,10 @@ void daE_OctBg_c::swim() {
         field_0x660.x = cM_ssin(field_0xb96) * 500.0f;
         field_0x660.z = cM_scos(field_0xb96) * 500.0f;
         field_0xbae = cM_rndFX(30.0f) + 100.0f;
-        attention_info.field_0x0[2] = 3;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         field_0xb70++;
     } else if (field_0xb70 == -1) {
-        attention_info.field_0x0[2] = 4;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 4;
     } else {
         if (checkNormalAttack()) {
             setAction(&daE_OctBg_c::normal_attack);
@@ -971,7 +972,7 @@ int daE_OctBg_c::create() {
         field_0xb30.mpSound = &field_0x5bc;
         field_0xb30.mPowerType = 1;
         gravity = 0.0f;
-        attention_info.field_0x0[2] = 4;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 4;
         field_0xb74 = false;
         field_0xbac = fopAcM_GetID(this) & 1;
         struct_8073A14C_field_0x23++;

@@ -5,6 +5,7 @@
 
 #include "rel/d/a/e/d_a_e_ph/d_a_e_ph.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/a/d_a_player.h"
 #include "d/s/d_s_play.h"
 
@@ -1040,25 +1041,25 @@ void daE_PH_c::AttentionSet() {
 
     if (mAnmID != ANM_HANG_START && mAnmID != ANM_HANG_WAIT && mAnmID != ANM_HANG_END) {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0) {
-            attention_info.field_0x0[2] = 0x52;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0x52;
         } else {
-            attention_info.field_0x0[2] = 0x53;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0x53;
         }
 
         attention_info.flags = 4;
     } else if (current.pos.absXZ(fopAcM_GetPosition(player_p)) > 1000.0f) {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0) {
-            attention_info.field_0x0[2] = 0x52;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0x52;
         } else {
-            attention_info.field_0x0[2] = 0x53;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0x53;
         }
     } else {
-        attention_info.field_0x0[2] = 0;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0;
         attention_info.flags = 0;
     }
 
     if (player_p->checkDragonHangRide()) {
-        attention_info.field_0x0[2] = 0;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0;
         attention_info.flags = 0;
     }
 }
@@ -1266,7 +1267,7 @@ int daE_PH_c::create() {
                   fopAcM_GetSpeed_p(this), NULL, NULL);
 
         attention_info.flags = 4;
-        attention_info.field_0x0[2] = 0x22;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0x22;
 
         cXyz sp3C(current.pos.x, current.pos.y + 200.0f, current.pos.z);
         mSound.init(&current.pos, &sp3C, 3, 1);
@@ -1296,7 +1297,7 @@ int daE_PH_c::create() {
             mCcSph.OffTgShield();
             mCcSph.OnTgNoHitMark();
 
-            attention_info.field_0x0[2] = 0;
+            attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = 0;
 
             cXyz sp48(current.pos.x, current.pos.y, current.pos.z);

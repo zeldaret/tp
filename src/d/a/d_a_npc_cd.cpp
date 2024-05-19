@@ -3,20 +3,14 @@
 // Translation Unit: a/npc/d_a_npc_cd
 //
 
+#define HIO_entry_c_NO_VIRTUAL
+
 #include "d/a/d_a_npc_cd.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
-
-struct mDoHIO_entry_c {
-    /* 8015791C */ ~mDoHIO_entry_c();
-};
-
-struct fOpAcm_HIO_entry_c {
-    /* 801578C0 */ ~fOpAcm_HIO_entry_c();
-};
 
 struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
@@ -1560,7 +1554,8 @@ asm fOpAcm_HIO_entry_c::~fOpAcm_HIO_entry_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoHIO_entry_c::~mDoHIO_entry_c() {
+asm void __dt__14mDoHIO_entry_cFv() {
+//asm mDoHIO_entry_c::~mDoHIO_entry_c() {
     nofralloc
 #include "asm/a/npc/d_a_npc_cd/__dt__14mDoHIO_entry_cFv.s"
 }

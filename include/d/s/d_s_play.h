@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "f_op/f_op_scene.h"
+#include "m_Do/m_Do_hostIO.h"
 
 class mDoDvdThd_mountXArchive_c;
 class mDoDvdThd_toMainRam_c;
@@ -22,11 +23,6 @@ public:
 #ifdef DEBUG
     /* 0x8 */ dScnPly_reg_childHIO_c mChildReg[26];
 #endif
-};
-
-class mDoHIO_entry_c {
-public:
-    virtual ~mDoHIO_entry_c() {}
 };
 
 class dScnPly_preLoad_HIO_c : public mDoHIO_entry_c {

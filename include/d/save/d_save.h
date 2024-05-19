@@ -51,7 +51,7 @@ enum ItemSlots {
     /* 0x01 */ SLOT_1,
     /* 0x02 */ SLOT_2,
     /* 0x03 */ SLOT_3,
-    /* 0x04 */ SLOT_4,
+    /* 0x04 */ SLOT_4, // Bow Slot
     /* 0x05 */ SLOT_5,
     /* 0x06 */ SLOT_6,
     /* 0x07 */ SLOT_7,
@@ -994,7 +994,7 @@ public:
     dSv_zone_c() { mRoomNo = -1; }
     void init(int i_roomNo);
 
-    dSv_zoneBit_c& getZoneBit() { return mBit; }
+    dSv_zoneBit_c& getBit() { return mBit; }
     const dSv_zoneBit_c& getBit() const { return mBit; }
     dSv_zoneActor_c& getActor() { return mActor; }
     const dSv_zoneActor_c& getActor() const { return mActor; }

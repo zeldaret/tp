@@ -154,8 +154,8 @@ public:
     void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
     void setTimeMs(s32 i_time) { mTimeMs = i_time; }
     u32 getTimeMs() { return mTimeMs; }
-    u8 getNowCount() { return mNowCount; }
-    u8 getMaxCount() { return mMaxCount; }
+    int getNowCount() { return mNowCount; }
+    int getMaxCount() { return mMaxCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
@@ -178,6 +178,8 @@ public:
     }
     void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
     bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
+    void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
+    void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -611,11 +613,11 @@ inline void dMeter2Info_setTimeMs(s32 i_time) {
     g_meter2_info.setTimeMs(i_time);
 }
 
-inline u8 dMeter2Info_getNowCount() {
+inline int dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
 }
 
-inline u8 dMeter2Info_getMaxCount() {
+inline int dMeter2Info_getMaxCount() {
     return g_meter2_info.getMaxCount();
 }
 
@@ -715,6 +717,15 @@ inline bool dMeter2Info_isTempBit(int bit) {
     return g_meter2_info.isTempBit(bit);
 }
 
+inline void dMeter2Info_offSub2DStatus(int bit) {
+    g_meter2_info.offSub2DStatus(bit);
+}
+
+inline void dMeter2Info_onSub2DStatus(int bit) {
+    g_meter2_info.onSub2DStatus(bit);
+}
+
+const char* dMeter2Info_getPlusTextureName();
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();

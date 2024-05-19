@@ -236,6 +236,7 @@ public:
     u8 GetHitMark() { return mHitMark; }
     void SetRVec(cXyz& vec) { mRVec = vec; }
     cXyz* GetVecP() { return &mVec; }
+    cXyz* GetRVecP() { return &mRVec; }
     void SetHitPos(cXyz& pos) { mHitPos = pos; }
     cXyz* GetHitPosP() { return &mHitPos; }
 
@@ -362,6 +363,7 @@ public:
     bool ChkTgWolfSpNoDamage() { return mGObjTg.ChkSPrm(0x800); }
     bool ChkAtNoHitMark() { return mGObjAt.ChkSPrm(2); }
     bool ChkTgNoHitMark() { return mGObjTg.ChkSPrm(4); }
+    bool ChkTgArrowThrough() { return mGObjTg.ChkSPrm(0x20); }
     bool ChkTgHookShotNoHitMark() { return mGObjTg.ChkSPrm(0x400); }
     bool ChkTgArrowNoHitMark() { return mGObjTg.ChkSPrm(0x1000); }
     dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mGObjTg.GetSpl(); }
@@ -389,6 +391,7 @@ public:
     u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
     cXyz* GetAtHitPosP() { return mGObjAt.GetHitPosP(); }
     cXyz* GetTgHitPosP() { return mGObjTg.GetHitPosP(); }
+    cXyz* GetTgRVecP() { return mGObjTg.GetRVecP(); }
     bool ChkTgHookshotThrough() { return mGObjTg.ChkSPrm(0x80); }
     
     static const Z2SoundID m_hitSeID[24];

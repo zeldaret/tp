@@ -9,6 +9,7 @@
 #include "d/bg/d_bg_s_lin_chk.h"
 #include "d/bg/d_bg_s_wtr_chk.h"
 #include "d/bg/d_bg_s_roof_chk.h"
+#include "m_Do/m_Do_hostIO.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
     if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
@@ -60,6 +61,17 @@ struct fopAcM_search_prm {
     /* 0x08 */ s16 mProcName;
     /* 0x0A */ s8 mSubType;
 };
+
+// define to avoid vtable mess in WIP TUs
+#ifndef HIO_entry_c_NO_VIRTUAL
+struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
+   virtual ~fOpAcm_HIO_entry_c() {}
+};
+#else
+struct fOpAcm_HIO_entry_c {
+   ~fOpAcm_HIO_entry_c();
+};
+#endif
 
 class l_HIO {
 public:
@@ -350,6 +362,10 @@ inline const cXyz* fopAcM_GetSpeed_p(const fopAc_ac_c* p_actor) {
     return &p_actor->speed;
 }
 
+inline cXyz& fopAcM_GetSpeed(fopAc_ac_c* p_actor) {
+    return p_actor->speed;
+}
+
 inline const cXyz* fopAcM_GetPosition_p(const fopAc_ac_c* p_actor) {
     return &p_actor->current.pos;
 }
@@ -378,7 +394,7 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
     return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
 }
 
-inline Vec fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+inline const Vec& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.center;
 }
 
@@ -399,8 +415,8 @@ inline void fopAcM_offSwitch(const fopAc_ac_c* pActor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
-inline BOOL fopAcM_isSwitch(const fopAc_ac_c* item, int sw) {
-    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(item));
+inline BOOL fopAcM_isSwitch(const fopAc_ac_c* pActor, int sw) {
+    return dComIfGs_isSwitch(sw, fopAcM_GetHomeRoomNo(pActor));
 }
 
 inline fopAc_ac_c* fopAcM_SearchByName(s16 proc_id) {

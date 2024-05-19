@@ -1214,7 +1214,7 @@ int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
     cXyz this_00 = daPy_getPlayerActorClass()->attention_info.position;
     this_00.y -= daPy_getPlayerActorClass()->getAttentionOffsetY();
     s16 uVar8 = (cSGlobe(param_1->attention_info.position - this_00).U() - daPy_getPlayerActorClass()->shape_angle.GetY());
-    u8 attentionId = param_1->attention_info.field_0x0[3];
+    u8 attentionId = param_1->attention_info.distances[fopAc_attn_SPEAK_e];
     f32 fVar1 = dAttention_c::getDistTable(attentionId).field_0x4;
     u16 x = uVar3;
     if (x != 0) {

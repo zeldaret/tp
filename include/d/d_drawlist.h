@@ -369,6 +369,10 @@ public:
                                       param_6);
     }
 
+    bool addRealShadow(u32 key, J3DModel* model) {
+        return mShadowControl.addReal(key, model);
+    }
+
     void newPeekZdata(s16 param_0, s16 param_1, u32* param_2) {
         mPeekZ.newData(param_0, param_1, param_2);
     }

@@ -280,11 +280,11 @@ static void daKytag06_type_04_Execute(kytag06_class*) {
 
 /* 80857F48-80857F8C 0007C8 0044+00 1/1 0/0 0/0 .text            set_path_info__FP10fopAc_ac_c */
 static dPath* set_path_info(fopAc_ac_c* i_this) {
-    kytag06_class* this_ = (kytag06_class*)i_this;
+    kytag06_class* a_this = (kytag06_class*)i_this;
     dPath* room_path = NULL;
 
-    if (this_->mPathNo != 0xFF) {
-        room_path = dPath_GetRoomPath(this_->mPathNo, fopAcM_GetRoomNo(this_));
+    if (a_this->mPathNo != 0xFF) {
+        room_path = dPath_GetRoomPath(a_this->mPathNo, fopAcM_GetRoomNo(a_this));
     }
 
     return room_path;
@@ -1014,16 +1014,16 @@ static int daKytag06_Execute(kytag06_class* i_this) {
             int target2 = 0;
             dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->mLookat.mEye);
 
-            if (pnt != NULL && pnt->field_0x3 != 0xFF) {
-                dKy_change_colpat(pnt->field_0x3);
+            if (pnt != NULL && pnt->mArg0 != 0xFF) {
+                dKy_change_colpat(pnt->mArg0);
 
-                if (pnt->field_0x3 == 0) {
+                if (pnt->mArg0 == 0) {
                     target1 = 250;
                     target2 = 25;
-                } else if (pnt->field_0x3 == 1) {
+                } else if (pnt->mArg0 == 1) {
                     target1 = 500;
                     target2 = 50;
-                } else if (pnt->field_0x3 == 2) {
+                } else if (pnt->mArg0 == 2) {
                     target1 = 125;
                     target2 = 12;
                 }
@@ -1209,60 +1209,60 @@ static int daKytag06_Delete(kytag06_class* i_this) {
 
 /* 80859AD0-80859AF0 002350 0020+00 1/1 0/0 0/0 .text daKytag06_type04_init__FP10fopAc_ac_c */
 static void daKytag06_type04_init(fopAc_ac_c* i_this) {
-    kytag06_class* this_ = (kytag06_class*)i_this;
+    kytag06_class* a_this = (kytag06_class*)i_this;
 
-    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
-    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
-    this_->mMode = 0;
+    a_this->mSwNo = fopAcM_GetParam(a_this) >> 8;
+    a_this->field_0x591 = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->mMode = 0;
 }
 
 /* 80859AF0-80859B14 002370 0024+00 1/1 0/0 0/0 .text daKytag06_type06_init__FP10fopAc_ac_c */
 static void daKytag06_type06_init(fopAc_ac_c* i_this) {
-    kytag06_class* this_ = (kytag06_class*)i_this;
+    kytag06_class* a_this = (kytag06_class*)i_this;
 
-    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
-    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
-    this_->mMode = 0;
-    this_->field_0x598 = 0;
+    a_this->mSwNo = fopAcM_GetParam(a_this) >> 8;
+    a_this->field_0x591 = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->mMode = 0;
+    a_this->field_0x598 = 0;
 }
 
 /* 80859B14-80859B34 002394 0020+00 1/1 0/0 0/0 .text daKytag06_type02_init__FP10fopAc_ac_c */
 static void daKytag06_type02_init(fopAc_ac_c* i_this) {
-    kytag06_class* this_ = (kytag06_class*)i_this;
+    kytag06_class* a_this = (kytag06_class*)i_this;
 
-    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
-    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
-    this_->mMode = 0;
+    a_this->mSwNo = fopAcM_GetParam(a_this) >> 8;
+    a_this->field_0x591 = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->mMode = 0;
 }
 
 /* 80859B34-80859C88 0023B4 0154+00 1/1 0/0 0/0 .text daKytag06_type03_init__FP10fopAc_ac_c */
 static void daKytag06_type03_init(fopAc_ac_c* i_this) {
-    kytag06_class* this_ = (kytag06_class*)i_this;
+    kytag06_class* a_this = (kytag06_class*)i_this;
 
-    this_->mSwNo = fopAcM_GetParam(this_) >> 8;
-    this_->field_0x591 = fopAcM_GetParam(this_) & 0xFF;
-    this_->mMode = 0;
+    a_this->mSwNo = fopAcM_GetParam(a_this) >> 8;
+    a_this->field_0x591 = fopAcM_GetParam(a_this) & 0xFF;
+    a_this->mMode = 0;
 
-    if (this_->field_0x597 == 0) {
+    if (a_this->field_0x597 == 0) {
         // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
-        if (dComIfGs_isEventBit(0x0C01) && !dComIfGs_isEventBit(0x1E08) && this_->mSwNo != 0xFF)
+        if (dComIfGs_isEventBit(0x0C01) && !dComIfGs_isEventBit(0x1E08) && a_this->mSwNo != 0xFF)
         {
             s32 stayNo = dComIfGp_roomControl_getStayNo();
 
-            if (dComIfGs_isSwitch(this_->mSwNo, stayNo)) {
-                this_->mMode = 9;
+            if (dComIfGs_isSwitch(a_this->mSwNo, stayNo)) {
+                a_this->mMode = 9;
                 g_env_light.mRainCount = 250;
-                g_env_light.mColpatWeather = this_->field_0x591;
-                g_env_light.mColPatPrev = this_->field_0x591;
-                g_env_light.mColPatCurr = this_->field_0x591;
+                g_env_light.mColpatWeather = a_this->field_0x591;
+                g_env_light.mColPatPrev = a_this->field_0x591;
+                g_env_light.mColPatCurr = a_this->field_0x591;
             }
         }
-    } else if (this_->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
-        if (this_->mSwNo != 0xFF && !dComIfGs_isSwitch(this_->mSwNo, this_->current.roomNo)) {
-            dKy_custom_colset(0, this_->field_0x591, 1.0f);
-            g_env_light.mColpatWeather = this_->field_0x591;
+    } else if (a_this->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
+        if (a_this->mSwNo != 0xFF && !dComIfGs_isSwitch(a_this->mSwNo, a_this->current.roomNo)) {
+            dKy_custom_colset(0, a_this->field_0x591, 1.0f);
+            g_env_light.mColpatWeather = a_this->field_0x591;
         } else {
-            this_->mMode = 1;
+            a_this->mMode = 1;
         }
     }
 }
@@ -1270,52 +1270,52 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
 /* 80859C88-80859E68 002508 01E0+00 2/0 0/0 0/0 .text            daKytag06_Create__FP10fopAc_ac_c */
 static int daKytag06_Create(fopAc_ac_c* i_this) {
     fopAcM_SetupActor(i_this, kytag06_class);
-    kytag06_class* this_ = static_cast<kytag06_class*>(i_this);
+    kytag06_class* a_this = static_cast<kytag06_class*>(i_this);
 
-    this_->mType = (fopAcM_GetParam(this_) >> 0x18) & 0xF;
-    this_->field_0x597 = (fopAcM_GetParam(this_) >> 0x1C);
-    this_->mWindPower = 0.0f;
-    this_->field_0x570 = 0.0f;
+    a_this->mType = (fopAcM_GetParam(a_this) >> 0x18) & 0xF;
+    a_this->field_0x597 = (fopAcM_GetParam(a_this) >> 0x1C);
+    a_this->mWindPower = 0.0f;
+    a_this->field_0x570 = 0.0f;
 
-    switch (this_->mType) {
+    switch (a_this->mType) {
     case 1:
-        this_->mPathNo = fopAcM_GetParam(this_) >> 0x10;
-        this_->mpPath = set_path_info(this_);
+        a_this->mPathNo = fopAcM_GetParam(a_this) >> 0x10;
+        a_this->mpPath = set_path_info(a_this);
         break;
     case 2:
-        daKytag06_type02_init(this_);
+        daKytag06_type02_init(a_this);
         break;
     case 3:
-        daKytag06_type03_init(this_);
+        daKytag06_type03_init(a_this);
         break;
     case 4:
-        daKytag06_type04_init(this_);
+        daKytag06_type04_init(a_this);
         break;
     case 6:
-        daKytag06_type06_init(this_);
+        daKytag06_type06_init(a_this);
         break;
     case 7:
-        this_->mMode = 0;
-        this_->field_0x591 = 0;
-        this_->field_0x574 = 0;
+        a_this->mMode = 0;
+        a_this->field_0x591 = 0;
+        a_this->field_0x574 = 0;
         break;
     case 8:
-        daKytag06_type06_init(this_);
+        daKytag06_type06_init(a_this);
         g_env_light.mMoyaMode = 9;
         g_env_light.mMoyaCount = 50;
         break;
     case 9:
-        daKytag06_type06_init(this_);
+        daKytag06_type06_init(a_this);
         break;
     case 10:
         if (strcmp(dComIfGp_getStartStageName(), "F_SP114") != 0) {
-            daKytag06_type06_init(this_);
+            daKytag06_type06_init(a_this);
         } else {
-            daKytag06_type03_init(this_);
+            daKytag06_type03_init(a_this);
         }
         break;
     case 11:
-        daKytag06_type06_init(this_);
+        daKytag06_type06_init(a_this);
         break;
     default:
         if (strcmp(dComIfGp_getStartStageName(), "T_MUKAO") != 0) {
@@ -1326,11 +1326,11 @@ static int daKytag06_Create(fopAc_ac_c* i_this) {
             dComIfGs_setTime(210.0f);
         }
 
-        this_->field_0x578 = 0;
-        this_->field_0x57c = 0;
-        this_->mMode = 0;
-        this_->field_0x591 = 0;
-        this_->field_0x574 = 640;
+        a_this->field_0x578 = 0;
+        a_this->field_0x57c = 0;
+        a_this->mMode = 0;
+        a_this->field_0x591 = 0;
+        a_this->field_0x574 = 640;
         break;
     case 5:
         break;

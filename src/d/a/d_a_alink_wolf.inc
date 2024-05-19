@@ -2206,7 +2206,7 @@ int daAlink_c::procWolfAutoJumpInit(int param_0) {
         var_f31 = daAlinkHIO_wlAutoJump_c0::m.field_0x48;
         var_f30 = daAlinkHIO_wlAutoJump_c0::m.field_0x4c;
         var_r30 = daAlinkHIO_wlAutoJump_c0::m.field_0x40;
-        onNoResetFlg2(FLG2_UNK_10000);
+        onNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP);
     } else {
         var_f1 = daAlinkHIO_wlAutoJump_c0::m.field_0x60;
         field_0x594 = daAlinkHIO_wlAutoJump_c0::m.field_0x74;
@@ -6043,7 +6043,7 @@ int daAlink_c::procWolfJumpAttack() {
         return 1;
     }
 
-    if (checkNoResetFlg2(FLG2_UNK_40)) {
+    if (checkNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE)) {
         return procWolfEnemyHangBiteInit();
     }
 

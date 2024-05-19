@@ -4,8 +4,10 @@
 //
 
 #include "rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/a/d_a_player.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
 
@@ -254,16 +256,16 @@ COMPILER_STRIP_GATE(0x80C207D0, &lit_3844);
 
 /* 80C1FD5C-80C20034 0003DC 02D8+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
-// instruction out of order
+// matches with literals
 #ifdef NONMATCHING
 static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    daObjIce_l_c* ice_p = static_cast<daObjIce_l_c*>(param_1);
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     cXyz* ball_pos = player_p->getIronBallCenterPos();
     cXyz& player_pos = fopAcM_GetPosition(player_p);
+    daObjIce_l_c* ice_p = static_cast<daObjIce_l_c*>(param_1);
 
-    // fake match?
-    if ((u8)(fopAcM_GetName(param_2) == 0) == PROC_ALINK) {
+    //!@bug Missing parentheses causes this comparison to always evaluate to false
+    if (!fopAcM_GetName(param_2) == PROC_ALINK) {
         ice_p->field_0x5f4 = 0x100;
         ice_p->field_0x5a4 = -1.0f;
         ice_p->field_0x5ac = 0x500;
@@ -271,9 +273,9 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
         ice_p->Check_RideOn(player_pos);
     }
 
-    cXyz* actor_pos = &fopAcM_GetPosition(param_2);
-    if (ball_pos != NULL && actor_pos != NULL &&
-        actor_pos->absXZ(*ball_pos) < ice_p->field_0x5b4.x * 600.0f)
+    cXyz* ice_pos = &fopAcM_GetPosition(ice_p);
+    if (ball_pos != NULL && ice_pos != NULL &&
+        ice_pos->absXZ(*ball_pos) < ice_p->field_0x5b4.x * 600.0f)
     {
         ice_p->field_0x5f4 = 0x400;
         ice_p->field_0x5a4 = -6.0f;
@@ -598,7 +600,7 @@ int daObjIce_l_c::Execute(Mtx** param_0) {
                  0.1f, 15.0f, 0.1f);
     cLib_addCalcAngleS(&shape_angle.x,
                        field_0x5d8.x +
-                           (field_0x5ac * 0.5f * cM_ssin(0x2000 + (field_0x5d4 + field_0x5e4))),
+                           (field_0x5ac * 0.5f * cM_ssin(0x2000 + field_0x5d4 + field_0x5e4)),
                        2, 0x100, 1);
     cLib_addCalcAngleS(&shape_angle.z,
                        field_0x5d8.z + (field_0x5ac * 0.5f * cM_ssin(field_0x5d6 + field_0x5e4)), 2,

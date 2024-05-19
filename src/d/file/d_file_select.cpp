@@ -9,6 +9,8 @@
 #include "d/file/d_file_select.h"
 #include "d/file/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "d/meter/d_meter2_info.h"
 #include "f_op/f_op_msg_mng.h"
 #include "dol2asm.h"
@@ -441,7 +443,7 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 };
 
 /* 803BA854-803BA860 017974 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
-SECTION_DATA static u32 SelStartFrameTbl[3] = {
+SECTION_DATA static s32 SelStartFrameTbl[3] = {
     0x0000003B, 
     0x00000063, 
     0x0000008B,
@@ -455,14 +457,14 @@ SECTION_DATA static s32 SelEndFrameTbl[3] = {
 };
 
 /* 803BA86C-803BA878 01798C 000C+00 7/7 0/0 0/0 .data            SelOpenStartFrameTbl */
-SECTION_DATA static u32 SelOpenStartFrameTbl[3] = {
+SECTION_DATA static s32 SelOpenStartFrameTbl[3] = {
     0x000000F8,
     0x000001C0, 
     0x00000288,
 };
 
 /* 803BA878-803BA884 017998 000C+00 7/7 0/0 0/0 .data            SelOpenEndFrameTbl */
-SECTION_DATA static u32 SelOpenEndFrameTbl[3] = {
+SECTION_DATA static s32 SelOpenEndFrameTbl[3] = {
     0x00000103,
     0x000001CC, 
     0x00000293,
@@ -2693,14 +2695,14 @@ asm void dFile_select_c::dataSelectAnmSet() {
 
 /* 80185DE0-80186088 180720 02A8+00 1/0 0/0 0/0 .text dataSelectMoveAnime__14dFile_select_cFv */
 #ifdef NONMATCHING
-// still alot wrong
+// matches with literals
 void dFile_select_c::dataSelectMoveAnime() {
-    int iVar7 = 1;
-    int iVar6 = 1;
+    bool iVar7 = true;
+    bool iVar6 = true;
     bool bVar1 = true;
     if (mLastSelectNum != 0xff) {
-        field_0x0188[mLastSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0xff,0,1);
-        selectWakuAlpahAnm(mLastSelectNum);
+        iVar7 = field_0x0188[mLastSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0xff,0,1);
+        iVar6 = selectWakuAlpahAnm(mLastSelectNum);
 
         if (field_0x00e0[mLastSelectNum] != SelStartFrameTbl[mLastSelectNum]) {
             field_0x00e0[mLastSelectNum] = field_0x00e0[mLastSelectNum] - 2;
@@ -2714,16 +2716,16 @@ void dFile_select_c::dataSelectMoveAnime() {
         }
     }
 
-    int iVar5 = 1;
+    bool iVar5 = true;
     bool bVar2 = true;
 
     if (mSelectNum != 0xff) {
-        field_0x0188[mSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0,0xff,1);
+        iVar5 = field_0x0188[mSelectNum]->alphaAnime(g_fsHIO.field_0x0006,0,0xff,1);
 
         if (field_0x00e0[mSelectNum] != SelEndFrameTbl[mSelectNum]) {
             field_0x00e0[mSelectNum] = field_0x00e0[mSelectNum] + 2;
 
-            if (SelEndFrameTbl[mSelectNum] < field_0x00e0[mSelectNum])
+            if (field_0x00e0[mSelectNum] > SelEndFrameTbl[mSelectNum])
                 field_0x00e0[mSelectNum] = SelEndFrameTbl[mSelectNum];
 
             field_0x0084->setFrame(field_0x00e0[mSelectNum]);
@@ -2732,7 +2734,7 @@ void dFile_select_c::dataSelectMoveAnime() {
         }
     }
 
-    if (iVar7 == 1 && iVar6 == 1 && bVar1 && (iVar5 == 1 && !bVar2)) {
+    if (iVar7 == true && iVar6 == true && bVar1 == true && iVar5 == true && bVar2 == true) {
         if (mSelectNum != 0xff) {
             field_0x00bc[mSelectNum]->getPanePtr()->setAnimation((J2DAnmTransform*)0);
             selFileCursorShow();
@@ -5719,9 +5721,10 @@ asm void dDlst_FileSelCp_c::draw() {
 
 /* 8018E0C0-8018E0F8 188A00 0038+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSelYn_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void dDlst_FileSelYn_c::draw() {
     J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
-    mpScreen->draw(0.0f, 0.0f, graf);
+    ScrYn->draw(0.0f, 0.0f, graf);
 }
 #else
 #pragma push
@@ -5736,9 +5739,10 @@ asm void dDlst_FileSelYn_c::draw() {
 
 /* 8018E0F8-8018E130 188A38 0038+00 1/0 0/0 0/0 .text            draw__17dDlst_FileSel3m_cFv */
 #ifdef NONMATCHING
+// matches with literals
 void dDlst_FileSel3m_c::draw() {
     J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
-    mpScreen->draw(0.0f, 0.0f, graf);
+    Scr3m->draw(0.0f, 0.0f, graf);
 }
 #else
 #pragma push
@@ -6603,6 +6607,7 @@ bool dFile_select_c::fileRecScaleAnm() {
 /* 8018FE64-8018FEF4 18A7A4 0090+00 2/2 0/0 0/0 .text fileRecScaleAnmInitSet2__14dFile_select_cFff
  */
 #ifdef NONMATCHING
+// matches with literals
 void dFile_select_c::fileRecScaleAnmInitSet2(f32 param_1, f32 param_2) {
     for (int i = 0; (int)i < 3; i++) {
         field_0x00c8[i] = param_1;

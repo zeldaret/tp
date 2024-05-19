@@ -19358,7 +19358,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     setBgCheckParam();
 
-    if ((checkNoResetFlg2(FLG2_UNK_40) && mProcID != PROC_WOLF_ENEMY_HANG_BITE) ||
+    if ((checkNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE) && mProcID != PROC_WOLF_ENEMY_HANG_BITE) ||
         (checkNoResetFlg2(FLG2_UNK_8) && mProcID != PROC_WOLF_ENEMY_THROW && !i_checkWolfEnemyThrowAnime())) {
         resetWolfEnemyBiteAll();
     }

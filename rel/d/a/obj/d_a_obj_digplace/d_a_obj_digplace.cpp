@@ -39,7 +39,7 @@ int daObjDigpl_c::create() {
     tevStr.mRoomNo = dComIfGp_roomControl_getStayNo();
     fopAcM_SetMin(this, -550.0f, -250.0f, -550.0f);
     fopAcM_SetMax(this, 550.0f, 250.0f, 550.0f);
-    attention_info.field_0x0[7] = 27;
+    attention_info.distances[fopAc_attn_ETC_e] = 27;
 
     return cPhs_COMPLEATE_e;
 }
@@ -129,7 +129,7 @@ int daObjDigpl_c::execute() {
                     attention_info.position = point_pos;
                     eyePos = point_pos;
 
-                    if (point_p->field_0x3 == 0) {
+                    if (point_p->mArg0 == 0) {
                         mType = 0;
                     } else {
                         mType = 2;

@@ -248,7 +248,7 @@ void daObj_SSItem_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     eventInfo.setArchiveName(getResName());
     attention_info.flags = 0;
-    attention_info.field_0x0[4] = 6;
+    attention_info.distances[fopAc_attn_CARRY_e] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
     mAcchCir.SetWall(24.0f, 12.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,

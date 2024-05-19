@@ -759,7 +759,7 @@ cPhs__Step daObjKABUTO_c::create() {
             fopAcM_OnStatus(this, 0x4000);
         } else {
             mDraw = true;
-            attention_info.field_0x0[4] = 0x5D;
+            attention_info.distances[fopAc_attn_CARRY_e] = 0x5D;
         }
 
         mSex = (fopAcM_GetParam(this) >> 4) & 1;

@@ -295,7 +295,7 @@ public:
         FLG2_UNK_80000 = 0x80000,
         FLG2_FORCE_GAMEOVER = 0x40000,
         FLG2_UNK_20000 = 0x20000,
-        FLG2_UNK_10000 = 0x10000,
+        FLG2_WOLF_DASH_AUTO_JUMP = 0x10000,
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
@@ -303,14 +303,14 @@ public:
         FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_80 = 0x80,
-        FLG2_UNK_40 = 0x40,
+        FLG2_WOLF_ENEMY_HANG_BITE = 0x40,
         FLG2_WOLF_ENEMY_LEFT_THROW = 0x20,
         FLG2_UNK_10 = 0x10,
         FLG2_UNK_8 = 8,
         FLG2_UNK_2 = 2,
         FLG2_UNK_1 = 1,
 
-        FLG2_UNK_58 = FLG2_UNK_40 | FLG2_UNK_10 | FLG2_UNK_8,
+        FLG2_UNK_58 = FLG2_WOLF_ENEMY_HANG_BITE | FLG2_UNK_10 | FLG2_UNK_8,
         FLG2_UNK_10000001 = FLG2_UNK_10000000 | FLG2_UNK_1,
     };
 
@@ -533,8 +533,8 @@ public:
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
     BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
     const cXyz& getRightHandPos() const { return mRightHandPos; }
-    const cXyz* getItemPos() const { return &mItemPos; }
-    const cXyz* getLeftHandPos() const { return &mLeftHandPos; }
+    const cXyz getLeftHandPos() const { return mLeftHandPos; }
+    const cXyz getItemPos() const { return mItemPos; }
 
     virtual cXyz* getMidnaAtnPos() const;
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16);
@@ -753,11 +753,23 @@ public:
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
 
+    void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
+
+    void setCanoeSlider() { mSpecialMode = 0x2D; }
+    
+    void offCanoeSlider() {
+        if (checkCanoeSlider()) {
+            mSpecialMode = 0;
+        }
+    }
+
     void offCargoCarry() {
         if (checkCargoCarry()) {
             mSpecialMode = 0;
         }
     }
+
+    bool onWolfEnemyCatch(fopAc_ac_c* i_actor) { return onWolfEnemyBiteAll(i_actor, FLG2_UNK_8); }
 
     void offGoronSideMove() {
         if (checkGoronSideMove()) {
@@ -819,8 +831,10 @@ public:
     void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
+    void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
 
     void changeOriginalDemo() {
         mDemo.setOriginalDemoType();

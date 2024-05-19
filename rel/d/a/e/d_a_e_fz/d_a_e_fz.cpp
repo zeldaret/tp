@@ -12,7 +12,6 @@
 #include "d/a/d_a_player.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
-#include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 
 //
@@ -1605,8 +1604,8 @@ s32 daE_FZ_c::execute() {
             return 1;
         }
 
-        if (attention_info.field_0x0[2] == 0) {
-            attention_info.field_0x0[2] = 69;
+        if (attention_info.distances[fopAc_attn_BATTLE_e] == 0) {
+            attention_info.distances[fopAc_attn_BATTLE_e] = 69;
             fopAcM_SetGroup(this,2);
             #if DEBUG
             fopAcM_OnStatus(this,0);
@@ -1791,7 +1790,7 @@ s32 daE_FZ_c::create() {
     }
 
     attention_info.flags = 4;
-    attention_info.field_0x0[2] = 69;
+    attention_info.distances[fopAc_attn_BATTLE_e] = 69;
     
     fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
     fopAcM_SetMin(this,-200.0f,-200.0f,-200.0f);
@@ -1856,7 +1855,7 @@ s32 daE_FZ_c::create() {
     }
 
     if (field_0x714 == 2 && !checkItemGet(IRONBALL,1)) {
-      attention_info.field_0x0[2] = 0;
+      attention_info.distances[fopAc_attn_BATTLE_e] = 0;
       fopAcM_SetGroup(this,0);
       fopAcM_OffStatus(this,0);
       attention_info.flags &= 0xfffffffb;

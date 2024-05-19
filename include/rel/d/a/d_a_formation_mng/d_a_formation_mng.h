@@ -12,7 +12,7 @@ struct daFmtMng_Path_c {
     /* 8083665C */ bool checkPoint(cXyz, f32);
 
     bool isPathClose() { return dPath_ChkClose(mPath); }
-    s8 getArg0() { return mPath->m_points[field_0x4].field_0x3; }
+    s8 getArg0() { return mPath->m_points[field_0x4].mArg0; }
     s8 getArg1() { return mPath->m_points[field_0x4].field_0x0; }
 
     void chgDir() {

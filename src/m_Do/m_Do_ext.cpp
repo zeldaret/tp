@@ -3293,6 +3293,94 @@ asm int mDoExt_McaMorfSO::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_
 #endif
 
 /* 80010B68-80010E70 00B4A8 0308+00 1/0 0/0 0/0 .text            calc__16mDoExt_McaMorfSOFv */
+#ifdef NONMATCHING
+// matches with literals
+void mDoExt_McaMorfSO::calc() {
+    if (mpModel != NULL) {
+        u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
+        j3dSys.setCurrentMtxCalc(this);
+
+        J3DTransformInfo trans;
+        J3DTransformInfo* trans_p;
+        if (mpTransformInfo == NULL) {
+            trans_p = &trans;
+        } else {
+            trans_p = &mpTransformInfo[jnt_no];
+        }
+
+        Quaternion quat;
+        Quaternion* quat_p;
+        if (mpQuat == NULL) {
+            quat_p = &quat;
+        } else {
+            quat_p = &mpQuat[jnt_no];
+        }
+
+        if (mpAnm == NULL) {
+            *trans_p = mpModel->getModelData()->getJointNodePointer(jnt_no)->getTransformInfo();
+
+            if (mpCallback1 != NULL) {
+                mpCallback1->execute(jnt_no, trans_p);
+            }
+
+            JMAEulerToQuat(trans_p->mRotation.x, trans_p->mRotation.y, trans_p->mRotation.z,
+                           quat_p);
+            J3DMtxCalcCalcTransformMaya::calcTransform(*trans_p);
+        } else if (mCurMorf >= 1.0f || mpTransformInfo == NULL || mpQuat == NULL) {
+            getTransform(jnt_no, trans_p);
+
+            if (mpCallback1 != NULL) {
+                mpCallback1->execute(jnt_no, trans_p);
+            }
+
+            JMAEulerToQuat(trans_p->mRotation.x, trans_p->mRotation.y, trans_p->mRotation.z,
+                           quat_p);
+            J3DMtxCalcCalcTransformMaya::calcTransform(*trans_p);
+        } else {
+            f32 lerp_factor;
+            if (mMorfNone) {
+                lerp_factor = 1.0f;
+            } else {
+                lerp_factor = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            }
+            f32 inv_lerp_factor = 1.0f - lerp_factor;
+
+            J3DTransformInfo trans2;
+            getTransform(jnt_no, &trans2);
+
+            if (mpCallback1 != NULL) {
+                mpCallback1->execute(jnt_no, &trans2);
+            }
+
+            Quaternion quat2;
+            JMAEulerToQuat(trans2.mRotation.x, trans2.mRotation.y, trans2.mRotation.z, &quat2);
+            JMAQuatLerp(quat_p, &quat2, lerp_factor, quat_p);
+
+            Mtx mtx;
+            mDoMtx_quat(mtx, quat_p);
+
+            trans_p->mTranslate.x = trans_p->mTranslate.x * inv_lerp_factor
+                                    + trans2.mTranslate.x * lerp_factor;
+            trans_p->mTranslate.y = trans_p->mTranslate.y * inv_lerp_factor
+                                    + trans2.mTranslate.y * lerp_factor;
+            trans_p->mTranslate.z = trans_p->mTranslate.z * inv_lerp_factor
+                                    + trans2.mTranslate.z * lerp_factor;
+            trans_p->mScale.x = trans_p->mScale.x * inv_lerp_factor
+                                + trans2.mScale.x * lerp_factor;
+            trans_p->mScale.y = trans_p->mScale.y * inv_lerp_factor
+                                + trans2.mScale.y * lerp_factor;
+            trans_p->mScale.z = trans_p->mScale.z * inv_lerp_factor
+                                + trans2.mScale.z * lerp_factor;
+
+            mDoExt_setJ3DData(mtx, trans_p, jnt_no);
+        }
+
+        if (mpCallback2 != NULL) {
+            mpCallback2->execute(jnt_no);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3301,9 +3389,56 @@ asm void mDoExt_McaMorfSO::calc() {
 #include "asm/m_Do/m_Do_ext/calc__16mDoExt_McaMorfSOFv.s"
 }
 #pragma pop
+#endif
 
 /* 80010E70-800110B0 00B7B0 0240+00 1/1 5/5 208/208 .text
  * setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff           */
+#ifdef NONMATCHING
+// matches with literals
+void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate,
+                              f32 i_start, f32 i_end) {
+    mpAnm = i_anm;
+    setStartFrame(i_start);
+
+    if (i_end < 0.0f) {
+        if (mpAnm == NULL) {
+            mFrameCtrl.init(0);
+        } else {
+            mFrameCtrl.init(mpAnm->getFrameMax());
+        }
+    } else {
+        mFrameCtrl.init(i_end);
+    }
+
+    if (i_anm != NULL && i_attr < 0) {
+        i_attr = i_anm->getAttribute();
+    }
+
+    setPlayMode(i_attr);
+    setPlaySpeed(i_rate);
+    
+    if (i_rate >= 0.0f) {
+        setFrame(i_start);
+    } else {
+        setFrame(mFrameCtrl.getEnd());
+    }
+
+    setLoopFrame(getFrame());
+    setMorf(i_morf);
+
+    if (mpSound != NULL) {
+        if (i_anm != NULL) {
+            mpBas = static_cast<mDoExt_transAnmBas*>(i_anm)->getBas();
+        } else {
+            mpBas = NULL;
+        }
+
+        if (mpBas != NULL) {
+            mpSound->initAnime(mpBas, getPlaySpeed() >= 0.0f, getLoopFrame(), getFrame());
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3313,6 +3448,7 @@ asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf
 #include "asm/m_Do/m_Do_ext/setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff.s"
 }
 #pragma pop
+#endif
 
 /* 800110B0-80011154 00B9F0 00A4+00 0/0 5/5 143/143 .text            play__16mDoExt_McaMorfSOFUlSc
  */

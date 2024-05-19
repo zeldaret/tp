@@ -27,7 +27,7 @@ dMsgScrnStaff_c::dMsgScrnStaff_c(u8 unused) {
     mpScreen->setPriority("zelda_staff_roll.blo", 0x20000, dComIfGp_getMsgArchive(6));
     dPaneClass_showNullPane(mpScreen);
 
-    mpPmp_c = new CPaneMgr(mpScreen, 'ROOT', 2, NULL);
+    mpPmP_c = new CPaneMgr(mpScreen, 'ROOT', 2, NULL);
     mpScreen->search('left_n')->hide();
     mpScreen->search('right_n')->hide();
 
@@ -58,8 +58,8 @@ dMsgScrnStaff_c::~dMsgScrnStaff_c() {
     delete mpScreen;
     mpScreen = NULL;
 
-    delete mpPmp_c;
-    mpPmp_c = NULL;
+    delete mpPmP_c;
+    mpPmP_c = NULL;
 
     for (int i = 0; i < 6; i++) {
         delete mpTm_c[i];
@@ -71,7 +71,7 @@ dMsgScrnStaff_c::~dMsgScrnStaff_c() {
 
 /* 80246EE8-80246F68 241828 0080+00 1/0 0/0 0/0 .text            exec__15dMsgScrnStaff_cFv */
 void dMsgScrnStaff_c::exec() {
-    mpPmp_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mStageTitleScaleX, g_MsgObject_HIO_c.mStageTitleScaleY);
     if (isTalkNow()) {
         fukiAlpha(1.0f);
     }
@@ -86,7 +86,7 @@ void dMsgScrnStaff_c::drawSelf() {
 
 /* 80246FC0-80246FE4 241900 0024+00 1/0 0/0 0/0 .text            fukiAlpha__15dMsgScrnStaff_cFf */
 void dMsgScrnStaff_c::fukiAlpha(f32 i_rate) {
-    mpPmp_c->setAlphaRate(i_rate);
+    mpPmP_c->setAlphaRate(i_rate);
 }
 
 /* 80246FE4-80246FE8 241924 0004+00 1/0 0/0 0/0 .text            fukiScale__15dMsgScrnStaff_cFf */

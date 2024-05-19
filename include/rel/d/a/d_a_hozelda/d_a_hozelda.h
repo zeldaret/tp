@@ -2,6 +2,7 @@
 #define D_A_HOZELDA_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 
 class daHoZelda_matAnm_c : public J3DMaterialAnm {
 public:
@@ -49,6 +50,7 @@ public:
     /* 808489CC */ void execute();
     /* 80848B64 */ void draw();
 
+    MtxP getRightHandMtx() { return mpZeldaModel->getAnmMtx(22); }
     u8 checkBowMode() const { return field_0x6d8; }
     void setDamageInit() { field_0x6db = 1; }
 

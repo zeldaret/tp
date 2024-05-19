@@ -290,7 +290,7 @@ struct dStage_dPnt_c {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
+    /* 0x3 */ u8 mArg0;
     /* 0x4 */ Vec m_position;
 };  // Size: 0x10
 
@@ -797,7 +797,7 @@ public:
 
     dStage_roomControl_c() {}
     void init(void);
-    static int getZoneNo(int room);
+    static int getZoneNo(int i_roomNo) { return mStatus[i_roomNo].getZoneNo(); }
     /* 80024338 */ void initZone();
     /* 80024384 */ dStage_roomStatus_c* getStatusRoomDt(int);
     /* 800243B0 */ static JKRExpHeap* getMemoryBlock(int);

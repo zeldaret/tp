@@ -729,7 +729,7 @@ int daObjStone_c::Create() {
 
     fopAcM_setCullSizeSphere(this, 0.0f, 0.0f, 0.0f, l_r[mStoneType] * 1.2f);
     cLib_onBit<u32>(attention_info.flags, 0x10);
-    attention_info.field_0x0[4] = 0x2A;
+    attention_info.distances[fopAc_attn_SPEAK_e] = 0x2A;
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
     cXyz other_pos = current.pos;

@@ -4981,7 +4981,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
-        i_this->attention_info.field_0x0[4] = 7;
+        i_this->attention_info.distances[fopAc_attn_SPEAK_e] = 7;
         fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
         i_this->health = 1;
         _this->field_0x560 = 1;

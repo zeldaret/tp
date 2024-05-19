@@ -10,7 +10,7 @@ static const u8 l_dist_tbl[] = { 0x23, 0x24 };
 
 /* 804D5318-804D5354 000078 003C+00 1/1 0/0 0/0 .text            Create__8daAttp_cFv */
 int daAttp_c::Create() {
-    attention_info.field_0x0[0] = l_dist_tbl[daAttp_prm::getArg4(this)];
+    attention_info.distances[fopAc_attn_LOCK_e] = l_dist_tbl[daAttp_prm::getArg4(this)];
 
     execute();
     return 1;

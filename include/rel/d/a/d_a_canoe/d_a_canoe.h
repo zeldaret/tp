@@ -30,6 +30,13 @@ public:
     void incShapeOffsetY(f32 offset) { mShapeOffsetY += offset; }
     void incShapeAngleZ(s16 incZ) { shape_angle.z += incZ; }
     void onRodID(unsigned int i_rodID) { mRodID = i_rodID; }
+    void setWaterFallDownSe() { field_0x141c.startSound(Z2SE_AL_CANOE_FALL_DW, 0, -1); }
+
+    void setPosAndAngle(cXyz const* i_pos, s16 i_angle) {
+        field_0x14d0 = *i_pos;
+        field_0x144a = i_angle;
+        field_0x1446 = 1;
+    }
 
     /* 0x0568 */ request_of_phase_process_class mPhaseReq;
     /* 0x0570 */ J3DModel* mpModel;
@@ -48,9 +55,9 @@ public:
     /* 0x1443 */ u8 mJumpRideFlg;
     /* 0x1444 */ u8 field_0x1444;
     /* 0x1445 */ u8 mReverb;
-    /* 0x1446 */ u8 field_0x1446[0x1448 - 0x1446];
+    /* 0x1446 */ u8 field_0x1446;
     /* 0x1448 */ s16 field_0x1448;
-    /* 0x144A */ u8 field_0x144a[0x144C - 0x144A];
+    /* 0x144A */ s16 field_0x144a;
     /* 0x144C */ s16 mAimAngle;
     /* 0x144E */ s16 field_0x144e;
     /* 0x1450 */ s16 field_0x1450;

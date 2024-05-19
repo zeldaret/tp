@@ -45,6 +45,12 @@ template <>
 struct TVec3<s16> {
     s16 x, y, z;
 
+    TVec3() {}
+
+    TVec3(s16 x, s16 y, s16 z) {
+        set(x, y, z);
+    }
+
     TVec3& operator=(const TVec3& b) {
         // Force copies to use lwz/lha
         *((s32*)this) = *((s32*)&b);

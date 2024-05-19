@@ -5,8 +5,8 @@
 
 #include "rel/d/a/e/d_a_e_ym/d_a_e_ym.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Types:
@@ -1554,7 +1554,7 @@ asm void daE_YM_c::checkFlyTerritory() {
 
 /* 8080E630-8080E6A0 0065F0 0070+00 1/1 0/0 0/0 .text            initFly__8daE_YM_cFv */
 void daE_YM_c::initFly() {
-    attention_info.field_0x0[2] = 46;
+    attention_info.distances[fopAc_attn_BATTLE_e] = 46;
     gravity = FLOAT_LABEL(lit_3926);
     field_0x6e4 = 0;
 
@@ -2208,7 +2208,7 @@ int daE_YM_c::create() {
         }
 
         field_0x714 = 4;
-        attention_info.field_0x0[2] = 58;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 58;
         fopAcM_SetMtx(this, field_0x5b4->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
@@ -2253,7 +2253,7 @@ int daE_YM_c::create() {
                 mpPath = dPath_GetRoomPath(tmp0, fopAcM_GetRoomNo(this));
 
                 if (mpPath != NULL) {
-                    attention_info.field_0x0[7] = 31;
+                    attention_info.distances[fopAc_attn_ETC_e] = 31;
                     field_0x6a6 = 4;
                     field_0x670 = current.pos;
                     setActionMode(ACT_WAIT);

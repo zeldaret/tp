@@ -385,6 +385,7 @@ public:
     s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
     void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
     u8 getNeedLightDropNum() { return mNeedLightDropNum; }
+    void setNeedLightDropNum(u8 i_num) { mNeedLightDropNum = i_num; }
     u8 getWolfAbility(int i_idx) { return mWolfAbility[i_idx]; }
 
     const char* getStartStageName() { return mStartStage.getName(); }
@@ -1152,7 +1153,35 @@ inline void dComIfGs_onRegionBit(int i_region) {
 }
 
 inline void dComIfGs_onSvZoneSwitch(int i_zoneNo, int i_swBit) {
-    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getZoneBit().onSwitch(i_swBit);
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().onSwitch(i_swBit);
+}
+
+inline void dComIfGs_offSvZoneSwitch(int i_zoneNo, int i_swBit) {
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().offSwitch(i_swBit);
+}
+
+inline BOOL dComIfGs_isSvZoneSwitch(int i_zoneNo, int i_swBit) {
+    return g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().isSwitch(i_swBit);
+}
+
+inline void dComIfGs_onSvOneZoneSwitch(int i_zoneNo, int i_swBit) {
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().onOneSwitch(i_swBit);
+}
+
+inline void dComIfGs_offSvOneZoneSwitch(int i_zoneNo, int i_swBit) {
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().offOneSwitch(i_swBit);
+}
+
+inline BOOL dComIfGs_isSvOneZoneSwitch(int i_zoneNo, int i_swBit) {
+    return g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().isOneSwitch(i_swBit);
+}
+
+inline BOOL dComIfGs_isSvZoneItem(int i_zoneNo, int i_swBit) {
+    return g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().isItem(i_swBit);
+}
+
+inline BOOL dComIfGs_isSvOneZoneItem(int i_zoneNo, int i_swBit) {
+    return g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().isOneItem(i_swBit);
 }
 
 inline s32 dComIfGs_isDungeonItemMap() {
@@ -1607,11 +1636,11 @@ inline void dComIfGs_setStartPoint(s16 i_point) {
 }
 
 inline void dComIfGs_clearRoomSwitch(int i_zoneNo) {
-    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getZoneBit().clearRoomSwitch();
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().clearRoomSwitch();
 }
 
 inline void dComIfGs_clearRoomItem(int i_zoneNo) {
-    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getZoneBit().clearRoomItem();
+    g_dComIfG_gameInfo.info.getZone(i_zoneNo).getBit().clearRoomItem();
 }
 
 inline void dComIfGs_removeZone(int i_zoneNo) {
@@ -2670,6 +2699,10 @@ inline u8 dComIfGp_getNeedLightDropNum() {
     return g_dComIfG_gameInfo.play.getNeedLightDropNum();
 }
 
+inline void dComIfGp_setNeedLightDropNum(u8 i_num) {
+    g_dComIfG_gameInfo.play.setNeedLightDropNum(i_num);
+}
+
 inline void dComIfGp_setItemNowOil(s32 oil) {
     g_dComIfG_gameInfo.play.setItemNowOil(oil);
 }
@@ -3027,7 +3060,7 @@ inline s32 dComIfGp_roomControl_getStayNo() {
 }
 
 inline s32 dComIfGp_roomControl_getZoneNo(int i_roomNo) {
-    return dStage_roomControl_c::getZoneNo(i_roomNo);
+    return g_dComIfG_gameInfo.play.getRoomControl()->getZoneNo(i_roomNo);
 }
 
 inline void dComIfGp_roomControl_initZone() {
@@ -3266,6 +3299,10 @@ inline void dComIfGp_event_setCullRate(f32 f) {
 
 inline u8 dComIfGp_event_getMode() {
     return g_dComIfG_gameInfo.play.getEvent().getMode();
+}
+
+inline fopAc_ac_c* dComIfGp_event_getDoorPartner() {
+    return g_dComIfG_gameInfo.play.getEvent().getPtD();
 }
 
 inline int dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
@@ -3674,6 +3711,10 @@ inline int dComIfGd_setSimpleShadow(cXyz* pos, f32 param_1, f32 param_2, cXyz* p
                                     f32 param_5, _GXTexObj* tex) {
     return g_dComIfG_gameInfo.drawlist.setSimpleShadow(pos, param_1, param_2, param_3, angle,
                                                        param_5, tex);
+}
+
+inline bool dComIfGd_addRealShadow(u32 key, J3DModel* model) {
+    return g_dComIfG_gameInfo.drawlist.addRealShadow(key, model);
 }
 
 inline void dComIfGd_drawListItem3d() {

@@ -76,28 +76,28 @@ static int daKytag09_Delete(kytag09_class* i_this) {
 
 /* 8085B658-8085B7C0 0002D8 0168+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    kytag09_class* this_ = (kytag09_class*)i_this;
+    kytag09_class* a_this = (kytag09_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag09", 4);
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Kytag09", 5);
 
-    this_->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
-    if (this_->mpModel == NULL) {
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (a_this->mpModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* btkp = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag09", 9);
-    if (!this_->mBtk_2.init(modelData, btkp, TRUE, 2, 1.0f, 0, -1)) {
+    if (!a_this->mBtk_2.init(modelData, btkp, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
-    this_->mpModel2 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11000284);
-    if (this_->mpModel2 == NULL) {
+    a_this->mpModel2 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11000284);
+    if (a_this->mpModel2 == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* btk2p = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag09", 10);
-    if (!this_->mBtk.init(modelData2, btk2p, TRUE, 2, 1.0f, 0, -1)) {
+    if (!a_this->mBtk.init(modelData2, btk2p, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -106,16 +106,16 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8085B7C0-8085B894 000440 00D4+00 1/1 0/0 0/0 .text            useHeapInit2__FP10fopAc_ac_c */
 static int useHeapInit2(fopAc_ac_c* i_this) {
-    kytag09_class* this_ = (kytag09_class*)i_this;
+    kytag09_class* a_this = (kytag09_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("kytag09_2", 4);
-    this_->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
-    if (this_->mpModel == NULL) {
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (a_this->mpModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* btkp = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("kytag09_2", 7);
-    if (!this_->mBtk_2.init(modelData, btkp, TRUE, 2, 1.0f, 0, -1)) {
+    if (!a_this->mBtk_2.init(modelData, btkp, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -124,20 +124,20 @@ static int useHeapInit2(fopAc_ac_c* i_this) {
 
 /* 8085B894-8085B9F4 000514 0160+00 1/0 0/0 0/0 .text            daKytag09_Create__FP10fopAc_ac_c */
 static int daKytag09_Create(fopAc_ac_c* i_this) {
-    kytag09_class* this_ = (kytag09_class*)i_this;
-    this_->mType = fopAcM_GetParam(this_) & 0xFF;
+    kytag09_class* a_this = (kytag09_class*)i_this;
+    a_this->mType = fopAcM_GetParam(i_this) & 0xFF;
 
-    fopAcM_SetupActor(this_, kytag09_class);
+    fopAcM_SetupActor(a_this, kytag09_class);
 
     int phase;
-    if (this_->mType != 1) {
-        phase = dComIfG_resLoad(&this_->mPhase, "Kytag09");
-        if (phase == cPhs_COMPLEATE_e && !fopAcM_entrySolidHeap(this_, useHeapInit, 0x5EB0)) {
+    if (a_this->mType != 1) {
+        phase = dComIfG_resLoad(&a_this->mPhase, "Kytag09");
+        if (phase == cPhs_COMPLEATE_e && !fopAcM_entrySolidHeap(i_this, useHeapInit, 0x5EB0)) {
             return cPhs_ERROR_e;
         }
     } else {
-        phase = dComIfG_resLoad(&this_->mPhase, "kytag09_2");
-        if (phase == cPhs_COMPLEATE_e && !fopAcM_entrySolidHeap(this_, useHeapInit2, 0x1880)) {
+        phase = dComIfG_resLoad(&a_this->mPhase, "kytag09_2");
+        if (phase == cPhs_COMPLEATE_e && !fopAcM_entrySolidHeap(i_this, useHeapInit2, 0x1880)) {
             return cPhs_ERROR_e;
         }
     }

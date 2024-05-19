@@ -481,7 +481,7 @@ static cPhs__Step daObj_Food_Create(fopAc_ac_c* i_this) {
             fopAcM_SetFoodStatus(_this, fopAcM_FOOD_5);
         } else {
             _this->mAcchCir.SetWall(30.0f, 30.0f);
-            _this->attention_info.field_0x0[4] = 7;
+            _this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
             _this->gravity = -5.0f;
             fopAcM_SetFoodStatus(_this, fopAcM_FOOD_0);
             fopAcM_OnCarryType(_this, fopAcM_CARRY_UNK_30);

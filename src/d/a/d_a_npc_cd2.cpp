@@ -1860,7 +1860,6 @@ static s32 const a_jntNumTbl[13][2] = {
 };
 
 /* 80158FF0-801590FC 153930 010C+00 0/0 0/0 4/4 .text   drawObj__10daNpcCd2_cFiP8J3DModelf */
-#ifdef NONMATCHING  // rlwinm loading wrong value
 int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     if (i_model == NULL) {
         return 0;
@@ -1868,7 +1867,7 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     if (field_0xac6 && !daPy_py_c::checkNowWolfEyeUp()) {
         return 0;
     }
-    u32 x = !isM_();
+    int x = isM_() ? 0 : 1;
     s32 jntNum = a_jntNumTbl[idx][x];
     if (i_model && jntNum >= 0) {
         g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
@@ -1879,16 +1878,6 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     }
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daNpcCd2_c::drawObj(int param_0, J3DModel* param_1, f32 param_2) {
-    nofralloc
-#include "asm/a/npc/d_a_npc_cd2/drawObj__10daNpcCd2_cFiP8J3DModelf.s"
-}
-#pragma pop
-#endif
 
 /* 801590FC-80159258 153A3C 015C+00 0/0 0/0 4/4 .text            drawNpc__10daNpcCd2_cFv */
 int daNpcCd2_c::drawNpc() {
@@ -2341,10 +2330,3 @@ asm void __sinit_d_a_npc_cd2_cpp(){nofralloc
 #pragma force_active on
 REGISTER_CTORS(0x8015A90C, __sinit_d_a_npc_cd2_cpp);
 #pragma pop
-
-/* ############################################################################################## */
-/* 80451010-80451018 000510 0008+00 0/0 1/1 0/0 .sbss            None */
-extern u8 data_80451010[8];
-u8 data_80451010[8];
-
-/* 80393B70-80393B70 0201D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

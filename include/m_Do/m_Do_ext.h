@@ -128,6 +128,7 @@ public:
     }
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeMatColorAnimator(mpAnm); }
+    J3DAnmColor* getBpkAnm() { return mpAnm; }
 
 private:
     /* 0x14 */ J3DAnmColor* mpAnm;
