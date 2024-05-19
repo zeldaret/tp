@@ -3720,7 +3720,8 @@ public:
     /* 0x03062 */ s16 field_0x3062;
     /* 0x03064 */ s16 field_0x3064;
     /* 0x03066 */ s16 field_0x3066;
-    /* 0x03068 */ u8 field_0x3068[4];
+    /* 0x03068 */ u8 field_0x3068[2];
+    /* 0x0306A */ s16 field_0x306a;
     /* 0x0306C */ s16 field_0x306c;
     /* 0x0306E */ s16 field_0x306e;
     /* 0x03070 */ s16 field_0x3070;

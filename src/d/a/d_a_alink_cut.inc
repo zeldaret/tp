@@ -762,15 +762,15 @@ void daAlink_c::setCutJumpSpeed(int i_airAt) {
             targetPos.y = mTargetedActor->eyePos.y;
         }
 
-        f32 dvar12 = speed.y + gravity;
-        f32 dvar10 = 1.0f / gravity;
-        f32 fvar1 = targetPos.y - (current.pos.y - (dvar10 * (dvar12 * dvar12) * 0.5f));
+        f32 speed_y_delta = speed.y + gravity; // 23.6
+        f32 inverse_gravity = 1.0f / gravity; // -0.29
+        f32 fvar1 = targetPos.y - (current.pos.y - (inverse_gravity * (speed_y_delta * speed_y_delta) * 0.5f));
 
         if (fvar1 > 0.0f) {
             fvar1 = 0.0f;
         }
-        f32 sqrt = JMAFastSqrt(fvar1 * 2.0f * dvar10);
-        f32 speedDiv = sqrt - (dvar12 * dvar10);
+        f32 sqrt = JMAFastSqrt(fvar1 * 2.0f * inverse_gravity);
+        f32 speedDiv = sqrt - (speed_y_delta * inverse_gravity);
         f32 squareDist = current.pos.absXZ(targetPos);
 
         if (squareDist > 500.0f) {

@@ -224,7 +224,7 @@ public:
     /* 0xB4 */ u16 mWindowAccept;
     /* 0xB6 */ u16 mOilGaugeBackUp;
     /* 0xB8 */ u8 mDirectUseItem;
-    /* 0xB9 */ u8 mWindowStatus;
+    /* 0xB9 */ u8 mWindowStatus; // 0: normal play, 2: item wheel, 3: pause menu, 4: map, 10: pause menu submenus, 11: map in dungeon
     /* 0xBA */ u8 unk186;
     /* 0xBB */ u8 mMaxCount;
     /* 0xBC */ u8 mNowCount;

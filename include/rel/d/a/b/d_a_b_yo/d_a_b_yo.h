@@ -14,7 +14,7 @@
  */
 class daB_YO_c : public fopEn_enemy_c {
 public:
-    /* 8062F51C */ void draw();
+    /* 8062F51C */ s32 draw();
     /* 8062FBEC */ void onIceBreak(u16);
     /* 8062FC08 */ void setBck(int, u8, f32, f32);
     /* 8062FE0C */ void setActionMode(int, int);
@@ -71,11 +71,15 @@ private:
     /* 0xF54 */ f32 mModeRarius;
     /* 0xF58 */ u8 field_0xf58[0xF5C - 0xF58];
     /* 0xF5C */ s16 mRollAngle;
-    /* 0xF5E */ u8 field_0xf5e[0xFA8 - 0xF5E];
+    /* 0xF5E */ u8 field_0xf5e[0xF6E - 0xF5E];
+    /* 0xF6E */ u16 field_0xf6e;
+    /* 0xF70 */ u8 field_0xf70[0xFA8 - 0xF70];
     /* 0xFA8 */ u8 mModelNo;
     /* 0xFA9 */ u8 field_0xfa9[0xFAD - 0xFA9];
     /* 0xFAD */ u8 mFrizadAttack;
+    /* 0xFAE */ u8 field_0xfae[0x1B88 - 0xFAE];
 };
+STATIC_ASSERT(sizeof(daB_YO_c) == 0x1B88);
 
 struct daB_YO_HIO_c {
     /* 8062F46C */ daB_YO_HIO_c();
