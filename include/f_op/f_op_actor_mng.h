@@ -656,6 +656,10 @@ inline s16 fopAcM_searchPlayerAngleY(const fopAc_ac_c* actor) {
     return fopAcM_searchActorAngleY(actor, dComIfGp_getPlayer(0));
 }
 
+inline s16 fopAcM_searchPlayerAngleX(const fopAc_ac_c* actor) {
+    return fopAcM_searchActorAngleX(actor, dComIfGp_getPlayer(0));
+}
+
 inline f32 fopAcM_searchPlayerDistanceY(const fopAc_ac_c* actor) {
     return fopAcM_searchActorDistanceY(actor, dComIfGp_getPlayer(0));
 }

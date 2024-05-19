@@ -482,12 +482,12 @@ asm void daAlink_c::setDragonHangPos() {
 
 /* 800FC6B4-800FC748 0F6FF4 0094+00 1/1 0/0 0/0 .text            setOctaIealHangPos__9daAlink_cFv */
 int daAlink_c::setOctaIealHangPos() {
-    b_ob_class* ob_p = (b_ob_class*)field_0x280c.getActor();
-    if (ob_p == NULL) {
+    b_ob_class* boss = (b_ob_class*)field_0x280c.getActor();
+    if (boss == NULL) {
         return 0;
     }
 
-    mDoMtx_stack_c::copy(ob_p->mParts[0].field_0x0->getModel()->getAnmMtx(0));
+    mDoMtx_stack_c::copy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0));
     mDoMtx_stack_c::transM(FLOAT_LABEL(lit_6108), lit_24400, lit_24401);
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);

@@ -4,6 +4,7 @@
  */
 
 #include "rel/d/a/b/d_a_b_oh2/d_a_b_oh2.h"
+#include "rel/d/a/b/d_a_b_ob/d_a_b_ob.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "d/com/d_com_inf_game.h"
@@ -67,7 +68,7 @@ static void dmcalc(b_oh2_class* i_this) {
     sp20.y = 0.0f;
     if (i_this->field_0x5d2[3] != 0) {
         sp20.z = 200.0f;
-    } else if (boss->field_0x4752 == 101) {
+    } else if (boss->mAction == OB_ACTION_FISH_VACUME) {
         sp20.z = 100.0f;
     } else {
         sp20.z = boss->field_0x5d04 * 123.0f;
@@ -140,10 +141,10 @@ static void action(b_oh2_class* i_this) {
         break;
     }
 
-    MTXCopy(boss->mParts[0].field_0x0->getModel()->getAnmMtx(i_this->field_0x5c8 + 8),
+    MTXCopy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(i_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->current.pos);
-    MTXCopy(boss->mParts[0].field_0x0->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+    MTXCopy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
 
     local_20.set(0.0f, 0.0f, i_this->field_0x5c8 * 20.0f + 650.0f);
     mDoMtx_stack_c::multVec(&local_20, &vstack_2C);
