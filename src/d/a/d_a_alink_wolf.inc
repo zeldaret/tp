@@ -24,6 +24,7 @@
 #include "rel/d/a/tag/d_a_tag_howl/d_a_tag_howl.h"
 #include "rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl.h"
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
+#include "rel/d/a/e/d_a_e_ymb/d_a_e_ymb.h"
 
 /* 80126740-80126928 121080 01E8+00 2/2 0/0 0/0 .text            changeCommon__9daAlink_cFv */
 // matches with literals
@@ -6715,6 +6716,69 @@ int daAlink_c::procWolfDownAtMissLand() {
 }
 
 /* 8013BE24-8013C3E4 136764 05C0+00 2/2 0/0 0/0 .text procWolfLockAttackInit__9daAlink_cFi */
+#ifdef NONMATCHING
+// wrong float regist + float literals
+int daAlink_c::procWolfLockAttackInit(int param_0) {
+    commonProcInit(PROC_WOLF_LOCK_ATTACK);
+    setSingleAnimeWolfParam(WANM_ATTACK_A_START, &daAlinkHIO_wlAtLock_c0::m.field_0x0);
+
+    if (fopAcM_GetName(mWolfLockAcKeep[0].getActor()) == PROC_E_YMB) {
+        mProcVar3.field_0x300e.z = 1;
+
+        if (param_0 == 0) {
+            mProcVar1.field_0x300a = static_cast<daE_YMB_c*>(mWolfLockAcKeep[0].getActor())->getMaxLockAttack();
+        }
+
+        mProcVar1.field_0x300a--;
+        field_0x37c8 = mWolfLockAcKeep[0].getActor()->eyePos;
+
+        if (mProcVar1.field_0x300a == 0) {
+            mWolfLockAcKeep[0].clearData();
+        }
+    } else {
+        field_0x37c8 = mWolfLockAcKeep[0].getActor()->eyePos;
+        mWolfLockAcKeep[0].clearData();
+        mProcVar3.field_0x300e.z = 0;
+    }
+    
+    shape_angle.y = cLib_targetAngleY(&current.pos,&field_0x37c8);
+    current.angle.y = shape_angle.y;
+    cXyz l_eyePosDelta = field_0x37c8 - eyePos;
+
+    if (l_eyePosDelta.y < 10.0f) {
+        l_eyePosDelta.y = 10.0f;
+    } else {
+        if (l_eyePosDelta.y > daAlinkHIO_wlAtLock_c0::m.field_0x4C) 
+            l_eyePosDelta.y = daAlinkHIO_wlAtLock_c0::m.field_0x4C;
+    }
+
+    f32 tmp_f = l_eyePosDelta.absXZ();
+
+    if (tmp_f > daAlinkHIO_wlAtLock_c0::m.field_0x50) {
+        f32 tmp = daAlinkHIO_wlAtLock_c0::m.field_0x50 / tmp_f;
+        l_eyePosDelta.x *= tmp;
+        l_eyePosDelta.z *= tmp;
+    }
+
+    f32 abs = l_eyePosDelta.abs() / daAlinkHIO_wlAtLock_c0::m.field_0x28.mCheckFrame;
+    
+    if (abs < 1.0f)
+        abs = 1.0f;
+  
+    f32 check_frame = daAlinkHIO_wlAtLock_c0::m.field_0x28.mCheckFrame / abs;
+    mNormalSpeed = check_frame * l_eyePosDelta.absXZ();
+    setSpecialGravity((l_eyePosDelta.y * -2.0f) / (abs * abs), maxFallSpeed, 0);
+    speed.y = -gravity * abs;
+    mProcVar0.field_0x3008 = abs;
+    setCylAtParam(0x8000000,dCcG_At_Spl_UNK_0,1,4,6,daAlinkHIO_wlAtLock_c0::m.field_0x40,daAlinkHIO_wlAtLock_c0::m.field_0x44);
+    field_0x3438 = daAlinkHIO_wlAtLock_c0::m.field_0x3C;
+    setCutType(CUT_TYPE_WOLF_LOCK);
+    voiceStart(Z2SE_WL_V_ATTACK_THRUST);
+    dComIfGp_setPlayerStatus1(0,0x1000000);
+    dComIfGp_particle_set(0x247,&current.pos,&current.angle,0);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -6723,12 +6787,15 @@ asm int daAlink_c::procWolfLockAttackInit(int param_0) {
 #include "asm/d/a/d_a_alink/procWolfLockAttackInit__9daAlink_cFi.s"
 }
 #pragma pop
+#endif
 
 /* 8013C3E4-8013C630 136D24 024C+00 1/0 0/0 0/0 .text            procWolfLockAttack__9daAlink_cFv */
 // matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procWolfLockAttack() {
     BOOL var_r29 = false;
+    
+    // check if any field_0x850 clylinders collided with at shields
     for (int i = 0; i < 3; i++) {
         if (checkAtShieldHit(field_0x850[i])) {
             var_r29 = true;
@@ -6736,6 +6803,8 @@ int daAlink_c::procWolfLockAttack() {
         }
     }
 
+
+    // early return checks for colliding with at shields or if the actor hit is not freezard
     if (var_r29 || (checkAtShieldHit(mAtCyl) && (mAtCyl.GetAtHitAc() == NULL ||
                                                  fopAcM_GetName(mAtCyl.GetAtHitAc()) != PROC_E_FB)))
     {

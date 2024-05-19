@@ -17522,7 +17522,7 @@ void daAlink_c::posMove() {
                 speed.y = daAlinkHIO_swim_c0::m.mMaxFloatUpSpeed;
             }
         }
-    } else if (!checkModeFlg(0x400)) {
+    } else if (!checkModeFlg(MODE_RIDE)) {
         if (checkHeavyStateOn(1, 1) && mProcID != PROC_SPINNER_READY &&
             !checkNoResetFlg0(FLG0_UNDERWATER))
         {

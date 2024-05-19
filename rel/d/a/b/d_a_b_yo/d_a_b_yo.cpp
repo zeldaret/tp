@@ -6,6 +6,7 @@
 
 #include "rel/d/a/b/d_a_b_yo/d_a_b_yo.h"
 #include "rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h"
+#include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 
 //
@@ -275,7 +276,6 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 // extern "C" extern u8 g_env_light[4880];
 // extern "C" extern u8 j3dSys[284];
@@ -478,12 +478,26 @@ SECTION_DATA static u8 yo_material_draw[27 + 1 /* padding */] = {
 /* 80639B60-80639BAC 000100 004C+00 0/1 0/0 0/0 .data            yo_demo_bck_idx */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 yo_demo_bck_idx[76] = {
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x11,
-    0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x15,
-    0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x17,
-    0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x0A,
-    0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x09,
+static u32 yo_demo_bck_idx[19] = {
+    0x00000007, 
+    0x00000008, 
+    0x0000000D, 
+    0x00000011,
+    0x00000012, 
+    0x00000013, 
+    0x00000014, 
+    0x00000015,
+    0x00000019, 
+    0x0000000F, 
+    0x00000010, 
+    0x00000017,
+    0x00000016, 
+    0x0000000E, 
+    0x00000018, 
+    0x0000000A,
+    0x0000000B, 
+    0x0000000C, 
+    0x00000009,
 };
 #pragma pop
 
@@ -863,6 +877,46 @@ SECTION_DEAD static char const* const stringBase_80639A34 = "B_YO";
 #pragma pop
 
 /* 8062FC08-8062FE0C 000888 0204+00 4/4 0/0 0/0 .text            setBck__8daB_YO_cFiUcff */
+#ifdef NONMATCHING
+void daB_YO_c::setBck(int i_bckIdx, u8 param_1, f32 param_2, f32 param_3) {
+    J3DModel* l_model = (J3DModel*)dComIfG_getObjectRes("B_YO",yo_demo_bck_idx[i_bckIdx]);
+    setAnm();
+            (*(mDoExt_McaMorfSO **)(this + 0x5fc),pJVar3,(uint)param_2,param_3,(float)dVar8,0.0,-1.0
+            );
+  this_00 = (J3DModel *)mDoExt_McaMorfSO::getModel(*(mDoExt_McaMorfSO **)(this + 0x5fc));
+  ctx = (J3DModelData *)J3DModel::getModelData(this_00);
+  mDoExt_btkAnm::remove(*(mDoExt_btkAnm **)(this + 0x5e0),(char *)ctx);
+  iVar5 = *(int *)(&d_a_b_yo::yo_demo_btk_idx + param_1 * 4);
+  if (iVar5 == 0xff) {
+    this[0x1005] = (daB_YO_c)0x0;
+  }
+  else {
+    this[0x1005] = (daB_YO_c)0x1;
+    pJVar4 = (J3DAnmTextureSRTKey *)f_op_actor::dComIfG_getObjectRes(&d_a_b_yo::@118744,iVar5);
+    mDoExt_btkAnm::init(*(mDoExt_btkAnm **)(this + 0x5e0),ctx,pJVar4,1,(float)dVar8,(ushort)param_2,
+                        0);
+  }
+  mDoExt_btpAnm::remove(*(mDoExt_btpAnm **)(this + 0x5e4),(char *)ctx);
+  f_op_actor::dComIfG_getObjectRes
+            (&d_a_b_yo::@118744,*(undefined4 *)(&d_a_b_yo::yo_demo_btp_idx + param_1 * 4));
+  mDoExt_btpAnm::init(*(mDoExt_btpAnm **)(this + 0x5e4),(EVP_PKEY_CTX *)ctx);
+  if (param_1 == 0) {
+    this[0x1004] = (daB_YO_c)0x1;
+    uVar6 = 0x25;
+  }
+  else if (param_1 == 1) {
+    uVar6 = 0x26;
+  }
+  else if (this[0x1004] == (daB_YO_c)0x0) {
+    uVar6 = 0x25;
+  }
+  else {
+    uVar6 = 0x24;
+  }
+  f_op_actor::dComIfG_getObjectRes(&d_a_b_yo::@118744,uVar6);
+  ::mDoExt_brkAnm::init(*(mDoExt_brkAnm **)(this + 0x5e8),(EVP_PKEY_CTX *)ctx);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -871,6 +925,7 @@ asm void daB_YO_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
 #include "asm/rel/d/a/b/d_a_b_yo/d_a_b_yo/setBck__8daB_YO_cFiUcff.s"
 }
 #pragma pop
+#endif
 
 /* 8062FE0C-8062FE18 000A8C 000C+00 11/11 0/0 0/0 .text            setActionMode__8daB_YO_cFii */
 #pragma push
