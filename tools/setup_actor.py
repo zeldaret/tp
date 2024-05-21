@@ -62,7 +62,15 @@ weak_funcs = {
     "asm void cXyz::operator=(cXyz const& param_0)": "__as__4cXyzFRC4cXyz",
     "asm cXyz::cXyz(cXyz const& param_0)": "__ct__4cXyzFRC4cXyz",
     "asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2)": "__ct__4cXyzFfff",
-    "asm void daPy_py_c::getHeadTopPos() const": "getHeadTopPos__9daPy_py_cCFv"
+    "asm void daPy_py_c::getHeadTopPos() const": "getHeadTopPos__9daPy_py_cCFv",
+    "asm void dCcD_Cyl::operator=(dCcD_Cyl const& param_0)": "__as__8dCcD_CylFRC8dCcD_Cyl",
+    "asm void dCcD_GObjInf::operator=(dCcD_GObjInf const& param_0)": "__as__12dCcD_GObjInfFRC12dCcD_GObjInf",
+    "asm dCcD_Cyl::~dCcD_Cyl()": "__dt__8dCcD_CylFv",
+    "asm dCcD_Cyl::dCcD_Cyl()": "__ct__8dCcD_CylFv",
+    "asm dBgS_ObjAcch::dBgS_ObjAcch()": "__ct__12dBgS_ObjAcchFv",
+    "asm void daTag_FWall_c::getPos(u8 param_0)": "getPos__13daTag_FWall_cFUc",
+    "asm void daB_DS_c::getHandPosR()": "getHandPosR__8daB_DS_cFv",
+    "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -225,7 +233,13 @@ types = [
     "struct Z2StatusMgr",
     "struct mDoExt_3DlineMat0_c",
     "struct dSv_player_get_item_c",
-    "struct dAttCatch_c"
+    "struct dAttCatch_c",
+    "struct fopAcM_wt_c",
+    "struct daObjCRVSTEEL_c",
+    "struct daObjCRVGATE_c",
+    "struct daTag_FWall_c",
+    "struct fopAcM_rc_c",
+    "struct daB_DS_c"
 ]
 
 class ActorSetupManager:
@@ -251,6 +265,8 @@ class ActorSetupManager:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey.h")
                 if "obj_ystone_class" in line:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h")
+                if "daB_DS_c" in line:
+                    self.include_headers.append("rel/d/a/b/d_a_b_ds/d_a_b_ds.h")
                 # if "JPAEmitterCallBack" in line:
                 #     self.include_headers.append("JSystem/JPArticle/JPAEmitter.h")
                 if "daObjCarry_c" in line:

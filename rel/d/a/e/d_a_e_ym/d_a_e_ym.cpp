@@ -8,17 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
 
-//
-// Types:
-//
 
-struct daTag_FWall_c {
-    /* 80815958 */ void getPos(u8);
-};
-
-struct E_YM_n {
-    static dCcD_SrcSph cc_sph_src;
-};
 
 //
 // Forward References:
@@ -500,25 +490,30 @@ SECTION_DATA static void* lit_9421[8] = {
 };
 
 /* 80815C48-80815C68 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YM_Method */
-SECTION_DATA static void* l_daE_YM_Method[8] = {
-    (void*)daE_YM_Create__FP8daE_YM_c,
-    (void*)daE_YM_Delete__FP8daE_YM_c,
-    (void*)daE_YM_Execute__FP8daE_YM_c,
-    (void*)daE_YM_IsDelete__FP8daE_YM_c,
-    (void*)daE_YM_Draw__FP8daE_YM_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daE_YM_Method = {
+    (process_method_func)daE_YM_Create__FP8daE_YM_c,
+    (process_method_func)daE_YM_Delete__FP8daE_YM_c,
+    (process_method_func)daE_YM_Execute__FP8daE_YM_c,
+    (process_method_func)daE_YM_IsDelete__FP8daE_YM_c,
+    (process_method_func)daE_YM_Draw__FP8daE_YM_c,
 };
 
 /* 80815C68-80815C98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YM */
-SECTION_DATA extern void* g_profile_E_YM[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01F40000, (void*)&g_fpcLf_Method,
-    (void*)0x00000AF8, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00C20000, (void*)&l_daE_YM_Method,
-    (void*)0x00040100, (void*)0x020E0000,
+extern actor_process_profile_definition g_profile_E_YM = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_E_YM,              // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daE_YM_c),       // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  194,                    // mPriority
+  &l_daE_YM_Method,       // sub_method
+  0x00040100,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80815C98-80815CA4 000194 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
@@ -2476,7 +2471,8 @@ extern "C" asm void getLeftHandPos__9daPy_py_cCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_FWall_c::getPos(u8 param_0) {
+// asm void daTag_FWall_c::getPos(u8 param_0) {
+extern "C" asm void getPos__13daTag_FWall_cFUc() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ym/d_a_e_ym/getPos__13daTag_FWall_cFUc.s"
 }

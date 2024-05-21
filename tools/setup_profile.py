@@ -924,6 +924,9 @@ def get_profiles_from_cpp_data(filepath, actor_name):
                 mStatus = profile_members[10].replace("(void*)","")
 
                 mActorTypeCullType_string = profile_members[11].replace("(void*)","")
+                if mActorTypeCullType_string == "NULL":
+                    mActorTypeCullType_string = "0x00000000"
+                
                 mActorTypeCullType_bytes = struct.pack(">I",int(mActorTypeCullType_string,16))
                 mActorType = ActorType.get(struct.unpack(">B",mActorTypeCullType_bytes[0:1])[0])
                 cullType = CullType.get(struct.unpack(">B",mActorTypeCullType_bytes[1:2])[0])
