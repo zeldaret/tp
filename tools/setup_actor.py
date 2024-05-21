@@ -12,6 +12,11 @@ weak_funcs = {
     "asm cXyz::~cXyz()": "__dt__4cXyzFv",
     "csXyz::csXyz()": "__ct__5csXyzFv",
     "asm csXyz::~csXyz()": "__dt__5csXyzFv",
+    "asm dCcD_GStts::~dCcD_GStts()": "__dt__10dCcD_GSttsFv",
+    "asm cCcD_GStts::~cCcD_GStts()": "__dt__10cCcD_GSttsFv",
+    "asm cM3dGPla::~cM3dGPla()": "__dt__8cM3dGPlaFv",
+    "asm dCcD_Sph::~dCcD_Sph()": "__dt__8dCcD_SphFv",
+    "asm dCcD_Sph::dCcD_Sph()": "__ct__8dCcD_SphFv",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -105,7 +110,24 @@ types = [
     "struct mDoExt_3DlineMatSortPacket",
     "struct ResTIMG",
     "struct JPABaseEmitter",
-    "struct mDoExt_3DlineMat1_c"
+    "struct mDoExt_3DlineMat1_c",
+    "struct dEvt_control_c",
+    "struct dCamera_c",
+    "struct J3DAnmTextureSRTKey",
+    "struct mDoExt_btkAnm",
+    "struct cM3dGPla",
+    "struct cBgD_Vtx_t",
+    "struct cCcD_GStts",
+    "struct dJntColData_c",
+    "struct dJntCol_c",
+    "struct dBomb_c",
+    "struct Z2SeqMgr",
+    "struct Z2SeMgr",
+    "struct Z2AudioMgr",
+    "struct mDoGph_gInf_c",
+    "struct camera_class",
+    "struct cCcD_Stts",
+    "struct cSAngle"
 ]
 
 class ActorSetupManager:
