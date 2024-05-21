@@ -60,6 +60,9 @@ weak_funcs = {
     "asm void cXyz::set(Vec const& param_0)": "set__4cXyzFRC3Vec",
     "asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2)": "set__4cXyzFfff",
     "asm void cXyz::operator=(cXyz const& param_0)": "__as__4cXyzFRC4cXyz",
+    "asm cXyz::cXyz(cXyz const& param_0)": "__ct__4cXyzFRC4cXyz",
+    "asm cXyz::cXyz(f32 param_0, f32 param_1, f32 param_2)": "__ct__4cXyzFfff",
+    "asm void daPy_py_c::getHeadTopPos() const": "getHeadTopPos__9daPy_py_cCFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -85,7 +88,8 @@ external_refs = [
     "extern \"C\" void PSVECScale();",
     "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];",
     "extern \"C\" void PSMTXScale();",
-    "extern \"C\" void PSMTXInverse();"
+    "extern \"C\" void PSMTXInverse();",
+    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
 ]
 
 # list of known types to be removed
@@ -216,6 +220,12 @@ types = [
     "struct dPa_hermiteEcallBack_c",
     "struct dEvt_info_c",
     "struct dAttList_c",
+    "struct dSv_event_tmp_flag_c",
+    "struct daObjH_Saku_c",
+    "struct Z2StatusMgr",
+    "struct mDoExt_3DlineMat0_c",
+    "struct dSv_player_get_item_c",
+    "struct dAttCatch_c"
 ]
 
 class ActorSetupManager:
@@ -322,7 +332,7 @@ class ActorSetupManager:
             if stripped_line.startswith("struct ") or stripped_line.startswith("class "):
                 if stripped_line.startswith("struct ") and ("class" in stripped_line or "_c" in stripped_line):
                     stripped_line = stripped_line.replace("struct ","class ")
-                    if "hio" not in stripped_line.lower() and "_s" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
+                    if "hio" not in stripped_line.lower() and "_s {" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
                         # might fail if a tu has more than 1 actor
                         self.actor_name = stripped_line.split(" ")[1]
 

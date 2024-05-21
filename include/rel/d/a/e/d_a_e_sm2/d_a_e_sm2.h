@@ -1,7 +1,11 @@
 #ifndef D_A_E_SM2_H
 #define D_A_E_SM2_H
 
+#include "f_op/f_op_actor_mng.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
+#include "d/cc/d_cc_uty.h"
 
 /**
 * @ingroup actors-enemies
@@ -12,6 +16,7 @@ class e_sm2_class : public fopEn_enemy_c {
 public:
     bool checkYellow() { return field_0x5b7 == 3; }
 
+private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 field_0x5b4;
     /* 0x5B5 */ u8 field_0x5B5[0x5B7 - 0x5B5];
@@ -83,6 +88,14 @@ public:
     /* 0xFD4 */ u8 field_0xfd4;
     /* 0xFD5 */ u8 field_0xFD5[0xFD8 - 0xFD5];
     /* 0xFD8 */ u32 field_0xfd8;
+    /* 0xFDC */ u8 field_0xfdc[0xFF0 - 0xFDC];
 };
+STATIC_ASSERT(sizeof(e_sm2_class) == 0xff0);
+
+class daE_SM2_HIO_c {
+    /* 80798B4C */ daE_SM2_HIO_c();
+    /* 8079CE94 */ ~daE_SM2_HIO_c();
+};
+
 
 #endif /* D_A_E_SM2_H */
