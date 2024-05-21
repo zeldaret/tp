@@ -31,14 +31,14 @@ weak_funcs = {
     "asm void daKey_c::setPos(cXyz param_0)": "setPos__7daKey_cF4cXyz",
     "asm void daPy_py_c::checkNowWolf()": "checkNowWolf__9daPy_py_cFv",
     "asm cM3dGCyl::~cM3dGCyl()": "__dt__8cM3dGCylFv",
+    "cXyz::cXyz()": "__ct__4cXyzFv",
+    "asm fOpAcm_HIO_entry_c::~fOpAcm_HIO_entry_c()": "__dt__18fOpAcm_HIO_entry_cFv",
+    "asm mDoHIO_entry_c::~mDoHIO_entry_c()": "__dt__14mDoHIO_entry_cFv"
     # "void JPAEmitterCallBack::execute(JPABaseEmitter* param_0)": "execute__18JPAEmitterCallBackFP14JPABaseEmitter",
     # "void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0)": "executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
     # "void JPAEmitterCallBack::draw(JPABaseEmitter* param_0)": "draw__18JPAEmitterCallBackFP14JPABaseEmitter",
     # "void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0)": "drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter"
 }
-
-
-
 
 # list of known external references to be replaced to avoid symbol collision
 external_refs = [
@@ -61,7 +61,9 @@ external_refs = [
     "extern \"C\" extern u8 const j3dDefaultLightInfo[52];",
     "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];",
     "extern \"C\" void PSVECScale();",
-    "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];"
+    "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];",
+    "extern \"C\" void PSMTXScale();",
+    "extern \"C\" void PSMTXInverse();"
 ]
 
 # list of known types to be removed
@@ -181,6 +183,12 @@ types = [
     "struct cBgD_t",
     "struct cBgW",
     "struct daObjCarry_c",
+    "struct dSv_danBit_c",
+    "struct J3DAnmTexPattern",
+    "struct mDoExt_btpAnm",
+    "struct fOpAcm_HIO_entry_c",
+    "struct mDoHIO_entry_c",
+    "struct dAttLook_c"
 ]
 
 class ActorSetupManager:
