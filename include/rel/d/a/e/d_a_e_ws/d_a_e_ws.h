@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_WS_c
+ * @brief Wall Skulltula
+ * 
+ * @details 
+ * 
+ */
 class daE_WS_c : public fopEn_enemy_c {
     /* 807E3A6C */ void draw();
     /* 807E3C20 */ void setBck(int, u8, f32, f32);

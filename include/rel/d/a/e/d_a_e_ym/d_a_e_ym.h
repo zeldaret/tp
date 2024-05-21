@@ -26,10 +26,13 @@ public:
 };
 
 /**
-* @ingroup actors-enemies
-* @brief Shadow Insect
-*
-*/
+ * @ingroup actors-enemies
+ * @class daE_YM_c
+ * @brief Twilight Insect
+ * 
+ * @details 
+ * 
+ */
 class daE_YM_c : public fopEn_enemy_c {
 public:
     enum daE_YM_Action {
@@ -128,6 +131,7 @@ public:
 
     void setFriendFlag(u8 i_flag) { mFriendFlag |= i_flag; }
     u8 getFriendFlag() { return mFriendFlag; }
+    
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* field_0x5b4;

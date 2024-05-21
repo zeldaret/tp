@@ -10,10 +10,13 @@
 #include "d/d_path.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Peahat
-*
-*/
+ * @ingroup actors-enemies
+ * @class daE_PH_c
+ * @brief Peahat
+ * 
+ * @details 
+ * 
+ */
 class daE_PH_c : public fopEn_enemy_c {
 public:
     /* 8073D48C */ void initCcSph();

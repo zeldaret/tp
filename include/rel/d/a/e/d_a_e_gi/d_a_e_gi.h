@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_GI_c
+ * @brief Gibdo
+ * 
+ * @details 
+ * 
+ */
 class daE_GI_c : public fopEn_enemy_c {
     /* 806CD4F4 */ void ctrlJoint(J3DJoint*, J3DModel*);
     /* 806CD594 */ void JointCallBack(J3DJoint*, int);

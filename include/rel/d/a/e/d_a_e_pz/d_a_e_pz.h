@@ -4,7 +4,15 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
-struct daE_PZ_c : public fopEn_enemy_c {
+/**
+ * @ingroup actors-enemies
+ * @class daE_PZ_c
+ * @brief Phantom Zant
+ * 
+ * @details 
+ * 
+ */
+class daE_PZ_c : public fopEn_enemy_c {
     void onBombArrowHit() { field_0x845 = 1; }
 
     /* 807585BC */ void draw();

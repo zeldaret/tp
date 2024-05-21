@@ -2,6 +2,14 @@
 #define D_A_E_MD_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_MD_c
+ * @brief Suit of Armor
+ * 
+ * @details 
+ * 
+ */
 class daE_MD_c : public fopEn_enemy_c {
     /* 80708DF8 */ void initCcCylinder();
     /* 80708E70 */ void setCcCylinder(f32);

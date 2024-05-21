@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_ZS_c
+ * @brief Staltroop
+ * 
+ * @details 
+ * 
+ */
 class daE_ZS_c : public fopEn_enemy_c {
     /* 808330DC */ void draw();
     /* 808331E4 */ void setBck(int, u8, f32, f32);
@@ -21,6 +29,7 @@ class daE_ZS_c : public fopEn_enemy_c {
     /* 808346E4 */ void _delete();
     /* 80834778 */ void CreateHeap();
     /* 80834884 */ void create();
+
 private:
     /* 0x5ac */ u8 field_0x5ac[0xa3c - 0x5ac];
 };

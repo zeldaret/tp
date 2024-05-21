@@ -2,6 +2,14 @@
 #define D_A_E_PO_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_po_class
+ * @brief Poe
+ * 
+ * @details 
+ * 
+ */
 class e_po_class : public fopEn_enemy_c {
     /* 80756900 */ e_po_class();
 private:

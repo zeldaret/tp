@@ -2,6 +2,14 @@
 #define D_A_E_YD_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_yd_class
+ * @brief Twilight Deku Baba
+ * 
+ * @details 
+ * 
+ */
 class e_yd_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x126c - 0x5ac];

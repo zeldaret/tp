@@ -2,11 +2,14 @@
 #define D_A_E_SM_H
 #include "f_op/f_op_actor_mng.h"
 
-class daE_Sm_HIO_c {
-    /* 8079222C */ daE_Sm_HIO_c();
-    /* 807980E8 */ ~daE_Sm_HIO_c();
-};
-
+/**
+ * @ingroup actors-enemies
+ * @class daE_SM_c
+ * @brief ChuChu
+ * 
+ * @details 
+ * 
+ */
 class daE_SM_c : public fopEn_enemy_c {
     /* 80792260 */ void SetAnm(int, int, f32, f32);
     /* 8079230C */ void Draw();
@@ -54,5 +57,9 @@ private:
 };
 STATIC_ASSERT(sizeof(daE_SM_c) == 0x1160);
 
+class daE_Sm_HIO_c {
+    /* 8079222C */ daE_Sm_HIO_c();
+    /* 807980E8 */ ~daE_Sm_HIO_c();
+};
 
 #endif /* D_A_E_SM_H */

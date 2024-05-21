@@ -2,6 +2,14 @@
 #define D_A_E_KR_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_kr_class
+ * @brief Kargorok
+ * 
+ * @details 
+ * 
+ */
 class e_kr_class : public fopEn_enemy_c {
     /* 80705004 */ e_kr_class();
 private:

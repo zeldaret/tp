@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_rdy_class
+ * @brief Shadow Bulblin
+ * 
+ * @details 
+ * 
+ */
 class e_rdy_class : public fopEn_enemy_c {
 public:
     /* 80779340 */ e_rdy_class();
@@ -14,7 +22,6 @@ public:
     /* 0x1372 */ s16 field_0x1372;
     /* 0x1374 */ u8 field_0x1374[0x142c - 0x1374];
 };
-
 STATIC_ASSERT(sizeof(e_rdy_class) == 0x142C);
 
 class daE_RDY_HIO_c {

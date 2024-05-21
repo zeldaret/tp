@@ -2,6 +2,14 @@
 #define D_A_E_SH_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_sh_class
+ * @brief Stalhound
+ * 
+ * @details 
+ * 
+ */
 class e_sh_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xd0c - 0x5ac];

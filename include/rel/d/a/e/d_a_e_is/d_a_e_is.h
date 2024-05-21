@@ -2,6 +2,14 @@
 #define D_A_E_IS_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_is_class
+ * @brief Armos Titan
+ * 
+ * @details Armos Titans are enemies from early, unreleased versions of the game.
+ * 
+ */
 class e_is_class : public fopEn_enemy_c {
     /* 806F76B4 */ e_is_class();
 private:

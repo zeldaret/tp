@@ -2,6 +2,14 @@
 #define D_A_E_GB_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_gb_class
+ * @brief Giant Baba
+ * 
+ * @details 
+ * 
+ */
 class e_gb_class : public fopEn_enemy_c {
     /* 806C6B94 */ e_gb_class();
 private:

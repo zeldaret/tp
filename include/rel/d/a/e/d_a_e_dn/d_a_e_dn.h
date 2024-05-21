@@ -2,6 +2,14 @@
 #define D_A_E_DN_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_dn_class
+ * @brief Lizalfos
+ * 
+ * @details 
+ * 
+ */
 class e_dn_class : public fopEn_enemy_c {
     /* 804EDE58 */ e_dn_class();
 private:

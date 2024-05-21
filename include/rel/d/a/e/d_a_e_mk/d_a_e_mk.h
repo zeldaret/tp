@@ -2,6 +2,14 @@
 #define D_A_E_MK_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_mk_class
+ * @brief Ook
+ * 
+ * @details 
+ * 
+ */
 class e_mk_class : public fopEn_enemy_c {
     /* 8071C190 */ e_mk_class();
 private:

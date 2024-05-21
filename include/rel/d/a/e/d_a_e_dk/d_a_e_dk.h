@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_DK_c
+ * @brief Bari
+ * 
+ * @details 
+ * 
+ */
 class daE_DK_c : public fopEn_enemy_c {
     /* 806AA228 */ void draw();
     /* 806AA5C8 */ void setBck(int, u8, f32, f32);

@@ -2,6 +2,14 @@
 #define D_A_E_GOB_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_gob_class
+ * @brief Dangoro
+ * 
+ * @details 
+ * 
+ */
 class e_gob_class : public fopEn_enemy_c {
     /* 806DEA10 */ e_gob_class();
 private:

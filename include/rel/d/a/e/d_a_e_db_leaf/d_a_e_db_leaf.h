@@ -5,10 +5,13 @@
 #include "dolphin/types.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Deku Baba Leaf
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_db_leaf_class
+ * @brief Deku Baba - Leaf
+ * 
+ * @details 
+ * 
+ */
 class e_db_leaf_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

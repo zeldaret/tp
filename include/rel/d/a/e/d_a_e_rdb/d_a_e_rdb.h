@@ -2,6 +2,14 @@
 #define D_A_E_RDB_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_rdb_class
+ * @brief King Bulblin
+ * 
+ * @details 
+ * 
+ */
 class e_rdb_class : public fopEn_enemy_c {
     /* 8076AA0C */ e_rdb_class();
 private:

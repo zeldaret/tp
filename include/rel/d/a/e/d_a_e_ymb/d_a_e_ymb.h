@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_YMB_c
+ * @brief Twilight Insect Boss
+ * 
+ * @details 
+ * 
+ */
 class daE_YMB_c : public fopEn_enemy_c {
 public:
     /* 8081615C */ void ctrlJoint(J3DJoint*, J3DModel*);
@@ -70,6 +78,7 @@ public:
     /* 80820DD0 */ void create();
 
     int getMaxLockAttack() { return 6; }
+
 private:
     /* 0x5AC */ u8 field_0x5ac[0x1524 - 0x5ac];
 };

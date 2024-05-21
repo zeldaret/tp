@@ -2,6 +2,14 @@
 #define D_A_E_HZELDA_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_hzelda_class
+ * @brief Puppet Zelda
+ * 
+ * @details 
+ * 
+ */
 class e_hzelda_class : public fopEn_enemy_c {
     /* 806F4E48 */ e_hzelda_class();
 private:

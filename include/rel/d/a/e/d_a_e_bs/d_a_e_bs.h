@@ -2,6 +2,14 @@
 #define D_A_E_BS_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_bs_class
+ * @brief Stalkin
+ * 
+ * @details 
+ * 
+ */
 class e_bs_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xcfc - 0x5ac];

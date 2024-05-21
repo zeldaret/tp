@@ -14,10 +14,13 @@ enum daE_wb_ACT {
 };
 
 /**
-* @ingroup actors-enemies
-* @brief Wild Boar
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_wb_class
+ * @brief Bullbo
+ * 
+ * @details 
+ * 
+ */
 class e_wb_class : public fopEn_enemy_c {
 public:
     BOOL checkWait();

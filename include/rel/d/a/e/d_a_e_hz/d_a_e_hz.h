@@ -2,6 +2,14 @@
 #define D_A_E_HZ_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_HZ_c
+ * @brief Tile Worm
+ * 
+ * @details 
+ * 
+ */
 class daE_HZ_c : public fopEn_enemy_c {
     /* 806EA690 */ void setBck(int, u8, f32, f32);
     /* 806EA734 */ void checkBck(int);

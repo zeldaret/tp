@@ -2,6 +2,14 @@
 #define D_A_E_FK_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_FK_c
+ * @brief Phantom Rider
+ * 
+ * @details 
+ * 
+ */
 class daE_FK_c : public fopEn_enemy_c {
     /* 806B93CC */ void CreateHeap();
     /* 806B9534 */ void initBodySph();

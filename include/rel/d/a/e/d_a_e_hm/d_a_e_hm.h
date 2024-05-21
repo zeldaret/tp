@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_HM_c
+ * @brief Torch Slug
+ * 
+ * @details 
+ * 
+ */
 class daE_HM_c : public fopEn_enemy_c {
     /* 806E043C */ void CreateHeap();
     /* 806E06C0 */ void initCcCylinder();

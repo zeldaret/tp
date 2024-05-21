@@ -9,6 +9,14 @@ struct ga_s {
     /* 804FBAF4 */ ga_s();
 };
 
+/**
+ * @ingroup actors-enemies
+ * @class e_ga_class
+ * @brief Decorative Moth
+ * 
+ * @details 
+ * 
+ */
 class e_ga_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x4d7c - 0x5ac];

@@ -2,6 +2,14 @@
 #define D_A_E_MF_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_mf_class
+ * @brief Dynalfos
+ * 
+ * @details 
+ * 
+ */
 class e_mf_class : public fopEn_enemy_c {
     /* 80712F20 */ e_mf_class();
 private:

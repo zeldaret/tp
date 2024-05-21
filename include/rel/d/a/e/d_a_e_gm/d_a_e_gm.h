@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_GM_c
+ * @brief Baby Gohma
+ * 
+ * @details 
+ * 
+ */
 class daE_GM_c : public fopEn_enemy_c {
     /* 806D12C8 */ void setAction(void (daE_GM_c::*)());
     /* 806D136C */ void action();

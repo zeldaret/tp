@@ -9,10 +9,13 @@
 #include "f_op/f_op_actor.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Twilit Kargorok
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_yc_class
+ * @brief Twilight Kargorok
+ * 
+ * @details 
+ * 
+ */
 class e_yc_class : public fopEn_enemy_c {
 public:
     MtxP getLegR3Mtx() { return mpMorf->getModel()->getAnmMtx(28); }

@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_ZM_c
+ * @brief Zant Mask
+ * 
+ * @details 
+ * 
+ */
 class daE_ZM_c : public fopEn_enemy_c {
     /* 8082F9A0 */ void draw();
     /* 8082FBD4 */ void setBck(int, u8, f32, f32);
@@ -24,6 +32,7 @@ class daE_ZM_c : public fopEn_enemy_c {
     /* 80831E9C */ void _delete();
     /* 80831F4C */ void CreateHeap();
     /* 80832064 */ void create();
+    
 private:
     /* 0x5ac */ u8 field_0x5ac[0xc3c - 0x5ac];
 };

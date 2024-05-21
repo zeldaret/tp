@@ -69,7 +69,10 @@ public:
 
 /**
  * @ingroup actors-enemies
- * @brief Shadow Keese
+ * @class e_yk_class
+ * @brief Twilight Keese
+ * 
+ * @details 
  * 
  */
 class e_yk_class : public fopEn_enemy_c {

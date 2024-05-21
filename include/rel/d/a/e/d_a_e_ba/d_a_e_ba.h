@@ -8,6 +8,14 @@
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_ba_class
+ * @brief Keese
+ * 
+ * @details 
+ * 
+ */
 class e_ba_class : public fopEn_enemy_c {
 public:
     enum Type {

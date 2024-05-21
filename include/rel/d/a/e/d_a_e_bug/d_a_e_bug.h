@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_bug_class
+ * @brief Poison Mite
+ * 
+ * @details 
+ * 
+ */
 class e_bug_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x7db0 - 0x5ac];

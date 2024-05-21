@@ -2,6 +2,14 @@
 #define D_A_E_SB_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_SB_c
+ * @brief Shell Blade
+ * 
+ * @details 
+ * 
+ */
 class daE_SB_c : public fopEn_enemy_c {
     /* 807816D8 */ void CreateHeap();
     /* 807817F0 */ void initCcCylinder();

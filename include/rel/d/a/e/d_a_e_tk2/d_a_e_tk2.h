@@ -2,6 +2,14 @@
 #define D_A_E_TK2_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class e_tk2_class
+ * @brief Fire Toadpoli
+ * 
+ * @details 
+ * 
+ */
 class e_tk2_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xa50 - 0x5ac];

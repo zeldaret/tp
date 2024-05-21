@@ -8,10 +8,13 @@
 #include "d/cc/d_cc_uty.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Chuchu 2
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_sm2_class
+ * @brief Chuchu 2
+ * 
+ * @details 
+ * 
+ */
 class e_sm2_class : public fopEn_enemy_c {
 public:
     bool checkYellow() { return field_0x5b7 == 3; }

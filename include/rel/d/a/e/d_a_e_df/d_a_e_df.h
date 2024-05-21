@@ -2,6 +2,14 @@
 #define D_A_E_DF_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daE_DF_c
+ * @brief Deku Flower
+ * 
+ * @details 
+ * 
+ */
 class daE_DF_c : public fopEn_enemy_c {
     /* 806A7710 */ void CreateHeap();
     /* 806A7828 */ void initCcCylinder();
