@@ -33,11 +33,33 @@ weak_funcs = {
     "asm cM3dGCyl::~cM3dGCyl()": "__dt__8cM3dGCylFv",
     "cXyz::cXyz()": "__ct__4cXyzFv",
     "asm fOpAcm_HIO_entry_c::~fOpAcm_HIO_entry_c()": "__dt__18fOpAcm_HIO_entry_cFv",
-    "asm mDoHIO_entry_c::~mDoHIO_entry_c()": "__dt__14mDoHIO_entry_cFv"
-    # "void JPAEmitterCallBack::execute(JPABaseEmitter* param_0)": "execute__18JPAEmitterCallBackFP14JPABaseEmitter",
-    # "void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0)": "executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
-    # "void JPAEmitterCallBack::draw(JPABaseEmitter* param_0)": "draw__18JPAEmitterCallBackFP14JPABaseEmitter",
-    # "void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0)": "drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter"
+    "asm mDoHIO_entry_c::~mDoHIO_entry_c()": "__dt__14mDoHIO_entry_cFv",
+    "static asm void fopAcM_isSwitch(fopAc_ac_c const* param_0, int param_1)": "fopAcM_isSwitch__FPC10fopAc_ac_ci",
+    "static asm void fopAcM_GetID(void const* param_0)": "fopAcM_GetID__FPCv",
+    "void fopAcM_SetGroup(fopAc_ac_c* param_0, u8 param_1)": "fopAcM_SetGroup__FP10fopAc_ac_cUc",
+    "asm void daPy_py_c::cancelOriginalDemo()": "cancelOriginalDemo__9daPy_py_cFv",
+    "asm void mDoExt_morf_c::getFrame()": "getFrame__13mDoExt_morf_cFv",
+    "asm void mDoExt_morf_c::isStop()": "isStop__13mDoExt_morf_cFv",
+    "static asm void cM_scos(s16 param_0)": "cM_scos__Fs",
+    "static asm void cM_ssin(s16 param_0)": "cM_ssin__Fs",
+    "asm void dCamera_c::Fovy()": "Fovy__9dCamera_cFv",
+    "static asm void fopAcM_searchPlayerAngleY(fopAc_ac_c const* param_0)": "fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c",
+    "asm void dEvt_info_c::checkCommandDemoAccrpt()": "checkCommandDemoAccrpt__11dEvt_info_cFv",
+    "static asm void dComIfGp_getPlayer(int param_0) ": "dComIfGp_getPlayer__Fi",
+    "static asm void fopAcM_onSwitch(fopAc_ac_c const* param_0, int param_1)": "fopAcM_onSwitch__FPC10fopAc_ac_ci",
+    "static asm void fopAcM_offSwitch(fopAc_ac_c const* param_0, int param_1)": "fopAcM_offSwitch__FPC10fopAc_ac_ci",
+    "void JPAEmitterCallBack::execute(JPABaseEmitter* param_0)": "execute__18JPAEmitterCallBackFP14JPABaseEmitter",
+    "void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0)": "executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
+    "void JPAEmitterCallBack::draw(JPABaseEmitter* param_0)": "draw__18JPAEmitterCallBackFP14JPABaseEmitter",
+    "void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0)": "drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
+    "asm void dEvt_control_c::checkSkipEdge()": "checkSkipEdge__14dEvt_control_cFv",
+    "void daPy_py_c::changeDemoMoveAngle(s16 param_0)": "changeDemoMoveAngle__9daPy_py_cFs",
+    "asm void cXyz::zero()": "zero__4cXyzFv",
+    "asm void cXyz::abs() const": "abs__4cXyzCFv",
+    "asm void mDoExt_morf_c::setFrame(f32 param_0)": "setFrame__13mDoExt_morf_cFf",
+    "asm void cXyz::set(Vec const& param_0)": "set__4cXyzFRC3Vec",
+    "asm void cXyz::set(f32 param_0, f32 param_1, f32 param_2)": "set__4cXyzFfff",
+    "asm void cXyz::operator=(cXyz const& param_0)": "__as__4cXyzFRC4cXyz",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -188,7 +210,12 @@ types = [
     "struct mDoExt_btpAnm",
     "struct fOpAcm_HIO_entry_c",
     "struct mDoHIO_entry_c",
-    "struct dAttLook_c"
+    "struct dAttLook_c",
+    "struct dPath",
+    "struct mDoExt_morf_c",
+    "struct dPa_hermiteEcallBack_c",
+    "struct dEvt_info_c",
+    "struct dAttList_c",
 ]
 
 class ActorSetupManager:
@@ -214,8 +241,8 @@ class ActorSetupManager:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey.h")
                 if "obj_ystone_class" in line:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h")
-                if "JPAEmitterCallBack" in line:
-                    self.include_headers.append("JSystem/JPArticle/JPAEmitter.h")
+                # if "JPAEmitterCallBack" in line:
+                #     self.include_headers.append("JSystem/JPArticle/JPAEmitter.h")
                 if "daObjCarry_c" in line:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h")
                 removed_types += 1

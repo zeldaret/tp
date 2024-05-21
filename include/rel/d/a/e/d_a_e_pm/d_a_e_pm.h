@@ -1,6 +1,8 @@
 #ifndef D_A_E_PM_H
 #define D_A_E_PM_H
 
+#include "f_op/f_op_actor_mng.h"
+
 /**
 * @ingroup actors-enemies
 * @brief Skull Kid
@@ -68,8 +70,17 @@ public:
 
     void AppearSet() { mAppear = true; }
 
+private:
     /* 0x5AC */ u8 field_0x5ac[0x619 - 0x5AC];
     /* 0x619 */ bool mAppear;
+    /* 0x61A */ u8 field_0x61a[0xb7c - 0x61a];
 };
+STATIC_ASSERT(sizeof(daE_PM_c) == 0xb7c);
+
+class daE_PM_HIO_c {
+    /* 80741EEC */ daE_PM_HIO_c();
+    /* 8074BA68 */ ~daE_PM_HIO_c();
+};
+
 
 #endif /* D_A_E_PM_H */
