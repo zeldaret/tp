@@ -17,7 +17,25 @@ weak_funcs = {
     "asm cM3dGPla::~cM3dGPla()": "__dt__8cM3dGPlaFv",
     "asm dCcD_Sph::~dCcD_Sph()": "__dt__8dCcD_SphFv",
     "asm dCcD_Sph::dCcD_Sph()": "__ct__8dCcD_SphFv",
+    "asm dKy_tevstr_c::~dKy_tevstr_c()": "__dt__12dKy_tevstr_cFv",
+    "asm dKy_tevstr_c::dKy_tevstr_c()": "__ct__12dKy_tevstr_cFv",
+    "asm J3DLightObj::J3DLightObj()": "__ct__11J3DLightObjFv",
+    "asm void daPy_py_c::changeDemoPos0(cXyz const* param_0)": "changeDemoPos0__9daPy_py_cFPC4cXyz",
+    "asm void daPy_py_c::changeDemoMode(u32 param_0, int param_1, int param_2, s16 param_3)": "changeDemoMode__9daPy_py_cFUliis",
+    "asm void daPy_py_c::changeOriginalDemo()": "changeOriginalDemo__9daPy_py_cFv",
+    "asm void obj_ystone_class::setCurrentPos(cXyz param_0)": "setCurrentPos__16obj_ystone_classF4cXyz",
+    "asm dPa_followEcallBack::~dPa_followEcallBack()": "__dt__19dPa_followEcallBackFv",
+    "void dPa_levelEcallBack::cleanup()": "cleanup__18dPa_levelEcallBackFv",
+    "asm void dPa_followEcallBack::__defctor()": "__defctor__19dPa_followEcallBackFv",
+    "asm dPa_levelEcallBack::~dPa_levelEcallBack()": "__dt__18dPa_levelEcallBackFv",
+    # "void JPAEmitterCallBack::execute(JPABaseEmitter* param_0)": "execute__18JPAEmitterCallBackFP14JPABaseEmitter",
+    # "void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0)": "executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
+    # "void JPAEmitterCallBack::draw(JPABaseEmitter* param_0)": "draw__18JPAEmitterCallBackFP14JPABaseEmitter",
+    # "void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0)": "drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter"
 }
+
+
+
 
 # list of known external references to be replaced to avoid symbol collision
 external_refs = [
@@ -35,7 +53,10 @@ external_refs = [
     "extern \"C\" extern u8 g_env_light[4880];",
     "extern \"C\" extern u32 __float_nan;",
     "extern \"C\" void PSVECAdd();",
-    "extern \"C\" void strcmp();"
+    "extern \"C\" void strcmp();",
+    "extern \"C\" void PSVECSubtract();",
+    "extern \"C\" extern u8 const j3dDefaultLightInfo[52];",
+    "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];",
 ]
 
 # list of known types to be removed
@@ -127,29 +148,38 @@ types = [
     "struct mDoGph_gInf_c",
     "struct camera_class",
     "struct cCcD_Stts",
-    "struct cSAngle"
+    "struct cSAngle",
+    "struct mDoExt_invisibleModel",
+    "struct dCcD_GAtTgCoCommonBase",
+    "struct daObjHHASHI_c",
+    "struct dSv_event_flag_c",
+    "struct dSv_event_c",
+    "struct LIGHT_INFLUENCE",
+    "struct J3DLightObj",
+    "struct J3DLightInfo",
+    "struct obj_ystone_class",
+    "struct daItemBase_c",
+    "struct dTres_c",
+    "struct dPa_followEcallBack",
+    "struct dItem_data",
+    "struct dEvent_manager_c",
+    "struct JPAEmitterCallBack",
 ]
+
+
+
+
+
+
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
         self.filename = filename
         self.actor_name = None
         self.actor_class_type = None
+        self.include_headers = []
         with open(filename, "r") as f:
             self.lines = f.readlines()
-        
-    def remove_external_refs(self):
-        new_lines = []
-        removed_external_refs = 0
-
-        for line in self.lines:
-            if any(ref in line for ref in external_refs):
-                removed_external_refs += 1
-            else:
-                new_lines.append(line)
-
-        print(f"Removed {removed_external_refs} external references." if removed_external_refs > 0 else "No external references to remove!")
-        self.lines = new_lines
 
     def remove_types(self):
         new_lines = []
@@ -159,6 +189,12 @@ class ActorSetupManager:
         skip_next_line = False
         for line in self.lines:
             if any(type in line for type in types):
+                if "dCamera_c" in line:
+                    self.include_headers.append("d/d_camera.h")
+                if "obj_ystone_class" in line:
+                    self.include_headers.append("rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h")
+                if "JPAEmitterCallBack" in line:
+                    self.include_headers.append("JSystem/JPArticle/JPAEmitter.h")
                 removed_types += 1
                 skip_until_closing_bracket = True
             
@@ -184,6 +220,10 @@ class ActorSetupManager:
 
         for line in self.lines:
             if any(ref in line for ref in external_refs):
+                # leave calc_mtx in unless d_camera was included
+                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and "d/d_camera.h" not in self.include_headers:
+                    new_lines.append(line)
+                    continue                    
                 removed_external_refs += 1
             else:
                 new_lines.append(line)
@@ -228,7 +268,7 @@ class ActorSetupManager:
             if stripped_line.startswith("struct ") or stripped_line.startswith("class "):
                 if stripped_line.startswith("struct ") and ("class" in stripped_line or "_c" in stripped_line):
                     stripped_line = stripped_line.replace("struct ","class ")
-                    if "hio" not in stripped_line.lower() and "_s" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower():
+                    if "hio" not in stripped_line.lower() and "_s" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
                         # might fail if a tu has more than 1 actor
                         self.actor_name = stripped_line.split(" ")[1]
 
@@ -346,13 +386,28 @@ class ActorSetupManager:
     def set_class_size(self, class_size):
         self.class_size = class_size
 
+    def check_and_add_missing_tu_headers(self):
+        if len(self.include_headers) != 0:
+            # find end of tu includes, accounting for multiple includes
+            end_of_includes = 0
+            for i, line in enumerate(self.lines):
+                if "#include" in line:
+                    end_of_includes = i + 1
+                if end_of_includes > 0 and "#include" not in line:
+                    break
+            print("end of includes", end_of_includes)
+            for header in self.include_headers:
+                self.lines.insert(end_of_includes, f"#include \"{header}\"\n")
+
 @click.command()
 @click.option('--actor-tu', required=True, help='Path to the actor translation unit.')
 def setup_actor(actor_tu):
     manager = ActorSetupManager(actor_tu)
 
-    manager.remove_external_refs()
+    
     manager.remove_types()
+    manager.remove_external_refs()
+    manager.check_and_add_missing_tu_headers()
     manager.replace_weak_function_defs()
     manager.move_remaining_types()
     manager.comment_cleanup()

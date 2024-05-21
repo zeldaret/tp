@@ -971,6 +971,9 @@ def setup_method_class(filepath, method_class_name):
                 if "}" in line:
                     actor_method_class_on = False
                 elif "NULL" in line:
+                    # for sizing purposes, we need to replace NULL with 0 if it's in between methods
+                    if "NULL" not in data[i+1] and "};" not in data[i+1]:
+                        new_lines.append("    0,\n")
                     continue
                 else:
                     line = line.replace("(void*)","(process_method_func)")
