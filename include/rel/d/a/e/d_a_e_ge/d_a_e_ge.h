@@ -52,11 +52,13 @@ public:
     /* 806CC278 */ void CreateHeap();
     /* 806CC390 */ void create();
 
+private:
     /* 0x5AC */ u8 field_0x5ac[1519];
     /* 0xB9B */ u8 mGroupNo;
     /* 0xB9C */ u8 field_0xb9c[4];
 
     static u8 l_actionmenu[108];
 };
+STATIC_ASSERT(sizeof(daE_GE_c) == 0xBA0);
 
 #endif /* D_A_E_GE_H */

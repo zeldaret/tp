@@ -28,6 +28,9 @@ weak_funcs = {
     "void dPa_levelEcallBack::cleanup()": "cleanup__18dPa_levelEcallBackFv",
     "asm void dPa_followEcallBack::__defctor()": "__defctor__19dPa_followEcallBackFv",
     "asm dPa_levelEcallBack::~dPa_levelEcallBack()": "__dt__18dPa_levelEcallBackFv",
+    "asm void daKey_c::setPos(cXyz param_0)": "setPos__7daKey_cF4cXyz",
+    "asm void daPy_py_c::checkNowWolf()": "checkNowWolf__9daPy_py_cFv",
+    "asm cM3dGCyl::~cM3dGCyl()": "__dt__8cM3dGCylFv",
     # "void JPAEmitterCallBack::execute(JPABaseEmitter* param_0)": "execute__18JPAEmitterCallBackFP14JPABaseEmitter",
     # "void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0)": "executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter",
     # "void JPAEmitterCallBack::draw(JPABaseEmitter* param_0)": "draw__18JPAEmitterCallBackFP14JPABaseEmitter",
@@ -57,6 +60,8 @@ external_refs = [
     "extern \"C\" void PSVECSubtract();",
     "extern \"C\" extern u8 const j3dDefaultLightInfo[52];",
     "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];",
+    "extern \"C\" void PSVECScale();",
+    "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];"
 ]
 
 # list of known types to be removed
@@ -164,13 +169,19 @@ types = [
     "struct dItem_data",
     "struct dEvent_manager_c",
     "struct JPAEmitterCallBack",
+    "struct daKey_c",
+    "struct mDoCPd_c",
+    "struct dMsgObject_c",
+    "struct dMsgFlow_c",
+    "struct dCcD_SrcCyl",
+    "struct dCcD_Cyl",
+    "struct cM3dGCyl",
+    "struct dBgW_Base",
+    "struct dBgW",
+    "struct cBgD_t",
+    "struct cBgW",
+    "struct daObjCarry_c",
 ]
-
-
-
-
-
-
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
@@ -191,10 +202,14 @@ class ActorSetupManager:
             if any(type in line for type in types):
                 if "dCamera_c" in line:
                     self.include_headers.append("d/d_camera.h")
+                if "daKey_c" in line:
+                    self.include_headers.append("rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey.h")
                 if "obj_ystone_class" in line:
                     self.include_headers.append("rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h")
                 if "JPAEmitterCallBack" in line:
                     self.include_headers.append("JSystem/JPArticle/JPAEmitter.h")
+                if "daObjCarry_c" in line:
+                    self.include_headers.append("rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h")
                 removed_types += 1
                 skip_until_closing_bracket = True
             
@@ -221,9 +236,13 @@ class ActorSetupManager:
         for line in self.lines:
             if any(ref in line for ref in external_refs):
                 # leave calc_mtx in unless d_camera was included
-                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and "d/d_camera.h" not in self.include_headers:
+                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
                     new_lines.append(line)
-                    continue                    
+                    continue
+                # leave gameInfo in unless d_a_obj_carry was included
+                if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
+                    new_lines.append(line)
+                    continue
                 removed_external_refs += 1
             else:
                 new_lines.append(line)
