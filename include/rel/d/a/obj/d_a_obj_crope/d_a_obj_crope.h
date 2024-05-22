@@ -2,6 +2,7 @@
 #define D_A_OBJ_CROPE_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/cc/d_cc_d.h"
 
 class daObjCrope_c : public fopAc_ac_c {
 public:
@@ -31,6 +32,7 @@ public:
         setBackJoint(-1);
     }
 
+private:
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ dCcD_Stts mCcStts;
     /* 0x05AC */ dCcD_Sph mCollider;
@@ -48,5 +50,7 @@ public:
     /* 0x0BD8 */ cXyz field_0xbd8[98];
     /* 0x1070 */ mDoExt_3DlineMat1_c mLineMat;
 };
+STATIC_ASSERT(sizeof(daObjCrope_c) == 0x10ac);
+
 
 #endif /* D_A_OBJ_CROPE_H */

@@ -75,7 +75,9 @@ weak_funcs = {
     "bool dEvLib_callback_c::eventStart()": "eventStart__17dEvLib_callback_cFv",
     "asm void dInsect_c::Insect_Release()": "Insect_Release__9dInsect_cFv",
     "asm dBgS_WtrChk::~dBgS_WtrChk()": "__dt__11dBgS_WtrChkFv",
-    "asm dBgS_ObjGndChk::dBgS_ObjGndChk()": "__ct__14dBgS_ObjGndChkFv"
+    "asm dBgS_ObjGndChk::dBgS_ObjGndChk()": "__ct__14dBgS_ObjGndChkFv",
+    "asm void daObjLife_c::setPos(cXyz param_0)": "setPos__11daObjLife_cF4cXyz",
+    "asm void daPy_py_c::getRightHandPos() const": "getRightHandPos__9daPy_py_cCFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -102,7 +104,8 @@ external_refs = [
     "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];",
     "extern \"C\" void PSMTXScale();",
     "extern \"C\" void PSMTXInverse();",
-    "SECTION_INIT void memset();"
+    "SECTION_INIT void memset();",
+    "extern \"C\" void OSReport();"
     # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
 ]
 
@@ -241,8 +244,8 @@ types = [
     "struct dSv_player_get_item_c",
     "struct dAttCatch_c",
     "struct fopAcM_wt_c",
-    "struct daObjCRVSTEEL_c",
-    "struct daObjCRVGATE_c",
+    # "struct daObjCRVSTEEL_c",
+    # "struct daObjCRVGATE_c",
     "struct daTag_FWall_c",
     "struct fopAcM_rc_c",
     "struct daB_DS_c",
@@ -257,11 +260,10 @@ types = [
     "struct dMdl_obj_c",
     "struct dMdl_mng_c",
     "struct dMdl_c",
+    "struct daObjLife_c",
+    # "struct daObjCRVLH_UP_c",
+    "struct daObjCRVHAHEN_c",
 ]
-
-
-
-
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
@@ -382,7 +384,11 @@ class ActorSetupManager:
 
                 migrated_types += 1
                 inside_struct_or_class = True
-                line = stripped_line+"public:\n"
+                if "{};" not in stripped_line:
+                    line = stripped_line+"public:\n"
+                else:
+                    line = stripped_line
+                
 
             if inside_struct_or_class:
                 struct_or_class_lines.append(line)
@@ -451,7 +457,10 @@ class ActorSetupManager:
         for i, line in enumerate(header_lines):
             if self.actor_name in line:
                 if "{};" in line:
-                    new_lines.append("class " + self.actor_name + " : public fopEn_enemy_c {\n")
+                    if self.actor_class_type == "enemy":
+                        new_lines.append("class " + self.actor_name + " : public fopEn_enemy_c {\n")
+                    elif self.actor_class_type == "actor":
+                        new_lines.append("class " + self.actor_name + " : public fopAc_ac_c {\n")
                     new_lines.append("private:\n")
 
                     if self.actor_class_type == "enemy":
