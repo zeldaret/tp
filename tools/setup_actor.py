@@ -77,7 +77,11 @@ weak_funcs = {
     "asm dBgS_WtrChk::~dBgS_WtrChk()": "__dt__11dBgS_WtrChkFv",
     "asm dBgS_ObjGndChk::dBgS_ObjGndChk()": "__ct__14dBgS_ObjGndChkFv",
     "asm void daObjLife_c::setPos(cXyz param_0)": "setPos__11daObjLife_cF4cXyz",
-    "asm void daPy_py_c::getRightHandPos() const": "getRightHandPos__9daPy_py_cCFv"
+    "asm void daPy_py_c::getRightHandPos() const": "getRightHandPos__9daPy_py_cCFv",
+    "asm daBaseNpc_path_c::~daBaseNpc_path_c()": "__dt__16daBaseNpc_path_cFv",
+    "asm daBaseNpc_acMngr_c::~daBaseNpc_acMngr_c()": "__dt__18daBaseNpc_acMngr_cFv",
+    "asm daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c()": "__dt__23daBaseNpc_moveBgActor_cFv",
+    "asm void dAttention_c::getDistTable(int param_0)": "getDistTable__12dAttention_cFi",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -146,27 +150,14 @@ external_refs = [
     "extern \"C\" void DCStoreRangeNoSync();",
     "extern \"C\" void PSVECDotProduct();",
     "extern \"C\" void GXBegin();",
+    "extern \"C\" void C_VECReflect();",
+    "extern \"C\" void strcpy();",
+    "extern \"C\" extern u32 __float_max;",
+    "extern \"C\" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];",
+    "extern \"C\" void C_MTXLightPerspective();",
+    "extern \"C\" extern u8 const j3dDefaultMtx[48];",
 ]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# list of known types to be removed
 types = [
     "struct request_of_phase_process_class",
     "struct mDoMtx_stack_c",
@@ -327,8 +318,23 @@ types = [
     "struct J3DPacket",
     "struct J3DDrawBuffer",
     "struct J3DPacket",
-    "struct daSetBgObj_c"
+    "struct daSetBgObj_c",
+    "struct WIND_INFLUENCE",
+    "struct dPa_modelEcallBack",
+    "struct daTagGra_c",
+    "struct daBaseNpc_path_c",
+    "struct daBaseNpc_moveBgActor_c",
+    "struct daBaseNpc_acMngr_c",
+    "struct dPaPo_c",
+    "struct cSGlobe",
+    "struct J3DTexMtxInfo"
 ]
+
+
+
+
+
+
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
