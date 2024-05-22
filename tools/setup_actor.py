@@ -73,7 +73,9 @@ weak_funcs = {
     "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv",
     "asm dEvLib_callback_c::~dEvLib_callback_c()": "__dt__17dEvLib_callback_cFv",
     "bool dEvLib_callback_c::eventStart()": "eventStart__17dEvLib_callback_cFv",
-    # "": ""
+    "asm void dInsect_c::Insect_Release()": "Insect_Release__9dInsect_cFv",
+    "asm dBgS_WtrChk::~dBgS_WtrChk()": "__dt__11dBgS_WtrChkFv",
+    "asm dBgS_ObjGndChk::dBgS_ObjGndChk()": "__ct__14dBgS_ObjGndChkFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -100,7 +102,8 @@ external_refs = [
     "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];",
     "extern \"C\" void PSMTXScale();",
     "extern \"C\" void PSMTXInverse();",
-    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
+    "SECTION_INIT void memset();"
+    # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
 ]
 
 # list of known types to be removed
@@ -248,7 +251,17 @@ types = [
     "struct dMenu_Insect_c",
     "struct dInsect_c",
     "struct dDlst_peekZ_c"
+    "struct mDoExt_bckAnm",
+    "struct fopAcM_lc_c",
+    "struct JUTNameTab",
+    "struct dMdl_obj_c",
+    "struct dMdl_mng_c",
+    "struct dMdl_c",
 ]
+
+
+
+
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
@@ -356,7 +369,7 @@ class ActorSetupManager:
             if stripped_line.startswith("struct ") or stripped_line.startswith("class "):
                 if stripped_line.startswith("struct ") and ("class" in stripped_line or "_c" in stripped_line):
                     stripped_line = stripped_line.replace("struct ","class ")
-                    if "hio" not in stripped_line.lower() and "_s {" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
+                    if "param_c" not in stripped_line.lower() and "hio" not in stripped_line.lower() and "_s {" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
                         # might fail if a tu has more than 1 actor
                         self.actor_name = stripped_line.split(" ")[1]
 
@@ -369,10 +382,11 @@ class ActorSetupManager:
 
                 migrated_types += 1
                 inside_struct_or_class = True
-                line = stripped_line
+                line = stripped_line+"public:\n"
 
             if inside_struct_or_class:
                 struct_or_class_lines.append(line)
+                
             else:
                 new_lines.append(line)
 
@@ -451,6 +465,7 @@ class ActorSetupManager:
                     in_class = True
                     new_lines.append(line)
             elif in_class and "};" in line:
+                new_lines.append("\n")
                 new_lines.append("private:\n")
 
                 if self.actor_class_type == "enemy":
