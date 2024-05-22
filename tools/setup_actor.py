@@ -107,7 +107,64 @@ external_refs = [
     "SECTION_INIT void memset();",
     "extern \"C\" void OSReport();"
     # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
+    "extern \"C\" void GXLoadLightObjImm();",
+    "extern \"C\" void GXSetChanAmbColor();",
+    "extern \"C\" void GXSetChanMatColor();",
+    "extern \"C\" void GXLoadPosMtxImm();",
+    "extern \"C\" void GXLoadNrmMtxImm();",
+    "extern \"C\" void GXLoadLightObjImm();",
+    "extern \"C\" void PSMTXConcat();",
+    "extern \"C\" void GXSetVtxDesc();",
+    "extern \"C\" void GXSetVtxAttrFmt();",
+    "extern \"C\" void GXSetArray();",
+    "extern \"C\" void GXSetTexCoordGen2();",
+    "extern \"C\" void GXSetNumTexGens();",
+    "extern \"C\" void GXSetCullMode();",
+    "extern \"C\" void GXSetNumChans();",
+    "extern \"C\" void GXSetChanCtrl();",
+    "extern \"C\" void GXInitTexObj();",
+    "extern \"C\" void GXInitTexObjLOD();",
+    "extern \"C\" void GXLoadTexObj();",
+    "extern \"C\" void GXSetNumIndStages();",
+    "extern \"C\" void GXSetTevColorIn();",
+    "extern \"C\" void GXSetTevAlphaIn();",
+    "extern \"C\" void GXSetTevColorOp();",
+    "extern \"C\" void GXSetTevAlphaOp();",
+    "extern \"C\" void GXSetTevColor();",
+    "extern \"C\" void GXSetTevKColor();",
+    "extern \"C\" void GXSetTevKColorSel();",
+    "extern \"C\" void GXSetTevKAlphaSel();",
+    "extern \"C\" void GXSetTevSwapMode();",
+    "extern \"C\" void GXSetAlphaCompare();",
+    "extern \"C\" void GXSetTevOrder();",
+    "extern \"C\" void GXSetNumTevStages();",
+    "extern \"C\" void GXClearVtxDesc();",
+    "extern \"C\" void GXSetZMode();",
+    "extern \"C\" void GXSetZCompLoc();",
+    "extern \"C\" void GXCallDisplayList();",
+    "extern \"C\" void GXSetClipMode();",
+    "extern \"C\" void DCStoreRangeNoSync();",
+    "extern \"C\" void PSVECDotProduct();",
+    "extern \"C\" void GXBegin();",
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # list of known types to be removed
 types = [
@@ -253,7 +310,7 @@ types = [
     "struct daPy_boomerangMove_c",
     "struct dMenu_Insect_c",
     "struct dInsect_c",
-    "struct dDlst_peekZ_c"
+    "struct dDlst_peekZ_c",
     "struct mDoExt_bckAnm",
     "struct fopAcM_lc_c",
     "struct JUTNameTab",
@@ -263,6 +320,14 @@ types = [
     "struct daObjLife_c",
     # "struct daObjCRVLH_UP_c",
     "struct daObjCRVHAHEN_c",
+    "struct dDlst_peekZ_c",
+    "struct dSv_light_drop_c",
+    "struct TSinCosTable__template0",
+    "struct J3DShape",
+    "struct J3DPacket",
+    "struct J3DDrawBuffer",
+    "struct J3DPacket",
+    "struct daSetBgObj_c"
 ]
 
 class ActorSetupManager:

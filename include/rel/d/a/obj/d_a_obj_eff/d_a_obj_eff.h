@@ -21,4 +21,11 @@ public:
 };
 };  // namespace daObjEff
 
+struct daObj {
+public:
+    template <typename T>
+    static int PrmAbstract(const fopAc_ac_c* param_0, T param_1, T param_2);
+};
+
+
 #endif /* D_A_OBJ_EFF_H */
