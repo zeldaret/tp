@@ -462,7 +462,7 @@ extern "C" asm void __dt__17dEvLib_callback_cFv() {
 
 /* 80C1C45C-80C1C464 000C5C 0008+00 2/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-// bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart()() {
 extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }

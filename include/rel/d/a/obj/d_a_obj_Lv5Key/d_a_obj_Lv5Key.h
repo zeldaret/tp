@@ -2,9 +2,13 @@
 #define D_A_OBJ_LV5KEY_H
 
 #include "dolphin/types.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 
-struct daObjLv5Key_c : public fopAc_ac_c {
+
+
+
+class daObjLv5Key_c : public fopAc_ac_c {
+public:
     /* 80B9B9B8 */ void CreateHeap();
     /* 80B9BA94 */ void Init();
     /* 80B9BB5C */ void setBgc();
@@ -29,8 +33,12 @@ struct daObjLv5Key_c : public fopAc_ac_c {
     void keylock_shake_start() { setStatus(1); }
     bool is_open() { return mStatus == 3; }
 
+private:
     /* 0x568 */ u8 field_0x568[0x945 - 0x568];
     /* 0x945 */ s8 mStatus;
+    /* 0x946 */ u8 field_0x946[0x97c - 0x946];
 };
+STATIC_ASSERT(sizeof(daObjLv5Key_c) == 0x97c);
+
 
 #endif /* D_A_OBJ_LV5KEY_H */

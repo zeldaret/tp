@@ -70,7 +70,10 @@ weak_funcs = {
     "asm dBgS_ObjAcch::dBgS_ObjAcch()": "__ct__12dBgS_ObjAcchFv",
     "asm void daTag_FWall_c::getPos(u8 param_0)": "getPos__13daTag_FWall_cFUc",
     "asm void daB_DS_c::getHandPosR()": "getHandPosR__8daB_DS_cFv",
-    "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv"
+    "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv",
+    "asm dEvLib_callback_c::~dEvLib_callback_c()": "__dt__17dEvLib_callback_cFv",
+    "bool dEvLib_callback_c::eventStart()": "eventStart__17dEvLib_callback_cFv",
+    # "": ""
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -239,7 +242,12 @@ types = [
     "struct daObjCRVGATE_c",
     "struct daTag_FWall_c",
     "struct fopAcM_rc_c",
-    "struct daB_DS_c"
+    "struct daB_DS_c",
+    "struct dEvLib_callback_c",
+    "struct daPy_boomerangMove_c",
+    "struct dMenu_Insect_c",
+    "struct dInsect_c",
+    "struct dDlst_peekZ_c"
 ]
 
 class ActorSetupManager:

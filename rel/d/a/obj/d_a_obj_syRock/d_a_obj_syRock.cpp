@@ -1243,17 +1243,20 @@ asm dEvLib_callback_c::~dEvLib_callback_c() {
 
 /* 80D03D78-80D03D80 001BB8 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart() {
+extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80D03D80-80D03D88 001BC0 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventRun() {
+// bool dEvLib_callback_c::eventRun() {
+extern "C" bool eventRun__17dEvLib_callback_cFv() {
     return true;
 }
 
 /* 80D03D88-80D03D90 001BC8 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-bool dEvLib_callback_c::eventEnd() {
+// bool dEvLib_callback_c::eventEnd() {
+extern "C" bool eventEnd__17dEvLib_callback_cFv() {
     return true;
 }
 

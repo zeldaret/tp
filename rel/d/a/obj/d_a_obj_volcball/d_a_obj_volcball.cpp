@@ -1548,7 +1548,7 @@ extern "C" void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter(JPAEmitterCall
 
 /* 80D23D64-80D23D6C 0022C4 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-// bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart()() {
 extern "C" int eventStart__17dEvLib_callback_cFv(void* this_) {
     return true;
 }
