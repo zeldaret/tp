@@ -82,6 +82,8 @@ weak_funcs = {
     "asm daBaseNpc_acMngr_c::~daBaseNpc_acMngr_c()": "__dt__18daBaseNpc_acMngr_cFv",
     "asm daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c()": "__dt__23daBaseNpc_moveBgActor_cFv",
     "asm void dAttention_c::getDistTable(int param_0)": "getDistTable__12dAttention_cFi",
+    "asm dMdl_obj_c::dMdl_obj_c()": "__ct__10dMdl_obj_cFv",
+    # "": ""
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -156,6 +158,8 @@ external_refs = [
     "extern \"C\" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];",
     "extern \"C\" void C_MTXLightPerspective();",
     "extern \"C\" extern u8 const j3dDefaultMtx[48];",
+    "extern \"C\" void PSMTXIdentity();",
+    "extern \"C\" void PSMTXRotAxisRad();",
 ]
 
 types = [
@@ -327,14 +331,10 @@ types = [
     "struct daBaseNpc_acMngr_c",
     "struct dPaPo_c",
     "struct cSGlobe",
-    "struct J3DTexMtxInfo"
+    "struct J3DTexMtxInfo",
+    "struct daNpcT_c",
+    "struct daNPC_TK_c",
 ]
-
-
-
-
-
-
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
