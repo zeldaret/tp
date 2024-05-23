@@ -4,254 +4,20 @@
 //
 
 #include "d/menu/d_menu_fmap2D.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "d/a/d_a_player.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_lib.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/msg/d_msg_class.h"
+#include "d/msg/d_msg_scrn_explain.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct dMenu_Fmap_region_data_c {};
-
-struct renderingFmap_c {
-    /* 801CE3C0 */ void getPointStagePathInnerNo(dMenu_Fmap_region_data_c*, f32, f32, int, int*,
-                                                 int*);
-};
-
-struct daPy_py_c {
-    static u8 m_midnaActor[4];
-};
-
-struct dSv_player_field_last_stay_info_c {
-    /* 80032E78 */ void isRegionBit(int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct STControl {};
-
-struct J2DOrthoGraph {};
-
-struct dMsgScrnExplain_c {
-    /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
-    /* 8023D918 */ void draw(J2DOrthoGraph*);
-};
-
-struct dMeterHaihai_c {
-    /* 8020AE8C */ dMeterHaihai_c(u8);
-    /* 8020B518 */ void drawHaihai(u8);
-};
-
-struct JMSMesgEntry_c {};
-
-struct dMeter2Info_c {
-    /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
-};
-
-struct J2DAnmTextureSRTKey {};
-
-struct JKRExpHeap {};
-
-struct JGeometry {
-    template <typename A1>
-    struct TBox2 {};
-    /* TBox2<f32> */
-    struct TBox2__template0 {};
-};
-
-struct J2DGrafContext {
-    /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
-};
-
-struct JKRArchive {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct CPaneMgrAlpha {
-    /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80255608 */ void hide();
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct dMenu_Fmap2DTop_c {
-    /* 801D5BD0 */ dMenu_Fmap2DTop_c(JKRExpHeap*, STControl*);
-    /* 801D6700 */ ~dMenu_Fmap2DTop_c();
-    /* 801D6A44 */ void _execute();
-    /* 801D6C44 */ void setAllAlphaRate(f32, bool);
-    /* 801D6C98 */ void draw();
-    /* 801D6DF8 */ void btkAnimeLoop(J2DAnmTextureSRTKey*, f32);
-    /* 801D6EDC */ void setMoyaAlpha(u8);
-    /* 801D6F38 */ void setTitleNameString(u32);
-    /* 801D7010 */ void setAreaNameString(u32);
-    /* 801D70E8 */ void setZButtonString(u32, u8);
-    /* 801D7210 */ void setBButtonString(u32, u8);
-    /* 801D72D4 */ void setAButtonString(u32, u8);
-    /* 801D7398 */ void setCrossLRString(u32);
-    /* 801D74EC */ void set3DStickString(u32);
-    /* 801D7640 */ void createExplain(JKRExpHeap*, STControl*);
-    /* 801D76C0 */ void deleteExplain();
-    /* 801D7714 */ void setArrowAlphaRatio(u8, f32);
-    /* 801D77C4 */ void setAlphaAnimeMin(CPaneMgrAlpha*);
-    /* 801D7858 */ void setAlphaAnimeMid(CPaneMgrAlpha*);
-    /* 801D78FC */ void setAlphaAnimeMax(CPaneMgrAlpha*);
-    /* 801D7994 */ void checkPlayerWarpAccept();
-    /* 801D7A08 */ void checkWarpAcceptRegion(int);
-    /* 801D7AB4 */ void checkWarpAcceptRegion4();
-    /* 801D7B58 */ void checkWarpAcceptCannon();
-    /* 801D7BCC */ void setHIO(bool);
-    /* 801D8088 */ void isWarpAccept();
-};
-
-struct ResTIMG {};
-
-struct dMenu_Fmap2DBack_c {
-    /* 801CF56C */ dMenu_Fmap2DBack_c();
-    /* 801CFCDC */ ~dMenu_Fmap2DBack_c();
-    /* 801CFF34 */ void draw();
-    /* 801D0804 */ void setRegionTexData(u8, ResTIMG*, f32, f32, f32, f32, f32, f32, f32, f32, f32);
-    /* 801D0AC8 */ void calcAllMapPos();
-    /* 801D0BF8 */ void calcAllMapScaleRate();
-    /* 801D0C6C */ void calcAllMapPos2DFirst(f32, f32, f32*, f32*);
-    /* 801D0E00 */ void calcAllMapPos2D(f32, f32, f32*, f32*, f32, f32, f32);
-    /* 801D0D18 */ void calcAllMapPos2D(f32, f32, f32*, f32*);
-    /* 801D0D50 */ void calcAllMapPos2D(char const*, f32, f32, f32*, f32*);
-    /* 801D0F7C */ void calcAllMapPosWorld(f32, f32, f32*, f32*);
-    /* 801D1094 */ void setSpotPane(ResTIMG*);
-    /* 801D10F4 */ void deleteSpotPane();
-    /* 801D1148 */ void zoomMapCalc(f32);
-    /* 801D1478 */ void zoomMapCalc2(f32);
-    /* 801D1858 */ void zoomMapCalcHIO();
-    /* 801D1AA4 */ void scrollCalc(f32);
-    /* 801D1D50 */ void mapBlink(s16*);
-    /* 801D1D74 */ void setSpotCursor(u8);
-    /* 801D1DC4 */ void allmap_move2(STControl*);
-    /* 801D2100 */ void setIcon2DPos(u8, f32, f32, f32, u8, bool);
-    /* 801D241C */ void setIcon2DPos(u8, char const*, f32, f32, f32, u8, bool);
-    /* 801D2454 */ void setIcon2DPos(u8, u8, char const*, f32, f32, f32, u8, bool);
-    /* 801D2508 */ void isShowRegion(int);
-    /* 801D2658 */ void getMapAreaGlobalPosX();
-    /* 801D2668 */ void getMapAreaGlobalPosY();
-    /* 801D2678 */ void getMapAreaGlobalCenterPosX();
-    /* 801D26C8 */ void getMapAreaGlobalCenterPosY();
-    /* 801D2718 */ void getMapAreaSizeX();
-    /* 801D2728 */ void getMapAreaSizeY();
-    /* 801D2738 */ void getMapScissorAreaLX();
-    /* 801D2790 */ void getMapScissorAreaLY();
-    /* 801D27E8 */ void getMapScissorAreaSizeX();
-    /* 801D2860 */ void getMapScissorAreaSizeRealX();
-    /* 801D2880 */ void getMapScissorAreaCenterPosX();
-    /* 801D28D0 */ void getMapScissorAreaCenterPosY();
-    /* 801D2920 */ void getMapScissorAreaSizeY();
-    /* 801D2998 */ void getMapScissorAreaSizeRealY();
-    /* 801D29B8 */ void calcRenderingPos();
-    /* 801D2A34 */ void calcRenderingScale();
-    /* 801D2AC8 */ void getPathScale(f32);
-    /* 801D2B5C */ void getAllMapZoomRate();
-    /* 801D2B64 */ void getRegionMapZoomRate(int);
-    /* 801D2C4C */ void getSpotMapZoomRate();
-    /* 801D2C88 */ void getStageOriginPath(u8, f32*, f32*);
-    /* 801D2CC8 */ void calcOffset(u8, char const*, f32*, f32*);
-    /* 801D2DA8 */ void regionTextureDraw();
-    /* 801D3094 */ void stageTextureDraw();
-    /* 801D31D0 */ void worldGridDraw();
-    /* 801D34DC */ void regionGridDraw();
-    /* 801D382C */ void worldOriginDraw();
-    /* 801D38FC */ void scrollAreaDraw();
-    /* 801D3AF8 */ void regionOriginDraw();
-    /* 801D3BBC */ void stageOriginDraw();
-    /* 801D3CB8 */ void calcBlink();
-    /* 801D4928 */ void calcBackAlpha(bool);
-    /* 801D49E0 */ void btkAnimeLoop(f32);
-    /* 801D4AFC */ void setBaseBackAlpha(u8);
-    /* 801D4B2C */ void regionMapMove(STControl*);
-    /* 801D4E80 */ void stageMapMove(STControl*, u8, bool);
-    /* 801D5334 */ void setAllAlphaRate(f32, bool);
-    /* 801D5388 */ void drawDebugStageArea();
-    /* 801D564C */ void drawDebugRegionArea();
-    /* 801D58F8 */ void setArrowPos3D(u8, char const*, f32, f32);
-    /* 801D59C0 */ void setArrowPos3DOffset(u8, char const*, f32, f32, f32);
-    /* 801D5AC4 */ void calcDrawPriority();
-    /* 801D5BB8 */ void setArrowPosAxis(f32, f32);
-};
-
-struct dMenuMapCommon_c {
-    /* 801C2718 */ dMenuMapCommon_c();
-    /* 801C27B4 */ ~dMenuMapCommon_c();
-    /* 801C28D8 */ void initiate(JKRArchive*);
-    /* 801C38E4 */ void drawIcon(f32, f32, f32, f32);
-    /* 801C43A8 */ void setIconInfo(u8, f32, f32, f32, f32, f32, u8);
-    /* 801C452C */ void blinkMove(s16);
-    /* 801C4600 */ void moveLightDropAnime();
-};
-
-struct JAISoundID {};
-
-struct Vec {};
-
-struct Z2SeMgr {
-    /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
-};
-
-struct Z2AudioMgr {
-    static u8 mAudioMgrPtr[4 + 4 /* padding */];
-};
-
-struct JUtility {
-    struct TColor {};
-};
-
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
-struct JKRHeap {};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct J2DRotateAxis {};
-
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
-struct J2DPane {
-    /* 802F71DC */ void rotate(f32, f32, J2DRotateAxis, f32);
-    /* 802F7AFC */ void getParentPane();
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlphaMorf {
-    /* 80255C68 */ CPaneMgrAlphaMorf(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80255DD0 */ void setBackupAlpha();
-    /* 80255E28 */ void setAlphaMorfRate(f32);
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254C90 */ void getGlobalVtx(J2DPane*, f32 (*)[3][4], u8, bool, s16);
-};
+#include "m_Do/m_Do_graphic.h"
 
 //
 // Forward References:
@@ -408,7 +174,6 @@ extern "C" void __ct__10J2DPictureFPC7ResTIMG();
 extern "C" void getStringPtr__10J2DTextBoxCFv();
 extern "C" void setString__10J2DTextBoxFsPCce();
 extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void GXGetScissor();
 extern "C" void _savegpr_23();
 extern "C" void _savegpr_24();
 extern "C" void _savegpr_25();
@@ -423,13 +188,8 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" void strcmp();
-extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_fmapHIO[1188];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -438,23 +198,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80396248-80396268 0228A8 0020+00 2/2 0/0 0/0 .rodata          cur_tag$3868 */
-SECTION_RODATA static u8 const cur_tag_3868[32] = {
-    0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x75, 0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x64,
-    0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x6C, 0x64, 0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x6C, 0x75,
-};
-COMPILER_STRIP_GATE(0x80396248, &cur_tag_3868);
-
 /* 803965D0-803965D0 022C30 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803965D0 = "zelda_map_screen_stone_base.blo";
-SECTION_DEAD static char const* const stringBase_803965F0 = "zelda_map_screen_base.blo";
-SECTION_DEAD static char const* const stringBase_8039660A = "zelda_map_screen_base.btk";
-SECTION_DEAD static char const* const stringBase_80396624 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80396634 = "zelda_field_map_point_cursor.blo";
-#pragma pop
 
 /* 803BD750-803BD760 01A870 0010+00 2/2 0/0 0/0 .data            __vt__17dMenu_Fmap2DTop_c */
 SECTION_DATA extern void* __vt__17dMenu_Fmap2DTop_c[4] = {
@@ -477,6 +221,14 @@ SECTION_DATA extern void* __vt__18dMenu_Fmap2DBack_c[7 + 1 /* padding */] = {
     NULL,
 };
 
+/* ############################################################################################## */
+/* 80396248-80396268 0228A8 0020+00 2/2 0/0 0/0 .rodata          cur_tag$3868 */
+SECTION_RODATA static u8 const cur_tag_3868[32] = {
+    0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x75, 0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x64,
+    0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x6C, 0x64, 0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x6C, 0x75,
+};
+COMPILER_STRIP_GATE(0x80396248, &cur_tag_3868);
+
 /* 804541D0-804541D4 0027D0 0004+00 21/21 0/0 0/0 .sdata2          @3970 */
 SECTION_SDATA2 static u8 lit_3970[4] = {
     0x00,
@@ -491,27 +243,274 @@ SECTION_SDATA2 static f32 lit_3971 = 1.0f;
 /* 804541D8-804541DC 0027D8 0004+00 2/2 0/0 0/0 .sdata2          @3972 */
 SECTION_SDATA2 static f32 lit_3972 = 360.0f;
 
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803965D0 = "zelda_map_screen_stone_base.blo";
+SECTION_DEAD static char const* const stringBase_803965F0 = "zelda_map_screen_base.blo";
+SECTION_DEAD static char const* const stringBase_8039660A = "zelda_map_screen_base.btk";
+SECTION_DEAD static char const* const stringBase_80396624 = "tt_block8x8.bti";
+SECTION_DEAD static char const* const stringBase_80396634 = "zelda_field_map_point_cursor.blo";
+#pragma pop
+
 /* 801CF56C-801CFCDC 1C9EAC 0770+00 0/0 1/1 0/0 .text            __ct__18dMenu_Fmap2DBack_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
+    dMeter2Info_setMapDrugFlag(0);
+
+    for (int i = 0; i < 8; i++) {
+        mpAreaTex[i] = NULL;
+        field_0xe8c[i] = 0.0;
+        field_0xeac[i] = 0.0;
+        field_0xecc[i] = 0.0;
+        field_0xeec[i] = 0.0;
+        field_0xf0c[i] = 0.0;
+        field_0xf2c[i] = 0.0;
+        field_0xf4c[i] = 0.0;
+        field_0xf6c[i] = 0.0;
+        field_0x1004[i] = 0.0;
+        field_0x1024[i] = 0.0;
+        field_0xce8[i].field_0x0 = 0.0;
+        field_0xce8[i].field_0x4 = 0.0;
+        field_0xce8[i].field_0x8 = 0.0;
+        field_0xce8[i].field_0xc = 0.0;
+        field_0xce8[i].field_0x10 = 0.0;
+        field_0x121c[i] = 0xff;
+        field_0x1230[i] = 0xff;
+        field_0xd8c[i] = 0.0;
+        field_0xdac[i] = 0.0;
+        field_0xdcc[i] = 0.0;
+        field_0xdec[i] = 0.0;
+        field_0xe0c[i] = 0.0;
+        field_0xe2c[i] = 0.0;
+        field_0xe4c[i] = 0.0;
+        field_0xe6c[i] = 0.0;
+    }
+
+    for (int i = 0; i < 20; i++) {
+        field_0x1044[i] = 0.0;
+        field_0x1094[i] = 0.0;
+        field_0x10e4[i] = 0.0;
+        field_0x1134[i] = 0.0;
+    }
+
+    field_0xd88 = 0;
+    field_0xfe0 = 0.0;
+    field_0xfe4 = 0.0;
+    field_0xfe8 = 0.0;
+    field_0xfec = 0.0;
+    mAllMapScaleRate = 0.0;
+    field_0xff4 = 0.0;
+    field_0xff8 = 0.0;
+    field_0xffc = 0.0;
+    field_0x1000 = 0.0;
+    field_0x1184 = 0.0;
+    field_0x1188 = 0.0;
+    field_0xf8c = 0.0;
+    field_0xf90 = 0.0;
+    field_0xf94 = 1.0;
+    field_0xf98 = 1.0;
+    field_0xfa0 = 0.0;
+    field_0xf9c = getAllMapZoomRate();
+    field_0xfa4 = 1.0;
+    field_0xfa8 = 0.0;
+    mpBackTex = NULL;
+    mpSpotTexture = NULL;
+    field_0xfbc = 0.0;
+    field_0xfc0 = 0.0;
+    field_0xfc4 = 0.0;
+    field_0xcdc = 0;
+    mpMeterHaihai = NULL;
+    field_0x122d = 0;
+    field_0x122e = 0;
+    field_0x1224 = 0;
+    field_0x1225 = 0;
+    field_0xfc8 = 0.0;
+    field_0xfcc = 0.0;
+    field_0xfd0 = 0.0;
+    field_0xfd4 = 0.0;
+    field_0xfd8 = 0.0;
+    field_0xfdc = 0.0;
+    control_ypos = 0.0;
+    control_xpos = 0.0;
+    field_0x11b4 = 0.0;
+    field_0x11b8 = 0.0;
+    field_0x11bc = 0.0;
+    field_0x11c0 = 0.0;
+    field_0x11c4 = 0.0;
+    field_0x11c8 = 0.0;
+    field_0x11cc = 0.0;
+    field_0x11d0 = 0.0;
+    mRegionFlag = 0;
+    field_0x1239 = 0;
+    field_0x1238 = 0;
+    field_0x1218 = 0;
+    field_0x121a = 0;
+    field_0x1226 = 0xff;
+    field_0x1227 = 0;
+    field_0x1228 = 0;
+    field_0x1229 = 0;
+    field_0x122a = 0;
+    field_0x122b = 1;
+    field_0xfb0 = 0.0;
+    field_0xfb4 = 0.0;
+    field_0xfb8 = 1.0;
+    field_0x11d4 = 0.0;
+    field_0x1190 = 0.0;
+    field_0x118c = 0.0;
+    field_0x11a8 = 0.0;
+    field_0x11a4 = 0.0;
+    field_0x11b0 = 0.0;
+    field_0x11ac = 0.0;
+    field_0x1198 = 0.0;
+    field_0x1194 = 0.0;
+    field_0x11d8 = 0.0;
+    field_0x11dc = 0.0;
+    field_0x11e0 = 360.0;
+    field_0x11e4 = 0.0;
+    field_0x11e8 = 0.0;
+    field_0x11ec = 0.0;
+
+    field_0x11f0.set(0, 0, 0, 0);
+    field_0x11f4.set(255, 255, 255, 255);
+    field_0x11f8.set(0, 0, 0, 0);
+    field_0x11fc.set(255, 255, 255, 255);
+    field_0x1200.set(0, 0, 0, 0);
+    field_0x1204.set(0, 0, 0, 255);
+    field_0x1208.set(0, 0, 0, 0);
+    field_0x120c.set(0, 0, 0, 255);
+
+    field_0x1210 = 1.0;
+    field_0x1214 = 1.0;
+    mArrowDrawFlag = 1;
+    field_0x122f = 0;
+
+    initiate(dComIfGp_getFmapResArchive());
+
+    mpBackScreen = new J2DScreen();
+    JUT_ASSERT(238, mpBackScreen != 0);
+
+    bool fg = mpBackScreen->setPriority("zelda_map_screen_stone_base.blo", 0x20000,
+                                        dComIfGp_getFmapResArchive());
+    JUT_ASSERT(242, fg != false);
+
+    dPaneClass_showNullPane(mpBackScreen);
+
+    mpBaseScreen = new J2DScreen();
+    JUT_ASSERT(248, mpBaseScreen != 0)
+
+    fg = mpBaseScreen->setPriority("zelda_map_screen_base.blo", 0x20000,
+                                   dComIfGp_getFmapResArchive());
+    JUT_ASSERT(252, fg != false);
+
+    dPaneClass_showNullPane(mpBaseScreen);
+
+    mpBaseAnm = J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_map_screen_base.btk", dComIfGp_getFmapResArchive()));
+    mpBaseAnm->searchUpdateMaterialID(mpBaseScreen);
+
+    field_0xfac = 0.0;
+
+    mpBaseRoot = new CPaneMgrAlphaMorf(mpBaseScreen, 'ROOT', 2, NULL);
+    JUT_ASSERT(264, mpBaseRoot != 0);
+
+    mpMapArea = new CPaneMgr(mpBaseScreen, 'center_n', 0, NULL);
+    JUT_ASSERT(269, mpMapArea != 0);
+
+    mpMapBlack = new CPaneMgr(mpBaseScreen, 'map_blak', 0, NULL);
+    JUT_ASSERT(273, mpMapBlack != 0);
+
+    mpMeterHaihai = new dMeterHaihai_c(1);
+    JUT_ASSERT(277, mpMeterHaihai != 0);
+
+    ResTIMG* backTexResource =
+        (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    mpBackTex = new J2DPicture(backTexResource);
+    JUT_ASSERT(282, mpBackTex != 0);
+
+    mpBackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+    mpBackTex->setAlpha(0);
+
+    mpPointScreen = new J2DScreen();
+    JUT_ASSERT(293, mpPointScreen != 0);
+
+    fg = mpPointScreen->setPriority("zelda_field_map_point_cursor.blo", 0x20000,
+                                    dComIfGp_getFmapResArchive());
+    JUT_ASSERT(252, fg != false);
+
+    dPaneClass_showNullPane(mpPointScreen);
+
+    mpPointParent = new CPaneMgr(mpPointScreen, 'f_po_n', 2, NULL);
+    JUT_ASSERT(301, mpPointParent != 0);
+
+    mpPointParent->scale(g_fmapHIO.mCursorScale, g_fmapHIO.mCursorScale);
+
+    static const u64 cur_tag[4] = {'f_po_ru', 'f_po_rd', 'f_po_ld', 'f_po_lu'};
+
+    for (int i = 0; i < 4; i++) {
+        J2DPicture* picture = static_cast<J2DPicture*>(mpPointScreen->search(cur_tag[i]));
+        picture->setBlackWhite(g_fmapHIO.mCursorBlack, g_fmapHIO.mCursorWhite);
+    }
+
+    dMeter2Info_set2DWidth(getMapScissorAreaSizeX());
+    dMeter2Info_set2DHeight(getMapScissorAreaSizeY());
+    dMeter2Info_set2DPosH(getMapScissorAreaLX());
+    dMeter2Info_set2DPosV(getMapScissorAreaLY());
+    setDebugData(NULL, NULL, 0);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
-    nofralloc
+extern "C" asm void __ct__18dMenu_Fmap2DBack_cFv(){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/__ct__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801CFCDC-801CFF34 1CA61C 0258+00 2/1 0/0 0/0 .text            __dt__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMenu_Fmap2DBack_c::~dMenu_Fmap2DBack_c() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/__dt__18dMenu_Fmap2DBack_cFv.s"
-}
-#pragma pop
+dMenu_Fmap2DBack_c::~dMenu_Fmap2DBack_c() {
+    delete mpBackScreen;
+    mpBackScreen = NULL;
 
-/* ############################################################################################## */
+    delete mpBaseScreen;
+    mpBaseScreen = NULL;
+
+    delete mpBaseAnm;
+    mpBaseAnm = NULL;
+
+    delete mpBaseRoot;
+    mpBaseRoot = NULL;
+
+    delete mpMapArea;
+    mpMapArea = NULL;
+
+    delete mpMapBlack;
+    mpMapBlack = NULL;
+
+    delete mpMeterHaihai;
+    mpMeterHaihai = NULL;
+
+    delete mpBackTex;
+    mpBackTex = NULL;
+
+    delete mpPointScreen;
+    mpPointScreen = NULL;
+
+    delete mpPointParent;
+    mpPointParent = NULL;
+
+    for (int i = 0; i < 8; i++) {
+        if (mpAreaTex[i] != NULL) {
+            delete mpAreaTex[i];
+            mpAreaTex[i] = NULL;
+        }
+    }
+
+    deleteSpotPane();
+    dMeter2Info_setMapDrugFlag(0);
+}
+
 /* 80396268-80396288 0228C8 0020+00 1/1 0/0 0/0 .rodata          cur_tag$4092 */
 SECTION_RODATA static u8 const cur_tag_4092[32] = {
     0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x75, 0x00, 0x66, 0x5F, 0x70, 0x6F, 0x5F, 0x72, 0x64,
@@ -543,15 +542,180 @@ SECTION_SDATA2 static f32 lit_4205 = 6.0f;
 /* 804541F8-80454200 0027F8 0008+00 4/4 0/0 0/0 .sdata2          @4207 */
 SECTION_SDATA2 static f64 lit_4207 = 4503599627370496.0 /* cast u32 to float */;
 
+/* ############################################################################################## */
+
 /* 801CFF34-801D0804 1CA874 08D0+00 1/0 0/0 0/0 .text            draw__18dMenu_Fmap2DBack_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::draw() {
+    calcBlink();
+
+    J2DGrafContext* grafPort = dComIfGp_getCurrentGrafPort();
+
+    grafPort->setup2D();
+
+    u32 scissorLeft, scissorTop, scissorWidth, scissorHeight;
+    GXGetScissor(&scissorLeft, &scissorTop, &scissorWidth, &scissorHeight);
+
+    grafPort->scissor(field_0xfbc, 0.0f, 608.0f, 448.0f);
+    grafPort->setScissor();
+
+    mpBackTex->setBlackWhite(field_0x1208, field_0x120c);
+    mpBackTex->setAlpha(field_0xfc4 * 255.0f * g_fmapHIO.mBackgroundAlpha);
+    mpBackTex->draw(field_0xfbc + mDoGph_gInf_c::getMinXF(),
+                    field_0xfc0 + mDoGph_gInf_c::getMinYF(), mDoGph_gInf_c::getWidthF(),
+                    mDoGph_gInf_c::getHeightF(), false, false, false);
+
+    mpBackScreen->draw(field_0xfbc, field_0xfc0, grafPort);
+    mpBaseScreen->draw(field_0xfbc, field_0xfc0, grafPort);
+
+    Mtx mtx;
+    Vec vec1 = mpMapArea->getGlobalVtx(&mtx, 0, false, 0);
+
+    Vec vec2 = mpMapArea->getGlobalVtx(&mtx, 3, false, 0);
+
+    f32 width = mDoGph_gInf_c::getWidthF() / 608.0f;
+    f32 height = mDoGph_gInf_c::getHeightF() / 448.0f;
+
+    grafPort->scissor(field_0xfbc + ((vec1.x - mDoGph_gInf_c::getMinXF()) / width),
+                      field_0xfc0 + (vec1.y / height), (vec2.x - vec1.x) / width,
+                      (vec2.y - vec1.y) / height);
+
+    grafPort->setScissor();
+
+    field_0x11dc = (field_0xfbc + getMapScissorAreaLX()) + (getMapScissorAreaSizeRealX() * 0.5f);
+
+    if (g_fmapHIO.mRangeCheck && g_fmapHIO.mRangeCheckDrawPriority) {
+        drawDebugRegionArea();
+    }
+
+    regionTextureDraw();
+
+    if (g_fmapHIO.mRangeCheck && g_fmapHIO.mRangeCheckDrawPriority) {
+        drawDebugStageArea();
+    }
+
+    if (field_0x1239 && mpSpotTexture) {
+        if (g_fmapHIO.mDisplayRegionGrid && g_fmapHIO.mRegionGridWidth > 0.0f) {
+            regionGridDraw();
+        }
+
+        stageTextureDraw();
+
+        if (g_fmapHIO.mDisplayStageOrigin) {
+            stageOriginDraw();
+        }
+    }
+
+    if (g_fmapHIO.mDisplayRegionOrigin) {
+        regionOriginDraw();
+    }
+
+    if (g_fmapHIO.mDisplayWorldGrid && g_fmapHIO.mWorldGridWidth > 0.0f) {
+        worldGridDraw();
+    }
+
+    if (g_fmapHIO.mDisplayWorldOrigin) {
+        worldOriginDraw();
+    }
+
+    if (g_fmapHIO.mScrollRangeDisplay) {
+        scrollAreaDraw();
+    }
+
+    blinkMove(30);
+    moveLightDropAnime();
+    setCenterPosX(field_0x11dc, 1);
+    drawIcon(field_0xfbc, field_0xfc0, field_0xfc4, field_0xfa8 * field_0x11d8);
+
+    if (g_fmapHIO.mRangeCheck && !g_fmapHIO.mRangeCheckDrawPriority) {
+        drawDebugRegionArea();
+    }
+
+    grafPort->scissor(scissorLeft, scissorTop, scissorWidth, scissorHeight);
+    grafPort->setScissor();
+
+    if (isArrowDrawFlag()) {
+        f32 fVar2 = 0.0f;
+        f32 fVar3 = 0.0f;
+        f32 fVar4, fVar5;
+
+        if (field_0xfa0 > 1.0f && field_0xfa0 < 2.0f) {
+            f32 tmp = 2.0f - field_0xfa0;
+            if (field_0x11a4 != 0.0f) {
+                fVar2 = field_0x11a4 * tmp;
+            }
+            if (field_0x11a8 != 0.0f) {
+                fVar3 = field_0x11a8 * tmp;
+            }
+            fVar4 = field_0x11ac;
+            fVar5 = field_0x11b0;
+        } else {
+            fVar4 = field_0xfc8;
+            fVar5 = field_0xfcc;
+        }
+
+        calcAllMapPos2D((field_0x118c + control_ypos + fVar2) - fVar4,
+                        (field_0x1190 + control_xpos + fVar3) - fVar5, &field_0x1194,
+                        &field_0x1198);
+
+        field_0x11e0 -= g_fmapHIO.mCursorSpeed;
+
+        if (field_0x11e0 < 0.0f) {
+            field_0x11e0 += 360.0f;
+        }
+
+        mpPointParent->getPanePtr()->rotate(mpPointParent->getSizeX() / 2.0f,
+                                            mpPointParent->getSizeY() / 2.0f, ROTATE_Z,
+                                            field_0x11e0);
+
+        if (g_fmapHIO.mCursorDebugON) {
+            mpPointParent->scale(g_fmapHIO.mCursorScale, g_fmapHIO.mCursorScale);
+
+            static const u64 cur_tag[4] = {'f_po_ru', 'f_po_rd', 'f_po_ld', 'f_po_lu'};
+
+            for (int i = 0; i < 4; i++) {
+                J2DPicture* picture = static_cast<J2DPicture*>(mpPointScreen->search(cur_tag[i]));
+                picture->setBlackWhite(g_fmapHIO.mCursorBlack, g_fmapHIO.mCursorWhite);
+            }
+        }
+
+        mpPointParent->setAlphaRate(field_0x11d4 * field_0x11d8);
+        mpPointParent->translate(field_0x1194 + field_0xfbc, field_0x1198 + field_0xfc0);
+        mpPointScreen->draw(0.0f, 0.0f, grafPort);
+    }
+
+    if (g_fmapHIO.mDisplayReferenceArea) {
+        J2DDrawFrame(field_0xfbc + getMapAreaGlobalPosX(), field_0xfc0 + getMapAreaGlobalPosY(),
+                     getMapAreaSizeX(), getMapAreaSizeY(), JUtility::TColor(255, 255, 255, 255), 6);
+        J2DFillBox(getMapAreaGlobalCenterPosX() - 3.0f, getMapAreaGlobalCenterPosY() - 3.0f, 6.0f,
+                   6.0f, JUtility::TColor(255, 255, 255, 255));
+    }
+
+    if (field_0x122d) {
+        mpMeterHaihai->drawHaihai(field_0x122d);
+        field_0x122d = 0;
+    }
+
+    if (g_fmapHIO.mRangeCheck && !g_fmapHIO.mRangeCheckDrawPriority) {
+        drawDebugStageArea();
+    }
+
+    mpBackTex->setBlackWhite(field_0x1208, field_0x120c);
+    mpBackTex->setAlpha((field_0xfc4 * 255.0f) * g_fmapHIO.mBackgroundFrontAlpha * field_0x11e4);
+    mpBackTex->draw(field_0xfbc + mDoGph_gInf_c::getMinXF(),
+                    field_0xfc0 + mDoGph_gInf_c::getMinYF(), mDoGph_gInf_c::getWidthF(),
+                    mDoGph_gInf_c::getHeightF(), false, false, false);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::draw() {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::draw(){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/draw__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454200-80454208 002800 0004+04 4/4 0/0 0/0 .sdata2          @4260 */
@@ -563,6 +727,82 @@ SECTION_SDATA2 static f32 lit_4260[1 + 1 /* padding */] = {
 
 /* 801D0804-801D0AC8 1CB144 02C4+00 0/0 1/1 0/0 .text
  * setRegionTexData__18dMenu_Fmap2DBack_cFUcP7ResTIMGfffffffff  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_areaType, ResTIMG* i_timg, f32 param_2, f32 param_3,
+                                          f32 param_4, f32 param_5, f32 param_6, f32 param_7,
+                                          f32 param_8, f32 param_9, f32 param_10) {
+    if (param_6 == 0.0f) {
+        param_6 = 100.0f;
+    }
+
+    mpAreaTex[i_areaType] = new J2DPicture(i_timg);
+    JUT_ASSERT(763, mpAreaTex[i_areaType] != 0);
+
+    field_0x1004[i_areaType] = param_2;
+    field_0x1024[i_areaType] = param_3;
+    field_0xce8[i_areaType].field_0x10 = param_6 * 100.0f;
+
+    f32 width = i_timg->width;
+    f32 height = i_timg->height;
+
+    f32 tmp1 = (field_0x1004[i_areaType] + param_4) -
+               ((width * 0.5f) * field_0xce8[i_areaType].field_0x10);
+    f32 tmp2 = (field_0x1024[i_areaType] + param_5) -
+               ((height * 0.5f) * field_0xce8[i_areaType].field_0x10);
+    f32 tmp3 = (field_0x1004[i_areaType] + param_4) +
+               ((width * 0.5f) * field_0xce8[i_areaType].field_0x10);
+    f32 tmp4 = (field_0x1024[i_areaType] + param_5) +
+               ((height * 0.5f) * field_0xce8[i_areaType].field_0x10);
+
+    field_0xce8[i_areaType].field_0x0 = tmp1;
+    field_0xce8[i_areaType].field_0x4 = tmp2;
+    field_0xce8[i_areaType].field_0x8 = tmp3;
+    field_0xce8[i_areaType].field_0xc = tmp4;
+
+    field_0xd8c[i_areaType] = param_7;
+    field_0xdac[i_areaType] = param_8;
+    field_0xdcc[i_areaType] = param_9;
+    field_0xdec[i_areaType] = param_10;
+
+    bool bVar13 = false;
+
+    field_0xfe0 = 0.0f;
+    field_0xfe4 = 0.0f;
+    field_0xfe8 = 0.0f;
+    field_0xfec = 0.0f;
+
+    bool bVar14 = false;
+    for (int i = 0; i < 8; i++) {
+        if (mpAreaTex[i] != NULL) {
+            if (!bVar13) {
+                field_0xfe0 = field_0xce8[i].field_0x0;
+                field_0xfe4 = field_0xce8[i].field_0x4;
+                field_0xfe8 = field_0xce8[i].field_0x8;
+                field_0xfec = field_0xce8[i].field_0xc;
+                bVar13 = true;
+            } else {
+                if (field_0xfe0 > field_0xce8[i].field_0x0) {
+                    field_0xfe0 = field_0xce8[i].field_0x0;
+                }
+                if (field_0xfe4 > field_0xce8[i].field_0x4) {
+                    field_0xfe4 = field_0xce8[i].field_0x4;
+                }
+                if (field_0xfe8 < field_0xce8[i].field_0x8) {
+                    field_0xfe8 = field_0xce8[i].field_0x8;
+                }
+                if (field_0xfec < field_0xce8[i].field_0xc) {
+                    field_0xfec = field_0xce8[i].field_0xc;
+                }
+            }
+        }
+        if ((!bVar14) && (field_0x1230[i] == 0xff)) {
+            field_0x1230[i] = i_areaType;
+            bVar14 = true;
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -573,30 +813,66 @@ asm void dMenu_Fmap2DBack_c::setRegionTexData(u8 param_0, ResTIMG* param_1, f32 
 #include "asm/d/menu/d_menu_fmap2D/setRegionTexData__18dMenu_Fmap2DBack_cFUcP7ResTIMGfffffffff.s"
 }
 #pragma pop
+#endif
 
 /* 801D0AC8-801D0BF8 1CB408 0130+00 1/1 1/1 0/0 .text calcAllMapPos__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcAllMapPos() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcAllMapPos__18dMenu_Fmap2DBack_cFv.s"
+void dMenu_Fmap2DBack_c::calcAllMapPos() {
+    bool set = false;
+    calcAllMapScaleRate();
+    for (int i = 0; i < 8; i = i + 1) {
+        if (mpAreaTex[i] != NULL) {
+            f32 tmp1, tmp2, tmp3, tmp4;
+
+            calcAllMapPos2DFirst(field_0xce8[i].field_0x0, field_0xce8[i].field_0x4, &tmp1, &tmp2);
+            calcAllMapPos2DFirst(field_0xce8[i].field_0x8, field_0xce8[i].field_0xc, &tmp3, &tmp4);
+            field_0xe8c[i] = tmp1;
+            field_0xeac[i] = tmp2;
+            field_0xecc[i] = tmp3 - tmp1;
+            field_0xeec[i] = tmp4 - tmp2;
+
+            calcAllMapPos2DFirst(field_0xd8c[i], field_0xdac[i], &field_0xe0c[i], &field_0xe2c[i]);
+            calcAllMapPos2DFirst(field_0xdcc[i], field_0xdec[i], &field_0xe4c[i], &field_0xe6c[i]);
+
+            onShowRegionFlag(i);
+
+            if (!set) {
+                set = true;
+                calcRenderingScale();
+                calcRenderingPos();
+            }
+        }
+    }
 }
-#pragma pop
 
 /* 801D0BF8-801D0C6C 1CB538 0074+00 1/1 0/0 0/0 .text calcAllMapScaleRate__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcAllMapScaleRate() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcAllMapScaleRate__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::calcAllMapScaleRate() {
+    f32 f1 = field_0xfe8 - field_0xfe0;
+    f32 f2 = field_0xfec - field_0xfe4;
+    f32 f31 = f1;
+
+    if (f1 < f2) {
+        f31 = f2;
+    }
+
+    mAllMapScaleRate = getMapAreaSizeX() / f31;
+
+    return mAllMapScaleRate;
 }
-#pragma pop
 
 /* 801D0C6C-801D0D18 1CB5AC 00AC+00 1/1 0/0 0/0 .text
  * calcAllMapPos2DFirst__18dMenu_Fmap2DBack_cFffPfPf            */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::calcAllMapPos2DFirst(f32 param_0, f32 param_1, f32* param_2,
+                                              f32* param_3) {
+    f32 tmp1 = (mAllMapScaleRate * (param_0 - (field_0xfe8 + field_0xfe0) * 0.5f));
+    f32 tmp2 = (mAllMapScaleRate * (param_1 - (field_0xfec + field_0xfe4) * 0.5f));
+
+    *param_2 = (float)(tmp1 + getMapAreaGlobalCenterPosX());
+    *param_3 = (float)(tmp2 + getMapAreaGlobalCenterPosY());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -606,32 +882,47 @@ asm void dMenu_Fmap2DBack_c::calcAllMapPos2DFirst(f32 param_0, f32 param_1, f32*
 #include "asm/d/menu/d_menu_fmap2D/calcAllMapPos2DFirst__18dMenu_Fmap2DBack_cFffPfPf.s"
 }
 #pragma pop
+#endif
 
 /* 801D0D18-801D0D50 1CB658 0038+00 13/13 1/1 0/0 .text
  * calcAllMapPos2D__18dMenu_Fmap2DBack_cFffPfPf                 */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* param_2, f32* param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcAllMapPos2D__18dMenu_Fmap2DBack_cFffPfPf.s"
+void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* param_2, f32* param_3) {
+    calcAllMapPos2D(param_0, param_1, param_2, param_3, field_0xf0c[field_0x1227],
+                    field_0xf2c[field_0x1227], field_0xf9c);
 }
-#pragma pop
 
 /* 801D0D50-801D0E00 1CB690 00B0+00 0/0 1/1 0/0 .text
  * calcAllMapPos2D__18dMenu_Fmap2DBack_cFPCcffPfPf              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcAllMapPos2D(char const* param_0, f32 param_1, f32 param_2,
-                                             f32* param_3, f32* param_4) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcAllMapPos2D__18dMenu_Fmap2DBack_cFPCcffPfPf.s"
+void dMenu_Fmap2DBack_c::calcAllMapPos2D(char const* param_0, f32 param_1, f32 param_2,
+                                         f32* param_3, f32* param_4) {
+    float tmp1, tmp2;
+    calcOffset(field_0x1227, param_0, &tmp1, &tmp2);
+    calcAllMapPos2D(param_1 + tmp1, param_2 + tmp2, param_3, param_4, field_0xf0c[field_0x1227],
+                    field_0xf2c[field_0x1227], field_0xf9c);
 }
-#pragma pop
 
 /* 801D0E00-801D0F7C 1CB740 017C+00 3/3 0/0 0/0 .text
  * calcAllMapPos2D__18dMenu_Fmap2DBack_cFffPfPffff              */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* param_2, f32* param_3,
+                                         f32 param_4, f32 param_5, f32 param_6) {
+    getMapAreaSizeX();
+    getMapAreaSizeY();
+
+    f32 tmp1 = (field_0xce8[field_0x1227].field_0x0 + field_0xce8[field_0x1227].field_0x8) * 0.5f;
+    f32 tmp2 = (field_0xce8[field_0x1227].field_0x4 + field_0xce8[field_0x1227].field_0xc) * 0.5f;
+    f32 tmp3 = field_0xe8c[field_0x1227] + param_4 + (field_0xecc[field_0x1227] * param_6) * 0.5f;
+    f32 tmp4 = field_0xeac[field_0x1227] + param_5 + (field_0xeec[field_0x1227] * param_6) * 0.5f;
+
+    f32 scaleRatio = (getPathScale(param_6) / getMapScissorAreaSizeRealY());
+
+    f32 tmp5 = (param_0 - tmp1) / scaleRatio;
+    *param_2 = tmp5 + tmp3;
+    tmp5 = (param_1 - tmp2) / scaleRatio;
+    *param_3 = tmp5 + tmp4;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -641,9 +932,26 @@ asm void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* para
 #include "asm/d/menu/d_menu_fmap2D/calcAllMapPos2D__18dMenu_Fmap2DBack_cFffPfPffff.s"
 }
 #pragma pop
+#endif
 
 /* 801D0F7C-801D1094 1CB8BC 0118+00 8/8 3/3 0/0 .text
  * calcAllMapPosWorld__18dMenu_Fmap2DBack_cFffPfPf              */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::calcAllMapPosWorld(f32 param_0, f32 param_1, f32* param_2, f32* param_3) {
+    f32 tmp1 = (field_0xce8[field_0x1227].field_0x0 + field_0xce8[field_0x1227].field_0x8) * 0.5f;
+    f32 tmp2 = (field_0xce8[field_0x1227].field_0x4 + field_0xce8[field_0x1227].field_0xc) * 0.5f;
+    f32 tmp3 = (param_0 - ((field_0xe8c[field_0x1227] + field_0xf0c[field_0x1227]) +
+                           field_0xecc[field_0x1227] * field_0xf9c * 0.5f));
+    f32 tmp4 = (param_1 - ((field_0xeac[field_0x1227] + field_0xf2c[field_0x1227]) +
+                           field_0xeec[field_0x1227] * field_0xf9c * 0.5f));
+
+    f32 tmp5 = field_0xf98 / getMapScissorAreaSizeRealY();
+
+    *param_2 = tmp1 + (tmp3 * tmp5);
+    *param_3 = tmp2 + (tmp4 * tmp5);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,30 +961,91 @@ asm void dMenu_Fmap2DBack_c::calcAllMapPosWorld(f32 param_0, f32 param_1, f32* p
 #include "asm/d/menu/d_menu_fmap2D/calcAllMapPosWorld__18dMenu_Fmap2DBack_cFffPfPf.s"
 }
 #pragma pop
+#endif
 
 /* 801D1094-801D10F4 1CB9D4 0060+00 0/0 1/1 0/0 .text setSpotPane__18dMenu_Fmap2DBack_cFP7ResTIMG
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setSpotPane(ResTIMG* param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/setSpotPane__18dMenu_Fmap2DBack_cFP7ResTIMG.s"
+void dMenu_Fmap2DBack_c::setSpotPane(ResTIMG* i_timg) {
+    if (mpSpotTexture == NULL) {
+        mpSpotTexture = new J2DPicture(i_timg);
+        JUT_ASSERT(1169, mpSpotTexture != 0);
+    }
 }
-#pragma pop
 
 /* 801D10F4-801D1148 1CBA34 0054+00 1/1 1/1 0/0 .text deleteSpotPane__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::deleteSpotPane() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/deleteSpotPane__18dMenu_Fmap2DBack_cFv.s"
+void dMenu_Fmap2DBack_c::deleteSpotPane() {
+    if (mpSpotTexture != NULL) {
+        delete mpSpotTexture;
+        mpSpotTexture = NULL;
+    }
 }
-#pragma pop
 
 /* 801D1148-801D1478 1CBA88 0330+00 0/0 8/8 0/0 .text            zoomMapCalc__18dMenu_Fmap2DBack_cFf
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::zoomMapCalc(f32 param_0) {
+    field_0xfa0 = param_0;
+    field_0xfa8 = param_0;
+    field_0xf9c = getAllMapZoomRate() +
+                  (param_0 * (getRegionMapZoomRate(field_0x1227) - getAllMapZoomRate()));
+    calcRenderingScale();
+
+    f32 centerX = getMapAreaGlobalCenterPosX();
+    f32 centerY = getMapAreaGlobalCenterPosY();
+    if (g_fmapHIO.field_0x308 == false) {
+        f32 dVar12 = field_0xe8c[field_0x1227] + (field_0xecc[field_0x1227] * 0.5f);
+        f32 dVar11 = field_0xeac[field_0x1227] + (field_0xeec[this->field_0x1227] * 0.5f);
+        field_0xf0c[field_0x1227] = (dVar12 + (param_0 * (centerX - dVar12)) -
+                                     (field_0xecc[field_0x1227] * field_0xf9c * 0.5f)) -
+                                    field_0xe8c[field_0x1227];
+        field_0xf2c[field_0x1227] = (dVar11 + (param_0 * (centerY - dVar11)) -
+                                     (field_0xeec[field_0x1227] * field_0xf9c * 0.5f)) -
+                                    field_0xeac[field_0x1227];
+    } else {
+        f32 dVar12 = (field_0xe0c[field_0x1227] + field_0xe4c[field_0x1227]) * 0.5f;
+        f32 dVar11 = (field_0xe2c[field_0x1227] + field_0xe6c[field_0x1227]) * 0.5f;
+
+        f32 tmp = (field_0xeac[field_0x1227] + (field_0xeec[field_0x1227] * 0.5f)) - dVar11;
+
+        f32 tmp2 = (dVar12 + (param_0 * (centerX - dVar12)));
+        f32 tmp3 = (((field_0xe8c[field_0x1227] + field_0xecc[field_0x1227] * 0.5f) - dVar12));
+        field_0xf0c[field_0x1227] =
+            (((tmp2 + (tmp3 * field_0xf9c))) - field_0xecc[field_0x1227] * field_0xf9c * 0.5f) -
+            field_0xe8c[field_0x1227];
+
+        field_0xf2c[field_0x1227] =
+            (((dVar11 + (param_0 * (centerY - dVar11))) + tmp * field_0xf9c) -
+             field_0xeec[field_0x1227] * field_0xf9c * 0.5f) -
+            field_0xeac[field_0x1227];
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if (i != field_0x1227) {
+            field_0xf0c[i] =
+                field_0xf0c[field_0x1227] +
+                (field_0xe8c[i] - field_0xe8c[field_0x1227]) * (field_0xf9c - getAllMapZoomRate());
+            field_0xf2c[i] =
+                field_0xf2c[field_0x1227] +
+                (field_0xeac[i] - field_0xeac[field_0x1227]) * (field_0xf9c - getAllMapZoomRate());
+        }
+    }
+
+    if (param_0 == 1.0f) {
+        for (int i = 0; i < 8; i++) {
+            field_0xf4c[i] = field_0xf0c[i];
+            field_0xf6c[i] = field_0xf2c[i];
+        }
+    }
+
+    calcRenderingPos();
+    setSpotCursor(field_0x1229);
+
+    field_0xfb8 =
+        ((field_0xecc[field_0x1227] + (param_0 * (getMapAreaSizeX() - field_0xecc[field_0x1227]))) /
+         getMapAreaSizeX());
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -685,8 +1054,90 @@ asm void dMenu_Fmap2DBack_c::zoomMapCalc(f32 param_0) {
 #include "asm/d/menu/d_menu_fmap2D/zoomMapCalc__18dMenu_Fmap2DBack_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 801D1478-801D1858 1CBDB8 03E0+00 0/0 10/10 0/0 .text zoomMapCalc2__18dMenu_Fmap2DBack_cFf */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::zoomMapCalc2(f32 param_0) {
+    f32 spotZoomRate = getSpotMapZoomRate();
+    f32 regionZoomRate = getRegionMapZoomRate(field_0x1227);
+    field_0xf9c = regionZoomRate + (param_0 * (spotZoomRate - regionZoomRate));
+
+    if (field_0x118c + control_ypos < field_0xd8c[field_0x1227]) {
+        if (field_0x11a4 == 0.0f) {
+            field_0x11a4 = (field_0x118c + control_ypos) - field_0xd8c[field_0x1227];
+        }
+        control_ypos = field_0xd8c[field_0x1227] - field_0x118c;
+    } else {
+        if (field_0x118c + control_ypos > field_0xdcc[field_0x1227]) {
+            if (field_0x11a4 == 0.0f) {
+                field_0x11a4 = (field_0x118c + control_ypos) - field_0xdcc[field_0x1227];
+            }
+            control_ypos = field_0xdcc[field_0x1227] - field_0x118c;
+        }
+    }
+
+    if (field_0x1190 + control_xpos < field_0xdac[field_0x1227]) {
+        if (field_0x11a8 == 0.0f) {
+            field_0x11a8 = (field_0x1190 + control_xpos) - field_0xdac[field_0x1227];
+        }
+        control_xpos = field_0xdac[field_0x1227] - this->field_0x1190;
+    } else {
+        if (field_0x1190 + control_xpos > field_0xdec[field_0x1227]) {
+            if (field_0x11a8 == 0.0f) {
+                field_0x11a8 = (field_0x1190 + control_xpos) - field_0xdec[field_0x1227];
+            }
+            control_xpos = field_0xdec[field_0x1227] - field_0x1190;
+        }
+    }
+
+    calcRenderingScale();
+
+    field_0xfa0 = param_0 + 1.0f;
+    f32 centerX = getMapAreaGlobalCenterPosX();
+    f32 centerY = getMapAreaGlobalCenterPosY();
+    if (g_fmapHIO.field_0x308 == false) {
+        field_0xf0c[field_0x1227] = (centerX - (field_0xecc[field_0x1227] * field_0xf9c * 0.5f)) -
+                                    field_0xe8c[field_0x1227];
+        field_0xf2c[field_0x1227] = (centerY - (field_0xeec[field_0x1227] * field_0xf9c * 0.5f)) -
+                                    field_0xeac[field_0x1227];
+    } else {
+        f32 tmp1 = (field_0xeac[field_0x1227] + (field_0xeec[field_0x1227] * 0.5f)) -
+                   ((field_0xe2c[field_0x1227] + field_0xe6c[field_0x1227]) * 0.5f);
+
+        f32 tmp2 = ((field_0xe8c[field_0x1227] + field_0xecc[field_0x1227] * 0.5f) -
+                    (field_0xe0c[field_0x1227] + field_0xe4c[field_0x1227]) * 0.5f);
+
+        field_0xf0c[field_0x1227] =
+            ((centerX + (tmp2 * field_0xf9c)) - field_0xecc[field_0x1227] * field_0xf9c * 0.5f) -
+            field_0xe8c[field_0x1227];
+        field_0xf2c[field_0x1227] =
+            ((centerY + (tmp1 * field_0xf9c)) - field_0xeec[field_0x1227] * field_0xf9c * 0.5f) -
+            field_0xeac[field_0x1227];
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if (i != field_0x1227) {
+            field_0xf0c[i] =
+                field_0xf0c[field_0x1227] +
+                (field_0xe8c[i] - field_0xe8c[field_0x1227]) * (field_0xf9c - getAllMapZoomRate());
+            field_0xf2c[i] =
+                field_0xf2c[field_0x1227] +
+                (field_0xeac[i] - field_0xeac[field_0x1227]) * (field_0xf9c - getAllMapZoomRate());
+        }
+    }
+
+    scrollCalc(param_0);
+
+    if (param_0 == 1.0f) {
+        field_0x11b4 = (field_0x118c + control_ypos) - field_0xfc8;
+        field_0x11b8 = (field_0x1190 + control_xpos) - field_0xfcc;
+        field_0x11a4 = 0.0f;
+        field_0x11a8 = 0.0f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -695,6 +1146,7 @@ asm void dMenu_Fmap2DBack_c::zoomMapCalc2(f32 param_0) {
 #include "asm/d/menu/d_menu_fmap2D/zoomMapCalc2__18dMenu_Fmap2DBack_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 801D1858-801D1AA4 1CC198 024C+00 0/0 1/1 0/0 .text zoomMapCalcHIO__18dMenu_Fmap2DBack_cFv */
 #pragma push
@@ -800,7 +1252,7 @@ asm void dMenu_Fmap2DBack_c::isShowRegion(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaGlobalPosX() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalPosX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -811,7 +1263,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaGlobalPosX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaGlobalPosY() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalPosY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -822,7 +1274,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaGlobalPosY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosX() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalCenterPosX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -833,7 +1285,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosY() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalCenterPosY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -843,7 +1295,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaSizeX() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaSizeX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaSizeX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -853,7 +1305,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaSizeX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapAreaSizeY() {
+asm f32 dMenu_Fmap2DBack_c::getMapAreaSizeY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaSizeY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -864,7 +1316,7 @@ asm void dMenu_Fmap2DBack_c::getMapAreaSizeY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaLX() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaLX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaLX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -875,7 +1327,7 @@ asm void dMenu_Fmap2DBack_c::getMapScissorAreaLX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaLY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -886,7 +1338,7 @@ asm void dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -897,7 +1349,7 @@ asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealX() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeRealX__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -930,7 +1382,7 @@ asm void dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -941,7 +1393,7 @@ asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealY() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeRealY__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -972,7 +1424,7 @@ asm void dMenu_Fmap2DBack_c::calcRenderingScale() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getPathScale(f32 param_0) {
+asm f32 dMenu_Fmap2DBack_c::getPathScale(f32 param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getPathScale__18dMenu_Fmap2DBack_cFf.s"
 }
@@ -982,7 +1434,7 @@ asm void dMenu_Fmap2DBack_c::getPathScale(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getAllMapZoomRate() {
+asm f32 dMenu_Fmap2DBack_c::getAllMapZoomRate() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getAllMapZoomRate__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -993,7 +1445,7 @@ asm void dMenu_Fmap2DBack_c::getAllMapZoomRate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getRegionMapZoomRate(int param_0) {
+asm f32 dMenu_Fmap2DBack_c::getRegionMapZoomRate(int param_0) {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getRegionMapZoomRate__18dMenu_Fmap2DBack_cFi.s"
 }
@@ -1004,7 +1456,7 @@ asm void dMenu_Fmap2DBack_c::getRegionMapZoomRate(int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getSpotMapZoomRate() {
+asm f32 dMenu_Fmap2DBack_c::getSpotMapZoomRate() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getSpotMapZoomRate__18dMenu_Fmap2DBack_cFv.s"
 }
@@ -1067,8 +1519,7 @@ asm void dMenu_Fmap2DBack_c::worldGridDraw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::regionGridDraw() {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::regionGridDraw(){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/regionGridDraw__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
@@ -1128,8 +1579,7 @@ asm void dMenu_Fmap2DBack_c::stageOriginDraw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcBlink() {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::calcBlink(){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/calcBlink__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
@@ -1176,8 +1626,7 @@ asm void dMenu_Fmap2DBack_c::setBaseBackAlpha(u8 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::regionMapMove(STControl* param_0) {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::regionMapMove(STControl* param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/regionMapMove__18dMenu_Fmap2DBack_cFP9STControl.s"
 }
 #pragma pop
@@ -1201,8 +1650,7 @@ asm void dMenu_Fmap2DBack_c::stageMapMove(STControl* param_0, u8 param_1, bool p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setAllAlphaRate(f32 param_0, bool param_1) {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::setAllAlphaRate(f32 param_0, bool param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setAllAlphaRate__18dMenu_Fmap2DBack_cFfb.s"
 }
 #pragma pop
@@ -1274,8 +1722,7 @@ asm void dMenu_Fmap2DBack_c::calcDrawPriority() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setArrowPosAxis(f32 param_0, f32 param_1) {
-    nofralloc
+asm void dMenu_Fmap2DBack_c::setArrowPosAxis(f32 param_0, f32 param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setArrowPosAxis__18dMenu_Fmap2DBack_cFff.s"
 }
 #pragma pop
@@ -1285,8 +1732,30 @@ asm void dMenu_Fmap2DBack_c::setArrowPosAxis(f32 param_0, f32 param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u8 const area_name[24] = {
-    0x69, 0x5F, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x73, 0x00, 0x00, 0x69, 0x5F,
-    0x6E, 0x61, 0x6D, 0x65, 0x00, 0x69, 0x5F, 0x6E, 0x61, 0x6D, 0x65, 0x31,
+    0x69,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x5F,
+    0x73,
+    0x00,
+    0x00,
+    0x69,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x00,
+    0x69,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x31,
 };
 COMPILER_STRIP_GATE(0x80396288, &area_name);
 #pragma pop
@@ -1511,8 +1980,7 @@ asm void dMenu_Fmap2DTop_c::btkAnimeLoop(J2DAnmTextureSRTKey* param_0, f32 param
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setMoyaAlpha(u8 param_0) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setMoyaAlpha(u8 param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setMoyaAlpha__17dMenu_Fmap2DTop_cFUc.s"
 }
 #pragma pop
@@ -1520,10 +1988,62 @@ asm void dMenu_Fmap2DTop_c::setMoyaAlpha(u8 param_0) {
 /* ############################################################################################## */
 /* 803964B8-803964F0 022B18 0038+00 1/1 0/0 0/0 .rodata          ffont_name$6110 */
 SECTION_RODATA static u8 const ffont_name_6110[56] = {
-    0x00, 0x66, 0x66, 0x6F, 0x6E, 0x74, 0x30, 0x30, 0x00, 0x66, 0x66, 0x6F, 0x6E, 0x74,
-    0x6C, 0x30, 0x00, 0x66, 0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x31, 0x00, 0x66, 0x66, 0x6F,
-    0x6E, 0x74, 0x6C, 0x32, 0x00, 0x66, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x66,
-    0x66, 0x6F, 0x6E, 0x74, 0x62, 0x33, 0x00, 0x66, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x34,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x30,
+    0x30,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x6C,
+    0x30,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x6C,
+    0x31,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x6C,
+    0x32,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x62,
+    0x30,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x62,
+    0x33,
+    0x00,
+    0x66,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x62,
+    0x34,
 };
 COMPILER_STRIP_GATE(0x803964B8, &ffont_name_6110);
 
@@ -1532,8 +2052,7 @@ COMPILER_STRIP_GATE(0x803964B8, &ffont_name_6110);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setTitleNameString__17dMenu_Fmap2DTop_cFUl.s"
 }
 #pragma pop
@@ -1541,8 +2060,30 @@ asm void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
 /* ############################################################################################## */
 /* 803964F0-80396508 022B50 0018+00 1/1 0/0 0/0 .rodata          farea_name$6125 */
 SECTION_RODATA static u8 const farea_name_6125[24] = {
-    0x66, 0x5F, 0x6E, 0x61, 0x6D, 0x65, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x6E,
-    0x61, 0x6D, 0x65, 0x33, 0x00, 0x66, 0x5F, 0x6E, 0x61, 0x6D, 0x65, 0x32,
+    0x66,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x5F,
+    0x31,
+    0x00,
+    0x66,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x33,
+    0x00,
+    0x66,
+    0x5F,
+    0x6E,
+    0x61,
+    0x6D,
+    0x65,
+    0x32,
 };
 COMPILER_STRIP_GATE(0x803964F0, &farea_name_6125);
 
@@ -1550,8 +2091,7 @@ COMPILER_STRIP_GATE(0x803964F0, &farea_name_6125);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setAreaNameString(u32 param_0) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setAreaNameString(u32 param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setAreaNameString__17dMenu_Fmap2DTop_cFUl.s"
 }
 #pragma pop
@@ -1559,9 +2099,46 @@ asm void dMenu_Fmap2DTop_c::setAreaNameString(u32 param_0) {
 /* ############################################################################################## */
 /* 80396508-80396530 022B68 0028+00 1/1 0/0 0/0 .rodata          font_zt$6148 */
 SECTION_RODATA static u8 const font_zt_6148[40] = {
-    0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x7A,
-    0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74,
-    0x5F, 0x7A, 0x74, 0x34, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x7A, 0x74, 0x35,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x7A,
+    0x74,
+    0x31,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x7A,
+    0x74,
+    0x32,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x7A,
+    0x74,
+    0x33,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x7A,
+    0x74,
+    0x34,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x7A,
+    0x74,
+    0x35,
 };
 COMPILER_STRIP_GATE(0x80396508, &font_zt_6148);
 
@@ -1570,8 +2147,7 @@ COMPILER_STRIP_GATE(0x80396508, &font_zt_6148);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 param_1) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setZButtonString__17dMenu_Fmap2DTop_cFUlUc.s"
 }
 #pragma pop
@@ -1579,9 +2155,46 @@ asm void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 param_1) {
 /* ############################################################################################## */
 /* 80396530-80396558 022B90 0028+00 1/1 0/0 0/0 .rodata          font_bt$6176 */
 SECTION_RODATA static u8 const font_bt_6176[40] = {
-    0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62,
-    0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74,
-    0x5F, 0x62, 0x74, 0x34, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x35,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x62,
+    0x74,
+    0x31,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x62,
+    0x74,
+    0x32,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x62,
+    0x74,
+    0x33,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x62,
+    0x74,
+    0x34,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x62,
+    0x74,
+    0x35,
 };
 COMPILER_STRIP_GATE(0x80396530, &font_bt_6176);
 
@@ -1590,8 +2203,7 @@ COMPILER_STRIP_GATE(0x80396530, &font_bt_6176);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 param_1) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setBButtonString__17dMenu_Fmap2DTop_cFUlUc.s"
 }
 #pragma pop
@@ -1599,9 +2211,46 @@ asm void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 param_1) {
 /* ############################################################################################## */
 /* 80396558-80396580 022BB8 0028+00 1/1 0/0 0/0 .rodata          font_at$6194 */
 SECTION_RODATA static u8 const font_at_6194[40] = {
-    0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61,
-    0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74,
-    0x5F, 0x61, 0x74, 0x34, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x35,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x61,
+    0x74,
+    0x31,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x61,
+    0x74,
+    0x32,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x61,
+    0x74,
+    0x33,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x61,
+    0x74,
+    0x34,
+    0x66,
+    0x6F,
+    0x6E,
+    0x74,
+    0x5F,
+    0x61,
+    0x74,
+    0x35,
 };
 COMPILER_STRIP_GATE(0x80396558, &font_at_6194);
 
@@ -1610,8 +2259,7 @@ COMPILER_STRIP_GATE(0x80396558, &font_at_6194);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 param_1) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setAButtonString__17dMenu_Fmap2DTop_cFUlUc.s"
 }
 #pragma pop
@@ -1619,9 +2267,46 @@ asm void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 param_1) {
 /* ############################################################################################## */
 /* 80396580-803965A8 022BE0 0028+00 1/1 0/0 0/0 .rodata          juji_c$6209 */
 SECTION_RODATA static u8 const juji_c_6209[40] = {
-    0x66, 0x75, 0x6A, 0x69, 0x5F, 0x63, 0x30, 0x30, 0x66, 0x75, 0x6A, 0x69, 0x5F, 0x63,
-    0x30, 0x31, 0x66, 0x75, 0x6A, 0x69, 0x5F, 0x63, 0x30, 0x32, 0x66, 0x75, 0x6A, 0x69,
-    0x5F, 0x63, 0x30, 0x33, 0x66, 0x75, 0x6A, 0x69, 0x5F, 0x63, 0x30, 0x34,
+    0x66,
+    0x75,
+    0x6A,
+    0x69,
+    0x5F,
+    0x63,
+    0x30,
+    0x30,
+    0x66,
+    0x75,
+    0x6A,
+    0x69,
+    0x5F,
+    0x63,
+    0x30,
+    0x31,
+    0x66,
+    0x75,
+    0x6A,
+    0x69,
+    0x5F,
+    0x63,
+    0x30,
+    0x32,
+    0x66,
+    0x75,
+    0x6A,
+    0x69,
+    0x5F,
+    0x63,
+    0x30,
+    0x33,
+    0x66,
+    0x75,
+    0x6A,
+    0x69,
+    0x5F,
+    0x63,
+    0x30,
+    0x34,
 };
 COMPILER_STRIP_GATE(0x80396580, &juji_c_6209);
 
@@ -1629,8 +2314,7 @@ COMPILER_STRIP_GATE(0x80396580, &juji_c_6209);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setCrossLRString__17dMenu_Fmap2DTop_cFUl.s"
 }
 #pragma pop
@@ -1638,9 +2322,46 @@ asm void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
 /* ############################################################################################## */
 /* 803965A8-803965D0 022C08 0028+00 1/1 0/0 0/0 .rodata          ast_c$6233 */
 SECTION_RODATA static u8 const ast_c_6233[40] = {
-    0x00, 0x00, 0x66, 0x73, 0x74, 0x5F, 0x30, 0x30, 0x00, 0x00, 0x66, 0x73, 0x74, 0x5F,
-    0x30, 0x31, 0x00, 0x00, 0x66, 0x73, 0x74, 0x5F, 0x30, 0x32, 0x00, 0x00, 0x66, 0x73,
-    0x74, 0x5F, 0x30, 0x33, 0x00, 0x00, 0x66, 0x73, 0x74, 0x5F, 0x30, 0x34,
+    0x00,
+    0x00,
+    0x66,
+    0x73,
+    0x74,
+    0x5F,
+    0x30,
+    0x30,
+    0x00,
+    0x00,
+    0x66,
+    0x73,
+    0x74,
+    0x5F,
+    0x30,
+    0x31,
+    0x00,
+    0x00,
+    0x66,
+    0x73,
+    0x74,
+    0x5F,
+    0x30,
+    0x32,
+    0x00,
+    0x00,
+    0x66,
+    0x73,
+    0x74,
+    0x5F,
+    0x30,
+    0x33,
+    0x00,
+    0x00,
+    0x66,
+    0x73,
+    0x74,
+    0x5F,
+    0x30,
+    0x34,
 };
 COMPILER_STRIP_GATE(0x803965A8, &ast_c_6233);
 
@@ -1681,8 +2402,7 @@ asm void dMenu_Fmap2DTop_c::deleteExplain() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setArrowAlphaRatio(u8 param_0, f32 param_1) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setArrowAlphaRatio(u8 param_0, f32 param_1){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setArrowAlphaRatio__17dMenu_Fmap2DTop_cFUcf.s"
 }
 #pragma pop
@@ -1696,8 +2416,7 @@ SECTION_SDATA2 static f32 lit_6309 = 5.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DTop_c::setAlphaAnimeMin(CPaneMgrAlpha* param_0) {
-    nofralloc
+asm void dMenu_Fmap2DTop_c::setAlphaAnimeMin(CPaneMgrAlpha* param_0){nofralloc
 #include "asm/d/menu/d_menu_fmap2D/setAlphaAnimeMin__17dMenu_Fmap2DTop_cFP13CPaneMgrAlpha.s"
 }
 #pragma pop

@@ -180,6 +180,10 @@ public:
     bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
     void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
     void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
+    void set2DWidth(float width) { m2DWidth = width; }
+    void set2DHeight(float height) { m2DHeight = height; }
+    void set2DPosH(float posH) { m2DPosH = posH; }
+    void set2DPosV(float posV) { m2DPosV = posV; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -723,6 +727,22 @@ inline void dMeter2Info_offSub2DStatus(int bit) {
 
 inline void dMeter2Info_onSub2DStatus(int bit) {
     g_meter2_info.onSub2DStatus(bit);
+}
+
+inline void dMeter2Info_set2DWidth(float width) {
+    g_meter2_info.set2DWidth(width);
+}
+
+inline void dMeter2Info_set2DHeight(float height) {
+    g_meter2_info.set2DHeight(height);
+}
+
+inline void dMeter2Info_set2DPosH(float posH) {
+    g_meter2_info.set2DPosH(posH);
+}
+
+inline void dMeter2Info_set2DPosV(float posV) {
+    g_meter2_info.set2DPosV(posV);
 }
 
 const char* dMeter2Info_getPlusTextureName();

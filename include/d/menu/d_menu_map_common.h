@@ -22,6 +22,11 @@ struct dMenuMapCommon_c {
     /* 801C4778 */ float getIconSizeY(u8 index);
     /* 801C47C4 */ void debugIcon();
 
+    void setCenterPosX(f32 center_pos, u8 param_2) {
+        mCenterPosX = center_pos;
+        _c90 = param_2;
+    }
+
     struct data {
         /* 0x00 */ float _0;
         /* 0x04 */ float _4;
@@ -47,7 +52,7 @@ struct dMenuMapCommon_c {
     /* 0xC80 */ float _c80;
     /* 0xC84 */ float _c84;
     /* 0xC88 */ float _c88;
-    /* 0xC8C */ float _c8c;
+    /* 0xC8C */ float mCenterPosX;
     /* 0xC90 */ u8 _c90;
 };
 
