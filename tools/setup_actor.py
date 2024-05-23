@@ -83,6 +83,7 @@ weak_funcs = {
     "asm daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c()": "__dt__23daBaseNpc_moveBgActor_cFv",
     "asm void dAttention_c::getDistTable(int param_0)": "getDistTable__12dAttention_cFi",
     "asm dMdl_obj_c::dMdl_obj_c()": "__ct__10dMdl_obj_cFv",
+    "asm cM3dGLin::~cM3dGLin()": "__dt__8cM3dGLinFv",
     # "": ""
 }
 
@@ -160,6 +161,7 @@ external_refs = [
     "extern \"C\" extern u8 const j3dDefaultMtx[48];",
     "extern \"C\" void PSMTXIdentity();",
     "extern \"C\" void PSMTXRotAxisRad();",
+    "extern \"C\" void C_MTXLightOrtho();"
 ]
 
 types = [
@@ -312,7 +314,7 @@ types = [
     "struct dMdl_obj_c",
     "struct dMdl_mng_c",
     "struct dMdl_c",
-    "struct daObjLife_c",
+    # "struct daObjLife_c",
     # "struct daObjCRVLH_UP_c",
     # "struct daObjCRVHAHEN_c",
     "struct dDlst_peekZ_c",
@@ -334,6 +336,11 @@ types = [
     "struct J3DTexMtxInfo",
     "struct daNpcT_c",
     "struct daNPC_TK_c",
+    "struct dCcD_SrcCps",
+    "struct dCcD_Cps",
+    "struct cM3dGCpsS",
+    "struct cM3dGCps",
+    "struct cM3dGLin",
 ]
 
 class ActorSetupManager:
