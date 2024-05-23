@@ -341,6 +341,7 @@ types = [
     "struct cM3dGCpsS",
     "struct cM3dGCps",
     "struct cM3dGLin",
+    "struct daNpc_Pouya_c",
 ]
 
 class ActorSetupManager:
