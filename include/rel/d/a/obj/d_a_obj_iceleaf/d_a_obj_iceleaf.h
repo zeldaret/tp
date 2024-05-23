@@ -1,7 +1,9 @@
 #ifndef D_A_OBJ_ICELEAF_H
 #define D_A_OBJ_ICELEAF_H
 
+#include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
+#include "d/bg/d_bg_s_acch.h"
 
 class daObjIceLeaf_c : public fopAc_ac_c {
 public:
@@ -29,6 +31,7 @@ public:
     void offRide() { mRide = false; }
     void setBreakEffect() { mBreakEffect = true; }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ dBgS_ObjAcch mAcch;
@@ -49,5 +52,7 @@ public:
     /* 0x964 */ cXyz field_0x964;
     /* 0x970 */ cXyz field_0x970;
 };
+STATIC_ASSERT(sizeof(daObjIceLeaf_c) == 0x97c);
+
 
 #endif /* D_A_OBJ_ICELEAF_H */

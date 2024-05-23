@@ -501,25 +501,30 @@ static asm void func_80C1C5E8() {
 #pragma pop
 
 /* 80C1C910-80C1C930 -00001 0020+00 1/0 0/0 0/0 .data            daObjHBombkoya_METHODS */
-SECTION_DATA static void* daObjHBombkoya_METHODS[8] = {
-    (void*)daObjHBombkoya_create1st__FP16daObjHBombkoya_c,
-    (void*)daObjHBombkoya_MoveBGDelete__FP16daObjHBombkoya_c,
-    (void*)daObjHBombkoya_MoveBGExecute__FP16daObjHBombkoya_c,
-    (void*)NULL,
-    (void*)daObjHBombkoya_MoveBGDraw__FP16daObjHBombkoya_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daObjHBombkoya_METHODS = {
+    (process_method_func)daObjHBombkoya_create1st__FP16daObjHBombkoya_c,
+    (process_method_func)daObjHBombkoya_MoveBGDelete__FP16daObjHBombkoya_c,
+    (process_method_func)daObjHBombkoya_MoveBGExecute__FP16daObjHBombkoya_c,
+    0,
+    (process_method_func)daObjHBombkoya_MoveBGDraw__FP16daObjHBombkoya_c,
 };
 
 /* 80C1C930-80C1C960 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_HBombkoya */
-SECTION_DATA extern void* g_profile_Obj_HBombkoya[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00D80000, (void*)&g_fpcLf_Method,
-    (void*)0x000007C0, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02A30000, (void*)&daObjHBombkoya_METHODS,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_HBombkoya = {
+  fpcLy_CURRENT_e,         // mLayerID
+  3,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_Obj_HBombkoya,      // mProcName
+  &g_fpcLf_Method.mBase,   // sub_method
+  0x000007C0,              // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  675,                     // mPriority
+  &daObjHBombkoya_METHODS, // sub_method
+  0x00040100,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80C1C960-80C1C96C 00022C 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
