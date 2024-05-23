@@ -84,7 +84,9 @@ weak_funcs = {
     "asm void dAttention_c::getDistTable(int param_0)": "getDistTable__12dAttention_cFi",
     "asm dMdl_obj_c::dMdl_obj_c()": "__ct__10dMdl_obj_cFv",
     "asm cM3dGLin::~cM3dGLin()": "__dt__8cM3dGLinFv",
-    # "": ""
+    "asm dCcD_Cps::~dCcD_Cps()": "__dt__8dCcD_CpsFv",
+    "asm dCcD_Cps::dCcD_Cps()": "__ct__8dCcD_CpsFv",
+    # "" : "",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -342,6 +344,7 @@ types = [
     "struct cM3dGCps",
     "struct cM3dGLin",
     "struct daNpc_Pouya_c",
+    "struct daNpc_Jagar_Param_c",
 ]
 
 class ActorSetupManager:
