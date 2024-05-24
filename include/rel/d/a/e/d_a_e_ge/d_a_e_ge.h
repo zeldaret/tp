@@ -3,16 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
-struct daE_GE_HIO_c {
-    /* 806C7A4C */ daE_GE_HIO_c();
-    /* 806CCA58 */ ~daE_GE_HIO_c();
-};
-
 /**
-* @ingroup actors-enemies
-* @brief Guay
-*
-*/
+ * @ingroup actors-enemies
+ * @class daE_GE_c
+ * @brief Guay
+ * 
+ * @details 
+ * 
+ */
 class daE_GE_c : public fopEn_enemy_c {
 public:
     u8 getGroupNo() {
@@ -52,11 +50,18 @@ public:
     /* 806CC278 */ void CreateHeap();
     /* 806CC390 */ void create();
 
+private:
     /* 0x5AC */ u8 field_0x5ac[1519];
     /* 0xB9B */ u8 mGroupNo;
     /* 0xB9C */ u8 field_0xb9c[4];
 
     static u8 l_actionmenu[108];
+};
+STATIC_ASSERT(sizeof(daE_GE_c) == 0xBA0);
+
+class daE_GE_HIO_c {
+    /* 806C7A4C */ daE_GE_HIO_c();
+    /* 806CCA58 */ ~daE_GE_HIO_c();
 };
 
 #endif /* D_A_E_GE_H */

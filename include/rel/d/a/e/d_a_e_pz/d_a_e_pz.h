@@ -2,8 +2,17 @@
 #define D_A_E_PZ_H
 
 #include "dolphin/types.h"
+#include "f_op/f_op_actor_mng.h"
 
-struct daE_PZ_c {
+/**
+ * @ingroup actors-enemies
+ * @class daE_PZ_c
+ * @brief Phantom Zant
+ * 
+ * @details 
+ * 
+ */
+class daE_PZ_c : public fopEn_enemy_c {
     void onBombArrowHit() { field_0x845 = 1; }
 
     /* 807585BC */ void draw();
@@ -35,8 +44,17 @@ struct daE_PZ_c {
     /* 8076010C */ void create();
     /* 807607EC */ daE_PZ_c();
 
-    /* 0x000 */ u8 base[0x845];
+private:
+    /* 0x5AC */ u8 field_0x5ac[0x845 - 0x5ac];
     /* 0x845 */ u8 field_0x845;
+    /* 0x846 */ u8 field_0x846[0xef8 - 0x846];
 };
+STATIC_ASSERT(sizeof(daE_PZ_c) == 0xEF8);
+
+class daE_PZ_HIO_c {
+    /* 8075856C */ daE_PZ_HIO_c();
+    /* 80760C60 */ ~daE_PZ_HIO_c();
+};
+
 
 #endif /* D_A_E_PZ_H */

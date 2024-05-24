@@ -10,11 +10,15 @@
 #include "SSystem/SComponent/c_phase.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Morpheel Bomb Fish
-*
-*/
-struct daE_OctBg_c : public fopEn_enemy_c {
+ * @ingroup actors-enemies
+ * @class daE_OctBg_c
+ * @brief Morpheel Bomb Fish
+ * 
+ * @details 
+ * 
+ */
+class daE_OctBg_c : public fopEn_enemy_c {
+public:
     typedef void (daE_OctBg_c::*actionFunc)();
 
     /* 8073626C */ void setAction(actionFunc);
@@ -50,6 +54,7 @@ struct daE_OctBg_c : public fopEn_enemy_c {
     u32 checkAction(actionFunc func) { return field_0xb58 == func; }
     bool checkNormalAttk() { return checkAction(&daE_OctBg_c::normal_attack); }
 
+private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* field_0x5b4;
     /* 0x5B8 */ mDoExt_brkAnm* field_0x5b8;
@@ -88,10 +93,11 @@ struct daE_OctBg_c : public fopEn_enemy_c {
     /* 0xBB0 */ u16 field_0xbb0;
     /* 0xBB2 */ u8 field_0xbb2;
     /* 0xBB3 */ u8 field_0xbb3;
-
 };
+STATIC_ASSERT(sizeof(daE_OctBg_c) == 0xBB4);
 
-struct daE_OctBg_HIO_c {
+class daE_OctBg_HIO_c {
+public:
     /* 8073620C */ daE_OctBg_HIO_c();
     /* 80739CB8 */ virtual ~daE_OctBg_HIO_c() {}
 

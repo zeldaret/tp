@@ -19,10 +19,13 @@ enum e_arrow_type {
 };
 
 /**
-* @ingroup actors-enemies
-* @brief Enemy arrow
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_arrow_class
+ * @brief Enemy Arrow
+ * 
+ * @details 
+ * 
+ */
 class e_arrow_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

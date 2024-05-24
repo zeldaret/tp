@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
@@ -26,10 +26,13 @@ public:
 };
 
 /**
-* @ingroup actors-enemies
-* @brief Shadow Insect
-*
-*/
+ * @ingroup actors-enemies
+ * @class daE_YM_c
+ * @brief Twilight Insect
+ * 
+ * @details 
+ * 
+ */
 class daE_YM_c : public fopEn_enemy_c {
 public:
     enum daE_YM_Action {
@@ -128,7 +131,8 @@ public:
 
     void setFriendFlag(u8 i_flag) { mFriendFlag |= i_flag; }
     u8 getFriendFlag() { return mFriendFlag; }
-
+    
+private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* field_0x5b4;
     /* 0x5B8 */ mDoExt_brkAnm* field_0x5b8;
@@ -216,5 +220,11 @@ public:
     /* 0xAE8 */ u32 field_0xae8[3];
     /* 0xAF4 */ u8 field_0xaf4;
 };
+STATIC_ASSERT(sizeof(daE_YM_c) == 0xAF8);
+
+struct E_YM_n {
+    static dCcD_SrcSph cc_sph_src;
+};
+
 
 #endif /* D_A_E_YM_H */
