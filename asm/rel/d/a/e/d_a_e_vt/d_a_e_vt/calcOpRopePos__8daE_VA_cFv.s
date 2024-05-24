@@ -554,8 +554,8 @@ lbl_807C5C1C:
 /* 807C5C34  41 80 FD 94 */	blt lbl_807C59C8
 /* 807C5C38  39 C0 00 00 */	li r14, 0
 /* 807C5C3C  39 E0 00 00 */	li r15, 0
-/* 807C5C40  3C 60 80 7D */	lis r3, data_807CF0AC@ha /* 0x807CF0AC@ha */
-/* 807C5C44  38 03 F0 AC */	addi r0, r3, data_807CF0AC@l /* 0x807CF0AC@l */
+/* 807C5C40  3C 60 80 7D */	lis r3, va_tag_set_num@ha /* 0x807CF0AC@ha */
+/* 807C5C44  38 03 F0 AC */	addi r0, r3, va_tag_set_num@l /* 0x807CF0AC@l */
 /* 807C5C48  7C 10 03 78 */	mr r16, r0
 lbl_807C5C4C:
 /* 807C5C4C  88 B0 00 00 */	lbz r5, 0(r16)

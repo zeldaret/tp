@@ -479,10 +479,12 @@ public:
         /* 0x2D */ CUT_TYPE_WOLF_B_RIGHT,
         /* 0x2E */ CUT_TYPE_WOLF_B_FRONT,
         /* 0x2F */ CUT_TYPE_WOLF_B_BACK,
+        /* 0x30 */ CUT_TYPE_WOLF_UNK_30 = 0x30,
         /* 0x31 */ CUT_TYPE_WOLF_UNK_31 = 0x31,
         /* 0x32 */ CUT_TYPE_WOLF_UNK_32,
         /* 0x33 */ CUT_TYPE_WOLF_TURN_LEFT,
         /* 0x34 */ CUT_TYPE_WOLF_TURN_RIGHT,
+        /* 0x35 */ CUT_TYPE_WOLF_UNK_35,
         /* 0x36 */ CUT_TYPE_WOLF_LOCK = 0x36,
         /* 0x38 */ CUT_TYPE_DASH_UNK_38 = 0x38,
         /* 0x39 */ CUT_TYPE_WOLF_UNK_39,
@@ -754,6 +756,7 @@ public:
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
+    bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
 
     void setCanoeSlider() { mSpecialMode = 0x2D; }
     
@@ -863,7 +866,7 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
-    inline static BOOL i_checkNowWolf() { return dComIfGp_getLinkPlayer()->checkWolf(); }
+    inline static u32 i_checkNowWolf() { return dComIfGp_getLinkPlayer()->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
     inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
@@ -875,6 +878,7 @@ public:
     // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
 
     bool checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
+    bool checkWolfEnemyHangBiteOwn(fopAc_ac_c* i_actorP) const { return checkWolfEnemyBiteAllOwn(i_actorP); }
     bool checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
 
     static daMidna_c* m_midnaActor;
