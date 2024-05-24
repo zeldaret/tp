@@ -1,6 +1,7 @@
 #ifndef D_A_E_WB_H
 #define D_A_E_WB_H
 
+#include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_horse/d_a_horse.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/cc/d_cc_uty.h"
@@ -13,10 +14,13 @@ enum daE_wb_ACT {
 };
 
 /**
-* @ingroup actors-enemies
-* @brief Wild Boar
-*
-*/
+ * @ingroup actors-enemies
+ * @class e_wb_class
+ * @brief Bullbo
+ * 
+ * @details 
+ * 
+ */
 class e_wb_class : public fopEn_enemy_c {
 public:
     BOOL checkWait();
@@ -170,5 +174,17 @@ private:
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
     /* 0x17E8 */ f32 mSpeedRate;
 };
+STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
+
+struct himo_s {
+    /* 807E1CCC */ ~himo_s();
+    /* 807E1D2C */ himo_s();
+};
+
+class daE_WB_HIO_c {
+    /* 807D248C */ daE_WB_HIO_c();
+    /* 807E20DC */ ~daE_WB_HIO_c();
+};
+
 
 #endif /* D_A_E_WB_H */

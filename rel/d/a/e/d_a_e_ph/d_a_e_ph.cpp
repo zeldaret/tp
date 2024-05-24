@@ -28,18 +28,6 @@
 #define ANM_WIND 16
 #define ANM_WIND_FALL 17
 
-class daE_PH_HIO_c {
-public:
-    /* 8073D44C */ daE_PH_HIO_c();
-    /* 80741B4C */ virtual ~daE_PH_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mHangPos;
-    /* 0x0C */ f32 mStopTime;
-    /* 0x10 */ f32 mSpeed;
-    /* 0x14 */ f32 mRotationInterpolation;
-    /* 0x18 */ f32 mRotationYInterpolation;
-};
 
 /* 8073D44C-8073D48C 0000EC 0040+00 1/1 0/0 0/0 .text            __ct__12daE_PH_HIO_cFv */
 daE_PH_HIO_c::daE_PH_HIO_c() {

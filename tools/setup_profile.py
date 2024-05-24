@@ -3,6 +3,8 @@ import re
 import sys
 import struct
 
+actor_method_class_name = None
+actor_class_size = None
 
 LayerID = {
     "0x00000000": "fpcLy_ROOT_e",
@@ -853,7 +855,7 @@ CullType = {
     29: "fopAc_CULLSPHERE_CUSTOM_e",
 }
 
-def get_profiles_from_cpp_data(filepath):
+def get_profiles_from_cpp_data(filepath, actor_name):
     profiles = []
 
     with open(filepath, 'r') as file:
@@ -876,7 +878,6 @@ def get_profiles_from_cpp_data(filepath):
                     # Split the line on "," and strip whitespace and newline characters from each element
                     profile_members.extend([item.strip() for item in next_line.split(",") if item.strip()])
 
-                    # print(next_line)
                     loop_idx += 1
                     next_line = data[loop_idx]
 
@@ -900,7 +901,10 @@ def get_profiles_from_cpp_data(filepath):
 
                 sub_method1 = profile_members[3].replace("(void*)","")+".mBase"
 
-                mSize = profile_members[4].replace("(void*)","")
+                global actor_class_size
+                actor_class_size = profile_members[4].replace("(void*)","")
+
+                mSize = actor_class_size if actor_name is None else "sizeof("+actor_name+")"
 
                 mSizeOther = profile_members[5].replace("(void*)","").replace("NULL","0")
 
@@ -914,31 +918,19 @@ def get_profiles_from_cpp_data(filepath):
 
                 sub_method3 = profile_members[9].replace("(void*)","")
 
+                global actor_method_class_name
+                actor_method_class_name = sub_method3.replace("&","").replace(",","")
+
                 mStatus = profile_members[10].replace("(void*)","")
 
                 mActorTypeCullType_string = profile_members[11].replace("(void*)","")
+                if mActorTypeCullType_string == "NULL":
+                    mActorTypeCullType_string = "0x00000000"
+                
                 mActorTypeCullType_bytes = struct.pack(">I",int(mActorTypeCullType_string,16))
                 mActorType = ActorType.get(struct.unpack(">B",mActorTypeCullType_bytes[0:1])[0])
                 cullType = CullType.get(struct.unpack(">B",mActorTypeCullType_bytes[1:2])[0])
-
-                # print(mLayerID)
-                # print(mListID)
-                # print(mListPrio)
-                # print(mProcName)
-                # print(sub_method1)
-                # print(mSize)
-                # print(mSizeOther)
-                # print(mParameters)
-                # print(sub_method2)
-                # print(mPriority)
-                # print(sub_method3)
-                # print(mStatus)
-                # print(mActorType)
-                # print(cullType)
-
-                # print(profile_members)
-                # print(len(profile_members))
-                # print(next_line)
+                
                 profiles.append({
                     "name": profile_name,
                     "start_idx": start_idx,
@@ -963,10 +955,44 @@ def get_profiles_from_cpp_data(filepath):
 
     return profiles
 
-@click.command()
-@click.option('--file-path', required=True, help='Filepath of the cpp file to parse.')
-def main(file_path):
-    profiles = get_profiles_from_cpp_data(file_path)
+def setup_method_class(filepath, method_class_name):
+    with open(filepath, 'r') as file:
+        data = file.readlines()
+        actor_method_class_on = False
+
+        new_lines = []
+
+        # Track iterator and member
+        for i, line in enumerate(data):
+            if method_class_name + "[" in line:
+                line = line.replace("void*","actor_method_class")
+                line = line.replace("SECTION_DATA ","")
+                line = re.sub(r'\[\d+\] = {', ' = {', line)
+                actor_method_class_on = True
+
+            if actor_method_class_on:
+                if "}" in line:
+                    actor_method_class_on = False
+                elif "NULL" in line:
+                    # for sizing purposes, we need to replace NULL with 0 if it's in between methods
+                    if "NULL" not in data[i+1] and "};" not in data[i+1]:
+                        new_lines.append("    0,\n")
+                    continue
+                else:
+                    line = line.replace("(void*)","(process_method_func)")
+            
+            new_lines.append(line)
+    with open(filepath, 'w') as file:
+        file.writelines(new_lines)
+    
+    print(f"Setup method class {method_class_name}.")
+
+def setup_profile(file_path,actor_name=None):
+    profiles = get_profiles_from_cpp_data(file_path,actor_name)
+
+    if len(profiles) == 0:
+        print("No profiles found that need to be setup!")
+        return None
 
     # Open file, delete lines between start and end idx and insert new lines starting at start idx
     with open(file_path, 'r') as file:
@@ -998,10 +1024,18 @@ def main(file_path):
             data.insert(start_idx+14, f"  {profile['members']['cullType']},{' '*(max_length-len(str(profile['members']['cullType'])))} // cullType\n")
             data.insert(start_idx+15, f"}};\n")
 
-    with open(file_path, 'w') as file:
-        file.writelines(data)
+            with open(file_path, 'w') as file:
+                file.writelines(data)
 
+            print(f"Setup profile {profile['name']}.")
 
+    setup_method_class(file_path, actor_method_class_name)
+    return actor_class_size
+
+@click.command()
+@click.option('--file-path', required=True, help='Filepath of the cpp file to parse.')
+def setup_profile_cli(file_path):
+    setup_profile(file_path)
 
 if __name__ == "__main__":
-    main()
+    setup_profile()

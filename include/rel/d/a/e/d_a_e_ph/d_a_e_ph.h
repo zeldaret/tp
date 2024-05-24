@@ -3,17 +3,20 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 #include "d/d_path.h"
 
 /**
-* @ingroup actors-enemies
-* @brief Peahat
-*
-*/
+ * @ingroup actors-enemies
+ * @class daE_PH_c
+ * @brief Peahat
+ * 
+ * @details 
+ * 
+ */
 class daE_PH_c : public fopEn_enemy_c {
 public:
     /* 8073D48C */ void initCcSph();
@@ -117,5 +120,19 @@ public:
     /* 0xAAC */ dCcU_AtInfo mAtInfo;
     /* 0xAD0 */ u8 mInitializedHIO;
 };
+
+class daE_PH_HIO_c {
+public:
+    /* 8073D44C */ daE_PH_HIO_c();
+    /* 80741B4C */ virtual ~daE_PH_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mHangPos;
+    /* 0x0C */ f32 mStopTime;
+    /* 0x10 */ f32 mSpeed;
+    /* 0x14 */ f32 mRotationInterpolation;
+    /* 0x18 */ f32 mRotationYInterpolation;
+};
+
 
 #endif /* D_A_E_PH_H */
