@@ -3823,7 +3823,7 @@ SECTION_SDATA2 static f32 lit_7625 = 1.0f / 100.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
+asm int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi.s"
 }

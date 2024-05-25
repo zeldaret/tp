@@ -497,7 +497,7 @@ private:
 class dKy_tevstr_c;
 class mDoExt_3DlineMat1_c : public mDoExt_3DlineMat_c {
 public:
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
+    /* 80013360 */ int init(u16, u16, ResTIMG*, int);
     /* 80013FB0 */ void update(int, GXColor&, dKy_tevstr_c*);
     /* 8001373C */ void update(int, f32, GXColor&, u16, dKy_tevstr_c*);
     /* 80014E7C */ int getMaterialID();

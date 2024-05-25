@@ -3,61 +3,12 @@
 // Translation Unit: d_a_obj_crope
 //
 
-// #include "rel/d/a/obj/d_a_obj_crope/d_a_obj_crope.h"
+#include "rel/d/a/obj/d_a_obj_crope/d_a_obj_crope.h"
 #include "d/cc/d_cc_d.h"
+#include "d/com/d_com_inf_game.h"
+#include "d/d_path.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct mDoExt_3DlineMat_c {};
-
-struct mDoExt_3DlineMatSortPacket {
-    /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
-};
-
-struct ResTIMG {};
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
-struct mDoExt_3DlineMat1_c {
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
-    /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daObjCrope_c {
-    /* 80BCCCD8 */ void createHeap();
-    /* 80BCCD64 */ void create();
-    /* 80BCD524 */ ~daObjCrope_c();
-    /* 80BCD6C4 */ void setNormalRopePos();
-    /* 80BCD9EC */ void setRideRopePos();
-    /* 80BCE4FC */ void execute();
-    /* 80BCE9BC */ void draw();
-};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
 
 //
 // Forward References:
@@ -119,7 +70,6 @@ extern "C" void cM3d_Len2dSqPntAndSegLine__FffffffPfPfPf();
 extern "C" void __ct__8cM3dGLinFRC4cXyzRC4cXyz();
 extern "C" void SetC__8cM3dGSphFRC4cXyz();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXTrans();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_23();
@@ -129,15 +79,11 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
 
 //
 // Declarations:
@@ -145,38 +91,19 @@ extern "C" extern u8 g_env_light[4880];
 
 /* ############################################################################################## */
 /* 80BCEACC-80BCEAD4 000000 0006+02 6/6 0/0 0/0 .rodata          l_arcName */
-SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
-    0x43,
-    0x72,
-    0x6F,
-    0x70,
-    0x65,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BCEACC, &l_arcName);
+SECTION_RODATA static char const l_arcName[] = "Crope";
 
 /* 80BCCCD8-80BCCD44 000078 006C+00 1/1 0/0 0/0 .text            createHeap__12daObjCrope_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjCrope_c::createHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/createHeap__12daObjCrope_cFv.s"
+int daObjCrope_c::createHeap() {
+    ResTIMG* texImg = (ResTIMG*) dComIfG_getObjectRes(l_arcName, 3);
+    JUT_ASSERT(80, texImg != 0);
+    return mLineMat.init(1, 100, texImg, 0) != 0 ? 1 : 0;
 }
-#pragma pop
 
 /* 80BCCD44-80BCCD64 0000E4 0020+00 1/1 0/0 0/0 .text daObjCrope_createHeap__FP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjCrope_createHeap(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/daObjCrope_createHeap__FP10fopAc_ac_c.s"
+static int daObjCrope_createHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjCrope_c*>(i_this)->createHeap();
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80BCEAD4-80BCEAD8 000008 0004+00 0/1 0/0 0/0 .rodata          @3870 */
@@ -365,14 +292,83 @@ SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
 };
 
 /* 80BCCD64-80BCD3D8 000104 0674+00 1/1 0/0 0/0 .text            create__12daObjCrope_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+int daObjCrope_c::create() {
+    fopAcM_SetupActor(this, daObjCrope_c);
+    int rv = dComIfG_resLoad(&mPhase, l_arcName);
+    if (rv == cPhs_COMPLEATE_e) {
+        if (fopAcM_entrySolidHeap(this, daObjCrope_createHeap, 0x2900) == 0) {
+            return cPhs_ERROR_e;
+        }
+        attention_info.position = home.pos;
+        eyePos = home.pos;
+        mCcStts.Init(0, 0xff, this);
+        mCcStts.SetRoomId(fopAcM_GetRoomNo(this));
+        mCollider.Set(l_sphSrc);
+        mCollider.SetStts(&mCcStts);
+        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        gravity = -5.0f;
+        cXyz cStack_68;
+        cXyz cStack_74;
+        if (fopAcM_GetParam(this) == 0xff) {
+            return cPhs_ERROR_e;
+        } 
+        dPath* pPath = dPath_GetRoomPath(fopAcM_GetParam(this), fopAcM_GetRoomNo(this));
+        if (pPath == NULL || pPath->m_num != 2) {
+            return cPhs_ERROR_e;
+        }
+        cStack_68 = pPath->m_points[0].m_position;
+        cStack_74 = pPath->m_points[1].m_position;
+        current.pos = (cStack_68 + cStack_74) * 0.5f;
+        mRopeVec = cStack_74 - cStack_68;
+        if (fabsf(mRopeVec.x) > fabsf(mRopeVec.z)) {
+            field_0x724 = 1.0f / mRopeVec.x;
+            field_0x714 = 1;
+        } else {
+            field_0x724 = 1.0f / mRopeVec.z;
+            field_0x714 = 0;
+        }
+        shape_angle.y = mRopeVec.atan2sX_Z();
+        shape_angle.x = mRopeVec.atan2sY_XZ();
+        mDoMtx_trans(field_0x6e4, current.pos.x, current.pos.y, current.pos.z);
+        mDoMtx_ZXYrotM(field_0x6e4, shape_angle.x,
+                                    shape_angle.y, 0);
+        f32 dVar12 = mRopeVec.absXZ() * 0.5f + 3.0f;
+        fopAcM_SetMtx(this, field_0x6e4);
+        fopAcM_SetMax(this, 75.0f, 50.0f, dVar12);
+        fopAcM_SetMin(this, -75.0f, -200.0f, -dVar12);
+        f32 fVar1 = mRopeVec.abs();
+        field_0x720 = fVar1 * (1.0f / 99.0f);
+        f32 fVar13 = field_0x720 / fVar1;
+        cXyz cStack_80(mRopeVec.x * fVar13,
+                        mRopeVec.y * fVar13,
+                        mRopeVec.z * fVar13);
+        cXyz* posItr;
+        cXyz* pos = mLineMat.getPos(0);
+        cXyz* this_02 = field_0xbd8;
+        *pos =  cStack_68;
+        int i;
+        for (i = 1, posItr = pos + 1; i < 99; i++, posItr++, this_02++) {
+            posItr[0] = posItr[-1] + cStack_80;
+            this_02[0] = posItr[0];
+        }
+        *posItr = cStack_74;
+        offRide();
+        setNormalRopePos();
+    }
+    return rv;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCrope_c::create() {
+asm int daObjCrope_c::create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/create__12daObjCrope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80BCD3D8-80BCD3DC 000778 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 // cXyz::cXyz() {
@@ -426,16 +422,16 @@ extern "C" asm void __dt__4cXyzFv() {
 
 /* 80BCD504-80BCD524 0008A4 0020+00 1/0 0/0 0/0 .text            daObjCrope_Create__FP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjCrope_Create(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/daObjCrope_Create__FP10fopAc_ac_c.s"
+static int daObjCrope_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjCrope_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 80BCD524-80BCD69C 0008C4 0178+00 1/1 0/0 0/0 .text            __dt__12daObjCrope_cFv */
+#ifdef NONMATCHING
+daObjCrope_c::~daObjCrope_c() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -444,17 +440,15 @@ asm daObjCrope_c::~daObjCrope_c() {
 #include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/__dt__12daObjCrope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80BCD69C-80BCD6C4 000A3C 0028+00 1/0 0/0 0/0 .text            daObjCrope_Delete__FP12daObjCrope_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjCrope_Delete(daObjCrope_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/daObjCrope_Delete__FP12daObjCrope_c.s"
+static int daObjCrope_Delete(daObjCrope_c* i_this) {
+    fopAcM_GetID(i_this);
+    i_this->~daObjCrope_c();
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80BCEB14-80BCEB18 000048 0004+00 0/1 0/0 0/0 .rodata          @4115 */
@@ -494,6 +488,72 @@ COMPILER_STRIP_GATE(0x80BCEB24, &lit_4119);
 
 /* 80BCD6C4-80BCD9EC 000A64 0328+00 3/3 0/0 0/0 .text            setNormalRopePos__12daObjCrope_cFv
  */
+// Horrible regalloc
+#ifdef NONMATCHING
+void daObjCrope_c::setNormalRopePos() {
+    cXyz* pdVar4;
+    cXyz* pVVar5;
+    cXyz* pVVar3;
+    cXyz* pcVar8;
+    cXyz* ptr740;
+    cXyz* this_00;
+    cXyz* this_01;
+    pVVar3 = mLineMat.getPos(0) + 1;
+    pVVar5 = field_0x740;
+    pdVar4 = field_0xbd8;
+    cXyz cStack_34;
+    cXyz cStack_40;
+    cXyz cStack_4c;
+    f32 local_c8;
+    int i;
+    dKyw_get_AllWind_vec(&current.pos, &cStack_4c, &local_c8);
+    if (cM_rnd() < 0.1f) {
+        cStack_4c *= local_c8 * field_0x720 * 0.2f;
+    } else {
+        cStack_4c *= 0.0f;
+    }
+    for (i = 1; i < 99; i++) {
+        pVVar3[0].y = pdVar4[0].y;
+        cStack_34 = pVVar3[0] - pVVar3[-1];
+        cStack_34.y += maxFallSpeed;
+        cStack_34 += pVVar5[0];
+        if (cM_rnd() < 0.6f) {
+            cStack_34 += cStack_4c;
+        }
+        cStack_34.normalizeZP();
+        pVVar3[0] = pVVar3[-1] + cStack_34 * field_0x720;
+        pVVar3++;
+        pdVar4++;
+        pVVar5++;
+    }
+    pcVar8 = mLineMat.getPos(0) + 98;
+    ptr740 = field_0x740 + 97;
+    for (i = 98; i > 0; i--) {
+        cStack_34 = pcVar8[0] - pcVar8[1];
+        cStack_34.y += gravity;
+        cStack_34 += ptr740[0];
+        cStack_34.normalizeZP();
+        pcVar8[0] = pcVar8[1] + cStack_34 * field_0x720;
+        pcVar8--;
+        ptr740--;
+    }
+    
+    cXyz* pos = mLineMat.getPos(0);
+    cXyz* this_02 = pos + 1;
+    this_01 = field_0x740;
+    this_00 = field_0xbd8;
+    cXyz* iVar6 = mLineMat.getPos(0);
+    for (i = 1; i < 99; i++) {
+        f32 dVar9 = iVar6->y + (mRopeVec.y * getStartRate(this_02));
+        this_01[0] = (this_02[0] - this_00[0]) * 0.49f;
+        this_00[0] = this_02[0];
+        this_02[0].y += (dVar9 - this_02[0].y) * 0.8f;
+        this_02++;
+        this_00++;
+        this_01++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -502,6 +562,7 @@ asm void daObjCrope_c::setNormalRopePos() {
 #include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/setNormalRopePos__12daObjCrope_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80BCEB28-80BCEB2C 00005C 0004+00 1/2 0/0 0/0 .rodata          @4407 */
@@ -542,7 +603,7 @@ asm void daObjCrope_c::setRideRopePos() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCrope_c::execute() {
+asm int daObjCrope_c::execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/execute__12daObjCrope_cFv.s"
 }
@@ -560,20 +621,15 @@ extern "C" asm void __dt__8cM3dGLinFv() {
 #pragma pop
 
 /* 80BCE99C-80BCE9BC 001D3C 0020+00 1/0 0/0 0/0 .text daObjCrope_Execute__FP12daObjCrope_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjCrope_Execute(daObjCrope_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/daObjCrope_Execute__FP12daObjCrope_c.s"
+static int daObjCrope_Execute(daObjCrope_c* i_this) {
+    return i_this->execute();
 }
-#pragma pop
 
 /* 80BCE9BC-80BCEA5C 001D5C 00A0+00 1/1 0/0 0/0 .text            draw__12daObjCrope_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjCrope_c::draw() {
+asm int daObjCrope_c::draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/draw__12daObjCrope_cFv.s"
 }
@@ -581,14 +637,9 @@ asm void daObjCrope_c::draw() {
 
 /* 80BCEA5C-80BCEA7C 001DFC 0020+00 1/0 0/0 0/0 .text            daObjCrope_Draw__FP12daObjCrope_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daObjCrope_Draw(daObjCrope_c* param_0) {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_crope/d_a_obj_crope/daObjCrope_Draw__FP12daObjCrope_c.s"
+static int daObjCrope_Draw(daObjCrope_c* i_this) {
+    return i_this->draw();
 }
-#pragma pop
 
 /* 80BCEA7C-80BCEAC4 001E1C 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
