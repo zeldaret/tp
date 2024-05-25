@@ -2177,7 +2177,7 @@ asm void J3DPEBlockFull::setBlend(J3DBlend const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFull::getBlend() {
+asm J3DBlend* J3DPEBlockFull::getBlend() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getBlend__14J3DPEBlockFullFv.s"
 }
@@ -2399,7 +2399,7 @@ asm void J3DPEBlockFogOff::setBlend(J3DBlend const* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool J3DPEBlockFogOff::getBlend() {
+asm J3DBlend* J3DPEBlockFogOff::getBlend() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMatBlock/getBlend__16J3DPEBlockFogOffFv.s"
 }

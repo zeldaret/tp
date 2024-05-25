@@ -145,10 +145,10 @@ lbl_807CC6F8:
 /* 807CC6F8  3B C0 00 00 */	li r30, 0
 /* 807CC6FC  3B 80 00 00 */	li r28, 0
 /* 807CC700  3B 60 00 00 */	li r27, 0
-/* 807CC704  3C 60 80 7D */	lis r3, data_807CF0AC@ha /* 0x807CF0AC@ha */
-/* 807CC708  3B 03 F0 AC */	addi r24, r3, data_807CF0AC@l /* 0x807CF0AC@l */
-/* 807CC70C  3C 60 80 7D */	lis r3, data_807CF0D4@ha /* 0x807CF0D4@ha */
-/* 807CC710  3B 23 F0 D4 */	addi r25, r3, data_807CF0D4@l /* 0x807CF0D4@l */
+/* 807CC704  3C 60 80 7D */	lis r3, va_tag_set_num@ha /* 0x807CF0AC@ha */
+/* 807CC708  3B 03 F0 AC */	addi r24, r3, va_tag_set_num@l /* 0x807CF0AC@l */
+/* 807CC70C  3C 60 80 7D */	lis r3, va_tag_offset@ha /* 0x807CF0D4@ha */
+/* 807CC710  3B 23 F0 D4 */	addi r25, r3, va_tag_offset@l /* 0x807CF0D4@l */
 /* 807CC714  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 807CC718  3B 43 D4 70 */	addi r26, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 lbl_807CC71C:

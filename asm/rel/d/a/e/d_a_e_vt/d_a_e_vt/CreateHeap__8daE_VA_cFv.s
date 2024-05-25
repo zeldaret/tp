@@ -328,8 +328,8 @@ lbl_807CD4DC:
 /* 807CD4F4  41 80 FF D4 */	blt lbl_807CD4C8
 /* 807CD4F8  3B 80 00 00 */	li r28, 0
 /* 807CD4FC  3B A0 00 00 */	li r29, 0
-/* 807CD500  3C 60 80 7D */	lis r3, data_807CF084@ha /* 0x807CF084@ha */
-/* 807CD504  38 03 F0 84 */	addi r0, r3, data_807CF084@l /* 0x807CF084@l */
+/* 807CD500  3C 60 80 7D */	lis r3, va_tag_set_size@ha /* 0x807CF084@ha */
+/* 807CD504  38 03 F0 84 */	addi r0, r3, va_tag_set_size@l /* 0x807CF084@l */
 /* 807CD508  3F 20 11 00 */	lis r25, 0x1100
 /* 807CD50C  7C 1A 03 78 */	mr r26, r0
 lbl_807CD510:

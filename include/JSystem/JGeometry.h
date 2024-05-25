@@ -100,6 +100,10 @@ struct TVec3<f32> : public Vec {
         setTVec3f(&i_vec.x, &x);
     }
 
+    TVec3(f32 x, f32 y, f32 z) {
+        set(x, y, z);
+    }
+
     TVec3() {}
 
     operator Vec*() { return (Vec*)&x; }
