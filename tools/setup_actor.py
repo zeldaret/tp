@@ -98,6 +98,24 @@ weak_funcs = {
     "asm mDoExt_bckAnm::mDoExt_bckAnm()": "__ct__13mDoExt_bckAnmFv",
     "asm cM3dGTri::~cM3dGTri()": "__dt__8cM3dGTriFv",
     # "asm cM3dGTri::cM3dGTri()": ""
+    "asm J3DTevKColorAnm::~J3DTevKColorAnm()": "__dt__15J3DTevKColorAnmFv",
+    "asm J3DTevKColorAnm::J3DTevKColorAnm()": "__ct__15J3DTevKColorAnmFv",
+    "asm J3DTevColorAnm::~J3DTevColorAnm()": "__dt__14J3DTevColorAnmFv",
+    "asm J3DTevColorAnm::J3DTevColorAnm()": "__ct__14J3DTevColorAnmFv",
+    "asm J3DTexNoAnm::~J3DTexNoAnm()": "__dt__11J3DTexNoAnmFv",
+    "asm J3DTexNoAnm::J3DTexNoAnm()": "__ct__11J3DTexNoAnmFv",
+    "asm J3DTexMtxAnm::~J3DTexMtxAnm()": "__dt__12J3DTexMtxAnmFv",
+    "asm J3DTexMtxAnm::J3DTexMtxAnm()": "__ct__12J3DTexMtxAnmFv",
+    "asm J3DMatColorAnm::~J3DMatColorAnm()": "__dt__14J3DMatColorAnmFv",
+    "asm J3DMatColorAnm::J3DMatColorAnm()": "__ct__14J3DMatColorAnmFv",
+    "asm void J3DTexNoAnm::calc(u16* param_0) const": "calc__11J3DTexNoAnmCFPUs",
+    "asm daNpcF_Lookat_c::~daNpcF_Lookat_c()": "__dt__15daNpcF_Lookat_cFv",
+    "asm daNpcF_c::~daNpcF_c()": "__dt__8daNpcF_cFv",
+    "asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c()": "__dt__18daNpcF_ActorMngr_cFv",
+    "asm daNpcF_c::daNpcF_c()": "__ct__8daNpcF_cFv",
+    "asm daNpcF_ActorMngr_c::daNpcF_ActorMngr_c()": "__ct__18daNpcF_ActorMngr_cFv",
+    "void daNpcF_c::adjustShapeAngle()": "adjustShapeAngle__8daNpcF_cFv",
+    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -378,6 +396,22 @@ types = [
     "struct J3DAnmColor",
     "struct mDoExt_bpkAnm",
     "struct daWtPillar_c",
+    "struct create_tag_class",
+    "struct daNpcF_c",
+    "struct daNpcF_anmPlayData",
+    "struct daNpcF_MatAnm_c",
+    "struct daNpcF_Lookat_c",
+    "struct daNpcF_ActorMngr_c",
+    "struct J3DTexNoAnm",
+    "struct J3DTexMtxAnm",
+    "struct J3DTevKColorAnm",
+    "struct J3DTevColorAnm",
+    "struct J3DMaterialAnm",
+    "struct J3DMatColorAnm",
+    "struct daE_HZ_c",
+    "struct JPAEmitterManager",
+    "struct dPa_simpleEcallBack",
+    "struct daTwGate_c",
 ]
 
 class ActorSetupManager:

@@ -146,6 +146,7 @@ public:
     /* 807CD668 */ int create();
     /* 807CDAD8 */ daE_VA_c();
 
+private:
     /* 0x005AC */ request_of_phase_process_class mPhase;
     /* 0x005B4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x005B8 */ mDoExt_McaMorfSO* mpEndEfMorf;
@@ -286,6 +287,7 @@ public:
     /* 807C25EC */ daE_VA_HIO_c();
     /* 807CE2AC */ virtual ~daE_VA_HIO_c();
 
+private:
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mModelSize;
     /* 0x0C */ f32 mAttackRange;
