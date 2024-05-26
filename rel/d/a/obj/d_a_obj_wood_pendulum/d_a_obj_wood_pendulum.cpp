@@ -6,29 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_wood_pendulum/d_a_obj_wood_pendulum.h"
 #include "dol2asm.h"
 
-class daObjWPndlm_c : public fopAc_ac_c {
-public:
-    /* 80D39418 */ void initBaseMtx();
-    /* 80D39454 */ void setBaseMtx();
-    /* 80D394CC */ int Create();
-    /* 80D395C8 */ int CreateHeap();
-    /* 80D39638 */ int create();
-    /* 80D39978 */ int execute();
-    /* 80D39B68 */ int draw();
-    /* 80D39BCC */ int _delete();
-
-    u32 getArg0() { return fopAcM_GetParamBit(this, 0, 8); }
-    u32 getArg1() { return fopAcM_GetParamBit(this, 8, 8); }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-    /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ dCcD_Stts mStts;
-    /* 0x5B0 */ dCcD_Sph mSph;
-    /* 0x6E8 */ dCcD_Sph field_0x6e8[2];
-    /* 0x958 */ s16 field_0x958;
-    /* 0x95A */ s16 field_0x95a;
-    /* 0x95C */ s16 field_0x95c;
-};  // Size: 0x960
 
 //
 // Forward References:
@@ -200,25 +177,30 @@ asm int daObjWPndlm_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D39D48-80D39D68 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjWPndlm_Method */
-SECTION_DATA static void* l_daObjWPndlm_Method[8] = {
-    (void*)daObjWPndlm_Create__FP10fopAc_ac_c,
-    (void*)daObjWPndlm_Delete__FP13daObjWPndlm_c,
-    (void*)daObjWPndlm_Execute__FP13daObjWPndlm_c,
-    (void*)NULL,
-    (void*)daObjWPndlm_Draw__FP13daObjWPndlm_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObjWPndlm_Method = {
+    (process_method_func)daObjWPndlm_Create__FP10fopAc_ac_c,
+    (process_method_func)daObjWPndlm_Delete__FP13daObjWPndlm_c,
+    (process_method_func)daObjWPndlm_Execute__FP13daObjWPndlm_c,
+    0,
+    (process_method_func)daObjWPndlm_Draw__FP13daObjWPndlm_c,
 };
 
 /* 80D39D68-80D39D98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_WoodPendulum */
-SECTION_DATA extern void* g_profile_Obj_WoodPendulum[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01640000, (void*)&g_fpcLf_Method,
-    (void*)0x00000960, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00FD0000, (void*)&l_daObjWPndlm_Method,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_WoodPendulum = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_WoodPendulum,  // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daObjWPndlm_c),  // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  253,                    // mPriority
+  &l_daObjWPndlm_Method,  // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80D39D98-80D39DA4 000054 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGSph */

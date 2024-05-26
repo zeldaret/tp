@@ -395,7 +395,7 @@ types = [
     "struct cM3dGTri",
     "struct J3DAnmColor",
     "struct mDoExt_bpkAnm",
-    "struct daWtPillar_c",
+    # "struct daWtPillar_c",
     "struct create_tag_class",
     "struct daNpcF_c",
     "struct daNpcF_anmPlayData",
