@@ -4,6 +4,7 @@
  */
 
 #include "d/d_insect.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_insect.h"
 #include "m_Do/m_Do_lib.h"
 #include "dol2asm.h"

@@ -6,6 +6,7 @@
 #include "rel/d/a/obj/d_a_obj_cho/d_a_obj_cho.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_insect.h"
 #include "d/d_procname.h"
 
@@ -148,7 +149,7 @@ void daObjCHO_c::SearchLink() {
         && player->checkItemSwordEquip())
     {
         mAction = ACT_WAIT;
-        mSubAction = 0;
+        mMode = 0;
         cXyz vec(30.0f, 70.0f, 0.0f);
         MTXCopy(daPy_getLinkPlayerActorClass()->getModelJointMtx(9), *calc_mtx);
         MtxPosition(&vec, &mTargetPos);
@@ -163,10 +164,10 @@ void daObjCHO_c::WaitAction() {
     MTXCopy(daPy_getLinkPlayerActorClass()->getModelJointMtx(9), *calc_mtx);
     MtxPosition(&vec1, &target);
 
-    switch (mSubAction) {
+    switch (mMode) {
     case 0:
         if (cLib_addCalcPos(&current.pos, target, 0.05f, 10.0f, 0.0f) < 10.0f) {
-            mSubAction++;
+            mMode++;
             mTimers[0] = 200;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 7);
             mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
@@ -181,7 +182,7 @@ void daObjCHO_c::WaitAction() {
         cLib_chasePos(&current.pos, target, 3.0f);
         if (mTimers[0] == 0) {
             mAction = ACT_MOVE;
-            mSubAction = 0;
+            mMode = 0;
             speedF = 0.0f;
             speed.y = 0.0f;
             mTimers[2] = 50;
@@ -192,7 +193,7 @@ void daObjCHO_c::WaitAction() {
 
     if (!player->checkItemSwordEquip() || target.abs(mTargetPos) > 3.0f) {
         mAction = ACT_MOVE;
-        mSubAction = 0;
+        mMode = 0;
         speedF = 0.0f;
         speed.y = 0.0f;
         mTimers[2] = 50;
@@ -313,7 +314,7 @@ void daObjCHO_c::Z_BufferChk() {
         trim_height = 0.0f;
     }
     if (vec2.x > 0.0f && vec2.x < 608.0f && vec2.y > trim_height && vec2.y < 448.0f - trim_height) {
-        dComIfGd_peekZ(vec2.x, vec2.y, &field_0x99c);
+        dComIfGd_peekZ(vec2.x, vec2.y, &mBufferZ);
     }
 
     f32 near = dComIfGd_getView()->mNear;
@@ -323,12 +324,12 @@ void daObjCHO_c::Z_BufferChk() {
     if (vec2.z > 0.0f) {
         vec2.z = 0.0f;
     }
-    field_0x998 = ((near + far * near / vec2.z) / (far - near) + 1.0f) * 0xffffff;
+    mScreenZ = ((near + far * near / vec2.z) / (far - near) + 1.0f) * 0xffffff;
 }
 
 /* 80BCB49C-80BCB5C0 00127C 0124+00 1/1 0/0 0/0 .text            ParticleSet__10daObjCHO_cFv */
 void daObjCHO_c::ParticleSet() {
-    if (field_0x998 > field_0x99c) {
+    if (mScreenZ > mBufferZ) {
         cLib_addCalc2(&mParticleScale, 0.0f, 1.0f, 1.0f);
     } else {
         cLib_addCalc2(&mParticleScale, 1.0f, 1.0f, 1.0f);
@@ -360,7 +361,7 @@ void daObjCHO_c::BoomChk() {
                 old.pos = lin_chk.i_GetCross();
                 current.pos = old.pos;
                 mAction = ACT_MOVE;
-                mSubAction = 0;
+                mMode = 0;
                 speedF = 5.0f;
                 mTargetSpeedXZ = 5.0f;
                 mBoomerangHit = false;
@@ -371,7 +372,7 @@ void daObjCHO_c::BoomChk() {
             } else {
                 home.pos = current.pos;
                 mAction = ACT_MOVE;
-                mSubAction = 0;
+                mMode = 0;
                 mBoomerangHit = false;
                 speedF = 5.0f;
                 mTargetSpeedXZ = 5.0f;
@@ -387,56 +388,56 @@ void daObjCHO_c::BoomChk() {
 /* 80BCB87C-80BCBB40 00165C 02C4+00 1/1 0/0 0/0 .text            Execute__10daObjCHO_cFv */
 int daObjCHO_c::Execute() {
     if (ChkGetDemo()) {
-        field_0x998 = field_0x99c + 10000.0f;
+        mScreenZ = mBufferZ + 10000.0f;
         mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
         Insect_GetDemoMain();
         ParticleSet();
         return 1;
-    } else {
-        for (int i = 0; i < 3; i++) {
-            mTimers[i]--;
-            if (mTimers[i] <= 0) {
-                mTimers[i] = 0;
-            }
-        }
+    }
 
-        checkGroundPos();
-        attention_info.position = current.pos;
+    for (int i = 0; i < 3; i++) {
+        mTimers[i]--;
+        if (mTimers[i] <= 0) {
+            mTimers[i] = 0;
+        }
+    }
+
+    checkGroundPos();
+    attention_info.position = current.pos;
+    eyePos = current.pos;
+    eyePos.y += 10.0f;
+    
+    switch (mLocation) {
+    case LOC_OUTSIDE:
+        if (!fopAcM_checkHookCarryNow(this)) {
+            Action();
+        } else {
+            home.pos = current.pos;
+        }
+        mParticleKey2 = dComIfGp_particle_set(mParticleKey2, 0xa1c, &current.pos, &tevStr,
+                                                &shape_angle, NULL, 0xff, NULL, -1,
+                                                NULL, NULL, NULL);
+        SetCcSph();
+        ObjHit();
+        BoomChk();
         eyePos = current.pos;
         eyePos.y += 10.0f;
-        
-        switch (mLocation) {
-        case LOC_OUTSIDE:
-            if (!fopAcM_checkHookCarryNow(this)) {
-                Action();
-            } else {
-                home.pos = current.pos;
-            }
-            mParticleKey2 = dComIfGp_particle_set(mParticleKey2, 0xa1c, &current.pos, &tevStr,
-                                                  &shape_angle, NULL, 0xff, NULL, -1,
-                                                  NULL, NULL, NULL);
-            SetCcSph();
-            ObjHit();
-            BoomChk();
-            eyePos = current.pos;
-            eyePos.y += 10.0f;
-            attention_info.position = eyePos;
-            attention_info.position.y += 10.0f;
-            ParticleSet();
-            break;
-        case LOC_AGITHA:
-            ShopAction();
-            break;
-        }
-        
-        mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
-        mAcch.CrrPos(dComIfG_Bgsp());
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-        mpBtkAnm->play();
-        mpBrkAnm->play();
-        setBaseMtx();
-        return 1;
+        attention_info.position = eyePos;
+        attention_info.position.y += 10.0f;
+        ParticleSet();
+        break;
+    case LOC_AGITHA:
+        ShopAction();
+        break;
     }
+    
+    mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
+    mAcch.CrrPos(dComIfG_Bgsp());
+    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mpBtkAnm->play();
+    mpBrkAnm->play();
+    setBaseMtx();
+    return 1;
 }
 
 /* 80BCBB40-80BCBCA8 001920 0168+00 1/1 0/0 0/0 .text            ObjHit__10daObjCHO_cFv */
@@ -454,7 +455,7 @@ void daObjCHO_c::ObjHit() {
             cXyz offset(0.0f, 0.0f, 0.0f);
             daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
             mAction = ACT_MOVE;
-            mSubAction = 2;
+            mMode = 2;
             mBoomerangHit = false;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
             mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
@@ -497,7 +498,7 @@ int daObjCHO_c::Draw() {
         mpMorf->entryDL();
         if (mLocation == LOC_OUTSIDE) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0, -0.6f,
-                dDlst_shadowControl_c::getSimpleTex());
+                                     dDlst_shadowControl_c::getSimpleTex());
         }
     }
     return 1;
@@ -603,7 +604,7 @@ cPhs__Step daObjCHO_c::create() {
         if (mLocation == LOC_UNK_2 && !strcmp("R_SP160", dComIfGp_getStartStageName())
             && dComIfGp_getStartStageRoomNo() == 3)
         {
-            mLocation |= LOC_AGITHA | LOC_UNK_2;
+            mLocation |= LOC_UNK_3;
             mAction = ACT_WAIT;
         }
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
