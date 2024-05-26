@@ -14,6 +14,7 @@ public:
         /* 0 */ LOC_OUTSIDE,
         /* 1 */ LOC_AGITHA,
         /* 2 */ LOC_UNK_2,
+        /* 3 */ LOC_UNK_3,
     };
 
     /* 8015E010 */ dInsect_c();

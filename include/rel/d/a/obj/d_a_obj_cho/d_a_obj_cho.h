@@ -46,14 +46,14 @@ public:
     /* 0x928 */ dBgS_GndChk mGndChk;
     /* 0x97C */ f32 mGroundPos;
     /* 0x980 */ u8 mAction;
-    /* 0x981 */ u8 mSubAction;
+    /* 0x981 */ u8 mMode;
     /* 0x982 */ s16 mTimers[3];
     /* 0x988 */ f32 mTargetSpeedXZ;
     /* 0x98C */ f32 mTargetSpeedY;
     /* 0x990 */ s16 mTargetAngleY;
     /* 0x994 */ f32 mParticleScale;
-    /* 0x998 */ f32 field_0x998;
-    /* 0x99C */ u32 field_0x99c;
+    /* 0x998 */ f32 mScreenZ;
+    /* 0x99C */ u32 mBufferZ;
     /* 0x9A0 */ u8 field_0x9a0[0xC];
     /* 0x9AC */ bool field_0x9ac;
     /* 0x9B0 */ f32 mPlaySpeed;

@@ -1,7 +1,8 @@
 #ifndef D_MENU_D_MENU_INSECT_H
 #define D_MENU_D_MENU_INSECT_H
 
-#include "d/com/d_com_inf_game.h"
+#include "d/d_drawlist.h"
+#include "d/save/d_save.h"
 
 class CPaneMgr;
 struct CSTControl;

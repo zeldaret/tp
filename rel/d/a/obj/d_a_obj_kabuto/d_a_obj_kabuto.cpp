@@ -6,6 +6,7 @@
 #include "rel/d/a/obj/d_a_obj_kabuto/d_a_obj_kabuto.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
+#include "d/com/d_com_inf_game.h"
 #include "d/menu/d_menu_insect.h"
 #include "d/d_procname.h"
 
@@ -124,12 +125,12 @@ static int daObjKABUTO_Delete(daObjKABUTO_c* i_this) {
 /* 80C2B36C-80C2B4D4 0005EC 0168+00 1/1 0/0 0/0 .text            ShopWaitAction__13daObjKABUTO_cFv
  */
 void daObjKABUTO_c::ShopWaitAction() {
-    switch (mSubAction) {
+    switch (mMode) {
     case 0:
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
         mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
-        mSubAction++;
+        mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
 
@@ -142,10 +143,10 @@ void daObjKABUTO_c::ShopWaitAction() {
             s32 rnd = cM_rndF(100.0f);
             if (rnd < 40) {
                 mAction = ACT_WALK;
-                mSubAction = 0;
+                mMode = 0;
             } else if (rnd < 70) {
                 mAction = ACT_MOVE;
-                mSubAction = 0;
+                mMode = 0;
             } else {
                 mTimers[0] = cM_rndF(50.0f) + 50.0f;
             }
@@ -156,12 +157,12 @@ void daObjKABUTO_c::ShopWaitAction() {
 
 /* 80C2B4D4-80C2B618 000754 0144+00 1/1 0/0 0/0 .text            WaitAction__13daObjKABUTO_cFv */
 void daObjKABUTO_c::WaitAction() {
-    switch (mSubAction) {
+    switch (mMode) {
     case 0:
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
         mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
-        mSubAction++;
+        mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
 
@@ -173,7 +174,7 @@ void daObjKABUTO_c::WaitAction() {
             }
             if (mTimers[0] == 0 && (s32)cM_rndF(100.0f) < 90) {
                 mAction = ACT_WALK;
-                mSubAction = 0;
+                mMode = 0;
             }
         }
         break;
@@ -192,9 +193,9 @@ BOOL daObjKABUTO_c::WallCheck() {
         current.pos = lin_chk.i_GetCross();
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
-        field_0x72a.z = -cM_atan2s(normal->x, zero.abs(normal_yz));
-        field_0x72a.x = cM_atan2s(normal->z, normal->y);
-        field_0x732 = cM_atan2s(normal->x, normal->z);
+        mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normal_yz));
+        mWallAngle.x = cM_atan2s(normal->z, normal->y);
+        mDownAngleY = cM_atan2s(normal->x, normal->z);
         return true;
     }
     return false;
@@ -205,7 +206,7 @@ void daObjKABUTO_c::SpeedSet() {
     speed.y += gravity;
     cXyz speed_base(0.0f, speed.y, speedF);
     cXyz speed_real(0.0f, 0.0f, 0.0f);
-    mDoMtx_stack_c::ZXYrotS(field_0x72a);
+    mDoMtx_stack_c::ZXYrotS(mWallAngle);
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::multVec(&speed_base, &speed_real);
     current.pos.x += speed_real.x;
@@ -226,13 +227,13 @@ void daObjKABUTO_c::WallWalk() {
     lin_chk1.SetObj();
     lin_chk2.SetObj();
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::ZXYrotM(field_0x72a);
+    mDoMtx_stack_c::ZXYrotM(mWallAngle);
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::multVec(&vec1, &vec1);
     mDoMtx_stack_c::multVec(&vec2, &vec2);
     lin_chk1.Set(&vec2, &vec1, NULL);
     if (dComIfG_Bgsp().LineCross(&lin_chk1)) {
-        speedF = 0.3;
+        speedF = 0.3f;
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk1, &plane);
         const cXyz* normal = plane.i_GetNP();
@@ -242,13 +243,13 @@ void daObjKABUTO_c::WallWalk() {
         cXyz normal_yz(0.0f, normal->y, normal->z);
         f32 normal_len_yz = zero.abs(normal_yz);
         cross = lin_chk1.i_GetCross();
-        if (normal_ang_y - field_0x732 < 0x1000 && normal_ang_y - field_0x732 > -0x1000
+        if (normal_ang_y - mDownAngleY < 0x1000 && normal_ang_y - mDownAngleY > -0x1000
             && cross.abs(current.pos) < speedF * 3.0f)
         {
             current.pos = cross;
-            field_0x72a.z = -cM_atan2s(normal->x, normal_len_yz);
-            field_0x72a.x = cM_atan2s(normal->z, normal->y);
-            field_0x732 = normal_ang_y;
+            mWallAngle.z = -cM_atan2s(normal->x, normal_len_yz);
+            mWallAngle.x = cM_atan2s(normal->z, normal->y);
+            mDownAngleY = normal_ang_y;
         } else {
             mTargetAngleY += 0x100;
         }
@@ -268,14 +269,16 @@ void daObjKABUTO_c::WalkAction() {
         }
     }
 
-    switch (mSubAction) {
+    J3DAnmTransform* anm;
+
+    switch (mMode) {
     case 0:
-        J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
+        anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
         mpMorf->setAnm(anm, 2, 5.0f, 1.5f, 0.0f, -1.0f);
         mTargetSpeedXZ = 0.2f;
         speed.y = 0.0f;
         mTargetSpeedY = 0.0f;
-        mSubAction++;
+        mMode++;
         mTimers[1] = cM_rndF(50.0f) + 50.0f;
         break;
 
@@ -290,10 +293,10 @@ void daObjKABUTO_c::WalkAction() {
             s32 rnd = cM_rndF(100.0f);
             if (rnd < 30) {
                 mAction = ACT_MOVE;
-                mSubAction = 0;
+                mMode = 0;
             } else if (rnd < 60) {
                 mAction = ACT_WAIT;
-                mSubAction = 0;
+                mMode = 0;
             } else {
                 mTimers[1] = cM_rndF(50.0f) + 50.0f;
             }
@@ -319,11 +322,11 @@ void daObjKABUTO_c::MoveAction() {
     dBgS_LinChk lin_chk;
     J3DAnmTransform* anm;
 
-    switch (mSubAction) {
+    switch (mMode) {
     case 0:
         anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
         mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
-        mSubAction++;
+        mMode++;
         mTimers[0] = 20;
         break;
     
@@ -333,17 +336,17 @@ void daObjKABUTO_c::MoveAction() {
         }
 
         if (mTimers[0] == 0) {
-            mSubAction++;
-            mDoMtx_stack_c::ZXYrotS(field_0x72a);
+            mMode++;
+            mDoMtx_stack_c::ZXYrotS(mWallAngle);
             mDoMtx_stack_c::multVec(&vec, &vec);
             mTimers[0] = cM_rndF(10.0f) + 30.0f;
-            if (mLocation == 0) {
+            if (mLocation == LOC_OUTSIDE) {
                 mTimers[1] = cM_rndF(80.0f) + 80.0f;
             } else {
                 mTimers[1] = cM_rndF(50.0f) + 50.0f;
             }
             mTargetSpeedXZ = cM_rndF(5.0f) + 8.0f;
-            mTargetAngleY = field_0x732;
+            mTargetAngleY = mDownAngleY;
             mTargetSpeedY = 3.0f;
             speed.y = 5.0f;
         }
@@ -361,19 +364,19 @@ void daObjKABUTO_c::MoveAction() {
             if (flame_pos->abs(current.pos) < 11.0f && player->speedF < 1.0f) {
                 vec2.set(0.0f, 0.0f, 10.0f);
                 if (!field_0x735) {
-                    field_0x732 = cLib_targetAngleY(&current.pos, flame_pos);
+                    mDownAngleY = cLib_targetAngleY(&current.pos, flame_pos);
                 }
-                cLib_offsetPos(&pos, flame_pos, field_0x732, &vec2);
+                cLib_offsetPos(&pos, flame_pos, mDownAngleY, &vec2);
                 current.pos = pos;
                 shape_angle.x = 0x4000;
-                shape_angle.y = field_0x732;
+                shape_angle.y = mDownAngleY;
                 speedF = 0.0f;
                 mTargetSpeedXZ = 0.0f;
                 speed.y = 0.0f;
                 mTargetSpeedY = 0.0f;
                 mpMorf->setPlaySpeed(0.0f);
                 mTargetAngleY = 0;
-                current.angle.y = field_0x732;
+                current.angle.y = mDownAngleY;
                 field_0x735 = true;
                 anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
                 mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
@@ -384,7 +387,7 @@ void daObjKABUTO_c::MoveAction() {
                 speedF = 8.0f;
                 mTargetSpeedXZ = 8.0f;
                 mpMorf->setPlaySpeed(1.0f);
-                field_0x732 = 0;
+                mDownAngleY = 0;
                 anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
                 mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             }
@@ -407,12 +410,12 @@ void daObjKABUTO_c::MoveAction() {
         }
 
         SpeedSet();
-        if (mLocation == 0) {
-            cLib_addCalcAngleS2(&field_0x72a.x, 0, 0x10, 0x1000);
-            cLib_addCalcAngleS2(&field_0x72a.z, 0, 0x10, 0x1000);
+        if (mLocation == LOC_OUTSIDE) {
+            cLib_addCalcAngleS2(&mWallAngle.x, 0, 0x10, 0x1000);
+            cLib_addCalcAngleS2(&mWallAngle.z, 0, 0x10, 0x1000);
         } else {
-            cLib_addCalcAngleS2(&field_0x72a.x, 0, 0x10, 0x100);
-            cLib_addCalcAngleS2(&field_0x72a.z, 0, 0x10, 0x100);
+            cLib_addCalcAngleS2(&mWallAngle.x, 0, 0x10, 0x100);
+            cLib_addCalcAngleS2(&mWallAngle.z, 0, 0x10, 0x100);
         }
         if (!field_0x735) {
             cLib_chaseAngleS(&shape_angle.x, 0, 0x400);
@@ -420,14 +423,14 @@ void daObjKABUTO_c::MoveAction() {
 
         if (WallCheck()) {
             mAction = ACT_WAIT;
-            mSubAction = 0;
+            mMode = 0;
             speedF = 0.0f;
             speed.y = 0.0f;
             shape_angle.x = 0;
             shape_angle.z = 0;
         }
 
-        if (mLocation == 1) {
+        if (mLocation == LOC_AGITHA) {
             cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 0x10, 0x100);
         }
         break;
@@ -452,7 +455,7 @@ void daObjKABUTO_c::Z_BufferChk() {
         trim_height = 0.0f;
     }
     if (vec2.x > 0.0f && vec2.x < 608.0f && vec2.y > trim_height && vec2.y < 448.0f - trim_height) {
-        dComIfGd_peekZ(vec2.x, vec2.y, &field_0x77c);
+        dComIfGd_peekZ(vec2.x, vec2.y, &mBufferZ);
     }
 
     f32 near = dComIfGd_getView()->mNear;
@@ -462,7 +465,7 @@ void daObjKABUTO_c::Z_BufferChk() {
     if (vec2.z > 0.0f) {
         vec2.z = 0.0f;
     }
-    field_0x778 = ((near + far * near / vec2.z) / (far - near) + 1.0f) * 0xffffff;
+    mScreenZ = ((near + far * near / vec2.z) / (far - near) + 1.0f) * 0xffffff;
 }
 
 /* 80C2C944-80C2CA08 001BC4 00C4+00 1/1 0/0 0/0 .text            Action__13daObjKABUTO_cFv */
@@ -505,7 +508,7 @@ void daObjKABUTO_c::ShopAction() {
 void daObjKABUTO_c::Insect_Release() {
     field_0x56C = 1;
     mAction = ACT_MOVE;
-    mSubAction = 0;
+    mMode = 0;
 }
 
 /* 80C2E1E0-80C2E1E4 0000D0 0002+02 1/2 0/0 0/0 .rodata          l_kab_itemno */
@@ -519,7 +522,7 @@ static f32 fake(f32 param_0) {
 
 /* 80C2CADC-80C2CC18 001D5C 013C+00 1/1 0/0 0/0 .text            ParticleSet__13daObjKABUTO_cFv */
 void daObjKABUTO_c::ParticleSet() {
-    if (field_0x778 > field_0x77c) {
+    if (mScreenZ > mBufferZ) {
         cLib_chaseF(&mParticleScale, 0.0f, 1.0f);
     } else {
         cLib_chaseF(&mParticleScale, mParticleTargetScale, 1.0f);
@@ -539,8 +542,8 @@ void daObjKABUTO_c::ParticleSet() {
 
 /* 80C2CC18-80C2D21C 001E98 0604+00 1/1 0/0 0/0 .text            Execute__13daObjKABUTO_cFv */
 int daObjKABUTO_c::Execute() {
-    if (m_mode > 0) {
-        field_0x778 = field_0x77c + 10000.0f;
+    if (ChkGetDemo()) {
+        mScreenZ = mBufferZ + 10000.0f;
         mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
         Insect_GetDemoMain();
         ParticleSet();
@@ -553,7 +556,7 @@ int daObjKABUTO_c::Execute() {
     eyePos.y += 10.0f;
 
     switch (mLocation) {
-    case 0:
+    case LOC_OUTSIDE:
         if (!fopAcM_checkHookCarryNow(this)) {
             Action();
         } else {
@@ -581,17 +584,17 @@ int daObjKABUTO_c::Execute() {
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                     current.pos = old.pos = lin_chk.i_GetCross();
                     mAction = ACT_WAIT;
-                    mSubAction = 0;
+                    mMode = 0;
                     const cXyz* normal = plane.i_GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz vec(0.0f, normal->y, normal->z);
-                    field_0x72a.z = -cM_atan2s(normal->x, zero.abs(vec));
-                    field_0x72a.x = cM_atan2s(normal->z, normal->y);
-                    field_0x732 = cM_atan2s(normal->x, normal->z);
+                    mWallAngle.z = -cM_atan2s(normal->x, zero.abs(vec));
+                    mWallAngle.x = cM_atan2s(normal->z, normal->y);
+                    mDownAngleY = cM_atan2s(normal->x, normal->z);
                 } else {
                     mAction = ACT_MOVE;
-                    mSubAction = 2;
+                    mMode = 2;
                     J3DAnmTransform* anm =
                         static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
                     mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
@@ -616,12 +619,12 @@ int daObjKABUTO_c::Execute() {
         ParticleSet();
         break;
 
-    case 1:
+    case LOC_AGITHA:
         ShopAction();
         break;
     }
 
-    if (mAction == ACT_MOVE && mSubAction == 2 && speed.y < 0.0f) {
+    if (mAction == ACT_MOVE && mMode == 2 && speed.y < 0.0f) {
         mAcch.CrrPos(dComIfG_Bgsp());
     }
     mpBtkAnm->play();
@@ -646,7 +649,7 @@ void daObjKABUTO_c::ObjHit() {
             cXyz offset(0.0f, 0.0f, 0.0f);
             daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
             mAction = ACT_MOVE;
-            mSubAction = 2;
+            mMode = 2;
             mBoomerangHit = false;
             J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
             mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
@@ -673,7 +676,7 @@ int daObjKABUTO_c::Delete() {
 /* 80C2D40C-80C2D474 00268C 0068+00 1/1 0/0 0/0 .text            setBaseMtx__13daObjKABUTO_cFv */
 void daObjKABUTO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::ZXYrotM(field_0x72a);
+    mDoMtx_stack_c::ZXYrotM(mWallAngle);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
     mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -691,7 +694,7 @@ int daObjKABUTO_c::Draw() {
         mpMorf->entryDL();
         if (mLocation == LOC_OUTSIDE) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0,
-                l_HIO.field_0x10, dDlst_shadowControl_c::getSimpleTex());
+                                     l_HIO.field_0x10, dDlst_shadowControl_c::getSimpleTex());
         }
     }
     return 1;
@@ -781,7 +784,7 @@ cPhs__Step daObjKABUTO_c::create() {
         }
 
         mAction = ACT_WAIT;
-        mSubAction = 0;
+        mMode = 0;
         gravity = 0.0f;
         bool cross = false;
 
@@ -799,12 +802,13 @@ cPhs__Step daObjKABUTO_c::create() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
+                    const cXyz* normal = plane.i_GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
-                    cXyz normalYZ(0.0f, plane.mNormal.y, plane.mNormal.z);
-                    field_0x72a.z = -cM_atan2s(plane.mNormal.x, zero.abs(normalYZ));
-                    field_0x72a.x = cM_atan2s(plane.mNormal.z, plane.mNormal.y);
-                    field_0x732 = cM_atan2s(plane.mNormal.x, plane.mNormal.z);
+                    cXyz normalYZ(0.0f, normal->y, normal->z);
+                    mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));
+                    mWallAngle.x = cM_atan2s(normal->z, normal->y);
+                    mDownAngleY = cM_atan2s(normal->x, normal->z);
                     cross = true;
                     break;
                 }
@@ -818,13 +822,13 @@ cPhs__Step daObjKABUTO_c::create() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
+                    const cXyz* normal = plane.i_GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
-                    cXyz normalYZ(0.0f, plane.mNormal.y, plane.mNormal.z);
-                    field_0x72a.z = -cM_atan2s(plane.mNormal.x, zero.abs(normalYZ));
-                    field_0x72a.x = cM_atan2s(plane.mNormal.z, plane.mNormal.y);
-                    field_0x732 = cM_atan2s(plane.mNormal.x, plane.mNormal.z);
-                    cross = true;
+                    cXyz normalYZ(0.0f, normal->y, normal->z);
+                    mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));
+                    mWallAngle.x = cM_atan2s(normal->z, normal->y);
+                    mDownAngleY = cM_atan2s(normal->x, normal->z);
                 }
             }
         } else {
@@ -833,7 +837,7 @@ cPhs__Step daObjKABUTO_c::create() {
             if (!strcmp("R_SP160", dComIfGp_getStartStageName())
                 && dComIfGp_getStartStageRoomNo() == 3)
             {
-                mLocation |= LOC_AGITHA | LOC_UNK_2;
+                mLocation |= LOC_UNK_3;
             }
         }
 
