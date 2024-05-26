@@ -76,12 +76,16 @@ public:
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
     u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
+    J3DZMode* getZMode() { return mPEBlock->getZMode(); }
+    J3DBlend* getBlend() { return mPEBlock->getBlend(); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
     void setMaterialAnm(J3DMaterialAnm* i_anm) { mMaterialAnm = i_anm; }
     void setCullMode(u8 i_mode) { mColorBlock->setCullMode(i_mode); }
     void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }
+    void setZCompLoc(u8 i_comploc) { mPEBlock->setZCompLoc(i_comploc); }
+    void setMaterialMode(u32 i_mode) { mMaterialMode = i_mode; }
 
 public:
     /* 0x04 */ J3DMaterial* mNext;

@@ -485,6 +485,7 @@ public:
     mDoExt_3DlineMatSortPacket() { mp3DlineMat = NULL; }
 
     void reset() { mp3DlineMat = NULL; }
+    void setMatDark(mDoExt_3DlineMat_c* i_mat) { setMat(i_mat); }
 
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
     virtual void draw();
@@ -497,7 +498,7 @@ private:
 class dKy_tevstr_c;
 class mDoExt_3DlineMat1_c : public mDoExt_3DlineMat_c {
 public:
-    /* 80013360 */ void init(u16, u16, ResTIMG*, int);
+    /* 80013360 */ int init(u16, u16, ResTIMG*, int);
     /* 80013FB0 */ void update(int, GXColor&, dKy_tevstr_c*);
     /* 8001373C */ void update(int, f32, GXColor&, u16, dKy_tevstr_c*);
     /* 80014E7C */ int getMaterialID();
@@ -505,6 +506,7 @@ public:
     /* 800135D0 */ void draw();
 
     cXyz* getPos(int i_idx) { return field_0x38[i_idx].field_0x0; }
+    f32* getSize(int i_idx) { return field_0x38[i_idx].field_0x4; }
 
 private:
     /* 0x08 */ GXTexObj field_0x8;

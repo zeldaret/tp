@@ -1365,6 +1365,10 @@ inline void dComIfGs_onStageBossEnemy() {
     g_dComIfG_gameInfo.info.getMemory().getBit().onStageBossEnemy();
 }
 
+inline void dComIfGs_onStageMiddleBoss() {
+    g_dComIfG_gameInfo.info.getMemory().getBit().onStageBossEnemy2();
+}
+
 inline s32 dComIfGs_isDungeonItemWarp() {
     return g_dComIfG_gameInfo.info.getMemory().getBit().isDungeonItemWarp();
 }
@@ -3994,6 +3998,10 @@ inline void dComIfGd_imageDrawShadow(Mtx param_0) {
 
 inline void dComIfGd_set3DlineMat(mDoExt_3DlineMat_c *param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMat(param_0);
+}
+
+inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c *param_0) {
+    g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
 }
 
 inline daPy_py_c* daPy_getLinkPlayerActorClass() {

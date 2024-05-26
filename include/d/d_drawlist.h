@@ -348,6 +348,12 @@ public:
         #endif
     }
 
+    void set3DlineMatDark(mDoExt_3DlineMat_c *param_1) { 
+        #ifndef NON_VIRTUAL_3DLINEMAT
+        m3DLineMatSortPacket[param_1->getMaterialID()].setMatDark(param_1);
+        #endif
+    }
+
     void peekZdata() { mPeekZ.peekData(); }
     void entryZSortListZxlu(J3DPacket* i_packet, cXyz& param_1) {
         entryZSortXluDrawList(mDrawBuffers[DB_LIST_Z_XLU], i_packet, param_1);

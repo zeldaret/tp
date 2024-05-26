@@ -36,8 +36,8 @@ lbl_807C61D4:
 lbl_807C61DC:
 /* 807C61DC  C3 FF 00 70 */	lfs f31, 0x70(r31)
 lbl_807C61E0:
-/* 807C61E0  3C 60 80 7D */	lis r3, data_807CF0AC@ha /* 0x807CF0AC@ha */
-/* 807C61E4  38 63 F0 AC */	addi r3, r3, data_807CF0AC@l /* 0x807CF0AC@l */
+/* 807C61E0  3C 60 80 7D */	lis r3, va_tag_set_num@ha /* 0x807CF0AC@ha */
+/* 807C61E4  38 63 F0 AC */	addi r3, r3, va_tag_set_num@l /* 0x807CF0AC@l */
 /* 807C61E8  7C 03 E0 AE */	lbzx r0, r3, r28
 /* 807C61EC  1C 60 00 0C */	mulli r3, r0, 0xc
 /* 807C61F0  38 03 09 98 */	addi r0, r3, 0x998

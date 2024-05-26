@@ -617,6 +617,8 @@ struct J3DZModeInfo {
     /* 0x3 */ u8 pad;
 };
 
+extern u8 j3dZModeTable[96];
+
 /**
  * @ingroup jsystem-j3d
  * 
@@ -627,6 +629,14 @@ struct J3DZMode {
 
     void setZModeInfo(const J3DZModeInfo& info) {
         mZModeID = calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2);
+    }
+
+    void setCompareEnable(u8 i_compare) {
+        mZModeID = calcZModeID(i_compare, j3dZModeTable[mZModeID * 3 + 1], j3dZModeTable[mZModeID * 3 + 2]);
+    }
+
+    void setUpdateEnable(u8 i_enable) {
+        mZModeID = calcZModeID(j3dZModeTable[mZModeID * 3], j3dZModeTable[mZModeID * 3 + 1], i_enable);
     }
 
     /* 0x0 */ u16 mZModeID;
@@ -655,6 +665,8 @@ extern const J3DBlendInfo j3dDefaultBlendInfo;
 struct J3DBlend : public J3DBlendInfo {
     J3DBlend() : J3DBlendInfo(j3dDefaultBlendInfo) {}
     J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
+
+    void setDstFactor(u8 i_factor) { mDstFactor = i_factor; }
 };
 
 extern const J3DFogInfo j3dDefaultFogInfo;
@@ -746,7 +758,7 @@ public:
     /* 8000DF54 */ virtual J3DAlphaComp* getAlphaComp();
     /* 80317370 */ virtual void setBlend(J3DBlend const*);
     /* 8000E018 */ virtual void setBlend(J3DBlend const&);
-    /* 8000DF4C */ virtual bool getBlend();
+    /* 8000DF4C */ virtual J3DBlend* getBlend();
     /* 80317374 */ virtual void setZMode(J3DZMode const*);
     /* 8000E014 */ virtual void setZMode(J3DZMode);
     /* 8000DF44 */ virtual J3DZMode* getZMode();
@@ -834,7 +846,7 @@ public:
     /* 803219E0 */ virtual J3DAlphaComp* getAlphaComp();
     /* 803219F4 */ virtual void setBlend(J3DBlend const*);
     /* 803219E8 */ virtual void setBlend(J3DBlend const&);
-    /* 80321A00 */ virtual bool getBlend();
+    /* 80321A00 */ virtual J3DBlend* getBlend();
     /* 80321A14 */ virtual void setZMode(J3DZMode const*);
     /* 80321A08 */ virtual void setZMode(J3DZMode);
     /* 80321A20 */ virtual J3DZMode* getZMode();
@@ -879,7 +891,7 @@ public:
     /* 80321B44 */ virtual J3DAlphaComp* getAlphaComp();
     /* 80321B58 */ virtual void setBlend(J3DBlend const*);
     /* 80321B4C */ virtual void setBlend(J3DBlend const&);
-    /* 80321B64 */ virtual bool getBlend();
+    /* 80321B64 */ virtual J3DBlend* getBlend();
     /* 80321B78 */ virtual void setZMode(J3DZMode const*);
     /* 80321B6C */ virtual void setZMode(J3DZMode);
     /* 80321B84 */ virtual J3DZMode* getZMode();
