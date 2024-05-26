@@ -6,13 +6,13 @@
 
 class daObjCrope_c : public fopAc_ac_c {
 public:
-    /* 80BCCCD8 */ void createHeap();
-    /* 80BCCD64 */ void create();
+    /* 80BCCCD8 */ int createHeap();
+    /* 80BCCD64 */ int create();
     /* 80BCD524 */ ~daObjCrope_c();
     /* 80BCD6C4 */ void setNormalRopePos();
     /* 80BCD9EC */ void setRideRopePos();
-    /* 80BCE4FC */ void execute();
-    /* 80BCE9BC */ void draw();
+    /* 80BCE4FC */ int execute();
+    /* 80BCE9BC */ int draw();
 
     cXyz* getRopeStartPos() { return mLineMat.getPos(0); }
     cXyz* getRopeEndPos() { return &mLineMat.getPos(0)[99]; }
@@ -32,7 +32,11 @@ public:
         setBackJoint(-1);
     }
 
-private:
+    void offRide() {
+        setFrontJoint(-1);
+        setBackJoint(-1);
+    }
+
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ dCcD_Stts mCcStts;
     /* 0x05AC */ dCcD_Sph mCollider;
