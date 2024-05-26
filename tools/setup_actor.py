@@ -86,7 +86,18 @@ weak_funcs = {
     "asm cM3dGLin::~cM3dGLin()": "__dt__8cM3dGLinFv",
     "asm dCcD_Cps::~dCcD_Cps()": "__dt__8dCcD_CpsFv",
     "asm dCcD_Cps::dCcD_Cps()": "__ct__8dCcD_CpsFv",
-    # "" : "",
+    "asm daNpcT_Path_c::~daNpcT_Path_c()" : "__dt__13daNpcT_Path_cFv",
+    "asm daNpcT_ActorMngr_c::daNpcT_ActorMngr_c()": "__ct__18daNpcT_ActorMngr_cFv",
+    "asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3, s16 param_4)": "setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs",
+    "asm void daNpcT_JntAnm_c::setEyeAngleX(cXyz param_0, f32 param_1, s16 param_2)": "setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs",
+    "asm void daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0)": "getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c",
+    "asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0)": "getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c",
+    "asm void daTag_EvtArea_c::chkPointInArea(cXyz param_0)": "chkPointInArea__15daTag_EvtArea_cF4cXyz",
+    "asm void daPy_py_c::getLeftHandPos() const" : "getLeftHandPos__9daPy_py_cCFv",
+    "asm mDoExt_bckAnm::~mDoExt_bckAnm()": "__dt__13mDoExt_bckAnmFv",
+    "asm mDoExt_bckAnm::mDoExt_bckAnm()": "__ct__13mDoExt_bckAnmFv",
+    "asm cM3dGTri::~cM3dGTri()": "__dt__8cM3dGTriFv",
+    # "asm cM3dGTri::cM3dGTri()": ""
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -163,7 +174,8 @@ external_refs = [
     "extern \"C\" extern u8 const j3dDefaultMtx[48];",
     "extern \"C\" void PSMTXIdentity();",
     "extern \"C\" void PSMTXRotAxisRad();",
-    "extern \"C\" void C_MTXLightOrtho();"
+    "extern \"C\" void C_MTXLightOrtho();",
+    "extern \"C\" void strcat();",
 ]
 
 types = [
@@ -345,6 +357,27 @@ types = [
     "struct cM3dGLin",
     "struct daNpc_Pouya_c",
     "struct daNpc_Jagar_Param_c",
+    "struct daMidna_c",
+    "struct dAttHint_c",
+    "struct daTag_EvtArea_c",
+    "struct daNpcT_faceMotionAnmData_c",
+    "struct daNpcT_MotionSeqMngr_c",
+    "struct sequenceStepData_c",
+    "struct daNpcT_evtData_c",
+    "struct daNpcT_motionAnmData_c",
+    "struct daNpcT_Path_c",
+    "struct daNpcT_MatAnm_c",
+    "struct daNpcT_JntAnm_c",
+    "struct daNpcT_DmgStagger_c",
+    "struct daNpcT_ActorMngr_c",
+    "struct Z2WolfHowlMgr",
+    "struct daObj_SSBase_c",
+    "struct daMyna_c",
+    "struct DALKMIST_INFLUENCE",
+    "struct cM3dGTri",
+    "struct J3DAnmColor",
+    "struct mDoExt_bpkAnm",
+    "struct daWtPillar_c",
 ]
 
 class ActorSetupManager:

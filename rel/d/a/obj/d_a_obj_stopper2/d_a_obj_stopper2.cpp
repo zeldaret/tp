@@ -6,39 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_stopper2/d_a_obj_stopper2.h"
 #include "dol2asm.h"
 
-class daObjStopper2_c : public fopAc_ac_c {
-    /* 80CEF368 */ J3DModelData* getStopModelData();
-    /* 80CEF38C */ void initBaseMtx();
-    /* 80CEF3C8 */ void setBaseMtx();
-    /* 80CEF434 */ float getMaxOffsetY();
-    /* 80CEF44C */ int Create();
-    /* 80CEF57C */ int CreateHeap();
-    /* 80CEF5C8 */ int create();
-    /* 80CEF66C */ int execute();
-    /* 80CEF6A4 */ void event_proc_call();
-    /* 80CEF760 */ void actionWait();
-    /* 80CEF98C */ void actionOrderEvent();
-    /* 80CEFA60 */ void actionEvent();
-    /* 80CEFAD4 */ void actionDead();
-    /* 80CEFAD8 */ void demoProc();
-    /* 80CEFD40 */ int draw();
-    /* 80CEFDB8 */ int _delete();
-
-    u32 getEvId() { return fopAcM_GetParamBit(this, 8, 8); }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
-    void setAction(u8 i_action) { mAction = i_action; }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-    /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ f32 field_0x574;
-    /* 0x578 */ s32 field_0x578;
-    /* 0x57C */ u16 field_0x57c[4];
-    /* 0x584 */ u8 field_0x584;
-    /* 0x585 */ u8 field_0x585;
-    /* 0x586 */ u8 mAction;
-    /* 0x587 */ u8 field_0x587;
-    /* 0x588 */ u8 field_0x588;
-};  // Size: 0x58C
 
 //
 // Forward References:
@@ -68,7 +35,6 @@ extern "C" static void daObjStopper2_Delete__FP15daObjStopper2_c();
 extern "C" static void daObjStopper2_Create__FP15daObjStopper2_c();
 extern "C" void func_80CEFE6C(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_stopper2__stringBase0;
-extern "C" extern void* g_profile_Obj_Stopper2[12];
 
 //
 // External References:
@@ -510,23 +476,28 @@ extern "C" asm void func_80CEFE6C(void* _this, u8* param_0) {
 
 /* ############################################################################################## */
 /* 80CEFFA8-80CEFFC8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjStopper2_Method */
-SECTION_DATA static void* l_daObjStopper2_Method[8] = {
-    (void*)daObjStopper2_Create__FP15daObjStopper2_c,
-    (void*)daObjStopper2_Delete__FP15daObjStopper2_c,
-    (void*)daObjStopper2_Execute__FP15daObjStopper2_c,
-    (void*)NULL,
-    (void*)daObjStopper2_Draw__FP15daObjStopper2_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObjStopper2_Method = {
+    (process_method_func)daObjStopper2_Create__FP15daObjStopper2_c,
+    (process_method_func)daObjStopper2_Delete__FP15daObjStopper2_c,
+    (process_method_func)daObjStopper2_Execute__FP15daObjStopper2_c,
+    0,
+    (process_method_func)daObjStopper2_Draw__FP15daObjStopper2_c,
 };
 
 /* 80CEFFC8-80CEFFF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Stopper2 */
-SECTION_DATA extern void* g_profile_Obj_Stopper2[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00E70000, (void*)&g_fpcLf_Method,
-    (void*)0x0000058C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02340000, (void*)&l_daObjStopper2_Method,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_Stopper2 = {
+  fpcLy_CURRENT_e,         // mLayerID
+  3,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_Obj_Stopper2,       // mProcName
+  &g_fpcLf_Method.mBase,   // sub_method
+  sizeof(daObjStopper2_c), // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  564,                     // mPriority
+  &l_daObjStopper2_Method, // sub_method
+  0x00040100,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

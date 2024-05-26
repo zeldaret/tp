@@ -34,6 +34,7 @@ public:
     void setHangPlayer() { mHangPlayer = 1; }
     u8 getType() { return field_0x730; }
 
+private:
     /* 0x5A0 */ dEvLib_callback_c field_0x5a0;
     /* 0x5B0 */ request_of_phase_process_class mPhase;
     /* 0x5B8 */ J3DModel* mpModel;
@@ -53,6 +54,7 @@ public:
     /* 0x784 */ f32 field_0x784;
     /* 0x788 */ f32 field_0x788;
     /* 0x78C */ s16 field_0x78c;
-};  // Size: 0x790
+};
+STATIC_ASSERT(sizeof(daObjSwHang_c) == 0x790);
 
 #endif /* D_A_OBJ_SWHANG_H */

@@ -1,6 +1,7 @@
 #ifndef D_A_OBJ_SMW_STONE_H
 #define D_A_OBJ_SMW_STONE_H
 
+#include "f_op/f_op_actor_mng.h"
 
 class daSmWStone_c : public fopAc_ac_c {
 public:
@@ -17,6 +18,10 @@ public:
     /* 80CDED9C */ void chkWlfInRange();
 
     int getTuneId() { return 2; }
+
+private:
+    /* 0x568 */ u8 field_0x568[0x5c8 - 0x568];
 };
+STATIC_ASSERT(sizeof(daSmWStone_c) == 0x5c8);
 
 #endif /* D_A_OBJ_SMW_STONE_H */
