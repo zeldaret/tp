@@ -2,16 +2,17 @@
 #define D_A_OBJ_CROPE_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/cc/d_cc_d.h"
 
 class daObjCrope_c : public fopAc_ac_c {
 public:
-    /* 80BCCCD8 */ void createHeap();
-    /* 80BCCD64 */ void create();
+    /* 80BCCCD8 */ int createHeap();
+    /* 80BCCD64 */ int create();
     /* 80BCD524 */ ~daObjCrope_c();
     /* 80BCD6C4 */ void setNormalRopePos();
     /* 80BCD9EC */ void setRideRopePos();
-    /* 80BCE4FC */ void execute();
-    /* 80BCE9BC */ void draw();
+    /* 80BCE4FC */ int execute();
+    /* 80BCE9BC */ int draw();
 
     cXyz* getRopeStartPos() { return mLineMat.getPos(0); }
     cXyz* getRopeEndPos() { return &mLineMat.getPos(0)[99]; }
@@ -28,6 +29,11 @@ public:
 
     void rideKeep() {
         setFrontJoint(-2);
+        setBackJoint(-1);
+    }
+
+    void offRide() {
+        setFrontJoint(-1);
         setBackJoint(-1);
     }
 
