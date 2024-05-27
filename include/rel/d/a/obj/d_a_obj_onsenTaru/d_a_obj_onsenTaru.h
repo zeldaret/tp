@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_ONSENTARU_H
 #define D_A_OBJ_ONSENTARU_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daOnsTaru_c
+ * @brief Hot Spring Water Barrel
+ *
+ * @details
+ *
+ */
 class daOnsTaru_c : public fopAc_ac_c {
 public:
     /* 80CA86C0 */ void setBaseMtx();

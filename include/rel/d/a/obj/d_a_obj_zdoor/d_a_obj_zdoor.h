@@ -6,6 +6,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daZdoor_c
+ * @brief Zelda Door
+ *
+ * @details
+ *
+ */
 class daZdoor_c : public dBgS_MoveBgActor {
 public:
     /* 80D3F65C */ void init_cyl();

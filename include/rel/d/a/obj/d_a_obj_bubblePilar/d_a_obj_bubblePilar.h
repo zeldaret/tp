@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_BUBBLEPILAR_H
 #define D_A_OBJ_BUBBLEPILAR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daBubbPilar_c
+ * @brief Bubble Pillar
+ *
+ * @details
+ *
+ */
 class daBubbPilar_c : public fopAc_ac_c {
 public:
     /* 80BC3460 */ void setBaseMtx();

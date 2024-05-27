@@ -22,6 +22,14 @@ public:
 };
 #endif
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWchain_c
+ * @brief Wolf Chain
+ *
+ * @details
+ *
+ */
 class daObjWchain_c : public fopAc_ac_c {
 public:
     /* 80D2FEF8 */ int createHeap();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TAKARADAI_H
 #define D_A_OBJ_TAKARADAI_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTkraDai_c
+ * @brief Flight-by-Fowl Platform
+ *
+ * @details
+ *
+ */
 class daTkraDai_c : public fopAc_ac_c {
 public:
     /* 80D06E64 */ void setBaseMtx();

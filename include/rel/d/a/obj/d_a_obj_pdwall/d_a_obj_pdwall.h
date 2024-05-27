@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_PDWALL_H
 #define D_A_OBJ_PDWALL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjPDwall_c
+ * @brief P - D Wall?
+ *
+ * @details
+ *
+ */
 class daObjPDwall_c : public fopAc_ac_c {
 public:
     /* 80CAC7F8 */ void create1st();

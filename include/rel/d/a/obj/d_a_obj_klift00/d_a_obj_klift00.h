@@ -3,12 +3,19 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKLift00_c
+ * @brief Water Wheel Lift?
+ *
+ * @details
+ *
+ */
 class daObjKLift00_c : public fopAc_ac_c {
 public:
     struct ChainPos {
-    public:
-            /* 8058C338 */ ~ChainPos();
-            /* 8058C374 */ ChainPos();
+        /* 8058C338 */ ~ChainPos();
+        /* 8058C374 */ ChainPos();
     };
 
     /* 8058B02C */ void create1st();

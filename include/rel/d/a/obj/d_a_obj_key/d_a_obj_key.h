@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KEY_H
 #define D_A_OBJ_KEY_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_key_class
+ * @brief Key
+ *
+ * @details
+ *
+ */
 class obj_key_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x9b8 - 0x568];

@@ -1,7 +1,6 @@
 #ifndef D_A_E_GA_H
 #define D_A_E_GA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct ga_s {

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_CRVSTEEL_H
 #define D_A_OBJ_CRVSTEEL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCRVSTEEL_c
+ * @brief Caravan Steel
+ *
+ * @details
+ *
+ */
 class daObjCRVSTEEL_c : public fopAc_ac_c {
 public:
     /* 80BD5BFC */ void OpenSet(f32, f32);

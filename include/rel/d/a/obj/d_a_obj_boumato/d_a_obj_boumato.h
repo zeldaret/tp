@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_BouMato_c
+ * @brief Stick Target
+ *
+ * @details
+ *
+ */
 class daObj_BouMato_c : public fopAc_ac_c {
 public:
     /* 80BBAFEC */ ~daObj_BouMato_c();

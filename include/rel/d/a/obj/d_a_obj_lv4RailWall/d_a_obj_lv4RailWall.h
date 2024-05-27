@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4RAILWALL_H
 #define D_A_OBJ_LV4RAILWALL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv4Wall_c
+ * @brief Arbiters Grounds Spinner Rail Wall (Stallord Arena)
+ *
+ * @details
+ *
+ */
 class daObjLv4Wall_c : public fopAc_ac_c {
 public:
     /* 80C60AC4 */ void initBaseMtx();

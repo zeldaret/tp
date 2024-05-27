@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LADDER_H
 #define D_A_OBJ_LADDER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLadder
+ * @brief Ladder
+ *
+ * @details
+ *
+ */
 class daObjLadder : public fopAc_ac_c {
 public:
     class Act_c {

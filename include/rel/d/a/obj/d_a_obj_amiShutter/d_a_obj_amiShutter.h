@@ -1,9 +1,24 @@
 #ifndef D_A_OBJ_AMISHUTTER_H
 #define D_A_OBJ_AMISHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daAmiShutter_c
+ * @brief Drain Gate
+ *
+ * @details
+ *
+ */
+/**
+ * @ingroup actors-objects
+ * @class daAmiShutter_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daAmiShutter_c : public fopAc_ac_c {
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ void CreateHeap();

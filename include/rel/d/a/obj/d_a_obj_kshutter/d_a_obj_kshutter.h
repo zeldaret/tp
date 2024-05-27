@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KSHUTTER_H
 #define D_A_OBJ_KSHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKshtr_c
+ * @brief Lakebed Temple Boss Door
+ *
+ * @details
+ *
+ */
 class daObjKshtr_c : public fopAc_ac_c {
 public:
     /* 80C47AB8 */ void initBaseMtx();

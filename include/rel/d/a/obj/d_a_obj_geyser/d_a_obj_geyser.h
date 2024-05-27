@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjGeyser_c
+ * @brief Geyser
+ *
+ * @details
+ *
+ */
 class daObjGeyser_c : public fopAc_ac_c {
 public:
     /* 80BF6F18 */ void initBaseMtx();

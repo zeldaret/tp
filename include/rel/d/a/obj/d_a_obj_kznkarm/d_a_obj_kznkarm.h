@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KZNKARM_H
 #define D_A_OBJ_KZNKARM_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKznkarm_c
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class daObjKznkarm_c : public fopAc_ac_c {
 public:
     struct Mode_e {};

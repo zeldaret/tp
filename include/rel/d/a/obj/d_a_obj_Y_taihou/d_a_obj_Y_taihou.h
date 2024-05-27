@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjYtaihou_c
+ * @brief Snowpeak Ruins Cannon
+ *
+ * @details
+ *
+ */
 class daObjYtaihou_c : public fopAc_ac_c {
 public:
     /* 80B9FDE8 */ void create1st();

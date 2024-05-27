@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_WATERPILLAR_H
 #define D_A_OBJ_WATERPILLAR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daWtPillar_c
+ * @brief Water Column
+ *
+ * @details
+ *
+ */
 class daWtPillar_c : public fopAc_ac_c {
 public:
     /* 80D2C7B0 */ void setBaseMtx();

@@ -1,14 +1,16 @@
 #ifndef D_A_OBJ_KAMAKIRI_H
 #define D_A_OBJ_KAMAKIRI_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_KamHIO_c {
-public:
-    /* 80C3518C */ daObj_KamHIO_c();
-    /* 80C38360 */ ~daObj_KamHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjKAM_c
+ * @brief Insect - Mantis
+ *
+ * @details
+ *
+ */
 class daObjKAM_c : public fopAc_ac_c {
 public:
     /* 80C351BC */ void InitCcSph();
@@ -38,6 +40,12 @@ private:
     /* 0x568 */ u8 field_0x568[0xa68 - 0x568];
 };
 STATIC_ASSERT(sizeof(daObjKAM_c) == 0xa68);
+
+class daObj_KamHIO_c {
+public:
+    /* 80C3518C */ daObj_KamHIO_c();
+    /* 80C38360 */ ~daObj_KamHIO_c();
+};
 
 
 #endif /* D_A_OBJ_KAMAKIRI_H */

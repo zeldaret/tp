@@ -14,6 +14,14 @@ struct sq_cp_s {
 
 STATIC_ASSERT(sizeof(sq_cp_s) == 0x30);
 
+/**
+ * @ingroup actors-objects
+ * @class obj_ki_class
+ * @brief Tree
+ *
+ * @details
+ *
+ */
 class obj_ki_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;

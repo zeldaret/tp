@@ -3,6 +3,22 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBm_c
+ * @brief Beamos (Movable Object)
+ *
+ * @details
+ *
+ */
+/**
+ * @ingroup actors-objects
+ * @class daObjBm_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daObjBm_c : public fopAc_ac_c {
 public:
     class BgcSrc_c {};
@@ -23,10 +39,10 @@ public:
     /* 80BAE36C */ void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
     /* 80BAE5FC */ void initBaseMtx();
     /* 80BAE68C */ void setBaseMtx();
-    /* 80BAE778 */ void Create();
-    /* 80BAEADC */ void CreateHeap();
+    /* 80BAE778 */ int Create();
+    /* 80BAEADC */ int CreateHeap();
     /* 80BAEFD8 */ void create1st();
-    /* 80BAF09C */ void Execute(f32 (**)[3][4]);
+    /* 80BAF09C */ int Execute(f32 (**)[3][4]);
     /* 80BAF29C */ void main_proc_call();
     /* 80BAF328 */ void initActionEnBemos();
     /* 80BAF37C */ void initActionObjBemos();
@@ -64,8 +80,8 @@ public:
     /* 80BB1BD0 */ void actionAttack();
     /* 80BB248C */ void initActionDead();
     /* 80BB2700 */ void actionDead();
-    /* 80BB2AB0 */ void Draw();
-    /* 80BB2C8C */ void Delete();
+    /* 80BB2AB0 */ int Draw();
+    /* 80BB2C8C */ int Delete();
 
     static u8 const M_dir_base[8];
 private:

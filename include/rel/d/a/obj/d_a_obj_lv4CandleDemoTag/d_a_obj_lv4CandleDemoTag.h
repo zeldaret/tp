@@ -11,6 +11,14 @@ struct temp {
     /* 0x568 */ u8 field_0x568[0x570 - 0x568];
 };
 
+/**
+ * @ingroup actors-objects
+ * @class dalv4CandleDemoTag_c
+ * @brief Arbiter's Grounds Torch Cutscene Tag
+ *
+ * @details
+ *
+ */
 class dalv4CandleDemoTag_c : public fopAc_ac_c, temp, public dEvLib_callback_c {
 public:
     dalv4CandleDemoTag_c() : dEvLib_callback_c(this) {}

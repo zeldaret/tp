@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Gadget_c
+ * @brief Gadget
+ *
+ * @details
+ *
+ */
 class daObj_Gadget_c : public fopAc_ac_c {
 public:
     /* 80BF2D2C */ ~daObj_Gadget_c();

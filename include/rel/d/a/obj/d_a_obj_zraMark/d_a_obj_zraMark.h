@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjZraMark_c
+ * @brief Zora Mark
+ *
+ * @details
+ *
+ */
 class daObjZraMark_c : public fopAc_ac_c {
 public:
     /* 80D42678 */ void Create();

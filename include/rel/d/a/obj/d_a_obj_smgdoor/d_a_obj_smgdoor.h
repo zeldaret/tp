@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SMGDOOR_H
 #define D_A_OBJ_SMGDOOR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSmgDoor_c
+ * @brief Sacred Meadow Grove Door
+ *
+ * @details
+ *
+ */
 class daObjSmgDoor_c : public fopAc_ac_c {
 public:
     /* 80CDBB5C */ void initBaseMtx();

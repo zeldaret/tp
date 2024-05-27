@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_BHBRIDGE_H
 #define D_A_OBJ_BHBRIDGE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBhbridge_c
+ * @brief BH Bridge?
+ *
+ * @details
+ *
+ */
 class daObjBhbridge_c : public fopAc_ac_c {
 public:
     /* 80BB5318 */ void RideOn_Angle(s16&, f32, s16, f32);

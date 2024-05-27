@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLife_c
+ * @brief Heart Piece
+ *
+ * @details
+ *
+ */
 class daObjLife_c : public fopAc_ac_c {
 public:
     /* 804CCBE4 */ void initBaseMtx();

@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjGWall_c
+ * @brief Gannon Wall
+ *
+ * @details
+ *
+ */
 class daObjGWall_c : public fopAc_ac_c {
 public:
     /* 80BF4D18 */ void initBaseMtx();

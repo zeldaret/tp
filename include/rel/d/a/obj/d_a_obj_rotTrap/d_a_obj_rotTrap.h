@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_ROTTRAP_H
 #define D_A_OBJ_ROTTRAP_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daRotTrap_c
+ * @brief Rotating Skull Trap
+ *
+ * @details
+ *
+ */
 class daRotTrap_c : public fopAc_ac_c {
 public:
     /* 80CBF940 */ void setBaseMtx();

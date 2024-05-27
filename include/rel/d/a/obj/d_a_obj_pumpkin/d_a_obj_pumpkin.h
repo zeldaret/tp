@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Pumpkin_c
+ * @brief Ordon Village Pumpkin
+ *
+ * @details
+ *
+ */
 class daObj_Pumpkin_c : public fopAc_ac_c {
 public:
     /* 80CB578C */ ~daObj_Pumpkin_c();

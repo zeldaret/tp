@@ -7,6 +7,14 @@
 class daObjMasterSword_c;
 typedef void (daObjMasterSword_c::*actionFunc)();
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMasterSword_c
+ * @brief Master Sword
+ *
+ * @details
+ *
+ */
 class daObjMasterSword_c : public fopAc_ac_c {
 public:
     enum Mode_e {
@@ -39,6 +47,7 @@ public:
     // static actionFunc ActionTable[];
     static u8 ActionTable[24];
 
+private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ request_of_phase_process_class mPhase;
     /* 0x574 */ mDoExt_btkAnm mBtk;

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLndRope_c
+ * @brief Laundry Rope
+ *
+ * @details
+ *
+ */
 class daObjLndRope_c : public fopAc_ac_c {
 public:
     /* 80C521F8 */ void create_init();

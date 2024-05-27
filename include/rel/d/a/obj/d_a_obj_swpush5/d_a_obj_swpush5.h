@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SWPUSH5_H
 #define D_A_OBJ_SWPUSH5_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSw5_c
+ * @brief Push Switch 5
+ *
+ * @details Mutli-purpose heavy switch actor. (Iron Boots switch)
+ *
+ */
 class daObjSw5_c : public fopAc_ac_c {
 public:
     /* 8059B804 */ void initBaseMtx();

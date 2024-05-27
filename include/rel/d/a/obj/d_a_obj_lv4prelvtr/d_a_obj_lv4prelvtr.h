@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4PRELVTR_H
 #define D_A_OBJ_LV4PRELVTR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjPRElvtr_c
+ * @brief Arbiter's Grounds Elevator?
+ *
+ * @details
+ *
+ */
 class daObjPRElvtr_c : public fopAc_ac_c {
 public:
     /* 80C685F8 */ void create1st();

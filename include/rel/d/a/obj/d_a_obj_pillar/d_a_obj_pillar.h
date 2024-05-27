@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daPillar_c
+ * @brief Forest Temple Totem Pole
+ *
+ * @details
+ *
+ */
 class daPillar_c : public fopAc_ac_c {
 public:
     /* 80CAF4B4 */ void setBaseMtx();

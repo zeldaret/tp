@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjRBridge_c
+ * @brief Small / Big Rope Bridge
+ *
+ * @details
+ *
+ */
 class daObjRBridge_c : public fopAc_ac_c {
 public:
     /* 80595E38 */ void initBaseMtx();

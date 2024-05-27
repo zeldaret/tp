@@ -6,6 +6,14 @@
 
 class J3DModel;
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBkDoor_c
+ * @brief Ranch Door
+ *
+ * @details
+ *
+ */
 class daObjBkDoor_c : public dBgS_MoveBgActor {
 public:
     /* 80578D4C */ void initBaseMtx();

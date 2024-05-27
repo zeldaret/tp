@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SWTURN_H
 #define D_A_OBJ_SWTURN_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwTurn_c
+ * @brief Arbiter's Ground Turn Switch
+ *
+ * @details
+ *
+ */
 class daObjSwTurn_c : public fopAc_ac_c {
 public:
     /* 80D00CD8 */ void initBaseMtx();

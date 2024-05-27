@@ -6,6 +6,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjChest_c
+ * @brief Cabinet
+ *
+ * @details
+ *
+ */
 class daObjChest_c : public dBgS_MoveBgActor {
 public:
     enum daObjChest_Action {
@@ -31,6 +39,7 @@ public:
     u8 getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
     u32 getArg0() { return fopAcM_GetParamBit(this, 8, 4); }
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ dBgS_ObjAcch mObjAcch;
@@ -48,6 +57,7 @@ public:
     /* 0xA9A */ s16 mRandomRotX;
     /* 0xA9C */ f32 field_0xa9c;
     /* 0xAA0 */ f32 mScaleY;
-};  // Size: 0xAA4
+};
+STATIC_ASSERT(sizeof(daObjChest_c) == 0xAA4);
 
 #endif /* D_A_OBJ_CHEST_H */

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV5ICEWALL_H
 #define D_A_OBJ_LV5ICEWALL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daIceWall_c
+ * @brief Snowpeak Ruins Ice Wall
+ *
+ * @details
+ *
+ */
 class daIceWall_c : public fopAc_ac_c {
 public:
     /* 80C6B51C */ void setBaseMtx();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6SWTURN_H
 #define D_A_OBJ_LV6SWTURN_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv6SwTurn_c
+ * @brief Temple of Time Turn Switch
+ *
+ * @details
+ *
+ */
 class daObjLv6SwTurn_c : public fopAc_ac_c {
 public:
     /* 80C83A98 */ void initBaseMtx();

@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIce_l_c
+ * @brief Ice (Large)
+ *
+ * @details
+ *
+ */
 class daObjIce_l_c : public dBgS_MoveBgActor {
 public:
     /* 80C1F9F8 */ void RideOn_Angle(s16&, f32, s16, f32);

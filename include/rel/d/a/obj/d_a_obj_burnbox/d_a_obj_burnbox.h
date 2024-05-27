@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBurnBox_c
+ * @brief Burn Box
+ *
+ * @details
+ *
+ */
 class daObjBurnBox_c : public fopAc_ac_c {
 public:
     /* 8046E698 */ void initBaseMtx();

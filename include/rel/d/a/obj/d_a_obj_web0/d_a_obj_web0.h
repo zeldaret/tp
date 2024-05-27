@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_web0_class
+ * @brief Wall Web
+ *
+ * @details
+ *
+ */
 class obj_web0_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhase;
@@ -22,7 +30,8 @@ public:
     /* 0x600 */ dCcD_Sph mSphCc;
     /* 0x738 */ u8 mDeleteTimer;
     /* 0x739 */ u8 field_0x739;
-};  // Size: 0x73C
+};
+STATIC_ASSERT(sizeof(obj_web0_class) == 0x73C);
 
 class daObj_Web0_HIO_c {
 public:

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV3WATER_H
 #define D_A_OBJ_LV3WATER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv3Water_c
+ * @brief Lakebed Temple Water
+ *
+ * @details
+ *
+ */
 class daLv3Water_c : public fopAc_ac_c {
 public:
     /* 80C58838 */ void setBaseMtx();

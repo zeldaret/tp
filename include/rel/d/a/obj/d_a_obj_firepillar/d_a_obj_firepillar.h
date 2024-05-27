@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjFPillar_c
+ * @brief Fire Pillar
+ *
+ * @details
+ *
+ */
 class daObjFPillar_c : public fopAc_ac_c {
 public:
     /* 80BE9118 */ void initBaseMtx();

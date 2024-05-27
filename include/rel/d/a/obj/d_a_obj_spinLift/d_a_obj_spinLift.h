@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SPINLIFT_H
 #define D_A_OBJ_SPINLIFT_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSpinLift_c
+ * @brief Spinner Lift
+ *
+ * @details
+ *
+ */
 class daSpinLift_c : public fopAc_ac_c {
 public:
     /* 80CE3E2C */ void setBaseMtx();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SWALLSHUTTER_H
 #define D_A_OBJ_SWALLSHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSwShutter_c
+ * @brief Rider Gate
+ *
+ * @details
+ *
+ */
 class daSwShutter_c : public fopAc_ac_c {
 public:
     /* 805982A4 */ void setBaseMtx();

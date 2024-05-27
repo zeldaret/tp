@@ -5,24 +5,22 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/com/d_com_inf_game.h"
 
-struct daObjCarry_Data {
-    /* 0x0000 */ u8 field_0x0000[0x0030 - 0x0000];
-    /* 0x0030 */ float field_0x0030;
-    /* 0x0034 */ u8 field_0x0034;
-    /* 0x0035 */ u8 field_0x0035[0x0038 - 0x0035];
-    /* 0x0038 */ float field_0x0038;
-    /* 0x003C */ float field_0x003c;
-    /* 0x0040 */ float field_0x0040;
-    /* 0x0044 */ u8 field_0x0044[0x94-0x44];
-};
-
 /**
  * @ingroup actors-objects
+ * @class daObjCarry_c
  * @brief Carryable Object
  * 
- * This is a multi-use class for carryable objects. 
+ * @details This is a multi-use class for carryable objects. 
  * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull, deku nut, Sols, small and large Twilight pots.
  * 
+ */
+/**
+ * @ingroup actors-objects
+ * @class daObjCarry_c
+ * @brief
+ *
+ * @details
+ *
  */
 class daObjCarry_c : public fopAc_ac_c {
 public:
@@ -316,5 +314,16 @@ private:
     u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
 STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);
+
+struct daObjCarry_Data {
+    /* 0x0000 */ u8 field_0x0000[0x0030 - 0x0000];
+    /* 0x0030 */ float field_0x0030;
+    /* 0x0034 */ u8 field_0x0034;
+    /* 0x0035 */ u8 field_0x0035[0x0038 - 0x0035];
+    /* 0x0038 */ float field_0x0038;
+    /* 0x003C */ float field_0x003c;
+    /* 0x0040 */ float field_0x0040;
+    /* 0x0044 */ u8 field_0x0044[0x94-0x44];
+};
 
 #endif /* D_A_OBJ_CARRY_H */

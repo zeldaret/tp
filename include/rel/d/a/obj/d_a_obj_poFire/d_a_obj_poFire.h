@@ -1,10 +1,17 @@
 #ifndef D_A_OBJ_POFIRE_H
 #define D_A_OBJ_POFIRE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/obj/d_a_obj_poCandle/d_a_obj_poCandle.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daPoFire_c
+ * @brief Poe Fire
+ *
+ * @details
+ *
+ */
 class daPoFire_c : public fopAc_ac_c {
 public:
     /* 80CB2A0C */ void setBaseMtx();

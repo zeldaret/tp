@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/bg/d_bg_s_acch.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daZrTuraRc_c
+ * @brief Zora Drop Rock
+ *
+ * @details
+ *
+ */
 class daZrTuraRc_c : public fopAc_ac_c {
 public:
     /* 80D41934 */ void setBaseMtx();
@@ -22,6 +30,7 @@ public:
     /* 80D42160 */ int Draw();
     /* 80D421C4 */ int Delete();
 
+private:
     /* 0x568 */ dCcD_Stts mCcStatus;
     /* 0x5A4 */ dCcD_Sph mCcSph;
     /* 0x6DC */ request_of_phase_process_class mPhaseReq;
@@ -33,6 +42,7 @@ public:
     /* 0x740 */ dBgS_ObjAcch mAcch;
     /* 0x918 */ Z2SoundObjSimple mSound;
 
+public:
     u8 getScale() { return fopAcM_GetParamBit(this, 0, 8); }
 
     static dCcD_SrcGObjInf const mCcDObjInfo;

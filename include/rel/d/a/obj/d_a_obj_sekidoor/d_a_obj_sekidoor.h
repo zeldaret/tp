@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SEKIDOOR_H
 #define D_A_OBJ_SEKIDOOR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_SekiDoor_c
+ * @brief Stone Door
+ *
+ * @details
+ *
+ */
 class daObj_SekiDoor_c : public fopAc_ac_c {
 public:
     /* 80CCD02C */ void create();

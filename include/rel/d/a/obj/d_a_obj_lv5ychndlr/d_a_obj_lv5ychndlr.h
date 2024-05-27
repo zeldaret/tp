@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjYchndlr_c
+ * @brief Snowpeak Ruins Chandelier (Swinging Platform?)
+ *
+ * @details
+ *
+ */
 class daObjYchndlr_c : public fopAc_ac_c {
 public:
     /* 80C6D758 */ void create1st();

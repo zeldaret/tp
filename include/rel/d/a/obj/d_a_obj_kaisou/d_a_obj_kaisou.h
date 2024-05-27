@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKaisou_c
+ * @brief Seaweed
+ *
+ * @details
+ *
+ */
 class daObjKaisou_c : public fopAc_ac_c {
 public:
     /* 80C34058 */ void ctrlJoint(J3DJoint*, J3DModel*);

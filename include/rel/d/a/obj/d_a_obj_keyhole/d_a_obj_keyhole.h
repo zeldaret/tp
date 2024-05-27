@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KEYHOLE_H
 #define D_A_OBJ_KEYHOLE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_keyhole_class
+ * @brief Small Key Door Chains?
+ *
+ * @details
+ *
+ */
 class obj_keyhole_class : public fopAc_ac_c {
 public:
     void setOpen() { mOpenState = 1; }

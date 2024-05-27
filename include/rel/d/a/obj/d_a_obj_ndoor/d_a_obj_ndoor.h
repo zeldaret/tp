@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_ndoor_class
+ * @brief Cat Door?
+ *
+ * @details
+ *
+ */
 class obj_ndoor_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x718 - 0x568];

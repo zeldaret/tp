@@ -1,10 +1,17 @@
 #ifndef D_A_OBJ_GRA_ROCK_H
 #define D_A_OBJ_GRA_ROCK_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjGraRock_c
+ * @brief Goron Entombing Rock
+ *
+ * @details
+ *
+ */
 class daObjGraRock_c : public fopAc_ac_c {
 public:
     /* 80C110F8 */ void setAttnPos();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_BMSHUTTER_H
 #define D_A_OBJ_BMSHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBmSh_c
+ * @brief Boomerang Shutter
+ *
+ * @details
+ *
+ */
 class daObjBmSh_c : public fopAc_ac_c {
 public:
     /* 80BB9A58 */ void initBaseMtx();

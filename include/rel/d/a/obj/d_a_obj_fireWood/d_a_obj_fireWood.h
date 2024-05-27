@@ -5,6 +5,14 @@
 #include "m_Do/m_Do_hostIO.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daFireWood_c
+ * @brief Kakariko Stove Flame?
+ *
+ * @details
+ *
+ */
 class daFireWood_c : public fopAc_ac_c {
 public:
     /* 80BE76B0 */ void setBaseMtx();

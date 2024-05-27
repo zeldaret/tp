@@ -9,6 +9,14 @@ public:
     /* 80D08494 */ tg_ss();
 };
 
+/**
+ * @ingroup actors-objects
+ * @class obj_tatigi_class
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class obj_tatigi_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x1bc0 - 0x568];

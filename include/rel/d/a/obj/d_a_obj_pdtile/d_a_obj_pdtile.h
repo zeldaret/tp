@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjPDtile_c
+ * @brief P - Drop Tile
+ *
+ * @details
+ *
+ */
 class daObjPDtile_c : public fopAc_ac_c {
 public:
     /* 80CAACE0 */ void create1st();

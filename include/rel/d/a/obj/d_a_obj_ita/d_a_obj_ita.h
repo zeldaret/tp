@@ -1,15 +1,16 @@
 #ifndef D_A_OBJ_ITA_H
 #define D_A_OBJ_ITA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
-class daObj_ITA_HIO_c {
-public:
-    /* 80C2836C */ daObj_ITA_HIO_c();
-    /* 80C29184 */ ~daObj_ITA_HIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjIta_c
+ * @brief Plank
+ *
+ * @details
+ *
+ */
 class daObjIta_c : public fopAc_ac_c {
 public:
     /* 80C283AC */ void Search_Ymb();
@@ -28,6 +29,10 @@ private:
 };
 STATIC_ASSERT(sizeof(daObjIta_c) == 0x8dc);
 
-
+class daObj_ITA_HIO_c {
+public:
+    /* 80C2836C */ daObj_ITA_HIO_c();
+    /* 80C29184 */ ~daObj_ITA_HIO_c();
+};
 
 #endif /* D_A_OBJ_ITA_H */

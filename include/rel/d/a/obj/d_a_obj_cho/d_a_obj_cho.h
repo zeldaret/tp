@@ -8,6 +8,14 @@
 #include "d/a/d_a_player.h"
 #include "d/d_insect.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCHO_c
+ * @brief Insect - Butterfly
+ *
+ * @details
+ *
+ */
 class daObjCHO_c : public dInsect_c {
 public:
     enum Action {
@@ -38,6 +46,7 @@ public:
     /* 80BCC01C */ cPhs__Step create();
     inline int Draw();
 
+private:
     /* 0x590 */ dBgS_AcchCir mAcchCir;
     /* 0x5D0 */ dBgS_ObjAcch mAcch;
     /* 0x7A8 */ dCcD_Stts mCcStts;

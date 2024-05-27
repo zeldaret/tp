@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjRIVERROCK_c
+ * @brief (Zora?) River Rock
+ *
+ * @details
+ *
+ */
 class daObjRIVERROCK_c : public fopAc_ac_c {
 public:
     /* 80CBC6F4 */ void initCcCylinder();

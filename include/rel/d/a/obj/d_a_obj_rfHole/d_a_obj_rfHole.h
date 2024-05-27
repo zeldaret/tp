@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_RFHOLE_H
 #define D_A_OBJ_RFHOLE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daRfHole_c
+ * @brief (Kakariko?) Roof Hole
+ *
+ * @details
+ *
+ */
 class daRfHole_c : public fopAc_ac_c {
 public:
     /* 80CB8F04 */ void setBaseMtx();

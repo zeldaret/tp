@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLdy_c
+ * @brief Laundry
+ *
+ * @details
+ *
+ */
 class daObjLdy_c : public fopAc_ac_c {
 public:
     /* 80C50F98 */ void create_init();

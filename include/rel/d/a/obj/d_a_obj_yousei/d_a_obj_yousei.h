@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjYOUSEI_c
+ * @brief Fairy
+ *
+ * @details
+ *
+ */
 class daObjYOUSEI_c : public fopAc_ac_c {
 public:
     /* 804CE738 */ void InitCcSph();

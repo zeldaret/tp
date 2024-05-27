@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_sw_class
+ * @brief Switch
+ *
+ * @details
+ *
+ */
 class obj_sw_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xd90 - 0x568];

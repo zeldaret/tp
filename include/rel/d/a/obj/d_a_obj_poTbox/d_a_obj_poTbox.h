@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_POTBOX_H
 #define D_A_OBJ_POTBOX_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daPoTbox_c
+ * @brief Poe Treasure Chest
+ *
+ * @details
+ *
+ */
 class daPoTbox_c : public fopAc_ac_c {
 public:
     /* 80CB42C8 */ void setBaseMtx();

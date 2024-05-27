@@ -1,10 +1,17 @@
 #ifndef D_A_OBJ_HASU2_H
 #define D_A_OBJ_HASU2_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 namespace nObjMHasu {
+/**
+ * @ingroup actors-objects
+ * @class daObjMHasu_c
+ * @brief Lily Pad?
+ *
+ * @details
+ *
+ */
 class daObjMHasu_c : public fopAc_ac_c {
 public:
         /* 80C182DC */ daObjMHasu_c();

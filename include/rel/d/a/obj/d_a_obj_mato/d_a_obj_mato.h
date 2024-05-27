@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_MATO_H
 #define D_A_OBJ_MATO_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMATO_c
+ * @brief Target (???)
+ *
+ * @details
+ *
+ */
 class daObjMATO_c : public fopAc_ac_c {
 public:
     /* 80C91B58 */ void setAction(void (daObjMATO_c::*)(int), int);

@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daMagLiftRot_c
+ * @brief Rotating Magnetic Lift
+ *
+ * @details
+ *
+ */
 class daMagLiftRot_c : public dBgS_MoveBgActor {
 public:
     /* 80C8EA28 */ void setBaseMtx();
@@ -50,6 +58,7 @@ private:
     /* 0x62C */ f32 field_0x62c;
     /* 0x630 */ f32 field_0x630;
 };
+STATIC_ASSERT(sizeof(daMagLiftRot_c) == 0x634);
 
 class daMagLiftRot_HIO_c : public mDoHIO_entry_c {
 public:

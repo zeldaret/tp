@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SZBRIDGE_H
 #define D_A_OBJ_SZBRIDGE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSZbridge_c
+ * @brief Stone Statue Bridge
+ *
+ * @details
+ *
+ */
 class daObjSZbridge_c : public fopAc_ac_c {
 public:
     /* 80D04360 */ void rideActor(fopAc_ac_c*);

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SWORD_H
 #define D_A_OBJ_SWORD_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSword_c
+ * @brief Ordon Sword
+ *
+ * @details
+ *
+ */
 class daObjSword_c : public fopAc_ac_c {
 public:
     /* 80CFD558 */ void initBaseMtx();

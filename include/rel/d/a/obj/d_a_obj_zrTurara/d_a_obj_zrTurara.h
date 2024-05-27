@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daZrTurara_c
+ * @brief Zora Drop
+ *
+ * @details
+ *
+ */
 class daZrTurara_c : public dBgS_MoveBgActor {
 public:
     /* 80D405E4 */ void setBaseMtx();
@@ -21,6 +29,7 @@ public:
     /* 80D412B0 */ int Draw();
     /* 80D41380 */ int Delete();
 
+private:
     /* 0x5A0 */ dCcD_Stts mCcStatus;
     /* 0x5DC */ dCcD_Cyl mCcCyl;
     /* 0x718 */ request_of_phase_process_class mPhaseReq;
@@ -36,6 +45,7 @@ public:
     /* 0x764 */ u32 mParticleKey;
     /* 0x768 */ u8 mDebrisCount;
 
+public:
     u8 getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 getScale() { return fopAcM_GetParamBit(this, 0x10, 8); }

@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 
 // dEvLib_callback_c is not generated at the correct location.
+/**
+ * @ingroup actors-objects
+ * @class daObjSwBallA_c
+ * @brief Ball Switch A
+ *
+ * @details
+ *
+ */
 class daObjSwBallA_c : public fopAc_ac_c /*, public dEvLib_callback_c*/ {
 public:
     //daObjSwBallA_c() : dEvLib_callback_c(this) {}

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TWGATE_H
 #define D_A_OBJ_TWGATE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTwGate_c
+ * @brief Twilight Gate (Wall?)
+ *
+ * @details
+ *
+ */
 class daTwGate_c : public fopAc_ac_c {
 public:
     /* 80D1FB84 */ void setBaseMtx();

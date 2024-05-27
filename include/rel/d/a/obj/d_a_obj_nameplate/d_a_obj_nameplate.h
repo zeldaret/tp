@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjNameplate_c
+ * @brief Ordon Village Nameplate
+ *
+ * @details
+ *
+ */
 class daObjNameplate_c : public fopAc_ac_c {
 public:
     /* 80594098 */ void create_init();

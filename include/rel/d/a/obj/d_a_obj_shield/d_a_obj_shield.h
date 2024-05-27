@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daItemShield_c
+ * @brief Ordon Shield
+ *
+ * @details
+ *
+ */
 class daItemShield_c : public fopAc_ac_c {
 public:
     /* 80CD6D9C */ void initBaseMtx();

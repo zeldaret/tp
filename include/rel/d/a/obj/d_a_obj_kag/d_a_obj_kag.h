@@ -1,16 +1,17 @@
 #ifndef D_A_OBJ_KAG_H
 #define D_A_OBJ_KAG_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_KagHIO_c {
-public:
-    /* 80C2E40C */ daObj_KagHIO_c();
-    /* 80C31060 */ ~daObj_KagHIO_c();
-};
-
-class daObjKAG_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjKAG_c
+ * @brief Insect - Dayfly
+ *
+ * @details
+ *
+ */
+class daObjKAG_c : public dInsect_c {
 public:
     /* 80C2E434 */ void setAction(void (daObjKAG_c::*)());
     /* 80C2E7A0 */ void Kag_Bgcheck(cXyz*, csXyz*, cXyz*);
@@ -31,9 +32,14 @@ public:
     /* 80C30E54 */ void kag_setParticle();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x860 - 0x568];
+    /* 0x590 */ u8 field_0x568[0x860 - 0x590];
 };
 STATIC_ASSERT(sizeof(daObjKAG_c) == 0x860);
 
+class daObj_KagHIO_c {
+public:
+    /* 80C2E40C */ daObj_KagHIO_c();
+    /* 80C31060 */ ~daObj_KagHIO_c();
+};
 
 #endif /* D_A_OBJ_KAG_H */

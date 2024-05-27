@@ -1,9 +1,17 @@
 #ifndef D_A_OBJ_KANTERA_H
 #define D_A_OBJ_KANTERA_H
-#include "f_op/f_op_actor_mng.h"
+
 #include "d/a/d_a_itembase.h"
 
 #ifdef NONMATCHING
+/**
+ * @ingroup actors-objects
+ * @class daItemKantera_c
+ * @brief Lantern
+ *
+ * @details
+ *
+ */
 class daItemKantera_c : public daItemBase_c {
 public:
     /* 80C389BC */ void initBaseMtx();

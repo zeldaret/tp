@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_so_class
+ * @brief Monkey Cage
+ *
+ * @details
+ *
+ */
 class obj_so_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x1bd0 - 0x568];

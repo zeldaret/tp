@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6TENBIN_H
 #define D_A_OBJ_LV6TENBIN_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTenbin_c
+ * @brief Temple of Time Scale
+ *
+ * @details
+ *
+ */
 class daTenbin_c : public fopAc_ac_c {
 public:
     /* 80C769D0 */ void setBaseMtx();

@@ -4,11 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_model.h"
 
-class daObjSwChain_c : public fopAc_ac_c {
-public:
-    /* 80C665A4 */ void checkTight();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjLv4Chan_c
+ * @brief Arbiter's Grounds Chandelier
+ *
+ * @details
+ *
+ */
 class daObjLv4Chan_c : public fopAc_ac_c {
 public:
     struct ChainPos {
@@ -34,6 +37,11 @@ private:
     /* 0x568 */ u8 field_0x568[0x24a4 - 0x568];
 };
 STATIC_ASSERT(sizeof(daObjLv4Chan_c) == 0x24a4);
+
+class daObjSwChain_c : public fopAc_ac_c {
+public:
+    /* 80C665A4 */ void checkTight();
+};
 
 
 #endif /* D_A_OBJ_LV4CHANDELIER_H */

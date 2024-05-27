@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjToaruMaki_c
+ * @brief Ordon Bundle
+ *
+ * @details
+ *
+ */
 class daObjToaruMaki_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80D13098 */ daObjToaruMaki_c();

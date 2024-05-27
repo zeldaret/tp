@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_RSTAIR_H
 #define D_A_OBJ_RSTAIR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjRotStair_c
+ * @brief Rail Staircase
+ *
+ * @details
+ *
+ */
 class daObjRotStair_c : public fopAc_ac_c {
 public:
     /* 80CC1558 */ void initBaseMtx();

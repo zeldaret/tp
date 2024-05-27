@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_DUST_H
 #define D_A_OBJ_DUST_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjDust_c
+ * @brief Dust
+ *
+ * @details
+ *
+ */
 class daObjDust_c : public fopAc_ac_c {
 public:
     /* 80BE22B8 */ void Search_Ymb();

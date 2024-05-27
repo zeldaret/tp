@@ -7,6 +7,14 @@
 class daObjChandelier_c;
 typedef void (daObjChandelier_c::*daObjChandelier_proc)();
 
+/**
+ * @ingroup actors-objects
+ * @class daObjChandelier_c
+ * @brief Hyrule Castle Chandelier
+ *
+ * @details
+ *
+ */
 class daObjChandelier_c : public dBgS_MoveBgActor, public request_of_phase_process_class {
 public:
     enum Mode {
@@ -39,6 +47,7 @@ public:
     u8 getSW_0() { return fopAcM_GetParamBit(this, 4, 8); }
     s32 getArg_0() { return fopAcM_GetParamBit(this, 0, 4); }
 
+private:
     /* 0x5A8 */ cXyz field_0x5a8;
     /* 0x5B4 */ Mtx mMtx;
     /* 0x5E4 */ u8 field_0x5e4[4];

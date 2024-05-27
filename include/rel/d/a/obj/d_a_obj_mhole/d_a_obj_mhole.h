@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMHole_c
+ * @brief Magnet Hole
+ *
+ * @details
+ *
+ */
 class daObjMHole_c : public fopAc_ac_c {
 public:
     /* 80C92FD8 */ void initBaseMtx();

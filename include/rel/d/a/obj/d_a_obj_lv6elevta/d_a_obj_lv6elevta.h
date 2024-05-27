@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6ELEVTA_H
 #define D_A_OBJ_LV6ELEVTA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv6ElevtA_c
+ * @brief Temple of Time Elevator
+ *
+ * @details
+ *
+ */
 class daObjLv6ElevtA_c : public fopAc_ac_c {
 public:
     /* 80C82D38 */ void create1st();

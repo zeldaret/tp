@@ -1,11 +1,18 @@
 #ifndef D_A_OBJ_NAGAISU_H
 #define D_A_OBJ_NAGAISU_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 #include "d/d_model.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjNagaisu_c
+ * @brief Couch
+ *
+ * @details
+ *
+ */
 class daObjNagaisu_c : public fopAc_ac_c {
 public:
     /* 80C9F3D8 */ daObjNagaisu_c();
@@ -24,7 +31,8 @@ private:
 };
 STATIC_ASSERT(sizeof(daObjNagaisu_c) == 0xb6e4);
 
-class daObjIsuChild_c : public fopAc_ac_c {
+// child seat / couch?
+class daObjIsuChild_c {
 public:
     /* 80C9FA90 */ daObjIsuChild_c();
     /* 80C9FCDC */ ~daObjIsuChild_c();

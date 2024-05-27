@@ -6,6 +6,14 @@
 class daObjMirror6Pole_c;
 typedef void (daObjMirror6Pole_c::*actionFunc)();
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMirror6Pole_c
+ * @brief Twilight Mirror Pole
+ *
+ * @details
+ *
+ */
 class daObjMirror6Pole_c : public fopAc_ac_c {
 public:
     enum Mode_e {
@@ -53,11 +61,13 @@ public:
 
     static actionFunc ActionTable[][2];
 
+private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm* mpBck;
     /* 0x570 */ request_of_phase_process_class mPhase;
     /* 0x578 */ actionFunc* mAction;
     /* 0x57C */ Mode_e mMode;
 };
+STATIC_ASSERT(sizeof(daObjMirror6Pole_c) == 0x580);
 
 #endif /* D_A_OBJ_MIRROR_6POLE_H */

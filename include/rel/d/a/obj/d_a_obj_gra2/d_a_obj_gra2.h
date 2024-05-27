@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_GRA2_H
 #define D_A_OBJ_GRA2_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_GrA_c
+ * @brief Goron A
+ *
+ * @details
+ *
+ */
 class daObj_GrA_c : public fopAc_ac_c {
 public:
     class daObj_GrA_prtclMngr_c {

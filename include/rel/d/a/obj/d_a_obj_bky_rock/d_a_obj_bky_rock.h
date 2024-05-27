@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_BKY_ROCK_H
 #define D_A_OBJ_BKY_ROCK_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daBkyRock_c
+ * @brief Bomb Shack Rock
+ *
+ * @details
+ *
+ */
 class daBkyRock_c : public fopAc_ac_c {
 public:
     struct _pieceData {

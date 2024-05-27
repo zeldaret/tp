@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV7PROPELLERY_H
 #define D_A_OBJ_LV7PROPELLERY_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daPropY_c
+ * @brief City in the Sky Propeller
+ *
+ * @details
+ *
+ */
 class daPropY_c : public fopAc_ac_c {
 public:
     /* 80C8550C */ void setBaseMtx();

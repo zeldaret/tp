@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV8OPTILIFT_H
 #define D_A_OBJ_LV8OPTILIFT_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daOptiLift_c
+ * @brief Palace of Twilight Optilift
+ *
+ * @details
+ *
+ */
 class daOptiLift_c : public fopAc_ac_c {
 public:
     /* 80C8A3B0 */ void setBaseMtx();

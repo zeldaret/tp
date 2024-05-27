@@ -8,6 +8,14 @@ enum {
     OBJ_STONE_TYPE_BIG = 1
 };
 
+/**
+ * @ingroup actors-objects
+ * @class daObjStone_c
+ * @brief Small / Large Stones
+ *
+ * @details
+ *
+ */
 class daObjStone_c : public fopAc_ac_c {
 public:
     u8 getType() { return fopAcM_GetParamBit(this,0,4); }
@@ -46,6 +54,7 @@ public:
     /* 80CEC888 */ int draw();
     /* 80CEC948 */ int _delete();
 
+private:
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ J3DModel* mpModel;
     /* 0x0574 */ dBgS_ObjAcch mChkObj;
@@ -75,5 +84,6 @@ public:
     /* 0x0964 */ JPABaseEmitter* field_0x0964[3];
     /* 0x0970 */ Z2SoundObjSimple mSound;
 };
+STATIC_ASSERT(sizeof(daObjStone_c) == 0x990);
 
 #endif /* D_A_OBJ_STONE_H */

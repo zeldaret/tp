@@ -1,10 +1,18 @@
 #ifndef D_A_OBJ_SWPUSH_H
 #define D_A_OBJ_SWPUSH_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
-struct daObjSwpush : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjSwpush
+ * @brief Push Switch
+ *
+ * @details This is a multi-purpose depression switch actor.
+ * Used by: Gold Pressure Switch, Lakebed Pressure Switch
+ *
+ */
+class daObjSwpush : public fopAc_ac_c {
 public:
     class Act_c {
     public:

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4SLIDEWALL_H
 #define D_A_OBJ_LV4SLIDEWALL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSldWall_c
+ * @brief Arbiter's Grounds Sliding Wall
+ *
+ * @details
+ *
+ */
 class daSldWall_c : public fopAc_ac_c {
 public:
     /* 80C61EB0 */ void setBaseMtx();

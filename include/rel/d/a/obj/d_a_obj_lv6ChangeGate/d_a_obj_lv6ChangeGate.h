@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6CHANGEGATE_H
 #define D_A_OBJ_LV6CHANGEGATE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv6ChangeGate_c
+ * @brief Temple of Time Change Block?
+ *
+ * @details
+ *
+ */
 class daLv6ChangeGate_c : public fopAc_ac_c {
 public:
     /* 80C70D38 */ void setBaseMtx();

@@ -3,7 +3,22 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @namespace daObjEff
+ * @brief Object Effect?
+ *
+ * @details
+ *
+ */
 namespace daObjEff {
+/**
+ * @class Act_c
+ * @brief Actor Object Effect?
+ *
+ * @details
+ *
+ */
 class Act_c : public fopAc_ac_c {
 public:
     enum Prm_e {

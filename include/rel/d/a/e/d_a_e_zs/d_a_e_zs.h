@@ -1,7 +1,6 @@
 #ifndef D_A_E_ZS_H
 #define D_A_E_ZS_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**

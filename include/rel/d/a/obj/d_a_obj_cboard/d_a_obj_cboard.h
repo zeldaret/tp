@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBoard_c
+ * @brief Clear Board
+ *
+ * @details Actor used to function as an invisible wall.
+ *
+ */
 class daObjBoard_c : public dBgS_MoveBgActor {
 public:
     /* 8057B958 */ void initBaseMtx();
@@ -23,6 +31,7 @@ public:
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ Mtx field_0x5a8;
-};  // Size: 0x5D8
+};
+STATIC_ASSERT(sizeof(daObjBoard_c) == 0x5D8);
 
 #endif /* D_A_OBJ_CBOARD_H */

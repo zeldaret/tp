@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SCANNON_H
 #define D_A_OBJ_SCANNON_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSCannon_c
+ * @brief Sky Cannon (City in the Sky)
+ *
+ * @details
+ *
+ */
 class daSCannon_c : public fopAc_ac_c {
 public:
     /* 80CC6B0C */ daSCannon_c();

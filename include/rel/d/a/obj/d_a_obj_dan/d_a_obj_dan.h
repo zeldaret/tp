@@ -2,13 +2,16 @@
 #define D_A_OBJ_DAN_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_DanHIO_c {
-public:
-    /* 80BDA58C */ daObj_DanHIO_c();
-    /* 80BDC2F0 */ ~daObj_DanHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjDAN_c
+ * @brief Insect - Pillbug
+ *
+ * @details
+ *
+ */
 class daObjDAN_c : public fopAc_ac_c {
 public:
     /* 80BDA5B4 */ void InitCcSph();
@@ -36,5 +39,11 @@ private:
 };
 STATIC_ASSERT(sizeof(daObjDAN_c) == 0xa6c);
 
+
+class daObj_DanHIO_c {
+public:
+    /* 80BDA58C */ daObj_DanHIO_c();
+    /* 80BDC2F0 */ ~daObj_DanHIO_c();
+};
 
 #endif /* D_A_OBJ_DAN_H */

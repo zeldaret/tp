@@ -1,14 +1,16 @@
 #ifndef D_A_OBJ_TEN_H
 #define D_A_OBJ_TEN_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_TenHIO_c {
-public:
-    /* 80D087CC */ daObj_TenHIO_c();
-    /* 80D0B848 */ ~daObj_TenHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjTEN_c
+ * @brief Insect - Ladybug
+ *
+ * @details
+ *
+ */
 class daObjTEN_c : public fopAc_ac_c {
 public:
     /* 80D087F4 */ void InitCcSph();
@@ -37,6 +39,12 @@ private:
     /* 0x568 */ u8 field_0x568[0xa68 - 0x568];
 };
 STATIC_ASSERT(sizeof(daObjTEN_c) == 0xa68);
+
+class daObj_TenHIO_c {
+public:
+    /* 80D087CC */ daObj_TenHIO_c();
+    /* 80D0B848 */ ~daObj_TenHIO_c();
+};
 
 
 #endif /* D_A_OBJ_TEN_H */

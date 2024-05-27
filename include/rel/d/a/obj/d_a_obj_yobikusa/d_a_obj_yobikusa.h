@@ -4,6 +4,14 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjYobikusa_c
+ * @brief Hawk Grass
+ *
+ * @details
+ *
+ */
 class daObjYobikusa_c : public fopAc_ac_c {
 public:
     enum Mode_e {

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_NOUGU_H
 #define D_A_OBJ_NOUGU_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Nougu_c
+ * @brief Farm Tools
+ *
+ * @details
+ *
+ */
 class daObj_Nougu_c : public fopAc_ac_c {
 public:
     /* 80CA3C0C */ ~daObj_Nougu_c();

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKazeNeko_c
+ * @brief Weather Vane
+ *
+ * @details
+ *
+ */
 class daObjKazeNeko_c : public fopAc_ac_c {
 public:
     /* 80C3C8D8 */ void create_init();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_CRVLH_UP_H
 #define D_A_OBJ_CRVLH_UP_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCRVLH_UP_c
+ * @brief Bulblin Tower (Upper Half)
+ *
+ * @details
+ *
+ */
 class daObjCRVLH_UP_c : public fopAc_ac_c {
 public:
     /* 80BD4F1C */ void HakaiSet();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_H_SAKU_H
 #define D_A_OBJ_H_SAKU_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjH_Saku_c
+ * @brief H - Fence
+ *
+ * @details
+ *
+ */
 class daObjH_Saku_c : public fopAc_ac_c {
 public:
     /* 80C1552C */ void BreakSet();

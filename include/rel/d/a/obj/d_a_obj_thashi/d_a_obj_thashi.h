@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjTHASHI_c
+ * @brief T Pillar
+ *
+ * @details
+ *
+ */
 class daObjTHASHI_c : public fopAc_ac_c {
 public:
     /* 80D0C238 */ void initCcCylinder();

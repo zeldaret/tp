@@ -11,6 +11,14 @@ struct unknown {
 
 // dalv4CandleTag_c should inherit fopAc_ac_c, unknown, and dEvLib_callback_c
 // but this causes issues with weak function ordering
+/**
+ * @ingroup actors-objects
+ * @class dalv4CandleTag_c
+ * @brief Arbiter's Grounds Torch Tag
+ *
+ * @details
+ *
+ */
 class dalv4CandleTag_c : public fopAc_ac_c {
 public:
     enum Mode {

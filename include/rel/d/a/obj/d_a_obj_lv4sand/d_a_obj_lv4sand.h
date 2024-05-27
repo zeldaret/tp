@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4SAND_H
 #define D_A_OBJ_LV4SAND_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv4Sand_c
+ * @brief Arbiter's Grounds Sand (Stallord Arena)
+ *
+ * @details
+ *
+ */
 class daObjLv4Sand_c : public fopAc_ac_c {
 public:
     /* 80C69A98 */ void initBaseMtx();

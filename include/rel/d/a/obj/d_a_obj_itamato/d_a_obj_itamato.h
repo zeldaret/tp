@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_ItaMato_c
+ * @brief Plank Target
+ *
+ * @details
+ *
+ */
 class daObj_ItaMato_c : public fopAc_ac_c {
 public:
     /* 80C294EC */ ~daObj_ItaMato_c();

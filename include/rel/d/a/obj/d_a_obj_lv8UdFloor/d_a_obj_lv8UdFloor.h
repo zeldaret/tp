@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV8UDFLOOR_H
 #define D_A_OBJ_LV8UDFLOOR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daUdFloor_c
+ * @brief Palace of Twilight Switch Step
+ *
+ * @details
+ *
+ */
 class daUdFloor_c : public fopAc_ac_c {
 public:
     /* 80C8BDC8 */ void setBaseMtx();

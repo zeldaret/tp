@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KWHEEL01_H
 #define D_A_OBJ_KWHEEL01_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKWheel01_c
+ * @brief Water Wheel 01?
+ *
+ * @details
+ *
+ */
 class daObjKWheel01_c : public fopAc_ac_c {
 public:
     /* 80C4EA78 */ void create1st();

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKWheel00_c
+ * @brief Water Wheel 00?
+ *
+ * @details
+ *
+ */
 class daObjKWheel00_c : public fopAc_ac_c {
 public:
     /* 80C4D6F8 */ void create1st();

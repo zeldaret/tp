@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_FLAG_H
 #define D_A_OBJ_FLAG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class FlagJoint_c {
@@ -10,6 +9,14 @@ public:
     /* 80BEC4E0 */ FlagJoint_c();
 };
 
+/**
+ * @ingroup actors-objects
+ * @class daObjFlag_c
+ * @brief Flag 1
+ *
+ * @details
+ *
+ */
 class daObjFlag_c : public fopAc_ac_c {
 public:
     /* 80BEB778 */ void create_init();

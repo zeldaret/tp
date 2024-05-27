@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCRVLH_DW_c
+ * @brief Bulblin Tower (Lower Half) 
+ *
+ * @details
+ *
+ */
 class daObjCRVLH_DW_c : public fopAc_ac_c {
 public:
     /* 80BD4138 */ void initCcCylinder();

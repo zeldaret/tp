@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_web1_class
+ * @brief Floor Web
+ *
+ * @details
+ *
+ */
 class obj_web1_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhase;
@@ -27,7 +35,8 @@ public:
     /* 0x5F4 */ dCcD_Stts mStts;
     /* 0x630 */ dCcD_Cyl mCylCc;
     /* 0x76C */ u8 field_0x76c;
-};  // Size: 0x770
+};
+STATIC_ASSERT(sizeof(obj_web1_class) == 0x770);
 
 class daObj_Web1_HIO_c {
 public:

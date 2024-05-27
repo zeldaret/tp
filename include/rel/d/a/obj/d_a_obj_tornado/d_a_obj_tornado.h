@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjTrnd_c
+ * @brief Tornado
+ *
+ * @details
+ *
+ */
 class daObjTrnd_c : public fopAc_ac_c {
 public:
     /* 80D1B998 */ void setPntWind();

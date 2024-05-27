@@ -1,16 +1,18 @@
 #ifndef D_A_OBJ_BATTA_H
 #define D_A_OBJ_BATTA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_BattaHIO_c {
-public:
-    /* 80BA9E2C */ daObj_BattaHIO_c();
-    /* 80BAC874 */ ~daObj_BattaHIO_c();
-};
-
-class daObjBATTA_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjBATTA_c
+ * @brief Insect - Grasshopper
+ *
+ * @details
+ *
+ */
+class daObjBATTA_c : public dInsect_c {
 public:
     /* 80BA9E5C */ void setAction(void (daObjBATTA_c::*)());
     /* 80BAA1C8 */ void wait();
@@ -31,9 +33,14 @@ public:
     /* 80BAC194 */ void create();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x9f8 - 0x568];
+    /* 0x590 */ u8 field_0x568[0x9f8 - 0x590];
 };
 STATIC_ASSERT(sizeof(daObjBATTA_c) == 0x9f8);
 
+class daObj_BattaHIO_c {
+public:
+    /* 80BA9E2C */ daObj_BattaHIO_c();
+    /* 80BAC874 */ ~daObj_BattaHIO_c();
+};
 
 #endif /* D_A_OBJ_BATTA_H */

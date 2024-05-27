@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_YEL_BAG_H
 #define D_A_OBJ_YEL_BAG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_YBag_c
+ * @brief Ilia's Bag
+ *
+ * @details
+ *
+ */
 class daObj_YBag_c : public fopAc_ac_c {
 public:
     /* 80D3C0EC */ daObj_YBag_c();

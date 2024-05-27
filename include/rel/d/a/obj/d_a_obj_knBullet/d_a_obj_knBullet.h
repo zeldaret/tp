@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKnBullet_c
+ * @brief Hero's Shade Energy Ball? (Knight Bullet)
+ *
+ * @details
+ *
+ */
 class daObjKnBullet_c : public fopAc_ac_c {
 public:
     /* 80C47118 */ void Create();

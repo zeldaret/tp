@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwLight_c
+ * @brief Light Switch
+ *
+ * @details
+ *
+ */
 class daObjSwLight_c : public fopAc_ac_c {
 public:
     /* 80CF6F98 */ void initBaseMtx();

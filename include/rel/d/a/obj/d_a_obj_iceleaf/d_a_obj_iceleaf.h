@@ -5,6 +5,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/bg/d_bg_s_acch.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIceLeaf_c
+ * @brief Ice Leaf
+ *
+ * @details
+ *
+ */
 class daObjIceLeaf_c : public fopAc_ac_c {
 public:
     /* 80C24738 */ void initBaseMtx();

@@ -5,6 +5,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWPndlm_c
+ * @brief Wooden Pendulum
+ *
+ * @details
+ *
+ */
 class daObjWPndlm_c : public fopAc_ac_c {
 public:
 public:

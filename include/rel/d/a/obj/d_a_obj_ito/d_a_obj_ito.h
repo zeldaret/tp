@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_ito_class
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class obj_ito_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x150c - 0x568];

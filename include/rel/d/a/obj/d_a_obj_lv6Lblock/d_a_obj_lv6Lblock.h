@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6LBLOCK_H
 #define D_A_OBJ_LV6LBLOCK_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv6Lblock_c
+ * @brief Temple of Time L Block
+ *
+ * @details
+ *
+ */
 class daLv6Lblock_c : public fopAc_ac_c {
 public:
     /* 80C73464 */ void setBaseMtx();

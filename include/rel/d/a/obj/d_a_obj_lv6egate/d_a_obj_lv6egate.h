@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv6EGate_c
+ * @brief Temple of Time Electric Gate
+ *
+ * @details
+ *
+ */
 class daObjLv6EGate_c : public fopAc_ac_c {
 public:
     /* 80C82078 */ void create1st();

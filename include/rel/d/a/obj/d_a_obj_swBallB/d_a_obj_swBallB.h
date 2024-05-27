@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwBallB_c
+ * @brief Ball Switch B
+ *
+ * @details
+ *
+ */
 class daObjSwBallB_c : public fopAc_ac_c { //, public dEvLib_callback_c {
 public:
     //daObjSwBallB_c() : dEvLib_callback_c(this) {}

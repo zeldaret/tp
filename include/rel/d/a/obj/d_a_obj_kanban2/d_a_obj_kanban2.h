@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KANBAN2_H
 #define D_A_OBJ_KANBAN2_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Kanban2_c
+ * @brief Sign 2
+ *
+ * @details
+ *
+ */
 class daObj_Kanban2_c : public fopAc_ac_c {
 public:
     /* 80581790 */ void draw();

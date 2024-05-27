@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KIPOT_H
 #define D_A_OBJ_KIPOT_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daKiPot_c
+ * @brief Coro Pot
+ *
+ * @details
+ *
+ */
 class daKiPot_c : public fopAc_ac_c {
 public:
     /* 80C44D78 */ void setBaseMtx();

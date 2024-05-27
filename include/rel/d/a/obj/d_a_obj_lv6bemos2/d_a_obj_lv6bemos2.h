@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv6Bm_c
+ * @brief Temple of Time Beamos
+ *
+ * @details
+ *
+ */
 class daObjLv6Bm_c : public fopAc_ac_c {
 public:
     /* 80C7E30C */ void initBaseMtx();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_CRVFENCE_H
 #define D_A_OBJ_CRVFENCE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCRVFENCE_c
+ * @brief Caravan Fence
+ *
+ * @details
+ *
+ */
 class daObjCRVFENCE_c : public fopAc_ac_c {
 public:
     /* 80BCEC98 */ void CheckVec();

@@ -6,6 +6,14 @@
 #include "d/event/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjHBombkoya_c
+ * @brief Destructable Bomb House
+ *
+ * @details
+ *
+ */
 class daObjHBombkoya_c : public dBgS_MoveBgActor,
                          public request_of_phase_process_class,
                          public dEvLib_callback_c {

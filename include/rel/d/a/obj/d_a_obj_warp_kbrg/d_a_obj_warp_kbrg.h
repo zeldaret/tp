@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_WARP_KBRG_H
 #define D_A_OBJ_WARP_KBRG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWarpKBrg_c
+ * @brief Warp K Bridge (Kakariko Gorge Bridge?)
+ *
+ * @details
+ *
+ */
 class daObjWarpKBrg_c : public fopAc_ac_c {
 public:
     /* 80D26FA8 */ void initBaseMtx();

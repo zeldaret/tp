@@ -7,6 +7,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_lbox_class
+ * @brief L - Box (Large Box?)
+ *
+ * @details
+ *
+ */
 class obj_lbox_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
@@ -28,7 +36,8 @@ public:
     /* 0xA84 */ u32 field_0xa84;
     /* 0xA88 */ u32 field_0xa88;
     /* 0xA8C */ u8 field_0xa8c;
-};  // Size = 0xA90
+};
+STATIC_ASSERT(sizeof(obj_lbox_class) == 0xA90);
 
 class daObj_Lbox_HIO_c {
 public:

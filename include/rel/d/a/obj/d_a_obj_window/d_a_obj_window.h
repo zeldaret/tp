@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWindow_c
+ * @brief Destructable Kakariko Village Window
+ *
+ * @details
+ *
+ */
 class daObjWindow_c : public dBgS_MoveBgActor {
 public:
     /* 80D38758 */ void initBaseMtx();
@@ -19,6 +27,7 @@ public:
     u8 getType() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getLightInf() { return fopAcM_GetParamBit(this, 8, 8); }
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ mDoExt_bckAnm* mpBckAnm;

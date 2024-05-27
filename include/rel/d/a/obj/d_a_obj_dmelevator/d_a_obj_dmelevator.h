@@ -5,6 +5,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjDmElevator_c
+ * @brief Death Mountain Elevator
+ *
+ * @details
+ *
+ */
 class daObjDmElevator_c : public dBgS_MoveBgActor {
 public:
     /* 80BDDD38 */ void initBaseMtx();

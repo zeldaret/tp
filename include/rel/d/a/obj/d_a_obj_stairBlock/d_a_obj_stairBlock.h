@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_STAIRBLOCK_H
 #define D_A_OBJ_STAIRBLOCK_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daStairBlock_c
+ * @brief Stair Block
+ *
+ * @details
+ *
+ */
 class daStairBlock_c : public fopAc_ac_c {
 public:
     /* 80CE81F4 */ void setBaseMtx();

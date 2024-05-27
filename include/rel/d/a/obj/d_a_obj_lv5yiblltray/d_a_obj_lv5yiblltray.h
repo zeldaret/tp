@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjYIblltray_c
+ * @brief Snowpeak Ruins Cannonball Transporter
+ *
+ * @details
+ *
+ */
 class daObjYIblltray_c : public fopAc_ac_c {
 public:
     /* 80C6EBF8 */ void create1st();

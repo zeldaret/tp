@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4DIGSAND_H
 #define D_A_OBJ_LV4DIGSAND_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjL4DigSand_c
+ * @brief Arbiter's Grounds Digging Sand
+ *
+ * @details
+ *
+ */
 class daObjL4DigSand_c : public fopAc_ac_c {
 public:
     /* 80C66B18 */ void initBaseMtx();

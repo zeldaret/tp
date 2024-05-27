@@ -1,12 +1,19 @@
 #ifndef D_A_OBJ_LV5KEY_H
 #define D_A_OBJ_LV5KEY_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 
 
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv5Key_c
+ * @brief Snowpeak Ruins Key
+ *
+ * @details
+ *
+ */
 class daObjLv5Key_c : public fopAc_ac_c {
 public:
     /* 80B9B9B8 */ void CreateHeap();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_WARP_OBRG_H
 #define D_A_OBJ_WARP_OBRG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWarpOBrg_c
+ * @brief Warp O Bridge (Eldin Bridge?)
+ *
+ * @details
+ *
+ */
 class daObjWarpOBrg_c : public fopAc_ac_c {
 public:
     /* 80D299B8 */ void initBaseMtx();

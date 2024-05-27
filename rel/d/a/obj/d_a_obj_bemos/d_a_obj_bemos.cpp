@@ -496,7 +496,7 @@ static dCcD_SrcCyl l_cyl_src = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjBm_c::Create() {
+asm int daObjBm_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos/Create__9daObjBm_cFv.s"
 }
@@ -823,7 +823,7 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjBm_c::CreateHeap() {
+asm int daObjBm_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos/CreateHeap__9daObjBm_cFv.s"
 }
@@ -873,7 +873,7 @@ COMPILER_STRIP_GATE(0x80BB383C, &lit_4293);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjBm_c::Execute(f32 (**param_0)[3][4]) {
+asm int daObjBm_c::Execute(f32 (**param_0)[3][4]) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos/Execute__9daObjBm_cFPPA3_A4_f.s"
 }
@@ -1722,7 +1722,7 @@ asm void daObjBm_c::actionDead() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjBm_c::Draw() {
+asm int daObjBm_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos/Draw__9daObjBm_cFv.s"
 }
@@ -1732,7 +1732,7 @@ asm void daObjBm_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjBm_c::Delete() {
+asm int daObjBm_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bemos/d_a_obj_bemos/Delete__9daObjBm_cFv.s"
 }

@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjStopper2_c
+ * @brief Door Stop
+ *
+ * @details
+ *
+ */
 class daObjStopper2_c : public fopAc_ac_c {
 public:
     /* 80CEF368 */ J3DModelData* getStopModelData();

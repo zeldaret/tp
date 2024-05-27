@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv7Brg_c
+ * @brief City in the Sky Bridge
+ *
+ * @details
+ *
+ */
 class daObjLv7Brg_c : public fopAc_ac_c {
 public:
     /* 80C863EC */ void search_swspinner();

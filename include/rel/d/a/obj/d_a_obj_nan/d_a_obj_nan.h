@@ -1,16 +1,17 @@
 #ifndef D_A_OBJ_NAN_H
 #define D_A_OBJ_NAN_H
 
-#include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_NanHIO_c {
-public:
-    /* 80CA05AC */ daObj_NanHIO_c();
-    /* 80CA30D0 */ ~daObj_NanHIO_c();
-};
-
-class daObjNAN_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjNAN_c
+ * @brief Insect - Phasmid
+ *
+ * @details
+ *
+ */
+class daObjNAN_c : public dInsect_c {
 public:
     /* 80CA05D4 */ void setAction(void (daObjNAN_c::*)());
     /* 80CA0978 */ void nan_posMove();
@@ -32,9 +33,15 @@ public:
     /* 80CA2B68 */ void create();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x800 - 0x568];
+    /* 0x590 */ u8 field_0x568[0x800 - 0x590];
 };
 STATIC_ASSERT(sizeof(daObjNAN_c) == 0x800);
+
+class daObj_NanHIO_c {
+public:
+    /* 80CA05AC */ daObj_NanHIO_c();
+    /* 80CA30D0 */ ~daObj_NanHIO_c();
+};
 
 
 #endif /* D_A_OBJ_NAN_H */

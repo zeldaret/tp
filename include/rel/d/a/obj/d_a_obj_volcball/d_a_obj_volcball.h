@@ -7,6 +7,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/particle/d_particle.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjVolcBall_c
+ * @brief Volcano Ball
+ *
+ * @details
+ *
+ */
 class daObjVolcBall_c : public fopAc_ac_c, public dEvLib_callback_c {
 public:
     enum mode_e {

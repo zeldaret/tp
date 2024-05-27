@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KTONFIRE_H
 #define D_A_OBJ_KTONFIRE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daKtOnFire_c
+ * @brief Lantern Fire
+ *
+ * @details
+ *
+ */
 class daKtOnFire_c : public fopAc_ac_c {
 public:
     /* 8058C678 */ void setBaseMtx();

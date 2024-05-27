@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_HAKAI_BRL_H
 #define D_A_OBJ_HAKAI_BRL_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjHBarrel_c
+ * @brief Destructable Barrel
+ *
+ * @details
+ *
+ */
 class daObjHBarrel_c : public fopAc_ac_c {
 public:
     /* 80C16758 */ daObjHBarrel_c();

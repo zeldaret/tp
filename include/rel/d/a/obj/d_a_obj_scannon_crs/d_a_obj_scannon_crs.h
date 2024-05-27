@@ -1,10 +1,17 @@
 #ifndef D_A_OBJ_SCANNON_CRS_H
 #define D_A_OBJ_SCANNON_CRS_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSCannonCrs_c
+ * @brief Sky Cannon (Broken)
+ *
+ * @details
+ *
+ */
 class daSCannonCrs_c : public fopAc_ac_c {
 public:
     /* 80CC973C */ daSCannonCrs_c();

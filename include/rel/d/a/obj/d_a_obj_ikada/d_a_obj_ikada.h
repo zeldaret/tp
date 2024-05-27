@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_IKADA_H
 #define D_A_OBJ_IKADA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIkada_c
+ * @brief Raft
+ *
+ * @details
+ *
+ */
 class daObjIkada_c : public fopAc_ac_c {
 public:
     /* 80C269B8 */ void RideOn_Angle(s16&, f32, s16, f32);

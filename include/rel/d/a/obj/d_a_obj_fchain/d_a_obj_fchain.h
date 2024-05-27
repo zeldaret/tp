@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_FCHAIN_H
 #define D_A_OBJ_FCHAIN_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 class daObjFchain_shape_c {
@@ -10,6 +9,14 @@ public:
     /* 80BE73D4 */ ~daObjFchain_shape_c();
 };
 
+/**
+ * @ingroup actors-objects
+ * @class daObjFchain_c
+ * @brief Wolf Chain Shackle
+ *
+ * @details
+ *
+ */
 class daObjFchain_c : public fopAc_ac_c {
 public:
     /* 80BE5FF8 */ void createHeap();

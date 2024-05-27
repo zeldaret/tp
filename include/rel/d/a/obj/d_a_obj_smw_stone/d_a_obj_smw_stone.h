@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSmWStone_c
+ * @brief Howling Stone
+ *
+ * @details
+ *
+ */
 class daSmWStone_c : public fopAc_ac_c {
 public:
     /* 80CDE538 */ daSmWStone_c();

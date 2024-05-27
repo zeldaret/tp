@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_KITA_H
 #define D_A_OBJ_KITA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_kita_class
+ * @brief Wind Plank
+ *
+ * @details
+ *
+ */
 class obj_kita_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xd78 - 0x568];

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjFlag2_c
+ * @brief Flag 2
+ *
+ * @details
+ *
+ */
 class daObjFlag2_c : public fopAc_ac_c {
 public:
     /* 80BED22C */ void create_init();

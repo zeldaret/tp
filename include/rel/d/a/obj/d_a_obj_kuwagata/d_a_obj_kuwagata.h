@@ -1,14 +1,16 @@
 #ifndef D_A_OBJ_KUWAGATA_H
 #define D_A_OBJ_KUWAGATA_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_KuwHIO_c {
-public:
-    /* 80C4A1EC */ daObj_KuwHIO_c();
-    /* 80C4D3E8 */ ~daObj_KuwHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjKUW_c
+ * @brief Insect - Stag Beetle
+ *
+ * @details
+ *
+ */
 class daObjKUW_c : public fopAc_ac_c {
 public:
     /* 80C4A21C */ void InitCcSph();
@@ -38,6 +40,12 @@ private:
     /* 0x568 */ u8 field_0x568[0xa68 - 0x568];
 };
 STATIC_ASSERT(sizeof(daObjKUW_c) == 0xa68);
+
+class daObj_KuwHIO_c {
+public:
+    /* 80C4A1EC */ daObj_KuwHIO_c();
+    /* 80C4D3E8 */ ~daObj_KuwHIO_c();
+};
 
 
 #endif /* D_A_OBJ_KUWAGATA_H */

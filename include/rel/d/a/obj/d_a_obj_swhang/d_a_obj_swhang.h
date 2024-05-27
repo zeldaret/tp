@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/event/d_event_lib.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwHang_c
+ * @brief Dangle A
+ *
+ * @details
+ *
+ */
 class daObjSwHang_c : public dBgS_MoveBgActor {
 public:
     /* 80101874 */ cXyz getHangPos();

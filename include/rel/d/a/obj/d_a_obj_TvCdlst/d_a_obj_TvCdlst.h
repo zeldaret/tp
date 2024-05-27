@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TVCDLST_H
 #define D_A_OBJ_TVCDLST_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTvCdlst_c
+ * @brief Ordon Torch Stand
+ *
+ * @details
+ *
+ */
 class daTvCdlst_c : public fopAc_ac_c {
 public:
     /* 80B9ED40 */ void setBaseMtx();

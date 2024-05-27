@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Kago_c
+ * @brief Basket
+ *
+ * @details
+ *
+ */
 class daObj_Kago_c : public fopAc_ac_c {
 public:
     /* 80C31AEC */ ~daObj_Kago_c();

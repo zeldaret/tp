@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4EDSHUTTER_H
 #define D_A_OBJ_LV4EDSHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv4EdShutter_c
+ * @brief Arbiter's Grounds Death Sword Gate
+ *
+ * @details
+ *
+ */
 class daLv4EdShutter_c : public fopAc_ac_c {
 public:
     /* 80C5DE38 */ void setBaseMtx();

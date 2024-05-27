@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SWPUSH2_H
 #define D_A_OBJ_SWPUSH2_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwpush2
+ * @brief Push Switch 2
+ *
+ * @details
+ *
+ */
 class daObjSwpush2 : public fopAc_ac_c {
 public:
     class Act_c {

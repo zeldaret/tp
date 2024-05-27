@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjOCTHASHI_c
+ * @brief Morpheel Pillar
+ *
+ * @details
+ *
+ */
 class daObjOCTHASHI_c : public fopAc_ac_c {
 public:
     /* 80CA4BB8 */ void initCcCylinder();

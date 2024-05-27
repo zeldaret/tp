@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_KBacket_c
+ * @brief (Kakariko?) Bucket
+ *
+ * @details
+ *
+ */
 class daObj_KBacket_c : public fopAc_ac_c {
 public:
     /* 80585E4C */ ~daObj_KBacket_c();

@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_SM_DOOR_H
 #define D_A_OBJ_SM_DOOR_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSM_DOOR_c
+ * @brief Sacred Meadow Door
+ *
+ * @details
+ *
+ */
 class daObjSM_DOOR_c : public fopAc_ac_c {
 public:
     /* 80CD8784 */ void ChangeModel();

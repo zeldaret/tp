@@ -1,14 +1,16 @@
 #ifndef D_A_OBJ_KATATSUMURI_H
 #define D_A_OBJ_KATATSUMURI_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_KatHIO_c {
-public:
-    /* 80C3996C */ daObj_KatHIO_c();
-    /* 80C3C5CC */ ~daObj_KatHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjKAT_c
+ * @brief Insect - Snail
+ *
+ * @details
+ *
+ */
 class daObjKAT_c : public fopAc_ac_c {
 public:
     /* 80C39994 */ void InitCcSph();
@@ -37,5 +39,10 @@ private:
 };
 STATIC_ASSERT(sizeof(daObjKAT_c) == 0xa74);
 
+class daObj_KatHIO_c {
+public:
+    /* 80C3996C */ daObj_KatHIO_c();
+    /* 80C3C5CC */ ~daObj_KatHIO_c();
+};
 
 #endif /* D_A_OBJ_KATATSUMURI_H */

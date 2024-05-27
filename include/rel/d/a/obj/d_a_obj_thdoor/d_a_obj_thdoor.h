@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjThDoor_c
+ * @brief Telma's Bar Door
+ *
+ * @details
+ *
+ */
 class daObjThDoor_c : public fopAc_ac_c {
 public:
     /* 80D0D618 */ void initBaseMtx();

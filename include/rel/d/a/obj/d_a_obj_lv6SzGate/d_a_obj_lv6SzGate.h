@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV6SZGATE_H
 #define D_A_OBJ_LV6SZGATE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv6SzGate_c
+ * @brief Temple of Time Stone Statue Gate
+ *
+ * @details
+ *
+ */
 class daLv6SzGate_c : public fopAc_ac_c {
 public:
     /* 80C75900 */ void setBaseMtx();

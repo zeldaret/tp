@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIBone_c
+ * @brief Boar Bone
+ *
+ * @details
+ *
+ */
 class daObjIBone_c : public fopAc_ac_c {
 public:
     /* 80C27830 */ void initBaseMtx();

@@ -9,6 +9,14 @@ enum obj_lv3waterB_action {
     LV3WATERB_ACT_END,
 };
 
+/**
+ * @ingroup actors-objects
+ * @class obj_lv3WaterB_class
+ * @brief Lakebed Temple Water (Boss)
+ *
+ * @details
+ *
+ */
 class obj_lv3WaterB_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mBWaterPhase;
@@ -25,5 +33,6 @@ public:
     /* 0x5C4 */ Mtx mpOctHibiMtx;
     /* 0x5F4 */ dBgW* mpOctHibiBgW;
 };
+STATIC_ASSERT(sizeof(obj_lv3WaterB_class) == 0x5F8);
 
 #endif /* D_A_OBJ_LV3WATERB_H */

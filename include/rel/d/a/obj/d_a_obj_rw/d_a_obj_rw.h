@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_rw_class
+ * @brief Wild Boar Roast
+ *
+ * @details
+ *
+ */
 class obj_rw_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xe3c - 0x568];

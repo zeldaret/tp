@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_GROUNDWATER_H
 #define D_A_OBJ_GROUNDWATER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daGrdWater_c
+ * @brief Ground Water
+ *
+ * @details
+ *
+ */
 class daGrdWater_c : public fopAc_ac_c {
 public:
     /* 80C13540 */ void setBaseMtx();

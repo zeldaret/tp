@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV8KEKKAITRAP_H
 #define D_A_OBJ_LV8KEKKAITRAP_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daKekaiTrap_c
+ * @brief Palace of Twilight Barrier Trap
+ *
+ * @details
+ *
+ */
 class daKekaiTrap_c : public fopAc_ac_c {
 public:
     /* 80C87D40 */ void setBaseMtx();

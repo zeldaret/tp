@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TAFENCE_H
 #define D_A_OBJ_TAFENCE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTaFence_c
+ * @brief Fench/Mesh?
+ *
+ * @details
+ *
+ */
 class daTaFence_c : public fopAc_ac_c {
 public:
     /* 80D04F8C */ void setBaseMtx();

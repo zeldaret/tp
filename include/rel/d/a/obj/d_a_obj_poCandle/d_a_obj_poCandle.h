@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_POCANDLE_H
 #define D_A_OBJ_POCANDLE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daPoCandle_c
+ * @brief Poe Torch
+ *
+ * @details
+ *
+ */
 class daPoCandle_c : public fopAc_ac_c {
 public:
     /* 80CB1AE4 */ void setBaseMtx();

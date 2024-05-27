@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_GPTARU_H
 #define D_A_OBJ_GPTARU_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daGpTaru_c
+ * @brief Gunpowder Barrel
+ *
+ * @details
+ *
+ */
 class daGpTaru_c : public fopAc_ac_c {
 public:
     /* 8057D1F8 */ void setBaseMtx();

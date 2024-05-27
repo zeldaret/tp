@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_HFUTA_H
 #define D_A_OBJ_HFUTA_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjFuta_c
+ * @brief Crawling?
+ *
+ * @details
+ *
+ */
 class daObjFuta_c : public fopAc_ac_c {
 public:
     /* 80C1DD8C */ void initBaseMtx();

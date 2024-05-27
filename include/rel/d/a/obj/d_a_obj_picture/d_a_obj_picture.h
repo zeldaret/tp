@@ -1,10 +1,17 @@
 #ifndef D_A_OBJ_PICTURE_H
 #define D_A_OBJ_PICTURE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjPicture_c
+ * @brief Hyrule Castle Painting
+ *
+ * @details
+ *
+ */
 class daObjPicture_c : public fopAc_ac_c {
 public:
     /* 80CAD318 */ daObjPicture_c();

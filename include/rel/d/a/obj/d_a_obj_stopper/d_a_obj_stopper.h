@@ -4,7 +4,16 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct daObjStopper_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjStopper_c
+ * @brief Stopper
+ *
+ * @details
+ *
+ */
+class daObjStopper_c : public fopAc_ac_c {
+public:
     enum ActionType {
         ACTION_WAIT,
         ACTION_WAIT_ORDER_EVENT,

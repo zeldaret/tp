@@ -7,6 +7,22 @@
 #include "d/cc/d_cc_d.h"
 #include "SSystem/SComponent/c_phase.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Balloon_c
+ * @brief Balloon
+ *
+ * @details
+ *
+ */
+/**
+ * @ingroup actors-objects
+ * @class daObj_Balloon_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daObj_Balloon_c : public fopAc_ac_c {
 public:
     /* 80BA7FF4 */ int draw();

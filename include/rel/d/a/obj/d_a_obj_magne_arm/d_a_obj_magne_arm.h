@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_MAGNE_ARM_H
 #define D_A_OBJ_MAGNE_ARM_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMarm_c
+ * @brief Magnetic Arm
+ *
+ * @details
+ *
+ */
 class daObjMarm_c : public fopAc_ac_c {
 public:
     /* 8058F358 */ void getBpartsOffset(cXyz*);

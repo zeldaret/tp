@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIceBlk_c
+ * @brief Sliding Ice Block
+ *
+ * @details
+ *
+ */
 class daObjIceBlk_c : public fopAc_ac_c {
 public:
     /* 80C21CD8 */ void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
@@ -37,16 +45,10 @@ public:
     /* 80C23CA0 */ void actionDead();
     /* 80C23CA4 */ void Draw();
     /* 80C23DA8 */ void Delete();
-};
-
-class daMirror_c : public fopAc_ac_c {
-public:
-    /* 8003194C */ void entry(J3DModel*);
-
 private:
     /* 0x568 */ u8 field_0x568[0x9ec - 0x568];
 };
-STATIC_ASSERT(sizeof(daMirror_c) == 0x9ec);
+STATIC_ASSERT(sizeof(daObjIceBlk_c) == 0x9ec);
 
 
 #endif /* D_A_OBJ_ICEBLOCK_H */

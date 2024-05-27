@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKKanban_c
+ * @brief Kakariko Sign
+ *
+ * @details
+ *
+ */
 class daObjKKanban_c : public dBgS_MoveBgActor {
 public:
     /* 80C46768 */ void initBaseMtx();
@@ -28,6 +36,7 @@ public:
     /* 0x74A */ s16 field_0x74a;
     /* 0x74C */ f32 field_0x74c;
     /* 0x750 */ s32 field_0x750;
-};  // Size: 0x758
+};
+STATIC_ASSERT(sizeof(daObjKKanban_c) == 0x754);
 
 #endif /* D_A_OBJ_KKANBAN_H */

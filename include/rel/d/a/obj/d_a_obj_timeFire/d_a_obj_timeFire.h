@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TIMEFIRE_H
 #define D_A_OBJ_TIMEFIRE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daTimeFire_c
+ * @brief Time Fire
+ *
+ * @details
+ *
+ */
 class daTimeFire_c : public fopAc_ac_c {
 public:
     /* 80D0E958 */ void setBaseMtx();

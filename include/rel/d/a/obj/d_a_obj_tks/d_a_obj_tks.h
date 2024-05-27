@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_TKS_H
 #define D_A_OBJ_TKS_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjTks_c
+ * @brief Ooccoo Jr. (small)
+ *
+ * @details
+ *
+ */
 class daObjTks_c : public fopAc_ac_c {
 public:
     /* 80D0F28C */ daObjTks_c();

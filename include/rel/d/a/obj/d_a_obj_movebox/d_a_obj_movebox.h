@@ -4,6 +4,17 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMovebox
+ * @brief Multi-Purpose Moving Box
+ *
+ * @details Multi-purpose moving box actor.
+ * Used for: Goron Mines Push Block, Death Mountain Block,
+ *      Large Wooden Crate, Sacred Grove Block, 
+ *      Arbiter's Grounds Block (2 of them), Kakariko Graveyard Gravestone
+ *
+ */
 class daObjMovebox : public fopAc_ac_c {
     struct Act_c {
         struct Prm_e {};

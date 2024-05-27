@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_GLOWSPHERE_H
 #define D_A_OBJ_GLOWSPHERE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daGlwSph_c
+ * @brief STAR Game Glow Sphere
+ *
+ * @details
+ *
+ */
 class daGlwSph_c : public fopAc_ac_c {
 public:
     /* 80BF9430 */ void getSphMng();

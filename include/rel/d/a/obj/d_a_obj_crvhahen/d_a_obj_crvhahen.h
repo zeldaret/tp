@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_CRVHAHEN_H
 #define D_A_OBJ_CRVHAHEN_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCRVHAHEN_c
+ * @brief Caravan Wood
+ *
+ * @details
+ *
+ */
 class daObjCRVHAHEN_c : public fopAc_ac_c {
 public:
     /* 80BD342C */ void HahenSet(cXyz, cXyz, cXyz, cXyz, f32);

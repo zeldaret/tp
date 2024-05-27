@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwChain_c
+ * @brief Chain Switch
+ *
+ * @details
+ *
+ */
 class daObjSwChain_c : public fopAc_ac_c {
 public:
     struct chain_s {

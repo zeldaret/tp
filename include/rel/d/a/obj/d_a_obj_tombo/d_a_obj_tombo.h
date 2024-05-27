@@ -1,14 +1,16 @@
 #ifndef D_A_OBJ_TOMBO_H
 #define D_A_OBJ_TOMBO_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_insect.h"
 
-class daObj_TomHIO_c {
-public:
-    /* 80D191CC */ daObj_TomHIO_c();
-    /* 80D1B618 */ ~daObj_TomHIO_c();
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daObjTOMBO_c
+ * @brief Insect - Dragonfly
+ *
+ * @details
+ *
+ */
 class daObjTOMBO_c : public fopAc_ac_c {
 public:
     /* 80D19200 */ void InitCcSph();
@@ -39,6 +41,12 @@ private:
     /* 0x568 */ u8 field_0x568[0xa18 - 0x568];
 };
 STATIC_ASSERT(sizeof(daObjTOMBO_c) == 0xa18);
+
+class daObj_TomHIO_c {
+public:
+    /* 80D191CC */ daObj_TomHIO_c();
+    /* 80D1B618 */ ~daObj_TomHIO_c();
+};
 
 
 #endif /* D_A_OBJ_TOMBO_H */

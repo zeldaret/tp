@@ -1,9 +1,16 @@
 #ifndef D_A_OBJ_LV4BRIDGE_H
 #define D_A_OBJ_LV4BRIDGE_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv4Brg_c
+ * @brief Arbiter's Grounds Bridge
+ *
+ * @details
+ *
+ */
 class daObjLv4Brg_c : public fopAc_ac_c {
 public:
     /* 80C62878 */ void initBaseMtx();
