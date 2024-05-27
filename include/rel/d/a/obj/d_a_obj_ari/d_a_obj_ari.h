@@ -16,7 +16,6 @@
  * @details
  *
  */
- */
 class daObjARI_c : public dInsect_c {
 public:
     /* 80BA26BC */ void InitCcSph();
