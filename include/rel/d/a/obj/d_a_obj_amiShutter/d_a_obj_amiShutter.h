@@ -11,14 +11,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daAmiShutter_c
- * @brief
- *
- * @details
- *
- */
 class daAmiShutter_c : public fopAc_ac_c {
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ void CreateHeap();

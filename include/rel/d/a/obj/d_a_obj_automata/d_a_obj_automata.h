@@ -11,14 +11,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObj_AutoMata_c
- * @brief
- *
- * @details
- *
- */
 class daObj_AutoMata_c : public fopAc_ac_c {
 public:
     /* 80BA56EC */ ~daObj_AutoMata_c();

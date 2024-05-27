@@ -16,13 +16,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObjARI_c
- * @brief
- *
- * @details
- *
  */
 class daObjARI_c : public dInsect_c {
 public:

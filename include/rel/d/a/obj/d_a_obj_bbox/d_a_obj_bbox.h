@@ -13,14 +13,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObjBBox_c
- * @brief
- *
- * @details
- *
- */
 class daObjBBox_c : public dBgS_MoveBgActor {
 public:
     /* 80BACD38 */ void initBaseMtx();

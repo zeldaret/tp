@@ -15,15 +15,6 @@ class dBgW;
  *
  * @details
  *
- */
-/**
- * @ingroup actors-objects
- * @class daObj_Bed_c
- * @brief
- *
- * @details
- *
- */
 class daObj_Bed_c : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[4];

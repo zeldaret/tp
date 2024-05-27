@@ -15,14 +15,6 @@ class dBgW;
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObjAvalanche_c
- * @brief
- *
- * @details
- *
- */
 class daObjAvalanche_c : public dBgS_MoveBgActor {
 public:
     enum Action {

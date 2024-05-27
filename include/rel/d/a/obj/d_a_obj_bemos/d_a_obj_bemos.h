@@ -11,14 +11,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObjBm_c
- * @brief
- *
- * @details
- *
- */
 class daObjBm_c : public fopAc_ac_c {
 public:
     class BgcSrc_c {};

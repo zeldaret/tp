@@ -15,14 +15,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daObj_Balloon_c
- * @brief
- *
- * @details
- *
- */
 class daObj_Balloon_c : public fopAc_ac_c {
 public:
     /* 80BA7FF4 */ int draw();

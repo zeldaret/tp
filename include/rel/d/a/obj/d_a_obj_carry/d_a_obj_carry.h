@@ -14,14 +14,6 @@
  * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull, deku nut, Sols, small and large Twilight pots.
  * 
  */
-/**
- * @ingroup actors-objects
- * @class daObjCarry_c
- * @brief
- *
- * @details
- *
- */
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {

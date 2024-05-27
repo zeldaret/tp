@@ -14,14 +14,6 @@
  * @details
  *
  */
-/**
- * @ingroup actors-objects
- * @class daBarDesk_c
- * @brief
- *
- * @details
- *
- */
 class daBarDesk_c : public dBgS_MoveBgActor {
 public:
     /* 80BA9200 */ void setBaseMtx();
