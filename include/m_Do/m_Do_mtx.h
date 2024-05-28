@@ -345,6 +345,10 @@ inline MtxP mDoMtx_getIdentity() {
     return g_mDoMtx_identity;
 }
 
+inline MtxP cMtx_getIdentity() {
+    return mDoMtx_getIdentity();
+}
+
 class mDoMtx_quatStack_c {
 public:
     mDoMtx_quatStack_c() {

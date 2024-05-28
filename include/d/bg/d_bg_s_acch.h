@@ -232,4 +232,13 @@ public:
     /* 806646F8 */ virtual ~dBgS_StatueAcch();
 };
 
+class dBgS_BombAcch : public dBgS_Acch {
+public:
+    dBgS_BombAcch() {
+        SetBomb();
+    }
+
+    virtual ~dBgS_BombAcch() {}
+};
+
 #endif /* D_BG_D_BG_S_ACCH_H */

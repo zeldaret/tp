@@ -4,6 +4,7 @@
  */
 
 #include "d/d_bomb.h"
+#include "rel/d/a/d_a_nbomb/d_a_nbomb.h"
 
 bool dBomb_c::checkStateCarry() {
     return (fopAcM_checkCarryNow(this) || fopAcM_checkHookCarryNow(this) ||
@@ -15,9 +16,9 @@ bool dBomb_c::checkFlowerBombWait(fopAc_ac_c* param_1) {
 }
 
 bool dBomb_c::checkWaterBomb(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(this) == PROC_NBOMB && daNbomb_c::checkWaterBomb());
+    return (fopAcM_GetName(param_1) == PROC_NBOMB && ((daNbomb_c*)param_1)->checkWaterBomb());
 }
 
 bool dBomb_c::checkInsectBombMove(fopAc_ac_c* param_1) {
-    return (fopAcM_GetName(this) == PROC_NBOMB && fopAcM_GetParam(this) == 7);
+    return (fopAcM_GetName(param_1) == PROC_NBOMB && fopAcM_GetParam(param_1) == 7);
 }

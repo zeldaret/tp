@@ -610,8 +610,8 @@ public:
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
     virtual s32 getGrabActorID() const;  // weak
-    virtual bool exchangeGrabActor(fopAc_ac_c*);
-    virtual bool setForceGrab(fopAc_ac_c*, int, int);
+    virtual BOOL exchangeGrabActor(fopAc_ac_c*);
+    virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
     virtual u32 checkPlayerNoDraw();
     virtual bool checkRopeTag();
