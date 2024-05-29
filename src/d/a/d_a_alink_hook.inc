@@ -102,7 +102,7 @@ void daAlink_c::resetHookshotMode() {
 
 /* 8010871C-80108784 10305C 0068+00 0/0 0/0 1/1 .text
  * setEnemyBombHookshot__9daAlink_cFP10fopAc_ac_c               */
-bool daAlink_c::setEnemyBombHookshot(fopAc_ac_c* i_actor) {
+BOOL daAlink_c::setEnemyBombHookshot(fopAc_ac_c* i_actor) {
     if (mHookTargetAcKeep.getActor() != NULL) {
         cancelHookshotCarry();
         mHookTargetAcKeep.setData(i_actor);

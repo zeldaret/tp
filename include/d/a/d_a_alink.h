@@ -2394,7 +2394,7 @@ public:
     /* 80107744 */ int procBoardCutTurn();
     /* 801083C8 */ void hookshotAtHitCallBack(dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 801086DC */ void resetHookshotMode();
-    /* 8010871C */ bool setEnemyBombHookshot(fopAc_ac_c*);
+    /* 8010871C */ BOOL setEnemyBombHookshot(fopAc_ac_c*);
     /* 80108784 */ bool checkLv7BossRoom();
     /* 801087B0 */ BOOL checkHookshotStickBG(cBgS_PolyInfo&);
     /* 80108828 */ void cancelHookshotCarry();
@@ -3022,8 +3022,8 @@ public:
     virtual s32 getAtnActorID() const;
     virtual s32 getItemID() const;
     virtual s32 getGrabActorID() const;
-    virtual bool exchangeGrabActor(fopAc_ac_c*);
-    virtual bool setForceGrab(fopAc_ac_c*, int, int);
+    virtual BOOL exchangeGrabActor(fopAc_ac_c*);
+    virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
     virtual u32 checkPlayerNoDraw();
     virtual void voiceStart(u32);
@@ -3302,6 +3302,7 @@ public:
     bool checkCopyRodRevive() const { return mProcID == PROC_COPY_ROD_REVIVE; }
     bool checkHorseGetOffMode() const { return mProcID == PROC_HORSE_GETOFF; }
     bool checkHorseRideOn() const { return mProcID == PROC_HORSE_RIDE; }
+    bool checkGrabUp() const { return mProcID == PROC_GRAB_UP; }
 
     BOOL checkRideOn() const { return mRideStatus != 0; }
 
@@ -3328,6 +3329,20 @@ public:
 
     void setDamageColorTime() {
         mDamageColorTime = 32 - (mDamageTimer % 16); 
+    }
+
+    BOOL setEnemyBomb(fopAc_ac_c* i_actor) { return exchangeGrabActor(i_actor); }
+
+    void decrementBombCnt() {
+        if (mActiveBombNum != 0) {
+            mActiveBombNum--;
+        }
+    }
+
+    void decrementInsectBombCnt() {
+        if (field_0x2fcf != 0) {
+            field_0x2fcf--;
+        }
     }
 
     // Gets the cardinal direction of the Left Stick relative to player facing angle

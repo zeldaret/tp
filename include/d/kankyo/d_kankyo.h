@@ -48,6 +48,8 @@ u8 dKy_shadow_mode_check(u8 mode);
 void dKy_shadow_mode_set(u8 mode);
 void dKy_shadow_mode_reset(u8 mode);
 void dKy_Itemgetcol_chg_on();
+void dKy_actor_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_bg_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 
 struct LIGHT_INFLUENCE {
     /* 0x00 */ cXyz mPosition;

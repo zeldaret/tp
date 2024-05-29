@@ -54,7 +54,7 @@ void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* 
 
 /* 800E3A14-800E3A9C 0DE354 0088+00 1/0 0/0 0/0 .text exchangeGrabActor__9daAlink_cFP10fopAc_ac_c
  */
-bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
+BOOL daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
     fopAc_ac_c* actor = mGrabItemAcKeep.getActor();
     if (actor == NULL) {
         return false;
@@ -74,7 +74,7 @@ bool daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
 }
 
 /* 800E3A9C-800E3BCC 0DE3DC 0130+00 1/0 0/0 0/0 .text setForceGrab__9daAlink_cFP10fopAc_ac_cii */
-bool daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
+BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
     if (((param_1 != 0 || !checkEventRun()) && !checkWolf()) &&
         (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
          ((checkModeFlg(MODE_UNK_10000000) &&
