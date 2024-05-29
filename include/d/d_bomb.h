@@ -5,14 +5,36 @@
 
 class dBomb_c : public fopAc_ac_c {
 public:
+    enum dBomb_PRM {
+        PRM_NORMAL_BOMB_EXPLODE,
+        PRM_BOMB_CARRY,
+        PRM_BOMB_HOOKSHOT,
+        PRM_BOMB_WAIT,
+        PRM_FLOWER_BOMB,
+        PRM_BOMB_BOOMERANG_MOVE,
+        PRM_ENEMY_BOMB_BOOMERANG_MOVE,
+        PRM_INSECT_BOMB_MOVE,
+        PRM_NORMAL_BOMB_PLAYER,
+        PRM_WATER_BOMB_PLAYER,
+        PRM_INSECT_BOMB_PLAYER,
+        PRM_ENEMY_BOMB,
+        PRM_ENEMY_BOMB_BOOMERANG,
+        PRM_ENEMY_BOMB_HOOKSHOT,
+        PRM_ENEMY_WATER_BOMB,
+        PRM_UNK_15,
+        PRM_ENEMY_WATER_BOMB_HOOKSHOT,
+        PRM_BOMB_CARGO_CARRY,
+        PRM_WATER_BOMB_EXPLODE,
+    };
+
     bool checkStateCarry();
     static bool checkFlowerBombWait(fopAc_ac_c*);
     static bool checkWaterBomb(fopAc_ac_c*);
     static bool checkInsectBombMove(fopAc_ac_c*);
 
-    /* 804CC31C */ virtual bool checkExplodeNow();
-    /* 804CC324 */ virtual void deleteBombAndEffect();
-    /* 804CC328 */ virtual void setCargoBombExplode();
+    virtual BOOL checkExplodeNow();
+    virtual void deleteBombAndEffect();
+    virtual void setCargoBombExplode();
 
     bool checkStateExplode() { return fopAcM_GetParam(this) == 0; }
 

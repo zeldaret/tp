@@ -9,22 +9,31 @@
 class daNbomb_c : public dBomb_c {
 public:
     enum daNbomb_FLG0 {
-        FLG0_UNK_1 = 0x1,
-        FLG0_UNK_4 = 0x4,
+        FLG0_PLAYER_MAKE = 0x1,
+        FLG0_BOMB_HIT = 0x4,
         FLG0_WATER_BOMB = 0x10,
-        FLG0_UNK_20 = 0x20,
+        FLG0_UNDERWATER = 0x20,
         FLG0_UNK_40 = 0x40,
-        FLG0_UNK_80 = 0x80,
-        FLG0_UNK_100 = 0x100,
-        FLG0_UNK_200 = 0x200,
-        FLG0_UNK_400 = 0x400,
+        FLG0_NO_HIT_PLAYER = 0x80,
+        FLG0_CARGO_CARRY = 0x100,
+        FLG0_FROZEN = 0x200,
+        FLG0_INSECT_BOMB = 0x400,
         FLG0_UNK_800 = 0x800,
-        FLG0_UNK_1000 = 0x1000,
+        FLG0_DELETE_BOMB = 0x1000,
         FLG0_UNK_2000 = 0x2000,
-        FLG0_UNK_4000 = 0x4000,
+        FLG0_SET_HOOKSHOT_OFFSET = 0x4000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_10000 = 0x10000,
         FLG0_UNK_20000 = 0x20000,
+    };
+
+    enum daNbomb_TYPE {
+        TYPE_NORMAL_PLAYER,
+        TYPE_WATER_PLAYER,
+        TYPE_INSECT_PLAYER,
+        TYPE_FLOWER,
+        TYPE_INSECT_ENEMY,
+        TYPE_WATER_ENEMY,
     };
 
     /* 804C6DCC */ void coHitCallback(fopAc_ac_c*);
@@ -58,9 +67,10 @@ public:
     /* 804CA780 */ BOOL procInsectMove();
     /* 804CAEE8 */ int execute();
     /* 804CBC60 */ int draw();
-    /* 804CC2C0 */ virtual bool checkExplodeNow();
-    /* 804CC2D4 */ virtual void deleteBombAndEffect();
-    /* 804CC30C */ virtual void setCargoBombExplode();
+
+    virtual BOOL checkExplodeNow();
+    virtual void deleteBombAndEffect();
+    virtual void setCargoBombExplode();
 
     void onStateFlg0(daNbomb_FLG0 i_flag) { mStateFlg0 |= i_flag; }
     void offStateFlg0(daNbomb_FLG0 i_flag) { mStateFlg0 &= ~i_flag; }
@@ -75,34 +85,34 @@ public:
     /* 0x578 */ dBgS_BombAcch mAcch;
     /* 0x750 */ dBgS_AcchCir mAcchCir;
     /* 0x790 */ dCcD_Stts mCcStts;
-    /* 0x7CC */ dCcD_Sph mSph1;
+    /* 0x7CC */ dCcD_Sph mCcSph;
     /* 0x904 */ dCcD_Sph mSph2;
     /* 0xA3C */ mDoExt_bckAnm* mpBck;
     /* 0xA40 */ Mtx field_0xa40;
     /* 0xA70 */ Mtx field_0xa70;
-    /* 0xAA0 */ dBgS_BombLinChk field_0xaa0;
-    /* 0xB10 */ cBgS_PolyInfo field_0xb10;
+    /* 0xAA0 */ dBgS_BombLinChk mLineChk;
+    /* 0xB10 */ cBgS_PolyInfo mInsectHitPolyInfo;
     /* 0xB20 */ Z2SoundObjSimple mSound;
     /* 0xB40 */ daPy_boomerangMove_c mBoomerangMove;
     /* 0xB4C */ u32 mStateFlg0;
-    /* 0xB50 */ u8 field_0xb50;
+    /* 0xB50 */ u8 mExplodeMode;
     /* 0xB51 */ u8 field_0xb51;
-    /* 0xB52 */ u8 field_0xb52;
-    /* 0xB53 */ s8 field_0xb53;
-    /* 0xB54 */ u8 field_0xb54;
+    /* 0xB52 */ u8 mNoHitPlayerTimer;
+    /* 0xB53 */ s8 mSoundReverb;
+    /* 0xB54 */ u8 mType;
     /* 0xB55 */ u8 field_0xB55[0xB58 - 0xB55];
-    /* 0xB58 */ s16 mExplodeTime;
+    /* 0xB58 */ s16 mExTime;
     /* 0xB5A */ s16 field_0xb5a;
     /* 0xB5C */ s16 field_0xb5c;
-    /* 0xB5E */ s16 field_0xb5e;
+    /* 0xB5E */ s16 mFreezeTimer;
     /* 0xB60 */ LIGHT_INFLUENCE mLightInfluence;
     /* 0xB80 */ WIND_INFLUENCE mWindInfluence;
-    /* 0xBAC */ f32 field_0xbac;
+    /* 0xBAC */ f32 mExplosionStrength;
     /* 0xBB0 */ f32 field_0xbb0;
-    /* 0xBB4 */ u32 field_0xbb4;
-    /* 0xBB8 */ u32 field_0xbb8[5];
-    /* 0xBCC */ cXyz field_0xbcc;
-    /* 0xBD8 */ cXyz field_0xbd8;
+    /* 0xBB4 */ u32 mPolySound;
+    /* 0xBB8 */ u32 mEffectEmitterIDs[5];
+    /* 0xBCC */ cXyz mEffectPosition;
+    /* 0xBD8 */ cXyz mEffectLastPosition;
     /* 0xBE4 */ cXyz field_0xbe4;
     /* 0xBF0 */ cXyz field_0xbf0;
     /* 0xBFC */ cXyz field_0xbfc;
