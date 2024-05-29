@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/bg/d_bg_w.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMirrorSand_c
+ * @brief Twilight Mirror Sand
+ *
+ * @details
+ *
+ */
 class daObjMirrorSand_c : public fopAc_ac_c {
 public:
     /* 80C98508 */ void initBaseMtx();
@@ -27,6 +35,7 @@ public:
                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     }
 
+private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm* mpBck;
     /* 0x570 */ request_of_phase_process_class mPhase;
@@ -34,5 +43,6 @@ public:
     /* 0x57C */ dBgW mBgw[2];
     /* 0x6FC */ Mtx mBgMtx;
 };
+STATIC_ASSERT(sizeof(daObjMirrorSand_c) == 0x72C);
 
 #endif /* D_A_OBJ_MIRROR_SAND_H */

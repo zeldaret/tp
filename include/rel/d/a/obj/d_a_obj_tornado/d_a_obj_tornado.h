@@ -4,6 +4,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjTrnd_c
+ * @brief Tornado
+ *
+ * @details
+ *
+ */
 class daObjTrnd_c : public fopAc_ac_c {
 public:
     /* 80D1B998 */ void setPntWind();
@@ -22,6 +30,7 @@ public:
     u32 getTimer() { return fopAcM_GetParamBit(this, 0, 8); }
     u32 getSwbit() { return fopAcM_GetParamBit(this, 0x18, 8); }
 
+private:
     /* 0x568 */ dCcD_Stts mStts;
     /* 0x5A4 */ dCcD_Cps mCps;
     /* 0x6E8 */ cM3dGCpsS field_0x6e8;
@@ -31,6 +40,7 @@ public:
     /* 0x73C */ f32 field_0x73c;
     /* 0x740 */ WIND_INFLUENCE mWindInfluence;
     /* 0x76C */ f32 mWindPower;
-};  // Size: 0x770
+};
+STATIC_ASSERT(sizeof(daObjTrnd_c) == 0x770);
 
 #endif /* D_A_OBJ_TORNADO_H */

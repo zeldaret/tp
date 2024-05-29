@@ -6,6 +6,14 @@
 #include "d/event/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjHBombkoya_c
+ * @brief Destructable Bomb House
+ *
+ * @details
+ *
+ */
 class daObjHBombkoya_c : public dBgS_MoveBgActor,
                          public request_of_phase_process_class,
                          public dEvLib_callback_c {
@@ -31,6 +39,7 @@ public:
     int getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
     int getSw2No() { return fopAcM_GetParamBit(this, 8, 8); }
 
+private:
     /* 0x5A8 */  // dEvLib_callback_c
     /* 0x5B8 */ Mtx mBgMtx;
     /* 0x5E8 */ Mtx mMtx;
@@ -41,5 +50,7 @@ public:
     /* 0x648 */ dCcD_Stts mStts;
     /* 0x684 */ dCcD_Cyl mCyl;
 };
+STATIC_ASSERT(sizeof(daObjHBombkoya_c) == 0x7c0);
+
 
 #endif /* D_A_OBJ_HBOMBKOYA_H */

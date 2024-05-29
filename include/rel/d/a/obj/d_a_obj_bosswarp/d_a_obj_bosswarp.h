@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/msg/d_msg_flow.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjBossWarp_c
+ * @brief Boss Warp
+ *
+ * @details
+ *
+ */
 class daObjBossWarp_c : public fopAc_ac_c {
 public:
     enum Action {
@@ -52,6 +60,7 @@ public:
     bool isFirst() { return fopAcM_GetParamBit(this, 0x1b, 1); }
     void setAction(u8 action) { mAction = action; }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ mDoExt_btkAnm* mpBtkAnm[2];
@@ -79,7 +88,6 @@ public:
     /* 0x620 */ cXyz field_0x620;
     /* 0x62C */ bool mScalingUp;
 };
-
 STATIC_ASSERT(sizeof(daObjBossWarp_c) == 0x630);
 
 #endif /* D_A_OBJ_BOSSWARP_H */

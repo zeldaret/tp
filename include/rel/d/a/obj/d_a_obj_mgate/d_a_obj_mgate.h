@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMGate_c
+ * @brief Ordon Spring Gate
+ *
+ * @details
+ *
+ */
 class daObjMGate_c : public dBgS_MoveBgActor {
 public:
     enum Kind_e {
@@ -44,5 +52,6 @@ private:
     /* 0x5C8 */ int mCounter;
     /* 0x5CC */ s16 mGateKeyAngle;
 };
+STATIC_ASSERT(sizeof(daObjMGate_c) == 0x5D0);
 
 #endif /* D_A_OBJ_MGATE_H */

@@ -1,8 +1,7 @@
 #ifndef D_A_OBJ_WFLAG_H
 #define D_A_OBJ_WFLAG_H
 
-#include "f_op/f_op_actor.h"
-#include "SSystem/SComponent/c_phase.h"
+#include "f_op/f_op_actor_mng.h"
 
 struct wf_tail_s {
     /* 80D37720 */ ~wf_tail_s() {}
@@ -17,7 +16,16 @@ struct wf_tail_s {
     /* 0x2A8 */ u32 field_0x2a8;
 };
 
-struct obj_wflag_class : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class obj_wflag_class
+ * @brief ???
+ *
+ * @details
+ *
+ */
+class obj_wflag_class : public fopAc_ac_c {
+public:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ mDoExt_McaMorf* mMorf;
@@ -31,5 +39,6 @@ struct obj_wflag_class : public fopAc_ac_c {
     /* 0x836 */ s16 field_0x836;
     /* 0x838 */ u32 field_0x838;
 };
+STATIC_ASSERT(sizeof(obj_wflag_class) == 0x83C);
 
 #endif /* D_A_OBJ_WFLAG_H */

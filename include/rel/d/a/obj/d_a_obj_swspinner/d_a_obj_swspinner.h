@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_w.h"
 #include "rel/d/a/d_a_spinner/d_a_spinner.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwSpinner_c
+ * @brief Spinner Switch
+ *
+ * @details
+ *
+ */
 class daObjSwSpinner_c : public dBgS_MoveBgActor {
 public:
     /* 80D00174 */ void initBaseMtx();
@@ -33,6 +41,7 @@ public:
     /* 0x5EC */ s16 mShapeAngleY;
     /* 0x5EE */ s16 mRotSpeedY;
     /* 0x5F0 */ s16 mCount;
-};  // Size: 0x5F4
+};
+STATIC_ASSERT(sizeof(daObjSwSpinner_c) == 0x5F4);
 
 #endif /* D_A_OBJ_SWSPINNER_H */

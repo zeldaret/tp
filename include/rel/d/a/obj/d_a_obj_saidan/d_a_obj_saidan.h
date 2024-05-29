@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "m_Do/m_Do_hostIO.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daSaidan_c
+ * @brief Altar
+ *
+ * @details
+ *
+ */
 class daSaidan_c : public dBgS_MoveBgActor {
 public:
     enum Mode_e {
@@ -27,12 +35,13 @@ public:
     /* 80CC4318 */ virtual int Draw();
     /* 80CC43BC */ virtual int Delete();
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ u8 mMode;
     /* 0x5AD */ u8 mIsSwitch;
     /* 0x5B0 */ f32 mOriginalPosX;
-};  // Size: 0x5B4
+};
 
 STATIC_ASSERT(sizeof(daSaidan_c) == 0x5B4);
 

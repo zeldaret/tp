@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_food_class
+ * @brief Dog Bone
+ *
+ * @details
+ *
+ */
 class obj_food_class : public fopAc_ac_c {
 public:
     enum Type {

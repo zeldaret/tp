@@ -6,6 +6,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWSword_c
+ * @brief Wooden Sword
+ *
+ * @details
+ *
+ */
 class daObjWSword_c : public fopAc_ac_c {
 public:
     /* 80D3B998 */ void initBaseMtx();
@@ -17,6 +25,7 @@ public:
     /* 80D3BDF0 */ int draw();
     /* 80D3BE54 */ int _delete();
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ dBgS_ObjAcch mAcch;

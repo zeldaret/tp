@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daBmWindow_c
+ * @brief Boomerang Window?
+ *
+ * @details
+ *
+ */
 class daBmWindow_c : public dBgS_MoveBgActor
 {
 public:
@@ -31,6 +39,7 @@ public:
     /* 80BB9494 */ int Draw();
     /* 80BB9548 */ int Delete();
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mModel;
     /* 0x5AC */ u8 mMode;
@@ -60,6 +69,7 @@ public:
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 };
+STATIC_ASSERT(sizeof(daBmWindow_c) == 0xEE0);
 
 class daBmWindow_HIO_c : public fOpAcm_HIO_entry_c {
 public:

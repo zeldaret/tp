@@ -5,6 +5,14 @@
 #include "m_Do/m_Do_hostIO.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daBsGate_c
+ * @brief Boss Gate
+ *
+ * @details
+ *
+ */
 class daBsGate_c : public dBgS_MoveBgActor {
 public:
     enum Mode {
@@ -27,6 +35,7 @@ public:
     /* 80BC2F94 */ int Draw();
     /* 80BC3038 */ int Delete();
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ u8 mMode;
@@ -36,7 +45,6 @@ public:
     /* 0x5B0 */ f32 mTargetDist;
     /* 0x5B4 */ f32 mOpenDist;
 };
-
 STATIC_ASSERT(sizeof(daBsGate_c) == 0x5B8);
 
 class daBsGate_HIO_c : public mDoHIO_entry_c {

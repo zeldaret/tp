@@ -3,6 +3,14 @@
 
 #include "rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjLv4Gear_c
+ * @brief Arbiter's Grounds Spinner Gear
+ *
+ * @details
+ *
+ */
 class daObjLv4Gear_c : public fopAc_ac_c {
 public:
     enum gear_type_e {
@@ -23,6 +31,7 @@ public:
     u8 getType() { return fopAcM_GetParamBit(this, 8, 4); }
     u8 checkSE() { return fopAcM_GetParamBit(this, 12, 4); }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ s16 mTarget;

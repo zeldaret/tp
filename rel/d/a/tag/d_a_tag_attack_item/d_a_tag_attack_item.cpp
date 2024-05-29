@@ -414,7 +414,7 @@ extern "C" bool eventRun__17dEvLib_callback_cFv() {
 
 /* 805A30F0-805A30F8 000810 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
  */
-// bool dEvLib_callback_c::eventStart() {
+// bool dEvLib_callback_c::eventStart()() {
 extern "C" bool eventStart__17dEvLib_callback_cFv() {
     return true;
 }

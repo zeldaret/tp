@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Oiltubo_c
+ * @brief Oil Jar
+ *
+ * @details
+ *
+ */
 class daObj_Oiltubo_c : public fopAc_ac_c {
 public:
     typedef int (daObj_Oiltubo_c::*processFn)(void*);
@@ -28,6 +36,7 @@ public:
     static const dCcD_SrcGObjInf mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ J3DModel* mpBModel;
@@ -44,7 +53,9 @@ public:
     /* 0xAC8 */ u32 mShadowKey;
     /* 0xACC */ u16 mMode;
 
+public:
     /* 80CA7628 */ virtual ~daObj_Oiltubo_c() {}
 };
+STATIC_ASSERT(sizeof(daObj_Oiltubo_c) == 0xAD4);
 
 #endif /* D_A_OBJ_OILTUBO_H */

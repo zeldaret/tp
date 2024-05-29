@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjE_CREATE_c
+ * @brief Enemy Spawner
+ *
+ * @details
+ *
+ */
 class daObjE_CREATE_c : public fopAc_ac_c {
 public:
     /* 80BE31BC */ void NormalAction();
@@ -28,7 +36,8 @@ private:
     /* 0x582 */ s16 mKillCheckDelayTimer;
     /* 0x584 */ u8 mAction;
     /* 0x588 */ u8 unused[12];
-};  // Size: 0x594
+};
+STATIC_ASSERT(sizeof(daObjE_CREATE_c) == 0x594);
 
 enum daObjE_EnemyType {
     ENEMY_NONE,

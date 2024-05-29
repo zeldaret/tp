@@ -378,25 +378,30 @@ asm int daObjTrnd_c::Create() {
 
 /* ############################################################################################## */
 /* 80D1C400-80D1C420 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTrnd_Method */
-SECTION_DATA static void* l_daObjTrnd_Method[8] = {
-    (void*)daObjTrnd_Create__FP11daObjTrnd_c,
-    (void*)daObjTrnd_Delete__FP11daObjTrnd_c,
-    (void*)daObjTrnd_Execute__FP11daObjTrnd_c,
-    (void*)NULL,
-    (void*)daObjTrnd_Draw__FP11daObjTrnd_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObjTrnd_Method = {
+    (process_method_func)daObjTrnd_Create__FP11daObjTrnd_c,
+    (process_method_func)daObjTrnd_Delete__FP11daObjTrnd_c,
+    (process_method_func)daObjTrnd_Execute__FP11daObjTrnd_c,
+    0,
+    (process_method_func)daObjTrnd_Draw__FP11daObjTrnd_c,
 };
 
 /* 80D1C420-80D1C450 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Tornado */
-SECTION_DATA extern void* g_profile_Obj_Tornado[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x015B0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000770, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01BC0000, (void*)&l_daObjTrnd_Method,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_Tornado = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_Tornado,       // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x00000770,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  444,                    // mPriority
+  &l_daObjTrnd_Method,    // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80D1C450-80D1C45C 00009C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */

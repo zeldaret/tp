@@ -8,6 +8,14 @@
 
 class J3DModel;
 
+/**
+ * @ingroup actors-objects
+ * @class daObjDigSnow_c
+ * @brief Wolf Dig Place (Snow)
+ *
+ * @details
+ *
+ */
 class daObjDigSnow_c : public dBgS_MoveBgActor {
 public:
     enum Mode_e {

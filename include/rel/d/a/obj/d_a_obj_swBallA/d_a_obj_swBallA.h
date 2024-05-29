@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 
 // dEvLib_callback_c is not generated at the correct location.
+/**
+ * @ingroup actors-objects
+ * @class daObjSwBallA_c
+ * @brief Ball Switch A
+ *
+ * @details
+ *
+ */
 class daObjSwBallA_c : public fopAc_ac_c /*, public dEvLib_callback_c*/ {
 public:
     //daObjSwBallA_c() : dEvLib_callback_c(this) {}
@@ -31,6 +39,7 @@ public:
     void onFlag(u8 idx, u8 val) { field_0x5af[idx] |= val; }
     u8 checkFlag(u8 idx, u8 val) { return field_0x5af[idx] & val; }
 
+private:
     u8 dEvLib_callback_c_filler[0x14];
     /* 0x57C */ request_of_phase_process_class field_0x57c;
     /* 0x584 */ J3DModel* mModel;
@@ -47,5 +56,6 @@ public:
     /* 0x5C6 */ u16 field_0x5c6;
     /* 0x5C8 */ u16 field_0x5c8;
 };
+STATIC_ASSERT(sizeof(daObjSwBallA_c) == 0x5CC);
 
 #endif /* D_A_OBJ_SWBALLA_H */

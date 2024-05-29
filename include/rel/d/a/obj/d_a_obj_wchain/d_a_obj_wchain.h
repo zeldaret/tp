@@ -22,6 +22,14 @@ public:
 };
 #endif
 
+/**
+ * @ingroup actors-objects
+ * @class daObjWchain_c
+ * @brief Wolf Chain
+ *
+ * @details
+ *
+ */
 class daObjWchain_c : public fopAc_ac_c {
 public:
     /* 80D2FEF8 */ int createHeap();
@@ -56,7 +64,8 @@ public:
     void onEndFlg() { mEnd = true; }
     bool getEndFlg() { return mEnd; }
     void onNowSwitchFlg() { mDown = mNowSwitch = true; }
-    
+
+private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpHandleModel;
     /* 0x574 */ J3DModelData* mpChainModelData;
@@ -82,7 +91,6 @@ public:
     /* 0x7AC */ f32 mRealRoofY;
     /* 0x7B0 */ cXyz mRoofPos;
 };
-
 STATIC_ASSERT(sizeof(daObjWchain_c) == 0x7BC);
 
 #endif /* D_A_OBJ_WCHAIN_H */

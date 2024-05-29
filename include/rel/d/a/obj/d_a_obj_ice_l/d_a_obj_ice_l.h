@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjIce_l_c
+ * @brief Ice (Large)
+ *
+ * @details
+ *
+ */
 class daObjIce_l_c : public dBgS_MoveBgActor {
 public:
     /* 80C1F9F8 */ void RideOn_Angle(s16&, f32, s16, f32);
@@ -19,6 +27,7 @@ public:
     /* 80C206AC */ virtual int Draw();
     /* 80C20750 */ virtual int Delete();
 
+private:
     /* 0x5A0 */ f32 field_0x5a0;
     /* 0x5A4 */ f32 field_0x5a4;
     /* 0x5A8 */ u8 field_0x5A8[0x5AC - 0x5A8];
@@ -47,5 +56,6 @@ public:
     /* 0x634 */ J3DModel* mpModel;
     /* 0x638 */ request_of_phase_process_class mPhase;
 };
+STATIC_ASSERT(sizeof(daObjIce_l_c) == 0x640);
 
 #endif /* D_A_OBJ_ICE_L_H */

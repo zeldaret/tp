@@ -5,24 +5,15 @@
 #include "m_Do/m_Do_hostIO.h"
 #include "rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag.h"
 
-class daLv2Candle_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 8058E04C */ daLv2Candle_HIO_c();
-    /* 8058F050 */ ~daLv2Candle_HIO_c() {}
 
-    /* 0x04 */ u8 mTimer;
-    /* 0x08 */ f32 mPow;
-    /* 0x0C */ f32 mAnmMaxStep;
-    /* 0x10 */ f32 mAnmIntensity[6];
-    /* 0x28 */ u8 mAnmTimers[6];
-    /* 0x2E */ u8 mColor1R;
-    /* 0x2F */ u8 mColor1G;
-    /* 0x30 */ u8 mColor1B;
-    /* 0x31 */ u8 mColor2R;
-    /* 0x32 */ u8 mColor2G;
-    /* 0x33 */ u8 mColor2B;
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daLv2Candle_c
+ * @brief Goron Mines Torch
+ *
+ * @details
+ *
+ */
 class daLv2Candle_c : public fopAc_ac_c {
 public:
     /* 8058E13C */ void setBaseMtx();
@@ -46,6 +37,7 @@ public:
     u8 getSwType() { return fopAcM_GetParamBit(this, 8, 4); }
     u8 getSw() { return fopAcM_GetParamBit(this, 0, 8); }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ dCcD_Stts mStts;
@@ -73,5 +65,23 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daLv2Candle_c) == 0x75C);
+
+class daLv2Candle_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 8058E04C */ daLv2Candle_HIO_c();
+    /* 8058F050 */ ~daLv2Candle_HIO_c() {}
+
+    /* 0x04 */ u8 mTimer;
+    /* 0x08 */ f32 mPow;
+    /* 0x0C */ f32 mAnmMaxStep;
+    /* 0x10 */ f32 mAnmIntensity[6];
+    /* 0x28 */ u8 mAnmTimers[6];
+    /* 0x2E */ u8 mColor1R;
+    /* 0x2F */ u8 mColor1G;
+    /* 0x30 */ u8 mColor1B;
+    /* 0x31 */ u8 mColor2R;
+    /* 0x32 */ u8 mColor2G;
+    /* 0x33 */ u8 mColor2B;
+};
 
 #endif /* D_A_OBJ_LV2CANDLE_H */

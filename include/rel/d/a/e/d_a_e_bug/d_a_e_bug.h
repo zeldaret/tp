@@ -1,7 +1,6 @@
 #ifndef D_A_E_BUG_H
 #define D_A_E_BUG_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**

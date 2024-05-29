@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daKey_c
+ * @brief Small Key
+ *
+ * @details
+ *
+ */
 class daKey_c : public fopAc_ac_c {
     /* 80CD9F2C */ void initBaseMtx();
     /* 80CD9F68 */ void setBaseMtx();

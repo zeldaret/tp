@@ -4,6 +4,14 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwPr_c
+ * @brief Boomerang Switch
+ *
+ * @details
+ *
+ */
 class daObjSwPr_c : public fopAc_ac_c {
 public:
     /* 8059A5E8 */ void initBaseMtx();
@@ -45,5 +53,6 @@ public:
     /* 0x83D */ u8 field_0x83d;
     /* 0x83E */ u8 mModelType;
 };
+STATIC_ASSERT(sizeof(daObjSwPr_c) == 0x840);
 
 #endif /* D_A_OBJ_SWPROPELLER_H */

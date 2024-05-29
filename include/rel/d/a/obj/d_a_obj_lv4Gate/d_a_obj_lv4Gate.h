@@ -5,6 +5,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv4Gate_c
+ * @brief Arbiter's Grounds Gate
+ *
+ * @details
+ *
+ */
 class daLv4Gate_c : public dBgS_MoveBgActor {
 public:
     enum Mode_e {

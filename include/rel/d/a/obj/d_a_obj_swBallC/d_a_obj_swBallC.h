@@ -3,7 +3,16 @@
 
 #include "f_op/f_op_actor_mng.h"
 
-struct daObjSwBallC_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjSwBallC_c
+ * @brief Ball Switch C
+ *
+ * @details
+ *
+ */
+class daObjSwBallC_c : public fopAc_ac_c {
+public:
     /* 80CF5CD4 */ void initBaseMtx();
     /* 80CF5CF4 */ void setBaseMtx();
     /* 80CF5D58 */ int Create();
@@ -44,5 +53,6 @@ struct daObjSwBallC_c : public fopAc_ac_c {
     /* 0x587 */ u8 field_0x587;
     /* 0x588 */ u32 field_0x588;
 };
+STATIC_ASSERT(sizeof(daObjSwBallC_c) == 0x58C);
 
 #endif /* D_A_OBJ_SWBALLC_H */

@@ -7,47 +7,6 @@
 #include "dol2asm.h"
 #include "m_Do/m_Do_hostIO.h"
 
-//
-// Types:
-//
-
-class daFireWood2_c : public fopAc_ac_c {
-public:
-    /* 80BE82D0 */ void setBaseMtx();
-    /* 80BE8328 */ void create();
-    /* 80BE8640 */ void lightInit();
-    /* 80BE86CC */ void setLight();
-    /* 80BE86FC */ void cutLight();
-    /* 80BE872C */ void pointLightProc();
-    /* 80BE87DC */ void Execute();
-    /* 80BE8D98 */ int Draw();
-    /* 80BE8DA0 */ void Delete();
-
-    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
-    /* 0x574 */ dCcD_Stts mStts;
-    /* 0x5B0 */ dCcD_Cyl mCyl;
-    /* 0x6EC */ cXyz field_0x6ec;
-    /* 0x6F8 */ u8 field_0x6f8;
-    /* 0x6F9 */ u8 field_0x6f9;
-    /* 0x6FA */ u8 field_0x6fa;
-    /* 0x6FB */ u8 field_0x6fb;
-    /* 0x6FC */ u32 field_0x6fc;
-    /* 0x700 */ u32 field_0x700;
-    /* 0x704 */ u32 field_0x704;
-    /* 0x708 */ u32 field_0x708;
-    /* 0x70C */ cXyz field_0x70c;
-    /* 0x718 */ u8 field_0x718;
-    /* 0x71C */ f32 field_0x71c;
-    /* 0x720 */ LIGHT_INFLUENCE mLightInfluence;
-
-    static u8 const mCcDObjInfo[48];
-    static u8 mCcDCyl[68];
-};  // Size: 0x740
-
-struct daFireWood2_HIO_c {
-    /* 80BE824C */ daFireWood2_HIO_c();
-    /* 80BE8E54 */ ~daFireWood2_HIO_c();
-};
 
 //
 // Forward References:
@@ -153,25 +112,30 @@ SECTION_DATA static u8 l_cull_box[24] = {
 };
 
 /* 80BE8FF4-80BE9014 -00001 0020+00 1/0 0/0 0/0 .data            l_daFireWood2_Method */
-SECTION_DATA static void* l_daFireWood2_Method[8] = {
-    (void*)daFireWood2_Create__FP10fopAc_ac_c,
-    (void*)daFireWood2_Delete__FP13daFireWood2_c,
-    (void*)daFireWood2_Execute__FP13daFireWood2_c,
-    (void*)NULL,
-    (void*)daFireWood2_Draw__FP13daFireWood2_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daFireWood2_Method = {
+    (process_method_func)daFireWood2_Create__FP10fopAc_ac_c,
+    (process_method_func)daFireWood2_Delete__FP13daFireWood2_c,
+    (process_method_func)daFireWood2_Execute__FP13daFireWood2_c,
+    0,
+    (process_method_func)daFireWood2_Draw__FP13daFireWood2_c,
 };
 
 /* 80BE9014-80BE9044 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_FireWood2 */
-SECTION_DATA extern void* g_profile_Obj_FireWood2[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00390000, (void*)&g_fpcLf_Method,
-    (void*)0x00000740, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01EE0000, (void*)&l_daFireWood2_Method,
-    (void*)0x00060000, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_FireWood2 = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_Lv1Cdl00,      // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daFireWood2_c),  // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  494,                    // mPriority
+  &l_daFireWood2_Method,  // sub_method
+  0x00060000,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80BE9044-80BE9050 0000AC 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */

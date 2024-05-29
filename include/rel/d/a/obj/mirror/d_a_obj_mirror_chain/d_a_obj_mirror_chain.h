@@ -5,6 +5,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_w.h"
 
+
 class dScissorBegin_packet_c : public J3DPacket {
 public:
     /* 80C96698 */ void draw();
@@ -24,6 +25,14 @@ public:
     void entryPacket() { j3dSys.getDrawBuffer(1)->entryImm(this, 0); }
 };
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMirrorChain_c
+ * @brief Twilight Mirror Chain
+ *
+ * @details
+ *
+ */
 class daObjMirrorChain_c : public fopAc_ac_c {
 public:
     /* 80C96E40 */ int createHeap();
@@ -38,6 +47,7 @@ public:
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     void setAnmSpeed(f32 speed) { mpBckAnm->setPlaySpeed(speed); }
 
+private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ J3DModel* mpPortalModel;
     /* 0x570 */ mDoExt_bckAnm* mpBckAnm;

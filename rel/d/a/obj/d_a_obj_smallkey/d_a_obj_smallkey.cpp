@@ -1039,25 +1039,29 @@ extern "C" asm void __dt__18dPa_levelEcallBackFv() {
 
 /* 80CDB7B0-80CDB7B4 002070 0004+00 1/0 0/0 0/0 .text
  * execute__18JPAEmitterCallBackFP14JPABaseEmitter              */
-void JPAEmitterCallBack::execute(JPABaseEmitter* param_0) {
+// void JPAEmitterCallBack::execute(JPABaseEmitter* param_0) {
+extern "C" asm void execute__18JPAEmitterCallBackFP14JPABaseEmitter() {
     /* empty function */
 }
 
 /* 80CDB7B4-80CDB7B8 002074 0004+00 1/0 0/0 0/0 .text
  * executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter         */
-void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0) {
+// void JPAEmitterCallBack::executeAfter(JPABaseEmitter* param_0) {
+extern "C" asm void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter() {
     /* empty function */
 }
 
 /* 80CDB7B8-80CDB7BC 002078 0004+00 1/0 0/0 0/0 .text draw__18JPAEmitterCallBackFP14JPABaseEmitter
  */
-void JPAEmitterCallBack::draw(JPABaseEmitter* param_0) {
+// void JPAEmitterCallBack::draw(JPABaseEmitter* param_0) {
+extern "C" asm void draw__18JPAEmitterCallBackFP14JPABaseEmitter() {
     /* empty function */
 }
 
 /* 80CDB7BC-80CDB7C0 00207C 0004+00 1/0 0/0 0/0 .text
  * drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter            */
-void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
+// void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
+extern "C" asm void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter() {
     /* empty function */
 }
 
