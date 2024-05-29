@@ -4,7 +4,16 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 
-struct daObjStopper_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjStopper_c
+ * @brief Stopper
+ *
+ * @details
+ *
+ */
+class daObjStopper_c : public fopAc_ac_c {
+public:
     enum ActionType {
         ACTION_WAIT,
         ACTION_WAIT_ORDER_EVENT,
@@ -41,8 +50,11 @@ struct daObjStopper_c : public fopAc_ac_c {
     void setAction(u8 action) { mAction = action; }
     void startClose() { setAction(ACTION_CLOSE_INIT); }
 
+private:
     /* 0x568 */ u8 field_0x568[0x93c - 0x568];
     /* 0x93C */ u8 mAction;
+    /* 0x93D */ u8 field_0x93d[0xa00 - 0x93d];
 };
+STATIC_ASSERT(sizeof(daObjStopper_c) == 0xA00);
 
 #endif /* D_A_OBJ_STOPPER_H */

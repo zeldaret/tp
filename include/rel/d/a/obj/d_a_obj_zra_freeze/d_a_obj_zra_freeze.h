@@ -4,6 +4,14 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daZraFreeze_c
+ * @brief Zora (Frozen)
+ *
+ * @details
+ *
+ */
 class daZraFreeze_c : public fopAc_ac_c {
 public:
     /* 80D440B8 */ void setBaseMtx();

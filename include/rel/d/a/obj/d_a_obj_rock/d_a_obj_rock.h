@@ -5,8 +5,6 @@
 #include "d/cc/d_cc_d.h"
 #include "f_op/f_op_actor.h"
 
-class J3DModel;
-
 struct rock_ss {
     /* 80CBE5A4 */ ~rock_ss();
     /* 80CBE678 */ rock_ss();
@@ -22,6 +20,14 @@ struct rock_ss {
 
 STATIC_ASSERT(sizeof(rock_ss) == 0x160);
 
+/**
+ * @ingroup actors-objects
+ * @class obj_rock_class
+ * @brief Rock
+ *
+ * @details
+ *
+ */
 class obj_rock_class : public fopAc_ac_c {
 public:
     /* 0x568  */ request_of_phase_process_class mPhaseReq;
@@ -34,7 +40,7 @@ public:
     /* 0x1B7C */ dCcD_Stts mStts;
     /* 0x1BB8 */ u8 field_0x1bb8; // Unused?
     /* 0x1BB9 */ bool mInitialized;
-};  // Size: 0x1BBC
+};
 
 STATIC_ASSERT(sizeof(obj_rock_class) == 0x1BBC);
 

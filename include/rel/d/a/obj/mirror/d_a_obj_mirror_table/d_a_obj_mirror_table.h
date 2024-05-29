@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_w.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMirrorTable_c
+ * @brief Twilight Mirror Table
+ *
+ * @details
+ *
+ */
 class daObjMirrorTable_c : public fopAc_ac_c {
 public:
     /* 80C99938 */ int createHeap();

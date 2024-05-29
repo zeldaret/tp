@@ -4,6 +4,14 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCdoor_c
+ * @brief Chain Door
+ *
+ * @details
+ *
+ */
 class daObjCdoor_c : public dBgS_MoveBgActor {
 public:
     enum Mode {
@@ -43,6 +51,7 @@ public:
     int getSwitchNum() { return mSw; }
     void setChainID(u32 i_id) { mChainID = i_id; }
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ bool mEnd;

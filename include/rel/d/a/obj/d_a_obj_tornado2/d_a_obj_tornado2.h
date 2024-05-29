@@ -4,7 +4,16 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
-struct daObjTrnd2_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjTrnd2_c
+ * @brief Tornado 2
+ *
+ * @details
+ *
+ */
+class daObjTrnd2_c : public fopAc_ac_c {
+public:
     /* 80D1C4D8 */ void setPntWind();
     /* 80D1C54C */ void cutPntWind();
     /* 80D1C570 */ void movePntWind();
@@ -45,5 +54,6 @@ struct daObjTrnd2_c : public fopAc_ac_c {
     /* 0x778 */ bool field_0x778;
     /* 0x778 */ JPABaseEmitter* mParticles[3];
 };
+STATIC_ASSERT(sizeof(daObjTrnd2_c) == 0x788);
 
 #endif /* D_A_OBJ_TORNADO2_H */

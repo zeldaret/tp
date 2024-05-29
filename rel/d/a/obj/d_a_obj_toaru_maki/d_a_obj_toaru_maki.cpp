@@ -6,23 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki.h"
 #include "dol2asm.h"
 
-class daObjToaruMaki_c : public fopAc_ac_c, public request_of_phase_process_class {
-public:
-    /* 80D13098 */ daObjToaruMaki_c();
-    /* 80D130E0 */ virtual ~daObjToaruMaki_c();
-    /* 80D1316C */ int createHeap();
-    /* 80D132B4 */ int create();
-    /* 80D133C0 */ int Delete();
-    /* 80D1343C */ void setModelMtx();
-    /* 80D134A0 */ int draw();
-    /* 80D13524 */ int execute();
-
-    u32 getNameArg_0() { return fopAcM_GetParamBit(this, 0, 4); }
-
-    /* 0x574 */ J3DModel* mpModel;
-    /* 0x578 */ s32 field_0x578;
-    /* 0x57C */ Mtx mMtx;
-};  // Size: 0x5AC
 
 //
 // Forward References:
@@ -91,25 +74,30 @@ static asm int daObjToaruMaki_c_createHeap(fopAc_ac_c* i_this) {
 static char* l_arcName[2] = {"T_Maki1", "T_Maki2"};
 
 /* 80D1362C-80D1364C -00001 0020+00 1/0 0/0 0/0 .data            daObjToaruMaki_METHODS */
-SECTION_DATA static void* daObjToaruMaki_METHODS[8] = {
-    (void*)daObjToaruMaki_create__FP16daObjToaruMaki_c,
-    (void*)daObjToaruMaki_Delete__FP16daObjToaruMaki_c,
-    (void*)daObjToaruMaki_execute__FP16daObjToaruMaki_c,
-    (void*)NULL,
-    (void*)daObjToaruMaki_draw__FP16daObjToaruMaki_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daObjToaruMaki_METHODS = {
+    (process_method_func)daObjToaruMaki_create__FP16daObjToaruMaki_c,
+    (process_method_func)daObjToaruMaki_Delete__FP16daObjToaruMaki_c,
+    (process_method_func)daObjToaruMaki_execute__FP16daObjToaruMaki_c,
+    0,
+    (process_method_func)daObjToaruMaki_draw__FP16daObjToaruMaki_c,
 };
 
 /* 80D1364C-80D1367C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_ToaruMaki */
-SECTION_DATA extern void* g_profile_Obj_ToaruMaki[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01A90000, (void*)&g_fpcLf_Method,
-    (void*)0x000005AC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02ED0000, (void*)&daObjToaruMaki_METHODS,
-    (void*)0x00040000, (void*)0x030E0000,
+extern actor_process_profile_definition g_profile_Obj_ToaruMaki = {
+  fpcLy_CURRENT_e,         // mLayerID
+  7,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_Obj_ToaruMaki,      // mProcName
+  &g_fpcLf_Method.mBase,   // sub_method
+  sizeof(daObjToaruMaki_c),// mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  749,                     // mPriority
+  &daObjToaruMaki_METHODS, // sub_method
+  0x00040000,              // mStatus
+  fopAc_ENV_e,             // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80D1367C-80D13688 000058 000C+00 2/2 0/0 0/0 .data            __vt__16daObjToaruMaki_c */

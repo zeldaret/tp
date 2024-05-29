@@ -5,6 +5,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/particle/d_particle_copoly.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daGraveStone_c
+ * @brief Zora Gravestone
+ *
+ * @details
+ *
+ */
 class daGraveStone_c : public dBgS_MoveBgActor {
 public:
     class daObj_GrvStn_prtclMngr_c {
@@ -31,6 +39,7 @@ public:
     /* 80C13078 */ int Draw();
     /* 80C1311C */ int Delete();
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ dBgS_ObjAcch mAcch;

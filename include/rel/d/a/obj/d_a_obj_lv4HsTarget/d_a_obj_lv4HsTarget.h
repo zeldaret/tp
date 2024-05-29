@@ -5,6 +5,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daLv4HsTarget_c
+ * @brief Arbiter's Grounds Clawshot Target
+ *
+ * @details
+ *
+ */
 class daLv4HsTarget_c : public dBgS_MoveBgActor {
 public:
     /* 80C5F690 */ void setBaseMtx();
@@ -15,9 +23,11 @@ public:
     /* 80C5F870 */ virtual int Draw();
     /* 80C5F8D4 */ virtual int Delete();
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModel;
 };
+STATIC_ASSERT(sizeof(daLv4HsTarget_c) == 0x5AC);
 
 class daLv4HsTarget_HIO_c : public mDoHIO_entry_c {
 public:

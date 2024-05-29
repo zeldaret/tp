@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_Sekizoa_c
+ * @brief Stone Guardian Statue(s)
+ *
+ * @details
+ *
+ */
 class daObj_Sekizoa_c : public daNpcT_c {
 public:
     /* 80CCE34C */ ~daObj_Sekizoa_c();

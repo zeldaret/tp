@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSmoke_c
+ * @brief Elde Inn Stove Smoke
+ *
+ * @details
+ *
+ */
 class daObjSmoke_c : public fopAc_ac_c {
 public:
     u8 getSwbit() {
@@ -16,7 +24,9 @@ public:
     /* 80CDD004 */ int execute();
     /* 80CDD0B8 */ int _delete();
 
+private:
     /* 0x568 */ JPABaseEmitter* mParticle;
 };
+STATIC_ASSERT(sizeof(daObjSmoke_c) == 0x56C);
 
 #endif /* D_A_OBJ_SMOKE_H */

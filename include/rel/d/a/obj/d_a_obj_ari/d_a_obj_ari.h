@@ -8,6 +8,14 @@
 #include "d/a/d_a_player.h"
 #include "d/d_insect.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjARI_c
+ * @brief Insect - Ant
+ *
+ * @details
+ *
+ */
 class daObjARI_c : public dInsect_c {
 public:
     /* 80BA26BC */ void InitCcSph();
@@ -32,6 +40,7 @@ public:
     /* 80BA483C */ bool CreateChk();
     /* 80BA49E8 */ cPhs__Step create();
 
+private:
     /* 0x590 */ dBgS_GndChk mGndChk;
     /* 0x5E4 */ u8 field_0x5e4[4];
     /* 0x5E8 */ u8 mAction;

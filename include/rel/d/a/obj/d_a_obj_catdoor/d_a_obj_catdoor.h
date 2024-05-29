@@ -4,13 +4,22 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/bg/d_bg_w.h"
 
-struct daObjCatDoor_Door_c {
+class daObjCatDoor_Door_c {
+public:
     /* 0x00 */ J3DModel* pmodel;
     /* 0x04 */ dBgW bgw;
     /* 0xe0 */ Mtx mtx;
     /* 0xf4 */ s16 angle;
 };
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCatDoor_c
+ * @brief Cat Door
+ *
+ * @details
+ *
+ */
 class daObjCatDoor_c : public fopAc_ac_c {
 public:
     inline ~daObjCatDoor_c();

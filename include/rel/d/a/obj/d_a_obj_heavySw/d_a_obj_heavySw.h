@@ -6,6 +6,14 @@
 #include "d/com/d_com_inf_game.h"
 #include "m_Do/m_Do_hostIO.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daHeavySw_c
+ * @brief Heavy Switch
+ *
+ * @details
+ *
+ */
 class daHeavySw_c : public dBgS_MoveBgActor {
 public:
     enum Mode_e { MODE_WAIT, MODE_RIDE, MODE_MOVE_INIT, MODE_MOVE, MODE_MOVE_END };

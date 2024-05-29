@@ -9,13 +9,6 @@
 #include "d/d_procname.h"
 #include "dol2asm.h"
 
-//
-// Types:
-//
-
-struct daObjLife_c {
-    /* 8057B320 */ void setPos(cXyz);
-};
 
 //
 // Forward References:
@@ -1055,7 +1048,8 @@ extern "C" asm void func_8057B304(void* _this, int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjLife_c::setPos(cXyz param_0) {
+// asm void daObjLife_c::setPos(cXyz param_0) {
+extern "C" asm void setPos__11daObjLife_cF4cXyz() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bosswarp/d_a_obj_bosswarp/setPos__11daObjLife_cF4cXyz.s"
 }

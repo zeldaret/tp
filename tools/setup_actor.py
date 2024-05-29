@@ -70,7 +70,52 @@ weak_funcs = {
     "asm dBgS_ObjAcch::dBgS_ObjAcch()": "__ct__12dBgS_ObjAcchFv",
     "asm void daTag_FWall_c::getPos(u8 param_0)": "getPos__13daTag_FWall_cFUc",
     "asm void daB_DS_c::getHandPosR()": "getHandPosR__8daB_DS_cFv",
-    "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv"
+    "asm void daB_DS_c::getHandPosL()": "getHandPosL__8daB_DS_cFv",
+    "asm dEvLib_callback_c::~dEvLib_callback_c()": "__dt__17dEvLib_callback_cFv",
+    "bool dEvLib_callback_c::eventStart()": "eventStart__17dEvLib_callback_cFv",
+    "asm void dInsect_c::Insect_Release()": "Insect_Release__9dInsect_cFv",
+    "asm dBgS_WtrChk::~dBgS_WtrChk()": "__dt__11dBgS_WtrChkFv",
+    "asm dBgS_ObjGndChk::dBgS_ObjGndChk()": "__ct__14dBgS_ObjGndChkFv",
+    "asm void daObjLife_c::setPos(cXyz param_0)": "setPos__11daObjLife_cF4cXyz",
+    "asm void daPy_py_c::getRightHandPos() const": "getRightHandPos__9daPy_py_cCFv",
+    "asm daBaseNpc_path_c::~daBaseNpc_path_c()": "__dt__16daBaseNpc_path_cFv",
+    "asm daBaseNpc_acMngr_c::~daBaseNpc_acMngr_c()": "__dt__18daBaseNpc_acMngr_cFv",
+    "asm daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c()": "__dt__23daBaseNpc_moveBgActor_cFv",
+    "asm void dAttention_c::getDistTable(int param_0)": "getDistTable__12dAttention_cFi",
+    "asm dMdl_obj_c::dMdl_obj_c()": "__ct__10dMdl_obj_cFv",
+    "asm cM3dGLin::~cM3dGLin()": "__dt__8cM3dGLinFv",
+    "asm dCcD_Cps::~dCcD_Cps()": "__dt__8dCcD_CpsFv",
+    "asm dCcD_Cps::dCcD_Cps()": "__ct__8dCcD_CpsFv",
+    "asm daNpcT_Path_c::~daNpcT_Path_c()" : "__dt__13daNpcT_Path_cFv",
+    "asm daNpcT_ActorMngr_c::daNpcT_ActorMngr_c()": "__ct__18daNpcT_ActorMngr_cFv",
+    "asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3, s16 param_4)": "setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs",
+    "asm void daNpcT_JntAnm_c::setEyeAngleX(cXyz param_0, f32 param_1, s16 param_2)": "setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs",
+    "asm void daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0)": "getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c",
+    "asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0)": "getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c",
+    "asm void daTag_EvtArea_c::chkPointInArea(cXyz param_0)": "chkPointInArea__15daTag_EvtArea_cF4cXyz",
+    "asm void daPy_py_c::getLeftHandPos() const" : "getLeftHandPos__9daPy_py_cCFv",
+    "asm mDoExt_bckAnm::~mDoExt_bckAnm()": "__dt__13mDoExt_bckAnmFv",
+    "asm mDoExt_bckAnm::mDoExt_bckAnm()": "__ct__13mDoExt_bckAnmFv",
+    "asm cM3dGTri::~cM3dGTri()": "__dt__8cM3dGTriFv",
+    # "asm cM3dGTri::cM3dGTri()": ""
+    "asm J3DTevKColorAnm::~J3DTevKColorAnm()": "__dt__15J3DTevKColorAnmFv",
+    "asm J3DTevKColorAnm::J3DTevKColorAnm()": "__ct__15J3DTevKColorAnmFv",
+    "asm J3DTevColorAnm::~J3DTevColorAnm()": "__dt__14J3DTevColorAnmFv",
+    "asm J3DTevColorAnm::J3DTevColorAnm()": "__ct__14J3DTevColorAnmFv",
+    "asm J3DTexNoAnm::~J3DTexNoAnm()": "__dt__11J3DTexNoAnmFv",
+    "asm J3DTexNoAnm::J3DTexNoAnm()": "__ct__11J3DTexNoAnmFv",
+    "asm J3DTexMtxAnm::~J3DTexMtxAnm()": "__dt__12J3DTexMtxAnmFv",
+    "asm J3DTexMtxAnm::J3DTexMtxAnm()": "__ct__12J3DTexMtxAnmFv",
+    "asm J3DMatColorAnm::~J3DMatColorAnm()": "__dt__14J3DMatColorAnmFv",
+    "asm J3DMatColorAnm::J3DMatColorAnm()": "__ct__14J3DMatColorAnmFv",
+    "asm void J3DTexNoAnm::calc(u16* param_0) const": "calc__11J3DTexNoAnmCFPUs",
+    "asm daNpcF_Lookat_c::~daNpcF_Lookat_c()": "__dt__15daNpcF_Lookat_cFv",
+    "asm daNpcF_c::~daNpcF_c()": "__dt__8daNpcF_cFv",
+    "asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c()": "__dt__18daNpcF_ActorMngr_cFv",
+    "asm daNpcF_c::daNpcF_c()": "__ct__8daNpcF_cFv",
+    "asm daNpcF_ActorMngr_c::daNpcF_ActorMngr_c()": "__ct__18daNpcF_ActorMngr_cFv",
+    "void daNpcF_c::adjustShapeAngle()": "adjustShapeAngle__8daNpcF_cFv",
+    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -97,10 +142,60 @@ external_refs = [
     "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];",
     "extern \"C\" void PSMTXScale();",
     "extern \"C\" void PSMTXInverse();",
-    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
+    "SECTION_INIT void memset();",
+    "extern \"C\" void OSReport();"
+    # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
+    "extern \"C\" void GXLoadLightObjImm();",
+    "extern \"C\" void GXSetChanAmbColor();",
+    "extern \"C\" void GXSetChanMatColor();",
+    "extern \"C\" void GXLoadPosMtxImm();",
+    "extern \"C\" void GXLoadNrmMtxImm();",
+    "extern \"C\" void GXLoadLightObjImm();",
+    "extern \"C\" void PSMTXConcat();",
+    "extern \"C\" void GXSetVtxDesc();",
+    "extern \"C\" void GXSetVtxAttrFmt();",
+    "extern \"C\" void GXSetArray();",
+    "extern \"C\" void GXSetTexCoordGen2();",
+    "extern \"C\" void GXSetNumTexGens();",
+    "extern \"C\" void GXSetCullMode();",
+    "extern \"C\" void GXSetNumChans();",
+    "extern \"C\" void GXSetChanCtrl();",
+    "extern \"C\" void GXInitTexObj();",
+    "extern \"C\" void GXInitTexObjLOD();",
+    "extern \"C\" void GXLoadTexObj();",
+    "extern \"C\" void GXSetNumIndStages();",
+    "extern \"C\" void GXSetTevColorIn();",
+    "extern \"C\" void GXSetTevAlphaIn();",
+    "extern \"C\" void GXSetTevColorOp();",
+    "extern \"C\" void GXSetTevAlphaOp();",
+    "extern \"C\" void GXSetTevColor();",
+    "extern \"C\" void GXSetTevKColor();",
+    "extern \"C\" void GXSetTevKColorSel();",
+    "extern \"C\" void GXSetTevKAlphaSel();",
+    "extern \"C\" void GXSetTevSwapMode();",
+    "extern \"C\" void GXSetAlphaCompare();",
+    "extern \"C\" void GXSetTevOrder();",
+    "extern \"C\" void GXSetNumTevStages();",
+    "extern \"C\" void GXClearVtxDesc();",
+    "extern \"C\" void GXSetZMode();",
+    "extern \"C\" void GXSetZCompLoc();",
+    "extern \"C\" void GXCallDisplayList();",
+    "extern \"C\" void GXSetClipMode();",
+    "extern \"C\" void DCStoreRangeNoSync();",
+    "extern \"C\" void PSVECDotProduct();",
+    "extern \"C\" void GXBegin();",
+    "extern \"C\" void C_VECReflect();",
+    "extern \"C\" void strcpy();",
+    "extern \"C\" extern u32 __float_max;",
+    "extern \"C\" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];",
+    "extern \"C\" void C_MTXLightPerspective();",
+    "extern \"C\" extern u8 const j3dDefaultMtx[48];",
+    "extern \"C\" void PSMTXIdentity();",
+    "extern \"C\" void PSMTXRotAxisRad();",
+    "extern \"C\" void C_MTXLightOrtho();",
+    "extern \"C\" void strcat();",
 ]
 
-# list of known types to be removed
 types = [
     "struct request_of_phase_process_class",
     "struct mDoMtx_stack_c",
@@ -192,7 +287,7 @@ types = [
     "struct cSAngle",
     "struct mDoExt_invisibleModel",
     "struct dCcD_GAtTgCoCommonBase",
-    "struct daObjHHASHI_c",
+    # "struct daObjHHASHI_c",
     "struct dSv_event_flag_c",
     "struct dSv_event_c",
     "struct LIGHT_INFLUENCE",
@@ -229,17 +324,94 @@ types = [
     "struct dEvt_info_c",
     "struct dAttList_c",
     "struct dSv_event_tmp_flag_c",
-    "struct daObjH_Saku_c",
+    # "struct daObjH_Saku_c",
     "struct Z2StatusMgr",
     "struct mDoExt_3DlineMat0_c",
     "struct dSv_player_get_item_c",
     "struct dAttCatch_c",
     "struct fopAcM_wt_c",
-    "struct daObjCRVSTEEL_c",
-    "struct daObjCRVGATE_c",
+    # "struct daObjCRVSTEEL_c",
+    # "struct daObjCRVGATE_c",
     "struct daTag_FWall_c",
     "struct fopAcM_rc_c",
-    "struct daB_DS_c"
+    "struct daB_DS_c",
+    "struct dEvLib_callback_c",
+    "struct daPy_boomerangMove_c",
+    "struct dMenu_Insect_c",
+    "struct dInsect_c",
+    "struct dDlst_peekZ_c",
+    "struct mDoExt_bckAnm",
+    "struct fopAcM_lc_c",
+    "struct JUTNameTab",
+    "struct dMdl_obj_c",
+    "struct dMdl_mng_c",
+    "struct dMdl_c",
+    # "struct daObjLife_c",
+    # "struct daObjCRVLH_UP_c",
+    # "struct daObjCRVHAHEN_c",
+    "struct dDlst_peekZ_c",
+    "struct dSv_light_drop_c",
+    "struct TSinCosTable__template0",
+    "struct J3DShape",
+    "struct J3DPacket",
+    "struct J3DDrawBuffer",
+    "struct J3DPacket",
+    "struct daSetBgObj_c",
+    "struct WIND_INFLUENCE",
+    "struct dPa_modelEcallBack",
+    "struct daTagGra_c",
+    "struct daBaseNpc_path_c",
+    "struct daBaseNpc_moveBgActor_c",
+    "struct daBaseNpc_acMngr_c",
+    "struct dPaPo_c",
+    "struct cSGlobe",
+    "struct J3DTexMtxInfo",
+    "struct daNpcT_c",
+    "struct daNPC_TK_c",
+    "struct dCcD_SrcCps",
+    "struct dCcD_Cps",
+    "struct cM3dGCpsS",
+    "struct cM3dGCps",
+    "struct cM3dGLin",
+    "struct daNpc_Pouya_c",
+    "struct daNpc_Jagar_Param_c",
+    "struct daMidna_c",
+    "struct dAttHint_c",
+    "struct daTag_EvtArea_c",
+    "struct daNpcT_faceMotionAnmData_c",
+    "struct daNpcT_MotionSeqMngr_c",
+    "struct sequenceStepData_c",
+    "struct daNpcT_evtData_c",
+    "struct daNpcT_motionAnmData_c",
+    "struct daNpcT_Path_c",
+    "struct daNpcT_MatAnm_c",
+    "struct daNpcT_JntAnm_c",
+    "struct daNpcT_DmgStagger_c",
+    "struct daNpcT_ActorMngr_c",
+    "struct Z2WolfHowlMgr",
+    "struct daObj_SSBase_c",
+    "struct daMyna_c",
+    "struct DALKMIST_INFLUENCE",
+    "struct cM3dGTri",
+    "struct J3DAnmColor",
+    "struct mDoExt_bpkAnm",
+    # "struct daWtPillar_c",
+    "struct create_tag_class",
+    "struct daNpcF_c",
+    "struct daNpcF_anmPlayData",
+    "struct daNpcF_MatAnm_c",
+    "struct daNpcF_Lookat_c",
+    "struct daNpcF_ActorMngr_c",
+    "struct J3DTexNoAnm",
+    "struct J3DTexMtxAnm",
+    "struct J3DTevKColorAnm",
+    "struct J3DTevColorAnm",
+    "struct J3DMaterialAnm",
+    "struct J3DMatColorAnm",
+    "struct daE_HZ_c",
+    "struct JPAEmitterManager",
+    "struct dPa_simpleEcallBack",
+    "struct daTwGate_c",
 ]
 
 class ActorSetupManager:
@@ -348,7 +520,7 @@ class ActorSetupManager:
             if stripped_line.startswith("struct ") or stripped_line.startswith("class "):
                 if stripped_line.startswith("struct ") and ("class" in stripped_line or "_c" in stripped_line):
                     stripped_line = stripped_line.replace("struct ","class ")
-                    if "hio" not in stripped_line.lower() and "_s {" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
+                    if "param_c" not in stripped_line.lower() and "hio" not in stripped_line.lower() and "_s {" not in stripped_line.lower() and "d_a_e" not in stripped_line.lower() and "obj_ystone_class" not in stripped_line.lower():
                         # might fail if a tu has more than 1 actor
                         self.actor_name = stripped_line.split(" ")[1]
 
@@ -361,10 +533,15 @@ class ActorSetupManager:
 
                 migrated_types += 1
                 inside_struct_or_class = True
-                line = stripped_line
+                if "{};" not in stripped_line:
+                    line = stripped_line+"public:\n"
+                else:
+                    line = stripped_line
+                
 
             if inside_struct_or_class:
                 struct_or_class_lines.append(line)
+                
             else:
                 new_lines.append(line)
 
@@ -429,7 +606,10 @@ class ActorSetupManager:
         for i, line in enumerate(header_lines):
             if self.actor_name in line:
                 if "{};" in line:
-                    new_lines.append("class " + self.actor_name + " : public fopEn_enemy_c {\n")
+                    if self.actor_class_type == "enemy":
+                        new_lines.append("class " + self.actor_name + " : public fopEn_enemy_c {\n")
+                    elif self.actor_class_type == "actor":
+                        new_lines.append("class " + self.actor_name + " : public fopAc_ac_c {\n")
                     new_lines.append("private:\n")
 
                     if self.actor_class_type == "enemy":
@@ -443,6 +623,7 @@ class ActorSetupManager:
                     in_class = True
                     new_lines.append(line)
             elif in_class and "};" in line:
+                new_lines.append("\n")
                 new_lines.append("private:\n")
 
                 if self.actor_class_type == "enemy":

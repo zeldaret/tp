@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSwBallB_c
+ * @brief Ball Switch B
+ *
+ * @details
+ *
+ */
 class daObjSwBallB_c : public fopAc_ac_c { //, public dEvLib_callback_c {
 public:
     //daObjSwBallB_c() : dEvLib_callback_c(this) {}
@@ -33,6 +41,7 @@ public:
     void setLightOn() { field_0x5ac = 1; }
     void setLightOff() { field_0x5ad = 1; }
 
+private:
     u8 dEvLib_callback_c_filler[0x14];
     /* 0x57C */ request_of_phase_process_class field_0x57c;
     /* 0x584 */ J3DModel* mModel;
@@ -53,5 +62,6 @@ public:
     /* 0x5AC */ u8 field_0x5ac;
     /* 0x5AD */ u8 field_0x5ad;
 };
+STATIC_ASSERT(sizeof(daObjSwBallB_c) == 0x5B0);
 
 #endif /* D_A_OBJ_SWBALLB_H */

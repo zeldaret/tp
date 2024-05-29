@@ -6,6 +6,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daBarDesk_c
+ * @brief Kakariko House Desk
+ *
+ * @details
+ *
+ */
 class daBarDesk_c : public dBgS_MoveBgActor {
 public:
     /* 80BA9200 */ void setBaseMtx();

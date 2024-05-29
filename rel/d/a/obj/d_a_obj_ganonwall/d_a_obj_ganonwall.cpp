@@ -6,32 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_ganonwall/d_a_obj_ganonwall.h"
 #include "dol2asm.h"
 
-//
-// Types:
-//
-
-class daObjGWall_c : public fopAc_ac_c {
-public:
-    /* 80BF4D18 */ void initBaseMtx();
-    /* 80BF4D54 */ void setBaseMtx();
-    /* 80BF4DA8 */ int Create();
-    /* 80BF4E8C */ int CreateHeap();
-    /* 80BF4FF0 */ int create();
-    /* 80BF50A4 */ int execute();
-    /* 80BF50CC */ int checkDraw();
-    /* 80BF5168 */ int draw();
-    /* 80BF5530 */ int _delete();
-
-    u32 getEventBit1() { return fopAcM_GetParamBit(this, 0, 10); }
-    u32 getEventBit2() { return fopAcM_GetParamBit(this, 10, 10); }
-
-    /* 0x568 */ request_of_phase_process_class mPhaseReq;
-    /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ mDoExt_btkAnm* mpBtkAnm;
-    /* 0x578 */ u16 field_0x578;
-    /* 0x57A */ u16 field_0x57a;
-    /* 0x57C */ s16 field_0x57c;
-};  // Size: 0x580
 
 //
 // Forward References:
@@ -172,25 +146,30 @@ SECTION_RODATA static f32 const lit_3711 = 1.0f;
 COMPILER_STRIP_GATE(0x80BF56B0, &lit_3711);
 
 /* 80BF56EC-80BF570C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGWall_Method */
-SECTION_DATA static void* l_daObjGWall_Method[8] = {
-    (void*)daObjGWall_Create__FP12daObjGWall_c,
-    (void*)daObjGWall_Delete__FP12daObjGWall_c,
-    (void*)daObjGWall_Execute__FP12daObjGWall_c,
-    (void*)NULL,
-    (void*)daObjGWall_Draw__FP12daObjGWall_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daObjGWall_Method = {
+    (process_method_func)daObjGWall_Create__FP12daObjGWall_c,
+    (process_method_func)daObjGWall_Delete__FP12daObjGWall_c,
+    (process_method_func)daObjGWall_Execute__FP12daObjGWall_c,
+    0,
+    (process_method_func)daObjGWall_Draw__FP12daObjGWall_c,
 };
 
 /* 80BF570C-80BF573C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_GanonWall */
-SECTION_DATA extern void* g_profile_Obj_GanonWall[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01960000, (void*)&g_fpcLf_Method,
-    (void*)0x00000580, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x023A0000, (void*)&l_daObjGWall_Method,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_GanonWall = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_GanonWall,     // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daObjGWall_c),   // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  570,                    // mPriority
+  &l_daObjGWall_Method,   // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80BF573C-80BF5748 000058 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */

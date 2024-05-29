@@ -6,31 +6,6 @@
 #include "rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor.h"
 #include "dol2asm.h"
 
-class daZdoor_c : public dBgS_MoveBgActor {
-public:
-    /* 80D3F65C */ void init_cyl();
-    /* 80D3F740 */ void set_cyl();
-    /* 80D3F884 */ void setBaseMtx();
-    /* 80D3F8F8 */ int Create();
-    /* 80D3F970 */ int CreateHeap();
-    /* 80D3F9F0 */ int create1st();
-    /* 80D3FACC */ int Execute(Mtx**);
-    /* 80D3FCE8 */ int Draw();
-    /* 80D3FD8C */ int Delete();
-
-    u32 getType() { return fopAcM_GetParamBit(this, 0, 4); }
-
-    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
-    /* 0x5A8 */ J3DModel* mpModel;
-    /* 0x5AC */ dBgS_ObjAcch mObjAcch;
-    /* 0x784 */ dBgS_AcchCir mAcchCir;
-    /* 0x7C4 */ dCcD_Stts mStts;
-    /* 0x800 */ dCcD_Cyl field_0x800[4];
-    /* 0xCF0 */ dCcD_Cyl field_0xcf0;
-    /* 0xE2C */ s16 field_0xe2c;
-    /* 0xE2E */ s16 field_0xe2e;
-    /* 0xE30 */ u8 field_0xe30;
-};  // Size: 0xE34
 
 //
 // Forward References:
@@ -455,25 +430,30 @@ asm int daZdoor_c::Delete() {
 
 /* ############################################################################################## */
 /* 80D403BC-80D403DC -00001 0020+00 1/0 0/0 0/0 .data            daZdoor_METHODS */
-SECTION_DATA static void* daZdoor_METHODS[8] = {
-    (void*)daZdoor_create1st__FP9daZdoor_c,
-    (void*)daZdoor_MoveBGDelete__FP9daZdoor_c,
-    (void*)daZdoor_MoveBGExecute__FP9daZdoor_c,
-    (void*)NULL,
-    (void*)daZdoor_MoveBGDraw__FP9daZdoor_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daZdoor_METHODS = {
+    (process_method_func)daZdoor_create1st__FP9daZdoor_c,
+    (process_method_func)daZdoor_MoveBGDelete__FP9daZdoor_c,
+    (process_method_func)daZdoor_MoveBGExecute__FP9daZdoor_c,
+    0,
+    (process_method_func)daZdoor_MoveBGDraw__FP9daZdoor_c,
 };
 
 /* 80D403DC-80D4040C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_ZDoor */
-SECTION_DATA extern void* g_profile_Obj_ZDoor[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00320000, (void*)&g_fpcLf_Method,
-    (void*)0x00000E34, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00180000, (void*)&daZdoor_METHODS,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_Obj_ZDoor = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_ZDoor,         // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daZdoor_c),      // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  24,                     // mPriority
+  &daZdoor_METHODS,       // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80D4040C-80D40418 0000FC 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGCyl */

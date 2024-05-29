@@ -8,7 +8,16 @@
 #include "d/a/d_a_player.h"
 #include "d/d_insect.h"
 
-struct daObjKABUTO_c : public dInsect_c {
+/**
+ * @ingroup actors-objects
+ * @class daObjKABUTO_c
+ * @brief Insect - Beetle
+ *
+ * @details
+ *
+ */
+class daObjKABUTO_c : public dInsect_c {
+public:
     enum Action {
         /* 0 */ ACT_WAIT,
         /* 1 */ ACT_MOVE,
@@ -38,6 +47,7 @@ struct daObjKABUTO_c : public dInsect_c {
     /* 80C2D724 */ cPhs__Step create();
     inline int Draw();
 
+private:
     /* 0x590 */ dCcD_Stts mCcStts;
     /* 0x5CC */ dCcD_Sph mCcSph;
     /* 0x704 */ daPy_boomerangMove_c mBoomerangMove;
@@ -74,7 +84,8 @@ struct daObjKABUTO_c : public dInsect_c {
 
 STATIC_ASSERT(sizeof(daObjKABUTO_c) == 0xA14);
 
-struct daObj_KabHIO_c {
+class daObj_KabHIO_c {
+public:
     /* 80C2AE6C */ daObj_KabHIO_c();
     /* 80C2E068 */ virtual ~daObj_KabHIO_c() {}
 

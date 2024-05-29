@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "d/bg/d_bg_s_movebg_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjZraRock_c
+ * @brief Zora Rock
+ *
+ * @details
+ *
+ */
 class daObjZraRock_c : public dBgS_MoveBgActor {
 public:
     /* 80D44CB8 */ void setAttnPos();
@@ -20,6 +28,7 @@ public:
 
     void setDemoStart() { mDemoStart = 1; }
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModelXlu;
     /* 0x5AC */ J3DModel* mpModelOpa;

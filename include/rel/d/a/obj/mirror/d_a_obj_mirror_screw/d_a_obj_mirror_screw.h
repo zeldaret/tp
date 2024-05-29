@@ -11,6 +11,14 @@
 class daObjMirrorScrew_c;
 typedef void (daObjMirrorScrew_c::*daObjMirrorScrew_actionFunc)();
 
+/**
+ * @ingroup actors-objects
+ * @class daObjMirrorScrew_c
+ * @brief Twilight Mirror Screw
+ *
+ * @details
+ *
+ */
 class daObjMirrorScrew_c : public dBgS_MoveBgActor {
 public:
     struct attr {
@@ -57,6 +65,7 @@ public:
         (this->*mpActionFunc[1])();
     }
 
+private:
     /* 0x5A0 */ J3DModel* mpModel;
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
     /* 0x5AC */ daObjMirrorScrew_actionFunc* mpActionFunc;

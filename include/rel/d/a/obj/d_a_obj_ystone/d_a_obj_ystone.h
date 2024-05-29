@@ -4,6 +4,14 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class obj_ystone_class
+ * @brief ??? (Shadow Stone?)
+ *
+ * @details
+ *
+ */
 class obj_ystone_class : public fopAc_ac_c {
 public:
     void setCurrentPos(cXyz i_pos) {
@@ -49,5 +57,6 @@ public:
     /* 0x59B */ bool field_0x59b;
     /* 0x59C */ u8 field_0x59c[4];
 };
+STATIC_ASSERT(sizeof(obj_ystone_class) == 0x5A0);
 
 #endif /* D_A_OBJ_YSTONE_H */

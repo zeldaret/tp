@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjKGate_c
+ * @brief Coro Gate
+ *
+ * @details
+ *
+ */
 class daObjKGate_c : public dBgS_MoveBgActor {
 public:
     /* 805880C8 */ void initBaseMtx();
@@ -38,6 +46,7 @@ public:
     u8 getEventID() { return fopAcM_GetParamBit(this, 0x14, 8); }
     u8 getNameArg() { return fopAcM_GetParamBit(this, 0x10, 4); }
 
+private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpGateModel;
     /* 0x5AC */ J3DModel* mpGateModel2;

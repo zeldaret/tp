@@ -12,6 +12,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/s/d_s_play.h"
 #include "dol2asm.h"
+#include "d/d_camera.h"
 
 static void setMidnaBindEffect(fopEn_enemy_c*, Z2CreatureEnemy*, cXyz*, cXyz*);
 

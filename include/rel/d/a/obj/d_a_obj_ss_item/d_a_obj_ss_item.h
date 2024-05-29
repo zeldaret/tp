@@ -10,6 +10,14 @@
 class daObj_SSItem_c;
 typedef int (daObj_SSItem_c::*ProcessFunc)(void*);
 
+/**
+ * @ingroup actors-objects
+ * @class daObj_SSItem_c
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class daObj_SSItem_c : public daObj_SSBase_c {
 public:
     /* 80CE6C18 */ ~daObj_SSItem_c();
@@ -39,6 +47,7 @@ public:
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 
+private:
     /* 0x578 */ request_of_phase_process_class mPhase;
     /* 0x580 */ J3DModel* mpModel;
     /* 0x584 */ dBgS_ObjAcch mAcch;

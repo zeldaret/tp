@@ -5,15 +5,15 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
-class daLv3Candle_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80C57ACC */ daLv3Candle_HIO_c();
-    /* 80C58484 */ virtual ~daLv3Candle_HIO_c() {}
 
-    /* 0x00 vtable */
-    /* 0x04 */ u8 field_0x04;
-};
-
+/**
+ * @ingroup actors-objects
+ * @class daLv3Candle_c
+ * @brief Lakebed Temple Torch
+ *
+ * @details
+ *
+ */
 class daLv3Candle_c : public fopAc_ac_c {
 public:
     /* 80C57B38 */ void setBaseMtx();
@@ -29,6 +29,7 @@ public:
     u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getType() { return fopAcM_GetParamBit(this, 8, 8); }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ u8 mType;
@@ -49,5 +50,14 @@ public:
 };  // Size: 0x754
 
 STATIC_ASSERT(sizeof(daLv3Candle_c) == 0x754);
+
+class daLv3Candle_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80C57ACC */ daLv3Candle_HIO_c();
+    /* 80C58484 */ virtual ~daLv3Candle_HIO_c() {}
+
+    /* 0x00 vtable */
+    /* 0x04 */ u8 field_0x04;
+};
 
 #endif /* D_A_OBJ_LV3CANDLE_H */

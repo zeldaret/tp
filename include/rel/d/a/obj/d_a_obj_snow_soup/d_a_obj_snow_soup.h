@@ -4,6 +4,14 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjSnowSoup_c
+ * @brief Snowpeak Ruins Soup Pot?
+ *
+ * @details
+ *
+ */
 class daObjSnowSoup_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80CDF878 */ daObjSnowSoup_c();
@@ -20,6 +28,7 @@ public:
     /* 80CE003C */ void createSmkEmtChange(int);
     /* 80CE0134 */ void deleteSmkEmtChange(int);
 
+private:
     /* 0x574 */ cXyz mFirewoodPos;
     /* 0x580 */ cXyz mBubblePos;
     /* 0x58C */ JPABaseEmitter* mpSmkEmtCommon[4];

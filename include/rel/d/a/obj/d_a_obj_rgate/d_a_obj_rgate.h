@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjRgate_c
+ * @brief Rider Gate
+ *
+ * @details
+ *
+ */
 class daObjRgate_c : public dBgS_MoveBgActor {
 public:
     /* 80CB9DF8 */ void initBaseMtx();
@@ -76,5 +84,6 @@ public:
     /* 0xC00 */ Mtx field_0xc00;
     /* 0xC30 */ Mtx field_0xc30;
 };
+STATIC_ASSERT(sizeof(daObjRgate_c) == 0xC60);
 
 #endif /* D_A_OBJ_RGATE_H */

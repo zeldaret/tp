@@ -7,10 +7,6 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 
-struct daObj {
-    template <typename T>
-    static int PrmAbstract(const fopAc_ac_c* param_0, T param_1, T param_2);
-};
 
 /* 8057C9D8-8057CA94 000078 00BC+00 1/1 0/0 0/0 .text            _create__Q28daObjEff5Act_cFv */
 int daObjEff::Act_c::_create() {
