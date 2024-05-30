@@ -228,7 +228,8 @@ public:
     /* 0xB4 */ u16 mWindowAccept;
     /* 0xB6 */ u16 mOilGaugeBackUp;
     /* 0xB8 */ u8 mDirectUseItem;
-    /* 0xB9 */ u8 mWindowStatus; // 0: normal play, 2: item wheel, 3: pause menu, 4: map, 10: pause menu submenus, 11: map in dungeon
+    /* 0xB9 */ u8 mWindowStatus;  // 0: normal play, 2: item wheel, 3: pause menu, 4: map, 10: pause
+                                  // menu submenus, 11: map in dungeon
     /* 0xBA */ u8 unk186;
     /* 0xBB */ u8 mMaxCount;
     /* 0xBC */ u8 mNowCount;
@@ -279,6 +280,8 @@ static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bo
 static void dMeter2Info_offUseButton(int pButton);
 bool dMeter2Info_is2DActiveTouchArea();
 u8 dMeter2Info_getRecieveLetterNum();
+bool dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                          f32 param_5, struct ResTIMG const* param_6);
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();

@@ -32,7 +32,7 @@ public:
     /* 801D2100 */ void setIcon2DPos(u8, f32, f32, f32, u8, bool);
     /* 801D241C */ void setIcon2DPos(u8, char const*, f32, f32, f32, u8, bool);
     /* 801D2454 */ void setIcon2DPos(u8, u8, char const*, f32, f32, f32, u8, bool);
-    /* 801D2508 */ void isShowRegion(int);
+    /* 801D2508 */ bool isShowRegion(int);
     /* 801D2658 */ f32 getMapAreaGlobalPosX();
     /* 801D2668 */ f32 getMapAreaGlobalPosY();
     /* 801D2678 */ f32 getMapAreaGlobalCenterPosX();
@@ -43,8 +43,8 @@ public:
     /* 801D2790 */ f32 getMapScissorAreaLY();
     /* 801D27E8 */ f32 getMapScissorAreaSizeX();
     /* 801D2860 */ f32 getMapScissorAreaSizeRealX();
-    /* 801D2880 */ void getMapScissorAreaCenterPosX();
-    /* 801D28D0 */ void getMapScissorAreaCenterPosY();
+    /* 801D2880 */ f32 getMapScissorAreaCenterPosX();
+    /* 801D28D0 */ f32 getMapScissorAreaCenterPosY();
     /* 801D2920 */ f32 getMapScissorAreaSizeY();
     /* 801D2998 */ f32 getMapScissorAreaSizeRealY();
     /* 801D29B8 */ void calcRenderingPos();
@@ -88,7 +88,9 @@ public:
     }
 
     u8 isArrowDrawFlag() { return mArrowDrawFlag; }
-    void onShowRegionFlag(int bit) { mRegionFlag |= ((1 << bit) & 0xFF); }
+    
+    void onShowRegionFlag(int region_bit) { mRegionFlag |= ((1 << region_bit) & 0xFF); }
+    bool isShowRegionFlag(int region_bit) { return mRegionFlag & ((1 << region_bit) & 0xFF); }
 
     struct unkData {
         /* 0x00 */ float field_0x0;
@@ -112,7 +114,7 @@ public:
     /* 0x0CE0 */ dMeterHaihai_c* mpMeterHaihai;
     /* 0x0CE4 */ J2DAnmBase* mpBaseAnm;
     /* 0x0CE8 */ unkData field_0xce8[8];
-    /* 0x0D88 */ u32 field_0xd88;
+    /* 0x0D88 */ Stage_c* mpStages;
     /* 0x0D8C */ float field_0xd8c[8];
     /* 0x0D0C */ float field_0xdac[8];
     /* 0x0D0C */ float field_0xdcc[8];
@@ -133,7 +135,7 @@ public:
     /* 0x0F90 */ float field_0xf90;
     /* 0x0F94 */ float field_0xf94;
     /* 0x0F98 */ float field_0xf98;
-    /* 0x0F9C */ float field_0xf9c;
+    /* 0x0F9C */ float field_0xf9c; // Likely called mZoom
     /* 0x0FA0 */ float field_0xfa0;
     /* 0x0FA4 */ float field_0xfa4;
     /* 0x0FA8 */ float field_0xfa8;

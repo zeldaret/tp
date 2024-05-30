@@ -37,6 +37,21 @@ struct dMenuMapCommon_c {
         /* 0x15 */ u8 _15;
     };
 
+    struct Stage_c {
+        // Incomplete or wrong
+
+        struct Stage_c_data {
+            /* 0x00 */ char mName[8];
+            /* 0x08 */ u8 field_0x8;
+            /* 0x09 */ u8 field_0x9;
+            /* 0x0C */ f32 field_0xc;
+            /* 0x10 */ f32 field_0x10;
+        };
+
+        /* 0x0 */ u32 field_0x0;
+        /* 0x4 */ Stage_c_data field_0x4[0];
+    };
+
     /* 0x004 */ J2DPicture* mPictures[23];
     /* 0x060 */ J2DPicture* _60;
     /* 0x064 */ dSelect_cursor_c* mpDrawCursor;
@@ -55,6 +70,5 @@ struct dMenuMapCommon_c {
     /* 0xC8C */ float mCenterPosX;
     /* 0xC90 */ u8 _c90;
 };
-
 
 #endif /* D_MENU_D_MENU_MAP_COMMON_H */

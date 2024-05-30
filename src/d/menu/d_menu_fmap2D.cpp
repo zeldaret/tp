@@ -9,6 +9,7 @@
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/d_lib.h"
@@ -294,7 +295,7 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
         field_0x1134[i] = 0.0;
     }
 
-    field_0xd88 = 0;
+    mpStages = NULL;
     field_0xfe0 = 0.0;
     field_0xfe4 = 0.0;
     field_0xfe8 = 0.0;
@@ -1149,6 +1150,54 @@ asm void dMenu_Fmap2DBack_c::zoomMapCalc2(f32 param_0) {
 #endif
 
 /* 801D1858-801D1AA4 1CC198 024C+00 0/0 1/1 0/0 .text zoomMapCalcHIO__18dMenu_Fmap2DBack_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::zoomMapCalcHIO() {
+    if (field_0xf9c != getSpotMapZoomRate()) {
+        f32 spotZoomRate = getSpotMapZoomRate();
+        f32 regionZoomRate = getRegionMapZoomRate(field_0x1227);
+        field_0xf9c = getSpotMapZoomRate();
+        calcRenderingScale();
+
+        f32 centerX = getMapAreaGlobalCenterPosX();
+        f32 centerY = getMapAreaGlobalCenterPosY();
+        if (g_fmapHIO.field_0x308 == false) {
+            field_0xf0c[field_0x1227] =
+                (centerX - (field_0xecc[field_0x1227] * field_0xf9c * 0.5f)) -
+                field_0xe8c[field_0x1227];
+            field_0xf2c[field_0x1227] =
+                (centerY - (field_0xeec[field_0x1227] * field_0xf9c * 0.5f)) -
+                field_0xeac[field_0x1227];
+        } else {
+            f32 tmp1 = (field_0xeac[field_0x1227] + (field_0xeec[field_0x1227] * 0.5f)) -
+                       ((field_0xe2c[field_0x1227] + field_0xe6c[field_0x1227]) * 0.5f);
+
+            f32 tmp2 = ((field_0xe8c[field_0x1227] + field_0xecc[field_0x1227] * 0.5f) -
+                        (field_0xe0c[field_0x1227] + field_0xe4c[field_0x1227]) * 0.5f);
+
+            field_0xf0c[field_0x1227] = ((centerX + (tmp2 * field_0xf9c)) -
+                                         field_0xecc[field_0x1227] * field_0xf9c * 0.5f) -
+                                        field_0xe8c[field_0x1227];
+            field_0xf2c[field_0x1227] = ((centerY + (tmp1 * field_0xf9c)) -
+                                         field_0xeec[field_0x1227] * field_0xf9c * 0.5f) -
+                                        field_0xeac[field_0x1227];
+        }
+
+        for (int i = 0; i < 8; i++) {
+            if (i != field_0x1227) {
+                field_0xf0c[i] =
+                    field_0xf0c[field_0x1227] + (field_0xe8c[i] - field_0xe8c[field_0x1227]) *
+                                                    (field_0xf9c - getAllMapZoomRate());
+                field_0xf2c[i] =
+                    field_0xf2c[field_0x1227] + (field_0xeac[i] - field_0xeac[field_0x1227]) *
+                                                    (field_0xf9c - getAllMapZoomRate());
+            }
+        }
+
+        scrollCalc(1.0f);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1157,9 +1206,73 @@ asm void dMenu_Fmap2DBack_c::zoomMapCalcHIO() {
 #include "asm/d/menu/d_menu_fmap2D/zoomMapCalcHIO__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D1AA4-801D1D50 1CC3E4 02AC+00 2/2 0/0 0/0 .text            scrollCalc__18dMenu_Fmap2DBack_cFf
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
+    f32 tmp1, tmp2;
+    calcAllMapPos2D(field_0x118c + control_ypos, field_0x1190 + control_xpos, &tmp1, &tmp2,
+                    field_0xf4c[field_0x1227], field_0xf6c[field_0x1227],
+                    getRegionMapZoomRate(field_0x1227));
+
+    f32 centerX = getMapAreaGlobalCenterPosX();
+    f32 centerY = getMapAreaGlobalCenterPosY();
+
+    f32 tmp3, tmp4;
+    calcAllMapPosWorld(tmp1 + (param_0 * (centerX - tmp1)), tmp2 + (param_0 * (centerY - tmp2)),
+                       &tmp3, &tmp4);
+
+    field_0xfc8 = (field_0x118c + control_ypos) - tmp3;
+    field_0xfcc = (field_0x1190 + control_xpos) - tmp4;
+
+    field_0x11ac = field_0xfc8;
+    field_0x11b0 = field_0xfcc;
+
+    if ((((field_0x11a4 != 0.0f) || (field_0x11a8 != 0.0f)) && (field_0xfa0 > 1.0f)) &&
+        (field_0xfa0 < 2.0f))
+    {
+        f32 local_40 = 2.0f - field_0xfa0;
+
+        //!@bug local_44 or local_48 can be uninitialized if field_0x11a4 or field_0x11a8 is not 0
+        f32 local_44, local_48;
+
+        if (field_0x11a4 != 0.0f) {
+            local_44 = field_0x11a4 * local_40;
+        }
+
+        if (field_0x11a8 != 0.0f) {
+            local_48 = field_0x11a8 * local_40;
+        }
+
+        calcAllMapPos2D(field_0x118c + control_ypos + local_44,
+                        field_0x1190 + control_xpos + local_48, &tmp1, &tmp2,
+                        field_0xf4c[field_0x1227], field_0xf6c[field_0x1227],
+                        getRegionMapZoomRate(field_0x1227));
+
+        f32 local_54, local_58;
+        calcAllMapPosWorld(tmp1 + (param_0 * (centerX - tmp1)), tmp2 + (param_0 * (centerY - tmp2)),
+                           &local_54, &local_58);
+
+        field_0x11ac = (field_0x118c + control_ypos + local_44) - local_54;
+        field_0x11b0 = (field_0x1190 + control_xpos + local_48) - local_58;
+    }
+
+    if (param_0 == 0.0f) {
+        field_0xfd4 = 0.0f;
+        field_0xfd0 = 0.0f;
+        field_0xfdc = 0.0f;
+        field_0xfd8 = 0.0f;
+    } else if (param_0 == 1.0f) {
+        field_0xfd0 = field_0xfc8;
+        field_0xfd4 = field_0xfcc;
+    }
+
+    calcRenderingPos();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1168,30 +1281,104 @@ asm void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
 #include "asm/d/menu/d_menu_fmap2D/scrollCalc__18dMenu_Fmap2DBack_cFf.s"
 }
 #pragma pop
+#endif
 
 /* 801D1D50-801D1D74 1CC690 0024+00 0/0 1/1 0/0 .text            mapBlink__18dMenu_Fmap2DBack_cFPs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::mapBlink(s16* param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/mapBlink__18dMenu_Fmap2DBack_cFPs.s"
+void dMenu_Fmap2DBack_c::mapBlink(s16* param_0) {
+    *param_0 += 1;
+    if (*param_0 >= 30) {
+        *param_0 -= 30;
+    }
 }
-#pragma pop
 
 /* 801D1D74-801D1DC4 1CC6B4 0050+00 1/1 5/5 0/0 .text setSpotCursor__18dMenu_Fmap2DBack_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setSpotCursor(u8 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/setSpotCursor__18dMenu_Fmap2DBack_cFUc.s"
+void dMenu_Fmap2DBack_c::setSpotCursor(u8 param_0) {
+    this->field_0x1229 = param_0;
+
+    f32 tmp1, tmp2;
+    getStageOriginPath(param_0, &tmp1, &tmp2);
+    calcAllMapPos2D(tmp1, tmp2, &field_0x1184, &field_0x1188);
 }
-#pragma pop
 
 /* 801D1DC4-801D2100 1CC704 033C+00 0/0 1/1 0/0 .text
  * allmap_move2__18dMenu_Fmap2DBack_cFP9STControl               */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
+    f32 tmp1, tmp2;
+    calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &tmp1, &tmp2);
+
+    f32 local_50, local_54;
+    calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
+                       getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &local_50, &local_54);
+
+    f32 scrollSpeed1 = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
+                           g_fmapHIO.mScrollSpeedSlowBound :
+                           g_fmapHIO.mScrollSpeedFastBound;
+    f32 scrollSpeed2 = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
+                           g_fmapHIO.mScrollSpeedSlowBound :
+                           g_fmapHIO.mScrollSpeedFastBound;
+
+    f32 stickValue = param_0->getValueStick();
+    if (stickValue >= scrollSpeed1) {
+        s16 angle = param_0->getAngleStick();
+        f32 local_68 = (field_0xfe8 - field_0xfe0);
+        f32 zoomRate = local_68 / getAllMapZoomRate();
+
+        f32 speed = ((stickValue < scrollSpeed2 ? g_fmapHIO.mScrollSpeedWorldSlow :
+                                                  g_fmapHIO.mScrollSpeedWorldFast) /
+                     100.0f);
+
+        f32 delta_y = (speed * zoomRate) * cM_ssin(angle);
+        f32 delta_x = (speed * zoomRate) * cM_scos(angle);
+
+        control_ypos = control_ypos + delta_y;
+        control_xpos = control_xpos + delta_x;
+    }
+
+    if (field_0x118c + control_ypos < tmp1) {
+        control_ypos = tmp1 - field_0x118c;
+    }
+
+    if (field_0x118c + control_ypos > local_50) {
+        control_ypos = local_50 - field_0x118c;
+    }
+
+    if (field_0x1190 + control_xpos < tmp2) {
+        control_xpos = tmp2 - field_0x1190;
+    }
+
+    if (field_0x1190 + control_xpos > local_54) {
+        control_xpos = local_54 - field_0x1190;
+    }
+
+    calcRenderingScale();
+    calcRenderingPos();
+    calcAllMapPos();
+
+    f32 local_7c, local_80;
+    calcAllMapPos2D((field_0x118c + control_ypos) - field_0xfc8,
+                    (field_0x1190 + control_xpos) - field_0xfcc, &local_7c, &local_80);
+
+    field_0x1226 = 0xff;
+    for (int i = 7; i >= 0; i--) {
+        int val = field_0x1230[i];
+        if (val != 0xff && val != 7) {
+            const ResTIMG* timg = mpAreaTex[val]->getTexture(0)->getTexInfo();
+            bool pixel = dMeter2Info_getPixel(
+                local_7c, local_80, (field_0xe8c[val] + field_0xf0c[val] + field_0xfbc),
+                (field_0xeac[val] + field_0xf2c[val] + field_0xfc0),
+                (field_0xecc[val] * field_0xf9c), (field_0xeec[val] * field_0xf9c), timg);
+            if (pixel) {
+                field_0x1226 = val;
+            }
+        }
+        if (field_0x1226 != 0xff)
+            break;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1200,9 +1387,67 @@ asm void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
 #include "asm/d/menu/d_menu_fmap2D/allmap_move2__18dMenu_Fmap2DBack_cFP9STControl.s"
 }
 #pragma pop
+#endif
 
 /* 801D2100-801D241C 1CCA40 031C+00 1/1 3/3 0/0 .text setIcon2DPos__18dMenu_Fmap2DBack_cFUcfffUcb
  */
+#ifdef NONMATCHING
+// Matches with literals
+void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, f32 param_1, f32 param_2, f32 param_3, u8 param_4,
+                                      bool param_5) {
+    f32 local_68, local_6c;
+
+    f32 local_70 = field_0xfa0;
+    u8 uVar9 = 1;
+    if (param_0 == 17) {
+        uVar9 = 2;
+
+        f32 local_74, local_78;
+        calcAllMapPosWorld(getMapScissorAreaCenterPosX(), getMapScissorAreaCenterPosY(), &local_74,
+                           &local_78);
+
+        f32 local_7c, local_80;
+        calcAllMapPos2D(local_74 + field_0xfc8, local_78 + field_0xfcc, &local_7c, &local_80);
+
+        f32 dVar11 = getMapScissorAreaCenterPosX() - local_7c;
+        f32 dVar10 = getMapScissorAreaCenterPosY() - local_80;
+
+        if (field_0x1227 + 1 == dComIfGp_getNowLevel()) {
+            calcAllMapPos2D(param_1 - field_0xfc8, param_2 - field_0xfcc, &local_68, &local_6c);
+            f32 tmp1 = (dVar10 + (field_0xeac[field_0x1227] + field_0xf2c[field_0x1227])) +
+                       ((field_0xeec[field_0x1227] * field_0xf9c) / 2.0f);
+            f32 tmp2 = (dVar11 + (field_0xe8c[field_0x1227] + field_0xf0c[field_0x1227])) +
+                       ((field_0xecc[field_0x1227] * field_0xf9c) / 2.0f);
+
+            field_0x11e8 = local_68 - tmp2;
+            field_0x11ec = local_6c - tmp1;
+        } else {
+            f32 tmp1 = (dVar11 + (field_0xe6c[dComIfGp_getNowLevel() + 7] +
+                                  field_0xeec[dComIfGp_getNowLevel() + 7])) +
+                       ((field_0xeac[dComIfGp_getNowLevel() + 7] * field_0xf9c) / 2.0f);
+            f32 tmp2 = (dVar10 + (field_0xe8c[dComIfGp_getNowLevel() + 7] +
+                                  field_0xf0c[dComIfGp_getNowLevel() + 7])) +
+                       ((field_0xecc[dComIfGp_getNowLevel() + 7] * field_0xf9c) / 2.0f);
+            local_68 = tmp1 + (field_0x11e8 * field_0xf9c);
+            local_6c = tmp2 + (field_0x11ec * field_0xf9c);
+        }
+    } else {
+        calcAllMapPos2D(param_1 - field_0xfc8, param_2 - field_0xfcc, &local_68, &local_6c);
+    }
+
+    if (!param_5) {
+        if (param_0 == 1) {
+            local_70 = (field_0xfa0 * 0.5f) + 0.5f;
+            uVar9 = 2;
+        }
+
+        if (param_4 != 0) {
+            uVar9 = 3;
+        }
+        setIconInfo(param_0, local_68, local_6c, 1.0f, param_3, local_70, uVar9);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1212,65 +1457,79 @@ asm void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, f32 param_1, f32 param_2, 
 #include "asm/d/menu/d_menu_fmap2D/setIcon2DPos__18dMenu_Fmap2DBack_cFUcfffUcb.s"
 }
 #pragma pop
+#endif
 
 /* 801D241C-801D2454 1CCD5C 0038+00 0/0 2/2 0/0 .text
  * setIcon2DPos__18dMenu_Fmap2DBack_cFUcPCcfffUcb               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, char const* param_1, f32 param_2, f32 param_3,
-                                          f32 param_4, u8 param_5, bool param_6) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/setIcon2DPos__18dMenu_Fmap2DBack_cFUcPCcfffUcb.s"
+void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, char const* param_1, f32 param_2, f32 param_3,
+                                      f32 param_4, u8 param_5, bool param_6) {
+    setIcon2DPos(param_0, field_0x1227, param_1, param_2, param_3, param_4, param_5, param_6);
 }
-#pragma pop
 
 /* 801D2454-801D2508 1CCD94 00B4+00 1/1 0/0 0/0 .text
  * setIcon2DPos__18dMenu_Fmap2DBack_cFUcUcPCcfffUcb             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, u8 param_1, char const* param_2, f32 param_3,
-                                          f32 param_4, f32 param_5, u8 param_6, bool param_7) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/setIcon2DPos__18dMenu_Fmap2DBack_cFUcUcPCcfffUcb.s"
+void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, u8 param_1, char const* param_2, f32 param_3,
+                                      f32 param_4, f32 param_5, u8 param_6, bool param_7) {
+    f32 tmp1, tmp2;
+    calcOffset(param_1, param_2, &tmp1, &tmp2);
+
+    setIcon2DPos(param_0, param_3 + tmp1, param_4 + tmp2, param_5, param_6, param_7);
 }
-#pragma pop
 
 /* 801D2508-801D2658 1CCE48 0150+00 1/1 1/1 0/0 .text isShowRegion__18dMenu_Fmap2DBack_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::isShowRegion(int param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/isShowRegion__18dMenu_Fmap2DBack_cFi.s"
+bool dMenu_Fmap2DBack_c::isShowRegion(int param_0) {
+    if (param_0 == 7) {
+        return true;
+    }
+
+    if (g_fmapHIO.mAllRegionsUnlocked) {
+        if (isShowRegionFlag(param_0)) {
+            return 1;
+        }
+    } else {
+        if (g_fmapHIO.mDebugRegionBits[param_0] && isShowRegionFlag(param_0)) {
+            return true;
+        }
+        if (param_0 == 6) {
+            if (isShowRegionFlag(3) && dComIfGs_isRegionBit(4)) {
+                return true;
+            }
+            if (dComIfGp_getNowLevel() == 4) {
+                return true;
+            }
+            return false;
+        }
+        if (isShowRegionFlag(param_0) && dComIfGs_isRegionBit(param_0 + 1)) {
+            return true;
+        }
+        if (param_0 + 1 == dComIfGp_getNowLevel()) {
+            return true;
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 801D2658-801D2668 1CCF98 0010+00 2/2 0/0 0/0 .text getMapAreaGlobalPosX__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosX() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalPosX__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosX() {
+    return g_fmapHIO.mMapTopLeftPosX;
 }
-#pragma pop
 
 /* 801D2668-801D2678 1CCFA8 0010+00 2/2 0/0 0/0 .text getMapAreaGlobalPosY__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosY() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalPosY__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapAreaGlobalPosY() {
+    return g_fmapHIO.mMapTopLeftPosY;
 }
-#pragma pop
 
 /* 801D2678-801D26C8 1CCFB8 0050+00 7/7 1/1 0/0 .text
  * getMapAreaGlobalCenterPosX__18dMenu_Fmap2DBack_cFv           */
+#ifdef NONMATCHING
+// Matches with literals
+f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosX() {
+    return getMapAreaGlobalPosX() + (getMapAreaSizeX() / 2.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1279,9 +1538,16 @@ asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosX() {
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalCenterPosX__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D26C8-801D2718 1CD008 0050+00 7/7 1/1 0/0 .text
  * getMapAreaGlobalCenterPosY__18dMenu_Fmap2DBack_cFv           */
+#ifdef NONMATCHING
+// Matches with literals
+f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosY() {
+    return getMapAreaGlobalPosY() + (getMapAreaSizeY() / 2.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1290,147 +1556,156 @@ asm f32 dMenu_Fmap2DBack_c::getMapAreaGlobalCenterPosY() {
 #include "asm/d/menu/d_menu_fmap2D/getMapAreaGlobalCenterPosY__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D2718-801D2728 1CD058 0010+00 8/8 0/0 0/0 .text getMapAreaSizeX__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapAreaSizeX() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapAreaSizeX__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapAreaSizeX() {
+    return g_fmapHIO.mMapScale;
 }
-#pragma pop
 
 /* 801D2728-801D2738 1CD068 0010+00 6/6 0/0 0/0 .text getMapAreaSizeY__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapAreaSizeY() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapAreaSizeY__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapAreaSizeY() {
+    return g_fmapHIO.mMapScale;
 }
-#pragma pop
 
 /* 801D2738-801D2790 1CD078 0058+00 10/10 0/0 0/0 .text
  * getMapScissorAreaLX__18dMenu_Fmap2DBack_cFv                  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaLX() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaLX__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaLX() {
+    Mtx mtx;
+    Vec vec = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &mtx, 0, false, 0);
+    return vec.x;
 }
-#pragma pop
 
 /* 801D2790-801D27E8 1CD0D0 0058+00 9/9 0/0 0/0 .text getMapScissorAreaLY__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaLY__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
+    Mtx mtx;
+    Vec vec = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &mtx, 0, false, 0);
+    return vec.y;
 }
-#pragma pop
 
 /* 801D27E8-801D2860 1CD128 0078+00 2/2 0/0 0/0 .text
  * getMapScissorAreaSizeX__18dMenu_Fmap2DBack_cFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeX__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
+    f32 scale = mpMapArea->getScaleX();
+
+    for (J2DPane* pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
+         pane = pane->getParentPane())
+    {
+        scale *= pane->getScaleX();
+    }
+
+    return scale * mpMapArea->getSizeX();
 }
-#pragma pop
 
 /* 801D2860-801D2880 1CD1A0 0020+00 8/8 0/0 0/0 .text
  * getMapScissorAreaSizeRealX__18dMenu_Fmap2DBack_cFv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealX() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeRealX__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealX() {
+    return getMapScissorAreaSizeX();
 }
-#pragma pop
 
 /* 801D2880-801D28D0 1CD1C0 0050+00 3/3 0/0 0/0 .text
  * getMapScissorAreaCenterPosX__18dMenu_Fmap2DBack_cFv          */
+#ifdef NONMATCHING
+// Matches with literals
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosX() {
+    return getMapScissorAreaLX() + (getMapScissorAreaSizeRealX() / 2.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosX() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosX() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaCenterPosX__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D28D0-801D2920 1CD210 0050+00 3/3 0/0 0/0 .text
  * getMapScissorAreaCenterPosY__18dMenu_Fmap2DBack_cFv          */
+#ifdef NONMATCHING
+// Matches with literals
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosY() {
+    return getMapScissorAreaLY() + (getMapScissorAreaSizeRealY() / 2.0f);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosY() {
+asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosY() {
     nofralloc
 #include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaCenterPosY__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D2920-801D2998 1CD260 0078+00 2/2 0/0 0/0 .text
  * getMapScissorAreaSizeY__18dMenu_Fmap2DBack_cFv               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeY__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
+    f32 scale = mpMapArea->getScaleY();
+
+    for (J2DPane* pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
+         pane = pane->getParentPane())
+    {
+        scale *= pane->getScaleY();
+    }
+
+    return scale * mpMapArea->getSizeY();
 }
-#pragma pop
 
 /* 801D2998-801D29B8 1CD2D8 0020+00 11/11 0/0 0/0 .text
  * getMapScissorAreaSizeRealY__18dMenu_Fmap2DBack_cFv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealY() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getMapScissorAreaSizeRealY__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealY() {
+    return getMapScissorAreaSizeY();
 }
-#pragma pop
 
 /* 801D29B8-801D2A34 1CD2F8 007C+00 6/6 0/0 0/0 .text calcRenderingPos__18dMenu_Fmap2DBack_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcRenderingPos() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcRenderingPos__18dMenu_Fmap2DBack_cFv.s"
+void dMenu_Fmap2DBack_c::calcRenderingPos() {
+    calcAllMapPosWorld(getMapScissorAreaCenterPosX(), getMapScissorAreaCenterPosY(), &field_0xf8c,
+                       &field_0xf90);
+
+    field_0xf8c += field_0xfc8;
+    field_0xf90 += field_0xfcc;
 }
-#pragma pop
 
 /* 801D2A34-801D2AC8 1CD374 0094+00 7/7 0/0 0/0 .text calcRenderingScale__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcRenderingScale() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcRenderingScale__18dMenu_Fmap2DBack_cFv.s"
+void dMenu_Fmap2DBack_c::calcRenderingScale() {
+    f32 xScale = (field_0xfe8 - field_0xfe0) / getMapAreaSizeX();
+    f32 yScale = (field_0xfec - field_0xfe4) / getMapAreaSizeY();
+
+    f32 scale = xScale;
+    if (xScale < yScale) {
+        scale = yScale;
+    }
+
+    field_0xf94 = scale / field_0xf9c;
+    field_0xf98 = field_0xf94 * getMapScissorAreaSizeRealY();
 }
-#pragma pop
 
 /* 801D2AC8-801D2B5C 1CD408 0094+00 1/1 0/0 0/0 .text getPathScale__18dMenu_Fmap2DBack_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getPathScale(f32 param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getPathScale__18dMenu_Fmap2DBack_cFf.s"
+f32 dMenu_Fmap2DBack_c::getPathScale(f32 i_zoom) {
+    JUT_ASSERT(2204, i_zoom != 0.0f);
+
+    f32 xScale = (field_0xfe8 - field_0xfe0) / getMapAreaSizeX();
+    f32 yScale = (field_0xfec - field_0xfe4) / getMapAreaSizeY();
+
+    f32 scale = xScale;
+    if (xScale < yScale) {
+        scale = yScale;
+    }
+
+    return (scale * getMapScissorAreaSizeRealY()) / i_zoom;
 }
-#pragma pop
 
 /* 801D2B5C-801D2B64 1CD49C 0008+00 6/6 0/0 0/0 .text getAllMapZoomRate__18dMenu_Fmap2DBack_cFv */
+#ifdef NONMATCHING
+// Matches with literals
+f32 dMenu_Fmap2DBack_c::getAllMapZoomRate() {
+    return 1.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1439,51 +1714,77 @@ asm f32 dMenu_Fmap2DBack_c::getAllMapZoomRate() {
 #include "asm/d/menu/d_menu_fmap2D/getAllMapZoomRate__18dMenu_Fmap2DBack_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 801D2B64-801D2C4C 1CD4A4 00E8+00 6/6 0/0 0/0 .text getRegionMapZoomRate__18dMenu_Fmap2DBack_cFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getRegionMapZoomRate(int param_0) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getRegionMapZoomRate__18dMenu_Fmap2DBack_cFi.s"
+f32 dMenu_Fmap2DBack_c::getRegionMapZoomRate(int param_0) {
+    f32 tmp1, tmp2;
+
+    if (g_fmapHIO.field_0x308 == false) {
+        tmp1 = getMapAreaSizeX() / field_0xecc[param_0];
+        tmp2 = getMapAreaSizeY() / field_0xeec[param_0];
+    } else {
+        tmp1 = getMapAreaSizeX() / (field_0xe4c[field_0x1227] - field_0xe0c[field_0x1227]);
+        tmp2 = getMapAreaSizeY() / (field_0xe6c[field_0x1227] - field_0xe2c[field_0x1227]);
+    }
+
+    if (tmp1 < tmp2) {
+        field_0x122e = 0;
+        tmp2 = tmp1;
+    } else {
+        field_0x122e = 1;
+    }
+
+    return tmp2;
 }
-#pragma pop
 
 /* 801D2C4C-801D2C88 1CD58C 003C+00 4/4 0/0 0/0 .text getSpotMapZoomRate__18dMenu_Fmap2DBack_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dMenu_Fmap2DBack_c::getSpotMapZoomRate() {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getSpotMapZoomRate__18dMenu_Fmap2DBack_cFv.s"
+f32 dMenu_Fmap2DBack_c::getSpotMapZoomRate() {
+    f32 tmp1 = field_0xfe8 - field_0xfe0;
+    f32 tmp2 = field_0xfec - field_0xfe4;
+
+    f32 tmp3 = tmp1;
+    if (tmp1 < tmp2) {
+        tmp3 = tmp2;
+    }
+
+    return tmp3 / g_fmapHIO.mRegionZoomRange;
 }
-#pragma pop
 
 /* 801D2C88-801D2CC8 1CD5C8 0040+00 1/1 0/0 0/0 .text
  * getStageOriginPath__18dMenu_Fmap2DBack_cFUcPfPf              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::getStageOriginPath(u8 param_0, f32* param_1, f32* param_2) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/getStageOriginPath__18dMenu_Fmap2DBack_cFUcPfPf.s"
+void dMenu_Fmap2DBack_c::getStageOriginPath(u8 param_0, f32* param_1, f32* param_2) {
+    for (int i = 0; i < 20; i++) {
+        if (i == param_0) {
+            *param_1 = field_0x10e4[i];
+            *param_2 = field_0x1134[i];
+            break;
+        }
+    }
 }
-#pragma pop
 
 /* 801D2CC8-801D2DA8 1CD608 00E0+00 4/4 0/0 0/0 .text calcOffset__18dMenu_Fmap2DBack_cFUcPCcPfPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMenu_Fmap2DBack_c::calcOffset(u8 param_0, char const* param_1, f32* param_2,
-                                        f32* param_3) {
-    nofralloc
-#include "asm/d/menu/d_menu_fmap2D/calcOffset__18dMenu_Fmap2DBack_cFUcPCcPfPf.s"
+void dMenu_Fmap2DBack_c::calcOffset(u8 param_0, char const* param_1, f32* param_2, f32* param_3) {
+    if (mpStages != NULL) {
+        Stage_c::Stage_c_data* data = mpStages->field_0x4;
+        for (int i = 0; i < field_0x1225; i++) {
+            if (param_0 + 1 ==  data[i].field_0x9 &&
+                strcmp(param_1, data[i].mName) == 0)
+            {
+                *param_2 = field_0x1004[param_0] + data[i].field_0xc;
+                *param_3 = field_0x1024[param_0] + data[i].field_0x10;
+                return;
+            }
+        }
+    }
+
+    *param_2 = field_0x1004[param_0];
+    *param_3 = field_0x1024[param_0];
+    return;
 }
-#pragma pop
 
 /* 801D2DA8-801D3094 1CD6E8 02EC+00 1/1 0/0 0/0 .text regionTextureDraw__18dMenu_Fmap2DBack_cFv */
 #pragma push
