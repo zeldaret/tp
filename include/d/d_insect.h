@@ -23,6 +23,8 @@ public:
 
     /* 80110648 */ virtual void Insect_Release() { field_0x56C = 1; }
     bool ChkGetDemo() { return m_mode > 0; }
+    void setItemNo(u8 i_itemNo) { m_itemNo = i_itemNo; }
+    void setSaveBitNo(s16 i_saveBitNo) { m_saveBitNo = i_saveBitNo; }
 
 protected:
     /* 0x56C */ u8 field_0x56C;

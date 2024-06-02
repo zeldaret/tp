@@ -142,6 +142,7 @@ public:
     void ClrGroundFind() { m_flags &= ~GROUND_FIND; }
     u32 MaskRoofHit() { return m_flags & ROOF_HIT; }
     bool ChkRoofHit() { return MaskRoofHit(); }
+    void OffClrSpeedY() { m_flags |= CLR_SPEED_Y; }
     bool ChkClrSpeedY() { return !(m_flags & CLR_SPEED_Y); }
     void SetGroundFind() { m_flags |= GROUND_FIND; }
     void SetGroundHit() { m_flags |= GROUND_HIT; }
