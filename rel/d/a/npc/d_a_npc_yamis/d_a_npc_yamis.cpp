@@ -1713,8 +1713,9 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
-                                       s16 param_4) {
+// asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
+//                                       s16 param_4) {
+extern "C" asm void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yamis/d_a_npc_yamis/setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs.s"
 }
@@ -1775,13 +1776,15 @@ s32 daNpcT_c::getFootRJointNo() {
 
 /* 80B49390-80B49398 002F10 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballLMaterialNo() {
+// bool daNpcT_c::getEyeballLMaterialNo() {
+extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 80B49398-80B493A0 002F18 0008+00 1/0 0/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballRMaterialNo() {
+// bool daNpcT_c::getEyeballRMaterialNo() {
+extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
@@ -1796,7 +1799,8 @@ void daNpcT_c::afterMoved() {
 }
 
 /* 80B493AC-80B493B4 002F2C 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
@@ -1816,13 +1820,15 @@ void daNpcT_c::drawOtherMdl() {
 }
 
 /* 80B493D0-80B493D8 002F50 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 
 /* 80B493D8-80B493E0 002F58 0008+00 1/0 0/0 0/0 .text            afterSetMotionAnm__8daNpcT_cFiifi
  */
-bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 

@@ -2288,8 +2288,9 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
-                                       s16 param_4) {
+// asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
+//                                       s16 param_4) {
+extern "C" asm void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_post/d_a_npc_post/setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs.s"
 }
@@ -2312,23 +2313,27 @@ void daNpcT_c::ctrlSubFaceMotion(int param_0) {
 
 /* 80AACE5C-80AACE64 0042BC 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballLMaterialNo() {
+// bool daNpcT_c::getEyeballLMaterialNo() {
+extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 80AACE64-80AACE6C 0042C4 0008+00 1/0 0/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballRMaterialNo() {
+// bool daNpcT_c::getEyeballRMaterialNo() {
+extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 80AACE6C-80AACE74 0042CC 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
-bool daNpcT_c::evtEndProc() {
+// bool daNpcT_c::evtEndProc() {
+extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
 /* 80AACE74-80AACE7C 0042D4 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
@@ -2348,7 +2353,8 @@ void daNpcT_c::drawGhost() {
 }
 
 /* 80AACE98-80AACEA0 0042F8 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 

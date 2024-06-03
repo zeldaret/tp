@@ -97,7 +97,6 @@ weak_funcs = {
     "asm mDoExt_bckAnm::~mDoExt_bckAnm()": "__dt__13mDoExt_bckAnmFv",
     "asm mDoExt_bckAnm::mDoExt_bckAnm()": "__ct__13mDoExt_bckAnmFv",
     "asm cM3dGTri::~cM3dGTri()": "__dt__8cM3dGTriFv",
-    # "asm cM3dGTri::cM3dGTri()": ""
     "asm J3DTevKColorAnm::~J3DTevKColorAnm()": "__dt__15J3DTevKColorAnmFv",
     "asm J3DTevKColorAnm::J3DTevKColorAnm()": "__ct__15J3DTevKColorAnmFv",
     "asm J3DTevColorAnm::~J3DTevColorAnm()": "__dt__14J3DTevColorAnmFv",
@@ -115,7 +114,19 @@ weak_funcs = {
     "asm daNpcF_c::daNpcF_c()": "__ct__8daNpcF_cFv",
     "asm daNpcF_ActorMngr_c::daNpcF_ActorMngr_c()": "__ct__18daNpcF_ActorMngr_cFv",
     "void daNpcF_c::adjustShapeAngle()": "adjustShapeAngle__8daNpcF_cFv",
-    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv"
+    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv",
+    "asm daNpcT_c::~daNpcT_c()": "__dt__8daNpcT_cFv",
+    "asm daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c()": "__dt__18daNpcT_ActorMngr_cFv",
+    "asm daNpcT_JntAnm_c::~daNpcT_JntAnm_c()": "__dt__15daNpcT_JntAnm_cFv",
+    "asm daNpcT_MotionSeqMngr_c::~daNpcT_MotionSeqMngr_c()": "__dt__22daNpcT_MotionSeqMngr_cFv",
+    "void daNpcT_c::ctrlSubFaceMotion(int param_0)": "ctrlSubFaceMotion__8daNpcT_cFi",
+    "asm void daNpcT_c::decTmr()": "decTmr__8daNpcT_cFv",
+    "void daNpcT_c::changeAnm(int* param_0, int* param_1)": "changeAnm__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBck(int* param_0, int* param_1)": "changeBck__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBtp(int* param_0, int* param_1)": "changeBtp__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBtk(int* param_0, int* param_1)": "changeBtk__8daNpcT_cFPiPi",
+    "void daNpcT_c::drawOtherMdl()": "drawOtherMdl__8daNpcT_cFv",
+    "void daNpcT_c::drawGhost()": "drawGhost__8daNpcT_cFv",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -412,6 +423,7 @@ types = [
     "struct JPAEmitterManager",
     "struct dPa_simpleEcallBack",
     "struct daTwGate_c",
+    "struct daCow_c"
 ]
 
 class ActorSetupManager:

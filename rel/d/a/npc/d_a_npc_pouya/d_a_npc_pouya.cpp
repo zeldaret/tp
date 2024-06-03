@@ -2151,8 +2151,9 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
-                                       s16 param_4) {
+// asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
+//                                       s16 param_4) {
+extern "C" asm void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pouya/d_a_npc_pouya/setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs.s"
 }
@@ -2180,18 +2181,21 @@ s32 daNpcT_c::getFootRJointNo() {
 
 /* 80AB1D24-80AB1D2C 004064 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballLMaterialNo() {
+// bool daNpcT_c::getEyeballLMaterialNo() {
+extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 80AB1D2C-80AB1D34 00406C 0008+00 1/0 0/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballRMaterialNo() {
+// bool daNpcT_c::getEyeballRMaterialNo() {
+extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 80AB1D34-80AB1D3C 004074 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
-bool daNpcT_c::evtEndProc() {
+// bool daNpcT_c::evtEndProc() {
+extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
@@ -2201,7 +2205,8 @@ void daNpcT_c::afterMoved() {
 }
 
 /* 80AB1D40-80AB1D48 004080 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
@@ -2221,7 +2226,8 @@ void daNpcT_c::drawGhost() {
 }
 
 /* 80AB1D64-80AB1D6C 0040A4 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 

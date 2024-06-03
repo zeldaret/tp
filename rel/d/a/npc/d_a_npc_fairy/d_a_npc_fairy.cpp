@@ -3640,8 +3640,9 @@ asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
-                                       s16 param_4) {
+// asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
+//                                       s16 param_4) {
+extern "C" asm void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_fairy/d_a_npc_fairy/setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs.s"
 }
@@ -3674,18 +3675,21 @@ s32 daNpcT_c::getFootRJointNo() {
 
 /* 809B8DD8-809B8DE0 0073B8 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballLMaterialNo() {
+// bool daNpcT_c::getEyeballLMaterialNo() {
+extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 809B8DE0-809B8DE8 0073C0 0008+00 1/0 0/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballRMaterialNo() {
+// bool daNpcT_c::getEyeballRMaterialNo() {
+extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 809B8DE8-809B8DF0 0073C8 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
@@ -3705,7 +3709,8 @@ void daNpcT_c::drawGhost() {
 }
 
 /* 809B8E0C-809B8E14 0073EC 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 

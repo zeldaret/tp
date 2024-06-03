@@ -1615,8 +1615,9 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
-                                       s16 param_4) {
+// asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
+//                                       s16 param_4) {
+extern "C" asm void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_gnd/d_a_npc_gnd/setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs.s"
 }
@@ -1697,7 +1698,8 @@ bool daNpcT_c::checkChangeEvt() {
 }
 
 /* 809BE1BC-809BE1C4 002C9C 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
-bool daNpcT_c::evtEndProc() {
+// bool daNpcT_c::evtEndProc() {
+extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
@@ -1707,7 +1709,8 @@ void daNpcT_c::afterMoved() {
 }
 
 /* 809BE1C8-809BE1D0 002CA8 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
@@ -1732,7 +1735,8 @@ void daNpcT_c::drawGhost() {
 }
 
 /* 809BE1F0-809BE1F8 002CD0 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 
