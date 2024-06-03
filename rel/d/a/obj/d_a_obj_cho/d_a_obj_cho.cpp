@@ -574,8 +574,8 @@ cPhs__Step daObjCHO_c::create() {
         attention_info.distances[fopAc_attn_CARRY_e] = 0x5D;
 
         mSex = (fopAcM_GetParam(this) >> 4) & 1;
-        m_itemNo = l_cho_itemno[mSex];
-        m_saveBitNo = l_musiya_num[mSex];
+        setItemNo(l_cho_itemno[mSex]);
+        setSaveBitNo(l_musiya_num[mSex]);
         if (mSex == SEX_FEMALE) {
             scale.set(l_HIO.mScaleFemale, l_HIO.mScaleFemale, l_HIO.mScaleFemale);
         } else if (mSex == SEX_MALE) {

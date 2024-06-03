@@ -766,8 +766,8 @@ cPhs__Step daObjKABUTO_c::create() {
         }
 
         mSex = (fopAcM_GetParam(this) >> 4) & 1;
-        m_itemNo = l_kab_itemno[mSex];
-        m_saveBitNo = l_musiya_num[mSex];
+        setItemNo(l_kab_itemno[mSex]);
+        setSaveBitNo(l_musiya_num[mSex]);
 
         if (!CreateChk()) {
             return cPhs_ERROR_e;
