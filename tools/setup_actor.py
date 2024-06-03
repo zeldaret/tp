@@ -127,6 +127,9 @@ weak_funcs = {
     "void daNpcT_c::changeBtk(int* param_0, int* param_1)": "changeBtk__8daNpcT_cFPiPi",
     "void daNpcT_c::drawOtherMdl()": "drawOtherMdl__8daNpcT_cFv",
     "void daNpcT_c::drawGhost()": "drawGhost__8daNpcT_cFv",
+    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
+    "void daNpcF_c::setExpression(int param_0, f32 param_1)": "setExpression__8daNpcF_cFif",
+    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -425,7 +428,8 @@ types = [
     "struct JPAEmitterManager",
     "struct dPa_simpleEcallBack",
     "struct daTwGate_c",
-    "struct daCow_c"
+    "struct daCow_c",
+    "struct dSv_player_collect_c"
 ]
 
 class ActorSetupManager:

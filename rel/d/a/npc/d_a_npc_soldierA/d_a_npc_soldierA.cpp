@@ -1762,12 +1762,14 @@ void daNpcF_c::setCollisions() {
 }
 
 /* 80AF257C-80AF2584 0030DC 0008+00 1/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
+// bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
+extern "C" bool setExpressionAnm__8daNpcF_cFib() {
     return true;
 }
 
 /* 80AF2584-80AF258C 0030E4 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-bool daNpcF_c::setExpressionBtp(int param_0) {
+// bool daNpcF_c::setExpressionBtp(int param_0) {
+extern "C" bool setExpressionBtp__8daNpcF_cFi() {
     return true;
 }
 

@@ -2787,7 +2787,8 @@ void daNpcF_c::setCollisions() {
 }
 
 /* 809F8348-809F8350 005388 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-bool daNpcF_c::setExpressionBtp(int param_0) {
+// bool daNpcF_c::setExpressionBtp(int param_0) {
+extern "C" bool setExpressionBtp__8daNpcF_cFi() {
     return true;
 }
 

@@ -1122,7 +1122,8 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma pop
 
 /* 809AF88C-809AF894 001B0C 0008+00 1/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
-bool daNpcF_c::ctrlBtk() {
+// bool daNpcF_c::ctrlBtk() {
+extern "C" bool ctrlBtk__8daNpcF_cFv() {
     return false;
 }
 
@@ -1132,12 +1133,14 @@ void daNpcF_c::setCollisions() {
 }
 
 /* 809AF898-809AF8A0 001B18 0008+00 1/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
+// bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
+extern "C" bool setExpressionAnm__8daNpcF_cFib() {
     return true;
 }
 
 /* 809AF8A0-809AF8A8 001B20 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-bool daNpcF_c::setExpressionBtp(int param_0) {
+// bool daNpcF_c::setExpressionBtp(int param_0) {
+extern "C" bool setExpressionBtp__8daNpcF_cFi() {
     return true;
 }
 
