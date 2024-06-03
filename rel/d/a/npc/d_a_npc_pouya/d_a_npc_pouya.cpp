@@ -2057,11 +2057,12 @@ asm cM3dGAab::~cM3dGAab() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcT_c::daNpcT_c(daNpcT_faceMotionAnmData_c const* param_0,
-                       daNpcT_motionAnmData_c const* param_1,
-                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
-                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
-                       daNpcT_evtData_c const* param_6, char** param_7) {
+// asm daNpcT_c::daNpcT_c(daNpcT_faceMotionAnmData_c const* param_0,
+//                       daNpcT_motionAnmData_c const* param_1,
+// daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
+//                          daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
+//                       daNpcT_evtData_c const* param_6, char** param_7) {
+extern "C" asm void __ct__8daNpcT_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pouya/d_a_npc_pouya/func_80AB12D4.s"
 }

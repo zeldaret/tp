@@ -205,6 +205,8 @@ external_refs = [
     "extern \"C\" void PSMTXRotAxisRad();",
     "extern \"C\" void C_MTXLightOrtho();",
     "extern \"C\" void strcat();",
+    "extern \"C\" void pow();",
+    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
 ]
 
 types = [
@@ -484,10 +486,12 @@ class ActorSetupManager:
                 if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
                     new_lines.append(line)
                     continue
-                # leave gameInfo in unless d_a_obj_carry was included
-                if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
+
+                # leave g_dComIfG_gameInfo in unless npc actor
+                if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and "npc" not in self.filename and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
                     new_lines.append(line)
                     continue
+
                 removed_external_refs += 1
             else:
                 new_lines.append(line)
@@ -558,7 +562,10 @@ class ActorSetupManager:
                 new_lines.append(line)
 
             if "};" in line and inside_struct_or_class:
-                include_line = "#include \"f_op/f_op_actor_mng.h\"\n\n"
+                if "npc" in self.filename:
+                    include_line = "#include \"d/a/d_a_npc.h\"\n\n"
+                else:
+                    include_line = "#include \"f_op/f_op_actor_mng.h\"\n\n"
                 if include_line not in header_lines:
                     struct_or_class_lines.insert(0, include_line)
 
