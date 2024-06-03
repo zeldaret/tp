@@ -2139,31 +2139,35 @@ static asm void func_80967C74() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dShopSystem_c::dShopSystem_c(daNpcT_faceMotionAnmData_c const* param_0,
-                                 daNpcT_motionAnmData_c const* param_1,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                                 int param_3,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                                 int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
+// asm dShopSystem_c::dShopSystem_c(daNpcT_faceMotionAnmData_c const* param_0,
+//                                 daNpcT_motionAnmData_c const* param_1,
+//                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
+//                                 int param_3,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
+//                                 int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
+extern "C" asm void __ct__13dShopSystem_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans/func_80967C7C.s"
 }
 #pragma pop
 
 /* 80967D94-80967D9C 0055B4 0008+00 1/0 0/0 0/0 .text            getResName2__13dShopSystem_cFi */
-bool dShopSystem_c::getResName2(int param_0) {
+// bool dShopSystem_c::getResName2(int param_0) {
+extern "C" bool getResName2__13dShopSystem_cFi() {
     return false;
 }
 
 /* 80967D9C-80967DA4 0055BC 0008+00 1/0 0/0 0/0 .text
  * beforeStartSeqAction__13dShopSystem_cFP10dMsgFlow_ci         */
-bool dShopSystem_c::beforeStartSeqAction(dMsgFlow_c* param_0, int param_1) {
+// bool dShopSystem_c::beforeStartSeqAction(dMsgFlow_c* param_0, int param_1) {
+extern "C" bool beforeStartSeqAction__13dShopSystem_cFP10dMsgFlow_ci() {
     return true;
 }
 
 /* 80967DA4-80967DAC 0055C4 0008+00 1/0 0/0 0/0 .text
  * beforeSelectSeqAction__13dShopSystem_cFP10dMsgFlow_ci        */
-bool dShopSystem_c::beforeSelectSeqAction(dMsgFlow_c* param_0, int param_1) {
+// bool dShopSystem_c::beforeSelectSeqAction(dMsgFlow_c* param_0, int param_1) {
+extern "C" bool beforeSelectSeqAction__13dShopSystem_cFP10dMsgFlow_ci() {
     return true;
 }
 

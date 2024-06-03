@@ -129,7 +129,9 @@ weak_funcs = {
     "void daNpcT_c::drawGhost()": "drawGhost__8daNpcT_cFv",
     "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
     "void daNpcF_c::setExpression(int param_0, f32 param_1)": "setExpression__8daNpcF_cFif",
-    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv"
+    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
+    "asm daNpcCd2_c::~daNpcCd2_c()": "__dt__10daNpcCd2_cFv",
+    "asm dNpcLib_lookat_c::~dNpcLib_lookat_c()": "__dt__16dNpcLib_lookat_cFv"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -209,7 +211,8 @@ external_refs = [
     "extern \"C\" void C_MTXLightOrtho();",
     "extern \"C\" void strcat();",
     "extern \"C\" void pow();",
-    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];"
+    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
+    "extern \"C\" void OSReport_Error();"
 ]
 
 types = [
@@ -429,8 +432,24 @@ types = [
     "struct dPa_simpleEcallBack",
     "struct daTwGate_c",
     "struct daCow_c",
-    "struct dSv_player_collect_c"
+    "struct dSv_player_collect_c",
+    "struct daNpcCd2_c",
+    "struct dNpcLib_lookat_c",
+    "struct PathTrace_c",
+    "struct daTagSchedule_c",
+    "struct daGlwSph_c",
+    "struct _GlSph_Mng_c",
+    "struct dShopSystem_c",
+    "struct dShopItemCtrl_c",
+    "struct ShopCam_action_c",
+    "struct dMeter2Info_c",
+    "struct Z2SoundObjCoach",
+    "struct daNpcTheB_c",
+    "struct SVec",
 ]
+
+
+
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
