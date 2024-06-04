@@ -136,6 +136,8 @@ weak_funcs = {
     "asm daNpcF_SPCurve_c::~daNpcF_SPCurve_c()": "__dt__16daNpcF_SPCurve_cFv",
     "asm void daTagGra_c::getGraAngle()": "getGraAngle__10daTagGra_cFv",
     "asm void daTagGra_c::getGraPos()": "getGraPos__10daTagGra_cFv",
+    "asm void daNpcT_JntAnm_c::lookActor(fopAc_ac_c* param_0, f32 param_1, u8 param_2)" : "lookActor__15daNpcT_JntAnm_cFP10fopAc_ac_cfUc",
+    "asm daNpcCd_c::~daNpcCd_c()": "__dt__9daNpcCd_cFv",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -220,6 +222,7 @@ external_refs = [
     "extern \"C\" extern u32 g_blackColor;",
     "extern \"C\" void PSMTXMultVecSR();",
     "extern \"C\" void strlen();",
+    "extern \"C\" extern u32 g_saftyWhiteColor;",
 ]
 
 types = [
@@ -399,7 +402,6 @@ types = [
     "struct cM3dGCpsS",
     "struct cM3dGCps",
     "struct cM3dGLin",
-    "struct daNpc_Pouya_c",
     "struct daNpc_Jagar_Param_c",
     "struct daMidna_c",
     "struct dAttHint_c",
@@ -456,7 +458,9 @@ types = [
     "struct dSv_player_item_c",
     "struct daNpcF_SPCurve_c",
     "struct daNpcF_Path_c",
-    "struct daNpc_Maro_c",
+    "struct daTag_ShopItem_c",
+    "struct dTimer_c",
+    "struct daNpc_Len_c",
 ]
 
 class ActorSetupManager:

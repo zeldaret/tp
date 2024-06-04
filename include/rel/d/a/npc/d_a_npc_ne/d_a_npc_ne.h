@@ -206,4 +206,11 @@ public:
 
 STATIC_ASSERT(sizeof(daNpc_Ne_HIO_c) == 0x1C);
 
+struct home_path_pnt {
+public:
+    /* 0x0 */ int mNo;
+    /* 0x4 */ Vec mPosition;
+};  // Size: 0x10
+
+
 #endif /* D_A_NPC_NE_H */

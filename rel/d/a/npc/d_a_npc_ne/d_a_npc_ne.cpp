@@ -247,10 +247,6 @@ SECTION_RODATA static f32 const lit_3993 = 2.0f;
 COMPILER_STRIP_GATE(0x80A92428, &lit_3993);
 #pragma pop
 
-struct home_path_pnt {
-    /* 0x0 */ int mNo;
-    /* 0x4 */ Vec mPosition;
-};  // Size: 0x10
 
 /* 80A925F0-80A92850 000000 0260+00 3/3 0/0 0/0 .data            home_path */
 SECTION_DATA static home_path_pnt home_path[38] = {
