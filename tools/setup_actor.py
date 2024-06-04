@@ -446,10 +446,8 @@ types = [
     "struct Z2SoundObjCoach",
     "struct daNpcTheB_c",
     "struct SVec",
+    "struct dSv_player_item_c",
 ]
-
-
-
 
 class ActorSetupManager:
     def __init__(self,filename) -> None:
@@ -506,9 +504,9 @@ class ActorSetupManager:
         for line in self.lines:
             if any(ref in line for ref in external_refs):
                 # leave calc_mtx in unless d_camera was included
-                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
-                    new_lines.append(line)
-                    continue
+                # if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
+                #     new_lines.append(line)
+                #     continue
 
                 # leave g_dComIfG_gameInfo in unless npc actor
                 if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and "npc" not in self.filename and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
