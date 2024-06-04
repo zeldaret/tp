@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_MARO_H
 #define D_A_NPC_MARO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Maro_c
+ * @brief Malo
+ *
+ * @details
+ *
+ */
 class daNpc_Maro_c : public fopAc_ac_c {
 public:
     /* 8055B58C */ ~daNpc_Maro_c();

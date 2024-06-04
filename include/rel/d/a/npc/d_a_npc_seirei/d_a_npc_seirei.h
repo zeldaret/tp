@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SEIREI_H
 #define D_A_NPC_SEIREI_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Seirei_c
+ * @brief Spirit
+ *
+ * @details
+ *
+ */
 class daNpc_Seirei_c : public fopAc_ac_c {
 public:
     /* 80AD572C */ ~daNpc_Seirei_c();

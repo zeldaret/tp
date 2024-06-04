@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ZELR_H
 #define D_A_NPC_ZELR_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_ZelR_c
+ * @brief Zelda (Cloaked & Hooded)
+ *
+ * @details
+ *
+ */
 class daNpc_ZelR_c : public fopAc_ac_c {
 public:
     /* 80B6EE2C */ ~daNpc_ZelR_c();

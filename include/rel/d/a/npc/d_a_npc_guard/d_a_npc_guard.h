@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GUARD_H
 #define D_A_NPC_GUARD_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcGuard_c
+ * @brief Guard (Hyrule Castle Town Guard?)
+ *
+ * @details
+ *
+ */
 class daNpcGuard_c : public fopAc_ac_c {
 public:
     struct Mode_e {};

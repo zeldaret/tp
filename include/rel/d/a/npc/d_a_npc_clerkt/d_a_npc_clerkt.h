@@ -1,16 +1,16 @@
 #ifndef D_A_NPC_CLERKT_H
 #define D_A_NPC_CLERKT_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpcClerkt_Param_c {
-public:
-    /* 8099D0A8 */ ~daNpcClerkt_Param_c();
-
-    static u8 const m[140];
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpcClerkT_c
+ * @brief Ooccaa (City in the Sky Shop)
+ *
+ * @details
+ *
+ */
 class daNpcClerkT_c : public fopAc_ac_c {
 public:
     /* 8099A14C */ ~daNpcClerkT_c();
@@ -59,6 +59,13 @@ private:
     /* 0x568 */ u8 field_0x568[0x10f0 - 0x568];
 };
 STATIC_ASSERT(sizeof(daNpcClerkT_c) == 0x10f0);
+
+class daNpcClerkt_Param_c {
+public:
+    /* 8099D0A8 */ ~daNpcClerkt_Param_c();
+
+    static u8 const m[140];
+};
 
 
 #endif /* D_A_NPC_CLERKT_H */

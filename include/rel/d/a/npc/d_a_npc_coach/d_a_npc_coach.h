@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_COACH_H
 #define D_A_NPC_COACH_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcCoach_c
+ * @brief Coach
+ *
+ * @details
+ *
+ */
 class daNpcCoach_c : public fopAc_ac_c {
 public:
     /* 8099DA60 */ void hitFireArrow(cXyz);

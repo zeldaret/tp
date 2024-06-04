@@ -8,6 +8,14 @@
 #include "d/msg/d_msg_flow.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class npc_ne_class
+ * @brief Cat (Neko)
+ *
+ * @details
+ *
+ */
 class npc_ne_class : public fopEn_enemy_c {
 public:
     enum Action {

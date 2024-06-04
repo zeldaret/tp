@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_CHIN_H
 #define D_A_NPC_CHIN_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcChin_c
+ * @brief Purlo
+ *
+ * @details
+ *
+ */
 class daNpcChin_c : public fopAc_ac_c {
 public:
     class _SpotLight_c {

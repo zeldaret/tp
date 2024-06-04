@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ZANT_H
 #define D_A_NPC_ZANT_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Zant_c
+ * @brief Zant
+ *
+ * @details
+ *
+ */
 class daNpc_Zant_c : public fopAc_ac_c {
 public:
     /* 80B6C1AC */ ~daNpc_Zant_c();

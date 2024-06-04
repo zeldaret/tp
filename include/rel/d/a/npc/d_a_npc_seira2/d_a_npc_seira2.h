@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SEIRA2_H
 #define D_A_NPC_SEIRA2_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Seira2_c
+ * @brief Sera (Shopkeeper)
+ *
+ * @details
+ *
+ */
 class daNpc_Seira2_c : public fopAc_ac_c {
 public:
     /* 80AD0C0C */ ~daNpc_Seira2_c();

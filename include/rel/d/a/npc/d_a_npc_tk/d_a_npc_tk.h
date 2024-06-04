@@ -9,6 +9,14 @@ class fopAc_ac_c;
 class J3DJoint;
 class J3DModel;
 
+/**
+ * @ingroup actors-npcs
+ * @class daNPC_TK_c
+ * @brief Hawk
+ *
+ * @details
+ *
+ */
 class daNPC_TK_c : public fopAc_ac_c {
 public:
     /* 80B01498 */ void setBck(int, u8, f32, f32);

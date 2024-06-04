@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_PRAYER_H
 #define D_A_NPC_PRAYER_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcPray_c
+ * @brief Charlo
+ *
+ * @details
+ *
+ */
 class daNpcPray_c : public fopAc_ac_c {
 public:
     /* 80AB2DEC */ daNpcPray_c();

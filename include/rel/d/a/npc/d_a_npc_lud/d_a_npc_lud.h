@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_LUD_H
 #define D_A_NPC_LUD_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Lud_c
+ * @brief Luda
+ *
+ * @details
+ *
+ */
 class daNpc_Lud_c : public fopAc_ac_c {
 public:
     /* 80A6ABAC */ ~daNpc_Lud_c();

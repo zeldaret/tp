@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GRA_H
 #define D_A_NPC_GRA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_grA_c
+ * @brief Goron (Adult)
+ *
+ * @details
+ *
+ */
 class daNpc_grA_c : public fopAc_ac_c {
 public:
     class daNpc_GrA_prtclMngr_c {

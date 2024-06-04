@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_DRAINSOL_H
 #define D_A_NPC_DRAINSOL_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcDrSol_c
+ * @brief Drain Soldier (Hyrule Castle Sewer Soldier?)
+ *
+ * @details
+ *
+ */
 class daNpcDrSol_c : public fopAc_ac_c {
 public:
     /* 809ADE6C */ daNpcDrSol_c();

@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_DOC_H
 #define D_A_NPC_DOC_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Doc_c
+ * @brief Dr. Borville
+ *
+ * @details
+ *
+ */
 class daNpc_Doc_c : public fopAc_ac_c {
 public:
     /* 809A6C8C */ ~daNpc_Doc_c();

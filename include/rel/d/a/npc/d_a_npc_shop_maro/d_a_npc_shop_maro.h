@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SHOP_MARO_H
 #define D_A_NPC_SHOP_MARO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_shopMaro_c
+ * @brief Malo (Shopkeeper)
+ *
+ * @details
+ *
+ */
 class daNpc_shopMaro_c : public fopAc_ac_c {
 public:
     /* 80AEBEB4 */ void create();

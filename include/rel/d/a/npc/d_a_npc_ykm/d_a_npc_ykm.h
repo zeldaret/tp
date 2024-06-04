@@ -1,10 +1,17 @@
 #ifndef D_A_NPC_YKM_H
 #define D_A_NPC_YKM_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 #include "rel/d/a/npc/d_a_npc_ykw/d_a_npc_ykw.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_ykM_c
+ * @brief Yeto
+ *
+ * @details
+ *
+ */
 class daNpc_ykM_c : public fopAc_ac_c {
 public:
     /* 80B534EC */ ~daNpc_ykM_c();

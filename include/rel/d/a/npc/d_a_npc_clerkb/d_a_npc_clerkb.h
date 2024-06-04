@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_CLERKB_H
 #define D_A_NPC_CLERKB_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_clerkB_c
+ * @brief Malver
+ *
+ * @details
+ *
+ */
 class daNpc_clerkB_c : public fopAc_ac_c {
 public:
     /* 80995F2C */ ~daNpc_clerkB_c();

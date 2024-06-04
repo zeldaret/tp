@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_TKC_H
 #define D_A_NPC_TKC_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcTkc_c
+ * @brief Ooccoo Jr.
+ *
+ * @details
+ *
+ */
 class daNpcTkc_c : public fopAc_ac_c {
 public:
     /* 80B0C7CC */ daNpcTkc_c();

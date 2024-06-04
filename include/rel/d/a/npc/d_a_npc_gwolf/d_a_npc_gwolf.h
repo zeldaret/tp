@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_GWolf_c
+ * @brief Golden Wolf
+ *
+ * @details
+ *
+ */
 class daNpc_GWolf_c : public fopAc_ac_c {
 public:
     /* 809F30AC */ daNpc_GWolf_c();

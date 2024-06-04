@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SOLA_H
 #define D_A_NPC_SOLA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_solA_c
+ * @brief  Soldier A (Castle Town?)
+ *
+ * @details
+ *
+ */
 class daNpc_solA_c : public fopAc_ac_c {
 public:
     /* 80AECBAC */ ~daNpc_solA_c();

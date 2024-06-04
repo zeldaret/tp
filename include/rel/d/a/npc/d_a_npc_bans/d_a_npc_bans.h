@@ -1,14 +1,16 @@
 #ifndef D_A_NPC_BANS_H
 #define D_A_NPC_BANS_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpc_Len_c : public fopAc_ac_c {
-public:
-    /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Bans_c
+ * @brief Barnes
+ *
+ * @details
+ *
+ */
 class daNpc_Bans_c : public fopAc_ac_c {
 public:
     /* 809628CC */ ~daNpc_Bans_c();
@@ -63,7 +65,10 @@ public:
 
     static void* mCutNameList[4];
     static u8 mCutList[48];
+private:
+    /* 0x568 */ u8 field_0x568[0x1270 - 0x568];
 };
+STATIC_ASSERT(sizeof(daNpc_Bans_c) == 0x1270);
 
 class daNpc_Bans_Param_c {
 public:
@@ -71,46 +76,5 @@ public:
 
     static u8 const m[144];
 };
-
-class dShopSystem_c : public fopAc_ac_c {
-public:
-    /* 80197338 */ void initShopSystem();
-    /* 801974E4 */ ~dShopSystem_c();
-    /* 80198878 */ void drawCursor();
-    /* 80198950 */ void itemRotate();
-    /* 80198A2C */ void itemZoom(cXyz*);
-    /* 8019A0D0 */ void shop_init(bool);
-    /* 8019A158 */ void shop_process(fopAc_ac_c*, dMsgFlow_c*);
-    /* 8019A564 */ void deleteObject();
-    /* 8019A5D0 */ void searchItemActor();
-    /* 8019AB1C */ void setSellItemMax(u8);
-    /* 8019AB24 */ void checkShopOpen();
-    /* 80967C7C */ dShopSystem_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_evtData_c const*, char**);
-    /* 80967D94 */ bool getResName2(int);
-    /* 80967D9C */ bool beforeStartSeqAction(dMsgFlow_c*, int);
-    /* 80967DA4 */ bool beforeSelectSeqAction(dMsgFlow_c*, int);
-};
-
-class dShopItemCtrl_c : public fopAc_ac_c {
-public:
-    /* 80196914 */ dShopItemCtrl_c();
-};
-
-class ShopCam_action_c : public fopAc_ac_c {
-public:
-    /* 80195C9C */ void shop_cam_action_init();
-    /* 8019630C */ void Save();
-    /* 8019635C */ void EventRecoverNotime();
-    /* 801963B4 */ void Reset();
-    /* 801964C8 */ void move();
-
-private:
-    /* 0x568 */ u8 field_0x568[0x1270 - 0x568];
-};
-STATIC_ASSERT(sizeof(ShopCam_action_c) == 0x1270);
-
 
 #endif /* D_A_NPC_BANS_H */

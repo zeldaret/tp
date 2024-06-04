@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SEIRA_H
 #define D_A_NPC_SEIRA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Seira_c
+ * @brief Sera
+ *
+ * @details
+ *
+ */
 class daNpc_Seira_c : public fopAc_ac_c {
 public:
     /* 80ACB7CC */ ~daNpc_Seira_c();

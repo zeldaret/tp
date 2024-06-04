@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_INS_H
 #define D_A_NPC_INS_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcIns_c
+ * @brief Agitha
+ *
+ * @details
+ *
+ */
 class daNpcIns_c : public fopAc_ac_c {
 public:
     /* 80A0E24C */ daNpcIns_c();

@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_IMPAL_H
 #define D_A_NPC_IMPAL_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcImpal_c
+ * @brief Impaz
+ *
+ * @details
+ *
+ */
 class daNpcImpal_c : public fopAc_ac_c {
 public:
     /* 80A079EC */ daNpcImpal_c();

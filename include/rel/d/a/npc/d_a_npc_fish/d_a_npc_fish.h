@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class npc_fish_class
+ * @brief Fish
+ *
+ * @details Multi-purpose fish actor. Used for various fish types.
+ *
+ */
 class npc_fish_class : public fopAc_ac_c {
     /* 0x568 */ u8 field_0x568[0x5b4 - 0x568]; // unused in TU, unsure of type 
 };

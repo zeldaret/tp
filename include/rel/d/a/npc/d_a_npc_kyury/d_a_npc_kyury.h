@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_KYURY_H
 #define D_A_NPC_KYURY_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Kyury_c
+ * @brief Pergie
+ *
+ * @details
+ *
+ */
 class daNpc_Kyury_c : public fopAc_ac_c {
 public:
     /* 80A600CC */ ~daNpc_Kyury_c();

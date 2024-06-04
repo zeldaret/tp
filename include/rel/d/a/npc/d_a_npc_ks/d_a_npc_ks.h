@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class npc_ks_class
+ * @brief Monkey NPC
+ *
+ * @details
+ *
+ */
 class npc_ks_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xc20 - 0x568];

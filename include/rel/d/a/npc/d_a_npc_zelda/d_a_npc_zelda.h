@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ZELDA_H
 #define D_A_NPC_ZELDA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Zelda_c
+ * @brief Zelda
+ *
+ * @details
+ *
+ */
 class daNpc_Zelda_c : public fopAc_ac_c {
 public:
     /* 80B7512C */ ~daNpc_Zelda_c();

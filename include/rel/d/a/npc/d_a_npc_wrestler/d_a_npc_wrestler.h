@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcWrestler_c
+ * @brief Goron (Fat)
+ *
+ * @details
+ *
+ */
 class daNpcWrestler_c : public fopAc_ac_c {
 public:
     /* 80B2F28C */ daNpcWrestler_c();

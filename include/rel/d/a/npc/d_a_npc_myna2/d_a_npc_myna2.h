@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_MYNA2_H
 #define D_A_NPC_MYNA2_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_myna2_c
+ * @brief PLumm
+ *
+ * @details
+ *
+ */
 class daNpc_myna2_c : public fopAc_ac_c {
 public:
     /* 80A83E8C */ daNpc_myna2_c();

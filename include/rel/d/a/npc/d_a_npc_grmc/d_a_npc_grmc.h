@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GRMC_H
 #define D_A_NPC_GRMC_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_grMC_c
+ * @brief Goron Child (Shopkeeper)
+ *
+ * @details
+ *
+ */
 class daNpc_grMC_c : public fopAc_ac_c {
 public:
     /* 809D740C */ ~daNpc_grMC_c();

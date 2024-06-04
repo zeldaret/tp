@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_YELIA_H
 #define D_A_NPC_YELIA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Yelia_c
+ * @brief Ilia
+ *
+ * @details
+ *
+ */
 class daNpc_Yelia_c : public fopAc_ac_c {
 public:
     /* 80B4D30C */ ~daNpc_Yelia_c();

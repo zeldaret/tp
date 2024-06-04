@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_URI_H
 #define D_A_NPC_URI_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Uri_c
+ * @brief Uli
+ *
+ * @details
+ *
+ */
 class daNpc_Uri_c : public fopAc_ac_c {
 public:
     /* 80B267AC */ ~daNpc_Uri_c();

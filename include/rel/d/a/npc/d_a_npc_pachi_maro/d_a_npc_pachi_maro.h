@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_PACHI_MARO_H
 #define D_A_NPC_PACHI_MARO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Pachi_Maro_c
+ * @brief Malo (Slingshot Tutorial)
+ *
+ * @details
+ *
+ */
 class daNpc_Pachi_Maro_c : public fopAc_ac_c {
 public:
     /* 80A97C8C */ ~daNpc_Pachi_Maro_c();

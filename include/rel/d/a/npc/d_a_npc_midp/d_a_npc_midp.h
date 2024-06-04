@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_MIDP_H
 #define D_A_NPC_MIDP_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_midP_c
+ * @brief Midna (True Form)
+ *
+ * @details
+ *
+ */
 class daNpc_midP_c : public fopAc_ac_c {
 public:
     /* 80A70C6C */ ~daNpc_midP_c();

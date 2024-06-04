@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_YAMID_H
 #define D_A_NPC_YAMID_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_yamiD_c
+ * @brief Twili (Fat)
+ *
+ * @details
+ *
+ */
 class daNpc_yamiD_c : public fopAc_ac_c {
 public:
     /* 80B42F4C */ ~daNpc_yamiD_c();

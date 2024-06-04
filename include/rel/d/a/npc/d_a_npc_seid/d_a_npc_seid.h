@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SEID_H
 #define D_A_NPC_SEID_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_seiD_c
+ * @brief Lanayru Spirit
+ *
+ * @details
+ *
+ */
 class daNpc_seiD_c : public fopAc_ac_c {
 public:
     /* 80AC968C */ ~daNpc_seiD_c();

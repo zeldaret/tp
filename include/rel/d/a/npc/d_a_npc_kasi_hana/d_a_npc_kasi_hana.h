@@ -1,35 +1,16 @@
 #ifndef D_A_NPC_KASI_HANA_H
 #define D_A_NPC_KASI_HANA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpcKasi_Mng_c {
-public:
-    /* 80A1AFAC */ void calcEscapeForm();
-    /* 80A1B0D8 */ void calcCenterPos();
-    /* 80A1B1C8 */ void getDistFromCenter();
-    /* 80A1B35C */ void getOffsetFromLeader(cXyz const&, cXyz&);
-    /* 80A1B410 */ void initPath(u8, u16);
-    /* 80A1B48C */ void getPlNearPoint();
-    /* 80A1B5F0 */ void getSygnalInfo();
-    /* 80A1B628 */ void sendInfo();
-    /* 80A1B6F8 */ void offTalk();
-    /* 80A1B774 */ void chkTalk();
-    /* 80A1B810 */ void chkFear();
-    /* 80A1B884 */ void chkEscape();
-    /* 80A1B920 */ void createHearts();
-    /* 80A1BAAC */ void allDemoMove();
-    /* 80A1BB24 */ void allDemoNotMove();
-    /* 80A1BB9C */ void isMiniGamePlaying();
-    /* 80A1BBE0 */ void schMemberActor();
-    /* 80A1BC88 */ void schDanchoActor();
-    /* 80A1BCF0 */ void deleteAllMember();
-    /* 80A1BD6C */ void chgWeightHeavy();
-    /* 80A1BDD8 */ void chgWeightLight();
-    /* 80A2065C */ void getCenterPos();
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpcKasiHana_c
+ * @brief Hannah
+ *
+ * @details
+ *
+ */
 class daNpcKasiHana_c : public fopAc_ac_c {
 public:
     /* 80A1BE44 */ daNpcKasiHana_c();
@@ -107,5 +88,30 @@ public:
     static u8 const m[124];
 };
 
+class daNpcKasi_Mng_c {
+public:
+    /* 80A1AFAC */ void calcEscapeForm();
+    /* 80A1B0D8 */ void calcCenterPos();
+    /* 80A1B1C8 */ void getDistFromCenter();
+    /* 80A1B35C */ void getOffsetFromLeader(cXyz const&, cXyz&);
+    /* 80A1B410 */ void initPath(u8, u16);
+    /* 80A1B48C */ void getPlNearPoint();
+    /* 80A1B5F0 */ void getSygnalInfo();
+    /* 80A1B628 */ void sendInfo();
+    /* 80A1B6F8 */ void offTalk();
+    /* 80A1B774 */ void chkTalk();
+    /* 80A1B810 */ void chkFear();
+    /* 80A1B884 */ void chkEscape();
+    /* 80A1B920 */ void createHearts();
+    /* 80A1BAAC */ void allDemoMove();
+    /* 80A1BB24 */ void allDemoNotMove();
+    /* 80A1BB9C */ void isMiniGamePlaying();
+    /* 80A1BBE0 */ void schMemberActor();
+    /* 80A1BC88 */ void schDanchoActor();
+    /* 80A1BCF0 */ void deleteAllMember();
+    /* 80A1BD6C */ void chgWeightHeavy();
+    /* 80A1BDD8 */ void chgWeightLight();
+    /* 80A2065C */ void getCenterPos();
+};
 
 #endif /* D_A_NPC_KASI_HANA_H */

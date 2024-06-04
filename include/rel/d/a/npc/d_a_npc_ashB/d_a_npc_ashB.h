@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ASHB_H
 #define D_A_NPC_ASHB_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcAshB_c
+ * @brief Ashei (Yeti Garb)
+ *
+ * @details
+ *
+ */
 class daNpcAshB_c : public fopAc_ac_c {
 public:
     /* 8095DE4C */ daNpcAshB_c();

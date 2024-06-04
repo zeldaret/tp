@@ -23,7 +23,7 @@ def process_file(file_path):
             lines = file.readlines()
 
         class_decl_pattern = re.compile(r'class\s+(\w+)\s*:')
-        doxygen_comment_pattern = re.compile(r'/\*\*\s+@ingroup actors-objects\s+@class\s+\w+\s+@brief', re.MULTILINE)
+        doxygen_comment_pattern = re.compile(r'/\*\*\s+@ingroup actors-npcs\s+@class\s+\w+\s+@brief', re.MULTILINE)
         
         for i, line in enumerate(lines):
             match = class_decl_pattern.search(line)
@@ -31,7 +31,7 @@ def process_file(file_path):
                 class_name = match.group(1)
                 # Check if Doxygen comment is missing
                 if not doxygen_comment_pattern.search(''.join(lines[max(0, i-3):i])):
-                    doxygen_comment = f"""/**\n * @ingroup actors-objects\n * @class {class_name}\n * @brief\n *\n * @details\n *\n */\n"""
+                    doxygen_comment = f"""/**\n * @ingroup actors-npcs\n * @class {class_name}\n * @brief\n *\n * @details\n *\n */\n"""
                     lines.insert(i, doxygen_comment)
                 
                 # Stop after processing the first class declaration

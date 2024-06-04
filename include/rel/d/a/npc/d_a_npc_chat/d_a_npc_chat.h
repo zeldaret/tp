@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_CHAT_H
 #define D_A_NPC_CHAT_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcChat_c
+ * @brief NPC Chat
+ *
+ * @details
+ *
+ */
 class daNpcChat_c : public fopAc_ac_c {
 public:
     /* 8098084C */ daNpcChat_c();

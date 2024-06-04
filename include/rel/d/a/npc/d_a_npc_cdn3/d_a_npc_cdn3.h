@@ -1,10 +1,17 @@
 #ifndef D_A_NPC_CDN3_H
 #define D_A_NPC_CDN3_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 #include "rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcCdn3_c
+ * @brief Hylian Adult
+ *
+ * @details
+ *
+ */
 class daNpcCdn3_c : public fopAc_ac_c {
 public:
 

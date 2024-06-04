@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_YAMIS_H
 #define D_A_NPC_YAMIS_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_yamiS_c
+ * @brief Twili (Short)
+ *
+ * @details
+ *
+ */
 class daNpc_yamiS_c : public fopAc_ac_c {
 public:
     /* 80B4656C */ ~daNpc_yamiS_c();

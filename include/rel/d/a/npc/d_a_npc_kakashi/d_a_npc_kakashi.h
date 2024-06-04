@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_KAKASHI_H
 #define D_A_NPC_KAKASHI_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Kakashi_c
+ * @brief Scarecrow
+ *
+ * @details
+ *
+ */
 class daNpc_Kakashi_c : public fopAc_ac_c {
 public:
     /* 8054B36C */ ~daNpc_Kakashi_c();

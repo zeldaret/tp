@@ -677,7 +677,7 @@ extern actor_process_profile_definition g_profile_NPC_BANS = {
   fpcPi_CURRENT_e,          // mListPrio
   PROC_NPC_BANS,            // mProcName
   &g_fpcLf_Method.mBase,    // sub_method
-  sizeof(ShopCam_action_c), // mSize
+  sizeof(daNpc_Bans_c),     // mSize
   0,                        // mSizeOther
   0,                        // mParameters
   &g_fopAc_Method.base,     // sub_method

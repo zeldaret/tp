@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SHOE_H
 #define D_A_NPC_SHOE_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcShoe_c
+ * @brief Soal
+ *
+ * @details
+ *
+ */
 class daNpcShoe_c : public fopAc_ac_c {
 public:
     /* 80AE794C */ daNpcShoe_c();

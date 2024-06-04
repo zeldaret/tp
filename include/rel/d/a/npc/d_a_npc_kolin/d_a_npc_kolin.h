@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_KOLIN_H
 #define D_A_NPC_KOLIN_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Kolin_c
+ * @brief Colin
+ *
+ * @details
+ *
+ */
 class daNpc_Kolin_c : public fopAc_ac_c {
 public:
     /* 80553FEC */ ~daNpc_Kolin_c();

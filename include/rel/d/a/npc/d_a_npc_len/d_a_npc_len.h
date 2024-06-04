@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_LEN_H
 #define D_A_NPC_LEN_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Len_c
+ * @brief Renado
+ *
+ * @details
+ *
+ */
 class daNpc_Len_c : public fopAc_ac_c {
 public:
     /* 80A6432C */ ~daNpc_Len_c();

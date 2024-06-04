@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_TARO_H
 #define D_A_NPC_TARO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Taro_c
+ * @brief Talo
+ *
+ * @details
+ *
+ */
 class daNpc_Taro_c : public fopAc_ac_c {
 public:
     /* 80565E8C */ ~daNpc_Taro_c();

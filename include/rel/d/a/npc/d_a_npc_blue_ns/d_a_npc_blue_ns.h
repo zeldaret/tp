@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcBlueNS_c
+ * @brief Shadow Beast (Twili)
+ *
+ * @details
+ *
+ */
 class daNpcBlueNS_c : public fopAc_ac_c {
 public:
     /* 8096896C */ daNpcBlueNS_c();

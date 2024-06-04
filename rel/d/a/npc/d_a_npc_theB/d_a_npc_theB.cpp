@@ -236,7 +236,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
@@ -456,7 +455,7 @@ extern actor_process_profile_definition g_profile_NPC_THEB = {
   fpcPi_CURRENT_e,        // mListPrio
   PROC_NPC_THEB,          // mProcName
   &g_fpcLf_Method.mBase,  // sub_method
-  0x00000E14,             // mSize
+  sizeof(daNpcTheB_c),    // mSize
   0,                      // mSizeOther
   0,                      // mParameters
   &g_fopAc_Method.base,   // sub_method

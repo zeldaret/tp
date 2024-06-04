@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SHAD_H
 #define D_A_NPC_SHAD_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcShad_c
+ * @brief Shad
+ *
+ * @details
+ *
+ */
 class daNpcShad_c : public fopAc_ac_c {
 public:
     /* 80AD820C */ daNpcShad_c();

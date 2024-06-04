@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GRO_H
 #define D_A_NPC_GRO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_grO_c
+ * @brief Gor Ebizo
+ *
+ * @details
+ *
+ */
 class daNpc_grO_c : public fopAc_ac_c {
 public:
     /* 809DA56C */ daNpc_grO_c();

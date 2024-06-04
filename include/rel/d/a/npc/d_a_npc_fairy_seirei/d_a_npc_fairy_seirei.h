@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_FAIRY_SEIREI_H
 #define D_A_NPC_FAIRY_SEIREI_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_FairySeirei_c
+ * @brief Fairy Spirit
+ *
+ * @details
+ *
+ */
 class daNpc_FairySeirei_c : public fopAc_ac_c {
 public:
     /* 8053FF6C */ ~daNpc_FairySeirei_c();

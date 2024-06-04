@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_HANJO_H
 #define D_A_NPC_HANJO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Hanjo_c
+ * @brief Hanch
+ *
+ * @details
+ *
+ */
 class daNpc_Hanjo_c : public fopAc_ac_c {
 public:
     /* 809F908C */ ~daNpc_Hanjo_c();

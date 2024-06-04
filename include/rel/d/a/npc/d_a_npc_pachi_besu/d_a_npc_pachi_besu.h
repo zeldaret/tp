@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_PACHI_BESU_H
 #define D_A_NPC_PACHI_BESU_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Pachi_Besu_c
+ * @brief Beth (Slingshot Tutorial)
+ *
+ * @details
+ *
+ */
 class daNpc_Pachi_Besu_c : public fopAc_ac_c {
 public:
     /* 80A92D6C */ ~daNpc_Pachi_Besu_c();

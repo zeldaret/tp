@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ZRC_H
 #define D_A_NPC_ZRC_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_zrC_c
+ * @brief Ralis
+ *
+ * @details
+ *
+ */
 class daNpc_zrC_c : public fopAc_ac_c {
 public:
     /* 80B8DC0C */ daNpc_zrC_c();

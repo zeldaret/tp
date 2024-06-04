@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_PASSER2_H
 #define D_A_NPC_PASSER2_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcPasser2_c
+ * @brief Hylian Passerby 2 (Castle Town NPC?)
+ *
+ * @details
+ *
+ */
 class daNpcPasser2_c : public fopAc_ac_c {
 public:
     struct Mode_e {};

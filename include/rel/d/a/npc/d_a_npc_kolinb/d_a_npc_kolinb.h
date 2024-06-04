@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_KOLINB_H
 #define D_A_NPC_KOLINB_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Kolinb_c
+ * @brief Colin (Bedridden)
+ *
+ * @details
+ *
+ */
 class daNpc_Kolinb_c : public fopAc_ac_c {
 public:
     /* 80A4598C */ ~daNpc_Kolinb_c();

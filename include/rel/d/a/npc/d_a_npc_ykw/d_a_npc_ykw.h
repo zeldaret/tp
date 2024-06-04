@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_YKW_H
 #define D_A_NPC_YKW_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_ykW_c
+ * @brief Yeta
+ *
+ * @details
+ *
+ */
 class daNpc_ykW_c : public fopAc_ac_c {
 public:
     /* 80B5EF0C */ ~daNpc_ykW_c();

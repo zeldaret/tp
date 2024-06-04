@@ -1,15 +1,16 @@
 #ifndef D_A_NPC_TKS_H
 #define D_A_NPC_TKS_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-// struct daObj {
-// public:
-//     /* 80037180 */ void make_eff_break_kotubo(fopAc_ac_c*);
-//     /* 80037210 */ void make_eff_break_kotubo2(fopAc_ac_c*);
-// };
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpcTks_c
+ * @brief Ooccoo
+ *
+ * @details
+ *
+ */
 class daNpcTks_c : public fopAc_ac_c {
 public:
     /* 80B1462C */ daNpcTks_c();

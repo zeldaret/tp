@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_POUYA_H
 #define D_A_NPC_POUYA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Pouya_c
+ * @brief Poe Merchant (Jovani?)
+ *
+ * @details
+ *
+ */
 class daNpc_Pouya_c : public fopAc_ac_c {
 public:
     /* 80AADDAC */ ~daNpc_Pouya_c();

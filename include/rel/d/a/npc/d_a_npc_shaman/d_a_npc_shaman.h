@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SHAMAN_H
 #define D_A_NPC_SHAMAN_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Sha_c
+ * @brief Fanadi
+ *
+ * @details
+ *
+ */
 class daNpc_Sha_c : public fopAc_ac_c {
 public:
     /* 80AE2DCC */ ~daNpc_Sha_c();

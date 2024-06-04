@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_FAIRY_H
 #define D_A_NPC_FAIRY_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Fairy_c
+ * @brief Great Fairy
+ *
+ * @details
+ *
+ */
 class daNpc_Fairy_c : public fopAc_ac_c {
 public:
     /* 809B228C */ ~daNpc_Fairy_c();

@@ -1,14 +1,16 @@
 #ifndef D_A_NPC_BESU_H
 #define D_A_NPC_BESU_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpc_Len_c : public fopAc_ac_c {
-public:
-    /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Besu_c
+ * @brief Beth
+ *
+ * @details
+ *
+ */
 class daNpc_Besu_c : public fopAc_ac_c {
 public:
     /* 80536E4C */ ~daNpc_Besu_c();
@@ -92,6 +94,5 @@ public:
 
     static u8 const m[144];
 };
-
 
 #endif /* D_A_NPC_BESU_H */

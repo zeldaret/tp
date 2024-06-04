@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ZELRO_H
 #define D_A_NPC_ZELRO_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_ZelRo_c
+ * @brief Zelda (Cloaked)
+ *
+ * @details
+ *
+ */
 class daNpc_ZelRo_c : public fopAc_ac_c {
 public:
     /* 80B71FAC */ ~daNpc_ZelRo_c();

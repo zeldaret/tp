@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GRD_H
 #define D_A_NPC_GRD_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Grd_c
+ * @brief Gor Coron
+ *
+ * @details
+ *
+ */
 class daNpc_Grd_c : public fopAc_ac_c {
 public:
     /* 809CFD2C */ daNpc_Grd_c();

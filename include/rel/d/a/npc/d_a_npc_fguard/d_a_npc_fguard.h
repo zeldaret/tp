@@ -4,7 +4,16 @@
 #include "d/a/d_a_npc_cd2.h"
 #include "SSystem/SComponent/c_math.h"
 
-struct daNpcFgd_c : public daNpcCd2_c {
+/**
+ * @ingroup actors-npcs
+ * @class daNpcFgd_c
+ * @brief ???
+ *
+ * @details
+ *
+ */
+class daNpcFgd_c : public daNpcCd2_c {
+public:
     /* 809BA53C */ void initPosAngle(Vec&, s16);
     /* 809BA584 */ void create();
     /* 809BA730 */ void create_init();

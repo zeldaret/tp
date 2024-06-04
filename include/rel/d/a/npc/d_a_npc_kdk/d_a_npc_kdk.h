@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcKdk_c
+ * @brief Temporary Cutscene Guy?
+ *
+ * @details
+ *
+ */
 class daNpcKdk_c : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xFA0 - 0x568];

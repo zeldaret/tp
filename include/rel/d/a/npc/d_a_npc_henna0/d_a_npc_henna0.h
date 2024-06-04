@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class d_a_npc_henna0
+ * @brief Henna 0 (unused?)
+ *
+ * @details
+ *
+ */
 class d_a_npc_henna0 : public fopAc_ac_c {
     private:
         /* 0x568 */ u8 field_0x568[0x828 - 0x568];

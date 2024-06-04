@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_SHOP0_H
 #define D_A_NPC_SHOP0_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Shop0_c
+ * @brief Shop 0?
+ *
+ * @details
+ *
+ */
 class daNpc_Shop0_c : public fopAc_ac_c {
 public:
     /* 80AEA7F8 */ ~daNpc_Shop0_c();

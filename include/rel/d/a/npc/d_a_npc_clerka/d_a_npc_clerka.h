@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_CLERKA_H
 #define D_A_NPC_CLERKA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_clerkA_c
+ * @brief Chudley
+ *
+ * @details
+ *
+ */
 class daNpc_clerkA_c : public fopAc_ac_c {
 public:
     /* 8099252C */ ~daNpc_clerkA_c();

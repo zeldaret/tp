@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_ARU_H
 #define D_A_NPC_ARU_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Aru_c
+ * @brief Fado
+ *
+ * @details
+ *
+ */
 class daNpc_Aru_c : public fopAc_ac_c {
 public:
     /* 8095178C */ ~daNpc_Aru_c();

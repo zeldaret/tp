@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_GND_H
 #define D_A_NPC_GND_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Gnd_c
+ * @brief Ganondorf
+ *
+ * @details
+ *
+ */
 class daNpc_Gnd_c : public fopAc_ac_c {
 public:
     /* 809BB60C */ ~daNpc_Gnd_c();

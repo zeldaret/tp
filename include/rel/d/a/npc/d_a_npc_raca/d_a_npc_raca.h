@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_RACA_H
 #define D_A_NPC_RACA_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Raca_c
+ * @brief Falbi
+ *
+ * @details
+ *
+ */
 class daNpc_Raca_c : public fopAc_ac_c {
 public:
     /* 80AB5CAC */ ~daNpc_Raca_c();

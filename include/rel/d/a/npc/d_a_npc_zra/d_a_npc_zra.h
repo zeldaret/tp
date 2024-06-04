@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_zrA_Path_c
+ * @brief Zora (Adult)
+ *
+ * @details
+ *
+ */
 class daNpc_zrA_Path_c : public daNpcF_Path_c {
 public:
     /* 80B7850C */ BOOL getDstPosDst2(cXyz, cXyz&);

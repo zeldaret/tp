@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Hoz_c
+ * @brief Iza
+ *
+ * @details
+ *
+ */
 class daNpc_Hoz_c : public daNpcT_c {
 public:
     enum Type {

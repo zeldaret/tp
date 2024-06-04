@@ -1,9 +1,16 @@
 #ifndef D_A_NPC_KASI_KYU_H
 #define D_A_NPC_KASI_KYU_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcKasiKyu_c
+ * @brief Kili
+ *
+ * @details
+ *
+ */
 class daNpcKasiKyu_c : public fopAc_ac_c {
 public:
     /* 80A219CC */ daNpcKasiKyu_c();

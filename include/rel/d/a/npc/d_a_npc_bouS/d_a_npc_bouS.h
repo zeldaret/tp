@@ -1,14 +1,16 @@
 #ifndef D_A_NPC_BOUS_H
 #define D_A_NPC_BOUS_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpcWrestler_c : public fopAc_ac_c {
-public:
-    /* 80B301BC */ void checkStartUp();
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpcBouS_c
+ * @brief Mayor Bo (inside house)
+ *
+ * @details
+ *
+ */
 class daNpcBouS_c : public fopAc_ac_c {
 public:
     /* 8097354C */ daNpcBouS_c();

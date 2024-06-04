@@ -1,14 +1,16 @@
 #ifndef D_A_NPC_BOU_H
 #define D_A_NPC_BOU_H
 
-#include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
-class daNpc_Jagar_c : public fopAc_ac_c {
-public:
-    /* 80A150AC */ void getType();
-};
-
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Bou_c
+ * @brief Mayor Bo
+ *
+ * @details
+ *
+ */
 class daNpc_Bou_c : public fopAc_ac_c {
 public:
     /* 8096CF8C */ ~daNpc_Bou_c();
