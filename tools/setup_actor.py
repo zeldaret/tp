@@ -217,7 +217,9 @@ external_refs = [
     "extern \"C\" void pow();",
     "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
     "extern \"C\" void OSReport_Error();",
-    "extern \"C\" extern u32 g_blackColor;"
+    "extern \"C\" extern u32 g_blackColor;",
+    "extern \"C\" void PSMTXMultVecSR();",
+    "extern \"C\" void strlen();",
 ]
 
 types = [
