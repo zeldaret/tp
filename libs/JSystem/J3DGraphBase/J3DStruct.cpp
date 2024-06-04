@@ -52,16 +52,16 @@ J3DIndTexMtxInfo& J3DIndTexMtxInfo::operator=(J3DIndTexMtxInfo const& param_0) {
 /* 80325800-8032587C 320140 007C+00 0/0 6/6 0/0 .text            __as__10J3DFogInfoFRC10J3DFogInfo
  */
 J3DFogInfo& J3DFogInfo::operator=(J3DFogInfo const& param_0) {
-    field_0x0 = param_0.field_0x0;
-    field_0x1 = param_0.field_0x1;
-    field_0x2 = param_0.field_0x2;
-    field_0x4 = param_0.field_0x4;
-    field_0x8 = param_0.field_0x8;
-    field_0xc = param_0.field_0xc;
-    field_0x10 = param_0.field_0x10;
-    field_0x14 = param_0.field_0x14;
+    mType = param_0.mType;
+    mAdjEnable = param_0.mAdjEnable;
+    mCenter = param_0.mCenter;
+    mStartZ = param_0.mStartZ;
+    mEndZ = param_0.mEndZ;
+    mNearZ = param_0.mNearZ;
+    mFarZ = param_0.mFarZ;
+    mColor = param_0.mColor;
     for (int i = 0; i < 10; i++) {
-        field_0x18.fogVals[i] = param_0.field_0x18.fogVals[i];
+        mFogAdjTable.fogVals[i] = param_0.mFogAdjTable.fogVals[i];
     }
     return *this;
 }

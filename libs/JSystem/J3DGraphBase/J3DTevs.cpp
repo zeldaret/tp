@@ -511,7 +511,7 @@ static void J3DGDLoadPostTexMtxImm(f32 (*param_1)[4], u32 param_2) {
 extern const GXColor j3dDefaultColInfo = {0xFF, 0xFF, 0xFF, 0xFF};
 
 /* 804563C4-804563C8 0049C4 0004+00 0/0 2/2 0/0 .sdata2          j3dDefaultAmbInfo */
-extern const u32 j3dDefaultAmbInfo = 0x32323232;
+extern const GXColor j3dDefaultAmbInfo = {0x32, 0x32, 0x32, 0x32};
 
 /* 804563C8-804563CC 0049C8 0004+00 0/0 1/1 0/0 .sdata2          None */
 extern const u8 data_804563C8 = 0x01;
