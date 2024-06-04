@@ -463,6 +463,8 @@ types = [
     "struct daTag_ShopItem_c",
     "struct dTimer_c",
     "struct daNpc_Len_c",
+    "struct dSv_player_status_b_c",
+    "struct daNpc_Maro_c",
 ]
 
 class ActorSetupManager:

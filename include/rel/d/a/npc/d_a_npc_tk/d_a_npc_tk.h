@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_TK_H
 #define D_A_NPC_TK_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/a/d_a_npc.h"
 #include "d/d_path.h"
 
 struct cXyz;
@@ -71,10 +71,21 @@ public:
         }
     }
 
+private:
     /* 0x568 */ u8 field_0x568[0x6BE - 0x568];
     /* 0x6BE */ u16 mFlags;
     /* 0x6C0 */ u8 field_0x6c0[0x6C8 - 0x6C0];
     /* 0x6C8 */ dPath* field_0x6c8;
+    /* 0x6CC */ u8 field_0x6cc[0xB44 - 0x6CC];
 };
+
+STATIC_ASSERT(sizeof(daNPC_TK_c) == 0xB44);
+
+class daNPC_TK_HIO_c {
+public:
+    daNPC_TK_HIO_c();
+    ~daNPC_TK_HIO_c();
+};
+
 
 #endif /* D_A_NPC_TK_H */

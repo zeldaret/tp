@@ -441,25 +441,30 @@ SECTION_DATA static void* lit_5334[8] = {
 };
 
 /* 80B011D4-80B011F4 -00001 0020+00 1/0 0/0 0/0 .data            daNpcTheB_MethodTable */
-SECTION_DATA static void* daNpcTheB_MethodTable[8] = {
-    (void*)daNpcTheB_Create__FPv,
-    (void*)daNpcTheB_Delete__FPv,
-    (void*)daNpcTheB_Execute__FPv,
-    (void*)daNpcTheB_IsDelete__FPv,
-    (void*)daNpcTheB_Draw__FPv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daNpcTheB_MethodTable = {
+    (process_method_func)daNpcTheB_Create__FPv,
+    (process_method_func)daNpcTheB_Delete__FPv,
+    (process_method_func)daNpcTheB_Execute__FPv,
+    (process_method_func)daNpcTheB_IsDelete__FPv,
+    (process_method_func)daNpcTheB_Draw__FPv,
 };
 
 /* 80B011F4-80B01224 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_THEB */
-SECTION_DATA extern void* g_profile_NPC_THEB[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00570000, (void*)&g_fpcLf_Method,
-    (void*)0x00000E14, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x014B0000, (void*)&daNpcTheB_MethodTable,
-    (void*)0x00040108, (void*)0x040E0000,
+extern actor_process_profile_definition g_profile_NPC_THEB = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_THEB,          // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x00000E14,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  331,                    // mPriority
+  &daNpcTheB_MethodTable, // sub_method
+  0x00040108,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80B01224-80B01230 0001FC 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
@@ -688,7 +693,8 @@ asm void daNpcTheB_c::CreateHeap() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevKColorAnm::~J3DTevKColorAnm() {
+// asm J3DTevKColorAnm::~J3DTevKColorAnm() {
+extern "C" asm void __dt__15J3DTevKColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__15J3DTevKColorAnmFv.s"
 }
@@ -698,7 +704,8 @@ asm J3DTevKColorAnm::~J3DTevKColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevKColorAnm::J3DTevKColorAnm() {
+// asm J3DTevKColorAnm::J3DTevKColorAnm() {
+extern "C" asm void __ct__15J3DTevKColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__ct__15J3DTevKColorAnmFv.s"
 }
@@ -708,7 +715,8 @@ asm J3DTevKColorAnm::J3DTevKColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevColorAnm::~J3DTevColorAnm() {
+// asm J3DTevColorAnm::~J3DTevColorAnm() {
+extern "C" asm void __dt__14J3DTevColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__14J3DTevColorAnmFv.s"
 }
@@ -718,7 +726,8 @@ asm J3DTevColorAnm::~J3DTevColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTevColorAnm::J3DTevColorAnm() {
+// asm J3DTevColorAnm::J3DTevColorAnm() {
+extern "C" asm void __ct__14J3DTevColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__ct__14J3DTevColorAnmFv.s"
 }
@@ -739,7 +748,8 @@ extern "C" asm void __dt__11J3DTexNoAnmFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexNoAnm::J3DTexNoAnm() {
+// asm J3DTexNoAnm::J3DTexNoAnm() {
+extern "C" asm void __ct__11J3DTexNoAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__ct__11J3DTexNoAnmFv.s"
 }
@@ -749,7 +759,8 @@ asm J3DTexNoAnm::J3DTexNoAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexMtxAnm::~J3DTexMtxAnm() {
+// asm J3DTexMtxAnm::~J3DTexMtxAnm() {
+extern "C" asm void __dt__12J3DTexMtxAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__12J3DTexMtxAnmFv.s"
 }
@@ -759,7 +770,8 @@ asm J3DTexMtxAnm::~J3DTexMtxAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DTexMtxAnm::J3DTexMtxAnm() {
+// asm J3DTexMtxAnm::J3DTexMtxAnm() {
+extern "C" asm void __ct__12J3DTexMtxAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__ct__12J3DTexMtxAnmFv.s"
 }
@@ -769,7 +781,8 @@ asm J3DTexMtxAnm::J3DTexMtxAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMatColorAnm::~J3DMatColorAnm() {
+// asm J3DMatColorAnm::~J3DMatColorAnm() {
+extern "C" asm void __dt__14J3DMatColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__14J3DMatColorAnmFv.s"
 }
@@ -779,7 +792,8 @@ asm J3DMatColorAnm::~J3DMatColorAnm() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMatColorAnm::J3DMatColorAnm() {
+// asm J3DMatColorAnm::J3DMatColorAnm() {
+extern "C" asm void __ct__14J3DMatColorAnmFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__ct__14J3DMatColorAnmFv.s"
 }
@@ -1592,7 +1606,8 @@ static bool daNpcTheB_IsDelete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DTexNoAnm::calc(u16* param_0) const {
+// asm void J3DTexNoAnm::calc(u16* param_0) const {
+extern "C" asm void calc__11J3DTexNoAnmCFPUs() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/calc__11J3DTexNoAnmCFPUs.s"
 }
@@ -1602,7 +1617,8 @@ asm void J3DTexNoAnm::calc(u16* param_0) const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
+// asm daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
+extern "C" asm void __dt__18daNpcF_ActorMngr_cFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__18daNpcF_ActorMngr_cFv.s"
 }
@@ -1668,7 +1684,8 @@ extern "C" asm void __ct__4cXyzFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daNpcF_c::~daNpcF_c() {
+// asm daNpcF_c::~daNpcF_c() {
+extern "C" asm void __dt__8daNpcF_cFv() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB/__dt__8daNpcF_cFv.s"
 }
@@ -1730,17 +1747,20 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 #pragma pop
 
 /* 80B00BC0-80B00BC4 004540 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__8daNpcF_cFv */
-void daNpcF_c::adjustShapeAngle() {
+// void daNpcF_c::adjustShapeAngle() {
+extern "C" asm void adjustShapeAngle__8daNpcF_cFv() {
     /* empty function */
 }
 
 /* 80B00BC4-80B00BC8 004544 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-void daNpcF_c::setCollisions() {
+// void daNpcF_c::setCollisions() {
+extern "C" asm void setCollisions__8daNpcF_cFv() {
     /* empty function */
 }
 
 /* 80B00BC8-80B00BCC 004548 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
-void daNpcF_c::drawOtherMdls() {
+// void daNpcF_c::drawOtherMdls() {
+extern "C" asm void drawOtherMdls__8daNpcF_cFv() {
     /* empty function */
 }
 

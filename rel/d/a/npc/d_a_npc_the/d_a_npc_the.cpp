@@ -3186,12 +3186,14 @@ extern "C" asm void __dt__12J3DFrameCtrlFv() {
 #pragma pop
 
 /* 80AFBCEC-80AFBCF0 00470C 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-void daNpcF_c::setCollisions() {
+// void daNpcF_c::setCollisions() {
+extern "C" asm void setCollisions__8daNpcF_cFv() {
     /* empty function */
 }
 
 /* 80AFBCF0-80AFBCF4 004710 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
-void daNpcF_c::drawOtherMdls() {
+// void daNpcF_c::drawOtherMdls() {
+extern "C" asm void drawOtherMdls__8daNpcF_cFv() {
     /* empty function */
 }
 
