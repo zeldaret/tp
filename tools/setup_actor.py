@@ -138,6 +138,8 @@ weak_funcs = {
     "asm void daTagGra_c::getGraPos()": "getGraPos__10daTagGra_cFv",
     "asm void daNpcT_JntAnm_c::lookActor(fopAc_ac_c* param_0, f32 param_1, u8 param_2)" : "lookActor__15daNpcT_JntAnm_cFP10fopAc_ac_cfUc",
     "asm daNpcCd_c::~daNpcCd_c()": "__dt__9daNpcCd_cFv",
+    "asm void daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1)": "getDstPos__13daNpcT_Path_cF4cXyzP4cXyz",
+    "asm void daDitem_c::setOffsetPos(cXyz param_0)": "setOffsetPos__9daDitem_cF4cXyz"
 }
 
 # list of known external references to be replaced to avoid symbol collision

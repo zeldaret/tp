@@ -3,7 +3,7 @@
 
 #include "d/a/d_a_npc.h"
 
-class daNpcWrestler_c : public daNpcF_c {
+class daNpcWrestler_c : public fopAc_ac_c {
 public:
     /* 80B2F28C */ daNpcWrestler_c();
     /* 80B2F688 */ void Create();
@@ -64,19 +64,19 @@ public:
     /* 80B3FCE8 */ void playMotion();
     /* 80B40B3C */ void lookat();
 
-    /* 80B2F4A0 */ virtual ~daNpcWrestler_c();
-    /* 80B3EAE4 */ virtual void setParam();
-    /* 80B3EB94 */ virtual BOOL main();
-    /* 80B404FC */ virtual BOOL ctrlBtk();
-    /* 80B4166C */ virtual void adjustShapeAngle();
-    /* 80B405E8 */ virtual void setAttnPos();
-    /* 80B3023C */ virtual bool setExpressionAnm(int, bool);
-    /* 80B30654 */ virtual bool setExpressionBtp(int);
-    /* 80B316C8 */ virtual void setExpression(int, f32);
-    /* 80B3074C */ virtual void setMotionAnm(int, f32);
-    /* 80B31680 */ virtual void setMotion(int, f32, int);
-    /* 80B40D1C */ virtual BOOL drawDbgInfo();
-    /* 80B40D24 */ virtual void drawOtherMdls();
+    /* 80B2F4A0 */ ~daNpcWrestler_c();
+    /* 80B3EAE4 */ void setParam();
+    /* 80B3EB94 */ BOOL main();
+    /* 80B404FC */ BOOL ctrlBtk();
+    /* 80B4166C */ void adjustShapeAngle();
+    /* 80B405E8 */ void setAttnPos();
+    /* 80B3023C */ bool setExpressionAnm(int, bool);
+    /* 80B30654 */ bool setExpressionBtp(int);
+    /* 80B316C8 */ void setExpression(int, f32);
+    /* 80B3074C */ void setMotionAnm(int, f32);
+    /* 80B31680 */ void setMotion(int, f32, int);
+    /* 80B40D1C */ BOOL drawDbgInfo();
+    /* 80B40D24 */ void drawOtherMdls();
 
     int getWrestlerAction() { return mWrestlerAction; }
     u8 getType() { return subtype & 0x7F; }
@@ -84,8 +84,19 @@ public:
 
     static u8 mEvtSeqList[84];
 
+private:
     /* 0xB48 */ u8 field_0xb48[0xE74 - 0xB48];
     /* 0xE74 */ int mWrestlerAction;
+    /* 0xE78 */ u8 field_0xe78[0xEA0 - 0xE78];
 };
+// STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);
+
+class daNpcWrestler_Param_c {
+public:
+    /* 80B41670 */ ~daNpcWrestler_Param_c();
+
+    static u8 const m[404];
+};
+
 
 #endif /* D_A_NPC_WRESTLER_H */
