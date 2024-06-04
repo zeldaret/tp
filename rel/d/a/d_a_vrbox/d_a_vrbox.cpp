@@ -51,7 +51,7 @@ static int daVrbox_Draw(vrbox_class* i_this) {
             fogInfo_p = material_p->getFog()->getFogInfo();
         }
 
-        fogInfo_p->field_0x0 = 2;
+        fogInfo_p->mType = 2;
     }
 
     dComIfGd_setListSky();

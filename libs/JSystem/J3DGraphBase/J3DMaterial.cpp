@@ -118,7 +118,7 @@ extern "C" void setColorChan__13J3DColorBlockFUlPC12J3DColorChan();
 extern "C" bool getLight__13J3DColorBlockFUl();
 extern "C" void setCullMode__13J3DColorBlockFUc();
 extern "C" void setCullMode__13J3DColorBlockFPCUc();
-extern "C" bool getMatColorOffset__13J3DColorBlockCFv();
+extern "C" u32 getMatColorOffset__13J3DColorBlockCFv();
 extern "C" bool getColorChanOffset__13J3DColorBlockCFv();
 extern "C" void setMatColorOffset__13J3DColorBlockFUl();
 extern "C" void setColorChanOffset__13J3DColorBlockFUl();
@@ -938,7 +938,8 @@ void J3DLockedMaterial::change() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DColorBlockLightOff::~J3DColorBlockLightOff() {
+asm void __dt__21J3DColorBlockLightOffFv() {
+//asm J3DColorBlockLightOff::~J3DColorBlockLightOff() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__21J3DColorBlockLightOffFv.s"
 }
@@ -991,7 +992,7 @@ extern "C" asm void __dt__11J3DTevBlockFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DIndBlock::~J3DIndBlock() {
+asm void __dt__11J3DIndBlockFv() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DMaterial/__dt__11J3DIndBlockFv.s"
 }
@@ -1150,13 +1151,13 @@ void J3DPEBlock::setDither(u8 const* param_0) {
 }
 
 /* 80317384-8031738C 311CC4 0008+00 1/0 4/0 0/0 .text            getDither__10J3DPEBlockCFv */
-bool J3DPEBlock::getDither() const {
-    return false;
+u8 J3DPEBlock::getDither() const {
+    return 0;
 }
 
 /* 8031738C-80317394 311CCC 0008+00 1/0 5/0 0/0 .text            getFogOffset__10J3DPEBlockCFv */
-bool J3DPEBlock::getFogOffset() const {
-    return false;
+u32 J3DPEBlock::getFogOffset() const {
+    return 0;
 }
 
 /* 80317394-80317398 311CD4 0004+00 1/0 5/0 0/0 .text            setFogOffset__10J3DPEBlockFUl */
@@ -1305,13 +1306,13 @@ void J3DColorBlock::setCullMode(u8 const* param_0) {
 }
 
 /* 80317464-8031746C 311DA4 0008+00 1/0 1/0 0/0 .text getMatColorOffset__13J3DColorBlockCFv */
-bool J3DColorBlock::getMatColorOffset() const {
-    return false;
+u32 J3DColorBlock::getMatColorOffset() const {
+    return 0;
 }
 
 /* 8031746C-80317474 311DAC 0008+00 1/0 1/0 0/0 .text getColorChanOffset__13J3DColorBlockCFv */
-bool J3DColorBlock::getColorChanOffset() const {
-    return false;
+u32 J3DColorBlock::getColorChanOffset() const {
+    return 0;
 }
 
 /* 80317474-80317478 311DB4 0004+00 1/0 1/0 0/0 .text setMatColorOffset__13J3DColorBlockFUl */

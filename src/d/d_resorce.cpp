@@ -298,7 +298,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         texGenBlock->setTexMtx(texGenNum, texMtxInfo);
         J3DTevBlock* tevBlock = pMaterial->getTevBlock();
         u8 tevStageNum = tevBlock->getTevStageNum();
-        l_tevOrderInfo.field_0x0 = texGenNum;
+        l_tevOrderInfo.mTexCoord = texGenNum;
         tevBlock->setTexNo(3, textureNum);
         tevBlock->setTevOrder(tevStageNum, l_tevOrderInfo);
         tevBlock->setTevStage(tevStageNum, l_tevStageInfo);

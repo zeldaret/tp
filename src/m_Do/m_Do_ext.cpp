@@ -1676,8 +1676,8 @@ void mDoExt_brkAnmRemove(J3DModelData* i_modelData) {
 }
 
 /* 8000DF3C-8000DF44 00887C 0008+00 0/0 5/0 0/0 .text            getZCompLoc__10J3DPEBlockCFv */
-bool J3DPEBlock::getZCompLoc() const {
-    return false;
+u8 J3DPEBlock::getZCompLoc() const {
+    return 0;
 }
 
 /* 8000DF44-8000DF4C 008884 0008+00 0/0 5/0 0/0 .text            getZMode__10J3DPEBlockFv */
@@ -1701,18 +1701,18 @@ J3DFog* J3DPEBlock::getFog() {
 }
 
 /* 8000DF64-8000DF6C 0088A4 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J3DIndBlockFUl */
-bool J3DIndBlock::getIndTexCoordScale(u32 param_0) {
-    return false;
+J3DIndTexCoordScale* J3DIndBlock::getIndTexCoordScale(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DF6C-8000DF74 0088AC 0008+00 0/0 2/0 0/0 .text            getIndTexMtx__11J3DIndBlockFUl */
-bool J3DIndBlock::getIndTexMtx(u32 param_0) {
-    return false;
+J3DIndTexMtx* J3DIndBlock::getIndTexMtx(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DF74-8000DF7C 0088B4 0008+00 0/0 2/0 0/0 .text            getIndTexOrder__11J3DIndBlockFUl */
-bool J3DIndBlock::getIndTexOrder(u32 param_0) {
-    return false;
+J3DIndTexOrder* J3DIndBlock::getIndTexOrder(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DF7C-8000DF84 0088BC 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J3DIndBlockCFv
@@ -1722,8 +1722,8 @@ u8 J3DIndBlock::getIndTexStageNum() const {
 }
 
 /* 8000DF84-8000DF8C 0088C4 0008+00 0/0 2/0 0/0 .text            getIndTevStage__11J3DTevBlockFUl */
-bool J3DTevBlock::getIndTevStage(u32 param_0) {
-    return false;
+J3DIndTevStage* J3DTevBlock::getIndTevStage(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DF8C-8000DF94 0088CC 0008+00 0/0 2/0 0/0 .text            getTevStage__11J3DTevBlockFUl */
@@ -1742,8 +1742,8 @@ asm u16 J3DTevBlock::getTexNo(u32 param_0) const {
 #pragma pop
 
 /* 8000DFA0-8000DFA8 0088E0 0008+00 0/0 4/0 0/0 .text getTevSwapModeTable__11J3DTevBlockFUl */
-bool J3DTevBlock::getTevSwapModeTable(u32 param_0) {
-    return false;
+J3DTevSwapModeTable* J3DTevBlock::getTevSwapModeTable(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFA8-8000DFB0 0088E8 0008+00 0/0 4/0 0/0 .text            getTevKAlphaSel__11J3DTevBlockFUl
@@ -1764,12 +1764,12 @@ J3DTevOrder* J3DTevBlock::getTevOrder(u32 param_0) {
 }
 
 /* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
-GXColor* J3DTevBlock::getTevKColor(u32 param_0) {
+J3DGXColor* J3DTevBlock::getTevKColor(u32 param_0) {
     return NULL;
 }
 
 /* 8000DFC8-8000DFD0 008908 0008+00 0/0 3/0 0/0 .text            getTevColor__11J3DTevBlockFUl */
-GXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
+J3DGXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
     return NULL;
 }
 
@@ -1795,8 +1795,8 @@ u32 J3DTexGenBlock::getTexGenNum() const {
 }
 
 /* 8000DFF0-8000DFF8 008930 0008+00 0/0 3/0 0/0 .text            getAmbColor__13J3DColorBlockFUl */
-bool J3DColorBlock::getAmbColor(u32 param_0) {
-    return false;
+J3DGXColor* J3DColorBlock::getAmbColor(u32 param_0) {
+    return NULL;
 }
 
 /* 8000DFF8-8000E000 008938 0008+00 0/0 2/0 0/0 .text            getColorChan__13J3DColorBlockFUl */
@@ -1805,7 +1805,7 @@ J3DColorChan* J3DColorBlock::getColorChan(u32 param_0) {
 }
 
 /* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
-GXColor* J3DColorBlock::getMatColor(u32 param_0) {
+J3DGXColor* J3DColorBlock::getMatColor(u32 param_0) {
     return NULL;
 }
 

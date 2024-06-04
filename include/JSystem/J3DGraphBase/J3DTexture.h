@@ -96,6 +96,11 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
     u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
+    J3DTexCoord& operator=(const J3DTexCoord& other) {
+        // Fake match (__memcpy or = doesn't match)
+        *(u32*)this = *(u32*)&other;
+        return *this;
+    }
 
     void resetTexMtxReg() {
         mTexMtxReg = mTexGenMtx;
