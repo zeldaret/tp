@@ -3,7 +3,7 @@
 
 #include "d/a/d_a_npc.h"
 
-class daNpc_GWolf_c : public daNpcF_c {
+class daNpc_GWolf_c : public fopAc_ac_c {
 public:
     /* 809F30AC */ daNpc_GWolf_c();
     /* 809F34C0 */ void create();
@@ -58,8 +58,18 @@ public:
     static void* mEvtCutNameList[5];
     static u8 mEvtCutList[60];
 
-    /* 0xB48 */ u8 field_0xb48[0xE1C - 0xB48];
+private:
+    /* 0x568 */ u8 field_0xb48[0xE1C - 0x568];
     /* 0xE1C */ u8 field_0xe1c;
 };
+STATIC_ASSERT(sizeof(daNpc_GWolf_c) == 0xe20);
+
+class daNpc_GWolf_Param_c {
+public:
+    /* 809F8488 */ ~daNpc_GWolf_Param_c();
+
+    static u8 const m[140];
+};
+
 
 #endif /* D_A_NPC_GWOLF_H */

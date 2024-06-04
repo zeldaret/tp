@@ -131,7 +131,11 @@ weak_funcs = {
     "void daNpcF_c::setExpression(int param_0, f32 param_1)": "setExpression__8daNpcF_cFif",
     "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
     "asm daNpcCd2_c::~daNpcCd2_c()": "__dt__10daNpcCd2_cFv",
-    "asm dNpcLib_lookat_c::~dNpcLib_lookat_c()": "__dt__16dNpcLib_lookat_cFv"
+    "asm dNpcLib_lookat_c::~dNpcLib_lookat_c()": "__dt__16dNpcLib_lookat_cFv",
+    "asm daNpcF_Path_c::~daNpcF_Path_c()": "__dt__13daNpcF_Path_cFv",
+    "asm daNpcF_SPCurve_c::~daNpcF_SPCurve_c()": "__dt__16daNpcF_SPCurve_cFv",
+    "asm void daTagGra_c::getGraAngle()": "getGraAngle__10daTagGra_cFv",
+    "asm void daTagGra_c::getGraPos()": "getGraPos__10daTagGra_cFv",
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -447,6 +451,9 @@ types = [
     "struct daNpcTheB_c",
     "struct SVec",
     "struct dSv_player_item_c",
+    "struct daNpcF_SPCurve_c",
+    "struct daNpcF_Path_c",
+    "struct daNpc_Maro_c"
 ]
 
 class ActorSetupManager:
