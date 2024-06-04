@@ -216,7 +216,8 @@ external_refs = [
     "extern \"C\" void strcat();",
     "extern \"C\" void pow();",
     "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
-    "extern \"C\" void OSReport_Error();"
+    "extern \"C\" void OSReport_Error();",
+    "extern \"C\" extern u32 g_blackColor;"
 ]
 
 types = [
@@ -453,7 +454,7 @@ types = [
     "struct dSv_player_item_c",
     "struct daNpcF_SPCurve_c",
     "struct daNpcF_Path_c",
-    "struct daNpc_Maro_c"
+    "struct daNpc_Maro_c",
 ]
 
 class ActorSetupManager:
