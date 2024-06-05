@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-doors
+ * @class daDoorPush_c
+ * @brief Push Door
+ *
+ * @details
+ *
+ */
 class daDoorPush_c : public dBgS_MoveBgActor {
 public:
     enum act_e {
@@ -41,6 +49,7 @@ public:
     void setAction(u8 i_action) { mAction = i_action; }
     u32 getSceneNo() { return fopAcM_GetParamBit(this, 4, 6); }
 
+// private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel[2];
     /* 0x5B0 */ dBgW* mpDoorBgW;
@@ -64,6 +73,8 @@ public:
     /* 0x64C */ s16 field_0x64c;
     /* 0x64E */ s16 field_0x64e[2];
     /* 0x654 */ cXyz mPosition;
-};  // Size: 0x660
+};
+
+STATIC_ASSERT(sizeof(daDoorPush_c) == 0x660);
 
 #endif /* D_A_DOOR_PUSH_H */

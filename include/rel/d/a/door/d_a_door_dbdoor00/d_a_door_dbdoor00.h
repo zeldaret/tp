@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_w.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-doors
+ * @class daDbDoor00_c
+ * @brief Double Door
+ *
+ * @details
+ *
+ */
 class daDbDoor00_c : public fopAc_ac_c {
 public:
     /* 8045D470 */ char* getAlwaysArcName();
@@ -33,6 +41,7 @@ public:
 
     void setAction(u8 i_action) { mAction = i_action; }
 
+// private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ request_of_phase_process_class mPhaseReq2;
     /* 0x578 */ J3DModel* mpModel;
@@ -55,5 +64,7 @@ public:
     /* 0x5C1 */ s8 field_0x5c1;
     /* 0x5C2 */ s16 field_0x5c2;
 };
+
+STATIC_ASSERT(sizeof(daDbDoor00_c) == 0x5C4);
 
 #endif /* D_A_DOOR_DBDOOR00_H */

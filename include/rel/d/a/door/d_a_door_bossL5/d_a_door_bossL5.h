@@ -9,7 +9,16 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_op/f_op_actor_mng.h"
 
-struct daBdoorL5_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-doors
+ * @class daBdoorL5_c
+ * @brief Snowpeak Ruins Boss Door
+ *
+ * @details
+ *
+ */
+class daBdoorL5_c : public fopAc_ac_c {
+public:
     enum ActionType {
         ACTION_WAIT,
         ACTION_CLOSE_WAIT,
@@ -63,6 +72,7 @@ struct daBdoorL5_c : public fopAc_ac_c {
         return 1;
     }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase1;
     /* 0x570 */ request_of_phase_process_class mPhase2;
     /* 0x578 */ request_of_phase_process_class mPhase3;
@@ -86,5 +96,7 @@ struct daBdoorL5_c : public fopAc_ac_c {
     /* 0x5B8 */ dBgS_ObjAcch field_0x5b8;
     /* 0x790 */ dBgS_AcchCir field_0x790;
 };
+
+STATIC_ASSERT(sizeof(daBdoorL5_c) == 0x7D0);
 
 #endif /* D_A_DOOR_BOSSL5_H */

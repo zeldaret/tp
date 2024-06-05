@@ -1,19 +1,21 @@
 #ifndef D_A_DOOR_KNOB00_H
 #define D_A_DOOR_KNOB00_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/bg/d_bg_w.h"
 #include "d/msg/d_msg_flow.h"
 
-struct knob_param_c {
-    /* 8045E858 */ static u32 getDoorModel(fopAc_ac_c*);
-    /* 8045E864 */ static u32 getDoorLightInf(fopAc_ac_c*);
-    /* 8045E870 */ static u16 getMsgNo(fopAc_ac_c*);
-    /* 8045E87C */ static u8 getExitNo(fopAc_ac_c*);
-};
-struct daKnob20_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-doors
+ * @class daKnob20_c
+ * @brief Knob Door
+ *
+ * @details
+ *
+ */
+class daKnob20_c : public fopAc_ac_c {
+public:
     enum {
         ACTION_INIT,
         ACTION_WAIT,
@@ -71,6 +73,7 @@ struct daKnob20_c : public fopAc_ac_c {
     void onFlag(u16 flag) { field_0x60c |= flag; }
     int checkFlag(u16 flag) { return field_0x60c & flag; }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase1;
     /* 0x570 */ request_of_phase_process_class mPhase2;
     /* 0x578 */ J3DModel* mModel1;
@@ -89,7 +92,17 @@ struct daKnob20_c : public fopAc_ac_c {
     /* 0x60F */ u8 field_0x60f;
     /* 0x610 */ s16 field_0x610;
     /* 0x612 */ s16 field_0x612;
-    /* 0x612 */ s16 field_0x614;
+    /* 0x614 */ s16 field_0x614;
+};
+
+STATIC_ASSERT(sizeof(daKnob20_c) == 0x618);
+
+class knob_param_c {
+public:
+    /* 8045E858 */ static u32 getDoorModel(fopAc_ac_c*);
+    /* 8045E864 */ static u32 getDoorLightInf(fopAc_ac_c*);
+    /* 8045E870 */ static u16 getMsgNo(fopAc_ac_c*);
+    /* 8045E87C */ static u8 getExitNo(fopAc_ac_c*);
 };
 
 #endif /* D_A_DOOR_KNOB00_H */

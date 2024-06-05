@@ -7,7 +7,8 @@
 #include "d/bg/d_bg_w.h"
 #include "d/bg/d_bg_s_acch.h"
 
-struct dDoor_stop2_c {
+class dDoor_stop2_c {
+public:
     /* 806728B4 */ void calcMtx(fopAc_ac_c*);
     /* 80672970 */ void closeInit(fopAc_ac_c*, u8);
     /* 80672AE4 */ int closeProc(fopAc_ac_c*);
@@ -25,7 +26,16 @@ struct dDoor_stop2_c {
     /* 0xB */ u8 field_0xb;
 };
 
-struct daMBdoorL1_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-doors
+ * @class daMBdoorL1_c
+ * @brief Mini Boss Door
+ *
+ * @details Multi-purpose door actor. This actor is used for mini boss doors in the game.
+ *
+ */
+class daMBdoorL1_c : public fopAc_ac_c {
+public:
     enum DoorType {
         DOOR_TYPE_0,
         DOOR_TYPE_1,
@@ -111,6 +121,7 @@ struct daMBdoorL1_c : public fopAc_ac_c {
         mAction = action;
     }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase1;
     /* 0x570 */ request_of_phase_process_class mPhase2;
     /* 0x578 */ request_of_phase_process_class mPhase3;
@@ -143,5 +154,7 @@ struct daMBdoorL1_c : public fopAc_ac_c {
     /* 0x81C */ cXyz field_0x81c;
     /* 0x828 */ cXyz field_0x828;
 };
+
+STATIC_ASSERT(sizeof(daMBdoorL1_c) == 0x834);
 
 #endif /* D_A_DOOR_MBOSSL1_H */
