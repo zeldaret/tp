@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag16_class
+ * @brief Pikari Tag
+ *
+ * @details
+ *
+ */
 class kytag16_class : public fopAc_ac_c {
 public:
     /* 0x568 */ f32 field_0x568;
@@ -21,5 +29,7 @@ public:
     /* 0x58C */ u8 field_0x58c;
     /* 0x58D */ u8 field_0x58d;
 };
+
+STATIC_ASSERT(sizeof(kytag16_class) == 0x590);
 
 #endif /* D_A_KYTAG16_H */

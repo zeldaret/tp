@@ -5,6 +5,14 @@
 
 struct dPath;
 
+/**
+ * @ingroup actors-tags
+ * @class kytag10_class
+ * @brief Lava Particles Tag
+ *
+ * @details
+ *
+ */
 class kytag10_class : public fopAc_ac_c {
 public:
     /* 0x568 */ dPath* mpPath;
@@ -18,5 +26,7 @@ public:
     /* 0x594 */ f32 field_0x594;
     /* 0x598 */ int mPathPoint;
 };
+
+STATIC_ASSERT(sizeof(kytag10_class) == 0x59C);
 
 #endif /* D_A_KYTAG10_H */

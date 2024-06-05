@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag09_class
+ * @brief Twilight Film Tag
+ *
+ * @details
+ *
+ */
 class kytag09_class : public fopAc_ac_c {
 public:
     /* 0x568 */ J3DModel* mpModel;
@@ -15,5 +23,7 @@ public:
     /* 0x5C4 */ u8 field_0x5c4;
     /* 0x5C5 */ u8 mType;
 };
+
+STATIC_ASSERT(sizeof(kytag09_class) == 0x5C8);
 
 #endif /* D_A_KYTAG09_H */

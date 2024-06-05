@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag01_class
+ * @brief Twilight Tag 1
+ *
+ * @details
+ *
+ */
 class kytag01_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[0x588 - 0x568];
@@ -18,5 +26,7 @@ public:
     /* 0x59E */ u8 field_0x59e;
     /* 0x59F */ u8 mStartPoint;
 };
+
+STATIC_ASSERT(sizeof(kytag01_class) == 0x5A0);
 
 #endif /* D_A_KYTAG01_H */

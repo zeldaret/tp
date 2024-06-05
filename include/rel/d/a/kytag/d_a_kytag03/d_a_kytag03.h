@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag03_class
+ * @brief Smell Effect Generation Tag
+ *
+ * @details
+ *
+ */
 class kytag03_class : public fopAc_ac_c {
 public:
     /* 0x568 */ dPath* mpPath;
@@ -23,5 +31,7 @@ public:
     /* 0x58C */ u8 field_0x58C[0x58E - 0x58C];
     /* 0x58E */ u8 field_0x58e;
 };
+
+STATIC_ASSERT(sizeof(kytag03_class) == 0x590);
 
 #endif /* D_A_KYTAG03_H */

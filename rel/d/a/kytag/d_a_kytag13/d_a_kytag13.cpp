@@ -9,19 +9,6 @@
 #include "d/kankyo/d_kankyo_rain.h"
 #include "dol2asm.h"
 
-//
-// Types:
-//
-
-class kytag13_class : public fopAc_ac_c {
-public:
-    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
-    /* 0x574 */ f32 mSpeed;
-    /* 0x578 */ u16 mMax;
-    /* 0x57A */ u8 field_0x57a;
-    /* 0x57C */ u16 field_0x57c;
-    /* 0x57E */ u16 field_0x57e;
-};
 
 //
 // Forward References:
@@ -426,25 +413,30 @@ SECTION_DEAD static char const* const stringBase_80860538 = "D_MN11";
 #pragma pop
 
 /* 80860540-80860560 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag13_Method */
-SECTION_DATA static void* l_daKytag13_Method[8] = {
-    (void*)daKytag13_Create__FP10fopAc_ac_c,
-    (void*)daKytag13_Delete__FP13kytag13_class,
-    (void*)daKytag13_Execute__FP13kytag13_class,
-    (void*)daKytag13_IsDelete__FP13kytag13_class,
-    (void*)daKytag13_Draw__FP13kytag13_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daKytag13_Method = {
+    (process_method_func)daKytag13_Create__FP10fopAc_ac_c,
+    (process_method_func)daKytag13_Delete__FP13kytag13_class,
+    (process_method_func)daKytag13_Execute__FP13kytag13_class,
+    (process_method_func)daKytag13_IsDelete__FP13kytag13_class,
+    (process_method_func)daKytag13_Draw__FP13kytag13_class,
 };
 
 /* 80860560-80860590 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_KYTAG13 */
-SECTION_DATA extern void* g_profile_KYTAG13[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02B70000, (void*)&g_fpcLf_Method,
-    (void*)0x00000580, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x006B0000, (void*)&l_daKytag13_Method,
-    (void*)0x00060000, (void*)NULL,
+extern actor_process_profile_definition g_profile_KYTAG13 = {
+  fpcLy_CURRENT_e,       // mLayerID
+  7,                     // mListID
+  fpcPi_CURRENT_e,       // mListPrio
+  PROC_KYTAG13,          // mProcName
+  &g_fpcLf_Method.mBase, // sub_method
+  sizeof(kytag13_class), // mSize
+  0,                     // mSizeOther
+  0,                     // mParameters
+  &g_fopAc_Method.base,  // sub_method
+  107,                   // mPriority
+  &l_daKytag13_Method,   // sub_method
+  0x00060000,            // mStatus
+  fopAc_ACTOR_e,         // mActorType
+  fopAc_CULLBOX_0_e,     // cullType
 };
 
 /* 80860590-808605C0 000050 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
