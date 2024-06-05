@@ -177,6 +177,7 @@ public:
     /* 805DB974 */ cPhs__Step create();
     /* 805DC1E8 */ daB_DS_c();
 
+private:
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x05B8 */ mDoExt_McaMorfSO* mpSwordMorf;
@@ -320,5 +321,48 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daB_DS_c) == 0x2F28);
+
+class daB_DS_HIO_c {
+public:
+    /* 805CB22C */ daB_DS_HIO_c();
+#ifdef NONMATCHING
+    /* 805DC89C */ virtual ~daB_DS_HIO_c() {}
+#else
+    /* 805DC89C */ ~daB_DS_HIO_c();
+#endif
+
+#ifndef NONMATCHING
+    /* 0x00 */ void* _vtable;
+#endif
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mModelSize;
+    /* 0x0C */ f32 mHandRange;
+    /* 0x10 */ f32 mBreathRange;
+    /* 0x14 */ f32 mGuardSpawnRange;
+    /* 0x18 */ f32 mNoSearchRange;
+    /* 0x1C */ f32 mP2MoveAxis;
+    /* 0x20 */ f32 mP2ModelSize;
+    /* 0x24 */ f32 mP2AttackHeight;
+    /* 0x28 */ s16 mP2FallTime;
+    /* 0x2A */ s16 mPedestalFallTime;
+    /* 0x2C */ s16 mSandFallWaitTime;
+    /* 0x2E */ s16 mP2BulletFireTime;
+    /* 0x30 */ s16 mP2OuterWallAttackTime;
+    /* 0x32 */ s16 mP2TrapCreateWaitTime1;
+    /* 0x34 */ s16 mP2TrapCreateWaitTime2;
+    /* 0x36 */ s16 mP2TrapCreateID1;
+    /* 0x38 */ s16 mP2TrapCreateID2;
+    /* 0x3A */ s16 mHintTime1;
+    /* 0x3C */ s16 mHintTime2;
+    /* 0x3E */ s16 mP2OuterWallTrapSpeed;
+    /* 0x40 */ s16 mTowerTrapSpeed;
+    /* 0x42 */ s16 mP2ApproachAccel;
+    /* 0x44 */ s16 mP2ApproachSpeedMax;
+    /* 0x46 */ s16 mP2ApproachAfterBullet;
+    /* 0x48 */ s16 mP2ApproachDist;
+    /* 0x4A */ s16 mP2Health;
+    /* 0x4C */ bool mP2HealthDebugOn;
+};
+
 
 #endif /* D_A_B_DS_H */

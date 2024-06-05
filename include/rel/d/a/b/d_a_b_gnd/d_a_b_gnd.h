@@ -3,6 +3,10 @@
 
 #include "d/msg/d_msg_flow.h"
 #include "f_op/f_op_actor_mng.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/cc/d_cc_d.h"
+#include "d/cc/d_cc_uty.h"
+#include "d/bg/d_bg_s_acch.h"
 
 struct g_himo_s {
     /* 80601D40 */ ~g_himo_s();
@@ -25,6 +29,7 @@ public:
 
     bool checkAttackChance() { return field_0x2740 != 0; }
 
+private:
     /* 0x05AC */ request_of_phase_process_class mPhaseReq;
     /* 0x05B4 */ request_of_phase_process_class mHorsePhaseReq;
     /* 0x05BC */ s16 field_0x05bc;
@@ -184,6 +189,14 @@ public:
     /* 0x2740 */ u8 field_0x2740;
     /* 0x2741 */ u8 field_0x2741[0x2744 - 0x2741];
     /* 0x2744 */ dMsgFlow_c mMsgFlow;
+};
+
+STATIC_ASSERT(sizeof(b_gnd_class) == 0x2790);
+
+class daB_GND_HIO_c {
+public:
+    /* 805F4A4C */ daB_GND_HIO_c();
+    /* 80602230 */ ~daB_GND_HIO_c();
 };
 
 #endif /* D_A_B_GND_H */

@@ -97,4 +97,6 @@ public:
     /* 0x1F86 */ u8 field_0x1f86;
 };
 
+STATIC_ASSERT(sizeof(b_oh_class) == 0x1F88);
+
 #endif /* D_A_B_OH_H */

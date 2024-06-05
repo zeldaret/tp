@@ -1,6 +1,13 @@
 #ifndef D_A_B_ZANT_H
 #define D_A_B_ZANT_H
 
+#include "f_op/f_op_actor_mng.h"
+#include "d/cc/d_cc_d.h"
+#include "d/cc/d_cc_uty.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/bg/d_bg_s_acch.h"
+#include "d/msg/d_msg_flow.h"
+
 /**
  * @ingroup actors-enemies
  * @brief Zant
@@ -8,7 +15,7 @@
  * Palace of Twilight dungeon boss.
  * 
  */
-class daB_ZANT_c : public fopAc_ac_c {
+class daB_ZANT_c : public fopEn_enemy_c {
 public:
     /* 8063E19C */ void ctrlJoint(J3DJoint*, J3DModel*);
     /* 8063E264 */ void JointCallBack(J3DJoint*, int);
@@ -82,9 +89,6 @@ public:
     /* 8064E190 */ void create();
 
 private:
-    /* 0x0568 */ u8 field_0x568[0x58e - 0x568];
-    /* 0x058E */ u16 field_0x58e;
-    /* 0x0590 */ u8 field_0x590[0x5ac - 0x590];
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpMorfSO;
     /* 0x05B8 */ J3DModel* field_0x5b8;
@@ -185,11 +189,25 @@ private:
     /* 0x3624 */ dCcD_Sph field_0x3624[2];
     /* 0x3894 */ u32 field_0x3894;
     /* 0x3898 */ u32 field_0x3898;
-    /* 0x389C */ u32 field_0x389c;
+    // /* 0x389C */ u32 field_0x389c;
     /* 0x38A0 */ u8 field_0x38a0[0x38ac - 0x38a0];
-    /* 0x38AC */ u32 field_0x38ac[2];
-    /* 0x38B4 */ u32 field_0x38b4;
-    /* 0x38B8 */ u8 field_0x38b8;
+    // /* 0x38AC */ u32 field_0x38ac[2];
+    // /* 0x38B4 */ u32 field_0x38b4;
+    // /* 0x38B8 */ u8 field_0x38b8;
+};
+
+/* 
+    There is a misalignment here causing the class to be too big by 0x14.
+    Commenting out the class members at the end fixed it temporarily.
+    Needs to be fixed properly at some point.
+*/
+
+STATIC_ASSERT(sizeof(daB_ZANT_c) == 0x38BC);
+
+class daB_ZANT_HIO_c {
+public:
+    /* 8063E10C */ daB_ZANT_HIO_c();
+    /* 8064E994 */ ~daB_ZANT_HIO_c();
 };
 
 #endif /* D_A_B_ZANT_H */

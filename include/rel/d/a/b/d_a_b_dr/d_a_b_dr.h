@@ -1,6 +1,12 @@
 #ifndef D_A_B_DR_H
 #define D_A_B_DR_H
 
+#include "f_op/f_op_actor_mng.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/cc/d_cc_d.h"
+#include "d/msg/d_msg_flow.h"
+#include "d/bg/d_bg_s_acch.h"
+
 /**
  * @ingroup actors-enemies
  * @brief Argorok
@@ -72,6 +78,7 @@ public:
     void onTarget() { mTarget = true; }
     bool isBack() { return mPrm0; }
 
+private:
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05B8 */ J3DModel* mpPartModel;
@@ -161,6 +168,15 @@ public:
     /* 0x280C */ u32 field_0x280c;
     /* 0x2810 */ u8 field_0x2810[0x2814 - 0x2810];
     /* 0x2814 */ dMsgFlow_c mMsgFlow;
+};
+
+STATIC_ASSERT(sizeof(daB_DR_c) == 0x2860);
+
+
+class daB_DR_HIO_c {
+public:
+    /* 805BAE6C */ daB_DR_HIO_c();
+    /* 805C6B94 */ ~daB_DR_HIO_c();
 };
 
 #endif /* D_A_B_DR_H */
