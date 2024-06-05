@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpcThe_c
+ * @brief Telma
+ *
+ * @details
+ *
+ */
 class daNpcThe_c : public daNpcF_c {
 public:
     typedef BOOL (daNpcThe_c::*ActionFn)(void*);

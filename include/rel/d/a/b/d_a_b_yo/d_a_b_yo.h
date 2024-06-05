@@ -61,22 +61,30 @@ public:
     /* 806389C0 */ void create();
 
     u8 getModelNo() { return mModelNo;}
-    s16 getFrizadRollAngle() { return mRollAngle;}
+    s16 getFrizadRollAngle() { return mFrizadRollAngle;}
     f32 getModeRarius() { return mModeRarius;}
     u8 getFrizadAttack() { return mFrizadAttack;}
 
 private:
-    /* 0x5AC */ u8 field_0x5ac[0xF54 - 0x5AC];
+    /* 0x5AC */ u8 field_0x5ac[0x5D8 - 0x5AC];
+    /* 0x5D8 */ mDoExt_btkAnm* mBtk;
+    /* 0x5DC */ mDoExt_btpAnm* mBtp;
+    /* 0x5E0 */ mDoExt_brkAnm* mBrk;
+    /* 0x5E4 */ mDoExt_bckAnm* mBck;
+    /* 0x5E8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5EC */ u8 field_0x5f8[0xF54 - 0x5EC];
     /* 0xF54 */ f32 mModeRarius;
     /* 0xF58 */ u8 field_0xf58[0xF5C - 0xF58];
-    /* 0xF5C */ s16 mRollAngle;
+    /* 0xF5C */ s16 mFrizadRollAngle;
     /* 0xF5E */ u8 field_0xf5e[0xF6E - 0xF5E];
-    /* 0xF6E */ u16 field_0xf6e;
+    /* 0xF6E */ u16 mIceBreak;
     /* 0xF70 */ u8 field_0xf70[0xFA8 - 0xF70];
     /* 0xFA8 */ u8 mModelNo;
     /* 0xFA9 */ u8 field_0xfa9[0xFAD - 0xFA9];
     /* 0xFAD */ u8 mFrizadAttack;
-    /* 0xFAE */ u8 field_0xfae[0x1B88 - 0xFAE];
+    /* 0xFAE */ u8 field_0xfae[0xFCC - 0xFAE];
+    /* 0xFCC */ u8 field_0xfcc;
+    /* 0xFCD */ u8 field_0xfcd[0x1B88 - 0xFCD];
 };
 STATIC_ASSERT(sizeof(daB_YO_c) == 0x1B88);
 

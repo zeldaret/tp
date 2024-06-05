@@ -6250,7 +6250,8 @@ extern "C" asm void __dt__12dBgS_ObjAcchFv() {
 #pragma pop
 
 /* 80B7F660-80B7F664 007240 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-void daNpcF_c::setCollisions() {
+// void daNpcF_c::setCollisions() {
+extern "C" asm void setCollisions__8daNpcF_cFv() {
     /* empty function */
 }
 

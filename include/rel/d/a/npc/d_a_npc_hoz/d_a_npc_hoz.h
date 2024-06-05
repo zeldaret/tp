@@ -3,6 +3,14 @@
 
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Hoz_c
+ * @brief Iza
+ *
+ * @details
+ *
+ */
 class daNpc_Hoz_c : public daNpcT_c {
 public:
     enum Type {
@@ -75,6 +83,7 @@ public:
     static void* mCutNameList[8];
     static u8 mCutList[96];
 
+private:
     /* 0xE40 */ u8 field_0xe40[0x14d];
     /* 0xF8D */ bool mGameStartFlag;
     /* 0xF8E */ u8 field_0xf8e[0x3a];

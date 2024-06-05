@@ -5,8 +5,11 @@
 
 /**
  * @ingroup actors-tags
+ * @class kytag00_class
  * @brief Twilight Tag 0
- * 
+ *
+ * @details
+ *
  */
 class kytag00_class : public fopAc_ac_c {
 public:
@@ -25,5 +28,7 @@ public:
     /* 0x584 */ f32 field_0x584;
     /* 0x588 */ f32 field_0x588;
 };
+
+STATIC_ASSERT(sizeof(kytag00_class) == 0x58C);
 
 #endif /* D_A_KYTAG00_H */

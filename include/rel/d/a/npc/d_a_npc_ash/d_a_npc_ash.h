@@ -5,8 +5,11 @@
 
 /**
  * @ingroup actors-npcs
+ * @class daNpcAsh_c
  * @brief Ashei
- * 
+ *
+ * @details
+ *
  */
 class daNpcAsh_c : public daNpcF_c {
 public:

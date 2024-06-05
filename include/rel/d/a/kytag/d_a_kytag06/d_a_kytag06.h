@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag06_class
+ * @brief Weather Handler Tag
+ *
+ * @details
+ *
+ */
 class kytag06_class : public fopAc_ac_c {
 public:
     /* 0x568 */ dPath* mpPath;
@@ -23,5 +31,7 @@ public:
     /* 0x597 */ u8 field_0x597;
     /* 0x598 */ u8 field_0x598;
 };
+
+STATIC_ASSERT(sizeof(kytag06_class) == 0x59C);
 
 #endif /* D_A_KYTAG06_H */

@@ -2957,7 +2957,8 @@ bool daNpcT_c::evtCutProc() {
 }
 
 /* 8014CC70-8014CC78 1475B0 0008+00 1/0 1/0 0/0 .text            evtEndProc__8daNpcT_cFv */
-bool daNpcT_c::evtEndProc() {
+// bool daNpcT_c::evtEndProc() {
+extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
@@ -2982,12 +2983,14 @@ s32 daNpcT_c::getFootLJointNo() {
 }
 
 /* 8014CC98-8014CCA0 1475D8 0008+00 1/0 1/0 0/0 .text            chkXYItems__8daNpcT_cFv */
-bool daNpcT_c::chkXYItems() {
+// bool daNpcT_c::chkXYItems() {
+extern "C" bool chkXYItems__8daNpcT_cFv() {
     return false;
 }
 
 /* 8014CCA0-8014CCA8 1475E0 0008+00 1/0 1/0 0/0 .text afterSetFaceMotionAnm__8daNpcT_cFiifi */
-bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 
@@ -3014,7 +3017,8 @@ asm daNpcT_faceMotionAnmData_c daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmDa
 
 /* 8014CCE0-8014CCE8 147620 0008+00 1/0 1/0 0/0 .text            afterSetMotionAnm__8daNpcT_cFiifi
  */
-bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+// bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+extern "C" bool afterSetMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 
@@ -3059,13 +3063,15 @@ extern "C" asm void __dt__8daNpcT_cFv() {
 
 /* 8014D0A8-8014D0B0 1479E8 0008+00 1/0 1/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballLMaterialNo() {
+// bool daNpcT_c::getEyeballLMaterialNo() {
+extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 8014D0B0-8014D0B8 1479F0 0008+00 1/0 1/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
-bool daNpcT_c::getEyeballRMaterialNo() {
+// bool daNpcT_c::getEyeballRMaterialNo() {
+extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 

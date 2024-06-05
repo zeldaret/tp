@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag08_class
+ * @brief Fog Avoid Tag
+ *
+ * @details
+ *
+ */
 class kytag08_class : public fopAc_ac_c {
 public:
     /* 0x568 */ J3DModel* mpModel;
@@ -18,5 +26,7 @@ public:
     /* 0x5D4 */ int mSizeTimer;
     /* 0x5D8 */ u8 field_0x5d8;
 };
+
+STATIC_ASSERT(sizeof(kytag08_class) == 0x5DC);
 
 #endif /* D_A_KYTAG08_H */

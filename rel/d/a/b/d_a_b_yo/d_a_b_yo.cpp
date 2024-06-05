@@ -859,7 +859,7 @@ static s32 daB_YO_Draw(daB_YO_c* i_this) {
 
 /* 8062FBEC-8062FC08 00086C 001C+00 0/0 0/0 4/4 .text            onIceBreak__8daB_YO_cFUs */
 void daB_YO_c::onIceBreak(u16 param_0) {
-    field_0xf6e |= (1 << param_0);
+    mIceBreak |= (1 << param_0);
 }
 
 /* ############################################################################################## */

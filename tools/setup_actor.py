@@ -97,7 +97,6 @@ weak_funcs = {
     "asm mDoExt_bckAnm::~mDoExt_bckAnm()": "__dt__13mDoExt_bckAnmFv",
     "asm mDoExt_bckAnm::mDoExt_bckAnm()": "__ct__13mDoExt_bckAnmFv",
     "asm cM3dGTri::~cM3dGTri()": "__dt__8cM3dGTriFv",
-    # "asm cM3dGTri::cM3dGTri()": ""
     "asm J3DTevKColorAnm::~J3DTevKColorAnm()": "__dt__15J3DTevKColorAnmFv",
     "asm J3DTevKColorAnm::J3DTevKColorAnm()": "__ct__15J3DTevKColorAnmFv",
     "asm J3DTevColorAnm::~J3DTevColorAnm()": "__dt__14J3DTevColorAnmFv",
@@ -115,7 +114,32 @@ weak_funcs = {
     "asm daNpcF_c::daNpcF_c()": "__ct__8daNpcF_cFv",
     "asm daNpcF_ActorMngr_c::daNpcF_ActorMngr_c()": "__ct__18daNpcF_ActorMngr_cFv",
     "void daNpcF_c::adjustShapeAngle()": "adjustShapeAngle__8daNpcF_cFv",
-    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv"
+    "void daNpcF_c::setCollisions()": "setCollisions__8daNpcF_cFv",
+    "asm daNpcT_c::~daNpcT_c()": "__dt__8daNpcT_cFv",
+    "asm daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c()": "__dt__18daNpcT_ActorMngr_cFv",
+    "asm daNpcT_JntAnm_c::~daNpcT_JntAnm_c()": "__dt__15daNpcT_JntAnm_cFv",
+    "asm daNpcT_MotionSeqMngr_c::~daNpcT_MotionSeqMngr_c()": "__dt__22daNpcT_MotionSeqMngr_cFv",
+    "void daNpcT_c::ctrlSubFaceMotion(int param_0)": "ctrlSubFaceMotion__8daNpcT_cFi",
+    "asm void daNpcT_c::decTmr()": "decTmr__8daNpcT_cFv",
+    "void daNpcT_c::changeAnm(int* param_0, int* param_1)": "changeAnm__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBck(int* param_0, int* param_1)": "changeBck__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBtp(int* param_0, int* param_1)": "changeBtp__8daNpcT_cFPiPi",
+    "void daNpcT_c::changeBtk(int* param_0, int* param_1)": "changeBtk__8daNpcT_cFPiPi",
+    "void daNpcT_c::drawOtherMdl()": "drawOtherMdl__8daNpcT_cFv",
+    "void daNpcT_c::drawGhost()": "drawGhost__8daNpcT_cFv",
+    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
+    "void daNpcF_c::setExpression(int param_0, f32 param_1)": "setExpression__8daNpcF_cFif",
+    "void daNpcF_c::drawOtherMdls()": "drawOtherMdls__8daNpcF_cFv",
+    "asm daNpcCd2_c::~daNpcCd2_c()": "__dt__10daNpcCd2_cFv",
+    "asm dNpcLib_lookat_c::~dNpcLib_lookat_c()": "__dt__16dNpcLib_lookat_cFv",
+    "asm daNpcF_Path_c::~daNpcF_Path_c()": "__dt__13daNpcF_Path_cFv",
+    "asm daNpcF_SPCurve_c::~daNpcF_SPCurve_c()": "__dt__16daNpcF_SPCurve_cFv",
+    "asm void daTagGra_c::getGraAngle()": "getGraAngle__10daTagGra_cFv",
+    "asm void daTagGra_c::getGraPos()": "getGraPos__10daTagGra_cFv",
+    "asm void daNpcT_JntAnm_c::lookActor(fopAc_ac_c* param_0, f32 param_1, u8 param_2)" : "lookActor__15daNpcT_JntAnm_cFP10fopAc_ac_cfUc",
+    "asm daNpcCd_c::~daNpcCd_c()": "__dt__9daNpcCd_cFv",
+    "asm void daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1)": "getDstPos__13daNpcT_Path_cF4cXyzP4cXyz",
+    "asm void daDitem_c::setOffsetPos(cXyz param_0)": "setOffsetPos__9daDitem_cF4cXyz"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -194,6 +218,13 @@ external_refs = [
     "extern \"C\" void PSMTXRotAxisRad();",
     "extern \"C\" void C_MTXLightOrtho();",
     "extern \"C\" void strcat();",
+    "extern \"C\" void pow();",
+    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
+    "extern \"C\" void OSReport_Error();",
+    "extern \"C\" extern u32 g_blackColor;",
+    "extern \"C\" void PSMTXMultVecSR();",
+    "extern \"C\" void strlen();",
+    "extern \"C\" extern u32 g_saftyWhiteColor;",
 ]
 
 types = [
@@ -373,7 +404,6 @@ types = [
     "struct cM3dGCpsS",
     "struct cM3dGCps",
     "struct cM3dGLin",
-    "struct daNpc_Pouya_c",
     "struct daNpc_Jagar_Param_c",
     "struct daMidna_c",
     "struct dAttHint_c",
@@ -412,6 +442,29 @@ types = [
     "struct JPAEmitterManager",
     "struct dPa_simpleEcallBack",
     "struct daTwGate_c",
+    "struct daCow_c",
+    "struct dSv_player_collect_c",
+    "struct daNpcCd2_c",
+    "struct dNpcLib_lookat_c",
+    "struct PathTrace_c",
+    "struct daTagSchedule_c",
+    "struct daGlwSph_c",
+    "struct _GlSph_Mng_c",
+    "struct dShopSystem_c",
+    "struct dShopItemCtrl_c",
+    "struct ShopCam_action_c",
+    "struct dMeter2Info_c",
+    "struct Z2SoundObjCoach",
+    "struct daNpcTheB_c",
+    "struct SVec",
+    "struct dSv_player_item_c",
+    "struct daNpcF_SPCurve_c",
+    "struct daNpcF_Path_c",
+    "struct daTag_ShopItem_c",
+    "struct dTimer_c",
+    "struct daNpc_Len_c",
+    "struct dSv_player_status_b_c",
+    "struct daNpc_Maro_c",
 ]
 
 class ActorSetupManager:
@@ -469,13 +522,15 @@ class ActorSetupManager:
         for line in self.lines:
             if any(ref in line for ref in external_refs):
                 # leave calc_mtx in unless d_camera was included
-                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
+                # if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
+                #     new_lines.append(line)
+                #     continue
+
+                # leave g_dComIfG_gameInfo in unless npc actor
+                if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and "npc" not in self.filename and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
                     new_lines.append(line)
                     continue
-                # leave gameInfo in unless d_a_obj_carry was included
-                if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
-                    new_lines.append(line)
-                    continue
+
                 removed_external_refs += 1
             else:
                 new_lines.append(line)
@@ -546,7 +601,10 @@ class ActorSetupManager:
                 new_lines.append(line)
 
             if "};" in line and inside_struct_or_class:
-                include_line = "#include \"f_op/f_op_actor_mng.h\"\n\n"
+                if "npc" in self.filename:
+                    include_line = "#include \"d/a/d_a_npc.h\"\n\n"
+                else:
+                    include_line = "#include \"f_op/f_op_actor_mng.h\"\n\n"
                 if include_line not in header_lines:
                     struct_or_class_lines.insert(0, include_line)
 

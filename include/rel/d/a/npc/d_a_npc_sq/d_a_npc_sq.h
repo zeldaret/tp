@@ -8,6 +8,14 @@
 #include "d/msg/d_msg_flow.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class npc_sq_class
+ * @brief Squirrel (Talking, Ordon Village)
+ *
+ * @details
+ *
+ */
 class npc_sq_class : public fopEn_enemy_c {
 public:
     enum Action {

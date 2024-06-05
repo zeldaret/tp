@@ -10,7 +10,8 @@
 
 struct daDoor20_c;
 
-struct dDoor_stop_c {
+class dDoor_stop_c {
+public:
     /* 804660F4 */ void calcMtx(daDoor20_c*);
     /* 804661B0 */ void closeInit(daDoor20_c*);
     /* 804662C0 */ int closeProc(daDoor20_c*);
@@ -27,7 +28,16 @@ struct dDoor_stop_c {
     u8 field_0xb;
 };
 
-struct daDoor20_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-doors
+ * @class daDoor20_c
+ * @brief Sliding Door
+ *
+ * @details Multi-purpose door actor. This actor is used for vertical sliding doors in the game.
+ *
+ */
+class daDoor20_c : public fopAc_ac_c {
+public:
     enum ActionType {
         ACTION_INIT,
         ACTION_WAIT,
@@ -113,6 +123,7 @@ struct daDoor20_c : public fopAc_ac_c {
     bool checkFlag(u16 flag) { return field_0x68e & flag; }
     void setAction(u8 action) { mAction = action; }
 
+private:
     /* 0x56C */ request_of_phase_process_class mPhase1;
     /* 0x574 */ request_of_phase_process_class mPhase2;
     /* 0x57C */ J3DModel* mModel1;
@@ -157,5 +168,7 @@ struct daDoor20_c : public fopAc_ac_c {
     /* 0x8B8 */ dBgS_AcchCir field_0x8b8;
     /* 0x8F8 */ u32 field_0x8f8;
 };
+
+STATIC_ASSERT(sizeof(daDoor20_c) == 0x8FC);
 
 #endif /* D_A_DOOR_SHUTTER_H */

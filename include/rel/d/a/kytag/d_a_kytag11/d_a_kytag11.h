@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag11_class
+ * @brief Time Control Tag
+ *
+ * @details
+ *
+ */
 class kytag11_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 mNewTime;
@@ -15,5 +23,7 @@ public:
     /* 0x572 */ u8 mOnSwitchNo;
     /* 0x573 */ u8 mOffSwitchNo;
 };
+
+STATIC_ASSERT(sizeof(kytag11_class) == 0x574);
 
 #endif /* D_A_KYTAG11_H */

@@ -4,6 +4,14 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class npc_tr_class
+ * @brief Trout
+ *
+ * @details
+ *
+ */
 class npc_tr_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[0x5AC - 0x568];

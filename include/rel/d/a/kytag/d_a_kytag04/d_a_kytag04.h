@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class kytag04_class
+ * @brief Twilight Portal Tag
+ *
+ * @details
+ *
+ */
 class kytag04_class : public fopAc_ac_c {
 public:
     /* 0x568 */ J3DModel* mpModel;
@@ -29,5 +37,7 @@ public:
     /* 0x5D0 */ u8 field_0x5d0;
     /* 0x5D1 */ u8 field_0x5d1;
 };
+
+STATIC_ASSERT(sizeof(kytag04_class) == 0x5D4);
 
 #endif /* D_A_KYTAG04_H */

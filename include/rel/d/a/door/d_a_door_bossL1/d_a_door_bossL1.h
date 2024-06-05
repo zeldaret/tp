@@ -9,7 +9,16 @@
 
 class JPABaseEmitter;
 
-struct daBdoorL1_c : public fopAc_ac_c {
+/**
+ * @ingroup actors-doors
+ * @class daBdoorL1_c
+ * @brief Boss Door
+ *
+ * @details Multi-purpose door actor. This actor is used for boss doors in the game.
+ *
+ */
+class daBdoorL1_c : public fopAc_ac_c {
+public:
     enum DoorType {
         DOOR_TYPE_0,
         DOOR_TYPE_1,
@@ -67,6 +76,7 @@ struct daBdoorL1_c : public fopAc_ac_c {
 
     void setAction(u8 action) { mAction = action; }
 
+private:
     /* 0x568 */ request_of_phase_process_class mPhase1;
     /* 0x570 */ request_of_phase_process_class mPhase2;
     /* 0x578 */ request_of_phase_process_class mPhase3;
@@ -93,5 +103,7 @@ struct daBdoorL1_c : public fopAc_ac_c {
     /* 0x7E4 */ JPABaseEmitter* field_0x7e4[2];
     /* 0x7EC */ Mtx field_0x7ec;
 };
+
+STATIC_ASSERT(sizeof(daBdoorL1_c) == 0x81C);
 
 #endif /* D_A_DOOR_BOSSL1_H */
