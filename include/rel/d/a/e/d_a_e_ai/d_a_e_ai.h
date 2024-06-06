@@ -36,6 +36,7 @@ class e_ai_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xd44 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_ai_class) == 0xd44);
 
 class daE_AI_HIO_c {

@@ -37,6 +37,7 @@ public:
     /* 0x74C */ f32 field_0x74c;
     /* 0x750 */ s32 field_0x750;
 };
+
 STATIC_ASSERT(sizeof(daObjKKanban_c) == 0x754);
 
 #endif /* D_A_OBJ_KKANBAN_H */

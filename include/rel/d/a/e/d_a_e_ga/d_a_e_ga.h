@@ -20,6 +20,7 @@ class e_ga_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x4d7c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_ga_class) == 0x4d7c);
 
 class daE_Ga_HIO_c {

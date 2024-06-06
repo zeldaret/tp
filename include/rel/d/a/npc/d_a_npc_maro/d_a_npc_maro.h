@@ -88,6 +88,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1140 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Maro_c) == 0x1140);
 
 class daNpc_Maro_Param_c {

@@ -30,6 +30,7 @@ struct nest_hahen_s {
     /* 0x53 */ bool mActive;
     /* 0x54 */ u8 mTimer;
 };
+
 STATIC_ASSERT(sizeof(nest_hahen_s) == 0x58);
 
 /**
@@ -106,6 +107,7 @@ public:
     /* 0xCF0 */ f32 mDemoCameraFovY;
     /* 0xCF4 */ bool mHIOInit;
 };
+
 STATIC_ASSERT(sizeof(e_nest_class) == 0xCF8);
 
 class daE_Nest_HIO_c {
@@ -116,6 +118,7 @@ public:
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 mScale;
 };
+
 STATIC_ASSERT(sizeof(daE_Nest_HIO_c) == 0xC);
 
 #endif /* D_A_E_NEST_H */

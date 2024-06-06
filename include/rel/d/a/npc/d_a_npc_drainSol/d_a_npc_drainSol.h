@@ -38,6 +38,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xd3c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcDrSol_c) == 0xd3c);
 
 class daNpcDrSol_Param_c {

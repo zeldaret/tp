@@ -15,6 +15,7 @@ class npc_tkj2_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xaa0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(npc_tkj2_class) == 0xaa0);
 
 class daNpc_Tkj2_HIO_c {

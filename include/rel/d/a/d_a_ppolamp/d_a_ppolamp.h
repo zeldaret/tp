@@ -20,6 +20,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5ac - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daPPolamp_c) == 0x5ac);
 
 

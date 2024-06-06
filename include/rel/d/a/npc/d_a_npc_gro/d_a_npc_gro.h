@@ -62,6 +62,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe30 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_grO_c) == 0xe30);
 
 class daNpc_grO_Param_c {

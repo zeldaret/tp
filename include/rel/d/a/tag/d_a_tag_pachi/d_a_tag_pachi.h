@@ -25,6 +25,7 @@ public:
     /* 0x6E0 */ u32 field_0x6E0;
     /* 0x6E4 */ u32 field_0x6E4;
 };
+
 STATIC_ASSERT(sizeof(daTagPati_c) == 0x6E8);
 
 #endif /* D_A_TAG_PACHI_H */

@@ -34,6 +34,7 @@ public:
 private:
     /* 0x590 */ u8 field_0x568[0x860 - 0x590];
 };
+
 STATIC_ASSERT(sizeof(daObjKAG_c) == 0x860);
 
 class daObj_KagHIO_c {

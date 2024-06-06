@@ -38,6 +38,7 @@ private:
     /* 0x95A */ s16 field_0x95a;
     /* 0x95C */ s16 field_0x95c;
 };
+
 STATIC_ASSERT(sizeof(daObjWPndlm_c) == 0x960);
 
 

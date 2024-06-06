@@ -14,6 +14,7 @@ class e_nz_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xa88 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_nz_class) == 0xa88);
 
 class daE_NZ_HIO_c {

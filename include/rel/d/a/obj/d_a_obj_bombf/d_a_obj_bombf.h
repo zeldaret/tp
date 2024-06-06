@@ -31,6 +31,7 @@ private:
     /* 0x582 */ u8 field_0x582;
     /* 0x584 */ f32 field_0x584;
 };
+
 STATIC_ASSERT(sizeof(daObjBombf_c) == 0x588);
 
 #endif /* D_A_OBJ_BOMBF_H */

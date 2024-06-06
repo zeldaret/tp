@@ -26,6 +26,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0xc0c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daB_ZANTM_c) == 0xc0c);
 
 

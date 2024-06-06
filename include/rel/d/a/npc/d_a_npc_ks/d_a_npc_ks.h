@@ -15,6 +15,7 @@ class npc_ks_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xc20 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(npc_ks_class) == 0xc20);
 
 class daNpc_Ks_HIO_c {

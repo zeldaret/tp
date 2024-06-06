@@ -22,6 +22,7 @@ public:
     /* 0x1372 */ s16 field_0x1372;
     /* 0x1374 */ u8 field_0x1374[0x142c - 0x1374];
 };
+
 STATIC_ASSERT(sizeof(e_rdy_class) == 0x142C);
 
 class daE_RDY_HIO_c {

@@ -15,6 +15,7 @@ class e_hzelda_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x1460 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_hzelda_class) == 0x1460);
 
 class daE_HZELDA_HIO_c {

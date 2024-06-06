@@ -136,6 +136,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb9c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcCdn3_c) == 0xb9c);
 
 

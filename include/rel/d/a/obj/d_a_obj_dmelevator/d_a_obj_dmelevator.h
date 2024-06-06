@@ -92,6 +92,7 @@ private:
     /* 0x63C */ f32 field_0x63c;
     /* 0x640 */ f32 field_0x640;
 };
+
 STATIC_ASSERT(sizeof(daObjDmElevator_c) == 0x644);
 
 

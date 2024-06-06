@@ -40,6 +40,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x674 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daSCannonCrs_c) == 0x674);
 
 #endif /* D_A_OBJ_SCANNON_CRS_H */

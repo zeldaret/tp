@@ -32,6 +32,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa20 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_ItaMato_c) == 0xa20);
 
 class daObj_ItaMato_Param_c {

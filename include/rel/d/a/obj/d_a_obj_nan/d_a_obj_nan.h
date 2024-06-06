@@ -35,6 +35,7 @@ public:
 private:
     /* 0x590 */ u8 field_0x568[0x800 - 0x590];
 };
+
 STATIC_ASSERT(sizeof(daObjNAN_c) == 0x800);
 
 class daObj_NanHIO_c {

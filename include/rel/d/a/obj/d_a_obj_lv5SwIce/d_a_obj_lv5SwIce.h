@@ -31,6 +31,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x738 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv5SwIce_c) == 0x738);
 
 class daLv5SwIce_HIO_c {

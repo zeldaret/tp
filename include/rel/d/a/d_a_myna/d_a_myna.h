@@ -17,6 +17,7 @@ struct ShopItem {
     /* 0xC */ u8 mItemType;
     /* 0xD */ u8 mItemStatus;
 };
+
 STATIC_ASSERT(sizeof(ShopItem) == 0x10);
 
 class daMyna_c : public fopAc_ac_c {
@@ -175,6 +176,7 @@ public:
     /* 0x938 */ u8 field_0x938;
     /* 0x939 */ u8 field_0x939;
 };
+
 STATIC_ASSERT(sizeof(daMyna_c) == 0x93C);
 
 class daMyna_HIO_c : public mDoHIO_entry_c {
@@ -200,6 +202,7 @@ public:
     /* 0x2E */ s16 field_0x2E;  // DAT_8094ba6a
     /* 0x30 */ s16 field_0x30;  // DAT_8094ba6c
 };
+
 STATIC_ASSERT(sizeof(daMyna_HIO_c) == 0x34);
 
 #endif /* D_A_MYNA_H */

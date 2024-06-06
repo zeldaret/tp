@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb38 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_AutoMata_c) == 0xb38);
 
 class daObj_AutoMata_Param_c {

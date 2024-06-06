@@ -33,6 +33,7 @@ public:
     /* 0x5C4 */ Mtx mpOctHibiMtx;
     /* 0x5F4 */ dBgW* mpOctHibiBgW;
 };
+
 STATIC_ASSERT(sizeof(obj_lv3WaterB_class) == 0x5F8);
 
 #endif /* D_A_OBJ_LV3WATERB_H */

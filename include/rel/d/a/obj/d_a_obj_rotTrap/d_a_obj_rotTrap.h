@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x173c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daRotTrap_c) == 0x173c);
 
 class daRotTrap_HIO_c {

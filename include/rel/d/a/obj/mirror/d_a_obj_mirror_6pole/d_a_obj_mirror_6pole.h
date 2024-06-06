@@ -68,6 +68,7 @@ private:
     /* 0x578 */ actionFunc* mAction;
     /* 0x57C */ Mode_e mMode;
 };
+
 STATIC_ASSERT(sizeof(daObjMirror6Pole_c) == 0x580);
 
 #endif /* D_A_OBJ_MIRROR_6POLE_H */

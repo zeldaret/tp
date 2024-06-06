@@ -55,6 +55,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xd7c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcTkc_c) == 0xd7c);
 
 class daNpcTkc_Param_c {

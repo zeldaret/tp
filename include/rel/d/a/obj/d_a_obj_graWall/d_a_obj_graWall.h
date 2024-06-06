@@ -25,6 +25,7 @@ private:
     /* 0x5A4 */ dCcD_Cyl mCyl;
     /* 0x6E0 */ u8 field_0x6e0;
 };
+
 STATIC_ASSERT(sizeof(daObjGraWall_c) == 0x6E4);
 
 #endif /* D_A_OBJ_GRAWALL_H */

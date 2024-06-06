@@ -15,6 +15,7 @@ class obj_kbox_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x9f0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_kbox_class) == 0x9f0);
 
 class daObj_Kbox_HIO_c {

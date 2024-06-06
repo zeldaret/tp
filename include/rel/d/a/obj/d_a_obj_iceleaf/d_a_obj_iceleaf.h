@@ -60,6 +60,7 @@ private:
     /* 0x964 */ cXyz field_0x964;
     /* 0x970 */ cXyz field_0x970;
 };
+
 STATIC_ASSERT(sizeof(daObjIceLeaf_c) == 0x97c);
 
 

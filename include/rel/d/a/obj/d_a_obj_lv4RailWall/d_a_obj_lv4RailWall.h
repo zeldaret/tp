@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x95c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjLv4Wall_c) == 0x95c);
 
 

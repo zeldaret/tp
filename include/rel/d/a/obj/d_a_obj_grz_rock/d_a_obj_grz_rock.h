@@ -27,6 +27,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x804 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjGrzRock_c) == 0x804);
 
 

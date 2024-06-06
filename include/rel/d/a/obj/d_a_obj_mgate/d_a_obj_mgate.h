@@ -52,6 +52,7 @@ private:
     /* 0x5C8 */ int mCounter;
     /* 0x5CC */ s16 mGateKeyAngle;
 };
+
 STATIC_ASSERT(sizeof(daObjMGate_c) == 0x5D0);
 
 #endif /* D_A_OBJ_MGATE_H */

@@ -55,6 +55,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x7f0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjGeyser_c) == 0x7f0);
 
 

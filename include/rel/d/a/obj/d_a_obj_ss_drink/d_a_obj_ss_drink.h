@@ -50,6 +50,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb10 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_SSDrink_c) == 0xb10);
 
 

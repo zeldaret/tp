@@ -27,6 +27,7 @@ public:
 private:
     /* 0x568 */ JPABaseEmitter* mParticle;
 };
+
 STATIC_ASSERT(sizeof(daObjSmoke_c) == 0x56C);
 
 #endif /* D_A_OBJ_SMOKE_H */

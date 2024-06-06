@@ -84,6 +84,7 @@ private:
     /* 0x0964 */ JPABaseEmitter* field_0x0964[3];
     /* 0x0970 */ Z2SoundObjSimple mSound;
 };
+
 STATIC_ASSERT(sizeof(daObjStone_c) == 0x990);
 
 #endif /* D_A_OBJ_STONE_H */

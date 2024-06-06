@@ -72,6 +72,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x100c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {

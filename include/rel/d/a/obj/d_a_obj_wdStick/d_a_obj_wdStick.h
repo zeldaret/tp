@@ -44,6 +44,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xaf8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daWdStick_c) == 0xaf8);
 
 class daWdStick_HIO_c {

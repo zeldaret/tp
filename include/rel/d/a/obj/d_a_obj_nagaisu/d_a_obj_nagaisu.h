@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb6e4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjNagaisu_c) == 0xb6e4);
 
 // child seat / couch?

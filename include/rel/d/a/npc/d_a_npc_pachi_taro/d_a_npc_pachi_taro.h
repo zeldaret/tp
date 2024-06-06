@@ -111,6 +111,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x100c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Pachi_Taro_c) == 0x100c);
 
 class daNpc_Pachi_Taro_Param_c {

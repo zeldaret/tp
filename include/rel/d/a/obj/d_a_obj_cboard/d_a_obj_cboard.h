@@ -32,6 +32,7 @@ private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ Mtx field_0x5a8;
 };
+
 STATIC_ASSERT(sizeof(daObjBoard_c) == 0x5D8);
 
 #endif /* D_A_OBJ_CBOARD_H */

@@ -79,6 +79,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1108 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Seira_c) == 0x1108);
 
 class daNpc_Seira_Param_c {

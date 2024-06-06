@@ -27,6 +27,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0x95c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daBullet_c) == 0x95c);
 
 class daBullet_Param_c {

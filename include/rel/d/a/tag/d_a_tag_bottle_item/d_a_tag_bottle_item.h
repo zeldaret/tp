@@ -30,6 +30,7 @@ public:
     /* 80D564A0 */ int wait(void*);
     /* 80D565F0 */ virtual ~daTag_BottleItem_c();
 };
+
 STATIC_ASSERT(sizeof(daTag_BottleItem_c) == 0x57C);
 
 #endif /* D_A_TAG_BOTTLE_ITEM_H */

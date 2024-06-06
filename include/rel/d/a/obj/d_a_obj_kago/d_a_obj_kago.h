@@ -33,6 +33,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xba8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_Kago_c) == 0xba8);
 
 class daObj_Kago_Param_c {

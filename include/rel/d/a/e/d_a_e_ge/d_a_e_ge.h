@@ -57,6 +57,7 @@ private:
 
     static u8 l_actionmenu[108];
 };
+
 STATIC_ASSERT(sizeof(daE_GE_c) == 0xBA0);
 
 class daE_GE_HIO_c {

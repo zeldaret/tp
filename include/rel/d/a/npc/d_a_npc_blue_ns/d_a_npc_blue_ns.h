@@ -75,6 +75,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe14 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcBlueNS_c) == 0xe14);
 
 class daNpcBlueNS_Param_c {

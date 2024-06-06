@@ -38,6 +38,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x14dc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv6ChangeGate_c) == 0x14dc);
 
 class daLv6ChangeGate_HIO_c {

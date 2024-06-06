@@ -31,6 +31,7 @@ private:
     /* 0x574 */ u16 field_0x574;
     /* 0x576 */ u16 field_0x576;
 };
+
 STATIC_ASSERT(sizeof(daObjTMoon_c) == 0x578);
 
 #endif /* D_A_OBJ_TMOON_H */

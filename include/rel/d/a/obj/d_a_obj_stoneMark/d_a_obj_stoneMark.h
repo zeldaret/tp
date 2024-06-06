@@ -31,6 +31,7 @@ private:
     /* 0x07A8 */ dCcD_Stts mStts;
     /* 0x07E4 */ Mtx cullMtx;
 };
+
 STATIC_ASSERT(sizeof(daObjSMark_c) == 0x0814);
 
 #endif /* D_A_OBJ_STONEMARK_H */

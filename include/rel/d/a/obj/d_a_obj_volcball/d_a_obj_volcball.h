@@ -135,6 +135,7 @@ private:
     /* 0x2925 */ u8 field_0x2925;
     /* 0x2926 */ u8 field_0x2926;
 };
+
 STATIC_ASSERT(sizeof(daObjVolcBall_c) == 0x2928);
 
 #endif /* D_A_OBJ_VOLCBALL_H */

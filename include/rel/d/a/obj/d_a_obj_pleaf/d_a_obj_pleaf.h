@@ -42,6 +42,7 @@ public:
 
     u32 getType() { return 0; }
 };
+
 STATIC_ASSERT(sizeof(daObj_Pleaf_c) == 0x950);
 
 class daObj_Pleaf_Param_c {

@@ -25,6 +25,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x79c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKaisou_c) == 0x79c);
 
 

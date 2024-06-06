@@ -42,6 +42,7 @@ public:
     /* 0x5EE */ s16 mRotSpeedY;
     /* 0x5F0 */ s16 mCount;
 };
+
 STATIC_ASSERT(sizeof(daObjSwSpinner_c) == 0x5F4);
 
 #endif /* D_A_OBJ_SWSPINNER_H */

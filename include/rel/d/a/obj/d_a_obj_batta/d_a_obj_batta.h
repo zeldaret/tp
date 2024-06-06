@@ -35,6 +35,7 @@ public:
 private:
     /* 0x590 */ u8 field_0x568[0x9f8 - 0x590];
 };
+
 STATIC_ASSERT(sizeof(daObjBATTA_c) == 0x9f8);
 
 class daObj_BattaHIO_c {

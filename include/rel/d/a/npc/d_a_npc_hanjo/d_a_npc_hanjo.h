@@ -76,6 +76,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x172c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Hanjo_c) == 0x172c);
 
 class daNpc_Hanjo_Param_c {

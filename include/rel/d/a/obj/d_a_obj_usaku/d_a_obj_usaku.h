@@ -22,6 +22,7 @@ public:
     /* 0x580 */ Mtx mBgMtx;
     /* 0x5B0 */ dBgW* mpBgW;
 };
+
 STATIC_ASSERT(sizeof(obj_usaku_class) == 0x5B4);
 
 #endif /* D_A_OBJ_USAKU_H */

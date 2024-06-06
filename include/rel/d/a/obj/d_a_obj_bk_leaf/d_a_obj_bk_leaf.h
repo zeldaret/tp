@@ -35,6 +35,7 @@ public:
     /* 0x57D */ u8 field_0x57D;
     /* 0x57E */ s16 field_0x57E;
 };
+
 STATIC_ASSERT(sizeof(daBkLeaf_c) == 0x580);
 
 #endif /* D_A_OBJ_BK_LEAF_H */

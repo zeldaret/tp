@@ -53,6 +53,7 @@ public:
     /* 0x587 */ u8 field_0x587;
     /* 0x588 */ u32 field_0x588;
 };
+
 STATIC_ASSERT(sizeof(daObjSwBallC_c) == 0x58C);
 
 #endif /* D_A_OBJ_SWBALLC_H */

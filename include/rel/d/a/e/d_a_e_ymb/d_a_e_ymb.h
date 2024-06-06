@@ -81,6 +81,7 @@ public:
 private:
     /* 0x5AC */ u8 field_0x5ac[0x1524 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daE_YMB_c) == 0x1524);
 
 struct daE_YMB_HIO_c {

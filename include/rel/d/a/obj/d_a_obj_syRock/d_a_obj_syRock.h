@@ -45,6 +45,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x9a0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daSyRock_c) == 0x9a0);
 
 class daSyRock_HIO_c {

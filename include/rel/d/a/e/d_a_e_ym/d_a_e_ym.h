@@ -220,6 +220,7 @@ private:
     /* 0xAE8 */ u32 field_0xae8[3];
     /* 0xAF4 */ u8 field_0xaf4;
 };
+
 STATIC_ASSERT(sizeof(daE_YM_c) == 0xAF8);
 
 struct E_YM_n {

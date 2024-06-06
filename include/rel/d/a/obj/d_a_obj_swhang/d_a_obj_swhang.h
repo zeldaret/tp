@@ -63,6 +63,7 @@ private:
     /* 0x788 */ f32 field_0x788;
     /* 0x78C */ s16 field_0x78c;
 };
+
 STATIC_ASSERT(sizeof(daObjSwHang_c) == 0x790);
 
 #endif /* D_A_OBJ_SWHANG_H */

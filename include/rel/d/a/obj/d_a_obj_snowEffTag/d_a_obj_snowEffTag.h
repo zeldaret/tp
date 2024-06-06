@@ -31,6 +31,7 @@ private:
     /* 0x574 */ f32 field_0x574;
     /* 0x578 */ u32 mEmitterID;
 };
+
 STATIC_ASSERT(sizeof(daSnowEffTag_c) == 0x57C);
 
 class daSnowEffTag_HIO_c : public mDoHIO_entry_c {

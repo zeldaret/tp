@@ -49,6 +49,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x830 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daL8Lift_c) == 0x830);
 
 class daL8Lift_HIO_c {

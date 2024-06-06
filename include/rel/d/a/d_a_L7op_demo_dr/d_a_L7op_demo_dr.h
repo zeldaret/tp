@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daL7ODR_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daL7ODR_c : public fopAc_ac_c {
 public:
     /* 805AB098 */ void setAction(void (daL7ODR_c::*)());
@@ -26,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x8b8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daL7ODR_c) == 0x8b8);
 
 

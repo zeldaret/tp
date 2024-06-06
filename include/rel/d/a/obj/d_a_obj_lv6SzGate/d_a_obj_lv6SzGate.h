@@ -35,6 +35,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x61c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv6SzGate_c) == 0x61c);
 
 class daLv6SzGate_HIO_c {

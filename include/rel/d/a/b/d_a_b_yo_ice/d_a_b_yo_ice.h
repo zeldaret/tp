@@ -46,6 +46,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0xb3c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daB_YOI_c) == 0xb3c);
 
 class daB_YOI_HIO_c {

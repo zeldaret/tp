@@ -32,6 +32,7 @@ private:
     /* 0x5AC */ dCcD_Stts mStts;
     /* 0x5E8 */ dCcD_Cyl mCyl;
 };
+
 STATIC_ASSERT(sizeof(daObjBBox_c) == 0x724);
 
 #endif /* D_A_OBJ_BBOX_H */

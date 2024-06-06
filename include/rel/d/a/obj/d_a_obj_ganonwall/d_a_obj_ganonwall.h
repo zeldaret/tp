@@ -35,6 +35,7 @@ private:
     /* 0x57A */ u16 field_0x57a;
     /* 0x57C */ s16 field_0x57c;
 };
+
 STATIC_ASSERT(sizeof(daObjGWall_c) == 0x580);
 
 

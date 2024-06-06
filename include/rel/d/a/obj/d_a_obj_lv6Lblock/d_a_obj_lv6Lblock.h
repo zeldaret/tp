@@ -31,6 +31,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5b8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv6Lblock_c) == 0x5b8);
 
 class daLv6Lblock_HIO_c {

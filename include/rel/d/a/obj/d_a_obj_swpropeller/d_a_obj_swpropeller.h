@@ -53,6 +53,7 @@ public:
     /* 0x83D */ u8 field_0x83d;
     /* 0x83E */ u8 mModelType;
 };
+
 STATIC_ASSERT(sizeof(daObjSwPr_c) == 0x840);
 
 #endif /* D_A_OBJ_SWPROPELLER_H */

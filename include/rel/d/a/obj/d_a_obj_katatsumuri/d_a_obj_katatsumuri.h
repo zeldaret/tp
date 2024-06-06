@@ -37,6 +37,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa74 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKAT_c) == 0xa74);
 
 class daObj_KatHIO_c {

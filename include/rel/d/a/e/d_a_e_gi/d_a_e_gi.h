@@ -41,6 +41,7 @@ class daE_GI_c : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x107c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daE_GI_c) == 0x107c);
 
 class daE_GI_HIO_c {

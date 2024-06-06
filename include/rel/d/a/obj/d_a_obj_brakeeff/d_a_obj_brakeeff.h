@@ -15,6 +15,7 @@ class obj_brakeeff_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x73c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
 
 

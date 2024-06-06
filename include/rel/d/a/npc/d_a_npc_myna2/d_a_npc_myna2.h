@@ -57,6 +57,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe34 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_myna2_c) == 0xe34);
 
 class daNpc_myna2_Param_c {

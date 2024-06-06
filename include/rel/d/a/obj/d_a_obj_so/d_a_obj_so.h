@@ -15,6 +15,7 @@ class obj_so_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x1bd0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_so_class) == 0x1bd0);
 
 class daObj_So_HIO_c {

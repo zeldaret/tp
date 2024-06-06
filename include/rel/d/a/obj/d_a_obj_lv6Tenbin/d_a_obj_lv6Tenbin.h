@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x654 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daTenbin_c) == 0x654);
 
 class daTenbin_HIO_c {

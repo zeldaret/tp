@@ -25,6 +25,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x62c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjLv4PRwall_c) == 0x62c);
 
 

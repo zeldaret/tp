@@ -14,6 +14,7 @@ class e_bi_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xc00 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_bi_class) == 0xc00);
 
 class daE_BI_HIO_c {

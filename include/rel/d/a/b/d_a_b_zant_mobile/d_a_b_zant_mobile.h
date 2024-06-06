@@ -29,6 +29,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0xd14 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daB_ZANTZ_c) == 0xd14);
 
 class daB_ZANTZ_HIO_c {

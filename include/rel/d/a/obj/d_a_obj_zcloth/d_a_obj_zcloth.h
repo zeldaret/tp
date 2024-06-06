@@ -21,6 +21,7 @@ public:
     /* 80D3F1D0 */ int draw();
     /* 80D3F200 */ int _delete();
 };
+
 STATIC_ASSERT(sizeof(daObjZCloth_c) == 0x92C);
 
 #endif /* D_A_OBJ_ZCLOTH_H */

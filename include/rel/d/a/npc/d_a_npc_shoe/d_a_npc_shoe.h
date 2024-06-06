@@ -43,6 +43,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe1c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcShoe_c) == 0xe1c);
 
 class daNpcShoe_Param_c {

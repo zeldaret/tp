@@ -54,6 +54,7 @@ public:
     /* 0x778 */ bool field_0x778;
     /* 0x778 */ JPABaseEmitter* mParticles[3];
 };
+
 STATIC_ASSERT(sizeof(daObjTrnd2_c) == 0x788);
 
 #endif /* D_A_OBJ_TORNADO2_H */

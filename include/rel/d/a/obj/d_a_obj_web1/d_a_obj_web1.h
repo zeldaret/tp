@@ -36,6 +36,7 @@ public:
     /* 0x630 */ dCcD_Cyl mCylCc;
     /* 0x76C */ u8 field_0x76c;
 };
+
 STATIC_ASSERT(sizeof(obj_web1_class) == 0x770);
 
 class daObj_Web1_HIO_c {

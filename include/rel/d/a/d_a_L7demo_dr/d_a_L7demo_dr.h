@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daDr_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daDr_c : public fopAc_ac_c {
 public:
     /* 805A9238 */ void setAction(void (daDr_c::*)());
@@ -24,6 +32,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x65c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daDr_c) == 0x65c);
 
 

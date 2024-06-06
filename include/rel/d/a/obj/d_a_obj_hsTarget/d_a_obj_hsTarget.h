@@ -28,6 +28,7 @@ private:
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ u8 mIndex;
 };
+
 STATIC_ASSERT(sizeof(daHsTarget_c) == 0x5B0);
 
 class daHsTarget_HIO_c : mDoHIO_entry_c {

@@ -38,6 +38,7 @@ public:
 
     /* 8048C304 */ virtual ~daTag_Evt_c();
 };
+
 STATIC_ASSERT(sizeof(daTag_Evt_c) == 0x5EC);
 
 #endif /* D_A_TAG_EVT_H */

@@ -67,6 +67,7 @@ private:
     /* 0xB0C */ u16 mEventType;
     /* 0xB0E */ u8 field_0xB0E;
 };
+
 STATIC_ASSERT(sizeof(daObj_SSItem_c) == 0xB10);
 
 #endif /* D_A_OBJ_SS_ITEM_H */

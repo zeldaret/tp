@@ -31,6 +31,7 @@ private:
     /* 0x5A4 */ J3DModel* mpModel;
     /* 0x5A8 */ u8 mSwitch;
 };
+
 STATIC_ASSERT(sizeof(daObjRCircle_c) == 0x5AC);
 
 #endif /* D_A_OBJ_RCIRCLE_H */

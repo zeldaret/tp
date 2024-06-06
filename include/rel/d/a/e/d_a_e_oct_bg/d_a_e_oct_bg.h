@@ -94,6 +94,7 @@ private:
     /* 0xBB2 */ u8 field_0xbb2;
     /* 0xBB3 */ u8 field_0xbb3;
 };
+
 STATIC_ASSERT(sizeof(daE_OctBg_c) == 0xBB4);
 
 class daE_OctBg_HIO_c {
