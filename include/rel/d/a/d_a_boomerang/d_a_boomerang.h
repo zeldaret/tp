@@ -173,6 +173,19 @@ private:
     /* 0xDC0 */ int (daBoomerang_c::*mpProcFn)();
     /* 0xDCC */ void (daBoomerang_c::*mpSetAimActorFn)(fopAc_ac_c*);
     /* 0xDD8 */ void (daBoomerang_c::*mpCancelLockActorFn)(fopAc_ac_c*);
-};  // Size: 0xDE4
+};
+
+STATIC_ASSERT(sizeof(daBoomerang_c) == 0xDE4);
+
+class daBoomerang_HIO_c0 {
+public:
+    static u16 const m_lockWaitTime;
+    static f32 const m_minCircleR;
+    static f32 const m_middleCircleR;
+    static f32 const m_maxCircleR;
+    static f32 const m_scale;
+    static f32 const m_lockWindScale;
+};
+
 
 #endif /* D_A_BOOMERANG_H */

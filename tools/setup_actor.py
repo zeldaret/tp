@@ -151,7 +151,8 @@ weak_funcs = {
     "asm void daHorse_c::changeOriginalDemo()": "changeOriginalDemo__9daHorse_cFv",
     "asm void dCcD_Sph::operator=(dCcD_Sph const& param_0)": "__as__8dCcD_SphFRC8dCcD_Sph",
     "asm dCcD_Stts::dCcD_Stts()": "__ct__9dCcD_SttsFv",
-    "asm dCcD_Stts::~dCcD_Stts()": "__dt__9dCcD_SttsFv", 
+    "asm dCcD_Stts::~dCcD_Stts()": "__dt__9dCcD_SttsFv",
+    "asm void cXyz::abs(Vec const& param_0) const": "abs__4cXyzCFRC3Vec"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -231,12 +232,13 @@ external_refs = [
     "extern \"C\" void C_MTXLightOrtho();",
     "extern \"C\" void strcat();",
     "extern \"C\" void pow();",
-    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
+    # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
     "extern \"C\" void OSReport_Error();",
     # "extern \"C\" extern u32 g_blackColor;",
     "extern \"C\" void PSMTXMultVecSR();",
     "extern \"C\" void strlen();",
-    "extern \"C\" extern u32 g_saftyWhiteColor;",
+    # "extern \"C\" extern u32 g_saftyWhiteColor;",
+    "extern \"C\" void PSMTXQuat();",
 ]
 
 types = [
@@ -478,6 +480,29 @@ types = [
     "struct dSv_player_status_b_c",
     "struct daNpc_Maro_c",
     "struct dSv_restart_c",
+    "struct J3DSkinDeform",
+    "struct J3DDeformData",
+    "struct J3DAnmCluster",
+    "struct mDoExt_blkAnm",
+    "struct daMP_c",
+    "struct dDemo_actor_c",
+    "struct dStage_roomControl_c",
+    "struct dDemo_object_c",
+    "struct dDemo_c",
+    "struct J3DMaterial",
+    "struct leafdraw_class",
+    "struct mDoExt_MtxCalcOldFrame",
+    "struct mDoExt_AnmRatioPack",
+    "struct daPy_frameCtrl_c",
+    "struct daPy_actorKeep_c",
+    "struct Quaternion",
+    "struct J3DTransformInfo",
+    "struct J3DMtxCalcNoAnmBase",
+    "struct J3DMtxCalcNoAnm",
+    "struct J3DMtxCalcNoAnm__template0",
+    "struct J3DMtxCalcJ3DSysInitMaya",
+    "struct J3DMtxCalcCalcTransformMaya",
+    "struct J3DMtxCalc",
 ]
 
 class ActorSetupManager:

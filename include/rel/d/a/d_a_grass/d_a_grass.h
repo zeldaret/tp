@@ -209,4 +209,10 @@ namespace daGrass_prm {
     inline u8 getItemBitNo(daGrass_c* i_this) { return (fopAcM_GetParam(i_this) >> 8) & 0xFF; }
 };
 
+struct offset_data {
+    /* 0x0 */ u8 num;
+    /* 0x4 */ csXyz* set_type;
+};
+
+
 #endif /* D_A_GRASS_H */

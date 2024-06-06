@@ -162,5 +162,16 @@ public:
     /* 0xC0 */ f32 field_0xc0;
     /* 0xC4 */ f32 field_0xc4;
 };
+#include "f_op/f_op_actor_mng.h"
+
+class JMSMesgEntry_c : public fopEn_enemy_c {
+private:
+    /* 0x5ac */ u8 field_0x5ac[0x748 - 0x5ac];
+};
+
+STATIC_ASSERT(sizeof(JMSMesgEntry_c) == 0x748);
+
+struct JKRExpHeap {};
+
 
 #endif /* D_A_BALLOON_2D_H */

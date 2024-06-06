@@ -1,6 +1,7 @@
 #ifndef D_A_COW_H
 #define D_A_COW_H
 
+#include "f_op/f_op_actor_mng.h"
 
 class daCow_c : public fopAc_ac_c {
 public:
@@ -91,7 +92,12 @@ public:
 
     void setNaderu() { field_0x568 |= 0x80; }
 
+private:
     /* 0x568 */ u16 field_0x568;
+    /* 0x56A */ u8 field_0x56a[0xD40 - 0x56A];
 };
+
+STATIC_ASSERT(sizeof(daCow_c) == 0xd40);
+
 
 #endif /* D_A_COW_H */

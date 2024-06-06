@@ -127,4 +127,12 @@ inline u8 getObjArg0(daBgObj_c* i_this) {
 }
 };     // namespace daBgObj_prm
 
+struct spec_dat {
+public:
+    u16 field_0x0;
+    u16 field_0x2;
+    u8 field_0x4;
+};
+
+
 #endif /* D_A_BG_OBJ_H */
