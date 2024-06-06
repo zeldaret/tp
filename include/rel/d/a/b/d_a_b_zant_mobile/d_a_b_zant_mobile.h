@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_ZANTZ_c
+ * @brief Zant (Mobile)
+ *
+ * @details Palace of Twilight dungeon boss (mobile form?).
+ *
+ */
 class daB_ZANTZ_c : public fopEn_enemy_c {
 public:
     /* 806507B0 */ void draw();

@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/cc/d_cc_d.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_TN_c
+ * @brief Darknut
+ *
+ * @details Temple of Time dungeon mini-boss.
+ *
+ */
 class daB_TN_c : public fopEn_enemy_c {
 public:
     /* 8061EC58 */ void ctrlJoint(J3DJoint*, J3DModel*);

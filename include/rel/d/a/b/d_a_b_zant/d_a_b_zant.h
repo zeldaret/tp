@@ -10,10 +10,11 @@
 
 /**
  * @ingroup actors-enemies
+ * @class daB_ZANT_c
  * @brief Zant
- * 
- * Palace of Twilight dungeon boss.
- * 
+ *
+ * @details Palace of Twilight dungeon boss.
+ *
  */
 class daB_ZANT_c : public fopEn_enemy_c {
 public:

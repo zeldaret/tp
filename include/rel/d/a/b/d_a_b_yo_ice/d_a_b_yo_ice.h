@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_YOI_c
+ * @brief Blizzeta Second Phase Ice Block
+ *
+ * @details Snowpeak Ruins dungeon boss second phase ice blocks.
+ *
+ */
 class daB_YOI_c : public fopEn_enemy_c {
 public:
     /* 8063A17C */ void draw();

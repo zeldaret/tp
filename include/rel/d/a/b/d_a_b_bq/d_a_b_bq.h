@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/cc/d_cc_uty.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class b_bq_class
+ * @brief Diababa
+ *
+ * @details Forest Temple dungeon boss.
+ *
+ */
 class b_bq_class : public fopEn_enemy_c {
 public:
     /* 805B9B3C */ b_bq_class();

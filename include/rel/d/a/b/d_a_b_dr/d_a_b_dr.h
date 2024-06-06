@@ -9,10 +9,11 @@
 
 /**
  * @ingroup actors-enemies
+ * @class daB_DR_c
  * @brief Argorok
- * 
- * City in the Sky dungeon boss.
- * 
+ *
+ * @details City in the Sky dungeon boss.
+ *
  */
 class daB_DR_c : public fopEn_enemy_c {
 public:

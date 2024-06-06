@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_ZANTM_c
+ * @brief Zant - Magic Attack
+ *
+ * @details Palace of Twilight dungeon boss magic attack.
+ *
+ */
 class daB_ZANTM_c : public fopEn_enemy_c {
 public:
     /* 8064F778 */ void draw();

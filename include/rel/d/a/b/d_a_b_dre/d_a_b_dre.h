@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_DRE_c
+ * @brief Argorok (child actor?)
+ *
+ * @details Used in the City in the Sky dungeon boss fight.
+ *
+ */
 class daB_DRE_c : public fopEn_enemy_c {
 public:
     /* 805C7DD4 */ void SetAnm(mDoExt_McaMorfSO*, int, int, f32, f32);
@@ -32,6 +40,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0x930 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daB_DRE_c) == 0x930);
 
 

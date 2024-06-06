@@ -2,6 +2,14 @@
 #define D_A_B_BH_H
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class b_bh_class
+ * @brief Big Baba
+ *
+ * @details Forest Temple enemy.
+ *
+ */
 class b_bh_class : public fopEn_enemy_c {
 private:
     /* 0x5AC */ u8 field_0x568[0xf4c - 0x5AC];

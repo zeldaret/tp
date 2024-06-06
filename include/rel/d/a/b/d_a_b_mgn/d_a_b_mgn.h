@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_MGN_c
+ * @brief Beast Ganon?
+ *
+ * @details Hyrule Castle dungeon boss.
+ *
+ */
 class daB_MGN_c : public fopEn_enemy_c {
 public:
     /* 8060577C */ void ctrlJoint(J3DJoint*, J3DModel*);

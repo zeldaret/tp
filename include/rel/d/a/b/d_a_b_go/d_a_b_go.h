@@ -35,10 +35,11 @@ enum daB_GO_Action {
 
 /**
  * @ingroup actors-enemies
+ * @class b_go_class
  * @brief Goron Golem
- * 
- * Unused golem boss made up of several small Gorons.
- * 
+ *
+ * @details Unused golem boss made up of several small Gorons.
+ *
  */
 class b_go_class : public fopEn_enemy_c {
 public:

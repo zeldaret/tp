@@ -12,10 +12,11 @@
 
 /**
  * @ingroup actors-enemies
+ * @class daB_DS_c
  * @brief Stallord
- * 
- * Arbiter's Grounds dungeon boss.
- * 
+ *
+ * @details Arbiter's Grounds dungeon boss.
+ *
  */
 class daB_DS_c : public fopEn_enemy_c {
 public:

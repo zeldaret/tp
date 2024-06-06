@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class daB_GG_c
+ * @brief Aeralfos
+ *
+ * @details City in the Sky dungeon mini-boss.
+ *
+ */
 class daB_GG_c : public fopEn_enemy_c {
 public:
     /* 805DE464 */ void CreateHeap();
@@ -83,6 +91,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0x116c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daB_GG_c) == 0x116c);
 
 class daB_GG_HIO_c {

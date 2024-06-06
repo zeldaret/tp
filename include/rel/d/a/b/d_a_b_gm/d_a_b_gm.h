@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-enemies
+ * @class b_gm_class
+ * @brief Armogohma
+ *
+ * @details Temple of Time dungeon boss.
+ *
+ */
 class b_gm_class : public fopEn_enemy_c {
 public:
     /* 805F38E4 */ b_gm_class();
@@ -10,6 +18,7 @@ public:
 private:
     /* 0x5ac */ u8 field_0x5ac[0x1d08 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(b_gm_class) == 0x1d08);
 
 class daB_GM_HIO_c {
