@@ -239,6 +239,9 @@ external_refs = [
     "extern \"C\" void strlen();",
     # "extern \"C\" extern u32 g_saftyWhiteColor;",
     "extern \"C\" void PSMTXQuat();",
+    "extern \"C\" void GXInitTexObjCI();",
+    "extern \"C\" void GXInitTlutObj();",
+    "extern \"C\" void GXLoadTlut();",
 ]
 
 types = [
@@ -503,6 +506,15 @@ types = [
     "struct J3DMtxCalcJ3DSysInitMaya",
     "struct J3DMtxCalcCalcTransformMaya",
     "struct J3DMtxCalc",
+    "struct daTagWaterFall_c",
+    "struct daObj_Balloon_c",
+    "struct daE_YM_c",
+    "struct daBalloon2D_c",
+    "struct daObjLife_c",
+    "struct daAlink_c",
+    "struct dSv_player_item_record_c",
+    "struct dSv_player_item_max_c",
+    "struct dSv_fishing_info_c",
 ]
 
 class ActorSetupManager:

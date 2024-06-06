@@ -1,6 +1,7 @@
 #ifndef D_A_KAGO_H
 #define D_A_KAGO_H
 
+#include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
 class daKago_c : public fopAc_ac_c {
@@ -92,6 +93,7 @@ public:
 
     MtxP getLegR3Mtx() { return mLegR3Mtx; }
 
+private:
     /* 0x568 */ u8 field_0x568[0x620 - 0x568];
     /* 0x620 */ Mtx mLegR3Mtx;
     /* 0x650 */ u8 field_0x650[0x6E1 - 0x650];
@@ -101,6 +103,15 @@ public:
     /* 0x744 */ int field_0x744;
     /* 0x748 */ u8 field_0x748[0x76C - 0x748];
     /* 0x76C */ dPath* field_0x76c;
+    /* 0x770 */ u8 field_0x770[0xBA4 - 0x770];
+};
+
+STATIC_ASSERT(sizeof(daKago_c) == 0xBA4);
+
+class daKago_HIO_c {
+public:
+    /* 808495AC */ daKago_HIO_c();
+    /* 80854A4C */ ~daKago_HIO_c();
 };
 
 #endif /* D_A_KAGO_H */

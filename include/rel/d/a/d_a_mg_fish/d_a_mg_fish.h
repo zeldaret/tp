@@ -4,8 +4,7 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "f_op/f_op_actor.h"
-// including this causes vtable problems
-// #include "d/bg/d_bg_s_acch.h"
+#include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
 
 struct mf_ke_s {
@@ -59,9 +58,8 @@ public:
     /* 0x754 */ mf_ke_s field_0x754[2];
     /* 0x7E4 */ mDoExt_3DlineMat0_c field_0x7e4;
     /* 0x800 */ Z2Creature mSound;
-    // /* 0x890 */ dBgS_AcchCir mAcchCir;
-    // /* 0x8D0 */ dBgS_ObjAcch mAcch;
-    /* 0x890 */ u8 field_0x890[0x218];
+    /* 0x890 */ dBgS_AcchCir mAcchCir;
+    /* 0x8D0 */ dBgS_ObjAcch mAcch;
     /* 0xAA8 */ dCcD_Stts mCcStatus;
     /* 0xAE4 */ dCcD_Cyl mCcCyl;
     /* 0xC20 */ u8 field_0xc20[0x1c];
@@ -72,5 +70,12 @@ public:
 };
 
 STATIC_ASSERT(sizeof(mg_fish_class) == 0xC50);
+
+class daMg_Fish_HIO_c {
+public:
+    /* 80529D2C */ daMg_Fish_HIO_c();
+    /* 805360A8 */ ~daMg_Fish_HIO_c();
+};
+
 
 #endif /* D_A_MG_FISH_H */

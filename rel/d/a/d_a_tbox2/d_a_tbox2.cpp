@@ -21,12 +21,6 @@ void daTbox2_c::setBaseMtx() {
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
-struct res_info {
-    /* 0x0 */ int bmd_no;
-    /* 0x4 */ int bck_no;
-    /* 0x8 */ int dzb_id;
-    /* 0xC */ int dzb_no;
-};
 
 /* 80498160-80498180 000000 0020+00 4/4 0/0 0/0 .rodata          l_resInfo */
 static const res_info l_resInfo[] = {

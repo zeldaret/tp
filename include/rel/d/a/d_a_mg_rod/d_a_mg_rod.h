@@ -1,9 +1,12 @@
 #ifndef D_A_MG_ROD_H
 #define D_A_MG_ROD_H
 
+#include "f_op/f_op_actor_mng.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/bg/d_bg_s_acch.h"
 #include "d/cc/d_cc_d.h"
+#include "d/msg/d_msg_flow.h"
+#include "rel/d/a/d_a_mg_fish/d_a_mg_fish.h"
 
 struct mg_rod_s {
     /* 0x0 */ cXyz field_0x0[16];
@@ -14,9 +17,14 @@ struct mg_line_s {
 };
 
 struct mg_hook_s {
+    /* 804BAF78 */ ~mg_hook_s();
+    /* 804BAFD8 */ mg_hook_s();
+
     /* 0x00 */ cXyz field_0x0[2];
     /* 0x18 */ u8 field_0x18[0x20 - 0x18];
 };
+
+struct wd_ss {};
 
 /**
  * @ingroup actors-items
@@ -31,6 +39,7 @@ public:
     f32 getRodStickY() { return mRodStickY; }
     bool checkRodEquipPermission() { return field_0x1514 == 0; }
 
+private:
     /* 0x0568 */ u8 field_0x568[0x5A4 - 0x568];
     /* 0x05A4 */ mg_rod_s field_0x5a4;
     /* 0x0664 */ u8 field_0x664[0x6AC - 0x664];
@@ -76,6 +85,15 @@ public:
     /* 0x1515 */ u8 field_0x1515[0x1518 - 0x1515];
     /* 0x1518 */ dCcD_Stts field_0x1518;
     /* 0x1554 */ dCcD_Sph field_0x1554;
+    /* 0x168C */ u8 field_0x168c;
+};
+
+STATIC_ASSERT(sizeof(dmg_rod_class) == 0x1690);
+
+class dmg_rod_HIO_c {
+public:
+    /* 804A95EC */ dmg_rod_HIO_c();
+    /* 804BB070 */ ~dmg_rod_HIO_c();
 };
 
 #endif /* D_A_MG_ROD_H */

@@ -279,4 +279,24 @@ private:
     /* 0x09D4 */ daMidna_func mpFunc;
 };
 
+STATIC_ASSERT(sizeof(daMidna_c) == 0x9e0);
+
+class daMidna_matAnm_c : public fopAc_ac_c {
+public:
+    /* 804BC218 */ void init();
+    /* 804BC248 */ void calc(J3DMaterial*) const;
+    /* 804C63E0 */ ~daMidna_matAnm_c();
+};
+
+class daMidna_hio_c0 {
+public:
+    static u8 const m[32];
+};
+
+class daMidna_McaMorfCB1_c {
+public:
+    /* 804BC36C */ void execute(u16, J3DTransformInfo*);
+    /* 804C6398 */ ~daMidna_McaMorfCB1_c();
+};
+
 #endif /* D_A_MIDNA_H */
