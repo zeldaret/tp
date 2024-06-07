@@ -35,6 +35,14 @@ private:
 
 class daHoZelda_c;
 
+/**
+ * @ingroup actors-unsorted
+ * @class daHorse_c
+ * @brief Epona
+ *
+ * @details
+ *
+ */
 class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daWarpBug_c
+ * @brief Warp Bug (unused)
+ *
+ * @details
+ *
+ */
 class daWarpBug_c : public fopAc_ac_c {
 public:
     inline ~daWarpBug_c();
@@ -21,5 +29,7 @@ public:
     /* 0x57C */ s16 field_0x57c;
     /* 0x57E */ u8 field_0x57e;
 };
+
+STATIC_ASSERT(sizeof(daWarpBug_c) == 0x580);
 
 #endif /* D_A_WARP_BUG_H */

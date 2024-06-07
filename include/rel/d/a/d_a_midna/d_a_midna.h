@@ -11,6 +11,14 @@
 class daMidna_c;
 typedef int (daMidna_c::*daMidna_func)();
 
+/**
+ * @ingroup actors-unsorted
+ * @class daMidna_c
+ * @brief Midna
+ *
+ * @details
+ *
+ */
 class daMidna_c : public fopAc_ac_c {
 public:
     enum daMidna_ERFLG0 {

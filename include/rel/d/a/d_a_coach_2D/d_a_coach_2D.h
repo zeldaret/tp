@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daCoach2D_c
+ * @brief Coach 2D
+ *
+ * @details
+ *
+ */
 class daCoach2D_c : public fopAc_ac_c {
 public:
     struct c_list {

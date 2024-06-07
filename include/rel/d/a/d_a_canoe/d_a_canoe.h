@@ -6,6 +6,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "SSystem/SComponent/c_phase.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daCanoe_c
+ * @brief Canoe
+ *
+ * @details
+ *
+ */
 class daCanoe_c : public fopAc_ac_c {
 public:
     /* 804DA5F4 */ void createHeap();

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daMP_c
+ * @brief Movie Player
+ *
+ * @details
+ *
+ */
 class daMP_c : public fopAc_ac_c {
 public:
     /* 80031AD0 */ static int daMP_c_THPPlayerPlay();

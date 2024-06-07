@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSwhit0_c
+ * @brief Crystal Switch (?)
+ *
+ * @details
+ *
+ */
 class daSwhit0_c : public fopAc_ac_c {
 public:
     /* 80485FF8 */ void getSwNo();

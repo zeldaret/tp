@@ -7,10 +7,11 @@
 
 /**
  * @ingroup actors-items
+ * @class daCrod_c
  * @brief Dominion Rod
- * 
- * Temple of Time dungeon item.
- * 
+ *
+ * @details Temple of Time dungeon item.
+ *
  */
 class daCrod_c : public fopAc_ac_c {
 public:

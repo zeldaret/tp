@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daBullet_c
+ * @brief Bullet (Unused?)
+ *
+ * @details
+ *
+ */
 class daBullet_c : public fopEn_enemy_c {
 public:
     /* 8065594C */ ~daBullet_c();

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class ni_class
+ * @brief Cucco
+ *
+ * @details
+ *
+ */
 class ni_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xb0c - 0x568];

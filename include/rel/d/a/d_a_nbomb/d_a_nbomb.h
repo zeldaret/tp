@@ -6,6 +6,14 @@
 #include "d/cc/d_cc_d.h"
 #include "d/a/d_a_player.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daNbomb_c
+ * @brief Bomb
+ *
+ * @details Multi-purpose bomb actor. Used for normal bombs, water bombs and bomblings.
+ *
+ */
 class daNbomb_c : public dBomb_c {
 public:
     enum daNbomb_FLG0 {

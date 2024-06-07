@@ -14,6 +14,14 @@ struct mf_ke_s {
     /* 0x00 */ u8 field_0x0[0x48];
 };
 
+/**
+ * @ingroup actors-unsorted
+ * @class mg_fish_class
+ * @brief Fish
+ *
+ * @details
+ *
+ */
 class mg_fish_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;

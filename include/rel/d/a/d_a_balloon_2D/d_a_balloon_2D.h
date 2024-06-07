@@ -13,6 +13,14 @@ class J2DPicture;
 class J2DPane;
 class J2DTextBox;
 
+/**
+ * @ingroup actors-unsorted
+ * @class daBalloon2D_c
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class daBalloon2D_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     class c_list 

@@ -28,8 +28,11 @@ struct wd_ss {};
 
 /**
  * @ingroup actors-items
+ * @class dmg_rod_class
  * @brief Fishing Rod
- * 
+ *
+ * @details
+ *
  */
 class dmg_rod_class : public fopAc_ac_c {
 public:

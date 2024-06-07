@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class fr_class
+ * @brief Frog
+ *
+ * @details
+ *
+ */
 class fr_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x9e8 - 0x568];

@@ -173,6 +173,14 @@ public:
     /* 0x12A50 */ u32 m_Jhana01_cDL_size;
 };  // Size: 0x12A54
 
+/**
+ * @ingroup actors-unsorted
+ * @class daGrass_c
+ * @brief Grass
+ *
+ * @details
+ *
+ */
 class daGrass_c : public fopAc_ac_c {
 public:
     /* 8051BEFC */ int createGrass();

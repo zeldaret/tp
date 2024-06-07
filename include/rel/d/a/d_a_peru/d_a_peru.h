@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "d/a/d_a_npc.h"
 
+/**
+ * @ingroup actors-npcs
+ * @class daPeru_c
+ * @brief Louise
+ *
+ * @details
+ *
+ */
 class daPeru_c : public fopAc_ac_c {
 public:
     /* 80D46EEC */ ~daPeru_c();

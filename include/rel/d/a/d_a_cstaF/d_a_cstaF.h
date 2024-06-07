@@ -5,6 +5,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/particle/d_particle_copoly.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daCstaF_c
+ * @brief Dominion Rod Statue
+ *
+ * @details
+ *
+ */
 class daCstaF_c : public dBgS_MoveBgActor {
 public:
     /* 804DDB48 */ void checkCoverModel();

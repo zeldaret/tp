@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daDitem_c
+ * @brief Cutscene Item
+ *
+ * @details
+ *
+ */
 class daDitem_c : public fopAc_ac_c {
 public:
     /* 804DFBCC */ bool __CreateHeap();

@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSwc00_c
+ * @brief Switch Area C
+ *
+ * @details
+ *
+ */
 class daSwc00_c : public fopAc_ac_c {
 public:
 public:

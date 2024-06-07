@@ -13,6 +13,14 @@ typedef int (daBgObj_c::*executeFunc)();
 typedef void (daBgObj_c::*tgSetFunc)();
 typedef int (daBgObj_c::*actionFunc)();
 
+/**
+ * @ingroup actors-unsorted
+ * @class daBgObj_c
+ * @brief Moving Background Obj?
+ *
+ * @details
+ *
+ */
 class daBgObj_c : public dBgS_MoveBgActor {
 public:
     class spec_data_c {

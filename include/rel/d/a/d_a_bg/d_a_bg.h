@@ -39,6 +39,14 @@ struct daBg_unkData {
     /* 0x10 */ f32 mBtkAnmSpeed;
 };  // Size: 0x14
 
+/**
+ * @ingroup actors-unsorted
+ * @class daBg_c
+ * @brief Background
+ *
+ * @details Stage collision.
+ *
+ */
 class daBg_c : public fopAc_ac_c {
 public:
     /* 80457BF8 */ const char* setArcName();

@@ -6,6 +6,14 @@
 #include "d/particle/d_particle.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daArrow_c
+ * @brief Arrow
+ *
+ * @details
+ *
+ */
 class daArrow_c : public fopAc_ac_c {
 public:
     enum ArrowType_e {

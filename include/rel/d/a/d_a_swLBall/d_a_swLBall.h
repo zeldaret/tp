@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSwLBall_c
+ * @brief Switch L Ball
+ *
+ * @details
+ *
+ */
 class daSwLBall_c : public fopAc_ac_c {
 public:
     /* 80D4EB8C */ void checkArea_sub(fopAc_ac_c*);

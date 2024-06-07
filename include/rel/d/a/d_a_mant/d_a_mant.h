@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class mant_class
+ * @brief ???
+ *
+ * @details Related to Ganondorf Horseback Battle
+ *
+ */
 class mant_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x39a4 - 0x568];

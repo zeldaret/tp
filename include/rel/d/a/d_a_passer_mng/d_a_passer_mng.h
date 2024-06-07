@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daPasserMng_c
+ * @brief Hylian Passerby Manager?
+ *
+ * @details
+ *
+ */
 class daPasserMng_c : public fopAc_ac_c {
 public:
     /* 80D45738 */ void execute();

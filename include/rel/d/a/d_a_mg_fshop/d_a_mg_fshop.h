@@ -89,6 +89,14 @@ struct fs_koro2_s {
     /* 0x64 */ dBgW* mpBgW;
 };
 
+/**
+ * @ingroup actors-unsorted
+ * @class fshop_class
+ * @brief Hena's Shop
+ *
+ * @details
+ *
+ */
 class fshop_class : public fopAc_ac_c {
 public:
     /* 0x0568 */ request_of_phase_process_class mPhase;

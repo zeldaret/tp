@@ -20,6 +20,14 @@ struct ShopItem {
 
 STATIC_ASSERT(sizeof(ShopItem) == 0x10);
 
+/**
+ * @ingroup actors-npcs
+ * @class daMyna_c
+ * @brief Trill
+ *
+ * @details
+ *
+ */
 class daMyna_c : public fopAc_ac_c {
 public:
     /* 80945E80 */ int baseMotion00(int);

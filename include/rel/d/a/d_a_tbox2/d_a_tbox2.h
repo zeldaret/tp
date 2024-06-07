@@ -3,6 +3,14 @@
 
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daTbox2_c
+ * @brief Treasure Box 2
+ *
+ * @details
+ *
+ */
 class daTbox2_c : public daTboxBase_c {
 public:
     enum Type_e {

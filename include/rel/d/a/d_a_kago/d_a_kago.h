@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_path.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daKago_c
+ * @brief Basket
+ *
+ * @details
+ *
+ */
 class daKago_c : public fopAc_ac_c {
 public:
     /* 80849660 */ void getBckName(int);

@@ -20,6 +20,14 @@ public:
     /* 804A4338 */ void reset();
 };
 
+/**
+ * @ingroup actors-unsorted
+ * @class daDemo00_c
+ * @brief Cutscene
+ *
+ * @details
+ *
+ */
 class daDemo00_c : public fopAc_ac_c {
 public:
     /* 804A4388 */ ~daDemo00_c();

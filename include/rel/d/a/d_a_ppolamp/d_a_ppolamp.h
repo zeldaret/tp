@@ -4,6 +4,14 @@
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daPPolamp_c
+ * @brief P Poe Lamp
+ *
+ * @details
+ *
+ */
 class daPPolamp_c : public fopAc_ac_c {
 public:
     /* 80D4C958 */ ~daPPolamp_c();
