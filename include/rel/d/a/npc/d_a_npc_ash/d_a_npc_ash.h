@@ -117,10 +117,10 @@ public:
     /* 8095A8EC */ bool talk(void*);
     /* 8095AD28 */ bool demo(void*);
     /* 8095B164 */ bool leave(void*);
-    /* 8095B48C */ BOOL EvCut_Introduction(int i_cutIndex);
-    /* 8095B58C */ BOOL EvCut_Meeting(int i_cutIndex);
-    /* 8095B83C */ BOOL EvCut_WiretapSponsor(int i_cutIndex);
-    /* 8095BA80 */ BOOL EvCut_WiretapEntrant(int i_cutIndex);
+    /* 8095B48C */ BOOL EvCut_Introduction(int i_staffID);
+    /* 8095B58C */ BOOL EvCut_Meeting(int i_staffID);
+    /* 8095B83C */ BOOL EvCut_WiretapSponsor(int i_staffID);
+    /* 8095BA80 */ BOOL EvCut_WiretapEntrant(int i_staffID);
     /* 8095BCF0 */ void setParam();
     /* 8095BF6C */ BOOL main();
 #ifdef NONMATCHING
@@ -182,11 +182,11 @@ public:
         /* 0x54 */ f32 mAttnRadius;
         /* 0x58 */ f32 mAttnUpperY;
         /* 0x5C */ f32 mAttnLowerY;
-        /* 0x60 */ u16 field_0x60;
-        /* 0x62 */ u16 field_0x62;
-        /* 0x64 */ u16 mTestExpression;
-        /* 0x66 */ u16 mTestMotion;
-        /* 0x68 */ u16 mTestLookMode;
+        /* 0x60 */ s16 field_0x60;
+        /* 0x62 */ s16 mDamageTimer;
+        /* 0x64 */ s16 mTestExpression;
+        /* 0x66 */ s16 mTestMotion;
+        /* 0x68 */ s16 mTestLookMode;
         /* 0x6A */ bool mTest;
     };
 

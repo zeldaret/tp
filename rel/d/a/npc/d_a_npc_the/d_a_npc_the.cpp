@@ -794,7 +794,7 @@ daNpcThe_Param_c::param const daNpcThe_Param_c::m = {
     300.0f,     // mAttnUpperY
     -300.0f,    // mAttnLowerY
     60,
-    8,
+    8,          // mDamageTimer
     0,          // mTestExpression
     0,          // mTestMotion
     0,          // mTestLookMode
@@ -2192,16 +2192,16 @@ asm BOOL daNpcThe_c::test(void* param_0) {
 
 /* 80AF923C-80AF9244 001C5C 0008+00 2/0 0/0 0/0 .text            EvCut_TwResistance__10daNpcThe_cFi
  */
-BOOL daNpcThe_c::EvCut_TwResistance(int i_cutIdx) {
+BOOL daNpcThe_c::EvCut_TwResistance(int i_staffID) {
     return true;
 }
 
 /* 80AF9244-80AF9338 001C64 00F4+00 1/0 0/0 0/0 .text            EvCut_Introduction__10daNpcThe_cFi
  */
-BOOL daNpcThe_c::EvCut_Introduction(int i_cutIdx) {
+BOOL daNpcThe_c::EvCut_Introduction(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
-    int* cut_name = (int*)event_manager.getMyNowCutName(i_cutIdx);
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    int* cut_name = (int*)event_manager.getMyNowCutName(i_staffID);
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (*cut_name) {
         case '0001':
         case '0002':
@@ -2737,8 +2737,9 @@ BOOL daNpcThe_c::doEvent() {
         } else {
             int staff_id = event_manager.getMyStaffId(l_myName, this, -1);
             if (staff_id != -1) {
-                mCutIndex = staff_id;
-                int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList, 4, 0, 0);
+                mStaffID = staff_id;
+                int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
+                                                        ARRAY_SIZE(mEvtCutNameList), 0, 0);
                 if (act_idx > 0 && act_idx < 4) {
                     if ((this->*mEvtCutList[act_idx])(staff_id)) {
                         event_manager.cutEnd(staff_id);
@@ -2771,9 +2772,9 @@ BOOL daNpcThe_c::doEvent() {
         }
     } else {
         mMsgTimer = 0;
-        if (mCutIndex != -1) {
+        if (mStaffID != -1) {
             mMode = 1;
-            mCutIndex = -1;
+            mStaffID = -1;
         }
     }
     return ret;

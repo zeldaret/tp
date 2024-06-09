@@ -633,14 +633,14 @@ protected:
     /* 0x902 */ csXyz mHeadAngle;
     /* 0x908 */ csXyz field_0x908[3];
     /* 0x91A */ csXyz mLookatAngle[3];
-    /* 0x92C */ int mCutIndex;
-    /* 0x930 */ u32 field_0x930;
+    /* 0x92C */ int mStaffID;
+    /* 0x930 */ int mCutType;
     /* 0x934 */ int mAttnIdx;
     /* 0x938 */ int mAttnChangeTimer;
     /* 0x93C */ int mAttnActorTimer[5];
     /* 0x950 */ int mMsgTimer;
-    /* 0x954 */ int field_0x954;
-    /* 0x958 */ int field_0x958;
+    /* 0x954 */ int mDamageTimer;
+    /* 0x958 */ int mTotalDamageTimer;
     /* 0x95C */ int field_0x95c;
     /* 0x960 */ int mEventTimer;
     /* 0x964 */ int mBtpTimer;
@@ -685,7 +685,7 @@ protected:
     /* 0x9ED */ bool mOrderNewEvt;
     /* 0x9EE */ bool field_0x9ee;
     /* 0x9EF */ u8 field_0x9ef;
-    /* 0x9F0 */ u8 field_0x9f0;
+    /* 0x9F0 */ bool mIsDamaged;
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9f3 */ u8 field_0x9f3;
@@ -738,7 +738,7 @@ public:
     };
 
     /* 80152014 */ BOOL execute();
-    /* 801522AC */ BOOL draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
+    /* 801522AC */ int draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
     /* 80152614 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*,
                                              dCcD_GObjInf*);
     /* 80152654 */ static void* srchAttnActor1(void*, void*);
@@ -767,7 +767,7 @@ public:
     /* 80153150 */ void playExpressionAnm(daNpcF_c::daNpcF_anmPlayData***);
     /* 80153264 */ void playMotionAnm(daNpcF_c::daNpcF_anmPlayData***);
     /* 8015337C */ void setLookatMtx(int, int*, f32);
-    /* 80153578 */ void hitChk2(dCcD_Cyl*, int, int);
+    /* 80153578 */ BOOL hitChk2(dCcD_Cyl*, BOOL, BOOL);
     /* 80153658 */ void setDamage(int, int, int);
     /* 80153718 */ int ctrlMsgAnm(int&, int&, fopAc_ac_c*, BOOL);
     /* 8015387C */ void orderEvent(int, char*, u16, u16, u8, u16);
@@ -823,6 +823,7 @@ public:
     BOOL checkHide() { return mHide || (mTwilight && !dComIfGs_wolfeye_effect_check()); }
     void setIntDemander(fopAc_ac_c* i_actor) { field_0x824.entry(i_actor); }
     void setIntFlowNodeNo(int i_flowNodeNo) { mFlowNodeNo = i_flowNodeNo; }
+    void setCutType(int i_cutType) { mCutType = i_cutType; }
     void onInterrupt(u8 param_0) { field_0x9ef = param_0; }
 
     static u8 const mCcDObjInfo[48];
@@ -920,6 +921,7 @@ public:
 
     int getIdx() { return mIdx; };
     void setIdx(int i_idx) { mIdx = i_idx; }
+    int getArg0() { return mpRoomPath->m_points[mIdx].mArg0; }
     u8 getArg0(int i_idx) { return mpRoomPath->m_points[i_idx].mArg0; }
     Vec getPntPos(int i_idx) { return mpRoomPath->m_points[i_idx].m_position; }
     BOOL chkClose() { return dPath_ChkClose(mpRoomPath); }
