@@ -38,9 +38,11 @@ struct dMenuMapCommon_c {
     };
 
     struct Stage_c {
-        // Incomplete or wrong
+        // Incomplete class
 
         struct Stage_c_data {
+            // Unknown name
+
             /* 0x00 */ char mName[8];
             /* 0x08 */ u8 field_0x8;
             /* 0x09 */ u8 field_0x9;

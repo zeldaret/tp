@@ -32,7 +32,7 @@ public:
     /* 801D2100 */ void setIcon2DPos(u8, f32, f32, f32, u8, bool);
     /* 801D241C */ void setIcon2DPos(u8, char const*, f32, f32, f32, u8, bool);
     /* 801D2454 */ void setIcon2DPos(u8, u8, char const*, f32, f32, f32, u8, bool);
-    /* 801D2508 */ bool isShowRegion(int);
+    /* 801D2508 */ int isShowRegion(int);
     /* 801D2658 */ f32 getMapAreaGlobalPosX();
     /* 801D2668 */ f32 getMapAreaGlobalPosY();
     /* 801D2678 */ f32 getMapAreaGlobalCenterPosX();
@@ -135,7 +135,7 @@ public:
     /* 0x0F90 */ float field_0xf90;
     /* 0x0F94 */ float field_0xf94;
     /* 0x0F98 */ float field_0xf98;
-    /* 0x0F9C */ float field_0xf9c; // Likely called mZoom
+    /* 0x0F9C */ float field_0xf9c; // Likely called mZoom or something similar
     /* 0x0FA0 */ float field_0xfa0;
     /* 0x0FA4 */ float field_0xfa4;
     /* 0x0FA8 */ float field_0xfa8;
