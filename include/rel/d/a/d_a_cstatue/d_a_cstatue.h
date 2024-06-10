@@ -5,6 +5,14 @@
 #include "d/particle/d_particle_copoly.h"
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daCstatue_c
+ * @brief Dominion Rod Statue (small?)
+ *
+ * @details
+ *
+ */
 class daCstatue_c : public fopAc_ac_c {
 public:
     /* 806636AC */ void atHitCallback(fopAc_ac_c*);
@@ -30,6 +38,7 @@ public:
 
     static u8 const m_bckIdxTable[70 + 2 /* padding */];
 
+private:
     /* 0x568 */ char* mResName;
     /* 0x56C */ request_of_phase_process_class mPhaseReq;
     /* 0x574 */ J3DModel* field_0x574;
@@ -70,6 +79,8 @@ public:
     /* 0xB08 */ cXyz field_0xb08;
     /* 0xB14 */ cXyz field_0xb14;
     /* 0xB20 */ cXyz mBallPos;
-};  // Size: 0xB2C
+};
+
+STATIC_ASSERT(sizeof(daCstatue_c) == 0xB2C);
 
 #endif /* D_A_CSTATUE_H */

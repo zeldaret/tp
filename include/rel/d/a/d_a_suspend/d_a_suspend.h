@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSus_c
+ * @brief Suspend
+ *
+ * @details
+ *
+ */
 class daSus_c : public fopAc_ac_c {
 public:
     class data_c {

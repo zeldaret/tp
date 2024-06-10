@@ -70,6 +70,7 @@ private:
     /* 0x568 */ u8 field_0xb48[0xE1C - 0x568];
     /* 0xE1C */ u8 field_0xe1c;
 };
+
 STATIC_ASSERT(sizeof(daNpc_GWolf_c) == 0xe20);
 
 class daNpc_GWolf_Param_c {

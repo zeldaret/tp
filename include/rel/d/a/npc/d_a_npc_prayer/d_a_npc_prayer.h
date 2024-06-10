@@ -51,6 +51,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe10 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcPray_c) == 0xe10);
 
 class daNpcPray_Param_c {

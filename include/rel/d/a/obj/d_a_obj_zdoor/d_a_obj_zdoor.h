@@ -40,6 +40,7 @@ private:
     /* 0xE2E */ s16 field_0xe2e;
     /* 0xE30 */ u8 field_0xe30;
 };
+
 STATIC_ASSERT(sizeof(daZdoor_c) == 0xE34);
 
 

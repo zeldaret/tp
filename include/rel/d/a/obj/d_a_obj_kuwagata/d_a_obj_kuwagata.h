@@ -39,6 +39,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa68 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKUW_c) == 0xa68);
 
 class daObj_KuwHIO_c {

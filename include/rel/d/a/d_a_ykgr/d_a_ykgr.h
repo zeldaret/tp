@@ -36,6 +36,14 @@ extern "C" u8 m_flag__8daYkgr_c;
 extern "C" u8 m_alpha_flag__8daYkgr_c;
 extern "C" u8 m_alpha__8daYkgr_c;
 
+/**
+ * @ingroup actors-unsorted
+ * @class daYkgr_c
+ * @brief Floor Gravity On/Off
+ *
+ * @details
+ *
+ */
 class daYkgr_c : public fopAc_ac_c {
 public:
     static void init() {
@@ -92,5 +100,7 @@ public:
     f32 field_0x5a4;
     f32 field_0x5a8;
 };
+
+STATIC_ASSERT(sizeof(daYkgr_c) == 0x5AC);
 
 #endif /* D_A_YKGR_H */

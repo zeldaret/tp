@@ -45,6 +45,7 @@ private:
     /* 0x5C0 */ u32 field_0x5c0;
     /* 0x5C4 */ u8 field_0x5c4;
 };
+
 STATIC_ASSERT(sizeof(daWindStone_c) == 0x5C8);
 
 #endif /* D_A_OBJ_WIND_STONE_H */

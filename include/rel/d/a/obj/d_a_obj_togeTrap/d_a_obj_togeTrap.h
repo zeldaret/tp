@@ -37,6 +37,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xae4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daTogeTrap_c) == 0xae4);
 
 class daTogeTrap_HIO_c {

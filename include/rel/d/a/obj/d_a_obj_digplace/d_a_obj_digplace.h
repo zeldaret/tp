@@ -33,6 +33,7 @@ public:
     u8 getSceneNum() { return (fopAcM_GetParam(this) >> 0xC) & 0xFF; }
     int getItemNum() { return getSceneNum(); }
 };
+
 STATIC_ASSERT(sizeof(daObjDigpl_c) == 0x5C0);
 
 #endif /* D_A_OBJ_DIGPLACE_H */

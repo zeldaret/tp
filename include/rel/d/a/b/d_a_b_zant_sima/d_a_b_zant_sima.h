@@ -6,10 +6,11 @@
 
 /**
  * @ingroup actors-enemies
+ * @class daB_ZANTS_c
  * @brief Zant (Goron Mines Phase)
- * 
- * Palace of Twilight dungeon boss. This is the actor used during the Goron Mines part of the fight.
- * 
+ *
+ * @details Palace of Twilight dungeon boss. This is the actor used during the Goron Mines part of the fight.
+ *
  */
 class daB_ZANTS_c : public fopAc_ac_c {
 public:
@@ -34,5 +35,7 @@ public:
     /* 0x594 */ Mtx mMtx;
     /* 0x5C4 */ dBgW* mpBgW;
 };
+
+STATIC_ASSERT(sizeof(daB_ZANTS_c) == 0x5C8);
 
 #endif /* D_A_B_ZANT_SIMA_H */

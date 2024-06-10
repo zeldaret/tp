@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daScExit_c
+ * @brief Scene Exit 2
+ *
+ * @details
+ *
+ */
 class daScExit_c : public fopAc_ac_c {
 public:
     enum act_e {

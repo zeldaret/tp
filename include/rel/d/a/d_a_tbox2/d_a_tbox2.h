@@ -3,6 +3,14 @@
 
 #include "rel/d/a/d_a_tbox/d_a_tbox.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daTbox2_c
+ * @brief Treasure Box 2
+ *
+ * @details
+ *
+ */
 class daTbox2_c : public daTboxBase_c {
 public:
     enum Type_e {
@@ -59,6 +67,7 @@ public:
     u8 getModelType() { return fopAcM_GetParamBit(this, 8, 4); }
     u8 getItemNo() { return fopAcM_GetParamBit(this, 0, 8); }
 
+private:
     /* 0x718 */ u8 mReturnRupee;
     /* 0x71C */ request_of_phase_process_class mPhase;
     /* 0x724 */ J3DModel* mpModel;
@@ -75,5 +84,16 @@ public:
     /* 0xAC4 */ int mStaffIdx;
     /* 0xAC8 */ dBgW* mBoxBgW;
 };
+
+STATIC_ASSERT(sizeof(daTbox2_c) == 0xACC);
+
+struct res_info {
+public:
+    /* 0x0 */ int bmd_no;
+    /* 0x4 */ int bck_no;
+    /* 0x8 */ int dzb_id;
+    /* 0xC */ int dzb_no;
+};
+
 
 #endif /* D_A_TBOX2_H */

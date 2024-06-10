@@ -28,6 +28,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x644 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjIce_s_c) == 0x644);
 
 class daOBJ_ICE_S_HIO_c {

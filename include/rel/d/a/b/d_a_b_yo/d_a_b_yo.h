@@ -86,6 +86,7 @@ private:
     /* 0xFCC */ u8 field_0xfcc;
     /* 0xFCD */ u8 field_0xfcd[0x1B88 - 0xFCD];
 };
+
 STATIC_ASSERT(sizeof(daB_YO_c) == 0x1B88);
 
 struct daB_YO_HIO_c {

@@ -6,6 +6,14 @@
 #include "d/bg/d_bg_s_acch.h"
 #include "SSystem/SComponent/c_phase.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daCanoe_c
+ * @brief Canoe
+ *
+ * @details
+ *
+ */
 class daCanoe_c : public fopAc_ac_c {
 public:
     /* 804DA5F4 */ void createHeap();
@@ -38,6 +46,7 @@ public:
         field_0x1446 = 1;
     }
 
+private:
     /* 0x0568 */ request_of_phase_process_class mPhaseReq;
     /* 0x0570 */ J3DModel* mpModel;
     /* 0x0574 */ J3DModel* mpPaddleModel;
@@ -84,6 +93,8 @@ public:
     /* 0x14B8 */ cXyz field_0x14b8;
     /* 0x14C4 */ cXyz field_0x14c4;
     /* 0x14D0 */ cXyz field_0x14d0;
-};  // Size: 0x14DC
+};
+
+STATIC_ASSERT(sizeof(daCanoe_c) == 0x14dc);
 
 #endif /* D_A_CANOE_H */

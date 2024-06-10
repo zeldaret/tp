@@ -36,6 +36,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb28 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjSwLight_c) == 0xb28);
 
 

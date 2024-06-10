@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x710 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjHBarrel_c) == 0x710);
 
 

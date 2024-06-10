@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5b4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv9SwShutter_c) == 0x5b4);
 
 class daLv9SwShutter_HIO_c {

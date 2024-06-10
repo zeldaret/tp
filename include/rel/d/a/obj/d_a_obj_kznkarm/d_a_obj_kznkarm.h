@@ -37,6 +37,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x7b4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKznkarm_c) == 0x7b4);
 
 #endif /* D_A_OBJ_KZNKARM_H */

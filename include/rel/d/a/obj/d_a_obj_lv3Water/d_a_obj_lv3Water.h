@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x628 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv3Water_c) == 0x628);
 
 class daLv3Water_HIO_c {

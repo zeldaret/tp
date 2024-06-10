@@ -35,6 +35,7 @@ private:
     /* 0x5AE */ u16 mEventBit2;
     /* 0x5B0 */ u8 mHide;
 };
+
 STATIC_ASSERT(sizeof(daObjGake_c) == 0x5B4);
 
 #endif /* D_A_OBJ_TGAKE_H */

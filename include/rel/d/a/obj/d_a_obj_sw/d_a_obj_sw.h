@@ -15,6 +15,7 @@ class obj_sw_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xd90 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_sw_class) == 0xd90);
 
 struct obj_sc_s {

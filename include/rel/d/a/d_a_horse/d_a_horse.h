@@ -34,6 +34,15 @@ private:
 };  // Size: 0xE4
 
 class daHoZelda_c;
+
+/**
+ * @ingroup actors-unsorted
+ * @class daHorse_c
+ * @brief Epona
+ *
+ * @details
+ *
+ */
 class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {
@@ -284,6 +293,16 @@ public:
     /* 0x18E0 */ int (daHorse_c::*mpSetHorsePosAngleFn)(const cXyz* i_pos, s16 i_angle);
     /* 0x18EC */ void (daHorse_c::*mpOnRideFlgFn)();
     /* 0x18F8 */ void (daHorse_c::*mpOffRideFlgFn)();
+};
+
+class daHorse_hio_c0 {
+public:
+    static u8 const m[292];
+};
+
+class dBgS_HorseAcch {
+public:
+    /* 80845274 */ ~dBgS_HorseAcch();
 };
 
 #endif /* D_A_HORSE_H */

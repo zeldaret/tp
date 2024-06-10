@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1d18 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv6FurikoTrap_c) == 0x1d18);
 
 class daLv6FurikoTrap_HIO_c {

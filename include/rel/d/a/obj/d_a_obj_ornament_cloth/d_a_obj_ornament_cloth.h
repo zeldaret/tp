@@ -24,6 +24,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x6c8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjOnCloth_c) == 0x6c8);
 
 class ClothJoint_c {

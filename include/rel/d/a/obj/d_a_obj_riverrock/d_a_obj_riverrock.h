@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x79c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjRIVERROCK_c) == 0x79c);
 
 class daObjRIVERROCK_HIO_c {

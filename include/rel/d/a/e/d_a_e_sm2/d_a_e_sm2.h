@@ -93,6 +93,7 @@ private:
     /* 0xFD8 */ u32 field_0xfd8;
     /* 0xFDC */ u8 field_0xfdc[0xFF0 - 0xFDC];
 };
+
 STATIC_ASSERT(sizeof(e_sm2_class) == 0xff0);
 
 class daE_SM2_HIO_c {

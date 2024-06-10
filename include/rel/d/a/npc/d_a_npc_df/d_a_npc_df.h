@@ -15,6 +15,7 @@ class npc_df_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xd44 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(npc_df_class) == 0xd44);
 
 struct df_s {

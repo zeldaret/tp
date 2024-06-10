@@ -8,12 +8,14 @@
 #include "d/cc/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
+
 /**
  * @ingroup actors-enemies
+ * @class b_gos_class
  * @brief Goron Golem (small)
- * 
- * Unused golem boss made up of several small Gorons.
- * 
+ *
+ * @details Unused golem boss made up of several small Gorons.
+ *
  */
 class b_gos_class : public fopEn_enemy_c {
 public:
@@ -48,5 +50,25 @@ public:
     /* 0xCA4 */ dCcU_AtInfo mAtInfo;
     /* 0xCC8 */ u8 field_0xcc8;
 };
+
+STATIC_ASSERT(sizeof(b_gos_class) == 0xCCC);
+
+class daB_GOS_HIO_c {
+public:
+public:
+    /* 8060426C */ daB_GOS_HIO_c();
+    /* 80605320 */ virtual ~daB_GOS_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 mSize;
+    /* 0xC */ f32 mNormalSpeed;
+};
+
+struct b_gos_j_info {
+public:
+    s16 joint_no;
+    f32 field_0x4;
+};
+
 
 #endif /* D_A_B_GOS_H */

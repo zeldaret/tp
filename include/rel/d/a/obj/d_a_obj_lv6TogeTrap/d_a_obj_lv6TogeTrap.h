@@ -62,6 +62,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x8f4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daLv6TogeTrap_c) == 0x8f4);
 
 class daLv6TogeTrap_HIO_c {

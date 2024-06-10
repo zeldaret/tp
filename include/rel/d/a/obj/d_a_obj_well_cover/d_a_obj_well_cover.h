@@ -35,6 +35,7 @@ private:
     /* 0x5AC */ u8 field_0x5AC[0x5B0 - 0x5AC];
     /* 0x5B0 */ u8 field_0x5b0;
 };
+
 STATIC_ASSERT(sizeof(daObjWCover_c) == 0x5B4);
 
 #endif /* D_A_OBJ_WELL_COVER_H */

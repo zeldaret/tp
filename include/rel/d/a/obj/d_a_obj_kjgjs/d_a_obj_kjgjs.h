@@ -30,6 +30,7 @@ private:
     /* 0x608 */ J3DModel* mpModel;
     /* 0x60C */ s32 field_0x60c;
 };
+
 STATIC_ASSERT(sizeof(daObjKJgjs_c) == 0x610);
 
 #endif /* D_A_OBJ_KJGJS_H */

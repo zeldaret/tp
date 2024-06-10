@@ -62,6 +62,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xfd4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Raca_c) == 0xfd4);
 
 class daNpc_Raca_Param_c {

@@ -45,6 +45,7 @@ private:
     /* 0x5B0 */ f32 mTargetDist;
     /* 0x5B4 */ f32 mOpenDist;
 };
+
 STATIC_ASSERT(sizeof(daBsGate_c) == 0x5B8);
 
 class daBsGate_HIO_c : public mDoHIO_entry_c {

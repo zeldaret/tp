@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x780 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjNameplate_c) == 0x780);
 
 struct daObj {

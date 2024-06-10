@@ -27,10 +27,11 @@ enum b_oh_action {
 
 /**
  * @ingroup actors-enemies
+ * @class b_oh_class
  * @brief Morpheel (head)
- * 
- * Lakebed Temple dungeon boss. This is the head part of the boss.
- * 
+ *
+ * @details Lakebed Temple dungeon boss. This is the head part of the boss.
+ *
  */
 class b_oh_class : public fopEn_enemy_c {
 public:
@@ -96,5 +97,7 @@ public:
     /* 0x1F84 */ u8 field_0x1F84[0x1F86 - 0x1F84];
     /* 0x1F86 */ u8 field_0x1f86;
 };
+
+STATIC_ASSERT(sizeof(b_oh_class) == 0x1F88);
 
 #endif /* D_A_B_OH_H */

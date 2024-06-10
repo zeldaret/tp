@@ -79,6 +79,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1020 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Kolin_c) == 0x1020);
 
 class daNpc_Kolin_Param_c {

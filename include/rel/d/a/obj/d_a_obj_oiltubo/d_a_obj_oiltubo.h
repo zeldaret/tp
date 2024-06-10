@@ -56,6 +56,7 @@ private:
 public:
     /* 80CA7628 */ virtual ~daObj_Oiltubo_c() {}
 };
+
 STATIC_ASSERT(sizeof(daObj_Oiltubo_c) == 0xAD4);
 
 #endif /* D_A_OBJ_OILTUBO_H */

@@ -39,6 +39,7 @@ private:
     /* 0x71C */ LIGHT_INFLUENCE mLightInfluence;
     /* 0x73C */ u8 field_0x73c;
 };
+
 STATIC_ASSERT(sizeof(daFireWood_c) == 0x740);
 
 #ifdef NONMATCHING

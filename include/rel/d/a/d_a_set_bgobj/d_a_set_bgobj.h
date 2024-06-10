@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSetBgObj_c
+ * @brief Set Background Object
+ *
+ * @details
+ *
+ */
 class daSetBgObj_c : public fopAc_ac_c {
 public:
     /* 80031870 */ static const char* getArcName(fopAc_ac_c*);

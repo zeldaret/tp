@@ -15,6 +15,7 @@ class e_bug_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x7db0 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_bug_class) == 0x7db0);
 
 class daE_Bug_HIO_c {

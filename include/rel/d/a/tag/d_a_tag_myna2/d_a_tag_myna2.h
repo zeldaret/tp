@@ -17,6 +17,7 @@ private:
     /* 0x56C */ u32 mMode;
     /* 0x570 */ s16 mTimer;
 };
+
 STATIC_ASSERT(sizeof(daTagMyna2_c) == 0x574);
 
 #endif /* D_A_TAG_MYNA2_H */

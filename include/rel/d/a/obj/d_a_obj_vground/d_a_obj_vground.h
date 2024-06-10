@@ -30,5 +30,6 @@ private:
     /* 0x574 */ mDoExt_btkAnm* mpBtk;
     /* 0x578 */ mDoExt_brkAnm* mpBrk;
 };
+
 STATIC_ASSERT(sizeof(daObjVGnd_c) == 0x57C);
 #endif /* D_A_OBJ_VGROUND_H */

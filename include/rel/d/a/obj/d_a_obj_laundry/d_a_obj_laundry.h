@@ -25,6 +25,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x7c8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjLdy_c) == 0x7c8);
 
 class LaundJoint_c {

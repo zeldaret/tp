@@ -33,6 +33,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa40 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_BouMato_c) == 0xa40);
 
 class daObj_BouMato_Param_c {

@@ -15,6 +15,7 @@ class obj_brg_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xb1f8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_brg_class) == 0xb1f8);
 
 struct br_s {

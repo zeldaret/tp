@@ -38,6 +38,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x958 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daItemShield_c) == 0x958);
 
 

@@ -48,6 +48,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xdf0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcAshB_c) == 0xdf0);
 
 class daNpcAshB_Param_c {

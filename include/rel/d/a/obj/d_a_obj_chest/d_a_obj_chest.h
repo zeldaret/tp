@@ -58,6 +58,7 @@ private:
     /* 0xA9C */ f32 field_0xa9c;
     /* 0xAA0 */ f32 mScaleY;
 };
+
 STATIC_ASSERT(sizeof(daObjChest_c) == 0xAA4);
 
 #endif /* D_A_OBJ_CHEST_H */

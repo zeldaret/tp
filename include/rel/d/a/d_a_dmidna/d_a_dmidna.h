@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daDmidna_c
+ * @brief Dying Midna (White Midna)
+ *
+ * @details
+ *
+ */
 class daDmidna_c : public fopAc_ac_c {
 public:
     /* 8045CED8 */ int createHeap();

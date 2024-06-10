@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daScex_c
+ * @brief Scene Exit
+ *
+ * @details
+ *
+ */
 class daScex_c : public fopAc_ac_c {
 public:
     daScex_c() {}

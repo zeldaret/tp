@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daIzumiGate_c
+ * @brief Ordon Spring Gate
+ *
+ * @details
+ *
+ */
 class daIzumiGate_c : public dBgS_MoveBgActor {
 public:
     /* 80849098 */ void initBaseMtx();

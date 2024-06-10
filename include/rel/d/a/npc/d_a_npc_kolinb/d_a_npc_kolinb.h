@@ -62,6 +62,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xffc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Kolinb_c) == 0xffc);
 
 class daNpc_Kolinb_Param_c {

@@ -14,6 +14,7 @@ class e_sf_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x1000 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_sf_class) == 0x1000);
 
 class daE_SF_HIO_c {

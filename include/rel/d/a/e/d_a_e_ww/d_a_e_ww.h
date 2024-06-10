@@ -52,6 +52,7 @@ class daE_WW_c : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xec8 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daE_WW_c) == 0xec8);
 
 class daE_WW_HIO_c {

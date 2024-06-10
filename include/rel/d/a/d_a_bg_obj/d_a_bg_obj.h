@@ -13,6 +13,14 @@ typedef int (daBgObj_c::*executeFunc)();
 typedef void (daBgObj_c::*tgSetFunc)();
 typedef int (daBgObj_c::*actionFunc)();
 
+/**
+ * @ingroup actors-unsorted
+ * @class daBgObj_c
+ * @brief Moving Background Obj?
+ *
+ * @details
+ *
+ */
 class daBgObj_c : public dBgS_MoveBgActor {
 public:
     class spec_data_c {
@@ -126,5 +134,13 @@ inline u8 getObjArg0(daBgObj_c* i_this) {
     return i_this->field_0xcca & 0xFF;
 }
 };     // namespace daBgObj_prm
+
+struct spec_dat {
+public:
+    u16 field_0x0;
+    u16 field_0x2;
+    u8 field_0x4;
+};
+
 
 #endif /* D_A_BG_OBJ_H */

@@ -54,6 +54,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe18 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcRafrel_c) == 0xe18);
 
 class daNpcRafrel_Param_c {

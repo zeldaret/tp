@@ -69,6 +69,7 @@ private:
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 };
+
 STATIC_ASSERT(sizeof(daBmWindow_c) == 0xEE0);
 
 class daBmWindow_HIO_c : public fOpAcm_HIO_entry_c {

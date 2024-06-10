@@ -19,20 +19,6 @@
 #include "rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB.h"
 #include "rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h"
 
-class daB_OB_HIO_c {
-public:
-    /* 8061056C */ daB_OB_HIO_c();
-    /* 8061A808 */ virtual ~daB_OB_HIO_c();
-
-    /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mCoreSize;
-    /* 0x0C */ f32 mCoreMoveSpeed;
-    /* 0x10 */ f32 mBodySize;
-    /* 0x14 */ s16 mLightR;
-    /* 0x16 */ s16 mLightG;
-    /* 0x18 */ s16 mLightB;
-    /* 0x1C */ f32 mRange;
-};
 
 //
 // Forward References:
@@ -582,25 +568,30 @@ static dCcD_SrcSph core_sph_src = {
 #pragma pop
 
 /* 8061B3DC-8061B3FC -00001 0020+00 1/0 0/0 0/0 .data            l_daB_OB_Method */
-SECTION_DATA static void* l_daB_OB_Method[8] = {
-    (void*)daB_OB_Create__FP10fopAc_ac_c,
-    (void*)daB_OB_Delete__FP10b_ob_class,
-    (void*)daB_OB_Execute__FP10b_ob_class,
-    (void*)daB_OB_IsDelete__FP10b_ob_class,
-    (void*)daB_OB_Draw__FP10b_ob_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daB_OB_Method = {
+    (process_method_func)daB_OB_Create__FP10fopAc_ac_c,
+    (process_method_func)daB_OB_Delete__FP10b_ob_class,
+    (process_method_func)daB_OB_Execute__FP10b_ob_class,
+    (process_method_func)daB_OB_IsDelete__FP10b_ob_class,
+    (process_method_func)daB_OB_Draw__FP10b_ob_class,
 };
 
 /* 8061B3FC-8061B42C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_OB */
-SECTION_DATA extern void* g_profile_B_OB[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0004FFFD,
-    (void*)0x00F30000, (void*)&g_fpcLf_Method,
-    (void*)0x00005DE4, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00D90000, (void*)&l_daB_OB_Method,
-    (void*)0x000C4000, (void*)0x020E0000,
+extern actor_process_profile_definition g_profile_B_OB = {
+  fpcLy_CURRENT_e,        // mLayerID
+  4,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_B_OB,              // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x00005DE4,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  217,                    // mPriority
+  &l_daB_OB_Method,       // sub_method
+  0x000C4000,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 8061B42C-8061B438 000388 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */

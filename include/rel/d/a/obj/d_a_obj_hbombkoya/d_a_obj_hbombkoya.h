@@ -50,6 +50,7 @@ private:
     /* 0x648 */ dCcD_Stts mStts;
     /* 0x684 */ dCcD_Cyl mCyl;
 };
+
 STATIC_ASSERT(sizeof(daObjHBombkoya_c) == 0x7c0);
 
 

@@ -31,6 +31,7 @@ private:
     /* 0x5B0 */ mDoExt_btkAnm* mpBtk;
     /* 0x5B4 */ u8 mType;
 };
+
 STATIC_ASSERT(sizeof(daObjOnsen_c) == 0x5B8);
 
 #endif /* D_A_OBJ_ONSEN_H */

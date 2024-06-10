@@ -43,6 +43,7 @@ class daKey_c : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x988 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daKey_c) == 0x988);
 
 

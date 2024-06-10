@@ -31,6 +31,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe30 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_Nougu_c) == 0xe30);
 
 class daObj_Nougu_Param_c {

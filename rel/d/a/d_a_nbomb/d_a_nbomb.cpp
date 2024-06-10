@@ -533,25 +533,30 @@ SECTION_DATA static void* lit_5987[3] = {
 };
 
 /* 804CC590-804CC5B0 -00001 0020+00 1/0 0/0 0/0 .data            l_daNbombMethod */
-SECTION_DATA static void* l_daNbombMethod[8] = {
-    (void*)daNbomb_Create__FP10fopAc_ac_c,
-    (void*)daNbomb_Delete__FP9daNbomb_c,
-    (void*)daNbomb_Execute__FP9daNbomb_c,
-    (void*)NULL,
-    (void*)daNbomb_Draw__FP9daNbomb_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daNbombMethod = {
+    (process_method_func)daNbomb_Create__FP10fopAc_ac_c,
+    (process_method_func)daNbomb_Delete__FP9daNbomb_c,
+    (process_method_func)daNbomb_Execute__FP9daNbomb_c,
+    0,
+    (process_method_func)daNbomb_Draw__FP9daNbomb_c,
 };
 
 /* 804CC5B0-804CC5E0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NBOMB */
-SECTION_DATA extern void* g_profile_NBOMB[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02210000, (void*)&g_fpcLf_Method,
-    (void*)0x00000C44, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x010E0000, (void*)&l_daNbombMethod,
-    (void*)0x00040100, (void*)0x000E0000,
+extern actor_process_profile_definition g_profile_NBOMB = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NBOMB,             // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x00000C44,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  270,                    // mPriority
+  &l_daNbombMethod,       // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 804CC5E0-804CC5EC 000108 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGPla */

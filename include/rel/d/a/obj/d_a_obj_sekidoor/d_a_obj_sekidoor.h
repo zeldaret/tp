@@ -27,6 +27,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5d8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_SekiDoor_c) == 0x5d8);
 
 class daObj_SekiDoor_Param_c {

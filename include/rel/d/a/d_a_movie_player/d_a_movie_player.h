@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daMP_c
+ * @brief Movie Player
+ *
+ * @details
+ *
+ */
 class daMP_c : public fopAc_ac_c {
 public:
     /* 80031AD0 */ static int daMP_c_THPPlayerPlay();
@@ -30,6 +38,20 @@ private:
     /* 0x574 */ int (*mpTHPPlay)(void);
     /* 0x578 */ void (*mpTHPStop)(void);
     /* 0x57C */ int (*mpTHPPause)(void);
-};  // Size: 0x580
+};
+
+STATIC_ASSERT(sizeof(daMP_c) == 0x580);
+
+struct daMP_THPReadBuffer {};
+
+class daMP_Dlst_base_c {
+public:
+    /* 80878DB8 */ void draw();
+    /* 80878FD8 */ daMP_Dlst_base_c();
+};
+
+struct THPVideoInfo {};
+
+struct THPAudioInfo {};
 
 #endif /* D_A_MOVIE_PLAYER_H */

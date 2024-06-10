@@ -14,6 +14,7 @@ class e_yd_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x126c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_yd_class) == 0x126c);
 
 class daE_YD_HIO_c {

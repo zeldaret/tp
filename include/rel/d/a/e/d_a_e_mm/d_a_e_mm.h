@@ -14,6 +14,7 @@ class e_mm_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xc1c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_mm_class) == 0xc1c);
 
 class daE_MM_HIO_c {

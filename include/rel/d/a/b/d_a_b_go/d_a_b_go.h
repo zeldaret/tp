@@ -9,13 +9,37 @@
 #include "d/cc/d_cc_uty.h"
 
 #define GORON_CHILD_MAX 31
+#define RES_IS_MODEL 0x13
+
+enum daB_GO_ANM {
+    /* 0x04 */ ANM_ATTACK = 4,
+    /* 0x05 */ ANM_DAMAGE_01,
+    /* 0x06 */ ANM_DAMAGE_02,
+    /* 0x07 */ ANM_DEAD_01,
+    /* 0x08 */ ANM_DEAD_02,
+    /* 0x09 */ ANM_FALL,
+    /* 0x0A */ ANM_START_L,
+    /* 0x0B */ ANM_START_R,
+    /* 0x0C */ ANM_STEP,
+    /* 0x0D */ ANM_TRAP,
+    /* 0x0E */ ANM_WAIT_02,
+    /* 0x0F */ ANM_WAIT_03,
+    /* 0x10 */ ANM_WALK,
+};
+
+enum daB_GO_Action {
+    /* 0x0 */ ACT_WAIT,
+    /* 0x1 */ ACT_WALK,
+    /* 0x2 */ ACT_ATTACK,
+};
 
 /**
  * @ingroup actors-enemies
+ * @class b_go_class
  * @brief Goron Golem
- * 
- * Unused golem boss made up of several small Gorons.
- * 
+ *
+ * @details Unused golem boss made up of several small Gorons.
+ *
  */
 class b_go_class : public fopEn_enemy_c {
 public:
@@ -47,5 +71,20 @@ public:
     /* 0xCB8 */ u32 mGoronChildIDs[GORON_CHILD_MAX];
     /* 0xD34 */ u8 field_0xd34;
 };
+
+STATIC_ASSERT(sizeof(b_go_class) == 0xD38);
+
+class daB_GO_HIO_c {
+public:
+    /* 806031AC */ daB_GO_HIO_c();
+    /* 80603F9C */ virtual ~daB_GO_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mSmallSize;
+    /* 0x0C */ f32 mNormalSpeed;
+    /* 0x10 */ f32 mAttackInitRange;
+    /* 0x14 */ bool mDisplayModelImage;
+};
+
 
 #endif /* D_A_B_GO_H */

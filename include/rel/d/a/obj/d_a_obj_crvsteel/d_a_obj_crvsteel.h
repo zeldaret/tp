@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x848 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjCRVSTEEL_c) == 0x848);
 
 

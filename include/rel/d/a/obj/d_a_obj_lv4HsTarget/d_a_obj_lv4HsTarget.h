@@ -27,6 +27,7 @@ private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModel;
 };
+
 STATIC_ASSERT(sizeof(daLv4HsTarget_c) == 0x5AC);
 
 class daLv4HsTarget_HIO_c : public mDoHIO_entry_c {

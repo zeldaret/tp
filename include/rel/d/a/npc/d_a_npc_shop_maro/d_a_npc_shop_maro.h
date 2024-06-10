@@ -20,6 +20,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xf7c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_shopMaro_c) == 0xf7c);
 
 

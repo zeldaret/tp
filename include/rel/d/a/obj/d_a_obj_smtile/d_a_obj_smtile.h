@@ -28,6 +28,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb30 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_SMTile_c) == 0xb30);
 
 class daObj_SMTile_Param_c {

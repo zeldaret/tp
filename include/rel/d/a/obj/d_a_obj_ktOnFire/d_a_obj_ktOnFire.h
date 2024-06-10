@@ -28,6 +28,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x728 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daKtOnFire_c) == 0x728);
 
 class daKtOnFire_HIO_c {

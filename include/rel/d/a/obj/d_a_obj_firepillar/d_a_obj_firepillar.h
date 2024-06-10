@@ -31,6 +31,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x974 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjFPillar_c) == 0x974);
 
 

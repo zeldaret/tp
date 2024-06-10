@@ -25,6 +25,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x754 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKazeNeko_c) == 0x754);
 
 

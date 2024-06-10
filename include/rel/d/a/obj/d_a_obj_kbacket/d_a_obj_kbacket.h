@@ -33,6 +33,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa54 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_KBacket_c) == 0xa54);
 
 class daObj_KBacket_Param_c {

@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x6f4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daGrdWater_c) == 0x6f4);
 
 class daGrdWater_HIO_c {

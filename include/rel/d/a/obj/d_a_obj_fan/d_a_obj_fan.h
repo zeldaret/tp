@@ -41,6 +41,7 @@ private:
     /* 0xAD4 */ u8 field_0xad4;
     /* 0xAD8 */ cXyz field_0xad8;
 };
+
 STATIC_ASSERT(sizeof(daObjFan_c) == 0xAE4);
 
 #endif /* D_A_OBJ_FAN_H */

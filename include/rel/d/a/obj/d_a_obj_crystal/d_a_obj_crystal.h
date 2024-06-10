@@ -28,6 +28,7 @@ private:
     /* 0x578 */ JPABaseEmitter* mpEmitter;
     /* 0x57C */ u16 mJointID;
 };
+
 STATIC_ASSERT(sizeof(daObjCrystal_c) == 0x580);
 
 #endif /* D_A_OBJ_CRYSTAL_H */

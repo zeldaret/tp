@@ -39,6 +39,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa3c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_YBag_c) == 0xa3c);
 
 class daObj_YBag_Param_c {

@@ -37,6 +37,7 @@ public:
     /* 0xA88 */ u32 field_0xa88;
     /* 0xA8C */ u8 field_0xa8c;
 };
+
 STATIC_ASSERT(sizeof(obj_lbox_class) == 0xA90);
 
 class daObj_Lbox_HIO_c {

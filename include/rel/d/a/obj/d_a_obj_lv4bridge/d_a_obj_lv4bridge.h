@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5d0 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjLv4Brg_c) == 0x5d0);
 
 

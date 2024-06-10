@@ -45,6 +45,7 @@ private:
     /* 0x71C */ f32 field_0x71c;
     /* 0x720 */ LIGHT_INFLUENCE mLightInfluence;
 };
+
 STATIC_ASSERT(sizeof(daFireWood2_c) == 0x740);
 
 class daFireWood2_HIO_c {

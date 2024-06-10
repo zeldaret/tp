@@ -47,6 +47,7 @@ private:
     /* 0x587 */ u8 field_0x587;
     /* 0x588 */ u8 field_0x588;
 };
+
 STATIC_ASSERT(sizeof(daObjStopper2_c) == 0x58C);
 
 

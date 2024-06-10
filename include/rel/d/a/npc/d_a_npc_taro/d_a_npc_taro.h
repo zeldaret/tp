@@ -87,6 +87,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x11ac - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Taro_c) == 0x11ac);
 
 class daNpc_Taro_Param_c {

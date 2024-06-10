@@ -66,6 +66,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xff4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Len_c) == 0xff4);
 
 class daNpc_Len_Param_c {

@@ -15,6 +15,7 @@ class obj_hb_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xa8c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_hb_class) == 0xa8c);
 
 

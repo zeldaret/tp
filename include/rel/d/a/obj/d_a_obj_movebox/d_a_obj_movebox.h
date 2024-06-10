@@ -84,6 +84,7 @@ class daObjMovebox : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x90c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjMovebox) == 0x90C);
 
 #endif /* D_A_OBJ_MOVEBOX_H */

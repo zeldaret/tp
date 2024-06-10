@@ -30,6 +30,7 @@ private:
     /* 0x574 */ J3DModel* mpModel;
     /* 0x578 */ u8 mArg;
 };
+
 STATIC_ASSERT(sizeof(daObjProp_c) == 0x57C);
 
 #endif /* D_A_OBJ_PROP_H */

@@ -60,6 +60,7 @@ private:
     /* 0x728 */ cBgS_PolyInfo field_0x728;
     /* 0x738 */ f32 field_0x738;
 };
+
 STATIC_ASSERT(sizeof(daObjMasterSword_c) == 0x73C);
 
 #endif /* D_A_OBJ_MASTER_SWORD_H */

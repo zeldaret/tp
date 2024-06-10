@@ -14,6 +14,7 @@ class e_kg_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xa74 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_kg_class) == 0xa74);
 
 class daE_KG_HIO_c {

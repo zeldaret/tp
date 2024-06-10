@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x3e40 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjZraMark_c) == 0x3e40);
 
 class _ZraMark_Hahen_c : public fopAc_ac_c {

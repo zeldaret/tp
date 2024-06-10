@@ -154,6 +154,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x20a4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_GrA_c) == 0x20a4);
 
 class daObj_GrA_Param_c {

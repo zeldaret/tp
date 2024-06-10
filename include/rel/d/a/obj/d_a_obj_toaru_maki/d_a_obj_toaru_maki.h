@@ -30,6 +30,7 @@ private:
     /* 0x578 */ s32 field_0x578;
     /* 0x57C */ Mtx mMtx;
 };
+
 STATIC_ASSERT(sizeof(daObjToaruMaki_c) == 0x5AC);
 
 #endif /* D_A_OBJ_TOARU_MAKI_H */

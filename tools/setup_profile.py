@@ -1038,4 +1038,4 @@ def setup_profile_cli(file_path):
     setup_profile(file_path)
 
 if __name__ == "__main__":
-    setup_profile()
+    setup_profile_cli()

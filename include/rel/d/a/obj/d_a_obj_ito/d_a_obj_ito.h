@@ -15,6 +15,7 @@ class obj_ito_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x150c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_ito_class) == 0x150c);
 
 struct ito_s {};

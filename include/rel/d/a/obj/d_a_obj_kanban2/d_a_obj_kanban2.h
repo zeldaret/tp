@@ -49,6 +49,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa50 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObj_Kanban2_c) == 0xa50);
 
 class daObj_Kanban2_HIO_c {
