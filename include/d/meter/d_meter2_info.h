@@ -180,6 +180,10 @@ public:
     bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
     void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
     void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
+    void set2DWidth(float width) { m2DWidth = width; }
+    void set2DHeight(float height) { m2DHeight = height; }
+    void set2DPosH(float posH) { m2DPosH = posH; }
+    void set2DPosV(float posV) { m2DPosV = posV; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -224,7 +228,8 @@ public:
     /* 0xB4 */ u16 mWindowAccept;
     /* 0xB6 */ u16 mOilGaugeBackUp;
     /* 0xB8 */ u8 mDirectUseItem;
-    /* 0xB9 */ u8 mWindowStatus; // 0: normal play, 2: item wheel, 3: pause menu, 4: map, 10: pause menu submenus, 11: map in dungeon
+    /* 0xB9 */ u8 mWindowStatus;  // 0: normal play, 2: item wheel, 3: pause menu, 4: map, 10: pause
+                                  // menu submenus, 11: map in dungeon
     /* 0xBA */ u8 unk186;
     /* 0xBB */ u8 mMaxCount;
     /* 0xBC */ u8 mNowCount;
@@ -275,6 +280,8 @@ static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bo
 static void dMeter2Info_offUseButton(int pButton);
 bool dMeter2Info_is2DActiveTouchArea();
 u8 dMeter2Info_getRecieveLetterNum();
+bool dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+                          f32 param_5, struct ResTIMG const* param_6);
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
@@ -723,6 +730,22 @@ inline void dMeter2Info_offSub2DStatus(int bit) {
 
 inline void dMeter2Info_onSub2DStatus(int bit) {
     g_meter2_info.onSub2DStatus(bit);
+}
+
+inline void dMeter2Info_set2DWidth(float width) {
+    g_meter2_info.set2DWidth(width);
+}
+
+inline void dMeter2Info_set2DHeight(float height) {
+    g_meter2_info.set2DHeight(height);
+}
+
+inline void dMeter2Info_set2DPosH(float posH) {
+    g_meter2_info.set2DPosH(posH);
+}
+
+inline void dMeter2Info_set2DPosV(float posV) {
+    g_meter2_info.set2DPosV(posV);
 }
 
 const char* dMeter2Info_getPlusTextureName();

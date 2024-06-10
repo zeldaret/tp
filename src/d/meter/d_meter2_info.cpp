@@ -1392,7 +1392,7 @@ SECTION_SDATA2 static f64 lit_5206 = 4503599627370496.0 /* cast u32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+asm bool dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
                               f32 param_5, ResTIMG const* param_6) {
     nofralloc
 #include "asm/d/meter/d_meter2_info/dMeter2Info_getPixel__FffffffPC7ResTIMG.s"
