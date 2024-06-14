@@ -19,12 +19,12 @@ public:
     bool getCrossY(const cXyz&, f32*) const;
     bool getCrossYLessD(const Vec&, f32*) const;
     void Set(const cM3dGPla*);
-    void GetNP();
 
     virtual ~cM3dGPla() {}
 
     f32 getPlaneFunc(const Vec* pPoint) const { return mD + VECDotProduct(&mNormal, pPoint); }
-    const cXyz& GetNP() const { return mNormal; }
+    cXyz* GetNP() { return &mNormal; }
+    const cXyz* GetNP() const { return &mNormal; }
     const cXyz* i_GetNP() const { return &mNormal; }
     f32 GetD() const { return mD; }
     void SetupFrom3Vtx(const Vec* v1, const Vec* v2, const Vec* v3) {

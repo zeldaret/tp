@@ -4019,7 +4019,8 @@ extern "C" asm void checkThrowDamage__9daPy_py_cCFv() {
 #pragma pop
 
 /* 801829EC-801829F0 17D32C 0004+00 1/1 0/0 0/0 .text            GetNP__8cM3dGPlaFv */
-void cM3dGPla::GetNP() {
+// void cM3dGPla::GetNP() {
+extern "C" void GetNP__8cM3dGPlaFv() {
     /* empty function */
 }
 

@@ -384,8 +384,6 @@ void cBgW::BlckConnect(u16* i_start_idx, int* i_prev_idx, int i_idx) {
 }
 
 /* 800797BC-8007998C 0740FC 01D0+00 2/0 1/0 0/0 .text            ClassifyPlane__4cBgWFv */
-// stack, G_CM3D_F_ABS_MIN is loaded outside of loop
-#ifdef NONMATCHING
 void cBgW::ClassifyPlane() {
     if (pm_vtx_tbl == NULL) {
         return;
@@ -402,43 +400,29 @@ void cBgW::ClassifyPlane() {
         pm_blk[i].m_roof_idx = 0xFFFF;
         pm_blk[i].m_wall_idx = 0xFFFF;
         pm_blk[i].m_gnd_idx = 0xFFFF;
-        int blk_roof_idx;
-        int blk_wall_idx;
-        int blk_gnd_idx = 0xFFFF;
-        blk_wall_idx = 0xFFFF;
-        blk_roof_idx = 0xFFFF;
+
+        int blk_roof_idx, blk_wall_idx, blk_gnd_idx;
+        blk_roof_idx = blk_wall_idx = blk_gnd_idx = 0xFFFF;
 
         for (int j = start_idx; j <= end_idx; j++) {
-            f32 norm_y = pm_tri[j].m_plane.i_GetNP()->y;
+            f32 norm_y = pm_tri[j].m_plane.GetNP()->y;
 
-            if (!cM3d_IsZero(pm_tri[j].m_plane.i_GetNP()->x) || !cM3d_IsZero(norm_y) ||
-                !cM3d_IsZero(pm_tri[j].m_plane.i_GetNP()->z))
+            if (!cM3d_IsZero(pm_tri[j].m_plane.GetNP()->x) || !cM3d_IsZero(pm_tri[j].m_plane.GetNP()->y) ||
+                !cM3d_IsZero(pm_tri[j].m_plane.GetNP()->z))
             {
                 if (cBgW_CheckBGround(norm_y)) {
                     BlckConnect(&pm_blk[i].m_gnd_idx, &blk_gnd_idx, j);
-                } else {
-                    if (cBgW_CheckBRoof(norm_y)) {
-                        if (!ChkRoofRegist()) {
-                            BlckConnect(&pm_blk[i].m_roof_idx, &blk_roof_idx, j);
-                        }
-                    } else {
-                        BlckConnect(&pm_blk[i].m_wall_idx, &blk_wall_idx, j);
+                } else if (cBgW_CheckBRoof(norm_y)) {
+                    if (!ChkRoofRegist()) {
+                        BlckConnect(&pm_blk[i].m_roof_idx, &blk_roof_idx, j);
                     }
+                } else {
+                    BlckConnect(&pm_blk[i].m_wall_idx, &blk_wall_idx, j);
                 }
             }
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW::ClassifyPlane() {
-    nofralloc
-#include "asm/d/bg/d_bg_w/ClassifyPlane__4cBgWFv.s"
-}
-#pragma pop
-#endif
 
 /* 8007998C-800799E0 0742CC 0054+00 1/1 0/0 0/0 .text MakeBlckTransMinMax__4cBgWFP4cXyzP4cXyz */
 void cBgW::MakeBlckTransMinMax(cXyz* i_min, cXyz* i_max) {
