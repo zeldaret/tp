@@ -189,7 +189,7 @@ BOOL daObjKABUTO_c::WallCheck() {
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-        const cXyz* normal = plane.i_GetNP();
+        const cXyz* normal = plane.GetNP();
         current.pos = lin_chk.i_GetCross();
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
@@ -236,7 +236,7 @@ void daObjKABUTO_c::WallWalk() {
         speedF = 0.3f;
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk1, &plane);
-        const cXyz* normal = plane.i_GetNP();
+        const cXyz* normal = plane.GetNP();
         s16 normal_ang_y = cM_atan2s(normal->x, normal->z);
         cXyz cross;
         cXyz zero(0.0f, 0.0f, 0.0f);
@@ -585,7 +585,7 @@ int daObjKABUTO_c::Execute() {
                     current.pos = old.pos = lin_chk.i_GetCross();
                     mAction = ACT_WAIT;
                     mMode = 0;
-                    const cXyz* normal = plane.i_GetNP();
+                    const cXyz* normal = plane.GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz vec(0.0f, normal->y, normal->z);
@@ -802,7 +802,7 @@ cPhs__Step daObjKABUTO_c::create() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                    const cXyz* normal = plane.i_GetNP();
+                    const cXyz* normal = plane.GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz normalYZ(0.0f, normal->y, normal->z);
@@ -822,7 +822,7 @@ cPhs__Step daObjKABUTO_c::create() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                    const cXyz* normal = plane.i_GetNP();
+                    const cXyz* normal = plane.GetNP();
                     current.pos = lin_chk.i_GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz normalYZ(0.0f, normal->y, normal->z);

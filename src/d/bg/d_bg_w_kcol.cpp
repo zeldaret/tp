@@ -539,7 +539,7 @@ SECTION_SDATA2 static f32 lit_5301[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dBgWKCol::WallCorrectSort(dBgS_Acch* param_0) {
+asm bool dBgWKCol::WallCorrectSort(dBgS_Acch* param_0) {
     nofralloc
 #include "asm/d/bg/d_bg_w_kcol/WallCorrectSort__8dBgWKColFP9dBgS_Acch.s"
 }
