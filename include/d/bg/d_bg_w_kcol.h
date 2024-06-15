@@ -71,7 +71,7 @@ public:
     /* 8007F9A4 */ virtual void ShdwDraw(cBgS_ShdwDraw*);
     /* 8007FF1C */ virtual void CaptPoly(dBgS_CaptPoly&);
     /* 800811A0 */ virtual bool WallCorrect(dBgS_Acch*);
-    /* 80080330 */ virtual void WallCorrectSort(dBgS_Acch*);
+    /* 80080330 */ virtual bool WallCorrectSort(dBgS_Acch*);
     /* 80081E18 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 80082184 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
     /* 800824EC */ virtual bool SphChk(dBgS_SphChk*, void*);

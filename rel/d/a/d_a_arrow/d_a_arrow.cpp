@@ -1767,8 +1767,8 @@ int daArrow_c::procMove() {
             }
 
             csXyz angle(
-                cM_atan2s(local_4c.i_GetNP()->y, local_4c.i_GetNP()->absXZ()), 
-                cM_atan2s(-local_4c.i_GetNP()->x, -local_4c.i_GetNP()->z), 
+                cM_atan2s(local_4c.GetNP()->y, local_4c.GetNP()->absXZ()), 
+                cM_atan2s(-local_4c.GetNP()->x, -local_4c.GetNP()->z), 
                 0.0f
             );
             if (mArrowType == 4) {
@@ -2009,7 +2009,7 @@ int daArrow_c::procReturn() {
         cXyz pos;
         dComIfG_Bgsp().GetTriPla(field_0x56c, &cStack_34);
         f32 speed_magnitude = speed.abs();
-        C_VECReflect(&speed, cStack_34.i_GetNP(), &pos);
+        C_VECReflect(&speed, cStack_34.GetNP(), &pos);
         speed.x = pos.x * speed_magnitude * 0.5f;
         speed.y = pos.y * speed_magnitude * 0.5f;
         speed.z = pos.z * speed_magnitude * 0.5f;

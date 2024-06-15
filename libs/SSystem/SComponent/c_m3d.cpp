@@ -109,7 +109,7 @@ extern "C" extern void* __vt__8cM3dGSph[3];
 // Declarations:
 //
 
-f32 G_CM3D_F_ABS_MIN = 32 * FLT_EPSILON;
+const f32 G_CM3D_F_ABS_MIN = 32 * FLT_EPSILON;
 
 /* 80268560-802685B0 262EA0 0050+00 2/2 0/0 0/0 .text            cM3d_InDivPos1__FPC3VecPC3VecfP3Vec
  */
@@ -136,7 +136,7 @@ f32 cM3d_Len2dSq(f32 pX1, f32 pY1, f32 pX2, f32 pY2) {
 
 /* ############################################################################################## */
 /* 80451180-80451188 000680 0004+04 29/29 44/44 65/65 .sbss            G_CM3D_F_ABS_MIN */
-extern f32 G_CM3D_F_ABS_MIN;
+//extern f32 G_CM3D_F_ABS_MIN;
 
 /* 80455118-80455120 003718 0004+04 28/28 0/0 0/0 .sdata2          @2256 */
 SECTION_SDATA2 static f32 lit_2256[1 + 1 /* padding */] = {
@@ -212,11 +212,11 @@ bool cM3d_Len3dSqPntAndSegLine(const cM3dGLin* pLine, const Vec* pVec, Vec* pOut
 /* 80268814-80268894 263154 0080+00 1/1 3/3 0/0 .text cM3d_SignedLenPlaAndPos__FPC8cM3dGPlaPC3Vec
  */
 f32 cM3d_SignedLenPlaAndPos(const cM3dGPla* pPlane, const Vec* pPosition) {
-    f32 mag = VECMag(&pPlane->GetNP());
+    f32 mag = VECMag(pPlane->GetNP());
     if (cM3d_IsZero(mag)) {
         return /* 0.0 */ FLOAT_LABEL(lit_2256);
     } else {
-        return (pPlane->mD + VECDotProduct(&pPlane->GetNP(), pPosition)) / mag;
+        return (pPlane->mD + VECDotProduct(pPlane->GetNP(), pPosition)) / mag;
     }
 }
 
@@ -1204,7 +1204,7 @@ void cM3d_PlaneCrossLineProcWork(f32 f1, f32 f2, f32 f3, f32 f4, f32 f5, f32 f6,
 static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB,
                                 cM3dGLin* pLinOut) {
     Vec tmp;
-    VECCrossProduct(&pPlaneA.GetNP(), &pPlaneB.GetNP(), &tmp);
+    VECCrossProduct(pPlaneA.GetNP(), pPlaneB.GetNP(), &tmp);
     if (cM3d_IsZero(tmp.x) && cM3d_IsZero(tmp.y) && cM3d_IsZero(tmp.z)) {
         return 0;
     } else {
@@ -1212,18 +1212,18 @@ static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB
         f32 absTY = fabsf(tmp.y);
         f32 absTZ = fabsf(tmp.z);
         if (absTX >= absTY && absTX >= absTZ) {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().y, pPlaneA.GetNP().z, pPlaneB.GetNP().y,
-                                        pPlaneB.GetNP().z, tmp.x, pPlaneA.GetD(), pPlaneB.GetD(),
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP()->y, pPlaneA.GetNP()->z, pPlaneB.GetNP()->y,
+                                        pPlaneB.GetNP()->z, tmp.x, pPlaneA.GetD(), pPlaneB.GetD(),
                                         &pLinOut->GetStartP().y, &pLinOut->GetStartP().z);
             pLinOut->GetStartP().x = /* 0.0 */ FLOAT_LABEL(lit_2256);
         } else if (absTY >= absTX && absTY >= absTZ) {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().z, pPlaneA.GetNP().x, pPlaneB.GetNP().z,
-                                        pPlaneB.GetNP().x, tmp.y, pPlaneA.GetD(), pPlaneB.GetD(),
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP()->z, pPlaneA.GetNP()->x, pPlaneB.GetNP()->z,
+                                        pPlaneB.GetNP()->x, tmp.y, pPlaneA.GetD(), pPlaneB.GetD(),
                                         &pLinOut->GetStartP().z, &pLinOut->GetStartP().x);
             pLinOut->GetStartP().y = /* 0.0 */ FLOAT_LABEL(lit_2256);
         } else {
-            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP().x, pPlaneA.GetNP().y, pPlaneB.GetNP().x,
-                                        pPlaneB.GetNP().y, tmp.z, pPlaneA.GetD(), pPlaneB.GetD(),
+            cM3d_PlaneCrossLineProcWork(pPlaneA.GetNP()->x, pPlaneA.GetNP()->y, pPlaneB.GetNP()->x,
+                                        pPlaneB.GetNP()->y, tmp.z, pPlaneA.GetD(), pPlaneB.GetD(),
                                         &pLinOut->GetStartP().x, &pLinOut->GetStartP().y);
             pLinOut->GetStartP().z = /* 0.0 */ FLOAT_LABEL(lit_2256);
         }
