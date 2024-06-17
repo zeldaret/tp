@@ -2135,8 +2135,8 @@ u8 dBgW::GetPolyGrpRoomInfId(cBgS_PolyInfo const& poly) {
 }
 
 /* 8007DF58-8007DF88 078898 0030+00 1/0 1/0 0/0 .text GetGrpSoundId__4dBgWFRC13cBgS_PolyInfo */
-u8 dBgW::GetGrpSoundId(cBgS_PolyInfo const& poly) {
-    return GetGrpInf(poly) >> 11;
+int dBgW::GetGrpSoundId(cBgS_PolyInfo const& poly) {
+    return (GetGrpInf(poly) >> 11) & 0xFF;
 }
 
 /* 8007DF88-8007DFC4 0788C8 003C+00 1/0 0/0 0/0 .text

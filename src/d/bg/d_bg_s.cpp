@@ -533,7 +533,7 @@ s32 dBgS::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
 }
 
 /* 80075080-800750D0 06F9C0 0050+00 0/0 2/2 0/0 .text GetGrpSoundId__4dBgSFRC13cBgS_PolyInfo */
-u8 dBgS::GetGrpSoundId(cBgS_PolyInfo const& poly) {
+int dBgS::GetGrpSoundId(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
     if (m_chk_element[bg_index].ChkUsed()) {
         return m_chk_element[bg_index].m_bgw_base_ptr->GetGrpSoundId(poly);

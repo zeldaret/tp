@@ -24,7 +24,7 @@ public:
     /* 80038FC0 */ JStage::TObject* appendActor(fopAc_ac_c*);
     /* 80039088 */ dDemo_actor_c* getActor(u8);
     /* 800390AC */ JStage::TObject* createCamera();
-    /* 80039128 */ JStage::TObject* getActiveCamera();
+    /* 80039128 */ dDemo_camera_c* getActiveCamera();
     /* 8003913C */ JStage::TObject* createAmbient();
     /* 800391B8 */ JStage::TObject* appendLight();
     /* 80039258 */ JStage::TObject* createFog();
@@ -208,6 +208,13 @@ public:
     /* 80038DDC */ virtual void JSGSetViewRoll(f32);
 
     void onEnable(u8 flag) { mFlags |= flag; }
+    bool checkEnable(u8 flag) { return mFlags & flag; }
+
+    cXyz& getTarget() { return mViewTargetVector; }
+    cXyz& getTrans() { return mViewPos; }
+    cXyz& getUp() { return mViewUpVector; }
+    f32 getFovy() { return mProjFovy; }
+    f32 getRoll() { return mViewRoll; }
 
 private:
     /* 0x04 */ u8 mFlags;
@@ -278,6 +285,11 @@ public:
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
     static s16 getBranchId() { return m_branchId; }
+
+    static dDemo_camera_c* getCamera() {
+        JUT_ASSERT(m_object != 0);
+        return m_object->getActiveCamera();
+    }
 
     static s16 m_branchId;
     static dDemo_system_c* m_system;

@@ -228,6 +228,11 @@ public:
                              param_5);
     }
 
+    void Init(fopAc_ac_c* param_0, u32 i_padNo) {
+        mpPlayer = param_0;
+        mPadNo = i_padNo;
+    }
+
     static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
 
     static type_tbl_entry loc_type_tbl[3];

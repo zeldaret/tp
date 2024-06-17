@@ -105,7 +105,7 @@ public:
     /* 80082ECC */ virtual s32 GetRoomPathId(cBgS_PolyInfo const&);
     /* 80082EFC */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 80082F2C */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 80082F5C */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
+    /* 80082F5C */ virtual int GetGrpSoundId(cBgS_PolyInfo const&);
     /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
     /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,

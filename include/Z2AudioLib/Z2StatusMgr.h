@@ -30,6 +30,7 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     u8 getHour() { return mHour; }
     bool isPaused() { return mIsMenuIn; }
     bool isHeartGuageOn() { return mHeartGaugeOn; }
+    void getCameraMapInfo(u32 info) { mCameraMapInfo = info; }
 
     /* 0x00 */ u8 mHour;
     /* 0x01 */ u8 mMinute;

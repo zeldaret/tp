@@ -205,7 +205,7 @@ public:
     virtual s32 GetRoomPathId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&) = 0;
     virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&) = 0;
-    virtual u8 GetGrpSoundId(cBgS_PolyInfo const&) = 0;
+    virtual int GetGrpSoundId(cBgS_PolyInfo const&) = 0;
     virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
@@ -309,7 +309,7 @@ public:
     /* 8007B8D8 */ virtual s32 GetRoomPathId(cBgS_PolyInfo const&);
     /* 8007B904 */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 8007DF28 */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 8007DF58 */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
+    /* 8007DF58 */ virtual int GetGrpSoundId(cBgS_PolyInfo const&);
     /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
     /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,

@@ -159,6 +159,9 @@ public:
     /* 80844590 */ void draw();
     /* 8084478C */ ~daHorse_c();
     /* 80844CB0 */ daHorse_c();
+    
+    /* 80182D04 */ void getLashDashStart() const;
+    
 
     bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return mResetStateFlg0 & flag; }

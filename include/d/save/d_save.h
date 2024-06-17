@@ -1046,6 +1046,7 @@ private:
 class dSv_turnRestart_c {
 public:
     class dSv_turnRestart_camera_c {
+    public:
         /* 0x00 */ cXyz mCameraCtr;
         /* 0x0C */ cXyz mCameraEye;
         /* 0x18 */ cXyz mCameraUp;
@@ -1056,6 +1057,11 @@ public:
     u32 getParam() const { return mParam; }
     cXyz& getPos() { return mPosition; }
     s16 getAngleY() const { return mAngleY; }
+
+    f32 getCameraFvy() const { return mCameraFvy; }
+    const cXyz& getCameraUp() const { return mCamera.mCameraUp; }
+    const cXyz& getCameraEye() const { return mCamera.mCameraEye; }
+    const cXyz& getCameraCtr() const { return mCamera.mCameraCtr; }
 
 private:
     /* 0x00 */ cXyz mPosition;

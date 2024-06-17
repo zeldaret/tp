@@ -138,6 +138,10 @@ inline void cMtx_inverse(const Mtx a, Mtx b) {
     mDoMtx_inverse(a, b);
 }
 
+inline void cMtx_concatProjView(const Mtx a, const Mtx b, Mtx c) {
+    mDoMtx_concatProjView(a, b, c);
+}
+
 class mDoMtx_stack_c {
 public:
     mDoMtx_stack_c() {

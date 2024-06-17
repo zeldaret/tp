@@ -15,6 +15,8 @@ class dKy_tevstr_c;
 
 class cM_rnd_c {
 public:
+    cM_rnd_c() { init(100, 100, 100); }
+
     /* 80053CDC */ void init(int, int, int);
     /* 80053CEC */ f32 get();
     /* 80053DE0 */ f32 getF(f32);

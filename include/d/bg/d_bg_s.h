@@ -88,7 +88,7 @@ public:
     s32 GetRoomCamId(cBgS_PolyInfo const&);
     s32 GetRoomPathId(cBgS_PolyInfo const&);
     s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
-    u8 GetGrpSoundId(cBgS_PolyInfo const&);
+    int GetGrpSoundId(cBgS_PolyInfo const&);
     u32 ChkGrpInf(cBgS_PolyInfo const&, u32);
     s32 GetRoomId(cBgS_PolyInfo const&);
     bool GetPolyAttackThrough(cBgS_PolyInfo const&);
