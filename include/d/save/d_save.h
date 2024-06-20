@@ -1059,9 +1059,15 @@ public:
     s16 getAngleY() const { return mAngleY; }
 
     f32 getCameraFvy() const { return mCameraFvy; }
+    void setCameraFvy(f32 i_fvy) { mCameraFvy = i_fvy; }
+
     const cXyz& getCameraUp() const { return mCamera.mCameraUp; }
     const cXyz& getCameraEye() const { return mCamera.mCameraEye; }
     const cXyz& getCameraCtr() const { return mCamera.mCameraCtr; }
+
+    void setCameraUp(const cXyz& i_up) { mCamera.mCameraUp = i_up; }
+    void setCameraEye(const cXyz& i_eye) { mCamera.mCameraEye = i_eye; }
+    void setCameraCtr(const cXyz& i_ctr) { mCamera.mCameraCtr = i_ctr; }
 
 private:
     /* 0x00 */ cXyz mPosition;

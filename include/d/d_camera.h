@@ -88,7 +88,7 @@ struct d2DBSplinePath {
 
     /* 80097878 */ void Init(s32, s32);
     /* 80097B68 */ void Spot(f32*, f32);
-    /* 801828D4 */ virtual ~d2DBSplinePath();
+    /* 801828D4 */ virtual ~d2DBSplinePath() {}
 };
 
 struct dCamera_event_param {
@@ -295,11 +295,11 @@ public:
     /* 80164E20 */ void relationalPos(fopAc_ac_c*, fopAc_ac_c*, cXyz*, f32);
     /* 80164D6C */ void relationalPos(fopAc_ac_c*, cXyz*);
     /* 80165104 */ void setUSOAngle();
-    /* 80165158 */ void getUSOAngle(cSAngle);
+    /* 80165158 */ cSAngle getUSOAngle(cSAngle);
     /* 8016517C */ void pointInSight(cXyz*);
     /* 80167C24 */ void radiusActorInSight(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
     /* 80165238 */ void radiusActorInSight(fopAc_ac_c*, fopAc_ac_c*, cXyz*, cXyz*, f32, s16, f32);
-    /* 801657EC */ void groundHeight(cXyz*);
+    /* 801657EC */ f32 groundHeight(cXyz*);
     /* 801658C0 */ void lineBGCheck(cXyz*, cXyz*, dBgS_LinChk*, u32);
     /* 80165AF0 */ void lineBGCheck(cXyz*, cXyz*, u32);
     /* 801659F4 */ void lineBGCheck(cXyz*, cXyz*, cXyz*, u32);
@@ -369,7 +369,6 @@ public:
     /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
     /* 8018295C */ void footHeightOf(fopAc_ac_c*);
-    /* 80182964 */ void push_any_key();
     /* 801829AC */ void Bank();
 
     bool Active() { return field_0x24 == 0; }
@@ -378,6 +377,7 @@ public:
     int Mode() { return mNextMode; }
     f32 Fovy() { return mFovY + mShake.field_0x3c; }
     bool isModeOK() { return field_0x158.field_0x0; }
+    bool push_any_key() { return field_0x224; }
 
     bool chkFlag(u32 i_flag) { return mEventFlags & i_flag; }
     void setFlag(u32 i_flag) { mEventFlags |= i_flag; }

@@ -2291,7 +2291,7 @@ public:
     /* 800FE868 */ void setMoveBGClimbCorrect();
     /* 800FEB90 */ int checkBgCorrectClimbMove(cXyz*, cXyz*);
     /* 800FEC70 */ void checkClimbRoof(f32);
-    /* 800FED50 */ void checkClimbGround(cXyz*, f32);
+    /* 800FED50 */ int checkClimbGround(cXyz*, f32);
     /* 800FEEC0 */ void checkBgClimbMove(int);
     /* 800FF28C */ void setClimbStartNotGround();
     /* 800FF450 */ int procClimbUpStartInit(int);

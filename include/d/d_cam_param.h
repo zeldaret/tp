@@ -118,6 +118,8 @@ public:
 
     bool CheckFlag(u16 i_flag) { return mDebugFlags & i_flag; }
     f32 ManualEndVal() { return mManualEndVal; }
+    f32 CinemaScopeTrimHeight() { return mTrimCineScopeHeight; }
+    f32 VistaTrimHeight() { return mTrimVistaHeight; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;
