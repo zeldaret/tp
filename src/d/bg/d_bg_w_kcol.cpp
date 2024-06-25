@@ -864,7 +864,7 @@ u8 dBgWKCol::GetPolyGrpRoomInfId(cBgS_PolyInfo const& poly) {
 
 /* 80082F5C-80082F8C 07D89C 0030+00 1/0 0/0 0/0 .text GetGrpSoundId__8dBgWKColFRC13cBgS_PolyInfo
  */
-u8 dBgWKCol::GetGrpSoundId(cBgS_PolyInfo const& poly) {
+int dBgWKCol::GetGrpSoundId(cBgS_PolyInfo const& poly) {
     u16 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;

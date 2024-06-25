@@ -84,7 +84,7 @@ public:
     virtual s32 GetRoomPathId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&) = 0;
     virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&) = 0;
-    virtual u8 GetGrpSoundId(cBgS_PolyInfo const&) = 0;
+    virtual int GetGrpSoundId(cBgS_PolyInfo const&) = 0;
     virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;

@@ -5,6 +5,7 @@
 
 #include "d/d_ev_camera.h"
 #include "dol2asm.h"
+#include "d/d_demo.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 
@@ -37,7 +38,7 @@ extern "C" void uniformTransEvCamera__9dCamera_cFv();
 extern "C" void uniformBrakeEvCamera__9dCamera_cFv();
 extern "C" void uniformAcceleEvCamera__9dCamera_cFv();
 extern "C" void transEvCamera__9dCamera_cFi();
-extern "C" static void func_8008E750();
+extern "C" static bool func_8008E750(char);
 extern "C" void __as__7cSGlobeFRC7cSGlobe();
 extern "C" void abs__4cXyzCFv();
 extern "C" void U__7cSGlobeFRC7cSAngle();
@@ -196,19 +197,23 @@ extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
 
 /* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm bool func_800889F8(int) {
-    nofralloc
-#include "asm/d/d_ev_camera/func_800889F8.s"
+static bool func_800889F8(int param_0) {
+    dStage_MapEventInfo_c* info = dComIfGp_getStage()->getMapEventInfo();
+    if (info != NULL) {
+        for (int i = 0; i < info->mCount; i++) {
+            if (param_0 == info->mData[i].field_0x4) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
-#pragma pop
 
 /* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie
  */
 int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
-    if (i_chkFlag(0x20000000)) {
+    if (chkFlag(0x20000000)) {
         return 0;
     }
 
@@ -230,7 +235,7 @@ int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
     }
     va_end(args);
 
-    i_setFlag(0x20000000);
+    setFlag(0x20000000);
     mCurCamTypeTimer = 0;
     mEventData.field_0x0 = 0;
     return 1;
@@ -238,12 +243,12 @@ int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
 
 /* 80088BBC-80088C24 0834FC 0068+00 0/0 3/3 4/4 .text            EndEventCamera__9dCamera_cFi */
 int dCamera_c::EndEventCamera(int param_0) {
-    if (!i_chkFlag(0x20000000)) {
+    if (!chkFlag(0x20000000)) {
         return 0;
     }
 
     if (mEventData.field_0x14 == -1 || mEventData.field_0x14 == param_0) {
-        i_clrFlag(0x20000000);
+        clrFlag(0x20000000);
         mEventData.field_0x0 = 1;
 
         if (dComIfGp_getEvent().runCheck()) {
@@ -277,146 +282,421 @@ int dCamera_c::searchEventArgData(char* i_eventName) {
 }
 
 /* 80088CB0-80088D90 0835F0 00E0+00 3/3 1/1 0/0 .text            getEvIntData__9dCamera_cFPiPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvIntData(int* param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvIntData__9dCamera_cFPiPc.s"
+bool dCamera_c::getEvIntData(int* i_data, char* i_event) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            return 0;
+        }
+
+        if (mEventData.mEventParams[index].field_0x10 < 0) {
+            *i_data = mEventData.mEventParams[index].value;
+        } else {
+            *i_data = *(int*)mEventData.mEventParams[index].value;
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.field_0x4, i_event);
+    } else {
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: (int) not found\n", i_event);
+        }
+#endif
+
+        mEventData.field_0x10 = 1;
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %d\n", i_event, *i_data);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 80088D90-80088E58 0836D0 00C8+00 0/0 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvFloatData(f32* param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvFloatData__9dCamera_cFPfPc.s"
+bool dCamera_c::getEvFloatData(f32* i_data, char* i_event) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            return 0;
+        }
+
+        *i_data = *(f32*)mEventData.mEventParams[index].value;
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else {
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: (float) not found\n", i_event);
+        }
+#endif
+
+        mEventData.field_0x10 = 1;
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %f\n", i_event, *i_data);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 80088E58-80088F1C 083798 00C4+00 4/4 0/0 0/0 .text getEvFloatListData__9dCamera_cFPPfPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvFloatListData(f32** param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvFloatListData__9dCamera_cFPPfPc.s"
+int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
+    int num = 0;
+
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            return 0;
+        }
+
+        *i_data = (f32*)mEventData.mEventParams[index].value;
+        num = mEventData.mEventParams[index].field_0x10;
+    } else if (num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+        *i_data = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else {
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: (float[]) not found\n", i_event);
+        }
+#endif
+        mEventData.field_0x10 = 1;
+        return 0;
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %f ... [%d]\n", i_event, **i_data, num);
+    }
+#endif
+
+    return num;
 }
-#pragma pop
 
 /* 80088F1C-80088FE0 08385C 00C4+00 1/1 0/0 0/0 .text getEvXyzListData__9dCamera_cFPP4cXyzPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvXyzListData(cXyz** param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvXyzListData__9dCamera_cFPP4cXyzPc.s"
+int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
+    int num = 0;
+
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            return 0;
+        }
+
+        *i_data = (cXyz*)mEventData.mEventParams[index].value;
+        return mEventData.mEventParams[index].field_0x10;
+    } else if (num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+        *i_data = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
+    } else {
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: (xyz[]) not found\n", i_event);
+        }
+#endif
+        mEventData.field_0x10 = 1;
+        return 0;
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %f %f %f ... [%d]\n", i_event, (*i_data)->x, (*i_data)->y, (*i_data)->z, num);
+    }
+#endif
+
+    return num;
 }
-#pragma pop
 
 /* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvStringPntData(char* param_0) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvStringPntData__9dCamera_cFPc.s"
+char* dCamera_c::getEvStringPntData(char* i_event) {
+    char* string = NULL;
+
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            return 0;
+        }
+
+        string = (char*)mEventData.mEventParams[index].value;
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+        string = dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event);
+    } else {
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: (string) not found\n", i_event);
+        }
+#endif
+        mEventData.field_0x10 = 1;
+        return 0;
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %s\n", i_event, string);
+    }
+#endif
+
+    return string;
 }
-#pragma pop
 
 /* 8008908C-80089154 0839CC 00C8+00 20/20 5/5 0/0 .text            getEvIntData__9dCamera_cFPiPci */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvIntData(int* param_0, char* param_1, int param_2) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvIntData__9dCamera_cFPiPci.s"
+bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            *i_data = param_2;
+        } else {
+            *i_data = *(int*)mEventData.mEventParams[index].value;
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.field_0x4, i_event);
+    } else {
+        *i_data = param_2;
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: %d (d)\n", i_event, *i_data);
+        }
+#endif
+
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %d\n", i_event, *i_data);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvFloatData(f32* param_0, char* param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvFloatData__9dCamera_cFPfPcf.s"
+bool dCamera_c::getEvFloatData(f32* i_data, char* i_event, f32 param_2) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            *i_data = param_2;
+        } else {
+            *i_data = *(f32*)mEventData.mEventParams[index].value;
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else {
+        *i_data = param_2;
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: %f (d)\n", i_event, *i_data);
+        }
+#endif
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %f\n", i_event, *i_data);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 8008922C-8008933C 083B6C 0110+00 10/10 0/0 0/0 .text getEvXyzData__9dCamera_cFP4cXyzPc4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvXyzData(cXyz* param_0, char* param_1, cXyz param_2) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvXyzData__9dCamera_cFP4cXyzPc4cXyz.s"
+bool dCamera_c::getEvXyzData(cXyz* i_data, char* i_event, cXyz param_2) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            *i_data = param_2;
+        } else {
+            *i_data = *(cXyz*)mEventData.mEventParams[index].value;
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
+    } else {
+        *i_data = param_2;
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: %f %f %f (d)\n", i_event, i_data->x, i_data->y, i_data->z);
+        }
+#endif
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %f %f %f\n", i_event, i_data->x, i_data->y, i_data->z);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvStringData(char* param_0, char* param_1, char* param_2) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvStringData__9dCamera_cFPcPcPc.s"
+bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            strcpy(i_data, param_2);
+        } else {
+            strcpy(i_data, (char*)mEventData.mEventParams[index].value);
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
+        strcpy(i_data, dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event));
+    } else {
+        strcpy(i_data, param_2);
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: %s (d)\n", i_event, i_data);
+        }
+#endif
+        return 0;
+    }
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %s\n", i_event, i_data);
+    }
+#endif
+
+    return 1;
 }
-#pragma pop
 
 /* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvStringPntData(char* param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvStringPntData__9dCamera_cFPcPc.s"
+char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
+    char* string = NULL;
+
+    if (chkFlag(0x20000000)) {
+        int index = searchEventArgData(i_event);
+        if (index == -1) {
+            string = param_1;
+        } else {
+            string = (char*)mEventData.mEventParams[index].value;
+        }
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+        string = dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event);
+    } else {
+        string = param_1;
+#if DEBUG
+        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+            OS_REPORT("camera: event: %16s: %s (d)\n", i_event, string);
+        }
+#endif
+        return string;
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        OS_REPORT("camera: event: %16s: %s\n", i_event, string);
+    }
+#endif
+
+    return string;
 }
-#pragma pop
 
 /* 800894C4-800895F4 083E04 0130+00 7/7 1/1 0/0 .text            getEvActor__9dCamera_cFPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvActor(char* param_0) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvActor__9dCamera_cFPc.s"
+fopAc_ac_c* dCamera_c::getEvActor(char* i_event) {
+    char* string = getEvStringPntData(i_event);
+    if (string == NULL) {
+        return NULL;
+    }
+
+    fopAc_ac_c* actor;
+    if (*(u32*)string == '@PLA') {
+        actor = mpPlayerActor;
+    } else if (*(u32*)string == '@STA') {
+        actor = dComIfGp_event_getPt1();
+    } else if (*(u32*)string == '@PAR') {
+        actor = dComIfGp_event_getPt2();
+    } else if (*(u32*)string == '@TAL') {
+        actor = dComIfGp_event_getTalkPartner();
+    } else if (*(u32*)string == '@DOO') {
+        actor = dComIfGp_event_getDoorPartner();
+    } else if (*(u32*)string == '@TAR' || *(u32*)string == '@ITE') {
+        actor = dComIfGp_event_getItemPartner();
+    } else if (*(u32*)string == 'Link') {
+        actor = dComIfGp_getLinkPlayer();
+    } else {
+        actor = fopAcM_searchFromName4Event(string, -1);
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (actor != NULL) {
+            char name[16];
+            fopAcM_getNameString(actor, name);
+            OS_REPORT("camera: event:                   = %s\n", name);
+        } else {
+            OS_REPORT("camera: event:                   = (Who?)\n");
+        }
+    }
+#endif
+
+    return actor;
 }
-#pragma pop
 
 /* 800895F4-80089730 083F34 013C+00 8/8 1/1 0/0 .text            getEvActor__9dCamera_cFPcPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getEvActor(char* param_0, char* param_1) {
-    nofralloc
-#include "asm/d/d_ev_camera/getEvActor__9dCamera_cFPcPc.s"
-}
-#pragma pop
+fopAc_ac_c* dCamera_c::getEvActor(char* i_event, char* param_1) {
+    char string[16];
+    string[0] = 0;
+    getEvStringData(string, i_event, param_1);
+    char* name_str = string;
 
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AAF4 = "Timer";
-SECTION_DEAD static char const* const stringBase_8037AAFA = "Stay";
-#pragma pop
+    fopAc_ac_c* actor;
+    if (*(u32*)string == '@PLA') {
+        actor = mpPlayerActor;
+    } else if (*(u32*)string == '@STA') {
+        actor = dComIfGp_event_getPt1();
+    } else if (*(u32*)string == '@PAR') {
+        actor = dComIfGp_event_getPt2();
+    } else if (*(u32*)string == '@TAL') {
+        actor = dComIfGp_event_getTalkPartner();
+    } else if (*(u32*)string == '@DOO') {
+        actor = dComIfGp_event_getDoorPartner();
+    } else if (*(u32*)string == '@TAR' || *(u32*)string == '@ITE') {
+        actor = dComIfGp_event_getItemPartner();
+    } else if (*(u32*)string == 'Link') {
+        actor = dComIfGp_getLinkPlayer();
+    } else {
+        actor = fopAcM_searchFromName4Event(name_str, -1);
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (actor != NULL) {
+            char name[16];
+            fopAcM_getNameString(actor, name);
+            OS_REPORT("camera: event:                   = %s\n", name);
+        } else {
+            OS_REPORT("camera: event:                   = (Who?)\n");
+        }
+    }
+#endif
+
+    return actor;
+}
 
 /* 80089730-800897E8 084070 00B8+00 0/0 3/0 0/0 .text            pauseEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::pauseEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/pauseEvCamera__9dCamera_cFv.s"
+int dCamera_c::pauseEvCamera() {
+    if (mCurCamTypeTimer == 0) {
+        Reset();
+        field_0x158.field_0x0 = 1;
+        field_0x3e8 = getEvIntData(&field_0x3f0, "Timer", -1);
+        getEvIntData(&field_0x3ec, "Stay", 0);
+    }
+
+    if (field_0x3ec != 0) {
+        setFlag(1);
+    }
+
+    if (field_0x3e8 && mCurCamTypeTimer < field_0x3f0) {
+        return 0;
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -575,36 +855,21 @@ asm void dCamera_c::fixedPositionEvCamera() {
 
 /* 8008BE2C-8008BE50 08676C 0024+00 0/0 1/0 0/0 .text            uniformTransEvCamera__9dCamera_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::uniformTransEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/uniformTransEvCamera__9dCamera_cFv.s"
+void dCamera_c::uniformTransEvCamera() {
+    transEvCamera(1);
 }
-#pragma pop
 
 /* 8008BE50-8008BE74 086790 0024+00 0/0 1/0 0/0 .text            uniformBrakeEvCamera__9dCamera_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::uniformBrakeEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/uniformBrakeEvCamera__9dCamera_cFv.s"
+void dCamera_c::uniformBrakeEvCamera() {
+    transEvCamera(2);
 }
-#pragma pop
 
 /* 8008BE74-8008BE98 0867B4 0024+00 0/0 1/0 0/0 .text            uniformAcceleEvCamera__9dCamera_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::uniformAcceleEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/uniformAcceleEvCamera__9dCamera_cFv.s"
+void dCamera_c::uniformAcceleEvCamera() {
+    transEvCamera(3);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A7F0-8037A7FC 006E50 000C+00 1/1 0/0 0/0 .rodata          @3871 */
@@ -654,14 +919,9 @@ asm void dCamera_c::transEvCamera(int param_0) {
 #pragma pop
 
 /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8008E750() {
-    nofralloc
-#include "asm/d/d_ev_camera/func_8008E750.s"
+static bool func_8008E750(char param_0) {
+    return param_0 != '-' && param_0 != 'x';
 }
-#pragma pop
 
 /* 8008E774-8008E790 0890B4 001C+00 3/3 6/6 0/0 .text            __as__7cSGlobeFRC7cSGlobe */
 #pragma push
@@ -842,6 +1102,30 @@ asm void dCamera_c::restorePosEvCamera() {
 #pragma pop
 
 /* 80090174-80090230 08AAB4 00BC+00 0/0 1/0 0/0 .text            talktoEvCamera__9dCamera_cFv */
+// matches with sinit
+#ifdef NONMATCHING
+void dCamera_c::talktoEvCamera() {
+    dComIfGp_event_getPt1();
+    s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[field_0x190][3];
+
+    if (mCurCamTypeTimer == 0) {
+        clrFlag(0x200000);
+    }
+
+    if (style < 0) {
+        style = mCamParam.SearchStyle('TT01');
+    }
+
+#if DEBUG
+    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        u32 id = mCamParam.Id();
+        OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (u8)(id >> 0x18), (u8)(id >> 0x10), (u8)(id >> 0x8), (u8)(id));
+    }
+#endif
+
+    (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -850,6 +1134,7 @@ asm void dCamera_c::talktoEvCamera() {
 #include "asm/d/d_ev_camera/talktoEvCamera__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -899,7 +1184,7 @@ bool dCamera_c::maptoolIdEvCamera() {
 
     if (mEventData.field_0xec->mType == 0 && mEventData.field_0xec->field_0xC != 0xFF) {
         if (mEventData.field_0xec->field_0xC & 1) {
-            i_clrFlag(0x200000);
+            clrFlag(0x200000);
         }
 
         if (mEventData.field_0xec->field_0xC & 2) {
@@ -962,14 +1247,28 @@ SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
 #pragma pop
 
 /* 80090478-80090514 08ADB8 009C+00 0/0 1/0 0/0 .text            styleEvCamera__9dCamera_cFv */
+// matches with sinit
+#ifdef NONMATCHING
+bool dCamera_c::styleEvCamera() {
+    if (mCurCamTypeTimer == 0) {
+        mEventData.field_0x8 = 0;
+        field_0x160 = 0;
+    }
+
+    s32 style = mCamParam.SearchStyle(*(u32*)getEvStringPntData("Name", "FN01"));
+    (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
+    return isModeOK();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::styleEvCamera() {
+asm bool dCamera_c::styleEvCamera() {
     nofralloc
 #include "asm/d/d_ev_camera/styleEvCamera__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1328,8 +1627,9 @@ asm void dCamera_c::tactEvCamera() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
-                                            s16 param_4) {
+/* static asm void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
+                                            s16 param_4) { */
+extern "C" asm void dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs() {
     nofralloc
 #include "asm/d/d_ev_camera/dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs.s"
 }
@@ -1342,31 +1642,86 @@ bool dCamera_c::turnToActorEvCamera() {
 }
 
 /* 800923C0-800924D0 08CD00 0110+00 0/0 1/0 0/0 .text            stbWaitEvCamera__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+bool dCamera_c::stbWaitEvCamera() {
+    dDemo_camera_c* demo_cam = dDemo_c::getCamera();
+#if DEBUG
+    char* enabled_report = "-----";
+#endif
+
+    if (demo_cam != NULL) {
+        if (demo_cam->checkEnable(0x40)) {
+            field_0x5c.field_0x8 = demo_cam->getTarget();
+#if DEBUG
+            enabled_report[0] = 'C';
+#endif
+        }
+
+        if (demo_cam->checkEnable(0x10)) {
+            field_0x5c.field_0x14 = demo_cam->getTrans();
+#if DEBUG
+            enabled_report[1] = 'E';
+#endif
+        }
+
+        if (demo_cam->checkEnable(0x4)) {
+            field_0x80 = demo_cam->getFovy();
+#if DEBUG
+            enabled_report[2] = 'F';
+#endif
+        }
+
+        if (demo_cam->checkEnable(0x20)) {
+            mUp = demo_cam->getUp();
+#if DEBUG
+            enabled_report[3] = 'U';
+#endif
+        }
+
+        if (demo_cam->checkEnable(0x80)) {
+            field_0x5c.field_0x20 = cAngle::d2s(-demo_cam->getRoll());
+#if DEBUG
+            enabled_report[4] = 'B';
+#endif
+        }
+
+#if DEBUG
+        if (mCamSetup.CheckFlag(0x8000)) {
+            dDbVw_Report(90, 190, "%s", enabled_report);
+        }
+#endif
+
+        field_0x5c.field_0x0.Val(field_0x5c.field_0x14 - field_0x5c.field_0x8);
+    }
+
+    return true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::stbWaitEvCamera() {
+asm bool dCamera_c::stbWaitEvCamera() {
     nofralloc
 #include "asm/d/d_ev_camera/stbWaitEvCamera__9dCamera_cFv.s"
 }
 #pragma pop
-
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AC74 = "Slot";
-#pragma pop
+#endif
 
 /* 800924D0-8009258C 08CE10 00BC+00 0/0 1/0 0/0 .text            saveEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::saveEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/saveEvCamera__9dCamera_cFv.s"
+bool dCamera_c::saveEvCamera() {
+    int slot;
+    getEvIntData(&slot, "Slot", 0);
+
+    if (slot == 9) {
+        dComIfGp_saveCameraPosition(0, &field_0x5c.field_0x8, &field_0x5c.field_0x14, field_0x80, field_0x5c.field_0x20.Val());
+    } else {
+        pushInfo(&field_0xd0[slot], 1);
+    }
+
+    field_0x158.field_0x0 = 1;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A884-8037A89C 006EE4 0018+00 1/1 0/0 0/0 .rodata          @8840 */
@@ -1912,7 +2267,7 @@ REGISTER_CTORS(0x8009769C, __sinit_d_ev_camera_cpp);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::attentionPos(fopAc_ac_c* param_0) {
+asm cXyz dCamera_c::attentionPos(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_ev_camera/attentionPos__9dCamera_cFP10fopAc_ac_c.s"
 }
@@ -1922,7 +2277,8 @@ asm void dCamera_c::attentionPos(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::directionOf(fopAc_ac_c* param_0) {
+// asm cSAngle dCamera_c::directionOf(fopAc_ac_c* param_0) {
+extern "C" asm void directionOf__9dCamera_cFP10fopAc_ac_c() {
     nofralloc
 #include "asm/d/d_ev_camera/directionOf__9dCamera_cFP10fopAc_ac_c.s"
 }
@@ -1932,7 +2288,8 @@ asm void dCamera_c::directionOf(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::positionOf(fopAc_ac_c* param_0) {
+// asm void dCamera_c::positionOf(fopAc_ac_c* param_0) {
+extern "C" asm void positionOf__9dCamera_cFP10fopAc_ac_c() {
     nofralloc
 #include "asm/d/d_ev_camera/positionOf__9dCamera_cFP10fopAc_ac_c.s"
 }
@@ -1942,7 +2299,8 @@ asm void dCamera_c::positionOf(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::setFlag(u32 param_0) {
+// asm void dCamera_c::setFlag(u32 param_0) {
+extern "C" asm void setFlag__9dCamera_cFUl() {
     nofralloc
 #include "asm/d/d_ev_camera/setFlag__9dCamera_cFUl.s"
 }

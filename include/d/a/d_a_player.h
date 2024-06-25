@@ -793,6 +793,8 @@ public:
     s16 getBodyAngleX() const { return mBodyAngle.x; }
     s16 getBodyAngleY() const { return mBodyAngle.y; }
 
+    f32 getHeight() const { return field_0x598; }
+
     BOOL checkMidnaWarp() const { return 0; }
 
     u32 checkNoResetFlg0(daPy_FLG0 i_flag) const { return mNoResetFlg0 & i_flag; }
@@ -868,6 +870,8 @@ public:
     void changeDemoPos0(const cXyz* i_posP) { mDemo.setPos0(i_posP); }
 
     void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
+
+    static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();

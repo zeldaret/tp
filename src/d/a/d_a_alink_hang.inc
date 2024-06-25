@@ -981,14 +981,39 @@ asm void daAlink_c::checkClimbRoof(f32 param_0) {
 #pragma pop
 
 /* 800FED50-800FEEC0 0F9690 0170+00 2/2 0/0 0/0 .text checkClimbGround__9daAlink_cFP4cXyzf */
+// matches with literals
+#ifdef NONMATCHING
+int daAlink_c::checkClimbGround(cXyz* param_0, f32 param_1) {
+    f32 var_f30 = cM_ssin(shape_angle.y);
+    f32 var_f29 = cM_scos(shape_angle.y);
+
+    param_0->set(current.pos.x + (var_f30 * 4.5f), param_1 + 50.0f, current.pos.z + (var_f29 * 4.5f));
+
+    for (int i = 0; i < 3; i++) {
+        mLinkGndChk.SetPos(param_0);
+
+        f32 cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+        if (cross != -1000000000.0f && dBgS_CheckBGroundPoly(mLinkGndChk) && cross >= param_1 - 50.0f) {
+            param_0->y = cross;
+            return 1;
+        }
+
+        param_0->x += var_f30 * 1.5f;
+        param_0->z += var_f29 * 1.5f;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkClimbGround(cXyz* param_0, f32 param_1) {
+asm int daAlink_c::checkClimbGround(cXyz* param_0, f32 param_1) {
     nofralloc
 #include "asm/d/a/d_a_alink/checkClimbGround__9daAlink_cFP4cXyzf.s"
 }
 #pragma pop
+#endif
 
 /* 800FEEC0-800FF28C 0F9800 03CC+00 5/5 0/0 0/0 .text            checkBgClimbMove__9daAlink_cFi */
 #pragma push

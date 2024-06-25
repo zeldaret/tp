@@ -27,33 +27,45 @@ public:
     /* 0x248 */ dCamera_c mCamera;
 };
 
-/* void fopCamM_SetNear(camera_class* cam, f32 near) {
-    cam->mNear = near;
+inline void fopCamM_SetNear(camera_class* i_this, f32 near) {
+    i_this->mNear = near;
 }
 
-void fopCamM_SetFar(camera_class* cam, f32 far) {
-    cam->mFar = far;
+inline void fopCamM_SetFar(camera_class* i_this, f32 far) {
+    i_this->mFar = far;
 }
 
-void fopCamM_SetFovy(camera_class* cam, f32 fovy) {
-    cam->mFovy = fovy;
+inline void fopCamM_SetFovy(camera_class* i_this, f32 fovy) {
+    i_this->mFovy = fovy;
 }
 
-void fopCamM_SetAspect(camera_class* cam, f32 aspect) {
-    cam->mAspect = aspect;
+inline void fopCamM_SetAspect(camera_class* i_this, f32 aspect) {
+    i_this->mAspect = aspect;
 }
 
-void fopCamM_SetEye(camera_class* cam, f32 x, f32 y, f32 z) {
-    cam->field_0xd8.mEye.set(x, y, z);
+inline void fopCamM_SetEye(camera_class* i_this, f32 x, f32 y, f32 z) {
+    i_this->mLookat.mEye.set(x, y, z);
 }
 
-void fopCamM_SetCenter(camera_class* cam, f32 x, f32 y, f32 z) {
-    cam->field_0xd8.mCenter.set(x, y, z);
+inline void fopCamM_SetCenter(camera_class* i_this, f32 x, f32 y, f32 z) {
+    i_this->mLookat.mCenter.set(x, y, z);
 }
 
-void fopCamM_SetBank(camera_class* cam, s16 bank) {
-    cam->mBank = bank;
-} */
+inline void fopCamM_SetBank(camera_class* i_this, s16 bank) {
+    i_this->mBank = bank;
+}
+
+inline void fopCamM_SetPrm1(camera_class* i_this, int prm1) {
+    i_this->mPrm1 = prm1;
+}
+
+inline void fopCamM_SetPrm2(camera_class* i_this, int prm2) {
+    i_this->mPrm2 = prm2;
+}
+
+inline void fopCamM_SetPrm3(camera_class* i_this, int prm3) {
+    i_this->mPrm3 = prm3;
+}
 
 inline s16 fopCamM_GetAngleX(camera_class* i_camera) {
     return i_camera->mAngle.x;

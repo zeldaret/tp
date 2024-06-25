@@ -114,12 +114,13 @@ public:
 };
 
 class cSGlobe {
-private:
+public:
     float mRadius;
     cSAngle mAzimuth;      // original: V
     cSAngle mInclination;  // original: U
 
-public:
+    cSGlobe() {}
+
     cSGlobe(const cSGlobe&);
     cSGlobe(float, short, short);
     cSGlobe(float, const cSAngle&, const cSAngle&);

@@ -239,6 +239,8 @@ public:
     fopAc_ac_c();
     ~fopAc_ac_c();
 
+    static void setStopStatus(u32 status) { stopStatus = status; }
+
     static u32 stopStatus;
 };  // Size: 0x568
 

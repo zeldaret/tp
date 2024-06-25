@@ -1278,7 +1278,7 @@ JStage::TObject* dDemo_object_c::createCamera() {
 
 /* 80039128-8003913C 033A68 0014+00 0/0 3/3 0/0 .text            getActiveCamera__14dDemo_object_cFv
  */
-JStage::TObject* dDemo_object_c::getActiveCamera() {
+dDemo_camera_c* dDemo_object_c::getActiveCamera() {
     if (mpCamera != NULL) {
         return mpCamera;
     }

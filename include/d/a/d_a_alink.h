@@ -2291,7 +2291,7 @@ public:
     /* 800FE868 */ void setMoveBGClimbCorrect();
     /* 800FEB90 */ int checkBgCorrectClimbMove(cXyz*, cXyz*);
     /* 800FEC70 */ void checkClimbRoof(f32);
-    /* 800FED50 */ void checkClimbGround(cXyz*, f32);
+    /* 800FED50 */ int checkClimbGround(cXyz*, f32);
     /* 800FEEC0 */ void checkBgClimbMove(int);
     /* 800FF28C */ void setClimbStartNotGround();
     /* 800FF450 */ int procClimbUpStartInit(int);
@@ -3198,7 +3198,7 @@ public:
     BOOL grassCancelTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL arrowChangeTrigger() { return itemActionTrigger(); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
-    u32 getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
+    int getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
     inline bool checkInputOnR() const;
     static int getSightBti() { return 0x5B; }
     bool checkBoomerangChargeEndWait() const {
@@ -3377,6 +3377,8 @@ public:
     SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
 
     void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
+
+    BOOL checkStartFall() { return getStartMode() == 3; }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);

@@ -22,11 +22,15 @@ public:
     /* 0xC */ u8 field_0xc[4];
 
     /* 800889B0 */ virtual ~dCstick_c();
+
+    f32 SwTHH() { return mThresholdHigh; }
 };
 
 class dCamBGChk_c {
 public:
     /* 80088464 */ dCamBGChk_c();
+
+    f32 WallUpDistance() { return mWallUpDistance; }
 
     // name is a guess for now
     struct ChkInfo {
@@ -53,7 +57,8 @@ struct dCamStyleData {
     struct StyleData {
         /* 0x0 */ u32 field_0x0;
         /* 0x4 */ u16 field_0x4;
-        /* 0x6 */ u8 field_0x6[0x78 - 0x6];
+        /* 0x6 */ u16 field_0x6;
+        /* 0x8 */ u8 field_0x8[0x78 - 0x8];
     };  // Size: 0x78
 
     /* 0x0 */ u8 field_0x0[4];
@@ -74,7 +79,6 @@ public:
     /* 80182C74 */ void Arg0(u8);
     /* 80182C7C */ void Fovy(u8);
     /* 80182C58 */ void Fovy();
-    /* 80182C8C */ void Flag(s32, u16);
     /* 80182CB4 */ void CheckFlag(u16);
     /* 80182CD0 */ void Val(s32, int);
 
@@ -88,7 +92,10 @@ public:
     /* 0x14 */ int mStyleID;
     /* 0x18 */ u8 field_0x18[4];
 
-    u16 Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
+    u32 Id(s32 i_style) { return mCamStyleData[i_style].field_0x0; }
+    int Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
+    int Algorythmn() { return mCurrentStyle->field_0x4; }
+    bool Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
 
     /* 8008858C */ virtual ~dCamParam_c();
 };
@@ -99,7 +106,6 @@ public:
     /* 80088918 */ bool CheckLatitudeRange(s16*);
     /* 80088988 */ f32 PlayerHideDist();
     /* 80182BB8 */ void CheckFlag2(u16);
-    /* 80182BD0 */ void CheckFlag(u16);
     /* 80182BE8 */ void WaitRollSpeed();
     /* 80182BF0 */ void WaitRollTimer();
     /* 80182C1C */ void ThrowTimer();
@@ -109,6 +115,11 @@ public:
     /* 80182CEC */ void ChargeBRatio();
     /* 80182CF4 */ void ChargeTimer();
     /* 80182CFC */ void ChargeLatitude();
+
+    bool CheckFlag(u16 i_flag) { return mDebugFlags & i_flag; }
+    f32 ManualEndVal() { return mManualEndVal; }
+    f32 CinemaScopeTrimHeight() { return mTrimCineScopeHeight; }
+    f32 VistaTrimHeight() { return mTrimVistaHeight; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;

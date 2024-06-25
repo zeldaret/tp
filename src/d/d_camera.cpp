@@ -4,45 +4,23 @@
 //
 
 #include "d/d_camera.h"
-#include "dol2asm.h"
+#include "SSystem/SComponent/c_math.h"
+#include "cmath.h"
+#include "d/a/d_a_alink.h"
 #include "d/com/d_com_inf_game.h"
+#include "d/d_demo.h"
+#include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include "rel/d/a/d_a_horse/d_a_horse.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
+#include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
+#include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
+#include "rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait.h"
 
 //
 // Types:
 //
-
-namespace std {
-/* 80182A3C */ void fabsf(f32);
-/* 80182D10 */ void fabs(f32);
-};  // namespace std
-
-struct daTagMwait_c {
-    /* 80182D9C */ void checkEndMessage();
-};
-
-struct daTagMstop_c {
-    /* 80182D64 */ void checkNoAttention() const;
-};
-
-struct daTagMhint_c {
-    /* 80182D78 */ void checkNoAttention() const;
-};
-
-struct daHorse_c {
-    /* 80182D04 */ void getLashDashStart() const;
-    /* 80182D1C */ void checkTurnStandCamera() const;
-    /* 80182D48 */ void checkJump() const;
-};
-
-struct dDemo_object_c {
-    /* 80039128 */ void getActiveCamera();
-};
-
-struct dDemo_c {
-    static u8 m_object[4];
-};
 
 struct dBgS_CamSphChk {
     /* 80165E74 */ ~dBgS_CamSphChk();
@@ -52,11 +30,12 @@ struct dBgS_CamSphChk {
 // Forward References:
 //
 
-extern "C" static void func_8015FA2C(f32 param_0, f32 param_1, f32 param_2);
+extern "C" static f32 func_8015FA2C(f32 param_0, f32 param_1, f32 param_2);
 extern "C" static void func_8015FA4C(fopAc_ac_c* param_0);
-extern "C" static void func_8015FADC(f32 param_0, f32 param_1, f32 param_2);
-extern "C" static void func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2);
-extern "C" static void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2, f32 param_3, cSAngle param_4);
+extern "C" static bool func_8015FADC(f32 param_0, f32 param_1, f32* param_2);
+extern "C" static bool func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2);
+extern "C" static void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2,
+                                     f32 param_3, cSAngle param_4);
 extern "C" void Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc();
 extern "C" void __ct__9dCamera_cFP12camera_class();
 extern "C" void func_801602C4();
@@ -143,7 +122,8 @@ extern "C" void getMsgCmdCut__9dCamera_cFl();
 extern "C" void talktoCamera__9dCamera_cFl();
 extern "C" void talkBasePos__9dCamera_cFP10fopAc_ac_c();
 extern "C" void talkEyePos__9dCamera_cFP10fopAc_ac_c();
-extern "C" static void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4);
+extern "C" static void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2,
+                                     fopAc_ac_c* param_3, fopAc_ac_c* param_4);
 extern "C" bool CalcSubjectAngle__9dCamera_cFPsPs();
 extern "C" void SaveZoomRatio__9dCamera_cFv();
 extern "C" void subjectCamera__9dCamera_cFl();
@@ -589,22 +569,46 @@ extern "C" u8 _180__7cSAngle[2 + 2 /* padding */];
 extern "C" u8 _270__7cSAngle[2 + 6 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
+u32 daPy_py_c::getLastSceneMode() {
+    return dComIfGs_getLastSceneMode() & 0xF;
+}
+
 //
 // Declarations:
 //
 
 /* 8015FA2C-8015FA4C 15A36C 0020+00 2/2 0/0 0/0 .text limitf__22@unnamed@d_camera_cpp@Ffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8015FA2C(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_camera/func_8015FA2C.s"
+static f32 func_8015FA2C(f32 value, f32 min, f32 max) {
+    if (value > max) {
+        return max;
+    } else if (value < min) {
+        return min;
+    }
+
+    return value;
 }
-#pragma pop
+
+namespace {
+inline static bool is_player(fopAc_ac_c* actor) {
+    return fopAcM_GetName(actor) == PROC_ALINK || fopAcM_GetName(actor) == PROC_ALINK;
+}
+}  // namespace
 
 /* 8015FA4C-8015FADC 15A38C 0090+00 1/1 0/0 0/0 .text
  * hideActor__22@unnamed@d_camera_cpp@FP10fopAc_ac_c            */
+// matches with weak order
+#ifdef NONMATCHING
+static void func_8015FA4C(fopAc_ac_c* actor) {
+    if (is_player(actor)) {
+        dComIfGp_onCameraAttentionStatus(0, 2);
+        if (((daPy_py_c*)actor)->checkHorseRide()) {
+            fopAcM_OnStatus(dComIfGp_getHorseActor(), 0x1000000);
+        }
+    } else {
+        fopAcM_OnStatus(actor, 0x1000000);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -613,28 +617,64 @@ static asm void func_8015FA4C(fopAc_ac_c* param_0) {
 #include "asm/d/d_camera/func_8015FA4C.s"
 }
 #pragma pop
+#endif
 
 /* 8015FADC-8015FB28 15A41C 004C+00 1/1 0/0 0/0 .text defaultRadius__22@unnamed@d_camera_cpp@FffPf
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8015FADC(f32 param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_camera/func_8015FADC.s"
+static bool func_8015FADC(f32 param_0, f32 param_1, f32* param_2) {
+    f32 var_f30;
+    f32 var_f31;
+
+    if (param_0 < param_1) {
+        var_f31 = param_0;
+        var_f30 = param_1;
+    } else {
+        var_f30 = param_0;
+        var_f31 = param_1;
+    }
+
+    if (*param_2 > var_f30) {
+        *param_2 = var_f30;
+        return false;
+    }
+
+    if (*param_2 < var_f31) {
+        *param_2 = var_f31;
+        return false;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* 8015FB28-8015FBF8 15A468 00D0+00 1/1 0/0 0/0 .text
  * posInLine2D__22@unnamed@d_camera_cpp@FP4cXyzP4cXyzP4cXyz     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2) {
-    nofralloc
-#include "asm/d/d_camera/func_8015FB28.s"
+static bool func_8015FB28(cXyz* param_0, cXyz* param_1, cXyz* param_2) {
+    if (param_0->x <= param_1->x) {
+        if (param_2->x < param_0->x)
+            return false;
+        if (param_2->x > param_1->x)
+            return false;
+    } else {
+        if (param_2->x <= param_1->x)
+            return false;
+        if (param_2->x >= param_0->x)
+            return false;
+    }
+
+    if (param_0->z <= param_1->z) {
+        if (param_2->z < param_0->z)
+            return false;
+        if (param_2->z > param_1->z)
+            return false;
+    } else {
+        if (param_2->z <= param_1->z)
+            return false;
+        if (param_2->z >= param_0->z)
+            return false;
+    }
+
+    return true;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453690-80453698 001C90 0004+04 14/14 0/0 0/0 .sdata2          @4445 */
@@ -652,7 +692,8 @@ SECTION_SDATA2 static f64 lit_4448 = 4503601774854144.0 /* cast s32 to float */;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2, f32 param_3, cSAngle param_4) {
+static asm void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* param_2, f32 param_3,
+                              cSAngle param_4) {
     nofralloc
 #include "asm/d/d_camera/func_8015FBF8.s"
 }
@@ -660,15 +701,44 @@ static asm void func_8015FBF8(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz* pa
 
 /* 8015FEB8-8016008C 15A7F8 01D4+00 4/4 0/0 0/0 .text Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamMapToolData::Set(s32 param_0, s32 param_1, fopAc_ac_c* param_2, u16 param_3,
-                              u8 param_4) {
-    nofralloc
-#include "asm/d/d_camera/Set__15dCamMapToolDataFllP10fopAc_ac_cUsUc.s"
+int dCamMapToolData::Set(s32 param_0, s32 roomNo, fopAc_ac_c* param_2, u16 param_3, u8 param_4) {
+    if ((param_3 & 0xFF) > field_0x38) {
+        return 0;
+    }
+
+    stage_camera_class* room_cam = dComIfGp_getRoomCamera(roomNo);
+    stage_arrow_class* room_arrow = dComIfGp_getRoomArrow(roomNo);
+
+    if (room_cam != NULL && param_0 >= 0 && param_0 < room_cam->field_0x0) {
+        Clr();
+        field_0x30 = param_0;
+        field_0x0 = room_cam->mEntries[field_0x30];
+        field_0x3a = (field_0x0.field_0x14 >> 0xE) & 3;
+
+        if (param_3 & 0x8000) {
+            field_0x3a |= 0x10;
+        }
+
+        if (field_0x0.field_0x14 & 0x2000) {
+            field_0x0.field_0x14 |= 0xC000;
+        } else {
+            field_0x0.field_0x14 &= ~0xC000;
+        }
+
+        field_0x2c = field_0x0.field_0x10;
+
+        if (room_arrow != NULL && field_0x2c >= 0 && field_0x2c < room_arrow->mNum) {
+            field_0x18 = room_arrow->mEntries[field_0x2c];
+        }
+
+        field_0x34 = param_2;
+        field_0x3b = param_4;
+        field_0x38 = param_3 & 0xFF;
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -984,26 +1054,13 @@ SECTION_DATA static void* lit_4497[3] = {
 /* 803BA25C-803BA34C 01737C 00F0+00 2/3 3/3 0/0 .data            engine_tbl__9dCamera_c */
 #ifdef NONMATCHING
 engine_fn dCamera_c::engine_tbl[] = {
-    &dCamera_c::letCamera,
-    &dCamera_c::chaseCamera,
-    &dCamera_c::lockonCamera,
-    &dCamera_c::talktoCamera,
-    &dCamera_c::subjectCamera,
-    &dCamera_c::fixedPositionCamera,
-    &dCamera_c::fixedFrameCamera,
-    &dCamera_c::towerCamera,
-    &dCamera_c::rideCamera,
-    &dCamera_c::manualCamera,
-    &dCamera_c::eventCamera,
-    &dCamera_c::hookshotCamera,
-    &dCamera_c::colosseumCamera,
-    &dCamera_c::observeCamera,
-    &dCamera_c::magneCamera,
-    &dCamera_c::railCamera,
-    &dCamera_c::paraRailCamera,
-    &dCamera_c::oneSideCamera,
-    &dCamera_c::test1Camera,
-    &dCamera_c::test2Camera,
+    &dCamera_c::letCamera,        &dCamera_c::chaseCamera,    &dCamera_c::lockonCamera,
+    &dCamera_c::talktoCamera,     &dCamera_c::subjectCamera,  &dCamera_c::fixedPositionCamera,
+    &dCamera_c::fixedFrameCamera, &dCamera_c::towerCamera,    &dCamera_c::rideCamera,
+    &dCamera_c::manualCamera,     &dCamera_c::eventCamera,    &dCamera_c::hookshotCamera,
+    &dCamera_c::colosseumCamera,  &dCamera_c::observeCamera,  &dCamera_c::magneCamera,
+    &dCamera_c::railCamera,       &dCamera_c::paraRailCamera, &dCamera_c::oneSideCamera,
+    &dCamera_c::test1Camera,      &dCamera_c::test2Camera,
 };
 #else
 SECTION_DATA u8 dCamera_c::engine_tbl[240] = {
@@ -1511,10 +1568,10 @@ SECTION_DATA static void* ActionNames[34] = {
 #pragma pop
 
 /* 803BA6D8-803BA6E4 -00001 000C+00 1/1 0/0 0/0 .data            l_method$17952 */
-SECTION_DATA static void* l_method[3] = {
-    (void*)init_phase1__FP12camera_class,
-    (void*)init_phase2__FP12camera_class,
-    (void*)NULL,
+SECTION_DATA static request_of_phase_process_fn l_method[3] = {
+    (request_of_phase_process_fn)init_phase1__FP12camera_class,
+    (request_of_phase_process_fn)init_phase2__FP12camera_class,
+    (request_of_phase_process_fn)NULL,
 };
 
 /* 803BA6E4-803BA6F8 -00001 0014+00 2/0 0/0 0/0 .data            method */
@@ -1603,7 +1660,36 @@ SECTION_DATA extern void* __vt__14d2DBSplinePath[3 + 4 /* padding */] = {
     NULL,
 };
 
+namespace {
+inline static int get_camera_id(camera_class* i_camera) {
+    return fopCamM_GetParam(i_camera);
+}
+
+inline static int get_controller_id(camera_class* i_camera) {
+    return dComIfGp_getCameraPlayer1ID(get_camera_id(i_camera));
+}
+
+inline static fopAc_ac_c* get_player_actor(camera_class* i_camera) {
+    return dComIfGp_getPlayer(dComIfGp_getCameraPlayer1ID(get_camera_id(i_camera)));
+}
+
+inline static dDlst_window_c* get_window(int param_0) {
+    return dComIfGp_getWindow(dComIfGp_getCameraWinID(param_0));
+}
+
+inline static dDlst_window_c* get_window(camera_class* i_camera) {
+    return dComIfGp_getWindow(dComIfGp_getCameraWinID(get_camera_id(i_camera)));
+}
+}  // namespace
+
 /* 8016008C-801602C4 15A9CC 0238+00 1/1 0/0 0/0 .text            __ct__9dCamera_cFP12camera_class */
+// matches with weak order
+#ifdef NONMATCHING
+dCamera_c::dCamera_c(camera_class* i_camera) : mCamParam(0) {
+    initialize(i_camera, get_player_actor(i_camera), get_camera_id(i_camera),
+               get_controller_id(i_camera));
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1612,6 +1698,7 @@ asm dCamera_c::dCamera_c(camera_class* param_0) {
 #include "asm/d/d_camera/__ct__9dCamera_cFP12camera_class.s"
 }
 #pragma pop
+#endif
 
 /* 801602C4-80160300 15AC04 003C+00 2/2 0/0 0/0 .text
  * __dt__Q29dCamera_c23@class$3665d_camera_cppFv                */
@@ -1631,6 +1718,18 @@ void func_80160300() {
 }
 
 /* 80160304-80160470 15AC44 016C+00 1/1 0/0 0/0 .text            __dt__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+dCamera_c::~dCamera_c() {
+    if (!daPy_py_c::checkPeepEndSceneChange()) {
+        dComIfGs_getTurnRestart().setCameraCtr(mCenter);
+        dComIfGs_getTurnRestart().setCameraEye(mEye);
+        dComIfGs_getTurnRestart().setCameraUp(mUp);
+        dComIfGs_getTurnRestart().setCameraFvy(mFovY);
+        fopAc_ac_c::setStopStatus(0);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1639,6 +1738,7 @@ asm dCamera_c::~dCamera_c() {
 #include "asm/d/d_camera/__dt__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8042C8F8-8042C9A0 059618 00A8+00 12/12 0/0 0/0 .bss specialType__22@unnamed@d_camera_cpp@ */
@@ -1676,8 +1776,320 @@ SECTION_SDATA2 static f32 lit_5662 = 60.0f;
 /* 804536BC-804536C0 001CBC 0004+00 2/2 0/0 0/0 .sdata2          @5663 */
 SECTION_SDATA2 static f32 lit_5663 = 85.0f;
 
+namespace {
+inline static bool check_owner_action(u32 param_0, u32 param_1) {
+    return dComIfGp_checkPlayerStatus0(param_0, param_1);
+}
+
+inline static void setComStat(u32 param_0) {
+    dComIfGp_onCameraAttentionStatus(0, param_0);
+}
+
+inline static bool getComStat(u32 param_0) {
+    return dComIfGp_getCameraAttentionStatus(0) & param_0;
+}
+
+inline static void clrComStat(u32 param_0) {
+    dComIfGp_offCameraAttentionStatus(0, param_0);
+}
+
+inline static void setComZoomScale(f32 param_0) {
+    dComIfGp_setCameraZoomScale(0, param_0);
+}
+}  // namespace
+
 /* 80160470-801614AC 15ADB0 103C+00 1/1 0/0 0/0 .text
  * initialize__9dCamera_cFP12camera_classP10fopAc_ac_cUlUl      */
+// matches with literals
+#ifdef NONMATCHING
+void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_cameraID,
+                           u32 i_padID) {
+    char* type_data =
+        (char*)dComIfG_getObjectRes(dComIfGp_getCameraParamFileName(0), "camtype.dat");
+    mCamTypeData = (dCamera_type_data*)(type_data + 8);
+    mCamTypeNum = *(int*)(type_data + 4);
+
+    field_0x0 = i_camera;
+    field_0x20 = 1;
+    field_0x21 = 0;
+    field_0x24 = 0;
+    mpPlayerActor = i_player;
+    mCameraID = i_cameraID;
+    mPadID = i_padID;
+
+    initMonitor();
+    initPad();
+    mFocusLine.Init();
+
+    mRoomNo = dComIfGp_roomControl_getStayNo();
+    const char* stage_name = dComIfGp_getStartStageName();
+    if (strcmp(stage_name, "D_MN01A") == 0) {
+        data_80451020 = 0x68;
+    } else if (strcmp(stage_name, "D_MN10A") == 0) {
+        data_80451020 = 0x69;
+    } else if (strcmp(stage_name, "D_MN11A") == 0) {
+        data_80451020 = 0x6A;
+    } else if (strcmp(stage_name, "D_MN04A") == 0) {
+        data_80451020 = 0x66;
+    } else if (strcmp(stage_name, "D_MN05A") == 0) {
+        data_80451020 = 0x65;
+    } else if (strcmp(stage_name, "D_MN07A") == 0) {
+        data_80451020 = 0x6B;
+    }
+
+    data_8042C8F8[0] = GetCameraTypeFromCameraName("FieldS");
+    data_8042C8F8[1] = GetCameraTypeFromCameraName("Event");
+    data_8042C8F8[2] = GetCameraTypeFromCameraName("Water");
+    data_8042C8F8[3] = GetCameraTypeFromCameraName("Scope");
+    data_8042C8F8[13] = GetCameraTypeFromCameraName("WaterSurf");
+    data_8042C8F8[5] = GetCameraTypeFromCameraName("HorseT");
+    data_8042C8F8[6] = GetCameraTypeFromCameraName("Board");
+    data_8042C8F8[4] = GetCameraTypeFromCameraName("Canoe");
+    data_8042C8F8[8] = GetCameraTypeFromCameraName("Keep");
+    data_8042C8F8[9] = GetCameraTypeFromCameraName("Rodeo");
+    data_8042C8F8[10] = GetCameraTypeFromCameraName("MagneBoots");
+    data_8042C8F8[12] = GetCameraTypeFromCameraName("MagneRoof");
+    data_8042C8F8[11] = GetCameraTypeFromCameraName("MagneWall");
+    data_8042C8F8[32] = GetCameraTypeFromCameraName("CoccoJump");
+    data_8042C8F8[31] = GetCameraTypeFromCameraName("Boar");
+    data_8042C8F8[30] = GetCameraTypeFromCameraName("GoatBattle");
+    data_8042C8F8[29] = GetCameraTypeFromCameraName("GoronJump");
+    data_8042C8F8[28] = GetCameraTypeFromCameraName("Spinner");
+    data_8042C8F8[25] = GetCameraTypeFromCameraName("HookWall");
+    data_8042C8F8[26] = GetCameraTypeFromCameraName("HookRoof");
+    data_8042C8F8[27] = GetCameraTypeFromCameraName("HookActor");
+    data_8042C8F8[33] = GetCameraTypeFromCameraName("RoofHung");
+    data_8042C8F8[14] = GetCameraTypeFromCameraName("Rotary");
+    data_8042C8F8[15] = GetCameraTypeFromCameraName("Street");
+    data_8042C8F8[16] = GetCameraTypeFromCameraName("StreetN");
+    data_8042C8F8[17] = GetCameraTypeFromCameraName("StreetP");
+    data_8042C8F8[18] = GetCameraTypeFromCameraName("Rampart2");
+    data_8042C8F8[19] = GetCameraTypeFromCameraName("Allay");
+    data_8042C8F8[20] = GetCameraTypeFromCameraName("AllayR");
+    data_8042C8F8[21] = GetCameraTypeFromCameraName("AllayR2");
+    data_8042C8F8[22] = GetCameraTypeFromCameraName("AllayS");
+    data_8042C8F8[23] = GetCameraTypeFromCameraName("AllayN");
+    data_8042C8F8[24] = GetCameraTypeFromCameraName("AllayR3");
+    data_8042C8F8[34] = GetCameraTypeFromCameraName("CopyRodHall");
+    data_8042C8F8[35] = GetCameraTypeFromCameraName("MidnaTag");
+    data_8042C8F8[36] = GetCameraTypeFromCameraName("WarpObj");
+    data_8042C8F8[37] = GetCameraTypeFromCameraName("LV9GZeldaTri");
+    data_8042C8F8[39] = GetCameraTypeFromCameraName("LV4BOSSSPJP");
+    data_8042C8F8[40] = GetCameraTypeFromCameraName("LV7BOSS");
+    data_8042C8F8[38] = GetCameraTypeFromCameraName("TeppeiHook");
+
+    mCurType = mMapToolType = data_8042C8F8[0];
+
+    data_8042C8F8[41] = GetCameraTypeFromCameraName("Peep");
+    field_0x698 = 0xFF;
+    field_0x69c = 0;
+    field_0x190 = daPy_py_c::i_checkNowWolf() != 0;
+    mNextMode = 0;
+    field_0x680 = 0;
+    field_0x1ac = 11;
+    field_0x1b4 = 0.0f;
+    mEventFlags = 0;
+    field_0x1b0 = cSAngle::_0;
+    field_0xa8 = 0;
+    field_0xac = cM_rndFX(0x7FFF);
+    field_0x84 = 1.0f;
+    field_0x91c = 0.0f;
+
+    mTrimHeight = 0.0f;
+    mTrimSize = 0;
+    mTrimTypeForce = -1;
+    field_0x940 = 0;
+    field_0x944 = 0;
+    field_0x950 = field_0x940;
+
+    mBG.field_0x5c.field_0x0 = 0;
+    mBG.field_0x0.field_0x0 = 0;
+    mBG.field_0xc0.field_0x3c = 0xFF;
+    mBG.field_0x5c.field_0x58 = -1000000000.0f;
+    mBG.field_0x0.field_0x58 = -1000000000.0f;
+    mBG.field_0x0.field_0x4.OffNormalGrp();
+    mBG.field_0x0.field_0x4.OnWaterGrp();
+    mBG.field_0xc0.field_0x1 = 0;
+    mBG.field_0xc0.field_0x0 = 0;
+    mBG.field_0xc0.field_0x10 = cXyz::Zero;
+    mBG.field_0xc0.field_0x4 = mBG.field_0xc0.field_0x10;
+    mBG.field_0xc0.field_0x20 = 0;
+    mBG.field_0xc0.field_0x1e = cSAngle::_0;
+    mBG.field_0xc0.field_0x1c = mBG.field_0xc0.field_0x1e;
+    mBG.field_0xc0.field_0x34 = 0;
+    mBG.field_0x108.field_0x0 = 0;
+    mBG.field_0x108.field_0x4 = 0.0f;
+    mBG.field_0xc0.field_0x38 = -1000000000.0f;
+    mBG.field_0xc0.field_0x40 = 0xFF;
+
+    field_0x934 = mCamSetup.mBGChk.WallUpDistance();
+
+    mMapToolType = 0xFF;
+    field_0x7ac.Clr();
+    field_0x7e8.Clr();
+    field_0x824.Clr();
+    field_0x860.Clr();
+    field_0x89c.Clr();
+    field_0x8d8.Clr();
+    setStageMapToolData();
+
+    if (field_0x7e8.field_0x30 != 0xFF) {
+        mMapToolType = GetCameraTypeFromToolData(&field_0x7e8.field_0x0);
+    }
+
+    dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+    stage_stag_info_class* stag_info;
+    if (stage_dt != NULL) {
+        stag_info = stage_dt->getStagInfo();
+    } else {
+        stag_info = NULL;
+    }
+
+    if (stag_info != NULL && mMapToolType == 0xFF) {
+        switch (dStage_stagInfo_GetSTType(stag_info)) {
+        case ST_DUNGEON:
+            mMapToolType = GetCameraTypeFromCameraName("DungeonS");
+            break;
+        case ST_ROOM:
+            mMapToolType = GetCameraTypeFromCameraName("Room");
+            break;
+        default:
+            mMapToolType = GetCameraTypeFromCameraName("FieldS");
+            break;
+        }
+    }
+
+    int sp108 = 0xFF;
+    int sp10C = dComIfGp_roomControl_getStayNo();
+
+    dStage_roomStatus_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(sp10C);
+    if (room_dt != NULL) {
+        dStage_FileList_dt_c* filelist = room_dt->mRoomDt.getFileListInfo();
+        if (filelist != NULL) {
+            sp108 = dStage_FileList_dt_GetDefaultCamera(filelist);
+        }
+    }
+
+    setRoomMapToolData(&field_0x824, sp108, sp10C);
+    checkGroundInfo();
+    setMapToolData();
+
+    if (field_0x7ac.field_0x30 != 0xFF) {
+        mCurType = GetCameraTypeFromToolData(&field_0x7ac.field_0x0);
+    } else {
+        if (check_owner_action(mPadID, 0x8000000)) {
+            mCurType = GetCameraTypeFromCameraName("Cave");
+        } else {
+            mCurType = mMapToolType;
+        }
+    }
+
+    mCamStyle = mCamTypeData[mCurType].field_0x18[field_0x190][mNextMode];
+    field_0x198 = 0xFFFFFFFF;
+    mEventData.field_0x14 = -1;
+    mEventData.field_0x18 = -1;
+    mEventData.field_0x4 = -1;
+    mEventData.field_0xc = -1;
+    mEventData.field_0x0 = 1;
+
+    OS_REPORT("camera: init: type %d mode %d style %d\n", mCurType, mCurMode, mCamStyle);
+
+    mCamParam.Change(mCamStyle);
+    if (daPy_py_c::checkPeepEndSceneChange() || dComIfGp_getStartStagePoint() == -2 ||
+        dComIfGp_getStartStagePoint() == -3)
+    {
+        mCenter = field_0x5c.field_0x8 = dComIfGs_getTurnRestart().getCameraCtr();
+        mEye = field_0x5c.field_0x14 = dComIfGs_getTurnRestart().getCameraEye();
+
+        field_0x5c.field_0x0.Val(mEye - mCenter);
+        field_0x28 = field_0x5c.field_0x0;
+        field_0x8c = field_0x5c.field_0x0.U().Inv();
+
+        mUp = dComIfGs_getTurnRestart().getCameraUp();
+        mBank = cSAngle::_0;
+        field_0x5c.field_0x20 = mBank;
+
+        field_0x80 = mFovY = dComIfGs_getTurnRestart().getCameraFvy();
+    } else if (daAlink_getAlinkActorClass()->checkStartFall()) {
+        cXyz attn_pos = attentionPos(mpPlayerActor);
+        if (mCamParam.Algorythmn() == 1) {
+            attn_pos.y += -20.0f;
+        }
+
+        cSGlobe spE8(0.0f, cSAngle((s16)0), directionOf(mpPlayerActor));
+        mCenter = field_0x5c.field_0x8 = attn_pos + spE8.Xyz();
+
+        cXyz center = dComIfGs_getTurnRestart().getCameraCtr();
+        cXyz eye = dComIfGs_getTurnRestart().getCameraEye();
+        field_0x5c.field_0x0.Val(eye - center);
+        field_0x8c = field_0x5c.field_0x0.U().Inv();
+
+        mEye = field_0x5c.field_0x14 = field_0x5c.field_0x8 + field_0x5c.field_0x0.Xyz();
+
+        mUp = dComIfGs_getTurnRestart().getCameraUp();
+        mBank = cSAngle::_0;
+        field_0x5c.field_0x20 = mBank;
+        field_0x80 = mFovY = dComIfGs_getTurnRestart().getCameraFvy();
+    } else {
+        cXyz attn_pos = attentionPos(mpPlayerActor);
+        if (mCamParam.Algorythmn() == 1) {
+            attn_pos.y += -20.0f;
+        }
+
+        cSGlobe spE8(0.0f, cSAngle((s16)0), directionOf(mpPlayerActor));
+        mCenter = field_0x5c.field_0x8 = attn_pos + spE8.Xyz();
+
+        field_0x5c.field_0x0.Val(300.0f, 0, directionOf(mpPlayerActor).Inv());
+
+        mEye = field_0x5c.field_0x14 = field_0x5c.field_0x8 + field_0x5c.field_0x0.Xyz();
+        field_0x28 = field_0x5c.field_0x0;
+        field_0x8c = field_0x5c.field_0x0.U().Inv();
+
+        mFovY = 60.0f;
+        field_0x80 = 60.0f;
+        mUp.set(0.0f, 1.0f, 0.0f);
+        mBank = cSAngle::_0;
+        field_0x5c.field_0x20 = mBank;
+    }
+
+    mFakeAngleSys.field_0x0 = 0;
+    field_0x674 = 0xFF;
+    field_0x670 = 0xFF;
+    field_0x668 = 0;
+    field_0x66c = 0;
+    field_0x678 = 1;
+    field_0x73c = 0.0f;
+    field_0x738 = 85.0f;
+
+    field_0x610 = 0;
+    field_0x611 = 0;
+
+    clearInfo(&field_0xb0, 0);
+    clearInfo(&field_0xd0[0], 0);
+    clearInfo(&field_0xd0[1], 0);
+
+    clearInfo(&field_0x110.field_0x8, 0);
+    field_0x110.field_0x4 = 0;
+    field_0x110.field_0x28 = cXyz::Zero;
+    field_0x110.field_0x0 = -1;
+
+    field_0x93c = 0;
+    field_0x948 = 0;
+    field_0x94c = cSAngle::_0;
+    field_0x740.field_0x18 = mUp;
+    field_0x740.field_0xc = mEye;
+    field_0x740.field_0x0 = mCenter;
+
+    setFlag(0x1000);
+
+    daAlink_c* player = daAlink_getAlinkActorClass();
+    daMidna_c* midna = daPy_py_c::getMidnaActor();
+
+    field_0x194 = player->checkMidnaRide() && !midna->checkNoDraw();
+    field_0x958 = 0;
+    field_0x95c = cXyz::Zero;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1687,66 +2099,132 @@ asm void dCamera_c::initialize(camera_class* param_0, fopAc_ac_c* param_1, u32 p
 #include "asm/d/d_camera/initialize__9dCamera_cFP12camera_classP10fopAc_ac_cUlUl.s"
 }
 #pragma pop
+#endif
 
 /* 801614AC-801614C4 15BDEC 0018+00 0/0 1/1 106/106 .text            Start__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::Start() {
-    nofralloc
-#include "asm/d/d_camera/Start__9dCamera_cFv.s"
+void dCamera_c::Start() {
+    if (mCamSetup.CheckFlag(0x8000) && field_0x24 != 0 && field_0x24 != 2) {
+        OS_REPORT("camera: start\n");
+    }
+
+    if (field_0x24 != 0) {
+        field_0x24 = 2;
+    }
 }
-#pragma pop
 
 /* 801614C4-801614D0 15BE04 000C+00 0/0 1/1 0/0 .text            QuickStart__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::QuickStart() {
-    nofralloc
-#include "asm/d/d_camera/QuickStart__9dCamera_cFv.s"
+void dCamera_c::QuickStart() {
+    if (mCamSetup.CheckFlag(0x8000) && field_0x24 != 0) {
+        OS_REPORT("camera: quick start\n");
+    }
+
+    field_0x24 = 0;
 }
-#pragma pop
 
 /* 801614D0-801614E8 15BE10 0018+00 0/0 2/2 98/98 .text            Stop__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::Stop() {
-    nofralloc
-#include "asm/d/d_camera/Stop__9dCamera_cFv.s"
+void dCamera_c::Stop() {
+    clrFlag(0x200000);
+
+    if (mCamSetup.CheckFlag(0x8000) && field_0x24 != 3) {
+        OS_REPORT("%06d: camera: stop   \n", field_0xa8);
+    }
+
+    field_0x24 = 3;
 }
-#pragma pop
 
 /* 801614E8-801614F4 15BE28 000C+00 0/0 2/2 0/0 .text            Stay__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::Stay() {
-    nofralloc
-#include "asm/d/d_camera/Stay__9dCamera_cFv.s"
+void dCamera_c::Stay() {
+    field_0x24 = 1;
 }
-#pragma pop
 
 /* 801614F4-80161550 15BE34 005C+00 2/2 4/4 0/0 .text            ChangeModeOK__9dCamera_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dCamera_c::ChangeModeOK(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/ChangeModeOK__9dCamera_cFl.s"
+bool dCamera_c::ChangeModeOK(s32 param_0) {
+    if (dComIfGp_evmng_cameraPlay() || chkFlag(0x20000000)) {
+        return 0;
+    }
+
+    return !(mCamTypeData[mCurType].field_0x18[field_0x190][param_0] < 0);
 }
-#pragma pop
 
 /* 80161550-801617B0 15BE90 0260+00 1/1 0/0 0/0 .text            initPad__9dCamera_cFv */
+// weird stuff with getTrig/Hold. wrong types???
+#ifdef NONMATCHING
+void dCamera_c::initPad() {
+    if (chkFlag(0x1000000)) {
+        mPadInfo.mMainStick.mLastPosX = 0.0f;
+        mPadInfo.mMainStick.mLastPosY = 0.0f;
+        mPadInfo.mMainStick.mLastValue = 0.0f;
+    } else {
+        mPadInfo.mMainStick.mLastPosX = mDoCPd_c::getStickX3D(mPadID);
+        mPadInfo.mMainStick.mLastPosY = mDoCPd_c::getStickY(mPadID);
+        mPadInfo.mMainStick.mLastValue = mDoCPd_c::getStickValue(mPadID);
+    }
+
+    mPadInfo.mMainStick.mPosXDelta = 0.0f;
+    mPadInfo.mMainStick.mPosYDelta = 0.0f;
+    mPadInfo.mMainStick.mValueDelta = 0.0f;
+    mPadInfo.mMainStick.field_0x18 = cSAngle::_0;
+
+    if (chkFlag(0x800000)) {
+        mPadInfo.mMainStick.mLastPosX = 0.0f;
+        mPadInfo.mMainStick.mLastPosY = 0.0f;
+        mPadInfo.mMainStick.mLastValue = 0.0f;
+    } else {
+        mPadInfo.mCStick.mLastPosX = mDoCPd_c::getSubStickX(mPadID);
+        mPadInfo.mCStick.mLastPosY = mDoCPd_c::getSubStickY(mPadID);
+        mPadInfo.mCStick.mLastValue = mDoCPd_c::getSubStickValue(mPadID);
+    }
+
+    mPadInfo.mCStick.mPosXDelta = 0.0f;
+    mPadInfo.mCStick.mPosYDelta = 0.0f;
+    mPadInfo.mCStick.mValueDelta = 0.0f;
+    mPadInfo.mCStick.field_0x18 = cSAngle::_0;
+
+    field_0x1fc = 0;
+    field_0x1f8 = 0;
+    field_0x1f4 = 0;
+
+    mTriggerLeftLast = mDoCPd_c::getAnalogL(mPadID);
+    mTriggerLeftDelta = 0.0f;
+    field_0x208 = 0;
+    field_0x209 = 0;
+    field_0x20a = 0;
+    field_0x20b = 0;
+
+    mTriggerRightLast = mDoCPd_c::getAnalogR(mPadID);
+    mTriggerRightDelta = 0.0f;
+    field_0x214 = 0;
+    field_0x215 = 0;
+    field_0x216 = 0;
+    field_0x217 = 0;
+
+    mHoldX = mDoCPd_c::getHoldX(mPadID) != 0;
+    mTrigX = mDoCPd_c::getTrigX(mPadID) != 0;
+
+    mHoldY = mDoCPd_c::getHoldY(mPadID) != 0;
+    mTrigY = mDoCPd_c::getTrigY(mPadID) != 0;
+
+    mHoldY = mDoCPd_c::getHoldY(mPadID) != 0;
+    mTrigY = mDoCPd_c::getTrigY(mPadID) != 0;
+
+    mHoldZ = mDoCPd_c::getHoldZ(mPadID);
+    mTrigZ = mDoCPd_c::getTrigZ(mPadID) != 0;
+    field_0x21f = 0;
+
+    mHoldB = mDoCPd_c::getHoldB(mPadID) != 0;
+    mTrigB = mDoCPd_c::getTrigB(mPadID) != 0;
+    field_0x223 = 0;
+    field_0x224 = 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::initPad() {
-    nofralloc
+asm void dCamera_c::initPad(){nofralloc
 #include "asm/d/d_camera/initPad__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804536C0-804536C8 001CC0 0004+04 1/1 0/0 0/0 .sdata2          @6093 */
@@ -1757,6 +2235,171 @@ SECTION_SDATA2 static f32 lit_6093[1 + 1 /* padding */] = {
 };
 
 /* 801617B0-80161D84 15C0F0 05D4+00 1/1 0/0 0/0 .text            updatePad__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dCamera_c::updatePad() {
+    dComIfGp_getAttention();
+    int var_r30 = mCamParam.Algorythmn(mCamStyle);
+
+    f32 var_f31;
+    f32 var_f30;
+    f32 var_f29;
+
+    if (chkFlag(0x1000000)) {
+        var_f31 = 0.0f;
+        var_f30 = 0.0f;
+        var_f29 = 0.0f;
+    } else {
+        var_f31 = mDoCPd_c::getStickX3D(mPadID);
+        var_f30 = mDoCPd_c::getStickY(mPadID);
+        var_f29 = mDoCPd_c::getStickValue(mPadID);
+    }
+
+    mPadInfo.mMainStick.mPosXDelta = var_f31 - mPadInfo.mMainStick.mLastPosX;
+    mPadInfo.mMainStick.mPosYDelta = var_f30 - mPadInfo.mMainStick.mLastPosY;
+    mPadInfo.mMainStick.mValueDelta = var_f29 - mPadInfo.mMainStick.mLastValue;
+    mPadInfo.mMainStick.mLastPosX = var_f31;
+    mPadInfo.mMainStick.mLastPosY = var_f30;
+    mPadInfo.mMainStick.mLastValue = var_f29;
+    mPadInfo.mMainStick.field_0x18.Val(mDoCPd_c::getStickAngle3D(mPadID));
+
+    if (chkFlag(0x800000)) {
+        var_f31 = 0.0f;
+        var_f30 = 0.0f;
+        var_f29 = 0.0f;
+    } else {
+        var_f31 = mDoCPd_c::getSubStickX3D(mPadID);
+        var_f30 = mDoCPd_c::getSubStickY(mPadID);
+        var_f29 = mDoCPd_c::getSubStickValue(mPadID);
+    }
+
+    mPadInfo.mCStick.mPosXDelta = var_f31 - mPadInfo.mCStick.mLastPosX;
+    mPadInfo.mCStick.mPosYDelta = var_f30 - mPadInfo.mCStick.mLastPosY;
+    mPadInfo.mCStick.mValueDelta = var_f29 - mPadInfo.mCStick.mLastValue;
+    mPadInfo.mCStick.mLastPosX = var_f31;
+    mPadInfo.mCStick.mLastPosY = var_f30;
+    mPadInfo.mCStick.mLastValue = var_f29;
+    mPadInfo.mCStick.field_0x18.Val(mDoCPd_c::getSubStickAngle(mPadID));
+
+    f32 analog_l = mDoCPd_c::getAnalogL(mPadID);
+    mTriggerLeftDelta = mTriggerLeftLast - analog_l;
+    mTriggerLeftLast = analog_l;
+    field_0x208 = mDoCPd_c::getHoldLockL(mPadID) != 0;
+    field_0x209 = mDoCPd_c::getTrigLockL(mPadID) != 0;
+
+    if (mTriggerLeftLast > mCamSetup.ManualEndVal()) {
+        if (field_0x20a == 0) {
+            field_0x20b = 1;
+        } else {
+            field_0x20b = 0;
+        }
+
+        field_0x20a = 1;
+    } else {
+        field_0x20b = 0;
+        field_0x20a = 0;
+    }
+
+    f32 analog_r = mDoCPd_c::getAnalogR(mPadID);
+    mTriggerRightDelta = mTriggerRightLast - analog_r;
+    mTriggerRightLast = analog_r;
+    field_0x214 = mDoCPd_c::getHoldLockR(mPadID) != 0;
+    field_0x215 = mDoCPd_c::getTrigLockR(mPadID) != 0;
+
+    if (mTriggerRightLast > mCamSetup.ManualEndVal()) {
+        if (field_0x216 == 0) {
+            field_0x217 = 1;
+        } else {
+            field_0x217 = 0;
+        }
+
+        field_0x216 = 1;
+    } else {
+        field_0x217 = 0;
+        field_0x216 = 0;
+    }
+
+    mHoldX = mDoCPd_c::getHoldX(mPadID) != 0;
+    mTrigX = mDoCPd_c::getTrigX(mPadID) != 0;
+    mHoldY = mDoCPd_c::getHoldY(mPadID) != 0;
+    mTrigY = mDoCPd_c::getTrigY(mPadID) != 0;
+    mHoldZ = mDoCPd_c::getHoldZ(mPadID) != 0;
+    mTrigZ = mDoCPd_c::getTrigZ(mPadID) != 0;
+    mHoldB = mDoCPd_c::getHoldB(mPadID) != 0;
+    mTrigB = mDoCPd_c::getTrigB(mPadID) != 0;
+
+    bool sp6B = true;
+    bool sp6C = true;
+    int sp68;
+    if (mCamTypeData[mCurType].field_0x18[field_0x190][0] > 0) {
+        sp68 = field_0x190;
+    } else {
+        sp68 = 0;
+    }
+
+    if (mCamTypeData[mCurType].field_0x18[sp68][4] < 0) {
+        sp6B = false;
+        if (field_0x940 == -1) {
+            field_0x940 = 0;
+        }
+    }
+
+    if ((var_r30 != 1 && var_r30 != 8 && var_r30 != 7) || mCamParam.Flag(mCamStyle, 0x80)) {
+        sp6C = false;
+        if (field_0x940 == 1) {
+            field_0x940 = 0;
+        }
+    }
+
+    if (mNextMode == 0 || mNextMode == 4) {
+        if (check_owner_action(mPadID, 0x12000)) {
+            field_0x940 = -1;
+        } else if (field_0x940 == -1) {
+            field_0x940 = 0;
+        }
+
+        if (mPadInfo.mCStick.mLastPosY < -mCamSetup.mCStick.SwTHH()) {
+            if (field_0x1f4 != -1) {
+                if (field_0x940 == -1 && mNextMode == 4) {
+                    field_0x940 = 0;
+                    setComStat(0x2000);
+                } else if (field_0x940 == 0 && sp6C) {
+                    field_0x940 = 1;
+                }
+            }
+
+            field_0x1f4 = -1;
+        } else if (mPadInfo.mCStick.mLastPosY > mCamSetup.mCStick.SwTHH()) {
+            if (field_0x1f4 != 1) {
+                if (field_0x940 == 0 && sp6B) {
+                    setComStat(0x1000);
+                } else if (field_0x940 == 1) {
+                    field_0x940 = 0;
+                }
+            }
+
+            field_0x1f4 = 1;
+        } else {
+            field_0x1f4 = 0;
+        }
+
+        if (field_0x1f4 != 0) {
+            field_0x1f8++;
+        } else {
+            field_0x1f8 = 0;
+        }
+    }
+
+    field_0x223 = 0;
+    field_0x224 = 0;
+
+    if (mDoCPd_c::getStickValue(mPadID) > 0.001f || mDoCPd_c::getSubStickValue(mPadID) > 0.001f ||
+        mDoCPd_c::getHold(mPadID) != 0)
+    {
+        field_0x224 = 1;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1765,16 +2408,34 @@ asm void dCamera_c::updatePad() {
 #include "asm/d/d_camera/updatePad__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80161D84-80161E34 15C6C4 00B0+00 1/1 0/0 0/0 .text            initMonitor__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dCamera_c::initMonitor() {
+    if (mpPlayerActor != NULL) {
+        mMonitor.field_0x0 = positionOf(mpPlayerActor);
+    } else {
+        mMonitor.field_0x0 = cXyz::Zero;
+    }
+
+    field_0x2c0 = 0.0f;
+    mMonitor.field_0x10 = 0.0f;
+    mMonitor.field_0xc = 0.0f;
+    field_0x2c4 = 0;
+    field_0x2c8 = 0.0f;
+    mMonitor.field_0x14 = cXyz::Zero;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::initMonitor() {
-    nofralloc
+asm void dCamera_c::initMonitor(){nofralloc
 #include "asm/d/d_camera/initMonitor__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 804536C8-804536D0 001CC8 0008+00 7/7 0/0 0/0 .sdata2          @6177 */
@@ -1792,6 +2453,39 @@ SECTION_SDATA2 static u8 lit_6179[8] = {
 SECTION_SDATA2 static f32 lit_6180 = 1.0f / 100.0f;
 
 /* 80161E34-80162088 15C774 0254+00 1/1 0/0 0/0 .text            updateMonitor__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dCamera_c::updateMonitor() {
+    if (mpPlayerActor != NULL) {
+        cXyz sp24 = positionOf(mpPlayerActor);
+        mMonitor.field_0x14 = sp24 - mMonitor.field_0x0;
+
+        if (mBG.field_0xc0.field_0x1) {
+            dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true, &mMonitor.field_0x0, NULL, NULL);
+        }
+
+        f32 var_f31;
+        if (chkFlag(0x10000)) {
+            var_f31 = cXyz(sp24 - mMonitor.field_0x0).abs();
+        } else {
+            var_f31 = dCamMath::xyzHorizontalDistance(sp24, mMonitor.field_0x0);
+        }
+
+        field_0x2c0 = var_f31 - mMonitor.field_0xc;
+        mMonitor.field_0x10 += (var_f31 - mMonitor.field_0x10) * 0.01f;
+        mMonitor.field_0xc = var_f31;
+        mMonitor.field_0x0 = sp24;
+
+        if (!push_any_key()) {
+            field_0x2c4++;
+        } else {
+            field_0x2c4 = 0;
+        }
+
+        field_0x2c8 = field_0x28.R() - field_0x2c8;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1800,6 +2494,7 @@ asm void dCamera_c::updateMonitor() {
 #include "asm/d/d_camera/updateMonitor__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80162088-801622B0 15C9C8 0228+00 1/1 0/0 0/0 .text            checkForceLockTarget__9dCamera_cFv
  */
@@ -1814,7 +2509,8 @@ asm void dCamera_c::checkForceLockTarget() {
 
 /* 801622B0-801622B4 15CBF0 0004+00 1/1 0/0 0/0 .text            infoReport__9dCamera_cFv */
 void dCamera_c::infoReport() {
-    /* empty function */
+#if DEBUG
+#endif
 }
 
 /* ############################################################################################## */
@@ -1838,57 +2534,83 @@ asm void dCamera_c::Run() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::NotRun() {
-    nofralloc
+asm void dCamera_c::NotRun(){nofralloc
 #include "asm/d/d_camera/NotRun__9dCamera_cFv.s"
 }
 #pragma pop
 
 /* 80162FB8-80162FD4 15D8F8 001C+00 1/1 0/0 0/0 .text            V__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::V() {
-    nofralloc
-#include "asm/d/d_camera/V__9dCamera_cFv.s"
+s16 dCamera_c::V() {
+    if (chkFlag(0x10)) {
+        return field_0x740.field_0x24.V();
+    } else {
+        return field_0x28.V();
+    }
 }
-#pragma pop
 
 /* 80162FD4-8016300C 15D914 0038+00 1/1 0/0 0/0 .text            U__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::U() {
-    nofralloc
-#include "asm/d/d_camera/U__9dCamera_cFv.s"
+s16 dCamera_c::U() {
+    if (chkFlag(0x10)) {
+        return field_0x740.field_0x24.U();
+    } else {
+        return field_0x28.U().Inv();
+    }
 }
-#pragma pop
 
 /* 8016300C-80163028 15D94C 001C+00 1/1 1/1 135/135 .text            SetTrimSize__9dCamera_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::SetTrimSize(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/SetTrimSize__9dCamera_cFl.s"
+bool dCamera_c::SetTrimSize(s32 size) {
+    bool rt = mTrimSize != size;
+    mTrimSize = size;
+    return rt;
 }
-#pragma pop
 
 /* 80163028-80163034 15D968 000C+00 1/1 2/2 4/4 .text            SetTrimTypeForce__9dCamera_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::SetTrimTypeForce(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/SetTrimTypeForce__9dCamera_cFl.s"
+bool dCamera_c::SetTrimTypeForce(s32 param_0) {
+    mTrimTypeForce = param_0;
+    return 1;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804536EC-804536F0 001CEC 0004+00 5/5 0/0 0/0 .sdata2          @6766 */
 SECTION_SDATA2 static f32 lit_6766 = 0.25f;
 
 /* 80163034-80163154 15D974 0120+00 1/1 0/0 0/0 .text            CalcTrimSize__9dCamera_cFv */
+// matches with literals
+#ifdef NONMATCHING
+void dCamera_c::CalcTrimSize() {
+    if (field_0x24 != 2) {
+        switch (mTrimSize) {
+        case 0:
+            mTrimHeight += -mTrimHeight * 0.25f;
+            break;
+        case 2:
+            mTrimHeight += (mCamSetup.CinemaScopeTrimHeight() - mTrimHeight) * 0.25f;
+            break;
+        case 1:
+            mTrimHeight += (mCamSetup.VistaTrimHeight() - mTrimHeight) * 0.25f;
+            break;
+        case 3:
+            mTrimHeight += (mCamSetup.CinemaScopeTrimHeight() - mTrimHeight) * 0.25f;
+            break;
+        case 4:
+            mTrimHeight = 0.0f;
+            break;
+        }
+    } else {
+        OS_REPORT("%06d: camera: trim: keep\n", field_0xa8);
+    }
+
+    if (field_0x24 == 1) {
+        field_0x24 = 0;
+    } else if (field_0x24 == 2) {
+        if (dComIfGp_getEvent().isOrderOK()) {
+            field_0x24 = 0;
+        }
+    }
+
+    field_0x1ac = 11;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1897,19 +2619,59 @@ asm void dCamera_c::CalcTrimSize() {
 #include "asm/d/d_camera/CalcTrimSize__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80163154-8016317C 15DA94 0028+00 1/1 0/0 0/0 .text            Draw__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::Draw() {
-    nofralloc
-#include "asm/d/d_camera/Draw__9dCamera_cFv.s"
+int dCamera_c::Draw() {
+#if DEBUG
+    debugDraw();
+#endif
+    mFocusLine.Draw();
+    return 1;
 }
-#pragma pop
 
 /* 8016317C-80163340 15DABC 01C4+00 1/1 0/0 0/0 .text            setStageMapToolData__9dCamera_cFv
  */
+// regswap, equivalent
+#ifdef NONMATCHING
+void dCamera_c::setStageMapToolData() {
+    int var_r28 = 0xFF;
+    int var_r27 = 0xFF;
+    stage_camera_class* camera;
+    stage_arrow_class* arrow;
+
+    field_0x7e8.Clr();
+
+    dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+    if (stage_dt != NULL) {
+        camera = stage_dt->getCamera();
+        arrow = stage_dt->getArrow();
+    
+        stage_stag_info_class* staginfo = stage_dt->getStagInfo();
+        if (staginfo != NULL) {
+            var_r28 = dStage_stagInfo_DefaultCameraType(staginfo);
+        }
+
+        if (camera != NULL && var_r28 >= 0 && var_r28 < camera->field_0x0) {
+            field_0x7e8.field_0x30 = var_r28;
+            field_0x7e8.field_0x0 = camera->mEntries[var_r28];
+            field_0x7e8.field_0x3a = (field_0x7e8.field_0x0.field_0x14 >> 0xE) & 3;
+
+            if (field_0x7e8.field_0x0.field_0x14 & 0x2000) {
+                field_0x7e8.field_0x0.field_0x14 |= 0xC000;
+            } else {
+                field_0x7e8.field_0x0.field_0x14 &= ~0xC000;
+            }
+
+            var_r27 = field_0x7e8.field_0x0.field_0x10;
+            if (arrow != NULL && var_r27 >= 0 && var_r27 < arrow->mNum) {
+                field_0x7e8.field_0x2c = var_r27;
+                field_0x7e8.field_0x18 = arrow->mEntries[var_r27];
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1918,8 +2680,42 @@ asm void dCamera_c::setStageMapToolData() {
 #include "asm/d/d_camera/setStageMapToolData__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80163340-80163558 15DC80 0218+00 2/2 0/0 0/0 .text            setMapToolData__9dCamera_cFv */
+// matches when stage_arrow_data_class uses Vec/SVec instead of cXyz/csXyz, but it breaks dCamMapToolData::Set
+#ifdef NONMATCHING
+void dCamera_c::setMapToolData() {
+    int room_no = dComIfGp_roomControl_getStayNo();
+    stage_camera_class* camera = dComIfGp_getRoomCamera(room_no);
+    stage_arrow_class* arrow = dComIfGp_getRoomArrow(room_no);
+
+    int var_r29 = 0xFF;
+    int var_r26 = 0xFF;
+
+    if (mBG.field_0xc0.field_0x40 == 0x1FF && field_0x7ac.field_0x34 == NULL) {
+        return;
+    }
+
+    if (mBG.field_0xc0.field_0x40 != 0xFF) {
+        field_0x7ac.Clr();
+        var_r29 = mBG.field_0xc0.field_0x40;
+    } else if (field_0x8d8.field_0x30 != 0xFF) {
+        field_0x7ac.Clr();
+        var_r29 = field_0x8d8.field_0x30;
+    } else if (field_0x824.field_0x30 != 0xFF) {
+        field_0x7ac = field_0x824;
+        return;
+    } else if (field_0x7e8.field_0x30 != 0xFF) {
+        field_0x7ac = field_0x7e8;
+        return;
+    } else {
+        field_0x7ac.Clr();
+    }
+
+    setRoomMapToolData(&field_0x7ac, var_r29, room_no);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1928,27 +2724,25 @@ asm void dCamera_c::setMapToolData() {
 #include "asm/d/d_camera/setMapToolData__9dCamera_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80163558-801635AC 15DE98 0054+00 0/0 0/0 1/1 .text SetTagData__9dCamera_cFP10fopAc_ac_clUsUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::SetTagData(fopAc_ac_c* param_0, s32 param_1, u16 param_2, u8 param_3) {
-    nofralloc
-#include "asm/d/d_camera/SetTagData__9dCamera_cFP10fopAc_ac_clUsUc.s"
+void dCamera_c::SetTagData(fopAc_ac_c* param_0, s32 param_1, u16 param_2, u8 param_3) {
+    s32 room_no;
+    if (param_0 != NULL) {
+        room_no = fopAcM_GetRoomNo(param_0);
+    } else {
+        room_no = dComIfGp_roomControl_getStayNo();
+    }
+
+    field_0x860.Set(param_1, room_no, param_0, param_2, param_3);
 }
-#pragma pop
 
 /* 801635AC-801635E4 15DEEC 0038+00 2/2 0/0 0/0 .text
  * setRoomMapToolData__9dCamera_cFP15dCamMapToolDatall          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::setRoomMapToolData(dCamMapToolData* param_0, s32 param_1, s32 param_2) {
-    nofralloc
-#include "asm/d/d_camera/setRoomMapToolData__9dCamera_cFP15dCamMapToolDatall.s"
+void dCamera_c::setRoomMapToolData(dCamMapToolData* i_toolData, s32 param_1, s32 i_roomNo) {
+    i_toolData->Set(param_1, i_roomNo, NULL, 0xFF, 0xFF);
 }
-#pragma pop
 
 /* 801635E4-80163C38 15DF24 0654+00 1/1 0/0 0/0 .text            nextMode__9dCamera_cFl */
 #pragma push
@@ -1971,14 +2765,10 @@ asm void dCamera_c::onModeChange(s32 param_0, s32 param_1) {
 #pragma pop
 
 /* 80163D50-80163D5C 15E690 000C+00 0/0 0/0 4/4 .text            ModeFix__9dCamera_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::ModeFix(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/ModeFix__9dCamera_cFl.s"
+int dCamera_c::ModeFix(s32 param_0) {
+    field_0x1ac = param_0;
+    return 1;
 }
-#pragma pop
 
 /* 80163D5C-8016444C 15E69C 06F0+00 1/1 0/0 0/0 .text            nextType__9dCamera_cFl */
 #pragma push
@@ -2001,89 +2791,235 @@ asm void dCamera_c::onTypeChange(s32 param_0, s32 param_1) {
 #pragma pop
 
 /* 8016469C-801647B0 15EFDC 0114+00 2/1 0/0 0/0 .text            onStyleChange__9dCamera_cFll */
+// matches with literals i think? jumptable may be wrong
+#ifdef NONMATCHING
+int dCamera_c::onStyleChange(s32 param_0, s32 param_1) {
+    mCurCamTypeTimer = 0;
+    field_0x158.field_0x0 = 0;
+    bool var_r30 = false;
+
+    switch (mCamParam.Algorythmn(param_0)) {
+    case 5:
+    case 6:
+        if (mFakeAngleSys.field_0x0 == 0) {
+            setUSOAngle();
+        }
+        var_r30 = true;
+        break;
+    case 4:
+        clrComStat(8);
+        setComZoomScale(1.0f);
+        break;
+    }
+
+    switch (mCamParam.Algorythmn(param_1)) {
+    case 0:
+    case 3:
+    default:
+        break;
+    case 8:
+        if (mCamParam.Algorythmn(param_0) == mCamParam.Algorythmn(param_1) && mNextMode == 0) {
+            setFlag(0x8000);
+        }
+        break;
+    case 1:
+        mCamParam.Algorythmn(param_1);
+        mCamParam.Algorythmn(param_0);
+        break;
+    case 5:
+    case 6:
+        if (mFakeAngleSys.field_0x0 == 0 || var_r30) {
+            setUSOAngle();
+        }
+        break;
+    }
+
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::onStyleChange(s32 param_0, s32 param_1) {
+asm int dCamera_c::onStyleChange(s32 param_0, s32 param_1) {
     nofralloc
 #include "asm/d/d_camera/onStyleChange__9dCamera_cFll.s"
 }
 #pragma pop
+#endif
 
 /* 801647B0-80164878 15F0F0 00C8+00 1/1 0/0 0/0 .text            onRoomChange__9dCamera_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::onRoomChange(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/onRoomChange__9dCamera_cFl.s"
+int dCamera_c::onRoomChange(s32 i_roomNo) {
+    mRoomNo = i_roomNo;
+    setFlag(0x1000);
+
+    int var_r29 = 0xFF;
+    dStage_roomStatus_c* room_status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
+    if (room_status != NULL) {
+        dStage_FileList_dt_c* filelist = room_status->mRoomDt.getFileListInfo();
+        if (filelist != NULL) {
+            var_r29 = dStage_FileList_dt_GetDefaultCamera(filelist);
+        }
+    }
+
+    if (var_r29 != 0xFF) {
+        // setRoomMapToolData(&field_0x824, var_r29, i_roomNo);  // supposed to be inlined?
+        field_0x824.Set(var_r29, i_roomNo, NULL, 0xFF, 0xFF);
+    } else {
+        field_0x824.Clr();
+    }
+
+    return 1;
 }
-#pragma pop
 
 /* 80164878-80164944 15F1B8 00CC+00 4/4 0/0 0/0 .text            getParamTargetActor__9dCamera_cFl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getParamTargetActor(s32 param_0) {
-    nofralloc
-#include "asm/d/d_camera/getParamTargetActor__9dCamera_cFl.s"
+fopAc_ac_c* dCamera_c::getParamTargetActor(s32 param_0) {
+    daAlink_c* player = daAlink_getAlinkActorClass();
+
+    switch (*(u32*)&mCamTypeData[param_0].name[16]) {
+    case '@LOC':
+        return dComIfGp_getAttention().LockonTarget(0);
+    case '@ACT':
+        return dComIfGp_getAttention().ActionTarget(0);
+    case '@CHK':
+        return dComIfGp_getAttention().CheckObjectTarget(0);
+    case '@CPY':
+        return player->getCopyRodCameraActor();
+    }
+
+    return fopAcM_searchFromName4Event(&mCamTypeData[param_0].name[16], -1);
 }
-#pragma pop
 
 /* 80164944-80164B64 15F284 0220+00 0/0 1/1 0/0 .text GetCameraTypeFromMapToolID__9dCamera_cFll */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 param_1) {
-    nofralloc
-#include "asm/d/d_camera/GetCameraTypeFromMapToolID__9dCamera_cFll.s"
+int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
+    dStage_stageDt_c& stage_dt = g_dComIfG_gameInfo.play.getStage();
+
+    int i;
+    stage_camera_class* camera;
+    stage_arrow_class* arrow;
+    if (i_roomNo == -1) {
+        camera = stage_dt.getCamera();
+        arrow = stage_dt.getArrow();
+    } else {
+        camera = dComIfGp_getRoomCamera(i_roomNo);
+        arrow = dComIfGp_getRoomArrow(i_roomNo);
+
+        if (camera == NULL) {
+            if (!(field_0xa8 & 0xFFF)) {
+                OS_REPORT("camera: no room camera list. camera ID ignored\n");
+            }
+            return 0xFF;
+        }
+    }
+
+    if (param_0 < 0 || camera == NULL || (camera != NULL && param_0 >= camera->field_0x0)) {
+        int sp28;
+        if (camera != NULL) {
+            sp28 = camera->field_0x0;
+        } else {
+            sp28 = -99;
+        }
+
+        OS_REPORT("camera: bad number %d for map data ID [%x:%d] room %d\n", param_0, camera, sp28,
+                  i_roomNo);
+        return 0xFF;
+    }
+
+    i = 0;
+    while (i < mCamTypeNum) {
+        if (strcmp((char*)&camera->mEntries[param_0].field_0x0.field_0x0, mCamTypeData[i].name) ==
+            0)
+        {
+            break;
+        }
+
+        i++;
+    }
+
+    if (i == mCamTypeNum) {
+        OS_REPORT("camera: type \'%s\' not found\n", camera->mEntries[param_0].field_0x0.field_0x0);
+        return 0xFF;
+    }
+
+    field_0x7ac.field_0x0 = camera->mEntries[param_0];
+    field_0x7ac.field_0x30 = param_0;
+    field_0x7ac.field_0x3a = (field_0x7ac.field_0x0.field_0x14 >> 0xE) & 3;
+
+    if (field_0x7ac.field_0x0.field_0x14 & 0x2000) {
+        field_0x7ac.field_0x0.field_0x14 |= 0xC000;
+    } else {
+        field_0x7ac.field_0x0.field_0x14 &= ~0xC000;
+    }
+
+    field_0x7ac.field_0x2c = field_0x7ac.field_0x0.field_0x10;
+
+    if (field_0x7ac.field_0x2c != -1 && field_0x7ac.field_0x2c < arrow->mNum) {
+        field_0x7ac.field_0x18 = arrow->mEntries[field_0x7ac.field_0x2c];
+    } else {
+        field_0x7ac.field_0x2c = 0xFF;
+    }
+
+    return i;
 }
-#pragma pop
 
 /* 80164B64-80164C10 15F4A4 00AC+00 2/2 1/1 0/0 .text GetCameraTypeFromCameraName__9dCamera_cFPCc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dCamera_c::GetCameraTypeFromCameraName(char const* param_0) {
-    nofralloc
-#include "asm/d/d_camera/GetCameraTypeFromCameraName__9dCamera_cFPCc.s"
+int dCamera_c::GetCameraTypeFromCameraName(char const* i_name) {
+    if (strcmp(i_name, mCamTypeData[mCurType].name) == 0) {
+        return mCurType;
+    }
+
+    int i = 0;
+    while (i < mCamTypeNum) {
+        if (strcmp(i_name, mCamTypeData[i].name) == 0) {
+            break;
+        }
+
+        i++;
+    }
+
+    if (i == mCamTypeNum) {
+        OS_REPORT("camera: type \'%s\' not found\n", i_name);
+        return 0xFF;
+    }
+
+    return i;
 }
-#pragma pop
 
 /* 80164C10-80164C64 15F550 0054+00 2/2 0/0 0/0 .text
  * GetCameraTypeFromToolData__9dCamera_cFP24stage_camera2_data_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::GetCameraTypeFromToolData(stage_camera2_data_class* param_0) {
-    nofralloc
-#include "asm/d/d_camera/GetCameraTypeFromToolData__9dCamera_cFP24stage_camera2_data_class.s"
+int dCamera_c::GetCameraTypeFromToolData(stage_camera2_data_class* i_data) {
+    if (i_data->field_0x16 != 0xFFFF) {
+        return i_data->field_0x16;
+    }
+
+    int type = GetCameraTypeFromCameraName((char*)&i_data->field_0x0.field_0x0);
+    if (type < 0xFFFF) {
+        i_data->field_0x16 = type;
+    }
+
+    return type;
 }
-#pragma pop
 
 /* 80164C64-80164CAC 15F5A4 0048+00 4/4 2/2 0/0 .text
  * pushInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_cs              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::pushInfo(dCamera_c::dCamInfo_c* param_0, s16 param_1) {
-    nofralloc
-#include "asm/d/d_camera/pushInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_cs.s"
+void dCamera_c::pushInfo(dCamera_c::dCamInfo_c* i_info, s16 param_1) {
+    i_info->mCenter = mCenter;
+    i_info->mEye = mEye;
+    i_info->mFovy = mFovY;
+    i_info->mBank = mBank;
+    i_info->field_0x1e = param_1;
 }
-#pragma pop
 
 /* 80164CAC-80164D2C 15F5EC 0080+00 2/2 0/0 0/0 .text
  * popInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_c                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::popInfo(dCamera_c::dCamInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_camera/popInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_c.s"
+void dCamera_c::popInfo(dCamera_c::dCamInfo_c* i_info) {
+    mCenter = field_0x5c.field_0x8 = i_info->mCenter;
+    mEye = field_0x5c.field_0x14 = i_info->mEye;
+    mFovY = field_0x80 = i_info->mFovy;
+    field_0x5c.field_0x20 = i_info->mBank;
+    mBank = field_0x5c.field_0x20;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804536F0-804536F4 001CF0 0004+00 2/2 0/0 0/0 .sdata2          @7609 */
@@ -2091,14 +3027,25 @@ SECTION_SDATA2 static f32 lit_7609 = 11.0f / 10.0f;
 
 /* 80164D2C-80164D6C 15F66C 0040+00 4/4 0/0 0/0 .text            heightOf__9dCamera_cFP10fopAc_ac_c
  */
+// matches with literals
+#ifdef NONMATCHING
+f32 dCamera_c::heightOf(fopAc_ac_c* i_actor) {
+    if (is_player(i_actor)) {
+        return ((daPy_py_c*)i_actor)->getHeight();
+    } else {
+        return (i_actor->eyePos.y - i_actor->current.pos.y) * 1.1f;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::heightOf(fopAc_ac_c* param_0) {
+asm f32 dCamera_c::heightOf(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/d/d_camera/heightOf__9dCamera_cFP10fopAc_ac_c.s"
 }
 #pragma pop
+#endif
 
 /* 80164D6C-80164E20 15F6AC 00B4+00 9/9 15/15 0/0 .text
  * relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz                */
@@ -2124,31 +3071,22 @@ asm void dCamera_c::relationalPos(fopAc_ac_c* param_0, fopAc_ac_c* param_1, cXyz
 #pragma pop
 
 /* 80165104-80165158 15FA44 0054+00 7/7 0/0 0/0 .text            setUSOAngle__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::setUSOAngle() {
-    nofralloc
-#include "asm/d/d_camera/setUSOAngle__9dCamera_cFv.s"
+void dCamera_c::setUSOAngle() {
+    mFakeAngleSys.field_0x0 = 1;
+    mFakeAngleSys.field_0x2 = field_0x28.U().Inv();
+    mFakeAngleSys.field_0x4 = mPadInfo.mMainStick.field_0x18;
 }
-#pragma pop
 
 /* 80165158-8016517C 15FA98 0024+00 1/1 0/0 0/0 .text            getUSOAngle__9dCamera_cF7cSAngle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getUSOAngle(cSAngle param_0) {
-    nofralloc
-#include "asm/d/d_camera/getUSOAngle__9dCamera_cF7cSAngle.s"
+cSAngle dCamera_c::getUSOAngle(cSAngle param_0) {
+    return mFakeAngleSys.field_0x2;
 }
-#pragma pop
 
 /* 8016517C-80165238 15FABC 00BC+00 1/1 2/2 0/0 .text            pointInSight__9dCamera_cFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::pointInSight(cXyz* param_0) {
-    nofralloc
+asm void dCamera_c::pointInSight(cXyz* param_0){nofralloc
 #include "asm/d/d_camera/pointInSight__9dCamera_cFP4cXyz.s"
 }
 #pragma pop
@@ -2194,14 +3132,43 @@ asm void dCamera_c::radiusActorInSight(fopAc_ac_c* param_0, fopAc_ac_c* param_1,
 #pragma pop
 
 /* 801657EC-801658C0 16012C 00D4+00 3/3 0/0 0/0 .text            groundHeight__9dCamera_cFP4cXyz */
+// matches with literals
+#ifdef NONMATCHING
+f32 dCamera_c::groundHeight(cXyz* param_0) {
+    dBgS_GndChk gndchk;
+    gndchk.SetPos(param_0);
+    f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);
+
+    dBgS_CamGndChk_Wtr gndchk_wtr;
+    gndchk_wtr.SetPos(param_0);
+    f32 wtr_y = dComIfG_Bgsp().GroundCross(&gndchk_wtr);
+
+    f32 height;
+    if (gnd_y >= wtr_y) {
+        height = gnd_y;
+    } else {
+        height = wtr_y;
+    }
+
+    f32 height_correct;
+    if (height == -1000000000.0f) {
+        height_correct = param_0->y;
+    } else {
+        height_correct = height;
+    }
+
+    return height_correct;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::groundHeight(cXyz* param_0) {
+asm f32 dCamera_c::groundHeight(cXyz* param_0) {
     nofralloc
 #include "asm/d/d_camera/groundHeight__9dCamera_cFP4cXyz.s"
 }
 #pragma pop
+#endif
 
 /* 801658C0-801659F4 160200 0134+00 12/12 0/0 0/0 .text
  * lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl         */
@@ -2229,8 +3196,7 @@ asm void dCamera_c::lineBGCheck(cXyz* param_0, cXyz* param_1, cXyz* param_2, u32
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::lineBGCheck(cXyz* param_0, cXyz* param_1, u32 param_2) {
-    nofralloc
+asm void dCamera_c::lineBGCheck(cXyz* param_0, cXyz* param_1, u32 param_2){nofralloc
 #include "asm/d/d_camera/lineBGCheck__9dCamera_cFP4cXyzP4cXyzUl.s"
 }
 #pragma pop
@@ -2244,8 +3210,7 @@ SECTION_SDATA2 static f32 lit_8127 = 30.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::lineCollisionCheckBush(cXyz* param_0, cXyz* param_1) {
-    nofralloc
+asm void dCamera_c::lineCollisionCheckBush(cXyz* param_0, cXyz* param_1){nofralloc
 #include "asm/d/d_camera/lineCollisionCheckBush__9dCamera_cFP4cXyzP4cXyz.s"
 }
 #pragma pop
@@ -2300,8 +3265,7 @@ asm void dCamera_c::defaultTriming() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::setView(f32 param_0, f32 param_1, f32 param_2, f32 param_3) {
-    nofralloc
+asm void dCamera_c::setView(f32 param_0, f32 param_1, f32 param_2, f32 param_3){nofralloc
 #include "asm/d/d_camera/setView__9dCamera_cFffff.s"
 }
 #pragma pop
@@ -2460,8 +3424,7 @@ asm void dCamera_c::tooNearEscape(cXyz* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::getWaterSurfaceHeight(cXyz* param_0) {
-    nofralloc
+asm void dCamera_c::getWaterSurfaceHeight(cXyz* param_0){nofralloc
 #include "asm/d/d_camera/getWaterSurfaceHeight__9dCamera_cFP4cXyz.s"
 }
 #pragma pop
@@ -2676,8 +3639,7 @@ static asm void func_8016C34C(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_8016C368(u32 param_0, u32 param_1) {
-    nofralloc
+static asm void func_8016C368(u32 param_0, u32 param_1){nofralloc
 #include "asm/d/d_camera/func_8016C368.s"
 }
 #pragma pop
@@ -2760,8 +3722,7 @@ asm void dCamera_c::getMsgCmdSpeaker() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::getMsgCmdCut(s32 param_0) {
-    nofralloc
+asm void dCamera_c::getMsgCmdCut(s32 param_0){nofralloc
 #include "asm/d/d_camera/getMsgCmdCut__9dCamera_cFl.s"
 }
 #pragma pop
@@ -2892,7 +3853,8 @@ asm void dCamera_c::talkEyePos(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3, fopAc_ac_c* param_4) {
+static asm void func_80174E50(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
+                              fopAc_ac_c* param_4) {
     nofralloc
 #include "asm/d/d_camera/func_80174E50.s"
 }
@@ -2908,8 +3870,7 @@ bool dCamera_c::CalcSubjectAngle(s16* param_0, s16* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::SaveZoomRatio() {
-    nofralloc
+asm void dCamera_c::SaveZoomRatio(){nofralloc
 #include "asm/d/d_camera/SaveZoomRatio__9dCamera_cFv.s"
 }
 #pragma pop
@@ -2937,8 +3898,7 @@ SECTION_SDATA2 static f32 lit_12869 = -511.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dCamera_c::subjectCamera(s32 param_0) {
-    nofralloc
+asm bool dCamera_c::subjectCamera(s32 param_0){nofralloc
 #include "asm/d/d_camera/subjectCamera__9dCamera_cFl.s"
 }
 #pragma pop
@@ -2951,8 +3911,7 @@ SECTION_SDATA2 static f32 lit_13132 = 4.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dCamera_c::magneCamera(s32 param_0) {
-    nofralloc
+asm bool dCamera_c::magneCamera(s32 param_0){nofralloc
 #include "asm/d/d_camera/magneCamera__9dCamera_cFl.s"
 }
 #pragma pop
@@ -2989,8 +3948,7 @@ SECTION_SDATA2 static f32 lit_13673 = 1.0f / 40.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dCamera_c::towerCamera(s32 param_0) {
-    nofralloc
+asm bool dCamera_c::towerCamera(s32 param_0){nofralloc
 #include "asm/d/d_camera/towerCamera__9dCamera_cFl.s"
 }
 #pragma pop
@@ -3192,8 +4150,7 @@ asm bool dCamera_c::fixedPositionCamera(s32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dCamera_c::oneSideCamera(s32 param_0) {
-    nofralloc
+asm bool dCamera_c::oneSideCamera(s32 param_0){nofralloc
 #include "asm/d/d_camera/oneSideCamera__9dCamera_cFl.s"
 }
 #pragma pop
@@ -3201,32 +4158,414 @@ asm bool dCamera_c::oneSideCamera(s32 param_0) {
 /* ############################################################################################## */
 /* 80393DC0-80393F58 020420 0198+00 1/1 0/0 0/0 .rodata          @16654 */
 SECTION_RODATA static u8 const lit_16654[408] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
 };
 COMPILER_STRIP_GATE(0x80393DC0, &lit_16654);
 
@@ -3250,8 +4589,7 @@ SECTION_DEAD static char const* const stringBase_803942F2 = "WideMode";
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm bool dCamera_c::eventCamera(s32 param_0) {
-    nofralloc
+asm bool dCamera_c::eventCamera(s32 param_0){nofralloc
 #include "asm/d/d_camera/eventCamera__9dCamera_cFl.s"
 }
 #pragma pop
@@ -3366,8 +4704,7 @@ asm void dCamera_c::Reset(cXyz param_0, cXyz param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::Reset() {
-    nofralloc
+asm void dCamera_c::Reset(){nofralloc
 #include "asm/d/d_camera/Reset__9dCamera_cFv.s"
 }
 #pragma pop
@@ -3375,7 +4712,22 @@ asm void dCamera_c::Reset() {
 /* ############################################################################################## */
 /* 80393F58-80393F68 0205B8 0010+00 1/1 0/0 0/0 .rodata          wave$17181 */
 SECTION_RODATA static u8 const wave[16] = {
-    0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x66, 0x66, 0x66, 0x40, 0x06, 0x66, 0x66, 0x40, 0x4C, 0xCC, 0xCD,
+    0x3E,
+    0xCC,
+    0xCC,
+    0xCD,
+    0x3F,
+    0x66,
+    0x66,
+    0x66,
+    0x40,
+    0x06,
+    0x66,
+    0x66,
+    0x40,
+    0x4C,
+    0xCC,
+    0xCD,
 };
 COMPILER_STRIP_GATE(0x80393F58, &wave);
 
@@ -3392,8 +4744,7 @@ SECTION_SDATA2 static f32 lit_17255 = 3.0f / 25.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::shakeCamera() {
-    nofralloc
+asm void dCamera_c::shakeCamera(){nofralloc
 #include "asm/d/d_camera/shakeCamera__9dCamera_cFv.s"
 }
 #pragma pop
@@ -3593,8 +4944,7 @@ asm dCamera_c* dCam_getCamera() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCamera_c* dCam_getBody() {
-    nofralloc
+asm dCamera_c* dCam_getBody(){nofralloc
 #include "asm/d/d_camera/dCam_getBody__Fv.s"
 }
 #pragma pop
@@ -3627,53 +4977,123 @@ static asm void view_setup(camera_process_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void store(camera_process_class* param_0) {
-    nofralloc
+static asm void store(camera_process_class* param_0){nofralloc
 #include "asm/d/d_camera/store__FP20camera_process_class.s"
 }
 #pragma pop
 
 /* 80181E20-80181E64 17C760 0044+00 1/1 0/0 0/0 .text            Up__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::Up() {
-    nofralloc
-#include "asm/d/d_camera/Up__9dCamera_cFv.s"
+cXyz dCamera_c::Up() {
+    if (chkFlag(0x10)) {
+        return field_0x740.field_0x18;
+    } else {
+        return mUp;
+    }
 }
-#pragma pop
 
 /* 80181E64-80181E98 17C7A4 0034+00 1/1 1/1 30/30 .text            Eye__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz dCamera_c::Eye() {
-    nofralloc
-#include "asm/d/d_camera/Eye__9dCamera_cFv.s"
+cXyz dCamera_c::Eye() {
+    return mEye + mShake.field_0x30;
 }
-#pragma pop
 
 /* 80181E98-80181ECC 17C7D8 0034+00 1/1 1/1 25/25 .text            Center__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz dCamera_c::Center() {
-    nofralloc
-#include "asm/d/d_camera/Center__9dCamera_cFv.s"
+cXyz dCamera_c::Center() {
+    return mCenter + mShake.field_0x24;
 }
-#pragma pop
 
 /* 80181ECC-80181F70 17C80C 00A4+00 1/0 0/0 0/0 .text camera_execute__FP20camera_process_class */
+// matches with literals
+#ifdef NONMATCHING
+static int camera_execute(camera_process_class* i_this) {
+    camera_class* a_this = (camera_class*)i_this;
+    preparation(i_this);
+
+    if (dDemo_c::getCamera() != NULL) {
+        a_this->mCamera.ResetView();
+    }
+
+    dComIfGp_offCameraAttentionStatus(0, 0x40);
+
+    if (a_this->mCamera.Active()) {
+        a_this->mCamera.Run();
+    } else {
+        a_this->mCamera.NotRun();
+    }
+
+    a_this->mCamera.CalcTrimSize();
+
+    store(i_this);
+    view_setup(i_this);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void camera_execute(camera_process_class* param_0) {
+static asm void camera_execute(camera_process_class* i_this) {
     nofralloc
 #include "asm/d/d_camera/camera_execute__FP20camera_process_class.s"
 }
 #pragma pop
+#endif
 
 /* 80181F70-801821E0 17C8B0 0270+00 1/0 0/0 0/0 .text camera_draw__FP20camera_process_class */
+// matches with literals
+#ifdef NONMATCHING
+static int camera_draw(camera_process_class* i_this) {
+    camera_class* a_this = (camera_class*)i_this;
+    dCamera_c* body = &((camera_class*)i_this)->mCamera;
+
+    dDlst_window_c* window = get_window(a_this);
+    view_port_class* viewport = window->getViewPort();
+    int camera_id = get_camera_id(a_this);
+
+    int trim_height = body->TrimHeight();
+    window->setScissor(0.0f, trim_height, 608.0f, 448.0f - trim_height * 2.0f);
+    C_MTXPerspective(i_this->mProjMtx, i_this->mFovy, i_this->mAspect, i_this->mNear, i_this->mFar);
+    mDoMtx_lookAt(i_this->mViewMtx, &i_this->mLookat.mEye, &i_this->mLookat.mCenter,
+                  &i_this->mLookat.mUp, i_this->mBank);
+
+    j3dSys.setViewMtx(i_this->mViewMtx);
+    cMtx_inverse(i_this->mViewMtx, i_this->mInvViewMtx);
+
+    Z2GetAudience()->setAudioCamera(i_this->mViewMtx, i_this->mLookat.mEye, i_this->mLookat.mCenter,
+                                    i_this->mFovy, i_this->mAspect, getComStat(0x80), camera_id,
+                                    false);
+
+    dBgS_GndChk gndchk;
+    gndchk.OnWaterGrp();
+    gndchk.SetPos(&i_this->mLookat.mEye);
+
+    f32 cross = dComIfG_Bgsp().GroundCross(&gndchk);
+    if (cross != -1000000000.0f) {
+        if (dComIfG_Bgsp().ChkGrpInf(gndchk, 0x100)) {
+            mDoAud_getCameraMapInfo(6);
+        } else {
+            mDoAud_getCameraMapInfo(dComIfG_Bgsp().GetMtrlSndId(&gndchk));
+        }
+
+        mDoAud_setCameraGroupInfo(dComIfG_Bgsp().GetGrpSoundId(gndchk));
+        Vec spDC;
+        spDC.x = i_this->mLookat.mEye.x;
+        spDC.y = cross;
+        spDC.z = i_this->mLookat.mEye.z;
+
+        Z2AudioMgr::getInterface()->setCameraPolygonPos(&spDC);
+    } else {
+        Z2AudioMgr::getInterface()->setCameraPolygonPos(NULL);
+    }
+
+    MTXCopy(i_this->mViewMtx, i_this->mViewMtxNoTrans);
+    i_this->mViewMtxNoTrans[0][3] = 0.0f;
+    i_this->mViewMtxNoTrans[1][3] = 0.0f;
+    i_this->mViewMtxNoTrans[2][3] = 0.0f;
+    cMtx_concatProjView(i_this->mProjMtx, i_this->mViewMtx, i_this->mProjViewMtx);
+
+    body->Draw();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3682,22 +5102,95 @@ static asm void camera_draw(camera_process_class* param_0) {
 #include "asm/d/d_camera/camera_draw__FP20camera_process_class.s"
 }
 #pragma pop
+#endif
 
 /* 801821E0-80182260 17CB20 0080+00 1/0 0/0 0/0 .text            init_phase1__FP12camera_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void init_phase1(camera_class* param_0) {
-    nofralloc
-#include "asm/d/d_camera/init_phase1__FP12camera_class.s"
+static int init_phase1(camera_class* i_this) {
+    int camera_id = get_camera_id(i_this);
+
+    dComIfGp_setCamera(camera_id, i_this);
+    fopCamM_SetPrm1(i_this, dComIfGp_getCameraWinID(camera_id));
+    fopCamM_SetPrm2(i_this, dComIfGp_getCameraPlayer1ID(camera_id));
+    fopCamM_SetPrm3(i_this, dComIfGp_getCameraPlayer2ID(camera_id));
+    dComIfGp_setWindowNum(0);
+
+    i_this->field_0x238 = 0;
+    i_this->field_0x22f = 71;
+    i_this->mCamera.field_0xb0c = 0;
+    return cPhs_NEXT_e;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80453920-80453924 001F20 0004+00 1/1 0/0 0/0 .sdata2          @17948 */
 SECTION_SDATA2 static f32 lit_17948 = 160000.0f;
 
 /* 80182260-80182454 17CBA0 01F4+00 1/0 0/0 0/0 .text            init_phase2__FP12camera_class */
+// matches with literals
+#ifdef NONMATCHING
+static int init_phase2(camera_class* i_this) {
+    camera_process_class* a_this = (camera_process_class*)i_this;
+    dCamera_c* body = &i_this->mCamera;
+    int camera_id = get_camera_id(i_this);
+    i_this->field_0x238++;
+
+    fopAc_ac_c* player = (fopAc_ac_c*)get_player_actor(i_this);
+    if (player == NULL) {
+        return cPhs_INIT_e;
+    }
+
+    dBgS_GndChk gndchk;
+    cXyz spA4(player->current.pos);
+    spA4.y += 50.0f;
+    gndchk.SetPos(&spA4);
+
+    if (dComIfG_Bgsp().GroundCross(&gndchk) == -1000000000.0f) {
+#if DEBUG
+        if (i_this->field_0x238 < 100) {
+            if (i_this->field_0x238 % 100 == 0 && i_this->field_0x238 != 0) {
+                OS_REPORT("camera: can not found floor... %d\n", i_this->field_0x238);
+            }
+
+            return cPhs_INIT_e;
+        }
+
+        OS_REPORT("\ncamera: Warning: give up to get floor info !!\n\n");
+#else
+        return cPhs_INIT_e;
+#endif
+    }
+
+    fopAcM_setStageLayer(player);
+    dComIfGp_setWindowNum(1);
+
+    new (body) dCamera_c(i_this);
+
+    f32 var_f30 = 160000.0f;
+
+    if (dComIfGp_getStage()->getStagInfo() != NULL) {
+        dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+        stage_dt->getStagInfo();
+
+        var_f30 = stage_dt->getStagInfo()->field_0x4;
+    }
+
+    get_window(camera_id)->getViewPort();
+
+    fopCamM_SetNear(i_this, 1.0f);
+    fopCamM_SetFar(i_this, var_f30);
+    fopCamM_SetFovy(i_this, 30.0f);
+    fopCamM_SetAspect(i_this, mDoGph_gInf_c::getAspect());
+    fopCamM_SetCenter(i_this, player->current.pos.x, player->current.pos.y, player->current.pos.z);
+    fopCamM_SetBank(i_this, 0);
+
+    store(a_this);
+    view_setup(a_this);
+
+    i_this->mCamera.field_0xb0c = 1;
+    i_this->field_0x238 = 0;
+    dComIfGp_getAttention().Init(player, PAD_1);
+    return cPhs_NEXT_e;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3706,18 +5199,24 @@ static asm void init_phase2(camera_class* param_0) {
 #include "asm/d/d_camera/init_phase2__FP12camera_class.s"
 }
 #pragma pop
+#endif
 
 /* 80182454-80182484 17CD94 0030+00 1/0 0/0 0/0 .text            camera_create__FP12camera_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void camera_create(camera_class* param_0) {
-    nofralloc
-#include "asm/d/d_camera/camera_create__FP12camera_class.s"
+static int camera_create(camera_class* i_this) {
+    return dComLbG_PhaseHandler(&i_this->mPhaseReq, l_method, i_this);
 }
-#pragma pop
 
 /* 80182484-801824C0 17CDC4 003C+00 1/0 0/0 0/0 .text camera_delete__FP20camera_process_class */
+// equivalent, instructions swapped
+#ifdef NONMATCHING
+static int camera_delete(camera_process_class* i_this) {
+    camera_class* a_this = (camera_class*)i_this;
+
+    a_this->mCamera.~dCamera_c();
+    dComIfGp_setCamera(0, NULL);
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3726,10 +5225,11 @@ static asm void camera_delete(camera_process_class* param_0) {
 #include "asm/d/d_camera/camera_delete__FP20camera_process_class.s"
 }
 #pragma pop
+#endif
 
 /* 801824C0-801824C8 17CE00 0008+00 1/0 0/0 0/0 .text            is_camera_delete__FPv */
-static bool is_camera_delete(void* param_0) {
-    return true;
+static int is_camera_delete(void* i_this) {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -3770,8 +5270,7 @@ asm void dCamForcusLine::Off() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void __sinit_d_camera_cpp() {
-    nofralloc
+asm void __sinit_d_camera_cpp(){nofralloc
 #include "asm/d/d_camera/__sinit_d_camera_cpp.s"
 }
 #pragma pop
@@ -3922,7 +5421,8 @@ extern "C" asm void __dt__14d2DBSplinePathFv() {
 #pragma pop
 
 /* 8018291C-80182920 17D25C 0004+00 1/1 0/0 0/0 .text            __ct__Q29dCamera_c10dCamInfo_cFv */
-dCamera_c::dCamInfo_c::dCamInfo_c() {
+// dCamera_c::dCamInfo_c::dCamInfo_c() {
+extern "C" void __ct__Q29dCamera_c10dCamInfo_cFv() {
     /* empty function */
 }
 
@@ -3930,7 +5430,8 @@ dCamera_c::dCamInfo_c::dCamInfo_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm dCamera_c::dCamInfo_c::~dCamInfo_c() {
+// asm dCamera_c::dCamInfo_c::~dCamInfo_c() {
+extern "C" asm void __dt__Q29dCamera_c10dCamInfo_cFv() {
     nofralloc
 #include "asm/d/d_camera/__dt__Q29dCamera_c10dCamInfo_cFv.s"
 }
@@ -3950,7 +5451,8 @@ asm void dCamera_c::footHeightOf(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::push_any_key() {
+// asm void dCamera_c::push_any_key() {
+extern "C" asm void push_any_key__9dCamera_cFv() {
     nofralloc
 #include "asm/d/d_camera/push_any_key__9dCamera_cFv.s"
 }
@@ -3960,7 +5462,8 @@ asm void dCamera_c::push_any_key() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::clrFlag(u32 param_0) {
+// asm void dCamera_c::clrFlag(u32 param_0) {
+extern "C" asm void clrFlag__9dCamera_cFUl() {
     nofralloc
 #include "asm/d/d_camera/clrFlag__9dCamera_cFUl.s"
 }
@@ -3970,7 +5473,8 @@ asm void dCamera_c::clrFlag(u32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamera_c::chkFlag(u32 param_0) {
+// asm void dCamera_c::chkFlag(u32 param_0) {
+extern "C" asm void chkFlag__9dCamera_cFUl() {
     nofralloc
 #include "asm/d/d_camera/chkFlag__9dCamera_cFUl.s"
 }
@@ -4072,7 +5576,7 @@ extern "C" asm void checkGoronSideMove__9daPy_py_cCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-//static asm void JMAFastSqrt(f32 param_0) {
+// static asm void JMAFastSqrt(f32 param_0) {
 static asm void JMAFastSqrt__Ff() {
     nofralloc
 #include "asm/d/d_camera/JMAFastSqrt__Ff.s"
@@ -4083,7 +5587,8 @@ static asm void JMAFastSqrt__Ff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::fabsf(f32 param_0) {
+extern "C" asm void fabsf__3stdFf() {
+    // asm void std::fabsf(f32 param_0) {
     nofralloc
 #include "asm/d/d_camera/fabsf__3stdFf.s"
 }
@@ -4110,7 +5615,8 @@ extern "C" asm void R__7cSGlobeFf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void dComIfGp_evmng_cameraPlay() {
+// static asm void dComIfGp_evmng_cameraPlay() {
+extern "C" asm void dComIfGp_evmng_cameraPlay__Fv() {
     nofralloc
 #include "asm/d/d_camera/dComIfGp_evmng_cameraPlay__Fv.s"
 }
@@ -4218,7 +5724,8 @@ extern "C" asm void getRightHandPos__9daPy_py_cCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamSetup_c::CheckFlag2(u16 param_0) {
+// asm void dCamSetup_c::CheckFlag2(u16 param_0) {
+extern "C" asm void CheckFlag2__11dCamSetup_cFUs() {
     nofralloc
 #include "asm/d/d_camera/CheckFlag2__11dCamSetup_cFUs.s"
 }
@@ -4228,7 +5735,8 @@ asm void dCamSetup_c::CheckFlag2(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamSetup_c::CheckFlag(u16 param_0) {
+// asm void dCamSetup_c::CheckFlag(u16 param_0) {
+extern "C" asm void CheckFlag__11dCamSetup_cFUs() {
     nofralloc
 #include "asm/d/d_camera/CheckFlag__11dCamSetup_cFUs.s"
 }
@@ -4396,7 +5904,8 @@ extern "C" asm void U__7cSGlobeCFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dCamParam_c::Flag(s32 param_0, u16 param_1) {
+// asm void dCamParam_c::Flag(s32 param_0, u16 param_1) {
+extern "C" asm void Flag__11dCamParam_cFlUs() {
     nofralloc
 #include "asm/d/d_camera/Flag__11dCamParam_cFlUs.s"
 }
@@ -4489,7 +5998,8 @@ extern "C" asm void fabs__3stdFf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::checkTurnStandCamera() const {
+// asm void daHorse_c::checkTurnStandCamera() const {
+extern "C" asm void checkTurnStandCamera__9daHorse_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkTurnStandCamera__9daHorse_cCFv.s"
 }
@@ -4510,7 +6020,8 @@ extern "C" asm void d2s__6cAngleFf() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daHorse_c::checkJump() const {
+// asm void daHorse_c::checkJump() const {
+extern "C" asm void checkJump__9daHorse_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkJump__9daHorse_cCFv.s"
 }
@@ -4532,7 +6043,8 @@ extern "C" static asm void fopAcM_GetParam__FPCv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagMstop_c::checkNoAttention() const {
+// asm void daTagMstop_c::checkNoAttention() const {
+extern "C" asm void checkNoAttention__12daTagMstop_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkNoAttention__12daTagMstop_cCFv.s"
 }
@@ -4543,7 +6055,8 @@ asm void daTagMstop_c::checkNoAttention() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagMhint_c::checkNoAttention() const {
+// asm void daTagMhint_c::checkNoAttention() const {
+extern "C" asm void checkNoAttention__12daTagMhint_cCFv() {
     nofralloc
 #include "asm/d/d_camera/checkNoAttention__12daTagMhint_cCFv.s"
 }
@@ -4565,7 +6078,8 @@ extern "C" asm void set__4cXyzFfff() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTagMwait_c::checkEndMessage() {
+// asm void daTagMwait_c::checkEndMessage() {
+extern "C" asm void checkEndMessage__12daTagMwait_cFv() {
     nofralloc
 #include "asm/d/d_camera/checkEndMessage__12daTagMwait_cFv.s"
 }

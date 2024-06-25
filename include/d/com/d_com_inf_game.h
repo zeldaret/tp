@@ -49,8 +49,8 @@ public:
     ~dComIfG_camera_info_class() {}
 
     /* 0x00 */ camera_class* mCamera;
-    /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5;
+    /* 0x04 */ s8 field_0x4;
+    /* 0x05 */ s8 field_0x5;
     /* 0x06 */ s8 field_0x6;
     /* 0x07 */ u8 field_0x7;
     /* 0x08 */ u32 mCameraAttentionStatus;
@@ -59,8 +59,8 @@ public:
     /* 0x14 */ char* mCameraParamFileName;
     /* 0x18 */ cXyz mCameraPos;
     /* 0x24 */ cXyz mCameraTarget;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ s16 field_0x34;
+    /* 0x30 */ f32 mCameraFovy;
+    /* 0x34 */ s16 mCameraBank;
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
@@ -486,11 +486,14 @@ public:
         mPlayer[i] = (daAlink_c*)ptr;
         mPlayerCameraID[camIdx] = 0;
     }
-    void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] |= flag; }
-    void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[i] &= ~flag; }
-    bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[i]; }
+    void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
+    void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
+    bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[param_0][i]; }
 
     int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
+    int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
+    int getCameraPlayer2ID(int i) { return mCameraInfo[i].field_0x6; }
+    int getCameraWinID(int i) { return mCameraInfo[i].field_0x4; }
     void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
     void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
     const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
@@ -512,6 +515,21 @@ public:
     }
 
     f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
+    void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
+
+    void saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
+        mCameraInfo[i].mCameraPos = *i_pos;
+        mCameraInfo[i].mCameraTarget = *i_target;
+        mCameraInfo[i].mCameraFovy = i_fovy;
+        mCameraInfo[i].mCameraBank = i_bank;
+    }
+
+    void loadCameraPosition(int i, cXyz* o_pos, cXyz* o_target, f32* o_fovy, s16* o_bank) {
+        *o_pos = mCameraInfo[i].mCameraPos;
+        *o_target = mCameraInfo[i].mCameraTarget;
+        *o_fovy = mCameraInfo[i].mCameraFovy;
+        *o_bank = mCameraInfo[i].mCameraBank;
+    }
 
     void setMesgCamInfoID(int param_0) { mMesgCamInfo = param_0; }
 
@@ -763,8 +781,8 @@ public:
     /* 0x04FD4 */ fopAc_ac_c* mMesgCamInfoActor8;
     /* 0x04FD8 */ fopAc_ac_c* mMesgCamInfoActor9;
     /* 0x04FDC */ fopAc_ac_c* mMesgCamInfoActor10;
-    /* 0x04FE0 */ u32 mPlayerStatus[2];
-    /* 0x04FE8 */ u8 field_0x4fe8[0x10];
+    /* 0x04FE0 */ u32 mPlayerStatus[1][4];
+    /* 0x04FF0 */ u8 field_0x4ff0[0x8];
     /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
     /* 0x0500C */ dDlst_window_c* mCurrentWindow;
     /* 0x05010 */ view_class* mCurrentView;
@@ -1659,6 +1677,10 @@ inline void dComIfGp_removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
     g_dComIfG_gameInfo.play.removeSimpleModel(i_modelData, roomNo);
 }
 
+inline dSv_turnRestart_c& dComIfGs_getTurnRestart() {
+    return g_dComIfG_gameInfo.info.getTurnRestart();
+}
+
 inline u32 dComIfGs_getTurnRestartParam() {
     return g_dComIfG_gameInfo.info.getTurnRestart().getParam();
 }
@@ -2000,6 +2022,18 @@ inline daPy_py_c* dComIfGp_getLinkPlayer() {
 
 inline fopAc_ac_c* dComIfGp_getPlayer(int idx) {
     return g_dComIfG_gameInfo.play.getPlayer(idx);
+}
+
+inline int dComIfGp_getCameraPlayer1ID(int idx) {
+    return g_dComIfG_gameInfo.play.getCameraPlayer1ID(idx);
+}
+
+inline int dComIfGp_getCameraPlayer2ID(int idx) {
+    return g_dComIfG_gameInfo.play.getCameraPlayer2ID(idx);
+}
+
+inline int dComIfGp_getCameraWinID(int idx) {
+    return g_dComIfG_gameInfo.play.getCameraWinID(idx);
 }
 
 inline int dComIfGp_getPlayerCameraID(int idx) {
@@ -2627,12 +2661,24 @@ inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2,
     g_dComIfG_gameInfo.play.setCameraInfo(camIdx, p_cam, param_2, param_3, param_4);
 }
 
+inline void dComIfGp_setCameraZoomScale(int i_no, f32 i_scale) {
+    g_dComIfG_gameInfo.play.setCameraZoomScale(i_no, i_scale);
+}
+
 inline f32 dComIfGp_getCameraZoomForcus(int i_no) {
     return g_dComIfG_gameInfo.play.getCameraZoomForcus(i_no);
 }
 
 inline u32 dComIfGp_getCameraAttentionStatus(int i_no) {
     return g_dComIfG_gameInfo.play.getCameraAttentionStatus(i_no);
+}
+
+inline void dComIfGp_saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
+    g_dComIfG_gameInfo.play.saveCameraPosition(i, i_pos, i_target, i_fovy, i_bank);
+}
+
+inline void dComIfGp_loadCameraPosition(int i, cXyz* o_pos, cXyz* o_target, f32* o_fovy, s16* o_bank) {
+    g_dComIfG_gameInfo.play.loadCameraPosition(i, o_pos, o_target, o_fovy, o_bank);
 }
 
 inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
@@ -3228,6 +3274,10 @@ inline BOOL dComIfGp_evmng_endCheck(const char* event) {
 
 inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
+}
+
+inline int dComIfGp_evmng_cameraPlay() {
+    return dComIfGp_getPEvtManager()->cameraPlay();
 }
 
 inline u8 dComIfGp_event_getPreItemNo() {
