@@ -421,6 +421,8 @@ STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, int param_4);
+u8 daNpcT_getDistTableIdx(int param_0, int param_1);
+BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP);
 
 struct daBaseNpc_matAnm_c {
     /* 8014D884 */ void calc(J3DMaterial*) const;

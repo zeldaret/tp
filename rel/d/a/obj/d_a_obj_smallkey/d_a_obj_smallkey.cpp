@@ -6,7 +6,7 @@
 #include "rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey.h"
 #include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
-#include "JSystem/JPArticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 
 //
