@@ -19,6 +19,7 @@ M35_LIBS := \
 M35_CFLAGS := \
 	-sdata 0 \
 	-sdata2 0 \
+	-sym on \
 
 M35_LDFLAGS := \
 	-nodefaults \
