@@ -858,7 +858,7 @@ SECTION_RODATA daNpcAsh_Param_c::param const daNpcAsh_Param_c::m = {
     300.0f,     // mAttnUpperY
     -300.0f,    // mAttnLowerY
     60,
-    8,
+    8,          // mDamageTimer
     0,          // mTestExpression
     0,          // mTestMotion
     0,          // mTestLookMode
@@ -2066,15 +2066,16 @@ bool daNpcAsh_c::demo(void* param_0) {
 
     case 2:
         if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
-            s32 cutIndex = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
-            if (cutIndex != -1) {
-                mCutIndex = cutIndex;
-                s32 eventIdx = dComIfGp_getEventManager().getMyActIdx(cutIndex, l_evtNames, 6, 0, 0);
+            s32 staff_id = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+            if (staff_id != -1) {
+                mStaffID = staff_id;
+                s32 eventIdx = dComIfGp_getEventManager().getMyActIdx(staff_id, l_evtNames,
+                                                                      ARRAY_SIZE(l_evtNames), 0, 0);
                 if (eventIdx >= 1 && eventIdx < 6) {
                     mOrderEvtNo = eventIdx;
                 }
-                if ((this->*(mEvtSeqList[mOrderEvtNo]))(cutIndex)) {
-                    dComIfGp_getEventManager().cutEnd(cutIndex);
+                if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
+                    dComIfGp_getEventManager().cutEnd(staff_id);
                 }
             }
 
@@ -2211,13 +2212,13 @@ SECTION_DEAD static char const* const stringBase_8095D98B = "prm";
 /* 8095B48C-8095B58C 00328C 0100+00 1/0 0/0 0/0 .text            EvCut_Introduction__10daNpcAsh_cFi
  */
 
-BOOL daNpcAsh_c::EvCut_Introduction(int i_cutIndex) {
-    int* prm = dComIfGp_evmng_getMyIntegerP(i_cutIndex, ((char*)&d_a_npc_ash__stringBase0) + 0x7B);
+BOOL daNpcAsh_c::EvCut_Introduction(int i_staffID) {
+    int* prm = dComIfGp_evmng_getMyIntegerP(i_staffID, ((char*)&d_a_npc_ash__stringBase0) + 0x7B);
     if (prm == NULL) {
         return false;
     }
 
-    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_staffID)) {
         switch (*prm) {
         case 0:
         case 2:
@@ -2243,7 +2244,7 @@ COMPILER_STRIP_GATE(0x8095D8C0, &lit_5254);
 /* 8095B58C-8095B83C 00338C 02B0+00 1/0 0/0 0/0 .text            EvCut_Meeting__10daNpcAsh_cFi */
 #ifdef NONMATCHING
 // literals
-BOOL daNpcAsh_c::EvCut_Meeting(int i_cutIndex) {
+BOOL daNpcAsh_c::EvCut_Meeting(int i_staffID) {
     dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
     fopAc_ac_c* actors[4] = {
         mActorMngr[2].getActorP(),
@@ -2252,8 +2253,8 @@ BOOL daNpcAsh_c::EvCut_Meeting(int i_cutIndex) {
         mActorMngr[3].getActorP(),
     };
 
-    int* cutName = (int*)evtMgr.getMyNowCutName(i_cutIndex);
-    if (evtMgr.getIsAddvance(i_cutIndex)) {
+    int* cutName = (int*)evtMgr.getMyNowCutName(i_staffID);
+    if (evtMgr.getIsAddvance(i_staffID)) {
         switch (*cutName) {
         case '0001':
         case '0002':
@@ -2318,7 +2319,7 @@ COMPILER_STRIP_GATE(0x8095D8D0, &lit_5295);
 /* 8095B83C-8095BA80 00363C 0244+00 1/0 0/0 0/0 .text EvCut_WiretapSponsor__10daNpcAsh_cFi */
 #ifdef NONMATCHING
 // literals
-BOOL daNpcAsh_c::EvCut_WiretapSponsor(int i_cutIndex) {
+BOOL daNpcAsh_c::EvCut_WiretapSponsor(int i_staffID) {
     dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
     fopAc_ac_c* actors[4] = {
         mActorMngr[2].getActorP(),
@@ -2327,8 +2328,8 @@ BOOL daNpcAsh_c::EvCut_WiretapSponsor(int i_cutIndex) {
         mActorMngr[3].getActorP(),
     };
 
-    int* cutName = (int*)evtMgr.getMyNowCutName(i_cutIndex);
-    if (evtMgr.getIsAddvance(i_cutIndex)) {
+    int* cutName = (int*)evtMgr.getMyNowCutName(i_staffID);
+    if (evtMgr.getIsAddvance(i_staffID)) {
         switch (*cutName) {
         case '0001':
             dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3],
@@ -2378,13 +2379,13 @@ asm BOOL daNpcAsh_c::EvCut_WiretapSponsor(int param_0) {
 
 /* 8095BA80-8095BC38 003880 01B8+00 2/0 0/0 0/0 .text EvCut_WiretapEntrant__10daNpcAsh_cFi */
 #ifdef NONMATCHING
-BOOL daNpcAsh_c::EvCut_WiretapEntrant(int i_cutIndex) {
-    int* prm = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+BOOL daNpcAsh_c::EvCut_WiretapEntrant(int i_staffID) {
+    int* prm = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm == NULL) {
         return false;
     }
 
-    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_staffID)) {
         switch (*prm) {
         case 0:
             setExpression(EXPR_NONE, -1.0f);

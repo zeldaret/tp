@@ -4635,7 +4635,7 @@ BOOL daNpcF_c::execute() {
         setHitodamaPrtcl();
     }
     mOldAngle = mCurAngle;
-    field_0x930 = 0;
+    mCutType = 0;
     mOrderSpeakEvt = false;
     mOrderNewEvt = false;
     field_0x9eb = false;
@@ -4648,8 +4648,8 @@ BOOL daNpcF_c::execute() {
             mAttnActor[i].remove();
         }
     }
-    if (field_0x954 != 0) {
-        cLib_calcTimer(&field_0x954);
+    if (mDamageTimer != 0) {
+        cLib_calcTimer(&mDamageTimer);
     }
     return true;
 }
@@ -4667,30 +4667,31 @@ asm BOOL daNpcF_c::execute() {
 /* 801522AC-80152614 14CBEC 0368+00 0/0 0/0 33/33 .text draw__8daNpcF_cFiifP11_GXColorS10i */
 #ifdef NONMATCHING
 // literals
-BOOL daNpcF_c::draw(BOOL param_0, BOOL param_1, f32 i_shadowDepth, _GXColorS10* param_3,
-                    BOOL param_4) {
-    f32 fVar1, frame;
+int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* i_fogColor,
+                   BOOL i_hideDamage) {
+    f32 damage_ratio, frame;
     J3DModel* model = mpMorf->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0x9f3 = 1;
 
     if (!checkHide()) {
-        if (!param_4 && field_0x954 != 0 && field_0x958 != 0) {
-            fVar1 = (f32)field_0x954 / (f32)field_0x958;
+        if (!i_hideDamage && mDamageTimer != 0 && mTotalDamageTimer != 0) {
+            damage_ratio = (f32)mDamageTimer / (f32)mTotalDamageTimer;
         } else {
-            fVar1 = 0.0f;
+            damage_ratio = 0.0f;
         }
-        if (cM3d_IsZero_inverted(fVar1)) {
-            tevStr.mFogColor.r = (s16)(fVar1 * 20.0f);
+
+        if (cM3d_IsZero_inverted(damage_ratio)) {
+            tevStr.mFogColor.r = (s16)(damage_ratio * 20.0f);
             tevStr.mFogColor.g = 0;
-        } else if (param_0) {
+        } else if (i_isTest) {
             tevStr.mFogColor.g = 20;
             tevStr.mFogColor.r = 0;
-        } else if (param_3 != NULL) {
-            tevStr.mFogColor.r = param_3->r;
-            tevStr.mFogColor.g = param_3->g;
-            tevStr.mFogColor.b = param_3->b;
-            tevStr.mFogColor.a = param_3->a;
+        } else if (i_fogColor != NULL) {
+            tevStr.mFogColor.r = i_fogColor->r;
+            tevStr.mFogColor.g = i_fogColor->g;
+            tevStr.mFogColor.b = i_fogColor->b;
+            tevStr.mFogColor.a = i_fogColor->a;
         } else {
             tevStr.mFogColor.g = 0;
             tevStr.mFogColor.r = 0;
@@ -4745,7 +4746,7 @@ BOOL daNpcF_c::draw(BOOL param_0, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
             drawOtherMdls();
         }
     }
-    return true;
+    return 1;
 }
 #else
 #pragma push
@@ -4761,15 +4762,17 @@ asm BOOL daNpcF_c::draw(BOOL param_0, BOOL param_1, f32 param_2, _GXColorS10* pa
 
 /* 80152614-80152654 14CF54 0040+00 0/0 0/0 13/13 .text
  * tgHitCallBack__8daNpcF_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::tgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
-                                 dCcD_GObjInf* param_3) {
-    nofralloc
-#include "asm/d/a/d_a_npc/tgHitCallBack__8daNpcF_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf.s"
+void daNpcF_c::tgHitCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* param_1, fopAc_ac_c* i_actor,
+                             dCcD_GObjInf* param_3) {
+    if (i_actor != NULL && fopAcM_GetProfName(i_actor) == PROC_ALINK) {
+        if (daPy_getPlayerActorClass() == i_actor) {
+            u8 cut_type = static_cast<daPy_py_c*>(i_actor)->getCutType();
+            static_cast<daNpcF_c*>(i_this)->setCutType(cut_type);
+        } else {
+            static_cast<daNpcF_c*>(i_this)->setCutType(daPy_py_c::CUT_TYPE_NM_VERTICAL);
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804257E8-80425978 052508 0190+00 4/4 0/0 0/0 .bss             mFindActorPList__8daNpcF_c */
@@ -4872,7 +4875,7 @@ void daNpcF_c::initialize() {
         field_0x908[i].setall(0);
         mLookatAngle[i].setall(0);
     }
-    mCutIndex = -1;
+    mStaffID = -1;
     field_0x930 = 0;
     mAttnIdx = 0;
     mAttnChangeTimer = 0;
@@ -4880,8 +4883,8 @@ void daNpcF_c::initialize() {
         mAttnActorTimer[i] = 0;
     }
     mMsgTimer = 0;
-    field_0x954 = 0;
-    field_0x958 = 0;
+    mDamageTimer = 0;
+    mTotalDamageTimer = 0;
     field_0x95c = 0;
     mEventTimer = 0;
     mBtpTimer = 0;
@@ -4921,7 +4924,7 @@ void daNpcF_c::initialize() {
     mOrderNewEvt = false;
     field_0x9ee = false;
     field_0x9ef = 0;
-    field_0x9f0 = 0;
+    mIsDamaged = false;
     field_0x9f1 = 0;
     mHide = false;
     field_0x9f3 = 0;
@@ -5317,14 +5320,31 @@ asm void daNpcF_c::setLookatMtx(int param_0, int* param_1, f32 param_2) {
 
 /* 80153578-80153658 14DEB8 00E0+00 0/0 0/0 13/13 .text            hitChk2__8daNpcF_cFP8dCcD_Cylii
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_c::hitChk2(dCcD_Cyl* param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/d/a/d_a_npc/hitChk2__8daNpcF_cFP8dCcD_Cylii.s"
+BOOL daNpcF_c::hitChk2(dCcD_Cyl* i_ccCyl, BOOL param_1, BOOL param_2) {
+    static_cast<dCcD_Stts*>(i_ccCyl->GetStts())->Move();
+    if (mDamageTimer == 0 && i_ccCyl->ChkTgHit()) {
+        fopAc_ac_c* hit_actor = i_ccCyl->GetTgHitAc();
+        if (hit_actor != NULL) {
+            field_0x990 = fopAcM_searchActorAngleY(this, hit_actor) - mCurAngle.y;
+            if (fopAcM_GetName(hit_actor) == PROC_NPC_TK) {
+                if (param_1) {
+                    static_cast<daNPC_TK_c*>(hit_actor)->setBump();
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (param_2) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+    i_ccCyl->ClrTgHit();
+    return false;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 804534A4-804534A8 001AA4 0004+00 1/1 0/0 0/0 .sdata2          @11061 */
@@ -5334,6 +5354,25 @@ SECTION_SDATA2 static f32 lit_11061 = 8192.0f;
 SECTION_SDATA2 static f32 lit_11062 = 12743.0f;
 
 /* 80153658-80153718 14DF98 00C0+00 0/0 0/0 12/12 .text            setDamage__8daNpcF_cFiii */
+#ifdef NONMATCHING
+// matches with literals
+void daNpcF_c::setDamage(int i_timer, int i_expression, int i_motion) {
+    if (i_expression >= 0) {
+        setExpression(i_expression, 0.0f);
+    }
+    if (i_motion >= 0) {
+        setMotion(i_motion, 0.0f, true);
+    }
+    field_0x984[0] = 8192.0f;
+    field_0x984[2] = 12743.0f;
+    field_0x992 = 0x4000;
+    mTotalDamageTimer = i_timer;
+    mDamageTimer = mTotalDamageTimer;
+    speed.setall(0.0f);
+    speedF = 0.0f;
+    mIsDamaged = true;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -5342,6 +5381,7 @@ asm void daNpcF_c::setDamage(int param_0, int param_1, int param_2) {
 #include "asm/d/a/d_a_npc/setDamage__8daNpcF_cFiii.s"
 }
 #pragma pop
+#endif
 
 /* 80153718-8015387C 14E058 0164+00 0/0 0/0 81/81 .text ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
  */
@@ -5350,7 +5390,7 @@ asm void daNpcF_c::setDamage(int param_0, int param_1, int param_2) {
 int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, BOOL param_3) {
     o_expression = -1;
     o_motion = -1;
-    if (param_3 || eventInfo.checkCommandTalk() || mCutIndex != -1) {
+    if (param_3 || eventInfo.checkCommandTalk() || mStaffID != -1) {
         fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
         if (talkPartner == param_2) {
             fopAc_ac_c* actor = dMsgObject_c::getActor();

@@ -433,7 +433,7 @@ public:
         /* 0x58 */ f32 mAttnUpperY;
         /* 0x5C */ f32 mAttnLowerY;
         /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 field_0x62;
+        /* 0x62 */ s16 mDamageTimer;
         /* 0x64 */ s16 mTestExpression;
         /* 0x66 */ s16 mTestMotion;
         /* 0x68 */ s16 mTestLookMode;

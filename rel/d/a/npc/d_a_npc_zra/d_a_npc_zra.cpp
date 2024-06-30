@@ -457,7 +457,7 @@ daNpc_zrA_Param_c::param const daNpc_zrA_Param_c::m = {
     300.0f,   // mAttnUpperY
     -300.0f,  // mAttnLowerY
     60,
-    8,
+    8,        // mDamageTimer
     0,        // mTestExpression
     0,        // mTestMotion
     0,        // mTestLookMode
@@ -3159,8 +3159,8 @@ void daNpc_zrA_c::setAttnPos() {
         mEyeAngle.x = mEyeAngle.y = 0;
     }
 
-    f32 height = 0.0f;
-    f32 radius = 0.0f;
+    f32 extra_height = 0.0f;
+    f32 extra_radius = 0.0f;
     vec2.set(0.0f, 0.0f, 0.0f);
     if ((mType == TYPE_WAIT || mType == TYPE_SPA) && mActionType != ACT_TYPE_0) {
         if (mType == TYPE_SPA || (mType == TYPE_WAIT
@@ -3171,7 +3171,7 @@ void daNpc_zrA_c::setAttnPos() {
             mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(29));
             mDoMtx_stack_c::multVecZero(&center);
             center.y = current.pos.y;
-            radius = 70.0f;
+            extra_radius = 70.0f;
         } else {
             center = current.pos;
         }
@@ -3181,10 +3181,10 @@ void daNpc_zrA_c::setAttnPos() {
         attention_info.position.set(vec5.x, vec5.y + 40.0f, vec5.z);
     } else {
         if (mType == TYPE_TOBIKOMI) {
-            height = 700.0f;
-            radius = 800.0f;
+            extra_height = 700.0f;
+            extra_radius = 800.0f;
         } else if (mType == TYPE_SWIM && mPath.getPathInfo() != NULL) {
-            height = -150.0f;
+            extra_height = -150.0f;
         }
         
         center = current.pos;
@@ -3192,7 +3192,7 @@ void daNpc_zrA_c::setAttnPos() {
     }
 
     if (!mHide) {
-        if (field_0x954 == 0) {
+        if (mDamageTimer == 0) {
             if (mType == TYPE_TOBIKOMI) {
                 mCcCyl.SetTgType(0x2020);
                 mCcCyl.SetTgSPrm(0x3f);
@@ -3222,8 +3222,8 @@ void daNpc_zrA_c::setAttnPos() {
         }
 
         mCcCyl.SetC(center);
-        mCcCyl.SetH(daNpc_zrA_Param_c::m.mCylH + height);
-        mCcCyl.SetR(daNpc_zrA_Param_c::m.mWallR + radius);
+        mCcCyl.SetH(daNpc_zrA_Param_c::m.mCylH + extra_height);
+        mCcCyl.SetR(daNpc_zrA_Param_c::m.mWallR + extra_radius);
         dComIfG_Ccsp()->Set(&mCcCyl);
     }
 
@@ -3279,7 +3279,7 @@ asm void daNpc_zrA_c::setMtx() {
 // matches with literals
 bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
     J3DAnmTransform* bck_anm = NULL;
-    int attr = 0;
+    int attr = J3DFrameCtrl::LOOP_ONCE_e;
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -3306,41 +3306,41 @@ bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_FH_TALK_NOMAL:
         res = setExpressionBtp(0);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_FH_SADSIT_A:
         res = setExpressionBtp(1);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_FH_SADSIT_B:
         res = setExpressionBtp(2);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_FH_SADSIT_C:
         res = setExpressionBtp(3);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_FH_SADSIT_D:
         res = setExpressionBtp(4);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_FH_SADSIT_E:
         res = setExpressionBtp(5);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_F_LOOKING_SP:
         res = setExpressionBtp(0);
         break;
     case ANM_FH_LOOKING_SP:
         res = setExpressionBtp(0);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_F_LOOKUP:
         res = setExpressionBtp(0);
         break;
     case ANM_FH_LOOKUP:
         res = setExpressionBtp(0);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_F_TALK_SWIM_SP:
         res = setExpressionBtp(0);
@@ -3353,14 +3353,14 @@ bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_FH_SPA_WAIT_A:
         res = setExpressionBtp(0);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case ANM_F_SPA_TALK_B:
         res = setExpressionBtp(6);
         break;
     case ANM_FH_SPA_WAIT_B:
         res = setExpressionBtp(7);
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     default:
         bck_anm = NULL;
@@ -3400,7 +3400,7 @@ asm bool daNpc_zrA_c::setExpressionAnm(int param_0, bool param_1) {
 // matches with literals
 bool daNpc_zrA_c::setExpressionBtp(int i_idx) {
     J3DAnmTexPattern* btp_anm = NULL;
-    int attr = 0;
+    int attr = J3DFrameCtrl::LOOP_ONCE_e;
     mAnmFlags &= ~(ANM_PLAY_BTP | ANM_PAUSE_BTP | ANM_FLAG_800);
 
     if (l_btpGetParamList[i_idx].fileIdx >= 0) {
@@ -3416,7 +3416,7 @@ bool daNpc_zrA_c::setExpressionBtp(int i_idx) {
     case 4:
     case 5:
     case 7:
-        attr = 2;
+        attr = J3DFrameCtrl::LOOP_REPEAT_e;
         break;
     case 6:
         break;
@@ -3467,7 +3467,7 @@ void daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
     int btk_idx = 0;
-    int attr = 2;
+    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
     mBaseMotionAnm = i_idx;
     
     if (mAcch.ChkWaterIn()) {
@@ -3505,7 +3505,7 @@ void daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
     case ANM_FLOAT_SP:
     case ANM_FLOAT_B_SP:
     case ANM_STEP_SP:
-        attr = 0;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
         break;
     case ANM_FALLSWIM:
     case ANM_SADSIT_A:
@@ -5663,11 +5663,11 @@ SECTION_DEAD static char const* const stringBase_80B8CE7F = "NO_RESPONSE";
 
 /* 80B7DF40-80B7E668 005B20 0728+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrA_cFv */
 #ifdef NONMATCHING
-// issues with loading g_dComIfG_gameInfo.play.mEvent
+// regalloc
 BOOL daNpc_zrA_c::doEvent() {
     BOOL ret = false;
 
-    if (dComIfGp_event_runCheck()) {
+    if (dComIfGp_event_runCheck() != false) {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
         if (eventInfo.checkCommandTalk() || eventInfo.i_checkCommandDemoAccrpt()) {
             mOrderNewEvt = false;
@@ -5682,7 +5682,7 @@ BOOL daNpc_zrA_c::doEvent() {
             } else if (mType == TYPE_WATERFALL) {
                 if (chkAction(&talkSwim)) {
                     (this->*mpActionFn)(NULL);
-                } else if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                } else if (dComIfGp_event_chkTalkXY() == false || dComIfGp_evmng_ChkPresentEnd()) {
                     setAction(&talkSwim);
                 }
             } else if (mType == TYPE_SEARCH) {
@@ -5734,8 +5734,9 @@ BOOL daNpc_zrA_c::doEvent() {
 
             int staff_id = event_manager.getMyStaffId(mStaffName, this, 0);
             if (staff_id != -1) {
-                mCutIndex = staff_id;
-                int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList, 11, 0, 0);
+                mStaffID = staff_id;
+                int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
+                                                        ARRAY_SIZE(mEvtCutNameList), 0, 0);
                 if ((this->*mEvtCutList[act_idx])(staff_id)) {
                     event_manager.cutEnd(staff_id);
                 }
@@ -5804,9 +5805,9 @@ BOOL daNpc_zrA_c::doEvent() {
     }
 
     if (!ret) {
-        if (mCutIndex != -1) {
+        if (mStaffID != -1) {
             mpActionFn = NULL;
-            mCutIndex = -1;
+            mStaffID = -1;
         }
         mMsgTimer = 0;
     }
@@ -6561,7 +6562,7 @@ BOOL daNpc_zrA_c::wait(void* param_0) {
             waitCalc();
         }
 
-        if (field_0x954 == 0 && !mTwilight) {
+        if (mDamageTimer == 0 && !mTwilight) {
             BOOL player_attn = mActorMngr[0].getActorP() != NULL;
             if (chkFindPlayer2(player_attn, shape_angle.y)) {
                 if (!player_attn) {
@@ -6763,7 +6764,7 @@ BOOL daNpc_zrA_c::waitLake(void* param_0) {
         // fallthrough
 
     case 2:
-        if (field_0x954 == 0 && !mTwilight) {
+        if (mDamageTimer == 0 && !mTwilight) {
             if (mActorMngr[0].getActorP() != NULL) {
                 if (!chkFindPlayer()) {
                     mTurnMode = 0;
@@ -6817,7 +6818,7 @@ BOOL daNpc_zrA_c::talk(void* param_0) {
 
     switch (mMode) {
     case 0:
-        if (field_0x954 != 0) {
+        if (mDamageTimer != 0) {
             break;
         }
 
@@ -6908,7 +6909,7 @@ SECTION_DEAD static char const* const stringBase_80B8CE8B = "prm";
 /* 80B806FC-80B80860 0082DC 0164+00 1/0 0/0 0/0 .text            ECut_talkMulti__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_talkMulti(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_talkMulti(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
@@ -6917,12 +6918,12 @@ BOOL daNpc_zrA_c::ECut_talkMulti(int i_cutIdx) {
     actors[0] = this;
     actors[1] = mActorMngr[2].getActorP();
     
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             mActorMngr[2].remove();
@@ -7299,7 +7300,7 @@ asm BOOL daNpc_zrA_c::railSwim() {
 BOOL daNpc_zrA_c::waitSwim() {
     calcModulation();
 
-    if (field_0x954 == 0) {
+    if (mDamageTimer == 0) {
         BOOL player_attn = mActorMngr[0].getActorP() != NULL;
         if (chkFindPlayer2(player_attn, shape_angle.y)) {
             if (!player_attn) {
@@ -7764,16 +7765,16 @@ asm void daNpc_zrA_c::calcWaitSwim(BOOL param_0) {
 /* 80B826F0-80B82C54 00A2D0 0564+00 1/0 0/0 0/0 .text            ECut_talkSwim__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_talkSwim(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_talkSwim(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             mAcch.ClrGrndNone();
@@ -7930,7 +7931,7 @@ BOOL daNpc_zrA_c::waitWaterfall(void* param_0) {
             mSwimMode = SWIM_WAIT;
         }
 
-        if (field_0x954 == 0 && !mTwilight) {
+        if (mDamageTimer == 0 && !mTwilight) {
             BOOL player_attn = mActorMngr[0].getActorP() != NULL;
             if (chkFindPlayer2(player_attn, shape_angle.y)) {
                 if (!player_attn) {
@@ -8160,7 +8161,7 @@ BOOL daNpc_zrA_c::talkSwim(void* param_0) {
 
     switch (mMode) {
     case 0:
-        if (field_0x954 != 0) {
+        if (mDamageTimer != 0) {
             break;
         }
         setExpression(EXPR_NONE, -1.0f);
@@ -8236,16 +8237,16 @@ asm BOOL daNpc_zrA_c::talkSwim(void* param_0) {
 /* 80B837E8-80B83D08 00B3C8 0520+00 1/0 0/0 0/0 .text ECut_carryWaterfall__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals and generics
-BOOL daNpc_zrA_c::ECut_carryWaterfall(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_carryWaterfall(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             dComIfGp_getEvent().setSkipProc(this, dEv_defaultSkipProc, 0);
@@ -8382,16 +8383,16 @@ asm BOOL daNpc_zrA_c::ECut_carryWaterfall(int param_0) {
 /* 80B83D08-80B83FA4 00B8E8 029C+00 1/0 0/0 0/0 .text ECut_carryWaterfallSkip__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals and generics
-BOOL daNpc_zrA_c::ECut_carryWaterfallSkip(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_carryWaterfallSkip(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             Z2GetAudioMgr()->subBgmStop();
@@ -9603,19 +9604,19 @@ COMPILER_STRIP_GATE(0x80B8CCB4, &lit_9935);
 /* 80B86FAC-80B872F0 00EB8C 0344+00 3/0 0/0 0/0 .text ECut_beforeBlastzrR__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_beforeBlastzrR(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_beforeBlastzrR(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
     cXyz player_pos = daPy_getPlayerActorClass()->current.pos;
     cXyz canoe_pos(41744.92f, -6498.715f, -18601.64f);
     daCanoe_c* canoe;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             daNpcF_offTmpBit(0xb);
@@ -9756,19 +9757,19 @@ COMPILER_STRIP_GATE(0x80B8CCD0, &lit_9991);
  */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_afterBlastzrR(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_afterBlastzrR(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
     cXyz player_pos = daPy_getPlayerActorClass()->current.pos;
     cXyz canoe_pos(40944.92f, -6498.715f, -18601.64f);
     daCanoe_c* canoe;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0: {
             cXyz target_pos(32651.5f, -5900.219f, -22464.53f);
@@ -9901,7 +9902,7 @@ COMPILER_STRIP_GATE(0x80B8CCF8, &lit_10585);
  */
 #ifdef NONMATCHING
 // matches with literals and generics
-BOOL daNpc_zrA_c::ECut_thanksBlast(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_thanksBlast(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
@@ -9909,12 +9910,12 @@ BOOL daNpc_zrA_c::ECut_thanksBlast(int i_cutIdx) {
     f32 water_height = mAcch.m_wtr.GetHeight();
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz player_pos = player->current.pos;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             daNpcF_offTmpBit(0xb);
@@ -10247,7 +10248,7 @@ asm BOOL daNpc_zrA_c::ECut_thanksBlast(int param_0) {
 /* 80B88B04-80B8A064 0106E4 1560+00 1/0 0/0 0/0 .text ECut_resultAnnounce__11daNpc_zrA_cFi */
 #ifdef NONMATCHING
 // matches with literals and generics
-BOOL daNpc_zrA_c::ECut_resultAnnounce(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_resultAnnounce(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
@@ -10255,12 +10256,12 @@ BOOL daNpc_zrA_c::ECut_resultAnnounce(int i_cutIdx) {
     f32 water_height = mAcch.m_wtr.GetHeight();
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz player_pos = player->current.pos;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             daNpcF_offTmpBit(0xb);
@@ -11191,18 +11192,18 @@ COMPILER_STRIP_GATE(0x80B8CD2C, &lit_11937);
  */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_searchPrince1(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_searchPrince1(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
     fopAc_ac_c* talk_actors[2] = {this, mActorMngr[2].getActorP()};
     f32 water_y;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
@@ -11347,17 +11348,17 @@ asm BOOL daNpc_zrA_c::ECut_searchPrince1(int param_0) {
  */
 #ifdef NONMATCHING
 // matches with literals
-BOOL daNpc_zrA_c::ECut_searchPrince2(int i_cutIdx) {
+BOOL daNpc_zrA_c::ECut_searchPrince2(int i_staffID) {
     dEvent_manager_c& event_manager = dComIfGp_getEventManager();
     BOOL ret = false;
     int prm = -1;
     f32 water_y;
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_cutIdx, "prm");
+    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
 
-    if (event_manager.getIsAddvance(i_cutIdx)) {
+    if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
             setLookMode(LOOK_ACTOR);
