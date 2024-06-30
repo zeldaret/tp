@@ -171,7 +171,7 @@ public:
     /* 8007B084 */ virtual void ShdwDraw(cBgS_ShdwDraw*);
     virtual void CaptPoly(dBgS_CaptPoly&) = 0;
     virtual bool WallCorrect(dBgS_Acch*) = 0;
-    virtual void WallCorrectSort(dBgS_Acch*) = 0;
+    virtual bool WallCorrectSort(dBgS_Acch*) = 0;
     virtual bool RoofChk(dBgS_RoofChk*) = 0;
     virtual bool SplGrpChk(dBgS_SplGrpChk*) = 0;
     virtual bool SphChk(dBgS_SphChk*, void*) = 0;
@@ -205,7 +205,7 @@ public:
     virtual s32 GetRoomPathId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&) = 0;
     virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&) = 0;
-    virtual u8 GetGrpSoundId(cBgS_PolyInfo const&) = 0;
+    virtual int GetGrpSoundId(cBgS_PolyInfo const&) = 0;
     virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
@@ -276,7 +276,7 @@ public:
     /* 8007E4A4 */ virtual void OffMoveFlag();
     /* 8007DAF8 */ virtual void CaptPoly(dBgS_CaptPoly&);
     /* 8007C484 */ virtual bool WallCorrect(dBgS_Acch*);
-    /* 8007C910 */ virtual void WallCorrectSort(dBgS_Acch*);
+    /* 8007C910 */ virtual bool WallCorrectSort(dBgS_Acch*);
     /* 8007D470 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 8007D830 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
     /* 8007DF00 */ virtual bool SphChk(dBgS_SphChk*, void*);
@@ -309,7 +309,7 @@ public:
     /* 8007B8D8 */ virtual s32 GetRoomPathId(cBgS_PolyInfo const&);
     /* 8007B904 */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 8007DF28 */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 8007DF58 */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
+    /* 8007DF58 */ virtual int GetGrpSoundId(cBgS_PolyInfo const&);
     /* 8007DF88 */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
     /* 8007DFC4 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,

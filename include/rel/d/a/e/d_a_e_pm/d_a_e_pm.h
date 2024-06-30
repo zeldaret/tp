@@ -78,6 +78,7 @@ private:
     /* 0x619 */ bool mAppear;
     /* 0x61A */ u8 field_0x61a[0xb7c - 0x61a];
 };
+
 STATIC_ASSERT(sizeof(daE_PM_c) == 0xb7c);
 
 class daE_PM_HIO_c {

@@ -1891,10 +1891,10 @@ static int dStage_cameraCreate(stage_camera2_data_class* i_cameraData, int i_cam
     i_cameraData = static_cast<stage_camera2_data_class*>(cMl::memalignB(-4, 0x18));
 
     if (i_cameraData != NULL) {
-        i_cameraData->field_0x4 = 0.0f;
-        i_cameraData->field_0x8 = 0.0f;
-        i_cameraData->field_0x4 = 0.0f;
-        i_cameraData->field_0x0 = param_2;
+        i_cameraData->field_0x0.field_0x4.x = 0.0f;
+        i_cameraData->field_0x0.field_0x4.y = 0.0f;
+        i_cameraData->field_0x0.field_0x4.x = 0.0f;
+        i_cameraData->field_0x0.field_0x0 = param_2;
         fopCamM_Create(i_cameraIdx, PROC_CAMERA, i_cameraData);
     }
 

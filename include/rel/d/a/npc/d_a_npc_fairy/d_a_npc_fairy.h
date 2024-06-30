@@ -119,6 +119,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x10c8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Fairy_c) == 0x10c8);
 
 class daNpc_Fairy_Param_c {

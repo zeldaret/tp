@@ -13,6 +13,7 @@ public:
 
     /* 0x0568 */ cXyz mVertices[4];
 };
+
 STATIC_ASSERT(sizeof(daTagChgRestart_c) == 0x598);
 
 namespace daTagChgRestart_prm {

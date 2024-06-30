@@ -8,20 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "rel/d/a/b/d_a_b_go/d_a_b_go.h"
 
-class daB_GOS_HIO_c {
-public:
-    /* 8060426C */ daB_GOS_HIO_c();
-    /* 80605320 */ virtual ~daB_GOS_HIO_c() {}
 
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 mSize;
-    /* 0xC */ f32 mNormalSpeed;
-};
-
-struct b_gos_j_info {
-    s16 joint_no;
-    f32 field_0x4;
-};
 
 /* 8060541C-80605514 000000 00F8+00 1/1 0/0 0/0 .data            j_info */
 static b_gos_j_info j_info[] = {

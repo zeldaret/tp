@@ -22,6 +22,14 @@ public:
 
 class daHoZelda_hio_c;
 
+/**
+ * @ingroup actors-unsorted
+ * @class daHoZelda_c
+ * @brief Zelda (Horseback)
+ *
+ * @details
+ *
+ */
 class daHoZelda_c : public fopAc_ac_c {
 public:
     /* 80846000 */ void createHeap();

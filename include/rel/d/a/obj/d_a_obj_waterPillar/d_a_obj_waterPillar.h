@@ -56,6 +56,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb7c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daWtPillar_c) == 0xb7c);
 
 class daWtPillar_HIO_c {

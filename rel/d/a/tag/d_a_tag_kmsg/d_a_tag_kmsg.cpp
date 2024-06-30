@@ -3,80 +3,12 @@
 // Translation Unit: d_a_tag_kmsg
 //
 
-// #include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
-#include "dolphin/types.h"
+#include "rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg.h"
+#include "d/a/d_a_npc.h"
+#include "d/a/d_a_player.h"
+#include "SSystem/SComponent/c_counter.h"
+#include "string.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
-
-struct daTag_KMsg_c {
-    /* 8048DE78 */ void create();
-    /* 8048DFDC */ void Delete();
-    /* 8048E010 */ void Execute();
-    /* 8048E8B8 */ bool Draw();
-    /* 8048E8C0 */ void isDelete();
-    /* 8048EA30 */ ~daTag_KMsg_c();
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dMsgFlow_c {
-    /* 80249F00 */ dMsgFlow_c();
-    /* 80249F48 */ ~dMsgFlow_c();
-    /* 80249F90 */ void init(fopAc_ac_c*, int, int, fopAc_ac_c**);
-    /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-    /* 80042518 */ void reset(void*);
-};
-
-struct dEvent_manager_c {
-    /* 80046800 */ void setObjectArchive(char*);
-    /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
-    /* 80047A78 */ void endCheck(s16);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266AE4 */ void operator+(Vec const&) const;
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80266B84 */ void operator*(f32) const;
-    /* 80266CE4 */ void norm() const;
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct cSAngle {
-    /* 80270F98 */ cSAngle(s16);
-    /* 802710F8 */ void Sin() const;
-    /* 80271120 */ void Cos() const;
-};
-
-struct cBgS_LinChk {};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-};
 
 //
 // Forward References:
@@ -136,11 +68,6 @@ extern "C" void Cos__7cSAngleCFv();
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_25();
 extern "C" void _restgpr_25();
-extern "C" void strlen();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mStayNo__20dStage_roomControl_c[4];
 
 //
 // Declarations:
@@ -162,21 +89,23 @@ SECTION_DEAD static char const* const stringBase_8048EB17 = "sekizoA";
 SECTION_DEAD static char const* const stringBase_8048EB1F = "Lv6Gate";
 #pragma pop
 
+struct EventListItem {
+    char* mEventName;
+    u32 field_0x4;
+};
+
 /* 8048EB2C-8048EB44 -00001 0018+00 1/1 0/0 0/0 .data            l_evtList */
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_tag_kmsg__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x1),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0xC),
-    (void*)0x00000001,
+SECTION_DATA static EventListItem l_evtList[3] = {
+    {"", 0},
+    {"EXTINCTION", 2},
+    {"PURCHASE", 1},
 };
 
 /* 8048EB44-8048EB50 -00001 000C+00 1/1 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[3] = {
-    (void*)&d_a_tag_kmsg__stringBase0,
-    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x15),
-    (void*)(((char*)&d_a_tag_kmsg__stringBase0) + 0x1B),
+SECTION_DATA static char* l_resNameList[3] = {
+    "",
+    "Bans1",
+    "sekizoA",
 };
 
 /* 8048EB50-8048EB70 -00001 0020+00 1/0 0/0 0/0 .data            daTag_KMsg_MethodTable */
@@ -209,24 +138,61 @@ SECTION_DATA extern void* __vt__12daTag_KMsg_c[3] = {
 };
 
 /* 8048DE78-8048DFDC 000078 0164+00 1/1 0/0 0/0 .text            create__12daTag_KMsg_cFv */
+// Matches with vtable
+#ifdef NONMATCHING
+int daTag_KMsg_c::create() {
+    attention_info.position = current.pos;
+    eyePos = attention_info.position;
+    fopAcM_SetupActor(this, daTag_KMsg_c);
+    int rv;
+    if (getType() == KMSG_TYPE_3) {
+        rv = dComIfG_resLoad(&mPhase, "Lv6Gate");
+        if (rv != cPhs_COMPLEATE_e) {
+            return rv;
+        }
+    }
+    if (getType() == KMSG_TYPE_2 || getType() == KMSG_TYPE_5) {
+        scale.y *= 10.0f;
+    }
+    mFlowNodeNo = getFlowNodeNo();
+    mEventIdx = -1;
+
+    if (isDelete()) {
+        return cPhs_ERROR_e;
+    } else {
+        return cPhs_COMPLEATE_e;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_KMsg_c::create() {
+asm int daTag_KMsg_c::create() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/create__12daTag_KMsg_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8048DFDC-8048E010 0001DC 0034+00 1/1 0/0 0/0 .text            Delete__12daTag_KMsg_cFv */
+// Matches with vtable
+#ifndef NONMATCHING
+int daTag_KMsg_c::Delete() {
+    OS_REPORT("|%06d:%x|daTag_KMsg_c -> Delete\n", g_Counter, this);
+    fopAcM_GetID(this);
+    this->~daTag_KMsg_c();
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_KMsg_c::Delete() {
+asm int daTag_KMsg_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/Delete__12daTag_KMsg_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8048EAE0-8048EAE4 000004 0004+00 0/1 0/0 0/0 .rodata          @4206 */
@@ -277,80 +243,236 @@ SECTION_DEAD static char const* const stringBase_8048EB27 = "KMsg";
 #pragma pop
 
 /* 8048E010-8048E8B8 000210 08A8+00 1/1 0/0 0/0 .text            Execute__12daTag_KMsg_cFv */
+// Various issues: stack, getTalkAngle
+#ifdef NONMATCHING
+int daTag_KMsg_c::Execute() {
+    bool r28 = false;
+    if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
+        if (isDelete()) {
+            fopAcM_delete(this);
+            return 1;
+        }
+        if (getType() == KMSG_TYPE_3) {
+            if (field_0x5c3 == 0) {
+                attention_info.flags = 0x80;
+                attention_info.distances[7] = 0x4a;
+            } else {
+                attention_info.flags = 0;
+            }
+        } else {
+            int angle = getTalkAngle();
+            int talkDistance = getTalkDis();
+            attention_info.distances[1] = daNpcT_getDistTableIdx(talkDistance, angle);
+            attention_info.distances[3] = attention_info.distances[1];
+            if (getAttnPosOffset() != 1000000000.0f) {
+                attention_info.flags = 0xa;
+            } else {
+                attention_info.flags = 0x8;
+            }
+        }
+        if ((getType() == KMSG_TYPE_1 || getType() == KMSG_TYPE_4 || getType() == KMSG_TYPE_5) &&
+            daPy_py_c::i_checkNowWolf())
+        {
+            attention_info.flags = 0;
+        }
+        if (dComIfGp_event_runCheck()) {
+            if (eventInfo.checkCommandTalk()) {
+                u16 iVar10 = 0;
+                switch (getType()) {
+                case KMSG_TYPE_1:
+                    iVar10 = 2;
+                    break;
+                }
+                if (iVar10 != 0) {
+                    if (strlen(l_evtList[iVar10].mEventName) != 0) {
+                        if (strlen(l_resNameList[l_evtList[iVar10].field_0x4]) != 0) {
+                            eventInfo.setArchiveName(l_resNameList[l_evtList[iVar10].field_0x4]);
+                            dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+                        }
+                        mEventIdx =
+                            dComIfGp_getEventManager().getEventIdx(this, l_evtList[iVar10].mEventName, 0xff);
+                        dComIfGp_getEvent().reset(this);
+                        fopAcM_orderChangeEventId(this, mEventIdx, 1, 0xffff);
+                    }
+
+                } else {
+                    r28 = true;
+                    if (!field_0x5c4) {
+                        mMsgFlow.init(this, mFlowNodeNo, 0, NULL);
+                        field_0x5c4 = true;
+                    }
+                    if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
+                        dComIfGp_event_reset();
+                        field_0x5c4 = false;
+                    }
+                }
+            } else {
+                if (eventInfo.checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(mEventIdx)) {
+                    dComIfGp_event_reset();
+                    mEventIdx = -1;
+                } else {
+                    int myStaffId = dComIfGp_getEventManager().getMyStaffId("KMsg", this, -1);
+                    if (myStaffId != -1) {
+                        dComIfGp_getEventManager().cutEnd(myStaffId);
+                    }
+                }
+            }
+        } else if (getType() == KMSG_TYPE_3) {
+            if (field_0x5c2 != 0x0) {
+                attention_info.flags &= ~0x10;
+                fopAcM_cancelCarryNow(this);
+                if (strlen(l_evtList[1].mEventName) != 0) {
+                    if (strlen(l_resNameList[l_evtList[1].field_0x4]) != 0) {
+                        eventInfo.setArchiveName(l_resNameList[l_evtList[1].field_0x4]);
+                        dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+                    }
+                    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, l_evtList[1].mEventName, 0xff);
+                    fopAcM_orderOtherEventId(this, mEventIdx, 0xff, 0xffff, 4, 1);
+                }
+            }
+        } else {
+            eventInfo.i_onCondition(1);
+            if (getType() != KMSG_TYPE_1 && daNpcT_chkDoBtnIsSpeak(this)) {
+                if (getChkType() != KMSG_TYPE_0) {
+                    dComIfGp_setDoStatusForce(0x80, 2);
+                } else {
+                    dComIfGp_setDoStatus(8, 0);
+                }
+            }
+        }
+        if (getType() == KMSG_TYPE_3) {
+            attention_info.position = current.pos;
+            if (getAttnPosOffset() != 1000000000.0f) {
+                attention_info.position.y += getAttnPosOffset();
+            }
+            eyePos = current.pos;
+        } else {
+            attention_info.position = current.pos;
+            if (getType() == KMSG_TYPE_2 || getType() == KMSG_TYPE_5) {
+                attention_info.position.y += scale.y;
+            }
+            eyePos = attention_info.position;
+            if (getAttnPosOffset() != 1000000000.0f) {
+                attention_info.position.y += getAttnPosOffset();
+            }
+            eyePos.y += getEyePosOffset();
+
+            if (r28) {
+                f32 f31;
+                if (getAttnPosOffset() != 1000000000.0f) {
+                    f31 = -0.5f * getAttnPosOffset();
+                } else {
+                    f31 = -20.0f;
+                }
+                 
+                cSAngle angle = shape_angle.y;
+                cXyz vec60 = attention_info.position;
+                vec60.y += f31;
+                cXyz vec54;
+                cXyz vec9c;
+                vec54.x = vec60.x + 80.0f * angle.Sin();
+                vec54.y = vec60.y;
+                vec54.z = vec60.x + 80.0f * angle.Cos();
+                dBgS_LinChk lin_chk;
+                lin_chk.ClrSttsWallOff();
+                lin_chk.onBackFlag();
+                lin_chk.onFrontFlag();
+                lin_chk.Set(&vec54, &vec60, NULL);
+                if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+                    cXyz vec30 = vec54 - vec60;
+                    // !@bug If decompiled correctly, vec9c is uninitialized
+                    cXyz vec48 = vec9c + vec30.norm() * 10.0f;
+                    attention_info.position.x = vec48.x;
+                    attention_info.position.z = vec48.z;
+                }
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_KMsg_c::Execute() {
+asm int daTag_KMsg_c::Execute() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/Execute__12daTag_KMsg_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8048E8B8-8048E8C0 000AB8 0008+00 1/1 0/0 0/0 .text            Draw__12daTag_KMsg_cFv */
-bool daTag_KMsg_c::Draw() {
-    return true;
+int daTag_KMsg_c::Draw() {
+    return 1;
 }
 
 /* 8048E8C0-8048E9A8 000AC0 00E8+00 2/2 0/0 0/0 .text            isDelete__12daTag_KMsg_cFv */
+#ifndef NONMATCHING
+int daTag_KMsg_c::isDelete() {
+    switch(getType()) {
+    case KMSG_TYPE_0:
+        return 0;
+    case KMSG_TYPE_1:
+        return daNpcT_chkEvtBit(0x40) == 0;
+    case KMSG_TYPE_2: 
+        return 0;
+    case KMSG_TYPE_3:
+        bool rv = false;
+        if (getBitSW() != 0xff && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
+            rv = true;
+        }
+        return rv;
+    case KMSG_TYPE_4:
+        return 0;
+    case KMSG_TYPE_5:
+        return 0;
+    default:
+        return 0;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daTag_KMsg_c::isDelete() {
+asm int daTag_KMsg_c::isDelete() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/isDelete__12daTag_KMsg_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8048E9A8-8048E9C8 000BA8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Create__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_KMsg_Create(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Create__FPv.s"
+static int daTag_KMsg_Create(void* i_this) {
+    return static_cast<daTag_KMsg_c*>(i_this)->create();
 }
-#pragma pop
 
 /* 8048E9C8-8048E9E8 000BC8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Delete__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_KMsg_Delete(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Delete__FPv.s"
+static int daTag_KMsg_Delete(void* i_this) {
+    return static_cast<daTag_KMsg_c*>(i_this)->Delete();
 }
-#pragma pop
 
 /* 8048E9E8-8048EA08 000BE8 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Execute__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_KMsg_Execute(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Execute__FPv.s"
+static int daTag_KMsg_Execute(void* i_this) {
+    return static_cast<daTag_KMsg_c*>(i_this)->Execute();
 }
-#pragma pop
 
 /* 8048EA08-8048EA28 000C08 0020+00 1/0 0/0 0/0 .text            daTag_KMsg_Draw__FPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void daTag_KMsg_Draw(void* param_0) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/daTag_KMsg_Draw__FPv.s"
+static int daTag_KMsg_Draw(void* i_this) {
+    return static_cast<daTag_KMsg_c*>(i_this)->Draw();
 }
-#pragma pop
 
 /* 8048EA28-8048EA30 000C28 0008+00 1/0 0/0 0/0 .text            daTag_KMsg_IsDelete__FPv */
-static bool daTag_KMsg_IsDelete(void* param_0) {
-    return true;
+static int daTag_KMsg_IsDelete(void* param_0) {
+    return 1;
 }
 
 /* 8048EA30-8048EAD4 000C30 00A4+00 1/0 0/0 0/0 .text            __dt__12daTag_KMsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm daTag_KMsg_c::~daTag_KMsg_c() {
+asm void __dt__12daTag_KMsg_cFv() {
+//asm daTag_KMsg_c::~daTag_KMsg_c() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_kmsg/d_a_tag_kmsg/__dt__12daTag_KMsg_cFv.s"
 }

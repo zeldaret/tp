@@ -27,6 +27,7 @@ private:
     /* 0x578 */ dBgS_AcchCir mAcchCir;
     /* 0x5B8 */ dBgS_ObjAcch mAcch;
 };
+
 STATIC_ASSERT(sizeof(daObj_Suisya_c) == 0x790);
 
 #endif /* D_A_OBJ_SUISYA_H */

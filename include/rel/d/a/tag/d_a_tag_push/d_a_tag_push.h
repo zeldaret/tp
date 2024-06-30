@@ -38,6 +38,7 @@ public:
 
     /* 804908CC */ virtual ~daTag_Push_c();
 };
+
 STATIC_ASSERT(sizeof(daTag_Push_c) == 0x574);
 
 #endif /* D_A_TAG_PUSH_H */

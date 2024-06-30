@@ -62,6 +62,7 @@ private:
     /* 0x5B4 */ f32 mMoveValue;
     /* 0x5B8 */ u8 mCloseWaitTime;
 };
+
 STATIC_ASSERT(sizeof(daLv4PoGate_c) == 0x5BC);
 
 class daLv4PoGate_HIO_c : public mDoHIO_entry_c {

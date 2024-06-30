@@ -50,7 +50,7 @@ public:
     virtual void ShdwDraw(cBgS_ShdwDraw*) = 0;
     virtual void CaptPoly(dBgS_CaptPoly&) = 0;
     virtual bool WallCorrect(dBgS_Acch*) = 0;
-    virtual void WallCorrectSort(dBgS_Acch*) = 0;
+    virtual bool WallCorrectSort(dBgS_Acch*) = 0;
     virtual bool RoofChk(dBgS_RoofChk*) = 0;
     virtual bool SplGrpChk(dBgS_SplGrpChk*) = 0;
     virtual bool SphChk(dBgS_SphChk*, void*) = 0;
@@ -84,7 +84,7 @@ public:
     virtual s32 GetRoomPathId(cBgS_PolyInfo const&) = 0;
     virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&) = 0;
     virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&) = 0;
-    virtual u8 GetGrpSoundId(cBgS_PolyInfo const&) = 0;
+    virtual int GetGrpSoundId(cBgS_PolyInfo const&) = 0;
     virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;
     virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*, csXyz*) = 0;

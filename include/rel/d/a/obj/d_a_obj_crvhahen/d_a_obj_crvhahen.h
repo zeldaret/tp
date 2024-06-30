@@ -26,6 +26,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x794 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjCRVHAHEN_c) == 0x794);
 
 

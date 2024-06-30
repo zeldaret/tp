@@ -65,10 +65,11 @@ struct ob_ke_s {
 
 /**
  * @ingroup actors-enemies
+ * @class b_ob_class
  * @brief Morpheel (body)
- * 
- * Lakebed Temple dungeon boss. This is the core/body part of the boss.
- * 
+ *
+ * @details Lakebed Temple dungeon boss. This is the core/body part of the boss.
+ *
  */
 class b_ob_class : public fopEn_enemy_c {
 public:
@@ -187,5 +188,24 @@ public:
     /* 0x5DDC */ f32 mColsetBlend;
     /* 0x5DE0 */ u8 mHIOInit;
 };
+
+STATIC_ASSERT(sizeof(b_ob_class) == 0x5DE4);
+
+class daB_OB_HIO_c {
+public:
+public:
+    /* 8061056C */ daB_OB_HIO_c();
+    /* 8061A808 */ virtual ~daB_OB_HIO_c();
+
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mCoreSize;
+    /* 0x0C */ f32 mCoreMoveSpeed;
+    /* 0x10 */ f32 mBodySize;
+    /* 0x14 */ s16 mLightR;
+    /* 0x16 */ s16 mLightG;
+    /* 0x18 */ s16 mLightB;
+    /* 0x1C */ f32 mRange;
+};
+
 
 #endif /* D_A_B_OB_H */

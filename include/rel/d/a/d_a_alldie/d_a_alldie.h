@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daAlldie_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daAlldie_c : public fopAc_ac_c {
 public:
     enum EAction {

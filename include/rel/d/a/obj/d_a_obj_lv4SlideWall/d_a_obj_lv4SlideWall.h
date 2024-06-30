@@ -31,6 +31,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5b4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daSldWall_c) == 0x5b4);
 
 class daSldWall_HIO_c {

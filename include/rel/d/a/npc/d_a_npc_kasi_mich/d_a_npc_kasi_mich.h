@@ -71,6 +71,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x146c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcKasiMich_c) == 0x146c);
 
 class daNpcKasiMich_Param_c {

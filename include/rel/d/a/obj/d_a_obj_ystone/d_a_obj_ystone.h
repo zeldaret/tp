@@ -57,6 +57,7 @@ public:
     /* 0x59B */ bool field_0x59b;
     /* 0x59C */ u8 field_0x59c[4];
 };
+
 STATIC_ASSERT(sizeof(obj_ystone_class) == 0x5A0);
 
 #endif /* D_A_OBJ_YSTONE_H */

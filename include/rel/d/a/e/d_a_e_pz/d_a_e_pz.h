@@ -48,6 +48,7 @@ private:
     /* 0x845 */ u8 field_0x845;
     /* 0x846 */ u8 field_0x846[0xef8 - 0x846];
 };
+
 STATIC_ASSERT(sizeof(daE_PZ_c) == 0xEF8);
 
 class daE_PZ_HIO_c {

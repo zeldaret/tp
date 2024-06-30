@@ -56,6 +56,7 @@ private:
     /* 0x588 */ u16 mEnemyWaitTime;
     /* 0x58C */ daLv4EdShutter_c* mpShutterActor;
 };
+
 STATIC_ASSERT(sizeof(dalv4CandleDemoTag_c) == 0x590);
 
 class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {

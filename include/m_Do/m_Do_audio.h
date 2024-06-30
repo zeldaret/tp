@@ -142,6 +142,14 @@ inline void mDoAud_taktModeMuteOff() {
     Z2AudioMgr::getInterface()->taktModeMuteOff();
 }
 
+inline void mDoAud_getCameraMapInfo(u32 param_0) {
+    Z2AudioMgr::getInterface()->getCameraMapInfo(param_0);
+}
+
+inline void mDoAud_setCameraGroupInfo(u8 param_0) {
+    Z2AudioMgr::getInterface()->setCameraGroupInfo(param_0);
+}
+
 inline void mDoAud_mEnvse_framework() {
     g_mEnvSeMgr.framework();
 }

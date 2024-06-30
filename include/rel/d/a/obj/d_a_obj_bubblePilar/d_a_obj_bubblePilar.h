@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x750 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daBubbPilar_c) == 0x750);
 
 class daBubbPilar_HIO_c {

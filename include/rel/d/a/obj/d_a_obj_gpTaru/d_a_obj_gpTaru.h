@@ -46,6 +46,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x9ac - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daGpTaru_c) == 0x9ac);
 
 class daGpTaru_HIO_c {

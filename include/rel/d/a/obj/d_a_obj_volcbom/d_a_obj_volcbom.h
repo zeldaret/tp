@@ -63,6 +63,7 @@ private:
     /* 0x960 */ u8 field_0x960;
     /* 0x961 */ u8 field_0x961[0xA1C - 0x961];
 };
+
 STATIC_ASSERT(sizeof(daObjVolcBom_c) == 0xa1c);
 
 

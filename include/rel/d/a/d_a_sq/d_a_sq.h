@@ -8,6 +8,14 @@
 #include "d/cc/d_cc_uty.h"
 #include "d/msg/d_msg_flow.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class sq_class
+ * @brief Squirrel
+ *
+ * @details Is this different from the talking npc actor?
+ *
+ */
 class sq_class : public fopEn_enemy_c {
 public:
     enum Action {

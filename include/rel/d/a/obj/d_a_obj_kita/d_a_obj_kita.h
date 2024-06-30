@@ -15,6 +15,7 @@ class obj_kita_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xd78 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_kita_class) == 0xd78);
 
 struct kita_s {

@@ -41,7 +41,7 @@ dMenuMapCommon_c::dMenuMapCommon_c() {
     _c7c = 0.0f;
     _c84 = 0.0f;
     _c88 = 0.0f;
-    _c8c = 0.0f;
+    mCenterPosX = 0.0f;
     _c90 = 0;
     clearIconInfo();
 }
@@ -226,20 +226,17 @@ void dMenuMapCommon_c::initiate(JKRArchive* arc) {
     mPictures[5]->append(mp_image, 0.0f);
     mPictures[5]->setBasePosition(J2DBasePosition_4);
     mPictures[5]->setInfluencedAlpha(false, false);
-
     mPictures[5]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
 
-    // todo check if this value is mPictures[23] (out of the array) or field 0x60
     mp_image = (ResTIMG*)arc->getResource('TIMG', "im_hikari_no_shizuku_try_10_00_24x24.bti");
     ASSERT(mp_image != 0);
-    mPictures[23] = new J2DPicture(mp_image);
+    _60 = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)arc->getResource('TIMG', "im_hikari_no_shizuku_try_10_00_24x24.bti");
     ASSERT(mp_image != 0);
-    mPictures[23]->append(mp_image, 0.0f);
-    mPictures[23]->setBasePosition(J2DBasePosition_4);
-    mPictures[23]->setInfluencedAlpha(false, false);
-
-    mPictures[23]->setBlackWhite(JUtility::TColor(0, 240, 170, 0),
+    _60->append(mp_image, 0.0f);
+    _60->setBasePosition(J2DBasePosition_4);
+    _60->setInfluencedAlpha(false, false);
+    _60->setBlackWhite(JUtility::TColor(0, 240, 170, 0),
                                  JUtility::TColor(255, 255, 230, 255));
 
     mp_image = (ResTIMG*)arc->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");

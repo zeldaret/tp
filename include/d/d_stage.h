@@ -145,10 +145,10 @@ struct stage_envr_info_class {
 };  // Size: 0x41
 
 struct stage_camera2_data_class {
-    /* 0x00 */ int field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
+    struct {
+        int field_0x0;
+        Vec field_0x4;
+    } /* 0x00 */ field_0x0;
     /* 0x10 */ u8 field_0x10;
     /* 0x11 */ u8 field_0x11;
     /* 0x12 */ u8 field_0x12;
@@ -165,6 +165,7 @@ struct stage_camera_class {
 struct stage_arrow_data_class {
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ csXyz mAngle;
+    /* 0x12 */ s16 field_0x12;
 };  // Size: 0x14
 
 struct stage_arrow_class {
@@ -1098,6 +1099,10 @@ inline u16 dStage_stagInfo_GetStageTitleNo(stage_stag_info_class* pstag) {
     return pstag->mStageTitleNo;
 }
 
+inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
+    return pstag->mCameraType;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -1136,6 +1141,10 @@ inline int dStage_FileList_dt_GlobalWindLevel(dStage_FileList_dt_c* i_fili) {
 
 inline int dStage_FileList_dt_GlobalWindDir(dStage_FileList_dt_c* i_fili) {
     return (i_fili->mParameters >> 0xF) & 7;
+}
+
+inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mDefaultCamera;
 }
 
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {

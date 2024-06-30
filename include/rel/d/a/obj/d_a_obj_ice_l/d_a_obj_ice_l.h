@@ -56,6 +56,7 @@ private:
     /* 0x634 */ J3DModel* mpModel;
     /* 0x638 */ request_of_phase_process_class mPhase;
 };
+
 STATIC_ASSERT(sizeof(daObjIce_l_c) == 0x640);
 
 #endif /* D_A_OBJ_ICE_L_H */

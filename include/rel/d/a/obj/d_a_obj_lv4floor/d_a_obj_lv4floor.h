@@ -44,6 +44,7 @@ private:
     /* 0x5AC */ f32 mMoveYPos;
     /* 0x5B0 */ u8 mAction;
 };
+
 STATIC_ASSERT(sizeof(daObjLv4Floor_c) == 0x5B4);
 
 #endif /* D_A_OBJ_LV4FLOOR_H */

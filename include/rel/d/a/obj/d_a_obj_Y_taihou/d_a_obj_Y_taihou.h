@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x778 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjYtaihou_c) == 0x778);
 
 

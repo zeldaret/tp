@@ -15,6 +15,7 @@ class e_kr_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xf08 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_kr_class) == 0xf08);
 
 class e_krHIO_c {

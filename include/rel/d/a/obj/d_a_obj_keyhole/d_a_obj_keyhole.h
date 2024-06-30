@@ -21,6 +21,7 @@ private:
     /* 0x2ca4 */ u8 mOpenState;
     /* 0x2ca5 */ u8 field_0x2ca5[0x2cb8 - 0x2ca5];
 };
+
 STATIC_ASSERT(sizeof(obj_keyhole_class) == 0x2CB8);
 
 class kh_chain_s {

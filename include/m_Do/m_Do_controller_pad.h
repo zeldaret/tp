@@ -52,6 +52,7 @@ public:
     static f32 getStickValue(u32 pad) { return getCpadInfo(pad).mMainStickValue; }
     static s16 getStickAngle(u32 pad) { return getCpadInfo(pad).mMainStickAngle; }
     static s16 getStickAngle3D(u32 pad) { return getCpadInfo(pad).mMainStickAngle; }
+    static f32 getSubStickX3D(u32 pad) { return getCpadInfo(pad).mCStickPosX; }
     static f32 getSubStickX(u32 pad) { return getCpadInfo(pad).mCStickPosX; }
     static f32 getSubStickY(u32 pad) { return getCpadInfo(pad).mCStickPosY; }
     static f32 getSubStickValue(u32 pad) { return getCpadInfo(pad).mCStickValue; }

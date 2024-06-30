@@ -43,6 +43,7 @@ private:
     /* 0x93A */ s16 field_0x93a;
     /* 0x93C */ cXyz field_0x93c;
 };
+
 STATIC_ASSERT(sizeof(daItemKantera_c) == 0x948);
 #else
 struct daItemKantera_c {

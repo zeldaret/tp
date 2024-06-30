@@ -41,6 +41,7 @@ private:
     /* 0x740 */ WIND_INFLUENCE mWindInfluence;
     /* 0x76C */ f32 mWindPower;
 };
+
 STATIC_ASSERT(sizeof(daObjTrnd_c) == 0x770);
 
 #endif /* D_A_OBJ_TORNADO_H */

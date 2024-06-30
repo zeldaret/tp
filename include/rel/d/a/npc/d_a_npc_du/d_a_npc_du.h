@@ -15,6 +15,7 @@ class npc_du_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0xa00 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(npc_du_class) == 0xa00);
 
 class daNpc_Du_HIO_c {

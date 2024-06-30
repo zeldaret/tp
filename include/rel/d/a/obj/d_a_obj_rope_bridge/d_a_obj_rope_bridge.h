@@ -40,6 +40,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb6c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjRBridge_c) == 0xb6c);
 
 

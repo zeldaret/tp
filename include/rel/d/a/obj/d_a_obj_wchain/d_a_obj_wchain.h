@@ -91,6 +91,7 @@ private:
     /* 0x7AC */ f32 mRealRoofY;
     /* 0x7B0 */ cXyz mRoofPos;
 };
+
 STATIC_ASSERT(sizeof(daObjWchain_c) == 0x7BC);
 
 #endif /* D_A_OBJ_WCHAIN_H */

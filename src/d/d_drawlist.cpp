@@ -1657,7 +1657,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
 
     dDlst_shadowTri_c* dst = getTri() + mCount;
 
-    cXyz b(i_plane->i_GetNP());
+    cXyz b(i_plane->GetNP());
     f32 temp_f3 = (1.0f - fabsf(b.y));
     temp_f3 *= temp_f3;
 
@@ -1767,7 +1767,7 @@ SECTION_SDATA2 static f32 lit_5062 = -90.0f;
 static int psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int param_2,
                                int param_3, int param_4, cM3dGPla* param_5) {
     ShdwDrawPoly_c* shdwDrawPoly = (ShdwDrawPoly_c*)param_0;
-    const cXyz* normal = param_5->i_GetNP();
+    const cXyz* normal = param_5->GetNP();
     if (shdwDrawPoly->getLightVec()->inprod(*normal) < -0.2f) {
         cXyz* center = shdwDrawPoly->getCenter();
         if (normal->x * center->x + normal->y * center->y + normal->z * center->z + param_5->GetD() > -90.f) {

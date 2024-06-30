@@ -8,6 +8,7 @@
 #include "d/bg/d_bg_s_gnd_chk.h"
 #include "d/bg/d_bg_s_roof_chk.h"
 #include "d/bg/d_bg_s_wtr_chk.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 class fopAc_ac_c;
 
@@ -47,6 +48,12 @@ public:
     void ClrWallHDirect() { m_flags &= ~WALL_H_DIRECT; }
     bool ChkWallHit() { return m_flags & WALL_HIT; }
     s16 GetWallAngleY() { return m_wall_angle_y; }
+    bool ChkWallHDirect() { return m_flags & WALL_H_DIRECT; }
+    f32 GetWallHDirect() { return m_wall_h_direct; }
+    f32 GetWallRR() { return m_wall_rr; }
+    void SetWallHit() { m_flags |= WALL_HIT; }
+    void SetWallAngleY(s16 i_angle) { m_wall_angle_y = i_angle; }
+    cM3dGCir* GetCirP() { return &m_cir; }
 
     void SetCir(cXyz& pos) { m_cir.Set(pos.x, pos.z, pos.y + GetWallH(), m_wall_r); }
 };  // Size: 0x40
@@ -166,7 +173,23 @@ public:
     void SetWallNone() { m_flags |= WALL_NONE; }
     void OnLineCheckHit() { m_flags |= LINE_CHECK_HIT; }
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
+    fopAc_ac_c* getMyAc() { return m_my_ac; }
+    
+    cM3dGCir* GetWallCirP(int index) {
+        JUT_ASSERT(index <= m_tbl_size);
+        return pm_acch_cir[index].GetCirP();
+    }
+
     f32 GetWallH(int i_no) { return pm_acch_cir[i_no].GetWallH(); }
+    f32 GetWallR(int i_no) { return pm_acch_cir[i_no].GetWallR(); }
+    bool ChkWallHDirect(int i_no) { return pm_acch_cir[i_no].ChkWallHDirect(); }
+    f32 GetWallHDirect(int i_no) { return pm_acch_cir[i_no].GetWallHDirect(); }
+    f32 GetWallRR(int i_no) { return pm_acch_cir[i_no].GetWallRR(); }
+    void SetWallCirHit(int i_no) { pm_acch_cir[i_no].SetWallHit(); }
+    void SetWallAngleY(int i_no, s16 i_angle) { pm_acch_cir[i_no].SetWallAngleY(i_angle); }
+
+    f32 GetCx() const { return pm_pos->x; }
+    f32 GetCz() const { return pm_pos->z; }
 
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }

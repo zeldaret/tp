@@ -63,6 +63,7 @@ private:
     /* 0x0BD8 */ cXyz field_0xbd8[98];
     /* 0x1070 */ mDoExt_3DlineMat1_c mLineMat;
 };
+
 STATIC_ASSERT(sizeof(daObjCrope_c) == 0x10ac);
 
 

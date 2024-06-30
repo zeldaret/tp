@@ -37,6 +37,7 @@ class daAmiShutter_c : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x5dc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daAmiShutter_c) == 0x5dc);
 
 class daAmiShutter_HIO_c {

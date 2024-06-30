@@ -42,6 +42,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x9ec - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Shop0_c) == 0x9ec);
 
 class daNpc_Shop0_Param_c {

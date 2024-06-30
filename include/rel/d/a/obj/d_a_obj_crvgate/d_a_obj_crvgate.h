@@ -45,6 +45,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xde4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjCRVGATE_c) == 0xde4);
 
 

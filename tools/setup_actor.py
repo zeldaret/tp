@@ -139,7 +139,20 @@ weak_funcs = {
     "asm void daNpcT_JntAnm_c::lookActor(fopAc_ac_c* param_0, f32 param_1, u8 param_2)" : "lookActor__15daNpcT_JntAnm_cFP10fopAc_ac_cfUc",
     "asm daNpcCd_c::~daNpcCd_c()": "__dt__9daNpcCd_cFv",
     "asm void daNpcT_Path_c::getDstPos(cXyz param_0, cXyz* param_1)": "getDstPos__13daNpcT_Path_cF4cXyzP4cXyz",
-    "asm void daDitem_c::setOffsetPos(cXyz param_0)": "setOffsetPos__9daDitem_cF4cXyz"
+    "asm void daDitem_c::setOffsetPos(cXyz param_0)": "setOffsetPos__9daDitem_cF4cXyz",
+    "asm void mDoMtx_stack_c::multVecZero(Vec* param_0)": "multVecZero__14mDoMtx_stack_cFP3Vec",
+    "asm void csXyz::operator=(csXyz const& param_0": "__as__5csXyzFRC5csXyz",
+    "asm void fopEn_enemy_c::setDownPos(cXyz const* param_0)": "setDownPos__13fopEn_enemy_cFPC4cXyz",
+    "asm mDoExt_3DlineMat1_c::mDoExt_3DlineMat1_c()": "__ct__19mDoExt_3DlineMat1_cFv",
+    "asm Z2SoundObjSimple::~Z2SoundObjSimple()": "__dt__16Z2SoundObjSimpleFv",
+    "asm void mDoCPd_c::getTrigA(u32 param_0)": "getTrigA__8mDoCPd_cFUl",
+    "asm void J3DModel::getAnmMtx(int param_0)": "getAnmMtx__8J3DModelFi",
+    "asm void daHorse_c::changeDemoMode(u32 param_0, int param_1)": "changeDemoMode__9daHorse_cFUli",
+    "asm void daHorse_c::changeOriginalDemo()": "changeOriginalDemo__9daHorse_cFv",
+    "asm void dCcD_Sph::operator=(dCcD_Sph const& param_0)": "__as__8dCcD_SphFRC8dCcD_Sph",
+    "asm dCcD_Stts::dCcD_Stts()": "__ct__9dCcD_SttsFv",
+    "asm dCcD_Stts::~dCcD_Stts()": "__dt__9dCcD_SttsFv",
+    "asm void cXyz::abs(Vec const& param_0) const": "abs__4cXyzCFRC3Vec"
 }
 
 # list of known external references to be replaced to avoid symbol collision
@@ -219,12 +232,16 @@ external_refs = [
     "extern \"C\" void C_MTXLightOrtho();",
     "extern \"C\" void strcat();",
     "extern \"C\" void pow();",
-    "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
+    # "extern \"C\" extern u8 mStayNo__20dStage_roomControl_c[4];",
     "extern \"C\" void OSReport_Error();",
-    "extern \"C\" extern u32 g_blackColor;",
+    # "extern \"C\" extern u32 g_blackColor;",
     "extern \"C\" void PSMTXMultVecSR();",
     "extern \"C\" void strlen();",
-    "extern \"C\" extern u32 g_saftyWhiteColor;",
+    # "extern \"C\" extern u32 g_saftyWhiteColor;",
+    "extern \"C\" void PSMTXQuat();",
+    "extern \"C\" void GXInitTexObjCI();",
+    "extern \"C\" void GXInitTlutObj();",
+    "extern \"C\" void GXLoadTlut();",
 ]
 
 types = [
@@ -465,6 +482,39 @@ types = [
     "struct daNpc_Len_c",
     "struct dSv_player_status_b_c",
     "struct daNpc_Maro_c",
+    "struct dSv_restart_c",
+    "struct J3DSkinDeform",
+    "struct J3DDeformData",
+    "struct J3DAnmCluster",
+    "struct mDoExt_blkAnm",
+    "struct daMP_c",
+    "struct dDemo_actor_c",
+    "struct dStage_roomControl_c",
+    "struct dDemo_object_c",
+    "struct dDemo_c",
+    "struct J3DMaterial",
+    "struct leafdraw_class",
+    "struct mDoExt_MtxCalcOldFrame",
+    "struct mDoExt_AnmRatioPack",
+    "struct daPy_frameCtrl_c",
+    "struct daPy_actorKeep_c",
+    "struct Quaternion",
+    "struct J3DTransformInfo",
+    "struct J3DMtxCalcNoAnmBase",
+    "struct J3DMtxCalcNoAnm",
+    "struct J3DMtxCalcNoAnm__template0",
+    "struct J3DMtxCalcJ3DSysInitMaya",
+    "struct J3DMtxCalcCalcTransformMaya",
+    "struct J3DMtxCalc",
+    "struct daTagWaterFall_c",
+    "struct daObj_Balloon_c",
+    "struct daE_YM_c",
+    "struct daBalloon2D_c",
+    "struct daObjLife_c",
+    "struct daAlink_c",
+    "struct dSv_player_item_record_c",
+    "struct dSv_player_item_max_c",
+    "struct dSv_fishing_info_c",
 ]
 
 class ActorSetupManager:
@@ -522,9 +572,9 @@ class ActorSetupManager:
         for line in self.lines:
             if any(ref in line for ref in external_refs):
                 # leave calc_mtx in unless d_camera was included
-                # if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
-                #     new_lines.append(line)
-                #     continue
+                if "extern \"C\" extern void* calc_mtx[1 + 1 /* padding */];" in line and not any("d/d_camera.h" in header for header in self.include_headers):
+                    new_lines.append(line)
+                    continue
 
                 # leave g_dComIfG_gameInfo in unless npc actor
                 if "extern \"C\" extern u8 g_dComIfG_gameInfo[122384];" in line and "npc" not in self.filename and not any("d/a/obj/d_a_obj_carry/d_a_obj_carry.h" in header for header in self.include_headers):
@@ -579,7 +629,7 @@ class ActorSetupManager:
                         # might fail if a tu has more than 1 actor
                         self.actor_name = stripped_line.split(" ")[1]
 
-                        if "d_a_e" in self.filename:
+                        if "d_a_e" in self.filename or "d_a_b" in self.filename:
                             self.actor_class_type = "enemy"
                             stripped_line = stripped_line.replace(" {"," : public fopEn_enemy_c {")
                         else:
@@ -675,7 +725,7 @@ class ActorSetupManager:
                     elif self.actor_class_type == "actor":
                         new_lines.append(f"    /* 0x568 */ u8 field_0x568[{final_class_size} - 0x568];\n")
 
-                    new_lines.append("};\n")
+                    new_lines.append("};\n\n")
                     new_lines.append(f"STATIC_ASSERT(sizeof({self.actor_name}) == {final_class_size});\n")
                 else:
                     in_class = True

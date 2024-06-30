@@ -37,6 +37,7 @@ private:
     /* 0x584 */ u8 mAction;
     /* 0x588 */ u8 unused[12];
 };
+
 STATIC_ASSERT(sizeof(daObjE_CREATE_c) == 0x594);
 
 enum daObjE_EnemyType {

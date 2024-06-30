@@ -86,6 +86,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1138 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Besu_c) == 0x1138);
 
 class daNpc_Besu_Param_c {

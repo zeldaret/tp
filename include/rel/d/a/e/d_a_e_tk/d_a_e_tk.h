@@ -14,6 +14,7 @@ class e_tk_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xa64 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_tk_class) == 0xa64);
 
 class daE_TK_HIO_c {

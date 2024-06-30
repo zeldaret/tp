@@ -7,10 +7,11 @@
 
 /**
  * @ingroup actors-items
+ * @class daSpinner_c
  * @brief Spinner
- * 
- * Arbiter's Grounds dungeon item.
- * 
+ *
+ * @details Arbiter's Grounds dungeon item.
+ *
  */
 class daSpinner_c : public fopAc_ac_c {
 public:

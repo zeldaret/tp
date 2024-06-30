@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x39f8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjMATO_c) == 0x39f8);
 
 struct MatoData_s {

@@ -55,6 +55,7 @@ private:
     /* 0x93C */ u8 mAction;
     /* 0x93D */ u8 field_0x93d[0xa00 - 0x93d];
 };
+
 STATIC_ASSERT(sizeof(daObjStopper_c) == 0xA00);
 
 #endif /* D_A_OBJ_STOPPER_H */

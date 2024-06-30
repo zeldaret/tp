@@ -45,6 +45,7 @@ private:
     /* 0x945 */ s8 mStatus;
     /* 0x946 */ u8 field_0x946[0x97c - 0x946];
 };
+
 STATIC_ASSERT(sizeof(daObjLv5Key_c) == 0x97c);
 
 

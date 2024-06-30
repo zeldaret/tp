@@ -35,6 +35,14 @@ class daTbox_c;
 typedef int (daTbox_c::*daTbox_actionFn)();
 typedef void (daTbox_c::*daTbox_modeFn)();
 
+/**
+ * @ingroup actors-unsorted
+ * @class daTbox_c
+ * @brief Treasure Box
+ *
+ * @details
+ *
+ */
 class daTbox_c : public daTboxBase_c {
 public:
     enum Shape {

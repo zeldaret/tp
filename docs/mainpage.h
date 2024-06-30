@@ -13,6 +13,7 @@ This site contains documentation for the Twilight Princess code base. It is a wo
     - @ref actors-objects "Objects"
     - @ref actors-npcs "NPCs"
     - @ref actors-tags "Tags"
+    - @ref actors-unsorted "Unsorted"
 
     @subsection dolphin Dolphin
 

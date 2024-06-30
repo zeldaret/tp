@@ -46,6 +46,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xDE4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjTks_c) == 0xDE4);
 
 class daObjTks_Param_c {

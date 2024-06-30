@@ -26,6 +26,7 @@ private:
     /* 0x5A0 */ request_of_phase_process_class field_0x5a0;
     /* 0x5A8 */ J3DModel* field_0x5a8;
 };
+
 STATIC_ASSERT(sizeof(daCowdoor_c) == 0x5AC);
 
 #endif /* D_A_OBJ_COWDOOR_H */

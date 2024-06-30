@@ -2775,8 +2775,8 @@ asm void daNpcT_getPlayerInfoFromPlayerList(int param_0, int param_1, cXyz* para
 #pragma pop
 
 /* 8014C5E0-8014C700 146F20 0120+00 0/0 0/0 5/5 .text daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c */
-bool daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP) {
-    bool ret = 0;
+BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP) {
+    BOOL ret = 0;
 
     if (dComIfGp_getDoStatus() == 0x1c) {
         if (daPy_getPlayerActorClass()->checkPriActorOwn(i_ActorP)) {

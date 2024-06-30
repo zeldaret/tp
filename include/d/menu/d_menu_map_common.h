@@ -22,6 +22,11 @@ struct dMenuMapCommon_c {
     /* 801C4778 */ float getIconSizeY(u8 index);
     /* 801C47C4 */ void debugIcon();
 
+    void setCenterPosX(f32 center_pos, u8 param_2) {
+        mCenterPosX = center_pos;
+        _c90 = param_2;
+    }
+
     struct data {
         /* 0x00 */ float _0;
         /* 0x04 */ float _4;
@@ -30,6 +35,23 @@ struct dMenuMapCommon_c {
         /* 0x10 */ float _10;
         /* 0x14 */ u8 _14;
         /* 0x15 */ u8 _15;
+    };
+
+    struct Stage_c {
+        // Incomplete class
+
+        struct Stage_c_data {
+            // Unknown name
+
+            /* 0x00 */ char mName[8];
+            /* 0x08 */ u8 field_0x8;
+            /* 0x09 */ u8 field_0x9;
+            /* 0x0C */ f32 field_0xc;
+            /* 0x10 */ f32 field_0x10;
+        };
+
+        /* 0x0 */ u32 field_0x0;
+        /* 0x4 */ Stage_c_data field_0x4[0];
     };
 
     /* 0x004 */ J2DPicture* mPictures[23];
@@ -47,9 +69,8 @@ struct dMenuMapCommon_c {
     /* 0xC80 */ float _c80;
     /* 0xC84 */ float _c84;
     /* 0xC88 */ float _c88;
-    /* 0xC8C */ float _c8c;
+    /* 0xC8C */ float mCenterPosX;
     /* 0xC90 */ u8 _c90;
 };
-
 
 #endif /* D_MENU_D_MENU_MAP_COMMON_H */

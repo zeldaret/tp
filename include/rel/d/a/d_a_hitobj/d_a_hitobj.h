@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class hitobj_class
+ * @brief Hit Object?
+ *
+ * @details
+ *
+ */
 class hitobj_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhase;

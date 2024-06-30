@@ -88,6 +88,7 @@ private:
     /* 0x620 */ cXyz field_0x620;
     /* 0x62C */ bool mScalingUp;
 };
+
 STATIC_ASSERT(sizeof(daObjBossWarp_c) == 0x630);
 
 #endif /* D_A_OBJ_BOSSWARP_H */

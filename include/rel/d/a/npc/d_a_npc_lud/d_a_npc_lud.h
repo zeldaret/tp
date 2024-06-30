@@ -70,6 +70,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xfdc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Lud_c) == 0xfdc);
 
 class daNpc_Lud_Param_c {

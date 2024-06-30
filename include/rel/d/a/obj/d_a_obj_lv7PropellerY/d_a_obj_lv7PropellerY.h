@@ -34,6 +34,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5c8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daPropY_c) == 0x5c8);
 
 class daPropY_HIO_c {

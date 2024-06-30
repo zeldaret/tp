@@ -243,10 +243,6 @@ extern "C" void checkPass__12J3DFrameCtrlFf();
 extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
 extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
 extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-// extern "C" void PSMTXCopy();
-// extern "C" void PSMTXTrans();
-// extern "C" void PSVECSquareMag();
-// extern "C" void PSVECSquareDistance();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_23();
@@ -264,10 +260,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-// extern "C" void abs();
-// extern "C" void strcmp();
-// extern "C" extern void* g_fopAc_Method[8];
-// extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -277,11 +269,8 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-// extern "C" extern u8 g_env_light[4880];
-// extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 j3dZModeTable[96];
 extern "C" u8 sincosTable___5JMath[65536];
-// extern "C" extern u32 __float_nan;
 extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
@@ -709,25 +698,30 @@ SECTION_DATA static u8 yo_sph_pos_addy2[12] = {
 #pragma pop
 
 /* 80639E58-80639E78 -00001 0020+00 1/0 0/0 0/0 .data            l_daB_YO_Method */
-SECTION_DATA static void* l_daB_YO_Method[8] = {
-    (void*)daB_YO_Create__FP8daB_YO_c,
-    (void*)daB_YO_Delete__FP8daB_YO_c,
-    (void*)daB_YO_Execute__FP8daB_YO_c,
-    (void*)daB_YO_IsDelete__FP8daB_YO_c,
-    (void*)daB_YO_Draw__FP8daB_YO_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daB_YO_Method = {
+    (process_method_func)daB_YO_Create__FP8daB_YO_c,
+    (process_method_func)daB_YO_Delete__FP8daB_YO_c,
+    (process_method_func)daB_YO_Execute__FP8daB_YO_c,
+    (process_method_func)daB_YO_IsDelete__FP8daB_YO_c,
+    (process_method_func)daB_YO_Draw__FP8daB_YO_c,
 };
 
 /* 80639E78-80639EA8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_YO */
-SECTION_DATA extern void* g_profile_B_YO[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02110000, (void*)&g_fpcLf_Method,
-    (void*)0x00001B88, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00DF0000, (void*)&l_daB_YO_Method,
-    (void*)0x00044000, (void*)0x020E0000,
+extern actor_process_profile_definition g_profile_B_YO = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_B_YO,              // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x00001B88,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  223,                    // mPriority
+  &l_daB_YO_Method,       // sub_method
+  0x00044000,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 80639EA8-80639EB4 000448 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */

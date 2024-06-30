@@ -30,6 +30,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xa94 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjYIblltray_c) == 0xa94);
 
 

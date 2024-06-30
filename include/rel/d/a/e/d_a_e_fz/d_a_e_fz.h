@@ -140,6 +140,7 @@ private:
     /* 0xC22 */ u8 field_0xc22;                             /**< ??? */
     /* 0xC23 */ u8 field_0xc23;                             /**< ??? */
 };
+
 STATIC_ASSERT(sizeof(daE_FZ_c) == 0xC24);
 
 class daE_FZ_HIO_c {

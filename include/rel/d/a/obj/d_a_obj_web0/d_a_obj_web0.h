@@ -31,6 +31,7 @@ public:
     /* 0x738 */ u8 mDeleteTimer;
     /* 0x739 */ u8 field_0x739;
 };
+
 STATIC_ASSERT(sizeof(obj_web0_class) == 0x73C);
 
 class daObj_Web0_HIO_c {

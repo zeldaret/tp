@@ -15,6 +15,7 @@ class e_fm_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0x1b084 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_fm_class) == 0x1b084);
 
 class daE_FM_HIO_c {

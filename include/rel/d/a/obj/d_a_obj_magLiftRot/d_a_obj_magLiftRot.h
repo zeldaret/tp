@@ -58,6 +58,7 @@ private:
     /* 0x62C */ f32 field_0x62c;
     /* 0x630 */ f32 field_0x630;
 };
+
 STATIC_ASSERT(sizeof(daMagLiftRot_c) == 0x634);
 
 class daMagLiftRot_HIO_c : public mDoHIO_entry_c {

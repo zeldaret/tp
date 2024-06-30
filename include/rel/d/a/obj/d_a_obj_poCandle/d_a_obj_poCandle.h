@@ -38,6 +38,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x614 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daPoCandle_c) == 0x614);
 
 class daPoCandle_HIO_c {

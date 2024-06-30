@@ -5,6 +5,14 @@
 
 class dMeterButton_c;
 
+/**
+ * @ingroup actors-unsorted
+ * @class daSkip2D_c
+ * @brief ???
+ *
+ * @details
+ *
+ */
 class daSkip2D_c : public fopAc_ac_c {
 public:
     daSkip2D_c() {

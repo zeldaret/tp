@@ -84,6 +84,7 @@ public:
     /* 0xC00 */ Mtx field_0xc00;
     /* 0xC30 */ Mtx field_0xc30;
 };
+
 STATIC_ASSERT(sizeof(daObjRgate_c) == 0xC60);
 
 #endif /* D_A_OBJ_RGATE_H */

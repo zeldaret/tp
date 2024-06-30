@@ -29,6 +29,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x5cc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjFuta_c) == 0x5cc);
 
 

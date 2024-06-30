@@ -3,6 +3,14 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daTboxSw_c
+ * @brief Treasure Box Switch
+ *
+ * @details
+ *
+ */
 class daTboxSw_c : public fopAc_ac_c {
 public:
     /* 80D66858 */ int Create();
@@ -11,6 +19,8 @@ public:
     /* 80D66938 */ int draw();
     /* 80D66940 */ int _delete();
 };
+
+STATIC_ASSERT(sizeof(daTboxSw_c) == 0x568);
 
 namespace daTboxSw_prm {
     inline u8 getTboxNo(daTboxSw_c* p_tbox) { return fopAcM_GetParam(p_tbox) & 0x3F; }

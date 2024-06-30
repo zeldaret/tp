@@ -27,6 +27,14 @@ public:
     /* 0x17C */ cXyz mViewScale;
 };
 
+/**
+ * @ingroup actors-unsorted
+ * @class daMirror_c
+ * @brief Mirror
+ *
+ * @details Used in Link's House? Or Blizzeta's Room? Or Twilight Mirror?
+ *
+ */
 class daMirror_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     /* 80871E24 */ daMirror_c();

@@ -305,6 +305,7 @@ public:
 private:
     u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
+
 STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);
 
 struct daObjCarry_Data {

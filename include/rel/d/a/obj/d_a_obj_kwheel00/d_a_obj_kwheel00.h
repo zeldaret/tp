@@ -26,6 +26,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xb44 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjKWheel00_c) == 0xb44);
 
 

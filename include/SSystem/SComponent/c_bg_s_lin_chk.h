@@ -33,12 +33,15 @@ public:
     cXyz* GetCrossP() { return &mLin.GetEndP(); }
     cM3dGLin* GetLinP() { return &mLin; }
     bool ChkBackFlag() const { return mBackFlag; }
+    void onBackFlag() { mBackFlag = true; }
     bool ChkFrontFlag() const { return mFrontFlag; }
+    void onFrontFlag() { mFrontFlag = true; }
     bool GetPreWallChk() const { return mPreWallChk; }
     bool GetPreGroundChk() const { return mPreGroundChk; }
     bool GetPreRoofChk() const { return mPreRoofChk; }
     cXyz* GetStartP() { return &mLin.GetStartP(); }
     void ClrSttsRoofOff() { field_0x4c &= ~0x20000000; }
+    void ClrSttsWallOff() { field_0x4c &= ~0x40000000; }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */

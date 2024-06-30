@@ -68,6 +68,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1270 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Bans_c) == 0x1270);
 
 class daNpc_Bans_Param_c {

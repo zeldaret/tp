@@ -62,6 +62,7 @@ private:
     /* 0x5AC */ u8 field_0x5ac;
     /* 0x5AD */ u8 field_0x5ad;
 };
+
 STATIC_ASSERT(sizeof(daObjSwBallB_c) == 0x5B0);
 
 #endif /* D_A_OBJ_SWBALLB_H */

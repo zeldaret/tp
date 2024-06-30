@@ -76,6 +76,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xfa8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Sha_c) == 0xfa8);
 
 class daNpc_Sha_Param_c {

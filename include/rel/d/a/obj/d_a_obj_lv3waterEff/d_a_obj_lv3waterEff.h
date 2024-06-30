@@ -23,6 +23,7 @@ private:
     /* 0x580 */ JPABaseEmitter* mParticles[4];
     /* 0x590 */ u8 unused_0x590[0x594 - 0x590];
 };
+
 STATIC_ASSERT(sizeof(daObjWaterEff_c) == 0x594);
 
 #endif /* D_A_OBJ_LV3WATEREFF_H */

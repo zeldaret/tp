@@ -39,6 +39,7 @@ public:
     /* 0x836 */ s16 field_0x836;
     /* 0x838 */ u32 field_0x838;
 };
+
 STATIC_ASSERT(sizeof(obj_wflag_class) == 0x83C);
 
 #endif /* D_A_OBJ_WFLAG_H */

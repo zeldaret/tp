@@ -63,6 +63,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe3c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_zrC_c) == 0xe3c);
 
 class daNpc_zrC_Param_c {

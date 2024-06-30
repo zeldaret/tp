@@ -63,6 +63,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xfdc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Kkri_c) == 0xfdc);
 
 class daNpc_Kkri_Param_c {

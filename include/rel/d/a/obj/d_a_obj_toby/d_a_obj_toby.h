@@ -15,6 +15,7 @@ class obj_toby_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x6374 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(obj_toby_class) == 0x6374);
 
 class daObj_Toby_HIO_c {

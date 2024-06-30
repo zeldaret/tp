@@ -15,6 +15,7 @@ class e_yr_class : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xf20 - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(e_yr_class) == 0xf20);
 
 class e_yrHIO_c {

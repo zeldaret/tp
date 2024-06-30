@@ -6,6 +6,14 @@
 #include "d/particle/d_particle.h"
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daArrow_c
+ * @brief Arrow
+ *
+ * @details
+ *
+ */
 class daArrow_c : public fopAc_ac_c {
 public:
     enum ArrowType_e {
@@ -78,6 +86,7 @@ public:
                                               NULL);
     }
 
+private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ dBgS_ArrowLinChk field_0x56c;
     /* 0x5DC */ dBgS_ObjLinChk field_0x5dc;

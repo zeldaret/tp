@@ -80,6 +80,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xfd8 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Aru_c) == 0xfd8);
 
 class daNpc_Aru_Param_c {

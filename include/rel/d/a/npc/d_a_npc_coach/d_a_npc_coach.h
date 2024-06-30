@@ -47,6 +47,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x2570 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpcCoach_c) == 0x2570);
 
 class daNpcChHarness_c {

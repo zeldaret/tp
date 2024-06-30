@@ -76,6 +76,14 @@ public:
     /* 0x1E */ s16 mWaterHuntAnimType;
 };
 
+/**
+ * @ingroup actors-unsorted
+ * @class do_class
+ * @brief Dog
+ *
+ * @details
+ *
+ */
 class do_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;

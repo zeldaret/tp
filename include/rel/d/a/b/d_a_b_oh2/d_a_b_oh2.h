@@ -6,10 +6,11 @@
 
 /**
  * @ingroup actors-enemies
+ * @class b_oh2_class
  * @brief Morpheel (tentacle)
- * 
- * Lakebed Temple dungeon boss. This is the tentacle part of the boss.
- * 
+ *
+ * @details Lakebed Temple dungeon boss. This is the tentacle part of the boss.
+ *
  */
 class b_oh2_class : public fopEn_enemy_c {
 public:
@@ -34,5 +35,7 @@ public:
     /* 0x898 */ Z2CreatureEnemy mZ2Enemy;
     /* 0x93C */ u8 field_0x93c[0x948 - 0x93C];
 };
+
+STATIC_ASSERT(sizeof(b_oh2_class) == 0x948);
 
 #endif /* D_A_B_OH2_H */

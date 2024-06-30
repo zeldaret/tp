@@ -27,6 +27,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x850 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjH_Saku_c) == 0x850);
 
 

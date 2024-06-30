@@ -4,6 +4,14 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/msg/d_msg_flow.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daTalk_c
+ * @brief Talk (Unused?)
+ *
+ * @details
+ *
+ */
 class daTalk_c : public fopAc_ac_c {
 public:
     /* 80D66378 */ ~daTalk_c();
@@ -14,8 +22,11 @@ public:
     /* 80D66688 */ u16 getStatus();
     /* 80D666A8 */ u32 messageSet();
 
+private:
     /* 0x568 */ dMsgFlow_c mMsgFlow;
     /* 0x5B4 */ u32 mMessageID;
 };
+
+STATIC_ASSERT(sizeof(daTalk_c) == 0x5B8);
 
 #endif /* D_A_TALK_H */

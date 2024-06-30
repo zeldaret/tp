@@ -80,6 +80,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1078 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_ykW_c) == 0x1078);
 
 class daNpc_ykW_Param_c {

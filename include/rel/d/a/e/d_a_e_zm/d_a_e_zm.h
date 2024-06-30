@@ -35,6 +35,7 @@ class daE_ZM_c : public fopEn_enemy_c {
 private:
     /* 0x5ac */ u8 field_0x5ac[0xc3c - 0x5ac];
 };
+
 STATIC_ASSERT(sizeof(daE_ZM_c) == 0xc3c);
 
 class daE_ZM_HIO_c {

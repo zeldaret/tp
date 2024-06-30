@@ -24,6 +24,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x1340 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjFlag3_c) == 0x1340);
 
 class FlagCloth2_c {

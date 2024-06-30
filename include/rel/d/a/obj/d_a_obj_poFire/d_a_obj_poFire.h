@@ -46,6 +46,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x618 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daPoFire_c) == 0x618);
 
 class daPoFire_HIO_c {

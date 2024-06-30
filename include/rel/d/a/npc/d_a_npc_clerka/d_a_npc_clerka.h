@@ -60,6 +60,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x10f4 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_clerkA_c) == 0x10f4);
 
 class daNpc_clerkA_Param_c {

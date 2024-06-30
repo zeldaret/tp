@@ -38,6 +38,7 @@ private:
     /* 0x5CA */ u8 mStatus;
     /* 0x5CB */ u8 field_0x56B[0x5DC - 0x5CB];
 };
+
 STATIC_ASSERT(sizeof(daLv4EdShutter_c) == 0x5dc);
 
 class daLv4EdShutter_HIO_c {

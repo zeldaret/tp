@@ -4,6 +4,14 @@
 #include "d/bg/d_bg_s_movebg_actor.h"
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daDsh_c
+ * @brief Death Sword Shutter Gate
+ *
+ * @details
+ *
+ */
 class daDsh_c : public dBgS_MoveBgActor {
 public:
     class action_c {

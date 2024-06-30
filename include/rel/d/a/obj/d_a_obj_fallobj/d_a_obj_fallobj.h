@@ -57,6 +57,7 @@ private:
     /* 0x5F1 */ u8 field_0x5f1;
     /* 0x5F4 */ Z2SoundObjSimple mSoundObj;
 };
+
 STATIC_ASSERT(sizeof(daObjFallObj_c) == 0x614);
 
 

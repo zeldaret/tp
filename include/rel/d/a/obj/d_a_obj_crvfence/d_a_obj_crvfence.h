@@ -33,6 +33,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x103c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daObjCRVFENCE_c) == 0x103c);
 
 

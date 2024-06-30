@@ -27,6 +27,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0x132c - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daStairBlock_c) == 0x132c);
 
 class daStairBlock_HIO_c {

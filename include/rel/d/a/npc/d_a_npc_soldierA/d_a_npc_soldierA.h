@@ -54,6 +54,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe20 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_SoldierA_c) == 0xe20);
 
 class daNpc_SoldierA_Param_c {

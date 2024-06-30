@@ -53,6 +53,7 @@ public:
 private:
     /* 0x568 */ u8 field_0x568[0xe88 - 0x568];
 };
+
 STATIC_ASSERT(sizeof(daNpc_Seirei_c) == 0xe88);
 
 class daNpc_Seirei_Param_c {

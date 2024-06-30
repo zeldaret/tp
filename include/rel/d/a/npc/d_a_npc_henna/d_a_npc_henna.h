@@ -15,6 +15,7 @@ class npc_henna_class : public fopAc_ac_c {
 private:
     /* 0x568 */ u8 field_0x568[0x7fc - 0x568];
 };
+
 STATIC_ASSERT(sizeof(npc_henna_class) == 0x7fc);
 
 class daNpc_Henna_HIO_c {

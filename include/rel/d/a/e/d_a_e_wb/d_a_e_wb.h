@@ -174,6 +174,7 @@ private:
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
     /* 0x17E8 */ f32 mSpeedRate;
 };
+
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
 
 struct himo_s {

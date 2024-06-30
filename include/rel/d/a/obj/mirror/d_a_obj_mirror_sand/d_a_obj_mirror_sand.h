@@ -43,6 +43,7 @@ private:
     /* 0x57C */ dBgW mBgw[2];
     /* 0x6FC */ Mtx mBgMtx;
 };
+
 STATIC_ASSERT(sizeof(daObjMirrorSand_c) == 0x72C);
 
 #endif /* D_A_OBJ_MIRROR_SAND_H */

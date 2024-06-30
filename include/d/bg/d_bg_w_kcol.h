@@ -71,7 +71,7 @@ public:
     /* 8007F9A4 */ virtual void ShdwDraw(cBgS_ShdwDraw*);
     /* 8007FF1C */ virtual void CaptPoly(dBgS_CaptPoly&);
     /* 800811A0 */ virtual bool WallCorrect(dBgS_Acch*);
-    /* 80080330 */ virtual void WallCorrectSort(dBgS_Acch*);
+    /* 80080330 */ virtual bool WallCorrectSort(dBgS_Acch*);
     /* 80081E18 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 80082184 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
     /* 800824EC */ virtual bool SphChk(dBgS_SphChk*, void*);
@@ -105,7 +105,7 @@ public:
     /* 80082ECC */ virtual s32 GetRoomPathId(cBgS_PolyInfo const&);
     /* 80082EFC */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 80082F2C */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
-    /* 80082F5C */ virtual u8 GetGrpSoundId(cBgS_PolyInfo const&);
+    /* 80082F5C */ virtual int GetGrpSoundId(cBgS_PolyInfo const&);
     /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,
                                        csXyz*);
     /* 80082F90 */ virtual void TransPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,

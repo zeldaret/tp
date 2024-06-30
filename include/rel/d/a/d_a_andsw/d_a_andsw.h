@@ -3,6 +3,14 @@
 
 #include "d/com/d_com_inf_game.h"
 
+/**
+ * @ingroup actors-unsorted
+ * @class daAndsw_c
+ * @brief
+ *
+ * @details
+ *
+ */
 class daAndsw_c : public fopAc_ac_c {
 public:
     u8 getSwNo() {
