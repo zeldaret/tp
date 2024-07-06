@@ -76,6 +76,8 @@ public:
     /* 805C5974 */ void create();
     /* 805C62B0 */ daB_DR_c();
 
+    MtxP getMtx() { return mpModelMorf->getModel()->getAnmMtx(15); }
+
     void onTarget() { mTarget = true; }
     bool isBack() { return mPrm0; }
 

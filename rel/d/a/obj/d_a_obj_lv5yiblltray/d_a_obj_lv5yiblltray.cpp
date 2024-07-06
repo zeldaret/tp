@@ -4,7 +4,6 @@
 */
 
 #include "rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray.h"
-#include "d/cc/d_cc_d.h"
 #include "dol2asm.h"
 
 
@@ -200,7 +199,8 @@ COMPILER_STRIP_GATE(0x80C709C8, &lit_3719);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYIblltray_c::CreateHeap() {
+// asm int daObjYIblltray_c::CreateHeap() {
+extern "C" asm void CreateHeap__16daObjYIblltray_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray/CreateHeap__16daObjYIblltray_cFv.s"
 }
@@ -272,7 +272,7 @@ static dCcD_SrcCyl l_cc_cyl_src = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYIblltray_c::Create() {
+asm int daObjYIblltray_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray/Create__16daObjYIblltray_cFv.s"
 }
@@ -470,7 +470,7 @@ COMPILER_STRIP_GATE(0x80C70A28, &lit_4451);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYIblltray_c::Execute(f32 (**param_0)[3][4]) {
+asm int daObjYIblltray_c::Execute(f32 (**param_0)[3][4]) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray/Execute__16daObjYIblltray_cFPPA3_A4_f.s"
 }
@@ -490,7 +490,7 @@ asm void daObjYIblltray_c::initRotTo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYIblltray_c::Draw() {
+asm int daObjYIblltray_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray/Draw__16daObjYIblltray_cFv.s"
 }
@@ -500,7 +500,7 @@ asm void daObjYIblltray_c::Draw() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjYIblltray_c::Delete() {
+asm int daObjYIblltray_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv5yiblltray/d_a_obj_lv5yiblltray/Delete__16daObjYIblltray_cFv.s"
 }

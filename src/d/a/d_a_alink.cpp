@@ -3926,8 +3926,11 @@ SECTION_SDATA2 static f32 lit_25874 = -0.00016276042151730508f;
 SECTION_SDATA2 static f32 lit_25916 = 214.0f;
 
 /* 80452FA8-80452FB0 0015A8 0008+00 1/1 0/0 0/0 .sdata2          offsetAngle$25945 */
-SECTION_SDATA2 static u8 offsetAngle[8] = {
-    0x00, 0x00, 0x80, 0x00, 0x40, 0x00, 0xC0, 0x00,
+SECTION_SDATA2 static s16 offsetAngle[] = {
+    0x0000,
+    0x8000,
+    0x4000,
+    0xC000,
 };
 
 /* 80452FB0-80452FB4 0015B0 0004+00 1/1 0/0 0/0 .sdata2          @26233 */
@@ -5760,8 +5763,8 @@ SECTION_RODATA static Vec const localPaddleTop = {
 COMPILER_STRIP_GATE(0x803919E4, &localPaddleTop);
 
 /* 803919F0-803919FC 01E050 000C+00 1/1 0/0 0/0 .rodata          underOffsetY$23302 */
-SECTION_RODATA static u8 const underOffsetY[12] = {
-    0x41, 0x70, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
+SECTION_RODATA static f32 const underOffsetY[3] = {
+    15.0f, 90.0f, 150.0f,
 };
 COMPILER_STRIP_GATE(0x803919F0, &underOffsetY);
 

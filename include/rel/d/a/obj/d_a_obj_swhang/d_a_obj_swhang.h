@@ -16,7 +16,6 @@
  */
 class daObjSwHang_c : public dBgS_MoveBgActor {
 public:
-    /* 80101874 */ cXyz getHangPos();
     /* 80CFB9D8 */ void initBaseMtx();
     /* 80CFBA60 */ void setBaseMtx();
     /* 80CFBDD0 */ void create1st();
@@ -38,6 +37,8 @@ public:
     /* 80CFC254 */ virtual int Execute(f32 (**)[3][4]);
     /* 80CFCD04 */ virtual int Draw();
     /* 80CFCD98 */ virtual int Delete();
+
+    cXyz getHangPos() { return mHangPos; }
 
     void setHangPlayer() { mHangPlayer = 1; }
     u8 getType() { return field_0x730; }
