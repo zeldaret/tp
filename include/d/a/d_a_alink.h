@@ -2256,9 +2256,9 @@ public:
     /* 800FC240 */ int procHangReady();
     /* 800FC2F4 */ int procHangLeverDownInit();
     /* 800FC390 */ int procHangLeverDown();
-    /* 800FC5A4 */ void setDragonHangPos();
+    /* 800FC5A4 */ int setDragonHangPos();
     /* 800FC6B4 */ int setOctaIealHangPos();
-    /* 800FC748 */ void setBossBodyHangPos();
+    /* 800FC748 */ int setBossBodyHangPos();
     /* 800FC77C */ int procBossBodyHangInit(fopAc_ac_c*);
     /* 800FC870 */ int procBossBodyHang();
     /* 800FCF58 */ int getLadderUnitCount() const;
@@ -2266,7 +2266,7 @@ public:
     /* 800FD048 */ void setLadderPosInit();
     /* 800FD1F0 */ void setLadderPos(int);
     /* 800FD288 */ f32 getLadderMoveAnmSpeed();
-    /* 800FD2AC */ void changeLadderMoveProc(int);
+    /* 800FD2AC */ int changeLadderMoveProc(int);
     /* 800FD4A8 */ int setMoveBGLadderCorrect();
     /* 800FD5E4 */ int checkLadderFall();
     /* 800FD648 */ int procLadderUpStartInit();
@@ -2286,14 +2286,14 @@ public:
     /* 800FE174 */ void setClimbShapeOffset();
     /* 800FE3C4 */ int getClimbDirectionFromAngle();
     /* 800FE438 */ void changeClimbMoveProc(int);
-    /* 800FE5A0 */ void checkClimbMoveUpDownProc(int);
-    /* 800FE6E8 */ void checkClimbMoveSideProc(int);
-    /* 800FE868 */ void setMoveBGClimbCorrect();
+    /* 800FE5A0 */ BOOL checkClimbMoveUpDownProc(int);
+    /* 800FE6E8 */ BOOL checkClimbMoveSideProc(int);
+    /* 800FE868 */ int setMoveBGClimbCorrect();
     /* 800FEB90 */ int checkBgCorrectClimbMove(cXyz*, cXyz*);
-    /* 800FEC70 */ void checkClimbRoof(f32);
+    /* 800FEC70 */ BOOL checkClimbRoof(f32);
     /* 800FED50 */ int checkClimbGround(cXyz*, f32);
-    /* 800FEEC0 */ void checkBgClimbMove(int);
-    /* 800FF28C */ void setClimbStartNotGround();
+    /* 800FEEC0 */ BOOL checkBgClimbMove(int);
+    /* 800FF28C */ int setClimbStartNotGround();
     /* 800FF450 */ int procClimbUpStartInit(int);
     /* 800FF704 */ int procClimbUpStart();
     /* 800FF818 */ int procClimbDownStartInit(s16);
@@ -2311,7 +2311,7 @@ public:
     /* 80100614 */ void setRoofHangHandOnSE(cBgS_PolyInfo*);
     /* 80100668 */ int checkRoofHangMovePos();
     /* 80100770 */ int commonRoofHangProc();
-    /* 801008EC */ void checkNextActionRoofHang();
+    /* 801008EC */ int checkNextActionRoofHang();
     /* 80100A10 */ int procRoofHangStartInit(cBgS_PolyInfo const&, cXyz const&, int);
     /* 80100AE4 */ int procRoofHangStart();
     /* 80100BB4 */ int procRoofHangWaitInit(int);
@@ -3230,6 +3230,7 @@ public:
     static bool checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
+    BOOL checkClimbFall() { return checkLadderFall(); }
 
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
