@@ -9,15 +9,15 @@
 #include "f_pc/f_pc_searcher.h"
 
 enum {
-    fpcM_ERROR_PROCESS_ID_e = -1,
+    fpcM_ERROR_PROCESS_ID_e = 0xFFFFFFFF
 };
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
 typedef int (*fpcM_DrawIteraterFunc)(void*, void*);
 
-inline u32 fpcM_GetID(const void* pProc) {
-    return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : 0xFFFFFFFF;
+inline fpc_ProcID fpcM_GetID(const void* pProc) {
+    return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : fpcM_ERROR_PROCESS_ID_e;
 }
 inline s16 fpcM_GetName(const void* pActor) {
     return ((base_process_class*)pActor)->mProcName;

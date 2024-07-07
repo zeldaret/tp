@@ -100,13 +100,13 @@ public:
     void setData(fopAc_ac_c*);
     void clearData();
 
-    u32 getID() const { return mID; }
-    void setID(u32 id) { mID = id; }
+    fpc_ProcID getID() const { return mID; }
+    void setID(fpc_ProcID id) { mID = id; }
     fopAc_ac_c* getActor() const { return mActor; }
     fopAc_ac_c* getActorConst() const { return mActor; }
 
 private:
-    /* 0x0 */ u32 mID;
+    /* 0x0 */ fpc_ProcID mID;
     /* 0x4 */ fopAc_ac_c* mActor;
 };  // Size: 0x8
 
@@ -848,6 +848,7 @@ public:
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
     void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
+    void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
