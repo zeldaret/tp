@@ -227,7 +227,7 @@ void daObjSwBallB_c::search_ball() {
     fpcM_Search(s_ball_sub, this);
     for (int i = 0; i < l_target_info_count; i++) {
         if (l_target_info[i] != 0) {
-            u32 id = fopAcM_GetID(l_target_info[i]);
+            fpc_ProcID id = fopAcM_GetID(l_target_info[i]);
             if (id != -1) {
                 int idIndex = -1;
                 for (int j = 0; j < 2; j++) {

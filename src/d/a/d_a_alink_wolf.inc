@@ -5596,7 +5596,7 @@ asm void daAlink_c::checkWolfLockData() {
 
 /* 8013911C-8013916C 133A5C 0050+00 1/0 0/0 0/0 .text checkWolfLock__9daAlink_cCFP10fopAc_ac_c */
 BOOL daAlink_c::checkWolfLock(fopAc_ac_c* i_actor) const {
-    u32 actor_id = fopAcM_GetID(i_actor);
+    fpc_ProcID actor_id = fopAcM_GetID(i_actor);
 
     for (int i = 0; i < mWolfLockNum; i++) {
         if (actor_id == mWolfLockAcKeep[i].getID()) {
@@ -5608,7 +5608,7 @@ BOOL daAlink_c::checkWolfLock(fopAc_ac_c* i_actor) const {
 
 /* 8013916C-801391DC 133AAC 0070+00 1/0 0/0 0/0 .text cancelWolfLock__9daAlink_cFP10fopAc_ac_c */
 bool daAlink_c::cancelWolfLock(fopAc_ac_c* i_actor) {
-    u32 actor_id = fopAcM_GetID(i_actor);
+    fpc_ProcID actor_id = fopAcM_GetID(i_actor);
 
     for (int i = 0; i < mWolfLockNum; i++) {
         if (actor_id == mWolfLockAcKeep[i].getID()) {

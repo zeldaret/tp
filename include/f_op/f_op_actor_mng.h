@@ -35,7 +35,7 @@ struct fopAcM_prm_class {
     /* 0x16 */ u16 mEnemyNo;
     /* 0x18 */ u8 mScale[3];
     /* 0x1B */ u8 mGbaName;     // from WW, maybe a different parameter here
-    /* 0x1C */ s32 mParentPId;  // parent process ID
+    /* 0x1C */ fpc_ProcID mParentPId;  // parent process ID
     /* 0x20 */ s8 mSubtype;
     /* 0x21 */ s8 mRoomNo;
 };
@@ -167,7 +167,7 @@ inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
     return (s8)pActor->current.roomNo;
 }
 
-inline u32 fopAcM_GetID(const void* pActor) {
+inline fpc_ProcID fopAcM_GetID(const void* pActor) {
     return fpcM_GetID(pActor);
 }
 
@@ -242,11 +242,11 @@ inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc func, void* param) {
     return (fopAc_ac_c*)fopAcIt_Judge(func, param);
 }
 
-inline fopAc_ac_c* fopAcM_SearchByID(unsigned int id) {
+inline fopAc_ac_c* fopAcM_SearchByID(fpc_ProcID id) {
     return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
 }
 
-inline u32 fopAcM_GetLinkId(const fopAc_ac_c* pActor) {
+inline fpc_ProcID fopAcM_GetLinkId(const fopAc_ac_c* pActor) {
     return pActor->parentActorID;
 }
 
@@ -342,7 +342,7 @@ inline fopAcM_prm_class* fopAcM_GetAppend(void* actor) {
     return (fopAcM_prm_class*)fpcM_GetAppend(actor);
 }
 
-inline BOOL fopAcM_IsExecuting(unsigned int id) {
+inline BOOL fopAcM_IsExecuting(fpc_ProcID id) {
     return fpcM_IsExecuting(id);
 }
 
@@ -456,7 +456,7 @@ void fopAcM_setStageLayer(void* p_proc);
 
 void fopAcM_setRoomLayer(void* p_proc, int roomNo);
 
-s32 fopAcM_SearchByID(unsigned int id, fopAc_ac_c** p_actor);
+s32 fopAcM_SearchByID(fpc_ProcID id, fopAc_ac_c** p_actor);
 
 s32 fopAcM_SearchByName(s16 procName, fopAc_ac_c** p_actor);
 
@@ -464,13 +464,13 @@ fopAcM_prm_class* fopAcM_CreateAppend();
 
 fopAcM_prm_class* createAppend(u16 enemyNo, u32 parameters, const cXyz* p_pos, int roomNo,
                                const csXyz* p_angle, const cXyz* p_scale, s8 subType,
-                               unsigned int parentPId);
+                               fpc_ProcID parentPId);
 
 void fopAcM_Log(fopAc_ac_c const* p_actor, char const* str);
 
 void fopAcM_delete(fopAc_ac_c* p_actor);
 
-s32 fopAcM_delete(unsigned int actorID);
+s32 fopAcM_delete(fpc_ProcID actorID);
 
 s32 fopAcM_create(s16 procName, u16 enemyNo, u32 parameter, const cXyz* p_pos, int roomNo,
                   const csXyz* p_angle, const cXyz* p_scale, s8 subType, createFunc p_createFunc);
