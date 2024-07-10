@@ -320,6 +320,14 @@ inline void dMsgObject_setDemoMessage(u32 param_0) {
     dMsgObject_getMsgObjectClass()->setDemoMessage(param_0);
 }
 
+inline void dMsgObject_offMsgSendControl() {
+    dMsgObject_getMsgObjectClass()->offMsgSendControl();
+}
+
+inline int dMsgObject_isMsgSendControl() {
+    return dMsgObject_getMsgObjectClass()->isMsgSendControl();
+}
+
 inline const char* dMsgObject_getWord() {
     return dMsgObject_c::getWord();
 }

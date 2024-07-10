@@ -6,135 +6,13 @@
 #include "rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate.h"
 #include "d/a/d_a_player.h"
 #include "d/com/d_com_inf_game.h"
-#include "d/msg/d_msg_flow.h"
+#include "d/msg/d_msg_object.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
 // Types:
 //
-
-class daTagTWGate_c;
-typedef void (daTagTWGate_c::*actionFunc)();
-
-class daTagTWGate_c : public fopAc_ac_c {
-public:
-    enum EType {
-        /* 0x0 */ TYPE_FILONE,
-        /* 0x1 */ TYPE_ORDIN,
-        /* 0x2 */ TYPE_RANAIL,
-        /* 0x3 */ TYPE_HYRAL,
-    };
-
-    enum EAction {
-        /* 0x00 */ ACT_WAIT,
-        /* 0x01 */ ACT_DEMO_FILONE_1,
-        /* 0x02 */ ACT_DEMO_FILONE_2,
-        /* 0x03 */ ACT_DEMO_FILONE_3,
-        /* 0x04 */ ACT_DEMO_ORDIN_1,
-        /* 0x05 */ ACT_DEMO_ORDIN_2,
-        /* 0x06 */ ACT_DEMO_ORDIN_3,
-        /* 0x07 */ ACT_DEMO_RANAIL_1,
-        /* 0x08 */ ACT_DEMO_RANAIL_2,
-        /* 0x09 */ ACT_DEMO_RANAIL_3,
-        /* 0x0A */ ACT_DEMO_HYRAL_1,
-        /* 0x0B */ ACT_DEMO_HYRAL_2,
-        /* 0x0C */ ACT_DEMO_HYRAL_3,
-    };
-
-    inline ~daTagTWGate_c();
-
-    /* 80D525F8 */ void initWait();
-    /* 80D52604 */ void executeWait();
-    /* 80D528F0 */ void initDemoFilone1();
-    /* 80D5297C */ void executeDemoFilone1();
-    /* 80D52AF4 */ void initDemoFilone2();
-    /* 80D52BF0 */ void executeDemoFilone2();
-    /* 80D52DB4 */ void initDemoFilone3();
-    /* 80D52E7C */ void executeDemoFilone3();
-    /* 80D53250 */ void initDemoOrdin1();
-    /* 80D532DC */ void executeDemoOrdin1();
-    /* 80D53454 */ void initDemoOrdin2();
-    /* 80D53550 */ void executeDemoOrdin2();
-    /* 80D53714 */ void initDemoOrdin3();
-    /* 80D537DC */ void executeDemoOrdin3();
-    /* 80D53BD0 */ void initDemoRanail1();
-    /* 80D53C5C */ void executeDemoRanail1();
-    /* 80D53DD4 */ void initDemoRanail2();
-    /* 80D53ED0 */ void executeDemoRanail2();
-    /* 80D54094 */ void initDemoRanail3();
-    /* 80D54178 */ void executeDemoRanail3();
-    /* 80D5456C */ void initDemoHyral1();
-    /* 80D545F8 */ void executeDemoHyral1();
-    /* 80D54770 */ void initDemoHyral2();
-    /* 80D5486C */ void executeDemoHyral2();
-    /* 80D54A30 */ void initDemoHyral3();
-    /* 80D54AF8 */ void executeDemoHyral3();
-    /* 80D54ECC */ void initBaseMtx();
-    /* 80D54F88 */ int downloadModels();
-    /* 80D5502C */ void initTalk(int, fopAc_ac_c**);
-    /* 80D55068 */ bool talkProc(int*, int, fopAc_ac_c**);
-    /* 80D55160 */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 80D55180 */ int CreateHeap();
-
-    u8 getSwitch() { return fopAcM_GetParam(this) >> 8; }
-    u8 getType() { return fopAcM_GetParam(this); }
-
-    inline int create();
-
-    void create_init() {
-        field_0x5e0 = 0;
-        mActionID = 0;
-        mAction = &ActionTable[mActionID][0];
-        (this->**mAction)();
-    }
-
-    void callExecute() {
-        (this->*mAction[1])();
-        mDoAud_seStartLevel(Z2SE_OBJ_DARK_GATE, &current.pos, 0, 0);
-    }
-
-    int execute() {
-        callExecute();
-
-        if (field_0x5e0 != 0) {
-            mpMorf->play(0, 0);
-            mpMorf->modelCalc();
-        }
-        return 1;
-    }
-
-    int draw() {
-        if (field_0x5e0 != 0) {
-            mpMorf->entryDL();
-        }
-        return 1;
-    }
-
-    static u8 const mAttr[1 + 3 /* padding */];
-    static actionFunc ActionTable[13][2];
-
-private:
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
-    /* 0x56C */ request_of_phase_process_class mPhaseZevArc;
-    /* 0x574 */ request_of_phase_process_class mPhaseMdRes;
-    /* 0x57C */ request_of_phase_process_class mPhasePyRes;
-    /* 0x584 */ actionFunc* mAction;
-    /* 0x588 */ int mActionID;
-    /* 0x58C */ dMsgFlow_c mMsgFlow;
-    /* 0x5D8 */ u8 field_0x5d8[4];
-    /* 0x5DC */ s16 mEventID;
-    /* 0x5DE */ u8 field_0x5de;
-    /* 0x5DF */ bool mIsWolf;
-    /* 0x5E0 */ u8 field_0x5e0;
-    /* 0x5E1 */ u8 field_0x5e1;
-    /* 0x5E2 */ u8 mType;
-};
-
-struct dMsgObject_c {
-    /* 802382C8 */ void offMsgSendControl();
-    /* 802382F4 */ void isMsgSendControl();
-};
 
 struct daTagTWGate_zevParam {
     /* 0x00 */ char* mArcName;
@@ -928,6 +806,21 @@ asm void daTagTWGate_c::executeDemoHyral1() {
 
 /* 80D54770-80D5486C 0021F0 00FC+00 1/0 0/0 0/0 .text            initDemoHyral2__13daTagTWGate_cFv
  */
+// load order
+#ifdef NONMATCHING
+void daTagTWGate_c::initDemoHyral2() {
+    fopAcM_onSwitch(this, getSwitch());
+    eventInfo.setArchiveName(l_zevParamTbl[mType].mArcName);
+    dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+    mEventID = dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mTalkEventName, 0xff);
+    if (dComIfGp_event_runCheck()) {
+        dComIfGp_getEvent().reset(this);
+        fopAcM_orderChangeEventId(this, mEventID, 1, 0xffff);
+    } else {
+        fopAcM_orderOtherEventId(this, mEventID, 0xff, 0xffff, 4, 1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -936,16 +829,49 @@ asm void daTagTWGate_c::initDemoHyral2() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initDemoHyral2__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80D5486C-80D54A30 0022EC 01C4+00 1/0 0/0 0/0 .text executeDemoHyral2__13daTagTWGate_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daTagTWGate_c::executeDemoHyral2() {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoHyral2__13daTagTWGate_cFv.s"
+void daTagTWGate_c::executeDemoHyral2() {
+    dEvent_manager_c& eventMgr = dComIfGp_getEventManager();
+    int staffId = eventMgr.getMyStaffId(l_myName, NULL, 0);
+    if (staffId == -1) {
+        return;
+    }
+    int* piVar3 = (int*)eventMgr.getMyNowCutName(staffId);
+    if (eventMgr.getIsAddvance(staffId)) {
+        switch(*piVar3) {
+        case '0001':
+        case '0003':
+            break;
+        case '0002':
+            initTalk(0xbc1, NULL);
+            break;
+        }
+    }
+    switch(*piVar3) {
+    case '0001':
+    case '0003':
+        eventMgr.cutEnd(staffId);
+        break;
+    case '0002':
+        if (talkProc(NULL, 1, NULL)) {
+            s16 choiceNo = mMsgFlow.getChoiceNo();
+            if (choiceNo == 0) {
+                setAction(ACT_DEMO_HYRAL_3);
+            }
+            eventMgr.cutEnd(staffId);
+        }
+        break;
+    }
+    if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
+        eventMgr.endCheck(mEventID))
+    {
+        dComIfGp_event_reset();
+        field_0x5e0 = 0;
+        setAction(ACT_WAIT);
+    }
 }
-#pragma pop
 
 /* 80D54A30-80D54AF8 0024B0 00C8+00 1/0 0/0 0/0 .text            initDemoHyral3__13daTagTWGate_cFv
  */
@@ -961,6 +887,79 @@ void daTagTWGate_c::initDemoHyral3() {
 }
 
 /* 80D54AF8-80D54ECC 002578 03D4+00 1/0 0/0 0/0 .text executeDemoHyral3__13daTagTWGate_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void daTagTWGate_c::executeDemoHyral3() {
+    dEvent_manager_c& eventMgr = dComIfGp_getEventManager();
+    int staffId = eventMgr.getMyStaffId(l_myName, NULL, 0);
+    if (staffId == -1) {
+        return;
+    }
+    int* piVar3 = (int*)eventMgr.getMyNowCutName(staffId);
+    if (eventMgr.getIsAddvance(staffId)) {
+        switch(*piVar3) {
+        case '0001':
+            break;
+        case '0002':
+            dComIfGp_getEvent().startCheckSkipEdge(this);
+            field_0x5e1 = 0x0;
+            break;
+        case '0003':
+            initBaseMtx();
+            mpMorf->setPlaySpeed(1.0f);
+            field_0x5e0 = 1;
+            break;
+        }
+    }
+    switch(*piVar3) {
+    case '0001':
+        int downloadRes = downloadModels();
+        if (downloadRes == 1) {
+            eventMgr.cutEnd(staffId);
+        } else if (downloadRes == -1) {
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
+        }
+        break;
+    case '0002':
+        if (dComIfGp_getEvent().checkSkipEdge()) {
+            dComIfGp_getEvent().onSkipFade();
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
+        }
+        if (field_0x5e1++ == 0x4a) {
+            daPy_py_c* player = daPy_getPlayerActorClass();
+            cXyz cStack_34;
+            csXyz cStack_3c(0, fopAcM_GetShapeAngle_p(player)->y + 0x8000, 0);
+            mDoMtx_stack_c::transS(fopAcM_GetPosition(player));
+            mDoMtx_stack_c::YrotM(cStack_3c.y);
+            mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
+            mDoMtx_stack_c::multVecZero(&cStack_34);
+            dComIfGp_particle_set(0x86c5, &cStack_34, &cStack_3c, NULL);
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &cStack_34, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            eventMgr.cutEnd(staffId);
+        }
+        break;
+    case '0003':
+        if (dComIfGp_getEvent().checkSkipEdge()) {
+            dComIfGp_getEvent().onSkipFade();
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
+        }
+        if (mpMorf->isStop()) {
+            eventMgr.cutEnd(staffId);
+        }
+        break;
+    }
+    if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
+        eventMgr.endCheck(mEventID))
+    {
+        dComIfGp_event_reset();
+        field_0x5e0 = 0;
+        setAction(ACT_WAIT);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -969,6 +968,7 @@ asm void daTagTWGate_c::executeDemoHyral3() {
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/executeDemoHyral3__13daTagTWGate_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80D55840-80D55844 000094 0004+00 0/1 0/0 0/0 .rodata          @4790 */
@@ -1041,14 +1041,30 @@ void daTagTWGate_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 
 /* 80D55068-80D55160 002AE8 00F8+00 4/4 0/0 0/0 .text talkProc__13daTagTWGate_cFPiiPP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool daTagTWGate_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2) {
-    nofralloc
-#include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/talkProc__13daTagTWGate_cFPiiPP10fopAc_ac_c.s"
+bool daTagTWGate_c::talkProc(int* param_1, int param_2, fopAc_ac_c** param_3) {
+    bool rv = false;
+    if (dMsgObject_isMsgSendControl()) {
+        if (param_2 != 0) {
+            dMsgObject_offMsgSendControl();
+        }
+    } else {
+        if (mMsgFlow.doFlow(this, param_3, 0)) {
+            rv = true;
+        } else {
+            if (mMsgFlow.getMsg() != NULL &&
+                (mMsgFlow.getMsg()->mMode == 2 || mMsgFlow.getMsg()->mMode == 6) && param_1 != NULL)
+            {
+                for (int i = 0; param_1[i] > 0; i++) {
+                    if (param_1[i] == mMsgFlow.getMsgNo()) {
+                        rv = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return rv;
 }
-#pragma pop
 
 /* 80D55160-80D55180 002BE0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daTagTWGate_cFP10fopAc_ac_c            */
