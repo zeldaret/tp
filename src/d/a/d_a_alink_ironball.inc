@@ -14,7 +14,7 @@ cXyz* daAlink_c::getIronBallCenterPos() {
 }
 
 /* 80112458-80112474 10CD98 001C+00 1/0 0/0 0/0 .text            getIronBallBgHit__9daAlink_cCFv */
-s16 daAlink_c::getIronBallBgHit() const {
+int daAlink_c::getIronBallBgHit() const {
     if (mEquipItem == IRONBALL) {
         return field_0x301c;
     }
