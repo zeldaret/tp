@@ -3078,7 +3078,7 @@ public:
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
     virtual void onSpinnerPathForceRemove();
-    virtual s16 getIronBallBgHit() const;
+    virtual int getIronBallBgHit() const;
     virtual cXyz* getIronBallCenterPos();
     virtual bool checkCanoeFishingGetLeft() const;
     virtual bool checkCanoeFishingGetRight() const;
