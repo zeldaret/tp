@@ -37,16 +37,16 @@ s32 cLib_distanceAngleS(s16 x, s16 y);
 
 template <typename T>
 inline void cLib_offBit(T& value, T bit) {
-    value &= ~bit;
+    value = (T)(value & ~bit);
 }
 
 template <typename T>
 inline void cLib_onBit(T& value, T bit) {
-    value |= bit;
+    value = (T)(value | bit);
 }
 
 template <typename T>
-inline T cLib_checkBit(T& value, T bit) {
+inline T cLib_checkBit(T value, T bit) {
     return (T)(value & bit);
 }
 

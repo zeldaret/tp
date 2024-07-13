@@ -1,3 +1,6 @@
+#include "d/a/d_a_alink.h"
+#include "d/com/d_com_inf_game.h"
+
 /* 800E3830-800E3858 0DE170 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallA__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
     if (fopAcM_GetName(p_actor) == PROC_Obj_Carry &&
@@ -127,8 +130,7 @@ BOOL daAlink_c::checkGrabCarryActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkGrabSlowMoveActor() {
-    nofralloc
+asm void daAlink_c::checkGrabSlowMoveActor(){nofralloc
 #include "asm/d/a/d_a_alink/checkGrabSlowMoveActor__9daAlink_cFv.s"
 }
 #pragma pop
@@ -150,8 +152,7 @@ BOOL daAlink_c::checkGrabSideActor() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setGrabUpperAnime(f32 param_0) {
-    nofralloc
+asm void daAlink_c::setGrabUpperAnime(f32 param_0){nofralloc
 #include "asm/d/a/d_a_alink/setGrabUpperAnime__9daAlink_cFf.s"
 }
 #pragma pop
@@ -261,8 +262,7 @@ asm void daAlink_c::setGrabUpperSpeedRate() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::setCarryArmAngle(f32 param_0, f32 param_1) {
-    nofralloc
+asm void daAlink_c::setCarryArmAngle(f32 param_0, f32 param_1){nofralloc
 #include "asm/d/a/d_a_alink/setCarryArmAngle__9daAlink_cFff.s"
 }
 #pragma pop
@@ -485,8 +485,7 @@ asm int daAlink_c::procGrabStandInit() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm int daAlink_c::procGrabStand() {
-    nofralloc
+asm int daAlink_c::procGrabStand(){nofralloc
 #include "asm/d/a/d_a_alink/procGrabStand__9daAlink_cFv.s"
 }
 #pragma pop
@@ -576,8 +575,7 @@ asm int daAlink_c::procPickPut() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daAlink_c::checkSetChainPullAnime(s16 param_0) {
-    nofralloc
+asm void daAlink_c::checkSetChainPullAnime(s16 param_0){nofralloc
 #include "asm/d/a/d_a_alink/checkSetChainPullAnime__9daAlink_cFs.s"
 }
 #pragma pop
@@ -712,14 +710,42 @@ BOOL daAlink_c::wallGrabButton() {
 
 /* 800E7F3C-800E80A4 0E287C 0168+00 4/4 0/0 0/0 .text
  * setPushPullKeepData__9daAlink_cFQ29dBgW_Base13PushPullLabeli */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daAlink_c::setPushPullKeepData(dBgW_Base::PushPullLabel param_0, int param_1) {
-    nofralloc
-#include "asm/d/a/d_a_alink/setPushPullKeepData__9daAlink_cFQ29dBgW_Base13PushPullLabeli.s"
+int daAlink_c::setPushPullKeepData(dBgW_Base::PushPullLabel i_label, int param_1) {
+    if (i_label != dBgW::PPLABEL_NONE) {
+        if (checkPowerGloveGet()) {
+            cLib_onBit<dBgW::PushPullLabel>(i_label, dBgW::PPLABEL_HEAVY);
+        }
+
+        if (field_0x3198) {
+            cLib_onBit<dBgW::PushPullLabel>(i_label, dBgW::PPLABEL_4);
+        }
+    }
+
+    fopAc_ac_c* pp_actor = dComIfG_Bgsp().PushPullCallBack(mPolyInfo1, this, shape_angle.y, i_label);
+    if (pp_actor == NULL) {
+        return 0;
+    }
+
+    cXyz unused;
+    if (i_label != dBgW::PPLABEL_NONE || param_1) {
+        if (pp_actor->shape_angle.y != mProcVar2.field_0x300c) {
+            s16 var_r28 = pp_actor->shape_angle.y - mProcVar2.field_0x300c;
+            mProcVar3.field_0x300e.x += var_r28;
+
+            current.pos.x = field_0x37c8.x + field_0x347c * cM_ssin(mProcVar3.field_0x300e.x);
+            current.pos.z = field_0x37c8.z + field_0x347c * cM_scos(mProcVar3.field_0x300e.x);
+            shape_angle.y += var_r28;
+            current.angle.y += var_r28;
+        }
+
+        current.pos.x += pp_actor->current.pos.x - field_0x37c8.x;
+        current.pos.z += pp_actor->current.pos.z - field_0x37c8.z;
+    }
+
+    field_0x37c8 = pp_actor->current.pos;
+    mProcVar2.field_0x300c = pp_actor->shape_angle.y;
+    return 1;
 }
-#pragma pop
 
 /* 800E80A4-800E8148 0E29E4 00A4+00 2/2 0/0 0/0 .text checkPushPullTurnBlock__9daAlink_cFv */
 #pragma push

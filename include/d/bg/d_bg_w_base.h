@@ -18,14 +18,18 @@ class fopAc_ac_c;
 class dBgW_Base : public cBgW_BgId {
 public:
     enum PushPullLabel {
-        PUSHPULL_LABEL1 = 1,
+        PPLABEL_NONE = 0,
+        PPLABEL_PUSH = 1,
+        PPLABEL_PULL = 2,
+        PPLABEL_4 = 4,
+        PPLABEL_HEAVY = 8,
     };
 
     enum PRIORITY {
         PRIORITY_0,
     };
 
-    typedef bool (*PushPull_CallBack)(fopAc_ac_c*, fopAc_ac_c*, s16,
+    typedef fopAc_ac_c* (*PushPull_CallBack)(fopAc_ac_c*, fopAc_ac_c*, s16,
                                      dBgW_Base::PushPullLabel);
 
     /* 8007E5A8 */ dBgW_Base();
@@ -103,6 +107,8 @@ public:
     void SetPriority(PRIORITY priority) { m_priority = priority; }
     void onStickWall() { field_0xb |= 1; }
     void onStickRoof() { field_0xb |= 2; }
+    void OnPushPullOk() { m_pushPull_Ok = true; }
+    void OffPushPullOk() { m_pushPull_Ok = false; }
 
 private:
     /* 0x08 */ u8 m_priority;
