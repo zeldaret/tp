@@ -848,8 +848,8 @@ void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1, cX
 
 /* 80075C6C-80075D0C 0705AC 00A0+00 0/0 1/1 0/0 .text
  * PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
-bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s16 param_2,
-                            dBgW_Base::PushPullLabel param_3) {
+fopAc_ac_c* dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* i_pushActor, s16 i_angle,
+                            dBgW_Base::PushPullLabel i_label) {
     u16 bg_index = param_0.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (!base->ChkUsed()) {
@@ -864,8 +864,8 @@ bool dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* param_1, s
         return false;
     }
 
-    return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, param_1, param_2,
-                                       param_3);
+    return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, i_pushActor, i_angle,
+                                       i_label);
 }
 
 /* 80075D0C-80075D7C 07064C 0070+00 0/0 8/8 1/1 .text dBgS_CheckBWallPoly__FRC13cBgS_PolyInfo */
