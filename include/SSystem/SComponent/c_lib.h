@@ -87,8 +87,7 @@ inline T cLib_maxLimit(T val, T max) {
 
 template <typename T>
 T cLib_calcTimer(T* value) {
-    // Casting 0 to u16 may not be correct, but is matching for now
-    if (*value != (u16)0) {
+    if (*(T*)value != 0) {
         *value = *value - 1;
     }
     return *value;
