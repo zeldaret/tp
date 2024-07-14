@@ -1,5 +1,6 @@
 var NAVTREEINDEX1083 =
 {
+"structrequest__base__class.html#a301d97bfb19efa988e3ef8c9fdbc2ebd":[3,0,2912,15],
 "structrequest__base__class.html#a310229a9e205c8c3b7c6dd2221f66354":[3,0,2912,113],
 "structrequest__base__class.html#a31f9f207748f101d7e2f7706c97056a1":[3,0,2912,177],
 "structrequest__base__class.html#a3244eb2606ccffe160318ffd06353c19":[3,0,2912,101],
@@ -228,13 +229,13 @@ var NAVTREEINDEX1083 =
 "structstage__arrow__data__class.html#a5feb78f6adcd2f1df97ad3c7b4c235c3":[3,0,2957,2],
 "structstage__arrow__data__class.html#aed1ea53870849ed73eadc10f17128a69":[3,0,2957,0],
 "structstage__camera2__data__class.html":[3,0,2958],
+"structstage__camera2__data__class.html#a12e3a1be8b5b8e5650b761a7873fa23c":[3,0,2958,1],
 "structstage__camera2__data__class.html#a1f6cee1a59ec47c6e9401de5a5410262":[3,0,2958,6],
 "structstage__camera2__data__class.html#a6b5e94e01c1afa1e60fc50a89496a431":[3,0,2958,7],
 "structstage__camera2__data__class.html#a82dd7f726c4f34b341deedb570459c57":[3,0,2958,2],
 "structstage__camera2__data__class.html#a8dfaafe2b5a002a43a7c616aeb5c4ca8":[3,0,2958,4],
 "structstage__camera2__data__class.html#a9b5aecc6a6c56f0a05afba454f758fbc":[3,0,2958,8],
 "structstage__camera2__data__class.html#a9c27c3f4a6d83790c4dbb2f1b452fb3e":[3,0,2958,0],
-"structstage__camera2__data__class.html#acc8ba20a0998fc6827c6771dc4187f56":[3,0,2958,1],
 "structstage__camera2__data__class.html#ad6977714b698b3f196634c55544d0364":[3,0,2958,3],
 "structstage__camera2__data__class.html#afef8d0c8f1abd6ad7301a985c901a783":[3,0,2958,5],
 "structstage__camera__class.html":[3,0,2959],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1083 =
 "structstage__map__info__class.html#ae7aa4c8637e56a92cd8e0affd8b7556b":[3,0,2961,1],
 "structstage__map__info__dummy__class.html":[3,0,2962],
 "structstage__map__info__dummy__class.html#a3a496cee77b4234666fde608322a1a8e":[3,0,2962,1],
-"structstage__map__info__dummy__class.html#ae130f416f07ecb907f5f8a8af2addeb9":[3,0,2962,0],
-"structstage__palette__info__class.html":[3,0,2963]
+"structstage__map__info__dummy__class.html#ae130f416f07ecb907f5f8a8af2addeb9":[3,0,2962,0]
 };

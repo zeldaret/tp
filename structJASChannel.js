@@ -59,7 +59,7 @@ var structJASChannel =
     [ "field_0x0", "structJASChannel.html#a10405140607d3ac6713e5bf66cbd7e65", null ],
     [ "field_0x104", "structJASChannel.html#ac237601cc1c0148a97e07161868cab7d", null ],
     [ "field_0x4", "structJASChannel.html#a47fb62565330bcc79b3f55a5349785e1", null ],
-    [ "field_0xdc", "structJASChannel.html#a5360ae284c2d7d4ea5a97a237d4195ca", null ],
+    [ "field_0xdc", "structJASChannel.html#a0091cee451657ff362a850f7322c69ef", null ],
     [ "filler", "structJASChannel.html#a04dbaf358ba0b021b8596e547a249ee7", null ],
     [ "mBankDisposeID", "structJASChannel.html#a54842bd7dee5d16eb0e0cc5e30983d39", null ],
     [ "mCallback", "structJASChannel.html#a1312999e9480d7f4433fc6817e87cec3", null ],

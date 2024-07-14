@@ -403,7 +403,7 @@ var searchData=
   ['sia_400',['SIA',['../structExtended1__PPC__6xx__7xx.html#a7560b388ffff6d0a2af622f36b918f64',1,'Extended1_PPC_6xx_7xx']]],
   ['sidecheckvec0_401',['sideCheckVec0',['../d__a__spinner_8cpp.html#a44f05a0de354b1672e3c2db32cf98b04',1,'d_a_spinner.cpp']]],
   ['sidecheckvec1_402',['sideCheckVec1',['../d__a__spinner_8cpp.html#a21c07591476630f854028a947eecdb0d',1,'d_a_spinner.cpp']]],
-  ['sig_403',['sig',['../structdecimal.html#a117591d9436d7f03855f4d66a79cba95',1,'decimal']]],
+  ['sig_403',['sig',['../structdecimal.html#ad3b26af60667d992f901a4a023dd55a6',1,'decimal']]],
   ['sign_404',['sign',['../e__sqrt_8c.html#abbeb8ae63622a7fef0b5a56bb91a1682',1,'sign:&#160;e_sqrt.c'],['../structdecimal.html#ab4586ebf851412b8482526733bc3808d',1,'decimal::sign']]],
   ['sign_5foptions_405',['sign_options',['../structprint__format.html#a66ca13ed057a52693eeeee92769cc9e7',1,'print_format']]],
   ['signal_5ffuncs_406',['signal_funcs',['../signal_8c.html#a19b2ed63daa70fbccd6e0433155f0f75',1,'signal.c']]],
