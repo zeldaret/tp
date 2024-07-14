@@ -7,6 +7,7 @@ import libyaz0
 import libarc
 import libstage
 from datetime import datetime
+import libbti
 
 
 def getMaxDateFromDir(path):
@@ -35,6 +36,16 @@ convertDefinitions = [
         "sourceExtension": "dzr.json",
         "destExtension": ".dzr",
         "convertFunction": libstage.package_from_json,
+    },
+    {
+        "sourceExtension": "png",
+        "destExtension": ".bti",
+        "convertFunction": libbti.png_to_bti
+    },
+    {
+        "sourceExtension": "bti.json",
+        "destExtension": None,
+        "convertFunction": None
     }
 ]
 
@@ -54,6 +65,8 @@ def convertEntry(file, path, destPath, returnData):
     extractDef = None
     for extractData in convertDefinitions:
         if sourceExtension == extractData["sourceExtension"]:
+            if extractData["destExtension"] == None and extractData["convertFunction"] == None:
+                return
             extractDef = extractData
             if "exceptions" in extractData:
                 for exception in extractData["exceptions"]:

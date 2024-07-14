@@ -4,6 +4,7 @@ import libarc
 from pathlib import Path
 import libyaz0
 import libstage
+import libbti
 
 """
 Extracts the game assets and stores them in the game folder
@@ -144,6 +145,9 @@ convertDefinitions = {
     },
     ".dzr": {
         "function": libstage.extract_to_json
+    },
+    ".bti": {
+        "function": libbti.bti_to_png
     }
 }
 
@@ -167,6 +171,7 @@ def writeFile(name, data):
         file.close()
     else:
         name = extractDef["function"](name, data, writeFile)
+        # print(name)
     return name
 
 
