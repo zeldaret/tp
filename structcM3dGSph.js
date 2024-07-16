@@ -1,8 +1,7 @@
 var structcM3dGSph =
 [
-    [ "~cM3dGSph", "structcM3dGSph.html#a073a4f16a66be093d48e6d854d259da3", null ],
     [ "cM3dGSph", "structcM3dGSph.html#afbdd127b4df4ded0fd06df22b511bf5b", null ],
-    [ "~cM3dGSph", "structcM3dGSph.html#a1f2e7a0855431acabdaf52e987422c03", null ],
+    [ "~cM3dGSph", "structcM3dGSph.html#a073a4f16a66be093d48e6d854d259da3", null ],
     [ "~cM3dGSph", "structcM3dGSph.html#a4207d9656399846ee51258bcd8adbda6", null ],
     [ "Cross", "structcM3dGSph.html#a960273ff8576c487f30b377013bbb3e7", null ],
     [ "cross", "structcM3dGSph.html#ab2accc1bbebc23c9592e3e55236aa837", null ],
@@ -20,7 +19,6 @@ var structcM3dGSph =
     [ "Set", "structcM3dGSph.html#ad6ce3df7f7e4cd6ad5d976e1db62acc0", null ],
     [ "Set", "structcM3dGSph.html#a7cadc62e3d796a113532629d807caece", null ],
     [ "Set", "structcM3dGSph.html#ad66acb3745c2d0bc465b71d4a282f3fc", null ],
-    [ "Set", "structcM3dGSph.html#afb17f7dda81fa609bfac57339dc49043", null ],
     [ "Set", "structcM3dGSph.html#afb17f7dda81fa609bfac57339dc49043", null ],
     [ "SetC", "structcM3dGSph.html#a11d9035c89af90c94d5a923fff9659c8", null ],
     [ "SetC", "structcM3dGSph.html#a7906d76e5826b7ea01473a24f2439f2f", null ],

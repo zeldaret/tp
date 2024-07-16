@@ -21,7 +21,6 @@ var structcM3dGCyl =
     [ "Set", "structcM3dGCyl.html#afacc09a7e9f64fdc0a2ddd62942b6e75", null ],
     [ "Set", "structcM3dGCyl.html#af4dcf0a084399c468ef13c7461cea2ae", null ],
     [ "Set", "structcM3dGCyl.html#ab34973e82d229731981cb6a3198dc7da", null ],
-    [ "Set", "structcM3dGCyl.html#ab34973e82d229731981cb6a3198dc7da", null ],
     [ "SetC", "structcM3dGCyl.html#afa4706d43ca391e5c55edb7b2bcecf0b", null ],
     [ "SetC", "structcM3dGCyl.html#a5627f587f419f283d5be63a7c4388100", null ],
     [ "SetC", "structcM3dGCyl.html#a5627f587f419f283d5be63a7c4388100", null ],
