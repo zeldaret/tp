@@ -55,15 +55,6 @@ int Mthd_IsDelete(void* i_this) {
 };  // namespace
 };  // namespace daObjEff
 
-/* 8057CAD4-8057CAF0 000174 001C+00 1/1 0/0 0/0 .text
- * PrmAbstract<Q38daObjEff5Act_c5Prm_e>__5daObjFPC10fopAc_ac_cQ38daObjEff5Act_c5Prm_eQ38daObjEff5Act_c5Prm_e
- */
-template <typename T>
-int daObj::PrmAbstract(const fopAc_ac_c* param_0, T param_1, T param_2) {
-    u32 param = fopAcM_GetParam(param_0);
-    return ((1 << param_1) - 1) & (param >> param_2);
-}
-
 /* ############################################################################################## */
 /* 8057CAFC-8057CB1C -00001 0020+00 1/0 0/0 0/0 .data
  * Mthd_Table__Q28daObjEff25@unnamed@d_a_obj_eff_cpp@           */

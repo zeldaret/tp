@@ -15,6 +15,12 @@ void posMoveF_grade(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32, cXyz const*
                     cXyz const*);
 void quat_rotBaseY(Quaternion*, cXyz const&);
 void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
+
+template <typename T>
+int PrmAbstract(const fopAc_ac_c* i_actor, T i_prmA, T i_prmB) {
+    u32 param = fopAcM_GetParam(i_actor);
+    return ((1 << i_prmA) - 1) & (param >> i_prmB);
+}
 };  // namespace daObj
 
 #endif /* D_A_D_A_OBJ_H */
