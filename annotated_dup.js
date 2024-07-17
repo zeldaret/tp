@@ -3,6 +3,12 @@ var annotated_dup =
     [ "daObjEff", "namespacedaObjEff.html", [
       [ "Act_c", "classdaObjEff_1_1Act__c.html", "classdaObjEff_1_1Act__c" ]
     ] ],
+    [ "daObjMovebox", "namespacedaObjMovebox.html", [
+      [ "Act_c", "classdaObjMovebox_1_1Act__c.html", "classdaObjMovebox_1_1Act__c" ],
+      [ "Bgc_c", "classdaObjMovebox_1_1Bgc__c.html", "classdaObjMovebox_1_1Bgc__c" ],
+      [ "BgcSrc_c", "classdaObjMovebox_1_1BgcSrc__c.html", "classdaObjMovebox_1_1BgcSrc__c" ],
+      [ "Hio_c", "classdaObjMovebox_1_1Hio__c.html", "classdaObjMovebox_1_1Hio__c" ]
+    ] ],
     [ "JASBNKParser", "namespaceJASBNKParser.html", [
       [ "Ver0", "namespaceJASBNKParser_1_1Ver0.html", [
         [ "THeader", "structJASBNKParser_1_1Ver0_1_1THeader.html", null ],
@@ -1399,7 +1405,7 @@ var annotated_dup =
     [ "daObjMirrorSand_c", "classdaObjMirrorSand__c.html", "classdaObjMirrorSand__c" ],
     [ "daObjMirrorScrew_c", "classdaObjMirrorScrew__c.html", "classdaObjMirrorScrew__c" ],
     [ "daObjMirrorTable_c", "classdaObjMirrorTable__c.html", "classdaObjMirrorTable__c" ],
-    [ "daObjMovebox", "classdaObjMovebox.html", "classdaObjMovebox" ],
+    [ "daObjMovebox", "classdaObjMovebox.html", null ],
     [ "daObjNagaisu_c", "classdaObjNagaisu__c.html", "classdaObjNagaisu__c" ],
     [ "daObjNameplate_c", "classdaObjNameplate__c.html", "classdaObjNameplate__c" ],
     [ "daObjNAN_c", "classdaObjNAN__c.html", "classdaObjNAN__c" ],

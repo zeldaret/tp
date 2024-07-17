@@ -22,6 +22,7 @@ var classdBgS__MoveBgActor =
     [ "MoveBGDraw", "classdBgS__MoveBgActor.html#a54c0a012a5fcfaf80342314ff84cbe2a", null ],
     [ "MoveBGExecute", "classdBgS__MoveBgActor.html#ad70526e6ca3224a5cda3e146f297204b", null ],
     [ "MoveBGExecute", "classdBgS__MoveBgActor.html#a84f246734ff29831b116d5ea6bb105b0", null ],
+    [ "MoveBGIsDelete", "classdBgS__MoveBgActor.html#a911d653a28f6f81d366029a66106547d", null ],
     [ "ToBack", "classdBgS__MoveBgActor.html#a78fc6a7fa60402ee9e26ba6339058fe4", null ],
     [ "ToBack", "classdBgS__MoveBgActor.html#a775511e01ea7fe15c79b2e0a578e8128", null ],
     [ "ToFore", "classdBgS__MoveBgActor.html#a46bdd3c52d0abea4d1c7ded968b0ed4a", null ],

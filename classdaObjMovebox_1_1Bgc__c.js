@@ -1,0 +1,36 @@
+var classdaObjMovebox_1_1Bgc__c =
+[
+    [ "State_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0", [
+      [ "STATE_0_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0a72ec6bbc7e4bba888f3a8947ea370703", null ],
+      [ "STATE_1_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0af2a33a1c5d69e79853fe7663805cf746", null ],
+      [ "STATE_2_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0aed730f27f8ec8daf333f8d8e7f0a4842", null ],
+      [ "STATE_4_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0ac17c9f3fe8a2a069f949865268c75bfd", null ],
+      [ "STATE_8_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0a39e66c4562ddde5f9d25315e296233b4", null ],
+      [ "STATE_10_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0a6a1053fcb26af3ba554762399bf3ba79", null ],
+      [ "STATE_20_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0a7f6a32b1f71464e44fda36317ab50a5f", null ],
+      [ "STATE_40_e", "classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0ada77d636aab4b90e836088ca6b9a753c", null ]
+    ] ],
+    [ "Bgc_c", "classdaObjMovebox_1_1Bgc__c.html#a82fcaaac8c2064d3630ae10db1dc1543", null ],
+    [ "chk_wall_pre", "classdaObjMovebox_1_1Bgc__c.html#a6ba277691cbe4e65972bbeecc71d9bf3", null ],
+    [ "chk_wall_touch", "classdaObjMovebox_1_1Bgc__c.html#a795994501678cdccf9c97b5a1be29db6", null ],
+    [ "chk_wall_touch2", "classdaObjMovebox_1_1Bgc__c.html#a7110d76b726de5abce166643b24f11f5", null ],
+    [ "gnd_pos", "classdaObjMovebox_1_1Bgc__c.html#a41d125549c1417a6e765a92177320e07", null ],
+    [ "proc_vertical", "classdaObjMovebox_1_1Bgc__c.html#ae0872ad17bf4af91d4e0a80604084df6", null ],
+    [ "wall_pos", "classdaObjMovebox_1_1Bgc__c.html#a81e6c25332618624f6bbfdee8675eaea", null ],
+    [ "wrt_pos", "classdaObjMovebox_1_1Bgc__c.html#ad1ab316ab1401b7310fd53fbdabf4973", null ],
+    [ "field_0x0", "classdaObjMovebox_1_1Bgc__c.html#a27059513dbd7972e7c33a457cf14911b", null ],
+    [ "field_0x178", "classdaObjMovebox_1_1Bgc__c.html#a0df79426e095f9e9898ae72a24124186", null ],
+    [ "field_0x17c", "classdaObjMovebox_1_1Bgc__c.html#a5929326fcbee1e255bb623fcb2872f1f", null ],
+    [ "field_0x5c", "classdaObjMovebox_1_1Bgc__c.html#adb681b9106d01e22d12c999cf195e929", null ],
+    [ "field_0x60", "classdaObjMovebox_1_1Bgc__c.html#a3abd1d03831765bd25f85c40a26190f5", null ],
+    [ "field_0x64", "classdaObjMovebox_1_1Bgc__c.html#a866d99e9632c561249fa44d5bba72f3a", null ],
+    [ "M_gnd_work", "classdaObjMovebox_1_1Bgc__c.html#a7311015b929308c830e4832a7beb2bfa", null ],
+    [ "M_gnd_work", "classdaObjMovebox_1_1Bgc__c.html#ab62b7331ea064563df57c8b2a0a7d38f", null ],
+    [ "M_lin20", "classdaObjMovebox_1_1Bgc__c.html#aca49ab7b389175dd0056e606be931834", null ],
+    [ "M_lin5", "classdaObjMovebox_1_1Bgc__c.html#a7d955b1d66ca284d71b986db12b7ca16", null ],
+    [ "M_wall_work", "classdaObjMovebox_1_1Bgc__c.html#a1cc1fc13bb2cab75709b98c990606242", null ],
+    [ "M_wall_work", "classdaObjMovebox_1_1Bgc__c.html#aeffbdb3ec25d854adc536009fad371f0", null ],
+    [ "M_wrt_work", "classdaObjMovebox_1_1Bgc__c.html#a0b199efdc54a77befdd137b618b23799", null ],
+    [ "M_wrt_work", "classdaObjMovebox_1_1Bgc__c.html#ada625e2d1603114195b885f4844e28d9", null ],
+    [ "mState", "classdaObjMovebox_1_1Bgc__c.html#ad25058be161e51cc7b7986270643f804", null ]
+];

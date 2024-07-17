@@ -39,9 +39,11 @@ var namespaces_dup =
       [ "make_eff_break_kotubo2", "namespacedaObj.html#aaa3f3b3fef3d6fa3fe8cb85333ad4072", null ],
       [ "posMoveF_grade", "namespacedaObj.html#a200846d2acfb3453e17ea6a0fb442091", null ],
       [ "posMoveF_stream", "namespacedaObj.html#a6b3e2e1060c82b92111cc13ba813ae18", null ],
+      [ "PrmAbstract", "namespacedaObj.html#a21ea292fb18c6eb98c84f979c10f3ddf", null ],
       [ "quat_rotBaseY", "namespacedaObj.html#a214cdfc1c7c65b0c72887aaa2ca67b73", null ]
     ] ],
     [ "daObjEff", "namespacedaObjEff.html", "namespacedaObjEff" ],
+    [ "daObjMovebox", "namespacedaObjMovebox.html", "namespacedaObjMovebox" ],
     [ "daShopItem_prm", "namespacedaShopItem__prm.html", [
       [ "getGroup", "namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3", null ],
       [ "getItemNo", "namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b", null ]

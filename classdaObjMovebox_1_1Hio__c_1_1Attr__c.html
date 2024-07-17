@@ -1,0 +1,937 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: daObjMovebox::Hio_c::Attr_c Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classdaObjMovebox_1_1Hio__c_1_1Attr__c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classdaObjMovebox_1_1Hio__c_1_1Attr__c-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">daObjMovebox::Hio_c::Attr_c Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="d__a__obj__movebox_8h_source.html">d_a_obj_movebox.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af868629a51d489bace8282ba15a7e132" id="r_af868629a51d489bace8282ba15a7e132"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#af868629a51d489bace8282ba15a7e132">mFirstPushStopTime</a></td></tr>
+<tr class="separator:af868629a51d489bace8282ba15a7e132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce5bfc75ec39b6a756c639a9129623d" id="r_abce5bfc75ec39b6a756c639a9129623d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#abce5bfc75ec39b6a756c639a9129623d">mRepeatPushStopTime</a></td></tr>
+<tr class="separator:abce5bfc75ec39b6a756c639a9129623d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358c4d7201ae884475bed587561ef330" id="r_a358c4d7201ae884475bed587561ef330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a358c4d7201ae884475bed587561ef330">mPushMoveTime</a></td></tr>
+<tr class="separator:a358c4d7201ae884475bed587561ef330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22066a92e1ea15c61098d7461a672cf6" id="r_a22066a92e1ea15c61098d7461a672cf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a22066a92e1ea15c61098d7461a672cf6">mFirstPullStopTime</a></td></tr>
+<tr class="separator:a22066a92e1ea15c61098d7461a672cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da1cccb71a688144bd13430b0d52cf9" id="r_a3da1cccb71a688144bd13430b0d52cf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a3da1cccb71a688144bd13430b0d52cf9">mRepeatPullStopTime</a></td></tr>
+<tr class="separator:a3da1cccb71a688144bd13430b0d52cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a924282214cbd56529ec5fb127d9e24c2" id="r_a924282214cbd56529ec5fb127d9e24c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a924282214cbd56529ec5fb127d9e24c2">mPullMoveTime</a></td></tr>
+<tr class="separator:a924282214cbd56529ec5fb127d9e24c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3295ac4d3231337d55141c51f39e0ad" id="r_ae3295ac4d3231337d55141c51f39e0ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ae3295ac4d3231337d55141c51f39e0ad">mUnitDistance</a></td></tr>
+<tr class="separator:ae3295ac4d3231337d55141c51f39e0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae746c71a0d2e77cf31ff5aeaaed2b862" id="r_ae746c71a0d2e77cf31ff5aeaaed2b862"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ae746c71a0d2e77cf31ff5aeaaed2b862">mShadowSize</a></td></tr>
+<tr class="separator:ae746c71a0d2e77cf31ff5aeaaed2b862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a825e3379fce948725646c90a0041a74f" id="r_a825e3379fce948725646c90a0041a74f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a825e3379fce948725646c90a0041a74f">mGravity</a></td></tr>
+<tr class="separator:a825e3379fce948725646c90a0041a74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e6421b28361c661ba392fce0a1ec08" id="r_ad5e6421b28361c661ba392fce0a1ec08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ad5e6421b28361c661ba392fce0a1ec08">mViscosityResistance</a></td></tr>
+<tr class="separator:ad5e6421b28361c661ba392fce0a1ec08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861b523f0c7b3d5ddc9d6e273dea2b3c" id="r_a861b523f0c7b3d5ddc9d6e273dea2b3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a861b523f0c7b3d5ddc9d6e273dea2b3c">mInertiaResistance</a></td></tr>
+<tr class="separator:a861b523f0c7b3d5ddc9d6e273dea2b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b39097743ce24f81e89b7aae6a20bd8" id="r_a1b39097743ce24f81e89b7aae6a20bd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a1b39097743ce24f81e89b7aae6a20bd8">mFallYInitSpeed</a></td></tr>
+<tr class="separator:a1b39097743ce24f81e89b7aae6a20bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f601eff7ccd7421f7c7267069159bf" id="r_a88f601eff7ccd7421f7c7267069159bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a88f601eff7ccd7421f7c7267069159bf">mLandSmokeScale</a></td></tr>
+<tr class="separator:a88f601eff7ccd7421f7c7267069159bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6db0eef822c6ad489ae47063f214c75" id="r_ab6db0eef822c6ad489ae47063f214c75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ab6db0eef822c6ad489ae47063f214c75">mBuoyancy</a></td></tr>
+<tr class="separator:ab6db0eef822c6ad489ae47063f214c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c626ccc3688a89e44655f9a3fb6a36d" id="r_a2c626ccc3688a89e44655f9a3fb6a36d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a2c626ccc3688a89e44655f9a3fb6a36d">mPlayerGravity</a></td></tr>
+<tr class="separator:a2c626ccc3688a89e44655f9a3fb6a36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a125d8423d4be9a7884c6f4bf7d11a1bc" id="r_a125d8423d4be9a7884c6f4bf7d11a1bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a125d8423d4be9a7884c6f4bf7d11a1bc">mMiscGravity</a></td></tr>
+<tr class="separator:a125d8423d4be9a7884c6f4bf7d11a1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e023793beda33d41db587be0e00e9ff" id="r_a0e023793beda33d41db587be0e00e9ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a0e023793beda33d41db587be0e00e9ff">mWaterOscillationAccel</a></td></tr>
+<tr class="separator:a0e023793beda33d41db587be0e00e9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f0b49630509e87ac64aab91de2f13" id="r_a781f0b49630509e87ac64aab91de2f13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a781f0b49630509e87ac64aab91de2f13">mWaterOscillationAngleSpeed</a></td></tr>
+<tr class="separator:a781f0b49630509e87ac64aab91de2f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6dcf9e4452378b35a320defba30e597" id="r_ae6dcf9e4452378b35a320defba30e597"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ae6dcf9e4452378b35a320defba30e597">mWaterViscoscityResistance</a></td></tr>
+<tr class="separator:ae6dcf9e4452378b35a320defba30e597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68760f9f5c5517c34e418b7c92d31f35" id="r_a68760f9f5c5517c34e418b7c92d31f35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a68760f9f5c5517c34e418b7c92d31f35">mWaterInertiaResistance</a></td></tr>
+<tr class="separator:a68760f9f5c5517c34e418b7c92d31f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb9fd39d82637124d2551bffd694938" id="r_abfb9fd39d82637124d2551bffd694938"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#abfb9fd39d82637124d2551bffd694938">mPlayerTiltPower</a></td></tr>
+<tr class="separator:abfb9fd39d82637124d2551bffd694938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae739bf712b55a27e862c1799073db166" id="r_ae739bf712b55a27e862c1799073db166"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ae739bf712b55a27e862c1799073db166">mMiscTiltPower</a></td></tr>
+<tr class="separator:ae739bf712b55a27e862c1799073db166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76017e39ae6a913b0fbe6c0df0678d45" id="r_a76017e39ae6a913b0fbe6c0df0678d45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a76017e39ae6a913b0fbe6c0df0678d45">mMaxTiltPower</a></td></tr>
+<tr class="separator:a76017e39ae6a913b0fbe6c0df0678d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc664cea8623ffdc6663c3b875d63234" id="r_adc664cea8623ffdc6663c3b875d63234"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#adc664cea8623ffdc6663c3b875d63234">mTiltSpringFactor</a></td></tr>
+<tr class="separator:adc664cea8623ffdc6663c3b875d63234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f78462aa146581accfe02c484ade2e" id="r_a26f78462aa146581accfe02c484ade2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a26f78462aa146581accfe02c484ade2e">mTiltViscoscityResistance</a></td></tr>
+<tr class="separator:a26f78462aa146581accfe02c484ade2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7232bd5845356d86f79e8c346efbd456" id="r_a7232bd5845356d86f79e8c346efbd456"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a7232bd5845356d86f79e8c346efbd456">field_0x58</a></td></tr>
+<tr class="separator:a7232bd5845356d86f79e8c346efbd456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469ff457675c3c23a3ef67fa87d75efb" id="r_a469ff457675c3c23a3ef67fa87d75efb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a469ff457675c3c23a3ef67fa87d75efb">field_0x5c</a></td></tr>
+<tr class="separator:a469ff457675c3c23a3ef67fa87d75efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af24b5d412d1a63f4c38e6386627e05ee" id="r_af24b5d412d1a63f4c38e6386627e05ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#af24b5d412d1a63f4c38e6386627e05ee">field_0x60</a></td></tr>
+<tr class="separator:af24b5d412d1a63f4c38e6386627e05ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc04d3a20140582d8cecbf0e4c33639e" id="r_abc04d3a20140582d8cecbf0e4c33639e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#abc04d3a20140582d8cecbf0e4c33639e">field_0x64</a></td></tr>
+<tr class="separator:abc04d3a20140582d8cecbf0e4c33639e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919a16d0064b51cfe69f013480494980" id="r_a919a16d0064b51cfe69f013480494980"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a919a16d0064b51cfe69f013480494980">field_0x68</a></td></tr>
+<tr class="separator:a919a16d0064b51cfe69f013480494980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4996d85dcfc6e798796b9e9446e59d8" id="r_af4996d85dcfc6e798796b9e9446e59d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#af4996d85dcfc6e798796b9e9446e59d8">field_0x6c</a></td></tr>
+<tr class="separator:af4996d85dcfc6e798796b9e9446e59d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ac335b09367e52d9639501b40e2c8d" id="r_a21ac335b09367e52d9639501b40e2c8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a21ac335b09367e52d9639501b40e2c8d">field_0x70</a></td></tr>
+<tr class="separator:a21ac335b09367e52d9639501b40e2c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e484947e5c5ecde0004755141eba89" id="r_a22e484947e5c5ecde0004755141eba89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a22e484947e5c5ecde0004755141eba89">field_0x74</a></td></tr>
+<tr class="separator:a22e484947e5c5ecde0004755141eba89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0956e96edfaf50ddb360992917df0cef" id="r_a0956e96edfaf50ddb360992917df0cef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a0956e96edfaf50ddb360992917df0cef">field_0x78</a></td></tr>
+<tr class="separator:a0956e96edfaf50ddb360992917df0cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad808547d109a32363757d7a0ed6cf31d" id="r_ad808547d109a32363757d7a0ed6cf31d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ad808547d109a32363757d7a0ed6cf31d">field_0x7c</a></td></tr>
+<tr class="separator:ad808547d109a32363757d7a0ed6cf31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b57d87e586d2ab5fe45dd234818829" id="r_a21b57d87e586d2ab5fe45dd234818829"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a21b57d87e586d2ab5fe45dd234818829">field_0x80</a></td></tr>
+<tr class="separator:a21b57d87e586d2ab5fe45dd234818829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81d6e29f0254dbf866c2aca178367ee" id="r_ac81d6e29f0254dbf866c2aca178367ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ac81d6e29f0254dbf866c2aca178367ee">field_0x84</a></td></tr>
+<tr class="separator:ac81d6e29f0254dbf866c2aca178367ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0eb9f07ddb345e7c8d8e1b0f75300ec" id="r_af0eb9f07ddb345e7c8d8e1b0f75300ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#af0eb9f07ddb345e7c8d8e1b0f75300ec">field_0x88</a></td></tr>
+<tr class="separator:af0eb9f07ddb345e7c8d8e1b0f75300ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c17ce6a10abc2683bd14618d8eb6f1" id="r_a24c17ce6a10abc2683bd14618d8eb6f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a24c17ce6a10abc2683bd14618d8eb6f1">field_0x8c</a></td></tr>
+<tr class="separator:a24c17ce6a10abc2683bd14618d8eb6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0f7f2fdb90b98bbde6a008986489a8" id="r_a5d0f7f2fdb90b98bbde6a008986489a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a5d0f7f2fdb90b98bbde6a008986489a8">field_0x90</a></td></tr>
+<tr class="separator:a5d0f7f2fdb90b98bbde6a008986489a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a291a4894a3b755eb5552ec2f40b075a2" id="r_a291a4894a3b755eb5552ec2f40b075a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a291a4894a3b755eb5552ec2f40b075a2">field_0x92</a></td></tr>
+<tr class="separator:a291a4894a3b755eb5552ec2f40b075a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51a0a6d1a08cb610587208cbc88a698" id="r_ae51a0a6d1a08cb610587208cbc88a698"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ae51a0a6d1a08cb610587208cbc88a698">field_0x94</a></td></tr>
+<tr class="separator:ae51a0a6d1a08cb610587208cbc88a698"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51d1b374713980c32e2463e76774b993" id="r_a51d1b374713980c32e2463e76774b993"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a51d1b374713980c32e2463e76774b993">field_0x96</a></td></tr>
+<tr class="separator:a51d1b374713980c32e2463e76774b993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cfad5612f479aa81e5f7ca4ade63195" id="r_a7cfad5612f479aa81e5f7ca4ade63195"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#a7cfad5612f479aa81e5f7ca4ade63195">field_0x98</a></td></tr>
+<tr class="separator:a7cfad5612f479aa81e5f7ca4ade63195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac096927dcc32889f106e0cb5d5078237" id="r_ac096927dcc32889f106e0cb5d5078237"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#ac096927dcc32889f106e0cb5d5078237">field_0x9a</a></td></tr>
+<tr class="separator:ac096927dcc32889f106e0cb5d5078237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca692000545c145b73d2ac07daac3538" id="r_aca692000545c145b73d2ac07daac3538"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#aca692000545c145b73d2ac07daac3538">field_0x9c</a></td></tr>
+<tr class="separator:aca692000545c145b73d2ac07daac3538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef03e4f9218d65436b42616630e4d72" id="r_adef03e4f9218d65436b42616630e4d72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#adef03e4f9218d65436b42616630e4d72">field_0x9d</a></td></tr>
+<tr class="separator:adef03e4f9218d65436b42616630e4d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff64cac392732e0da15a3c3469f4af2" id="r_afff64cac392732e0da15a3c3469f4af2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html#afff64cac392732e0da15a3c3469f4af2">field_0x9e</a></td></tr>
+<tr class="separator:afff64cac392732e0da15a3c3469f4af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7232bd5845356d86f79e8c346efbd456" name="a7232bd5845356d86f79e8c346efbd456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7232bd5845356d86f79e8c346efbd456">&#9670;&#160;</a></span>field_0x58</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjMovebox::Hio_c::Attr_c::field_0x58</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a469ff457675c3c23a3ef67fa87d75efb" name="a469ff457675c3c23a3ef67fa87d75efb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469ff457675c3c23a3ef67fa87d75efb">&#9670;&#160;</a></span>field_0x5c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjMovebox::Hio_c::Attr_c::field_0x5c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af24b5d412d1a63f4c38e6386627e05ee" name="af24b5d412d1a63f4c38e6386627e05ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24b5d412d1a63f4c38e6386627e05ee">&#9670;&#160;</a></span>field_0x60</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daObjMovebox::Hio_c::Attr_c::field_0x60</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc04d3a20140582d8cecbf0e4c33639e" name="abc04d3a20140582d8cecbf0e4c33639e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc04d3a20140582d8cecbf0e4c33639e">&#9670;&#160;</a></span>field_0x64</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a919a16d0064b51cfe69f013480494980" name="a919a16d0064b51cfe69f013480494980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919a16d0064b51cfe69f013480494980">&#9670;&#160;</a></span>field_0x68</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x68</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4996d85dcfc6e798796b9e9446e59d8" name="af4996d85dcfc6e798796b9e9446e59d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4996d85dcfc6e798796b9e9446e59d8">&#9670;&#160;</a></span>field_0x6c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x6c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21ac335b09367e52d9639501b40e2c8d" name="a21ac335b09367e52d9639501b40e2c8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ac335b09367e52d9639501b40e2c8d">&#9670;&#160;</a></span>field_0x70</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x70</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22e484947e5c5ecde0004755141eba89" name="a22e484947e5c5ecde0004755141eba89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22e484947e5c5ecde0004755141eba89">&#9670;&#160;</a></span>field_0x74</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x74</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0956e96edfaf50ddb360992917df0cef" name="a0956e96edfaf50ddb360992917df0cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0956e96edfaf50ddb360992917df0cef">&#9670;&#160;</a></span>field_0x78</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::field_0x78</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad808547d109a32363757d7a0ed6cf31d" name="ad808547d109a32363757d7a0ed6cf31d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad808547d109a32363757d7a0ed6cf31d">&#9670;&#160;</a></span>field_0x7c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daObjMovebox::Hio_c::Attr_c::field_0x7c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21b57d87e586d2ab5fe45dd234818829" name="a21b57d87e586d2ab5fe45dd234818829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b57d87e586d2ab5fe45dd234818829">&#9670;&#160;</a></span>field_0x80</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daObjMovebox::Hio_c::Attr_c::field_0x80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac81d6e29f0254dbf866c2aca178367ee" name="ac81d6e29f0254dbf866c2aca178367ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac81d6e29f0254dbf866c2aca178367ee">&#9670;&#160;</a></span>field_0x84</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daObjMovebox::Hio_c::Attr_c::field_0x84</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0eb9f07ddb345e7c8d8e1b0f75300ec" name="af0eb9f07ddb345e7c8d8e1b0f75300ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0eb9f07ddb345e7c8d8e1b0f75300ec">&#9670;&#160;</a></span>field_0x88</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daObjMovebox::Hio_c::Attr_c::field_0x88</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24c17ce6a10abc2683bd14618d8eb6f1" name="a24c17ce6a10abc2683bd14618d8eb6f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c17ce6a10abc2683bd14618d8eb6f1">&#9670;&#160;</a></span>field_0x8c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjMovebox::Hio_c::Attr_c::field_0x8c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5d0f7f2fdb90b98bbde6a008986489a8" name="a5d0f7f2fdb90b98bbde6a008986489a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0f7f2fdb90b98bbde6a008986489a8">&#9670;&#160;</a></span>field_0x90</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x90</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a291a4894a3b755eb5552ec2f40b075a2" name="a291a4894a3b755eb5552ec2f40b075a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a291a4894a3b755eb5552ec2f40b075a2">&#9670;&#160;</a></span>field_0x92</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x92</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae51a0a6d1a08cb610587208cbc88a698" name="ae51a0a6d1a08cb610587208cbc88a698"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51a0a6d1a08cb610587208cbc88a698">&#9670;&#160;</a></span>field_0x94</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x94</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51d1b374713980c32e2463e76774b993" name="a51d1b374713980c32e2463e76774b993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d1b374713980c32e2463e76774b993">&#9670;&#160;</a></span>field_0x96</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x96</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7cfad5612f479aa81e5f7ca4ade63195" name="a7cfad5612f479aa81e5f7ca4ade63195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cfad5612f479aa81e5f7ca4ade63195">&#9670;&#160;</a></span>field_0x98</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x98</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac096927dcc32889f106e0cb5d5078237" name="ac096927dcc32889f106e0cb5d5078237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac096927dcc32889f106e0cb5d5078237">&#9670;&#160;</a></span>field_0x9a</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::field_0x9a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca692000545c145b73d2ac07daac3538" name="aca692000545c145b73d2ac07daac3538"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca692000545c145b73d2ac07daac3538">&#9670;&#160;</a></span>field_0x9c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daObjMovebox::Hio_c::Attr_c::field_0x9c</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adef03e4f9218d65436b42616630e4d72" name="adef03e4f9218d65436b42616630e4d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef03e4f9218d65436b42616630e4d72">&#9670;&#160;</a></span>field_0x9d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daObjMovebox::Hio_c::Attr_c::field_0x9d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afff64cac392732e0da15a3c3469f4af2" name="afff64cac392732e0da15a3c3469f4af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff64cac392732e0da15a3c3469f4af2">&#9670;&#160;</a></span>field_0x9e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daObjMovebox::Hio_c::Attr_c::field_0x9e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6db0eef822c6ad489ae47063f214c75" name="ab6db0eef822c6ad489ae47063f214c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6db0eef822c6ad489ae47063f214c75">&#9670;&#160;</a></span>mBuoyancy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mBuoyancy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b39097743ce24f81e89b7aae6a20bd8" name="a1b39097743ce24f81e89b7aae6a20bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b39097743ce24f81e89b7aae6a20bd8">&#9670;&#160;</a></span>mFallYInitSpeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mFallYInitSpeed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22066a92e1ea15c61098d7461a672cf6" name="a22066a92e1ea15c61098d7461a672cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22066a92e1ea15c61098d7461a672cf6">&#9670;&#160;</a></span>mFirstPullStopTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mFirstPullStopTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af868629a51d489bace8282ba15a7e132" name="af868629a51d489bace8282ba15a7e132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af868629a51d489bace8282ba15a7e132">&#9670;&#160;</a></span>mFirstPushStopTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mFirstPushStopTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a825e3379fce948725646c90a0041a74f" name="a825e3379fce948725646c90a0041a74f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a825e3379fce948725646c90a0041a74f">&#9670;&#160;</a></span>mGravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mGravity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a861b523f0c7b3d5ddc9d6e273dea2b3c" name="a861b523f0c7b3d5ddc9d6e273dea2b3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861b523f0c7b3d5ddc9d6e273dea2b3c">&#9670;&#160;</a></span>mInertiaResistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mInertiaResistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88f601eff7ccd7421f7c7267069159bf" name="a88f601eff7ccd7421f7c7267069159bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88f601eff7ccd7421f7c7267069159bf">&#9670;&#160;</a></span>mLandSmokeScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mLandSmokeScale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76017e39ae6a913b0fbe6c0df0678d45" name="a76017e39ae6a913b0fbe6c0df0678d45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76017e39ae6a913b0fbe6c0df0678d45">&#9670;&#160;</a></span>mMaxTiltPower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mMaxTiltPower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a125d8423d4be9a7884c6f4bf7d11a1bc" name="a125d8423d4be9a7884c6f4bf7d11a1bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125d8423d4be9a7884c6f4bf7d11a1bc">&#9670;&#160;</a></span>mMiscGravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mMiscGravity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae739bf712b55a27e862c1799073db166" name="ae739bf712b55a27e862c1799073db166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae739bf712b55a27e862c1799073db166">&#9670;&#160;</a></span>mMiscTiltPower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mMiscTiltPower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c626ccc3688a89e44655f9a3fb6a36d" name="a2c626ccc3688a89e44655f9a3fb6a36d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c626ccc3688a89e44655f9a3fb6a36d">&#9670;&#160;</a></span>mPlayerGravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mPlayerGravity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfb9fd39d82637124d2551bffd694938" name="abfb9fd39d82637124d2551bffd694938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb9fd39d82637124d2551bffd694938">&#9670;&#160;</a></span>mPlayerTiltPower</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mPlayerTiltPower</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a924282214cbd56529ec5fb127d9e24c2" name="a924282214cbd56529ec5fb127d9e24c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a924282214cbd56529ec5fb127d9e24c2">&#9670;&#160;</a></span>mPullMoveTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mPullMoveTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a358c4d7201ae884475bed587561ef330" name="a358c4d7201ae884475bed587561ef330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358c4d7201ae884475bed587561ef330">&#9670;&#160;</a></span>mPushMoveTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mPushMoveTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3da1cccb71a688144bd13430b0d52cf9" name="a3da1cccb71a688144bd13430b0d52cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3da1cccb71a688144bd13430b0d52cf9">&#9670;&#160;</a></span>mRepeatPullStopTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mRepeatPullStopTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abce5bfc75ec39b6a756c639a9129623d" name="abce5bfc75ec39b6a756c639a9129623d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce5bfc75ec39b6a756c639a9129623d">&#9670;&#160;</a></span>mRepeatPushStopTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mRepeatPushStopTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae746c71a0d2e77cf31ff5aeaaed2b862" name="ae746c71a0d2e77cf31ff5aeaaed2b862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae746c71a0d2e77cf31ff5aeaaed2b862">&#9670;&#160;</a></span>mShadowSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mShadowSize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc664cea8623ffdc6663c3b875d63234" name="adc664cea8623ffdc6663c3b875d63234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc664cea8623ffdc6663c3b875d63234">&#9670;&#160;</a></span>mTiltSpringFactor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mTiltSpringFactor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26f78462aa146581accfe02c484ade2e" name="a26f78462aa146581accfe02c484ade2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f78462aa146581accfe02c484ade2e">&#9670;&#160;</a></span>mTiltViscoscityResistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mTiltViscoscityResistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3295ac4d3231337d55141c51f39e0ad" name="ae3295ac4d3231337d55141c51f39e0ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3295ac4d3231337d55141c51f39e0ad">&#9670;&#160;</a></span>mUnitDistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mUnitDistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5e6421b28361c661ba392fce0a1ec08" name="ad5e6421b28361c661ba392fce0a1ec08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e6421b28361c661ba392fce0a1ec08">&#9670;&#160;</a></span>mViscosityResistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mViscosityResistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68760f9f5c5517c34e418b7c92d31f35" name="a68760f9f5c5517c34e418b7c92d31f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68760f9f5c5517c34e418b7c92d31f35">&#9670;&#160;</a></span>mWaterInertiaResistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mWaterInertiaResistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e023793beda33d41db587be0e00e9ff" name="a0e023793beda33d41db587be0e00e9ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e023793beda33d41db587be0e00e9ff">&#9670;&#160;</a></span>mWaterOscillationAccel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mWaterOscillationAccel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a781f0b49630509e87ac64aab91de2f13" name="a781f0b49630509e87ac64aab91de2f13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a781f0b49630509e87ac64aab91de2f13">&#9670;&#160;</a></span>mWaterOscillationAngleSpeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> daObjMovebox::Hio_c::Attr_c::mWaterOscillationAngleSpeed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6dcf9e4452378b35a320defba30e597" name="ae6dcf9e4452378b35a320defba30e597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6dcf9e4452378b35a320defba30e597">&#9670;&#160;</a></span>mWaterViscoscityResistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daObjMovebox::Hio_c::Attr_c::mWaterViscoscityResistance</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/rel/d/a/obj/d_a_obj_movebox/<a class="el" href="d__a__obj__movebox_8h_source.html">d_a_obj_movebox.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacedaObjMovebox.html">daObjMovebox</a></li><li class="navelem"><a class="el" href="classdaObjMovebox_1_1Hio__c.html">Hio_c</a></li><li class="navelem"><a class="el" href="classdaObjMovebox_1_1Hio__c_1_1Attr__c.html">Attr_c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

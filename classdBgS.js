@@ -18,7 +18,7 @@ var classdBgS =
     [ "GetHorseNoEntry", "classdBgS.html#a56fc3b3acd74646e57413ab21d33fa94", null ],
     [ "GetMagnetCode", "classdBgS.html#a57153410e4ef7140203f6001ec7527bc", null ],
     [ "GetMonkeyBarsCode", "classdBgS.html#abfe1daccb6592d4a63c10f5c3274cad6", null ],
-    [ "GetMtrlSndId", "classdBgS.html#a250074bd590b655c9e279eda401f58a4", null ],
+    [ "GetMtrlSndId", "classdBgS.html#a63a67f1218fe533f90e6abe21890fb43", null ],
     [ "GetPolyAtt0", "classdBgS.html#ab05ba8d94dbe2a55c59bca0f3f3207dd", null ],
     [ "GetPolyAtt1", "classdBgS.html#ae8b3fe14dc668d1d05bc38c668d0a654", null ],
     [ "GetPolyAttackThrough", "classdBgS.html#a13675108f32124eff668ed0d2eb3e159", null ],

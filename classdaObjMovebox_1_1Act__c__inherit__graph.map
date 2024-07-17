@@ -1,0 +1,9 @@
+<map id="daObjMovebox::Act_c" name="daObjMovebox::Act_c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,226,153,252"/>
+<area shape="rect" id="Node000002" href="$classdBgS__MoveBgActor.html" title=" " alt="" coords="9,153,149,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,194,82,226,76,226,76,194"/>
+<area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="34,79,124,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,120,82,152,76,152,76,120"/>
+<area shape="rect" id="Node000004" href="$structleafdraw__class.html" title=" " alt="" coords="25,5,133,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="82,46,82,79,76,79,76,46"/>
+</map>
