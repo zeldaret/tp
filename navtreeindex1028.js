@@ -248,6 +248,6 @@ var NAVTREEINDEX1028 =
 "structJ3DMaterialDLBlock.html#ae72d24777fdb1b4c728dad92de61ca8e":[1,1,1,190,1],
 "structJ3DMaterialFactory.html":[1,1,1,178],
 "structJ3DMaterialFactory.html#a00207873e4dc10a2cf5a7a71946313e4":[1,1,1,178,15],
-"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,2],
-"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,5]
+"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,5],
+"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,2]
 };
