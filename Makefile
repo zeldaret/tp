@@ -156,7 +156,11 @@ tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
-	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game
+	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game native asset_config.json
+
+assets-fast:
+	@mkdir -p game
+	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game oead asset_config.json
 
 docs:
 	$(DOXYGEN) Doxyfile
@@ -189,19 +193,19 @@ shiftedrels: shift $(RELS)
 
 game: shiftedrels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode native
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode native asset_config.json
 
 game-fast: shiftedrels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode oead
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode oead asset_config.json
 
 game-nocompile:
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode native
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode native asset_config.json
 
 game-nocompile-fast:
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode oead
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode oead asset_config.json
 
 rungame-nocompile: game-nocompile
 	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!

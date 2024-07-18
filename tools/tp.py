@@ -153,7 +153,8 @@ elif platform.system() == "Darwin":
 )
 @click.option("--force-download/--no-force-download")
 @click.option("--skip-iso/--no-skip-iso", default=False)
-def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool):
+@click.option("--use-default-config/--no-use-default-config", default=False)
+def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool, use_default_config: bool):
     """Setup project"""
 
     if debug:
@@ -362,10 +363,29 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
                 )
             )
             sys.exit(1)
+        
 
+        configfile_name = ""
+        try:
+            import assets_config
+            configfile_name = assets_config.CONFIGFILE_DEFAULT
+            if not use_default_config:
+                text = Text("--- Prompting for Asset Configuration")
+                text.stylize("bold magenta")
+                CONSOLE.print(text)
+                assets_config.updateConfig(configfile_name)
+            else:
+                assets_config.saveConfig(assets_config.CONFIG_DEFAULTS, configfile_name)
+        except ImportError as ex:
+            _handle_import_error(ex)
+        except Exception as e:
+            LOG.error(f"failure:")
+            LOG.error(e)
+            sys.exit(1)
+        
         try:
             import extract_game_assets
-            extract_game_assets.extract(iso, game_path, yaz0_encoder)
+            extract_game_assets.extract(iso, game_path, yaz0_encoder, configfile_name)
         except ImportError as ex:
             _handle_import_error(ex)
         except Exception as e:
@@ -1712,6 +1732,19 @@ def upload_progress(debug: bool, base_url: str, api_key: str, project: str, vers
             LOG.error(f"HTTP request failed: {err}")
             exit(1)
 
+@tp.command(name="assets-config")
+@click.argument('path', type=click.Path(), default="asset_config.json")
+def assets_config(path: str):
+    """Update the config for asset extraction/packaging"""
+    try:
+        import assets_config
+        assets_config.updateConfig(path)
+    except ImportError as ex:
+        _handle_import_error(ex)
+    except Exception as e:
+        LOG.error(f"failure:")
+        LOG.error(e)
+        sys.exit(1)
 
 if __name__ == "__main__":
     tp()
