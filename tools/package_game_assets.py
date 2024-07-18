@@ -7,6 +7,8 @@ import libyaz0
 import libarc
 import libstage
 from datetime import datetime
+import libbti
+import assets_config
 
 
 def getMaxDateFromDir(path):
@@ -35,6 +37,16 @@ convertDefinitions = [
         "sourceExtension": "dzr.json",
         "destExtension": ".dzr",
         "convertFunction": libstage.package_from_json,
+    },
+    {
+        "sourceExtension": "png",
+        "destExtension": ".bti",
+        "convertFunction": libbti.png_to_bti
+    },
+    {
+        "sourceExtension": "bti.json",
+        "destExtension": None,
+        "convertFunction": None
     }
 ]
 
@@ -54,6 +66,8 @@ def convertEntry(file, path, destPath, returnData):
     extractDef = None
     for extractData in convertDefinitions:
         if sourceExtension == extractData["sourceExtension"]:
+            if extractData["destExtension"] == None and extractData["convertFunction"] == None:
+                return
             extractDef = extractData
             if "exceptions" in extractData:
                 for exception in extractData["exceptions"]:
@@ -334,7 +348,7 @@ def copyMapFiles(buildPath):
     for map in (buildPath/"dolzel2/rel/").rglob("*.map"):
         open(buildPath/"dolzel2/game/files/map/Final/Release/"/map.name,"w").write(postprocessMapFile(open(map,"r").read()))
 
-def main(gamePath, buildPath, copyCode, yaz0Encoding):
+def main(gamePath, buildPath, copyCode, yaz0Encoding, config_file):
     if yaz0Encoding == "oead":
         try:
             from oead import yaz0
@@ -354,7 +368,10 @@ def main(gamePath, buildPath, copyCode, yaz0Encoding):
 
     if not (gamePath / "files").exists() or not (gamePath / "sys").exists():
         print("ISO is not extracted; extracting...")
-        extract_game_assets.extract(iso.absolute(),gamePath.absolute(),yaz0Encoding)
+        extract_game_assets.extract(iso.absolute(),gamePath.absolute(),yaz0Encoding,config_file)
+    
+    global config
+    config = assets_config.getConfig(config_file, update = True)
 
     print("Copying game files...")
     if os.path.exists(buildPath / "dolzel2") == False:
@@ -376,13 +393,15 @@ def main(gamePath, buildPath, copyCode, yaz0Encoding):
 
         copyRelFiles(gamePath, buildPath, aMemRels.splitlines(), mMemRels.splitlines())
 
-        shutil.copy(buildPath/"dolzel2/frameworkF.str",buildPath/"dolzel2/game/files/str/Final/Release/frameworkF.str")
-        copyMapFiles(buildPath)
+        if config["package_maps"]:
+            shutil.copy(buildPath/"dolzel2/frameworkF.str",buildPath/"dolzel2/game/files/str/Final/Release/frameworkF.str")
+            copyMapFiles(buildPath)
 
-    now = datetime.now()
-    copydate = str(now.year)+"/"+str(now.month).zfill(2)+"/"+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+"\n"
-    open(buildPath/"dolzel2/game/files/str/Final/Release/COPYDATE","w").write(copydate)
+    if config["update_copydate"]:
+        now = datetime.now()
+        copydate = str(now.year)+"/"+str(now.month).zfill(2)+"/"+str(now.day).zfill(2)+" "+str(now.hour).zfill(2)+":"+str(now.minute).zfill(2)+"\n"
+        open(buildPath/"dolzel2/game/files/str/Final/Release/COPYDATE","w").write(copydate)
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4])
+    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5])
