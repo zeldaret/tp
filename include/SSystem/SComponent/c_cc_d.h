@@ -6,6 +6,7 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "f_pc/f_pc_manager.h"
 
 typedef struct _GXColor GXColor;
 class fopAc_ac_c;
@@ -319,34 +320,34 @@ private:
 
 class cCcD_Stts {
 private:
-    /* 0x00 */ cXyz mXyz;
-    /* 0x0C */ fopAc_ac_c* mActor;
-    /* 0x10 */ int mApid;
-    /* 0x14 */ u8 mWeight;
+    /* 0x00 */ cXyz m_cc_move;
+    /* 0x0C */ fopAc_ac_c* mp_actor;
+    /* 0x10 */ fpc_ProcID m_apid;
+    /* 0x14 */ u8 m_weight;
     /* 0x15 */ u8 field_0x15;
-    /* 0x16 */ u8 mTg;
+    /* 0x16 */ u8 m_dmg;
 
 public:
     cCcD_Stts() {}
     /* 801410A4 vt[3] */ virtual ~cCcD_Stts() {}
     /* 80263894 vt[4] */ virtual const cCcD_GStts* GetGStts() const;
     /* 8026389C vt[5] */ virtual cCcD_GStts* GetGStts();
-    /* 802638A4 */ void Init(int, int, void*, unsigned int);
+    /* 802638A4 */ void Init(int, int, void*, fpc_ProcID);
     /* 80263904 vt[6] */ virtual void Ct();
     /* 80263934 */ void PlusCcMove(f32, f32, f32);
     /* 8026395C */ void ClrCcMove();
     /* 80263970 */ void PlusDmg(int);
     /* 80263984 */ f32 GetWeightF() const;
     /* 802649E8 vt[7] */ virtual void ClrAt() {}
-    /* 802649EC vt[8] */ virtual void ClrTg() { mTg = 0; }
+    /* 802649EC vt[8] */ virtual void ClrTg() { m_dmg = 0; }
 
-    u8 GetWeightUc() const { return mWeight; }
-    void SetWeight(u8 weight) { mWeight = weight; }
-    fopAc_ac_c* GetAc() { return mActor; }
-    fopAc_ac_c* GetActor() const { return mActor; }
-    void SetActor(void* ac) { mActor = (fopAc_ac_c*)ac; }
-    cXyz* GetCCMoveP() { return &mXyz; }
-    unsigned int GetApid() const { return mApid; }
+    u8 GetWeightUc() const { return m_weight; }
+    void SetWeight(u8 weight) { m_weight = weight; }
+    fopAc_ac_c* GetAc() { return mp_actor; }
+    fopAc_ac_c* GetActor() const { return mp_actor; }
+    void SetActor(void* ac) { mp_actor = (fopAc_ac_c*)ac; }
+    cXyz* GetCCMoveP() { return &m_cc_move; }
+    fpc_ProcID GetApid() const { return m_apid; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));

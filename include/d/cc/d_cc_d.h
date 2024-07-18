@@ -36,6 +36,17 @@ enum dCcD_hitSe {
     /* 23 */ dCcD_SE_23,
 };
 
+enum dCcD_Material {
+    dCcD_MTRL_NONE,
+    dCcD_MTRL_FIRE,
+    dCcD_MTRL_ICE,
+    dCcD_MTRL_AIR,
+    dCcD_MTRL_LIGHT,
+    dCcD_MTRL_UNK_5,
+    dCcD_MTRL_UNK_6,
+    dCcD_MTRL_UNK_7,
+};
+
 enum dCcG_At_Spl {
     /* 0x0 */ dCcG_At_Spl_UNK_0,
     /* 0x1 */ dCcG_At_Spl_UNK_1,
