@@ -854,7 +854,7 @@ static int daE_ARROW_Create(fopAc_ac_c* i_this) {
         a_this->mCcAtSph.SetAtHitCallback(atHit_CB);
 
         if (a_this->mArrowType == ARROW_TYPE_FIRE) {
-            a_this->mCcAtSph.SetAtMtrl(1);
+            a_this->mCcAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
         }
 
         a_this->mCcAtSph.StartCAt(a_this->current.pos);

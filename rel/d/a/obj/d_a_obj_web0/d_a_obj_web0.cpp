@@ -125,12 +125,12 @@ static void damage_check(obj_web0_class* i_this) {
         }
 
         if (i_this->mSphCc.GetTgHitObj()->ChkAtType(AT_TYPE_LANTERN_SWING) &&
-            static_cast<dCcD_GObjInf*>(i_this->mSphCc.GetTgHitObj())->GetAtMtrl() != 1) {
+            static_cast<dCcD_GObjInf*>(i_this->mSphCc.GetTgHitObj())->GetAtMtrl() != dCcD_MTRL_FIRE) {
             return;
         }
 
         if (i_this->mSphCc.GetTgHitObj()->ChkAtType(AT_TYPE_BOMB) ||
-            static_cast<dCcD_GObjInf*>(i_this->mSphCc.GetTgHitObj())->GetAtMtrl() == 1) {
+            static_cast<dCcD_GObjInf*>(i_this->mSphCc.GetTgHitObj())->GetAtMtrl() == dCcD_MTRL_FIRE) {
             i_this->mDeleteTimer = 1;
             return;
         }

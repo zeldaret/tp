@@ -287,7 +287,7 @@ void daAlink_c::setHookshotModel() {
     mAtCps[0].SetAtHitMark(1);
     mAtCps[0].OnAtSetBit();
     mAtCps[0].SetAtHitCallback(daAlink_hookshotAtHitCallBack);
-    mAtCps[0].SetAtMtrl(0);
+    mAtCps[0].SetAtMtrl(dCcD_MTRL_NONE);
     mpHookSound->init(&mHookshotTopPos, 1);
 }
 

@@ -768,7 +768,7 @@ void daArrow_c::arrowShooting() {
     }
 
     if (mArrowType == 2) {
-        field_0x688.SetAtMtrl(04);
+        field_0x688.SetAtMtrl(dCcD_MTRL_LIGHT);
         field_0x688.OnAtNoHitMark();
     } else {
         if (mArrowType == 4) {

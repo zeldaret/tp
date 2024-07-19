@@ -193,7 +193,7 @@ void daObjSwPr_c::execute_type_boomerang() {
         cCcD_Obj* tg_obj = mCyl1.GetTgHitObj();
 
         if (tg_obj != NULL && ((tg_obj->ChkAtType(AT_TYPE_40) && mCyl1.GetTgHitGObj() != NULL &&
-                                mCyl1.GetTgHitGObj()->GetAtMtrl() == 3) ||
+                                mCyl1.GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_WIND) ||
                                tg_obj->ChkAtType(AT_TYPE_BOOMERANG)))
         {
             start_rotate = true;
@@ -240,7 +240,7 @@ void daObjSwPr_c::execute_type_wind() {
 
     if (mCyl2.ChkTgHit()) {
         if (mCyl2.GetTgHitGObj() != NULL) {
-            if (mCyl2.GetTgHitGObj()->GetAtMtrl() == 3 && mCyl2.GetTgHitObj() != NULL) {
+            if (mCyl2.GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_WIND && mCyl2.GetTgHitObj() != NULL) {
                 target_speed = 7000;
                 mRotateInitSpeed = 7000;
                 var_r29 = 1;
@@ -258,7 +258,7 @@ void daObjSwPr_c::execute_type_wind() {
     }
 
     if (mCyl1.ChkTgHit()) {
-        if (mCyl1.GetTgHitGObj() != NULL && mCyl1.GetTgHitGObj()->GetAtMtrl() == 3) {
+        if (mCyl1.GetTgHitGObj() != NULL && mCyl1.GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_WIND) {
             cCcD_Obj* tg_obj = mCyl1.GetTgHitObj();
 
             if (tg_obj != NULL &&

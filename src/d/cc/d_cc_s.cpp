@@ -585,7 +585,7 @@ void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* i_atObj, cCcD_Ob
 
         atObjInf->SetAtHitApid(i_tgStts->GetApid());
 
-        if (chk_shield || tgObjInf->GetTgHitMark() == 8 && atObjInf->GetAtMtrl() != 2 &&
+        if (chk_shield || tgObjInf->GetTgHitMark() == 8 && atObjInf->GetAtMtrl() != dCcD_MTRL_ICE &&
                               (atObjInf->GetAtSpl() == 0 || atObjInf->GetAtSpl() == 5 ||
                                atObjInf->GetAtSpl() == 8))
         {
@@ -776,7 +776,7 @@ bool dCcS::ChkNoHitGAtTg(cCcD_GObjInf const* i_atObjInf, cCcD_GObjInf const* i_t
     dCcD_GObjInf* atObjInf = (dCcD_GObjInf*)i_atObjInf;
     dCcD_GObjInf* tgObjInf = (dCcD_GObjInf*)i_tgObjInf;
 
-    if (tgObjInf->ChkTgWolfSpNoDamage() && atObjInf->GetAtMtrl() == 0 &&
+    if (tgObjInf->ChkTgWolfSpNoDamage() && atObjInf->GetAtMtrl() == dCcD_MTRL_NONE &&
         atObjInf->GetAtType() &
             (AT_TYPE_CSTATUE_BOSS_SWING | AT_TYPE_1000 | AT_TYPE_800 | AT_TYPE_CSTATUE_SWING))
     {
