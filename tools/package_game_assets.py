@@ -21,34 +21,30 @@ def getMaxDateFromDir(path):
     return maxTime
 
 
-convertDefinitions = [
-    {
-        "sourceExtension": "arc",
+convertDefinitions = {
+    "arc": {
         "destExtension": ".arc",
         "convertFunction": libarc.convert_dir_to_arc,
         "exceptions": ["game/files/res/Object/HomeBtn.c.arc/archive/dat/speakerse.arc"],
+        "sourceIsDir": True
     },
-    {
-        "sourceExtension": "dzs.json",
+    "dzs.json": {
         "destExtension": ".dzs",
         "convertFunction": libstage.package_from_json,
     },
-    {
-        "sourceExtension": "dzr.json",
+    "dzr.json": {
         "destExtension": ".dzr",
         "convertFunction": libstage.package_from_json,
     },
-    {
-        "sourceExtension": "png",
+    "png": {
         "destExtension": ".bti",
         "convertFunction": libbti.png_to_bti
     },
-    {
-        "sourceExtension": "bti.json",
+    "bti.json": {
         "destExtension": None,
         "convertFunction": None
     }
-]
+}
 
 yaz0CompressFunction = libyaz0.compress
 
@@ -64,16 +60,15 @@ def convertEntry(file, path, destPath, returnData):
     data = None
 
     extractDef = None
-    for extractData in convertDefinitions:
-        if sourceExtension == extractData["sourceExtension"]:
-            if extractData["destExtension"] == None and extractData["convertFunction"] == None:
-                return
-            extractDef = extractData
-            if "exceptions" in extractData:
-                for exception in extractData["exceptions"]:
-                    if str(path / file) == exception:
-                        extractDef = None
-            break
+    if sourceExtension in convertDefinitions:
+        extractDef = convertDefinitions[sourceExtension]
+
+        if extractDef["destExtension"] == None and extractDef["convertFunction"] == None:
+            extractDef = None
+        elif "exceptions" in extractDef and str(path/file) in extractDef["exceptions"]:
+            extractDef = None
+        elif "sourceIsDir" in extractDef and extractDef["sourceIsDir"] == True and os.path.isfile(path/file):
+            extractDef = None
 
     if extractDef != None:
         destFileName = destFileName.split(".")[0] + extractDef["destExtension"]
@@ -348,8 +343,11 @@ def copyMapFiles(buildPath):
     for map in (buildPath/"dolzel2/rel/").rglob("*.map"):
         open(buildPath/"dolzel2/game/files/map/Final/Release/"/map.name,"w").write(postprocessMapFile(open(map,"r").read()))
 
-def main(gamePath, buildPath, copyCode, yaz0Encoding, config_file):
-    if yaz0Encoding == "oead":
+def main(gamePath, buildPath, copyCode, config_file):
+    global config
+    config = assets_config.getConfig(config_file, update = True)
+
+    if config["oead_yaz0"]:
         try:
             from oead import yaz0
             global yaz0CompressFunction
@@ -368,10 +366,7 @@ def main(gamePath, buildPath, copyCode, yaz0Encoding, config_file):
 
     if not (gamePath / "files").exists() or not (gamePath / "sys").exists():
         print("ISO is not extracted; extracting...")
-        extract_game_assets.extract(iso.absolute(),gamePath.absolute(),yaz0Encoding,config_file)
-    
-    global config
-    config = assets_config.getConfig(config_file, update = True)
+        extract_game_assets.extract(iso.absolute(),gamePath.absolute(),config_file)
 
     print("Copying game files...")
     if os.path.exists(buildPath / "dolzel2") == False:
@@ -404,4 +399,4 @@ def main(gamePath, buildPath, copyCode, yaz0Encoding, config_file):
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4], sys.argv[5])
+    main(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4])

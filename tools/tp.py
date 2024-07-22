@@ -145,16 +145,10 @@ elif platform.system() == "Darwin":
     default=DEFAULT_TOOLS_PATH,
     required=True,
 )
-@click.option(
-    "--yaz0-encoder",
-    type=str,
-    default="native",
-    required=False,
-)
 @click.option("--force-download/--no-force-download")
 @click.option("--skip-iso/--no-skip-iso", default=False)
 @click.option("--use-default-config/--no-use-default-config", default=False)
-def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, force_download: bool, skip_iso: bool, use_default_config: bool):
+def setup(debug: bool, game_path: Path, tools_path: Path, force_download: bool, skip_iso: bool, use_default_config: bool):
     """Setup project"""
 
     if debug:
@@ -385,7 +379,7 @@ def setup(debug: bool, game_path: Path, tools_path: Path, yaz0_encoder: str, for
         
         try:
             import extract_game_assets
-            extract_game_assets.extract(iso, game_path, yaz0_encoder, configfile_name)
+            extract_game_assets.extract(iso, game_path, configfile_name)
         except ImportError as ex:
             _handle_import_error(ex)
         except Exception as e:

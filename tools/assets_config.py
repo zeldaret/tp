@@ -4,6 +4,7 @@ import json
 from os import path
 
 CONFIG_DESCRIPTIONS = {
+    "oead_yaz0": "Use oead (pip install oead) for asset (de)compression (faster)",
     "decompress_assets": "Decompress Yaz0 compressed assets (appends .c to the filename)",
     "extract_arc": "Extract archive (.arc) files",
     "convert_stages": "Convert Stage Files (.dzs and .dzr) to json",
@@ -13,6 +14,7 @@ CONFIG_DESCRIPTIONS = {
 }
 
 CONFIG_DEFAULTS = {
+    "oead_yaz0": False,
     "decompress_assets": True,
     "extract_arc": True,
     "convert_stages": True,
