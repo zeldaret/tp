@@ -1,6 +1,31 @@
 /**
- * d_save.cpp
- * Save File Manager
+ * @file d_save.cpp
+ * @brief Save Data Management
+ *
+ * This file contains the implementation of various classes and functions related to handling
+ * save data in the game. It includes classes for managing player status, items, collectibles,
+ * events, switches, and other game-related data. The main classes include:
+ *
+ * - dSv_player_status_a_c: Manages player status data such as life, rupees, oil, and equipment.
+ * - dSv_player_status_b_c: Manages additional player status data.
+ * - dSv_player_item_c: Handles player inventory and item management.
+ * - dSv_player_get_item_c: Tracks the player's acquired items.
+ * - dSv_player_collect_c: Manages player collectibles like Poe souls and Golden Bugs.
+ * - dSv_event_c: Handles game events and their associated bits.
+ * - dSv_info_c: Provides functions for initializing, saving, and loading game data.
+ * - dSv_danBit_c: Manages dungeon-related bits and switches.
+ * - dSv_zoneBit_c: Manages zone-related bits and switches.
+ * - dSv_zoneActor_c: Handles actors within zones.
+ *
+ * The file also contains various other classes for managing specific aspects of the game, such as
+ * fishing, horse-related data, letters, and mini-games.
+ *
+ * The dSv_info_c class provides the main functionality for saving and loading game data, with
+ * functions like memory_to_card(), card_to_memory(), and initdata_to_card() for transferring
+ * data between memory and the memory card.
+ *
+ * Overall, this file plays a crucial role in managing the game's save data, ensuring that the
+ * player's progress and state are properly stored and loaded throughout the game.
  */
 
 #include "d/save/d_save.h"
@@ -36,7 +61,16 @@ extern "C" void __div2i();
 // Declarations:
 //
 
-/* 80032918-80032958 02D258 0040+00 4/4 0/0 0/0 .text            dSv_item_rename__FUc */
+/**
+ * @brief Renames specific item numbers to their standard counterparts
+ *
+ * @details This function standardizes certain item numbers, mapping alternate versions
+ * to their primary item number.
+ *
+ * @param i_itemNo The item number to potentially rename
+ * 
+ * @return The renamed item number, or the original if no renaming is necessary
+*/
 static u8 dSv_item_rename(u8 i_itemNo) {
     switch (i_itemNo) {
     case OIL_BOTTLE_2:
@@ -50,7 +84,11 @@ static u8 dSv_item_rename(u8 i_itemNo) {
     }
 }
 
-/* 80032958-80032A48 02D298 00F0+00 1/1 0/0 0/0 .text            init__21dSv_player_status_a_cFv */
+/**
+ * @brief Initializes the player's status (type A)
+ *
+ * @details Sets initial values for the player's life, rupees, oil, equipment, and other status variables.
+*/
 void dSv_player_status_a_c::init() {
     mMaxLife = 15;
     mLife = 12;
@@ -86,16 +124,25 @@ void dSv_player_status_a_c::init() {
     }
 }
 
-/* 80032A48-80032A5C 02D388 0014+00 0/0 1/1 0/0 .text
- * setSelectItemIndex__21dSv_player_status_a_cFiUc              */
+/**
+ * @brief Sets the item index for a specific select item slot
+ *
+ * @param i_no The select item slot number
+ * @param i_slotNo The item index to set
+*/
 void dSv_player_status_a_c::setSelectItemIndex(int i_no, u8 i_slotNo) {
     if (i_no < MAX_SELECT_ITEM) {
         mSelectItem[i_no] = i_slotNo;
     }
 }
 
-/* 80032A5C-80032A78 02D39C 001C+00 7/7 20/20 0/0 .text
- * getSelectItemIndex__21dSv_player_status_a_cCFi               */
+/**
+ * @brief Gets the item index for a specific select item slot
+ *
+ * @param i_no The select item slot number
+ * 
+ * @return The item index for the specified slot, or 0 if the slot is invalid
+*/
 u8 dSv_player_status_a_c::getSelectItemIndex(int i_no) const {
     if (i_no < MAX_SELECT_ITEM) {
         return mSelectItem[i_no];
@@ -103,16 +150,25 @@ u8 dSv_player_status_a_c::getSelectItemIndex(int i_no) const {
     return 0;
 }
 
-/* 80032A78-80032A8C 02D3B8 0014+00 0/0 1/1 0/0 .text setMixItemIndex__21dSv_player_status_a_cFiUc
- */
+/**
+ * @brief Sets the item index for a specific mix item slot
+ *
+ * @param i_no The mix item slot number
+ * @param i_slotNo The item index to set
+*/
 void dSv_player_status_a_c::setMixItemIndex(int i_no, u8 i_slotNo) {
     if (i_no < MAX_SELECT_ITEM) {
         mMixItem[i_no] = i_slotNo;
     }
 }
 
-/* 80032A8C-80032AA8 02D3CC 001C+00 0/0 1/1 0/0 .text getMixItemIndex__21dSv_player_status_a_cCFi
- */
+/**
+ * @brief Gets the item index for a specific mix item slot
+ *
+ * @param i_no The mix item slot number
+ * 
+ * @return The item index for the specified slot, or 0 if the slot is invalid
+*/
 u8 dSv_player_status_a_c::getMixItemIndex(int i_no) const {
     if (i_no < MAX_SELECT_ITEM) {
         return mMixItem[i_no];
@@ -120,9 +176,13 @@ u8 dSv_player_status_a_c::getMixItemIndex(int i_no) const {
     return 0;
 }
 
-/* 80032AA8-80032AF8 02D3E8 0050+00 0/0 4/4 0/0 .text getRupeeMax__21dSv_player_status_a_cCFv */
+/**
+ * @brief Gets the maximum rupee capacity based on the current wallet size
+ *
+ * @return The maximum number of rupees the player can hold
+*/
 u16 dSv_player_status_a_c::getRupeeMax() const {
-    if (mWalletSize < 3) {  // if you make this a default, it wont match. Compiler, pls.
+    if (mWalletSize < 3) {
         switch (mWalletSize) {
         case WALLET:
             return 300;
@@ -135,7 +195,13 @@ u16 dSv_player_status_a_c::getRupeeMax() const {
     return 0;
 }
 
-/* 80032AF8-80032B50 02D438 0058+00 0/0 1/1 0/0 .text isMagicFlag__21dSv_player_status_a_cCFUc */
+/**
+ * @brief Checks if a specific magic flag is set
+ *
+ * @param i_magic The magic flag to check
+ * 
+ * @return TRUE if the flag is set, FALSE otherwise
+*/
 BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     if (i_magic == 0) {
         return dComIfGs_isEventBit(dSv_event_flag_c::M_097);  // Magic Unlocked
@@ -144,7 +210,11 @@ BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     return (mMagicFlag & (u8)(1 << i_magic)) ? TRUE : FALSE;
 }
 
-/* 80032B50-80032B94 02D490 0044+00 1/1 0/0 0/0 .text            init__21dSv_player_status_b_cFv */
+/**
+ * @brief Initializes the player's status (type B)
+ *
+ * @details Sets initial values for the player's date, time, transformation level, and dark clear level flags.
+*/
 void dSv_player_status_b_c::init() {
     mDateIpl = 0;
     mTransformLevelFlag = 0;
@@ -158,27 +228,51 @@ void dSv_player_status_b_c::init() {
     }
 }
 
-/* 80032B94-80032BB0 02D4D4 001C+00 0/0 1/1 0/0 .text onDarkClearLV__21dSv_player_status_b_cFi */
+/**
+ * @brief Sets the dark clear level flag for a specific level
+ *
+ * @param i_no The level number to set the flag for
+*/
 void dSv_player_status_b_c::onDarkClearLV(int i_no) {
     mDarkClearLevelFlag |= (u8)(1 << i_no);
 }
 
-/* 80032BB0-80032BD0 02D4F0 0020+00 0/0 4/4 8/8 .text isDarkClearLV__21dSv_player_status_b_cCFi */
+/**
+ * @brief Checks if the dark clear level flag is set for a specific level
+ *
+ * @param i_no The level number to check
+ * 
+ * @return TRUE if the flag is set, FALSE otherwise
+*/
 BOOL dSv_player_status_b_c::isDarkClearLV(int i_no) const {
     return mDarkClearLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
-/* 80032BD0-80032BEC 02D510 001C+00 0/0 1/1 0/0 .text onTransformLV__21dSv_player_status_b_cFi */
+/**
+ * @brief Sets the transform level flag for a specific level
+ *
+ * @param i_no The level number to set the flag for
+*/
 void dSv_player_status_b_c::onTransformLV(int i_no) {
     mTransformLevelFlag |= (u8)(1 << i_no);
 }
 
-/* 80032BEC-80032C0C 02D52C 0020+00 0/0 8/8 9/9 .text isTransformLV__21dSv_player_status_b_cCFi */
+/**
+ * @brief Checks if the transform level flag is set for a specific level
+ *
+ * @param i_no The level number to check
+ * 
+ * @return TRUE if the flag is set, FALSE otherwise
+*/
 BOOL dSv_player_status_b_c::isTransformLV(int i_no) const {
     return mTransformLevelFlag & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
-/* 80032C0C-80032C64 02D54C 0058+00 1/1 0/0 0/0 .text            init__17dSv_horse_place_cFv */
+/**
+ * @brief Initializes the horse place data
+ *
+ * @details Sets default values for the horse's name, position, angle, spawn ID, and room number.
+*/
 void dSv_horse_place_c::init() {
     strcpy(mName, "");
     mPos.set(0.0f, 0.0f, 0.0f);
@@ -187,7 +281,14 @@ void dSv_horse_place_c::init() {
     mRoomNo = 0;
 }
 
-/* 80032C64-80032CC8 02D5A4 0064+00 0/0 0/0 1/1 .text set__17dSv_horse_place_cFPCcRC4cXyzsSc */
+/**
+ * @brief Sets the horse place data
+ *
+ * @param i_name The name of the horse place
+ * @param i_pos The position of the horse
+ * @param i_angle The Y-angle of the horse
+ * @param i_roomNo The room number where the horse is located
+*/
 void dSv_horse_place_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle, s8 i_roomNo) {
     strcpy(mName, i_name);
     mPos = i_pos;
@@ -195,8 +296,11 @@ void dSv_horse_place_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle, 
     mRoomNo = i_roomNo;
 }
 
-/* 80032CC8-80032D1C 02D608 0054+00 1/1 0/0 0/0 .text            init__25dSv_player_return_place_cFv
- */
+/**
+ * @brief Initializes the player return place data
+ *
+ * @details Sets default values for the return place name, room number, player status, and other fields.
+*/
 void dSv_player_return_place_c::init() {
     strcpy(mName, "F_SP108");
     mRoomNo = 1;
@@ -205,15 +309,24 @@ void dSv_player_return_place_c::init() {
     unk11 = 0;
 }
 
-/* 80032D1C-80032D60 02D65C 0044+00 0/0 0/0 1/1 .text set__25dSv_player_return_place_cFPCcScUc */
+/**
+ * @brief Sets the player return place data
+ *
+ * @param i_name The name of the return place
+ * @param i_roomNo The room number of the return place
+ * @param i_status The player status at the return place
+*/
 void dSv_player_return_place_c::set(const char* i_name, s8 i_roomNo, u8 i_status) {
     strcpy(mName, i_name);
     mRoomNo = i_roomNo;
     mPlayerStatus = i_status;
 }
 
-/* 80032D60-80032DE0 02D6A0 0080+00 1/1 0/0 0/0 .text init__33dSv_player_field_last_stay_info_cFv
- */
+/**
+ * @brief Initializes the player's last stay info in the field
+ *
+ * @details Sets default values for the last stay location, including name, position, angle, spawn ID, and region data.
+*/
 void dSv_player_field_last_stay_info_c::init() {
     strcpy(mName, "");
     mPos.set(0.0f, 0.0f, 0.0f);
@@ -228,8 +341,15 @@ void dSv_player_field_last_stay_info_c::init() {
     }
 }
 
-/* 80032DE0-80032E4C 02D720 006C+00 0/0 2/2 0/0 .text
- * set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc     */
+/**
+ * @brief Sets the player's last stay info in the field
+ *
+ * @param i_name The name of the last stay location
+ * @param i_pos The position of the last stay
+ * @param i_angle The Y-angle at the last stay
+ * @param i_spawn The spawn ID of the last stay
+ * @param i_regionNo The region number of the last stay
+*/
 void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle,
                                             s8 i_spawn, u8 i_regionNo) {
     strcpy(mName, i_name);
@@ -239,16 +359,24 @@ void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_po
     mRegionNo = i_regionNo;
 }
 
-/* 80032E4C-80032E78 02D78C 002C+00 0/0 1/1 0/0 .text
- * onRegionBit__33dSv_player_field_last_stay_info_cFi           */
+/**
+ * @brief Sets a region bit in the player's field last stay info
+ *
+ * @param i_region The region number to set (0-7)
+*/
 void dSv_player_field_last_stay_info_c::onRegionBit(int i_region) {
     if (i_region >= 0 && i_region < 8) {
         mRegion |= (u8)(1 << i_region);
     }
 }
 
-/* 80032E78-80032EB0 02D7B8 0038+00 0/0 2/2 0/0 .text
- * isRegionBit__33dSv_player_field_last_stay_info_cCFi          */
+/**
+ * @brief Checks if a region bit is set in the player's field last stay info
+ *
+ * @param i_region The region number to check (0-7)
+ * 
+ * @return TRUE if the region bit is set, FALSE otherwise
+*/
 BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region) const {
     if (i_region >= 0 && i_region < 8) {
         return (mRegion & (u8)(1 << i_region)) ? TRUE : FALSE;
@@ -256,7 +384,11 @@ BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region) const {
     return false;
 }
 
-/* 80032EB0-80032F2C 02D7F0 007C+00 1/1 0/0 0/0 .text init__27dSv_player_last_mark_info_cFv */
+/**
+ * @brief Initializes the player's last mark info
+ *
+ * @details Sets default values for the last mark location, including name, position, angle, room number, and spawn ID.
+*/
 void dSv_player_last_mark_info_c::init() {
     strcpy(mName, "");
     mPos.set(0.0f, 0.0f, 0.0f);
@@ -270,8 +402,14 @@ void dSv_player_last_mark_info_c::init() {
     }
 }
 
-/* 80032F2C-80032F90 02D86C 0064+00 0/0 1/1 0/0 .text
- * setWarpItemData__27dSv_player_last_mark_info_cFPCcRC4cXyzsScUcUc */
+/**
+ * @brief Sets the warp item data for the player's last mark info
+ *
+ * @param i_name The name of the warp location
+ * @param i_pos The position of the warp location
+ * @param i_angle The Y-angle at the warp location
+ * @param i_roomNo The room number of the warp location
+*/
 void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name, const cXyz& i_pos,
                                                   s16 i_angle, s8 i_roomNo, u8, u8) {
     strcpy(mName, i_name);
@@ -280,7 +418,11 @@ void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name, const cXyz
     mRoomNo = i_roomNo;
 }
 
-/* 80032F90-80032FB8 02D8D0 0028+00 1/1 0/0 0/0 .text            init__17dSv_player_item_cFv */
+/**
+ * @brief Initializes the player's item inventory
+ *
+ * @details Sets all item slots to NO_ITEM.
+*/
 void dSv_player_item_c::init() {
     for (int i = 0; i < MAX_ITEM_SLOTS; i++) {
         mItems[i] = NO_ITEM;
@@ -288,7 +430,15 @@ void dSv_player_item_c::init() {
     }
 }
 
-/* 80032FB8-80033030 02D8F8 0078+00 11/11 45/45 2/2 .text setItem__17dSv_player_item_cFiUc */
+/**
+ * @brief Sets an item in a specific slot and updates the inventory
+ *
+ * @details Updates the item in the specified slot, rearranges the inventory,
+ * and updates the select item if necessary.
+ * 
+ * @param i_slotNo The slot number to set the item in
+ * @param i_itemNo The item number to set
+*/
 void dSv_player_item_c::setItem(int i_slotNo, u8 i_itemNo) {
     if (i_slotNo < MAX_ITEM_SLOTS) {
         mItems[i_slotNo] = i_itemNo;
@@ -302,8 +452,17 @@ void dSv_player_item_c::setItem(int i_slotNo, u8 i_itemNo) {
     }
 }
 
-/* 80033030-800332F8 02D970 02C8+00 7/7 70/70 2/2 .text            getItem__17dSv_player_item_cCFib
- */
+/**
+ * @brief Gets the item in a specific slot, considering item combinations
+ *
+ * @details Checks for various item combinations such as Bomb Arrows, Hawkeye,
+ *          and fishing rod combinations if i_checkCombo is true.
+ * 
+ * @param i_slotNo The slot number to get the item from
+ * @param i_checkCombo Whether to check for item combinations
+ * 
+ * @return The item number in the slot, or a combined item number if applicable
+*/
 u8 dSv_player_item_c::getItem(int i_slotNo, bool i_checkCombo) const {
     if (i_slotNo < MAX_ITEM_SLOTS) {
         if (i_checkCombo) {
@@ -376,7 +535,11 @@ u8 dSv_player_item_c::getItem(int i_slotNo, bool i_checkCombo) const {
     return NO_ITEM;
 }
 
-/* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
+/**
+ * @brief Rearranges the player's inventory based on a predefined order
+ *
+ * @details Sorts the items in the inventory according to a static list of item priorities.
+*/
 void dSv_player_item_c::setLineUpItem() {
     static u8 i_item_lst[23] = {
         0x0A, 0x08, 0x06, 0x02, 0x09, 0x04, 0x03, 0x00, 0x01, 0x17, 0x14, 0x05,
@@ -398,7 +561,13 @@ void dSv_player_item_c::setLineUpItem() {
     }
 }
 
-/* 80033354-80033370 02DC94 001C+00 0/0 2/2 0/0 .text getLineUpItem__17dSv_player_item_cCFi */
+/**
+ * @brief Gets the item in a specific slot of the rearranged inventory
+ *
+ * @param i_slotNo The slot number in the rearranged inventory
+ * 
+ * @return The item number in the specified slot, or NO_ITEM if the slot is invalid
+*/
 u8 dSv_player_item_c::getLineUpItem(int i_slotNo) const {
     if (i_slotNo < MAX_ITEM_SLOTS) {
         return mItemSlots[i_slotNo];
@@ -407,7 +576,15 @@ u8 dSv_player_item_c::getLineUpItem(int i_slotNo) const {
     return NO_ITEM;
 }
 
-/* 80033370-80033450 02DCB0 00E0+00 1/1 2/2 0/0 .text setBottleItemIn__17dSv_player_item_cFUcUc */
+/**
+ * @brief Replaces the contents of a bottle with a new item
+ *
+ * @details Searches for the specified bottle item and replaces it with the new item.
+ *          Also handles special cases like setting the hot spring timer.
+ * 
+ * @param curItemIn The current item in the bottle to be replaced
+ * @param newItemIn The new item to put in the bottle
+*/
 void dSv_player_item_c::setBottleItemIn(u8 curItemIn, u8 newItemIn) {
     curItemIn = dSv_item_rename(curItemIn);
     newItemIn = dSv_item_rename(newItemIn);
@@ -429,14 +606,24 @@ void dSv_player_item_c::setBottleItemIn(u8 curItemIn, u8 newItemIn) {
     }
 }
 
-/* 80033450-80033494 02DD90 0044+00 0/0 26/26 0/0 .text
- * setEmptyBottleItemIn__17dSv_player_item_cFUc                 */
+/**
+ * @brief Puts a new item into an empty bottle
+ *
+ * @details Finds an empty bottle in the inventory and replaces it with the specified item.
+ *
+ * @param i_itemNo The item number to put in the empty bottle
+*/
 void dSv_player_item_c::setEmptyBottleItemIn(u8 i_itemNo) {
     i_itemNo = dSv_item_rename(i_itemNo);
     setBottleItemIn(EMPTY_BOTTLE, i_itemNo);
 }
 
-/* 80033494-80033514 02DDD4 0080+00 0/0 1/1 1/1 .text setEmptyBottle__17dSv_player_item_cFv */
+/**
+ * @brief Sets an empty bottle in the player's inventory
+ *
+ * @details Iterates through the player's bottle slots and sets the first empty slot to contain an empty bottle.
+ * The function stops after setting the first empty bottle.
+*/
 void dSv_player_item_c::setEmptyBottle() {
     for (int i = 0; i < 4; i++) {
         if (dComIfGs_getItem((u8)(i + SLOT_11), true) == NO_ITEM) {
@@ -446,7 +633,16 @@ void dSv_player_item_c::setEmptyBottle() {
     }
 }
 
-/* 80033514-80033598 02DE54 0084+00 0/0 3/3 0/0 .text setEmptyBottle__17dSv_player_item_cFUc */
+/**
+* @brief Sets an empty bottle in the player's inventory
+*
+* @details Searches for an empty bottle slot in the player's inventory and sets it to the specified item number.
+*          The function checks the first 4 slots starting from SLOT_11 and sets the first empty 
+*          one found.
+* 
+* @param i_itemNo The item number to set in the empty bottle slot
+* 
+*/
 void dSv_player_item_c::setEmptyBottle(u8 i_itemNo) {
     for (int i = 0; i < 4; i++) {
         if (dComIfGs_getItem((u8)(i + SLOT_11), true) == NO_ITEM) {
@@ -456,8 +652,17 @@ void dSv_player_item_c::setEmptyBottle(u8 i_itemNo) {
     }
 }
 
-/* 80033598-800336BC 02DED8 0124+00 1/1 3/3 0/0 .text
- * setEquipBottleItemIn__17dSv_player_item_cFUcUc               */
+/**
+* @brief Sets the item in an equipped bottle
+*
+* @details This function updates the item contained in an equipped bottle. It handles
+*          special cases like hot spring water and updates the item across different
+*          game systems.
+*
+* @param curItemIn The current item in the bottle
+* @param newItemIn The new item to put in the bottle
+*
+*/
 void dSv_player_item_c::setEquipBottleItemIn(u8 curItemIn, u8 newItemIn) {
     newItemIn = dSv_item_rename(newItemIn);
 
@@ -474,13 +679,29 @@ void dSv_player_item_c::setEquipBottleItemIn(u8 curItemIn, u8 newItemIn) {
     }
 }
 
-/* 800336BC-800336E0 02DFFC 0024+00 0/0 4/4 0/0 .text
- * setEquipBottleItemEmpty__17dSv_player_item_cFUc              */
+/**
+* @brief Empties an equipped bottle
+*
+* @details This function empties an equipped bottle by setting its contents to EMPTY_BOTTLE
+*
+* @param curItemIn The current item in the bottle to be emptied
+*
+*/
 void dSv_player_item_c::setEquipBottleItemEmpty(u8 curItemIn) {
     setEquipBottleItemIn(curItemIn, EMPTY_BOTTLE);
 }
 
-/* 800336E0-80033754 02E020 0074+00 0/0 30/30 0/0 .text checkBottle__17dSv_player_item_cFUc */
+/**
+* @brief Counts the number of bottles containing a specific item
+*
+* @details This function iterates through all bottles and counts how many contain
+*          the specified item
+*
+* @param i_itemNo The item number to check for in bottles
+*
+* @return The number of bottles containing the specified item
+*
+*/
 u8 dSv_player_item_c::checkBottle(u8 i_itemNo) {
     u8 num_bottles = 0;
     u8 item_id = dSv_item_rename(i_itemNo);
@@ -493,8 +714,14 @@ u8 dSv_player_item_c::checkBottle(u8 i_itemNo) {
     return num_bottles;
 }
 
-/* ############################################################################################## */
-/* 803A7288-803A78F8 0043A8 066C+04 2/2 45/45 148/148 .data saveBitLabels__16dSv_event_flag_c */
+/**
+ * @brief Event flag bit table.
+ *
+ * @details This array stores the event flags used throughout the game
+ *          to track game progress, story events, character interactions, item acquisitions,
+ *          dungeon completions, and various other game states. Each flag is represented by a 16-bit
+ *          unsigned integer (u16) and corresponds to a specific event or condition in the game.
+ */
 u16 dSv_event_flag_c::saveBitLabels[822] = {
     UNUSED, TEST_001, TEST_002, TEST_003, TEST_004, F_0001, F_0002, F_0003, F_0004, F_0005, F_0006, 
     F_0007, F_0008, F_0009, F_0010, F_0011, F_0012, F_0013, F_0014, F_0015, F_0016, F_0017, F_0018, 
@@ -570,7 +797,14 @@ u16 dSv_event_flag_c::saveBitLabels[822] = {
     F_0816, F_0817, F_0818, F_0819, F_0820, KORO2_ALLCLEAR,
 };
 
-/* 80033754-800337EC 02E094 0098+00 0/0 1/1 0/0 .text checkInsectBottle__17dSv_player_item_cFv */
+/**
+ * @brief Checks if there are insects in any bottle
+ *
+ * @details Iterates through 24 possible insect types and checks if they are present in a bottle
+ * and if a corresponding event flag is not set.
+ *
+ * @return TRUE if an insect is found in a bottle, FALSE otherwise
+*/
 BOOL dSv_player_item_c::checkInsectBottle() {
     for (int i = 0; i < 24; i++) {
         if (dComIfGs_isItemFirstBit(M_BEETLE + i) &&
@@ -581,7 +815,14 @@ BOOL dSv_player_item_c::checkInsectBottle() {
     return FALSE;
 }
 
-/* 800337EC-80033828 02E12C 003C+00 0/0 1/1 1/1 .text checkEmptyBottle__17dSv_player_item_cFv */
+/**
+ * @brief Counts the number of empty bottles
+ *
+ * @details Iterates through the bottle slots (SLOT_11 to SLOT_11 + BOTTLE_MAX - 1)
+ * and counts how many contain an EMPTY_BOTTLE item.
+ *
+ * @return The number of empty bottles
+*/
 u8 dSv_player_item_c::checkEmptyBottle() {
     u8 bottleNum = 0;
 
@@ -593,8 +834,16 @@ u8 dSv_player_item_c::checkEmptyBottle() {
     return bottleNum;
 }
 
-/* 80033828-80033910 02E168 00E8+00 1/1 0/0 0/0 .text setBombBagItemIn__17dSv_player_item_cFUcUcb
- */
+/**
+ * @brief Sets a new bomb bag item and updates related game state
+ *
+ * @details Replaces a current bomb bag item with a new one, optionally sets the bomb count
+ * to the maximum for the new bag, and updates the select item if necessary.
+ *
+ * @param i_curBomb The current bomb bag item to be replaced
+ * @param i_newBomb The new bomb bag item to set
+ * @param i_setNum Flag to determine if the bomb count should be set to maximum
+*/
 void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, bool i_setNum) {
     for (int i = 0; i < 3; i++) {
         if (i_curBomb == mItems[i + SLOT_15]) {
@@ -614,8 +863,17 @@ void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, bool i_setN
     }
 }
 
-/* 80033910-80033A20 02E250 0110+00 1/1 0/0 0/0 .text
- * setBombBagItemIn__17dSv_player_item_cFUcUcUcb                */
+/**
+ * @brief Sets a new bomb bag item with a specific bomb count and updates related game state
+ *
+ * @details Replaces a current bomb bag item with a new one, sets the bomb count to a specified
+ * value (capped at the maximum for the new bag), and updates the select item if necessary.
+ *
+ * @param i_curBomb The current bomb bag item to be replaced
+ * @param i_newBomb The new bomb bag item to set
+ * @param i_bombNum The number of bombs to set for the new bag
+ * @param i_setNum Flag to determine if the bomb count should be set
+*/
 void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, u8 i_bombNum, bool i_setNum) {
     for (int i = 0; i < 3; i++) {
         if (i_curBomb == mItems[i + SLOT_15]) {
@@ -638,19 +896,36 @@ void dSv_player_item_c::setBombBagItemIn(u8 i_curBomb, u8 i_newBomb, u8 i_bombNu
     }
 }
 
-/* 80033A20-80033A50 02E360 0030+00 0/0 2/2 0/0 .text
- * setEmptyBombBagItemIn__17dSv_player_item_cFUcb               */
+/**
+ * @brief Sets an empty bomb bag item
+ *
+ * @details Sets a new bomb type to the first level bomb bag
+ *
+ * @param i_newBomb The new bomb type to set
+ * @param i_setNum Whether to set the number of bombs
+ */
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 i_newBomb, bool i_setNum) {
     setBombBagItemIn(BOMB_BAG_LV1, i_newBomb, i_setNum);
 }
 
-/* 80033A50-80033A88 02E390 0038+00 0/0 1/1 1/1 .text
- * setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb             */
+/**
+ * @brief Sets an empty bomb bag item with a specific bomb count
+ *
+ * @details Sets a new bomb type and bomb count to the first level bomb bag
+ *
+ * @param i_newBomb The new bomb type to set
+ * @param i_bombNum The number of bombs to set
+ * @param i_setNum Whether to set the number of bombs
+ */
 void dSv_player_item_c::setEmptyBombBagItemIn(u8 i_newBomb, u8 i_bombNum, bool i_setNum) {
     setBombBagItemIn(BOMB_BAG_LV1, i_newBomb, i_bombNum, i_setNum);
 }
 
-/* 80033A88-80033B08 02E3C8 0080+00 0/0 2/2 0/0 .text setEmptyBombBag__17dSv_player_item_cFv */
+/**
+ * @brief Sets an empty bomb bag
+ *
+ * @details Searches for an empty slot and sets it to the first level bomb bag
+ */
 void dSv_player_item_c::setEmptyBombBag() {
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_getItem((u8)(i + SLOT_15), true) == NO_ITEM) {
@@ -660,7 +935,14 @@ void dSv_player_item_c::setEmptyBombBag() {
     }
 }
 
-/* 80033B08-80033BEC 02E448 00E4+00 0/0 3/3 0/0 .text setEmptyBombBag__17dSv_player_item_cFUcUc */
+/**
+ * @brief Sets an empty bomb bag with a specific bomb type and count
+ *
+ * @details Searches for an empty slot, sets the bomb type, and updates the bomb count
+ *
+ * @param i_newBomb The new bomb type to set
+ * @param i_bombNum The number of bombs to set
+ */
 void dSv_player_item_c::setEmptyBombBag(u8 i_newBomb, u8 i_bombNum) {
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_getItem((u8)(i + SLOT_15), true) == NO_ITEM) {
@@ -680,7 +962,15 @@ void dSv_player_item_c::setEmptyBombBag(u8 i_newBomb, u8 i_bombNum) {
     }
 }
 
-/* 80033BEC-80033C2C 02E52C 0040+00 0/0 1/1 0/0 .text checkBombBag__17dSv_player_item_cFUc */
+/**
+ * @brief Checks the number of bomb bags for a specific item
+ *
+ * @details Counts the number of bomb bags that match the given item number
+ *
+ * @param i_itemNo The item number to check
+ * 
+ * @return The number of matching bomb bags
+*/
 u8 dSv_player_item_c::checkBombBag(u8 i_itemNo) {
     u8 bombBags = 0;
 
@@ -692,7 +982,13 @@ u8 dSv_player_item_c::checkBombBag(u8 i_itemNo) {
     return bombBags;
 }
 
-/* 80033C2C-80033CBC 02E56C 0090+00 0/0 2/2 1/1 .text setWarashibeItem__17dSv_player_item_cFUc */
+/**
+ * @brief Sets a Warashibe item
+ *
+ * @details Updates the item in slot 21 and refreshes the selected items
+ *
+ * @param i_itemNo The item number to set
+*/
 void dSv_player_item_c::setWarashibeItem(u8 i_itemNo) {
     dComIfGs_setItem(SLOT_21, i_itemNo);
     dComIfGp_setItem(SLOT_21, i_itemNo);
@@ -704,7 +1000,11 @@ void dSv_player_item_c::setWarashibeItem(u8 i_itemNo) {
     }
 }
 
-/* 80033CBC-80033D40 02E5FC 0084+00 0/0 1/1 0/0 .text setRodTypeLevelUp__17dSv_player_item_cFv */
+/**
+ * @brief Upgrades the rod type to the next level
+ *
+ * @details Checks the current rod type and upgrades it to its jewel version
+*/
 void dSv_player_item_c::setRodTypeLevelUp() {
     switch (mItems[SLOT_20]) {
     case BEE_ROD: {
@@ -726,8 +1026,13 @@ void dSv_player_item_c::setRodTypeLevelUp() {
     }
 }
 
-/* 80033D40-80033E40 02E680 0100+00 0/0 2/2 0/0 .text            setBaitItem__17dSv_player_item_cFUc
- */
+/**
+ * @brief Sets the bait item for the fishing rod
+ *
+ * @details Updates the rod type based on the bait item and the presence of Zora's Jewel
+ *
+ * @param i_itemNo The bait item number to set
+*/
 void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     switch (i_itemNo) {
     case BEE_CHILD: {
@@ -752,30 +1057,51 @@ void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     }
 }
 
-/* 80033E40-80033E60 02E780 0020+00 1/1 0/0 0/0 .text            init__21dSv_player_get_item_cFv */
+/**
+ * @brief Initializes the player's get item flags
+ *
+ * @details Sets all item flags to 0
+*/
 void dSv_player_get_item_c::init() {
     for (int i = 0; i < 8; i++) {
         mItemFlags[i] = 0;
     }
 }
 
-/* 80033E60-80033E94 02E7A0 0034+00 0/0 3/3 1/1 .text onFirstBit__21dSv_player_get_item_cFUc */
+/**
+ * @brief Sets the first bit for a given item number
+ *
+ * @param i_itemNo The item number to set the first bit for
+*/
 void dSv_player_get_item_c::onFirstBit(u8 i_itemNo) {
     mItemFlags[i_itemNo / 32] |= (1 << (i_itemNo % 32));
 }
 
-/* 80033E94-80033EC8 02E7D4 0034+00 0/0 7/7 1/1 .text offFirstBit__21dSv_player_get_item_cFUc */
+/**
+ * @brief Clears the first bit for a given item number
+ *
+ * @param i_itemNo The item number to clear the first bit for
+*/
 void dSv_player_get_item_c::offFirstBit(u8 i_itemNo) {
     mItemFlags[i_itemNo / 32] &= ~(1 << (i_itemNo % 32));
 }
 
-/* 80033EC8-80033F00 02E808 0038+00 4/4 87/87 2/2 .text isFirstBit__21dSv_player_get_item_cCFUc */
+/**
+ * @brief Checks if the first bit is set for a given item number
+ *
+ * @param i_itemNo The item number to check
+ * 
+ * @return TRUE if the first bit is set, FALSE otherwise
+*/
 int dSv_player_get_item_c::isFirstBit(u8 i_itemNo) const {
     return mItemFlags[i_itemNo / 32] & (1 << (i_itemNo % 32)) ? TRUE : FALSE;
 }
 
-/* 80033F00-80033F6C 02E840 006C+00 1/1 0/0 0/0 .text            init__24dSv_player_item_record_cFv
- */
+/**
+ * @brief Initializes the player's item record
+ *
+ * @details Sets initial values for arrow, bomb, bottle, and pachinko counts
+*/
 void dSv_player_item_record_c::init() {
     mArrowNum = 0;
 
@@ -794,26 +1120,47 @@ void dSv_player_item_record_c::init() {
     }
 }
 
-/* 80033F6C-80033F7C 02E8AC 0010+00 3/3 5/5 0/0 .text setBombNum__24dSv_player_item_record_cFUcUc
- */
+/**
+ * @brief Sets the bomb count for a specific bag
+ *
+ * @param i_bagIdx The index of the bomb bag
+ * @param i_bombNum The number of bombs to set
+*/
 void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 i_bombNum) {
     mBombNum[i_bagIdx] = i_bombNum;
 }
 
-/* 80033F7C-80033F8C 02E8BC 0010+00 0/0 13/13 2/2 .text getBombNum__24dSv_player_item_record_cCFUc
- */
+/**
+ * @brief Gets the bomb count for a specific bag
+ *
+ * @param i_bagIdx The index of the bomb bag
+ * 
+ * @return The number of bombs in the specified bag
+*/
 u8 dSv_player_item_record_c::getBombNum(u8 i_bagIdx) const {
     return mBombNum[i_bagIdx];
 }
 
-/* 80033F8C-80033F9C 02E8CC 0010+00 0/0 2/2 0/0 .text
- * setBottleNum__24dSv_player_item_record_cFUcUc                */
+/**
+ * @brief Sets the bottle count for a specific bottle
+ *
+ * @param i_bottleIdx The index of the bottle
+ * @param i_bottleNum The number to set for the bottle
+*/
 void dSv_player_item_record_c::setBottleNum(u8 i_bottleIdx, u8 i_bottleNum) {
     mBottleNum[i_bottleIdx] = i_bottleNum;
 }
 
-/* 80033F9C-80034030 02E8DC 0094+00 0/0 1/1 0/0 .text addBottleNum__24dSv_player_item_record_cFUcs
- */
+/**
+ * @brief Adds to the bottle count for a specific bottle
+ *
+ * @details Adjusts the bottle count, ensuring it stays within valid limits
+ *
+ * @param i_bottleIdx The index of the bottle
+ * @param i_no The number to add (can be negative)
+ * 
+ * @return The new bottle count after adjustment
+*/
 u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 i_no) {
     int bottleNum = mBottleNum[i_bottleIdx] + i_no;
 
@@ -830,13 +1177,22 @@ u8 dSv_player_item_record_c::addBottleNum(u8 i_bottleIdx, s16 i_no) {
     return mBottleNum[i_bottleIdx];
 }
 
-/* 80034030-80034040 02E970 0010+00 0/0 4/4 0/0 .text getBottleNum__24dSv_player_item_record_cCFUc
+/**
+ * @brief Gets the bottle count for a specific bottle
+ *
+ * @param i_bottleIdx The index of the bottle
+ * 
+ * @return The count for the specified bottle
  */
 u8 dSv_player_item_record_c::getBottleNum(u8 i_bottleIdx) const {
     return mBottleNum[i_bottleIdx];
 }
 
-/* 80034040-800340B8 02E980 0078+00 1/1 0/0 0/0 .text            init__21dSv_player_item_max_cFv */
+/**
+ * @brief Initializes the player's maximum item counts
+ *
+ * @details Sets default maximum values for various items including bombs
+*/
 void dSv_player_item_max_c::init() {
     for (int i = 0; i < 7; i++) {
         mItemMax[i] = 30;
@@ -847,7 +1203,12 @@ void dSv_player_item_max_c::init() {
     mItemMax[7] = 0;
 }
 
-/* 800340B8-800340F8 02E9F8 0040+00 1/1 0/0 0/0 .text setBombNum__21dSv_player_item_max_cFUcUc */
+/**
+ * @brief Sets the maximum bomb count for a specific bomb type
+ *
+ * @param i_bombType The type of bomb
+ * @param i_maxNum The maximum number to set
+ */
 void dSv_player_item_max_c::setBombNum(u8 i_bombType, u8 i_maxNum) {
     switch (i_bombType) {
     case NORMAL_BOMB:
@@ -862,7 +1223,15 @@ void dSv_player_item_max_c::setBombNum(u8 i_bombType, u8 i_maxNum) {
     }
 }
 
-/* 800340F8-800341AC 02EA38 00B4+00 3/3 14/14 2/2 .text getBombNum__21dSv_player_item_max_cCFUc */
+/**
+ * @brief Gets the maximum bomb count for a specific bomb type
+ *
+ * @details Considers the bomb bag level when calculating the maximum
+ *
+ * @param i_bombType The type of bomb
+ * 
+ * @return The maximum number of bombs for the specified type
+ */
 u8 dSv_player_item_max_c::getBombNum(u8 i_bombType) const {
     u8 lv_multiplier = 1;
     if (dComIfGs_isItemFirstBit(BOMB_BAG_LV2)) {
@@ -881,7 +1250,11 @@ u8 dSv_player_item_max_c::getBombNum(u8 i_bombType) const {
     }
 }
 
-/* 800341AC-800341E8 02EAEC 003C+00 1/1 0/0 0/0 .text            init__20dSv_player_collect_cFv */
+/**
+ * @brief Initializes the player collection data
+ * 
+ * @details Sets all item flags to 0, initializes crystal and mirror flags, and sets other values to their initial states
+ */
 void dSv_player_collect_c::init() {
     for (int i = 0; i < 8; i++) {
         mItem[i] = 0;
@@ -894,41 +1267,73 @@ void dSv_player_collect_c::init() {
     mPohNum = 0;
 }
 
-/* 800341E8-80034208 02EB28 0020+00 0/0 8/8 0/0 .text setCollect__20dSv_player_collect_cFiUc */
+/**
+ * @brief Sets a collect flag for a specific item type
+ * 
+ * @param i_item_type The type of item
+ * @param i_item The specific item within the type
+ */
 void dSv_player_collect_c::setCollect(int i_item_type, u8 i_item) {
     mItem[i_item_type] |= (u8)(1 << i_item);
 }
 
-/* 80034208-8003422C 02EB48 0024+00 0/0 4/4 4/4 .text isCollect__20dSv_player_collect_cCFiUc */
+/**
+ * @brief Checks if a specific item has been collected
+ * 
+ * @param i_item_type The type of item
+ * @param i_item The specific item within the type
+ * 
+ * @return TRUE if the item has been collected, FALSE otherwise
+ */
 BOOL dSv_player_collect_c::isCollect(int i_item_type, u8 i_item) const {
     return mItem[i_item_type] & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
-/* 8003422C-8003424C 02EB6C 0020+00 0/0 1/1 1/1 .text onCollectCrystal__20dSv_player_collect_cFUc
+/**
+ * @brief Sets a crystal as collected
+ * 
+ * @param i_item The specific crystal item
  */
 void dSv_player_collect_c::onCollectCrystal(u8 i_item) {
     mCrystal |= (u8)(1 << i_item);
 }
 
-/* 8003424C-80034270 02EB8C 0024+00 0/0 4/4 0/0 .text isCollectCrystal__20dSv_player_collect_cCFUc
+/**
+ * @brief Checks if a specific crystal has been collected
+ * 
+ * @param i_item The specific crystal item
+ * 
+ * @return TRUE if the crystal has been collected, FALSE otherwise
  */
 BOOL dSv_player_collect_c::isCollectCrystal(u8 i_item) const {
     return mCrystal & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
-/* 80034270-80034290 02EBB0 0020+00 0/0 1/1 1/1 .text onCollectMirror__20dSv_player_collect_cFUc
+/**
+ * @brief Sets a mirror as collected
+ * 
+ * @param i_item The specific mirror item
  */
 void dSv_player_collect_c::onCollectMirror(u8 i_item) {
     mMirror |= (u8)(1 << i_item);
 }
 
-/* 80034290-800342B4 02EBD0 0024+00 0/0 4/4 0/0 .text isCollectMirror__20dSv_player_collect_cCFUc
+/**
+ * @brief Checks if a specific mirror has been collected
+ * 
+ * @param i_item The specific mirror item
+ * 
+ * @return TRUE if the mirror has been collected, FALSE otherwise
  */
 BOOL dSv_player_collect_c::isCollectMirror(u8 i_item) const {
     return mMirror & (u8)(1 << i_item) ? TRUE : FALSE;
 }
 
-/* 800342B4-800342DC 02EBF4 0028+00 1/1 0/0 0/0 .text            init__17dSv_player_wolf_cFv */
+/**
+ * @brief Initializes the player wolf data
+ * 
+ * @details Sets all wolf-related flags to 0
+ */
 void dSv_player_wolf_c::init() {
     for (int i = 0; i < 3; i++) {
         unk0[i] = 0;
@@ -937,7 +1342,11 @@ void dSv_player_wolf_c::init() {
     unk3 = 0;
 }
 
-/* 800342DC-80034320 02EC1C 0044+00 1/1 0/0 0/0 .text            init__16dSv_light_drop_cFv */
+/**
+ * @brief Initializes the light drop data
+ * 
+ * @details Sets all light drop numbers and flags to their initial states
+ */
 void dSv_light_drop_c::init() {
     for (int i = 0; i < 4; i++) {
         mLightDropNum[i] = 0;
@@ -950,14 +1359,25 @@ void dSv_light_drop_c::init() {
     }
 }
 
-/* 80034320-80034340 02EC60 0020+00 0/0 0/0 1/1 .text setLightDropNum__16dSv_light_drop_cFUcUc */
+/**
+ * @brief Sets the number of light drops for a specific level
+ * 
+ * @param i_nowLevel The current level
+ * @param i_dropNum The number of light drops to set
+ */
 void dSv_light_drop_c::setLightDropNum(u8 i_nowLevel, u8 i_dropNum) {
     if (i_nowLevel < LIGHT_DROP_STAGE || i_nowLevel > 6) {
         mLightDropNum[i_nowLevel] = i_dropNum;
     }
 }
 
-/* 80034340-80034368 02EC80 0028+00 0/0 11/11 4/4 .text getLightDropNum__16dSv_light_drop_cCFUc */
+/**
+ * @brief Gets the number of light drops for a specific level
+ * 
+ * @param i_nowLevel The current level
+ * 
+ * @return The number of light drops for the specified level
+ */
 u8 dSv_light_drop_c::getLightDropNum(u8 i_nowLevel) const {
     if (i_nowLevel >= LIGHT_DROP_STAGE && i_nowLevel <= 6) {
         return 0;
@@ -965,14 +1385,23 @@ u8 dSv_light_drop_c::getLightDropNum(u8 i_nowLevel) const {
     return mLightDropNum[i_nowLevel];
 }
 
-/* 80034368-8003439C 02ECA8 0034+00 0/0 4/4 0/0 .text onLightDropGetFlag__16dSv_light_drop_cFUc */
+/**
+ * @brief Sets the flag indicating a light drop has been obtained for a specific level
+ * 
+ * @param i_nowLevel The current level
+ */
 void dSv_light_drop_c::onLightDropGetFlag(u8 i_nowLevel) {
     if (i_nowLevel < LIGHT_DROP_STAGE || i_nowLevel > 6) {
         mLightDropGetFlag |= (u8)(1 << i_nowLevel);
     }
 }
 
-/* 8003439C-800343DC 02ECDC 0040+00 0/0 8/8 2/2 .text isLightDropGetFlag__16dSv_light_drop_cCFUc
+/**
+ * @brief Checks if a light drop has been obtained for a specific level
+ * 
+ * @param i_nowLevel The current level
+ * 
+ * @return TRUE if a light drop has been obtained for the specified level, FALSE otherwise
  */
 BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
     if (i_nowLevel >= LIGHT_DROP_STAGE && i_nowLevel <= 6) {
@@ -981,7 +1410,11 @@ BOOL dSv_light_drop_c::isLightDropGetFlag(u8 i_nowLevel) const {
     return mLightDropGetFlag & (u8)(1 << i_nowLevel) ? TRUE : FALSE;
 }
 
-/* 800343DC-80034428 02ED1C 004C+00 1/1 0/0 0/0 .text            init__17dSv_letter_info_cFv */
+/**
+ * @brief Initializes the letter information
+ * 
+ * @details Sets all letter flags and counters to their initial states
+ */
 void dSv_letter_info_c::init() {
     for (int i = 0; i < 2; i++) {
         mLetterGetFlags[i] = 0;
@@ -993,27 +1426,51 @@ void dSv_letter_info_c::init() {
     }
 }
 
-/* 80034428-8003444C 02ED68 0024+00 0/0 2/2 0/0 .text onLetterGetFlag__17dSv_letter_info_cFi */
+/**
+ * @brief Sets the flag indicating a letter has been obtained
+ * 
+ * @param i_no The letter number
+ */
 void dSv_letter_info_c::onLetterGetFlag(int i_no) {
     mLetterGetFlags[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 8003444C-80034474 02ED8C 0028+00 0/0 4/4 0/0 .text isLetterGetFlag__17dSv_letter_info_cCFi */
+/**
+ * @brief Checks if a specific letter has been obtained
+ * 
+ * @param i_no The letter number
+ * 
+ * @return TRUE if the letter has been obtained, FALSE otherwise
+ */
 BOOL dSv_letter_info_c::isLetterGetFlag(int i_no) const {
     return mLetterGetFlags[i_no >> 5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-/* 80034474-8003449C 02EDB4 0028+00 0/0 1/1 0/0 .text onLetterReadFlag__17dSv_letter_info_cFi */
+/**
+ * @brief Sets the flag indicating a letter has been read
+ * 
+ * @param i_no The letter number
+ */
 void dSv_letter_info_c::onLetterReadFlag(int i_no) {
     mLetterReadFlags[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 8003449C-800344C8 02EDDC 002C+00 0/0 3/3 0/0 .text isLetterReadFlag__17dSv_letter_info_cCFi */
+/**
+ * @brief Checks if a specific letter has been read
+ * 
+ * @param i_no The letter number
+ * 
+ * @return TRUE if the letter has been read, FALSE otherwise
+ */
 BOOL dSv_letter_info_c::isLetterReadFlag(int i_no) const {
     return mLetterReadFlags[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
-/* 800344C8-800344FC 02EE08 0034+00 1/1 0/0 0/0 .text            init__18dSv_fishing_info_cFv */
+/**
+ * @brief Initializes the fishing information
+ * 
+ * @details Sets all fish counts and maximum sizes to 0
+ */
 void dSv_fishing_info_c::init() {
     for (int i = 0; i < 16; i++) {
         mFishCount[i] = 0;
@@ -1021,14 +1478,22 @@ void dSv_fishing_info_c::init() {
     }
 }
 
-/* 800344FC-80034518 02EE3C 001C+00 0/0 0/0 1/1 .text addFishCount__18dSv_fishing_info_cFUc */
+/**
+ * @brief Increments the count for a specific fish type
+ * 
+ * @param i_fishIdx The index of the fish type
+ */
 void dSv_fishing_info_c::addFishCount(u8 i_fishIdx) {
     if (mFishCount[i_fishIdx] < 999) {
         mFishCount[i_fishIdx] += 1;
     }
 }
 
-/* 80034518-800345AC 02EE58 0094+00 1/1 0/0 0/0 .text            init__17dSv_player_info_cFv */
+/**
+ * @brief Initializes the player information
+ * 
+ * @details Sets the player and horse names, and initializes various game statistics
+ */
 void dSv_player_info_c::init() {
     dMeter2Info_getString(0x382, mPlayerName, NULL);  // Link
     dMeter2Info_getString(0x383, mHorseName, NULL);   // Epona
@@ -1045,7 +1510,11 @@ void dSv_player_info_c::init() {
     }
 }
 
-/* 800345AC-80034644 02EEEC 0098+00 1/1 0/0 0/0 .text            init__19dSv_player_config_cFv */
+/**
+ * @brief Initializes the player configuration
+ * 
+ * @details Sets up sound mode, attention type, vibration, and other game settings
+ */
 void dSv_player_config_c::init() {
     unk0 = 1;
 
@@ -1068,34 +1537,56 @@ void dSv_player_config_c::init() {
     mPointer = 1;
 }
 
-/* 80034644-80034684 02EF84 0040+00 0/0 4/4 0/0 .text checkVibration__19dSv_player_config_cCFv */
+/**
+ * @brief Checks if vibration is supported and enabled
+ * 
+ * @return The current vibration status
+ */
 u32 dSv_player_config_c::checkVibration() const {
     return JUTGamePad::sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
 }
 
-/* 80034684-8003468C 02EFC4 0008+00 1/1 2/2 0/0 .text            getSound__19dSv_player_config_cFv
+/**
+ * @brief Gets the current sound mode
+ * 
+ * @return The current sound mode
  */
 u8 dSv_player_config_c::getSound() {
     return mSoundMode;
 }
 
-/* 8003468C-80034694 -00001 0008+00 0/0 0/0 0/0 .text            setSound__19dSv_player_config_cFUc
+/**
+ * @brief Sets the sound mode
+ * 
+ * @param i_mode The sound mode to set
  */
 void dSv_player_config_c::setSound(u8 i_mode) {
     mSoundMode = i_mode;
 }
 
-/* 80034694-8003469C 02EFD4 0008+00 1/1 1/1 0/0 .text getVibration__19dSv_player_config_cFv */
+/**
+ * @brief Gets the current vibration setting
+ * 
+ * @return The current vibration setting
+ */
 u8 dSv_player_config_c::getVibration() {
     return mVibration;
 }
 
-/* 8003469C-800346A4 -00001 0008+00 0/0 0/0 0/0 .text setVibration__19dSv_player_config_cFUc */
+/**
+ * @brief Sets the vibration status
+ * 
+ * @param i_status The vibration status to set
+ */
 void dSv_player_config_c::setVibration(u8 i_status) {
     mVibration = i_status;
 }
 
-/* 800346A4-80034750 02EFE4 00AC+00 1/1 0/0 0/0 .text            init__12dSv_player_cFv */
+/**
+ * @brief Initializes all components of the dSv_player_c object
+ *
+ * @details Calls the init() method on all member objects
+ */
 void dSv_player_c::init() {
     mPlayerStatusA.init();
     mPlayerStatusB.init();
@@ -1116,7 +1607,11 @@ void dSv_player_c::init() {
     mConfig.init();
 }
 
-/* 80034750-800347A0 02F090 0050+00 1/1 0/0 0/0 .text            init__12dSv_memBit_cFv */
+/**
+ * @brief Initializes the dSv_memBit_c object
+ *
+ * @details Resets all tbox, switch, item, key, and dungeon item values to 0
+ */
 void dSv_memBit_c::init() {
     for (int i = 0; i < 2; i++) {
         mTbox[i] = 0;
@@ -1131,37 +1626,71 @@ void dSv_memBit_c::init() {
     mDungeonItem = 0;
 }
 
-/* 800347A0-800347C4 02F0E0 0024+00 0/0 0/0 15/15 .text            onTbox__12dSv_memBit_cFi */
+/**
+ * @brief Turns on a specific tbox
+ *
+ * @param i_no The tbox number to turn on
+ */
 void dSv_memBit_c::onTbox(int i_no) {
     mTbox[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 800347C4-800347E8 02F104 0024+00 0/0 0/0 5/5 .text            offTbox__12dSv_memBit_cFi */
+/**
+ * @brief Turns off a specific tbox
+ *
+ * @param i_no The tbox number to turn off
+ */
 void dSv_memBit_c::offTbox(int i_no) {
     mTbox[i_no >> 5] &= ~(1 << (i_no & 0x1F));
 }
 
-/* 800347E8-80034810 02F128 0028+00 0/0 6/6 7/7 .text            isTbox__12dSv_memBit_cCFi */
+/**
+ * @brief Checks if a specific tbox is on
+ *
+ * @param i_no The tbox number to check
+ * 
+ * @return TRUE if the tbox is on, FALSE otherwise
+ */
 BOOL dSv_memBit_c::isTbox(int i_no) const {
     return 1 << (i_no & 0x1f) & mTbox[i_no >> 5] ? TRUE : FALSE;
 }
 
-/* 80034810-80034838 02F150 0028+00 1/1 5/5 18/18 .text            onSwitch__12dSv_memBit_cFi */
+/**
+ * @brief Turns on a specific switch
+ *
+ * @param i_no The switch number to turn on
+ */
 void dSv_memBit_c::onSwitch(int i_no) {
     mSwitch[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 80034838-80034860 02F178 0028+00 1/1 3/3 3/3 .text            offSwitch__12dSv_memBit_cFi */
+/**
+ * @brief Turns off a specific switch
+ *
+ * @param i_no The switch number to turn off
+ */
 void dSv_memBit_c::offSwitch(int i_no) {
     mSwitch[i_no >> 5] &= ~(1 << (i_no & 0x1F));
 }
 
-/* 80034860-8003488C 02F1A0 002C+00 1/1 11/11 23/23 .text            isSwitch__12dSv_memBit_cCFi */
+/**
+ * @brief Checks if a specific switch is on
+ *
+ * @param i_no The switch number to check
+ * 
+ * @return TRUE if the switch is on, FALSE otherwise
+ */
 BOOL dSv_memBit_c::isSwitch(int i_no) const {
     return (mSwitch[i_no >> 5] & 1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-/* 8003488C-800348C4 02F1CC 0038+00 1/1 0/0 0/0 .text            revSwitch__12dSv_memBit_cFi */
+/**
+ * @brief Toggles a specific switch and returns its new state
+ *
+ * @param i_no The switch number to toggle
+ * 
+ * @return TRUE if the switch is now on, FALSE if it's now off
+ */
 BOOL dSv_memBit_c::revSwitch(int i_no) {
     u32 switchInd = i_no >> 5;
     u32 tmp = 1 << (i_no & 0x1F);
@@ -1169,28 +1698,51 @@ BOOL dSv_memBit_c::revSwitch(int i_no) {
     return mSwitch[switchInd] & tmp ? TRUE : FALSE;
 }
 
-/* 800348C4-800348EC 02F204 0028+00 1/1 0/0 0/0 .text            onItem__12dSv_memBit_cFi */
+/**
+ * @brief Turns on a specific item
+ *
+ * @param i_no The item number to turn on
+ */
 void dSv_memBit_c::onItem(int i_no) {
     mItem[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 800348EC-80034918 02F22C 002C+00 1/1 2/2 1/1 .text            isItem__12dSv_memBit_cCFi */
+/**
+ * @brief Checks if a specific item is on
+ *
+ * @param i_no The item number to check
+ * 
+ * @return TRUE if the item is on, FALSE otherwise
+ */
 BOOL dSv_memBit_c::isItem(int i_no) const {
     return (mItem[i_no >> 5] & 1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-/* 80034918-80034934 02F258 001C+00 0/0 8/8 18/18 .text            onDungeonItem__12dSv_memBit_cFi
+/**
+ * @brief Turns on a specific dungeon item
+ *
+ * @param i_no The dungeon item number to turn on
  */
 void dSv_memBit_c::onDungeonItem(int i_no) {
     mDungeonItem |= (u8)(1 << i_no);
 }
 
-/* 80034934-80034954 02F274 0020+00 0/0 27/27 47/47 .text isDungeonItem__12dSv_memBit_cCFi */
+/**
+ * @brief Checks if a specific dungeon item is on
+ *
+ * @param i_no The dungeon item number to check
+ * 
+ * @return TRUE if the dungeon item is on, FALSE otherwise
+ */
 s32 dSv_memBit_c::isDungeonItem(int i_no) const {
     return mDungeonItem & (u8)(1 << i_no) ? TRUE : FALSE;
 }
 
-/* 80034954-8003498C 02F294 0038+00 2/2 0/0 0/0 .text            init__11dSv_event_cFv */
+/**
+ * @brief Initializes the dSv_event_c object
+ *
+ * @details Resets all events to 0 and sets initial event bits
+ */
 void dSv_event_c::init() {
     for (int i = 0; i < MAX_EVENTS; i++) {
         mEvent[i] = 0;
@@ -1198,37 +1750,62 @@ void dSv_event_c::init() {
     setInitEventBit();
 }
 
-/* 8003498C-800349A4 02F2CC 0018+00 1/1 27/27 58/58 .text            onEventBit__11dSv_event_cFUs */
+/**
+ * @brief Turns on a specific event bit
+ *
+ * @param i_no The event bit number to turn on
+ */
 void dSv_event_c::onEventBit(u16 i_no) {
     mEvent[i_no >> 8] |= (u8)i_no;
 }
 
-/* 800349A4-800349BC 02F2E4 0018+00 1/1 14/14 23/23 .text            offEventBit__11dSv_event_cFUs
+/**
+ * @brief Turns off a specific event bit
+ *
+ * @param i_no The event bit number to turn off
  */
 void dSv_event_c::offEventBit(u16 i_no) {
     mEvent[i_no >> 8] &= ~(u8)i_no;
 }
 
-/* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs
+/**
+ * @brief Checks if a specific event bit is on
+ *
+ * @param i_no The event bit number to check
+ * 
+ * @return TRUE if the event bit is on, FALSE otherwise
  */
 BOOL dSv_event_c::isEventBit(u16 i_no) const {
     return mEvent[i_no >> 8] & (i_no & 0xFF) ? TRUE : FALSE;
 }
 
-/* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc
+/**
+ * @brief Sets a specific event register to a given value
+ *
+ * @param i_reg The event register to set
+ * @param i_no The value to set the register to
  */
 void dSv_event_c::setEventReg(u16 i_reg, u8 i_no) {
     mEvent[i_reg >> 8] &= ~(u8)i_reg;
     mEvent[i_reg >> 8] |= i_no;
 }
 
-/* 80034A04-80034A1C 02F344 0018+00 0/0 19/19 20/20 .text            getEventReg__11dSv_event_cCFUs
+/**
+ * @brief Gets the value of a specific event register
+ *
+ * @param i_reg The event register to get
+ * 
+ * @return The value of the event register
  */
 u8 dSv_event_c::getEventReg(u16 i_reg) const {
     return (u8)i_reg & mEvent[i_reg >> 8];
 }
 
-/* 80034A1C-80034A64 02F35C 0048+00 1/1 0/0 0/0 .text            init__14dSv_MiniGame_cFv */
+/**
+ * @brief Initializes the dSv_MiniGame_c object
+ *
+ * @details Resets all mini-game related values to their initial states
+ */
 void dSv_MiniGame_c::init() {
     unk0 = 0;
     for (int i = 0; i < 3; i++) {
@@ -1241,35 +1818,66 @@ void dSv_MiniGame_c::init() {
     unk20 = 0;
 }
 
-/* 80034A64-80034A84 02F3A4 0020+00 2/2 2/2 0/0 .text            init__12dSv_memory_cFv */
+/**
+ * @brief Initializes the dSv_memory_c object
+ *
+ * @details Calls the init() method on the mBit member
+ */
 void dSv_memory_c::init() {
     mBit.init();
 }
 
-/* 80034A84-80034AA4 02F3C4 0020+00 1/1 1/1 0/0 .text            init__13dSv_memory2_cFv */
+/**
+ * @brief Initializes the dSv_memory2_c object
+ *
+ * @details Resets all visited room flags to 0
+ */
 void dSv_memory2_c::init() {
     for (int i = 0; i < 2; i++) {
         mVisitedRoom[i] = 0;
     }
 }
 
-/* 80034AA4-80034AC8 02F3E4 0024+00 0/0 1/1 1/1 .text            onVisitedRoom__13dSv_memory2_cFi */
+/**
+ * @brief Marks a specific room as visited
+ *
+ * @param i_no The room number to mark as visited
+ */
 void dSv_memory2_c::onVisitedRoom(int i_no) {
     mVisitedRoom[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 80034AC8-80034AEC 02F408 0024+00 0/0 1/1 1/1 .text            offVisitedRoom__13dSv_memory2_cFi
+/**
+ * @brief Marks a specific room as not visited
+ *
+ * @param i_no The room number to mark as not visited
  */
 void dSv_memory2_c::offVisitedRoom(int i_no) {
     mVisitedRoom[i_no >> 5] &= ~(1 << (i_no & 0x1F));
 }
 
-/* 80034AEC-80034B14 02F42C 0028+00 0/0 4/4 0/0 .text            isVisitedRoom__13dSv_memory2_cFi */
+/**
+ * @brief Checks if a specific room has been visited
+ *
+ * @param i_no The room number to check
+ * 
+ * @return TRUE if the room has been visited, FALSE otherwise
+ */
 BOOL dSv_memory2_c::isVisitedRoom(int i_no) {
     return (1 << (i_no & 0x1F) & mVisitedRoom[i_no >> 5]) ? TRUE : FALSE;
 }
 
-/* 80034B14-80034B98 02F454 0084+00 1/1 1/1 0/0 .text            init__12dSv_danBit_cFSc */
+/**
+ * @brief Initializes the dSv_danBit_c object with a given stage number
+ *
+ * @details If the given stage number is different from the current stage number,
+ *          it resets all switches and items, sets the new stage number, and clears
+ *          some flags. If the stage number is the same, it sets a save flag.
+ *
+ * @param i_stageNo The stage number to initialize with
+ * 
+ * @return true if initialization occurred (new stage), false otherwise (same stage)
+*/
 bool dSv_danBit_c::init(s8 i_stageNo) {
     if (i_stageNo != mStageNo) {
         mSwitch[0] = 0;
@@ -1294,39 +1902,85 @@ bool dSv_danBit_c::init(s8 i_stageNo) {
     }
 }
 
-/* 80034B98-80034BC0 02F4D8 0028+00 1/1 2/2 26/26 .text            onSwitch__12dSv_danBit_cFi */
+/**
+ * @brief Turns on a specific switch
+ *
+ * @details Sets the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to turn on
+*/
 void dSv_danBit_c::onSwitch(int i_no) {
     mSwitch[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 80034BC0-80034BE8 02F500 0028+00 1/1 1/1 10/10 .text            offSwitch__12dSv_danBit_cFi */
+/**
+ * @brief Turns off a specific switch
+ *
+ * @details Clears the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to turn off
+*/
 void dSv_danBit_c::offSwitch(int i_no) {
     mSwitch[i_no >> 5] &= ~(1 << (i_no & 0x1F));
 }
 
-/* 80034BE8-80034C14 02F528 002C+00 1/1 6/6 14/14 .text            isSwitch__12dSv_danBit_cCFi */
+/**
+ * @brief Checks if a specific switch is on
+ *
+ * @details Checks the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to check
+ * 
+ * @return TRUE if the switch is on, FALSE otherwise
+*/
 BOOL dSv_danBit_c::isSwitch(int i_no) const {
     return mSwitch[i_no >> 5] & (1 << (i_no & 0x1F)) ? TRUE : FALSE;
 }
 
-/* 80034C14-80034C4C 02F554 0038+00 1/1 0/0 0/0 .text            revSwitch__12dSv_danBit_cFi */
+/**
+ * @brief Toggles a specific switch and returns its new state
+ *
+ * @details Flips the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to toggle
+ * 
+ * @return TRUE if the switch is now on, FALSE if it's now off
+*/
 BOOL dSv_danBit_c::revSwitch(int i_no) {
     int uVar1 = 1 << (i_no & 0x1F);
     mSwitch[i_no >> 5] ^= uVar1;
     return mSwitch[i_no >> 5] & uVar1 ? TRUE : FALSE;
 }
 
-/* 80034C4C-80034C74 02F58C 0028+00 1/1 0/0 0/0 .text            onItem__12dSv_danBit_cFi */
+/**
+ * @brief Turns on a specific item
+ *
+ * @details Sets the bit corresponding to the given item number in the mItem array
+ *
+ * @param i_no The item number to turn on
+*/
 void dSv_danBit_c::onItem(int i_no) {
     mItem[i_no >> 5] |= 1 << (i_no & 0x1F);
 }
 
-/* 80034C74-80034CA0 02F5B4 002C+00 1/1 2/2 0/0 .text            isItem__12dSv_danBit_cCFi */
+/**
+ * @brief Checks if a specific item is on
+ *
+ * @details Checks the bit corresponding to the given item number in the mItem array
+ *
+ * @param i_no The item number to check
+ * 
+ * @return TRUE if the item is on, FALSE otherwise
+*/
 BOOL dSv_danBit_c::isItem(int i_no) const {
     return mItem[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
-/* 80034CA0-80034CEC 02F5E0 004C+00 1/1 0/0 0/0 .text            init__13dSv_zoneBit_cFv */
+/**
+ * @brief Initializes the dSv_zoneBit_c object
+ *
+ * @details Resets all switches, items, room switches, and room items to 0
+*/
 void dSv_zoneBit_c::init() {
     for (int i = 0; i < 2; i++) {
         mSwitch[i] = 0;
@@ -1340,33 +1994,68 @@ void dSv_zoneBit_c::init() {
     mRoomItem = 0;
 }
 
-/* 80034CEC-80034CF8 02F62C 000C+00 0/0 3/3 0/0 .text            clearRoomSwitch__13dSv_zoneBit_cFv
- */
+/**
+ * @brief Clears all room switches
+ *
+ * @details Sets mRoomSwitch to 0
+*/
 void dSv_zoneBit_c::clearRoomSwitch() {
     mRoomSwitch = 0;
 }
 
-/* 80034CF8-80034D04 02F638 000C+00 0/0 3/3 0/0 .text            clearRoomItem__13dSv_zoneBit_cFv */
+/**
+ * @brief Clears all room items
+ *
+ * @details Sets mRoomItem to 0
+*/
 void dSv_zoneBit_c::clearRoomItem() {
     mRoomItem = 0;
 }
 
-/* 80034D04-80034D2C 02F644 0028+00 1/1 1/1 0/0 .text            onSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Turns on a specific zone switch
+ *
+ * @details Sets the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to turn on
+*/
 void dSv_zoneBit_c::onSwitch(int i_no) {
     mSwitch[i_no >> 4] |= (u16)(1 << (i_no & 0xF));
 }
 
-/* 80034D2C-80034D50 02F66C 0024+00 1/1 1/1 0/0 .text            offSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Turns off a specific zone switch
+ *
+ * @details Clears the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to turn off
+*/
 void dSv_zoneBit_c::offSwitch(int i_no) {
     mSwitch[i_no >> 4] &= ~(1 << (i_no & 0xF));
 }
 
-/* 80034D50-80034D78 02F690 0028+00 1/1 1/1 0/0 .text            isSwitch__13dSv_zoneBit_cCFi */
+/**
+ * @brief Checks if a specific zone switch is on
+ *
+ * @details Checks the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to check
+ * 
+ * @return TRUE if the switch is on, FALSE otherwise
+*/
 BOOL dSv_zoneBit_c::isSwitch(int i_no) const {
     return mSwitch[i_no >> 4] & 1 << (i_no & 0xF) ? TRUE : FALSE;
 }
 
-/* 80034D78-80034DAC 02F6B8 0034+00 1/1 0/0 0/0 .text            revSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Toggles a specific zone switch and returns its new state
+ *
+ * @details Flips the bit corresponding to the given switch number in the mSwitch array
+ *
+ * @param i_no The switch number to toggle
+ * 
+ * @return TRUE if the switch is now on, FALSE if it's now off
+*/
 BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     u32 switchInd = i_no >> 4;
     int uVar1 = 1 << (i_no & 0xF);
@@ -1374,85 +2063,200 @@ BOOL dSv_zoneBit_c::revSwitch(int i_no) {
     return mSwitch[switchInd] & uVar1 ? TRUE : FALSE;
 }
 
-/* 80034DAC-80034DC8 02F6EC 001C+00 1/1 1/1 0/0 .text            onOneSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Turns on a specific room switch
+ *
+ * @details Sets the bit corresponding to the given switch number in mRoomSwitch
+ *
+ * @param i_no The switch number to turn on
+*/
 void dSv_zoneBit_c::onOneSwitch(int i_no) {
     mRoomSwitch |= (u16)(1 << i_no);
 }
 
-/* 80034DC8-80034DE0 02F708 0018+00 1/1 1/1 0/0 .text            offOneSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Turns off a specific room switch
+ *
+ * @details Clears the bit corresponding to the given switch number in mRoomSwitch
+ *
+ * @param i_no The switch number to turn off
+*/
 void dSv_zoneBit_c::offOneSwitch(int i_no) {
     mRoomSwitch &= ~(1 << i_no);
 }
 
-/* 80034DE0-80034DFC 02F720 001C+00 1/1 1/1 0/0 .text            isOneSwitch__13dSv_zoneBit_cCFi */
+/**
+ * @brief Checks if a specific room switch is on
+ *
+ * @details Checks the bit corresponding to the given switch number in mRoomSwitch
+ *
+ * @param i_no The switch number to check
+ * 
+ * @return TRUE if the switch is on, FALSE otherwise
+*/
 BOOL dSv_zoneBit_c::isOneSwitch(int i_no) const {
     return mRoomSwitch & 1 << i_no ? TRUE : FALSE;
 }
 
-/* 80034DFC-80034E24 02F73C 0028+00 1/1 0/0 0/0 .text            revOneSwitch__13dSv_zoneBit_cFi */
+/**
+ * @brief Toggles a specific room switch and returns its new state
+ *
+ * @details Flips the bit corresponding to the given switch number in mRoomSwitch
+ *
+ * @param i_no The switch number to toggle
+ * 
+ * @return TRUE if the switch is now on, FALSE if it's now off
+*/
 BOOL dSv_zoneBit_c::revOneSwitch(int i_no) {
     int iVar1 = 1 << i_no;
     mRoomSwitch ^= iVar1;
     return mRoomSwitch & iVar1 ? TRUE : FALSE;
 }
 
-/* 80034E24-80034E50 02F764 002C+00 1/1 0/0 0/0 .text            onItem__13dSv_zoneBit_cFi */
+/**
+ * @brief Activates an item in the zone bitset.
+ * 
+ * @details This function sets the bit corresponding to the given item number to activate it in the 
+ * zone bitset.
+ * 
+ * @param i_no The item number to activate.
+*/
 void dSv_zoneBit_c::onItem(int i_no) {
     mItem[i_no >> 4] |= (u16)(1 << (i_no & 0xF));
 }
 
-/* 80034E50-80034E7C 02F790 002C+00 1/1 1/1 0/0 .text            isItem__13dSv_zoneBit_cCFi */
+/**
+ * @brief Checks if an item is active in the zone bitset.
+ * 
+ * @details This function checks if the bit corresponding to the given item number is set in the 
+ * zone bitset, indicating that the item is active.
+ * 
+ * @param i_no The item number to check.
+ * 
+ * @return BOOL TRUE if the item is active, FALSE otherwise.
+*/
 BOOL dSv_zoneBit_c::isItem(int i_no) const {
     return mItem[i_no >> 4] & 1 << (i_no & 0xF) ? TRUE : FALSE;
 }
 
-/* 80034E7C-80034E98 02F7BC 001C+00 1/1 0/0 0/0 .text            onOneItem__13dSv_zoneBit_cFi */
+/**
+ * @brief Activates a one-time item in the zone bitset.
+ * 
+ * @details This function sets the bit corresponding to the given one-time item number to activate it 
+ * in the zone bitset.
+ * 
+ * @param i_no The one-time item number to activate.
+*/
 void dSv_zoneBit_c::onOneItem(int i_no) {
     mRoomItem |= (u16)(1 << i_no);
 }
 
-/* 80034E98-80034EB4 02F7D8 001C+00 1/1 1/1 0/0 .text            isOneItem__13dSv_zoneBit_cCFi */
+/**
+ * @brief Checks if a one-time item is active in the zone bitset.
+ * 
+ * @details This function checks if the bit corresponding to the given one-time item number is set in 
+ * the zone bitset, indicating that the item is active.
+ * 
+ * @param i_no The one-time item number to check.
+ * 
+ * @return BOOL TRUE if the one-time item is active, FALSE otherwise.
+*/
 BOOL dSv_zoneBit_c::isOneItem(int i_no) const {
     return mRoomItem & 1 << i_no ? TRUE : FALSE;
 }
 
-/* 80034EB4-80034ED4 02F7F4 0020+00 1/1 0/0 0/0 .text            init__15dSv_zoneActor_cFv */
+/**
+ * @brief Initializes the zone actor flags.
+ * 
+ * @details This function initializes the zone actor flags by setting all of them to 0.
+*/
 void dSv_zoneActor_c::init() {
     for (int i = 0; i < 4; i++) {
         mActorFlags[i] = 0;
     }
 }
 
-/* 80034ED4-80034EF8 02F814 0024+00 1/1 0/0 0/0 .text            on__15dSv_zoneActor_cFi */
+/**
+ * @brief Activates an actor in the zone actor flags.
+ * 
+ * @details This function sets the bit corresponding to the given actor ID to activate it in the 
+ * zone actor flags.
+ * 
+ * @param i_id The actor ID to activate.
+*/
 void dSv_zoneActor_c::on(int i_id) {
     mActorFlags[i_id >> 5] |= 1 << (i_id & 0x1F);
 }
 
-/* 80034EF8-80034F1C 02F838 0024+00 1/1 0/0 0/0 .text            off__15dSv_zoneActor_cFi */
+/**
+ * @brief Deactivates an actor in the zone actor flags.
+ * 
+ * @details This function clears the bit corresponding to the given actor ID to deactivate it in the 
+ * zone actor flags.
+ * 
+ * @param i_id The actor ID to deactivate.
+*/
 void dSv_zoneActor_c::off(int i_id) {
     mActorFlags[i_id >> 5] &= ~(1 << (i_id & 0x1F));
 }
 
-/* 80034F1C-80034F44 02F85C 0028+00 1/1 0/0 0/0 .text            is__15dSv_zoneActor_cCFi */
+/**
+ * @brief Checks if an actor is active in the zone actor flags.
+ * 
+ * @details This function checks if the bit corresponding to the given actor ID is set in the 
+ * zone actor flags, indicating that the actor is active.
+ * 
+ * @param i_id The actor ID to check.
+ * 
+ * @return BOOL TRUE if the actor is active, FALSE otherwise.
+*/
 BOOL dSv_zoneActor_c::is(int i_id) const {
     return mActorFlags[i_id >> 5] & 1 << (i_id & 0x1F) ? TRUE : FALSE;
 }
 
-/* 80034F44-80034F80 02F884 003C+00 2/2 0/0 0/0 .text            init__10dSv_zone_cFi */
+/**
+ * @brief Initializes the zone with a given room number.
+ * 
+ * @details This function initializes the zone with the specified room number. It initializes both 
+ * the bitset and the actor flags for the zone.
+ * 
+ * @param i_roomNo The room number to assign to the zone.
+ * 
+ * @return void This function does not return a value.
+*/
 void dSv_zone_c::init(int i_roomNo) {
     mRoomNo = i_roomNo;
     mBit.init();
     mActor.init();
 }
 
-/* 80034F80-80034FA4 02F8C0 0024+00 0/0 3/3 14/14 .text setRoom__13dSv_restart_cFRC4cXyzsSc */
+/**
+ * @brief Sets the room parameters for restarting.
+ * 
+ * @details This function sets the room parameters, including the position, angle, and room number, 
+ * for restarting in the specified room.
+ * 
+ * @param i_position The position in the room.
+ * @param i_angleY The Y-axis angle for the restart.
+ * @param i_roomNo The room number for the restart.
+*/
 void dSv_restart_c::setRoom(const cXyz& i_position, s16 i_angleY, s8 i_roomNo) {
     mRoomNo = i_roomNo;
     mRoomPos = i_position;
     mRoomAngleY = i_angleY;
 }
 
-/* 80034FA4-80034FCC 02F8E4 0028+00 0/0 2/2 0/0 .text set__17dSv_turnRestart_cFRC4cXyzsScUl */
+/**
+ * @brief Sets the turn restart parameters.
+ * 
+ * @details This function sets the turn restart parameters, including position, angle, room number, 
+ * and an additional parameter.
+ * 
+ * @param i_position The position for the turn restart.
+ * @param i_angleY The Y-axis angle for the turn restart.
+ * @param param_3 An additional parameter.
+ * @param i_param Another additional parameter.
+*/
 void dSv_turnRestart_c::set(const cXyz& i_position, s16 i_angleY, s8 param_3, u32 i_param) {
     mPosition = i_position;
     mAngleY = i_angleY;
@@ -1460,7 +2264,12 @@ void dSv_turnRestart_c::set(const cXyz& i_position, s16 i_angleY, s8 param_3, u3
     mParam = i_param;
 }
 
-/* 80034FCC-8003501C 02F90C 0050+00 0/0 2/2 0/0 .text            init__10dSv_info_cFv */
+/**
+ * @brief Initializes the save information.
+ * 
+ * @details This function initializes various components of the save information, including savedata, 
+ * memory, dungeon, and zone components, as well as temporary data.
+*/
 void dSv_info_c::init() {
     mSavedata.init();
     mMemory.init();
@@ -1469,7 +2278,11 @@ void dSv_info_c::init() {
     mTmp.init();
 }
 
-/* 8003501C-800350A8 02F95C 008C+00 2/2 0/0 0/0 .text            init__10dSv_save_cFv */
+/**
+ * @brief Initializes the save data.
+ * 
+ * @details This function initializes the player data, save slots, event data, and mini-game data.
+*/
 void dSv_save_c::init() {
     mPlayer.init();
     for (int i = 0; i < STAGE_MAX; i++) {
@@ -1484,29 +2297,62 @@ void dSv_save_c::init() {
     mMiniGame.init();
 }
 
-/* 800350A8-800350BC 02F9E8 0014+00 0/0 6/6 1/1 .text            getSave2__10dSv_save_cFi */
+/**
+ * @brief Retrieves a pointer to a secondary save slot.
+ * 
+ * @details This function returns a pointer to the secondary save slot specified by the stage number.
+ * 
+ * @param i_stage2No The index of the secondary save slot to retrieve.
+ * 
+ * @return dSv_memory2_c* A pointer to the specified secondary save slot.
+*/
 dSv_memory2_c* dSv_save_c::getSave2(int i_stage2No) {
     return &mSave2[i_stage2No];
 }
 
-/* 800350BC-800350F0 02F9FC 0034+00 0/0 1/1 0/0 .text            getSave__10dSv_info_cFi */
+/**
+ * @brief Loads saved memory data for a specified stage.
+ * 
+ * @details This function sets the memory data to the saved data corresponding to the specified stage number.
+ * 
+ * @param i_stageNo The stage number to load the saved data from.
+*/
 void dSv_info_c::getSave(int i_stageNo) {
     mMemory = mSavedata.getSave(i_stageNo);
 }
 
-/* 800350F0-8003514C 02FA30 005C+00 0/0 2/2 0/0 .text            putSave__10dSv_info_cFi */
+/**
+ * @brief Saves current memory data for a specified stage.
+ * 
+ * @details This function saves the current memory data to the save slot corresponding to the specified stage number.
+ * 
+ * @param i_stageNo The stage number to save the data to.
+*/
 void dSv_info_c::putSave(int i_stageNo) {
     mSavedata.putSave(i_stageNo, mMemory);
 }
 
-/* 8003514C-800351A4 02FA8C 0058+00 1/1 1/1 0/0 .text            initZone__10dSv_info_cFv */
+/**
+ * @brief Initializes all zones to an uninitialized state.
+ * 
+ * @details This function sets all zones to an uninitialized state by setting their values to -1.
+*/
 void dSv_info_c::initZone() {
     for (int i = 0; i < 0x20; i++) {
         mZone[i].init(-1);
     }
 }
 
-/* 800351A4-80035200 02FAE4 005C+00 0/0 1/1 0/0 .text            createZone__10dSv_info_cFi */
+/**
+ * @brief Creates a zone for a specified room.
+ * 
+ * @details This function initializes a zone for the given room number. It searches for an uninitialized zone 
+ * (a zone with a room number less than 0) and initializes it with the given room number.
+ * 
+ * @param i_roomNo The room number to assign to the new zone.
+ * 
+ * @return u32 The index of the created zone, or -1 if no uninitialized zone was found.
+*/
 u32 dSv_info_c::createZone(int i_roomNo) {
     dSv_zone_c* zone = mZone;
     for (int i = 0; i < 0x20; zone++, i++) {
@@ -1518,7 +2364,18 @@ u32 dSv_info_c::createZone(int i_roomNo) {
     return -1;
 }
 
-/* 80035200-800352B0 02FB40 00B0+00 0/0 8/8 352/352 .text            onSwitch__10dSv_info_cFii */
+/**
+ * @brief Activates a switch based on the given switch number and room number.
+ * 
+ * @details This function activates a switch by its number. It first checks if the switch number 
+ * is -1 or 255, in which case it simply returns. If the switch number is less than MEMORY_SWITCH, 
+ * it activates a memory switch. If the switch number is between MEMORY_SWITCH and (MEMORY_SWITCH + 
+ * DAN_SWITCH), it activates a dungeon switch. Otherwise, it determines the zone based on the room 
+ * number and activates a zone switch or a one-time zone switch depending on the switch number range.
+ * 
+ * @param i_no The switch number to be activated.
+ * @param i_roomNo The room number to determine the zone for zone switches.
+*/
 void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     if (i_no == -1 || i_no == 255) {
         return;
@@ -1538,7 +2395,16 @@ void dSv_info_c::onSwitch(int i_no, int i_roomNo) {
     }
 }
 
-/* 800352B0-80035360 02FBF0 00B0+00 0/0 2/2 93/93 .text            offSwitch__10dSv_info_cFii */
+/**
+ * @brief Turns off a switch based on the provided switch number and room number.
+ * 
+ * @details This function handles turning off different types of switches based on the switch number. 
+ * If the switch number is out of a valid range (-1 or 255), the function immediately returns. 
+ * It categorizes switches into memory, dungeon, and zone switches, and handles each category accordingly.
+ * 
+ * @param i_no The switch number to be turned off. Valid ranges are checked within the function.
+ * @param i_roomNo The room number associated with the switch.
+*/
 void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     if (i_no == -1 || i_no == 255) {
         return;
@@ -1558,7 +2424,17 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
     }
 }
 
-/* 80035360-8003542C 02FCA0 00CC+00 0/0 27/27 734/734 .text            isSwitch__10dSv_info_cCFii */
+/**
+ * @brief Determines if a specific switch is activated within the game's save data.
+ * 
+ * @details This function checks the state of a switch identified by its number and room number. 
+ * It handles different types of switches, including memory switches, dungeon switches, and zone switches, 
+ * by checking their respective states in the game's save data structures.
+ * 
+ * @param i_no The switch number to check. Special values -1 and 255 are treated as always deactivated.
+ * @param i_roomNo The room number where the switch is located. Used for zone switches to determine the zone ID.
+ * @return BOOL Returns TRUE if the switch is activated, FALSE otherwise.
+*/
 BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     if (i_no == -1 || i_no == 255) {
         return FALSE;
@@ -1583,7 +2459,20 @@ BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     }
 }
 
-/* 8003542C-800354E0 02FD6C 00B4+00 0/0 0/0 2/2 .text            revSwitch__10dSv_info_cFii */
+/**
+ * @brief Reverses the state of a switch based on the given switch number and room number.
+ * 
+ * @details This function reverses the state of a switch by its number. It first checks if the switch 
+ * number is -1 or 255, in which case it returns FALSE. If the switch number is less than MEMORY_SWITCH, 
+ * it reverses a memory switch. If the switch number is between MEMORY_SWITCH and (MEMORY_SWITCH + 
+ * DAN_SWITCH), it reverses a dungeon switch. Otherwise, it determines the zone based on the room number 
+ * and reverses a zone switch or a one-time zone switch depending on the switch number range.
+ * 
+ * @param i_no The switch number to be reversed.
+ * @param i_roomNo The room number to determine the zone for zone switches.
+ * 
+ * @return BOOL TRUE if the switch state was reversed, FALSE otherwise.
+*/
 BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     if (i_no == -1 || i_no == 255) {
         return FALSE;
@@ -1604,7 +2493,18 @@ BOOL dSv_info_c::revSwitch(int i_no, int i_roomNo) {
     }
 }
 
-/* 800354E0-80035590 02FE20 00B0+00 0/0 1/1 3/3 .text            onItem__10dSv_info_cFii */
+/**
+ * @brief Activates an item based on the given item number and room number.
+ * 
+ * @details This function activates an item by its number. It first checks if the item number 
+ * is -1 or 255, in which case it simply returns. If the item number is less than MEMORY_ITEM, 
+ * it activates a dungeon item. If the item number is between MEMORY_ITEM and (MEMORY_ITEM + DAN_ITEM), 
+ * it activates a memory item. Otherwise, it determines the zone based on the room number and 
+ * activates a zone item or a one-time zone item depending on the item number range.
+ * 
+ * @param i_no The item number to be activated.
+ * @param i_roomNo The room number to determine the zone for zone items.
+*/
 void dSv_info_c::onItem(int i_no, int i_roomNo) {
     if (i_no == -1 || i_no == 255) {
         return;
@@ -1624,7 +2524,20 @@ void dSv_info_c::onItem(int i_no, int i_roomNo) {
     }
 }
 
-/* 80035590-80035644 02FED0 00B4+00 0/0 1/1 3/3 .text            isItem__10dSv_info_cCFii */
+/**
+ * @brief Checks if an item is active based on the given item number and room number.
+ * 
+ * @details This function checks if an item is active by its number. It first checks if the item number 
+ * is -1 or 255, in which case it returns FALSE. If the item number is less than MEMORY_ITEM, it checks 
+ * if a dungeon item is active. If the item number is between MEMORY_ITEM and (MEMORY_ITEM + DAN_ITEM), 
+ * it checks if a memory item is active. Otherwise, it determines the zone based on the room number and 
+ * checks if a zone item or a one-time zone item is active depending on the item number range.
+ * 
+ * @param i_no The item number to check.
+ * @param i_roomNo The room number to determine the zone for zone items.
+ * 
+ * @return BOOL TRUE if the item is active, FALSE otherwise.
+*/
 BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     if (i_no == -1 || i_no == 255) {
         return FALSE;
@@ -1644,7 +2557,16 @@ BOOL dSv_info_c::isItem(int i_no, int i_roomNo) const {
     }
 }
 
-/* 80035644-800356B4 02FF84 0070+00 0/0 1/1 4/4 .text            onActor__10dSv_info_cFii */
+/**
+ * @brief Activates an actor based on the given actor ID and room number.
+ * 
+ * @details This function activates an actor by its ID. It first checks if the actor ID is -1, 
+ * equals ACTOR_MAX, or if the room number is -1, in which case it simply returns. It determines 
+ * the zone based on the room number and activates the actor in that zone.
+ * 
+ * @param i_id The actor ID to be activated.
+ * @param i_roomNo The room number to determine the zone for the actor.
+*/
 void dSv_info_c::onActor(int i_id, int i_roomNo) {
     if (i_id == -1 || i_id == dSv_zoneActor_c::ACTOR_MAX || i_roomNo == -1) {
         return;
@@ -1654,7 +2576,16 @@ void dSv_info_c::onActor(int i_id, int i_roomNo) {
     mZone[zoneNo].getActor().on(i_id);
 }
 
-/* 800356B4-80035724 02FFF4 0070+00 0/0 0/0 2/2 .text            offActor__10dSv_info_cFii */
+/**
+ * @brief Deactivates an actor based on the given actor ID and room number.
+ * 
+ * @details This function deactivates an actor by its ID. It first checks if the actor ID is -1, 
+ * equals ACTOR_MAX, or if the room number is -1, in which case it simply returns. It determines 
+ * the zone based on the room number and deactivates the actor in that zone.
+ * 
+ * @param i_id The actor ID to be deactivated.
+ * @param i_roomNo The room number to determine the zone for the actor.
+*/
 void dSv_info_c::offActor(int i_id, int i_roomNo) {
     if (i_id == -1 || i_id == dSv_zoneActor_c::ACTOR_MAX || i_roomNo == -1) {
         return;
@@ -1664,7 +2595,18 @@ void dSv_info_c::offActor(int i_id, int i_roomNo) {
     mZone[zoneNo].getActor().off(i_id);
 }
 
-/* 80035724-80035798 030064 0074+00 0/0 3/3 0/0 .text            isActor__10dSv_info_cCFii */
+/**
+ * @brief Checks if an actor is active based on the given actor ID and room number.
+ * 
+ * @details This function checks if an actor is active by its ID. It first checks if the actor ID 
+ * is -1, equals ACTOR_MAX, or if the room number is -1, in which case it returns FALSE. It determines 
+ * the zone based on the room number and checks if the actor is active in that zone.
+ * 
+ * @param i_id The actor ID to check.
+ * @param i_roomNo The room number to determine the zone for the actor.
+ * 
+ * @return BOOL TRUE if the actor is active, FALSE otherwise.
+*/
 BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
     if (i_id == -1 || i_id == dSv_zoneActor_c::ACTOR_MAX || i_roomNo == -1) {
         return FALSE;
@@ -1682,7 +2624,20 @@ SECTION_DEAD static char const* const stringBase_8037925D = "Write size:%d\n";
 SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
 #pragma pop
 
-/* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
+/**
+ * @brief Saves memory data to the memory card.
+ * 
+ * @details This function saves the current game state to the input card pointer data. It first handles specific 
+ * game events, such as the state of the lantern, by temporarily updating or storing certain values 
+ * before saving and then restoring them afterward. It calculates the total play time, updates the save 
+ * date, and writes the save data to the memory card. After saving, it restores any temporarily modified 
+ * events or items.
+ * 
+ * @param card_ptr Pointer to the memory card data.
+ * @param dataNum The index of the data to be saved to the card pointer.
+ * 
+ * @return int Returns 0 on successful saving of data.
+*/
 // regalloc
 #ifdef NONMATCHING
 int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
@@ -1772,7 +2727,19 @@ asm int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
 #pragma pop
 #endif
 
-/* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
+/**
+ * @brief Loads save data from the input card pointer into memory.
+ * 
+ * @details This function loads the game save data from the memory card pointed to by `i_cardPtr`. 
+ * The data is copied to the save data structure. It then adjusts sound settings based on the saved 
+ * configuration, ensures the player has a minimum of 12 life points, updates item slots for the 
+ * hookshot, sets the number of keys, and updates the current stage name and vibration settings.
+ * 
+ * @param i_cardPtr Pointer to the memory card data.
+ * @param i_dataNum The index of the data to be loaded from the memory card.
+ * 
+ * @return int Returns 0 on successful loading of data.
+*/
 int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
     i_cardPtr = i_cardPtr + i_dataNum * QUEST_LOG_SIZE;
     memcpy(dComIfGs_getSaveData(), i_cardPtr, sizeof(dSv_save_c));
@@ -1815,8 +2782,18 @@ int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
     return 0;
 }
 
-/* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
- */
+/**
+ * @brief Initializes save data and writes it to the input card pointer.
+ * 
+ * @details This function initializes the save data with default values and writes it to the memory 
+ * card pointed to by `i_cardPtr`. It sets default player and horse names to empty strings before 
+ * copying the initialized data to the memory card.
+ * 
+ * @param i_cardPtr Pointer to the memory card data.
+ * @param i_dataNum The index of the data to be initialized on the memory card.
+ * 
+ * @return int Returns 0 on successful initialization and writing of data.
+*/
 int dSv_info_c::initdata_to_card(char* i_cardPtr, int i_dataNum) {
     i_cardPtr = i_cardPtr + (i_dataNum * QUEST_LOG_SIZE);
     dSv_save_c save;
@@ -1829,8 +2806,11 @@ int dSv_info_c::initdata_to_card(char* i_cardPtr, int i_dataNum) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803790C0-80379234 005720 0172+02 0/0 17/17 7/7 .rodata tempBitLabels__20dSv_event_tmp_flag_c */
+/**
+ * @brief Temp flag bit table.
+ *
+ * @details This array stores the temp flags used throughout the game.
+ */
 u16 const dSv_event_tmp_flag_c::tempBitLabels[185] = {
     UNUSED, UNUSED, T_0002, T_0003, T_0004, T_0005, T_0006, T_0007, T_0001, T_0008, T_0009, T_0010,
     T_0011, T_0012, T_0013, T_0014, T_0015, T_0016, T_0017, T_0018, T_0019, T_0020, T_0021, T_0022,

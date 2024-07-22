@@ -2,7 +2,7 @@
  * d_save_bit_labels.inc
  * Flag labels for dSv_event_flag_c::saveBitLabels
  *
- * Flag information comes from the debug table in d_event_debug.inc
+ * Flag information comes from the debug table in d_event_debug_bit_table.inc
  *
  */
 

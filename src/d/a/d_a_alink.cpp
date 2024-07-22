@@ -17332,6 +17332,150 @@ void daAlink_c::setSpecialGravity(f32 i_gravity, f32 i_speed, int i_offFlag) {
 
 /* 800BB7A0-800BBD40 0B60E0 05A0+00 1/1 0/0 0/0 .text            transAnimeProc__9daAlink_cFP4cXyzff
  */
+#ifdef NONMATCHING
+void daAlink_c::transAnimeProc(cXyz* param_0, f32 param_1, f32 param_2) {
+    f32 x_tmp1 = 0.0f;
+    f32 y_tmp1 = 0.0f;
+    f32 z_tmp1 = 0.0f;
+    f32 x_tmp2 = 0.0f;
+    f32 y_tmp2 = 0.0f;
+    f32 z_tmp2 = 0.0f;
+    
+    mDoExt_MtxCalcAnmBlendTbl* blend_table = field_0x1f20;
+    param_0 = &field_0x34d4;
+    J3DAnmTransform* anim = blend_table->i_getAnm(0);
+
+    J3DTransformInfo* tmp;
+    anim->getTransform(0,tmp);
+
+    for (int i = 1; i < 3; i++) {
+        anim = blend_table->i_getAnm(i);
+        if (anim) {
+            anim->getTransform(0,tmp);
+
+            f32 ratio = blend_table->getRatio(i);
+            f32 ratio_modified = 1.0f - ratio;
+            
+            x_tmp2 *= ratio_modified + x_tmp1 * ratio;
+            y_tmp2 *= ratio_modified + y_tmp1 * ratio;
+            z_tmp2 *= ratio_modified + z_tmp1 * ratio;
+        }
+    }
+
+    J3DTransformInfo* trans_info = field_0x2060->getOldFrameTransInfo(0);
+    cXyz pos;
+
+    if (field_0x2f99 == 80) {
+        pos = current.pos - field_0x3798;
+
+        if (checkModeFlg(MODE_NO_COLLISION) || mProcID == PROC_Obj_Lv6ElevtA || mProcID == PROC_HITOBJ) {
+            pos.y -= mSinkShapeOffset;
+            mSinkShapeOffset = 0.0f;
+            old.pos = current.pos;
+            field_0x3798 = current.pos;
+        }
+
+        trans_info->mTranslate.x -= (-param_1 * pos.z + param_2 * pos.x);
+        trans_info->mTranslate.y -= pos.y;
+        trans_info->mTranslate.z -= (param_2 * pos.z + param_1 * pos.x);
+
+    } else if (field_0x2f99 == 64 || field_0x2f99 == 112 || field_0x2f99 == 128 
+            || field_0x2f99 == 96 || field_0x2f99 == 112) {
+        if (field_0x2f99 == 128) {
+            pos.set(0.0f, y_tmp2 - trans_info->mTranslate.y, 0.0f);
+        } else if (field_0x2f99 == 96) {
+            pos.set(field_0x384c->x + (x_tmp2 - trans_info->mTranslate.x), 
+                    field_0x384c->y + (y_tmp2 - trans_info->mTranslate.y), 
+                    field_0x384c->z + (z_tmp2 - trans_info->mTranslate.z));
+        } else if (field_0x2f99 == 112) {
+            pos.set(0.0f - trans_info->mTranslate.x, 0.0f, z_tmp2 - trans_info->mTranslate.z);
+        } else {
+            pos.set(x_tmp2 - trans_info->mTranslate.x, y_tmp2 - trans_info->mTranslate.y, z_tmp2 - trans_info->mTranslate.z);
+        }
+        
+        cXyz pos2;
+
+        pos2.x = param_1 * pos.z + param_2 * pos.x;
+        pos2.y = pos.y;
+        pos2.z = param_2 * pos.z - param_1 * pos.x;
+
+        if (checkMagneBootsOn()) {
+            mDoMtx_stack_c::copy(mMagneBootMtx);
+            mDoMtx_stack_c::YrotM(shape_angle.y);
+            mDoMtx_stack_c::multVec(&pos,&pos2);
+        }
+
+        current.pos = pos2 - current.pos;
+        field_0x3798 = pos2 - field_0x3798;
+
+        if (field_0x2f99 == 96 && mProcID == PROC_ROOM_SCENE) {
+            mLastJumpPos = pos2 - mLastJumpPos;
+        }
+
+        if (field_0x2f99 == 112) {
+
+            cXyz pos3(current.pos.x, current.pos.y + pos2.y, current.pos.z);
+            mLinkGndChk.SetPos(&pos3);
+
+            f32 cross_point = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+            
+            if (current.pos.y < cross_point) {
+                f32 new_point = cross_point - current.pos.y;
+
+                current.pos.y += new_point;
+                field_0x3798.y += new_point;
+            }
+        }
+
+        trans_info->mTranslate.y = y_tmp2;
+
+        if (field_0x2f99 != 128) {
+            trans_info->mTranslate.x = x_tmp1;
+            trans_info->mTranslate.z = z_tmp1;
+        }
+    } else if (field_0x2f99 == 32 || field_0x2f99 == 0) {
+        trans_info->mTranslate.z = z_tmp1;
+
+        if (field_0x2f99 != 32) {
+            trans_info->mTranslate.x = x_tmp1;
+        }
+    } else if (field_0x2f99 == 16) {
+        field_0x34d4.x = 0.0f;
+        field_0x34d4.z = 0.0f;
+
+        param_0->x = 0.0f;
+        param_0->z = 0.0f;
+        param_0->y = y_tmp1;
+
+        trans_info->mTranslate.x = 0.0f;
+        trans_info->mTranslate.z = 0.0f;
+        trans_info->mTranslate.y = y_tmp1;
+
+        field_0x33b0 = y_tmp1;
+
+        checkModeFlg(MODE_VINE_CLIMB) == 0 ? field_0x2f99 = 7 : field_0x2f99 = 6;
+
+        if (mProcID == PROC_Obj_Lv1Cdl01 || mProcID == PROC_OBJ_MYOGAN) {
+            param_0->y = 0.0f;
+            field_0x33b0 = 0.0f;
+        } else if (mProcID == PROC_Obj_KJgjs) {
+            field_0x33b0 = -45.0f;
+            param_0->y = -45.0f;
+        }
+    } else {
+        if (checkRootTransClearContinueMode() != 0) {
+            param_0->x = x_tmp1;
+            param_0->y = y_tmp1;
+            param_0->z = z_tmp1;
+            field_0x2f99 &= 0xf7;
+        }
+    }
+  
+    field_0x34d4.x = x_tmp1;
+    field_0x34d4.y = y_tmp1;
+    field_0x34d4.z = z_tmp1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -17340,6 +17484,7 @@ asm void daAlink_c::transAnimeProc(cXyz* param_0, f32 param_1, f32 param_2) {
 #include "asm/d/a/d_a_alink/transAnimeProc__9daAlink_cFP4cXyzff.s"
 }
 #pragma pop
+#endif
 
 /* 800BBD40-800BBF68 0B6680 0228+00 1/1 0/0 0/0 .text            setFootSpeed__9daAlink_cFv */
 #pragma push

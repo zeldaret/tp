@@ -3366,6 +3366,7 @@ public:
     static int getBallBtkIdx() { return 0x49; }
     static int getBallBrkIdx() { return 0x41; }
 
+    bool checkRootTransClearContinueMode() { return field_0x2f99 & 8; }
     bool checkRootTransClearMode() { return field_0x2f99 & 7; }
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
