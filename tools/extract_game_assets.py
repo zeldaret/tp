@@ -170,7 +170,7 @@ def writeFile(name, data):
         if ("exceptions" in extractDef and str(name) in extractDef["exceptions"]) or ("config_key" in extractDef and config[extractDef["config_key"]] == False):
             extractDef = None
 
-    if  config["decompress_assets"] == None:
+    if config["decompress_assets"] == False:
         extractDef = None # If assets aren't being decompressed, just write the raw file
 
     if extractDef == None:
@@ -245,16 +245,16 @@ def getDolInfo(disc):
 
     return dolOffset, dolSize
 
-def extract(isoPath: Path, gamePath: Path, yaz0Encoder: str, config_file: str):
-    if yaz0Encoder == "oead":
+def extract(isoPath: Path, gamePath: Path, config_file: str):
+    global config
+    config = assets_config.getConfig(config_file,update=True)
+    if config["oead_yaz0"]:
         try:
             from oead import yaz0
             global yaz0DecompressFunction
             yaz0DecompressFunction = yaz0.decompress
         except:
             print("Extract: oead isn't installed, falling back to native yaz0")
-    global config
-    config = assets_config.getConfig(config_file,update=True)
     isoPath = isoPath.absolute()
     cwd = os.getcwd()
     os.chdir(gamePath)
@@ -302,7 +302,7 @@ def extract(isoPath: Path, gamePath: Path, yaz0Encoder: str, config_file: str):
 
 
 def main():
-    extract(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3], sys.argv[4])
+    extract(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3])
 
 
 if __name__ == "__main__":
