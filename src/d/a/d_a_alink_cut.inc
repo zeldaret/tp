@@ -87,9 +87,9 @@ void daAlink_c::initCutTurnAt(f32 param_0, int param_1) {
 
     u8 mtrl;
     if (!checkNoResetFlg3(FLG3_UNK_100000)) {
-        mtrl = 0;
+        mtrl = dCcD_MTRL_NONE;
     } else {
-        mtrl = 4;
+        mtrl = dCcD_MTRL_LIGHT;
     }
     field_0xFB8.SetAtMtrl(mtrl);
     field_0xFB8.SetR(param_0);
@@ -244,14 +244,14 @@ void daAlink_c::setCylAtParam(u32 i_AtType, dCcG_At_Spl i_spl, u8 i_hitMark, u8 
     u8 mtrl;
     if (i_AtType & 2) {
         if (checkNoResetFlg3(FLG3_UNK_100000)) {
-            mtrl = 4;
+            mtrl = dCcD_MTRL_LIGHT;
         } else {
-            mtrl = 0;
+            mtrl = dCcD_MTRL_NONE;
         }
     } else if (mEquipItem == WATER_BOTTLE) {
-        mtrl = 6;
+        mtrl = dCcD_MTRL_UNK_6;
     } else {
-        mtrl = 0;
+        mtrl = dCcD_MTRL_NONE;
     }
 
     mAtCyl.SetAtType(i_AtType);
@@ -302,9 +302,9 @@ void daAlink_c::setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int 
 
     u8 mtrl;
     if (checkNoResetFlg3(FLG3_UNK_100000)) {
-        mtrl = 4;
+        mtrl = dCcD_MTRL_LIGHT;
     } else {
-        mtrl = 0;
+        mtrl = dCcD_MTRL_NONE;
     }
 
     for (int i = 0; i < 3; i++) {

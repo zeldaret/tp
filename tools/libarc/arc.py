@@ -283,6 +283,7 @@ def getNodeIdent(fullName):
 def parseDirForPack(
     fileDataLines, path, convertFunction, nodes, dirs, currentNode, stringTable, data
 ):
+    # print(currentNode.directory_index)
     for i in range(
         currentNode.directory_index,
         currentNode.directory_count + currentNode.directory_index,
@@ -400,12 +401,21 @@ def convert_dir_to_arc(sourceDir, convertFunction):
     nodes = []
     dirs = [None] * len(fileDataLines)
     stringTable = ".\0..\0"
+
+    numRootEntries = 0
+    for line in fileDataLines:
+        entry = line.split(":")[1]
+        # Only count files and directories under the root
+        # print(entry)
+        if entry.startswith(rootName + "/") and entry[:len(entry)-1].count("/") == 1:
+            numRootEntries += 1
+
     nodes.append(
         Node(
             getNodeIdent("ROOT"),
             len(stringTable),
             computeHash(rootName),
-            len(os.listdir(sourceDir / rootName)) + 2,
+            numRootEntries,
             0,
             rootName,
         )

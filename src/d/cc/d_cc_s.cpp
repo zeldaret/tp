@@ -202,38 +202,36 @@ bool dCcS::ChkShield(cCcD_Obj* i_atObj, cCcD_Obj* i_tgObj, dCcD_GObjInf* i_atObj
 
 /* 800861B0-800861B4 080AF0 0004+00 1/0 0/0 0/0 .text
  * CalcTgPlusDmg__4dCcSFP8cCcD_ObjP8cCcD_ObjP9cCcD_SttsP9cCcD_Stts */
-void dCcS::CalcTgPlusDmg(cCcD_Obj* param_0, cCcD_Obj* param_1, cCcD_Stts* param_2,
-                         cCcD_Stts* param_3) {
-    /* empty function */
-}
+void dCcS::CalcTgPlusDmg(cCcD_Obj* i_atObj, cCcD_Obj* i_tgObj, cCcD_Stts* i_atStts,
+                         cCcD_Stts* i_tgStts) {}
 
 /* 800861B4-80086240 080AF4 008C+00 1/0 0/0 0/0 .text
  * ChkAtTgHitAfterCross__4dCcSFbbPC12cCcD_GObjInfPC12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts
  */
 bool dCcS::ChkAtTgHitAfterCross(bool i_setAt, bool i_setTg, cCcD_GObjInf const* i_atObjInf,
-                                cCcD_GObjInf const* i_tgObjInf, cCcD_Stts* param_4,
-                                cCcD_Stts* param_5, cCcD_GStts* param_6, cCcD_GStts* param_7) {
+                                cCcD_GObjInf const* i_tgObjInf, cCcD_Stts* i_atStts,
+                                cCcD_Stts* i_tgStts, cCcD_GStts* i_atGStts, cCcD_GStts* i_tgGStts) {
     dCcD_GObjInf* atObjInf = (dCcD_GObjInf*)i_atObjInf;
     dCcD_GObjInf* tgObjInf = (dCcD_GObjInf*)i_tgObjInf;
 
-    u32 tgApid = param_4->GetApid();
-    u32 atApid = param_5->GetApid();
+    fpc_ProcID tgApid = i_atStts->GetApid();
+    fpc_ProcID atApid = i_tgStts->GetApid();
 
     if (i_setAt) {
-        static_cast<dCcD_GStts*>(param_6)->SetAtApid(atApid);
+        static_cast<dCcD_GStts*>(i_atGStts)->SetAtApid(atApid);
 
         if (atObjInf->ChkAtNoConHit() && !tgObjInf->ChkTgStopNoConHit()) {
-            if (static_cast<dCcD_GStts*>(param_6)->GetAtOldApid() == param_5->GetApid()) {
+            if (static_cast<dCcD_GStts*>(i_atGStts)->GetAtOldApid() == i_tgStts->GetApid()) {
                 return true;
             }
         }
     }
 
     if (i_setTg) {
-        static_cast<dCcD_GStts*>(param_7)->SetTgApid(tgApid);
+        static_cast<dCcD_GStts*>(i_tgGStts)->SetTgApid(tgApid);
 
         if (tgObjInf->ChkTgNoConHit() && !atObjInf->ChkAtStopNoConHit()) {
-            if (static_cast<dCcD_GStts*>(param_7)->GetTgOldApid() == param_4->GetApid()) {
+            if (static_cast<dCcD_GStts*>(i_tgGStts)->GetTgOldApid() == i_atStts->GetApid()) {
                 return true;
             }
         }
@@ -247,40 +245,40 @@ bool dCcS::ChkAtTgHitAfterCross(bool i_setAt, bool i_setTg, cCcD_GObjInf const* 
  */
 // weird reg alloc
 #ifdef NONMATCHING
-void dCcS::SetCoGObjInf(bool param_0, bool param_1, cCcD_GObjInf* param_2, cCcD_GObjInf* param_3,
-                        cCcD_Stts* param_4, cCcD_Stts* param_5, cCcD_GStts* param_6,
-                        cCcD_GStts* param_7) {
-    if (param_0) {
-        static_cast<dCcD_GObjInf*>(param_2)->SetCoHitApid(param_5->GetApid());
+void dCcS::SetCoGObjInf(bool i_co2Set, bool i_co1Set, cCcD_GObjInf* i_co1Obj, cCcD_GObjInf* i_co2Obj,
+                        cCcD_Stts* i_co1Stts, cCcD_Stts* i_co2Stts, cCcD_GStts* i_co1GStts,
+                        cCcD_GStts* i_co2GStts) {
+    if (i_co2Set) {
+        static_cast<dCcD_GObjInf*>(i_co1Obj)->SetCoHitApid(i_co2Stts->GetApid());
 
-        if (static_cast<dCcD_GStts*>(param_7)->ChkNoActor()) {
-            static_cast<dCcD_GObjInf*>(param_2)->OnCoHitNoActor();
+        if (static_cast<dCcD_GStts*>(i_co2GStts)->ChkNoActor()) {
+            static_cast<dCcD_GObjInf*>(i_co1Obj)->OnCoHitNoActor();
         }
     }
 
-    if (param_1) {
-        static_cast<dCcD_GObjInf*>(param_3)->SetCoHitApid(param_4->GetApid());
+    if (i_co1Set) {
+        static_cast<dCcD_GObjInf*>(i_co2Obj)->SetCoHitApid(i_co1Stts->GetApid());
 
-        if (static_cast<dCcD_GStts*>(param_6)->ChkNoActor()) {
-            static_cast<dCcD_GObjInf*>(param_3)->OnCoHitNoActor();
+        if (static_cast<dCcD_GStts*>(i_co1GStts)->ChkNoActor()) {
+            static_cast<dCcD_GObjInf*>(i_co2Obj)->OnCoHitNoActor();
         }
     }
 
-    if (param_0) {
-        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(param_2)->GetCoHitCallback();
+    if (i_co2Set) {
+        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(i_co1Obj)->GetCoHitCallback();
 
         if (cb != NULL) {
-            cb(param_2->GetAc(), static_cast<dCcD_GObjInf*>(param_2), param_3->GetAc(),
-               static_cast<dCcD_GObjInf*>(param_3));
+            cb(i_co1Obj->GetAc(), static_cast<dCcD_GObjInf*>(i_co1Obj), i_co2Obj->GetAc(),
+               static_cast<dCcD_GObjInf*>(i_co2Obj));
         }
     }
 
-    if (param_1) {
-        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(param_3)->GetCoHitCallback();
+    if (i_co1Set) {
+        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(i_co2Obj)->GetCoHitCallback();
 
         if (cb != NULL) {
-            cb(param_3->GetAc(), static_cast<dCcD_GObjInf*>(param_3), param_2->GetAc(),
-               static_cast<dCcD_GObjInf*>(param_2));
+            cb(i_co2Obj->GetAc(), static_cast<dCcD_GObjInf*>(i_co2Obj), i_co1Obj->GetAc(),
+               static_cast<dCcD_GObjInf*>(i_co1Obj));
         }
     }
 }
@@ -343,11 +341,10 @@ int dCcS::GetRank(u8 weight) {
 }
 
 /* 80086404-8008640C 080D44 0008+00 1/0 0/0 0/0 .text ChkNoHitGCo__4dCcSFP8cCcD_ObjP8cCcD_Obj */
-bool dCcS::ChkNoHitGCo(cCcD_Obj* param_0, cCcD_Obj* param_1) {
+bool dCcS::ChkNoHitGCo(cCcD_Obj* i_co1Obj, cCcD_Obj* i_co2Obj) {
     return false;
 }
 
-/* ############################################################################################## */
 /* 803AC328-803AC3A4 009448 0079+03 1/1 0/0 0/0 .data            rank_tbl */
 static u8 rank_tbl[11][11] = {
     0x00, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x00, 0x32, 0x64, 0x64, 0x64,
@@ -362,93 +359,93 @@ static u8 rank_tbl[11][11] = {
 
 /* 8008640C-80086754 080D4C 0348+00 1/0 0/0 0/0 .text
  * SetPosCorrect__4dCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf       */
-void dCcS::SetPosCorrect(cCcD_Obj* param_0, cXyz* param_1, cCcD_Obj* param_2, cXyz* param_3,
-                         f32 param_4) {
-    if (param_0->ChkCoNoCrr() || param_2->ChkCoNoCrr()) {
+void dCcS::SetPosCorrect(cCcD_Obj* i_co1Obj, cXyz* i_pos1, cCcD_Obj* i_co2Obj, cXyz* i_pos2,
+                         f32 i_cross_len) {
+    if (i_co1Obj->ChkCoNoCrr() || i_co2Obj->ChkCoNoCrr()) {
         return;
     }
 
-    if (param_0->GetStts() == NULL || param_2->GetStts() == NULL) {
+    if (i_co1Obj->GetStts() == NULL || i_co2Obj->GetStts() == NULL) {
         return;
     }
 
-    if (cM3d_IsZero(param_4)) {
+    if (cM3d_IsZero(i_cross_len)) {
         return;
     }
 
-    SetCoGCorrectProc(param_0, param_2);
+    SetCoGCorrectProc(i_co1Obj, i_co2Obj);
 
     bool bvar2 = false;
-    if (param_0->ChkCoSph3DCrr() && param_2->ChkCoSph3DCrr()) {
+    if (i_co1Obj->ChkCoSph3DCrr() && i_co2Obj->ChkCoSph3DCrr()) {
         bvar2 = true;
     }
 
-    if ((param_0->GetStts()->GetWeightUc() == 0 && param_2->GetStts()->GetWeightUc() == 0) ||
-        (param_0->GetStts()->GetWeightUc() == 0xFF && param_2->GetStts()->GetWeightUc() == 0xFF))
+    if ((i_co1Obj->GetStts()->GetWeightUc() == 0 && i_co2Obj->GetStts()->GetWeightUc() == 0) ||
+        (i_co1Obj->GetStts()->GetWeightUc() == 0xFF && i_co2Obj->GetStts()->GetWeightUc() == 0xFF))
     {
         return;
     }
 
-    int weight1 = GetRank(param_0->GetStts()->GetWeightUc());
-    int weight2 = GetRank(param_2->GetStts()->GetWeightUc());
-    u8 rank = rank_tbl[weight1][weight2];
+    int co1_rank = GetRank(i_co1Obj->GetStts()->GetWeightUc());
+    int co2_rank = GetRank(i_co2Obj->GetStts()->GetWeightUc());
+    u8 rank = rank_tbl[co1_rank][co2_rank];
 
     f32 fvar1 = rank * 0.01f;
     f32 fvar2 = (u8)(100 - rank) * 0.01f;
 
-    cXyz local_b0;
-    cXyz local_bc;
+    cXyz co1_move;
+    cXyz co2_move;
     Vec local_c8;
 
     f32 fvar14;
     if (bvar2) {
-        VECSubtract(param_3, param_1, &local_c8);
+        VECSubtract(i_pos2, i_pos1, &local_c8);
         fvar14 = VECMag(&local_c8);
     } else {
-        local_c8.x = param_3->x - param_1->x;
+        local_c8.x = i_pos2->x - i_pos1->x;
         local_c8.y = 0.0f;
-        local_c8.z = param_3->z - param_1->z;
+        local_c8.z = i_pos2->z - i_pos1->z;
         fvar14 = JMAFastSqrt((local_c8.x * local_c8.x) + (local_c8.z * local_c8.z));
     }
 
     if (!cM3d_IsZero(fvar14)) {
         if (bvar2) {
-            VECScale(&local_c8, &local_c8, param_4 / fvar14);
+            VECScale(&local_c8, &local_c8, i_cross_len / fvar14);
             fvar1 *= -1.0f;
-            VECScale(&local_c8, &local_b0, fvar1);
-            VECScale(&local_c8, &local_bc, fvar2);
+            VECScale(&local_c8, &co1_move, fvar1);
+            VECScale(&local_c8, &co2_move, fvar2);
         } else {
-            fvar14 = param_4 / fvar14;
+            fvar14 = i_cross_len / fvar14;
             local_c8.x *= fvar14;
             local_c8.z *= fvar14;
 
-            local_b0.x = -local_c8.x * fvar1;
-            local_b0.y = 0.0f;
-            local_b0.z = -local_c8.z * fvar1;
+            co1_move.x = -local_c8.x * fvar1;
+            co1_move.y = 0.0f;
+            co1_move.z = -local_c8.z * fvar1;
 
-            local_bc.x = local_c8.x * fvar2;
-            local_bc.y = 0.0f;
-            local_bc.z = local_c8.z * fvar2;
+            co2_move.x = local_c8.x * fvar2;
+            co2_move.y = 0.0f;
+            co2_move.z = local_c8.z * fvar2;
         }
     } else {
-        local_b0.y = 0.0f;
-        local_b0.z = 0.0f;
-        local_bc.y = 0.0f;
-        local_bc.z = 0.0f;
+        co1_move.y = 0.0f;
+        co1_move.z = 0.0f;
+        co2_move.y = 0.0f;
+        co2_move.z = 0.0f;
 
-        if (!cM3d_IsZero(param_4)) {
-            local_b0.x = -param_4 * fvar1;
-            local_bc.x = param_4 * fvar2;
+        if (!cM3d_IsZero(i_cross_len)) {
+            co1_move.x = -i_cross_len * fvar1;
+            co2_move.x = i_cross_len * fvar2;
         } else {
-            local_b0.x = -fvar1;
-            local_bc.x = fvar2;
+            co1_move.x = -fvar1;
+            co2_move.x = fvar2;
         }
     }
 
-    param_0->GetStts()->PlusCcMove(local_b0.x, local_b0.y, local_b0.z);
-    param_2->GetStts()->PlusCcMove(local_bc.x, local_bc.y, local_bc.z);
-    *param_1 += local_b0;
-    *param_3 += local_bc;
+    i_co1Obj->GetStts()->PlusCcMove(co1_move.x, co1_move.y, co1_move.z);
+    i_co2Obj->GetStts()->PlusCcMove(co2_move.x, co2_move.y, co2_move.z);
+    *i_pos1 += co1_move;
+    *i_pos2 += co2_move;
 }
 
 /* 80086754-8008685C 081094 0108+00 1/0 0/0 0/0 .text
@@ -567,35 +564,35 @@ asm void dCcS::ProcAtTgHitmark(bool param_0, bool param_1, cCcD_Obj* param_2, cC
 /* 80086AC0-80086D8C 081400 02CC+00 1/0 0/0 0/0 .text
  * SetAtTgGObjInf__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz
  */
-void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Obj* param_3,
-                          cCcD_GObjInf* i_atObjInf, cCcD_GObjInf* i_tgObjInf, cCcD_Stts* param_6,
-                          cCcD_Stts* param_7, cCcD_GStts* param_8, cCcD_GStts* param_9,
+void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* i_atObj, cCcD_Obj* i_tgObj,
+                          cCcD_GObjInf* i_atObjInf, cCcD_GObjInf* i_tgObjInf, cCcD_Stts* i_atStts,
+                          cCcD_Stts* i_tgStts, cCcD_GStts* i_atGStts, cCcD_GStts* i_tgGStts,
                           cXyz* i_hitPos) {
     dCcD_GObjInf* atObjInf = (dCcD_GObjInf*)i_atObjInf;
     dCcD_GObjInf* tgObjInf = (dCcD_GObjInf*)i_tgObjInf;
-    dCcD_GStts* stts1 = (dCcD_GStts*)param_8;
-    dCcD_GStts* stts2 = (dCcD_GStts*)param_9;
+    dCcD_GStts* at_gstts = (dCcD_GStts*)i_atGStts;
+    dCcD_GStts* tg_gstts = (dCcD_GStts*)i_tgGStts;
 
-    bool chk_shield = ChkShield(param_2, param_3, atObjInf, tgObjInf, i_hitPos);
+    bool chk_shield = ChkShield(i_atObj, i_tgObj, atObjInf, tgObjInf, i_hitPos);
 
     if (i_setAt) {
         atObjInf->SetAtHitPos(*i_hitPos);
         atObjInf->SetAtRVec(*tgObjInf->GetTgVecP());
 
-        if (stts1 != NULL && stts1->GetTgSpl() == 0) {
-            stts1->SetTgSpl(tgObjInf->GetTgSpl());
+        if (at_gstts != NULL && at_gstts->GetTgSpl() == 0) {
+            at_gstts->SetTgSpl(tgObjInf->GetTgSpl());
         }
 
-        atObjInf->SetAtHitApid(param_7->GetApid());
+        atObjInf->SetAtHitApid(i_tgStts->GetApid());
 
-        if (chk_shield || tgObjInf->GetTgHitMark() == 8 && atObjInf->GetAtMtrl() != 2 &&
+        if (chk_shield || tgObjInf->GetTgHitMark() == 8 && atObjInf->GetAtMtrl() != dCcD_MTRL_ICE &&
                               (atObjInf->GetAtSpl() == 0 || atObjInf->GetAtSpl() == 5 ||
                                atObjInf->GetAtSpl() == 8))
         {
             atObjInf->OnAtShieldHit();
         }
 
-        if (stts2->ChkNoActor()) {
+        if (tg_gstts->ChkNoActor()) {
             atObjInf->OnAtHitNoActor();
         }
     }
@@ -604,19 +601,19 @@ void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Ob
         tgObjInf->SetTgHitPos(*i_hitPos);
         tgObjInf->SetTgRVec(*atObjInf->GetAtVecP());
 
-        if (stts2 != NULL && stts1->GetAtSpl() == 0) {
-            stts2->SetAtSpl(atObjInf->GetAtSpl());
+        if (tg_gstts != NULL && at_gstts->GetAtSpl() == 0) {
+            tg_gstts->SetAtSpl(atObjInf->GetAtSpl());
         }
 
-        tgObjInf->SetTgHitApid(param_6->GetApid());
+        tgObjInf->SetTgHitApid(i_atStts->GetApid());
 
         if (chk_shield) {
             tgObjInf->OnTgShieldHit();
         } else {
-            param_7->PlusDmg(param_2->GetAtAtp());
+            i_tgStts->PlusDmg(i_atObj->GetAtAtp());
         }
 
-        if (stts1->ChkNoActor()) {
+        if (at_gstts->ChkNoActor()) {
             tgObjInf->OnTgHitNoActor();
         }
     }
@@ -641,8 +638,8 @@ void dCcS::SetAtTgGObjInf(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Ob
         atObjInf->SetAtEffCounterTimer();
         tgObjInf->SetTgEffCounterTimer();
 
-        ProcAtTgHitmark(i_setAt, i_setTg, param_2, param_3, atObjInf, tgObjInf, param_6, param_7,
-                        stts1, stts2, i_hitPos, chk_shield);
+        ProcAtTgHitmark(i_setAt, i_setTg, i_atObj, i_tgObj, atObjInf, tgObjInf, i_atStts, i_tgStts,
+                        at_gstts, tg_gstts, i_hitPos, chk_shield);
     }
 }
 
@@ -753,17 +750,22 @@ void dCcS::MassClear() {
     mMass_Mng.Clear();
 }
 
-/* ############################################################################################## */
 /* 803AC3A4-803AC3E4 0094C4 0040+00 1/1 0/0 0/0 .data            m_mtrl_hit_tbl__4dCcS */
-u8 dCcS::m_mtrl_hit_tbl[64] = {
-    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x01, 0x01, 0x01,
+// clang-format off
+bool dCcS::m_mtrl_hit_tbl[64] = {
+    true,  true,  true,  true,  true,  true,  true,  true, 
+    false, true,  false, false, false, false, false, false,
+    false, false, true,  false, false, false, false, false,
+    false, false, false, true,  false, false, false, false,
+    false, false, false, false, true,  false, false, false,
+    false, false, false, false, false, true,  false, false,
+    false, false, false, false, false, false, true,  false,
+    true,  true,  true,  true,  false, true,  true,  true,
 };
+// clang-format on
 
 /* 80087330-8008734C 081C70 001C+00 1/1 0/0 0/0 .text            ChkAtTgMtrlHit__4dCcSFUcUc */
-int dCcS::ChkAtTgMtrlHit(u8 i_atMtrl, u8 i_tgMtrl) {
+BOOL dCcS::ChkAtTgMtrlHit(u8 i_atMtrl, u8 i_tgMtrl) {
     return m_mtrl_hit_tbl[i_atMtrl + i_tgMtrl * 8];
 }
 
@@ -774,7 +776,7 @@ bool dCcS::ChkNoHitGAtTg(cCcD_GObjInf const* i_atObjInf, cCcD_GObjInf const* i_t
     dCcD_GObjInf* atObjInf = (dCcD_GObjInf*)i_atObjInf;
     dCcD_GObjInf* tgObjInf = (dCcD_GObjInf*)i_tgObjInf;
 
-    if (tgObjInf->ChkTgWolfSpNoDamage() && atObjInf->GetAtMtrl() == 0 &&
+    if (tgObjInf->ChkTgWolfSpNoDamage() && atObjInf->GetAtMtrl() == dCcD_MTRL_NONE &&
         atObjInf->GetAtType() &
             (AT_TYPE_CSTATUE_BOSS_SWING | AT_TYPE_1000 | AT_TYPE_800 | AT_TYPE_CSTATUE_SWING))
     {

@@ -74,7 +74,7 @@ static void action(obj_web1_class* i_this) {
                 i_this->mActionMode = 10;
             }
 
-            if (i_this->mCylCc.GetTgHitGObj()->GetAtMtrl() == 1) {
+            if (i_this->mCylCc.GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_FIRE) {
                 i_this->mActionMode = 10;
             }
         }

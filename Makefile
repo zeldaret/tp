@@ -156,7 +156,7 @@ tools: dirs $(ELF2DOL) $(YAZ0)
 
 assets:
 	@mkdir -p game
-	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game
+	$(PYTHON) tools/extract_game_assets.py $(IMAGENAME) game asset_config.json
 
 docs:
 	$(DOXYGEN) Doxyfile
@@ -189,29 +189,13 @@ shiftedrels: shift $(RELS)
 
 game: shiftedrels
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode native
-
-game-fast: shiftedrels
-	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode oead
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) copyCode asset_config.json
 
 game-nocompile:
 	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode native
-
-game-nocompile-fast:
-	@mkdir -p game
-	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode oead
+	@$(PYTHON) tools/package_game_assets.py ./game $(BUILD_PATH) noCopyCode asset_config.json
 
 rungame-nocompile: game-nocompile
-	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
-	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
-
-rungame-nocompile-fast: game-nocompile-fast
-	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
-	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
-
-rungame-fast: game-fast
 	@echo If you are playing on a shifted game make sure Hyrule Field Speed hack is disabled in dolphin!
 	dolphin-emu $(BUILD_DIR)/game/sys/main.dol
 
@@ -221,7 +205,6 @@ rungame: game
 
 iso: game
 	@$(PYTHON) tools/packageISO.py $(BUILD_DIR)/game/ $(TARGET_ISO)
-
 
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
 	@mkdir -p $(@D)

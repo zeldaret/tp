@@ -32,5 +32,9 @@ docs/doxygen/
 __pycache__/
 venv/
 
+# m2ctx files
 m2ctx.py
 ctx.c
+
+# Asset Config
+asset_config.json

@@ -10,8 +10,6 @@
 // Types:
 //
 
-struct request_of_phase_process_class {};
-
 struct csXyz {};
 
 struct mDoMtx_stack_c {
@@ -582,7 +580,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];

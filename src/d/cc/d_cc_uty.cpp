@@ -419,7 +419,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* i_enemy, dCcU_AtInfo* i_AtInfo) {
             i_AtInfo->mAttackPower = 0;
         }
 
-        if (static_cast<dCcD_GObjInf*>(i_AtInfo->mpCollider)->GetAtMtrl() == 4) {
+        if (static_cast<dCcD_GObjInf*>(i_AtInfo->mpCollider)->GetAtMtrl() == dCcD_MTRL_LIGHT) {
             if (fopAcM_GetName(i_enemy) == PROC_B_GND) {
                 i_AtInfo->mAttackPower = 0;
             } else if (fopAcM_GetName(i_enemy) != PROC_B_ZANT) {

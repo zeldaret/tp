@@ -1868,7 +1868,7 @@ s32 daE_FZ_c::create() {
       mAtSph.SetAtSpl(dCcG_At_Spl_UNK_1);
       setActionMode(ACT_ROLLMOVE,0);
     } else {
-      mAtSph.SetAtMtrl(2);
+      mAtSph.SetAtMtrl(dCcD_MTRL_ICE);
       mRadiusBase = 1.0f;
       cM_rnd() < 0.5f ? setActionMode(ACT_WAIT,0) : setActionMode(ACT_MOVE,0);
     }

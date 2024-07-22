@@ -156,12 +156,12 @@ int daLv1Cdl01_c::Execute(f32 (**param_0)[3][4]) {
 
     if (mCyl.ChkTgHit()) {
         dCcD_GObjInf* gobj = mCyl.GetTgHitGObj();
-        if (gobj->GetAtType() == AT_TYPE_LANTERN_SWING && gobj->GetAtMtrl() == 1 && !mIsLit) {
+        if (gobj->GetAtType() == AT_TYPE_LANTERN_SWING && gobj->GetAtMtrl() == dCcD_MTRL_FIRE && !mIsLit) {
             mIsLit = true;
             setLight();
             mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         }
-        if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == 3 && mIsLit == true) {
+        if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == dCcD_MTRL_WIND && mIsLit == true) {
             mTimer = 30;
             mIsLit = false;
             mDoAud_seStart(0x80019, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));

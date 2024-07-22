@@ -32,9 +32,25 @@ public:
     /* 80666DE8 */ void execute();
     /* 80667438 */ void draw();
 
+    bool checkNormalType() const { return mType == 0; }
     bool checkNotSmallType() const { return mType == 1; }
     bool checkBossType() const { return mType == 4 || mType == 3; }
     cXyz& getBallPos() { return mBallPos; }
+    void onWarpGround(const cXyz& pos) { 
+        field_0xb14 = pos;
+        field_0xae1 = 3;
+    }
+    void warpStart(const cXyz& pos) {
+        field_0xb14 = pos;
+        field_0xae1 = 1;
+    }
+    void onStateFlg0(int flg) {
+        mStateFlg0 |= flg;
+    }
+    void warpDelete() {
+        onStateFlg0(1);
+        field_0xae1 = 1;
+    }
 
     static u8 const m_bckIdxTable[70 + 2 /* padding */];
 

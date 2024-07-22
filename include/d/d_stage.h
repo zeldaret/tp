@@ -192,8 +192,7 @@ struct stage_tgsc_data_class : public stage_actor_data_class {
     /* 8002847C */ ~stage_tgsc_data_class() {}
     /* 800284B8 */ stage_tgsc_data_class() {}
 
-    /* 0x20 */ u8 field_0x20;
-    /* 0x21 */ u8 field_0x21;
+    /* 0x20 */ u8 field_0x20[2];
     /* 0x22 */ u8 field_0x22;
 };  // Size: 0x24
 
@@ -837,6 +836,7 @@ public:
     static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
     static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
+    static void setZoneCount(int i_roomNo, int count) { mStatus[i_roomNo].mZoneCount = count; }
 
     static void setMemoryBlockID(int i_roomNo, int i_blockID) {
         mStatus[i_roomNo].mMemBlockID = i_blockID;
@@ -926,8 +926,8 @@ struct dStage_objectNameInf {
 class dStage_KeepDoorInfo {
 public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
-    /* 0x000 */ int unk_0x0;
-    /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
+    /* 0x000 */ int mNum;
+    /* 0x004 */ stage_tgsc_data_class mDrTgData[0x40];
 };  // Size = 0x904
 
 typedef int (*dStage_Func)(dStage_dt_c*, void*, int, void*);

@@ -105,10 +105,10 @@ public:
     void MoveBgMatrixCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
     void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
     void ArrowStickCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, cXyz&);
-    bool PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
+    fopAc_ac_c* PushPullCallBack(cBgS_PolyInfo const&, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
 
     bool WaterChk(dBgS_SplGrpChk* chk) { return SplGrpChk(chk); }
-    u32 GetMtrlSndId(cBgS_PolyInfo* param_0) { return dKy_pol_sound_get(param_0); }
+    u32 GetMtrlSndId(const cBgS_PolyInfo& param_0) { return dKy_pol_sound_get(&param_0); }
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);

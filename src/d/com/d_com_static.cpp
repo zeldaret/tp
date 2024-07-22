@@ -436,9 +436,11 @@ const char* daSetBgObj_c::getArcName(fopAc_ac_c* i_this) {
 /* ############################################################################################## */
 /* 80451D28-80451D30 -00001 0008+00 0/0 0/0 3/3 .sdata2          M_dir_base__Q212daObjMovebox5Act_c
  */
-SECTION_SDATA2 void* daObjMovebox::Act_c::M_dir_base[2] = {
-    (void*)0x00004000,
-    (void*)(((char*)mDoMch_Create__Fv) + 0x2BC),
+SECTION_SDATA2 s16 daObjMovebox::Act_c::M_dir_base[4] = {
+    0x0000,
+    0x4000,
+    0x8000,
+    0xC000,
 };
 
 /* 80451D30-80451D34 000330 0004+00 0/0 0/0 3/3 .sdata2          OPEN_SIZE__7daDsh_c */

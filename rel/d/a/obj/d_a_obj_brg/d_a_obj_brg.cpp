@@ -1695,7 +1695,8 @@ extern "C" asm void __dt__8cM3dGAabFv() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm br_s::~br_s() {
+extern "C" asm void __dt__4br_sFv() {
+// asm br_s::~br_s() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_brg/d_a_obj_brg/__dt__4br_sFv.s"
 }
@@ -1705,7 +1706,8 @@ asm br_s::~br_s() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm br_s::br_s() {
+extern "C" asm void __ct__4br_sFv() {
+// asm br_s::br_s() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_brg/d_a_obj_brg/__ct__4br_sFv.s"
 }

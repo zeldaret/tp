@@ -1994,7 +1994,7 @@ public:
     /* 800E7EE4 */ int getWallGrabStatus();
     /* 800E7EF4 */ BOOL wallGrabTrigger();
     /* 800E7F18 */ BOOL wallGrabButton();
-    /* 800E7F3C */ void setPushPullKeepData(dBgW_Base::PushPullLabel, int);
+    /* 800E7F3C */ int setPushPullKeepData(dBgW_Base::PushPullLabel, int);
     /* 800E80A4 */ void checkPushPullTurnBlock();
     /* 800E8148 */ void checkPullBehindWall();
     /* 800E8298 */ void offGoatStopGame();
@@ -3078,7 +3078,7 @@ public:
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
     virtual void onSpinnerPathForceRemove();
-    virtual s16 getIronBallBgHit() const;
+    virtual int getIronBallBgHit() const;
     virtual cXyz* getIronBallCenterPos();
     virtual bool checkCanoeFishingGetLeft() const;
     virtual bool checkCanoeFishingGetRight() const;
@@ -3287,6 +3287,8 @@ public:
     BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const { return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0; }
     bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
+
+    BOOL checkPowerGloveGet() { return false; }
 
     J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) {
         return initModel(p_modelData, 0x80000, param_1);

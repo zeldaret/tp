@@ -2044,10 +2044,10 @@ static cPhs__Step daE_BA_Create(fopAc_ac_c* i_this) {
         _this->mSph.SetStts(&_this->mStts);
         if (_this->mType == e_ba_class::TYPE_FIRE) {
             _this->mSph.SetAtType(0x100);
-            _this->mSph.SetAtMtrl(1);
+            _this->mSph.SetAtMtrl(dCcD_MTRL_FIRE);
         } else if (_this->mType == e_ba_class::TYPE_ICE) {
             _this->mSph.SetAtType(0x100);
-            _this->mSph.SetAtMtrl(2);
+            _this->mSph.SetAtMtrl(dCcD_MTRL_ICE);
         }
 
         _this->mAcch.Set(fopAcM_GetPosition_p(_this), fopAcM_GetOldPosition_p(_this), _this,

@@ -36,6 +36,17 @@ enum dCcD_hitSe {
     /* 23 */ dCcD_SE_23,
 };
 
+enum dCcD_Material {
+    dCcD_MTRL_NONE,
+    dCcD_MTRL_FIRE,
+    dCcD_MTRL_ICE,
+    dCcD_MTRL_WIND,
+    dCcD_MTRL_LIGHT,
+    dCcD_MTRL_UNK_5,
+    dCcD_MTRL_UNK_6,
+    dCcD_MTRL_UNK_7,
+};
+
 enum dCcG_At_Spl {
     /* 0x0 */ dCcG_At_Spl_UNK_0,
     /* 0x1 */ dCcG_At_Spl_UNK_1,
@@ -135,7 +146,7 @@ class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
 public:
     dCcD_Stts() {}
     /* 80083850 */ virtual cCcD_GStts* GetGStts();
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
+    /* 80083860 */ void Init(int weight, int, fopAc_ac_c* pactor);
     /* 800838F4 */ virtual void Ct();
     /* 80083928 */ virtual void ClrAt();
     /* 80083934 */ virtual void ClrTg();

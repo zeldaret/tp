@@ -161,6 +161,10 @@ public:
         mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
 
+    void setLocalScale(const JGeometry::TVec3<f32>& scale) {
+        mLocalScl.set(scale);
+    }
+
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
     f32 get_r_zh() { return mRndm.get_rndm_zh(); }

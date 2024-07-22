@@ -26,7 +26,7 @@ public:
     /* 800872B0 */ void Move();
     /* 800872D0 */ void Draw();
     /* 8008730C */ void MassClear();
-    /* 80087330 */ int ChkAtTgMtrlHit(u8, u8);
+    /* 80087330 */ BOOL ChkAtTgMtrlHit(u8, u8);
 
     /* 8008640C */ virtual void SetPosCorrect(cCcD_Obj*, cXyz*, cCcD_Obj*, cXyz*, f32);
     /* 80086240 */ virtual void SetCoGObjInf(bool, bool, cCcD_GObjInf*, cCcD_GObjInf*, cCcD_Stts*,
@@ -47,7 +47,7 @@ public:
     void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
     void PrepareMass() { mMass_Mng.Prepare(); }
 
-    static u8 m_mtrl_hit_tbl[64];
+    static bool m_mtrl_hit_tbl[64];
 
     // /* 0x0000 */ cCcS mCCcS;
     /* 0x284C */ dCcMassS_Mng mMass_Mng;

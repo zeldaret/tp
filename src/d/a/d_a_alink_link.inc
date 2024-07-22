@@ -829,7 +829,7 @@ int daAlink_c::procFrontRollInit() {
         field_0xFB8.SetAtHitMark(1);
         field_0xFB8.SetAtSe(9);
         field_0xFB8.SetAtAtp(2);
-        field_0xFB8.SetAtMtrl(0);
+        field_0xFB8.SetAtMtrl(dCcD_MTRL_NONE);
         field_0xFB8.ResetAtHit();
         field_0xFB8.SetR(daAlinkHIO_frontRoll_c0::m.mBootsAttackRadius);
         field_0xFB8.OnAtSetBit();

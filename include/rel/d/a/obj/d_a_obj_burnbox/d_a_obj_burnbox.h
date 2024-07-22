@@ -22,6 +22,10 @@ public:
     /* 8046EABC */ void Draw();
     /* 8046EC10 */ void Delete();
 
+    static void make_prm_burnbox(u32* param_0, u8 param_1) {
+        *param_0 = param_1;
+    }
+
 private:
     /* 0x568 */ u8 field_0x568[0x740 - 0x568];
 };

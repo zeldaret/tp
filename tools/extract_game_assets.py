@@ -4,6 +4,8 @@ import libarc
 from pathlib import Path
 import libyaz0
 import libstage
+import libbti
+import assets_config
 
 """
 Extracts the game assets and stores them in the game folder
@@ -138,17 +140,24 @@ convertDefinitions = {
     ".arc": {
         "function": libarc.extract_to_directory,
         "exceptions": ["archive/dat/speakerse.arc"],
+        "config_key": "extract_arc"
     },
     ".dzs": {
-        "function": libstage.extract_to_json
+        "function": libstage.extract_to_json,
+        "config_key": "convert_stages"
     },
     ".dzr": {
-        "function": libstage.extract_to_json
+        "function": libstage.extract_to_json,
+        "config_key": "convert_stages"
+    },
+    ".bti": {
+        "function": libbti.bti_to_png,
+        "config_key": "convert_textures"
     }
 }
 
 def writeFile(name, data):
-    if data[0:4] == bytes("Yaz0", "ascii"):
+    if data[0:4] == bytes("Yaz0", "ascii") and config["decompress_assets"]:
         splitName = os.path.splitext(name)
         name = splitName[0] + ".c" + splitName[1]
         data = libyaz0.decompress(data)
@@ -158,8 +167,11 @@ def writeFile(name, data):
     ext = splitName[1]
     if ext in convertDefinitions:
         extractDef = convertDefinitions[ext]
-        if "exceptions" in extractDef and str(name) in extractDef["exceptions"]:
+        if ("exceptions" in extractDef and str(name) in extractDef["exceptions"]) or ("config_key" in extractDef and config[extractDef["config_key"]] == False):
             extractDef = None
+
+    if config["decompress_assets"] == False:
+        extractDef = None # If assets aren't being decompressed, just write the raw file
 
     if extractDef == None:
         file = open(name, "wb")
@@ -167,6 +179,7 @@ def writeFile(name, data):
         file.close()
     else:
         name = extractDef["function"](name, data, writeFile)
+        # print(name)
     return name
 
 
@@ -232,9 +245,10 @@ def getDolInfo(disc):
 
     return dolOffset, dolSize
 
-
-def extract(isoPath: Path, gamePath: Path, yaz0Encoder):
-    if yaz0Encoder == "oead":
+def extract(isoPath: Path, gamePath: Path, config_file: str):
+    global config
+    config = assets_config.getConfig(config_file,update=True)
+    if config["oead_yaz0"]:
         try:
             from oead import yaz0
             global yaz0DecompressFunction
@@ -288,7 +302,7 @@ def extract(isoPath: Path, gamePath: Path, yaz0Encoder):
 
 
 def main():
-    extract(Path(sys.argv[1]), Path(sys.argv[2]), "native")
+    extract(Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3])
 
 
 if __name__ == "__main__":

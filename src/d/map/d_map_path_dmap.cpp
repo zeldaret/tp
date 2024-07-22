@@ -1034,14 +1034,14 @@ void renderingPlusDoor_c::afterDrawPath() {
  */
 void renderingPlusDoor_c::drawDoor1() {
     dStage_KeepDoorInfo* door_info = dStage_GetKeepDoorInfo();
-    drawDoorCommon(door_info->unk_0x4, door_info->unk_0x0, true);
+    drawDoorCommon(door_info->mDrTgData, door_info->mNum, true);
 }
 
 /* 800405B8-800405FC 03AEF8 0044+00 1/1 0/0 0/0 .text            drawDoor2__19renderingPlusDoor_cFv
  */
 void renderingPlusDoor_c::drawDoor2() {
     dStage_KeepDoorInfo* door_info = dStage_GetRoomKeepDoorInfo();
-    drawDoorCommon(door_info->unk_0x4, door_info->unk_0x0, false);
+    drawDoorCommon(door_info->mDrTgData, door_info->mNum, false);
 }
 
 /* ############################################################################################## */
