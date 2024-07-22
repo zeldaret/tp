@@ -146,7 +146,7 @@ class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
 public:
     dCcD_Stts() {}
     /* 80083850 */ virtual cCcD_GStts* GetGStts();
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
+    /* 80083860 */ void Init(int weight, int, fopAc_ac_c* pactor);
     /* 800838F4 */ virtual void Ct();
     /* 80083928 */ virtual void ClrAt();
     /* 80083934 */ virtual void ClrTg();
