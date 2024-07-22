@@ -7456,7 +7456,7 @@ var searchData=
   ['sidisablepolling_7453',['sidisablepolling',['../SIBios_8c.html#a7da89bb1deb457edffbb021ec38758f8',1,'SIDisablePolling(u32 poll):&#160;SIBios.c'],['../SIBios_8h.html#a7da89bb1deb457edffbb021ec38758f8',1,'SIDisablePolling(u32 poll):&#160;SIBios.c']]],
   ['sienablepolling_7454',['sienablepolling',['../SIBios_8c.html#a72819a9ed2641b810e4ae3b7ad1ded28',1,'SIEnablePolling(u32 poll):&#160;SIBios.c'],['../SIBios_8h.html#a72819a9ed2641b810e4ae3b7ad1ded28',1,'SIEnablePolling(u32 poll):&#160;SIBios.c']]],
   ['sienablepollinginterrupt_7455',['sienablepollinginterrupt',['../SIBios_8c.html#a8318725e534a1f54a0d6ead2d3e6d8da',1,'SIEnablePollingInterrupt(BOOL enable):&#160;SIBios.c'],['../SIBios_8h.html#a8318725e534a1f54a0d6ead2d3e6d8da',1,'SIEnablePollingInterrupt(BOOL enable):&#160;SIBios.h']]],
-  ['sig_7456',['sig',['../structdecimal.html#aab30a6d5ba1bc6419e83512feb8db8be',1,'decimal']]],
+  ['sig_7456',['sig',['../structdecimal.html#ad3b26af60667d992f901a4a023dd55a6',1,'decimal']]],
   ['sigetresponse_7457',['sigetresponse',['../SIBios_8h.html#a26458ea13680f50e081bef6a70e11f23',1,'SIGetResponse(s32 chan, void *data):&#160;SIBios.c'],['../SIBios_8c.html#a26458ea13680f50e081bef6a70e11f23',1,'SIGetResponse(s32 chan, void *data):&#160;SIBios.c']]],
   ['sigetresponseraw_7458',['sigetresponseraw',['../SIBios_8c.html#ad911252b8f8533062b05171e9786accc',1,'SIGetResponseRaw(s32 chan):&#160;SIBios.c'],['../SIBios_8h.html#ad911252b8f8533062b05171e9786accc',1,'SIGetResponseRaw(s32 chan):&#160;SIBios.h']]],
   ['sigetstatus_7459',['sigetstatus',['../SIBios_8c.html#abe382e9a0cc6e1837c0a3f01a37dc9f2',1,'SIGetStatus(s32 chan):&#160;SIBios.c'],['../SIBios_8h.html#abe382e9a0cc6e1837c0a3f01a37dc9f2',1,'SIGetStatus(s32 chan):&#160;SIBios.c']]],
