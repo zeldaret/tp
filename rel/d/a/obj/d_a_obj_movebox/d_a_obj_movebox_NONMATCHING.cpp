@@ -1633,7 +1633,7 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
         dCcD_GObjInf* hit_obj = mCcCyl.GetTgHitGObj();
 
         if (mCcCyl.ChkTgHit() && hit_obj != NULL) {
-            if (!hit_obj->ChkAtType(AT_TYPE_LANTERN_SWING) && hit_obj->GetAtMtrl() == 1) {
+            if (!hit_obj->ChkAtType(AT_TYPE_LANTERN_SWING) && hit_obj->GetAtMtrl() == dCcD_MTRL_FIRE) {
                 u32 params;
                 daObjBurnBox_c::make_prm_burnbox(&params, 1);
 

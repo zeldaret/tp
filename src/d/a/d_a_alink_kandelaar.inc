@@ -370,7 +370,7 @@ void daAlink_c::initKandelaarSwing() {
     field_0xFB8.SetAtHitMark(0);
     field_0xFB8.SetAtSe(dCcD_SE_NONE);
     field_0xFB8.SetAtAtp(0);
-    field_0xFB8.SetAtMtrl(1);
+    field_0xFB8.SetAtMtrl(dCcD_MTRL_FIRE);
 }
 
 /* 80111440-801115CC 10BD80 018C+00 2/1 0/0 0/0 .text procKandelaarSwingInit__9daAlink_cFv */

@@ -85,13 +85,13 @@ cPhs__Step daLv1Cdl00_c::create() {
         if (!mSwType) {
             if (mIsSwitch) {
                 mIsLit = true;
-                mCyl.SetAtMtrl(1);
+                mCyl.SetAtMtrl(dCcD_MTRL_FIRE);
                 setLight();
             }
         } else {
             if (!mIsSwitch) {
                 mIsLit = true;
-                mCyl.SetAtMtrl(1);
+                mCyl.SetAtMtrl(dCcD_MTRL_FIRE);
                 setLight();
             }
         }
@@ -160,18 +160,18 @@ int daLv1Cdl00_c::Execute() {
     u8 sw = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);
     if (mIsSwitch != sw) {
         mIsLit = false;
-        mCyl.SetAtMtrl(0);
+        mCyl.SetAtMtrl(dCcD_MTRL_NONE);
         cutLight();
         if (!mSwType) {
             if (sw) {
                 mIsLit = true;
-                mCyl.SetAtMtrl(1);
+                mCyl.SetAtMtrl(dCcD_MTRL_FIRE);
                 setLight();
             }
         } else {
             if (!sw) {
                 mIsLit = true;
-                mCyl.SetAtMtrl(1);
+                mCyl.SetAtMtrl(dCcD_MTRL_FIRE);
                 setLight();
             }
         }
@@ -192,9 +192,9 @@ int daLv1Cdl00_c::Execute() {
 
     if (mCyl.ChkTgHit()) {
         dCcD_GObjInf* gobj = mCyl.GetTgHitGObj();
-        if (gobj->GetAtType() == AT_TYPE_LANTERN_SWING && gobj->GetAtMtrl() == 1 && !mIsLit) {
+        if (gobj->GetAtType() == AT_TYPE_LANTERN_SWING && gobj->GetAtMtrl() == dCcD_MTRL_FIRE && !mIsLit) {
             mIsLit = true;
-            mCyl.SetAtMtrl(1);
+            mCyl.SetAtMtrl(dCcD_MTRL_FIRE);
             if (!mSwType) {
                 fopAcM_onSwitch(this, fopAcM_GetParam(this) & 0xff);
             } else {
@@ -203,9 +203,9 @@ int daLv1Cdl00_c::Execute() {
             mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             setLight();
         }
-        if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == 3 && mIsLit == true) {
+        if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == dCcD_MTRL_WIND && mIsLit == true) {
             mIsLit = false;
-            mCyl.SetAtMtrl(0);
+            mCyl.SetAtMtrl(dCcD_MTRL_NONE);
             if (!mSwType) {
                 fopAcM_offSwitch(this, fopAcM_GetParam(this) & 0xff);
             } else {

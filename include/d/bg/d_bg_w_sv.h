@@ -5,6 +5,10 @@
 
 class dBgWSv : public dBgW {
 public:
+    dBgWSv() {
+        field_0xc0 = NULL;
+    }
+
     /* 80082F98 */ u8 Set(cBgD_t*, u32);
     /* 80083020 */ void CopyBackVtx();
     /* 8008308C */ bool CrrPosWork(cXyz*, int, int, int);

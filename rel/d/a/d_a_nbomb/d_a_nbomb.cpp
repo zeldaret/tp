@@ -330,7 +330,7 @@ void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
         procCarryInit();
         onStateFlg0(FLG0_SET_HOOKSHOT_OFFSET);
     } else if (i_hitObj->ChkAtType(0x200)) {
-        if (i_hitObj->GetAtMtrl() == 3 && !checkStateCarry() && !checkStateExplode() &&
+        if (i_hitObj->GetAtMtrl() == dCcD_MTRL_WIND && !checkStateCarry() && !checkStateExplode() &&
             fopAcM_GetParam(this) != PRM_FLOWER_BOMB)
         {
             cLib_addCalcPos(&field_0xc20, *i_hitObj->GetAtVecP() * 2.0f, 0.5f, 10.0f, 1.0f);
@@ -340,7 +340,7 @@ void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
         onStateFlg0(FLG0_BOMB_HIT);
     }
 
-    if (i_hitObj->GetAtMtrl() == 2) {
+    if (i_hitObj->GetAtMtrl() == dCcD_MTRL_ICE) {
         setFreeze();
     }
 }

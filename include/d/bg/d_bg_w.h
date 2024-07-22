@@ -221,6 +221,8 @@ public:
     bool ChkFlush() { return field_0x91 & 8; }
     void SetLock() { mFlags |= LOCK_e; }
     bool ChkRoofRegist() { return field_0x91 & 4;}
+    cBgD_Vtx_t* GetVtxTbl() const { return pm_vtx_tbl; }
+    int GetVtxNum() const { return pm_bgd->m_v_num; }
 
 public:
     /* 0x18 */ MtxP pm_base;  // Model Matrix

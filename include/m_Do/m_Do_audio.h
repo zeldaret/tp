@@ -98,6 +98,8 @@ inline void mDoAud_sceneBgmStart() {
     Z2AudioMgr::getInterface()->sceneBgmStart();
 }
 
+inline void mDoAud_seDeleteObject(Vec*) {}
+
 inline void mDoAud_load2ndDynamicWave() {
     Z2AudioMgr::getInterface()->load2ndDynamicWave();
 }
