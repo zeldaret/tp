@@ -1203,26 +1203,26 @@ void jmessage_tReference::resetWord() {
 
 /* 80229768-80229788 2240A8 0020+00 3/3 0/0 0/0 .text setCharactor__19jmessage_tReferenceFUs */
 void jmessage_tReference::setCharactor(u16 param_0) {
-    mCharactor[field_0x40c] = param_0;
-    field_0x40c++;
+    mCharactor.data[mCharactor.field_0x40c] = param_0;
+    mCharactor.field_0x40c++;
 }
 
 /* 80229788-802297B0 2240C8 0028+00 3/3 0/0 0/0 .text addCharactor__19jmessage_tReferenceFUs */
 void jmessage_tReference::addCharactor(u16 param_0) {
-    if (param_0 == mCharactor[field_0x40e]) {
-        field_0x40e++;
+    if (param_0 == mCharactor.data[mCharactor.field_0x40e]) {
+        mCharactor.field_0x40e++;
     }
 }
 
 /* 802297B0-802297E4 2240F0 0034+00 3/3 0/0 0/0 .text resetCharactor__19jmessage_tReferenceFv */
 void jmessage_tReference::resetCharactor() {
     for (int i = 0; i < 0x200; i++) {
-        mCharactor[i] = 0;
+        mCharactor.data[i] = 0;
     }
 
-    field_0x40c = 0;
-    field_0x40e = 0;
-    mCountBackUp = 0;
+    mCharactor.field_0x40c = 0;
+    mCharactor.field_0x40e = 0;
+    mCharactor.mCountBackUp = 0;
 }
 
 /* 802297E4-80229810 224124 002C+00 0/0 1/1 0/0 .text

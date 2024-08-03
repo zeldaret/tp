@@ -28,6 +28,10 @@ struct TControl {
                                              (TProcessor*)pRenderingProcessor_;
     }
 
+    int setMessageCode(u32 code) {
+        return setMessageCode(code >> 16, code);
+    }
+
     int setMessageCode_inReset_(TProcessor* pProcessor, u16 param_1, u16 param_2) {
         if (!setMessageCode_inSequence_(pProcessor, param_1, param_2)) {
             return 0;
@@ -55,6 +59,13 @@ struct TControl {
         }
 
         pResourceCache_ = NULL;
+    }
+
+    void render_synchronize() {
+        if (isReady_render_()) {
+            field_0x20 = pszText_update_current_;
+            oStack_renderingProcessor_ = pRenderingProcessor_->oStack_;
+        }
     }
 
     /* 0x04 */ TSequenceProcessor* pSequenceProcessor_;

@@ -42,6 +42,8 @@ struct dMsgScrnHowl_c : public dMsgScrnBase_c {
     /* 80244304 */ u16 getGuideDataSize();
     /* 8024438C */ u8 getGuideDataType(int);
 
+    bool isHearingMode() { return field_0x2798 == 3;}
+
     /* 0x00C4 */ CPaneMgr* mpLineH[3];
     /* 0x00D0 */ CPaneMgr* mpLineV[7];
     /* 0x00EC */ CPaneMgr* mpLineAll;

@@ -285,6 +285,7 @@ public:
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
     static s16 getBranchId() { return m_branchId; }
+    static jmessage_tControl* getMesgControl() { return m_mesgControl; }
 
     static dDemo_camera_c* getCamera() {
         JUT_ASSERT(m_object != 0);

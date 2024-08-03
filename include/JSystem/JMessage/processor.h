@@ -2,6 +2,7 @@
 #define JMESSAGE_PROCESSOR_H
 
 #include "JSystem/JMessage/resource.h"
+#include "algorithm.h"
 
 namespace JMessage {
 struct TResource;
@@ -62,6 +63,14 @@ struct TProcessor {
         }
 
         void pop() { upsz_--; }
+
+        TStack_& operator=(const TStack_& other) {
+            upsz_ = other.upsz_;
+            char** start = (char**)other.stack;
+            char** end = (char**)(other.stack + other.upsz_);
+            std::copy(start, end, stack);
+            return *this;
+        }
 
         /* 0x0 */ u32 upsz_;  // stack size
         /* 0x4 */ const char* stack[4];

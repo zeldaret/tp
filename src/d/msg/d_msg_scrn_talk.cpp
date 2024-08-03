@@ -12,41 +12,9 @@
 
 struct JKRExpHeap {};
 
-struct dMsgScrnTalk_c {
-    /* 80246FF0 */ dMsgScrnTalk_c(u8, u8, JKRExpHeap*);
-    /* 80247A90 */ ~dMsgScrnTalk_c();
-    /* 80247D34 */ void exec();
-    /* 80247E4C */ void drawSelf();
-    /* 802480F0 */ void arwAnimeInit();
-    /* 80248114 */ void arwAnimeMove();
-    /* 80248138 */ void dotAnimeInit();
-    /* 8024815C */ void dotAnimeMove();
-    /* 80248180 */ void setSelectString(char*, char*, char*);
-    /* 802481AC */ void setSelectRubyString(char*, char*, char*);
-    /* 802481D8 */ void isSelect();
-    /* 8024820C */ void selectAnimeInit(u8, u8, f32, u8);
-    /* 80248244 */ void selectAnimeMove(u8, u8, bool);
-    /* 80248278 */ void selectAnimeEnd();
-    /* 802482AC */ void fukiScale(f32);
-    /* 802482B0 */ void fukiTrans(f32, f32);
-    /* 802482B4 */ void fukiAlpha(f32);
-    /* 8024835C */ void fukiPosCalc(u8);
-};
-
 struct dMsgScrnLight_c {
     /* 80245934 */ dMsgScrnLight_c(u8, u8);
     /* 80245C04 */ void draw(f32*, f32, f32, f32, f32, f32, u8);
-};
-
-struct dMsgScrnBase_c {
-    /* 8023C0DC */ dMsgScrnBase_c();
-    /* 8023C124 */ ~dMsgScrnBase_c();
-    /* 8023C16C */ void init();
-    /* 8023C234 */ void multiDraw();
-    /* 8023C274 */ void draw();
-    /* 8023C32C */ void drawOutFont(f32, f32, f32);
-    /* 8023C4F4 */ void fontAlpha(f32);
-    /* 8023C574 */ void isTalkNow();
 };
 
 struct dMsgScrnArrow_c {
@@ -82,31 +50,12 @@ struct dMsgObject_c {
     /* 8023819C */ void getActor();
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct dMeter2Draw_c {
     /* 802140DC */ void drawPikari(f32, f32, f32*, f32, JUtility::TColor, JUtility::TColor,
                                    JUtility::TColor, JUtility::TColor, f32, u8);
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 8026702C */ bool operator==(Vec const&) const;
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
-};
-
 struct JKRArchive {};
-
-struct J2DTextBox {
-    /* 8030074C */ void setString(s16, char const*, ...);
-};
 
 struct J2DGrafContext {};
 
@@ -114,10 +63,6 @@ struct J2DScreen {
     /* 802F8498 */ J2DScreen();
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
 };
 
 struct CPaneMgrAlpha {
@@ -162,7 +107,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_talk__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
@@ -410,7 +354,7 @@ asm void dMsgScrnTalk_c::setSelectRubyString(char* param_0, char* param_1, char*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnTalk_c::isSelect() {
+asm bool dMsgScrnTalk_c::isSelect() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_talk/isSelect__14dMsgScrnTalk_cFv.s"
 }
@@ -430,7 +374,7 @@ asm void dMsgScrnTalk_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnTalk_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
+asm bool dMsgScrnTalk_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_talk/selectAnimeMove__14dMsgScrnTalk_cFUcUcb.s"
 }
@@ -441,7 +385,7 @@ asm void dMsgScrnTalk_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnTalk_c::selectAnimeEnd() {
+asm bool dMsgScrnTalk_c::selectAnimeEnd() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_talk/selectAnimeEnd__14dMsgScrnTalk_cFv.s"
 }

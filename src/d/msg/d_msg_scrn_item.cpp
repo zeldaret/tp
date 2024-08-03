@@ -4,68 +4,15 @@
 //
 
 #include "d/msg/d_msg_scrn_item.h"
+#include "d/msg/d_msg_scrn_light.h"
+#include "d/msg/d_msg_scrn_arrow.h"
 #include "dol2asm.h"
 
 //
 // Types:
 //
 
-struct dMsgScrnLight_c {
-    /* 80245934 */ dMsgScrnLight_c(u8, u8);
-    /* 80245C04 */ void draw(f32*, f32, f32, f32, f32, f32, u8);
-};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTextureSRTKey {};
-
 struct JKRExpHeap {};
-
-struct dMsgScrnItem_c {
-    /* 8023E79C */ dMsgScrnItem_c(u8, u8, JKRExpHeap*);
-    /* 8023F51C */ ~dMsgScrnItem_c();
-    /* 8023F888 */ void exec();
-    /* 8023FB24 */ void drawSelf();
-    /* 8023FF30 */ void arwAnimeInit();
-    /* 8023FF54 */ void arwAnimeMove();
-    /* 8023FF78 */ void dotAnimeInit();
-    /* 8023FF9C */ void dotAnimeMove();
-    /* 8023FFC0 */ void setSelectString(char*, char*, char*);
-    /* 8023FFE4 */ void setSelectRubyString(char*, char*, char*);
-    /* 80240008 */ void isSelect();
-    /* 8024002C */ void selectAnimeInit(u8, u8, f32, u8);
-    /* 8024005C */ void selectAnimeMove(u8, u8, bool);
-    /* 80240080 */ void selectAnimeEnd();
-    /* 802400A4 */ void fukiScale(f32);
-    /* 802400A8 */ void fukiTrans(f32, f32);
-    /* 802400CC */ void fukiAlpha(f32);
-    /* 80240174 */ void fukiPosCalc(u8);
-    /* 8024074C */ void setBtk0Animation(J2DAnmTextureSRTKey*);
-    /* 802407E8 */ void setBpk0Animation(J2DAnmColor*);
-    /* 80240844 */ void setBpk1Animation(J2DAnmColor*);
-    /* 802408A4 */ void isOugiID();
-};
-
-struct dMsgScrnBase_c {
-    /* 8023C0DC */ dMsgScrnBase_c();
-    /* 8023C124 */ ~dMsgScrnBase_c();
-    /* 8023C16C */ void init();
-    /* 8023C234 */ void multiDraw();
-    /* 8023C274 */ void draw();
-    /* 8023C32C */ void drawOutFont(f32, f32, f32);
-    /* 8023C4F4 */ void fontAlpha(f32);
-    /* 8023C574 */ void isTalkNow();
-};
-
-struct dMsgScrnArrow_c {
-    /* 8023B9B4 */ dMsgScrnArrow_c();
-    /* 8023BDC0 */ void draw();
-    /* 8023BDF8 */ void setPos(f32, f32);
-    /* 8023BE34 */ void arwAnimeInit();
-    /* 8023BE90 */ void arwAnimeMove();
-    /* 8023BFC4 */ void dotAnimeInit();
-    /* 8023C010 */ void dotAnimeMove();
-};
 
 struct dMsgScrn3Select_c {
     /* 802390B4 */ dMsgScrn3Select_c();
@@ -93,10 +40,6 @@ struct dMsgObject_c {
 
 struct ResTIMG {};
 
-struct J2DPicture {
-    /* 802FC708 */ J2DPicture(ResTIMG const*);
-};
-
 struct dMeter2Info_c {
     /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
                                         J2DPicture*, void*, J2DPicture*, int);
@@ -105,17 +48,6 @@ struct dMeter2Info_c {
 
 struct dItem_data {
     static void* item_resource[1530];
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 8026702C */ bool operator==(Vec const&) const;
-};
-
-struct JKRHeap {
-    /* 802CE4D4 */ void alloc(u32, int);
-    /* 802CE548 */ void free(void*);
 };
 
 struct JKRFileLoader {
@@ -133,13 +65,6 @@ struct J2DScreen {
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
     /* 802F9690 */ void animation();
-};
-
-struct J2DBasePosition {};
-
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-    /* 802F76F8 */ void setBasePosition(J2DBasePosition);
 };
 
 struct J2DAnmLoaderDataBase {
@@ -192,7 +117,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_item__stringBase0;
 // External References:
 //
 
-SECTION_INIT void memset();
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
@@ -461,7 +385,7 @@ asm void dMsgScrnItem_c::setSelectRubyString(char* param_0, char* param_1, char*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnItem_c::isSelect() {
+asm bool dMsgScrnItem_c::isSelect() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_item/isSelect__14dMsgScrnItem_cFv.s"
 }
@@ -481,7 +405,7 @@ asm void dMsgScrnItem_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
+asm bool dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_item/selectAnimeMove__14dMsgScrnItem_cFUcUcb.s"
 }
@@ -492,7 +416,7 @@ asm void dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dMsgScrnItem_c::selectAnimeEnd() {
+asm bool dMsgScrnItem_c::selectAnimeEnd() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_item/selectAnimeEnd__14dMsgScrnItem_cFv.s"
 }

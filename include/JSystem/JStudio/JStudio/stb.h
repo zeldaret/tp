@@ -143,6 +143,8 @@ public:
     TObject_control& referObject_control() { return mObject_control; }
     int getSuspend() const { return _54; }
     void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
+    void suspend(s32 param_0) { mObject_control.suspend(param_0); }
+    void unsuspend(s32 param_0) { suspend(-param_0); }
 
 private:
     /* 0x04 */ u32 _4;

@@ -250,4 +250,12 @@ inline void mDoAud_startFogSe() {
     g_mEnvSeMgr.startFogSe();
 }
 
+inline void mDoAud_talkOut() {
+    Z2AudioMgr::getInterface()->talkOut();
+}
+
+inline void mDoAud_talkIn() {
+    Z2AudioMgr::getInterface()->talkIn();
+}
+
 #endif /* M_DO_M_DO_AUDIO_H */

@@ -198,7 +198,7 @@ namespace daObjMovebox {
         void off_switch2() const { fopAcM_offSwitch(this, prmZ_get_swSave2()); }
 
         static s16 M_dir_base[4];
-        static const char* M_arcname[8];
+        static const char* const M_arcname[8];
         static const dCcD_SrcCyl M_cyl_src;
         static const daObjMovebox::Hio_c::Attr_c M_attr[8];
 

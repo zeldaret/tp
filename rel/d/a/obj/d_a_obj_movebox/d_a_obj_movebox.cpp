@@ -592,7 +592,7 @@ extern "C" char const* const stringBase_804816E3;
 
 /* 80481104-80481124 -00001 0020+00 3/3 0/0 0/0 .rodata          M_arcname__Q212daObjMovebox5Act_c
  */
-SECTION_RODATA const char* daObjMovebox::Act_c::M_arcname[8] = {
+const char* const daObjMovebox::Act_c::M_arcname[8] = {
     "Kkiba_00", "Osiblk", "H_Box20", "A_SMBlock", "P_Lv4blk", "P_Lv4blk2", "H_OsiHaka", "dummy4",
 };
 COMPILER_STRIP_GATE(0x80481104, &daObjMovebox::Act_c::M_arcname);
