@@ -79,6 +79,7 @@ public:
     /* 80A065D4 */ bool checkRemoveJoint(int);
 
     bool getGameStartFlag() { return mGameStartFlag; }
+    void setPotBreakFlag() { mPotBreakFlag = true; }
 
     static void* mCutNameList[8];
     static u8 mCutList[96];
@@ -86,7 +87,8 @@ public:
 private:
     /* 0xE40 */ u8 field_0xe40[0x14d];
     /* 0xF8D */ bool mGameStartFlag;
-    /* 0xF8E */ u8 field_0xf8e[0x3a];
+    /* 0xF8E */ bool mPotBreakFlag;
+    /* 0xF8F */ u8 field_0xf8f[0x39];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Hoz_c) == 0xFC8);
