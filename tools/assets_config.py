@@ -55,7 +55,7 @@ def cursesMenu(stdscr, values):
 
     keys = list(values.keys())
     options = [
-        f"{CONFIG_DESCRIPTIONS[key]}: ({"X" if values[key] else " "})" for key in keys
+        f"{CONFIG_DESCRIPTIONS[key]}: ({'X' if values[key] else ' '})" for key in keys
     ]
     bool_values = [values[key] for key in keys]
 
@@ -73,7 +73,7 @@ def cursesMenu(stdscr, values):
         elif key in (curses.KEY_ENTER, ord("\n"), 13):
             bool_values[selected_idx] = not bool_values[selected_idx]
             options[selected_idx] = (
-                f"{CONFIG_DESCRIPTIONS[keys[selected_idx]]}: ({"X" if bool_values[selected_idx] else " "})"
+                f"{CONFIG_DESCRIPTIONS[keys[selected_idx]]}: ({'X' if bool_values[selected_idx] else ' '})"
             )
         elif key in (27, ord("q")):  # Escape, q
             break

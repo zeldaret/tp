@@ -763,7 +763,7 @@ def bti_to_png(name, data, writefunc):
 def namedValueFromDict(value, dict):
     if not value in dict:
         print(
-            f"Format {value} is not a valid type. Valid types are {", ".join(dict.keys())}"
+            f"Format {value} is not a valid type. Valid types are {', '.join(dict.keys())}"
         )
         return None
     return dict[value]
