@@ -1,6 +1,5 @@
 var d__a__tbox_8cpp =
 [
-    [ "request_of_phase_process_class", "structrequest__of__phase__process__class.html", "structrequest__of__phase__process__class" ],
     [ "csXyz", "classcsXyz.html", "classcsXyz" ],
     [ "mDoMtx_stack_c", "classmDoMtx__stack__c.html", "classmDoMtx__stack__c" ],
     [ "mDoHIO_entry_c", "classmDoHIO__entry__c.html", "classmDoHIO__entry__c" ],
@@ -378,7 +377,6 @@ var d__a__tbox_8cpp =
     [ "g_dComIfG_gameInfo", "d__a__tbox_8cpp.html#a50ad47c26bcc2867f2c14d349753f58e", null ],
     [ "g_env_light", "d__a__tbox_8cpp.html#a5bbfcbebab8b50d8b888f8aee1e4a468", null ],
     [ "g_fopAc_Method", "d__a__tbox_8cpp.html#a24ce032de2af10b7e92bf464450ddeb7", null ],
-    [ "g_fpcLf_Method", "d__a__tbox_8cpp.html#a3de3a374119e8432d211e29713bce0ae", null ],
     [ "g_profile_TBOX", "d__a__tbox_8cpp.html#a6adb0a3beee92a08a982f5076b8536fa", null ],
     [ "item_info__10dItem_data", "d__a__tbox_8cpp.html#afac805fcd16bd812d9543471d9901226", null ],
     [ "j3dSys", "d__a__tbox_8cpp.html#ae72d2e91667c54fa66f49a18c8aaa30b", null ],

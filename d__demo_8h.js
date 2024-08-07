@@ -9,5 +9,5 @@ var d__demo_8h =
     [ "dDemo_fog_c", "classdDemo__fog__c.html", "classdDemo__fog__c" ],
     [ "dDemo_camera_c", "classdDemo__camera__c.html", "classdDemo__camera__c" ],
     [ "dDemo_ambient_c", "classdDemo__ambient__c.html", "classdDemo__ambient__c" ],
-    [ "dDemo_c", "structdDemo__c.html", "structdDemo__c" ]
+    [ "dDemo_c", "classdDemo__c.html", "classdDemo__c" ]
 ];

@@ -5,7 +5,7 @@ var classdCcS =
     [ "CalcParticleAngle", "classdCcS.html#a87bff57ac3436790b79ad462d30a45c3", null ],
     [ "CalcTgPlusDmg", "classdCcS.html#a4ccdcdbdef3c335003d61d718174188b", null ],
     [ "ChkAtTgHitAfterCross", "classdCcS.html#a1e748cb7ce3a739902dab96089600fef", null ],
-    [ "ChkAtTgMtrlHit", "classdCcS.html#a21a2c0cdd7eea2517440dec6e6e38403", null ],
+    [ "ChkAtTgMtrlHit", "classdCcS.html#a658de5ebf85ede64c36fb1750f4d22c2", null ],
     [ "ChkCamera", "classdCcS.html#a5d670de91b715040138c2583fe8acca8", null ],
     [ "chkCameraPoint", "classdCcS.html#ab92ca59d539d9379b192531da0cdc6b9", null ],
     [ "ChkNoHitGAtTg", "classdCcS.html#a56df5bce7baff49c8c8e921261e54e47", null ],
@@ -26,6 +26,6 @@ var classdCcS =
     [ "SetCoGObjInf", "classdCcS.html#a46fcbcdf348cc1f6e034960bb646a039", null ],
     [ "SetMass", "classdCcS.html#a502498098f89533096de4f7000936991", null ],
     [ "SetPosCorrect", "classdCcS.html#a1dad7eb2a724a2f5c74ada0acac9026e", null ],
-    [ "m_mtrl_hit_tbl", "classdCcS.html#a4a7144786837c88d85c739bf1ca9b869", null ],
+    [ "m_mtrl_hit_tbl", "classdCcS.html#a3a8805c3d6713d7f380ed66b178a7cf2", null ],
     [ "mMass_Mng", "classdCcS.html#a45ba5a57f6720004602d8517a6b84957", null ]
 ];

@@ -17,6 +17,8 @@ var classJStudio_1_1stb_1_1TControl =
     [ "setFactory", "classJStudio_1_1stb_1_1TControl.html#a73a81c42cc8acbd559d6e645078b7284", null ],
     [ "setStatus_", "classJStudio_1_1stb_1_1TControl.html#af3482690be1eef6ea5b65ac89d052754", null ],
     [ "setSuspend", "classJStudio_1_1stb_1_1TControl.html#ad7049d9221e1ac21d901a6eba9f49eeb", null ],
+    [ "suspend", "classJStudio_1_1stb_1_1TControl.html#aa7ee94c81861173c720b7e8af7f3d5c3", null ],
+    [ "unsuspend", "classJStudio_1_1stb_1_1TControl.html#ad7a5811d417ba31b82e44ab2c6f61a47", null ],
     [ "_4", "classJStudio_1_1stb_1_1TControl.html#ac607a5d16d9fc563299b76b3fc19a945", null ],
     [ "_54", "classJStudio_1_1stb_1_1TControl.html#a79322d5f43e136630ad2d1da93f2e50f", null ],
     [ "_8", "classJStudio_1_1stb_1_1TControl.html#a35a5d47bf5fa4fa50e96be451c01639b", null ],

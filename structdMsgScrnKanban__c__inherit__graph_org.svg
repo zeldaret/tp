@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structdMsgScrnBase__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classdMsgScrnBase__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="98.5,-74.5 5.25,-74.5 5.25,-55.25 98.5,-55.25 98.5,-74.5"/>
 <text text-anchor="middle" x="51.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrnBase_c</text>
 </a>

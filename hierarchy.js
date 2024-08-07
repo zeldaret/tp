@@ -1023,11 +1023,11 @@ var hierarchy =
     [ "dComIfG_resLoader_c", "classdComIfG__resLoader__c.html", null ],
     [ "dComIfGoat_info_c", "classdComIfGoat__info__c.html", null ],
     [ "dCstick_c", "classdCstick__c.html", null ],
-    [ "dDemo_c", "structdDemo__c.html", null ],
+    [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
+    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1088,13 +1088,15 @@ var hierarchy =
         [ "dMeterString_c", "classdMeterString__c.html", null ],
         [ "dScope_c", "classdScope__c.html", null ]
       ] ],
-      [ "dMsgScrnBase_c", "structdMsgScrnBase__c.html", [
-        [ "dMsgScrnBoss_c", "structdMsgScrnBoss__c.html", null ],
+      [ "dMsgScrnBase_c", "classdMsgScrnBase__c.html", [
+        [ "dMsgScrnBoss_c", "classdMsgScrnBoss__c.html", null ],
         [ "dMsgScrnHowl_c", "structdMsgScrnHowl__c.html", null ],
-        [ "dMsgScrnJimaku_c", "structdMsgScrnJimaku__c.html", null ],
+        [ "dMsgScrnItem_c", "structdMsgScrnItem__c.html", null ],
+        [ "dMsgScrnJimaku_c", "classdMsgScrnJimaku__c.html", null ],
         [ "dMsgScrnKanban_c", "structdMsgScrnKanban__c.html", null ],
-        [ "dMsgScrnPlace_c", "structdMsgScrnPlace__c.html", null ],
-        [ "dMsgScrnStaff_c", "structdMsgScrnStaff__c.html", null ],
+        [ "dMsgScrnPlace_c", "classdMsgScrnPlace__c.html", null ],
+        [ "dMsgScrnStaff_c", "classdMsgScrnStaff__c.html", null ],
+        [ "dMsgScrnTalk_c", "structdMsgScrnTalk__c.html", null ],
         [ "dMsgScrnTree_c", "structdMsgScrnTree__c.html", null ]
       ] ],
       [ "dOvlpFd2_dlst_c", "classdOvlpFd2__dlst__c.html", null ],
@@ -1275,10 +1277,8 @@ var hierarchy =
     [ "dMsgScrn3Select_c", "structdMsgScrn3Select__c.html", null ],
     [ "dMsgScrnArrow_c", "structdMsgScrnArrow__c.html", null ],
     [ "dMsgScrnExplain_c", "structdMsgScrnExplain__c.html", null ],
-    [ "dMsgScrnItem_c", "structdMsgScrnItem__c.html", null ],
     [ "dMsgScrnLight_c", "structdMsgScrnLight__c.html", null ],
     [ "dMsgScrnLight_HIO_c", "classdMsgScrnLight__HIO__c.html", null ],
-    [ "dMsgScrnTalk_c", "structdMsgScrnTalk__c.html", null ],
     [ "dMsgStringBase_c", "classdMsgStringBase__c.html", [
       [ "dMsgString_c", "structdMsgString__c.html", null ]
     ] ],
@@ -1515,7 +1515,7 @@ var hierarchy =
     [ "J2DAlphaComp", "structJ2DAlphaComp.html", null ],
     [ "J2DAlphaCompInfo", "structJ2DAlphaCompInfo.html", null ],
     [ "J2DAnmBase", "structJ2DAnmBase.html", [
-      [ "J2DAnmColor", "structJ2DAnmColor.html", [
+      [ "J2DAnmColor", "classJ2DAnmColor.html", [
         [ "J2DAnmColorFull", "structJ2DAnmColorFull.html", null ],
         [ "J2DAnmColorKey", "structJ2DAnmColorKey.html", null ]
       ] ],
@@ -1540,7 +1540,6 @@ var hierarchy =
     [ "J2DAnmLoaderDataBase", "structJ2DAnmLoaderDataBase.html", null ],
     [ "J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer", "structJ2DAnmTexPattern_1_1J2DAnmTexPatternTIMGPointer.html", null ],
     [ "J2DataManageLink", "structJ2DataManageLink.html", null ],
-    [ "J2DBasePosition", "structJ2DBasePosition.html", null ],
     [ "J2DBlend", "structJ2DBlend.html", null ],
     [ "J2DBlendInfo", "structJ2DBlendInfo.html", null ],
     [ "J2DColorBlock", "classJ2DColorBlock.html", null ],
@@ -2404,6 +2403,7 @@ var hierarchy =
     [ "JMessage::TResource_color", "structJMessage_1_1TResource__color.html", null ],
     [ "JMessage::TResourceContainer", "structJMessage_1_1TResourceContainer.html", null ],
     [ "JMessage::TSequenceProcessor::TProcess_", "structJMessage_1_1TSequenceProcessor_1_1TProcess__.html", null ],
+    [ "jmessage_tReference::CharSoundInfo", "structjmessage__tReference_1_1CharSoundInfo.html", null ],
     [ "JMSMesgHeader_c", "structJMSMesgHeader__c.html", null ],
     [ "JPABaseEmitter", "classJPABaseEmitter.html", null ],
     [ "JPABaseParticle", "structJPABaseParticle.html", null ],
@@ -2768,7 +2768,6 @@ var hierarchy =
     [ "JUTGamePadLongPress", "structJUTGamePadLongPress.html", null ],
     [ "JUTGamePadRecordBase", "structJUTGamePadRecordBase.html", null ],
     [ "JUTGraphFifo", "classJUTGraphFifo.html", null ],
-    [ "JUtility", "structJUtility.html", null ],
     [ "JUTNameTab", "structJUTNameTab.html", null ],
     [ "JUTPalette", "classJUTPalette.html", null ],
     [ "JUTProcBar", "classJUTProcBar.html", null ],

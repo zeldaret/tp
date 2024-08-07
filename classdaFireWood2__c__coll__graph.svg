@@ -98,7 +98,7 @@ var sectionId = 'dynsection-1';
 <polygon fill="#9a32cd" stroke="#9a32cd" points="704.64,-683.49 705.2,-694.07 711.36,-685.45 704.64,-683.49"/>
 </a>
 </g>
-<text text-anchor="middle" x="784.38" y="-546.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mActor</text>
+<text text-anchor="middle" x="784.38" y="-546.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mp_actor</text>
 </g>
 <!-- Node3 -->
 <g id="Node000003" class="node">
@@ -468,7 +468,7 @@ var sectionId = 'dynsection-1';
 <polygon fill="#9a32cd" stroke="#9a32cd" points="285.36,-394.42 275.33,-397.82 285.29,-401.42 285.36,-394.42"/>
 </a>
 </g>
-<text text-anchor="middle" x="598.88" y="-403.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mXyz</text>
+<text text-anchor="middle" x="598.88" y="-403.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> m_cc_move</text>
 </g>
 <!-- Node141 -->
 <g id="Node000141" class="node">

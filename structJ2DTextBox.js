@@ -42,7 +42,6 @@ var structJ2DTextBox =
     [ "setLineSpace", "structJ2DTextBox.html#a872c17a6147afc2043a6ec29e5968bf3", null ],
     [ "setString", "structJ2DTextBox.html#a9e48518604e53e8df451825704c387fd", null ],
     [ "setString", "structJ2DTextBox.html#a9d11a6e213f50be95425078c36b58366", null ],
-    [ "setString", "structJ2DTextBox.html#a9d11a6e213f50be95425078c36b58366", null ],
     [ "setWhite", "structJ2DTextBox.html#ae510f769851b23c391206a52e3c736d5", null ],
     [ "field_0x10c", "structJ2DTextBox.html#ab6ec024e27b5190420e837804de395e3", null ],
     [ "field_0x110", "structJ2DTextBox.html#abe7a4f5e4077cc332ec30f3ededa33ee", null ],

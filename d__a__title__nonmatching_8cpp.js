@@ -4,7 +4,7 @@ var d__a__title__nonmatching_8cpp =
     [ "daTitle_c", "classdaTitle__c.html", "classdaTitle__c" ],
     [ "daTit_HIO_c", "classdaTit__HIO__c.html", "classdaTit__HIO__c" ],
     [ "dDemo_object_c", "classdDemo__object__c.html", "classdDemo__object__c" ],
-    [ "dDemo_c", "structdDemo__c.html", "structdDemo__c" ],
+    [ "dDemo_c", "classdDemo__c.html", "classdDemo__c" ],
     [ "procFunc", "d__a__title__nonmatching_8cpp.html#a80d93905029d10e2594c3f5d3ccbad85", null ],
     [ "__ct__10fopAc_ac_cFv", "d__a__title__nonmatching_8cpp.html#a085f3a34ce186ab6e202a97581a1f68a", null ],
     [ "__ct__11daTit_HIO_cFv", "d__a__title__nonmatching_8cpp.html#ada98faf61f9eaa0c862bc237ed460d7a", null ],

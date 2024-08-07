@@ -1,4 +1,4 @@
 var d__msg__scrn__base_8h =
 [
-    [ "dMsgScrnBase_c", "structdMsgScrnBase__c.html", "structdMsgScrnBase__c" ]
+    [ "dMsgScrnBase_c", "classdMsgScrnBase__c.html", "classdMsgScrnBase__c" ]
 ];

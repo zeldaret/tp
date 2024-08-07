@@ -1,5 +1,6 @@
 var classdBgWSv =
 [
+    [ "dBgWSv", "classdBgWSv.html#a91d1b7b1e160f6d26f606f36982ee077", null ],
     [ "~dBgWSv", "classdBgWSv.html#a20b2ba0cb1f996f24a5e0857bb491dc3", null ],
     [ "CopyBackVtx", "classdBgWSv.html#a5a93c3a653d183d43350fd700a78be8e", null ],
     [ "CrrPos", "classdBgWSv.html#a32e379e05b36602b796e679b6b9384d6", null ],

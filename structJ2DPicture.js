@@ -1,9 +1,8 @@
 var structJ2DPicture =
 [
-    [ "J2DPicture", "structJ2DPicture.html#a853f8073b9e33725fae6d82a75223b7e", null ],
     [ "~J2DPicture", "structJ2DPicture.html#af6437990fd344f9eec242bdc7bdec9f9", null ],
     [ "J2DPicture", "structJ2DPicture.html#a74c12b2010361df5f1c5e7db73d75298", null ],
-    [ "J2DPicture", "structJ2DPicture.html#a90f79fc3b25b302697ff2b8ffff111ed", null ],
+    [ "J2DPicture", "structJ2DPicture.html#a853f8073b9e33725fae6d82a75223b7e", null ],
     [ "J2DPicture", "structJ2DPicture.html#a43699053034b30dba296f598f0c2dc35", null ],
     [ "J2DPicture", "structJ2DPicture.html#add3b7ec45cefe069f183d5c59cdeeb3a", null ],
     [ "J2DPicture", "structJ2DPicture.html#ae7c183bd5aacc71fcabe48c9606eb8ce", null ],

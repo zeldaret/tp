@@ -1,15 +1,10 @@
 var d__msg__scrn__talk_8cpp =
 [
-    [ "dMsgScrnTalk_c", "structdMsgScrnTalk__c.html", "structdMsgScrnTalk__c" ],
     [ "dMsgScrnLight_c", "structdMsgScrnLight__c.html", "structdMsgScrnLight__c" ],
-    [ "dMsgScrnBase_c", "structdMsgScrnBase__c.html", "structdMsgScrnBase__c" ],
     [ "dMsgScrnArrow_c", "structdMsgScrnArrow__c.html", "structdMsgScrnArrow__c" ],
     [ "dMsgScrn3Select_c", "structdMsgScrn3Select__c.html", "structdMsgScrn3Select__c" ],
     [ "dMsgObject_c", "structdMsgObject__c.html", "structdMsgObject__c" ],
-    [ "JUtility", "structJUtility.html", null ],
     [ "dMeter2Draw_c", "structdMeter2Draw__c.html", "structdMeter2Draw__c" ],
-    [ "Vec", "structVec.html", "structVec" ],
-    [ "cXyz", "structcXyz.html", "structcXyz" ],
     [ "CPaneMgrAlpha", "structCPaneMgrAlpha.html", "structCPaneMgrAlpha" ],
     [ "CPaneMgr", "structCPaneMgr.html", "structCPaneMgr" ],
     [ "__ct__14dMsgScrnBase_cFv", "d__msg__scrn__talk_8cpp.html#aace9a1b3a643fbb85e4eac8e2ba0dec4", null ],
@@ -79,7 +74,6 @@ var d__msg__scrn__talk_8cpp =
     [ "isTalkNow__14dMsgScrnBase_cFv", "d__msg__scrn__talk_8cpp.html#a8b8d4d1af65a25e9f4036a9fe4530239", null ],
     [ "mDoExt_getMesgFont__Fv", "d__msg__scrn__talk_8cpp.html#af85884d093974be3f84c88a504826f71", null ],
     [ "mDoLib_project__FP3VecP3Vec", "d__msg__scrn__talk_8cpp.html#a7afee8a329f0941384e2570ddf8651d6", null ],
-    [ "memset", "d__msg__scrn__talk_8cpp.html#ae5483d4fbef9a528a3f56d30a4c5da3a", null ],
     [ "multiDraw__14dMsgScrnBase_cFv", "d__msg__scrn__talk_8cpp.html#a411b2cb8fbb98f25856256692068622f", null ],
     [ "reinit__8CPaneMgrFv", "d__msg__scrn__talk_8cpp.html#ac87cb79fb3cdbc4022697310d6402bca", null ],
     [ "selAnimeEnd__17dMsgScrn3Select_cFv", "d__msg__scrn__talk_8cpp.html#a8e25ce4e1deeea0d84635086abc1679f", null ],

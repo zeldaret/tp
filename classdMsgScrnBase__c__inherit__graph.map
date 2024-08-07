@@ -1,0 +1,23 @@
+<map id="dMsgScrnBase_c" name="dMsgScrnBase_c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="154,203,278,228"/>
+<area shape="rect" id="Node000003" href="$classdMsgScrnBoss__c.html" title=" " alt="" coords="333,5,457,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,187,262,114,290,75,324,40,342,29,345,34,328,44,294,78,266,117,230,190"/>
+<area shape="rect" id="Node000004" href="$structdMsgScrnHowl__c.html" title=" " alt="" coords="333,55,457,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="232,188,270,138,296,112,325,89,345,79,347,83,327,94,300,116,274,142,236,191"/>
+<area shape="rect" id="Node000005" href="$structdMsgScrnItem__c.html" title=" " alt="" coords="335,104,455,130"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="244,191,281,164,325,138,349,128,351,133,327,143,284,169,247,195"/>
+<area shape="rect" id="Node000006" href="$classdMsgScrnJimaku__c.html" title=" " alt="" coords="327,153,463,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="279,195,345,177,346,182,281,201"/>
+<area shape="rect" id="Node000007" href="$structdMsgScrnKanban__c.html" title=" " alt="" coords="326,203,464,228"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="294,213,325,213,325,218,294,218"/>
+<area shape="rect" id="Node000008" href="$classdMsgScrnPlace__c.html" title=" " alt="" coords="332,252,459,278"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="281,230,346,249,345,254,279,236"/>
+<area shape="rect" id="Node000009" href="$classdMsgScrnStaff__c.html" title=" " alt="" coords="335,301,456,327"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="247,236,284,262,327,288,351,298,349,303,325,293,281,267,244,240"/>
+<area shape="rect" id="Node000010" href="$structdMsgScrnTalk__c.html" title=" " alt="" coords="336,351,455,376"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="236,240,274,289,300,315,327,337,347,348,345,352,325,342,296,319,270,293,232,243"/>
+<area shape="rect" id="Node000011" href="$structdMsgScrnTree__c.html" title=" " alt="" coords="335,400,455,426"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="230,241,266,314,294,353,328,387,345,397,342,402,324,391,290,356,262,317,225,244"/>
+<area shape="rect" id="Node000002" href="$classdDlst__base__c.html" title=" " alt="" coords="5,203,106,228"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,213,153,213,153,218,121,218"/>
+</map>

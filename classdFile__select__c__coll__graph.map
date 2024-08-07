@@ -82,7 +82,7 @@
 <area shape="rect" id="Node000118" href="$structJ2DAnmBase.html" title=" " alt="" coords="5,2722,107,2747"/>
 <area shape="poly" id="edge23_Node000117_Node000118" title=" " alt="" coords="60,2706,215,1950,220,1951,66,2707"/>
 <area shape="poly" id="edge59_Node000195_Node000118" title=" " alt="" coords="65,2706,87,2663,120,2614,141,2592,164,2575,191,2563,220,2558,680,2558,810,2560,912,2556,960,2549,1011,2537,1066,2517,1130,2489,1322,2317,1325,2321,1132,2494,1068,2522,1012,2542,962,2554,913,2562,810,2565,679,2564,220,2564,192,2568,167,2579,144,2596,124,2618,92,2665,70,2709"/>
-<area shape="rect" id="Node000197" href="$structJ2DAnmColor.html" title=" " alt="" coords="1289,2772,1390,2798"/>
+<area shape="rect" id="Node000197" href="$classJ2DAnmColor.html" title=" " alt="" coords="1289,2772,1390,2798"/>
 <area shape="poly" id="edge64_Node000197_Node000118" title=" " alt="" coords="98,2751,155,2772,187,2780,220,2782,1067,2782,1288,2782,1288,2788,1067,2788,220,2788,186,2785,153,2777,96,2756"/>
 <area shape="rect" id="Node000198" href="$structJ2DAnmTextureSRTKey.html" title=" " alt="" coords="1258,2723,1420,2749"/>
 <area shape="poly" id="edge66_Node000198_Node000118" title=" " alt="" coords="122,2732,220,2732,1067,2732,1258,2732,1258,2738,1067,2737,220,2737,122,2737"/>

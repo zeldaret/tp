@@ -65,8 +65,6 @@ var structcXyz =
     [ "operator/=", "structcXyz.html#a9a05ae9b5dbca53b65f03bf381e5a94a", null ],
     [ "operator=", "structcXyz.html#a74668da1e786082fb3a9b6aca29aa29d", null ],
     [ "operator==", "structcXyz.html#a83e4f0eac049b9197777ccdf29ae7983", null ],
-    [ "operator==", "structcXyz.html#a83e4f0eac049b9197777ccdf29ae7983", null ],
-    [ "operator==", "structcXyz.html#a83e4f0eac049b9197777ccdf29ae7983", null ],
     [ "outprod", "structcXyz.html#a5d54f6e4b744d5dccdeb89d2593799e2", null ],
     [ "set", "structcXyz.html#ac15746fbfa34e7a27de34fbb7ba30554", null ],
     [ "set", "structcXyz.html#aa2cc306900d21831b5ce0096390be813", null ],

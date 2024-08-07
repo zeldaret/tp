@@ -1,7 +1,6 @@
 var structdMsgScrnKanban__c =
 [
     [ "dMsgScrnKanban_c", "structdMsgScrnKanban__c.html#a814b8861a335581171d89eaf11338384", null ],
-    [ "dMsgScrnKanban_c", "structdMsgScrnKanban__c.html#a814b8861a335581171d89eaf11338384", null ],
     [ "~dMsgScrnKanban_c", "structdMsgScrnKanban__c.html#a3c6f41574e7204b552278943233d83ea", null ],
     [ "draw", "structdMsgScrnKanban__c.html#a1ed2de9b7a864f24b594f386c9d6c09d", null ],
     [ "exec", "structdMsgScrnKanban__c.html#ae7331678218f480bc8977b6dc0ce0387", null ],

@@ -41,6 +41,7 @@ var m__Do__audio_8h =
     [ "mDoAud_resetProcess", "m__Do__audio_8h.html#a4cc0bb5f6702fa0dab29f6723288da4a", null ],
     [ "mDoAud_resetRecover", "m__Do__audio_8h.html#a1ad2512d7fb9156615f3e416f3506971", null ],
     [ "mDoAud_sceneBgmStart", "m__Do__audio_8h.html#ac3de169fdb50ca7d993c6a0c4f5c5dc2", null ],
+    [ "mDoAud_seDeleteObject", "m__Do__audio_8h.html#ac42b628b71968cb8a19b5b49dfb10901", null ],
     [ "mDoAud_seStart", "m__Do__audio_8h.html#a9d601b4eaad22c8f664d666bf4a8ada9", null ],
     [ "mDoAud_seStartLevel", "m__Do__audio_8h.html#ad7d3e72e0138ed4f874686f34d906533", null ],
     [ "mDoAud_seStop", "m__Do__audio_8h.html#a321bf2bbc6552f83700b8212ee74e5ca", null ],
@@ -63,5 +64,7 @@ var m__Do__audio_8h =
     [ "mDoAud_subBgmStart", "m__Do__audio_8h.html#a3217c44c3fcb23ca5519c88776362d20", null ],
     [ "mDoAud_taktModeMute", "m__Do__audio_8h.html#a81fe6a884e5c8920e1726ddeb88c0d5e", null ],
     [ "mDoAud_taktModeMuteOff", "m__Do__audio_8h.html#a21f7aeed10f127ce39a61cde7a4c84c0", null ],
+    [ "mDoAud_talkIn", "m__Do__audio_8h.html#a682e49b645a715db63e968b13854d5e9", null ],
+    [ "mDoAud_talkOut", "m__Do__audio_8h.html#a6d351e163572c17c7f84d1dbb7dbca04", null ],
     [ "g_mDoAud_audioHeap", "m__Do__audio_8h.html#a5763975c9fb310957d3a4731c4413ce8", null ]
 ];

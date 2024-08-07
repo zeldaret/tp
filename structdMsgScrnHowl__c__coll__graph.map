@@ -1,6 +1,6 @@
 <map id="dMsgScrnHowl_c" name="dMsgScrnHowl_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2009,940,2133,966"/>
-<area shape="rect" id="Node000002" href="$structdMsgScrnBase__c.html" title=" " alt="" coords="1770,544,1894,570"/>
+<area shape="rect" id="Node000002" href="$classdMsgScrnBase__c.html" title=" " alt="" coords="1770,544,1894,570"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1851,582,2064,939,2060,941,1846,585"/>
 <area shape="rect" id="Node000003" href="$classdDlst__base__c.html" title=" " alt="" coords="1512,494,1613,519"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1628,490,1686,486,1717,488,1747,495,1788,516,1819,542,1816,546,1785,521,1745,500,1716,493,1686,491,1629,495"/>

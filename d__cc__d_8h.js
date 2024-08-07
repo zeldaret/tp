@@ -47,6 +47,16 @@ var d__cc__d_8h =
       [ "dCcD_SE_PACHINKO", "d__cc__d_8h.html#a3dc1e5b4347d327cfbf1ccf922b19b26ac02467c98f2bcdb7bd34b46a950c721d", null ],
       [ "dCcD_SE_23", "d__cc__d_8h.html#a3dc1e5b4347d327cfbf1ccf922b19b26a6cbe2c923cc7d57025f800b0af311b07", null ]
     ] ],
+    [ "dCcD_Material", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9", [
+      [ "dCcD_MTRL_NONE", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9ae2910d5b50a96934db4922fc94fa4760", null ],
+      [ "dCcD_MTRL_FIRE", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a95f0dfd6adf02ade05ebf9a790e00fa2", null ],
+      [ "dCcD_MTRL_ICE", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a3c9d62b6ec4df95494a296682a780291", null ],
+      [ "dCcD_MTRL_WIND", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a40130b4128cd31835e16404f21e02b7c", null ],
+      [ "dCcD_MTRL_LIGHT", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a834115c2648f23fbc083c4b6edf2e842", null ],
+      [ "dCcD_MTRL_UNK_5", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a49f69ef79cfb88b0dfb2760436e53642", null ],
+      [ "dCcD_MTRL_UNK_6", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a12f4efe5ff1a7d179e9a1872294e3629", null ],
+      [ "dCcD_MTRL_UNK_7", "d__cc__d_8h.html#a30c906cadca42bf4a7bf4a1cca0669c9a7c748c1af75643789dbbad9ce387b171", null ]
+    ] ],
     [ "dCcG_At_Spl", "d__cc__d_8h.html#a69a75b4ec8839e0fe308a75c2ec0a531", [
       [ "dCcG_At_Spl_UNK_0", "d__cc__d_8h.html#a69a75b4ec8839e0fe308a75c2ec0a531af2ec59409252d1771978e47c2029a08c", null ],
       [ "dCcG_At_Spl_UNK_1", "d__cc__d_8h.html#a69a75b4ec8839e0fe308a75c2ec0a531a16e75bd1c48811d786399873af6511b5", null ]

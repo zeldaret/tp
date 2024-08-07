@@ -3,8 +3,6 @@ var structdMsgString__c =
     [ "dMsgString_c", "structdMsgString__c.html#ad4e880afb63b37966c1278dad19475ef", null ],
     [ "~dMsgString_c", "structdMsgString__c.html#aeed82fdd4a68a79f687cba85032f5de8", null ],
     [ "dMsgString_c", "structdMsgString__c.html#ad4e880afb63b37966c1278dad19475ef", null ],
-    [ "~dMsgString_c", "structdMsgString__c.html#aeed82fdd4a68a79f687cba85032f5de8", null ],
-    [ "dMsgString_c", "structdMsgString__c.html#ad4e880afb63b37966c1278dad19475ef", null ],
     [ "dMsgString_c", "structdMsgString__c.html#a88c618766a121547d6271a5725948846", null ],
     [ "~dMsgString_c", "structdMsgString__c.html#aeed82fdd4a68a79f687cba85032f5de8", null ],
     [ "drawFontLocal", "structdMsgString__c.html#ae97a64a77d10c624a3ee37302506085a", null ],

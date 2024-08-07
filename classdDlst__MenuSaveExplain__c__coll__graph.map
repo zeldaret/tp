@@ -52,7 +52,7 @@
 <area shape="poly" id="edge15_Node000040_Node000041" title=" " alt="" coords="63,780,86,727,105,700,129,677,152,664,176,655,225,645,226,650,177,660,154,669,132,681,109,703,91,730,68,782"/>
 <area shape="rect" id="Node000098" href="$structJ2DMaterial_1_1J2DMaterialAnmPointer.html" title=" " alt="" coords="399,1287,564,1327"/>
 <area shape="poly" id="edge48_Node000098_Node000041" title=" " alt="" coords="76,833,134,916,210,1016,279,1096,350,1172,461,1284,457,1288,346,1176,275,1100,206,1019,129,919,72,836"/>
-<area shape="rect" id="Node000104" href="$structJ2DAnmColor.html" title=" " alt="" coords="1245,892,1346,917"/>
+<area shape="rect" id="Node000104" href="$classJ2DAnmColor.html" title=" " alt="" coords="1245,892,1346,917"/>
 <area shape="poly" id="edge57_Node000104_Node000041" title=" " alt="" coords="122,805,522,811,793,823,1068,843,1124,849,1180,860,1263,888,1261,893,1178,866,1124,854,1068,848,792,828,522,816,122,811"/>
 <area shape="rect" id="Node000106" href="$structJ2DAnmTextureSRTKey.html" title=" " alt="" coords="1535,721,1697,747"/>
 <area shape="poly" id="edge65_Node000106_Node000041" title=" " alt="" coords="121,789,130,787,429,738,550,723,664,712,900,702,1203,696,1347,689,1409,689,1490,696,1536,706,1578,718,1576,723,1534,711,1489,702,1409,694,1347,695,1203,702,900,707,664,718,551,728,430,743,131,792,122,794"/>

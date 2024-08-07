@@ -16,6 +16,7 @@ var structJGadget_1_1TLinkList =
     [ "Find", "structJGadget_1_1TLinkList.html#a79a56a1cc69de400168083255ddb1ed0", null ],
     [ "front", "structJGadget_1_1TLinkList.html#af49fdc625ae4f793b763017112530d11", null ],
     [ "Insert", "structJGadget_1_1TLinkList.html#a8a4d641d8a52a35d2bc1f6565375e21a", null ],
+    [ "pop_front", "structJGadget_1_1TLinkList.html#aa01c94a5c383184893fb623907ee9110", null ],
     [ "Push_back", "structJGadget_1_1TLinkList.html#a1cccb5a70fe852c13aa0f9349ea1d88d", null ],
     [ "Push_front", "structJGadget_1_1TLinkList.html#a371c47b5204d71f5b02c61892c1b57c6", null ],
     [ "Remove", "structJGadget_1_1TLinkList.html#a285a3a4d6f4a19762af9a52bff86b102", null ]

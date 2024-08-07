@@ -52,7 +52,7 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="726.04,-560.57 720.52,-569.62 730.48,-565.99 726.04,-560.57"/>
 </a>
 </g>
-<text text-anchor="middle" x="796.38" y="-527.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mActor</text>
+<text text-anchor="middle" x="796.38" y="-527.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mp_actor</text>
 </g>
 <!-- Node3 -->
 <g id="Node000003" class="node">
@@ -402,7 +402,7 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="284.83,-448.25 275.22,-452.71 285.51,-455.22 284.83,-448.25"/>
 </a>
 </g>
-<text text-anchor="middle" x="596.62" y="-429.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mXyz</text>
+<text text-anchor="middle" x="596.62" y="-429.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> m_cc_move</text>
 </g>
 <!-- Node150 -->
 <g id="Node000150" class="node">

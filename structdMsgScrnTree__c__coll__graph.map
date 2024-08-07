@@ -1,6 +1,6 @@
 <map id="dMsgScrnTree_c" name="dMsgScrnTree_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2001,1119,2122,1144"/>
-<area shape="rect" id="Node000002" href="$structdMsgScrnBase__c.html" title=" " alt="" coords="1828,596,1952,622"/>
+<area shape="rect" id="Node000002" href="$classdMsgScrnBase__c.html" title=" " alt="" coords="1828,596,1952,622"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1903,636,2058,1117,2053,1119,1898,637"/>
 <area shape="rect" id="Node000003" href="$classdDlst__base__c.html" title=" " alt="" coords="1571,419,1672,444"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1687,415,1747,415,1777,421,1805,434,1825,451,1842,471,1867,516,1882,561,1889,595,1884,596,1877,562,1862,518,1838,474,1822,455,1802,439,1775,426,1746,420,1687,420"/>

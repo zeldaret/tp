@@ -3,6 +3,7 @@ var d__msg__class_8h =
     [ "JMSMesgEntry_c", "structJMSMesgEntry__c.html", "structJMSMesgEntry__c" ],
     [ "JMSMesgHeader_c", "structJMSMesgHeader__c.html", "structJMSMesgHeader__c" ],
     [ "jmessage_tReference", "structjmessage__tReference.html", "structjmessage__tReference" ],
+    [ "jmessage_tReference::CharSoundInfo", "structjmessage__tReference_1_1CharSoundInfo.html", "structjmessage__tReference_1_1CharSoundInfo" ],
     [ "jmessage_tMeasureProcessor", "structjmessage__tMeasureProcessor.html", "structjmessage__tMeasureProcessor" ],
     [ "jmessage_tSequenceProcessor", "structjmessage__tSequenceProcessor.html", "structjmessage__tSequenceProcessor" ],
     [ "CharInfo_c", "structCharInfo__c.html", "structCharInfo__c" ],

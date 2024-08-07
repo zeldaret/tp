@@ -1,7 +1,6 @@
 var structdMsgScrnHowl__c =
 [
     [ "dMsgScrnHowl_c", "structdMsgScrnHowl__c.html#a846817793e7f789be987b12836437f78", null ],
-    [ "dMsgScrnHowl_c", "structdMsgScrnHowl__c.html#a5a4264941f038ce0c7a63c774085eefc", null ],
     [ "~dMsgScrnHowl_c", "structdMsgScrnHowl__c.html#ac20c5a4fff45e0e08e9641bf7f5e0e4b", null ],
     [ "addCount", "structdMsgScrnHowl__c.html#ac144afba993ee2581e9337b64284ee1b", null ],
     [ "addCountGuide", "structdMsgScrnHowl__c.html#abd441eb0e7ec26430ee4037afe55d8ce", null ],
@@ -34,7 +33,7 @@ var structdMsgScrnHowl__c =
     [ "guide_stop_init", "structdMsgScrnHowl__c.html#a6cdcee864c51cafa8a5901f6b3f9ce4c", null ],
     [ "guide_stop_proc", "structdMsgScrnHowl__c.html#afe8fbfe1332264b2d23ed57fc4b2158b", null ],
     [ "initGuideData", "structdMsgScrnHowl__c.html#aee0a16f0eed25856465e30d64f1212e6", null ],
-    [ "isKeyCheck", "structdMsgScrnHowl__c.html#ae3d2120d7da8d16da1d99455da7cc6e7", null ],
+    [ "isHearingMode", "structdMsgScrnHowl__c.html#aaf75e41021a2116683d9bc109f02e792", null ],
     [ "isKeyCheck", "structdMsgScrnHowl__c.html#ae3d2120d7da8d16da1d99455da7cc6e7", null ],
     [ "moveBaseLength", "structdMsgScrnHowl__c.html#a48a600040b7430b22fc83d747b2a881e", null ],
     [ "moveLineV", "structdMsgScrnHowl__c.html#a1ff2c312be7b6ca1f4b2faa3d9e88215", null ],

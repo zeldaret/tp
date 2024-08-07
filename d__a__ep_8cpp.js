@@ -1,6 +1,5 @@
 var d__a__ep_8cpp =
 [
-    [ "request_of_phase_process_class", "structrequest__of__phase__process__class.html", "structrequest__of__phase__process__class" ],
     [ "mDoLib_clipper", "structmDoLib__clipper.html", "structmDoLib__clipper" ],
     [ "fopAc_ac_c", "structfopAc__ac__c.html", "structfopAc__ac__c" ],
     [ "fopAcM_gc_c", "classfopAcM__gc__c.html", "classfopAcM__gc__c" ],
@@ -269,7 +268,6 @@ var d__a__ep_8cpp =
     [ "g_dComIfG_gameInfo", "d__a__ep_8cpp.html#a50ad47c26bcc2867f2c14d349753f58e", null ],
     [ "g_env_light", "d__a__ep_8cpp.html#a5bbfcbebab8b50d8b888f8aee1e4a468", null ],
     [ "g_fopAc_Method", "d__a__ep_8cpp.html#a24ce032de2af10b7e92bf464450ddeb7", null ],
-    [ "g_fpcLf_Method", "d__a__ep_8cpp.html#a3de3a374119e8432d211e29713bce0ae", null ],
     [ "g_profile_EP", "d__a__ep_8cpp.html#a8495fe83ba3709762755251309e79d0e", null ],
     [ "g_whiteColor", "d__a__ep_8cpp.html#aa1943b5c45c0f3e49bbe1c18c1cf80f4", null ],
     [ "l_daEp_Method", "d__a__ep_8cpp.html#ae169cc0e1a6ba5fa7200cada0f600c61", null ],

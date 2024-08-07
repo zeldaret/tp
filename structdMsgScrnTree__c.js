@@ -1,7 +1,6 @@
 var structdMsgScrnTree__c =
 [
     [ "dMsgScrnTree_c", "structdMsgScrnTree__c.html#a0d10d23ea0673482988e211a97bc5ae8", null ],
-    [ "dMsgScrnTree_c", "structdMsgScrnTree__c.html#a0d10d23ea0673482988e211a97bc5ae8", null ],
     [ "~dMsgScrnTree_c", "structdMsgScrnTree__c.html#a35e5e80ed2764973a86d53544ed4082b", null ],
     [ "draw", "structdMsgScrnTree__c.html#add9d97d006d820e2c07138a65ea4f780", null ],
     [ "exec", "structdMsgScrnTree__c.html#a4090e983b27bf1a2582090bea67387cb", null ],

@@ -73,6 +73,8 @@ var classcBgW =
     [ "GetTriPla", "classcBgW.html#a611306c1d19a67051dc01ef81eeaf79b", null ],
     [ "GetTriPnt", "classcBgW.html#a9f40e5a12e55c9d894c8d3010be72082", null ],
     [ "GetUnderwaterRoofCode", "classcBgW.html#a3bb4a24ccb1399061dad7d1b47e52b3d", null ],
+    [ "GetVtxNum", "classcBgW.html#adf891fbf033b6260734c9e0846e0f288", null ],
+    [ "GetVtxTbl", "classcBgW.html#a4e85702215f1900917d23ffe64aebd81", null ],
     [ "GetWallCode", "classcBgW.html#a876312af48af249e78ab424dc09e105e", null ],
     [ "GlobalVtx", "classcBgW.html#ad7ee67877daae89a5649db3849357e25", null ],
     [ "GroundCross", "classcBgW.html#a3330917eb9dfb1139cc0d050eda00285", null ],

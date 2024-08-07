@@ -1175,7 +1175,7 @@ var sectionId = 'dynsection-1';
 <!-- Node253 -->
 <g id="Node000253" class="node">
 <title>Node253</title>
-<g id="a_Node000253"><a xlink:href="structJ2DAnmColor.html" target="_top" xlink:title=" ">
+<g id="a_Node000253"><a xlink:href="classJ2DAnmColor.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="590.88,-380.89 514.88,-380.89 514.88,-361.64 590.88,-361.64 590.88,-380.89"/>
 <text text-anchor="middle" x="552.88" y="-367.39" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmColor</text>
 </a>
