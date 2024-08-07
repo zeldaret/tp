@@ -429,6 +429,9 @@ struct mDoExt_MtxCalcAnmBlendTbl
         }
     }
 
+    J3DAnmTransform* i_getAnm(int i) { return mAnmRatio[i].getAnmTransform(); }
+    f32 getRatio(int i) { return mAnmRatio[i].getRatio(); }
+
     /* 800D00BC */ J3DAnmTransform* getAnm(int);
 
     /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
