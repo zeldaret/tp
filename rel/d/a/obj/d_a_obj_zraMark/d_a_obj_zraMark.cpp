@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_zraMark.cpp
- * 
+ * Iza's River Ride Destructible Buoy
 */
 
 #include "rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark.h"
@@ -111,7 +111,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -121,6 +120,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* 80D42658-80D42678 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,10 +258,11 @@ SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
 };
 
 /* 80D42678-80D4287C 000098 0204+00 1/1 0/0 0/0 .text            Create__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::Create() {
+asm int daObjZraMark_c::Create() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/Create__14daObjZraMark_cFv.s"
 }
@@ -290,50 +291,55 @@ COMPILER_STRIP_GATE(0x80D43E0C, &lit_4124);
 #pragma pop
 
 /* 80D4287C-80D42A7C 00029C 0200+00 1/1 0/0 0/0 .text            CreateHeap__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::CreateHeap() {
+asm int daObjZraMark_c::CreateHeap() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/CreateHeap__14daObjZraMark_cFv.s"
 }
 #pragma pop
 
 /* 80D42A7C-80D42B0C 00049C 0090+00 1/1 0/0 0/0 .text            Execute__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::Execute() {
+asm int daObjZraMark_c::Execute() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/Execute__14daObjZraMark_cFv.s"
 }
 #pragma pop
 
 /* 80D42B0C-80D42C98 00052C 018C+00 1/1 0/0 0/0 .text            Draw__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::Draw() {
+asm int daObjZraMark_c::Draw() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/Draw__14daObjZraMark_cFv.s"
 }
 #pragma pop
 
 /* 80D42C98-80D42CE0 0006B8 0048+00 1/1 0/0 0/0 .text            Delete__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::Delete() {
+asm int daObjZraMark_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/Delete__14daObjZraMark_cFv.s"
 }
 #pragma pop
 
 /* 80D42CE0-80D42D2C 000700 004C+00 1/1 0/0 0/0 .text            getType__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::getType() {
+asm int daObjZraMark_c::getType() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/getType__14daObjZraMark_cFv.s"
 }
@@ -359,6 +365,7 @@ COMPILER_STRIP_GATE(0x80D43E40, &lit_4296);
 #pragma pop
 
 /* 80D42D2C-80D42EE0 00074C 01B4+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -369,6 +376,7 @@ asm void daObjZraMark_c::setBaseMtx() {
 #pragma pop
 
 /* 80D42EE0-80D42F5C 000900 007C+00 1/1 0/0 0/0 .text            col_init__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -388,6 +396,7 @@ SECTION_RODATA static f32 const lit_4401 = -1.0f;
 COMPILER_STRIP_GATE(0x80D43E48, &lit_4401);
 
 /* 80D42F5C-80D432C8 00097C 036C+00 1/1 0/0 0/0 .text            col_set__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -398,10 +407,11 @@ asm void daObjZraMark_c::col_set() {
 #pragma pop
 
 /* 80D432C8-80D43314 000CE8 004C+00 1/1 0/0 0/0 .text            schHoz__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::schHoz() {
+asm daNpc_Hoz_c* daObjZraMark_c::schHoz() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/schHoz__14daObjZraMark_cFv.s"
 }
@@ -409,16 +419,18 @@ asm void daObjZraMark_c::schHoz() {
 
 /* 80D43314-80D43370 000D34 005C+00 0/0 0/0 1/1 .text entryPointer__14daObjZraMark_cFP10fopAc_ac_c
  */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjZraMark_c::entryPointer(fopAc_ac_c* param_0) {
+asm bool daObjZraMark_c::entryPointer(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/entryPointer__14daObjZraMark_cFP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* 80D43370-80D433F4 000D90 0084+00 1/1 0/0 0/0 .text            informBlast__14daObjZraMark_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -429,6 +441,7 @@ asm void daObjZraMark_c::informBlast() {
 #pragma pop
 
 /* 80D433F4-80D43414 000E14 0020+00 1/0 0/0 0/0 .text daObjZraMark_Execute__FP14daObjZraMark_c */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -439,6 +452,7 @@ static asm void daObjZraMark_Execute(daObjZraMark_c* param_0) {
 #pragma pop
 
 /* 80D43414-80D43434 000E34 0020+00 1/0 0/0 0/0 .text daObjZraMark_Draw__FP14daObjZraMark_c */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -454,6 +468,7 @@ static bool daObjZraMark_IsDelete(daObjZraMark_c* param_0) {
 }
 
 /* 80D4343C-80D4345C 000E5C 0020+00 1/0 0/0 0/0 .text daObjZraMark_Delete__FP14daObjZraMark_c */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,6 +480,7 @@ static asm void daObjZraMark_Delete(daObjZraMark_c* param_0) {
 
 /* 80D4345C-80D4347C 000E7C 0020+00 1/0 0/0 0/0 .text            daObjZraMark_create__FP10fopAc_ac_c
  */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,10 +492,11 @@ static asm void daObjZraMark_create(fopAc_ac_c* param_0) {
 
 /* 80D4347C-80D434F8 000E9C 007C+00 1/1 0/0 0/0 .text create__16_ZraMark_Hahen_cFRC4cXyzScScScSc
  */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void _ZraMark_Hahen_c::create(cXyz const& param_0, s8 param_1, s8 param_2, s8 param_3,
+asm int _ZraMark_Hahen_c::create(cXyz const& param_0, s8 param_1, s8 param_2, s8 param_3,
                                   s8 param_4) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/create__16_ZraMark_Hahen_cFRC4cXyzScScScSc.s"
@@ -494,10 +511,11 @@ SECTION_RODATA static u8 const sHahenBmdType[8] = {
 COMPILER_STRIP_GATE(0x80D43E4C, &sHahenBmdType);
 
 /* 80D434F8-80D4357C 000F18 0084+00 1/1 0/0 0/0 .text            loadModel__16_ZraMark_Hahen_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void _ZraMark_Hahen_c::loadModel() {
+asm BOOL _ZraMark_Hahen_c::loadModel() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/loadModel__16_ZraMark_Hahen_cFv.s"
 }
@@ -606,6 +624,7 @@ static u8 roottype[4];
 static u8 data_80D44024[4];
 
 /* 80D4357C-80D43808 000F9C 028C+00 1/1 0/0 0/0 .text init__16_ZraMark_Hahen_cFRC4cXyzScScSc */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -621,6 +640,7 @@ SECTION_RODATA static f32 const lit_4571 = 9.0f;
 COMPILER_STRIP_GATE(0x80D43F8C, &lit_4571);
 
 /* 80D43808-80D43864 001228 005C+00 1/1 0/0 0/0 .text            calcSpeed__16_ZraMark_Hahen_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -631,6 +651,7 @@ asm void _ZraMark_Hahen_c::calcSpeed() {
 #pragma pop
 
 /* 80D43864-80D438C8 001284 0064+00 2/2 0/0 0/0 .text            setMtx__16_ZraMark_Hahen_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -641,6 +662,7 @@ asm void _ZraMark_Hahen_c::setMtx() {
 #pragma pop
 
 /* 80D438C8-80D43968 0012E8 00A0+00 1/1 0/0 0/0 .text            draw__16_ZraMark_Hahen_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -652,10 +674,11 @@ asm void _ZraMark_Hahen_c::draw() {
 
 /* 80D43968-80D439F8 001388 0090+00 1/1 0/0 0/0 .text
  * create__20_ZraMark_Hahen_Mng_cFRC4cXyzScScScSc               */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void _ZraMark_Hahen_Mng_c::create(cXyz const& param_0, s8 param_1, s8 param_2, s8 param_3,
+asm int _ZraMark_Hahen_Mng_c::create(cXyz const& param_0, s8 param_1, s8 param_2, s8 param_3,
                                       s8 param_4) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/create__20_ZraMark_Hahen_Mng_cFRC4cXyzScScScSc.s"
@@ -663,6 +686,7 @@ asm void _ZraMark_Hahen_Mng_c::create(cXyz const& param_0, s8 param_1, s8 param_
 #pragma pop
 
 /* 80D439F8-80D43A74 001418 007C+00 1/1 0/0 0/0 .text            calc__20_ZraMark_Hahen_Mng_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -673,6 +697,7 @@ asm void _ZraMark_Hahen_Mng_c::calc() {
 #pragma pop
 
 /* 80D43A74-80D43ACC 001494 0058+00 1/1 0/0 0/0 .text            draw__20_ZraMark_Hahen_Mng_cFv */
+// matches with literals
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,7 +728,8 @@ extern "C" asm void func_80D43ACC(void* _this, int param_0, int param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm _ZraMark_Hahen_c::~_ZraMark_Hahen_c() {
+// asm _ZraMark_Hahen_c::~_ZraMark_Hahen_c() {
+extern "C" asm void __dt__16_ZraMark_Hahen_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/__dt__16_ZraMark_Hahen_cFv.s"
 }
@@ -713,7 +739,8 @@ asm _ZraMark_Hahen_c::~_ZraMark_Hahen_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm _ZraMark_Hahen_c::_ZraMark_Hahen_c() {
+// asm _ZraMark_Hahen_c::_ZraMark_Hahen_c() {
+extern "C" asm void __ct__16_ZraMark_Hahen_cFv() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark/__ct__16_ZraMark_Hahen_cFv.s"
 }

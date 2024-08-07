@@ -319,6 +319,7 @@ public:
     /* 80B8C3E8 */ void adjustShapeAngle();
     int getType() { return mType; }
     u32 getAngleNoFromParam() { return (u8)(fopAcM_GetParam(this) >> 8); }
+    void setBlastFlag(u8 i_flag) { mBlastFlag = i_flag; }
 
     /* 0x0B48 */ Z2Creature mCreatureSound;
     /* 0x0BD8 */ J3DModel* mpObjectModel[3];
@@ -390,7 +391,7 @@ public:
     /* 0x1595 */ int mRiverPathIdx;
     /* 0x159C */ cXyz field_0x159c[3];
     /* 0x15C0 */ u8 field_0x15c0;
-    /* 0x15C1 */ bool field_0x15c1;
+    /* 0x15C1 */ bool mBlastFlag;
 
 #ifdef NONMATCHING
     static char* mEvtCutNameList[11];
