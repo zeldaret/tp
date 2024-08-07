@@ -80,7 +80,7 @@ public:
 /**
  * @ingroup actors-objects
  * @class daObjZraMark_c
- * @brief Zora Mark
+ * @brief Iza's River Ride Destructible Buoy
  *
  * @details
  *
