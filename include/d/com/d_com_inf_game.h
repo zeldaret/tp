@@ -361,6 +361,9 @@ public:
     s16 getItemKeyNumCount() { return mItemKeyNumCount; }
     void clearNowAnimeID() { mNowAnimeID = -1; }
     void clearMesgCamInfoID() { mMesgCamInfo = -1; }
+    void clearBaseAnimeID() { mBaseAnimeID = 0; }
+    void clearFaceAnimeID() { mFaceAnimeID = 0; }
+    void clearMesgCamInfoBasicID() { mMesgCamInfoBasicID = 0; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemMaxOilCount() { mItemMaxOilCount = 0; }
     void clearItemOilCount() { mItemOilCount = 0; }
@@ -458,6 +461,8 @@ public:
     void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
     void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
     void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
+    void setMsgObjectClass(dMsgObject_c* obj) { mMsgObjectClass = obj; }
+    void setMesgCamInfoBasicID(int id) { mMesgCamInfoBasicID = id; }
     void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
                              fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
                              fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
@@ -547,6 +552,7 @@ public:
     void show2dOff() { mShow2D = 0; }
     u8 show2dCheck() { return mShow2D; }
     s8 getLayerOld() { return mLayerOld; }
+    u8 checkMesgCancelButton() { return mMesgCancelButton; }
     void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
     void setMesgBgm(u8 param_0) { mMesgBgm = param_0; }
     int getMessageCountNumber() { return mMessageCountNum; }
@@ -1249,6 +1255,10 @@ inline u8 dComIfGs_getArrowMax() {
 
 inline u8 dComIfGs_getCollectSmell() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectEquip(3);
+}
+
+inline void dComIfGs_setCollectSmell(u8 smell) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(3, smell);
 }
 
 inline u8 dComIfGs_getPohSpiritNum() {
@@ -2048,6 +2058,10 @@ inline dMsgObject_c* dComIfGp_getMsgObjectClass() {
     return g_dComIfG_gameInfo.play.getMsgObjectClass();
 }
 
+inline void dComIfGp_setMsgObjectClass(dMsgObject_c* obj) {
+    return g_dComIfG_gameInfo.play.setMsgObjectClass(obj);
+}
+
 inline camera_class* dComIfGp_getCamera(int idx) {
     return g_dComIfG_gameInfo.play.getCamera(idx);
 }
@@ -2837,6 +2851,10 @@ inline void dComIfGp_setMesgCancelButton(u8 button) {
     g_dComIfG_gameInfo.play.setMesgCancelButton(button);
 }
 
+inline u8 dComIfGp_checkMesgCancelButton() {
+    return g_dComIfG_gameInfo.play.checkMesgCancelButton();
+}
+
 inline void dComIfGp_setMesgBgmOn() {
     g_dComIfG_gameInfo.play.setMesgBgm(1);
 }
@@ -3086,8 +3104,8 @@ inline u8 dComIfGp_getMesgStatus() {
     return g_dComIfG_gameInfo.play.getMesgStatus();
 }
 
-inline void dComIfGp_setMesgCameraTagInfo(int param_0) {
-    g_dComIfG_gameInfo.play.setMesgCamInfoID(param_0);
+inline void dComIfGp_setMesgCameraTagInfo(int id) {
+    g_dComIfG_gameInfo.play.setMesgCamInfoID(id);
 }
 
 inline void dComIfGp_setMesgCameraInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2,
@@ -3099,6 +3117,10 @@ inline void dComIfGp_setMesgCameraInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* par
 {
     g_dComIfG_gameInfo.play.setMesgCamInfoActor(param_1, param_2, param_3, param_4, param_5,
                                                 param_6, param_7, param_8, param_9, param_10);
+}
+
+inline void dComIfGp_setMesgCameraAttrInfo(int param_1) {
+  g_dComIfG_gameInfo.play.setMesgCamInfoBasicID(param_1);
 }
 
 inline int dComIfGp_getMesgCameraInfo() {
@@ -3606,6 +3628,18 @@ inline void dComIfGp_clearMesgAnimeTagInfo() {
 
 inline void dComIfGp_clearMesgCameraTagInfo() {
     g_dComIfG_gameInfo.play.clearMesgCamInfoID();
+}
+
+inline void dComIfGp_clearMesgAnimeAttrInfo() {
+    g_dComIfG_gameInfo.play.clearBaseAnimeID();
+}
+
+inline void dComIfGp_clearMesgFaceAnimeAttrInfo() {
+    g_dComIfG_gameInfo.play.clearFaceAnimeID();
+}
+
+inline void dComIfGp_clearMesgCameraAttrInfo() {
+    g_dComIfG_gameInfo.play.clearMesgCamInfoBasicID();
 }
 
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,

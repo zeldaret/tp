@@ -748,6 +748,10 @@ inline void dMeter2Info_set2DPosV(float posV) {
     g_meter2_info.set2DPosV(posV);
 }
 
+inline void dMeter2Info_offShopTalkFlag() {
+    g_meter2_info.offShopTalkFlag();
+}
+
 const char* dMeter2Info_getPlusTextureName();
 const char* dMeter2Info_getNumberTextureName(int pIndex);
 void dMeter2Info_recieveLetter();

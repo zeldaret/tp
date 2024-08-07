@@ -38,6 +38,32 @@ public:
     /* 8023C4F4 */ virtual void fontAlpha(f32);
     /* 80238C5C */ virtual void fukiPosCalc(u8);
 
+    f32 getSelTextBoxPosX(int idx) { return mSelTextBoxPosX[idx]; }
+    f32 getSelTextBoxPosY(int idx) { return mSelTextBoxPosY[idx]; }
+    f32 getTextBoxPosX() { return mTextBoxPosX; }
+    f32 getTextBoxPosY() { return mTextBoxPosY; }
+    f32 getTextBoxScaleX() { return mTextBoxScaleX; }
+    f32 getTextBoxScaleY() { return mTextBoxScaleY; }
+    f32 getTextBoxPosOffsetY() { return mTextBoxPosOffsetY; }
+    f32 getFontSizeX() { return mFontSize.mSizeX; }
+    f32 getFontSizeY() { return mFontSize.mSizeY; }
+    f32 getRubySize() { return mRubySize; }
+    f32 getTBoxWidth() { return mTBoxWidth; }
+    f32 getTBoxHeight() { return mTBoxHeight; }
+    f32 getLineSpace() { return mLineSpace; }
+    f32 getCharSpace() { return mCharSpace; }
+    f32 getRubyCharSpace() { return mRubyCharSpace; }
+    f32 getSelFontSize() { return mSelFontSize; }
+    f32 getSelRubySize() { return mSelRubySize; }
+    f32 getSelTBoxWidth() { return mSelTBoxWidth; }
+    f32 getSelCharSpace() { return mSelCharSpace; }
+    f32 getSelRubyCharSpace() { return mSelRubyCharSpace; }
+    CharInfo_c* getCharInfoPtr() { return mCharInfoPtr; }
+    void setCharAlphaRate(f32 rate) { mCharAlphaRate = rate; }
+    void setTextBoxPosOffsetY(f32 offset) { mTextBoxPosOffsetY = offset; }
+    void setMsgID(u16 msgID) { mMsgID = msgID; }
+    void setOutFont(COutFont_c* font) { mpOutFont = font; }
+
     /* 0x04 */ J2DScreen* mpScreen;
     /* 0x08 */ CPaneMgr* mpPmP_c;
     /* 0x0C */ CPaneMgr* mpTm_c[7];

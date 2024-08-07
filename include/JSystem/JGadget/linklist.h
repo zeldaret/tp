@@ -234,6 +234,7 @@ struct TLinkList : public TNodeLinkList {
     const_iterator end() const { return const_iterator(const_cast<TLinkList*>(this)->end()); }
     T& front() { return *begin(); }
     T& back() { return *--end(); }
+    void pop_front() { erase(TNodeLinkList::begin()); }
     void Push_front(T* element) { Insert(begin(), element); }
     void Push_back(T* element) { Insert(end(), element); }
     iterator Find(const T* element) {

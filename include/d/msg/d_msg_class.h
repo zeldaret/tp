@@ -11,7 +11,7 @@ class JUTFont;
 struct JMSMesgEntry_c {
     /* 0x00 */ u32 mStringOffset;
     /* 0x04 */ u16 mStringId;
-    /* 0x06 */ u16 field_0x04;
+    /* 0x06 */ u16 field_0x06;
     /* 0x08 */ u8 field_0x08;
     /* 0x09 */ u8 field_0x09;
     /* 0x0A */ u8 field_0x0a;
@@ -30,6 +30,7 @@ struct JMSMesgHeader_c {
     /* 0x0A */ u16 entrySize;
     /* 0x0C */ u16 field_0xc;
     /* 0x0E */ u16 field_0xe;
+    /* 0x10 */ JMSMesgEntry_c entries[0];
 };  // Size: 0x10
 
 class STControl;
@@ -98,6 +99,28 @@ struct jmessage_tReference : public JMessage::TReference {
     void setPageEndCount(s16 i_endCount) { mPageEndCount = i_endCount; }
     void onBombNameUseFlag() { mBombNameUseFlag = 1; }
     void onSelectRubyFlag(int i_flag) { mSelectRubyFlag |= (1 << i_flag); }
+    void setpStatus(u16* status) { mpStatus = status; }
+    void setObjectPtr(dMsgObject_c* ptr) { mpObjectPtr = ptr; }
+    void setCountBackUp() { mCharactor.mCountBackUp = mCharactor.field_0x40e; }
+    void setSelMsgPtr(char* ptr) { mpSelMsgPtr = ptr; }
+    void setPageNum(s16 pageNum) { mPageNum = pageNum; }
+    void setStopFlag(u8 flag) { mStopFlag = flag; }
+    void setStatus(u16 status) { *mpStatus = status; }
+    void setFont(JUTFont* font) { mpFont = font; }
+    void setFontSizeX(f32 x) { mFontSizeX = x; }
+    void setFontSizeY(f32 y) { mFontSizeY = y; }
+    void setRubySize(f32 size) { mRubySize = size; }
+    void setTBoxWidth(f32 width) { mTBoxWidth = width; }
+    void setTBoxHeight(f32 height) { mTBoxHeight = height; }
+    void setLineSpace(f32 space) { mLineSpace = space; }
+    void setCharSpace(f32 space) { mCharSpace = space; }
+    void setRubyCharSpace(f32 space) { mRubyCharSpace = space; }
+    void setSelFontSize(f32 size) { mSelFontSize = size; }
+    void setSelRubySize(f32 size) { mSelRubySize = size; }
+    void setSelTBoxWidth(f32 width) { mSelTBoxWidth = width; }
+    void setSelCharSpace(f32 space) { mSelCharSpace = space; }
+    void setSelRubyCharSpace(f32 space) { mSelRubyCharSpace = space; }
+    void decSendTimer() { mSendTimer--; }
 
     void setLineLength(int i_no, f32 i_strLen, f32 i_spaceLen) {
         mStrLength[i_no] = i_strLen;
@@ -107,6 +130,13 @@ struct jmessage_tReference : public JMessage::TReference {
     void setSelectPos(u8 i_pos) {
         if (!isSelectSetCancelFlag()) {
             mSelectPos = i_pos;
+        }
+    }
+
+    void addCharAllAlphaRate() {
+        mCharAllAlphaRate += mAddCharAllAlphaRate;
+        if (mCharAllAlphaRate > 1.0f) {
+            mCharAllAlphaRate = 1.0f;
         }
     }
 
@@ -134,14 +164,37 @@ struct jmessage_tReference : public JMessage::TReference {
     f32 getSelRubyCharSpace() { return mSelRubyCharSpace; }
     f32 getRubySize() { return mRubySize; }
     f32 getRubyCharSpace() { return mRubyCharSpace; }
+    char* getSelTextPtr(int idx) { return mSelText[idx]; }
+    char* getSelRubyPtr(int idx) { return mSelRuby[idx]; }
+    char* getTextPtr() { return mText; }
+    char* getTextSPtr() { return mTextS; }
+    char* getRubyPtr() { return mRuby; }
+    u8 getSelectRubyFlag() { return mSelectRubyFlag; }
+    f32 getSelTBoxWidth() { return mSelTBoxWidth; }
+    u8 getSelectPos() { return mSelectPos; }
+    u16 getMsgID() { return mMsgID; }
+    bool isButtonTagStopFlag() { return mButtonTagStopFlag; }
+    u8 getStopFlag() { return mStopFlag; }
+    u8 getSendFlag() { return mSendFlag; }
+    u8 getFukiPosType() { return mFukiPosType; }
+    u16 getStatus() { return *mpStatus; }
+    u8 getArrange() { return mArrange; }
+
+    struct CharSoundInfo {
+        u16 data[0x200];
+        s16 field_0x40c;
+        s16 field_0x40e;
+        s16 mCountBackUp;
+    };
+    CharSoundInfo getCharSoundInfo() { return mCharactor;}
+    u32 getDemoFrame() { return mDemoFrame; }
+    u32 getRevoMessageID() { return mRevoMessageID; }
+    f32 getCharAllAlphaRate() { return mCharAllAlphaRate; }
 
     /* 80228CB4 */ virtual ~jmessage_tReference();
 
     /* 0x0008 */ STControl* mpStick;
-    /* 0x000C */ u16 mCharactor[0x200];
-    /* 0x040C */ s16 field_0x40c;
-    /* 0x040E */ s16 field_0x40e;
-    /* 0x0410 */ s16 mCountBackUp;
+    /* 0x000C */ CharSoundInfo mCharactor;
     /* 0x0414 */ cXyz mActorPos;
     /* 0x0420 */ f32 mFontSizeX;
     /* 0x0424 */ f32 mFontSizeY;
@@ -188,8 +241,8 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 0x0A1C */ char mText[0x200];
     /* 0x0C1C */ char mTextS[0x200];
     /* 0x0E1C */ char mRuby[0x200];
-    /* 0x101C */ u8 mSelText[3][50];
-    /* 0x10B2 */ u8 mSelRuby[3][80];
+    /* 0x101C */ char mSelText[3][50];
+    /* 0x10B2 */ char mSelRuby[3][80];
     /* 0x11A2 */ s8 mPageLine[40];
     /* 0x11CA */ s8 mPageLineMax[40];
     /* 0x11F2 */ u8 mPageType[40];
@@ -272,6 +325,9 @@ struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor,
     /* 8022C8FC */ virtual bool do_jump_isReady();
     /* 8022CBE4 */ virtual void do_jump(void const*, char const*);
 
+    u8 getMouthCheck() { return mMouthCheck; }
+    void setForceForm(u8 forceForm) { mForceForm = forceForm; }
+
     /* 0x4C jmessage_tMeasureProcessor */
     /* 0x9C */ const void* field_0x9c;
     /* 0xA0 */ const char* field_0xa0;
@@ -329,6 +385,25 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 8022CFD8 */ virtual void do_end();
     /* 8022D0A0 */ virtual void do_character(int);
     /* 8022D74C */ virtual bool do_tag(u32, void const*, u32);
+
+    void setTextInitPos(float x, float y) {
+        mTextInitPosX = x;
+        mTextInitPosY = y;
+    }
+
+    void setTextScale(float x, float y) {
+        mTextInitScaleX = x;
+        mTextInitScaleY = y;
+    }
+
+    void setSelTextInitPos(int idx, float x, float y) {
+        mSelTextInitPosX[idx] = x;
+        mSelTextInitPosY[idx] = y;
+    }
+
+    void setTextInitOffsetPos(f32 offset) { mTextInitOffsetPos = offset; }
+    void setOutFont(COutFont_c* font) { mpOutFont = font; }
+    void setCharInfoPtr(CharInfo_c* info) { mCharInfoPtr = info; }
 
     /* 0x038 */ COutFont_c* mpOutFont;
     /* 0x03C */ CharInfo_c* mCharInfoPtr;

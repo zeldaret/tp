@@ -748,7 +748,7 @@ void dMsgFlow_c::setInitValueGroupChange(int param_1, fopAc_ac_c** param_2) {
  */
 u8* dMsgFlow_c::getMsgDataBlock(char const* block_tag) {
     char tag[5] = {0};
-    u8* dt_p = dMsgObject_c::getMsgDtPtr();
+    u8* dt_p = (u8*)dMsgObject_c::getMsgDtPtr();
     u8* block;
     u32 num;
     u32 i;
