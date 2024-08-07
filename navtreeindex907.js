@@ -1,5 +1,17 @@
 var NAVTREEINDEX907 =
 {
+"d__a__tag__TWgate_8cpp.html#a6ca761fd007d3977fe43f8f268614950":[4,0,3,0,0,80,66,0,88],
+"d__a__tag__TWgate_8cpp.html#a6f5043540e537e9fd7d34f79c84dbdfc":[4,0,3,0,0,80,66,0,48],
+"d__a__tag__TWgate_8cpp.html#a705eae357517dd746498a10edd4d864a":[4,0,3,0,0,80,66,0,49],
+"d__a__tag__TWgate_8cpp.html#a712ea94a625d041e61d73ae2a847583b":[4,0,3,0,0,80,66,0,41],
+"d__a__tag__TWgate_8cpp.html#a736a342891bdfbc1cea07c6e75c5edee":[4,0,3,0,0,80,66,0,46],
+"d__a__tag__TWgate_8cpp.html#a74e73cce477a9ab1897689ebd90686ad":[4,0,3,0,0,80,66,0,138],
+"d__a__tag__TWgate_8cpp.html#a76a74f35c2df4c41ca4e9de8f15e71e0":[4,0,3,0,0,80,66,0,45],
+"d__a__tag__TWgate_8cpp.html#a7c08e756761391a2463a36ea5115e608":[4,0,3,0,0,80,66,0,93],
+"d__a__tag__TWgate_8cpp.html#a7cbf03ff7bca2a813dab2297db01b8bb":[4,0,3,0,0,80,66,0,140],
+"d__a__tag__TWgate_8cpp.html#a7f036b67928d131c2943df3e3116bfcf":[4,0,3,0,0,80,66,0,127],
+"d__a__tag__TWgate_8cpp.html#a809c7e51fe136c9523c179d028127d6f":[4,0,3,0,0,80,66,0,114],
+"d__a__tag__TWgate_8cpp.html#a81bff70a33b618f82776f947a07ebb63":[4,0,3,0,0,80,66,0,74],
 "d__a__tag__TWgate_8cpp.html#a81e5f36ed9d40d239698e45dd7269697":[4,0,3,0,0,80,66,0,53],
 "d__a__tag__TWgate_8cpp.html#a863e52685965e5ef3322626cf7280eda":[4,0,3,0,0,80,66,0,67],
 "d__a__tag__TWgate_8cpp.html#a88c7c42af5d98cced9136ebb9635e700":[4,0,3,0,0,80,66,0,40],
@@ -237,17 +249,5 @@ var NAVTREEINDEX907 =
 "d__a__tag__arena_8cpp.html#a0a9bf6b9a53ed165c984d4e685ec6414":[4,0,3,0,0,80,2,0,0],
 "d__a__tag__arena_8cpp.html#a409300f37a894b1d4cc3c48187df1f1b":[4,0,3,0,0,80,2,0,3],
 "d__a__tag__arena_8cpp.html#ab581dd76658a443c9a390ee5654cc5af":[4,0,3,0,0,80,2,0,2],
-"d__a__tag__arena_8cpp.html#af362ce6533ffed5e510a7d5777ad063a":[4,0,3,0,0,80,2,0,1],
-"d__a__tag__arena_8h.html":[4,0,1,8,0,0,80,2,0],
-"d__a__tag__arena_8h_source.html":[4,0,1,8,0,0,80,2,0],
-"d__a__tag__assistance_8cpp.html":[4,0,3,0,0,80,3,0],
-"d__a__tag__assistance_8cpp.html#a1ca280417613b18ca9ac34f8598679f9":[4,0,3,0,0,80,3,0,4],
-"d__a__tag__assistance_8cpp.html#a1faf649e02e3526c6a662da4aefe0c38":[4,0,3,0,0,80,3,0,0],
-"d__a__tag__assistance_8cpp.html#a237d4fd9fa95153f996913093992a9b7":[4,0,3,0,0,80,3,0,3],
-"d__a__tag__assistance_8cpp.html#a43bbf9a0480a863379ac834c834d2f0e":[4,0,3,0,0,80,3,0,5],
-"d__a__tag__assistance_8cpp.html#a7388914b367d67a3a1b0a1fd5ef362a3":[4,0,3,0,0,80,3,0,1],
-"d__a__tag__assistance_8cpp.html#add8b1d1919cbac6524a6c4a38840eaf7":[4,0,3,0,0,80,3,0,2],
-"d__a__tag__assistance_8h.html":[4,0,1,8,0,0,80,3,0],
-"d__a__tag__assistance_8h_source.html":[4,0,1,8,0,0,80,3,0],
-"d__a__tag__attack__item_8cpp.html":[4,0,3,0,0,80,4,0]
+"d__a__tag__arena_8cpp.html#af362ce6533ffed5e510a7d5777ad063a":[4,0,3,0,0,80,2,0,1]
 };

@@ -141,14 +141,15 @@ $(document).ready(function(){initNavTree('classdaSwShutter__c.html',''); initRes
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classdaSwShutter__c-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">daSwShutter_c Class Reference<div class="ingroups"><a class="el" href="group__actors.html">Actors</a> &raquo; <a class="el" href="group__actors-objects.html">Objects</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Rider Gate.  
+<p>Shutter Wall (Switch)  
  <a href="classdaSwShutter__c.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="d__a__obj__sWallShutter_8h_source.html">d_a_obj_sWallShutter.h</a>&gt;</code></p>
@@ -157,7 +158,7 @@ $(document).ready(function(){initNavTree('classdaSwShutter__c.html',''); initRes
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classdaSwShutter__c__inherit__graph.svg" width="122" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classdaSwShutter__c__inherit__graph.svg" width="151" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for daSwShutter_c:</div>
@@ -167,38 +168,102 @@ $(document).ready(function(){initNavTree('classdaSwShutter__c.html',''); initRes
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classdaSwShutter__c__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a19dfb85a1f2faccaebfcc0f240b750e0" id="r_a19dfb85a1f2faccaebfcc0f240b750e0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0">TYPE_e</a> { <a class="el" href="classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0a23039755196b926c9f5b897ddbc8bd61">TYPE_ROCKWALL_e</a>
+, <a class="el" href="classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0a8a4f2afabd7c9e9cf117c6d4f14ebb16">TYPE_SUBDAN_e</a>
+ }</td></tr>
+<tr class="separator:a19dfb85a1f2faccaebfcc0f240b750e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4323d8945dcdea46489e1240e732894" id="r_ae4323d8945dcdea46489e1240e732894"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894">MODE_e</a> { <a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894af039939a996799e9ded8c53624619deb">MODE_WAIT</a>
+, <a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894a70d9e4c10a97889248878b983e10823a">MODE_MOVE_DOWN_INIT</a>
+, <a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894a93dab72a8ce2a9e87a01cda2884fb65b">MODE_MOVE_DOWN</a>
+, <a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894a54880f84e04fffed8182616970eebc9e">MODE_MOVE_DOWN_END</a>
+ }</td></tr>
+<tr class="separator:ae4323d8945dcdea46489e1240e732894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a66dccdeb627d8a6e425b59b83c00b5aa" id="r_a66dccdeb627d8a6e425b59b83c00b5aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a66dccdeb627d8a6e425b59b83c00b5aa">setBaseMtx</a> ()</td></tr>
-<tr class="separator:a66dccdeb627d8a6e425b59b83c00b5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5759d41d3364bd80dc70c9a6065e083" id="r_ae5759d41d3364bd80dc70c9a6065e083"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ae5759d41d3364bd80dc70c9a6065e083">CreateHeap</a> ()</td></tr>
-<tr class="separator:ae5759d41d3364bd80dc70c9a6065e083"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a205b7b192655049c7645065928c8134e" id="r_a205b7b192655049c7645065928c8134e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a205b7b192655049c7645065928c8134e">create</a> ()</td></tr>
-<tr class="separator:a205b7b192655049c7645065928c8134e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cdb6a3935f7034d7a323f9cbc18b939" id="r_a5cdb6a3935f7034d7a323f9cbc18b939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a5cdb6a3935f7034d7a323f9cbc18b939">Execute</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(**)[3][4])</td></tr>
-<tr class="separator:a5cdb6a3935f7034d7a323f9cbc18b939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff14e5c4dd9871397269ab802649f615" id="r_aff14e5c4dd9871397269ab802649f615"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#aff14e5c4dd9871397269ab802649f615">moveMain</a> ()</td></tr>
-<tr class="separator:aff14e5c4dd9871397269ab802649f615"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae27f8073ee4393623faff5e6bcadedff" id="r_ae27f8073ee4393623faff5e6bcadedff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ae27f8073ee4393623faff5e6bcadedff">init_modeWait</a> ()</td></tr>
-<tr class="separator:ae27f8073ee4393623faff5e6bcadedff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3c1fb78ef795ca60f042e45e2eef4ed" id="r_ab3c1fb78ef795ca60f042e45e2eef4ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ab3c1fb78ef795ca60f042e45e2eef4ed">modeWait</a> ()</td></tr>
-<tr class="separator:ab3c1fb78ef795ca60f042e45e2eef4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75441b553cb6997773ec3bdd2d6342f8" id="r_a75441b553cb6997773ec3bdd2d6342f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a75441b553cb6997773ec3bdd2d6342f8">init_modeMoveDownInit</a> ()</td></tr>
-<tr class="separator:a75441b553cb6997773ec3bdd2d6342f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac49722fd25bfa6e6315f9615b8601230" id="r_ac49722fd25bfa6e6315f9615b8601230"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ac49722fd25bfa6e6315f9615b8601230">modeMoveDownInit</a> ()</td></tr>
-<tr class="separator:ac49722fd25bfa6e6315f9615b8601230"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f6f95c4570d1c5e4368ead2aaca6146" id="r_a3f6f95c4570d1c5e4368ead2aaca6146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a3f6f95c4570d1c5e4368ead2aaca6146">init_modeMoveDown</a> ()</td></tr>
-<tr class="separator:a3f6f95c4570d1c5e4368ead2aaca6146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1953ad16a0a8c46c9913677c10595db2" id="r_a1953ad16a0a8c46c9913677c10595db2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a1953ad16a0a8c46c9913677c10595db2">modeMoveDown</a> ()</td></tr>
-<tr class="separator:a1953ad16a0a8c46c9913677c10595db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e872c4aab0f4f3c0a8db1cb2a5f6f73" id="r_a9e872c4aab0f4f3c0a8db1cb2a5f6f73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a9e872c4aab0f4f3c0a8db1cb2a5f6f73">init_modeMoveDownEnd</a> ()</td></tr>
-<tr class="separator:a9e872c4aab0f4f3c0a8db1cb2a5f6f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a52effae31c56d9cd1043a41a683c72" id="r_a9a52effae31c56d9cd1043a41a683c72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a9a52effae31c56d9cd1043a41a683c72">setBaseMtx</a> ()</td></tr>
+<tr class="separator:a9a52effae31c56d9cd1043a41a683c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21551aede7be7cb9a1a03a64562af6c0" id="r_a21551aede7be7cb9a1a03a64562af6c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a21551aede7be7cb9a1a03a64562af6c0">create</a> ()</td></tr>
+<tr class="separator:a21551aede7be7cb9a1a03a64562af6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d0ebf0ab5ce5846b0dd82a5c7af382" id="r_ad5d0ebf0ab5ce5846b0dd82a5c7af382"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ad5d0ebf0ab5ce5846b0dd82a5c7af382">moveMain</a> ()</td></tr>
+<tr class="separator:ad5d0ebf0ab5ce5846b0dd82a5c7af382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33300a08568f5cca32a3734e0f325b32" id="r_a33300a08568f5cca32a3734e0f325b32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a33300a08568f5cca32a3734e0f325b32">init_modeWait</a> ()</td></tr>
+<tr class="separator:a33300a08568f5cca32a3734e0f325b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7356d455837b529fcc965853a09d50a3" id="r_a7356d455837b529fcc965853a09d50a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a7356d455837b529fcc965853a09d50a3">modeWait</a> ()</td></tr>
+<tr class="separator:a7356d455837b529fcc965853a09d50a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b3352de417c7b1cc88c1352d27c758" id="r_a97b3352de417c7b1cc88c1352d27c758"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a97b3352de417c7b1cc88c1352d27c758">init_modeMoveDownInit</a> ()</td></tr>
+<tr class="separator:a97b3352de417c7b1cc88c1352d27c758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e941961506f29f96fa35be6994b43d9" id="r_a5e941961506f29f96fa35be6994b43d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a5e941961506f29f96fa35be6994b43d9">modeMoveDownInit</a> ()</td></tr>
+<tr class="separator:a5e941961506f29f96fa35be6994b43d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a56218c6e74106a8a0a6f10471fadf" id="r_a37a56218c6e74106a8a0a6f10471fadf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a37a56218c6e74106a8a0a6f10471fadf">init_modeMoveDown</a> ()</td></tr>
+<tr class="separator:a37a56218c6e74106a8a0a6f10471fadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed8ce1aefeb7154f25b0048aed9d918" id="r_afed8ce1aefeb7154f25b0048aed9d918"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#afed8ce1aefeb7154f25b0048aed9d918">modeMoveDown</a> ()</td></tr>
+<tr class="separator:afed8ce1aefeb7154f25b0048aed9d918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbb286b7cef49b219ff15030d289311" id="r_a5dbb286b7cef49b219ff15030d289311"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a5dbb286b7cef49b219ff15030d289311">init_modeMoveDownEnd</a> ()</td></tr>
+<tr class="separator:a5dbb286b7cef49b219ff15030d289311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e34df7dc11cca899ffe3a1e1f10847e" id="r_a8e34df7dc11cca899ffe3a1e1f10847e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a8e34df7dc11cca899ffe3a1e1f10847e">modeMoveDownEnd</a> ()</td></tr>
 <tr class="separator:a8e34df7dc11cca899ffe3a1e1f10847e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa70dd84c4714a1ec3114a3c85fbc3791" id="r_aa70dd84c4714a1ec3114a3c85fbc3791"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#aa70dd84c4714a1ec3114a3c85fbc3791">Draw</a> ()</td></tr>
-<tr class="separator:aa70dd84c4714a1ec3114a3c85fbc3791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbae7d84917632d248a3b2c0403edabd" id="r_abbae7d84917632d248a3b2c0403edabd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#abbae7d84917632d248a3b2c0403edabd">Delete</a> ()</td></tr>
-<tr class="separator:abbae7d84917632d248a3b2c0403edabd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a62ac8b40650cf4ef1bb3cd43e21f8f" id="r_a1a62ac8b40650cf4ef1bb3cd43e21f8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a1a62ac8b40650cf4ef1bb3cd43e21f8f">CreateHeap</a> ()</td></tr>
+<tr class="separator:a1a62ac8b40650cf4ef1bb3cd43e21f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d8fcfbacf3ff27dd96c8b7afa83cafd" id="r_a0d8fcfbacf3ff27dd96c8b7afa83cafd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a0d8fcfbacf3ff27dd96c8b7afa83cafd">Execute</a> (<a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> **)</td></tr>
+<tr class="separator:a0d8fcfbacf3ff27dd96c8b7afa83cafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a09d3726cfc6b2ad483672af44457d" id="r_a35a09d3726cfc6b2ad483672af44457d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a35a09d3726cfc6b2ad483672af44457d">Draw</a> ()</td></tr>
+<tr class="separator:a35a09d3726cfc6b2ad483672af44457d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0f2945cea9ee473c4c6c8fc2febf5f8" id="r_aa0f2945cea9ee473c4c6c8fc2febf5f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#aa0f2945cea9ee473c4c6c8fc2febf5f8">Delete</a> ()</td></tr>
+<tr class="separator:aa0f2945cea9ee473c4c6c8fc2febf5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebfb8e71e0ac9b575e974f87479f614" id="r_a8ebfb8e71e0ac9b575e974f87479f614"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a8ebfb8e71e0ac9b575e974f87479f614">getSwBit</a> ()</td></tr>
+<tr class="separator:a8ebfb8e71e0ac9b575e974f87479f614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53305936d73f157a0238b1012585ff4f" id="r_a53305936d73f157a0238b1012585ff4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a53305936d73f157a0238b1012585ff4f">getModelType</a> ()</td></tr>
+<tr class="separator:a53305936d73f157a0238b1012585ff4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classdBgS__MoveBgActor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classdBgS__MoveBgActor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a></td></tr>
+<tr class="memitem:a4145ab56fe60938c7b1db97da780d79d inherit pub_methods_classdBgS__MoveBgActor" id="r_a4145ab56fe60938c7b1db97da780d79d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a4145ab56fe60938c7b1db97da780d79d">dBgS_MoveBgActor</a> ()</td></tr>
+<tr class="separator:a4145ab56fe60938c7b1db97da780d79d inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab21e79272ea9f41175c5c3bfabba1fbe inherit pub_methods_classdBgS__MoveBgActor" id="r_ab21e79272ea9f41175c5c3bfabba1fbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#ab21e79272ea9f41175c5c3bfabba1fbe">MoveBGCreateHeap</a> ()</td></tr>
+<tr class="separator:ab21e79272ea9f41175c5c3bfabba1fbe inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29c8b50efe3f822e30b76bf7b30953a2 inherit pub_methods_classdBgS__MoveBgActor" id="r_a29c8b50efe3f822e30b76bf7b30953a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a29c8b50efe3f822e30b76bf7b30953a2">MoveBGCreate</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_arcName</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_dzb_id</a>, <a class="el" href="d__bg__s__movebg__actor_8h.html#abcd736e5725b7da5d2db43136523e859">MoveBGActor_SetFunc</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_setFunc</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_heapSize</a>, <a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_bgMtx</a>)</td></tr>
+<tr class="separator:a29c8b50efe3f822e30b76bf7b30953a2 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9238d3688125f8d153c7223f88956451 inherit pub_methods_classdBgS__MoveBgActor" id="r_a9238d3688125f8d153c7223f88956451"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a9238d3688125f8d153c7223f88956451">MoveBGDelete</a> ()</td></tr>
+<tr class="separator:a9238d3688125f8d153c7223f88956451 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad70526e6ca3224a5cda3e146f297204b inherit pub_methods_classdBgS__MoveBgActor" id="r_ad70526e6ca3224a5cda3e146f297204b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#ad70526e6ca3224a5cda3e146f297204b">MoveBGExecute</a> ()</td></tr>
+<tr class="separator:ad70526e6ca3224a5cda3e146f297204b inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c0a012a5fcfaf80342314ff84cbe2a inherit pub_methods_classdBgS__MoveBgActor" id="r_a54c0a012a5fcfaf80342314ff84cbe2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a54c0a012a5fcfaf80342314ff84cbe2a">MoveBGDraw</a> ()</td></tr>
+<tr class="separator:a54c0a012a5fcfaf80342314ff84cbe2a inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911d653a28f6f81d366029a66106547d inherit pub_methods_classdBgS__MoveBgActor" id="r_a911d653a28f6f81d366029a66106547d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a911d653a28f6f81d366029a66106547d">MoveBGIsDelete</a> ()</td></tr>
+<tr class="separator:a911d653a28f6f81d366029a66106547d inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469831a5166d663a64c2eb9cc498813c inherit pub_methods_classdBgS__MoveBgActor" id="r_a469831a5166d663a64c2eb9cc498813c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a469831a5166d663a64c2eb9cc498813c">Create</a> ()</td></tr>
+<tr class="separator:a469831a5166d663a64c2eb9cc498813c inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09891834cf1a7c3e0ca15868663a5f7f inherit pub_methods_classdBgS__MoveBgActor" id="r_a09891834cf1a7c3e0ca15868663a5f7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a09891834cf1a7c3e0ca15868663a5f7f">IsDelete</a> ()</td></tr>
+<tr class="separator:a09891834cf1a7c3e0ca15868663a5f7f inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46bdd3c52d0abea4d1c7ded968b0ed4a inherit pub_methods_classdBgS__MoveBgActor" id="r_a46bdd3c52d0abea4d1c7ded968b0ed4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a46bdd3c52d0abea4d1c7ded968b0ed4a">ToFore</a> ()</td></tr>
+<tr class="separator:a46bdd3c52d0abea4d1c7ded968b0ed4a inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78fc6a7fa60402ee9e26ba6339058fe4 inherit pub_methods_classdBgS__MoveBgActor" id="r_a78fc6a7fa60402ee9e26ba6339058fe4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a78fc6a7fa60402ee9e26ba6339058fe4">ToBack</a> ()</td></tr>
+<tr class="separator:a78fc6a7fa60402ee9e26ba6339058fe4 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4145ab56fe60938c7b1db97da780d79d inherit pub_methods_classdBgS__MoveBgActor" id="r_a4145ab56fe60938c7b1db97da780d79d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a4145ab56fe60938c7b1db97da780d79d">dBgS_MoveBgActor</a> ()</td></tr>
+<tr class="separator:a4145ab56fe60938c7b1db97da780d79d inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66e0ab9919580baf45768611057521b inherit pub_methods_classdBgS__MoveBgActor" id="r_af66e0ab9919580baf45768611057521b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#af66e0ab9919580baf45768611057521b">CreateHeap</a> ()</td></tr>
+<tr class="separator:af66e0ab9919580baf45768611057521b inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ca7044fb12399e7b4c55aada95ce75 inherit pub_methods_classdBgS__MoveBgActor" id="r_ad3ca7044fb12399e7b4c55aada95ce75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#ad3ca7044fb12399e7b4c55aada95ce75">Create</a> ()</td></tr>
+<tr class="separator:ad3ca7044fb12399e7b4c55aada95ce75 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b9872eb99dec63a7102872e4f32199 inherit pub_methods_classdBgS__MoveBgActor" id="r_a36b9872eb99dec63a7102872e4f32199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a36b9872eb99dec63a7102872e4f32199">Execute</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(**)[3][4])</td></tr>
+<tr class="separator:a36b9872eb99dec63a7102872e4f32199 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c4aaaa2b204f989838feed9f0cb9918 inherit pub_methods_classdBgS__MoveBgActor" id="r_a2c4aaaa2b204f989838feed9f0cb9918"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a2c4aaaa2b204f989838feed9f0cb9918">Draw</a> ()</td></tr>
+<tr class="separator:a2c4aaaa2b204f989838feed9f0cb9918 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43c1c25981564fd7f34ad26778b8319 inherit pub_methods_classdBgS__MoveBgActor" id="r_af43c1c25981564fd7f34ad26778b8319"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#af43c1c25981564fd7f34ad26778b8319">Delete</a> ()</td></tr>
+<tr class="separator:af43c1c25981564fd7f34ad26778b8319 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b88ca7d707dfc8d36ebc18dd35a90f1 inherit pub_methods_classdBgS__MoveBgActor" id="r_a6b88ca7d707dfc8d36ebc18dd35a90f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a6b88ca7d707dfc8d36ebc18dd35a90f1">IsDelete</a> ()</td></tr>
+<tr class="separator:a6b88ca7d707dfc8d36ebc18dd35a90f1 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9676542af3f089010620377d30ccbbc inherit pub_methods_classdBgS__MoveBgActor" id="r_aa9676542af3f089010620377d30ccbbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#aa9676542af3f089010620377d30ccbbc">ToFore</a> ()</td></tr>
+<tr class="separator:aa9676542af3f089010620377d30ccbbc inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a775511e01ea7fe15c79b2e0a578e8128 inherit pub_methods_classdBgS__MoveBgActor" id="r_a775511e01ea7fe15c79b2e0a578e8128"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a775511e01ea7fe15c79b2e0a578e8128">ToBack</a> ()</td></tr>
+<tr class="separator:a775511e01ea7fe15c79b2e0a578e8128 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a171a853b107bb7a97df8db99f37d663c inherit pub_methods_classdBgS__MoveBgActor" id="r_a171a853b107bb7a97df8db99f37d663c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a171a853b107bb7a97df8db99f37d663c">MoveBGCreate</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>(*)(<a class="el" href="classdBgW.html">dBgW</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="classcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> &amp;, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="classcsXyz.html">csXyz</a> *, <a class="el" href="classcsXyz.html">csXyz</a> *), <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(*)[3][4])</td></tr>
+<tr class="separator:a171a853b107bb7a97df8db99f37d663c inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60af312db0d9d53360d65b6d5cffc4c5 inherit pub_methods_classdBgS__MoveBgActor" id="r_a60af312db0d9d53360d65b6d5cffc4c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a60af312db0d9d53360d65b6d5cffc4c5">MoveBGDelete</a> ()</td></tr>
+<tr class="separator:a60af312db0d9d53360d65b6d5cffc4c5 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84f246734ff29831b116d5ea6bb105b0 inherit pub_methods_classdBgS__MoveBgActor" id="r_a84f246734ff29831b116d5ea6bb105b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a84f246734ff29831b116d5ea6bb105b0">MoveBGExecute</a> ()</td></tr>
+<tr class="separator:a84f246734ff29831b116d5ea6bb105b0 inherit pub_methods_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_structfopAc__ac__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structfopAc__ac__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a></td></tr>
 <tr class="memitem:a150acf531845cb2c19af23714e3fd0fc inherit pub_methods_structfopAc__ac__c" id="r_a150acf531845cb2c19af23714e3fd0fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#a150acf531845cb2c19af23714e3fd0fc">fopAc_ac_c</a> ()</td></tr>
 <tr class="separator:a150acf531845cb2c19af23714e3fd0fc inherit pub_methods_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,16 +304,47 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a03db26d33e83a0e8ab8e922585fcdf1c inherit pub_methods_structfopAc__ac__c" id="r_a03db26d33e83a0e8ab8e922585fcdf1c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#a03db26d33e83a0e8ab8e922585fcdf1c">~fopAc_ac_c</a> ()</td></tr>
 <tr class="separator:a03db26d33e83a0e8ab8e922585fcdf1c inherit pub_methods_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:af1ac0e44daf2b731374947edff9a1858" id="r_af1ac0e44daf2b731374947edff9a1858"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#af1ac0e44daf2b731374947edff9a1858">field_0x568</a> [0x5e8 - 0x568]</td></tr>
-<tr class="separator:af1ac0e44daf2b731374947edff9a1858"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_static_methods_structfopAc__ac__c"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_structfopAc__ac__c')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a></td></tr>
-<tr class="memitem:ab209508adeb84e2ef0bb2145ef6166e7 inherit pub_static_methods_structfopAc__ac__c" id="r_ab209508adeb84e2ef0bb2145ef6166e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#ab209508adeb84e2ef0bb2145ef6166e7">setStopStatus</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="fstload_8c.html#a7dd63b23746a64a9a58ba770d86359e3">status</a>)</td></tr>
-<tr class="separator:ab209508adeb84e2ef0bb2145ef6166e7 inherit pub_static_methods_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a7a297623d96d7f8b812fe1b6fb41186a" id="r_a7a297623d96d7f8b812fe1b6fb41186a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a7a297623d96d7f8b812fe1b6fb41186a">mPhase</a></td></tr>
+<tr class="separator:a7a297623d96d7f8b812fe1b6fb41186a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acea55cb3fece8d30551b164321ab932e" id="r_acea55cb3fece8d30551b164321ab932e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ3DModel.html">J3DModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#acea55cb3fece8d30551b164321ab932e">mpModel</a></td></tr>
+<tr class="separator:acea55cb3fece8d30551b164321ab932e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df224930013f12602030b409fa29522" id="r_a4df224930013f12602030b409fa29522"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a4df224930013f12602030b409fa29522">mModelType</a></td></tr>
+<tr class="separator:a4df224930013f12602030b409fa29522"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663885e9cc51618155630558b9b93e3c" id="r_a663885e9cc51618155630558b9b93e3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a663885e9cc51618155630558b9b93e3c">mMode</a></td></tr>
+<tr class="separator:a663885e9cc51618155630558b9b93e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcd4b877d515832beafab0317090c1dd" id="r_abcd4b877d515832beafab0317090c1dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#abcd4b877d515832beafab0317090c1dd">field_0x5b0</a></td></tr>
+<tr class="separator:abcd4b877d515832beafab0317090c1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66fa8d7bb4fe1671c341cd0be6418d2" id="r_ac66fa8d7bb4fe1671c341cd0be6418d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ac66fa8d7bb4fe1671c341cd0be6418d2">field_0x5B4</a> [0x5B8 - 0x5B4]</td></tr>
+<tr class="separator:ac66fa8d7bb4fe1671c341cd0be6418d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b626998dd06e40c053f5ddea460249" id="r_ac0b626998dd06e40c053f5ddea460249"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcsXyz.html">csXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ac0b626998dd06e40c053f5ddea460249">mShakeRot</a></td></tr>
+<tr class="separator:ac0b626998dd06e40c053f5ddea460249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71f78db6bfa079e70f2f6a1b2cf48279" id="r_a71f78db6bfa079e70f2f6a1b2cf48279"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a71f78db6bfa079e70f2f6a1b2cf48279">mShakeStrength</a></td></tr>
+<tr class="separator:a71f78db6bfa079e70f2f6a1b2cf48279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758ad393f4d7298721907dd5717a5a06" id="r_a758ad393f4d7298721907dd5717a5a06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a758ad393f4d7298721907dd5717a5a06">mShakeAmpZ</a></td></tr>
+<tr class="separator:a758ad393f4d7298721907dd5717a5a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f107c6c9f74c98f89c11fd438fdd4b2" id="r_a2f107c6c9f74c98f89c11fd438fdd4b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a2f107c6c9f74c98f89c11fd438fdd4b2">mShakeAmpY</a></td></tr>
+<tr class="separator:a2f107c6c9f74c98f89c11fd438fdd4b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2022dd0a9abf225d2dccb51d86feb81d" id="r_a2022dd0a9abf225d2dccb51d86feb81d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a2022dd0a9abf225d2dccb51d86feb81d">mShakeAtten</a></td></tr>
+<tr class="separator:a2022dd0a9abf225d2dccb51d86feb81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35d7de3402f50f36be21ad777bcc09dd" id="r_a35d7de3402f50f36be21ad777bcc09dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a35d7de3402f50f36be21ad777bcc09dd">mMaxAtten</a></td></tr>
+<tr class="separator:a35d7de3402f50f36be21ad777bcc09dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f80e8ab46e4b29c7b740759925c3d6" id="r_a69f80e8ab46e4b29c7b740759925c3d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a69f80e8ab46e4b29c7b740759925c3d6">mMinAtten</a></td></tr>
+<tr class="separator:a69f80e8ab46e4b29c7b740759925c3d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8425e0de32b5bd3788ecd22ea7bf579" id="r_ac8425e0de32b5bd3788ecd22ea7bf579"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ac8425e0de32b5bd3788ecd22ea7bf579">mCounter</a></td></tr>
+<tr class="separator:ac8425e0de32b5bd3788ecd22ea7bf579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff4823856c7b2c9dd364c4e21525d92" id="r_a5ff4823856c7b2c9dd364c4e21525d92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a5ff4823856c7b2c9dd364c4e21525d92">mEmitterID0</a></td></tr>
+<tr class="separator:a5ff4823856c7b2c9dd364c4e21525d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac414ae3590ac553f59bb484c7b0fd54f" id="r_ac414ae3590ac553f59bb484c7b0fd54f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#ac414ae3590ac553f59bb484c7b0fd54f">mEmitterID1</a></td></tr>
+<tr class="separator:ac414ae3590ac553f59bb484c7b0fd54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26810779b8a0c4a80015cc13d950dfe2" id="r_a26810779b8a0c4a80015cc13d950dfe2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaSwShutter__c.html#a26810779b8a0c4a80015cc13d950dfe2">field_0x5e4</a> [0x5e8 - 0x5e4]</td></tr>
+<tr class="separator:a26810779b8a0c4a80015cc13d950dfe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classdBgS__MoveBgActor"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classdBgS__MoveBgActor')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a></td></tr>
+<tr class="memitem:ad8847a8288b40f122694ad824ed4d541 inherit pub_attribs_classdBgS__MoveBgActor" id="r_ad8847a8288b40f122694ad824ed4d541"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdBgW.html">dBgW</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#ad8847a8288b40f122694ad824ed4d541">mpBgW</a></td></tr>
+<tr class="separator:ad8847a8288b40f122694ad824ed4d541 inherit pub_attribs_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130c733f697d98b9fba531abebd31ddd inherit pub_attribs_classdBgS__MoveBgActor" id="r_a130c733f697d98b9fba531abebd31ddd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a130c733f697d98b9fba531abebd31ddd">mBgMtx</a></td></tr>
+<tr class="separator:a130c733f697d98b9fba531abebd31ddd inherit pub_attribs_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_structfopAc__ac__c"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structfopAc__ac__c')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a></td></tr>
 <tr class="memitem:a3940a310a8b53a14576e0346be6fd824 inherit pub_attribs_structfopAc__ac__c" id="r_a3940a310a8b53a14576e0346be6fd824"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#a3940a310a8b53a14576e0346be6fd824">actor_type</a></td></tr>
 <tr class="separator:a3940a310a8b53a14576e0346be6fd824 inherit pub_attribs_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -343,21 +439,73 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a7eb2deef68973bd457820a8f7c93beb9 inherit pub_attribs_structleafdraw__class"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8526fd622b4cf39412ecfc0e7a6b02a inherit pub_attribs_structleafdraw__class" id="r_ae8526fd622b4cf39412ecfc0e7a6b02a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdraw__priority__class.html">draw_priority_class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structleafdraw__class.html#ae8526fd622b4cf39412ecfc0e7a6b02a">mDwPi</a></td></tr>
 <tr class="separator:ae8526fd622b4cf39412ecfc0e7a6b02a inherit pub_attribs_structleafdraw__class"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_structfopAc__ac__c"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_structfopAc__ac__c')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a></td></tr>
+<tr class="memitem:ab209508adeb84e2ef0bb2145ef6166e7 inherit pub_static_methods_structfopAc__ac__c" id="r_ab209508adeb84e2ef0bb2145ef6166e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#ab209508adeb84e2ef0bb2145ef6166e7">setStopStatus</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="fstload_8c.html#a7dd63b23746a64a9a58ba770d86359e3">status</a>)</td></tr>
+<tr class="separator:ab209508adeb84e2ef0bb2145ef6166e7 inherit pub_static_methods_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_classdBgS__MoveBgActor"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classdBgS__MoveBgActor')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a></td></tr>
+<tr class="memitem:a1e9c0dda2cb77daea76d947163a16a94 inherit pub_static_attribs_classdBgS__MoveBgActor" id="r_a1e9c0dda2cb77daea76d947163a16a94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a1e9c0dda2cb77daea76d947163a16a94">m_name</a></td></tr>
+<tr class="separator:a1e9c0dda2cb77daea76d947163a16a94 inherit pub_static_attribs_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409cdfef0e9e45f1b271a880bcf44adc inherit pub_static_attribs_classdBgS__MoveBgActor" id="r_a409cdfef0e9e45f1b271a880bcf44adc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#a409cdfef0e9e45f1b271a880bcf44adc">m_dzb_id</a></td></tr>
+<tr class="separator:a409cdfef0e9e45f1b271a880bcf44adc inherit pub_static_attribs_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaa984ae82ab406e8a32ad0b7325d918 inherit pub_static_attribs_classdBgS__MoveBgActor" id="r_abaa984ae82ab406e8a32ad0b7325d918"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="d__bg__s__movebg__actor_8h.html#abcd736e5725b7da5d2db43136523e859">MoveBGActor_SetFunc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdBgS__MoveBgActor.html#abaa984ae82ab406e8a32ad0b7325d918">m_set_func</a></td></tr>
+<tr class="separator:abaa984ae82ab406e8a32ad0b7325d918 inherit pub_static_attribs_classdBgS__MoveBgActor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_structfopAc__ac__c"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_structfopAc__ac__c')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a></td></tr>
 <tr class="memitem:af8a1fb73d0e5d083cb3a90baceee1f41 inherit pub_static_attribs_structfopAc__ac__c" id="r_af8a1fb73d0e5d083cb3a90baceee1f41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfopAc__ac__c.html#af8a1fb73d0e5d083cb3a90baceee1f41">stopStatus</a></td></tr>
 <tr class="separator:af8a1fb73d0e5d083cb3a90baceee1f41 inherit pub_static_attribs_structfopAc__ac__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Rider Gate. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a205b7b192655049c7645065928c8134e" name="a205b7b192655049c7645065928c8134e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a205b7b192655049c7645065928c8134e">&#9670;&#160;</a></span>create()</h2>
+<div class="textblock"><p>Shutter Wall (Switch) </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="ae4323d8945dcdea46489e1240e732894" name="ae4323d8945dcdea46489e1240e732894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4323d8945dcdea46489e1240e732894">&#9670;&#160;</a></span>MODE_e</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::create </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">enum</a> <a class="el" href="classdaSwShutter__c.html#ae4323d8945dcdea46489e1240e732894">daSwShutter_c::MODE_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae4323d8945dcdea46489e1240e732894af039939a996799e9ded8c53624619deb" name="ae4323d8945dcdea46489e1240e732894af039939a996799e9ded8c53624619deb"></a>MODE_WAIT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae4323d8945dcdea46489e1240e732894a70d9e4c10a97889248878b983e10823a" name="ae4323d8945dcdea46489e1240e732894a70d9e4c10a97889248878b983e10823a"></a>MODE_MOVE_DOWN_INIT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae4323d8945dcdea46489e1240e732894a93dab72a8ce2a9e87a01cda2884fb65b" name="ae4323d8945dcdea46489e1240e732894a93dab72a8ce2a9e87a01cda2884fb65b"></a>MODE_MOVE_DOWN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae4323d8945dcdea46489e1240e732894a54880f84e04fffed8182616970eebc9e" name="ae4323d8945dcdea46489e1240e732894a54880f84e04fffed8182616970eebc9e"></a>MODE_MOVE_DOWN_END&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a19dfb85a1f2faccaebfcc0f240b750e0" name="a19dfb85a1f2faccaebfcc0f240b750e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19dfb85a1f2faccaebfcc0f240b750e0">&#9670;&#160;</a></span>TYPE_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">enum</a> <a class="el" href="classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0">daSwShutter_c::TYPE_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a19dfb85a1f2faccaebfcc0f240b750e0a23039755196b926c9f5b897ddbc8bd61" name="a19dfb85a1f2faccaebfcc0f240b750e0a23039755196b926c9f5b897ddbc8bd61"></a>TYPE_ROCKWALL_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a19dfb85a1f2faccaebfcc0f240b750e0a8a4f2afabd7c9e9cf117c6d4f14ebb16" name="a19dfb85a1f2faccaebfcc0f240b750e0a8a4f2afabd7c9e9cf117c6d4f14ebb16"></a>TYPE_SUBDAN_e&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a21551aede7be7cb9a1a03a64562af6c0" name="a21551aede7be7cb9a1a03a64562af6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21551aede7be7cb9a1a03a64562af6c0">&#9670;&#160;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::create </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -367,14 +515,173 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae5759d41d3364bd80dc70c9a6065e083" name="ae5759d41d3364bd80dc70c9a6065e083"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5759d41d3364bd80dc70c9a6065e083">&#9670;&#160;</a></span>CreateHeap()</h2>
+<a id="a1a62ac8b40650cf4ef1bb3cd43e21f8f" name="a1a62ac8b40650cf4ef1bb3cd43e21f8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a62ac8b40650cf4ef1bb3cd43e21f8f">&#9670;&#160;</a></span>CreateHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::CreateHeap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classdBgS__MoveBgActor.html#a9874c73a7b14f4081890d69c11574c4f">dBgS_MoveBgActor</a>.</p>
+
+</div>
+</div>
+<a id="aa0f2945cea9ee473c4c6c8fc2febf5f8" name="aa0f2945cea9ee473c4c6c8fc2febf5f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0f2945cea9ee473c4c6c8fc2febf5f8">&#9670;&#160;</a></span>Delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::Delete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classdBgS__MoveBgActor.html#ac58709759d179fa47cb9af2b5e78455e">dBgS_MoveBgActor</a>.</p>
+
+</div>
+</div>
+<a id="a35a09d3726cfc6b2ad483672af44457d" name="a35a09d3726cfc6b2ad483672af44457d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a09d3726cfc6b2ad483672af44457d">&#9670;&#160;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::Draw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classdBgS__MoveBgActor.html#a7dea889ff72e08360c98d41bcd6dcfda">dBgS_MoveBgActor</a>.</p>
+
+</div>
+</div>
+<a id="a0d8fcfbacf3ff27dd96c8b7afa83cafd" name="a0d8fcfbacf3ff27dd96c8b7afa83cafd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d8fcfbacf3ff27dd96c8b7afa83cafd">&#9670;&#160;</a></span>Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::Execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> **&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classdBgS__MoveBgActor.html#a986db05ba3635bed624a02b238d3a472">dBgS_MoveBgActor</a>.</p>
+
+</div>
+</div>
+<a id="a53305936d73f157a0238b1012585ff4f" name="a53305936d73f157a0238b1012585ff4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53305936d73f157a0238b1012585ff4f">&#9670;&#160;</a></span>getModelType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::getModelType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ebfb8e71e0ac9b575e974f87479f614" name="a8ebfb8e71e0ac9b575e974f87479f614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ebfb8e71e0ac9b575e974f87479f614">&#9670;&#160;</a></span>getSwBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::getSwBit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37a56218c6e74106a8a0a6f10471fadf" name="a37a56218c6e74106a8a0a6f10471fadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a56218c6e74106a8a0a6f10471fadf">&#9670;&#160;</a></span>init_modeMoveDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::CreateHeap </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDown </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -384,14 +691,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="abbae7d84917632d248a3b2c0403edabd" name="abbae7d84917632d248a3b2c0403edabd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbae7d84917632d248a3b2c0403edabd">&#9670;&#160;</a></span>Delete()</h2>
+<a id="a5dbb286b7cef49b219ff15030d289311" name="a5dbb286b7cef49b219ff15030d289311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dbb286b7cef49b219ff15030d289311">&#9670;&#160;</a></span>init_modeMoveDownEnd()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::Delete </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDownEnd </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -401,14 +708,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa70dd84c4714a1ec3114a3c85fbc3791" name="aa70dd84c4714a1ec3114a3c85fbc3791"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa70dd84c4714a1ec3114a3c85fbc3791">&#9670;&#160;</a></span>Draw()</h2>
+<a id="a97b3352de417c7b1cc88c1352d27c758" name="a97b3352de417c7b1cc88c1352d27c758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b3352de417c7b1cc88c1352d27c758">&#9670;&#160;</a></span>init_modeMoveDownInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::Draw </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDownInit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -418,32 +725,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a5cdb6a3935f7034d7a323f9cbc18b939" name="a5cdb6a3935f7034d7a323f9cbc18b939"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cdb6a3935f7034d7a323f9cbc18b939">&#9670;&#160;</a></span>Execute()</h2>
+<a id="a33300a08568f5cca32a3734e0f325b32" name="a33300a08568f5cca32a3734e0f325b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33300a08568f5cca32a3734e0f325b32">&#9670;&#160;</a></span>init_modeWait()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::Execute </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(**)&#160;</td>
-          <td class="paramname"><em>param_0</em>[3][4]</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3f6f95c4570d1c5e4368ead2aaca6146" name="a3f6f95c4570d1c5e4368ead2aaca6146"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f6f95c4570d1c5e4368ead2aaca6146">&#9670;&#160;</a></span>init_modeMoveDown()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDown </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeWait </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -453,65 +742,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a9e872c4aab0f4f3c0a8db1cb2a5f6f73" name="a9e872c4aab0f4f3c0a8db1cb2a5f6f73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e872c4aab0f4f3c0a8db1cb2a5f6f73">&#9670;&#160;</a></span>init_modeMoveDownEnd()</h2>
+<a id="afed8ce1aefeb7154f25b0048aed9d918" name="afed8ce1aefeb7154f25b0048aed9d918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed8ce1aefeb7154f25b0048aed9d918">&#9670;&#160;</a></span>modeMoveDown()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDownEnd </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a75441b553cb6997773ec3bdd2d6342f8" name="a75441b553cb6997773ec3bdd2d6342f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75441b553cb6997773ec3bdd2d6342f8">&#9670;&#160;</a></span>init_modeMoveDownInit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeMoveDownInit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae27f8073ee4393623faff5e6bcadedff" name="ae27f8073ee4393623faff5e6bcadedff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae27f8073ee4393623faff5e6bcadedff">&#9670;&#160;</a></span>init_modeWait()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::init_modeWait </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1953ad16a0a8c46c9913677c10595db2" name="a1953ad16a0a8c46c9913677c10595db2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1953ad16a0a8c46c9913677c10595db2">&#9670;&#160;</a></span>modeMoveDown()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeMoveDown </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeMoveDown </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -538,14 +776,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ac49722fd25bfa6e6315f9615b8601230" name="ac49722fd25bfa6e6315f9615b8601230"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac49722fd25bfa6e6315f9615b8601230">&#9670;&#160;</a></span>modeMoveDownInit()</h2>
+<a id="a5e941961506f29f96fa35be6994b43d9" name="a5e941961506f29f96fa35be6994b43d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e941961506f29f96fa35be6994b43d9">&#9670;&#160;</a></span>modeMoveDownInit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeMoveDownInit </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeMoveDownInit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -555,14 +793,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab3c1fb78ef795ca60f042e45e2eef4ed" name="ab3c1fb78ef795ca60f042e45e2eef4ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3c1fb78ef795ca60f042e45e2eef4ed">&#9670;&#160;</a></span>modeWait()</h2>
+<a id="a7356d455837b529fcc965853a09d50a3" name="a7356d455837b529fcc965853a09d50a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7356d455837b529fcc965853a09d50a3">&#9670;&#160;</a></span>modeWait()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeWait </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::modeWait </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -572,14 +810,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aff14e5c4dd9871397269ab802649f615" name="aff14e5c4dd9871397269ab802649f615"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff14e5c4dd9871397269ab802649f615">&#9670;&#160;</a></span>moveMain()</h2>
+<a id="ad5d0ebf0ab5ce5846b0dd82a5c7af382" name="ad5d0ebf0ab5ce5846b0dd82a5c7af382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5d0ebf0ab5ce5846b0dd82a5c7af382">&#9670;&#160;</a></span>moveMain()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::moveMain </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::moveMain </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -589,14 +827,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a66dccdeb627d8a6e425b59b83c00b5aa" name="a66dccdeb627d8a6e425b59b83c00b5aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66dccdeb627d8a6e425b59b83c00b5aa">&#9670;&#160;</a></span>setBaseMtx()</h2>
+<a id="a9a52effae31c56d9cd1043a41a683c72" name="a9a52effae31c56d9cd1043a41a683c72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a52effae31c56d9cd1043a41a683c72">&#9670;&#160;</a></span>setBaseMtx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::setBaseMtx </td>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daSwShutter_c::setBaseMtx </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -607,24 +845,240 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="af1ac0e44daf2b731374947edff9a1858" name="af1ac0e44daf2b731374947edff9a1858"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1ac0e44daf2b731374947edff9a1858">&#9670;&#160;</a></span>field_0x568</h2>
+<a id="abcd4b877d515832beafab0317090c1dd" name="abcd4b877d515832beafab0317090c1dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd4b877d515832beafab0317090c1dd">&#9670;&#160;</a></span>field_0x5b0</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daSwShutter_c::field_0x568[0x5e8 - 0x568]</td>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::field_0x5b0</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac66fa8d7bb4fe1671c341cd0be6418d2" name="ac66fa8d7bb4fe1671c341cd0be6418d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac66fa8d7bb4fe1671c341cd0be6418d2">&#9670;&#160;</a></span>field_0x5B4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daSwShutter_c::field_0x5B4[0x5B8 - 0x5B4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26810779b8a0c4a80015cc13d950dfe2" name="a26810779b8a0c4a80015cc13d950dfe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26810779b8a0c4a80015cc13d950dfe2">&#9670;&#160;</a></span>field_0x5e4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daSwShutter_c::field_0x5e4[0x5e8 - 0x5e4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8425e0de32b5bd3788ecd22ea7bf579" name="ac8425e0de32b5bd3788ecd22ea7bf579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8425e0de32b5bd3788ecd22ea7bf579">&#9670;&#160;</a></span>mCounter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daSwShutter_c::mCounter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ff4823856c7b2c9dd364c4e21525d92" name="a5ff4823856c7b2c9dd364c4e21525d92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff4823856c7b2c9dd364c4e21525d92">&#9670;&#160;</a></span>mEmitterID0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daSwShutter_c::mEmitterID0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac414ae3590ac553f59bb484c7b0fd54f" name="ac414ae3590ac553f59bb484c7b0fd54f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac414ae3590ac553f59bb484c7b0fd54f">&#9670;&#160;</a></span>mEmitterID1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> daSwShutter_c::mEmitterID1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35d7de3402f50f36be21ad777bcc09dd" name="a35d7de3402f50f36be21ad777bcc09dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35d7de3402f50f36be21ad777bcc09dd">&#9670;&#160;</a></span>mMaxAtten</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mMaxAtten</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69f80e8ab46e4b29c7b740759925c3d6" name="a69f80e8ab46e4b29c7b740759925c3d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f80e8ab46e4b29c7b740759925c3d6">&#9670;&#160;</a></span>mMinAtten</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mMinAtten</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a663885e9cc51618155630558b9b93e3c" name="a663885e9cc51618155630558b9b93e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663885e9cc51618155630558b9b93e3c">&#9670;&#160;</a></span>mMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daSwShutter_c::mMode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4df224930013f12602030b409fa29522" name="a4df224930013f12602030b409fa29522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4df224930013f12602030b409fa29522">&#9670;&#160;</a></span>mModelType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daSwShutter_c::mModelType</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a297623d96d7f8b812fe1b6fb41186a" name="a7a297623d96d7f8b812fe1b6fb41186a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a297623d96d7f8b812fe1b6fb41186a">&#9670;&#160;</a></span>mPhase</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> daSwShutter_c::mPhase</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acea55cb3fece8d30551b164321ab932e" name="acea55cb3fece8d30551b164321ab932e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea55cb3fece8d30551b164321ab932e">&#9670;&#160;</a></span>mpModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJ3DModel.html">J3DModel</a>* daSwShutter_c::mpModel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f107c6c9f74c98f89c11fd438fdd4b2" name="a2f107c6c9f74c98f89c11fd438fdd4b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f107c6c9f74c98f89c11fd438fdd4b2">&#9670;&#160;</a></span>mShakeAmpY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mShakeAmpY</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a758ad393f4d7298721907dd5717a5a06" name="a758ad393f4d7298721907dd5717a5a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758ad393f4d7298721907dd5717a5a06">&#9670;&#160;</a></span>mShakeAmpZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mShakeAmpZ</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2022dd0a9abf225d2dccb51d86feb81d" name="a2022dd0a9abf225d2dccb51d86feb81d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2022dd0a9abf225d2dccb51d86feb81d">&#9670;&#160;</a></span>mShakeAtten</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mShakeAtten</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0b626998dd06e40c053f5ddea460249" name="ac0b626998dd06e40c053f5ddea460249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b626998dd06e40c053f5ddea460249">&#9670;&#160;</a></span>mShakeRot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcsXyz.html">csXyz</a> daSwShutter_c::mShakeRot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71f78db6bfa079e70f2f6a1b2cf48279" name="a71f78db6bfa079e70f2f6a1b2cf48279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71f78db6bfa079e70f2f6a1b2cf48279">&#9670;&#160;</a></span>mShakeStrength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daSwShutter_c::mShakeStrength</td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

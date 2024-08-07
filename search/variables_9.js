@@ -76,7 +76,7 @@ var searchData=
   ['init_5fspeed_5fy_5frange_73',['INIT_SPEED_Y_RANGE',['../d__a__obj__bky__rock_8cpp.html#ab8ab065f3797b28153888cc76f2ad2a4',1,'d_a_obj_bky_rock.cpp']]],
   ['initfn_74',['initFn',['../structdaObjYobikusa__c_1_1actionFuncEntry.html#ae327c0ede6fed9f4f2c87ed3f31ca60a',1,'daObjYobikusa_c::actionFuncEntry']]],
   ['initialize_5ffunc_75',['initialize_func',['../structDBCommTable.html#ac28b5f14781abcab55d1430c83e2db5c',1,'DBCommTable']]],
-  ['initialized_76',['initialized',['../d__a__obj__myogan_8cpp.html#aedeffc7d23da25d52b9a50045189fe2b',1,'initialized:&#160;d_a_obj_myogan.cpp'],['../d__a__e__ph_8cpp.html#aa827de375767ddd16522edceea8b3022',1,'initialized:&#160;d_a_e_ph.cpp'],['../alloc_8c.html#ad06983e7f6e71b233ea7ff3dee1952f2',1,'initialized:&#160;alloc.c'],['../Pad_8c.html#a3813e216dcea25694a499dd9bb71a02c',1,'Initialized:&#160;Pad.c']]],
+  ['initialized_76',['initialized',['../d__a__e__ph_8cpp.html#aa827de375767ddd16522edceea8b3022',1,'initialized:&#160;d_a_e_ph.cpp'],['../alloc_8c.html#ad06983e7f6e71b233ea7ff3dee1952f2',1,'initialized:&#160;alloc.c'],['../Pad_8c.html#a3813e216dcea25694a499dd9bb71a02c',1,'Initialized:&#160;Pad.c'],['../d__a__obj__myogan_8cpp.html#aedeffc7d23da25d52b9a50045189fe2b',1,'initialized:&#160;d_a_obj_myogan.cpp']]],
   ['initside0_77',['initSide0',['../d__a__spinner_8cpp.html#a23f0d1a4bbd095d30f671899390a44dd',1,'d_a_spinner.cpp']]],
   ['initside1_78',['initSide1',['../d__a__spinner_8cpp.html#a2d3d66437c12a189f3f36621029b5b3c',1,'d_a_spinner.cpp']]],
   ['initsideold0_79',['initSideOld0',['../d__a__spinner_8cpp.html#a46faf30329f7f4b1f5e12d49c7ce37d5',1,'d_a_spinner.cpp']]],

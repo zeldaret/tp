@@ -1,7 +1,9 @@
 <map id="daSwShutter_c" name="daSwShutter_c">
-<area shape="rect" id="Node000001" title="Rider Gate." alt="" coords="5,153,116,178"/>
-<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="15,79,106,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,120,63,152,58,152,58,120"/>
-<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="6,5,115,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,46,63,79,58,79,58,46"/>
+<area shape="rect" id="Node000001" title="Shutter Wall (Switch)" alt="" coords="20,226,130,252"/>
+<area shape="rect" id="Node000002" href="$classdBgS__MoveBgActor.html" title=" " alt="" coords="5,153,145,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,194,78,226,72,226,72,194"/>
+<area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="30,79,120,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,120,78,152,72,152,72,120"/>
+<area shape="rect" id="Node000004" href="$structleafdraw__class.html" title=" " alt="" coords="21,5,129,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,46,78,79,72,79,72,46"/>
 </map>

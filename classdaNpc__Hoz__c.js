@@ -52,6 +52,7 @@ var classdaNpc__Hoz__c =
     [ "setAttnPos", "classdaNpc__Hoz__c.html#a1e297ccaf1fe0cd5595f6c2224c88b28", null ],
     [ "setCollision", "classdaNpc__Hoz__c.html#a0bf642fc9298eb1d61f7ffb2255e2442", null ],
     [ "setParam", "classdaNpc__Hoz__c.html#aa1959606838eee17aa35fb997c9c6622", null ],
+    [ "setPotBreakFlag", "classdaNpc__Hoz__c.html#ad9310627486691e5f5c2d3764b29e8f3", null ],
     [ "srchActors", "classdaNpc__Hoz__c.html#a59d848acbb385e750eefdf95ae9df278", null ],
     [ "talk", "classdaNpc__Hoz__c.html#a65807f43db9f75cc08a9e30563986e90", null ],
     [ "wait", "classdaNpc__Hoz__c.html#a0d4b5358230291596eef7ee0e3620278", null ],
@@ -62,8 +63,9 @@ var classdaNpc__Hoz__c =
     [ "waitTw", "classdaNpc__Hoz__c.html#a82da96a172fd27ab71f4e488135d5d3b", null ],
     [ "waitTwilightBattle", "classdaNpc__Hoz__c.html#a9ffd1a6e6d5819dc9cf8ed1dc45b4bfe", null ],
     [ "field_0xe40", "classdaNpc__Hoz__c.html#a3007d8632434f9e61506967005b175cd", null ],
-    [ "field_0xf8e", "classdaNpc__Hoz__c.html#a3812ced10f7e8b87309ee1e4ea51f501", null ],
+    [ "field_0xf8f", "classdaNpc__Hoz__c.html#a73e55cda846e936f4e2715965278749d", null ],
     [ "mCutList", "classdaNpc__Hoz__c.html#aa1d07aaea9334973b5782d66465b76e3", null ],
     [ "mCutNameList", "classdaNpc__Hoz__c.html#a28bb4800a980da832c935d90b66077bb", null ],
-    [ "mGameStartFlag", "classdaNpc__Hoz__c.html#ac706c4b8d036760191b9ca97deb77dcf", null ]
+    [ "mGameStartFlag", "classdaNpc__Hoz__c.html#ac706c4b8d036760191b9ca97deb77dcf", null ],
+    [ "mPotBreakFlag", "classdaNpc__Hoz__c.html#a9a860164c263844945c0d2910156626e", null ]
 ];

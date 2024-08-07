@@ -42,6 +42,8 @@ var hierarchy =
     [ "_GXVtxAttrFmtList", "struct__GXVtxAttrFmtList.html", null ],
     [ "_GXVtxDescList", "struct__GXVtxDescList.html", null ],
     [ "_TRK_Msg", "struct__TRK__Msg.html", null ],
+    [ "_ZraMark_Hahen_c", "class__ZraMark__Hahen__c.html", null ],
+    [ "_ZraMark_Hahen_Mng_c", "class__ZraMark__Hahen__Mng__c.html", null ],
     [ "action_class< A0 >", "structaction__class.html", null ],
     [ "action_class< dEvLib_callback_c >", "structaction__class.html", null ],
     [ "actor_attention_types", "structactor__attention__types.html", null ],
@@ -634,7 +636,6 @@ var hierarchy =
     [ "daE_ZH_HIO_c", "classdaE__ZH__HIO__c.html", null ],
     [ "daE_ZM_HIO_c", "classdaE__ZM__HIO__c.html", null ],
     [ "daE_ZS_HIO_c", "classdaE__ZS__HIO__c.html", null ],
-    [ "daFireWood2_HIO_c", "classdaFireWood2__HIO__c.html", null ],
     [ "daFmtMng_Path_c", "structdaFmtMng__Path__c.html", [
       [ "FmtPos_c", "structFmtPos__c.html", null ]
     ] ],
@@ -915,6 +916,7 @@ var hierarchy =
     [ "daObjVolcBall_c::volc_param_c", "classdaObjVolcBall__c_1_1volc__param__c.html", null ],
     [ "daObjYobikusa_c::actionFuncEntry", "structdaObjYobikusa__c_1_1actionFuncEntry.html", null ],
     [ "daObjYobikusa_c::attributes", "structdaObjYobikusa__c_1_1attributes.html", null ],
+    [ "daObjZraMark_Hio_Param_c", "classdaObjZraMark__Hio__Param__c.html", null ],
     [ "daOnsTaru_HIO_c", "classdaOnsTaru__HIO__c.html", null ],
     [ "daOptiLift_HIO_c", "classdaOptiLift__HIO__c.html", null ],
     [ "daPeru_Param_c", "classdaPeru__Param__c.html", null ],
@@ -936,7 +938,6 @@ var hierarchy =
     [ "daStairBlock_HIO_c", "classdaStairBlock__HIO__c.html", null ],
     [ "daSus_c::data_c", "classdaSus__c_1_1data__c.html", null ],
     [ "daSus_c::room_c", "classdaSus__c_1_1room__c.html", null ],
-    [ "daSwShutter_HIO_c", "classdaSwShutter__HIO__c.html", null ],
     [ "daSyRock_HIO_c", "classdaSyRock__HIO__c.html", null ],
     [ "daTaFence_HIO_c", "classdaTaFence__HIO__c.html", null ],
     [ "daTag_AllMato_c", "structdaTag__AllMato__c.html", null ],
@@ -2793,8 +2794,6 @@ var hierarchy =
     [ "leafdraw_class", "structleafdraw__class.html", [
       [ "fopAc_ac_c", "structfopAc__ac__c.html", [
         [ "_Fairy_Feather_c", "class__Fairy__Feather__c.html", null ],
-        [ "_ZraMark_Hahen_Mng_c", "class__ZraMark__Hahen__Mng__c.html", null ],
-        [ "_ZraMark_Hahen_c", "class__ZraMark__Hahen__c.html", null ],
         [ "dBgS_MoveBgActor", "classdBgS__MoveBgActor.html", [
           [ "daBarDesk_c", "classdaBarDesk__c.html", null ],
           [ "daBgObj_c", "classdaBgObj__c.html", null ],
@@ -2851,6 +2850,7 @@ var hierarchy =
           [ "daObjZraRock_c", "classdaObjZraRock__c.html", null ],
           [ "daObj_Sekizo_c", "classdaObj__Sekizo__c.html", null ],
           [ "daSaidan_c", "classdaSaidan__c.html", null ],
+          [ "daSwShutter_c", "classdaSwShutter__c.html", null ],
           [ "daTagHjump_c", "classdaTagHjump__c.html", null ],
           [ "daTboxBase_c", "classdaTboxBase__c.html", [
             [ "daTbox2_c", "classdaTbox2__c.html", null ],
@@ -3280,7 +3280,6 @@ var hierarchy =
         [ "daSus_c", "classdaSus__c.html", null ],
         [ "daSwBall_c", "classdaSwBall__c.html", null ],
         [ "daSwLBall_c", "classdaSwLBall__c.html", null ],
-        [ "daSwShutter_c", "classdaSwShutter__c.html", null ],
         [ "daSwTime_c", "classdaSwTime__c.html", null ],
         [ "daSwc00_c", "classdaSwc00__c.html", null ],
         [ "daSwhit0_c", "classdaSwhit0__c.html", null ],
@@ -3651,6 +3650,7 @@ var hierarchy =
       [ "dScnPly_preLoad_HIO_c", "classdScnPly__preLoad__HIO__c.html", null ],
       [ "daBarDesk_HIO_c", "classdaBarDesk__HIO__c.html", null ],
       [ "daBsGate_HIO_c", "classdaBsGate__HIO__c.html", null ],
+      [ "daFireWood2_HIO_c", "classdaFireWood2__HIO__c.html", null ],
       [ "daFireWood_HIO_c", "classdaFireWood__HIO__c.html", null ],
       [ "daHeavySw_HIO_c", "classdaHeavySw__HIO__c.html", null ],
       [ "daHsTarget_HIO_c", "classdaHsTarget__HIO__c.html", null ],
@@ -3666,6 +3666,7 @@ var hierarchy =
       [ "daMyna_HIO_c", "classdaMyna__HIO__c.html", null ],
       [ "daSaidan_HIO_c", "structdaSaidan__HIO__c.html", null ],
       [ "daSnowEffTag_HIO_c", "classdaSnowEffTag__HIO__c.html", null ],
+      [ "daSwShutter_HIO_c", "classdaSwShutter__HIO__c.html", null ],
       [ "daTagCstaSw_HIO_c", "classdaTagCstaSw__HIO__c.html", null ],
       [ "daTagPoFire_HIO_c", "classdaTagPoFire__HIO__c.html", null ],
       [ "daTbox_HIO_c", "classdaTbox__HIO__c.html", null ],

@@ -1,0 +1,2456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: rel/d/a/obj/d_a_obj_zraMark/d_a_obj_zraMark_NONMATCHING.cpp File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('d__a__obj__zraMark__NONMATCHING_8cpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">d_a_obj_zraMark_NONMATCHING.cpp File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a62492befb25ff0d703a54a7989f5d7ee" id="r_a62492befb25ff0d703a54a7989f5d7ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a62492befb25ff0d703a54a7989f5d7ee">createSolidHeap__FP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a62492befb25ff0d703a54a7989f5d7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8cf471e153216968f28ef63a462befc" id="r_ac8cf471e153216968f28ef63a462befc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ac8cf471e153216968f28ef63a462befc">Create__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:ac8cf471e153216968f28ef63a462befc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c9e53a727ba957479d2eef82b4ae72" id="r_a14c9e53a727ba957479d2eef82b4ae72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a14c9e53a727ba957479d2eef82b4ae72">CreateHeap__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a14c9e53a727ba957479d2eef82b4ae72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa121d955add98d1caf161196a5c51ab2" id="r_aa121d955add98d1caf161196a5c51ab2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa121d955add98d1caf161196a5c51ab2">Execute__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:aa121d955add98d1caf161196a5c51ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad19f4b2a05d8e0215de4e628ba8d2eeb" id="r_ad19f4b2a05d8e0215de4e628ba8d2eeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ad19f4b2a05d8e0215de4e628ba8d2eeb">Draw__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:ad19f4b2a05d8e0215de4e628ba8d2eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac000c9b83c1b39f6e7cef59f51c4ae5f" id="r_ac000c9b83c1b39f6e7cef59f51c4ae5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ac000c9b83c1b39f6e7cef59f51c4ae5f">Delete__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:ac000c9b83c1b39f6e7cef59f51c4ae5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb590fad9a388d811b6396223a637af5" id="r_afb590fad9a388d811b6396223a637af5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#afb590fad9a388d811b6396223a637af5">getType__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:afb590fad9a388d811b6396223a637af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e9ba90bffef547e0d69ca5afe058746" id="r_a6e9ba90bffef547e0d69ca5afe058746"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a6e9ba90bffef547e0d69ca5afe058746">setBaseMtx__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a6e9ba90bffef547e0d69ca5afe058746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0de303f3fffb60a853fcc340a22c6b0e" id="r_a0de303f3fffb60a853fcc340a22c6b0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a0de303f3fffb60a853fcc340a22c6b0e">col_init__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a0de303f3fffb60a853fcc340a22c6b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4efe8565a79dc22f5ed8a65f18a70b26" id="r_a4efe8565a79dc22f5ed8a65f18a70b26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a4efe8565a79dc22f5ed8a65f18a70b26">col_set__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a4efe8565a79dc22f5ed8a65f18a70b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32fc5617da3823fbd0af84606b63a885" id="r_a32fc5617da3823fbd0af84606b63a885"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a32fc5617da3823fbd0af84606b63a885">schHoz__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a32fc5617da3823fbd0af84606b63a885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38fbae9712d21a4ea52c4eea11cf6152" id="r_a38fbae9712d21a4ea52c4eea11cf6152"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a38fbae9712d21a4ea52c4eea11cf6152">entryPointer__14daObjZraMark_cFP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a38fbae9712d21a4ea52c4eea11cf6152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b0c0968733be6e34d226aa1c2aeb06" id="r_a89b0c0968733be6e34d226aa1c2aeb06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a89b0c0968733be6e34d226aa1c2aeb06">informBlast__14daObjZraMark_cFv</a> ()</td></tr>
+<tr class="separator:a89b0c0968733be6e34d226aa1c2aeb06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f68b774b7e11e347db2ab64350851bb" id="r_a5f68b774b7e11e347db2ab64350851bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5f68b774b7e11e347db2ab64350851bb">daObjZraMark_Execute__FP14daObjZraMark_c</a> ()</td></tr>
+<tr class="separator:a5f68b774b7e11e347db2ab64350851bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ab0717bf225927fc6c3add82fe66dc" id="r_a57ab0717bf225927fc6c3add82fe66dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a57ab0717bf225927fc6c3add82fe66dc">daObjZraMark_Draw__FP14daObjZraMark_c</a> ()</td></tr>
+<tr class="separator:a57ab0717bf225927fc6c3add82fe66dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea7e36debe2648241f1fdac83c77cb2" id="r_a1ea7e36debe2648241f1fdac83c77cb2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a1ea7e36debe2648241f1fdac83c77cb2">daObjZraMark_IsDelete__FP14daObjZraMark_c</a> ()</td></tr>
+<tr class="separator:a1ea7e36debe2648241f1fdac83c77cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa13261a299c11f94ef2fd18ba9a187ee" id="r_aa13261a299c11f94ef2fd18ba9a187ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa13261a299c11f94ef2fd18ba9a187ee">daObjZraMark_Delete__FP14daObjZraMark_c</a> ()</td></tr>
+<tr class="separator:aa13261a299c11f94ef2fd18ba9a187ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b220308556407006bd0cb2f66e52e3b" id="r_a5b220308556407006bd0cb2f66e52e3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5b220308556407006bd0cb2f66e52e3b">daObjZraMark_create__FP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a5b220308556407006bd0cb2f66e52e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10761e447739183701b799bfa546b57f" id="r_a10761e447739183701b799bfa546b57f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a10761e447739183701b799bfa546b57f">create__16_ZraMark_Hahen_cFRC4cXyzScScScSc</a> ()</td></tr>
+<tr class="separator:a10761e447739183701b799bfa546b57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d92270ec6cf3526d79eb4ee73587ee8" id="r_a0d92270ec6cf3526d79eb4ee73587ee8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a0d92270ec6cf3526d79eb4ee73587ee8">loadModel__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:a0d92270ec6cf3526d79eb4ee73587ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46c41fe8d791612aca0d0e0448767bc9" id="r_a46c41fe8d791612aca0d0e0448767bc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a46c41fe8d791612aca0d0e0448767bc9">init__16_ZraMark_Hahen_cFRC4cXyzScScSc</a> ()</td></tr>
+<tr class="separator:a46c41fe8d791612aca0d0e0448767bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531c3445ebe3d44b42a64f3024dcc98d" id="r_a531c3445ebe3d44b42a64f3024dcc98d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a531c3445ebe3d44b42a64f3024dcc98d">calcSpeed__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:a531c3445ebe3d44b42a64f3024dcc98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51f679c40b2c490fa103d98963d7cdea" id="r_a51f679c40b2c490fa103d98963d7cdea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a51f679c40b2c490fa103d98963d7cdea">setMtx__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:a51f679c40b2c490fa103d98963d7cdea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea18ed6112424ad36e2648fd5c21139f" id="r_aea18ed6112424ad36e2648fd5c21139f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aea18ed6112424ad36e2648fd5c21139f">draw__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:aea18ed6112424ad36e2648fd5c21139f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8f98172689a624ab49fd1a6e17a6b0" id="r_a0c8f98172689a624ab49fd1a6e17a6b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a0c8f98172689a624ab49fd1a6e17a6b0">create__20_ZraMark_Hahen_Mng_cFRC4cXyzScScScSc</a> ()</td></tr>
+<tr class="separator:a0c8f98172689a624ab49fd1a6e17a6b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e79b87ececb84c0f02025f8f6f83d3" id="r_ac4e79b87ececb84c0f02025f8f6f83d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ac4e79b87ececb84c0f02025f8f6f83d3">calc__20_ZraMark_Hahen_Mng_cFv</a> ()</td></tr>
+<tr class="separator:ac4e79b87ececb84c0f02025f8f6f83d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a038fb85b727fec7c8360983d010d5cc8" id="r_a038fb85b727fec7c8360983d010d5cc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a038fb85b727fec7c8360983d010d5cc8">draw__20_ZraMark_Hahen_Mng_cFv</a> ()</td></tr>
+<tr class="separator:a038fb85b727fec7c8360983d010d5cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef7d15c31e2ca180b630ebf5b61e786c" id="r_aef7d15c31e2ca180b630ebf5b61e786c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aef7d15c31e2ca180b630ebf5b61e786c">func_80D43ACC</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">_this</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:aef7d15c31e2ca180b630ebf5b61e786c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a616ea640ac31d2433fd8dc0de0d94560" id="r_a616ea640ac31d2433fd8dc0de0d94560"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a616ea640ac31d2433fd8dc0de0d94560">__dt__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:a616ea640ac31d2433fd8dc0de0d94560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04ad2a286fa196fc4a22d76f6bf1527" id="r_af04ad2a286fa196fc4a22d76f6bf1527"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#af04ad2a286fa196fc4a22d76f6bf1527">__ct__16_ZraMark_Hahen_cFv</a> ()</td></tr>
+<tr class="separator:af04ad2a286fa196fc4a22d76f6bf1527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68cb6e1a90d818f2be184c225f62556" id="r_ad68cb6e1a90d818f2be184c225f62556"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ad68cb6e1a90d818f2be184c225f62556">__ct__11J3DLightObjFv</a> ()</td></tr>
+<tr class="separator:ad68cb6e1a90d818f2be184c225f62556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c143a3a5be4894264a7fbd9f588cd7e" id="r_a2c143a3a5be4894264a7fbd9f588cd7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a2c143a3a5be4894264a7fbd9f588cd7e">__dt__18daNpcF_ActorMngr_cFv</a> ()</td></tr>
+<tr class="separator:a2c143a3a5be4894264a7fbd9f588cd7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e481d9497b2e64808883c0bef17780" id="r_a00e481d9497b2e64808883c0bef17780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a00e481d9497b2e64808883c0bef17780">__ct__18daNpcF_ActorMngr_cFv</a> ()</td></tr>
+<tr class="separator:a00e481d9497b2e64808883c0bef17780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dda5d981dca736934f3b7694b4ca1cd" id="r_a9dda5d981dca736934f3b7694b4ca1cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a9dda5d981dca736934f3b7694b4ca1cd">__dt__8cM3dGCylFv</a> ()</td></tr>
+<tr class="separator:a9dda5d981dca736934f3b7694b4ca1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0377e6e071fd0bf35e1cd21d4a4cb3b4" id="r_a0377e6e071fd0bf35e1cd21d4a4cb3b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a0377e6e071fd0bf35e1cd21d4a4cb3b4">__dt__8cM3dGAabFv</a> ()</td></tr>
+<tr class="separator:a0377e6e071fd0bf35e1cd21d4a4cb3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af2a116d021312cb48ab35e2aee4ef1" id="r_a7af2a116d021312cb48ab35e2aee4ef1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a7af2a116d021312cb48ab35e2aee4ef1">scaleM__14mDoMtx_stack_cFfff</a> ()</td></tr>
+<tr class="separator:a7af2a116d021312cb48ab35e2aee4ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eeb428e558beee82006ce8e65452aa8" id="r_a6eeb428e558beee82006ce8e65452aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a6eeb428e558beee82006ce8e65452aa8">scaleM__14mDoMtx_stack_cFRC4cXyz</a> ()</td></tr>
+<tr class="separator:a6eeb428e558beee82006ce8e65452aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22dcae239462f49c8541e56fa38fe14c" id="r_a22dcae239462f49c8541e56fa38fe14c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a22dcae239462f49c8541e56fa38fe14c">XYZrotM__14mDoMtx_stack_cFRC5csXyz</a> ()</td></tr>
+<tr class="separator:a22dcae239462f49c8541e56fa38fe14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c949b29ce3c185e8353c408b5a31a48" id="r_a6c949b29ce3c185e8353c408b5a31a48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a6c949b29ce3c185e8353c408b5a31a48">mDoExt_modelUpdateDL__FP8J3DModel</a> ()</td></tr>
+<tr class="separator:a6c949b29ce3c185e8353c408b5a31a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46272bdb6711d736ce226977d5c3dca1" id="r_a46272bdb6711d736ce226977d5c3dca1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a46272bdb6711d736ce226977d5c3dca1">mDoExt_J3DModel__create__FP12J3DModelDataUlUl</a> ()</td></tr>
+<tr class="separator:a46272bdb6711d736ce226977d5c3dca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a085f3a34ce186ab6e202a97581a1f68a" id="r_a085f3a34ce186ab6e202a97581a1f68a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a085f3a34ce186ab6e202a97581a1f68a">__ct__10fopAc_ac_cFv</a> ()</td></tr>
+<tr class="separator:a085f3a34ce186ab6e202a97581a1f68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85524cdcee98fb8663b8d6037d1785b8" id="r_a85524cdcee98fb8663b8d6037d1785b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a85524cdcee98fb8663b8d6037d1785b8">fopAcM_SearchByName__FsPP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a85524cdcee98fb8663b8d6037d1785b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc6634629cb51e7c6154aa5ec92055c7" id="r_adc6634629cb51e7c6154aa5ec92055c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#adc6634629cb51e7c6154aa5ec92055c7">fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl</a> ()</td></tr>
+<tr class="separator:adc6634629cb51e7c6154aa5ec92055c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81175f49b99856cae1d4e5b6c8551164" id="r_a81175f49b99856cae1d4e5b6c8551164"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a81175f49b99856cae1d4e5b6c8551164">fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff</a> ()</td></tr>
+<tr class="separator:a81175f49b99856cae1d4e5b6c8551164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa754a77e07f518b5e17d203185ceea09" id="r_aa754a77e07f518b5e17d203185ceea09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa754a77e07f518b5e17d203185ceea09">dComIfG_resLoad__FP30request_of_phase_process_classPCc</a> ()</td></tr>
+<tr class="separator:aa754a77e07f518b5e17d203185ceea09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01b93c5502abc9d1a4c58f5f1acf94bb" id="r_a01b93c5502abc9d1a4c58f5f1acf94bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a01b93c5502abc9d1a4c58f5f1acf94bb">dComIfG_resDelete__FP30request_of_phase_process_classPCc</a> ()</td></tr>
+<tr class="separator:a01b93c5502abc9d1a4c58f5f1acf94bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a627e1ce812aa5a4c18c3536413c28baa" id="r_a627e1ce812aa5a4c18c3536413c28baa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a627e1ce812aa5a4c18c3536413c28baa">dComIfGp_getReverb__Fi</a> ()</td></tr>
+<tr class="separator:a627e1ce812aa5a4c18c3536413c28baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59a83dc2646cfbec35f3fb91b2158ad9" id="r_a59a83dc2646cfbec35f3fb91b2158ad9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a59a83dc2646cfbec35f3fb91b2158ad9">getRes__14dRes_control_cFPCclP11dRes_info_ci</a> ()</td></tr>
+<tr class="separator:a59a83dc2646cfbec35f3fb91b2158ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4cd09eb67ed2fb9bc6e87d5cea71757" id="r_ae4cd09eb67ed2fb9bc6e87d5cea71757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ae4cd09eb67ed2fb9bc6e87d5cea71757">__ct__10dCcD_GSttsFv</a> ()</td></tr>
+<tr class="separator:ae4cd09eb67ed2fb9bc6e87d5cea71757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a94b47c3c8077e791c19d2868c37279" id="r_a8a94b47c3c8077e791c19d2868c37279"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a8a94b47c3c8077e791c19d2868c37279">Init__9dCcD_SttsFiiP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a8a94b47c3c8077e791c19d2868c37279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82707767df95e61051b39c65057a3d59" id="r_a82707767df95e61051b39c65057a3d59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a82707767df95e61051b39c65057a3d59">__ct__12dCcD_GObjInfFv</a> ()</td></tr>
+<tr class="separator:a82707767df95e61051b39c65057a3d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2edc2b46fec60c70ecc39273fe4f17aa" id="r_a2edc2b46fec60c70ecc39273fe4f17aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a2edc2b46fec60c70ecc39273fe4f17aa">ChkTgHit__12dCcD_GObjInfFv</a> ()</td></tr>
+<tr class="separator:a2edc2b46fec60c70ecc39273fe4f17aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b60ee8bb1360170ae1779c93985b78" id="r_af2b60ee8bb1360170ae1779c93985b78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#af2b60ee8bb1360170ae1779c93985b78">GetTgHitObj__12dCcD_GObjInfFv</a> ()</td></tr>
+<tr class="separator:af2b60ee8bb1360170ae1779c93985b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a184807359ec662172439f4223d5d1135" id="r_a184807359ec662172439f4223d5d1135"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a184807359ec662172439f4223d5d1135">GetTgHitObjSe__12dCcD_GObjInfFv</a> ()</td></tr>
+<tr class="separator:a184807359ec662172439f4223d5d1135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2412e701baba7b360fa9b4331c8a5788" id="r_a2412e701baba7b360fa9b4331c8a5788"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a2412e701baba7b360fa9b4331c8a5788">getHitSeID__12dCcD_GObjInfFUci</a> ()</td></tr>
+<tr class="separator:a2412e701baba7b360fa9b4331c8a5788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc6a680d5f257a391a8496f93706774d" id="r_afc6a680d5f257a391a8496f93706774d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#afc6a680d5f257a391a8496f93706774d">Set__8dCcD_CylFRC11dCcD_SrcCyl</a> ()</td></tr>
+<tr class="separator:afc6a680d5f257a391a8496f93706774d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50c9e14a6e12dd4294774bd072766241" id="r_a50c9e14a6e12dd4294774bd072766241"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a50c9e14a6e12dd4294774bd072766241">initialize__18daNpcF_ActorMngr_cFv</a> ()</td></tr>
+<tr class="separator:a50c9e14a6e12dd4294774bd072766241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42931d7ce060d71c098601722e95a2f7" id="r_a42931d7ce060d71c098601722e95a2f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a42931d7ce060d71c098601722e95a2f7">entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c</a> ()</td></tr>
+<tr class="separator:a42931d7ce060d71c098601722e95a2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad653b860ffae3d3de8f173c6e584d51b" id="r_ad653b860ffae3d3de8f173c6e584d51b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ad653b860ffae3d3de8f173c6e584d51b">getActorP__18daNpcF_ActorMngr_cFv</a> ()</td></tr>
+<tr class="separator:ad653b860ffae3d3de8f173c6e584d51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38b8bdba9a933dc787740fdc1fd9330" id="r_aa38b8bdba9a933dc787740fdc1fd9330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa38b8bdba9a933dc787740fdc1fd9330">settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c</a> ()</td></tr>
+<tr class="separator:aa38b8bdba9a933dc787740fdc1fd9330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a163749e04bb8e727db62fca94d8e8f6e" id="r_a163749e04bb8e727db62fca94d8e8f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a163749e04bb8e727db62fca94d8e8f6e">setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c</a> ()</td></tr>
+<tr class="separator:a163749e04bb8e727db62fca94d8e8f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6615455e46334a5911aecdf989c27d90" id="r_a6615455e46334a5911aecdf989c27d90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a6615455e46334a5911aecdf989c27d90">dKy_tevstr_init__FP12dKy_tevstr_cScUc</a> ()</td></tr>
+<tr class="separator:a6615455e46334a5911aecdf989c27d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af259c855d84c746a82d7f8713f3946f2" id="r_af259c855d84c746a82d7f8713f3946f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#af259c855d84c746a82d7f8713f3946f2">Set__4cCcSFP8cCcD_Obj</a> ()</td></tr>
+<tr class="separator:af259c855d84c746a82d7f8713f3946f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39dfed5b53285a768e93a945a8105d55" id="r_a39dfed5b53285a768e93a945a8105d55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a39dfed5b53285a768e93a945a8105d55">__apl__5csXyzFR5csXyz</a> ()</td></tr>
+<tr class="separator:a39dfed5b53285a768e93a945a8105d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb197cd818a27431fdbb47fbff0218de" id="r_acb197cd818a27431fdbb47fbff0218de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#acb197cd818a27431fdbb47fbff0218de">cM_rndF__Ff</a> ()</td></tr>
+<tr class="separator:acb197cd818a27431fdbb47fbff0218de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab021b5be39a456343af7bc2a5a2c4392" id="r_ab021b5be39a456343af7bc2a5a2c4392"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ab021b5be39a456343af7bc2a5a2c4392">SetC__8cM3dGCylFRC4cXyz</a> ()</td></tr>
+<tr class="separator:ab021b5be39a456343af7bc2a5a2c4392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a581d3b057adfa80e6c630c2be8d09133" id="r_a581d3b057adfa80e6c630c2be8d09133"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a581d3b057adfa80e6c630c2be8d09133">SetH__8cM3dGCylFf</a> ()</td></tr>
+<tr class="separator:a581d3b057adfa80e6c630c2be8d09133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c9fc4f6d35e088e1b15835466d00d24" id="r_a4c9fc4f6d35e088e1b15835466d00d24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a4c9fc4f6d35e088e1b15835466d00d24">SetR__8cM3dGCylFf</a> ()</td></tr>
+<tr class="separator:a4c9fc4f6d35e088e1b15835466d00d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca633c0bea8a0799d849a0a975c9378" id="r_a2ca633c0bea8a0799d849a0a975c9378"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a2ca633c0bea8a0799d849a0a975c9378">seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc</a> ()</td></tr>
+<tr class="separator:a2ca633c0bea8a0799d849a0a975c9378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a173636de9123121a7bd9c729073d4835" id="r_a173636de9123121a7bd9c729073d4835"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a173636de9123121a7bd9c729073d4835">__dt__14Z2SoundObjBaseFv</a> ()</td></tr>
+<tr class="separator:a173636de9123121a7bd9c729073d4835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5e4863a644f078362439bec3f1e6943" id="r_ae5e4863a644f078362439bec3f1e6943"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ae5e4863a644f078362439bec3f1e6943">deleteObject__14Z2SoundObjBaseFv</a> ()</td></tr>
+<tr class="separator:ae5e4863a644f078362439bec3f1e6943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a211ca9224a2158db9b6bec7b1ad313bf" id="r_a211ca9224a2158db9b6bec7b1ad313bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a211ca9224a2158db9b6bec7b1ad313bf">startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase</a> ()</td></tr>
+<tr class="separator:a211ca9224a2158db9b6bec7b1ad313bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9e33f8f2d565627116b6fb2aa947601" id="r_aa9e33f8f2d565627116b6fb2aa947601"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa9e33f8f2d565627116b6fb2aa947601">__ct__16Z2SoundObjSimpleFv</a> ()</td></tr>
+<tr class="separator:aa9e33f8f2d565627116b6fb2aa947601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498e6440d5c316e2672169ee4ed92309" id="r_a498e6440d5c316e2672169ee4ed92309"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a498e6440d5c316e2672169ee4ed92309">__dl__FPv</a> ()</td></tr>
+<tr class="separator:a498e6440d5c316e2672169ee4ed92309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4578a9c6290baa472dabc41277b10c28" id="r_a4578a9c6290baa472dabc41277b10c28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a4578a9c6290baa472dabc41277b10c28">__as__12J3DLightInfoFRC12J3DLightInfo</a> ()</td></tr>
+<tr class="separator:a4578a9c6290baa472dabc41277b10c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58dbf4d2335fdc0e2065200543f5e4ea" id="r_a58dbf4d2335fdc0e2065200543f5e4ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a58dbf4d2335fdc0e2065200543f5e4ea">__construct_array</a> ()</td></tr>
+<tr class="separator:a58dbf4d2335fdc0e2065200543f5e4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab005390d5a49aad5909569f937a00215" id="r_ab005390d5a49aad5909569f937a00215"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ab005390d5a49aad5909569f937a00215">_savegpr_22</a> ()</td></tr>
+<tr class="separator:ab005390d5a49aad5909569f937a00215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58fb5b02bb14a176b115397be03bbe99" id="r_a58fb5b02bb14a176b115397be03bbe99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a58fb5b02bb14a176b115397be03bbe99">_savegpr_25</a> ()</td></tr>
+<tr class="separator:a58fb5b02bb14a176b115397be03bbe99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b2b992407cf48ba98905b417420685" id="r_aa8b2b992407cf48ba98905b417420685"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa8b2b992407cf48ba98905b417420685">_savegpr_27</a> ()</td></tr>
+<tr class="separator:aa8b2b992407cf48ba98905b417420685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96be8c79baacd021a226016df5297c51" id="r_a96be8c79baacd021a226016df5297c51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a96be8c79baacd021a226016df5297c51">_savegpr_28</a> ()</td></tr>
+<tr class="separator:a96be8c79baacd021a226016df5297c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f3662cd06864ff7627d5424c192e6f2" id="r_a5f3662cd06864ff7627d5424c192e6f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5f3662cd06864ff7627d5424c192e6f2">_savegpr_29</a> ()</td></tr>
+<tr class="separator:a5f3662cd06864ff7627d5424c192e6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3882b952263b3390250bf0142a47e57d" id="r_a3882b952263b3390250bf0142a47e57d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a3882b952263b3390250bf0142a47e57d">_restgpr_22</a> ()</td></tr>
+<tr class="separator:a3882b952263b3390250bf0142a47e57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07802390ec789d585ab9991a261e4ee5" id="r_a07802390ec789d585ab9991a261e4ee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a07802390ec789d585ab9991a261e4ee5">_restgpr_25</a> ()</td></tr>
+<tr class="separator:a07802390ec789d585ab9991a261e4ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdca0eb87578e0952b66387b093d81f3" id="r_afdca0eb87578e0952b66387b093d81f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#afdca0eb87578e0952b66387b093d81f3">_restgpr_27</a> ()</td></tr>
+<tr class="separator:afdca0eb87578e0952b66387b093d81f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f61243ebf5cbb2ff90548d397b16772" id="r_a3f61243ebf5cbb2ff90548d397b16772"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a3f61243ebf5cbb2ff90548d397b16772">_restgpr_28</a> ()</td></tr>
+<tr class="separator:a3f61243ebf5cbb2ff90548d397b16772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed5bd59c54272a132a5b4da4beff66d" id="r_abed5bd59c54272a132a5b4da4beff66d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#abed5bd59c54272a132a5b4da4beff66d">_restgpr_29</a> ()</td></tr>
+<tr class="separator:abed5bd59c54272a132a5b4da4beff66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb5b28fba36dd02b67389f4078e9dd42" id="r_acb5b28fba36dd02b67389f4078e9dd42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#acb5b28fba36dd02b67389f4078e9dd42">createSolidHeap</a> (<a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:acb5b28fba36dd02b67389f4078e9dd42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9f6c4e6bc25e2ea79b40633f384ee2f" id="r_ac9f6c4e6bc25e2ea79b40633f384ee2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ac9f6c4e6bc25e2ea79b40633f384ee2f">daObjZraMark_Execute</a> (<a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:ac9f6c4e6bc25e2ea79b40633f384ee2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29a95da197f55cdbaa9aac9f5625aee5" id="r_a29a95da197f55cdbaa9aac9f5625aee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a29a95da197f55cdbaa9aac9f5625aee5">daObjZraMark_Draw</a> (<a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:a29a95da197f55cdbaa9aac9f5625aee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15cbd498ebd65b84dd786e258b4fa6b1" id="r_a15cbd498ebd65b84dd786e258b4fa6b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a15cbd498ebd65b84dd786e258b4fa6b1">daObjZraMark_IsDelete</a> (<a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:a15cbd498ebd65b84dd786e258b4fa6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85071c5ee84bd1526797cb163c440634" id="r_a85071c5ee84bd1526797cb163c440634"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a85071c5ee84bd1526797cb163c440634">daObjZraMark_Delete</a> (<a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:a85071c5ee84bd1526797cb163c440634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aa0521bb50bf0f3203ab834b7687094" id="r_a2aa0521bb50bf0f3203ab834b7687094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a2aa0521bb50bf0f3203ab834b7687094">daObjZraMark_create</a> (<a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>)</td></tr>
+<tr class="separator:a2aa0521bb50bf0f3203ab834b7687094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac739d6573f4ced111b44afe95095ee2b" id="r_ac739d6573f4ced111b44afe95095ee2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a>  *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ac739d6573f4ced111b44afe95095ee2b">d_a_obj_zraMark__stringBase0</a></td></tr>
+<tr class="separator:ac739d6573f4ced111b44afe95095ee2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaec34995d4afe2fe7e857c71612e729" id="r_abaec34995d4afe2fe7e857c71612e729"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#abaec34995d4afe2fe7e857c71612e729">__vt__8dCcD_Cyl</a> [36]</td></tr>
+<tr class="separator:abaec34995d4afe2fe7e857c71612e729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbdcde8cf6eef5e613be83e9d996c458" id="r_adbdcde8cf6eef5e613be83e9d996c458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#adbdcde8cf6eef5e613be83e9d996c458">__vt__9dCcD_Stts</a> [11]</td></tr>
+<tr class="separator:adbdcde8cf6eef5e613be83e9d996c458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b34ad3985bfb4da1413871c7cd06930" id="r_a3b34ad3985bfb4da1413871c7cd06930"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a3b34ad3985bfb4da1413871c7cd06930">__vt__12cCcD_CylAttr</a> [25]</td></tr>
+<tr class="separator:a3b34ad3985bfb4da1413871c7cd06930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b4380c86f3036edad0392e5e7d41e1" id="r_a35b4380c86f3036edad0392e5e7d41e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a35b4380c86f3036edad0392e5e7d41e1">__vt__14cCcD_ShapeAttr</a> [22]</td></tr>
+<tr class="separator:a35b4380c86f3036edad0392e5e7d41e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae08798a1ac50d2f9414ac66f52daadd6" id="r_ae08798a1ac50d2f9414ac66f52daadd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ae08798a1ac50d2f9414ac66f52daadd6">__vt__9cCcD_Stts</a> [8]</td></tr>
+<tr class="separator:ae08798a1ac50d2f9414ac66f52daadd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed41a964e6fe1025a2d0b4a2ef61fb37" id="r_aed41a964e6fe1025a2d0b4a2ef61fb37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aed41a964e6fe1025a2d0b4a2ef61fb37">__vt__16Z2SoundObjSimple</a> [8]</td></tr>
+<tr class="separator:aed41a964e6fe1025a2d0b4a2ef61fb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e01467eed17327e0c624b22ccc7ed8f" id="r_a8e01467eed17327e0c624b22ccc7ed8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a8e01467eed17327e0c624b22ccc7ed8f">now__14mDoMtx_stack_c</a> [48]</td></tr>
+<tr class="separator:a8e01467eed17327e0c624b22ccc7ed8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e862148df6adc58098613dbd1f882cd" id="r_a5e862148df6adc58098613dbd1f882cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5e862148df6adc58098613dbd1f882cd">sincosTable___5JMath</a> [65536]</td></tr>
+<tr class="separator:a5e862148df6adc58098613dbd1f882cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67787539c06f56ed809b53a55900a46" id="r_ad67787539c06f56ed809b53a55900a46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ad67787539c06f56ed809b53a55900a46">mAudioMgrPtr__10Z2AudioMgr</a> [4+4]</td></tr>
+<tr class="separator:ad67787539c06f56ed809b53a55900a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51f8fb756aef8181e294f7a5f34da74" id="r_ae51f8fb756aef8181e294f7a5f34da74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classdaObjZraMark__Hio__Param__c.html">daObjZraMark_Hio_Param_c</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ae51f8fb756aef8181e294f7a5f34da74">l_DATA</a></td></tr>
+<tr class="separator:ae51f8fb756aef8181e294f7a5f34da74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad39b856c408cd820694d171f59c8eddd" id="r_ad39b856c408cd820694d171f59c8eddd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structdCcD__SrcCyl.html">dCcD_SrcCyl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#ad39b856c408cd820694d171f59c8eddd">l_sph_src</a></td></tr>
+<tr class="separator:ad39b856c408cd820694d171f59c8eddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd6e2e8d886296c29c85dde087a97a87" id="r_acd6e2e8d886296c29c85dde087a97a87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#acd6e2e8d886296c29c85dde087a97a87">l_arcIdx</a> [] = {3, 6, 5, 4}</td></tr>
+<tr class="separator:acd6e2e8d886296c29c85dde087a97a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a926f7653982200e377dfea47beafc4b7" id="r_a926f7653982200e377dfea47beafc4b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_DATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a926f7653982200e377dfea47beafc4b7">l_arcName</a> [1] = {&quot;buoy&quot;}</td></tr>
+<tr class="separator:a926f7653982200e377dfea47beafc4b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a656cefa5688c5c0001b10356b06562de" id="r_a656cefa5688c5c0001b10356b06562de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="structactor__method__class.html">actor_method_class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a656cefa5688c5c0001b10356b06562de">l_daObjZraMark_Method</a></td></tr>
+<tr class="separator:a656cefa5688c5c0001b10356b06562de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ff30379b4189a13e9d9ae131ce52297" id="r_a9ff30379b4189a13e9d9ae131ce52297"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structactor__process__profile__definition.html">actor_process_profile_definition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a9ff30379b4189a13e9d9ae131ce52297">g_profile_ZRA_MARK</a></td></tr>
+<tr class="separator:a9ff30379b4189a13e9d9ae131ce52297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a39dfed5b53285a768e93a945a8105d55" name="a39dfed5b53285a768e93a945a8105d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39dfed5b53285a768e93a945a8105d55">&#9670;&#160;</a></span>__apl__5csXyzFR5csXyz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __apl__5csXyzFR5csXyz </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4578a9c6290baa472dabc41277b10c28" name="a4578a9c6290baa472dabc41277b10c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4578a9c6290baa472dabc41277b10c28">&#9670;&#160;</a></span>__as__12J3DLightInfoFRC12J3DLightInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __as__12J3DLightInfoFRC12J3DLightInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58dbf4d2335fdc0e2065200543f5e4ea" name="a58dbf4d2335fdc0e2065200543f5e4ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58dbf4d2335fdc0e2065200543f5e4ea">&#9670;&#160;</a></span>__construct_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __construct_array </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4cd09eb67ed2fb9bc6e87d5cea71757" name="ae4cd09eb67ed2fb9bc6e87d5cea71757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4cd09eb67ed2fb9bc6e87d5cea71757">&#9670;&#160;</a></span>__ct__10dCcD_GSttsFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__10dCcD_GSttsFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a085f3a34ce186ab6e202a97581a1f68a" name="a085f3a34ce186ab6e202a97581a1f68a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a085f3a34ce186ab6e202a97581a1f68a">&#9670;&#160;</a></span>__ct__10fopAc_ac_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__10fopAc_ac_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad68cb6e1a90d818f2be184c225f62556" name="ad68cb6e1a90d818f2be184c225f62556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad68cb6e1a90d818f2be184c225f62556">&#9670;&#160;</a></span>__ct__11J3DLightObjFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__11J3DLightObjFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82707767df95e61051b39c65057a3d59" name="a82707767df95e61051b39c65057a3d59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82707767df95e61051b39c65057a3d59">&#9670;&#160;</a></span>__ct__12dCcD_GObjInfFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__12dCcD_GObjInfFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af04ad2a286fa196fc4a22d76f6bf1527" name="af04ad2a286fa196fc4a22d76f6bf1527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af04ad2a286fa196fc4a22d76f6bf1527">&#9670;&#160;</a></span>__ct__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa9e33f8f2d565627116b6fb2aa947601" name="aa9e33f8f2d565627116b6fb2aa947601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e33f8f2d565627116b6fb2aa947601">&#9670;&#160;</a></span>__ct__16Z2SoundObjSimpleFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__16Z2SoundObjSimpleFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00e481d9497b2e64808883c0bef17780" name="a00e481d9497b2e64808883c0bef17780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e481d9497b2e64808883c0bef17780">&#9670;&#160;</a></span>__ct__18daNpcF_ActorMngr_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __ct__18daNpcF_ActorMngr_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a498e6440d5c316e2672169ee4ed92309" name="a498e6440d5c316e2672169ee4ed92309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498e6440d5c316e2672169ee4ed92309">&#9670;&#160;</a></span>__dl__FPv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dl__FPv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a173636de9123121a7bd9c729073d4835" name="a173636de9123121a7bd9c729073d4835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a173636de9123121a7bd9c729073d4835">&#9670;&#160;</a></span>__dt__14Z2SoundObjBaseFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dt__14Z2SoundObjBaseFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a616ea640ac31d2433fd8dc0de0d94560" name="a616ea640ac31d2433fd8dc0de0d94560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a616ea640ac31d2433fd8dc0de0d94560">&#9670;&#160;</a></span>__dt__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dt__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c143a3a5be4894264a7fbd9f588cd7e" name="a2c143a3a5be4894264a7fbd9f588cd7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c143a3a5be4894264a7fbd9f588cd7e">&#9670;&#160;</a></span>__dt__18daNpcF_ActorMngr_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dt__18daNpcF_ActorMngr_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0377e6e071fd0bf35e1cd21d4a4cb3b4" name="a0377e6e071fd0bf35e1cd21d4a4cb3b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0377e6e071fd0bf35e1cd21d4a4cb3b4">&#9670;&#160;</a></span>__dt__8cM3dGAabFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dt__8cM3dGAabFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9dda5d981dca736934f3b7694b4ca1cd" name="a9dda5d981dca736934f3b7694b4ca1cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dda5d981dca736934f3b7694b4ca1cd">&#9670;&#160;</a></span>__dt__8cM3dGCylFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __dt__8cM3dGCylFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3882b952263b3390250bf0142a47e57d" name="a3882b952263b3390250bf0142a47e57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3882b952263b3390250bf0142a47e57d">&#9670;&#160;</a></span>_restgpr_22()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _restgpr_22 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07802390ec789d585ab9991a261e4ee5" name="a07802390ec789d585ab9991a261e4ee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07802390ec789d585ab9991a261e4ee5">&#9670;&#160;</a></span>_restgpr_25()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _restgpr_25 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afdca0eb87578e0952b66387b093d81f3" name="afdca0eb87578e0952b66387b093d81f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdca0eb87578e0952b66387b093d81f3">&#9670;&#160;</a></span>_restgpr_27()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _restgpr_27 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f61243ebf5cbb2ff90548d397b16772" name="a3f61243ebf5cbb2ff90548d397b16772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f61243ebf5cbb2ff90548d397b16772">&#9670;&#160;</a></span>_restgpr_28()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _restgpr_28 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abed5bd59c54272a132a5b4da4beff66d" name="abed5bd59c54272a132a5b4da4beff66d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed5bd59c54272a132a5b4da4beff66d">&#9670;&#160;</a></span>_restgpr_29()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _restgpr_29 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab005390d5a49aad5909569f937a00215" name="ab005390d5a49aad5909569f937a00215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab005390d5a49aad5909569f937a00215">&#9670;&#160;</a></span>_savegpr_22()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _savegpr_22 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58fb5b02bb14a176b115397be03bbe99" name="a58fb5b02bb14a176b115397be03bbe99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58fb5b02bb14a176b115397be03bbe99">&#9670;&#160;</a></span>_savegpr_25()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _savegpr_25 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8b2b992407cf48ba98905b417420685" name="aa8b2b992407cf48ba98905b417420685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b2b992407cf48ba98905b417420685">&#9670;&#160;</a></span>_savegpr_27()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _savegpr_27 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96be8c79baacd021a226016df5297c51" name="a96be8c79baacd021a226016df5297c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96be8c79baacd021a226016df5297c51">&#9670;&#160;</a></span>_savegpr_28()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _savegpr_28 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f3662cd06864ff7627d5424c192e6f2" name="a5f3662cd06864ff7627d5424c192e6f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f3662cd06864ff7627d5424c192e6f2">&#9670;&#160;</a></span>_savegpr_29()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> _savegpr_29 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4e79b87ececb84c0f02025f8f6f83d3" name="ac4e79b87ececb84c0f02025f8f6f83d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e79b87ececb84c0f02025f8f6f83d3">&#9670;&#160;</a></span>calc__20_ZraMark_Hahen_Mng_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> calc__20_ZraMark_Hahen_Mng_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a531c3445ebe3d44b42a64f3024dcc98d" name="a531c3445ebe3d44b42a64f3024dcc98d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531c3445ebe3d44b42a64f3024dcc98d">&#9670;&#160;</a></span>calcSpeed__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> calcSpeed__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2edc2b46fec60c70ecc39273fe4f17aa" name="a2edc2b46fec60c70ecc39273fe4f17aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2edc2b46fec60c70ecc39273fe4f17aa">&#9670;&#160;</a></span>ChkTgHit__12dCcD_GObjInfFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> ChkTgHit__12dCcD_GObjInfFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb197cd818a27431fdbb47fbff0218de" name="acb197cd818a27431fdbb47fbff0218de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb197cd818a27431fdbb47fbff0218de">&#9670;&#160;</a></span>cM_rndF__Ff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> cM_rndF__Ff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0de303f3fffb60a853fcc340a22c6b0e" name="a0de303f3fffb60a853fcc340a22c6b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0de303f3fffb60a853fcc340a22c6b0e">&#9670;&#160;</a></span>col_init__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> col_init__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4efe8565a79dc22f5ed8a65f18a70b26" name="a4efe8565a79dc22f5ed8a65f18a70b26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4efe8565a79dc22f5ed8a65f18a70b26">&#9670;&#160;</a></span>col_set__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> col_set__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8cf471e153216968f28ef63a462befc" name="ac8cf471e153216968f28ef63a462befc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8cf471e153216968f28ef63a462befc">&#9670;&#160;</a></span>Create__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Create__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a10761e447739183701b799bfa546b57f" name="a10761e447739183701b799bfa546b57f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10761e447739183701b799bfa546b57f">&#9670;&#160;</a></span>create__16_ZraMark_Hahen_cFRC4cXyzScScScSc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> create__16_ZraMark_Hahen_cFRC4cXyzScScScSc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c8f98172689a624ab49fd1a6e17a6b0" name="a0c8f98172689a624ab49fd1a6e17a6b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8f98172689a624ab49fd1a6e17a6b0">&#9670;&#160;</a></span>create__20_ZraMark_Hahen_Mng_cFRC4cXyzScScScSc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> create__20_ZraMark_Hahen_Mng_cFRC4cXyzScScScSc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14c9e53a727ba957479d2eef82b4ae72" name="a14c9e53a727ba957479d2eef82b4ae72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14c9e53a727ba957479d2eef82b4ae72">&#9670;&#160;</a></span>CreateHeap__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CreateHeap__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb5b28fba36dd02b67389f4078e9dd42" name="acb5b28fba36dd02b67389f4078e9dd42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb5b28fba36dd02b67389f4078e9dd42">&#9670;&#160;</a></span>createSolidHeap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> createSolidHeap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62492befb25ff0d703a54a7989f5d7ee" name="a62492befb25ff0d703a54a7989f5d7ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62492befb25ff0d703a54a7989f5d7ee">&#9670;&#160;</a></span>createSolidHeap__FP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> createSolidHeap__FP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2aa0521bb50bf0f3203ab834b7687094" name="a2aa0521bb50bf0f3203ab834b7687094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aa0521bb50bf0f3203ab834b7687094">&#9670;&#160;</a></span>daObjZraMark_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjZraMark_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b220308556407006bd0cb2f66e52e3b" name="a5b220308556407006bd0cb2f66e52e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b220308556407006bd0cb2f66e52e3b">&#9670;&#160;</a></span>daObjZraMark_create__FP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daObjZraMark_create__FP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85071c5ee84bd1526797cb163c440634" name="a85071c5ee84bd1526797cb163c440634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85071c5ee84bd1526797cb163c440634">&#9670;&#160;</a></span>daObjZraMark_Delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjZraMark_Delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa13261a299c11f94ef2fd18ba9a187ee" name="aa13261a299c11f94ef2fd18ba9a187ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa13261a299c11f94ef2fd18ba9a187ee">&#9670;&#160;</a></span>daObjZraMark_Delete__FP14daObjZraMark_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daObjZraMark_Delete__FP14daObjZraMark_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29a95da197f55cdbaa9aac9f5625aee5" name="a29a95da197f55cdbaa9aac9f5625aee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a95da197f55cdbaa9aac9f5625aee5">&#9670;&#160;</a></span>daObjZraMark_Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjZraMark_Draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57ab0717bf225927fc6c3add82fe66dc" name="a57ab0717bf225927fc6c3add82fe66dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57ab0717bf225927fc6c3add82fe66dc">&#9670;&#160;</a></span>daObjZraMark_Draw__FP14daObjZraMark_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daObjZraMark_Draw__FP14daObjZraMark_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9f6c4e6bc25e2ea79b40633f384ee2f" name="ac9f6c4e6bc25e2ea79b40633f384ee2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9f6c4e6bc25e2ea79b40633f384ee2f">&#9670;&#160;</a></span>daObjZraMark_Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjZraMark_Execute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f68b774b7e11e347db2ab64350851bb" name="a5f68b774b7e11e347db2ab64350851bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f68b774b7e11e347db2ab64350851bb">&#9670;&#160;</a></span>daObjZraMark_Execute__FP14daObjZraMark_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> daObjZraMark_Execute__FP14daObjZraMark_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15cbd498ebd65b84dd786e258b4fa6b1" name="a15cbd498ebd65b84dd786e258b4fa6b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15cbd498ebd65b84dd786e258b4fa6b1">&#9670;&#160;</a></span>daObjZraMark_IsDelete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> daObjZraMark_IsDelete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdaObjZraMark__c.html">daObjZraMark_c</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ea7e36debe2648241f1fdac83c77cb2" name="a1ea7e36debe2648241f1fdac83c77cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ea7e36debe2648241f1fdac83c77cb2">&#9670;&#160;</a></span>daObjZraMark_IsDelete__FP14daObjZraMark_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> daObjZraMark_IsDelete__FP14daObjZraMark_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a01b93c5502abc9d1a4c58f5f1acf94bb" name="a01b93c5502abc9d1a4c58f5f1acf94bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01b93c5502abc9d1a4c58f5f1acf94bb">&#9670;&#160;</a></span>dComIfG_resDelete__FP30request_of_phase_process_classPCc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dComIfG_resDelete__FP30request_of_phase_process_classPCc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa754a77e07f518b5e17d203185ceea09" name="aa754a77e07f518b5e17d203185ceea09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa754a77e07f518b5e17d203185ceea09">&#9670;&#160;</a></span>dComIfG_resLoad__FP30request_of_phase_process_classPCc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dComIfG_resLoad__FP30request_of_phase_process_classPCc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a627e1ce812aa5a4c18c3536413c28baa" name="a627e1ce812aa5a4c18c3536413c28baa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a627e1ce812aa5a4c18c3536413c28baa">&#9670;&#160;</a></span>dComIfGp_getReverb__Fi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dComIfGp_getReverb__Fi </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac000c9b83c1b39f6e7cef59f51c4ae5f" name="ac000c9b83c1b39f6e7cef59f51c4ae5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac000c9b83c1b39f6e7cef59f51c4ae5f">&#9670;&#160;</a></span>Delete__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Delete__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5e4863a644f078362439bec3f1e6943" name="ae5e4863a644f078362439bec3f1e6943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5e4863a644f078362439bec3f1e6943">&#9670;&#160;</a></span>deleteObject__14Z2SoundObjBaseFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> deleteObject__14Z2SoundObjBaseFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6615455e46334a5911aecdf989c27d90" name="a6615455e46334a5911aecdf989c27d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6615455e46334a5911aecdf989c27d90">&#9670;&#160;</a></span>dKy_tevstr_init__FP12dKy_tevstr_cScUc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dKy_tevstr_init__FP12dKy_tevstr_cScUc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad19f4b2a05d8e0215de4e628ba8d2eeb" name="ad19f4b2a05d8e0215de4e628ba8d2eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad19f4b2a05d8e0215de4e628ba8d2eeb">&#9670;&#160;</a></span>Draw__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Draw__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea18ed6112424ad36e2648fd5c21139f" name="aea18ed6112424ad36e2648fd5c21139f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea18ed6112424ad36e2648fd5c21139f">&#9670;&#160;</a></span>draw__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> draw__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a038fb85b727fec7c8360983d010d5cc8" name="a038fb85b727fec7c8360983d010d5cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a038fb85b727fec7c8360983d010d5cc8">&#9670;&#160;</a></span>draw__20_ZraMark_Hahen_Mng_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> draw__20_ZraMark_Hahen_Mng_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42931d7ce060d71c098601722e95a2f7" name="a42931d7ce060d71c098601722e95a2f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42931d7ce060d71c098601722e95a2f7">&#9670;&#160;</a></span>entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38fbae9712d21a4ea52c4eea11cf6152" name="a38fbae9712d21a4ea52c4eea11cf6152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38fbae9712d21a4ea52c4eea11cf6152">&#9670;&#160;</a></span>entryPointer__14daObjZraMark_cFP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> entryPointer__14daObjZraMark_cFP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa121d955add98d1caf161196a5c51ab2" name="aa121d955add98d1caf161196a5c51ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa121d955add98d1caf161196a5c51ab2">&#9670;&#160;</a></span>Execute__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Execute__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc6634629cb51e7c6154aa5ec92055c7" name="adc6634629cb51e7c6154aa5ec92055c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc6634629cb51e7c6154aa5ec92055c7">&#9670;&#160;</a></span>fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85524cdcee98fb8663b8d6037d1785b8" name="a85524cdcee98fb8663b8d6037d1785b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85524cdcee98fb8663b8d6037d1785b8">&#9670;&#160;</a></span>fopAcM_SearchByName__FsPP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> fopAcM_SearchByName__FsPP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a81175f49b99856cae1d4e5b6c8551164" name="a81175f49b99856cae1d4e5b6c8551164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81175f49b99856cae1d4e5b6c8551164">&#9670;&#160;</a></span>fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef7d15c31e2ca180b630ebf5b61e786c" name="aef7d15c31e2ca180b630ebf5b61e786c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef7d15c31e2ca180b630ebf5b61e786c">&#9670;&#160;</a></span>func_80D43ACC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> func_80D43ACC </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>_this</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad653b860ffae3d3de8f173c6e584d51b" name="ad653b860ffae3d3de8f173c6e584d51b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad653b860ffae3d3de8f173c6e584d51b">&#9670;&#160;</a></span>getActorP__18daNpcF_ActorMngr_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> getActorP__18daNpcF_ActorMngr_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2412e701baba7b360fa9b4331c8a5788" name="a2412e701baba7b360fa9b4331c8a5788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2412e701baba7b360fa9b4331c8a5788">&#9670;&#160;</a></span>getHitSeID__12dCcD_GObjInfFUci()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> getHitSeID__12dCcD_GObjInfFUci </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59a83dc2646cfbec35f3fb91b2158ad9" name="a59a83dc2646cfbec35f3fb91b2158ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59a83dc2646cfbec35f3fb91b2158ad9">&#9670;&#160;</a></span>getRes__14dRes_control_cFPCclP11dRes_info_ci()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> getRes__14dRes_control_cFPCclP11dRes_info_ci </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2b60ee8bb1360170ae1779c93985b78" name="af2b60ee8bb1360170ae1779c93985b78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b60ee8bb1360170ae1779c93985b78">&#9670;&#160;</a></span>GetTgHitObj__12dCcD_GObjInfFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> GetTgHitObj__12dCcD_GObjInfFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a184807359ec662172439f4223d5d1135" name="a184807359ec662172439f4223d5d1135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a184807359ec662172439f4223d5d1135">&#9670;&#160;</a></span>GetTgHitObjSe__12dCcD_GObjInfFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> GetTgHitObjSe__12dCcD_GObjInfFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb590fad9a388d811b6396223a637af5" name="afb590fad9a388d811b6396223a637af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb590fad9a388d811b6396223a637af5">&#9670;&#160;</a></span>getType__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> getType__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89b0c0968733be6e34d226aa1c2aeb06" name="a89b0c0968733be6e34d226aa1c2aeb06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89b0c0968733be6e34d226aa1c2aeb06">&#9670;&#160;</a></span>informBlast__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> informBlast__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46c41fe8d791612aca0d0e0448767bc9" name="a46c41fe8d791612aca0d0e0448767bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c41fe8d791612aca0d0e0448767bc9">&#9670;&#160;</a></span>init__16_ZraMark_Hahen_cFRC4cXyzScScSc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> init__16_ZraMark_Hahen_cFRC4cXyzScScSc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a94b47c3c8077e791c19d2868c37279" name="a8a94b47c3c8077e791c19d2868c37279"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a94b47c3c8077e791c19d2868c37279">&#9670;&#160;</a></span>Init__9dCcD_SttsFiiP10fopAc_ac_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Init__9dCcD_SttsFiiP10fopAc_ac_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50c9e14a6e12dd4294774bd072766241" name="a50c9e14a6e12dd4294774bd072766241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50c9e14a6e12dd4294774bd072766241">&#9670;&#160;</a></span>initialize__18daNpcF_ActorMngr_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> initialize__18daNpcF_ActorMngr_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d92270ec6cf3526d79eb4ee73587ee8" name="a0d92270ec6cf3526d79eb4ee73587ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d92270ec6cf3526d79eb4ee73587ee8">&#9670;&#160;</a></span>loadModel__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> loadModel__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46272bdb6711d736ce226977d5c3dca1" name="a46272bdb6711d736ce226977d5c3dca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46272bdb6711d736ce226977d5c3dca1">&#9670;&#160;</a></span>mDoExt_J3DModel__create__FP12J3DModelDataUlUl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> mDoExt_J3DModel__create__FP12J3DModelDataUlUl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c949b29ce3c185e8353c408b5a31a48" name="a6c949b29ce3c185e8353c408b5a31a48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c949b29ce3c185e8353c408b5a31a48">&#9670;&#160;</a></span>mDoExt_modelUpdateDL__FP8J3DModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> mDoExt_modelUpdateDL__FP8J3DModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7af2a116d021312cb48ab35e2aee4ef1" name="a7af2a116d021312cb48ab35e2aee4ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7af2a116d021312cb48ab35e2aee4ef1">&#9670;&#160;</a></span>scaleM__14mDoMtx_stack_cFfff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> scaleM__14mDoMtx_stack_cFfff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6eeb428e558beee82006ce8e65452aa8" name="a6eeb428e558beee82006ce8e65452aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eeb428e558beee82006ce8e65452aa8">&#9670;&#160;</a></span>scaleM__14mDoMtx_stack_cFRC4cXyz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> scaleM__14mDoMtx_stack_cFRC4cXyz </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32fc5617da3823fbd0af84606b63a885" name="a32fc5617da3823fbd0af84606b63a885"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fc5617da3823fbd0af84606b63a885">&#9670;&#160;</a></span>schHoz__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> schHoz__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ca633c0bea8a0799d849a0a975c9378" name="a2ca633c0bea8a0799d849a0a975c9378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ca633c0bea8a0799d849a0a975c9378">&#9670;&#160;</a></span>seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af259c855d84c746a82d7f8713f3946f2" name="af259c855d84c746a82d7f8713f3946f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af259c855d84c746a82d7f8713f3946f2">&#9670;&#160;</a></span>Set__4cCcSFP8cCcD_Obj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Set__4cCcSFP8cCcD_Obj </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc6a680d5f257a391a8496f93706774d" name="afc6a680d5f257a391a8496f93706774d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc6a680d5f257a391a8496f93706774d">&#9670;&#160;</a></span>Set__8dCcD_CylFRC11dCcD_SrcCyl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Set__8dCcD_CylFRC11dCcD_SrcCyl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e9ba90bffef547e0d69ca5afe058746" name="a6e9ba90bffef547e0d69ca5afe058746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e9ba90bffef547e0d69ca5afe058746">&#9670;&#160;</a></span>setBaseMtx__14daObjZraMark_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> setBaseMtx__14daObjZraMark_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab021b5be39a456343af7bc2a5a2c4392" name="ab021b5be39a456343af7bc2a5a2c4392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab021b5be39a456343af7bc2a5a2c4392">&#9670;&#160;</a></span>SetC__8cM3dGCylFRC4cXyz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> SetC__8cM3dGCylFRC4cXyz </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a581d3b057adfa80e6c630c2be8d09133" name="a581d3b057adfa80e6c630c2be8d09133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581d3b057adfa80e6c630c2be8d09133">&#9670;&#160;</a></span>SetH__8cM3dGCylFf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> SetH__8cM3dGCylFf </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a163749e04bb8e727db62fca94d8e8f6e" name="a163749e04bb8e727db62fca94d8e8f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a163749e04bb8e727db62fca94d8e8f6e">&#9670;&#160;</a></span>setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51f679c40b2c490fa103d98963d7cdea" name="a51f679c40b2c490fa103d98963d7cdea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51f679c40b2c490fa103d98963d7cdea">&#9670;&#160;</a></span>setMtx__16_ZraMark_Hahen_cFv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> setMtx__16_ZraMark_Hahen_cFv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c9fc4f6d35e088e1b15835466d00d24" name="a4c9fc4f6d35e088e1b15835466d00d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c9fc4f6d35e088e1b15835466d00d24">&#9670;&#160;</a></span>SetR__8cM3dGCylFf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> SetR__8cM3dGCylFf </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa38b8bdba9a933dc787740fdc1fd9330" name="aa38b8bdba9a933dc787740fdc1fd9330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa38b8bdba9a933dc787740fdc1fd9330">&#9670;&#160;</a></span>settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a211ca9224a2158db9b6bec7b1ad313bf" name="a211ca9224a2158db9b6bec7b1ad313bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211ca9224a2158db9b6bec7b1ad313bf">&#9670;&#160;</a></span>startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22dcae239462f49c8541e56fa38fe14c" name="a22dcae239462f49c8541e56fa38fe14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22dcae239462f49c8541e56fa38fe14c">&#9670;&#160;</a></span>XYZrotM__14mDoMtx_stack_cFRC5csXyz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> XYZrotM__14mDoMtx_stack_cFRC5csXyz </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a3b34ad3985bfb4da1413871c7cd06930" name="a3b34ad3985bfb4da1413871c7cd06930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b34ad3985bfb4da1413871c7cd06930">&#9670;&#160;</a></span>__vt__12cCcD_CylAttr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__12cCcD_CylAttr[25]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35b4380c86f3036edad0392e5e7d41e1" name="a35b4380c86f3036edad0392e5e7d41e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35b4380c86f3036edad0392e5e7d41e1">&#9670;&#160;</a></span>__vt__14cCcD_ShapeAttr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__14cCcD_ShapeAttr[22]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed41a964e6fe1025a2d0b4a2ef61fb37" name="aed41a964e6fe1025a2d0b4a2ef61fb37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed41a964e6fe1025a2d0b4a2ef61fb37">&#9670;&#160;</a></span>__vt__16Z2SoundObjSimple</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__16Z2SoundObjSimple[8]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abaec34995d4afe2fe7e857c71612e729" name="abaec34995d4afe2fe7e857c71612e729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaec34995d4afe2fe7e857c71612e729">&#9670;&#160;</a></span>__vt__8dCcD_Cyl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__8dCcD_Cyl[36]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae08798a1ac50d2f9414ac66f52daadd6" name="ae08798a1ac50d2f9414ac66f52daadd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae08798a1ac50d2f9414ac66f52daadd6">&#9670;&#160;</a></span>__vt__9cCcD_Stts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__9cCcD_Stts[8]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbdcde8cf6eef5e613be83e9d996c458" name="adbdcde8cf6eef5e613be83e9d996c458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbdcde8cf6eef5e613be83e9d996c458">&#9670;&#160;</a></span>__vt__9dCcD_Stts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* __vt__9dCcD_Stts[11]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac739d6573f4ced111b44afe95095ee2b" name="ac739d6573f4ced111b44afe95095ee2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac739d6573f4ced111b44afe95095ee2b">&#9670;&#160;</a></span>d_a_obj_zraMark__stringBase0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a>* <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> d_a_obj_zraMark__stringBase0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ff30379b4189a13e9d9ae131ce52297" name="a9ff30379b4189a13e9d9ae131ce52297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ff30379b4189a13e9d9ae131ce52297">&#9670;&#160;</a></span>g_profile_ZRA_MARK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structactor__process__profile__definition.html">actor_process_profile_definition</a> g_profile_ZRA_MARK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <a class="code hl_enumvalue" href="f__pc__layer__tag_8h.html#a70ad55be767ca0a42c9150d24618e4caa5e7b555fae005988008b1e635ad934af">fpcLy_CURRENT_e</a>,         </div>
+<div class="line">    7,                       </div>
+<div class="line">    <a class="code hl_enumvalue" href="f__pc__priority_8h.html#a3babbf89cae9b856a12864a41506efbdaa92065ae8976f3ac73cde25f46737b63">fpcPi_CURRENT_e</a>,         </div>
+<div class="line">    <a class="code hl_enumvalue" href="d__procname_8h.html#ab48899087cc647f0f791ed0c459adc53a4aafeb78df9766da5494b3ddb5961a03">PROC_ZRA_MARK</a>,           </div>
+<div class="line">    &amp;<a class="code hl_variable" href="f__pc__leaf_8cpp.html#aa2574d10ba20093312ea0a770ce1fb13">g_fpcLf_Method</a>.<a class="code hl_variable" href="structleafdraw__method__class.html#a50ac28a0dd5767027171962df81f25c2">mBase</a>,   </div>
+<div class="line">    <span class="keyword">sizeof</span>(<a class="code hl_class" href="classdaObjZraMark__c.html">daObjZraMark_c</a>),  </div>
+<div class="line">    0,                       </div>
+<div class="line">    0,                       </div>
+<div class="line">    &amp;<a class="code hl_variable" href="f__op__actor_8cpp.html#afb28ea67faff0ed1cf8f57117b39142c">g_fopAc_Method</a>.<a class="code hl_variable" href="structactor__method__class.html#aea72e7c0ed7543c164882812fcff0131">base</a>,    </div>
+<div class="line">    392,                     </div>
+<div class="line">    &amp;<a class="code hl_variable" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a656cefa5688c5c0001b10356b06562de">l_daObjZraMark_Method</a>,  </div>
+<div class="line">    0x00044100,              </div>
+<div class="line">    <a class="code hl_enumvalue" href="f__op__actor_8h.html#a9888fa1ca225292c2aaeb06970bdc0b6a8b76e7d7c66aecbebe900ea50aecfb47">fopAc_ACTOR_e</a>,           </div>
+<div class="line">    <a class="code hl_enumvalue" href="f__op__actor_8h.html#a6429d29e063784c5eb7637d536e7ed49a6a952c99f90ae2aab63140b382ca391a">fopAc_CULLBOX_CUSTOM_e</a>,  </div>
+<div class="line">}</div>
+<div class="ttc" id="aclassdaObjZraMark__c_html"><div class="ttname"><a href="classdaObjZraMark__c.html">daObjZraMark_c</a></div><div class="ttdoc">Iza's River Ride Destructible Buoy.</div><div class="ttdef"><b>Definition</b> d_a_obj_zraMark.h:88</div></div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_a656cefa5688c5c0001b10356b06562de"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a656cefa5688c5c0001b10356b06562de">l_daObjZraMark_Method</a></div><div class="ttdeci">static actor_method_class l_daObjZraMark_Method</div><div class="ttdef"><b>Definition</b> d_a_obj_zraMark_NONMATCHING.cpp:679</div></div>
+<div class="ttc" id="ad__procname_8h_html_ab48899087cc647f0f791ed0c459adc53a4aafeb78df9766da5494b3ddb5961a03"><div class="ttname"><a href="d__procname_8h.html#ab48899087cc647f0f791ed0c459adc53a4aafeb78df9766da5494b3ddb5961a03">PROC_ZRA_MARK</a></div><div class="ttdeci">@ PROC_ZRA_MARK</div><div class="ttdef"><b>Definition</b> d_procname.h:650</div></div>
+<div class="ttc" id="af__op__actor_8cpp_html_afb28ea67faff0ed1cf8f57117b39142c"><div class="ttname"><a href="f__op__actor_8cpp.html#afb28ea67faff0ed1cf8f57117b39142c">g_fopAc_Method</a></div><div class="ttdeci">actor_method_class g_fopAc_Method</div></div>
+<div class="ttc" id="af__op__actor_8h_html_a6429d29e063784c5eb7637d536e7ed49a6a952c99f90ae2aab63140b382ca391a"><div class="ttname"><a href="f__op__actor_8h.html#a6429d29e063784c5eb7637d536e7ed49a6a952c99f90ae2aab63140b382ca391a">fopAc_CULLBOX_CUSTOM_e</a></div><div class="ttdeci">@ fopAc_CULLBOX_CUSTOM_e</div><div class="ttdef"><b>Definition</b> f_op_actor.h:67</div></div>
+<div class="ttc" id="af__op__actor_8h_html_a9888fa1ca225292c2aaeb06970bdc0b6a8b76e7d7c66aecbebe900ea50aecfb47"><div class="ttname"><a href="f__op__actor_8h.html#a9888fa1ca225292c2aaeb06970bdc0b6a8b76e7d7c66aecbebe900ea50aecfb47">fopAc_ACTOR_e</a></div><div class="ttdeci">@ fopAc_ACTOR_e</div><div class="ttdef"><b>Definition</b> f_op_actor.h:38</div></div>
+<div class="ttc" id="af__pc__layer__tag_8h_html_a70ad55be767ca0a42c9150d24618e4caa5e7b555fae005988008b1e635ad934af"><div class="ttname"><a href="f__pc__layer__tag_8h.html#a70ad55be767ca0a42c9150d24618e4caa5e7b555fae005988008b1e635ad934af">fpcLy_CURRENT_e</a></div><div class="ttdeci">@ fpcLy_CURRENT_e</div><div class="ttdef"><b>Definition</b> f_pc_layer_tag.h:9</div></div>
+<div class="ttc" id="af__pc__leaf_8cpp_html_aa2574d10ba20093312ea0a770ce1fb13"><div class="ttname"><a href="f__pc__leaf_8cpp.html#aa2574d10ba20093312ea0a770ce1fb13">g_fpcLf_Method</a></div><div class="ttdeci">leafdraw_method_class g_fpcLf_Method</div><div class="ttdef"><b>Definition</b> f_pc_leaf.cpp:65</div></div>
+<div class="ttc" id="af__pc__priority_8h_html_a3babbf89cae9b856a12864a41506efbdaa92065ae8976f3ac73cde25f46737b63"><div class="ttname"><a href="f__pc__priority_8h.html#a3babbf89cae9b856a12864a41506efbdaa92065ae8976f3ac73cde25f46737b63">fpcPi_CURRENT_e</a></div><div class="ttdeci">@ fpcPi_CURRENT_e</div><div class="ttdef"><b>Definition</b> f_pc_priority.h:8</div></div>
+<div class="ttc" id="astructactor__method__class_html_aea72e7c0ed7543c164882812fcff0131"><div class="ttname"><a href="structactor__method__class.html#aea72e7c0ed7543c164882812fcff0131">actor_method_class::base</a></div><div class="ttdeci">leafdraw_method_class base</div><div class="ttdef"><b>Definition</b> f_op_actor.h:9</div></div>
+<div class="ttc" id="astructleafdraw__method__class_html_a50ac28a0dd5767027171962df81f25c2"><div class="ttname"><a href="structleafdraw__method__class.html#a50ac28a0dd5767027171962df81f25c2">leafdraw_method_class::mBase</a></div><div class="ttdeci">process_method_class mBase</div><div class="ttdef"><b>Definition</b> f_pc_leaf.h:12</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acd6e2e8d886296c29c85dde087a97a87" name="acd6e2e8d886296c29c85dde087a97a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd6e2e8d886296c29c85dde087a97a87">&#9670;&#160;</a></span>l_arcIdx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> l_arcIdx[] = {3, 6, 5, 4}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a926f7653982200e377dfea47beafc4b7" name="a926f7653982200e377dfea47beafc4b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926f7653982200e377dfea47beafc4b7">&#9670;&#160;</a></span>l_arcName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_DATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a>* l_arcName[1] = {&quot;buoy&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a656cefa5688c5c0001b10356b06562de" name="a656cefa5688c5c0001b10356b06562de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a656cefa5688c5c0001b10356b06562de">&#9670;&#160;</a></span>l_daObjZraMark_Method</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structactor__method__class.html">actor_method_class</a> l_daObjZraMark_Method</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    (<a class="code hl_typedef" href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a>)<a class="code hl_function" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5b220308556407006bd0cb2f66e52e3b">daObjZraMark_create__FP10fopAc_ac_c</a>,</div>
+<div class="line">    (<a class="code hl_typedef" href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a>)<a class="code hl_function" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa13261a299c11f94ef2fd18ba9a187ee">daObjZraMark_Delete__FP14daObjZraMark_c</a>,</div>
+<div class="line">    (<a class="code hl_typedef" href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a>)<a class="code hl_function" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5f68b774b7e11e347db2ab64350851bb">daObjZraMark_Execute__FP14daObjZraMark_c</a>,</div>
+<div class="line">    (<a class="code hl_typedef" href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a>)<a class="code hl_function" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a1ea7e36debe2648241f1fdac83c77cb2">daObjZraMark_IsDelete__FP14daObjZraMark_c</a>,</div>
+<div class="line">    (<a class="code hl_typedef" href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a>)<a class="code hl_function" href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a57ab0717bf225927fc6c3add82fe66dc">daObjZraMark_Draw__FP14daObjZraMark_c</a>,</div>
+<div class="line">}</div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_a1ea7e36debe2648241f1fdac83c77cb2"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a1ea7e36debe2648241f1fdac83c77cb2">daObjZraMark_IsDelete__FP14daObjZraMark_c</a></div><div class="ttdeci">static bool daObjZraMark_IsDelete__FP14daObjZraMark_c()</div></div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_a57ab0717bf225927fc6c3add82fe66dc"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a57ab0717bf225927fc6c3add82fe66dc">daObjZraMark_Draw__FP14daObjZraMark_c</a></div><div class="ttdeci">static void daObjZraMark_Draw__FP14daObjZraMark_c()</div></div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_a5b220308556407006bd0cb2f66e52e3b"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5b220308556407006bd0cb2f66e52e3b">daObjZraMark_create__FP10fopAc_ac_c</a></div><div class="ttdeci">static void daObjZraMark_create__FP10fopAc_ac_c()</div></div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_a5f68b774b7e11e347db2ab64350851bb"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#a5f68b774b7e11e347db2ab64350851bb">daObjZraMark_Execute__FP14daObjZraMark_c</a></div><div class="ttdeci">static void daObjZraMark_Execute__FP14daObjZraMark_c()</div></div>
+<div class="ttc" id="ad__a__obj__zraMark__NONMATCHING_8cpp_html_aa13261a299c11f94ef2fd18ba9a187ee"><div class="ttname"><a href="d__a__obj__zraMark__NONMATCHING_8cpp.html#aa13261a299c11f94ef2fd18ba9a187ee">daObjZraMark_Delete__FP14daObjZraMark_c</a></div><div class="ttdeci">static void daObjZraMark_Delete__FP14daObjZraMark_c()</div></div>
+<div class="ttc" id="af__pc__method_8h_html_a56bd92368b7dda361388b2d13df2e4ac"><div class="ttname"><a href="f__pc__method_8h.html#a56bd92368b7dda361388b2d13df2e4ac">process_method_func</a></div><div class="ttdeci">int(* process_method_func)(void *)</div><div class="ttdef"><b>Definition</b> f_pc_method.h:7</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae51f8fb756aef8181e294f7a5f34da74" name="ae51f8fb756aef8181e294f7a5f34da74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51f8fb756aef8181e294f7a5f34da74">&#9670;&#160;</a></span>l_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classdaObjZraMark__Hio__Param__c.html">daObjZraMark_Hio_Param_c</a> l_DATA</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    8.0f,    </div>
+<div class="line">    2.0f,    </div>
+<div class="line">    1.2f,    </div>
+<div class="line">    45.0f,   </div>
+<div class="line">    820.0f,  </div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad39b856c408cd820694d171f59c8eddd" name="ad39b856c408cd820694d171f59c8eddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad39b856c408cd820694d171f59c8eddd">&#9670;&#160;</a></span>l_sph_src</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structdCcD__SrcCyl.html">dCcD_SrcCyl</a> l_sph_src</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    {</div>
+<div class="line">        {0x0, {{0x0, 0x0, 0x0}, {0xD8FBFDFF, 0x11}, 0x79}},  </div>
+<div class="line">        {<a class="code hl_enumvalue" href="d__cc__d_8h.html#a3dc1e5b4347d327cfbf1ccf922b19b26a913c3c381a1fc3645f8cf085eb3b8154">dCcD_SE_NONE</a>, 0x0, 0x0, 0x0, 0x8},                  </div>
+<div class="line">        {<a class="code hl_enumvalue" href="d__cc__d_8h.html#a3dc1e5b4347d327cfbf1ccf922b19b26a913c3c381a1fc3645f8cf085eb3b8154">dCcD_SE_NONE</a>, 0x0, 0x0, 0x0, 0x1},                  </div>
+<div class="line">        {0x0},                                               </div>
+<div class="line">    },                                                       </div>
+<div class="line">    {</div>
+<div class="line">        {0.0f, 0.0f, 0.0f},  </div>
+<div class="line">        0.0f,                </div>
+<div class="line">        0.0f,                </div>
+<div class="line">    }  </div>
+<div class="line">}</div>
+<div class="ttc" id="ad__cc__d_8h_html_a3dc1e5b4347d327cfbf1ccf922b19b26a913c3c381a1fc3645f8cf085eb3b8154"><div class="ttname"><a href="d__cc__d_8h.html#a3dc1e5b4347d327cfbf1ccf922b19b26a913c3c381a1fc3645f8cf085eb3b8154">dCcD_SE_NONE</a></div><div class="ttdeci">@ dCcD_SE_NONE</div><div class="ttdef"><b>Definition</b> d_cc_d.h:13</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad67787539c06f56ed809b53a55900a46" name="ad67787539c06f56ed809b53a55900a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67787539c06f56ed809b53a55900a46">&#9670;&#160;</a></span>mAudioMgrPtr__10Z2AudioMgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> mAudioMgrPtr__10Z2AudioMgr[4+4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e01467eed17327e0c624b22ccc7ed8f" name="a8e01467eed17327e0c624b22ccc7ed8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e01467eed17327e0c624b22ccc7ed8f">&#9670;&#160;</a></span>now__14mDoMtx_stack_c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> now__14mDoMtx_stack_c[48]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e862148df6adc58098613dbd1f882cd" name="a5e862148df6adc58098613dbd1f882cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e862148df6adc58098613dbd1f882cd">&#9670;&#160;</a></span>sincosTable___5JMath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> sincosTable___5JMath[65536]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_0b8cd375c317792b95eba87076cd6518.html">rel</a></li><li class="navelem"><a class="el" href="dir_b8807fde19a2a66bb780b4144be58361.html">d</a></li><li class="navelem"><a class="el" href="dir_4471f359497cf646732c9636f737f558.html">a</a></li><li class="navelem"><a class="el" href="dir_24f224a0a48a490a9b32aca0e2cf4bc9.html">obj</a></li><li class="navelem"><a class="el" href="dir_6d6b637366a5b3221cbe43ef711f466b.html">d_a_obj_zraMark</a></li><li class="navelem"><a class="el" href="d__a__obj__zraMark__NONMATCHING_8cpp.html">d_a_obj_zraMark_NONMATCHING.cpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,5 +1,17 @@
 var NAVTREEINDEX1028 =
 {
+"structJ2DataManageLink.html":[1,1,0,21],
+"structJ2DataManageLink.html#a0c5324f977ddf667feabf1b5c4a3b206":[1,1,0,21,0],
+"structJ2DataManageLink.html#a472f228f5a2ad2936694316918b418af":[1,1,0,21,2],
+"structJ2DataManageLink.html#aae9d99e1cf1bf7da9fe51ea2f67ac5a5":[1,1,0,21,1],
+"structJ3DAlphaComp.html":[1,1,1,98],
+"structJ3DAlphaComp.html#a1be5ff99119481cfd462fd9b45ba88c7":[1,1,1,98,12],
+"structJ3DAlphaComp.html#a26278b2a6ea8c73edc7933bf8286e7fb":[1,1,1,98,3],
+"structJ3DAlphaComp.html#a266f3c62891e884176f52ca16de9383a":[1,1,1,98,8],
+"structJ3DAlphaComp.html#a3bb440b5438c98eb778e159b94f070e8":[1,1,1,98,9],
+"structJ3DAlphaComp.html#a3c16928511fe0fc0ddffde339cf4ea47":[1,1,1,98,4],
+"structJ3DAlphaComp.html#a3da11270226884ff49c946dcc9b23f31":[1,1,1,98,5],
+"structJ3DAlphaComp.html#a66330407c2431eac085fe2405cac182d":[1,1,1,98,6],
 "structJ3DAlphaComp.html#a740b7a8ebd6c616c26b3c1e346fdc64f":[1,1,1,98,11],
 "structJ3DAlphaComp.html#a93236a7031b35d377ae5c87c22d3cf5a":[1,1,1,98,2],
 "structJ3DAlphaComp.html#aa1f1f264c305b4726a0fbe085a401c91":[1,1,1,98,0],
@@ -237,17 +249,5 @@ var NAVTREEINDEX1028 =
 "structJ3DAnmVisibilityFullData.html#a4808253650181480bdaab2721aebe0d3":[1,1,1,13,2],
 "structJ3DAnmVisibilityFullData.html#a4ac5c9effac0a4d68fb158f55ebd2ad8":[1,1,1,13,7],
 "structJ3DAnmVisibilityFullData.html#a5e2a881395ab74b4c35c391083a4872a":[1,1,1,13,3],
-"structJ3DAnmVisibilityFullData.html#a777762176a3b0e70538671cdcba0892a":[1,1,1,13,1],
-"structJ3DAnmVisibilityFullData.html#a7a4c0c64bc91a014a6a5af7d2ce3d48b":[1,1,1,13,6],
-"structJ3DAnmVisibilityFullData.html#ac0e426258d8e168de90dc9dcfa2e0c53":[1,1,1,13,5],
-"structJ3DAnmVisibilityFullTable.html":[1,1,1,4],
-"structJ3DAnmVisibilityFullTable.html#a6fa9cf85733f77f30628341e9b846a8c":[1,1,1,4,1],
-"structJ3DAnmVisibilityFullTable.html#a946ad3dbbc250af3f6cbddf0fde3fb91":[1,1,1,4,0],
-"structJ3DAnmVtxColorFullData.html":[1,1,1,12],
-"structJ3DAnmVtxColorFullData.html#a00cd169d6d06039880094692e88c6bb5":[1,1,1,12,7],
-"structJ3DAnmVtxColorFullData.html#a027b317a934360263966cf51572a0c30":[1,1,1,12,10],
-"structJ3DAnmVtxColorFullData.html#a0482252482481ffdf2290aecea58b871":[1,1,1,12,4],
-"structJ3DAnmVtxColorFullData.html#a06aa2b2017a20324ce7869e6ca87d279":[1,1,1,12,5],
-"structJ3DAnmVtxColorFullData.html#a23000d01c0212bf5953f780e0cc1886e":[1,1,1,12,0],
-"structJ3DAnmVtxColorFullData.html#a2b404f4bcb6af275d5d26e8776014d17":[1,1,1,12,8]
+"structJ3DAnmVisibilityFullData.html#a777762176a3b0e70538671cdcba0892a":[1,1,1,13,1]
 };

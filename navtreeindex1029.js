@@ -1,5 +1,17 @@
 var NAVTREEINDEX1029 =
 {
+"structJ3DAnmVisibilityFullData.html#a7a4c0c64bc91a014a6a5af7d2ce3d48b":[1,1,1,13,6],
+"structJ3DAnmVisibilityFullData.html#ac0e426258d8e168de90dc9dcfa2e0c53":[1,1,1,13,5],
+"structJ3DAnmVisibilityFullTable.html":[1,1,1,4],
+"structJ3DAnmVisibilityFullTable.html#a6fa9cf85733f77f30628341e9b846a8c":[1,1,1,4,1],
+"structJ3DAnmVisibilityFullTable.html#a946ad3dbbc250af3f6cbddf0fde3fb91":[1,1,1,4,0],
+"structJ3DAnmVtxColorFullData.html":[1,1,1,12],
+"structJ3DAnmVtxColorFullData.html#a00cd169d6d06039880094692e88c6bb5":[1,1,1,12,7],
+"structJ3DAnmVtxColorFullData.html#a027b317a934360263966cf51572a0c30":[1,1,1,12,10],
+"structJ3DAnmVtxColorFullData.html#a0482252482481ffdf2290aecea58b871":[1,1,1,12,4],
+"structJ3DAnmVtxColorFullData.html#a06aa2b2017a20324ce7869e6ca87d279":[1,1,1,12,5],
+"structJ3DAnmVtxColorFullData.html#a23000d01c0212bf5953f780e0cc1886e":[1,1,1,12,0],
+"structJ3DAnmVtxColorFullData.html#a2b404f4bcb6af275d5d26e8776014d17":[1,1,1,12,8],
 "structJ3DAnmVtxColorFullData.html#a7b46eb862009446826af1f1f02c30a69":[1,1,1,12,11],
 "structJ3DAnmVtxColorFullData.html#a7e167781a5b6aded780c9be42653c5c4":[1,1,1,12,1],
 "structJ3DAnmVtxColorFullData.html#a8e331b537cc99e68a1730375304dcce0":[1,1,1,12,6],
@@ -237,17 +249,5 @@ var NAVTREEINDEX1029 =
 "structJ3DJointFactory.html#abb1465be432ef19bded4c017d901e26e":[1,1,1,173,5],
 "structJ3DJointFactory.html#ac6643156358df319f6aeeefd31002ed4":[1,1,1,173,0],
 "structJ3DJointInitData.html":[1,1,1,172],
-"structJ3DJointInitData.html#a0e9231be8e218b5413f76580e2ee24e4":[1,1,1,172,5],
-"structJ3DJointInitData.html#a4d64292c39cb6ea84beec0282ff38a15":[1,1,1,172,4],
-"structJ3DJointInitData.html#a516d071cba6830d6a0a8ca0b6b61ab8c":[1,1,1,172,1],
-"structJ3DJointInitData.html#a5d638cbed44130f0e52998fbbde98e7a":[1,1,1,172,3],
-"structJ3DJointInitData.html#a6bf8fc272643f50a80fdaa05ae9dc452":[1,1,1,172,0],
-"structJ3DJointInitData.html#ad15446810790158c6f2b2da491d837e0":[1,1,1,172,2],
-"structJ3DMaterial.html":[1,1,1,121],
-"structJ3DMaterial.html#a005de6aa47a96eb0c1f5fcf56ce50392":[1,1,1,121,43],
-"structJ3DMaterial.html#a016e41393fc2706b9e4c4a8dfca06378":[1,1,1,121,35],
-"structJ3DMaterial.html#a03803fa4c4dc3508b67884fe6f01873f":[1,1,1,121,41],
-"structJ3DMaterial.html#a03c4f76640df198ea0a62a666bc81ac2":[1,1,1,121,40],
-"structJ3DMaterial.html#a05a4011b109d0cb570b4ce0a5ecad253":[1,1,1,121,5],
-"structJ3DMaterial.html#a078f4ac3c508ba464eb7ffaf2c36d612":[1,1,1,121,55]
+"structJ3DJointInitData.html#a0e9231be8e218b5413f76580e2ee24e4":[1,1,1,172,5]
 };

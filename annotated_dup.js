@@ -1484,6 +1484,7 @@ var annotated_dup =
     [ "daObjYtaihou_c", "classdaObjYtaihou__c.html", "classdaObjYtaihou__c" ],
     [ "daObjZCloth_c", "classdaObjZCloth__c.html", "classdaObjZCloth__c" ],
     [ "daObjZraMark_c", "classdaObjZraMark__c.html", "classdaObjZraMark__c" ],
+    [ "daObjZraMark_Hio_Param_c", "classdaObjZraMark__Hio__Param__c.html", "classdaObjZraMark__Hio__Param__c" ],
     [ "daObjZraRock_c", "classdaObjZraRock__c.html", "classdaObjZraRock__c" ],
     [ "daOnsTaru_c", "classdaOnsTaru__c.html", "classdaOnsTaru__c" ],
     [ "daOnsTaru_HIO_c", "classdaOnsTaru__HIO__c.html", "classdaOnsTaru__HIO__c" ],

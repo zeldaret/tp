@@ -5,7 +5,7 @@ var structcCcD__ObjHitInf =
     [ "ChkAtHit", "structcCcD__ObjHitInf.html#a6f23c5549a9a77870034f508a9f01fa4", null ],
     [ "ChkAtNoTgHitInfSet", "structcCcD__ObjHitInf.html#a4af82546947e6f5532f5c40727df9a2d", null ],
     [ "ChkAtSet", "structcCcD__ObjHitInf.html#a36c0f26df2863f225412ca92ba584ae5", null ],
-    [ "ChkAtType", "structcCcD__ObjHitInf.html#afe7e1718215eec9cc168bd2b53b5d178", null ],
+    [ "ChkAtType", "structcCcD__ObjHitInf.html#a2e004788d2ea9b52781b596a839a7a94", null ],
     [ "ChkCoHit", "structcCcD__ObjHitInf.html#a89f9792980399c6c528e7405293ce762", null ],
     [ "ChkCoNoCoHitInfSet", "structcCcD__ObjHitInf.html#a0131590291938cc4041793cf810f3928", null ],
     [ "ChkCoNoCrr", "structcCcD__ObjHitInf.html#ac5cbb5d542a650abad43d39b20588b8a", null ],
