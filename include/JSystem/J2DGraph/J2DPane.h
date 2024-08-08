@@ -138,6 +138,8 @@ public:
 
     MtxP getGlbMtx() { return mGlobalMtx; }
 
+    JGeometry::TBox2<f32>& getGlbBounds() { return mGlobalBounds; }
+
     void setMtx(Mtx m) { MTXCopy(m, mPositionMtx); }
 
     void translate(f32 transX, f32 transY) {
