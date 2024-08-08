@@ -3,6 +3,8 @@
 // Translation Unit: d/msg/d_msg_object
 //
 
+#define DISABLE_MSG_OBJECT_EXTERN
+
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_class.h"
 #include "d/msg/d_msg_string.h"
@@ -3129,7 +3131,7 @@ void dMsgObject_c::setProcessID(unsigned int id) {
 }
 
 /* 8023819C-802381C0 232ADC 0024+00 0/0 5/5 5/5 .text            getActor__12dMsgObject_cFv */
-fopAc_ac_c* dMsgObject_c::getActor() {
+msg_class* dMsgObject_c::getActor() {
     if (dMsgObject_getMsgObjectClass() == NULL) {
         return NULL;
     }

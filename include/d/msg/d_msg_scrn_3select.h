@@ -31,7 +31,7 @@ public:
     /* 80239D98 */ void translate(f32, f32);
     /* 80239DD4 */ void draw(f32, f32);
     /* 8023A094 */ void selAnimeInit(u8, u8, u8, f32, u8);
-    /* 8023A398 */ BOOL selAnimeMove(u8, u8, bool);
+    /* 8023A398 */ bool selAnimeMove(u8, u8, bool);
     /* 8023A680 */ bool selAnimeEnd();
     /* 8023A934 */ f32 getTextBoxWidth();
     /* 8023A94C */ f32 getFontSize();

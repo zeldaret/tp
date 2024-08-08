@@ -119,7 +119,7 @@ public:
                                          char*, char*, char*, s16*);
     /* 80238174 */ static void* getMsgDtPtr();
     /* 80238188 */ static void setProcessID(unsigned int);
-    /* 8023819C */ static fopAc_ac_c* getActor();
+    /* 8023819C */ static msg_class* getActor();
     /* 802381C0 */ static fopAc_ac_c* getpTalkActor();
     /* 802381D4 */ static int getIdx();
     /* 802381E8 */ static u16 getNodeIdx();
@@ -222,8 +222,7 @@ public:
     u8 getBombNumLocal(int idx) { return mBombNum[idx]; }
     bool isCameraCancelFlagLocal() { return mCameraCancelFlag; }
     void* getMsgDtPtrLocal() { return mpMsgDt; }
-    // TODO: The type return is unclear. Maybe msg_class*.
-    fopAc_ac_c* getActorLocal() { return (fopAc_ac_c*)field_0x100; }
+    msg_class* getActorLocal() { return field_0x100; }
     fopAc_ac_c* getpTalkActorLocal() { return mpTalkActor; }
     int getIdxLocal() { return mIdx; }
     u16 getNodeIdxLocal() { return mNodeIdx; }
@@ -676,5 +675,9 @@ public:
     /* 0x359 */ u8 mMessageDisplay;
     /* 0x35C */ dMsgObject_HowlHIO_c mHowlHIO;
 };
+
+#ifndef DISABLE_MSG_OBJECT_EXTERN
+extern dMsgObject_HIO_c g_MsgObject_HIO_c;
+#endif
 
 #endif /* D_MSG_D_MSG_OBJECT_H */

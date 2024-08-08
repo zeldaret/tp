@@ -440,7 +440,7 @@ void dMsgScrn3Select_c::selAnimeInit(u8 i_selNum, u8 i_selNo, u8 param_2, f32 i_
 }
 
 /* 8023A398-8023A680 234CD8 02E8+00 0/0 5/5 0/0 .text selAnimeMove__17dMsgScrn3Select_cFUcUcb */
-BOOL dMsgScrn3Select_c::selAnimeMove(u8 i_selNum, u8 param_1, bool param_2) {
+bool dMsgScrn3Select_c::selAnimeMove(u8 i_selNum, u8 param_1, bool param_2) {
     field_0x110 = param_1;
     mSelNum = i_selNum;
     field_0x114 = 0;
@@ -490,7 +490,7 @@ BOOL dMsgScrn3Select_c::selAnimeMove(u8 i_selNum, u8 param_1, bool param_2) {
         }
     }
 
-    return mProcess == PROC_SELECT_e;
+    return mProcess == PROC_SELECT_e ? TRUE : FALSE;
 }
 
 /* 8023A680-8023A934 234FC0 02B4+00 0/0 9/9 0/0 .text            selAnimeEnd__17dMsgScrn3Select_cFv

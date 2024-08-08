@@ -251,7 +251,7 @@ public:
     /* 0xD90 */ u32 field_0xd90;
     /* 0xD94 */ u32 field_0xd94;
     /* 0xD98 */ u32 field_0xd98;
-    /* 0xD9C */ profile_method_class* sub_method;
+    /* 0xD9C */ u32 mMsgId;
     /* 0xDA0 */ u8 field_0xda0[8];
     /* 0xDA8 */ u32 field_0xda8;
     /* 0xDAC */ int field_0xdac;

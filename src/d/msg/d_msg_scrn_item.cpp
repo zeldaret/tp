@@ -6,84 +6,20 @@
 #include "d/msg/d_msg_scrn_item.h"
 #include "d/msg/d_msg_scrn_light.h"
 #include "d/msg/d_msg_scrn_arrow.h"
+#include "d/msg/d_msg_scrn_3select.h"
+#include "d/msg/d_msg_object.h"
+#include "d/msg/d_msg_class.h"
+#include "d/meter/d_meter2_info.h"
+#include "d/meter/d_meter_HIO.h"
+#include "d/d_item_data.h"
+#include "d/pane/d_pane_class.h"
+#include "m_Do/m_Do_lib.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct JKRExpHeap {};
-
-struct dMsgScrn3Select_c {
-    /* 802390B4 */ dMsgScrn3Select_c();
-    /* 80239C64 */ void isSelect();
-    /* 80239C78 */ void setString(char*, char*, char*);
-    /* 80239D08 */ void setRubyString(char*, char*, char*);
-    /* 80239D98 */ void translate(f32, f32);
-    /* 80239DD4 */ void draw(f32, f32);
-    /* 8023A094 */ void selAnimeInit(u8, u8, u8, f32, u8);
-    /* 8023A398 */ void selAnimeMove(u8, u8, bool);
-    /* 8023A680 */ void selAnimeEnd();
-    /* 8023A934 */ void getTextBoxWidth();
-    /* 8023A94C */ void getFontSize();
-    /* 8023A95C */ void getRubyFontSize();
-    /* 8023A97C */ void getCharSpace();
-    /* 8023A98C */ void getRubyCharSpace();
-    /* 8023A9AC */ void getTextBoxGlobalPosX(int);
-    /* 8023A9D8 */ void getTextBoxGlobalPosY(int);
-};
-
-struct dMsgObject_c {
-    /* 8023819C */ void getActor();
-    /* 802383D0 */ void getMessageID();
-};
-
-struct ResTIMG {};
-
-struct dMeter2Info_c {
-    /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
-                                        J2DPicture*, void*, J2DPicture*, int);
-    /* 8021D36C */ void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
-};
-
-struct dItem_data {
-    static void* item_resource[1530];
-};
-
-struct JKRFileLoader {
-    /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
-};
-
-struct JKRArchive {
-    /* 802D5ECC */ void readIdxResource(void*, u32, u32);
-};
-
-struct J2DGrafContext {};
-
-struct J2DScreen {
-    /* 802F8498 */ J2DScreen();
-    /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
-    /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
-    /* 802F9690 */ void animation();
-};
-
-struct J2DAnmLoaderDataBase {
-    /* 80308A6C */ void load(void const*);
-};
-
-struct CPaneMgrAlpha {
-    /* 802557D0 */ void setAlphaRate(f32);
-    /* 80255828 */ void getAlphaRate();
-};
-
-struct CPaneMgr {
-    /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
-    /* 80253B2C */ void reinit();
-    /* 802542E8 */ void getGlobalPosX();
-    /* 80254364 */ void getGlobalPosY();
-    /* 802545B0 */ void paneTrans(f32, f32);
-    /* 80254EBC */ void getGlobalVtxCenter(J2DPane*, bool, s16);
-};
 
 //
 // Forward References:
@@ -192,10 +128,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void* item_resource__10dItem_data[1530];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_drawHIO[3880];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 //
 // Declarations:
@@ -267,6 +199,228 @@ SECTION_SDATA2 static f32 lit_4197 = 0.5f;
 SECTION_SDATA2 static f64 lit_4199 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8023E79C-8023F51C 2390DC 0D80+00 0/0 1/1 0/0 .text __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap */
+// Matches with literals
+#ifdef NONMATCHING
+dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
+    if (param_3 != NULL) {
+        field_0x138 = param_3;
+    } else {
+        field_0x138 = dComIfGp_getSubHeap2D(7);
+    }
+    field_0x19e = false;
+    init();
+    int iVar6 = dMsgObject_getMessageID();
+    bool bVar5 = false;
+
+    if (iVar6 >= 0x645 && iVar6 <= 0x648) {
+        mItemIndex = iVar6 - 0x641;
+        bVar5 = true;
+    } else if (iVar6 >= 0x8f5 && iVar6 <= 0x90c) {
+        mItemIndex = iVar6 - 0x835;
+        bVar5 = true;
+    }
+    if (!bVar5) {
+        mItemIndex = dMsgObject_getMessageID() - 0x65;
+    }
+    if (mItemIndex == 0x240) {
+        mItemIndex = 0x40;
+    } else if (mItemIndex == 0x191e || mItemIndex == 0x402e) {
+        mItemIndex = 0x46;
+    } else if (mItemIndex == 0x46a || mItemIndex == 0x46b || mItemIndex == 0x46c) {
+        mItemIndex = 0xe0;
+    } else if (mItemIndex == 0x1d35) {
+        mItemIndex = 0x21;
+    } else if (mItemIndex == 0x55b || mItemIndex == 0x55c) {
+        mItemIndex = 0x23;
+    } else if (mItemIndex == 0x6b9 || mItemIndex == 0x6eb) {
+        mItemIndex = 0x60;
+    }
+    if (mItemIndex == 0xec) {
+        mItemIndex = 0x33;
+    }
+    if ((mItemIndex < 0 || 0xff < mItemIndex) && !isOugiID()) {
+        if (*dComIfGp_getNextStageName() != 'T') {
+            JUT_WARN(85, "Item Index Not Exist!! %d", mItemIndex);
+        }
+        mItemIndex = 0x43;
+    }
+    for (int i = 0; i < 3; i++) {
+        mpItemPane[i] = 0;
+        field_0x0e0[i] = 0;
+        mpItemTex[i] = field_0x138->alloc(0xc00, 0x20);
+        JUT_ASSERT(100, mpItemTex[i] != 0);
+    }
+    int uStack_60 = 0xffffffff;
+    if (mItemIndex == 0x46 || mItemIndex == 0x4c) {
+        uStack_60 = 0x16;
+    } else if (mItemIndex == 0x21 || mItemIndex == 0x37 ||
+               mItemIndex == 0x38 ||
+                 mItemIndex == 0x39 || mItemIndex == 0x3a)
+    {
+        switch(dComIfGs_getMaxLife() % 5) {
+        case 0:
+            uStack_60 = 0x75;
+            break;
+        case 1:
+            uStack_60 = 0x76;
+            break;
+        case 2:
+            uStack_60 = 0x77;
+            break;
+        case 3:
+            uStack_60 = 0x78;
+            break;
+        case 4:
+            uStack_60 = 0x51;
+            break;
+        }
+    }
+    if (isOugiID()) {
+        JKRReadIdxResource(mpItemTex[0], 0xc00, 0x3d, dComIfGp_getItemIconArchive());
+        field_0x0e0[0] = (ResTIMG*)mpItemTex[0];
+        mpItemPane[0] = new J2DPicture(field_0x0e0[0]);
+        JUT_ASSERT(148, mpItemPane[0] != 0);
+    } else {
+        int texNum =
+            dMeter2Info_readItemTexture(mItemIndex, mpItemTex[0], (J2DPicture*)NULL, mpItemTex[1],
+                                        (J2DPicture*)NULL, mpItemTex[2], (J2DPicture*)NULL, NULL, (J2DPicture*)NULL, uStack_60);
+        for (int i = 0; i < texNum; i++) {
+            field_0x0e0[i] = (ResTIMG*)mpItemTex[i];
+            mpItemPane[i] = new J2DPicture(field_0x0e0[i]);
+            JUT_ASSERT(165, mpItemPane[i] != 0);
+        }
+        dMeter2Info_setItemColor(
+            mItemIndex, mpItemPane[0], mpItemPane[1],
+            mpItemPane[2], NULL);
+        #ifdef DEBUG
+        if (mItemIndex == 0x81 || mItemIndex == 0x23) {
+            field_0x19e = true;
+        }
+        #endif
+    }
+    mpScreen = new J2DScreen();
+    JUT_ASSERT(188, mpScreen != 0);
+    bool fg = mpScreen->setPriority("zelda_item_get_window_revo.blo", 0x1020000, dComIfGp_getMsgArchive(3));
+    JUT_ASSERT(195, fg != false);
+    dPaneClass_showNullPane(mpScreen);
+    mpTxScreen = new J2DScreen();
+    JUT_ASSERT(199, mpTxScreen != 0);
+    fg = mpTxScreen->setPriority("zelda_item_get_window_text.blo", 0x20000, dComIfGp_getMsgArchive(3));
+    JUT_ASSERT(206, fg != false);
+    dPaneClass_showNullPane(mpTxScreen);
+    f32 dVar18;
+    if (g_drawHIO.mItemScaleAdjustON == 1) {
+        dVar18 = g_drawHIO.mItemScalePercent / 100.0f;
+    } else if (mItemIndex >= 0 && mItemIndex <= 0xff) {
+        dVar18 = dItem_data::getTexScale(mItemIndex) / 100.0f;
+    } else {
+        dVar18 = 1.0f;
+    }
+    field_0x178 = field_0x0e0[0]->width * mpScreen->search('set_it_n')->getWidth() / 48.0f;
+    field_0x17c = field_0x0e0[0]->height * mpScreen->search('set_it_n')->getHeight() / 48.0f;
+    field_0x170 = mpScreen->search('set_it_n')->getWidth();
+    field_0x174 = mpScreen->search('set_it_n')->getHeight();
+    for (int i = 0; i < 3; i++) {
+        if (mpItemPane[i] != NULL) {
+            mpItemPane[i]->resize(field_0x178 * dVar18, field_0x17c * dVar18);
+            mpItemPane[i]->setBasePosition(J2DBasePosition_4);
+        }
+    }
+    mpArrow_c = new dMsgScrnArrow_c();
+    JUT_ASSERT(280, mpArrow_c != 0);
+    mpSelect_c = new dMsgScrn3Select_c();
+    JUT_ASSERT(284, mpSelect_c != 0);
+    mpLight_c = new dMsgScrnLight_c(3, param_2);
+    JUT_ASSERT(288, mpLight_c != 0);
+    void* mpBuf = field_0x138->alloc(0x106a, 0x20);
+    JUT_ASSERT(291, mpBuf != 0);
+    memset(mpBuf, 0, 0x106a);
+    mCharInfoPtr = (CharInfo_c*)mpBuf;
+    field_0x160 = mpScreen->search('n_all')->getBounds().i.x;
+    field_0x164 = mpScreen->search('n_all')->getBounds().i.y;
+    field_0x180 = 0.0f;
+    field_0x184 = 0.0f;
+    for (int i = 0; i < 3; i++) {
+        field_0x188[i] = g_MsgObject_HIO_c.mBoxPos[i][3];
+    }
+    field_0x194 = 0.0f;
+    mpArw_c = new CPaneMgr(mpScreen, 'set_ya_n', 0, NULL);
+    JUT_ASSERT(306, mpArw_c != 0);
+    mpMg_c[0] = new CPaneMgr(mpScreen, 'mg_null', 0, NULL);
+    JUT_ASSERT(309, mpMg_c[0] != 0);
+    mpMg_c[1] = new CPaneMgr(mpTxScreen, 'mg_null', 0, NULL);
+    JUT_ASSERT(312, mpMg_c[1] != 0);
+    OSInitFastCast();
+    fukiPosCalc(param_1);
+    field_0x118[0] = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo.btk", dComIfGp_getMsgArchive(3)));
+    field_0x118[0]->searchUpdateMaterialID(mpScreen);
+    field_0x140[0] = 0.0f;
+    field_0x12c[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo.bpk", dComIfGp_getMsgArchive(3)));
+    field_0x12c[0]->searchUpdateMaterialID(mpScreen);
+    field_0x154[0] = 0.0f;
+    field_0x12c[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo_02.bpk", dComIfGp_getMsgArchive(3)));
+    field_0x12c[1]->searchUpdateMaterialID(mpScreen);
+    field_0x154[1] = 0.0f;
+    field_0x19d = false;
+    mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
+    JUT_ASSERT(389, mpPmP_c != 0);
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxItemScaleX, g_MsgObject_HIO_c.mBoxItemScaleY);
+    mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
+    JUT_ASSERT(407, mpTm_c[0] != 0);
+    mpTm_c[1] = new CPaneMgr(mpTxScreen, 't4_s', 0, NULL);
+    JUT_ASSERT(410, mpTm_c[1] != 0);
+    mpTm_c[2] = new CPaneMgr(mpTxScreen, 't4_w', 0, NULL);
+    JUT_ASSERT(413, mpTm_c[2] != 0);
+    mpTxScreen->search('n_3line')->hide();
+    mpTxScreen->search('n_3fline')->hide();
+    mpTxScreen->search('n_e4line')->show();
+    for (int i = 0; i < 3; i++) {
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        if (mpTmr_c[i] != NULL) {
+            ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        }
+    }
+    ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getFontSize(mFontSize);
+    mTBoxWidth = mpTm_c[0]->getSizeX();
+    mTBoxHeight = mpTm_c[0]->getSizeY();
+    mLineSpace = ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getLineSpace();
+    mCharSpace = ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getCharSpace();
+    for (int i = 0; i < 3; i++) {
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setLineSpace(mLineSpace);
+        mpTm_c[i]->resize(1.2f * mpTm_c[i]->getSizeX(), mpTm_c[i]->getSizeY());
+    }
+    mTextBoxPosX =
+        mpTm_c[0]->getGlobalPosX() +
+        (0.5f * ((1.0f - g_MsgObject_HIO_c.mBoxItemTextSizeX) * mpTm_c[0]->getInitSizeX()));
+    mTextBoxPosY =
+        mpTm_c[0]->getGlobalPosY() +
+        (0.5f * ((1.0f - g_MsgObject_HIO_c.mBoxItemTextSizeY) * mpTm_c[0]->getInitSizeY()));
+    mTextBoxScaleX = g_MsgObject_HIO_c.mBoxItemTextSizeX;
+    mTextBoxScaleY = g_MsgObject_HIO_c.mBoxItemTextSizeY;
+    for (int i = 0; i < 3; i++) {
+        if (mpTmr_c[i] != NULL) {
+            ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setLineSpace(mLineSpace);
+            if (i == 0) {
+                J2DTextBox::TFontSize fontSize;
+                ((J2DTextBox*)mpTmr_c[0]->getPanePtr())->getFontSize(fontSize);
+                mRubySize = fontSize.mSizeX;
+                mRubyCharSpace = ((J2DTextBox*)mpTmr_c[0]->getPanePtr())->getCharSpace();
+            }
+            mpTmr_c[i]->resize(1.2f * mpTmr_c[i]->getSizeX(), mpTmr_c[i]->getSizeY());
+        }
+    }
+    mSelTBoxWidth = mpSelect_c->getTextBoxWidth();
+    mSelFontSize = mpSelect_c->getFontSize();
+    mSelRubySize = mpSelect_c->getRubyFontSize();
+    mSelCharSpace = mpSelect_c->getCharSpace();
+    mSelRubyCharSpace = mpSelect_c->getRubyCharSpace();
+    for (int i = 0; i < 3; i++) {
+        mSelTextBoxPosX[i] = mpSelect_c->getTextBoxGlobalPosX(i);
+        mSelTextBoxPosY[i] = mpSelect_c->getTextBoxGlobalPosY(i);
+    }
+    field_0x13c = 0.0f;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -275,22 +429,119 @@ asm dMsgScrnItem_c::dMsgScrnItem_c(u8 param_0, u8 param_1, JKRExpHeap* param_2) 
 #include "asm/msg/scrn/d_msg_scrn_item/__ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap.s"
 }
 #pragma pop
+#endif
 
 /* 8023F51C-8023F888 239E5C 036C+00 1/0 0/0 0/0 .text            __dt__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dMsgScrnItem_c::~dMsgScrnItem_c() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/__dt__14dMsgScrnItem_cFv.s"
+dMsgScrnItem_c::~dMsgScrnItem_c() {
+    for (int i = 0; i < 3; i++) {
+        if (mpItemTex[i] != NULL) {
+            field_0x138->free(mpItemTex[i]);
+            mpItemTex[i] = NULL;
+        }
+        if (mpItemPane[i] != NULL) {
+            delete mpItemPane[i];
+            mpItemPane[i] = NULL;
+        }
+    }
+    delete mpScreen;
+    mpScreen = NULL;
+    delete mpTxScreen;
+    mpTxScreen = NULL;
+    delete mpArrow_c;
+    mpArrow_c = NULL;
+    delete mpSelect_c;
+    mpSelect_c = NULL;
+    delete mpLight_c;
+    mpLight_c = NULL;
+    if (mCharInfoPtr != 0) {
+        field_0x138->free(mCharInfoPtr);
+        mCharInfoPtr = NULL;
+    }
+    delete mpArw_c;
+    mpArw_c = NULL;
+    for (int i = 0; i < 2; i++) {
+        delete mpMg_c[i];
+        mpMg_c[i] = NULL;
+    }
+    for (int i = 0; i < 1; i++) {
+        delete field_0x118[i];
+        field_0x118[i] = NULL;
+    }
+    for (int i = 0; i < 2; i++) {
+        delete field_0x12c[i];
+        field_0x12c[i] = NULL;
+    }
+    delete mpPmP_c;
+    mpPmP_c = NULL;
+    for (int i = 0; i < 3; i++) {
+        delete mpTm_c[i];
+        mpTm_c[i] = NULL;
+        if (mpTmr_c[i] != NULL) {
+            delete mpTmr_c[i];
+            mpTmr_c[i] = NULL;
+        }
+    }
+    dComIfGp_getMsgArchive(0)->removeResourceAll();;
+    dComIfGp_getMsgArchive(3)->removeResourceAll();;
+    dComIfGp_getMsgCommonArchive()->removeResourceAll();;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454C18-80454C20 003218 0008+00 2/2 0/0 0/0 .sdata2          @4388 */
 SECTION_SDATA2 static f64 lit_4388 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8023F888-8023FB24 23A1C8 029C+00 1/0 0/0 0/0 .text            exec__14dMsgScrnItem_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dMsgScrnItem_c::exec() {
+    f32 dVar12 = field_0x13c;
+    if (!field_0x19d) {
+        setBtk0Animation(field_0x118[0]);
+        setBpk0Animation(field_0x12c[0]);
+        setBpk1Animation(field_0x12c[1]);
+        field_0x19d = true;
+    }
+    for (int i = 0; i < 1; i++) {
+        field_0x140[i] += g_MsgObject_HIO_c.mBoxItemAnmSpeed;
+        if (field_0x140[i] >= field_0x118[i]->getFrameMax()) {
+            field_0x140[i] -= field_0x118[i]->getFrameMax();
+        }
+        field_0x118[i]->setFrame(field_0x140[i]);
+    }
+    for (int i = 0; i < 2; i++) {
+        field_0x154[i] += g_MsgObject_HIO_c.mBoxItemAnmSpeed;
+        if (field_0x154[i] >= field_0x12c[i]->getFrameMax())
+        {
+            field_0x154[i] -= field_0x12c[i]->getFrameMax();
+        }
+        field_0x12c[i]->setFrame(field_0x154[i]);
+    }
+    mpScreen->animation();
+    if (isTalkNow()) {
+        fukiAlpha(1.0f);
+    } else {
+        fukiAlpha(dVar12);
+    }
+    
+    f32 yOffset;
+    switch(field_0x19c) {
+    case 1:
+        yOffset = field_0x188[2] - field_0x184;
+        break;
+    case 2:
+        yOffset = field_0x188[1] - field_0x184;
+        break;
+    default:
+        yOffset = field_0x188[0] - field_0x184;
+        break;
+
+    }
+    mpPmP_c->scale(g_MsgObject_HIO_c.mBoxItemScaleX, g_MsgObject_HIO_c.mBoxItemScaleY);
+    mpMg_c[1]->translate(field_0x168 + g_MsgObject_HIO_c.mBoxItemTextPosX,
+                          yOffset + (field_0x16c + g_MsgObject_HIO_c.mBoxItemTextPosY));
+    mpMg_c[1]->scale(g_MsgObject_HIO_c.mBoxItemTextSizeX, g_MsgObject_HIO_c.mBoxItemTextSizeY);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,6 +550,7 @@ asm void dMsgScrnItem_c::exec() {
 #include "asm/msg/scrn/d_msg_scrn_item/exec__14dMsgScrnItem_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80454C20-80454C24 003220 0004+00 1/1 0/0 0/0 .sdata2          @4476 */
@@ -311,6 +563,88 @@ SECTION_SDATA2 static f32 lit_4477 = 255.0f;
 SECTION_SDATA2 static f32 lit_4478 = 3.0f / 5.0f;
 
 /* 8023FB24-8023FF30 23A464 040C+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnItem_cFv */
+// Issues with float regs order
+#ifdef NONMATCHING
+void dMsgScrnItem_c::drawSelf() {
+    J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
+    grafContext->setup2D();
+    u8* iVar6 = (u8*)mCharInfoPtr;
+    if (*(s16*)(iVar6 + 0x1068) > 0) {
+        f32 dVar12 = mpTm_c[0]->getAlphaRate();
+        for (int i = 0; i < *(short*)(iVar6 + 0x1068); i = i + 1) {
+            mpLight_c->draw(&mCharInfoPtr[i].field_0x14, mCharInfoPtr[i].field_0x00,
+                            mCharInfoPtr[i].field_0x04, mCharInfoPtr[i].field_0x08,
+                            mCharInfoPtr[i].field_0x0c,
+                            dVar12 * g_MsgObject_HIO_c.mBoxItemHaloAlpha, mCharInfoPtr[i].mColorNo);
+        }
+    }
+    //f32 this_00 = mpTm_c[0]->getGlobalPosX();
+    drawOutFont(g_MsgObject_HIO_c.mBoxItemTextPosX - 2.0f, g_MsgObject_HIO_c.mBoxItemTextPosY,
+                1.0f);
+    mpTxScreen->draw(0.0f, 0.0f, grafContext);
+    mpSelect_c->draw(0.0f, 0.0f);
+    mpArrow_c->draw();
+
+    for (int i = 0; i < 3; i++) {
+        if (mpItemPane[i] != NULL) {
+            mpItemPane[i]->setAlpha(255.0f * field_0x194);
+            switch (mItemIndex) {
+            case 0x20:
+            case 0x2a:
+            case 0x2b:
+            case 0x21:
+            case 0x37:
+            case 0x38:
+            case 0x39:
+            case 0x3a:
+            case 0x3d:
+            case 0x40:
+            case 0x42:
+            case 0x44:
+            case 0x47:
+            case 0x48:
+            case 0x4a:
+            case 0x58:
+            case 0x5b:
+            case 0x5c:
+            case 0x5d:
+            case 0x5e:
+            case 0x5f:
+            case 0x9c:
+            case 0xee:
+            case 0xf3:
+            case 0xf8:
+            case 0xf9:
+            case 0xfa:
+            case 0xfb:
+            case 0xfc:
+            case 0xfd:
+            case 0xfe:
+                mpItemPane[i]->scale(0.6f, 0.6f);
+                break;
+            default:
+                mpItemPane[i]->scale(g_MsgObject_HIO_c.mBoxItemSizeX, g_MsgObject_HIO_c.mBoxItemSizeY);
+            }
+            
+            f32 texScale;
+            if (g_drawHIO.mItemScaleAdjustON == true) {
+                texScale = (g_drawHIO.mItemScalePercent / 100.0f);
+            } else if (mItemIndex >= 0 && mItemIndex <= 0xff) {
+                texScale = dItem_data::item_resource[(u8)mItemIndex].getTexScale() / 100.0f;
+            } else {
+                texScale = 1.0f;
+            };
+            // operation order is wrong here
+            mpItemPane[i]->draw(
+                mpScreen->search('set_it_n')->getGlbBounds().i.x + g_MsgObject_HIO_c.mBoxItemPosX +
+                    (field_0x174 - (field_0x17c * texScale)) / 2,
+                mpScreen->search('set_it_n')->getGlbBounds().i.y + g_MsgObject_HIO_c.mBoxItemPosY + 
+                    (field_0x170 - (field_0x178 * texScale)) / 2,
+                field_0x19e, false, false);
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,133 +653,81 @@ asm void dMsgScrnItem_c::drawSelf() {
 #include "asm/msg/scrn/d_msg_scrn_item/drawSelf__14dMsgScrnItem_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8023FF30-8023FF54 23A870 0024+00 1/0 0/0 0/0 .text            arwAnimeInit__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::arwAnimeInit() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/arwAnimeInit__14dMsgScrnItem_cFv.s"
+void dMsgScrnItem_c::arwAnimeInit() {
+    mpArrow_c->arwAnimeInit();
 }
-#pragma pop
 
 /* 8023FF54-8023FF78 23A894 0024+00 1/0 0/0 0/0 .text            arwAnimeMove__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::arwAnimeMove() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/arwAnimeMove__14dMsgScrnItem_cFv.s"
+void dMsgScrnItem_c::arwAnimeMove() {
+    mpArrow_c->arwAnimeMove();
 }
-#pragma pop
 
 /* 8023FF78-8023FF9C 23A8B8 0024+00 1/0 0/0 0/0 .text            dotAnimeInit__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::dotAnimeInit() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/dotAnimeInit__14dMsgScrnItem_cFv.s"
+void dMsgScrnItem_c::dotAnimeInit() {
+    mpArrow_c->dotAnimeInit();
 }
-#pragma pop
 
 /* 8023FF9C-8023FFC0 23A8DC 0024+00 1/0 0/0 0/0 .text            dotAnimeMove__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::dotAnimeMove() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/dotAnimeMove__14dMsgScrnItem_cFv.s"
+void dMsgScrnItem_c::dotAnimeMove() {
+    mpArrow_c->dotAnimeMove();
 }
-#pragma pop
 
 /* 8023FFC0-8023FFE4 23A900 0024+00 1/0 0/0 0/0 .text setSelectString__14dMsgScrnItem_cFPcPcPc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::setSelectString(char* param_0, char* param_1, char* param_2) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/setSelectString__14dMsgScrnItem_cFPcPcPc.s"
+void dMsgScrnItem_c::setSelectString(char* param_0, char* param_1, char* param_2) {
+    mpSelect_c->setString(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 8023FFE4-80240008 23A924 0024+00 1/0 0/0 0/0 .text setSelectRubyString__14dMsgScrnItem_cFPcPcPc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::setSelectRubyString(char* param_0, char* param_1, char* param_2) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/setSelectRubyString__14dMsgScrnItem_cFPcPcPc.s"
+void dMsgScrnItem_c::setSelectRubyString(char* param_0, char* param_1, char* param_2) {
+    mpSelect_c->setRubyString(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 80240008-8024002C 23A948 0024+00 1/0 0/0 0/0 .text            isSelect__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMsgScrnItem_c::isSelect() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/isSelect__14dMsgScrnItem_cFv.s"
+bool dMsgScrnItem_c::isSelect() {
+    return mpSelect_c->isSelect();
 }
-#pragma pop
 
 /* 8024002C-8024005C 23A96C 0030+00 1/0 0/0 0/0 .text selectAnimeInit__14dMsgScrnItem_cFUcUcfUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8 param_3) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/selectAnimeInit__14dMsgScrnItem_cFUcUcfUc.s"
+void dMsgScrnItem_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8 param_3) {
+    mpSelect_c->selAnimeInit(param_0, param_1, field_0x19c, param_2, param_3);
 }
-#pragma pop
 
 /* 8024005C-80240080 23A99C 0024+00 1/0 0/0 0/0 .text selectAnimeMove__14dMsgScrnItem_cFUcUcb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/selectAnimeMove__14dMsgScrnItem_cFUcUcb.s"
+bool dMsgScrnItem_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
+    return mpSelect_c->selAnimeMove(param_0, param_1, param_2);
 }
-#pragma pop
 
 /* 80240080-802400A4 23A9C0 0024+00 1/0 0/0 0/0 .text            selectAnimeEnd__14dMsgScrnItem_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dMsgScrnItem_c::selectAnimeEnd() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/selectAnimeEnd__14dMsgScrnItem_cFv.s"
+bool dMsgScrnItem_c::selectAnimeEnd() {
+    return mpSelect_c->selAnimeEnd();
 }
-#pragma pop
 
 /* 802400A4-802400A8 23A9E4 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnItem_cFf */
 void dMsgScrnItem_c::fukiScale(f32 param_0) {
-    /* empty function */
 }
 
 /* 802400A8-802400CC 23A9E8 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnItem_cFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::fukiTrans(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/fukiTrans__14dMsgScrnItem_cFff.s"
+void dMsgScrnItem_c::fukiTrans(f32 x, f32 y) {
+    mpPmP_c->paneTrans(x, y);
 }
-#pragma pop
 
 /* 802400CC-80240174 23AA0C 00A8+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnItem_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::fukiAlpha(f32 param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/fukiAlpha__14dMsgScrnItem_cFf.s"
+void dMsgScrnItem_c::fukiAlpha(f32 param_1) {
+    field_0x13c = param_1;
+    field_0x194 = param_1;
+    mpPmP_c->setAlphaRate(param_1 * g_MsgObject_HIO_c.mBoxItemAlphaP);
+    for (int i = 0; i < 3; i++) {
+        mpTm_c[i]->setAlphaRate(param_1 * mCharAlphaRate);
+        if (mpTmr_c[i] != NULL) {
+            mpTmr_c[i]->setAlphaRate(param_1 * mCharAlphaRate);
+        }
+    }
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80454C2C-80454C30 00322C 0004+00 1/1 0/0 0/0 .sdata2          @4663 */
@@ -476,6 +758,100 @@ SECTION_SDATA2 static f32 lit_4670 = 355.0f;
 SECTION_SDATA2 static f32 lit_4671 = 209.0f;
 
 /* 80240174-8024074C 23AAB4 05D8+00 1/0 0/0 0/0 .text            fukiPosCalc__14dMsgScrnItem_cFUc */
+// Matches with literals
+#ifdef NONMATCHING
+void dMsgScrnItem_c::fukiPosCalc(u8 param_1) {
+    msg_class* iVar6 = dMsgObject_c::getActor();
+    if (mpPmP_c != NULL) {
+        mpPmP_c->move(field_0x160, field_0x164);
+    }
+    if (param_1 == 3) {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        cXyz local_70;
+        cXyz cStack_7c;
+        f32 f3;
+        mDoLib_project(&player->eyePos, &cStack_7c);
+        if (iVar6->mPos == cXyz(0.0f, 0.0f, 0.0f)) {
+            f3 = cStack_7c.y;
+        } else {
+            mDoLib_project(&iVar6->mPos, &local_70);
+            if (local_70.x >= 0.0f && local_70.x <= 608.0f && local_70.y >= 0.0f &&
+                local_70.y <= 448.0f)
+            {
+                f3 = 0.5f * (cStack_7c.y + local_70.y);
+            } else {
+                f3 = cStack_7c.y;
+            }
+        }
+        if (mpPmP_c != NULL) {
+            switch(field_0x19c) {
+            case 1:
+                if (f3 < g_MsgObject_HIO_c.mBoxAppearBound - 50.0f) {
+                    param_1 = 0;
+                } else {
+                    param_1 = 1;
+                }
+                break;
+            case 3:
+                if (f3 < g_MsgObject_HIO_c.mBoxAppearBound + 50.0f) {
+                    param_1 = 0;
+                } else {
+                    param_1 = 1;
+                }
+                break;
+            }
+        } else {
+            if (f3 < g_MsgObject_HIO_c.mBoxAppearBound) {
+                param_1 = 0;
+            } else {
+                param_1 = 1;
+            }
+        }
+    }
+    field_0x180 = 0.0f;
+    field_0x19c = param_1;
+    f32 yOffset;
+    switch(field_0x19c) {
+    case 1:
+        yOffset = g_MsgObject_HIO_c.mBoxPos[2][3];
+        field_0x180 = 105.0f - (mpScreen->search('n_all')->getBounds().i.y +
+                              mpScreen->search('n_all')->getBounds().f.y) / 2;
+        mpSelect_c->translate(486.0f, 230.0f);
+        break;
+    case 2:
+        yOffset = g_MsgObject_HIO_c.mBoxPos[1][3];
+        field_0x180 = 235.0f - (mpScreen->search('n_all')->getBounds().i.y +
+                                mpScreen->search('n_all')->getBounds().f.y) / 2;
+        mpSelect_c->translate(486.0f, 355.0f);
+        break;
+    default:
+        yOffset = g_MsgObject_HIO_c.mBoxPos[0][3];
+        field_0x180 = 0.0f;
+        mpSelect_c->translate(486.0f, 209.0f);
+    }
+    field_0x184 = yOffset;
+    setTextBoxPosOffsetY(field_0x180 + yOffset);
+    mpScreen->search('n_all')->move(field_0x160, yOffset + (field_0x164 + field_0x180));
+    if (mpPmP_c != NULL) {
+        mpPmP_c->reinit();
+        mpArrow_c->setPos(mpArw_c->getGlobalPosX() + (0.5f * mpArw_c->getSizeX()),
+                          mpArw_c->getGlobalPosY() + (0.5f * mpArw_c->getSizeY()));
+        mpMg_c[1]->translate(mpMg_c[0]->getGlobalPosX() + 0.5f * mpMg_c[0]->getSizeX(),
+                             mpMg_c[0]->getGlobalPosY() + 0.5f * mpMg_c[0]->getSizeY());
+        mTextBoxPosX = mpTm_c[0]->getGlobalPosX();
+        mTextBoxPosY = mpTm_c[0]->getGlobalPosY();
+        field_0x168 = mpMg_c[0]->getGlobalPosX() + 0.5f * mpMg_c[0]->getSizeX();
+        field_0x16c = (mpMg_c[0]->getGlobalPosY() + 0.5f * mpMg_c[0]->getSizeY());
+    } else {
+        Vec arwCenter = mpArw_c->getGlobalVtxCenter(false, 0);
+        mpArrow_c->setPos(arwCenter.x, arwCenter.y);
+        Vec local_b8 = mpMg_c[0]->getGlobalVtxCenter(false, 0);
+        field_0x168 = local_b8.x;
+        field_0x16c = local_b8.y;
+        mpMg_c[1]->translate(field_0x168, field_0x16c);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -484,48 +860,46 @@ asm void dMsgScrnItem_c::fukiPosCalc(u8 param_0) {
 #include "asm/msg/scrn/d_msg_scrn_item/fukiPosCalc__14dMsgScrnItem_cFUc.s"
 }
 #pragma pop
+#endif
 
 /* 8024074C-802407E8 23B08C 009C+00 1/1 0/0 0/0 .text
  * setBtk0Animation__14dMsgScrnItem_cFP19J2DAnmTextureSRTKey    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::setBtk0Animation(J2DAnmTextureSRTKey* param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/setBtk0Animation__14dMsgScrnItem_cFP19J2DAnmTextureSRTKey.s"
+void dMsgScrnItem_c::setBtk0Animation(J2DAnmTextureSRTKey* param_1) {
+    mpScreen->search('gold00')->setAnimation(param_1);
+    mpScreen->search('gold01')->setAnimation(param_1);
 }
-#pragma pop
 
 /* 802407E8-80240844 23B128 005C+00 1/1 0/0 0/0 .text
  * setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::setBpk0Animation(J2DAnmColor* param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor.s"
+void dMsgScrnItem_c::setBpk0Animation(J2DAnmColor* param_0) {
+    mpScreen->search('map0')->setAnimation(param_0);
 }
-#pragma pop
 
 /* 80240844-802408A4 23B184 0060+00 1/1 0/0 0/0 .text
  * setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::setBpk1Animation(J2DAnmColor* param_0) {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor.s"
+void dMsgScrnItem_c::setBpk1Animation(J2DAnmColor* param_0) {
+    mpScreen->search('moyou_1')->setAnimation(param_0);
 }
-#pragma pop
 
 /* 802408A4-8024096C 23B1E4 00C8+00 1/1 0/0 0/0 .text            isOugiID__14dMsgScrnItem_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMsgScrnItem_c::isOugiID() {
-    nofralloc
-#include "asm/msg/scrn/d_msg_scrn_item/isOugiID__14dMsgScrnItem_cFv.s"
+bool dMsgScrnItem_c::isOugiID() {
+    switch(dMsgObject_getMessageID()) {
+    case 0x17ed:
+    case 0x1823:
+    case 0x183f:
+    case 0x18b4:
+    case 0x185c:
+    case 0x1877:
+    case 0x1895:
+    case 0x3efd:
+    case 0x3f33:
+    case 0x3f6c:
+    case 0x3f87:
+    case 0x3fa5:
+    case 0x3fc4:
+        return true;
+    }
+    return false;
 }
-#pragma pop
 
 /* 80399990-80399990 025FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
