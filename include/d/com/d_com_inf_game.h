@@ -1927,6 +1927,10 @@ inline u8 dComIfGs_getPlayerFieldLastStayRegionNo() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().getRegionNo();
 }
 
+inline void dComIfGs_setLightDropNum(u8 i_level, u8 i_num) {
+    g_dComIfG_gameInfo.info.getPlayer().getLightDrop().setLightDropNum(i_level, i_num);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();

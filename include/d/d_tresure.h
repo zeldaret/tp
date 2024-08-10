@@ -74,6 +74,10 @@ public:
         setPosition(i_tboxNo, 0, i_pos, -1);
     }
 
+    static void setLightDropPostion(int i_tboxNo, const Vec* i_pos) {
+        setPosition(i_tboxNo, 4, i_pos, -1);
+    }
+
     static u8 const typeToTypeGroup[17][2];
     static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;

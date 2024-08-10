@@ -131,6 +131,7 @@ public:
 
     void setFriendFlag(u8 i_flag) { mFriendFlag |= i_flag; }
     u8 getFriendFlag() { return mFriendFlag; }
+    u8 getSwitchBit() { return mSwitchBit; }
     
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
