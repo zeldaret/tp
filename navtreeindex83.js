@@ -1,5 +1,6 @@
 var NAVTREEINDEX83 =
 {
+"classJASSeqCtrl.html#a6ad6c83d6c02a6fea8de9fa3e4994a5bac67404ba8c80dae0e37008cbe0c1362e":[1,1,2,73,0,2],
 "classJASSeqCtrl.html#a6ad6c83d6c02a6fea8de9fa3e4994a5badcecc749ea07277bcf7f6b9cf02b6e01":[1,1,2,73,0,0],
 "classJASSeqCtrl.html#a6ad6c83d6c02a6fea8de9fa3e4994a5bafab480df3ae1914cf7bd80ddfe1ae67b":[1,1,2,73,0,4],
 "classJASSeqCtrl.html#a6aef91802046621a0615231d55447945":[1,1,2,73,36],
@@ -248,6 +249,5 @@ var NAVTREEINDEX83 =
 "classJAUSection.html#a53b3b0e86da31f831400cf693b7483a0":[1,1,2,95,22],
 "classJAUSection.html#a5b4b1a55db9b583e3cfaf4059a0d53b1":[1,1,2,95,25],
 "classJAUSection.html#a5b52d08da86957e4e8b8cdb5cd79a8bb":[1,1,2,95,13],
-"classJAUSection.html#a61b45f574c40d2b23ed9bf1d461bf7dd":[1,1,2,95,7],
-"classJAUSection.html#a633bf2146ad4d415a1d678cd936a6985":[1,1,2,95,2]
+"classJAUSection.html#a61b45f574c40d2b23ed9bf1d461bf7dd":[1,1,2,95,7]
 };

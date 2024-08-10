@@ -1,5 +1,6 @@
 var NAVTREEINDEX84 =
 {
+"classJAUSection.html#a633bf2146ad4d415a1d678cd936a6985":[1,1,2,95,2],
 "classJAUSection.html#a65c0caaaea94263d32c32da35f601040":[1,1,2,95,6],
 "classJAUSection.html#a70ae42366ab6c5394cbb7a4952d29305":[1,1,2,95,20],
 "classJAUSection.html#a78d080b0f34eaa62ab0ab8edfc7b4798":[1,1,2,95,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX84 =
 "classJKRAMCommand.html#aba6c6cccf1ab543c10d57ed5e9118529":[1,1,5,4,8],
 "classJKRAMCommand.html#acf22d9806b35e8cd01c8f858205c3feb":[1,1,5,4,13],
 "classJKRAMCommand.html#adcaa5c5ef8cdd4c621058a31c817808f":[1,1,5,4,20],
-"classJKRAMCommand.html#af3b4aeb1a587acf5096f0a17994a687e":[1,1,5,4,19],
-"classJKRAMCommand.html#af6b09eac532e1df5d74d9af805f5ff56":[1,1,5,4,1]
+"classJKRAMCommand.html#af3b4aeb1a587acf5096f0a17994a687e":[1,1,5,4,19]
 };

@@ -85,7 +85,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJKRFileLoader.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJKRFileLoader.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1000,-399.64 919.5,-399.64 919.5,-380.39 1000,-380.39 1000,-399.64"/>
 <text text-anchor="middle" x="959.75" y="-386.14" font-family="Helvetica,sans-Serif" font-size="10.00">JKRFileLoader</text>
 </a>

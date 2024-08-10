@@ -229,8 +229,7 @@ var group__jsystem_j2d =
     [ "J2DAnmLoaderDataBase", "structJ2DAnmLoaderDataBase.html", [
       [ "load", "structJ2DAnmLoaderDataBase.html#abe1c5b47737ae42192a267434c22d78b", null ],
       [ "load", "structJ2DAnmLoaderDataBase.html#ab8879a8913a8afc030fe01862bd50137", null ],
-      [ "load", "structJ2DAnmLoaderDataBase.html#a1f9f22a6277a0a2ee9c6a29cdea2ab9c", null ],
-      [ "load", "structJ2DAnmLoaderDataBase.html#ab8879a8913a8afc030fe01862bd50137", null ]
+      [ "load", "structJ2DAnmLoaderDataBase.html#a1f9f22a6277a0a2ee9c6a29cdea2ab9c", null ]
     ] ],
     [ "J2DAnmLoader", "structJ2DAnmLoader.html", [
       [ "~J2DAnmLoader", "structJ2DAnmLoader.html#a8b3ca8882b0a97319b70884abc18c8df", null ],
@@ -1071,6 +1070,7 @@ var group__jsystem_j2d =
       [ "getEndChild", "structJ2DPane.html#a6729f27f38290f0e706341e19cd88eea", null ],
       [ "getFirstChild", "structJ2DPane.html#a53e0ab0c3058cd9c4b9b3f8951bd8b9b", null ],
       [ "getFirstChildPane", "structJ2DPane.html#a0cd9a278a7a8253b597a442f0cf6486f", null ],
+      [ "getGlbBounds", "structJ2DPane.html#a36318ccdac7335e6f588d0b881ea277f", null ],
       [ "getGlbMtx", "structJ2DPane.html#aa1b93ed51ab646ea55cb3dc4da3de111", null ],
       [ "getGlbVtx", "structJ2DPane.html#a307f2f0b06c8e0e7c5c9a3e86f20ac7c", null ],
       [ "getHeight", "structJ2DPane.html#a0368d8d7d711fd1a219300f4b1f7f9a1", null ],
@@ -1425,10 +1425,8 @@ var group__jsystem_j2d =
     ] ],
     [ "J2DScreen", "structJ2DScreen.html", [
       [ "J2DScreen", "structJ2DScreen.html#a49b2653b2aa276f41ac6e1df077d960d", null ],
-      [ "J2DScreen", "structJ2DScreen.html#a759e3d6f8fec0fede2bb2ebb434f2e9b", null ],
       [ "~J2DScreen", "structJ2DScreen.html#a83e5cb8478f9cf5c7e4f99e52dca0f20", null ],
       [ "J2DScreen", "structJ2DScreen.html#a759e3d6f8fec0fede2bb2ebb434f2e9b", null ],
-      [ "animation", "structJ2DScreen.html#a10f60f290e4aba80e8306fbd90e94566", null ],
       [ "animation", "structJ2DScreen.html#a10f60f290e4aba80e8306fbd90e94566", null ],
       [ "calcMtx", "structJ2DScreen.html#af5dde6e7683d8f445c653fa24dba1b5f", null ],
       [ "checkSignature", "structJ2DScreen.html#a8c25d92f58b9d3b1dac347f520a43f4a", null ],
@@ -1439,7 +1437,6 @@ var group__jsystem_j2d =
       [ "createPane", "structJ2DScreen.html#ad5c39596a0742cbf6553fad03f59a339", null ],
       [ "draw", "structJ2DScreen.html#aa1933b2e810985ad781fef0a4062a5f8", null ],
       [ "draw", "structJ2DScreen.html#a140e12d1cc54c26fb6a14131b776fc54", null ],
-      [ "draw", "structJ2DScreen.html#aa1933b2e810985ad781fef0a4062a5f8", null ],
       [ "drawSelf", "structJ2DScreen.html#a45f8c556e7b49db3334efc3e7a5b78b6", null ],
       [ "getDataManage", "structJ2DScreen.html#a771dec4186dc55fb2b8b9d6cce67b6dd", null ],
       [ "getNameResource", "structJ2DScreen.html#a341abb268c99fa64dc3502fa2bf3b7b2", null ],
@@ -1464,7 +1461,6 @@ var group__jsystem_j2d =
       [ "setAnimationVF", "structJ2DScreen.html#acf99ddd43befcd805f336284f075e66b", null ],
       [ "setPriority", "structJ2DScreen.html#a59cb03d622872abb9b3f1feca59a7207", null ],
       [ "setPriority", "structJ2DScreen.html#a59cb03d622872abb9b3f1feca59a7207", null ],
-      [ "setPriority", "structJ2DScreen.html#a167f2e1ff53184113c490d76ade690e5", null ],
       [ "setPriority", "structJ2DScreen.html#a40b4b0fc5d2b35194ba8a849041304f4", null ],
       [ "setScissor", "structJ2DScreen.html#adbdf653f3cf3b6b64a5567e23cd1ab75", null ],
       [ "mColor", "structJ2DScreen.html#a8525a9d0542d84b770afc22a56447045", null ],

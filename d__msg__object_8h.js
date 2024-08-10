@@ -48,5 +48,6 @@ var d__msg__object_8h =
     [ "dMsgObject_setTalkHeap", "d__msg__object_8h.html#a12190ef2a8c34665ead421bd386cc7c3", null ],
     [ "dMsgObject_setTalkPartner", "d__msg__object_8h.html#ac72f706f11c3c28e20cf523886fd982e", null ],
     [ "dMsgObject_setTotalPayment", "d__msg__object_8h.html#a7d379058eb0c9be6b1400f5bea638397", null ],
-    [ "dMsgObject_setTotalPrice", "d__msg__object_8h.html#a997f1b9aa5938e72a22c03be86c5ac23", null ]
+    [ "dMsgObject_setTotalPrice", "d__msg__object_8h.html#a997f1b9aa5938e72a22c03be86c5ac23", null ],
+    [ "g_MsgObject_HIO_c", "d__msg__object_8h.html#a2d078e10344962f2c4a536625b6f6856", null ]
 ];

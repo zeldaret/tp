@@ -1,5 +1,6 @@
 var structdItem__itemResource =
 [
+    [ "getTexScale", "structdItem__itemResource.html#af089f97b6fdb63de199617aa34c52f1a", null ],
     [ "field_0x14", "structdItem__itemResource.html#ab2169148759949e60706a2d0ce46b966", null ],
     [ "mArcName", "structdItem__itemResource.html#a3ed2c72f65dd1b92b6394a1c343e072a", null ],
     [ "mBckName", "structdItem__itemResource.html#a2f73bd765a0a654c08fbc2c5a3570bb8", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1079 =
 {
+"structdaPy__py__c.html#a5a1a6ca21e6f7c5ae248a5fe9b284d7b":[3,0,1295,73],
+"structdaPy__py__c.html#a5a727922f0be71dfb3bfbab9ebd0000a":[3,0,1295,286],
 "structdaPy__py__c.html#a5d2c6c10351df4940e52e6d035022717":[3,0,1295,318],
 "structdaPy__py__c.html#a5d3799652c4e2f40268b097f58696c2b":[3,0,1295,321],
 "structdaPy__py__c.html#a5d5731348acd6f90de3d1f64fd07fdce":[3,0,1295,296],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1079 =
 "structdaPy__py__c.html#ae3a399a5e8fa9101fe7aa9b3f8cd3923":[3,0,1295,240],
 "structdaPy__py__c.html#ae443143c66206ecf9d8537c7bbd59741":[3,0,1295,76],
 "structdaPy__py__c.html#ae46ce79d8d6b786bee256703dd3ee3fc":[3,0,1295,265],
-"structdaPy__py__c.html#ae4afd2922f3a80dacd3804697a5badff":[3,0,1295,28],
-"structdaPy__py__c.html#ae57712f6dd82e4e677b33634dc193091":[3,0,1295,186],
-"structdaPy__py__c.html#ae65a8a76bdf2bc9eb8d0489b65eae815":[3,0,1295,254]
+"structdaPy__py__c.html#ae4afd2922f3a80dacd3804697a5badff":[3,0,1295,28]
 };

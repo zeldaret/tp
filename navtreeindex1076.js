@@ -1,5 +1,7 @@
 var NAVTREEINDEX1076 =
 {
+"structdaDo__HIO__tmp.html#a807f01f0adcf626410575562e7f58e81":[3,0,506,1],
+"structdaDo__HIO__tmp.html#a875580d6d0fd25f3e038fcd133590f2c":[3,0,506,7],
 "structdaDo__HIO__tmp.html#ac3434cb6773b4defe8c3007be85c179d":[3,0,506,5],
 "structdaDo__HIO__tmp.html#aca6d380e51ed0c54d99350ed0d8d0d2a":[3,0,506,4],
 "structdaDo__HIO__tmp.html#ad4d3c10051f8c6951431216bcbed0981":[3,0,506,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1076 =
 "structdaNpc__GetParam2.html#a19692e997f2fb80c3bbf908f1d781eb9":[3,0,766,1],
 "structdaNpc__GetParam2.html#a9dcc496611addd5247d90fd9a8a23a1d":[3,0,766,2],
 "structdaNpc__GetParam2.html#abe26edf65c3fa828d28e3c09cfc09af0":[3,0,766,0],
-"structdaNpc__Hoz__Param__c.html":[3,0,794],
-"structdaNpc__Hoz__Param__c.html#ad0e89d78f42654ff77e10096469d4ad0":[3,0,794,0],
-"structdaNpc__Hoz__Param__c.html#ad10abcccd3f185691a4ba3030489ae62":[3,0,794,1]
+"structdaNpc__Hoz__Param__c.html":[3,0,794]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1083 =
 {
+"structjmessage__tReference.html#a2cdd6f18381927526d49e830aabe96b2":[3,0,2591,138],
+"structjmessage__tReference.html#a2e25cffb7594f6848d5be8a7facc9e9e":[3,0,2591,35],
 "structjmessage__tReference.html#a2f4266fda8b31d82d6c9da196fac70b4":[3,0,2591,93],
 "structjmessage__tReference.html#a300ce4aeb66559e5d36f99ea27fce6da":[3,0,2591,149],
 "structjmessage__tReference.html#a319dc189cd7c4d4f13b7777ceb8e250c":[3,0,2591,184],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1083 =
 "structjmessage__tSequenceProcessor.html#a3177864885aae5ac0f57f345ac528185":[3,0,2593,19],
 "structjmessage__tSequenceProcessor.html#a3c8d4e8a8ae18972b1f07f75ab747bfc":[3,0,2593,33],
 "structjmessage__tSequenceProcessor.html#a3fd4ebb731a5e6a2bf33bb47d9b3d4af":[3,0,2593,2],
-"structjmessage__tSequenceProcessor.html#a40b05f774015d5961ddb1112a3514aa3":[3,0,2593,0],
-"structjmessage__tSequenceProcessor.html#a4e0eb64e651ffddf64d724bb667f68c2":[3,0,2593,4],
-"structjmessage__tSequenceProcessor.html#a528114780ec0bb0d5feb34b0a7f41c49":[3,0,2593,12]
+"structjmessage__tSequenceProcessor.html#a40b05f774015d5961ddb1112a3514aa3":[3,0,2593,0]
 };

@@ -2789,7 +2789,7 @@ var annotated_dup =
     [ "JKRFile", "classJKRFile.html", "classJKRFile" ],
     [ "JKRFileCache", "classJKRFileCache.html", "classJKRFileCache" ],
     [ "JKRFileFinder", "classJKRFileFinder.html", "classJKRFileFinder" ],
-    [ "JKRFileLoader", "structJKRFileLoader.html", "structJKRFileLoader" ],
+    [ "JKRFileLoader", "classJKRFileLoader.html", "classJKRFileLoader" ],
     [ "JKRHeap", "structJKRHeap.html", "structJKRHeap" ],
     [ "JKRMemArchive", "classJKRMemArchive.html", "classJKRMemArchive" ],
     [ "JKRSolidHeap", "classJKRSolidHeap.html", "classJKRSolidHeap" ],

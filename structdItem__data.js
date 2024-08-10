@@ -28,6 +28,5 @@ var structdItem__data =
     [ "field_item_res", "structdItem__data.html#aa4f2639d14269b6e402498f17b21b259", null ],
     [ "item_info", "structdItem__data.html#a4a83f7c2e311683e0551f3fe7d162c4e", null ],
     [ "item_info", "structdItem__data.html#a168540220e24cfd737711a6bb180f0b5", null ],
-    [ "item_resource", "structdItem__data.html#a183ca7bf5836b884a11d76f4ac9450a4", null ],
-    [ "item_resource", "structdItem__data.html#a40a412e663ea4bb29aa05eda39dae89c", null ]
+    [ "item_resource", "structdItem__data.html#a25691a8d3de62cd1ed22f948b75b9332", null ]
 ];

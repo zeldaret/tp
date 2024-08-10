@@ -1,5 +1,6 @@
 var NAVTREEINDEX35 =
 {
+"JStudio_2JStudio__JAudio2_2control_8h.html":[4,0,1,6,13,1,0],
 "JStudio_2JStudio__JAudio2_2control_8h_source.html":[4,0,1,6,13,1,0],
 "JStudio_2JStudio__JParticle_2control_8cpp.html":[4,0,2,1,13,2,0],
 "JStudio_2JStudio__JParticle_2control_8cpp.html#a00793e3fcedf544dd867ed347a348e83":[4,0,2,1,13,2,0,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX35 =
 "JUTGamePad_8cpp.html":[4,0,2,1,15,10],
 "JUTGamePad_8cpp.html#a00aa1370fd4adfb0bacf95c9fdf50bdd":[4,0,2,1,15,10,76],
 "JUTGamePad_8cpp.html#a00aa8fc59df1c41798b974d1c62d0278":[4,0,2,1,15,10,1],
-"JUTGamePad_8cpp.html#a01f03c0097e8c793a5b020e3064625b1":[4,0,2,1,15,10,77],
-"JUTGamePad_8cpp.html#a03f0909a584860995ac54293482bdc9c":[4,0,2,1,15,10,23]
+"JUTGamePad_8cpp.html#a01f03c0097e8c793a5b020e3064625b1":[4,0,2,1,15,10,77]
 };

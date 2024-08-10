@@ -60,7 +60,7 @@ var searchData=
   ['unlockinit_57',['unlockinit',['../classdaMBdoorL1__c.html#a4843998ce7a439ec74132e30c7fcbdb6',1,'daMBdoorL1_c::unlockInit()'],['../classdaBdoorL5__c.html#a80f3ce8e210404ba815ed453228a9859',1,'daBdoorL5_c::unlockInit()'],['../classdaBdoorL1__c.html#adfb2612a85d36a486ff247f0180a7748',1,'daBdoorL1_c::unlockInit()']]],
   ['unlockinit_5f_5f12dambdoorl1_5fcfv_58',['unlockInit__12daMBdoorL1_cFv',['../d__a__door__mbossL1_8cpp.html#ac377ba8b61de422df32bf9286cd9c71f',1,'d_a_door_mbossL1.cpp']]],
   ['unlocksram_59',['UnlockSram',['../OSRtc_8c.html#a99d06a99243445353b87b3f097d3371d',1,'OSRtc.c']]],
-  ['unmount_60',['unmount',['../structJKRFileLoader.html#a0c4f18ffa934f52079c907b3c0f2b900',1,'JKRFileLoader']]],
+  ['unmount_60',['unmount',['../classJKRFileLoader.html#a0c4f18ffa934f52079c907b3c0f2b900',1,'JKRFileLoader']]],
   ['unmount_5f_5f13jkrfileloaderfv_61',['unmount__13JKRFileLoaderFv',['../JKRAramArchive_8cpp.html#a820a2dec2ced8384a957ac7d96ef732f',1,'JKRAramArchive.cpp']]],
   ['unmutescenebgm_62',['unMuteSceneBgm',['../classZ2SeqMgr.html#a7cc627168b64bf5b1f7d8df33e0e8192',1,'Z2SeqMgr']]],
   ['unmutescenebgm_5f_5f8z2seqmgrful_63',['unMuteSceneBgm__8Z2SeqMgrFUl',['../Z2SceneMgr_8cpp.html#a337cb58995c7ed2011e569015f1373b7',1,'Z2SceneMgr.cpp']]],

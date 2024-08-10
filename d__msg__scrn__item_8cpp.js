@@ -1,11 +1,5 @@
 var d__msg__scrn__item_8cpp =
 [
-    [ "dMsgScrn3Select_c", "structdMsgScrn3Select__c.html", "structdMsgScrn3Select__c" ],
-    [ "dMsgObject_c", "structdMsgObject__c.html", "structdMsgObject__c" ],
-    [ "dMeter2Info_c", "structdMeter2Info__c.html", "structdMeter2Info__c" ],
-    [ "dItem_data", "structdItem__data.html", "structdItem__data" ],
-    [ "CPaneMgrAlpha", "structCPaneMgrAlpha.html", "structCPaneMgrAlpha" ],
-    [ "CPaneMgr", "structCPaneMgr.html", "structCPaneMgr" ],
     [ "__ct__10J2DPictureFPC7ResTIMG", "d__msg__scrn__item_8cpp.html#ae4ff209977b45c93f5eac9b086ec6906", null ],
     [ "__ct__14dMsgScrnBase_cFv", "d__msg__scrn__item_8cpp.html#aace9a1b3a643fbb85e4eac8e2ba0dec4", null ],
     [ "__ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap", "d__msg__scrn__item_8cpp.html#a17c96b2eb9c3a90040b6953a70d6e923", null ],
@@ -101,10 +95,6 @@ var d__msg__scrn__item_8cpp =
     [ "setString__17dMsgScrn3Select_cFPcPcPc", "d__msg__scrn__item_8cpp.html#a40a131ae75d818a7dc74535204b5b81a", null ],
     [ "translate__17dMsgScrn3Select_cFff", "d__msg__scrn__item_8cpp.html#a17d5e18cbe0f4af03e42346b3b87e40f", null ],
     [ "__vt__14dMsgScrnItem_c", "d__msg__scrn__item_8cpp.html#ab2f2d9057eb2c42fe50c15e2712e1ae5", null ],
-    [ "g_dComIfG_gameInfo", "d__msg__scrn__item_8cpp.html#a50ad47c26bcc2867f2c14d349753f58e", null ],
-    [ "g_drawHIO", "d__msg__scrn__item_8cpp.html#afdb664052e8f05184939b039288001f9", null ],
-    [ "g_meter2_info", "d__msg__scrn__item_8cpp.html#a2fcce57da0213dbb9db2badf854fade0", null ],
-    [ "g_MsgObject_HIO_c", "d__msg__scrn__item_8cpp.html#aca89e4e74031978bedf7b6c7347c66c8", null ],
     [ "item_resource__10dItem_data", "d__msg__scrn__item_8cpp.html#a657a94893f4fc941352b0e07c156662b", null ],
     [ "lit_4192", "d__msg__scrn__item_8cpp.html#af29fa305f2d618b0413b3f7a9af27d8d", null ],
     [ "lit_4193", "d__msg__scrn__item_8cpp.html#a38709c30150ef9ec70f9b637b454b4a5", null ],

@@ -12,7 +12,7 @@
 <area shape="rect" id="Node000020" href="$structJKRArchive.html" title=" " alt="" coords="1307,1650,1397,1676"/>
 <area shape="poly" id="edge17_Node000020_Node000003" title=" " alt="" coords="450,1676,571,1712,652,1731,741,1749,837,1763,936,1771,1036,1771,1133,1760,1192,1745,1247,1721,1330,1674,1333,1678,1249,1726,1193,1750,1134,1766,1036,1776,936,1776,836,1768,740,1754,650,1736,570,1717,448,1681"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="652,1633,507,1647,435,1657,434,1652,507,1642,652,1628"/>
-<area shape="rect" id="Node000021" href="$structJKRFileLoader.html" title=" " alt="" coords="996,1577,1103,1603"/>
+<area shape="rect" id="Node000021" href="$classJKRFileLoader.html" title=" " alt="" coords="996,1577,1103,1603"/>
 <area shape="poly" id="edge13_Node000021_Node000004" title=" " alt="" coords="780,1616,995,1593,996,1598,781,1621"/>
 <area shape="rect" id="Node000008" href="$structOSMutex.html" title=" " alt="" coords="51,1598,127,1624"/>
 <area shape="poly" id="edge5_Node000003_Node000008" title=" " alt="" coords="143,1616,284,1638,357,1651,356,1656,283,1643,142,1621"/>

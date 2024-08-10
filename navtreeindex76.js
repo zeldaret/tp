@@ -1,5 +1,6 @@
 var NAVTREEINDEX76 =
 {
+"classJ3DMaterialTable.html#a942d91ea551e1d05ae46aa258c898533":[1,1,1,67,2],
 "classJ3DMaterialTable.html#aadb6820ea1552e11e8de6be9ceeb4df0":[1,1,1,67,10],
 "classJ3DMaterialTable.html#ab031e5e1cdfc601156fad16dcfd4808a":[1,1,1,67,24],
 "classJ3DMaterialTable.html#abb2fdcd185f4245b301ca92723e1452e":[1,1,1,67,1],
@@ -216,8 +217,8 @@ var NAVTREEINDEX76 =
 "classJ3DMtxCalc.html":[1,1,1,49],
 "classJ3DMtxCalc.html#a0be13a27c6e293846cdd48a0405a42e9":[1,1,1,49,10],
 "classJ3DMtxCalc.html#a24a44e2df76e9c50e28baae64a76f2a1":[1,1,1,49,7],
-"classJ3DMtxCalc.html#a4b251bb9e31e8a32794bc8b590f8c0ee":[1,1,1,49,18],
 "classJ3DMtxCalc.html#a4b251bb9e31e8a32794bc8b590f8c0ee":[1,1,1,49,19],
+"classJ3DMtxCalc.html#a4b251bb9e31e8a32794bc8b590f8c0ee":[1,1,1,49,18],
 "classJ3DMtxCalc.html#a53b943e69645fb5c2c15703269ec4b6a":[1,1,1,49,12],
 "classJ3DMtxCalc.html#a53b943e69645fb5c2c15703269ec4b6a":[1,1,1,49,13],
 "classJ3DMtxCalc.html#a60a2dc5e4f91d0e36bdb0f1974883d6f":[1,1,1,49,20],
@@ -248,6 +249,5 @@ var NAVTREEINDEX76 =
 "classJ3DPEBlock.html":[1,1,1,99],
 "classJ3DPEBlock.html#a0b40f249767e39dd0aa5e94da7b40463":[1,1,1,99,9],
 "classJ3DPEBlock.html#a0b417b728d2af4625bb0ded0ef9444a3":[1,1,1,99,16],
-"classJ3DPEBlock.html#a0f47f8b26d73ed43f252484cef44a1b7":[1,1,1,99,14],
-"classJ3DPEBlock.html#a10e86df3611fd9a941adbcf4b651254c":[1,1,1,99,25]
+"classJ3DPEBlock.html#a0f47f8b26d73ed43f252484cef44a1b7":[1,1,1,99,14]
 };

@@ -36,7 +36,7 @@
 <area shape="rect" id="Node000054" href="$structJKRArchive.html" title=" " alt="" coords="1506,604,1597,629"/>
 <area shape="poly" id="edge38_Node000054_Node000025" title=" " alt="" coords="449,499,507,491,684,470,823,456,890,453,961,454,1043,460,1138,471,1231,485,1302,501,1372,524,1458,559,1499,580,1532,601,1530,605,1496,584,1456,564,1370,529,1301,506,1230,490,1138,476,1042,465,961,460,890,458,823,461,685,476,507,496,449,505"/>
 <area shape="poly" id="edge16_Node000025_Node000026" title=" " alt="" coords="611,519,507,518,434,516,435,511,507,512,611,513"/>
-<area shape="rect" id="Node000055" href="$structJKRFileLoader.html" title=" " alt="" coords="1020,514,1128,540"/>
+<area shape="rect" id="Node000055" href="$classJKRFileLoader.html" title=" " alt="" coords="1020,514,1128,540"/>
 <area shape="poly" id="edge36_Node000055_Node000026" title=" " alt="" coords="740,515,1020,523,1019,528,739,521"/>
 <area shape="rect" id="Node000030" href="$structOSMutex.html" title=" " alt="" coords="51,450,127,476"/>
 <area shape="poly" id="edge18_Node000025_Node000030" title=" " alt="" coords="143,468,284,490,357,503,356,508,283,495,142,473"/>

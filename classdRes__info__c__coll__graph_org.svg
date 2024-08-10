@@ -133,7 +133,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="structJKRFileLoader.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="classJKRFileLoader.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="80.5,-312.62 0,-312.62 0,-293.38 80.5,-293.38 80.5,-312.62"/>
 <text text-anchor="middle" x="40.25" y="-299.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRFileLoader</text>
 </a>

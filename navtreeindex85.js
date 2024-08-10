@@ -1,5 +1,6 @@
 var NAVTREEINDEX85 =
 {
+"classJKRAMCommand.html#af6b09eac532e1df5d74d9af805f5ff56":[1,1,5,4,1],
 "classJKRAram.html":[1,1,5,0],
 "classJKRAram.html#a00a67deea1609ecf175f341c5c7bed50":[1,1,5,0,3],
 "classJKRAram.html#a03e29ff8c75bec9ee492a79eb5789651":[1,1,5,0,12],
@@ -248,6 +249,5 @@ var NAVTREEINDEX85 =
 "classJKRDvdFile.html#a01496af9ef1de82c1f7323455fc563d0":[1,1,5,19,7],
 "classJKRDvdFile.html#a033130f755e87a068a2cbc68f1a36806":[1,1,5,19,26],
 "classJKRDvdFile.html#a08a5f305c116ff4a6a6be52c4ae9289c":[1,1,5,19,3],
-"classJKRDvdFile.html#a0f3f3ba23bb485519a9bedfa11557201":[1,1,5,19,17],
-"classJKRDvdFile.html#a1012a7ed5a3861689aecf49abc7734ba":[1,1,5,19,6]
+"classJKRDvdFile.html#a0f3f3ba23bb485519a9bedfa11557201":[1,1,5,19,17]
 };

@@ -2330,7 +2330,7 @@ var hierarchy =
       [ "JKRFile", "classJKRFile.html", [
         [ "JKRDvdFile", "classJKRDvdFile.html", null ]
       ] ],
-      [ "JKRFileLoader", "structJKRFileLoader.html", [
+      [ "JKRFileLoader", "classJKRFileLoader.html", [
         [ "JKRArchive", "structJKRArchive.html", [
           [ "JKRAramArchive", "structJKRAramArchive.html", null ],
           [ "JKRCompArchive", "classJKRCompArchive.html", null ],

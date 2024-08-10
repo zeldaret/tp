@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="549,642,668,668"/>
 <area shape="rect" id="Node000002" href="$structJKRArchive.html" title=" " alt="" coords="626,539,717,564"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="665,580,646,620,625,643,621,640,641,617,660,578"/>
-<area shape="rect" id="Node000003" href="$structJKRFileLoader.html" title=" " alt="" coords="162,433,269,459"/>
+<area shape="rect" id="Node000003" href="$classJKRFileLoader.html" title=" " alt="" coords="162,433,269,459"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,460,627,537,625,543,283,465"/>
 <area shape="poly" id="edge34_Node000003_Node000003" title=" " alt="" coords="285,435,293,439,296,446,288,456,270,460,269,454,285,451,290,445,289,442,283,439"/>
 <area shape="rect" id="Node000004" href="$classJKRDisposer.html" title=" " alt="" coords="340,312,437,338"/>

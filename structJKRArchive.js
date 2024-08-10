@@ -56,7 +56,6 @@ var structJKRArchive =
     [ "mount", "structJKRArchive.html#a037086211fc5839e8bf38c33c6ad6d3d", null ],
     [ "mount", "structJKRArchive.html#ad16c50311b20fc70bd7ba02455d78f05", null ],
     [ "readIdxResource", "structJKRArchive.html#aea775e0abef3aba98dbaf049ec3885a5", null ],
-    [ "readIdxResource", "structJKRArchive.html#aea775e0abef3aba98dbaf049ec3885a5", null ],
     [ "readResource", "structJKRArchive.html#a9fcb621083771add651dfc278bf6076e", null ],
     [ "readResource", "structJKRArchive.html#a89ab74b9bf603168e373b2b567ff1909", null ],
     [ "readResource", "structJKRArchive.html#a984a5a4cb1a032cb1c04e9a18cafb962", null ],

@@ -22,6 +22,7 @@ var structJ2DPane =
     [ "getEndChild", "structJ2DPane.html#a6729f27f38290f0e706341e19cd88eea", null ],
     [ "getFirstChild", "structJ2DPane.html#a53e0ab0c3058cd9c4b9b3f8951bd8b9b", null ],
     [ "getFirstChildPane", "structJ2DPane.html#a0cd9a278a7a8253b597a442f0cf6486f", null ],
+    [ "getGlbBounds", "structJ2DPane.html#a36318ccdac7335e6f588d0b881ea277f", null ],
     [ "getGlbMtx", "structJ2DPane.html#aa1b93ed51ab646ea55cb3dc4da3de111", null ],
     [ "getGlbVtx", "structJ2DPane.html#a307f2f0b06c8e0e7c5c9a3e86f20ac7c", null ],
     [ "getHeight", "structJ2DPane.html#a0368d8d7d711fd1a219300f4b1f7f9a1", null ],

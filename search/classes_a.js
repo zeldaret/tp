@@ -508,7 +508,7 @@ var searchData=
   ['jkrfile_505',['JKRFile',['../classJKRFile.html',1,'']]],
   ['jkrfilecache_506',['JKRFileCache',['../classJKRFileCache.html',1,'']]],
   ['jkrfilefinder_507',['JKRFileFinder',['../classJKRFileFinder.html',1,'']]],
-  ['jkrfileloader_508',['JKRFileLoader',['../structJKRFileLoader.html',1,'']]],
+  ['jkrfileloader_508',['JKRFileLoader',['../classJKRFileLoader.html',1,'']]],
   ['jkrheap_509',['JKRHeap',['../structJKRHeap.html',1,'']]],
   ['jkrmemarchive_510',['JKRMemArchive',['../classJKRMemArchive.html',1,'']]],
   ['jkrsolidheap_511',['JKRSolidHeap',['../classJKRSolidHeap.html',1,'']]],

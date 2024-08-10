@@ -1,5 +1,6 @@
 var NAVTREEINDEX37 =
 {
+"OSAudioSystem_8c.html#a5f4a150d3f4ef62ff96cb49ade63e8c4":[4,0,2,0,15,5,1],
 "OSAudioSystem_8c.html#ab02ac1a7be96227a25cf7642787f4159":[4,0,2,0,15,5,0],
 "OSAudioSystem_8h.html":[4,0,1,2,11,3],
 "OSAudioSystem_8h.html#a5f4a150d3f4ef62ff96cb49ade63e8c4":[4,0,1,2,11,3,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX37 =
 "OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849ad10d70bae7813b71c33ab8e4df4c4a6f":[4,0,1,2,11,9,4,28],
 "OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849add7db32804bdffea65c87a701e7c4d97":[4,0,1,2,11,9,4,9],
 "OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849ae1ec11b38c11fbb52286adcc3b43e36f":[4,0,1,2,11,9,4,27],
-"OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849ae9b286951c7dabec925652d0aab02c45":[4,0,1,2,11,9,4,13],
-"OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849aea5d60c54edf0b80987011cc5603c649":[4,0,1,2,11,9,4,16]
+"OSInterrupt_8h.html#adc17d9a1e33c0ee38de989de1854a849ae9b286951c7dabec925652d0aab02c45":[4,0,1,2,11,9,4,13]
 };
