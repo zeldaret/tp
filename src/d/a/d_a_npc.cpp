@@ -2178,16 +2178,16 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
         dMsgObject_c* talk_partner_conv = (dMsgObject_c*)talk_partner;
 
         if (talk_partner == param_2) {
-            fopAc_ac_c* conv_actor = talk_partner_conv->getActor();
-            u16 actor_command = conv_actor->eventInfo.mCommand;
+            msg_class* conv_actor = talk_partner_conv->getActor();
+            u16 actor_command = conv_actor->mMode;
 
             if (actor_command == 2 || actor_command == 3) {
-                sub_method = (profile_method_class*)-1;
+                mMsgId = -1;
             } else if (actor_command == 6) {
-                if (conv_actor->sub_method != sub_method) {
+                if (conv_actor->mMsgID != mMsgId) {
                     *param_0 = dComIfGp_getMesgFaceAnimeAttrInfo();
                     *param_1 = dComIfGp_getMesgAnimeAttrInfo();
-                    sub_method = conv_actor->sub_method;
+                    mMsgId = conv_actor->mMsgID;
                 }
 
                 if (dMsgObject_c::isMouthCheck()) {
@@ -2201,10 +2201,10 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
                 if (field_0xd98 & 0x4000) {
                     field_0xd98 &= ~0x4000;
                 }
-                sub_method = (profile_method_class*)-1;
+                mMsgId = -1;
             }
         } else {
-            sub_method = (profile_method_class*)-1;
+            mMsgId = -1;
             if (field_0xdb4) {
                 field_0xdb4 = 1;
             }
@@ -5393,16 +5393,16 @@ int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, 
     if (param_3 || eventInfo.checkCommandTalk() || mStaffID != -1) {
         fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
         if (talkPartner == param_2) {
-            fopAc_ac_c* actor = dMsgObject_c::getActor();
-            if (actor->eventInfo.mCommand == dEvtCmd_INDEMO_e
-                || actor->eventInfo.mCommand == dEvtCmd_INDOOR_e)
+            msg_class* actor = dMsgObject_c::getActor();
+            if (actor->mMode == dEvtCmd_INDEMO_e
+                || actor->mMode == dEvtCmd_INDOOR_e)
             {
                 field_0x9a4 = -1;
-            } else if (actor->eventInfo.mCommand == dEvtCmd_INCATCH_e) {
-                if ((u32)actor->sub_method != field_0x9a4) {
+            } else if (actor->mMode == dEvtCmd_INCATCH_e) {
+                if (actor->mMsgId != field_0x9a4) {
                     o_expression = dComIfGp_getMesgFaceAnimeAttrInfo();
                     o_motion = dComIfGp_getMesgAnimeAttrInfo();
-                    field_0x9a4 = (u32)actor->sub_method;
+                    field_0x9a4 = actor->mMsgId;
                 }
                 if (dMsgObject_c::isMouthCheck()) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;

@@ -11,6 +11,8 @@ struct dItem_itemInfo {
 };
 
 struct dItem_itemResource {
+    f32 getTexScale() { return mTexScale; }
+
     /* 0x00 */ const char* mArcName;
     /* 0x04 */ s16 mBmdName;
     /* 0x06 */ s16 mBtkName;
