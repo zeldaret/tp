@@ -7,7 +7,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjTrnd2_c
- * @brief Tornado 2
+ * @brief Strong Wind Column
  *
  * @details
  *
@@ -30,9 +30,9 @@ public:
     /* 80D1D2E0 */ int draw();
     /* 80D1D2E8 */ int _delete();
 
-    f32 getTargetLength() { return field_0x738; }
-    f32 getNowLength() { return field_0x704; }
-    Vec& getWindEndPos() { return field_0x6e8.mEnd; }
+    f32 getTargetLength() { return mTargetLength; }
+    f32 getNowLength() { return mNowLength; }
+    Vec& getWindEndPos() { return mWindCps.mEnd; }
     u32 getPower() { return fopAcM_GetParamBit(this, 8, 8); }
     u32 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
     u32 getSwType() { return fopAcM_GetParamBit(this, 16, 4); }
@@ -42,16 +42,16 @@ public:
 
     /* 0x568 */ dCcD_Stts mStts;
     /* 0x5A4 */ dCcD_Cps mCps;
-    /* 0x6E8 */ cM3dGCpsS field_0x6e8;
-    /* 0x704 */ f32 field_0x704;
-    /* 0x708 */ Mtx field_0x708;
-    /* 0x738 */ f32 field_0x738;
+    /* 0x6E8 */ cM3dGCpsS mWindCps;
+    /* 0x704 */ f32 mNowLength;
+    /* 0x708 */ Mtx mMtx;
+    /* 0x738 */ f32 mTargetLength;
     /* 0x73C */ WIND_INFLUENCE mWindInfluence;
-    /* 0x768 */ f32 field_0x768;
-    /* 0x76C */ f32 field_0x76c;
+    /* 0x768 */ f32 mDefaultRadius;
+    /* 0x76C */ f32 mDefaultLength;
     /* 0x770 */ int mTimer;
     /* 0x774 */ f32 mWindPower;
-    /* 0x778 */ bool field_0x778;
+    /* 0x778 */ bool mColumnOn;
     /* 0x778 */ JPABaseEmitter* mParticles[3];
 };
 
