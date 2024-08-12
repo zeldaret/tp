@@ -2958,7 +2958,7 @@ public:
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
     /* 8018280C */ fopAc_ac_c* getChainGrabActor() { return field_0x2844.getActor(); }
-    /* 80182814 */ BOOL checkCokkoGlide() const { return mProcID == PROC_AUTO_JUMP && mProcVar2.field_0x300c != 0; }
+    /* 80182814 */ bool checkCokkoGlide() const { return mProcID == PROC_AUTO_JUMP && mProcVar2.field_0x300c != 0; }
     /* 8018283C */ BOOL checkCameraLargeDamage() const { return mProcID == PROC_LARGE_DAMAGE || mProcID == PROC_LARGE_DAMAGE_WALL || mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP; }
     /* 80182870 */ const cXyz& getHsSubChainTopPos() const { return mIronBallBgChkPos; }
     /* 80182888 */ BOOL checkCutHeadProc() const { return mProcID == PROC_CUT_HEAD; }

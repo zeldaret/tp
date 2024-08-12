@@ -1,53 +1,30 @@
-//
-// Tornado 2
-//
+/**
+ * d_a_obj_tornado2.cpp
+ * Strong Wind Column
+ */
 
 #include "rel/d/a/obj/d_a_obj_tornado2/d_a_obj_tornado2.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 #include "d/kankyo/d_kankyo_rain.h"
-#include "SSystem/SComponent/c_math.h"
 
 /* 80D1D3D4-80D1D3DC 000000 0006+02 6/6 0/0 0/0 .rodata          l_R02_eff_id */
-static u16 const l_R02_eff_id[3] = {
-    0x8B5E,
-    0x8B5F,
-    0xFFFF,
-};
+static const u16 l_R02_eff_id[3] = {0x8B5E, 0x8B5F, 0xFFFF};
 
 /* 80D1D3DC-80D1D3E4 000008 0006+02 0/1 0/0 0/0 .rodata          l_R04_eff_id */
-static u16 const l_R04_eff_id[3] = {
-    0x8B60,
-    0x8B61,
-    0xFFFF,
-};
+static const u16 l_R04_eff_id[3] = {0x8B60, 0x8B61, 0xFFFF};
 
 /* 80D1D3E4-80D1D3EC 000010 0006+02 0/1 0/0 0/0 .rodata          l_R05_eff_id */
-static u16 const l_R05_eff_id[3] = {
-    0x8B6B,
-    0x8B6C,
-    0xFFFF,
-};
+static const u16 l_R05_eff_id[3] = {0x8B6B, 0x8B6C, 0xFFFF};
 
 /* 80D1D3EC-80D1D3F4 000018 0006+02 0/1 0/0 0/0 .rodata          l_R07_eff_id */
-static u16 const l_R07_eff_id[3] = {
-    0x8B6D,
-    0x8B6E,
-    0xFFFF,
-};
+static const u16 l_R07_eff_id[3] = {0x8B6D, 0x8B6E, 0xFFFF};
 
 /* 80D1D3F4-80D1D3FC 000020 0006+02 0/1 0/0 0/0 .rodata          l_R14_eff_id */
-static u16 const l_R14_eff_id[3] = {
-    0x8B66,
-    0x8B67,
-    0x8B68,
-};
+static const u16 l_R14_eff_id[3] = {0x8B66, 0x8B67, 0x8B68};
 
 /* 80D1D3FC-80D1D404 000028 0006+02 0/1 0/0 0/0 .rodata          l_R51_eff_id */
-static u16 const l_R51_eff_id[3] = {
-    0x8B69,
-    0x8B6A,
-    0xFFFF,
-};
+static const u16 l_R51_eff_id[3] = {0x8B69, 0x8B6A, 0xFFFF};
 
 /* 80D1C4D8-80D1C54C 000078 0074+00 1/1 0/0 0/0 .text            setPntWind__12daObjTrnd2_cFv */
 void daObjTrnd2_c::setPntWind() {
@@ -55,7 +32,7 @@ void daObjTrnd2_c::setPntWind() {
     mWindInfluence.mDirection.x = 0.0f;
     mWindInfluence.mDirection.y = 1.0f;
     mWindInfluence.mDirection.z = 0.0f;
-    mWindInfluence.mRadius = field_0x768 * scale.x;
+    mWindInfluence.mRadius = mDefaultRadius * scale.x;
     mWindInfluence.field_0x20 = 0.0f;
     mWindInfluence.mStrength = 0.2f;
     dKyw_pntwind_set(&mWindInfluence);
@@ -68,57 +45,65 @@ void daObjTrnd2_c::cutPntWind() {
 
 /* 80D1C570-80D1C780 000110 0210+00 1/1 0/0 0/0 .text            movePntWind__12daObjTrnd2_cFv */
 void daObjTrnd2_c::movePntWind() {
-    cXyz local_20;
-    cXyz local_2c;
-    cXyz cStack_38;
-    local_20.x = field_0x6e8.mStart.x;
-    local_20.y = field_0x6e8.mStart.y;
-    local_20.z = field_0x6e8.mStart.z;
-    local_2c.x = field_0x6e8.mEnd.x;
-    local_2c.y = field_0x6e8.mEnd.y;
-    local_2c.z = field_0x6e8.mEnd.z;
-    dKyr_get_vectle_calc(&local_20, &local_2c, &cStack_38);
-    mWindInfluence.mDirection = cStack_38;
-    mWindInfluence.mRadius = field_0x6e8.mRadius * 2.0f;
+    cXyz start;
+    cXyz end;
+    cXyz direction;
+    start.x = mWindCps.mStart.x;
+    start.y = mWindCps.mStart.y;
+    start.z = mWindCps.mStart.z;
+    end.x = mWindCps.mEnd.x;
+    end.y = mWindCps.mEnd.y;
+    end.z = mWindCps.mEnd.z;
+    dKyr_get_vectle_calc(&start, &end, &direction);
+
+    mWindInfluence.mDirection = direction;
+    mWindInfluence.mRadius = mWindCps.mRadius * 2.0f;
     mWindInfluence.field_0x20 = 0.0f;
-    cLib_addCalc(&mWindInfluence.position.x, field_0x6e8.mEnd.x, 0.1f, mWindInfluence.mRadius,
+
+    cLib_addCalc(&mWindInfluence.position.x, mWindCps.mEnd.x, 0.1f, mWindInfluence.mRadius,
                  mWindInfluence.mRadius * 0.5f);
-    cLib_addCalc(&mWindInfluence.position.y, field_0x6e8.mEnd.y, 0.1f, mWindInfluence.mRadius,
+    cLib_addCalc(&mWindInfluence.position.y, mWindCps.mEnd.y, 0.1f, mWindInfluence.mRadius,
                  mWindInfluence.mRadius * 0.5f);
-    cLib_addCalc(&mWindInfluence.position.z, field_0x6e8.mEnd.z, 0.1f, mWindInfluence.mRadius,
+    cLib_addCalc(&mWindInfluence.position.z, mWindCps.mEnd.z, 0.1f, mWindInfluence.mRadius,
                  mWindInfluence.mRadius * 0.5f);
-    if (mWindInfluence.position.abs(field_0x6e8.mEnd) < mWindInfluence.mRadius) {
-        mWindInfluence.position = field_0x6e8.mStart;
+
+    if (mWindInfluence.position.abs(mWindCps.mEnd) < mWindInfluence.mRadius) {
+        mWindInfluence.position = mWindCps.mStart;
     }
 }
 
 /* 80D1C780-80D1C924 000320 01A4+00 1/1 0/0 0/0 .text            setCpsInfo__12daObjTrnd2_cFv */
 void daObjTrnd2_c::setCpsInfo() {
-    cLib_chaseF(&field_0x704, field_0x738, field_0x76c * scale.y * 0.05f);
-    field_0x6e8.mEnd.x = 0;
-    field_0x6e8.mEnd.y = field_0x704;
-    field_0x6e8.mEnd.z = 0;
-    mDoMtx_stack_c::transS(field_0x6e8.mStart);
+    cLib_chaseF(&mNowLength, mTargetLength, mDefaultLength * scale.y * 0.05f);
+    mWindCps.mEnd.x = 0;
+    mWindCps.mEnd.y = mNowLength;
+    mWindCps.mEnd.z = 0;
+
+    mDoMtx_stack_c::transS(mWindCps.mStart);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::multVec(&field_0x6e8.mEnd, &field_0x6e8.mEnd);
-    mCps.cM3dGCps::Set(field_0x6e8);
-    f32 dVar6 = 10.0f;
-    if (getPower() != 0xff) {
-        dVar6 = getPower();
+    mDoMtx_stack_c::multVec(&mWindCps.mEnd, &mWindCps.mEnd);
+    mCps.cM3dGCps::Set(mWindCps);
+
+    f32 strength = 10.0f;
+    if (getPower() != 0xFF) {
+        strength = getPower();
     }
-    cXyz local_20;
-    cXyz cStack_40;
-    local_20.x = field_0x6e8.mEnd.x - field_0x6e8.mStart.x;
-    local_20.y = field_0x6e8.mEnd.y - field_0x6e8.mStart.y;
-    local_20.z = field_0x6e8.mEnd.z - field_0x6e8.mStart.z;
-    if (!local_20.isZero()) {
-        local_20.normalize();
+
+    cXyz push_vec;
+    cXyz sp40;
+    push_vec.x = mWindCps.mEnd.x - mWindCps.mStart.x;
+    push_vec.y = mWindCps.mEnd.y - mWindCps.mStart.y;
+    push_vec.z = mWindCps.mEnd.z - mWindCps.mStart.z;
+
+    if (!push_vec.isZero()) {
+        push_vec.normalize();
     } else {
-        local_20 = cXyz::Zero;
+        push_vec = cXyz::Zero;
     }
-    cStack_40 = local_20;
-    local_20 *= dVar6;
-    mCps.SetAtVec(local_20);
+
+    sp40 = push_vec;
+    push_vec *= strength;
+    mCps.SetAtVec(push_vec);
     movePntWind();
 }
 
@@ -131,95 +116,100 @@ void daObjTrnd2_c::initBaseMtx() {
 void daObjTrnd2_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    MTXCopy(mDoMtx_stack_c::get(), field_0x708);
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
 }
 
 /* 80D1D458-80D1D4A4 000000 004C+00 1/1 0/0 0/0 .data            l_cps_src */
 static dCcD_SrcCps l_cps_src = {
     {
-        {0x0, {{AT_TYPE_LANTERN_SWING, 0x0, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x3, 0x2}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{AT_TYPE_LANTERN_SWING, 0x0, 0x1d}, {0x0, 0x0}, 0x0}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, dCcD_MTRL_WIND, 0x2},                 // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, dCcD_MTRL_NONE, 0x4},                 // mGObjTg
+        {0x0},                                                         // mGObjCo
+    },                                                                 // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, {0.0f, 3000.0f, 0.0f}, 150.0f}, // mCps
-    } // mCpsAttr
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 3000.0f, 0.0f}, 150.0f},  // mCps
+    }  // mCpsAttr
 };
 
 /* 80D1C98C-80D1CC80 00052C 02F4+00 1/1 0/0 0/0 .text            Create__12daObjTrnd2_cFv */
 int daObjTrnd2_c::Create() {
-    field_0x768 = 150.0f;
-    field_0x76c = 1000.0f;
+    mDefaultRadius = 150.0f;
+    mDefaultLength = 1000.0f;
     if (getScale() == 1) {
-        field_0x768 *= 10.0f;
-        field_0x76c *= 10.0f;
+        mDefaultRadius *= 10.0f;
+        mDefaultLength *= 10.0f;
     }
+
     initBaseMtx();
-    fopAcM_SetMtx(this, field_0x708);
-    mStts.Init(0xff, 0xff, this);
+    fopAcM_SetMtx(this, mMtx);
+
+    mStts.Init(0xFF, 0xFF, this);
     mCps.Set(l_cps_src);
     mCps.SetStts(&mStts);
-    cXyz local_1c;
-    cXyz local_28;
-    local_1c.x = -field_0x768 * scale.x;
-    local_1c.y = 0.0;
-    local_1c.z = -field_0x768 * scale.x;
-    local_28.x = field_0x768 * scale.x;
-    local_28.y = field_0x76c * scale.y;
-    local_28.z = field_0x768 * scale.x;
-    fopAcM_setCullSizeBox(this, local_1c.x, 0, local_1c.z,
-                                          local_28.x, local_28.y,
-                                          local_28.z);
-    field_0x6e8.mRadius = field_0x768 * scale.x;
-    field_0x6e8.mStart = current.pos;
+
+    cXyz cull_min;
+    cXyz cull_max;
+    cull_min.x = -mDefaultRadius * scale.x;
+    cull_min.y = 0.0f;
+    cull_min.z = -mDefaultRadius * scale.x;
+    cull_max.x = mDefaultRadius * scale.x;
+    cull_max.y = mDefaultLength * scale.y;
+    cull_max.z = mDefaultRadius * scale.x;
+    fopAcM_setCullSizeBox(this, cull_min.x, 0.0f, cull_min.z, cull_max.x, cull_max.y, cull_max.z);
+
+    mWindCps.mRadius = mDefaultRadius * scale.x;
+    mWindCps.mStart = current.pos;
+
     setParticle();
+
     u32 swBit = getSwbit();
-    switch(getSwType()) {
+    switch (getSwType()) {
     case 15:
-        if ((swBit != 0xff && fopAcM_isSwitch(this, swBit)) || swBit == 0xff) {
-            field_0x778 = true;
+        if ((swBit != 0xFF && fopAcM_isSwitch(this, swBit)) || swBit == 0xFF) {
+            mColumnOn = true;
         } else {
-            field_0x778 = false;
+            mColumnOn = false;
         }
         break;
     case 0:
         if (fopAcM_isSwitch(this, swBit)) {
-            field_0x778 = false;
+            mColumnOn = false;
         } else {
-            field_0x778 = true;
+            mColumnOn = true;
         }
         break;
     case 1:
-        if (swBit != 0xff && !fopAcM_isSwitch(this, swBit)) {
-            field_0x778 = false;
+        if (swBit != 0xFF && !fopAcM_isSwitch(this, swBit)) {
+            mColumnOn = false;
             mTimer = getOffTime() * 30;
         } else if (cM_rndF(1.0f) > 0.5f) {
-            field_0x778 = true;
+            mColumnOn = true;
             mTimer = getOnTime() * 30;
         } else {
-            field_0x778 = false;
+            mColumnOn = false;
             mTimer = getOffTime() * 30;
         }
         break;
     case 2:
-        field_0x778 = true;
+        mColumnOn = true;
         mTimer = getOnTime() * 30;
         break;
     case 3:
-        field_0x778 = false;
+        mColumnOn = false;
         mTimer = getOffTime() * 30;
         break;
     }
 
-    if (field_0x778 == true) {
-        field_0x738 = field_0x76c * scale.y;
-        field_0x704 = field_0x738;
+    if (mColumnOn == true) {
+        mTargetLength = mDefaultLength * scale.y;
+        mNowLength = mTargetLength;
         startParticle();
     } else {
-        field_0x738 = 0;
-        field_0x704 = 0;
+        mTargetLength = 0;
+        mNowLength = 0;
     }
+
     setPntWind();
     return 1;
 }
@@ -227,112 +217,120 @@ int daObjTrnd2_c::Create() {
 /* 80D1CC80-80D1CD78 000820 00F8+00 1/1 0/0 0/0 .text            create__12daObjTrnd2_cFv */
 int daObjTrnd2_c::create() {
     fopAcM_SetupActor(this, daObjTrnd2_c);
-    if (Create() == 0) {
+    if (!Create()) {
         return cPhs_ERROR_e;
     }
+
     return cPhs_COMPLEATE_e;
 }
 
 /* 80D1CDC0-80D1D0AC 000960 02EC+00 1/1 0/0 0/0 .text            execute__12daObjTrnd2_cFv */
 int daObjTrnd2_c::execute() {
-    bool bVar1;
+    bool set_column;
     u32 swBit;
-    if (field_0x778 == true) {
-        bVar1 = false;
+    if (mColumnOn == true) {
+        set_column = false;
         swBit = getSwbit();
         switch (getSwType()) {
         case 15:
-            if (swBit != 0xff && !fopAcM_isSwitch(this, swBit)) {
-                bVar1 = true;
+            if (swBit != 0xFF && !fopAcM_isSwitch(this, swBit)) {
+                set_column = true;
             }
             break;
         case 0:
             if (fopAcM_isSwitch(this, swBit)) {
-                bVar1 = true;
+                set_column = true;
             }
             break;
         case 1:
         case 2:
         case 3:
-            if (cLib_calcTimer(&mTimer) == 0 || (swBit != 0xff && !fopAcM_isSwitch(this, swBit))) {
-                bVar1 = true;
+            if (cLib_calcTimer(&mTimer) == 0 || (swBit != 0xFF && !fopAcM_isSwitch(this, swBit))) {
+                set_column = true;
                 mTimer = getOffTime() * 30;
             }
             break;
         }
-       
-        if (bVar1) {
-            field_0x738 = 0.0f;
-            field_0x778 = false;
+
+        if (set_column) {
+            mTargetLength = 0.0f;
+            mColumnOn = false;
             stopParticle();
         }
-    } else if (field_0x778 == false) {
-        bVar1 = false;
+    } else if (mColumnOn == false) {
+        set_column = false;
         swBit = getSwbit();
-        switch(getSwType()) {
+        switch (getSwType()) {
         case 15:
             if (fopAcM_isSwitch(this, swBit)) {
-                bVar1 = true;
+                set_column = true;
             }
             break;
         case 0:
-            if (swBit != 0xff && !fopAcM_isSwitch(this, swBit)) {
-                bVar1 = true;
+            if (swBit != 0xFF && !fopAcM_isSwitch(this, swBit)) {
+                set_column = true;
             }
             break;
         case 1:
         case 2:
         case 3:
-            if (cLib_calcTimer(&mTimer) == 0 && ((swBit != 0xff && fopAcM_isSwitch(this, swBit)) || swBit == 0xff)) {
-                bVar1 = true;
+            if (cLib_calcTimer(&mTimer) == 0 &&
+                ((swBit != 0xFF && fopAcM_isSwitch(this, swBit)) || swBit == 0xFF))
+            {
+                set_column = true;
                 mTimer = getOnTime() * 30;
             }
             break;
         }
-        if (bVar1) {
-            field_0x738 = field_0x76c * scale.y;
-            field_0x778 = true;
+
+        if (set_column) {
+            mTargetLength = mDefaultLength * scale.y;
+            mColumnOn = true;
             startParticle();
         }
     }
-    if (field_0x738 == 0.0f) {
+
+    if (mTargetLength == 0.0f) {
         cLib_addCalc(&mWindPower, 0.3f, 0.2f, 0.1f, 0.001f);
     } else {
         cLib_addCalc(&mWindPower, 0.9f, 0.5f, 0.1f, 0.001f);
     }
+
     dKyw_evt_wind_set(0, home.angle.y);
     dKyw_custom_windpower(mWindPower);
     setCpsInfo();
     setBaseMtx();
-    if (field_0x704 != 0.0f) {
-        mCps.cM3dGCps::Set(field_0x6e8);
+
+    if (mNowLength != 0.0f) {
+        mCps.cM3dGCps::Set(mWindCps);
         dComIfG_Ccsp()->Set(&mCps);
     }
+
     return 1;
 }
 
 /* 80D1D0AC-80D1D214 000C4C 0168+00 1/1 0/0 0/0 .text            setParticle__12daObjTrnd2_cFv */
 void daObjTrnd2_c::setParticle() {
-    const u16* pEffId = NULL;
+    const u16* efflist_p = NULL;
     switch (fopAcM_GetRoomNo(this)) {
     case 2:
-        pEffId = l_R02_eff_id;
+        efflist_p = l_R02_eff_id;
         break;
     case 4:
-        pEffId = l_R04_eff_id;
+        efflist_p = l_R04_eff_id;
         break;
     case 5:
-        pEffId = l_R05_eff_id;
+        efflist_p = l_R05_eff_id;
         break;
     case 7:
     case 8:
-        pEffId = l_R07_eff_id;
+        efflist_p = l_R07_eff_id;
         break;
     case 14:
-        pEffId = l_R14_eff_id;
+        efflist_p = l_R14_eff_id;
         break;
     case 51:
-        pEffId = l_R51_eff_id;
+        efflist_p = l_R51_eff_id;
         break;
     case 0:
     case 3:
@@ -343,14 +341,15 @@ void daObjTrnd2_c::setParticle() {
         break;
     }
 
-    for (int i = 0; i < 3; pEffId++, i++) {
-        if (*pEffId != 0xffff) {
-            mParticles[i] = dComIfGp_particle_set(*pEffId, &current.pos, &home.angle, NULL,
-                                                  0xff, NULL, -1, NULL, NULL, NULL);
+    for (int i = 0; i < 3; efflist_p++, i++) {
+        if (*efflist_p != 0xffff) {
+            mParticles[i] = dComIfGp_particle_set(*efflist_p, &current.pos, &home.angle, NULL, 0xFF,
+                                                  NULL, -1, NULL, NULL, NULL);
         } else {
             mParticles[i] = NULL;
         }
     }
+
     stopParticle();
 }
 
@@ -422,26 +421,24 @@ static int daObjTrnd2_Create(daObjTrnd2_c* i_this) {
 
 /* 80D1D4A4-80D1D4C4 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTrnd2_Method */
 static actor_method_class l_daObjTrnd2_Method = {
-    (process_method_func)daObjTrnd2_Create,
-    (process_method_func)daObjTrnd2_Delete,
-    (process_method_func)daObjTrnd2_Execute,
-    (process_method_func)NULL,
+    (process_method_func)daObjTrnd2_Create,  (process_method_func)daObjTrnd2_Delete,
+    (process_method_func)daObjTrnd2_Execute, (process_method_func)NULL,
     (process_method_func)daObjTrnd2_Draw,
 };
 
 extern actor_process_profile_definition g_profile_Obj_Tornado2 = {
-    fpcLy_CURRENT_e,        // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_Obj_Tornado2,      // mProcName
-    &g_fpcLf_Method.mBase,  // sub_method
-    sizeof(daObjTrnd2_c),   // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    0x1BD,                  // mPriority
-    &l_daObjTrnd2_Method,   // sub_method
-    0x40000,                // mStatus
-    fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_Tornado2,       // mProcName
+    &g_fpcLf_Method.mBase,   // sub_method
+    sizeof(daObjTrnd2_c),    // mDefaultRadius
+    0,                       // mDefaultRadiusOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    0x1BD,                   // mPriority
+    &l_daObjTrnd2_Method,    // sub_method
+    0x40000,                 // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

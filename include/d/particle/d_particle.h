@@ -72,8 +72,7 @@ public:
 
 class dPa_followEcallBack : public dPa_levelEcallBack {
 public:
-    /* 80049580 */ dPa_followEcallBack(u8, u8);
-    /* 80D22230 */ void __defctor();  // compiler generated
+    /* 80049580 */ dPa_followEcallBack(u8 param_0 = 0, u8 param_1 = 0);
 
     /* 80050200 */ virtual ~dPa_followEcallBack();
     /* 800495BC */ virtual void execute(JPABaseEmitter*);

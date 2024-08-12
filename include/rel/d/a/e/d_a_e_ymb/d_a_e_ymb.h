@@ -77,9 +77,11 @@ public:
     /* 80820DD0 */ void create();
 
     int getMaxLockAttack() { return 6; }
+    u8 getSwitchBit() { return mSwitchBit; }
 
-private:
-    /* 0x5AC */ u8 field_0x5ac[0x1524 - 0x5ac];
+    /* 0x5AC */ u8 field_0x5ac[0x6C0 - 0x5ac];
+    /* 0x6C0 */ u8 mSwitchBit;
+    /* 0x6C1 */ u8 field_0x6c1[0x1524 - 0x6C1];
 };
 
 STATIC_ASSERT(sizeof(daE_YMB_c) == 0x1524);

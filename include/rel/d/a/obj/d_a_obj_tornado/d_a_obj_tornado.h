@@ -7,7 +7,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjTrnd_c
- * @brief Tornado
+ * @brief Wind Column
  *
  * @details
  *
@@ -27,17 +27,17 @@ public:
     /* 80D1C298 */ int _delete();
 
     u32 checkSE() { return fopAcM_GetParamBit(this, 8, 1); }
-    u32 getTimer() { return fopAcM_GetParamBit(this, 0, 8); }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 0x18, 8); }
+    u8 getTimer() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 0x18, 8); }
 
 private:
     /* 0x568 */ dCcD_Stts mStts;
     /* 0x5A4 */ dCcD_Cps mCps;
-    /* 0x6E8 */ cM3dGCpsS field_0x6e8;
-    /* 0x704 */ f32 field_0x704;
-    /* 0x708 */ Mtx field_0x708;
-    /* 0x738 */ s16 field_0x738;
-    /* 0x73C */ f32 field_0x73c;
+    /* 0x6E8 */ cM3dGCpsS mWindCps;
+    /* 0x704 */ f32 mNowLength;
+    /* 0x708 */ Mtx mMtx;
+    /* 0x738 */ s16 mTimer;
+    /* 0x73C */ f32 mTargetLength;
     /* 0x740 */ WIND_INFLUENCE mWindInfluence;
     /* 0x76C */ f32 mWindPower;
 };

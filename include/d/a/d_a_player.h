@@ -897,6 +897,11 @@ public:
     bool checkWolfEnemyHangBiteOwn(fopAc_ac_c* i_actorP) const { return checkWolfEnemyBiteAllOwn(i_actorP); }
     bool checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
 
+    void onWolfLightDropGet() {
+        onEndResetFlg0(ERFLG0_UNK_20000000);
+        onNoResetFlg3(FLG3_UNK_200000);
+    }
+
     static daMidna_c* m_midnaActor;
 };
 
