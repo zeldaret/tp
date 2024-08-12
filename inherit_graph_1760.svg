@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structJStudio_1_1TVariableValue_1_1TOutput.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="structJStudio_1_1TVariableValue_1_1TOutput__none__.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="119.5,-30.5 0,-30.5 0,0 119.5,0 119.5,-30.5"/>
 <text text-anchor="start" x="8" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">JStudio::TVariableValue</text>
-<text text-anchor="middle" x="59.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::TOutput</text>
+<text text-anchor="middle" x="59.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::TOutput_none_</text>
 </a>
 </g>
 </g>

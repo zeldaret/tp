@@ -24,6 +24,7 @@ var structdTres__c =
     [ "onStatus", "structdTres__c.html#a243f6ed29fea861b921d97dc4446a3e1", null ],
     [ "remove", "structdTres__c.html#a81444c21a52104f30460ff26870fcbb7", null ],
     [ "reset", "structdTres__c.html#ace99c156763ea82f713464e50204bbfc", null ],
+    [ "setLightDropPostion", "structdTres__c.html#ae980a49abfc82bb695ebbf3c14aebfa2", null ],
     [ "setPosition", "structdTres__c.html#a99b03a69c6751de80ca2a2c555af2540", null ],
     [ "setPosition", "structdTres__c.html#a2ee712688a6e7bec6f77cd360c069564", null ],
     [ "setPosition", "structdTres__c.html#a2ee712688a6e7bec6f77cd360c069564", null ],

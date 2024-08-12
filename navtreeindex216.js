@@ -1,16 +1,5 @@
 var NAVTREEINDEX216 =
 {
-"classdaNpc__Uri__c.html#a26a4f403b541237e758e731efed1edda":[1,0,3,103,41],
-"classdaNpc__Uri__c.html#a31326bd312342eed47ac303531ed31a4":[1,0,3,103,50],
-"classdaNpc__Uri__c.html#a33d71da97689f6b472c0ed8522da9738":[1,0,3,103,15],
-"classdaNpc__Uri__c.html#a349258de4dbc8a6ad4b1961c6b8f5103":[1,0,3,103,51],
-"classdaNpc__Uri__c.html#a3521e725dbbdb49575a0710996d08284":[1,0,3,103,35],
-"classdaNpc__Uri__c.html#a3753c6044568079626153971740a3618":[1,0,3,103,25],
-"classdaNpc__Uri__c.html#a392bd4919238d4c6ce247b1eff78a1c7":[1,0,3,103,3],
-"classdaNpc__Uri__c.html#a398c7044fc1ae223d5db6a04d99ddaba":[1,0,3,103,13],
-"classdaNpc__Uri__c.html#a4694b5b70d401841710a80a308dea811":[1,0,3,103,47],
-"classdaNpc__Uri__c.html#a4afa01c38409d3353b9e1f224dbfc5ae":[1,0,3,103,28],
-"classdaNpc__Uri__c.html#a4b0fc53f3de8061cf5ce15d93974f6f2":[1,0,3,103,1],
 "classdaNpc__Uri__c.html#a4b7485e7d72499834680f53c253362cb":[1,0,3,103,20],
 "classdaNpc__Uri__c.html#a4cef02ab0b1c8338f13ef0cff7958601":[1,0,3,103,46],
 "classdaNpc__Uri__c.html#a4f636e8760b5dbb57232d9a3fa4a4e1b":[1,0,3,103,22],
@@ -249,5 +238,16 @@ var NAVTREEINDEX216 =
 "classdaNpc__Zelda__c.html#a7708fed0496dc26b6c76ad5642e09831":[1,0,3,114,28],
 "classdaNpc__Zelda__c.html#a85892609a20cb6a19b43088f76c04919":[1,0,3,114,23],
 "classdaNpc__Zelda__c.html#a93a68eaf079abaa6207fe826b90f8d6c":[1,0,3,114,3],
-"classdaNpc__Zelda__c.html#a9478b97be3f46bc8a3f5cca3906c9626":[1,0,3,114,37]
+"classdaNpc__Zelda__c.html#a9478b97be3f46bc8a3f5cca3906c9626":[1,0,3,114,37],
+"classdaNpc__Zelda__c.html#a950a2eca136e7596bd8ba995d4a76109":[1,0,3,114,1],
+"classdaNpc__Zelda__c.html#a9724c9c4aee32bcabf53ea5d732f0fd4":[1,0,3,114,31],
+"classdaNpc__Zelda__c.html#a99ce360cdb123a919e70054f6dbbdd3d":[1,0,3,114,13],
+"classdaNpc__Zelda__c.html#a9fc40a2e5a10ecfdc37e4db480aa625b":[1,0,3,114,5],
+"classdaNpc__Zelda__c.html#aa263598bdead30fdb019d2fbc61f8d86":[1,0,3,114,16],
+"classdaNpc__Zelda__c.html#aa6d7bca76c2c02b30b8ec1119239831b":[1,0,3,114,18],
+"classdaNpc__Zelda__c.html#aae5542007f3470cee740e5e519b20b0b":[1,0,3,114,19],
+"classdaNpc__Zelda__c.html#aafc214d861fcc706036cee737c00b35c":[1,0,3,114,7],
+"classdaNpc__Zelda__c.html#ab30e62eaa761cfeebe9dc686c4467bfb":[1,0,3,114,14],
+"classdaNpc__Zelda__c.html#abba338a48f4340061a01ff6b5dce3f6a":[1,0,3,114,20],
+"classdaNpc__Zelda__c.html#abf565a4554c8113d7ed98e8ffd20f573":[1,0,3,114,12]
 };

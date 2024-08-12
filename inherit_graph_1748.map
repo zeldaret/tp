@@ -1,35 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio_1_1TAdaptor.html" title=" " alt="" coords="5,242,130,268"/>
-<area shape="rect" id="Node000001" href="$structJStudio_1_1TAdaptor__actor.html" title=" " alt="" coords="190,185,350,211"/>
-<area shape="poly" id="edge1432_Node000000_Node000001" title=" " alt="" coords="127,235,177,220,219,209,221,214,178,226,129,240"/>
-<area shape="rect" id="Node000004" href="$structJStudio_1_1TAdaptor__ambientLight.html" title=" " alt="" coords="181,71,359,111"/>
-<area shape="poly" id="edge1434_Node000000_Node000004" title=" " alt="" coords="82,227,121,174,147,145,176,121,196,110,199,114,179,125,150,149,125,177,86,230"/>
-<area shape="rect" id="Node000006" href="$structJStudio_1_1TAdaptor__camera.html" title=" " alt="" coords="183,136,357,161"/>
-<area shape="poly" id="edge1436_Node000000_Node000006" title=" " alt="" coords="92,230,130,199,176,170,204,159,206,164,179,175,133,203,95,234"/>
-<area shape="rect" id="Node000008" href="$structJStudio_1_1TAdaptor__fog.html" title=" " alt="" coords="195,300,345,325"/>
-<area shape="poly" id="edge1438_Node000000_Node000008" title=" " alt="" coords="129,270,178,284,221,296,219,301,177,290,127,275"/>
-<area shape="rect" id="Node000010" href="$structJStudio_1_1TAdaptor__light.html" title=" " alt="" coords="192,349,348,375"/>
-<area shape="poly" id="edge1440_Node000000_Node000010" title=" " alt="" coords="95,276,133,307,179,335,206,346,204,351,176,340,130,311,92,280"/>
-<area shape="rect" id="Node000012" href="$structJStudio_1_1TAdaptor__message.html" title=" " alt="" coords="178,398,362,424"/>
-<area shape="poly" id="edge1442_Node000000_Node000012" title=" " alt="" coords="86,280,124,334,150,361,179,385,200,395,198,400,176,389,146,365,120,337,81,283"/>
-<area shape="rect" id="Node000013" href="$structJStudio_1_1TAdaptor__particle.html" title=" " alt="" coords="183,448,357,473"/>
-<area shape="poly" id="edge1443_Node000000_Node000013" title=" " alt="" coords="80,282,95,317,116,358,144,400,179,434,197,445,195,449,176,438,140,403,111,361,90,319,75,284"/>
-<area shape="rect" id="Node000015" href="$structJStudio_1_1TAdaptor__sound.html" title=" " alt="" coords="187,17,353,43"/>
-<area shape="poly" id="edge1445_Node000000_Node000015" title=" " alt="" coords="74,227,88,189,109,143,138,97,176,57,204,41,207,45,179,61,143,100,114,146,93,191,79,229"/>
-<area shape="rect" id="Node000002" href="$structJStudio__JStage_1_1TAdaptor__actor.html" title=" " alt="" coords="423,219,595,259"/>
-<area shape="poly" id="edge1433_Node000001_Node000002" title=" " alt="" coords="363,211,423,221,422,227,362,216"/>
-<area shape="rect" id="Node000005" href="$structJStudio__JStage_1_1TAdaptor__ambientLight.html" title=" " alt="" coords="423,71,595,111"/>
-<area shape="poly" id="edge1435_Node000004_Node000005" title=" " alt="" coords="374,88,422,88,422,94,374,94"/>
-<area shape="rect" id="Node000007" href="$structJStudio__JStage_1_1TAdaptor__camera.html" title=" " alt="" coords="423,136,595,177"/>
-<area shape="poly" id="edge1437_Node000006_Node000007" title=" " alt="" coords="373,149,422,151,422,156,372,154"/>
-<area shape="rect" id="Node000009" href="$structJStudio__JStage_1_1TAdaptor__fog.html" title=" " alt="" coords="410,296,607,321"/>
-<area shape="poly" id="edge1439_Node000008_Node000009" title=" " alt="" coords="360,308,410,307,410,313,360,313"/>
-<area shape="rect" id="Node000011" href="$structJStudio__JStage_1_1TAdaptor__light.html" title=" " alt="" coords="423,345,595,386"/>
-<area shape="poly" id="edge1441_Node000010_Node000011" title=" " alt="" coords="363,361,422,362,422,367,363,366"/>
-<area shape="rect" id="Node000014" href="$structJStudio__JParticle_1_1TAdaptor__particle.html" title=" " alt="" coords="444,440,573,481"/>
-<area shape="poly" id="edge1444_Node000013_Node000014" title=" " alt="" coords="372,458,444,458,444,463,372,463"/>
-<area shape="rect" id="Node000016" href="$structJStudio__JAudio2_1_1TAdaptor__sound.html" title=" " alt="" coords="420,5,598,46"/>
-<area shape="poly" id="edge1446_Node000015_Node000016" title=" " alt="" coords="368,25,419,24,419,30,368,31"/>
-<area shape="rect" id="Node000003" href="$structJStudio__JStage_1_1TAdaptor__object__.html" title=" " alt="" coords="184,235,356,275"/>
-<area shape="poly" id="edge1447_Node000003_Node000002" title=" " alt="" coords="372,246,422,242,422,247,372,251"/>
+<area shape="rect" id="Node000000" href="$structJStudio_1_1TAdaptor_1_1TSetVariableValue__immediate.html" title=" " alt="" coords="5,5,202,46"/>
 </map>

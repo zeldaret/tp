@@ -1,16 +1,5 @@
 var NAVTREEINDEX208 =
 {
-"classdaNpc__GWolf__c.html#ab8cff58135667d3172006ee22da5933b":[1,0,3,37,38],
-"classdaNpc__GWolf__c.html#ab9849f931ab045d3da3cc9d2d16d531b":[1,0,3,37,39],
-"classdaNpc__GWolf__c.html#abc3e4f0f928158d65930848a67772934":[1,0,3,37,35],
-"classdaNpc__GWolf__c.html#ac22b0ef1f75acf907184f7fcfabc1526":[1,0,3,37,48],
-"classdaNpc__GWolf__c.html#ac39c459af877f699243de6923e940cce":[1,0,3,37,36],
-"classdaNpc__GWolf__c.html#ac61b41518cb94630bd5b22f86fc56a59":[1,0,3,37,47],
-"classdaNpc__GWolf__c.html#aceb13ac814fb6796ac3a12db87762322":[1,0,3,37,6],
-"classdaNpc__GWolf__c.html#ad14dec10f98131ab4d6764400461f6a5":[1,0,3,37,23],
-"classdaNpc__GWolf__c.html#ad1580231d0120b08dc199648bea32a53":[1,0,3,37,44],
-"classdaNpc__GWolf__c.html#ad66ff7e3ee22a60ab5c8eb62a06de029":[1,0,3,37,17],
-"classdaNpc__GWolf__c.html#ad95e1b76f104ddd0dc1b48f32b0d6418":[1,0,3,37,33],
 "classdaNpc__GWolf__c.html#ae0f924ec75434dc5a83c1e8f1a67c094":[1,0,3,37,18],
 "classdaNpc__GWolf__c.html#ae7104cf30ff6daeeaa0620ea7f469edd":[1,0,3,37,29],
 "classdaNpc__GWolf__c.html#aead2da83992ce580a4048d199bfa04f4":[1,0,3,37,13],
@@ -249,5 +238,16 @@ var NAVTREEINDEX208 =
 "classdaNpc__Hoz__c.html#a1cf1133c7c0704e6538c651a9ce3c306":[1,0,3,41,31],
 "classdaNpc__Hoz__c.html#a1e297ccaf1fe0cd5595f6c2224c88b28":[1,0,3,41,41],
 "classdaNpc__Hoz__c.html#a269199d8d3fb06f642cde14a577d1879":[1,0,3,41,22],
-"classdaNpc__Hoz__c.html#a28bb4800a980da832c935d90b66077bb":[1,0,3,41,57]
+"classdaNpc__Hoz__c.html#a28bb4800a980da832c935d90b66077bb":[1,0,3,41,57],
+"classdaNpc__Hoz__c.html#a2fde27844a6cb1da9657c1cc98caa0e6":[1,0,3,41,4],
+"classdaNpc__Hoz__c.html#a3007d8632434f9e61506967005b175cd":[1,0,3,41,54],
+"classdaNpc__Hoz__c.html#a358f5aeb9e40d38dcfb753924806c2bb":[1,0,3,41,12],
+"classdaNpc__Hoz__c.html#a40173434ab95679583f1362d4f17a010":[1,0,3,41,20],
+"classdaNpc__Hoz__c.html#a408e5213d09b0c690dfa36ba9d857e55":[1,0,3,41,9],
+"classdaNpc__Hoz__c.html#a4f579209aedf155fa710c9dcaa2fd807":[1,0,3,41,17],
+"classdaNpc__Hoz__c.html#a4f5df320c978fc545f0933226fb33df4":[1,0,3,41,35],
+"classdaNpc__Hoz__c.html#a59d848acbb385e750eefdf95ae9df278":[1,0,3,41,45],
+"classdaNpc__Hoz__c.html#a5c198f51cd4bdf631807fe9cebd2644d":[1,0,3,41,50],
+"classdaNpc__Hoz__c.html#a60913f5e827cfe3ec5c9a35a33d1f4e9":[1,0,3,41,21],
+"classdaNpc__Hoz__c.html#a619959b5972dc125afe87c8168403ffc":[1,0,3,41,38]
 };

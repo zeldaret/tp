@@ -1,8 +1,7 @@
 var classdPa__followEcallBack =
 [
-    [ "dPa_followEcallBack", "classdPa__followEcallBack.html#a55bed6f7ae3dba73d3bab531bd5b24f9", null ],
+    [ "dPa_followEcallBack", "classdPa__followEcallBack.html#a3926a825bab8ac12a669df2d559f57c4", null ],
     [ "~dPa_followEcallBack", "classdPa__followEcallBack.html#a5020b6a8cf1b80897c412ce2b26834cb", null ],
-    [ "__defctor", "classdPa__followEcallBack.html#a25f19a61a511ecdf93757815c0ad7a3e", null ],
     [ "cleanup", "classdPa__followEcallBack.html#a8404d11fc46eec50aac3af649f917cfe", null ],
     [ "draw", "classdPa__followEcallBack.html#add5b9c0f8a48aa7dce63cfb35d07c9d8", null ],
     [ "end", "classdPa__followEcallBack.html#a7a41db42b3d016a031c44b9520288b07", null ],

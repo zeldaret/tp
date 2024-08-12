@@ -1,16 +1,5 @@
 var NAVTREEINDEX188 =
 {
-"classdaHorse__c.html#a7946c84caa8d207919601faf3f53ff8fa1fb5dfc7329f84b6d41becf9cdaee3df":[3,0,649,0,1],
-"classdaHorse__c.html#a7946c84caa8d207919601faf3f53ff8fa31642202a00eb297addbbd3b5f28c469":[3,0,649,0,4],
-"classdaHorse__c.html#a7946c84caa8d207919601faf3f53ff8fa6388e3f4b941e6553182bba0cb185745":[3,0,649,0,3],
-"classdaHorse__c.html#a7946c84caa8d207919601faf3f53ff8fa7912ab9eba61a8efdd2582dd01e12bfc":[3,0,649,0,2],
-"classdaHorse__c.html#a7946c84caa8d207919601faf3f53ff8fab8baf6b56590e228c4af78d048538cf3":[3,0,649,0,0],
-"classdaHorse__c.html#a79c7834b02347300ff04d310b048ef27":[3,0,649,60],
-"classdaHorse__c.html#a7a5618e27b98a6607a23334e4b553f49":[3,0,649,165],
-"classdaHorse__c.html#a7ada92c4de7a2fbb12b9b7faa31ab3c5":[3,0,649,180],
-"classdaHorse__c.html#a7b02afafa79a1cf4e1340d962d718975":[3,0,649,86],
-"classdaHorse__c.html#a7bc03bcb7f5d7e71b0ee36a9f7a17ac9":[3,0,649,18],
-"classdaHorse__c.html#a7bd7551ad307ccc3f051326078f8cfe5":[3,0,649,36],
 "classdaHorse__c.html#a7c1c81d6b52e45f958b93963f82a8b60":[3,0,649,128],
 "classdaHorse__c.html#a7e0e4b112e3163b650aa0c0890af665d":[3,0,649,20],
 "classdaHorse__c.html#a7f3f2833e753f339117e8b2a3c878d04":[3,0,649,199],
@@ -249,5 +238,16 @@ var NAVTREEINDEX188 =
 "classdaItemKantera__c.html#ae15765fc00ac9cb3cfac81808d5be18c":[1,0,4,109,36],
 "classdaItemKantera__c.html#ae3c3a82a3fd4a692b460de188a50fb46":[1,0,4,109,2],
 "classdaItemKantera__c.html#ae7557bc1757ef2c07c0062ddab72f46c":[1,0,4,109,0],
-"classdaItemKantera__c.html#ae7557bc1757ef2c07c0062ddab72f46c":[1,0,4,109,1]
+"classdaItemKantera__c.html#ae7557bc1757ef2c07c0062ddab72f46c":[1,0,4,109,1],
+"classdaItemKantera__c.html#af0ff14affbc43803ee9b9437f6294d43":[1,0,4,109,6],
+"classdaItemKantera__c.html#af4f9d1dd8d4578ea148a8596f6c95ff6":[1,0,4,109,20],
+"classdaItemKantera__c.html#afda260a583a450eef5be8f22a216e32f":[1,0,4,109,37],
+"classdaItemShield__c.html":[1,0,4,244],
+"classdaItemShield__c.html#a09469ef91fde231450b024e90f1ac05b":[1,0,4,244,0],
+"classdaItemShield__c.html#a127ba68ef87ca91342cb85ba3d376b23":[1,0,4,244,16],
+"classdaItemShield__c.html#a17be87d18f11fd55849c8a42f452db4a":[1,0,4,244,5],
+"classdaItemShield__c.html#a277f2248c302807cb92c00ffd13cf4d1":[1,0,4,244,14],
+"classdaItemShield__c.html#a2e29ef2829766482e0d0ba28187ce356":[1,0,4,244,19],
+"classdaItemShield__c.html#a3f38c0872635932f727991cd60ccffe3":[1,0,4,244,9],
+"classdaItemShield__c.html#a3fe4e61909d1a51338677246db9ddb34":[1,0,4,244,13]
 };

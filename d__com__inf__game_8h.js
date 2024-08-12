@@ -808,6 +808,7 @@ var d__com__inf__game_8h =
     [ "dComIfGs_setLastWarpAcceptStage", "d__com__inf__game_8h.html#ab7925be40a3cda0ffffdfd8bb4f61fa8", null ],
     [ "dComIfGs_setLastWarpMarkItemData", "d__com__inf__game_8h.html#aab056b8d53f752665353d8ba6da07346", null ],
     [ "dComIfGs_setLife", "d__com__inf__game_8h.html#ad407b42ad072fcb1c65c2cffc2d47dcf", null ],
+    [ "dComIfGs_setLightDropNum", "d__com__inf__game_8h.html#a935eab07b7b8f1e660b4085a9b8fc672", null ],
     [ "dComIfGs_setLineUpItem", "d__com__inf__game_8h.html#a7c0d9a8a1df6efa1e829cb61968b6df7", null ],
     [ "dComIfGs_setMagic", "d__com__inf__game_8h.html#a6a451be1a6e8c18071d51310ac3157b5", null ],
     [ "dComIfGs_setMaxLife", "d__com__inf__game_8h.html#ad9b59d19278783163d7dfe6068ced356", null ],

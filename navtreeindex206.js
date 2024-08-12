@@ -1,16 +1,5 @@
 var NAVTREEINDEX206 =
 {
-"classdaNpcWrestler__c.html#a80fd1b20f7ecc4467aaa3c7036460c6c":[1,0,3,105,16],
-"classdaNpcWrestler__c.html#a880240c19c5960c540a65d024e7b48cf":[1,0,3,105,73],
-"classdaNpcWrestler__c.html#a8af3bdf9737d2c28a3a75b64ff3bf6a6":[1,0,3,105,19],
-"classdaNpcWrestler__c.html#a91973c431962f6372ac0b6576bded327":[1,0,3,105,8],
-"classdaNpcWrestler__c.html#a970620896833d5c4fd393929eaf5df88":[1,0,3,105,46],
-"classdaNpcWrestler__c.html#a9c1e01c63f725514a5005c528b23563e":[1,0,3,105,27],
-"classdaNpcWrestler__c.html#aa028e9b0c831e0e15d83260f5eedf663":[1,0,3,105,32],
-"classdaNpcWrestler__c.html#aa738ad7f387a683cad519847ba0939ad":[1,0,3,105,9],
-"classdaNpcWrestler__c.html#aa9e21cafe546cd793c6043c0f397fc67":[1,0,3,105,13],
-"classdaNpcWrestler__c.html#ab09ce5ee3d083adc3ec780455c503e03":[1,0,3,105,17],
-"classdaNpcWrestler__c.html#ab196e0013e7c72e3cb20c0ee9dbb7ba0":[1,0,3,105,5],
 "classdaNpcWrestler__c.html#ab25fbf22c1db7f970a0aca16a6873972":[1,0,3,105,56],
 "classdaNpcWrestler__c.html#ab2fee2606d6a3edb3d2beefc47c15b28":[1,0,3,105,59],
 "classdaNpcWrestler__c.html#ab37738ff0a5951ea9baacffd2de61ca4":[1,0,3,105,68],
@@ -249,5 +238,16 @@ var NAVTREEINDEX206 =
 "classdaNpc__Bou__c.html#a6a763c4b0e3ce01b39e319c9d2244183":[1,0,3,8,41],
 "classdaNpc__Bou__c.html#a722d1d0a2990ba743fe02f3b2c3534e4":[1,0,3,8,46],
 "classdaNpc__Bou__c.html#a73bb0ee92e8e308d844becb062176445":[1,0,3,8,31],
-"classdaNpc__Bou__c.html#a7ba5f7f43d820796d91e68debec39ab1":[1,0,3,8,30]
+"classdaNpc__Bou__c.html#a7ba5f7f43d820796d91e68debec39ab1":[1,0,3,8,30],
+"classdaNpc__Bou__c.html#a85ccebc9202c37ede8e7232ddac06f7a":[1,0,3,8,24],
+"classdaNpc__Bou__c.html#a88062a906e7bb33810976988ada8696f":[1,0,3,8,15],
+"classdaNpc__Bou__c.html#a8e253a9612345a0aa2c5b1c5951a888f":[1,0,3,8,33],
+"classdaNpc__Bou__c.html#a94ee2a8eb523f61dac1970f4a39b36e9":[1,0,3,8,16],
+"classdaNpc__Bou__c.html#a9ad444533abba88caaec18832718a3d0":[1,0,3,8,29],
+"classdaNpc__Bou__c.html#aaa47a2b22f507b947220086fcfac4597":[1,0,3,8,13],
+"classdaNpc__Bou__c.html#aabed8b517f6aa5fb3e77058d2f2e0c0f":[1,0,3,8,7],
+"classdaNpc__Bou__c.html#aaca279bfb65b94fffa02d4276e67a064":[1,0,3,8,23],
+"classdaNpc__Bou__c.html#ab2174f7f8ca5a9b55f3851936573f7fa":[1,0,3,8,34],
+"classdaNpc__Bou__c.html#abbb4207c2e2abb6080b2bb4874281a39":[1,0,3,8,39],
+"classdaNpc__Bou__c.html#abcf46a5625e75275611c27f070dd22a0":[1,0,3,8,27]
 };

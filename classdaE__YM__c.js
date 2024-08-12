@@ -67,6 +67,7 @@ var classdaE__YM__c =
     [ "executeWind", "classdaE__YM__c.html#ac1891d9d47f4e6ed8fb30fc884f90d2d", null ],
     [ "getFriendFlag", "classdaE__YM__c.html#aef1b2fb2c84bde2b2cfb167871d3c59b", null ],
     [ "getSurpriseType", "classdaE__YM__c.html#a38e0dcbc900b098958d5021dff2e3aea", null ],
+    [ "getSwitchBit", "classdaE__YM__c.html#a7a292c44d16a9c44095c18b3bb8886be", null ],
     [ "getTagNo", "classdaE__YM__c.html#a45947f388aecf2b675a37beffaa49057", null ],
     [ "initFireFly", "classdaE__YM__c.html#a6eec4dd19791ffc03a1f6506cdbfce53", null ],
     [ "initFly", "classdaE__YM__c.html#a58e7bfd8e10f4ec792a5eefcf1b0f476", null ],

@@ -1,16 +1,5 @@
 var NAVTREEINDEX207 =
 {
-"classdaNpc__Bou__c.html#a85ccebc9202c37ede8e7232ddac06f7a":[1,0,3,8,24],
-"classdaNpc__Bou__c.html#a88062a906e7bb33810976988ada8696f":[1,0,3,8,15],
-"classdaNpc__Bou__c.html#a8e253a9612345a0aa2c5b1c5951a888f":[1,0,3,8,33],
-"classdaNpc__Bou__c.html#a94ee2a8eb523f61dac1970f4a39b36e9":[1,0,3,8,16],
-"classdaNpc__Bou__c.html#a9ad444533abba88caaec18832718a3d0":[1,0,3,8,29],
-"classdaNpc__Bou__c.html#aaa47a2b22f507b947220086fcfac4597":[1,0,3,8,13],
-"classdaNpc__Bou__c.html#aabed8b517f6aa5fb3e77058d2f2e0c0f":[1,0,3,8,7],
-"classdaNpc__Bou__c.html#aaca279bfb65b94fffa02d4276e67a064":[1,0,3,8,23],
-"classdaNpc__Bou__c.html#ab2174f7f8ca5a9b55f3851936573f7fa":[1,0,3,8,34],
-"classdaNpc__Bou__c.html#abbb4207c2e2abb6080b2bb4874281a39":[1,0,3,8,39],
-"classdaNpc__Bou__c.html#abcf46a5625e75275611c27f070dd22a0":[1,0,3,8,27],
 "classdaNpc__Bou__c.html#ac1648f4379b3faec371f3ccde1e8ec7a":[1,0,3,8,9],
 "classdaNpc__Bou__c.html#ac3f4213758a84eb387c0526ff511a951":[1,0,3,8,0],
 "classdaNpc__Bou__c.html#ac3ffd226c172a2489834f2b13b34334d":[1,0,3,8,44],
@@ -249,5 +238,16 @@ var NAVTREEINDEX207 =
 "classdaNpc__GWolf__c.html#aa947013fc25b5bbe50ae9a7a8fea52b1":[1,0,3,37,32],
 "classdaNpc__GWolf__c.html#aad71e4ec17e0af4f7d88d066c1bd552c":[1,0,3,37,50],
 "classdaNpc__GWolf__c.html#ab45bd1fde0d64f741e94b8de1602ff55":[1,0,3,37,3],
-"classdaNpc__GWolf__c.html#ab4c941b108f919b93ead225895bdb2ec":[1,0,3,37,45]
+"classdaNpc__GWolf__c.html#ab4c941b108f919b93ead225895bdb2ec":[1,0,3,37,45],
+"classdaNpc__GWolf__c.html#ab8cff58135667d3172006ee22da5933b":[1,0,3,37,38],
+"classdaNpc__GWolf__c.html#ab9849f931ab045d3da3cc9d2d16d531b":[1,0,3,37,39],
+"classdaNpc__GWolf__c.html#abc3e4f0f928158d65930848a67772934":[1,0,3,37,35],
+"classdaNpc__GWolf__c.html#ac22b0ef1f75acf907184f7fcfabc1526":[1,0,3,37,48],
+"classdaNpc__GWolf__c.html#ac39c459af877f699243de6923e940cce":[1,0,3,37,36],
+"classdaNpc__GWolf__c.html#ac61b41518cb94630bd5b22f86fc56a59":[1,0,3,37,47],
+"classdaNpc__GWolf__c.html#aceb13ac814fb6796ac3a12db87762322":[1,0,3,37,6],
+"classdaNpc__GWolf__c.html#ad14dec10f98131ab4d6764400461f6a5":[1,0,3,37,23],
+"classdaNpc__GWolf__c.html#ad1580231d0120b08dc199648bea32a53":[1,0,3,37,44],
+"classdaNpc__GWolf__c.html#ad66ff7e3ee22a60ab5c8eb62a06de029":[1,0,3,37,17],
+"classdaNpc__GWolf__c.html#ad95e1b76f104ddd0dc1b48f32b0d6418":[1,0,3,37,33]
 };

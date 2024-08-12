@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Tornado.">
+<g id="a_Node000001"><a xlink:title="Wind Column.">
 <polygon fill="#999999" stroke="#666666" points="1258.25,-470.25 1186.75,-470.25 1186.75,-451 1258.25,-451 1258.25,-470.25"/>
 <text text-anchor="middle" x="1222.5" y="-456.75" font-family="Helvetica,sans-Serif" font-size="10.00">daObjTrnd_c</text>
 </a>
@@ -1202,7 +1202,7 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="646.4,-265.82 636.36,-269.18 646.31,-272.82 646.4,-265.82"/>
 </a>
 </g>
-<text text-anchor="middle" x="916.38" y="-272.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> field_0x6e8</text>
+<text text-anchor="middle" x="916.38" y="-272.38" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mWindCps</text>
 </g>
 <!-- Node151&#45;&gt;Node1 -->
 <g id="edge73_Node000001_Node000151" class="edge">

@@ -55,7 +55,6 @@ var classdEvt__control__c =
     [ "reset", "classdEvt__control__c.html#aa7d6539324c1140f6af69e1e25f2ddac", null ],
     [ "reset", "classdEvt__control__c.html#aa7d6539324c1140f6af69e1e25f2ddac", null ],
     [ "reset", "classdEvt__control__c.html#aa7d6539324c1140f6af69e1e25f2ddac", null ],
-    [ "reset", "classdEvt__control__c.html#aa7d6539324c1140f6af69e1e25f2ddac", null ],
     [ "reset", "classdEvt__control__c.html#a3d557f925a1538fc729e6f548eb5b024", null ],
     [ "reset", "classdEvt__control__c.html#a3d557f925a1538fc729e6f548eb5b024", null ],
     [ "runCheck", "classdEvt__control__c.html#ab7fc7e51e64b24aa55d57b3161eda4ae", null ],

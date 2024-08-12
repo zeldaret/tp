@@ -35,6 +35,7 @@ var classdaE__YMB__c =
     [ "getDownLockPoint", "classdaE__YMB__c.html#a72eee4e911335883236351c67f147886", null ],
     [ "getMaxLockAttack", "classdaE__YMB__c.html#a0b174ae159888468886ca03db5b20d70", null ],
     [ "getNearDownPos", "classdaE__YMB__c.html#a36dc2ecf294793bc5a195128fc800643", null ],
+    [ "getSwitchBit", "classdaE__YMB__c.html#a5af0ee90216ef05e0d9d959add4246a8", null ],
     [ "initDownToWater", "classdaE__YMB__c.html#aa4a1aac4f247dc69c5814af0dd80f3dd", null ],
     [ "JointCallBack", "classdaE__YMB__c.html#aacf787c82063fac1231a1d0ed5f63aba", null ],
     [ "mtx_set", "classdaE__YMB__c.html#a6c48d1c002b6035a3822f941a1aaf479", null ],
@@ -63,5 +64,7 @@ var classdaE__YMB__c =
     [ "setWaterEffect1", "classdaE__YMB__c.html#ab461c624eb00db552c5d880d9eb79b5e", null ],
     [ "setWaterEffect2", "classdaE__YMB__c.html#af6f7bdd35dec2b8c44592dd24903eb3e", null ],
     [ "setWolfLockEffect", "classdaE__YMB__c.html#a5e527f79530ca0c56b953fa5a90b655a", null ],
-    [ "field_0x5ac", "classdaE__YMB__c.html#ab2c4ac311cd587030dbf7746362c3e8f", null ]
+    [ "field_0x5ac", "classdaE__YMB__c.html#aa23640d9e8fbd9a7c32ae63b0ef8279c", null ],
+    [ "field_0x6c1", "classdaE__YMB__c.html#a7f7bd2236dc775f0e2376efc312d8f3f", null ],
+    [ "mSwitchBit", "classdaE__YMB__c.html#a9345e6f99f6f32fab744b510681a55f5", null ]
 ];

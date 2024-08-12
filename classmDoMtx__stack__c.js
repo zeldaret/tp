@@ -29,7 +29,6 @@ var classmDoMtx__stack__c =
     [ "transS", "classmDoMtx__stack__c.html#a4cb1308c256c55746f97d4d1837b4b9b", null ],
     [ "transS", "classmDoMtx__stack__c.html#a4cb1308c256c55746f97d4d1837b4b9b", null ],
     [ "transS", "classmDoMtx__stack__c.html#a4cb1308c256c55746f97d4d1837b4b9b", null ],
-    [ "transS", "classmDoMtx__stack__c.html#a4cb1308c256c55746f97d4d1837b4b9b", null ],
     [ "transS", "classmDoMtx__stack__c.html#ab3a2f6d388919b2e18183a68c53abd56", null ],
     [ "transS", "classmDoMtx__stack__c.html#a3214579aadf52aee5f5b6c1fb0216f14", null ],
     [ "XrotM", "classmDoMtx__stack__c.html#a0e742518f01eeb40ff1864134680e764", null ],

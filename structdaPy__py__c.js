@@ -550,6 +550,7 @@ var structdaPy__py__c =
     [ "onWolfEnemyCatch", "structdaPy__py__c.html#a5d5731348acd6f90de3d1f64fd07fdce", null ],
     [ "onWolfEnemyHangBite", "structdaPy__py__c.html#a1e78f83d8c2e523a44bf8b7f29b26227", null ],
     [ "onWolfEyeKeep", "structdaPy__py__c.html#a50bb5105d4e4802158a58d15c8b3e7d8", null ],
+    [ "onWolfLightDropGet", "structdaPy__py__c.html#ae998aab0422130bc6977501f04a5dd19", null ],
     [ "playerStartCollisionSE", "structdaPy__py__c.html#a80c6795c42cd754ffd93a01b93a95b83", null ],
     [ "seStartOnlyReverb", "structdaPy__py__c.html#a5748d3d6d04ce4be415b22a503794c49", null ],
     [ "seStartOnlyReverbLevel", "structdaPy__py__c.html#a42be6c21a5e2089a5e144278bf901482", null ],
