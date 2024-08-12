@@ -383,6 +383,8 @@ public:
     void setFlag(u32 i_flag) { mEventFlags |= i_flag; }
     void clrFlag(u32 i_flag) { mEventFlags &= ~i_flag; }
 
+    bool CheckFlag(u32 i_flag) { return mEventFlags & i_flag; }
+
     void ResetView() { setView(0.0f, 0.0f, 608.0f, 448.0f); }
 
     void clearInfo(dCamInfo_c* i_info, s16 param_1) {
