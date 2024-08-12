@@ -754,7 +754,7 @@ inline void dMeter2Info_offShopTalkFlag() {
 
 const char* dMeter2Info_getPlusTextureName();
 const char* dMeter2Info_getNumberTextureName(int pIndex);
-void dMeter2Info_recieveLetter();
+int dMeter2Info_recieveLetter();
 u8 dMeter2Info_getNewLetterNum();
 int dMeter2Info_setNewLetterSender();
 bool dMeter2Info_isItemOpenCheck();

@@ -1517,6 +1517,10 @@ inline BOOL dComIfGs_isLetterGetFlag(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().isLetterGetFlag(i_no);
 }
 
+inline void dComIfGs_onLetterGetFlag(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().onLetterGetFlag(i_no);
+}
+
 inline u8 dComIfGs_getArrowNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
 }
