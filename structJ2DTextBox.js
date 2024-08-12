@@ -13,7 +13,7 @@ var structJ2DTextBox =
     [ "getBlack", "structJ2DTextBox.html#ad3d4df9d7b6ee65604f4401a7aba46d8", null ],
     [ "getCharColor", "structJ2DTextBox.html#af0224c0cfa6fc8fc74e093b0f7ac7afa", null ],
     [ "getCharSpace", "structJ2DTextBox.html#ac84572db887f8980c41f668ed5c4ac97", null ],
-    [ "getFont", "structJ2DTextBox.html#aae492041b12e2c32dc654b6d7750bcba", null ],
+    [ "getFont", "structJ2DTextBox.html#a7723b3a8e00e0908290a28d1493e8c0b", null ],
     [ "getFontSize", "structJ2DTextBox.html#a1ed25f0cfc9e0e79d27cf87ce079f1b2", null ],
     [ "getGradColor", "structJ2DTextBox.html#a7dd108c45cf0dfb032135bb3a72c3a43", null ],
     [ "getHBinding", "structJ2DTextBox.html#a6adc3021495bcaf87920dd7dfef3f8ff", null ],

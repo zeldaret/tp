@@ -129,7 +129,7 @@ var searchData=
   ['bitsw3_126',['bitSw3',['../classdaB__DS__c.html#a9a4ad4729a9e475d88b4ae8ab93a9481',1,'daB_DS_c']]],
   ['black_127',['black',['../d__menu__fmap__map_8cpp.html#a759d13eaf9a08765fff45a0bc3aeb02e',1,'d_menu_fmap_map.cpp']]],
   ['black_5fcolor_5f4634_128',['black_color_4634',['../d__meter2__info_8cpp.html#a36ecd418b56a510d6729c8b32afcb4fe',1,'d_meter2_info.cpp']]],
-  ['black_5fcolor_5f4675_129',['black_color_4675',['../d__meter2__info_8cpp.html#a7202e0a94a9134855bede57eeecb93b2',1,'d_meter2_info.cpp']]],
+  ['black_5fcolor_5f4675_129',['black_color_4675',['../d__meter2__info_8cpp.html#a18c0decd73dfb70839b1a2bb72098a05',1,'d_meter2_info.cpp']]],
   ['blankingoffmtd_130',['blankingOffMtd',['../structcAPI__Interface.html#a2098f6109c3cce8e673ecf0a6eeb51c4',1,'cAPI_Interface']]],
   ['blankingonmtd_131',['blankingOnMtd',['../structcAPI__Interface.html#a30fbb0efa3d840ef70e90aa14f04081e',1,'cAPI_Interface']]],
   ['blo_5fname_132',['blo_name',['../d__select__cursor_8cpp.html#a40742f2cfc67e14ce9a1ed0d97a803a4',1,'d_select_cursor.cpp']]],

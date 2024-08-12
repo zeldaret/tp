@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_0',['a',['../namespaceCButton.html#ad8eb48b9a68b825e4b3544fb0a4944bcabd3ccbc6157f08e65f37ef22759d039f',1,'CButton::A'],['../struct__GXColor.html#ae27776a0e7ba44d022976683abebaa94',1,'_GXColor::a'],['../struct__GXColorS10.html#a4e99e0f92f420694c9b181a142c0a99e',1,'_GXColorS10::a'],['../structcM3dGTriS.html#a78176d3c6d93bc04892eff468aa91b0d',1,'cM3dGTriS::a'],['../k__cos_8c.html#a6ec5efdc1d3ca99e68aa212f26868024',1,'a(hz -(z *r - x *y)):&#160;k_cos.c'],['../k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912',1,'a:&#160;k_cos.c']]],
+  ['a_0',['a',['../k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912',1,'a:&#160;k_cos.c'],['../struct__GXColor.html#ae27776a0e7ba44d022976683abebaa94',1,'_GXColor::a'],['../struct__GXColorS10.html#a4e99e0f92f420694c9b181a142c0a99e',1,'_GXColorS10::a'],['../structcM3dGTriS.html#a78176d3c6d93bc04892eff468aa91b0d',1,'cM3dGTriS::a'],['../namespaceCButton.html#ad8eb48b9a68b825e4b3544fb0a4944bcabd3ccbc6157f08e65f37ef22759d039f',1,'CButton::A'],['../k__cos_8c.html#a6ec5efdc1d3ca99e68aa212f26868024',1,'a():&#160;k_cos.c']]],
   ['a0_1',['a0',['../struct__GXLightObj.html#a3c41e3da4547aa0d921cd02cec543e97',1,'_GXLightObj']]],
   ['a1_2',['a1',['../structstd_1_1pair.html#a799b8b42867b2d0cdb224096c0ca463b',1,'std::pair::a1'],['../struct__GXLightObj.html#abc3fb927cc517f626c5641f1736ed905',1,'_GXLightObj::a1']]],
   ['a2_3',['a2',['../struct__GXLightObj.html#a3ce8259fe850cae68bb420eb703882d9',1,'_GXLightObj']]],

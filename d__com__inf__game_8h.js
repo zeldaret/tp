@@ -747,6 +747,7 @@ var d__com__inf__game_8h =
     [ "dComIfGs_onEventBit", "d__com__inf__game_8h.html#a735dd0bb872dd4a788ec5cf94d6f57e8", null ],
     [ "dComIfGs_onItem", "d__com__inf__game_8h.html#ae9daa0709892c3ee06eea572d54d30f9", null ],
     [ "dComIfGs_onItemFirstBit", "d__com__inf__game_8h.html#aa8739332bc94863131c668031419c21b", null ],
+    [ "dComIfGs_onLetterGetFlag", "d__com__inf__game_8h.html#a01f55354ceff512d9a97acc60f58a646", null ],
     [ "dComIfGs_onLightDropFlag", "d__com__inf__game_8h.html#ab627c0d2a6a69f960bc4cd89c3a5d4bf", null ],
     [ "dComIfGs_onLightDropGetFlag", "d__com__inf__game_8h.html#a0cfbe23003c1a406aff7dc5219da20b7", null ],
     [ "dComIfGs_onOneZoneSwitch", "d__com__inf__game_8h.html#a05062406ca17e4cb26fc59472f65a8b5", null ],
