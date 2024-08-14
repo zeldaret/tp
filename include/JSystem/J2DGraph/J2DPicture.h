@@ -111,7 +111,7 @@ public:
     /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white);
     /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
     /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
-    /* 8025603C */ virtual bool getMaterial() const;
+    /* 8025603C */ virtual J2DMaterial* getMaterial() const { return NULL; }
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
                                              s16, Mtx*);

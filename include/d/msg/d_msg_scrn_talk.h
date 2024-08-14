@@ -4,6 +4,10 @@
 #include "dolphin/types.h"
 #include "d/msg/d_msg_scrn_base.h"
 
+class dMsgScrnArrow_c;
+class dMsgScrn3Select_c;
+class dMsgScrnLight_c;
+
 struct dMsgScrnTalk_c : public dMsgScrnBase_c {
     /* 80246FF0 */ dMsgScrnTalk_c(u8, u8, JKRExpHeap*);
     /* 80247A90 */ ~dMsgScrnTalk_c();
@@ -24,7 +28,22 @@ struct dMsgScrnTalk_c : public dMsgScrnBase_c {
     /* 802482B4 */ void fukiAlpha(f32);
     /* 8024835C */ void fukiPosCalc(u8);
 
-    u8 field_0xc4[0x48c - 0xc4];
+    /* 0x0C4 */ J2DScreen* mpTxScreen;
+    /* 0x0C8 */ dMsgScrnArrow_c* mpArrow_c;
+    /* 0x0CC */ dMsgScrn3Select_c* mpSelect_c;
+    /* 0x0D0 */ dMsgScrnLight_c* mpLight_c;
+    /* 0x0D4 */ int field_0xd4;
+    /* 0x0D8 */ CPaneMgr* mpArw_c;
+    /* 0x0DC */ CPaneMgr* mpMg_c[2];
+    /* 0x0E4 */ JKRExpHeap* field_0xe4;
+    /* 0x0E8 */ f32 field_0xe8;
+    /* 0x0EC */ f32 field_0xec;
+    /* 0x0F0 */ f32 field_0xf0;
+    /* 0x0F4 */ f32 field_0xf4;
+    /* 0x0F8 */ f32 field_0xf8[150];
+    /* 0x350 */ f32 field_0x350[3];
+    /* 0x35C */ s16 field_0x35c[150];
+    /* 0x488 */ u8 field_0x488;
 };
 
 #endif /* MSG_SCRN_D_MSG_SCRN_TALK_H */

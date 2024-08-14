@@ -79,7 +79,7 @@ public:
     /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 801DFA34 */ virtual JUtility::TColor getBlack() const;
     /* 801DFA28 */ virtual JUtility::TColor getWhite() const;
-    /* 8025602C */ virtual bool getMaterial() const;
+    /* 8025602C */ virtual J2DMaterial* getMaterial() const { return NULL; }
 
     /* 802FFBC4 */ J2DTextBox(u64, JGeometry::TBox2<f32> const&, ResFONT const*, char const*, s16,
                               J2DTextBoxHBinding, J2DTextBoxVBinding);

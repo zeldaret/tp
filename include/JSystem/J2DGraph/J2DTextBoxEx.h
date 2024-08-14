@@ -33,7 +33,7 @@ public:
     /* 80308828 */ virtual bool isUsed(ResFONT const*);
     /* 80308810 */ virtual void rewriteAlpha();
     /* 80308A4C */ virtual void setAnimation(J2DAnmBase*);
-    /* 80256044 */ virtual void setAnimation(J2DAnmTransform*);
+    /* 80256044 */ virtual void setAnimation(J2DAnmTransform* transform) { J2DPane::setAnimation(transform); }
     /* 803088B4 */ virtual void setAnimation(J2DAnmColor*);
     /* 8030890C */ virtual void setAnimation(J2DAnmTexPattern*);
     /* 803088E0 */ virtual void setAnimation(J2DAnmTextureSRTKey*);
@@ -50,7 +50,7 @@ public:
     /* 8030834C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 803086FC */ virtual JUtility::TColor getBlack() const;
     /* 8030875C */ virtual JUtility::TColor getWhite() const;
-    /* 80256024 */ virtual bool getMaterial() const;
+    /* 80256024 */ virtual J2DMaterial* getMaterial() const { return mMaterial; }
 
 private:
     /* 0x138 */ J2DMaterial* mMaterial;

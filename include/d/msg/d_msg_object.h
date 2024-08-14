@@ -599,9 +599,9 @@ public:
     /* 0x0E0 */ f32 mBoxItemTextPosX;
     /* 0x0E4 */ f32 mBoxItemTextPosY;
     /* 0x0E8 */ JUtility::TColor
-        mBoxStartBlack[20];  // talk, navi, midna, item, stone, wood, book, wolf,
+        mBoxStartBlack[2][10];  // talk, navi, midna, item, stone, wood, book, wolf,
     /* 0x110 */ //JUtility::TColor mBoxEndBlack[10];
-    /* 0x138 */ JUtility::TColor mBoxStartWhite[20];
+    /* 0x138 */ JUtility::TColor mBoxStartWhite[2][10];
     /* 0x160 */ //JUtility::TColor mBoxEndWhite[10];
     /* 0x188 */ JUtility::TColor mSelMsgInactiveCol;
     /* 0x18C */ f32 mStageTitleCharPosX;
@@ -636,7 +636,7 @@ public:
     /* 0x2E4 */ JUtility::TColor mPikariPikaR0;
     /* 0x2E8 */ JUtility::TColor mPikariPikaR1;
     /* 0x2EC */ f32 mPikariAnmSpeed;
-    /* 0x2F0 */ u16 mPikariHaloDelay_spirit;
+    /* 0x2F0 */ s16 mPikariHaloDelay_spirit;
     /* 0x2F2 */ u8 mStageTitleDisplayType;
     /* 0x2F4 */ s16 mMsgIndex;
     /* 0x2F6 */ s16 mFlowIndex;
