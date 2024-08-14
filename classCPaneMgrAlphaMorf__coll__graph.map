@@ -1,8 +1,8 @@
 <map id="CPaneMgrAlphaMorf" name="CPaneMgrAlphaMorf">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1922,153,2063,179"/>
-<area shape="rect" id="Node000002" href="$structCPaneMgrAlpha.html" title=" " alt="" coords="1756,153,1871,179"/>
+<area shape="rect" id="Node000002" href="$classCPaneMgrAlpha.html" title=" " alt="" coords="1756,153,1871,179"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1887,163,1922,163,1922,169,1887,169"/>
-<area shape="rect" id="Node000003" href="$structJ2DPane.html" title=" " alt="" coords="1223,73,1298,99"/>
+<area shape="rect" id="Node000003" href="$classJ2DPane.html" title=" " alt="" coords="1223,73,1298,99"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1313,91,1756,155,1755,161,1312,96"/>
 <area shape="rect" id="Node000004" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="787,135,954,160"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="970,159,1058,162,1103,158,1148,149,1175,139,1200,126,1241,97,1244,102,1203,130,1177,144,1149,154,1104,163,1058,167,970,165"/>
@@ -29,11 +29,11 @@
 <area shape="rect" id="Node000026" href="$classJSULink.html" title=" " alt="" coords="445,236,548,262"/>
 <area shape="poly" id="edge38_Node000026_Node000009" title=" " alt="" coords="290,212,299,214,445,240,445,245,297,219,289,217"/>
 <area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="563,41,796,22,796,27,564,46"/>
-<area shape="rect" id="Node000011" href="$structJ2DAnmTransform.html" title=" " alt="" coords="806,69,936,95"/>
+<area shape="rect" id="Node000011" href="$classJ2DAnmTransform.html" title=" " alt="" coords="806,69,936,95"/>
 <area shape="poly" id="edge13_Node000003_Node000011" title=" " alt="" coords="951,80,1223,83,1222,88,951,86"/>
 <area shape="rect" id="Node000012" href="$structJ2DAnmBase.html" title=" " alt="" coords="446,85,547,111"/>
 <area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="563,93,805,82,805,88,563,98"/>
-<area shape="rect" id="Node000013" href="$structJKRExpHeap.html" title=" " alt="" coords="1493,304,1591,330"/>
+<area shape="rect" id="Node000013" href="$classJKRExpHeap.html" title=" " alt="" coords="1493,304,1591,330"/>
 <area shape="poly" id="edge15_Node000002_Node000013" title=" " alt="" coords="1579,294,1787,177,1790,182,1582,298"/>
 <area shape="rect" id="Node000014" href="$structJKRHeap.html" title=" " alt="" coords="1222,297,1299,323"/>
 <area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="1314,309,1493,313,1493,318,1314,314"/>

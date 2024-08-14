@@ -1,5 +1,5 @@
 <map id="J2DOrthoGraph" name="J2DOrthoGraph">
 <area shape="rect" id="Node000001" title=" " alt="" coords="6,79,118,105"/>
-<area shape="rect" id="Node000002" href="$structJ2DGrafContext.html" title=" " alt="" coords="5,5,119,31"/>
+<area shape="rect" id="Node000002" href="$classJ2DGrafContext.html" title=" " alt="" coords="5,5,119,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,46,65,79,59,79,59,46"/>
 </map>

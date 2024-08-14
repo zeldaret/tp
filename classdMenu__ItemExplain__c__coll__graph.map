@@ -1,15 +1,15 @@
 <map id="dMenu_ItemExplain_c" name="dMenu_ItemExplain_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2738,694,2887,720"/>
-<area shape="rect" id="Node000002" href="$structJKRExpHeap.html" title=" " alt="" coords="667,1497,765,1523"/>
+<area shape="rect" id="Node000002" href="$classJKRExpHeap.html" title=" " alt="" coords="667,1497,765,1523"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="781,1504,1048,1498,2564,1498,2594,1490,2621,1469,2647,1436,2671,1392,2692,1339,2712,1280,2745,1148,2771,1012,2789,885,2807,720,2813,720,2794,886,2776,1013,2750,1149,2717,1281,2697,1341,2676,1394,2652,1439,2625,1473,2596,1495,2564,1503,1048,1503,781,1509"/>
-<area shape="rect" id="Node000082" href="$structCPaneMgrAlpha.html" title=" " alt="" coords="992,770,1107,796"/>
+<area shape="rect" id="Node000082" href="$classCPaneMgrAlpha.html" title=" " alt="" coords="992,770,1107,796"/>
 <area shape="poly" id="edge46_Node000082_Node000002" title=" " alt="" coords="728,1482,822,1268,883,1116,939,959,945,930,947,907,951,884,963,858,993,821,1026,794,1029,799,997,825,968,860,956,886,953,908,950,931,944,960,888,1118,827,1270,733,1484"/>
 <area shape="rect" id="Node000003" href="$structJKRHeap.html" title=" " alt="" coords="357,1648,434,1673"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,1638,625,1549,685,1521,687,1525,627,1553,439,1643"/>
 <area shape="poly" id="edge8_Node000003_Node000003" title=" " alt="" coords="366,1630,376,1623,395,1621,413,1623,424,1629,427,1639,422,1648,417,1646,422,1638,420,1633,411,1628,395,1626,378,1628,369,1635"/>
 <area shape="rect" id="Node000004" href="$classJKRDisposer.html" title=" " alt="" coords="668,1613,765,1639"/>
 <area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="450,1659,507,1659,555,1663,576,1664,601,1659,613,1654,625,1647,666,1634,668,1639,627,1652,615,1659,603,1665,576,1669,555,1669,507,1665,450,1664"/>
-<area shape="rect" id="Node000020" href="$structJKRArchive.html" title=" " alt="" coords="1307,1650,1397,1676"/>
+<area shape="rect" id="Node000020" href="$classJKRArchive.html" title=" " alt="" coords="1307,1650,1397,1676"/>
 <area shape="poly" id="edge17_Node000020_Node000003" title=" " alt="" coords="450,1676,571,1712,652,1731,741,1749,837,1763,936,1771,1036,1771,1133,1760,1192,1745,1247,1721,1330,1674,1333,1678,1249,1726,1193,1750,1134,1766,1036,1776,936,1776,836,1768,740,1754,650,1736,570,1717,448,1681"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="652,1633,507,1647,435,1657,434,1652,507,1642,652,1628"/>
 <area shape="rect" id="Node000021" href="$classJKRFileLoader.html" title=" " alt="" coords="996,1577,1103,1603"/>
@@ -53,10 +53,10 @@
 <area shape="rect" id="Node000066" href="$classCOutFont__c.html" title=" " alt="" coords="1306,353,1398,379"/>
 <area shape="poly" id="edge42_Node000027_Node000066" title=" " alt="" coords="1413,363,1651,363,2301,363,2511,363,2511,368,2301,368,1651,368,1413,368"/>
 <area shape="poly" id="edge26_Node000053_Node000066" title=" " alt="" coords="1395,344,1621,241,1623,245,1397,349"/>
-<area shape="rect" id="Node000068" href="$structJ2DPicture.html" title=" " alt="" coords="1007,404,1092,429"/>
+<area shape="rect" id="Node000068" href="$classJ2DPicture.html" title=" " alt="" coords="1007,404,1092,429"/>
 <area shape="poly" id="edge61_Node000001_Node000068" title=" " alt="" coords="1108,411,1243,408,1433,408,1651,415,1873,432,1897,437,2031,453,2166,456,2564,456,2610,458,2647,465,2680,481,2716,509,2737,531,2755,555,2783,608,2801,657,2811,693,2806,695,2796,659,2778,610,2750,558,2733,534,2713,513,2677,485,2645,470,2610,463,2564,462,2166,462,2031,458,1896,443,1872,438,1651,420,1433,413,1244,413,1108,417"/>
 <area shape="poly" id="edge27_Node000066_Node000068" title=" " alt="" coords="1107,404,1305,371,1306,376,1108,409"/>
-<area shape="rect" id="Node000055" href="$structJ2DPane.html" title=" " alt="" coords="679,672,753,697"/>
+<area shape="rect" id="Node000055" href="$classJ2DPane.html" title=" " alt="" coords="679,672,753,697"/>
 <area shape="poly" id="edge49_Node000001_Node000055" title=" " alt="" coords="768,667,939,624,1047,601,1157,583,1354,570,1683,556,2012,547,2210,548,2355,560,2468,571,2522,581,2579,595,2715,642,2761,666,2796,691,2793,696,2758,670,2713,647,2577,600,2521,586,2467,577,2354,565,2210,554,2012,552,1684,561,1355,575,1158,588,1048,606,940,629,769,672"/>
 <area shape="poly" id="edge28_Node000068_Node000055" title=" " alt="" coords="742,659,829,584,1029,428,1032,432,832,588,745,663"/>
 <area shape="poly" id="edge45_Node000082_Node000055" title=" " alt="" coords="769,677,809,676,854,681,900,692,943,711,952,721,956,731,960,740,967,749,1000,767,997,772,964,753,955,743,951,733,948,724,940,716,898,697,853,686,809,682,769,682"/>
@@ -68,11 +68,11 @@
 <area shape="poly" id="edge29_Node000055_Node000056" title=" " alt="" coords="406,1395,707,696,712,699,411,1397"/>
 <area shape="rect" id="Node000058" href="$classJSUTree.html" title=" " alt="" coords="321,477,470,503"/>
 <area shape="poly" id="edge30_Node000055_Node000058" title=" " alt="" coords="433,509,694,669,691,673,430,513"/>
-<area shape="rect" id="Node000061" href="$structJ2DAnmTransform.html" title=" " alt="" coords="330,672,461,697"/>
+<area shape="rect" id="Node000061" href="$classJ2DAnmTransform.html" title=" " alt="" coords="330,672,461,697"/>
 <area shape="poly" id="edge31_Node000055_Node000061" title=" " alt="" coords="476,682,679,682,679,687,476,687"/>
-<area shape="rect" id="Node000111" href="$structdMsgScrnArrow__c.html" title=" " alt="" coords="1588,630,1716,656"/>
+<area shape="rect" id="Node000111" href="$classdMsgScrnArrow__c.html" title=" " alt="" coords="1588,630,1716,656"/>
 <area shape="poly" id="edge65_Node000111_Node000061" title=" " alt="" coords="452,664,620,618,724,596,830,579,938,571,1048,569,1157,573,1263,581,1451,604,1588,627,1587,633,1450,609,1262,586,1157,578,1048,574,938,576,831,584,725,601,621,623,454,669"/>
-<area shape="rect" id="Node000113" href="$structdMsgScrn3Select__c.html" title=" " alt="" coords="1930,1189,2068,1215"/>
+<area shape="rect" id="Node000113" href="$classdMsgScrn3Select__c.html" title=" " alt="" coords="1930,1189,2068,1215"/>
 <area shape="poly" id="edge71_Node000113_Node000061" title=" " alt="" coords="407,711,452,835,489,921,536,1016,594,1114,662,1209,700,1254,741,1296,785,1334,832,1369,867,1388,911,1404,961,1417,1017,1426,1142,1438,1276,1441,1412,1438,1541,1429,1655,1417,1745,1404,1812,1393,1839,1384,1871,1365,1912,1328,1946,1286,1989,1214,1994,1216,1950,1289,1916,1332,1874,1369,1841,1389,1813,1399,1746,1410,1656,1423,1542,1434,1412,1443,1276,1447,1141,1444,1016,1432,960,1422,909,1409,865,1393,829,1373,782,1339,738,1300,696,1257,658,1212,589,1117,531,1018,484,923,447,837,402,713"/>
 <area shape="rect" id="Node000069" href="$classJUTTexture.html" title=" " alt="" coords="672,321,761,347"/>
 <area shape="poly" id="edge32_Node000068_Node000069" title=" " alt="" coords="776,335,856,345,942,364,987,382,1026,401,1023,405,985,386,941,370,855,351,776,340"/>
@@ -86,7 +86,7 @@
 <area shape="poly" id="edge35_Node000068_Node000075" title=" " alt="" coords="817,435,1006,418,1007,423,817,440"/>
 <area shape="rect" id="Node000064" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="664,944,769,969"/>
 <area shape="poly" id="edge37_Node000068_Node000064" title=" " alt="" coords="764,934,808,912,857,880,903,840,922,818,939,793,955,755,962,720,961,688,956,657,947,591,950,554,963,513,977,487,995,463,1030,428,1034,432,999,467,981,490,968,515,956,555,953,591,961,656,966,688,967,721,961,756,944,795,927,821,906,844,860,884,811,916,766,939"/>
-<area shape="rect" id="Node000081" href="$structCPaneMgr.html" title=" " alt="" coords="1311,708,1393,733"/>
+<area shape="rect" id="Node000081" href="$classCPaneMgr.html" title=" " alt="" coords="1311,708,1393,733"/>
 <area shape="poly" id="edge48_Node000081_Node000064" title=" " alt="" coords="784,947,876,932,915,920,939,905,951,887,955,869,950,832,945,793,950,774,964,756,990,740,1027,729,1123,717,1226,714,1310,716,1310,721,1226,719,1123,722,1028,734,992,745,967,760,955,776,950,794,955,831,960,870,956,889,943,909,917,925,877,937,785,952"/>
 <area shape="poly" id="edge58_Node000087_Node000064" title=" " alt="" coords="784,959,965,971,1309,982,1309,988,965,977,784,964"/>
 <area shape="poly" id="edge83_Node000113_Node000064" title=" " alt="" coords="725,984,737,1038,758,1107,790,1182,810,1219,832,1252,880,1311,924,1353,949,1367,977,1377,1009,1384,1048,1386,1653,1386,1707,1380,1760,1365,1810,1342,1856,1316,1934,1258,1983,1213,1986,1217,1937,1262,1859,1320,1812,1347,1761,1370,1708,1385,1654,1391,1048,1391,1009,1389,975,1383,946,1372,921,1357,876,1315,828,1255,805,1221,785,1185,753,1109,732,1039,720,985"/>

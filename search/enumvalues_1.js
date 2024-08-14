@@ -462,7 +462,7 @@ var searchData=
   ['ak_5fst_5fpigdigsmoke00_5fe_459',['AK_ST_pigDigSmoke00_e',['../structdPa__name.html#aa4f7b6ddb5ac76946f2778f8943d2551ad801de656e81bb1c76cd13707ef7b662',1,'dPa_name']]],
   ['alloc_5fdirection_5fbackward_460',['ALLOC_DIRECTION_BACKWARD',['../classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161a535be3df38d7ebe6ceb3f1d09e0c7937',1,'JKRDvdRipper']]],
   ['alloc_5fdirection_5fforward_461',['ALLOC_DIRECTION_FORWARD',['../classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161aa99cb1d1fbf7978a7f64954615e785fe',1,'JKRDvdRipper']]],
-  ['alloc_5fmode_5f1_462',['ALLOC_MODE_1',['../structJKRExpHeap.html#a9a114aea69c03b0590e1615a86fedf0dac9fd2b746c040bb83fcfffc1146fea78',1,'JKRExpHeap']]],
+  ['alloc_5fmode_5f1_462',['ALLOC_MODE_1',['../classJKRExpHeap.html#a9a114aea69c03b0590e1615a86fedf0dac9fd2b746c040bb83fcfffc1146fea78',1,'JKRExpHeap']]],
   ['always_5fdark_463',['ALWAYS_DARK',['../d__kankyo__data_8h.html#a22a7f4c7dfa4763f73a82caff6e1713ea872f37156fb0e186494cc6c288ec3d83',1,'d_kankyo_data.h']]],
   ['amc_5fexi_5fno_5ferror_464',['AMC_EXI_NO_ERROR',['../AmcExi2Stubs_8h.html#a091eb6e7bfed7496d46f474e6e60436aa5af0f7a7eceab0233e2544c9b060e238',1,'AmcExi2Stubs.h']]],
   ['amc_5fexi_5funselected_465',['AMC_EXI_UNSELECTED',['../AmcExi2Stubs_8h.html#a091eb6e7bfed7496d46f474e6e60436aa15b5e70273e628158f1a8f38ee8d164d',1,'AmcExi2Stubs.h']]],

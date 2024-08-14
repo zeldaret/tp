@@ -799,7 +799,7 @@ var sectionId = 'dynsection-1';
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1150.25,-186.82 1081.75,-186.82 1081.75,-167.57 1150.25,-167.57 1150.25,-186.82"/>
 <text text-anchor="middle" x="1116" y="-173.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -838,7 +838,7 @@ var sectionId = 'dynsection-1';
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000028"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="891.62,-243.82 835.88,-243.82 835.88,-224.57 891.62,-224.57 891.62,-243.82"/>
 <text text-anchor="middle" x="863.75" y="-230.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -856,7 +856,7 @@ var sectionId = 'dynsection-1';
 <!-- Node43 -->
 <g id="Node000043" class="node">
 <title>Node43</title>
-<g id="a_Node000043"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000043"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1148,-279.82 1084,-279.82 1084,-260.57 1148,-260.57 1148,-279.82"/>
 <text text-anchor="middle" x="1116" y="-266.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -969,7 +969,7 @@ var sectionId = 'dynsection-1';
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000036"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="666.38,-177.82 568.62,-177.82 568.62,-158.57 666.38,-158.57 666.38,-177.82"/>
 <text text-anchor="middle" x="617.5" y="-164.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

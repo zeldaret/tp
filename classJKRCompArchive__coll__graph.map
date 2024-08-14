@@ -1,6 +1,6 @@
 <map id="JKRCompArchive" name="JKRCompArchive">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1894,520,2019,546"/>
-<area shape="rect" id="Node000002" href="$structJKRArchive.html" title=" " alt="" coords="1698,129,1788,155"/>
+<area shape="rect" id="Node000002" href="$classJKRArchive.html" title=" " alt="" coords="1698,129,1788,155"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1761,168,1950,518,1946,521,1757,170"/>
 <area shape="rect" id="Node000003" href="$classJKRFileLoader.html" title=" " alt="" coords="1025,133,1132,159"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1147,143,1698,140,1698,145,1147,148"/>

@@ -231,7 +231,7 @@
 <!-- Node45 -->
 <g id="Node000045" class="node">
 <title>Node45</title>
-<g id="a_Node000045"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000045"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="765.88,-1107.34 701.88,-1107.34 701.88,-1088.09 765.88,-1088.09 765.88,-1107.34"/>
 <text text-anchor="middle" x="733.88" y="-1093.84" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -260,7 +260,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000030"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="529.38,-461.34 473.62,-461.34 473.62,-442.09 529.38,-442.09 529.38,-461.34"/>
 <text text-anchor="middle" x="501.5" y="-447.84" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -278,7 +278,7 @@
 <!-- Node59 -->
 <g id="Node000059" class="node">
 <title>Node59</title>
-<g id="a_Node000059"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000059"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="777.12,-251.34 690.62,-251.34 690.62,-232.09 777.12,-232.09 777.12,-251.34"/>
 <text text-anchor="middle" x="733.88" y="-237.84" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -375,7 +375,7 @@
 <!-- Node38 -->
 <g id="Node000038" class="node">
 <title>Node38</title>
-<g id="a_Node000038"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000038"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="263.38,-310.34 165.62,-310.34 165.62,-291.09 263.38,-291.09 263.38,-310.34"/>
 <text text-anchor="middle" x="214.5" y="-296.84" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>
@@ -394,7 +394,7 @@
 <!-- Node101 -->
 <g id="Node000101" class="node">
 <title>Node101</title>
-<g id="a_Node000101"><a xlink:href="structdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000101"><a xlink:href="classdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1256.12,-551.34 1159.88,-551.34 1159.88,-532.09 1256.12,-532.09 1256.12,-551.34"/>
 <text text-anchor="middle" x="1208" y="-537.84" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrnArrow_c</text>
 </a>
@@ -413,7 +413,7 @@
 <!-- Node103 -->
 <g id="Node000103" class="node">
 <title>Node103</title>
-<g id="a_Node000103"><a xlink:href="structdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000103"><a xlink:href="classdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1749,-476.34 1645.25,-476.34 1645.25,-457.09 1749,-457.09 1749,-476.34"/>
 <text text-anchor="middle" x="1697.12" y="-462.84" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrn3Select_c</text>
 </a>
@@ -638,7 +638,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="998.25,-356.34 936.5,-356.34 936.5,-337.09 998.25,-337.09 998.25,-356.34"/>
 <text text-anchor="middle" x="967.38" y="-342.84" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>
@@ -834,7 +834,7 @@
 <!-- Node60 -->
 <g id="Node000060" class="node">
 <title>Node60</title>
-<g id="a_Node000060"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000060"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="538.38,-251.34 464.62,-251.34 464.62,-232.09 538.38,-232.09 538.38,-251.34"/>
 <text text-anchor="middle" x="501.5" y="-237.84" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

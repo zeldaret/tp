@@ -106,9 +106,9 @@
 <area shape="poly" id="edge72_Node000127_Node000168" title=" " alt="" coords="132,1537,297,1547,635,1557,634,1562,297,1552,132,1542"/>
 <area shape="poly" id="edge59_Node000129_Node000168" title=" " alt="" coords="131,1518,329,1469,330,1474,132,1523"/>
 <area shape="poly" id="edge60_Node000127_Node000182" title=" " alt="" coords="438,1936,475,1936,514,1931,553,1920,586,1899,620,1862,645,1819,663,1771,676,1723,687,1634,688,1574,693,1574,692,1635,681,1724,668,1773,650,1821,624,1865,590,1903,555,1924,515,1936,475,1941,438,1941"/>
-<area shape="rect" id="Node000157" href="$structJ2DPane.html" title=" " alt="" coords="34,1880,108,1906"/>
+<area shape="rect" id="Node000157" href="$classJ2DPane.html" title=" " alt="" coords="34,1880,108,1906"/>
 <area shape="poly" id="edge61_Node000182_Node000157" title=" " alt="" coords="124,1903,161,1910,256,1921,338,1927,337,1932,255,1927,160,1915,123,1908"/>
-<area shape="rect" id="Node000156" href="$structJ2DTextBox.html" title=" " alt="" coords="335,1812,426,1838"/>
+<area shape="rect" id="Node000156" href="$classJ2DTextBox.html" title=" " alt="" coords="335,1812,426,1838"/>
 <area shape="poly" id="edge70_Node000156_Node000157" title=" " alt="" coords="123,1878,160,1869,334,1831,335,1837,161,1874,124,1883"/>
 <area shape="rect" id="Node000183" href="$classJ2DDataManage.html" title=" " alt="" coords="12,2016,130,2042"/>
 <area shape="poly" id="edge62_Node000182_Node000183" title=" " alt="" coords="145,2019,208,2009,272,1991,320,1967,359,1942,362,1947,323,1972,274,1996,209,2014,146,2025"/>
@@ -118,7 +118,7 @@
 <area shape="poly" id="edge64_Node000182_Node000201" title=" " alt="" coords="149,1972,272,1958,337,1942,338,1947,273,1963,150,1978"/>
 <area shape="rect" id="Node000166" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="18,1796,124,1822"/>
 <area shape="poly" id="edge66_Node000182_Node000166" title=" " alt="" coords="121,1825,347,1916,345,1921,119,1830"/>
-<area shape="rect" id="Node000202" href="$structCPaneMgr.html" title=" " alt="" coords="339,1733,422,1759"/>
+<area shape="rect" id="Node000202" href="$classCPaneMgr.html" title=" " alt="" coords="339,1733,422,1759"/>
 <area shape="poly" id="edge68_Node000202_Node000166" title=" " alt="" coords="96,1783,125,1762,160,1745,207,1735,255,1732,339,1737,339,1742,255,1737,208,1740,162,1750,128,1766,99,1788"/>
 <area shape="poly" id="edge71_Node000156_Node000166" title=" " alt="" coords="139,1810,334,1820,334,1825,139,1815"/>
 <area shape="poly" id="edge67_Node000127_Node000202" title=" " alt="" coords="424,1763,461,1775,504,1783,547,1782,567,1777,587,1768,611,1748,631,1724,647,1697,660,1669,678,1614,685,1574,691,1575,683,1616,665,1671,652,1700,635,1727,615,1752,589,1772,569,1782,548,1787,503,1788,460,1780,422,1768"/>

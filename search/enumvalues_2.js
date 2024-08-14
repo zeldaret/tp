@@ -29,7 +29,7 @@ var searchData=
   ['bomb_5finsect_5f30_26',['BOMB_INSECT_30',['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2a1dc6b95b2985405275a1f82002eb32e4',1,'d_save.h']]],
   ['bomb_5finsect_5f5_27',['BOMB_INSECT_5',['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2a9ff2c4f565b45abc39a00efebbc854ad',1,'d_save.h']]],
   ['boomerang_28',['BOOMERANG',['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2a41c1c7c62e57d94a3e8bb4a76a274be7',1,'d_save.h']]],
-  ['boss_5fkey_29',['boss_key',['../structdSv__memBit__c.html#aff2c9561f31a8d533ca546ef7e1d66efaddc140ece9a60e605fcdd9344585ae22',1,'dSv_memBit_c::BOSS_KEY'],['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2ae5177c3ab4817d6c99577974c512d3cd',1,'BOSS_KEY:&#160;d_save.h']]],
+  ['boss_5fkey_29',['boss_key',['../structdSv__memBit__c.html#adc7094d53c8efe84993788ca05682c41addc140ece9a60e605fcdd9344585ae22',1,'dSv_memBit_c::BOSS_KEY'],['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2ae5177c3ab4817d6c99577974c512d3cd',1,'BOSS_KEY:&#160;d_save.h']]],
   ['bossrider_5fkey_30',['BOSSRIDER_KEY',['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2a3e139d96c259ac549389e2fabcb92895',1,'d_save.h']]],
   ['bow_31',['BOW',['../d__save_8h.html#a0a48966e59817e2d4685d1f0b44b33f2ae5557626412a6fc8cd1120c5187203a0',1,'d_save.h']]],
   ['break_32',['BREAK',['../classdaBmWindow__c.html#a318e72c371f365984724ffdb1bb646f1a6ec57f877524d8c36cddb6dfc3993997',1,'daBmWindow_c']]],

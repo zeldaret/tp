@@ -85,7 +85,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="283.75,-152.25 215.25,-152.25 215.25,-133 283.75,-133 283.75,-152.25"/>
 <text text-anchor="middle" x="249.5" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -104,7 +104,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="346.38,-237.25 290.62,-237.25 290.62,-218 346.38,-218 346.38,-237.25"/>
 <text text-anchor="middle" x="318.5" y="-223.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -122,7 +122,7 @@ var sectionId = 'dynsection-0';
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="419.5,-152.25 355.5,-152.25 355.5,-133 419.5,-133 419.5,-152.25"/>
 <text text-anchor="middle" x="387.5" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -303,7 +303,7 @@ var sectionId = 'dynsection-0';
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="324.38,-356 226.62,-356 226.62,-336.75 324.38,-336.75 324.38,-356"/>
 <text text-anchor="middle" x="275.5" y="-342.5" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

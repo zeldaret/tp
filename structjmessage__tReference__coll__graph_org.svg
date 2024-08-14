@@ -610,7 +610,7 @@
 <!-- Node178 -->
 <g id="Node000178" class="node">
 <title>Node178</title>
-<g id="a_Node000178"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000178"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1110.38,-81.62 1036.62,-81.62 1036.62,-62.38 1110.38,-62.38 1110.38,-81.62"/>
 <text text-anchor="middle" x="1073.5" y="-68.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -872,7 +872,7 @@
 <!-- Node176 -->
 <g id="Node000176" class="node">
 <title>Node176</title>
-<g id="a_Node000176"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000176"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="786.62,-1439.62 724.88,-1439.62 724.88,-1420.38 786.62,-1420.38 786.62,-1439.62"/>
 <text text-anchor="middle" x="755.75" y="-1426.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>
@@ -892,7 +892,7 @@
 <!-- Node185 -->
 <g id="Node000185" class="node">
 <title>Node185</title>
-<g id="a_Node000185"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000185"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="637.88,-1345.62 573.88,-1345.62 573.88,-1326.38 637.88,-1326.38 637.88,-1345.62"/>
 <text text-anchor="middle" x="605.88" y="-1332.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>

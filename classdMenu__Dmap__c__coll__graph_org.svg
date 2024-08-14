@@ -86,7 +86,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="312.5,-340.62 238.75,-340.62 238.75,-321.38 312.5,-321.38 312.5,-340.62"/>
 <text text-anchor="middle" x="275.62" y="-327.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -117,7 +117,7 @@
 <!-- Node61 -->
 <g id="Node000061" class="node">
 <title>Node61</title>
-<g id="a_Node000061"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000061"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="487.88,-551.62 401.38,-551.62 401.38,-532.38 487.88,-532.38 487.88,-551.62"/>
 <text text-anchor="middle" x="444.62" y="-538.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -186,7 +186,7 @@
 <!-- Node116 -->
 <g id="Node000116" class="node">
 <title>Node116</title>
-<g id="a_Node000116"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000116"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1213.62,-265.62 1145.88,-265.62 1145.88,-246.38 1213.62,-246.38 1213.62,-265.62"/>
 <text text-anchor="middle" x="1179.75" y="-252.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -386,7 +386,7 @@
 <!-- Node125 -->
 <g id="Node000125" class="node">
 <title>Node125</title>
-<g id="a_Node000125"><a xlink:href="structdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000125"><a xlink:href="classdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1227.88,-1389.62 1131.62,-1389.62 1131.62,-1370.38 1227.88,-1370.38 1227.88,-1389.62"/>
 <text text-anchor="middle" x="1179.75" y="-1376.12" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrnArrow_c</text>
 </a>
@@ -405,7 +405,7 @@
 <!-- Node126 -->
 <g id="Node000126" class="node">
 <title>Node126</title>
-<g id="a_Node000126"><a xlink:href="structdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000126"><a xlink:href="classdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1459.12,-1198.62 1355.38,-1198.62 1355.38,-1179.38 1459.12,-1179.38 1459.12,-1198.62"/>
 <text text-anchor="middle" x="1407.25" y="-1185.12" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrn3Select_c</text>
 </a>
@@ -443,7 +443,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000025"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="303.5,-1023.62 247.75,-1023.62 247.75,-1004.38 303.5,-1004.38 303.5,-1023.62"/>
 <text text-anchor="middle" x="275.62" y="-1010.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -481,7 +481,7 @@
 <!-- Node70 -->
 <g id="Node000070" class="node">
 <title>Node70</title>
-<g id="a_Node000070"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000070"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="974.62,-1705.62 910.62,-1705.62 910.62,-1686.38 974.62,-1686.38 974.62,-1705.62"/>
 <text text-anchor="middle" x="942.62" y="-1692.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -650,7 +650,7 @@
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="704.12,-811.62 642.38,-811.62 642.38,-792.38 704.12,-792.38 704.12,-811.62"/>
 <text text-anchor="middle" x="673.25" y="-798.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

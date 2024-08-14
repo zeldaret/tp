@@ -4,11 +4,11 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3339,27,3421,48,3478,70,3476,75,3420,53,3338,32"/>
 <area shape="rect" id="Node000003" href="$structJ2DScreen.html" title=" " alt="" coords="1311,737,1396,763"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1403,729,1457,712,1522,694,1594,681,1667,676,3274,676,3296,670,3318,655,3339,631,3360,599,3397,517,3429,421,3455,321,3476,227,3500,99,3505,100,3481,228,3460,322,3434,423,3401,519,3364,601,3344,634,3322,659,3299,675,3274,681,1667,681,1595,686,1523,699,1458,717,1405,734"/>
-<area shape="rect" id="Node000004" href="$structJ2DPane.html" title=" " alt="" coords="667,556,741,582"/>
+<area shape="rect" id="Node000004" href="$classJ2DPane.html" title=" " alt="" coords="667,556,741,582"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="757,580,1311,736,1310,741,755,586"/>
-<area shape="rect" id="Node000067" href="$structJ2DTextBox.html" title=" " alt="" coords="968,301,1059,327"/>
+<area shape="rect" id="Node000067" href="$classJ2DTextBox.html" title=" " alt="" coords="968,301,1059,327"/>
 <area shape="poly" id="edge49_Node000067_Node000004" title=" " alt="" coords="726,543,793,479,904,389,992,325,995,329,908,393,796,483,730,547"/>
-<area shape="rect" id="Node000070" href="$structJ2DPicture.html" title=" " alt="" coords="971,459,1056,484"/>
+<area shape="rect" id="Node000070" href="$classJ2DPicture.html" title=" " alt="" coords="971,459,1056,484"/>
 <area shape="poly" id="edge56_Node000070_Node000004" title=" " alt="" coords="732,544,761,525,794,509,840,494,887,483,970,472,971,477,888,488,841,499,796,514,764,530,735,549"/>
 <area shape="rect" id="Node000005" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="257,568,424,594"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="439,583,524,585,613,581,666,574,667,579,614,586,524,590,439,589"/>
@@ -20,7 +20,7 @@
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="146,479,266,487,266,492,146,485"/>
 <area shape="rect" id="Node000011" href="$classJSULink.html" title=" " alt="" coords="29,515,132,540"/>
 <area shape="poly" id="edge8_Node000007_Node000011" title=" " alt="" coords="147,516,265,501,266,506,147,522"/>
-<area shape="rect" id="Node000012" href="$structJ2DAnmTransform.html" title=" " alt="" coords="275,617,406,643"/>
+<area shape="rect" id="Node000012" href="$classJ2DAnmTransform.html" title=" " alt="" coords="275,617,406,643"/>
 <area shape="poly" id="edge9_Node000004_Node000012" title=" " alt="" coords="421,628,514,622,613,605,647,594,677,580,679,585,649,599,614,610,514,627,421,633"/>
 <area shape="rect" id="Node000013" href="$structJ2DAnmBase.html" title=" " alt="" coords="30,657,131,683"/>
 <area shape="poly" id="edge10_Node000012_Node000013" title=" " alt="" coords="146,653,179,646,274,634,275,639,180,651,147,658"/>

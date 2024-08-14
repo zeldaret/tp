@@ -288,7 +288,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000015"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1223.75,-382.25 1155.25,-382.25 1155.25,-363 1223.75,-363 1223.75,-382.25"/>
 <text text-anchor="middle" x="1189.5" y="-368.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -327,7 +327,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="989.88,-237.25 934.12,-237.25 934.12,-218 989.88,-218 989.88,-237.25"/>
 <text text-anchor="middle" x="962" y="-223.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -345,7 +345,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000031"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1221.5,-216.25 1157.5,-216.25 1157.5,-197 1221.5,-197 1221.5,-216.25"/>
 <text text-anchor="middle" x="1189.5" y="-202.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -526,7 +526,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000024"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="727.62,-234.25 629.88,-234.25 629.88,-215 727.62,-215 727.62,-234.25"/>
 <text text-anchor="middle" x="678.75" y="-220.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

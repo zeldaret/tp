@@ -1,0 +1,1662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: J2DTextBoxEx Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classJ2DTextBoxEx.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classJ2DTextBoxEx-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">J2DTextBoxEx Class Reference<div class="ingroups"><a class="el" href="group__jsystem.html">JSystem</a> &raquo; <a class="el" href="group__jsystem-j2d.html">J2D</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="J2DTextBoxEx_8h_source.html">J2DTextBoxEx.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for J2DTextBoxEx:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classJ2DTextBoxEx__inherit__graph.svg" width="116" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for J2DTextBoxEx:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classJ2DTextBoxEx__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a93354fd8a5687f5f2255acac47368920" id="r_a93354fd8a5687f5f2255acac47368920"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920">stage_enum</a> { <a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920a9e41b04d3275d29f528c7b85b75f9e61">STAGE_0</a>
+, <a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920a7167f5d45ee7b3d40f4c9cf6135b4dc2">STAGE_1</a>
+, <a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920a4656341746b51f4a84ea69dbb9a86c16">STAGE_2</a>
+ }</td></tr>
+<tr class="separator:a93354fd8a5687f5f2255acac47368920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a3cfa1e9472c710aee598e06ff81fd74f" id="r_a3cfa1e9472c710aee598e06ff81fd74f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a3cfa1e9472c710aee598e06ff81fd74f">J2DTextBoxEx</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="classJ2DMaterial.html">J2DMaterial</a> *)</td></tr>
+<tr class="separator:a3cfa1e9472c710aee598e06ff81fd74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eff0be21d9f408ecead20fbbfe53368" id="r_a9eff0be21d9f408ecead20fbbfe53368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a9eff0be21d9f408ecead20fbbfe53368">setTevOrder</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>)</td></tr>
+<tr class="separator:a9eff0be21d9f408ecead20fbbfe53368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216ee49101f554f11000ace9faa8a030" id="r_a216ee49101f554f11000ace9faa8a030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a216ee49101f554f11000ace9faa8a030">setTevStage</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>)</td></tr>
+<tr class="separator:a216ee49101f554f11000ace9faa8a030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5383a145c03f9405b65e09374e254606" id="r_a5383a145c03f9405b65e09374e254606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a5383a145c03f9405b65e09374e254606">setStage</a> (<a class="el" href="classJ2DTevStage.html">J2DTevStage</a> *, <a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920">J2DTextBoxEx::stage_enum</a>)</td></tr>
+<tr class="separator:a5383a145c03f9405b65e09374e254606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385af37b70b21f8c57f65611796f80cf" id="r_a385af37b70b21f8c57f65611796f80cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a385af37b70b21f8c57f65611796f80cf">getBlackWhite</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> *, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a385af37b70b21f8c57f65611796f80cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59510649d70908aa0bc7f3b1703f226d" id="r_a59510649d70908aa0bc7f3b1703f226d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a59510649d70908aa0bc7f3b1703f226d">isSetBlackWhite</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a59510649d70908aa0bc7f3b1703f226d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52a9ca729d048674b0361f453bdfa32" id="r_af52a9ca729d048674b0361f453bdfa32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#af52a9ca729d048674b0361f453bdfa32">~J2DTextBoxEx</a> ()</td></tr>
+<tr class="separator:af52a9ca729d048674b0361f453bdfa32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c00d3bb186cd69a3b9ca462c9fab27f" id="r_a2c00d3bb186cd69a3b9ca462c9fab27f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a2c00d3bb186cd69a3b9ca462c9fab27f">setCullBack</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>)</td></tr>
+<tr class="separator:a2c00d3bb186cd69a3b9ca462c9fab27f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acabbb3c0e869c868af85fc3bdba9287f" id="r_acabbb3c0e869c868af85fc3bdba9287f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#acabbb3c0e869c868af85fc3bdba9287f">setCullBack</a> (<a class="el" href="GXEnum_8h.html#a18a22db35d2410bb81724b0c20e6675c">_GXCullMode</a>)</td></tr>
+<tr class="separator:acabbb3c0e869c868af85fc3bdba9287f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26088d39caf947ea4128ecf7ee114b6b" id="r_a26088d39caf947ea4128ecf7ee114b6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a26088d39caf947ea4128ecf7ee114b6b">setAlpha</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a26088d39caf947ea4128ecf7ee114b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0396e5e6f7562344e5bf40217aa8ae6c" id="r_a0396e5e6f7562344e5bf40217aa8ae6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a0396e5e6f7562344e5bf40217aa8ae6c">drawSelf</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(*)[3][4])</td></tr>
+<tr class="separator:a0396e5e6f7562344e5bf40217aa8ae6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3aa4e5ae661c7521db5a2191105add4" id="r_aa3aa4e5ae661c7521db5a2191105add4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#aa3aa4e5ae661c7521db5a2191105add4">isUsed</a> (<a class="el" href="structResTIMG.html">ResTIMG</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:aa3aa4e5ae661c7521db5a2191105add4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bc9cf8fbc2ae61a092800bd5c4b881" id="r_a56bc9cf8fbc2ae61a092800bd5c4b881"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a56bc9cf8fbc2ae61a092800bd5c4b881">isUsed</a> (<a class="el" href="structResFONT.html">ResFONT</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a56bc9cf8fbc2ae61a092800bd5c4b881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71cd925cf928015bfe526f2b7a6cbfb9" id="r_a71cd925cf928015bfe526f2b7a6cbfb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a71cd925cf928015bfe526f2b7a6cbfb9">rewriteAlpha</a> ()</td></tr>
+<tr class="separator:a71cd925cf928015bfe526f2b7a6cbfb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8cb9cc1cbe2e1504b6e6f06a433789b" id="r_ac8cb9cc1cbe2e1504b6e6f06a433789b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#ac8cb9cc1cbe2e1504b6e6f06a433789b">setAnimation</a> (<a class="el" href="structJ2DAnmBase.html">J2DAnmBase</a> *)</td></tr>
+<tr class="separator:ac8cb9cc1cbe2e1504b6e6f06a433789b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dbb053d9e7c2378a3ba42ce88040793" id="r_a3dbb053d9e7c2378a3ba42ce88040793"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a3dbb053d9e7c2378a3ba42ce88040793">setAnimation</a> (<a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">transform</a>)</td></tr>
+<tr class="separator:a3dbb053d9e7c2378a3ba42ce88040793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4425fc34203f4be6f82a25dfede162a" id="r_aa4425fc34203f4be6f82a25dfede162a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#aa4425fc34203f4be6f82a25dfede162a">setAnimation</a> (<a class="el" href="classJ2DAnmColor.html">J2DAnmColor</a> *)</td></tr>
+<tr class="separator:aa4425fc34203f4be6f82a25dfede162a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a360c297a2811dae52ce1269052aeadc3" id="r_a360c297a2811dae52ce1269052aeadc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a360c297a2811dae52ce1269052aeadc3">setAnimation</a> (<a class="el" href="structJ2DAnmTexPattern.html">J2DAnmTexPattern</a> *)</td></tr>
+<tr class="separator:a360c297a2811dae52ce1269052aeadc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a18b790b9d6143c3f454056cd31958" id="r_a13a18b790b9d6143c3f454056cd31958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a13a18b790b9d6143c3f454056cd31958">setAnimation</a> (<a class="el" href="structJ2DAnmTextureSRTKey.html">J2DAnmTextureSRTKey</a> *)</td></tr>
+<tr class="separator:a13a18b790b9d6143c3f454056cd31958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f03304e29722468624a5f0d9bdbba14" id="r_a2f03304e29722468624a5f0d9bdbba14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a2f03304e29722468624a5f0d9bdbba14">setAnimation</a> (<a class="el" href="structJ2DAnmTevRegKey.html">J2DAnmTevRegKey</a> *)</td></tr>
+<tr class="separator:a2f03304e29722468624a5f0d9bdbba14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2962348a7136203476639dc9c51de650" id="r_a2962348a7136203476639dc9c51de650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a2962348a7136203476639dc9c51de650">setAnimation</a> (<a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a> *)</td></tr>
+<tr class="separator:a2962348a7136203476639dc9c51de650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c1cc42fd9a664ae6214564979164df" id="r_a74c1cc42fd9a664ae6214564979164df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a74c1cc42fd9a664ae6214564979164df">setAnimation</a> (<a class="el" href="structJ2DAnmVtxColor.html">J2DAnmVtxColor</a> *)</td></tr>
+<tr class="separator:a74c1cc42fd9a664ae6214564979164df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a029487bf9592512a34a87ebdbb5967ef" id="r_a029487bf9592512a34a87ebdbb5967ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a029487bf9592512a34a87ebdbb5967ef">animationPane</a> (<a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a029487bf9592512a34a87ebdbb5967ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceefa4fe2df9cf6cbbdfd36a6e18ea70" id="r_aceefa4fe2df9cf6cbbdfd36a6e18ea70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#aceefa4fe2df9cf6cbbdfd36a6e18ea70">draw</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:aceefa4fe2df9cf6cbbdfd36a6e18ea70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930bb00d7d20563f9dbf84efec9368a3" id="r_a930bb00d7d20563f9dbf84efec9368a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a930bb00d7d20563f9dbf84efec9368a3">draw</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="J2DTextBox_8h.html#ace2fe1d49637af193cc4e768d170d99c">J2DTextBoxHBinding</a>)</td></tr>
+<tr class="separator:a930bb00d7d20563f9dbf84efec9368a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1308aa1ef1a323d44dfa429fec922ae6" id="r_a1308aa1ef1a323d44dfa429fec922ae6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a1308aa1ef1a323d44dfa429fec922ae6">setFont</a> (<a class="el" href="structJUTFont.html">JUTFont</a> *)</td></tr>
+<tr class="separator:a1308aa1ef1a323d44dfa429fec922ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db0fec25979c6638f9df08de79dbfbc" id="r_a2db0fec25979c6638f9df08de79dbfbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="structJUTFont.html">JUTFont</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a2db0fec25979c6638f9df08de79dbfbc">getFont</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a2db0fec25979c6638f9df08de79dbfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33c82c2f7072cde97c5bd9232b7f35b9" id="r_a33c82c2f7072cde97c5bd9232b7f35b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a33c82c2f7072cde97c5bd9232b7f35b9">setBlack</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>)</td></tr>
+<tr class="separator:a33c82c2f7072cde97c5bd9232b7f35b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5042f990d3650c4ad3c47b143c9e310" id="r_af5042f990d3650c4ad3c47b143c9e310"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#af5042f990d3650c4ad3c47b143c9e310">setWhite</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>)</td></tr>
+<tr class="separator:af5042f990d3650c4ad3c47b143c9e310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af385e37bef8b5509cb729cf922c8eeb6" id="r_af385e37bef8b5509cb729cf922c8eeb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#af385e37bef8b5509cb729cf922c8eeb6">setBlackWhite</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>)</td></tr>
+<tr class="separator:af385e37bef8b5509cb729cf922c8eeb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace6ebec29fc98ff826c99609eda2382d" id="r_ace6ebec29fc98ff826c99609eda2382d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#ace6ebec29fc98ff826c99609eda2382d">getBlack</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ace6ebec29fc98ff826c99609eda2382d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae3cf1698b6ca98da3ae2686366d337" id="r_abae3cf1698b6ca98da3ae2686366d337"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#abae3cf1698b6ca98da3ae2686366d337">getWhite</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:abae3cf1698b6ca98da3ae2686366d337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a137f8b747115cbd41f67f9120be6fbfb" id="r_a137f8b747115cbd41f67f9120be6fbfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="classJ2DMaterial.html">J2DMaterial</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a137f8b747115cbd41f67f9120be6fbfb">getMaterial</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a137f8b747115cbd41f67f9120be6fbfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJ2DTextBox"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJ2DTextBox')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJ2DTextBox.html">J2DTextBox</a></td></tr>
+<tr class="memitem:a582fd711ee01195faa4f8676aa50277f inherit pub_methods_classJ2DTextBox" id="r_a582fd711ee01195faa4f8676aa50277f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a582fd711ee01195faa4f8676aa50277f">~J2DTextBox</a> ()</td></tr>
+<tr class="separator:a582fd711ee01195faa4f8676aa50277f inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cbd564607eb530231b3e24f1d217e61 inherit pub_methods_classJ2DTextBox" id="r_a2cbd564607eb530231b3e24f1d217e61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a2cbd564607eb530231b3e24f1d217e61">getTypeID</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a2cbd564607eb530231b3e24f1d217e61 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8822951e978392348b08a2bc2d255c2 inherit pub_methods_classJ2DTextBox" id="r_aa8822951e978392348b08a2bc2d255c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#aa8822951e978392348b08a2bc2d255c2">resize</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:aa8822951e978392348b08a2bc2d255c2 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdc7ac815165df4f19c574110e6b14c4 inherit pub_methods_classJ2DTextBox" id="r_afdc7ac815165df4f19c574110e6b14c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#afdc7ac815165df4f19c574110e6b14c4">setConnectParent</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>)</td></tr>
+<tr class="separator:afdc7ac815165df4f19c574110e6b14c4 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691dfc802d3c7ae72326ce53ade5455f inherit pub_methods_classJ2DTextBox" id="r_a691dfc802d3c7ae72326ce53ade5455f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a691dfc802d3c7ae72326ce53ade5455f">drawSelf</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> *)</td></tr>
+<tr class="separator:a691dfc802d3c7ae72326ce53ade5455f inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b283c76c5549f79a84c2f8fa8c73000 inherit pub_methods_classJ2DTextBox" id="r_a8b283c76c5549f79a84c2f8fa8c73000"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a8b283c76c5549f79a84c2f8fa8c73000">drawSelf</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a8b283c76c5549f79a84c2f8fa8c73000 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb97ab5814afcc5a753c1baa9a0f9bd inherit pub_methods_classJ2DTextBox" id="r_acbb97ab5814afcc5a753c1baa9a0f9bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#acbb97ab5814afcc5a753c1baa9a0f9bd">J2DTextBox</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>, <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> &amp;, <a class="el" href="structResFONT.html">ResFONT</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="J2DTextBox_8h.html#ace2fe1d49637af193cc4e768d170d99c">J2DTextBoxHBinding</a>, <a class="el" href="J2DTextBox_8h.html#a35671d4460456c0fc983cd5a32545154">J2DTextBoxVBinding</a>)</td></tr>
+<tr class="separator:acbb97ab5814afcc5a753c1baa9a0f9bd inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6652e347a72c1a23d07bcaf5c1d87e67 inherit pub_methods_classJ2DTextBox" id="r_a6652e347a72c1a23d07bcaf5c1d87e67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a6652e347a72c1a23d07bcaf5c1d87e67">J2DTextBox</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *, <a class="el" href="classJKRArchive.html">JKRArchive</a> *)</td></tr>
+<tr class="separator:a6652e347a72c1a23d07bcaf5c1d87e67 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada34ecd2274d3aa87ed1401db52eb14d inherit pub_methods_classJ2DTextBox" id="r_ada34ecd2274d3aa87ed1401db52eb14d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#ada34ecd2274d3aa87ed1401db52eb14d">J2DTextBox</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="classJ2DMaterial.html">J2DMaterial</a> *)</td></tr>
+<tr class="separator:ada34ecd2274d3aa87ed1401db52eb14d inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca5944b677d1b5a812c92dc4d60be9c inherit pub_methods_classJ2DTextBox" id="r_a3ca5944b677d1b5a812c92dc4d60be9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a3ca5944b677d1b5a812c92dc4d60be9c">J2DTextBox</a> ()</td></tr>
+<tr class="separator:a3ca5944b677d1b5a812c92dc4d60be9c inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d417e7e9e4140e1ea3b0f5abd3a420 inherit pub_methods_classJ2DTextBox" id="r_a29d417e7e9e4140e1ea3b0f5abd3a420"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a29d417e7e9e4140e1ea3b0f5abd3a420">initiate</a> (<a class="el" href="structResFONT.html">ResFONT</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="J2DTextBox_8h.html#ace2fe1d49637af193cc4e768d170d99c">J2DTextBoxHBinding</a>, <a class="el" href="J2DTextBox_8h.html#a35671d4460456c0fc983cd5a32545154">J2DTextBoxVBinding</a>)</td></tr>
+<tr class="separator:a29d417e7e9e4140e1ea3b0f5abd3a420 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8457ffd1df4ab376c851312518f5cbf3 inherit pub_methods_classJ2DTextBox" id="r_a8457ffd1df4ab376c851312518f5cbf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a8457ffd1df4ab376c851312518f5cbf3">private_readStream</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *, <a class="el" href="classJKRArchive.html">JKRArchive</a> *)</td></tr>
+<tr class="separator:a8457ffd1df4ab376c851312518f5cbf3 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f9243bd02365b4198905c82bc9cd19 inherit pub_methods_classJ2DTextBox" id="r_a10f9243bd02365b4198905c82bc9cd19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a10f9243bd02365b4198905c82bc9cd19">getStringPtr</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a10f9243bd02365b4198905c82bc9cd19 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d11a6e213f50be95425078c36b58366 inherit pub_methods_classJ2DTextBox" id="r_a9d11a6e213f50be95425078c36b58366"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a9d11a6e213f50be95425078c36b58366">setString</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *,...)</td></tr>
+<tr class="separator:a9d11a6e213f50be95425078c36b58366 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e48518604e53e8df451825704c387fd inherit pub_methods_classJ2DTextBox" id="r_a9e48518604e53e8df451825704c387fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a9e48518604e53e8df451825704c387fd">setString</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *,...)</td></tr>
+<tr class="separator:a9e48518604e53e8df451825704c387fd inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c3b98ebd1c2a57df65b04dc4e02b637 inherit pub_methods_classJ2DTextBox" id="r_a1c3b98ebd1c2a57df65b04dc4e02b637"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a1c3b98ebd1c2a57df65b04dc4e02b637">setFontSize</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">sizeX</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">sizeY</a>)</td></tr>
+<tr class="separator:a1c3b98ebd1c2a57df65b04dc4e02b637 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a726a9951870a8ff13e009ff50a886382 inherit pub_methods_classJ2DTextBox" id="r_a726a9951870a8ff13e009ff50a886382"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a726a9951870a8ff13e009ff50a886382">setFontSize</a> (<a class="el" href="structJ2DTextBox_1_1TFontSize.html">TFontSize</a> size)</td></tr>
+<tr class="separator:a726a9951870a8ff13e009ff50a886382 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed25f0cfc9e0e79d27cf87ce079f1b2 inherit pub_methods_classJ2DTextBox" id="r_a1ed25f0cfc9e0e79d27cf87ce079f1b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a1ed25f0cfc9e0e79d27cf87ce079f1b2">getFontSize</a> (<a class="el" href="structJ2DTextBox_1_1TFontSize.html">TFontSize</a> &amp;size) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a1ed25f0cfc9e0e79d27cf87ce079f1b2 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896ffa1db898ef80808ca5e1aa313c4d inherit pub_methods_classJ2DTextBox" id="r_a896ffa1db898ef80808ca5e1aa313c4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a896ffa1db898ef80808ca5e1aa313c4d">setFontColor</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_charColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_GradientColor</a>)</td></tr>
+<tr class="separator:a896ffa1db898ef80808ca5e1aa313c4d inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bd3605e9dd361d0169c46535d1b829 inherit pub_methods_classJ2DTextBox" id="r_af0bd3605e9dd361d0169c46535d1b829"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#af0bd3605e9dd361d0169c46535d1b829">setCharSpace</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">space</a>)</td></tr>
+<tr class="separator:af0bd3605e9dd361d0169c46535d1b829 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84572db887f8980c41f668ed5c4ac97 inherit pub_methods_classJ2DTextBox" id="r_ac84572db887f8980c41f668ed5c4ac97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#ac84572db887f8980c41f668ed5c4ac97">getCharSpace</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ac84572db887f8980c41f668ed5c4ac97 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872c17a6147afc2043a6ec29e5968bf3 inherit pub_methods_classJ2DTextBox" id="r_a872c17a6147afc2043a6ec29e5968bf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a872c17a6147afc2043a6ec29e5968bf3">setLineSpace</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">space</a>)</td></tr>
+<tr class="separator:a872c17a6147afc2043a6ec29e5968bf3 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bdae605988ab32c1164dc5f283cd9c3 inherit pub_methods_classJ2DTextBox" id="r_a5bdae605988ab32c1164dc5f283cd9c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a5bdae605988ab32c1164dc5f283cd9c3">getLineSpace</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a5bdae605988ab32c1164dc5f283cd9c3 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af32054a81f57191e6a955c92def0354e inherit pub_methods_classJ2DTextBox" id="r_af32054a81f57191e6a955c92def0354e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="J2DTextBox_8h.html#a35671d4460456c0fc983cd5a32545154">J2DTextBoxVBinding</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#af32054a81f57191e6a955c92def0354e">getVBinding</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af32054a81f57191e6a955c92def0354e inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6adc3021495bcaf87920dd7dfef3f8ff inherit pub_methods_classJ2DTextBox" id="r_a6adc3021495bcaf87920dd7dfef3f8ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="J2DTextBox_8h.html#ace2fe1d49637af193cc4e768d170d99c">J2DTextBoxHBinding</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a6adc3021495bcaf87920dd7dfef3f8ff">getHBinding</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a6adc3021495bcaf87920dd7dfef3f8ff inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0224c0cfa6fc8fc74e093b0f7ac7afa inherit pub_methods_classJ2DTextBox" id="r_af0224c0cfa6fc8fc74e093b0f7ac7afa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#af0224c0cfa6fc8fc74e093b0f7ac7afa">getCharColor</a> ()</td></tr>
+<tr class="separator:af0224c0cfa6fc8fc74e093b0f7ac7afa inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd108c45cf0dfb032135bb3a72c3a43 inherit pub_methods_classJ2DTextBox" id="r_a7dd108c45cf0dfb032135bb3a72c3a43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a7dd108c45cf0dfb032135bb3a72c3a43">getGradColor</a> ()</td></tr>
+<tr class="separator:a7dd108c45cf0dfb032135bb3a72c3a43 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252467fe220062984cca0776d39a4f96 inherit pub_methods_classJ2DTextBox" id="r_a252467fe220062984cca0776d39a4f96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a252467fe220062984cca0776d39a4f96">getStringAllocByte</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a252467fe220062984cca0776d39a4f96 inherit pub_methods_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJ2DPane"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJ2DPane')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJ2DPane.html">J2DPane</a></td></tr>
+<tr class="memitem:a341b1b640658fc51f9d196a038001e04 inherit pub_methods_classJ2DPane" id="r_a341b1b640658fc51f9d196a038001e04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a341b1b640658fc51f9d196a038001e04">J2DPane</a> ()</td></tr>
+<tr class="separator:a341b1b640658fc51f9d196a038001e04 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9719df5c346f6003c14742646a4ca5d3 inherit pub_methods_classJ2DPane" id="r_a9719df5c346f6003c14742646a4ca5d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a9719df5c346f6003c14742646a4ca5d3">J2DPane</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>, <a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;)</td></tr>
+<tr class="separator:a9719df5c346f6003c14742646a4ca5d3 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5bcb215b68b15d19128be4a1ca5d0f inherit pub_methods_classJ2DPane" id="r_a4e5bcb215b68b15d19128be4a1ca5d0f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4e5bcb215b68b15d19128be4a1ca5d0f">J2DPane</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;)</td></tr>
+<tr class="separator:a4e5bcb215b68b15d19128be4a1ca5d0f inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2339186a0724186b9be5e1aadda8fc41 inherit pub_methods_classJ2DPane" id="r_a2339186a0724186b9be5e1aadda8fc41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a2339186a0724186b9be5e1aadda8fc41">J2DPane</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">other</a>, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *stream, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">arg3</a>)</td></tr>
+<tr class="separator:a2339186a0724186b9be5e1aadda8fc41 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb52ea8b99da0ae8793026738b580cd inherit pub_methods_classJ2DPane" id="r_aefb52ea8b99da0ae8793026738b580cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aefb52ea8b99da0ae8793026738b580cd">initiate</a> ()</td></tr>
+<tr class="separator:aefb52ea8b99da0ae8793026738b580cd inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f759caa491d1597b0f9bc3295a0d49 inherit pub_methods_classJ2DPane" id="r_a80f759caa491d1597b0f9bc3295a0d49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a80f759caa491d1597b0f9bc3295a0d49">initialize</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>, <a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;)</td></tr>
+<tr class="separator:a80f759caa491d1597b0f9bc3295a0d49 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4740f16fe9d48274993b453c8b26d0ce inherit pub_methods_classJ2DPane" id="r_a4740f16fe9d48274993b453c8b26d0ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4740f16fe9d48274993b453c8b26d0ce">initialize</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> tag, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">dim</a>)</td></tr>
+<tr class="separator:a4740f16fe9d48274993b453c8b26d0ce inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b4aa4da92f555c60468a140adf4f871 inherit pub_methods_classJ2DPane" id="r_a9b4aa4da92f555c60468a140adf4f871"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a9b4aa4da92f555c60468a140adf4f871">makePaneStream</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">other</a>, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *stream)</td></tr>
+<tr class="separator:a9b4aa4da92f555c60468a140adf4f871 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a459031250e6745da8158c745b6cd6601 inherit pub_methods_classJ2DPane" id="r_a459031250e6745da8158c745b6cd6601"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a459031250e6745da8158c745b6cd6601">changeUseTrans</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">other</a>)</td></tr>
+<tr class="separator:a459031250e6745da8158c745b6cd6601 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf517be76230ed10c394da1f7934da92 inherit pub_methods_classJ2DPane" id="r_adf517be76230ed10c394da1f7934da92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#adf517be76230ed10c394da1f7934da92">appendChild</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="d__a__e__rb_8cpp.html#a99e93a3a78ac55747faa30098de56a35">child</a>)</td></tr>
+<tr class="separator:adf517be76230ed10c394da1f7934da92 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4452f5d0dbe75f123704a541925fc083 inherit pub_methods_classJ2DPane" id="r_a4452f5d0dbe75f123704a541925fc083"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4452f5d0dbe75f123704a541925fc083">insertChild</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">before</a>, <a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="d__a__e__rb_8cpp.html#a99e93a3a78ac55747faa30098de56a35">child</a>)</td></tr>
+<tr class="separator:a4452f5d0dbe75f123704a541925fc083 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4704d867f8e86ff803ce39fe4d58252d inherit pub_methods_classJ2DPane" id="r_a4704d867f8e86ff803ce39fe4d58252d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4704d867f8e86ff803ce39fe4d58252d">draw</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> a1, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> a2, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DGrafContext.html">J2DGrafContext</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">ctx</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">a4</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">a5</a>)</td></tr>
+<tr class="separator:a4704d867f8e86ff803ce39fe4d58252d inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2082326368b45dae0b82ac0c0495cc2b inherit pub_methods_classJ2DPane" id="r_a2082326368b45dae0b82ac0c0495cc2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a2082326368b45dae0b82ac0c0495cc2b">place</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">dim</a>)</td></tr>
+<tr class="separator:a2082326368b45dae0b82ac0c0495cc2b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c98e69ab714b0882fcbe7e40f7b055 inherit pub_methods_classJ2DPane" id="r_a23c98e69ab714b0882fcbe7e40f7b055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a23c98e69ab714b0882fcbe7e40f7b055">getBounds</a> ()</td></tr>
+<tr class="separator:a23c98e69ab714b0882fcbe7e40f7b055 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaef10c63069c902bfa14ea1e18f561c inherit pub_methods_classJ2DPane" id="r_aeaef10c63069c902bfa14ea1e18f561c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aeaef10c63069c902bfa14ea1e18f561c">rotate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">offsetX</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">offsetY</a>, <a class="el" href="J2DPane_8h.html#a568654c26104cd8c9ccd4aae037a0e58">J2DRotateAxis</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">axis</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="d__a__obj__kago_8cpp.html#a93a35570b37a6cdae8c3b3c1d8542deb">angle</a>)</td></tr>
+<tr class="separator:aeaef10c63069c902bfa14ea1e18f561c inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a64c8dc45ef9a6e68de8c9ee99fcd6a inherit pub_methods_classJ2DPane" id="r_a7a64c8dc45ef9a6e68de8c9ee99fcd6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a7a64c8dc45ef9a6e68de8c9ee99fcd6a">rotate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="d__a__obj__kago_8cpp.html#a93a35570b37a6cdae8c3b3c1d8542deb">angle</a>)</td></tr>
+<tr class="separator:a7a64c8dc45ef9a6e68de8c9ee99fcd6a inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae39a798bfb5f914419755b32868be4ef inherit pub_methods_classJ2DPane" id="r_ae39a798bfb5f914419755b32868be4ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ae39a798bfb5f914419755b32868be4ef">clip</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bounds</a>)</td></tr>
+<tr class="separator:ae39a798bfb5f914419755b32868be4ef inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a197af9ebc68fec0eb69384e2fd69a543 inherit pub_methods_classJ2DPane" id="r_a197af9ebc68fec0eb69384e2fd69a543"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a197af9ebc68fec0eb69384e2fd69a543">setBasePosition</a> (<a class="el" href="J2DPane_8h.html#afafd1dbaf17cb41f7cbb8488b65e15c6">J2DBasePosition</a> position)</td></tr>
+<tr class="separator:a197af9ebc68fec0eb69384e2fd69a543 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add0ba125aa154ca67c9b05536a3bd176 inherit pub_methods_classJ2DPane" id="r_add0ba125aa154ca67c9b05536a3bd176"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#add0ba125aa154ca67c9b05536a3bd176">setInfluencedAlpha</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> arg1, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> arg2)</td></tr>
+<tr class="separator:add0ba125aa154ca67c9b05536a3bd176 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a307f2f0b06c8e0e7c5c9a3e86f20ac7c inherit pub_methods_classJ2DPane" id="r_a307f2f0b06c8e0e7c5c9a3e86f20ac7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a307f2f0b06c8e0e7c5c9a3e86f20ac7c">getGlbVtx</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> arg1) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a307f2f0b06c8e0e7c5c9a3e86f20ac7c inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cd9a278a7a8253b597a442f0cf6486f inherit pub_methods_classJ2DPane" id="r_a0cd9a278a7a8253b597a442f0cf6486f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a0cd9a278a7a8253b597a442f0cf6486f">getFirstChildPane</a> ()</td></tr>
+<tr class="separator:a0cd9a278a7a8253b597a442f0cf6486f inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e685141aad7303c9630c1e818345654 inherit pub_methods_classJ2DPane" id="r_a6e685141aad7303c9630c1e818345654"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a6e685141aad7303c9630c1e818345654">getNextChildPane</a> ()</td></tr>
+<tr class="separator:a6e685141aad7303c9630c1e818345654 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dfff94a67daeeebd82eeb9be12b5b08 inherit pub_methods_classJ2DPane" id="r_a7dfff94a67daeeebd82eeb9be12b5b08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a7dfff94a67daeeebd82eeb9be12b5b08">getParentPane</a> ()</td></tr>
+<tr class="separator:a7dfff94a67daeeebd82eeb9be12b5b08 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf34fbfcf32237f47b9b7e926746fcca inherit pub_methods_classJ2DPane" id="r_aaf34fbfcf32237f47b9b7e926746fcca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aaf34fbfcf32237f47b9b7e926746fcca">makePaneExStream</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">other</a>, <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *stream)</td></tr>
+<tr class="separator:aaf34fbfcf32237f47b9b7e926746fcca inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a227a93e96a13177c3495ed89b5dfb37b inherit pub_methods_classJ2DPane" id="r_a227a93e96a13177c3495ed89b5dfb37b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a227a93e96a13177c3495ed89b5dfb37b">getPointer</a> (<a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *stream, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> size, <a class="el" href="classJKRArchive.html">JKRArchive</a> *archive)</td></tr>
+<tr class="separator:a227a93e96a13177c3495ed89b5dfb37b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a190d12c046006d0c14c972bf3c640a8e inherit pub_methods_classJ2DPane" id="r_a190d12c046006d0c14c972bf3c640a8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a190d12c046006d0c14c972bf3c640a8e">animationTransform</a> ()</td></tr>
+<tr class="separator:a190d12c046006d0c14c972bf3c640a8e inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9443ea0325d4d6ca529351ebd8df7c inherit pub_methods_classJ2DPane" id="r_aea9443ea0325d4d6ca529351ebd8df7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aea9443ea0325d4d6ca529351ebd8df7c">updateTransform</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">transform</a>)</td></tr>
+<tr class="separator:aea9443ea0325d4d6ca529351ebd8df7c inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f326634c0d970db2b28d4cf2de9a8b inherit pub_methods_classJ2DPane" id="r_af6f326634c0d970db2b28d4cf2de9a8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#af6f326634c0d970db2b28d4cf2de9a8b">~J2DPane</a> ()</td></tr>
+<tr class="separator:af6f326634c0d970db2b28d4cf2de9a8b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb975d3631cb0502fc7c4b80fa8ae825 inherit pub_methods_classJ2DPane" id="r_abb975d3631cb0502fc7c4b80fa8ae825"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#abb975d3631cb0502fc7c4b80fa8ae825">move</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#a69bf0237253cf28a9de66969ab9b2fc2">x</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#ad0c8a89970b31aee1615bb4ef6710a45">y</a>)</td></tr>
+<tr class="separator:abb975d3631cb0502fc7c4b80fa8ae825 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699ba57d754e46395fc380d5929d7f8b inherit pub_methods_classJ2DPane" id="r_a699ba57d754e46395fc380d5929d7f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a699ba57d754e46395fc380d5929d7f8b">add</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#a69bf0237253cf28a9de66969ab9b2fc2">x</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#ad0c8a89970b31aee1615bb4ef6710a45">y</a>)</td></tr>
+<tr class="separator:a699ba57d754e46395fc380d5929d7f8b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4104c21f6fb32d371d3f9beeb51c0bc0 inherit pub_methods_classJ2DPane" id="r_a4104c21f6fb32d371d3f9beeb51c0bc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4104c21f6fb32d371d3f9beeb51c0bc0">calcMtx</a> ()</td></tr>
+<tr class="separator:a4104c21f6fb32d371d3f9beeb51c0bc0 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af15ade2a514e5b95970d3eabb114b8bc inherit pub_methods_classJ2DPane" id="r_af15ade2a514e5b95970d3eabb114b8bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#af15ade2a514e5b95970d3eabb114b8bc">update</a> ()</td></tr>
+<tr class="separator:af15ade2a514e5b95970d3eabb114b8bc inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873d62e00a9d4d55ff6cca0f8757a9ba inherit pub_methods_classJ2DPane" id="r_a873d62e00a9d4d55ff6cca0f8757a9ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a873d62e00a9d4d55ff6cca0f8757a9ba">search</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> tag)</td></tr>
+<tr class="separator:a873d62e00a9d4d55ff6cca0f8757a9ba inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84ecb8ad4ef06a2aea7547f5e5c7732e inherit pub_methods_classJ2DPane" id="r_a84ecb8ad4ef06a2aea7547f5e5c7732e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a84ecb8ad4ef06a2aea7547f5e5c7732e">searchUserInfo</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> tag)</td></tr>
+<tr class="separator:a84ecb8ad4ef06a2aea7547f5e5c7732e inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab83fb7183af4154173f58aeb6e0e4afe inherit pub_methods_classJ2DPane" id="r_ab83fb7183af4154173f58aeb6e0e4afe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ab83fb7183af4154173f58aeb6e0e4afe">makeMatrix</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:ab83fb7183af4154173f58aeb6e0e4afe inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd33fcfc436d431389ae4435e65a0d1 inherit pub_methods_classJ2DPane" id="r_a0fd33fcfc436d431389ae4435e65a0d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a0fd33fcfc436d431389ae4435e65a0d1">makeMatrix</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> b, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__acos_8c.html#ae0323a9039add2978bf5b49550572c7c">c</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">d</a>)</td></tr>
+<tr class="separator:a0fd33fcfc436d431389ae4435e65a0d1 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab770832ff585c12882f9806102397f9f inherit pub_methods_classJ2DPane" id="r_ab770832ff585c12882f9806102397f9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ab770832ff585c12882f9806102397f9f">clearAnmTransform</a> ()</td></tr>
+<tr class="separator:ab770832ff585c12882f9806102397f9f inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0158874d5674d32d1b1f7aad745f0564 inherit pub_methods_classJ2DPane" id="r_a0158874d5674d32d1b1f7aad745f0564"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a0158874d5674d32d1b1f7aad745f0564">animationTransform</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">transform</a>)</td></tr>
+<tr class="separator:a0158874d5674d32d1b1f7aad745f0564 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15877e920019ddb37127190ed224a2d4 inherit pub_methods_classJ2DPane" id="r_a15877e920019ddb37127190ed224a2d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a15877e920019ddb37127190ed224a2d4">setVisibileAnimation</a> (<a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">visibility</a>)</td></tr>
+<tr class="separator:a15877e920019ddb37127190ed224a2d4 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e7192859d941e8c0822381793b0dca inherit pub_methods_classJ2DPane" id="r_aa6e7192859d941e8c0822381793b0dca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aa6e7192859d941e8c0822381793b0dca">setAnimationVF</a> (<a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">visibility</a>)</td></tr>
+<tr class="separator:aa6e7192859d941e8c0822381793b0dca inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f5c3c7e3450e83e4b88dc766bdcd80 inherit pub_methods_classJ2DPane" id="r_ae0f5c3c7e3450e83e4b88dc766bdcd80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ae0f5c3c7e3450e83e4b88dc766bdcd80">setVtxColorAnimation</a> (<a class="el" href="structJ2DAnmVtxColor.html">J2DAnmVtxColor</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">vtx_color</a>)</td></tr>
+<tr class="separator:ae0f5c3c7e3450e83e4b88dc766bdcd80 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11d585cde13f1aa79a79873d60158c35 inherit pub_methods_classJ2DPane" id="r_a11d585cde13f1aa79a79873d60158c35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a11d585cde13f1aa79a79873d60158c35">setAnimationVC</a> (<a class="el" href="structJ2DAnmVtxColor.html">J2DAnmVtxColor</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">vtx_color</a>)</td></tr>
+<tr class="separator:a11d585cde13f1aa79a79873d60158c35 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0368d8d7d711fd1a219300f4b1f7f9a1 inherit pub_methods_classJ2DPane" id="r_a0368d8d7d711fd1a219300f4b1f7f9a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a0368d8d7d711fd1a219300f4b1f7f9a1">getHeight</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a0368d8d7d711fd1a219300f4b1f7f9a1 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6abf1f6d6d536bd705787461b1f08d01 inherit pub_methods_classJ2DPane" id="r_a6abf1f6d6d536bd705787461b1f08d01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a6abf1f6d6d536bd705787461b1f08d01">getWidth</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a6abf1f6d6d536bd705787461b1f08d01 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53e0ab0c3058cd9c4b9b3f8951bd8b9b inherit pub_methods_classJ2DPane" id="r_a53e0ab0c3058cd9c4b9b3f8951bd8b9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSUTree.html">JSUTree</a>&lt; <a class="el" href="classJ2DPane.html">J2DPane</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a53e0ab0c3058cd9c4b9b3f8951bd8b9b">getFirstChild</a> ()</td></tr>
+<tr class="separator:a53e0ab0c3058cd9c4b9b3f8951bd8b9b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6729f27f38290f0e706341e19cd88eea inherit pub_methods_classJ2DPane" id="r_a6729f27f38290f0e706341e19cd88eea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSUTree.html">JSUTree</a>&lt; <a class="el" href="classJ2DPane.html">J2DPane</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a6729f27f38290f0e706341e19cd88eea">getEndChild</a> ()</td></tr>
+<tr class="separator:a6729f27f38290f0e706341e19cd88eea inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0da510cbf71494764a768d8d7668db inherit pub_methods_classJ2DPane" id="r_a0b0da510cbf71494764a768d8d7668db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJSUTree.html">JSUTree</a>&lt; <a class="el" href="classJ2DPane.html">J2DPane</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a0b0da510cbf71494764a768d8d7668db">getPaneTree</a> ()</td></tr>
+<tr class="separator:a0b0da510cbf71494764a768d8d7668db inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76ea06762fa202755fe4cb78216b2fb inherit pub_methods_classJ2DPane" id="r_af76ea06762fa202755fe4cb78216b2fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#af76ea06762fa202755fe4cb78216b2fb">getAlpha</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af76ea06762fa202755fe4cb78216b2fb inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e382e76a470d097eb7698bc94aff39e inherit pub_methods_classJ2DPane" id="r_a6e382e76a470d097eb7698bc94aff39e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a6e382e76a470d097eb7698bc94aff39e">getScaleX</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a6e382e76a470d097eb7698bc94aff39e inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86d1232a453a366403d338700889fe7 inherit pub_methods_classJ2DPane" id="r_ac86d1232a453a366403d338700889fe7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac86d1232a453a366403d338700889fe7">getScaleY</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ac86d1232a453a366403d338700889fe7 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac688d9ea2b0e37ff7b76ef88e8385b2d inherit pub_methods_classJ2DPane" id="r_ac688d9ea2b0e37ff7b76ef88e8385b2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac688d9ea2b0e37ff7b76ef88e8385b2d">getTranslateX</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ac688d9ea2b0e37ff7b76ef88e8385b2d inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa436cac15043a2e14645ec208fb258d9 inherit pub_methods_classJ2DPane" id="r_aa436cac15043a2e14645ec208fb258d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aa436cac15043a2e14645ec208fb258d9">getTranslateY</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:aa436cac15043a2e14645ec208fb258d9 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ba4464d3f2c002d521fae1c209fea9b inherit pub_methods_classJ2DPane" id="r_a3ba4464d3f2c002d521fae1c209fea9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a3ba4464d3f2c002d521fae1c209fea9b">getRotateZ</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a3ba4464d3f2c002d521fae1c209fea9b inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b6321abf429a68c1bc2687b0a44ce21 inherit pub_methods_classJ2DPane" id="r_a4b6321abf429a68c1bc2687b0a44ce21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4b6321abf429a68c1bc2687b0a44ce21">getRotOffsetX</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a4b6321abf429a68c1bc2687b0a44ce21 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4da351848992cb18b3dea545c79235f inherit pub_methods_classJ2DPane" id="r_ac4da351848992cb18b3dea545c79235f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac4da351848992cb18b3dea545c79235f">getRotOffsetY</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ac4da351848992cb18b3dea545c79235f inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b93ed51ab646ea55cb3dc4da3de111 inherit pub_methods_classJ2DPane" id="r_aa1b93ed51ab646ea55cb3dc4da3de111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mtx_8h.html#a486ec93ad57f76408600fa51e755e290">MtxP</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aa1b93ed51ab646ea55cb3dc4da3de111">getGlbMtx</a> ()</td></tr>
+<tr class="separator:aa1b93ed51ab646ea55cb3dc4da3de111 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36318ccdac7335e6f588d0b881ea277f inherit pub_methods_classJ2DPane" id="r_a36318ccdac7335e6f588d0b881ea277f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a36318ccdac7335e6f588d0b881ea277f">getGlbBounds</a> ()</td></tr>
+<tr class="separator:a36318ccdac7335e6f588d0b881ea277f inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe099cea142ca4f7d325f012b513d640 inherit pub_methods_classJ2DPane" id="r_abe099cea142ca4f7d325f012b513d640"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#abe099cea142ca4f7d325f012b513d640">setMtx</a> (<a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> <a class="el" href="e__atan2_8c.html#a742204794ea328ba293fe59cec79b990">m</a>)</td></tr>
+<tr class="separator:abe099cea142ca4f7d325f012b513d640 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac272d93f7f5446cad2568b0fb046cc49 inherit pub_methods_classJ2DPane" id="r_ac272d93f7f5446cad2568b0fb046cc49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac272d93f7f5446cad2568b0fb046cc49">translate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">transX</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">transY</a>)</td></tr>
+<tr class="separator:ac272d93f7f5446cad2568b0fb046cc49 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d2a1fd21c7845467bbc7dc9dbf21f5 inherit pub_methods_classJ2DPane" id="r_ab5d2a1fd21c7845467bbc7dc9dbf21f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ab5d2a1fd21c7845467bbc7dc9dbf21f5">scale</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">scaleH</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">scaleV</a>)</td></tr>
+<tr class="separator:ab5d2a1fd21c7845467bbc7dc9dbf21f5 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6b31ac8670cbaf364942773862e9dc inherit pub_methods_classJ2DPane" id="r_a4a6b31ac8670cbaf364942773862e9dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4a6b31ac8670cbaf364942773862e9dc">getKind</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a4a6b31ac8670cbaf364942773862e9dc inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e832dfcf54d649cf6117a0cfc451dac inherit pub_methods_classJ2DPane" id="r_a4e832dfcf54d649cf6117a0cfc451dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4e832dfcf54d649cf6117a0cfc451dac">isVisible</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a4e832dfcf54d649cf6117a0cfc451dac inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9cfff8ad7430acd6d36cba5305919e inherit pub_methods_classJ2DPane" id="r_adf9cfff8ad7430acd6d36cba5305919e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#adf9cfff8ad7430acd6d36cba5305919e">show</a> ()</td></tr>
+<tr class="separator:adf9cfff8ad7430acd6d36cba5305919e inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75e66aa9d5ec64b032d80321ea83746 inherit pub_methods_classJ2DPane" id="r_ac75e66aa9d5ec64b032d80321ea83746"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac75e66aa9d5ec64b032d80321ea83746">hide</a> ()</td></tr>
+<tr class="separator:ac75e66aa9d5ec64b032d80321ea83746 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa26b27e1601e6093a575965d685c77f5 inherit pub_methods_classJ2DPane" id="r_aa26b27e1601e6093a575965d685c77f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aa26b27e1601e6093a575965d685c77f5">isConnectParent</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:aa26b27e1601e6093a575965d685c77f5 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bad3f990928c7e2422bbb36a1e9b728 inherit pub_methods_classJ2DPane" id="r_a1bad3f990928c7e2422bbb36a1e9b728"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a1bad3f990928c7e2422bbb36a1e9b728">setUserInfo</a> (<a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> info)</td></tr>
+<tr class="separator:a1bad3f990928c7e2422bbb36a1e9b728 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8533e0096db2c8c48c1d5f3f9688a73 inherit pub_methods_classJ2DPane" id="r_ad8533e0096db2c8c48c1d5f3f9688a73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ad8533e0096db2c8c48c1d5f3f9688a73">getMtx</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ad8533e0096db2c8c48c1d5f3f9688a73 inherit pub_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aae7ec6114d4b518db2a23e2eab46538e" id="r_aae7ec6114d4b518db2a23e2eab46538e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DMaterial.html">J2DMaterial</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#aae7ec6114d4b518db2a23e2eab46538e">mMaterial</a></td></tr>
+<tr class="separator:aae7ec6114d4b518db2a23e2eab46538e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bc1786af0f8ba1e8a1f1cd546468a9" id="r_a05bc1786af0f8ba1e8a1f1cd546468a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a05bc1786af0f8ba1e8a1f1cd546468a9">field_0x13c</a></td></tr>
+<tr class="separator:a05bc1786af0f8ba1e8a1f1cd546468a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fbdef90bd512d246ab6f6c88578206b" id="r_a0fbdef90bd512d246ab6f6c88578206b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a0fbdef90bd512d246ab6f6c88578206b">field_0x13e</a></td></tr>
+<tr class="separator:a0fbdef90bd512d246ab6f6c88578206b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25eb346f0caf07f21d30efd09c2665ae" id="r_a25eb346f0caf07f21d30efd09c2665ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a25eb346f0caf07f21d30efd09c2665ae">field_0x140</a></td></tr>
+<tr class="separator:a25eb346f0caf07f21d30efd09c2665ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f38784c0958d8ec5d99d86d15d63c9c" id="r_a3f38784c0958d8ec5d99d86d15d63c9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBoxEx.html#a3f38784c0958d8ec5d99d86d15d63c9c">mVisibilityAnm</a></td></tr>
+<tr class="separator:a3f38784c0958d8ec5d99d86d15d63c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classJ2DPane"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classJ2DPane')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classJ2DPane.html">J2DPane</a></td></tr>
+<tr class="memitem:a49329bbe44bf307050a3667c323e5fe3 inherit pub_static_methods_classJ2DPane" id="r_a49329bbe44bf307050a3667c323e5fe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a49329bbe44bf307050a3667c323e5fe3">J2DCast_F32_to_S16</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> value, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> arg2)</td></tr>
+<tr class="separator:a49329bbe44bf307050a3667c323e5fe3 inherit pub_static_methods_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classJ2DTextBox"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classJ2DTextBox')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classJ2DTextBox.html">J2DTextBox</a></td></tr>
+<tr class="memitem:afe6ee2d5fd1872c2a37f1dc58ef95d2b inherit pub_attribs_classJ2DTextBox" id="r_afe6ee2d5fd1872c2a37f1dc58ef95d2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUTFont.html">JUTFont</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#afe6ee2d5fd1872c2a37f1dc58ef95d2b">mFont</a></td></tr>
+<tr class="separator:afe6ee2d5fd1872c2a37f1dc58ef95d2b inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec958cc9a10a590b64c07bb183e1d89 inherit pub_attribs_classJ2DTextBox" id="r_a5ec958cc9a10a590b64c07bb183e1d89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a5ec958cc9a10a590b64c07bb183e1d89">mCharColor</a></td></tr>
+<tr class="separator:a5ec958cc9a10a590b64c07bb183e1d89 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1720ec06e290e56e34cd35b35a5c81fa inherit pub_attribs_classJ2DTextBox" id="r_a1720ec06e290e56e34cd35b35a5c81fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a1720ec06e290e56e34cd35b35a5c81fa">mGradientColor</a></td></tr>
+<tr class="separator:a1720ec06e290e56e34cd35b35a5c81fa inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ec024e27b5190420e837804de395e3 inherit pub_attribs_classJ2DTextBox" id="r_ab6ec024e27b5190420e837804de395e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#ab6ec024e27b5190420e837804de395e3">field_0x10c</a></td></tr>
+<tr class="separator:ab6ec024e27b5190420e837804de395e3 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe7a4f5e4077cc332ec30f3ededa33ee inherit pub_attribs_classJ2DTextBox" id="r_abe7a4f5e4077cc332ec30f3ededa33ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#abe7a4f5e4077cc332ec30f3ededa33ee">field_0x110</a></td></tr>
+<tr class="separator:abe7a4f5e4077cc332ec30f3ededa33ee inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2613bd64ce852ed436f3e748ff70b5 inherit pub_attribs_classJ2DTextBox" id="r_aff2613bd64ce852ed436f3e748ff70b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#aff2613bd64ce852ed436f3e748ff70b5">mCharSpacing</a></td></tr>
+<tr class="separator:aff2613bd64ce852ed436f3e748ff70b5 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1aa636ae722a9b3af688da8bc50118 inherit pub_attribs_classJ2DTextBox" id="r_a8f1aa636ae722a9b3af688da8bc50118"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a8f1aa636ae722a9b3af688da8bc50118">mLineSpacing</a></td></tr>
+<tr class="separator:a8f1aa636ae722a9b3af688da8bc50118 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ddcf893f4ba4c905e34d3838d47241e inherit pub_attribs_classJ2DTextBox" id="r_a7ddcf893f4ba4c905e34d3838d47241e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a7ddcf893f4ba4c905e34d3838d47241e">mFontSizeX</a></td></tr>
+<tr class="separator:a7ddcf893f4ba4c905e34d3838d47241e inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f2c86da23e659fa0d5d5c5e0da9104 inherit pub_attribs_classJ2DTextBox" id="r_a58f2c86da23e659fa0d5d5c5e0da9104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a58f2c86da23e659fa0d5d5c5e0da9104">mFontSizeY</a></td></tr>
+<tr class="separator:a58f2c86da23e659fa0d5d5c5e0da9104 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b955e88caae8271fe4ee14ae71dfc1 inherit pub_attribs_classJ2DTextBox" id="r_a57b955e88caae8271fe4ee14ae71dfc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a57b955e88caae8271fe4ee14ae71dfc1">mStringPtr</a></td></tr>
+<tr class="separator:a57b955e88caae8271fe4ee14ae71dfc1 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4845b94f7ed6afc067bc270bdce4bd83 inherit pub_attribs_classJ2DTextBox" id="r_a4845b94f7ed6afc067bc270bdce4bd83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a4845b94f7ed6afc067bc270bdce4bd83">mWhiteColor</a></td></tr>
+<tr class="separator:a4845b94f7ed6afc067bc270bdce4bd83 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a899e3b968a2a6d4a6a08a8097f83235f inherit pub_attribs_classJ2DTextBox" id="r_a899e3b968a2a6d4a6a08a8097f83235f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a899e3b968a2a6d4a6a08a8097f83235f">mBlackColor</a></td></tr>
+<tr class="separator:a899e3b968a2a6d4a6a08a8097f83235f inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaab97cd2ada125218d9e18efe439aa8 inherit pub_attribs_classJ2DTextBox" id="r_afaab97cd2ada125218d9e18efe439aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#afaab97cd2ada125218d9e18efe439aa8">mFlags</a></td></tr>
+<tr class="separator:afaab97cd2ada125218d9e18efe439aa8 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf877323eb2e1256b2f87e125d68781 inherit pub_attribs_classJ2DTextBox" id="r_abaf877323eb2e1256b2f87e125d68781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#abaf877323eb2e1256b2f87e125d68781">mTextFontOwned</a></td></tr>
+<tr class="separator:abaf877323eb2e1256b2f87e125d68781 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2050c5aa8485f781725d4edbc47a97f inherit pub_attribs_classJ2DTextBox" id="r_aa2050c5aa8485f781725d4edbc47a97f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#aa2050c5aa8485f781725d4edbc47a97f">mStringLength</a></td></tr>
+<tr class="separator:aa2050c5aa8485f781725d4edbc47a97f inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5da0d9ec5b1b5acc5101cb94b0b6bc45 inherit pub_attribs_classJ2DTextBox" id="r_a5da0d9ec5b1b5acc5101cb94b0b6bc45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DTextBox.html#a5da0d9ec5b1b5acc5101cb94b0b6bc45">field_0x134</a> [4]</td></tr>
+<tr class="separator:a5da0d9ec5b1b5acc5101cb94b0b6bc45 inherit pub_attribs_classJ2DTextBox"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classJ2DPane"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classJ2DPane')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classJ2DPane.html">J2DPane</a></td></tr>
+<tr class="memitem:ac98505c9e7d4b8d2efce1abb5cc0a808 inherit pub_attribs_classJ2DPane" id="r_ac98505c9e7d4b8d2efce1abb5cc0a808"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac98505c9e7d4b8d2efce1abb5cc0a808">field_0x4</a></td></tr>
+<tr class="separator:ac98505c9e7d4b8d2efce1abb5cc0a808 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d612fe6067a88e821abf676a75c4b5 inherit pub_attribs_classJ2DPane" id="r_a05d612fe6067a88e821abf676a75c4b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a05d612fe6067a88e821abf676a75c4b5">mKind</a></td></tr>
+<tr class="separator:a05d612fe6067a88e821abf676a75c4b5 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57e900b4ab99d9a1d0f8fecff1444c4 inherit pub_attribs_classJ2DPane" id="r_ab57e900b4ab99d9a1d0f8fecff1444c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ab57e900b4ab99d9a1d0f8fecff1444c4">mInfoTag</a></td></tr>
+<tr class="separator:ab57e900b4ab99d9a1d0f8fecff1444c4 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80c5c64dd42b97d3cfed5f909b426b7 inherit pub_attribs_classJ2DPane" id="r_ac80c5c64dd42b97d3cfed5f909b426b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ac80c5c64dd42b97d3cfed5f909b426b7">mUserInfoTag</a></td></tr>
+<tr class="separator:ac80c5c64dd42b97d3cfed5f909b426b7 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e816bafc3fd2de087eb59ffc8ece5dc inherit pub_attribs_classJ2DPane" id="r_a1e816bafc3fd2de087eb59ffc8ece5dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a1e816bafc3fd2de087eb59ffc8ece5dc">mBounds</a></td></tr>
+<tr class="separator:a1e816bafc3fd2de087eb59ffc8ece5dc inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d180321ac3364b2988ca7ce194c944 inherit pub_attribs_classJ2DPane" id="r_ad4d180321ac3364b2988ca7ce194c944"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ad4d180321ac3364b2988ca7ce194c944">mGlobalBounds</a></td></tr>
+<tr class="separator:ad4d180321ac3364b2988ca7ce194c944 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2f3dc643a6fcb52426e1cf7d3fcfa2 inherit pub_attribs_classJ2DPane" id="r_acf2f3dc643a6fcb52426e1cf7d3fcfa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#acf2f3dc643a6fcb52426e1cf7d3fcfa2">mClipRect</a></td></tr>
+<tr class="separator:acf2f3dc643a6fcb52426e1cf7d3fcfa2 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdc9b310e3da6b0da84ef1b1357780ac inherit pub_attribs_classJ2DPane" id="r_afdc9b310e3da6b0da84ef1b1357780ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#afdc9b310e3da6b0da84ef1b1357780ac">mPositionMtx</a></td></tr>
+<tr class="separator:afdc9b310e3da6b0da84ef1b1357780ac inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3ee7bb2a6de7781a04b5a5107d0cac inherit pub_attribs_classJ2DPane" id="r_aca3ee7bb2a6de7781a04b5a5107d0cac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aca3ee7bb2a6de7781a04b5a5107d0cac">mGlobalMtx</a></td></tr>
+<tr class="separator:aca3ee7bb2a6de7781a04b5a5107d0cac inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c34c45a52524d2f2e0a98204c78959 inherit pub_attribs_classJ2DPane" id="r_a58c34c45a52524d2f2e0a98204c78959"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a58c34c45a52524d2f2e0a98204c78959">mVisible</a></td></tr>
+<tr class="separator:a58c34c45a52524d2f2e0a98204c78959 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea95f05a9e9fe10a08a314a349fbaf8 inherit pub_attribs_classJ2DPane" id="r_a2ea95f05a9e9fe10a08a314a349fbaf8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a2ea95f05a9e9fe10a08a314a349fbaf8">mCullMode</a></td></tr>
+<tr class="separator:a2ea95f05a9e9fe10a08a314a349fbaf8 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59c8e110117e63e59b07230205d4e2d inherit pub_attribs_classJ2DPane" id="r_ae59c8e110117e63e59b07230205d4e2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ae59c8e110117e63e59b07230205d4e2d">mAlpha</a></td></tr>
+<tr class="separator:ae59c8e110117e63e59b07230205d4e2d inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ebcdd0c24a1c348966da74c7e0879c5 inherit pub_attribs_classJ2DPane" id="r_a4ebcdd0c24a1c348966da74c7e0879c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a4ebcdd0c24a1c348966da74c7e0879c5">mColorAlpha</a></td></tr>
+<tr class="separator:a4ebcdd0c24a1c348966da74c7e0879c5 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a539b42e803889e5e23c9a648bee3917c inherit pub_attribs_classJ2DPane" id="r_a539b42e803889e5e23c9a648bee3917c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a539b42e803889e5e23c9a648bee3917c">mIsInfluencedAlpha</a></td></tr>
+<tr class="separator:a539b42e803889e5e23c9a648bee3917c inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65d8f0fbb9a063105f95301686d9c1e inherit pub_attribs_classJ2DPane" id="r_ad65d8f0fbb9a063105f95301686d9c1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ad65d8f0fbb9a063105f95301686d9c1e">mConnected</a></td></tr>
+<tr class="separator:ad65d8f0fbb9a063105f95301686d9c1e inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a753c0c20788c2e85a83deaeeb3e5d5c0 inherit pub_attribs_classJ2DPane" id="r_a753c0c20788c2e85a83deaeeb3e5d5c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a753c0c20788c2e85a83deaeeb3e5d5c0">mRotAxis</a></td></tr>
+<tr class="separator:a753c0c20788c2e85a83deaeeb3e5d5c0 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c10766189002dfd68eb1dc6ce90e131 inherit pub_attribs_classJ2DPane" id="r_a5c10766189002dfd68eb1dc6ce90e131"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a5c10766189002dfd68eb1dc6ce90e131">mBasePosition</a></td></tr>
+<tr class="separator:a5c10766189002dfd68eb1dc6ce90e131 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07caa892adfe59816bcb97059ebeffe6 inherit pub_attribs_classJ2DPane" id="r_a07caa892adfe59816bcb97059ebeffe6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a07caa892adfe59816bcb97059ebeffe6">mRotateX</a></td></tr>
+<tr class="separator:a07caa892adfe59816bcb97059ebeffe6 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadb9b3fe9e24f67be907432b20f2a9b9 inherit pub_attribs_classJ2DPane" id="r_aadb9b3fe9e24f67be907432b20f2a9b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aadb9b3fe9e24f67be907432b20f2a9b9">mRotateY</a></td></tr>
+<tr class="separator:aadb9b3fe9e24f67be907432b20f2a9b9 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a6cff1981642f940d5bef55c4f2066 inherit pub_attribs_classJ2DPane" id="r_a40a6cff1981642f940d5bef55c4f2066"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a40a6cff1981642f940d5bef55c4f2066">mRotateZ</a></td></tr>
+<tr class="separator:a40a6cff1981642f940d5bef55c4f2066 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6b7be341af9b3ed27e875cf3c2daeb inherit pub_attribs_classJ2DPane" id="r_aff6b7be341af9b3ed27e875cf3c2daeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aff6b7be341af9b3ed27e875cf3c2daeb">mRotateOffsetX</a></td></tr>
+<tr class="separator:aff6b7be341af9b3ed27e875cf3c2daeb inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ead1543c43d5af43137e9e4526a8ce inherit pub_attribs_classJ2DPane" id="r_a51ead1543c43d5af43137e9e4526a8ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a51ead1543c43d5af43137e9e4526a8ce">mRotateOffsetY</a></td></tr>
+<tr class="separator:a51ead1543c43d5af43137e9e4526a8ce inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5f0cad6f86afc92c309662df67a5183 inherit pub_attribs_classJ2DPane" id="r_ae5f0cad6f86afc92c309662df67a5183"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ae5f0cad6f86afc92c309662df67a5183">mScaleX</a></td></tr>
+<tr class="separator:ae5f0cad6f86afc92c309662df67a5183 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5629196c8ad282b6b4dd47f2414750e7 inherit pub_attribs_classJ2DPane" id="r_a5629196c8ad282b6b4dd47f2414750e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a5629196c8ad282b6b4dd47f2414750e7">mScaleY</a></td></tr>
+<tr class="separator:a5629196c8ad282b6b4dd47f2414750e7 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a988e557d39e505f097a506ff8d0b3309 inherit pub_attribs_classJ2DPane" id="r_a988e557d39e505f097a506ff8d0b3309"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a988e557d39e505f097a506ff8d0b3309">mTranslateX</a></td></tr>
+<tr class="separator:a988e557d39e505f097a506ff8d0b3309 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a754a478183554e41381d5b544fe36ebd inherit pub_attribs_classJ2DPane" id="r_a754a478183554e41381d5b544fe36ebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a754a478183554e41381d5b544fe36ebd">mTranslateY</a></td></tr>
+<tr class="separator:a754a478183554e41381d5b544fe36ebd inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0aba43823eaaf1200fffb141b03cb43 inherit pub_attribs_classJ2DPane" id="r_ab0aba43823eaaf1200fffb141b03cb43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSUTree.html">JSUTree</a>&lt; <a class="el" href="classJ2DPane.html">J2DPane</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#ab0aba43823eaaf1200fffb141b03cb43">mPaneTree</a></td></tr>
+<tr class="separator:ab0aba43823eaaf1200fffb141b03cb43 inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae3178d9c908c4b72af1328610b7671b inherit pub_attribs_classJ2DPane" id="r_aae3178d9c908c4b72af1328610b7671b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aae3178d9c908c4b72af1328610b7671b">mTransform</a></td></tr>
+<tr class="separator:aae3178d9c908c4b72af1328610b7671b inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1186c09ad8f55752dc023cf73bbec0aa inherit pub_attribs_classJ2DPane" id="r_a1186c09ad8f55752dc023cf73bbec0aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#a1186c09ad8f55752dc023cf73bbec0aa">_fc</a></td></tr>
+<tr class="separator:a1186c09ad8f55752dc023cf73bbec0aa inherit pub_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_classJ2DPane"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classJ2DPane')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classJ2DPane.html">J2DPane</a></td></tr>
+<tr class="memitem:aeaa1b0c009fc7e78416e9f34e275bb1c inherit pub_static_attribs_classJ2DPane" id="r_aeaa1b0c009fc7e78416e9f34e275bb1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJ2DPane.html#aeaa1b0c009fc7e78416e9f34e275bb1c">static_mBounds</a></td></tr>
+<tr class="separator:aeaa1b0c009fc7e78416e9f34e275bb1c inherit pub_static_attribs_classJ2DPane"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a93354fd8a5687f5f2255acac47368920" name="a93354fd8a5687f5f2255acac47368920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93354fd8a5687f5f2255acac47368920">&#9670;&#160;</a></span>stage_enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">enum</a> <a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920">J2DTextBoxEx::stage_enum</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a93354fd8a5687f5f2255acac47368920a9e41b04d3275d29f528c7b85b75f9e61" name="a93354fd8a5687f5f2255acac47368920a9e41b04d3275d29f528c7b85b75f9e61"></a>STAGE_0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a93354fd8a5687f5f2255acac47368920a7167f5d45ee7b3d40f4c9cf6135b4dc2" name="a93354fd8a5687f5f2255acac47368920a7167f5d45ee7b3d40f4c9cf6135b4dc2"></a>STAGE_1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a93354fd8a5687f5f2255acac47368920a4656341746b51f4a84ea69dbb9a86c16" name="a93354fd8a5687f5f2255acac47368920a4656341746b51f4a84ea69dbb9a86c16"></a>STAGE_2&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3cfa1e9472c710aee598e06ff81fd74f" name="a3cfa1e9472c710aee598e06ff81fd74f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cfa1e9472c710aee598e06ff81fd74f">&#9670;&#160;</a></span>J2DTextBoxEx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">J2DTextBoxEx::J2DTextBoxEx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a> *&#160;</td>
+          <td class="paramname"><em>p_stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJ2DMaterial.html">J2DMaterial</a> *&#160;</td>
+          <td class="paramname"><em>p_material</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af52a9ca729d048674b0361f453bdfa32" name="af52a9ca729d048674b0361f453bdfa32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af52a9ca729d048674b0361f453bdfa32">&#9670;&#160;</a></span>~J2DTextBoxEx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">J2DTextBoxEx::~J2DTextBoxEx </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a029487bf9592512a34a87ebdbb5967ef" name="a029487bf9592512a34a87ebdbb5967ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a029487bf9592512a34a87ebdbb5967ef">&#9670;&#160;</a></span>animationPane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> * J2DTextBoxEx::animationPane </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a5a204b18175d304887fa299503c98aa9">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="aceefa4fe2df9cf6cbbdfd36a6e18ea70" name="aceefa4fe2df9cf6cbbdfd36a6e18ea70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceefa4fe2df9cf6cbbdfd36a6e18ea70">&#9670;&#160;</a></span>draw() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>posY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a7436b2d0d4ab4b23bec2ed8649d50e02">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a930bb00d7d20563f9dbf84efec9368a3" name="a930bb00d7d20563f9dbf84efec9368a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930bb00d7d20563f9dbf84efec9368a3">&#9670;&#160;</a></span>draw() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::draw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="J2DTextBox_8h.html#ace2fe1d49637af193cc4e768d170d99c">J2DTextBoxHBinding</a>&#160;</td>
+          <td class="paramname"><em>hBind</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a45e9f599432fa9488b6562050088bd84">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a0396e5e6f7562344e5bf40217aa8ae6c" name="a0396e5e6f7562344e5bf40217aa8ae6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0396e5e6f7562344e5bf40217aa8ae6c">&#9670;&#160;</a></span>drawSelf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::drawSelf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(*)&#160;</td>
+          <td class="paramname">[3][4]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace6ebec29fc98ff826c99609eda2382d" name="ace6ebec29fc98ff826c99609eda2382d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6ebec29fc98ff826c99609eda2382d">&#9670;&#160;</a></span>getBlack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> J2DTextBoxEx::getBlack </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#ad3d4df9d7b6ee65604f4401a7aba46d8">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a385af37b70b21f8c57f65611796f80cf" name="a385af37b70b21f8c57f65611796f80cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385af37b70b21f8c57f65611796f80cf">&#9670;&#160;</a></span>getBlackWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::getBlackWhite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2db0fec25979c6638f9df08de79dbfbc" name="a2db0fec25979c6638f9df08de79dbfbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db0fec25979c6638f9df08de79dbfbc">&#9670;&#160;</a></span>getFont()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUTFont.html">JUTFont</a> * J2DTextBoxEx::getFont </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a7723b3a8e00e0908290a28d1493e8c0b">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a137f8b747115cbd41f67f9120be6fbfb" name="a137f8b747115cbd41f67f9120be6fbfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a137f8b747115cbd41f67f9120be6fbfb">&#9670;&#160;</a></span>getMaterial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="classJ2DMaterial.html">J2DMaterial</a> * J2DTextBoxEx::getMaterial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#afd498a7b746cad483aa323b37dcb92f7">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="abae3cf1698b6ca98da3ae2686366d337" name="abae3cf1698b6ca98da3ae2686366d337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abae3cf1698b6ca98da3ae2686366d337">&#9670;&#160;</a></span>getWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> J2DTextBoxEx::getWhite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#aa4f28c9c84bbbc576d22cd4570aa084f">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a59510649d70908aa0bc7f3b1703f226d" name="a59510649d70908aa0bc7f3b1703f226d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59510649d70908aa0bc7f3b1703f226d">&#9670;&#160;</a></span>isSetBlackWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::isSetBlackWhite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56bc9cf8fbc2ae61a092800bd5c4b881" name="a56bc9cf8fbc2ae61a092800bd5c4b881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56bc9cf8fbc2ae61a092800bd5c4b881">&#9670;&#160;</a></span>isUsed() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::isUsed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structResFONT.html">ResFONT</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *&#160;</td>
+          <td class="paramname"><em>p_font</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a0855b300d592acf2009fd537effdb629">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="aa3aa4e5ae661c7521db5a2191105add4" name="aa3aa4e5ae661c7521db5a2191105add4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3aa4e5ae661c7521db5a2191105add4">&#9670;&#160;</a></span>isUsed() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::isUsed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structResTIMG.html">ResTIMG</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *&#160;</td>
+          <td class="paramname"><em>p_timg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a306fdc9f57e05fcfa4356203eefc9af1">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a71cd925cf928015bfe526f2b7a6cbfb9" name="a71cd925cf928015bfe526f2b7a6cbfb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71cd925cf928015bfe526f2b7a6cbfb9">&#9670;&#160;</a></span>rewriteAlpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::rewriteAlpha </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a3ae135c299d8110acb2e5cd36ebd4c09">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a26088d39caf947ea4128ecf7ee114b6b" name="a26088d39caf947ea4128ecf7ee114b6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26088d39caf947ea4128ecf7ee114b6b">&#9670;&#160;</a></span>setAlpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAlpha </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a46610ce410f8cdfbc023810b3b099c0d">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="ac8cb9cc1cbe2e1504b6e6f06a433789b" name="ac8cb9cc1cbe2e1504b6e6f06a433789b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8cb9cc1cbe2e1504b6e6f06a433789b">&#9670;&#160;</a></span>setAnimation() <span class="overload">[1/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmBase.html">J2DAnmBase</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a9b71c294959f830209753d31d845b7f9">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="aa4425fc34203f4be6f82a25dfede162a" name="aa4425fc34203f4be6f82a25dfede162a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4425fc34203f4be6f82a25dfede162a">&#9670;&#160;</a></span>setAnimation() <span class="overload">[2/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DAnmColor.html">J2DAnmColor</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#abbf2e46f752a4dd5f730086ec9755a23">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a2f03304e29722468624a5f0d9bdbba14" name="a2f03304e29722468624a5f0d9bdbba14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f03304e29722468624a5f0d9bdbba14">&#9670;&#160;</a></span>setAnimation() <span class="overload">[3/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmTevRegKey.html">J2DAnmTevRegKey</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a5c4085320f1b0bc7fe253af231a3e38a">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a360c297a2811dae52ce1269052aeadc3" name="a360c297a2811dae52ce1269052aeadc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a360c297a2811dae52ce1269052aeadc3">&#9670;&#160;</a></span>setAnimation() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmTexPattern.html">J2DAnmTexPattern</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#ad0a30e4494a081e994b4ee0334fdaa40">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a13a18b790b9d6143c3f454056cd31958" name="a13a18b790b9d6143c3f454056cd31958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a18b790b9d6143c3f454056cd31958">&#9670;&#160;</a></span>setAnimation() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmTextureSRTKey.html">J2DAnmTextureSRTKey</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#aa07d7bbae7c31682b2be78bbcaada1fa">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a3dbb053d9e7c2378a3ba42ce88040793" name="a3dbb053d9e7c2378a3ba42ce88040793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dbb053d9e7c2378a3ba42ce88040793">&#9670;&#160;</a></span>setAnimation() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DAnmTransform.html">J2DAnmTransform</a> *&#160;</td>
+          <td class="paramname"><em>transform</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#aec8f3d8fe1ee08b539f98df5b5528e58">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a2962348a7136203476639dc9c51de650" name="a2962348a7136203476639dc9c51de650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2962348a7136203476639dc9c51de650">&#9670;&#160;</a></span>setAnimation() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a> *&#160;</td>
+          <td class="paramname"><em>anm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a1f51617a6fa4b46d41c6546620e1c457">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a74c1cc42fd9a664ae6214564979164df" name="a74c1cc42fd9a664ae6214564979164df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74c1cc42fd9a664ae6214564979164df">&#9670;&#160;</a></span>setAnimation() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setAnimation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DAnmVtxColor.html">J2DAnmVtxColor</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#ab71377f22db80201d1af7ae8380864fb">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a33c82c2f7072cde97c5bd9232b7f35b9" name="a33c82c2f7072cde97c5bd9232b7f35b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33c82c2f7072cde97c5bd9232b7f35b9">&#9670;&#160;</a></span>setBlack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::setBlack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>black</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#aa47f99ced0810f2e259294dcc72d2730">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="af385e37bef8b5509cb729cf922c8eeb6" name="af385e37bef8b5509cb729cf922c8eeb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af385e37bef8b5509cb729cf922c8eeb6">&#9670;&#160;</a></span>setBlackWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::setBlackWhite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#aa054b5740af3157caca90175305ad63a">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="acabbb3c0e869c868af85fc3bdba9287f" name="acabbb3c0e869c868af85fc3bdba9287f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acabbb3c0e869c868af85fc3bdba9287f">&#9670;&#160;</a></span>setCullBack() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setCullBack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="GXEnum_8h.html#a18a22db35d2410bb81724b0c20e6675c">_GXCullMode</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#ab51c16f18142c309da0ee54ec61979e0">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a2c00d3bb186cd69a3b9ca462c9fab27f" name="a2c00d3bb186cd69a3b9ca462c9fab27f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c00d3bb186cd69a3b9ca462c9fab27f">&#9670;&#160;</a></span>setCullBack() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setCullBack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DPane.html#a3fae368990a28ec8cb3346f222ffb236">J2DPane</a>.</p>
+
+</div>
+</div>
+<a id="a1308aa1ef1a323d44dfa429fec922ae6" name="a1308aa1ef1a323d44dfa429fec922ae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1308aa1ef1a323d44dfa429fec922ae6">&#9670;&#160;</a></span>setFont()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setFont </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUTFont.html">JUTFont</a> *&#160;</td>
+          <td class="paramname"><em>p_font</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#a2650de2578b5b17ff47a59efc3d07fb6">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<a id="a5383a145c03f9405b65e09374e254606" name="a5383a145c03f9405b65e09374e254606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5383a145c03f9405b65e09374e254606">&#9670;&#160;</a></span>setStage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setStage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DTevStage.html">J2DTevStage</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJ2DTextBoxEx.html#a93354fd8a5687f5f2255acac47368920">J2DTextBoxEx::stage_enum</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9eff0be21d9f408ecead20fbbfe53368" name="a9eff0be21d9f408ecead20fbbfe53368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eff0be21d9f408ecead20fbbfe53368">&#9670;&#160;</a></span>setTevOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setTevOrder </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a216ee49101f554f11000ace9faa8a030" name="a216ee49101f554f11000ace9faa8a030"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216ee49101f554f11000ace9faa8a030">&#9670;&#160;</a></span>setTevStage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> J2DTextBoxEx::setTevStage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5042f990d3650c4ad3c47b143c9e310" name="af5042f990d3650c4ad3c47b143c9e310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5042f990d3650c4ad3c47b143c9e310">&#9670;&#160;</a></span>setWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> J2DTextBoxEx::setWhite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>white</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classJ2DTextBox.html#ae510f769851b23c391206a52e3c736d5">J2DTextBox</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a05bc1786af0f8ba1e8a1f1cd546468a9" name="a05bc1786af0f8ba1e8a1f1cd546468a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05bc1786af0f8ba1e8a1f1cd546468a9">&#9670;&#160;</a></span>field_0x13c</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> J2DTextBoxEx::field_0x13c</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0fbdef90bd512d246ab6f6c88578206b" name="a0fbdef90bd512d246ab6f6c88578206b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fbdef90bd512d246ab6f6c88578206b">&#9670;&#160;</a></span>field_0x13e</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> J2DTextBoxEx::field_0x13e</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25eb346f0caf07f21d30efd09c2665ae" name="a25eb346f0caf07f21d30efd09c2665ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25eb346f0caf07f21d30efd09c2665ae">&#9670;&#160;</a></span>field_0x140</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> J2DTextBoxEx::field_0x140</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae7ec6114d4b518db2a23e2eab46538e" name="aae7ec6114d4b518db2a23e2eab46538e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae7ec6114d4b518db2a23e2eab46538e">&#9670;&#160;</a></span>mMaterial</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJ2DMaterial.html">J2DMaterial</a>* J2DTextBoxEx::mMaterial</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f38784c0958d8ec5d99d86d15d63c9c" name="a3f38784c0958d8ec5d99d86d15d63c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f38784c0958d8ec5d99d86d15d63c9c">&#9670;&#160;</a></span>mVisibilityAnm</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJ2DAnmVisibilityFull.html">J2DAnmVisibilityFull</a>* J2DTextBoxEx::mVisibilityAnm</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/JSystem/J2DGraph/<a class="el" href="J2DTextBoxEx_8h_source.html">J2DTextBoxEx.h</a></li>
+<li>libs/JSystem/J2DGraph/<a class="el" href="J2DTextBoxEx_8cpp.html">J2DTextBoxEx.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classJ2DTextBoxEx.html">J2DTextBoxEx</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

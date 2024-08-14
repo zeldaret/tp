@@ -66,7 +66,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="533.38,-97 465.62,-97 465.62,-77.75 533.38,-77.75 533.38,-97"/>
 <text text-anchor="middle" x="499.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>

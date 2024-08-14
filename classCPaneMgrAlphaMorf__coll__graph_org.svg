@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1399.38,-459.34 1312.88,-459.34 1312.88,-440.09 1399.38,-440.09 1399.38,-459.34"/>
 <text text-anchor="middle" x="1356.12" y="-445.84" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="969.12,-519.34 913.38,-519.34 913.38,-500.09 969.12,-500.09 969.12,-519.34"/>
 <text text-anchor="middle" x="941.25" y="-505.84" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -292,7 +292,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="697.88,-522.34 600.12,-522.34 600.12,-503.09 697.88,-503.09 697.88,-522.34"/>
 <text text-anchor="middle" x="649" y="-508.84" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>
@@ -329,7 +329,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1189.5,-346.34 1115.75,-346.34 1115.75,-327.09 1189.5,-327.09 1189.5,-346.34"/>
 <text text-anchor="middle" x="1152.62" y="-332.84" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

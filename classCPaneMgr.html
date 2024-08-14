@@ -1,0 +1,2181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: CPaneMgr Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classCPaneMgr.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classCPaneMgr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">CPaneMgr Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="d__pane__class_8h_source.html">d_pane_class.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CPaneMgr:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCPaneMgr__inherit__graph.svg" width="127" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for CPaneMgr:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classCPaneMgr__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4236d36b3f086f59d0a9174516f3f07d" id="r_a4236d36b3f086f59d0a9174516f3f07d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a4236d36b3f086f59d0a9174516f3f07d">~CPaneMgr</a> ()</td></tr>
+<tr class="separator:a4236d36b3f086f59d0a9174516f3f07d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa330dcb156c0d0c1b173f8a9907c72b0" id="r_aa330dcb156c0d0c1b173f8a9907c72b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#aa330dcb156c0d0c1b173f8a9907c72b0">setAlpha</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:aa330dcb156c0d0c1b173f8a9907c72b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c9e191b00910277d20b29fb7c7032d5" id="r_a9c9e191b00910277d20b29fb7c7032d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a9c9e191b00910277d20b29fb7c7032d5">CPaneMgr</a> (<a class="el" href="structJ2DScreen.html">J2DScreen</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_scrn</a>, <a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_tag</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_flags</a>, <a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_heap</a>)</td></tr>
+<tr class="separator:a9c9e191b00910277d20b29fb7c7032d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05a1582f11b6b53bb6b97646dcede4e" id="r_ad05a1582f11b6b53bb6b97646dcede4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ad05a1582f11b6b53bb6b97646dcede4e">CPaneMgr</a> ()</td></tr>
+<tr class="separator:ad05a1582f11b6b53bb6b97646dcede4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad737d873cb28fde4198d93d9436b2946" id="r_ad737d873cb28fde4198d93d9436b2946"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ad737d873cb28fde4198d93d9436b2946">reinit</a> ()</td></tr>
+<tr class="separator:ad737d873cb28fde4198d93d9436b2946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f24b50ca1b42f38ff7977768b5f8d0c" id="r_a0f24b50ca1b42f38ff7977768b5f8d0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a0f24b50ca1b42f38ff7977768b5f8d0c">initiate</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *)</td></tr>
+<tr class="separator:a0f24b50ca1b42f38ff7977768b5f8d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77348050b65e1489345f464bfbfed732" id="r_a77348050b65e1489345f464bfbfed732"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a77348050b65e1489345f464bfbfed732">childPaneGetSize</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *)</td></tr>
+<tr class="separator:a77348050b65e1489345f464bfbfed732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aa55d480dbf012c2e532dd4ee04aa2c" id="r_a8aa55d480dbf012c2e532dd4ee04aa2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a8aa55d480dbf012c2e532dd4ee04aa2c">childPaneSetSize</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a8aa55d480dbf012c2e532dd4ee04aa2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a197fee52ca640b2b266aaa5dacf9f7d1" id="r_a197fee52ca640b2b266aaa5dacf9f7d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a197fee52ca640b2b266aaa5dacf9f7d1">getGlobalPosX</a> ()</td></tr>
+<tr class="separator:a197fee52ca640b2b266aaa5dacf9f7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02dfb4c8541c250e8bd73f7da2a8bc9f" id="r_a02dfb4c8541c250e8bd73f7da2a8bc9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a02dfb4c8541c250e8bd73f7da2a8bc9f">getGlobalPosY</a> ()</td></tr>
+<tr class="separator:a02dfb4c8541c250e8bd73f7da2a8bc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd37933705d71e4a411047c603a84c6" id="r_adbd37933705d71e4a411047c603a84c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#adbd37933705d71e4a411047c603a84c6">setBlackWhite</a> (<a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>)</td></tr>
+<tr class="separator:adbd37933705d71e4a411047c603a84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67cb9f7b7198c0b20b59c4d2b0726fd1" id="r_a67cb9f7b7198c0b20b59c4d2b0726fd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a67cb9f7b7198c0b20b59c4d2b0726fd1">paneTrans</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a67cb9f7b7198c0b20b59c4d2b0726fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab98acb8540327abe8d089a759f699748" id="r_ab98acb8540327abe8d089a759f699748"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ab98acb8540327abe8d089a759f699748">paneScale</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:ab98acb8540327abe8d089a759f699748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a3f907c8e3c576ea192bf9f3339dda4" id="r_a8a3f907c8e3c576ea192bf9f3339dda4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a8a3f907c8e3c576ea192bf9f3339dda4">scaleAnime</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a8a3f907c8e3c576ea192bf9f3339dda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a850e05664e7af1b5c3a35454cc4b25c8" id="r_a850e05664e7af1b5c3a35454cc4b25c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a850e05664e7af1b5c3a35454cc4b25c8">colorAnime</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a850e05664e7af1b5c3a35454cc4b25c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc8f6c0a251730b56c6d8e2371a0a45" id="r_a5bc8f6c0a251730b56c6d8e2371a0a45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5bc8f6c0a251730b56c6d8e2371a0a45">getGlobalVtx</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(*)[3][4], <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>)</td></tr>
+<tr class="separator:a5bc8f6c0a251730b56c6d8e2371a0a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e908bbc3ed49cf1d8b30e26285f195" id="r_ab9e908bbc3ed49cf1d8b30e26285f195"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ab9e908bbc3ed49cf1d8b30e26285f195">getGlobalVtxCenter</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>)</td></tr>
+<tr class="separator:ab9e908bbc3ed49cf1d8b30e26285f195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe9f3d65d348c661899a41a9e76395d9" id="r_abe9f3d65d348c661899a41a9e76395d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#abe9f3d65d348c661899a41a9e76395d9">getBounds</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *)</td></tr>
+<tr class="separator:abe9f3d65d348c661899a41a9e76395d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9fd71aad1f033ac44a68d7d90b9182" id="r_a5a9fd71aad1f033ac44a68d7d90b9182"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5a9fd71aad1f033ac44a68d7d90b9182">getGlobalVtx</a> (<a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_2</a>, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> param_3)</td></tr>
+<tr class="separator:a5a9fd71aad1f033ac44a68d7d90b9182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a722eaae12f7eedf39785e62407ab413c" id="r_a722eaae12f7eedf39785e62407ab413c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a722eaae12f7eedf39785e62407ab413c">getGlobalVtxCenter</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>)</td></tr>
+<tr class="separator:a722eaae12f7eedf39785e62407ab413c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d6f2aafbe8c601443f459a0f2a2a29" id="r_a66d6f2aafbe8c601443f459a0f2a2a29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a66d6f2aafbe8c601443f459a0f2a2a29">getGlobalCenterPosY</a> ()</td></tr>
+<tr class="separator:a66d6f2aafbe8c601443f459a0f2a2a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af22909ee78aea0baa3c7e27a4cbb470d" id="r_af22909ee78aea0baa3c7e27a4cbb470d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#af22909ee78aea0baa3c7e27a4cbb470d">getCenterPosX</a> ()</td></tr>
+<tr class="separator:af22909ee78aea0baa3c7e27a4cbb470d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe4adeebd48206d0117c375ecaae9e8" id="r_a2fe4adeebd48206d0117c375ecaae9e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a2fe4adeebd48206d0117c375ecaae9e8">translate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#a69bf0237253cf28a9de66969ab9b2fc2">x</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#ad0c8a89970b31aee1615bb4ef6710a45">y</a>)</td></tr>
+<tr class="separator:a2fe4adeebd48206d0117c375ecaae9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af30597b9d8ab4d2f5189822e9957c630" id="r_af30597b9d8ab4d2f5189822e9957c630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#af30597b9d8ab4d2f5189822e9957c630">scale</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">h</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__pow_8c.html#ac4055e3a20b6b3af3d10590ea446ef6c">v</a>)</td></tr>
+<tr class="separator:af30597b9d8ab4d2f5189822e9957c630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19bd1208c469e51e1c4a588e220b3534" id="r_a19bd1208c469e51e1c4a588e220b3534"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a19bd1208c469e51e1c4a588e220b3534">resize</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#a69bf0237253cf28a9de66969ab9b2fc2">x</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#ad0c8a89970b31aee1615bb4ef6710a45">y</a>)</td></tr>
+<tr class="separator:a19bd1208c469e51e1c4a588e220b3534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38b59e11bedb7c4ddb64c3f3f1ba6153" id="r_a38b59e11bedb7c4ddb64c3f3f1ba6153"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a38b59e11bedb7c4ddb64c3f3f1ba6153">move</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#a69bf0237253cf28a9de66969ab9b2fc2">x</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="e__atan2_8c.html#ad0c8a89970b31aee1615bb4ef6710a45">y</a>)</td></tr>
+<tr class="separator:a38b59e11bedb7c4ddb64c3f3f1ba6153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f225422b801163198977d1193e5910a" id="r_a9f225422b801163198977d1193e5910a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a9f225422b801163198977d1193e5910a">scaleAnimeStart</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="el" href="e__pow_8c.html#ac4055e3a20b6b3af3d10590ea446ef6c">v</a>)</td></tr>
+<tr class="separator:a9f225422b801163198977d1193e5910a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c208d4d9aa8dac97857d6260eb0344" id="r_a63c208d4d9aa8dac97857d6260eb0344"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a63c208d4d9aa8dac97857d6260eb0344">colorAnimeStart</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="el" href="strtoul_8c.html#ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc">start</a>)</td></tr>
+<tr class="separator:a63c208d4d9aa8dac97857d6260eb0344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f076c659a35a676932cdda9d1ffd3b" id="r_ab4f076c659a35a676932cdda9d1ffd3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ab4f076c659a35a676932cdda9d1ffd3b">getPosX</a> ()</td></tr>
+<tr class="separator:ab4f076c659a35a676932cdda9d1ffd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c15270ce95eafd158861ce8bfadf2e5" id="r_a7c15270ce95eafd158861ce8bfadf2e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a7c15270ce95eafd158861ce8bfadf2e5">getPosY</a> ()</td></tr>
+<tr class="separator:a7c15270ce95eafd158861ce8bfadf2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5929b59b318eb186a59bd4c98f0737f9" id="r_a5929b59b318eb186a59bd4c98f0737f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5929b59b318eb186a59bd4c98f0737f9">getSizeX</a> ()</td></tr>
+<tr class="separator:a5929b59b318eb186a59bd4c98f0737f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb470ecfcd5a59e1b202f98ec8be4a7" id="r_a9eb470ecfcd5a59e1b202f98ec8be4a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a9eb470ecfcd5a59e1b202f98ec8be4a7">getSizeY</a> ()</td></tr>
+<tr class="separator:a9eb470ecfcd5a59e1b202f98ec8be4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01201fd619141630b2fac24eb5bd6205" id="r_a01201fd619141630b2fac24eb5bd6205"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a01201fd619141630b2fac24eb5bd6205">getRotateZ</a> ()</td></tr>
+<tr class="separator:a01201fd619141630b2fac24eb5bd6205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d08fa955157526fc02090d9b848cba8" id="r_a8d08fa955157526fc02090d9b848cba8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a8d08fa955157526fc02090d9b848cba8">getInitCenterPosX</a> ()</td></tr>
+<tr class="separator:a8d08fa955157526fc02090d9b848cba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa2755efdbbbbff132a65c0d609a97e" id="r_adaa2755efdbbbbff132a65c0d609a97e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#adaa2755efdbbbbff132a65c0d609a97e">getInitCenterPosY</a> ()</td></tr>
+<tr class="separator:adaa2755efdbbbbff132a65c0d609a97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af00726dcc03c1dfdc47d88be4ef9e8f9" id="r_af00726dcc03c1dfdc47d88be4ef9e8f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#af00726dcc03c1dfdc47d88be4ef9e8f9">getInitPosX</a> ()</td></tr>
+<tr class="separator:af00726dcc03c1dfdc47d88be4ef9e8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d507a9b6a4bc337be192af7e2e06dd" id="r_a44d507a9b6a4bc337be192af7e2e06dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a44d507a9b6a4bc337be192af7e2e06dd">getInitPosY</a> ()</td></tr>
+<tr class="separator:a44d507a9b6a4bc337be192af7e2e06dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8836ae8fb2e8030b4db17cb78fa58714" id="r_a8836ae8fb2e8030b4db17cb78fa58714"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a8836ae8fb2e8030b4db17cb78fa58714">getInitGlobalPosX</a> ()</td></tr>
+<tr class="separator:a8836ae8fb2e8030b4db17cb78fa58714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f2a05120d9f9e3131838d74b970587" id="r_ad9f2a05120d9f9e3131838d74b970587"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ad9f2a05120d9f9e3131838d74b970587">getInitGlobalPosY</a> ()</td></tr>
+<tr class="separator:ad9f2a05120d9f9e3131838d74b970587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e18dc7fb6d87a9f443d3e29c10b3302" id="r_a3e18dc7fb6d87a9f443d3e29c10b3302"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a3e18dc7fb6d87a9f443d3e29c10b3302">getInitGlobalCenterPosX</a> ()</td></tr>
+<tr class="separator:a3e18dc7fb6d87a9f443d3e29c10b3302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf81c62e6ecf6a0674c3c4d87529d2f" id="r_a8bf81c62e6ecf6a0674c3c4d87529d2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a8bf81c62e6ecf6a0674c3c4d87529d2f">getInitGlobalCenterPosY</a> ()</td></tr>
+<tr class="separator:a8bf81c62e6ecf6a0674c3c4d87529d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e775b3ae5aa1d54d1b5cffd20dfc7c" id="r_a07e775b3ae5aa1d54d1b5cffd20dfc7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a07e775b3ae5aa1d54d1b5cffd20dfc7c">getInitSizeX</a> ()</td></tr>
+<tr class="separator:a07e775b3ae5aa1d54d1b5cffd20dfc7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680328bd86769a3f1d399f6680fa2cf8" id="r_a680328bd86769a3f1d399f6680fa2cf8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a680328bd86769a3f1d399f6680fa2cf8">getInitSizeY</a> ()</td></tr>
+<tr class="separator:a680328bd86769a3f1d399f6680fa2cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20bae25e08570124f3c7db99a8bc4ee3" id="r_a20bae25e08570124f3c7db99a8bc4ee3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a20bae25e08570124f3c7db99a8bc4ee3">getInitScaleX</a> ()</td></tr>
+<tr class="separator:a20bae25e08570124f3c7db99a8bc4ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf18643dce5f6c80e72e188105f8ce7" id="r_a3bf18643dce5f6c80e72e188105f8ce7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a3bf18643dce5f6c80e72e188105f8ce7">getInitScaleY</a> ()</td></tr>
+<tr class="separator:a3bf18643dce5f6c80e72e188105f8ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcabb5c65e829d801a4f3b09430818cd" id="r_abcabb5c65e829d801a4f3b09430818cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#abcabb5c65e829d801a4f3b09430818cd">getScaleX</a> ()</td></tr>
+<tr class="separator:abcabb5c65e829d801a4f3b09430818cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf685eaf3b5b5be1b1c6219e396cb9c" id="r_a2cf685eaf3b5b5be1b1c6219e396cb9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a2cf685eaf3b5b5be1b1c6219e396cb9c">getScaleY</a> ()</td></tr>
+<tr class="separator:a2cf685eaf3b5b5be1b1c6219e396cb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e998cb68bce0d12f854f0a0c711ed9" id="r_ab9e998cb68bce0d12f854f0a0c711ed9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ab9e998cb68bce0d12f854f0a0c711ed9">getTranslateX</a> ()</td></tr>
+<tr class="separator:ab9e998cb68bce0d12f854f0a0c711ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afec5041ececc01163c084cf87db4a2cf" id="r_afec5041ececc01163c084cf87db4a2cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#afec5041ececc01163c084cf87db4a2cf">getTranslateY</a> ()</td></tr>
+<tr class="separator:afec5041ececc01163c084cf87db4a2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b47b0790d9d2338a244211b8e4a50c0" id="r_a5b47b0790d9d2338a244211b8e4a50c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5b47b0790d9d2338a244211b8e4a50c0">getInitBlack</a> ()</td></tr>
+<tr class="separator:a5b47b0790d9d2338a244211b8e4a50c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c23ae03a75dd3707ced3deffefe8d77" id="r_a5c23ae03a75dd3707ced3deffefe8d77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5c23ae03a75dd3707ced3deffefe8d77">getInitWhite</a> ()</td></tr>
+<tr class="separator:a5c23ae03a75dd3707ced3deffefe8d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCPaneMgrAlpha"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCPaneMgrAlpha')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCPaneMgrAlpha.html">CPaneMgrAlpha</a></td></tr>
+<tr class="memitem:a38bd8288dee0649822e56e0831e7953a inherit pub_methods_classCPaneMgrAlpha" id="r_a38bd8288dee0649822e56e0831e7953a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a38bd8288dee0649822e56e0831e7953a">~CPaneMgrAlpha</a> ()</td></tr>
+<tr class="separator:a38bd8288dee0649822e56e0831e7953a inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a302e5d7f05e67f524d063489e94e4f19 inherit pub_methods_classCPaneMgrAlpha" id="r_a302e5d7f05e67f524d063489e94e4f19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a302e5d7f05e67f524d063489e94e4f19">CPaneMgrAlpha</a> ()</td></tr>
+<tr class="separator:a302e5d7f05e67f524d063489e94e4f19 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d505c78f352552c584611bd70d52882 inherit pub_methods_classCPaneMgrAlpha" id="r_a7d505c78f352552c584611bd70d52882"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a7d505c78f352552c584611bd70d52882">CPaneMgrAlpha</a> (<a class="el" href="structJ2DScreen.html">J2DScreen</a> *, <a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *)</td></tr>
+<tr class="separator:a7d505c78f352552c584611bd70d52882 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84431999b4eaf050383643d01b3f8a92 inherit pub_methods_classCPaneMgrAlpha" id="r_a84431999b4eaf050383643d01b3f8a92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a84431999b4eaf050383643d01b3f8a92">initiateAlpha</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *)</td></tr>
+<tr class="separator:a84431999b4eaf050383643d01b3f8a92 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa8fae85530c011c60dff18591522542 inherit pub_methods_classCPaneMgrAlpha" id="r_afa8fae85530c011c60dff18591522542"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#afa8fae85530c011c60dff18591522542">show</a> ()</td></tr>
+<tr class="separator:afa8fae85530c011c60dff18591522542 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475190f9a18d069778ba8827d5b41500 inherit pub_methods_classCPaneMgrAlpha" id="r_a475190f9a18d069778ba8827d5b41500"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a475190f9a18d069778ba8827d5b41500">hide</a> ()</td></tr>
+<tr class="separator:a475190f9a18d069778ba8827d5b41500 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a227a0b53adb1e5a17c2827af00eee5e9 inherit pub_methods_classCPaneMgrAlpha" id="r_a227a0b53adb1e5a17c2827af00eee5e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a227a0b53adb1e5a17c2827af00eee5e9">isVisible</a> ()</td></tr>
+<tr class="separator:a227a0b53adb1e5a17c2827af00eee5e9 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc2d859d7cd8f7dfe9599532db6f8ce inherit pub_methods_classCPaneMgrAlpha" id="r_a3cc2d859d7cd8f7dfe9599532db6f8ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a3cc2d859d7cd8f7dfe9599532db6f8ce">rateCalc</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a3cc2d859d7cd8f7dfe9599532db6f8ce inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1df650c0c9300dc5527c29910c3671 inherit pub_methods_classCPaneMgrAlpha" id="r_a1b1df650c0c9300dc5527c29910c3671"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a1b1df650c0c9300dc5527c29910c3671">setAlphaRate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a1b1df650c0c9300dc5527c29910c3671 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dfceb21d72ed2d02cd08cd7e03d6714 inherit pub_methods_classCPaneMgrAlpha" id="r_a4dfceb21d72ed2d02cd08cd7e03d6714"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a4dfceb21d72ed2d02cd08cd7e03d6714">getAlphaRate</a> ()</td></tr>
+<tr class="separator:a4dfceb21d72ed2d02cd08cd7e03d6714 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a144359903c4df7c4681b08ca0149eafe inherit pub_methods_classCPaneMgrAlpha" id="r_a144359903c4df7c4681b08ca0149eafe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a144359903c4df7c4681b08ca0149eafe">alphaAnime</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> timer, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">startAlpha</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">endAlpha</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">calcType</a>)</td></tr>
+<tr class="separator:a144359903c4df7c4681b08ca0149eafe inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805ac473d8c48036db71357e69ea46f3 inherit pub_methods_classCPaneMgrAlpha" id="r_a805ac473d8c48036db71357e69ea46f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a805ac473d8c48036db71357e69ea46f3">alphaAnimeLoop</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a805ac473d8c48036db71357e69ea46f3 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13053b8410702725731b98726355f7e7 inherit pub_methods_classCPaneMgrAlpha" id="r_a13053b8410702725731b98726355f7e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a13053b8410702725731b98726355f7e7">childPaneCount</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *)</td></tr>
+<tr class="separator:a13053b8410702725731b98726355f7e7 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1757ee6824951861d52dea93d1ec56 inherit pub_methods_classCPaneMgrAlpha" id="r_a9b1757ee6824951861d52dea93d1ec56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a9b1757ee6824951861d52dea93d1ec56">childPaneGetAlpha</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *)</td></tr>
+<tr class="separator:a9b1757ee6824951861d52dea93d1ec56 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9e3ad63e19c78d391fe8c2f4dcb0c3c inherit pub_methods_classCPaneMgrAlpha" id="r_ad9e3ad63e19c78d391fe8c2f4dcb0c3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#ad9e3ad63e19c78d391fe8c2f4dcb0c3c">childPaneSetAlpha</a> (<a class="el" href="classJ2DPane.html">J2DPane</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:ad9e3ad63e19c78d391fe8c2f4dcb0c3c inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe78e211f9375694e3eeed65f1bb2fed inherit pub_methods_classCPaneMgrAlpha" id="r_afe78e211f9375694e3eeed65f1bb2fed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#afe78e211f9375694e3eeed65f1bb2fed">getPanePtr</a> ()</td></tr>
+<tr class="separator:afe78e211f9375694e3eeed65f1bb2fed inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abfcf1aa656a66a27b0e48b09775305 inherit pub_methods_classCPaneMgrAlpha" id="r_a7abfcf1aa656a66a27b0e48b09775305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a7abfcf1aa656a66a27b0e48b09775305">getAlpha</a> ()</td></tr>
+<tr class="separator:a7abfcf1aa656a66a27b0e48b09775305 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2667c8150753624f49a0748d758315 inherit pub_methods_classCPaneMgrAlpha" id="r_a6c2667c8150753624f49a0748d758315"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a6c2667c8150753624f49a0748d758315">getAlphaTimer</a> ()</td></tr>
+<tr class="separator:a6c2667c8150753624f49a0748d758315 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7145346bb6022490066d193ffe6692 inherit pub_methods_classCPaneMgrAlpha" id="r_a9e7145346bb6022490066d193ffe6692"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a9e7145346bb6022490066d193ffe6692">alphaAnimeStart</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="el" href="strtoul_8c.html#ac812c5ecefd961b87d832c6c9a2f1bdfa0e97c69c73117f6c0109b2d7d1d9cedc">start</a>)</td></tr>
+<tr class="separator:a9e7145346bb6022490066d193ffe6692 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2855e6e409a6cc30de022bf0126f51e0 inherit pub_methods_classCPaneMgrAlpha" id="r_a2855e6e409a6cc30de022bf0126f51e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a2855e6e409a6cc30de022bf0126f51e0">getInitAlpha</a> ()</td></tr>
+<tr class="separator:a2855e6e409a6cc30de022bf0126f51e0 inherit pub_methods_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af9fa8e0f579cf2a9d9a5b5076100f7ed" id="r_af9fa8e0f579cf2a9d9a5b5076100f7ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#af9fa8e0f579cf2a9d9a5b5076100f7ed">mpFirstStackSize</a></td></tr>
+<tr class="separator:af9fa8e0f579cf2a9d9a5b5076100f7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46c9d865491cc1de5b040713445c180c" id="r_a46c9d865491cc1de5b040713445c180c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a46c9d865491cc1de5b040713445c180c">field_0x20</a></td></tr>
+<tr class="separator:a46c9d865491cc1de5b040713445c180c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a381e1555f06e06f61a179ce991638f80" id="r_a381e1555f06e06f61a179ce991638f80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a381e1555f06e06f61a179ce991638f80">mInitPos</a></td></tr>
+<tr class="separator:a381e1555f06e06f61a179ce991638f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec16de63f30275bbf0b1cd0296cf9d9" id="r_adec16de63f30275bbf0b1cd0296cf9d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#adec16de63f30275bbf0b1cd0296cf9d9">mGlobalPos</a></td></tr>
+<tr class="separator:adec16de63f30275bbf0b1cd0296cf9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13347f38e851550bbdc54f4e1990dbbe" id="r_a13347f38e851550bbdc54f4e1990dbbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a13347f38e851550bbdc54f4e1990dbbe">mInitSize</a></td></tr>
+<tr class="separator:a13347f38e851550bbdc54f4e1990dbbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedf8ca9456278890f9bfc036f71c29cf" id="r_aedf8ca9456278890f9bfc036f71c29cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#aedf8ca9456278890f9bfc036f71c29cf">mInitScale</a></td></tr>
+<tr class="separator:aedf8ca9456278890f9bfc036f71c29cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd40512c4182630a1feab534e9ba2903" id="r_acd40512c4182630a1feab534e9ba2903"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#acd40512c4182630a1feab534e9ba2903">mInitTrans</a></td></tr>
+<tr class="separator:acd40512c4182630a1feab534e9ba2903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a424146d7397b4421b33dfea7848cd236" id="r_a424146d7397b4421b33dfea7848cd236"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a424146d7397b4421b33dfea7848cd236">mRotateZ</a></td></tr>
+<tr class="separator:a424146d7397b4421b33dfea7848cd236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb9c77b701967ff7ad531ba7b22c11f" id="r_a5cb9c77b701967ff7ad531ba7b22c11f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a5cb9c77b701967ff7ad531ba7b22c11f">mRotateOffset</a></td></tr>
+<tr class="separator:a5cb9c77b701967ff7ad531ba7b22c11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2634e1277d018002a714df9b1874484e" id="r_a2634e1277d018002a714df9b1874484e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a2634e1277d018002a714df9b1874484e">mInitWhite</a></td></tr>
+<tr class="separator:a2634e1277d018002a714df9b1874484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa5f818c2878ec1d0cae4a12f34eef5" id="r_abfa5f818c2878ec1d0cae4a12f34eef5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#abfa5f818c2878ec1d0cae4a12f34eef5">mInitBlack</a></td></tr>
+<tr class="separator:abfa5f818c2878ec1d0cae4a12f34eef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7474a9c6e171cd51b4f4b866abe83b" id="r_aec7474a9c6e171cd51b4f4b866abe83b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#aec7474a9c6e171cd51b4f4b866abe83b">field_0x60</a></td></tr>
+<tr class="separator:aec7474a9c6e171cd51b4f4b866abe83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fbd2fd87d9bbb496e4b2aed506430b3" id="r_a7fbd2fd87d9bbb496e4b2aed506430b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a7fbd2fd87d9bbb496e4b2aed506430b3">field_0x62</a></td></tr>
+<tr class="separator:a7fbd2fd87d9bbb496e4b2aed506430b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3970b13b9c37bc8f0827502aca47892" id="r_ab3970b13b9c37bc8f0827502aca47892"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#ab3970b13b9c37bc8f0827502aca47892">mScaleAnime</a></td></tr>
+<tr class="separator:ab3970b13b9c37bc8f0827502aca47892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348669d95d4987ae53f4de1e85ecfde6" id="r_a348669d95d4987ae53f4de1e85ecfde6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a348669d95d4987ae53f4de1e85ecfde6">field_0x66</a></td></tr>
+<tr class="separator:a348669d95d4987ae53f4de1e85ecfde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeccfa7df192a0a9eba94fd4b0da55f1" id="r_afeccfa7df192a0a9eba94fd4b0da55f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#afeccfa7df192a0a9eba94fd4b0da55f1">field_0x68</a></td></tr>
+<tr class="separator:afeccfa7df192a0a9eba94fd4b0da55f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a258fd0d2b6733e6c45367514c43cab73" id="r_a258fd0d2b6733e6c45367514c43cab73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgr.html#a258fd0d2b6733e6c45367514c43cab73">mColorAnime</a></td></tr>
+<tr class="separator:a258fd0d2b6733e6c45367514c43cab73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classCPaneMgrAlpha"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classCPaneMgrAlpha')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classCPaneMgrAlpha.html">CPaneMgrAlpha</a></td></tr>
+<tr class="memitem:a80550f833fc61b1a6094aca432b7cc54 inherit pub_attribs_classCPaneMgrAlpha" id="r_a80550f833fc61b1a6094aca432b7cc54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a80550f833fc61b1a6094aca432b7cc54">mPane</a></td></tr>
+<tr class="separator:a80550f833fc61b1a6094aca432b7cc54 inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92a4989cd7fab4d3d9bb7ef2471878f inherit pub_attribs_classCPaneMgrAlpha" id="r_aa92a4989cd7fab4d3d9bb7ef2471878f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#aa92a4989cd7fab4d3d9bb7ef2471878f">heap</a></td></tr>
+<tr class="separator:aa92a4989cd7fab4d3d9bb7ef2471878f inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8782c111bc7ad04626ce13c5952b849 inherit pub_attribs_classCPaneMgrAlpha" id="r_ae8782c111bc7ad04626ce13c5952b849"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#ae8782c111bc7ad04626ce13c5952b849">mpFirstStackAlpha</a></td></tr>
+<tr class="separator:ae8782c111bc7ad04626ce13c5952b849 inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e141222f605710615cccde56ec561b inherit pub_attribs_classCPaneMgrAlpha" id="r_a20e141222f605710615cccde56ec561b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a20e141222f605710615cccde56ec561b">field_0x10</a></td></tr>
+<tr class="separator:a20e141222f605710615cccde56ec561b inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc1a9bc9eaa2c353ef636f34461d202 inherit pub_attribs_classCPaneMgrAlpha" id="r_abcc1a9bc9eaa2c353ef636f34461d202"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#abcc1a9bc9eaa2c353ef636f34461d202">mChildPaneCount</a></td></tr>
+<tr class="separator:abcc1a9bc9eaa2c353ef636f34461d202 inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457fcd5962683f45792b15c59674ea35 inherit pub_attribs_classCPaneMgrAlpha" id="r_a457fcd5962683f45792b15c59674ea35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a457fcd5962683f45792b15c59674ea35">mAlphaTimer</a></td></tr>
+<tr class="separator:a457fcd5962683f45792b15c59674ea35 inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03595e1045e66a10566d15dfcf5ed83f inherit pub_attribs_classCPaneMgrAlpha" id="r_a03595e1045e66a10566d15dfcf5ed83f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a03595e1045e66a10566d15dfcf5ed83f">mInitAlpha</a></td></tr>
+<tr class="separator:a03595e1045e66a10566d15dfcf5ed83f inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a8fd80654eceb525f34a6a9cc1fc432 inherit pub_attribs_classCPaneMgrAlpha" id="r_a8a8fd80654eceb525f34a6a9cc1fc432"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPaneMgrAlpha.html#a8a8fd80654eceb525f34a6a9cc1fc432">mFlags</a></td></tr>
+<tr class="separator:a8a8fd80654eceb525f34a6a9cc1fc432 inherit pub_attribs_classCPaneMgrAlpha"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4236d36b3f086f59d0a9174516f3f07d" name="a4236d36b3f086f59d0a9174516f3f07d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4236d36b3f086f59d0a9174516f3f07d">&#9670;&#160;</a></span>~CPaneMgr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPaneMgr::~CPaneMgr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c9e191b00910277d20b29fb7c7032d5" name="a9c9e191b00910277d20b29fb7c7032d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9e191b00910277d20b29fb7c7032d5">&#9670;&#160;</a></span>CPaneMgr() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPaneMgr::CPaneMgr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJ2DScreen.html">J2DScreen</a> *&#160;</td>
+          <td class="paramname"><em>i_scrn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>i_tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *&#160;</td>
+          <td class="paramname"><em>i_heap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad05a1582f11b6b53bb6b97646dcede4e" name="ad05a1582f11b6b53bb6b97646dcede4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05a1582f11b6b53bb6b97646dcede4e">&#9670;&#160;</a></span>CPaneMgr() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPaneMgr::CPaneMgr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a77348050b65e1489345f464bfbfed732" name="a77348050b65e1489345f464bfbfed732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77348050b65e1489345f464bfbfed732">&#9670;&#160;</a></span>childPaneGetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::childPaneGetSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8aa55d480dbf012c2e532dd4ee04aa2c" name="a8aa55d480dbf012c2e532dd4ee04aa2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aa55d480dbf012c2e532dd4ee04aa2c">&#9670;&#160;</a></span>childPaneSetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::childPaneSetSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a850e05664e7af1b5c3a35454cc4b25c8" name="a850e05664e7af1b5c3a35454cc4b25c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a850e05664e7af1b5c3a35454cc4b25c8">&#9670;&#160;</a></span>colorAnime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> CPaneMgr::colorAnime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>anmTimer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>startBlack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>endBlack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>startWhite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>endWhite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>calcType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63c208d4d9aa8dac97857d6260eb0344" name="a63c208d4d9aa8dac97857d6260eb0344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c208d4d9aa8dac97857d6260eb0344">&#9670;&#160;</a></span>colorAnimeStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::colorAnimeStart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>start</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe9f3d65d348c661899a41a9e76395d9" name="abe9f3d65d348c661899a41a9e76395d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe9f3d65d348c661899a41a9e76395d9">&#9670;&#160;</a></span>getBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TBox2.html">JGeometry::TBox2</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; * CPaneMgr::getBounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af22909ee78aea0baa3c7e27a4cbb470d" name="af22909ee78aea0baa3c7e27a4cbb470d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af22909ee78aea0baa3c7e27a4cbb470d">&#9670;&#160;</a></span>getCenterPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getCenterPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66d6f2aafbe8c601443f459a0f2a2a29" name="a66d6f2aafbe8c601443f459a0f2a2a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66d6f2aafbe8c601443f459a0f2a2a29">&#9670;&#160;</a></span>getGlobalCenterPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getGlobalCenterPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a197fee52ca640b2b266aaa5dacf9f7d1" name="a197fee52ca640b2b266aaa5dacf9f7d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a197fee52ca640b2b266aaa5dacf9f7d1">&#9670;&#160;</a></span>getGlobalPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getGlobalPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02dfb4c8541c250e8bd73f7da2a8bc9f" name="a02dfb4c8541c250e8bd73f7da2a8bc9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02dfb4c8541c250e8bd73f7da2a8bc9f">&#9670;&#160;</a></span>getGlobalPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getGlobalPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5bc8f6c0a251730b56c6d8e2371a0a45" name="a5bc8f6c0a251730b56c6d8e2371a0a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc8f6c0a251730b56c6d8e2371a0a45">&#9670;&#160;</a></span>getGlobalVtx() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> CPaneMgr::getGlobalVtx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>(*)&#160;</td>
+          <td class="paramname">[3][4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a9fd71aad1f033ac44a68d7d90b9182" name="a5a9fd71aad1f033ac44a68d7d90b9182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9fd71aad1f033ac44a68d7d90b9182">&#9670;&#160;</a></span>getGlobalVtx() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> CPaneMgr::getGlobalVtx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a722eaae12f7eedf39785e62407ab413c" name="a722eaae12f7eedf39785e62407ab413c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a722eaae12f7eedf39785e62407ab413c">&#9670;&#160;</a></span>getGlobalVtxCenter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> CPaneMgr::getGlobalVtxCenter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9e908bbc3ed49cf1d8b30e26285f195" name="ab9e908bbc3ed49cf1d8b30e26285f195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e908bbc3ed49cf1d8b30e26285f195">&#9670;&#160;</a></span>getGlobalVtxCenter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> CPaneMgr::getGlobalVtxCenter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b47b0790d9d2338a244211b8e4a50c0" name="a5b47b0790d9d2338a244211b8e4a50c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b47b0790d9d2338a244211b8e4a50c0">&#9670;&#160;</a></span>getInitBlack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> CPaneMgr::getInitBlack </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d08fa955157526fc02090d9b848cba8" name="a8d08fa955157526fc02090d9b848cba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d08fa955157526fc02090d9b848cba8">&#9670;&#160;</a></span>getInitCenterPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitCenterPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adaa2755efdbbbbff132a65c0d609a97e" name="adaa2755efdbbbbff132a65c0d609a97e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa2755efdbbbbff132a65c0d609a97e">&#9670;&#160;</a></span>getInitCenterPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitCenterPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e18dc7fb6d87a9f443d3e29c10b3302" name="a3e18dc7fb6d87a9f443d3e29c10b3302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e18dc7fb6d87a9f443d3e29c10b3302">&#9670;&#160;</a></span>getInitGlobalCenterPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitGlobalCenterPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8bf81c62e6ecf6a0674c3c4d87529d2f" name="a8bf81c62e6ecf6a0674c3c4d87529d2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf81c62e6ecf6a0674c3c4d87529d2f">&#9670;&#160;</a></span>getInitGlobalCenterPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitGlobalCenterPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8836ae8fb2e8030b4db17cb78fa58714" name="a8836ae8fb2e8030b4db17cb78fa58714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8836ae8fb2e8030b4db17cb78fa58714">&#9670;&#160;</a></span>getInitGlobalPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitGlobalPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9f2a05120d9f9e3131838d74b970587" name="ad9f2a05120d9f9e3131838d74b970587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f2a05120d9f9e3131838d74b970587">&#9670;&#160;</a></span>getInitGlobalPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitGlobalPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af00726dcc03c1dfdc47d88be4ef9e8f9" name="af00726dcc03c1dfdc47d88be4ef9e8f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af00726dcc03c1dfdc47d88be4ef9e8f9">&#9670;&#160;</a></span>getInitPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44d507a9b6a4bc337be192af7e2e06dd" name="a44d507a9b6a4bc337be192af7e2e06dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44d507a9b6a4bc337be192af7e2e06dd">&#9670;&#160;</a></span>getInitPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20bae25e08570124f3c7db99a8bc4ee3" name="a20bae25e08570124f3c7db99a8bc4ee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bae25e08570124f3c7db99a8bc4ee3">&#9670;&#160;</a></span>getInitScaleX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitScaleX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3bf18643dce5f6c80e72e188105f8ce7" name="a3bf18643dce5f6c80e72e188105f8ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bf18643dce5f6c80e72e188105f8ce7">&#9670;&#160;</a></span>getInitScaleY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitScaleY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07e775b3ae5aa1d54d1b5cffd20dfc7c" name="a07e775b3ae5aa1d54d1b5cffd20dfc7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07e775b3ae5aa1d54d1b5cffd20dfc7c">&#9670;&#160;</a></span>getInitSizeX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitSizeX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a680328bd86769a3f1d399f6680fa2cf8" name="a680328bd86769a3f1d399f6680fa2cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a680328bd86769a3f1d399f6680fa2cf8">&#9670;&#160;</a></span>getInitSizeY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getInitSizeY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c23ae03a75dd3707ced3deffefe8d77" name="a5c23ae03a75dd3707ced3deffefe8d77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c23ae03a75dd3707ced3deffefe8d77">&#9670;&#160;</a></span>getInitWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> CPaneMgr::getInitWhite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4f076c659a35a676932cdda9d1ffd3b" name="ab4f076c659a35a676932cdda9d1ffd3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f076c659a35a676932cdda9d1ffd3b">&#9670;&#160;</a></span>getPosX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getPosX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c15270ce95eafd158861ce8bfadf2e5" name="a7c15270ce95eafd158861ce8bfadf2e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c15270ce95eafd158861ce8bfadf2e5">&#9670;&#160;</a></span>getPosY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getPosY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a01201fd619141630b2fac24eb5bd6205" name="a01201fd619141630b2fac24eb5bd6205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01201fd619141630b2fac24eb5bd6205">&#9670;&#160;</a></span>getRotateZ()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getRotateZ </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abcabb5c65e829d801a4f3b09430818cd" name="abcabb5c65e829d801a4f3b09430818cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcabb5c65e829d801a4f3b09430818cd">&#9670;&#160;</a></span>getScaleX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getScaleX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cf685eaf3b5b5be1b1c6219e396cb9c" name="a2cf685eaf3b5b5be1b1c6219e396cb9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf685eaf3b5b5be1b1c6219e396cb9c">&#9670;&#160;</a></span>getScaleY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getScaleY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5929b59b318eb186a59bd4c98f0737f9" name="a5929b59b318eb186a59bd4c98f0737f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5929b59b318eb186a59bd4c98f0737f9">&#9670;&#160;</a></span>getSizeX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getSizeX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9eb470ecfcd5a59e1b202f98ec8be4a7" name="a9eb470ecfcd5a59e1b202f98ec8be4a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb470ecfcd5a59e1b202f98ec8be4a7">&#9670;&#160;</a></span>getSizeY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getSizeY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9e998cb68bce0d12f854f0a0c711ed9" name="ab9e998cb68bce0d12f854f0a0c711ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e998cb68bce0d12f854f0a0c711ed9">&#9670;&#160;</a></span>getTranslateX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getTranslateX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afec5041ececc01163c084cf87db4a2cf" name="afec5041ececc01163c084cf87db4a2cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec5041ececc01163c084cf87db4a2cf">&#9670;&#160;</a></span>getTranslateY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::getTranslateY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f24b50ca1b42f38ff7977768b5f8d0c" name="a0f24b50ca1b42f38ff7977768b5f8d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f24b50ca1b42f38ff7977768b5f8d0c">&#9670;&#160;</a></span>initiate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::initiate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJ2DPane.html">J2DPane</a> *&#160;</td>
+          <td class="paramname"><em>p_pane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRExpHeap.html">JKRExpHeap</a> *&#160;</td>
+          <td class="paramname"><em>p_heap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38b59e11bedb7c4ddb64c3f3f1ba6153" name="a38b59e11bedb7c4ddb64c3f3f1ba6153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b59e11bedb7c4ddb64c3f3f1ba6153">&#9670;&#160;</a></span>move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::move </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab98acb8540327abe8d089a759f699748" name="ab98acb8540327abe8d089a759f699748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98acb8540327abe8d089a759f699748">&#9670;&#160;</a></span>paneScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::paneScale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67cb9f7b7198c0b20b59c4d2b0726fd1" name="a67cb9f7b7198c0b20b59c4d2b0726fd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67cb9f7b7198c0b20b59c4d2b0726fd1">&#9670;&#160;</a></span>paneTrans()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::paneTrans </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad737d873cb28fde4198d93d9436b2946" name="ad737d873cb28fde4198d93d9436b2946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad737d873cb28fde4198d93d9436b2946">&#9670;&#160;</a></span>reinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::reinit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19bd1208c469e51e1c4a588e220b3534" name="a19bd1208c469e51e1c4a588e220b3534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19bd1208c469e51e1c4a588e220b3534">&#9670;&#160;</a></span>resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af30597b9d8ab4d2f5189822e9957c630" name="af30597b9d8ab4d2f5189822e9957c630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af30597b9d8ab4d2f5189822e9957c630">&#9670;&#160;</a></span>scale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::scale </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a3f907c8e3c576ea192bf9f3339dda4" name="a8a3f907c8e3c576ea192bf9f3339dda4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a3f907c8e3c576ea192bf9f3339dda4">&#9670;&#160;</a></span>scaleAnime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> CPaneMgr::scaleAnime </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f225422b801163198977d1193e5910a" name="a9f225422b801163198977d1193e5910a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f225422b801163198977d1193e5910a">&#9670;&#160;</a></span>scaleAnimeStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::scaleAnimeStart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa330dcb156c0d0c1b173f8a9907c72b0" name="aa330dcb156c0d0c1b173f8a9907c72b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa330dcb156c0d0c1b173f8a9907c72b0">&#9670;&#160;</a></span>setAlpha()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::setAlpha </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classCPaneMgrAlpha.html#a33b59afa7800bdfb81f6e14d27f8060c">CPaneMgrAlpha</a>.</p>
+
+</div>
+</div>
+<a id="adbd37933705d71e4a411047c603a84c6" name="adbd37933705d71e4a411047c603a84c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd37933705d71e4a411047c603a84c6">&#9670;&#160;</a></span>setBlackWhite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::setBlackWhite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>black</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a>&#160;</td>
+          <td class="paramname"><em>white</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fe4adeebd48206d0117c375ecaae9e8" name="a2fe4adeebd48206d0117c375ecaae9e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe4adeebd48206d0117c375ecaae9e8">&#9670;&#160;</a></span>translate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> CPaneMgr::translate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a46c9d865491cc1de5b040713445c180c" name="a46c9d865491cc1de5b040713445c180c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46c9d865491cc1de5b040713445c180c">&#9670;&#160;</a></span>field_0x20</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>* CPaneMgr::field_0x20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec7474a9c6e171cd51b4f4b866abe83b" name="aec7474a9c6e171cd51b4f4b866abe83b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7474a9c6e171cd51b4f4b866abe83b">&#9670;&#160;</a></span>field_0x60</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::field_0x60</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fbd2fd87d9bbb496e4b2aed506430b3" name="a7fbd2fd87d9bbb496e4b2aed506430b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fbd2fd87d9bbb496e4b2aed506430b3">&#9670;&#160;</a></span>field_0x62</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::field_0x62</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a348669d95d4987ae53f4de1e85ecfde6" name="a348669d95d4987ae53f4de1e85ecfde6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348669d95d4987ae53f4de1e85ecfde6">&#9670;&#160;</a></span>field_0x66</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::field_0x66</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afeccfa7df192a0a9eba94fd4b0da55f1" name="afeccfa7df192a0a9eba94fd4b0da55f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeccfa7df192a0a9eba94fd4b0da55f1">&#9670;&#160;</a></span>field_0x68</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::field_0x68</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a258fd0d2b6733e6c45367514c43cab73" name="a258fd0d2b6733e6c45367514c43cab73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a258fd0d2b6733e6c45367514c43cab73">&#9670;&#160;</a></span>mColorAnime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::mColorAnime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adec16de63f30275bbf0b1cd0296cf9d9" name="adec16de63f30275bbf0b1cd0296cf9d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adec16de63f30275bbf0b1cd0296cf9d9">&#9670;&#160;</a></span>mGlobalPos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mGlobalPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfa5f818c2878ec1d0cae4a12f34eef5" name="abfa5f818c2878ec1d0cae4a12f34eef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa5f818c2878ec1d0cae4a12f34eef5">&#9670;&#160;</a></span>mInitBlack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> CPaneMgr::mInitBlack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a381e1555f06e06f61a179ce991638f80" name="a381e1555f06e06f61a179ce991638f80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a381e1555f06e06f61a179ce991638f80">&#9670;&#160;</a></span>mInitPos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mInitPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aedf8ca9456278890f9bfc036f71c29cf" name="aedf8ca9456278890f9bfc036f71c29cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf8ca9456278890f9bfc036f71c29cf">&#9670;&#160;</a></span>mInitScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mInitScale</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13347f38e851550bbdc54f4e1990dbbe" name="a13347f38e851550bbdc54f4e1990dbbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13347f38e851550bbdc54f4e1990dbbe">&#9670;&#160;</a></span>mInitSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mInitSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd40512c4182630a1feab534e9ba2903" name="acd40512c4182630a1feab534e9ba2903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd40512c4182630a1feab534e9ba2903">&#9670;&#160;</a></span>mInitTrans</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mInitTrans</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2634e1277d018002a714df9b1874484e" name="a2634e1277d018002a714df9b1874484e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2634e1277d018002a714df9b1874484e">&#9670;&#160;</a></span>mInitWhite</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJUtility_1_1TColor.html">JUtility::TColor</a> CPaneMgr::mInitWhite</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af9fa8e0f579cf2a9d9a5b5076100f7ed" name="af9fa8e0f579cf2a9d9a5b5076100f7ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9fa8e0f579cf2a9d9a5b5076100f7ed">&#9670;&#160;</a></span>mpFirstStackSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>* CPaneMgr::mpFirstStackSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5cb9c77b701967ff7ad531ba7b22c11f" name="a5cb9c77b701967ff7ad531ba7b22c11f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb9c77b701967ff7ad531ba7b22c11f">&#9670;&#160;</a></span>mRotateOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJGeometry_1_1TVec2.html">JGeometry::TVec2</a>&lt;<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&gt; CPaneMgr::mRotateOffset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a424146d7397b4421b33dfea7848cd236" name="a424146d7397b4421b33dfea7848cd236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a424146d7397b4421b33dfea7848cd236">&#9670;&#160;</a></span>mRotateZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> CPaneMgr::mRotateZ</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3970b13b9c37bc8f0827502aca47892" name="ab3970b13b9c37bc8f0827502aca47892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3970b13b9c37bc8f0827502aca47892">&#9670;&#160;</a></span>mScaleAnime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> CPaneMgr::mScaleAnime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/d/pane/<a class="el" href="d__pane__class_8h_source.html">d_pane_class.h</a></li>
+<li>src/d/pane/<a class="el" href="d__pane__class_8cpp.html">d_pane_class.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classCPaneMgr.html">CPaneMgr</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

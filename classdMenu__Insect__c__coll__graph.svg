@@ -102,7 +102,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="570,-1215.8 496.25,-1215.8 496.25,-1196.55 570,-1196.55 570,-1215.8"/>
 <text text-anchor="middle" x="533.12" y="-1202.3" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -121,7 +121,7 @@ var sectionId = 'dynsection-1';
 <!-- Node71 -->
 <g id="Node000071" class="node">
 <title>Node71</title>
-<g id="a_Node000071"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000071"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="857.38,-866.8 770.88,-866.8 770.88,-847.55 857.38,-847.55 857.38,-866.8"/>
 <text text-anchor="middle" x="814.12" y="-853.3" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -190,7 +190,7 @@ var sectionId = 'dynsection-1';
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000021"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1078.12,-1318.8 1010.38,-1318.8 1010.38,-1299.55 1078.12,-1299.55 1078.12,-1318.8"/>
 <text text-anchor="middle" x="1044.25" y="-1305.3" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -582,7 +582,7 @@ var sectionId = 'dynsection-1';
 <!-- Node80 -->
 <g id="Node000080" class="node">
 <title>Node80</title>
-<g id="a_Node000080"><a xlink:href="structdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000080"><a xlink:href="classdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1785.75,-690.8 1682,-690.8 1682,-671.55 1785.75,-671.55 1785.75,-690.8"/>
 <text text-anchor="middle" x="1733.88" y="-677.3" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrn3Select_c</text>
 </a>
@@ -661,7 +661,7 @@ var sectionId = 'dynsection-1';
 <!-- Node37 -->
 <g id="Node000037" class="node">
 <title>Node37</title>
-<g id="a_Node000037"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000037"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="561,-592.8 505.25,-592.8 505.25,-573.55 561,-573.55 561,-592.8"/>
 <text text-anchor="middle" x="533.12" y="-579.3" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -699,7 +699,7 @@ var sectionId = 'dynsection-1';
 <!-- Node81 -->
 <g id="Node000081" class="node">
 <title>Node81</title>
-<g id="a_Node000081"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000081"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1293.25,-370.8 1224.75,-370.8 1224.75,-351.55 1293.25,-351.55 1293.25,-370.8"/>
 <text text-anchor="middle" x="1259" y="-357.3" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -717,7 +717,7 @@ var sectionId = 'dynsection-1';
 <!-- Node83 -->
 <g id="Node000083" class="node">
 <title>Node83</title>
-<g id="a_Node000083"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000083"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1291,-138.8 1227,-138.8 1227,-119.55 1291,-119.55 1291,-138.8"/>
 <text text-anchor="middle" x="1259" y="-125.3" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -735,7 +735,7 @@ var sectionId = 'dynsection-1';
 <!-- Node43 -->
 <g id="Node000043" class="node">
 <title>Node43</title>
-<g id="a_Node000043"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000043"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="341.38,-630.8 243.62,-630.8 243.62,-611.55 341.38,-611.55 341.38,-630.8"/>
 <text text-anchor="middle" x="292.5" y="-617.3" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>
@@ -917,7 +917,7 @@ var sectionId = 'dynsection-1';
 <!-- Node72 -->
 <g id="Node000072" class="node">
 <title>Node72</title>
-<g id="a_Node000072"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000072"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1075.12,-912.8 1013.38,-912.8 1013.38,-893.55 1075.12,-893.55 1075.12,-912.8"/>
 <text text-anchor="middle" x="1044.25" y="-899.3" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

@@ -1,8 +1,8 @@
 <map id="COutFontSet_c" name="COutFontSet_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="409,633,521,659"/>
-<area shape="rect" id="Node000002" href="$structJ2DTextBox.html" title=" " alt="" coords="419,544,511,570"/>
+<area shape="rect" id="Node000002" href="$classJ2DTextBox.html" title=" " alt="" coords="419,544,511,570"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="468,586,468,633,462,633,462,586"/>
-<area shape="rect" id="Node000003" href="$structJ2DPane.html" title=" " alt="" coords="284,439,358,464"/>
+<area shape="rect" id="Node000003" href="$classJ2DPane.html" title=" " alt="" coords="284,439,358,464"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,471,450,542,447,546,348,476"/>
 <area shape="rect" id="Node000004" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="5,288,173,313"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="105,325,131,361,167,395,196,412,227,425,285,441,283,446,225,430,193,417,164,399,127,365,101,328"/>
@@ -21,7 +21,7 @@
 <area shape="rect" id="Node000010" href="$classJSULink.html" title=" " alt="" coords="249,213,351,238"/>
 <area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="302,152,302,213,297,213,297,152"/>
 <area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="292,254,278,288,273,286,287,252"/>
-<area shape="rect" id="Node000011" href="$structJ2DAnmTransform.html" title=" " alt="" coords="369,288,500,313"/>
+<area shape="rect" id="Node000011" href="$classJ2DAnmTransform.html" title=" " alt="" coords="369,288,500,313"/>
 <area shape="poly" id="edge13_Node000003_Node000011" title=" " alt="" coords="395,323,375,339,354,382,328,439,324,437,349,379,371,336,391,319"/>
 <area shape="rect" id="Node000012" href="$structJ2DAnmBase.html" title=" " alt="" coords="384,213,485,238"/>
 <area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="437,254,437,287,432,287,432,254"/>

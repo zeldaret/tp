@@ -1034,7 +1034,7 @@
 <!-- Node101 -->
 <g id="Node000101" class="node">
 <title>Node101</title>
-<g id="a_Node000101"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000101"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1365.75,-852.62 1304,-852.62 1304,-833.38 1365.75,-833.38 1365.75,-852.62"/>
 <text text-anchor="middle" x="1334.88" y="-839.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>
@@ -1053,7 +1053,7 @@
 <!-- Node102 -->
 <g id="Node000102" class="node">
 <title>Node102</title>
-<g id="a_Node000102"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000102"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1161.12,-918.62 1074.62,-918.62 1074.62,-899.38 1161.12,-899.38 1161.12,-918.62"/>
 <text text-anchor="middle" x="1117.88" y="-905.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -1071,7 +1071,7 @@
 <!-- Node103 -->
 <g id="Node000103" class="node">
 <title>Node103</title>
-<g id="a_Node000103"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000103"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="917.12,-808.62 861.38,-808.62 861.38,-789.38 917.12,-789.38 917.12,-808.62"/>
 <text text-anchor="middle" x="889.25" y="-795.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -1141,7 +1141,7 @@
 <!-- Node109 -->
 <g id="Node000109" class="node">
 <title>Node109</title>
-<g id="a_Node000109"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000109"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="706.12,-771.62 608.38,-771.62 608.38,-752.38 706.12,-752.38 706.12,-771.62"/>
 <text text-anchor="middle" x="657.25" y="-758.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

@@ -1,6 +1,6 @@
 <map id="J2DWindow" name="J2DWindow">
 <area shape="rect" id="Node000001" title=" " alt="" coords="608,599,698,624"/>
-<area shape="rect" id="Node000002" href="$structJ2DPane.html" title=" " alt="" coords="337,435,412,461"/>
+<area shape="rect" id="Node000002" href="$classJ2DPane.html" title=" " alt="" coords="337,435,412,461"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,467,634,596,631,600,407,471"/>
 <area shape="rect" id="Node000003" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="5,301,173,327"/>
 <area shape="poly" id="edge20_Node000001_Node000003" title=" " alt="" coords="92,342,99,377,115,410,151,450,186,481,221,503,256,519,337,543,438,572,527,593,608,604,607,609,526,599,436,577,335,548,254,524,218,507,183,485,148,454,111,412,94,378,87,343"/>
@@ -20,7 +20,7 @@
 <area shape="rect" id="Node000009" href="$classJSULink.html" title=" " alt="" coords="249,213,351,238"/>
 <area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="302,152,302,213,297,213,297,152"/>
 <area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="293,254,277,302,272,300,288,252"/>
-<area shape="rect" id="Node000010" href="$structJ2DAnmTransform.html" title=" " alt="" coords="369,301,500,327"/>
+<area shape="rect" id="Node000010" href="$classJ2DAnmTransform.html" title=" " alt="" coords="369,301,500,327"/>
 <area shape="poly" id="edge12_Node000002_Node000010" title=" " alt="" coords="427,343,397,412,384,436,379,434,392,410,422,341"/>
 <area shape="rect" id="Node000011" href="$structJ2DAnmBase.html" title=" " alt="" coords="384,213,485,238"/>
 <area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="437,254,437,301,432,301,432,254"/>

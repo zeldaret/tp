@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="312.5,-417.25 238.75,-417.25 238.75,-398 312.5,-398 312.5,-417.25"/>
 <text text-anchor="middle" x="275.62" y="-403.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -40,7 +40,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="487.88,-424.25 401.38,-424.25 401.38,-405 487.88,-405 487.88,-424.25"/>
 <text text-anchor="middle" x="444.62" y="-410.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -109,7 +109,7 @@
 <!-- Node113 -->
 <g id="Node000113" class="node">
 <title>Node113</title>
-<g id="a_Node000113"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000113"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1223.38,-221.25 1155.62,-221.25 1155.62,-202 1223.38,-202 1223.38,-221.25"/>
 <text text-anchor="middle" x="1189.5" y="-207.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -280,7 +280,7 @@
 <!-- Node122 -->
 <g id="Node000122" class="node">
 <title>Node122</title>
-<g id="a_Node000122"><a xlink:href="structdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000122"><a xlink:href="classdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1237.62,-1145.25 1141.38,-1145.25 1141.38,-1126 1237.62,-1126 1237.62,-1145.25"/>
 <text text-anchor="middle" x="1189.5" y="-1131.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrnArrow_c</text>
 </a>
@@ -299,7 +299,7 @@
 <!-- Node123 -->
 <g id="Node000123" class="node">
 <title>Node123</title>
-<g id="a_Node000123"><a xlink:href="structdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000123"><a xlink:href="classdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1468.88,-1310.25 1365.12,-1310.25 1365.12,-1291 1468.88,-1291 1468.88,-1310.25"/>
 <text text-anchor="middle" x="1417" y="-1296.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrn3Select_c</text>
 </a>
@@ -337,7 +337,7 @@
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000022"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="303.5,-745.25 247.75,-745.25 247.75,-726 303.5,-726 303.5,-745.25"/>
 <text text-anchor="middle" x="275.62" y="-731.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -375,7 +375,7 @@
 <!-- Node67 -->
 <g id="Node000067" class="node">
 <title>Node67</title>
-<g id="a_Node000067"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000067"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="984.38,-622.25 920.38,-622.25 920.38,-603 984.38,-603 984.38,-622.25"/>
 <text text-anchor="middle" x="952.38" y="-608.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -544,7 +544,7 @@
 <!-- Node59 -->
 <g id="Node000059" class="node">
 <title>Node59</title>
-<g id="a_Node000059"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000059"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="709,-948.25 647.25,-948.25 647.25,-929 709,-929 709,-948.25"/>
 <text text-anchor="middle" x="678.12" y="-934.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

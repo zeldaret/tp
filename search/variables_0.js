@@ -1276,7 +1276,7 @@ var searchData=
   ['_5fctors_1273',['_ctors',['../____init__cpp__exceptions_8cpp.html#a417934da9e21983b7cdf2186ad01b6ae',1,'_ctors:&#160;__init_cpp_exceptions.cpp'],['../executor_8cpp.html#aad94de30cc05482f2f790d4ed5f82094',1,'_ctors:&#160;executor.cpp']]],
   ['_5fdb_5fstack_5fend_1274',['_db_stack_end',['../OS_8c.html#aa1e39614b5e4202c93d53c3f87b2788e',1,'OS.c']]],
   ['_5fdtors_1275',['_dtors',['../executor_8cpp.html#a0d4b78e5ae54794880652328ff9d5970',1,'executor.cpp']]],
-  ['_5ffc_1276',['_fc',['../structJ2DPane.html#a1186c09ad8f55752dc023cf73bbec0aa',1,'J2DPane']]],
+  ['_5ffc_1276',['_fc',['../classJ2DPane.html#a1186c09ad8f55752dc023cf73bbec0aa',1,'J2DPane']]],
   ['_5flib_5fversion_1277',['_LIB_VERSION',['../fdlibm_8h.html#a1109b55247c907ad2a0691d2161d07de',1,'fdlibm.h']]],
   ['_5fmetrotrk_5fhas_5fframing_1278',['_MetroTRK_Has_Framing',['../dolphin__trk__glue_8c.html#a4122af733142fdb3655f5679c9f33dba',1,'dolphin_trk_glue.c']]],
   ['_5fpad0_1279',['_pad0',['../structPPC__GQR__t.html#ab1cb8e46fc876b97dda7160691b6ed2f',1,'PPC_GQR_t']]],

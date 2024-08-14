@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="522.75,-1062.25 449,-1062.25 449,-1043 522.75,-1043 522.75,-1062.25"/>
 <text text-anchor="middle" x="485.88" y="-1048.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -782,7 +782,7 @@
 <!-- Node63 -->
 <g id="Node000063" class="node">
 <title>Node63</title>
-<g id="a_Node000063"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000063"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="297.88,-1927.25 236.12,-1927.25 236.12,-1908 297.88,-1908 297.88,-1927.25"/>
 <text text-anchor="middle" x="267" y="-1913.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>
@@ -1169,7 +1169,7 @@
 <!-- Node102 -->
 <g id="Node000102" class="node">
 <title>Node102</title>
-<g id="a_Node000102"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000102"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="517.88,-1709.25 453.88,-1709.25 453.88,-1690 517.88,-1690 517.88,-1709.25"/>
 <text text-anchor="middle" x="485.88" y="-1695.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>

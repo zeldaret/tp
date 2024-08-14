@@ -1040,7 +1040,7 @@
 <!-- Node217 -->
 <g id="Node000217" class="node">
 <title>Node217</title>
-<g id="a_Node000217"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000217"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="83.5,-77.89 27.75,-77.89 27.75,-58.64 83.5,-58.64 83.5,-77.89"/>
 <text text-anchor="middle" x="55.62" y="-64.39" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -1078,7 +1078,7 @@
 <!-- Node250 -->
 <g id="Node000250" class="node">
 <title>Node250</title>
-<g id="a_Node000250"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000250"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="300.12,-183.89 238.38,-183.89 238.38,-164.64 300.12,-164.64 300.12,-183.89"/>
 <text text-anchor="middle" x="269.25" y="-170.39" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

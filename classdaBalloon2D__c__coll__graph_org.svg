@@ -912,7 +912,7 @@
 <!-- Node129 -->
 <g id="Node000129" class="node">
 <title>Node129</title>
-<g id="a_Node000129"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000129"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="474.38,-239.77 418.62,-239.77 418.62,-220.52 474.38,-220.52 474.38,-239.77"/>
 <text text-anchor="middle" x="446.5" y="-226.27" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -930,7 +930,7 @@
 <!-- Node159 -->
 <g id="Node000159" class="node">
 <title>Node159</title>
-<g id="a_Node000159"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000159"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="724.75,-239.77 638.25,-239.77 638.25,-220.52 724.75,-220.52 724.75,-239.77"/>
 <text text-anchor="middle" x="681.5" y="-226.27" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -949,7 +949,7 @@
 <!-- Node163 -->
 <g id="Node000163" class="node">
 <title>Node163</title>
-<g id="a_Node000163"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000163"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1017,-104.77 953,-104.77 953,-85.52 1017,-85.52 1017,-104.77"/>
 <text text-anchor="middle" x="985" y="-91.27" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -1044,7 +1044,7 @@
 <!-- Node158 -->
 <g id="Node000158" class="node">
 <title>Node158</title>
-<g id="a_Node000158"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000158"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1015.88,-295.77 954.12,-295.77 954.12,-276.52 1015.88,-276.52 1015.88,-295.77"/>
 <text text-anchor="middle" x="985" y="-282.27" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

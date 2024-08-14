@@ -1,6 +1,6 @@
 <map id="JFWSystem" name="JFWSystem">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2484,802,2576,828"/>
-<area shape="rect" id="Node000002" href="$structJKRExpHeap.html" title=" " alt="" coords="1552,657,1650,683"/>
+<area shape="rect" id="Node000002" href="$classJKRExpHeap.html" title=" " alt="" coords="1552,657,1650,683"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1666,667,1784,669,1941,677,2117,694,2295,722,2380,742,2461,774,2509,799,2506,804,2459,779,2378,747,2293,727,2117,699,1940,682,1784,674,1666,672"/>
 <area shape="rect" id="Node000003" href="$structJKRHeap.html" title=" " alt="" coords="1189,650,1267,676"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1282,661,1552,666,1552,671,1282,667"/>

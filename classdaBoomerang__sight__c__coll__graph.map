@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="1740,636,1891,662"/>
 <area shape="rect" id="Node000002" href="$structJ2DScreen.html" title=" " alt="" coords="1521,348,1606,374"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1619,379,1634,390,1667,420,1697,454,1749,525,1787,590,1810,635,1806,637,1783,592,1744,528,1693,457,1663,424,1631,394,1616,384"/>
-<area shape="rect" id="Node000003" href="$structJ2DPane.html" title=" " alt="" coords="1203,522,1278,547"/>
+<area shape="rect" id="Node000003" href="$classJ2DPane.html" title=" " alt="" coords="1203,522,1278,547"/>
 <area shape="poly" id="edge43_Node000001_Node000003" title=" " alt="" coords="1293,535,1375,542,1482,555,1600,574,1717,603,1756,617,1791,633,1788,638,1754,622,1716,608,1599,580,1481,560,1375,547,1293,540"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1289,513,1376,472,1423,445,1468,415,1480,403,1492,390,1524,372,1526,377,1496,394,1484,406,1472,419,1426,450,1378,477,1291,518"/>
 <area shape="rect" id="Node000004" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="852,462,1020,487"/>
@@ -22,7 +22,7 @@
 <area shape="rect" id="Node000010" href="$classJSULink.html" title=" " alt="" coords="585,539,687,565"/>
 <area shape="poly" id="edge12_Node000010_Node000009" title=" " alt="" coords="392,549,584,549,584,555,392,555"/>
 <area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="703,545,862,536,862,541,703,551"/>
-<area shape="rect" id="Node000011" href="$structJ2DAnmTransform.html" title=" " alt="" coords="871,611,1001,637"/>
+<area shape="rect" id="Node000011" href="$classJ2DAnmTransform.html" title=" " alt="" coords="871,611,1001,637"/>
 <area shape="poly" id="edge54_Node000001_Node000011" title=" " alt="" coords="1017,623,1740,644,1740,650,1017,629"/>
 <area shape="poly" id="edge13_Node000003_Node000011" title=" " alt="" coords="996,604,1202,543,1203,548,998,609"/>
 <area shape="rect" id="Node000012" href="$structJ2DAnmBase.html" title=" " alt="" coords="586,704,687,730"/>

@@ -647,7 +647,7 @@
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1279.75,-128.82 1211.25,-128.82 1211.25,-109.57 1279.75,-109.57 1279.75,-128.82"/>
 <text text-anchor="middle" x="1245.5" y="-115.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -686,7 +686,7 @@
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000028"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1021.12,-281.82 965.38,-281.82 965.38,-262.57 1021.12,-262.57 1021.12,-281.82"/>
 <text text-anchor="middle" x="993.25" y="-268.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -704,7 +704,7 @@
 <!-- Node43 -->
 <g id="Node000043" class="node">
 <title>Node43</title>
-<g id="a_Node000043"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000043"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1277.5,-281.82 1213.5,-281.82 1213.5,-262.57 1277.5,-262.57 1277.5,-281.82"/>
 <text text-anchor="middle" x="1245.5" y="-268.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -885,7 +885,7 @@
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000036"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="795.88,-301.82 698.12,-301.82 698.12,-282.57 795.88,-282.57 795.88,-301.82"/>
 <text text-anchor="middle" x="747" y="-288.32" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

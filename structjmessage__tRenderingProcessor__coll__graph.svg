@@ -556,7 +556,7 @@ var sectionId = 'dynsection-1';
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000024"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1503.12,-104.51 1434.62,-104.51 1434.62,-85.26 1503.12,-85.26 1503.12,-104.51"/>
 <text text-anchor="middle" x="1468.88" y="-91.01" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -575,7 +575,7 @@ var sectionId = 'dynsection-1';
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000025"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1244.12,-241.51 1188.38,-241.51 1188.38,-222.26 1244.12,-222.26 1244.12,-241.51"/>
 <text text-anchor="middle" x="1216.25" y="-228.01" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -593,7 +593,7 @@ var sectionId = 'dynsection-1';
 <!-- Node38 -->
 <g id="Node000038" class="node">
 <title>Node38</title>
-<g id="a_Node000038"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000038"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1500.88,-278.51 1436.88,-278.51 1436.88,-259.26 1500.88,-259.26 1500.88,-278.51"/>
 <text text-anchor="middle" x="1468.88" y="-265.01" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -774,7 +774,7 @@ var sectionId = 'dynsection-1';
 <!-- Node33 -->
 <g id="Node000033" class="node">
 <title>Node33</title>
-<g id="a_Node000033"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000033"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1004.62,-234.51 906.88,-234.51 906.88,-215.26 1004.62,-215.26 1004.62,-234.51"/>
 <text text-anchor="middle" x="955.75" y="-221.01" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

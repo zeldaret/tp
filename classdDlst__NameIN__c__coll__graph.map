@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1518,87,1597,118,1662,156,1659,161,1595,122,1516,92"/>
 <area shape="rect" id="Node000003" href="$structJ2DScreen.html" title=" " alt="" coords="1410,255,1495,281"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1498,246,1647,183,1649,188,1500,251"/>
-<area shape="rect" id="Node000004" href="$structJ2DPane.html" title=" " alt="" coords="1167,126,1241,152"/>
+<area shape="rect" id="Node000004" href="$classJ2DPane.html" title=" " alt="" coords="1167,126,1241,152"/>
 <area shape="poly" id="edge46_Node000001_Node000004" title=" " alt="" coords="1257,140,1619,165,1619,170,1257,145"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1257,148,1318,167,1380,196,1416,225,1443,253,1439,257,1412,229,1377,201,1316,172,1256,153"/>
 <area shape="rect" id="Node000005" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="832,33,999,58"/>
@@ -24,7 +24,7 @@
 <area shape="rect" id="Node000011" href="$classJSULink.html" title=" " alt="" coords="564,242,667,268"/>
 <area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="393,250,564,252,564,257,392,255"/>
 <area shape="poly" id="edge12_Node000007_Node000011" title=" " alt="" coords="682,264,714,266,746,263,778,255,806,239,817,224,818,206,819,187,830,168,847,155,850,160,834,171,824,188,823,207,822,226,809,243,780,260,747,268,714,271,682,270"/>
-<area shape="rect" id="Node000012" href="$structJ2DAnmTransform.html" title=" " alt="" coords="850,82,981,108"/>
+<area shape="rect" id="Node000012" href="$classJ2DAnmTransform.html" title=" " alt="" coords="850,82,981,108"/>
 <area shape="poly" id="edge14_Node000004_Node000012" title=" " alt="" coords="996,104,1117,123,1167,130,1166,136,1117,128,995,109"/>
 <area shape="rect" id="Node000013" href="$structJ2DAnmBase.html" title=" " alt="" coords="565,183,666,209"/>
 <area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="665,175,831,116,865,106,867,111,833,121,667,180"/>

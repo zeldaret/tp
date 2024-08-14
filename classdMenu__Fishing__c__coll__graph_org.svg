@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="701.88,-698.25 628.12,-698.25 628.12,-679 701.88,-679 701.88,-698.25"/>
 <text text-anchor="middle" x="665" y="-684.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -57,7 +57,7 @@
 <!-- Node72 -->
 <g id="Node000072" class="node">
 <title>Node72</title>
-<g id="a_Node000072"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000072"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="954.88,-709.25 868.38,-709.25 868.38,-690 954.88,-690 954.88,-709.25"/>
 <text text-anchor="middle" x="911.62" y="-695.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -126,7 +126,7 @@
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000021"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="945.5,-866.25 877.75,-866.25 877.75,-847 945.5,-847 945.5,-866.25"/>
 <text text-anchor="middle" x="911.62" y="-852.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -576,7 +576,7 @@
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000036"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="692.88,-452.25 637.12,-452.25 637.12,-433 692.88,-433 692.88,-452.25"/>
 <text text-anchor="middle" x="665" y="-438.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -594,7 +594,7 @@
 <!-- Node69 -->
 <g id="Node000069" class="node">
 <title>Node69</title>
-<g id="a_Node000069"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000069"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1178.25,-559.25 1109.75,-559.25 1109.75,-540 1178.25,-540 1178.25,-559.25"/>
 <text text-anchor="middle" x="1144" y="-545.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -622,7 +622,7 @@
 <!-- Node74 -->
 <g id="Node000074" class="node">
 <title>Node74</title>
-<g id="a_Node000074"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000074"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="943.62,-111.25 879.62,-111.25 879.62,-92 943.62,-92 943.62,-111.25"/>
 <text text-anchor="middle" x="911.62" y="-97.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -681,7 +681,7 @@
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000042"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="471,-415.25 373.25,-415.25 373.25,-396 471,-396 471,-415.25"/>
 <text text-anchor="middle" x="422.12" y="-401.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>
@@ -850,7 +850,7 @@
 <!-- Node71 -->
 <g id="Node000071" class="node">
 <title>Node71</title>
-<g id="a_Node000071"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000071"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1174.88,-723.25 1113.12,-723.25 1113.12,-704 1174.88,-704 1174.88,-723.25"/>
 <text text-anchor="middle" x="1144" y="-709.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

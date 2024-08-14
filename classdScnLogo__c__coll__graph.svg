@@ -641,7 +641,7 @@ var sectionId = 'dynsection-1';
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000042"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1136.38,-664.87 1062.62,-664.87 1062.62,-645.62 1136.38,-645.62 1136.38,-664.87"/>
 <text text-anchor="middle" x="1099.5" y="-651.37" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -669,7 +669,7 @@ var sectionId = 'dynsection-1';
 <!-- Node65 -->
 <g id="Node000065" class="node">
 <title>Node65</title>
-<g id="a_Node000065"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000065"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1643,-194.87 1575.25,-194.87 1575.25,-175.62 1643,-175.62 1643,-194.87"/>
 <text text-anchor="middle" x="1609.12" y="-181.37" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -1101,7 +1101,7 @@ var sectionId = 'dynsection-1';
 <!-- Node46 -->
 <g id="Node000046" class="node">
 <title>Node46</title>
-<g id="a_Node000046"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000046"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1641.12,-505.87 1577.12,-505.87 1577.12,-486.62 1641.12,-486.62 1641.12,-505.87"/>
 <text text-anchor="middle" x="1609.12" y="-492.37" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -1120,7 +1120,7 @@ var sectionId = 'dynsection-1';
 <!-- Node47 -->
 <g id="Node000047" class="node">
 <title>Node47</title>
-<g id="a_Node000047"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000047"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1344.38,-575.87 1288.62,-575.87 1288.62,-556.62 1344.38,-556.62 1344.38,-575.87"/>
 <text text-anchor="middle" x="1316.5" y="-562.37" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>

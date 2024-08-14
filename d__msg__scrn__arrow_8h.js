@@ -1,4 +1,4 @@
 var d__msg__scrn__arrow_8h =
 [
-    [ "dMsgScrnArrow_c", "structdMsgScrnArrow__c.html", "structdMsgScrnArrow__c" ]
+    [ "dMsgScrnArrow_c", "classdMsgScrnArrow__c.html", "classdMsgScrnArrow__c" ]
 ];

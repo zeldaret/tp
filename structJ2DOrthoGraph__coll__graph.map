@@ -1,6 +1,6 @@
 <map id="J2DOrthoGraph" name="J2DOrthoGraph">
 <area shape="rect" id="Node000001" title=" " alt="" coords="49,289,161,315"/>
-<area shape="rect" id="Node000002" href="$structJ2DGrafContext.html" title=" " alt="" coords="206,214,319,240"/>
+<area shape="rect" id="Node000002" href="$classJ2DGrafContext.html" title=" " alt="" coords="206,214,319,240"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,249,133,291,130,286,221,244"/>
 <area shape="rect" id="Node000003" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="5,80,173,106"/>
 <area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="94,121,107,288,101,289,88,121"/>

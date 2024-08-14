@@ -164,7 +164,7 @@
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000032"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1904.12,-245.88 1836.38,-245.88 1836.38,-226.62 1904.12,-226.62 1904.12,-245.88"/>
 <text text-anchor="middle" x="1870.25" y="-232.38" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>

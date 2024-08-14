@@ -1,0 +1,2069 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: JKRArchive Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classJKRArchive.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
+<a href="classJKRArchive-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">JKRArchive Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__jsystem.html">JSystem</a> &raquo; <a class="el" href="group__jsystem-jkernel.html">JKernel</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="JKRArchive_8h_source.html">JKRArchive.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for JKRArchive:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classJKRArchive__inherit__graph.svg" width="560" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for JKRArchive:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classJKRArchive__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive_1_1CArcName.html">CArcName</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">SDIDirEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJKRArchive_1_1SDirEntry.html">SDirEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:afa04710b1fffa15f661f0dd3a66bba3e" id="r_afa04710b1fffa15f661f0dd3a66bba3e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">EMountMode</a> { <br />
+&#160;&#160;<a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3ea59ff20ff12931705e7c27dd9f7dd78b9">UNKNOWN_MOUNT_MODE</a> = 0
+, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3ead9ab5e2614c797d8d8a671826c0672e6">MOUNT_MEM</a> = 1
+, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3eabf06201e60e8257b5dbb1d4a329aae38">MOUNT_ARAM</a> = 2
+, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3ea00b3eff8f4f0819fced08c2f2e035b87">MOUNT_DVD</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3ea67dce5f8ace1ceea567acdba05e276ec">MOUNT_COMP</a> = 4
+<br />
+ }</td></tr>
+<tr class="separator:afa04710b1fffa15f661f0dd3a66bba3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf19e3c6e754c27610ed30a8acd1b0f" id="r_adcf19e3c6e754c27610ed30a8acd1b0f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a> { <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0fa7ada7bee31268bae4ae8b40f883df688">UNKNOWN_MOUNT_DIRECTION</a> = 0
+, <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0fa86fa0b18dcc03c883f8dfd8733ecf72e">MOUNT_DIRECTION_HEAD</a> = 1
+, <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0fa5f9951896716900fbc7c491658354f8a">MOUNT_DIRECTION_TAIL</a> = 2
+ }</td></tr>
+<tr class="separator:adcf19e3c6e754c27610ed30a8acd1b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a498e53a85fbf46624774cc4a62a79eff" id="r_a498e53a85fbf46624774cc4a62a79eff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a498e53a85fbf46624774cc4a62a79eff">~JKRArchive</a> ()</td></tr>
+<tr class="separator:a498e53a85fbf46624774cc4a62a79eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a878f03fa4834ffe84c7da51ef37e2020" id="r_a878f03fa4834ffe84c7da51ef37e2020"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a878f03fa4834ffe84c7da51ef37e2020">getDirEntry</a> (<a class="el" href="structJKRArchive_1_1SDirEntry.html">SDirEntry</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a878f03fa4834ffe84c7da51ef37e2020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5773e462f0144b8c4ef6a7d066e08f34" id="r_a5773e462f0144b8c4ef6a7d066e08f34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a5773e462f0144b8c4ef6a7d066e08f34">getIdxResource</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:a5773e462f0144b8c4ef6a7d066e08f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61cb0751e6a9c7dfd9df4b243b86325e" id="r_a61cb0751e6a9c7dfd9df4b243b86325e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a61cb0751e6a9c7dfd9df4b243b86325e">getResource</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:a61cb0751e6a9c7dfd9df4b243b86325e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea775e0abef3aba98dbaf049ec3885a5" id="r_aea775e0abef3aba98dbaf049ec3885a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#aea775e0abef3aba98dbaf049ec3885a5">readIdxResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:aea775e0abef3aba98dbaf049ec3885a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89ab74b9bf603168e373b2b567ff1909" id="r_a89ab74b9bf603168e373b2b567ff1909"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a89ab74b9bf603168e373b2b567ff1909">readResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:a89ab74b9bf603168e373b2b567ff1909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358b6a86aa25bf48e98dc0a09317459f" id="r_a358b6a86aa25bf48e98dc0a09317459f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a358b6a86aa25bf48e98dc0a09317459f">countResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a358b6a86aa25bf48e98dc0a09317459f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4abd59f5344dfabd21b18ec5139419c4" id="r_a4abd59f5344dfabd21b18ec5139419c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a4abd59f5344dfabd21b18ec5139419c4">getFileAttribute</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a4abd59f5344dfabd21b18ec5139419c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c24a6942ce0ee104f4b27895fa7a57" id="r_ab1c24a6942ce0ee104f4b27895fa7a57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ab1c24a6942ce0ee104f4b27895fa7a57">findNameResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ab1c24a6942ce0ee104f4b27895fa7a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add1f4ece843a59c13bc86a97d9fb901c" id="r_add1f4ece843a59c13bc86a97d9fb901c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#add1f4ece843a59c13bc86a97d9fb901c">isSameName</a> (<a class="el" href="classJKRArchive_1_1CArcName.html">CArcName</a> &amp;, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:add1f4ece843a59c13bc86a97d9fb901c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76ac157a8c8e44ea9eef708fb82a9ee" id="r_af76ac157a8c8e44ea9eef708fb82a9ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">SDIDirEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#af76ac157a8c8e44ea9eef708fb82a9ee">findResType</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af76ac157a8c8e44ea9eef708fb82a9ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab712f9167a7644c3917c879f4c07c54b" id="r_ab712f9167a7644c3917c879f4c07c54b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">SDIDirEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ab712f9167a7644c3917c879f4c07c54b">findDirectory</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ab712f9167a7644c3917c879f4c07c54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d78a01c7959b1c437c9d34e5b52486" id="r_a28d78a01c7959b1c437c9d34e5b52486"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a28d78a01c7959b1c437c9d34e5b52486">findTypeResource</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a28d78a01c7959b1c437c9d34e5b52486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02333be19126b889e5b6c30d8f9a0b67" id="r_a02333be19126b889e5b6c30d8f9a0b67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a02333be19126b889e5b6c30d8f9a0b67">findFsResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a02333be19126b889e5b6c30d8f9a0b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a18928bc567776ca2118d6b3bcfb714" id="r_a9a18928bc567776ca2118d6b3bcfb714"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a9a18928bc567776ca2118d6b3bcfb714">findIdxResource</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a9a18928bc567776ca2118d6b3bcfb714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41bbc7462e9d6d4713e6b9f9e32580bd" id="r_a41bbc7462e9d6d4713e6b9f9e32580bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a41bbc7462e9d6d4713e6b9f9e32580bd">findPtrResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a41bbc7462e9d6d4713e6b9f9e32580bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8a15c3d31135236456aaf5bb464b254" id="r_ad8a15c3d31135236456aaf5bb464b254"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ad8a15c3d31135236456aaf5bb464b254">findIdResource</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ad8a15c3d31135236456aaf5bb464b254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c57e4360f849edec191bb6b23502162" id="r_a1c57e4360f849edec191bb6b23502162"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a1c57e4360f849edec191bb6b23502162">becomeCurrent</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:a1c57e4360f849edec191bb6b23502162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad18defd040ac431d328a26fa3c30e059" id="r_ad18defd040ac431d328a26fa3c30e059"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ad18defd040ac431d328a26fa3c30e059">getResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:ad18defd040ac431d328a26fa3c30e059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a5972f3fb39f0007687b6ca3bf5872" id="r_a27a5972f3fb39f0007687b6ca3bf5872"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a27a5972f3fb39f0007687b6ca3bf5872">getResource</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:a27a5972f3fb39f0007687b6ca3bf5872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fcb621083771add651dfc278bf6076e" id="r_a9fcb621083771add651dfc278bf6076e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a9fcb621083771add651dfc278bf6076e">readResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:a9fcb621083771add651dfc278bf6076e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a984a5a4cb1a032cb1c04e9a18cafb962" id="r_a984a5a4cb1a032cb1c04e9a18cafb962"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a984a5a4cb1a032cb1c04e9a18cafb962">readResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:a984a5a4cb1a032cb1c04e9a18cafb962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2f71d7118eb21c1e628d90dcf2bd423" id="r_ae2f71d7118eb21c1e628d90dcf2bd423"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ae2f71d7118eb21c1e628d90dcf2bd423">removeResourceAll</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="separator:ae2f71d7118eb21c1e628d90dcf2bd423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a15b5c09eed77a07c47598b2770d29" id="r_a81a15b5c09eed77a07c47598b2770d29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a81a15b5c09eed77a07c47598b2770d29">removeResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *)</td></tr>
+<tr class="separator:a81a15b5c09eed77a07c47598b2770d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c527849cfe8e2214eea51f7da72bdb5" id="r_a6c527849cfe8e2214eea51f7da72bdb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a6c527849cfe8e2214eea51f7da72bdb5">detachResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *)</td></tr>
+<tr class="separator:a6c527849cfe8e2214eea51f7da72bdb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bad384b19e578e993d8c4363f6d6b94" id="r_a3bad384b19e578e993d8c4363f6d6b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a3bad384b19e578e993d8c4363f6d6b94">getResSize</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a3bad384b19e578e993d8c4363f6d6b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30e4c64184a8032fe1fe620f9ed91686" id="r_a30e4c64184a8032fe1fe620f9ed91686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a30e4c64184a8032fe1fe620f9ed91686">countFile</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a30e4c64184a8032fe1fe620f9ed91686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09be25ae4902a90d31cf4ebfb6325104" id="r_a09be25ae4902a90d31cf4ebfb6325104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="classJKRFileFinder.html">JKRFileFinder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a09be25ae4902a90d31cf4ebfb6325104">getFirstFile</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a09be25ae4902a90d31cf4ebfb6325104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580f252b34389d86d134bfd574e2299c" id="r_a580f252b34389d86d134bfd574e2299c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a580f252b34389d86d134bfd574e2299c">getExpandedResSize</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a580f252b34389d86d134bfd574e2299c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb6095234708970d6a6e55f5f4e186b" id="r_abbb6095234708970d6a6e55f5f4e186b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#abbb6095234708970d6a6e55f5f4e186b">fetchResource</a> (<a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> *)=0</td></tr>
+<tr class="separator:abbb6095234708970d6a6e55f5f4e186b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d318401fd71860537691d82a399866d" id="r_a7d318401fd71860537691d82a399866d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a7d318401fd71860537691d82a399866d">fetchResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> *)=0</td></tr>
+<tr class="separator:a7d318401fd71860537691d82a399866d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3fad780270481a1c936b2a1e3787ce8" id="r_af3fad780270481a1c936b2a1e3787ce8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#af3fad780270481a1c936b2a1e3787ce8">setExpandSize</a> (<a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:af3fad780270481a1c936b2a1e3787ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196cc0d9bac3dc93bb98268f328d8d91" id="r_a196cc0d9bac3dc93bb98268f328d8d91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a196cc0d9bac3dc93bb98268f328d8d91">getExpandSize</a> (<a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a196cc0d9bac3dc93bb98268f328d8d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0853ce3c739cfa57a41b0c68172196f6" id="r_a0853ce3c739cfa57a41b0c68172196f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a0853ce3c739cfa57a41b0c68172196f6">countFile</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a0853ce3c739cfa57a41b0c68172196f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff438b7d398d507ab778d387f30e0e0" id="r_a1ff438b7d398d507ab778d387f30e0e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a1ff438b7d398d507ab778d387f30e0e0">countDirectory</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a1ff438b7d398d507ab778d387f30e0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78de7663c051b7c07dd91a1fc771f9d" id="r_ac78de7663c051b7c07dd91a1fc771f9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ac78de7663c051b7c07dd91a1fc771f9d">getMountMode</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ac78de7663c051b7c07dd91a1fc771f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06b485b2e06e4f5d367cc8cf7245ee6b" id="r_a06b485b2e06e4f5d367cc8cf7245ee6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a06b485b2e06e4f5d367cc8cf7245ee6b">isFileEntry</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
+<tr class="separator:a06b485b2e06e4f5d367cc8cf7245ee6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJKRFileLoader"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJKRFileLoader')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a></td></tr>
+<tr class="memitem:ab749558d2041012d82bbb0e8311d7747 inherit pub_methods_classJKRFileLoader" id="r_ab749558d2041012d82bbb0e8311d7747"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#ab749558d2041012d82bbb0e8311d7747">JKRFileLoader</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="separator:ab749558d2041012d82bbb0e8311d7747 inherit pub_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5000178f0d917738dbd043e7f8c63b8d inherit pub_methods_classJKRFileLoader" id="r_a5000178f0d917738dbd043e7f8c63b8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a5000178f0d917738dbd043e7f8c63b8d">~JKRFileLoader</a> ()</td></tr>
+<tr class="separator:a5000178f0d917738dbd043e7f8c63b8d inherit pub_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0bbfb337b02ba2ff40ea8469466e4d1 inherit pub_methods_classJKRFileLoader" id="r_ad0bbfb337b02ba2ff40ea8469466e4d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#ad0bbfb337b02ba2ff40ea8469466e4d1">isMounted</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ad0bbfb337b02ba2ff40ea8469466e4d1 inherit pub_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914754e5ad13f549ba57b017b6e8cbb4 inherit pub_methods_classJKRFileLoader" id="r_a914754e5ad13f549ba57b017b6e8cbb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a914754e5ad13f549ba57b017b6e8cbb4">getVolumeType</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a914754e5ad13f549ba57b017b6e8cbb4 inherit pub_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4f18ffa934f52079c907b3c0f2b900 inherit pub_methods_classJKRFileLoader" id="r_a0c4f18ffa934f52079c907b3c0f2b900"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a0c4f18ffa934f52079c907b3c0f2b900">unmount</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="separator:a0c4f18ffa934f52079c907b3c0f2b900 inherit pub_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJKRDisposer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJKRDisposer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJKRDisposer.html">JKRDisposer</a></td></tr>
+<tr class="memitem:ac5a1bf5e5a976af8c8f0114452590c22 inherit pub_methods_classJKRDisposer" id="r_ac5a1bf5e5a976af8c8f0114452590c22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRDisposer.html#ac5a1bf5e5a976af8c8f0114452590c22">JKRDisposer</a> ()</td></tr>
+<tr class="separator:ac5a1bf5e5a976af8c8f0114452590c22 inherit pub_methods_classJKRDisposer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace9ccd5e957de58c466c6a4e986721f0 inherit pub_methods_classJKRDisposer" id="r_ace9ccd5e957de58c466c6a4e986721f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRDisposer.html#ace9ccd5e957de58c466c6a4e986721f0">~JKRDisposer</a> ()</td></tr>
+<tr class="separator:ace9ccd5e957de58c466c6a4e986721f0 inherit pub_methods_classJKRDisposer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3b9e84c7cb371595ee4df66b5a81c58f" id="r_a3b9e84c7cb371595ee4df66b5a81c58f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRArchive.html">JKRArchive</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a3b9e84c7cb371595ee4df66b5a81c58f">check_mount_already</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="structJKRHeap.html">JKRHeap</a> *)</td></tr>
+<tr class="separator:a3b9e84c7cb371595ee4df66b5a81c58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a330fbcb31b05a26733edb9005f52cb84" id="r_a330fbcb31b05a26733edb9005f52cb84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRArchive.html">JKRArchive</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a330fbcb31b05a26733edb9005f52cb84">mount</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">EMountMode</a>, <a class="el" href="structJKRHeap.html">JKRHeap</a> *, <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>)</td></tr>
+<tr class="separator:a330fbcb31b05a26733edb9005f52cb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad16c50311b20fc70bd7ba02455d78f05" id="r_ad16c50311b20fc70bd7ba02455d78f05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRArchive.html">JKRArchive</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#ad16c50311b20fc70bd7ba02455d78f05">mount</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="structJKRHeap.html">JKRHeap</a> *, <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>)</td></tr>
+<tr class="separator:ad16c50311b20fc70bd7ba02455d78f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a037086211fc5839e8bf38c33c6ad6d3d" id="r_a037086211fc5839e8bf38c33c6ad6d3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRArchive.html">JKRArchive</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a037086211fc5839e8bf38c33c6ad6d3d">mount</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">EMountMode</a>, <a class="el" href="structJKRHeap.html">JKRHeap</a> *, <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>)</td></tr>
+<tr class="separator:a037086211fc5839e8bf38c33c6ad6d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a650f8bde2162c0f31eae09216b89c757" id="r_a650f8bde2162c0f31eae09216b89c757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a650f8bde2162c0f31eae09216b89c757">getGlbResource</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="classJKRArchive.html">JKRArchive</a> *)</td></tr>
+<tr class="separator:a650f8bde2162c0f31eae09216b89c757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56b530c4672dcf5fdc88277cb846896a" id="r_a56b530c4672dcf5fdc88277cb846896a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="JKRCompression_8h.html#a2df0c9cb09acd4c9d524ed3855426cf7">JKRCompression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a56b530c4672dcf5fdc88277cb846896a">convertAttrToCompressionType</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> attr)</td></tr>
+<tr class="separator:a56b530c4672dcf5fdc88277cb846896a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a470c3d58ac55be93058bda92e00c3ff1" id="r_a470c3d58ac55be93058bda92e00c3ff1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a470c3d58ac55be93058bda92e00c3ff1">getCurrentDirID</a> ()</td></tr>
+<tr class="separator:a470c3d58ac55be93058bda92e00c3ff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f1ed676409e4ad7129adc33158d05e" id="r_a67f1ed676409e4ad7129adc33158d05e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a67f1ed676409e4ad7129adc33158d05e">setCurrentDirID</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">dirID</a>)</td></tr>
+<tr class="separator:a67f1ed676409e4ad7129adc33158d05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classJKRFileLoader"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classJKRFileLoader')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a></td></tr>
+<tr class="memitem:aeb2ee15d3595d22cf03ba9e2b01995fb inherit pub_static_methods_classJKRFileLoader" id="r_aeb2ee15d3595d22cf03ba9e2b01995fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#aeb2ee15d3595d22cf03ba9e2b01995fb">getGlbResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:aeb2ee15d3595d22cf03ba9e2b01995fb inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb72765218e8d7647bb58cbccb7e8eea inherit pub_static_methods_classJKRFileLoader" id="r_afb72765218e8d7647bb58cbccb7e8eea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#afb72765218e8d7647bb58cbccb7e8eea">getGlbResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *)</td></tr>
+<tr class="separator:afb72765218e8d7647bb58cbccb7e8eea inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5320b43ad2f371731e61afa8dd8327c2 inherit pub_static_methods_classJKRFileLoader" id="r_a5320b43ad2f371731e61afa8dd8327c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a5320b43ad2f371731e61afa8dd8327c2">removeResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *)</td></tr>
+<tr class="separator:a5320b43ad2f371731e61afa8dd8327c2 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b03b031c6c9d3c18a3096c6b10bc963 inherit pub_static_methods_classJKRFileLoader" id="r_a3b03b031c6c9d3c18a3096c6b10bc963"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a3b03b031c6c9d3c18a3096c6b10bc963">detachResource</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *)</td></tr>
+<tr class="separator:a3b03b031c6c9d3c18a3096c6b10bc963 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd10e1aea5151fe4e6c95d4fc32ebd9 inherit pub_static_methods_classJKRFileLoader" id="r_a3cd10e1aea5151fe4e6c95d4fc32ebd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a3cd10e1aea5151fe4e6c95d4fc32ebd9">findVolume</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> **)</td></tr>
+<tr class="separator:a3cd10e1aea5151fe4e6c95d4fc32ebd9 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e994aa2d3674c5b499f795565129f9a inherit pub_static_methods_classJKRFileLoader" id="r_a7e994aa2d3674c5b499f795565129f9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a7e994aa2d3674c5b499f795565129f9a">fetchVolumeName</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *)</td></tr>
+<tr class="separator:a7e994aa2d3674c5b499f795565129f9a inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5f6245119f818bfe5caf5154a26459 inherit pub_static_methods_classJKRFileLoader" id="r_adb5f6245119f818bfe5caf5154a26459"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#adb5f6245119f818bfe5caf5154a26459">getCurrentVolume</a> ()</td></tr>
+<tr class="separator:adb5f6245119f818bfe5caf5154a26459 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b8198605af811780d34f24c2f0f997 inherit pub_static_methods_classJKRFileLoader" id="r_a86b8198605af811780d34f24c2f0f997"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a86b8198605af811780d34f24c2f0f997">setCurrentVolume</a> (<a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">fileLoader</a>)</td></tr>
+<tr class="separator:a86b8198605af811780d34f24c2f0f997 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94f30a9bd95777fad25c58cb4a623254 inherit pub_static_methods_classJKRFileLoader" id="r_a94f30a9bd95777fad25c58cb4a623254"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJSUList.html">JSUList</a>&lt; <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a94f30a9bd95777fad25c58cb4a623254">getVolumeList</a> ()</td></tr>
+<tr class="separator:a94f30a9bd95777fad25c58cb4a623254 inherit pub_static_methods_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9680cb169bb5c3e50b41a13d21825c57" id="r_a9680cb169bb5c3e50b41a13d21825c57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a9680cb169bb5c3e50b41a13d21825c57">mHeap</a></td></tr>
+<tr class="separator:a9680cb169bb5c3e50b41a13d21825c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818e030c5fb0592fceb857adac3f5b4f" id="r_a818e030c5fb0592fceb857adac3f5b4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a818e030c5fb0592fceb857adac3f5b4f">mMountMode</a></td></tr>
+<tr class="separator:a818e030c5fb0592fceb857adac3f5b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4022fb2c3f73843055b69be22129780d" id="r_a4022fb2c3f73843055b69be22129780d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a4022fb2c3f73843055b69be22129780d">field_0x3d</a> [3]</td></tr>
+<tr class="separator:a4022fb2c3f73843055b69be22129780d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbd0a78d64714bb1e1737ec800c08d9" id="r_acfbd0a78d64714bb1e1737ec800c08d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#acfbd0a78d64714bb1e1737ec800c08d9">mEntryNum</a></td></tr>
+<tr class="separator:acfbd0a78d64714bb1e1737ec800c08d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af51dd9cec19b148dbce0d1457fab09ad" id="r_af51dd9cec19b148dbce0d1457fab09ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSArcDataInfo.html">SArcDataInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#af51dd9cec19b148dbce0d1457fab09ad">mArcInfoBlock</a></td></tr>
+<tr class="separator:af51dd9cec19b148dbce0d1457fab09ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f84b2a0a45b1c9160338b0376c521eb" id="r_a1f84b2a0a45b1c9160338b0376c521eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">SDIDirEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a1f84b2a0a45b1c9160338b0376c521eb">mNodes</a></td></tr>
+<tr class="separator:a1f84b2a0a45b1c9160338b0376c521eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc64163e1939f73a985867beb08997dd" id="r_acc64163e1939f73a985867beb08997dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#acc64163e1939f73a985867beb08997dd">mFiles</a></td></tr>
+<tr class="separator:acc64163e1939f73a985867beb08997dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc9c920f78e1e40a74f13276bc11110" id="r_a9fc9c920f78e1e40a74f13276bc11110"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a9fc9c920f78e1e40a74f13276bc11110">mExpandedSize</a></td></tr>
+<tr class="separator:a9fc9c920f78e1e40a74f13276bc11110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8698cbaa0358c9468c4b9d860057a83c" id="r_a8698cbaa0358c9468c4b9d860057a83c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a8698cbaa0358c9468c4b9d860057a83c">mStringTable</a></td></tr>
+<tr class="separator:a8698cbaa0358c9468c4b9d860057a83c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classJKRDisposer"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classJKRDisposer')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classJKRDisposer.html">JKRDisposer</a></td></tr>
+<tr class="memitem:aff0df032b36c7d3317822f5ef6fd5659 inherit pub_attribs_classJKRDisposer" id="r_aff0df032b36c7d3317822f5ef6fd5659"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRDisposer.html#aff0df032b36c7d3317822f5ef6fd5659">mHeap</a></td></tr>
+<tr class="separator:aff0df032b36c7d3317822f5ef6fd5659 inherit pub_attribs_classJKRDisposer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0231fe5cc1600f0d98178925adb5002 inherit pub_attribs_classJKRDisposer" id="r_ad0231fe5cc1600f0d98178925adb5002"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSULink.html">JSULink</a>&lt; <a class="el" href="classJKRDisposer.html">JKRDisposer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRDisposer.html#ad0231fe5cc1600f0d98178925adb5002">mLink</a></td></tr>
+<tr class="separator:ad0231fe5cc1600f0d98178925adb5002 inherit pub_attribs_classJKRDisposer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af1d6e7bce5d87275d5c961fe97bf88ef" id="r_af1d6e7bce5d87275d5c961fe97bf88ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#af1d6e7bce5d87275d5c961fe97bf88ef">JKRArchive</a> ()</td></tr>
+<tr class="separator:af1d6e7bce5d87275d5c961fe97bf88ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83bcfe26962d903e00cd38bb8406b61c" id="r_a83bcfe26962d903e00cd38bb8406b61c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a83bcfe26962d903e00cd38bb8406b61c">JKRArchive</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">EMountMode</a>)</td></tr>
+<tr class="separator:a83bcfe26962d903e00cd38bb8406b61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:af895902ce3e0cb9883e1c876e3ee9a71" id="r_af895902ce3e0cb9883e1c876e3ee9a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#af895902ce3e0cb9883e1c876e3ee9a71">field_0x58</a></td></tr>
+<tr class="separator:af895902ce3e0cb9883e1c876e3ee9a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d6ec0173f7be11af3d9a79b76f736c" id="r_a26d6ec0173f7be11af3d9a79b76f736c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="JKRCompression_8h.html#a2df0c9cb09acd4c9d524ed3855426cf7">JKRCompression</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a26d6ec0173f7be11af3d9a79b76f736c">mCompression</a></td></tr>
+<tr class="separator:a26d6ec0173f7be11af3d9a79b76f736c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9334a5680fd24dcec71025294d917f6e" id="r_a9334a5680fd24dcec71025294d917f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a9334a5680fd24dcec71025294d917f6e">mMountDirection</a></td></tr>
+<tr class="separator:a9334a5680fd24dcec71025294d917f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classJKRFileLoader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classJKRFileLoader')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a></td></tr>
+<tr class="memitem:aadd5732a611c1d60b3f4c9c36e821501 inherit pro_attribs_classJKRFileLoader" id="r_aadd5732a611c1d60b3f4c9c36e821501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSULink.html">JSULink</a>&lt; <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#aadd5732a611c1d60b3f4c9c36e821501">mFileLoaderLink</a></td></tr>
+<tr class="separator:aadd5732a611c1d60b3f4c9c36e821501 inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6762a36bce7e98bf8cb1c7f56044a05b inherit pro_attribs_classJKRFileLoader" id="r_a6762a36bce7e98bf8cb1c7f56044a05b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a6762a36bce7e98bf8cb1c7f56044a05b">mVolumeName</a></td></tr>
+<tr class="separator:a6762a36bce7e98bf8cb1c7f56044a05b inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fffc854c2c73596eda88dc6f84d5f54 inherit pro_attribs_classJKRFileLoader" id="r_a4fffc854c2c73596eda88dc6f84d5f54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a4fffc854c2c73596eda88dc6f84d5f54">mVolumeType</a></td></tr>
+<tr class="separator:a4fffc854c2c73596eda88dc6f84d5f54 inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6bcb21e81e340c0c63ae0406bdb877 inherit pro_attribs_classJKRFileLoader" id="r_a4a6bcb21e81e340c0c63ae0406bdb877"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a4a6bcb21e81e340c0c63ae0406bdb877">mIsMounted</a></td></tr>
+<tr class="separator:a4a6bcb21e81e340c0c63ae0406bdb877 inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e82955ba4a219469e66937dc991701 inherit pro_attribs_classJKRFileLoader" id="r_aa3e82955ba4a219469e66937dc991701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#aa3e82955ba4a219469e66937dc991701">field_0x31</a> [3]</td></tr>
+<tr class="separator:aa3e82955ba4a219469e66937dc991701 inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49fa36941a1b6e38c5c66d131362907e inherit pro_attribs_classJKRFileLoader" id="r_a49fa36941a1b6e38c5c66d131362907e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a49fa36941a1b6e38c5c66d131362907e">mMountCount</a></td></tr>
+<tr class="separator:a49fa36941a1b6e38c5c66d131362907e inherit pro_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a8890fa6c9d27f52ee208f21424daa375" id="r_a8890fa6c9d27f52ee208f21424daa375"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRArchive.html#a8890fa6c9d27f52ee208f21424daa375">sCurrentDirID</a></td></tr>
+<tr class="separator:a8890fa6c9d27f52ee208f21424daa375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classJKRFileLoader"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classJKRFileLoader')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a></td></tr>
+<tr class="memitem:a9a372c0484b7e0caa3d30775dd466748 inherit pub_static_attribs_classJKRFileLoader" id="r_a9a372c0484b7e0caa3d30775dd466748"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a9a372c0484b7e0caa3d30775dd466748">sCurrentVolume</a></td></tr>
+<tr class="separator:a9a372c0484b7e0caa3d30775dd466748 inherit pub_static_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0165f354a5b67fb94cb465fe80e5932d inherit pub_static_attribs_classJKRFileLoader" id="r_a0165f354a5b67fb94cb465fe80e5932d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="classJSUList.html">JSUList</a>&lt; <a class="el" href="classJKRFileLoader.html">JKRFileLoader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJKRFileLoader.html#a0165f354a5b67fb94cb465fe80e5932d">sVolumeList</a></td></tr>
+<tr class="separator:a0165f354a5b67fb94cb465fe80e5932d inherit pub_static_attribs_classJKRFileLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="adcf19e3c6e754c27610ed30a8acd1b0f" name="adcf19e3c6e754c27610ed30a8acd1b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf19e3c6e754c27610ed30a8acd1b0f">&#9670;&#160;</a></span>EMountDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">enum</a> <a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">JKRArchive::EMountDirection</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="adcf19e3c6e754c27610ed30a8acd1b0fa7ada7bee31268bae4ae8b40f883df688" name="adcf19e3c6e754c27610ed30a8acd1b0fa7ada7bee31268bae4ae8b40f883df688"></a>UNKNOWN_MOUNT_DIRECTION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adcf19e3c6e754c27610ed30a8acd1b0fa86fa0b18dcc03c883f8dfd8733ecf72e" name="adcf19e3c6e754c27610ed30a8acd1b0fa86fa0b18dcc03c883f8dfd8733ecf72e"></a>MOUNT_DIRECTION_HEAD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="adcf19e3c6e754c27610ed30a8acd1b0fa5f9951896716900fbc7c491658354f8a" name="adcf19e3c6e754c27610ed30a8acd1b0fa5f9951896716900fbc7c491658354f8a"></a>MOUNT_DIRECTION_TAIL&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="afa04710b1fffa15f661f0dd3a66bba3e" name="afa04710b1fffa15f661f0dd3a66bba3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa04710b1fffa15f661f0dd3a66bba3e">&#9670;&#160;</a></span>EMountMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">enum</a> <a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">JKRArchive::EMountMode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afa04710b1fffa15f661f0dd3a66bba3ea59ff20ff12931705e7c27dd9f7dd78b9" name="afa04710b1fffa15f661f0dd3a66bba3ea59ff20ff12931705e7c27dd9f7dd78b9"></a>UNKNOWN_MOUNT_MODE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa04710b1fffa15f661f0dd3a66bba3ead9ab5e2614c797d8d8a671826c0672e6" name="afa04710b1fffa15f661f0dd3a66bba3ead9ab5e2614c797d8d8a671826c0672e6"></a>MOUNT_MEM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa04710b1fffa15f661f0dd3a66bba3eabf06201e60e8257b5dbb1d4a329aae38" name="afa04710b1fffa15f661f0dd3a66bba3eabf06201e60e8257b5dbb1d4a329aae38"></a>MOUNT_ARAM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa04710b1fffa15f661f0dd3a66bba3ea00b3eff8f4f0819fced08c2f2e035b87" name="afa04710b1fffa15f661f0dd3a66bba3ea00b3eff8f4f0819fced08c2f2e035b87"></a>MOUNT_DVD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="afa04710b1fffa15f661f0dd3a66bba3ea67dce5f8ace1ceea567acdba05e276ec" name="afa04710b1fffa15f661f0dd3a66bba3ea67dce5f8ace1ceea567acdba05e276ec"></a>MOUNT_COMP&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af1d6e7bce5d87275d5c961fe97bf88ef" name="af1d6e7bce5d87275d5c961fe97bf88ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1d6e7bce5d87275d5c961fe97bf88ef">&#9670;&#160;</a></span>JKRArchive() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">JKRArchive::JKRArchive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83bcfe26962d903e00cd38bb8406b61c" name="a83bcfe26962d903e00cd38bb8406b61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83bcfe26962d903e00cd38bb8406b61c">&#9670;&#160;</a></span>JKRArchive() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">JKRArchive::JKRArchive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>entryNumber</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">JKRArchive::EMountMode</a>&#160;</td>
+          <td class="paramname"><em>mountMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a498e53a85fbf46624774cc4a62a79eff" name="a498e53a85fbf46624774cc4a62a79eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498e53a85fbf46624774cc4a62a79eff">&#9670;&#160;</a></span>~JKRArchive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">JKRArchive::~JKRArchive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1c57e4360f849edec191bb6b23502162" name="a1c57e4360f849edec191bb6b23502162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c57e4360f849edec191bb6b23502162">&#9670;&#160;</a></span>becomeCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::becomeCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a3530f043778c54ba1c1a44cba65f433f">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a3b9e84c7cb371595ee4df66b5a81c58f" name="a3b9e84c7cb371595ee4df66b5a81c58f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b9e84c7cb371595ee4df66b5a81c58f">&#9670;&#160;</a></span>check_mount_already()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRArchive.html">JKRArchive</a> * JKRArchive::check_mount_already </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>entryNum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56b530c4672dcf5fdc88277cb846896a" name="a56b530c4672dcf5fdc88277cb846896a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b530c4672dcf5fdc88277cb846896a">&#9670;&#160;</a></span>convertAttrToCompressionType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="JKRCompression_8h.html#a2df0c9cb09acd4c9d524ed3855426cf7">JKRCompression</a> JKRArchive::convertAttrToCompressionType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>attr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ff438b7d398d507ab778d387f30e0e0" name="a1ff438b7d398d507ab778d387f30e0e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ff438b7d398d507ab778d387f30e0e0">&#9670;&#160;</a></span>countDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JKRArchive::countDirectory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0853ce3c739cfa57a41b0c68172196f6" name="a0853ce3c739cfa57a41b0c68172196f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0853ce3c739cfa57a41b0c68172196f6">&#9670;&#160;</a></span>countFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::countFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30e4c64184a8032fe1fe620f9ed91686" name="a30e4c64184a8032fe1fe620f9ed91686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e4c64184a8032fe1fe620f9ed91686">&#9670;&#160;</a></span>countFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::countFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a025d9da3af8060cb812185adddcd7853">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a358b6a86aa25bf48e98dc0a09317459f" name="a358b6a86aa25bf48e98dc0a09317459f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358b6a86aa25bf48e98dc0a09317459f">&#9670;&#160;</a></span>countResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::countResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c527849cfe8e2214eea51f7da72bdb5" name="a6c527849cfe8e2214eea51f7da72bdb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c527849cfe8e2214eea51f7da72bdb5">&#9670;&#160;</a></span>detachResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::detachResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a88258101d48dd7b15846ad5846ce04f3">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="abbb6095234708970d6a6e55f5f4e186b" name="abbb6095234708970d6a6e55f5f4e186b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb6095234708970d6a6e55f5f4e186b">&#9670;&#160;</a></span>fetchResource() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::fetchResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="structJKRAramArchive.html#a61f78ee65d695467d18bd24501225742">JKRAramArchive</a>, <a class="el" href="classJKRCompArchive.html#abec8e2fc228c88dfee2df4afc8c39583">JKRCompArchive</a>, <a class="el" href="classJKRDvdArchive.html#a661aca5d641c316dc900aa3a8dc7c567">JKRDvdArchive</a>, and <a class="el" href="classJKRMemArchive.html#ad1bca36eca55fd9c38e6bd1a8f26ce65">JKRMemArchive</a>.</p>
+
+</div>
+</div>
+<a id="a7d318401fd71860537691d82a399866d" name="a7d318401fd71860537691d82a399866d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d318401fd71860537691d82a399866d">&#9670;&#160;</a></span>fetchResource() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::fetchResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="structJKRAramArchive.html#a6cd424e1bb4452d0495e583566c17c30">JKRAramArchive</a>, <a class="el" href="classJKRCompArchive.html#a0dae457b783d0081bb1e603626ab2bf3">JKRCompArchive</a>, <a class="el" href="classJKRDvdArchive.html#ae90718013f8ae6b35c4cbc665bcf7a17">JKRDvdArchive</a>, and <a class="el" href="classJKRMemArchive.html#a4acce4b856b5c31ac4c767fb08b8bf7a">JKRMemArchive</a>.</p>
+
+</div>
+</div>
+<a id="ab712f9167a7644c3917c879f4c07c54b" name="ab712f9167a7644c3917c879f4c07c54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab712f9167a7644c3917c879f4c07c54b">&#9670;&#160;</a></span>findDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">JKRArchive::SDIDirEntry</a> * JKRArchive::findDirectory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>directoryId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02333be19126b889e5b6c30d8f9a0b67" name="a02333be19126b889e5b6c30d8f9a0b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02333be19126b889e5b6c30d8f9a0b67">&#9670;&#160;</a></span>findFsResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findFsResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>directoryId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8a15c3d31135236456aaf5bb464b254" name="ad8a15c3d31135236456aaf5bb464b254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8a15c3d31135236456aaf5bb464b254">&#9670;&#160;</a></span>findIdResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findIdResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a18928bc567776ca2118d6b3bcfb714" name="a9a18928bc567776ca2118d6b3bcfb714"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a18928bc567776ca2118d6b3bcfb714">&#9670;&#160;</a></span>findIdxResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findIdxResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>fileIndex</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1c24a6942ce0ee104f4b27895fa7a57" name="ab1c24a6942ce0ee104f4b27895fa7a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c24a6942ce0ee104f4b27895fa7a57">&#9670;&#160;</a></span>findNameResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findNameResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41bbc7462e9d6d4713e6b9f9e32580bd" name="a41bbc7462e9d6d4713e6b9f9e32580bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41bbc7462e9d6d4713e6b9f9e32580bd">&#9670;&#160;</a></span>findPtrResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findPtrResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af76ac157a8c8e44ea9eef708fb82a9ee" name="af76ac157a8c8e44ea9eef708fb82a9ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76ac157a8c8e44ea9eef708fb82a9ee">&#9670;&#160;</a></span>findResType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">JKRArchive::SDIDirEntry</a> * JKRArchive::findResType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28d78a01c7959b1c437c9d34e5b52486" name="a28d78a01c7959b1c437c9d34e5b52486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d78a01c7959b1c437c9d34e5b52486">&#9670;&#160;</a></span>findTypeResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">JKRArchive::SDIFileEntry</a> * JKRArchive::findTypeResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a470c3d58ac55be93058bda92e00c3ff1" name="a470c3d58ac55be93058bda92e00c3ff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470c3d58ac55be93058bda92e00c3ff1">&#9670;&#160;</a></span>getCurrentDirID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::getCurrentDirID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a878f03fa4834ffe84c7da51ef37e2020" name="a878f03fa4834ffe84c7da51ef37e2020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a878f03fa4834ffe84c7da51ef37e2020">&#9670;&#160;</a></span>getDirEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::getDirEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJKRArchive_1_1SDirEntry.html">SDirEntry</a> *&#160;</td>
+          <td class="paramname"><em>dirEntry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a580f252b34389d86d134bfd574e2299c" name="a580f252b34389d86d134bfd574e2299c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580f252b34389d86d134bfd574e2299c">&#9670;&#160;</a></span>getExpandedResSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::getExpandedResSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="structJKRAramArchive.html#a2a5c535502d0826240fff7abf76ba863">JKRAramArchive</a>, <a class="el" href="classJKRCompArchive.html#a7d6ca272ddd34d23bbb51d147dc1feab">JKRCompArchive</a>, <a class="el" href="classJKRDvdArchive.html#a6a57be8f4980a6ef6ffe4f2e5d009490">JKRDvdArchive</a>, and <a class="el" href="classJKRMemArchive.html#a6a8cc654540ddbd9d0e909d302e9b975">JKRMemArchive</a>.</p>
+
+</div>
+</div>
+<a id="a196cc0d9bac3dc93bb98268f328d8d91" name="a196cc0d9bac3dc93bb98268f328d8d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196cc0d9bac3dc93bb98268f328d8d91">&#9670;&#160;</a></span>getExpandSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::getExpandSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td>
+          <td class="paramname"><em>fileEntry</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4abd59f5344dfabd21b18ec5139419c4" name="a4abd59f5344dfabd21b18ec5139419c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4abd59f5344dfabd21b18ec5139419c4">&#9670;&#160;</a></span>getFileAttribute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::getFileAttribute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09be25ae4902a90d31cf4ebfb6325104" name="a09be25ae4902a90d31cf4ebfb6325104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09be25ae4902a90d31cf4ebfb6325104">&#9670;&#160;</a></span>getFirstFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRFileFinder.html">JKRFileFinder</a> * JKRArchive::getFirstFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#abfbd476a302a51d802d96867447773f9">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a650f8bde2162c0f31eae09216b89c757" name="a650f8bde2162c0f31eae09216b89c757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650f8bde2162c0f31eae09216b89c757">&#9670;&#160;</a></span>getGlbResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::getGlbResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html">JKRArchive</a> *&#160;</td>
+          <td class="paramname"><em>archive</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5773e462f0144b8c4ef6a7d066e08f34" name="a5773e462f0144b8c4ef6a7d066e08f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5773e462f0144b8c4ef6a7d066e08f34">&#9670;&#160;</a></span>getIdxResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::getIdxResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac78de7663c051b7c07dd91a1fc771f9d" name="ac78de7663c051b7c07dd91a1fc771f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78de7663c051b7c07dd91a1fc771f9d">&#9670;&#160;</a></span>getMountMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> JKRArchive::getMountMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad18defd040ac431d328a26fa3c30e059" name="ad18defd040ac431d328a26fa3c30e059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad18defd040ac431d328a26fa3c30e059">&#9670;&#160;</a></span>getResource() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::getResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a70e74e6484b7b3375b8cdc88ce49b1dd">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a61cb0751e6a9c7dfd9df4b243b86325e" name="a61cb0751e6a9c7dfd9df4b243b86325e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61cb0751e6a9c7dfd9df4b243b86325e">&#9670;&#160;</a></span>getResource() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::getResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27a5972f3fb39f0007687b6ca3bf5872" name="a27a5972f3fb39f0007687b6ca3bf5872"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a5972f3fb39f0007687b6ca3bf5872">&#9670;&#160;</a></span>getResource() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> * JKRArchive::getResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a0120238c75a6e14667c413931abe067d">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a3bad384b19e578e993d8c4363f6d6b94" name="a3bad384b19e578e993d8c4363f6d6b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bad384b19e578e993d8c4363f6d6b94">&#9670;&#160;</a></span>getResSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::getResSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a3a0aedd6683d38ab34a1a3e95371c1b1">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a06b485b2e06e4f5d367cc8cf7245ee6b" name="a06b485b2e06e4f5d367cc8cf7245ee6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06b485b2e06e4f5d367cc8cf7245ee6b">&#9670;&#160;</a></span>isFileEntry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::isFileEntry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add1f4ece843a59c13bc86a97d9fb901c" name="add1f4ece843a59c13bc86a97d9fb901c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add1f4ece843a59c13bc86a97d9fb901c">&#9670;&#160;</a></span>isSameName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::isSameName </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJKRArchive_1_1CArcName.html">JKRArchive::CArcName</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>nameOffset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>nameHash</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a330fbcb31b05a26733edb9005f52cb84" name="a330fbcb31b05a26733edb9005f52cb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a330fbcb31b05a26733edb9005f52cb84">&#9670;&#160;</a></span>mount() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRArchive.html">JKRArchive</a> * JKRArchive::mount </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">EMountMode</a>&#160;</td>
+          <td class="paramname"><em>mountMode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>&#160;</td>
+          <td class="paramname"><em>mountDirection</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a037086211fc5839e8bf38c33c6ad6d3d" name="a037086211fc5839e8bf38c33c6ad6d3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a037086211fc5839e8bf38c33c6ad6d3d">&#9670;&#160;</a></span>mount() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRArchive.html">JKRArchive</a> * JKRArchive::mount </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>entryNum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#afa04710b1fffa15f661f0dd3a66bba3e">JKRArchive::EMountMode</a>&#160;</td>
+          <td class="paramname"><em>mountMode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">JKRArchive::EMountDirection</a>&#160;</td>
+          <td class="paramname"><em>mountDirection</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad16c50311b20fc70bd7ba02455d78f05" name="ad16c50311b20fc70bd7ba02455d78f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad16c50311b20fc70bd7ba02455d78f05">&#9670;&#160;</a></span>mount() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRArchive.html">JKRArchive</a> * JKRArchive::mount </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJKRHeap.html">JKRHeap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a>&#160;</td>
+          <td class="paramname"><em>mountDirection</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea775e0abef3aba98dbaf049ec3885a5" name="aea775e0abef3aba98dbaf049ec3885a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea775e0abef3aba98dbaf049ec3885a5">&#9670;&#160;</a></span>readIdxResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::readIdxResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9fcb621083771add651dfc278bf6076e" name="a9fcb621083771add651dfc278bf6076e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fcb621083771add651dfc278bf6076e">&#9670;&#160;</a></span>readResource() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::readResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a21ce3b80ca05ee9eabf5585506c71668">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a89ab74b9bf603168e373b2b567ff1909" name="a89ab74b9bf603168e373b2b567ff1909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89ab74b9bf603168e373b2b567ff1909">&#9670;&#160;</a></span>readResource() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::readResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a984a5a4cb1a032cb1c04e9a18cafb962" name="a984a5a4cb1a032cb1c04e9a18cafb962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984a5a4cb1a032cb1c04e9a18cafb962">&#9670;&#160;</a></span>readResource() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::readResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>bufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#adbd8f1beb68dbe761549a525ec7f9813">JKRFileLoader</a>.</p>
+
+</div>
+</div>
+<a id="a81a15b5c09eed77a07c47598b2770d29" name="a81a15b5c09eed77a07c47598b2770d29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a15b5c09eed77a07c47598b2770d29">&#9670;&#160;</a></span>removeResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> JKRArchive::removeResource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#a591d029d6449d6d9d6578447767faca5">JKRFileLoader</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classJKRCompArchive.html#ad1bf4cedcc0a9877c2607ab34ae05955">JKRCompArchive</a>, and <a class="el" href="classJKRMemArchive.html#ae571e8f9506fd7c94eaf2750c9adc415">JKRMemArchive</a>.</p>
+
+</div>
+</div>
+<a id="ae2f71d7118eb21c1e628d90dcf2bd423" name="ae2f71d7118eb21c1e628d90dcf2bd423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f71d7118eb21c1e628d90dcf2bd423">&#9670;&#160;</a></span>removeResourceAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> JKRArchive::removeResourceAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJKRFileLoader.html#ad2aa66a4a5ae87cefa0ac570c10a62ee">JKRFileLoader</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classJKRCompArchive.html#a0c0202553eb78cd9ee0dd01aa6d4064a">JKRCompArchive</a>, and <a class="el" href="classJKRMemArchive.html#ade8eeaef9fcedbadf5968bdc358988b4">JKRMemArchive</a>.</p>
+
+</div>
+</div>
+<a id="a67f1ed676409e4ad7129adc33158d05e" name="a67f1ed676409e4ad7129adc33158d05e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f1ed676409e4ad7129adc33158d05e">&#9670;&#160;</a></span>setCurrentDirID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> JKRArchive::setCurrentDirID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>dirID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3fad780270481a1c936b2a1e3787ce8" name="af3fad780270481a1c936b2a1e3787ce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3fad780270481a1c936b2a1e3787ce8">&#9670;&#160;</a></span>setExpandSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> JKRArchive::setExpandSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a> *&#160;</td>
+          <td class="paramname"><em>fileEntry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>expandSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4022fb2c3f73843055b69be22129780d" name="a4022fb2c3f73843055b69be22129780d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4022fb2c3f73843055b69be22129780d">&#9670;&#160;</a></span>field_0x3d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> JKRArchive::field_0x3d[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af895902ce3e0cb9883e1c876e3ee9a71" name="af895902ce3e0cb9883e1c876e3ee9a71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af895902ce3e0cb9883e1c876e3ee9a71">&#9670;&#160;</a></span>field_0x58</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::field_0x58</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af51dd9cec19b148dbce0d1457fab09ad" name="af51dd9cec19b148dbce0d1457fab09ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af51dd9cec19b148dbce0d1457fab09ad">&#9670;&#160;</a></span>mArcInfoBlock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSArcDataInfo.html">SArcDataInfo</a>* JKRArchive::mArcInfoBlock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26d6ec0173f7be11af3d9a79b76f736c" name="a26d6ec0173f7be11af3d9a79b76f736c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d6ec0173f7be11af3d9a79b76f736c">&#9670;&#160;</a></span>mCompression</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="JKRCompression_8h.html#a2df0c9cb09acd4c9d524ed3855426cf7">JKRCompression</a> JKRArchive::mCompression</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acfbd0a78d64714bb1e1737ec800c08d9" name="acfbd0a78d64714bb1e1737ec800c08d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfbd0a78d64714bb1e1737ec800c08d9">&#9670;&#160;</a></span>mEntryNum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JKRArchive::mEntryNum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9fc9c920f78e1e40a74f13276bc11110" name="a9fc9c920f78e1e40a74f13276bc11110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc9c920f78e1e40a74f13276bc11110">&#9670;&#160;</a></span>mExpandedSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>* JKRArchive::mExpandedSize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc64163e1939f73a985867beb08997dd" name="acc64163e1939f73a985867beb08997dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc64163e1939f73a985867beb08997dd">&#9670;&#160;</a></span>mFiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIFileEntry.html">SDIFileEntry</a>* JKRArchive::mFiles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9680cb169bb5c3e50b41a13d21825c57" name="a9680cb169bb5c3e50b41a13d21825c57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9680cb169bb5c3e50b41a13d21825c57">&#9670;&#160;</a></span>mHeap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRHeap.html">JKRHeap</a>* JKRArchive::mHeap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9334a5680fd24dcec71025294d917f6e" name="a9334a5680fd24dcec71025294d917f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9334a5680fd24dcec71025294d917f6e">&#9670;&#160;</a></span>mMountDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJKRArchive.html#adcf19e3c6e754c27610ed30a8acd1b0f">EMountDirection</a> JKRArchive::mMountDirection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a818e030c5fb0592fceb857adac3f5b4f" name="a818e030c5fb0592fceb857adac3f5b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a818e030c5fb0592fceb857adac3f5b4f">&#9670;&#160;</a></span>mMountMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> JKRArchive::mMountMode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f84b2a0a45b1c9160338b0376c521eb" name="a1f84b2a0a45b1c9160338b0376c521eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f84b2a0a45b1c9160338b0376c521eb">&#9670;&#160;</a></span>mNodes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJKRArchive_1_1SDIDirEntry.html">SDIDirEntry</a>* JKRArchive::mNodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8698cbaa0358c9468c4b9d860057a83c" name="a8698cbaa0358c9468c4b9d860057a83c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8698cbaa0358c9468c4b9d860057a83c">&#9670;&#160;</a></span>mStringTable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a>* JKRArchive::mStringTable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8890fa6c9d27f52ee208f21424daa375" name="a8890fa6c9d27f52ee208f21424daa375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8890fa6c9d27f52ee208f21424daa375">&#9670;&#160;</a></span>sCurrentDirID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JKRArchive::sCurrentDirID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/JSystem/JKernel/<a class="el" href="JKRArchive_8h_source.html">JKRArchive.h</a></li>
+<li>src/d/menu/<a class="el" href="d__menu__fmap_8cpp.html">d_menu_fmap.cpp</a></li>
+<li>libs/JSystem/JKernel/<a class="el" href="JKRArchivePri_8cpp.html">JKRArchivePri.cpp</a></li>
+<li>libs/JSystem/JKernel/<a class="el" href="JKRArchivePub_8cpp.html">JKRArchivePub.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classJKRArchive.html">JKRArchive</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

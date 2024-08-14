@@ -1067,7 +1067,7 @@
 <!-- Node157 -->
 <g id="Node000157" class="node">
 <title>Node157</title>
-<g id="a_Node000157"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000157"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="77.12,-158.25 21.38,-158.25 21.38,-139 77.12,-139 77.12,-158.25"/>
 <text text-anchor="middle" x="49.25" y="-144.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -1085,7 +1085,7 @@
 <!-- Node156 -->
 <g id="Node000156" class="node">
 <title>Node156</title>
-<g id="a_Node000156"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000156"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="315.5,-209.25 247,-209.25 247,-190 315.5,-190 315.5,-209.25"/>
 <text text-anchor="middle" x="281.25" y="-195.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -1180,7 +1180,7 @@
 <!-- Node202 -->
 <g id="Node000202" class="node">
 <title>Node202</title>
-<g id="a_Node000202"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000202"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="312.12,-268.25 250.38,-268.25 250.38,-249 312.12,-249 312.12,-268.25"/>
 <text text-anchor="middle" x="281.25" y="-254.75" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>

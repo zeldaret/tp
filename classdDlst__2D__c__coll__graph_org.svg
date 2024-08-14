@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJ2DPicture.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJ2DPicture.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="665.75,-85.75 601.75,-85.75 601.75,-66.5 665.75,-66.5 665.75,-85.75"/>
 <text text-anchor="middle" x="633.75" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPicture</text>
 </a>
@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="287.62,-197.25 231.88,-197.25 231.88,-178 287.62,-178 287.62,-197.25"/>
 <text text-anchor="middle" x="259.75" y="-183.75" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -238,7 +238,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="370.62,-297.5 272.88,-297.5 272.88,-278.25 370.62,-278.25 370.62,-297.5"/>
 <text text-anchor="middle" x="321.75" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

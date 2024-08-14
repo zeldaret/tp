@@ -23,7 +23,6 @@ var structdMsgObject__c =
     [ "endProc", "structdMsgObject__c.html#a72c8aefd1568d95de514e151b5ae2b04", null ],
     [ "finishProc", "structdMsgObject__c.html#ad1a38ae0f5e897dca653af3409839156", null ],
     [ "fukiPosCalc", "structdMsgObject__c.html#abaa7a3442b4c38704f856a92f083c672", null ],
-    [ "getActor", "structdMsgObject__c.html#a6330706903df86ed82b38cbd562d9b1c", null ],
     [ "getActor", "structdMsgObject__c.html#a10108777a96964a0b0881bf5c0b0fd9d", null ],
     [ "getActorLocal", "structdMsgObject__c.html#a39af2b66d26c00c14c0b163ba69b1e22", null ],
     [ "getArrowNumLocal", "structdMsgObject__c.html#a7a78b4f4aff04465d53cdde513582924", null ],

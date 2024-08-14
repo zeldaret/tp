@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="999.25,-467.41 943.5,-467.41 943.5,-448.16 999.25,-448.16 999.25,-467.41"/>
 <text text-anchor="middle" x="971.38" y="-453.91" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -251,7 +251,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="741.5,-366.41 643.75,-366.41 643.75,-347.16 741.5,-347.16 741.5,-366.41"/>
 <text text-anchor="middle" x="692.62" y="-352.91" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

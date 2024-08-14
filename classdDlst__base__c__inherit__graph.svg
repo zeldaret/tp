@@ -588,7 +588,7 @@ var sectionId = 'dynsection-0';
 <!-- Node39 -->
 <g id="Node000039" class="node">
 <title>Node39</title>
-<g id="a_Node000039"><a xlink:href="structdMeter2Draw__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000039"><a xlink:href="classdMeter2Draw__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="228.88,-389.25 144.62,-389.25 144.62,-370 228.88,-370 228.88,-389.25"/>
 <text text-anchor="middle" x="186.75" y="-375.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMeter2Draw_c</text>
 </a>

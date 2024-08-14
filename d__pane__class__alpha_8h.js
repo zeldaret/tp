@@ -1,5 +1,5 @@
 var d__pane__class__alpha_8h =
 [
-    [ "CPaneMgrAlpha", "structCPaneMgrAlpha.html", "structCPaneMgrAlpha" ],
+    [ "CPaneMgrAlpha", "classCPaneMgrAlpha.html", "classCPaneMgrAlpha" ],
     [ "CPaneMgrAlphaMorf", "classCPaneMgrAlphaMorf.html", "classCPaneMgrAlphaMorf" ]
 ];

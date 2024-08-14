@@ -94,11 +94,11 @@
 <area shape="rect" id="Node000129" href="$structrequest__of__phase__process__class.html" title=" " alt="" coords="1246,573,1423,613"/>
 <area shape="poly" id="edge52_Node000003_Node000129" title=" " alt="" coords="1439,597,1538,604,1538,609,1439,602"/>
 <area shape="poly" id="edge54_Node000003_Node000130" title=" " alt="" coords="989,1298,1082,1281,1198,1249,1259,1225,1318,1196,1373,1160,1421,1117,1470,1055,1508,985,1537,911,1558,838,1572,768,1581,706,1588,623,1593,624,1586,707,1577,769,1563,839,1542,913,1513,987,1474,1058,1425,1120,1376,1164,1320,1200,1261,1230,1200,1254,1083,1286,990,1303"/>
-<area shape="rect" id="Node000131" href="$structJ2DPane.html" title=" " alt="" coords="566,1405,640,1431"/>
+<area shape="rect" id="Node000131" href="$classJ2DPane.html" title=" " alt="" coords="566,1405,640,1431"/>
 <area shape="poly" id="edge55_Node000130_Node000131" title=" " alt="" coords="655,1407,735,1390,822,1362,869,1340,908,1317,911,1322,872,1345,824,1367,736,1395,656,1412"/>
-<area shape="rect" id="Node000161" href="$structCPaneMgrAlpha.html" title=" " alt="" coords="874,1377,989,1403"/>
+<area shape="rect" id="Node000161" href="$classCPaneMgrAlpha.html" title=" " alt="" coords="874,1377,989,1403"/>
 <area shape="poly" id="edge63_Node000161_Node000131" title=" " alt="" coords="655,1419,734,1420,823,1415,886,1401,888,1406,824,1420,735,1425,655,1424"/>
-<area shape="rect" id="Node000165" href="$structJ2DPicture.html" title=" " alt="" coords="889,1645,974,1671"/>
+<area shape="rect" id="Node000165" href="$classJ2DPicture.html" title=" " alt="" coords="889,1645,974,1671"/>
 <area shape="poly" id="edge67_Node000165_Node000131" title=" " alt="" coords="656,1424,753,1446,796,1461,825,1479,839,1501,841,1523,842,1545,850,1569,882,1611,915,1643,911,1647,878,1615,845,1571,837,1546,836,1523,834,1503,821,1483,794,1466,751,1451,655,1429"/>
 <area shape="rect" id="Node000139" href="$classJ2DDataManage.html" title=" " alt="" coords="544,1188,661,1214"/>
 <area shape="poly" id="edge56_Node000130_Node000139" title=" " alt="" coords="677,1203,749,1214,824,1236,876,1262,915,1291,912,1295,873,1267,822,1241,748,1220,676,1209"/>
@@ -108,7 +108,7 @@
 <area shape="poly" id="edge58_Node000130_Node000159" title=" " alt="" coords="682,1300,712,1302,888,1304,888,1309,712,1307,681,1306"/>
 <area shape="rect" id="Node000143" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="550,1528,655,1554"/>
 <area shape="poly" id="edge60_Node000130_Node000143" title=" " alt="" coords="669,1524,708,1512,749,1494,788,1471,821,1441,832,1422,834,1404,835,1385,845,1363,872,1337,901,1317,904,1322,875,1341,850,1366,841,1386,839,1405,837,1424,825,1444,791,1475,751,1499,710,1517,671,1529"/>
-<area shape="rect" id="Node000160" href="$structCPaneMgr.html" title=" " alt="" coords="1294,1407,1376,1432"/>
+<area shape="rect" id="Node000160" href="$classCPaneMgr.html" title=" " alt="" coords="1294,1407,1376,1432"/>
 <area shape="poly" id="edge65_Node000160_Node000143" title=" " alt="" coords="671,1546,780,1553,920,1552,996,1546,1073,1535,1148,1517,1221,1493,1275,1463,1317,1431,1320,1435,1278,1467,1223,1498,1150,1522,1074,1540,996,1551,920,1557,780,1558,671,1551"/>
 <area shape="poly" id="edge72_Node000165_Node000143" title=" " alt="" coords="626,1564,664,1600,688,1618,713,1632,758,1647,805,1655,889,1658,888,1663,805,1660,757,1652,711,1637,685,1623,661,1604,623,1567"/>
 <area shape="poly" id="edge61_Node000003_Node000160" title=" " alt="" coords="1390,1405,1422,1394,1456,1379,1487,1358,1512,1331,1527,1305,1539,1270,1560,1183,1574,1078,1583,965,1589,754,1589,623,1594,623,1595,754,1588,965,1579,1078,1565,1184,1545,1272,1532,1307,1516,1334,1490,1362,1458,1383,1424,1399,1392,1410"/>

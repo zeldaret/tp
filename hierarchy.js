@@ -275,8 +275,8 @@ var hierarchy =
     [ "counter_class", "structcounter__class.html", null ],
     [ "COutFont_c", "classCOutFont__c.html", null ],
     [ "COutFontSet_c", "classCOutFontSet__c.html", null ],
-    [ "CPaneMgrAlpha", "structCPaneMgrAlpha.html", [
-      [ "CPaneMgr", "structCPaneMgr.html", null ],
+    [ "CPaneMgrAlpha", "classCPaneMgrAlpha.html", [
+      [ "CPaneMgr", "classCPaneMgr.html", null ],
       [ "CPaneMgrAlphaMorf", "classCPaneMgrAlphaMorf.html", null ]
     ] ],
     [ "create_request", "structcreate__request.html", null ],
@@ -1079,7 +1079,7 @@ var hierarchy =
       [ "dMenu_Option_c", "classdMenu__Option__c.html", null ],
       [ "dMenu_Ring_c", "classdMenu__Ring__c.html", null ],
       [ "dMenu_Skill_c", "classdMenu__Skill__c.html", null ],
-      [ "dMeter2Draw_c", "structdMeter2Draw__c.html", null ],
+      [ "dMeter2Draw_c", "classdMeter2Draw__c.html", null ],
       [ "dMeterButton_c", "classdMeterButton__c.html", null ],
       [ "dMeterMap_c", "structdMeterMap__c.html", null ],
       [ "dMeterSub_c", "classdMeterSub__c.html", [
@@ -1274,8 +1274,8 @@ var hierarchy =
     [ "dMsgFlow_c", "classdMsgFlow__c.html", null ],
     [ "dMsgObject_HIO_c", "classdMsgObject__HIO__c.html", null ],
     [ "dMsgObject_HowlHIO_c", "classdMsgObject__HowlHIO__c.html", null ],
-    [ "dMsgScrn3Select_c", "structdMsgScrn3Select__c.html", null ],
-    [ "dMsgScrnArrow_c", "structdMsgScrnArrow__c.html", null ],
+    [ "dMsgScrn3Select_c", "classdMsgScrn3Select__c.html", null ],
+    [ "dMsgScrnArrow_c", "classdMsgScrnArrow__c.html", null ],
     [ "dMsgScrnExplain_c", "structdMsgScrnExplain__c.html", null ],
     [ "dMsgScrnLight_c", "structdMsgScrnLight__c.html", null ],
     [ "dMsgScrnLight_HIO_c", "classdMsgScrnLight__HIO__c.html", null ],
@@ -1522,7 +1522,7 @@ var hierarchy =
       [ "J2DAnmTevRegKey", "structJ2DAnmTevRegKey.html", null ],
       [ "J2DAnmTexPattern", "structJ2DAnmTexPattern.html", null ],
       [ "J2DAnmTextureSRTKey", "structJ2DAnmTextureSRTKey.html", null ],
-      [ "J2DAnmTransform", "structJ2DAnmTransform.html", [
+      [ "J2DAnmTransform", "classJ2DAnmTransform.html", [
         [ "J2DAnmTransformFull", "structJ2DAnmTransformFull.html", null ],
         [ "J2DAnmTransformKey", "structJ2DAnmTransformKey.html", null ]
       ] ],
@@ -1546,7 +1546,7 @@ var hierarchy =
     [ "J2DColorChan", "classJ2DColorChan.html", null ],
     [ "J2DColorChanInfo", "structJ2DColorChanInfo.html", null ],
     [ "J2DDataManage", "classJ2DDataManage.html", null ],
-    [ "J2DGrafContext", "structJ2DGrafContext.html", [
+    [ "J2DGrafContext", "classJ2DGrafContext.html", [
       [ "J2DOrthoGraph", "structJ2DOrthoGraph.html", null ]
     ] ],
     [ "J2DGrafContext::Blend", "structJ2DGrafContext_1_1Blend.html", null ],
@@ -1568,16 +1568,16 @@ var hierarchy =
     [ "J2DMaterialBlock", "structJ2DMaterialBlock.html", null ],
     [ "J2DMaterialFactory", "classJ2DMaterialFactory.html", null ],
     [ "J2DMaterialInitData", "structJ2DMaterialInitData.html", null ],
-    [ "J2DPane", "structJ2DPane.html", [
-      [ "J2DPicture", "structJ2DPicture.html", [
-        [ "J2DPictureEx", "structJ2DPictureEx.html", null ]
+    [ "J2DPane", "classJ2DPane.html", [
+      [ "J2DPicture", "classJ2DPicture.html", [
+        [ "J2DPictureEx", "classJ2DPictureEx.html", null ]
       ] ],
       [ "J2DScreen", "structJ2DScreen.html", null ],
-      [ "J2DTextBox", "structJ2DTextBox.html", [
-        [ "J2DTextBoxEx", "structJ2DTextBoxEx.html", null ]
+      [ "J2DTextBox", "classJ2DTextBox.html", [
+        [ "J2DTextBoxEx", "classJ2DTextBoxEx.html", null ]
       ] ],
       [ "J2DWindow", "classJ2DWindow.html", [
-        [ "J2DWindowEx", "structJ2DWindowEx.html", null ]
+        [ "J2DWindowEx", "classJ2DWindowEx.html", null ]
       ] ]
     ] ],
     [ "J2DPaneHeader", "structJ2DPaneHeader.html", null ],
@@ -2330,7 +2330,7 @@ var hierarchy =
         [ "JKRDvdFile", "classJKRDvdFile.html", null ]
       ] ],
       [ "JKRFileLoader", "classJKRFileLoader.html", [
-        [ "JKRArchive", "structJKRArchive.html", [
+        [ "JKRArchive", "classJKRArchive.html", [
           [ "JKRAramArchive", "structJKRAramArchive.html", null ],
           [ "JKRCompArchive", "classJKRCompArchive.html", null ],
           [ "JKRDvdArchive", "classJKRDvdArchive.html", null ],
@@ -2340,7 +2340,7 @@ var hierarchy =
       ] ],
       [ "JKRHeap", "structJKRHeap.html", [
         [ "JKRAssertHeap", "classJKRAssertHeap.html", null ],
-        [ "JKRExpHeap", "structJKRExpHeap.html", null ],
+        [ "JKRExpHeap", "classJKRExpHeap.html", null ],
         [ "JKRSolidHeap", "classJKRSolidHeap.html", null ]
       ] ],
       [ "JKRThread", "classJKRThread.html", [

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structJKRArchive.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classJKRArchive.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1093,-173.62 1025.25,-173.62 1025.25,-154.38 1093,-154.38 1093,-173.62"/>
 <text text-anchor="middle" x="1059.12" y="-160.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRArchive</text>
 </a>
@@ -174,7 +174,7 @@
 <!-- Node90 -->
 <g id="Node000090" class="node">
 <title>Node90</title>
-<g id="a_Node000090"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000090"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="418.75,-236.62 345,-236.62 345,-217.38 418.75,-217.38 418.75,-236.62"/>
 <text text-anchor="middle" x="381.88" y="-223.12" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -522,7 +522,7 @@
 <!-- Node88 -->
 <g id="Node000088" class="node">
 <title>Node88</title>
-<g id="a_Node000088"><a xlink:href="structCPaneMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000088"><a xlink:href="classCPaneMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="857.25,-1137.62 795.5,-1137.62 795.5,-1118.38 857.25,-1118.38 857.25,-1137.62"/>
 <text text-anchor="middle" x="826.38" y="-1124.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgr</text>
 </a>
@@ -565,7 +565,7 @@
 <!-- Node117 -->
 <g id="Node000117" class="node">
 <title>Node117</title>
-<g id="a_Node000117"><a xlink:href="structdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000117"><a xlink:href="classdMsgScrnArrow__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1107.25,-1071.62 1011,-1071.62 1011,-1052.38 1107.25,-1052.38 1107.25,-1071.62"/>
 <text text-anchor="middle" x="1059.12" y="-1058.12" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrnArrow_c</text>
 </a>
@@ -586,7 +586,7 @@
 <!-- Node119 -->
 <g id="Node000119" class="node">
 <title>Node119</title>
-<g id="a_Node000119"><a xlink:href="structdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000119"><a xlink:href="classdMsgScrn3Select__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1588.5,-1313.62 1484.75,-1313.62 1484.75,-1294.38 1588.5,-1294.38 1588.5,-1313.62"/>
 <text text-anchor="middle" x="1536.62" y="-1300.12" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgScrn3Select_c</text>
 </a>
@@ -657,7 +657,7 @@
 <!-- Node89 -->
 <g id="Node000089" class="node">
 <title>Node89</title>
-<g id="a_Node000089"><a xlink:href="structCPaneMgrAlpha.html" target="_top" xlink:title=" ">
+<g id="a_Node000089"><a xlink:href="classCPaneMgrAlpha.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="606.12,-304.62 519.62,-304.62 519.62,-285.38 606.12,-285.38 606.12,-304.62"/>
 <text text-anchor="middle" x="562.88" y="-291.12" font-family="Helvetica,sans-Serif" font-size="10.00">CPaneMgrAlpha</text>
 </a>
@@ -713,7 +713,7 @@
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="structJ2DPane.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="classJ2DPane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="409.75,-726.62 354,-726.62 354,-707.38 409.75,-707.38 409.75,-726.62"/>
 <text text-anchor="middle" x="381.88" y="-713.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DPane</text>
 </a>
@@ -771,7 +771,7 @@
 <!-- Node61 -->
 <g id="Node000061" class="node">
 <title>Node61</title>
-<g id="a_Node000061"><a xlink:href="structJ2DTextBox.html" target="_top" xlink:title=" ">
+<g id="a_Node000061"><a xlink:href="classJ2DTextBox.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1093.38,-741.62 1024.88,-741.62 1024.88,-722.38 1093.38,-722.38 1093.38,-741.62"/>
 <text text-anchor="middle" x="1059.12" y="-728.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DTextBox</text>
 </a>
@@ -841,7 +841,7 @@
 <!-- Node68 -->
 <g id="Node000068" class="node">
 <title>Node68</title>
-<g id="a_Node000068"><a xlink:href="structJ2DAnmTransform.html" target="_top" xlink:title=" ">
+<g id="a_Node000068"><a xlink:href="classJ2DAnmTransform.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="224.62,-1165.62 126.88,-1165.62 126.88,-1146.38 224.62,-1146.38 224.62,-1165.62"/>
 <text text-anchor="middle" x="175.75" y="-1152.12" font-family="Helvetica,sans-Serif" font-size="10.00">J2DAnmTransform</text>
 </a>

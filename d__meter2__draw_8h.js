@@ -1,6 +1,6 @@
 var d__meter2__draw_8h =
 [
-    [ "dMeter2Draw_c", "structdMeter2Draw__c.html", "structdMeter2Draw__c" ],
+    [ "dMeter2Draw_c", "classdMeter2Draw__c.html", "classdMeter2Draw__c" ],
     [ "dMeter2Draw_c::item_params", "structdMeter2Draw__c_1_1item__params.html", "structdMeter2Draw__c_1_1item__params" ],
     [ "dMeter2Draw_actionFlag", "d__meter2__draw_8h.html#a88f1f58c44f381002ff77651f5d7fbb3", [
       [ "ACTION_FLG_DEFAULT", "d__meter2__draw_8h.html#a88f1f58c44f381002ff77651f5d7fbb3aa1febf469f68c4792a0f88822eae33b0", null ],

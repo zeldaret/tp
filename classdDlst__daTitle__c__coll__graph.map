@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1519,386,1574,394,1573,399,1518,392"/>
 <area shape="rect" id="Node000003" href="$structJ2DScreen.html" title=" " alt="" coords="1410,417,1495,442"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1510,418,1573,409,1574,415,1511,424"/>
-<area shape="rect" id="Node000004" href="$structJ2DPane.html" title=" " alt="" coords="1167,114,1241,140"/>
+<area shape="rect" id="Node000004" href="$classJ2DPane.html" title=" " alt="" coords="1167,114,1241,140"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1248,145,1281,165,1317,191,1352,224,1381,261,1390,282,1393,301,1391,336,1390,369,1394,386,1404,404,1416,414,1412,418,1400,407,1389,388,1384,369,1386,335,1388,301,1385,283,1376,264,1348,227,1314,196,1278,169,1245,149"/>
 <area shape="rect" id="Node000005" href="$structJGeometry_1_1TBox2.html" title=" " alt="" coords="832,27,999,53"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="992,54,1118,89,1173,111,1171,116,1116,95,991,60"/>
@@ -23,7 +23,7 @@
 <area shape="rect" id="Node000011" href="$classJSULink.html" title=" " alt="" coords="564,145,667,170"/>
 <area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="392,161,564,156,564,161,393,166"/>
 <area shape="poly" id="edge12_Node000007_Node000011" title=" " alt="" coords="681,140,714,133,840,111,841,116,715,139,682,145"/>
-<area shape="rect" id="Node000012" href="$structJ2DAnmTransform.html" title=" " alt="" coords="850,138,981,164"/>
+<area shape="rect" id="Node000012" href="$classJ2DAnmTransform.html" title=" " alt="" coords="850,138,981,164"/>
 <area shape="poly" id="edge14_Node000004_Node000012" title=" " alt="" coords="996,150,1055,149,1117,144,1166,135,1167,140,1117,150,1056,155,996,156"/>
 <area shape="rect" id="Node000013" href="$structJ2DAnmBase.html" title=" " alt="" coords="565,206,666,232"/>
 <area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="658,196,689,180,714,167,783,152,850,147,850,153,784,158,716,172,692,185,660,201"/>

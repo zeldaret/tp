@@ -1,6 +1,6 @@
 <map id="HeapCheck" name="HeapCheck">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1672,153,1761,178"/>
-<area shape="rect" id="Node000002" href="$structJKRExpHeap.html" title=" " alt="" coords="1396,153,1494,178"/>
+<area shape="rect" id="Node000002" href="$classJKRExpHeap.html" title=" " alt="" coords="1396,153,1494,178"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1509,163,1671,163,1671,168,1509,168"/>
 <area shape="rect" id="Node000003" href="$structJKRHeap.html" title=" " alt="" coords="1124,245,1202,270"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1213,236,1274,215,1397,176,1399,181,1276,220,1215,241"/>

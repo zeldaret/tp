@@ -1,8 +1,7 @@
 var structJ2DScreen =
 [
-    [ "J2DScreen", "structJ2DScreen.html#a49b2653b2aa276f41ac6e1df077d960d", null ],
     [ "~J2DScreen", "structJ2DScreen.html#a83e5cb8478f9cf5c7e4f99e52dca0f20", null ],
-    [ "J2DScreen", "structJ2DScreen.html#a759e3d6f8fec0fede2bb2ebb434f2e9b", null ],
+    [ "J2DScreen", "structJ2DScreen.html#a49b2653b2aa276f41ac6e1df077d960d", null ],
     [ "animation", "structJ2DScreen.html#a10f60f290e4aba80e8306fbd90e94566", null ],
     [ "calcMtx", "structJ2DScreen.html#af5dde6e7683d8f445c653fa24dba1b5f", null ],
     [ "checkSignature", "structJ2DScreen.html#a8c25d92f58b9d3b1dac347f520a43f4a", null ],
@@ -11,7 +10,6 @@ var structJ2DScreen =
     [ "createMaterial", "structJ2DScreen.html#aa39b0cee50eddaf9793f51be14106752", null ],
     [ "createPane", "structJ2DScreen.html#a206197ca347decbc50f11d7cac0e5b39", null ],
     [ "createPane", "structJ2DScreen.html#ad5c39596a0742cbf6553fad03f59a339", null ],
-    [ "draw", "structJ2DScreen.html#aa1933b2e810985ad781fef0a4062a5f8", null ],
     [ "draw", "structJ2DScreen.html#a140e12d1cc54c26fb6a14131b776fc54", null ],
     [ "drawSelf", "structJ2DScreen.html#a45f8c556e7b49db3334efc3e7a5b78b6", null ],
     [ "getDataManage", "structJ2DScreen.html#a771dec4186dc55fb2b8b9d6cce67b6dd", null ],
@@ -35,7 +33,6 @@ var structJ2DScreen =
     [ "setAnimation", "structJ2DScreen.html#afd0cf45008f663f34893a69d524e3572", null ],
     [ "setAnimationVC", "structJ2DScreen.html#aefd8bf14f8ffc6a6d2b8d1eb1eccd5ab", null ],
     [ "setAnimationVF", "structJ2DScreen.html#acf99ddd43befcd805f336284f075e66b", null ],
-    [ "setPriority", "structJ2DScreen.html#a59cb03d622872abb9b3f1feca59a7207", null ],
     [ "setPriority", "structJ2DScreen.html#a59cb03d622872abb9b3f1feca59a7207", null ],
     [ "setPriority", "structJ2DScreen.html#a40b4b0fc5d2b35194ba8a849041304f4", null ],
     [ "setScissor", "structJ2DScreen.html#adbdf653f3cf3b6b64a5567e23cd1ab75", null ],

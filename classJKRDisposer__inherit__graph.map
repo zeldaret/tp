@@ -16,7 +16,7 @@
 <area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="63,267,74,309,91,360,117,413,153,460,167,471,163,475,149,464,113,416,86,362,69,310,58,268"/>
 <area shape="rect" id="Node000004" href="$classJKRDvdFile.html" title=" " alt="" coords="322,29,412,55"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,95,258,90,306,64,330,53,332,58,308,69,260,95,252,99"/>
-<area shape="rect" id="Node000006" href="$structJKRArchive.html" title=" " alt="" coords="322,79,412,104"/>
+<area shape="rect" id="Node000006" href="$classJKRArchive.html" title=" " alt="" coords="322,79,412,104"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="249,144,258,140,306,113,330,102,332,107,308,118,260,145,252,149"/>
 <area shape="rect" id="Node000011" href="$classJKRFileCache.html" title=" " alt="" coords="315,128,419,154"/>
 <area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="273,153,313,146,314,152,274,158"/>
@@ -30,7 +30,7 @@
 <area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="417,108,428,113,476,140,500,150,498,155,473,145,425,118,415,113"/>
 <area shape="rect" id="Node000013" href="$classJKRAssertHeap.html" title=" " alt="" coords="309,177,424,203"/>
 <area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="258,221,321,201,323,206,259,226"/>
-<area shape="rect" id="Node000014" href="$structJKRExpHeap.html" title=" " alt="" coords="318,227,416,252"/>
+<area shape="rect" id="Node000014" href="$classJKRExpHeap.html" title=" " alt="" coords="318,227,416,252"/>
 <area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="259,237,317,237,317,242,259,242"/>
 <area shape="rect" id="Node000015" href="$classJKRSolidHeap.html" title=" " alt="" coords="314,276,420,302"/>
 <area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="259,253,323,273,321,278,258,258"/>
