@@ -38,7 +38,7 @@ public:
     /* 803035FC */ virtual bool isUsed(ResFONT const*);
     /* 80302DF4 */ virtual void rewriteAlpha();
     /* 8030361C */ virtual void setAnimation(J2DAnmBase*);
-    /* 80256084 */ virtual void setAnimation(J2DAnmTransform*);
+    /* 80256084 */ virtual void setAnimation(J2DAnmTransform* transform) { J2DPane::setAnimation(transform); }
     /* 80302FFC */ virtual void setAnimation(J2DAnmColor*);
     /* 8030310C */ virtual void setAnimation(J2DAnmTexPattern*);
     /* 80303084 */ virtual void setAnimation(J2DAnmTextureSRTKey*);
