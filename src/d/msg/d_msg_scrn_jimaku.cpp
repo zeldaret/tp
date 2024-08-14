@@ -59,14 +59,14 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     for (int i = 0; i < 2; i++) {
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x200, "");
-        mpTm_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[4 + (i * 10)],
-                                 g_MsgObject_HIO_c.mBoxStartWhite[4 + (i * 10)]);
+        mpTm_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
+                                 g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
 
         if (mpTmr_c[i] != NULL) {
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setString(0x200, "");
-            mpTmr_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[4 + (i * 10)],
-                                      g_MsgObject_HIO_c.mBoxStartWhite[4 + (i * 10)]);
+            mpTmr_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
+                                      g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
         }
     }
 
@@ -140,12 +140,12 @@ void dMsgScrnJimaku_c::exec() {
     mpPmP_c->scale(g_MsgObject_HIO_c.mSubtitleScaleX, g_MsgObject_HIO_c.mSubtitleScaleY);
 
     for (int i = 0; i < 2; i++) {
-        mpTm_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[4 + (i * 10)],
-                                 g_MsgObject_HIO_c.mBoxStartWhite[4 + (i * 10)]);
+        mpTm_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
+                                 g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
 
         if (mpTmr_c[i] != NULL) {
-            mpTmr_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[4 + (i * 10)],
-                                      g_MsgObject_HIO_c.mBoxStartWhite[4 + (i * 10)]);
+            mpTmr_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
+                                      g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
         }
     }
 }
