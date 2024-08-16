@@ -46,6 +46,7 @@ class cBgS_PolyInfo;
 class JPAEmitterManager;
 class JPADrawInfo;
 class J3DAnmBase;
+class dPa_simpleData_c;
 
 class dPa_simpleEcallBack : public JPAEmitterCallBack {
 public:
@@ -67,7 +68,7 @@ public:
     /* 0x0A */ u8 field_0xa;
     /* 0x0C */ s16 field_0xc;
     /* 0x0C */ u16 field_0xe;
-    /* 0x10 */ void* mData;
+    /* 0x10 */ dPa_simpleData_c* mData;
 };  // Size: 0x14
 
 class dPa_followEcallBack : public dPa_levelEcallBack {
@@ -256,7 +257,9 @@ public:
     /* 8004B024 */ ~dPa_simpleData_c();
     /* 8004B060 */ dPa_simpleData_c();
 
-    u8 field_0x0[20];
+    cXyz field_0x00;
+    GXColor field_0x0c;
+    GXColor field_0x10;
 };
 
 class dPa_control_c {

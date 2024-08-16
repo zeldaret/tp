@@ -43,6 +43,7 @@ public:
     void setDeleteParticleFlag() { setStatus(2); }
     void getVelVec(JGeometry::TVec3<f32>& vec) const { vec.set(mVelocity); }
     void getLocalPosition(JGeometry::TVec3<f32>& vec) const { vec.set(mLocalPosition); }
+    void getBaseAxis(JGeometry::TVec3<f32>& vec) const { vec.set(mBaseAxis); }
 
 public:
     /* 0x00 */ JGeometry::TVec3<f32> mPosition;
