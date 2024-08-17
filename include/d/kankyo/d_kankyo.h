@@ -599,6 +599,7 @@ void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* pa
                               f32 param_6);
 _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
 static void dKy_WaterIn_Light_set();
+void dKy_SordFlush_set(cXyz param_0, int param_1);
 
 
 #endif /* D_KANKYO_D_KANKYO_H */

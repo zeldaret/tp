@@ -4,12 +4,14 @@
 //
 
 #include "d/particle/d_particle.h"
+#include "d/d_jnt_col.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "stdio.h"
 #include "d/com/d_com_inf_game.h"
 #include "dol2asm.h"
@@ -1411,25 +1413,25 @@ void dPa_simpleEcallBack::executeAfter(JPABaseEmitter* param_0) {
     if (currentCreateNumber <= 0) {
         field_0xc = 0;
     } else {
-        u8* pfVar3 = (u8*)mData;
+        dPa_simpleData_c* pData = mData;
         param_0->playCreateParticle();
         for (; field_0xc != 0; field_0xc--) {
             Vec local_3c;
-            if ((int)mDoLib_clipper::clip(j3dSys.getViewMtx(), *(Vec*)pfVar3, 200.0f) == 0) {
+            if ((int)mDoLib_clipper::clip(j3dSys.getViewMtx(), *(Vec*)pData, 200.0f) == 0) {
                 JGeometry::TVec3<f32> aTStack_30;
                 param_0->getLocalTranslation(aTStack_30);
-                param_0->setGlobalTranslation(((f32*)pfVar3)[0], ((f32*)pfVar3)[1] + aTStack_30.y, ((f32*)pfVar3)[2]);
-                param_0->setGlobalPrmColor(pfVar3[0xc], pfVar3[0xd], pfVar3[0xe]);
-                param_0->setGlobalAlpha(pfVar3[0xf]);
-                param_0->setGlobalEnvColor(pfVar3[0x10], pfVar3[0x11], pfVar3[0x12]);
+                param_0->setGlobalTranslation(pData->field_0x00.x, pData->field_0x00.y + aTStack_30.y, pData->field_0x00.z);
+                param_0->setGlobalPrmColor(pData->field_0x0c.r, pData->field_0x0c.g, pData->field_0x0c.b);
+                param_0->setGlobalAlpha(pData->field_0x0c.a);
+                param_0->setGlobalEnvColor(pData->field_0x10.r, pData->field_0x10.g, pData->field_0x10.b);
                 for (int i = 0; i < currentCreateNumber; i++) {
                     JPABaseParticle* particle = (JPABaseParticle*)param_0->createParticle();
                     if (particle == NULL)
                         break;
-                    particle->setOffsetPosition(((f32*)pfVar3)[0], ((f32*)pfVar3)[1] + aTStack_30.y, ((f32*)pfVar3)[2]);
+                    particle->setOffsetPosition(pData->field_0x00.x, pData->field_0x00.y + aTStack_30.y, pData->field_0x00.z);
                 }
             }
-            pfVar3 += 0x14;
+            pData++;
         }
     }
     param_0->stopCreateParticle();
@@ -1531,16 +1533,110 @@ SECTION_SDATA2 static f32 lit_4519 = 1.0f;
 
 /* 8004B168-8004B4E0 045AA8 0378+00 1/1 0/0 0/0 .text
  * set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif */
+// Matches with literals
+#ifdef NONMATCHING
+u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u8 param_3,
+                                  _GXColor const& param_4, _GXColor const& param_5, int param_6,
+                                  f32 param_7) {
+    f32 dVar7 = param_7;
+    if (param_2 != NULL && param_2->mInitType != 124) {
+        OS_REPORT("\x1b[43;30mSimple Particle tevstr nonset !!\n");
+        return 0;
+    }
+
+    dPa_simpleData_c* pData = mData;
+    if (pData == NULL || field_0xc >= field_0xe) {
+        if (pData != NULL) {
+            OS_REPORT("\x1b[43;30mSimple Particle Set Over !!\n");
+        } else {
+            OS_REPORT("\x1b[43;30mSimple Particle Nothing !!\n");
+        }
+        return 0;
+    }
+    pData = mData + field_0xc;
+    pData->field_0x00 = *param_1;
+    u32 uVar5 = dPa_control_c::getEmitterManager()->getResourceManager(dPa_control_c::getRM_ID(mID))->getResUserWork(mID);
+    u32 uVar6 = (uVar5 & 0xef0000) >> 0x10;
+    if (uVar6 < 100) {
+        dVar7 = uVar6 / 99.0f;
+    }
+    if (uVar6 < 100) {
+        dVar7 = uVar6 / 99.0f;
+    }
+    if ((uVar5 & 0x20) != 0) {
+        GXColor local_5c;
+        GXColor local_60;
+        GXColor local_64 = {0xff, 0xff, 0xff, 0xff};
+        GXColor local_68 = {0xff, 0xff, 0xff, 0xff};
+        if (&param_5 != NULL) {
+            local_64 = param_5;;
+        }
+        if (&param_4 != NULL) {
+            local_68 = param_4;
+        }
+        dKy_ParticleColor_get_actor((cXyz*)param_1, (dKy_tevstr_c*)param_2, &local_5c, &local_60,
+                                                &local_64, &local_68, dVar7);
+        pData->field_0x0c.r = local_60.r;
+        pData->field_0x0c.g = local_60.g;
+        pData->field_0x0c.b = local_60.b;
+        pData->field_0x10.r = local_5c.r;
+        pData->field_0x10.g = local_5c.g;
+        pData->field_0x10.b = local_5c.b;
+    } else {
+        if ((uVar5 & 0x40) != 0) {
+            GXColor local_6c;
+            GXColor local_70;
+            GXColor local_74 = {0xff, 0xff, 0xff, 0xff};
+            GXColor local_78 = {0xff, 0xff, 0xff, 0xff};
+            if (&param_5 != NULL) {
+                local_74 = param_5;
+            }
+            if (&param_4 != NULL) {
+                local_78 = param_4;
+            }
+            dKy_ParticleColor_get_bg((cXyz*)param_1, (dKy_tevstr_c*)param_2, &local_6c, &local_70, &local_74, &local_78,
+                                     dVar7);
+            dVar7 = g_env_light.mPaletteTerrainLightEffect +
+                    (1.0f - g_env_light.mPaletteTerrainLightEffect) * dVar7;
+            OS_REPORT("\nwork__ratio=[%f]", dVar7);
+            local_6c = dKy_light_influence_col(&local_6c, dVar7);
+            local_70 = dKy_light_influence_col(&local_70, dVar7);
+            pData->field_0x0c.r = local_70.r;
+            pData->field_0x0c.g = local_70.g;
+            pData->field_0x0c.b = local_70.b;
+            pData->field_0x10.r = local_6c.r;
+            pData->field_0x10.g = local_6c.g;
+            pData->field_0x10.b = local_6c.b;
+        } else {
+            if (&param_4 != NULL) {
+                pData->field_0x0c.r = param_4.r;
+                pData->field_0x0c.g = param_4.g;
+                pData->field_0x0c.b = param_4.b;
+            }
+            if (&param_5 != NULL) {
+                pData->field_0x10.r = param_5.r;
+                pData->field_0x10.g = param_5.g;
+                pData->field_0x10.b = param_5.b;
+            }
+        }
+    }
+    pData->field_0x0c.a = param_3;
+    pData->field_0x10.a = param_6;
+    field_0xc++;
+    return 1;
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm u32 dPa_simpleEcallBack::set(cXyz const* param_0, dKy_tevstr_c const* param_1, u8 param_2,
-                                  _GXColor const& param_3, _GXColor const& param_4, int param_5,
-                                  f32 param_6) {
+asm u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u8 param_3,
+                                  _GXColor const& param_4, _GXColor const& param_5, int param_6,
+                                  f32 param_7) {
     nofralloc
 #include "asm/d/particle/d_particle/set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif.s"
 }
 #pragma pop
+#endif
 
 /* 8004B4E0-8004B504 045E20 0024+00 1/0 0/0 0/0 .text
  * execute__17dPa_windPcallBackFP14JPABaseEmitterP15JPABaseParticle */
@@ -2102,6 +2198,68 @@ SECTION_SDATA2 static f32 lit_5066 = 0.5f;
 
 /* 8004C218-8004C838 046B58 0620+00 0/0 7/7 54/54 .text
  * setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl */
+// Matches with literals
+#ifdef NONMATCHING
+void dPa_control_c::setHitMark(u16 param_1, fopAc_ac_c* param_2, cXyz const* param_3,
+                               csXyz const* param_4, cXyz const* param_5, u32 param_6) {
+    cXyz cStack_34;
+    csXyz cStack_78;
+    cXyz const* pPos = param_3;
+    csXyz const* pAngle = param_4;
+    if (param_2 != NULL) {
+        if (fopAcM_checkStatus(param_2, 0x40000000)) {
+            return;
+        }
+        fopAcM_OnStatus(param_2, 0x40000000);
+        if (fopAcM_GetJntCol(param_2) != NULL) {
+            dJntCol_c* jntCol = fopAcM_GetJntCol(param_2);
+            if (jntCol->getHitmarkPosAndAngle(pPos, pAngle, &cStack_34, &cStack_78,
+                                              param_1 == 6) >= 0)
+            {
+                pPos = &cStack_34;
+                pAngle = &cStack_78;
+            }
+        }
+    }
+    if (param_1 == 3) {
+        dComIfGp_particle_set(0x114, pPos, pAngle, param_5);
+        dComIfGp_particle_set(0x115, pPos, 0, param_5);
+        dComIfGp_particle_set(0x116, pPos, 0, param_5);
+        if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
+            dComIfGp_particle_set(0x2ed, pPos, 0, param_5);
+        }
+        dComIfGp_particle_set(0x2ee, pPos, 0, param_5);
+        dKy_SordFlush_set(*pPos, 1);
+    } else if (param_1 == 2 || param_1 == 5 || param_1 == 9 || param_1 == 8 || param_1 == 6) {
+        dComIfGp_particle_set(0x117, pPos, pAngle, param_5);
+        dComIfGp_particle_set(0x118, pPos, 0, param_5);
+        if (param_1 != 9) {
+            dKy_SordFlush_set(*pPos, 0);
+        }
+    } else if (param_1 == 7) {
+        cXyz cStack_40;
+        if (param_5 != NULL) {
+            cStack_40 = *param_5 * 0.5f;
+        } else {
+            cStack_40.set(0.5f, 0.5f, 0.5f);
+        }
+        dComIfGp_particle_set(0x119, pPos, pAngle, &cStack_40);
+        dComIfGp_particle_set(0x11a, pPos, 0, &cStack_40);
+        dComIfGp_particle_set(0x2ef, pPos, 0, &cStack_40);
+        if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
+            dComIfGp_particle_set(0x2f0, pPos, 0, &cStack_40);
+        }
+    } else if (param_1 == 1 || param_1 == 4) {
+        dComIfGp_particle_set(0x119, pPos, pAngle, param_5);
+        dComIfGp_particle_set(0x11a, pPos, 0, param_5);
+        dComIfGp_particle_set(0x2ef, pPos, 0, param_5);
+        if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
+            dComIfGp_particle_set(0x2f0, pPos, 0, param_5);
+        }
+        dKy_SordFlush_set(*pPos, 1);
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2111,6 +2269,7 @@ asm void dPa_control_c::setHitMark(u16 param_0, fopAc_ac_c* param_1, cXyz const*
 #include "asm/d/particle/d_particle/setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451F90-80451F94 000590 0004+00 1/1 0/0 0/0 .sdata2          particleID$5076 */
@@ -2769,6 +2928,130 @@ SECTION_SDATA2 static f32 lit_6079 = -1.0f;
 
 /* 8004DD1C-8004E6A8 04865C 098C+00 1/0 0/0 0/0 .text
  * draw__19dPa_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
+// Matches with literals
+#ifdef NONMATCHING
+void dPa_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2) {
+    Mtx local_60;
+    Mtx auStack_90;
+    Mtx auStack_c0;
+    Mtx auStack_f0;
+    JGeometry::TVec3<f32> local_100;
+    JGeometry::TVec3<f32> local_10c;
+    JGeometry::TVec3<f32> local_118;
+    JGeometry::TVec3<f32> local_124;
+    JGeometry::TVec3<f32> local_130;
+    u8 globalAlpha = param_1->getGlobalAlpha() & 0xff;
+    JGeometry::TVec3<f32> local_13c;
+    JGeometry::TVec3<f32> local_148;
+    JGeometry::TVec3<f32> local_154;
+    JGeometry::TVec3<f32> local_160;
+    JGeometry::TVec3<f32> local_16c;
+    dPa_setWindPower(param_2);
+    MTXIdentity(local_60);
+    MTXIdentity(auStack_90);
+    param_2->getBaseAxis(local_10c);
+    param_2->getLocalPosition(local_118);
+    if (local_118.isZero()) {
+        local_118.set(0.0f, 1.0f, 0.0f);
+    } else {
+        local_118.normalize();
+    }
+    local_124.cross(local_10c, local_118);
+    if (local_124.isZero()) {
+        local_124.set(0.0f, 0.0f, 1.0f);
+    } else {
+        local_124.normalize();
+    }
+    local_10c.cross(local_118, local_124);
+    local_10c.normalize();
+    local_60[0][0] = local_10c.x;
+    local_60[0][1] = local_118.x;
+    local_60[0][2] = local_124.x;
+    local_60[1][0] = local_10c.y;
+    local_60[1][1] = local_118.y;
+    local_60[1][2] = local_124.y;
+    local_60[2][0] = local_10c.z;
+    local_60[2][1] = local_118.z;
+    local_60[2][2] = local_124.z;
+    f32 fVar3 = (-90.0f / 16384.0f) * param_2->getRotateAngle();
+    if (fVar3) {
+        Vec local_178 = {1.0f, 1.0f, 1.0f};
+        MTXRotAxisRad(auStack_90, &local_178, (M_PI / 180.0f) * fVar3);
+        MTXConcat(local_60, auStack_90, local_60);
+    }
+    param_2->getGlobalPosition(local_100);
+    local_60[0][3] = local_100.x;
+    local_60[1][3] = local_100.y;
+    local_60[2][3] = local_100.z;
+    param_1->getGlobalParticleScale(local_130);
+    local_130.x *= param_2->getParticleScaleX();
+    local_130.y *= param_2->getParticleScaleY();
+    local_130.x *= param_2->getWidth(param_1);
+    local_130.y *= param_2->getHeight(param_1);
+    local_130.x *= 10.0f;
+    local_130.y *= 10.0f;
+    local_130.z = 0.0f;
+    MTXScale(auStack_f0, local_130.x, local_130.y, local_130.z);
+    MTXConcat(local_60, auStack_f0, local_60);
+    MTXConcat(j3dSys.getViewMtx(), local_60, auStack_c0);
+    GXLoadPosMtxImm(auStack_c0, 0);
+    JGeometry::TVec3<f32> local_184;
+    JGeometry::TVec3<f32> local_190;
+    JGeometry::TVec3<f32> local_19c;
+    JGeometry::TVec3<f32> local_1a8;
+    local_184.set(1.0f, 2.0f, 0.0f);
+    local_190.set(1.0f, 0.0f, 0.0f);
+    local_19c.set(-1.0f, 0.0f, 0.0f);
+    local_1a8.set(-1.0f, 2.0f, 0.0f);
+    local_13c.x = 0.0f;
+    local_13c.y = 1.0f;
+    local_13c.z = 0.0f;
+    local_148.x = 0.0f;
+    local_148.y = 1.0f;
+    local_148.z = 0.0f;
+    local_154.x = 0.0f;
+    local_154.y = 1.0f;
+    local_154.z = 0.0f;
+    local_160.x = 0.0f;
+    local_160.y = 1.0f;
+    local_160.z = 0.0f;
+    local_16c.x = 0.0f;
+    local_16c.y = 1.0f;
+    local_16c.z = 0.0f;
+    local_13c.normalize();
+    local_148.normalize();
+    local_154.normalize();
+    local_160.normalize();
+    local_16c.normalize();
+    GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 6);
+    GXPosition3f32(0.0f, 1.0f, 0.0f);
+    GXNormal3f32(local_13c.x, local_13c.y, local_13c.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(0.5f, 0.5f);
+    GXPosition3f32(local_184.x, local_184.y, local_184.z);
+    GXNormal3f32(local_148.x, local_148.y, local_148.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(local_190.x, local_190.y, local_190.z);
+    GXNormal3f32(local_154.x, local_154.y, local_154.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(local_19c.x, local_19c.y, local_19c.z);
+    GXNormal3f32(local_160.x, local_160.y, local_160.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXPosition3f32(local_1a8.x, local_1a8.y, local_1a8.z);
+    GXNormal3f32(local_16c.x, local_16c.y, local_16c.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(local_184.x, local_184.y, local_184.z);
+    GXNormal3f32(local_148.x, local_148.y, local_148.z);
+    GXColor4u8(0xff, 0xff, 0xff, globalAlpha);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXEnd();
+    param_2->setInvisibleParticleFlag();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2777,6 +3060,7 @@ asm void dPa_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* par
 #include "asm/d/particle/d_particle/draw__19dPa_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80451FEC-80451FF0 0005EC 0004+00 2/2 0/0 0/0 .sdata2          @6350 */
@@ -2787,6 +3071,99 @@ SECTION_SDATA2 static f32 lit_6351 = -12.5f;
 
 /* 8004E6A8-8004ED44 048FE8 069C+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_b_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
+// regalloc
+#ifdef NONMATCHING
+void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2) {
+    Mtx local_80;
+    JGeometry::TVec3<f32> local_8c;
+    JGeometry::TVec3<f32> aTStack_98;
+    JGeometry::TVec3<f32> aTStack_a4;
+    JGeometry::TVec3<f32> aTStack_b0;
+    JGeometry::TVec3<f32> local_bc;
+    u8 uVar7 = param_1->getGlobalAlpha() & 0xff;
+    JGeometry::TVec3<f32> local_c8;
+    JGeometry::TVec3<f32> local_d4;
+    JGeometry::TVec3<f32> local_e0;
+    JGeometry::TVec3<f32> local_ec;
+    JGeometry::TVec3<f32> local_f8;
+    param_2->getGlobalPosition(local_8c);
+    MTXMultVec(j3dSys.getViewMtx(), &local_8c, &local_8c);
+    f32 dVar9 = JMASSin(param_2->getRotateAngle());
+    f32 dVar10 = JMASCos(param_2->getRotateAngle());
+    param_1->getGlobalParticleScale(local_bc);
+    local_bc.x *= param_2->getWidth(param_1);
+    local_bc.y *= param_2->getHeight(param_1);
+    local_80[0][0] = dVar10 * local_bc.x;
+    local_80[0][1] = -dVar9 * local_bc.y;
+    local_80[0][3] = local_8c.x;
+    local_80[1][0] = dVar9 * local_bc.x;
+    local_80[1][1] = dVar10 * local_bc.y;
+    local_80[1][3] = local_8c.y;
+    local_80[2][2] = 1.0f;
+    local_80[2][3] = local_8c.z;
+    local_80[2][1] = 0.0f;
+    local_80[2][0] = 0.0f;
+    local_80[1][2] = 0.0f;
+    local_80[0][2] = 0.0f;
+    GXLoadPosMtxImm(local_80, 0);
+    GXLoadNrmMtxImm(local_80, 0);
+    JGeometry::TVec3<f32> local_104;
+    JGeometry::TVec3<f32> local_110;
+    JGeometry::TVec3<f32> local_11c;
+    JGeometry::TVec3<f32> local_128;
+    local_104.set(12.5f, 12.5f, 0.0f);
+    local_110.set(12.5f, -12.5f, 0.0f);
+    local_11c.set(-12.5f, -12.5f, 0.0f);
+    local_128.set(-12.5f, 12.5f, 0.0f);
+    local_c8.x = 0.0f;
+    local_c8.y = 0.0f;
+    local_c8.z = 0.0f;
+    local_d4.x = 1.0f;
+    local_d4.y = 1.0f;
+    local_d4.z = 0.0f;
+    local_e0.x = 1.0f;
+    local_e0.y = -1.0f;
+    local_e0.z = 0.0f;
+    local_ec.x = -1.0f;
+    local_ec.y = -1.0f;
+    local_ec.z = 0.0f;
+    local_f8.x = -1.0f;
+    local_f8.y = 1.0f;
+    local_f8.z = 0.0f;
+    local_c8.normalize();
+    local_d4.normalize();
+    local_e0.normalize();
+    local_ec.normalize();
+    local_f8.normalize();
+    GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 6);
+    GXPosition3f32(0.0f, 0.0f, 0.0f);
+    GXNormal3f32(local_c8.x, local_c8.y, local_c8.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(0.5f, 0.5f);
+    GXPosition3f32(local_104.x, local_104.y, local_104.z);
+    GXNormal3f32(local_d4.x, local_d4.y, local_d4.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(local_110.x, local_110.y, local_110.z);
+    GXNormal3f32(local_e0.x, local_e0.y, local_e0.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(local_11c.x, local_11c.y, local_11c.z);
+    GXNormal3f32(local_ec.x, local_ec.y, local_ec.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXPosition3f32(local_128.x, local_128.y, local_128.z);
+    GXNormal3f32(local_f8.x, local_f8.y, local_f8.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(local_104.x, local_104.y, local_104.z);
+    GXNormal3f32(local_d4.x, local_d4.y, local_d4.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar7);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXEnd();
+    param_2->setInvisibleParticleFlag();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2795,6 +3172,7 @@ asm void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticl
 #include "asm/d/particle/d_particle/draw__25dPa_gen_b_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 8037A120-8037A12C 006780 000C+00 1/1 0/0 0/0 .rodata          @6363 */
@@ -2805,6 +3183,125 @@ COMPILER_STRIP_GATE(0x8037A120, &lit_6363);
 
 /* 8004ED44-8004F6B8 049684 0974+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_d_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
+#ifdef NONMATCHING
+void dPa_gen_d_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2) {
+    Mtx local_60;
+    Mtx auStack_90;
+    Mtx auStack_c0;
+    Mtx auStack_f0;
+    JGeometry::TVec3<f32> local_100;
+    JGeometry::TVec3<f32> local_10c;
+    JGeometry::TVec3<f32> local_118;
+    JGeometry::TVec3<f32> local_124;
+    JGeometry::TVec3<f32> local_130;
+    u8 uVar6 = param_1->getGlobalAlpha() & 0xff;
+    JGeometry::TVec3<f32> local_13c;
+    JGeometry::TVec3<f32> local_148;
+    JGeometry::TVec3<f32> local_154;
+    JGeometry::TVec3<f32> local_160;
+    JGeometry::TVec3<f32> local_16c;
+    MTXIdentity(local_60);
+    MTXIdentity(auStack_90);
+    param_2->getBaseAxis(local_10c);
+    param_2->getLocalPosition(local_118);
+    if (local_118.isZero()) {
+        local_118.set(0.0f, 1.0f, 0.0f);
+    } else {
+        local_118.normalize();
+    }
+    local_124.cross(local_10c, local_118);
+    if (local_124.isZero()) {
+        local_124.set(0.0f, 0.0f, 1.0f);
+    } else {
+        local_124.normalize();
+    }
+    local_10c.cross(local_118, local_124);
+    local_10c.normalize();
+    local_60[0][0] = local_10c.x;
+    local_60[0][1] = local_118.x;
+    local_60[0][2] = local_124.x;
+    local_60[1][0] = local_10c.y;
+    local_60[1][1] = local_118.y;
+    local_60[1][2] = local_124.y;
+    local_60[2][0] = local_10c.z;
+    local_60[2][1] = local_118.z;
+    local_60[2][2] = local_124.z;
+    f32 fVar3 = (-90.0f / 16384.0f) * param_2->getRotateAngle();
+    if (fVar3) {
+        Vec local_178 = {1.0f, 1.0f, 1.0f};
+        MTXRotAxisRad(auStack_90, &local_178, (M_PI / 180.0f) * fVar3);
+        MTXConcat(local_60, auStack_90, local_60);
+    }
+    param_2->getGlobalPosition(local_100);
+    local_60[0][3] = local_100.x;
+    local_60[1][3] = local_100.y;
+    local_60[2][3] = local_100.z;
+    param_1->getGlobalParticleScale(local_130);
+    local_130.x *= param_2->getWidth(param_1);
+    local_130.y *= param_2->getHeight(param_1);
+    local_130.z = 0.0f;
+    MTXScale(auStack_f0, local_130.x, local_130.y, local_130.z);
+    MTXConcat(local_60, auStack_f0, local_60);
+    MTXConcat(j3dSys.getViewMtx(), local_60, auStack_c0);
+    GXLoadPosMtxImm(auStack_c0, 0);
+    GXLoadNrmMtxImm(auStack_c0, 0);
+    JGeometry::TVec3<f32> local_184;
+    JGeometry::TVec3<f32> local_190;
+    JGeometry::TVec3<f32> local_19c;
+    JGeometry::TVec3<f32> local_1a8;
+    local_184.set(12.5f, 12.5f, 0.0f);
+    local_190.set(12.5f, -12.5f, 0.0f);
+    local_19c.set(-12.5f, -12.5f, 0.0f);
+    local_1a8.set(-12.5f, 12.5f, 0.0f);
+    local_13c.x = 0.0f;
+    local_13c.y = 0.0f;
+    local_13c.z = 0.0f;
+    local_148.x = 1.0f;
+    local_148.y = 1.0f;
+    local_148.z = 0.0f;
+    local_154.x = 1.0f;
+    local_154.y = -1.0f;
+    local_154.z = 0.0f;
+    local_160.x = -1.0f;
+    local_160.y = -1.0f;
+    local_160.z = 0.0f;
+    local_16c.x = -1.0f;
+    local_16c.y = 1.0f;
+    local_16c.z = 0.0f;
+    local_13c.normalize();
+    local_148.normalize();
+    local_154.normalize();
+    local_160.normalize();
+    local_16c.normalize();
+    GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 6);
+    GXPosition3f32(0.0f, 0.0f, 0.0f);
+    GXNormal3f32(local_13c.x, local_13c.y, local_13c.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(0.5f, 0.5f);
+    GXPosition3f32(local_184.x, local_184.y, local_184.z);
+    GXNormal3f32(local_148.x, local_148.y, local_148.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXPosition3f32(local_190.x, local_190.y, local_190.z);
+    GXNormal3f32(local_154.x, local_154.y, local_154.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(1.0f, 1.0f);
+    GXPosition3f32(local_19c.x, local_19c.y, local_19c.z);
+    GXNormal3f32(local_160.x, local_160.y, local_160.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXPosition3f32(local_1a8.x, local_1a8.y, local_1a8.z);
+    GXNormal3f32(local_16c.x, local_16c.y, local_16c.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(local_184.x, local_184.y, local_184.z);
+    GXNormal3f32(local_148.x, local_148.y, local_148.z);
+    GXColor4u8(0xff, 0xff, 0xff, uVar6);
+    GXTexCoord2f32(1.0f, 0.0f);
+    GXEnd();
+    param_2->setInvisibleParticleFlag();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2813,6 +3310,7 @@ asm void dPa_gen_d_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticl
 #include "asm/d/particle/d_particle/draw__25dPa_gen_d_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle.s"
 }
 #pragma pop
+#endif
 
 /* 8004F6B8-8004F6C4 049FF8 000C+00 0/0 2/2 3/3 .text
  * setOldPosP__22dPa_hermiteEcallBack_cFPC4cXyzPC4cXyz          */
@@ -2827,6 +3325,48 @@ SECTION_SDATA2 static f32 lit_6846 = -2.0f;
 
 /* 8004F6C4-8004FABC 04A004 03F8+00 1/0 0/0 0/0 .text
  * executeAfter__22dPa_hermiteEcallBack_cFP14JPABaseEmitter     */
+// Matches with literals
+#ifdef NONMATCHING
+void dPa_hermiteEcallBack_c::executeAfter(JPABaseEmitter* param_1) {
+    JGeometry::TVec3<f32> aTStack_68;
+    JGeometry::TVec3<f32> local_74;
+    local_74.x = field_0x10->x;
+    local_74.y = field_0x10->y;
+    local_74.z = field_0x10->z;
+    JGeometry::TVec3<f32> local_80;
+    local_80.x = field_0xc->x;
+    local_80.y = field_0xc->y;
+    local_80.z = field_0xc->z;
+    JGeometry::TVec3<f32> local_8c;
+    JGeometry::TVec3<f32> local_98;
+    param_1->setGlobalTranslation(local_80);
+    if (param_1->checkStatus(2) == 0) {
+        local_98.x = 0.5f * (local_80.x - local_74.x);
+        local_98.y = 0.5f * (local_80.y - local_74.y);
+        local_98.z = 0.5f * (local_80.z - local_74.z);
+        local_8c.x = 0.5f * (local_74.x - field_0x14->x);
+        local_8c.y = 0.5f * (local_74.y - field_0x14->y);
+        local_8c.z = 0.5f * (local_74.z - field_0x14->z);
+        f32 fVar2 = field_0xc->abs(*field_0x10);
+        f32 fVar1 = (0.1f * fVar2) * mRate;
+        if (mMaxCnt != 0) {
+            if (fVar1 > mMaxCnt) {
+                fVar1 = mMaxCnt;
+            }
+        }
+        if (fVar1 > 1.0f) {
+            f32 dVar9 = 1.0f / fVar1;
+            for (f32 dVar8 = dVar9; dVar8 < 1.0f; dVar8 += dVar9) {
+                aTStack_68.cubic(local_74, local_8c, local_98, local_80, dVar8);
+                JPABaseParticle* particle = param_1->createParticle();
+                if (particle != NULL) {
+                    particle->setOffsetPosition(aTStack_68);
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2835,6 +3375,7 @@ asm void dPa_hermiteEcallBack_c::executeAfter(JPABaseEmitter* param_0) {
 #include "asm/d/particle/d_particle/executeAfter__22dPa_hermiteEcallBack_cFP14JPABaseEmitter.s"
 }
 #pragma pop
+#endif
 
 /* 8004FABC-8004FAD4 04A3FC 0018+00 1/0 0/0 0/0 .text
  * setup__22dPa_hermiteEcallBack_cFP14JPABaseEmitterPC4cXyzPC5csXyzSc */

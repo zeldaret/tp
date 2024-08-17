@@ -305,6 +305,19 @@ struct TVec3<f32> : public Vec {
         };
         return res;
     }
+
+    void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
+               const TVec3<f32>& param_4, f32 param_5) {
+        f32 fVar5 = param_5 * param_5;
+        f32 fVar6 = fVar5 * param_5;
+        f32 fVar8 = 1.0f + (2.0f * fVar6 - 3.0f * fVar5);
+        f32 fVar9 = -2.0f * fVar6 + 3.0f * fVar5;
+        f32 fVar7 = param_5 + (fVar6 - 2.0f * fVar5);
+        f32 fVar4 = fVar6 - fVar5;
+        x = fVar8 * param_1.x + fVar9 * param_4.x + fVar7 * param_2.x + fVar4 * param_3.x;
+        y = fVar8 * param_1.y + fVar9 * param_4.y + fVar7 * param_2.y + fVar4 * param_3.y;
+        z = fVar8 * param_1.z + fVar9 * param_4.z + fVar7 * param_2.z + fVar4 * param_3.z;
+    }
 };
 
 template <typename T>
