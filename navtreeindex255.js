@@ -1,8 +1,5 @@
 var NAVTREEINDEX255 =
 {
-"classdaShopItem__c.html#a9048187063c5fcaaa1343bdf18c1b01c":[3,0,1310,11],
-"classdaShopItem__c.html#a9070cc8f95575cb0939c11252ffb9aa3":[3,0,1310,19],
-"classdaShopItem__c.html#a9797eb2a541295ff18ea88180af88efa":[3,0,1310,26],
 "classdaShopItem__c.html#aa66e486edcaa396e5a715e6bd1ab63d3":[3,0,1310,23],
 "classdaShopItem__c.html#aaa4ebffca06c5fe72d5c1f28c5c7b723":[3,0,1310,4],
 "classdaShopItem__c.html#aaea9750e90e22b8e84bff8db693098d5":[3,0,1310,13],
@@ -249,5 +246,8 @@ var NAVTREEINDEX255 =
 "classdaSus__c_1_1data__c.html#aa7bc9e7b714e12688f041255243a8361":[3,0,1325,0,10],
 "classdaSus__c_1_1data__c.html#aab3f0bcd5bfb16b6ebf67fa8088c471e":[3,0,1325,0,2],
 "classdaSus__c_1_1data__c.html#ab2e4001e604493c3836a1b707a4a99b0":[3,0,1325,0,11],
-"classdaSus__c_1_1data__c.html#abde8e558b1dd8381984c5dd7d918b7ba":[3,0,1325,0,5]
+"classdaSus__c_1_1data__c.html#abde8e558b1dd8381984c5dd7d918b7ba":[3,0,1325,0,5],
+"classdaSus__c_1_1data__c.html#abf62c7cd0dedcfd0277c5e7b829d4595":[3,0,1325,0,14],
+"classdaSus__c_1_1data__c.html#ad6864ba2eeec4016b5a5292542317a7d":[3,0,1325,0,20],
+"classdaSus__c_1_1data__c.html#adeac58ed27a492b3d6479ea41fc0f874":[3,0,1325,0,13]
 };

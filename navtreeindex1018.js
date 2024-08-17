@@ -1,6 +1,5 @@
 var NAVTREEINDEX1018 =
 {
-"namespacedaTagRestart__prm.html":[2,0,11],
 "namespacedaTagRestart__prm.html#af01a686c7e33339a62551a358df22fb7":[2,0,11,0],
 "namespacedaTagSpinner__prm.html":[2,0,12],
 "namespacedaTagSpinner__prm.html#a5165d5a50acf3c35984f74e6c9f9c2a0":[2,0,12,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1018 =
 "obj_2d__a__obj__swhang_2unknown__translation__unit__bss_8h_source.html":[4,0,1,8,0,0,79,272,2],
 "obj_2d__a__obj__sword_2unknown__translation__unit__bss_8cpp.html":[4,0,3,0,0,79,274,1],
 "obj_2d__a__obj__sword_2unknown__translation__unit__bss_8cpp.html#ad8c76798f8eabc16594178b9daf4b1ef":[4,0,3,0,0,79,274,1,0],
-"obj_2d__a__obj__sword_2unknown__translation__unit__bss_8h.html":[4,0,1,8,0,0,79,274,2]
+"obj_2d__a__obj__sword_2unknown__translation__unit__bss_8h.html":[4,0,1,8,0,0,79,274,2],
+"obj_2d__a__obj__sword_2unknown__translation__unit__bss_8h_source.html":[4,0,1,8,0,0,79,274,2]
 };

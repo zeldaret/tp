@@ -1,6 +1,5 @@
 var NAVTREEINDEX1009 =
 {
-"include_2rel_2d_2a_2obj_2d__a__obj__takaraDai_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h.html":[4,0,1,8,0,0,79,285,0,0,0],
 "include_2rel_2d_2a_2obj_2d__a__obj__takaraDai_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,79,285,0,0,0],
 "include_2rel_2d_2a_2obj_2d__a__obj__ten_2global__destructor__chain_8h.html":[4,0,1,8,0,0,79,287,3],
 "include_2rel_2d_2a_2obj_2d__a__obj__ten_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,79,287,3],
@@ -94,8 +93,8 @@ var NAVTREEINDEX1009 =
 "include_2rel_2d_2a_2tag_2d__a__tag__waterfall_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,80,69,3],
 "include_2rel_2d_2a_2tag_2d__a__tag__waterfall_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h.html":[4,0,1,8,0,0,80,69,0,0,0],
 "include_2rel_2d_2a_2tag_2d__a__tag__waterfall_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,80,69,0,0,0],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "index.html#actors":[0,1,0],
 "index.html#code":[0,1],
 "index.html#dolphin":[0,1,1],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1009 =
 "jstudio-object_8cpp.html#a04f4f7970d747eb09a738641fc925b13":[4,0,2,1,13,0,11,128],
 "jstudio-object_8cpp.html#a0509f0938e62d2940bb1f5c8bd17203c":[4,0,2,1,13,0,11,97],
 "jstudio-object_8cpp.html#a056cd742a1b29878057ab760843744b9":[4,0,2,1,13,0,11,149],
-"jstudio-object_8cpp.html#a062dd0abbc44d1516db84de7ca64019f":[4,0,2,1,13,0,11,114]
+"jstudio-object_8cpp.html#a062dd0abbc44d1516db84de7ca64019f":[4,0,2,1,13,0,11,114],
+"jstudio-object_8cpp.html#a067b92de964f59fcc54206461ece24a2":[4,0,2,1,13,0,11,111]
 };

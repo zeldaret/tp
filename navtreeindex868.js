@@ -1,8 +1,5 @@
 var NAVTREEINDEX868 =
 {
-"d__a__obj__stairBlock_8cpp.html#a5cd98bc2a9e6b5ebb7504ee5851578db":[4,0,3,0,0,79,259,0,37],
-"d__a__obj__stairBlock_8cpp.html#a627e1ce812aa5a4c18c3536413c28baa":[4,0,3,0,0,79,259,0,51],
-"d__a__obj__stairBlock_8cpp.html#a63cbf682564ccc60035c38ea71cc20b4":[4,0,3,0,0,79,259,0,93],
 "d__a__obj__stairBlock_8cpp.html#a646c96f67a781c5eca70cbf072d26694":[4,0,3,0,0,79,259,0,82],
 "d__a__obj__stairBlock_8cpp.html#a6c949b29ce3c185e8353c408b5a31a48":[4,0,3,0,0,79,259,0,63],
 "d__a__obj__stairBlock_8cpp.html#a6d9a35f207d905a6e5d3c7a92826290e":[4,0,3,0,0,79,259,0,79],
@@ -249,5 +246,8 @@ var NAVTREEINDEX868 =
 "d__a__obj__stone_8cpp.html#a2fe3e3f8ab93b62fb38ee25ac34d71ed":[4,0,3,0,0,79,261,0,287],
 "d__a__obj__stone_8cpp.html#a3081d496e0a87d26410d5301122e678b":[4,0,3,0,0,79,261,0,228],
 "d__a__obj__stone_8cpp.html#a30c0eaf05e93f15b23bde149cdfe83c0":[4,0,3,0,0,79,261,0,163],
-"d__a__obj__stone_8cpp.html#a3119be52f005c89c8c54de7a32dccead":[4,0,3,0,0,79,261,0,58]
+"d__a__obj__stone_8cpp.html#a3119be52f005c89c8c54de7a32dccead":[4,0,3,0,0,79,261,0,58],
+"d__a__obj__stone_8cpp.html#a328141883b4a918e98875cdfba1cfdf3":[4,0,3,0,0,79,261,0,172],
+"d__a__obj__stone_8cpp.html#a33354112e6320761e0ab05a0f5972770":[4,0,3,0,0,79,261,0,45],
+"d__a__obj__stone_8cpp.html#a33d6d3a8ff8be080949ed76a9f2916d7":[4,0,3,0,0,79,261,0,160]
 };

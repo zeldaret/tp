@@ -1,6 +1,5 @@
 var NAVTREEINDEX1030 =
 {
-"structJ3DDrawBlock.html#adf53f01462fe4308c01ec17e07ffd06c":[1,1,1,186,1],
 "structJ3DDrawBuffer.html":[1,1,1,77],
 "structJ3DDrawBuffer.html#a1d4387294ed1574b058c9cf646532d1f":[1,1,1,77,0],
 "structJ3DDrawBuffer.html#a1d4387294ed1574b058c9cf646532d1fa9a4a772e34d2612d5f390c228ae30984":[1,1,1,77,0,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1030 =
 "structJ3DMaterial.html#added57dba046cf98b4c0fe02423a9e3f":[1,1,1,121,16],
 "structJ3DMaterial.html#ae0cd776ac41927eb41af6d48072d76b5":[1,1,1,121,39],
 "structJ3DMaterial.html#ae1f86a439b1a0eb84e9ce6364fa66a05":[1,1,1,121,34],
-"structJ3DMaterial.html#ae2f7d7f6b1651a2ffeef31f3e025a367":[1,1,1,121,52]
+"structJ3DMaterial.html#ae2f7d7f6b1651a2ffeef31f3e025a367":[1,1,1,121,52],
+"structJ3DMaterial.html#ae4a93b4370291088beb01f2c0c0d207a":[1,1,1,121,18]
 };

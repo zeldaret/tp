@@ -1,10 +1,5 @@
 var NAVTREEINDEX85 =
 {
-"classJASHeap.html":[1,1,2,61],
-"classJASHeap.html#a0f9818bad92d0bc29cbfb8d9bfa55753":[1,1,2,61,14],
-"classJASHeap.html#a23103387bf7029c4e21b2550173738cd":[1,1,2,61,9],
-"classJASHeap.html#a34af55d6aa4719ad9b0cb3ea8c58062e":[1,1,2,61,11],
-"classJASHeap.html#a3b6d8141f15929f395063466a15de0c0":[1,1,2,61,12],
 "classJASHeap.html#a41082cec6e24a0a58e38db14afd25546":[1,1,2,61,3],
 "classJASHeap.html#a5c311e9e2fd89631b11da849c5f7a104":[1,1,2,61,17],
 "classJASHeap.html#a68cd65229bdc187bea4d2ca4d294ce5d":[1,1,2,61,15],
@@ -249,5 +244,10 @@ var NAVTREEINDEX85 =
 "classJASVoiceBank.html#a756b92e7354b5118f6ff616cecb08178":[1,1,2,80,1],
 "classJASVoiceBank.html#ab7fab48df720b45895bc7687ba4b7c60":[1,1,2,80,4],
 "classJASVoiceBank.html#ad13128ac8b95632b9a93ab3dfbca644d":[1,1,2,80,3],
-"classJASWSParser_1_1TOffset.html":[1,1,2,85,5]
+"classJASWSParser_1_1TOffset.html":[1,1,2,85,5],
+"classJASWSParser_1_1TOffset.html#a33e0bc8b58d487fecef66ccf6636f9ca":[1,1,2,85,5,1],
+"classJASWSParser_1_1TOffset.html#a34e8d49159d1607693d64e7ca72473f8":[1,1,2,85,5,0],
+"classJASWaveBank.html":[1,1,2,46],
+"classJASWaveBank.html#aacdb95ad6cc3e7943760bf96d227ebe4":[1,1,2,46,1],
+"classJASWaveBank.html#ae675e3207b1b489489470fb8259ea83c":[1,1,2,46,0]
 };

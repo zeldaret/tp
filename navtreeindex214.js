@@ -1,8 +1,5 @@
 var NAVTREEINDEX214 =
 {
-"classdaNpc__Kakashi__c.html#a6ee19608af1e9e5a9b933af30d024b32":[1,0,3,46,12],
-"classdaNpc__Kakashi__c.html#a70a8c1808e22a3df398e9ec8b3271e27":[1,0,3,46,36],
-"classdaNpc__Kakashi__c.html#a70ea2ae80bc28587c0272da454801516":[1,0,3,46,20],
 "classdaNpc__Kakashi__c.html#a79369b9fb9b54bbb4a788c91534aa39e":[1,0,3,46,27],
 "classdaNpc__Kakashi__c.html#a7a6010679e6819bd660db8dcc260c730":[1,0,3,46,14],
 "classdaNpc__Kakashi__c.html#a7c63db2dc7da35bb8fccd6839bce8e6c":[1,0,3,46,38],
@@ -249,5 +246,8 @@ var NAVTREEINDEX214 =
 "classdaNpc__Kn__c.html#af1b0d240716ea5fc909ec008abef77dc":[1,0,3,52,124],
 "classdaNpc__Kn__c.html#af3674aa9a24ec2cad1eb1ccef973a214":[1,0,3,52,60],
 "classdaNpc__Kn__c.html#af37784e8ee9badbe406f1473b2575f83":[1,0,3,52,82],
-"classdaNpc__Kn__c.html#af422c411374b27fec1840996920a46a6":[1,0,3,52,137]
+"classdaNpc__Kn__c.html#af422c411374b27fec1840996920a46a6":[1,0,3,52,137],
+"classdaNpc__Kn__c.html#af842429afc02bf535a76a7b1b1f7cb59":[1,0,3,52,108],
+"classdaNpc__Kn__c.html#af85de6dd407e6c5bb9fcb91f349fdcff":[1,0,3,52,97],
+"classdaNpc__Kn__c.html#afb543bc8cfc99c6ede65063e770f53da":[1,0,3,52,98]
 };

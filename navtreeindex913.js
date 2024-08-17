@@ -1,8 +1,5 @@
 var NAVTREEINDEX913 =
 {
-"d__a__tag__csw_8cpp.html#a8bbd631403038c8296b0026564007681":[4,0,3,0,0,80,11,0,8],
-"d__a__tag__csw_8cpp.html#a8dff4af929e8d363d04f19b2942d8e5d":[4,0,3,0,0,80,11,0,2],
-"d__a__tag__csw_8cpp.html#aa6085c3f9f6aff1ddf5030e68d4bf0eb":[4,0,3,0,0,80,11,0,0],
 "d__a__tag__csw_8cpp.html#aa7b6f36b4c2876d0251e91fbe4ae6647":[4,0,3,0,0,80,11,0,5],
 "d__a__tag__csw_8cpp.html#aad3d6479fd82f076964e145a1eb2ee43":[4,0,3,0,0,80,11,0,4],
 "d__a__tag__csw_8cpp.html#ab813f6cf3d9724b0b907fa359668cfcd":[4,0,3,0,0,80,11,0,7],
@@ -249,5 +246,8 @@ var NAVTREEINDEX913 =
 "d__a__tag__lantern_8cpp.html#aefc4bdcf33ea3cedea49e8565c848aa0":[4,0,3,0,0,80,28,0,7],
 "d__a__tag__lantern_8h.html":[4,0,1,8,0,0,80,28,1],
 "d__a__tag__lantern_8h_source.html":[4,0,1,8,0,0,80,28,1],
-"d__a__tag__lightball_8cpp.html":[4,0,3,0,0,80,29,0]
+"d__a__tag__lightball_8cpp.html":[4,0,3,0,0,80,29,0],
+"d__a__tag__lightball_8cpp.html#a191e73720c432bb1d4bbde5418e717f4":[4,0,3,0,0,80,29,0,0],
+"d__a__tag__lightball_8cpp.html#a20a6d010212a207edb36d50fb2eb599f":[4,0,3,0,0,80,29,0,2],
+"d__a__tag__lightball_8cpp.html#a44da00acc7a11e48a93c25106766a049":[4,0,3,0,0,80,29,0,5]
 };

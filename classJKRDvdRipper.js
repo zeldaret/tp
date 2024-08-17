@@ -12,5 +12,5 @@ var classJKRDvdRipper =
     [ "loadToMainRAM", "classJKRDvdRipper.html#ad914329f4264d273076d53df40cb627d", null ],
     [ "setSZSBufferSize", "classJKRDvdRipper.html#a47ebaec975e5e9668c3cf65a42164595", null ],
     [ "sDvdAsyncList", "classJKRDvdRipper.html#acf4a137602a93bb55ffc3e91c70f54bf", null ],
-    [ "sSZSBufferSize", "classJKRDvdRipper.html#ad77253d7a09e2bf0f8ac269dbc2f6305", null ]
+    [ "sSZSBufferSize", "classJKRDvdRipper.html#af2d32a280d78e200b5cf22a0cd07f662", null ]
 ];

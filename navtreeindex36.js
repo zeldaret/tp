@@ -1,10 +1,5 @@
 var NAVTREEINDEX36 =
 {
-"JUTGamePad_8cpp.html#a03f0909a584860995ac54293482bdc9c":[4,0,2,1,15,10,23],
-"JUTGamePad_8cpp.html#a06da5831a4bf3f9713e343585e283fb2":[4,0,2,1,15,10,58],
-"JUTGamePad_8cpp.html#a08edbb3bda5bd782afb7415e34bf0107":[4,0,2,1,15,10,28],
-"JUTGamePad_8cpp.html#a118b498da245ff7f852e96af9b74b32a":[4,0,2,1,15,10,70],
-"JUTGamePad_8cpp.html#a143ae569e563db2211b8fccee0212daa":[4,0,2,1,15,10,45],
 "JUTGamePad_8cpp.html#a16757d15ba84ba875f6c7eb9cc318b6d":[4,0,2,1,15,10,55],
 "JUTGamePad_8cpp.html#a1978d8bd7027486393a9993fd9cd42de":[4,0,2,1,15,10,48],
 "JUTGamePad_8cpp.html#a1ee60f699e52494c9aa842ff09541514":[4,0,2,1,15,10,65],
@@ -249,5 +244,10 @@ var NAVTREEINDEX36 =
 "OSArena_8h.html#ad24eb9d172aadff451ca195aae1795b9":[4,0,1,2,11,2,1],
 "OSArena_8h_source.html":[4,0,1,2,11,2],
 "OSAudioSystem_8c.html":[4,0,2,0,15,5],
-"OSAudioSystem_8c.html#a0c7597d5699bfb32daabea13b95780e6":[4,0,2,0,15,5,2]
+"OSAudioSystem_8c.html#a0c7597d5699bfb32daabea13b95780e6":[4,0,2,0,15,5,2],
+"OSAudioSystem_8c.html#a5f4a150d3f4ef62ff96cb49ade63e8c4":[4,0,2,0,15,5,1],
+"OSAudioSystem_8c.html#ab02ac1a7be96227a25cf7642787f4159":[4,0,2,0,15,5,0],
+"OSAudioSystem_8h.html":[4,0,1,2,11,3],
+"OSAudioSystem_8h.html#a5f4a150d3f4ef62ff96cb49ade63e8c4":[4,0,1,2,11,3,1],
+"OSAudioSystem_8h.html#ab02ac1a7be96227a25cf7642787f4159":[4,0,1,2,11,3,0]
 };

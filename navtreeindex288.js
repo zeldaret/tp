@@ -1,8 +1,5 @@
 var NAVTREEINDEX288 =
 {
-"d_2a_2obj_2d__a__obj__rope__bridge_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,79,231,3],
-"d_2a_2obj_2d__a__obj__rope__bridge_2unknown__translation__unit__dtors_8h.html":[4,0,1,8,0,0,79,231,4],
-"d_2a_2obj_2d__a__obj__rope__bridge_2unknown__translation__unit__dtors_8h_source.html":[4,0,1,8,0,0,79,231,4],
 "d_2a_2obj_2d__a__obj__rotBridge_2executor_8h.html":[4,0,1,8,0,0,79,232,2],
 "d_2a_2obj_2d__a__obj__rotBridge_2executor_8h_source.html":[4,0,1,8,0,0,79,232,2],
 "d_2a_2obj_2d__a__obj__rotBridge_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,79,232,4],
@@ -249,5 +246,8 @@ var NAVTREEINDEX288 =
 "d_2a_2obj_2d__a__obj__swpush5_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,79,278,4],
 "d_2a_2obj_2d__a__obj__swpush_2executor_8h.html":[4,0,1,8,0,0,79,276,2],
 "d_2a_2obj_2d__a__obj__swpush_2executor_8h_source.html":[4,0,1,8,0,0,79,276,2],
-"d_2a_2obj_2d__a__obj__swpush_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,79,276,4]
+"d_2a_2obj_2d__a__obj__swpush_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,79,276,4],
+"d_2a_2obj_2d__a__obj__swpush_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,79,276,4],
+"d_2a_2obj_2d__a__obj__swspinner_2executor_8h.html":[4,0,1,8,0,0,79,279,1],
+"d_2a_2obj_2d__a__obj__swspinner_2executor_8h_source.html":[4,0,1,8,0,0,79,279,1]
 };

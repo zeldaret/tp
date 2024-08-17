@@ -1,10 +1,5 @@
 var NAVTREEINDEX62 =
 {
-"Z2SeqMgr_8cpp.html#abec54df799c1caa80a7c169ea31622fd":[4,0,2,5,11,91],
-"Z2SeqMgr_8cpp.html#abed5bd59c54272a132a5b4da4beff66d":[4,0,2,5,11,3],
-"Z2SeqMgr_8cpp.html#abfd84fb782c9a618abd2f96022ff907e":[4,0,2,5,11,46],
-"Z2SeqMgr_8cpp.html#ac10f13b63b89755429bc27123634dd5d":[4,0,2,5,11,171],
-"Z2SeqMgr_8cpp.html#ac49851f7a97c2f2bb2190ef0fe14ac50":[4,0,2,5,11,95],
 "Z2SeqMgr_8cpp.html#ac6e89c3d68dfe8d14faf28fadc984894":[4,0,2,5,11,29],
 "Z2SeqMgr_8cpp.html#ac83e0c4e4b27fb633e091998a56ac847":[4,0,2,5,11,167],
 "Z2SeqMgr_8cpp.html#ac87b6cfeb69e66a9adff7ea1f434136d":[4,0,2,5,11,164],
@@ -249,5 +244,10 @@ var NAVTREEINDEX62 =
 "Z2SoundHandles_8cpp.html#a83d11d703fb37c6417f5fc819f13ea81":[4,0,2,5,12,13],
 "Z2SoundHandles_8cpp.html#a92345edb4728bd4e0d6f8c3fa698a7d3":[4,0,2,5,12,18],
 "Z2SoundHandles_8cpp.html#a93986d6b9cfac51150af3e6ba4a872ef":[4,0,2,5,12,16],
-"Z2SoundHandles_8cpp.html#a96be8c79baacd021a226016df5297c51":[4,0,2,5,12,10]
+"Z2SoundHandles_8cpp.html#a96be8c79baacd021a226016df5297c51":[4,0,2,5,12,10],
+"Z2SoundHandles_8cpp.html#aae1e984cdea388196f07d99e76d20095":[4,0,2,5,12,17],
+"Z2SoundHandles_8cpp.html#ab2067823ac634570b2711a8423b07581":[4,0,2,5,12,14],
+"Z2SoundHandles_8cpp.html#ab4ea0984d59ed1f3074078cdba2fa41e":[4,0,2,5,12,3],
+"Z2SoundHandles_8cpp.html#ac7a31b21628f22808aeb0929bfe78e16":[4,0,2,5,12,12],
+"Z2SoundHandles_8cpp.html#acdb61bd0a4453bc4a2d59e83e5552e5e":[4,0,2,5,12,21]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1083 =
 {
+"structmDoGph__gInf__c.html#adc6b5159ecd36c5afe6ca70f46176dbe":[3,0,2758,39],
+"structmDoGph__gInf__c.html#ae348446784cd48ca8ae47386dba04a2f":[3,0,2758,26],
 "structmDoGph__gInf__c.html#af3852c00ce94509600c61119cfebca42":[3,0,2758,42],
 "structmDoGph__gInf__c.html#afb6d2aadb235c5c75e9bb9a4f9ca92d8":[3,0,2758,2],
 "structmDoLib__clipper.html":[3,0,2760],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1083 =
 "structprocess__profile__definition.html#a01976179fa7f529732ce4ed1d6278f5d":[3,0,2902,2],
 "structprocess__profile__definition.html#a01ece79728aaa445186407061f096486":[3,0,2902,5],
 "structprocess__profile__definition.html#a1d90ae6a5f90bc30d8906bff8448fdc0":[3,0,2902,0],
-"structprocess__profile__definition.html#a6c8ec64367e5992b57e509bb53562e35":[3,0,2902,4],
-"structprocess__profile__definition.html#a783d6f9a378bc1abb8bd7f8e9245fdc7":[3,0,2902,3],
-"structprocess__profile__definition.html#aa71e2f26f083145211efc4f3d0b373de":[3,0,2902,7]
+"structprocess__profile__definition.html#a6c8ec64367e5992b57e509bb53562e35":[3,0,2902,4]
 };

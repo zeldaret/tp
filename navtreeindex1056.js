@@ -1,5 +1,7 @@
 var NAVTREEINDEX1056 =
 {
+"structZ2CreatureLink.html#a9da8d5a2a5f6d47754e264cfcc24bf43":[3,0,3050,39],
+"structZ2CreatureLink.html#a9f7597b614968566bce1459adf049c56":[3,0,3050,3],
 "structZ2CreatureLink.html#aa59a7f616450b3ad899b13bff4ea3be4":[3,0,3050,21],
 "structZ2CreatureLink.html#aa993f82add85e0b666c086bf77cf6701":[3,0,3050,6],
 "structZ2CreatureLink.html#aac7e1075c7dab522fa1eaa373eea26c8":[3,0,3050,63],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1056 =
 "structZ2MultiSeMgr.html#a9037a4a527a5093714bf2323f8b54a17":[3,0,3065,5],
 "structZ2MultiSeMgr.html#a94e78db55208ecb09d192c6c263e17dd":[3,0,3065,11],
 "structZ2MultiSeMgr.html#aa2b7bcb41f79e4927db1981d4c44eb9d":[3,0,3065,17],
-"structZ2MultiSeMgr.html#aa6b7b1a59db04148f88bbc1657c37a11":[3,0,3065,19],
-"structZ2MultiSeMgr.html#aaadd0135f41ceba1d726b2e6dc30d908":[3,0,3065,14],
-"structZ2MultiSeMgr.html#ac5866d9f8a0dbe41b85d1dc60085bff3":[3,0,3065,3]
+"structZ2MultiSeMgr.html#aa6b7b1a59db04148f88bbc1657c37a11":[3,0,3065,19]
 };

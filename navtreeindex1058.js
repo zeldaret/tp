@@ -1,5 +1,7 @@
 var NAVTREEINDEX1058 =
 {
+"struct__GXData.html#a3d8d7fa89266a143949bfe082520864c":[3,0,38,45],
+"struct__GXData.html#a40489db2e30f8d2074a78b476739cce0":[3,0,38,25],
 "struct__GXData.html#a418b7e9b4121895fbefdfbb03f769c1c":[3,0,38,4],
 "struct__GXData.html#a43f224e90161acdba03173c3b30fb034":[3,0,38,10],
 "struct__GXData.html#a44bc2134de521b2d92e65f56ede9b974":[3,0,38,42],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1058 =
 "structbase__process__class.html#ac538b7e76b95e49a03a0606f2ba9ad5d":[3,0,71,11],
 "structbase__process__class.html#ad706ff5b46358c87ccc4f42dc88926a6":[3,0,71,6],
 "structbase__process__class.html#adff3a57fbcd8a3eaaddf384208d62378":[3,0,71,10],
-"structbase__process__class.html#ae069f24a4a14bfd7a9d2b4d5d0561596":[3,0,71,12],
-"structbase__process__class.html#aeb9ab8a7b23398351d5fea83f83add2d":[3,0,71,2],
-"structbase__process__class.html#afcc183b46f5dd608774b44f707c92ed7":[3,0,71,17]
+"structbase__process__class.html#ae069f24a4a14bfd7a9d2b4d5d0561596":[3,0,71,12]
 };

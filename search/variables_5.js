@@ -140,7 +140,7 @@ var searchData=
   ['errno_137',['errno',['../errno_8c.html#ad65a8842cc674e3ddf69355898c0ecbf',1,'errno:&#160;errno.c'],['../errno_8h.html#ad65a8842cc674e3ddf69355898c0ecbf',1,'errno:&#160;errno.c']]],
   ['error_138',['error',['../structPADStatus.html#a85d1769f720de656c60c4924734a3029',1,'PADStatus::error'],['../struct__file__states.html#aae7747e06306eacae3f0b15ea57cfc2a',1,'_file_states::error'],['../structCallbackObject.html#aca3cca99fe027d1b47b47848dd9592b6',1,'CallbackObject::error']]],
   ['error_5fcode_139',['error_code',['../structOSThread.html#a8e2c1e202990fa2137149be7fb8d7802',1,'OSThread']]],
-  ['errorretry_140',['errorretry',['../classJKRDvdAramRipper.html#ab0763d45434ccc0722581264a166d583',1,'JKRDvdAramRipper::errorRetry'],['../JKRDvdRipper_8cpp.html#a8ba03da829a01d6b36af8dfeb39d34ff',1,'errorRetry:&#160;JKRDvdRipper.cpp']]],
+  ['errorretry_140',['errorretry',['../classJKRDvdAramRipper.html#ab0763d45434ccc0722581264a166d583',1,'JKRDvdAramRipper::errorRetry'],['../JKRDvdRipper_8cpp.html#adf036ef6c91d52d76f65657d8b3e5e05',1,'errorRetry:&#160;JKRDvdRipper.cpp']]],
   ['errorretry_5f_5f16jkrdvdaramripper_141',['errorRetry__16JKRDvdAramRipper',['../JKRDvdAramRipper_8cpp.html#aa7bf0d2905587f26f55d4d253e39c42a',1,'JKRDvdAramRipper.cpp']]],
   ['errortable_142',['ErrorTable',['../dvderror_8c.html#ad1150ebc2ec902854e6601aa901b7b65',1,'dvderror.c']]],
   ['esa_5fbmd_143',['esa_bmd',['../d__a__mg__rod_8cpp.html#a38e9ac70a3a3d1c3fc88409649aadbf4',1,'d_a_mg_rod.cpp']]],

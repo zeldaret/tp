@@ -4,6 +4,7 @@ var gx_8h =
     [ "GFFill", "gx_8h.html#a91332f6553353fc70d03a0d1a72b8581", null ],
     [ "GFWriteBPCmd", "gx_8h.html#a1ab87fd5e7953bc9185d4cafbcbd56a3", null ],
     [ "GXColor1u32", "gx_8h.html#a62d849faab8928969e7791e22c8b3846", null ],
+    [ "GXColor4u8", "gx_8h.html#a30563d31f5507ca1e0a8c78acc15b102", null ],
     [ "GXEnd", "gx_8h.html#a7a1d15e2e6f9d821fa97106823367415", null ],
     [ "GXNormal3f32", "gx_8h.html#aeccceb966949fe25b996c8c0b735b43e", null ],
     [ "GXPosition1x16", "gx_8h.html#a3ca046f564db6572f141cbcfae5e2dd3", null ],

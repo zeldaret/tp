@@ -1,5 +1,7 @@
 var NAVTREEINDEX1045 =
 {
+"structJPAExtraShapeData.html#a2d7afcc39ea7ed33e0874a525feb0ba7":[1,1,8,14,19],
+"structJPAExtraShapeData.html#a649ff6048d77b395708db52218f77393":[1,1,8,14,9],
 "structJPAExtraShapeData.html#a6573236571a3ed356877d6e762090b71":[1,1,8,14,12],
 "structJPAExtraShapeData.html#a668692af935fcf7e1d9a4667f29ccde2":[1,1,8,14,23],
 "structJPAExtraShapeData.html#a77fb91c51f61391be7d4f48a5983944d":[1,1,8,14,24],
@@ -62,8 +64,8 @@ var NAVTREEINDEX1045 =
 "structJPAKeyBlock.html#a18af0be6c3126b901fd4532ab848afda":[1,1,8,16,4],
 "structJPAKeyBlock.html#a72d9f63c15f1ef1ddb8698a3fd0f3c1c":[1,1,8,16,1],
 "structJPAKeyBlock.html#a72d9f63c15f1ef1ddb8698a3fd0f3c1c":[1,1,8,16,0],
-"structJPAKeyBlock.html#a834031197d63f5127753ed1aff60cb91":[1,1,8,16,3],
 "structJPAKeyBlock.html#a834031197d63f5127753ed1aff60cb91":[1,1,8,16,2],
+"structJPAKeyBlock.html#a834031197d63f5127753ed1aff60cb91":[1,1,8,16,3],
 "structJPAKeyBlock.html#af137a38a5725156562a75b63f4930398":[1,1,8,16,5],
 "structJPAList.html":[1,1,8,18],
 "structJPAList.html#a0683ca17d0bf758b035f18f5c08b4495":[1,1,8,18,11],
@@ -135,8 +137,8 @@ var NAVTREEINDEX1045 =
 "structJPAResource.html#abb670ef14ceb416fc19bbaabf33cb23c":[1,1,8,22,3],
 "structJPAResource.html#ac077105f1ac6ea3ee7c8aeb4f826df18":[1,1,8,22,30],
 "structJPAResource.html#ac38cd879eea73e28af182622fe56502f":[1,1,8,22,10],
-"structJPAResource.html#ac6dd964f12d6fdcc6e3984ad8cc87587":[1,1,8,22,1],
 "structJPAResource.html#ac6dd964f12d6fdcc6e3984ad8cc87587":[1,1,8,22,0],
+"structJPAResource.html#ac6dd964f12d6fdcc6e3984ad8cc87587":[1,1,8,22,1],
 "structJPAResource.html#ac971563812cdd98f70f858081703edb8":[1,1,8,22,46],
 "structJPAResource.html#accf9b7f01e673af41333fa6cceb732f4":[1,1,8,22,45],
 "structJPAResource.html#ad4e2932b7cd106a62ff4fd83f2ca56d9":[1,1,8,22,4],
@@ -160,8 +162,8 @@ var NAVTREEINDEX1045 =
 "structJPAResourceManager.html#a5e276a739e1a4309e16b69c246d61a14":[1,1,8,23,15],
 "structJPAResourceManager.html#a6ab7d046ceeea39c217dde8a259081df":[1,1,8,23,9],
 "structJPAResourceManager.html#a78985010d5d39ab8d74ec2393c5c4564":[1,1,8,23,1],
-"structJPAResourceManager.html#a95aa3b65ce2f19b4bf3e3876af69576e":[1,1,8,23,5],
 "structJPAResourceManager.html#a95aa3b65ce2f19b4bf3e3876af69576e":[1,1,8,23,6],
+"structJPAResourceManager.html#a95aa3b65ce2f19b4bf3e3876af69576e":[1,1,8,23,5],
 "structJPAResourceManager.html#aa3e13c993db220fe4bfca3c41f9f7e28":[1,1,8,23,2],
 "structJPAResourceManager.html#aac2f9f2d15622b3b13ce6c1d9bc43d58":[1,1,8,23,11],
 "structJPAResourceManager.html#ac675aa10ef4abfcafb67dc0582cfd45e":[1,1,8,23,10],
@@ -194,8 +196,8 @@ var NAVTREEINDEX1045 =
 "structJSUInputStream.html#aabf96b6369e7ba2812a92470b760a354":[1,1,11,1,7],
 "structJSUInputStream.html#ab37d45a4078ece9597f0d19fb101d7dd":[1,1,11,1,8],
 "structJSUInputStream.html#abfc90f696881b7b4e1f61450e08e549a":[1,1,11,1,14],
-"structJSUInputStream.html#ac4be788482436136239b238989472b08":[1,1,11,1,5],
 "structJSUInputStream.html#ac4be788482436136239b238989472b08":[1,1,11,1,4],
+"structJSUInputStream.html#ac4be788482436136239b238989472b08":[1,1,11,1,5],
 "structJSUInputStream.html#af2ef23f0e033430a8a4a25094d908331":[1,1,11,1,13],
 "structJSUInputStream.html#afd15521ed72ac4ff47297220d4e71ef5":[1,1,11,1,9],
 "structJSUMemoryInputStream.html":[1,1,11,10],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1045 =
 "structJStage_1_1TCamera.html#a463eb121de5dcf26fb729f48e12d07a9":[1,1,9,4,13],
 "structJStage_1_1TCamera.html#a553d89785c39f0cb4acef618e7d1d0ff":[1,1,9,4,22],
 "structJStage_1_1TCamera.html#a7fdd3fd17d879974a1f15c7452e075c2":[1,1,9,4,16],
-"structJStage_1_1TCamera.html#a8648f3876e52cfc43897218bcef4805a":[1,1,9,4,5],
-"structJStage_1_1TCamera.html#a985e037c11ef8016b779c3a86fbbfb6d":[1,1,9,4,4],
-"structJStage_1_1TCamera.html#a9ba22ae93657ccc1c6b44f03d1827078":[1,1,9,4,20]
+"structJStage_1_1TCamera.html#a8648f3876e52cfc43897218bcef4805a":[1,1,9,4,5]
 };

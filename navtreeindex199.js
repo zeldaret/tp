@@ -1,8 +1,5 @@
 var NAVTREEINDEX199 =
 {
-"classdaMidna__c.html#ad14e9a8448b9a2a29117bd163deb6f96":[3,0,733,143],
-"classdaMidna__c.html#ad366c7c36b6db098689f81dfda55babd":[3,0,733,142],
-"classdaMidna__c.html#ad473be0f3f1950f931a9299ebc15713a":[3,0,733,150],
 "classdaMidna__c.html#ad4a7c0771e3fd5edbb21f7b7b1b00c96":[3,0,733,21],
 "classdaMidna__c.html#ad55b89438af173a59a43f57f8c14e9c6":[3,0,733,141],
 "classdaMidna__c.html#ad7e6601cd71e10c9e196b3f490261db5":[3,0,733,59],
@@ -249,5 +246,8 @@ var NAVTREEINDEX199 =
 "classdaNPC__TK__c.html#a28545a68cf1335c419a0129f907449b9":[1,0,3,96,35],
 "classdaNPC__TK__c.html#a2fa594d6aead3841ce0a7a795ef2b0b7":[1,0,3,96,16],
 "classdaNPC__TK__c.html#a33bd9f27c00076b51286cb8a44b46191":[1,0,3,96,19],
-"classdaNPC__TK__c.html#a356c699901d9520ff150db7da302af5a":[1,0,3,96,56]
+"classdaNPC__TK__c.html#a356c699901d9520ff150db7da302af5a":[1,0,3,96,56],
+"classdaNPC__TK__c.html#a35a2c9bcc20f7f76cc1b42b38857793b":[1,0,3,96,15],
+"classdaNPC__TK__c.html#a39055828c68833265be1f8144e9a91d6":[1,0,3,96,14],
+"classdaNPC__TK__c.html#a3dc72aa89b73b81fcf66e78ff5418aed":[1,0,3,96,8]
 };

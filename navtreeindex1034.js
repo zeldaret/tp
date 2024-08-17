@@ -1,6 +1,5 @@
 var NAVTREEINDEX1034 =
 {
-"structJAISoundParams.html":[1,1,2,29],
 "structJAISoundParams.html#a44eff8c17d23539ddb6fbd62fb56e6ff":[1,1,2,29,0],
 "structJAISoundParams.html#a5db70f4d4707ad4bc72df2e0fd256fb9":[1,1,2,29,3],
 "structJAISoundParams.html#a6994a4d1f3213262557769b3169ab7b2":[1,1,2,29,2],
@@ -146,8 +145,8 @@ var NAVTREEINDEX1034 =
 "structJASAudioThread.html#afd2b3b762018c69edba8f781f385d937":[1,1,2,37,6],
 "structJASBNKParser_1_1Ver0_1_1THeader.html":[2,0,16,0,0],
 "structJASBNKParser_1_1Ver0_1_1THeader.html":[3,0,2,0,0],
-"structJASBNKParser_1_1Ver0_1_1TOsc.html":[2,0,16,0,1],
 "structJASBNKParser_1_1Ver0_1_1TOsc.html":[3,0,2,0,1],
+"structJASBNKParser_1_1Ver0_1_1TOsc.html":[2,0,16,0,1],
 "structJASBank.html":[1,1,2,38],
 "structJASBank.html#a1f13775f38bf6cc7e71b78d80cd37ffa":[1,1,2,38,7],
 "structJASBank.html#a68a77ec267ecfd4fe80591c63b8d9624":[1,1,2,38,9],
@@ -181,14 +180,14 @@ var NAVTREEINDEX1034 =
 "structJASBasicInst.html#a5f0cf92f4564d5dce8923bdc84fc007d":[1,1,2,44,8],
 "structJASBasicInst.html#a5f0cf92f4564d5dce8923bdc84fc007d":[1,1,2,44,9],
 "structJASBasicInst.html#a72a42f7bc4fc6f98e2ba45d1bf6de9fb":[1,1,2,44,6],
-"structJASBasicInst.html#a731959bf6412d679f27fac18dd0584c7":[1,1,2,44,10],
 "structJASBasicInst.html#a731959bf6412d679f27fac18dd0584c7":[1,1,2,44,11],
+"structJASBasicInst.html#a731959bf6412d679f27fac18dd0584c7":[1,1,2,44,10],
 "structJASBasicInst.html#a7b9d83728dd6cf55290c6a27f0e369af":[1,1,2,44,5],
 "structJASBasicInst.html#a83fa4ab36a615332cb9a8d187f4d89e3":[1,1,2,44,13],
 "structJASBasicInst.html#a92a64b6a52841edfd26bf632c5aeac09":[1,1,2,44,12],
 "structJASBasicInst.html#aa26e7535866607141b3c8f399b0fa7f3":[1,1,2,44,3],
-"structJASBasicInst.html#ae019e3b6b32598fd43d09fb25937952d":[1,1,2,44,2],
 "structJASBasicInst.html#ae019e3b6b32598fd43d09fb25937952d":[1,1,2,44,1],
+"structJASBasicInst.html#ae019e3b6b32598fd43d09fb25937952d":[1,1,2,44,2],
 "structJASBasicInst.html#aed15548146e7e1ae600fd40e48607992":[1,1,2,44,16],
 "structJASBasicInst_1_1TKeymap.html":[1,1,2,44,0],
 "structJASBasicInst_1_1TKeymap.html#a2ba685eb7900f9112a8fc751895ec982":[1,1,2,44,0,4],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1034 =
 "structJASCalc.html#a48ea198879a10163e8553de17bd7530b":[1,1,2,48,2],
 "structJASCalc.html#a49ae104558bb19348e01f5500ad14dbb":[1,1,2,48,11],
 "structJASCalc.html#a510b741e77acebd02259c30887a7f95a":[1,1,2,48,7],
-"structJASCalc.html#a816571f6cac94301e0c8a3d4cec30eb2":[1,1,2,48,5]
+"structJASCalc.html#a816571f6cac94301e0c8a3d4cec30eb2":[1,1,2,48,5],
+"structJASCalc.html#abcd87e8573e59048244f2452525fb86a":[1,1,2,48,1]
 };

@@ -1,6 +1,5 @@
 var NAVTREEINDEX1010 =
 {
-"jstudio-object_8cpp.html#a067b92de964f59fcc54206461ece24a2":[4,0,2,1,13,0,11,111],
 "jstudio-object_8cpp.html#a07802390ec789d585ab9991a261e4ee5":[4,0,2,1,13,0,11,35],
 "jstudio-object_8cpp.html#a08a3229da23520e50b3ad07d45178214":[4,0,2,1,13,0,11,29],
 "jstudio-object_8cpp.html#a08de36a5fd7432a051d7d7131c35981b":[4,0,2,1,13,0,11,213],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1010 =
 "jstudio-object_8cpp.html#afb3952974f57c10d7a241282113b443b":[4,0,2,1,13,0,11,238],
 "jstudio-object_8cpp.html#afbad1400959924d13028834f617bc77c":[4,0,2,1,13,0,11,253],
 "jstudio-object_8cpp.html#afbca6fc17ef77bdbe8015d8aff609a55":[4,0,2,1,13,0,11,236],
-"jstudio-object_8cpp.html#afcd9fe4dffb01970cefd429688d70ecd":[4,0,2,1,13,0,11,61]
+"jstudio-object_8cpp.html#afcd9fe4dffb01970cefd429688d70ecd":[4,0,2,1,13,0,11,61],
+"jstudio-object_8cpp.html#afdca0eb87578e0952b66387b093d81f3":[4,0,2,1,13,0,11,36]
 };

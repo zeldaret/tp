@@ -1,6 +1,5 @@
 var NAVTREEINDEX1011 =
 {
-"jstudio-object_8cpp.html#afdca0eb87578e0952b66387b093d81f3":[4,0,2,1,13,0,11,36],
 "jstudio-object_8cpp.html#afea38f3014831fa5688a34c34ce1efe8":[4,0,2,1,13,0,11,219],
 "jstudio-object_8cpp.html#aff02116c5175b5356f1afb76156ebd77":[4,0,2,1,13,0,11,112],
 "jstudio-object_8h.html":[4,0,1,6,13,0,9],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1011 =
 "m__Do__audio_8cpp.html#a5f817888035eb1d1fb3ddc52771e7f5d":[4,0,4,5,0,13],
 "m__Do__audio_8cpp.html#a6518e589ce0d6767641128c90dab210a":[4,0,4,5,0,70],
 "m__Do__audio_8cpp.html#a65dbda4f44b202e5eed5bccb679743ea":[4,0,4,5,0,39],
-"m__Do__audio_8cpp.html#a693c301b22cd066f25577b8507579fff":[4,0,4,5,0,46]
+"m__Do__audio_8cpp.html#a693c301b22cd066f25577b8507579fff":[4,0,4,5,0,46],
+"m__Do__audio_8cpp.html#a6e70da2170f984e924f24279c4f6db4f":[4,0,4,5,0,68]
 };

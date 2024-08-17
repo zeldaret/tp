@@ -1,10 +1,5 @@
 var NAVTREEINDEX88 =
 {
-"classJKRArchive.html#a580f252b34389d86d134bfd574e2299c":[1,1,5,10,29],
-"classJKRArchive.html#a61cb0751e6a9c7dfd9df4b243b86325e":[1,1,5,10,37],
-"classJKRArchive.html#a650f8bde2162c0f31eae09216b89c757":[1,1,5,10,33],
-"classJKRArchive.html#a67f1ed676409e4ad7129adc33158d05e":[1,1,5,10,51],
-"classJKRArchive.html#a6c527849cfe8e2214eea51f7da72bdb5":[1,1,5,10,16],
 "classJKRArchive.html#a7d318401fd71860537691d82a399866d":[1,1,5,10,18],
 "classJKRArchive.html#a818e030c5fb0592fceb857adac3f5b4f":[1,1,5,10,62],
 "classJKRArchive.html#a81a15b5c09eed77a07c47598b2770d29":[1,1,5,10,49],
@@ -203,12 +198,12 @@ var NAVTREEINDEX88 =
 "classJKRDvdRipper.html#ab0829cb1ac4228c0520d7e5437314a0a":[1,1,5,21,4],
 "classJKRDvdRipper.html#ac9a47518e100a3eadb402bf59f59926b":[1,1,5,21,1],
 "classJKRDvdRipper.html#acf4a137602a93bb55ffc3e91c70f54bf":[1,1,5,21,7],
-"classJKRDvdRipper.html#ad77253d7a09e2bf0f8ac269dbc2f6305":[1,1,5,21,8],
 "classJKRDvdRipper.html#ad914329f4264d273076d53df40cb627d":[1,1,5,21,5],
 "classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161":[1,1,5,21,0],
 "classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161a535be3df38d7ebe6ceb3f1d09e0c7937":[1,1,5,21,0,2],
 "classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161aa99cb1d1fbf7978a7f64954615e785fe":[1,1,5,21,0,1],
 "classJKRDvdRipper.html#add5351d092f559b4c2bef0b3e2199161aaa755b34b664d87cb5d121fe07d24c22":[1,1,5,21,0,0],
+"classJKRDvdRipper.html#af2d32a280d78e200b5cf22a0cd07f662":[1,1,5,21,8],
 "classJKRExpHeap.html":[1,1,5,22],
 "classJKRExpHeap.html#a04e5daf3c91325328d16c99ffb18257a":[1,1,5,22,42],
 "classJKRExpHeap.html#a1a0ed4218a5b16432e1cdca609e3e2de":[1,1,5,22,12],
@@ -249,5 +244,10 @@ var NAVTREEINDEX88 =
 "classJKRExpHeap.html#ab1215323a5db6a1fb4adfd4dc887dd63":[1,1,5,22,22],
 "classJKRExpHeap.html#aba227fca058acec0689c3bf1236d1a62":[1,1,5,22,46],
 "classJKRExpHeap.html#abe25d6b456ae8c50d4d2dcc8115e628d":[1,1,5,22,18],
-"classJKRExpHeap.html#abecce947ba0fa9effdf042144b37909e":[1,1,5,22,10]
+"classJKRExpHeap.html#abecce947ba0fa9effdf042144b37909e":[1,1,5,22,10],
+"classJKRExpHeap.html#abfb47368bba43c23cbf3d6a2cb91c630":[1,1,5,22,7],
+"classJKRExpHeap.html#ac1f3f7bc2caf3b6975f9c08512af750f":[1,1,5,22,37],
+"classJKRExpHeap.html#aca132f7c12ee15ba49ced92636617550":[1,1,5,22,24],
+"classJKRExpHeap.html#ad302f28355170048b246244bcbffbd80":[1,1,5,22,20],
+"classJKRExpHeap.html#adaea0b59ad9ba77d8f4d46c394f7e0d3":[1,1,5,22,25]
 };

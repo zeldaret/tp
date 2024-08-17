@@ -1,8 +1,5 @@
 var NAVTREEINDEX283 =
 {
-"d_2a_2npc_2d__a__npc__wrestler_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,78,105,4],
-"d_2a_2npc_2d__a__npc__yamid_2executor_8h.html":[4,0,1,8,0,0,78,106,2],
-"d_2a_2npc_2d__a__npc__yamid_2executor_8h_source.html":[4,0,1,8,0,0,78,106,2],
 "d_2a_2npc_2d__a__npc__yamid_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,78,106,4],
 "d_2a_2npc_2d__a__npc__yamid_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,78,106,4],
 "d_2a_2npc_2d__a__npc__yamis_2executor_8h.html":[4,0,1,8,0,0,78,107,2],
@@ -249,5 +246,8 @@ var NAVTREEINDEX283 =
 "d_2a_2obj_2d__a__obj__cho_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,79,33,4],
 "d_2a_2obj_2d__a__obj__cowdoor_2executor_8h.html":[4,0,1,8,0,0,79,34,1],
 "d_2a_2obj_2d__a__obj__cowdoor_2executor_8h_source.html":[4,0,1,8,0,0,79,34,1],
-"d_2a_2obj_2d__a__obj__cowdoor_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,79,34,2]
+"d_2a_2obj_2d__a__obj__cowdoor_2unknown__translation__unit__ctors_8h.html":[4,0,1,8,0,0,79,34,2],
+"d_2a_2obj_2d__a__obj__cowdoor_2unknown__translation__unit__ctors_8h_source.html":[4,0,1,8,0,0,79,34,2],
+"d_2a_2obj_2d__a__obj__cowdoor_2unknown__translation__unit__dtors_8h.html":[4,0,1,8,0,0,79,34,3],
+"d_2a_2obj_2d__a__obj__cowdoor_2unknown__translation__unit__dtors_8h_source.html":[4,0,1,8,0,0,79,34,3]
 };

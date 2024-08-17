@@ -1,5 +1,6 @@
 var NAVTREEINDEX1042 =
 {
+"structJKRHeap.html#a150e3132c515cdfad6a1dead0ef621b3":[1,1,5,28,39],
 "structJKRHeap.html#a166d6b7d6792393f2dd3d669af5be4b7":[1,1,5,28,33],
 "structJKRHeap.html#a1ac9d23deb47b3f8393f13b5a334844a":[1,1,5,28,44],
 "structJKRHeap.html#a1baf6f5c5eb217bab084551cff0f50b1":[1,1,5,28,86],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1042 =
 "structJMessage_1_1TProcessor.html#adc98ea50be1f4eabbd39f0e20704fecf":[1,1,7,5,24],
 "structJMessage_1_1TProcessor.html#ae50a87a1673098cba57bb46ba944b6d2":[1,1,7,5,41],
 "structJMessage_1_1TProcessor.html#af28a3fba95134ba9218ff0f274712470":[1,1,7,5,9],
-"structJMessage_1_1TProcessor.html#af52e993051e1ba2caa719d398a8870cf":[1,1,7,5,34],
-"structJMessage_1_1TProcessor.html#afcbec023cc19300df22ad199edce22bd":[1,1,7,5,3]
+"structJMessage_1_1TProcessor.html#af52e993051e1ba2caa719d398a8870cf":[1,1,7,5,34]
 };

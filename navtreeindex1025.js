@@ -1,6 +1,5 @@
 var NAVTREEINDEX1025 =
 {
-"structEXIControl.html#a1c9bae5970f2aa0eeb96ef835e86d2c7":[3,0,2049,2],
 "structEXIControl.html#a3ed4057574f59db1d17f105dbef94a01":[3,0,2049,5],
 "structEXIControl.html#a64479a91f223f337b813eb086214c125":[3,0,2049,8],
 "structEXIControl.html#a7f4a32213dc2534db2c9cf555273853a":[3,0,2049,4],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1025 =
 "structGLOBAL__MEMORY.html#ac6e0bd190746121c03bfc188b89a0787":[3,0,2102,40],
 "structGLOBAL__MEMORY.html#ac8f49cd3fa9b5a55a28f03b48bb959cc":[3,0,2102,28],
 "structGLOBAL__MEMORY.html#acef0c249f1b5706f03abdb7cb18f5dde":[3,0,2102,0],
-"structGLOBAL__MEMORY.html#ad71d1da31371960a97181505e968a56e":[3,0,2102,59]
+"structGLOBAL__MEMORY.html#ad71d1da31371960a97181505e968a56e":[3,0,2102,59],
+"structGLOBAL__MEMORY.html#ad910c13d5ac88410f6c4be290348fdda":[3,0,2102,23]
 };

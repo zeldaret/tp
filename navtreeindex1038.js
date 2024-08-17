@@ -1,6 +1,5 @@
 var NAVTREEINDEX1038 =
 {
-"structJASTrack_1_1TChannelMgr.html":[1,1,2,78,1],
 "structJASTrack_1_1TChannelMgr.html#a0a47544ef00f24fbbfaf9b6b9a2e8405":[1,1,2,78,1,0],
 "structJASTrack_1_1TChannelMgr.html#a2345efb036b54260b4087701ca111ad8":[1,1,2,78,1,6],
 "structJASTrack_1_1TChannelMgr.html#a3883b197c921f2827420392c32764689":[1,1,2,78,1,5],
@@ -90,8 +89,8 @@ var NAVTREEINDEX1038 =
 "structJASWaveArc.html#af45357beefeb0b667d66f7dc5677b412":[1,1,2,83,12],
 "structJASWaveArc.html#af46f8af352bfe62136fd7284978c7c12":[1,1,2,83,15],
 "structJASWaveArc.html#af50cab06b3e1b91c467aa174c83086d2":[1,1,2,83,2],
-"structJASWaveArc.html#af7261694efda1982aafadce526f49d2a":[1,1,2,83,3],
 "structJASWaveArc.html#af7261694efda1982aafadce526f49d2a":[1,1,2,83,1],
+"structJASWaveArc.html#af7261694efda1982aafadce526f49d2a":[1,1,2,83,3],
 "structJASWaveArcLoader.html":[1,1,2,82],
 "structJASWaveArcLoader.html#a1db514f32de5cca0d27bbdc1a74dd78b":[1,1,2,82,3],
 "structJASWaveArcLoader.html#a49a380561a5c643c6f1d462c17c0f467":[1,1,2,82,4],
@@ -189,8 +188,8 @@ var NAVTREEINDEX1038 =
 "structJAUSoundTable.html":[1,1,2,112],
 "structJAUSoundTable.html#a062073b4970116c3b176e158a71a4c4c":[1,1,2,112,7],
 "structJAUSoundTable.html#a094e932200f39975f792b1b97996bd57":[1,1,2,112,8],
-"structJAUSoundTable.html#a22b34f73a3e93555f529960224cea3fd":[1,1,2,112,6],
 "structJAUSoundTable.html#a22b34f73a3e93555f529960224cea3fd":[1,1,2,112,5],
+"structJAUSoundTable.html#a22b34f73a3e93555f529960224cea3fd":[1,1,2,112,6],
 "structJAUSoundTable.html#a2880bfb4bd2d611d5a8825421179b2e4":[1,1,2,112,4],
 "structJAUSoundTable.html#a5b6c71ded27f14f0f6af81c5c09842cb":[1,1,2,112,2],
 "structJAUSoundTable.html#a652a33da7409a0eaf17e08506f5a0c4c":[1,1,2,112,3],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1038 =
 "structJFWSystem.html#a6ca2c5f738d5a645f745b29e5d78b6c5":[1,1,3,2,7],
 "structJFWSystem.html#a75b59205605037723ee4c7ce4161a20f":[1,1,3,2,16],
 "structJFWSystem.html#a7af769a347fdbb948839ade7ca7ab280":[1,1,3,2,3],
-"structJFWSystem.html#a8db0e6a17038dab5e62d0f6019523cc8":[1,1,3,2,9]
+"structJFWSystem.html#a8db0e6a17038dab5e62d0f6019523cc8":[1,1,3,2,9],
+"structJFWSystem.html#a91cc92aac549106dbfa3d4fab3aed994":[1,1,3,2,15]
 };

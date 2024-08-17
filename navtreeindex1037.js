@@ -1,6 +1,5 @@
 var NAVTREEINDEX1037 =
 {
-"structJASPortCmd.html#a72a48d0e6e2ede31eb65e30ebf0679db":[1,1,2,53,2],
 "structJASPortCmd.html#a9027648b3f3c6eab169cb32772a27b4b":[1,1,2,53,3],
 "structJASPortCmd.html#a9379379f370ef6c589769aedddbf556d":[1,1,2,53,6],
 "structJASPortCmd.html#aa0f6f5c50b153a7040d75ad59d6d1649":[1,1,2,53,5],
@@ -76,18 +75,18 @@ var NAVTREEINDEX1037 =
 "structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#a0499258bfe586069eb38bbac31e2bde8":[2,0,21,0,0,1],
 "structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#a7b6b015b5fab30bf207b825a400e09ae":[3,0,4,0,0,2],
 "structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#a7b6b015b5fab30bf207b825a400e09ae":[2,0,21,0,0,2],
-"structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#aafbef9ec0d8cff666a43c32a7e726318":[3,0,4,0,0,0],
 "structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#aafbef9ec0d8cff666a43c32a7e726318":[2,0,21,0,0,0],
+"structJASThreadingModel_1_1InterruptsDisable_1_1Lock.html#aafbef9ec0d8cff666a43c32a7e726318":[3,0,4,0,0,0],
 "structJASThreadingModel_1_1ObjectLevelLockable.html":[3,0,4,1],
 "structJASThreadingModel_1_1ObjectLevelLockable.html":[2,0,21,1],
-"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html":[3,0,4,1,0],
 "structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html":[2,0,21,1,0],
-"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#a21f3e2dbbd36ba94a8be141a49ad04d3":[2,0,21,1,0,1],
+"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html":[3,0,4,1,0],
 "structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#a21f3e2dbbd36ba94a8be141a49ad04d3":[3,0,4,1,0,1],
+"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#a21f3e2dbbd36ba94a8be141a49ad04d3":[2,0,21,1,0,1],
 "structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#a4d720d2d3ac4181241baec827da2ef62":[2,0,21,1,0,0],
 "structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#a4d720d2d3ac4181241baec827da2ef62":[3,0,4,1,0,0],
-"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#abee39a398ccd38ccd71fb101141169ee":[2,0,21,1,0,2],
 "structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#abee39a398ccd38ccd71fb101141169ee":[3,0,4,1,0,2],
+"structJASThreadingModel_1_1ObjectLevelLockable_1_1Lock.html#abee39a398ccd38ccd71fb101141169ee":[2,0,21,1,0,2],
 "structJASTrack.html":[1,1,2,78],
 "structJASTrack.html#a00ff978bc097a8f2744812f6c96fc85a":[1,1,2,78,148],
 "structJASTrack.html#a053f80a4de06ec69328ae7c6f92e7c85":[1,1,2,78,130],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1037 =
 "structJASTrack_1_1MoveParam__.html#a317f572194d878da1632bfb7e81d7494":[1,1,2,78,0,0],
 "structJASTrack_1_1MoveParam__.html#a4d711d6587af5505edb931fa1412b713":[1,1,2,78,0,1],
 "structJASTrack_1_1MoveParam__.html#a8955ebb8e815c87a9a1fac07958dc9e0":[1,1,2,78,0,3],
-"structJASTrack_1_1MoveParam__.html#ab6aa16ff2f64347101d3d67bf66af23e":[1,1,2,78,0,2]
+"structJASTrack_1_1MoveParam__.html#ab6aa16ff2f64347101d3d67bf66af23e":[1,1,2,78,0,2],
+"structJASTrack_1_1TChannelMgr.html":[1,1,2,78,1]
 };

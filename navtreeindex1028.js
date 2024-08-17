@@ -1,6 +1,5 @@
 var NAVTREEINDEX1028 =
 {
-"structJ2DScreen.html#a40b4b0fc5d2b35194ba8a849041304f4":[1,1,0,58,34],
 "structJ2DScreen.html#a4557dd235d8fbdb205abadfc0bfd70fa":[1,1,0,58,17],
 "structJ2DScreen.html#a45f8c556e7b49db3334efc3e7a5b78b6":[1,1,0,58,11],
 "structJ2DScreen.html#a47da73a090ab48efb036d65073a5d815":[1,1,0,58,25],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1028 =
 "structJ3DAnmColorFullTable.html#ae9d11229665db47664b0dbbe33b8f98f":[1,1,1,3,6],
 "structJ3DAnmColorFullTable.html#af521b43990c68f3c57c9cab614661527":[1,1,1,3,7],
 "structJ3DAnmColorKeyData.html":[1,1,1,15],
-"structJ3DAnmColorKeyData.html#a0d7c841bd1561f601b406f2c5a1ce11b":[1,1,1,15,0]
+"structJ3DAnmColorKeyData.html#a0d7c841bd1561f601b406f2c5a1ce11b":[1,1,1,15,0],
+"structJ3DAnmColorKeyData.html#a2c946bbac4bb5615d4f6ed92fb4c7276":[1,1,1,15,4]
 };

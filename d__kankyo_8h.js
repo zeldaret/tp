@@ -110,6 +110,7 @@ var d__kankyo_8h =
     [ "dKy_shadow_mode_check", "d__kankyo_8h.html#a0d78e144123a16e1b6303ddf7cddb47a", null ],
     [ "dKy_shadow_mode_reset", "d__kankyo_8h.html#aed000304acb7741a4cc6d47c3ec1057b", null ],
     [ "dKy_shadow_mode_set", "d__kankyo_8h.html#a87705c9a840dd2c7a238a24c18132e23", null ],
+    [ "dKy_SordFlush_set", "d__kankyo_8h.html#a2098ca9adfeb13e5de4868572ead05e3", null ],
     [ "dKy_Sound_get", "d__kankyo_8h.html#a29d428275d118cb240a86923e726f6d2", null ],
     [ "dKy_Sound_init", "d__kankyo_8h.html#a117120b69d8f23c41f40b7a77ff8c6ae", null ],
     [ "dKy_Sound_set", "d__kankyo_8h.html#a0a1e47f3e7bf7667f447a7ecfacea762", null ],

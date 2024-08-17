@@ -1,5 +1,7 @@
 var NAVTREEINDEX1052 =
 {
+"structJUTResFont.html#ac2a11342d485b6739a3785e4aeb85d39":[1,1,12,23,17],
+"structJUTResFont.html#ac37edb2053e7d7b34ae7ad53e6fead75":[1,1,12,23,8],
 "structJUTResFont.html#ac7db9b44655b813e05a9d63203ec991a":[1,1,12,23,4],
 "structJUTResFont.html#ad6a20c5ef990daa34cc08996afe8ef1b":[1,1,12,23,35],
 "structJUTResFont.html#ad6d863129d9d1edf2202954d3125a276":[1,1,12,23,42],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1052 =
 "structOSSramEx.html#a3f04a5acb2a2109e90d6b6c441347c11":[3,0,2873,3],
 "structOSSramEx.html#a468f430fc58def6bd21faa1074c4e653":[3,0,2873,1],
 "structOSSramEx.html#a47d91af63039a148b09e96d5c164808e":[3,0,2873,0],
-"structOSSramEx.html#a495b77ad2f1801a679b5fe94b3df32e2":[3,0,2873,4],
-"structOSSramEx.html#a77b1d933fbb04247c10997c5c49427eb":[3,0,2873,5],
-"structOSSramEx.html#ab1e73383703087127e0353fb4e19356c":[3,0,2873,7]
+"structOSSramEx.html#a495b77ad2f1801a679b5fe94b3df32e2":[3,0,2873,4]
 };

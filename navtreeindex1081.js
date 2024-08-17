@@ -1,5 +1,7 @@
 var NAVTREEINDEX1081 =
 {
+"structjmessage__string__tSequenceProcessor.html#af007a1f75dc28c3150bd0411357e798b":[3,0,2589,8],
+"structjmessage__tControl.html":[1,1,7,1],
 "structjmessage__tControl.html#a5067337ec37ccc7064f0d03de5c2ca7f":[1,1,7,1,1],
 "structjmessage__tControl.html#ad93d814199c9eca018d6da51d753095d":[1,1,7,1,0],
 "structjmessage__tMeasureProcessor.html":[3,0,2591],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1081 =
 "structjmessage__tRenderingProcessor.html#a0c5a727077700f0a41b0d8dca61d9e71":[3,0,2593,46],
 "structjmessage__tRenderingProcessor.html#a0e2216ece4983b0a70a20cfc0ae36f79":[3,0,2593,5],
 "structjmessage__tRenderingProcessor.html#a11ca92430e3f84aaab662bf81b4ea90e":[3,0,2593,59],
-"structjmessage__tRenderingProcessor.html#a14a1dbdda72f649afe02f7807da8fa76":[3,0,2593,31],
-"structjmessage__tRenderingProcessor.html#a179bc741c8a09843ee5b84dce2e0109c":[3,0,2593,18],
-"structjmessage__tRenderingProcessor.html#a196806cc9112c03e0d2666fe4b7d53e9":[3,0,2593,20]
+"structjmessage__tRenderingProcessor.html#a14a1dbdda72f649afe02f7807da8fa76":[3,0,2593,31]
 };

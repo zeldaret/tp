@@ -1,10 +1,5 @@
 var NAVTREEINDEX40 =
 {
-"SIBios_8c.html#a432b2ccd79b7373ae5f33cf115f7bca9":[4,0,2,0,17,0,4],
-"SIBios_8c.html#a495718dcdea4cd2f0aeb7aad48c752f6":[4,0,2,0,17,0,0],
-"SIBios_8c.html#a4ab82129dd84be0bcfe2743e2d92f7bb":[4,0,2,0,17,0,21],
-"SIBios_8c.html#a512b7e10ef17bc2cf997481880c11a44":[4,0,2,0,17,0,31],
-"SIBios_8c.html#a5554df5c35e119f94fb6e8777bca1e8d":[4,0,2,0,17,0,16],
 "SIBios_8c.html#a5f7c579b5be677a75ea5cf34f03fab89":[4,0,2,0,17,0,3],
 "SIBios_8c.html#a6d57d95fc79d606ef79f0a15459d110e":[4,0,2,0,17,0,22],
 "SIBios_8c.html#a72819a9ed2641b810e4ae3b7ad1ded28":[4,0,2,0,17,0,8],
@@ -249,5 +244,10 @@ var NAVTREEINDEX40 =
 "Z2AudioArcLoader_8cpp.html#a7f187f855970c512b9989e0701409599":[4,0,2,5,1,1],
 "Z2AudioArcLoader_8cpp.html#a87d098e2bfc9760dc74719994b9e3023":[4,0,2,5,1,21],
 "Z2AudioArcLoader_8cpp.html#a88bbfed2483807044a849e111cc35f07":[4,0,2,5,1,9],
-"Z2AudioArcLoader_8cpp.html#a8c2587fc732974c3dbb008c2d5be12fc":[4,0,2,5,1,17]
+"Z2AudioArcLoader_8cpp.html#a8c2587fc732974c3dbb008c2d5be12fc":[4,0,2,5,1,17],
+"Z2AudioArcLoader_8cpp.html#a98b58c165eacfc265404d698e5bc9525":[4,0,2,5,1,25],
+"Z2AudioArcLoader_8cpp.html#aa1a4d82e3b2ce7ac5409701f21f029eb":[4,0,2,5,1,19],
+"Z2AudioArcLoader_8cpp.html#aa56d61738acf85c034184bed5657fd72":[4,0,2,5,1,23],
+"Z2AudioArcLoader_8cpp.html#abed5bd59c54272a132a5b4da4beff66d":[4,0,2,5,1,5],
+"Z2AudioArcLoader_8cpp.html#ac21a22dfe0f3017338453573b35d3df6":[4,0,2,5,1,7]
 };

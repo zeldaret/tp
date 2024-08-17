@@ -1,6 +1,5 @@
 var NAVTREEINDEX1031 =
 {
-"structJ3DMaterial.html#ae4a93b4370291088beb01f2c0c0d207a":[1,1,1,121,18],
 "structJ3DMaterial.html#ae6e444ce792fc8aa8d74c3afd2e4d3c8":[1,1,1,121,17],
 "structJ3DMaterial.html#ae998963c6cbad28d05a1e2d62270c068":[1,1,1,121,27],
 "structJ3DMaterial.html#aef01c9436799725cb1bebc8928a1b91a":[1,1,1,121,48],
@@ -78,8 +77,8 @@ var NAVTREEINDEX1031 =
 "structJ3DMaterialDLBlock.html#ae72d24777fdb1b4c728dad92de61ca8e":[1,1,1,190,1],
 "structJ3DMaterialFactory.html":[1,1,1,178],
 "structJ3DMaterialFactory.html#a00207873e4dc10a2cf5a7a71946313e4":[1,1,1,178,15],
-"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,5],
 "structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,2],
+"structJ3DMaterialFactory.html#a07965e6b06951ce20c0350734bcfa1b6":[1,1,1,178,5],
 "structJ3DMaterialFactory.html#a08c2681310532f4d87d5668a79451d6a":[1,1,1,178,82],
 "structJ3DMaterialFactory.html#a096c780d0560b63a0fccf2423a9ff642":[1,1,1,178,19],
 "structJ3DMaterialFactory.html#a12637e737f4f4c0fd28488aa60c56262":[1,1,1,178,53],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1031 =
 "structJ3DModelLoader.html#a05b35fcf5854dfb37485a917402e5fad":[1,1,1,193,35],
 "structJ3DModelLoader.html#a0e73829cad3602ee53c6bec42774a494":[1,1,1,193,42],
 "structJ3DModelLoader.html#a20661ab9d5bc92b05e0701b2bde337cc":[1,1,1,193,13],
-"structJ3DModelLoader.html#a221f93bf2f164280f28e3ba130d40ace":[1,1,1,193,17]
+"structJ3DModelLoader.html#a221f93bf2f164280f28e3ba130d40ace":[1,1,1,193,17],
+"structJ3DModelLoader.html#a2497cbfd87564b042d0a36b1dc6c9f89":[1,1,1,193,57]
 };

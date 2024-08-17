@@ -1,6 +1,5 @@
 var NAVTREEINDEX1033 =
 {
-"structJ3DSys.html#abfb19375da6958b8ffcc2e16fa87a370":[1,1,1,149,20],
 "structJ3DSys.html#ac03770164fd82f9a88971f7ea694afaa":[1,1,1,149,59],
 "structJ3DSys.html#ac32e9ae88d67775a55107d1f98d22d61":[1,1,1,149,6],
 "structJ3DSys.html#ac64168f9736fe6e9a225428c6d7ee066":[1,1,1,149,34],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1033 =
 "structJAISoundInfo.html#ac8e884b766101722cffee9f699d1ae85":[1,1,2,25,5],
 "structJAISoundInfo.html#acbb38753ea56f9bef15609fb0364f95d":[1,1,2,25,6],
 "structJAISoundInfo.html#adbdcbb01785823e4cb05261ce56c84d9":[1,1,2,25,3],
-"structJAISoundInfo.html#af981870d7c687d9e173f1bb0f2ab1a33":[1,1,2,25,4]
+"structJAISoundInfo.html#af981870d7c687d9e173f1bb0f2ab1a33":[1,1,2,25,4],
+"structJAISoundParams.html":[1,1,2,29]
 };

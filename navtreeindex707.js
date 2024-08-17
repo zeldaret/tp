@@ -1,8 +1,5 @@
 var NAVTREEINDEX707 =
 {
-"d__a__npc__wrestler_8cpp.html#a456850d53079fda90dce2d8ddf5812ff":[4,0,3,0,0,78,105,0,137],
-"d__a__npc__wrestler_8cpp.html#a45e634aafc2ad929d3278ed2ee88a0dd":[4,0,3,0,0,78,105,0,378],
-"d__a__npc__wrestler_8cpp.html#a45fc344300f97a0ef9d12a0e2c20d209":[4,0,3,0,0,78,105,0,485],
 "d__a__npc__wrestler_8cpp.html#a46ae49073a9cb800f5b2f106ea138f2f":[4,0,3,0,0,78,105,0,31],
 "d__a__npc__wrestler_8cpp.html#a46bb8ee74c8fa8ac3400851d89f60409":[4,0,3,0,0,78,105,0,216],
 "d__a__npc__wrestler_8cpp.html#a46d1c48e605fa090cad221d545a2fce9":[4,0,3,0,0,78,105,0,402],
@@ -249,5 +246,8 @@ var NAVTREEINDEX707 =
 "d__a__npc__wrestler_8cpp.html#a8a94333dd7f7e71d70b3666ca5fa842a":[4,0,3,0,0,78,105,0,671],
 "d__a__npc__wrestler_8cpp.html#a8a94b47c3c8077e791c19d2868c37279":[4,0,3,0,0,78,105,0,360],
 "d__a__npc__wrestler_8cpp.html#a8acb38836bccd185a3957d50c7e806b2":[4,0,3,0,0,78,105,0,26],
-"d__a__npc__wrestler_8cpp.html#a8ae62a42a8bd9409b164c4deba02b5b8":[4,0,3,0,0,78,105,0,796]
+"d__a__npc__wrestler_8cpp.html#a8ae62a42a8bd9409b164c4deba02b5b8":[4,0,3,0,0,78,105,0,796],
+"d__a__npc__wrestler_8cpp.html#a8bc451df3d2736efb90f287bdb3993b2":[4,0,3,0,0,78,105,0,363],
+"d__a__npc__wrestler_8cpp.html#a8cabcf0cf39741d7daea35e51a21203a":[4,0,3,0,0,78,105,0,543],
+"d__a__npc__wrestler_8cpp.html#a8cc4ece701815b846c58066b8f84db4e":[4,0,3,0,0,78,105,0,265]
 };

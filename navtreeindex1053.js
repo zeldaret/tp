@@ -1,5 +1,7 @@
 var NAVTREEINDEX1053 =
 {
+"structOSSramEx.html#a77b1d933fbb04247c10997c5c49427eb":[3,0,2873,5],
+"structOSSramEx.html#ab1e73383703087127e0353fb4e19356c":[3,0,2873,7],
 "structOSThread.html":[3,0,2874],
 "structOSThread.html#a0419e838694345f3d5b15f70f03bf89e":[3,0,2874,7],
 "structOSThread.html#a060310854534784f6149d7ee8eb10fe0":[3,0,2874,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1053 =
 "structSIComm__s.html#a5117412aa0e91092ad9da773c6aa8e10":[3,0,2942,1],
 "structSIComm__s.html#a571b08239d8d18f318d207c85cc9a359":[3,0,2942,8],
 "structSIComm__s.html#a6f4366329f6612478453afbfafb3eaa4":[3,0,2942,3],
-"structSIComm__s.html#a847f9204c4e06228a0fd2328f858a5d1":[3,0,2942,11],
-"structSIComm__s.html#a8d984aedfa969ca11a00292908cf47db":[3,0,2942,7],
-"structSIComm__s.html#aaa62ec83298e695e7867caf413a99b57":[3,0,2942,6]
+"structSIComm__s.html#a847f9204c4e06228a0fd2328f858a5d1":[3,0,2942,11]
 };

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1051 =
 {
+"structJUTFont.html#a3b0794bb1e7a5d9797bdadd4f66c2261":[1,1,12,12,41],
+"structJUTFont.html#a3e59d9e08af51971bb601aef3cb80dc8":[1,1,12,12,3],
 "structJUTFont.html#a4f0632f074809d19a3670a0c8408ac4d":[1,1,12,12,5],
 "structJUTFont.html#a647d7ff5a12af497343c5c40a2588c7c":[1,1,12,12,39],
 "structJUTFont.html#a6d1325d7739a619c146f86f831f652c8":[1,1,12,12,30],
@@ -209,8 +211,8 @@ var NAVTREEINDEX1051 =
 "structJUTNameTab.html#a7b693e3f088999f93d1a43ca7393ff20":[1,1,12,18,4],
 "structJUTNameTab.html#a8197cb746021b553979184403e1adcfc":[1,1,12,18,5],
 "structJUTNameTab.html#a82f2601b7ffab7d0bb338c0755bde4ce":[1,1,12,18,8],
-"structJUTNameTab.html#aa9dfb4cc0bf7132ad8be75b791cb8e06":[1,1,12,18,0],
 "structJUTNameTab.html#aa9dfb4cc0bf7132ad8be75b791cb8e06":[1,1,12,18,1],
+"structJUTNameTab.html#aa9dfb4cc0bf7132ad8be75b791cb8e06":[1,1,12,18,0],
 "structJUTNameTab.html#ab26390ea773c7920094c31c10f85d0ac":[1,1,12,18,12],
 "structJUTNameTab.html#ab4c4ee173fc64db7c0c4da7038f395c1":[1,1,12,18,11],
 "structJUTNameTab.html#accdc77a3c740462c3da8662f3c7afa4f":[1,1,12,18,6],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1051 =
 "structJUTResFont.html#aab28730dae97e2c1fb0b5648f9e8e5d9":[1,1,12,23,21],
 "structJUTResFont.html#aae7c39e25868211b3dab917f3b277f0f":[1,1,12,23,44],
 "structJUTResFont.html#abb3f986175bb03d11402e50dc27f4282":[1,1,12,23,12],
-"structJUTResFont.html#ac069991d8c7a9fd1c88dff18b109f066":[1,1,12,23,3],
-"structJUTResFont.html#ac2a11342d485b6739a3785e4aeb85d39":[1,1,12,23,17],
-"structJUTResFont.html#ac37edb2053e7d7b34ae7ad53e6fead75":[1,1,12,23,8]
+"structJUTResFont.html#ac069991d8c7a9fd1c88dff18b109f066":[1,1,12,23,3]
 };

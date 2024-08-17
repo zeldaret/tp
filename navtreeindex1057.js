@@ -1,5 +1,7 @@
 var NAVTREEINDEX1057 =
 {
+"structZ2MultiSeMgr.html#aaadd0135f41ceba1d726b2e6dc30d908":[3,0,3065,14],
+"structZ2MultiSeMgr.html#ac5866d9f8a0dbe41b85d1dc60085bff3":[3,0,3065,3],
 "structZ2MultiSeMgr.html#ac9054955d9181f967e907dae828ec840":[3,0,3065,12],
 "structZ2MultiSeMgr.html#ac94c5bb84e47c4994b08f2eaf6eeefdf":[3,0,3065,18],
 "structZ2MultiSeMgr.html#ace842784cfc8b2e8a1bbeff4feda8292":[3,0,3065,6],
@@ -84,8 +86,8 @@ var NAVTREEINDEX1057 =
 "structZ2SoundObjMgr.html#a51704f41721fd0650f81a17af88c8d9b":[3,0,3082,20],
 "structZ2SoundObjMgr.html#a5edc16430c2d4907b927530e5b925175":[3,0,3082,24],
 "structZ2SoundObjMgr.html#a690790ef92d6afd0007277b701119554":[3,0,3082,5],
-"structZ2SoundObjMgr.html#a69524d0a74a7b59a59860d87f2d35c40":[3,0,3082,3],
 "structZ2SoundObjMgr.html#a69524d0a74a7b59a59860d87f2d35c40":[3,0,3082,2],
+"structZ2SoundObjMgr.html#a69524d0a74a7b59a59860d87f2d35c40":[3,0,3082,3],
 "structZ2SoundObjMgr.html#a6b478db7091da28b9c96f1c513c16647":[3,0,3082,25],
 "structZ2SoundObjMgr.html#a6d54eb7e4b719ddcd868e8b429ff031b":[3,0,3082,1],
 "structZ2SoundObjMgr.html#a8a58f11ffe09f5d33cf44c4d212232c2":[3,0,3082,16],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1057 =
 "struct__GXData.html#a2f5f0966080f7626073693fda725881a":[3,0,38,72],
 "struct__GXData.html#a32435865571e3768903ec8c72350c8b6":[3,0,38,68],
 "struct__GXData.html#a36525ff98a1bb2f7750ffb0f66c2f376":[3,0,38,58],
-"struct__GXData.html#a3b5674d22f65528d90e2306465f27f98":[3,0,38,40],
-"struct__GXData.html#a3d8d7fa89266a143949bfe082520864c":[3,0,38,45],
-"struct__GXData.html#a40489db2e30f8d2074a78b476739cce0":[3,0,38,25]
+"struct__GXData.html#a3b5674d22f65528d90e2306465f27f98":[3,0,38,40]
 };

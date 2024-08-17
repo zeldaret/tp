@@ -2,7 +2,6 @@ var NAVTREEINDEX1024 =
 {
 "structCommandReply.html#a930dd7e8d86b19254cd8d3b65e5af07b":[3,0,174,6],
 "structCommandReply.html#a98a011d2ec58a05801628dccdd7d9c26":[3,0,174,5],
-"structCommandReply.html#ae4480c7ec6b50068d540f1b37383e08d":[3,0,174,4],
 "structDALKMIST__INFLUENCE.html":[3,0,681],
 "structDALKMIST__INFLUENCE.html#a343e9aa229231387c8c59093a0ef218f":[3,0,681,2],
 "structDALKMIST__INFLUENCE.html#a51edd0ffb3d6ae0b1e295f4d7172d619":[3,0,681,1],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1024 =
 "structEF__THUNDER.html#ad75371fc38c2c2eb3d8da141f5b43567":[3,0,2039,10],
 "structEF__THUNDER.html#af90b23a6301ce702c0f9ed47a15f2273":[3,0,2039,0],
 "structEXIControl.html":[3,0,2049],
-"structEXIControl.html#a17f75c417fe89f529c1fa8c85e79c31b":[3,0,2049,7]
+"structEXIControl.html#a17f75c417fe89f529c1fa8c85e79c31b":[3,0,2049,7],
+"structEXIControl.html#a1c9bae5970f2aa0eeb96ef835e86d2c7":[3,0,2049,2]
 };

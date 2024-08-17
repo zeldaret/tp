@@ -5,6 +5,7 @@ var structJPABaseParticle =
     [ "canCreateChild", "structJPABaseParticle.html#a0f1f2830fd049f106bbcb9b6ca193642", null ],
     [ "checkStatus", "structJPABaseParticle.html#a7b017fb8933d41544e189dc03ea54f41", null ],
     [ "getAge", "structJPABaseParticle.html#a89d371a460cb4ad62822811007b1f5f2", null ],
+    [ "getBaseAxis", "structJPABaseParticle.html#a64fcd53d784059d45486a11bbf7904d7", null ],
     [ "getGlobalPosition", "structJPABaseParticle.html#a47aa21957177e63f472f574624e7cf2a", null ],
     [ "getHeight", "structJPABaseParticle.html#a7231a429f3eacbd6ec1ac47fc3441b47", null ],
     [ "getLocalPosition", "structJPABaseParticle.html#a0a135aaa34be21f30525a9353a428ccc", null ],

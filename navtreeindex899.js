@@ -1,8 +1,5 @@
 var NAVTREEINDEX899 =
 {
-"d__a__obj__wflag_8h.html":[4,0,1,8,0,0,79,323,0],
-"d__a__obj__wflag_8h.html#aa37727df4b28600a4fb142821def4a05":[4,0,1,8,0,0,79,323,0,1],
-"d__a__obj__wflag_8h_source.html":[4,0,1,8,0,0,79,323,0],
 "d__a__obj__wind__stone_8cpp.html":[4,0,3,0,0,79,324,0],
 "d__a__obj__wind__stone_8cpp.html#a191f5f5a452782fa5c46fdbc3ac28753":[4,0,3,0,0,79,324,0,5],
 "d__a__obj__wind__stone_8cpp.html#a33847749dfb84ce67aef442eaf6c6c2b":[4,0,3,0,0,79,324,0,4],
@@ -249,5 +246,8 @@ var NAVTREEINDEX899 =
 "d__a__obj__wood__statue_8cpp.html#aa07a2ee344eba613b7b8565d08dc29c6":[4,0,3,0,0,79,327,0,46],
 "d__a__obj__wood__statue_8cpp.html#aa07c3a250e2f1363433d7cbf532abdc1":[4,0,3,0,0,79,327,0,59],
 "d__a__obj__wood__statue_8cpp.html#aa0a9b613f6dad6767d89eebe145122e9":[4,0,3,0,0,79,327,0,63],
-"d__a__obj__wood__statue_8cpp.html#aa298d14c4e08eca350ff62b204661873":[4,0,3,0,0,79,327,0,125]
+"d__a__obj__wood__statue_8cpp.html#aa298d14c4e08eca350ff62b204661873":[4,0,3,0,0,79,327,0,125],
+"d__a__obj__wood__statue_8cpp.html#aa552ae358506e340a8757b39895bbac1":[4,0,3,0,0,79,327,0,212],
+"d__a__obj__wood__statue_8cpp.html#aa5ed62ba4c49573fa725cdeb92468560":[4,0,3,0,0,79,327,0,139],
+"d__a__obj__wood__statue_8cpp.html#aa608e24bc3f38bfa55228b18cd7def98":[4,0,3,0,0,79,327,0,109]
 };
