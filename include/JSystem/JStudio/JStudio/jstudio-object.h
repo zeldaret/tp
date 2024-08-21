@@ -115,12 +115,7 @@ public:
     TAdaptor* getAdaptor() { return mpAdaptor; }
     TControl* getControl() const { return (TControl*)stb::TObject::getControl(); }
 
-    void prepareAdaptor() {
-        if (mpAdaptor != NULL) {
-            // mpAdaptor->adaptor_setObject_(this);
-            // mpAdaptor->adaptor_do_begin();
-        }
-    }
+    inline void prepareAdaptor();
 
     template<class T>
     T* createFromAdaptor(const stb::data::TParse_TBlock_object& param_0, T* param_1) {
@@ -204,6 +199,13 @@ struct TAdaptor {
     /* 0x8 */ TVariableValue* pValue_;
     /* 0xC */ u32 u;
 };
+
+inline void TObject::prepareAdaptor() {
+    if (mpAdaptor != NULL) {
+        mpAdaptor->adaptor_setObject_(this);
+        mpAdaptor->adaptor_do_prepare();
+    }
+}
 
 struct TAdaptor_actor : public TAdaptor {
     TAdaptor_actor() : TAdaptor(mValue, 14) {}

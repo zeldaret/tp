@@ -8,6 +8,9 @@
 
 namespace JStudio_JAudio2 {
 struct TCreateObject : public JStudio::TCreateObject {
+    typedef JStudio::TObject* (*JAISoundCreateFunc)(JStudio::stb::data::TParse_TBlock_object const&,
+                            JStudio_JAudio2::TCreateObject*);
+
     TCreateObject(JAISoundStarter* p_soundStarter, const JStage::TSystem* p_system) {
         pJAISoundStarter_ = p_soundStarter;
         pJSGSystem_ = p_system;
@@ -17,10 +20,12 @@ struct TCreateObject : public JStudio::TCreateObject {
     /* 8028D550 */ virtual ~TCreateObject();
     /* 8028D5B0 */ virtual bool create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
-    /* 8028D624 */ void createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
-                                                JStudio_JAudio2::TCreateObject*);
+    /* 8028D624 */ static JStudio::TObject*
+    createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
+                            JStudio_JAudio2::TCreateObject*);
     JAISoundStarter* get_pJAISoundStarter_() { return pJAISoundStarter_; }
     const JStage::TSystem* get_pJSGSystem_() { return pJSGSystem_; }
+    bool isPermit_onExit_notEnd() { return mPermit_onExit_notEnd; }
 
     /* 0x0C */ JAISoundStarter* pJAISoundStarter_;
     /* 0x10 */ const JStage::TSystem* pJSGSystem_;
@@ -29,6 +34,8 @@ struct TCreateObject : public JStudio::TCreateObject {
 
 struct TAdaptor_sound : public JStudio::TAdaptor_sound {
     typedef void (*TVVOSoundSetFunc)(JAISound*, f32);
+    typedef JStudio::TObject_sound ObjectType;
+
     enum TEVariableValue {
         UNK_7 = 7,
         UNK_8 = 8,
@@ -92,6 +99,8 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
         opJAISoundHandle_->stop();
     }
 
+    void set_bPermit_onExit_notEnd_(bool param_1) { field_0x11c = param_1; }
+
     #ifndef NONMATCHING
     static TVVOSetValue_ saoVVOSetValue_[6];
     #else
@@ -100,7 +109,7 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 
     /* 0x114 */ TCreateObject* pCreateObject_;
     /* 0x118 */ JAISoundHandle opJAISoundHandle_;
-    /* 0x11C */ u8 field_0x11c;
+    /* 0x11C */ bool field_0x11c;
     /* 0x11D */ u8 field_0x11d;
     /* 0x11E */ u8 field_0x11e;
     /* 0x11F */ u8 field_0x11f;

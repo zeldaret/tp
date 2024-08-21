@@ -13,6 +13,16 @@ struct TCreateObject {
     /* 80285488 */ virtual ~TCreateObject() = 0;
     virtual bool create(TObject**, JStudio::stb::data::TParse_TBlock_object const&) = 0;
 
+    template<class AdaptorT>
+    static typename AdaptorT::ObjectType* createFromAdaptor(JStudio::stb::data::TParse_TBlock_object const& param_1, AdaptorT* param_2) {
+        typename AdaptorT::ObjectType* rv = new typename AdaptorT::ObjectType(param_1, param_2);
+        if (rv == NULL) {
+            return NULL;
+        }
+        rv->prepareAdaptor();
+        return rv;
+    }
+
     /* 0x4 */ JGadget::TLinkListNode mNode;
 };  // Size: 0xC
 
