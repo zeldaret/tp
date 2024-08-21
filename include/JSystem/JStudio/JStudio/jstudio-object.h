@@ -14,6 +14,7 @@ namespace data {
         UNK_0x3 = 0x3,
         UNK_0x10 = 0x10,
         UNK_0x12 = 0x12,
+        UNK_0x18 = 0x18,
         UNK_0x19 = 0x19,
     };
 };
@@ -80,6 +81,10 @@ struct TVariableValue {
         }
     }
 
+    void setOutput(TOutput* param_1) {
+        pOutput_ = (param_1 != NULL) ? param_1 : (TOutput*)soOutput_none_;
+    }
+
     static u8 soOutput_none_[4 + 4 /* padding */];
 
     /* 0x00 */ f32 mValue;
@@ -107,7 +112,7 @@ public:
     /* 8028682C */ virtual void do_data(void const*, u32, void const*, u32);
 
     TAdaptor* getAdaptor() { return mpAdaptor; }
-    TControl* getControl() { return (TControl*)stb::TObject::getControl(); }
+    TControl* getControl() const { return (TControl*)stb::TObject::getControl(); }
 
     void prepareAdaptor() {
         if (mpAdaptor != NULL) {
@@ -134,10 +139,17 @@ public:
 
 struct TAdaptor {
     struct TSetVariableValue_immediate {
+        TSetVariableValue_immediate(u32 param_1, f32 param_2) :
+            field_0x0(param_1), field_0x4(param_2) {}
         u32 field_0x0;
         f32 field_0x4;
     };
     typedef void (*setVarFunc)(JStudio::TAdaptor*, JStudio::TControl*, u32, void const*, u32);
+    TAdaptor(TVariableValue *param_1, u32 param_2) {
+        pObject_ = NULL;
+        pValue_ = param_1;
+        u = param_2;
+    }
     /* 80285FD0 */ virtual ~TAdaptor() = 0;
     /* 80286018 */ virtual void adaptor_do_prepare();
     /* 8028601C */ virtual void adaptor_do_begin();
@@ -184,12 +196,15 @@ struct TAdaptor {
         return &pValue_[param_0];
     }
 
+    const TObject* adaptor_getObject() { return pObject_; }
+
     /* 0x4 */ const TObject* pObject_;
     /* 0x8 */ TVariableValue* pValue_;
     /* 0xC */ u32 u;
 };
 
 struct TAdaptor_actor : public TAdaptor {
+    TAdaptor_actor() : TAdaptor(mValue, 14) {}
     /* 802868B0 */ virtual ~TAdaptor_actor() = 0;
 
     /* 0x10 */ TVariableValue mValue[14];
@@ -208,6 +223,7 @@ struct TObject_actor : public TObject {
 };
 
 struct TAdaptor_ambientLight : public TAdaptor {
+    TAdaptor_ambientLight() : TAdaptor(mValue, 4) {}
     /* 80286C9C */ virtual ~TAdaptor_ambientLight()  = 0;
 
     /* 0x10 */ TVariableValue mValue[4];
@@ -225,6 +241,7 @@ struct TObject_ambientLight : public TObject {
 };
 
 struct TAdaptor_camera : public TAdaptor {
+    TAdaptor_camera() : TAdaptor(mValue, 12) {}
     /* 80286E1C */ virtual ~TAdaptor_camera() = 0;
 
     /* 0x10 */ TVariableValue mValue[12];
@@ -243,6 +260,7 @@ struct TObject_camera : public TObject {
 };
 
 struct TAdaptor_fog : public TAdaptor {
+    TAdaptor_fog() : TAdaptor(mValue, 6) {}
     /* 8028717C */ virtual ~TAdaptor_fog() = 0;
 
     /* 0x10 */ TVariableValue mValue[6];
@@ -261,6 +279,7 @@ struct TObject_fog : public TObject {
 };
 
 struct TAdaptor_light : public TAdaptor {
+    TAdaptor_light() : TAdaptor(mValue, 13) {}
     /* 80287308 */ virtual ~TAdaptor_light() = 0;
 
     /* 0x10 */ TVariableValue mValue[13];
@@ -281,6 +300,7 @@ struct TObject_light : public TObject {
 };
 
 struct TAdaptor_message : public TAdaptor {
+    TAdaptor_message() : TAdaptor(NULL, 0) {}
     /* 802875E0 */ virtual ~TAdaptor_message() = 0;
 };
 
@@ -293,6 +313,7 @@ struct TObject_message : public TObject {
 };
 
 struct TAdaptor_particle : public TAdaptor {
+    TAdaptor_particle() : TAdaptor(mValue, 20) {}
     /* 8028770C */ virtual ~TAdaptor_particle() = 0;
 
     /* 0x10 */ TVariableValue mValue[20];
@@ -315,11 +336,12 @@ struct TObject_particle : public TObject {
 };
 
 struct TAdaptor_sound : public TAdaptor {
+    TAdaptor_sound() : TAdaptor(mValue, 13) {}
     /* 80287B3C */ virtual ~TAdaptor_sound() = 0;
 
     /* 0x10 */ TVariableValue mValue[13];
 
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
+    static u32 const sauVariableValue_3_POSITION_XYZ[3];
 };  // Size: 0x114
 
 struct TObject_sound : public TObject {

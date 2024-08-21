@@ -44,12 +44,15 @@ SECTION_SDATA2 static u8 lit_489[4] = {
 // regalloc
 #ifdef NONMATCHING
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
-    f32 cosx = cos(DEG_TO_RAD(x));
-    f32 sinx = sin(DEG_TO_RAD(x));
-    f32 cosy = cos(DEG_TO_RAD(y));
-    f32 siny = sin(DEG_TO_RAD(y));
-    f32 cosz = cos(DEG_TO_RAD(z));
-    f32 sinz = sin(DEG_TO_RAD(z));
+    x = DEG_TO_RAD(x);
+    f32 cosx = cos(x);
+    f32 sinx = sin(x);
+    y = DEG_TO_RAD(y);
+    f32 cosy = cos(y);
+    f32 siny = sin(y);
+    z = DEG_TO_RAD(z);
+    f32 cosz = cos(z);
+    f32 sinz = sin(z);
     f32 cosxcosz = cosx * cosz;
     f32 cosxsinz = cosx * sinz;
     f32 sinxcosz = sinx * cosz;

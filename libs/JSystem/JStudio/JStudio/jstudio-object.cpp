@@ -2148,8 +2148,8 @@ COMPILER_STRIP_GATE(0x8039AB5C, &JStudio::TAdaptor_particle::sauVariableValue_4_
 
 /* 8039AB6C-8039AB78 0271CC 000C+00 1/1 1/1 0/0 .rodata
  * sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound  */
-SECTION_RODATA u8 const JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
+SECTION_RODATA u32 const JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[3] = {
+    0, 1, 2,
 };
 COMPILER_STRIP_GATE(0x8039AB6C, &JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ);
 

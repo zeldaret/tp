@@ -3,8 +3,8 @@ lbl_8028E0F4:
 /* 8028E0F8  7C 08 02 A6 */	mflr r0
 /* 8028E0FC  90 01 00 64 */	stw r0, 0x64(r1)
 /* 8028E100  93 E1 00 5C */	stw r31, 0x5c(r1)
-/* 8028E104  3C 60 80 43 */	lis r3, aoData@ha /* 0x80431490@ha */
-/* 8028E108  3B E3 14 90 */	addi r31, r3, aoData@l /* 0x80431490@l */
+/* 8028E104  3C 60 80 43 */	lis r3, 0x80431490@ha /* 0x80431490@ha */
+/* 8028E108  3B E3 14 90 */	addi r31, r3, 0x80431490@l /* 0x80431490@l */
 /* 8028E10C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
 /* 8028E110  38 C3 56 40 */	addi r6, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028E114  90 C1 00 44 */	stw r6, 0x44(r1)
@@ -13,8 +13,8 @@ lbl_8028E0F4:
 /* 8028E120  90 A1 00 44 */	stw r5, 0x44(r1)
 /* 8028E124  38 80 00 07 */	li r4, 7
 /* 8028E128  90 81 00 48 */	stw r4, 0x48(r1)
-/* 8028E12C  3C 60 80 29 */	lis r3, func_8028D728@ha /* 0x8028D728@ha */
-/* 8028E130  38 03 D7 28 */	addi r0, r3, func_8028D728@l /* 0x8028D728@l */
+/* 8028E12C  3C 60 80 29 */	lis r3, setValue_VOLUME_@ha /* 0x8028D728@ha */
+/* 8028E130  38 03 D7 28 */	addi r0, r3, setValue_VOLUME_@l /* 0x8028D728@l */
 /* 8028E134  90 01 00 4C */	stw r0, 0x4c(r1)
 /* 8028E138  90 DF 00 68 */	stw r6, 0x68(r31)
 /* 8028E13C  90 BF 00 68 */	stw r5, 0x68(r31)
@@ -39,8 +39,8 @@ lbl_8028E0F4:
 /* 8028E188  90 A1 00 38 */	stw r5, 0x38(r1)
 /* 8028E18C  38 80 00 08 */	li r4, 8
 /* 8028E190  90 81 00 3C */	stw r4, 0x3c(r1)
-/* 8028E194  3C 60 80 29 */	lis r3, func_8028D750@ha /* 0x8028D750@ha */
-/* 8028E198  38 03 D7 50 */	addi r0, r3, func_8028D750@l /* 0x8028D750@l */
+/* 8028E194  3C 60 80 29 */	lis r3, setValue_PAN_@ha /* 0x8028D750@ha */
+/* 8028E198  38 03 D7 50 */	addi r0, r3, setValue_PAN_@l /* 0x8028D750@l */
 /* 8028E19C  90 01 00 40 */	stw r0, 0x40(r1)
 /* 8028E1A0  38 7F 00 68 */	addi r3, r31, 0x68
 /* 8028E1A4  90 C3 00 0C */	stw r6, 0xc(r3)
@@ -66,8 +66,8 @@ lbl_8028E0F4:
 /* 8028E1F4  90 A1 00 2C */	stw r5, 0x2c(r1)
 /* 8028E1F8  38 80 00 09 */	li r4, 9
 /* 8028E1FC  90 81 00 30 */	stw r4, 0x30(r1)
-/* 8028E200  3C 60 80 29 */	lis r3, func_8028D778@ha /* 0x8028D778@ha */
-/* 8028E204  38 03 D7 78 */	addi r0, r3, func_8028D778@l /* 0x8028D778@l */
+/* 8028E200  3C 60 80 29 */	lis r3, setValue_PITCH_@ha /* 0x8028D778@ha */
+/* 8028E204  38 03 D7 78 */	addi r0, r3, setValue_PITCH_@l /* 0x8028D778@l */
 /* 8028E208  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8028E20C  38 7F 00 68 */	addi r3, r31, 0x68
 /* 8028E210  90 C3 00 18 */	stw r6, 0x18(r3)
@@ -93,8 +93,8 @@ lbl_8028E0F4:
 /* 8028E260  90 A1 00 20 */	stw r5, 0x20(r1)
 /* 8028E264  38 80 00 0A */	li r4, 0xa
 /* 8028E268  90 81 00 24 */	stw r4, 0x24(r1)
-/* 8028E26C  3C 60 80 29 */	lis r3, func_8028D7A0@ha /* 0x8028D7A0@ha */
-/* 8028E270  38 03 D7 A0 */	addi r0, r3, func_8028D7A0@l /* 0x8028D7A0@l */
+/* 8028E26C  3C 60 80 29 */	lis r3, setValue_TEMPO_@ha /* 0x8028D7A0@ha */
+/* 8028E270  38 03 D7 A0 */	addi r0, r3, setValue_TEMPO_@l /* 0x8028D7A0@l */
 /* 8028E274  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8028E278  38 7F 00 68 */	addi r3, r31, 0x68
 /* 8028E27C  90 C3 00 24 */	stw r6, 0x24(r3)
@@ -120,8 +120,8 @@ lbl_8028E0F4:
 /* 8028E2CC  90 A1 00 14 */	stw r5, 0x14(r1)
 /* 8028E2D0  38 80 00 0B */	li r4, 0xb
 /* 8028E2D4  90 81 00 18 */	stw r4, 0x18(r1)
-/* 8028E2D8  3C 60 80 29 */	lis r3, func_8028D800@ha /* 0x8028D800@ha */
-/* 8028E2DC  38 03 D8 00 */	addi r0, r3, func_8028D800@l /* 0x8028D800@l */
+/* 8028E2D8  3C 60 80 29 */	lis r3, setValue_ECHO_@ha /* 0x8028D800@ha */
+/* 8028E2DC  38 03 D8 00 */	addi r0, r3, setValue_ECHO_@l /* 0x8028D800@l */
 /* 8028E2E0  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8028E2E4  38 7F 00 68 */	addi r3, r31, 0x68
 /* 8028E2E8  90 C3 00 30 */	stw r6, 0x30(r3)

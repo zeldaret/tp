@@ -32,7 +32,7 @@ struct TFactory : public stb::TFactory {
 class TControl : public stb::TControl {
 public:
     struct TTransform_translation_rotation_scaling {};
-    struct TTransform_position {};
+    struct TTransform_position : public Vec {};
 
     /* 80285114 */ TControl();
     /* 802851AC */ virtual ~TControl();
@@ -98,6 +98,28 @@ public:
             return NULL;
         } 
         return obj->referFunctionValue();
+    }
+
+    bool transformOnSet_isEnabled() const { return mTransformOnSet; }
+    CMtxP transformOnSet_getMatrix() const { return mTransformOnSet_Matrix; }
+
+    void transformOnSet_transformTranslation(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(226, pDst!=0);
+        JUT_ASSERT(227, &rSrc!=pDst);
+        MTXMultVec(transformOnSet_getMatrix(), &rSrc, pDst);
+    }
+
+    void transformOnSet_transform(TTransform_position* param_1, TTransform_position* param_2) const {
+        transformOnSet_transformTranslation(*param_1, param_2);
+    }
+
+    TTransform_position* transformOnSet_transform_ifEnabled(TTransform_position* param_1,
+                                                            TTransform_position* param_2) const {
+        if (!transformOnSet_isEnabled()) {
+            return param_1;
+        }
+        transformOnSet_transform(param_1, param_2);
+        return param_2;
     }
 
     /* 0x58 */ f64 mSecondPerFrame;

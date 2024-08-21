@@ -128,10 +128,10 @@ struct JAISoundFader {
         }
     }
     void fadeIn(u32 param_1) {
-        if (param_1 == 0) {
-            forceIn();
-        } else {
+        if (param_1 != 0) {
             mTransition.set(1.0f, mIntensity, param_1);
+        } else {
+            forceIn();
         }
     }
     void fadeInFromOut(u32 param_1) {

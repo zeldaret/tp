@@ -54,7 +54,7 @@ asm void JStudio_JStage::transform_toGlobalFromLocal(
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void
+asm bool
 JStudio_JStage::transform_toGlobalFromLocal(f32 (*param_0)[4],
                                             JStudio::TControl::TTransform_position const& param_1,
                                             JStage::TObject const* param_2, u32 param_3) {

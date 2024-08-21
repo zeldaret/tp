@@ -8,6 +8,7 @@
 #include "JSystem/JStage/JSGLight.h"
 #include "JSystem/JStage/JSGSystem.h"
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
+#include "JSystem/JStudio/JStudio/jstudio-math.h"
 
 namespace JStudio_JStage {
 struct TCreateObject : public JStudio::TCreateObject {
@@ -159,9 +160,21 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
     transform_toGlobalFromLocal(f32 (*)[4],
                                 JStudio::TControl::TTransform_translation_rotation_scaling const&,
                                 JStage::TObject const*, u32);
-/* 8028A290 */ void transform_toGlobalFromLocal(f32 (*)[4],
+/* 8028A290 */ bool transform_toGlobalFromLocal(f32 (*)[4],
                                                 JStudio::TControl::TTransform_position const&,
                                                 JStage::TObject const*, u32);
+
+inline bool transform_toGlobalFromLocal(JStudio::TControl::TTransform_position* param_1,
+                                        JStudio::TControl::TTransform_position const& param_2,
+                                        JStage::TObject const* param_3, u32 param_4) {
+    Mtx afStack_38;
+
+    if (!transform_toGlobalFromLocal(afStack_38, param_2, param_3, param_4)) {
+        return false;
+    }
+    JStudio::math::getFromTransformation_T(afStack_38, param_1);
+    return true;
+}
 /* 8028A328 */ void
     transform_toLocalFromGlobal(f32 (*)[4],
                                 JStudio::TControl::TTransform_translation_rotation_scaling const&,

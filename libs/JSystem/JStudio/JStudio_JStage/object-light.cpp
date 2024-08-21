@@ -47,16 +47,12 @@ extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" void cos();
-extern "C" void sin();
-extern "C" void atan2();
 extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
 extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
 extern "C" u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
 extern "C" extern void* __vt__Q27JStudio14TAdaptor_light[10];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u32 __float_nan;
 extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 //

@@ -11,8 +11,8 @@ s32 JStage::TSystem::JSGFGetType() const {
 
 /* 80280EF8-80280F00 27B838 0008+00 1/0 0/0 0/0 .text
  * JSGFindObject__Q26JStage7TSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject */
-bool JStage::TSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject) const {
-    return true;
+int JStage::TSystem::JSGFindObject(JStage::TObject**, char const*, JStage::TEObject) const {
+    return 1;
 }
 
 /* 80280F00-80280F08 27B840 0008+00 1/0 1/0 0/0 .text
