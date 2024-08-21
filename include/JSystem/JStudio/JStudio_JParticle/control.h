@@ -8,6 +8,8 @@
 
 namespace JStudio_JParticle {
 struct TCreateObject : public JStudio::TCreateObject {
+    typedef JStudio::TObject* (*CreateFunc)(JStudio::stb::data::TParse_TBlock_object const&,
+                                            JStudio_JParticle::TCreateObject*);
     TCreateObject(JPAEmitterManager* p_emitMgr, const JStage::TSystem* p_system) {
         pJPAEmitterManager_ = p_emitMgr;
         pJSGSystem_ = p_system;
@@ -20,10 +22,12 @@ struct TCreateObject : public JStudio::TCreateObject {
     /* 8028E474 */ virtual JPABaseEmitter* emitter_create(u32);
     /* 8028E4E4 */ virtual void emitter_destroy(JPABaseEmitter*);
 
-    /* 8028E508 */ void createObject_JPA_PARTICLE_(JStudio::stb::data::TParse_TBlock_object const&,
-                                                   JStudio_JParticle::TCreateObject*);
+    /* 8028E508 */ static JStudio::TObject*
+    createObject_JPA_PARTICLE_(JStudio::stb::data::TParse_TBlock_object const&,
+                               JStudio_JParticle::TCreateObject*);
 
     const JStage::TSystem* get_pJSGSystem_() { return pJSGSystem_; }
+    bool isPermit_onExit_notEnd() { return mPermit_onExit_notEnd; }
     
     /* 0x0C */ JPAEmitterManager* pJPAEmitterManager_;
     /* 0x10 */ const JStage::TSystem* pJSGSystem_;
@@ -31,6 +35,8 @@ struct TCreateObject : public JStudio::TCreateObject {
 };
 
 struct TAdaptor_particle : public JStudio::TAdaptor_particle {
+    typedef JStudio::TObject_particle ObjectType;
+
     struct TJPACallback_emitter_ : public JPAEmitterCallBack {
         TJPACallback_emitter_(TAdaptor_particle* param_1) {
             pThis_ = param_1;
@@ -109,6 +115,8 @@ struct TAdaptor_particle : public JStudio::TAdaptor_particle {
             pJPAEmitter_->becomeInvalidEmitter();
         }
     }
+
+    void set_bPermit_onExit_notEnd_(bool param_1) { field_0x1b4 = param_1; }
     
     /* 0x1A0 */ TCreateObject* pCreateObject_;
     /* 0x1A4 */ JPABaseEmitter* pJPAEmitter_;

@@ -8,8 +8,8 @@
 
 namespace JStudio_JAudio2 {
 struct TCreateObject : public JStudio::TCreateObject {
-    typedef JStudio::TObject* (*JAISoundCreateFunc)(JStudio::stb::data::TParse_TBlock_object const&,
-                            JStudio_JAudio2::TCreateObject*);
+    typedef JStudio::TObject* (*CreateFunc)(JStudio::stb::data::TParse_TBlock_object const&,
+                                            JStudio_JAudio2::TCreateObject*);
 
     TCreateObject(JAISoundStarter* p_soundStarter, const JStage::TSystem* p_system) {
         pJAISoundStarter_ = p_soundStarter;
