@@ -156,7 +156,7 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
     static u8 saoVVOutput_direction_[72];
 };
 
-/* 8028A1F8 */ void
+/* 8028A1F8 */ bool
     transform_toGlobalFromLocal(f32 (*)[4],
                                 JStudio::TControl::TTransform_translation_rotation_scaling const&,
                                 JStage::TObject const*, u32);

@@ -40,7 +40,7 @@ extern "C" void getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Ve
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio_JStage::transform_toGlobalFromLocal(
+asm bool JStudio_JStage::transform_toGlobalFromLocal(
     f32 (*param_0)[4], JStudio::TControl::TTransform_translation_rotation_scaling const& param_1,
     JStage::TObject const* param_2, u32 param_3) {
     nofralloc

@@ -31,7 +31,11 @@ struct TFactory : public stb::TFactory {
 
 class TControl : public stb::TControl {
 public:
-    struct TTransform_translation_rotation_scaling {};
+    struct TTransform_translation_rotation_scaling {
+        Vec translation;
+        Vec rotation;
+        Vec scaling;
+    };
     struct TTransform_position : public Vec {};
 
     /* 80285114 */ TControl();
@@ -109,12 +113,43 @@ public:
         MTXMultVec(transformOnSet_getMatrix(), &rSrc, pDst);
     }
 
+    void transformOnSet_transformRotation(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(232, pDst!=0);
+        JUT_ASSERT(233, &rSrc!=pDst);
+        pDst->x = rSrc.x;
+        pDst->y = rSrc.y + mTransformOnSet_RotationY;
+        pDst->z = rSrc.z;
+    }
+
+    void transformOnSet_transformScaling(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(240, pDst!=0);
+        JUT_ASSERT(241, &rSrc!=pDst);
+        *pDst = rSrc;
+    }
+
     void transformOnSet_transform(TTransform_position* param_1, TTransform_position* param_2) const {
         transformOnSet_transformTranslation(*param_1, param_2);
     }
 
+    void transformOnSet_transform(TTransform_translation_rotation_scaling* param_1,
+                                  TTransform_translation_rotation_scaling* param_2) const {
+        transformOnSet_transformTranslation(param_1->translation, &param_2->translation);
+        transformOnSet_transformRotation(param_1->rotation, &param_2->rotation);
+        transformOnSet_transformScaling(param_1->scaling, &param_2->scaling);
+    }
+
     TTransform_position* transformOnSet_transform_ifEnabled(TTransform_position* param_1,
                                                             TTransform_position* param_2) const {
+        if (!transformOnSet_isEnabled()) {
+            return param_1;
+        }
+        transformOnSet_transform(param_1, param_2);
+        return param_2;
+    }
+
+    TTransform_translation_rotation_scaling*
+    transformOnSet_transform_ifEnabled(TTransform_translation_rotation_scaling* param_1,
+                                       TTransform_translation_rotation_scaling* param_2) const {
         if (!transformOnSet_isEnabled()) {
             return param_1;
         }

@@ -3,6 +3,7 @@
 
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
 #include "limits.h"
+#include "math.h"
 
 typedef struct _GXColor GXColor;
 
@@ -139,6 +140,7 @@ public:
 
 struct TAdaptor {
     struct TSetVariableValue_immediate {
+        TSetVariableValue_immediate() : field_0x0(-1), field_0x4(NAN) {}
         TSetVariableValue_immediate(u32 param_1, f32 param_2) :
             field_0x0(param_1), field_0x4(param_2) {}
         u32 field_0x0;
@@ -209,9 +211,9 @@ struct TAdaptor_actor : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[14];
 
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
+    static u32 const sauVariableValue_3_TRANSLATION_XYZ[3];
+    static u32 const sauVariableValue_3_ROTATION_XYZ[3];
+    static u32 const sauVariableValue_3_SCALING_XYZ[3];
 };  // Size: 0x128
 
 struct TObject_actor : public TObject {
@@ -228,8 +230,8 @@ struct TAdaptor_ambientLight : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[4];
 
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
+    static u32 const sauVariableValue_3_COLOR_RGB[3];
+    static u32 const sauVariableValue_4_COLOR_RGBA[4];
 };
 
 struct TObject_ambientLight : public TObject {
@@ -246,9 +248,9 @@ struct TAdaptor_camera : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[12];
 
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-    static u8 sauVariableValue_2_DISTANCE_NEAR_FAR[8];
+    static u32 const sauVariableValue_3_POSITION_XYZ[3];
+    static u32 const sauVariableValue_3_TARGET_POSITION_XYZ[3];
+    static u32 sauVariableValue_2_DISTANCE_NEAR_FAR[2];
 };
 
 struct TObject_camera : public TObject {
@@ -265,9 +267,9 @@ struct TAdaptor_fog : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[6];
 
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 sauVariableValue_2_RANGE_BEGIN_END[8];
+    static u32 const sauVariableValue_3_COLOR_RGB[3];
+    static u32 const sauVariableValue_4_COLOR_RGBA[4];
+    static u32 sauVariableValue_2_RANGE_BEGIN_END[2];
 };
 
 struct TObject_fog : public TObject {
@@ -284,11 +286,11 @@ struct TAdaptor_light : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[13];
 
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 const sauVariableValue_3_POSITION_XYZ[12];
-    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
-    static u8 sauVariableValue_2_DIRECTION_THETA_PHI[8];
+    static u32 const sauVariableValue_3_COLOR_RGB[3];
+    static u32 const sauVariableValue_4_COLOR_RGBA[4];
+    static u32 const sauVariableValue_3_POSITION_XYZ[3];
+    static u32 const sauVariableValue_3_TARGET_POSITION_XYZ[3];
+    static u32 sauVariableValue_2_DIRECTION_THETA_PHI[2];
 };
 
 struct TObject_light : public TObject {
@@ -318,13 +320,13 @@ struct TAdaptor_particle : public TAdaptor {
 
     /* 0x10 */ TVariableValue mValue[20];
 
-    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
-    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
-    static u8 const sauVariableValue_3_SCALING_XYZ[12];
-    static u8 const sauVariableValue_3_COLOR_RGB[12];
-    static u8 const sauVariableValue_4_COLOR_RGBA[16];
-    static u8 const sauVariableValue_3_COLOR1_RGB[12];
-    static u8 const sauVariableValue_4_COLOR1_RGBA[16];
+    static u32 const sauVariableValue_3_TRANSLATION_XYZ[3];
+    static u32 const sauVariableValue_3_ROTATION_XYZ[3];
+    static u32 const sauVariableValue_3_SCALING_XYZ[3];
+    static u32 const sauVariableValue_3_COLOR_RGB[3];
+    static u32 const sauVariableValue_4_COLOR_RGBA[4];
+    static u32 const sauVariableValue_3_COLOR1_RGB[3];
+    static u32 const sauVariableValue_4_COLOR1_RGBA[4];
 };
 
 struct TObject_particle : public TObject {

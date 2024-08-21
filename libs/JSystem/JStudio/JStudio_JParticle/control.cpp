@@ -104,7 +104,7 @@ COMPILER_STRIP_GATE(0x8039ABA8, &lit_1172);
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio_JParticle::TCreateObject::emitter_create(u32 param_0) {
+asm JPABaseEmitter* JStudio_JParticle::TCreateObject::emitter_create(u32 param_0) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JParticle/control/emitter_create__Q217JStudio_JParticle13TCreateObjectFUl.s"
 }

@@ -299,7 +299,7 @@ u8 JStudio_JAudio2::TAdaptor_sound::saoVVOSetValue_[72];
 /* 8028D9A4-8028DA74 2882E4 00D0+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q215JStudio_JAudio214TAdaptor_soundFv    */
 // Matches with TVVOSetValue_
-// Need to delete data_804511F8
+// Need to delete data_804511F8 and data_80451200
 #ifdef NONMATCHING
 void JStudio_JAudio2::TAdaptor_sound::adaptor_do_prepare() {
     static JStudio::TAdaptor::TSetVariableValue_immediate aoData[4] = {
