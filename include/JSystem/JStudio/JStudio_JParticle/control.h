@@ -31,31 +31,17 @@ struct TCreateObject : public JStudio::TCreateObject {
 };
 
 struct TAdaptor_particle : public JStudio::TAdaptor_particle {
-    struct TJPACallback_emitter_ 
-    #ifndef NONMATCHING
-    : public JPAEmitterCallBack 
-    #endif
-    {
+    struct TJPACallback_emitter_ : public JPAEmitterCallBack {
         TJPACallback_emitter_(TAdaptor_particle* param_1) {
             pThis_ = param_1;
             pOld = NULL;
             JUT_ASSERT(113, pThis_!=0);
         }
-         #ifndef NONMATCHING
         /* 8028E700 */ virtual ~TJPACallback_emitter_() {}
         /* 8028ECC0 */ virtual void execute(JPABaseEmitter*);
         /* 8028F060 */ virtual void executeAfter(JPABaseEmitter*);
         /* 8028F098 */ virtual void draw(JPABaseEmitter*);
         /* 8028F0D0 */ virtual void drawAfter(JPABaseEmitter*);
-        #else
-        /* 8028E700 */ ~TJPACallback_emitter_();
-        /* 8028ECC0 */ void execute(JPABaseEmitter*);
-        /* 8028F060 */ void executeAfter(JPABaseEmitter*);
-        /* 8028F098 */ void draw(JPABaseEmitter*);
-        /* 8028F0D0 */ void drawAfter(JPABaseEmitter*);
-
-        void* vtable;
-        #endif
 
         JPAEmitterCallBack* getOld() { return pOld; }
         void setOld(JPAEmitterCallBack* cb) { pOld = cb; }

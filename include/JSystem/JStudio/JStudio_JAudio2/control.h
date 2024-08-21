@@ -38,20 +38,11 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
         UNK_NONE = -1,
     };
 
-    struct TVVOSetValue_  
-    #ifdef NONMATCHING
-    : public JStudio::TVariableValue::TOutput 
-    #endif
-    {
-        TVVOSetValue_(TEVariableValue param_1, TVVOSoundSetFunc param_2) :
-            field_0x04(param_1), field_0x08(param_2) {}
-        #ifdef NONMATCHING
+    struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
+        TVVOSetValue_(TEVariableValue param_1, TVVOSoundSetFunc param_2)
+            : field_0x04(param_1), field_0x08(param_2) {}
         /* 8028DECC */ virtual void operator()(f32, JStudio::TAdaptor*) const;
         /* 8028E094 */ virtual ~TVVOSetValue_() {}
-        #else
-        /* 8028DECC */ void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028E094 */ ~TVVOSetValue_();
-        #endif
 
         /* 0x04 */ TEVariableValue field_0x04;
         /* 0x08 */ TVVOSoundSetFunc field_0x08;
@@ -101,7 +92,7 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
         opJAISoundHandle_->stop();
     }
 
-    #ifdef NONMATCHING
+    #ifndef NONMATCHING
     static TVVOSetValue_ saoVVOSetValue_[6];
     #else
     static u8 saoVVOSetValue_[72];

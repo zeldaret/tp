@@ -2571,7 +2571,7 @@ SECTION_DEAD static char const* const pad_8039AB82 = "\0\0\0\0\0";
 #pragma pop
 
 /* 804511F8-80451200 0006F8 0008+00 0/0 1/1 0/0 .sbss            None */
-extern u8 data_804511F8[8];
-u8 data_804511F8[8];
+// extern u8 data_804511F8[8];
+// u8 data_804511F8[8];
 
 /* 8039AB78-8039AB78 0271D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
