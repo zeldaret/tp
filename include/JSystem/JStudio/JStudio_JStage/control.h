@@ -24,14 +24,18 @@ struct TCreateObject : public JStudio::TCreateObject {
 };
 
 struct TAdaptor_object_ {
+    TAdaptor_object_(JStage::TSystem const*param_2, JStage::TObject *param_3) :
+        pJSGSystem_(param_2), pJSGObject_(param_3) {}
     /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
     /* 8028A4BC */ JStage::TObject* adaptor_object_findJSGObject_(char const*);
     /* 8028A50C */ s32 adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
     /* 8028A550 */ void adaptor_object_ENABLE_(JStudio::data::TEOperationData, void const*, u32);
 
-    /* 0x0 */ JStage::TSystem* field_0x0;
-    /* 0x4 */ JStage::TSystem* pJSGSystem_;
-    /* 0x8 */ JStage::TObject* pJSGObject_;
+    void adaptor_object_begin_() { pJSGObject_->JSGFEnableFlag(1); }
+    void adaptor_object_end_() { pJSGObject_->JSGFDisableFlag(1); }
+
+    /* 0x0 */ JStage::TSystem const* pJSGSystem_;
+    /* 0x4 */ JStage::TObject* pJSGObject_;
 };
 
 struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::TAdaptor_object_ {
@@ -87,7 +91,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
     /* 0x150 */ u32 field_0x150;
 };
 
-struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight {
+struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAdaptor_object_ {
     /* 8028B610 */ TAdaptor_ambientLight(JStage::TSystem const*, JStage::TAmbientLight*);
 
     /* 8028B6AC */ virtual ~TAdaptor_ambientLight();
@@ -96,6 +100,8 @@ struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight {
     /* 8028B7B0 */ virtual void adaptor_do_end();
     /* 8028B804 */ virtual void adaptor_do_update(u32);
     /* 8028B87C */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
+
+    JStage::TObject* get_pJSG_() { return pJSGObject_; }
 };
 
 struct TAdaptor_camera : public JStudio::TAdaptor_camera {

@@ -96,7 +96,7 @@ void JStudio_JStage::TAdaptor_object_::adaptor_object_data_(void const* param_1,
     } else {
         uVar3 = *(int*)param_1;
     }
-    pJSGSystem_->JSGSetData(uVar3, param_3, param_4);
+    pJSGObject_->JSGSetData(uVar3, param_3, param_4);
 }
 
 /* 8028A4BC-8028A50C 284DFC 0050+00 0/0 4/4 0/0 .text
@@ -104,7 +104,7 @@ void JStudio_JStage::TAdaptor_object_::adaptor_object_data_(void const* param_1,
 JStage::TObject*
 JStudio_JStage::TAdaptor_object_::adaptor_object_findJSGObject_(char const* param_1) {
     JStage::TObject* pJSGObject;
-    if (field_0x0->JSGFindObject(&pJSGObject, param_1, JStage::TOBJ_ACTOR_UNK) == 0) {
+    if (pJSGSystem_->JSGFindObject(&pJSGObject, param_1, JStage::TOBJ_ACTOR_UNK) == 0) {
         JUT_ASSERT(122, pJSGObject != 0);
     } else {
         return NULL;
@@ -133,9 +133,9 @@ JStudio_JStage::TAdaptor_object_::adaptor_object_ENABLE_(JStudio::data::TEOperat
         JUT_ASSERT(157, uSize==4);
         JUT_ASSERT(158, pContent!=0);
         if (*(u32*)pContent != 0) {
-            pJSGSystem_->JSGFEnableFlag(2);
+            pJSGObject_->JSGFEnableFlag(2);
         } else {
-            pJSGSystem_->JSGFDisableFlag(2);
+            pJSGObject_->JSGFDisableFlag(2);
         }
         break;
     }
