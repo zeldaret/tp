@@ -30,6 +30,7 @@ var jstudio_object_8h =
       [ "UNK_0x3", "jstudio-object_8h.html#a51a0b38eaf25f9657128ffc29b27473eab29e3ad66d27a75b983feeecd3c0b774", null ],
       [ "UNK_0x10", "jstudio-object_8h.html#a51a0b38eaf25f9657128ffc29b27473eaf28f8dcc073908984f56d91dd1029024", null ],
       [ "UNK_0x12", "jstudio-object_8h.html#a51a0b38eaf25f9657128ffc29b27473ea5ea93721e75f69d6ca096ad499a41f92", null ],
+      [ "UNK_0x18", "jstudio-object_8h.html#a51a0b38eaf25f9657128ffc29b27473ea436dc7242cd5494af7b6bf841d8cf5bf", null ],
       [ "UNK_0x19", "jstudio-object_8h.html#a51a0b38eaf25f9657128ffc29b27473eacf2a924a9b4087b13a160d66f50e8d02", null ]
     ] ]
 ];

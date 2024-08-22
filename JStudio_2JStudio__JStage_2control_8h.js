@@ -9,8 +9,9 @@ var JStudio_2JStudio__JStage_2control_8h =
     [ "JStudio_JStage::TAdaptor_fog", "structJStudio__JStage_1_1TAdaptor__fog.html", "structJStudio__JStage_1_1TAdaptor__fog" ],
     [ "JStudio_JStage::TAdaptor_light", "structJStudio__JStage_1_1TAdaptor__light.html", "structJStudio__JStage_1_1TAdaptor__light" ],
     [ "JStudio_JStage::TAdaptor_light::TVVOutput_direction_", "structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__.html", "structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__" ],
-    [ "transform_toGlobalFromLocal", "JStudio_2JStudio__JStage_2control_8h.html#a9ce0e1803b89264c63eafbccd61841b2", null ],
-    [ "transform_toGlobalFromLocal", "JStudio_2JStudio__JStage_2control_8h.html#a7863d422a5486e6b897bdd2f0254f600", null ],
-    [ "transform_toLocalFromGlobal", "JStudio_2JStudio__JStage_2control_8h.html#a272def5be470189e005a692794b2ed76", null ],
-    [ "transform_toLocalFromGlobal", "JStudio_2JStudio__JStage_2control_8h.html#a44f15245f9f56797faa650f661afe5a2", null ]
+    [ "transform_toGlobalFromLocal", "JStudio_2JStudio__JStage_2control_8h.html#a88d4b0128da02511ec6732886d4f7bc3", null ],
+    [ "transform_toGlobalFromLocal", "JStudio_2JStudio__JStage_2control_8h.html#a32fe4c3cf3df3874761cfa017f975347", null ],
+    [ "transform_toGlobalFromLocal", "JStudio_2JStudio__JStage_2control_8h.html#a0d1545c173b3c81409de2ed5a25fee9f", null ],
+    [ "transform_toLocalFromGlobal", "JStudio_2JStudio__JStage_2control_8h.html#a05ad74bf797107841d3f1153d86185a7", null ],
+    [ "transform_toLocalFromGlobal", "JStudio_2JStudio__JStage_2control_8h.html#ae48f0dbb6f23b53a856ed73eaa9d4074", null ]
 ];

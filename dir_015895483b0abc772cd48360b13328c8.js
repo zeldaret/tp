@@ -8,7 +8,7 @@ var dir_015895483b0abc772cd48360b13328c8 =
     [ "fvb-data.cpp", "fvb-data_8cpp.html", null ],
     [ "fvb-inline.cpp", "fvb-inline_8cpp.html", "fvb-inline_8cpp" ],
     [ "fvb.cpp", "fvb_8cpp.html", "fvb_8cpp" ],
-    [ "jstudio-control.cpp", "jstudio-control_8cpp.html", "jstudio-control_8cpp" ],
+    [ "jstudio-control.cpp", "jstudio-control_8cpp.html", null ],
     [ "jstudio-data.cpp", "jstudio-data_8cpp.html", null ],
     [ "jstudio-math.cpp", "jstudio-math_8cpp.html", "jstudio-math_8cpp" ],
     [ "jstudio-object.cpp", "jstudio-object_8cpp.html", "jstudio-object_8cpp" ],

@@ -1,10 +1,11 @@
 var structJStudio__JStage_1_1TAdaptor__ambientLight =
 [
-    [ "TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a8e177bfbae0dc53c79e1789d41a4f9ae", null ],
-    [ "~TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#abd7d08d2a2df299467f8d624b190917d", null ],
-    [ "adaptor_do_begin", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a093c5ff02dd2301562181ed1eea09e96", null ],
-    [ "adaptor_do_data", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#ae3aab71dfa47f4116dd9c89bf5ba1dea", null ],
-    [ "adaptor_do_end", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#ae7bb0a9fbbf58ae3a61dab9e8acc285a", null ],
+    [ "TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#aa138fbc41f5cff6b2792b6955404b816", null ],
+    [ "~TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#abd7ecf4d2322df801bf01f8c85bf1461", null ],
+    [ "adaptor_do_begin", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#aba1ac67de644a50c122779495f9c411f", null ],
+    [ "adaptor_do_data", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#aa4bb9ccbc990403dc7bf43e054a8cce1", null ],
+    [ "adaptor_do_end", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#afbe5cfa19a5193cc8e973689f7405015", null ],
     [ "adaptor_do_prepare", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a203481644c723126f6882d8d18edad91", null ],
-    [ "adaptor_do_update", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a403ee67bf6d947ef152ff0553cd12028", null ]
+    [ "adaptor_do_update", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a92fc2ddbfe516eaee96d7fa7f53e129d", null ],
+    [ "get_pJSG_", "structJStudio__JStage_1_1TAdaptor__ambientLight.html#a5527febf8ddc94ba48f039f75eed7f4d", null ]
 ];

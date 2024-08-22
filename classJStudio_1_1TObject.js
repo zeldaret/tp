@@ -10,7 +10,7 @@ var classJStudio_1_1TObject =
     [ "do_wait", "classJStudio_1_1TObject.html#afc7504b1ab6d59fbc9a69d1ca89a05aa", null ],
     [ "forward_value", "classJStudio_1_1TObject.html#a8b371b6060af4c308a8ab0599c9c563c", null ],
     [ "getAdaptor", "classJStudio_1_1TObject.html#a574bc27cfc171ac6a973eaf8119873b7", null ],
-    [ "getControl", "classJStudio_1_1TObject.html#a16a6e3ed31688228b01e0244d309f906", null ],
+    [ "getControl", "classJStudio_1_1TObject.html#a6110587abe44425ed88cdb9142862cb2", null ],
     [ "prepareAdaptor", "classJStudio_1_1TObject.html#ab79ea8ebc46bc465b1fa2c9b558550d4", null ],
     [ "mpAdaptor", "classJStudio_1_1TObject.html#a313a5acdb09facdc0db1c02d49ed6ce7", null ]
 ];

@@ -1,23 +1,25 @@
 <map id="JPAEmitterCallBack" name="JPAEmitterCallBack">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,204,145,230"/>
-<area shape="rect" id="Node000002" href="$classdPa__levelEcallBack.html" title=" " alt="" coords="198,179,335,204"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,203,198,198,198,203,160,208"/>
-<area shape="rect" id="Node000011" href="$classdPa__simpleEcallBack.html" title=" " alt="" coords="193,228,340,254"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="160,225,193,229,192,234,160,230"/>
-<area shape="rect" id="Node000003" href="$classdPa__followEcallBack.html" title=" " alt="" coords="408,5,551,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,164,322,101,352,68,387,40,408,29,410,34,389,44,355,72,326,105,284,167"/>
-<area shape="rect" id="Node000004" href="$classdPa__gen__b__light8EcallBack.html" title=" " alt="" coords="388,55,570,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="289,165,332,126,387,89,413,78,415,83,389,94,335,130,292,169"/>
-<area shape="rect" id="Node000005" href="$classdPa__gen__d__light8EcallBack.html" title=" " alt="" coords="388,104,570,130"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="309,170,387,138,422,128,424,133,389,143,311,175"/>
-<area shape="rect" id="Node000006" href="$classdPa__hermiteEcallBack__c.html" title=" " alt="" coords="396,153,562,179"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="349,179,395,173,396,179,350,184"/>
-<area shape="rect" id="Node000007" href="$classdPa__light8EcallBack.html" title=" " alt="" coords="409,203,549,228"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="350,198,409,205,408,210,350,204"/>
-<area shape="rect" id="Node000008" href="$classdPa__modelEcallBack.html" title=" " alt="" coords="407,252,551,278"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="327,208,341,213,365,226,389,238,421,249,419,254,387,243,363,231,339,218,325,212"/>
-<area shape="rect" id="Node000009" href="$classdPa__selectTexEcallBack.html" title=" " alt="" coords="397,301,562,327"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="337,210,342,214,358,233,366,252,374,271,390,288,409,299,406,303,386,292,369,274,361,254,354,235,338,217,334,214"/>
-<area shape="rect" id="Node000010" href="$classdPa__setColorEcallBack.html" title=" " alt="" coords="401,351,558,376"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="339,211,342,214,355,230,362,246,366,278,371,308,377,323,390,338,405,348,402,352,386,341,373,326,365,310,361,278,357,247,350,232,338,217,336,215"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,179,145,204"/>
+<area shape="rect" id="Node000002" href="$structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPACallback__emitter__.html" title=" " alt="" coords="193,98,405,154"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,171,200,152,202,157,137,176"/>
+<area shape="rect" id="Node000003" href="$classdPa__levelEcallBack.html" title=" " alt="" coords="231,179,367,204"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,189,230,189,230,194,160,194"/>
+<area shape="rect" id="Node000012" href="$classdPa__simpleEcallBack.html" title=" " alt="" coords="225,228,373,254"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="152,206,238,225,237,230,151,211"/>
+<area shape="rect" id="Node000004" href="$classdPa__followEcallBack.html" title=" " alt="" coords="473,5,616,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="381,178,403,164,416,150,423,135,427,104,431,72,438,56,451,40,471,28,474,32,455,44,442,59,436,73,432,105,428,137,420,153,407,168,383,183"/>
+<area shape="rect" id="Node000005" href="$classdPa__gen__b__light8EcallBack.html" title=" " alt="" coords="453,55,635,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="380,176,403,164,419,147,427,128,434,108,451,89,471,78,474,83,455,94,439,111,432,130,424,150,407,168,383,181"/>
+<area shape="rect" id="Node000006" href="$classdPa__gen__d__light8EcallBack.html" title=" " alt="" coords="453,104,635,130"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="381,171,404,164,428,151,452,138,484,128,486,133,454,143,430,156,406,169,382,177"/>
+<area shape="rect" id="Node000007" href="$classdPa__hermiteEcallBack__c.html" title=" " alt="" coords="461,153,627,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="382,180,460,172,461,177,382,186"/>
+<area shape="rect" id="Node000008" href="$classdPa__light8EcallBack.html" title=" " alt="" coords="474,203,614,228"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="383,197,474,206,473,211,382,202"/>
+<area shape="rect" id="Node000009" href="$classdPa__modelEcallBack.html" title=" " alt="" coords="472,252,616,278"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="383,205,406,213,430,226,454,238,486,249,484,254,452,243,428,230,404,218,381,211"/>
+<area shape="rect" id="Node000010" href="$classdPa__selectTexEcallBack.html" title=" " alt="" coords="462,301,627,327"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="383,201,407,213,424,232,432,252,439,270,455,288,474,299,471,303,451,292,434,273,427,254,419,235,403,218,380,206"/>
+<area shape="rect" id="Node000011" href="$classdPa__setColorEcallBack.html" title=" " alt="" coords="466,351,623,376"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="383,199,407,213,420,229,428,245,432,277,436,308,442,323,455,338,470,348,467,352,451,341,438,326,431,310,427,278,423,246,416,232,403,218,381,204"/>
 </map>

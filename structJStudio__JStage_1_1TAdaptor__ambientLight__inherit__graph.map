@@ -1,7 +1,9 @@
 <map id="JStudio_JStage::TAdaptor_ambientLight" name="JStudio_JStage::TAdaptor_ambientLight">
-<area shape="rect" id="Node000001" title=" " alt="" coords="8,168,180,208"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="107,168,279,208"/>
 <area shape="rect" id="Node000002" href="$structJStudio_1_1TAdaptor__ambientLight.html" title=" " alt="" coords="5,79,183,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,135,97,167,91,167,91,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,128,172,165,169,169,126,132"/>
 <area shape="rect" id="Node000003" href="$structJStudio_1_1TAdaptor.html" title=" " alt="" coords="32,5,156,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,46,97,79,91,79,91,46"/>
+<area shape="rect" id="Node000004" href="$structJStudio__JStage_1_1TAdaptor__object__.html" title=" " alt="" coords="207,79,379,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="260,132,217,169,214,165,257,128"/>
 </map>

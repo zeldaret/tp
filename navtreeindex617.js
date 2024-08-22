@@ -1,5 +1,12 @@
 var NAVTREEINDEX617 =
 {
+"d__a__npc__kakashi_8cpp.html#a09354af32eb5736f0497e093554bee12":[4,0,3,0,0,78,44,0,366],
+"d__a__npc__kakashi_8cpp.html#a0a41d182d3d239f2655f4374fec3fcd5":[4,0,3,0,0,78,44,0,223],
+"d__a__npc__kakashi_8cpp.html#a0c6e89ea12803c8a73e424923826f4b3":[4,0,3,0,0,78,44,0,373],
+"d__a__npc__kakashi_8cpp.html#a0e44e8f36cecd1f27fec163cab9a06d0":[4,0,3,0,0,78,44,0,274],
+"d__a__npc__kakashi_8cpp.html#a0e9ee8de71d68841edfe6e3a2df75672":[4,0,3,0,0,78,44,0,125],
+"d__a__npc__kakashi_8cpp.html#a0f4d4376cb33a324aa187db8884ed266":[4,0,3,0,0,78,44,0,26],
+"d__a__npc__kakashi_8cpp.html#a0f7de865c29f17ee38d09035faa9d238":[4,0,3,0,0,78,44,0,260],
 "d__a__npc__kakashi_8cpp.html#a107f30df4d5cb4aefab5c1f82f632643":[4,0,3,0,0,78,44,0,229],
 "d__a__npc__kakashi_8cpp.html#a1116030829d220ddbb9a33e42a43908f":[4,0,3,0,0,78,44,0,157],
 "d__a__npc__kakashi_8cpp.html#a11260c91079b972bf42c08bd17e4aa38":[4,0,3,0,0,78,44,0,20],
@@ -242,12 +249,5 @@ var NAVTREEINDEX617 =
 "d__a__npc__kakashi_8cpp.html#aa72986f97ad866241b2ca6e54c50fe01":[4,0,3,0,0,78,44,0,106],
 "d__a__npc__kakashi_8cpp.html#aa72c26f309973c25b61350e123daf560":[4,0,3,0,0,78,44,0,299],
 "d__a__npc__kakashi_8cpp.html#aa768964ce6a30606ae3b609f9bc68ac7":[4,0,3,0,0,78,44,0,368],
-"d__a__npc__kakashi_8cpp.html#aa8b2b992407cf48ba98905b417420685":[4,0,3,0,0,78,44,0,65],
-"d__a__npc__kakashi_8cpp.html#aa9e33f8f2d565627116b6fb2aa947601":[4,0,3,0,0,78,44,0,12],
-"d__a__npc__kakashi_8cpp.html#aaadf367df71240fbfe9ddd33e673854c":[4,0,3,0,0,78,44,0,126],
-"d__a__npc__kakashi_8cpp.html#aaafad3b00abb296f3685b51262a985f1":[4,0,3,0,0,78,44,0,91],
-"d__a__npc__kakashi_8cpp.html#aacb47ac74c3455da175d3e90fe60c1c1":[4,0,3,0,0,78,44,0,331],
-"d__a__npc__kakashi_8cpp.html#aacbaa433c294648e73e8edd595d44138":[4,0,3,0,0,78,44,0,305],
-"d__a__npc__kakashi_8cpp.html#aad27815aa2f424e39fbfe89ee519a869":[4,0,3,0,0,78,44,0,255],
-"d__a__npc__kakashi_8cpp.html#aae135c6e2300313c214927d7dcfdfebf":[4,0,3,0,0,78,44,0,259]
+"d__a__npc__kakashi_8cpp.html#aa8b2b992407cf48ba98905b417420685":[4,0,3,0,0,78,44,0,65]
 };

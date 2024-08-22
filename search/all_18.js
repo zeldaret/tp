@@ -24,7 +24,7 @@ var searchData=
   ['xypal_21',['XYPAL',['../SISamplingRate_8c.html#af0c5b6bec9a402be4834cf592e0b02b6',1,'SISamplingRate.c']]],
   ['xystick_22',['xyStick',['../structPADClampRegion.html#a4c3fa20d75dd5adc60a07a79832df3b6',1,'PADClampRegion']]],
   ['xysubstick_23',['xySubstick',['../structPADClampRegion.html#abeefa9d6b8065dd4425d77be66f1dd22',1,'PADClampRegion']]],
-  ['xyz_24',['xyz',['../classdaIceWall__HIO__c.html#a8d307568f8347deb22cdb43d05774506',1,'daIceWall_HIO_c::xyz'],['../classcSGlobe.html#a6f1bd7c954423a8dd99d4e604bcc9c87',1,'cSGlobe::Xyz()'],['../classcSPolar.html#a2b3c217d042eecb661c83fb0b060030e',1,'cSPolar::Xyz()']]],
+  ['xyz_24',['xyz',['../classcSGlobe.html#a6f1bd7c954423a8dd99d4e604bcc9c87',1,'cSGlobe::Xyz()'],['../classcSPolar.html#a2b3c217d042eecb661c83fb0b060030e',1,'cSPolar::Xyz()'],['../classdaIceWall__HIO__c.html#a8d307568f8347deb22cdb43d05774506',1,'daIceWall_HIO_c::xyz']]],
   ['xyz_5f_5f7csglobecfv_25',['xyz__7csglobecfv',['../d__camera_8cpp.html#a4ccf3ce423be441712fa566a3c2c167b',1,'Xyz__7cSGlobeCFv():&#160;d_camera.cpp'],['../d__ev__camera_8cpp.html#a4ccf3ce423be441712fa566a3c2c167b',1,'Xyz__7cSGlobeCFv():&#160;d_ev_camera.cpp']]],
   ['xyz_5f_5f7cspolarcfv_26',['Xyz__7cSPolarCFv',['../d__camera_8cpp.html#ad974f4983262237354a7cf922347f03d',1,'d_camera.cpp']]],
   ['xyzhorizontaldistance_27',['xyzHorizontalDistance',['../structdCamMath.html#a45f19707afd47adefe5703511705e01f',1,'dCamMath']]],

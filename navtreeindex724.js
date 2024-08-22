@@ -1,5 +1,12 @@
 var NAVTREEINDEX724 =
 {
+"d__a__npc__zelRo_8cpp.html#a766b23b1ff93b185604a91303f927649":[4,0,3,0,0,78,116,0,271],
+"d__a__npc__zelRo_8cpp.html#a770a0bf90507947035e3becccfb14187":[4,0,3,0,0,78,116,0,172],
+"d__a__npc__zelRo_8cpp.html#a7987990db7b027206cac7ab7c02d0696":[4,0,3,0,0,78,116,0,78],
+"d__a__npc__zelRo_8cpp.html#a7c08e756761391a2463a36ea5115e608":[4,0,3,0,0,78,116,0,184],
+"d__a__npc__zelRo_8cpp.html#a7c2c6bbf8daff38fe869c13022e3bfc5":[4,0,3,0,0,78,116,0,11],
+"d__a__npc__zelRo_8cpp.html#a7dea881772fc161228fc25011d0efad6":[4,0,3,0,0,78,116,0,267],
+"d__a__npc__zelRo_8cpp.html#a804fde53618a433a807cb6d5c053aa4c":[4,0,3,0,0,78,116,0,246],
 "d__a__npc__zelRo_8cpp.html#a80f095190726bc43c70e11be1f3a267a":[4,0,3,0,0,78,116,0,266],
 "d__a__npc__zelRo_8cpp.html#a81175f49b99856cae1d4e5b6c8551164":[4,0,3,0,0,78,116,0,151],
 "d__a__npc__zelRo_8cpp.html#a81b6b56ff67327daf09785168ed47799":[4,0,3,0,0,78,116,0,129],
@@ -242,12 +249,5 @@ var NAVTREEINDEX724 =
 "d__a__npc__zelda_8cpp.html#a489b2a4039c28e19dc8c50a41080269b":[4,0,3,0,0,78,114,0,227],
 "d__a__npc__zelda_8cpp.html#a4965cdbc8b10c70759489ad72e39879d":[4,0,3,0,0,78,114,0,225],
 "d__a__npc__zelda_8cpp.html#a498e6440d5c316e2672169ee4ed92309":[4,0,3,0,0,78,114,0,22],
-"d__a__npc__zelda_8cpp.html#a4a01170674151a35b04219abd9b16ac0":[4,0,3,0,0,78,114,0,137],
-"d__a__npc__zelda_8cpp.html#a4b2ceed66186791d95e55eef39c811da":[4,0,3,0,0,78,114,0,239],
-"d__a__npc__zelda_8cpp.html#a4b34f339f6a65f0c44f87909999d3f9d":[4,0,3,0,0,78,114,0,97],
-"d__a__npc__zelda_8cpp.html#a4b5d806d1a32bff1e7d8530787f1bc55":[4,0,3,0,0,78,114,0,117],
-"d__a__npc__zelda_8cpp.html#a4c9fc4f6d35e088e1b15835466d00d24":[4,0,3,0,0,78,114,0,217],
-"d__a__npc__zelda_8cpp.html#a4e4b05da33d9d229c661555ee6386468":[4,0,3,0,0,78,114,0,162],
-"d__a__npc__zelda_8cpp.html#a502645a9fc04c1fd122d5721a94fb7c7":[4,0,3,0,0,78,114,0,201],
-"d__a__npc__zelda_8cpp.html#a51faa8ebdd74100caf7ab0c22105d69a":[4,0,3,0,0,78,114,0,55]
+"d__a__npc__zelda_8cpp.html#a4a01170674151a35b04219abd9b16ac0":[4,0,3,0,0,78,114,0,137]
 };

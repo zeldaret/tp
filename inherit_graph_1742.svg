@@ -11,11 +11,11 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structJStudio_1_1stb_1_1data_1_1TParse__TParagraph__data_1_1TData.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="structJStudio_1_1stb_1_1data_1_1TParse__TParagraph_1_1TData.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="107.5,-41.75 0,-41.75 0,0 107.5,0 107.5,-41.75"/>
 <text text-anchor="start" x="8" y="-28.25" font-family="Helvetica,sans-Serif" font-size="10.00">JStudio::stb::data</text>
 <text text-anchor="start" x="8" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">::TParse_TParagraph</text>
-<text text-anchor="middle" x="53.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">_data::TData</text>
+<text text-anchor="middle" x="53.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">::TData</text>
 </a>
 </g>
 </g>

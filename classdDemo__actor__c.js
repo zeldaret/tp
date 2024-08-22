@@ -14,7 +14,7 @@ var classdDemo__actor__c =
     [ "getTrans", "classdDemo__actor__c.html#a6779236f20a0e71d5a721a733b98d23a", null ],
     [ "JSGFindNodeID", "classdDemo__actor__c.html#a4a84f02754c635e4f32b79493405e8e7", null ],
     [ "JSGGetAnimationFrameMax", "classdDemo__actor__c.html#ab0154729df989229ca2a5bd0b7645997", null ],
-    [ "JSGGetNodeTransformation", "classdDemo__actor__c.html#a7c5d9fab954474d5c06f1ec796f1574d", null ],
+    [ "JSGGetNodeTransformation", "classdDemo__actor__c.html#a573ba574f84cce0514504095c0d0c581", null ],
     [ "JSGGetRotation", "classdDemo__actor__c.html#a36a92634dc9938aabbdcd206948cce87", null ],
     [ "JSGGetScaling", "classdDemo__actor__c.html#ac5b7883211a3765e5d69be3412ba1867", null ],
     [ "JSGGetTextureAnimationFrameMax", "classdDemo__actor__c.html#ad2e4e25ad1c2d3bd39f59253cd5e8ec6", null ],

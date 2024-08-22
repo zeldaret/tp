@@ -2294,6 +2294,9 @@ var hierarchy =
     ] ],
     [ "JGadget::TNodeLinkList::const_iterator", "structJGadget_1_1TNodeLinkList_1_1const__iterator.html", null ],
     [ "JGadget::TNodeLinkList::iterator", "structJGadget_1_1TNodeLinkList_1_1iterator.html", null ],
+    [ "JGadget::TPointer< T >", "classJGadget_1_1TPointer.html", [
+      [ "JGadget::TPointer_delete< T >", "classJGadget_1_1TPointer__delete.html", null ]
+    ] ],
     [ "JGadget::TVector< T, Allocator >", "structJGadget_1_1TVector.html", null ],
     [ "JGadget::TVector< T, Allocator >::TDestructed_deallocate_", "structJGadget_1_1TVector_1_1TDestructed__deallocate__.html", null ],
     [ "JGadget::TVector__template0", "structJGadget_1_1TVector____template0.html", null ],
@@ -2416,6 +2419,7 @@ var hierarchy =
     [ "JPADynamicsBlock", "structJPADynamicsBlock.html", null ],
     [ "JPADynamicsBlockData", "structJPADynamicsBlockData.html", null ],
     [ "JPAEmitterCallBack", "classJPAEmitterCallBack.html", [
+      [ "JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_", "structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPACallback__emitter__.html", null ],
       [ "dPa_levelEcallBack", "classdPa__levelEcallBack.html", [
         [ "dPa_followEcallBack", "classdPa__followEcallBack.html", null ],
         [ "dPa_gen_b_light8EcallBack", "classdPa__gen__b__light8EcallBack.html", null ],
@@ -2575,7 +2579,6 @@ var hierarchy =
       ] ]
     ] ],
     [ "JStudio::TAdaptor::TSetVariableValue_immediate", "structJStudio_1_1TAdaptor_1_1TSetVariableValue__immediate.html", null ],
-    [ "JStudio::TControl::TTransform_position", "structJStudio_1_1TControl_1_1TTransform__position.html", null ],
     [ "JStudio::TControl::TTransform_translation_rotation_scaling", "structJStudio_1_1TControl_1_1TTransform__translation__rotation__scaling.html", null ],
     [ "JStudio::TCreateObject", "structJStudio_1_1TCreateObject.html", [
       [ "JStudio_JAudio2::TCreateObject", "structJStudio__JAudio2_1_1TCreateObject.html", null ],
@@ -2611,15 +2614,16 @@ var hierarchy =
       [ "JStudio::TFunctionValueAttributeSet", "classJStudio_1_1TFunctionValueAttributeSet.html", null ]
     ] ],
     [ "JStudio::TVariableValue", "structJStudio_1_1TVariableValue.html", null ],
-    [ "JStudio::TVariableValue::TOutput", "structJStudio_1_1TVariableValue_1_1TOutput.html", null ],
+    [ "JStudio::TVariableValue::TOutput", "structJStudio_1_1TVariableValue_1_1TOutput.html", [
+      [ "JStudio_JAudio2::TAdaptor_sound::TVVOSetValue_", "structJStudio__JAudio2_1_1TAdaptor__sound_1_1TVVOSetValue__.html", null ]
+    ] ],
     [ "JStudio::TVariableValue::TOutput_none_", "structJStudio_1_1TVariableValue_1_1TOutput__none__.html", null ],
-    [ "JStudio_JAudio2::TAdaptor_sound::TVVOSetValue_", "structJStudio__JAudio2_1_1TAdaptor__sound_1_1TVVOSetValue__.html", null ],
-    [ "JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_", "structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPACallback__emitter__.html", null ],
-    [ "JStudio_JStage", "structJStudio__JStage.html", null ],
+    [ "JStudio_JParticle::TAdaptor_particle::TJPAEmitter_stopDrawParticle_", "structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPAEmitter__stopDrawParticle__.html", null ],
     [ "JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_", "structJStudio__JStage_1_1TAdaptor__actor_1_1TVVOutput__ANIMATION__FRAME__.html", null ],
     [ "JStudio_JStage::TAdaptor_light::TVVOutput_direction_", "structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__.html", null ],
     [ "JStudio_JStage::TAdaptor_object_", "structJStudio__JStage_1_1TAdaptor__object__.html", [
-      [ "JStudio_JStage::TAdaptor_actor", "structJStudio__JStage_1_1TAdaptor__actor.html", null ]
+      [ "JStudio_JStage::TAdaptor_actor", "structJStudio__JStage_1_1TAdaptor__actor.html", null ],
+      [ "JStudio_JStage::TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html", null ]
     ] ],
     [ "JSUIosBase", "classJSUIosBase.html", [
       [ "JSUInputStream", "structJSUInputStream.html", [
@@ -3980,6 +3984,7 @@ var hierarchy =
     [ "unknown", "structunknown.html", null ],
     [ "Vec", "structVec.html", [
       [ "JGeometry::TVec3< f32 >", "structJGeometry_1_1TVec3_3_01f32_01_4.html", null ],
+      [ "JStudio::TControl::TTransform_position", "structJStudio_1_1TControl_1_1TTransform__position.html", null ],
       [ "cBgD_Vtx_t", "structcBgD__Vtx__t.html", null ],
       [ "cXyz", "structcXyz.html", null ]
     ] ],

@@ -282,10 +282,10 @@ $(document).ready(function(){initNavTree('JAISound_8h_source.html',''); initResi
 </div>
 <div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structJAISoundFader.html#abcb3cdbe6c01ada775cb03c1f114164d">  130</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structJAISoundFader.html#abcb3cdbe6c01ada775cb03c1f114164d">fadeIn</a>(<a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> param_1) {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (param_1 == 0) {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <a class="code hl_function" href="structJAISoundFader.html#a35da39d85d2245b4ab93ededaa813f8a">forceIn</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (param_1 != 0) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <a class="code hl_variable" href="structJAISoundFader.html#a799df5f006f36229ac1262a59cfe479d">mTransition</a>.<a class="code hl_function" href="structJAISoundParamsTransition_1_1TTransition.html#a63cca01788e72eebc78482c8c6ad6c32">set</a>(1.0f, <a class="code hl_variable" href="structJAISoundFader.html#a722bb0ce6ce9102af5e735bfaf7c73eb">mIntensity</a>, param_1);</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <a class="code hl_variable" href="structJAISoundFader.html#a799df5f006f36229ac1262a59cfe479d">mTransition</a>.<a class="code hl_function" href="structJAISoundParamsTransition_1_1TTransition.html#a63cca01788e72eebc78482c8c6ad6c32">set</a>(1.0f, <a class="code hl_variable" href="structJAISoundFader.html#a722bb0ce6ce9102af5e735bfaf7c73eb">mIntensity</a>, param_1);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <a class="code hl_function" href="structJAISoundFader.html#a35da39d85d2245b4ab93ededaa813f8a">forceIn</a>();</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        }</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }</div>
 </div>

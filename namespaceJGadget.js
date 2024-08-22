@@ -15,6 +15,8 @@ var namespaceJGadget =
     [ "TLinkList_factory", "structJGadget_1_1TLinkList__factory.html", "structJGadget_1_1TLinkList__factory" ],
     [ "TLinkListNode", "structJGadget_1_1TLinkListNode.html", "structJGadget_1_1TLinkListNode" ],
     [ "TNodeLinkList", "structJGadget_1_1TNodeLinkList.html", "structJGadget_1_1TNodeLinkList" ],
+    [ "TPointer", "classJGadget_1_1TPointer.html", "classJGadget_1_1TPointer" ],
+    [ "TPointer_delete", "classJGadget_1_1TPointer__delete.html", "classJGadget_1_1TPointer__delete" ],
     [ "TVector", "structJGadget_1_1TVector.html", "structJGadget_1_1TVector" ],
     [ "TVector__template0", "structJGadget_1_1TVector____template0.html", "structJGadget_1_1TVector____template0" ],
     [ "TVector_pointer", "structJGadget_1_1TVector__pointer.html", "structJGadget_1_1TVector__pointer" ],

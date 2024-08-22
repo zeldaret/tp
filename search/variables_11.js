@@ -9,6 +9,6 @@ var searchData=
   ['qs2_6',['qs2',['../e__asin_8c.html#a975776e6e99be99d54771f1ec4963cdd',1,'qS2:&#160;e_asin.c'],['../e__acos_8c.html#a975776e6e99be99d54771f1ec4963cdd',1,'qS2:&#160;e_acos.c']]],
   ['qs3_7',['qs3',['../e__asin_8c.html#a490836da4577636cec02cdb43d01b902',1,'qS3:&#160;e_asin.c'],['../e__acos_8c.html#a490836da4577636cec02cdb43d01b902',1,'qS3:&#160;e_acos.c']]],
   ['qs4_8',['qs4',['../e__asin_8c.html#a15413f3feeb6146e79b82bfe7a49c397',1,'qS4:&#160;e_asin.c'],['../e__acos_8c.html#a15413f3feeb6146e79b82bfe7a49c397',1,'qS4:&#160;e_acos.c']]],
-  ['queue_9',['queue',['../structOSThread.html#ad4db9ecdbeb784a78a7d6abf52f1ff57',1,'OSThread::queue'],['../structOSCond.html#a589f00ff1643277e5a9702ad9c1c1a03',1,'OSCond::queue'],['../structOSMutex.html#a94e38e16ab262180416736b11921867b',1,'OSMutex::queue'],['../structEXIControl.html#abdc0532747717c4eaa25e732ffd69b60',1,'EXIControl::queue']]],
+  ['queue_9',['queue',['../structOSThread.html#ad4db9ecdbeb784a78a7d6abf52f1ff57',1,'OSThread::queue'],['../structOSCond.html#a589f00ff1643277e5a9702ad9c1c1a03',1,'OSCond::queue'],['../structOSMutex.html#a94e38e16ab262180416736b11921867b',1,'OSMutex::queue'],['../structEXIControl.html#ae01e579fd3927cfbf43b9511d4cec4a3',1,'EXIControl::queue']]],
   ['quot_10',['quot',['../structdiv__t.html#a0b9dda2884048daa68ca4aaa12b17b9a',1,'div_t']]]
 ];

@@ -8,6 +8,7 @@ var namespaceJStudio =
         [ "UNK_0x3", "namespaceJStudio_1_1data.html#a51a0b38eaf25f9657128ffc29b27473eab29e3ad66d27a75b983feeecd3c0b774", null ],
         [ "UNK_0x10", "namespaceJStudio_1_1data.html#a51a0b38eaf25f9657128ffc29b27473eaf28f8dcc073908984f56d91dd1029024", null ],
         [ "UNK_0x12", "namespaceJStudio_1_1data.html#a51a0b38eaf25f9657128ffc29b27473ea5ea93721e75f69d6ca096ad499a41f92", null ],
+        [ "UNK_0x18", "namespaceJStudio_1_1data.html#a51a0b38eaf25f9657128ffc29b27473ea436dc7242cd5494af7b6bf841d8cf5bf", null ],
         [ "UNK_0x19", "namespaceJStudio_1_1data.html#a51a0b38eaf25f9657128ffc29b27473eacf2a924a9b4087b13a160d66f50e8d02", null ]
       ] ],
       [ "ga8cSignature", "namespaceJStudio_1_1data.html#a4cea0478b1a94da79bfd0f99b3679dc1", null ]
@@ -35,6 +36,7 @@ var namespaceJStudio =
       [ "getRotation_y", "namespaceJStudio_1_1math.html#a45bbbdadb1740c019239b878cd9b5ce9", null ],
       [ "getTransformation_RyT", "namespaceJStudio_1_1math.html#a20f3d93de1a710dd18f87e19939ab7d4", null ],
       [ "getTransformation_SRxyzT", "namespaceJStudio_1_1math.html#a8a49986278cdc6d87865ac8c7a0b49ea", null ],
+      [ "getTransformation_T", "namespaceJStudio_1_1math.html#abef30612d350d3c7a27c0c1c01c10243", null ],
       [ "rotate_xyz", "namespaceJStudio_1_1math.html#af59cd71c4504c2c70388e061273f96ec", null ],
       [ "rotate_xyz", "namespaceJStudio_1_1math.html#a7ad45e30f23a803800f7b29e12bf5be9", null ],
       [ "rotate_y", "namespaceJStudio_1_1math.html#abf2d907f04392dbbcb74e9660361449c", null ]

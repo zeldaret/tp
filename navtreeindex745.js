@@ -1,5 +1,12 @@
 var NAVTREEINDEX745 =
 {
+"d__a__obj__bosswarp_8cpp.html#aa754a77e07f518b5e17d203185ceea09":[4,0,3,0,0,79,18,0,68],
+"d__a__obj__bosswarp_8cpp.html#aa8b2b992407cf48ba98905b417420685":[4,0,3,0,0,79,18,0,19],
+"d__a__obj__bosswarp_8cpp.html#aaae52b6addcdd96b7078199366670a25":[4,0,3,0,0,79,18,0,149],
+"d__a__obj__bosswarp_8cpp.html#aadc12c2a0f3423c4ea8dfa73323ff005":[4,0,3,0,0,79,18,0,45],
+"d__a__obj__bosswarp_8cpp.html#ab3923e9e61492575f9ea20853b5c2180":[4,0,3,0,0,79,18,0,131],
+"d__a__obj__bosswarp_8cpp.html#abcc1145fa03be95d1df70e96494331d7":[4,0,3,0,0,79,18,0,8],
+"d__a__obj__bosswarp_8cpp.html#abe0150b36f8791cccf8ed8cf4dad23c4":[4,0,3,0,0,79,18,0,158],
 "d__a__obj__bosswarp_8cpp.html#abed5bd59c54272a132a5b4da4beff66d":[4,0,3,0,0,79,18,0,15],
 "d__a__obj__bosswarp_8cpp.html#abfd110efe1a228ff2688c6d71f06e98e":[4,0,3,0,0,79,18,0,17],
 "d__a__obj__bosswarp_8cpp.html#ac017c7e01b1d9720a2fef161f4b118a0":[4,0,3,0,0,79,18,0,122],
@@ -242,12 +249,5 @@ var NAVTREEINDEX745 =
 "d__a__obj__brakeeff_8cpp.html#a085f3a34ce186ab6e202a97581a1f68a":[4,0,3,0,0,79,20,0,1],
 "d__a__obj__brakeeff_8cpp.html#a0a8c3827d6eef9a4bf000900be60170b":[4,0,3,0,0,79,20,0,23],
 "d__a__obj__brakeeff_8cpp.html#a0b847e222f8266b185f8d1fff7c2fdbf":[4,0,3,0,0,79,20,0,79],
-"d__a__obj__brakeeff_8cpp.html#a0e44e8f36cecd1f27fec163cab9a06d0":[4,0,3,0,0,79,20,0,70],
-"d__a__obj__brakeeff_8cpp.html#a1157f5fe89a1c267b86580a0496311c1":[4,0,3,0,0,79,20,0,22],
-"d__a__obj__brakeeff_8cpp.html#a163749e04bb8e727db62fca94d8e8f6e":[4,0,3,0,0,79,20,0,61],
-"d__a__obj__brakeeff_8cpp.html#a17a61b56b91dd0a26443e422d7d2ded5":[4,0,3,0,0,79,20,0,49],
-"d__a__obj__brakeeff_8cpp.html#a1d9bcd9cce50109358430d7b8395557d":[4,0,3,0,0,79,20,0,8],
-"d__a__obj__brakeeff_8cpp.html#a2b05986531107cde8783fde25a9a7413":[4,0,3,0,0,79,20,0,9],
-"d__a__obj__brakeeff_8cpp.html#a2e2cc1afbb27029021579f527ca34648":[4,0,3,0,0,79,20,0,21],
-"d__a__obj__brakeeff_8cpp.html#a2edc2b46fec60c70ecc39273fe4f17aa":[4,0,3,0,0,79,20,0,17]
+"d__a__obj__brakeeff_8cpp.html#a0e44e8f36cecd1f27fec163cab9a06d0":[4,0,3,0,0,79,20,0,70]
 };

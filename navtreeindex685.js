@@ -1,5 +1,12 @@
 var NAVTREEINDEX685 =
 {
+"d__a__npc__soldierA_8cpp.html#a208833ec5427a4dc4499ba97a7acc0f2":[4,0,3,0,0,78,90,0,152],
+"d__a__npc__soldierA_8cpp.html#a21ca1e2eff242f1f8f9880bffae0a899":[4,0,3,0,0,78,90,0,137],
+"d__a__npc__soldierA_8cpp.html#a21d30a1e224e5b9b105421ba885fdb76":[4,0,3,0,0,78,90,0,88],
+"d__a__npc__soldierA_8cpp.html#a21d86a9facad31e9fcfa8bc8ab3b028d":[4,0,3,0,0,78,90,0,119],
+"d__a__npc__soldierA_8cpp.html#a2275241b0baf7e8ae5a123985e984152":[4,0,3,0,0,78,90,0,94],
+"d__a__npc__soldierA_8cpp.html#a22cce6a5e9fecbc9250d473b699008f1":[4,0,3,0,0,78,90,0,250],
+"d__a__npc__soldierA_8cpp.html#a232d36361aabd5678adb8ecb91869588":[4,0,3,0,0,78,90,0,311],
 "d__a__npc__soldierA_8cpp.html#a24b89d4fb7859d75ee875fb163e078c6":[4,0,3,0,0,78,90,0,302],
 "d__a__npc__soldierA_8cpp.html#a25bc33f126f8fa00494e20e8b00fb68a":[4,0,3,0,0,78,90,0,113],
 "d__a__npc__soldierA_8cpp.html#a2725f6ca0708ac3fc58ee2c3d5b883af":[4,0,3,0,0,78,90,0,132],
@@ -242,12 +249,5 @@ var NAVTREEINDEX685 =
 "d__a__npc__soldierA_8cpp.html#ad6b0e59d93f9b82f624a03469672a75f":[4,0,3,0,0,78,90,0,281],
 "d__a__npc__soldierA_8cpp.html#ad6b7864ebed4534fdb044f5845fcf8e5":[4,0,3,0,0,78,90,0,186],
 "d__a__npc__soldierA_8cpp.html#ad8582c9215132a76f6c347b1fc0b4d6f":[4,0,3,0,0,78,90,0,316],
-"d__a__npc__soldierA_8cpp.html#ad8de55252fcf062bf0b123e45819c7e4":[4,0,3,0,0,78,90,0,284],
-"d__a__npc__soldierA_8cpp.html#ad9c5eb494ff58b68f6338fa91d945e61":[4,0,3,0,0,78,90,0,77],
-"d__a__npc__soldierA_8cpp.html#adac4c28435d6d03220323461b69ca627":[4,0,3,0,0,78,90,0,93],
-"d__a__npc__soldierA_8cpp.html#adbb5a86aa4ea39ceeb2bfd2c2062fc2f":[4,0,3,0,0,78,90,0,73],
-"d__a__npc__soldierA_8cpp.html#adbdcde8cf6eef5e613be83e9d996c458":[4,0,3,0,0,78,90,0,237],
-"d__a__npc__soldierA_8cpp.html#adc6634629cb51e7c6154aa5ec92055c7":[4,0,3,0,0,78,90,0,142],
-"d__a__npc__soldierA_8cpp.html#adc7baeaf8717c74419683a2ed82d23ef":[4,0,3,0,0,78,90,0,191],
-"d__a__npc__soldierA_8cpp.html#add3912236ae48543c0b22d54fb33defd":[4,0,3,0,0,78,90,0,210]
+"d__a__npc__soldierA_8cpp.html#ad8de55252fcf062bf0b123e45819c7e4":[4,0,3,0,0,78,90,0,284]
 };

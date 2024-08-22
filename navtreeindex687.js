@@ -1,5 +1,12 @@
 var NAVTREEINDEX687 =
 {
+"d__a__npc__soldierB_8cpp.html#a8a81a393414022d62d62b96291b4dcff":[4,0,3,0,0,78,91,0,328],
+"d__a__npc__soldierB_8cpp.html#a8a94b47c3c8077e791c19d2868c37279":[4,0,3,0,0,78,91,0,152],
+"d__a__npc__soldierB_8cpp.html#a8acb38836bccd185a3957d50c7e806b2":[4,0,3,0,0,78,91,0,21],
+"d__a__npc__soldierB_8cpp.html#a8c4a9723de40b1c908902c2e884222d6":[4,0,3,0,0,78,91,0,262],
+"d__a__npc__soldierB_8cpp.html#a8cdd4df0c6022e6da4436bcb3164a5fb":[4,0,3,0,0,78,91,0,142],
+"d__a__npc__soldierB_8cpp.html#a8e01467eed17327e0c624b22ccc7ed8f":[4,0,3,0,0,78,91,0,326],
+"d__a__npc__soldierB_8cpp.html#a8f2dda102af979f19f2bf3cadfd5d501":[4,0,3,0,0,78,91,0,252],
 "d__a__npc__soldierB_8cpp.html#a8f35a1da76bde25f098b2ab57b650c62":[4,0,3,0,0,78,91,0,119],
 "d__a__npc__soldierB_8cpp.html#a9007e2e18b69317cb17dd863f3a0a9f5":[4,0,3,0,0,78,91,0,297],
 "d__a__npc__soldierB_8cpp.html#a916dd396ac3b13ef1594c0a332e665fa":[4,0,3,0,0,78,91,0,75],
@@ -242,12 +249,5 @@ var NAVTREEINDEX687 =
 "d__a__npc__taro_8cpp.html#a2399e3da78bc7edf2a5af75ff93f9f3e":[4,0,3,0,0,78,93,0,205],
 "d__a__npc__taro_8cpp.html#a23ff046414fdb8e7f9631194b8b0192c":[4,0,3,0,0,78,93,0,581],
 "d__a__npc__taro_8cpp.html#a253e6baa1a4c085434f8a54a4fe42bd9":[4,0,3,0,0,78,93,0,349],
-"d__a__npc__taro_8cpp.html#a26ba10d8c477f9021fb2225b9a4d505b":[4,0,3,0,0,78,93,0,99],
-"d__a__npc__taro_8cpp.html#a27ae79042261e2f58a138dcac03f7dc3":[4,0,3,0,0,78,93,0,176],
-"d__a__npc__taro_8cpp.html#a27e285812707ea6eb0c833ccef50797e":[4,0,3,0,0,78,93,0,197],
-"d__a__npc__taro_8cpp.html#a29ab65e12e150f274398c55d9a0688bd":[4,0,3,0,0,78,93,0,167],
-"d__a__npc__taro_8cpp.html#a2ae94eced1a728beb60056188b6afcf4":[4,0,3,0,0,78,93,0,429],
-"d__a__npc__taro_8cpp.html#a2b05986531107cde8783fde25a9a7413":[4,0,3,0,0,78,93,0,55],
-"d__a__npc__taro_8cpp.html#a2b0bbb1db35ae3bbe0d0a585065ca1ee":[4,0,3,0,0,78,93,0,505],
-"d__a__npc__taro_8cpp.html#a2b5aea3c7cb7ba661e6e698485d575ca":[4,0,3,0,0,78,93,0,47]
+"d__a__npc__taro_8cpp.html#a26ba10d8c477f9021fb2225b9a4d505b":[4,0,3,0,0,78,93,0,99]
 };

@@ -1,5 +1,12 @@
 var NAVTREEINDEX680 =
 {
+"d__a__npc__shaman_8cpp.html#a20ad0e0c98aae6c478d6fd63612807f3":[4,0,3,0,0,78,85,0,301],
+"d__a__npc__shaman_8cpp.html#a21c8aeae2d27b91d506ea5d31b1a9e82":[4,0,3,0,0,78,85,0,360],
+"d__a__npc__shaman_8cpp.html#a228790ede04c548faaff6fc948a05bc6":[4,0,3,0,0,78,85,0,338],
+"d__a__npc__shaman_8cpp.html#a25ffff5eabfb627fa14c1015e5c365b2":[4,0,3,0,0,78,85,0,392],
+"d__a__npc__shaman_8cpp.html#a27c6d9e91fe8a17d6c54127e9ddde799":[4,0,3,0,0,78,85,0,371],
+"d__a__npc__shaman_8cpp.html#a28236dd03a862955c33745d237e7989d":[4,0,3,0,0,78,85,0,287],
+"d__a__npc__shaman_8cpp.html#a286603e3c70253f00bc9f8182f5b1ee4":[4,0,3,0,0,78,85,0,398],
 "d__a__npc__shaman_8cpp.html#a28d28d5d0d1f1d1ecaf2ab3b86537a4d":[4,0,3,0,0,78,85,0,220],
 "d__a__npc__shaman_8cpp.html#a2a31a978fddfec1102aa2f417f402320":[4,0,3,0,0,78,85,0,321],
 "d__a__npc__shaman_8cpp.html#a2aa834c8e3561745c3cb870d45b17484":[4,0,3,0,0,78,85,0,351],
@@ -242,12 +249,5 @@ var NAVTREEINDEX680 =
 "d__a__npc__shaman_8cpp.html#abed44d59fe989f564136145a21d1f766":[4,0,3,0,0,78,85,0,259],
 "d__a__npc__shaman_8cpp.html#abed5bd59c54272a132a5b4da4beff66d":[4,0,3,0,0,78,85,0,66],
 "d__a__npc__shaman_8cpp.html#abf8aaf08c711b610f7fc34687df5f99a":[4,0,3,0,0,78,85,0,342],
-"d__a__npc__shaman_8cpp.html#ac15c2dc4d410056e9fc4734add79cf6d":[4,0,3,0,0,78,85,0,314],
-"d__a__npc__shaman_8cpp.html#ac295e66f2a23ef26145683ad28864ec4":[4,0,3,0,0,78,85,0,150],
-"d__a__npc__shaman_8cpp.html#ac3105d8801671b6add9b016518c0c90a":[4,0,3,0,0,78,85,0,173],
-"d__a__npc__shaman_8cpp.html#ac342ad30ad0d76e7b51745cf045b9e82":[4,0,3,0,0,78,85,0,306],
-"d__a__npc__shaman_8cpp.html#ac3e99ca41d5591b14885011e86fc633d":[4,0,3,0,0,78,85,0,74],
-"d__a__npc__shaman_8cpp.html#ac455d50354daccbd70908c129fa7df80":[4,0,3,0,0,78,85,0,370],
-"d__a__npc__shaman_8cpp.html#ac4847f257111650f338f1515daaa8542":[4,0,3,0,0,78,85,0,215],
-"d__a__npc__shaman_8cpp.html#ac4a823214fdcef6a3b352a8515255030":[4,0,3,0,0,78,85,0,120]
+"d__a__npc__shaman_8cpp.html#ac15c2dc4d410056e9fc4734add79cf6d":[4,0,3,0,0,78,85,0,314]
 };

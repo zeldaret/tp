@@ -1,5 +1,12 @@
 var NAVTREEINDEX1003 =
 {
+"globals_vars_y.html":[4,1,2,25],
+"globals_vars_z.html":[4,1,2,26],
+"globals_w.html":[4,1,0,23],
+"globals_x.html":[4,1,0,24],
+"globals_y.html":[4,1,0,25],
+"globals_z.html":[4,1,0,26],
+"group__actors-doors.html":[1,0,0],
 "group__actors-enemies.html":[1,0,1],
 "group__actors-items.html":[1,0,2],
 "group__actors-npcs.html":[1,0,3],
@@ -242,12 +249,5 @@ var NAVTREEINDEX1003 =
 "include_2rel_2d_2a_2e_2d__a__e__arrow_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,1,0,0,0],
 "include_2rel_2d_2a_2e_2d__a__e__arrow_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,1,0,0,0],
 "include_2rel_2d_2a_2e_2d__a__e__ba_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,2,3],
-"include_2rel_2d_2a_2e_2d__a__e__ba_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,2,3],
-"include_2rel_2d_2a_2e_2d__a__e__ba_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,2,0,0,0],
-"include_2rel_2d_2a_2e_2d__a__e__ba_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,2,0,0,0],
-"include_2rel_2d_2a_2e_2d__a__e__bee_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,3,3],
-"include_2rel_2d_2a_2e_2d__a__e__bee_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,3,3],
-"include_2rel_2d_2a_2e_2d__a__e__bee_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,3,0,0,0],
-"include_2rel_2d_2a_2e_2d__a__e__bee_2libs_2Runtime_8PPCEABI_8H_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,3,0,0,0],
-"include_2rel_2d_2a_2e_2d__a__e__bg_2global__destructor__chain_8h.html":[4,0,1,8,0,0,76,4,3]
+"include_2rel_2d_2a_2e_2d__a__e__ba_2global__destructor__chain_8h_source.html":[4,0,1,8,0,0,76,2,3]
 };
