@@ -58,7 +58,7 @@ public:
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
     /* 8003A05C */ virtual s32 JSGFindNodeID(char const*) const;
-    /* 8003A088 */ virtual int JSGGetNodeTransformation(u32, f32 (*)[4]) const;
+    /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32, f32 (*)[4]) const;
     /* 8003A0D8 */ virtual void JSGGetTranslation(Vec*) const;
     /* 80038920 */ virtual void JSGSetTranslation(Vec const&);
     /* 8003A0F4 */ virtual void JSGGetScaling(Vec*) const;

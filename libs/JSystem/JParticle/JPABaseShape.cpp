@@ -1254,7 +1254,7 @@ void JPADrawEmitterCallBackB(JPAEmitterWorkData* work) {
     if (work->mpEmtr->mpEmtrCallBack == NULL)
         return;
 
-    work->mpEmtr->mpEmtrCallBack->drawAfter(work->mpEmtr);
+    work->mpEmtr->mpEmtrCallBack->draw(work->mpEmtr);
 }
 
 /* 8027A414-8027A454 274D54 0040+00 0/0 1/1 0/0 .text

@@ -90,6 +90,7 @@ public:
 
     u16 get_flag() const { return get()->flag; }
     u16 get_IDSize() const { return get()->id_size; }
+    u32 get_type() const { return get()->type; }
     const void* get_ID() const { return get()->id; }
 };
 

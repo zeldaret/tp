@@ -55,6 +55,10 @@ namespace math {
         param_2->y = param_1[1][3];
         param_2->z = param_1[2][3];
     }
+
+    inline void getTransformation_T(Mtx mtx, const Vec* param_2) {
+        MTXTrans(mtx, param_2->x, param_2->y, param_2->z);
+    }
 };
 };  // namespace JStudio
 

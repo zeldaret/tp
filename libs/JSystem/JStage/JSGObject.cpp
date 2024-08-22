@@ -15,8 +15,8 @@ void JStage::TObject::JSGUpdate() {}
 
 /* 80280E28-80280E30 27B768 0008+00 1/0 12/0 0/0 .text            JSGGetFlag__Q26JStage7TObjectCFv
  */
-bool JStage::TObject::JSGGetFlag() const {
-    return false;
+u32 JStage::TObject::JSGGetFlag() const {
+    return 0;
 }
 
 /* 80280E30-80280E34 27B770 0004+00 1/0 12/0 0/0 .text            JSGSetFlag__Q26JStage7TObjectFUl
@@ -50,7 +50,7 @@ s32 JStage::TObject::JSGFindNodeID(char const*) const {
 
 /* 80280E54-80280E90 27B794 003C+00 1/0 11/0 0/0 .text
  * JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f         */
-int JStage::TObject::JSGGetNodeTransformation(u32, MtxP mtx) const {
+bool JStage::TObject::JSGGetNodeTransformation(u32, MtxP mtx) const {
     mtx[0][0] = 0.0f;
     mtx[0][1] = 0.0f;
     mtx[0][2] = 0.0f;
@@ -63,5 +63,5 @@ int JStage::TObject::JSGGetNodeTransformation(u32, MtxP mtx) const {
     mtx[2][1] = 0.0f;
     mtx[2][2] = 0.0f;
     mtx[2][3] = 0.0f;
-    return 0;
+    return false;
 }
