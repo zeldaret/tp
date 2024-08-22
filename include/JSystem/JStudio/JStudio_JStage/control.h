@@ -25,11 +25,11 @@ struct TCreateObject : public JStudio::TCreateObject {
 
 struct TAdaptor_object_ {
     /* 8028A470 */ void adaptor_object_data_(void const*, u32, void const*, u32);
-    /* 8028A4BC */ void adaptor_object_findJSGObject_(char const*);
-    /* 8028A50C */ void adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
+    /* 8028A4BC */ JStage::TObject* adaptor_object_findJSGObject_(char const*);
+    /* 8028A50C */ s32 adaptor_object_findJSGObjectNode_(JStage::TObject const*, char const*);
     /* 8028A550 */ void adaptor_object_ENABLE_(JStudio::data::TEOperationData, void const*, u32);
 
-    /* 0x0 */ JStudio::TAdaptor* field_0x0;
+    /* 0x0 */ JStage::TSystem* field_0x0;
     /* 0x4 */ JStage::TSystem* pJSGSystem_;
     /* 0x8 */ JStage::TObject* pJSGObject_;
 };
@@ -175,11 +175,11 @@ inline bool transform_toGlobalFromLocal(JStudio::TControl::TTransform_position* 
     JStudio::math::getFromTransformation_T(afStack_38, param_1);
     return true;
 }
-/* 8028A328 */ void
+/* 8028A328 */ bool
     transform_toLocalFromGlobal(f32 (*)[4],
                                 JStudio::TControl::TTransform_translation_rotation_scaling const&,
                                 JStage::TObject const*, u32);
-/* 8028A3CC */ void transform_toLocalFromGlobal(f32 (*)[4],
+/* 8028A3CC */ bool transform_toLocalFromGlobal(f32 (*)[4],
                                                 JStudio::TControl::TTransform_position const&,
                                                 JStage::TObject const*, u32);
 };  // namespace JStudio_JStage
