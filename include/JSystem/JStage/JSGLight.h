@@ -5,7 +5,12 @@
 #include "dolphin/gx/GXStruct.h"
 
 namespace JStage {
-    enum TELight {};
+    enum TELight {
+        TELIGHT_0,
+        TELIGHT_1,
+        TELIGHT_2,
+        TELIGHT_3,
+    };
 
     /**
     * @ingroup jsystem-jstage

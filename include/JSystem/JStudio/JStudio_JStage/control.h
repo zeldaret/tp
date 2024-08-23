@@ -143,10 +143,41 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
     static u8 saoVVOutput_[96 + 4 /* padding */];
 };
 
-struct TAdaptor_light : public JStudio::TAdaptor_light {
-    struct TVVOutput_direction_ {
-        /* 8028D24C */ void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028D258 */ ~TVVOutput_direction_();
+struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {
+    enum TEVariableValue {
+        TE_VALUE_NONE = -1,
+        TE_VALUE_7 = 7,
+        TE_VALUE_8 = 8,
+        TE_VALUE_9 = 9,
+        TE_VALUE_10 = 10,
+        TE_VALUE_11 = 11,
+    };
+    enum TEDirection_ {
+        DIRECTION_0,
+        DIRECTION_1,
+        DIRECTION_2,
+    };
+    struct TVVOutput_direction_ : public JStudio::TVariableValue::TOutput {
+        TVVOutput_direction_() {
+            field_0x4 = TE_VALUE_NONE;
+            field_0x8 = DIRECTION_0;
+        }
+        TVVOutput_direction_(TEVariableValue param_1, TEDirection_ param_2) {
+            field_0x4 = param_1;
+            field_0x8 = param_2;
+        }
+
+        /* 8028D24C */ virtual void operator()(f32, JStudio::TAdaptor*) const;
+        /* 8028D258 */ virtual ~TVVOutput_direction_() {}
+
+        void adaptor_setOutput_(TAdaptor* adaptor) {
+            adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
+        }
+
+        bool isEnd_() { return field_0x4 == -1; }
+
+        TEVariableValue field_0x4;
+        TEDirection_ field_0x8;
     };
 
     /* 8028CB50 */ TAdaptor_light(JStage::TSystem const*, JStage::TLight*);
@@ -159,7 +190,11 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
     /* 8028D228 */ virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
     /* 8028D1B0 */ virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
 
-    static u8 saoVVOutput_direction_[72];
+    JStage::TLight* get_pJSG_() { return (JStage::TLight*)pJSGObject_; }
+
+    int field_0x11c;
+
+    static TVVOutput_direction_ saoVVOutput_direction_[6];
 };
 
 /* 8028A1F8 */ bool

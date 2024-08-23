@@ -4,7 +4,6 @@
 #include "dolphin/mtx.h"
 
 namespace JStage {
-    
     /**
     * @ingroup jsystem-jstage
     * 
