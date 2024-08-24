@@ -183,7 +183,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(
         const JStage::TSystem* pJSGSystem = pCreateObject_->get_pJSGSystem_();
         JUT_ASSERT(345, pJSGSystem!=0);
         JStage::TObject* pJSGObject;
-        if (pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::TOBJ_ACTOR_UNK) == 0) {
+        if (pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::OBJECT_UNDEFINED) == 0) {
             JUT_ASSERT(354, pJSGObject!=0);
             field_0x1d0 = pJSGObject;
         }

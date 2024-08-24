@@ -5,13 +5,13 @@
 
 namespace JStage {
     enum TEObject {
-        /* 0x0 */ TOBJ_ACTOR_UNK,
-        /* 0x1 */ TOBJ_UNK1,
-        /* 0x2 */ TOBJ_ACTOR,
-        /* 0x3 */ TOBJ_CAMERA,
-        /* 0x4 */ TOBJ_AMBIENT,
-        /* 0x5 */ TOBJ_LIGHT,
-        /* 0x6 */ TOBJ_FOG,
+        /* 0x0 */ OBJECT_UNDEFINED,
+        /* 0x1 */ OBJECT_UNK1,
+        /* 0x2 */ OBJECT_ACTOR,
+        /* 0x3 */ OBJECT_CAMERA,
+        /* 0x4 */ OBJECT_AMBIENT,
+        /* 0x5 */ OBJECT_LIGHT,
+        /* 0x6 */ OBJECT_FOG,
     };
 
     /**

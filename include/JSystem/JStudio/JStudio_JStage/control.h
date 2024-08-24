@@ -11,6 +11,8 @@
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 
 namespace JStudio_JStage {
+typedef JStudio::TObject* (*ObjCreateFuncT)(const JStudio::stb::data::TParse_TBlock_object&, JStage::TObject*, const JStage::TSystem*);
+
 struct TCreateObject : public JStudio::TCreateObject {
     TCreateObject(const JStage::TSystem* pSystem) {
         pJSGSystem_ = pSystem;
@@ -39,6 +41,8 @@ struct TAdaptor_object_ {
 };
 
 struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::TAdaptor_object_ {
+    typedef JStudio::TObject_actor ObjectType;
+
     struct TVVOutput_ANIMATION_FRAME_ {
         /* 8028B064 */ void operator()(f32, JStudio::TAdaptor*) const;
         /* 8028B138 */ ~TVVOutput_ANIMATION_FRAME_();
@@ -92,6 +96,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 };
 
 struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAdaptor_object_ {
+    typedef JStudio::TObject_ambientLight ObjectType;
     /* 8028B610 */ TAdaptor_ambientLight(JStage::TSystem const*, JStage::TAmbientLight*);
 
     /* 8028B6AC */ virtual ~TAdaptor_ambientLight();
@@ -105,6 +110,8 @@ struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAd
 };
 
 struct TAdaptor_camera : public JStudio::TAdaptor_camera {
+    typedef JStudio::TObject_camera ObjectType;
+
     /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
     /* 8028B960 */ virtual ~TAdaptor_camera();
     /* 8028B9D4 */ virtual void adaptor_do_prepare();
@@ -129,9 +136,12 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
     /* 8028C09C */ void getJSG_targetPosition_(JStudio::TControl const*);
 
     static u8 saoVVOutput_[160 + 4 /* padding */];
+
+    u8 field_0x100[0x24];
 };
 
 struct TAdaptor_fog : public JStudio::TAdaptor_fog {
+    typedef JStudio::TObject_fog ObjectType;
     /* 8028C574 */ TAdaptor_fog(JStage::TSystem const*, JStage::TFog*);
     /* 8028C610 */ virtual ~TAdaptor_fog();
     /* 8028C684 */ virtual void adaptor_do_prepare();
@@ -141,9 +151,13 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
     /* 8028C880 */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
     static u8 saoVVOutput_[96 + 4 /* padding */];
+
+    u8 field_0x88[0x8];
 };
 
 struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {
+    typedef JStudio::TObject_light ObjectType;
+
     enum TEVariableValue {
         TE_VALUE_NONE = -1,
         TE_VALUE_7 = 7,

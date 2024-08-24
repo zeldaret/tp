@@ -104,7 +104,7 @@ void JStudio_JStage::TAdaptor_object_::adaptor_object_data_(void const* param_1,
 JStage::TObject*
 JStudio_JStage::TAdaptor_object_::adaptor_object_findJSGObject_(char const* param_1) {
     JStage::TObject* pJSGObject;
-    if (pJSGSystem_->JSGFindObject(&pJSGObject, param_1, JStage::TOBJ_ACTOR_UNK) == 0) {
+    if (pJSGSystem_->JSGFindObject(&pJSGObject, param_1, JStage::OBJECT_UNDEFINED) == 0) {
         JUT_ASSERT(122, pJSGObject != 0);
     } else {
         return NULL;
