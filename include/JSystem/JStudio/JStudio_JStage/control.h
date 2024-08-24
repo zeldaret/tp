@@ -106,10 +106,10 @@ struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAd
     /* 8028B804 */ virtual void adaptor_do_update(u32);
     /* 8028B87C */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
-    JStage::TObject* get_pJSG_() { return pJSGObject_; }
+    JStage::TAmbientLight* get_pJSG_() { return (JStage::TAmbientLight*)pJSGObject_; }
 };
 
-struct TAdaptor_camera : public JStudio::TAdaptor_camera {
+struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object_ {
     typedef JStudio::TObject_camera ObjectType;
 
     /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
@@ -137,11 +137,45 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
 
     static u8 saoVVOutput_[160 + 4 /* padding */];
 
-    u8 field_0x100[0x24];
+    u8 field_0x100[0x1C];
 };
 
-struct TAdaptor_fog : public JStudio::TAdaptor_fog {
+template<class TAdaptor, class TStageObject>
+struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
+    typedef f32 (TStageObject::*GetFunc)() const;
+    typedef void (TStageObject::*SetFunc)(f32);
+    TVariableValueOutput_object_() : field_0x4(-1), field_0x8(NULL), field_0x14(NULL) {}
+    TVariableValueOutput_object_(typename TAdaptor::TEVariableValue param_1, 
+    SetFunc param_2, GetFunc param_3) : field_0x4(param_1), field_0x8(param_2), field_0x14(param_3) {
+
+    }
+
+    virtual void operator()(f32 param_1, JStudio::TAdaptor* param_2) const {
+        (((TAdaptor*)param_2)->get_pJSG_()->*field_0x8)(param_1);
+    }
+    virtual ~TVariableValueOutput_object_() {}
+
+    bool isEnd_() { return field_0x4 == -1; }
+    void adaptor_setOutput_(TAdaptor* adaptor) {
+        adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
+    }
+    void setVariableValue_(TStageObject* pObj, TAdaptor* pAdaptor) {
+        f32 val = (pObj->*field_0x14)();
+        pAdaptor->adaptor_setVariableValue_immediate(field_0x4, val);
+    }
+
+    int field_0x4;
+    SetFunc field_0x8;
+    GetFunc field_0x14;
+};
+
+struct TAdaptor_fog : public JStudio::TAdaptor_fog, public TAdaptor_object_ {
     typedef JStudio::TObject_fog ObjectType;
+    enum TEVariableValue {
+        TEFOG_4 = 4,
+        TEFOG_5 = 5,
+    };
+
     /* 8028C574 */ TAdaptor_fog(JStage::TSystem const*, JStage::TFog*);
     /* 8028C610 */ virtual ~TAdaptor_fog();
     /* 8028C684 */ virtual void adaptor_do_prepare();
@@ -150,9 +184,9 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
     /* 8028C808 */ virtual void adaptor_do_update(u32);
     /* 8028C880 */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
-    static u8 saoVVOutput_[96 + 4 /* padding */];
+    JStage::TFog* get_pJSG_() { return (JStage::TFog*)pJSGObject_; }
 
-    u8 field_0x88[0x8];
+    static TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog> saoVVOutput_[3];
 };
 
 struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {
