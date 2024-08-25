@@ -248,6 +248,14 @@ struct TAdaptor_camera : public TAdaptor {
     TAdaptor_camera() : TAdaptor(mValue, 12) {}
     /* 80286E1C */ virtual ~TAdaptor_camera() = 0;
 
+    virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)               = 0;
+	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)          = 0;
+	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)        = 0;
+	virtual void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, const void*, u32)      = 0;
+	virtual void adaptor_do_TARGET_PARENT(JStudio::data::TEOperationData, const void*, u32)        = 0;
+	virtual void adaptor_do_TARGET_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)   = 0;
+	virtual void adaptor_do_TARGET_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32) = 0;
+
     /* 0x10 */ TVariableValue mValue[12];
 
     static u32 const sauVariableValue_3_POSITION_XYZ[3];

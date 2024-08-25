@@ -40,6 +40,36 @@ struct TAdaptor_object_ {
     /* 0x4 */ JStage::TObject* pJSGObject_;
 };
 
+
+template<class TAdaptor, class TStageObject>
+struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
+    typedef f32 (TStageObject::*GetFunc)() const;
+    typedef void (TStageObject::*SetFunc)(f32);
+    TVariableValueOutput_object_() : field_0x4(-1), field_0x8(NULL), field_0x14(NULL) {}
+    TVariableValueOutput_object_(typename TAdaptor::TEVariableValue param_1, 
+    SetFunc param_2, GetFunc param_3) : field_0x4(param_1), field_0x8(param_2), field_0x14(param_3) {
+
+    }
+
+    virtual void operator()(f32 param_1, JStudio::TAdaptor* param_2) const {
+        (((TAdaptor*)param_2)->get_pJSG_()->*field_0x8)(param_1);
+    }
+    virtual ~TVariableValueOutput_object_() {}
+
+    bool isEnd_() { return field_0x4 == -1; }
+    void adaptor_setOutput_(TAdaptor* adaptor) {
+        adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
+    }
+    void setVariableValue_(TStageObject* pObj, TAdaptor* pAdaptor) {
+        f32 val = (pObj->*field_0x14)();
+        pAdaptor->adaptor_setVariableValue_immediate(field_0x4, val);
+    }
+
+    int field_0x4;
+    SetFunc field_0x8;
+    GetFunc field_0x14;
+};
+
 struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::TAdaptor_object_ {
     typedef JStudio::TObject_actor ObjectType;
 
@@ -111,6 +141,14 @@ struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAd
 
 struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object_ {
     typedef JStudio::TObject_camera ObjectType;
+    typedef TVariableValueOutput_object_<TAdaptor_camera, JStage::TCamera> TVVOutput;
+
+    enum TEVariableValue {
+        TECAMERA_6 = 6,
+        TECAMERA_7 = 7,
+        TECAMERA_8 = 8,
+        TECAMERA_9 = 9,
+    };
 
     /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
     /* 8028B960 */ virtual ~TAdaptor_camera();
@@ -135,38 +173,17 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object
     /* 8028BFBC */ void setJSG_targetPosition_(JStudio::TControl const*);
     /* 8028C09C */ void getJSG_targetPosition_(JStudio::TControl const*);
 
-    static u8 saoVVOutput_[160 + 4 /* padding */];
+    JStage::TCamera* get_pJSG_() { return (JStage::TCamera*)pJSGObject_; }
 
-    u8 field_0x100[0x1C];
-};
+    static TVVOutput saoVVOutput_[5];
 
-template<class TAdaptor, class TStageObject>
-struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
-    typedef f32 (TStageObject::*GetFunc)() const;
-    typedef void (TStageObject::*SetFunc)(f32);
-    TVariableValueOutput_object_() : field_0x4(-1), field_0x8(NULL), field_0x14(NULL) {}
-    TVariableValueOutput_object_(typename TAdaptor::TEVariableValue param_1, 
-    SetFunc param_2, GetFunc param_3) : field_0x4(param_1), field_0x8(param_2), field_0x14(param_3) {
-
-    }
-
-    virtual void operator()(f32 param_1, JStudio::TAdaptor* param_2) const {
-        (((TAdaptor*)param_2)->get_pJSG_()->*field_0x8)(param_1);
-    }
-    virtual ~TVariableValueOutput_object_() {}
-
-    bool isEnd_() { return field_0x4 == -1; }
-    void adaptor_setOutput_(TAdaptor* adaptor) {
-        adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
-    }
-    void setVariableValue_(TStageObject* pObj, TAdaptor* pAdaptor) {
-        f32 val = (pObj->*field_0x14)();
-        pAdaptor->adaptor_setVariableValue_immediate(field_0x4, val);
-    }
-
-    int field_0x4;
-    SetFunc field_0x8;
-    GetFunc field_0x14;
+    /* 0x108 */ int field_0x108;
+    /* 0x10C */ JStage::TObject* field_0x10c;
+    /* 0x110 */ int field_0x110;
+    /* 0x114 */ u8 field_0x114;
+    /* 0x118 */ JStage::TObject* field_0x118;
+    /* 0x11C */ int field_0x11c;
+    /* 0x120 */ u8 field_0x120;
 };
 
 struct TAdaptor_fog : public JStudio::TAdaptor_fog, public TAdaptor_object_ {

@@ -203,6 +203,21 @@ public:
         return param_2;
     }
 
+    void transformOnGet_transform(TTransform_position* param_1,
+                                  TTransform_position* pDst) const {
+        transformOnGet_transformTranslation(*param_1, pDst);
+    }
+
+    TTransform_position*
+    transformOnGet_transform_ifEnabled(TTransform_position* param_1,
+                                       TTransform_position* param_2) const {
+        if (!transformOnGet_isEnabled()) {
+            return param_1;
+        }
+        transformOnGet_transform(param_1, param_2);
+        return param_2;
+    }
+
     void transformOnSet_transformDirection(const Vec& rSrc, Vec* pDst) const {
         JUT_ASSERT(246, pDst!=0);
         JUT_ASSERT(247, &rSrc!=pDst);
