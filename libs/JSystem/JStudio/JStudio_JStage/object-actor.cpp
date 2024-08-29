@@ -247,18 +247,27 @@ SECTION_DATA extern void* __vt__Q214JStudio_JStage14TAdaptor_actor[20 + 20 /* pa
 
 /* 8028A5F0-8028A6B4 284F30 00C4+00 0/0 1/1 0/0 .text
  * __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_0,
-                                                   JStage::TActor* param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028A5F0.s"
+JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_1,
+                                                   JStage::TActor* param_2)         :
+                                                   TAdaptor_object_(param_1,param_2) {
+  field_0x130 = 0;
+  field_0x134 = 0;
+  field_0x138 = 0;
+  field_0x13c = NULL;
+  field_0x140 = -1;
+  field_0x144 = 0;
+  field_0x148 = NULL;
+  field_0x14c = -1;
 }
-#pragma pop
 
 /* 8028A6B4-8028A728 284FF4 0074+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage14TAdaptor_actorFv
  */
+// Matches with vtable
+#ifdef NONMATCHING
+JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
+    adaptor_do_end();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,6 +277,7 @@ extern "C" asm void __dt__Q214JStudio_JStage14TAdaptor_actorFv() {
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/__dt__Q214JStudio_JStage14TAdaptor_actorFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80431188-80431194 05DEA8 000C+00 1/1 0/0 0/0 .bss             @1087 */
@@ -281,7 +291,11 @@ static u8 lit_1088[12];
 
 /* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
+#ifdef NONMATCHING
+JStudio_JStage::TAdaptor_actor::TVVOutputObject JStudio_JStage::TAdaptor_actor::saoVVOutput_[2];
+#else
 u8 JStudio_JStage::TAdaptor_actor::saoVVOutput_[64];
+#endif
 
 /* 804311E0-804311EC 05DF00 000C+00 0/1 0/0 0/0 .bss             @1095 */
 #pragma push
@@ -303,10 +317,30 @@ static u8 lit_1103[12];
 
 /* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
  * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
+#ifdef NONMATCHING
+JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3];
+#else
 u8 JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
+#endif
 
 /* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
+// Matches with output variable
+#ifdef NONMATCHING
+void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
+    TVVOutputObject* pOutput = saoVVOutput_;
+    while (!pOutput->isEnd_()) {
+        pOutput->adaptor_setOutput_(this);
+        pOutput++;
+    }
+
+    TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
+    while (!pAnimOutput->isEnd_()) {
+        pAnimOutput->adaptor_setOutput_(this);
+        pAnimOutput++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,9 +349,34 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv.s"
 }
 #pragma pop
+#endif
 
 /* 8028A7B4-8028A8D8 2850F4 0124+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv       */
+// instruction order
+#ifdef NONMATCHING
+void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
+    adaptor_object_begin_();
+    JStage::TActor* pActor = get_pJSG_();
+    const JStudio::TObject* pObject = adaptor_getObject();
+    JUT_ASSERT(72, pObject != 0);
+    JStudio::TControl* pControl = pObject->getControl();
+    JUT_ASSERT(74, pControl != 0);
+    getJSG_SRT_(adaptor_getObject()->getControl());
+
+    TVVOutputObject* pOutput = saoVVOutput_;
+    while (!pOutput->isEnd_()) {
+        pOutput->setVariableValue_(pActor, this);
+        pOutput++;
+    }
+
+    TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
+    while (!pAnimOutput->isEnd_()) {
+        pAnimOutput->setVariableValue_(pActor, this);
+        pAnimOutput++;
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,43 +385,41 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv.s"
 }
 #pragma pop
+#endif
 
 /* 8028A8D8-8028A92C 285218 0054+00 1/0 0/0 0/0 .text
  * adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFv         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_end() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFv.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_end() {
+    adaptor_object_end_();
 }
-#pragma pop
 
 /* 8028A92C-8028A974 28526C 0048+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFUl     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_update(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFUl.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_update(u32 param_1) {
+    const JStudio::TObject* pObject = adaptor_getObject();
+    JUT_ASSERT(104, pObject != 0);
+    JStudio::TControl* pControl = pObject->getControl();
+    JUT_ASSERT(106, pControl != 0);
+    setJSG_SRT_(pControl);
+    pJSGObject_->JSGUpdate();
 }
-#pragma pop
 
 /* 8028A974-8028A998 2852B4 0024+00 1/0 0/0 0/0 .text
  * adaptor_do_data__Q214JStudio_JStage14TAdaptor_actorFPCvUlPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_data(void const* param_0, u32 param_1,
-                                                         void const* param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/adaptor_do_data__Q214JStudio_JStage14TAdaptor_actorFPCvUlPCvUl.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_data(void const* param_1, u32 param_2,
+                                                     void const* param_3, u32 param_4) {
+    adaptor_object_data_(param_1, param_2, param_3, param_4);
 }
-#pragma pop
 
 /* 8028A998-8028A9F0 2852D8 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_SHAPE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
+// Matches with literals
+#ifdef NONMATCHING
+void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData operation,
+                                                          void const* param_2, u32 param_3) {
+    setJSG_ID_(&JStage::TActor::JSGSetShape, operation, param_2, param_3);
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -372,9 +429,17 @@ asm void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOpera
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028A998.s"
 }
 #pragma pop
+#endif
 
 /* 8028A9F0-8028AA48 285330 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
+// Matches with literals
+#ifdef NONMATCHING
+void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData operation,
+                                                          void const* param_2, u32 param_3) {
+    setJSG_ID_(&JStage::TActor::JSGSetAnimation, operation, param_2, param_3);
+} 
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -385,24 +450,32 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationD
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028A9F0.s"
 }
 #pragma pop
+#endif
 
 /* 8028AA48-8028AA5C 285388 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData param_0,
-                                                          void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AA48.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData operation,
+                                                          void const* pContent, u32 uSize) {
+    switch (operation) {
+    case JStudio::data::UNK_0x2:
+        JUT_ASSERT(153, uSize==4);
+        JUT_ASSERT(154, pContent!=0);
+        field_0x130 = *(u32*)pContent;
+        break;
+    }
 }
-#pragma pop
 
 /* 8028AA5C-8028AAB4 28539C 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_TEXTURE_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
+// Matches with literals
+#ifdef NONMATCHING
+void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData operation,
+                                                          void const* param_2, u32 param_3) {
+    setJSG_ID_(&JStage::TActor::JSGSetTextureAnimation, operation, param_2, param_3);
+} 
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -413,172 +486,274 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOp
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AA5C.s"
 }
 #pragma pop
+#endif
 
 /* 8028AAB4-8028AAC8 2853F4 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
-    JStudio::data::TEOperationData param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AAB4.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+    case JStudio::data::UNK_0x2:
+        JUT_ASSERT(182, uSize==4);
+        JUT_ASSERT(183, pContent!=0);
+        field_0x134 = *(u32*)pContent;
+        break;
+    }
 }
-#pragma pop
 
 /* 8028AAC8-8028AB0C 285408 0044+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData param_0,
-                                                           void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AAC8.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x18:
+        JUT_ASSERT(203, pContent!=0);
+        JUT_ASSERT(204, uSize!=0);
+		field_0x13c = adaptor_object_findJSGObject_((const char*)pContent);
+		break;
+	}
 }
-#pragma pop
 
 /* 8028AB0C-8028AB68 28544C 005C+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData param_0,
-                                                       void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AB0C.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x18:
+        JUT_ASSERT(226, pContent!=0);
+        JUT_ASSERT(227, uSize!=0);
+		field_0x140 = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
+		break;
+	case JStudio::data::UNK_0x19:
+        JUT_ASSERT(237, uSize==4);
+        JUT_ASSERT(238, pContent!=0);
+		field_0x140 = *(u32*)pContent;
+		break;
+	}
 }
-#pragma pop
 
 /* 8028AB68-8028ABF0 2854A8 0088+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData param_0,
-                                                         void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AB68.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x2:
+        JUT_ASSERT(257, uSize==4);
+        JUT_ASSERT(258, pContent!=0);
+		bool v0 = (*(u32*)pContent != 0);
+		if (field_0x144 != v0) {
+			field_0x144 = v0;
+			switch (field_0x138) {
+			case 0:
+				break;
+			case 1:
+				JStage::TObject* object = NULL;
+				u32 v1 = -1;
+				if (v0 != 0) {
+					object = field_0x13c;
+					v1     = field_0x140;
+				}
+				pJSGObject_->JSGSetParent(object, v1);
+				break;
+			}
+		}
+		break;
+	}
 }
-#pragma pop
 
 /* 8028ABF0-8028AC04 285530 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData param_0,
-                                                           void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028ABF0.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+    case JStudio::data::UNK_0x2:
+        JUT_ASSERT(303, uSize==4);
+        JUT_ASSERT(304, pContent!=0);
+        field_0x138 = *(u32*)pContent;
+        break;
+    }
 }
-#pragma pop
 
 /* 8028AC04-8028AC48 285544 0044+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData param_0,
-                                                             void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AC04.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x18:
+        JUT_ASSERT(324, pContent!=0);
+        JUT_ASSERT(325, uSize!=0);
+		field_0x148 = adaptor_object_findJSGObject_((const char*)pContent);
+		break;
+    }
 }
-#pragma pop
 
 /* 8028AC48-8028ACA4 285588 005C+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData param_0,
-                                                         void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028AC48.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x18:
+        JUT_ASSERT(347, pContent!=0);
+        JUT_ASSERT(348, uSize!=0);
+		field_0x14c = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
+		break;
+	case JStudio::data::UNK_0x19:
+        JUT_ASSERT(358, uSize==4);
+        JUT_ASSERT(359, pContent!=0);
+		field_0x14c = *(u32*)pContent;
+		break;
+	}
 }
-#pragma pop
 
 /* 8028ACA4-8028ACFC 2855E4 0058+00 1/0 0/0 0/0 .text
  * adaptor_do_RELATION_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void
-JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData param_0,
-                                                           void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028ACA4.s"
+void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(
+    JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
+    switch (operation) {
+    case JStudio::data::UNK_0x2:
+        JUT_ASSERT(378, uSize==4);
+        JUT_ASSERT(379, pContent!=0);
+        pJSGObject_->JSGSetRelation(*(u32*)pContent, field_0x148, field_0x14c);
+        break;
+    }
 }
-#pragma pop
 
 /* 8028ACFC-8028AD38 28563C 003C+00 3/3 0/0 0/0 .text
  * setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*param_0)(u32),
-                                                    JStudio::data::TEOperationData param_1,
-                                                    void const* param_2, u32 param_3) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028ACFC.s"
+void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*function)(u32),
+                                                    JStudio::data::TEOperationData operation,
+                                                    void const* pContent, u32 uSize) {
+    switch (operation) {
+	case JStudio::data::UNK_0x19:
+		(((JStage::TActor*)pJSGObject_)->*function)(*(u32*)pContent);
+		break;
+	}
 }
-#pragma pop
 
 /* 8028AD38-8028AECC 285678 0194+00 1/1 0/0 0/0 .text
  * setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(JStudio::TControl const* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/setJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl.s"
+void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(JStudio::TControl const* pControl) {
+    JStudio::TControl::TTransform_translation_rotation_scaling transform;
+    JStudio::TControl::TTransform_translation_rotation_scaling multipliedTransform;
+    adaptor_getVariableValue_Vec(&transform.translation, sauVariableValue_3_TRANSLATION_XYZ);
+    adaptor_getVariableValue_Vec(&transform.rotation, sauVariableValue_3_ROTATION_XYZ);
+    adaptor_getVariableValue_Vec(&transform.scaling, sauVariableValue_3_SCALING_XYZ);
+    JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
+    if (field_0x144 == 0) {
+        pTransform = pControl->transformOnSet_transform_ifEnabled(&transform, &multipliedTransform);
+    } else {
+        pTransform = &transform;
+        switch (field_0x138) {
+        case 0: {
+            Mtx mtx;
+            bool check;
+            if (!transform_toGlobalFromLocal(mtx, *pTransform, field_0x13c, field_0x140)) {
+                check = false;
+            } else {
+                JStudio::math::getFromTransformation_SRxyzT(
+                    &multipliedTransform.scaling, &multipliedTransform.rotation,
+                    &multipliedTransform.translation, mtx);
+                check = true;
+            }
+
+            if (!check) {
+                return;
+            }
+            pTransform = &multipliedTransform;
+            break;
+        }
+        case 1:
+            break;
+        }
+    }
+    JStage::TActor* pActor = get_pJSG_();
+    pActor->JSGSetTranslation(pTransform->translation);
+    pActor->JSGSetRotation(pTransform->rotation);
+    pActor->JSGSetScaling(pTransform->scaling);
 }
-#pragma pop
 
 /* 8028AECC-8028B064 28580C 0198+00 1/1 0/0 0/0 .text
  * getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(JStudio::TControl const* param_0) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl.s"
-}
-#pragma pop
+void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(JStudio::TControl const* pControl) {
+    JStudio::TControl::TTransform_translation_rotation_scaling transform;
+    JStudio::TControl::TTransform_translation_rotation_scaling trs;
+    Mtx mtx;
+    JStage::TActor* pActor = get_pJSG_();
+    pActor->JSGGetTranslation(&transform.translation);
+    pActor->JSGGetRotation(&transform.rotation);
+    pActor->JSGGetScaling(&transform.scaling);
 
-/* ############################################################################################## */
-/* 804554E0-804554E8 003AE0 0004+04 1/1 0/0 0/0 .sdata2          @1081 */
-SECTION_SDATA2 static f32 lit_1081[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
+    JStudio::TControl::TTransform_translation_rotation_scaling* outTransform;
+    if (!field_0x144) {
+        outTransform = pControl->transformOnGet_transform_ifEnabled(&transform, &trs);
+    } else {
+        outTransform = &transform;
+        switch (field_0x138) {
+        case 1:
+            break;
+        case 0:
+            bool check;
+            if (!transform_toLocalFromGlobal(mtx, *outTransform, field_0x13c, field_0x140)) {
+                check = false;
+            } else {
+                JStudio::math::getFromTransformation_SRxyzT(&trs.scaling, &trs.rotation,
+                                                            &trs.translation, mtx);
+                check = true;
+            }
+
+            if (!check) {
+                return;
+            }
+            outTransform = &trs;
+            break;
+        }
+    }
+
+    adaptor_setVariableValue_Vec(sauVariableValue_3_TRANSLATION_XYZ,
+                                 outTransform->translation);
+    adaptor_setVariableValue_Vec(sauVariableValue_3_ROTATION_XYZ, outTransform->rotation);
+    adaptor_setVariableValue_Vec(sauVariableValue_3_SCALING_XYZ, outTransform->scaling);
+}
 
 /* 8028B064-8028B138 2859A4 00D4+00 1/0 0/0 0/0 .text
  * __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStudio8TAdaptor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
-    f32 param_0, JStudio::TAdaptor* param_1) const {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B064.s"
+void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
+    f32 param_1, JStudio::TAdaptor* adaptor) const {
+    JStage::TActor* actor = static_cast<TAdaptor_actor*>(adaptor)->get_pJSG_();
+	// not sure what this bit is
+	u32 idx = *(u32*)(((u32)adaptor - 1) + field_0x8);
+
+	u8 idx_lowBytes  = idx;
+	u8 idx_highBytes = idx >> 8;
+
+	f32 maxVal = (actor->*mMaxGetter)();
+	switch (idx_highBytes) {
+	case 1:
+		param_1 = maxVal - param_1;
+		break;
+	case 0:
+		break;
+	}
+
+	if (maxVal > 0.0f) {
+		param_1 = (f32)(*JStudio::TFunctionValue::toFunction_outside(idx_lowBytes))(param_1, maxVal);
+	}
+	(actor->*mSetter)(param_1);
 }
-#pragma pop
 
 /* 8028B138-8028B198 285A78 0060+00 2/1 0/0 0/0 .text
  * __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv */
+#ifdef NONMATCHING
+JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_() {
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -587,6 +762,7 @@ asm JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMA
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 803C5864-803C5888 022984 0010+14 2/2 0/0 0/0 .data

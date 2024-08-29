@@ -37,6 +37,7 @@ struct TVariableValue {
     /* 80285ECC */ static void update_time_(JStudio::TVariableValue*, f64);
     /* 80285F08 */ static void update_functionValue_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+    //TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_((TOutput*)soOutput_none_) {}
 
     void setValue_immediate(f32 value) {
         field_0x8 = &update_immediate_;
@@ -210,6 +211,18 @@ inline void TObject::prepareAdaptor() {
 struct TAdaptor_actor : public TAdaptor {
     TAdaptor_actor() : TAdaptor(mValue, 14) {}
     /* 802868B0 */ virtual ~TAdaptor_actor() = 0;
+    virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)                 = 0;
+	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)            = 0;
+	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, u32)          = 0;
+	virtual void adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, const void*, u32)        = 0;
+	virtual void adaptor_do_RELATION(JStudio::data::TEOperationData, const void*, u32)               = 0;
+	virtual void adaptor_do_RELATION_NODE(JStudio::data::TEOperationData, const void*, u32)          = 0;
+	virtual void adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData, const void*, u32)        = 0;
+	virtual void adaptor_do_SHAPE(JStudio::data::TEOperationData, const void*, u32)                  = 0;
+	virtual void adaptor_do_ANIMATION(JStudio::data::TEOperationData, const void*, u32)              = 0;
+	virtual void adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, u32)         = 0;
+	virtual void adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData, const void*, u32)      = 0;
+	virtual void adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, u32) = 0;
 
     /* 0x10 */ TVariableValue mValue[14];
 

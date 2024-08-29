@@ -218,6 +218,38 @@ public:
         return param_2;
     }
 
+    void transformOnGet_transformRotation(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(302, pDst!=0);
+        JUT_ASSERT(303, &rSrc!=pDst);
+        pDst->x = rSrc.x;
+        pDst->y = rSrc.y + mTransformOnGet_RotationY;
+        pDst->z = rSrc.z;
+    }
+
+    void transformOnGet_transformScaling(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(310, pDst!=0);
+        JUT_ASSERT(311, &rSrc!=pDst);
+        *pDst = rSrc;
+    }
+
+    void transformOnGet_transform(TTransform_translation_rotation_scaling* param_1,
+                                  TTransform_translation_rotation_scaling* pDst) const {
+        JUT_ASSERT(263, pDst!=0);
+        transformOnGet_transformTranslation(param_1->translation, &pDst->translation);
+        transformOnGet_transformRotation(param_1->rotation, &pDst->rotation);
+        transformOnGet_transformScaling(param_1->scaling, &pDst->scaling);
+    }
+
+    TTransform_translation_rotation_scaling*
+    transformOnGet_transform_ifEnabled(TTransform_translation_rotation_scaling* param_1,
+                                       TTransform_translation_rotation_scaling* param_2) const {
+        if (!transformOnGet_isEnabled()) {
+            return param_1;
+        }
+        transformOnGet_transform(param_1, param_2);
+        return param_2;
+    }
+
     void transformOnSet_transformDirection(const Vec& rSrc, Vec* pDst) const {
         JUT_ASSERT(246, pDst!=0);
         JUT_ASSERT(247, &rSrc!=pDst);
@@ -249,7 +281,7 @@ public:
     /* 0x8C */ Vec field_0x8c;
     /* 0x98 */ Vec field_0x98;
     /* 0xA4 */ f32 mTransformOnSet_RotationY;
-    /* 0xA8 */ f32 field_0xa8;
+    /* 0xA8 */ f32 mTransformOnGet_RotationY;
     /* 0xAC */ Mtx mTransformOnSet_Matrix;
     /* 0xDC */ Mtx mTransformOnGet_Matrix;
 };
