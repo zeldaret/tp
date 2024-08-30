@@ -7,6 +7,8 @@ var namespaceJStudio__JStage =
     [ "TAdaptor_light", "structJStudio__JStage_1_1TAdaptor__light.html", "structJStudio__JStage_1_1TAdaptor__light" ],
     [ "TAdaptor_object_", "structJStudio__JStage_1_1TAdaptor__object__.html", "structJStudio__JStage_1_1TAdaptor__object__" ],
     [ "TCreateObject", "structJStudio__JStage_1_1TCreateObject.html", "structJStudio__JStage_1_1TCreateObject" ],
+    [ "TVariableValueOutput_object_", "structJStudio__JStage_1_1TVariableValueOutput__object__.html", "structJStudio__JStage_1_1TVariableValueOutput__object__" ],
+    [ "ObjCreateFuncT", "namespaceJStudio__JStage.html#ae0257ad648526566ccadb12de35b5915", null ],
     [ "transform_toGlobalFromLocal", "namespaceJStudio__JStage.html#a88d4b0128da02511ec6732886d4f7bc3", null ],
     [ "transform_toGlobalFromLocal", "namespaceJStudio__JStage.html#a32fe4c3cf3df3874761cfa017f975347", null ],
     [ "transform_toGlobalFromLocal", "namespaceJStudio__JStage.html#a0d1545c173b3c81409de2ed5a25fee9f", null ],

@@ -2579,6 +2579,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "JStudio::TAdaptor::TSetVariableValue_immediate", "structJStudio_1_1TAdaptor_1_1TSetVariableValue__immediate.html", null ],
+    [ "JStudio::TControl::TTransform_position_direction", "structJStudio_1_1TControl_1_1TTransform__position__direction.html", null ],
     [ "JStudio::TControl::TTransform_translation_rotation_scaling", "structJStudio_1_1TControl_1_1TTransform__translation__rotation__scaling.html", null ],
     [ "JStudio::TCreateObject", "structJStudio_1_1TCreateObject.html", [
       [ "JStudio_JAudio2::TCreateObject", "structJStudio__JAudio2_1_1TCreateObject.html", null ],
@@ -2615,15 +2616,20 @@ var hierarchy =
     ] ],
     [ "JStudio::TVariableValue", "structJStudio_1_1TVariableValue.html", null ],
     [ "JStudio::TVariableValue::TOutput", "structJStudio_1_1TVariableValue_1_1TOutput.html", [
-      [ "JStudio_JAudio2::TAdaptor_sound::TVVOSetValue_", "structJStudio__JAudio2_1_1TAdaptor__sound_1_1TVVOSetValue__.html", null ]
+      [ "JStudio_JStage::TVariableValueOutput_object_< JStudio_JStage::TAdaptor_fog, JStage::TFog >", "structJStudio__JStage_1_1TVariableValueOutput__object__.html", null ],
+      [ "JStudio_JAudio2::TAdaptor_sound::TVVOSetValue_", "structJStudio__JAudio2_1_1TAdaptor__sound_1_1TVVOSetValue__.html", null ],
+      [ "JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_", "structJStudio__JStage_1_1TAdaptor__actor_1_1TVVOutput__ANIMATION__FRAME__.html", null ],
+      [ "JStudio_JStage::TAdaptor_light::TVVOutput_direction_", "structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__.html", null ],
+      [ "JStudio_JStage::TVariableValueOutput_object_< TAdaptor, TStageObject >", "structJStudio__JStage_1_1TVariableValueOutput__object__.html", null ]
     ] ],
     [ "JStudio::TVariableValue::TOutput_none_", "structJStudio_1_1TVariableValue_1_1TOutput__none__.html", null ],
     [ "JStudio_JParticle::TAdaptor_particle::TJPAEmitter_stopDrawParticle_", "structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPAEmitter__stopDrawParticle__.html", null ],
-    [ "JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_", "structJStudio__JStage_1_1TAdaptor__actor_1_1TVVOutput__ANIMATION__FRAME__.html", null ],
-    [ "JStudio_JStage::TAdaptor_light::TVVOutput_direction_", "structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__.html", null ],
     [ "JStudio_JStage::TAdaptor_object_", "structJStudio__JStage_1_1TAdaptor__object__.html", [
       [ "JStudio_JStage::TAdaptor_actor", "structJStudio__JStage_1_1TAdaptor__actor.html", null ],
-      [ "JStudio_JStage::TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html", null ]
+      [ "JStudio_JStage::TAdaptor_ambientLight", "structJStudio__JStage_1_1TAdaptor__ambientLight.html", null ],
+      [ "JStudio_JStage::TAdaptor_camera", "structJStudio__JStage_1_1TAdaptor__camera.html", null ],
+      [ "JStudio_JStage::TAdaptor_fog", "structJStudio__JStage_1_1TAdaptor__fog.html", null ],
+      [ "JStudio_JStage::TAdaptor_light", "structJStudio__JStage_1_1TAdaptor__light.html", null ]
     ] ],
     [ "JSUIosBase", "classJSUIosBase.html", [
       [ "JSUInputStream", "structJSUInputStream.html", [

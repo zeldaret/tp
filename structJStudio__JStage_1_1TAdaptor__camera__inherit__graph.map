@@ -1,7 +1,9 @@
 <map id="JStudio_JStage::TAdaptor_camera" name="JStudio_JStage::TAdaptor_camera">
-<area shape="rect" id="Node000001" title=" " alt="" coords="6,153,179,193"/>
-<area shape="rect" id="Node000002" href="$structJStudio_1_1TAdaptor__camera.html" title=" " alt="" coords="5,79,180,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,120,95,152,90,152,90,120"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="105,168,277,208"/>
+<area shape="rect" id="Node000002" href="$structJStudio_1_1TAdaptor__camera.html" title=" " alt="" coords="5,87,180,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,121,171,165,167,169,116,125"/>
 <area shape="rect" id="Node000003" href="$structJStudio_1_1TAdaptor.html" title=" " alt="" coords="30,5,155,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,46,95,79,90,79,90,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,47,95,86,90,86,90,47"/>
+<area shape="rect" id="Node000004" href="$structJStudio__JStage_1_1TAdaptor__object__.html" title=" " alt="" coords="204,79,376,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,132,215,169,212,165,254,128"/>
 </map>

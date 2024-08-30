@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['_5f_5falign_5fbuffer_0',['__align_buffer',['../buffer__io_8h.html#abed82baf7f470b522273a3e37c24c600a1ea42bbbb9031a8e0af97e8427ba5e4e',1,'buffer_io.h']]],
+  ['_5f_5falign_5fbuffer_0',['__align_buffer',['../buffer__io_8h.html#ab04a0655cd1e3bcac5e8f48c18df1a57a1ea42bbbb9031a8e0af97e8427ba5e4e',1,'buffer_io.h']]],
   ['_5f_5fappend_1',['__append',['../ansi__files_8h.html#a6d7841b2076563df13efe92cbc145b0aaddd4771668e229c1c37e577d74cf5a26',1,'ansi_files.h']]],
   ['_5f_5fclosed_5ffile_2',['__closed_file',['../ansi__files_8h.html#acc495c0a46c8db22c58844e2d8f2b43cac0f2cd8913436cfdb6390808772103b6',1,'ansi_files.h']]],
   ['_5f_5fconsole_5ffile_3',['__console_file',['../ansi__files_8h.html#acc495c0a46c8db22c58844e2d8f2b43cae56df77204b85e3f52ab2e8c1f20209e',1,'ansi_files.h']]],
   ['_5f_5fdisk_5ffile_4',['__disk_file',['../ansi__files_8h.html#acc495c0a46c8db22c58844e2d8f2b43cae4becba4e835a09cbdde484824f130b6',1,'ansi_files.h']]],
-  ['_5f_5fdont_5falign_5fbuffer_5',['__dont_align_buffer',['../buffer__io_8h.html#abed82baf7f470b522273a3e37c24c600a61886d6567565e55067b90df6f4b6c8d',1,'buffer_io.h']]],
+  ['_5f_5fdont_5falign_5fbuffer_5',['__dont_align_buffer',['../buffer__io_8h.html#ab04a0655cd1e3bcac5e8f48c18df1a57a61886d6567565e55067b90df6f4b6c8d',1,'buffer_io.h']]],
   ['_5f_5fgetachar_6',['__GetAChar',['../scanf_8h.html#aa6e041279607328774c95d4d978df469a52228ebebf5f820233a168fc6c9e84a2',1,'scanf.h']]],
   ['_5f_5fgetawchar_7',['__GetAwChar',['../scanf_8h.html#a063ba62fbc84d4f7e5b994c0b3d954fda9ecc23f0d63600f242e0260975afb4f1',1,'scanf.h']]],
   ['_5f_5fio_5feof_8',['__io_EOF',['../ansi__files_8h.html#a2046580b26dd65b930ac3b933052bf7fa323fb11ad036b3ca09859e6126e5eb58',1,'ansi_files.h']]],

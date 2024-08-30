@@ -14,5 +14,7 @@ var searchData=
   ['trkstate_5fppc_11',['TRKState_PPC',['../trk_8h.html#ad4460b486e608f7c5b1e42529f263d00',1,'trk.h']]],
   ['trkstepstatus_12',['TRKStepStatus',['../targimpl_8c.html#acaf08b0342fee363365ffdcabe06c34a',1,'targimpl.c']]],
   ['tvprocessfunc_13',['tvProcessFunc',['../d__menu__option_8cpp.html#a596d0f9cb7ba653183a224542dc5df4d',1,'d_menu_option.cpp']]],
-  ['tvvosoundsetfunc_14',['TVVOSoundSetFunc',['../structJStudio__JAudio2_1_1TAdaptor__sound.html#aac47d15345b7dc3eed047c636ab4cbfd',1,'JStudio_JAudio2::TAdaptor_sound']]]
+  ['tvvosoundsetfunc_14',['TVVOSoundSetFunc',['../structJStudio__JAudio2_1_1TAdaptor__sound.html#aac47d15345b7dc3eed047c636ab4cbfd',1,'JStudio_JAudio2::TAdaptor_sound']]],
+  ['tvvoutput_15',['TVVOutput',['../structJStudio__JStage_1_1TAdaptor__camera.html#a4c1facd5ee0478088f73c2a7f45852e2',1,'JStudio_JStage::TAdaptor_camera']]],
+  ['tvvoutputobject_16',['TVVOutputObject',['../structJStudio__JStage_1_1TAdaptor__actor.html#a18e2ec6626dde0d8819efdf4b6bc9cc9',1,'JStudio_JStage::TAdaptor_actor']]]
 ];

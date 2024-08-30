@@ -207,7 +207,8 @@ var annotated_dup =
       [ "TAdaptor_fog", "structJStudio__JStage_1_1TAdaptor__fog.html", "structJStudio__JStage_1_1TAdaptor__fog" ],
       [ "TAdaptor_light", "structJStudio__JStage_1_1TAdaptor__light.html", "structJStudio__JStage_1_1TAdaptor__light" ],
       [ "TAdaptor_object_", "structJStudio__JStage_1_1TAdaptor__object__.html", "structJStudio__JStage_1_1TAdaptor__object__" ],
-      [ "TCreateObject", "structJStudio__JStage_1_1TCreateObject.html", "structJStudio__JStage_1_1TCreateObject" ]
+      [ "TCreateObject", "structJStudio__JStage_1_1TCreateObject.html", "structJStudio__JStage_1_1TCreateObject" ],
+      [ "TVariableValueOutput_object_", "structJStudio__JStage_1_1TVariableValueOutput__object__.html", "structJStudio__JStage_1_1TVariableValueOutput__object__" ]
     ] ],
     [ "JUtility", "namespaceJUtility.html", [
       [ "TColor", "structJUtility_1_1TColor.html", "structJUtility_1_1TColor" ]

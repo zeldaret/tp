@@ -1,26 +1,4 @@
 var JStudio_2JStudio__JStage_2control_8cpp =
 [
-    [ "__ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog", "JStudio_2JStudio__JStage_2control_8cpp.html#a0ee4f5e54afd5d5db38ed3c0af68b7b3", null ],
-    [ "__ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor", "JStudio_2JStudio__JStage_2control_8cpp.html#ab10d8c356277cd54a45390eb58a9b4f4", null ],
-    [ "__ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight", "JStudio_2JStudio__JStage_2control_8cpp.html#a86064376aee32d0b99dee3db70298207", null ],
-    [ "__ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera", "JStudio_2JStudio__JStage_2control_8cpp.html#afd782c225078ecbec01b05f3935f10d5", null ],
-    [ "__ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight", "JStudio_2JStudio__JStage_2control_8cpp.html#a5ca70f1423c7a2463148733afb158864", null ],
-    [ "__ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog", "JStudio_2JStudio__JStage_2control_8cpp.html#a59a5cce959b2831d92a4dac09eef80ad", null ],
-    [ "__ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor", "JStudio_2JStudio__JStage_2control_8cpp.html#a61f2a0129e84121295ab78e7e3755970", null ],
-    [ "__ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light", "JStudio_2JStudio__JStage_2control_8cpp.html#ac7f2dc3d939879aa4341d6cdf306b649", null ],
-    [ "__ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera", "JStudio_2JStudio__JStage_2control_8cpp.html#a5bbfffaeac2dc585e5dfcbb66bee195e", null ],
-    [ "__ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight", "JStudio_2JStudio__JStage_2control_8cpp.html#a27227bfae8976fe043bcbfcaa9cf2db9", null ],
-    [ "__dl__FPv", "JStudio_2JStudio__JStage_2control_8cpp.html#a498e6440d5c316e2672169ee4ed92309", null ],
-    [ "__dt__Q214JStudio_JStage13TCreateObjectFv", "JStudio_2JStudio__JStage_2control_8cpp.html#a7aecc211157f3522def079dda38d5c3f", null ],
-    [ "__dt__Q27JStudio13TCreateObjectFv", "JStudio_2JStudio__JStage_2control_8cpp.html#a5b8ac4ce60273f24ab45f3eccd0176a2", null ],
-    [ "__nw__FUl", "JStudio_2JStudio__JStage_2control_8cpp.html#a2b05986531107cde8783fde25a9a7413", null ],
-    [ "_restgpr_28", "JStudio_2JStudio__JStage_2control_8cpp.html#a3f61243ebf5cbb2ff90548d397b16772", null ],
-    [ "_savegpr_28", "JStudio_2JStudio__JStage_2control_8cpp.html#a96be8c79baacd021a226016df5297c51", null ],
-    [ "create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object", "JStudio_2JStudio__JStage_2control_8cpp.html#a36b72e3fabb19bf22d5ce0ff904b38b2", null ],
-    [ "func_80289CE4", "JStudio_2JStudio__JStage_2control_8cpp.html#a708d1015eb074df3d27a441fe8112001", null ],
-    [ "func_80289DE8", "JStudio_2JStudio__JStage_2control_8cpp.html#ac015b38cb7c7de2bb651d5f4adeab310", null ],
-    [ "func_80289EEC", "JStudio_2JStudio__JStage_2control_8cpp.html#a9cae3ebc854fe4449bb35e454cac18c1", null ],
-    [ "func_80289FF0", "JStudio_2JStudio__JStage_2control_8cpp.html#a6273b3d1f0cf65c3301e28dd7d24854b", null ],
-    [ "func_8028A0F4", "JStudio_2JStudio__JStage_2control_8cpp.html#a350deb591154402e06e8ff282ae074e8", null ],
-    [ "__vt__Q214JStudio_JStage13TCreateObject", "JStudio_2JStudio__JStage_2control_8cpp.html#adf6ef41188aa646f3ee41fe765412387", null ]
+    [ "createObject_JSG_", "JStudio_2JStudio__JStage_2control_8cpp.html#a17de3a24cee6b8ba7e9e7e2628588bc8", null ]
 ];

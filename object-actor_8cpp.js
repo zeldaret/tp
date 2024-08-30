@@ -58,7 +58,6 @@ var object_actor_8cpp =
     [ "__vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_", "object-actor_8cpp.html#ab1b567e38eebb174118536780b67be46", null ],
     [ "__vt__Q37JStudio14TVariableValue7TOutput", "object-actor_8cpp.html#a3e70371f798b956e61055f95d926a3ae", null ],
     [ "data_803C5864", "object-actor_8cpp.html#ae0d8ee8b3ae3f2921e47e03e809c5c7a", null ],
-    [ "lit_1081", "object-actor_8cpp.html#a24a991704101286aeb10187a3ef07f54", null ],
     [ "lit_1083", "object-actor_8cpp.html#a5885c3663fd1d1c248ed06e23b80029e", null ],
     [ "lit_1084", "object-actor_8cpp.html#ac0be3e88e3221297d715d9e59c0c71ff", null ],
     [ "lit_1087", "object-actor_8cpp.html#a26d935f34e463672f692067cd59df122", null ],
