@@ -124,7 +124,7 @@ var structJASTrack =
     [ "mDirectRelease", "structJASTrack.html#ae9a57698366824757ee20883949e0270", null ],
     [ "mFilterMode", "structJASTrack.html#ad1d664c4dc68f95934f3fce1fd92196a", null ],
     [ "mFIR", "structJASTrack.html#a10f0f8d1be0ef6c0b1fa5064c02906aa", null ],
-    [ "mFlags", "structJASTrack.html#a4735a5ead2ac7f325eafb93520e8fd74", null ],
+    [ "mFlags", "structJASTrack.html#a69db230c5d83fa75fccedcaffb32a69d", null ],
     [ "mGateRate", "structJASTrack.html#a317b83f9a65bfa7a6dfa766354e3c7b8", null ],
     [ "mIIR", "structJASTrack.html#aa4aed9ccaf0c55908a9dd5f983d9ab34", null ],
     [ "mMixConfig", "structJASTrack.html#a37948e222ae80a2719d26333b5367488", null ],

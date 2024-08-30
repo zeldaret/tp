@@ -1,8 +1,8 @@
 var NAVTREEINDEX107 =
 {
 "classdBgW.html#a95c20cfa4bfc6fbfc53bfd82ababc9bd":[3,0,1509,23],
-"classdBgW.html#a96dab34cf573163dc3ad19f41d18d679":[3,0,1509,45],
 "classdBgW.html#a96dab34cf573163dc3ad19f41d18d679":[3,0,1509,44],
+"classdBgW.html#a96dab34cf573163dc3ad19f41d18d679":[3,0,1509,45],
 "classdBgW.html#a9aa6c1822f5dc3b8a8d7357bf387b9ba":[3,0,1509,37],
 "classdBgW.html#a9b6ac03107fb4c364ed617b42e61a799":[3,0,1509,27],
 "classdBgW.html#aa08b187a85099442dc25304a20dbbd63":[3,0,1509,53],

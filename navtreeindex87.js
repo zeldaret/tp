@@ -1,14 +1,14 @@
 var NAVTREEINDEX87 =
 {
-"classJGadget_1_1TPointer.html":[2,0,22,13],
+"classJGadget_1_1TPointer.html":[3,0,5,12],
 "classJGadget_1_1TPointer.html#a23a70933fdea1ebb0729812215b3866e":[3,0,5,12,0],
 "classJGadget_1_1TPointer.html#a23a70933fdea1ebb0729812215b3866e":[2,0,22,13,0],
-"classJGadget_1_1TPointer.html#a98231250105831c1eb921555cb839e88":[2,0,22,13,2],
 "classJGadget_1_1TPointer.html#a98231250105831c1eb921555cb839e88":[3,0,5,12,2],
+"classJGadget_1_1TPointer.html#a98231250105831c1eb921555cb839e88":[2,0,22,13,2],
 "classJGadget_1_1TPointer.html#a9876bd99f7e887082dc6b48ef6c7edfe":[3,0,5,12,1],
 "classJGadget_1_1TPointer.html#a9876bd99f7e887082dc6b48ef6c7edfe":[2,0,22,13,1],
-"classJGadget_1_1TPointer__delete.html":[2,0,22,14],
 "classJGadget_1_1TPointer__delete.html":[3,0,5,13],
+"classJGadget_1_1TPointer__delete.html":[2,0,22,14],
 "classJGadget_1_1TPointer__delete.html#a5be2f4f778569b7e37a0a2235b3a6e99":[3,0,5,13,1],
 "classJGadget_1_1TPointer__delete.html#a5be2f4f778569b7e37a0a2235b3a6e99":[2,0,22,14,1],
 "classJGadget_1_1TPointer__delete.html#acbf7a2e081d74a1192feef558caf75f4":[2,0,22,14,0],

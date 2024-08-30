@@ -209,7 +209,7 @@ var searchData=
   ['count_206',['count',['../structOSMutex.html#afc77eff74479893289968af3511e1e65',1,'OSMutex::count'],['../structTRKEventQueue.html#a48fe5888fb1a2cd8f7846f5eb66d2624',1,'TRKEventQueue::count'],['../structJGadget_1_1TNodeLinkList.html#aede2042450c7f0cf9906a9fc371aa413',1,'JGadget::TNodeLinkList::count'],['../structXY.html#a0db5c2dbde8da6b4c6ca337b04261923',1,'XY::count'],['../structTRKStepStatus.html#a77dc605c993e37cd54d99ce3839f1e1f',1,'TRKStepStatus::count']]],
   ['counterbias_207',['counterBias',['../structOSSram.html#ab75727449808f2a171f4ea545b991527',1,'OSSram']]],
   ['countrycode_208',['countryCode',['../structBI2Debug.html#a3f1ec8354d88f9fb2ce80027f3cecb34',1,'BI2Debug']]],
-  ['counts_209',['counts',['../structlayer__class.html#a0bbe378b5c78528e0b4a81c7a1c19ea5',1,'layer_class']]],
+  ['counts_209',['counts',['../structlayer__class.html#aac207e5131fd34df782f7812edce54e5',1,'layer_class']]],
   ['cow_5fnumber_210',['cow_number',['../d__a__cow_8cpp.html#afed8c47685d33e837c1a7a76909e2d06',1,'d_a_cow.cpp']]],
   ['cp_211',['cp',['../e__pow_8c.html#a6115063c1e5679414aa6894485ec51e4',1,'e_pow.c']]],
   ['cp_5fh_212',['cp_h',['../e__pow_8c.html#a1b08020cf2ce7a9d36a8a0e89a70b854',1,'e_pow.c']]],

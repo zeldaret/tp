@@ -9,7 +9,7 @@ var structEXIControl =
     [ "immBuf", "structEXIControl.html#af4988c15a24381ed3077d23b489ccafa", null ],
     [ "immLen", "structEXIControl.html#a17f75c417fe89f529c1fa8c85e79c31b", null ],
     [ "items", "structEXIControl.html#a64479a91f223f337b813eb086214c125", null ],
-    [ "queue", "structEXIControl.html#abdc0532747717c4eaa25e732ffd69b60", null ],
+    [ "queue", "structEXIControl.html#ae01e579fd3927cfbf43b9511d4cec4a3", null ],
     [ "state", "structEXIControl.html#a87ad566b26715ceb5cd9f2ee94eec870", null ],
     [ "tcCallback", "structEXIControl.html#ae16a53b16281e26418091c8847bd0982", null ]
 ];
