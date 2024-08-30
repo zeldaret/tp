@@ -2744,12 +2744,12 @@ u8 dMsgObject_c::getSelectBombBagIDLocal() {
 }
 
 /* 8023768C-8023773C 231FCC 00B0+00 1/1 0/0 0/0 .text getSelectBombPriceLocal__12dMsgObject_cFv */
-// tertiary condition issue
+// Matches with literals
 #ifdef NONMATCHING
 s16 dMsgObject_c::getSelectBombPriceLocal() {
     u8 i_selectPos = getSelectCursorPos();
     JUT_ASSERT(4276, i_selectPos >= 0 && i_selectPos < dSv_player_item_c::BOMB_BAG_MAX);
-    u8 i_cursorPos = field_0x193 != 0 ? getSelectBomBag(i_selectPos) : i_selectPos;
+    u8 i_cursorPos = field_0x193 != 0 ? getSelectBomBag(i_selectPos) : i_selectPos++;
     u16 uVar1 = getBombBuyPriceLocal(getBombMessageIDLocal(i_cursorPos));
     int num = getSelectBombNum();
     return (num * uVar1) / 10.0f;
