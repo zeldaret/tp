@@ -1392,11 +1392,11 @@ bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNa
         return true;
     }
 
-    if (objType == JStage::TOBJ_ACTOR || objType == JStage::TOBJ_ACTOR_UNK) {
+    if (objType == JStage::OBJECT_ACTOR || objType == JStage::OBJECT_UNDEFINED) {
         fopAc_ac_c* actor = fopAcM_searchFromName(actorName, 0, 0);
 
         if (actor == NULL) {
-            if (objType == JStage::TOBJ_ACTOR && !strncmp(actorName, "d_act", 5)) {
+            if (objType == JStage::OBJECT_ACTOR && !strncmp(actorName, "d_act", 5)) {
                 actor =
                     (fopAc_ac_c*)fopAcM_fastCreate(actorName, 0, NULL, -1, NULL, NULL, NULL, NULL);
                 if (actor == NULL) {
@@ -1409,13 +1409,13 @@ bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNa
         }
 
         *p_TObj = mpObject->appendActor(actor);
-    } else if (objType == JStage::TOBJ_CAMERA) {
+    } else if (objType == JStage::OBJECT_CAMERA) {
         *p_TObj = mpObject->createCamera();
-    } else if (objType == JStage::TOBJ_AMBIENT) {
+    } else if (objType == JStage::OBJECT_AMBIENT) {
         *p_TObj = mpObject->createAmbient();
-    } else if (objType == JStage::TOBJ_LIGHT) {
+    } else if (objType == JStage::OBJECT_LIGHT) {
         *p_TObj = mpObject->appendLight();
-    } else if (objType == JStage::TOBJ_FOG) {
+    } else if (objType == JStage::OBJECT_FOG) {
         *p_TObj = mpObject->createFog();
     }
 

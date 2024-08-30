@@ -47,6 +47,10 @@ public:
         Vec scaling;
     };
     struct TTransform_position : public Vec {};
+    struct TTransform_position_direction {
+        Vec position;
+        Vec direction;
+    };
 
     /* 80285114 */ TControl();
     /* 802851AC */ virtual ~TControl();
@@ -167,6 +171,108 @@ public:
         return param_2;
     }
 
+    bool transformOnGet_isEnabled() const { return mTransformOnGet; }
+    CMtxP transformOnGet_getMatrix() const { return mTransformOnGet_Matrix; }
+
+    void transformOnGet_transformTranslation(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(296, pDst!=0);
+        JUT_ASSERT(297, &rSrc!=pDst);
+        MTXMultVec(transformOnGet_getMatrix(), &rSrc, pDst);
+    }
+
+    void transformOnGet_transformDirection(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(316, pDst!=0);
+        JUT_ASSERT(317, &rSrc!=pDst);
+        MTXMultVecSR(transformOnGet_getMatrix(), &rSrc, pDst);
+    }
+
+    void transformOnGet_transform(TTransform_position_direction* param_1,
+                                  TTransform_position_direction* pDst) const {
+        JUT_ASSERT(289, pDst!=0);
+        transformOnGet_transformTranslation(param_1->position, &pDst->position);
+        transformOnGet_transformDirection(param_1->direction, &pDst->direction);
+    }
+
+    TTransform_position_direction*
+    transformOnGet_transform_ifEnabled(TTransform_position_direction* param_1,
+                                       TTransform_position_direction* param_2) const {
+        if (!transformOnGet_isEnabled()) {
+            return param_1;
+        }
+        transformOnGet_transform(param_1, param_2);
+        return param_2;
+    }
+
+    void transformOnGet_transform(TTransform_position* param_1,
+                                  TTransform_position* pDst) const {
+        transformOnGet_transformTranslation(*param_1, pDst);
+    }
+
+    TTransform_position*
+    transformOnGet_transform_ifEnabled(TTransform_position* param_1,
+                                       TTransform_position* param_2) const {
+        if (!transformOnGet_isEnabled()) {
+            return param_1;
+        }
+        transformOnGet_transform(param_1, param_2);
+        return param_2;
+    }
+
+    void transformOnGet_transformRotation(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(302, pDst!=0);
+        JUT_ASSERT(303, &rSrc!=pDst);
+        pDst->x = rSrc.x;
+        pDst->y = rSrc.y + mTransformOnGet_RotationY;
+        pDst->z = rSrc.z;
+    }
+
+    void transformOnGet_transformScaling(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(310, pDst!=0);
+        JUT_ASSERT(311, &rSrc!=pDst);
+        *pDst = rSrc;
+    }
+
+    void transformOnGet_transform(TTransform_translation_rotation_scaling* param_1,
+                                  TTransform_translation_rotation_scaling* pDst) const {
+        JUT_ASSERT(263, pDst!=0);
+        transformOnGet_transformTranslation(param_1->translation, &pDst->translation);
+        transformOnGet_transformRotation(param_1->rotation, &pDst->rotation);
+        transformOnGet_transformScaling(param_1->scaling, &pDst->scaling);
+    }
+
+    TTransform_translation_rotation_scaling*
+    transformOnGet_transform_ifEnabled(TTransform_translation_rotation_scaling* param_1,
+                                       TTransform_translation_rotation_scaling* param_2) const {
+        if (!transformOnGet_isEnabled()) {
+            return param_1;
+        }
+        transformOnGet_transform(param_1, param_2);
+        return param_2;
+    }
+
+    void transformOnSet_transformDirection(const Vec& rSrc, Vec* pDst) const {
+        JUT_ASSERT(246, pDst!=0);
+        JUT_ASSERT(247, &rSrc!=pDst);
+        MTXMultVecSR(transformOnSet_getMatrix(), &rSrc, pDst);
+    }
+
+    void transformOnSet_transform(TTransform_position_direction* param_1,
+                                  TTransform_position_direction* pDst) const {
+        JUT_ASSERT(219, pDst!=0);
+        transformOnSet_transformTranslation(param_1->position, &pDst->position);
+        transformOnSet_transformDirection(param_1->direction, &pDst->direction);
+    }
+
+    TTransform_position_direction*
+    transformOnSet_transform_ifEnabled(TTransform_position_direction* param_1,
+                                       TTransform_position_direction* param_2) const {
+        if (!transformOnSet_isEnabled()) {
+            return param_1;
+        }
+        transformOnSet_transform(param_1, param_2);
+        return param_2;
+    }
+
     /* 0x58 */ f64 mSecondPerFrame;
     /* 0x60 */ fvb::TControl fvb_Control;
     /* 0x74 */ ctb::TControl ctb_Control;
@@ -175,7 +281,7 @@ public:
     /* 0x8C */ Vec field_0x8c;
     /* 0x98 */ Vec field_0x98;
     /* 0xA4 */ f32 mTransformOnSet_RotationY;
-    /* 0xA8 */ f32 field_0xa8;
+    /* 0xA8 */ f32 mTransformOnGet_RotationY;
     /* 0xAC */ Mtx mTransformOnSet_Matrix;
     /* 0xDC */ Mtx mTransformOnGet_Matrix;
 };

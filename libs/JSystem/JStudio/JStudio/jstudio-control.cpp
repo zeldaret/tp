@@ -45,7 +45,7 @@ int JStudio::TControl::transformOnSet_setOrigin_TxyzRy(Vec const& param_0, f32 p
  * transformOnGet_setOrigin_TxyzRy__Q27JStudio8TControlFRC3Vecf */
 int JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
     field_0x98 =  param_0;
-    field_0xa8 = param_1;
+    mTransformOnGet_RotationY = param_1;
     Mtx afStack_48;
     MTXTrans(afStack_48, -param_0.x, -param_0.y, -param_0.z);
     math::rotate_y(mTransformOnGet_Matrix, afStack_48, -param_1);

@@ -25,7 +25,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare() {
  * adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFv */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin() {
     adaptor_object_begin_();
-    GXColor color = ((JStage::TAmbientLight*)get_pJSG_())->JSGGetColor();
+    GXColor color = get_pJSG_()->JSGGetColor();
     adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, color);
 }
 
@@ -38,7 +38,7 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_end() {
 /* 8028B804-8028B87C 286144 0078+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFUl */
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_update(u32 param_1) {
-    JStage::TAmbientLight* lightObj = (JStage::TAmbientLight*)get_pJSG_();
+    JStage::TAmbientLight* lightObj = get_pJSG_();
     GXColor color;
     adaptor_getVariableValue_GXColor(&color, sauVariableValue_4_COLOR_RGBA);
     lightObj->JSGSetColor(color);

@@ -11,6 +11,8 @@
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 
 namespace JStudio_JStage {
+typedef JStudio::TObject* (*ObjCreateFuncT)(const JStudio::stb::data::TParse_TBlock_object&, JStage::TObject*, const JStage::TSystem*);
+
 struct TCreateObject : public JStudio::TCreateObject {
     TCreateObject(const JStage::TSystem* pSystem) {
         pJSGSystem_ = pSystem;
@@ -38,10 +40,93 @@ struct TAdaptor_object_ {
     /* 0x4 */ JStage::TObject* pJSGObject_;
 };
 
+
+template<class TAdaptor, class TStageObject>
+struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
+    typedef f32 (TStageObject::*GetFunc)() const;
+    typedef void (TStageObject::*SetFunc)(f32);
+    TVariableValueOutput_object_() : field_0x4(-1), field_0x8(NULL), field_0x14(NULL) {}
+    TVariableValueOutput_object_(typename TAdaptor::TEVariableValue param_1, 
+    SetFunc param_2, GetFunc param_3) : field_0x4(param_1), field_0x8(param_2), field_0x14(param_3) {
+
+    }
+
+    virtual void operator()(f32 param_1, JStudio::TAdaptor* param_2) const {
+        (((TAdaptor*)param_2)->get_pJSG_()->*field_0x8)(param_1);
+    }
+    virtual ~TVariableValueOutput_object_() {}
+
+    bool isEnd_() { return field_0x4 == -1; }
+    void adaptor_setOutput_(TAdaptor* adaptor) {
+        adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
+    }
+    void setVariableValue_(TStageObject* pObj, TAdaptor* pAdaptor) {
+        f32 val = (pObj->*field_0x14)();
+        pAdaptor->adaptor_setVariableValue_immediate(field_0x4, val);
+    }
+
+    int field_0x4;
+    SetFunc field_0x8;
+    GetFunc field_0x14;
+};
+
 struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::TAdaptor_object_ {
-    struct TVVOutput_ANIMATION_FRAME_ {
+    typedef JStudio::TObject_actor ObjectType;
+    typedef TVariableValueOutput_object_<TAdaptor_actor, JStage::TActor> TVVOutputObject;
+    typedef void (JStage::TActor::*Setter)(f32);
+    typedef f32 (JStage::TActor::*Getter)() const;
+    typedef f32 (JStage::TActor::*MaxGetter)() const;
+
+    enum TEVariableValue {
+        TEACTOR_1 = 1,
+    };
+
+    struct TVVOutput_ANIMATION_FRAME_ 
+    #ifdef NONMATCHING
+    : public JStudio::TVariableValue::TOutput
+    #endif
+    {
+        TVVOutput_ANIMATION_FRAME_() {
+            mValueIndex = -1;
+            field_0x8 = 0;
+            mSetter = NULL;
+            mGetter = NULL;
+            mMaxGetter = NULL;
+        }
+        TVVOutput_ANIMATION_FRAME_(int param_1, u32 param_2, Setter param_3, Getter param_4,
+                                   MaxGetter param_5) {
+            mValueIndex = param_1;
+            field_0x8 = param_2;
+            mSetter = param_3;
+            mGetter = param_4;
+            mMaxGetter = param_5;
+        }
+        #ifdef NONMATCHING
+        /* 8028B064 */ virtual void operator()(f32, JStudio::TAdaptor*) const;
+        /* 8028B138 */ virtual ~TVVOutput_ANIMATION_FRAME_();
+        
+        void adaptor_setOutput_(TAdaptor* adaptor) {
+            adaptor->adaptor_referVariableValue(mValueIndex)->setOutput(this);
+        }
+
+        void setVariableValue_(JStage::TActor *param_1, JStudio::TAdaptor *param_2) {
+            f32 val = (param_1->*mGetter)();
+            param_2->adaptor_setVariableValue_immediate(mValueIndex, val);
+        }
+        #else
         /* 8028B064 */ void operator()(f32, JStudio::TAdaptor*) const;
         /* 8028B138 */ ~TVVOutput_ANIMATION_FRAME_();
+
+        void* vtable;
+        #endif
+
+        bool isEnd_() { return mValueIndex == -1; }
+
+        /* 0x04 */ int mValueIndex;
+        /* 0x08 */ u32 field_0x8;
+        /* 0x0C */ Setter mSetter;
+        /* 0x18 */ Getter mGetter;
+        /* 0x24 */ MaxGetter mMaxGetter;
     };
 
     /* 8028A5F0 */ TAdaptor_actor(JStage::TSystem const*, JStage::TActor*);
@@ -78,20 +163,28 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
     /* 8028AD38 */ void setJSG_SRT_(JStudio::TControl const*);
     /* 8028AECC */ void getJSG_SRT_(JStudio::TControl const*);
 
+    JStage::TActor* get_pJSG_() { return (JStage::TActor*) pJSGObject_; }
+
+    #ifdef NONMATCHING
+    static TVVOutputObject saoVVOutput_[2];
+    static TVVOutput_ANIMATION_FRAME_  saoVVOutput_ANIMATION_FRAME_[3];
+    #else
     static u8 saoVVOutput_[64];
     static u8 saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
+    #endif
 
+    /* 0x130 */ u32 field_0x130;
     /* 0x134 */ u32 field_0x134;
     /* 0x138 */ u32 field_0x138;
-    /* 0x13C */ u32 field_0x13c;
+    /* 0x13C */ JStage::TObject* field_0x13c;
     /* 0x140 */ u32 field_0x140;
-    /* 0x144 */ u32 field_0x144;
-    /* 0x148 */ u8 field_0x148;
+    /* 0x144 */ u8 field_0x144;
+    /* 0x148 */ JStage::TObject* field_0x148;
     /* 0x14C */ u32 field_0x14c;
-    /* 0x150 */ u32 field_0x150;
 };
 
 struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAdaptor_object_ {
+    typedef JStudio::TObject_ambientLight ObjectType;
     /* 8028B610 */ TAdaptor_ambientLight(JStage::TSystem const*, JStage::TAmbientLight*);
 
     /* 8028B6AC */ virtual ~TAdaptor_ambientLight();
@@ -101,10 +194,20 @@ struct TAdaptor_ambientLight : public JStudio::TAdaptor_ambientLight, public TAd
     /* 8028B804 */ virtual void adaptor_do_update(u32);
     /* 8028B87C */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
-    JStage::TObject* get_pJSG_() { return pJSGObject_; }
+    JStage::TAmbientLight* get_pJSG_() { return (JStage::TAmbientLight*)pJSGObject_; }
 };
 
-struct TAdaptor_camera : public JStudio::TAdaptor_camera {
+struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object_ {
+    typedef JStudio::TObject_camera ObjectType;
+    typedef TVariableValueOutput_object_<TAdaptor_camera, JStage::TCamera> TVVOutput;
+
+    enum TEVariableValue {
+        TECAMERA_6 = 6,
+        TECAMERA_7 = 7,
+        TECAMERA_8 = 8,
+        TECAMERA_9 = 9,
+    };
+
     /* 8028B8A0 */ TAdaptor_camera(JStage::TSystem const*, JStage::TCamera*);
     /* 8028B960 */ virtual ~TAdaptor_camera();
     /* 8028B9D4 */ virtual void adaptor_do_prepare();
@@ -128,10 +231,26 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera {
     /* 8028BFBC */ void setJSG_targetPosition_(JStudio::TControl const*);
     /* 8028C09C */ void getJSG_targetPosition_(JStudio::TControl const*);
 
-    static u8 saoVVOutput_[160 + 4 /* padding */];
+    JStage::TCamera* get_pJSG_() { return (JStage::TCamera*)pJSGObject_; }
+
+    static TVVOutput saoVVOutput_[5];
+
+    /* 0x108 */ int field_0x108;
+    /* 0x10C */ JStage::TObject* field_0x10c;
+    /* 0x110 */ int field_0x110;
+    /* 0x114 */ u8 field_0x114;
+    /* 0x118 */ JStage::TObject* field_0x118;
+    /* 0x11C */ int field_0x11c;
+    /* 0x120 */ u8 field_0x120;
 };
 
-struct TAdaptor_fog : public JStudio::TAdaptor_fog {
+struct TAdaptor_fog : public JStudio::TAdaptor_fog, public TAdaptor_object_ {
+    typedef JStudio::TObject_fog ObjectType;
+    enum TEVariableValue {
+        TEFOG_4 = 4,
+        TEFOG_5 = 5,
+    };
+
     /* 8028C574 */ TAdaptor_fog(JStage::TSystem const*, JStage::TFog*);
     /* 8028C610 */ virtual ~TAdaptor_fog();
     /* 8028C684 */ virtual void adaptor_do_prepare();
@@ -140,13 +259,48 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
     /* 8028C808 */ virtual void adaptor_do_update(u32);
     /* 8028C880 */ virtual void adaptor_do_data(void const*, u32, void const*, u32);
 
-    static u8 saoVVOutput_[96 + 4 /* padding */];
+    JStage::TFog* get_pJSG_() { return (JStage::TFog*)pJSGObject_; }
+
+    static TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog> saoVVOutput_[3];
 };
 
-struct TAdaptor_light : public JStudio::TAdaptor_light {
-    struct TVVOutput_direction_ {
-        /* 8028D24C */ void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028D258 */ ~TVVOutput_direction_();
+struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {
+    typedef JStudio::TObject_light ObjectType;
+
+    enum TEVariableValue {
+        TE_VALUE_NONE = -1,
+        TE_VALUE_7 = 7,
+        TE_VALUE_8 = 8,
+        TE_VALUE_9 = 9,
+        TE_VALUE_10 = 10,
+        TE_VALUE_11 = 11,
+    };
+    enum TEDirection_ {
+        DIRECTION_0,
+        DIRECTION_1,
+        DIRECTION_2,
+    };
+    struct TVVOutput_direction_ : public JStudio::TVariableValue::TOutput {
+        TVVOutput_direction_() {
+            field_0x4 = TE_VALUE_NONE;
+            field_0x8 = DIRECTION_0;
+        }
+        TVVOutput_direction_(TEVariableValue param_1, TEDirection_ param_2) {
+            field_0x4 = param_1;
+            field_0x8 = param_2;
+        }
+
+        /* 8028D24C */ virtual void operator()(f32, JStudio::TAdaptor*) const;
+        /* 8028D258 */ virtual ~TVVOutput_direction_() {}
+
+        void adaptor_setOutput_(TAdaptor* adaptor) {
+            adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
+        }
+
+        bool isEnd_() { return field_0x4 == -1; }
+
+        TEVariableValue field_0x4;
+        TEDirection_ field_0x8;
     };
 
     /* 8028CB50 */ TAdaptor_light(JStage::TSystem const*, JStage::TLight*);
@@ -159,7 +313,11 @@ struct TAdaptor_light : public JStudio::TAdaptor_light {
     /* 8028D228 */ virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
     /* 8028D1B0 */ virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
 
-    static u8 saoVVOutput_direction_[72];
+    JStage::TLight* get_pJSG_() { return (JStage::TLight*)pJSGObject_; }
+
+    int field_0x11c;
+
+    static TVVOutput_direction_ saoVVOutput_direction_[6];
 };
 
 /* 8028A1F8 */ bool

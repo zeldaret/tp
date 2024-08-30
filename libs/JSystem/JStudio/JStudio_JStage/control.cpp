@@ -4,141 +4,78 @@
 //
 
 #include "JSystem/JStudio/JStudio_JStage/control.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __dt__Q214JStudio_JStage13TCreateObjectFv();
-extern "C" void
-create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object();
-extern "C" static void func_80289CE4();
-extern "C" static void func_80289DE8();
-extern "C" static void func_80289EEC();
-extern "C" static void func_80289FF0();
-extern "C" static void func_8028A0F4();
-
-//
-// External References:
-//
-
-extern "C" void __dt__Q27JStudio13TCreateObjectFv();
-extern "C" void
-__ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor();
-extern "C" void
-__ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight();
-extern "C" void
-__ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera();
-extern "C" void
-__ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog();
-extern "C" void
-__ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light();
-extern "C" void __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor();
-extern "C" void
-__ct__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ26JStage7TSystemPQ26JStage13TAmbientLight();
-extern "C" void __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera();
-extern "C" void __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog();
-extern "C" void __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C5720-803C5730 022840 0010+00 1/1 1/1 0/0 .data __vt__Q214JStudio_JStage13TCreateObject */
-SECTION_DATA extern void* __vt__Q214JStudio_JStage13TCreateObject[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q214JStudio_JStage13TCreateObjectFv,
-    (void*)
-        create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object,
-};
+#include "JSystem/JGadget/pointer.h"
+#include "JSystem/JStage/JSGActor.h"
+#include "JSystem/JStage/JSGLight.h"
+#include "JSystem/JStage/JSGFog.h"
+#include "JSystem/JStage/JSGCamera.h"
+#include "JSystem/JStage/JSGAmbientLight.h"
 
 /* 80289B00-80289B60 284440 0060+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage13TCreateObjectFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JStudio_JStage::TCreateObject::~TCreateObject() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/__dt__Q214JStudio_JStage13TCreateObjectFv.s"
+JStudio_JStage::TCreateObject::~TCreateObject() {}
+
+template <class AdaptorT, class ObjectT>
+JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_object& param_1,
+                                    JStage::TObject* param_2, const JStage::TSystem* param_3) {
+    ObjectT* objt = (ObjectT*)param_2;                                        
+    AdaptorT* pAdaptor = new AdaptorT(param_3, objt);
+    if (pAdaptor == NULL) {
+        return NULL;
+    }
+    JGadget::TPointer_delete<AdaptorT> adaptorGuard(pAdaptor);
+    JStudio::TObject* pObj = JStudio::TCreateObject::createFromAdaptor<AdaptorT>(param_1, pAdaptor);
+    if (pObj == NULL) {
+        return NULL;
+    }
+    adaptorGuard.set(NULL);
+    return pObj;
 }
-#pragma pop
 
 /* 80289B60-80289CE4 2844A0 0184+00 1/0 0/0 0/0 .text
  * create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool
-JStudio_JStage::TCreateObject::create(JStudio::TObject** param_0,
-                                      JStudio::stb::data::TParse_TBlock_object const& param_1) {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289B60.s"
+bool JStudio_JStage::TCreateObject::create(
+    JStudio::TObject** ppObject, JStudio::stb::data::TParse_TBlock_object const& rParse) {
+    JUT_ASSERT(83, ppObject!=0);
+    *ppObject = NULL;
+    ObjCreateFuncT pfnCreateObject;
+    JStage::TEObject eObject;
+    switch(rParse.get_type()) {
+    case 'JACT':
+        pfnCreateObject = createObject_JSG_<TAdaptor_actor, JStage::TActor>;
+        eObject = JStage::OBJECT_ACTOR;
+        break;
+    case 'JCMR':
+        pfnCreateObject = createObject_JSG_<TAdaptor_camera, JStage::TCamera>;
+        eObject = JStage::OBJECT_CAMERA;
+        break;
+    case 'JABL':
+        pfnCreateObject = createObject_JSG_<TAdaptor_ambientLight, JStage::TAmbientLight>;
+        eObject = JStage::OBJECT_AMBIENT;
+        break;
+    case 'JLIT':
+        pfnCreateObject = createObject_JSG_<TAdaptor_light, JStage::TLight>;
+        eObject = JStage::OBJECT_LIGHT;
+        break;
+    case 'JFOG':
+        pfnCreateObject = createObject_JSG_<TAdaptor_fog, JStage::TFog>;
+        eObject = JStage::OBJECT_FOG;
+        break;
+    default:
+        return NULL;
+    }
+    JUT_ASSERT(99, pfnCreateObject!=0);
+    JUT_ASSERT(100, eObject!=JStage::OBJECT_UNDEFINED);
+    JUT_ASSERT(109, pJSGSystem_!=0);
+    JStage::TObject* pJSGObject;
+    int pJVar2 = pJSGSystem_->JSGFindObject(&pJSGObject, (char const*)rParse.get_ID(), eObject);
+    switch(pJVar2) {
+    case 0:
+        JUT_ASSERT(115, pJSGObject!=0);
+        *ppObject = pfnCreateObject(rParse, pJSGObject, pJSGSystem_);
+        return true;
+    case 2:
+        return true;
+    }
+    return false;
 }
-#pragma pop
-
-/* 80289CE4-80289DE8 284624 0104+00 1/1 0/0 0/0 .text
- * createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80289CE4() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289CE4.s"
-}
-#pragma pop
-
-/* 80289DE8-80289EEC 284728 0104+00 1/1 0/0 0/0 .text
- * createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80289DE8() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289DE8.s"
-}
-#pragma pop
-
-/* 80289EEC-80289FF0 28482C 0104+00 1/1 0/0 0/0 .text
- * createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80289EEC() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289EEC.s"
-}
-#pragma pop
-
-/* 80289FF0-8028A0F4 284930 0104+00 1/1 0/0 0/0 .text
- * createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80289FF0() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289FF0.s"
-}
-#pragma pop
-
-/* 8028A0F4-8028A1F8 284A34 0104+00 1/1 0/0 0/0 .text
- * createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8028A0F4() {
-    nofralloc
-#include "asm/JSystem/JStudio/JStudio_JStage/control/func_8028A0F4.s"
-}
-#pragma pop

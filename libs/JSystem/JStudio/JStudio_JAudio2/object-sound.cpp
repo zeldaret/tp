@@ -235,7 +235,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_PARENT(
         JStage::TSystem* pJSGSystem = (JStage::TSystem*)pCreateObject_->get_pJSGSystem_();
         JUT_ASSERT(396, pJSGSystem != 0);
         JStage::TObject* pJSGObject;
-        if (!pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::TOBJ_ACTOR_UNK)) {
+        if (!pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::OBJECT_UNDEFINED)) {
             JUT_ASSERT(405, pJSGObject != 0);
             field_0x13c = pJSGObject;
         }

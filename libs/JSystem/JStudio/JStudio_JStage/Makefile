@@ -21,6 +21,7 @@ LIBJSTUDIO_JSTAGE_A_O_FILES := \
 	$(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JStage/object-light.o \
 
 LIBJSTUDIO_JSTAGE_A_CFLAGS := \
+	-sym on
 
 LIBJSTUDIO_JSTAGE_A_LDFLAGS := \
 	-nodefaults \
