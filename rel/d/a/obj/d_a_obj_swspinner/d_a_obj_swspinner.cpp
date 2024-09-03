@@ -1,28 +1,28 @@
-//
-// d_a_obj_swspinner.cpp
-// Object - swspinner
-//
+/**
+ * d_a_obj_swspinner.cpp
+ * Object - Spinner Switch
+ */
 
 #include "rel/d/a/obj/d_a_obj_swspinner/d_a_obj_swspinner.h"
 #include "d/d_procname.h"
 
-/* ############################################################################################## */
 /* 80CFFF78-80D00174 000078 01FC+00 1/1 0/0 0/0 .text            search_spinner_sub__FPvPv */
-static void* search_spinner_sub(void* param_0, void* param_1) {
-    daSpinner_c* spinner = (daSpinner_c*)param_0;
-    daObjSwSpinner_c* swspinner = (daObjSwSpinner_c*)param_1;
+static void* search_spinner_sub(void* i_actor, void* i_data) {
+    daSpinner_c* spinner = (daSpinner_c*)i_actor;
+    daObjSwSpinner_c* sw = (daObjSwSpinner_c*)i_data;
 
     if (spinner != NULL && fopAc_IsActor(spinner) && fpcM_GetProfName(spinner) == PROC_SPINNER) {
-        if (spinner->current.pos.absXZ(swspinner->current.pos) < 100.0f) {
-            if (swspinner->field_0x5e8 == NULL) {
-                swspinner->field_0x5e8 = 1;
+        if (spinner->current.pos.absXZ(sw->current.pos) < sw->GetR()) {
+            if (!sw->mSpinnerIn) {
+                sw->mSpinnerIn = true;
             }
-            spinner->setSpinnerTag(swspinner->attention_info.position);
+            spinner->setSpinnerTag(sw->attention_info.position);
             return spinner;
         }
-        if (swspinner->field_0x5e8 != NULL) {
+
+        if (sw->mSpinnerIn) {
             spinner->offSpinnerTag();
-            swspinner->field_0x5e8 = NULL;
+            sw->mSpinnerIn = false;
         }
     }
 
@@ -32,8 +32,8 @@ static void* search_spinner_sub(void* param_0, void* param_1) {
 /* 80D00174-80D001CC 000274 0058+00 1/1 0/0 0/0 .text            initBaseMtx__16daObjSwSpinner_cFv
  */
 void daObjSwSpinner_c::initBaseMtx() {
-    mpModel1->setBaseScale(scale);
-    mpModel2->setBaseScale(scale);
+    mpModelA->setBaseScale(scale);
+    mpModelB->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -42,53 +42,53 @@ void daObjSwSpinner_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-    mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpModelA->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
 
-    MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + field_0x5e4, current.pos.z);
+    MTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + mPartBHeight, current.pos.z);
     mDoMtx_stack_c::YrotM(home.angle.y);
+    mpModelB->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
-/* ############################################################################################## */
 /* 80D00284-80D0035C 000384 00D8+00 1/0 0/0 0/0 .text            Create__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::Create() {
     if (fopAcM_isSwitch(this, getSwBit2())) {
-        field_0x5e4 = 50.0f;
-        field_0x5ea = 0;
+        mPartBHeight = 50.0f;
+        mCanUse = false;
     } else {
-        field_0x5e4 = 30.0f;
-        field_0x5ea = 1;
+        mPartBHeight = 30.0f;
+        mCanUse = true;
     }
+
     attention_info.position.y -= 100.0f;
 
     initBaseMtx();
-    fopAcM_SetMtx(this, mpModel1->getBaseTRMtx());
-    fopAcM_setCullSizeBox2(this, mpModel1->getModelData());
+    fopAcM_SetMtx(this, mpModelA->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModelA->getModelData());
 
     dComIfG_Bgsp().Regist(mpBgW2, this);
     mpBgW2->Move();
-
     return 1;
 }
 
-/* ############################################################################################## */
 /* 80D00AE0-80D00AE4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "P_Sswitch";
 
 /* 80D0035C-80D00498 00045C 013C+00 1/0 0/0 0/0 .text            CreateHeap__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::CreateHeap() {
-    mpModel1 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 4), 0x80000,
-                                       0x11000084);
-    if (mpModel1 == NULL) {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(0xED, modelData != 0);
+    mpModelA = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModelA == NULL) {
         return 0;
     }
 
-    mpModel2 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 5), 0x80000,
-                                       0x11000084);
-    if (mpModel2 == NULL) {
+    modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
+    JUT_ASSERT(0xF8, modelData != 0);
+    mpModelB = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModelB == NULL) {
         return 0;
     }
 
@@ -110,47 +110,50 @@ int daObjSwSpinner_c::create1st() {
             return phase;
         }
     }
+
     return phase;
 }
 
-/* ############################################################################################## */
 /* 80D00518-80D00890 000618 0378+00 1/0 0/0 0/0 .text Execute__16daObjSwSpinner_cFPPA3_A4_f */
 int daObjSwSpinner_c::Execute(Mtx** param_0) {
     daSpinner_c* spinner = NULL;
-    mShapeAngleY = shape_angle.y;
+    mPrevAngle = shape_angle.y;
 
-    if (field_0x5ea != NULL) {
+    if (mCanUse) {
         spinner = (daSpinner_c*)fopAcM_Search((fopAcIt_JudgeFunc)search_spinner_sub, this);
         if (spinner != NULL) {
-            if ((field_0x5e8 != NULL && spinner->checkSpinnerTagInto()) ||
-                spinner->checkSpinnerTagIntoIncRot()) {
+            if ((mSpinnerIn && spinner->checkSpinnerTagInto()) ||
+                spinner->checkSpinnerTagIntoIncRot())
+            {
                 shape_angle.y = spinner->getAngleY();
             }
         } else {
-            field_0x5e8 = NULL;
+            mSpinnerIn = false;
         }
     }
 
-    mRotSpeedY = cLib_distanceAngleS(shape_angle.y, mShapeAngleY);
+    mRotSpeedY = cLib_distanceAngleS(shape_angle.y, mPrevAngle);
     if (mRotSpeedY == 0) {
         mCount = 0;
     } else {
-        mCount += 1;
+        mCount++;
     }
 
     if (fopAcM_isSwitch(this, getSwBit2())) {
-        if (cLib_addCalc(&field_0x5e4, 50.0f, 0.1f, 10.0f, 2.0f) == 0.0f && field_0x5ea != NULL) {
-            if (field_0x5e8 != NULL) {
+        if (cLib_addCalc(&mPartBHeight, 50.0f, 0.1f, 10.0f, 2.0f) == 0.0f && mCanUse) {
+            if (mSpinnerIn) {
                 spinner->offSpinnerTag();
-                field_0x5e8 = NULL;
+                mSpinnerIn = false;
             }
+
             shape_angle.y = home.angle.y;
-            field_0x5ea = NULL;
+            mCanUse = false;
         }
-        if (field_0x5eb == NULL) {
+
+        if (!mPrevIsSwbit2) {
             fopAcM_seStart(this, Z2SE_OBJ_SPNR_SW_CL, 0);
         }
-    } else if (field_0x5e8 != NULL) {
+    } else if (mSpinnerIn) {
         if (mCount > 200) {
             if (mRotSpeedY > 3000) {
                 fopAcM_onSwitch(this, getSwBit());
@@ -159,11 +162,13 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
             }
         }
     } else {
-        dComIfGs_offSwitch(getSwBit() & 0XFF, fopAcM_GetHomeRoomNo(this));
+        dComIfGs_offSwitch(getSwBit() & 0xFF, fopAcM_GetHomeRoomNo(this));
     }
-    if (field_0x5e8 != NULL && field_0x5e9 == NULL) {
+
+    if (mSpinnerIn && !mPrevSpinnerIn) {
         fopAcM_seStart(this, Z2SE_OBJ_SPNR_SW_FIT, 0);
     }
+
     if (mRotSpeedY != 0) {
         fopAcM_seStartLevel(this, Z2SE_OBJ_SPNR_SW_RL, mRotSpeedY);
     }
@@ -171,25 +176,25 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     *param_0 = &mBgMtx;
     setBaseMtx();
     mpBgW2->Move();
+
     attention_info.position = current.pos;
     attention_info.position.y -= 100.0f;
-    field_0x5eb = fopAcM_isSwitch(this, getSwBit2()) ? 1 : 0;
-    field_0x5e9 = field_0x5e8;
 
+    mPrevIsSwbit2 = fopAcM_isSwitch(this, getSwBit2());
+    mPrevSpinnerIn = mSpinnerIn;
     return 1;
 }
 
 /* 80D00890-80D00954 000990 00C4+00 1/0 0/0 0/0 .text            Draw__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::Draw() {
     g_env_light.settingTevStruct(16, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel1, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModelA, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModelB, &tevStr);
 
     dComIfGd_setListBG();
-    mDoExt_modelUpdateDL(mpModel1);
-    mDoExt_modelUpdateDL(mpModel2);
+    mDoExt_modelUpdateDL(mpModelA);
+    mDoExt_modelUpdateDL(mpModelB);
     dComIfGd_setList();
-
     return 1;
 }
 
@@ -198,11 +203,11 @@ int daObjSwSpinner_c::Delete() {
     if (mpBgW2 != NULL && mpBgW2->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW2);
     }
+
     dComIfG_resDelete(&mPhase, l_arcName);
     return 1;
 }
 
-/* ############################################################################################## */
 /* 80D009C0-80D00A20 000AC0 0060+00 1/0 0/0 0/0 .text
  * daObjSwSpinner_create1st__FP16daObjSwSpinner_c               */
 static int daObjSwSpinner_create1st(daObjSwSpinner_c* i_this) {
@@ -254,5 +259,3 @@ extern actor_process_profile_definition g_profile_Obj_SwSpinner = {
     fopAc_ACTOR_e,             // mActorType
     fopAc_CULLBOX_CUSTOM_e,    // cullType
 };
-
-/* 80D00AD4-80D00AD4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

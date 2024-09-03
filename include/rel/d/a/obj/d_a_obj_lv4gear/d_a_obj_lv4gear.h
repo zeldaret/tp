@@ -36,8 +36,8 @@ private:
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ s16 mTarget;
     /* 0x576 */ s16 mSpeed;
-    /* 0x578 */ s16 field_0x578;
-    /* 0x57C */ int mProcID;
+    /* 0x578 */ s16 mRotation;
+    /* 0x57C */ fpc_ProcID mSwActorID;
     /* 0x580 */ u16 mCount;
     /* 0x582 */ u8 mType;
 };

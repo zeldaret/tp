@@ -27,12 +27,12 @@ static char const* l_arcName = "MR-Screw";
 
 /* 80C9975C-80C99774 000000 0018+00 3/3 0/0 0/0 .rodata          M_attr__18daObjMirrorScrew_c */
 daObjMirrorScrew_c::attr const daObjMirrorScrew_c::M_attr = {
-    -2710.0f,   // mDownDist
-    0.6f,       // mRotSpeedThreshold
-    45,         // mSpinCount
-    0,          // mResetSpinCount
-    5.0f,       // mSpedStep
-    -3.375f,    // mDownSpeed
+    -2710.0f,  // mDownDist
+    0.6f,      // mRotSpeedThreshold
+    45,        // mSpinCount
+    0,         // mResetSpinCount
+    5.0f,      // mSpedStep
+    -3.375f,   // mDownSpeed
 };
 
 /* 80C997F4-80C99824 000054 0030+00 2/3 0/0 0/0 .data            ActionTable__18daObjMirrorScrew_c
@@ -57,9 +57,10 @@ void daObjMirrorScrew_c::initWait() {
  */
 void daObjMirrorScrew_c::executeWait() {
     if (mpSwSpinner != NULL) {
-        if (mpSwSpinner->GetRotSpeedY() / 4096.0f > M_attr.mRotSpeedThreshold) {
+        if (mpSwSpinner->GetRotSpeedY() / (f32)0x1000 > M_attr.mRotSpeedThreshold) {
             mSpinCount++;
             dComIfGp_getVibration().StartQuake(4, 0xf, cXyz(0.0f, 1.0f, 0.0f));
+
             if (mSpinCount > M_attr.mSpinCount) {
                 setAction(ACT_DOWN);
             }
@@ -74,19 +75,23 @@ void daObjMirrorScrew_c::executeWait() {
 void daObjMirrorScrew_c::initDown() {
     speedF = 0.0f;
     mSpinCount = M_attr.mResetSpinCount;
+
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[361]);
+
     dComIfGp_getVibration().StartShock(8, 0xf, cXyz(0.0f, 1.0f, 0.0f));
     dComIfGp_getVibration().StartQuake(6, 0xf, cXyz(0.0f, 1.0f, 0.0f));
     Z2GetAudioMgr()->seStart(Z2SE_OBJ_MR_SCRW_ON, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-    fopAcM_orderMapToolEvent(this, getEventID(), 0xff, 0xffff, 1, 0);
+
+    fopAcM_orderMapToolEvent(this, getEventID(), 0xFF, 0xFFFF, 1, 0);
+
     cXyz pos(0.0f, 0.0f, 0.0f);
     csXyz angle(0, 0, 0);
-    dComIfGp_particle_set(0x8aca, &pos, &angle, NULL);
-    dComIfGp_particle_set(0x8acb, &pos, &angle, NULL);
-    dComIfGp_particle_set(0x8ace, &pos, &angle, NULL);
-    dComIfGp_particle_set(0x8acf, &pos, &angle, NULL);
-    dComIfGp_particle_set(0x8ad0, &pos, &angle, NULL);
-    dComIfGp_particle_set(0x8ad1, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8ACA, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8ACB, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8ACE, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8ACF, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8AD0, &pos, &angle, NULL);
+    dComIfGp_particle_set(0x8AD1, &pos, &angle, NULL);
 }
 
 /* 80C98F04-80C99154 0004A4 0250+00 1/0 0/0 0/0 .text            executeDown__18daObjMirrorScrew_cFv
@@ -96,7 +101,7 @@ void daObjMirrorScrew_c::executeDown() {
     if (dComIfGp_event_runCheck()) {
         daPy_py_c* player = daPy_getPlayerActorClass();
         player->changeOriginalDemo();
-        player->changeDemoMode(0xe, 1, 0, 0);
+        player->changeDemoMode(14, 1, 0, 0);
     }
 
     if (mSpinCount >= 0) {
@@ -105,12 +110,15 @@ void daObjMirrorScrew_c::executeDown() {
             if (mpChain != NULL) {
                 mpChain->setAnmSpeed(1.0f);
             }
+
             if (mpTable != NULL) {
                 mpTable->setAnmSpeed(1.0f);
             }
+
             if (mp6Pole != NULL) {
                 mp6Pole->setAnmSpeed(1.0f);
             }
+
             if (mpSand != NULL) {
                 mpSand->setAnmSpeed(1.0f);
             }
@@ -120,20 +128,23 @@ void daObjMirrorScrew_c::executeDown() {
     cLib_chaseF(&speedF, M_attr.mDownSpeed, M_attr.mSpeedStep);
     current.pos.y += speedF;
     mpSwSpinner->current.pos = cXyz(current.pos.x, current.pos.y + 2636.121f, current.pos.z);
-    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_SCRW_MV, &current.pos,
-                                  0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_SCRW_MV, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                  0);
 
     if (current.pos.y <= home.pos.y + M_attr.mDownDist) {
         current.pos.y = home.pos.y + M_attr.mDownDist;
+
         // fake match: these should be dComIfGp_getVibration()
         gameinfo->play.getVibration().StartShock(8, 0xf, cXyz(0.0f, 1.0f, 0.0f));
         gameinfo->play.getVibration().StopQuake(0x1f);
-        Z2GetAudioMgr()->seStart(Z2SE_OBJ_MR_SCRW_OFF, &current.pos,
-                                 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_OBJ_MR_SCRW_OFF, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                 0);
+
         u8 sw = getSwitchNo();
-        if (sw != 0xff) {
+        if (sw != 0xFF) {
             fopAcM_onSwitch(this, sw);
         }
+
         fopAcM_delete(this);
     }
 }
@@ -165,12 +176,13 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
-    if (fopAcM_isSwitch(this, getSwitchNo())
-        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
-        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
+    if (fopAcM_isSwitch(this, getSwitchNo()) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
         return cPhs_ERROR_e;
     }
+
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
         step = (cPhs__Step)MoveBGCreate(l_arcName, 7, dBgS_MoveBGProc_TypicalRotY, 0xc760, NULL);
@@ -178,6 +190,7 @@ cPhs__Step daObjMirrorScrew_c::create() {
             return step;
         }
     }
+
     return step;
 }
 
@@ -211,15 +224,18 @@ void daObjMirrorScrew_c::initBaseMtx() {
 int daObjMirrorScrew_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     initBaseMtx();
-    cXyz pos(current.pos.x, current.pos.y + 2636.121f, current.pos.z);
-    fopAcM_createChild(PROC_Obj_SwSpinner, fopAcM_GetID(this), getSwitchNo() << 8, &pos,
+
+    cXyz sw_pos(current.pos.x, current.pos.y + 2636.121f, current.pos.z);
+    fopAcM_createChild(PROC_Obj_SwSpinner, fopAcM_GetID(this), getSwitchNo() << 8, &sw_pos,
                        fopAcM_GetRoomNo(this), NULL, NULL, -1, NULL);
+
     mpSwSpinner = NULL;
     mpSpPath = NULL;
     mpChain = NULL;
     mpTable = NULL;
     mp6Pole = NULL;
     mpSand = NULL;
+
     setAction(ACT_WAIT);
     return cPhs_COMPLEATE_e;
 }
@@ -229,21 +245,27 @@ int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
     if (mpSwSpinner == NULL) {
         mpSwSpinner = static_cast<daObjSwSpinner_c*>(fopAcM_SearchByName(PROC_Obj_SwSpinner));
     }
+
     if (mpSpPath == NULL) {
         mpSpPath = static_cast<daTagSppath_c*>(fopAcM_SearchByName(PROC_Tag_Sppath));
     }
+
     if (mpChain == NULL) {
         mpChain = static_cast<daObjMirrorChain_c*>(fopAcM_SearchByName(PROC_Obj_MirrorChain));
     }
+
     if (mpTable == NULL) {
         mpTable = static_cast<daObjMirrorTable_c*>(fopAcM_SearchByName(PROC_Obj_MirrorTable));
     }
+
     if (mp6Pole == NULL) {
         mp6Pole = static_cast<daObjMirror6Pole_c*>(fopAcM_SearchByName(PROC_Obj_Mirror6Pole));
     }
+
     if (mpSand == NULL) {
         mpSand = static_cast<daObjMirrorSand_c*>(fopAcM_SearchByName(PROC_Obj_MirrorSand));
     }
+
     callExecute();
     setBaseMtx();
     *i_mtxP = &mBgMtx;
@@ -254,6 +276,7 @@ int daObjMirrorScrew_c::Execute(Mtx** i_mtxP) {
 int daObjMirrorScrew_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
@@ -268,10 +291,8 @@ int daObjMirrorScrew_c::Delete() {
 
 /* 80C99824-80C99844 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirrorScrew_Method */
 static actor_method_class l_daObjMirrorScrew_Method = {
-    (process_method_func)daObjMirrorScrew_Create,
-    (process_method_func)daObjMirrorScrew_Delete,
-    (process_method_func)daObjMirrorScrew_Execute,
-    (process_method_func)daObjMirrorScrew_IsDelete,
+    (process_method_func)daObjMirrorScrew_Create,  (process_method_func)daObjMirrorScrew_Delete,
+    (process_method_func)daObjMirrorScrew_Execute, (process_method_func)daObjMirrorScrew_IsDelete,
     (process_method_func)daObjMirrorScrew_Draw,
 };
 
