@@ -193,9 +193,9 @@ public:
         setModel(param_0, param_1, param_2, param_3, param_4, param_5);
     }
 
-    // Should be dPa_modelEcallBack
-    static dPa_modelEcallBack* getEcallback() { return mEcallback; }
-    static dPa_modelEcallBack* mEcallback;
+    static dPa_modelEcallBack& getEcallback() { return (dPa_modelEcallBack&)mEcallback; }
+    static dPa_modelEcallBack* mEcallback;  // Should be dPa_modelEcallBack
+
     static u8 mPcallback[4];
     static model_c* mModel;
 };

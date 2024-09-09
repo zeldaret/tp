@@ -52,7 +52,7 @@ void dEyeHL_mng_c::update() {
         for (; obj != NULL; obj = obj->m_next) {
             ResTIMG* timg = obj->m_timg;
             timg->LODBias = obj->m_lodBias + tmp;
-            timg->LODBias = (s16)cLib_minMaxLimit((s16)timg->LODBias, (s16)-400, (s16)399);
+            timg->LODBias = cLib_minMaxLimit<s16>(timg->LODBias, -400, 399);
         }
     }
 }
