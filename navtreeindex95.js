@@ -1,5 +1,6 @@
 var NAVTREEINDEX95 =
 {
+"classJUTConsole.html#aa1579e758dbe5befc49f4a567a2ce927":[1,1,12,1,3],
 "classJUTConsole.html#aaafbacaeefa15bee940330d11e93de88":[1,1,12,1,27],
 "classJUTConsole.html#aad99534c74e7daea6c582d73c38bd008":[1,1,12,1,12],
 "classJUTConsole.html#ab93de1c17b223b0182270f7163c72de5":[1,1,12,1,41],
@@ -248,6 +249,5 @@ var NAVTREEINDEX95 =
 "classJUTProcBar.html#a6976f72aa03af98611f8ae24dc738ec3":[1,1,12,21,24],
 "classJUTProcBar.html#a77ce434f6cc7a1b2666f553353cccb44":[1,1,12,21,15],
 "classJUTProcBar.html#a891e5c9462fe07265fd357a778f96243":[1,1,12,21,26],
-"classJUTProcBar.html#a93c8111bc0e6dcc76a001da8520913bf":[1,1,12,21,37],
-"classJUTProcBar.html#a964b3506e4188ab9fcf5fa55d677e309":[1,1,12,21,21]
+"classJUTProcBar.html#a93c8111bc0e6dcc76a001da8520913bf":[1,1,12,21,37]
 };

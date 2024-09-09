@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio_1_1TVariableValue.html" title=" " alt="" coords="5,5,165,31"/>
+<area shape="rect" id="Node000000" href="$structJStudio_1_1TVariableValue_1_1TOutput.html" title=" " alt="" coords="5,150,165,191"/>
+<area shape="rect" id="Node000001" href="$structJStudio__JStage_1_1TVariableValueOutput__object__.html" title=" " alt="" coords="223,5,472,61"/>
+<area shape="poly" id="edge1480_Node000000_Node000001" title=" " alt="" coords="117,138,160,103,211,71,237,59,239,64,214,76,163,107,121,142"/>
+<area shape="rect" id="Node000002" href="$structJStudio__JAudio2_1_1TAdaptor__sound_1_1TVVOSetValue__.html" title=" " alt="" coords="258,85,437,126"/>
+<area shape="poly" id="edge1481_Node000000_Node000002" title=" " alt="" coords="179,144,212,136,261,124,263,129,213,141,180,149"/>
+<area shape="rect" id="Node000003" href="$structJStudio__JStage_1_1TAdaptor__actor_1_1TVVOutput__ANIMATION__FRAME__.html" title=" " alt="" coords="213,150,482,191"/>
+<area shape="poly" id="edge1482_Node000000_Node000003" title=" " alt="" coords="180,168,212,168,212,173,180,173"/>
+<area shape="rect" id="Node000004" href="$structJStudio__JStage_1_1TAdaptor__light_1_1TVVOutput__direction__.html" title=" " alt="" coords="254,216,441,256"/>
+<area shape="poly" id="edge1483_Node000000_Node000004" title=" " alt="" coords="180,192,213,200,263,212,261,217,212,205,179,197"/>
+<area shape="rect" id="Node000005" href="$structJStudio__JStage_1_1TVariableValueOutput__object__.html" title=" " alt="" coords="242,280,453,336"/>
+<area shape="poly" id="edge1484_Node000000_Node000005" title=" " alt="" coords="121,199,163,234,214,265,243,278,240,283,211,270,160,238,117,203"/>
 </map>

@@ -1,5 +1,6 @@
 var NAVTREEINDEX78 =
 {
+"classJ3DMaterialFactory__v21.html#a9234f7e47a4f94c644200649e59010da":[1,1,1,180,34],
 "classJ3DMaterialFactory__v21.html#a96784d86a90a8c3e1232fa21bb7c3523":[1,1,1,180,7],
 "classJ3DMaterialFactory__v21.html#a972ec3e5971c04b3c7436b8fd0c34f38":[1,1,1,180,35],
 "classJ3DMaterialFactory__v21.html#a980e49c80fa7729150db6c221548b301":[1,1,1,180,38],
@@ -248,6 +249,5 @@ var NAVTREEINDEX78 =
 "classJ3DMtxBuffer.html#ae6091c5d0129f51a79b163aa7ecfbfcc":[1,1,1,72,12],
 "classJ3DMtxBuffer.html#ae6cbabe7d109bb817549d6bc9bd0ff05":[1,1,1,72,0],
 "classJ3DMtxBuffer.html#ae77ae4dca60ebdabdb40526f6b3798c8":[1,1,1,72,47],
-"classJ3DMtxBuffer.html#ae80c12b6a33451d9c3ffc8e414a7966b":[1,1,1,72,26],
-"classJ3DMtxBuffer.html#aeb0e97d554a7eb6085b385734a66d879":[1,1,1,72,42]
+"classJ3DMtxBuffer.html#ae80c12b6a33451d9c3ffc8e414a7966b":[1,1,1,72,26]
 };

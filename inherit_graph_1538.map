@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJASPtrTable.html" title=" " alt="" coords="5,5,211,31"/>
+<area shape="rect" id="Node000000" href="$classJASPtrTable.html" title=" " alt="" coords="5,63,131,88"/>
+<area shape="rect" id="Node000001" href="$classJASPtrArray.html" title=" " alt="" coords="183,5,371,31"/>
+<area shape="poly" id="edge1313_Node000000_Node000001" title=" " alt="" coords="128,55,178,41,222,29,224,34,179,46,129,60"/>
+<area shape="rect" id="Node000002" href="$classJASPtrArray.html" title=" " alt="" coords="179,55,375,96"/>
+<area shape="poly" id="edge1314_Node000000_Node000002" title=" " alt="" coords="147,73,178,73,178,78,147,78"/>
+<area shape="rect" id="Node000004" href="$classJASPtrArray.html" title=" " alt="" coords="207,120,347,146"/>
+<area shape="poly" id="edge1316_Node000000_Node000004" title=" " alt="" coords="129,91,179,105,224,117,222,122,178,110,128,96"/>
+<area shape="rect" id="Node000003" href="$classJAUWaveBankTable.html" title=" " alt="" coords="423,63,565,88"/>
+<area shape="poly" id="edge1315_Node000002_Node000003" title=" " alt="" coords="390,73,423,73,423,78,390,78"/>
 </map>

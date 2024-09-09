@@ -917,7 +917,6 @@ var hierarchy =
     [ "daObjYobikusa_c::actionFuncEntry", "structdaObjYobikusa__c_1_1actionFuncEntry.html", null ],
     [ "daObjYobikusa_c::attributes", "structdaObjYobikusa__c_1_1attributes.html", null ],
     [ "daObjZraMark_Hio_Param_c", "classdaObjZraMark__Hio__Param__c.html", null ],
-    [ "daOnsTaru_HIO_c", "classdaOnsTaru__HIO__c.html", null ],
     [ "daOptiLift_HIO_c", "classdaOptiLift__HIO__c.html", null ],
     [ "daPeru_Param_c", "classdaPeru__Param__c.html", null ],
     [ "daPillar_HIO_c", "classdaPillar__HIO__c.html", null ],
@@ -3689,7 +3688,8 @@ var hierarchy =
         [ "daBmWindow_HIO_c", "classdaBmWindow__HIO__c.html", null ],
         [ "daFlorBoad_HIO_c", "classdaFlorBoad__HIO__c.html", null ],
         [ "daIceWall_HIO_c", "classdaIceWall__HIO__c.html", null ],
-        [ "daLv5SwIce_HIO_c", "classdaLv5SwIce__HIO__c.html", null ]
+        [ "daLv5SwIce_HIO_c", "classdaLv5SwIce__HIO__c.html", null ],
+        [ "daOnsTaru_HIO_c", "classdaOnsTaru__HIO__c.html", null ]
       ] ]
     ] ],
     [ "mDoLib_clipper", "structmDoLib__clipper.html", null ],

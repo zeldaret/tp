@@ -24,6 +24,7 @@ var c__lib_8h =
     [ "cLib_memCpy", "c__lib_8h.html#a434e340843cc7481f2c58f51b88190b5", null ],
     [ "cLib_memSet", "c__lib_8h.html#a16ee1f3d87c2d6e3599459223b15da18", null ],
     [ "cLib_minMaxLimit", "c__lib_8h.html#a563ae12ac98a86115392042e7f4ddd4e", null ],
+    [ "cLib_minMaxLimit2", "c__lib_8h.html#a4a6d7d908c8eae06e8b3babd75e625c9", null ],
     [ "cLib_offBit", "c__lib_8h.html#ae8601174b8bbf6ccd895fe242952329a", null ],
     [ "cLib_offsetPos", "c__lib_8h.html#a6be7444f7851ce0f4c5774d5f5df1f4f", null ],
     [ "cLib_onBit", "c__lib_8h.html#ac24026f0f0b05786d6eaa5b35bb0fe7d", null ],

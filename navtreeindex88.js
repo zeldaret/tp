@@ -1,5 +1,6 @@
 var NAVTREEINDEX88 =
 {
+"classJKRArchive.html#aea775e0abef3aba98dbaf049ec3885a5":[1,1,5,10,45],
 "classJKRArchive.html#af1d6e7bce5d87275d5c961fe97bf88ef":[1,1,5,10,6],
 "classJKRArchive.html#af3fad780270481a1c936b2a1e3787ce8":[1,1,5,10,52],
 "classJKRArchive.html#af51dd9cec19b148dbce0d1457fab09ad":[1,1,5,10,55],
@@ -248,6 +249,5 @@ var NAVTREEINDEX88 =
 "classJKRExpHeap_1_1CMemBlock.html#ae5799f4786d07b97c8359495286cfe31":[1,1,5,22,0,14],
 "classJKRExpHeap_1_1CMemBlock.html#af11a921de20f26a5b3858530bb243f9e":[1,1,5,22,0,18],
 "classJKRExpHeap_1_1CMemBlock.html#af56a0e5885ef8143905a9d1d1b627f65":[1,1,5,22,0,9],
-"classJKRFile.html":[1,1,5,23],
-"classJKRFile.html#a2d64998a56c3e976d2bed4ed38015202":[1,1,5,23,4]
+"classJKRFile.html":[1,1,5,23]
 };

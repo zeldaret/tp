@@ -1,5 +1,6 @@
 var NAVTREEINDEX211 =
 {
+"classdaNpc__Bans__c.html#a3478fcc556cdfc92ccb3e2d40351bc9c":[1,0,3,5,37],
 "classdaNpc__Bans__c.html#a34f311b9e1c16ee8885aa443da0b3842":[1,0,3,5,35],
 "classdaNpc__Bans__c.html#a3c5311b8b3a3ce602764dba105b3c470":[1,0,3,5,32],
 "classdaNpc__Bans__c.html#a40eff4a1e5895f140dd51f94031b9b8f":[1,0,3,5,18],
@@ -248,6 +249,5 @@ var NAVTREEINDEX211 =
 "classdaNpc__Fairy__c.html#a0d74618239747c1bcaddbddb833a8db2":[1,0,3,22,83],
 "classdaNpc__Fairy__c.html#a0dc97fce2d8283468f34f9c2a67669e2":[1,0,3,22,90],
 "classdaNpc__Fairy__c.html#a0ebabe572001d4ac337f314e2f2b4fbb":[1,0,3,22,47],
-"classdaNpc__Fairy__c.html#a0f2108bbfd6e3cc1b3e38c6e4d479045":[1,0,3,22,15],
-"classdaNpc__Fairy__c.html#a119517dea4f98d392b1ce537730e9bce":[1,0,3,22,6]
+"classdaNpc__Fairy__c.html#a0f2108bbfd6e3cc1b3e38c6e4d479045":[1,0,3,22,15]
 };

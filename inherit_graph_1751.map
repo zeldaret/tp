@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio_1_1TControl_1_1TTransform__translation__rotation__scaling.html" title=" " alt="" coords="5,5,161,61"/>
+<area shape="rect" id="Node000000" href="$structJStudio_1_1TCreateObject.html" title=" " alt="" coords="5,78,161,104"/>
+<area shape="rect" id="Node000001" href="$structJStudio__JAudio2_1_1TCreateObject.html" title=" " alt="" coords="225,5,396,46"/>
+<area shape="poly" id="edge1456_Node000000_Node000001" title=" " alt="" coords="144,71,236,44,238,49,146,76"/>
+<area shape="rect" id="Node000002" href="$structJStudio__JParticle_1_1TCreateObject.html" title=" " alt="" coords="246,71,375,111"/>
+<area shape="poly" id="edge1457_Node000000_Node000002" title=" " alt="" coords="176,88,245,88,245,94,176,94"/>
+<area shape="rect" id="Node000004" href="$structJStudio__JStage_1_1TCreateObject.html" title=" " alt="" coords="209,136,412,161"/>
+<area shape="poly" id="edge1459_Node000000_Node000004" title=" " alt="" coords="152,106,209,120,256,132,255,137,208,126,150,111"/>
+<area shape="rect" id="Node000003" href="$classdDemo__particle__c.html" title=" " alt="" coords="460,78,585,104"/>
+<area shape="poly" id="edge1458_Node000002_Node000003" title=" " alt="" coords="390,88,460,88,460,94,390,94"/>
 </map>

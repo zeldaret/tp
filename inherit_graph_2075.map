@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structZ2EnemyArea.html" title=" " alt="" coords="5,5,108,31"/>
+<area shape="rect" id="Node000000" href="$structZ2EnvSeBase.html" title=" " alt="" coords="5,31,110,56"/>
+<area shape="rect" id="Node000001" href="$structZ2EnvSeAutoPan.html" title=" " alt="" coords="158,5,282,31"/>
+<area shape="poly" id="edge1563_Node000000_Node000001" title=" " alt="" coords="125,30,157,25,158,31,126,36"/>
+<area shape="rect" id="Node000002" href="$structZ2EnvSeDir.html" title=" " alt="" coords="175,55,265,80"/>
+<area shape="poly" id="edge1564_Node000000_Node000002" title=" " alt="" coords="126,51,175,58,174,63,125,56"/>
 </map>

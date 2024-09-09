@@ -1,15 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJ3DPEBlock.html" title=" " alt="" coords="5,129,100,155"/>
-<area shape="rect" id="Node000001" href="$classJ3DPEBlockFogOff.html" title=" " alt="" coords="153,5,287,31"/>
-<area shape="poly" id="edge1105_Node000000_Node000001" title=" " alt="" coords="70,115,103,77,146,40,167,29,170,34,149,44,106,80,74,119"/>
-<area shape="rect" id="Node000002" href="$classJ3DPEBlockFull.html" title=" " alt="" coords="162,55,278,80"/>
-<area shape="poly" id="edge1106_Node000000_Node000002" title=" " alt="" coords="88,119,147,89,174,78,176,83,149,94,90,124"/>
-<area shape="rect" id="Node000003" href="$structJ3DPEBlockNull.html" title=" " alt="" coords="161,104,279,130"/>
-<area shape="poly" id="edge1107_Node000000_Node000003" title=" " alt="" coords="115,130,160,123,161,128,116,135"/>
-<area shape="rect" id="Node000004" href="$classJ3DPEBlockOpa.html" title=" " alt="" coords="161,153,279,179"/>
-<area shape="poly" id="edge1108_Node000000_Node000004" title=" " alt="" coords="115,148,161,155,160,160,115,154"/>
-<area shape="rect" id="Node000005" href="$classJ3DPEBlockTexEdge.html" title=" " alt="" coords="148,203,292,228"/>
-<area shape="poly" id="edge1109_Node000000_Node000005" title=" " alt="" coords="91,161,149,189,176,200,174,205,147,194,89,165"/>
-<area shape="rect" id="Node000006" href="$classJ3DPEBlockXlu.html" title=" " alt="" coords="163,252,277,278"/>
-<area shape="poly" id="edge1110_Node000000_Node000006" title=" " alt="" coords="74,166,107,203,149,239,170,249,167,254,146,243,103,207,70,169"/>
+<area shape="rect" id="Node000000" href="$classJ3DShape.html" title=" " alt="" coords="5,5,87,31"/>
 </map>

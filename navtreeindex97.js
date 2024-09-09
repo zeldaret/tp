@@ -1,5 +1,6 @@
 var NAVTREEINDEX97 =
 {
+"classSakuita__c.html#af26bc160746a61ee7165406fa5dc37b3":[3,0,2927,1],
 "classSakuita__c.html#af8afbfbf70f6fcec4dcb69af8800e47a":[3,0,2927,8],
 "classShdwDrawPoly__c.html":[3,0,2937],
 "classShdwDrawPoly__c.html#a0b0d7b8eb12ed48484054d380781de2a":[3,0,2937,1],
@@ -51,9 +52,9 @@ var NAVTREEINDEX97 =
 "classZ2Creature.html#a2bda248bad622037db0b79b335306614":[3,0,3044,6],
 "classZ2Creature.html#a2cb01144c08f24943f1ef0cf1997b4e0":[3,0,3044,23],
 "classZ2Creature.html#a449b7f51342d375d70eb9073b63ce50f":[3,0,3044,14],
+"classZ2Creature.html#a501c85513836d34043a9532188631929":[3,0,3044,9],
 "classZ2Creature.html#a501c85513836d34043a9532188631929":[3,0,3044,11],
 "classZ2Creature.html#a501c85513836d34043a9532188631929":[3,0,3044,10],
-"classZ2Creature.html#a501c85513836d34043a9532188631929":[3,0,3044,9],
 "classZ2Creature.html#a50418001508116da50181239c6094a00":[3,0,3044,27],
 "classZ2Creature.html#a59bbbf72fe61d3ef81e1e5e8428c5e4e":[3,0,3044,7],
 "classZ2Creature.html#a684f7c1cc03c3ee2b2e21d0c224462d8":[3,0,3044,24],
@@ -68,9 +69,9 @@ var NAVTREEINDEX97 =
 "classZ2Creature.html#ae87ad2ec57d91daf16d6cf723c361882":[3,0,3044,18],
 "classZ2Creature.html#af13d015d6371eb8af1a9d1a5d65781e4":[3,0,3044,15],
 "classZ2Creature.html#af52a75d45be3c3c4856693f474899b3f":[3,0,3044,19],
-"classZ2Creature.html#af633a348dd6de19c82443a665e04b38a":[3,0,3044,3],
-"classZ2Creature.html#af633a348dd6de19c82443a665e04b38a":[3,0,3044,5],
 "classZ2Creature.html#af633a348dd6de19c82443a665e04b38a":[3,0,3044,1],
+"classZ2Creature.html#af633a348dd6de19c82443a665e04b38a":[3,0,3044,5],
+"classZ2Creature.html#af633a348dd6de19c82443a665e04b38a":[3,0,3044,3],
 "classZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac":[3,0,3044,0],
 "classZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac":[3,0,3044,2],
 "classZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac":[3,0,3044,4],
@@ -85,8 +86,8 @@ var NAVTREEINDEX97 =
 "classZ2CreatureCitizen.html#ac9e51ce8c08f5bec56c699b4ce6f7d63":[3,0,3045,3],
 "classZ2CreatureCitizen.html#ae5027c42c73d8c5db77ca47d6da58d3f":[3,0,3045,10],
 "classZ2CreatureCitizen.html#aec5798dc88253abfc639ea9b77fc3d3e":[3,0,3045,6],
-"classZ2CreatureCitizen.html#aede6bcec09d45b4b0190447bb06df538":[3,0,3045,2],
 "classZ2CreatureCitizen.html#aede6bcec09d45b4b0190447bb06df538":[3,0,3045,0],
+"classZ2CreatureCitizen.html#aede6bcec09d45b4b0190447bb06df538":[3,0,3045,2],
 "classZ2CreatureCitizen.html#aee500858c38f0e83f9b6b4e9d925ab14":[3,0,3045,8],
 "classZ2CreatureEnemy.html":[3,0,3046],
 "classZ2CreatureEnemy.html#a0d75b92523cbf56811b00d78bf0799e0":[3,0,3046,15],
@@ -248,6 +249,5 @@ var NAVTREEINDEX97 =
 "classZ2SeMgr.html#aeb3b9b3993a224b3ccf5c27c49287548":[3,0,3069,21],
 "classZ2SeMgr.html#aed9c0de0f4adb2ab5145239a7023e0ff":[3,0,3069,9],
 "classZ2SeMgr.html#af1ce6346c7918d439929fbe866f3d6a7":[3,0,3069,10],
-"classZ2SeMgr.html#af6d506755a010c5291a08419d295ddca":[3,0,3069,28],
-"classZ2SeqMgr.html":[3,0,3070]
+"classZ2SeMgr.html#af6d506755a010c5291a08419d295ddca":[3,0,3069,28]
 };

@@ -650,8 +650,8 @@ var sectionId = 'dynsection-1';
 <polygon fill="#9a32cd" stroke="#9a32cd" points="468.69,-185.7 460.6,-192.54 471.19,-192.24 468.69,-185.7"/>
 </a>
 </g>
-<text text-anchor="middle" x="922.5" y="-165.16" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mpModel1</text>
-<text text-anchor="middle" x="922.5" y="-153.91" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey">mpModel2</text>
+<text text-anchor="middle" x="922.5" y="-165.16" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mpModelA</text>
+<text text-anchor="middle" x="922.5" y="-153.91" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey">mpModelB</text>
 </g>
 <!-- Node58&#45;&gt;Node172 -->
 <g id="edge63_Node000172_Node000058" class="edge">

@@ -1,5 +1,6 @@
 var NAVTREEINDEX83 =
 {
+"classJ3DVertexData.html#af707a609a6cd3851838e547067cfd2fa":[1,1,1,165,31],
 "classJ3DVertexData.html#af862413e8fb40dcb8d49fca0abccd718":[1,1,1,165,26],
 "classJ3DVertexData.html#af8ed2246ff85f841369ff72422d85e70":[1,1,1,165,5],
 "classJ3DVertexData.html#af90d1372997f67550d824bad81611eae":[1,1,1,165,28],
@@ -248,6 +249,5 @@ var NAVTREEINDEX83 =
 "classJAISoundHandles.html":[1,1,2,24],
 "classJAISoundHandles.html#a1799954463f02f0c52b2146b4704c0ac":[1,1,2,24,0],
 "classJAISoundHandles.html#a60981e04011dd624cf00b5771df182cd":[1,1,2,24,2],
-"classJAISoundHandles.html#a663f7d89934c2a3e3379178fbcd4a21a":[1,1,2,24,5],
-"classJAISoundHandles.html#a78c001e6cd717039e8b8b91ddeee671c":[1,1,2,24,1]
+"classJAISoundHandles.html#a663f7d89934c2a3e3379178fbcd4a21a":[1,1,2,24,5]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX90 =
 {
+"classJPABaseEmitter.html#a3518672262aa1dc1d754df42c762b4a1":[1,1,8,10,8],
 "classJPABaseEmitter.html#a36e29e90f82301d08135551c7e9d1650":[1,1,8,10,67],
 "classJPABaseEmitter.html#a3a0a1ee661a2f2b186500d256f18acf1":[1,1,8,10,103],
 "classJPABaseEmitter.html#a3ac8c36cbd8d7267a5c24a29e264189e":[1,1,8,10,68],
@@ -248,6 +249,5 @@ var NAVTREEINDEX90 =
 "classJSUTree.html":[1,1,11,8],
 "classJSUTree.html#a1995cb7592161b02bef865882dd5723a":[1,1,11,8,10],
 "classJSUTree.html#a7bfd654aad111c71c267f879e14064a5":[1,1,11,8,5],
-"classJSUTree.html#a83b2c274fa731a78efe654c42ee443eb":[1,1,11,8,8],
-"classJSUTree.html#a949f6f2a0358ab8bb90a4aa1013792ba":[1,1,11,8,12]
+"classJSUTree.html#a83b2c274fa731a78efe654c42ee443eb":[1,1,11,8,8]
 };

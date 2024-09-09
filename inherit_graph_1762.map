@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPAEmitter__stopDrawParticle__.html" title=" " alt="" coords="5,5,209,61"/>
+<area shape="rect" id="Node000000" href="$classJSUIosBase.html" title=" " alt="" coords="5,31,101,56"/>
+<area shape="rect" id="Node000001" href="$structJSUInputStream.html" title=" " alt="" coords="149,31,267,56"/>
+<area shape="poly" id="edge1485_Node000000_Node000001" title=" " alt="" coords="116,41,148,41,148,46,116,46"/>
+<area shape="rect" id="Node000002" href="$classJSURandomInputStream.html" title=" " alt="" coords="315,31,481,56"/>
+<area shape="poly" id="edge1486_Node000001_Node000002" title=" " alt="" coords="283,41,314,41,314,46,283,46"/>
+<area shape="rect" id="Node000003" href="$classJSUFileInputStream.html" title=" " alt="" coords="542,5,681,31"/>
+<area shape="poly" id="edge1487_Node000002_Node000003" title=" " alt="" coords="496,29,541,24,542,29,497,34"/>
+<area shape="rect" id="Node000004" href="$structJSUMemoryInputStream.html" title=" " alt="" coords="529,55,694,80"/>
+<area shape="poly" id="edge1488_Node000002_Node000004" title=" " alt="" coords="497,52,529,56,528,61,496,57"/>
 </map>

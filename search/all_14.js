@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['t_0',['t',['../k__tan_8c.html#a3f23ef19f75a1358ade1d01a49060f77',1,'T:&#160;k_tan.c'],['../e__asin_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_asin.c'],['../e__exp_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_exp.c'],['../e__pow_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_pow.c'],['../e__sqrt_8c.html#ac310d9181e916ba43604099aee272c71',1,'t:&#160;e_sqrt.c']]],
+  ['t_0',['t',['../e__asin_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_asin.c'],['../e__exp_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_exp.c'],['../e__pow_8c.html#aaccc9105df5383111407fd5b41255e23',1,'t:&#160;e_pow.c'],['../e__sqrt_8c.html#ac310d9181e916ba43604099aee272c71',1,'t:&#160;e_sqrt.c'],['../k__tan_8c.html#a3f23ef19f75a1358ade1d01a49060f77',1,'T:&#160;k_tan.c']]],
   ['t1_1',['t1',['../e__pow_8c.html#a469994e78f66a44815c015b7f4b8b2f8',1,'t1:&#160;e_pow.c'],['../e__sqrt_8c.html#a303f733586670876938214c2048cd807',1,'t1:&#160;e_sqrt.c']]],
   ['t2_2',['t2',['../e__pow_8c.html#a24aeadb733f27244ec14e4cba82eeee9',1,'e_pow.c']]],
   ['t_5fcontext_3',['t_context',['../structDSPTaskInfo.html#a87ba999eee5a41790794e6385aad71e4',1,'DSPTaskInfo']]],
@@ -275,7 +275,7 @@ var searchData=
   ['taps_272',['taps',['../vi_8c.html#aa55a53a2e52e5dbda3fe7ed6199a4994',1,'vi.c']]],
   ['targcont_2ec_273',['targcont.c',['../targcont_8c.html',1,'']]],
   ['targcont_2eh_274',['targcont.h',['../targcont_8h.html',1,'']]],
-  ['target_275',['target',['../structJStudio_1_1stb_1_1data_1_1THeader.html#ae1ce532550d66b17a25ad9c1abbb6f21',1,'JStudio::stb::data::THeader::target'],['../structJStudio_1_1stb_1_1data_1_1THeader_1_1Target.html',1,'JStudio::stb::data::THeader::Target'],['../d__a__npc__cd2_8cpp.html#aa15d1782a0d61976219146e1e4930f51',1,'target:&#160;d_a_npc_cd2.cpp'],['../structJASOscillator.html#a40e6d4bce9a715500b06334ccb701db2',1,'JASOscillator::Target']]],
+  ['target_275',['target',['../structJASOscillator.html#a40e6d4bce9a715500b06334ccb701db2',1,'JASOscillator::Target'],['../structJStudio_1_1stb_1_1data_1_1THeader_1_1Target.html',1,'JStudio::stb::data::THeader::Target'],['../d__a__npc__cd2_8cpp.html#aa15d1782a0d61976219146e1e4930f51',1,'target:&#160;d_a_npc_cd2.cpp'],['../structJStudio_1_1stb_1_1data_1_1THeader.html#ae1ce532550d66b17a25ad9c1abbb6f21',1,'JStudio::stb::data::THeader::target']]],
   ['target_5f5_276',['TARGET_5',['../structJASOscillator.html#a40e6d4bce9a715500b06334ccb701db2a9e61d787aa46da3538da73b180fff1e3',1,'JASOscillator']]],
   ['target_5f6_277',['TARGET_6',['../structJASOscillator.html#a40e6d4bce9a715500b06334ccb701db2a1c9a9325943861726ee438cb9d73c949',1,'JASOscillator']]],
   ['target_5fangle_5fx_278',['target_angle_x',['../d__a__obj__drop_8cpp.html#a1fb9d54213d40b16166f1cfb6dfd4f29',1,'d_a_obj_drop.cpp']]],
@@ -1218,7 +1218,7 @@ var searchData=
   ['type_5fdirector_1215',['TYPE_DIRECTOR',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42aaa904a2c8bf4f3813af5d336a40ebdc6',1,'dEvDtStaff_c']]],
   ['type_5fdokuro_1216',['TYPE_DOKURO',['../classdaObjCarry__c.html#a775d106603a94957667d7bffbf9acf5aa7d3c1eae55e8a65bd6fe8fa753873fd5',1,'daObjCarry_c']]],
   ['type_5fdungeon_1217',['TYPE_DUNGEON',['../classdMeter__fmapHIO__c.html#a502b7facedf6090123db410e86e940d8a737de504bc973f1801cf5e2f371875a4',1,'dMeter_fmapHIO_c']]],
-  ['type_5fe_1218',['type_e',['../classdaObjMGate__c.html#a13ca5533e07abcc4c97cc381e6d87cfe',1,'daObjMGate_c::Type_e'],['../classdaObjZraMark__c.html#aeaff1524360e127737c64416e8215946',1,'daObjZraMark_c::TYPE_e'],['../classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0',1,'daSwShutter_c::TYPE_e'],['../classdaTagHjump__c.html#a30b16f6ca72aed616645c2d8c8abdb65',1,'daTagHjump_c::Type_e'],['../classdaTbox2__c.html#a636a0d0d685043fd3e430ebf28db9413',1,'daTbox2_c::Type_e'],['../classdaItem__c.html#a47e223970f0b557e129fd1fdb10e0751',1,'daItem_c::Type_e']]],
+  ['type_5fe_1218',['type_e',['../classdaItem__c.html#a47e223970f0b557e129fd1fdb10e0751',1,'daItem_c::Type_e'],['../classdaTagHjump__c.html#a30b16f6ca72aed616645c2d8c8abdb65',1,'daTagHjump_c::Type_e'],['../classdaObjMGate__c.html#a13ca5533e07abcc4c97cc381e6d87cfe',1,'daObjMGate_c::Type_e'],['../classdaTbox2__c.html#a636a0d0d685043fd3e430ebf28db9413',1,'daTbox2_c::Type_e'],['../classdaObjZraMark__c.html#aeaff1524360e127737c64416e8215946',1,'daObjZraMark_c::TYPE_e'],['../classdaSwShutter__c.html#a19dfb85a1f2faccaebfcc0f240b750e0',1,'daSwShutter_c::TYPE_e']]],
   ['type_5feffect_1219',['TYPE_EFFECT',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42a239ea056d32bb91a05f656d4a3d091ad',1,'dEvDtStaff_c']]],
   ['type_5ffilone_1220',['TYPE_FILONE',['../classdaTagTWGate__c.html#aed6ff6be009999660f082bad442efaf2ad794c5f28eb985af5a104f95fc07a9f4',1,'daTagTWGate_c']]],
   ['type_5ffire_1221',['TYPE_FIRE',['../classe__ba__class.html#aebcecfb013c76010f53be4e951ddf8dca9697c24ab294ba28656b6b0b4e927c22',1,'e_ba_class']]],

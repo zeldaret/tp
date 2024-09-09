@@ -1,5 +1,6 @@
 var NAVTREEINDEX85 =
 {
+"classJASPtrTable.html#a2220bd4b8c168fe5d8e425f5bf061941":[1,1,2,59,0],
 "classJASPtrTable.html#a9273dbcab8508381771fbbd73fa4d88c":[1,1,2,59,3],
 "classJASPtrTable.html#aaadd12b6de80ac1e3a068c9c208769b7":[1,1,2,59,1],
 "classJASRegisterParam.html":[1,1,2,72],
@@ -248,6 +249,5 @@ var NAVTREEINDEX85 =
 "classJAUAudioArcLoader.html#a8ab5645a7a4b3a0784f4c5dbeef302cd":[1,1,2,88,8],
 "classJAUAudioArcLoader.html#a8b0f9a46bae10dd28ff24b82e15aa09d":[1,1,2,88,2],
 "classJAUAudioArcLoader.html#aa93e2a5e1e1460e8232f8104d08a6b34":[1,1,2,88,10],
-"classJAUAudioArcLoader.html#ab476e56b9a0e86d851035971dff5d13a":[1,1,2,88,9],
-"classJAUAudioArcLoader.html#ac99f5c4be6bf09d46ef86cc69de53158":[1,1,2,88,13]
+"classJAUAudioArcLoader.html#ab476e56b9a0e86d851035971dff5d13a":[1,1,2,88,9]
 };

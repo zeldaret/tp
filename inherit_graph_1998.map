@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classstd_1_1____bitset__base.html" title=" " alt="" coords="5,5,164,31"/>
+<area shape="rect" id="Node000000" href="$classstd_1_1____bitset__base.html" title=" " alt="" coords="5,40,139,95"/>
+<area shape="rect" id="Node000001" href="$classstd_1_1bitset.html" title=" " alt="" coords="189,5,305,31"/>
+<area shape="poly" id="edge1549_Node000000_Node000001" title=" " alt="" coords="153,42,198,29,200,34,154,47"/>
+<area shape="rect" id="Node000002" href="$classstd_1_1bitset.html" title=" " alt="" coords="187,55,307,80"/>
+<area shape="poly" id="edge1550_Node000000_Node000002" title=" " alt="" coords="154,65,186,65,186,70,154,70"/>
+<area shape="rect" id="Node000003" href="$classstd_1_1bitset.html" title=" " alt="" coords="192,104,302,130"/>
+<area shape="poly" id="edge1551_Node000000_Node000003" title=" " alt="" coords="154,88,200,101,198,106,153,93"/>
 </map>

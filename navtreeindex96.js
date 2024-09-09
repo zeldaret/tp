@@ -1,5 +1,6 @@
 var NAVTREEINDEX96 =
 {
+"classJUTProcBar.html#a964b3506e4188ab9fcf5fa55d677e309":[1,1,12,21,21],
 "classJUTProcBar.html#a98bad93fd2d1b10daac6ae361278b4ca":[1,1,12,21,13],
 "classJUTProcBar.html#a99d5259eedf629facafbef6b69268c34":[1,1,12,21,16],
 "classJUTProcBar.html#aa8e2284462a8895c36b69f5d5150faf2":[1,1,12,21,38],
@@ -248,6 +249,5 @@ var NAVTREEINDEX96 =
 "classSakuita__c.html#a7915db90bec182a7ed2ca7eecaa6843d":[3,0,2927,3],
 "classSakuita__c.html#a94e266f8bf0d46a59387c7c240f5958a":[3,0,2927,9],
 "classSakuita__c.html#aca1a52a7a27feff06d634d29f68d9cfc":[3,0,2927,0],
-"classSakuita__c.html#ae54dcd1c53471dc3851e6173f05037b1":[3,0,2927,5],
-"classSakuita__c.html#af26bc160746a61ee7165406fa5dc37b3":[3,0,2927,1]
+"classSakuita__c.html#ae54dcd1c53471dc3851e6173f05037b1":[3,0,2927,5]
 };

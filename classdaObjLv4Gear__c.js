@@ -15,12 +15,12 @@ var classdaObjLv4Gear__c =
     [ "getType", "classdaObjLv4Gear__c.html#a138a5e313c3c40c0b75d1724a2f4ce50", null ],
     [ "initBaseMtx", "classdaObjLv4Gear__c.html#a0261c87d13eb6bc48c4cb02af5902798", null ],
     [ "setBaseMtx", "classdaObjLv4Gear__c.html#a2ae5e81298426300e7d9066450bc120f", null ],
-    [ "field_0x578", "classdaObjLv4Gear__c.html#a92feaa825e30743c3c3f4b6fda790918", null ],
     [ "mCount", "classdaObjLv4Gear__c.html#a9120d53a44b080f5c96e8948e1ca7fdb", null ],
     [ "mPhase", "classdaObjLv4Gear__c.html#afb4030fd903de2d3c265cf0d8c46ddf1", null ],
     [ "mpModel", "classdaObjLv4Gear__c.html#a76c62e1601e65e33b7443c761a8fe675", null ],
-    [ "mProcID", "classdaObjLv4Gear__c.html#af1fa86a350b77dfc9e1f3e4fe84a5318", null ],
+    [ "mRotation", "classdaObjLv4Gear__c.html#aac605f45e0e2744118ad97d2ce861a11", null ],
     [ "mSpeed", "classdaObjLv4Gear__c.html#a0133b0972554082d18e459f1e8b7e6ce", null ],
+    [ "mSwActorID", "classdaObjLv4Gear__c.html#a727b35ee1e4c62d7e5bb4625816ccf6b", null ],
     [ "mTarget", "classdaObjLv4Gear__c.html#afac79d89f89e71c9e2c9ef73ba2f6cfc", null ],
     [ "mType", "classdaObjLv4Gear__c.html#ac734d36438ca92479fcdbb4cfee24460", null ]
 ];

@@ -1,5 +1,6 @@
 var NAVTREEINDEX86 =
 {
+"classJAUAudioArcLoader.html#ac99f5c4be6bf09d46ef86cc69de53158":[1,1,2,88,13],
 "classJAUAudioArcLoader.html#af60ea057d83ab7db4e13c236d1f7b6ad":[1,1,2,88,0],
 "classJAUBankTable.html":[1,1,2,89],
 "classJAUBankTable.html#a327523d2a7edb9cf58d57755fdb8da02":[1,1,2,89,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX86 =
 "classJFWDisplay.html#af84166a3fe71eef3b55b7de7c8f219c2":[1,1,3,1,0],
 "classJFWDisplay.html#af84166a3fe71eef3b55b7de7c8f219c2a53227de1e5a6faf1ae4478b199eee5b3":[1,1,3,1,0,0],
 "classJFWDisplay.html#af84166a3fe71eef3b55b7de7c8f219c2a5a6c2858fd585df25b856ef0f517434f":[1,1,3,1,0,1],
-"classJFWDisplay.html#aff48775fed56bbc6b4f030ddece62672":[1,1,3,1,14],
-"classJGadget_1_1TPointer.html":[2,0,22,13]
+"classJFWDisplay.html#aff48775fed56bbc6b4f030ddece62672":[1,1,3,1,14]
 };

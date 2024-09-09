@@ -1,9 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,153,56"/>
-<area shape="rect" id="Node000001" href="$classJStudio_1_1fvb_1_1TParse.html" title=" " alt="" coords="201,5,338,31"/>
-<area shape="poly" id="edge1555_Node000000_Node000001" title=" " alt="" coords="167,29,200,25,201,30,168,34"/>
-<area shape="rect" id="Node000002" href="$classJStudio_1_1stb_1_1TParse.html" title=" " alt="" coords="201,55,338,80"/>
-<area shape="poly" id="edge1556_Node000000_Node000002" title=" " alt="" coords="168,52,201,56,200,62,167,57"/>
-<area shape="rect" id="Node000003" href="$structJStudio_1_1TParse.html" title=" " alt="" coords="386,55,499,80"/>
-<area shape="poly" id="edge1557_Node000002_Node000003" title=" " alt="" coords="354,65,386,65,386,70,354,70"/>
+<area shape="rect" id="Node000000" href="$classTPRIsEqual__pointer__.html" title=" " alt="" coords="5,5,142,46"/>
 </map>

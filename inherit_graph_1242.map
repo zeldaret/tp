@@ -1,3 +1,29 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJ2DAlphaCompInfo.html" title=" " alt="" coords="5,5,139,31"/>
+<area shape="rect" id="Node000000" href="$structJ2DAnmBase.html" title=" " alt="" coords="5,177,107,203"/>
+<area shape="rect" id="Node000001" href="$classJ2DAnmColor.html" title=" " alt="" coords="185,29,287,55"/>
+<area shape="poly" id="edge985_Node000000_Node000001" title=" " alt="" coords="69,162,103,112,126,86,153,64,184,50,186,54,156,68,130,90,107,115,74,165"/>
+<area shape="rect" id="Node000004" href="$structJ2DAnmTevRegKey.html" title=" " alt="" coords="167,79,305,104"/>
+<area shape="poly" id="edge988_Node000000_Node000004" title=" " alt="" coords="81,165,114,138,153,113,179,102,181,107,156,118,117,142,84,169"/>
+<area shape="rect" id="Node000005" href="$structJ2DAnmTexPattern.html" title=" " alt="" coords="169,128,303,154"/>
+<area shape="poly" id="edge989_Node000000_Node000005" title=" " alt="" coords="120,170,185,152,187,157,121,175"/>
+<area shape="rect" id="Node000006" href="$structJ2DAnmTextureSRTKey.html" title=" " alt="" coords="155,177,317,203"/>
+<area shape="poly" id="edge990_Node000000_Node000006" title=" " alt="" coords="122,188,154,188,154,193,122,193"/>
+<area shape="rect" id="Node000007" href="$classJ2DAnmTransform.html" title=" " alt="" coords="171,227,301,252"/>
+<area shape="poly" id="edge991_Node000000_Node000007" title=" " alt="" coords="121,205,187,223,185,229,120,210"/>
+<area shape="rect" id="Node000010" href="$structJ2DAnmVisibilityFull.html" title=" " alt="" coords="166,276,306,302"/>
+<area shape="poly" id="edge994_Node000000_Node000010" title=" " alt="" coords="84,211,117,238,156,262,181,273,179,278,153,267,114,242,81,216"/>
+<area shape="rect" id="Node000011" href="$structJ2DAnmVtxColor.html" title=" " alt="" coords="176,325,296,351"/>
+<area shape="poly" id="edge995_Node000000_Node000011" title=" " alt="" coords="74,215,107,265,130,290,156,312,176,322,174,327,153,316,126,294,103,268,69,218"/>
+<area shape="rect" id="Node000002" href="$structJ2DAnmColorFull.html" title=" " alt="" coords="380,5,502,31"/>
+<area shape="poly" id="edge986_Node000001_Node000002" title=" " alt="" coords="301,32,379,23,380,28,302,37"/>
+<area shape="rect" id="Node000003" href="$structJ2DAnmColorKey.html" title=" " alt="" coords="380,55,503,80"/>
+<area shape="poly" id="edge987_Node000001_Node000003" title=" " alt="" coords="302,48,380,57,379,63,301,53"/>
+<area shape="rect" id="Node000008" href="$structJ2DAnmTransformFull.html" title=" " alt="" coords="366,189,517,215"/>
+<area shape="poly" id="edge992_Node000007_Node000008" title=" " alt="" coords="316,222,366,213,367,218,317,228"/>
+<area shape="rect" id="Node000009" href="$structJ2DAnmTransformKey.html" title=" " alt="" coords="365,239,517,264"/>
+<area shape="poly" id="edge993_Node000007_Node000009" title=" " alt="" coords="316,242,365,244,364,250,316,247"/>
+<area shape="rect" id="Node000012" href="$structJ2DAnmVtxColorFull.html" title=" " alt="" coords="371,300,512,326"/>
+<area shape="poly" id="edge996_Node000011_Node000012" title=" " alt="" coords="311,326,370,319,370,324,312,332"/>
+<area shape="rect" id="Node000013" href="$structJ2DAnmVtxColorKey.html" title=" " alt="" coords="370,349,512,375"/>
+<area shape="poly" id="edge997_Node000011_Node000013" title=" " alt="" coords="312,344,370,351,369,356,311,350"/>
 </map>

@@ -1,5 +1,6 @@
 var NAVTREEINDEX210 =
 {
+"classdaNpcTkj__c.html#a04b0ece2216f8a202a4cc430e3ae0a25":[1,0,3,98,26],
 "classdaNpcTkj__c.html#a077e2ee16aca9cd3fb5f747d28e89d33":[1,0,3,98,19],
 "classdaNpcTkj__c.html#a1139a3257512036cba23cbff86c191f9":[1,0,3,98,24],
 "classdaNpcTkj__c.html#a14a063dd5ffde9c34663f61c8e3c12ef":[1,0,3,98,17],
@@ -248,6 +249,5 @@ var NAVTREEINDEX210 =
 "classdaNpc__Bans__c.html#a242f46c9c60879ebf6eacbf6cdeacf15":[1,0,3,5,29],
 "classdaNpc__Bans__c.html#a257455ad7fc16331885dcfe9565320bd":[1,0,3,5,10],
 "classdaNpc__Bans__c.html#a271f65b947849bd3d84f0cd840d510fe":[1,0,3,5,20],
-"classdaNpc__Bans__c.html#a2f3e5b17653b312b418d5975e10d54bc":[1,0,3,5,11],
-"classdaNpc__Bans__c.html#a3478fcc556cdfc92ccb3e2d40351bc9c":[1,0,3,5,37]
+"classdaNpc__Bans__c.html#a2f3e5b17653b312b418d5975e10d54bc":[1,0,3,5,11]
 };

@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJMessage_1_1locale.html" title=" " alt="" coords="5,5,127,31"/>
+<area shape="rect" id="Node000000" href="$structJMessage_1_1TControl.html" title=" " alt="" coords="5,31,142,56"/>
+<area shape="rect" id="Node000001" href="$structjmessage__string__tControl.html" title=" " alt="" coords="190,5,358,31"/>
+<area shape="poly" id="edge1364_Node000000_Node000001" title=" " alt="" coords="157,30,189,26,190,31,158,36"/>
+<area shape="rect" id="Node000002" href="$structjmessage__tControl.html" title=" " alt="" coords="209,55,339,80"/>
+<area shape="poly" id="edge1365_Node000000_Node000002" title=" " alt="" coords="158,51,209,57,208,62,157,56"/>
 </map>

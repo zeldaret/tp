@@ -1,9 +1,19 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJAIStreamAramMgr.html" title=" " alt="" coords="5,46,142,72"/>
-<area shape="rect" id="Node000001" href="$classJAUStreamAramMgrBase__.html" title=" " alt="" coords="190,5,362,46"/>
-<area shape="poly" id="edge1257_Node000000_Node000001" title=" " alt="" coords="156,43,189,37,190,43,157,48"/>
-<area shape="rect" id="Node000003" href="$classJAUStreamAramMgrBase__.html" title=" " alt="" coords="190,71,362,111"/>
-<area shape="poly" id="edge1259_Node000000_Node000003" title=" " alt="" coords="157,69,190,75,189,80,156,75"/>
-<area shape="rect" id="Node000002" href="$classJAUStreamStaticAramMgr__.html" title=" " alt="" coords="410,5,586,46"/>
-<area shape="poly" id="edge1258_Node000001_Node000002" title=" " alt="" coords="377,23,410,23,410,28,377,28"/>
+<area shape="rect" id="Node000000" href="$structJAIStreamDataMgr.html" title=" " alt="" coords="200,55,332,80"/>
+<area shape="rect" id="Node000001" href="$structJAUStreamDataMgr__StreamFileTable.html" title=" " alt="" coords="385,34,593,75"/>
+<area shape="poly" id="edge1260_Node000000_Node000001" title=" " alt="" coords="347,60,384,58,385,63,347,65"/>
+<area shape="rect" id="Node000003" href="$classZ2SoundInfo.html" title=" " alt="" coords="442,119,537,144"/>
+<area shape="poly" id="edge1261_Node000000_Node000003" title=" " alt="" coords="328,83,442,116,441,121,327,88"/>
+<area shape="rect" id="Node000005" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,89,147,129"/>
+<area shape="rect" id="Node000004" href="$structJAISoundInfo.html" title=" " alt="" coords="216,104,316,130"/>
+<area shape="poly" id="edge1262_Node000005_Node000004" title=" " alt="" coords="162,110,215,112,215,117,162,115"/>
+<area shape="poly" id="edge1263_Node000004_Node000003" title=" " alt="" coords="331,118,441,126,441,131,331,124"/>
+<area shape="rect" id="Node000007" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,154,147,195"/>
+<area shape="rect" id="Node000006" href="$classJAUSoundInfo.html" title=" " alt="" coords="213,153,319,179"/>
+<area shape="poly" id="edge1264_Node000007_Node000006" title=" " alt="" coords="162,168,212,166,212,171,162,173"/>
+<area shape="poly" id="edge1265_Node000006_Node000003" title=" " alt="" coords="334,153,441,136,442,141,335,158"/>
+<area shape="rect" id="Node000008" href="$classJASGlobalInstance.html" title=" " alt="" coords="195,203,337,244"/>
+<area shape="poly" id="edge1266_Node000008_Node000003" title=" " alt="" coords="330,194,455,142,457,147,332,199"/>
+<area shape="rect" id="Node000002" href="$structJAUStreamFileTable.html" title=" " alt="" coords="195,5,337,31"/>
+<area shape="poly" id="edge1267_Node000002_Node000001" title=" " alt="" coords="353,29,385,35,384,40,352,35"/>
 </map>

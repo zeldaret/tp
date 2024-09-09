@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJAIAudible.html" title=" " alt="" coords="33,5,117,31"/>
-<area shape="rect" id="Node000001" href="$structZ2Audible.html" title=" " alt="" coords="193,35,272,60"/>
-<area shape="poly" id="edge1128_Node000000_Node000001" title=" " alt="" coords="133,26,193,38,192,43,132,31"/>
-<area shape="rect" id="Node000002" href="$classJASPoolAllocObject.html" title=" " alt="" coords="5,55,145,96"/>
-<area shape="poly" id="edge1129_Node000002_Node000001" title=" " alt="" coords="159,58,192,52,193,57,160,63"/>
+<area shape="rect" id="Node000000" href="$structJAIAudience.html" title=" " alt="" coords="28,5,124,31"/>
+<area shape="rect" id="Node000001" href="$structZ2Audience.html" title=" " alt="" coords="195,35,285,60"/>
+<area shape="poly" id="edge1130_Node000000_Node000001" title=" " alt="" coords="139,27,195,37,194,42,139,32"/>
+<area shape="rect" id="Node000002" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,55,147,96"/>
+<area shape="poly" id="edge1131_Node000002_Node000001" title=" " alt="" coords="162,58,194,53,195,58,163,63"/>
 </map>
