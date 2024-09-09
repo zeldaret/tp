@@ -52,6 +52,12 @@ inline T cLib_checkBit(T value, T bit) {
 
 template <typename T>
 inline T cLib_minMaxLimit(T val, T min, T max) {
+    return (T)((T)val < (T)min ? (T)min : ((T)val > (T)max ? (T)max : (T)val));
+}
+
+// fake function, replace usages with cLib_minMaxLimit when possible
+template <typename T>
+inline T cLib_minMaxLimit2(T val, T min, T max) {
     T ret;
     T var_r30;
 

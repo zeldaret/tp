@@ -283,7 +283,7 @@ int daAlink_c::procMove() {
         setBlendMoveAnime(lit_6041);
         if (field_0x3174 != 8) {
             field_0x30a0 =
-                cLib_minMaxLimit((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp,
+                cLib_minMaxLimit2((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp,
                                  daAlinkHIO_basic_c0::m.mNeckMaxDown);
         }
     }
