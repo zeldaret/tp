@@ -7,6 +7,7 @@
 #include "JSystem/J2DGraph/J2DPictureEx.h"
 #include "JSystem/J2DGraph/J2DTextBoxEx.h"
 #include "JSystem/J2DGraph/J2DWindowEx.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
@@ -135,78 +136,7 @@ extern "C" extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */];
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CD068-803CD108 02A188 009C+04 2/2 0/0 0/0 .data            __vt__9J2DScreen */
-SECTION_DATA extern void* __vt__9J2DScreen[39 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9J2DScreenFv,
-    (void*)getTypeID__9J2DScreenCFv,
-    (void*)move__7J2DPaneFff,
-    (void*)add__7J2DPaneFff,
-    (void*)resize__7J2DPaneFff,
-    (void*)setCullBack__7J2DPaneFb,
-    (void*)setCullBack__7J2DPaneF11_GXCullMode,
-    (void*)setAlpha__7J2DPaneFUc,
-    (void*)setConnectParent__7J2DPaneFb,
-    (void*)calcMtx__9J2DScreenFv,
-    (void*)update__7J2DPaneFv,
-    (void*)drawSelf__7J2DPaneFff,
-    (void*)drawSelf__9J2DScreenFffPA3_A4_f,
-    (void*)search__9J2DScreenFUx,
-    (void*)searchUserInfo__9J2DScreenFUx,
-    (void*)makeMatrix__7J2DPaneFff,
-    (void*)makeMatrix__7J2DPaneFffff,
-    (void*)isUsed__9J2DScreenFPC7ResTIMG,
-    (void*)isUsed__9J2DScreenFPC7ResFONT,
-    (void*)clearAnmTransform__9J2DScreenFv,
-    (void*)rewriteAlpha__7J2DPaneFv,
-    (void*)setAnimation__9J2DScreenFP10J2DAnmBase,
-    (void*)setAnimation__9J2DScreenFP15J2DAnmTransform,
-    (void*)setAnimation__9J2DScreenFP11J2DAnmColor,
-    (void*)setAnimation__9J2DScreenFP16J2DAnmTexPattern,
-    (void*)setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey,
-    (void*)setAnimation__9J2DScreenFP15J2DAnmTevRegKey,
-    (void*)setAnimation__9J2DScreenFP20J2DAnmVisibilityFull,
-    (void*)setAnimation__9J2DScreenFP14J2DAnmVtxColor,
-    (void*)animationTransform__7J2DPaneFPC15J2DAnmTransform,
-    (void*)setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull,
-    (void*)setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)setAnimationVC__9J2DScreenFP14J2DAnmVtxColor,
-    (void*)animationPane__7J2DPaneFPC15J2DAnmTransform,
-    (void*)createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl,
-    (void*)
-        createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive,
-    /* padding */
-    NULL,
-};
-
-/* 80456220-80456224 004820 0004+00 4/4 0/0 0/0 .sdata2          @1561 */
-SECTION_SDATA2 static u8 lit_1561[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80456224-80456228 004824 0004+00 2/2 0/0 0/0 .sdata2          @1562 */
-SECTION_SDATA2 static f32 lit_1562 = 640.0f;
-
-/* 80456228-80456230 004828 0004+04 2/2 0/0 0/0 .sdata2          @1563 */
-SECTION_SDATA2 static f32 lit_1563[1 + 1 /* padding */] = {
-    480.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 802F8498-802F8540 2F2DD8 00A8+00 0/0 59/59 4/4 .text            __ct__9J2DScreenFv */
-// Matches with literals
-#ifdef NONMATCHING
 J2DScreen::J2DScreen()
     : J2DPane(NULL, true, 'root', JGeometry::TBox2<f32>(JGeometry::TVec2<f32>(0.0f, 0.0f), JGeometry::TVec2<f32>(640.0f, 480.0f))), mColor() {
     field_0x4 = -1;
@@ -217,16 +147,6 @@ J2DScreen::J2DScreen()
     mFontRes = NULL;
     mNameTable = NULL;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J2DScreen::J2DScreen() {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/__ct__9J2DScreenFv.s"
-}
-#pragma pop
-#endif
 
 /* 802F8540-802F85A8 2F2E80 0068+00 1/0 0/0 0/0 .text            __dt__9J2DScreenFv */
 J2DScreen::~J2DScreen() {
@@ -326,8 +246,7 @@ bool J2DScreen::getScreenInformation(JSURandomInputStream* p_stream) {
         return false;
     }
 
-    f32 tmp_0 = FLOAT_LABEL(lit_1561);
-    JGeometry::TBox2<f32> dimensions(tmp_0, tmp_0, info.mWidth, info.mHeight);
+    JGeometry::TBox2<f32> dimensions(0.0f, 0.0f, info.mWidth, info.mHeight);
     place(dimensions);
 
     JUtility::TColor color(info.mColor);
@@ -457,16 +376,7 @@ J2DPane* J2DScreen::createPane(J2DScrnBlockHeader const& header, JSURandomInputS
     return newPane;
 }
 
-/* ############################################################################################## */
-/* 80456238-8045623C 004838 0004+00 1/1 0/0 0/0 .sdata2          @1829 */
-SECTION_SDATA2 static f32 lit_1829 = -1.0f;
-
-/* 8045623C-80456240 00483C 0004+00 1/1 0/0 0/0 .sdata2          @1830 */
-SECTION_SDATA2 static f32 lit_1830 = 1.0f;
-
 /* 802F8ED4-802F90A0 2F3814 01CC+00 0/0 51/51 4/4 .text draw__9J2DScreenFffPC14J2DGrafContext */
-// matches with literals
-#ifdef NONMATCHING
 void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
     u32 l_x, l_y, width, height;
 
@@ -502,16 +412,6 @@ void J2DScreen::draw(f32 x, f32 y, J2DGrafContext const* grafCtx) {
         GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::draw(f32 param_0, f32 param_1, J2DGrafContext const* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/draw__9J2DScreenFffPC14J2DGrafContext.s"
-}
-#pragma pop
-#endif
 
 /* 802F90A0-802F90E0 2F39E0 0040+00 1/0 0/0 0/0 .text            search__9J2DScreenFUx */
 J2DPane* J2DScreen::search(u64 tag) {
@@ -532,8 +432,6 @@ J2DPane* J2DScreen::searchUserInfo(u64 tag) {
 }
 
 /* 802F9120-802F9280 2F3A60 0160+00 1/0 0/0 0/0 .text            drawSelf__9J2DScreenFffPA3_A4_f */
-// matches with literals
-#ifdef NONMATCHING
 void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
     JUtility::TColor color(mColor);
     u8 alpha = (color.a * mAlpha) / 255;
@@ -562,16 +460,6 @@ void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
         GXEnd();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DScreen/drawSelf__9J2DScreenFffPA3_A4_f.s"
-}
-#pragma pop
-#endif
 
 /* 802F9280-802F937C 2F3BC0 00FC+00 1/1 0/0 0/0 .text
  * getResReference__9J2DScreenFP20JSURandomInputStreamUl        */

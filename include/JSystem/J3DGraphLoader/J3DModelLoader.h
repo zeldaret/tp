@@ -199,6 +199,46 @@ struct J3DTextureBlock : public J3DModelBlock {
     /* 0x10 */ void* mpNameTable;
 };
 
+enum J3DModelLoaderFlagTypes {
+    J3DMLF_None = 0x00000000,
+
+    J3DMLF_MtxSoftImageCalc = 0x00000001,
+    J3DMLF_MtxMayaCalc = 0x00000002,
+    J3DMLF_MtxBasicCalc = 0x00000004,
+    J3DMLF_04 = 0x00000008,
+    J3DMLF_MtxTypeMask = J3DMLF_MtxSoftImageCalc | J3DMLF_MtxMayaCalc | J3DMLF_MtxBasicCalc |
+                         J3DMLF_04,  // 0 - 2 (0 = Basic, 1 = SoftImage, 2 = Maya)
+
+    J3DMLF_UseImmediateMtx = 0x00000010,
+    J3DMLF_UsePostTexMtx = 0x00000020,
+    J3DMLF_07 = 0x00000040,
+    J3DMLF_08 = 0x00000080,
+    J3DMLF_NoMatrixTransform = 0x00000100,
+    J3DMLF_10 = 0x00000200,
+    J3DMLF_11 = 0x00000400,
+    J3DMLF_12 = 0x00000800,
+    J3DMLF_13 = 0x00001000,
+    J3DMLF_DoBdlMaterialCalc = 0x00002000,
+    J3DMLF_15 = 0x00004000,
+    J3DMLF_16 = 0x00008000,
+    J3DMLF_TevNumShift = 0x00010000,
+    J3DMLF_18 = 0x00020000,
+    J3DMLF_UseSingleSharedDL = 0x00040000,
+    J3DMLF_20 = 0x00080000,
+    J3DMLF_21 = 0x00100000,
+    J3DMLF_UseUniqueMaterials = 0x00200000,
+    J3DMLF_23 = 0x00400000,
+    J3DMLF_24 = 0x00800000,
+    J3DMLF_Material_UseIndirect = 0x01000000,
+    J3DMLF_26 = 0x02000000,
+    J3DMLF_27 = 0x04000000,
+    J3DMLF_Material_TexGen_Block4 = 0x08000000,
+    J3DMLF_Material_PE_Full = 0x10000000,
+    J3DMLF_Material_PE_FogOff = 0x20000000,
+    J3DMLF_Material_Color_LightOn = 0x40000000,
+    J3DMLF_Material_Color_AmbientOn = 0x80000000
+};
+
 /**
  * @ingroup jsystem-j3d
  * 
@@ -228,7 +268,24 @@ public:
     /* 80337010 */ u32 calcSizePatchedMaterial(J3DMaterialBlock const*, u32);
     /* 803370A0 */ u32 calcSizeMaterialDL(J3DMaterialDLBlock const*, u32);
 
-    // virtuals
+    // Remove when J3DModelLoader.cc is ok
+    #ifndef NON_VIRTUAL_J3DModelLoader
+    /* 803347E0 */ virtual J3DModelData* load(void const*, u32);
+    /* 80334ABC */ virtual J3DMaterialTable* loadMaterialTable(void const*);
+    /* 80334C20 */ virtual J3DModelData* loadBinaryDisplayList(void const*, u32);
+    /* 803367D4 */ virtual u32 calcLoadSize(void const*, u32);
+    /* 803369A0 */ virtual u32 calcLoadMaterialTableSize(void const*);
+    /* 80336A98 */ virtual u32 calcLoadBinaryDisplayListSize(void const*, u32);
+    /* 80336794 */ virtual u16 countMaterialNum(void const*);
+    /* 80334EE0 */ virtual void setupBBoardInfo();
+    /* 80336450 */ virtual ~J3DModelLoader();
+    /* 8033649C */ virtual void readMaterial(J3DMaterialBlock const*, u32);
+    /* 80336498 */ virtual void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
+    /* 803364A4 */ virtual void readMaterialTable(J3DMaterialBlock const*, u32);
+    /* 803364A0 */ virtual void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
+    /* 803364A8 */ virtual u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
+    /* 803364B0 */ virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
+    #else
     /* 803347E0 */ J3DModelData* load(void const*, u32);
     /* 80334ABC */ J3DMaterialTable* loadMaterialTable(void const*);
     /* 80334C20 */ J3DModelData* loadBinaryDisplayList(void const*, u32);
@@ -244,8 +301,10 @@ public:
     /* 803364A0 */ void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
     /* 803364A8 */ u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
     /* 803364B0 */ u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
-
+    
     /* 0x00 */ void* _vtable;
+    #endif
+
     /* 0x04 */ J3DModelData* mpModelData;
     /* 0x08 */ J3DMaterialTable* mpMaterialTable;
     /* 0x0C */ J3DShapeBlock const* mpShapeBlock;

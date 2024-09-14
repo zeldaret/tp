@@ -7,6 +7,8 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "d/kankyo/d_kankyo_rain.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 
@@ -222,7 +224,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             fogInfo_p = material_p->getFog()->getFogInfo();
         }
 
-        fogInfo_p->field_0x0 = 2;
+        fogInfo_p->mType = 2;
     }
 
     // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
@@ -234,7 +236,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             fogInfo_p = material_p->getFog()->getFogInfo();
         }
 
-        fogInfo_p->field_0x0 = 2;
+        fogInfo_p->mType = 2;
     }
 
     // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
@@ -246,7 +248,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             fogInfo_p = material_p->getFog()->getFogInfo();
         }
 
-        fogInfo_p->field_0x0 = 2;
+        fogInfo_p->mType = 2;
     }
 
     if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
@@ -429,7 +431,7 @@ SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 #pragma pop
 
 /* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
-// one small weird block and some regalloc at the end
+// some regalloc at the end
 #ifdef NONMATCHING
 static int daVrbox2_color_set(vrbox2_class* i_this) {
     dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
@@ -492,8 +494,6 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 
     J3DMaterial* material_1 = modelData->getMaterialNodePointer(1);
     if (material_1 != NULL) {
-        material_1->setCullMode(0);
-
         if (material_1->getTexMtx(0) != NULL) {
             J3DTexMtxInfo& mtx_info = material_1->getTexMtx(0)->getTexMtxInfo();
             mtx_info.mSRT.mTranslationX += var_f29 * 4.4f;

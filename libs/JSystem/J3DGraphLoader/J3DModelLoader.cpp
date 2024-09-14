@@ -3,6 +3,8 @@
 // Translation Unit: J3DModelLoader
 //
 
+#define NON_VIRTUAL_J3DModelLoader
+
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DJointFactory.h"
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
