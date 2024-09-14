@@ -1,6 +1,6 @@
 <map id="J3DMaterialTable" name="J3DMaterialTable">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2099,309,2221,335"/>
-<area shape="rect" id="Node000002" href="$structJ3DMaterial.html" title=" " alt="" coords="1809,408,1900,434"/>
+<area shape="rect" id="Node000002" href="$classJ3DMaterial.html" title=" " alt="" coords="1809,408,1900,434"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1910,400,2117,333,2118,338,1912,405"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="1829,391,1838,384,1854,381,1870,384,1880,390,1882,399,1878,409,1873,406,1877,399,1875,393,1868,389,1855,387,1840,389,1832,395"/>
 <area shape="rect" id="Node000003" href="$classJ3DShape.html" title=" " alt="" coords="2119,577,2201,603"/>

@@ -694,7 +694,7 @@ var sectionId = 'dynsection-1';
 <!-- Node66 -->
 <g id="Node000066" class="node">
 <title>Node66</title>
-<g id="a_Node000066"><a xlink:href="structJ3DMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000066"><a xlink:href="classJ3DMaterial.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="616.25,-131.25 548.5,-131.25 548.5,-112 616.25,-112 616.25,-131.25"/>
 <text text-anchor="middle" x="582.38" y="-117.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterial</text>
 </a>

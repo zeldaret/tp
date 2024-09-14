@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJ3DClusterVertex.html" title=" " alt="" coords="5,5,128,31"/>
+<area shape="rect" id="Node000000" href="$classJ3DColorBlock.html" title=" " alt="" coords="5,55,113,80"/>
+<area shape="rect" id="Node000001" href="$classJ3DColorBlockLightOff.html" title=" " alt="" coords="161,5,314,31"/>
+<area shape="poly" id="edge1037_Node000000_Node000001" title=" " alt="" coords="122,47,187,29,189,34,123,53"/>
+<area shape="rect" id="Node000003" href="$classJ3DColorBlockLightOn.html" title=" " alt="" coords="161,55,314,80"/>
+<area shape="poly" id="edge1039_Node000000_Node000003" title=" " alt="" coords="128,65,161,65,161,70,128,70"/>
+<area shape="rect" id="Node000004" href="$structJ3DColorBlockNull.html" title=" " alt="" coords="172,104,303,130"/>
+<area shape="poly" id="edge1040_Node000000_Node000004" title=" " alt="" coords="123,82,189,101,187,106,122,88"/>
+<area shape="rect" id="Node000002" href="$classJ3DColorBlockAmbientOn.html" title=" " alt="" coords="362,5,534,31"/>
+<area shape="poly" id="edge1038_Node000001_Node000002" title=" " alt="" coords="330,16,362,16,362,21,330,21"/>
 </map>

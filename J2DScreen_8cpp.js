@@ -108,11 +108,5 @@ var J2DScreen_8cpp =
     [ "__vt__14JSUInputStream", "J2DScreen_8cpp.html#a3ba1eee5d2d31aadd4b947ca98a0ff86", null ],
     [ "__vt__20JSUMemoryInputStream", "J2DScreen_8cpp.html#ae13f389d3317070a35b72069e0c96caa", null ],
     [ "__vt__20JSURandomInputStream", "J2DScreen_8cpp.html#a1535a76c39c811a0750c1978f91d77d1", null ],
-    [ "__vt__9J2DScreen", "J2DScreen_8cpp.html#ae0efb2438f766cc468fddf07f0024ec3", null ],
-    [ "lit_1561", "J2DScreen_8cpp.html#a16e60ca54c3f95134b8bfe9a6c20dc2a", null ],
-    [ "lit_1562", "J2DScreen_8cpp.html#a2de7b8f75531c1805548d182c5cbabf5", null ],
-    [ "lit_1563", "J2DScreen_8cpp.html#af1ee6cf9c1a9956c5f8a16de746e561b", null ],
-    [ "lit_1829", "J2DScreen_8cpp.html#a3b2d2127dc79515ba7e2b0a3560166f6", null ],
-    [ "lit_1830", "J2DScreen_8cpp.html#ab9a6463c0fa6f98acbce9c003e27f670", null ],
     [ "mDataManage__9J2DScreen", "J2DScreen_8cpp.html#a2ea249c469d83a1e97e829860207d643", null ]
 ];

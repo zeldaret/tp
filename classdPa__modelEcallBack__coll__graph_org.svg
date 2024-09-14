@@ -213,7 +213,7 @@
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="structJ3DMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000014"><a xlink:href="classJ3DMaterial.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1395.5,-464.16 1327.75,-464.16 1327.75,-444.91 1395.5,-444.91 1395.5,-464.16"/>
 <text text-anchor="middle" x="1361.62" y="-450.66" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterial</text>
 </a>

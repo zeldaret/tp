@@ -1,6 +1,5 @@
 var J3DModelLoaderCalcSize_8cpp =
 [
-    [ "J3DMaterialFactory::MaterialType", "structJ3DMaterialFactory_1_1MaterialType.html", null ],
     [ "__ct__15J3DShapeFactoryFRC13J3DShapeBlock", "J3DModelLoaderCalcSize_8cpp.html#a33be6c291a7f8ca2e4d216ad1390a70d", null ],
     [ "__ct__18J3DMaterialFactoryFRC16J3DMaterialBlock", "J3DModelLoaderCalcSize_8cpp.html#a8a75f9ffd471b59be759a434cbd941f5", null ],
     [ "__ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock", "J3DModelLoaderCalcSize_8cpp.html#af94564ad0670953971935d4c619889dc", null ],
@@ -32,7 +31,6 @@ var J3DModelLoaderCalcSize_8cpp =
     [ "countMaterialNum__14J3DModelLoaderFPCv", "J3DModelLoaderCalcSize_8cpp.html#a14f2690a4b130c9a7242c8075201d3c9", null ],
     [ "countUniqueMaterials__18J3DMaterialFactoryFv", "J3DModelLoaderCalcSize_8cpp.html#ae4632e2b174078e3aa6f99f17ad78c3a", null ],
     [ "func_8033674C", "J3DModelLoaderCalcSize_8cpp.html#aba96f7d6bb7fec1a7585b30692f36cc6", null ],
-    [ "OSReport", "J3DModelLoaderCalcSize_8cpp.html#ade4b47b8fab54c8f6a71bf594943c828", null ],
     [ "J3DModelLoaderCalcSize__stringBase0", "J3DModelLoaderCalcSize_8cpp.html#aded613bb515f79ecc178711df2586851", null ],
     [ "pad_803A20FC", "J3DModelLoaderCalcSize_8cpp.html#a16857f9de9932cc3e0d608ce839f6f67", null ],
     [ "stringBase_803A20E8", "J3DModelLoaderCalcSize_8cpp.html#a80ae552225bb909884a486908c79450a", null ]

@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJAU__JASInitializer.html" title=" " alt="" coords="5,5,136,31"/>
+<area shape="rect" id="Node000000" href="$classJAUAudioArcInterpreter.html" title=" " alt="" coords="5,5,165,31"/>
+<area shape="rect" id="Node000001" href="$classJAUAudioArcLoader.html" title=" " alt="" coords="213,5,353,31"/>
+<area shape="poly" id="edge1320_Node000000_Node000001" title=" " alt="" coords="180,16,212,16,212,21,180,21"/>
+<area shape="rect" id="Node000002" href="$classZ2AudioArcLoader.html" title=" " alt="" coords="401,5,530,31"/>
+<area shape="poly" id="edge1321_Node000001_Node000002" title=" " alt="" coords="368,16,400,16,400,21,368,21"/>
 </map>

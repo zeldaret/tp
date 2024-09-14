@@ -1,11 +1,5 @@
 var NAVTREEINDEX20 =
 {
-"J3DMaterialFactory__v21_8cpp.html#a08afd31c63e650a20ef1ee6d31e492fc":[4,0,2,1,3,4,28],
-"J3DMaterialFactory__v21_8cpp.html#a0e0976ed12286c98b80863761b52fed6":[4,0,2,1,3,4,54],
-"J3DMaterialFactory__v21_8cpp.html#a107293e99e8cdeeb739e10ea363409c3":[4,0,2,1,3,4,15],
-"J3DMaterialFactory__v21_8cpp.html#a13248477b33eb38b89b05ff86c58a0b5":[4,0,2,1,3,4,34],
-"J3DMaterialFactory__v21_8cpp.html#a1663b76fefc22ea0dedfe10b69f37a03":[4,0,2,1,3,4,4],
-"J3DMaterialFactory__v21_8cpp.html#a1ade9f29cc8dfc6abc25de9f07836d50":[4,0,2,1,3,4,13],
 "J3DMaterialFactory__v21_8cpp.html#a1d4faadd17ebfc165fdec92d8af78302":[4,0,2,1,3,4,50],
 "J3DMaterialFactory__v21_8cpp.html#a1d8d6d71c5c200798db32036c44e5213":[4,0,2,1,3,4,46],
 "J3DMaterialFactory__v21_8cpp.html#a246a5ba3b756b5c5ae668a9ea534ff60":[4,0,2,1,3,4,41],
@@ -249,5 +243,11 @@ var NAVTREEINDEX20 =
 "J3DMaterial_8cpp.html#ae0f878248f5b1dbf4ab0c6684fc5065f":[4,0,2,1,2,3,11],
 "J3DMaterial_8cpp.html#ae11bdd42afd572025eea91d3374245b2":[4,0,2,1,2,3,30],
 "J3DMaterial_8cpp.html#ae14d57c2eb308cfb37ffa7753e214a09":[4,0,2,1,2,3,66],
-"J3DMaterial_8cpp.html#ae198c8c6b6a06c13c8849a03a05a6ab8":[4,0,2,1,2,3,136]
+"J3DMaterial_8cpp.html#ae198c8c6b6a06c13c8849a03a05a6ab8":[4,0,2,1,2,3,136],
+"J3DMaterial_8cpp.html#ae36c938d073f772ade93297b6f9a6e6d":[4,0,2,1,2,3,193],
+"J3DMaterial_8cpp.html#ae4499662748fc7e53974c6b2347a5617":[4,0,2,1,2,3,10],
+"J3DMaterial_8cpp.html#ae4513f0bbae14c1fa53197f54962cfe3":[4,0,2,1,2,3,161],
+"J3DMaterial_8cpp.html#ae5f66ec4b7906da8c2a79d7aeea3af9a":[4,0,2,1,2,3,45],
+"J3DMaterial_8cpp.html#ae6761083ac5767bef3c2bca90cad4b7c":[4,0,2,1,2,3,215],
+"J3DMaterial_8cpp.html#ae6ec3fd03d13c32850a227d6fbf19da6":[4,0,2,1,2,3,182]
 };

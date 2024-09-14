@@ -1,3 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJ3DSkinNList.html" title=" " alt="" coords="5,5,108,31"/>
+<area shape="rect" id="Node000000" href="$classJ3DTevBlock.html" title=" " alt="" coords="5,129,105,155"/>
+<area shape="rect" id="Node000001" href="$classJ3DTevBlock1.html" title=" " alt="" coords="173,5,280,31"/>
+<area shape="poly" id="edge1116_Node000000_Node000001" title=" " alt="" coords="73,115,107,77,151,40,173,29,175,34,154,44,110,80,77,119"/>
+<area shape="rect" id="Node000002" href="$classJ3DTevBlock16.html" title=" " alt="" coords="170,55,283,80"/>
+<area shape="poly" id="edge1117_Node000000_Node000002" title=" " alt="" coords="91,119,152,89,180,78,182,83,154,94,94,124"/>
+<area shape="rect" id="Node000003" href="$classJ3DTevBlock2.html" title=" " alt="" coords="173,104,280,130"/>
+<area shape="poly" id="edge1118_Node000000_Node000003" title=" " alt="" coords="120,130,172,122,173,127,120,135"/>
+<area shape="rect" id="Node000004" href="$classJ3DTevBlock4.html" title=" " alt="" coords="173,153,280,179"/>
+<area shape="poly" id="edge1119_Node000000_Node000004" title=" " alt="" coords="120,149,173,156,172,161,120,154"/>
+<area shape="rect" id="Node000005" href="$classJ3DTevBlockNull.html" title=" " alt="" coords="165,203,288,228"/>
+<area shape="poly" id="edge1120_Node000000_Node000005" title=" " alt="" coords="94,160,154,189,182,200,180,205,152,194,92,165"/>
+<area shape="rect" id="Node000006" href="$classJ3DTevBlockPatched.html" title=" " alt="" coords="153,252,300,278"/>
+<area shape="poly" id="edge1121_Node000000_Node000006" title=" " alt="" coords="77,166,111,203,154,239,175,249,173,254,151,243,107,207,73,169"/>
 </map>

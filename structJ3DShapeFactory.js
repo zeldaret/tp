@@ -1,12 +1,9 @@
 var structJ3DShapeFactory =
 [
     [ "J3DShapeFactory", "structJ3DShapeFactory.html#a96b0a43f398913f81967ef273152a08e", null ],
-    [ "J3DShapeFactory", "structJ3DShapeFactory.html#a96b0a43f398913f81967ef273152a08e", null ],
     [ "allocVcdVatCmdBuffer", "structJ3DShapeFactory.html#a3e55926185415cc654090f5d95e912a8", null ],
     [ "calcSize", "structJ3DShapeFactory.html#abc90b43f03368304263026b2d3c81d78", null ],
-    [ "calcSize", "structJ3DShapeFactory.html#abc90b43f03368304263026b2d3c81d78", null ],
     [ "calcSizeShapeMtx", "structJ3DShapeFactory.html#a16d0f75324ff59836c4f7a5593ea372f", null ],
-    [ "calcSizeVcdVatCmdBuffer", "structJ3DShapeFactory.html#ae0bed8e4758aeea27a02f307389997d5", null ],
     [ "calcSizeVcdVatCmdBuffer", "structJ3DShapeFactory.html#ae0bed8e4758aeea27a02f307389997d5", null ],
     [ "create", "structJ3DShapeFactory.html#a292f63f05a66914f60f3ef7d48d07623", null ],
     [ "getMax", "structJ3DShapeFactory.html#af23d421f6354964f77b6c03e9337e4e3", null ],

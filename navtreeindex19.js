@@ -1,11 +1,5 @@
 var NAVTREEINDEX19 =
 {
-"J3DMaterialFactory_8cpp.html#a1af208926d6d848a9e87a81534e4659a":[4,0,2,1,3,3,242],
-"J3DMaterialFactory_8cpp.html#a1b7c4db0ce0fc3cfe723367fae44f7ba":[4,0,2,1,3,3,108],
-"J3DMaterialFactory_8cpp.html#a1c6ea3ce6b2f8383c8d6206c2cac9c31":[4,0,2,1,3,3,209],
-"J3DMaterialFactory_8cpp.html#a1ce4cec90029436a031d34dd857717d3":[4,0,2,1,3,3,10],
-"J3DMaterialFactory_8cpp.html#a1cefe4485dd213782f118ad3fe656c90":[4,0,2,1,3,3,154],
-"J3DMaterialFactory_8cpp.html#a1e0826f016257afc29c2310e9d65572c":[4,0,2,1,3,3,8],
 "J3DMaterialFactory_8cpp.html#a1e828a7568962c999d9922e140a17f33":[4,0,2,1,3,3,221],
 "J3DMaterialFactory_8cpp.html#a1ea52478bcdee6aa051125f6fa3a4e84":[4,0,2,1,3,3,141],
 "J3DMaterialFactory_8cpp.html#a1f3334cee3fe32160a1b845c23d92694":[4,0,2,1,3,3,168],
@@ -249,5 +243,11 @@ var NAVTREEINDEX19 =
 "J3DMaterialFactory_8cpp.html#affd343b16cd10b9a9f8b24787421c7ff":[4,0,2,1,3,3,261],
 "J3DMaterialFactory_8h.html":[4,0,1,6,3,3],
 "J3DMaterialFactory_8h_source.html":[4,0,1,6,3,3],
-"J3DMaterialFactory__v21_8cpp.html":[4,0,2,1,3,4]
+"J3DMaterialFactory__v21_8cpp.html":[4,0,2,1,3,4],
+"J3DMaterialFactory__v21_8cpp.html#a08afd31c63e650a20ef1ee6d31e492fc":[4,0,2,1,3,4,28],
+"J3DMaterialFactory__v21_8cpp.html#a0e0976ed12286c98b80863761b52fed6":[4,0,2,1,3,4,54],
+"J3DMaterialFactory__v21_8cpp.html#a107293e99e8cdeeb739e10ea363409c3":[4,0,2,1,3,4,15],
+"J3DMaterialFactory__v21_8cpp.html#a13248477b33eb38b89b05ff86c58a0b5":[4,0,2,1,3,4,34],
+"J3DMaterialFactory__v21_8cpp.html#a1663b76fefc22ea0dedfe10b69f37a03":[4,0,2,1,3,4,4],
+"J3DMaterialFactory__v21_8cpp.html#a1ade9f29cc8dfc6abc25de9f07836d50":[4,0,2,1,3,4,13]
 };

@@ -203,7 +203,7 @@ var sectionId = 'dynsection-0';
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="structJ3DMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="classJ3DMaterial.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1584.5,-614.66 1516.75,-614.66 1516.75,-595.41 1584.5,-595.41 1584.5,-614.66"/>
 <text text-anchor="middle" x="1550.62" y="-601.16" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterial</text>
 </a>
@@ -1295,7 +1295,7 @@ var sectionId = 'dynsection-0';
 </g>
 <svg viewBox="0 0 15 15" width="100%" height="30px" preserveAspectRatio="xMaxYMin meet">
  <g id="arrow_out" transform="scale(0.3 0.3)">
-  <a xlink:href="structJ3DModelLoader__v26__coll__graph_org.svg" target="_base">
+  <a xlink:href="classJ3DModelLoader__v26__coll__graph_org.svg" target="_base">
    <rect id="button" ry="5" rx="5" y="6" x="6" height="38" width="38"
         fill="#f2f5e9" fill-opacity="0.5" stroke="#606060" stroke-width="1.0"/>
    <path id="arrow"

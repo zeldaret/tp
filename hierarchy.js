@@ -928,7 +928,6 @@ var hierarchy =
     [ "daPy_anmHeap_c", "classdaPy__anmHeap__c.html", null ],
     [ "daPy_boomerangMove_c", "classdaPy__boomerangMove__c.html", null ],
     [ "daPy_demo_c", "classdaPy__demo__c.html", null ],
-    [ "daRfHole_HIO_c", "classdaRfHole__HIO__c.html", null ],
     [ "daRotBridge_HIO_c", "classdaRotBridge__HIO__c.html", null ],
     [ "daRotTrap_HIO_c", "classdaRotTrap__HIO__c.html", null ],
     [ "daSldWall_HIO_c", "classdaSldWall__HIO__c.html", null ],
@@ -1025,8 +1024,8 @@ var hierarchy =
     [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
+    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1734,7 +1733,7 @@ var hierarchy =
     [ "J3DLightInfo", "classJ3DLightInfo.html", null ],
     [ "J3DLightObj", "classJ3DLightObj.html", null ],
     [ "J3DMatColorAnm", "classJ3DMatColorAnm.html", null ],
-    [ "J3DMaterial", "structJ3DMaterial.html", [
+    [ "J3DMaterial", "classJ3DMaterial.html", [
       [ "J3DLockedMaterial", "classJ3DLockedMaterial.html", null ],
       [ "J3DPatchedMaterial", "classJ3DPatchedMaterial.html", null ]
     ] ],
@@ -1744,8 +1743,7 @@ var hierarchy =
       [ "daNpcF_MatAnm_c", "classdaNpcF__MatAnm__c.html", null ],
       [ "daNpcT_MatAnm_c", "classdaNpcT__MatAnm__c.html", null ]
     ] ],
-    [ "J3DMaterialFactory", "structJ3DMaterialFactory.html", null ],
-    [ "J3DMaterialFactory::MaterialType", "structJ3DMaterialFactory_1_1MaterialType.html", null ],
+    [ "J3DMaterialFactory", "classJ3DMaterialFactory.html", null ],
     [ "J3DMaterialFactory_v21", "classJ3DMaterialFactory__v21.html", null ],
     [ "J3DMaterialInitData", "structJ3DMaterialInitData.html", null ],
     [ "J3DMaterialInitData_v21", "structJ3DMaterialInitData__v21.html", null ],
@@ -1766,9 +1764,9 @@ var hierarchy =
     [ "J3DModelData", "classJ3DModelData.html", null ],
     [ "J3DModelFileData", "structJ3DModelFileData.html", null ],
     [ "J3DModelHierarchy", "structJ3DModelHierarchy.html", null ],
-    [ "J3DModelLoader", "structJ3DModelLoader.html", null ],
+    [ "J3DModelLoader", "classJ3DModelLoader.html", null ],
     [ "J3DModelLoader_v21", "classJ3DModelLoader__v21.html", null ],
-    [ "J3DModelLoader_v26", "structJ3DModelLoader__v26.html", null ],
+    [ "J3DModelLoader_v26", "classJ3DModelLoader__v26.html", null ],
     [ "J3DModelLoaderDataBase", "classJ3DModelLoaderDataBase.html", null ],
     [ "J3DMtxBuffer", "classJ3DMtxBuffer.html", null ],
     [ "J3DMtxCalc", "classJ3DMtxCalc.html", [
@@ -2857,6 +2855,7 @@ var hierarchy =
           [ "daObjYchndlr_c", "classdaObjYchndlr__c.html", null ],
           [ "daObjZraRock_c", "classdaObjZraRock__c.html", null ],
           [ "daObj_Sekizo_c", "classdaObj__Sekizo__c.html", null ],
+          [ "daRfHole_c", "classdaRfHole__c.html", null ],
           [ "daSaidan_c", "classdaSaidan__c.html", null ],
           [ "daSwShutter_c", "classdaSwShutter__c.html", null ],
           [ "daTagHjump_c", "classdaTagHjump__c.html", null ],
@@ -3269,7 +3268,6 @@ var hierarchy =
         [ "daPy_py_c", "structdaPy__py__c.html", [
           [ "daAlink_c", "classdaAlink__c.html", null ]
         ] ],
-        [ "daRfHole_c", "classdaRfHole__c.html", null ],
         [ "daRotBridge_c", "classdaRotBridge__c.html", null ],
         [ "daRotTrap_c", "classdaRotTrap__c.html", null ],
         [ "daSCannonCrs_c", "classdaSCannonCrs__c.html", null ],
@@ -3674,6 +3672,7 @@ var hierarchy =
       [ "daLv6CstaSw_HIO_c", "classdaLv6CstaSw__HIO__c.html", null ],
       [ "daMagLiftRot_HIO_c", "classdaMagLiftRot__HIO__c.html", null ],
       [ "daMyna_HIO_c", "classdaMyna__HIO__c.html", null ],
+      [ "daRfHole_HIO_c", "classdaRfHole__HIO__c.html", null ],
       [ "daSaidan_HIO_c", "structdaSaidan__HIO__c.html", null ],
       [ "daSnowEffTag_HIO_c", "classdaSnowEffTag__HIO__c.html", null ],
       [ "daSwShutter_HIO_c", "classdaSwShutter__HIO__c.html", null ],

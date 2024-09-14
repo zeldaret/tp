@@ -1,6 +1,6 @@
 <map id="J3DLockedMaterial" name="J3DLockedMaterial">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2056,265,2190,291"/>
-<area shape="rect" id="Node000002" href="$structJ3DMaterial.html" title=" " alt="" coords="1809,300,1900,326"/>
+<area shape="rect" id="Node000002" href="$classJ3DMaterial.html" title=" " alt="" coords="1809,300,1900,326"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1914,298,1939,294,2055,281,2056,286,1940,299,1915,304"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="1830,283,1838,276,1854,273,1870,276,1879,282,1882,291,1877,301,1873,298,1876,291,1875,285,1868,281,1855,279,1840,281,1833,287"/>
 <area shape="rect" id="Node000003" href="$classJ3DShape.html" title=" " alt="" coords="2082,477,2164,503"/>
