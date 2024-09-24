@@ -4614,7 +4614,7 @@ BOOL daNpcF_c::execute() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
         if (mGroundH != -1e+9f) {
-            field_0x998 = daNpcF_getGroundAngle(&mGndChk, mCurAngle.y);
+            mGroundAngle = daNpcF_getGroundAngle(&mGndChk, mCurAngle.y);
             setEnvTevColor();
             setRoomNo();
             mPolySound = dKy_pol_sound_get(&mAcch.m_gnd);
@@ -4901,7 +4901,7 @@ void daNpcF_c::initialize() {
     field_0x992 = 0;
     mTurnStartAngle = 0;
     mTurnTargetAngle = 0;
-    field_0x998 = 0;
+    mGroundAngle = 0;
     mAnmFlags = 0;
     mShadowKey = 0;
     field_0x9a4 = -1;
@@ -6226,8 +6226,8 @@ int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
 }
 
 /* 80155854-80155968 150194 0114+00 0/0 0/0 1/1 .text daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
-bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP) {
-    bool ret = 0;
+BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP) {
+    BOOL ret = 0;
 
     if (daPy_getPlayerActorClass()->checkPriActorOwn(i_ActorP)) {
         for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {

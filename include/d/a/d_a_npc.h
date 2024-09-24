@@ -658,7 +658,7 @@ protected:
     /* 0x992 */ s16 field_0x992;
     /* 0x994 */ s16 mTurnStartAngle;
     /* 0x996 */ s16 mTurnTargetAngle;
-    /* 0x998 */ u16 field_0x998;
+    /* 0x998 */ s16 mGroundAngle;
     /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 mShadowKey;
     /* 0x9A4 */ u32 field_0x9a4;
@@ -738,6 +738,18 @@ public:
         /* 4 */ LOOK_ACTOR,
         /* 5 */ LOOK_ATTN,
     };
+
+    #ifdef DANPCF_C_CTOR_HACK
+    // dummy functions to disable inline for ctor
+    void initialize5() { initialize(); }
+    void initialize4() { initialize5(); }
+    void initialize3() { initialize4(); }
+    void initialize2() { initialize3(); }
+    void initialize1() { initialize2(); }
+    daNpcF_c() { initialize1(); }
+    #else
+    daNpcF_c() { initialize(); }
+    #endif
 
     /* 80152014 */ BOOL execute();
     /* 801522AC */ int draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
@@ -850,6 +862,7 @@ BOOL daNpcF_pntVsLineSegmentLengthSquare2D(f32 i_pntX, f32 i_pntZ, f32 i_startX,
                                            f32* o_dist2);
 BOOL daNpcF_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, BOOL i_isClosed,
                       BOOL i_isReversed);
+BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_ActorP);
 
 class daNpcF_MatAnm_c : public J3DMaterialAnm {
 private:

@@ -59,11 +59,21 @@ public:
     /* 80B4CD18 */ void checkChangeJoint(int);
     /* 80B4CD28 */ void checkRemoveJoint(int);
 
+    void vanish_off() { field_0xf81 = 0; }
+    void on_CoHit() { 
+        mCyl.OnCoSetBit(); 
+        mCyl.OnTgSetBit(); 
+    }
+
     static void* mCutNameList[2];
     static u8 mCutList[24];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfcc - 0x568];
+    /* 0x568 */ u8 field_0x568[0xe44 - 0x568];
+    /* 0xE44 */ dCcD_Cyl mCyl;
+    /* 0xF80 */ u8 field_0xf80;
+    /* 0xF81 */ u8 field_0xf81;
+    /* 0xF82 */ u8 field_0xf82[0xfcc - 0xf82];
 };
 
 STATIC_ASSERT(sizeof(daNpc_yamiT_c) == 0xfcc);
