@@ -30,6 +30,7 @@ var classdaNpc__yamiD__c =
     [ "getNeckJointNo", "classdaNpc__yamiD__c.html#aecd66c558acf3681703417c2d47dd74a", null ],
     [ "getType", "classdaNpc__yamiD__c.html#ac4b63b5ec5f3beb8ba2b5c06494f41f7", null ],
     [ "isDelete", "classdaNpc__yamiD__c.html#a2382025cef319d40836e9e0b07b80e5a", null ],
+    [ "on_CoHit", "classdaNpc__yamiD__c.html#af06a92da07bd1a85358a39154da207fc", null ],
     [ "reset", "classdaNpc__yamiD__c.html#ab8957d405c4015e46c6b355d41dcbd78", null ],
     [ "selectAction", "classdaNpc__yamiD__c.html#a63b7e70e0610ed5c99ca193ef94a5109", null ],
     [ "setAction", "classdaNpc__yamiD__c.html#a9129a89aa20323c16db8a7ad2c5000dc", null ],
@@ -39,8 +40,13 @@ var classdaNpc__yamiD__c =
     [ "setParam", "classdaNpc__yamiD__c.html#a0add9e971b881e896fcc29846c49d563", null ],
     [ "srchActors", "classdaNpc__yamiD__c.html#a5713df92ac344daf6c7721c705d8fe85", null ],
     [ "talk", "classdaNpc__yamiD__c.html#a709e12a0363319d456ff7dd532d9b8b3", null ],
+    [ "vanish_off", "classdaNpc__yamiD__c.html#a9e1ec2e1f6b4cdbe2640500708d5f03a", null ],
     [ "wait", "classdaNpc__yamiD__c.html#a39299b6b44d99503a6bb82cf7bc9a65f", null ],
-    [ "field_0x568", "classdaNpc__yamiD__c.html#a5577d574ac3188771092a4ca364c6c59", null ],
+    [ "field_0x568", "classdaNpc__yamiD__c.html#aaaf4bc75052cd0087f62557b460fe830", null ],
+    [ "field_0xf80", "classdaNpc__yamiD__c.html#a66a4cb759aabe96310f2d4c59e720f16", null ],
+    [ "field_0xf81", "classdaNpc__yamiD__c.html#af619fc1c8ba9acd0e3a631b3a2ca56df", null ],
+    [ "field_0xf82", "classdaNpc__yamiD__c.html#aa7ead0c841b75a0eadc8516358655fc9", null ],
     [ "mCutList", "classdaNpc__yamiD__c.html#af48dce4d93e1770c70c64319b23c6709", null ],
-    [ "mCutNameList", "classdaNpc__yamiD__c.html#a714ccdc3aa359ef9033ada1f2fd098d2", null ]
+    [ "mCutNameList", "classdaNpc__yamiD__c.html#a714ccdc3aa359ef9033ada1f2fd098d2", null ],
+    [ "mCyl", "classdaNpc__yamiD__c.html#a7bdf8ebbe4b5f2059519793823f247fb", null ]
 ];

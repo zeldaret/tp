@@ -30,6 +30,7 @@ var d__a__npc_8h =
     [ "daNpcF_Path_c", "classdaNpcF__Path__c.html", "classdaNpcF__Path__c" ],
     [ "daNpcF_Lookat_c", "classdaNpcF__Lookat__c.html", "classdaNpcF__Lookat__c" ],
     [ "daNpcF_MoveBgActor_c", "classdaNpcF__MoveBgActor__c.html", "classdaNpcF__MoveBgActor__c" ],
+    [ "daNpcF_chkDoBtnEqSpeak", "d__a__npc_8h.html#a88f9b5d6ccd7f443f85733c3cd56e859", null ],
     [ "daNpcF_chkEvtBit", "d__a__npc_8h.html#a5fdeed4905c6619b5c9794d02dec302c", null ],
     [ "daNpcF_chkPassed", "d__a__npc_8h.html#ad6da12dd705ba0e3dd59650b9520fcbf", null ],
     [ "daNpcF_chkPointInArea", "d__a__npc_8h.html#a7e06cbcec04b50a4d2b8931d3a27ce80", null ],

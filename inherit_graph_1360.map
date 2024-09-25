@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJ3DJoint.html" title=" " alt="" coords="5,5,78,31"/>
+<area shape="rect" id="Node000000" href="$structJ3DIndTexMtxInfo.html" title=" " alt="" coords="5,5,132,31"/>
+<area shape="rect" id="Node000001" href="$structJ3DIndTexMtx.html" title=" " alt="" coords="180,5,284,31"/>
+<area shape="poly" id="edge1047_Node000000_Node000001" title=" " alt="" coords="147,16,179,16,179,21,147,21"/>
 </map>

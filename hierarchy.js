@@ -767,6 +767,7 @@ var hierarchy =
     [ "daNpcAsh_Param_c::param", "structdaNpcAsh__Param__c_1_1param.html", null ],
     [ "daNpcAshB_Param_c", "classdaNpcAshB__Param__c.html", null ],
     [ "daNpcBlueNS_Param_c", "classdaNpcBlueNS__Param__c.html", null ],
+    [ "daNpcBlueNS_Param_c::Data", "structdaNpcBlueNS__Param__c_1_1Data.html", null ],
     [ "daNpcBouS_Param_c", "classdaNpcBouS__Param__c.html", null ],
     [ "daNpcCd2_HIO_c", "structdaNpcCd2__HIO__c.html", null ],
     [ "daNpcCd2_HIO_Jnt_c", "structdaNpcCd2__HIO__Jnt__c.html", null ],
@@ -1024,8 +1025,8 @@ var hierarchy =
     [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
+    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1505,6 +1506,9 @@ var hierarchy =
     [ "himo_s", "structhimo__s.html", null ],
     [ "home_path_pnt", "structhome__path__pnt.html", null ],
     [ "HOUSI_EFF", "structHOUSI__EFF.html", null ],
+    [ "ifdef INHERIT_NPC daNpcF_cfopAc_ac_c", null, [
+      [ "daNpcBlueNS_c", "classdaNpcBlueNS__c.html", null ]
+    ] ],
     [ "inf1_entry_t", "structinf1__entry__t.html", null ],
     [ "inf1_section_t", "structinf1__section__t.html", null ],
     [ "interface_of_controller_pad", "structinterface__of__controller__pad.html", null ],
@@ -2964,7 +2968,6 @@ var hierarchy =
         [ "daNPC_TK_c", "classdaNPC__TK__c.html", null ],
         [ "daNocrm_c", "classdaNocrm__c.html", null ],
         [ "daNpcAshB_c", "classdaNpcAshB__c.html", null ],
-        [ "daNpcBlueNS_c", "classdaNpcBlueNS__c.html", null ],
         [ "daNpcBouS_c", "classdaNpcBouS__c.html", null ],
         [ "daNpcCd2_c", "classdaNpcCd2__c.html", [
           [ "daNpcFgd_c", "classdaNpcFgd__c.html", null ]

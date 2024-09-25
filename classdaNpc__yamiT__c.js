@@ -31,6 +31,7 @@ var classdaNpc__yamiT__c =
     [ "getNeckJointNo", "classdaNpc__yamiT__c.html#ae59efbe9ee1b22ef00157946ee4ef9bd", null ],
     [ "getType", "classdaNpc__yamiT__c.html#a66a194253d36aa6601727bbaea11e25e", null ],
     [ "isDelete", "classdaNpc__yamiT__c.html#aea1362e3763b9d7388f588a9c518920e", null ],
+    [ "on_CoHit", "classdaNpc__yamiT__c.html#a5bc53648a820b4c951064246b63d4af1", null ],
     [ "reset", "classdaNpc__yamiT__c.html#a6da651ea5fa770c355d7a4cf005f8e9d", null ],
     [ "selectAction", "classdaNpc__yamiT__c.html#aaec4d97bd6d4f19444df0efbbb69ccd0", null ],
     [ "setAction", "classdaNpc__yamiT__c.html#a3c47169e35905433ddab9de9262e6e2f", null ],
@@ -40,8 +41,13 @@ var classdaNpc__yamiT__c =
     [ "setParam", "classdaNpc__yamiT__c.html#afcf2007a7ac4f83d93fa56f5222c4fa2", null ],
     [ "srchActors", "classdaNpc__yamiT__c.html#ab5067e1dd99d3d543610fa5fc2ace125", null ],
     [ "talk", "classdaNpc__yamiT__c.html#a6c24899760c68f637abb0112b2313511", null ],
+    [ "vanish_off", "classdaNpc__yamiT__c.html#a35cc96635a02f4268dedd03f3775dbc1", null ],
     [ "wait", "classdaNpc__yamiT__c.html#a207622ded4da9740d16ee7de99664407", null ],
-    [ "field_0x568", "classdaNpc__yamiT__c.html#a01c529fd900ee59347dd991717917299", null ],
+    [ "field_0x568", "classdaNpc__yamiT__c.html#a2033bdbce4a3321b4c3e3bfe64c9f798", null ],
+    [ "field_0xf80", "classdaNpc__yamiT__c.html#ab3cd225266fee528d0b5e0e877cecf38", null ],
+    [ "field_0xf81", "classdaNpc__yamiT__c.html#a71230743fb27c438d2aadd378f4c6161", null ],
+    [ "field_0xf82", "classdaNpc__yamiT__c.html#a340188b748d38ba503c07d2db8a0b65b", null ],
     [ "mCutList", "classdaNpc__yamiT__c.html#aa2fef4c327b4c203562e6d9b994f46d1", null ],
-    [ "mCutNameList", "classdaNpc__yamiT__c.html#a9e5ff382fadc553f5e2856d37af7dfc2", null ]
+    [ "mCutNameList", "classdaNpc__yamiT__c.html#a9e5ff382fadc553f5e2856d37af7dfc2", null ],
+    [ "mCyl", "classdaNpc__yamiT__c.html#ab509c00e85a710e13910e7c5a825ac3e", null ]
 ];
