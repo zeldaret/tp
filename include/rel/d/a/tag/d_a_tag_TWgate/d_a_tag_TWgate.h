@@ -112,7 +112,7 @@ public:
         callInit();
     }
 
-    static u8 const mAttr[1 + 3 /* padding */];
+    static u8 const mAttr[1];
     static actionFunc ActionTable[13][2];
 
 private:
