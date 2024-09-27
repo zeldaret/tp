@@ -20,6 +20,7 @@
 #include "d/msg/d_msg_object.h"
 #include "d/msg/d_msg_string.h"
 #include "d/pane/d_pane_class.h"
+#include "d/d_item.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"
@@ -1169,7 +1170,7 @@ SECTION_SDATA2 static f32 lit_5173 = 0.5f;
 SECTION_SDATA2 static f32 lit_5174 = -1000.0f;
 
 /* 801B074C-801B1C3C 1AB08C 14F0+00 1/1 0/0 0/0 .text            screenSet__17dMenu_Collect2D_cFv */
-// issues with addi instructions
+// Matches with literals
 #ifdef NONMATCHING
 void dMenu_Collect2D_c::screenSet() {
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setFont(mDoExt_getRubyFont());
@@ -1187,8 +1188,8 @@ void dMenu_Collect2D_c::screenSet() {
             0x60, static_cast<J2DTextBox*>(mpScreen->search(ftext_sv[i]))->getStringPtr(), NULL);
         dMeter2Info_getStringKanji(
             0x5F, static_cast<J2DTextBox*>(mpScreen->search(ftext_op[i]))->getStringPtr(), NULL);
-        mpScreen->search(ftext_sv[i])->hide();
-        mpScreen->search(ftext_op[i])->hide();
+        mpScreen->search(text_sv[i])->hide();
+        mpScreen->search(text_op[i])->hide();
     }
 
     for (int i = 0; i < 5; i++) {
@@ -1444,8 +1445,8 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x1d8[0][3] = field_0x184[0][3] + 0x100;
     field_0x1d8[1][3] = field_0x184[1][3] + 0x100;
     field_0x1d8[2][3] = 0x5b9;
-    field_0x1d8[2][3] = 0x5b1;
-    field_0x1d8[3][3] = 0;
+    field_0x1d8[3][3] = 0x5b1;
+    field_0x1d8[4][3] = 0;
     field_0x1d8[5][3] = 0;
     field_0x1d8[6][3] = 0;
     field_0x1d8[0][4] = dMsgObject_getSmellTypeMessageID() + 0x100;
