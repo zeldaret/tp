@@ -21,6 +21,7 @@
 #include "d/msg/d_msg_string.h"
 #include "d/pane/d_pane_class.h"
 #include "d/d_item.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"
@@ -1736,6 +1737,227 @@ SECTION_SDATA2 static f32 lit_5531 = -1.0f;
 
 /* 801B1FAC-801B27EC 1AC8EC 0840+00 1/1 0/0 0/0 .text            cursorMove__17dMenu_Collect2D_cFv
  */
+// goto logic is wrong
+#ifdef NONMATCHING
+void dMenu_Collect2D_c::cursorMove() {
+    u8 dVar1 = mCursorX;
+    u8 dVar2 = mCursorY;
+    mpStick->checkTrigger();
+    if (mpStick->checkRightTrigger()) {
+        if (mCursorX < 6) {
+            if (mCursorX == 0 && mCursorY == 0 &&
+                field_0x259 >= 3 && field_0x25a < 3)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else {
+                do {
+                    mCursorX++;
+                    if (mCursorX == 6 && mCursorY < 3) {
+                        if (field_0x22d[6][0] != 0) {
+                            if (getItemTag(6, 0, false) && field_0x22d[6][0] != 0) {
+                                mCursorX = 6;
+                                mCursorY = 0;
+                            }
+                        } else {
+                            mCursorX = dVar1;
+                            mCursorY = dVar2;
+                            goto LAB_802ba744;
+                        }
+                    }
+                    if (dVar1 == 4 && dVar2 == 1) {
+                        mCursorX = 5;
+                        mCursorY = 0;
+                        goto LAB_802ba744;
+                    }
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802ba744;
+                    }
+                } while (mCursorX < 6);
+                mCursorX = dVar1;
+            }
+        }
+    } else {
+        if (mpStick->checkLeftTrigger() && mCursorX != 0) {
+            if (mCursorX == 6 &&
+                mCursorY == 0 && field_0x259 >= 3 &&
+                  field_0x25a < 3)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else if (dVar1 == 5 && dVar2 == 0 &&
+                        field_0x259 == 4 &&
+                       field_0x25a == 1)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else {
+                do {
+                    mCursorX--;
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802ba744;
+                    }
+                } while (mCursorX != 0);
+                mCursorX = dVar1;
+            }
+        }
+    }
+LAB_802ba744:
+    if (mpStick->checkUpTrigger()) {
+        if (mCursorY != 0) {
+            bool bVar3;
+            restart_loop:
+            do {
+                mCursorY--;
+                if (mCursorY == 2) {
+                    u8 local_3c[9] = {3,3,4,3,4,5,4,5,5};
+                    u8 local_48[9] = {2,1,2,0,1,2,0,1,0};
+                    for (int i = 0; i < 9; i++) {
+                        if (getItemTag(local_3c[i], local_48[i], true)) {
+                            mCursorX = local_3c[i];
+                            mCursorY = local_48[i];
+                            break;
+                        }
+                    }
+                }
+                if (dVar2 == 5) {
+                    
+                    if (dVar1 == 0) {
+                        if (field_0x25a < 5) {
+                            mCursorX = field_0x259;
+                            mCursorY = field_0x25a;
+                            break;
+                        }
+                        bVar3 = false;
+                        for (int i = 0; i < 4; i++) {
+                            if (getItemTag(i, mCursorY, true)) {
+                                mCursorX = i;
+                                bVar3 = true;
+                                break;
+                            }
+                        }
+                        if (mCursorY == 0) {
+                            mCursorX = dVar1;
+                            mCursorY = dVar2;
+                            bVar3 = true;
+                        }
+                        if (bVar3) {
+                            break;
+                        }
+                        goto restart_loop;
+                    }
+                    if (field_0x25a < 5) {
+                        mCursorX = field_0x259;
+                        mCursorY = field_0x25a;
+                        break;
+                    }
+                    bVar3 = false;
+                    for (int i = 3; i < 7; i++) {
+                        if (getItemTag(i, mCursorY, true)) {
+                            mCursorX = i;
+                            bVar3 = true;
+                            break;
+                        }
+                    }
+                    if (mCursorY == 0) {
+                        mCursorX = dVar1;
+                        mCursorY = dVar2;
+                        bVar3 = true;
+                    }
+                }
+            } while (!bVar3);
+            if (!getItemTag(mCursorX, mCursorY, true)) {
+                if (mCursorY != 0) {
+                    goto restart_loop;
+                }
+            }
+            mCursorY = dVar2;
+        }
+    } else {
+        if (mpStick->checkDownTrigger()) {
+            if (mCursorY < 4) {
+                do {
+                    mCursorY++;
+                    if (mCursorY == 3) {
+                        u8 local_50[8] = {3, 2, 3, 1, 2, 0, 1, 0};
+                        u8 local_58[8] = {3, 3, 4, 3, 4, 3, 4, 4};
+                        for (int i = 0; i < 8; i++) {
+                            if (getItemTag(local_50[i], local_58[i], true)) {
+                                mCursorX = local_50[i];
+                                mCursorY = local_58[i];
+                                break;
+                            }
+                        }
+                    }
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802bab54;
+                    }
+                } while (mCursorY < 4);
+                mCursorY = 5;
+                if (mCursorX <= 2) {
+                    mCursorX = 0;
+                } else {
+                    mCursorX = 1;
+                }
+            } else if (mCursorY == 4) {
+                mCursorY = 5;
+                if (mCursorX <= 3) {
+                    mCursorX = 0;
+                } else {
+                    mCursorX = 1;
+                }
+            }
+        }
+    }
+LAB_802bab54:
+    if (mCursorX != dVar1 || mCursorY != dVar2) {
+        field_0x259 = dVar1;
+        field_0x25a = dVar2;
+        if ((mCursorX == 1 && mCursorY == 5) || (mCursorX == 0 && mCursorY == 5)) {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+        } else {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+        cursorPosSet();
+        setItemNameString(mCursorX, mCursorY);
+    }
+    if (field_0x44[0] != g_drawHIO.mCollectScreen.mUnselectItemScale ||
+        field_0x44[1] != g_drawHIO.mCollectScreen.mSelectItemScale ||
+        field_0x4c[0] != g_drawHIO.mCollectScreen.mUnselectSaveOptionScale ||
+        field_0x4c[1] != g_drawHIO.mCollectScreen.mSelectSaveOptionScale)
+    {
+        field_0x44[0] = g_drawHIO.mCollectScreen.mUnselectItemScale;
+        field_0x44[1] = g_drawHIO.mCollectScreen.mSelectItemScale;
+        field_0x4c[0] = g_drawHIO.mCollectScreen.mUnselectSaveOptionScale;
+        field_0x4c[1] = g_drawHIO.mCollectScreen.mSelectSaveOptionScale;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (getItemTag(i, j, true)) {
+                    J2DPane* pane = mpScreen->search(getItemTag(i, j, true));
+                    if ((i != 0 || j != 0) && (i != 6 || j != 0)) {
+                        if (j == 5) {
+                            if (i == mCursorX && j == mCursorY) {
+                                pane->scale(g_drawHIO.mCollectScreen.mSelectSaveOptionScale,
+                                            g_drawHIO.mCollectScreen.mSelectSaveOptionScale);
+                            } else {
+                                pane->scale(g_drawHIO.mCollectScreen.mUnselectSaveOptionScale,
+                                            g_drawHIO.mCollectScreen.mUnselectSaveOptionScale);
+                            }
+                        } else if (i == mCursorX && j == mCursorY) {
+                            pane->scale(g_drawHIO.mCollectScreen.mSelectItemScale,
+                                        g_drawHIO.mCollectScreen.mSelectItemScale);
+                        } else {
+                            pane->scale(g_drawHIO.mCollectScreen.mUnselectItemScale,
+                                        g_drawHIO.mCollectScreen.mUnselectItemScale);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1744,6 +1966,7 @@ asm void dMenu_Collect2D_c::cursorMove() {
 #include "asm/d/menu/d_menu_collect/cursorMove__17dMenu_Collect2D_cFv.s"
 }
 #pragma pop
+#endif
 
 /* ############################################################################################## */
 /* 80453F64-80453F68 002564 0004+00 1/1 0/0 0/0 .sdata2          @5611 */

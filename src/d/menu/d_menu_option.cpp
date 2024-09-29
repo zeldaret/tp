@@ -3191,17 +3191,19 @@ bool dMenu_Option_c::dpdMenuMove() {
 SECTION_SDATA2 static f32 lit_6256 = 10.0f;
 
 /* 801E80B4-801E8210 1E29F4 015C+00 1/1 0/0 0/0 .text            paneResize__14dMenu_Option_cFUx */
+// Matches with literals
 #ifdef NONMATCHING
-// float regswap
 void dMenu_Option_c::paneResize(u64 i_tag) {
     f32 boundsY = mpClipScreen->search(i_tag)->getBounds().i.y;
     f32 boundsX = mpClipScreen->search(i_tag)->getBounds().i.x - 5.0f;
     mpClipScreen->search(i_tag)->move(boundsX, boundsY);
 
-    f32 height = mpClipScreen->search(i_tag)->getHeight();
-    f32 width = mpClipScreen->search(i_tag)->getWidth();
+    // Fake match
+    JGeometry::TBox2<f32>& bounds = mpClipScreen->search(i_tag)->mBounds;
+    boundsY = bounds.f.y - bounds.i.y;
+    boundsX = mpClipScreen->search(i_tag)->getWidth();
 
-    mpClipScreen->search(i_tag)->resize(width + 10.0f, height);
+    mpClipScreen->search(i_tag)->resize(boundsX + 10.0f, boundsY);
 }
 #else
 #pragma push
