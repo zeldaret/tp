@@ -4,8 +4,6 @@
  */
 
 #include "rel/d/a/tag/d_a_tag_shop_camera/d_a_tag_shop_camera.h"
-#include "dol2asm.h"
-
 
 /* 80D60898-80D608FC 000078 0064+00 1/1 0/0 0/0 .text            create__18daTag_ShopCamera_cFv */
 int daTag_ShopCamera_c::create() {
@@ -31,7 +29,6 @@ int daTag_ShopCamera_c::Draw() {
 
 /* 80D60914-80D60990 0000F4 007C+00 1/1 0/0 0/0 .text            initialize__18daTag_ShopCamera_cFv
  */
- 
 void daTag_ShopCamera_c::initialize() {
     fopAcM_setCullSizeBox(this,-30.0f,-15.0f,-30.0f,30.0f,45.0f,30.0f);
     attention_info.flags = 0;
@@ -68,23 +65,26 @@ static int daTag_ShopCamera_IsDelete(void* param_0) {
 
 /* ############################################################################################## */
 /* 80D60A90-80D60AB0 -00001 0020+00 1/0 0/0 0/0 .data            daTag_ShopCamera_MethodTable */
-SECTION_DATA static void* daTag_ShopCamera_MethodTable[8] = {
-    (void*)daTag_ShopCamera_Create,
-    (void*)daTag_ShopCamera_Delete,
-    (void*)daTag_ShopCamera_Execute,
-    (void*)daTag_ShopCamera_IsDelete,
-    (void*)daTag_ShopCamera_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daTag_ShopCamera_MethodTable = {
+    (process_method_func)daTag_ShopCamera_Create,     (process_method_func)daTag_ShopCamera_Delete,
+    (process_method_func)daTag_ShopCamera_Execute, (process_method_func)daTag_ShopCamera_IsDelete,
+    (process_method_func)daTag_ShopCamera_Draw,
 };
 
 /* 80D60AB0-80D60AE0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_SHOPCAM */
-SECTION_DATA extern void* g_profile_TAG_SHOPCAM[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01260000, (void*)&g_fpcLf_Method,
-    (void*)0x0000056C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x004A0000, (void*)&daTag_ShopCamera_MethodTable,
-    (void*)0x00064100, (void*)0x050E0000,
+extern actor_process_profile_definition g_profile_TAG_SHOPCAM = {
+    fpcLy_CURRENT_e,
+    7,
+    fpcPi_CURRENT_e,
+    PROC_TAG_SHOPCAM,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTag_ShopCamera_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x4A,
+    &daTag_ShopCamera_MethodTable,
+    0x64100,
+    fopAc_UNK_GROUP_5_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };

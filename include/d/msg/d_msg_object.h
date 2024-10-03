@@ -135,7 +135,7 @@ public:
     /* 80238378 */ static int isMsgSend();
     /* 802383A4 */ static bool isMouthCheck();
     /* 802383D0 */ static u32 getMessageID();
-    /* 802383E4 */ u16 getSmellTypeMessageID();
+    /* 802383E4 */ static u16 getSmellTypeMessageID();
     /* 80238410 */ static void setSmellType(u8);
     /* 80238440 */ static u8 getSelectCursorPos();
     /* 8023846C */ static void setSelectCursorPos(u8);
@@ -359,7 +359,7 @@ inline u32 dMsgObject_getMessageID() {
     return dMsgObject_c::getMessageID();
 }
 
-inline u32 dMsgObject_getSmellTypeMessageID() {
+inline u16 dMsgObject_getSmellTypeMessageID() {
     return dMsgObject_getMsgObjectClass()->getSmellTypeMessageID();
 }
 

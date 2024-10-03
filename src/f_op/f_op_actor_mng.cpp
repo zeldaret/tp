@@ -1088,11 +1088,11 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &box->mMax, &box->mMin);
+                u32 ret = mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, &box->mMax, &box->mMin);
+                return mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
             }
         }
     } else {
@@ -1101,22 +1101,22 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
 
                 f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec* center_p = fopAcM_getCullSizeSphereCenter(i_actor);
+                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
                 Vec center;
-                center.x = center_p->x;
-                center.y = center_p->y;
-                center.z = center_p->z;
+                center.x = center_p.x;
+                center.y = center_p.y;
+                center.z = center_p.z;
 
                 u32 ret = mDoLib_clipper::clip(mtx_p, center, radius);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
                 f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec* center_p = fopAcM_getCullSizeSphereCenter(i_actor);
+                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
                 Vec center;
-                center.x = center_p->x;
-                center.y = center_p->y;
-                center.z = center_p->z;
+                center.x = center_p.x;
+                center.y = center_p.y;
+                center.z = center_p.z;
                 return mDoLib_clipper::clip(mtx_p, center, radius);
             }
         } else {
@@ -1124,11 +1124,11 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, sphere->mCenter, sphere->mRadius);
+                u32 ret = mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, sphere->mCenter, sphere->mRadius);
+                return mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
             }
         }
     }

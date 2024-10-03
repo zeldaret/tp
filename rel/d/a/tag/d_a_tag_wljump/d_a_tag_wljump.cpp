@@ -4,6 +4,7 @@
 //
 
 #include "rel/d/a/tag/d_a_tag_wljump/d_a_tag_wljump.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "dol2asm.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
@@ -220,7 +221,7 @@ int daTagWljump_c::execute() {
             eyePos.set(pPoint->m_position.x, pPoint->m_position.y, pPoint->m_position.z);
             attention_info.position = eyePos;
             attention_info.position.y += 220.0f;
-            field_0x5c8 = pPoint->field_0x3 * 10.0f;
+            field_0x5c8 = pPoint->mArg0 * 10.0f;
             if (pPoint->field_0x1 == 1) {
                 shape_angle.z = 1;
             } else {
