@@ -1,13 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJ3DShapeMtx.html" title=" " alt="" coords="5,80,108,106"/>
-<area shape="rect" id="Node000001" href="$classJ3DShapeMtxConcatView.html" title=" " alt="" coords="156,55,328,80"/>
-<area shape="poly" id="edge1111_Node000000_Node000001" title=" " alt="" coords="123,81,155,77,156,82,124,86"/>
-<area shape="rect" id="Node000005" href="$classJ3DShapeMtxMulti.html" title=" " alt="" coords="177,104,307,130"/>
-<area shape="poly" id="edge1115_Node000000_Node000005" title=" " alt="" coords="123,99,177,106,176,111,123,104"/>
-<area shape="rect" id="Node000002" href="$classJ3DShapeMtxBBoardConcatView.html" title=" " alt="" coords="381,5,596,31"/>
-<area shape="poly" id="edge1112_Node000001_Node000002" title=" " alt="" coords="324,48,420,29,421,34,325,54"/>
-<area shape="rect" id="Node000003" href="$classJ3DShapeMtxMultiConcatView.html" title=" " alt="" coords="388,55,588,80"/>
-<area shape="poly" id="edge1113_Node000001_Node000003" title=" " alt="" coords="343,65,387,65,387,70,343,70"/>
-<area shape="rect" id="Node000004" href="$classJ3DShapeMtxYBBoardConcatView.html" title=" " alt="" coords="376,104,600,130"/>
-<area shape="poly" id="edge1114_Node000001_Node000004" title=" " alt="" coords="325,81,421,101,420,106,324,87"/>
+<area shape="rect" id="Node000000" href="$structJ3DShapeMtxInitData.html" title=" " alt="" coords="5,5,153,31"/>
 </map>

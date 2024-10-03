@@ -94,7 +94,6 @@ var classdaItem__c =
     [ "setTevStr", "classdaItem__c.html#a2b40e4de69b29f443506f658ef5e0ef3", null ],
     [ "startControl", "classdaItem__c.html#adec19a2588bd1e65e014af036dc7c08d", null ],
     [ "startCtrl", "classdaItem__c.html#a1b13e13c03ce53973faca43d4b67691d", null ],
-    [ "startCtrl", "classdaItem__c.html#a840d42a33772c40e5bd4f1c874d9323a", null ],
     [ "field_0x92c", "classdaItem__c.html#ac3e539be1093f2509d83ef4ef4eee013", null ],
     [ "field_0x92e", "classdaItem__c.html#aaf50bc1932dd989f6d6aa57927f3e854", null ],
     [ "field_0x940", "classdaItem__c.html#a0e9b0359e567198d028c330f97cd6459", null ],

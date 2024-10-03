@@ -1,11 +1,36 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio_1_1TCreateObject.html" title=" " alt="" coords="5,78,161,104"/>
-<area shape="rect" id="Node000001" href="$structJStudio__JAudio2_1_1TCreateObject.html" title=" " alt="" coords="225,5,396,46"/>
-<area shape="poly" id="edge1456_Node000000_Node000001" title=" " alt="" coords="144,71,236,44,238,49,146,76"/>
-<area shape="rect" id="Node000002" href="$structJStudio__JParticle_1_1TCreateObject.html" title=" " alt="" coords="246,71,375,111"/>
-<area shape="poly" id="edge1457_Node000000_Node000002" title=" " alt="" coords="176,88,245,88,245,94,176,94"/>
-<area shape="rect" id="Node000004" href="$structJStudio__JStage_1_1TCreateObject.html" title=" " alt="" coords="209,136,412,161"/>
-<area shape="poly" id="edge1459_Node000000_Node000004" title=" " alt="" coords="152,106,209,120,256,132,255,137,208,126,150,111"/>
-<area shape="rect" id="Node000003" href="$classdDemo__particle__c.html" title=" " alt="" coords="460,78,585,104"/>
-<area shape="poly" id="edge1458_Node000002_Node000003" title=" " alt="" coords="390,88,460,88,460,94,390,94"/>
+<area shape="rect" id="Node000000" href="$classJStudio_1_1TFunctionValue.html" title=" " alt="" coords="748,144,910,169"/>
+<area shape="rect" id="Node000001" href="$classJStudio_1_1TFunctionValue__composite.html" title=" " alt="" coords="995,5,1157,46"/>
+<area shape="poly" id="edge1461_Node000000_Node000001" title=" " alt="" coords="859,132,915,95,981,57,1010,44,1012,49,984,61,918,99,862,136"/>
+<area shape="rect" id="Node000008" href="$classJStudio_1_1TFunctionValue__constant.html" title=" " alt="" coords="995,71,1157,111"/>
+<area shape="poly" id="edge1462_Node000000_Node000008" title=" " alt="" coords="894,136,996,109,997,115,896,142"/>
+<area shape="rect" id="Node000009" href="$classJStudio_1_1TFunctionValue__hermite.html" title=" " alt="" coords="995,136,1157,177"/>
+<area shape="poly" id="edge1463_Node000000_Node000009" title=" " alt="" coords="925,154,994,154,994,159,925,159"/>
+<area shape="rect" id="Node000011" href="$classJStudio_1_1TFunctionValue__list.html" title=" " alt="" coords="983,201,1169,227"/>
+<area shape="poly" id="edge1464_Node000000_Node000011" title=" " alt="" coords="903,171,1018,198,1017,203,902,176"/>
+<area shape="rect" id="Node000013" href="$classJStudio_1_1TFunctionValue__list__parameter.html" title=" " alt="" coords="995,251,1157,291"/>
+<area shape="poly" id="edge1465_Node000000_Node000013" title=" " alt="" coords="925,173,936,179,952,194,961,208,970,223,984,237,1004,248,1001,253,981,241,966,226,957,211,948,197,933,184,922,178"/>
+<area shape="rect" id="Node000014" href="$classJStudio_1_1TFunctionValue__transition.html" title=" " alt="" coords="995,316,1157,357"/>
+<area shape="poly" id="edge1466_Node000000_Node000014" title=" " alt="" coords="926,172,936,180,950,195,957,210,962,241,966,272,973,286,985,301,1001,313,998,318,981,305,968,289,961,273,957,242,952,212,945,198,933,184,922,176"/>
+<area shape="rect" id="Node000012" href="$classJStudio_1_1TFunctionValueAttribute__interpolate.html" title=" " alt="" coords="723,259,935,299"/>
+<area shape="poly" id="edge1467_Node000012_Node000011" title=" " alt="" coords="922,252,1024,225,1025,230,924,257"/>
+<area shape="poly" id="edge1468_Node000012_Node000013" title=" " alt="" coords="950,272,994,271,994,276,950,278"/>
+<area shape="poly" id="edge1469_Node000012_Node000014" title=" " alt="" coords="935,301,995,315,993,320,933,306"/>
+<area shape="rect" id="Node000010" href="$classJStudio_1_1TFunctionValueAttribute__range.html" title=" " alt="" coords="723,193,935,234"/>
+<area shape="poly" id="edge1470_Node000010_Node000009" title=" " alt="" coords="933,187,993,173,995,178,935,192"/>
+<area shape="poly" id="edge1471_Node000010_Node000011" title=" " alt="" coords="950,211,982,211,982,216,950,216"/>
+<area shape="poly" id="edge1472_Node000010_Node000013" title=" " alt="" coords="935,235,995,250,993,255,933,241"/>
+<area shape="poly" id="edge1473_Node000010_Node000014" title=" " alt="" coords="927,239,936,245,952,259,961,273,970,287,984,301,1006,313,1004,318,981,305,966,291,957,276,948,262,933,249,924,244"/>
+<area shape="rect" id="Node000006" href="$structJGadget_1_1TVector.html" title=" " alt="" coords="5,13,182,39"/>
+<area shape="rect" id="Node000004" href="$structJGadget_1_1TVector__pointer__void.html" title=" " alt="" coords="230,42,429,68"/>
+<area shape="poly" id="edge1474_Node000006_Node000004" title=" " alt="" coords="198,36,229,40,229,45,197,41"/>
+<area shape="rect" id="Node000003" href="$structJGadget_1_1TVector__pointer.html" title=" " alt="" coords="492,5,660,46"/>
+<area shape="poly" id="edge1475_Node000004_Node000003" title=" " alt="" coords="444,39,491,33,492,38,445,44"/>
+<area shape="rect" id="Node000005" href="$structJGadget_1_1TVector__pointer.html" title=" " alt="" coords="477,70,675,96"/>
+<area shape="poly" id="edge1478_Node000004_Node000005" title=" " alt="" coords="445,65,477,69,476,74,444,71"/>
+<area shape="rect" id="Node000002" href="$classJStudio_1_1TFunctionValueAttribute__refer.html" title=" " alt="" coords="723,5,935,46"/>
+<area shape="poly" id="edge1476_Node000003_Node000002" title=" " alt="" coords="676,23,723,23,723,28,676,28"/>
+<area shape="poly" id="edge1477_Node000002_Node000001" title=" " alt="" coords="950,23,994,23,994,28,950,28"/>
+<area shape="rect" id="Node000007" href="$structJGadget_1_1TVector.html" title=" " alt="" coords="15,63,172,103"/>
+<area shape="poly" id="edge1479_Node000007_Node000004" title=" " alt="" coords="187,69,229,64,229,70,188,75"/>
 </map>

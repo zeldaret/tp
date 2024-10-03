@@ -1,7 +1,5 @@
 var NAVTREEINDEX225 =
 {
-"classdaNpc__myna2__c.html#a551cf6bc1e5108832053c0b130a29857":[1,0,3,65,5],
-"classdaNpc__myna2__c.html#a5615cf0558cadbbf3e3663b669e45953":[1,0,3,65,0],
 "classdaNpc__myna2__c.html#a5fb14d80f7724c8ff966d50790b1fbea":[1,0,3,65,32],
 "classdaNpc__myna2__c.html#a6ba53dcb0c8881b6938fda5b43c86a0a":[1,0,3,65,7],
 "classdaNpc__myna2__c.html#a7b831bd15fe70d52f5f8902d9ccc883e":[1,0,3,65,20],
@@ -249,5 +247,7 @@ var NAVTREEINDEX225 =
 "classdaNpc__yamiS__c.html#a6ca4805aaf82ebc5d72dbc5725ee5035":[1,0,3,107,3],
 "classdaNpc__yamiS__c.html#a735ee23aad556ee6427a26f6d45da0bf":[1,0,3,107,31],
 "classdaNpc__yamiS__c.html#a8209d4b8c11dff39487d6a6a4c983fc1":[1,0,3,107,17],
-"classdaNpc__yamiS__c.html#a8964df880f652410d76dbdcd3689481b":[1,0,3,107,43]
+"classdaNpc__yamiS__c.html#a8964df880f652410d76dbdcd3689481b":[1,0,3,107,43],
+"classdaNpc__yamiS__c.html#a8f0f43a5708cb672628ba50ede55ce16":[1,0,3,107,26],
+"classdaNpc__yamiS__c.html#a8f33a555aa2b58a6c66bdfcd6b368ffb":[1,0,3,107,0]
 };

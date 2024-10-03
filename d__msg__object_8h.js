@@ -14,7 +14,7 @@ var d__msg__object_8h =
     [ "dMsgObject_getMsgObjectClass", "d__msg__object_8h.html#ac80256cee5dc002f7f97eb35bd556dd3", null ],
     [ "dMsgObject_getOffering", "d__msg__object_8h.html#a3cd3c23aed3b3a039fcbcb1537c8fb3a", null ],
     [ "dMsgObject_getSelectCursorPos", "d__msg__object_8h.html#ac065d61701907367f1ef8509f9aa4ae5", null ],
-    [ "dMsgObject_getSmellTypeMessageID", "d__msg__object_8h.html#a24e144faa2797457b8f4b29c6de75eac", null ],
+    [ "dMsgObject_getSmellTypeMessageID", "d__msg__object_8h.html#a870f88a1ed5cb87d01971615c0d28622", null ],
     [ "dMsgObject_getString", "d__msg__object_8h.html#a8daa9292e9fdfa95b63f8983aa973132", null ],
     [ "dMsgObject_getTalkHeap", "d__msg__object_8h.html#a466169640cafd8909f8c8f6baf88ed7d", null ],
     [ "dMsgObject_getTotalPayment", "d__msg__object_8h.html#a3e1d618774e39101aa247a268718dc39", null ],

@@ -17,7 +17,6 @@ var classdaItemBase__c =
     [ "getCollisionR", "classdaItemBase__c.html#ae36be4abc4a8bca2ad0726074d63f238", null ],
     [ "getData", "classdaItemBase__c.html#a23d8062832f6f2dc5bd104ff2fc4ae18", null ],
     [ "getItemNo", "classdaItemBase__c.html#ae1fdbc10e405eb2cea9cb2a13a25acd1", null ],
-    [ "getItemNo", "classdaItemBase__c.html#a9bb4338488d22cd056106a84329c0da2", null ],
     [ "getShadowSize", "classdaItemBase__c.html#a74148665d50efaf8220547905ad3676a", null ],
     [ "getTevFrm", "classdaItemBase__c.html#ad2b89381ac6e148ea66b9b335600abf9", null ],
     [ "hide", "classdaItemBase__c.html#a563774a3db95a94fb2a32b001e3ff15c", null ],

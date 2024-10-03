@@ -1,15 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classmDoExt__baseAnm.html" title=" " alt="" coords="5,129,134,155"/>
-<area shape="rect" id="Node000001" href="$classmDoExt__bckAnm.html" title=" " alt="" coords="182,5,303,31"/>
-<area shape="poly" id="edge1495_Node000000_Node000001" title=" " alt="" coords="91,116,131,78,180,40,201,29,204,34,183,44,134,82,95,120"/>
-<area shape="rect" id="Node000002" href="$classmDoExt__blkAnm.html" title=" " alt="" coords="184,55,301,80"/>
-<area shape="poly" id="edge1496_Node000000_Node000002" title=" " alt="" coords="112,120,181,89,206,78,208,83,183,94,114,125"/>
-<area shape="rect" id="Node000003" href="$classmDoExt__bpkAnm.html" title=" " alt="" coords="182,104,303,130"/>
-<area shape="poly" id="edge1497_Node000000_Node000003" title=" " alt="" coords="149,128,181,123,182,128,150,133"/>
-<area shape="rect" id="Node000004" href="$classmDoExt__brkAnm.html" title=" " alt="" coords="183,153,302,179"/>
-<area shape="poly" id="edge1498_Node000000_Node000004" title=" " alt="" coords="150,151,183,155,182,161,149,156"/>
-<area shape="rect" id="Node000005" href="$classmDoExt__btkAnm.html" title=" " alt="" coords="183,203,302,228"/>
-<area shape="poly" id="edge1499_Node000000_Node000005" title=" " alt="" coords="115,160,183,189,209,200,207,205,181,194,113,164"/>
-<area shape="rect" id="Node000006" href="$classmDoExt__btpAnm.html" title=" " alt="" coords="183,252,302,278"/>
-<area shape="poly" id="edge1500_Node000000_Node000006" title=" " alt="" coords="95,165,135,202,183,239,204,249,201,254,180,243,131,206,92,168"/>
+<area shape="rect" id="Node000000" href="$classmDoExt__invisibleModel.html" title=" " alt="" coords="5,5,161,31"/>
 </map>

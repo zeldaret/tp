@@ -1,3 +1,47 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJStudio_1_1fvb_1_1TObject__list__parameter_1_1ListData.html" title=" " alt="" coords="5,5,171,46"/>
+<area shape="rect" id="Node000000" href="$structJStudio_1_1object_1_1TIDData.html" title=" " alt="" coords="5,268,166,293"/>
+<area shape="rect" id="Node000001" href="$structJStudio_1_1object_1_1TObject__ID.html" title=" " alt="" coords="214,238,392,264"/>
+<area shape="poly" id="edge1411_Node000000_Node000001" title=" " alt="" coords="181,265,213,260,213,266,181,270"/>
+<area shape="rect" id="Node000022" href="$structJStudio_1_1object_1_1TPRObject__ID__equal.html" title=" " alt="" coords="215,288,391,329"/>
+<area shape="poly" id="edge1432_Node000000_Node000022" title=" " alt="" coords="181,290,215,294,214,300,181,295"/>
+<area shape="rect" id="Node000002" href="$structJStudio_1_1ctb_1_1TObject.html" title=" " alt="" coords="440,88,581,113"/>
+<area shape="poly" id="edge1412_Node000001_Node000002" title=" " alt="" coords="333,226,490,111,493,116,336,231"/>
+<area shape="rect" id="Node000004" href="$classJStudio_1_1fvb_1_1TObject.html" title=" " alt="" coords="440,238,581,264"/>
+<area shape="poly" id="edge1414_Node000001_Node000004" title=" " alt="" coords="408,248,440,248,440,254,408,254"/>
+<area shape="rect" id="Node000011" href="$classJStudio_1_1stb_1_1TObject.html" title=" " alt="" coords="440,446,581,472"/>
+<area shape="poly" id="edge1421_Node000001_Node000011" title=" " alt="" coords="385,269,394,274,436,316,469,364,493,410,507,445,502,447,488,413,464,367,432,319,390,278,383,273"/>
+<area shape="rect" id="Node000003" href="$structJStudio_1_1ctb_1_1TObject__TxyzRy.html" title=" " alt="" coords="641,5,783,46"/>
+<area shape="poly" id="edge1413_Node000002_Node000003" title=" " alt="" coords="561,79,654,44,656,49,563,84"/>
+<area shape="rect" id="Node000005" href="$classJStudio_1_1fvb_1_1TObject__composite.html" title=" " alt="" coords="641,71,783,111"/>
+<area shape="poly" id="edge1415_Node000004_Node000005" title=" " alt="" coords="528,224,570,173,598,146,628,122,650,110,652,114,631,127,601,150,574,177,532,227"/>
+<area shape="rect" id="Node000006" href="$classJStudio_1_1fvb_1_1TObject__constant.html" title=" " alt="" coords="641,136,783,177"/>
+<area shape="poly" id="edge1416_Node000004_Node000006" title=" " alt="" coords="548,228,628,187,656,175,658,180,630,192,550,233"/>
+<area shape="rect" id="Node000007" href="$structJStudio_1_1fvb_1_1TObject__hermite.html" title=" " alt="" coords="641,201,783,242"/>
+<area shape="poly" id="edge1417_Node000004_Node000007" title=" " alt="" coords="596,236,640,229,641,235,597,241"/>
+<area shape="rect" id="Node000008" href="$classJStudio_1_1fvb_1_1TObject__list.html" title=" " alt="" coords="629,266,795,292"/>
+<area shape="poly" id="edge1418_Node000004_Node000008" title=" " alt="" coords="597,260,629,265,629,270,596,266"/>
+<area shape="rect" id="Node000009" href="$classJStudio_1_1fvb_1_1TObject__list__parameter.html" title=" " alt="" coords="641,316,783,357"/>
+<area shape="poly" id="edge1419_Node000004_Node000009" title=" " alt="" coords="555,268,630,302,657,313,655,318,628,307,553,273"/>
+<area shape="rect" id="Node000010" href="$classJStudio_1_1fvb_1_1TObject__transition.html" title=" " alt="" coords="641,381,783,422"/>
+<area shape="poly" id="edge1420_Node000004_Node000010" title=" " alt="" coords="534,274,576,320,631,366,653,378,650,383,628,371,572,324,530,278"/>
+<area shape="rect" id="Node000012" href="$classJStudio_1_1TObject.html" title=" " alt="" coords="653,446,771,472"/>
+<area shape="poly" id="edge1422_Node000011_Node000012" title=" " alt="" coords="596,456,653,456,653,462,596,462"/>
+<area shape="rect" id="Node000021" href="$classJStudio_1_1stb_1_1TObject__control.html" title=" " alt="" coords="641,496,783,537"/>
+<area shape="poly" id="edge1431_Node000011_Node000021" title=" " alt="" coords="574,474,642,494,640,499,572,479"/>
+<area shape="rect" id="Node000013" href="$structJStudio_1_1TObject__actor.html" title=" " alt="" coords="855,257,1008,283"/>
+<area shape="poly" id="edge1423_Node000012_Node000013" title=" " alt="" coords="783,439,793,432,806,415,813,399,816,364,819,329,827,311,841,293,859,281,862,285,844,297,831,313,824,330,821,364,818,400,811,418,797,436,786,443"/>
+<area shape="rect" id="Node000014" href="$structJStudio_1_1TObject__ambientLight.html" title=" " alt="" coords="846,307,1017,347"/>
+<area shape="poly" id="edge1424_Node000012_Node000014" title=" " alt="" coords="783,438,793,432,809,414,816,396,824,376,841,357,859,346,861,350,844,361,829,379,821,398,813,417,796,436,786,442"/>
+<area shape="rect" id="Node000015" href="$structJStudio_1_1TObject__camera.html" title=" " alt="" coords="848,372,1015,397"/>
+<area shape="poly" id="edge1425_Node000012_Node000015" title=" " alt="" coords="775,438,794,431,842,406,873,395,875,400,844,411,796,436,777,443"/>
+<area shape="rect" id="Node000016" href="$structJStudio_1_1TObject__fog.html" title=" " alt="" coords="860,421,1003,447"/>
+<area shape="poly" id="edge1426_Node000012_Node000016" title=" " alt="" coords="786,448,860,439,860,445,786,453"/>
+<area shape="rect" id="Node000017" href="$structJStudio_1_1TObject__light.html" title=" " alt="" coords="857,470,1006,496"/>
+<area shape="poly" id="edge1427_Node000012_Node000017" title=" " alt="" coords="786,464,857,472,856,478,785,470"/>
+<area shape="rect" id="Node000018" href="$structJStudio_1_1TObject__message.html" title=" " alt="" coords="843,520,1020,545"/>
+<area shape="poly" id="edge1428_Node000012_Node000018" title=" " alt="" coords="776,475,796,482,844,506,875,516,874,521,842,511,794,487,774,480"/>
+<area shape="rect" id="Node000019" href="$structJStudio_1_1TObject__particle.html" title=" " alt="" coords="848,569,1015,595"/>
+<area shape="poly" id="edge1429_Node000012_Node000019" title=" " alt="" coords="786,476,796,482,813,501,821,520,829,538,844,556,863,566,861,571,841,560,824,541,816,522,809,504,793,486,784,480"/>
+<area shape="rect" id="Node000020" href="$structJStudio_1_1TObject__sound.html" title=" " alt="" coords="852,618,1011,644"/>
+<area shape="poly" id="edge1430_Node000012_Node000020" title=" " alt="" coords="786,475,797,482,810,498,817,514,821,546,825,576,832,591,844,605,860,615,857,620,841,609,828,594,820,578,816,546,812,516,805,501,793,486,783,479"/>
 </map>

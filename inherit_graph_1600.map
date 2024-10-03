@@ -1,41 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJGadget_1_1binary_1_1TParseData.html" title=" " alt="" coords="5,504,191,529"/>
-<area shape="rect" id="Node000001" href="$structJGadget_1_1binary_1_1TParseData__aligned.html" title=" " alt="" coords="239,463,424,503"/>
-<area shape="poly" id="edge1324_Node000000_Node000001" title=" " alt="" coords="206,498,238,494,238,499,207,504"/>
-<area shape="rect" id="Node000019" href="$structJGadget_1_1binary_1_1TParseData__aligned.html" title=" " alt="" coords="239,528,424,569"/>
-<area shape="poly" id="edge1342_Node000000_Node000019" title=" " alt="" coords="207,529,238,533,238,538,206,534"/>
-<area shape="rect" id="Node000002" href="$structJMessage_1_1data_1_1TParse__TBlock.html" title=" " alt="" coords="480,71,640,111"/>
-<area shape="poly" id="edge1325_Node000001_Node000002" title=" " alt="" coords="334,447,347,379,371,293,389,247,411,202,438,160,470,122,487,110,490,114,474,126,442,163,416,205,394,249,376,294,352,380,340,448"/>
-<area shape="rect" id="Node000006" href="$structJMessage_1_1data_1_1TParse__THeader.html" title=" " alt="" coords="480,136,640,177"/>
-<area shape="poly" id="edge1329_Node000001_Node000006" title=" " alt="" coords="338,447,354,391,380,322,418,250,443,217,470,188,488,175,491,179,474,192,447,221,423,253,385,324,359,392,343,448"/>
-<area shape="rect" id="Node000007" href="$structJStudio_1_1ctb_1_1data_1_1TParse__TBlock.html" title=" " alt="" coords="500,201,620,242"/>
-<area shape="poly" id="edge1330_Node000001_Node000007" title=" " alt="" coords="343,447,362,404,390,352,426,299,470,253,498,236,501,241,474,257,430,302,394,355,367,406,348,449"/>
-<area shape="rect" id="Node000008" href="$structJStudio_1_1ctb_1_1data_1_1TParse__THeader.html" title=" " alt="" coords="497,267,623,307"/>
-<area shape="poly" id="edge1331_Node000001_Node000008" title=" " alt="" coords="352,448,401,383,434,348,470,318,495,304,497,309,474,323,438,352,405,386,356,451"/>
-<area shape="rect" id="Node000009" href="$classJStudio_1_1fvb_1_1data_1_1TParse__TBlock.html" title=" " alt="" coords="500,332,620,373"/>
-<area shape="poly" id="edge1332_Node000001_Node000009" title=" " alt="" coords="369,451,416,417,471,383,498,371,500,375,473,388,419,421,372,455"/>
-<area shape="rect" id="Node000010" href="$classJStudio_1_1fvb_1_1data_1_1TParse__THeader.html" title=" " alt="" coords="497,397,623,438"/>
-<area shape="poly" id="edge1333_Node000001_Node000010" title=" " alt="" coords="418,455,495,433,497,438,420,461"/>
-<area shape="rect" id="Node000011" href="$classJStudio_1_1fvb_1_1data_1_1TParse__TParagraph.html" title=" " alt="" coords="488,463,631,503"/>
-<area shape="poly" id="edge1334_Node000001_Node000011" title=" " alt="" coords="439,480,487,480,487,486,439,486"/>
-<area shape="rect" id="Node000012" href="$classJStudio_1_1stb_1_1data_1_1TParse__TBlock.html" title=" " alt="" coords="500,528,620,569"/>
-<area shape="poly" id="edge1335_Node000001_Node000012" title=" " alt="" coords="420,506,500,529,498,534,419,511"/>
-<area shape="rect" id="Node000014" href="$classJStudio_1_1stb_1_1data_1_1TParse__THeader.html" title=" " alt="" coords="497,593,623,634"/>
-<area shape="poly" id="edge1337_Node000001_Node000014" title=" " alt="" coords="418,509,426,514,442,531,450,547,459,563,474,578,498,592,495,597,470,582,454,566,446,549,437,534,422,518,415,513"/>
-<area shape="rect" id="Node000015" href="$classJStudio_1_1stb_1_1data_1_1TParse__TParagraph.html" title=" " alt="" coords="488,659,631,699"/>
-<area shape="poly" id="edge1338_Node000001_Node000015" title=" " alt="" coords="422,511,426,515,439,531,446,548,451,580,455,612,462,628,474,644,490,656,487,660,470,648,457,631,450,614,446,581,441,549,434,534,422,518,418,515"/>
-<area shape="rect" id="Node000016" href="$structJStudio_1_1stb_1_1data_1_1TParse__TParagraph__data.html" title=" " alt="" coords="472,724,647,765"/>
-<area shape="poly" id="edge1339_Node000001_Node000016" title=" " alt="" coords="423,511,426,515,443,540,451,565,452,589,451,614,449,638,451,661,458,685,474,709,488,721,485,726,470,713,453,687,445,662,444,637,446,613,447,589,446,566,438,542,422,518,419,515"/>
-<area shape="rect" id="Node000017" href="$classJStudio_1_1stb_1_1data_1_1TParse__TParagraph__dataID.html" title=" " alt="" coords="488,789,631,844"/>
-<area shape="poly" id="edge1340_Node000001_Node000017" title=" " alt="" coords="424,512,426,515,447,548,456,581,456,614,452,646,448,677,447,709,455,741,474,775,489,789,486,793,470,778,450,743,442,709,443,677,447,645,451,613,451,582,442,551,422,518,420,516"/>
-<area shape="rect" id="Node000018" href="$classJStudio_1_1stb_1_1data_1_1TParse__TSequence.html" title=" " alt="" coords="489,868,631,909"/>
-<area shape="poly" id="edge1341_Node000001_Node000018" title=" " alt="" coords="424,512,426,515,442,537,452,559,461,603,459,645,451,687,443,728,440,770,449,812,459,833,474,855,490,868,486,872,470,858,454,836,444,813,435,770,437,727,445,686,453,644,456,603,447,561,437,540,422,518,420,515"/>
-<area shape="rect" id="Node000003" href="$structJMessage_1_1data_1_1TParse__TBlock__color.html" title=" " alt="" coords="695,5,856,46"/>
-<area shape="poly" id="edge1326_Node000002_Node000003" title=" " alt="" coords="643,63,705,44,706,49,644,68"/>
-<area shape="rect" id="Node000004" href="$structJMessage_1_1data_1_1TParse__TBlock__info.html" title=" " alt="" coords="695,71,856,111"/>
-<area shape="poly" id="edge1327_Node000002_Node000004" title=" " alt="" coords="656,88,695,88,695,94,656,94"/>
-<area shape="rect" id="Node000005" href="$structJMessage_1_1data_1_1TParse__TBlock__messageID.html" title=" " alt="" coords="695,136,856,177"/>
-<area shape="poly" id="edge1328_Node000002_Node000005" title=" " alt="" coords="644,114,706,133,705,138,643,119"/>
-<area shape="rect" id="Node000013" href="$classJStudio_1_1stb_1_1data_1_1TParse__TBlock__object.html" title=" " alt="" coords="696,528,855,569"/>
-<area shape="poly" id="edge1336_Node000012_Node000013" title=" " alt="" coords="635,546,695,546,695,551,635,551"/>
+<area shape="rect" id="Node000000" href="$structJGadget_1_1binary_1_1TParseValue__raw__.html" title=" " alt="" coords="5,5,197,46"/>
+<area shape="rect" id="Node000001" href="$structJGadget_1_1binary_1_1TParseValue__endian__big__.html" title=" " alt="" coords="245,5,436,46"/>
+<area shape="poly" id="edge1344_Node000000_Node000001" title=" " alt="" coords="213,23,244,23,244,28,213,28"/>
 </map>

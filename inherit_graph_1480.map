@@ -1,5 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJASBank.html" title=" " alt="" coords="5,5,82,31"/>
-<area shape="rect" id="Node000001" href="$classJASVoiceBank.html" title=" " alt="" coords="130,5,239,31"/>
-<area shape="poly" id="edge1268_Node000000_Node000001" title=" " alt="" coords="98,16,129,16,129,21,98,21"/>
+<area shape="rect" id="Node000000" href="$classJASBankList.html" title=" " alt="" coords="5,31,104,56"/>
+<area shape="rect" id="Node000001" href="$classJASBankTable.html" title=" " alt="" coords="158,5,309,31"/>
+<area shape="poly" id="edge1270_Node000000_Node000001" title=" " alt="" coords="119,32,157,26,157,32,119,37"/>
+<area shape="rect" id="Node000004" href="$classJASBankTable.html" title=" " alt="" coords="163,55,304,80"/>
+<area shape="poly" id="edge1272_Node000000_Node000004" title=" " alt="" coords="119,49,163,55,162,61,119,55"/>
+<area shape="rect" id="Node000002" href="$classJASDefaultBankTable.html" title=" " alt="" coords="363,59,512,84"/>
+<area shape="poly" id="edge1271_Node000001_Node000002" title=" " alt="" coords="301,33,386,55,385,61,299,38"/>
+<area shape="rect" id="Node000003" href="$classJASGlobalInstance.html" title=" " alt="" coords="152,105,315,145"/>
+<area shape="poly" id="edge1273_Node000003_Node000002" title=" " alt="" coords="328,97,385,82,386,88,329,103"/>
 </map>

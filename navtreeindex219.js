@@ -1,7 +1,5 @@
 var NAVTREEINDEX219 =
 {
-"classdaNpc__Pachi__Taro__c.html#a749fa234dbc5c26caa03e7e6c03d98bb":[1,0,3,69,30],
-"classdaNpc__Pachi__Taro__c.html#a7705194f0e316fc4e564688a2c72706f":[1,0,3,69,78],
 "classdaNpc__Pachi__Taro__c.html#a7718ba117879b47df8b3ae0f7911afbc":[1,0,3,69,15],
 "classdaNpc__Pachi__Taro__c.html#a79f3ffec43a3d03b15ac9d476ddc6949":[1,0,3,69,17],
 "classdaNpc__Pachi__Taro__c.html#a7f98fd61979702d852209e4031610ffc":[1,0,3,69,84],
@@ -249,5 +247,7 @@ var NAVTREEINDEX219 =
 "classdaNpc__Seira2__c.html#a2fecbd8d2d25ef171bc2c11878b19d0f":[1,0,3,82,48],
 "classdaNpc__Seira2__c.html#a308c942dba61357514bcbd8b2424418d":[1,0,3,82,35],
 "classdaNpc__Seira2__c.html#a3923b9aea52c6f1d6e35e59163ea16e1":[1,0,3,82,43],
-"classdaNpc__Seira2__c.html#a39b2c33fd5a6e63b49767582117a4d73":[1,0,3,82,50]
+"classdaNpc__Seira2__c.html#a39b2c33fd5a6e63b49767582117a4d73":[1,0,3,82,50],
+"classdaNpc__Seira2__c.html#a3a01b22776e5084ba99eb4d43301920e":[1,0,3,82,1],
+"classdaNpc__Seira2__c.html#a3c8ac472ab9bea0434ac61e3bd881ee0":[1,0,3,82,21]
 };

@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJ3DTexCoordScaleInfo.html" title=" " alt="" coords="5,5,160,31"/>
+<area shape="rect" id="Node000000" href="$classJ3DTexGenBlock.html" title=" " alt="" coords="5,31,128,56"/>
+<area shape="rect" id="Node000001" href="$structJ3DTexGenBlockNull.html" title=" " alt="" coords="188,5,334,31"/>
+<area shape="poly" id="edge1125_Node000000_Node000001" title=" " alt="" coords="143,31,187,25,188,30,143,36"/>
+<area shape="rect" id="Node000002" href="$classJ3DTexGenBlockPatched.html" title=" " alt="" coords="176,55,346,80"/>
+<area shape="poly" id="edge1126_Node000000_Node000002" title=" " alt="" coords="143,50,175,54,175,60,143,56"/>
+<area shape="rect" id="Node000003" href="$classJ3DTexGenBlock4.html" title=" " alt="" coords="407,29,536,55"/>
+<area shape="poly" id="edge1127_Node000002_Node000003" title=" " alt="" coords="361,53,406,47,407,53,362,58"/>
+<area shape="rect" id="Node000004" href="$classJ3DTexGenBlockBasic.html" title=" " alt="" coords="394,79,549,104"/>
+<area shape="poly" id="edge1128_Node000002_Node000004" title=" " alt="" coords="362,76,394,80,393,85,361,82"/>
 </map>

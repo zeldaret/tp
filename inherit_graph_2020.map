@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structSYaz0Header.html" title=" " alt="" coords="5,5,107,31"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,44,80"/>
+<area shape="rect" id="Node000001" href="$structJGeometry_1_1TMatrix34.html" title=" " alt="" coords="95,5,272,31"/>
+<area shape="poly" id="edge1555_Node000000_Node000001" title=" " alt="" coords="57,52,91,40,127,29,129,34,93,45,59,57"/>
+<area shape="rect" id="Node000002" href="$structJGeometry_1_1TPosition3.html" title=" " alt="" coords="92,55,275,80"/>
+<area shape="poly" id="edge1556_Node000000_Node000002" title=" " alt="" coords="60,65,92,65,92,70,60,70"/>
+<area shape="rect" id="Node000003" href="$structJGeometry_1_1TRotation3.html" title=" " alt="" coords="92,104,275,130"/>
+<area shape="poly" id="edge1557_Node000000_Node000003" title=" " alt="" coords="59,78,93,90,129,101,127,106,91,95,57,83"/>
 </map>

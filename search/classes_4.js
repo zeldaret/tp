@@ -1209,7 +1209,7 @@ var searchData=
   ['datagpati_5fc_1206',['daTagPati_c',['../classdaTagPati__c.html',1,'']]],
   ['datagpofire_5fc_1207',['daTagPoFire_c',['../classdaTagPoFire__c.html',1,'']]],
   ['datagpofire_5fhio_5fc_1208',['daTagPoFire_HIO_c',['../classdaTagPoFire__HIO__c.html',1,'']]],
-  ['datagqs_5fc_1209',['daTagQs_c',['../structdaTagQs__c.html',1,'']]],
+  ['datagqs_5fc_1209',['daTagQs_c',['../classdaTagQs__c.html',1,'']]],
   ['datagrestart_5fc_1210',['daTagRestart_c',['../classdaTagRestart__c.html',1,'']]],
   ['datagretrm_5fc_1211',['daTagRetRm_c',['../classdaTagRetRm__c.html',1,'']]],
   ['datagriverback_5fc_1212',['daTagRiverBack_c',['../classdaTagRiverBack__c.html',1,'']]],

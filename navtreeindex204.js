@@ -1,7 +1,5 @@
 var NAVTREEINDEX204 =
 {
-"classdaNpcChat__c.html#a309aeb5e3a732cc864ba6bd1059f0b5a":[1,0,3,11,29],
-"classdaNpcChat__c.html#a349477980a14724f4c5dee902fe3703d":[1,0,3,11,14],
 "classdaNpcChat__c.html#a3e996cf26d4cfdf2db088b67be85d07e":[1,0,3,11,10],
 "classdaNpcChat__c.html#a3ef47380268b9784f10e29f0acccec4b":[1,0,3,11,26],
 "classdaNpcChat__c.html#a4308934ab0c8f8026804a474bd221c58":[1,0,3,11,18],
@@ -249,5 +247,7 @@ var NAVTREEINDEX204 =
 "classdaNpcF__ActorMngr__c.html#af8535933bf42f7d4bfd94e6c2fccbc91":[3,0,935,6],
 "classdaNpcF__ActorMngr__c.html#afc2b36e78f682906100332255c0b97e7":[3,0,935,0],
 "classdaNpcF__Lookat__c.html":[3,0,937],
-"classdaNpcF__Lookat__c.html#a1044f9646f4775cc68ace3c564814ff9":[3,0,937,15]
+"classdaNpcF__Lookat__c.html#a1044f9646f4775cc68ace3c564814ff9":[3,0,937,15],
+"classdaNpcF__Lookat__c.html#a201f0f74e40a7179097004c4888c0b0d":[3,0,937,3],
+"classdaNpcF__Lookat__c.html#a23ceb383d9c1b9b760affada0c60685d":[3,0,937,2]
 };

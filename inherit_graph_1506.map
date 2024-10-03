@@ -1,51 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJASGlobalInstance.html" title=" " alt="" coords="151,5,292,46"/>
-<area shape="rect" id="Node000001" href="$structJASAudioThread.html" title=" " alt="" coords="340,13,459,39"/>
-<area shape="poly" id="edge1277_Node000000_Node000001" title=" " alt="" coords="308,23,339,23,339,28,308,28"/>
-<area shape="rect" id="Node000008" href="$classJKRDisposer.html" title=" " alt="" coords="5,408,103,433"/>
-<area shape="rect" id="Node000009" href="$classJKRAramHeap.html" title=" " alt="" coords="167,309,276,335"/>
-<area shape="poly" id="edge1278_Node000008_Node000009" title=" " alt="" coords="79,395,111,368,149,343,173,333,175,337,152,348,114,373,82,399"/>
-<area shape="rect" id="Node000010" href="$classJKRFile.html" title=" " alt="" coords="188,358,255,384"/>
-<area shape="poly" id="edge1279_Node000008_Node000010" title=" " alt="" coords="114,400,186,378,188,383,116,405"/>
-<area shape="rect" id="Node000012" href="$classJKRFileLoader.html" title=" " alt="" coords="168,408,275,433"/>
-<area shape="poly" id="edge1281_Node000008_Node000012" title=" " alt="" coords="118,418,167,418,167,423,118,423"/>
-<area shape="rect" id="Node000019" href="$structJKRHeap.html" title=" " alt="" coords="183,457,260,483"/>
-<area shape="poly" id="edge1288_Node000008_Node000019" title=" " alt="" coords="115,436,183,456,182,461,114,441"/>
-<area shape="rect" id="Node000002" href="$classJKRThread.html" title=" " alt="" coords="178,161,265,187"/>
-<area shape="poly" id="edge1292_Node000008_Node000002" title=" " alt="" coords="70,393,209,186,213,188,75,396"/>
-<area shape="rect" id="Node000023" href="$classJUTConsole.html" title=" " alt="" coords="175,506,268,532"/>
-<area shape="poly" id="edge1299_Node000008_Node000023" title=" " alt="" coords="82,442,114,468,152,493,175,503,173,508,149,497,111,472,79,446"/>
-<area shape="rect" id="Node000024" href="$structJUTGamePad.html" title=" " alt="" coords="169,556,274,581"/>
-<area shape="poly" id="edge1300_Node000008_Node000024" title=" " alt="" coords="72,446,105,495,127,520,152,542,171,553,168,557,149,547,123,524,101,498,67,448"/>
-<area shape="rect" id="Node000011" href="$classJKRDvdFile.html" title=" " alt="" coords="355,309,445,335"/>
-<area shape="poly" id="edge1280_Node000010_Node000011" title=" " alt="" coords="269,355,353,332,355,337,271,360"/>
-<area shape="rect" id="Node000013" href="$classJKRArchive.html" title=" " alt="" coords="355,358,445,384"/>
-<area shape="poly" id="edge1282_Node000012_Node000013" title=" " alt="" coords="284,400,353,381,355,386,286,405"/>
-<area shape="rect" id="Node000018" href="$classJKRFileCache.html" title=" " alt="" coords="348,408,452,433"/>
-<area shape="poly" id="edge1287_Node000012_Node000018" title=" " alt="" coords="291,418,347,418,347,423,291,423"/>
-<area shape="rect" id="Node000014" href="$structJKRAramArchive.html" title=" " alt="" coords="509,285,630,311"/>
-<area shape="poly" id="edge1283_Node000013_Node000014" title=" " alt="" coords="448,349,458,345,506,319,531,309,534,313,508,324,461,349,450,354"/>
-<area shape="rect" id="Node000015" href="$classJKRCompArchive.html" title=" " alt="" coords="507,334,632,360"/>
-<area shape="poly" id="edge1284_Node000013_Node000015" title=" " alt="" coords="460,360,507,353,508,358,461,365"/>
-<area shape="rect" id="Node000016" href="$classJKRDvdArchive.html" title=" " alt="" coords="513,384,626,409"/>
-<area shape="poly" id="edge1285_Node000013_Node000016" title=" " alt="" coords="461,377,513,385,512,390,460,383"/>
-<area shape="rect" id="Node000017" href="$classJKRMemArchive.html" title=" " alt="" coords="510,433,629,459"/>
-<area shape="poly" id="edge1286_Node000013_Node000017" title=" " alt="" coords="450,388,461,393,509,419,533,430,531,435,506,424,458,397,448,393"/>
-<area shape="rect" id="Node000020" href="$classJKRAssertHeap.html" title=" " alt="" coords="342,457,457,483"/>
-<area shape="poly" id="edge1289_Node000019_Node000020" title=" " alt="" coords="276,467,341,467,341,472,276,472"/>
-<area shape="rect" id="Node000021" href="$classJKRExpHeap.html" title=" " alt="" coords="351,506,449,532"/>
-<area shape="poly" id="edge1290_Node000019_Node000021" title=" " alt="" coords="276,482,351,503,350,508,274,487"/>
-<area shape="rect" id="Node000022" href="$classJKRSolidHeap.html" title=" " alt="" coords="347,556,453,581"/>
-<area shape="poly" id="edge1291_Node000019_Node000022" title=" " alt="" coords="276,482,293,491,309,504,318,517,327,530,342,542,361,553,358,557,338,547,323,533,314,520,305,508,291,496,273,487"/>
-<area shape="poly" id="edge1293_Node000002_Node000001" title=" " alt="" coords="239,147,282,97,309,71,339,47,358,37,361,41,341,52,312,75,285,101,243,150"/>
-<area shape="rect" id="Node000003" href="$classJASTaskThread.html" title=" " alt="" coords="342,62,457,88"/>
-<area shape="poly" id="edge1294_Node000002_Node000003" title=" " alt="" coords="253,149,339,97,362,86,364,91,341,101,255,154"/>
-<area shape="rect" id="Node000004" href="$classJKRAram.html" title=" " alt="" coords="361,112,438,137"/>
-<area shape="poly" id="edge1295_Node000002_Node000004" title=" " alt="" coords="279,155,360,132,362,137,280,160"/>
-<area shape="rect" id="Node000005" href="$classJKRAramStream.html" title=" " alt="" coords="340,161,459,187"/>
-<area shape="poly" id="edge1296_Node000002_Node000005" title=" " alt="" coords="280,171,340,171,340,176,280,176"/>
-<area shape="rect" id="Node000006" href="$classJKRDecomp.html" title=" " alt="" coords="353,210,447,236"/>
-<area shape="poly" id="edge1297_Node000002_Node000006" title=" " alt="" coords="280,187,353,208,352,213,279,192"/>
-<area shape="rect" id="Node000007" href="$classJUTException.html" title=" " alt="" coords="349,260,451,285"/>
-<area shape="poly" id="edge1298_Node000002_Node000007" title=" " alt="" coords="255,193,341,246,364,256,362,261,339,251,253,198"/>
+<area shape="rect" id="Node000000" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,5,171,46"/>
+<area shape="rect" id="Node000001" href="$structJAUSoundNameTable.html" title=" " alt="" coords="219,13,370,39"/>
+<area shape="poly" id="edge1302_Node000000_Node000001" title=" " alt="" coords="186,23,219,23,219,28,186,28"/>
 </map>

@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structsBgPc.html" title=" " alt="" coords="5,5,66,31"/>
+<area shape="rect" id="Node000000" href="$classscene__class.html" title=" " alt="" coords="5,80,100,106"/>
+<area shape="rect" id="Node000001" href="$classdScnLogo__c.html" title=" " alt="" coords="175,5,269,31"/>
+<area shape="poly" id="edge1545_Node000000_Node000001" title=" " alt="" coords="88,70,147,40,174,29,176,34,149,45,90,74"/>
+<area shape="rect" id="Node000002" href="$classdScnName__c.html" title=" " alt="" coords="172,55,272,80"/>
+<area shape="poly" id="edge1546_Node000000_Node000002" title=" " alt="" coords="115,81,171,72,172,78,116,86"/>
+<area shape="rect" id="Node000003" href="$classdScnPly__c.html" title=" " alt="" coords="180,104,264,130"/>
+<area shape="poly" id="edge1547_Node000000_Node000003" title=" " alt="" coords="115,99,180,108,180,114,114,104"/>
+<area shape="rect" id="Node000004" href="$classroom__of__scene__class.html" title=" " alt="" coords="148,153,296,179"/>
+<area shape="poly" id="edge1548_Node000000_Node000004" title=" " alt="" coords="91,111,149,140,177,150,175,155,147,145,89,116"/>
 </map>

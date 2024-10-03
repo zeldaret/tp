@@ -1,7 +1,5 @@
 var NAVTREEINDEX259 =
 {
-"classdaTagKagoFall__c.html#ad3633bf211e875a5c41eb51ba9ce5486":[3,0,1376,16],
-"classdaTagKagoFall__c.html#afe9a6e1d2fcdd2cad5aba2e953133571":[3,0,1376,9],
 "classdaTagLightBall__c.html":[3,0,1377],
 "classdaTagLightBall__c.html#a18800d33e7e2e6cbb553391852be7c75":[3,0,1377,10],
 "classdaTagLightBall__c.html#a1f620d7a2301c6a388dd163eb1d13593":[3,0,1377,8],
@@ -249,5 +247,7 @@ var NAVTREEINDEX259 =
 "classdaTagPoFire__HIO__c.html#a7eff5cbf1375c9f7d71767ad1970a3fb":[3,0,1391,0],
 "classdaTagPoFire__HIO__c.html#a8170a86dedf5c6279b48dbcfb1d08c08":[3,0,1391,2],
 "classdaTagPoFire__c.html":[3,0,1390],
-"classdaTagPoFire__c.html#a0a9f5e3dc2bd89b1f678e003e4aca7f2":[3,0,1390,4]
+"classdaTagPoFire__c.html#a0a9f5e3dc2bd89b1f678e003e4aca7f2":[3,0,1390,4],
+"classdaTagPoFire__c.html#a250c8a088d54ec3ead55b468bb736e0f":[3,0,1390,0],
+"classdaTagPoFire__c.html#a361ab6ec14720842bd99c90fe0f5620d":[3,0,1390,6]
 };

@@ -1,3 +1,15 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJAISeqDataRegion.html" title=" " alt="" coords="5,5,137,31"/>
+<area shape="rect" id="Node000000" href="$structJAISeqDataUser.html" title=" " alt="" coords="16,120,136,145"/>
+<area shape="rect" id="Node000001" href="$classJAISeCategoryMgr.html" title=" " alt="" coords="195,120,325,145"/>
+<area shape="poly" id="edge1135_Node000000_Node000001" title=" " alt="" coords="151,130,194,130,194,135,151,135"/>
+<area shape="rect" id="Node000002" href="$classJAISeMgr.html" title=" " alt="" coords="220,70,300,96"/>
+<area shape="poly" id="edge1136_Node000000_Node000002" title=" " alt="" coords="141,112,219,91,221,96,142,117"/>
+<area shape="rect" id="Node000005" href="$classJAISeqMgr.html" title=" " alt="" coords="217,173,303,199"/>
+<area shape="poly" id="edge1137_Node000000_Node000005" title=" " alt="" coords="139,148,217,171,216,176,137,153"/>
+<area shape="rect" id="Node000003" href="$classJAISoundActivity.html" title=" " alt="" coords="15,70,137,96"/>
+<area shape="poly" id="edge1138_Node000003_Node000002" title=" " alt="" coords="152,80,220,80,220,86,152,86"/>
+<area shape="rect" id="Node000004" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,5,147,46"/>
+<area shape="poly" id="edge1139_Node000004_Node000002" title=" " alt="" coords="158,48,221,68,219,73,157,54"/>
+<area shape="rect" id="Node000006" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,169,147,210"/>
+<area shape="poly" id="edge1140_Node000006_Node000005" title=" " alt="" coords="162,185,216,184,216,189,162,190"/>
 </map>

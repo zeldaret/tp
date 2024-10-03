@@ -1609,7 +1609,7 @@ var annotated_dup =
     [ "daTagPati_c", "classdaTagPati__c.html", "classdaTagPati__c" ],
     [ "daTagPoFire_c", "classdaTagPoFire__c.html", "classdaTagPoFire__c" ],
     [ "daTagPoFire_HIO_c", "classdaTagPoFire__HIO__c.html", "classdaTagPoFire__HIO__c" ],
-    [ "daTagQs_c", "structdaTagQs__c.html", "structdaTagQs__c" ],
+    [ "daTagQs_c", "classdaTagQs__c.html", "classdaTagQs__c" ],
     [ "daTagRestart_c", "classdaTagRestart__c.html", "classdaTagRestart__c" ],
     [ "daTagRetRm_c", "classdaTagRetRm__c.html", "classdaTagRetRm__c" ],
     [ "daTagRiverBack_c", "classdaTagRiverBack__c.html", "classdaTagRiverBack__c" ],
