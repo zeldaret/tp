@@ -111,10 +111,12 @@ public:
     /* 8003FF14 */ virtual void preDrawPath();
     /* 8003FFC4 */ virtual void postDrawPath();
     /* 800402C0 */ virtual bool isDrawPath();
-    /* 8003FE4C */ virtual GXColor* getBackColor() const;
+    /* 8003FE4C */ virtual const GXColor* getBackColor() const;
     /* 800402E0 */ virtual int getFirstDrawLayerNo();
     /* 800402E8 */ virtual int getNextDrawLayerNo(int);
-    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
+
+    // See cpp for argument type change comment
+    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, int, bool,
                                                  Vec const*) const;
     /* 80040AE4 */ virtual int getIconGroupNumber(u8) const;
     virtual bool hasMap() const = 0;
