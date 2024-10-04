@@ -8,6 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path.h"
 #include "d/meter/d_meter_HIO.h"
+#include "float.h"
 #include "dol2asm.h"
 
 //
@@ -515,7 +516,7 @@ void dMapInfo_c::remove() {}
 
 /* ############################################################################################## */
 /* 80450E64-80450E68 000364 0004+00 5/5 1/1 0/0 .sbss            mLayerList__8dMpath_c */
-dDrawPath_c::room_class** dMpath_c::mLayerList;
+dDrawPath_c::layer_data* dMpath_c::mLayerList;
 
 /* 80450E68-80450E6C 000368 0004+00 3/3 1/1 0/0 .sbss            mMinX__8dMpath_c */
 // these are needed for sinit, but its got reversed reg alloc?
@@ -584,14 +585,10 @@ int dMpath_c::getTopBottomFloorNo(s8* i_topFloorNo, s8* i_bottomFloorNo) {
 }
 
 /* 8003F7E8-8003F810 03A128 0028+00 0/0 1/1 0/0 .text            createWork__8dMpath_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::createWork() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/createWork__8dMpath_cFv.s"
+void dMpath_c::createWork() {
+    mLayerList = new dDrawPath_c::layer_data;
+    JUT_ASSERT(1416, mLayerList!=0);
 }
-#pragma pop
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
@@ -715,7 +712,7 @@ void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
         mAllSizeX = mMaxX - mMinX;
         mAllSizeZ = mMaxZ - mMinZ;
 
-        (mLayerList + i_mapLayerNo * 0x40)[(s8)i_roomNo] = room;
+        mLayerList->mRooms[i_mapLayerNo][(s8)i_roomNo] = room;
     }
 }
 #pragma pop
@@ -737,6 +734,27 @@ void dMpath_c::create() {
 SECTION_SDATA static u8 data_80450636 = 0x01;
 
 /* 8003FBD0-8003FC70 03A510 00A0+00 2/2 0/0 0/0 .text            reset__8dMpath_cFv */
+// Matches with literals
+#ifdef NONMATCHING
+void dMpath_c::reset() {
+    if (data_80450636) {
+        for (int i = 0; i < 0x40; i++) {
+            for (int j = 0; j < 2; j++) {
+                mLayerList->mRooms[j][i] = NULL;
+            }
+        }
+        mMinX = FLT_MAX;
+        mMaxX = -FLT_MAX;
+        mMinZ = FLT_MAX;
+        mMaxZ = -FLT_MAX;
+        mBottomFloorNo = 127;
+        mTopFloorNo = -128;
+        data_80450636 = 0;
+        data_80450E88 = 0;
+        dMapInfo_c::reset();
+    }
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -745,6 +763,7 @@ asm void dMpath_c::reset() {
 #include "asm/d/map/d_map_path_dmap/reset__8dMpath_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 8003FC70-8003FCA4 03A5B0 0034+00 0/0 1/1 0/0 .text            remove__8dMpath_cFv */
 void dMpath_c::remove() {
@@ -1261,6 +1280,8 @@ static const treasureDispData l_treasureDispList_4524[4] = {
 
 /* 80040B00-80040E84 03B440 0384+00 1/1 0/0 0/0 .text
  * drawTreasure__28renderingPlusDoorAndCursor_cFv               */
+// rend_all_room int conversion?
+// I'm pretty sure isDrawIconSingle should have int as fourth argument despite function signature
 #ifdef NONMATCHING
 void renderingPlusDoorAndCursor_c::drawTreasure() {
     bool rend_all_room = isRendAllRoom();
@@ -1354,7 +1375,7 @@ SECTION_SDATA2 static u8 l_iconTex0_4605[8] = {
 };
 
 /* 80451EB4-80451EB8 0004B4 0004+00 1/1 0/0 0/0 .sdata2          tboxNotStayColor$4624 */
-SECTION_SDATA2 static u8 tboxNotStayColor_4624[4] = {
+SECTION_SDATA2 static GXColor tboxNotStayColor_4624 = {
     0x80,
     0x00,
     0x00,
@@ -1363,6 +1384,77 @@ SECTION_SDATA2 static u8 tboxNotStayColor_4624[4] = {
 
 /* 80040E84-80041208 03B7C4 0384+00 1/1 0/0 0/0 .text
  * drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv    */
+// rend_all_room int conversion?
+// I'm pretty sure isDrawIconSingle should have int as fourth argument despite function signature
+#ifdef NONMATCHING
+void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
+    bool rend_all_room = isRendAllRoom();
+
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
+    GXSetArray(GX_VA_TEX0, l_iconTex0_4605, 2);
+
+    setTevSettingIntensityTextureToCI();
+
+    for (int i = 0; i < 11; i++) {
+        dTres_c::typeGroupData_c* typeGroupData_p;
+        u8 tmp = l_treasureDispList_4606[i].field_0x0;
+        typeGroupData_p = getFirstData(tmp);
+        int group_num = getIconGroupNumber(tmp);
+
+        if (group_num != 0) {
+            f32 icon_size = getIconSize(tmp) * mCmPerTexel;
+
+            GXInvalidateTexAll();
+            GXTexObj* texObj_p =
+                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList_4606[i].field_0x4);
+            GXLoadTexObj(texObj_p, GX_TEXMAP0);
+            GXColor sp18;
+            GXColor* temp_r3_2 = l_treasureDispList_4606[i].field_0x8;
+            sp18.r = temp_r3_2->r;
+            sp18.g = temp_r3_2->g;
+            sp18.b = temp_r3_2->b;
+            sp18.a = temp_r3_2->a;
+
+            GXSetTevColor(GX_TEVREG1, sp18);
+
+            sp18.r += 4;
+            GXSetTevColor(GX_TEVREG2, sp18);
+
+            for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
+                const Vec* icon_pos = getIconPosition(typeGroupData_p);
+
+                if (tmp == 0) {
+                    if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {
+                        sp18 = tboxNotStayColor_4624;
+                    } else {
+                        sp18 = l_treasureStartColor;
+                    }
+
+                    GXSetTevColor(GX_TEVREG1, sp18);
+
+                    sp18.r += 4;
+                    GXSetTevColor(GX_TEVREG2, sp18);
+                }
+
+                if (isDrawAreaCheck(*icon_pos) &&
+                    isDrawIconSingle(typeGroupData_p->getConstDataPointer(), mRoomNoSingle,
+                                     mRenderedFloor, rend_all_room, true, icon_pos))
+                {
+                    drawIconSingle(*icon_pos, icon_size, icon_size);
+                }
+
+                typeGroupData_p = getNextData(typeGroupData_p);
+            }
+        }
+    }
+
+    setTevSettingNonTextureDirectColor();
+}
+#else
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1371,6 +1463,7 @@ asm void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
 #include "asm/d/map/d_map_path_dmap/drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv.s"
 }
 #pragma pop
+#endif
 
 /* 80041208-800412C0 03BB48 00B8+00 2/2 0/0 0/0 .text
  * drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff      */

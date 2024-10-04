@@ -42,6 +42,10 @@ public:
         /* 0x8 */ f32* mpFloatData;  // might be Vec or cXyz instead
     };
 
+    struct layer_data {
+        /* 0x0 */ room_class* mRooms[0x2][0x40];
+    };
+
     /* 8003CB00 */ void rendering(dDrawPath_c::group_class const*);
     /* 8003CBBC */ void rendering(dDrawPath_c::floor_class const*);
 

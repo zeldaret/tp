@@ -18,7 +18,7 @@ public:
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();
     static dDrawPath_c::room_class* getRoomPointer(int layerNo, int roomNo) {
-        return (mLayerList + 0x40*layerNo)[roomNo];
+        return mLayerList->mRooms[layerNo][roomNo];
     }
 
     static f32 getMinX() { return mMinX; }
@@ -26,7 +26,7 @@ public:
     static f32 getMaxX() { return mMaxX; }
     static f32 getMaxZ() { return mMaxZ; }
 
-    static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
+    static dDrawPath_c::layer_data* mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
     static f32 mMaxX;
     static f32 mMinZ;
