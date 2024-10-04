@@ -14,6 +14,10 @@ struct Z2SpeechStarter : public Z2SoundStarter {
                                            f32, u32);
 };
 
+// Only here for instance sub. No known code.
+struct Z2SpeechMgr : public JASGlobalInstance<Z2SpeechMgr> {
+};
+
 struct Z2SpeechMgr2 : public JASGlobalInstance<Z2SpeechMgr2> {
     /* 802CBC60 */ Z2SpeechMgr2();
     /* 802CBD88 */ void setString(u16 const*, s16, u8, u16);
