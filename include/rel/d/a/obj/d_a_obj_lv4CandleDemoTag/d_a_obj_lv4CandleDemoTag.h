@@ -5,12 +5,6 @@
 #include "d/event/d_event_lib.h"
 #include "rel/d/a/obj/d_a_obj_lv4EdShutter/d_a_obj_lv4EdShutter.h"
 
-// idk how this works atm. dEvLib_callback_c seems to need to be inherited, but this data comes
-// before it. the fopAc_ac_c struct size is 100% correct, so do not change it
-struct temp {
-    /* 0x568 */ u8 field_0x568[0x570 - 0x568];
-};
-
 /**
  * @ingroup actors-objects
  * @class dalv4CandleDemoTag_c
@@ -19,7 +13,7 @@ struct temp {
  * @details
  *
  */
-class dalv4CandleDemoTag_c : public fopAc_ac_c, temp, public dEvLib_callback_c {
+class dalv4CandleDemoTag_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     dalv4CandleDemoTag_c() : dEvLib_callback_c(this) {}
 

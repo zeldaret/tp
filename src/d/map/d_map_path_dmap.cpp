@@ -8,158 +8,7 @@
 #include "d/com/d_com_inf_game.h"
 #include "d/map/d_map_path.h"
 #include "d/meter/d_meter_HIO.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void chkGetCompass__10dMapInfo_nFv();
-extern "C" void chkGetMap__10dMapInfo_nFv();
-extern "C" void isVisitedRoom__10dMapInfo_nFi();
-extern "C" void correctionOriginPos__10dMapInfo_nFScP3Vec();
-extern "C" void offsetPlus__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec();
-extern "C" void rotAngle__10dMapInfo_nFPC21dStage_FileList2_dt_cP3Vec();
-extern "C" void getMapPlayerPos__10dMapInfo_nFv();
-extern "C" void getMapPlayerAngleY__10dMapInfo_nFv();
-extern "C" void getConstRestartIconPointer__10dMapInfo_nFv();
-extern "C" void getMapRestartPos__10dMapInfo_nFv();
-extern "C" void getMapRestartAngleY__10dMapInfo_nFv();
-extern "C" void getRoomCenter__10dMapInfo_nFiPfPf();
-extern "C" void getRoomMinMaxXZ__10dMapInfo_nFiPfPfPfPf();
-extern "C" void getFloorParameter__10dMapInfo_nFfPScPfPfPfPf();
-extern "C" void calcFloorNo__10dMapInfo_cFfbi();
-extern "C" void calcNowStayFloorNo__10dMapInfo_cFfb();
-extern "C" void move__10dMapInfo_cFif();
-extern "C" void init__10dMapInfo_cFv();
-extern "C" void reset__10dMapInfo_cFv();
-extern "C" void create__10dMapInfo_cFv();
-extern "C" void remove__10dMapInfo_cFv();
-extern "C" u8 isExistMapPathData__8dMpath_cFv();
-extern "C" void getTopBottomFloorNo__8dMpath_cFPScPSc();
-extern "C" void createWork__8dMpath_cFv();
-extern "C" void setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc();
-extern "C" void setPointer__8dMpath_cFScPvi();
-extern "C" void create__8dMpath_cFv();
-extern "C" void reset__8dMpath_cFv();
-extern "C" void remove__8dMpath_cFv();
-extern "C" void calcFloorNoForObjectByMapPathRend__16renderingDAmap_cCFfi();
-extern "C" void init__16renderingDAmap_cFPUcUsUsUsUs();
-extern "C" void entry__16renderingDAmap_cFfffiSc();
-extern "C" void isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class();
-extern "C" void draw__16renderingDAmap_cFv();
-extern "C" void getBackColor__16renderingDAmap_cCFv();
-extern "C" void isRenderingFloor__16renderingDAmap_cFi();
-extern "C" void setSingleRoomSetting__16renderingDAmap_cFv();
-extern "C" void isDrawRoom__16renderingDAmap_cCFii();
-extern "C" void preDrawPath__16renderingDAmap_cFv();
-extern "C" void postDrawPath__16renderingDAmap_cFv();
-extern "C" void getRoomNoSingle__16renderingDAmap_cFv();
-extern "C" void getFirstDrawRoomNo__16renderingDAmap_cFv();
-extern "C" void getNextDrawRoomNo__16renderingDAmap_cFi();
-extern "C" void getFirstRoomPointer__16renderingDAmap_cFv();
-extern "C" void getNextRoomPointer__16renderingDAmap_cFv();
-extern "C" void isDrawPath__16renderingDAmap_cFv();
-extern "C" bool getFirstDrawLayerNo__16renderingDAmap_cFv();
-extern "C" void getNextDrawLayerNo__16renderingDAmap_cFi();
-extern "C" void afterDrawPath__28renderingPlusDoorAndCursor_cFv();
-extern "C" void afterDrawPath__19renderingPlusDoor_cFv();
-extern "C" void drawDoor1__19renderingPlusDoor_cFv();
-extern "C" void drawDoor2__19renderingPlusDoor_cFv();
-extern "C" void drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib();
-extern "C" void checkDispDoorS__19renderingPlusDoor_cFiif();
-extern "C" void drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib();
-extern "C" void isDrawRoomIcon__16renderingDAmap_cCFii();
-extern "C" void isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec();
-extern "C" void getFirstData__28renderingPlusDoorAndCursor_cFUc();
-extern "C" void getNextData__28renderingPlusDoorAndCursor_cFPQ27dTres_c15typeGroupData_c();
-extern "C" void getIconPosition__28renderingPlusDoorAndCursor_cCFPQ27dTres_c15typeGroupData_c();
-extern "C" void getIconGroupNumber__16renderingDAmap_cCFUc();
-extern "C" void drawTreasure__28renderingPlusDoorAndCursor_cFv();
-extern "C" void drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv();
-extern "C" void drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff();
-extern "C" void drawCursor__28renderingPlusDoorAndCursor_cFRC3Vecsif();
-extern "C" void beforeDrawPath__19renderingPlusDoor_cFv();
-extern "C" void __sinit_d_map_path_dmap_cpp();
-extern "C" extern void* __vt__19renderingPlusDoor_c[41];
-extern "C" extern void* __vt__28renderingPlusDoorAndCursor_c[47];
-extern "C" extern void* __vt__16renderingDAmap_c[38];
-extern "C" u32 mNextRoomNo__10dMapInfo_c;
-extern "C" u8 mNowStayRoomNo__10dMapInfo_c[4];
-extern "C" u8 mNowStayFloorNoDecisionFlg__10dMapInfo_c[4];
-extern "C" u8 mNowStayFloorNo__10dMapInfo_c[4];
-extern "C" u8 mLayerList__8dMpath_c[4];
-extern "C" u8 mBottomFloorNo__8dMpath_c;
-extern "C" f32 mMinX__8dMpath_c;
-extern "C" f32 mMaxX__8dMpath_c;
-extern "C" f32 mMinZ__8dMpath_c;
-extern "C" f32 mMaxZ__8dMpath_c;
-extern "C" f32 mAllCenterX__8dMpath_c;
-extern "C" f32 mAllCenterZ__8dMpath_c;
-extern "C" f32 mAllSizeX__8dMpath_c;
-extern "C" f32 mAllSizeZ__8dMpath_c;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void dStage_GetKeepDoorInfo__Fv();
-extern "C" void dStage_GetRoomKeepDoorInfo__Fv();
-extern "C" bool isDrawType__11dDrawPath_cFi();
-extern "C" void getLineColor__11dDrawPath_cFii();
-extern "C" void __dt__28renderingPlusDoorAndCursor_cFv();
-extern "C" void __dt__19renderingPlusDoor_cFv();
-extern "C" void __dt__16renderingDAmap_cFv();
-extern "C" void dComIfGs_isVisitedRoom__Fi();
-extern "C" void isDungeonItem__12dSv_memBit_cCFi();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void create__Q28dMpath_n18dTexObjAggregate_cFv();
-extern "C" void remove__Q28dMpath_n18dTexObjAggregate_cFv();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class();
-extern "C" void drawPath__11dDrawPath_cFv();
-extern "C" void renderingMap__15dRenderingMap_cFv();
-extern "C" void setTevSettingNonTextureDirectColor__18dRenderingFDAmap_cCFv();
-extern "C" void setTevSettingIntensityTextureToCI__18dRenderingFDAmap_cCFv();
-extern "C" void preRenderingMap__18dRenderingFDAmap_cFv();
-extern "C" void postRenderingMap__18dRenderingFDAmap_cFv();
-extern "C" void getDecoLineColor__18dRenderingFDAmap_cFii();
-extern "C" void getDecorationLineWidth__18dRenderingFDAmap_cFi();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void getFirstData__7dTres_cFUc();
-extern "C" void getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c();
-extern "C" void getNextData__7dTres_cFPCQ27dTres_c15typeGroupData_c();
-extern "C" void* __nw__FUl();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXInvalidateTexAll();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" u8 m_texObjAgg__8dMpath_n[28];
-extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
-
-//
-// Declarations:
-//
+#include "float.h"
 
 /* 8003ECA0-8003ECD8 0395E0 0038+00 0/0 3/3 0/0 .text            chkGetCompass__10dMapInfo_nFv */
 bool dMapInfo_n::chkGetCompass() {
@@ -515,20 +364,20 @@ void dMapInfo_c::remove() {}
 
 /* ############################################################################################## */
 /* 80450E64-80450E68 000364 0004+00 5/5 1/1 0/0 .sbss            mLayerList__8dMpath_c */
-dDrawPath_c::room_class** dMpath_c::mLayerList;
+dDrawPath_c::layer_data* dMpath_c::mLayerList;
 
 /* 80450E68-80450E6C 000368 0004+00 3/3 1/1 0/0 .sbss            mMinX__8dMpath_c */
 // these are needed for sinit, but its got reversed reg alloc?
-f32 dMpath_c::mMinX /* = FLT_MAX */;
+f32 dMpath_c::mMinX = FLT_MAX;
 
 /* 80450E6C-80450E70 00036C 0004+00 3/3 1/1 0/0 .sbss            mMaxX__8dMpath_c */
-f32 dMpath_c::mMaxX /* = -FLT_MAX */;
+f32 dMpath_c::mMaxX = -FLT_MAX;
 
 /* 80450E70-80450E74 000370 0004+00 3/3 2/2 0/0 .sbss            mMinZ__8dMpath_c */
-f32 dMpath_c::mMinZ /* = FLT_MAX */;
+f32 dMpath_c::mMinZ = FLT_MAX;
 
 /* 80450E74-80450E78 000374 0004+00 3/3 1/1 0/0 .sbss            mMaxZ__8dMpath_c */
-f32 dMpath_c::mMaxZ /* = -FLT_MAX */;
+f32 dMpath_c::mMaxZ = -FLT_MAX;
 
 /* 80450E78-80450E7C 000378 0004+00 1/1 2/2 0/0 .sbss            mAllCenterX__8dMpath_c */
 f32 dMpath_c::mAllCenterX;
@@ -552,7 +401,7 @@ bool dMpath_c::isExistMapPathData() {
 
 /* ############################################################################################## */
 /* 80450630-80450634 0000B0 0004+00 0/0 1/1 2/2 .sdata           mNextRoomNo__10dMapInfo_c */
-SECTION_SDATA int dMapInfo_c::mNextRoomNo = -1;
+int dMapInfo_c::mNextRoomNo = -1;
 
 /* 80450634 0001+00 data_80450634 None */
 s8 dMpath_c::mBottomFloorNo = 127;
@@ -584,14 +433,10 @@ int dMpath_c::getTopBottomFloorNo(s8* i_topFloorNo, s8* i_bottomFloorNo) {
 }
 
 /* 8003F7E8-8003F810 03A128 0028+00 0/0 1/1 0/0 .text            createWork__8dMpath_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::createWork() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/createWork__8dMpath_cFv.s"
+void dMpath_c::createWork() {
+    mLayerList = new dDrawPath_c::layer_data;
+    JUT_ASSERT(1416, mLayerList!=0);
 }
-#pragma pop
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
@@ -715,7 +560,7 @@ void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
         mAllSizeX = mMaxX - mMinX;
         mAllSizeZ = mMaxZ - mMinZ;
 
-        (mLayerList + i_mapLayerNo * 0x40)[(s8)i_roomNo] = room;
+        mLayerList->mRooms[i_mapLayerNo][(s8)i_roomNo] = room;
     }
 }
 #pragma pop
@@ -734,17 +579,27 @@ void dMpath_c::create() {
 
 /* ############################################################################################## */
 /* 80450636-80450638 0000B6 0002+00 2/2 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 data_80450636 = 0x01;
+static u8 data_80450636 = 0x01;
 
 /* 8003FBD0-8003FC70 03A510 00A0+00 2/2 0/0 0/0 .text            reset__8dMpath_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::reset() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/reset__8dMpath_cFv.s"
+void dMpath_c::reset() {
+    if (data_80450636) {
+        for (int i = 0; i < 0x40; i++) {
+            for (int j = 0; j < 2; j++) {
+                mLayerList->mRooms[j][i] = NULL;
+            }
+        }
+        mMinX = FLT_MAX;
+        mMaxX = -FLT_MAX;
+        mMinZ = FLT_MAX;
+        mMaxZ = -FLT_MAX;
+        mBottomFloorNo = 127;
+        mTopFloorNo = -128;
+        data_80450636 = 0;
+        data_80450E88 = 0;
+        dMapInfo_c::reset();
+    }
 }
-#pragma pop
 
 /* 8003FC70-8003FCA4 03A5B0 0034+00 0/0 1/1 0/0 .text            remove__8dMpath_cFv */
 void dMpath_c::remove() {
@@ -809,11 +664,11 @@ void renderingDAmap_c::draw() {
 
 /* ############################################################################################## */
 /* 80451E48-80451E4C 000448 0004+00 1/1 0/0 0/0 .sdata2          l_mapBaseColor$4239 */
-SECTION_SDATA2 static GXColor l_mapBaseColor = {4, 0, 0, 0};
+static const GXColor l_mapBaseColor = {4, 0, 0, 0};
 
 /* 8003FE4C-8003FE54 03A78C 0008+00 3/0 3/0 0/0 .text            getBackColor__16renderingDAmap_cCFv
  */
-GXColor* renderingDAmap_c::getBackColor() const {
+const GXColor* renderingDAmap_c::getBackColor() const {
     return &l_mapBaseColor;
 }
 
@@ -1046,19 +901,19 @@ void renderingPlusDoor_c::drawDoor2() {
 
 /* ############################################################################################## */
 /* 80451E58-80451E5C 000458 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhite */
-SECTION_SDATA2 static GXColor l_doorWhite = {100, 0, 0, 0};
+static const GXColor l_doorWhite = {100, 0, 0, 0};
 
 /* 80451E5C-80451E60 00045C 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhiteNoStay */
-SECTION_SDATA2 static GXColor l_doorWhiteNoStay = {108, 0, 0, 0};
+static const GXColor l_doorWhiteNoStay = {108, 0, 0, 0};
 
 /* 80451E60-80451E64 000460 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhite2 */
-SECTION_SDATA2 static GXColor l_doorWhite2 = {100, 0, 0, 0};
+static const GXColor l_doorWhite2 = {100, 0, 0, 0};
 
 /* 80451E64-80451E68 000464 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhiteNoStay2 */
-SECTION_SDATA2 static GXColor l_doorWhiteNoStay2 = {108, 0, 0, 0};
+static const GXColor l_doorWhiteNoStay2 = {108, 0, 0, 0};
 
 /* 80451E68-80451E70 000468 0008+00 1/1 0/0 0/0 .sdata2          l_tex0$4406 */
-SECTION_SDATA2 static u8 l_tex0[8] = {
+static const u8 l_tex0[8] = {
     0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01,
 };
 
@@ -1074,7 +929,7 @@ void renderingPlusDoor_c::drawDoorCommon(stage_tgsc_data_class const* i_doorData
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
-    GXSetArray(GX_VA_TEX0, l_tex0, 2);
+    GXSetArray(GX_VA_TEX0, (void*)l_tex0, 2);
 
     setTevSettingIntensityTextureToCI();
 
@@ -1162,9 +1017,11 @@ bool renderingDAmap_c::isDrawRoomIcon(int param_0, int param_1) const {
 }
 
 /* 800409E0-80040A94 03B320 00B4+00 3/0 3/0 0/0 .text
- * isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec */
+ * isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siiibPC3Vec */
+// drawTreasure and drawTreasureAfterPlayer match required a change of param_3 to int rather than bool.
+// Nothing else made sense considering the assembly generated.
 bool renderingDAmap_c::isDrawIconSingle(dTres_c::data_s const* data, int param_1, int param_2,
-                                        bool param_3, bool param_4, Vec const* param_5) const {
+                                        int param_3, bool param_4, Vec const* param_5) const {
     bool draw_room_icon = isDrawRoomIcon(data->mRoomNo, param_1);
     bool tmp = false;
 
@@ -1205,50 +1062,47 @@ int renderingDAmap_c::getIconGroupNumber(u8 param_0) const {
 }
 
 /* 80451E74-80451E78 000474 0004+00 1/0 0/0 0/0 .sdata2          l_entranceStartColor */
-SECTION_SDATA2 static GXColor l_entranceStartColor = {148, 0, 0, 0};
+static const GXColor l_entranceStartColor = {148, 0, 0, 0};
 
 /* 80451E78-80451E7C 000478 0004+00 1/0 0/0 0/0 .sdata2          l_entranceLv8StartColor */
-SECTION_SDATA2 static GXColor l_entranceLv8StartColor = {156, 0, 0, 0};
+static const GXColor l_entranceLv8StartColor = {156, 0, 0, 0};
 
 /* 80451E7C-80451E80 00047C 0004+00 3/2 0/0 0/0 .sdata2          l_treasureStartColor */
-SECTION_SDATA2 static GXColor l_treasureStartColor = {124, 0, 0, 0};
+static const GXColor l_treasureStartColor = {124, 0, 0, 0};
 
 /* 80451E80-80451E84 000480 0004+00 1/0 0/0 0/0 .sdata2          l_smallKeyStartColor */
-SECTION_SDATA2 static GXColor l_smallKeyStartColor = {132, 0, 0, 0};
+static const GXColor l_smallKeyStartColor = {132, 0, 0, 0};
 
 /* 80451E84-80451E88 000484 0004+00 1/0 0/0 0/0 .sdata2          l_bossStartColor */
-SECTION_SDATA2 static GXColor l_bossStartColor = {136, 0, 0, 0};
+static const GXColor l_bossStartColor = {136, 0, 0, 0};
 
 /* 80451E88-80451E8C 000488 0004+00 1/0 0/0 0/0 .sdata2          l_npc0StartColor */
-SECTION_SDATA2 static GXColor l_npc0StartColor = {140, 0, 0, 0};
+static const GXColor l_npc0StartColor = {140, 0, 0, 0};
 
 /* 80451E8C-80451E90 00048C 0004+00 1/0 0/0 0/0 .sdata2          l_destinationStartColor */
-SECTION_SDATA2 static GXColor l_destinationStartColor = {144, 0, 0, 0};
+static const GXColor l_destinationStartColor = {144, 0, 0, 0};
 
 /* 80451E90-80451E94 000490 0004+00 1/0 0/0 0/0 .sdata2          l_npcYkmStartColor */
-SECTION_SDATA2 static GXColor l_npcYkmStartColor = {140, 0, 0, 0};
+static const GXColor l_npcYkmStartColor = {140, 0, 0, 0};
 
 /* 80451E94-80451E98 000494 0004+00 1/0 0/0 0/0 .sdata2          l_npcYkwStartColor */
-SECTION_SDATA2 static GXColor l_npcYkwStartColor = {140, 0, 0, 0};
+static const GXColor l_npcYkwStartColor = {140, 0, 0, 0};
 
 /* 80451E98-80451E9C 000498 0004+00 1/0 0/0 0/0 .sdata2          l_tksStartColor */
-SECTION_SDATA2 static GXColor l_tksStartColor = {164, 0, 0, 0};
+static const GXColor l_tksStartColor = {164, 0, 0, 0};
 
 /* 80451E9C-80451EA4 00049C 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4523 */
-SECTION_SDATA2 static u8 l_iconTex0_4523[8] = {
+static const u8 l_iconTex0_4523[8] = {
     0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
 };
 
 /* 80451EA4-80451EA8 0004A4 0004+00 1/1 0/0 0/0 .sdata2          tboxNotStayColor$4542 */
-SECTION_SDATA2 static GXColor tboxNotStayColor_4542 = {128, 0, 0, 0};
-
-/* 80451EA8-80451EAC 0004A8 0004+00 2/2 0/0 0/0 .sdata2          @4600 */
-SECTION_SDATA2 static f32 lit_4600 = 2.0f;
+static const GXColor tboxNotStayColor_4542 = {128, 0, 0, 0};
 
 struct treasureDispData {
     /* 0x0 */ u8 field_0x0;
     /* 0x4 */ int field_0x4;
-    /* 0x8 */ GXColor* field_0x8;
+    /* 0x8 */ const GXColor* field_0x8;
 };
 
 /* 80379C88-80379CB8 -00001 0030+00 1/1 0/0 0/0 .rodata          l_treasureDispList$4524 */
@@ -1261,7 +1115,6 @@ static const treasureDispData l_treasureDispList_4524[4] = {
 
 /* 80040B00-80040E84 03B440 0384+00 1/1 0/0 0/0 .text
  * drawTreasure__28renderingPlusDoorAndCursor_cFv               */
-#ifdef NONMATCHING
 void renderingPlusDoorAndCursor_c::drawTreasure() {
     bool rend_all_room = isRendAllRoom();
 
@@ -1270,7 +1123,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
-    GXSetArray(GX_VA_TEX0, l_iconTex0_4523, 2);
+    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0_4523, 2);
 
     setTevSettingIntensityTextureToCI();
 
@@ -1288,7 +1141,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
                 dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList_4524[i].field_0x4);
             GXLoadTexObj(texObj_p, GX_TEXMAP0);
             GXColor sp18;
-            GXColor* temp_r3_2 = l_treasureDispList_4524[i].field_0x8;
+            const GXColor* temp_r3_2 = l_treasureDispList_4524[i].field_0x8;
             sp18.r = temp_r3_2->r;
             sp18.g = temp_r3_2->g;
             sp18.b = temp_r3_2->b;
@@ -1329,16 +1182,6 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
 
     setTevSettingNonTextureDirectColor();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void renderingPlusDoorAndCursor_c::drawTreasure() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/drawTreasure__28renderingPlusDoorAndCursor_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80379CB8-80379D3C -00001 0084+00 1/1 0/0 0/0 .rodata          l_treasureDispList$4606 */
 static const treasureDispData l_treasureDispList_4606[11] = {
@@ -1349,12 +1192,12 @@ static const treasureDispData l_treasureDispList_4606[11] = {
 };
 
 /* 80451EAC-80451EB4 0004AC 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4605 */
-SECTION_SDATA2 static u8 l_iconTex0_4605[8] = {
+static const u8 l_iconTex0_4605[8] = {
     0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
 };
 
 /* 80451EB4-80451EB8 0004B4 0004+00 1/1 0/0 0/0 .sdata2          tboxNotStayColor$4624 */
-SECTION_SDATA2 static u8 tboxNotStayColor_4624[4] = {
+static const GXColor tboxNotStayColor_4624 = {
     0x80,
     0x00,
     0x00,
@@ -1363,14 +1206,73 @@ SECTION_SDATA2 static u8 tboxNotStayColor_4624[4] = {
 
 /* 80040E84-80041208 03B7C4 0384+00 1/1 0/0 0/0 .text
  * drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv.s"
+void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
+    bool rend_all_room = isRendAllRoom();
+
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
+    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0_4605, 2);
+
+    setTevSettingIntensityTextureToCI();
+
+    for (int i = 0; i < 11; i++) {
+        dTres_c::typeGroupData_c* typeGroupData_p;
+        u8 tmp = l_treasureDispList_4606[i].field_0x0;
+        typeGroupData_p = getFirstData(tmp);
+        int group_num = getIconGroupNumber(tmp);
+
+        if (group_num != 0) {
+            f32 icon_size = getIconSize(tmp) * mCmPerTexel;
+
+            GXInvalidateTexAll();
+            GXTexObj* texObj_p =
+                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList_4606[i].field_0x4);
+            GXLoadTexObj(texObj_p, GX_TEXMAP0);
+            GXColor sp18;
+            const GXColor* temp_r3_2 = l_treasureDispList_4606[i].field_0x8;
+            sp18.r = temp_r3_2->r;
+            sp18.g = temp_r3_2->g;
+            sp18.b = temp_r3_2->b;
+            sp18.a = temp_r3_2->a;
+
+            GXSetTevColor(GX_TEVREG1, sp18);
+
+            sp18.r += 4;
+            GXSetTevColor(GX_TEVREG2, sp18);
+
+            for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
+                const Vec* icon_pos = getIconPosition(typeGroupData_p);
+
+                if (tmp == 0) {
+                    if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {
+                        sp18 = tboxNotStayColor_4624;
+                    } else {
+                        sp18 = l_treasureStartColor;
+                    }
+
+                    GXSetTevColor(GX_TEVREG1, sp18);
+
+                    sp18.r += 4;
+                    GXSetTevColor(GX_TEVREG2, sp18);
+                }
+
+                if (isDrawAreaCheck(*icon_pos) &&
+                    isDrawIconSingle(typeGroupData_p->getConstDataPointer(), mRoomNoSingle,
+                                     mRenderedFloor, rend_all_room, true, icon_pos))
+                {
+                    drawIconSingle(*icon_pos, icon_size, icon_size);
+                }
+
+                typeGroupData_p = getNextData(typeGroupData_p);
+            }
+        }
+    }
+
+    setTevSettingNonTextureDirectColor();
 }
-#pragma pop
 
 /* 80041208-800412C0 03BB48 00B8+00 2/2 0/0 0/0 .text
  * drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff      */
@@ -1434,156 +1336,3 @@ void renderingPlusDoorAndCursor_c::drawCursor(Vec const& param_0, s16 param_1, i
 
 /* 8004145C-80041460 03BD9C 0004+00 2/0 0/0 0/0 .text beforeDrawPath__19renderingPlusDoor_cFv */
 void renderingPlusDoor_c::beforeDrawPath() {}
-
-/* 80041460-80041480 03BDA0 0020+00 0/0 1/0 0/0 .text            __sinit_d_map_path_dmap_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_map_path_dmap_cpp(){nofralloc
-#include "asm/d/map/d_map_path_dmap/__sinit_d_map_path_dmap_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80041460, __sinit_d_map_path_dmap_cpp);
-#pragma pop
-
-/* ############################################################################################## */
-/* 803A7D80-803A7E24 004EA0 00A4+00 0/0 7/7 0/0 .data            __vt__19renderingPlusDoor_c */
-SECTION_DATA extern void* __vt__19renderingPlusDoor_c[41] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__16renderingDAmap_cFv,
-    (void*)__dt__19renderingPlusDoor_cFv,
-    (void*)isDrawType__11dDrawPath_cFi,
-    (void*)NULL,
-    (void*)getLineColor__11dDrawPath_cFii,
-    (void*)NULL,
-    (void*)isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class,
-    (void*)isRenderingFloor__16renderingDAmap_cFi,
-    (void*)getFirstRoomPointer__16renderingDAmap_cFv,
-    (void*)getNextRoomPointer__16renderingDAmap_cFv,
-    (void*)drawPath__11dDrawPath_cFv,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class,
-    (void*)beforeDrawPath__19renderingPlusDoor_cFv,
-    (void*)afterDrawPath__19renderingPlusDoor_cFv,
-    (void*)preDrawPath__16renderingDAmap_cFv,
-    (void*)postDrawPath__16renderingDAmap_cFv,
-    (void*)isDrawPath__16renderingDAmap_cFv,
-    (void*)preRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)postRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)getBackColor__16renderingDAmap_cCFv,
-    (void*)getDecoLineColor__18dRenderingFDAmap_cFii,
-    (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
-    (void*)getFirstDrawLayerNo__16renderingDAmap_cFv,
-    (void*)getNextDrawLayerNo__16renderingDAmap_cFi,
-    (void*)isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec,
-    (void*)getIconGroupNumber__16renderingDAmap_cCFUc,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getRoomNoSingle__16renderingDAmap_cFv,
-    (void*)isDrawRoom__16renderingDAmap_cCFii,
-    (void*)isDrawRoomIcon__16renderingDAmap_cCFii,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A7E24-803A7EE0 004F44 00BC+00 0/0 4/4 0/0 .data __vt__28renderingPlusDoorAndCursor_c */
-SECTION_DATA extern void* __vt__28renderingPlusDoorAndCursor_c[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__16renderingDAmap_cFv,
-    (void*)__dt__28renderingPlusDoorAndCursor_cFv,
-    (void*)isDrawType__11dDrawPath_cFi,
-    (void*)NULL,
-    (void*)getLineColor__11dDrawPath_cFii,
-    (void*)NULL,
-    (void*)isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class,
-    (void*)isRenderingFloor__16renderingDAmap_cFi,
-    (void*)getFirstRoomPointer__16renderingDAmap_cFv,
-    (void*)getNextRoomPointer__16renderingDAmap_cFv,
-    (void*)drawPath__11dDrawPath_cFv,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class,
-    (void*)beforeDrawPath__19renderingPlusDoor_cFv,
-    (void*)afterDrawPath__28renderingPlusDoorAndCursor_cFv,
-    (void*)preDrawPath__16renderingDAmap_cFv,
-    (void*)postDrawPath__16renderingDAmap_cFv,
-    (void*)isDrawPath__16renderingDAmap_cFv,
-    (void*)preRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)postRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)getBackColor__16renderingDAmap_cCFv,
-    (void*)getDecoLineColor__18dRenderingFDAmap_cFii,
-    (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
-    (void*)getFirstDrawLayerNo__16renderingDAmap_cFv,
-    (void*)getNextDrawLayerNo__16renderingDAmap_cFi,
-    (void*)isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec,
-    (void*)getIconGroupNumber__16renderingDAmap_cCFUc,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getRoomNoSingle__16renderingDAmap_cFv,
-    (void*)isDrawRoom__16renderingDAmap_cCFii,
-    (void*)isDrawRoomIcon__16renderingDAmap_cCFii,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getIconPosition__28renderingPlusDoorAndCursor_cCFPQ27dTres_c15typeGroupData_c,
-    (void*)getFirstData__28renderingPlusDoorAndCursor_cFUc,
-    (void*)getNextData__28renderingPlusDoorAndCursor_cFPQ27dTres_c15typeGroupData_c,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A7EE0-803A7F78 005000 0098+00 0/0 8/8 0/0 .data            __vt__16renderingDAmap_c */
-SECTION_DATA extern void* __vt__16renderingDAmap_c[38] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__16renderingDAmap_cFv,
-    (void*)__dt__16renderingDAmap_cFv,
-    (void*)isDrawType__11dDrawPath_cFi,
-    (void*)NULL,
-    (void*)getLineColor__11dDrawPath_cFii,
-    (void*)NULL,
-    (void*)isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class,
-    (void*)isRenderingFloor__16renderingDAmap_cFi,
-    (void*)getFirstRoomPointer__16renderingDAmap_cFv,
-    (void*)getNextRoomPointer__16renderingDAmap_cFv,
-    (void*)drawPath__11dDrawPath_cFv,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class,
-    (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)preDrawPath__16renderingDAmap_cFv,
-    (void*)postDrawPath__16renderingDAmap_cFv,
-    (void*)isDrawPath__16renderingDAmap_cFv,
-    (void*)preRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)postRenderingMap__18dRenderingFDAmap_cFv,
-    (void*)getBackColor__16renderingDAmap_cCFv,
-    (void*)getDecoLineColor__18dRenderingFDAmap_cFii,
-    (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
-    (void*)getFirstDrawLayerNo__16renderingDAmap_cFv,
-    (void*)getNextDrawLayerNo__16renderingDAmap_cFi,
-    (void*)isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec,
-    (void*)getIconGroupNumber__16renderingDAmap_cCFUc,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getRoomNoSingle__16renderingDAmap_cFv,
-    (void*)isDrawRoom__16renderingDAmap_cCFii,
-    (void*)isDrawRoomIcon__16renderingDAmap_cCFii,
-};

@@ -272,7 +272,7 @@ extern "C" bool getFirstDrawLayerNo__16renderingDAmap_cFv();
 extern "C" void getNextDrawLayerNo__16renderingDAmap_cFi();
 extern "C" void afterDrawPath__19renderingPlusDoor_cFv();
 extern "C" void isDrawRoomIcon__16renderingDAmap_cCFii();
-extern "C" void isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec();
+extern "C" void isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siiibPC3Vec();
 extern "C" void getIconGroupNumber__16renderingDAmap_cCFUc();
 extern "C" void getFirstData__7dTres_cFUc();
 extern "C" void getNextData__7dTres_cFPQ27dTres_c15typeGroupData_c();
@@ -1549,7 +1549,7 @@ SECTION_DATA extern void* __vt__15renderingDmap_c[43 + 1 /* padding */] = {
     (void*)getDecorationLineWidth__18dRenderingFDAmap_cFi,
     (void*)getFirstDrawLayerNo__16renderingDAmap_cFv,
     (void*)getNextDrawLayerNo__16renderingDAmap_cFi,
-    (void*)isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siibbPC3Vec,
+    (void*)isDrawIconSingle__16renderingDAmap_cCFPCQ27dTres_c6data_siiibPC3Vec,
     (void*)getIconGroupNumber__16renderingDAmap_cCFUc,
     (void*)hasMap__15renderingDmap_cCFv,
     (void*)isRendAllRoom__15renderingDmap_cCFv,

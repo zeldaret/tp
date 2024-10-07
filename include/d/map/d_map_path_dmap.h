@@ -18,7 +18,7 @@ public:
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();
     static dDrawPath_c::room_class* getRoomPointer(int layerNo, int roomNo) {
-        return (mLayerList + 0x40*layerNo)[roomNo];
+        return mLayerList->mRooms[layerNo][roomNo];
     }
 
     static f32 getMinX() { return mMinX; }
@@ -26,7 +26,7 @@ public:
     static f32 getMaxX() { return mMaxX; }
     static f32 getMaxZ() { return mMaxZ; }
 
-    static dDrawPath_c::room_class** mLayerList;  // this doesn't seem right, but can't figure it out atm
+    static dDrawPath_c::layer_data* mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
     static f32 mMaxX;
     static f32 mMinZ;
@@ -111,10 +111,12 @@ public:
     /* 8003FF14 */ virtual void preDrawPath();
     /* 8003FFC4 */ virtual void postDrawPath();
     /* 800402C0 */ virtual bool isDrawPath();
-    /* 8003FE4C */ virtual GXColor* getBackColor() const;
+    /* 8003FE4C */ virtual const GXColor* getBackColor() const;
     /* 800402E0 */ virtual int getFirstDrawLayerNo();
     /* 800402E8 */ virtual int getNextDrawLayerNo(int);
-    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
+
+    // See cpp for argument type change comment
+    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, int, bool,
                                                  Vec const*) const;
     /* 80040AE4 */ virtual int getIconGroupNumber(u8) const;
     virtual bool hasMap() const = 0;
