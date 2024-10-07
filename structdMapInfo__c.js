@@ -11,7 +11,7 @@ var structdMapInfo__c =
     [ "remove", "structdMapInfo__c.html#af6efed2e63a761e64e5a91e380a3bd85", null ],
     [ "reset", "structdMapInfo__c.html#a2170476b1240a314bba6ecfeacab54e3", null ],
     [ "setNextRoomNoForMapPat0", "structdMapInfo__c.html#a01f1b404abd3ab84883d500a07b72b79", null ],
-    [ "mNextRoomNo", "structdMapInfo__c.html#a5a130b4cc5d8acc582de7dd6a99fd6c9", null ],
+    [ "mNextRoomNo", "structdMapInfo__c.html#a1ebba833d392b89e3c46a9557215bfca", null ],
     [ "mNowStayFloorNo", "structdMapInfo__c.html#a1ea11d23ac34b0f627be4aee1b851bbb", null ],
     [ "mNowStayFloorNoDecisionFlg", "structdMapInfo__c.html#a58520042902656030b9b4e3506d631d0", null ],
     [ "mNowStayRoomNo", "structdMapInfo__c.html#adac2bcc39443edadd4ec888e38245659", null ]

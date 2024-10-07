@@ -1,29 +1,31 @@
 <map id="request_of_phase_process_class" name="request_of_phase_process_class">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,294,183,335"/>
-<area shape="rect" id="Node000002" href="$classdaBalloon2D__c.html" title="???" alt="" coords="247,5,355,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,278,117,226,143,162,180,97,203,67,229,40,245,29,248,34,232,44,207,70,184,100,148,164,122,228,106,280"/>
-<area shape="rect" id="Node000003" href="$classdaMirror__c.html" title="Mirror." alt="" coords="260,55,342,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,278,124,235,150,185,186,134,229,89,258,74,260,79,232,94,190,137,155,188,129,238,110,280"/>
-<area shape="rect" id="Node000004" href="$classdaObjChandelier__c.html" title="Hyrule Castle Chandelier." alt="" coords="236,104,366,130"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="111,279,159,208,192,171,229,139,248,128,251,133,232,143,195,175,163,212,116,282"/>
-<area shape="rect" id="Node000005" href="$classdaObjHBombkoya__c.html" title="Destructable Bomb House." alt="" coords="231,153,371,179"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="121,280,169,233,229,188,252,177,254,182,232,192,172,237,125,284"/>
-<area shape="rect" id="Node000006" href="$classdaObjKJgjs__c.html" title="???" alt="" coords="250,203,352,228"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="141,283,230,237,256,227,258,231,232,242,144,288"/>
-<area shape="rect" id="Node000007" href="$classdaObjProp__c.html" title="City in the Sky Propeller?" alt="" coords="253,252,349,278"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="196,287,252,274,253,279,197,292"/>
-<area shape="rect" id="Node000008" href="$classdaObjRCircle__c.html" title="River Circle." alt="" coords="245,301,357,327"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="198,312,245,312,245,317,198,317"/>
-<area shape="rect" id="Node000009" href="$classdaObjSnowSoup__c.html" title="Snowpeak Ruins Soup Pot?" alt="" coords="235,351,367,376"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="197,336,245,348,244,353,196,341"/>
-<area shape="rect" id="Node000010" href="$classdaObjToaruMaki__c.html" title="Ordon Bundle." alt="" coords="236,400,366,426"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="144,340,232,386,258,397,256,402,230,391,141,345"/>
-<area shape="rect" id="Node000011" href="$classdaObjYIblltray__c.html" title="Snowpeak Ruins Cannonball Transporter." alt="" coords="243,449,359,475"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="125,344,172,391,232,436,254,446,252,451,229,440,169,395,121,348"/>
-<area shape="rect" id="Node000012" href="$classdaObjYchndlr__c.html" title="Snowpeak Ruins Chandelier (Swinging Platform)" alt="" coords="244,499,358,524"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="116,347,163,417,195,453,232,485,251,496,248,500,229,490,192,457,159,420,111,350"/>
-<area shape="rect" id="Node000013" href="$structdaTagCsw__c.html" title=" " alt="" coords="252,548,350,574"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="110,348,129,391,155,441,190,491,232,535,253,547,250,551,229,539,186,495,150,443,124,393,105,350"/>
-<area shape="rect" id="Node000014" href="$classdaWindStone__c.html" title="Howling Stone (Hole)" alt="" coords="245,597,357,623"/>
-<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="106,349,122,401,148,464,184,528,207,558,232,584,248,594,245,599,229,588,203,561,180,531,143,466,117,403,101,350"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,319,183,360"/>
+<area shape="rect" id="Node000002" href="$classdaBalloon2D__c.html" title="???" alt="" coords="258,5,366,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,303,113,246,138,175,176,103,200,69,229,40,256,25,259,30,232,44,204,73,181,105,143,177,118,247,104,304"/>
+<area shape="rect" id="Node000003" href="$classdaMirror__c.html" title="Mirror." alt="" coords="271,55,353,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="103,303,119,255,146,198,182,139,204,113,229,89,248,78,269,71,271,76,251,83,232,94,208,116,186,143,150,200,124,257,108,305"/>
+<area shape="rect" id="Node000004" href="$classdaObjChandelier__c.html" title="Hyrule Castle Chandelier." alt="" coords="247,104,377,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,304,127,265,154,221,188,177,229,139,248,128,251,133,232,143,192,180,158,224,132,268,112,306"/>
+<area shape="rect" id="Node000005" href="$classdaObjHBombkoya__c.html" title="Destructable Bomb House." alt="" coords="242,153,382,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="115,305,163,245,194,214,229,188,251,177,253,182,232,192,198,218,167,249,119,308"/>
+<area shape="rect" id="Node000006" href="$classdaObjKJgjs__c.html" title="???" alt="" coords="261,203,363,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="128,307,174,271,229,237,259,225,261,230,232,242,178,275,131,311"/>
+<area shape="rect" id="Node000007" href="$classdaObjProp__c.html" title="City in the Sky Propeller?" alt="" coords="264,252,360,278"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="161,311,230,286,263,276,265,281,232,291,163,316"/>
+<area shape="rect" id="Node000008" href="$classdaObjRCircle__c.html" title="River Circle." alt="" coords="256,301,368,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="198,325,255,318,256,323,198,330"/>
+<area shape="rect" id="Node000009" href="$classdaObjSnowSoup__c.html" title="Snowpeak Ruins Soup Pot?" alt="" coords="246,351,378,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="198,348,246,354,245,359,197,354"/>
+<area shape="rect" id="Node000010" href="$classdaObjToaruMaki__c.html" title="Ordon Bundle." alt="" coords="247,400,377,426"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="165,363,232,386,265,397,264,402,230,391,164,368"/>
+<area shape="rect" id="Node000011" href="$classdaObjYIblltray__c.html" title="Snowpeak Ruins Cannonball Transporter." alt="" coords="254,449,370,475"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="132,368,178,403,232,436,258,446,256,451,229,441,175,408,129,372"/>
+<area shape="rect" id="Node000012" href="$classdaObjYchndlr__c.html" title="Snowpeak Ruins Chandelier (Swinging Platform)" alt="" coords="255,499,369,524"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="120,371,167,430,198,460,232,485,256,497,254,501,229,490,195,464,163,433,115,375"/>
+<area shape="rect" id="Node000013" href="$structdaTagCsw__c.html" title=" " alt="" coords="263,548,361,574"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="112,373,132,411,158,454,192,498,232,535,264,550,262,555,229,539,188,501,154,457,127,413,108,375"/>
+<area shape="rect" id="Node000014" href="$classdaWindStone__c.html" title="Howling Stone (Hole)" alt="" coords="256,597,368,623"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="108,374,125,422,151,478,186,535,208,561,232,584,257,597,254,602,229,588,204,565,182,539,146,481,120,424,103,376"/>
+<area shape="rect" id="Node000015" href="$classdalv4CandleDemoTag__c.html" title="Arbiter&#39;s Grounds Torch Cutscene Tag." alt="" coords="231,647,393,672"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="104,375,119,431,143,501,181,573,205,605,232,633,249,644,246,648,229,638,201,608,176,575,138,503,113,433,99,376"/>
 </map>

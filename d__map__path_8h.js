@@ -6,6 +6,7 @@ var d__map__path_8h =
     [ "dDrawPath_c::group_class", "structdDrawPath__c_1_1group__class.html", "structdDrawPath__c_1_1group__class" ],
     [ "dDrawPath_c::floor_class", "structdDrawPath__c_1_1floor__class.html", "structdDrawPath__c_1_1floor__class" ],
     [ "dDrawPath_c::room_class", "structdDrawPath__c_1_1room__class.html", "structdDrawPath__c_1_1room__class" ],
+    [ "dDrawPath_c::layer_data", "structdDrawPath__c_1_1layer__data.html", "structdDrawPath__c_1_1layer__data" ],
     [ "dDrawPathWithNormalPattern_c", "classdDrawPathWithNormalPattern__c.html", "classdDrawPathWithNormalPattern__c" ],
     [ "dRenderingMap_c", "structdRenderingMap__c.html", "structdRenderingMap__c" ],
     [ "dRenderingFDAmap_c", "structdRenderingFDAmap__c.html", "structdRenderingFDAmap__c" ],

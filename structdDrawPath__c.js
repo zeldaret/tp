@@ -2,6 +2,7 @@ var structdDrawPath__c =
 [
     [ "floor_class", "structdDrawPath__c_1_1floor__class.html", "structdDrawPath__c_1_1floor__class" ],
     [ "group_class", "structdDrawPath__c_1_1group__class.html", "structdDrawPath__c_1_1group__class" ],
+    [ "layer_data", "structdDrawPath__c_1_1layer__data.html", "structdDrawPath__c_1_1layer__data" ],
     [ "line_class", "structdDrawPath__c_1_1line__class.html", "structdDrawPath__c_1_1line__class" ],
     [ "poly_class", "structdDrawPath__c_1_1poly__class.html", "structdDrawPath__c_1_1poly__class" ],
     [ "room_class", "structdDrawPath__c_1_1room__class.html", "structdDrawPath__c_1_1room__class" ],

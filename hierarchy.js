@@ -1024,8 +1024,8 @@ var hierarchy =
     [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
+    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1127,6 +1127,7 @@ var hierarchy =
     [ "dDoor_stop_c", "classdDoor__stop__c.html", null ],
     [ "dDrawPath_c::floor_class", "structdDrawPath__c_1_1floor__class.html", null ],
     [ "dDrawPath_c::group_class", "structdDrawPath__c_1_1group__class.html", null ],
+    [ "dDrawPath_c::layer_data", "structdDrawPath__c_1_1layer__data.html", null ],
     [ "dDrawPath_c::line_class", "structdDrawPath__c_1_1line__class.html", null ],
     [ "dDrawPath_c::poly_class", "structdDrawPath__c_1_1poly__class.html", null ],
     [ "dDrawPath_c::room_class", "structdDrawPath__c_1_1room__class.html", null ],
@@ -2060,6 +2061,9 @@ var hierarchy =
     [ "JASGlobalInstance< Z2Audience >", "classJASGlobalInstance.html", [
       [ "Z2Audience", "structZ2Audience.html", null ]
     ] ],
+    [ "JASGlobalInstance< Z2DebugSys >", "classJASGlobalInstance.html", [
+      [ "Z2DebugSys", "structZ2DebugSys.html", null ]
+    ] ],
     [ "JASGlobalInstance< Z2EnvSeMgr >", "classJASGlobalInstance.html", [
       [ "Z2EnvSeMgr", "structZ2EnvSeMgr.html", null ]
     ] ],
@@ -2096,6 +2100,9 @@ var hierarchy =
     ] ],
     [ "JASGlobalInstance< Z2SoundStarter >", "classJASGlobalInstance.html", [
       [ "Z2SoundStarter", "structZ2SoundStarter.html", null ]
+    ] ],
+    [ "JASGlobalInstance< Z2SpeechMgr >", "classJASGlobalInstance.html", [
+      [ "Z2SpeechMgr", "structZ2SpeechMgr.html", null ]
     ] ],
     [ "JASGlobalInstance< Z2SpeechMgr2 >", "classJASGlobalInstance.html", [
       [ "Z2SpeechMgr2", "structZ2SpeechMgr2.html", null ]
@@ -2835,8 +2842,10 @@ var hierarchy =
           [ "daObjDmElevator_c", "classdaObjDmElevator__c.html", null ],
           [ "daObjFallObj_c", "classdaObjFallObj__c.html", null ],
           [ "daObjFan_c", "classdaObjFan__c.html", null ],
+          [ "daObjFuta_c", "classdaObjFuta__c.html", null ],
           [ "daObjGake_c", "classdaObjGake__c.html", null ],
           [ "daObjHBombkoya_c", "classdaObjHBombkoya__c.html", null ],
+          [ "daObjHHASHI_c", "classdaObjHHASHI__c.html", null ],
           [ "daObjIceBlk_c", "classdaObjIceBlk__c.html", null ],
           [ "daObjIce_l_c", "classdaObjIce__l__c.html", null ],
           [ "daObjKGate_c", "classdaObjKGate__c.html", null ],
@@ -3110,7 +3119,6 @@ var hierarchy =
         [ "daObjFlag2_c", "classdaObjFlag2__c.html", null ],
         [ "daObjFlag3_c", "classdaObjFlag3__c.html", null ],
         [ "daObjFlag_c", "classdaObjFlag__c.html", null ],
-        [ "daObjFuta_c", "classdaObjFuta__c.html", null ],
         [ "daObjGOMIKABE_c", "classdaObjGOMIKABE__c.html", null ],
         [ "daObjGWall2_c", "classdaObjGWall2__c.html", null ],
         [ "daObjGWall_c", "classdaObjGWall__c.html", null ],
@@ -3120,7 +3128,6 @@ var hierarchy =
         [ "daObjGrzRock_c", "classdaObjGrzRock__c.html", null ],
         [ "daObjHBarrel_c", "classdaObjHBarrel__c.html", null ],
         [ "daObjHFtr_c", "classdaObjHFtr__c.html", null ],
-        [ "daObjHHASHI_c", "classdaObjHHASHI__c.html", null ],
         [ "daObjH_Saku_c", "classdaObjH__Saku__c.html", null ],
         [ "daObjIBone_c", "classdaObjIBone__c.html", null ],
         [ "daObjIceLeaf_c", "classdaObjIceLeaf__c.html", null ],
@@ -3818,7 +3825,8 @@ var hierarchy =
       [ "daObjYIblltray_c", "classdaObjYIblltray__c.html", null ],
       [ "daObjYchndlr_c", "classdaObjYchndlr__c.html", null ],
       [ "daTagCsw_c", "structdaTagCsw__c.html", null ],
-      [ "daWindStone_c", "classdaWindStone__c.html", null ]
+      [ "daWindStone_c", "classdaWindStone__c.html", null ],
+      [ "dalv4CandleDemoTag_c", "classdalv4CandleDemoTag__c.html", null ]
     ] ],
     [ "res_info", "structres__info.html", null ],
     [ "ResFONT", "structResFONT.html", null ],
@@ -3935,9 +3943,6 @@ var hierarchy =
       [ "JGeometry::TBox2< T >", "structJGeometry_1_1TBox2.html", null ]
     ] ],
     [ "TelopDataStruct", "structTelopDataStruct.html", null ],
-    [ "temp", "structtemp.html", [
-      [ "dalv4CandleDemoTag_c", "classdalv4CandleDemoTag__c.html", null ]
-    ] ],
     [ "JGadget::TEnumerator2< TLinkList< T, I >::const_iterator, const T >", "structJGadget_1_1TEnumerator2.html", [
       [ "JGadget::TContainerEnumerator_const< T, I >", "structJGadget_1_1TContainerEnumerator__const.html", null ]
     ] ],

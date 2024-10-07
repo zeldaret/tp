@@ -1,5 +1,9 @@
 var NAVTREEINDEX221 =
 {
+"classdaNpc__SoldierA__c.html#a7b0925ff3c31bec2483f4b7805f036d4":[1,0,3,90,25],
+"classdaNpc__SoldierA__c.html#a833f029d648c7969574f5853eee31cfe":[1,0,3,90,31],
+"classdaNpc__SoldierA__c.html#a8b6f78d33d79f88ac9295ddaacb9959b":[1,0,3,90,0],
+"classdaNpc__SoldierA__c.html#a9048a160c27913b42fad12f8ad9d4254":[1,0,3,90,33],
 "classdaNpc__SoldierA__c.html#a93c701b53ef488826fb87c3bf47b5bda":[1,0,3,90,1],
 "classdaNpc__SoldierA__c.html#a9a1c6e992f3590b168c4c5606cabfce6":[1,0,3,90,30],
 "classdaNpc__SoldierA__c.html#a9ecd0331909747d124baffdafe25f179":[1,0,3,90,2],
@@ -245,9 +249,5 @@ var NAVTREEINDEX221 =
 "classdaNpc__Uri__c.html#ad551743ec82e514956ccb4d0f33b2606":[1,0,3,103,30],
 "classdaNpc__Uri__c.html#adf4d8ae2e15b284ac35e1dac2ebe41ac":[1,0,3,103,36],
 "classdaNpc__Uri__c.html#ae0f7688b4a5b9fa71fbd91dc1dc05942":[1,0,3,103,42],
-"classdaNpc__Uri__c.html#ae78c9fed6332e8a7f5cdadb77d68fb8b":[1,0,3,103,32],
-"classdaNpc__Uri__c.html#ae9caf7554f1c5d057f1b7e8a3e9fb3d5":[1,0,3,103,54],
-"classdaNpc__Uri__c.html#aecc42a6ee6475730c0d29ac080390db4":[1,0,3,103,27],
-"classdaNpc__Uri__c.html#aed40e1d5b98f3e32f497cec13a0626bf":[1,0,3,103,14],
-"classdaNpc__Uri__c.html#af127db83626b30e4aa46d9cd06201bc6":[1,0,3,103,8]
+"classdaNpc__Uri__c.html#ae78c9fed6332e8a7f5cdadb77d68fb8b":[1,0,3,103,32]
 };

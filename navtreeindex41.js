@@ -216,6 +216,8 @@ var NAVTREEINDEX41 =
 "Z2Creature_8h.html":[4,0,1,11,4],
 "Z2Creature_8h.html#ac4289a7ee624f90ccdef1caacddc866b":[4,0,1,11,4,12],
 "Z2Creature_8h_source.html":[4,0,1,11,4],
+"Z2DebugSys_8h.html":[4,0,1,11,5],
+"Z2DebugSys_8h_source.html":[4,0,1,11,5],
 "Z2EnvSeMgr_8cpp.html":[4,0,2,5,5],
 "Z2EnvSeMgr_8cpp.html#a0292882b8beb2ecc6d27f76a4300e888":[4,0,2,5,5,28],
 "Z2EnvSeMgr_8cpp.html#a02f5b160de1f88942001695a9be8967e":[4,0,2,5,5,91],
@@ -247,7 +249,5 @@ var NAVTREEINDEX41 =
 "Z2EnvSeMgr_8cpp.html#a2b5858fe5f333d4acf746fe9c5577dfc":[4,0,2,5,5,104],
 "Z2EnvSeMgr_8cpp.html#a2ca633c0bea8a0799d849a0a975c9378":[4,0,2,5,5,63],
 "Z2EnvSeMgr_8cpp.html#a2e3349cf415ed50a8cbac7ee47eca8b8":[4,0,2,5,5,98],
-"Z2EnvSeMgr_8cpp.html#a2ff3b0c4fde782fc2f22f3418998f4b3":[4,0,2,5,5,149],
-"Z2EnvSeMgr_8cpp.html#a3172ab1d2ed2c2e742014a392bf3dae7":[4,0,2,5,5,151],
-"Z2EnvSeMgr_8cpp.html#a336981b556a705c959fb7bbd49b71ab6":[4,0,2,5,5,69]
+"Z2EnvSeMgr_8cpp.html#a2ff3b0c4fde782fc2f22f3418998f4b3":[4,0,2,5,5,149]
 };
