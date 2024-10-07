@@ -177,17 +177,17 @@ s16 dMapInfo_n::getMapRestartAngleY() {
 
 /* 8003F19C-8003F1F4 039ADC 0058+00 0/0 1/1 0/0 .text            getRoomCenter__10dMapInfo_nFiPfPf
  */
-void dMapInfo_n::getRoomCenter(int i_roomNo, f32* i_roomCenterX, f32* i_roomCenterZ) {
+void dMapInfo_n::getRoomCenter(int i_roomNo, f32* i_roomPosX, f32* i_roomPosZ) {
     dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(i_roomNo);
 
-    if (i_roomCenterX != NULL) {
-        *i_roomCenterX = (dStage_FileList2_dt_GetRightRmX(fileList2_p) +
+    if (i_roomPosX != NULL) {
+        *i_roomPosX = (dStage_FileList2_dt_GetRightRmX(fileList2_p) +
                           dStage_FileList2_dt_GetLeftRmX(fileList2_p)) *
                          0.5f;
     }
 
-    if (i_roomCenterZ != NULL) {
-        *i_roomCenterZ = (dStage_FileList2_dt_GetFrontRmZ(fileList2_p) +
+    if (i_roomPosZ != NULL) {
+        *i_roomPosZ = (dStage_FileList2_dt_GetFrontRmZ(fileList2_p) +
                           dStage_FileList2_dt_GetInnerRmZ(fileList2_p)) *
                          0.5f;
     }
@@ -618,13 +618,13 @@ s8 renderingDAmap_c::calcFloorNoForObjectByMapPathRend(f32 param_0, int i_roomNo
 void renderingDAmap_c::init(u8* param_0, u16 param_1, u16 param_2, u16 param_3, u16 param_4) {
     mIsDraw = false;
     field_0x4 = param_0;
-    field_0x1c = param_1;
-    field_0x1e = param_2;
+    mTexWidth = param_1;
+    mTexHeight = param_2;
     field_0x20 = param_3;
     field_0x22 = param_4;
 
-    field_0x10 = 0.0f;
-    field_0x14 = 0.0f;
+    mPosX = 0.0f;
+    mPosZ = 0.0f;
     field_0x8 = 1.0f;
     field_0xc = 1.0f;
     mRoomNoSingle = 0;
@@ -634,8 +634,8 @@ void renderingDAmap_c::init(u8* param_0, u16 param_1, u16 param_2, u16 param_3, 
 /* 8003FD08-8003FD9C 03A648 0094+00 0/0 2/2 0/0 .text            entry__16renderingDAmap_cFfffiSc */
 void renderingDAmap_c::entry(f32 param_0, f32 param_1, f32 i_cmPerTexel, int i_roomNoSingle,
                              s8 param_4) {
-    field_0x10 = param_0;
-    field_0x14 = param_1;
+    mPosX = param_0;
+    mPosZ = param_1;
     mCmPerTexel = i_cmPerTexel;
     field_0x8 = mCmPerTexel * field_0x20;
     field_0xc = mCmPerTexel * field_0x22;
@@ -647,12 +647,12 @@ void renderingDAmap_c::entry(f32 param_0, f32 param_1, f32 i_cmPerTexel, int i_r
 /* 8003FD9C-8003FE18 03A6DC 007C+00 3/0 3/0 0/0 .text
  * isSwitch__16renderingDAmap_cFPCQ211dDrawPath_c11group_class  */
 bool renderingDAmap_c::isSwitch(dDrawPath_c::group_class const* i_group) {
-    if (i_group->field_0x0 == 0xFF) {
+    if (i_group->mSwbit == 0xFF) {
         return true;
     } else if (i_group->field_0x1 == 0) {
-        return dComIfGs_isSwitch(i_group->field_0x0, mRoomNo) == false;
+        return dComIfGs_isSwitch(i_group->mSwbit, mRoomNo) == false;
     } else {
-        return dComIfGs_isSwitch(i_group->field_0x0, mRoomNo) != false;
+        return dComIfGs_isSwitch(i_group->mSwbit, mRoomNo) != false;
     }
 }
 
@@ -699,12 +699,12 @@ void renderingDAmap_c::preDrawPath() {
     Vec sp14;
     Vec sp8;
 
-    sp20.x = field_0x10;
-    sp20.y = field_0x14;
+    sp20.x = mPosX;
+    sp20.y = mPosZ;
     sp20.z = -5000.0f;
 
-    sp14.x = field_0x10;
-    sp14.y = field_0x14;
+    sp14.x = mPosX;
+    sp14.y = mPosZ;
     sp14.z = 5000.0f;
 
     sp8.x = 0.0f;

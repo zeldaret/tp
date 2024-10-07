@@ -11,51 +11,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/com/d_com_inf_game.h"
 
-struct dMpath_RGB5A3_s {
-    /* 0x0 */ u16 color;
-};
-
-struct dMpath_RGB5A3_palDt_s {
-    /* 0x0 */ dMpath_RGB5A3_s field_0x0;
-    /* 0x2 */ dMpath_RGB5A3_s field_0x2;
-    /* 0x4 */ dMpath_RGB5A3_s field_0x4;
-    /* 0x6 */ dMpath_RGB5A3_s field_0x6;
-};
-
-struct dMap_prm_res_s {
-    /* 0x000 */ dMpath_RGB5A3_palDt_s palette_data[51];
-    /* 0x198 */ u8 field_0x198;
-    /* 0x199 */ u8 field_0x199;
-    /* 0x19A */ u8 field_0x19a;
-    /* 0x19B */ u8 field_0x19b;
-    /* 0x19C */ u8 field_0x19c;
-    /* 0x19D */ u8 field_0x19d;
-    /* 0x19E */ u8 field_0x19e;
-    /* 0x19F */ u8 field_0x19f;
-    /* 0x1A0 */ u8 field_0x1a0;
-    /* 0x1A1 */ u8 field_0x1a1;
-    /* 0x1A2 */ u8 field_0x1a2;
-    /* 0x1A3 */ u8 field_0x1a3;
-    /* 0x1A4 */ u8 field_0x1a4;
-    /* 0x1A5 */ u8 field_0x1a5;
-    /* 0x1A6 */ u8 field_0x1a6;
-    /* 0x1A7 */ u8 field_0x1a7;
-    /* 0x1A8 */ u8 field_0x1a8;
-    /* 0x1A9 */ u8 field_0x1a9;
-    /* 0x1AA */ s16 field_0x1aa;
-    /* 0x1AC */ s16 field_0x1ac;
-    /* 0x1AE */ s16 field_0x1ae;
-    /* 0x1B0 */ s16 field_0x1b0;
-    /* 0x1B2 */ s16 field_0x1b2;
-    /* 0x1B4 */ s16 field_0x1b4;
-    /* 0x1B6 */ s16 field_0x1b6;
-    /* 0x1B8 */ f32 cursor_size;
-};
-
-struct dMap_HIO_prm_res_dst_s {
-    static dMap_prm_res_s* m_res;
-};
-
 /* 800284BC-800284D0 022DFC 0014+00 2/0 0/0 0/0 .text            getIconSize__15renderingAmap_cCFUc
  */
 f32 renderingAmap_c::getIconSize(u8 i_icon) const {

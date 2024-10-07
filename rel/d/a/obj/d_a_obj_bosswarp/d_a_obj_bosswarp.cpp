@@ -4,9 +4,12 @@
  */
 
 #include "rel/d/a/obj/d_a_obj_bosswarp/d_a_obj_bosswarp.h"
+#include "SSystem/SComponent/c_math.h"
 #include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "d/a/d_a_player.h"
 #include "d/d_procname.h"
+#include "rel/d/a/obj/d_a_obj_life_container/d_a_obj_life_container.h"
+#include "rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.h"
 #include "dol2asm.h"
 
 
@@ -371,24 +374,7 @@ BOOL daObjBossWarp_c::checkDistance() {
     }
 }
 
-/* ############################################################################################## */
-/* 8057B484-8057B488 000124 0004+00 0/1 0/0 0/0 .rodata          @4118 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4118 = 0x43360B61;
-COMPILER_STRIP_GATE(0x8057B484, &lit_4118);
-#pragma pop
-
-/* 8057B488-8057B48C 000128 0004+00 0/1 0/0 0/0 .rodata          @4119 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4119 = 2.0f / 125.0f;
-COMPILER_STRIP_GATE(0x8057B488, &lit_4119);
-#pragma pop
-
 /* 80579FF8-8057A390 000A38 0398+00 2/2 0/0 0/0 .text            execute__15daObjBossWarp_cFv */
-#ifdef NONMATCHING
-// regalloc
 int daObjBossWarp_c::execute() {
     if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         u8 sw = getSwNo();
@@ -412,7 +398,7 @@ int daObjBossWarp_c::execute() {
         }
         event_proc_call();
 
-        daMidna_c* midna = daPy_py_c::getMidnaActor();
+        daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
         if (field_0x595 && midna != NULL) {
             midna->onTagWaitPos(&field_0x620);
         }
@@ -448,9 +434,9 @@ int daObjBossWarp_c::execute() {
     }
 
     if (mpParticle[3] != NULL) {
-        JGeometry::TVec3<f32> scale;
-        JGeometry::setTVec3f(&scale.x, &scale.x);
-        mpParticle[3]->setGlobalScale(scale);
+        JGeometry::TVec3<f32> scale_vec;
+        JGeometry::setTVec3f(&scale.x, &scale_vec.x);
+        mpParticle[3]->setGlobalScale(scale_vec);
     }
 
     if (mpBrkAnm != NULL && mpBrkAnm->getFrame() != 0.0f) {
@@ -460,16 +446,6 @@ int daObjBossWarp_c::execute() {
     setBaseMtx();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int daObjBossWarp_c::execute() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_bosswarp/d_a_obj_bosswarp/execute__15daObjBossWarp_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 8057A390-8057A4F4 000DD0 0164+00 1/1 0/0 0/0 .text event_proc_call__15daObjBossWarp_cFv */
 void daObjBossWarp_c::event_proc_call() {
@@ -723,10 +699,14 @@ int daObjBossWarp_c::demoProc() {
         "HEART_MOVE",
     };
 
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    static int const l_dangeon_clr_bitNo[9] = {
+        0x37, 0x40, 0x4E, 0x109, 0x10A, 0x10B, 0x10C, -1, -1
+    };
+
+    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
     cXyz unused(100000.0f, 0.0f, 0.0f);
-    daMidna_c* midna = daPy_py_c::getMidnaActor();
+    daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
     daObjLife_c* life_container = (daObjLife_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
     cXyz life_pos(900.0f, 0.0f, 0.0f);
     int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 15, 0, 0);

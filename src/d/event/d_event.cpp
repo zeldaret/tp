@@ -7,139 +7,11 @@
 #include "d/a/d_a_alink.h"
 #include "d/d_demo.h"
 #include "d/msg/d_msg_object.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include "rel/d/a/d_a_midna/d_a_midna.h"
 #include "rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.h"
 #include "rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14dEvt_control_cFv();
-extern "C" void __ct__12dEvt_order_cFv();
-extern "C" void orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv();
-extern "C" void order__14dEvt_control_cFUsUsUsUsPvPvsUc();
-extern "C" void setParam__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void beforeFlagProc__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void afterFlagProc__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void commonCheck__14dEvt_control_cFP12dEvt_order_cUsUs();
-extern "C" void talkCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void talkXyCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void catchCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void talkEnd__14dEvt_control_cFv();
-extern "C" void demoCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void demoEnd__14dEvt_control_cFv();
-extern "C" void potentialCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void doorCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void itemCheck__14dEvt_control_cFP12dEvt_order_c();
-extern "C" void endProc__14dEvt_control_cFv();
-extern "C" void change__14dEvt_control_cFv();
-extern "C" void entry__14dEvt_control_cFv();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void reset__14dEvt_control_cFPv();
-extern "C" void clearSkipSystem__14dEvt_control_cFv();
-extern "C" void dEv_defaultSkipProc__FPvi();
-extern "C" void dEv_defaultSkipZev__FPvi();
-extern "C" void dEv_defaultSkipStb__FPvi();
-extern "C" void dEv_noFinishSkipProc__FPvi();
-extern "C" void getSkipEventName__14dEvt_control_cFv();
-extern "C" void setSkipProc__14dEvt_control_cFPvPFPvi_ii();
-extern "C" void setSkipZev__14dEvt_control_cFPvPc();
-extern "C" void onSkipFade__14dEvt_control_cFv();
-extern "C" void offSkipFade__14dEvt_control_cFv();
-extern "C" void skipper__14dEvt_control_cFv();
-extern "C" void Step__14dEvt_control_cFv();
-extern "C" void moveApproval__14dEvt_control_cFPv();
-extern "C" void compulsory__14dEvt_control_cFPvPCcUs();
-extern "C" void remove__14dEvt_control_cFv();
-extern "C" void getStageEventDt__14dEvt_control_cFv();
-extern "C" void sceneChange__14dEvt_control_cFi();
-extern "C" void getPId__14dEvt_control_cFPv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void getStbDemoData__14dEvt_control_cFPc();
-extern "C" void __ct__11dEvt_info_cFv();
-extern "C" void setEventName__11dEvt_info_cFPc();
-extern "C" void getEventName__11dEvt_info_cFv();
-extern "C" void beforeProc__11dEvt_info_cFv();
-extern "C" void searchMapEventData__14dEvt_control_cFUc();
-extern "C" void searchMapEventData__14dEvt_control_cFUcl();
-extern "C" void runningEventID__14dEvt_control_cFs();
-extern "C" void setPt1__14dEvt_control_cFPv();
-extern "C" void setPt2__14dEvt_control_cFPv();
-extern "C" void setPtT__14dEvt_control_cFPv();
-extern "C" void setPtI__14dEvt_control_cFPv();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void setPtD__14dEvt_control_cFPv();
-extern "C" void setGtItm__14dEvt_control_cFUc();
-extern "C" extern char const* const d_event_d_event__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void fadeOut__13mDoGph_gInf_cFf();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_getItemEventPartner__FPC10fopAc_ac_c();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void dStage_changeScene4Event__FiScibfUlsi(int, s8, int, bool, float, u32, s16, int);
-extern "C" void dComIfGp_getSelectItem__Fi();
-extern "C" void dComIfG_getStageRes__FPCc();
-extern "C" void dComIfG_getRoomArcName__Fi();
-extern "C" void dComIfGs_onVisitedRoom__Fi();
-extern "C" void __dt__12dEvt_order_cFv();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void dead__12daItemBase_cFv();
-extern "C" void end__7dDemo_cFv();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void forceFinish__12dEvDtEvent_cFv();
-extern "C" void setStartDemo__18dEvent_exception_cFi();
-extern "C" void setObjectArchive__16dEvent_manager_cFPc();
-extern "C" void endProc__16dEvent_manager_cFsi();
-extern "C" void Sequencer__16dEvent_manager_cFv();
-extern "C" void Experts__16dEvent_manager_cFv();
-extern "C" void getEventData__16dEvent_manager_cFs();
-extern "C" void getEventIdx__16dEvent_manager_cFPCcUcl();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void order__16dEvent_manager_cFs();
-extern "C" void issueStaff__16dEvent_manager_cFPCc();
-extern "C" void cancelStaff__16dEvent_manager_cFPCc();
-extern "C" void StopQuake__12dVibration_cFi();
-extern "C" void QuickStart__9dCamera_cFv();
-extern "C" void dCam_getBody__Fv();
-extern "C" void onKillMessageFlag__12dMsgObject_cFv();
-extern "C" void setKillMessageFlag__12dMsgObject_cFv();
-extern "C" void endFlowGroup__12dMsgObject_cFv();
-extern "C" void setDemoName__11Z2StatusMgrFPc();
-extern "C" void __construct_array();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" u8 m_mode__7dDemo_c[4];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 // This probably will need to be moved once actual debug rom decomp begins
 #ifdef DEBUG
@@ -333,12 +205,8 @@ s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* p_order) {
     return 1;
 }
 
-/* ############################################################################################## */
 /* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
-#pragma pop
+static char const* const stringBase_80379D80 = "？？？";
 
 /* 80041964-800419A8 03C2A4 0044+00 2/2 0/0 0/0 .text
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
@@ -365,25 +233,15 @@ int dEvt_control_c::commonCheck(dEvt_order_c* p_order, u16 condition, u16 comman
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379D8B = "DEFAULT_TALK";
-SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
-#pragma pop
-
 /* 80041A20-80041B58 03C360 0138+00 1/1 0/0 0/0 .text talkCheck__14dEvt_control_cFP12dEvt_order_c
  */
-#ifdef NONMATCHING
-// regswap, this pointer in r31 is weird
 int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
     char* event = "DEFAULT_TALK";
     fopAc_ac_c* actor = p_order->mActor2;
     if ((fopAcM_GetName(actor) == PROC_Tag_Mhint && ((daTagMhint_c*)actor)->checkNoAttention()) ||
         (fopAcM_GetName(actor) == PROC_Tag_Mstop && ((daTagMstop_c*)actor)->checkNoAttention()) ||
         fopAcM_GetName(actor) == PROC_MIDNA) {
-        daMidna_c* midna = daPy_py_c::getMidnaActor();
+        daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
         if (!daPy_py_c::i_checkNowWolf() || midna->checkNoDraw()) {
             event = "MHINT_TALK";
         }
@@ -404,16 +262,6 @@ int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
         return 0;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
-    nofralloc
-#include "asm/d/event/d_event/talkCheck__14dEvt_control_cFP12dEvt_order_c.s"
-}
-#pragma pop
-#endif
 
 /* 80041B58-80041C90 03C498 0138+00 1/1 0/0 0/0 .text
  * talkXyCheck__14dEvt_control_cFP12dEvt_order_c                */
@@ -986,9 +834,8 @@ bool dEvt_control_c::skipper() {
     return startSkip;
 }
 
-/* ############################################################################################## */
 /* 80451EC8-80451ECC 0004C8 0004+00 1/1 0/0 0/0 .sdata2          @5013 */
-SECTION_SDATA2 static f32 lit_5013 = -1.0f / 20.0f;
+static f32 lit_5013 = -1.0f / 20.0f;
 
 /* 80042BBC-80042FA8 03D4FC 03EC+00 0/0 1/1 0/0 .text            Step__14dEvt_control_cFv */
 int dEvt_control_c::Step() {
@@ -1095,7 +942,7 @@ int dEvt_control_c::Step() {
         return 1;
     } else {
         if (!mRoomInfoSet) {
-            char lastStageName[7];
+            char lastStageName[8];
             strncpy(lastStageName, dComIfGp_getStartStageName(), 7);
             lastStageName[7] = 0;
 
@@ -1372,13 +1219,5 @@ void dEvt_control_c::setGtItm(u8 itemNo) {
     mGtItm = itemNo;
 }
 
-/* ############################################################################################## */
 /* 80379DC6-80379DD0 006426 0008+02 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379DC6 = "GIVEMAN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379DCE = "\0";
-#pragma pop
-
-/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+static char const* const stringBase_80379DC6 = "GIVEMAN";

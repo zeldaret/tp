@@ -2125,8 +2125,8 @@ void dMw_c::dMw_fmap_create() {
         tmp = 3;
     }
 
-    mpMenuFmap = new dMenu_Fmap_c(mpHeap, mpStick, mpCStick, field_0x14E, field_0x14F, field_0x150,
-                                  field_0x13c, field_0x140, tmp);
+    mpMenuFmap = new dMenu_Fmap_c(mpHeap, mpStick, mpCStick, mFmapProcess, mFmapRegionCursor,
+                                  mFmapStageCursor, mFmapStageTransX, mFmapStageTransZ, tmp);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
@@ -2143,11 +2143,11 @@ bool dMw_c::dMw_fmap_delete(bool param_0) {
             return false;
         }
 
-        field_0x14E = mpMenuFmap->getProcess();
-        field_0x14F = mpMenuFmap->getRegionCursor();
-        field_0x150 = mpMenuFmap->getStageCursor();
-        field_0x13c = mpMenuFmap->getStageTransX();
-        field_0x140 = mpMenuFmap->getStageTransZ();
+        mFmapProcess = mpMenuFmap->getProcess();
+        mFmapRegionCursor = mpMenuFmap->getRegionCursor();
+        mFmapStageCursor = mpMenuFmap->getStageCursor();
+        mFmapStageTransX = mpMenuFmap->getStageTransX();
+        mFmapStageTransZ = mpMenuFmap->getStageTransZ();
 
         mpMenuFmap->_delete();
         delete mpMenuFmap;
@@ -2521,14 +2521,14 @@ int dMw_c::_create() {
     field_0x148 = 0;
     field_0x14C = 0;
     field_0x14D = 0;
-    field_0x14E = 0;
-    field_0x14F = 0;
-    field_0x150 = 0;
+    mFmapProcess = 0;
+    mFmapRegionCursor = 0;
+    mFmapStageCursor = 0;
     field_0x151 = 0;
     field_0x152 = 0;
     f32 tmp = FLOAT_LABEL(lit_4152);
-    field_0x13c = tmp;
-    field_0x140 = tmp;
+    mFmapStageTransX = tmp;
+    mFmapStageTransZ = tmp;
     field_0x153 = 0;
     onPauseWindow();
     field_0x149 = 0;

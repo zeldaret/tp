@@ -3,6 +3,40 @@
 
 #include "d/map/d_map_path_dmap.h"
 
+struct dMap_prm_res_s {
+    /* 0x000 */ dMpath_RGB5A3_palDt_s palette_data[51];
+    /* 0x198 */ u8 field_0x198;
+    /* 0x199 */ u8 field_0x199;
+    /* 0x19A */ u8 field_0x19a;
+    /* 0x19B */ u8 field_0x19b;
+    /* 0x19C */ u8 field_0x19c;
+    /* 0x19D */ u8 field_0x19d;
+    /* 0x19E */ u8 field_0x19e;
+    /* 0x19F */ u8 field_0x19f;
+    /* 0x1A0 */ u8 field_0x1a0;
+    /* 0x1A1 */ u8 field_0x1a1;
+    /* 0x1A2 */ u8 field_0x1a2;
+    /* 0x1A3 */ u8 field_0x1a3;
+    /* 0x1A4 */ u8 field_0x1a4;
+    /* 0x1A5 */ u8 field_0x1a5;
+    /* 0x1A6 */ u8 field_0x1a6;
+    /* 0x1A7 */ u8 field_0x1a7;
+    /* 0x1A8 */ u8 field_0x1a8;
+    /* 0x1A9 */ u8 field_0x1a9;
+    /* 0x1AA */ s16 field_0x1aa;
+    /* 0x1AC */ s16 field_0x1ac;
+    /* 0x1AE */ s16 field_0x1ae;
+    /* 0x1B0 */ s16 field_0x1b0;
+    /* 0x1B2 */ s16 field_0x1b2;
+    /* 0x1B4 */ s16 field_0x1b4;
+    /* 0x1B6 */ s16 field_0x1b6;
+    /* 0x1B8 */ f32 cursor_size;
+};
+
+struct dMap_HIO_prm_res_dst_s {
+    static dMap_prm_res_s* m_res;
+};
+
 class renderingAmap_c : public renderingPlusDoorAndCursor_c {
 public:
     /* 800288C4 */ int getDispType() const;
@@ -47,8 +81,6 @@ private:
     /* 0x38 */ s32 field_0x38;
     /* 0x3C */ s32 field_0x3c;
 };  // Size: 0x40
-
-struct dMap_prm_res_s;
 
 class dMap_c : public renderingAmap_c {
 public:

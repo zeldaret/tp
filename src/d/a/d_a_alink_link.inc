@@ -2183,7 +2183,7 @@ BOOL daMidna_c::checkMidnaRealBody() {
 }
 
 /* 800C77F4-800C7C64 0C2134 0470+00 4/2 0/0 0/0 .text procCoMetamorphoseInit__9daAlink_cFv */
-// small regalloc
+// matches with literals
 #ifdef NONMATCHING
 int daAlink_c::procCoMetamorphoseInit() {
     int var_r29 = 0;
@@ -2234,7 +2234,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             field_0x3480 = daAlinkHIO_basic_c0::m.mWolfLinkTransformSpeed;
             mProcVar2.field_0x300c = shape_angle.x;
 
-            daMidna_c* midna = getMidnaActor();
+            daMidna_c* midna = (daMidna_c*)getMidnaActor();
             if (checkMidnaRide() && daMidna_c::checkMidnaRealBody() && midna->checkDemoTypeNone())
             {
                 midna->changeOriginalDemo();

@@ -278,8 +278,8 @@ private:
     /* 0x130 */ dMenu_Skill_c* mpMenuSkill;
     /* 0x134 */ dMenu_Insect_c* mpMenuInsect;
     /* 0x138 */ s32 mMemSize;
-    /* 0x13C */ f32 field_0x13c;
-    /* 0x140 */ f32 field_0x140;
+    /* 0x13C */ f32 mFmapStageTransX;
+    /* 0x140 */ f32 mFmapStageTransZ;
     /* 0x144 */ u8 field_0x144;
     /* 0x145 */ u8 mButtons;
     /* 0x146 */ u8 mMenuStatus;
@@ -290,9 +290,9 @@ private:
     /* 0x14B */ u8 field_0x14B;
     /* 0x14C */ u8 field_0x14C;
     /* 0x14D */ u8 field_0x14D;
-    /* 0x14E */ u8 field_0x14E;
-    /* 0x14F */ u8 field_0x14F;
-    /* 0x150 */ u8 field_0x150;
+    /* 0x14E */ u8 mFmapProcess;
+    /* 0x14F */ u8 mFmapRegionCursor;
+    /* 0x150 */ u8 mFmapStageCursor;
     /* 0x151 */ u8 field_0x151;
     /* 0x152 */ u8 field_0x152;
     /* 0x153 */ u8 field_0x153;

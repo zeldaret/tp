@@ -519,6 +519,8 @@ public:
     void onFieldDataExistFlag() { mFieldDataExistFlag = true; }
     cXyz& getPos() { return mPos; }
     u8 getRegionNo() const { return mRegionNo; }
+    char* getName() { return mName; }
+    s16 getAngleY() { return mAngleY; }
 
 private:
     /* 0x00 */ cXyz mPos;

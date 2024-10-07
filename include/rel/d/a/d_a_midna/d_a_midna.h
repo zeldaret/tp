@@ -104,7 +104,7 @@ public:
     void offStateFlg0(daMidna_FLG0 i_flag) { mStateFlg0 &= ~i_flag; }
     void onStateFlg1(daMidna_FLG1 i_flag) { mStateFlg1 |= i_flag; }
     void offStateFlg1(daMidna_FLG1 i_flag) { mStateFlg1 &= ~i_flag; }
-    u32 checkStateFlg0(daMidna_FLG0 flag) const { return mStateFlg0 & flag; }
+    BOOL checkStateFlg0(daMidna_FLG0 flag) const { return mStateFlg0 & flag; }
     u32 checkStateFlg1(daMidna_FLG1 flag) const { return mStateFlg1 & flag; }
     void setFaceNum(int num) { mFaceNum = num; }
     void setMotionNum(int num) { mMotionNum = num; }

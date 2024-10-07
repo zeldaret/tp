@@ -1008,6 +1008,7 @@ u8 dComIfGs_staffroll_next_go_check();
 s8 dComIfGs_BossLife_public_Get();
 u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
+BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1659,6 +1660,14 @@ inline void dComIfGs_setPlayerFieldLastStayInfo(const char* i_stage, cXyz& i_pos
                                                                          i_point, i_region);
 }
 
+inline char* dComIfGs_getPlayerFieldLastStayName() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().getName();
+}
+
+inline s16 dComIfGs_getPlayerFieldLastStayAngleY() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerFieldLastStayInfo().getAngleY();
+}
+
 inline void dComIfGs_setPlayerName(const char* i_name) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setPlayerName(i_name);
 }
@@ -1947,6 +1956,7 @@ u8 dComIfGp_TargetWarpPt_get();
 void dComIfGp_TargetWarpPt_set(u8);
 BOOL dComIfGp_TransportWarp_check();
 u8 dComIfGp_SelectWarpPt_get();
+void dComIfGp_SelectWarpPt_set(u8);
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer, f32 lastSpeed,
                            u32 lastMode, int, s8 wipe, s16 lastAngle, int, int);
 void dComIfGp_setNextStage(char const* stage, s16 point, s8 roomNo, s8 layer);
