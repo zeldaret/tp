@@ -223,8 +223,8 @@ void dRenderingFDAmap_c::drawBack() const {
 
 /* 8003D188-8003D320 037AC8 0198+00 1/0 8/0 0/0 .text preRenderingMap__18dRenderingFDAmap_cFv */
 void dRenderingFDAmap_c::preRenderingMap() {
-    GXSetViewport(0.0f, 0.0f, field_0x1c, field_0x1e, 0.0f, 1.0f);
-    GXSetScissor(0, 0, field_0x1c, field_0x1e);
+    GXSetViewport(0.0f, 0.0f, mTexWidth, mTexHeight, 0.0f, 1.0f);
+    GXSetScissor(0, 0, mTexWidth, mTexHeight);
     GXSetNumChans(1);
     GXSetNumTevStages(1);
     GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
@@ -252,8 +252,8 @@ void dRenderingFDAmap_c::preRenderingMap() {
 /* 8003D320-8003D3C0 037C60 00A0+00 1/0 7/1 0/0 .text postRenderingMap__18dRenderingFDAmap_cFv */
 void dRenderingFDAmap_c::postRenderingMap() {
     GXSetCopyFilter(GX_FALSE, NULL, GX_FALSE, NULL);
-    GXSetTexCopySrc(0, 0, field_0x1c, field_0x1e);
-    GXSetTexCopyDst(field_0x1c, field_0x1e, GX_CTF_G8, GX_FALSE);
+    GXSetTexCopySrc(0, 0, mTexWidth, mTexHeight);
+    GXSetTexCopyDst(mTexWidth, mTexHeight, GX_CTF_G8, GX_FALSE);
     GXCopyTex(field_0x4, GX_TRUE);
     GXPixModeSync();
     GXSetClipMode(GX_CLIP_ENABLE);

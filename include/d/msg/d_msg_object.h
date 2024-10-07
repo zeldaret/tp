@@ -484,6 +484,10 @@ inline void dMsgObject_setMsgOutputType(u8 outputType) {
     dMsgObject_getMsgObjectClass()->setMsgOutputType(outputType);
 }
 
+inline void dMsgObject_setPortalMessageID(u16 id) {
+    dMsgObject_getMsgObjectClass()->setPortalMessageID(id);
+}
+
 class dMsgObject_HowlHIO_c {
 public:
     /* 80232AEC */ dMsgObject_HowlHIO_c();

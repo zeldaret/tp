@@ -1012,6 +1012,7 @@ class cBgS_GndChk;
 int dStage_RoomCheck(cBgS_GndChk* gndChk);
 void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
+void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* stageDt);
 dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
 

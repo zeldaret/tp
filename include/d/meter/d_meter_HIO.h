@@ -5,7 +5,7 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 
-class JKRArchive;
+class JKRAramArchive;
 
 class dMeter_menuHIO_c {
 public:
@@ -1132,7 +1132,7 @@ public:
     /* 80200BCC */ virtual ~dMeter_fmapHIO_c();
 
     /* 0x004 */ s8 field_0x4;
-    /* 0x008 */ JKRArchive* field_0x8;
+    /* 0x008 */ JKRAramArchive* mpArchive;
     /* 0x00C */ void* field_0xc;
     /* 0x010 */ void* field_0x10;
     /* 0x014 */ void* field_0x14;
@@ -1215,7 +1215,7 @@ public:
     /* 0x2F6 */ bool mDisplayWorldGrid;
     /* 0x2F7 */ bool mDisplayRegionGrid;
     /* 0x2F8 */ bool mDisplayReferenceArea;
-    /* 0x2F9 */ u8 field_0x2f9;
+    /* 0x2F9 */ bool field_0x2f9;
     /* 0x2FA */ bool mTerminalOutput;
     /* 0x2FB */ bool mPortalDataTerminalOutput;
     /* 0x2FC */ bool mAllRegionsUnlocked;

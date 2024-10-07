@@ -5,7 +5,7 @@
 
 #include "d/meter/d_meter_HIO.h"
 #include "d/save/d_save.h"
-#include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "m_Do/m_Do_ext.h"
 
@@ -1333,7 +1333,7 @@ dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
 dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     field_0xc = NULL;
     field_0x10 = NULL;
-    field_0x8 = NULL;
+    mpArchive = NULL;
 
     mDisplayFrameNum = 8;
     mUndisplayFrameNum = 6;
@@ -1389,7 +1389,7 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     mBackgroundAlpha = 1.0f;
     mBackgroundFrontAlpha = 0.7f;
 
-    field_0x2f9 = 0;
+    field_0x2f9 = false;
     mTerminalOutput = false;
     mPortalDataTerminalOutput = false;
     mRegionBitTerminalOutput = false;
@@ -1520,10 +1520,10 @@ dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
         field_0x10 = NULL;
     }
 
-    if (field_0x8 != NULL) {
-        field_0x8->unmount();
-        delete field_0x8;
-        field_0x8 = NULL;
+    if (mpArchive != NULL) {
+        mpArchive->unmount();
+        delete mpArchive;
+        mpArchive = NULL;
     }
 }
 

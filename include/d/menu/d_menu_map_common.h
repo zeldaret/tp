@@ -40,18 +40,36 @@ struct dMenuMapCommon_c {
     struct Stage_c {
         // Incomplete class
 
-        struct Stage_c_data {
+        struct data {
             // Unknown name
 
             /* 0x00 */ char mName[8];
-            /* 0x08 */ u8 field_0x8;
-            /* 0x09 */ u8 field_0x9;
-            /* 0x0C */ f32 field_0xc;
-            /* 0x10 */ f32 field_0x10;
+            /* 0x08 */ u8 mRoomNo;
+            /* 0x09 */ u8 mRegionNo;
+            /* 0x0A */ u16 mAreaName;
+            /* 0x0C */ f32 mOffsetX;
+            /* 0x10 */ f32 mOffsetZ;
         };
 
-        /* 0x0 */ u32 field_0x0;
-        /* 0x4 */ Stage_c_data field_0x4[0];
+        /* 0x0 */ u8 mCount;
+        /* 0x4 */ data mData[0];
+    };
+
+    class RoomData_c {
+    public:
+        struct data {
+            /* 0x0 */ u8 mSize;
+            /* 0x1 */ u8 field_0x1[3];
+            /* 0x4 */ u8 mData[0];
+        };
+
+        data* getRoomData() { return mpRoomData; }
+        RoomData_c* getNextData() { return mpNextData; }
+        void setRoomData(void* i_data) { mpRoomData = (data*)i_data; }
+        void setNextData(RoomData_c* i_nextData) { mpNextData = i_nextData; }
+
+        /* 0x0 */ data* mpRoomData;
+        /* 0x4 */ RoomData_c* mpNextData;
     };
 
     /* 0x004 */ J2DPicture* mPictures[23];

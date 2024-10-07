@@ -654,7 +654,7 @@ bool dMenu_Ring_c::isMoveEnd() {
     if (mStatus == STATUS_WAIT && mOldStatus != STATUS_EXPLAIN_FORCE && mOldStatus != STATUS_EXPLAIN) {
         if (dMw_UP_TRIGGER() || dMw_DOWN_TRIGGER() || dMw_B_TRIGGER() ||
             dMeter2Info_getWarpStatus() == 2 || dMeter2Info_getWarpStatus() == 1 ||
-            dMeter2Info_isTouchKeyCheck(0x4000) != 0)
+            dMeter2Info_isTouchKeyCheck(0xe))
         {
             if (dMw_UP_TRIGGER()) {
                 mRingOrigin = 0;
@@ -1354,7 +1354,7 @@ void dMenu_Ring_c::stick_wait_proc() {
     } else {
         setDoStatus(0);
     }
-    if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0x4000) && openExplain(item)) {
+    if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xe) && openExplain(item)) {
         dMeter2Info_setItemExplainWindowStatus(1);
         field_0x6c4 = mCurrentSlot;
         setStatus(STATUS_EXPLAIN);
@@ -1362,7 +1362,7 @@ void dMenu_Ring_c::stick_wait_proc() {
         setDoStatus(0);
         return;
     }
-    if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0x4000)) {
+    if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xe)) {
         Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     }
     if (mWaitFrames > 0) {

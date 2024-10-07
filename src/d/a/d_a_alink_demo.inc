@@ -4411,7 +4411,7 @@ static asm fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1) 
 #endif
 
 /* 8011F658-8011F7D8 119F98 0180+00 1/1 0/0 0/0 .text            checkAcceptWarp__9daAlink_cFv */
-// r3/r4 swap loading midna ptr
+// matches with literals
 #ifdef NONMATCHING
 bool daAlink_c::checkAcceptWarp() {
     cM3dGPla plane;
@@ -4420,7 +4420,7 @@ bool daAlink_c::checkAcceptWarp() {
         !checkNoResetFlg0(FLG0_UNDERWATER))
     {
         if (!getSlidePolygon(&plane) && !checkForestOldCentury()) {
-            if (checkMidnaRide() || getMidnaActor()->checkPortalObjRide()) {
+            if (checkMidnaRide() || ((daMidna_c*)getMidnaActor())->checkPortalObjRide()) {
                 if ((checkField() || checkCastleTown()) && !checkStageName("R_SP161")) {
                     if ((checkWolf() && (checkModeFlg(MODE_UNK_1000) ||
                                            dComIfGp_checkPlayerStatus0(0, 0x10))) ||

@@ -20,7 +20,7 @@ public:
     };  // Size: 0x8
 
     struct group_class {
-        /* 0x00 */ u8 field_0x0;
+        /* 0x00 */ u8 mSwbit;
         /* 0x01 */ u8 field_0x1;
         /* 0x02 */ u8 mLineNum;
         /* 0x03 */ u8 field_0x3;
@@ -48,7 +48,7 @@ public:
     /* 8002AD3C */ virtual ~dDrawPath_c() {}
     /* 8002ABF0 */ virtual bool isDrawType(int) { return true; }
     virtual const GXColor* getColor(int) = 0;
-    /* 8002AD84 */ virtual GXColor* getLineColor(int param_0, int) { return (GXColor*)getColor(param_0); }
+    /* 8002AD84 */ virtual const GXColor* getLineColor(int param_0, int) { return (GXColor*)getColor(param_0); }
     virtual int getLineWidth(int) = 0;
     virtual bool isSwitch(dDrawPath_c::group_class const*) = 0;
     virtual bool isRenderingFloor(int) = 0;
@@ -87,11 +87,11 @@ public:
         field_0x4 = NULL;
         field_0x8 = 0.0f;
         field_0xc = 0.0f;
-        field_0x10 = 0.0f;
-        field_0x14 = 0.0f;
+        mPosX = 0.0f;
+        mPosZ = 0.0f;
         mCmPerTexel = 0.0f;
-        field_0x1c = 0;
-        field_0x1e = 0;
+        mTexWidth = 0;
+        mTexHeight = 0;
         field_0x20 = 0;
         field_0x22 = 0;
     }
@@ -104,25 +104,25 @@ public:
     /* 8002ABF8 */ virtual ~dRenderingFDAmap_c() {}
     /* 8003D188 */ virtual void preRenderingMap();
     /* 8003D320 */ virtual void postRenderingMap();
-    virtual GXColor* getBackColor() const = 0;
+    virtual const GXColor* getBackColor() const = 0;
     /* 8003D68C */ virtual const GXColor* getDecoLineColor(int, int);
     /* 8003D6B8 */ virtual s32 getDecorationLineWidth(int);
 
     bool isDrawAreaCheck(const Vec& param_0) {
-        return (param_0.x >= field_0x10 - field_0x8 * 2.0f &&
-                param_0.x <= field_0x10 + field_0x8 * 2.0f) &&
-               (param_0.z >= field_0x14 - field_0xc * 2.0f &&
-                param_0.z <= field_0x14 + field_0xc * 2.0f);
+        return (param_0.x >= mPosX - field_0x8 * 2.0f &&
+                param_0.x <= mPosX + field_0x8 * 2.0f) &&
+               (param_0.z >= mPosZ - field_0xc * 2.0f &&
+                param_0.z <= mPosZ + field_0xc * 2.0f);
     }
 
     /* 0x04 */ u8* field_0x4;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
+    /* 0x10 */ f32 mPosX;
+    /* 0x14 */ f32 mPosZ;
     /* 0x18 */ f32 mCmPerTexel;
-    /* 0x1C */ u16 field_0x1c;
-    /* 0x1E */ u16 field_0x1e;
+    /* 0x1C */ u16 mTexWidth;
+    /* 0x1E */ u16 mTexHeight;
     /* 0x20 */ u16 field_0x20;
     /* 0x22 */ u16 field_0x22;
 };  // Size: 0x24
@@ -149,5 +149,16 @@ struct dMpath_n {
 };
 
 STATIC_ASSERT(sizeof(dMpath_n::dTexObjAggregate_c) == 28);
+
+struct dMpath_RGB5A3_s {
+    u16 color;
+};
+
+struct dMpath_RGB5A3_palDt_s {
+    /* 0x0 */ dMpath_RGB5A3_s field_0x0;
+    /* 0x2 */ dMpath_RGB5A3_s field_0x2;
+    /* 0x4 */ dMpath_RGB5A3_s field_0x4;
+    /* 0x6 */ dMpath_RGB5A3_s field_0x6;
+};
 
 #endif /* D_MAP_D_MAP_PATH_H */

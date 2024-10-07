@@ -118,7 +118,9 @@ public:
     void resetPauseStatus() { mPauseStatus = 0; }
     u8 getPauseStatus() { return mPauseStatus; }
     bool isGameStatus(int status) { return mGameStatus & status; }
-    bool isTouchKeyCheck(int i_status) { return mTouchKeyCheck & i_status; }
+    bool isTouchKeyCheck(int i_status) { return mTouchKeyCheck & (1 << i_status); }
+    // fake function, should be isTouchKeyCheck
+    bool isTouchKeyCheck_alt(int i_status) { return (mTouchKeyCheck >> i_status) & 1; }
     void setMapKeyDirection(u16 direction) { mMapKeyDirection = direction; }
     bool isSub2DStatus(int flag) { return mSub2DStatus & (1 << flag); }
     void offMenuInForce(int flag) { unk152 &= ~(1 << flag); }
@@ -177,13 +179,17 @@ public:
         mCollectCursorPosY = y;
     }
     void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
-    bool isTempBit(int bit) { return mTempBits & (1 << bit) != 0; }
+    bool isTempBit(int bit) { return mTempBits & (1 << bit); }
     void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
     void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
     void set2DWidth(float width) { m2DWidth = width; }
     void set2DHeight(float height) { m2DHeight = height; }
     void set2DPosH(float posH) { m2DPosH = posH; }
     void set2DPosV(float posV) { m2DPosV = posV; }
+    f32 get2DWidth() { return m2DWidth; }
+    f32 get2DHeight() { return m2DHeight; }
+    u8 getTableMapRegionNo() { return mTableMapRegionNo; }
+    u8 getGoldWolfMapType() { return mGoldWolfMapType; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -446,6 +452,11 @@ inline bool dMeter2Info_isGameStatus(int status) {
 
 inline bool dMeter2Info_isTouchKeyCheck(int i_status) {
     return g_meter2_info.isTouchKeyCheck(i_status);
+}
+
+// fake function, should be dMeter2Info_isTouchKeyCheck
+inline bool dMeter2Info_isTouchKeyCheck_alt(int i_status) {
+    return g_meter2_info.isTouchKeyCheck_alt(i_status);
 }
 
 inline void dMeter2Info_setMapKeyDirection(u16 direction) {
@@ -750,6 +761,27 @@ inline void dMeter2Info_set2DPosV(float posV) {
 
 inline void dMeter2Info_offShopTalkFlag() {
     g_meter2_info.offShopTalkFlag();
+}
+
+inline f32 dMeter2Info_get2DWidth() {
+    return g_meter2_info.get2DWidth();
+}
+
+inline f32 dMeter2Info_get2DHeight() {
+    return g_meter2_info.get2DHeight();
+}
+
+inline void dMeter2Info_setWarpInfo(const char* i_stageName, const cXyz& i_position, s16 i_angle,
+                                u8 i_roomNo, u8 param_4, u8 i_warpPlayerNo) {
+    g_meter2_info.setWarpInfo(i_stageName, i_position, i_angle, i_roomNo, param_4, i_warpPlayerNo);
+}
+
+inline u8 dMeter2Info_getTableMapRegionNo() {
+    return g_meter2_info.getTableMapRegionNo();
+}
+
+inline u8 dMeter2Info_getGoldWolfMapType() {
+    return g_meter2_info.getGoldWolfMapType();
 }
 
 const char* dMeter2Info_getPlusTextureName();

@@ -284,6 +284,7 @@ public:
     bool isEmphasisR() { return field_0x768[2] == 7 ? true : false; }
     void setEmphasisA(u8 param_0) { field_0x761 = param_0; }
     void setEmphasisB(u8 param_0) { field_0x762 = param_0; }
+    u8 getInsideObjCheck() { return field_0x772; }
 
 private:
     /* 0x004 */ item_params mItemParams[4];

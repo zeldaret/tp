@@ -9,6 +9,8 @@
 #include "d/pane/d_pane_class.h"
 #include "dolphin/types.h"
 
+class dMsgScrnExplain_c;
+
 class dMenu_Fmap2DBack_c : public dDlst_base_c, public dMenuMapCommon_c {
 public:
     /* 801CF56C */ dMenu_Fmap2DBack_c();
@@ -87,17 +89,84 @@ public:
         field_0x1244 = param_2;
     }
 
-    u8 isArrowDrawFlag() { return mArrowDrawFlag; }
+    void setAllTrans(f32 i_transX, f32 i_transZ) {
+        mTransX = i_transX;
+        mTransZ = i_transZ;
+    }
+
+    void setStageTransForceXZ(f32 param_0, f32 param_1) {
+        mStageTransX = param_0;
+        mStageTransZ = param_1;
+    }
+
+    void setStageInfo(u8 i_spotNum, dMenu_FmapMap_c* i_fmapMap) {
+        mSpotNum = i_spotNum;
+        mpMenuFmapMap = i_fmapMap;
+    }
+
+    void setWorldPosMinMax(f32 i_minX, f32 i_minZ, f32 i_maxX, f32 i_maxZ) {
+        mWorldMinX = i_minX;
+        mWorldMinZ = i_minZ;
+        mWorldMaxX = i_maxX;
+        mWorldMaxZ = i_maxZ;
+    }
+
+    void setStageOriginXZ(int i_stageNo, f32 i_originX, f32 i_originZ) {
+        mStageOriginX[i_stageNo] = i_originX;
+        mStageOriginZ[i_stageNo] = i_originZ;
+    }
+
+    void setStageOriginPathXZ(int i_stageNo, f32 i_originX, f32 i_originZ) {
+        mStageOriginPathX[i_stageNo] = i_originX;
+        mStageOriginPathZ[i_stageNo] = i_originZ;
+    }
+
+    void setStageData(Stage_c* i_stageData, u8 i_dataNum) {
+        mpStages = i_stageData;
+        mStageDataNum = i_dataNum;
+    }
+
+    void setRegionTextureReadNum(int i_region, u8 i_num) {
+        mRegionTextureReadNum[i_region] = i_num;
+    }
+
+    f32 getArrowPos2DX() { return mArrowPos2DX; }
+    f32 getArrowPos2DY() { return mArrowPos2DY; }
+    f32 getRenderingPosX() { return mRenderingPosX; }
+    f32 getRenderingPosZ() { return mRenderingPosZ; }
+    f32 getStageTransX() { return mStageTransX; }
+    f32 getStageTransZ() { return mStageTransZ; }
+    f32 getRenderingScale() { return mRenderingScale; }
+    f32 getMapZoomRate() { return mMapZoomRate; }
+    u8 getRegionCursor() { return mRegionCursor; }
+    u8 getSpotCursor() { return mSpotCursor; }
+    u8 getSelectRegion() { return mSelectRegion; }
+    bool getAllPathShowFlag() { return mAllPathShowFlag; }
+    f32 getRegionOriginX(u8 i_region) { return mRegionOriginX[i_region]; }
+    f32 getRegionOriginZ(u8 i_region) { return mRegionOriginZ[i_region]; }
+
+    void setArrowAlpha(f32 i_alpha) { mArrowAlpha = i_alpha; }
+    void setSpotTextureFadeAlpha(f32 i_alpha) { mSpotTextureFadeAlpha = i_alpha; }
+    void setRegionCursor(u8 i_value) { mRegionCursor = i_value; }
+    void setMapDrawFlag(bool i_flag) { mMapDrawFlag = i_flag; }
+    void resetDrug() { field_0x1238 = 0; }
+
+    void offArrowDrawFlag() { mArrowDrawFlag = false; }
+    void onArrowDrawFlag() { mArrowDrawFlag = true; }
+    bool isArrowDrawFlag() { return mArrowDrawFlag; }
     
     void onShowRegionFlag(int region_bit) { mRegionFlag |= ((1 << region_bit) & 0xFF); }
     bool isShowRegionFlag(int region_bit) { return mRegionFlag & ((1 << region_bit) & 0xFF); }
 
-    struct unkData {
-        /* 0x00 */ float field_0x0;
-        /* 0x04 */ float field_0x4;
-        /* 0x08 */ float field_0x8;
-        /* 0x0C */ float field_0xc;
-        /* 0x10 */ float field_0x10;
+    void mapBlink() {}
+
+    // Unknown name
+    struct RegionTexData {
+        /* 0x00 */ float mMinX;
+        /* 0x04 */ float mMinZ;
+        /* 0x08 */ float mMaxX;
+        /* 0x0C */ float mMaxZ;
+        /* 0x10 */ float mScale;
     };
 
     /* 0x0C98 */ J2DScreen* mpBackScreen;
@@ -110,71 +179,71 @@ public:
     /* 0x0CB4 */ J2DPicture* mpAreaTex[8];
     /* 0x0CD4 */ J2DPicture* mpSpotTexture;
     /* 0x0CD8 */ J2DScreen* mpPointScreen;
-    /* 0x0CDC */ u32 field_0xcdc;
+    /* 0x0CDC */ dMenu_FmapMap_c* mpMenuFmapMap;
     /* 0x0CE0 */ dMeterHaihai_c* mpMeterHaihai;
-    /* 0x0CE4 */ J2DAnmBase* mpBaseAnm;
-    /* 0x0CE8 */ unkData field_0xce8[8];
+    /* 0x0CE4 */ J2DAnmTextureSRTKey* mpBaseAnm;
+    /* 0x0CE8 */ RegionTexData mRegionTexData[8];
     /* 0x0D88 */ Stage_c* mpStages;
-    /* 0x0D8C */ float field_0xd8c[8];
-    /* 0x0D0C */ float field_0xdac[8];
-    /* 0x0D0C */ float field_0xdcc[8];
-    /* 0x0D0C */ float field_0xdec[8];
-    /* 0x0E0C */ float field_0xe0c[8];
-    /* 0x0E2C */ float field_0xe2c[8];
-    /* 0x0E4C */ float field_0xe4c[8];
-    /* 0x0E6C */ float field_0xe6c[8];
-    /* 0x0E8C */ float field_0xe8c[8];
-    /* 0x0EAC */ float field_0xeac[8];
-    /* 0x0ECC */ float field_0xecc[8];
-    /* 0x0EEC */ float field_0xeec[8];
+    /* 0x0D8C */ float mRegionScrollMinX[8];
+    /* 0x0D0C */ float mRegionScrollMinZ[8];
+    /* 0x0D0C */ float mRegionScrollMaxX[8];
+    /* 0x0D0C */ float mRegionScrollMaxZ[8];
+    /* 0x0E0C */ float mRegionScrollMapMinX[8];
+    /* 0x0E2C */ float mRegionScrollMapMinY[8];
+    /* 0x0E4C */ float mRegionScrollMapMaxX[8];
+    /* 0x0E6C */ float mRegionScrollMapMaxY[8];
+    /* 0x0E8C */ float mRegionMinMapX[8];
+    /* 0x0EAC */ float mRegionMinMapY[8];
+    /* 0x0ECC */ float mRegionMapSizeX[8];
+    /* 0x0EEC */ float mRegionMapSizeY[8];
     /* 0x0F0C */ float field_0xf0c[8];
     /* 0x0F2C */ float field_0xf2c[8];
     /* 0x0F4C */ float field_0xf4c[8];
     /* 0x0F6C */ float field_0xf6c[8];
-    /* 0x0F8C */ float field_0xf8c;
-    /* 0x0F90 */ float field_0xf90;
-    /* 0x0F94 */ float field_0xf94;
+    /* 0x0F8C */ float mRenderingPosX;
+    /* 0x0F90 */ float mRenderingPosZ;
+    /* 0x0F94 */ float mRenderingScale;
     /* 0x0F98 */ float field_0xf98;
-    /* 0x0F9C */ float field_0xf9c; // Likely called mZoom or something similar
-    /* 0x0FA0 */ float field_0xfa0;
+    /* 0x0F9C */ float mZoom;
+    /* 0x0FA0 */ float mMapZoomRate;
     /* 0x0FA4 */ float field_0xfa4;
     /* 0x0FA8 */ float field_0xfa8;
-    /* 0x0FAC */ float field_0xfac;
+    /* 0x0FAC */ float mAnmFrame;
     /* 0x0FB0 */ float field_0xfb0;
     /* 0x0FB4 */ float field_0xfb4;
     /* 0x0FB8 */ float field_0xfb8;
-    /* 0x0FBC */ float field_0xfbc;
-    /* 0x0FC0 */ float field_0xfc0;
-    /* 0x0FC4 */ float field_0xfc4;
-    /* 0x0FC8 */ float field_0xfc8;
-    /* 0x0FCC */ float field_0xfcc;
+    /* 0x0FBC */ float mTransX;
+    /* 0x0FC0 */ float mTransZ;
+    /* 0x0FC4 */ float mAlphaRate;
+    /* 0x0FC8 */ float mStageTransX;
+    /* 0x0FCC */ float mStageTransZ;
     /* 0x0FD0 */ float field_0xfd0;
     /* 0x0FD4 */ float field_0xfd4;
     /* 0x0FD8 */ float field_0xfd8;
     /* 0x0FDC */ float field_0xfdc;
-    /* 0x0FE0 */ float field_0xfe0;
-    /* 0x0FE4 */ float field_0xfe4;
-    /* 0x0FE8 */ float field_0xfe8;
-    /* 0x0FEC */ float field_0xfec;
+    /* 0x0FE0 */ float mTexMinX;
+    /* 0x0FE4 */ float mTexMinZ;
+    /* 0x0FE8 */ float mTexMaxX;
+    /* 0x0FEC */ float mTexMaxZ;
     /* 0x0FF0 */ float mAllMapScaleRate;
-    /* 0x0FF4 */ float field_0xff4;
-    /* 0x0FF8 */ float field_0xff8;
-    /* 0x0FFC */ float field_0xffc;
-    /* 0x1000 */ float field_0x1000;
-    /* 0x1004 */ float field_0x1004[8];
-    /* 0x1024 */ float field_0x1024[8];
-    /* 0x1044 */ float field_0x1044[20];
-    /* 0x1094 */ float field_0x1094[20];
-    /* 0x10E4 */ float field_0x10e4[20];
-    /* 0x1134 */ float field_0x1134[20];
+    /* 0x0FF4 */ float mWorldMinX;
+    /* 0x0FF8 */ float mWorldMinZ;
+    /* 0x0FFC */ float mWorldMaxX;
+    /* 0x1000 */ float mWorldMaxZ;
+    /* 0x1004 */ float mRegionOriginX[8];
+    /* 0x1024 */ float mRegionOriginZ[8];
+    /* 0x1044 */ float mStageOriginX[20];
+    /* 0x1094 */ float mStageOriginZ[20];
+    /* 0x10E4 */ float mStageOriginPathX[20];
+    /* 0x1134 */ float mStageOriginPathZ[20];
     /* 0x1184 */ float field_0x1184;
     /* 0x1188 */ float field_0x1188;
-    /* 0x118C */ float field_0x118c;
-    /* 0x1190 */ float field_0x1190;
-    /* 0x1194 */ float field_0x1194;
-    /* 0x1198 */ float field_0x1198;
-    /* 0x119C */ float control_ypos;
-    /* 0x11A0 */ float control_xpos;
+    /* 0x118C */ float mArrowPos3DX;
+    /* 0x1190 */ float mArrowPos3DZ;
+    /* 0x1194 */ float mArrowPos2DX;
+    /* 0x1198 */ float mArrowPos2DY;
+    /* 0x119C */ float control_xpos;
+    /* 0x11A0 */ float control_ypos;
     /* 0x11A4 */ float field_0x11a4;
     /* 0x11A8 */ float field_0x11a8;
     /* 0x11AC */ float field_0x11ac;
@@ -187,42 +256,42 @@ public:
     /* 0x11C8 */ float field_0x11c8;
     /* 0x11CC */ float field_0x11cc;
     /* 0x11D0 */ float field_0x11d0;
-    /* 0x11D4 */ float field_0x11d4;
-    /* 0x11D8 */ float field_0x11d8;
+    /* 0x11D4 */ float mArrowAlpha;
+    /* 0x11D8 */ float mSpotTextureFadeAlpha;
     /* 0x11DC */ float field_0x11dc;
     /* 0x11E0 */ float field_0x11e0;
-    /* 0x11E4 */ float field_0x11e4;
+    /* 0x11E4 */ float mBackAlpha;
     /* 0x11E8 */ float field_0x11e8;
     /* 0x11EC */ float field_0x11ec;
-    /* 0x11F0 */ JUtility::TColor field_0x11f0;
-    /* 0x11F4 */ JUtility::TColor field_0x11f4;
-    /* 0x11F8 */ JUtility::TColor field_0x11f8;
-    /* 0x11FC */ JUtility::TColor field_0x11fc;
-    /* 0x1200 */ JUtility::TColor field_0x1200;
-    /* 0x1204 */ JUtility::TColor field_0x1204;
+    /* 0x11F0 */ JUtility::TColor mSelectedRegionBlack;
+    /* 0x11F4 */ JUtility::TColor mSelectedRegionWhite;
+    /* 0x11F8 */ JUtility::TColor mUnselectedRegionBlack;
+    /* 0x11FC */ JUtility::TColor mUnselectedRegionWhite;
+    /* 0x1200 */ JUtility::TColor mUnreachedRegionBlack;
+    /* 0x1204 */ JUtility::TColor mUnreachedRegionWhite;
     /* 0x1208 */ JUtility::TColor field_0x1208;
     /* 0x120C */ JUtility::TColor field_0x120c;
     /* 0x1210 */ float field_0x1210;
     /* 0x1214 */ float field_0x1214;
-    /* 0x1218 */ u16 field_0x1218;
-    /* 0x121A */ u16 field_0x121a;
-    /* 0x121C */ u8 field_0x121c[8];
-    /* 0x1224 */ u8 field_0x1224;
-    /* 0x1225 */ u8 field_0x1225;
-    /* 0x1226 */ u8 field_0x1226;
-    /* 0x1227 */ u8 field_0x1227;
+    /* 0x1218 */ s16 field_0x1218;
+    /* 0x121A */ s16 field_0x121a;
+    /* 0x121C */ u8 mRegionTextureReadNum[8];
+    /* 0x1224 */ u8 mSpotNum;
+    /* 0x1225 */ u8 mStageDataNum;
+    /* 0x1226 */ u8 mSelectRegion;
+    /* 0x1227 */ u8 mRegionCursor;
     /* 0x1228 */ u8 field_0x1228;
-    /* 0x1229 */ u8 field_0x1229;
+    /* 0x1229 */ u8 mSpotCursor;
     /* 0x122A */ u8 field_0x122a;
     /* 0x122B */ u8 field_0x122b;
     /* 0x122C */ u8 mRegionFlag;
     /* 0x122D */ u8 field_0x122d;
-    /* 0x122E */ u8 field_0x122e;
-    /* 0x122F */ u8 field_0x122f;
+    /* 0x122E */ bool field_0x122e;
+    /* 0x122F */ bool mAllPathShowFlag;
     /* 0x1230 */ u8 field_0x1230[8];
     /* 0x1238 */ u8 field_0x1238;
-    /* 0x1239 */ u8 field_0x1239;
-    /* 0x123A */ u8 mArrowDrawFlag;
+    /* 0x1239 */ bool mMapDrawFlag;
+    /* 0x123A */ bool mArrowDrawFlag;
     /* 0x123B */ u8 field_0x123b;
     /* 0x123C */ dMenu_FmapMap_c* mpFmapMap;
     /* 0x1240 */ dMenu_Fmap_region_data_c* mpRegionData;
@@ -249,15 +318,90 @@ public:
     /* 801D77C4 */ void setAlphaAnimeMin(CPaneMgrAlpha*);
     /* 801D7858 */ void setAlphaAnimeMid(CPaneMgrAlpha*);
     /* 801D78FC */ void setAlphaAnimeMax(CPaneMgrAlpha*);
-    /* 801D7994 */ void checkPlayerWarpAccept();
-    /* 801D7A08 */ void checkWarpAcceptRegion(int);
-    /* 801D7AB4 */ void checkWarpAcceptRegion4();
-    /* 801D7B58 */ void checkWarpAcceptCannon();
+    /* 801D7994 */ bool checkPlayerWarpAccept();
+    /* 801D7A08 */ bool checkWarpAcceptRegion(int);
+    /* 801D7AB4 */ bool checkWarpAcceptRegion4();
+    /* 801D7B58 */ bool checkWarpAcceptCannon();
     /* 801D7BCC */ void setHIO(bool);
-    /* 801D8088 */ void isWarpAccept();
+    /* 801D8088 */ bool isWarpAccept();
 
     /* 801D6C98 */ virtual void draw();
     /* 801D6700 */ virtual ~dMenu_Fmap2DTop_c();
-};
+
+    void setAllTrans(f32 i_transX, f32 i_transY) {
+        mTransX = i_transX;
+        mTransY = i_transY;
+    }
+
+    dMsgScrnExplain_c* getScrnExplainPtr() { return mpScrnExplain; }
+
+    void setPortalBin(void* i_bin) { mpPortalBin = i_bin; }
+    void btkAnimeLoop(f32 i_delta) { btkAnimeLoop(mpAnm, i_delta); }
+
+    enum Arrow {
+        ARROW_UP = 1,
+        ARROW_DOWN = 2,
+        ARROW_UPDOWN = ARROW_UP | ARROW_DOWN,
+        ARROW_LEFT = 4,
+        ARROW_RIGHT = 8,
+        ARROW_LEFTRIGHT = ARROW_LEFT | ARROW_RIGHT,
+    };
+
+    enum Alpha {
+        ALPHA_MIN = 0,
+        ALPHA_MID = 1,
+        ALPHA_MAX = 2,
+        ALPHA_DEFAULT = 0xFF,
+    };
+
+    /* 0x04 */ JKRExpHeap* mpHeap;
+    /* 0x08 */ J2DScreen* mpTitleScreen;
+    /* 0x0C */ CPaneMgrAlphaMorf* mpTitleRoot;
+    /* 0x10 */ J2DAnmTextureSRTKey* mpAnm;
+    /* 0x14 */ u8 field_0x14[4];
+    /* 0x18 */ CPaneMgr* mpButtonA;
+    /* 0x1C */ CPaneMgr* mpButtonB;
+    /* 0x20 */ CPaneMgr* mpButtonZ;
+    /* 0x24 */ CPaneMgr* mpButtonTextA;
+    /* 0x28 */ CPaneMgr* mpButtonTextB;
+    /* 0x2C */ CPaneMgr* mpButtonTextZ;
+    /* 0x30 */ CPaneMgrAlpha* mpAnalogStickAlpha;
+    /* 0x34 */ CPaneMgrAlpha* mpDpadAlpha;
+    /* 0x38 */ CPaneMgrAlpha* mpArrowLAlpha[2];
+    /* 0x40 */ CPaneMgrAlpha* mpArrowRAlpha[2];
+    /* 0x48 */ u8 field_0x48[8];
+    /* 0x50 */ CPaneMgr* mpNamePane;
+    /* 0x54 */ CPaneMgr* mpSubPane;
+    /* 0x58 */ CPaneMgr* mpAnalogStick;
+    /* 0x5C */ CPaneMgr* mpDpad;
+    /* 0x60 */ CPaneMgr* mpContPane;
+    /* 0x64 */ u8 field_0x64[8];
+    /* 0x6C */ dMsgScrnExplain_c* mpScrnExplain;
+    /* 0x70 */ void* mpPortalBin;
+    /* 0x74 */ f32 mAnmFrame;
+    /* 0x78 */ f32 mTransX;
+    /* 0x7C */ f32 mTransY;
+    /* 0x80 */ f32 mAlphaRate;
+    /* 0x84 */ f32 mTitlePosX;
+    /* 0x88 */ f32 mTitlePosY;
+    /* 0x8C */ f32 mTitleScale;
+    /* 0x90 */ f32 mSubTitlePosX;
+    /* 0x94 */ f32 mSubTitlePosY;
+    /* 0x98 */ f32 mSubTitleScale;
+    /* 0x9C */ f32 mAreaMovementPosX;
+    /* 0xA0 */ f32 mAreaMovementPosY;
+    /* 0xA4 */ f32 mAreaMovementScale;
+    /* 0xA8 */ f32 mClosingPosX;
+    /* 0xAC */ f32 mClosingPosY;
+    /* 0xB0 */ f32 mClosingScale;
+    /* 0xB4 */ f32 mDoIconPosX;
+    /* 0xB8 */ f32 mDoIconPosY;
+    /* 0xBC */ f32 mDoIconScale;
+    /* 0xC0 */ u8 mAlphaButtonA;
+    /* 0xC1 */ u8 mAlphaButtonB;
+    /* 0xC2 */ u8 mAlphaButtonZ;
+    /* 0xC3 */ u8 mAlphaAnalogStick;
+    /* 0xC4 */ u8 mAlphaDpad;
+ };
 
 #endif /* D_MENU_D_MENU_FMAP2D_H */
