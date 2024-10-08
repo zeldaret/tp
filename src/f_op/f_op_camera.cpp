@@ -4,8 +4,8 @@
  */
 
 #include "f_op/f_op_camera.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/s/d_s_play.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_draw_tag.h"
 
 // TODO: this is a hack to get f_op_actor_mng.cpp weak function order correct

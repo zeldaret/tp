@@ -164,6 +164,10 @@ struct TVec3<f32> : public Vec {
         return *this;
     }
 
+    inline TVec3<f32> operator+(const TVec3<f32>& b) {
+        return *this += b;
+    }
+
     // inline TVec3<f32> operator+(const TVec3<f32>& b) {
     //     TVec3<f32> res(*(Vec*)this);
     //     res += b;
@@ -452,6 +456,16 @@ struct TUtil {
 template<>
 struct TUtil<f32> {
     static inline f32 PI() { return 3.1415927f; }
+
+    static inline f32 clamp(f32 v, f32 min, f32 max) {
+        if (v < min) {
+            return min;
+        }
+        if (v > max) {
+            return max;
+        }
+        return v;
+    }
 };
 
 template<>

@@ -6,9 +6,9 @@
 #include "f_op/f_op_msg_mng.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "d/meter/d_meter2.h"
-#include "d/meter/d_meter2_info.h"
-#include "d/msg/d_msg_object.h"
+#include "d/d_meter2.h"
+#include "d/d_meter2_info.h"
+#include "d/d_msg_object.h"
 #include "dol2asm.h"
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"
@@ -386,14 +386,9 @@ f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
     return ret;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/fopMsgM_valueIncrease__FiiUc.s"
+f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 // Here to generate J2DPicture virtual inlines

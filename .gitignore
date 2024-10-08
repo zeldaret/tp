@@ -1,40 +1,13 @@
-# Compiler binaries
-mwcc_compiler/
-binutils/
-
-# Build artifacts
-build/
-*.o
-*.elf
-*.map
-*.dol
-vtable.lcf
-
-# Game Assets
-game/
-
-# Disk Images
-*.iso
-*.gcm
-
-# Generated documentation
-docs/doxygen/
-
-# Temporary files
-*.swp
-*.dump
-
-# IDE
-.vscode/
-.idea/
-
-# Python
-__pycache__/
-venv/
-
-# m2ctx files
-m2ctx.py
+__pycache__
+.idea
+.vscode
+.ninja_*
+.mypy_cache
+*.exe
+build
+build.ninja
+objdiff.json
+orig/*/*
+!orig/*/.gitkeep
+/*.txt
 ctx.c
-
-# Asset Config
-asset_config.json

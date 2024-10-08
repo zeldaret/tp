@@ -2,7 +2,7 @@
 #define D_D_SELECT_ICON_H
 
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "d/pane/d_pane_class.h"
+#include "d/d_pane_class.h"
 
 class dSi_HIO_c {
 public:

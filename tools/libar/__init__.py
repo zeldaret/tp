@@ -1,2 +1,0 @@
-
-from .ar import *

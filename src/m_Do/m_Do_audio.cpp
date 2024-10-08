@@ -5,7 +5,7 @@
 
 #include "m_Do/m_Do_audio.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_dvd_thread.h"
@@ -225,14 +225,9 @@ SECTION_DATA extern void* __vt__17mDoAud_zelAudio_c[3] = {
 };
 
 /* 80007318-80007368 001C58 0050+00 0/0 1/0 0/0 .text            __sinit_m_Do_audio_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_m_Do_audio_cpp() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__sinit_m_Do_audio_cpp.s"
+void __sinit_m_Do_audio_cpp() {
+    // NONMATCHING
 }
-#pragma pop
 
 #pragma push
 #pragma force_active on
@@ -240,15 +235,10 @@ REGISTER_CTORS(0x80007318, __sinit_m_Do_audio_cpp);
 #pragma pop
 
 /* 80007368-800073C8 001CA8 0060+00 1/1 0/0 0/0 .text            __dt__17mDoAud_zelAudio_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__17mDoAud_zelAudio_cFv() {
+extern "C" void __dt__17mDoAud_zelAudio_cFv() {
     // asm mDoAud_zelAudio_c::~mDoAud_zelAudio_c() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__dt__17mDoAud_zelAudio_cFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A2F4C-803A2F60 00006C 0010+04 1/1 2/2 0/0 .data            __vt__12JAUSoundInfo */
@@ -262,47 +252,27 @@ SECTION_DATA extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */] = {
 };
 
 /* 800073C8-80007838 001D08 0470+00 1/1 0/0 0/0 .text            __dt__10Z2AudioMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__10Z2AudioMgrFv() {
+extern "C" void __dt__10Z2AudioMgrFv() {
     // asm Z2AudioMgr::~Z2AudioMgr() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__dt__10Z2AudioMgrFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80007838-80007888 002178 0050+00 1/1 1/1 0/0 .text            __dt__14JAISoundHandleFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__14JAISoundHandleFv() {
+extern "C" void __dt__14JAISoundHandleFv() {
     // asm JAISoundHandle::~JAISoundHandle() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__dt__14JAISoundHandleFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80007888-800078DC 0021C8 0054+00 1/1 1/1 0/0 .text            __dt__12Z2MultiSeObjFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__12Z2MultiSeObjFv() {
+extern "C" void __dt__12Z2MultiSeObjFv() {
     // asm Z2MultiSeObj::~Z2MultiSeObj() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__dt__12Z2MultiSeObjFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800078DC-80007954 00221C 0078+00 1/1 3/2 0/0 .text            __dt__16JAISeCategoryMgrFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__16JAISeCategoryMgrFv() {
+extern "C" void __dt__16JAISeCategoryMgrFv() {
     // asm JAISeCategoryMgr::~JAISeCategoryMgr() {
-    nofralloc
-#include "asm/m_Do/m_Do_audio/__dt__16JAISeCategoryMgrFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80373D68-80373D68 0003C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

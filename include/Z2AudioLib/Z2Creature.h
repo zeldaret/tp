@@ -83,6 +83,8 @@ public:
     u8 getLinkHp() const { return mLinkHp; }
     u8 getMovingTime() { return mMovingTime; }
     u8 isWolfSmellOpen() const { return mWolfEyeOpen; }
+    void setUsingIronBall(bool i_using) { mUsingIronBall = i_using; }
+    void setMarkState(u8 i_state) { mMarkState = i_state; }
 
     static Z2CreatureLink* mLinkPtr;
 

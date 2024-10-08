@@ -4,8 +4,8 @@
  */
 
 #include "d/d_item.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/meter/d_meter2_info.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_meter2_info.h"
 
 static void (*item_func_ptr[256])() = {
     item_func_HEART,

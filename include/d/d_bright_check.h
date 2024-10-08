@@ -1,7 +1,7 @@
 #ifndef D_D_BRIGHT_CHECK_H
 #define D_D_BRIGHT_CHECK_H
 
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 
 class dMsgString_c;
 

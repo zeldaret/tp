@@ -4,7 +4,7 @@
  */
 
 #include "d/d_envse.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "string.h"
 

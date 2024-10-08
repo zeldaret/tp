@@ -82,9 +82,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
     };
 
     struct TVVOutput_ANIMATION_FRAME_ 
-    #ifdef NONMATCHING
     : public JStudio::TVariableValue::TOutput
-    #endif
     {
         TVVOutput_ANIMATION_FRAME_() {
             mValueIndex = -1;
@@ -101,7 +99,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
             mGetter = param_4;
             mMaxGetter = param_5;
         }
-        #ifdef NONMATCHING
+
         /* 8028B064 */ virtual void operator()(f32, JStudio::TAdaptor*) const;
         /* 8028B138 */ virtual ~TVVOutput_ANIMATION_FRAME_();
         
@@ -113,12 +111,6 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
             f32 val = (param_1->*mGetter)();
             param_2->adaptor_setVariableValue_immediate(mValueIndex, val);
         }
-        #else
-        /* 8028B064 */ void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028B138 */ ~TVVOutput_ANIMATION_FRAME_();
-
-        void* vtable;
-        #endif
 
         bool isEnd_() { return mValueIndex == -1; }
 
@@ -165,13 +157,8 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 
     JStage::TActor* get_pJSG_() { return (JStage::TActor*) pJSGObject_; }
 
-    #ifdef NONMATCHING
     static TVVOutputObject saoVVOutput_[2];
     static TVVOutput_ANIMATION_FRAME_  saoVVOutput_ANIMATION_FRAME_[3];
-    #else
-    static u8 saoVVOutput_[64];
-    static u8 saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
-    #endif
 
     /* 0x130 */ u32 field_0x130;
     /* 0x134 */ u32 field_0x134;

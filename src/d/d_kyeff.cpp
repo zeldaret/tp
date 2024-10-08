@@ -4,8 +4,8 @@
  */
 
 #include "d/d_kyeff.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/kankyo/d_kankyo_wether.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_kankyo_wether.h"
 
 static int dKyeff_Draw(dKyeff_c* i_this) {
     dKyw_wether_draw();

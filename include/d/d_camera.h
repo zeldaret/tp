@@ -1,8 +1,8 @@
 #ifndef D_D_CAMERA_H
 #define D_D_CAMERA_H
 
-#include "d/bg/d_bg_s_lin_chk.h"
-#include "d/bg/d_bg_s_gnd_chk.h"
+#include "d/d_bg_s_lin_chk.h"
+#include "d/d_bg_s_gnd_chk.h"
 #include "d/d_cam_param.h"
 #include "d/d_drawlist.h"
 #include "d/d_stage.h"
@@ -391,11 +391,7 @@ public:
         i_info->field_0x1e = param_1;
     }
 
-#ifdef NONMATCHING
     static engine_fn engine_tbl[];
-#else
-    static u8 engine_tbl[240];
-#endif
 
     /* 0x000 */ camera_class* field_0x0;
     /* 0x004 */ int mRoomNo;
@@ -600,7 +596,7 @@ public:
 };  // Size: 0xD58
 
 dCamera_c* dCam_getBody();
-dCamera_c* dCam_getCamera();
+camera_class* dCam_getCamera();
 s16 dCam_getControledAngleY(camera_class* param_0);
 
 #endif /* D_D_CAMERA_H */

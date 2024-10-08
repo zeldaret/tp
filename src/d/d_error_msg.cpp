@@ -4804,14 +4804,9 @@ SECTION_SDATA2 static f32 lit_3767 = 10.0f;
 SECTION_SDATA2 static f64 lit_3769 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8009CB88-8009D194 0974C8 060C+00 1/1 0/0 0/0 .text            messageSet__FUlb */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void messageSet(u32 param_0, bool param_1) {
-    nofralloc
-#include "asm/d/d_error_msg/messageSet__FUlb.s"
+static void messageSet(u32 param_0, bool param_1) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452C48-80452C50 001248 0004+04 1/1 0/0 0/0 .sdata2          @3835 */
@@ -4822,14 +4817,9 @@ SECTION_SDATA2 static f32 lit_3835[1 + 1 /* padding */] = {
 };
 
 /* 8009D194-8009D354 097AD4 01C0+00 1/1 0/0 0/0 .text            draw__14dDvdErrorMsg_cFl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDvdErrorMsg_c::draw(s32 param_0) {
-    nofralloc
-#include "asm/d/d_error_msg/draw__14dDvdErrorMsg_cFl.s"
+void dDvdErrorMsg_c::draw(s32 param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8038D640-8038D640 019CA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -4841,37 +4831,22 @@ SECTION_DEAD static char const* const pad_8038D653 = "\0\0\0\0";
 #pragma pop
 
 /* 8009D354-8009D410 097C94 00BC+00 0/0 1/1 0/0 .text            execute__14dDvdErrorMsg_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dDvdErrorMsg_c::execute() {
-    nofralloc
-#include "asm/d/d_error_msg/execute__14dDvdErrorMsg_cFv.s"
+u8 dDvdErrorMsg_c::execute() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80456B78-80456B80 000018 0004+04 1/1 0/0 0/0 .sbss2           @3873 */
 SECTION_SBSS2 static u8 lit_3873[4 + 4 /* padding */];
 
 /* 8009D410-8009D790 097D50 0380+00 1/1 0/0 0/0 .text            drawCapture__FUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void drawCapture(u8 param_0) {
-    nofralloc
-#include "asm/d/d_error_msg/drawCapture__FUc.s"
+static void drawCapture(u8 param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009D790-8009D87C 0980D0 00EC+00 0/0 1/1 0/0 .text            execute__19dShutdownErrorMsg_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dShutdownErrorMsg_c::execute() {
-    nofralloc
-#include "asm/d/d_error_msg/execute__19dShutdownErrorMsg_cFv.s"
+bool dShutdownErrorMsg_c::execute() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8038D640-8038D640 019CA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

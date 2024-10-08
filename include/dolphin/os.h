@@ -2,6 +2,7 @@
 #define OS_H_
 
 #include "__va_arg.h"
+#include "macros.h"
 #include "dolphin/dvd.h"
 
 #include "dolphin/os/OSAlarm.h"
@@ -25,6 +26,10 @@
 #include "dolphin/os/OSSync.h"
 #include "dolphin/os/OSThread.h"
 #include "dolphin/os/OSTime.h"
+
+void OSReportInit(void);
+void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
+void OSVAttention(const char* fmt, va_list args);
 
 #ifdef __cplusplus
 extern "C" {
@@ -80,7 +85,7 @@ u32 OSGetConsoleType(void);
 
 void OSAttention(const char* msg, ...);
 void OSPanic(const char* file, s32 line, const char* fmt, ...);
-void OSReport(const char* fmt, ...);
+void OSReport(char* fmt, ...);
 void OSReport_Error(const char* fmt, ...);
 void OSReport_FatalError(const char* fmt, ...);
 void OSReport_System(const char* fmt, ...);
@@ -90,21 +95,17 @@ void OSReportEnable(void);
 void OSReportForceEnableOff(void);
 void OSReportForceEnableOn(void);
 void OSVReport(const char* format, va_list list);
-void OSVAttention(const char* fmt, va_list args);
-void OSReportInit(void);
 
 #ifdef DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
 #define OS_PANIC(msg) OSPanic(__FILE__, __LINE__, msg)
 #define ASSERTMSG(exp, msg) (void)((exp) || (OSPanic(__FILE__, __LINE__, (msg)), 0))
-#define ASSERT(cond) ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
 #else
 #define OS_REPORT(...)
 #define OS_WARNING(...)
 #define OS_REPORT_ERROR(...)
 #define OS_PANIC(...)
 #define ASSERTMSG(exp, msg) ((void)0)
-#define ASSERT(cond) ((void)0)
 #endif
 
 extern u8 __OSReport_disable;
@@ -114,9 +115,6 @@ extern u8 __OSReport_System_disable;
 extern u8 __OSReport_enable;
 
 extern BOOL __OSIsGcam;
-
-extern u32 BOOT_REGION_START : 0x8044babc;
-extern u32 BOOT_REGION_END : 0x812FDFEC;
 
 void OSReportInit__Fv(void);  // needed for inline asm
 
@@ -139,7 +137,6 @@ static void OSDefaultExceptionHandler(__OSException exception, OSContext* contex
 void __OSPSInit(void);
 u32 __OSGetDIConfig(void);
 void OSRegisterVersion(const char* version);
-void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
 inline s16 __OSf32tos16(register f32 inF) {
     register s16 out;

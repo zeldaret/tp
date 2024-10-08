@@ -4,11 +4,11 @@
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
-#include "d/bg/d_bg_s.h"
-#include "d/bg/d_bg_s_gnd_chk.h"
-#include "d/bg/d_bg_s_lin_chk.h"
-#include "d/bg/d_bg_s_wtr_chk.h"
-#include "d/bg/d_bg_s_roof_chk.h"
+#include "d/d_bg_s.h"
+#include "d/d_bg_s_gnd_chk.h"
+#include "d/d_bg_s_lin_chk.h"
+#include "d/d_bg_s_wtr_chk.h"
+#include "d/d_bg_s_roof_chk.h"
 #include "m_Do/m_Do_hostIO.h"
 
 #define fopAcM_SetupActor(ptr,ClassName) \
@@ -90,6 +90,7 @@ public:
     static bool checkMoveBG() { return dComIfG_Bgsp().ChkMoveBG(mLineCheck); }
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
+    static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
 
     static dBgS_ObjLinChk mLineCheck;
 };

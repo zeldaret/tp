@@ -1,9 +1,0 @@
-lbl_8067B6A8:
-/* 8067B6A8  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8067B6AC  7C 08 02 A6 */	mflr r0
-/* 8067B6B0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8067B6B4  4B FF FC C5 */	bl Execute__10e_ai_classFv
-/* 8067B6B8  80 01 00 14 */	lwz r0, 0x14(r1)
-/* 8067B6BC  7C 08 03 A6 */	mtlr r0
-/* 8067B6C0  38 21 00 10 */	addi r1, r1, 0x10
-/* 8067B6C4  4E 80 00 20 */	blr 
