@@ -20,6 +20,12 @@ root_dir = os.path.abspath(os.path.join(script_dir, ".."))
 src_dir = os.path.join(root_dir, "src")
 include_dirs = [
     os.path.join(root_dir, "include"),
+    os.path.join(root_dir, "src"),
+    os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include"),
+    os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include"),
+    os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include"),
+    os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include"),
+    os.path.join(root_dir, "src/PowerPC_EABI_Support/Runtime/Inc"),
     # Add additional include directories here
 ]
 

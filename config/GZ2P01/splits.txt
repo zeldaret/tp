@@ -731,7 +731,7 @@ d/d_error_msg.cpp:
 	.sdata2     start:0x80454BD8 end:0x80454C10
 	.sbss2      start:0x80458B58 end:0x80458B60
 
-d/d_a_alink.cpp:
+d/actor/d_a_alink.cpp:
 	.text       start:0x8009DA88 end:0x80144930
 	.ctors      start:0x80374658 end:0x8037465C
 	.rodata     start:0x8038EE58 end:0x80393E40
@@ -741,18 +741,18 @@ d/d_a_alink.cpp:
 	.sbss       start:0x80452F80 end:0x80452F98
 	.sdata2     start:0x80454C10 end:0x80455368
 
-d/d_a_itembase.cpp:
+d/actor/d_a_itembase.cpp:
 	.text       start:0x80144930 end:0x801453F8
 	.data       start:0x803B52F0 end:0x803B5338
 	.sdata2     start:0x80455368 end:0x80455388
 
-d/d_a_no_chg_room.cpp:
+d/actor/d_a_no_chg_room.cpp:
 	.text       start:0x801453F8 end:0x801458E0
 	.rodata     start:0x80393E40 end:0x80393E80
 	.data       start:0x803B5338 end:0x803B5388
 	.sdata2     start:0x80455388 end:0x80455398
 
-d/d_a_npc.cpp:
+d/actor/d_a_npc.cpp:
 	.text       start:0x801458E0 end:0x8015621C
 	.ctors      start:0x8037465C end:0x80374660
 	.rodata     start:0x80393E80 end:0x80394218
@@ -761,7 +761,7 @@ d/d_a_npc.cpp:
 	.sbss       start:0x80452F98 end:0x80452FC4
 	.sdata2     start:0x80455398 end:0x80455478
 
-d/d_a_npc_cd.cpp:
+d/actor/d_a_npc_cd.cpp:
 	.text       start:0x8015621C end:0x80157EC0
 	.ctors      start:0x80374660 end:0x80374664
 	.rodata     start:0x80394218 end:0x80394A50
@@ -769,7 +769,7 @@ d/d_a_npc_cd.cpp:
 	.bss        start:0x80427918 end:0x8042A5B0
 	.sdata2     start:0x80455478 end:0x804554A0
 
-d/d_a_npc_cd2.cpp:
+d/actor/d_a_npc_cd2.cpp:
 	.text       start:0x80157EC0 end:0x8015AFD8
 	.ctors      start:0x80374664 end:0x80374668
 	.rodata     start:0x80394A50 end:0x80395588
@@ -778,7 +778,7 @@ d/d_a_npc_cd2.cpp:
 	.sbss       start:0x80452FC4 end:0x80452FD8
 	.sdata2     start:0x804554A0 end:0x80455510
 
-d/d_a_obj_item.cpp:
+d/actor/d_a_obj_item.cpp:
 	.text       start:0x8015AFD8 end:0x8015E21C
 	.ctors      start:0x80374668 end:0x8037466C
 	.rodata     start:0x80395588 end:0x80395598
@@ -792,11 +792,11 @@ d/d_insect.cpp:
 	.data       start:0x803BBD58 end:0x803BBD68
 	.sdata2     start:0x804555A0 end:0x804555C0
 
-d/d_a_obj_ss_base.cpp:
+d/actor/d_a_obj_ss_base.cpp:
 	.text       start:0x8015E604 end:0x8015E6D8
 	.data       start:0x803BBD68 end:0x803BBD80
 
-d/d_a_player.cpp:
+d/actor/d_a_player.cpp:
 	.text       start:0x8015E6D8 end:0x8015FC38
 	.rodata     start:0x803955A8 end:0x803955C0
 	.data       start:0x803BBD80 end:0x803BBE40
@@ -1716,60 +1716,60 @@ JSystem/JStudio/JStudio/stb-data.cpp:
 JSystem/JStudio/JStudio/stb-data-parse.cpp:
 	.text       start:0x8028A7BC end:0x8028A900
 
-JStudio_JSystem/JStage/control.cpp:
+JSystem/JStudio/JStudio_JStage/control.cpp:
 	.text       start:0x8028A900 end:0x8028AFF8
 	.data       start:0x803C76C0 end:0x803C76D0
 
-JStudio_JSystem/JStage/object.cpp:
+JSystem/JStudio/JStudio_JStage/object.cpp:
 	.text       start:0x8028AFF8 end:0x8028B3F0
 
-JStudio_JSystem/JStage/object-actor.cpp:
+JSystem/JStudio/JStudio_JStage/object-actor.cpp:
 	.text       start:0x8028B3F0 end:0x8028C410
 	.ctors      start:0x80374728 end:0x8037472C
 	.data       start:0x803C76D0 end:0x803C7828
 	.bss        start:0x80433148 end:0x80433258
 	.sdata2     start:0x804574B8 end:0x804574C0
 
-JStudio_JSystem/JStage/object-ambientlight.cpp:
+JSystem/JStudio/JStudio_JStage/object-ambientlight.cpp:
 	.text       start:0x8028C410 end:0x8028C6A0
 	.data       start:0x803C7828 end:0x803C7848
 
-JStudio_JSystem/JStage/object-camera.cpp:
+JSystem/JStudio/JStudio_JStage/object-camera.cpp:
 	.text       start:0x8028C6A0 end:0x8028D374
 	.ctors      start:0x8037472C end:0x80374730
 	.data       start:0x803C7848 end:0x803C7940
 	.bss        start:0x80433258 end:0x80433338
 
-JStudio_JSystem/JStage/object-fog.cpp:
+JSystem/JStudio/JStudio_JStage/object-fog.cpp:
 	.text       start:0x8028D374 end:0x8028D950
 	.ctors      start:0x80374730 end:0x80374734
 	.data       start:0x803C7940 end:0x803C79D0
 	.bss        start:0x80433338 end:0x804333C0
 
-JStudio_JSystem/JStage/object-light.cpp:
+JSystem/JStudio/JStudio_JStage/object-light.cpp:
 	.text       start:0x8028D950 end:0x8028E350
 	.ctors      start:0x80374734 end:0x80374738
 	.data       start:0x803C79D0 end:0x803C7A08
 	.bss        start:0x804333C0 end:0x80433450
 	.sdata2     start:0x804574C0 end:0x804574E8
 
-JStudio_JSystem/JAudio2/control.cpp:
+JSystem/JStudio/JStudio_JAudio2/control.cpp:
 	.text       start:0x8028E350 end:0x8028E528
 	.data       start:0x803C7A08 end:0x803C7A18
 
-JStudio_JSystem/JAudio2/object-sound.cpp:
+JSystem/JStudio/JStudio_JAudio2/object-sound.cpp:
 	.text       start:0x8028E528 end:0x8028F1A0
 	.ctors      start:0x80374738 end:0x8037473C
 	.data       start:0x803C7A18 end:0x803C7A78
 	.bss        start:0x80433450 end:0x80433500
 	.sdata2     start:0x804574E8 end:0x804574F8
 
-JStudio_JSystem/JParticle/control.cpp:
+JSystem/JStudio/JStudio_JParticle/control.cpp:
 	.text       start:0x8028F1A0 end:0x8028F40C
 	.rodata     start:0x8039C888 end:0x8039C898
 	.data       start:0x803C7A78 end:0x803C7A90
 
-JStudio_JSystem/JParticle/object-particle.cpp:
+JSystem/JStudio/JStudio_JParticle/object-particle.cpp:
 	.text       start:0x8028F40C end:0x802900E8
 	.data       start:0x803C7A90 end:0x803C7AF8
 	.bss        start:0x80433500 end:0x80433590
@@ -2254,18 +2254,18 @@ Z2AudioLib/Z2AudioMgr.cpp:
 	.sbss       start:0x80453330 end:0x80453338
 	.sdata2     start:0x80457F30 end:0x80457F40
 
-dolphin/gf/GFGeometry.c:
+dolphin/gf/GFGeometry.cpp:
 	.text       start:0x802CEBC8 end:0x802CEC54
 	.sdata      start:0x80452868 end:0x80452878
 
-dolphin/gf/GFLight.c:
+dolphin/gf/GFLight.cpp:
 	.text       start:0x802CEC54 end:0x802CEC9C
 
-dolphin/gf/GFPixel.c:
+dolphin/gf/GFPixel.cpp:
 	.text       start:0x802CEC9C end:0x802CEED0
 	.sdata2     start:0x80457F40 end:0x80457F70
 
-dolphin/gf/GFTev.c:
+dolphin/gf/GFTev.cpp:
 	.text       start:0x802CEED0 end:0x802CEF38
 
 JSystem/JKernel/JKRHeap.cpp:
