@@ -83,7 +83,7 @@ BOOL daAlink_c::checkNoLandDamageSlidePolygon() {
 /* 800D6FE0-800D70A0 0D1920 00C0+00 6/6 0/0 0/0 .text            checkCutLandDamage__9daAlink_cFv */
 void daAlink_c::checkCutLandDamage() {
     if (!checkEventRun()) {
-        f32 var_f31 = (mFallHeight - current.pos.y) * lit_8782;
+        f32 var_f31 = (mFallHeight - current.pos.y) * 0.0099999998f;
 
         if (var_f31 >= daAlinkHIO_damFall_c0::m.mSmallDmgHeight && !checkNoLandDamageSlidePolygon())
         {
@@ -154,17 +154,17 @@ f32 daAlink_c::damageMagnification(int i_checkZoraMag, int param_1) {
     if (param_1 == 0 && checkNoResetFlg3(FLG3_UNK_40000000) &&
         !checkEndResetFlg2(ERFLG2_UNK_40))
     {
-        base_mag = lit_7624; /* 1.5 */
+        base_mag = 1.5f; /* 1.5 */
     } else {
-        base_mag = lit_6040; /* 1.0 */
+        base_mag = 1.0f; /* 1.0 */
     }
 
     if (checkWolf() && !checkCargoCarry() && param_1 == 0) {
-        return /* 2.0 */ lit_7307 * base_mag;
+        return /* 2.0 */ 2.0f * base_mag;
     }
 
     if (checkZoraWearAbility() && i_checkZoraMag) {
-        return /* 10.0 */ lit_7625 * base_mag;
+        return /* 10.0 */ 10.0f * base_mag;
     }
 
     return base_mag;
@@ -389,7 +389,7 @@ int daAlink_c::procCoPolyDamageInit() {
         field_0x3478 = daAlinkHIO_damage_c0::m.mFloorDmgAnm.mCheckFrame;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     return 1;
 }
 
@@ -454,10 +454,10 @@ int daAlink_c::procStEscapeInit() {
     commonProcInit(PROC_HUMAN_ST_ESCAPE);
     setSingleAnimeParam(ANM_FROZEN_FREE, &daAlinkHIO_damCaught_c0::m.field_0x0);
 
-    f32 tmp_7 = lit_8502;
+    f32 tmp_7 = 7.0f;
     mUnderFrameCtrl[0].setFrame(tmp_7);
     getNowAnmPackUnder(UNDER_0)->setFrame(tmp_7);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
 
     return 1;
 }
@@ -493,8 +493,8 @@ void daAlink_c::setScreamWaitAnime() {
     voiceStart(Z2SE_AL_V_TERRORED);
     mProcVar2.field_0x300c = 1;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
-    dComIfGp_getVibration().StartQuake(5, 1, cXyz(tmp_0, lit_6040, tmp_0));
+    f32 tmp_0 = 0.0f;
+    dComIfGp_getVibration().StartQuake(5, 1, cXyz(tmp_0, 1.0f, tmp_0));
 }
 
 /* 800DBD1C-800DBDA4 0D665C 0088+00 1/1 0/0 0/0 .text            procScreamWaitInit__9daAlink_cFv */
@@ -510,7 +510,7 @@ int daAlink_c::procScreamWaitInit() {
     }
 
     current.angle.y = shape_angle.y;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     return 1;
 }
 
@@ -540,7 +540,7 @@ int daAlink_c::procCoSandWallHitInit() {
         setSingleAnimeBase(ANM_WAIT_WIND);
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
 
     return 1;
 }
@@ -567,7 +567,7 @@ int daAlink_c::procCoLavaReturnInit(int param_0) {
 
 /* 800DC214-800DC278 0D6B54 0064+00 1/0 0/0 0/0 .text            procCoLavaReturn__9daAlink_cFv */
 int daAlink_c::procCoLavaReturn() {
-    cLib_chaseF(&mSinkShapeOffset, FLOAT_LABEL(lit_6108), lit_7977);
+    cLib_chaseF(&mSinkShapeOffset, 0.0f, 6.0f);
 
     if (mUnderFrameCtrl[0].checkAnmEnd()) {
         startRestartRoom(field_0x32cc, 0xC9, field_0x3198, 1);
@@ -595,7 +595,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
     f32 var_f31;
     if (checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlDamNormal_c0::m.field_0x5C,
-                                    lit_7625);
+                                    10.0f);
         mUnderFrameCtrl[0].setEnd(3);
         mUnderFrameCtrl[0].setAttribute(0);
         setFaceBasicTexture(FTANM_UNK_90);
@@ -603,7 +603,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
     } else {
         setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.field_0x60,
-                       FLOAT_LABEL(lit_6108), 5, lit_7625);
+                       0.0f, 5, 10.0f);
         voiceStart(Z2SE_AL_V_DAMAGE_FREEZE);
         var_f31 = daAlinkHIO_swim_c0::m.mInitHeight;
     }
@@ -617,7 +617,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
 
     field_0x3080 = 0;
     mDamageTimer = 0;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     onNoResetFlg1(FLG1_UNK_40000000);
     field_0x3194 = 1;
 

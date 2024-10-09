@@ -21,7 +21,7 @@ f32 daAlink_c::getBoomSpeed() {
 
     if (checkModeFlg(0x400)) {
         fopAc_ac_c* ride_actor = mRideAcKeep.getActor();
-        if (ride_actor != NULL && ride_actor->speedF > FLOAT_LABEL(lit_6108)) {
+        if (ride_actor != NULL && ride_actor->speedF > 0.0f) {
             speed += ride_actor->speedF;
         }
     }
@@ -48,7 +48,7 @@ f32 daAlink_c::getBoomLockMax() {
     f32 fly_max = getBoomFlyMax();
 
     if (checkBossBabaRoom()) {
-        return lit_12475;
+        return 2600.0f;
     } else if (daAlinkHIO_boom_c0::m.mLockDistMax > fly_max) {
         return daAlinkHIO_boom_c0::m.mLockDistMax;
     } else {
@@ -115,7 +115,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
         offNoResetFlg0(FLG0_UNK_20);
 
         setGrabItemActor(i_grabActor);
-        field_0x33e4 = lit_8785;
+        field_0x33e4 = 38.0f;
         setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
         return 1;
     }
@@ -128,7 +128,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
 void daAlink_c::initBoomerangUpperAnimeSpeed(int param_0) {
     if (!checkBoomerangThrowAnime()) {
         if (param_0 != 0) {
-            f32 tmp = FLOAT_LABEL(lit_6108);
+            f32 tmp = 0.0f;
             mUpperFrameCtrl[2].setRate(tmp);
             mUpperFrameCtrl[2].setFrame(tmp);
             getNowAnmPackUpper(UPPER_2)->setFrame(tmp);
@@ -152,8 +152,8 @@ BOOL daAlink_c::checkBoomerangThrowAnime() const {
 
 /* 800E04E8-800E055C 0DAE28 0074+00 1/1 0/0 0/0 .text setBoomerangReadyQuake__9daAlink_cFv */
 void daAlink_c::setBoomerangReadyQuake() {
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
-    dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
+    f32 tmp_0 = 0.0f;
+    dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
 
     onNoResetFlg3(FLG3_UNK_4);
     mItemVar0.field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
@@ -165,10 +165,10 @@ void daAlink_c::setBoomerangReadyAnime() {
     if (checkAttentionLock()) {
         var_f31 = daAlinkHIO_boom_c0::m.mIdleAnmSpeed;
     } else {
-        var_f31 = FLOAT_LABEL(lit_6108);
+        var_f31 = 0.0f;
     }
 
-    setUpperAnimeBaseSpeed(0x54, var_f31, lit_6109);
+    setUpperAnimeBaseSpeed(0x54, var_f31, 3.0f);
     setBoomerangReadyQuake();
 }
 
@@ -250,7 +250,7 @@ void daAlink_c::throwBoomerang() {
             procAtnActorMoveInit();
         }
 
-        field_0x2060->initOldFrameMorf(FLOAT_LABEL(lit_6108), 0, 35);
+        field_0x2060->initOldFrameMorf(0.0f, 0, 35);
     }
 }
 
@@ -271,8 +271,8 @@ int daAlink_c::returnBoomerang(int param_0) {
         field_0x2f94 = 2;
         onNoResetFlg0(FLG0_UNK_20);
 
-        f32 tmp_0 = FLOAT_LABEL(lit_6108);
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
+        f32 tmp_0 = 0.0f;
+        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
         return 1;
     }
 
@@ -392,9 +392,9 @@ int daAlink_c::procBoomerangSubjectInit() {
         return 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     initBoomerangUpperAnimeSpeed(1);
-    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, FLOAT_LABEL(lit_6108),
+    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f,
                             daAlinkHIO_boom_c0::m.mStartInterpolation);
     dComIfGp_setPlayerStatus0(0, 0x80000);
     current.angle.y = shape_angle.y;
@@ -451,7 +451,7 @@ int daAlink_c::procBoomerangMove() {
     }
 
     if (!checkNextAction(0)) {
-        f32 var_f31 = lit_6041;
+        f32 var_f31 = -1.0f;
 
         if (checkZeroSpeedF()) {
             onModeFlg(1);
@@ -499,7 +499,7 @@ int daAlink_c::procBoomerangCatch() {
     }
 
     if (frameCtrl->checkAnmEnd()) {
-        resetUpperAnime(UPPER_2, lit_6041);
+        resetUpperAnime(UPPER_2, -1.0f);
         checkNextAction(0);
     } else {
         checkNextAction(1);

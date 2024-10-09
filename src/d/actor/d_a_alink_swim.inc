@@ -40,7 +40,7 @@ f32 daAlink_c::getSwimFrontMaxSpeed() const {
     if (checkBootsOrArmorHeavy()) {
         return daAlinkHIO_swim_c0::m.mUnderwaterMaxSinkSpeed;
     } else if (checkZoraWearAbility()) {
-        return lit_8130;
+        return 14.0f;
     } else if (checkSwimDashMode()) {
         return daAlinkHIO_swim_c0::m.mDMaxSpeed;
     } else {
@@ -67,7 +67,7 @@ void daAlink_c::checkOxygenTimer() {
     BOOL hide_timer;
 
     if (!checkNoResetFlg0(FLG0_SWIM_UP) ||
-        (checkModeFlg(MODE_SWIMMING) && mWaterY > lit_7808 + current.pos.y))
+        (checkModeFlg(MODE_SWIMMING) && mWaterY > 5.0f + current.pos.y))
     {
         hide_timer = false;
     } else {
@@ -271,7 +271,7 @@ void daAlink_c::swimOutAfter(int param_0) {
     if (checkNoResetFlg0(FLG0_UNDERWATER)) {
         offNoResetFlg0(FLG0_UNDERWATER);
     } else {
-        field_0x2b98 = FLOAT_LABEL(lit_6108);
+        field_0x2b98 = 0.0f;
         field_0x2f98 = 4;
     }
 
@@ -280,7 +280,7 @@ void daAlink_c::swimOutAfter(int param_0) {
     offOxygenTimer();
 
     if (checkSwimMoveHandAnime() || checkZoraSwimDamageAnime()) {
-        resetUpperAnime(UPPER_2, lit_6109);
+        resetUpperAnime(UPPER_2, 3.0f);
     }
 }
 
@@ -335,7 +335,7 @@ BOOL daAlink_c::checkSwimNeckUpDown() const {
 /* 80104034-801040F8 0FE974 00C4+00 3/3 0/0 0/0 .text            setSwimUpDownOffset__9daAlink_cFv
  */
 void daAlink_c::setSwimUpDownOffset() {
-    mProcVar2.field_0x300c += (s16)((cM_rndF(lit_16570) + lit_27477) * lit_27476);
+    mProcVar2.field_0x300c += (s16)((cM_rndF(0.3f) + 0.85f) * 2330.0f);
 
     f32 var_f1;
     if (checkWolf()) {
@@ -356,10 +356,10 @@ int daAlink_c::procSwimUpInit() {
     commonProcInit(PROC_SWIM_UP);
 
     if (field_0x3000 != 0 && !checkZoraWearAbility()) {
-        mNormalSpeed = FLOAT_LABEL(lit_6108);
+        mNormalSpeed = 0.0f;
     }
 
-    speed.y = FLOAT_LABEL(lit_6108);
+    speed.y = 0.0f;
     current.pos.y = mWaterY;
     field_0x3080 = 0;
     onNoResetFlg0(FLG0_SWIM_UP);
@@ -381,7 +381,7 @@ int daAlink_c::procSwimUpInit() {
 int daAlink_c::procSwimUp() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
-    setNormalSpeedF(FLOAT_LABEL(lit_6108), daAlinkHIO_swim_c0::m.mDeceleration);
+    setNormalSpeedF(0.0f, daAlinkHIO_swim_c0::m.mDeceleration);
 
     if (checkSetItemTrigger(HVY_BOOTS)) {
         setHeavyBoots(1);
@@ -432,8 +432,8 @@ int daAlink_c::procSwimWaitInit(int param_0) {
     if (!checkUnderMove0BckNoArc(ANM_SWIM_WAIT)) {
         setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed,
                                 daAlinkHIO_swim_c0::m.mWaitInterpolation);
-    } else if (frame_ctrl->getRate() < lit_9054) {
-        setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed, lit_6041);
+    } else if (frame_ctrl->getRate() < 0.1f) {
+        setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed, -1.0f);
     }
 
     field_0x30d0 = 0;
@@ -449,7 +449,7 @@ int daAlink_c::procSwimWaitInit(int param_0) {
 
     if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
     }
 
     mProcVar2.field_0x300c = 0;
@@ -545,7 +545,7 @@ int daAlink_c::procSwimMoveInit() {
 
     if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
     }
 
     swimDeleteItem();
@@ -680,7 +680,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
                                 daAlinkHIO_hookshot_c0::m.mStartInterpolation);
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
 
     if (field_0x3080 != 0) {
@@ -690,7 +690,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
 
     if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
     }
 
     mProcVar2.field_0x300c = 0;
@@ -765,7 +765,7 @@ int daAlink_c::procSwimHookshotMoveInit() {
 
     if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
     }
 
     mProcVar0.field_0x3008 = 0;
@@ -1006,7 +1006,7 @@ int daAlink_c::procOctaIealSpit() {
         cancelOriginalDemo();
     }
 
-    cLib_addCalc(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_5943, field_0x3478, lit_9054);
+    cLib_addCalc(&mNormalSpeed, 0.0f, 0.5f, field_0x3478, 0.1f);
     field_0x2f99 = 7;
 
     if (mUnderFrameCtrl[0].checkAnmEnd()) {

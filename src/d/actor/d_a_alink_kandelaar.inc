@@ -25,7 +25,7 @@ static fopAc_ac_c* daAlink_searchTagKtOnFire(fopAc_ac_c* i_actor, void* i_data) 
     daAlink_c* player_p = daAlink_getAlinkActorClass();
 
     if (fopAcM_GetName(i_actor) == PROC_Tag_KtOnFire &&
-        i_actor->current.pos.abs2(player_p->current.pos) < lit_26816 &&
+        i_actor->current.pos.abs2(player_p->current.pos) < 22500.0f &&
         fopAcM_seenActorAngleY(player_p, i_actor) < 0x3000)
     {
         return i_actor;
@@ -57,7 +57,7 @@ void daAlink_c::setKandelaarMtx(Mtx i_mtx, int param_1, int param_2) {
 
 /* 8011078C-801107BC 10B0CC 0030+00 2/2 0/0 0/0 .text checkWaterInKandelaarOffset__9daAlink_cFf */
 BOOL daAlink_c::checkWaterInKandelaarOffset(f32 param_0) {
-    f32 tmp_65 = lit_17593;  // tmp can be removed with literals
+    f32 tmp_65 = 65.0f;  // tmp can be removed with literals
     f32 base_y_pos;
     if (checkModeFlg(0x40)) {
         base_y_pos = mRightFootPos.y;
@@ -328,7 +328,7 @@ void daAlink_c::initKandelaarSwing() {
     }
 
     field_0xFB8.OffAtSetBit();
-    field_0xFB8.SetR(lit_6895);
+    field_0xFB8.SetR(50.0f);
     field_0xFB8.SetAtType(AT_TYPE_LANTERN_SWING);
     field_0xFB8.SetAtHitMark(0);
     field_0xFB8.SetAtSe(dCcD_SE_NONE);
@@ -407,7 +407,7 @@ int daAlink_c::procKandelaarPourInit() {
     mDemo.setSpecialDemoType();
     commonProcInit(PROC_KANDELAAR_POUR);
     current.angle.y = shape_angle.y;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f98 = 4;
     setSingleAnimeParam(ANM_OIL_BOTTLE_POUR_START, &daAlinkHIO_kandelaar_c0::m.mBeginUnkAnm);
     commonKandelaarPourInit();

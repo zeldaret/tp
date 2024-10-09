@@ -388,6 +388,7 @@ public:
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_2000 = 0x2000,
+        ERFLG1_UNK_1000 = 0x1000,
         ERFLG1_UNK_800 = 0x800,
         ERFLG1_UNK_400 = 0x400,
         ERFLG1_WOLF_EYE_KEEP = 0x200,

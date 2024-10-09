@@ -95,8 +95,8 @@ void daAlink_c::setIronBallBgCheckPos() {
     mDoMtx_stack_c::ZXYrotM(*mIronBallChainAngle);
     mDoMtx_stack_c::multVec(&l_ironBallCenterVec, &sp8);
 
-    mIronBallBgChkPos.set(sp8.x, (sp8.y - lit_14621) - mSearchBallScale, sp8.z);
-    cLib_chaseF(&mSearchBallScale, FLOAT_LABEL(lit_6108), lit_7307);
+    mIronBallBgChkPos.set(sp8.x, (sp8.y - 32.0f) - mSearchBallScale, sp8.z);
+    cLib_chaseF(&mSearchBallScale, 0.0f, 2.0f);
 }
 
 /* 801127F0-80112C80 10D130 0490+00 1/1 0/0 0/0 .text            setIronBallModel__9daAlink_cFv */
@@ -122,7 +122,7 @@ void daAlink_c::setIronBallChainPos() {
 /* 80113CA0-80113D58 10E5E0 00B8+00 1/1 0/0 0/0 .text checkIronBallReturnChange__9daAlink_cFv */
 BOOL daAlink_c::checkIronBallReturnChange() {
     if (mProcID != PROC_IRON_BALL_THROW ||
-        (!(mBodyAngle.x > 0x400) && mIronBallBgChkPos.y < (current.pos.y - lit_8472)) ||
+        (!(mBodyAngle.x > 0x400) && mIronBallBgChkPos.y < (current.pos.y - 200.0f)) ||
         (mBodyAngle.x > 0x400 && mItemMode == 0x64) ||
         (field_0xFB8.ChkAtHit() && field_0xFB8.GetAtHitGObj() != NULL &&
          static_cast<dCcD_GObjInf*>(field_0xFB8.GetAtHitGObj())->ChkTgIronBallRebound())) {
@@ -147,11 +147,11 @@ BOOL daAlink_c::checkIronBallAnime() const {
 /* 8011510C-801151E0 10FA4C 00D4+00 1/1 0/0 0/0 .text            setIronBallReadyAnime__9daAlink_cFv
  */
 void daAlink_c::setIronBallReadyAnime() {
-    resetUpperAnime(UPPER_2, lit_6041);
-    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, FLOAT_LABEL(lit_6108),
+    resetUpperAnime(UPPER_2, -1.0f);
+    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, 0.0f,
                    0x15, daAlinkHIO_ironBall_c0::m.mPrepareInterpolation);
-    setUpperAnimeBaseSpeed(0x19A, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, lit_6041);
-    mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
+    setUpperAnimeBaseSpeed(0x19A, daAlinkHIO_ironBall_c0::m.mPrepareAnmSpeed, -1.0f);
+    mNowAnmPackUpper[2].setRatio(0.0f);
     voiceStart(Z2SE_AL_V_SWING_IB);
 
     field_0xFB8.OffAtSetBit();
@@ -160,8 +160,8 @@ void daAlink_c::setIronBallReadyAnime() {
 
     field_0x301e = 10;
     field_0x3020 = 0;
-    field_0x3494 = lit_7808;
-    mSearchBallScale = FLOAT_LABEL(lit_6108);
+    field_0x3494 = 5.0f;
+    mSearchBallScale = 0.0f;
 }
 
 /* 801151E0-80115254 10FB20 0074+00 2/2 0/0 0/0 .text            setIronBallBaseAnime__9daAlink_cFv
@@ -183,7 +183,7 @@ BOOL daAlink_c::checkUpperItemActionIronBall() {
 
     if (checkIronBallPreSwingAnime()) {
         daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-        if (field_0x3020 != 0 && frameCtrl->checkPass(lit_10286)) {
+        if (field_0x3020 != 0 && frameCtrl->checkPass(19.0f)) {
             return procIronBallThrowInit();
         }
 
@@ -199,15 +199,15 @@ BOOL daAlink_c::checkUpperItemActionIronBall() {
             return 1;
         }
 
-        if (frameCtrl->getFrame() > lit_8781) {
+        if (frameCtrl->getFrame() > 13.0f) {
             mItemVar0.field_0x3018 = 1;
         }
     } else {
         daPy_frameCtrl_c* frameCtrl = &mUpperFrameCtrl[2];
 
-        if (field_0x3020 != 0 && frameCtrl->checkPass(lit_10193)) {
+        if (field_0x3020 != 0 && frameCtrl->checkPass(18.0f)) {
             return procIronBallThrowInit();
-        } else if (frameCtrl->checkPass(FLOAT_LABEL(lit_6108))) {
+        } else if (frameCtrl->checkPass(0.0f)) {
             seStartOnlyReverb(Z2SE_AL_IB_SWING);
         }
     }
@@ -243,7 +243,7 @@ int daAlink_c::procIronBallSubjectInit() {
         return 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
 
     if (checkIronBallAnime()) {
         setIronBallBaseAnime();
@@ -282,7 +282,7 @@ int daAlink_c::procIronBallMoveInit() {
     }
 
     if (checkIronBallPreSwingAnime()) {
-        mNormalSpeed = FLOAT_LABEL(lit_6108);
+        mNormalSpeed = 0.0f;
     }
 
     dComIfGp_setPlayerStatus0(0, 0x400);
@@ -298,10 +298,10 @@ int daAlink_c::procIronBallMove() {
     setShapeAngleToAtnActor(0);
 
     if (!checkNextAction(0)) {
-        f32 var_f31 = lit_6041;
+        f32 var_f31 = -1.0f;
 
         if (checkIronBallPreSwingAnime()) {
-            mNormalSpeed = FLOAT_LABEL(lit_6108);
+            mNormalSpeed = 0.0f;
         }
 
         if (checkZeroSpeedF()) {
@@ -331,10 +331,10 @@ int daAlink_c::procIronBallMove() {
  */
 int daAlink_c::procIronBallThrowInit() {
     commonProcInit(PROC_IRON_BALL_THROW);
-    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPreThrowAnmSpeed, lit_34957, 30, daAlinkHIO_ironBall_c0::m.mPreThrowAnmInterpolation);
+    setSingleAnime(ANM_IRONBALL_ATTACK, daAlinkHIO_ironBall_c0::m.mPreThrowAnmSpeed, 22.0f, 30, daAlinkHIO_ironBall_c0::m.mPreThrowAnmInterpolation);
     field_0x2f99 = 12;
     field_0x3588 = l_ironBallBaseAnime;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
     mProcVar2.field_0x300c = 0;
     mItemVar0.field_0x3018 = 3;
@@ -386,8 +386,8 @@ int daAlink_c::procIronBallReturn() {
         field_0x2f99 = 12;
         seStartOnlyReverb(Z2SE_AL_IB_CATCH);
 
-        f32 tmp_0 = FLOAT_LABEL(lit_6108);
-        dComIfGp_getVibration().StartShock(3, 1, cXyz(tmp_0, lit_6040, tmp_0));
+        f32 tmp_0 = 0.0f;
+        dComIfGp_getVibration().StartShock(3, 1, cXyz(tmp_0, 1.0f, tmp_0));
     } else if (frameCtrl->checkAnmEnd()) {
         if (mItemVar0.field_0x3018 == 8) {
             mItemVar0.field_0x3018 = 0;
@@ -400,7 +400,7 @@ int daAlink_c::procIronBallReturn() {
         
         if (!checkNextAction(1)) {
             mItemVar0.field_0x3018 = 8;
-            resetUpperAnime(UPPER_2, FLOAT_LABEL(lit_6108));
+            resetUpperAnime(UPPER_2, 0.0f);
         }
     }
 

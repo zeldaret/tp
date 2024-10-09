@@ -261,7 +261,7 @@ int daAlink_c::checkMagneBootsFly() {
         cXyz vec(field_0x369c);
         vec.normalizeZP();
 
-        if (mMagneBootsTopVec.getDotProduct(vec) > lit_8131 && procMagneBootsFlyInit()) {
+        if (mMagneBootsTopVec.getDotProduct(vec) > -0.5f && procMagneBootsFlyInit()) {
             return 1;
         }
     }
@@ -275,12 +275,12 @@ int daAlink_c::procBootsEquipInit() {
     setSingleAnimeParam(ANM_HVY_BOOTS_PUT_ON, &daAlinkHIO_magneBoots_c0::m.mEquipAnm);
 
     if (checkUpperReadyThrowAnime()) {
-        resetUpperAnime(UPPER_2, lit_6041);
+        resetUpperAnime(UPPER_2, -1.0f);
         dComIfGp_clearPlayerStatus0(0, ~0x400030);
     }
 
     current.angle.y = shape_angle.y;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
 
     return 1;
 }

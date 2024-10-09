@@ -33,7 +33,7 @@ JPABaseEmitter* daAlink_c::setEmitterPolyColor(u32* param_0, u16 param_1, cBgS_P
 JPABaseEmitter* daAlink_c::setEmitterColor(u32* param_0, u16 param_1, cXyz const* param_2,
                                            csXyz const* param_3) {
     *param_0 = dComIfGp_particle_setColor(*param_0, param_1, param_2, &tevStr, NULL, NULL,
-                                          FLOAT_LABEL(lit_6108), -1, param_3, NULL, NULL, -1, NULL);
+                                          0.0f, -1, param_3, NULL, NULL, -1, NULL);
     dComIfGp_particle_levelEmitterOnEventMove(*param_0);
 
     return dComIfGp_particle_getEmitter(*param_0);
@@ -223,7 +223,7 @@ void daAlink_c::setCutWaterDropEffect() {
     if (field_0x32c0[0] > 0) {
         cXyz sp18;
         mDoMtx_multVecZero(mpLinkModel->getAnmMtx(1), &sp18);
-        dComIfGp_particle_setColor(0x2A4, &sp18, &tevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1,
+        dComIfGp_particle_setColor(0x2A4, &sp18, &tevStr, NULL, NULL, 0.0f, -1,
                                    &shape_angle, NULL, NULL, -1, NULL);
     }
 }
@@ -358,7 +358,7 @@ void daAlink_c::clearWoodShieldBurnEffect() {
 void daAlink_c::setWoodShieldBurnOutEffect() {
     for (int i = 0; i < 2; i++) {
         JPABaseEmitter* emitter = dComIfGp_particle_setColor(
-            effName_42340[i], &current.pos, &tevStr, NULL, NULL, FLOAT_LABEL(lit_6108), -1);
+            effName_42340[i], &current.pos, &tevStr, NULL, NULL, 0.0f, -1);
 
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(mShieldModel->getBaseTRMtx());
@@ -424,7 +424,7 @@ extern "C" void draw__14daAlink_blur_cFv() {
 BOOL daAlink_lockCursor_c::create() {
     JKRArchive* arc = dComIfG_getObjectResInfo(l_arcName)->getArchive();
 
-    f32 tmp = FLOAT_LABEL(lit_6108);
+    f32 tmp = 0.0f;
     field_0x2c = tmp;
     field_0x4 = false;
     field_0x30 = tmp;
@@ -471,14 +471,14 @@ BOOL daAlink_lockCursor_c::create() {
     mCursor0->setAnimation(field_0x28);
     mCursor1->setAnimation(field_0x28);
     mCursor2->setAnimation(field_0x28);
-    field_0x28->setFrame(FLOAT_LABEL(lit_6108));
+    field_0x28->setFrame(0.0f);
 
     field_0x24->searchUpdateMaterialID(mScrn);
     mCursor0->setAnimation(field_0x24);
     mCursor1->setAnimation(field_0x24);
     mCursor2->setAnimation(field_0x24);
     mScrn->search('flash')->setAnimation(field_0x24);
-    field_0x24->setFrame(FLOAT_LABEL(lit_6108));
+    field_0x24->setFrame(0.0f);
 
     field_0x1c->searchUpdateMaterialID(mScrn);
     field_0x20->searchUpdateMaterialID(mScrn);
@@ -488,7 +488,7 @@ BOOL daAlink_lockCursor_c::create() {
     mCursor0->setAnimation(field_0x20);
     mCursor1->setAnimation(field_0x20);
     mCursor2->setAnimation(field_0x20);
-    f32 tmp2 = FLOAT_LABEL(lit_6108);
+    f32 tmp2 = 0.0f;
     field_0x1c->setFrame(tmp2);
     field_0x20->setFrame(tmp2);
 

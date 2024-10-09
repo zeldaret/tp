@@ -12,7 +12,7 @@
 int daAlink_c::bottleModelCallBack() {
     if (mItemMode != 0) {
         mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c2));
-        mDoMtx_stack_c::transM(lit_14616, lit_6041, lit_16570);
+        mDoMtx_stack_c::transM(-3.0f, -1.0f, 0.3f);
         mDoMtx_stack_c::XYZrotM(cM_deg2s(102.0f), cM_deg2s(-0.5f), cM_deg2s(-122.0f));
         mDoMtx_copy(mDoMtx_stack_c::get(), mHeldItemModel->getAnmMtx(1));
     }
@@ -342,9 +342,9 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
         fairy_pos = *i_pos;
 
         if (checkWolf()) {
-            fairy_pos.y -= lit_8247;
+            fairy_pos.y -= 100.0f;
         } else {
-            fairy_pos.y -= lit_6896;
+            fairy_pos.y -= 130.0f;
         }
 
         i_pos = &fairy_pos;
@@ -381,7 +381,7 @@ int daAlink_c::procBottleDrinkInit(u16 i_itemNo) {
 
     commonProcInit(PROC_BOTTLE_DRINK);
     current.angle.y = shape_angle.y;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f98 = 4;
 
     setSingleAnimeParam(ANM_BOTTLE_DRINK_START, &daAlinkHIO_bottle_c0::m.mStartDrinkAnm);
@@ -419,7 +419,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
     mDemo.setSpecialDemoType();
     commonProcInit(PROC_BOTTLE_OPEN);
     current.angle.y = shape_angle.y;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f98 = 4;
 
     setSingleAnimeParam(ANM_BOTTLE_OPEN, &daAlinkHIO_bottle_c0::m.mOpenBottleAnm);
@@ -723,7 +723,7 @@ int daAlink_c::procBottleGetInit(int param_0) {
 
     int var_r30;
     if (mEquipItem == KANTERA) {
-        setSingleAnime(ANM_BOTTLE_GET, daAlinkHIO_bottle_c0::m.mGetAnm.mSpeed, lit_11442,
+        setSingleAnime(ANM_BOTTLE_GET, daAlinkHIO_bottle_c0::m.mGetAnm.mSpeed, 40.0f,
                        daAlinkHIO_bottle_c0::m.mGetAnm.mEndFrame,
                        daAlinkHIO_bottle_c0::m.mGetAnm.mInterpolation);
         field_0x2f93 = 0xFE;
@@ -792,17 +792,17 @@ int daAlink_c::procBottleGet() {
         }
 
         resetSpecialEvent();
-    } else if (frameCtrl->getFrame() >= lit_8369) {
+    } else if (frameCtrl->getFrame() >= 37.0f) {
         field_0x2f93 = 0xFE;
-    } else if (frameCtrl->getFrame() >= lit_14954) {
+    } else if (frameCtrl->getFrame() >= 15.0f) {
         mItemMode = 0;
-    } else if (frameCtrl->getFrame() >= lit_7808) {
+    } else if (frameCtrl->getFrame() >= 5.0f) {
         mHeldItemModel->getModelData()->getMaterialNodePointer(0)->getShape()->show();
         field_0x2f93 = 5;
         mItemMode = 1;
     }
 
-    if (frameCtrl->checkPass(lit_8779)) {
+    if (frameCtrl->checkPass(39.0f)) {
         setGetSubBgm(mEquipItem);
     }
 

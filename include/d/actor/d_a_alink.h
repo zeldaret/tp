@@ -3213,7 +3213,7 @@ public:
     BOOL arrowChangeTrigger() { return itemActionTrigger(); }
     bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
     int getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
-    inline bool checkInputOnR() const;
+    bool checkInputOnR() const { return field_0x33ac > 0.05f; }
     static int getSightBti() { return 0x5B; }
     bool checkBoomerangChargeEndWait() const {
         return mEquipItem != 0x102 && checkBoomerangAnime();
@@ -3516,7 +3516,7 @@ public:
     /* 0x015F8 */ dCcD_Cps mGuardAtCps;
     /* 0x0173C */ dCcD_Stts field_0x173c;  // related to ball and chain
     /* 0x01778 */ dCcD_Sph field_0x1778;
-    /* 0x018B0 */ dBgS_AcchCir field_0x18B0[3];
+    /* 0x018B0 */ dBgS_AcchCir mAcchCir[3];
     /* 0x01970 */ dBgS_LinkAcch mLinkAcch;
     /* 0x01B48 */ dBgS_LinkLinChk mLinkLinChk;
     /* 0x01BB8 */ dBgS_RopeLinChk mRopeLinChk;
@@ -3596,7 +3596,7 @@ public:
     /* 0x02BA0 */ f32* field_0x2ba0;
     /* 0x02BA4 */ f32 field_0x2ba4;
     /* 0x02BA8 */ f32 mSinkShapeOffset;
-    /* 0x02BAC */ f32 field_0x2bac[3];
+    /* 0x02BAC */ f32 mAcchCirWallH[3];
     /* 0x02BB8 */ Mtx mInvMtx;
     /* 0x02BE8 */ Mtx field_0x2be8;
     /* 0x02C18 */ Mtx mRootMtx;

@@ -48,8 +48,8 @@ int daAlink_c::procSumouReadyInit() {
         return 0;
     }
 
-    setSingleAnimeBaseMorf(ANM_SUMOU_MIAU, FLOAT_LABEL(lit_6108));
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    setSingleAnimeBaseMorf(ANM_SUMOU_MIAU, 0.0f);
+    mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
     field_0x3588 = l_waitBaseAnime;
     field_0x34d4 = field_0x3588;
@@ -752,7 +752,7 @@ int daAlink_c::procSumouStaggerInit() {
     }
 
     setSingleAnimeBase(ANM_SUMOU_STAGGER);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f99 = 12;
     mProcVar0.field_0x3008 = 30;
     return 1;
@@ -888,7 +888,7 @@ int daAlink_c::procSumouShikoInit() {
     }
 
     setSingleAnimeBase(ANM_SUMOU_SHIKO);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x3588 = l_waitBaseAnime;
     field_0x34d4 = field_0x3588;
     field_0x2f99 = 12;

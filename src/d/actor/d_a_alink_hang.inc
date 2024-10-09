@@ -197,17 +197,17 @@ void daAlink_c::setHangGroundY() {
 int daAlink_c::changeHangEndProc() {
     setHangGroundY();
 
-    if (current.pos.y < field_0x33d8 + daAlinkHIO_wallHang_c0::m.field_0x18 - lit_6040 &&
-        (mProcID != PROC_HANG_FALL_START || !(mUnderFrameCtrl->getFrame() < lit_6109)) &&
-        field_0x33d8 < current.pos.y - lit_7808)
+    if (current.pos.y < field_0x33d8 + daAlinkHIO_wallHang_c0::m.field_0x18 - 1.0f &&
+        (mProcID != PROC_HANG_FALL_START || !(mUnderFrameCtrl->getFrame() < 3.0f)) &&
+        field_0x33d8 < current.pos.y - 5.0f)
     {
-        return procLandInit(FLOAT_LABEL(lit_6108));
+        return procLandInit(0.0f);
     }
 
     setDoStatus(0x33);
 
     if (doTrigger()) {
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
         return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
     }
 
@@ -268,7 +268,7 @@ void daAlink_c::checkHangStartSideWall(s16 param_0) {
 int daAlink_c::procHangStartInit() {
     cXyz sp2C = field_0x34ec - current.pos;
 
-    if (sp2C.absXZ() > field_0x18B0[0].GetWallR() + 20.0f) {
+    if (sp2C.absXZ() > mAcchCir[0].GetWallR() + 20.0f) {
         return 0;
     }
 
@@ -308,10 +308,10 @@ int daAlink_c::procHangStartInit() {
     }
 
     setBowHangAnime();
-    shape_angle.y = field_0x306e - 0x8000;
+    shape_angle.y = field_0x306e + 0x8000;
     current.angle.y = shape_angle.y;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     dComIfGp_setPlayerStatus0(0, 0x100);
@@ -428,9 +428,9 @@ int daAlink_c::procHangFallStart() {
         return 1;
     }
 
-    if (frame_ctrl->checkPass(lit_7808)) {
-        f32 tmp_0 = FLOAT_LABEL(lit_6108);
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, lit_6040, tmp_0));
+    if (frame_ctrl->checkPass(5.0f)) {
+        f32 tmp_0 = 0.0f;
+        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
     }
 
     if (bvar) {
@@ -450,7 +450,7 @@ int daAlink_c::procHangUpInit(int param_0) {
     dComIfGp_setPlayerStatus0(0, 0x100);
     setBowHangAnime();
     field_0x3198 = param_0;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setHangGroundY();
 
     return 1;
@@ -765,7 +765,7 @@ int daAlink_c::procHangClimb() {
  */
 int daAlink_c::procHangWallCatchInit() {
     cXyz sp2C = field_0x34ec - current.pos;
-    if (sp2C.absXZ() > field_0x18B0[0].GetWallR() + 20.0f) {
+    if (sp2C.absXZ() > mAcchCir[0].GetWallR() + 20.0f) {
         return 0;
     }
 
@@ -805,8 +805,8 @@ int daAlink_c::procHangWallCatchInit() {
 int daAlink_c::procHangWallCatch() {
     setHangGroundY();
 
-    if (field_0x33d8 > field_0x3834.y - lit_6895) {
-        return procLandInit(FLOAT_LABEL(lit_6108));
+    if (field_0x33d8 > field_0x3834.y - 50.0f) {
+        return procLandInit(0.0f);
     }
 
     if (checkAnmEnd(mUnderFrameCtrl) &&
@@ -835,7 +835,7 @@ int daAlink_c::procHangReadyInit() {
     mProcVar2.field_0x300c = field_0x306e + 0x8000;
     field_0x3198 = field_0x2f91;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     return 1;
@@ -880,7 +880,7 @@ int daAlink_c::procHangLeverDownInit() {
     mProcVar2.field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
     field_0x3198 = ANM_CLIMB_JUMP;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
     return 1;
@@ -975,7 +975,7 @@ int daAlink_c::setOctaIealHangPos() {
     }
 
     mDoMtx_stack_c::copy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0));
-    mDoMtx_stack_c::transM(FLOAT_LABEL(lit_6108), lit_24400, lit_24401);
+    mDoMtx_stack_c::transM(0.0f, 424.8800048828125f, 347.0299987792969f);
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);
     return 1;
@@ -1007,10 +1007,10 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     field_0x3198 = 0x169;
     deleteEquipItem(TRUE, FALSE);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     setSpecialGravity(tmp_0, maxFallSpeed, 0);
-    speed.y = FLOAT_LABEL(lit_6108);
+    speed.y = 0.0f;
 
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e.x = 0;
@@ -1192,7 +1192,7 @@ int daAlink_c::procBossBodyHang() {
 /* 800FCF58-800FCF84 0F7898 002C+00 2/2 0/0 0/0 .text            getLadderUnitCount__9daAlink_cCFv
  */
 int daAlink_c::getLadderUnitCount() const {
-    return (current.pos.y - field_0x34ec.y) * lit_24600;
+    return (current.pos.y - field_0x34ec.y) * 0.026666667f;
 }
 
 /* 800FCF84-800FD048 0F78C4 00C4+00 1/1 0/0 0/0 .text            setLadderInit__9daAlink_cFv */
@@ -1433,15 +1433,15 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x30,
                             daAlinkHIO_ladder_c0::m.field_0x34);
     field_0x2f99 = 14;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
     speedF = tmp_0;
 
     field_0x30a0 = -0x0800;
-    field_0x33f4 = lit_6041;
+    field_0x33f4 = -1.0f;
     mProcVar2.field_0x300c = 1;
     mProcVar3.field_0x300e.y = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1461,12 +1461,12 @@ int daAlink_c::procLadderUpEnd() {
     } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.field_0x58) ||
                !checkNextAction(1))
     {
-        if (frame_ctrl->getFrame() >= lit_15341) {
+        if (frame_ctrl->getFrame() >= 23.0f) {
             mProcVar2.field_0x300c = 0;
             mProcVar3.field_0x300e.y = 0;
-        } else if (frame_ctrl->getFrame() >= lit_17382) {
+        } else if (frame_ctrl->getFrame() >= 11.0f) {
             field_0x30a0 = 0;
-            field_0x33f4 = FLOAT_LABEL(lit_6108);
+            field_0x33f4 = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1533,7 +1533,7 @@ int daAlink_c::procLadderDownStart() {
         if (!checkLadderFall()) {
             changeLadderMoveProc(0);
         }
-    } else if (frame_ctrl->getFrame() >= lit_10286) {
+    } else if (frame_ctrl->getFrame() >= 19.0f) {
         mProcVar2.field_0x300c = 1;
         mProcVar3.field_0x300e.y = 1;
     }
@@ -1550,10 +1550,10 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x40,
                             daAlinkHIO_ladder_c0::m.field_0x44);
     field_0x2f99 = 14;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     field_0x30a0 = 0x2800;
-    field_0x33f4 = lit_6040;
+    field_0x33f4 = 1.0f;
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e.y = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1573,9 +1573,9 @@ int daAlink_c::procLadderDownEnd() {
     } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.field_0x54) ||
                !checkNextAction(1))
     {
-        if (frame_ctrl->getFrame() >= lit_17382) {
+        if (frame_ctrl->getFrame() >= 11.0f) {
             field_0x30a0 = 0;
-            field_0x33f4 = FLOAT_LABEL(lit_6108);
+            field_0x33f4 = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1663,10 +1663,10 @@ int daAlink_c::procLadderMove() {
     if (!checkLadderFall()) {
         if (checkAnmEnd(frame_ctrl)) {
             changeLadderMoveProc(field_0x3198);
-        } else if (frame_ctrl->getRate() != FLOAT_LABEL(lit_6108)) {
+        } else if (frame_ctrl->getRate() != 0.0f) {
             f32 anm_speed = getLadderMoveAnmSpeed();
-            if (frame_ctrl->getRate() < FLOAT_LABEL(lit_6108)) {
-                anm_speed *= lit_6041;
+            if (frame_ctrl->getRate() < 0.0f) {
+                anm_speed *= -1.0f;
             }
 
             setWaterInAnmRate(frame_ctrl, anm_speed);
@@ -1693,7 +1693,7 @@ f32 daAlink_c::getClimbMoveSideAnmSpeed() {
 BOOL daAlink_c::checkClimbCode(cBgS_PolyInfo& i_poly) {
     dBgW_Base* bgw_p = dComIfG_Bgsp().GetBgWBasePointer(i_poly);
 
-    return ((dComIfG_Bgsp().GetWallCode(i_poly) == 1 && fabsf(dBgS_GetNY(i_poly)) <= lit_6021) &&
+    return ((dComIfG_Bgsp().GetWallCode(i_poly) == 1 && fabsf(dBgS_GetNY(i_poly)) <= 0.05f) &&
             bgw_p != NULL) &&
            bgw_p->ChkPushPullOk();
 }
@@ -1704,7 +1704,7 @@ BOOL daAlink_c::setClimbInit() {
 
     if (checkModeFlg(0x40000)) {
         shape_angle.y = field_0x306e + 0x8000;
-        current.pos.y -= lit_23595;
+        current.pos.y -= 120.0f;
         return setClimbStartNotGround();
     } else {
         return procHangReadyInit();
@@ -1996,7 +1996,7 @@ int daAlink_c::checkClimbGround(cXyz* param_0, f32 param_1) {
         param_0->z += var_f29 * 1.5f;
     }
 
-    return 1;
+    return 0;
 }
 
 
@@ -2567,9 +2567,9 @@ int daAlink_c::procClimbWait() {
 int daAlink_c::procClimbToRoofInit() {
     commonProcInit(PROC_CLIMB_TO_ROOF);
     setSingleAnimeBase(ANM_ROOF_UP);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
     speedF = tmp_0;
@@ -2730,13 +2730,13 @@ int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& p
     mPolyInfo2.SetPolyInfo(param_0);
 
     current.pos = param_1;
-    current.pos.y -= lit_25916;
+    current.pos.y -= 214.0f;
     field_0x2f98 = 4;
 
     deleteEquipItem(TRUE, FALSE);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     field_0x2f99 = 0x50;
@@ -2750,7 +2750,7 @@ int daAlink_c::procRoofHangStart() {
         return 1;
     }
 
-    if (field_0x33a8 < lit_13700) {
+    if (field_0x33a8 < 0.2f) {
         mProcVar0.field_0x3008 = 0;
     }
 
@@ -2780,7 +2780,7 @@ int daAlink_c::procRoofHangWait() {
         return 1;
     }
 
-    if (field_0x33a8 < lit_13700) {
+    if (field_0x33a8 < 0.2f) {
         mProcVar0.field_0x3008 = 0;
     }
 
@@ -2876,7 +2876,7 @@ int daAlink_c::procRoofHangFrontMove() {
         if (anm_speed > 0.0f && mLinkAcch.ChkWallHit()) {
             cXyz sp7C(current.pos.x, (current.pos.y - 3.0f) + 214.0f, current.pos.z);
 
-            f32 temp_f29 = field_0x18B0[0].GetWallR() + 25.0f;
+            f32 temp_f29 = mAcchCir[0].GetWallR() + 25.0f;
             cXyz sp88(sp7C.x + temp_f29 * cM_ssin(shape_angle.y), sp7C.y,
                       sp7C.z + temp_f29 * cM_scos(shape_angle.y));
 
@@ -2918,13 +2918,13 @@ int daAlink_c::procRoofHangSideMoveInit() {
 
     setSingleAnimeBaseSpeed(anm_id, getRoofHangSMoveAnmSpeed(),
                             daAlinkHIO_roofHang_c0::m.field_0x40);
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
-    field_0x3478 = lit_14954;
-    field_0x347c = lit_8784;
+    field_0x3478 = 15.0f;
+    field_0x347c = 28.0f;
 
     field_0x3588 = l_waitBaseAnime;
     dComIfGp_setPlayerStatus1(0, 0x100000);
@@ -2966,16 +2966,16 @@ int daAlink_c::procRoofHangTurnInit() {
         mProcVar0.field_0x3008 = 1;
         shape_angle.y += 0x8000;
         setOldRootQuaternion(0, -0x8000, 0);
-        field_0x2060->getOldFrameTransInfo(0)->mTranslate.z = lit_26275;
+        field_0x2060->getOldFrameTransInfo(0)->mTranslate.z = -8.899365425109863f;
         mProcVar2.field_0x300c = field_0x2fe2;
-        field_0x3478 = FLOAT_LABEL(lit_6108);
-        field_0x347c = lit_7625;
+        field_0x3478 = 0.0f;
+        field_0x347c = 10.0f;
     } else {
         anm_speed = daAlinkHIO_roofHang_c0::m.field_0x44;
         mProcVar0.field_0x3008 = 0;
         mProcVar2.field_0x300c = field_0x2fe2 + 0x8000;
-        field_0x3478 = lit_7625;
-        field_0x347c = lit_26276;
+        field_0x3478 = 10.0f;
+        field_0x347c = 18.5f;
     }
 
     current.angle.y = shape_angle.y;
@@ -2988,8 +2988,8 @@ int daAlink_c::procRoofHangTurnInit() {
     }
 
     field_0x2f98 = 4;
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     dComIfGp_setPlayerStatus1(0, 0x100000);
@@ -3008,7 +3008,7 @@ int daAlink_c::procRoofHangTurn() {
             shape_angle.y += 0x8000;
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += lit_26297;
+            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 17.798730850219727f;
         }
 
         checkNextActionRoofHang();
@@ -3028,7 +3028,7 @@ int daAlink_c::procRoofHangTurn() {
 void daAlink_c::setRoofHangSwitch() {
     daObjSwHang_c* swhang_p = (daObjSwHang_c*)field_0x280c.getActor();
     current.pos = swhang_p->getHangPos();
-    current.pos.y -= lit_25916;
+    current.pos.y -= 214.0f;
     swhang_p->setHangPlayer();
 }
 
@@ -3039,8 +3039,8 @@ int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     deleteEquipItem(TRUE, FALSE);
     setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.field_0x0);
 
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
 

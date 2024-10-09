@@ -50,9 +50,9 @@ public:
     u8 getButtonJump() const { return mButtonJump; }
     u8 getJumpFlg() const { return mJumpFlg; }
 
-    void setMove(f32 speedF, s16 param_1) {
+    void setMove(f32 i_speed, s16 param_1) {
         fopAcM_SetParam(this, 1);
-        speedF = speedF;
+        speedF = i_speed;
         field_0xa7a = param_1;
         mCyl.OnAtSetBit();
     }

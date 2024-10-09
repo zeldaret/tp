@@ -590,12 +590,12 @@ extern "C" bool checkHorseElecDamage__9daPy_py_cCFv() {
 
 /* 8014168C-80141694 13BFCC 0008+00 1/0 0/0 0/0 .text getBaseAnimeFrameRate__9daPy_py_cCFv */
 extern "C" f32 getBaseAnimeFrameRate__9daPy_py_cCFv() {
-    return lit_6040;
+    return 1.0f;
 }
 
 /* 80141694-8014169C 13BFD4 0008+00 1/0 0/0 0/0 .text            getBaseAnimeFrame__9daPy_py_cCFv */
 extern "C" f32 getBaseAnimeFrame__9daPy_py_cCFv() {
-    return FLOAT_LABEL(lit_6108);
+    return 0.0f;
 }
 
 /* 8014169C-801416A0 13BFDC 0004+00 1/0 0/0 0/0 .text            setAnimeFrame__9daPy_py_cFf */
@@ -810,7 +810,7 @@ extern "C" bool checkArrowChargeEnd__9daPy_py_cCFv() {
 /* 80141788-80141790 13C0C8 0008+00 1/0 0/0 0/0 .text            getSearchBallScale__9daPy_py_cCFv
  */
 extern "C" f32 getSearchBallScale__9daPy_py_cCFv() {
-    return FLOAT_LABEL(lit_6108);
+    return 0.0f;
 }
 
 /* 80141790-80141798 13C0D0 0008+00 1/0 0/0 0/0 .text            checkFastShotTime__9daPy_py_cFv */
@@ -1110,7 +1110,7 @@ extern "C" bool checkItemSwordEquip__9daPy_py_cCFv() {
 /* 80141904-8014190C 13C244 0008+00 1/0 0/0 0/0 .text            getSinkShapeOffset__9daPy_py_cCFv
  */
 extern "C" f32 getSinkShapeOffset__9daPy_py_cCFv() {
-    return FLOAT_LABEL(lit_6108);
+    return 0.0f;
 }
 
 /* 8014190C-80141914 13C24C 0008+00 1/0 0/0 0/0 .text            checkSinkDead__9daPy_py_cCFv */
@@ -1234,83 +1234,6 @@ extern "C" void func_80141ACC(void* _this, fopAc_ac_c const* param_0,
 extern "C" u8 func_80141AE8(u8*) {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 80453344-80453348 001944 0004+00 1/1 0/0 0/0 .sdata2          @77808 */
-SECTION_SDATA2 static f32 lit_77808 = 1.2427899837493896f;
-
-/* 80453348-8045334C 001948 0004+00 1/1 0/0 0/0 .sdata2          @77809 */
-SECTION_SDATA2 static f32 lit_77809 = 102.00054168701172f;
-
-/* 8045334C-80453350 00194C 0004+00 1/1 0/0 0/0 .sdata2          @77810 */
-SECTION_SDATA2 static f32 lit_77810 = -4.248938083648682f;
-
-/* 80453350-80453354 001950 0004+00 1/1 0/0 0/0 .sdata2          @77811 */
-SECTION_SDATA2 static f32 lit_77811 = 89.0f;
-
-/* 80453354-80453358 001954 0004+00 1/1 0/0 0/0 .sdata2          @77812 */
-SECTION_SDATA2 static f32 lit_77812 = -5.267045021057129f;
-
-/* 80453358-8045335C 001958 0004+00 1/1 0/0 0/0 .sdata2          @77813 */
-SECTION_SDATA2 static f32 lit_77813 = 4.313951015472412f;
-
-/* 8045335C-80453360 00195C 0004+00 1/1 0/0 0/0 .sdata2          @77814 */
-SECTION_SDATA2 static f32 lit_77814 = 93.9443588256836f;
-
-/* 80453360-80453364 001960 0004+00 1/1 0/0 0/0 .sdata2          @77815 */
-SECTION_SDATA2 static f32 lit_77815 = -5.207283020019531f;
-
-/* 80453364-80453368 001964 0004+00 1/1 0/0 0/0 .sdata2          @77816 */
-SECTION_SDATA2 static f32 lit_77816 = -4.30098819732666f;
-
-/* 80453368-8045336C 001968 0004+00 1/1 0/0 0/0 .sdata2          @77817 */
-SECTION_SDATA2 static f32 lit_77817 = 93.95594787597656f;
-
-/* 8045336C-80453370 00196C 0004+00 1/1 0/0 0/0 .sdata2          @77818 */
-SECTION_SDATA2 static f32 lit_77818 = -5.218503952026367f;
-
-/* 80453370-80453374 001970 0004+00 1/1 0/0 0/0 .sdata2          @77819 */
-SECTION_SDATA2 static f32 lit_77819 = 225.6999969482422f;
-
-/* 80453374-80453378 001974 0004+00 1/1 0/0 0/0 .sdata2          @77820 */
-SECTION_SDATA2 static f32 lit_77820 = 1.809999942779541f;
-
-/* 80453378-8045337C 001978 0004+00 1/1 0/0 0/0 .sdata2          @77821 */
-SECTION_SDATA2 static f32 lit_77821 = 186.1699981689453f;
-
-/* 8045337C-80453380 00197C 0004+00 1/1 0/0 0/0 .sdata2          @77822 */
-SECTION_SDATA2 static f32 lit_77822 = -20.290000915527344f;
-
-/* 80453380-80453384 001980 0004+00 1/1 0/0 0/0 .sdata2          @77823 */
-SECTION_SDATA2 static f32 lit_77823 = -68.208984375f;
-
-/* 80453384-80453388 001984 0004+00 1/1 0/0 0/0 .sdata2          @77824 */
-SECTION_SDATA2 static f32 lit_77824 = 41.60992431640625f;
-
-/* 80453388-8045338C 001988 0004+00 1/1 0/0 0/0 .sdata2          @77825 */
-SECTION_SDATA2 static f32 lit_77825 = 0.8837890028953552f;
-
-/* 8045338C-80453390 00198C 0004+00 1/1 0/0 0/0 .sdata2          @77826 */
-SECTION_SDATA2 static f32 lit_77826 = -72.0f;
-
-/* 80453390-80453394 001990 0004+00 1/1 0/0 0/0 .sdata2          @77827 */
-SECTION_SDATA2 static f32 lit_77827 = 88.63934326171875f;
-
-/* 80453394-80453398 001994 0004+00 1/1 0/0 0/0 .sdata2          @77828 */
-SECTION_SDATA2 static f32 lit_77828 = -28.49793243408203f;
-
-/* 80453398-8045339C 001998 0004+00 1/1 0/0 0/0 .sdata2          @77829 */
-SECTION_SDATA2 static f32 lit_77829 = 0.11516399681568146f;
-
-/* 8045339C-804533A0 00199C 0004+00 1/1 0/0 0/0 .sdata2          @77830 */
-SECTION_SDATA2 static f32 lit_77830 = 68.33629608154297f;
-
-/* 804533A0-804533A8 0019A0 0004+04 1/1 0/0 0/0 .sdata2          @77831 */
-SECTION_SDATA2 static f32 lit_77831[1 + 1 /* padding */] = {
-    -7.667817115783691f,
-    /* padding */
-    0.0f,
-};
 
 /* 80141B04-801446D4 13C444 2BD0+00 0/0 1/0 0/0 .text            __sinit_d_a_alink_cpp */
 void __sinit_d_a_alink_cpp(){// NONMATCHING

@@ -16,7 +16,7 @@ class fopAc_ac_c;
 
 class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
-    /* 8004FB18 */ virtual ~dPa_levelEcallBack(); /* { cleanup(); } */ // should be inlined
+    /* 8004FB18 */ virtual ~dPa_levelEcallBack() { cleanup(); }
     virtual void setup(JPABaseEmitter*, const cXyz*, const csXyz*, s8) = 0;
     /* 8004FB8C */ virtual void cleanup();
 };
@@ -27,7 +27,7 @@ public:
 
     /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
 
-    /* 8004FCC8 */ virtual ~dPa_hermiteEcallBack_c(); // should be inlined
+    /* 8004FCC8 */ virtual ~dPa_hermiteEcallBack_c() {}
     /* 8004F6C4 */ virtual void executeAfter(JPABaseEmitter*);
     /* 8004FABC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 

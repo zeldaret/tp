@@ -766,7 +766,7 @@ void daAlink_c::setBlendWolfMoveAnime(f32 param_0) {
  */
 BOOL daAlink_c::checkWolfAtnMoveBack(s16 param_0) {
     f32 cos = cM_scos(param_0);
-    return (field_0x2f98 != 1 && cos < lit_44003) || (field_0x2f98 == 1 && cos < lit_44004);
+    return (field_0x2f98 != 1 && cos < -0.3826834261417389f) || (field_0x2f98 == 1 && cos < -0.1736481785774231f);
 }
 
 /* 80128F5C-80129114 12389C 01B8+00 5/5 0/0 0/0 .text setWolfAtnMoveDirection__9daAlink_cFv */
@@ -796,20 +796,20 @@ void daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
 /* 80129678-801296A8 123FB8 0030+00 35/35 0/0 0/0 .text
  * setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM */
 void daAlink_c::setSingleAnimeWolfBase(daAlink_c::daAlink_WANM i_anmID) {
-    setSingleAnimeWolf(i_anmID, lit_6040, FLOAT_LABEL(lit_6108), -1, lit_6109);
+    setSingleAnimeWolf(i_anmID, 1.0f, 0.0f, -1, 3.0f);
 }
 
 /* 801296A8-801296D8 123FE8 0030+00 3/3 0/0 0/0 .text
  * setSingleAnimeWolfBaseMorf__9daAlink_cFQ29daAlink_c12daAlink_WANMf */
 void daAlink_c::setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM i_anmID, f32 i_morf) {
-    setSingleAnimeWolf(i_anmID, lit_6040, FLOAT_LABEL(lit_6108), -1, i_morf);
+    setSingleAnimeWolf(i_anmID, 1.0f, 0.0f, -1, i_morf);
 }
 
 /* 801296D8-80129704 124018 002C+00 44/44 0/0 0/0 .text
  * setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff */
 void daAlink_c::setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM i_anmID, f32 i_speed,
                                             f32 i_morf) {
-    setSingleAnimeWolf(i_anmID, i_speed, FLOAT_LABEL(lit_6108), -1, i_morf);
+    setSingleAnimeWolf(i_anmID, i_speed, 0.0f, -1, i_morf);
 }
 
 /* 80129704-80129848 124044 0144+00 29/29 0/0 0/0 .text
@@ -830,7 +830,7 @@ void daAlink_c::setSingleAnimeWolfParam(daAlink_c::daAlink_WANM i_anmID,
 /* 8012987C-80129958 1241BC 00DC+00 5/5 0/0 0/0 .text            checkWolfLandAction__9daAlink_cFi
  */
 int daAlink_c::checkWolfLandAction(int param_0) {
-    f32 temp_f31 = lit_8782 * (mFallHeight - current.pos.y);
+    f32 temp_f31 = 0.0099999998f * (mFallHeight - current.pos.y);
 
     if (checkNoLandDamageSlidePolygon() || temp_f31 < daAlinkHIO_wlDamFall_c0::m.field_0x2C) {
         if (param_0 != 0) {
@@ -1037,7 +1037,7 @@ BOOL daAlink_c::wolfSideBgCheck(s16 param_0) {
     f32 temp_f29 = cM_scos(current.angle.y);
     f32 temp_f28 = cM_ssin(current.angle.y);
 
-    cXyz sp14(current.pos.x + temp_f30 * 90.0f, current.pos.y + field_0x18B0[2].GetWallH(),
+    cXyz sp14(current.pos.x + temp_f30 * 90.0f, current.pos.y + mAcchCir[2].GetWallH(),
               current.pos.z + temp_f31 * 90.0f);
     cXyz sp8(current.pos.x + temp_f28 * 90.0f, sp14.y, current.pos.z + temp_f29 * 90.0f);
 
@@ -1144,15 +1144,15 @@ void daAlink_c::wolfBgCheck() {
 void daAlink_c::changeWolfBlendRate(int param_0) {
     if (checkWolfGrabAnime()) {
         if (param_0 == 7) {
-            mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
+            mNowAnmPackUpper[2].setRatio(0.0f);
         } else if (param_0 == 3) {
-            mNowAnmPackUpper[2].setRatio(lit_6040);
+            mNowAnmPackUpper[2].setRatio(1.0f);
         }
     } else if (checkBarkAnime()) {
         if (param_0 == 2) {
-            mNowAnmPackUpper[2].setRatio(FLOAT_LABEL(lit_6108));
+            mNowAnmPackUpper[2].setRatio(0.0f);
         } else if (param_0 == 3) {
-            mNowAnmPackUpper[2].setRatio(lit_6040);
+            mNowAnmPackUpper[2].setRatio(1.0f);
         }
     }
 }
@@ -1264,7 +1264,7 @@ int daAlink_c::procWolfTiredWaitInit() {
         return 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setSingleAnimeWolfBase(WANM_WAIT_TO_TIRED);
     return 1;
 }
@@ -1295,7 +1295,7 @@ int daAlink_c::procWolfMidnaRideShockInit() {
     setFaceBasicTexture(FTANM_UNK_9F);
 
     voiceStart(Z2SE_WL_V_MD_SHOCK);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
 
     return 1;
@@ -1311,7 +1311,7 @@ int daAlink_c::procWolfMidnaRideShock() {
         } else {
             checkNextActionWolf(0);
         }
-    } else if (frameCtrl->getFrame() > lit_17382 && mDemo.getDemoMode() != 0x32) {
+    } else if (frameCtrl->getFrame() > 11.0f && mDemo.getDemoMode() != 0x32) {
         checkNextActionWolf(1);
     }
 
@@ -1338,7 +1338,7 @@ int daAlink_c::procWolfWaitInit() {
     setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0xBC);
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     initServiceWaitTime();
     return 1;
 }
@@ -1348,8 +1348,8 @@ int daAlink_c::procWolfWait() {
     s16 old_shapeangle = shape_angle.y;
 
     if (!checkNextActionWolf(0) && !checkFrontWallTypeAction()) {
-        field_0x33f0 = (s16)(shape_angle.y - old_shapeangle) * lit_15460;
-        setBlendWolfMoveAnime(lit_6041);
+        field_0x33f0 = (s16)(shape_angle.y - old_shapeangle) * 0.004999999888241291f;
+        setBlendWolfMoveAnime(-1.0f);
 
         if (checkServiceWaitMode()) {
             field_0x30ca--;
@@ -1387,7 +1387,7 @@ int daAlink_c::procWolfMove() {
             }
         }
 
-        setBlendWolfMoveAnime(lit_6041);
+        setBlendWolfMoveAnime(-1.0f);
         field_0x30a2 = field_0x2fec;
     }
 
@@ -1564,7 +1564,7 @@ int daAlink_c::procWolfDashReverse() {
             return 1;
         }
 
-        mNormalSpeed = FLOAT_LABEL(lit_6108);
+        mNormalSpeed = 0.0f;
         frameCtrl_p->setFrame(daAlinkHIO_wlMove_c0::m.field_0x3C.mSpeed + frameCtrl_p->getFrame());
         getNowAnmPackUnder(UNDER_0)->setFrame(frameCtrl_p->getFrame());
         frameCtrl_p->setRate(daAlinkHIO_wlMove_c0::m.field_0x3C.mSpeed);
@@ -1614,7 +1614,7 @@ int daAlink_c::procWolfAtnActorMove() {
             offModeFlg(1);
         }
 
-        setBlendWolfAtnMoveAnime(lit_6041);
+        setBlendWolfAtnMoveAnime(-1.0f);
 
         if (checkWolfAtnWait()) {
             voiceStartLevel(Z2SE_WL_V_ROAR);
@@ -1641,7 +1641,7 @@ int daAlink_c::procWolfWaitTurnInit() {
     setSingleAnimeWolfBaseSpeed(WANM_WALK_A, anm_speed, daAlinkHIO_wlMove_c0::m.field_0x94);
 
     if (checkEventRun()) {
-        mNormalSpeed = FLOAT_LABEL(lit_6108);
+        mNormalSpeed = 0.0f;
     }
 
     mProcVar3.field_0x300e.x = field_0x2fe2;
@@ -1657,7 +1657,7 @@ int daAlink_c::procWolfWaitTurn() {
     } else {
         step_amount = daAlinkHIO_wlMoveNoP_c0::m.field_0x10;
     }
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), step_amount);
+    cLib_chaseF(&mNormalSpeed, 0.0f, step_amount);
 
     if (checkWolfGroundSpecialMode()) {
         return 1;
@@ -1791,7 +1791,7 @@ int daAlink_c::procWolfSideStepLandInit(s16 param_0) {
     field_0x2f9d = 4;
     setFootEffectProcType(2);
     onResetFlg1(RFLG1_UNK_C);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setStepLandVibration();
 
     return 1;
@@ -1894,7 +1894,7 @@ int daAlink_c::procWolfBackJump() {
 int daAlink_c::procWolfBackJumpLandInit(s16 param_0, s16 param_1) {
     commonProcInit(PROC_WOLF_BACKJUMP_LAND);
     setSingleAnimeWolfParam(WANM_BACKFLIP_END, &daAlinkHIO_wlBackJump_c0::m.field_0x14);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f9d = 4;
     setFootEffectProcType(2);
     field_0x2fcc = 10;
@@ -1952,7 +1952,7 @@ int daAlink_c::procWolfHowlInit(int param_0) {
         mProcVar3.field_0x300e.x = 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     mProcVar2.field_0x300c = 0;
 
     return 1;
@@ -2199,7 +2199,7 @@ int daAlink_c::procWolfFall() {
 /* 8012F138-8012F1F0 129A78 00B8+00 2/2 0/0 0/0 .text            procWolfLandInit__9daAlink_cFv */
 int daAlink_c::procWolfLandInit() {
     commonProcInit(PROC_WOLF_LAND);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f99 = 12;
 
     setSingleAnimeWolfParam(WANM_JUMP_ATTACK_END, &daAlinkHIO_wlAutoJump_c0::m.field_0x14);
@@ -2259,7 +2259,7 @@ int daAlink_c::procWolfSitInit(int param_0) {
 int daAlink_c::procWolfSit() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108),
+    cLib_chaseF(&mNormalSpeed, 0.0f,
                 checkWolfDashMode() ? daAlinkHIO_wlMove_c0::m.field_0x6C :
                                       daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
 
@@ -2455,7 +2455,7 @@ int daAlink_c::procWolfSlipTurnLandInit() {
                  daAlinkHIO_wlMove_c0::m.field_0x14.mSpeed,
                  frameCtrl->getFrame() + daAlinkHIO_wlMove_c0::m.field_0x14.mSpeed);
 
-    mNormalSpeed = lit_19379 * daAlinkHIO_wlMoveNoP_c0::m.field_0x8;
+    mNormalSpeed = 0.25f * daAlinkHIO_wlMoveNoP_c0::m.field_0x8;
     field_0x2f99 = 5;
     setFootEffectProcType(2);
     field_0x2f9d = 8;
@@ -2587,7 +2587,7 @@ int daAlink_c::procWolfSlide() {
 int daAlink_c::procWolfSlideLandInit() {
     commonProcInit(PROC_WOLF_SLIDE_LAND);
     setSingleAnimeWolfParam(WANM_SLIDE_BACKWARD_END, &daAlinkHIO_wlSlide_c0::m.field_0x28);
-    mNormalSpeed *= lit_5943;
+    mNormalSpeed *= 0.5f;
     field_0x814.SetWeight(0xFF);
 
     return 1;
@@ -2597,7 +2597,7 @@ int daAlink_c::procWolfSlideLandInit() {
 int daAlink_c::procWolfSlideLand() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), lit_7450);
+    cLib_chaseF(&mNormalSpeed, 0.0f, 4.0f);
 
     if (frameCtrl->checkAnmEnd()) {
         current.angle.y = shape_angle.y;
@@ -2623,7 +2623,7 @@ int daAlink_c::procWolfWaitSlipInit() {
 
     setSingleAnimeWolfBaseSpeed(WANM_ATN, daAlinkHIO_wlMove_c0::m.field_0xB8,
                                 daAlinkHIO_wlMove_c0::m.field_0xBC);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setWolfWaitSlip();
     field_0x2f9d = 120;
     setFootEffectProcType(1);
@@ -2683,7 +2683,7 @@ int daAlink_c::procWolfSlopeStartInit(int param_0) {
     commonProcInit(PROC_WOLF_SLOPE_START);
     setSingleAnimeWolfParam(WANM_SLIDE_W, &daAlinkHIO_wlSlide_c0::m.field_0x3C);
     field_0x3588 = l_wolfBaseAnime;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
 
     if (param_0) {
@@ -3447,16 +3447,16 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
     commonProcInit(PROC_WOLF_ROPE_SUBJECTIVITY);
 
     if (!checkUnderMove0BckNoArcWolf(WANM_ROPE_WALK)) {
-        setSingleAnimeWolfBaseSpeed(WANM_ROPE_WALK, FLOAT_LABEL(lit_6108),
+        setSingleAnimeWolfBaseSpeed(WANM_ROPE_WALK, 0.0f,
                                     daAlinkHIO_wlRope_c0::m.field_0x20);
     }
 
     mProcVar2.field_0x300c = initWolfRopeShapeAngle();
     current.angle.y = shape_angle.y;
 
-    setSpecialGravity(FLOAT_LABEL(lit_6108), maxFallSpeed, 0);
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
 
@@ -3613,7 +3613,7 @@ static fopAc_ac_c* daAlink_searchGiant(fopAc_ac_c* i_actor, void* i_data) {
     cXyz* gnd_chk_pos = static_cast<cXyz*>(i_data);
 
     if (fopAcM_GetName(i_actor) == PROC_OBJ_SEKIZOA &&
-        i_actor->current.pos.abs2(*gnd_chk_pos) < lit_49124)
+        i_actor->current.pos.abs2(*gnd_chk_pos) < 40000.0f)
     {
         return i_actor;
     }
@@ -3643,7 +3643,7 @@ int daAlink_c::procWolfGiantPuzzleInit() {
 
     field_0x2f98 = 4;
     mProcVar2.mPuzzleAimAngle = shape_angle.y;
-    field_0x3478 = FLOAT_LABEL(lit_6108);
+    field_0x3478 = 0.0f;
     field_0x347c = daAlinkHIO_wlMoveNoP_c0::m.field_0x10;
     field_0x594 = daAlinkHIO_wlMoveNoP_c0::m.field_0x8;
     offWolfEyeUp();
@@ -3763,7 +3763,7 @@ int daAlink_c::procWolfHangReadyInit() {
     field_0x3198 = field_0x2f91;
     mProcVar2.field_0x300c = field_0x306e + 0x8000;
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
 
@@ -3952,7 +3952,7 @@ int daAlink_c::procWolfDamageInit(dCcD_GObjInf* param_0) {
 int daAlink_c::procWolfDamage() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlDamNormal_c0::m.field_0x58);
+    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_wlDamNormal_c0::m.field_0x58);
     field_0x2f99 = 5;
 
     if (checkFreezeDamage()) {
@@ -4083,7 +4083,7 @@ int daAlink_c::procWolfScreamWaitInit() {
         mProcVar2.field_0x300c = 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     mProcVar3.field_0x300e.x = 0;
     field_0x3588 = l_wolfBaseAnime;
 
@@ -4106,7 +4106,7 @@ int daAlink_c::procWolfScreamWait() {
         } else {
             mProcVar3.field_0x300e.x = 1;
             setSingleAnimeWolf(WANM_DMG_AIR_FRONT_GETUP,
-                               daAlinkHIO_wlDamLarge_c0::m.field_0x0.mSpeed, lit_8676,
+                               daAlinkHIO_wlDamLarge_c0::m.field_0x0.mSpeed, 20.0f,
                                daAlinkHIO_wlDamLarge_c0::m.field_0x0.mEndFrame,
                                daAlinkHIO_wlDamLarge_c0::m.field_0x0.mInterpolation);
             field_0x2f99 = 13;
@@ -4121,8 +4121,7 @@ int daAlink_c::procWolfScreamWait() {
 /* 801370E4-8013712C 131A24 0048+00 3/3 0/0 0/0 .text getWolfLieMoveAnmSpeed__9daAlink_cFv */
 f32 daAlink_c::getWolfLieMoveAnmSpeed() {
     if (field_0x3198 != 0) {
-        // return getAnmSpeedStickRate(lit_5943, lit_7624); inline doesnt match here?
-        return lit_5943 + (field_0x33a8 * lit_7624);
+        return getAnmSpeedStickRate(0.5f, 1.5f);
     }
 
     return getAnmSpeedStickRate(daAlinkHIO_wlLie_c0::m.field_0x3C,
@@ -4189,12 +4188,12 @@ int daAlink_c::checkNextActionWolfFromLie() {
 void daAlink_c::setWolfLieMoveVoice(int param_0) {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    if (frameCtrl->getRate() == FLOAT_LABEL(lit_6108) && mProcVar3.field_0x300e.z != 0) {
+    if (frameCtrl->getRate() == 0.0f && mProcVar3.field_0x300e.z != 0) {
         mProcVar3.field_0x300e.z--;
     }
 
-    if ((param_0 != 0 && (frameCtrl->checkPass(lit_17382) || frameCtrl->checkPass(lit_7451))) ||
-        (frameCtrl->getRate() == FLOAT_LABEL(lit_6108) && mProcVar3.field_0x300e.z == 0))
+    if ((param_0 != 0 && (frameCtrl->checkPass(11.0f) || frameCtrl->checkPass(26.0f))) ||
+        (frameCtrl->getRate() == 0.0f && mProcVar3.field_0x300e.z == 0))
     {
         voiceStart(Z2SE_WL_V_BREATH_WALK);
         mProcVar3.field_0x300e.z = 30;
@@ -4340,7 +4339,7 @@ int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
     mProcVar1.field_0x300a = 300;
 
     setCrawlMoveDirectionArrow();
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f99 = 13;
 
     dComIfGp_setPlayerStatus0(0, 0x8000000);
@@ -4475,7 +4474,7 @@ int daAlink_c::decideDoStatusSwimWolf() {
 /* 801383D8-80138484 132D18 00AC+00 2/2 0/0 0/0 .text            procWolfSwimUpInit__9daAlink_cFv */
 int daAlink_c::procWolfSwimUpInit() {
     commonProcInit(PROC_WOLF_SWIM_UP);
-    speed.y = FLOAT_LABEL(lit_6108);
+    speed.y = 0.0f;
     current.pos.y = mWaterY;
     onNoResetFlg0(FLG0_SWIM_UP);
 
@@ -4491,7 +4490,7 @@ int daAlink_c::procWolfSwimUpInit() {
 /* 80138484-8013852C 132DC4 00A8+00 1/0 0/0 0/0 .text            procWolfSwimUp__9daAlink_cFv */
 int daAlink_c::procWolfSwimUp() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
-    setNormalSpeedF(FLOAT_LABEL(lit_6108), daAlinkHIO_wlSwim_c0::m.field_0x54);
+    setNormalSpeedF(0.0f, daAlinkHIO_wlSwim_c0::m.field_0x54);
 
     if (frameCtrl->checkAnmEnd()) {
         procWolfSwimWaitInit(0);
@@ -4586,7 +4585,7 @@ int daAlink_c::procWolfSwimMoveInit() {
 
     if (checkNoResetFlg0(FLG0_SWIM_UP)) {
         current.pos.y = mWaterY;
-        speed.y = FLOAT_LABEL(lit_6108);
+        speed.y = 0.0f;
     }
 
     dComIfGp_setPlayerStatus0(0, 0x100000);
@@ -4673,7 +4672,7 @@ int daAlink_c::procWolfSwimEndWait() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
     mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &field_0x37c8);
 
-    if (frameCtrl_p->checkPass(lit_7977)) {
+    if (frameCtrl_p->checkPass(6.0f)) {
         if (mProcVar2.field_0x300c == 0) {
             seStartOnlyReverb(Z2SE_WOLF_WIPE_OFF_WATER);
         } else {
@@ -4739,8 +4738,8 @@ void daAlink_c::checkWolfEnemyThrowAction() {
     daPy_frameCtrl_c* frameCtrl = &mUpperFrameCtrl[2];
 
     if (frameCtrl->checkAnmEnd()) {
-        resetUpperAnime(UPPER_2, lit_6109);
-    } else if (frameCtrl->checkPass(lit_16210)) {
+        resetUpperAnime(UPPER_2, 3.0f);
+    } else if (frameCtrl->checkPass(17.0f)) {
         resetWolfEnemyBiteAll();
     }
 }
@@ -4763,9 +4762,9 @@ void daAlink_c::setWolfLockDomeModel() {
     seStartOnlyReverb(Z2SE_MIDNA_BIND_AREA_OPEN);
 
     if (dKy_darkworld_check()) {
-        field_0x0724->setFrame(lit_6040);
+        field_0x0724->setFrame(1.0f);
     } else {
-        field_0x0724->setFrame(FLOAT_LABEL(lit_6108));
+        field_0x0724->setFrame(0.0f);
     }
 }
 
@@ -4781,7 +4780,7 @@ void daAlink_c::setWolfBallModel() {
     mDoExt_setCurrentHeap(prev_heap);
 
     mEquipItem = 0x10A;
-    field_0x33dc = FLOAT_LABEL(lit_6108);
+    field_0x33dc = 0.0f;
     mDoMtx_multVecZero(mpLinkModel->getAnmMtx(6), &mHeldItemRootPos);
     mIronBallCenterPos = mHeldItemRootPos;
     mHookshotTopPos = mHeldItemRootPos;
@@ -4884,7 +4883,7 @@ void daAlink_c::searchWolfLockEnemy(fopAc_ac_c* i_actor, void* i_data) {
     {
         f32 dist_to_enemy = current.pos.abs2(enemy_p->eyePos);
 
-        if (enemy_p->eyePos.y >= current.pos.y - lit_6895 && dist_to_enemy < field_0x3478) {
+        if (enemy_p->eyePos.y >= current.pos.y - 50.0f && dist_to_enemy < field_0x3478) {
             field_0x3478 = dist_to_enemy;
             *lock_actor_pp = i_actor;
         }
@@ -4969,7 +4968,7 @@ BOOL daAlink_c::checkWolfAttackAction() {
  * setWolfEnemyThrowUpperAnime__9daAlink_cFQ29daAlink_c12daAlink_WANMf */
 void daAlink_c::setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM i_anmID, f32 param_1) {
     setUpperAnime(i_anmID == WANM_FLING_LEFT ? (u16)0x2BD : (u16)0x2BE, UPPER_2,
-                  daAlinkHIO_wlAtBite_c0::m.field_0x2C, param_1, -1, lit_6041);
+                  daAlinkHIO_wlAtBite_c0::m.field_0x2C, param_1, -1, -1.0f);
 }
 
 /* 80139600-801396F8 133F40 00F8+00 2/2 0/0 0/0 .text
@@ -5028,7 +5027,7 @@ BOOL daAlink_c::checkWolfLockAttackChargeState() {
  */
 int daAlink_c::procWolfRollAttackChargeInit() {
     commonProcInit(PROC_WOLF_ROLL_ATTACK_CHARGE);
-    setSingleAnimeWolfBaseSpeed(WANM_CUT_TURN_CHARGE, FLOAT_LABEL(lit_6108),
+    setSingleAnimeWolfBaseSpeed(WANM_CUT_TURN_CHARGE, 0.0f,
                                 daAlinkHIO_wlAttack_c0::m.mReadyInterpolation);
     voiceStartLevel(Z2SE_WL_V_ROAR);
     return 1;
@@ -5042,10 +5041,10 @@ int daAlink_c::procWolfRollAttackCharge() {
 
     if (!itemButtonCheck(BTN_B)) {
         checkWolfAttackAction();
-    } else if (field_0x2060->getOldFrameRate() < lit_9054) {
+    } else if (field_0x2060->getOldFrameRate() < 0.1f) {
         procWolfRollAttackMoveInit();
     } else {
-        cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+        cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
         setShapeAngleToAtnActor(0);
         current.angle.y = shape_angle.y;
         voiceStartLevel(Z2SE_WL_V_ROAR);
@@ -5275,7 +5274,7 @@ int daAlink_c::procWolfJumpAttackKickInit() {
     commonProcInit(PROC_WOLF_JUMP_AT_KICK);
     setSingleAnimeWolfParam(WANM_JUMP_KICK, &daAlinkHIO_wlAtCjump_c0::m.field_0x14);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     speed.y = tmp_0;
     mNormalSpeed = tmp_0;
     setSpecialGravity(tmp_0, maxFallSpeed, 0);
@@ -5330,7 +5329,7 @@ int daAlink_c::procWolfJumpAttackSlideLandInit(int param_0, int param_1, int par
     setFootEffectProcType(1);
     mProcVar0.field_0x3008 = param_2;
 
-    mNormalSpeed *= lit_5943;
+    mNormalSpeed *= 0.5f;
     if (param_1) {
         field_0x2f99 = 4;
     }
@@ -5395,7 +5394,7 @@ int daAlink_c::procWolfJumpAttackNormalLandInit(int param_0) {
 
     setFootEffectProcType(2);
     field_0x2f9d = 0x18;
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     mProcVar3.field_0x300e.z = 0;
     mProcVar2.field_0x300c = param_0;
     field_0x2f99 = 12;
@@ -5418,7 +5417,7 @@ int daAlink_c::procWolfJumpAttackNormalLand() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
     field_0x2f99 = 4;
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
     setComboReserb();
     checkCutTurnCharge();
 
@@ -5801,7 +5800,7 @@ int daAlink_c::procWolfDownAtMissLand() {
         checkNextActionWolf(0);
     } else if (frameCtrl->getFrame() > daAlinkHIO_wlAtDown_c0::m.field_0x64.mCheckFrame) {
         checkNextActionWolf(1);
-    } else if (frameCtrl->getFrame() >= lit_6109 && frameCtrl->getFrame() < lit_8783) {
+    } else if (frameCtrl->getFrame() >= 3.0f && frameCtrl->getFrame() < 8.0f) {
         seStartMapInfoLevel(Z2SE_FN_WOLF_SLIP);
         field_0x2f9d = 0x18;
     }
@@ -6126,7 +6125,7 @@ int daAlink_c::procWolfEnemyHangBiteInit() {
     commonProcInit(PROC_WOLF_ENEMY_HANG_BITE);
     setSingleAnimeWolfParam(WANM_CATCH_START, &daAlinkHIO_wlAtBite_c0::m.field_0x14);
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     setSpecialGravity(tmp_0, maxFallSpeed, 0);
@@ -6331,15 +6330,15 @@ int daAlink_c::procWolfGrabPutInit() {
 
     if (grab_obj) {
         setSingleAnimeWolfParam(WANM_PICKUP_A, &daAlinkHIO_wlGrab_c0::m.field_0x14);
-        field_0x3478 = lit_7625;
+        field_0x3478 = 10.0f;
         field_0x347c = daAlinkHIO_wlGrab_c0::m.field_0x14.mCheckFrame;
     } else {
         setSingleAnimeWolfParam(WANM_PICKUP_B, &daAlinkHIO_wlGrab_c0::m.field_0x3C);
-        field_0x3478 = lit_8502;
+        field_0x3478 = 7.0f;
         field_0x347c = daAlinkHIO_wlGrab_c0::m.field_0x3C.mCheckFrame;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     return 1;
 }
 
@@ -6401,11 +6400,11 @@ int daAlink_c::procWolfGrabThrowInit() {
 int daAlink_c::procWolfGrabThrow() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    cLib_chaseF(&mNormalSpeed, FLOAT_LABEL(lit_6108), daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
+    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_wlMoveNoP_c0::m.field_0x10);
     setShapeAngleToAtnActor(0);
     current.angle.y = shape_angle.y;
 
-    if (frameCtrl->checkPass(lit_7625)) {
+    if (frameCtrl->checkPass(10.0f)) {
         setGrabItemThrow();
     }
 
@@ -6463,14 +6462,14 @@ int daAlink_c::procWolfPush() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mProcVar2.field_0x300c != 0) {
-            setSingleAnimeWolf(WANM_PUSH_LIGHT, lit_6040, FLOAT_LABEL(lit_6108),
-                               mProcVar3.field_0x300e.x, lit_6109);
+            setSingleAnimeWolf(WANM_PUSH_LIGHT, 1.0f, 0.0f,
+                               mProcVar3.field_0x300e.x, 3.0f);
             mUnderFrameCtrl[0].setAttribute(0);
             mProcVar2.field_0x300c = 0;
         } else {
             checkNextActionWolf(0);
         }
-    } else if (mProcVar2.field_0x300c == 0 && frameCtrl->checkPass(lit_52470)) {
+    } else if (mProcVar2.field_0x300c == 0 && frameCtrl->checkPass(17.5f)) {
         if (field_0x280c.getActor() != NULL) {
             fopAcM_setCarryNow(field_0x280c.getActor(), 0);
         }
@@ -6495,7 +6494,7 @@ int daAlink_c::procWolfCargoCarryInit() {
         return 1;
     }
 
-    f32 tmp_0 = FLOAT_LABEL(lit_6108);
+    f32 tmp_0 = 0.0f;
     mNormalSpeed = tmp_0;
     speed.y = tmp_0;
     setSpecialGravity(tmp_0, maxFallSpeed, 0);
@@ -6576,7 +6575,7 @@ int daAlink_c::procWolfChainUpInit() {
 
     commonProcInit(PROC_WOLF_CHAIN_UP);
     setSingleAnimeWolfParam(WANM_PICKUP_B, &daAlinkHIO_wlGrab_c0::m.field_0x28);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
 
     return 1;
 }
@@ -6594,8 +6593,8 @@ int daAlink_c::procWolfChainUp() {
         fopAc_ac_c* old_actor = field_0x2844.getActor();
 
         procWolfWaitInit();
-        setUpperAnimeBaseSpeed(m_wlAnmDataTable[WANM_CHAIN_PULL].field_0x0, FLOAT_LABEL(lit_6108),
-                               lit_6109);
+        setUpperAnimeBaseSpeed(m_wlAnmDataTable[WANM_CHAIN_PULL].field_0x0, 0.0f,
+                               3.0f);
 
         if (old_actor != NULL) {
             field_0x2fa3 = old_2fa3;
@@ -6623,7 +6622,7 @@ int daAlink_c::procWolfGanonCatchInit() {
     shape_angle.y = cLib_targetAngleY(&current.pos, &field_0x27f4->current.pos);
     current.angle.y = shape_angle.y + 0x8000;
 
-    mNormalSpeed = lit_6895;
+    mNormalSpeed = 50.0f;
     mProcVar3.field_0x300e.z = 30;
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e.x = 0;
@@ -6710,7 +6709,7 @@ int daAlink_c::procWolfChainReadyInit() {
     commonProcInit(PROC_WOLF_CHAIN_READY);
     field_0x280c.setData(field_0x27f4);
     setSingleAnimeWolfParam(WANM_ATTACK_A_START, &daAlinkHIO_wlAtNjump_c0::m.field_0x0);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e.x = 0;
 

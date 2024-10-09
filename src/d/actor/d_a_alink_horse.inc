@@ -3,6 +3,7 @@
  * Player Epona riding handling
  */
 
+#include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_hozelda.h"
 #include "d/actor/d_a_e_wb.h"
@@ -107,7 +108,7 @@ int daAlink_c::checkReinRideBgCheck() {
     mDoMtx_stack_c::YrotM(field_0x27f4->shape_angle.y);
     mDoMtx_stack_c::multVec(offset_p, &sp2C);
 
-    dBgS_AcchCir* acchcir_p = field_0x18B0;
+    dBgS_AcchCir* acchcir_p = mAcchCir;
     for (int i = 0; i < 6; i++) {
         sp38.y = acchcir_p->GetWallH();
         sp38.y += current.pos.y;
@@ -118,7 +119,7 @@ int daAlink_c::checkReinRideBgCheck() {
         }
 
         if (i == 2) {
-            acchcir_p = field_0x18B0;
+            acchcir_p = mAcchCir;
             sp2C.x = current.pos.x;
             sp2C.z = current.pos.z;
         } else {
@@ -269,7 +270,7 @@ void daAlink_c::setHorseTurnUpperAnime(int i_useLAnime) {
     if (checkHorseNoUpperAnime() || (i_useLAnime == FALSE && checkHorseTurnRAnime()) ||
         (i_useLAnime == TRUE && checkHorseTurnLAnime()))
     {
-        setUpperAnimeBaseMorf(!i_useLAnime ? (u16)0x24C : (u16)0x24D, lit_7450);
+        setUpperAnimeBaseMorf(!i_useLAnime ? (u16)0x24C : (u16)0x24D, 4.0f);
     }
 }
 
@@ -378,7 +379,7 @@ int daAlink_c::setSyncBoarPos() {
         return 0;
     }
 
-    if (fabsf(mRideAcKeep.getActor()->speedF) < lit_12328) {
+    if (fabsf(mRideAcKeep.getActor()->speedF) < 0.0010000000474974513f) {
         onModeFlg(1);
     } else {
         offModeFlg(1);
@@ -764,10 +765,10 @@ int daAlink_c::setSyncRide(int param_0) {
         if (field_0x30ca != 0) {
             field_0x30ca--;
         } else {
-            if (cM_rnd() < lit_5943) {
-                setSingleAnimeBaseMorf(ANM_HORSE_WAIT_A, lit_7450);
+            if (cM_rnd() < 0.5f) {
+                setSingleAnimeBaseMorf(ANM_HORSE_WAIT_A, 4.0f);
             } else {
-                setSingleAnimeBaseMorf(ANM_HORSE_WAIT_B, lit_7450);
+                setSingleAnimeBaseMorf(ANM_HORSE_WAIT_B, 4.0f);
             }
             initServiceWaitTime();
         }
@@ -810,7 +811,7 @@ void daAlink_c::setBaseRideAnime() {
 /* 800EEE30-800EEE5C 0E9770 002C+00 1/1 0/0 0/0 .text checkHorseSwordUpSpped__9daAlink_cFv */
 bool daAlink_c::checkHorseSwordUpSpped() {
     daHorse_c* horse_p = dComIfGp_getHorseActor();
-    return horse_p->speedF > horse_p->getLashMaxSpeedF() * lit_18847;
+    return horse_p->speedF > horse_p->getLashMaxSpeedF() * 0.89999998f;
 }
 
 /* 800EEE5C-800EEF30 0E979C 00D4+00 2/2 0/0 0/0 .text            setHorseSwordUp__9daAlink_cFi */
@@ -1017,7 +1018,7 @@ int daAlink_c::setHorseGetOff(int param_0) {
 
     if (dComIfGp_getDoStatus() == 0x32 && doTrigger()) {
         if ((checkHorseRide() && horse_p->checkEnemySearch()) || checkHorseLieAnime()) {
-            resetUpperAnime(UPPER_2, lit_6041);
+            resetUpperAnime(UPPER_2, -1.0f);
             procBackJumpInit(0);
             current.pos.y += daAlinkHIO_backJump_c0::m.mBackflipSpeedV;
         } else {
@@ -1065,7 +1066,7 @@ int daAlink_c::procHorseTurnInit() {
     commonProcInit(PROC_HORSE_TURN);
 
     if (checkHorseRide()) {
-        resetUnderAnime(UNDER_2, lit_6041);
+        resetUnderAnime(UNDER_2, -1.0f);
     }
 
     setSyncRidePos();
@@ -1084,7 +1085,7 @@ int daAlink_c::procHorseJumpInit() {
     commonProcInit(PROC_HORSE_JUMP);
 
     if (checkHorseRide()) {
-        resetUnderAnime(UNDER_2, lit_6041);
+        resetUnderAnime(UNDER_2, -1.0f);
     }
 
     setSyncRidePos();
@@ -1117,7 +1118,7 @@ int daAlink_c::procHorseLandInit() {
     commonProcInit(PROC_HORSE_LAND);
 
     if (checkHorseRide()) {
-        resetUnderAnime(UNDER_2, lit_6041);
+        resetUnderAnime(UNDER_2, -1.0f);
     }
 
     setSyncRidePos();
@@ -1148,7 +1149,7 @@ int daAlink_c::procHorseLand() {
 int daAlink_c::procHorseSubjectivityInit() {
     commonProcInit(PROC_HORSE_SUBJECTIVITY);
     if (checkHorseUnderItemAnime()) {
-        resetUnderAnime(UNDER_2, lit_6041);
+        resetUnderAnime(UNDER_2, -1.0f);
     }
 
     setSyncRide(0);
@@ -1205,7 +1206,7 @@ int daAlink_c::procHorseCutChargeReadyInit() {
 
     setSyncRide(1);
     if (checkHorseUnderItemAnime()) {
-        resetUnderAnime(UNDER_2, lit_6041);
+        resetUnderAnime(UNDER_2, -1.0f);
     }
 
     mProcVar2.field_0x300c = daAlinkHIO_cut_c0::m.mNormalSwingDuration;
@@ -1351,13 +1352,13 @@ int daAlink_c::procHorseGrabMove() {
     }
 
     if (mGrabItemAcKeep.getActor() == NULL && checkGrabAnime()) {
-        resetUpperAnime(UPPER_2, lit_7450);
+        resetUpperAnime(UPPER_2, 4.0f);
     }
 
     setBaseRideAnime();
 
     if (checkGrabThrowAnime()) {
-        if (checkUpperGrabItemThrow(lit_7450)) {
+        if (checkUpperGrabItemThrow(4.0f)) {
             procHorseWaitInit();
         }
     } else {
@@ -1544,7 +1545,7 @@ int daAlink_c::procHorseBottleDrink() {
     dComIfGp_getHorseActor();
 
     if (!setSyncRidePos()) {
-        resetUpperAnime(UPPER_2, lit_6109);
+        resetUpperAnime(UPPER_2, 3.0f);
         returnKeepItemData();
         resetSpecialEvent();
         return 1;
@@ -1586,14 +1587,14 @@ int daAlink_c::procHorseComeback() {
     if (checkAnmEnd(frameCtrl_p)) {
         field_0x2fab = 0x13;
         return procHorseWaitInit();
-    } else if (frameCtrl_p->getFrame() >= lit_14619) {
+    } else if (frameCtrl_p->getFrame() >= 78.0f) {
         field_0x2fab |= 2;
-    } else if (frameCtrl_p->getFrame() >= lit_16036) {
+    } else if (frameCtrl_p->getFrame() >= 75.0f) {
         field_0x2f93 = 5;
         field_0x2fab |= 0x10;
-    } else if (frameCtrl_p->getFrame() >= lit_20303) {
+    } else if (frameCtrl_p->getFrame() >= 68.0f) {
         field_0x2fab |= 1;
-    } else if (frameCtrl_p->checkPass(lit_8676)) {
+    } else if (frameCtrl_p->checkPass(20.0f)) {
         voiceStart(Z2SE_AL_V_LANDING_FAIL_2);
     }
 
@@ -1659,13 +1660,13 @@ int daAlink_c::procHorseGetKey() {
     setSyncRidePos();
     if (checkAnmEnd(frameCtrl_p)) {
         dComIfGp_evmng_cutEnd(field_0x3184);
-    } else if (frameCtrl_p->getFrame() >= lit_16038) {
+    } else if (frameCtrl_p->getFrame() >= 34.0f) {
         field_0x2f92 = 254;
         field_0x2f93 = 254;
         mProcVar2.field_0x300c = 1;
-    } else if (frameCtrl_p->getFrame() >= lit_7448) {
+    } else if (frameCtrl_p->getFrame() >= 12.0f) {
         field_0x2f92 = 2;
-    } else if (frameCtrl_p->getFrame() >= lit_7808) {
+    } else if (frameCtrl_p->getFrame() >= 5.0f) {
         field_0x2f92 = 3;
     }
 

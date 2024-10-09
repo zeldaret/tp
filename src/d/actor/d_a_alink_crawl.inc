@@ -3,6 +3,8 @@
  * Player Crawl action handling
  */
 
+#include "d/actor/d_a_alink.h"
+
 /* 800F7C50-800F7C74 0F2590 0024+00 2/2 0/0 0/0 .text            getCrawlMoveAnmSpeed__9daAlink_cFv
  */
 f32 daAlink_c::getCrawlMoveAnmSpeed() {
@@ -14,15 +16,14 @@ f32 daAlink_c::getCrawlMoveAnmSpeed() {
 f32 daAlink_c::getCrawlMoveSpeed() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
-    f32 frame = frame_ctrl->getFrame();
-    if (frame >= lit_16210) {
-        frame = frame_ctrl->getFrame() - lit_16210;
+    f32 frame;
+    if (frame_ctrl->getFrame() >= 17.0f) {
+        frame = frame_ctrl->getFrame() - 17.0f;
     } else {
         frame = frame_ctrl->getFrame();
     }
 
-    return frame_ctrl->getRate() * daAlinkHIO_crouch_c0::m.mCrawlMoveRate *
-           cM_fsin(lit_22146 * frame);
+    return (daAlinkHIO_crouch_c0::m.mCrawlMoveRate * frame_ctrl->getRate()) * cM_fsin(frame * 0.18479956686496735f);
 }
 
 /* 800F7CE8-800F7E48 0F2628 0160+00 4/4 0/0 0/0 .text setCrawlMoveDirectionArrow__9daAlink_cFv */
@@ -175,17 +176,17 @@ void daAlink_c::checkCrawlInHoll(cXyz* param_0, cXyz* param_1, cXyz* param_2, in
 void daAlink_c::setCrawlMoveHoll() {
     f32 frame_ctrl_rate = mUnderFrameCtrl[0].getRate();
 
-    if (frame_ctrl_rate != FLOAT_LABEL(lit_6108)) {
+    if (frame_ctrl_rate) {
         cLib_addCalcAngleS(&shape_angle.y, mProcVar2.field_0x300c, 5, 0x1000, 0x800);
         current.angle.y = shape_angle.y;
     }
 
-    if (fabsf(current.pos.x - field_0x37c8.x) > lit_6040) {
-        cLib_addCalc(&current.pos.x, field_0x37c8.x, lit_5943, lit_7625, lit_6040);
+    if (fabsf(current.pos.x - field_0x37c8.x) > 1.0f) {
+        cLib_addCalc(&current.pos.x, field_0x37c8.x, 0.5f, 10.0f, 1.0f);
     }
 
-    if (fabsf(current.pos.z - field_0x37c8.z) > lit_6040) {
-        cLib_addCalc(&current.pos.z, field_0x37c8.z, lit_5943, lit_7625, lit_6040);
+    if (fabsf(current.pos.z - field_0x37c8.z) > 1.0f) {
+        cLib_addCalc(&current.pos.z, field_0x37c8.z, 0.5f, 10.0f, 1.0f);
     }
 }
 
@@ -225,13 +226,13 @@ void daAlink_c::stopHalfMoveAnime(f32 param_0) {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
     f32 frame;
-    if (frame_ctrl->checkPass(FLOAT_LABEL(lit_6108))) {
-        frame = FLOAT_LABEL(lit_6108);
+    if (frame_ctrl->checkPass(0.0f)) {
+        frame = 0.0f;
     } else {
         frame = param_0;
     }
 
-    frame_ctrl->setRate(FLOAT_LABEL(lit_6108));
+    frame_ctrl->setRate(0.0f);
     frame_ctrl->setFrame(frame);
     getNowAnmPackUnder(UNDER_0)->setFrame(frame);
 }
@@ -251,14 +252,14 @@ int daAlink_c::procCrawlStart() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
     decideCrawlDoStatus();
-    field_0x33cc = lit_6040 - field_0x3478 * (field_0x347c - frame_ctrl->getFrame());
+    field_0x33cc = 1.0f - field_0x3478 * (field_0x347c - frame_ctrl->getFrame());
 
     cXyz sp20(l_crawlFrontOffset.x, l_crawlFrontOffset.y, l_crawlFrontOffset.z * field_0x33cc);
     cXyz sp2C;
     cXyz sp38;
 
     cMtx_multVec(mpLinkModel->getBaseTRMtx(), &sp20, &sp2C);
-    sp20.y = lit_10039;
+    sp20.y = 80.0f;
 
     cMtx_multVec(mpLinkModel->getBaseTRMtx(), &sp20, &sp38);
     crawlBgCheck(&sp2C, &sp38, 0);
@@ -288,14 +289,14 @@ int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
     BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000);
     commonProcInit(PROC_CRAWL_AUTO_MOVE);
     field_0x37c8 = *param_1;
-    field_0x33cc = lit_6040;
+    field_0x33cc = 1.0f;
     field_0x3198 = param_0;
     mProcVar0.field_0x3008 = 20;
     mProcVar1.field_0x300a = 300;
 
     dComIfGp_setPlayerStatus0(0, 0x8000000);
     setCrawlMoveDirectionArrow();
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f99 = 12;
 
     if (var_r30) {

@@ -45,7 +45,7 @@ void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* 
         mPolyInfo4.ClearPi();
     }
 
-    f32 tmp_08 = lit_14064;
+    f32 tmp_08 = 0.8f;
     field_0x342c = tmp_08 * param_0;
     field_0x3430 = tmp_08 * param_1;
 }
@@ -81,7 +81,7 @@ BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
     {
         deleteEquipItem(TRUE, FALSE);
         setGrabItemActor(p_actor);
-        field_0x33e4 = lit_8785;
+        field_0x33e4 = 38.0f;
         setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
         return true;
     }
@@ -92,10 +92,10 @@ BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
 /* 800E3BCC-800E3C1C 0DE50C 0050+00 2/2 0/0 0/0 .text            getGrabThrowRate__9daAlink_cFv */
 f32 daAlink_c::getGrabThrowRate() {
     if (checkHeavyStateOn(1, 1)) {
-        return lit_6023 * mHeavySpeedMultiplier;
+        return 0.6f * mHeavySpeedMultiplier;
     }
 
-    return lit_6023;
+    return 0.6f;
 }
 
 /* 800E3C1C-800E3C6C 0DE55C 0050+00 3/3 0/0 0/0 .text            checkGrabThrowAnime__9daAlink_cCFv
@@ -246,7 +246,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 /* 800E53AC-800E53F8 0DFCEC 004C+00 2/2 0/0 0/0 .text            initGrabNextMode__9daAlink_cFv */
 void daAlink_c::initGrabNextMode() {
     if (!checkGrabAnime()) {
-        setGrabUpperAnime(lit_6041);
+        setGrabUpperAnime(-1.0f);
     }
 
     checkNextAction(0);
@@ -574,10 +574,10 @@ BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* param_0) {
  */
 f32 daAlink_c::getGoatCatchDistance2() {
     if (fopAcM_GetName(field_0x27f4) == PROC_B_MGN) {
-        return lit_16066;
+        return 1000000.0f;
     }
 
-    return lit_16067;
+    return 90000.0f;
 }
 
 /* 800E8334-800E8354 0E2C74 0020+00 3/3 0/0 0/0 .text            endPushPull__9daAlink_cFv */
@@ -656,7 +656,7 @@ int daAlink_c::procGoatMoveInit() {
         onModeFlg(1);
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x37c8 = current.pos;
     field_0x2f98 = 3;
     current.angle.y = shape_angle.y + -0x4000;
@@ -742,7 +742,7 @@ int daAlink_c::procGoronMoveInit() {
         return 0;
     }
 
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     field_0x2f98 = 3;
     current.angle.y = shape_angle.y + -0x4000;
     field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;

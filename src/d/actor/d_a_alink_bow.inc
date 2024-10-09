@@ -65,7 +65,7 @@ void daAlink_c::setSlingModel() {
 
     J3DModelData* model_data = loadAramBmd(0x319, 0x2C00);
     mHeldItemModel = initModel(model_data, 0);
-    mItemBck.init(bck, 0, 2, lit_6040, 0, -1, false);
+    mItemBck.init(bck, 0, 2, 1.0f, 0, -1, false);
 
     mDoExt_setCurrentHeap(prev_heap);
     field_0x2f95 = 5;
@@ -206,7 +206,7 @@ BOOL daAlink_c::cancelBowMove() {
     if (mTargetedActor == NULL && !checkAttentionLock() && mFastShotTime == 0 &&
         !checkBowReadyAnime() && (!checkBowShootAnime() || mUpperFrameCtrl[2].checkAnmEnd()))
     {
-        resetUpperAnime(UPPER_2, lit_6041);
+        resetUpperAnime(UPPER_2, -1.0f);
         return true;
     }
 
@@ -239,9 +239,9 @@ void daAlink_c::setBowReadyAnime() {
     field_0x2f96 = 4;
 
     if (mEquipItem == PACHINKO) {
-        changeItemBck(0x1F1, lit_6041);
+        changeItemBck(0x1F1, -1.0f);
     } else {
-        changeItemBck(0x43, lit_6041);
+        changeItemBck(0x43, -1.0f);
     }
 }
 
@@ -549,16 +549,16 @@ bool daAlink_c::checkBowGrabLeftHand() const {
 /* 800DFC28-800DFC70 0DA568 0048+00 6/6 0/0 0/0 .text            setBowHangAnime__9daAlink_cFv */
 void daAlink_c::setBowHangAnime() {
     if (checkBowItem(mEquipItem)) {
-        changeItemBck(0x58, FLOAT_LABEL(lit_6108));
+        changeItemBck(0x58, 0.0f);
     }
 }
 
 /* 800DFC70-800DFCD8 0DA5B0 0068+00 3/3 0/0 0/0 .text            setBowNormalAnime__9daAlink_cFv */
 void daAlink_c::setBowNormalAnime() {
     if (checkBowItem(mEquipItem)) {
-        changeItemBck(0x59, lit_6041);
+        changeItemBck(0x59, -1.0f);
     } else if (mEquipItem == PACHINKO) {
-        changeItemBck(0x1F9, lit_6041);
+        changeItemBck(0x1F9, -1.0f);
     }
 }
 
@@ -584,9 +584,9 @@ int daAlink_c::procBowSubjectInit() {
         return 0;
     }
 
-    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, FLOAT_LABEL(lit_6108),
+    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f,
                             daAlinkHIO_bow_c0::m.mStartInterpolation);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setBowOrSlingStatus();
     return 1;
 }
@@ -622,14 +622,14 @@ int daAlink_c::procBowMove() {
     cancelBowMove();
 
     if (mFastShotTime == 0 && mProcVar2.field_0x300c != 0 && checkBowWaitAnime() && !itemButton()) {
-        resetUpperAnime(UPPER_2, lit_6041);
+        resetUpperAnime(UPPER_2, -1.0f);
     }
 
     mProcVar2.field_0x300c = 1;
     onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (!checkNextAction(0)) {
-        f32 var_f31 = lit_6041;
+        f32 var_f31 = -1.0f;
 
         if (checkZeroSpeedF()) {
             onModeFlg(1);

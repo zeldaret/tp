@@ -94,7 +94,7 @@ int daAlink_c::procGrassWhistleGet() {
     if (frameCtrl_p->checkAnmEnd()) {
         procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e.x,
                                  mProcVar3.field_0x300e.y, mProcVar3.field_0x300e.z, &field_0x37c8);
-    } else if (mEquipItem == NO_ITEM && frameCtrl_p->getFrame() >= lit_7710) {
+    } else if (mEquipItem == NO_ITEM && frameCtrl_p->getFrame() >= 9.0f) {
         setGrassWhistleModel(mProcVar2.field_0x300c);
 
         if (field_0x280c.getActor() != NULL) {
@@ -289,9 +289,9 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
     }
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, lit_6109);
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.field_0x70, 3.0f);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, lit_6109);
+        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
     }
 
     setGrassCancelStatus(0);

@@ -3,6 +3,7 @@
  * Player Spinner action handling
  */
 
+#include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_spinner.h"
 
 /* 8010D93C-8010D94C 10827C 0010+00 0/0 0/0 1/1 .text            getSpinnerGravity__9daAlink_cCFv */
@@ -125,13 +126,13 @@ int daAlink_c::procSpinnerReadyInit() {
 
     commonProcInit(PROC_SPINNER_READY);
     mRideAcKeep.setData(spinner);
-    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mSpeed, lit_7977,
+    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mSpeed, 6.0f,
                    daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndFrame,
                    daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mInterpolation);
-    mNormalSpeed = FLOAT_LABEL(lit_6108);
+    mNormalSpeed = 0.0f;
     setHeavyBoots(0);
 
-    speed.y = lit_7451;
+    speed.y = 26.0f;
     voiceStart(Z2SE_AL_V_JUMP_S);
     seStartOnlyReverb(Z2SE_AL_SPINNER_START);
 
