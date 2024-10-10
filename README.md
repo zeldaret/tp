@@ -1,12 +1,13 @@
 The Legend of Zelda: Twilight Princess  
-[![Build Status]][actions] ![Code Progress] ![DOL Progress] ![RELs Progress] [![Discord Badge]][discord]
+[![Build Status]][actions] [![Code Progress]][progress] [![DOL Progress]][progress] [![RELs Progress]][progress] [![Discord Badge]][discord]
 =============
 
-[Build Status]: https://github.com/zeldaret/tp/actions/workflows/ok-check.yml/badge.svg
-[actions]: https://github.com/zeldaret/tp/actions/workflows/ok-check.yml
-[Code Progress]: https://img.shields.io/endpoint?label=Code&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Dcode
-[DOL Progress]: https://img.shields.io/endpoint?label=DOL&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Ddol
-[RELs Progress]: https://img.shields.io/endpoint?label=RELs&url=https%3A%2F%2Fprogress.deco.mp%2Fdata%2Ftwilightprincess%2Fgcn_usa%2Fdefault%2F%3Fmode%3Dshield%26measure%3Drels
+[Build Status]: https://github.com/zeldaret/tp/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/zeldaret/tp/actions/workflows/build.yml
+[Code Progress]: https://decomp.dev/zeldaret/tp.svg?mode=shield&category=all&measure=code&label=Code
+[DOL Progress]: https://decomp.dev/zeldaret/tp.svg?mode=shield&category=dol&measure=code&label=DOL
+[RELs Progress]: https://decomp.dev/zeldaret/tp.svg?mode=shield&category=modules&measure=code&label=RELs
+[progress]: https://decomp.dev/zeldaret/tp
 [Discord Badge]: https://img.shields.io/discord/688807550715560050?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.com/invite/DqwyCBYKqf
 
@@ -18,9 +19,9 @@ More information about the project can be found here: https://zsrtp.link
 
 <!--ts-->
 * [Progress](https://zsrtp.link/progress)
-* [Project Setup](https://zsrtp.link/contribute/installation#set-up-dependencies)
-* [Building The Game](https://zsrtp.link/contribute/installation#building)
-* [Cleanup](https://zsrtp.link/contribute/installation#cleanup)
+* [Dependencies](#dependencies)
+* [Building](#building)
+* [Diffing](#diffing)
 * [Contributing](https://zsrtp.link/contribute)
 * [FAQ](https://zsrtp.link/about)
 
@@ -75,11 +76,13 @@ Building
   git clone https://github.com/zeldaret/tp.git
   ```
 
-- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/GZ2E01`.
-![](assets/dolphin-extract.png)
-  - To save space, the only necessary files are the following. Any others can be deleted.
+- Copy your disc image to `orig/GZ2E01`.  
+  Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC.
+  - To save space, extract the disc image and keep only the following files:
     - `sys/main.dol`
-    - `files/rels/*.rel`
+    - `files/RELS.arc`
+    - `files/rel/**/*.rel`
+
 - Configure:
 
   ```sh
@@ -92,11 +95,6 @@ Building
   ```sh
   ninja
   ```
-
-Visual Studio Code
-==================
-
-If desired, use the recommended Visual Studio Code settings by renaming the `.vscode.example` directory to `.vscode`.
 
 Diffing
 =======

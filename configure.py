@@ -29,9 +29,7 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "GZ2E01",  # USA
-    "GZ2P01",  # Europe
-    "GZ2J01",  # Japan
+    "GZ2E01",  # GCN USA
 ]
 
 parser = argparse.ArgumentParser()
@@ -153,8 +151,8 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.0.0"
-config.objdiff_tag = "v2.2.1"
+config.dtk_tag = "v1.1.0"
+config.objdiff_tag = "v2.3.0"
 config.sjiswrap_tag = "v1.1.1"
 config.wibo_tag = "0.6.11"
 
@@ -2111,7 +2109,6 @@ config.libs = [
 ]
 
 # Optional extra categories for progress tracking
-# Adjust as desired for your project
 config.progress_categories = [
     ProgressCategory("game", "TP Game Code"),
     ProgressCategory("core", "Core Engine"),
