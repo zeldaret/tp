@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    container: zeldaret/tp-build:main
+    container: ghcr.io/zeldaret/tp-build:main
 
     runs-on: ubuntu-latest
     strategy:
