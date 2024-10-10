@@ -8,9 +8,12 @@
 #include "d/d_scope.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/meter/d_meter2_info.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_meter2_info.h"
 #include "dol2asm.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "m_Do/m_Do_graphic.h"
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 
 //
 // Forward References:
@@ -240,8 +243,6 @@ SECTION_SDATA2 static f32 lit_3882 = 224.0f;
 SECTION_SDATA2 static f32 lit_3883 = 608.0f;
 
 /* 80193C68-80193FA0 18E5A8 0338+00 1/0 0/0 0/0 .text            draw__8dScope_cFv */
-// matches with literals and when vtables in this TU are fixed
-#ifdef NONMATCHING
 void dScope_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
     f32 temp_f1 = mScale;
@@ -279,17 +280,7 @@ void dScope_c::draw() {
     mpBlackTex->draw(temp_f28, temp_f27, mDoGph_gInf_c::getMaxXF() - temp_f28, temp_f26 - temp_f27,
                      false, false, false);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dScope_c::draw() {
-extern "C" asm void draw__8dScope_cFv() {
-    nofralloc
-#include "asm/d/d_scope/draw__8dScope_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80193FA0-80193FB4 18E8E0 0014+00 1/0 0/0 0/0 .text            isDead__8dScope_cFv */
 bool dScope_c::isDead() {
@@ -317,8 +308,6 @@ SECTION_SDATA2 static f32 lit_3904 = 1.0f;
 SECTION_SDATA2 static f64 lit_3906 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80193FD0-80194048 18E910 0078+00 1/0 0/0 0/0 .text            open_proc__8dScope_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dScope_c::open_proc() {
     mOpenTimer++;
     mScale = 3.0f - (mOpenTimer / 5.0f) * 1.5f;
@@ -330,16 +319,7 @@ void dScope_c::open_proc() {
         mProcess = PROC_MOVE;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScope_c::open_proc() {
-    nofralloc
-#include "asm/d/d_scope/open_proc__8dScope_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80194048-8019404C 18E988 0004+00 1/0 0/0 0/0 .text            move_init__8dScope_cFv */
 void dScope_c::move_init() {}
@@ -351,8 +331,6 @@ void dScope_c::move_proc() {}
 void dScope_c::close_init() {}
 
 /* 80194054-801940D4 18E994 0080+00 1/0 0/0 0/0 .text            close_proc__8dScope_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dScope_c::close_proc() {
     if (mOpenTimer > 0) {
         mOpenTimer--;
@@ -364,27 +342,13 @@ void dScope_c::close_proc() {
         mIsDead = true;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dScope_c::close_proc() {
-    nofralloc
-#include "asm/d/d_scope/close_proc__8dScope_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 801940D4-8019411C 18EA14 0048+00 1/0 0/0 0/0 .text            __dt__11dMeterSub_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dMeterSub_c::~dMeterSub_c() {
-extern "C" asm void __dt__11dMeterSub_cFv() {
-    nofralloc
-#include "asm/d/d_scope/__dt__11dMeterSub_cFv.s"
+// dMeterSub_c::~dMeterSub_c() {
+extern "C" void __dt__11dMeterSub_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8019411C-80194124 18EA5C 0008+00 2/0 0/0 0/0 .text            _create__11dMeterSub_cFv */
 // int dMeterSub_c::_create() {

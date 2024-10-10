@@ -116,13 +116,9 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     static JASOscillator::Point const sAdsTable[4];
     static JASOscillator::Data const sEnvOsc;
     static JASOscillator::Data const sPitchEnvOsc;
-#ifdef NONMATCHING
+
     static JASDefaultBankTable sDefaultBankTable;
     static TList sTrackList;
-#else
-    static u8 sDefaultBankTable[1036];
-    static u8 sTrackList[16];
-#endif
 
     JASSeqCtrl* getSeqCtrl() { return &mSeqCtrl; }
     u16 getPort(u32 param_0) { return mTrackPort.get(param_0); }

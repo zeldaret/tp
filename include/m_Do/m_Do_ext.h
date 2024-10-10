@@ -192,6 +192,10 @@ private:
 
 class mDoExt_blkAnm : public mDoExt_baseAnm {
 public:
+    mDoExt_blkAnm() {
+        mpAnm = NULL;
+    }
+
     /* 8000DA08 */ int init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
                             int i_attribute, f32 i_rate, s16 i_start, s16 param_6);
 
@@ -395,6 +399,19 @@ public:
     /* 8000F848 */ void initOldFrameMorf(f32, u16, u16);
     /* 8000F8CC */ void decOldFrameMorfCounter();
 
+    mDoExt_MtxCalcOldFrame(J3DTransformInfo* i_transinf, Quaternion* i_quat) {
+        mOldFrameTransInfo = i_transinf;
+        mOldFrameQuaternion = i_quat;
+        mOldFrameRate = 0.0f;
+        mOldFrameFlg = false;
+        mOldFrameStartJoint = 0;
+        mOldFrameEndJoint = 0;
+        mOldFrameMorfCounter = 0.0f;
+        field_0x8 = 0.0f;
+        field_0x10 = 0.0f;
+        field_0x14 = 0.0f;
+    }
+
     bool getOldFrameFlg() { return mOldFrameFlg; }
     void onOldFrameFlg() { mOldFrameFlg = true; }
     void offOldFrameFlg() { mOldFrameFlg = false; }
@@ -471,13 +488,10 @@ public:
 
 class mDoExt_3DlineMat_c {
 public:
-#ifndef NON_VIRTUAL_3DLINEMAT
     virtual int getMaterialID() = 0;
     virtual void setMaterial() = 0;
     virtual void draw() = 0;
-#else
-    /* 0x0 */ void* field_0x0;
-#endif
+
     /* 0x4 */ mDoExt_3DlineMat_c* field_0x4;
 };
 

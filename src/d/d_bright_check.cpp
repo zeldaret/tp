@@ -8,7 +8,7 @@
 #include "d/d_bright_check.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "d/msg/d_msg_string.h"
+#include "d/d_msg_string.h"
 #include "m_Do/m_Do_controller_pad.h"
 
 /* 803BB5B0-803BB5BC 0186D0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */

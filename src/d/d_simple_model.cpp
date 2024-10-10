@@ -4,7 +4,7 @@
 //
 
 #include "d/d_simple_model.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 
 //
 // External References:

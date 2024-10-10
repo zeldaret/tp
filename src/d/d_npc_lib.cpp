@@ -191,15 +191,10 @@ void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, M
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
+void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
                                   int param_4) {
-    nofralloc
-#include "asm/d/d_npc_lib/action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi.s"
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80251B60-80251B64 24C4A0 0004+00 0/0 0/0 2/2 .text            dbView__16dNpcLib_lookat_cFv */
@@ -214,18 +209,11 @@ SECTION_SDATA2 static f32 lit_3970[1 + 1 /* padding */] = {
 };
 
 /* 80251B64-80251EF8 24C4A4 0394+00 1/1 0/0 0/0 .text            setPrm__16dNpcLib_lookat_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::setPrm() {
-    nofralloc
-#include "asm/d/d_npc_lib/setPrm__16dNpcLib_lookat_cFv.s"
+void dNpcLib_lookat_c::setPrm() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80251EF8-80252018 24C838 0120+00 1/1 0/0 0/0 .text            update__16dNpcLib_lookat_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dNpcLib_lookat_c::update() {
     cXyz sp50;
     csXyz sp58(csXyz::Zero);
@@ -246,16 +234,7 @@ void dNpcLib_lookat_c::update() {
         mDoMtx_stack_c::multVec(&sp50, &field_0x04[i + 1]);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dNpcLib_lookat_c::update() {
-    nofralloc
-#include "asm/d/d_npc_lib/update__16dNpcLib_lookat_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80252018-80252094 24C958 007C+00 1/1 0/0 0/0 .text   limitter__16dNpcLib_lookat_cFPssss */
 int dNpcLib_lookat_c::limitter(s16* o_value, s16 param_1, s16 param_2, s16 param_3) {

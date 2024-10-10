@@ -6,15 +6,16 @@
 #define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/d_drawlist.h"
-#include "d/s/d_s_play.h"
+#include "d/d_s_play.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 
 //
 // Types:
@@ -413,15 +414,10 @@ void dDlst_2DTri_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DTri_c::draw() {
-extern "C" asm void draw__13dDlst_2DTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__13dDlst_2DTri_cFv.s"
+// void dDlst_2DTri_c::draw() {
+extern "C" void draw__13dDlst_2DTri_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80051CF0-80051E5C 04C630 016C+00 1/0 0/0 0/0 .text            draw__14dDlst_2DQuad_cFv */
@@ -450,15 +446,10 @@ void dDlst_2DQuad_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DQuad_c::draw() {
-extern "C" asm void draw__14dDlst_2DQuad_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__14dDlst_2DQuad_cFv.s"
+// void dDlst_2DQuad_c::draw() {
+extern "C" void draw__14dDlst_2DQuad_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80051E5C-80051F98 04C79C 013C+00 1/0 0/0 0/0 .text            draw__15dDlst_2DPoint_cFv */
@@ -485,15 +476,10 @@ void dDlst_2DPoint_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DPoint_c::draw() {
-extern "C" asm void draw__15dDlst_2DPoint_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__15dDlst_2DPoint_cFv.s"
+// void dDlst_2DPoint_c::draw() {
+extern "C" void draw__15dDlst_2DPoint_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* ############################################################################################## */
@@ -525,8 +511,6 @@ SECTION_SDATA2 static f64 lit_4076 = 4503599627370496.0 /* cast u32 to float */;
 SECTION_SDATA2 static f64 lit_4079 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80051F98-80052354 04C8D8 03BC+00 1/0 0/0 0/0 .text            draw__11dDlst_2DT_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2DT_c::draw() {
     f32 var5 = field_0xe;
     f32 var6 = field_0x10;
@@ -583,17 +567,7 @@ void dDlst_2DT_c::draw() {
     GXSetClipMode(GX_CLIP_ENABLE);
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DT_c::draw() {
-extern "C" asm void draw__11dDlst_2DT_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_2DT_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80452028-8045202C 000628 0004+00 10/10 0/0 0/0 .sdata2          @4270 */
@@ -798,15 +772,10 @@ void dDlst_2DT2_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DT2_c::draw() {
-extern "C" asm void draw__12dDlst_2DT2_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__12dDlst_2DT2_cFv.s"
+// void dDlst_2DT2_c::draw() {
+extern "C" void draw__12dDlst_2DT2_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* ############################################################################################## */
@@ -1141,8 +1110,6 @@ void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, 
 SECTION_SDATA2 static f32 lit_4360 = 256.0f;
 
 /* 80052C58-8005312C 04D598 04D4+00 1/0 0/0 0/0 .text            draw__11dDlst_2DM_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2DM_c::draw() {
     s16 r31 = field_0x22;
     s16 r30 = field_0x24;
@@ -1203,21 +1170,9 @@ void dDlst_2DM_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DM_c::draw() {
-extern "C" asm void draw__11dDlst_2DM_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_2DM_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8005312C-8005364C 04DA6C 0520+00 1/0 0/0 0/0 .text            draw__11dDlst_2Dm_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2Dm_c::draw() {
     s16 r31 = field_0x48;
     s16 r30 = field_0x4a;
@@ -1281,17 +1236,7 @@ void dDlst_2Dm_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2Dm_c::draw() {
-extern "C" asm void draw__11dDlst_2Dm_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/func_8005312C.s"
-}
-#pragma pop
-#endif
+
 
 /* 8005364C-800539DC 04DF8C 0390+00 1/0 0/0 0/0 .text            draw__12dDlst_2DMt_cFv */
 // vtable
@@ -1367,15 +1312,10 @@ void dDlst_2DMt_c::draw() {
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DMt_c::draw() {
-extern "C" asm void draw__12dDlst_2DMt_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__12dDlst_2DMt_cFv.s"
+// void dDlst_2DMt_c::draw() {
+extern "C" void draw__12dDlst_2DMt_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800539DC-80053A00 04E31C 0024+00 0/0 1/0 0/0 .text            getTexture__10J2DPictureCFUc */
@@ -1400,71 +1340,32 @@ dDlst_2D_c::dDlst_2D_c(ResTIMG* i_timg, s16 i_posX, s16 i_posY, s16 i_sizeX, s16
 }
 
 /* 80053A9C-80053B64 04E3DC 00C8+00 1/0 0/0 0/0 .text            draw__10dDlst_2D_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 void dDlst_2D_c::draw() {
     mpPicture.setAlpha(mAlpha);
     mpPicture.draw(mPosX, mPosY, mSizeX, mSizeY, false, false, false);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2D_c::draw() {
-extern "C" asm void draw__10dDlst_2D_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__10dDlst_2D_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053B64-80053BA0 04E4A4 003C+00 1/0 0/0 0/0 .text            draw__11dDlst_blo_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 void dDlst_blo_c::draw() {
     mScreen.draw(field_0x120, field_0x124, dComIfGp_getCurrentGrafPort());
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_blo_c::draw() {
-extern "C" asm void draw__11dDlst_blo_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_blo_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053BA0-80053BC0 04E4E0 0020+00 0/0 1/0 0/0 .text            clearAnmTransform__9J2DScreenFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::clearAnmTransform() {
-    nofralloc
-#include "asm/d/d_drawlist/clearAnmTransform__9J2DScreenFv.s"
+void J2DScreen::clearAnmTransform() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053BC0-80053C00 04E500 0040+00 0/0 7/0 0/0 .text            calcMtx__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::calcMtx() {
-    nofralloc
-#include "asm/d/d_drawlist/calcMtx__7J2DPaneFv.s"
+void J2DPane::calcMtx() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C00-80053C3C 04E540 003C+00 0/0 8/0 0/0 .text            makeMatrix__7J2DPaneFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/makeMatrix__7J2DPaneFff.s"
+void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C3C-80053C44 04E57C 0008+00 0/0 1/0 0/0 .text            getTypeID__7J2DPaneCFv */
 // s32 J2DPane::getTypeID() const {
@@ -1473,35 +1374,20 @@ extern "C" s32 getTypeID__7J2DPaneCFv() {
 }
 
 /* 80053C44-80053C6C 04E584 0028+00 0/0 1/0 0/0 .text setWhite__10J2DPictureFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DPicture::setWhite(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/setWhite__10J2DPictureFQ28JUtility6TColor.s"
+bool J2DPicture::setWhite(JUtility::TColor param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C6C-80053C94 04E5AC 0028+00 0/0 1/0 0/0 .text setBlack__10J2DPictureFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DPicture::setBlack(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/setBlack__10J2DPictureFQ28JUtility6TColor.s"
+bool J2DPicture::setBlack(JUtility::TColor param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C94-80053CDC 04E5D4 0048+00 1/0 0/0 0/0 .text            __dt__10J2DAnmBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J2DAnmBase::~J2DAnmBase() {
-extern "C" asm void __dt__10J2DAnmBaseFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__10J2DAnmBaseFv.s"
+// J2DAnmBase::~J2DAnmBase() {
+extern "C" void __dt__10J2DAnmBaseFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */
 void cM_rnd_c::init(int s0, int s1, int s2) {
@@ -1524,8 +1410,6 @@ SECTION_SDATA2 static f32 lit_4793 = 30307.0f;
 SECTION_SDATA2 static f64 lit_4794 = 1.0;
 
 /* 80053CEC-80053DE0 04E62C 00F4+00 2/2 0/0 0/0 .text            get__8cM_rnd_cFv */
-// matches with literals
-#ifdef NONMATCHING
 f32 cM_rnd_c::get() {
     seed0 = seed0 * 171 % 30269;
     seed1 = seed1 * 172 % 30307;
@@ -1534,16 +1418,7 @@ f32 cM_rnd_c::get() {
 
     return fabsf(rm);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cM_rnd_c::get() {
-    nofralloc
-#include "asm/d/d_drawlist/get__8cM_rnd_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053DE0-80053E18 04E720 0038+00 1/1 0/0 0/0 .text            getF__8cM_rnd_cFf */
 f32 cM_rnd_c::getF(f32 param_0) {
@@ -1615,15 +1490,10 @@ void dDlst_effectLine_c::draw() {
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_effectLine_c::draw() {
-extern "C" asm void draw__18dDlst_effectLine_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__18dDlst_effectLine_cFv.s"
+// void dDlst_effectLine_c::draw() {
+extern "C" void draw__18dDlst_effectLine_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800541F4-80054288 04EB34 0094+00 0/0 1/1 0/0 .text
@@ -1647,8 +1517,6 @@ void dDlst_effectLine_c::update(cXyz& param_0, _GXColor& i_lineColor, u16 param_
 
 /* 80054288-800543B4 04EBC8 012C+00 1/1 0/0 0/0 .text
  * set__18dDlst_shadowPoly_cFP10cBgD_Vtx_tUsUsUsP8cM3dGPla      */
-// matches with literals
-#ifdef NONMATCHING
 int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 param_3,
                             cM3dGPla* i_plane) {
     if (mCount >= getTriMax()) {
@@ -1657,7 +1525,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
 
     dDlst_shadowTri_c* dst = getTri() + mCount;
 
-    cXyz b(i_plane->GetNP());
+    cXyz b(*i_plane->GetNP());
     f32 temp_f3 = (1.0f - fabsf(b.y));
     temp_f3 *= temp_f3;
 
@@ -1671,17 +1539,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
     mCount++;
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDlst_shadowPoly_c::set(cBgD_Vtx_t* param_0, u16 param_1, u16 param_2, u16 param_3,
-                                cM3dGPla* param_4) {
-    nofralloc
-#include "asm/d/d_drawlist/set__18dDlst_shadowPoly_cFP10cBgD_Vtx_tUsUsUsP8cM3dGPla.s"
-}
-#pragma pop
-#endif
+
 
 /* 800543B4-80054478 04ECF4 00C4+00 1/1 0/0 0/0 .text            draw__18dDlst_shadowPoly_cFv */
 void dDlst_shadowPoly_c::draw() {
@@ -1850,27 +1708,17 @@ static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* para
     return TRUE;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
+static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                  dDlst_shadowPoly_c* param_4) {
-    nofralloc
-#include "asm/d/d_drawlist/realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c.s"
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80054A6C-80054ACC 04F3AC 0060+00 1/0 0/0 0/0 .text            __dt__14ShdwDrawPoly_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm ShdwDrawPoly_c::~ShdwDrawPoly_c() {
-extern "C" asm void __dt__14ShdwDrawPoly_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__14ShdwDrawPoly_cFv.s"
+// ShdwDrawPoly_c::~ShdwDrawPoly_c() {
+extern "C" void __dt__14ShdwDrawPoly_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452068-8045206C 000668 0004+00 1/1 0/0 0/0 .sdata2          @5155 */
@@ -1881,8 +1729,6 @@ SECTION_SDATA2 static f32 lit_5156 = 13.0f / 20.0f;
 
 /* 80054ACC-80054BD0 04F40C 0104+00 2/2 0/0 0/0 .text            setkankyoShadow__FP12dKy_tevstr_cPf
  */
-// matches with literals
-#ifdef NONMATCHING
 static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
@@ -1913,16 +1759,7 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
         *param_1 = 1.0f;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/setkankyoShadow__FP12dKy_tevstr_cPf.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80452070-80452074 000670 0004+00 1/1 0/0 0/0 .sdata2          @5267 */
@@ -1960,8 +1797,6 @@ SECTION_SDATA2 static f32 lit_5275 = -0.5f;
 
 /* 80054BD0-80055028 04F510 0458+00 1/1 0/0 0/0 .text
  * setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c */
-// Matches with literals
-#ifdef NONMATCHING
 u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
                                             f32 param_4, dKy_tevstr_c* param_5) {
     mShadowRealPoly.reset();
@@ -2017,17 +1852,7 @@ u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_
     cMtx_concat(mReceiverProjMtx, mViewMtx, mReceiverProjMtx);
     return r29;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
-                                            f32 param_4, dKy_tevstr_c* param_5) {
-    nofralloc
-#include "asm/d/d_drawlist/setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c.s"
-}
-#pragma pop
-#endif
+
 
 /* 80055028-800551D4 04F968 01AC+00 1/1 0/0 0/0 .text
  * set__18dDlst_shadowReal_cFUlP8J3DModelP4cXyzffP12dKy_tevstr_cff */
@@ -2142,8 +1967,6 @@ SECTION_SDATA2 static f32 lit_5378 = 16.0f;
 
 /* 800553EC-80055684 04FD2C 0298+00 1/1 0/0 0/0 .text
  * set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj      */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                    s16 param_4, f32 param_5, _GXTexObj* param_6) {
     if (param_5 < 0.0f) {
@@ -2195,47 +2018,26 @@ void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* pa
     cMtx_concat(j3dSys.getViewMtx(), mDoMtx_stack_c::get(), mMtx);
     mpTexObj = param_6;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                   s16 param_4, f32 param_5, _GXTexObj* param_6) {
-    nofralloc
-#include "asm/d/d_drawlist/set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80450654-80450658 0000D4 0004+00 1/1 0/0 0/0 .sdata           l_realImageSize$5383 */
 SECTION_SDATA static u16 l_realImageSize[2] = {192, 64};
 
 /* 80055684-80055768 04FFC4 00E4+00 1/1 0/0 0/0 .text            init__21dDlst_shadowControl_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::init() {
     for (int i = 0; i < 2; i++) {
         u16 size = l_realImageSize[i];
 
         u32 buffer_size = GXGetTexBufferSize(size, size, 5, GX_DISABLE, 0);
         field_0x15ef0[i] = new (0x20) u8[buffer_size];
-        GXInitTexObj(&field_0x15eb0[i], field_0x15ef0[i], size, size, GX_TF_TGB5A3, GX_CLAMP,
+        GXInitTexObj(&field_0x15eb0[i], field_0x15ef0[i], size, size, GX_TF_RGB5A3, GX_CLAMP,
                      GX_CLAMP, GX_DISABLE);
         GXInitTexObjLOD(&field_0x15eb0[i], GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE,
                         GX_FALSE, GX_ANISO_1);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::init() {
-    nofralloc
-#include "asm/d/d_drawlist/init__21dDlst_shadowControl_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80055768-800557C8 0500A8 0060+00 1/1 0/0 0/0 .text            reset__21dDlst_shadowControl_cFv */
 void dDlst_shadowControl_c::reset() {
@@ -2252,8 +2054,6 @@ void dDlst_shadowControl_c::reset() {
 }
 
 /* 800557C8-80055A14 050108 024C+00 0/0 1/1 0/0 .text imageDraw__21dDlst_shadowControl_cFPA4_f */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     GXCallDisplayList(l_matDL, 0x60);
     GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
@@ -2284,7 +2084,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
             r29 = (r29 + 1) % 4;
             if (r29 == 0) {
                 GXSetTexCopySrc(0, 0, r26, r26);
-                GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+                GXSetTexCopyDst(r27, r27, GX_TF_RGB5A3, GX_TRUE);
                 GXSetColorUpdate(GX_ENABLE);
                 GXCopyTex(field_0x15ef0[tex++], GX_TRUE);
                 GXPixModeSync();
@@ -2294,7 +2094,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     }
     if (r29) {
         GXSetTexCopySrc(0, 0, r26, r26);
-        GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+        GXSetTexCopyDst(r27, r27, GX_TF_RGB5A3, GX_TRUE);
         GXCopyTex(field_0x15ef0[tex], GX_TRUE);
         GXPixModeSync();
         GXSetAlphaUpdate(GX_DISABLE);
@@ -2302,16 +2102,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     GXSetClipMode(GX_CLIP_ENABLE);
     GXSetDither(GX_TRUE);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/imageDraw__21dDlst_shadowControl_cFPA4_f.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80450658-8045065C 0000D8 0004+00 1/1 0/0 0/0 .sdata           clearColor$5435 */
@@ -2322,8 +2113,6 @@ SECTION_SDATA2 static u32 lit_5433 = 0x00000020;
 
 /* 80055A14-80055C74 050354 0260+00 0/0 1/1 0/0 .text            draw__21dDlst_shadowControl_cFPA4_f
  */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::draw(Mtx param_0) {
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
@@ -2375,16 +2164,7 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetColorUpdate(GX_ENABLE);
     GXSetAlphaUpdate(GX_DISABLE);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::draw(Mtx param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/draw__21dDlst_shadowControl_cFPA4_f.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 804520B8-804520BC 0006B8 0004+00 1/1 0/0 0/0 .sdata2          @5551 */
@@ -2398,8 +2178,6 @@ SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 
 /* 80055C74-80055F1C 0505B4 02A8+00 0/0 1/1 1/1 .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
-// Matches with literals
-#ifdef NONMATCHING
 int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, cXyz* param_4,
                                        f32 param_5, f32 param_6, dKy_tevstr_c* param_7) {
     f32 fVar1;
@@ -2491,17 +2269,7 @@ int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, c
     }
     return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
-                                       f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
-    nofralloc
-#include "asm/d/d_drawlist/setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c.s"
-}
-#pragma pop
-#endif
+
 
 /* 80055F1C-80055F84 05085C 0068+00 0/0 1/1 45/45 .text
  * addReal__21dDlst_shadowControl_cFUlP8J3DModel                */
@@ -2584,70 +2352,40 @@ dDlst_list_c::dDlst_list_c() {
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_list_c::dDlst_list_c() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__12dDlst_list_cFv.s"
+dDlst_list_c::dDlst_list_c() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800561C8-800561F8 050B08 0030+00 1/1 0/0 0/0 .text __ct__26mDoExt_3DlineMatSortPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm mDoExt_3DlineMatSortPacket::mDoExt_3DlineMatSortPacket() {
-extern "C" asm void __ct__26mDoExt_3DlineMatSortPacketFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__26mDoExt_3DlineMatSortPacketFv.s"
+// mDoExt_3DlineMatSortPacket::mDoExt_3DlineMatSortPacket() {
+extern "C" void __ct__26mDoExt_3DlineMatSortPacketFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800561F8-80056270 050B38 0078+00 2/2 0/0 0/0 .text            __dt__18dDlst_shadowReal_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowReal_c::~dDlst_shadowReal_c() {
-extern "C" asm void __dt__18dDlst_shadowReal_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__18dDlst_shadowReal_cFv.s"
+// dDlst_shadowReal_c::~dDlst_shadowReal_c() {
+extern "C" void __dt__18dDlst_shadowReal_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80056270-800562D0 050BB0 0060+00 2/2 0/0 0/0 .text            __dt__17dDlst_shadowTri_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c::~dDlst_shadowTri_c() {
-extern "C" asm void __dt__17dDlst_shadowTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__17dDlst_shadowTri_cFv.s"
+// dDlst_shadowTri_c::~dDlst_shadowTri_c() {
+extern "C" void __dt__17dDlst_shadowTri_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800562D0-80056344 050C10 0074+00 1/1 0/0 0/0 .text            __ct__18dDlst_shadowReal_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowReal_c::dDlst_shadowReal_c() {
-extern "C" asm void __ct__18dDlst_shadowReal_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__18dDlst_shadowReal_cFv.s"
+// dDlst_shadowReal_c::dDlst_shadowReal_c() {
+extern "C" void __ct__18dDlst_shadowReal_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80056344-8005638C 050C84 0048+00 1/1 0/0 0/0 .text            __ct__17dDlst_shadowTri_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c::dDlst_shadowTri_c() {
-extern "C" asm void __ct__17dDlst_shadowTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__17dDlst_shadowTri_cFv.s"
+// dDlst_shadowTri_c::dDlst_shadowTri_c() {
+extern "C" void __ct__17dDlst_shadowTri_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8005638C-80056390 050CCC 0004+00 1/1 0/0 0/0 .text            __ct__20dDlst_shadowSimple_cFv */
 dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
@@ -2712,14 +2450,9 @@ dDlst_list_c::~dDlst_list_c() {
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_list_c::~dDlst_list_c() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__12dDlst_list_cFv.s"
+dDlst_list_c::~dDlst_list_c() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80056538-800565EC 050E78 00B4+00 0/0 1/1 0/0 .text            reset__12dDlst_list_cFv */
@@ -2752,8 +2485,6 @@ SECTION_SDATA2 static f32 lit_5747 = 9999.0f;
 
 /* 800565EC-800566D4 050F2C 00E8+00 0/0 2/2 0/0 .text
  * entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
                                          cXyz& param_2) {
     f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), param_2);
@@ -2775,17 +2506,7 @@ void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* para
     var_r0 = (size - 1) - var_r0;
     param_0->entryImm(param_1, var_r0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
-                                             cXyz& param_2) {
-    nofralloc
-#include "asm/d/d_drawlist/entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz.s"
-}
-#pragma pop
-#endif
+
 
 /* 800566D4-80056710 051014 003C+00 1/1 1/1 0/0 .text
  * drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer             */
@@ -2870,8 +2591,6 @@ SECTION_SDATA2 static f32 lit_5811 = 2.436000108718872f;
 
 /* 8005681C-800568D8 05115C 00BC+00 1/1 0/0 0/0 .text            wipeIn__12dDlst_list_cFfR8_GXColor
  */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
     mWipe = true;
     mWipeSpeed = i_wipeSpeed;
@@ -2884,16 +2603,7 @@ void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
     mWipeDlst.init(texture, mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(),
                    mDoGph_gInf_c::getWidth(), mDoGph_gInf_c::getHeight(), 0, 1, 1, 2.0f, 2.436f);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
-    nofralloc
-#include "asm/d/d_drawlist/wipeIn__12dDlst_list_cFfR8_GXColor.s"
-}
-#pragma pop
-#endif
+
 
 /* 800568D8-80056900 051218 0028+00 0/0 1/1 0/0 .text            wipeIn__12dDlst_list_cFf */
 void dDlst_list_c::wipeIn(f32 i_wipeSpeed) {
@@ -2905,8 +2615,6 @@ void dDlst_list_c::wipeIn(f32 i_wipeSpeed) {
 SECTION_SDATA2 static f32 lit_5838 = 1.218000054359436f;
 
 /* 80056900-800569A0 051240 00A0+00 0/0 1/1 0/0 .text            calcWipe__12dDlst_list_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::calcWipe() {
     if (mWipe) {
         mWipeRate += mWipeSpeed;
@@ -2921,16 +2629,7 @@ void dDlst_list_c::calcWipe() {
         dComIfGd_set2DXlu(&mWipeDlst);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::calcWipe() {
-    nofralloc
-#include "asm/d/d_drawlist/calcWipe__12dDlst_list_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 800569A0-800569A8 0512E0 0008+00 1/0 0/0 0/0 .text            getTri__22dDlst_shadowRealPoly_cFv
  */
@@ -2940,15 +2639,10 @@ dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
     return mShadowTri;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
-extern "C" asm dDlst_shadowTri_c * getTri__22dDlst_shadowRealPoly_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/getTri__22dDlst_shadowRealPoly_cFv.s"
+// dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
+extern "C" dDlst_shadowTri_c * getTri__22dDlst_shadowRealPoly_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800569A8-800569B0 0512E8 0008+00 1/0 0/0 0/0 .text getTriMax__22dDlst_shadowRealPoly_cFv */

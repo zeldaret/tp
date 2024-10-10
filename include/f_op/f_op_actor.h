@@ -1,7 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
-#include "d/kankyo/d_kankyo.h"
+#include "d/d_kankyo.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
 
@@ -274,6 +274,7 @@ public:
 
     void offWolfBiteDamage() { mFlags &= ~0x40; }
     void offCutDownHitFlg() { mFlags &= ~0x2; }
+    void offWolfDownPullFlg() { mFlags &= ~0x10; }
     void offDownFlg() { mFlags &= ~0x17; }
     void offWolfNoLock() { mFlags &= ~0x200; }
 

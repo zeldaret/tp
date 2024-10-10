@@ -9,12 +9,12 @@
 #include "d/d_path.h"
 #include "stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/com/d_com_static.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_com_static.h"
 #include "d/d_lib.h"
-#include "d/map/d_map_path_dmap.h"
-#include "d/map/d_map_path_fmap.h"
-#include "d/save/d_save_HIO.h"
+#include "d/d_map_path_dmap.h"
+#include "d/d_map_path_fmap.h"
+#include "d/d_save_HIO.h"
 #include "dol2asm.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
@@ -3083,8 +3083,6 @@ SECTION_SDATA2 static f64 lit_5317 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80027170-800272E0 021AB0 0170+00 1/1 10/10 63/63 .text            dStage_changeScene__FifUlScsi
  */
-// matches with literals
-#ifdef NONMATCHING
 int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle, int param_5) {
     stage_scls_info_dummy_class* scls;
 
@@ -3120,16 +3118,7 @@ int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle,
                           speed, mode, 1, wipe == 15 ? 0 : wipe, angle, 1, wipe_time);
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle, int param_5) {
-    nofralloc
-#include "asm/d/d_stage/dStage_changeScene__FifUlScsi.s"
-}
-#pragma pop
-#endif
+
 
 /* 800272E0-800272E8 021C20 0008+00 1/0 0/0 0/0 .text            getSclsInfo__15dStage_roomDt_cCFv
  */
@@ -3206,15 +3195,10 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
     return 1;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dStage_changeScene4Event(int param_0, s8 param_1, int param_2, bool param_3, f32 param_4,
+int dStage_changeScene4Event(int param_0, s8 param_1, int param_2, bool param_3, f32 param_4,
                                  u32 param_5, s16 param_6, int param_7) {
-    nofralloc
-#include "asm/d/d_stage/dStage_changeScene4Event__FiScibfUlsi.s"
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800274B0-80027524 021DF0 0074+00 0/0 1/1 0/0 .text            dStage_restartRoom__FUlUli */

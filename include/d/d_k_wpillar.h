@@ -2,7 +2,7 @@
 #define D_D_K_WPILLAR_H
 
 #include "f_op/f_op_kankyo_mng.h"
-#include "d/kankyo/d_kankyo.h"
+#include "d/d_kankyo.h"
 
 class dkWpillar_c : public kankyo_class {
 public:

@@ -107,7 +107,6 @@ s32 OSGetThreadPriority(OSThread* thread);
 static s32 CheckThreadQueue(OSThreadQueue* thread);
 s32 OSCheckActiveThreads(void);
 static void OSClearStack(u8 value);
-extern u8 data_804516D0[8];
 
 #ifdef __cplusplus
 };

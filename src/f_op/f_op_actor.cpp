@@ -4,11 +4,11 @@
  */
 
 #include "f_op/f_op_actor.h"
-#include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_actor.h"
-#include "d/com/d_com_static.h"
+#include "d/actor/d_a_alink.h"
+#include "d/d_com_inf_actor.h"
+#include "d/d_com_static.h"
 #include "d/d_demo.h"
-#include "d/s/d_s_play.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_actor_tag.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_pc/f_pc_manager.h"
@@ -317,5 +317,5 @@ extern actor_method_class g_fopAc_Method = {
 /* ############################################################################################## */
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
-extern u8 data_80450CC0[4 + 4 /* padding */];
-u8 data_80450CC0[4 + 4 /* padding */];
+class JAUSectionHeap;
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

@@ -4,10 +4,10 @@
 //
 
 #include "d/d_demo.h"
-#include "d/msg/d_msg_object.h"
+#include "d/d_msg_object.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
-#include "rel/d/a/d_a_movie_player/d_a_movie_player.h"
+#include "d/actor/d_a_movie_player.h"
 
 //
 // Forward References:
@@ -524,64 +524,39 @@ jstudio_tCreateObject_message::~jstudio_tCreateObject_message() {}
 /* 80037ED4-80038020 032814 014C+00 1/0 0/0 0/0 .text
  * create__Q220@unnamed@d_demo_cpp@29jstudio_tCreateObject_messageFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool
+bool
 jstudio_tCreateObject_message::create(JStudio::TObject** param_0,
                                       const JStudio::stb::data::TParse_TBlock_object& param_1) {
-    nofralloc
-#include "asm/d/d_demo/func_80037ED4.s"
+    // NONMATCHING
 }
-#pragma pop
 
 };  // namespace
 
 /* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
  * __dt__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFv   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void func_80037DE4() {
-    nofralloc
-#include "asm/d/d_demo/func_80037DE4.s"
+void func_80037DE4() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80037E44-80037E74 032784 0030+00 1/0 0/0 0/0 .text
  * adaptor_do_MESSAGE__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80037E44() {
-    nofralloc
-#include "asm/d/d_demo/func_80037E44.s"
+static void func_80037E44() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80037E74-80037ED4 0327B4 0060+00 1/0 0/0 0/0 .text
  * __dt__Q220@unnamed@d_demo_cpp@29jstudio_tCreateObject_messageFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void func_80037E74() {
-    nofralloc
-#include "asm/d/d_demo/func_80037E74.s"
+void func_80037E74() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80037ED4-80038020 032814 014C+00 1/0 0/0 0/0 .text
  * create__Q220@unnamed@d_demo_cpp@29jstudio_tCreateObject_messageFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_80037ED4() {
-    nofralloc
-#include "asm/d/d_demo/func_80037ED4.s"
+static void func_80037ED4() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451DB0-80451DB4 0003B0 0004+00 9/9 0/0 0/0 .sdata2          @4040 */
@@ -596,8 +571,6 @@ SECTION_SDATA2 static u8 lit_4040[4] = {
 SECTION_SDATA2 static f32 lit_4041 = 1.0f;
 
 /* 80038020-80038098 032960 0078+00 1/1 0/0 0/0 .text            __ct__13dDemo_actor_cFv */
-// matches with literals
-#ifdef NONMATCHING
 dDemo_actor_c::dDemo_actor_c() {
     mFlags = 0;
     mTrans.set(0.0f, 0.0f, 0.0f);
@@ -607,20 +580,9 @@ dDemo_actor_c::dDemo_actor_c() {
     mAnmFrameMax = FLT_MAX;
     mTexAnmFrameMax = FLT_MAX;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDemo_actor_c::dDemo_actor_c() {
-    nofralloc
-#include "asm/d/d_demo/__ct__13dDemo_actor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80038098-80038128 0329D8 0090+00 1/0 0/0 0/0 .text            __dt__13dDemo_actor_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 dDemo_actor_c::~dDemo_actor_c() {
     fopAc_ac_c* actor = getActor();
     if (actor != NULL) {
@@ -633,17 +595,7 @@ dDemo_actor_c::~dDemo_actor_c() {
     mBtkId = -1;
     mBrkId = -1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_actor_c::~dDemo_actor_c() {
-extern "C" asm void __dt__13dDemo_actor_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__13dDemo_actor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80038128-8003815C 032A68 0034+00 1/1 0/0 0/0 .text            getActor__13dDemo_actor_cFv */
 fopAc_ac_c* dDemo_actor_c::getActor() {
@@ -669,14 +621,9 @@ void dDemo_actor_c::setActor(fopAc_ac_c* pActor) {
 SECTION_SDATA2 static f64 lit_4127 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8003819C-80038338 032ADC 019C+00 1/1 1/1 1/1 .text            getPrm_Morf__13dDemo_actor_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dDemo_actor_c::getPrm_Morf() {
-    nofralloc
-#include "asm/d/d_demo/getPrm_Morf__13dDemo_actor_cFv.s"
+f32 dDemo_actor_c::getPrm_Morf() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80424648-8042465C 051368 0014+00 1/1 0/0 0/0 .bss             dummy$4203 */
@@ -746,25 +693,15 @@ static int it;
 
 /* 80038338-80038490 032C78 0158+00 0/0 1/1 5/5 .text getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* param_3,
+int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* param_3,
                                       u8* param_4) {
-    nofralloc
-#include "asm/d/d_demo/getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80038490-80038518 032DD0 0088+00 1/1 0/0 0/0 .text            dDemo_getJaiPointer__FPCcUliPUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void* dDemo_getJaiPointer(char const* param_0, u32 param_1, int param_2, u16* param_3) {
-    nofralloc
-#include "asm/d/d_demo/dDemo_getJaiPointer__FPCcUliPUs.s"
+static void* dDemo_getJaiPointer(char const* param_0, u32 param_1, int param_2, u16* param_3) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451DC0-80451DC4 0003C0 0004+00 1/1 0/0 0/0 .sdata2          @4152 */
@@ -843,16 +780,11 @@ int dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2, 
     return 1;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2,
+void dDemo_setDemoData(fopAc_ac_c* param_0, u8 param_1, mDoExt_McaMorf* param_2,
                            char const* a_name, int param_4, u16* param_5, u32 param_6,
                            s8 param_7) {
-    nofralloc
-#include "asm/d/d_demo/dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc.s"
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 800387A8-800387EC 0330E8 0044+00 1/1 0/0 0/0 .text            branchFile__FPCc */
@@ -873,14 +805,9 @@ SECTION_SDATA s16 dDemo_c::m_branchId = -1;
 
 /* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_actor_c::JSGSetData(u32 param_0, void const* param_1, u32 param_2) {
-    nofralloc
-#include "asm/d/d_demo/JSGSetData__13dDemo_actor_cFUlPCvUl.s"
+void dDemo_actor_c::JSGSetData(u32 param_0, void const* param_1, u32 param_2) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80451DC4-80451DC8 0003C4 0004+00 1/1 0/0 0/0 .sdata2          @4553 */
@@ -890,14 +817,9 @@ SECTION_SDATA2 static f32 lit_4553 = -1.0000000331813535e+32f;
 SECTION_SDATA2 static f32 lit_4554 = 1.0000000331813535e+32f;
 
 /* 80038920-80038980 033260 0060+00 1/0 0/0 0/0 .text JSGSetTranslation__13dDemo_actor_cFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_actor_c::JSGSetTranslation(Vec const& param_0) {
-    nofralloc
-#include "asm/d/d_demo/JSGSetTranslation__13dDemo_actor_cFRC3Vec.s"
+void dDemo_actor_c::JSGSetTranslation(Vec const& param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80038980-800389A8 0332C0 0028+00 1/0 0/0 0/0 .text JSGSetScaling__13dDemo_actor_cFRC3Vec */
 void dDemo_actor_c::JSGSetScaling(Vec const& i_scale) {
@@ -1110,8 +1032,6 @@ SECTION_SDATA2 static f32 lit_4710[1 + 1 /* padding */] = {
 
 /* 80038D84-80038DDC 0336C4 0058+00 1/0 0/0 0/0 .text            JSGGetViewRoll__14dDemo_camera_cCFv
  */
-// matches with literals
-#ifdef NONMATCHING
 f32 dDemo_camera_c::JSGGetViewRoll() const {
     view_class* view = getView();
     
@@ -1121,16 +1041,7 @@ f32 dDemo_camera_c::JSGGetViewRoll() const {
     
     return view->mBank * 0.0054931640625f;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dDemo_camera_c::JSGGetViewRoll() const {
-    nofralloc
-#include "asm/d/d_demo/JSGGetViewRoll__14dDemo_camera_cCFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80038DDC-80038DF0 03371C 0014+00 1/0 0/0 0/0 .text            JSGSetViewRoll__14dDemo_camera_cFf
  */
@@ -1352,37 +1263,22 @@ void dDemo_object_c::remove() {
 }
 
 /* 80039408-80039468 033D48 0060+00 1/0 0/0 0/0 .text            __dt__11dDemo_fog_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_fog_c::~dDemo_fog_c() {
-extern "C" asm void __dt__11dDemo_fog_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__11dDemo_fog_cFv.s"
+// dDemo_fog_c::~dDemo_fog_c() {
+extern "C" void __dt__11dDemo_fog_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039468-800394C8 033DA8 0060+00 1/0 0/0 0/0 .text            __dt__13dDemo_light_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_light_c::~dDemo_light_c() {
-extern "C" asm void __dt__13dDemo_light_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__13dDemo_light_cFv.s"
+// dDemo_light_c::~dDemo_light_c() {
+extern "C" void __dt__13dDemo_light_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800394C8-80039528 033E08 0060+00 1/0 0/0 0/0 .text            __dt__15dDemo_ambient_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_ambient_c::~dDemo_ambient_c() {
-extern "C" asm void __dt__15dDemo_ambient_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__15dDemo_ambient_cFv.s"
+// dDemo_ambient_c::~dDemo_ambient_c() {
+extern "C" void __dt__15dDemo_ambient_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039528-80039678 033E68 0150+00 1/0 0/0 0/0 .text
  * JSGFindObject__14dDemo_system_cCFPPQ26JStage7TObjectPCcQ26JStage8TEObject */
@@ -1427,8 +1323,6 @@ bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNa
 SECTION_SDATA2 static f64 lit_5123 = 1.0 / 29.999998435378155;
 
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
-#ifdef NONMATCHING
-// matches with data
 void dDemo_c::create() {
     m_system = new dDemo_system_c();
     m_control = new JStudio::TControl();
@@ -1453,48 +1347,24 @@ void dDemo_c::create() {
     m_mode = 0;
     reset();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::create() {
-    nofralloc
-#include "asm/d/d_demo/create__7dDemo_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80039910-80039AAC 034250 019C+00 0/0 1/1 0/0 .text            remove__7dDemo_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_c::remove() {
-    nofralloc
-#include "asm/d/d_demo/remove__7dDemo_cFv.s"
+void dDemo_c::remove() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039AAC-80039B0C 0343EC 0060+00 1/0 0/0 0/0 .text            __dt__14dDemo_system_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_system_c::~dDemo_system_c() {
-extern "C" asm void __dt__14dDemo_system_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__14dDemo_system_cFv.s"
+// dDemo_system_c::~dDemo_system_c() {
+extern "C" void __dt__14dDemo_system_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039B0C-80039B6C 03444C 0060+00 1/0 0/0 0/0 .text            __dt__17jmessage_tControlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm jmessage_tControl::~jmessage_tControl() {
-extern "C" asm void __dt__17jmessage_tControlFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__17jmessage_tControlFv.s"
+// jmessage_tControl::~jmessage_tControl() {
+extern "C" void __dt__17jmessage_tControlFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039B6C-80039CF8 0344AC 018C+00 1/1 1/1 0/0 .text            start__7dDemo_cFPCUcP4cXyzf */
 int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
@@ -1621,45 +1491,24 @@ void dDemo_c::reset() {
 }
 
 /* 80039F1C-80039F9C 03485C 0080+00 1/0 0/0 0/0 .text emitter_create__16dDemo_particle_cFUl */
-// matches with literals
-#ifdef NONMATCHING
 void dDemo_particle_c::emitter_create(u32 param_0) {
     cXyz tmp(0.0f, 0.0f, 0.0f);
     int stayNo = dComIfGp_roomControl_getStayNo();
     dComIfGp_particle_set(param_0, &tmp, NULL, NULL, 0xFF, NULL, stayNo, NULL, NULL, NULL);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_particle_c::emitter_create(u32 param_0) {
-    nofralloc
-#include "asm/d/d_demo/emitter_create__16dDemo_particle_cFUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 80039F9C-80039FFC 0348DC 0060+00 1/0 0/0 0/0 .text            __dt__16dDemo_particle_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_particle_c::~dDemo_particle_c() {
-extern "C" asm void __dt__16dDemo_particle_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__16dDemo_particle_cFv.s"
+// dDemo_particle_c::~dDemo_particle_c() {
+extern "C" void __dt__16dDemo_particle_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80039FFC-8003A05C 03493C 0060+00 1/0 0/0 0/0 .text            __dt__14dDemo_camera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDemo_camera_c::~dDemo_camera_c() {
-extern "C" asm void __dt__14dDemo_camera_cFv() {
-    nofralloc
-#include "asm/d/d_demo/__dt__14dDemo_camera_cFv.s"
+// dDemo_camera_c::~dDemo_camera_c() {
+extern "C" void __dt__14dDemo_camera_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003A05C-8003A088 03499C 002C+00 1/0 0/0 0/0 .text            JSGFindNodeID__13dDemo_actor_cCFPCc
  */
@@ -1697,14 +1546,9 @@ void dDemo_actor_c::JSGGetScaling(Vec* o_scale) const {
 }
 
 /* 8003A110-8003A188 034A50 0078+00 1/0 0/0 0/0 .text JSGGetRotation__13dDemo_actor_cCFP3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDemo_actor_c::JSGGetRotation(Vec* param_0) const {
-    nofralloc
-#include "asm/d/d_demo/JSGGetRotation__13dDemo_actor_cCFP3Vec.s"
+void dDemo_actor_c::JSGGetRotation(Vec* param_0) const {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037981E-80379840 005E7E 0020+02 0/0 0/0 0/0 .rodata          None */

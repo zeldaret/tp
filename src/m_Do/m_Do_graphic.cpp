@@ -9,9 +9,9 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/menu/d_menu_collect.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_menu_collect.h"
 #include "dol2asm.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_controller_pad.h"
@@ -1150,13 +1150,8 @@ int mDoGph_Create() {
 }
 
 /* 8000B1D0-8000B1E4 005B10 0014+00 0/0 1/0 0/0 .text            __sinit_m_Do_graphic_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_m_Do_graphic_cpp(){nofralloc
-#include "asm/m_Do/m_Do_graphic/__sinit_m_Do_graphic_cpp.s"
+void __sinit_m_Do_graphic_cpp(){// NONMATCHING
 }
-#pragma pop
 
 #pragma push
 #pragma force_active on

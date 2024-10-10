@@ -2,9 +2,9 @@
 #define D_D_STAGE_H
 
 #include "SSystem/SComponent/c_lib.h"
-#include "d/kankyo/d_kankyo.h"
-#include "d/kankyo/d_kankyo_data.h"
-#include "d/save/d_save.h"
+#include "d/d_kankyo.h"
+#include "d/d_kankyo_data.h"
+#include "d/d_save.h"
 #include "global.h"
 
 class JKRExpHeap;
@@ -1012,9 +1012,9 @@ class cBgS_GndChk;
 int dStage_RoomCheck(cBgS_GndChk* gndChk);
 void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
-void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* stageDt);
 dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
+void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage);
 
 inline bool dStage_roomRead_dt_c_ChkBg(u8 param_0) {
     return param_0 & 0x80;

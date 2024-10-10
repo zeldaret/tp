@@ -955,9 +955,7 @@ WARN_LOGFILE           =
 
 INPUT                  = docs/mainpage.h \
                          src/ \
-                         libs/ \
                          include/ \
-                         rel/ \
                          README.md
 
 # This tag can be used to specify the character encoding of the source files

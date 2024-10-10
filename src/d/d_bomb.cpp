@@ -4,7 +4,7 @@
  */
 
 #include "d/d_bomb.h"
-#include "rel/d/a/d_a_nbomb/d_a_nbomb.h"
+#include "d/actor/d_a_nbomb.h"
 
 bool dBomb_c::checkStateCarry() {
     return (fopAcM_checkCarryNow(this) || fopAcM_checkHookCarryNow(this) ||

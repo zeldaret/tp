@@ -7,7 +7,7 @@
 #include "dol2asm.h"
 #include "d/d_demo.h"
 #include "m_Do/m_Do_controller_pad.h"
-#include "rel/d/a/d_a_midna/d_a_midna.h"
+#include "d/actor/d_a_midna.h"
 
 //
 // Forward References:
@@ -741,14 +741,9 @@ SECTION_SDATA2 static u8 lit_5144[8] = {
 SECTION_SDATA2 static f32 lit_5145 = 182.04444885253906f;
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::fixedFrameEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/fixedFrameEvCamera__9dCamera_cFv.s"
+void dCamera_c::fixedFrameEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -768,14 +763,9 @@ SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
 SECTION_SDATA2 static f32 lit_5346 = 1.0f;
 
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::stokerEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/stokerEvCamera__9dCamera_cFv.s"
+void dCamera_c::stokerEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -798,14 +788,9 @@ SECTION_SDATA2 static f32 lit_5844[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_5846 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8008A974-8008B9B0 0852B4 103C+00 0/0 1/0 0/0 .text            rollingEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::rollingEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/rollingEvCamera__9dCamera_cFv.s"
+void dCamera_c::rollingEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -844,14 +829,9 @@ SECTION_SDATA2 static f64 lit_5962 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::fixedPositionEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/fixedPositionEvCamera__9dCamera_cFv.s"
+void dCamera_c::fixedPositionEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008BE2C-8008BE50 08676C 0024+00 0/0 1/0 0/0 .text            uniformTransEvCamera__9dCamera_cFv
  */
@@ -909,14 +889,9 @@ SECTION_SDATA2 static f32 lit_6682 = 360.0f;
 SECTION_SDATA2 static f32 lit_6683 = -360.0f;
 
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::transEvCamera(int param_0) {
-    nofralloc
-#include "asm/d/d_ev_camera/transEvCamera__9dCamera_cFi.s"
+void dCamera_c::transEvCamera(int param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
 static bool func_8008E750(char param_0) {
@@ -924,59 +899,34 @@ static bool func_8008E750(char param_0) {
 }
 
 /* 8008E774-8008E790 0890B4 001C+00 3/3 6/6 0/0 .text            __as__7cSGlobeFRC7cSGlobe */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cSGlobe::operator=(cSGlobe const& param_0) {
-extern "C" asm void __as__7cSGlobeFRC7cSGlobe() {
-    nofralloc
-#include "asm/d/d_ev_camera/__as__7cSGlobeFRC7cSGlobe.s"
+// void cSGlobe::operator=(cSGlobe const& param_0) {
+extern "C" void __as__7cSGlobeFRC7cSGlobe() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008E790-8008E894 0890D0 0104+00 1/1 7/7 0/0 .text            abs__4cXyzCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cXyz::abs() const {
-extern "C" asm void abs__4cXyzCFv() {
-    nofralloc
-#include "asm/d/d_ev_camera/abs__4cXyzCFv.s"
+// void cXyz::abs() const {
+extern "C" void abs__4cXyzCFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008E894-8008E8D0 0891D4 003C+00 2/2 6/6 0/0 .text            U__7cSGlobeFRC7cSAngle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cSGlobe::U(cSAngle const& param_0) {
-extern "C" asm void U__7cSGlobeFRC7cSAngle() {
-    nofralloc
-#include "asm/d/d_ev_camera/U__7cSGlobeFRC7cSAngle.s"
+// void cSGlobe::U(cSAngle const& param_0) {
+extern "C" void U__7cSGlobeFRC7cSAngle() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008E8D0-8008E904 089210 0034+00 1/1 1/1 0/0 .text            __ami__4cXyzFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cXyz::operator-=(Vec const& param_0) {
-extern "C" asm void __ami__4cXyzFRC3Vec() {
-    nofralloc
-#include "asm/d/d_ev_camera/__ami__4cXyzFRC3Vec.s"
+// void cXyz::operator-=(Vec const& param_0) {
+extern "C" void __ami__4cXyzFRC3Vec() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008E904-8008E938 089244 0034+00 1/1 5/5 0/0 .text            __apl__4cXyzFRC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cXyz::operator+=(Vec const& param_0) {
-extern "C" asm void __apl__4cXyzFRC3Vec() {
-    nofralloc
-#include "asm/d/d_ev_camera/__apl__4cXyzFRC3Vec.s"
+// void cXyz::operator+=(Vec const& param_0) {
+extern "C" void __apl__4cXyzFRC3Vec() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1041,25 +991,15 @@ SECTION_SDATA2 static f32 lit_7346 = 1.0f / 10.0f;
 SECTION_SDATA2 static f32 lit_7347 = 30.0f;
 
 /* 8008E938-8008FA58 089278 1120+00 0/0 1/0 0/0 .text            watchActorEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::watchActorEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/watchActorEvCamera__9dCamera_cFv.s"
+void dCamera_c::watchActorEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8008FA58-8008FA94 08A398 003C+00 2/2 7/7 0/0 .text            V__7cSGlobeFRC7cSAngle */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cSGlobe::V(cSAngle const& param_0) {
-extern "C" asm void V__7cSGlobeFRC7cSAngle() {
-    nofralloc
-#include "asm/d/d_ev_camera/V__7cSGlobeFRC7cSAngle.s"
+// void cSGlobe::V(cSAngle const& param_0) {
+extern "C" void V__7cSGlobeFRC7cSAngle() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80452940-80452944 000F40 0004+00 5/5 0/0 0/0 .sdata2          @7357 */
@@ -1068,14 +1008,9 @@ SECTION_SDATA2 static f32 lit_7357 = 15.0f;
 /* 8008FA94-8008FAE8 08A3D4 0054+00 7/7 0/0 0/0 .text
  * lineCollisionCheck__25@unnamed@d_ev_camera_cpp@F4cXyz4cXyzP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void func_8008FA94() {
-    nofralloc
-#include "asm/d/d_ev_camera/func_8008FA94.s"
+static void func_8008FA94() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1092,18 +1027,11 @@ static u8 lit_7364[12];
 static f32 DefaultGap_7363[3];
 
 /* 8008FAE8-80090174 08A428 068C+00 0/0 1/0 0/0 .text            restorePosEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::restorePosEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/restorePosEvCamera__9dCamera_cFv.s"
+void dCamera_c::restorePosEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80090174-80090230 08AAB4 00BC+00 0/0 1/0 0/0 .text            talktoEvCamera__9dCamera_cFv */
-// matches with sinit
-#ifdef NONMATCHING
 void dCamera_c::talktoEvCamera() {
     dComIfGp_event_getPt1();
     s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[field_0x190][3];
@@ -1125,16 +1053,7 @@ void dCamera_c::talktoEvCamera() {
 
     (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::talktoEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/talktoEvCamera__9dCamera_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1145,8 +1064,6 @@ SECTION_DEAD static char const* const stringBase_8037AC5C = "CameraID";
 #pragma pop
 
 /* 80090230-80090478 08AB70 0248+00 0/0 1/0 0/0 .text            maptoolIdEvCamera__9dCamera_cFv */
-// matches with sinit
-#ifdef NONMATCHING
 bool dCamera_c::maptoolIdEvCamera() {
     if (mCurCamTypeTimer == 0) {
         int id;
@@ -1227,16 +1144,7 @@ bool dCamera_c::maptoolIdEvCamera() {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dCamera_c::maptoolIdEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/maptoolIdEvCamera__9dCamera_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1247,8 +1155,6 @@ SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
 #pragma pop
 
 /* 80090478-80090514 08ADB8 009C+00 0/0 1/0 0/0 .text            styleEvCamera__9dCamera_cFv */
-// matches with sinit
-#ifdef NONMATCHING
 bool dCamera_c::styleEvCamera() {
     if (mCurCamTypeTimer == 0) {
         mEventData.field_0x8 = 0;
@@ -1259,16 +1165,7 @@ bool dCamera_c::styleEvCamera() {
     (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
     return isModeOK();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dCamera_c::styleEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/styleEvCamera__9dCamera_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1425,14 +1322,9 @@ SECTION_SDATA2 static f32 lit_8225 = 350.0f;
 SECTION_SDATA2 static f32 lit_8226 = 49.0f / 50.0f;
 
 /* 80090514-80091468 08AE54 0F54+00 0/0 1/0 0/0 .text            gameOverEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::gameOverEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/gameOverEvCamera__9dCamera_cFv.s"
+void dCamera_c::gameOverEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A80C-8037A828 006E6C 001C+00 0/0 0/0 0/0 .rodata          @5985 */
@@ -1613,27 +1505,17 @@ SECTION_SDATA2 static f32 lit_8752 = -30.0f;
 SECTION_SDATA2 static f32 lit_8753 = -160.0f;
 
 /* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::tactEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/tactEvCamera__9dCamera_cFv.s"
+void dCamera_c::tactEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009236C-800923B8 08CCAC 004C+00 1/1 0/0 0/0 .text
  * dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-/* static asm void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
+/* static void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
                                             s16 param_4) { */
-extern "C" asm void dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs() {
-    nofralloc
-#include "asm/d/d_ev_camera/dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs.s"
+extern "C" void dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800923B8-800923C0 08CCF8 0008+00 0/0 1/0 0/0 .text            turnToActorEvCamera__9dCamera_cFv
  */
@@ -1642,8 +1524,6 @@ bool dCamera_c::turnToActorEvCamera() {
 }
 
 /* 800923C0-800924D0 08CD00 0110+00 0/0 1/0 0/0 .text            stbWaitEvCamera__9dCamera_cFv */
-// matches with literals
-#ifdef NONMATCHING
 bool dCamera_c::stbWaitEvCamera() {
     dDemo_camera_c* demo_cam = dDemo_c::getCamera();
 #if DEBUG
@@ -1697,16 +1577,7 @@ bool dCamera_c::stbWaitEvCamera() {
 
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dCamera_c::stbWaitEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/stbWaitEvCamera__9dCamera_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 800924D0-8009258C 08CE10 00BC+00 0/0 1/0 0/0 .text            saveEvCamera__9dCamera_cFv */
 bool dCamera_c::saveEvCamera() {
@@ -1732,14 +1603,9 @@ SECTION_RODATA static u8 const lit_8840[24] = {
 COMPILER_STRIP_GATE(0x8037A884, &lit_8840);
 
 /* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::loadEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/loadEvCamera__9dCamera_cFv.s"
+void dCamera_c::loadEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037A89C-8037AA08 006EFC 016C+00 1/1 0/0 0/0 .rodata          @8969 */
@@ -1912,14 +1778,9 @@ SECTION_SDATA2 static f32 lit_9440 = 270.0f;
 SECTION_SDATA2 static f32 lit_9441 = 300.0f;
 
 /* 800929AC-800937AC 08D2EC 0E00+00 0/0 1/0 0/0 .text            useItem0EvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::useItem0EvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/useItem0EvCamera__9dCamera_cFv.s"
+void dCamera_c::useItem0EvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AA08-8037AA40 007068 0038+00 1/1 0/0 0/0 .rodata          @9468 */
@@ -1944,14 +1805,9 @@ SECTION_SDATA2 static f32 lit_9800 = -180.0f;
 SECTION_SDATA2 static f32 lit_9801 = 170.0f;
 
 /* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::useItem1EvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/useItem1EvCamera__9dCamera_cFv.s"
+void dCamera_c::useItem1EvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AA40-8037AAA4 0070A0 0064+00 1/1 0/0 0/0 .rodata          @9811 */
@@ -2007,14 +1863,9 @@ SECTION_SDATA2 static f32 lit_10125 = -164.0f;
 SECTION_SDATA2 static f32 lit_10126 = -220.0f;
 
 /* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::getItemEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/getItemEvCamera__9dCamera_cFv.s"
+void dCamera_c::getItemEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2045,14 +1896,9 @@ SECTION_SDATA2 static f32 lit_10283 = 9.0f / 100.0f;
 SECTION_SDATA2 static f32 lit_10284 = 9.0f / 50.0f;
 
 /* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::possessedEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/possessedEvCamera__9dCamera_cFv.s"
+void dCamera_c::possessedEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2069,24 +1915,14 @@ SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
 
 /* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::fixedFramesEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/fixedFramesEvCamera__9dCamera_cFv.s"
+void dCamera_c::fixedFramesEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::bSplineEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/bSplineEvCamera__9dCamera_cFv.s"
+void dCamera_c::bSplineEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2120,24 +1956,14 @@ SECTION_SDATA2 static f32 lit_10781 = 10000.0f;
 SECTION_SDATA2 static f32 lit_10782 = 0.25f;
 
 /* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::twoActor0EvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/twoActor0EvCamera__9dCamera_cFv.s"
+void dCamera_c::twoActor0EvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80095E7C-80095FD0 0907BC 0154+00 0/0 1/0 0/0 .text            peepHoleEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::peepHoleEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/peepHoleEvCamera__9dCamera_cFv.s"
+void dCamera_c::peepHoleEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2150,14 +1976,9 @@ SECTION_DEAD static char const* const stringBase_8037AD14 = "R_SP01";
 SECTION_SDATA2 static f32 lit_11068 = 245.0f;
 
 /* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::digHoleEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/digHoleEvCamera__9dCamera_cFv.s"
+void dCamera_c::digHoleEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AABC-8037AAE4 00711C 0028+00 1/1 0/0 0/0 .rodata          @11087 */
@@ -2202,14 +2023,9 @@ SECTION_SDATA2 static f32 lit_11421 = 0.75f;
 SECTION_SDATA2 static f32 lit_11422 = 2.0f / 5.0f;
 
 /* 800965AC-80096EDC 090EEC 0930+00 0/0 1/0 0/0 .text            hintTalkEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::hintTalkEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/hintTalkEvCamera__9dCamera_cFv.s"
+void dCamera_c::hintTalkEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8037AAE4-8037AAF4 007144 0010+00 1/1 0/0 0/0 .rodata          @11437 */
@@ -2234,14 +2050,9 @@ SECTION_DEAD static char const* const pad_8037AD67 = "";
 #pragma pop
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::bspTransEvCamera() {
-    nofralloc
-#include "asm/d/d_ev_camera/bspTransEvCamera__9dCamera_cFv.s"
+void dCamera_c::bspTransEvCamera() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80097694-8009769C 091FD4 0008+00 0/0 1/0 0/0 .text            portalWarpEvCamera__9dCamera_cFv */
 bool dCamera_c::portalWarpEvCamera() {
@@ -2249,13 +2060,8 @@ bool dCamera_c::portalWarpEvCamera() {
 }
 
 /* 8009769C-8009771C 091FDC 0080+00 0/0 1/0 0/0 .text            __sinit_d_ev_camera_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_d_ev_camera_cpp(){nofralloc
-#include "asm/d/d_ev_camera/__sinit_d_ev_camera_cpp.s"
+void __sinit_d_ev_camera_cpp(){// NONMATCHING
 }
-#pragma pop
 
 #pragma push
 #pragma force_active on
@@ -2264,123 +2070,68 @@ REGISTER_CTORS(0x8009769C, __sinit_d_ev_camera_cpp);
 
 /* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cXyz dCamera_c::attentionPos(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_ev_camera/attentionPos__9dCamera_cFP10fopAc_ac_c.s"
+cXyz dCamera_c::attentionPos(fopAc_ac_c* param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80097738-8009775C 092078 0024+00 10/10 10/10 0/0 .text directionOf__9dCamera_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cSAngle dCamera_c::directionOf(fopAc_ac_c* param_0) {
-extern "C" asm void directionOf__9dCamera_cFP10fopAc_ac_c() {
-    nofralloc
-#include "asm/d/d_ev_camera/directionOf__9dCamera_cFP10fopAc_ac_c.s"
+// cSAngle dCamera_c::directionOf(fopAc_ac_c* param_0) {
+extern "C" void directionOf__9dCamera_cFP10fopAc_ac_c() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009775C-80097778 09209C 001C+00 9/9 20/20 0/0 .text positionOf__9dCamera_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dCamera_c::positionOf(fopAc_ac_c* param_0) {
-extern "C" asm void positionOf__9dCamera_cFP10fopAc_ac_c() {
-    nofralloc
-#include "asm/d/d_ev_camera/positionOf__9dCamera_cFP10fopAc_ac_c.s"
+// void dCamera_c::positionOf(fopAc_ac_c* param_0) {
+extern "C" void positionOf__9dCamera_cFP10fopAc_ac_c() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80097778-8009778C 0920B8 0014+00 1/1 4/4 0/0 .text            setFlag__9dCamera_cFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dCamera_c::setFlag(u32 param_0) {
-extern "C" asm void setFlag__9dCamera_cFUl() {
-    nofralloc
-#include "asm/d/d_ev_camera/setFlag__9dCamera_cFUl.s"
+// void dCamera_c::setFlag(u32 param_0) {
+extern "C" void setFlag__9dCamera_cFUl() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009778C-800977A8 0920CC 001C+00 1/1 2/2 0/0 .text            eyePos__9dCamera_cFP10fopAc_ac_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dCamera_c::eyePos(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_ev_camera/eyePos__9dCamera_cFP10fopAc_ac_c.s"
+void dCamera_c::eyePos(fopAc_ac_c* param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800977A8-800977B4 0920E8 000C+00 1/1 0/0 0/0 .text            checkNoDraw__9daMidna_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
 // BOOL daMidna_c::checkNoDraw() const
-extern "C" asm void checkNoDraw__9daMidna_cCFv() {
-    nofralloc
-#include "asm/d/d_ev_camera/checkNoDraw__9daMidna_cCFv.s"
+extern "C" void checkNoDraw__9daMidna_cCFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800977B4-800977C0 0920F4 000C+00 1/1 1/1 0/0 .text            checkMidnaRide__9daPy_py_cCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void daPy_py_c::checkMidnaRide() const {
-extern "C" asm void checkMidnaRide__9daPy_py_cCFv() {
-    nofralloc
-#include "asm/d/d_ev_camera/checkMidnaRide__9daPy_py_cCFv.s"
+// void daPy_py_c::checkMidnaRide() const {
+extern "C" void checkMidnaRide__9daPy_py_cCFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800977C0-800977D8 092100 0018+00 1/1 1/1 0/0 .text            fopAcM_GetID__FPCv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void fopAcM_GetID(void const* param_0) {
-extern "C" asm void fopAcM_GetID__FPCv() {
-    nofralloc
-#include "asm/d/d_ev_camera/fopAcM_GetID__FPCv.s"
+// void fopAcM_GetID(void const* param_0) {
+extern "C" void fopAcM_GetID__FPCv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800977D8-800977F4 092118 001C+00 5/5 9/9 0/0 .text            __as__4cXyzFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void cXyz::operator=(cXyz const& param_0) {
-extern "C" asm void __as__4cXyzFRC4cXyz() {
-    nofralloc
-#include "asm/d/d_ev_camera/__as__4cXyzFRC4cXyz.s"
+// void cXyz::operator=(cXyz const& param_0) {
+extern "C" void __as__4cXyzFRC4cXyz() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800977F4-80097810 092134 001C+00 5/5 9/9 0/0 .text            __ct__4cXyzFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm cXyz::cXyz(cXyz const& param_0) {
-extern "C" asm void __ct__4cXyzFRC4cXyz() {
-    nofralloc
-#include "asm/d/d_ev_camera/__ct__4cXyzFRC4cXyz.s"
+// cXyz::cXyz(cXyz const& param_0) {
+extern "C" void __ct__4cXyzFRC4cXyz() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80097810-8009784C 092150 003C+00 1/1 0/0 0/0 .text
  * __dt__Q29dCamera_c26@class$5983d_ev_camera_cppFv             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void func_80097810() {
-    nofralloc
-#include "asm/d/d_ev_camera/func_80097810.s"
+void func_80097810() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8009784C-80097850 09218C 0004+00 1/1 0/0 0/0 .text
  * __ct__Q29dCamera_c26@class$5983d_ev_camera_cppFv             */
@@ -2414,14 +2165,9 @@ extern "C" bool checkBoarRide__9daPy_py_cCFv() {
 
 /* 80097870-80097878 0921B0 0008+00 0/0 1/0 0/0 .text            getShadowTalkAtnPos__9daAlink_cFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void daAlink_c::getShadowTalkAtnPos() {
-extern "C" asm void getShadowTalkAtnPos__9daAlink_cFv() {
-    nofralloc
-#include "asm/d/d_ev_camera/getShadowTalkAtnPos__9daAlink_cFv.s"
+// void daAlink_c::getShadowTalkAtnPos() {
+extern "C" void getShadowTalkAtnPos__9daAlink_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

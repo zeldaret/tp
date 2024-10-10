@@ -7,8 +7,8 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/kankyo/d_kankyo_rain.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_kankyo_rain.h"
 #include "f_op/f_op_kankyo_mng.h"
 
 #define EF_THUNDER01_BMD 0x1E

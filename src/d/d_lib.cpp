@@ -4,7 +4,7 @@
  */
 
 #include "d/d_lib.h"
-#include "d/event/d_event.h"
+#include "d/d_event.h"
 #include "d/d_stage.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRAram.h"

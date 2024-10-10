@@ -4,7 +4,7 @@
 //
 
 #include "d/d_vibration.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_math.h"
 
@@ -331,14 +331,9 @@ int dVibration_c::Run() {
     return 1;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dVibration_c::Run() {
-    nofralloc
-#include "asm/d/d_vibration/Run__12dVibration_cFv.s"
+int dVibration_c::Run() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 8006FA24-8006FB10 06A364 00EC+00 0/0 62/62 298/298 .text StartShock__12dVibration_cFii4cXyz */

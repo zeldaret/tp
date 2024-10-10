@@ -2,7 +2,7 @@
 #define D_D_GAMEOVER_H
 
 #include "SSystem/SComponent/c_phase.h"
-#include "d/menu/d_menu_save.h"
+#include "d/d_menu_save.h"
 #include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_hostIO.h"

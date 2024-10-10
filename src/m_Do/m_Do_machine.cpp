@@ -9,6 +9,11 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTVideo.h"
+#include "JSystem/JKernel/JKRAramStream.h"
+#include "JSystem/JKernel/JKRDvdAramRipper.h"
+#include "JSystem/JKernel/JKRAram.h"
+#include "SSystem/SComponent/c_malloc.h"
+#include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_DVDError.h"
@@ -584,8 +589,7 @@ extern GXRenderModeObj g_ntscZeldaProg = {
 GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
 
 /* 8000BD44-8000C0CC 006684 0388+00 0/0 2/1 0/0 .text            mDoMch_Create__Fv */
-// reg alloc r30 - r31
-#ifdef NONMATCHING
+// NONMATCHING - small regalloc
 int mDoMch_Create() {
     if (mDoMain::developmentMode == 0 || !(OSGetConsoleType() & 0x10000000)) {
         OSReportDisable();
@@ -680,13 +684,3 @@ int mDoMch_Create() {
     mDoMemCd_ThdInit();
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int mDoMch_Create() {
-    nofralloc
-#include "asm/m_Do/m_Do_machine/mDoMch_Create__Fv.s"
-}
-#pragma pop
-#endif
