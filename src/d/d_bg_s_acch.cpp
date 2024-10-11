@@ -589,7 +589,7 @@ f32 dBgS_Acch::GetWallAddY(Vec& param_0) {
 
 /* 80077278-80077288 071BB8 0010+00 0/0 2/2 0/0 .text            SetNowActorInfo__9dBgS_AcchFiPvUi
  */
-void dBgS_Acch::SetNowActorInfo(int bg_index, void* param_1, unsigned int param_2) {
+void dBgS_Acch::SetNowActorInfo(int bg_index, void* param_1, fpc_ProcID param_2) {
     m_bg_index = bg_index;
     field_0x7c = param_1;
     field_0x80 = param_2;

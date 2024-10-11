@@ -2888,7 +2888,7 @@ void* dMsgObject_c::getMsgDtPtr() {
 }
 
 /* 80238188-8023819C 232AC8 0014+00 0/0 0/0 1/1 .text            setProcessID__12dMsgObject_cFUi */
-void dMsgObject_c::setProcessID(unsigned int id) {
+void dMsgObject_c::setProcessID(fpc_ProcID id) {
     dMsgObject_getMsgObjectClass()->setProcessIDLocal(id);
 }
 

@@ -81,9 +81,9 @@ public:
 };  // Size: 0x11C
 
 s32 d_GameOver_Create(u8 param_0);
-bool d_GameOver_Delete(unsigned int& i_id);
+bool d_GameOver_Delete(fpc_ProcID& i_id);
 
-inline s32 d_GameOver_CheckDelete(unsigned int& id) {
+inline s32 d_GameOver_CheckDelete(fpc_ProcID& id) {
     if (id != UINT32_MAX) {
         dGameover_c* gameover = (dGameover_c*)fopMsgM_SearchByID(id);
 
@@ -97,7 +97,7 @@ inline s32 d_GameOver_CheckDelete(unsigned int& id) {
     return 0;
 }
 
-inline s32 d_GameOver_animeStart(unsigned int& id) {
+inline s32 d_GameOver_animeStart(fpc_ProcID& id) {
     if (id != UINT32_MAX) {
         dGameover_c* gameover = (dGameover_c*)fopMsgM_SearchByID(id);
 

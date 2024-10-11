@@ -18,7 +18,7 @@ void cBgS_ChkElm::Init() {
 }
 
 /* 80074110-80074128 06EA50 0018+00 1/0 0/0 0/0 .text Regist2__11cBgS_ChkElmFP9dBgW_BaseUiPv */
-void cBgS_ChkElm::Regist2(dBgW_Base* p_data, unsigned int actor_id, void* p_actor) {
+void cBgS_ChkElm::Regist2(dBgW_Base* p_data, fpc_ProcID actor_id, void* p_actor) {
     m_used = true;
     m_bgw_base_ptr = p_data;
     m_actor_id = actor_id;
@@ -38,7 +38,7 @@ void cBgS_ChkElm::Release() {
 static int l_SetCounter;
 
 /* 80074144-80074250 06EA84 010C+00 1/1 0/0 0/0 .text            Regist__4cBgSFP9dBgW_BaseUiPv */
-bool cBgS::Regist(dBgW_Base* p_data, unsigned int actor_id, void* p_actor) {
+bool cBgS::Regist(dBgW_Base* p_data, fpc_ProcID actor_id, void* p_actor) {
     if (p_data == NULL) {
         return true;
     } else if (p_data->ChkUsed()) {

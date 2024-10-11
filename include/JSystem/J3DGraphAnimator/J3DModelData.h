@@ -71,7 +71,7 @@ public:
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
     bool isLocked() { return mMaterialTable.isLocked(); }
     void entryTexMtxAnimator(J3DAnmTextureSRTKey* anm) { mMaterialTable.entryTexMtxAnimator(anm); }
-    void entryTevRegAnimator(J3DAnmTevRegKey* anm) { mMaterialTable.entryTevRegAnimator(anm); }
+    int entryTevRegAnimator(J3DAnmTevRegKey* anm) { return mMaterialTable.entryTevRegAnimator(anm); }
     void entryTexNoAnimator(J3DAnmTexPattern* anm) { mMaterialTable.entryTexNoAnimator(anm); }
     int removeTexNoAnimator(J3DAnmTexPattern* anm) {
         return mMaterialTable.removeTexNoAnimator(anm);

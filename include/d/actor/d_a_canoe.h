@@ -37,7 +37,7 @@ public:
     bool checkJumpRideFlg() { return mJumpRideFlg; }
     void incShapeOffsetY(f32 offset) { mShapeOffsetY += offset; }
     void incShapeAngleZ(s16 incZ) { shape_angle.z += incZ; }
-    void onRodID(unsigned int i_rodID) { mRodID = i_rodID; }
+    void onRodID(fpc_ProcID i_rodID) { mRodID = i_rodID; }
     void setWaterFallDownSe() { field_0x141c.startSound(Z2SE_AL_CANOE_FALL_DW, 0, -1); }
 
     void setPosAndAngle(cXyz const* i_pos, s16 i_angle) {

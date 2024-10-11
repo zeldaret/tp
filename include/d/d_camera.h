@@ -363,7 +363,7 @@ public:
     /* 80181490 */ void onHorseDush();
     /* 80181500 */ void GetForceLockOnActor();
     /* 80181534 */ void ForceLockOn(fopAc_ac_c*);
-    /* 80181560 */ void ForceLockOff(unsigned int);
+    /* 80181560 */ void ForceLockOff(fpc_ProcID);
     /* 8018159C */ void ForceLockOff(fopAc_ac_c*);
     /* 80181E20 */ cXyz Up();
     /* 80181E64 */ cXyz Eye();

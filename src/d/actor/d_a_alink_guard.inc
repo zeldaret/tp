@@ -91,7 +91,7 @@ void daAlink_c::stickArrowIncrement(int param_0) {
 /* 800DC8C4-800DCA2C 0D7204 0168+00 0/0 0/0 1/1 .text
  * setArrowShieldActor__9daAlink_cFP10fopAc_ac_ci               */
 void daAlink_c::setArrowShieldActor(fopAc_ac_c* i_actor, int param_1) {
-    unsigned int new_arrow_id = fopAcM_GetID(i_actor);
+    fpc_ProcID new_arrow_id = fopAcM_GetID(i_actor);
 
     int arrow_num = 0;
     for (; arrow_num < 16; arrow_num++) {

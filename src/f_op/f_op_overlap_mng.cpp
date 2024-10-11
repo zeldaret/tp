@@ -45,7 +45,7 @@ void fopOvlpM_Done(overlap_task_class* pTaskClass) {
 }
 
 /* 8001E540-8001E558 018E80 0018+00 0/0 1/1 0/0 .text            fopOvlpM_ToldAboutID__FUi */
-void fopOvlpM_ToldAboutID(unsigned int param_1) {
+void fopOvlpM_ToldAboutID(fpc_ProcID param_1) {
     l_fopOvlpM_overlap[0] ? l_fopOvlpM_overlap[0]->field_0x20[0x32] = param_1 : 0;
 }
 

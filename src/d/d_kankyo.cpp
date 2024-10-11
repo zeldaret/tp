@@ -4888,7 +4888,7 @@ static void dKy_Sound_init() {
 }
 
 /* 801A81C0-801A8474 1A2B00 02B4+00 0/0 5/5 27/27 .text            dKy_Sound_set__F4cXyziUii */
-void dKy_Sound_set(cXyz i_pos, int param_1, unsigned int i_actorID, int param_3) {
+void dKy_Sound_set(cXyz i_pos, int param_1, fpc_ProcID i_actorID, int param_3) {
     // NONMATCHING
 }
 

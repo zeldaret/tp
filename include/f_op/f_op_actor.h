@@ -125,7 +125,7 @@ public:
     void beforeProc();
     void onCondition(u16);
     void offCondition(u16);
-    bool checkCommandCatch();
+    BOOL checkCommandCatch();
     BOOL checkCommandDoor();
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
 

@@ -111,7 +111,7 @@ layer_class* fpcLy_CurrentLayer() {
 }
 
 /* 800216FC-8002174C 0050+00 s=1 e=0 z=0  None .text      fpcLy_Search__FUi */
-layer_class* fpcLy_Search(unsigned int i_id) {
+layer_class* fpcLy_Search(fpc_ProcID i_id) {
     layer_class* layer_p = fpcLy_RootLayer();
     while (layer_p != NULL) {
         if (layer_p->mLayerID == i_id) {
@@ -123,7 +123,7 @@ layer_class* fpcLy_Search(unsigned int i_id) {
 }
 
 /* 8002174C-800217BC 0070+00 s=0 e=5 z=0  None .text      fpcLy_Layer__FUi */
-layer_class* fpcLy_Layer(unsigned int i_id) {
+layer_class* fpcLy_Layer(fpc_ProcID i_id) {
     if (i_id == 0 || fpcLy_RootLayer()->mLayerID == i_id) {
         return fpcLy_RootLayer();
     } else if (i_id == ~2 || fpcLy_CurrentLayer()->mLayerID == i_id) {

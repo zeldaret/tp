@@ -39,8 +39,8 @@ public:
     /* 0x06D0 */ f32 mDistToPlayer;
     /* 0x06D4 */ s16 mTimers[5];
     /* 0x06DE */ s16 field_0x6de;
-    /* 0x06E0 */ unsigned int mTentacleIDs[2];
-    /* 0x06E8 */ unsigned int mMonkeyBombID;
+    /* 0x06E0 */ fpc_ProcID mTentacleIDs[2];
+    /* 0x06E8 */ fpc_ProcID mMonkeyBombID;
     /* 0x06EC */ u8 field_0x6ec;
     /* 0x06ED */ s8 mColpatType;
     /* 0x06F0 */ f32 mColpatBlend;

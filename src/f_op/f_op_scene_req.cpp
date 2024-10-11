@@ -159,7 +159,7 @@ s32 fopScnRq_Request(int param_1, scene_class* i_scene, s16 param_3, void* param
 }
 
 /* 8001F0FC-8001F11C 019A3C 0020+00 0/0 1/1 0/0 .text            fopScnRq_ReRequest__FUisPv */
-s32 fopScnRq_ReRequest(unsigned int param_1, s16 param_2, void* param_3) {
+s32 fopScnRq_ReRequest(fpc_ProcID param_1, s16 param_2, void* param_3) {
     return fpcNdRq_ReRequest(param_1, param_2, param_3);
 }
 

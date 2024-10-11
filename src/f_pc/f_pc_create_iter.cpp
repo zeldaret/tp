@@ -37,7 +37,7 @@ void* fpcCtIt_filter_JudgeInLayer(create_tag* i_createTag, fpcCtIt_jilprm_c* i_i
 }
 
 /* 80020A94-80020ACC 0038+00 s=0 e=1 z=0  None .text      fpcCtIt_JudgeInLayer__FUiPFPvPv_PvPv */
-void* fpcCtIt_JudgeInLayer(unsigned int i_layerID, fpcCtIt_JudgeFunc i_judgeFunc, void* i_data) {
+void* fpcCtIt_JudgeInLayer(fpc_ProcID i_layerID, fpcCtIt_JudgeFunc i_judgeFunc, void* i_data) {
     fpcCtIt_jilprm_c data;
     data.mLayerID = i_layerID;
     data.mFunc = i_judgeFunc;

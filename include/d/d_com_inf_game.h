@@ -493,7 +493,7 @@ public:
     }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
-    bool checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[param_0][i]; }
+    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[param_0][i]; }
 
     int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
     int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
@@ -813,7 +813,7 @@ public:
     /* 0x1DDF8 */ u8 mFadeBrightness;
     /* 0x1DDF9 */ u8 mWorldDark;
     /* 0x1DDFA */ s8 field_0x1ddfa;
-    /* 0x1DDFB */ s8 field_0x1ddfb;
+    /* 0x1DDFB */ s8 mPolyDamageOff;
     /* 0x1DDFC */ s8 field_0x1ddfc;
     /* 0x1DE00 */ u32 field_0x1de00;
     /* 0x1DE04 */ u32 field_0x1de04;
@@ -1009,6 +1009,7 @@ s8 dComIfGs_BossLife_public_Get();
 u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
+s8 dComIfGs_PolyDamageOff_Check();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1993,11 +1994,11 @@ inline void dComIfGp_init() {
     g_dComIfG_gameInfo.play.init();
 }
 
-inline bool dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
+inline u32 dComIfGp_checkPlayerStatus0(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 0, flag);
 }
 
-inline bool dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
+inline u32 dComIfGp_checkPlayerStatus1(int param_0, u32 flag) {
     return g_dComIfG_gameInfo.play.checkPlayerStatus(param_0, 1, flag);
 }
 
@@ -2005,7 +2006,7 @@ inline void dComIfGp_setItemLifeCount(float amount, u8 type) {
     g_dComIfG_gameInfo.play.setItemLifeCount(amount, type);
 }
 
-inline void dComIfGp_setItemRupeeCount(int amount) {
+inline void dComIfGp_setItemRupeeCount(s32 amount) {
     g_dComIfG_gameInfo.play.setItemRupeeCount(amount);
 }
 
@@ -3341,7 +3342,7 @@ inline void dComIfGp_event_setItemPartner(void* param_0) {
     g_dComIfG_gameInfo.play.getEvent().setPtI(param_0);
 }
 
-inline void dComIfGp_event_setItemPartnerId(unsigned int id) {
+inline void dComIfGp_event_setItemPartnerId(fpc_ProcID id) {
     g_dComIfG_gameInfo.play.getEvent().setPtI_Id(id);
 }
 

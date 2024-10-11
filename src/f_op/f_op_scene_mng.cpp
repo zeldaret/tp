@@ -8,7 +8,7 @@
 #include "f_op/f_op_scene_req.h"
 
 /* 8001ECB0-8001ECE0 0195F0 0030+00 0/0 7/7 1/1 .text            fopScnM_SearchByID__FUi */
-scene_class* fopScnM_SearchByID(unsigned int id) {
+scene_class* fopScnM_SearchByID(fpc_ProcID id) {
     return (scene_class*)fopScnIt_Judge((fop_ScnItFunc)fpcSch_JudgeByID, &id);
 }
 
@@ -30,7 +30,7 @@ int fopScnM_ChangeReq(scene_class* i_scene, s16 param_2, s16 param_3, u16 param_
 
 /* 8001ED3C-8001ED84 01967C 0048+00 0/0 1/1 0/0 .text            fopScnM_DeleteReq__FP11scene_class
  */
-unsigned int fopScnM_DeleteReq(scene_class* i_scene) {
+fpc_ProcID fopScnM_DeleteReq(scene_class* i_scene) {
     u32 sceneRequestID = fopScnRq_Request(1, i_scene, 0x7FFF, 0, 0x7FFF, 0);
     return sceneRequestID != 0xFFFFFFFF;
 }

@@ -101,7 +101,7 @@ public:
     /* 80077178 */ f32 GetWallAllLowH_R();
     /* 800771E4 */ f32 GetSpeedY();
     /* 80077200 */ f32 GetWallAddY(Vec&);
-    /* 80077278 */ void SetNowActorInfo(int, void*, unsigned int);
+    /* 80077278 */ void SetNowActorInfo(int, void*, fpc_ProcID);
     /* 80077288 */ void SetWallPolyIndex(int, int);
     /* 800772E8 */ void CalcMovePosWork();
     /* 8007732C */ void CalcWallRR();

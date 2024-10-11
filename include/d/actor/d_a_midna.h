@@ -51,7 +51,7 @@ public:
     void onForcePanic();
     u32 checkForceNormalColor() const;
     u32 checkForceTiredColor() const;
-    bool checkMidnaTired();
+    static bool checkMidnaTired();
     void onNoServiceWait();
 
     /* 804BC3E0 */ void modelCallBack(int);

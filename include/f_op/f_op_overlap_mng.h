@@ -10,7 +10,7 @@ int fopOvlpM_SceneIsStart();
 void fopOvlpM_Management();
 int fopOvlpM_IsOutReq(overlap_task_class* i_this);
 void fopOvlpM_Done(overlap_task_class* i_this);
-void fopOvlpM_ToldAboutID(unsigned int param_1);
+void fopOvlpM_ToldAboutID(fpc_ProcID param_1);
 int fopOvlpM_IsPeek();
 int fopOvlpM_IsDone();
 int fopOvlpM_IsDoingReq();

@@ -8,7 +8,7 @@
 
 /* 80021CD4-80021DCC 00F8+00 s=1 e=1 z=0  None .text
  * fpcLyTg_ToQueue__FP26layer_management_tag_classUiUsUs        */
-s32 fpcLyTg_ToQueue(layer_management_tag_class* i_LyTag, unsigned int i_layerID, u16 i_listID,
+s32 fpcLyTg_ToQueue(layer_management_tag_class* i_LyTag, fpc_ProcID i_layerID, u16 i_listID,
                     u16 i_listPriority) {
     if (i_LyTag->mpLayer == NULL && i_layerID == -1) {
         return 0;
@@ -48,7 +48,7 @@ s32 fpcLyTg_QueueTo(layer_management_tag_class* i_LyTag) {
 
 /* 80021E2C-80021EB0 0084+00 s=0 e=1 z=0  None .text
  * fpcLyTg_Move__FP26layer_management_tag_classUiUsUs           */
-s32 fpcLyTg_Move(layer_management_tag_class* i_LyTag, unsigned int i_layerID, u16 i_listID,
+s32 fpcLyTg_Move(layer_management_tag_class* i_LyTag, fpc_ProcID i_layerID, u16 i_listID,
                  u16 i_listPriority) {
     layer_class* layer = fpcLy_Layer(i_layerID);
     if (layer == NULL) {
@@ -63,7 +63,7 @@ s32 fpcLyTg_Move(layer_management_tag_class* i_LyTag, unsigned int i_layerID, u1
 
 /* 80021EB0-80021F64 00B4+00 s=0 e=1 z=0  None .text
  * fpcLyTg_Init__FP26layer_management_tag_classUiPv             */
-s32 fpcLyTg_Init(layer_management_tag_class* i_LyTag, unsigned int i_id, void* i_data) {
+s32 fpcLyTg_Init(layer_management_tag_class* i_LyTag, fpc_ProcID i_id, void* i_data) {
     static layer_management_tag_class crear = {
         NULL, NULL, NULL, NULL, 0, NULL, 0xFFFF, 0xFFFF,
     };

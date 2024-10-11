@@ -294,7 +294,7 @@ void fopAcM_setRoomLayer(void* i_proc, int i_roomNo) {
 }
 
 /* 800199BC-80019A2C 0142FC 0070+00 0/0 4/4 114/114 .text fopAcM_SearchByID__FUiPP10fopAc_ac_c */
-s32 fopAcM_SearchByID(unsigned int i_actorID, fopAc_ac_c** i_outActor) {
+s32 fopAcM_SearchByID(fpc_ProcID i_actorID, fopAc_ac_c** i_outActor) {
     if (fpcM_IsCreating(i_actorID)) {
         *i_outActor = NULL;
     } else {
@@ -340,7 +340,7 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
 fopAcM_prm_class* createAppend(u16 i_enemyNo, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                                const csXyz* i_angle, const cXyz* i_scale, s8 i_subType,
-                               unsigned int i_parentProcID) {
+                               fpc_ProcID i_parentProcID) {
     fopAcM_prm_class* params = fopAcM_CreateAppend();
     if (params == NULL) {
         return NULL;
@@ -391,7 +391,7 @@ void fopAcM_delete(fopAc_ac_c* i_actor) {
 }
 
 /* 80019CB8-80019D18 0145F8 0060+00 0/0 3/3 12/12 .text            fopAcM_delete__FUi */
-s32 fopAcM_delete(unsigned int i_actorID) {
+s32 fopAcM_delete(fpc_ProcID i_actorID) {
     void* actor = fopAcM_SearchByID(i_actorID);
 
     if (actor != NULL) {
@@ -455,7 +455,7 @@ void* fopAcM_fastCreate(const char* p_actorName, u32 i_parameters, const cXyz* i
 
 /* 80019EF0-80019F78 014830 0088+00 0/0 1/1 105/105 .text
  * fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i    */
-s32 fopAcM_createChild(s16 i_procName, unsigned int i_parentProcID, u32 i_parameters,
+s32 fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentProcID, u32 i_parameters,
                        const cXyz* i_pos, int i_roomNo, const csXyz* i_angle, const cXyz* i_scale,
                        s8 i_subType, createFunc i_createFunc) {
     fopAcM_prm_class* prm = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
@@ -469,7 +469,7 @@ s32 fopAcM_createChild(s16 i_procName, unsigned int i_parentProcID, u32 i_parame
 
 /* 80019F78-8001A138 0148B8 01C0+00 0/0 0/0 6/6 .text
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
-s32 fopAcM_createChildFromOffset(s16 i_procName, unsigned int i_parentProcID, u32 i_parameters,
+s32 fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentProcID, u32 i_parameters,
                                  const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
                                  const cXyz* i_scale, s8 i_subType, createFunc i_createFunc) {
     fopAc_ac_c* parent_actor = fopAcM_SearchByID(i_parentProcID);

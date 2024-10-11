@@ -12,7 +12,7 @@
 //
 
 /* 80020EA8-80020EC8 0020+00 s=0 e=1 z=0  None .text      fpcCt_IsCreatingByID__FUi */
-BOOL fpcCt_IsCreatingByID(unsigned int i_id) {
+BOOL fpcCt_IsCreatingByID(fpc_ProcID i_id) {
     return fpcCtRq_IsCreatingByID(i_id);
 }
 

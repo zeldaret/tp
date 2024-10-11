@@ -190,7 +190,7 @@ void daAlink_c::setHookshotCatchNow() {
 
 /* 80108A90-80108B34 1033D0 00A4+00 1/0 0/0 0/0 .text setHookshotCarryOffset__9daAlink_cFUiPC4cXyz
  */
-bool daAlink_c::setHookshotCarryOffset(unsigned int i_carryActorID, cXyz const* i_posOffset) {
+bool daAlink_c::setHookshotCarryOffset(fpc_ProcID i_carryActorID, cXyz const* i_posOffset) {
     if (dComIfGp_checkPlayerStatus1(0, 0x10000)) {
         fopAc_ac_c* carryActor_p = mCargoCarryAcKeep.getActor();
 

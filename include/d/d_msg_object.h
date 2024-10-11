@@ -118,7 +118,7 @@ public:
     /* 802380F4 */ static bool getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                          char*, char*, char*, s16*);
     /* 80238174 */ static void* getMsgDtPtr();
-    /* 80238188 */ static void setProcessID(unsigned int);
+    /* 80238188 */ static void setProcessID(fpc_ProcID);
     /* 8023819C */ static msg_class* getActor();
     /* 802381C0 */ static fopAc_ac_c* getpTalkActor();
     /* 802381D4 */ static int getIdx();
@@ -181,7 +181,7 @@ public:
     void onCameraCancelFlagLocal() { mCameraCancelFlag = true; }
     void offCameraCancelFlagLocal() { mCameraCancelFlag = false; }
     void onKillMessageFlagLocal() { mKillMessageFlag = true; }
-    void setProcessIDLocal(unsigned int id) { mProcessID = id; }
+    void setProcessIDLocal(fpc_ProcID id) { mProcessID = id; }
     void setPortalMessageIDLocal(u16 msgID) { mPortalMessageID = msgID; }
     void setInsectItemNoLocal(u8 itemNo) { mInsectItemNo = itemNo; }
     void setLetterNameIDLocal(u16 nameID) { mLetterNameID = nameID; }
