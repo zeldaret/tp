@@ -956,7 +956,7 @@ void dComIfG_inf_c::ct() {
     play.ct();
     mWorldDark = 0;
     field_0x1ddfa = -1;
-    field_0x1ddfb = 0;
+    mPolyDamageOff = false;
     field_0x1de00 = 0;
     field_0x1de04 = 0;
     field_0x1de08 = 0;
@@ -2245,12 +2245,12 @@ BOOL dComIfGs_Wolf_Change_Check() {
     return is_wolf;
 }
 
-void dComIfGs_PolyDamageOff_Set(s8 param_0) {
-    g_dComIfG_gameInfo.field_0x1ddfb = param_0;
+void dComIfGs_PolyDamageOff_Set(s8 i_setting) {
+    g_dComIfG_gameInfo.mPolyDamageOff = i_setting;
 }
 
-u8 dComIfGs_PolyDamageOff_Check() {
-    return g_dComIfG_gameInfo.field_0x1ddfb;
+s8 dComIfGs_PolyDamageOff_Check() {
+    return g_dComIfG_gameInfo.mPolyDamageOff;
 }
 
 void dComIfGs_shake_kandelaar() {

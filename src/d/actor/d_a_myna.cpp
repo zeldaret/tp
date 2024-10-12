@@ -1733,7 +1733,7 @@ void daMyna_c::attack2_talk_move() {
 }
 
 /* 809487EC-80948828 002C6C 003C+00 0/0 0/0 2/2 .text            soldoutItem__8daMyna_cFUi */
-void daMyna_c::soldoutItem(unsigned int i_itemId) {
+void daMyna_c::soldoutItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {
         if (i_itemId == mShopItems[i].mTargetActorID) {
             mShopItems[i].mItemStatus = 3;
@@ -1968,7 +1968,7 @@ void daMyna_c::deleteItem(int i_itemIndex) {
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
 // Nonmatching, no clue what's going on here
 #ifdef NONMATCHING
-void daMyna_c::deleteItem(unsigned int i_itemId) {
+void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {
         if (i_itemId == mShopItems[i].mTargetActorID) {
             mShopItems[i].mTargetActorID = -1;
@@ -1977,7 +1977,7 @@ void daMyna_c::deleteItem(unsigned int i_itemId) {
     }
 }
 #else
-void daMyna_c::deleteItem(unsigned int param_0) {
+void daMyna_c::deleteItem(fpc_ProcID param_0) {
     // NONMATCHING
 }
 #endif

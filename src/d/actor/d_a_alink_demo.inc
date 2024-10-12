@@ -199,7 +199,7 @@ int daAlink_c::checkDemoAction() {
                     if (!checkCanoeRide()) {
                         daCanoe_c* canoe_p =
                             (daCanoe_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchCanoe, NULL);
-                        unsigned int rodID =
+                        fpc_ProcID rodID =
                             fopAcM_create(PROC_MG_ROD, 0xD, &mLeftHandPos, -1, NULL, NULL, -1);
                         canoe_p->onRodID(rodID);
                         return procCanoeJumpRideInit(NULL);

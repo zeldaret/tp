@@ -21,7 +21,7 @@ public:
     void Release();
 
     virtual ~cBgS_ChkElm() {}
-    virtual void Regist2(dBgW_Base*, unsigned int, void*);
+    virtual void Regist2(dBgW_Base*, fpc_ProcID, void*);
 
     bool ChkUsed() const { return m_used; }
 };  // Size: 0x14
@@ -35,7 +35,7 @@ public:
 
 public:
     cBgS() {}
-    bool Regist(dBgW_Base*, unsigned int, void*);
+    bool Regist(dBgW_Base*, fpc_ProcID, void*);
     int Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
     f32 GroundCross(cBgS_GndChk*);

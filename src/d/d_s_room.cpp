@@ -121,7 +121,7 @@ static int deleteJugge(void* i_obj, void*) {
 }
 
 /* 8025B174-8025B194 255AB4 0020+00 1/1 0/0 0/0 .text isCreatingCallback__FP10create_tagPUi */
-static void* isCreatingCallback(create_tag* param_1, unsigned int* param_2) {
+static void* isCreatingCallback(create_tag* param_1, fpc_ProcID* param_2) {
     void* tagData = param_1->mBase.mpTagData;
     if (*(*((int**)tagData + 0x11) + 3) == *param_2) {
         return tagData;
@@ -130,7 +130,7 @@ static void* isCreatingCallback(create_tag* param_1, unsigned int* param_2) {
 }
 
 /* 8025B194-8025B1D0 255AD4 003C+00 2/2 0/0 0/0 .text            isCreating__FUi */
-static bool isCreating(unsigned int param_0) {
+static bool isCreating(fpc_ProcID param_0) {
     return fpcCtIt_Judge((fpcCtIt_JudgeFunc)isCreatingCallback, &param_0);
 }
 

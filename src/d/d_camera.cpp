@@ -4294,7 +4294,7 @@ void dCamera_c::ForceLockOn(fopAc_ac_c* param_0) {
 }
 
 /* 80181560-8018159C 17BEA0 003C+00 1/1 0/0 0/0 .text            ForceLockOff__9dCamera_cFUi */
-void dCamera_c::ForceLockOff(unsigned int param_0) {
+void dCamera_c::ForceLockOff(fpc_ProcID param_0) {
     // NONMATCHING
 }
 

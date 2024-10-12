@@ -26,7 +26,7 @@ void dCcD_GAtTgCoCommonBase::ct() {
 }
 
 /* 80083678-80083688 07DFB8 0010+00 0/0 2/2 0/0 .text SetHitApid__22dCcD_GAtTgCoCommonBaseFUi */
-void dCcD_GAtTgCoCommonBase::SetHitApid(unsigned int hitApid) {
+void dCcD_GAtTgCoCommonBase::SetHitApid(fpc_ProcID hitApid) {
     mApid = hitApid;
     mAc = NULL;
 }

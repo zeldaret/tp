@@ -14,7 +14,7 @@ base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc i_judgeFunc, void* i_data) {
 }
 
 /* 80021358-8002139C 0044+00 s=1 e=5 z=30  None .text      fpcEx_SearchByID__FUi */
-base_process_class* fpcEx_SearchByID(unsigned int i_id) {
+base_process_class* fpcEx_SearchByID(fpc_ProcID i_id) {
     if (i_id + 2 <= 1)
         return NULL;
 
@@ -22,7 +22,7 @@ base_process_class* fpcEx_SearchByID(unsigned int i_id) {
 }
 
 /* 8002139C-800213C4 0028+00 s=0 e=7 z=42  None .text      fpcEx_IsExist__FUi */
-BOOL fpcEx_IsExist(unsigned int i_id) {
+BOOL fpcEx_IsExist(fpc_ProcID i_id) {
     return fpcEx_SearchByID(i_id) != NULL ? TRUE : FALSE;
 }
 

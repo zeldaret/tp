@@ -87,7 +87,7 @@ public:
     /* 80948644 */ void attack2_move();
     /* 809486F8 */ void attack2_talk_init();
     /* 80948734 */ void attack2_talk_move();
-    /* 809487EC */ void soldoutItem(unsigned int);
+    /* 809487EC */ void soldoutItem(fpc_ProcID);
     /* 80948828 */ bool fly_attack_move();
     /* 80948ADC */ bool fly_return_move();
     /* 80948DFC */ void fly_body_wave();
@@ -95,7 +95,7 @@ public:
     /* 80948FAC */ int chkEvent();
     /* 809490B8 */ int orderEvent();
     /* 80949128 */ void deleteItem(int);
-    /* 80949144 */ void deleteItem(unsigned int);
+    /* 80949144 */ void deleteItem(fpc_ProcID);
     /* 80949190 */ void initiate();
     /* 80949408 */ void setItemInfo();
     /* 80949544 */ void setRoomNo();

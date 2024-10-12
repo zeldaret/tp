@@ -255,7 +255,7 @@ public:
     };
 
     enum daPy_FLG1 {
-        FLG1_UNK_40000000 = 0x40000000,
+        FLG1_ICE_FREEZE = 0x40000000,
         FLG1_UNK_20000000 = 0x20000000,
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_UNK_4000000 = 0x4000000,
@@ -387,6 +387,8 @@ public:
         ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_10000 = 0x10000,
+        ERFLG1_UNK_8000 = 0x8000,
+        ERFLG1_UNK_4000 = 0x4000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_1000 = 0x1000,
         ERFLG1_UNK_800 = 0x800,
@@ -437,6 +439,7 @@ public:
     };
 
     enum daPy_RFLG1 {
+        RFLG1_UNK_400 = 0x400,
         RFLG1_UNK_200 = 0x200,
         RFLG1_UNK_100 = 0x100,
         RFLG1_UNK_80 = 0x80,
@@ -551,8 +554,8 @@ public:
     static void setPlayerDamage(int, int);
     static void setMidnaMotionNum(int);
     static void setMidnaFaceNum(int);
-    BOOL checkShieldGet();
-    BOOL checkSwordGet();
+    static BOOL checkShieldGet();
+    static BOOL checkSwordGet();
     void changeDemoParam2(s16);
     cXyz getHeadTopPos() const;
     BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
@@ -641,7 +644,7 @@ public:
     virtual void onFrollCrashFlg(u8, int);  // weak
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
-    virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
+    virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
     virtual BOOL checkCutJumpCancelTurn() const { return FALSE; }
     virtual bool checkIronBallReturn() const;
     virtual bool checkIronBallGroundStop() const;
@@ -766,12 +769,13 @@ public:
     bool checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
-    bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_UNK_40000000); }
+    bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
     bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
     bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
+    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_UNK_800000)); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -852,10 +856,10 @@ public:
     cXyz* getRightHandPosP() { return &mRightHandPos; }
 
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
-    BOOL checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
-    BOOL checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
+    u32 checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
+    u32 checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
     BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_UNK_80000); }
-    bool checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
+    u32 checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }

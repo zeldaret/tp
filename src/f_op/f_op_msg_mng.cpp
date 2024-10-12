@@ -39,7 +39,7 @@ s32 fopMsgM_setStageLayer(void* param_0) {
 }
 
 /* 8001FA24-8001FA44 01A364 0020+00 3/3 14/14 4/4 .text            fopMsgM_SearchByID__FUi */
-msg_class* fopMsgM_SearchByID(unsigned int i_id) {
+msg_class* fopMsgM_SearchByID(fpc_ProcID i_id) {
     return (msg_class*)fpcEx_SearchByID(i_id);
 }
 
@@ -66,7 +66,7 @@ SECTION_SDATA2 static u8 lit_3902[4] = {
 /* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
 static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_msgID, u32* param_3,
-                                      unsigned int param_4) {
+                                      fpc_ProcID param_4) {
     fopMsg_prm_class* params =
         static_cast<fopMsg_prm_class*>(cMl::memalignB(-4, sizeof(fopMsg_prm_class)));
 
@@ -102,7 +102,7 @@ static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_m
  */
 static fopMsg_prm_timer* createTimerAppend(int i_mode, u32 i_limitMs, u8 i_type, u8 param_3,
                                            f32 param_4, f32 param_5, f32 param_6, f32 param_7,
-                                           unsigned int param_8) {
+                                           fpc_ProcID param_8) {
     fopMsg_prm_timer* appen = (fopMsg_prm_timer*)cMl::memalignB(-4, sizeof(fopMsg_prm_timer));
 
     if (appen == NULL) {
@@ -284,7 +284,7 @@ char* fopMsgM_messageGet(char* i_stringBuf, u32 i_msgId) {
 }
 
 /* 80020100-80020108 01AA40 0008+00 0/0 1/1 0/0 .text            fopMsgM_setMessageID__FUi */
-void fopMsgM_setMessageID(unsigned int msg_id) {
+void fopMsgM_setMessageID(fpc_ProcID msg_id) {
     i_msgID = msg_id;
 }
 

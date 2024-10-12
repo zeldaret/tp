@@ -4,6 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "d/d_kankyo_wether.h"
 #include "m_Do/m_Do_ext.h"
+#include "f_pc/f_pc_base.h"
 
 class JPABaseEmitter;
 class cBgS_PolyInfo;
@@ -30,7 +31,7 @@ void dKy_GxFog_set();
 static void GxFog_set();
 static void GxXFog_set();
 u8 dKy_pol_argument_get(cBgS_PolyInfo const* i_poly);
-void dKy_Sound_set(cXyz i_pos, int param_1, unsigned int i_actorID, int param_3);
+void dKy_Sound_set(cXyz i_pos, int param_1, fpc_ProcID i_actorID, int param_3);
 void dKy_bg_MAxx_proc(void* param_0);
 void dKy_change_colpat(u8 colpat);
 void dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);

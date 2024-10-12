@@ -1080,7 +1080,7 @@ u32 dEvt_control_c::getPId(void* actor) {
 }
 
 /* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
-fopAc_ac_c* dEvt_control_c::convPId(unsigned int id) {
+fopAc_ac_c* dEvt_control_c::convPId(fpc_ProcID id) {
     return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
 }
 
@@ -1207,7 +1207,7 @@ void dEvt_control_c::setPtI(void* ptr) {
     mPtI = getPId(ptr);
 }
 
-void dEvt_control_c::setPtI_Id(unsigned int id) {
+void dEvt_control_c::setPtI_Id(fpc_ProcID id) {
     mPtI = id;
 }
 

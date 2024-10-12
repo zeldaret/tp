@@ -348,6 +348,7 @@ public:
     void SetActor(void* ac) { mp_actor = (fopAc_ac_c*)ac; }
     cXyz* GetCCMoveP() { return &m_cc_move; }
     fpc_ProcID GetApid() const { return m_apid; }
+    u8 GetDmg() const { return m_dmg; }
 };  // Size = 0x1C
 
 STATIC_ASSERT(0x1C == sizeof(cCcD_Stts));
@@ -380,6 +381,7 @@ public:
     u32 MskRPrm(u32 mask) { return mRPrm & mask; }
     void OnSPrmBit(u32 flag) { mSPrm |= flag; }
     void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
+    u32 ChkSPrm(u32 prm) const { return MskSPrm(prm); }
 
     void Set(cCcD_SrcObjCommonBase const& src) { mSPrm = src.mSPrm; }
 };
@@ -517,6 +519,7 @@ public:
     cCcD_Obj* GetAtHitObj() { return mObjAt.GetHitObj(); }
     cCcD_Obj* GetTgHitObj() { return mObjTg.GetHitObj(); }
     cCcD_Obj* GetCoHitObj() { return mObjCo.GetHitObj(); }
+    u32 ChkAtSPrm(u32 prm) { return mObjAt.ChkSPrm(prm); }
 
 };  // Size = 0x40
 

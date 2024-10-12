@@ -20,7 +20,7 @@ public:
 
 // cPhs__Step fopScnRq_phase_ClearOverlap(scene_request_class* param_1);
 s32 fopScnRq_Request(int, scene_class*, s16, void*, s16, u16);
-s32 fopScnRq_ReRequest(unsigned int, s16, void*);
+s32 fopScnRq_ReRequest(fpc_ProcID, s16, void*);
 void fopScnRq_Handler(void);
 
 #endif

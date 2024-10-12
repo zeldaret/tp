@@ -125,7 +125,7 @@ public:
     dStage_MapEvent_dt_c* getStageEventDt();
     void sceneChange(int exitId);
     u32 getPId(void*);
-    fopAc_ac_c* convPId(unsigned int);
+    fopAc_ac_c* convPId(fpc_ProcID);
     void* getStbDemoData(char* resName);
     static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID, s32 roomNo);
     static dStage_MapEvent_dt_c* searchMapEventData(u8 mapToolID);
@@ -134,7 +134,7 @@ public:
     void setPt2(void* ptr);
     void setPtT(void* ptr);
     void setPtI(void* ptr);
-    void setPtI_Id(unsigned int id);
+    void setPtI_Id(fpc_ProcID id);
     void setPtD(void* ptr);
     void setGtItm(u8 itemNo);
 
@@ -155,7 +155,7 @@ public:
     void setCullRate(f32 f) { mCullRate = f; }
     BOOL chkTalkXY() { return field_0xed == 1 || field_0xed == 2; }
 
-    bool isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
+    BOOL isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
     fopAc_ac_c* getPt1() { return convPId(mPt1); }
     fopAc_ac_c* getPt2() { return convPId(mPt2); }
     fopAc_ac_c* getPtT() { return convPId(mPtT); }

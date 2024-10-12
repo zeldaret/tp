@@ -487,11 +487,11 @@ void* fopAcM_fastCreate(const char* p_actorName, u32 parameter, const cXyz* pAct
                         const csXyz* p_angle, const cXyz* p_scale, createFunc p_createFunc,
                         void* p_createFuncData);
 
-s32 fopAcM_createChild(s16 procName, unsigned int parentPId, u32 parameters, const cXyz* p_pos,
+s32 fopAcM_createChild(s16 procName, fpc_ProcID parentPId, u32 parameters, const cXyz* p_pos,
                        int roomNo, const csXyz* p_angle, const cXyz* p_scale, s8 subType,
                        createFunc p_createFunc);
 
-s32 fopAcM_createChildFromOffset(s16 procName, unsigned int parentProcID, u32 actorParams,
+s32 fopAcM_createChildFromOffset(s16 procName, fpc_ProcID parentProcID, u32 actorParams,
                                  const cXyz* p_pos, int roomNo, const csXyz* p_angle,
                                  const cXyz* p_scale, s8 subType, createFunc p_createFunc);
 

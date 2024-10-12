@@ -145,7 +145,7 @@ public:
     /* 800D0B8C */ virtual ~daAlink_matAnm_c();
     /* 8009D90C */ virtual void calc(J3DMaterial*) const;
 
-    static void decMorfFrame() {}
+    static void decMorfFrame() { cLib_calcTimer<u8>(&m_morf_frame); }
     static void setMorfFrame(u8 i_frame) { m_morf_frame = i_frame; }
 
     static u8 m_morf_frame;
@@ -681,6 +681,7 @@ public:
         FTANM_UNK_9B = 0x9B,
         FTANM_UNK_9C = 0x9C,
         FTANM_UNK_9D = 0x9D,
+        FTANM_UNK_9E = 0x9E,
         FTANM_UNK_9F = 0x9F,
         FTANM_UNK_A0 = 0xA0,
         FTANM_UNK_A1 = 0xA1,
@@ -1774,12 +1775,12 @@ public:
     /* 800D72BC */ int setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgTimer, int);
     /* 800D7478 */ void setDamagePointNormal(int);
     /* 800D74A4 */ void setLandDamagePoint(int);
-    /* 800D74F4 */ Vec* getDamageVec(dCcD_GObjInf*);
+    /* 800D74F4 */ cXyz* getDamageVec(dCcD_GObjInf*);
     /* 800D76C4 */ void setDashDamage();
     /* 800D7768 */ static BOOL checkIcePolygonDamage(cBgS_PolyInfo*);
     /* 800D77C8 */ BOOL checkMagicArmorNoDamage();
-    /* 800D7820 */ void checkPolyDamage();
-    /* 800D7A98 */ bool checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
+    /* 800D7820 */ int checkPolyDamage();
+    /* 800D7A98 */ BOOL checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
     /* 800D7B18 */ void damageTimerCount();
     /* 800D7BE8 */ bool checkHugeAttack(int) const;
     /* 800D7C14 */ bool checkLargeAttack(int) const;
@@ -1800,7 +1801,7 @@ public:
     /* 800DB418 */ int procCoElecDamage();
     /* 800DB5B0 */ int procStEscapeInit();
     /* 800DB610 */ int procStEscape();
-    /* 800DB6A4 */ int procDkCaughtInit(unsigned int);
+    /* 800DB6A4 */ int procDkCaughtInit(fpc_ProcID);
     /* 800DB860 */ int procDkCaught();
     /* 800DBC98 */ void setScreamWaitAnime();
     /* 800DBD1C */ int procScreamWaitInit();
@@ -3048,7 +3049,7 @@ public:
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
-    virtual bool setHookshotCarryOffset(unsigned int, cXyz const*);
+    virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
     virtual BOOL checkCutJumpCancelTurn() const;
     virtual bool checkIronBallReturn() const;
     virtual bool checkIronBallGroundStop() const;
@@ -3137,8 +3138,8 @@ public:
     virtual BOOL checkCutJumpMode() const;
 
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
-    bool checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
-    bool checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
+    BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
+    BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
     Z2WolfHowlMgr* i_getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
 
     // this might be a fake match, but helps fix usage in many functions
@@ -3199,8 +3200,9 @@ public:
     BOOL checkCopyRodReadyAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x54); }
     BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
     BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
+    BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
 
-    s16 checkWolfEyeUp() const { return mWolfEyeUp; }
+    int checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
     void offModeFlg(u32 flag) { mModeFlg &= ~flag; }
     bool swordButton() { return itemButtonCheck(8); }
@@ -3249,7 +3251,7 @@ public:
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
-    BOOL checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+    u32 checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
     MtxP getMagneBootsMtx() { return mMagneBootMtx; }
@@ -3582,8 +3584,8 @@ public:
     /* 0x02854 */ daPy_actorKeep_c mCargoCarryAcKeep;
     /* 0x0285C */ daPy_actorKeep_c field_0x285c;
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
-    /* 0x028B0 */ unsigned int mShieldArrowIDs[16];
-    /* 0x028F0 */ unsigned int mMsgClassID;
+    /* 0x028B0 */ fpc_ProcID mShieldArrowIDs[16];
+    /* 0x028F0 */ fpc_ProcID mMsgClassID;
     /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ int field_0x28f8;
     /* 0x028FC */ int field_0x28fc;
@@ -3722,6 +3724,7 @@ public:
     union {
         s16 field_0x3008;
         s16 mHowlExitID;
+        s16 mIceFreezeTimer;
     } /* 0x03008 */ mProcVar0;
     union {
         s16 field_0x300a;

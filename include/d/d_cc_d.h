@@ -116,12 +116,12 @@ public:
     /* 8008523C */ virtual ~dCcD_GStts() {}
     void ClrAt() { mAt = 0; }
     void ClrTg() { mTg = 0; }
-    void SetAtApid(unsigned int id) { mAtApid = id; }
-    void SetTgApid(unsigned int id) { mTgApid = id; }
+    void SetAtApid(fpc_ProcID id) { mAtApid = id; }
+    void SetTgApid(fpc_ProcID id) { mTgApid = id; }
     u8 GetRoomId() { return mRoomId; }
     void SetRoomId(int id) { mRoomId = id; }
-    unsigned int GetAtOldApid() { return mAtOldApid; }
-    unsigned int GetTgOldApid() { return mTgOldApid; }
+    fpc_ProcID GetAtOldApid() { return mAtOldApid; }
+    fpc_ProcID GetTgOldApid() { return mTgOldApid; }
     bool ChkNoActor() { return field_0x1C & 1;}
     bool ChkNoneActorPerfTblId() { return field_0x08 == 0xFFFF; }
     dCcG_At_Spl GetAtSpl() { return (dCcG_At_Spl)mAt; }
@@ -174,7 +174,7 @@ public:
     dCcD_GAtTgCoCommonBase() { ct(); }
     /* 8008364C */ void ClrActorInfo();
     /* 80083660 */ void ct();
-    /* 80083678 */ void SetHitApid(unsigned int);
+    /* 80083678 */ void SetHitApid(fpc_ProcID);
     /* 80083688 */ fopAc_ac_c* GetAc();
     /* 80083704 */ void Set(dCcD_SrcGAtTgCoCommonBase const&);
     /* 80083718 */ void SetEffCounterTimer();
@@ -359,9 +359,9 @@ public:
     dCcD_HitCallback GetCoHitCallback() { return mGObjCo.GetHitCallback(); }
     dCcD_HitCallback GetAtHitCallback() { return mGObjAt.GetHitCallback(); }
     dCcD_HitCallback GetTgHitCallback() { return mGObjTg.GetHitCallback(); }
-    void SetCoHitApid(unsigned int apid) { mGObjCo.SetHitApid(apid); }
-    void SetAtHitApid(unsigned int apid) { mGObjAt.SetHitApid(apid); }
-    void SetTgHitApid(unsigned int apid) { mGObjTg.SetHitApid(apid); }
+    void SetCoHitApid(fpc_ProcID apid) { mGObjCo.SetHitApid(apid); }
+    void SetAtHitApid(fpc_ProcID apid) { mGObjAt.SetHitApid(apid); }
+    void SetTgHitApid(fpc_ProcID apid) { mGObjTg.SetHitApid(apid); }
     void OnCoHitNoActor() { mGObjCo.OnRPrm(1); }
     void OffCoHitNoActor() { mGObjCo.OffRPrm(1); }
     void OnAtHitNoActor() { mGObjAt.OnRPrm(2); }
@@ -404,6 +404,7 @@ public:
     cXyz* GetTgHitPosP() { return mGObjTg.GetHitPosP(); }
     cXyz* GetTgRVecP() { return mGObjTg.GetRVecP(); }
     bool ChkTgHookshotThrough() { return mGObjTg.ChkSPrm(0x80); }
+    bool ChkTgShieldHit() { return mGObjTg.ChkRPrm(2); }
     
     static const Z2SoundID m_hitSeID[24];
 
