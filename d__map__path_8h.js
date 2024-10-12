@@ -12,5 +12,7 @@ var d__map__path_8h =
     [ "dRenderingFDAmap_c", "structdRenderingFDAmap__c.html", "structdRenderingFDAmap__c" ],
     [ "dMpath_n", "structdMpath__n.html", "structdMpath__n" ],
     [ "dMpath_n::dTexObjAggregate_c", "classdMpath__n_1_1dTexObjAggregate__c.html", "classdMpath__n_1_1dTexObjAggregate__c" ],
+    [ "dMpath_RGB5A3_s", "structdMpath__RGB5A3__s.html", "structdMpath__RGB5A3__s" ],
+    [ "dMpath_RGB5A3_palDt_s", "structdMpath__RGB5A3__palDt__s.html", "structdMpath__RGB5A3__palDt__s" ],
     [ "STATIC_ASSERT", "d__map__path_8h.html#ac2f4f90ed7eba63af793e45dda0db0c4", null ]
 ];

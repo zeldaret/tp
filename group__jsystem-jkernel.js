@@ -34,19 +34,19 @@ var group__jsystem_jkernel =
       [ "sMessageQueue", "classJKRAram.html#a1c1aa449e165e396d59db23e9d1682ef", null ],
       [ "sSZSBufferSize", "classJKRAram.html#a41464913861668ea0c19c7350b32ccb6", null ]
     ] ],
-    [ "JKRAramArchive", "structJKRAramArchive.html", [
-      [ "JKRAramArchive", "structJKRAramArchive.html#a8fe68292192ab83cff7db7b1f77aeaa4", null ],
-      [ "~JKRAramArchive", "structJKRAramArchive.html#a300c46fd773ce0e3548848b21789695a", null ],
-      [ "fetchResource", "structJKRAramArchive.html#a61f78ee65d695467d18bd24501225742", null ],
-      [ "fetchResource", "structJKRAramArchive.html#a6cd424e1bb4452d0495e583566c17c30", null ],
-      [ "fetchResource_subroutine", "structJKRAramArchive.html#a9b61a3728c82adc21d61fc64a6e9577a", null ],
-      [ "fetchResource_subroutine", "structJKRAramArchive.html#a0f8863fcceb9c45f7102d27e260be585", null ],
-      [ "getAramAddress", "structJKRAramArchive.html#aab9512b4625d56fb5aa997ac97a83563", null ],
-      [ "getAramAddress_Entry", "structJKRAramArchive.html#a4584f45c28e22ed48f6694665130f496", null ],
-      [ "getExpandedResSize", "structJKRAramArchive.html#a2a5c535502d0826240fff7abf76ba863", null ],
-      [ "open", "structJKRAramArchive.html#a712ca9e0c02679eccf11825114f801f3", null ],
-      [ "mBlock", "structJKRAramArchive.html#a5943f150eb33240be6becc56025ec66e", null ],
-      [ "mDvdFile", "structJKRAramArchive.html#ab43432b834eddbb1cb499e9daab61c0b", null ]
+    [ "JKRAramArchive", "classJKRAramArchive.html", [
+      [ "JKRAramArchive", "classJKRAramArchive.html#a8fe68292192ab83cff7db7b1f77aeaa4", null ],
+      [ "~JKRAramArchive", "classJKRAramArchive.html#a300c46fd773ce0e3548848b21789695a", null ],
+      [ "fetchResource", "classJKRAramArchive.html#a61f78ee65d695467d18bd24501225742", null ],
+      [ "fetchResource", "classJKRAramArchive.html#a6cd424e1bb4452d0495e583566c17c30", null ],
+      [ "fetchResource_subroutine", "classJKRAramArchive.html#a9b61a3728c82adc21d61fc64a6e9577a", null ],
+      [ "fetchResource_subroutine", "classJKRAramArchive.html#a0f8863fcceb9c45f7102d27e260be585", null ],
+      [ "getAramAddress", "classJKRAramArchive.html#aab9512b4625d56fb5aa997ac97a83563", null ],
+      [ "getAramAddress_Entry", "classJKRAramArchive.html#a4584f45c28e22ed48f6694665130f496", null ],
+      [ "getExpandedResSize", "classJKRAramArchive.html#a2a5c535502d0826240fff7abf76ba863", null ],
+      [ "open", "classJKRAramArchive.html#a712ca9e0c02679eccf11825114f801f3", null ],
+      [ "mBlock", "classJKRAramArchive.html#a5943f150eb33240be6becc56025ec66e", null ],
+      [ "mDvdFile", "classJKRAramArchive.html#ab43432b834eddbb1cb499e9daab61c0b", null ]
     ] ],
     [ "JKRAramBlock", "classJKRAramBlock.html", [
       [ "JKRAramBlock", "classJKRAramBlock.html#acd1f10514fefc9414701cbaa5d21028d", null ],
@@ -276,7 +276,7 @@ var group__jsystem_jkernel =
       [ "findTypeResource", "classJKRArchive.html#a28d78a01c7959b1c437c9d34e5b52486", null ],
       [ "getCurrentDirID", "classJKRArchive.html#a470c3d58ac55be93058bda92e00c3ff1", null ],
       [ "getDirEntry", "classJKRArchive.html#a878f03fa4834ffe84c7da51ef37e2020", null ],
-      [ "getExpandedResSize", "classJKRArchive.html#a580f252b34389d86d134bfd574e2299c", null ],
+      [ "getExpandedResSize", "classJKRArchive.html#aa77391685b6b7f83c9ad334ad325ea1b", null ],
       [ "getExpandSize", "classJKRArchive.html#a196cc0d9bac3dc93bb98268f328d8d91", null ],
       [ "getFileAttribute", "classJKRArchive.html#a4abd59f5344dfabd21b18ec5139419c4", null ],
       [ "getFirstFile", "classJKRArchive.html#a09be25ae4902a90d31cf4ebfb6325104", null ],

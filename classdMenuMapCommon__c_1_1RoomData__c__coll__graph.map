@@ -1,0 +1,6 @@
+<map id="dMenuMapCommon_c::RoomData_c" name="dMenuMapCommon_c::RoomData_c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,109,238,135"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="254,115,264,122,256,129,238,132,238,126,254,124,259,122,252,119"/>
+<area shape="rect" id="Node000002" href="$structdMenuMapCommon__c_1_1RoomData__c_1_1data.html" title=" " alt="" coords="12,5,231,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,61,124,109,119,109,119,61"/>
+</map>

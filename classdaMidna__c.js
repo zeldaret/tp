@@ -52,7 +52,7 @@ var classdaMidna__c =
     [ "checkShadowModelDrawSmode", "classdaMidna__c.html#ae18414dcfb46852378f464c96d0cec6a", null ],
     [ "checkShadowModeTalkWait", "classdaMidna__c.html#a4673a7acb185f9fdcc910dde48618675", null ],
     [ "checkShadowReturnEnd", "classdaMidna__c.html#aae0faa3e6706043d857578f9e26ae087", null ],
-    [ "checkStateFlg0", "classdaMidna__c.html#a1cabffed61778180049c1d12f9184c63", null ],
+    [ "checkStateFlg0", "classdaMidna__c.html#a3658d78dfab57b9c7d3ae79979c771f8", null ],
     [ "checkStateFlg1", "classdaMidna__c.html#aa03aaddc0ebc2c55178d2b739b790c45", null ],
     [ "checkWolfNoPos", "classdaMidna__c.html#ab8d57b3f68abf9aff6147b95505449a6", null ],
     [ "clearEyeMove", "classdaMidna__c.html#a7078092a9c352e9a334a36880d8f553a", null ],

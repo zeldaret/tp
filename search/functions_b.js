@@ -64,7 +64,7 @@ var searchData=
   ['key_5fwait_5finit_5f_5f5dmw_5fcfuc_61',['key_wait_init__5dMw_cFUc',['../d__menu__window_8cpp.html#aac03b1a6636e2f841fface3a9bce5114',1,'d_menu_window.cpp']]],
   ['key_5fwait_5fproc_62',['key_wait_proc',['../classdMw__c.html#acbc3a72173c689ffca0ebbbf1c85b8f5',1,'dMw_c']]],
   ['key_5fwait_5fproc_5f_5f5dmw_5fcfv_63',['key_wait_proc__5dMw_cFv',['../d__menu__window_8cpp.html#a93c262255a5517f1c591d273f30a6546',1,'d_menu_window.cpp']]],
-  ['keycheck_64',['keyCheck',['../structdMeterMap__c.html#adedc31f0182a3e7eb00174fd318b40e0',1,'dMeterMap_c']]],
+  ['keycheck_64',['keyCheck',['../classdMeterMap__c.html#adedc31f0182a3e7eb00174fd318b40e0',1,'dMeterMap_c']]],
   ['keygetcocallback_65',['keyGetCoCallBack',['../d__a__obj__smallkey_8cpp.html#af997f97ebc985b7d052c689a7c8da11c',1,'d_a_obj_smallkey.cpp']]],
   ['keygetcocallback_5f_5ffp10fopac_5fac_5fcp12dccd_5fgobjinfp10fopac_5fac_5fcp12dccd_5fgobjinf_66',['keyGetCoCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf',['../d__a__obj__smallkey_8cpp.html#ab001a0975f4baad2afca303468360f5a',1,'d_a_obj_smallkey.cpp']]],
   ['keygettgcallback_67',['keyGetTgCallBack',['../d__a__obj__smallkey_8cpp.html#ada57b48cdbc9aca28a0e1763e22ce55f',1,'d_a_obj_smallkey.cpp']]],

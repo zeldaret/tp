@@ -879,7 +879,7 @@ var sectionId = 'dynsection-1';
 <!-- Node227 -->
 <g id="Node000227" class="node">
 <title>Node227</title>
-<g id="a_Node000227"><a xlink:href="structdMeterMap__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000227"><a xlink:href="classdMeterMap__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1270.75,-1272.25 1195.5,-1272.25 1195.5,-1253 1270.75,-1253 1270.75,-1272.25"/>
 <text text-anchor="middle" x="1233.12" y="-1258.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMeterMap_c</text>
 </a>

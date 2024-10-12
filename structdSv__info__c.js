@@ -33,7 +33,6 @@ var structdSv__info__c =
     [ "isSwitch", "structdSv__info__c.html#a179fbed82a10f80ee9cdbc6aa8365ec5", null ],
     [ "isSwitch", "structdSv__info__c.html#a179fbed82a10f80ee9cdbc6aa8365ec5", null ],
     [ "isSwitch", "structdSv__info__c.html#a7e54fe64c0a5f5dd62ddea31f8b15818", null ],
-    [ "isSwitch", "structdSv__info__c.html#a179fbed82a10f80ee9cdbc6aa8365ec5", null ],
     [ "memory_to_card", "structdSv__info__c.html#a6d4a984ce8f98630217bdceee4930e0c", null ],
     [ "offActor", "structdSv__info__c.html#af226b2d5b16b892524bd6858ec657de5", null ],
     [ "offSwitch", "structdSv__info__c.html#ae1ca6bef8ee26a9265fdcddaa796c5b5", null ],

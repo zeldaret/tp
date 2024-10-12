@@ -1,6 +1,6 @@
 var structdMenuMapCommon__c_1_1Stage__c =
 [
-    [ "Stage_c_data", "structdMenuMapCommon__c_1_1Stage__c_1_1Stage__c__data.html", "structdMenuMapCommon__c_1_1Stage__c_1_1Stage__c__data" ],
-    [ "field_0x0", "structdMenuMapCommon__c_1_1Stage__c.html#ab2bd921c801ee60deaa52cd43b659a00", null ],
-    [ "field_0x4", "structdMenuMapCommon__c_1_1Stage__c.html#af1f411dd05e6062e1a3fb050a383c01d", null ]
+    [ "data", "structdMenuMapCommon__c_1_1Stage__c_1_1data.html", "structdMenuMapCommon__c_1_1Stage__c_1_1data" ],
+    [ "mCount", "structdMenuMapCommon__c_1_1Stage__c.html#a18f98bb764eb15b506290cc8a2248133", null ],
+    [ "mData", "structdMenuMapCommon__c_1_1Stage__c.html#a9850c88e390557b8ca2bc208eb5f8e76", null ]
 ];

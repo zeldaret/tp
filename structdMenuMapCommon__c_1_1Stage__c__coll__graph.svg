@@ -30,10 +30,10 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structdMenuMapCommon__c_1_1Stage__c_1_1Stage__c__data.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structdMenuMapCommon__c_1_1Stage__c_1_1data.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="148.75,-97 5.25,-97 5.25,-66.5 148.75,-66.5 148.75,-97"/>
 <text text-anchor="start" x="13.25" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">dMenuMapCommon_c::Stage</text>
-<text text-anchor="middle" x="77" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_c::Stage_c_data</text>
+<text text-anchor="middle" x="77" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_c::data</text>
 </a>
 </g>
 </g>
@@ -45,7 +45,7 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="73.5,-54.71 77,-64.71 80.5,-54.71 73.5,-54.71"/>
 </a>
 </g>
-<text text-anchor="middle" x="96.88" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> field_0x4</text>
+<text text-anchor="middle" x="92.38" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mData</text>
 </g>
 </g>
 </svg>

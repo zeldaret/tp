@@ -225,7 +225,7 @@ var sectionId = 'dynsection-0';
 <!-- Node155 -->
 <g id="Node000155" class="node">
 <title>Node155</title>
-<g id="a_Node000155"><a xlink:href="structdStage__dt__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000155"><a xlink:href="classdStage__dt__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="556.12,-1658.2 485.38,-1658.2 485.38,-1638.95 556.12,-1638.95 556.12,-1658.2"/>
 <text text-anchor="middle" x="520.75" y="-1644.7" font-family="Helvetica,sans-Serif" font-size="10.00">dStage_dt_c</text>
 </a>
@@ -749,7 +749,7 @@ var sectionId = 'dynsection-0';
 <!-- Node485 -->
 <g id="Node000485" class="node">
 <title>Node485</title>
-<g id="a_Node000485"><a xlink:href="structdMsgObject__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000485"><a xlink:href="classdMsgObject__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="818.5,-570.2 739.5,-570.2 739.5,-550.95 818.5,-550.95 818.5,-570.2"/>
 <text text-anchor="middle" x="779" y="-556.7" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgObject_c</text>
 </a>

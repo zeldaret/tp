@@ -487,7 +487,7 @@ var searchData=
   ['jkradcommand_484',['JKRADCommand',['../classJKRADCommand.html',1,'']]],
   ['jkramcommand_485',['JKRAMCommand',['../classJKRAMCommand.html',1,'']]],
   ['jkraram_486',['JKRAram',['../classJKRAram.html',1,'']]],
-  ['jkraramarchive_487',['JKRAramArchive',['../structJKRAramArchive.html',1,'']]],
+  ['jkraramarchive_487',['JKRAramArchive',['../classJKRAramArchive.html',1,'']]],
   ['jkraramblock_488',['JKRAramBlock',['../classJKRAramBlock.html',1,'']]],
   ['jkraramheap_489',['JKRAramHeap',['../classJKRAramHeap.html',1,'']]],
   ['jkrarampiece_490',['JKRAramPiece',['../classJKRAramPiece.html',1,'']]],

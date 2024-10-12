@@ -1,6 +1,6 @@
 <map id="dRes_info_c" name="dRes_info_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="876,824,970,850"/>
-<area shape="rect" id="Node000002" href="$structmDoDvdThd__mountArchive__c.html" title=" " alt="" coords="627,735,822,761"/>
+<area shape="rect" id="Node000002" href="$classmDoDvdThd__mountArchive__c.html" title=" " alt="" coords="627,735,822,761"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="767,765,896,821,894,826,765,770"/>
 <area shape="rect" id="Node000003" href="$classmDoDvdThd__command__c.html" title=" " alt="" coords="728,647,899,672"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="792,685,738,737,735,733,789,681"/>

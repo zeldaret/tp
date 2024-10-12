@@ -12,7 +12,7 @@ var searchData=
   ['mdodvdthd_9',['mDoDvdThd',['../structmDoDvdThd.html',1,'']]],
   ['mdodvdthd_5fcallback_5fc_10',['mDoDvdThd_callback_c',['../classmDoDvdThd__callback__c.html',1,'']]],
   ['mdodvdthd_5fcommand_5fc_11',['mDoDvdThd_command_c',['../classmDoDvdThd__command__c.html',1,'']]],
-  ['mdodvdthd_5fmountarchive_5fc_12',['mDoDvdThd_mountArchive_c',['../structmDoDvdThd__mountArchive__c.html',1,'']]],
+  ['mdodvdthd_5fmountarchive_5fc_12',['mDoDvdThd_mountArchive_c',['../classmDoDvdThd__mountArchive__c.html',1,'']]],
   ['mdodvdthd_5fmountxarchive_5fc_13',['mDoDvdThd_mountXArchive_c',['../classmDoDvdThd__mountXArchive__c.html',1,'']]],
   ['mdodvdthd_5fparam_5fc_14',['mDoDvdThd_param_c',['../classmDoDvdThd__param__c.html',1,'']]],
   ['mdodvdthd_5ftomainram_5fc_15',['mDoDvdThd_toMainRam_c',['../classmDoDvdThd__toMainRam__c.html',1,'']]],

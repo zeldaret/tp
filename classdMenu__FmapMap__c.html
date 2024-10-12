@@ -1,0 +1,1390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: dMenu_FmapMap_c Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classdMenu__FmapMap__c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="classdMenu__FmapMap__c-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">dMenu_FmapMap_c Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="d__menu__fmap__map_8h_source.html">d_menu_fmap_map.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for dMenu_FmapMap_c:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classdMenu__FmapMap__c__inherit__graph.svg" width="220" height="479"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for dMenu_FmapMap_c:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classdMenu__FmapMap__c__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a63ab4335757fc1afb58f3da18d0157b7" id="r_a63ab4335757fc1afb58f3da18d0157b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a63ab4335757fc1afb58f3da18d0157b7">setFmapPaletteColor</a> (<a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082f">palette_e</a>, <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> &amp;)</td></tr>
+<tr class="separator:a63ab4335757fc1afb58f3da18d0157b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa78ea6846c854dc737fd3a34e0e1c300" id="r_aa78ea6846c854dc737fd3a34e0e1c300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aa78ea6846c854dc737fd3a34e0e1c300">setFmapPaletteColor</a> (<a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082f">palette_e</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:aa78ea6846c854dc737fd3a34e0e1c300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01204d82a00a0e0dfba7a9821d5f7f3d" id="r_a01204d82a00a0e0dfba7a9821d5f7f3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a01204d82a00a0e0dfba7a9821d5f7f3d">isFlashRoomNoCheck</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a01204d82a00a0e0dfba7a9821d5f7f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af42a7a9c156d98816816e2eab73d55d2" id="r_af42a7a9c156d98816816e2eab73d55d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#af42a7a9c156d98816816e2eab73d55d2">setPointColor</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:af42a7a9c156d98816816e2eab73d55d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4a27b47b5c748514403ac2d73668f2" id="r_a4c4a27b47b5c748514403ac2d73668f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a4c4a27b47b5c748514403ac2d73668f2">dMenu_FmapMap_c</a> ()</td></tr>
+<tr class="separator:a4c4a27b47b5c748514403ac2d73668f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884e64e2e2aa35e2c2e481d472a504a2" id="r_a884e64e2e2aa35e2c2e481d472a504a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a884e64e2e2aa35e2c2e481d472a504a2">~dMenu_FmapMap_c</a> ()</td></tr>
+<tr class="separator:a884e64e2e2aa35e2c2e481d472a504a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa01ef4bddfbce037df5ec6f5a7fe6b64" id="r_aa01ef4bddfbce037df5ec6f5a7fe6b64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aa01ef4bddfbce037df5ec6f5a7fe6b64">_create</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *)</td></tr>
+<tr class="separator:aa01ef4bddfbce037df5ec6f5a7fe6b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee32dced2615f8911a0ac5d7f3f0cf57" id="r_aee32dced2615f8911a0ac5d7f3f0cf57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aee32dced2615f8911a0ac5d7f3f0cf57">_delete</a> ()</td></tr>
+<tr class="separator:aee32dced2615f8911a0ac5d7f3f0cf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dee72e7504dc4066301387474663b06" id="r_a1dee72e7504dc4066301387474663b06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a1dee72e7504dc4066301387474663b06">draw</a> ()</td></tr>
+<tr class="separator:a1dee72e7504dc4066301387474663b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b1f02dbbd2d872dff7bc466099e4db" id="r_a61b1f02dbbd2d872dff7bc466099e4db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a61b1f02dbbd2d872dff7bc466099e4db">rendering</a> (<a class="el" href="structdDrawPath__c_1_1line__class.html">line_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a61b1f02dbbd2d872dff7bc466099e4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee1f9fd85b10b40efabb5a622e8cdaa" id="r_abee1f9fd85b10b40efabb5a622e8cdaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#abee1f9fd85b10b40efabb5a622e8cdaa">getLineWidth</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:abee1f9fd85b10b40efabb5a622e8cdaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa604189563b41e3d2196c6889454b4d6" id="r_aa604189563b41e3d2196c6889454b4d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aa604189563b41e3d2196c6889454b4d6">isDrawType</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:aa604189563b41e3d2196c6889454b4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8ae7558cda6d10cb0ce2f190720492" id="r_adb8ae7558cda6d10cb0ce2f190720492"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#adb8ae7558cda6d10cb0ce2f190720492">setFlashOn</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:adb8ae7558cda6d10cb0ce2f190720492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7615eb9118c67f668b00e9f92460cf39" id="r_a7615eb9118c67f668b00e9f92460cf39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a7615eb9118c67f668b00e9f92460cf39">getLineColor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a7615eb9118c67f668b00e9f92460cf39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2483bfee0fd7ce413441f413aecb684" id="r_af2483bfee0fd7ce413441f413aecb684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#af2483bfee0fd7ce413441f413aecb684">getBackColor</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af2483bfee0fd7ce413441f413aecb684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa89461b07904a57382dd40d75e73df67" id="r_aa89461b07904a57382dd40d75e73df67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aa89461b07904a57382dd40d75e73df67">getColor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:aa89461b07904a57382dd40d75e73df67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aabd4ef884e8ad6dd546e8206d04caa" id="r_a7aabd4ef884e8ad6dd546e8206d04caa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a7aabd4ef884e8ad6dd546e8206d04caa">setTexture</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:a7aabd4ef884e8ad6dd546e8206d04caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a330e26240161b68fe1c2bd44da871685" id="r_a330e26240161b68fe1c2bd44da871685"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a330e26240161b68fe1c2bd44da871685">setRendering</a> (<a class="el" href="classdMenu__Fmap__world__data__c.html">dMenu_Fmap_world_data_c</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a330e26240161b68fe1c2bd44da871685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6edbe0e06aad92a9e4c8b11905dbb5ea" id="r_a6edbe0e06aad92a9e4c8b11905dbb5ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a6edbe0e06aad92a9e4c8b11905dbb5ea">getRateWithFrameCount</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
+<tr class="separator:a6edbe0e06aad92a9e4c8b11905dbb5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a486e2be1e3313fef367e3ae7f78d3be7" id="r_a486e2be1e3313fef367e3ae7f78d3be7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a486e2be1e3313fef367e3ae7f78d3be7">isDrawEnable</a> ()</td></tr>
+<tr class="separator:a486e2be1e3313fef367e3ae7f78d3be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e482aa39986a0ee48e93e31aa53ba8e" id="r_a8e482aa39986a0ee48e93e31aa53ba8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a8e482aa39986a0ee48e93e31aa53ba8e">setFlashOff</a> ()</td></tr>
+<tr class="separator:a8e482aa39986a0ee48e93e31aa53ba8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c85d1d7a1bdd991f1af187a10b2a225" id="r_a5c85d1d7a1bdd991f1af187a10b2a225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a5c85d1d7a1bdd991f1af187a10b2a225">getPointStagePathInnerNo</a> (<a class="el" href="classdMenu__Fmap__region__data__c.html">dMenu_Fmap_region_data_c</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_regionData</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_offsetX</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_offsetY</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_stageNo</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">o_stageNo</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">o_roomNo</a>)</td></tr>
+<tr class="separator:a5c85d1d7a1bdd991f1af187a10b2a225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad321ff5207cb54bd7652b7f6d236172" id="r_aad321ff5207cb54bd7652b7f6d236172"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResTIMG.html">ResTIMG</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aad321ff5207cb54bd7652b7f6d236172">getResTIMGPointer</a> ()</td></tr>
+<tr class="separator:aad321ff5207cb54bd7652b7f6d236172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classrenderingFmap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classrenderingFmap__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classrenderingFmap__c.html">renderingFmap_c</a></td></tr>
+<tr class="memitem:ac39c8567287e2e0127fd7132761c5be3 inherit pub_methods_classrenderingFmap__c" id="r_ac39c8567287e2e0127fd7132761c5be3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ac39c8567287e2e0127fd7132761c5be3">renderingFmap_c</a> ()</td></tr>
+<tr class="separator:ac39c8567287e2e0127fd7132761c5be3 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fdb79f8a88c2490c3c80c587b757dcf inherit pub_methods_classrenderingFmap__c" id="r_a8fdb79f8a88c2490c3c80c587b757dcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a8fdb79f8a88c2490c3c80c587b757dcf">init</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:a8fdb79f8a88c2490c3c80c587b757dcf inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c33d44033ddc0ac6ea049434322c3e inherit pub_methods_classrenderingFmap__c" id="r_a11c33d44033ddc0ac6ea049434322c3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a11c33d44033ddc0ac6ea049434322c3e">entry</a> (<a class="el" href="classdMenu__Fmap__world__data__c.html">dMenu_Fmap_world_data_c</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a11c33d44033ddc0ac6ea049434322c3e inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a644b53bedc7f1da28ff9f114c3aa52a5 inherit pub_methods_classrenderingFmap__c" id="r_a644b53bedc7f1da28ff9f114c3aa52a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a644b53bedc7f1da28ff9f114c3aa52a5">isSwitchSpecialOff</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a644b53bedc7f1da28ff9f114c3aa52a5 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c5df38140a431c2c261d90bfe88ecc inherit pub_methods_classrenderingFmap__c" id="r_a92c5df38140a431c2c261d90bfe88ecc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a92c5df38140a431c2c261d90bfe88ecc">isSwitch</a> (<a class="el" href="structdDrawPath__c_1_1group__class.html">group_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a92c5df38140a431c2c261d90bfe88ecc inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8baad2ce5ea06b2054f112e8b37aa773 inherit pub_methods_classrenderingFmap__c" id="r_a8baad2ce5ea06b2054f112e8b37aa773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a8baad2ce5ea06b2054f112e8b37aa773">getPointStagePathInnerNo</a> (<a class="el" href="classdMenu__Fmap__region__data__c.html">dMenu_Fmap_region_data_c</a> *, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *)</td></tr>
+<tr class="separator:a8baad2ce5ea06b2054f112e8b37aa773 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16b2104a4585b5c632b0b5d51de4f32 inherit pub_methods_classrenderingFmap__c" id="r_aa16b2104a4585b5c632b0b5d51de4f32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#aa16b2104a4585b5c632b0b5d51de4f32">preDrawPath</a> ()</td></tr>
+<tr class="separator:aa16b2104a4585b5c632b0b5d51de4f32 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04169f6f6b292505015d8007616b0950 inherit pub_methods_classrenderingFmap__c" id="r_a04169f6f6b292505015d8007616b0950"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a04169f6f6b292505015d8007616b0950">isDrawPath</a> ()</td></tr>
+<tr class="separator:a04169f6f6b292505015d8007616b0950 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad465a4216dec9aafe3ecb276d37499 inherit pub_methods_classrenderingFmap__c" id="r_acad465a4216dec9aafe3ecb276d37499"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#acad465a4216dec9aafe3ecb276d37499">isDrawRoom</a> ()</td></tr>
+<tr class="separator:acad465a4216dec9aafe3ecb276d37499 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a065e0263ba491d432854c914bc4942f8 inherit pub_methods_classrenderingFmap__c" id="r_a065e0263ba491d432854c914bc4942f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a065e0263ba491d432854c914bc4942f8">postDrawPath</a> ()</td></tr>
+<tr class="separator:a065e0263ba491d432854c914bc4942f8 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca837f12ccddf5672b9b0087bd1a722 inherit pub_methods_classrenderingFmap__c" id="r_a5ca837f12ccddf5672b9b0087bd1a722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a5ca837f12ccddf5672b9b0087bd1a722">postRenderingMap</a> ()</td></tr>
+<tr class="separator:a5ca837f12ccddf5672b9b0087bd1a722 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4f6fe00cca2de21d769409b88cbd3e inherit pub_methods_classrenderingFmap__c" id="r_a8d4f6fe00cca2de21d769409b88cbd3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a8d4f6fe00cca2de21d769409b88cbd3e">roomSetteing</a> ()</td></tr>
+<tr class="separator:a8d4f6fe00cca2de21d769409b88cbd3e inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a175e1a60bbc279feae451bb94376778d inherit pub_methods_classrenderingFmap__c" id="r_a175e1a60bbc279feae451bb94376778d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdDrawPath__c_1_1room__class.html">room_class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a175e1a60bbc279feae451bb94376778d">getFirstRoomPointer</a> ()</td></tr>
+<tr class="separator:a175e1a60bbc279feae451bb94376778d inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a08187fd8e248f58853d7ff7fb9c18 inherit pub_methods_classrenderingFmap__c" id="r_ac5a08187fd8e248f58853d7ff7fb9c18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ac5a08187fd8e248f58853d7ff7fb9c18">getFirstRegion</a> ()</td></tr>
+<tr class="separator:ac5a08187fd8e248f58853d7ff7fb9c18 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a3c5e4f4ee214fda82cabbb487ee0e inherit pub_methods_classrenderingFmap__c" id="r_a37a3c5e4f4ee214fda82cabbb487ee0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a37a3c5e4f4ee214fda82cabbb487ee0e">getFirstStage</a> ()</td></tr>
+<tr class="separator:a37a3c5e4f4ee214fda82cabbb487ee0e inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a484bb867f9a5e7925187217fc70029b8 inherit pub_methods_classrenderingFmap__c" id="r_a484bb867f9a5e7925187217fc70029b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a484bb867f9a5e7925187217fc70029b8">getFirstRoom</a> ()</td></tr>
+<tr class="separator:a484bb867f9a5e7925187217fc70029b8 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475e5f2e2916c2e09bb2e59b12ba6f1e inherit pub_methods_classrenderingFmap__c" id="r_a475e5f2e2916c2e09bb2e59b12ba6f1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a475e5f2e2916c2e09bb2e59b12ba6f1e">getNextRoom</a> ()</td></tr>
+<tr class="separator:a475e5f2e2916c2e09bb2e59b12ba6f1e inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfefd060ded1dab44e7739f6e48ff28d inherit pub_methods_classrenderingFmap__c" id="r_abfefd060ded1dab44e7739f6e48ff28d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#abfefd060ded1dab44e7739f6e48ff28d">getNextStage</a> ()</td></tr>
+<tr class="separator:abfefd060ded1dab44e7739f6e48ff28d inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a070c998eaddf70e2eaa9a5c542581df1 inherit pub_methods_classrenderingFmap__c" id="r_a070c998eaddf70e2eaa9a5c542581df1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a070c998eaddf70e2eaa9a5c542581df1">getNextRegion</a> ()</td></tr>
+<tr class="separator:a070c998eaddf70e2eaa9a5c542581df1 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fbdc3d3305f1ad373cd911efc1435a2 inherit pub_methods_classrenderingFmap__c" id="r_a7fbdc3d3305f1ad373cd911efc1435a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdDrawPath__c_1_1room__class.html">room_class</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a7fbdc3d3305f1ad373cd911efc1435a2">getNextRoomPointer</a> ()</td></tr>
+<tr class="separator:a7fbdc3d3305f1ad373cd911efc1435a2 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2c82986485462dd5197e1a74ad08878 inherit pub_methods_classrenderingFmap__c" id="r_ae2c82986485462dd5197e1a74ad08878"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ae2c82986485462dd5197e1a74ad08878">~renderingFmap_c</a> ()</td></tr>
+<tr class="separator:ae2c82986485462dd5197e1a74ad08878 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3caf78207a4341aecd96ea1280ffe3c3 inherit pub_methods_classrenderingFmap__c" id="r_a3caf78207a4341aecd96ea1280ffe3c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a3caf78207a4341aecd96ea1280ffe3c3">isRenderingFloor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a3caf78207a4341aecd96ea1280ffe3c3 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad06b04cf26193c66e0ec893f279f54 inherit pub_methods_classrenderingFmap__c" id="r_adad06b04cf26193c66e0ec893f279f54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#adad06b04cf26193c66e0ec893f279f54">beforeDrawPath</a> ()</td></tr>
+<tr class="separator:adad06b04cf26193c66e0ec893f279f54 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a05565c0e9d7ccf25ab94ceeb9994b inherit pub_methods_classrenderingFmap__c" id="r_af1a05565c0e9d7ccf25ab94ceeb9994b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#af1a05565c0e9d7ccf25ab94ceeb9994b">afterDrawPath</a> ()</td></tr>
+<tr class="separator:af1a05565c0e9d7ccf25ab94ceeb9994b inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a932577d47116ad0ba77336ad84ffb561 inherit pub_methods_classrenderingFmap__c" id="r_a932577d47116ad0ba77336ad84ffb561"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a932577d47116ad0ba77336ad84ffb561">getNowDrawRegionNo</a> ()</td></tr>
+<tr class="separator:a932577d47116ad0ba77336ad84ffb561 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af468417b018bbae6fff4a8a7f34b9d60 inherit pub_methods_classrenderingFmap__c" id="r_af468417b018bbae6fff4a8a7f34b9d60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#af468417b018bbae6fff4a8a7f34b9d60">isDrawEnable</a> ()</td></tr>
+<tr class="separator:af468417b018bbae6fff4a8a7f34b9d60 inherit pub_methods_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structdRenderingFDAmap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structdRenderingFDAmap__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structdRenderingFDAmap__c.html">dRenderingFDAmap_c</a></td></tr>
+<tr class="memitem:abf5549ffe9185ba864235d4e72bd7bdb inherit pub_methods_structdRenderingFDAmap__c" id="r_abf5549ffe9185ba864235d4e72bd7bdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#abf5549ffe9185ba864235d4e72bd7bdb">preRenderingMap</a> ()</td></tr>
+<tr class="separator:abf5549ffe9185ba864235d4e72bd7bdb inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71cf2c20bcc54c1c8f00bcf205e4fb88 inherit pub_methods_structdRenderingFDAmap__c" id="r_a71cf2c20bcc54c1c8f00bcf205e4fb88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a71cf2c20bcc54c1c8f00bcf205e4fb88">getDecoLineColor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a71cf2c20bcc54c1c8f00bcf205e4fb88 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9003db1db9c2b16daf42a09681a838bc inherit pub_methods_structdRenderingFDAmap__c" id="r_a9003db1db9c2b16daf42a09681a838bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a9003db1db9c2b16daf42a09681a838bc">getDecorationLineWidth</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a9003db1db9c2b16daf42a09681a838bc inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186b55829a808fb29e06fd9a712dd908 inherit pub_methods_structdRenderingFDAmap__c" id="r_a186b55829a808fb29e06fd9a712dd908"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a186b55829a808fb29e06fd9a712dd908">dRenderingFDAmap_c</a> ()</td></tr>
+<tr class="separator:a186b55829a808fb29e06fd9a712dd908 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f1f75f3894a32477e47e8a99ad0017a inherit pub_methods_structdRenderingFDAmap__c" id="r_a9f1f75f3894a32477e47e8a99ad0017a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a9f1f75f3894a32477e47e8a99ad0017a">setTevSettingNonTextureDirectColor</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a9f1f75f3894a32477e47e8a99ad0017a inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87cd1438ee04d7ffd6b79cfdbfa19b17 inherit pub_methods_structdRenderingFDAmap__c" id="r_a87cd1438ee04d7ffd6b79cfdbfa19b17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a87cd1438ee04d7ffd6b79cfdbfa19b17">setTevSettingIntensityTextureToCI</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:a87cd1438ee04d7ffd6b79cfdbfa19b17 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad945c7f61a64ea6d41448d95c9d8ff21 inherit pub_methods_structdRenderingFDAmap__c" id="r_ad945c7f61a64ea6d41448d95c9d8ff21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#ad945c7f61a64ea6d41448d95c9d8ff21">drawBack</a> () <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:ad945c7f61a64ea6d41448d95c9d8ff21 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3c831e7f3a7ab523eb4a6e8a9ff74b inherit pub_methods_structdRenderingFDAmap__c" id="r_a0a3c831e7f3a7ab523eb4a6e8a9ff74b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a0a3c831e7f3a7ab523eb4a6e8a9ff74b">renderingDecoration</a> (<a class="el" href="structdDrawPath__c_1_1line__class.html">dDrawPath_c::line_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a0a3c831e7f3a7ab523eb4a6e8a9ff74b inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01e0a96917662b0e43291b979902fcd6 inherit pub_methods_structdRenderingFDAmap__c" id="r_a01e0a96917662b0e43291b979902fcd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a01e0a96917662b0e43291b979902fcd6">~dRenderingFDAmap_c</a> ()</td></tr>
+<tr class="separator:a01e0a96917662b0e43291b979902fcd6 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5c87f10e0c3a558b0058fb06d1c50e inherit pub_methods_structdRenderingFDAmap__c" id="r_adc5c87f10e0c3a558b0058fb06d1c50e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#adc5c87f10e0c3a558b0058fb06d1c50e">preRenderingMap</a> ()</td></tr>
+<tr class="separator:adc5c87f10e0c3a558b0058fb06d1c50e inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c0c231ebdd5b3ab13dfa4d63ec49ec inherit pub_methods_structdRenderingFDAmap__c" id="r_a05c0c231ebdd5b3ab13dfa4d63ec49ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a05c0c231ebdd5b3ab13dfa4d63ec49ec">getDecoLineColor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a05c0c231ebdd5b3ab13dfa4d63ec49ec inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5daf587fc227fe1768927e6738f90df inherit pub_methods_structdRenderingFDAmap__c" id="r_aa5daf587fc227fe1768927e6738f90df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#aa5daf587fc227fe1768927e6738f90df">getDecorationLineWidth</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:aa5daf587fc227fe1768927e6738f90df inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe214f74491a5d37013994bf70f48345 inherit pub_methods_structdRenderingFDAmap__c" id="r_abe214f74491a5d37013994bf70f48345"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#abe214f74491a5d37013994bf70f48345">isDrawAreaCheck</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structVec.html">Vec</a> &amp;<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
+<tr class="separator:abe214f74491a5d37013994bf70f48345 inherit pub_methods_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structdRenderingMap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structdRenderingMap__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structdRenderingMap__c.html">dRenderingMap_c</a></td></tr>
+<tr class="memitem:af639f88058276060f09b58f95f0254cc inherit pub_methods_structdRenderingMap__c" id="r_af639f88058276060f09b58f95f0254cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingMap__c.html#af639f88058276060f09b58f95f0254cc">makeResTIMG</a> (<a class="el" href="structResTIMG.html">ResTIMG</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af639f88058276060f09b58f95f0254cc inherit pub_methods_structdRenderingMap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af639f88058276060f09b58f95f0254cc inherit pub_methods_structdRenderingMap__c" id="r_af639f88058276060f09b58f95f0254cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingMap__c.html#af639f88058276060f09b58f95f0254cc">makeResTIMG</a> (<a class="el" href="structResTIMG.html">ResTIMG</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>) <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a></td></tr>
+<tr class="separator:af639f88058276060f09b58f95f0254cc inherit pub_methods_structdRenderingMap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaadc39f4f3be8b00142a31c52cf3eed inherit pub_methods_structdRenderingMap__c" id="r_acaadc39f4f3be8b00142a31c52cf3eed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingMap__c.html#acaadc39f4f3be8b00142a31c52cf3eed">renderingMap</a> ()</td></tr>
+<tr class="separator:acaadc39f4f3be8b00142a31c52cf3eed inherit pub_methods_structdRenderingMap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a98eeae57b7c8170386b3b3e826532 inherit pub_methods_structdRenderingMap__c" id="r_a25a98eeae57b7c8170386b3b3e826532"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingMap__c.html#a25a98eeae57b7c8170386b3b3e826532">~dRenderingMap_c</a> ()</td></tr>
+<tr class="separator:a25a98eeae57b7c8170386b3b3e826532 inherit pub_methods_structdRenderingMap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classdDrawPathWithNormalPattern__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classdDrawPathWithNormalPattern__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classdDrawPathWithNormalPattern__c.html">dDrawPathWithNormalPattern_c</a></td></tr>
+<tr class="memitem:af67ee97591c8a24c2971ff903e073193 inherit pub_methods_classdDrawPathWithNormalPattern__c" id="r_af67ee97591c8a24c2971ff903e073193"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdDrawPathWithNormalPattern__c.html#af67ee97591c8a24c2971ff903e073193">~dDrawPathWithNormalPattern_c</a> ()</td></tr>
+<tr class="separator:af67ee97591c8a24c2971ff903e073193 inherit pub_methods_classdDrawPathWithNormalPattern__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structdDrawPath__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structdDrawPath__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structdDrawPath__c.html">dDrawPath_c</a></td></tr>
+<tr class="memitem:a7c189d40fe81e3a4e7251da185acdd21 inherit pub_methods_structdDrawPath__c" id="r_a7c189d40fe81e3a4e7251da185acdd21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a7c189d40fe81e3a4e7251da185acdd21">isDrawType</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a7c189d40fe81e3a4e7251da185acdd21 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569924bd918971fbab42bb926001c7f inherit pub_methods_structdDrawPath__c" id="r_a2569924bd918971fbab42bb926001c7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a2569924bd918971fbab42bb926001c7f">getLineColor</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>)</td></tr>
+<tr class="separator:a2569924bd918971fbab42bb926001c7f inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6aea56478a91cdfbc11e49735d6e392 inherit pub_methods_structdDrawPath__c" id="r_ad6aea56478a91cdfbc11e49735d6e392"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#ad6aea56478a91cdfbc11e49735d6e392">rendering</a> (<a class="el" href="structdDrawPath__c_1_1poly__class.html">dDrawPath_c::poly_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:ad6aea56478a91cdfbc11e49735d6e392 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6ce82f420d3e03567545bd7cae9eedc inherit pub_methods_structdDrawPath__c" id="r_aa6ce82f420d3e03567545bd7cae9eedc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#aa6ce82f420d3e03567545bd7cae9eedc">rendering</a> (<a class="el" href="structdDrawPath__c_1_1room__class.html">dDrawPath_c::room_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:aa6ce82f420d3e03567545bd7cae9eedc inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adccc504c6584f7debebe676a98d1b4d9 inherit pub_methods_structdDrawPath__c" id="r_adccc504c6584f7debebe676a98d1b4d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#adccc504c6584f7debebe676a98d1b4d9">rendering</a> (<a class="el" href="structdDrawPath__c_1_1line__class.html">dDrawPath_c::line_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:adccc504c6584f7debebe676a98d1b4d9 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada4ded467adbd9a72da77561c612367d inherit pub_methods_structdDrawPath__c" id="r_ada4ded467adbd9a72da77561c612367d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#ada4ded467adbd9a72da77561c612367d">drawPath</a> ()</td></tr>
+<tr class="separator:ada4ded467adbd9a72da77561c612367d inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b49d7ac99347a7b02687b2a9e93e7c inherit pub_methods_structdDrawPath__c" id="r_a41b49d7ac99347a7b02687b2a9e93e7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a41b49d7ac99347a7b02687b2a9e93e7c">rendering</a> (<a class="el" href="structdDrawPath__c_1_1group__class.html">dDrawPath_c::group_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a41b49d7ac99347a7b02687b2a9e93e7c inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c2455817192e3020714bd4fc0d210d inherit pub_methods_structdDrawPath__c" id="r_a84c2455817192e3020714bd4fc0d210d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a84c2455817192e3020714bd4fc0d210d">rendering</a> (<a class="el" href="structdDrawPath__c_1_1floor__class.html">dDrawPath_c::floor_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a84c2455817192e3020714bd4fc0d210d inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4248df1956ab278060a1806fd033b2d1 inherit pub_methods_structdDrawPath__c" id="r_a4248df1956ab278060a1806fd033b2d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a4248df1956ab278060a1806fd033b2d1">~dDrawPath_c</a> ()</td></tr>
+<tr class="separator:a4248df1956ab278060a1806fd033b2d1 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0a6b6b3d2c9a1d8862fa521eb1e2f00 inherit pub_methods_structdDrawPath__c" id="r_aa0a6b6b3d2c9a1d8862fa521eb1e2f00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#aa0a6b6b3d2c9a1d8862fa521eb1e2f00">drawPath</a> ()</td></tr>
+<tr class="separator:aa0a6b6b3d2c9a1d8862fa521eb1e2f00 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b45f073649111f20b6f6cce20a4182 inherit pub_methods_structdDrawPath__c" id="r_a47b45f073649111f20b6f6cce20a4182"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#a47b45f073649111f20b6f6cce20a4182">rendering</a> (<a class="el" href="structdDrawPath__c_1_1poly__class.html">dDrawPath_c::poly_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:a47b45f073649111f20b6f6cce20a4182 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2517180849602513f09e3bc0775af23 inherit pub_methods_structdDrawPath__c" id="r_ad2517180849602513f09e3bc0775af23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">virtual</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdDrawPath__c.html#ad2517180849602513f09e3bc0775af23">rendering</a> (<a class="el" href="structdDrawPath__c_1_1room__class.html">dDrawPath_c::room_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *)</td></tr>
+<tr class="separator:ad2517180849602513f09e3bc0775af23 inherit pub_methods_structdDrawPath__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classdDlst__base__c"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classdDlst__base__c')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classdDlst__base__c.html">dDlst_base_c</a></td></tr>
+<tr class="memitem:ab73507216423c73715044fef2bd035eb inherit pub_methods_classdDlst__base__c" id="r_ab73507216423c73715044fef2bd035eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdDlst__base__c.html#ab73507216423c73715044fef2bd035eb">dDlst_base_c</a> ()</td></tr>
+<tr class="separator:ab73507216423c73715044fef2bd035eb inherit pub_methods_classdDlst__base__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a3c1d10f15afd93c1bcdcb75954a9b037" id="r_a3c1d10f15afd93c1bcdcb75954a9b037"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structResTIMG.html">ResTIMG</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a3c1d10f15afd93c1bcdcb75954a9b037">mResTIMG</a></td></tr>
+<tr class="separator:a3c1d10f15afd93c1bcdcb75954a9b037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a101f31a1ae4e3925cb0c886e9f9891f3" id="r_a101f31a1ae4e3925cb0c886e9f9891f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a101f31a1ae4e3925cb0c886e9f9891f3">mMapImage_p</a></td></tr>
+<tr class="separator:a101f31a1ae4e3925cb0c886e9f9891f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e289cab9c50b281d53a14dc052b1a0e" id="r_a3e289cab9c50b281d53a14dc052b1a0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdMfm__prm__res__s.html">dMfm_prm_res_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a3e289cab9c50b281d53a14dc052b1a0e">m_res</a></td></tr>
+<tr class="separator:a3e289cab9c50b281d53a14dc052b1a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ba3698f82587b7237a17d922b68605c" id="r_a5ba3698f82587b7237a17d922b68605c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdMpath__RGB5A3__palDt__s.html">dMpath_RGB5A3_palDt_s</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a5ba3698f82587b7237a17d922b68605c">m_palette</a></td></tr>
+<tr class="separator:a5ba3698f82587b7237a17d922b68605c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bb0fede3ded911d5027b0206246b01" id="r_a35bb0fede3ded911d5027b0206246b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a35bb0fede3ded911d5027b0206246b01">field_0xcc</a></td></tr>
+<tr class="separator:a35bb0fede3ded911d5027b0206246b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0df9878cc4b2ee7d1dfd2b6b2642a7" id="r_a3e0df9878cc4b2ee7d1dfd2b6b2642a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a3e0df9878cc4b2ee7d1dfd2b6b2642a7">mZoomRate</a></td></tr>
+<tr class="separator:a3e0df9878cc4b2ee7d1dfd2b6b2642a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20205c4ecdf23a02e626f8ad75138aa0" id="r_a20205c4ecdf23a02e626f8ad75138aa0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a20205c4ecdf23a02e626f8ad75138aa0">mLineNo</a></td></tr>
+<tr class="separator:a20205c4ecdf23a02e626f8ad75138aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2de77d8235b14d03a86504799328d099" id="r_a2de77d8235b14d03a86504799328d099"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a2de77d8235b14d03a86504799328d099">mFlash</a></td></tr>
+<tr class="separator:a2de77d8235b14d03a86504799328d099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a726adcad39e9495bd207b79c4d71b6cb" id="r_a726adcad39e9495bd207b79c4d71b6cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a726adcad39e9495bd207b79c4d71b6cb">mLastFlash</a></td></tr>
+<tr class="separator:a726adcad39e9495bd207b79c4d71b6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb26caaa0db0630da2833a4a51f6952" id="r_a5eb26caaa0db0630da2833a4a51f6952"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a5eb26caaa0db0630da2833a4a51f6952">mStageCursor</a></td></tr>
+<tr class="separator:a5eb26caaa0db0630da2833a4a51f6952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642a6b58f169edeb485275dbe3494d4b" id="r_a642a6b58f169edeb485275dbe3494d4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a642a6b58f169edeb485275dbe3494d4b">mLastStageCursor</a></td></tr>
+<tr class="separator:a642a6b58f169edeb485275dbe3494d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fcff2dc287cd41c2bf9d586cc527a67" id="r_a2fcff2dc287cd41c2bf9d586cc527a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a2fcff2dc287cd41c2bf9d586cc527a67">mRegionCursor</a></td></tr>
+<tr class="separator:a2fcff2dc287cd41c2bf9d586cc527a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac19a6168d2f07eba67f19ce7807ae56" id="r_aac19a6168d2f07eba67f19ce7807ae56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#aac19a6168d2f07eba67f19ce7807ae56">mFlashTimer</a></td></tr>
+<tr class="separator:aac19a6168d2f07eba67f19ce7807ae56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0a965f52467b78510f8a4654ba6e008" id="r_ac0a965f52467b78510f8a4654ba6e008"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#ac0a965f52467b78510f8a4654ba6e008">mFlashRooms</a></td></tr>
+<tr class="separator:ac0a965f52467b78510f8a4654ba6e008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab3b85cc63bcd35df73b4e3bc0ed920" id="r_a9ab3b85cc63bcd35df73b4e3bc0ed920"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdMenu__FmapMap__c.html#a9ab3b85cc63bcd35df73b4e3bc0ed920">mFlashRoomCount</a></td></tr>
+<tr class="separator:a9ab3b85cc63bcd35df73b4e3bc0ed920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classrenderingFmap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classrenderingFmap__c')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classrenderingFmap__c.html">renderingFmap_c</a></td></tr>
+<tr class="memitem:a09bdbf94fe5679c925872f7271ddb701 inherit pub_attribs_classrenderingFmap__c" id="r_a09bdbf94fe5679c925872f7271ddb701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a09bdbf94fe5679c925872f7271ddb701">mViewMtx</a></td></tr>
+<tr class="separator:a09bdbf94fe5679c925872f7271ddb701 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995c2e3c350d5aa3aa2dfd5865f40078 inherit pub_attribs_classrenderingFmap__c" id="r_a995c2e3c350d5aa3aa2dfd5865f40078"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a995c2e3c350d5aa3aa2dfd5865f40078">mEye</a></td></tr>
+<tr class="separator:a995c2e3c350d5aa3aa2dfd5865f40078 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac63b03151c3f042f855b5a83a731a9f inherit pub_attribs_classrenderingFmap__c" id="r_aac63b03151c3f042f855b5a83a731a9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#aac63b03151c3f042f855b5a83a731a9f">mCenter</a></td></tr>
+<tr class="separator:aac63b03151c3f042f855b5a83a731a9f inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d814ff3fe2a77fb789745b0aef9447 inherit pub_attribs_classrenderingFmap__c" id="r_a34d814ff3fe2a77fb789745b0aef9447"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a34d814ff3fe2a77fb789745b0aef9447">mUp</a></td></tr>
+<tr class="separator:a34d814ff3fe2a77fb789745b0aef9447 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc3d7e2e2632b45a4f5c2bb1aea81c8 inherit pub_attribs_classrenderingFmap__c" id="r_a4dc3d7e2e2632b45a4f5c2bb1aea81c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__world__data__c.html">dMenu_Fmap_world_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a4dc3d7e2e2632b45a4f5c2bb1aea81c8">mpWorldData</a></td></tr>
+<tr class="separator:a4dc3d7e2e2632b45a4f5c2bb1aea81c8 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b1ffd3b47a7fb8b5e02e74d81be32c inherit pub_attribs_classrenderingFmap__c" id="r_a87b1ffd3b47a7fb8b5e02e74d81be32c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__region__data__c.html">dMenu_Fmap_region_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a87b1ffd3b47a7fb8b5e02e74d81be32c">mpRegionData</a></td></tr>
+<tr class="separator:a87b1ffd3b47a7fb8b5e02e74d81be32c inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7575a675865c1cd6e8ebc697489534d7 inherit pub_attribs_classrenderingFmap__c" id="r_a7575a675865c1cd6e8ebc697489534d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__stage__data__c.html">dMenu_Fmap_stage_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a7575a675865c1cd6e8ebc697489534d7">mpStageData</a></td></tr>
+<tr class="separator:a7575a675865c1cd6e8ebc697489534d7 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8753a7ae8ac0cbd439e2a41cefa90a8 inherit pub_attribs_classrenderingFmap__c" id="r_ad8753a7ae8ac0cbd439e2a41cefa90a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__room__data__c.html">dMenu_Fmap_room_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ad8753a7ae8ac0cbd439e2a41cefa90a8">mpRoomData</a></td></tr>
+<tr class="separator:ad8753a7ae8ac0cbd439e2a41cefa90a8 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09bd6dd7022d6a37bcac1ab473b1e6e inherit pub_attribs_classrenderingFmap__c" id="r_ad09bd6dd7022d6a37bcac1ab473b1e6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__data__c.html">dMenu_Fmap_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ad09bd6dd7022d6a37bcac1ab473b1e6e">mpFmapData</a></td></tr>
+<tr class="separator:ad09bd6dd7022d6a37bcac1ab473b1e6e inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab164d4442efdee89378b37febf046042 inherit pub_attribs_classrenderingFmap__c" id="r_ab164d4442efdee89378b37febf046042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdMenu__Fmap__stage__arc__data__c.html">dMenu_Fmap_stage_arc_data_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ab164d4442efdee89378b37febf046042">mpStageArc</a></td></tr>
+<tr class="separator:ab164d4442efdee89378b37febf046042 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d6ac96b3986b86d4c693fbef66314b8 inherit pub_attribs_classrenderingFmap__c" id="r_a9d6ac96b3986b86d4c693fbef66314b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a9d6ac96b3986b86d4c693fbef66314b8">mStartStageNo</a></td></tr>
+<tr class="separator:a9d6ac96b3986b86d4c693fbef66314b8 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2999a4a222ae07d31b726872f5c5feeb inherit pub_attribs_classrenderingFmap__c" id="r_a2999a4a222ae07d31b726872f5c5feeb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a2999a4a222ae07d31b726872f5c5feeb">mRegionIndex</a></td></tr>
+<tr class="separator:a2999a4a222ae07d31b726872f5c5feeb inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415ca0ca7b386f569761e865e19caa8b inherit pub_attribs_classrenderingFmap__c" id="r_a415ca0ca7b386f569761e865e19caa8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a415ca0ca7b386f569761e865e19caa8b">mStageNo</a></td></tr>
+<tr class="separator:a415ca0ca7b386f569761e865e19caa8b inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3c86cf0f7e7af8238d7a90e6442e1a inherit pub_attribs_classrenderingFmap__c" id="r_a6d3c86cf0f7e7af8238d7a90e6442e1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a6d3c86cf0f7e7af8238d7a90e6442e1a">mRoomNo</a></td></tr>
+<tr class="separator:a6d3c86cf0f7e7af8238d7a90e6442e1a inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a562e873b15597036d938ff9cba2a78dd inherit pub_attribs_classrenderingFmap__c" id="r_a562e873b15597036d938ff9cba2a78dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a562e873b15597036d938ff9cba2a78dd">mRegionNo</a></td></tr>
+<tr class="separator:a562e873b15597036d938ff9cba2a78dd inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe70302c96945da6de2abbad4a2dee5 inherit pub_attribs_classrenderingFmap__c" id="r_a6fe70302c96945da6de2abbad4a2dee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a6fe70302c96945da6de2abbad4a2dee5">mRoomIndex</a></td></tr>
+<tr class="separator:a6fe70302c96945da6de2abbad4a2dee5 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b3e605e41168e56f012a9e176f2aaf inherit pub_attribs_classrenderingFmap__c" id="r_ae2b3e605e41168e56f012a9e176f2aaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#ae2b3e605e41168e56f012a9e176f2aaf">mStageOffsetX</a></td></tr>
+<tr class="separator:ae2b3e605e41168e56f012a9e176f2aaf inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340966055a14230becbc16652ec6cc92 inherit pub_attribs_classrenderingFmap__c" id="r_a340966055a14230becbc16652ec6cc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a340966055a14230becbc16652ec6cc92">mStageOffsetZ</a></td></tr>
+<tr class="separator:a340966055a14230becbc16652ec6cc92 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93dffbe2297d7f489c26695755fd4e66 inherit pub_attribs_classrenderingFmap__c" id="r_a93dffbe2297d7f489c26695755fd4e66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a93dffbe2297d7f489c26695755fd4e66">mRegionOffsetX</a></td></tr>
+<tr class="separator:a93dffbe2297d7f489c26695755fd4e66 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3bf2634740c88ee67faaddab21d293 inherit pub_attribs_classrenderingFmap__c" id="r_adc3bf2634740c88ee67faaddab21d293"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#adc3bf2634740c88ee67faaddab21d293">mRegionOffsetZ</a></td></tr>
+<tr class="separator:adc3bf2634740c88ee67faaddab21d293 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053065c55beb6ef5971ab05e359287eb inherit pub_attribs_classrenderingFmap__c" id="r_a053065c55beb6ef5971ab05e359287eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a053065c55beb6ef5971ab05e359287eb">field_0xb8</a></td></tr>
+<tr class="separator:a053065c55beb6ef5971ab05e359287eb inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4de465bbf869a98c40e94164b13fb55 inherit pub_attribs_classrenderingFmap__c" id="r_af4de465bbf869a98c40e94164b13fb55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#af4de465bbf869a98c40e94164b13fb55">mSaveTableNo</a></td></tr>
+<tr class="separator:af4de465bbf869a98c40e94164b13fb55 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab5c44fc7909b1c46e4e548c15c8e96 inherit pub_attribs_classrenderingFmap__c" id="r_abab5c44fc7909b1c46e4e548c15c8e96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#abab5c44fc7909b1c46e4e548c15c8e96">mVisitedRoomSaveTableNo</a></td></tr>
+<tr class="separator:abab5c44fc7909b1c46e4e548c15c8e96 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ce6a043be8fd02255d1333ac3ca251 inherit pub_attribs_classrenderingFmap__c" id="r_aa1ce6a043be8fd02255d1333ac3ca251"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#aa1ce6a043be8fd02255d1333ac3ca251">mDrawEnable</a></td></tr>
+<tr class="separator:aa1ce6a043be8fd02255d1333ac3ca251 inherit pub_attribs_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_structdRenderingFDAmap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structdRenderingFDAmap__c')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="structdRenderingFDAmap__c.html">dRenderingFDAmap_c</a></td></tr>
+<tr class="memitem:ae7a5bb6f1e677bbfbda84aea3588d5e3 inherit pub_attribs_structdRenderingFDAmap__c" id="r_ae7a5bb6f1e677bbfbda84aea3588d5e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#ae7a5bb6f1e677bbfbda84aea3588d5e3">field_0x4</a></td></tr>
+<tr class="separator:ae7a5bb6f1e677bbfbda84aea3588d5e3 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13df8fad54ef5155f228ddf493bd2842 inherit pub_attribs_structdRenderingFDAmap__c" id="r_a13df8fad54ef5155f228ddf493bd2842"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a13df8fad54ef5155f228ddf493bd2842">field_0x8</a></td></tr>
+<tr class="separator:a13df8fad54ef5155f228ddf493bd2842 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa01a7c88f97b154b134f4dbd539aa827 inherit pub_attribs_structdRenderingFDAmap__c" id="r_aa01a7c88f97b154b134f4dbd539aa827"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#aa01a7c88f97b154b134f4dbd539aa827">field_0xc</a></td></tr>
+<tr class="separator:aa01a7c88f97b154b134f4dbd539aa827 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fdc10fb789e469471cc425cd1df31d7 inherit pub_attribs_structdRenderingFDAmap__c" id="r_a7fdc10fb789e469471cc425cd1df31d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a7fdc10fb789e469471cc425cd1df31d7">mPosX</a></td></tr>
+<tr class="separator:a7fdc10fb789e469471cc425cd1df31d7 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f5880d270d35e9287292fa6b7d7c35 inherit pub_attribs_structdRenderingFDAmap__c" id="r_aa4f5880d270d35e9287292fa6b7d7c35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#aa4f5880d270d35e9287292fa6b7d7c35">mPosZ</a></td></tr>
+<tr class="separator:aa4f5880d270d35e9287292fa6b7d7c35 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c691979ff7a05ee4a79e42b729aa4e8 inherit pub_attribs_structdRenderingFDAmap__c" id="r_a7c691979ff7a05ee4a79e42b729aa4e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a7c691979ff7a05ee4a79e42b729aa4e8">mCmPerTexel</a></td></tr>
+<tr class="separator:a7c691979ff7a05ee4a79e42b729aa4e8 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53494a8e638e973d253dee28ee51a2f7 inherit pub_attribs_structdRenderingFDAmap__c" id="r_a53494a8e638e973d253dee28ee51a2f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a53494a8e638e973d253dee28ee51a2f7">mTexWidth</a></td></tr>
+<tr class="separator:a53494a8e638e973d253dee28ee51a2f7 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7a46241af516ee542f7516598513c5d inherit pub_attribs_structdRenderingFDAmap__c" id="r_af7a46241af516ee542f7516598513c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#af7a46241af516ee542f7516598513c5d">mTexHeight</a></td></tr>
+<tr class="separator:af7a46241af516ee542f7516598513c5d inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95243f67989b7d42cd8f0214c4248e4e inherit pub_attribs_structdRenderingFDAmap__c" id="r_a95243f67989b7d42cd8f0214c4248e4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a95243f67989b7d42cd8f0214c4248e4e">field_0x20</a></td></tr>
+<tr class="separator:a95243f67989b7d42cd8f0214c4248e4e inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e63a923b80b6f20ef19776b660464d2 inherit pub_attribs_structdRenderingFDAmap__c" id="r_a5e63a923b80b6f20ef19776b660464d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdRenderingFDAmap__c.html#a5e63a923b80b6f20ef19776b660464d2">field_0x22</a></td></tr>
+<tr class="separator:a5e63a923b80b6f20ef19776b660464d2 inherit pub_attribs_structdRenderingFDAmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classrenderingFmap__c"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classrenderingFmap__c')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classrenderingFmap__c.html">renderingFmap_c</a></td></tr>
+<tr class="memitem:a7f1df273a0c9790c49452c79cf45082f inherit pub_types_classrenderingFmap__c" id="r_a7f1df273a0c9790c49452c79cf45082f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082f">palette_e</a> { <br />
+&#160;&#160;<a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa9bf55cfbb5f6f36bb2dde2682c040f72">PALETTE_11</a> = 0x11
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fae186f35ce792e7c6cae7b7abd3d6b99e">PALETTE_12</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa51f27ab135b12de46c1e11a0cccbc665">PALETTE_13</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa97aca02aa916712863b7a3bbde3f28c2">PALETTE_14</a>
+, <br />
+&#160;&#160;<a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa1a80c6e8bec232da9d3b3bceba882383">PALETTE_15</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082faa1c79e7aec663ddcb8da8a8d02c162ab">PALETTE_16</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa965fbbaf48840e29964691b84f14c8e3">PALETTE_17</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082faea334c431445b9452a954347834297e4">PALETTE_18</a>
+, <br />
+&#160;&#160;<a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082fa7296d0791baafdd18ca06f78defefbf5">PALETTE_19</a>
+, <a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082facfe464ab57990d850c144239d34aac7c">PALETTE_1A</a>
+<br />
+ }</td></tr>
+<tr class="separator:a7f1df273a0c9790c49452c79cf45082f inherit pub_types_classrenderingFmap__c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4c4a27b47b5c748514403ac2d73668f2" name="a4c4a27b47b5c748514403ac2d73668f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c4a27b47b5c748514403ac2d73668f2">&#9670;&#160;</a></span>dMenu_FmapMap_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dMenu_FmapMap_c::dMenu_FmapMap_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a884e64e2e2aa35e2c2e481d472a504a2" name="a884e64e2e2aa35e2c2e481d472a504a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884e64e2e2aa35e2c2e481d472a504a2">&#9670;&#160;</a></span>~dMenu_FmapMap_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dMenu_FmapMap_c::~dMenu_FmapMap_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa01ef4bddfbce037df5ec6f5a7fe6b64" name="aa01ef4bddfbce037df5ec6f5a7fe6b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa01ef4bddfbce037df5ec6f5a7fe6b64">&#9670;&#160;</a></span>_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_texWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_texHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramname"><em>i_res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee32dced2615f8911a0ac5d7f3f0cf57" name="aee32dced2615f8911a0ac5d7f3f0cf57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee32dced2615f8911a0ac5d7f3f0cf57">&#9670;&#160;</a></span>_delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::_delete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1dee72e7504dc4066301387474663b06" name="a1dee72e7504dc4066301387474663b06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dee72e7504dc4066301387474663b06">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::draw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classdDlst__base__c.html#a26e27416830523b32e7066e76031fa73">dDlst_base_c</a>.</p>
+
+</div>
+</div>
+<a id="af2483bfee0fd7ce413441f413aecb684" name="af2483bfee0fd7ce413441f413aecb684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2483bfee0fd7ce413441f413aecb684">&#9670;&#160;</a></span>getBackColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> * dMenu_FmapMap_c::getBackColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structdRenderingFDAmap__c.html#a0832368d9e0308f69d871fb2e4fd6abc">dRenderingFDAmap_c</a>.</p>
+
+</div>
+</div>
+<a id="aa89461b07904a57382dd40d75e73df67" name="aa89461b07904a57382dd40d75e73df67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa89461b07904a57382dd40d75e73df67">&#9670;&#160;</a></span>getColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> * dMenu_FmapMap_c::getColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structdDrawPath__c.html#aa3f2b3b8e69f25c2033978d7d6f73765">dDrawPath_c</a>.</p>
+
+</div>
+</div>
+<a id="a7615eb9118c67f668b00e9f92460cf39" name="a7615eb9118c67f668b00e9f92460cf39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7615eb9118c67f668b00e9f92460cf39">&#9670;&#160;</a></span>getLineColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> * dMenu_FmapMap_c::getLineColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structdDrawPath__c.html#ae1fde185c9101d121ad8d833ea11c406">dDrawPath_c</a>.</p>
+
+</div>
+</div>
+<a id="abee1f9fd85b10b40efabb5a622e8cdaa" name="abee1f9fd85b10b40efabb5a622e8cdaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee1f9fd85b10b40efabb5a622e8cdaa">&#9670;&#160;</a></span>getLineWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::getLineWidth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="structdDrawPath__c.html#a96e9075f5b757c0bfa9f51a1a2dd3eb5">dDrawPath_c</a>.</p>
+
+</div>
+</div>
+<a id="a5c85d1d7a1bdd991f1af187a10b2a225" name="a5c85d1d7a1bdd991f1af187a10b2a225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c85d1d7a1bdd991f1af187a10b2a225">&#9670;&#160;</a></span>getPointStagePathInnerNo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::getPointStagePathInnerNo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdMenu__Fmap__region__data__c.html">dMenu_Fmap_region_data_c</a> *&#160;</td>
+          <td class="paramname"><em>i_regionData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_offsetX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_offsetY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_stageNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *&#160;</td>
+          <td class="paramname"><em>o_stageNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> *&#160;</td>
+          <td class="paramname"><em>o_roomNo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6edbe0e06aad92a9e4c8b11905dbb5ea" name="a6edbe0e06aad92a9e4c8b11905dbb5ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6edbe0e06aad92a9e4c8b11905dbb5ea">&#9670;&#160;</a></span>getRateWithFrameCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> dMenu_FmapMap_c::getRateWithFrameCount </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad321ff5207cb54bd7652b7f6d236172" name="aad321ff5207cb54bd7652b7f6d236172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad321ff5207cb54bd7652b7f6d236172">&#9670;&#160;</a></span>getResTIMGPointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structResTIMG.html">ResTIMG</a> * dMenu_FmapMap_c::getResTIMGPointer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a486e2be1e3313fef367e3ae7f78d3be7" name="a486e2be1e3313fef367e3ae7f78d3be7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a486e2be1e3313fef367e3ae7f78d3be7">&#9670;&#160;</a></span>isDrawEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> dMenu_FmapMap_c::isDrawEnable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa604189563b41e3d2196c6889454b4d6" name="aa604189563b41e3d2196c6889454b4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa604189563b41e3d2196c6889454b4d6">&#9670;&#160;</a></span>isDrawType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> dMenu_FmapMap_c::isDrawType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structdDrawPath__c.html#a1441b4614addc741445b590c540d226e">dDrawPath_c</a>.</p>
+
+</div>
+</div>
+<a id="a01204d82a00a0e0dfba7a9821d5f7f3d" name="a01204d82a00a0e0dfba7a9821d5f7f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01204d82a00a0e0dfba7a9821d5f7f3d">&#9670;&#160;</a></span>isFlashRoomNoCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> dMenu_FmapMap_c::isFlashRoomNoCheck </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_roomNo</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a61b1f02dbbd2d872dff7bc466099e4db" name="a61b1f02dbbd2d872dff7bc466099e4db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61b1f02dbbd2d872dff7bc466099e4db">&#9670;&#160;</a></span>rendering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::rendering </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdDrawPath__c_1_1line__class.html">dDrawPath_c::line_class</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> *&#160;</td>
+          <td class="paramname"><em>i_line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structdDrawPath__c.html#ac22767998fab09cf1578acd5bc6e15e0">dDrawPath_c</a>.</p>
+
+</div>
+</div>
+<a id="a8e482aa39986a0ee48e93e31aa53ba8e" name="a8e482aa39986a0ee48e93e31aa53ba8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e482aa39986a0ee48e93e31aa53ba8e">&#9670;&#160;</a></span>setFlashOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setFlashOff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb8ae7558cda6d10cb0ce2f190720492" name="adb8ae7558cda6d10cb0ce2f190720492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb8ae7558cda6d10cb0ce2f190720492">&#9670;&#160;</a></span>setFlashOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setFlashOn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_regionNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_stageNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td>
+          <td class="paramname"><em>i_rooms</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_roomCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63ab4335757fc1afb58f3da18d0157b7" name="a63ab4335757fc1afb58f3da18d0157b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63ab4335757fc1afb58f3da18d0157b7">&#9670;&#160;</a></span>setFmapPaletteColor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setFmapPaletteColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082f">renderingFmap_c::palette_e</a>&#160;</td>
+          <td class="paramname"><em>i_palette</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="GXStruct_8h.html#a0419d171f4d66c2b2a77bd299ddbdcdc">GXColor</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa78ea6846c854dc737fd3a34e0e1c300" name="aa78ea6846c854dc737fd3a34e0e1c300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa78ea6846c854dc737fd3a34e0e1c300">&#9670;&#160;</a></span>setFmapPaletteColor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setFmapPaletteColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classrenderingFmap__c.html#a7f1df273a0c9790c49452c79cf45082f">renderingFmap_c::palette_e</a>&#160;</td>
+          <td class="paramname"><em>i_palette</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af42a7a9c156d98816816e2eab73d55d2" name="af42a7a9c156d98816816e2eab73d55d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af42a7a9c156d98816816e2eab73d55d2">&#9670;&#160;</a></span>setPointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setPointColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_param</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a330e26240161b68fe1c2bd44da871685" name="a330e26240161b68fe1c2bd44da871685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a330e26240161b68fe1c2bd44da871685">&#9670;&#160;</a></span>setRendering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setRendering </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdMenu__Fmap__world__data__c.html">dMenu_Fmap_world_data_c</a> *&#160;</td>
+          <td class="paramname"><em>i_worldData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramname"><em>i_startStageNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_posX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_posY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_zoomRate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7aabd4ef884e8ad6dd546e8206d04caa" name="a7aabd4ef884e8ad6dd546e8206d04caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aabd4ef884e8ad6dd546e8206d04caa">&#9670;&#160;</a></span>setTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> dMenu_FmapMap_c::setTexture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a35bb0fede3ded911d5027b0206246b01" name="a35bb0fede3ded911d5027b0206246b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bb0fede3ded911d5027b0206246b01">&#9670;&#160;</a></span>field_0xcc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::field_0xcc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ba3698f82587b7237a17d922b68605c" name="a5ba3698f82587b7237a17d922b68605c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ba3698f82587b7237a17d922b68605c">&#9670;&#160;</a></span>m_palette</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structdMpath__RGB5A3__palDt__s.html">dMpath_RGB5A3_palDt_s</a>* dMenu_FmapMap_c::m_palette</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e289cab9c50b281d53a14dc052b1a0e" name="a3e289cab9c50b281d53a14dc052b1a0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e289cab9c50b281d53a14dc052b1a0e">&#9670;&#160;</a></span>m_res</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structdMfm__prm__res__s.html">dMfm_prm_res_s</a>* dMenu_FmapMap_c::m_res</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2de77d8235b14d03a86504799328d099" name="a2de77d8235b14d03a86504799328d099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2de77d8235b14d03a86504799328d099">&#9670;&#160;</a></span>mFlash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> dMenu_FmapMap_c::mFlash</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ab3b85cc63bcd35df73b4e3bc0ed920" name="a9ab3b85cc63bcd35df73b4e3bc0ed920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ab3b85cc63bcd35df73b4e3bc0ed920">&#9670;&#160;</a></span>mFlashRoomCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::mFlashRoomCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0a965f52467b78510f8a4654ba6e008" name="ac0a965f52467b78510f8a4654ba6e008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0a965f52467b78510f8a4654ba6e008">&#9670;&#160;</a></span>mFlashRooms</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>* dMenu_FmapMap_c::mFlashRooms</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac19a6168d2f07eba67f19ce7807ae56" name="aac19a6168d2f07eba67f19ce7807ae56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac19a6168d2f07eba67f19ce7807ae56">&#9670;&#160;</a></span>mFlashTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> dMenu_FmapMap_c::mFlashTimer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a726adcad39e9495bd207b79c4d71b6cb" name="a726adcad39e9495bd207b79c4d71b6cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726adcad39e9495bd207b79c4d71b6cb">&#9670;&#160;</a></span>mLastFlash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">bool</a> dMenu_FmapMap_c::mLastFlash</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a642a6b58f169edeb485275dbe3494d4b" name="a642a6b58f169edeb485275dbe3494d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a642a6b58f169edeb485275dbe3494d4b">&#9670;&#160;</a></span>mLastStageCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::mLastStageCursor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20205c4ecdf23a02e626f8ad75138aa0" name="a20205c4ecdf23a02e626f8ad75138aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20205c4ecdf23a02e626f8ad75138aa0">&#9670;&#160;</a></span>mLineNo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::mLineNo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a101f31a1ae4e3925cb0c886e9f9891f3" name="a101f31a1ae4e3925cb0c886e9f9891f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a101f31a1ae4e3925cb0c886e9f9891f3">&#9670;&#160;</a></span>mMapImage_p</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>* dMenu_FmapMap_c::mMapImage_p</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fcff2dc287cd41c2bf9d586cc527a67" name="a2fcff2dc287cd41c2bf9d586cc527a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fcff2dc287cd41c2bf9d586cc527a67">&#9670;&#160;</a></span>mRegionCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> dMenu_FmapMap_c::mRegionCursor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c1d10f15afd93c1bcdcb75954a9b037" name="a3c1d10f15afd93c1bcdcb75954a9b037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c1d10f15afd93c1bcdcb75954a9b037">&#9670;&#160;</a></span>mResTIMG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structResTIMG.html">ResTIMG</a>* dMenu_FmapMap_c::mResTIMG</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5eb26caaa0db0630da2833a4a51f6952" name="a5eb26caaa0db0630da2833a4a51f6952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb26caaa0db0630da2833a4a51f6952">&#9670;&#160;</a></span>mStageCursor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> dMenu_FmapMap_c::mStageCursor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e0df9878cc4b2ee7d1dfd2b6b2642a7" name="a3e0df9878cc4b2ee7d1dfd2b6b2642a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0df9878cc4b2ee7d1dfd2b6b2642a7">&#9670;&#160;</a></span>mZoomRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> dMenu_FmapMap_c::mZoomRate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/d/menu/<a class="el" href="d__menu__fmap__map_8h_source.html">d_menu_fmap_map.h</a></li>
+<li>src/d/menu/<a class="el" href="d__menu__fmap__map_8cpp.html">d_menu_fmap_map.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classdMenu__FmapMap__c.html">dMenu_FmapMap_c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

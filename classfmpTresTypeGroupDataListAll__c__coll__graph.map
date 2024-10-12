@@ -1,6 +1,6 @@
 <map id="fmpTresTypeGroupDataListAll_c" name="fmpTresTypeGroupDataListAll_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="12,375,194,416"/>
-<area shape="rect" id="Node000002" href="$structfmpTresTypeGroupDataList__c.html" title=" " alt="" coords="5,286,201,312"/>
+<area shape="rect" id="Node000002" href="$classfmpTresTypeGroupDataList__c.html" title=" " alt="" coords="5,286,201,312"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,327,106,374,100,374,100,327"/>
 <area shape="rect" id="Node000003" href="$classfmpTresTypeGroupData__c.html" title=" " alt="" coords="16,183,190,208"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,224,106,286,100,286,100,224"/>

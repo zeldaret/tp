@@ -66,7 +66,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structdMsgObject__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classdMsgObject__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="252.88,-19.25 173.88,-19.25 173.88,0 252.88,0 252.88,-19.25"/>
 <text text-anchor="middle" x="213.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgObject_c</text>
 </a>

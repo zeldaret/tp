@@ -1,6 +1,6 @@
 var d__msg__object_8h =
 [
-    [ "dMsgObject_c", "structdMsgObject__c.html", "structdMsgObject__c" ],
+    [ "dMsgObject_c", "classdMsgObject__c.html", "classdMsgObject__c" ],
     [ "dMsgObject_HowlHIO_c", "classdMsgObject__HowlHIO__c.html", "classdMsgObject__HowlHIO__c" ],
     [ "dMsgObject_HIO_c", "classdMsgObject__HIO__c.html", "classdMsgObject__HIO__c" ],
     [ "dMsgObject_addOffering", "d__msg__object_8h.html#a45a09c0e514ab5ca0b41b8ca7b3b85dc", null ],
@@ -41,6 +41,7 @@ var d__msg__object_8h =
     [ "dMsgObject_setKillMessageFlag", "d__msg__object_8h.html#a29dc627d09b2e741d19d6a6cc98afde6", null ],
     [ "dMsgObject_setMsgOutputType", "d__msg__object_8h.html#a49100b1ab4062997576de470836e0bd9", null ],
     [ "dMsgObject_setNowTalkFlowNo", "d__msg__object_8h.html#a8ef2977dc544a7d947e6019d04e60abc", null ],
+    [ "dMsgObject_setPortalMessageID", "d__msg__object_8h.html#a1e59e449e48ec53ebf075823e162cf42", null ],
     [ "dMsgObject_setSelectWordFlag", "d__msg__object_8h.html#ad36dfcc5942078a2b51fd1f0575e6551", null ],
     [ "dMsgObject_setShopWaitTimer", "d__msg__object_8h.html#ada046d3878f43bb2559d5b4b3aba0cf7", null ],
     [ "dMsgObject_setSmellType", "d__msg__object_8h.html#aa45873be6f03fe408f3171f1fcb3ff1f", null ],

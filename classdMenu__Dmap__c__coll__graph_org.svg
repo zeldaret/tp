@@ -205,7 +205,7 @@
 <!-- Node127 -->
 <g id="Node000127" class="node">
 <title>Node127</title>
-<g id="a_Node000127"><a xlink:href="structmDoDvdThd__mountArchive__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000127"><a xlink:href="classmDoDvdThd__mountArchive__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1721.5,-300.62 1575.75,-300.62 1575.75,-281.38 1721.5,-281.38 1721.5,-300.62"/>
 <text text-anchor="middle" x="1648.62" y="-287.12" font-family="Helvetica,sans-Serif" font-size="10.00">mDoDvdThd_mountArchive_c</text>
 </a>

@@ -1,6 +1,8 @@
 var classdSv__player__field__last__stay__info__c =
 [
     [ "dSv_player_field_last_stay_info_c", "classdSv__player__field__last__stay__info__c.html#af8bb1d67ed1f45dcc73c690b7a3a9a38", null ],
+    [ "getAngleY", "classdSv__player__field__last__stay__info__c.html#a7d3f56454176bd9a95b4474ceacd6da1", null ],
+    [ "getName", "classdSv__player__field__last__stay__info__c.html#a69de5018cbe0f377d597a2552ddf2223", null ],
     [ "getPos", "classdSv__player__field__last__stay__info__c.html#a0bd724a5c0592117e9130584bd1901c3", null ],
     [ "getRegionNo", "classdSv__player__field__last__stay__info__c.html#affebd8be4ea7022559a15cb3c02504c3", null ],
     [ "init", "classdSv__player__field__last__stay__info__c.html#a2ae5217e02e4153736a033f07e3e7cec", null ],

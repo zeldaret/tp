@@ -52,8 +52,7 @@ var d__map__path__fmap_8cpp =
     [ "isTbox__12dSv_memBit_cCFi", "d__map__path__fmap_8cpp.html#a75d3b37d7bf7168f0e8a95c08969fc18", null ],
     [ "isVisitedRoom__13dSv_memory2_cFi", "d__map__path__fmap_8cpp.html#a842672fc81daf2c1d27135eb1b19609e", null ],
     [ "nextData__22dMenuFmapIconPointer_cFv", "d__map__path__fmap_8cpp.html#a1e3d6178081f37c9f180d8f869b6f3e4", null ],
-    [ "__vt__19dMenuFmapIconDisp_c", "d__map__path__fmap_8cpp.html#afba68f3cac55c0f6cdf81d8ee05d1ef2", null ],
-    [ "lit_3894", "d__map__path__fmap_8cpp.html#a8fa4f22bea4209561c02af60105d79f5", null ],
+    [ "__vt__19dMenuFmapIconDisp_c", "d__map__path__fmap_8cpp.html#ada71dcb602e3796c406f8870051cab3e", null ],
     [ "lit_4467", "d__map__path__fmap_8cpp.html#a1d38f7d696115e8abcc734a005015004", null ],
     [ "saveBitLabels__16dSv_event_flag_c", "d__map__path__fmap_8cpp.html#abe0150b36f8791cccf8ed8cf4dad23c4", null ]
 ];

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structmDoDvdThd__mountArchive__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classmDoDvdThd__mountArchive__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="612.12,-85.75 466.38,-85.75 466.38,-66.5 612.12,-66.5 612.12,-85.75"/>
 <text text-anchor="middle" x="539.25" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">mDoDvdThd_mountArchive_c</text>
 </a>

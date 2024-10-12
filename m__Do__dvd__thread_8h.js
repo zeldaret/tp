@@ -4,7 +4,7 @@ var m__Do__dvd__thread_8h =
     [ "mDoDvdThd_toMainRam_c", "classmDoDvdThd__toMainRam__c.html", "classmDoDvdThd__toMainRam__c" ],
     [ "mDoDvdThd_param_c", "classmDoDvdThd__param__c.html", "classmDoDvdThd__param__c" ],
     [ "mDoDvdThd_mountXArchive_c", "classmDoDvdThd__mountXArchive__c.html", "classmDoDvdThd__mountXArchive__c" ],
-    [ "mDoDvdThd_mountArchive_c", "structmDoDvdThd__mountArchive__c.html", "structmDoDvdThd__mountArchive__c" ],
+    [ "mDoDvdThd_mountArchive_c", "classmDoDvdThd__mountArchive__c.html", "classmDoDvdThd__mountArchive__c" ],
     [ "mDoDvdThd_callback_c", "classmDoDvdThd__callback__c.html", "classmDoDvdThd__callback__c" ],
     [ "mDoDvdThdStack", "structmDoDvdThdStack.html", "structmDoDvdThdStack" ],
     [ "mDoDvdThd", "structmDoDvdThd.html", "structmDoDvdThd" ],

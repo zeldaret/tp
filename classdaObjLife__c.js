@@ -24,5 +24,6 @@ var classdaObjLife__c =
     [ "setBaseMtx", "classdaObjLife__c.html#a0ee942979cafd240491ab789d389c680", null ],
     [ "setEffect", "classdaObjLife__c.html#a2caeab58a6bd29b3601818741efd8940", null ],
     [ "setListStart", "classdaObjLife__c.html#a7b649165f8494307d706b8e57b9ade67", null ],
+    [ "setPos", "classdaObjLife__c.html#a2b0ed2353e927fd94d4815a6847760fd", null ],
     [ "field_0x568", "classdaObjLife__c.html#a159b6f5673daf8f8f0b9367f1520c409", null ]
 ];

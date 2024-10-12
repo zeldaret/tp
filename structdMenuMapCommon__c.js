@@ -1,17 +1,16 @@
 var structdMenuMapCommon__c =
 [
     [ "data", "structdMenuMapCommon__c_1_1data.html", "structdMenuMapCommon__c_1_1data" ],
+    [ "RoomData_c", "classdMenuMapCommon__c_1_1RoomData__c.html", "classdMenuMapCommon__c_1_1RoomData__c" ],
     [ "Stage_c", "structdMenuMapCommon__c_1_1Stage__c.html", "structdMenuMapCommon__c_1_1Stage__c" ],
     [ "dMenuMapCommon_c", "structdMenuMapCommon__c.html#aedae21d97bee6aeca170c7f427ae7775", null ],
     [ "~dMenuMapCommon_c", "structdMenuMapCommon__c.html#ad3df842c60bd37bcc7a468ed3950c786", null ],
     [ "blinkMove", "structdMenuMapCommon__c.html#af0fc334c19ea5b9451f8d53233eb628c", null ],
     [ "clearIconInfo", "structdMenuMapCommon__c.html#a7000cccc7ccda2d491a11869b8cd197c", null ],
-    [ "clearIconInfo", "structdMenuMapCommon__c.html#a7000cccc7ccda2d491a11869b8cd197c", null ],
     [ "debugIcon", "structdMenuMapCommon__c.html#ade5e95942ca1c68fad29dc16f1f878fe", null ],
     [ "drawIcon", "structdMenuMapCommon__c.html#ad85b0f2e31be2cadd24848eb2f14cf8c", null ],
     [ "getIconSizeX", "structdMenuMapCommon__c.html#a9ce378f256627d20e71db080a587864f", null ],
     [ "getIconSizeY", "structdMenuMapCommon__c.html#aaaae77fbdd445abbc94b3189eba6b6a2", null ],
-    [ "iconScale", "structdMenuMapCommon__c.html#a0bd2f4aa9414402d8a9262ed84b8e640", null ],
     [ "iconScale", "structdMenuMapCommon__c.html#a0bd2f4aa9414402d8a9262ed84b8e640", null ],
     [ "initiate", "structdMenuMapCommon__c.html#aa89a5b407ed6fa7b1445f21a2ff1fed2", null ],
     [ "moveLightDropAnime", "structdMenuMapCommon__c.html#abcc84639a82f196ba1ce003dffea7176", null ],

@@ -1,6 +1,6 @@
 <map id="dStage_roomDt_c" name="dStage_roomDt_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1507,549,1632,575"/>
-<area shape="rect" id="Node000002" href="$structdStage__dt__c.html" title=" " alt="" coords="1236,5,1331,31"/>
+<area shape="rect" id="Node000002" href="$classdStage__dt__c.html" title=" " alt="" coords="1236,5,1331,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1346,9,1381,9,1418,15,1454,28,1485,50,1498,67,1510,90,1529,149,1544,221,1555,300,1567,450,1571,549,1565,549,1562,451,1550,300,1539,222,1524,150,1505,92,1494,70,1481,53,1452,32,1417,20,1381,15,1346,14"/>
 <area shape="rect" id="Node000003" href="$structstage__pure__lightvec__info__class.html" title=" " alt="" coords="339,559,476,600"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="492,576,1507,560,1507,566,492,581"/>

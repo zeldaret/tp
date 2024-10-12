@@ -39,7 +39,7 @@ var classJKRArchive =
     [ "findTypeResource", "classJKRArchive.html#a28d78a01c7959b1c437c9d34e5b52486", null ],
     [ "getCurrentDirID", "classJKRArchive.html#a470c3d58ac55be93058bda92e00c3ff1", null ],
     [ "getDirEntry", "classJKRArchive.html#a878f03fa4834ffe84c7da51ef37e2020", null ],
-    [ "getExpandedResSize", "classJKRArchive.html#a580f252b34389d86d134bfd574e2299c", null ],
+    [ "getExpandedResSize", "classJKRArchive.html#aa77391685b6b7f83c9ad334ad325ea1b", null ],
     [ "getExpandSize", "classJKRArchive.html#a196cc0d9bac3dc93bb98268f328d8d91", null ],
     [ "getFileAttribute", "classJKRArchive.html#a4abd59f5344dfabd21b18ec5139419c4", null ],
     [ "getFirstFile", "classJKRArchive.html#a09be25ae4902a90d31cf4ebfb6325104", null ],

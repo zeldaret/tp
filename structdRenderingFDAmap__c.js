@@ -3,7 +3,7 @@ var structdRenderingFDAmap__c =
     [ "dRenderingFDAmap_c", "structdRenderingFDAmap__c.html#a186b55829a808fb29e06fd9a712dd908", null ],
     [ "~dRenderingFDAmap_c", "structdRenderingFDAmap__c.html#a01e0a96917662b0e43291b979902fcd6", null ],
     [ "drawBack", "structdRenderingFDAmap__c.html#ad945c7f61a64ea6d41448d95c9d8ff21", null ],
-    [ "getBackColor", "structdRenderingFDAmap__c.html#abddd3d0651626d7cdbb613b89a2c092d", null ],
+    [ "getBackColor", "structdRenderingFDAmap__c.html#a0832368d9e0308f69d871fb2e4fd6abc", null ],
     [ "getDecoLineColor", "structdRenderingFDAmap__c.html#a05c0c231ebdd5b3ab13dfa4d63ec49ec", null ],
     [ "getDecoLineColor", "structdRenderingFDAmap__c.html#a71cf2c20bcc54c1c8f00bcf205e4fb88", null ],
     [ "getDecorationLineWidth", "structdRenderingFDAmap__c.html#aa5daf587fc227fe1768927e6738f90df", null ],
@@ -16,14 +16,14 @@ var structdRenderingFDAmap__c =
     [ "renderingDecoration", "structdRenderingFDAmap__c.html#a0a3c831e7f3a7ab523eb4a6e8a9ff74b", null ],
     [ "setTevSettingIntensityTextureToCI", "structdRenderingFDAmap__c.html#a87cd1438ee04d7ffd6b79cfdbfa19b17", null ],
     [ "setTevSettingNonTextureDirectColor", "structdRenderingFDAmap__c.html#a9f1f75f3894a32477e47e8a99ad0017a", null ],
-    [ "field_0x10", "structdRenderingFDAmap__c.html#a939299a5b887da044e264876aa8e2ee1", null ],
-    [ "field_0x14", "structdRenderingFDAmap__c.html#a8c30c65090edc0642054acc425f8ec75", null ],
-    [ "field_0x1c", "structdRenderingFDAmap__c.html#a8f7d921f13c6ce4c6e50a305f8a89f97", null ],
-    [ "field_0x1e", "structdRenderingFDAmap__c.html#a120d2380aefb25090be522265cb7ee7b", null ],
     [ "field_0x20", "structdRenderingFDAmap__c.html#a95243f67989b7d42cd8f0214c4248e4e", null ],
     [ "field_0x22", "structdRenderingFDAmap__c.html#a5e63a923b80b6f20ef19776b660464d2", null ],
     [ "field_0x4", "structdRenderingFDAmap__c.html#ae7a5bb6f1e677bbfbda84aea3588d5e3", null ],
     [ "field_0x8", "structdRenderingFDAmap__c.html#a13df8fad54ef5155f228ddf493bd2842", null ],
     [ "field_0xc", "structdRenderingFDAmap__c.html#aa01a7c88f97b154b134f4dbd539aa827", null ],
-    [ "mCmPerTexel", "structdRenderingFDAmap__c.html#a7c691979ff7a05ee4a79e42b729aa4e8", null ]
+    [ "mCmPerTexel", "structdRenderingFDAmap__c.html#a7c691979ff7a05ee4a79e42b729aa4e8", null ],
+    [ "mPosX", "structdRenderingFDAmap__c.html#a7fdc10fb789e469471cc425cd1df31d7", null ],
+    [ "mPosZ", "structdRenderingFDAmap__c.html#aa4f5880d270d35e9287292fa6b7d7c35", null ],
+    [ "mTexHeight", "structdRenderingFDAmap__c.html#af7a46241af516ee542f7516598513c5d", null ],
+    [ "mTexWidth", "structdRenderingFDAmap__c.html#a53494a8e638e973d253dee28ee51a2f7", null ]
 ];

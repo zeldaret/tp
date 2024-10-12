@@ -1,5 +1,5 @@
 <map id="dMenuMapCommon_c::Stage_c" name="dMenuMapCommon_c::Stage_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,109,211,135"/>
-<area shape="rect" id="Node000002" href="$structdMenuMapCommon__c_1_1Stage__c_1_1Stage__c__data.html" title=" " alt="" coords="12,5,204,46"/>
+<area shape="rect" id="Node000002" href="$structdMenuMapCommon__c_1_1Stage__c_1_1data.html" title=" " alt="" coords="12,5,204,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,61,111,109,105,109,105,61"/>
 </map>

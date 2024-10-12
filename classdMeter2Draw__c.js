@@ -37,6 +37,7 @@ var classdMeter2Draw__c =
     [ "getCameraSubject", "classdMeter2Draw__c.html#a2af059af925fe29474c23d6361ab7654", null ],
     [ "getCanoeFishing", "classdMeter2Draw__c.html#ae760ca80715a325272c09e453aafd6b8", null ],
     [ "getFishingType", "classdMeter2Draw__c.html#a105b5980bde208aaf8063e539a539001", null ],
+    [ "getInsideObjCheck", "classdMeter2Draw__c.html#a45a5514d1ce0d5e5f08beffa4c2fcba9", null ],
     [ "getItemSubject", "classdMeter2Draw__c.html#adb4bab727dddea2000fe99da708d13cd", null ],
     [ "getMainScreenPtr", "classdMeter2Draw__c.html#a09f1ce78c65cfed22d95ecd4be3db0cd", null ],
     [ "getMeterGaugeAlphaRate", "classdMeter2Draw__c.html#ac5855eab7d86a0da4fe74d9b4c22d698", null ],

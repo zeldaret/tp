@@ -67,7 +67,7 @@ var searchData=
   ['type_5fbattle_5f2_64',['TYPE_BATTLE_2',['../classdaB__DS__c.html#a48c83da934043f596984d65e4b7cdd98a8454d64abf44bd594c5b2834c903a9eb',1,'daB_DS_c']]],
   ['type_5fbee_65',['TYPE_BEE',['../classe__nest__class.html#a7b60aa3a91d4c5036354f8830ebae661ad0e8ec226210384b9412a670de700a1e',1,'e_nest_class']]],
   ['type_5fbig_5fe_66',['TYPE_BIG_e',['../classdaTbox2__c.html#a636a0d0d685043fd3e430ebf28db9413a7c01d9ca112051911800cb2e09d333f5',1,'daTbox2_c']]],
-  ['type_5fblack_5fevent_67',['TYPE_BLACK_EVENT',['../classdMenu__save__c.html#acddb48133f0883aa7dcfae55918bdecba0f614aa23e7e04c8d28e4913810e50c2',1,'dMenu_save_c']]],
+  ['type_5fblack_5fevent_67',['TYPE_BLACK_EVENT',['../classdMenu__save__c.html#a7ea34fcb47a34d78c19468182e907837a0f614aa23e7e04c8d28e4913810e50c2',1,'dMenu_save_c']]],
   ['type_5fbokkuri_68',['TYPE_BOKKURI',['../classdaObjCarry__c.html#a775d106603a94957667d7bffbf9acf5aa5c90b41f7bc93ef8dfe6942347589950',1,'daObjCarry_c']]],
   ['type_5fbone_69',['TYPE_BONE',['../classobj__food__class.html#a2399ea183e9d3d36e162b4aee2e38633a436345be0a27cef72f7bc303f2007af7',1,'obj_food_class']]],
   ['type_5fboom_5fhit_5fe_70',['TYPE_BOOM_HIT_e',['../classdaItem__c.html#a47e223970f0b557e129fd1fdb10e0751a6d7e3c20bc694ad168eb0cad6d870e95',1,'daItem_c']]],
@@ -80,7 +80,7 @@ var searchData=
   ['type_5fcamera_77',['TYPE_CAMERA',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42aa50791a95cb626ef817eaec91e0337c4',1,'dEvDtStaff_c']]],
   ['type_5fcastle_78',['TYPE_CASTLE',['../classdaNpcAsh__c.html#af262d31820dff63d27ee340e4cc63662a96fb777bf646928c1aa72f70cd33c155',1,'daNpcAsh_c']]],
   ['type_5fcreate_79',['TYPE_CREATE',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42a50a4e903c269b8d2c3defca420426913',1,'dEvDtStaff_c']]],
-  ['type_5fdefault_80',['type_default',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42a064647f069bf990dcc72353b36981c1e',1,'dEvDtStaff_c::TYPE_DEFAULT'],['../classdMenu__save__c.html#acddb48133f0883aa7dcfae55918bdecba9ba1a862853b553c8645e3107a374e16',1,'dMenu_save_c::TYPE_DEFAULT'],['../classdMeter__fmapHIO__c.html#a502b7facedf6090123db410e86e940d8ae91ec83fd94bb17f17a474f46549db74',1,'dMeter_fmapHIO_c::TYPE_DEFAULT']]],
+  ['type_5fdefault_80',['type_default',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42a064647f069bf990dcc72353b36981c1e',1,'dEvDtStaff_c::TYPE_DEFAULT'],['../classdMenu__save__c.html#a7ea34fcb47a34d78c19468182e907837a9ba1a862853b553c8645e3107a374e16',1,'dMenu_save_c::TYPE_DEFAULT'],['../classdMeter__fmapHIO__c.html#a502b7facedf6090123db410e86e940d8ae91ec83fd94bb17f17a474f46549db74',1,'dMeter_fmapHIO_c::TYPE_DEFAULT']]],
   ['type_5fdirector_81',['TYPE_DIRECTOR',['../classdEvDtStaff__c.html#a531d5702f3719f03273635f1cea17c42aaa904a2c8bf4f3813af5d336a40ebdc6',1,'dEvDtStaff_c']]],
   ['type_5fdokuro_82',['TYPE_DOKURO',['../classdaObjCarry__c.html#a775d106603a94957667d7bffbf9acf5aa7d3c1eae55e8a65bd6fe8fa753873fd5',1,'daObjCarry_c']]],
   ['type_5fdungeon_83',['TYPE_DUNGEON',['../classdMeter__fmapHIO__c.html#a502b7facedf6090123db410e86e940d8a737de504bc973f1801cf5e2f371875a4',1,'dMeter_fmapHIO_c']]],
@@ -144,5 +144,5 @@ var searchData=
   ['type_5fwater_5fenemy_141',['TYPE_WATER_ENEMY',['../classdaNbomb__c.html#aac30045a200d0cfd4d888b98b14223b1ab98cf019b1a0d6b5644ab5dd08a2c7c1',1,'daNbomb_c']]],
   ['type_5fwater_5fplayer_142',['TYPE_WATER_PLAYER',['../classdaNbomb__c.html#aac30045a200d0cfd4d888b98b14223b1a65027ff28a0b9207c56e7fe6e45fba8d',1,'daNbomb_c']]],
   ['type_5fwaterfall_143',['TYPE_WATERFALL',['../classdaNpc__zrA__c.html#a33889c9d2e65077924005725da387607a8701aade8dc3d21ab9320d39aaaa1a1f',1,'daNpc_zrA_c']]],
-  ['type_5fwhite_5fevent_144',['TYPE_WHITE_EVENT',['../classdMenu__save__c.html#acddb48133f0883aa7dcfae55918bdecbab981553895617e9841e06b3eccb35f5f',1,'dMenu_save_c']]]
+  ['type_5fwhite_5fevent_144',['TYPE_WHITE_EVENT',['../classdMenu__save__c.html#a7ea34fcb47a34d78c19468182e907837ab981553895617e9841e06b3eccb35f5f',1,'dMenu_save_c']]]
 ];
