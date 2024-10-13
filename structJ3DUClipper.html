@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: J3DUClipper Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structJ3DUClipper.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="structJ3DUClipper-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">J3DUClipper Class Reference<div class="ingroups"><a class="el" href="group__jsystem.html">JSystem</a> &raquo; <a class="el" href="group__jsystem-j3d.html">J3D</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="J3DUClipper_8h_source.html">J3DUClipper.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for J3DUClipper:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structJ3DUClipper__coll__graph.svg" width="106" height="171"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a27a2eb032b61d9a3c3bb589fcea0da91" id="r_a27a2eb032b61d9a3c3bb589fcea0da91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a27a2eb032b61d9a3c3bb589fcea0da91">calcViewFrustum</a> ()</td></tr>
+<tr class="separator:a27a2eb032b61d9a3c3bb589fcea0da91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24cedec26acf8921809674670b147df" id="r_ac24cedec26acf8921809674670b147df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#ac24cedec26acf8921809674670b147df">J3DUClipper</a> ()</td></tr>
+<tr class="separator:ac24cedec26acf8921809674670b147df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6873f3dba87ce70a1d507bd8d146b55a" id="r_a6873f3dba87ce70a1d507bd8d146b55a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a6873f3dba87ce70a1d507bd8d146b55a">~J3DUClipper</a> ()</td></tr>
+<tr class="separator:a6873f3dba87ce70a1d507bd8d146b55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374da449a25a5729180efa3780238b7a" id="r_a374da449a25a5729180efa3780238b7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a374da449a25a5729180efa3780238b7a">init</a> ()</td></tr>
+<tr class="separator:a374da449a25a5729180efa3780238b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27a2eb032b61d9a3c3bb589fcea0da91" id="r_a27a2eb032b61d9a3c3bb589fcea0da91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a27a2eb032b61d9a3c3bb589fcea0da91">calcViewFrustum</a> ()</td></tr>
+<tr class="separator:a27a2eb032b61d9a3c3bb589fcea0da91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf89a8044613f7ac3721d45c8720890" id="r_a4cf89a8044613f7ac3721d45c8720890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a4cf89a8044613f7ac3721d45c8720890">clip</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> (*)[4], <a class="el" href="structVec.html">Vec</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a4cf89a8044613f7ac3721d45c8720890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b40309e207f95b72c09eb3d76bf83a7" id="r_a4b40309e207f95b72c09eb3d76bf83a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a4b40309e207f95b72c09eb3d76bf83a7">clip</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> (*)[4], <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a4b40309e207f95b72c09eb3d76bf83a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a645ef66b3b90f0f04b6a658683b4fc67" id="r_a645ef66b3b90f0f04b6a658683b4fc67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a645ef66b3b90f0f04b6a658683b4fc67">setFovy</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">fovy</a>)</td></tr>
+<tr class="separator:a645ef66b3b90f0f04b6a658683b4fc67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0ecfa2e1ce9db03280a6e4217d4bfa" id="r_a4d0ecfa2e1ce9db03280a6e4217d4bfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a4d0ecfa2e1ce9db03280a6e4217d4bfa">setAspect</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">aspect</a>)</td></tr>
+<tr class="separator:a4d0ecfa2e1ce9db03280a6e4217d4bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e2899bf0ec63714541b1472ddf314b" id="r_a17e2899bf0ec63714541b1472ddf314b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a17e2899bf0ec63714541b1472ddf314b">setNear</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">near</a>)</td></tr>
+<tr class="separator:a17e2899bf0ec63714541b1472ddf314b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c61f5ab08cafe65e98e7cec0f55ff0" id="r_af2c61f5ab08cafe65e98e7cec0f55ff0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#af2c61f5ab08cafe65e98e7cec0f55ff0">setFar</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">far</a>)</td></tr>
+<tr class="separator:af2c61f5ab08cafe65e98e7cec0f55ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b93d5bbc39cc7c102ba01bc4cc6112" id="r_ab2b93d5bbc39cc7c102ba01bc4cc6112"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#ab2b93d5bbc39cc7c102ba01bc4cc6112">getFar</a> ()</td></tr>
+<tr class="separator:ab2b93d5bbc39cc7c102ba01bc4cc6112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a641539ed9fd89fa21a00a1a616da158e" id="r_a641539ed9fd89fa21a00a1a616da158e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a641539ed9fd89fa21a00a1a616da158e">_04</a></td></tr>
+<tr class="separator:a641539ed9fd89fa21a00a1a616da158e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e43aa1b105d6c630396cbd3a6be6a38" id="r_a8e43aa1b105d6c630396cbd3a6be6a38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a8e43aa1b105d6c630396cbd3a6be6a38">_10</a></td></tr>
+<tr class="separator:a8e43aa1b105d6c630396cbd3a6be6a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab406bd7f3981aebe016112715a1ff030" id="r_ab406bd7f3981aebe016112715a1ff030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#ab406bd7f3981aebe016112715a1ff030">_1C</a></td></tr>
+<tr class="separator:ab406bd7f3981aebe016112715a1ff030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f0363c9197133d5730dafd41a16724" id="r_a64f0363c9197133d5730dafd41a16724"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a64f0363c9197133d5730dafd41a16724">_28</a></td></tr>
+<tr class="separator:a64f0363c9197133d5730dafd41a16724"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ece667bc96383c4068a247e1f2f117" id="r_a75ece667bc96383c4068a247e1f2f117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a75ece667bc96383c4068a247e1f2f117">_34</a> [0x4C - 0x34]</td></tr>
+<tr class="separator:a75ece667bc96383c4068a247e1f2f117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940471c72b391ac313ba4328a0a203ab" id="r_a940471c72b391ac313ba4328a0a203ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a940471c72b391ac313ba4328a0a203ab">mFovY</a></td></tr>
+<tr class="separator:a940471c72b391ac313ba4328a0a203ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac982d392cafe210d7fe1a10211452ebd" id="r_ac982d392cafe210d7fe1a10211452ebd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#ac982d392cafe210d7fe1a10211452ebd">mAspect</a></td></tr>
+<tr class="separator:ac982d392cafe210d7fe1a10211452ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7152e2a2f39d1c9f6fd52ebee6a3354a" id="r_a7152e2a2f39d1c9f6fd52ebee6a3354a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a7152e2a2f39d1c9f6fd52ebee6a3354a">mNear</a></td></tr>
+<tr class="separator:a7152e2a2f39d1c9f6fd52ebee6a3354a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8daead36fef7bdc7441057d35c941d59" id="r_a8daead36fef7bdc7441057d35c941d59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJ3DUClipper.html#a8daead36fef7bdc7441057d35c941d59">mFar</a></td></tr>
+<tr class="separator:a8daead36fef7bdc7441057d35c941d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac24cedec26acf8921809674670b147df" name="ac24cedec26acf8921809674670b147df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24cedec26acf8921809674670b147df">&#9670;&#160;</a></span>J3DUClipper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">J3DUClipper::J3DUClipper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6873f3dba87ce70a1d507bd8d146b55a" name="a6873f3dba87ce70a1d507bd8d146b55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6873f3dba87ce70a1d507bd8d146b55a">&#9670;&#160;</a></span>~J3DUClipper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> J3DUClipper::~J3DUClipper </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a27a2eb032b61d9a3c3bb589fcea0da91" name="a27a2eb032b61d9a3c3bb589fcea0da91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a2eb032b61d9a3c3bb589fcea0da91">&#9670;&#160;</a></span>calcViewFrustum() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::calcViewFrustum </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27a2eb032b61d9a3c3bb589fcea0da91" name="a27a2eb032b61d9a3c3bb589fcea0da91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a2eb032b61d9a3c3bb589fcea0da91">&#9670;&#160;</a></span>calcViewFrustum() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::calcViewFrustum </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b40309e207f95b72c09eb3d76bf83a7" name="a4b40309e207f95b72c09eb3d76bf83a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b40309e207f95b72c09eb3d76bf83a7">&#9670;&#160;</a></span>clip() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> J3DUClipper::clip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>  <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>(*)[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4cf89a8044613f7ac3721d45c8720890" name="a4cf89a8044613f7ac3721d45c8720890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cf89a8044613f7ac3721d45c8720890">&#9670;&#160;</a></span>clip() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> J3DUClipper::clip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>  <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>(*)[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab2b93d5bbc39cc7c102ba01bc4cc6112" name="ab2b93d5bbc39cc7c102ba01bc4cc6112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b93d5bbc39cc7c102ba01bc4cc6112">&#9670;&#160;</a></span>getFar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> J3DUClipper::getFar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a374da449a25a5729180efa3780238b7a" name="a374da449a25a5729180efa3780238b7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374da449a25a5729180efa3780238b7a">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d0ecfa2e1ce9db03280a6e4217d4bfa" name="a4d0ecfa2e1ce9db03280a6e4217d4bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0ecfa2e1ce9db03280a6e4217d4bfa">&#9670;&#160;</a></span>setAspect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::setAspect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>aspect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2c61f5ab08cafe65e98e7cec0f55ff0" name="af2c61f5ab08cafe65e98e7cec0f55ff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c61f5ab08cafe65e98e7cec0f55ff0">&#9670;&#160;</a></span>setFar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::setFar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>far</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a645ef66b3b90f0f04b6a658683b4fc67" name="a645ef66b3b90f0f04b6a658683b4fc67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a645ef66b3b90f0f04b6a658683b4fc67">&#9670;&#160;</a></span>setFovy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::setFovy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>fovy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17e2899bf0ec63714541b1472ddf314b" name="a17e2899bf0ec63714541b1472ddf314b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e2899bf0ec63714541b1472ddf314b">&#9670;&#160;</a></span>setNear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> J3DUClipper::setNear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>near</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a641539ed9fd89fa21a00a1a616da158e" name="a641539ed9fd89fa21a00a1a616da158e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a641539ed9fd89fa21a00a1a616da158e">&#9670;&#160;</a></span>_04</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> J3DUClipper::_04</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e43aa1b105d6c630396cbd3a6be6a38" name="a8e43aa1b105d6c630396cbd3a6be6a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e43aa1b105d6c630396cbd3a6be6a38">&#9670;&#160;</a></span>_10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> J3DUClipper::_10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab406bd7f3981aebe016112715a1ff030" name="ab406bd7f3981aebe016112715a1ff030"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab406bd7f3981aebe016112715a1ff030">&#9670;&#160;</a></span>_1C</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> J3DUClipper::_1C</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64f0363c9197133d5730dafd41a16724" name="a64f0363c9197133d5730dafd41a16724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f0363c9197133d5730dafd41a16724">&#9670;&#160;</a></span>_28</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> J3DUClipper::_28</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75ece667bc96383c4068a247e1f2f117" name="a75ece667bc96383c4068a247e1f2f117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ece667bc96383c4068a247e1f2f117">&#9670;&#160;</a></span>_34</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> J3DUClipper::_34[0x4C - 0x34]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac982d392cafe210d7fe1a10211452ebd" name="ac982d392cafe210d7fe1a10211452ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac982d392cafe210d7fe1a10211452ebd">&#9670;&#160;</a></span>mAspect</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> J3DUClipper::mAspect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8daead36fef7bdc7441057d35c941d59" name="a8daead36fef7bdc7441057d35c941d59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8daead36fef7bdc7441057d35c941d59">&#9670;&#160;</a></span>mFar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> J3DUClipper::mFar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a940471c72b391ac313ba4328a0a203ab" name="a940471c72b391ac313ba4328a0a203ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940471c72b391ac313ba4328a0a203ab">&#9670;&#160;</a></span>mFovY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> J3DUClipper::mFovY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7152e2a2f39d1c9f6fd52ebee6a3354a" name="a7152e2a2f39d1c9f6fd52ebee6a3354a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7152e2a2f39d1c9f6fd52ebee6a3354a">&#9670;&#160;</a></span>mNear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> J3DUClipper::mNear</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/d/actor/<a class="el" href="d__a__ep_8cpp.html">d_a_ep.cpp</a></li>
+<li>include/JSystem/J3DU/<a class="el" href="J3DUClipper_8h_source.html">J3DUClipper.h</a></li>
+<li>src/JSystem/J3DU/<a class="el" href="J3DUClipper_8cpp.html">J3DUClipper.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structJ3DUClipper.html">J3DUClipper</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

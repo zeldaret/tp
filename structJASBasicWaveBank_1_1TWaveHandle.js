@@ -1,6 +1,6 @@
 var structJASBasicWaveBank_1_1TWaveHandle =
 [
-    [ "~TWaveHandle", "structJASBasicWaveBank_1_1TWaveHandle.html#a05a830d73779f62c0351fddc0676ce79", null ],
+    [ "~TWaveHandle", "structJASBasicWaveBank_1_1TWaveHandle.html#a60d9da35b80697f457bf684ddcd603a1", null ],
     [ "TWaveHandle", "structJASBasicWaveBank_1_1TWaveHandle.html#a000a0f31177ee9a91c71a0662fe2d6b3", null ],
     [ "compareHeap", "structJASBasicWaveBank_1_1TWaveHandle.html#ae6f89691a75808e27f34af2e17628efa", null ],
     [ "getWaveInfo", "structJASBasicWaveBank_1_1TWaveHandle.html#a2c40b0d7f25e5760c8d34ebd831a5b6e", null ],

@@ -1,7 +1,7 @@
 var classJAU__JASInitializer =
 [
     [ "JAU_JASInitializer", "classJAU__JASInitializer.html#a33361e28f7ae43a08f56fdfd58d86251", null ],
-    [ "initJASystem", "classJAU__JASInitializer.html#a3121f3e79ca7df76af2db58878eee487", null ],
+    [ "initJASystem", "classJAU__JASInitializer.html#a2aefe4b0926facf49f7cae2aab4926c0", null ],
     [ "field_0x00", "classJAU__JASInitializer.html#ab7b6143cf6154c1b24f31577cd358e92", null ],
     [ "field_0x04", "classJAU__JASInitializer.html#a88c192878cee428ea9d0d5cd5f3ad900", null ],
     [ "field_0x08", "classJAU__JASInitializer.html#adfd89905ef82fd60e975be05b25329e8", null ],

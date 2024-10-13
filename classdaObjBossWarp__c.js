@@ -30,7 +30,7 @@ var classdaObjBossWarp__c =
     [ "Create", "classdaObjBossWarp__c.html#a6bb0b69f4a7d44b301a38697010987e8", null ],
     [ "create", "classdaObjBossWarp__c.html#af741ce4d3cf0ad71281b17e0f843f55e", null ],
     [ "CreateHeap", "classdaObjBossWarp__c.html#a60757976dc457627a610e28c1e0c70ec", null ],
-    [ "demoProc", "classdaObjBossWarp__c.html#a90b0d4d2124f352d5487016cf532f613", null ],
+    [ "demoProc", "classdaObjBossWarp__c.html#acface22973e664d9aadceefe045d6f02", null ],
     [ "disappear", "classdaObjBossWarp__c.html#a62f414577079e79ab81110a276859d3d", null ],
     [ "draw", "classdaObjBossWarp__c.html#ad44edb6329df37814a25a91789cb13c0", null ],
     [ "event_proc_call", "classdaObjBossWarp__c.html#adf1b034ba5432b9415448bd96cabbe96", null ],

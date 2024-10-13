@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classdPa__levelEcallBack.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structdPa__levelEcallBack.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1187.62,-478.72 1085.38,-478.72 1085.38,-459.47 1187.62,-459.47 1187.62,-478.72"/>
 <text text-anchor="middle" x="1136.5" y="-465.22" font-family="Helvetica,sans-Serif" font-size="10.00">dPa_levelEcallBack</text>
 </a>
@@ -1299,7 +1299,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1157.62,-328.72 1115.38,-328.72 1115.38,-309.47 1157.62,-309.47 1157.62,-328.72"/>
 <text text-anchor="middle" x="1136.5" y="-315.22" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>

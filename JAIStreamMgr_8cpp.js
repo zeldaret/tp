@@ -19,7 +19,7 @@ var JAIStreamMgr_8cpp =
     [ "func_802A3104", "JAIStreamMgr_8cpp.html#a4bc8970a3a447c80fc56f013a93024b3", null ],
     [ "func_802A319C", "JAIStreamMgr_8cpp.html#aa3d75c11a1cb371e351c43d6bff2f285", null ],
     [ "func_802A3C3C", "JAIStreamMgr_8cpp.html#a78d7e3b19640047d05bdb986bf9b7ece", null ],
-    [ "func_802A3E68", "JAIStreamMgr_8cpp.html#aabdd539ba774c9f9b6aee74206d697e6", null ],
+    [ "func_802A3E68", "JAIStreamMgr_8cpp.html#ad27831355c59ad3001166f8e7f4d2449", null ],
     [ "initiate__10JSUPtrListFv", "JAIStreamMgr_8cpp.html#a59a33915af65a90059928e122f720e44", null ],
     [ "JAIStreamMgr_calc___9JAIStreamFv", "JAIStreamMgr_8cpp.html#a7a6616de7f8560ab00e8635b427cbea2", null ],
     [ "JAIStreamMgr_mixOut___9JAIStreamFRC14JASSoundParams16JAISoundActivity", "JAIStreamMgr_8cpp.html#a9214ff50784f4dbd84230472f527911b", null ],

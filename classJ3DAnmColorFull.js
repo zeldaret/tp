@@ -2,7 +2,7 @@ var classJ3DAnmColorFull =
 [
     [ "J3DAnmColorFull", "classJ3DAnmColorFull.html#ac468b5693b140f6647940be355604987", null ],
     [ "~J3DAnmColorFull", "classJ3DAnmColorFull.html#a72045c5d2d2035ffeda6812c6db8719e", null ],
-    [ "getColor", "classJ3DAnmColorFull.html#a1a2e54ac4f943d3a9c4c084e5f9ed7f0", null ],
+    [ "getColor", "classJ3DAnmColorFull.html#ab19299017ad23c94588ef6f39f2fac81", null ],
     [ "getKind", "classJ3DAnmColorFull.html#ab08b94a3b15af5589cdd5b46da23505a", null ],
     [ "mAnmTable", "classJ3DAnmColorFull.html#a426d03269e9dfe131b0012a4d8a18c12", null ],
     [ "mColorA", "classJ3DAnmColorFull.html#a093005cf82dbbda0bb44408f3c8c2217", null ],

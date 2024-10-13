@@ -4,6 +4,6 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,130,161,181,157,184,115,133"/>
 <area shape="rect" id="Node000003" href="$classJAUSoundAnimationSound.html" title=" " alt="" coords="213,94,392,120"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,131,189,184,186,180,270,126"/>
-<area shape="rect" id="Node000004" href="$classJAISoundID.html" title=" " alt="" coords="257,5,348,31"/>
+<area shape="rect" id="Node000004" href="$structJAISoundID.html" title=" " alt="" coords="257,5,348,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="305,47,305,94,300,94,300,47"/>
 </map>

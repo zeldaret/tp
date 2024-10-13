@@ -24,7 +24,7 @@ var searchData=
   ['fmtpos_5fc_21',['FmtPos_c',['../structFmtPos__c.html',1,'']]],
   ['fnoise1f_22',['FNoise1f',['../structZ2Calc_1_1FNoise1f.html',1,'Z2Calc']]],
   ['fopac_5fac_5fc_23',['fopAc_ac_c',['../structfopAc__ac__c.html',1,'']]],
-  ['fopacm_5fgc_5fc_24',['fopAcM_gc_c',['../classfopAcM__gc__c.html',1,'']]],
+  ['fopacm_5fgc_5fc_24',['fopAcM_gc_c',['../structfopAcM__gc__c.html',1,'']]],
   ['fopacm_5fhio_5fentry_5fc_25',['fOpAcm_HIO_entry_c',['../structfOpAcm__HIO__entry__c.html',1,'']]],
   ['fopacm_5flc_5fc_26',['fopAcM_lc_c',['../classfopAcM__lc__c.html',1,'']]],
   ['fopacm_5fprm_5fclass_27',['fopAcM_prm_class',['../structfopAcM__prm__class.html',1,'']]],

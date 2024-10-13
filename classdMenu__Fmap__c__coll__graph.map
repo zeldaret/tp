@@ -1,7 +1,7 @@
 <map id="dMenu_Fmap_c" name="dMenu_Fmap_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2601,1660,2715,1685"/>
 <area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="2633,1642,2642,1636,2658,1633,2673,1635,2683,1641,2685,1651,2681,1660,2676,1658,2680,1650,2679,1645,2672,1640,2658,1638,2644,1640,2636,1646"/>
-<area shape="rect" id="Node000002" href="$classJKRExpHeap.html" title=" " alt="" coords="740,1713,838,1739"/>
+<area shape="rect" id="Node000002" href="$structJKRExpHeap.html" title=" " alt="" coords="740,1713,838,1739"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="837,1742,897,1764,974,1787,1059,1805,1146,1812,2337,1812,2463,1817,2515,1809,2544,1798,2576,1781,2602,1759,2623,1733,2649,1684,2654,1687,2627,1736,2605,1763,2578,1785,2546,1803,2516,1814,2463,1822,2337,1818,1146,1818,1058,1810,972,1792,895,1769,835,1747"/>
 <area shape="rect" id="Node000069" href="$classCPaneMgrAlpha.html" title=" " alt="" coords="1090,1406,1205,1432"/>
 <area shape="poly" id="edge19_Node000069_Node000002" title=" " alt="" coords="805,1698,843,1644,900,1574,972,1502,1012,1469,1054,1441,1088,1426,1090,1431,1057,1445,1015,1474,975,1506,904,1578,848,1647,809,1701"/>
@@ -145,7 +145,7 @@
 <area shape="rect" id="Node000182" href="$classdMenu__Fmap__portal__data__c.html" title=" " alt="" coords="2010,1634,2196,1660"/>
 <area shape="poly" id="edge93_Node000001_Node000182" title=" " alt="" coords="2212,1649,2601,1667,2601,1672,2211,1655"/>
 <area shape="poly" id="edge94_Node000182_Node000183" title=" " alt="" coords="1585,1588,2010,1634,2010,1640,1585,1594"/>
-<area shape="rect" id="Node000184" href="$classdMsgFlow__c.html" title=" " alt="" coords="2288,2225,2384,2251"/>
+<area shape="rect" id="Node000184" href="$structdMsgFlow__c.html" title=" " alt="" coords="2288,2225,2384,2251"/>
 <area shape="poly" id="edge98_Node000001_Node000184" title=" " alt="" coords="2399,2247,2443,2250,2490,2246,2536,2234,2557,2223,2575,2208,2589,2191,2600,2168,2620,2106,2634,2030,2644,1947,2653,1788,2654,1685,2660,1686,2658,1789,2649,1948,2639,2031,2625,2107,2605,2170,2593,2194,2579,2212,2560,2227,2538,2238,2491,2252,2443,2255,2399,2252"/>
 <area shape="rect" id="Node000185" href="$structmesg__flow__node.html" title=" " alt="" coords="1818,2225,1936,2251"/>
 <area shape="poly" id="edge99_Node000184_Node000185" title=" " alt="" coords="1952,2235,2288,2235,2288,2240,1952,2240"/>

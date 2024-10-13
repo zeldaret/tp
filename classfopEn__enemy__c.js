@@ -16,6 +16,7 @@ var classfopEn__enemy__c =
     [ "offCutDownHitFlg", "classfopEn__enemy__c.html#a2efbea1d71dce3769ac5d80546a533c9", null ],
     [ "offDownFlg", "classfopEn__enemy__c.html#a699b07c94e89c3502cb3609c24906f50", null ],
     [ "offWolfBiteDamage", "classfopEn__enemy__c.html#a2af73b4a08415388da8a99745560c025", null ],
+    [ "offWolfDownPullFlg", "classfopEn__enemy__c.html#aa1eb3743570081a35fdcaccd002afe23", null ],
     [ "offWolfNoLock", "classfopEn__enemy__c.html#a19ae415dfa779ef42b2efd58763369fd", null ],
     [ "onCutDownHitFlg", "classfopEn__enemy__c.html#aa9d0c7c5a6986a8e9640a6a4bc9ab257", null ],
     [ "onDownFlg", "classfopEn__enemy__c.html#a8e179e7e9828bb721ad29a9e87d2bb94", null ],

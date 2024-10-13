@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/d_a_ni/d_a_ni.h File Reference</title>
+<title>Twilight Princess: include/d/actor/d_a_ni.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -142,6 +142,7 @@ $(document).ready(function(){initNavTree('d__a__ni_8h.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">d_a_ni.h File Reference</div></div>
 </div><!--header-->
@@ -157,11 +158,92 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdaNi__HIO__c.html">daNi_HIO_c</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a60e351c249980ae9864a1f1fefb2b99b" id="r_a60e351c249980ae9864a1f1fefb2b99b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99b">daNi_color</a> { <br />
+&#160;&#160;<a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99bad47b4c240a0109970bb2a7fe3a07d3ec">COLOR_WHITE</a>
+, <a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99ba2a9daf215a30f1c539ead18c66380fc1">COLOR_BLACK</a>
+, <a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99ba70b424bcf0a4a80c0a6f810d1cff20fe">COLOR_BROWN</a>
+, <a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99baaaf632a4fab208fc7b15e225a6dcb0c6">COLOR_GOLD</a>
+, <br />
+&#160;&#160;<a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99ba4c9eca14efb29c2f0576b935192fc2ec">COLOR_RANDOM</a> = 0xFF
+<br />
+ }</td></tr>
+<tr class="separator:a60e351c249980ae9864a1f1fefb2b99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacfaf7180bc8023d5760edf0496cc109" id="r_aacfaf7180bc8023d5760edf0496cc109"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109">daNi_action</a> { <br />
+&#160;&#160;<a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a804713e16572105f44e1b482e4c3dc17">ACTION_NORMAL_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a27aa582499cf17f7d5c858b57311b953">ACTION_AWAY_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109aad907cd1dd4baade1296f0082cb27204">ACTION_SWIM_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a0680f4f353fb775fb7dcebd652f41afb">ACTION_CARRY_e</a>
+, <br />
+&#160;&#160;<a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109ac459f18ab11f0061ee4367b8b3b54b7a">ACTION_FLY_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109af87c8d7556af1715023602b876b4fece">ACTION_DROP_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a7e3c137711166a0a829fe474906ff572">ACTION_RETURN_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a16ef67ac1e2126440eaa2c1f5ecdeed6">ACTION_MESSAGE_e</a>
+, <br />
+&#160;&#160;<a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a9f1d6aae2577de9b90c90ab0f747f4f6">ACTION_DAMAGE_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a33c7018cc09117221f8d9a7fa504f063">ACTION_WINDSPIN_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a39c2f48b83b3ba22906269d16d4df94f">ACTION_DEMO0_e</a>
+, <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109a06692c061c85c059d9f6c575331c7d00">ACTION_PLAY_e</a> = 15
+<br />
+ }</td></tr>
+<tr class="separator:aacfaf7180bc8023d5760edf0496cc109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8a3d72a6c268eb8c1bfaccbd0df8b188" id="r_a8a3d72a6c268eb8c1bfaccbd0df8b188"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__ni_8h.html#a8a3d72a6c268eb8c1bfaccbd0df8b188">STATIC_ASSERT</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">sizeof</a>(<a class="el" href="classni__class.html">ni_class</a>)==0xb0c)</td></tr>
+<tr class="memitem:a8a3d72a6c268eb8c1bfaccbd0df8b188" id="r_a8a3d72a6c268eb8c1bfaccbd0df8b188"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="d__a__ni_8h.html#a8a3d72a6c268eb8c1bfaccbd0df8b188">STATIC_ASSERT</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">sizeof</a>(<a class="el" href="classni__class.html">ni_class</a>)==0xb0c)</td></tr>
 <tr class="separator:a8a3d72a6c268eb8c1bfaccbd0df8b188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aacfaf7180bc8023d5760edf0496cc109" name="aacfaf7180bc8023d5760edf0496cc109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacfaf7180bc8023d5760edf0496cc109">&#9670;&#160;</a></span>daNi_action</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">enum</a> <a class="el" href="d__a__ni_8h.html#aacfaf7180bc8023d5760edf0496cc109">daNi_action</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a804713e16572105f44e1b482e4c3dc17" name="aacfaf7180bc8023d5760edf0496cc109a804713e16572105f44e1b482e4c3dc17"></a>ACTION_NORMAL_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a27aa582499cf17f7d5c858b57311b953" name="aacfaf7180bc8023d5760edf0496cc109a27aa582499cf17f7d5c858b57311b953"></a>ACTION_AWAY_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109aad907cd1dd4baade1296f0082cb27204" name="aacfaf7180bc8023d5760edf0496cc109aad907cd1dd4baade1296f0082cb27204"></a>ACTION_SWIM_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a0680f4f353fb775fb7dcebd652f41afb" name="aacfaf7180bc8023d5760edf0496cc109a0680f4f353fb775fb7dcebd652f41afb"></a>ACTION_CARRY_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109ac459f18ab11f0061ee4367b8b3b54b7a" name="aacfaf7180bc8023d5760edf0496cc109ac459f18ab11f0061ee4367b8b3b54b7a"></a>ACTION_FLY_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109af87c8d7556af1715023602b876b4fece" name="aacfaf7180bc8023d5760edf0496cc109af87c8d7556af1715023602b876b4fece"></a>ACTION_DROP_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a7e3c137711166a0a829fe474906ff572" name="aacfaf7180bc8023d5760edf0496cc109a7e3c137711166a0a829fe474906ff572"></a>ACTION_RETURN_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a16ef67ac1e2126440eaa2c1f5ecdeed6" name="aacfaf7180bc8023d5760edf0496cc109a16ef67ac1e2126440eaa2c1f5ecdeed6"></a>ACTION_MESSAGE_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a9f1d6aae2577de9b90c90ab0f747f4f6" name="aacfaf7180bc8023d5760edf0496cc109a9f1d6aae2577de9b90c90ab0f747f4f6"></a>ACTION_DAMAGE_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a33c7018cc09117221f8d9a7fa504f063" name="aacfaf7180bc8023d5760edf0496cc109a33c7018cc09117221f8d9a7fa504f063"></a>ACTION_WINDSPIN_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a39c2f48b83b3ba22906269d16d4df94f" name="aacfaf7180bc8023d5760edf0496cc109a39c2f48b83b3ba22906269d16d4df94f"></a>ACTION_DEMO0_e&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aacfaf7180bc8023d5760edf0496cc109a06692c061c85c059d9f6c575331c7d00" name="aacfaf7180bc8023d5760edf0496cc109a06692c061c85c059d9f6c575331c7d00"></a>ACTION_PLAY_e&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a60e351c249980ae9864a1f1fefb2b99b" name="a60e351c249980ae9864a1f1fefb2b99b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60e351c249980ae9864a1f1fefb2b99b">&#9670;&#160;</a></span>daNi_color</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">enum</a> <a class="el" href="d__a__ni_8h.html#a60e351c249980ae9864a1f1fefb2b99b">daNi_color</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a60e351c249980ae9864a1f1fefb2b99bad47b4c240a0109970bb2a7fe3a07d3ec" name="a60e351c249980ae9864a1f1fefb2b99bad47b4c240a0109970bb2a7fe3a07d3ec"></a>COLOR_WHITE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a60e351c249980ae9864a1f1fefb2b99ba2a9daf215a30f1c539ead18c66380fc1" name="a60e351c249980ae9864a1f1fefb2b99ba2a9daf215a30f1c539ead18c66380fc1"></a>COLOR_BLACK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a60e351c249980ae9864a1f1fefb2b99ba70b424bcf0a4a80c0a6f810d1cff20fe" name="a60e351c249980ae9864a1f1fefb2b99ba70b424bcf0a4a80c0a6f810d1cff20fe"></a>COLOR_BROWN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a60e351c249980ae9864a1f1fefb2b99baaaf632a4fab208fc7b15e225a6dcb0c6" name="a60e351c249980ae9864a1f1fefb2b99baaaf632a4fab208fc7b15e225a6dcb0c6"></a>COLOR_GOLD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a60e351c249980ae9864a1f1fefb2b99ba4c9eca14efb29c2f0576b935192fc2ec" name="a60e351c249980ae9864a1f1fefb2b99ba4c9eca14efb29c2f0576b935192fc2ec"></a>COLOR_RANDOM&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a8a3d72a6c268eb8c1bfaccbd0df8b188" name="a8a3d72a6c268eb8c1bfaccbd0df8b188"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a3d72a6c268eb8c1bfaccbd0df8b188">&#9670;&#160;</a></span>STATIC_ASSERT()</h2>
@@ -172,7 +254,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">STATIC_ASSERT </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">sizeof</a>(<a class="el" href="classni__class.html">ni_class</a>)&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">sizeof</a>(<a class="el" href="classni__class.html">ni_class</a>)&#160;</td>
           <td class="paramname"> = <code>=0xb0c</code></td><td>)</td>
           <td></td>
         </tr>
@@ -186,7 +268,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_ab059c88b427293ac31ea26de161be7f.html">d_a_ni</a></li><li class="navelem"><a class="el" href="d__a__ni_8h.html">d_a_ni.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__ni_8h.html">d_a_ni.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

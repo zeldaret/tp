@@ -1,13 +1,13 @@
 var classJAIStreamMgr =
 [
-    [ "JAIStreamMgr", "classJAIStreamMgr.html#a3e10515dba3ec586ae829ed7583eb3e8", null ],
+    [ "JAIStreamMgr", "classJAIStreamMgr.html#a0940c1ebd1276673dce2655843f4572d", null ],
     [ "calc", "classJAIStreamMgr.html#ad3965a0c5aa2819e776f5a9a2748a5e0", null ],
-    [ "freeDeadStream_", "classJAIStreamMgr.html#acbcea124a70161ca957592f79a72f4d9", null ],
+    [ "freeDeadStream_", "classJAIStreamMgr.html#a49b842fc16d556c4b7a4859b1fca7c0c", null ],
     [ "getParams", "classJAIStreamMgr.html#a0209d5108687feaf06d654749c8dded8", null ],
     [ "getStreamAramMgr", "classJAIStreamMgr.html#a088841343fd7174e2ea32c83d305727e", null ],
-    [ "isActive", "classJAIStreamMgr.html#a8183764bfee0ec613ebf162a26ef648d", null ],
+    [ "isActive", "classJAIStreamMgr.html#a724756823e8a41363373704dc1739520", null ],
     [ "mixOut", "classJAIStreamMgr.html#a9e8a6697e3d7f741dd8e368e3ec7e80c", null ],
-    [ "newStream_", "classJAIStreamMgr.html#a5aa56d37c1a5df1c4052c9dcd4065d2b", null ],
+    [ "newStream_", "classJAIStreamMgr.html#a3e9a457c69143232255116e3db38494a", null ],
     [ "pause", "classJAIStreamMgr.html#a863c74011062398aded2ec914a5b79c6", null ],
     [ "setStreamAramMgr", "classJAIStreamMgr.html#ad18ee02e63e91f03fbb77f8014912b51", null ],
     [ "setStreamDataMgr", "classJAIStreamMgr.html#ab0705ca5c9eddc29e6332cad51d2ae48", null ],

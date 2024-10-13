@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/tag/d_a_tag_gra/d_a_tag_gra.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_tag_gra.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,26 +151,26 @@ $(document).ready(function(){initNavTree('d__a__tag__gra_8h_source.html',''); in
 <a href="d__a__tag__gra_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_TAG_GRA_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_TAG_GRA_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/com/d_com_inf_game.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/d_com_inf_game.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classdaTagGra__c.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTagGra__c.html">daTagGra_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classdaTagGra__c.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTagGra__c.html">daTagGra_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classdaTagGra__c.html#ae57e6d3d45ad385bd74178525e40b31e">    8</a></span>    <a class="code hl_typedef" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="code hl_function" href="classdaTagGra__c.html#ae57e6d3d45ad385bd74178525e40b31e">getMode</a>() {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keywordflow">return</span> (<a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 8) &amp; 0xFF;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keywordflow">return</span> (<a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 8) &amp; 0xFF;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    }</div>
 </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classdaTagGra__c.html#a95dc206035ae08202b0b8722f177275b">   12</a></span>    <a class="code hl_typedef" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="code hl_function" href="classdaTagGra__c.html#a95dc206035ae08202b0b8722f177275b">getSwBit</a>() {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> (<a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 16) &amp; 0xFF;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> (<a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 16) &amp; 0xFF;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
 </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classdaTagGra__c.html#a2382d29f3ff6127769ec4b896454ba1c">   16</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classdaTagGra__c.html#a2382d29f3ff6127769ec4b896454ba1c">create</a>() {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">fopAcM_SetupActor</a>(<span class="keyword">this</span>, <a class="code hl_class" href="classdaTagGra__c.html">daTagGra_c</a>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">fopAcM_SetupActor</a>(<span class="keyword">this</span>, <a class="code hl_class" href="classdaTagGra__c.html">daTagGra_c</a>);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classdaTagGra__c.html#ae57e6d3d45ad385bd74178525e40b31e">getMode</a>() == 2) {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="d__com__inf__game_8h.html#ae66a18f0a5a7e4da3ce5e887b4a4b0d5">dComIfGs_isSwitch</a>(<a class="code hl_function" href="classdaTagGra__c.html#a95dc206035ae08202b0b8722f177275b">getSwBit</a>(),<a class="code hl_function" href="f__op__actor__mng_8h.html#a11e7643351d75382b7e2ba9d7603ba84">fopAcM_GetRoomNo</a>(<span class="keyword">this</span>))) {</div>
@@ -184,25 +184,25 @@ $(document).ready(function(){initNavTree('d__a__tag__gra_8h_source.html',''); in
 </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_TAG_GRA_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="ac__phase_8h_html_a9f111b636d6afcaba75f303583cc8340a1236eeffe5a98ca9eafe100ac82f1406"><div class="ttname"><a href="c__phase_8h.html#a9f111b636d6afcaba75f303583cc8340a1236eeffe5a98ca9eafe100ac82f1406">cPhs_COMPLEATE_e</a></div><div class="ttdeci">@ cPhs_COMPLEATE_e</div><div class="ttdef"><b>Definition</b> c_phase.h:13</div></div>
 <div class="ttc" id="ac__phase_8h_html_a9f111b636d6afcaba75f303583cc8340ae004389a44c6fbc7cf3ad08305a291dc"><div class="ttname"><a href="c__phase_8h.html#a9f111b636d6afcaba75f303583cc8340ae004389a44c6fbc7cf3ad08305a291dc">cPhs_ERROR_e</a></div><div class="ttdeci">@ cPhs_ERROR_e</div><div class="ttdef"><b>Definition</b> c_phase.h:14</div></div>
 <div class="ttc" id="aclassdaTagGra__c_html"><div class="ttname"><a href="classdaTagGra__c.html">daTagGra_c</a></div><div class="ttdef"><b>Definition</b> d_a_tag_gra.h:6</div></div>
 <div class="ttc" id="aclassdaTagGra__c_html_a2382d29f3ff6127769ec4b896454ba1c"><div class="ttname"><a href="classdaTagGra__c.html#a2382d29f3ff6127769ec4b896454ba1c">daTagGra_c::create</a></div><div class="ttdeci">int create()</div><div class="ttdef"><b>Definition</b> d_a_tag_gra.h:16</div></div>
 <div class="ttc" id="aclassdaTagGra__c_html_a95dc206035ae08202b0b8722f177275b"><div class="ttname"><a href="classdaTagGra__c.html#a95dc206035ae08202b0b8722f177275b">daTagGra_c::getSwBit</a></div><div class="ttdeci">s16 getSwBit()</div><div class="ttdef"><b>Definition</b> d_a_tag_gra.h:12</div></div>
 <div class="ttc" id="aclassdaTagGra__c_html_ae57e6d3d45ad385bd74178525e40b31e"><div class="ttname"><a href="classdaTagGra__c.html#ae57e6d3d45ad385bd74178525e40b31e">daTagGra_c::getMode</a></div><div class="ttdeci">s16 getMode()</div><div class="ttdef"><b>Definition</b> d_a_tag_gra.h:8</div></div>
+<div class="ttc" id="ad__a__movie__player_8cpp_html_ae9e7e99b5ae52c2ed271b70196a90967"><div class="ttname"><a href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a></div><div class="ttdeci">static void fopAcM_GetParam(void const *param_0)</div><div class="ttdef"><b>Definition</b> d_a_movie_player.cpp:1380</div></div>
 <div class="ttc" id="ad__com__inf__game_8h_html"><div class="ttname"><a href="d__com__inf__game_8h.html">d_com_inf_game.h</a></div></div>
-<div class="ttc" id="ad__com__inf__game_8h_html_ae66a18f0a5a7e4da3ce5e887b4a4b0d5"><div class="ttname"><a href="d__com__inf__game_8h.html#ae66a18f0a5a7e4da3ce5e887b4a4b0d5">dComIfGs_isSwitch</a></div><div class="ttdeci">BOOL dComIfGs_isSwitch(int i_no, int i_roomNo)</div><div class="ttdef"><b>Definition</b> d_com_inf_game.h:1168</div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a10e09178f3c592d39f7cba7acd57d34f"><div class="ttname"><a href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a></div><div class="ttdeci">u32 fopAcM_GetParam(const void *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:209</div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a11e7643351d75382b7e2ba9d7603ba84"><div class="ttname"><a href="f__op__actor__mng_8h.html#a11e7643351d75382b7e2ba9d7603ba84">fopAcM_GetRoomNo</a></div><div class="ttdeci">s32 fopAcM_GetRoomNo(const fopAc_ac_c *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:166</div></div>
-<div class="ttc" id="agroup__jsystem-jsupport_html_ga13fa7ef63a40072c7203b3da54a569a2"><div class="ttname"><a href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">JSUConvertOffsetToPtr</a></div><div class="ttdeci">T * JSUConvertOffsetToPtr(const void *, const void *)</div><div class="ttdef"><b>Definition</b> JSupport.h:22</div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
+<div class="ttc" id="ad__com__inf__game_8h_html_ae66a18f0a5a7e4da3ce5e887b4a4b0d5"><div class="ttname"><a href="d__com__inf__game_8h.html#ae66a18f0a5a7e4da3ce5e887b4a4b0d5">dComIfGs_isSwitch</a></div><div class="ttdeci">BOOL dComIfGs_isSwitch(int i_no, int i_roomNo)</div><div class="ttdef"><b>Definition</b> d_com_inf_game.h:1169</div></div>
+<div class="ttc" id="af__op__actor__mng_8h_html_a11e7643351d75382b7e2ba9d7603ba84"><div class="ttname"><a href="f__op__actor__mng_8h.html#a11e7643351d75382b7e2ba9d7603ba84">fopAcM_GetRoomNo</a></div><div class="ttdeci">s32 fopAcM_GetRoomNo(const fopAc_ac_c *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:167</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
 <div class="ttc" id="atypes_8h_html_a5ffa4f640862b25ba6d4f635b78bdbe1"><div class="ttname"><a href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a></div><div class="ttdeci">signed short s16</div><div class="ttdef"><b>Definition</b> types.h:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_11e88f145dc2b5c9e0cddac7e74def83.html">tag</a></li><li class="navelem"><a class="el" href="dir_76cb418434e82ebac0ec2f93e9969e78.html">d_a_tag_gra</a></li><li class="navelem"><a class="el" href="d__a__tag__gra_8h.html">d_a_tag_gra.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__tag__gra_8h.html">d_a_tag_gra.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

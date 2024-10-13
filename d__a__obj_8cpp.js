@@ -1,8 +1,8 @@
 var d__a__obj_8cpp =
 [
     [ "eff_break_tsubo", "d__a__obj_8cpp.html#a9b19a7cfb8b51071cceb0969fcf9a031", null ],
-    [ "GetCoCP__12cCcD_CylAttrFv", "d__a__obj_8cpp.html#a81906ed121e158d01c934ab2c95c2dea", null ],
-    [ "GetCoCP__12cCcD_SphAttrFv", "d__a__obj_8cpp.html#acddd26e84f3acccb5161fcf68cc99ceb", null ],
+    [ "GetCoCP__12cCcD_CylAttrFv", "d__a__obj_8cpp.html#a2dae7bf8d81c9bbd062196c89444cabe", null ],
+    [ "GetCoCP__12cCcD_SphAttrFv", "d__a__obj_8cpp.html#af7bb16afa6dbb71cefc533733b62c275", null ],
     [ "HitSeStart", "d__a__obj_8cpp.html#a7980219356c4e367185d69e06bb4f8a0", null ],
     [ "make_eff_break_gm_kotubo", "d__a__obj_8cpp.html#a2a33920d76f0e56285e158929407310d", null ],
     [ "make_eff_break_gm_ootubo", "d__a__obj_8cpp.html#a14d33f9a96b9bffeb5c609d8c04e96b6", null ],

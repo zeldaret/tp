@@ -66,7 +66,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classZ2AudioMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structZ2AudioMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1004.75,-416.88 936.25,-416.88 936.25,-397.62 1004.75,-397.62 1004.75,-416.88"/>
 <text text-anchor="middle" x="970.5" y="-403.38" font-family="Helvetica,sans-Serif" font-size="10.00">Z2AudioMgr</text>
 </a>
@@ -94,7 +94,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classZ2SeMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structZ2SeMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="787.38,-1222.88 731.62,-1222.88 731.62,-1203.62 787.38,-1203.62 787.38,-1222.88"/>
 <text text-anchor="middle" x="759.5" y="-1209.38" font-family="Helvetica,sans-Serif" font-size="10.00">Z2SeMgr</text>
 </a>
@@ -198,7 +198,7 @@ var sectionId = 'dynsection-1';
 <!-- Node23 -->
 <g id="Node000023" class="node">
 <title>Node23</title>
-<g id="a_Node000023"><a xlink:href="classZ2SeqMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000023"><a xlink:href="structZ2SeqMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="553.88,-882.88 492.88,-882.88 492.88,-863.62 553.88,-863.62 553.88,-882.88"/>
 <text text-anchor="middle" x="523.38" y="-869.38" font-family="Helvetica,sans-Serif" font-size="10.00">Z2SeqMgr</text>
 </a>
@@ -344,7 +344,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="classJAISoundID.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="structJAISoundID.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="308.38,-1026.88 239.88,-1026.88 239.88,-1007.62 308.38,-1007.62 308.38,-1026.88"/>
 <text text-anchor="middle" x="274.12" y="-1013.38" font-family="Helvetica,sans-Serif" font-size="10.00">JAISoundID</text>
 </a>

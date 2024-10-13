@@ -1,12 +1,12 @@
 <map id="daBg_brkAnm_c" name="daBg_brkAnm_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="100,509,217,534"/>
-<area shape="rect" id="Node000002" href="$classmDoExt__brkAnm.html" title=" " alt="" coords="100,420,218,446"/>
+<area shape="rect" id="Node000002" href="$structmDoExt__brkAnm.html" title=" " alt="" coords="100,420,218,446"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,461,161,508,156,508,156,461"/>
-<area shape="rect" id="Node000003" href="$classmDoExt__baseAnm.html" title=" " alt="" coords="17,331,146,357"/>
+<area shape="rect" id="Node000003" href="$structmDoExt__baseAnm.html" title=" " alt="" coords="17,331,146,357"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,367,150,418,146,421,100,371"/>
-<area shape="rect" id="Node000004" href="$classJ3DFrameCtrl.html" title=" " alt="" coords="5,228,107,253"/>
+<area shape="rect" id="Node000004" href="$structJ3DFrameCtrl.html" title=" " alt="" coords="5,228,107,253"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="65,268,81,330,76,332,60,269"/>
-<area shape="rect" id="Node000005" href="$classJ3DAnmTevRegKey.html" title=" " alt="" coords="194,331,332,357"/>
+<area shape="rect" id="Node000005" href="$structJ3DAnmTevRegKey.html" title=" " alt="" coords="194,331,332,357"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="238,369,175,422,171,418,235,365"/>
 <area shape="rect" id="Node000006" href="$classJ3DAnmBase.html" title=" " alt="" coords="131,228,232,253"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="202,264,255,329,251,333,198,267"/>

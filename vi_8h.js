@@ -29,6 +29,7 @@ var vi_8h =
       [ "VI_XFBMODE_SF", "vi_8h.html#ac3a9e2111ea612658c93a9f4c1b43823ae2241f4d32b704b934616644312eeda9", null ],
       [ "VI_XFBMODE_DF", "vi_8h.html#ac3a9e2111ea612658c93a9f4c1b43823add075193663d12f3e20509619f2c3eb0", null ]
     ] ],
+    [ "AT_ADDRESS", "vi_8h.html#a7b5bb8ad6feb6da4f2b865271bfebdbf", null ],
     [ "VIConfigure", "vi_8h.html#abf636b244c1fdf55bad8f5d42fa3dbff", null ],
     [ "VIFlush", "vi_8h.html#a1e6c3cd1fbde41e7a7118a69df5e45a0", null ],
     [ "VIGetCurrentFrameBuffer", "vi_8h.html#ab1cd8a0c1feb990e6da2cab595a0124e", null ],
@@ -41,6 +42,5 @@ var vi_8h =
     [ "VISetNextFrameBuffer", "vi_8h.html#adb5aeec1ac449e1c3426a1fbd3d14ccc", null ],
     [ "VISetPostRetraceCallback", "vi_8h.html#a2be3f63b3c20b498c0a56af85a26f333", null ],
     [ "VISetPreRetraceCallback", "vi_8h.html#a7680e981e96e870dd6da7f615bb2eb4b", null ],
-    [ "VIWaitForRetrace", "vi_8h.html#a74418db88ff39a960404059e3d5b93a0", null ],
-    [ "__VIRegs", "vi_8h.html#ac8de80005e0839314bdceb12b48ad3a7", null ]
+    [ "VIWaitForRetrace", "vi_8h.html#a74418db88ff39a960404059e3d5b93a0", null ]
 ];

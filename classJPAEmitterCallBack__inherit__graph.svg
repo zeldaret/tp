@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classdPa__levelEcallBack.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structdPa__levelEcallBack.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="271.25,-148.25 169,-148.25 169,-129 271.25,-129 271.25,-148.25"/>
 <text text-anchor="middle" x="220.12" y="-134.75" font-family="Helvetica,sans-Serif" font-size="10.00">dPa_levelEcallBack</text>
 </a>

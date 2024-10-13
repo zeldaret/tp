@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="86.5,-177.38 6,-177.38 6,-158.12 86.5,-158.12 86.5,-177.38"/>
 <text text-anchor="middle" x="46.25" y="-163.88" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>
@@ -93,7 +93,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="184.12,-269 80.38,-269 80.38,-249.75 184.12,-249.75 184.12,-269"/>
 <text text-anchor="middle" x="132.25" y="-255.5" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>

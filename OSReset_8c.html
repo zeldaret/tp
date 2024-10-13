@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: libs/dolphin/os/OSReset.c File Reference</title>
+<title>Twilight Princess: src/dolphin/os/OSReset.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -149,32 +149,32 @@ $(document).ready(function(){initNavTree('OSReset_8c.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7166227ccb35dcb9f9476088f5f9b91e" id="r_a7166227ccb35dcb9f9476088f5f9b91e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a7166227ccb35dcb9f9476088f5f9b91e">OSRegisterResetFunction</a> (<a class="el" href="structOSResetFunctionInfo.html">OSResetFunctionInfo</a> *func)</td></tr>
+<tr class="memitem:a7b5bb8ad6feb6da4f2b865271bfebdbf" id="r_a7b5bb8ad6feb6da4f2b865271bfebdbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a677aa1edce4bbb53741b1cc24eb4c035">vu16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">__VIRegs</a>[59]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a7b5bb8ad6feb6da4f2b865271bfebdbf">AT_ADDRESS</a> (0xCC002000)</td></tr>
+<tr class="separator:a7b5bb8ad6feb6da4f2b865271bfebdbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7166227ccb35dcb9f9476088f5f9b91e" id="r_a7166227ccb35dcb9f9476088f5f9b91e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a7166227ccb35dcb9f9476088f5f9b91e">OSRegisterResetFunction</a> (<a class="el" href="structOSResetFunctionInfo.html">OSResetFunctionInfo</a> *func)</td></tr>
 <tr class="separator:a7166227ccb35dcb9f9476088f5f9b91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae952ea2cf6157696c7678833f6b32a67" id="r_ae952ea2cf6157696c7678833f6b32a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ae952ea2cf6157696c7678833f6b32a67">__OSCallResetFunctions</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> arg0)</td></tr>
 <tr class="separator:ae952ea2cf6157696c7678833f6b32a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af67e016aee335696a13288d2dab37d39" id="r_af67e016aee335696a13288d2dab37d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#af67e016aee335696a13288d2dab37d39">Reset</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">register</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
+<tr class="memitem:af67e016aee335696a13288d2dab37d39" id="r_af67e016aee335696a13288d2dab37d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">asm</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#af67e016aee335696a13288d2dab37d39">Reset</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">register</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
 <tr class="separator:af67e016aee335696a13288d2dab37d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd6e0ba5a2f96cd39ff3e4146be34d44" id="r_afd6e0ba5a2f96cd39ff3e4146be34d44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#afd6e0ba5a2f96cd39ff3e4146be34d44">KillThreads</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="memitem:afd6e0ba5a2f96cd39ff3e4146be34d44" id="r_afd6e0ba5a2f96cd39ff3e4146be34d44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#afd6e0ba5a2f96cd39ff3e4146be34d44">KillThreads</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>)</td></tr>
 <tr class="separator:afd6e0ba5a2f96cd39ff3e4146be34d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8e26c04ab3888adf611d76fe4d6cead" id="r_ae8e26c04ab3888adf611d76fe4d6cead"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ae8e26c04ab3888adf611d76fe4d6cead">__OSDoHotReset</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> arg0)</td></tr>
+<tr class="memitem:ae8e26c04ab3888adf611d76fe4d6cead" id="r_ae8e26c04ab3888adf611d76fe4d6cead"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ae8e26c04ab3888adf611d76fe4d6cead">__OSDoHotReset</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> arg0)</td></tr>
 <tr class="separator:ae8e26c04ab3888adf611d76fe4d6cead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7036bb15abf7642d6b88165222033baf" id="r_a7036bb15abf7642d6b88165222033baf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a7036bb15abf7642d6b88165222033baf">OSResetSystem</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> reset, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">resetCode</a>, <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">forceMenu</a>)</td></tr>
+<tr class="memitem:a7036bb15abf7642d6b88165222033baf" id="r_a7036bb15abf7642d6b88165222033baf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a7036bb15abf7642d6b88165222033baf">OSResetSystem</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> reset, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">resetCode</a>, <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">forceMenu</a>)</td></tr>
 <tr class="separator:a7036bb15abf7642d6b88165222033baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebd95bc38e155cde6e4f171b1782ecd7" id="r_aebd95bc38e155cde6e4f171b1782ecd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#aebd95bc38e155cde6e4f171b1782ecd7">OSGetResetCode</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="memitem:aebd95bc38e155cde6e4f171b1782ecd7" id="r_aebd95bc38e155cde6e4f171b1782ecd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#aebd95bc38e155cde6e4f171b1782ecd7">OSGetResetCode</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>)</td></tr>
 <tr class="separator:aebd95bc38e155cde6e4f171b1782ecd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ac8de80005e0839314bdceb12b48ad3a7" id="r_ac8de80005e0839314bdceb12b48ad3a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a677aa1edce4bbb53741b1cc24eb4c035">vu16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ac8de80005e0839314bdceb12b48ad3a7">__VIRegs</a> [59]</td></tr>
-<tr class="separator:ac8de80005e0839314bdceb12b48ad3a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcc1b49aaba25658b431b933b39b3547" id="r_afcc1b49aaba25658b431b933b39b3547"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOSThreadQueue.html">OSThreadQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#afcc1b49aaba25658b431b933b39b3547">__OSActiveThreadQueue</a></td></tr>
 <tr class="separator:afcc1b49aaba25658b431b933b39b3547"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a260c028ca84ec0797de326f4cfbd6b0d" id="r_a260c028ca84ec0797de326f4cfbd6b0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOSExecParams.html">OSExecParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a260c028ca84ec0797de326f4cfbd6b0d">__OSRebootParams</a></td></tr>
 <tr class="separator:a260c028ca84ec0797de326f4cfbd6b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20801c520a2df76b1b7a8d347586454d" id="r_a20801c520a2df76b1b7a8d347586454d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="structOSResetQueue.html">OSResetQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a20801c520a2df76b1b7a8d347586454d">ResetFunctionQueue</a></td></tr>
+<tr class="memitem:a20801c520a2df76b1b7a8d347586454d" id="r_a20801c520a2df76b1b7a8d347586454d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structOSResetQueue.html">OSResetQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#a20801c520a2df76b1b7a8d347586454d">ResetFunctionQueue</a></td></tr>
 <tr class="separator:a20801c520a2df76b1b7a8d347586454d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab44038914dc7d78a3ad7c538162ade39" id="r_ab44038914dc7d78a3ad7c538162ade39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ab44038914dc7d78a3ad7c538162ade39">bootThisDol</a></td></tr>
+<tr class="memitem:ab44038914dc7d78a3ad7c538162ade39" id="r_ab44038914dc7d78a3ad7c538162ade39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSReset_8c.html#ab44038914dc7d78a3ad7c538162ade39">bootThisDol</a></td></tr>
 <tr class="separator:ab44038914dc7d78a3ad7c538162ade39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -203,10 +203,28 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __OSDoHotReset </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> __OSDoHotReset </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
           <td class="paramname"><em>arg0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b5bb8ad6feb6da4f2b865271bfebdbf" name="a7b5bb8ad6feb6da4f2b865271bfebdbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b5bb8ad6feb6da4f2b865271bfebdbf">&#9670;&#160;</a></span>AT_ADDRESS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a677aa1edce4bbb53741b1cc24eb4c035">vu16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">__VIRegs</a>[59] AT_ADDRESS </td>
+          <td>(</td>
+          <td class="paramtype">0xCC002000&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -224,9 +242,9 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> KillThreads </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> KillThreads </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -249,7 +267,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> OSGetResetCode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -265,7 +283,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> OSRegisterResetFunction </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> OSRegisterResetFunction </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structOSResetFunctionInfo.html">OSResetFunctionInfo</a> *&#160;</td>
           <td class="paramname"><em>func</em></td><td>)</td>
@@ -283,9 +301,9 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> OSResetSystem </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> OSResetSystem </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
           <td class="paramname"><em>reset</em>, </td>
         </tr>
         <tr>
@@ -320,9 +338,9 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Reset </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">asm</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Reset </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">register</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">register</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
           <td class="paramname"><em>param_0</em></td><td>)</td>
           <td></td>
         </tr>
@@ -369,20 +387,6 @@ Variables</h2></td></tr>
 <span class="mlabels"><span class="mlabel">extern</span></span>  </td>
   </tr>
 </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac8de80005e0839314bdceb12b48ad3a7" name="ac8de80005e0839314bdceb12b48ad3a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8de80005e0839314bdceb12b48ad3a7">&#9670;&#160;</a></span>__VIRegs</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a677aa1edce4bbb53741b1cc24eb4c035">vu16</a> __VIRegs[59]</td>
-        </tr>
-      </table>
 </div><div class="memdoc">
 
 </div>
@@ -436,7 +440,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_22235b545bd11e9cf035754dc4797b88.html">dolphin</a></li><li class="navelem"><a class="el" href="dir_a768bdaf96d7d730a0dc11c4298b5b17.html">os</a></li><li class="navelem"><a class="el" href="OSReset_8c.html">OSReset.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_cc591b5d416c28db9940e46f13aceec4.html">dolphin</a></li><li class="navelem"><a class="el" href="dir_19ef72903be55625151d9169632ebe80.html">os</a></li><li class="navelem"><a class="el" href="OSReset_8c.html">OSReset.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

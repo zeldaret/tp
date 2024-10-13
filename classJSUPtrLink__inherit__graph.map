@@ -62,7 +62,7 @@
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="350,164,431,164,431,169,350,169"/>
 <area shape="rect" id="Node000011" href="$classJAUBankTableLink.html" title=" " alt="" coords="413,203,547,228"/>
 <area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="356,213,412,213,412,218,356,218"/>
-<area shape="rect" id="Node000013" href="$classZ2CreatureCitizen.html" title=" " alt="" coords="418,252,542,278"/>
+<area shape="rect" id="Node000013" href="$structZ2CreatureCitizen.html" title=" " alt="" coords="418,252,542,278"/>
 <area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="363,262,417,262,417,268,363,268"/>
 <area shape="rect" id="Node000015" href="$classZ2CreatureEnemy.html" title=" " alt="" coords="418,301,542,327"/>
 <area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="363,312,417,312,417,317,363,317"/>

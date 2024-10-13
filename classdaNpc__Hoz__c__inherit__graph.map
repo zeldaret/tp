@@ -1,6 +1,6 @@
 <map id="daNpc_Hoz_c" name="daNpc_Hoz_c">
 <area shape="rect" id="Node000001" title="Iza." alt="" coords="8,226,111,252"/>
-<area shape="rect" id="Node000002" href="$classdaNpcT__c.html" title=" " alt="" coords="19,153,100,178"/>
+<area shape="rect" id="Node000002" href="$structdaNpcT__c.html" title=" " alt="" coords="19,153,100,178"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,194,62,226,57,226,57,194"/>
 <area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="14,79,105,105"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,120,62,152,57,152,57,120"/>

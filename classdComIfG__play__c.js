@@ -5,7 +5,7 @@ var classdComIfG__play__c =
     [ "addSimpleModel", "classdComIfG__play__c.html#a77b3e38eca7ebdf9b194774e218484ed", null ],
     [ "checkCameraAttentionStatus", "classdComIfG__play__c.html#a93926046f70e09e90d991242d829a5cb", null ],
     [ "checkMesgCancelButton", "classdComIfG__play__c.html#a7299b30182f011d9e473e77ba0974a10", null ],
-    [ "checkPlayerStatus", "classdComIfG__play__c.html#ad7976b24fd05b50c1e8aabf3159e90c5", null ],
+    [ "checkPlayerStatus", "classdComIfG__play__c.html#ac2667a23ee5bea391cce53bb2caaddd9", null ],
     [ "checkStatus", "classdComIfG__play__c.html#a461606ddf996c4f678909482ce3c8f48", null ],
     [ "clearBaseAnimeID", "classdComIfG__play__c.html#aae0f1dbe47b1d8bfd13d6687b92febc9", null ],
     [ "clearFaceAnimeID", "classdComIfG__play__c.html#a9a94f95ac6803ba2c58da0b8a61de109", null ],

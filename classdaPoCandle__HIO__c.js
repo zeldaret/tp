@@ -1,5 +1,5 @@
 var classdaPoCandle__HIO__c =
 [
-    [ "daPoCandle_HIO_c", "classdaPoCandle__HIO__c.html#a6c0a2f4b8a1ca73089499fdef8a713d6", null ],
-    [ "~daPoCandle_HIO_c", "classdaPoCandle__HIO__c.html#ab4317253ef9465800f4021aea0282803", null ]
+    [ "daPoCandle_HIO_c", "classdaPoCandle__HIO__c.html#a00104806532a26d2872ce68a6bdef102", null ],
+    [ "~daPoCandle_HIO_c", "classdaPoCandle__HIO__c.html#a67b77994f182e36a84bb26d7654e3468", null ]
 ];

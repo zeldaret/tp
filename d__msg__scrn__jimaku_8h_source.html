@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/d/msg/d_msg_scrn_jimaku.h Source File</title>
+<title>Twilight Princess: include/d/d_msg_scrn_jimaku.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,7 +151,7 @@ $(document).ready(function(){initNavTree('d__msg__scrn__jimaku_8h_source.html','
 <a href="d__msg__scrn__jimaku_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MSG_SCRN_D_MSG_SCRN_JIMAKU_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MSG_SCRN_D_MSG_SCRN_JIMAKU_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__msg__scrn__base_8h.html">d/msg/d_msg_scrn_base.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__msg__scrn__base_8h.html">d/d_msg_scrn_base.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="JKRExpHeap_8h.html">JSystem/JKernel/JKRExpHeap.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span><a class="code hl_class" href="structdMsgScrnLight__c.html">dMsgScrnLight_c</a>;</div>
@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('d__msg__scrn__jimaku_8h_source.html','
 <div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classdMsgScrnJimaku__c.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classdMsgScrnJimaku__c.html">dMsgScrnJimaku_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="classdMsgScrnBase__c.html">dMsgScrnBase_c</a> {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="comment">/* 80244558 */</span> <a class="code hl_class" href="classdMsgScrnJimaku__c.html">dMsgScrnJimaku_c</a>(<a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="code hl_struct" href="classJKRExpHeap.html">JKRExpHeap</a>*);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="comment">/* 80244558 */</span> <a class="code hl_class" href="classdMsgScrnJimaku__c.html">dMsgScrnJimaku_c</a>(<a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="code hl_class" href="structJKRExpHeap.html">JKRExpHeap</a>*);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="comment">/* 80244A74 */</span> <span class="keyword">virtual</span> <a class="code hl_function" href="classdMsgScrnJimaku__c.html#ad42ff3b216a8c868753fc162694bc8ce">~dMsgScrnJimaku_c</a>();</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment">/* 80244C2C */</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdMsgScrnJimaku__c.html#a82d2c93421fa5db51823fb0dd9cdbd55">exec</a>();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="comment">/* 80244D34 */</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdMsgScrnJimaku__c.html#ad0c44e3385d3e3ddac2397659e3225bb">drawSelf</a>();</div>
@@ -169,14 +169,13 @@ $(document).ready(function(){initNavTree('d__msg__scrn__jimaku_8h_source.html','
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">/* 80244E34 */</span> <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdMsgScrnJimaku__c.html#affd8506f917f648fb986b45834e85ada">fontAlpha</a>(<a class="code hl_typedef" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classdMsgScrnJimaku__c.html#acc4f072551e1dfe1bb25cc5f565f1cf7">   20</a></span>    <span class="comment">/* 0xC4 */</span> <a class="code hl_class" href="structdMsgScrnLight__c.html">dMsgScrnLight_c</a>* <a class="code hl_variable" href="classdMsgScrnJimaku__c.html#acc4f072551e1dfe1bb25cc5f565f1cf7">mpLight_c</a>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classdMsgScrnJimaku__c.html#aac388cfa765508561894c14a2c73af07">   21</a></span>    <span class="comment">/* 0xC8 */</span> <a class="code hl_struct" href="classJKRExpHeap.html">JKRExpHeap</a>* <a class="code hl_variable" href="classdMsgScrnJimaku__c.html#aac388cfa765508561894c14a2c73af07">heap</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classdMsgScrnJimaku__c.html#aac388cfa765508561894c14a2c73af07">   21</a></span>    <span class="comment">/* 0xC8 */</span> <a class="code hl_class" href="structJKRExpHeap.html">JKRExpHeap</a>* <a class="code hl_variable" href="classdMsgScrnJimaku__c.html#aac388cfa765508561894c14a2c73af07">heap</a>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classdMsgScrnJimaku__c.html#a83b390f48e8e101ab948034ce1154b1e">   22</a></span>    <span class="comment">/* 0xCC */</span> <a class="code hl_typedef" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="code hl_variable" href="classdMsgScrnJimaku__c.html#a83b390f48e8e101ab948034ce1154b1e">field_0xcc</a>;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
 </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif </span><span class="comment">/* MSG_SCRN_D_MSG_SCRN_JIMAKU_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aJKRExpHeap_8h_html"><div class="ttname"><a href="JKRExpHeap_8h.html">JKRExpHeap.h</a></div></div>
-<div class="ttc" id="aclassJKRExpHeap_html"><div class="ttname"><a href="classJKRExpHeap.html">JKRExpHeap</a></div><div class="ttdef"><b>Definition</b> JKRExpHeap.h:10</div></div>
 <div class="ttc" id="aclassdMsgScrnBase__c_html"><div class="ttname"><a href="classdMsgScrnBase__c.html">dMsgScrnBase_c</a></div><div class="ttdef"><b>Definition</b> d_msg_scrn_base.h:11</div></div>
 <div class="ttc" id="aclassdMsgScrnJimaku__c_html"><div class="ttname"><a href="classdMsgScrnJimaku__c.html">dMsgScrnJimaku_c</a></div><div class="ttdef"><b>Definition</b> d_msg_scrn_jimaku.h:9</div></div>
 <div class="ttc" id="aclassdMsgScrnJimaku__c_html_a20d0aaf857ac0c5ab35be40a9d350a25"><div class="ttname"><a href="classdMsgScrnJimaku__c.html#a20d0aaf857ac0c5ab35be40a9d350a25">dMsgScrnJimaku_c::fukiTrans</a></div><div class="ttdeci">virtual void fukiTrans(f32, f32)</div><div class="ttdef"><b>Definition</b> d_msg_scrn_jimaku.cpp:176</div></div>
@@ -190,7 +189,8 @@ $(document).ready(function(){initNavTree('d__msg__scrn__jimaku_8h_source.html','
 <div class="ttc" id="aclassdMsgScrnJimaku__c_html_ad42ff3b216a8c868753fc162694bc8ce"><div class="ttname"><a href="classdMsgScrnJimaku__c.html#ad42ff3b216a8c868753fc162694bc8ce">dMsgScrnJimaku_c::~dMsgScrnJimaku_c</a></div><div class="ttdeci">virtual ~dMsgScrnJimaku_c()</div><div class="ttdef"><b>Definition</b> d_msg_scrn_jimaku.cpp:104</div></div>
 <div class="ttc" id="aclassdMsgScrnJimaku__c_html_affd8506f917f648fb986b45834e85ada"><div class="ttname"><a href="classdMsgScrnJimaku__c.html#affd8506f917f648fb986b45834e85ada">dMsgScrnJimaku_c::fontAlpha</a></div><div class="ttdeci">virtual void fontAlpha(f32)</div><div class="ttdef"><b>Definition</b> d_msg_scrn_jimaku.cpp:179</div></div>
 <div class="ttc" id="ad__msg__scrn__base_8h_html"><div class="ttname"><a href="d__msg__scrn__base_8h.html">d_msg_scrn_base.h</a></div></div>
-<div class="ttc" id="astructdMsgScrnLight__c_html"><div class="ttname"><a href="structdMsgScrnLight__c.html">dMsgScrnLight_c</a></div><div class="ttdef"><b>Definition</b> d_gameover.cpp:33</div></div>
+<div class="ttc" id="astructJKRExpHeap_html"><div class="ttname"><a href="structJKRExpHeap.html">JKRExpHeap</a></div><div class="ttdef"><b>Definition</b> d_a_balloon_2D.h:178</div></div>
+<div class="ttc" id="astructdMsgScrnLight__c_html"><div class="ttname"><a href="structdMsgScrnLight__c.html">dMsgScrnLight_c</a></div><div class="ttdef"><b>Definition</b> d_gameover.cpp:37</div></div>
 <div class="ttc" id="atypes_8h_html_a5f6906312a689f27d70e9d086649d3fd"><div class="ttname"><a href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> types.h:22</div></div>
 <div class="ttc" id="atypes_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> types.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -198,7 +198,7 @@ $(document).ready(function(){initNavTree('d__msg__scrn__jimaku_8h_source.html','
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_d6b0d4f987b95c78b3cfcc31952546fc.html">msg</a></li><li class="navelem"><a class="el" href="d__msg__scrn__jimaku_8h.html">d_msg_scrn_jimaku.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="d__msg__scrn__jimaku_8h.html">d_msg_scrn_jimaku.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

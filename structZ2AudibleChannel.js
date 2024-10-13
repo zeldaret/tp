@@ -1,6 +1,6 @@
 var structZ2AudibleChannel =
 [
-    [ "Z2AudibleChannel", "structZ2AudibleChannel.html#a7ff3d0e4c75b2029ffb3de57bc6cd17f", null ],
+    [ "Z2AudibleChannel", "structZ2AudibleChannel.html#a4083d2d51b72c9219afc050a40558faa", null ],
     [ "init", "structZ2AudibleChannel.html#a410341baa5a6ea4f8f92ac852def5f46", null ],
     [ "field_0x0", "structZ2AudibleChannel.html#a147a0d16111071dccced78605b647a81", null ],
     [ "field_0x14", "structZ2AudibleChannel.html#aebb1d5627765d5a37660e28d1bd5d0d4", null ],

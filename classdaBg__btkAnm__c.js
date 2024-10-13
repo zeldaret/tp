@@ -1,7 +1,7 @@
 var classdaBg__btkAnm__c =
 [
-    [ "create", "classdaBg__btkAnm__c.html#a5c4c0f9d6675c113ed550176bfc40ef7", null ],
-    [ "entry", "classdaBg__btkAnm__c.html#a09817749cdde726dee3f49da252b81a1", null ],
+    [ "create", "classdaBg__btkAnm__c.html#a75414e7247043d2f842374234f33f1dd", null ],
+    [ "entry", "classdaBg__btkAnm__c.html#a51f6773ec5f5467df98cc70497137581", null ],
     [ "entryFrame", "classdaBg__btkAnm__c.html#ae0f939b60b28619c7f7b1d7abc317ef1", null ],
     [ "play", "classdaBg__btkAnm__c.html#a543e7e48959d808e606d895a4184a8ba", null ],
     [ "playspeed", "classdaBg__btkAnm__c.html#a9783ef7a20f665852026cd1a3350a677", null ],

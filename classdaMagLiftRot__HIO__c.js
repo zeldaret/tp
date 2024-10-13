@@ -1,6 +1,6 @@
 var classdaMagLiftRot__HIO__c =
 [
-    [ "daMagLiftRot_HIO_c", "classdaMagLiftRot__HIO__c.html#a7a872ffd6a25a052404a446236d85574", null ],
+    [ "daMagLiftRot_HIO_c", "classdaMagLiftRot__HIO__c.html#a7a727e801af29715488ea93a4c4cf680", null ],
     [ "~daMagLiftRot_HIO_c", "classdaMagLiftRot__HIO__c.html#a63c4285c214445cbece4433431cf0ed9", null ],
     [ "mAcceleration", "classdaMagLiftRot__HIO__c.html#ae98e1e295c525a43e61a8ed82120f4fc", null ],
     [ "mInitSpeed", "classdaMagLiftRot__HIO__c.html#acf1e96802dd1cf72ad80ef20cdfc5f4f", null ],

@@ -53,7 +53,7 @@ var d__menu__letter_8cpp =
     [ "dotAnimeInit__15dMsgScrnArrow_cFv", "d__menu__letter_8cpp.html#a251d922675244d0a3832d940326e3404", null ],
     [ "dotAnimeMove__15dMsgScrnArrow_cFv", "d__menu__letter_8cpp.html#ac6b28d0d3f64ac6665ab104b26719541", null ],
     [ "dPaneClass_showNullPane__FP9J2DScreen", "d__menu__letter_8cpp.html#aeaf5954e564e86b01623a1d81d68949d", null ],
-    [ "draw__14dMenu_Letter_cFv", "d__menu__letter_8cpp.html#af55ee277189ca7bdb88842bae3198037", null ],
+    [ "draw__14dMenu_Letter_cFv", "d__menu__letter_8cpp.html#ac312ced8902c2ea31476ad6eb9a807a6", null ],
     [ "draw__15dMsgScrnArrow_cFv", "d__menu__letter_8cpp.html#a8ca18acfcbc4b27b9789e2e652282287", null ],
     [ "draw__9J2DScreenFffPC14J2DGrafContext", "d__menu__letter_8cpp.html#a2b815fec8df89dc6812fd0c9f61b81ca", null ],
     [ "func_802E90C0", "d__menu__letter_8cpp.html#a012fc3334e2efed06233f4d37e7ed938", null ],

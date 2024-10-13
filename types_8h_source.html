@@ -192,7 +192,13 @@ $(document).ready(function(){initNavTree('types_8h_source.html',''); initResizab
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define FLOAT_MIN (1.175494351e-38f)</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define FLOAT_MAX (3.40282346638528860e+38f)</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#ifdef __MWERKS__</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define AT_ADDRESS(xyz) : (xyz)</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define AT_ADDRESS(xyz)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astddef_8h_html"><div class="ttname"><a href="stddef_8h.html">stddef.h</a></div></div>
 <div class="ttc" id="atypes_8h_html_a050c65e107f0c828f856a231f4b4e788"><div class="ttname"><a href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a></div><div class="ttdeci">int BOOL</div><div class="ttdef"><b>Definition</b> types.h:27</div></div>
 <div class="ttc" id="atypes_8h_html_a108e1a5e4c3e8322825ef7dcd45966ca"><div class="ttname"><a href="types_8h.html#a108e1a5e4c3e8322825ef7dcd45966ca">vs8</a></div><div class="ttdeci">volatile s8 vs8</div><div class="ttdef"><b>Definition</b> types.h:17</div></div>

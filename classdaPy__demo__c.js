@@ -20,6 +20,7 @@ var classdaPy__demo__c =
     [ "setParam2", "classdaPy__demo__c.html#a3278a9d94bb9d7cd64a0c674baa03222", null ],
     [ "setPos0", "classdaPy__demo__c.html#a441d6eff7b74a3aefa07f6f92c1e1109", null ],
     [ "setSpecialDemoType", "classdaPy__demo__c.html#ad780e6ec3ef410087d71eed0d4e9081c", null ],
+    [ "setStartDemoType", "classdaPy__demo__c.html#a211f7bdd6e94ae2422e7dad21b1ed67d", null ],
     [ "setStick", "classdaPy__demo__c.html#a2672f1ae6a8653e43ed38b274c3147e2", null ],
     [ "setSystemDemoType", "classdaPy__demo__c.html#ab2d76bbd6e5d493781973db8c2197618", null ],
     [ "setTimer", "classdaPy__demo__c.html#a265850a5268f785831aa7b5340908782", null ],

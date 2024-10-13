@@ -1,7 +1,7 @@
 var Z2SeqMgr_8h =
 [
     [ "Z2SoundFader", "structZ2SoundFader.html", "structZ2SoundFader" ],
-    [ "Z2SeqMgr", "classZ2SeqMgr.html", "classZ2SeqMgr" ],
+    [ "Z2SeqMgr", "structZ2SeqMgr.html", "structZ2SeqMgr" ],
     [ "Z2BgmID", "Z2SeqMgr_8h.html#a61d7f798d58941871faea3c813b33b5c", [
       [ "Z2BGM_FIELD_LINK_DAY", "Z2SeqMgr_8h.html#a61d7f798d58941871faea3c813b33b5ca9d26cff6b00ac8b08820aa0f8f5ac11a", null ],
       [ "Z2BGM_FIELD_LINK_NIGHT", "Z2SeqMgr_8h.html#a61d7f798d58941871faea3c813b33b5ca691bf8b24d32d303ab74b2f52d600173", null ],

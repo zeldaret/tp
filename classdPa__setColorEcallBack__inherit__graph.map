@@ -1,6 +1,6 @@
 <map id="dPa_setColorEcallBack" name="dPa_setColorEcallBack">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,153,163,178"/>
-<area shape="rect" id="Node000002" href="$classdPa__levelEcallBack.html" title=" " alt="" coords="16,79,152,105"/>
+<area shape="rect" id="Node000002" href="$structdPa__levelEcallBack.html" title=" " alt="" coords="16,79,152,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,120,87,152,81,152,81,120"/>
 <area shape="rect" id="Node000003" href="$classJPAEmitterCallBack.html" title=" " alt="" coords="14,5,154,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,46,87,79,81,79,81,46"/>

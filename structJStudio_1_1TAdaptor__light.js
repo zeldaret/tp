@@ -1,7 +1,7 @@
 var structJStudio_1_1TAdaptor__light =
 [
     [ "TAdaptor_light", "structJStudio_1_1TAdaptor__light.html#a3a9e1f0498168e00c3140576893bd3d9", null ],
-    [ "~TAdaptor_light", "structJStudio_1_1TAdaptor__light.html#a535a85380abd92077379555a72e87977", null ],
+    [ "~TAdaptor_light", "structJStudio_1_1TAdaptor__light.html#ac871511ecea97efffc17a2206f041255", null ],
     [ "mValue", "structJStudio_1_1TAdaptor__light.html#abab64bf1ade25cc3075ec7bd61c97047", null ],
     [ "sauVariableValue_2_DIRECTION_THETA_PHI", "structJStudio_1_1TAdaptor__light.html#a85077bcb86ef06344128a7410fd9d7c3", null ],
     [ "sauVariableValue_3_COLOR_RGB", "structJStudio_1_1TAdaptor__light.html#a84006ed6d7f1c7760f91732d7183a8fe", null ],

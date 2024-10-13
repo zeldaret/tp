@@ -1,8 +1,8 @@
 <map id="mDoExt_bpkAnm" name="mDoExt_bpkAnm">
 <area shape="rect" id="Node000001" title=" " alt="" coords="77,360,198,386"/>
-<area shape="rect" id="Node000002" href="$classmDoExt__baseAnm.html" title=" " alt="" coords="5,271,134,297"/>
+<area shape="rect" id="Node000002" href="$structmDoExt__baseAnm.html" title=" " alt="" coords="5,271,134,297"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,308,130,358,126,361,86,311"/>
-<area shape="rect" id="Node000003" href="$classJ3DFrameCtrl.html" title=" " alt="" coords="19,183,120,208"/>
+<area shape="rect" id="Node000003" href="$structJ3DFrameCtrl.html" title=" " alt="" coords="19,183,120,208"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="72,224,72,271,67,271,67,224"/>
 <area shape="rect" id="Node000004" href="$classJ3DAnmColor.html" title=" " alt="" coords="158,271,259,297"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="191,311,149,361,145,358,187,307"/>

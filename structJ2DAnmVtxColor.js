@@ -1,6 +1,6 @@
 var structJ2DAnmVtxColor =
 [
-    [ "~J2DAnmVtxColor", "structJ2DAnmVtxColor.html#aaf2039d9ff813b656e0a85ac834e8ff1", null ],
+    [ "~J2DAnmVtxColor", "structJ2DAnmVtxColor.html#a8aa844ac51e8204e38278dbee7cf4b8d", null ],
     [ "J2DAnmVtxColor", "structJ2DAnmVtxColor.html#ac3e0a79e3e1c97c958c96badfe3c2ef1", null ],
     [ "~J2DAnmVtxColor", "structJ2DAnmVtxColor.html#a53b11747a4283324e9ce31a341b317eb", null ],
     [ "getAnmTableNum", "structJ2DAnmVtxColor.html#a093460bc2bdca9dd9d3d7ec4f6a629db", null ],

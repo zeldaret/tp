@@ -261,7 +261,7 @@
 <!-- Node44 -->
 <g id="Node000044" class="node">
 <title>Node44</title>
-<g id="a_Node000044"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000044"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="754,-1119.83 681,-1119.83 681,-1100.58 754,-1100.58 754,-1119.83"/>
 <text text-anchor="middle" x="717.5" y="-1106.33" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -444,7 +444,7 @@
 <!-- Node57 -->
 <g id="Node000057" class="node">
 <title>Node57</title>
-<g id="a_Node000057"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000057"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="510.38,-581.83 450.88,-581.83 450.88,-562.58 510.38,-562.58 510.38,-581.83"/>
 <text text-anchor="middle" x="480.62" y="-568.33" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -552,7 +552,7 @@
 <!-- Node53 -->
 <g id="Node000053" class="node">
 <title>Node53</title>
-<g id="a_Node000053"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000053"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="501.75,-1184.83 459.5,-1184.83 459.5,-1165.58 501.75,-1165.58 501.75,-1184.83"/>
 <text text-anchor="middle" x="480.62" y="-1171.33" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -687,7 +687,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="275.38,-620.83 195.62,-620.83 195.62,-601.58 275.38,-601.58 275.38,-620.83"/>
 <text text-anchor="middle" x="235.5" y="-607.33" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>

@@ -1,7 +1,7 @@
 var structJASSimpleWaveBank_1_1TWaveHandle =
 [
-    [ "~TWaveHandle", "structJASSimpleWaveBank_1_1TWaveHandle.html#ad85b77f03b82ff2ac42d70d40fb5ce6b", null ],
-    [ "TWaveHandle", "structJASSimpleWaveBank_1_1TWaveHandle.html#aef22d4e719f978da35385b301b310a4f", null ],
-    [ "getWaveInfo", "structJASSimpleWaveBank_1_1TWaveHandle.html#aae0d95b1aae1f94ad25da22fd148e2ec", null ],
-    [ "getWavePtr", "structJASSimpleWaveBank_1_1TWaveHandle.html#a08bef2382fbacfbf46f0056648df09bb", null ]
+    [ "~TWaveHandle", "structJASSimpleWaveBank_1_1TWaveHandle.html#a182122a89776a79278f6bd495103f69a", null ],
+    [ "TWaveHandle", "structJASSimpleWaveBank_1_1TWaveHandle.html#a97bff40774ae8eb508f014a990afa4bf", null ],
+    [ "getWaveInfo", "structJASSimpleWaveBank_1_1TWaveHandle.html#a5e73064872e4cd1b6ea992401c661612", null ],
+    [ "getWavePtr", "structJASSimpleWaveBank_1_1TWaveHandle.html#af02e56cadd22724aff5531fbeb7d384f", null ]
 ];

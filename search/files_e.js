@@ -18,7 +18,7 @@ var searchData=
   ['object_2dsound_2eh_15',['object-sound.h',['../object-sound_8h.html',1,'']]],
   ['object_2ecpp_16',['object.cpp',['../object_8cpp.html',1,'']]],
   ['object_2eh_17',['object.h',['../object_8h.html',1,'']]],
-  ['odenotstub_2ecpp_18',['odenotstub.cpp',['../odenotstub_8cpp.html',1,'']]],
+  ['odenotstub_2ec_18',['odenotstub.c',['../odenotstub_8c.html',1,'']]],
   ['os_2ec_19',['OS.c',['../OS_8c.html',1,'']]],
   ['os_2eh_20',['os.h',['../os_8h.html',1,'']]],
   ['osalarm_2ec_21',['OSAlarm.c',['../OSAlarm_8c.html',1,'']]],

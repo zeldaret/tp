@@ -38,7 +38,7 @@
 <area shape="rect" id="Node000018" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="288,413,393,439"/>
 <area shape="poly" id="edge33_Node000003_Node000018" title=" " alt="" coords="409,434,506,452,614,476,758,513,868,546,1117,634,1173,657,1228,682,1329,734,1327,739,1226,687,1171,662,1115,639,867,551,756,518,613,481,505,457,408,439"/>
 <area shape="poly" id="edge16_Node000017_Node000018" title=" " alt="" coords="401,445,426,467,435,491,438,523,436,600,434,674,439,704,450,723,476,732,528,739,650,748,650,753,528,745,475,737,446,727,434,705,429,675,430,599,433,523,430,492,422,470,398,448"/>
-<area shape="rect" id="Node000039" href="$structJUTFont.html" title=" " alt="" coords="668,301,740,327"/>
+<area shape="rect" id="Node000039" href="$classJUTFont.html" title=" " alt="" coords="668,301,740,327"/>
 <area shape="poly" id="edge35_Node000039_Node000018" title=" " alt="" coords="398,406,667,323,668,328,400,411"/>
 <area shape="poly" id="edge51_Node000067_Node000018" title=" " alt="" coords="350,398,364,368,385,334,413,302,447,277,482,262,518,250,594,236,671,234,747,240,818,252,882,268,979,298,977,303,881,273,817,257,746,245,671,239,594,242,520,255,484,267,449,282,416,306,389,337,369,370,355,400"/>
 <area shape="poly" id="edge57_Node000070_Node000018" title=" " alt="" coords="408,428,970,466,970,471,408,433"/>
@@ -75,7 +75,7 @@
 <area shape="rect" id="Node000066" href="$structjmessage__string__tReference.html" title=" " alt="" coords="1923,383,2109,408"/>
 <area shape="poly" id="edge58_Node000066_Node000039" title=" " alt="" coords="751,331,803,350,868,369,939,384,1012,390,1670,390,1923,392,1923,397,1670,395,1012,395,939,389,866,374,801,355,749,336"/>
 <area shape="poly" id="edge50_Node000067_Node000039" title=" " alt="" coords="756,312,967,312,967,317,756,317"/>
-<area shape="rect" id="Node000040" href="$structdMsgString__c.html" title=" " alt="" coords="3222,275,3323,300"/>
+<area shape="rect" id="Node000040" href="$classdMsgString__c.html" title=" " alt="" coords="3222,275,3323,300"/>
 <area shape="poly" id="edge36_Node000001_Node000040" title=" " alt="" coords="3299,263,3493,97,3497,101,3303,267"/>
 <area shape="rect" id="Node000041" href="$classdMsgStringBase__c.html" title=" " alt="" coords="3041,275,3173,300"/>
 <area shape="poly" id="edge37_Node000040_Node000041" title=" " alt="" coords="3189,285,3222,285,3222,290,3189,290"/>

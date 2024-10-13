@@ -30,7 +30,7 @@
 <area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="417,108,428,113,476,140,500,150,498,155,473,145,425,118,415,113"/>
 <area shape="rect" id="Node000013" href="$classJKRAssertHeap.html" title=" " alt="" coords="309,177,424,203"/>
 <area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="258,221,321,201,323,206,259,226"/>
-<area shape="rect" id="Node000014" href="$classJKRExpHeap.html" title=" " alt="" coords="318,227,416,252"/>
+<area shape="rect" id="Node000014" href="$structJKRExpHeap.html" title=" " alt="" coords="318,227,416,252"/>
 <area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="259,237,317,237,317,242,259,242"/>
 <area shape="rect" id="Node000015" href="$classJKRSolidHeap.html" title=" " alt="" coords="314,276,420,302"/>
 <area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="259,253,323,273,321,278,258,258"/>

@@ -151,7 +151,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="334.75,-141.14 280.5,-141.14 280.5,-121.89 334.75,-121.89 334.75,-141.14"/>
 <text text-anchor="middle" x="307.62" y="-127.64" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -267,7 +267,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="structJUTResFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="classJUTResFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="557,-267.14 485.5,-267.14 485.5,-247.89 557,-247.89 557,-267.14"/>
 <text text-anchor="middle" x="521.25" y="-253.64" font-family="Helvetica,sans-Serif" font-size="10.00">JUTResFont</text>
 </a>

@@ -43,7 +43,7 @@ var m__Do__machine_8cpp =
     [ "mDoExt_getGameHeap__Fv", "m__Do__machine_8cpp.html#ac64fb9969a95e7ef4a109ccfb8de56bb", null ],
     [ "mDoExt_getJ2dHeap__Fv", "m__Do__machine_8cpp.html#a30414eafe055e77783e30618babc5591", null ],
     [ "mDoExt_getZeldaHeap__Fv", "m__Do__machine_8cpp.html#a0d3c55e31f36dad20ae873662ff6b533", null ],
-    [ "mDoMch_Create", "m__Do__machine_8cpp.html#adcd595924714cc0a42bb9ec8fd93b3a7", null ],
+    [ "mDoMch_Create", "m__Do__machine_8cpp.html#a9d8f7dd38853af0684b34d2a8a88edee", null ],
     [ "mDoMch_Create__Fv", "m__Do__machine_8cpp.html#a3388fe4cfa5c301041e9de5e763ad883", null ],
     [ "mDoMch_HeapCheckAll", "m__Do__machine_8cpp.html#a30873eb0d387611ea8f0547fec40e15e", null ],
     [ "mDoMch_HeapCheckAll__Fv", "m__Do__machine_8cpp.html#ad5d16e7a8fdc0b3e84bed5b950354cc4", null ],

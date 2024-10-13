@@ -1,6 +1,6 @@
 var structJPAFieldNewton =
 [
-    [ "~JPAFieldNewton", "structJPAFieldNewton.html#aa5dcc111b14da36c98e0811be7ec019c", null ],
-    [ "calc", "structJPAFieldNewton.html#a59b9702a5ee760daa6a65d7b69668570", null ],
-    [ "prepare", "structJPAFieldNewton.html#a4813f68769232021bba1e72af24e195c", null ]
+    [ "~JPAFieldNewton", "structJPAFieldNewton.html#a7b152b893ca1cee8d7719624ce9fa426", null ],
+    [ "calc", "structJPAFieldNewton.html#a408339cecd013d5b271e0262205656a8", null ],
+    [ "prepare", "structJPAFieldNewton.html#ab2565cf19779096f143630933f283afc", null ]
 ];

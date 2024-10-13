@@ -10,6 +10,7 @@ var classdaCrod__c =
     [ "getFlyInitY", "classdaCrod__c.html#a5c3e6513fd02f9d4d7d187ef5287d275", null ],
     [ "getFlyInitZ", "classdaCrod__c.html#ac0817f2f289cde189906f0af18bd4c36", null ],
     [ "makeIronBallDummy", "classdaCrod__c.html#abcb3480e694dae0867c07451f89e1869", null ],
+    [ "offControll", "classdaCrod__c.html#a5e75e15311c9c7b9ea66aa9e11f12439", null ],
     [ "posMove", "classdaCrod__c.html#a141239423faf124298d2c5459026c246", null ],
     [ "setBckAnm", "classdaCrod__c.html#aa2996ac75f5e5e8cccff91f537572a7c", null ],
     [ "setControllActorData", "classdaCrod__c.html#a0263a54563cc3c896a4bf8b41bb8e05e", null ],

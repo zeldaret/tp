@@ -1,13 +1,13 @@
 var class__GlSph__Mng__c =
 [
-    [ "~_GlSph_Mng_c", "class__GlSph__Mng__c.html#a264aac04e9f10c6cf927aee46fe4e41c", null ],
-    [ "_chkAllGet_main", "class__GlSph__Mng__c.html#a8ad463e3012404f159377437b0e76f37", null ],
-    [ "_clrLstBuf", "class__GlSph__Mng__c.html#a6d4311a2801472f8d3615fd9e8e0b6de", null ],
-    [ "_setting_main", "class__GlSph__Mng__c.html#a6b8cb893a654f12bae2a9634b196a585", null ],
-    [ "clrSphSe", "class__GlSph__Mng__c.html#a85890f1c1a39c7536844ad728e7d13ab", null ],
-    [ "entry", "class__GlSph__Mng__c.html#ac56b17e92c93e7d36acea3b7369a3614", null ],
-    [ "getSphSe", "class__GlSph__Mng__c.html#add7fb89a43db869519dfebf19c444c87", null ],
-    [ "incSphSe", "class__GlSph__Mng__c.html#ae394960a3119e9a0afb52b1feaaf9671", null ],
-    [ "remove", "class__GlSph__Mng__c.html#a4272aa4f43c461ebe9ea6b78f5b06372", null ],
-    [ "SphSeProc", "class__GlSph__Mng__c.html#a4997ad8994e2750016cf8ec3495b18d4", null ]
+    [ "~_GlSph_Mng_c", "class__GlSph__Mng__c.html#a1a1aa71e21d03d70679ab012ea6ac96a", null ],
+    [ "_chkAllGet_main", "class__GlSph__Mng__c.html#a5b75460d3cf3de24a8330003a8d86105", null ],
+    [ "_clrLstBuf", "class__GlSph__Mng__c.html#ac5c767681f9dd8da66d4b7eedb581bb1", null ],
+    [ "_setting_main", "class__GlSph__Mng__c.html#a851a106756f742298227b8e4ee0f2029", null ],
+    [ "clrSphSe", "class__GlSph__Mng__c.html#aadfd21a1289a456579834b19da2e66d7", null ],
+    [ "entry", "class__GlSph__Mng__c.html#a8d46a9e33ca10d91b87793d93cca56e5", null ],
+    [ "getSphSe", "class__GlSph__Mng__c.html#a394ebb9dc7bf1cc6fd09805ca51a95be", null ],
+    [ "incSphSe", "class__GlSph__Mng__c.html#a79d9b3b89764bfa18319533af8a7b2dd", null ],
+    [ "remove", "class__GlSph__Mng__c.html#a5b04d95eaff1f9203c1ca1dbfbe86c75", null ],
+    [ "SphSeProc", "class__GlSph__Mng__c.html#a8beed28898df33281fa4e89cac2b4ee7", null ]
 ];

@@ -1,8 +1,8 @@
 var structcM3dGSph =
 [
-    [ "cM3dGSph", "structcM3dGSph.html#afbdd127b4df4ded0fd06df22b511bf5b", null ],
-    [ "~cM3dGSph", "structcM3dGSph.html#a073a4f16a66be093d48e6d854d259da3", null ],
     [ "~cM3dGSph", "structcM3dGSph.html#a4207d9656399846ee51258bcd8adbda6", null ],
+    [ "cM3dGSph", "structcM3dGSph.html#afbdd127b4df4ded0fd06df22b511bf5b", null ],
+    [ "~cM3dGSph", "structcM3dGSph.html#a1f2e7a0855431acabdaf52e987422c03", null ],
     [ "Cross", "structcM3dGSph.html#a960273ff8576c487f30b377013bbb3e7", null ],
     [ "cross", "structcM3dGSph.html#ab2accc1bbebc23c9592e3e55236aa837", null ],
     [ "Cross", "structcM3dGSph.html#a72e33c14cd50cb1dcd679c7194f432d0", null ],
@@ -16,12 +16,10 @@ var structcM3dGSph =
     [ "GetCZ", "structcM3dGSph.html#a350d379e64851e5b77464f20c99ac2bf", null ],
     [ "GetMinMaxCube", "structcM3dGSph.html#a94a49e4cfe65ca72f38e7fbed07a243e", null ],
     [ "GetR", "structcM3dGSph.html#a1cec4de60f87955880b0ef8fcc1d76b1", null ],
-    [ "Set", "structcM3dGSph.html#ad6ce3df7f7e4cd6ad5d976e1db62acc0", null ],
     [ "Set", "structcM3dGSph.html#a7cadc62e3d796a113532629d807caece", null ],
     [ "Set", "structcM3dGSph.html#ad66acb3745c2d0bc465b71d4a282f3fc", null ],
     [ "Set", "structcM3dGSph.html#afb17f7dda81fa609bfac57339dc49043", null ],
     [ "SetC", "structcM3dGSph.html#a11d9035c89af90c94d5a923fff9659c8", null ],
-    [ "SetC", "structcM3dGSph.html#a7906d76e5826b7ea01473a24f2439f2f", null ],
     [ "SetR", "structcM3dGSph.html#ac24bd00e0600c8a421fbcdc6fd78e152", null ],
     [ "mCenter", "structcM3dGSph.html#a04317fd41c53e165b2bd9c74cd66e097", null ],
     [ "mRadius", "structcM3dGSph.html#ad68fb21770ec3d7452932331e9420d56", null ]

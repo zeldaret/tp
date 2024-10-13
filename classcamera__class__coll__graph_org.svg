@@ -20,7 +20,7 @@
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="classdCamera__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000032"><a xlink:href="structdCamera__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1528,-483.38 1462.5,-483.38 1462.5,-464.13 1528,-464.13 1528,-483.38"/>
 <text text-anchor="middle" x="1495.25" y="-469.88" font-family="Helvetica,sans-Serif" font-size="10.00">dCamera_c</text>
 </a>
@@ -278,7 +278,7 @@
 <!-- Node56 -->
 <g id="Node000056" class="node">
 <title>Node56</title>
-<g id="a_Node000056"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000056"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="534.38,-614.38 461.38,-614.38 461.38,-595.13 534.38,-595.13 534.38,-614.38"/>
 <text text-anchor="middle" x="497.88" y="-600.88" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -513,7 +513,7 @@
 <!-- Node65 -->
 <g id="Node000065" class="node">
 <title>Node65</title>
-<g id="a_Node000065"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000065"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="299.38,-716.38 239.88,-716.38 239.88,-697.13 299.38,-697.13 299.38,-716.38"/>
 <text text-anchor="middle" x="269.62" y="-702.88" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -612,7 +612,7 @@
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000029"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="290.75,-991.38 248.5,-991.38 248.5,-972.13 290.75,-972.13 290.75,-991.38"/>
 <text text-anchor="middle" x="269.62" y="-977.88" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>

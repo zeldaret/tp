@@ -1,8 +1,8 @@
 var structJPABaseParticle =
 [
-    [ "calc_c", "structJPABaseParticle.html#a8d5e6514be079982bb41ebe2ca33c772", null ],
-    [ "calc_p", "structJPABaseParticle.html#a379d1971e4a9253507d228a9337e0bd4", null ],
-    [ "canCreateChild", "structJPABaseParticle.html#a0f1f2830fd049f106bbcb9b6ca193642", null ],
+    [ "calc_c", "structJPABaseParticle.html#acebf470d4c20efe53aca2c461813b2dc", null ],
+    [ "calc_p", "structJPABaseParticle.html#aa06510da37b4108542a0514a6b623580", null ],
+    [ "canCreateChild", "structJPABaseParticle.html#a814cf18a53406a67f268776842e3a46c", null ],
     [ "checkStatus", "structJPABaseParticle.html#a7b017fb8933d41544e189dc03ea54f41", null ],
     [ "getAge", "structJPABaseParticle.html#a89d371a460cb4ad62822811007b1f5f2", null ],
     [ "getBaseAxis", "structJPABaseParticle.html#a64fcd53d784059d45486a11bbf7904d7", null ],
@@ -15,8 +15,8 @@ var structJPABaseParticle =
     [ "getRotateAngle", "structJPABaseParticle.html#aaa3e2b153a9f74c883f6f972d1f515d7", null ],
     [ "getVelVec", "structJPABaseParticle.html#af3a838211bff68138516eca54d180f96", null ],
     [ "getWidth", "structJPABaseParticle.html#a3b17c81dfd5e62794f519462774deafc", null ],
-    [ "init_c", "structJPABaseParticle.html#ac70f08e022c4b263ef0c54d19af2b7ef", null ],
-    [ "init_p", "structJPABaseParticle.html#a0a4bdf17601a760668a66e30ed765971", null ],
+    [ "init_c", "structJPABaseParticle.html#ab9e0c1b9c2b73af09eeea620cb468f21", null ],
+    [ "init_p", "structJPABaseParticle.html#aae8a76cfaa27ad87c93a955d32247547", null ],
     [ "setDeleteParticleFlag", "structJPABaseParticle.html#a8a8a4a49cb8cad0158d5aaf436675062", null ],
     [ "setInvisibleParticleFlag", "structJPABaseParticle.html#a060c3ef0c088644335102028be9cff22", null ],
     [ "setOffsetPosition", "structJPABaseParticle.html#ab5b2edd6d0fc8bc5f77b69a1313b0417", null ],

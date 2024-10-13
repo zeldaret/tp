@@ -2,7 +2,7 @@ var classJ2DMaterialFactory =
 [
     [ "J2DMaterialFactory", "classJ2DMaterialFactory.html#ad6b29bd6810b41f0175d279708597efd", null ],
     [ "countStages", "classJ2DMaterialFactory.html#a662896afc4c084d92eb713da4ec8939b", null ],
-    [ "create", "classJ2DMaterialFactory.html#aa4f050f654bb0b73fae50c5718219850", null ],
+    [ "create", "classJ2DMaterialFactory.html#a468baa1c39e9587a9eb1cc5d5af4bdba", null ],
     [ "getMaterialAlphaCalc", "classJ2DMaterialFactory.html#ac39706b82640314637cfc96425987c95", null ],
     [ "getMaterialMode", "classJ2DMaterialFactory.html#acf2d89d75ca59c163b7aeeb0e7f953e3", null ],
     [ "newAlphaComp", "classJ2DMaterialFactory.html#a39585ffef93bea5a943de2d63b30db22", null ],
@@ -18,7 +18,7 @@ var classJ2DMaterialFactory =
     [ "newIndTexOrder", "classJ2DMaterialFactory.html#a6aee428472ababddd2c61e1e1ef6a0c1", null ],
     [ "newIndTexStageNum", "classJ2DMaterialFactory.html#ae9ca909becd0b2658989c4f8671f1351", null ],
     [ "newMatColor", "classJ2DMaterialFactory.html#abfad43161a21705f2443423faa3b1f94", null ],
-    [ "newTevColor", "classJ2DMaterialFactory.html#a6850a8168e36b1a36c64fea721c05e5b", null ],
+    [ "newTevColor", "classJ2DMaterialFactory.html#a379e87346beb7fc0730f58bf3b826cd0", null ],
     [ "newTevKColor", "classJ2DMaterialFactory.html#a109649212b92f922fb085d76705aa78d", null ],
     [ "newTevOrder", "classJ2DMaterialFactory.html#a8bed9809370c38d99e15ab654ddee2e1", null ],
     [ "newTevStage", "classJ2DMaterialFactory.html#a70e7afc378afbce2a63b97b00e16b6cd", null ],

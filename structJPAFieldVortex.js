@@ -1,6 +1,6 @@
 var structJPAFieldVortex =
 [
-    [ "~JPAFieldVortex", "structJPAFieldVortex.html#a8bff9d7776d0af3ecb329918e2f96323", null ],
-    [ "calc", "structJPAFieldVortex.html#ab532e308dc7d0c99471edf3790c1324b", null ],
-    [ "prepare", "structJPAFieldVortex.html#a0bb979eea3c760870f5d9e40d5f23703", null ]
+    [ "~JPAFieldVortex", "structJPAFieldVortex.html#a95493d8740d5d666a6237cce777e1f1b", null ],
+    [ "calc", "structJPAFieldVortex.html#abd22198443ba2a509c119e98c67a1ad6", null ],
+    [ "prepare", "structJPAFieldVortex.html#a00c3eceb911b89f91f4f5168b5974db8", null ]
 ];

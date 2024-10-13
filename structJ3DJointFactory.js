@@ -1,7 +1,7 @@
 var structJ3DJointFactory =
 [
     [ "J3DJointFactory", "structJ3DJointFactory.html#ac6643156358df319f6aeeefd31002ed4", null ],
-    [ "create", "structJ3DJointFactory.html#aaab82855ae41731d65acf561e23df7c4", null ],
+    [ "create", "structJ3DJointFactory.html#a81556a2c23767bea21f649f080398576", null ],
     [ "getKind", "structJ3DJointFactory.html#a6eed9196f610222461f25189c4362adc", null ],
     [ "getMax", "structJ3DJointFactory.html#a69619eccd324e3fc71e82491593ae23c", null ],
     [ "getMin", "structJ3DJointFactory.html#a9a2a40597690a14ece2819e280ecf49d", null ],

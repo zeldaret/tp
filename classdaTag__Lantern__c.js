@@ -1,6 +1,7 @@
 var classdaTag__Lantern__c =
 [
     [ "~daTag_Lantern_c", "classdaTag__Lantern__c.html#abafd92f8b3e97b41650a27d19efd1743", null ],
+    [ "chkClimbDownLadderStatus", "classdaTag__Lantern__c.html#ac5812db801ba6ddb9eb1c725a3e7b8cc", null ],
     [ "create", "classdaTag__Lantern__c.html#ac8af720bd2457f42fbd116868f4daf5a", null ],
     [ "Delete", "classdaTag__Lantern__c.html#ae02f440fb2c17aacac3f420855596541", null ],
     [ "Draw", "classdaTag__Lantern__c.html#a0bb74a3ea984e10aca13defb5e2795a5", null ],

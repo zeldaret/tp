@@ -2,7 +2,6 @@ var classdBgW =
 [
     [ "dBgW", "classdBgW.html#a833eb6f422a6a56a5c6e4aff8d445ec2", null ],
     [ "~dBgW", "classdBgW.html#a110e935e4124fa9e9554207b90dd7ce5", null ],
-    [ "dBgW", "classdBgW.html#a833eb6f422a6a56a5c6e4aff8d445ec2", null ],
     [ "CallArrowStickCallBack", "classdBgW.html#a8771a85ac79d017dca4cff02d23c056e", null ],
     [ "CallRideCallBack", "classdBgW.html#a3318be2275586ff8e8e5a8ed2aa91370", null ],
     [ "CaptPoly", "classdBgW.html#ae119f0abce3d502584c4458ede9f73b7", null ],
@@ -44,7 +43,6 @@ var classdBgW =
     [ "GetUnderwaterRoofCode", "classdBgW.html#aa3faa49d486fd3f41ff965b2452a5d0a", null ],
     [ "GetWallCode", "classdBgW.html#af17cbf8d2cf3fc5365e15e1c29a81b11", null ],
     [ "MatrixCrrPos", "classdBgW.html#a123a786104612272f0ca14668649b8c1", null ],
-    [ "Move", "classdBgW.html#a96dab34cf573163dc3ad19f41d18d679", null ],
     [ "Move", "classdBgW.html#a96dab34cf573163dc3ad19f41d18d679", null ],
     [ "OffMoveFlag", "classdBgW.html#a6fd1853e01a6b25ea771fa1afd0b3550", null ],
     [ "OnMoveFlag", "classdBgW.html#ac2b3d6e62abc8e1b54bf301bcd885b52", null ],

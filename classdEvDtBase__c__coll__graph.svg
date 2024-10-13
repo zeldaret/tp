@@ -636,7 +636,7 @@ var sectionId = 'dynsection-0';
 <!-- Node49 -->
 <g id="Node000049" class="node">
 <title>Node49</title>
-<g id="a_Node000049"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000049"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="900.5,-909.25 827.5,-909.25 827.5,-890 900.5,-890 900.5,-909.25"/>
 <text text-anchor="middle" x="864" y="-895.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -829,7 +829,7 @@ var sectionId = 'dynsection-0';
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="668.5,-196.25 609,-196.25 609,-177 668.5,-177 668.5,-196.25"/>
 <text text-anchor="middle" x="638.75" y="-182.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -900,7 +900,7 @@ var sectionId = 'dynsection-0';
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="659.88,-840.25 617.62,-840.25 617.62,-821 659.88,-821 659.88,-840.25"/>
 <text text-anchor="middle" x="638.75" y="-826.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -1035,7 +1035,7 @@ var sectionId = 'dynsection-0';
 <!-- Node63 -->
 <g id="Node000063" class="node">
 <title>Node63</title>
-<g id="a_Node000063"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000063"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="450.75,-68.25 371,-68.25 371,-49 450.75,-49 450.75,-68.25"/>
 <text text-anchor="middle" x="410.88" y="-54.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>

@@ -9,10 +9,10 @@ var structJASWSParser =
     [ "TWave", "structJASWSParser_1_1TWave.html", "structJASWSParser_1_1TWave" ],
     [ "TWaveArchive", "structJASWSParser_1_1TWaveArchive.html", "structJASWSParser_1_1TWaveArchive" ],
     [ "TWaveArchiveBank", "structJASWSParser_1_1TWaveArchiveBank.html", "structJASWSParser_1_1TWaveArchiveBank" ],
-    [ "createBasicWaveBank", "structJASWSParser.html#ae04a7669b454010ed0b11fa1e2d594e1", null ],
-    [ "createSimpleWaveBank", "structJASWSParser.html#a7c71ec9e6ac1fda010f9670125847266", null ],
+    [ "createBasicWaveBank", "structJASWSParser.html#a89366501fcd8d41a815eade213c953e2", null ],
+    [ "createSimpleWaveBank", "structJASWSParser.html#ac83b00095338b7087805b29e76091971", null ],
     [ "createWaveBank", "structJASWSParser.html#a65893c41add9e073113ade3095e1f4ad", null ],
     [ "createWaveBank", "structJASWSParser.html#a9673e8732af42c2b029eba0e9ff9217c", null ],
-    [ "getGroupCount", "structJASWSParser.html#a8ca9e6d67f42b8a46680e7b0242ce034", null ],
+    [ "getGroupCount", "structJASWSParser.html#a7fcb6b48dbec96dc1870104d7bb5607b", null ],
     [ "sUsedHeapSize", "structJASWSParser.html#a50926d3addb392f2acf6d95ef66ca308", null ]
 ];

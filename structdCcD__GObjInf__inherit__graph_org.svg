@@ -20,7 +20,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structdCcD__Cps.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classdCcD__Cps.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="62.5,-19.25 0,-19.25 0,0 62.5,0 62.5,-19.25"/>
 <text text-anchor="middle" x="31.25" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_Cps</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="structdCcD__Sph.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="classdCcD__Sph.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="220.5,-19.25 158,-19.25 158,0 220.5,0 220.5,-19.25"/>
 <text text-anchor="middle" x="189.25" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_Sph</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="structdCcD__Tri.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="classdCcD__Tri.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="295.5,-19.25 239,-19.25 239,0 295.5,0 295.5,-19.25"/>
 <text text-anchor="middle" x="267.25" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_Tri</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structcCcD__GObjInf.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classcCcD__GObjInf.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="188.75,-129.75 109.75,-129.75 109.75,-110.5 188.75,-110.5 188.75,-129.75"/>
 <text text-anchor="middle" x="149.25" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_GObjInf</text>
 </a>
@@ -128,7 +128,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structcCcD__ObjHitInf.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classcCcD__ObjHitInf.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="191.38,-240.25 107.12,-240.25 107.12,-221 191.38,-221 191.38,-240.25"/>
 <text text-anchor="middle" x="149.25" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_ObjHitInf</text>
 </a>

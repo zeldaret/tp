@@ -54,7 +54,7 @@ var d__a__obj__mirror__table_8cpp =
     [ "execute__18daObjMirrorTable_cFv", "d__a__obj__mirror__table_8cpp.html#a15815f5ba3f4817bb87f16e74a068f0a", null ],
     [ "fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc", "d__a__obj__mirror__table_8cpp.html#aa1d49abfca676be5ece42ae04e34193a", null ],
     [ "fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl", "d__a__obj__mirror__table_8cpp.html#adc6634629cb51e7c6154aa5ec92055c7", null ],
-    [ "func_80C9B220", "d__a__obj__mirror__table_8cpp.html#a7d37e0e134acd6c79304a83c51a2f038", null ],
+    [ "func_80C9B220", "d__a__obj__mirror__table_8cpp.html#a00a8bc6814f9d68553bb5f9baa8c05de", null ],
     [ "getRes__14dRes_control_cFPCclP11dRes_info_ci", "d__a__obj__mirror__table_8cpp.html#a59a83dc2646cfbec35f3fb91b2158ad9", null ],
     [ "init__12J3DFrameCtrlFs", "d__a__obj__mirror__table_8cpp.html#aede93e9980b517c969b88b1b43446807", null ],
     [ "init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb", "d__a__obj__mirror__table_8cpp.html#a194a59bb6a911d7b1b0464e7af66b4ab", null ],

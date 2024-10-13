@@ -18,8 +18,8 @@ var std_vector_8cpp =
     [ "erase__Q27JGadget20TVector_pointer_voidFPPvPPv", "std-vector_8cpp.html#a7e9f65f98206d4914278478dae1bc6f3", null ],
     [ "extend_default__Q27JGadget6vectorFUlUlUl", "std-vector_8cpp.html#af7f8948897637d995a0113c96a53c90f", null ],
     [ "func_802DCCD0", "std-vector_8cpp.html#a665d7dd468c3f9a48f144443b6349066", null ],
-    [ "func_802DCE1C", "std-vector_8cpp.html#ae19bc52bcb99471656902e35743b330e", null ],
-    [ "func_802DCE8C", "std-vector_8cpp.html#a227ca36392e4fe8740daec5438c142a0", null ],
-    [ "func_802DD130", "std-vector_8cpp.html#af6957a3e827da4bbb5df8853b3f623fc", null ],
+    [ "func_802DCE1C", "std-vector_8cpp.html#af305fd33eab34978a8836bf18e1d81cd", null ],
+    [ "func_802DCE8C", "std-vector_8cpp.html#ab54b0b32567d6e0f5b469433931c2437", null ],
+    [ "func_802DD130", "std-vector_8cpp.html#a23b0cb70554a80fd3fba7d5d719dfe92", null ],
     [ "insert__Q27JGadget20TVector_pointer_voidFPPvRCPv", "std-vector_8cpp.html#a95bc10043baa7efc802ceb87647dfb5d", null ]
 ];

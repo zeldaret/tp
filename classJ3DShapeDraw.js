@@ -2,7 +2,7 @@ var classJ3DShapeDraw =
 [
     [ "J3DShapeDraw", "classJ3DShapeDraw.html#abaebdaa3115e8db53fc98a6a64435954", null ],
     [ "~J3DShapeDraw", "classJ3DShapeDraw.html#a4735dc661f60969cce6a2cddc55fc5bc", null ],
-    [ "addTexMtxIndexInDL", "classJ3DShapeDraw.html#ad2dd67bf88a78412a5608ec2ddf1ff19", null ],
+    [ "addTexMtxIndexInDL", "classJ3DShapeDraw.html#ad2467dc66b267fa21f853540fe7ab882", null ],
     [ "countVertex", "classJ3DShapeDraw.html#a460ada7db444a9ac309da97dca094cd1", null ],
     [ "draw", "classJ3DShapeDraw.html#adfdd9594040cf3bb7c078e351a799cc0", null ],
     [ "getDisplayList", "classJ3DShapeDraw.html#a7569ce5f1e5f66d30ac146bc0be6aa30", null ],

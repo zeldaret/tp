@@ -1,10 +1,9 @@
 <map id="ni_class" name="ni_class">
-<area shape="rect" id="Node000001" title="Cucco." alt="" coords="25,226,94,252"/>
-<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="14,79,105,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,120,42,148,41,178,56,225,51,227,36,179,36,147,45,118"/>
-<area shape="rect" id="Node000004" href="$classfopEn__enemy__c.html" title=" " alt="" coords="51,153,164,178"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="78,116,102,151,97,154,74,119"/>
-<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="5,5,114,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,46,62,79,57,79,57,46"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="93,193,70,227,65,224,89,190"/>
+<area shape="rect" id="Node000001" title="Cucco." alt="" coords="27,226,97,252"/>
+<area shape="rect" id="Node000002" href="$classfopEn__enemy__c.html" title=" " alt="" coords="5,153,119,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,194,65,226,59,226,59,194"/>
+<area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="17,79,107,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,120,65,152,59,152,59,120"/>
+<area shape="rect" id="Node000004" href="$structleafdraw__class.html" title=" " alt="" coords="8,5,116,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="65,46,65,79,59,79,59,46"/>
 </map>

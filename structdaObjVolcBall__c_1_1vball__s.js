@@ -1,7 +1,7 @@
 var structdaObjVolcBall__c_1_1vball__s =
 [
-    [ "~vball_s", "structdaObjVolcBall__c_1_1vball__s.html#a718cc688168012587a7f95ebd7f87bdf", null ],
-    [ "vball_s", "structdaObjVolcBall__c_1_1vball__s.html#a49a1285e1dcee4ff951b4b0bafda753e", null ],
+    [ "~vball_s", "structdaObjVolcBall__c_1_1vball__s.html#a22661db978cd562a4005cea7f71f5b72", null ],
+    [ "vball_s", "structdaObjVolcBall__c_1_1vball__s.html#aac722183eaf8a07ccfff9b58bf053043", null ],
     [ "field_0x10", "structdaObjVolcBall__c_1_1vball__s.html#af42d8e31d48eb0f4bb3fb997159334f2", null ],
     [ "field_0x1c", "structdaObjVolcBall__c_1_1vball__s.html#a909b3f3e2ac9c27f40b58e004eb8a125", null ],
     [ "field_0x28", "structdaObjVolcBall__c_1_1vball__s.html#a4b48e5cd46a9973628491fb6d3b1be79", null ],

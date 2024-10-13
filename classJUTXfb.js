@@ -6,7 +6,7 @@ var classJUTXfb =
       [ "UNK_2", "classJUTXfb.html#afdd1587f1b4b7c8868f78ac2065e6bc6ac366e7d460915b9028731bba36b47ecb", null ],
       [ "UNK_3", "classJUTXfb.html#afdd1587f1b4b7c8868f78ac2065e6bc6a25efd4df67caef8cfab5861338ce89f0", null ]
     ] ],
-    [ "JUTXfb", "classJUTXfb.html#a912efd49a24fc81c132250b5f2e8b85d", null ],
+    [ "JUTXfb", "classJUTXfb.html#a0a5e7285dbab35e909fe15c3bb72cf38", null ],
     [ "~JUTXfb", "classJUTXfb.html#a5b3bb9072f90f335296d94be17e6ad39", null ],
     [ "clearIndex", "classJUTXfb.html#ac6e71adb96bc574e9d8a6a2f62164254", null ],
     [ "common_init", "classJUTXfb.html#aea07fba440d22097511aaccb3c1f1c9e", null ],

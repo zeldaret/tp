@@ -1,5 +1,7 @@
 <map id="daNpcBlueNS_c" name="daNpcBlueNS_c">
-<area shape="rect" id="Node000001" title="Shadow Beast (Twili)" alt="" coords="21,94,140,120"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,156,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,62,83,93,78,93,78,62"/>
+<area shape="rect" id="Node000001" title="Shadow Beast (Twili)" alt="" coords="5,153,124,178"/>
+<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="19,79,110,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,120,67,152,62,152,62,120"/>
+<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="10,5,119,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,46,67,79,62,79,62,46"/>
 </map>

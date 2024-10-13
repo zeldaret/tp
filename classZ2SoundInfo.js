@@ -7,12 +7,12 @@ var classZ2SoundInfo =
     [ "getBgmSeqResourceID", "classZ2SoundInfo.html#a05bae2ddd1dcf7bbbafc5fc152df7a9c", null ],
     [ "getCategory", "classZ2SoundInfo.html#a374fc86053756af1008af7ab41b4c412", null ],
     [ "getPriority", "classZ2SoundInfo.html#aa81f37f4d87415137915a1597a3fa8f0", null ],
-    [ "getSeInfo", "classZ2SoundInfo.html#a40c24cc1e5b60ac2576a89e71e9e7bae", null ],
+    [ "getSeInfo", "classZ2SoundInfo.html#a6c199990dcad70c7842ad802842f1297", null ],
     [ "getSeqInfo", "classZ2SoundInfo.html#a68d1dce7bf00d647e3e31e9fbaceb2d2", null ],
-    [ "getSoundInfo_", "classZ2SoundInfo.html#a6f211fb5ecec3bd830fa3d59e557588d", null ],
+    [ "getSoundInfo_", "classZ2SoundInfo.html#ab21dc152211db028c086ab07b95fad3c", null ],
     [ "getSoundType", "classZ2SoundInfo.html#a78e5933a946b46bb579026c506aaac7a", null ],
     [ "getStreamFileEntry", "classZ2SoundInfo.html#ab1451680baeb84ece7fbc36feb60152c", null ],
     [ "getStreamFilePath", "classZ2SoundInfo.html#ad60d3d58a2b5564a6f11ccea415989ac", null ],
-    [ "getStreamInfo", "classZ2SoundInfo.html#ade0cb7531bef4f7d231694bcac7a338f", null ],
+    [ "getStreamInfo", "classZ2SoundInfo.html#a9e916d6e1c51c35e05714efda6128e8c", null ],
     [ "getSwBit", "classZ2SoundInfo.html#a33271600e72fb80a86a3d19e019a6241", null ]
 ];

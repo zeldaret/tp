@@ -4,7 +4,7 @@ var classJUTConsoleManager =
     [ "JUTConsoleManager", "classJUTConsoleManager.html#a6bc0dcc054e3aa879ea22c9476e7ce8b", null ],
     [ "appendConsole", "classJUTConsoleManager.html#af99a1398700b4f66756166748c1078c4", null ],
     [ "createManager", "classJUTConsoleManager.html#ad3cd95279b2b3ed9d3a467cf8114b37c", null ],
-    [ "draw", "classJUTConsoleManager.html#ad9319c1674539864e6c1fb73ba4d95ad", null ],
+    [ "draw", "classJUTConsoleManager.html#ad511a532c9eef0f0e24420e5ea9c0627", null ],
     [ "drawDirect", "classJUTConsoleManager.html#a3dd02825243d7d28c477608d5b6abaf9", null ],
     [ "getDirectConsole", "classJUTConsoleManager.html#a99b65999881c632dcc4e28d180335c87", null ],
     [ "getManager", "classJUTConsoleManager.html#abeb88a84c578b3b438eaaafdd4ef1195", null ],

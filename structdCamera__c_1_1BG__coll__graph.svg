@@ -85,7 +85,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classdBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structdBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="402.12,-196.5 321.62,-196.5 321.62,-177.25 402.12,-177.25 402.12,-196.5"/>
 <text text-anchor="middle" x="361.88" y="-183" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_GndChk</text>
 </a>
@@ -103,7 +103,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classcBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structcBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="402.12,-271.25 321.62,-271.25 321.62,-252 402.12,-252 402.12,-271.25"/>
 <text text-anchor="middle" x="361.88" y="-257.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_GndChk</text>
 </a>
@@ -158,7 +158,7 @@ var sectionId = 'dynsection-0';
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="103.75,-373.12 0,-373.12 0,-353.88 103.75,-353.88 103.75,-373.12"/>
 <text text-anchor="middle" x="51.88" y="-359.62" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>
@@ -213,7 +213,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="403.12,-373.12 322.62,-373.12 322.62,-353.88 403.12,-353.88 403.12,-373.12"/>
 <text text-anchor="middle" x="362.88" y="-359.62" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>

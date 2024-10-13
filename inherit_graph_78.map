@@ -1,13 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classcBgW__BgId.html" title=" " alt="" coords="5,31,96,56"/>
-<area shape="rect" id="Node000001" href="$classdBgW__Base.html" title=" " alt="" coords="144,31,237,56"/>
-<area shape="poly" id="edge79_Node000000_Node000001" title=" " alt="" coords="111,41,143,41,143,46,111,46"/>
-<area shape="rect" id="Node000002" href="$classcBgW.html" title=" " alt="" coords="299,5,355,31"/>
-<area shape="poly" id="edge80_Node000001_Node000002" title=" " alt="" coords="252,29,298,21,299,26,253,35"/>
-<area shape="rect" id="Node000005" href="$classdBgWKCol.html" title=" " alt="" coords="285,55,369,80"/>
-<area shape="poly" id="edge83_Node000001_Node000005" title=" " alt="" coords="253,52,285,58,284,63,252,57"/>
-<area shape="rect" id="Node000003" href="$classdBgW.html" title=" " alt="" coords="417,5,474,31"/>
-<area shape="poly" id="edge81_Node000002_Node000003" title=" " alt="" coords="371,16,417,16,417,21,371,21"/>
-<area shape="rect" id="Node000004" href="$classdBgWSv.html" title=" " alt="" coords="522,5,594,31"/>
-<area shape="poly" id="edge82_Node000003_Node000004" title=" " alt="" coords="489,16,521,16,521,21,489,21"/>
+<area shape="rect" id="Node000000" href="$classcBgS__ChkElm.html" title=" " alt="" coords="5,5,111,31"/>
 </map>

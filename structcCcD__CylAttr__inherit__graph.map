@@ -1,9 +1,0 @@
-<map id="cCcD_CylAttr" name="cCcD_CylAttr">
-<area shape="rect" id="Node000001" title=" " alt="" coords="76,79,176,105"/>
-<area shape="rect" id="Node000004" href="$structdCcD__Cyl.html" title=" " alt="" coords="87,153,165,178"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="129,120,129,152,123,152,123,120"/>
-<area shape="rect" id="Node000002" href="$structcCcD__ShapeAttr.html" title=" " alt="" coords="5,5,124,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,41,118,77,113,80,82,44"/>
-<area shape="rect" id="Node000003" href="$structcM3dGCyl.html" title=" " alt="" coords="148,5,229,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,44,138,80,134,77,166,41"/>
-</map>

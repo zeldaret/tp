@@ -3,7 +3,6 @@ var classdSv__player__item__record__c =
     [ "addBottleNum", "classdSv__player__item__record__c.html#a387142366e6112780817e1b39a4afcff", null ],
     [ "getArrowNum", "classdSv__player__item__record__c.html#a4f7e7061cf7ac10e476bdd1c6c02f7a0", null ],
     [ "getBombNum", "classdSv__player__item__record__c.html#a93145d20335bfe47e04db4d26c008eb2", null ],
-    [ "getBombNum", "classdSv__player__item__record__c.html#ae1848ef60f53287e0ee61b6778e515de", null ],
     [ "getBottleNum", "classdSv__player__item__record__c.html#a7447c555720d81ff54d08894db3cf5ea", null ],
     [ "getPachinkoNum", "classdSv__player__item__record__c.html#a0f0fb20d6587b1d7741ec1a6d0602074", null ],
     [ "init", "classdSv__player__item__record__c.html#a257fd558abb9118eee60bec4a9be2b29", null ],

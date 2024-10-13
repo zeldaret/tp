@@ -14,7 +14,7 @@ var searchData=
   ['stagetype_11',['StageType',['../d__stage_8h.html#ad1a098beb3570d1dc1c719b74185b093',1,'d_stage.h']]],
   ['state_5fe_12',['state_e',['../classdaObjMovebox_1_1Bgc__c.html#a93ccf377977f18f0d574a2494348e0b0',1,'daObjMovebox::Bgc_c::State_e'],['../classdaObjIceBlk__c.html#a7b42a262a495aceee595d007d559f455',1,'daObjIceBlk_c::State_e']]],
   ['status_13',['status',['../structJASTrack.html#a45dc46f0d891e7e752b9a693b5ae9812',1,'JASTrack::Status'],['../structJASDSPChannel.html#a64c27fa39ff16d4ffd4ada542b2324ca',1,'JASDSPChannel::Status'],['../structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75',1,'JASChannel::Status']]],
-  ['status_5fe_14',['Status_e',['../classdaItem__c.html#ac5613ba8f2d7cbb8dc3f380d58059aab',1,'daItem_c']]],
+  ['status_5fe_14',['Status_e',['../structdaItem__c.html#ac5613ba8f2d7cbb8dc3f380d58059aab',1,'daItem_c']]],
   ['swimmode_15',['SwimMode',['../classdaNpc__zrA__c.html#a18669d22caca99d8a3bdb0e43455c742',1,'daNpc_zrA_c']]],
   ['swords_16',['Swords',['../d__save_8h.html#a3c66d6f382ea908fcb6d2f2f82a22b4d',1,'d_save.h']]]
 ];

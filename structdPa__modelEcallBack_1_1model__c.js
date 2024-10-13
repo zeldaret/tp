@@ -8,7 +8,7 @@ var structdPa__modelEcallBack_1_1model__c =
     [ "getRotAxis", "structdPa__modelEcallBack_1_1model__c.html#a685e934db4ddae97465252ce459765e5", null ],
     [ "reset", "structdPa__modelEcallBack_1_1model__c.html#af50df2d713f443d5cf000d49dbca8657", null ],
     [ "set", "structdPa__modelEcallBack_1_1model__c.html#a4343fc47a3719b9a1100f7392871849c", null ],
-    [ "setup", "structdPa__modelEcallBack_1_1model__c.html#a7e4c637c59448d2ce1a9a7a619ca858f", null ],
+    [ "setup", "structdPa__modelEcallBack_1_1model__c.html#a77071efdd841968de67b6cf5fe598bfb", null ],
     [ "field_0x0", "structdPa__modelEcallBack_1_1model__c.html#ac3e81a0a194cd532949a8582da0a6676", null ],
     [ "field_0x391", "structdPa__modelEcallBack_1_1model__c.html#af8367e625e29a8aa0e62d7b3dd2b1a50", null ],
     [ "field_0x392", "structdPa__modelEcallBack_1_1model__c.html#ac790a5eb6ccf10b84ad1bb6269ea8945", null ],

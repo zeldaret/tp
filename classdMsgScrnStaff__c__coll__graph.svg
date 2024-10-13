@@ -507,7 +507,7 @@ var sectionId = 'dynsection-1';
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="571.38,-628.25 517.12,-628.25 517.12,-609 571.38,-609 571.38,-628.25"/>
 <text text-anchor="middle" x="544.25" y="-614.75" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -840,7 +840,7 @@ var sectionId = 'dynsection-1';
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000042"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="581.12,-923.25 507.38,-923.25 507.38,-904 581.12,-904 581.12,-923.25"/>
 <text text-anchor="middle" x="544.25" y="-909.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

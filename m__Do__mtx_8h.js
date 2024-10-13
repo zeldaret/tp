@@ -1,6 +1,6 @@
 var m__Do__mtx_8h =
 [
-    [ "mDoMtx_stack_c", "classmDoMtx__stack__c.html", "classmDoMtx__stack__c" ],
+    [ "mDoMtx_stack_c", "structmDoMtx__stack__c.html", "structmDoMtx__stack__c" ],
     [ "mDoMtx_quatStack_c", "classmDoMtx__quatStack__c.html", "classmDoMtx__quatStack__c" ],
     [ "cMtx_concat", "m__Do__mtx_8h.html#aa6d438a419e5c5dd66b892014864f987", null ],
     [ "cMtx_concatProjView", "m__Do__mtx_8h.html#a6a32d40f4357f35684fbfe1bf3cc6dc8", null ],

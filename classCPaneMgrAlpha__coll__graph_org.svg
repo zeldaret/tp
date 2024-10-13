@@ -311,7 +311,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1189.5,-346.34 1115.75,-346.34 1115.75,-327.09 1189.5,-327.09 1189.5,-346.34"/>
 <text text-anchor="middle" x="1152.62" y="-332.84" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

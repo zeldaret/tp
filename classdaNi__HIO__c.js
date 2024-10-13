@@ -1,8 +1,6 @@
 var classdaNi__HIO__c =
 [
     [ "daNi_HIO_c", "classdaNi__HIO__c.html#a2a36d23c5697b03ac15cfcd31aa92dd8", null ],
-    [ "~daNi_HIO_c", "classdaNi__HIO__c.html#a9688978ef3de86a03215f60d76c7240f", null ],
-    [ "daNi_HIO_c", "classdaNi__HIO__c.html#a2a36d23c5697b03ac15cfcd31aa92dd8", null ],
     [ "~daNi_HIO_c", "classdaNi__HIO__c.html#ace61af00c7c73de4cf6a22ce4e3f3be7", null ],
     [ "field_0x04", "classdaNi__HIO__c.html#adf72eb30d32e0049ddea372306610269", null ],
     [ "field_0x34", "classdaNi__HIO__c.html#ab91c2133a97abca405025837884f2e2b", null ],

@@ -454,7 +454,7 @@
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="762.88,-951.25 708.62,-951.25 708.62,-932 762.88,-932 762.88,-951.25"/>
 <text text-anchor="middle" x="735.75" y="-937.75" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -693,7 +693,7 @@
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000042"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="772.62,-386.25 698.88,-386.25 698.88,-367 772.62,-367 772.62,-386.25"/>
 <text text-anchor="middle" x="735.75" y="-372.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

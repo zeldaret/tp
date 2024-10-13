@@ -6,6 +6,6 @@ var abort__exit_8c =
     [ "__atexit_curr_func", "abort__exit_8c.html#ac210f7e3c9a27ca8706dd68da2e4d708", null ],
     [ "__atexit_funcs", "abort__exit_8c.html#a65e639d297daa6f644e8875c883bc9c3", null ],
     [ "__console_exit", "abort__exit_8c.html#a21afe9d81a07f49e0ba91c0910ef87a4", null ],
-    [ "__destroy_global_chain_reference", "abort__exit_8c.html#a4c3c59cc3fb9877170355b6eb6eabc25", null ],
-    [ "__stdio_exit", "abort__exit_8c.html#a99117c2c18e6d7ddd3e230907208129b", null ]
+    [ "__stdio_exit", "abort__exit_8c.html#a99117c2c18e6d7ddd3e230907208129b", null ],
+    [ "_dtors", "abort__exit_8c.html#a5e966c709fadaaf50103b10abb2484a7", null ]
 ];

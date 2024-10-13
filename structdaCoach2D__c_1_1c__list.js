@@ -1,5 +1,5 @@
 var structdaCoach2D__c_1_1c__list =
 [
-    [ "~c_list", "structdaCoach2D__c_1_1c__list.html#af6054ee03ada49e2f25a28bf9b0a04cd", null ],
-    [ "draw", "structdaCoach2D__c_1_1c__list.html#ac73d6e5353f57723ccee2d1c0913549a", null ]
+    [ "~c_list", "structdaCoach2D__c_1_1c__list.html#ad8fafd6813b38302e39c060817c8e1e2", null ],
+    [ "draw", "structdaCoach2D__c_1_1c__list.html#aa35d1461016e4dace8d671225f884f68", null ]
 ];

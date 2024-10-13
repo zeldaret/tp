@@ -1,6 +1,6 @@
 <map id="Z2CreatureSumomo" name="Z2CreatureSumomo">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1530,66,1667,92"/>
-<area shape="rect" id="Node000002" href="$classZ2Creature.html" title=" " alt="" coords="1395,66,1480,92"/>
+<area shape="rect" id="Node000002" href="$structZ2Creature.html" title=" " alt="" coords="1395,66,1480,92"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1496,76,1529,76,1529,82,1496,82"/>
 <area shape="rect" id="Node000003" href="$structVec.html" title=" " alt="" coords="268,33,312,59"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,38,446,25,595,18,1164,18,1269,19,1315,25,1372,41,1418,63,1416,68,1370,45,1314,30,1269,24,1164,23,595,23,447,30,328,43"/>
@@ -39,7 +39,7 @@
 <area shape="poly" id="edge20_Node000015_Node000016" title=" " alt="" coords="704,167,826,167,826,172,704,172"/>
 <area shape="rect" id="Node000017" href="$classJAUSoundAnimationSound.html" title=" " alt="" coords="507,206,686,232"/>
 <area shape="poly" id="edge21_Node000015_Node000017" title=" " alt="" coords="701,203,802,187,837,181,838,186,803,193,702,208"/>
-<area shape="rect" id="Node000018" href="$classJAISoundID.html" title=" " alt="" coords="244,198,336,224"/>
+<area shape="rect" id="Node000018" href="$structJAISoundID.html" title=" " alt="" coords="244,198,336,224"/>
 <area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="351,210,507,214,507,219,351,215"/>
 <area shape="poly" id="edge23_Node000002_Node000019" title=" " alt="" coords="1244,76,1395,76,1395,82,1244,82"/>
 </map>

@@ -1,8 +1,8 @@
 var structdPa__YkgrPcallBack =
 [
-    [ "~dPa_YkgrPcallBack", "structdPa__YkgrPcallBack.html#a26d4af2d56ac7c5cd84b22b28747d8e3", null ],
-    [ "draw", "structdPa__YkgrPcallBack.html#a23f349a457b4878fb8b5453a52e74f29", null ],
-    [ "setParam", "structdPa__YkgrPcallBack.html#a9c250a5866d75f1ad8e46da13968584e", null ],
+    [ "~dPa_YkgrPcallBack", "structdPa__YkgrPcallBack.html#a314a79ace26373abae29cc223226683a", null ],
+    [ "draw", "structdPa__YkgrPcallBack.html#aa932f8fc46da570cbcf7ba26bf3dd8a6", null ],
+    [ "setParam", "structdPa__YkgrPcallBack.html#a914f000fbdaf4239cfe87eb16505203d", null ],
     [ "field_0x10", "structdPa__YkgrPcallBack.html#a65324a347cfaec3bb64ebc56e42faec8", null ],
     [ "field_0x14", "structdPa__YkgrPcallBack.html#aba5cff797bf7c64a9284a559252f5d2b", null ],
     [ "field_0x18", "structdPa__YkgrPcallBack.html#aa7c94b14fcba161f11925ab28a087f07", null ],

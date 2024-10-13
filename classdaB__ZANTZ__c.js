@@ -1,16 +1,16 @@
 var classdaB__ZANTZ__c =
 [
-    [ "_delete", "classdaB__ZANTZ__c.html#a780f68d5c834e82308627080feec5f6e", null ],
-    [ "action", "classdaB__ZANTZ__c.html#a9dfdf1defdd88771e2f2a475002ea709", null ],
-    [ "calcSnortEffect", "classdaB__ZANTZ__c.html#a5c5aa2aea91b27483ed4057fd03fab78", null ],
-    [ "cc_set", "classdaB__ZANTZ__c.html#a445294a2343dd0ada9b521d9c82fc9e2", null ],
-    [ "create", "classdaB__ZANTZ__c.html#a3381023435ff16c622f9387cb2b92af2", null ],
-    [ "CreateHeap", "classdaB__ZANTZ__c.html#a8798e99e5dd187460ca2e0e9b2f6e999", null ],
-    [ "draw", "classdaB__ZANTZ__c.html#a317acd4fe8aaf96dc1969c2292539f2b", null ],
-    [ "execute", "classdaB__ZANTZ__c.html#a581ad89d0cfde7ecad4f307f7a722dba", null ],
-    [ "getGroundPos", "classdaB__ZANTZ__c.html#a82bc825936e85ebd3dfda03524403509", null ],
-    [ "setAppearMode", "classdaB__ZANTZ__c.html#a182948bef3d3efa93c928745b8623375", null ],
-    [ "setMouthMode", "classdaB__ZANTZ__c.html#aea877a619e2d737893cf429f9cb7079e", null ],
-    [ "setSnortEffect", "classdaB__ZANTZ__c.html#ab59c5b6c99e6e10f3c9febd7f73b4b45", null ],
+    [ "_delete", "classdaB__ZANTZ__c.html#a0d022c64a1e379a90827cd1c61d08120", null ],
+    [ "action", "classdaB__ZANTZ__c.html#a195901ac9f2ab20f108d296257b080f9", null ],
+    [ "calcSnortEffect", "classdaB__ZANTZ__c.html#a05204bd031971658e47e7073dc843ab8", null ],
+    [ "cc_set", "classdaB__ZANTZ__c.html#a08e15fa82b48a36d4963d037cb31a51b", null ],
+    [ "create", "classdaB__ZANTZ__c.html#a5c44135cdeef0fe18898e82c9cf34e80", null ],
+    [ "CreateHeap", "classdaB__ZANTZ__c.html#a088087fec3057d51452bed51aecf2839", null ],
+    [ "draw", "classdaB__ZANTZ__c.html#a10947dbac91afa9fb27e21cdd5d0f898", null ],
+    [ "execute", "classdaB__ZANTZ__c.html#a9f0f87ce336a514f87302c8a08aa377d", null ],
+    [ "getGroundPos", "classdaB__ZANTZ__c.html#aa42c2d6361ac6f1ac30ce670f28db925", null ],
+    [ "setAppearMode", "classdaB__ZANTZ__c.html#ad60dfe21a59bcacc03944259c5e49cf8", null ],
+    [ "setMouthMode", "classdaB__ZANTZ__c.html#aa30aec4bdb27238b26009b8b8368fbbb", null ],
+    [ "setSnortEffect", "classdaB__ZANTZ__c.html#a9bdc42b83c026d2969b9aeb674200401", null ],
     [ "field_0x5ac", "classdaB__ZANTZ__c.html#a20ff9abc090f8c2aa10dc1ebd10f1478", null ]
 ];

@@ -161,7 +161,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classZ2Creature.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structZ2Creature.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1106.25,-157.25 1042.25,-157.25 1042.25,-138 1106.25,-138 1106.25,-157.25"/>
 <text text-anchor="middle" x="1074.25" y="-143.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2Creature</text>
 </a>
@@ -424,7 +424,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="classJAISoundID.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="structJAISoundID.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="247.62,-265.25 179.12,-265.25 179.12,-246 247.62,-246 247.62,-265.25"/>
 <text text-anchor="middle" x="213.38" y="-251.75" font-family="Helvetica,sans-Serif" font-size="10.00">JAISoundID</text>
 </a>

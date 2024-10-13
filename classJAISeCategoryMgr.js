@@ -1,6 +1,6 @@
 var classJAISeCategoryMgr =
 [
-    [ "JAISeCategoryMgr", "classJAISeCategoryMgr.html#a0e8e1776bbe8a2f1e03a3aea74ed0cd1", null ],
+    [ "JAISeCategoryMgr", "classJAISeCategoryMgr.html#a4b8c3948ca9ed999fa0775055e6d0aa9", null ],
     [ "~JAISeCategoryMgr", "classJAISeCategoryMgr.html#a04a53c3bd4c4c047eb63f72a4e98a063", null ],
     [ "getAudience", "classJAISeCategoryMgr.html#a8e11d564b7f8612ea447f8aaaf9b7358", null ],
     [ "getMaxActiveSe", "classJAISeCategoryMgr.html#a92e6dcc61ac8c37643dab9faf486decb", null ],
@@ -11,8 +11,8 @@ var classJAISeCategoryMgr =
     [ "isUsingSeqData", "classJAISeCategoryMgr.html#acef1465fe88eb768191ed96ecf91719d", null ],
     [ "JAISeMgr_acceptsNewSe_", "classJAISeCategoryMgr.html#a00c4012f8c49116668fcf772be24b65a", null ],
     [ "JAISeMgr_calc_", "classJAISeCategoryMgr.html#af255ba578f3990f9d50e03cd52ed85ed", null ],
-    [ "JAISeMgr_freeDeadSe_", "classJAISeCategoryMgr.html#a0d641c070b9a245d55d1815b937a3b73", null ],
-    [ "JAISeMgr_mixOut_", "classJAISeCategoryMgr.html#a00a65f2e7f83adf9f6fedb095c2cb994", null ],
+    [ "JAISeMgr_freeDeadSe_", "classJAISeCategoryMgr.html#ae0946b9f749bd515af92bec14f429592", null ],
+    [ "JAISeMgr_mixOut_", "classJAISeCategoryMgr.html#afa0f241c0c786cf67e4d8210cf4374b6", null ],
     [ "pause", "classJAISeCategoryMgr.html#a00aeea06cd3deadbee86ba9f4d5cf198", null ],
     [ "releaseSeqData", "classJAISeCategoryMgr.html#a09bfab71698525ebc7463182e1e7ee4e", null ],
     [ "setMaxActiveSe", "classJAISeCategoryMgr.html#af44ad5bf0493ce8c1036d0f4b74c7ed8", null ],

@@ -1,6 +1,6 @@
 <map id="J2DPrint" name="J2DPrint">
 <area shape="rect" id="Node000001" title=" " alt="" coords="22,367,94,393"/>
-<area shape="rect" id="Node000002" href="$structJUTFont.html" title=" " alt="" coords="130,246,202,272"/>
+<area shape="rect" id="Node000002" href="$classJUTFont.html" title=" " alt="" coords="130,246,202,272"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,285,71,368,67,365,143,282"/>
 <area shape="rect" id="Node000003" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="5,80,111,106"/>
 <area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="58,122,52,203,52,304,59,366,53,367,46,304,46,203,52,121"/>

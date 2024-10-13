@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classZ2AudioMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structZ2AudioMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="473.5,-160.25 405,-160.25 405,-141 473.5,-141 473.5,-160.25"/>
 <text text-anchor="middle" x="439.25" y="-146.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2AudioMgr</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classZ2SeMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structZ2SeMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="353.62,-249.25 297.88,-249.25 297.88,-230 353.62,-230 353.62,-249.25"/>
 <text text-anchor="middle" x="325.75" y="-235.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2SeMgr</text>
 </a>
@@ -75,7 +75,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classZ2SeqMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structZ2SeqMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="356.25,-203.25 295.25,-203.25 295.25,-184 356.25,-184 356.25,-203.25"/>
 <text text-anchor="middle" x="325.75" y="-189.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2SeqMgr</text>
 </a>

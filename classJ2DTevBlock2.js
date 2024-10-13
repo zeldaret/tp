@@ -43,7 +43,7 @@ var classJ2DTevBlock2 =
     [ "setTevSwapModeTable", "classJ2DTevBlock2.html#a9323cf2868fb23550481bd0864b2efd2", null ],
     [ "setTexNo", "classJ2DTevBlock2.html#ad8aa97f9d29b8aa5d4234d67cfbfb1c3", null ],
     [ "setTexture", "classJ2DTevBlock2.html#a06248694f8aca5ce317645679d6834c9", null ],
-    [ "setTexture", "classJ2DTevBlock2.html#a3c56f255bb46a66938f3b2e5427df754", null ],
+    [ "setTexture", "classJ2DTevBlock2.html#a37a133e75b63db37e03382eb31a0d2dd", null ],
     [ "setUndeleteFlag", "classJ2DTevBlock2.html#aa702e734da0d8c161210d58d7e1a361d", null ],
     [ "shiftDeleteFlag", "classJ2DTevBlock2.html#ab686214147d8af209f2a30ac9ce290a4", null ],
     [ "field_0x43", "classJ2DTevBlock2.html#a4076023bd83e43b0bf02eee5eaf7c6c3", null ],

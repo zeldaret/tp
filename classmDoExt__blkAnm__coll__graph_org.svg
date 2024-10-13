@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classmDoExt__baseAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structmDoExt__baseAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="96.25,-85.75 0,-85.75 0,-66.5 96.25,-66.5 96.25,-85.75"/>
 <text text-anchor="middle" x="48.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_baseAnm</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classJ3DFrameCtrl.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structJ3DFrameCtrl.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="86.12,-152.25 10.12,-152.25 10.12,-133 86.12,-133 86.12,-152.25"/>
 <text text-anchor="middle" x="48.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DFrameCtrl</text>
 </a>

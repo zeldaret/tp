@@ -20,7 +20,7 @@ var namespacestd =
     [ "advance_pointer", "namespacestd.html#afda64b5b39740e2895f196c18d8c253e", null ],
     [ "copy", "namespacestd.html#a38eee0a33c6ef400fd55de76501a38a2", null ],
     [ "copy_backward", "namespacestd.html#aca79d7fe3ae5d474756f1723db29ca0a", null ],
-    [ "fabsf", "namespacestd.html#aa0fc356932048eba8a1cf5942801c187", null ],
+    [ "fabsf", "namespacestd.html#ad597fff9551b0e00a747bdb1ea300c24", null ],
     [ "fill", "namespacestd.html#ad843aca2b74c16de90356cb8e6b08117", null ],
     [ "find_if", "namespacestd.html#a964f8b7917a5e7dbc4110fd12f0c95f8", null ],
     [ "find_if", "namespacestd.html#a414885b69eafe8468a833647c51b8703", null ],

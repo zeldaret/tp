@@ -14,7 +14,7 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="766,167,850,177,940,197,992,220,990,225,938,202,849,182,765,173"/>
 <area shape="rect" id="Node000008" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="125,667,230,692"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="246,687,320,693,409,693,503,682,549,670,594,655,704,604,748,581,786,555,822,526,857,492,937,401,964,360,984,317,1009,248,1014,250,989,319,968,363,941,404,861,496,825,530,789,559,750,585,707,609,596,660,551,676,504,687,409,698,320,698,246,692"/>
-<area shape="rect" id="Node000019" href="$structJUTFont.html" title=" " alt="" coords="379,639,452,664"/>
+<area shape="rect" id="Node000019" href="$classJUTFont.html" title=" " alt="" coords="379,639,452,664"/>
 <area shape="poly" id="edge20_Node000019_Node000008" title=" " alt="" coords="245,669,378,653,379,658,246,674"/>
 <area shape="rect" id="Node000009" href="$struct__GXColor.html" title=" " alt="" coords="5,667,76,692"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="91,677,125,677,125,682,91,682"/>
@@ -26,7 +26,7 @@
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="760,272,939,249,962,245,963,250,939,254,761,277"/>
 <area shape="rect" id="Node000013" href="$struct__GXTexObj.html" title=" " alt="" coords="371,329,460,355"/>
 <area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="474,327,654,287,656,292,476,332"/>
-<area shape="rect" id="Node000018" href="$structJUTResFont.html" title=" " alt="" coords="653,471,748,496"/>
+<area shape="rect" id="Node000018" href="$classJUTResFont.html" title=" " alt="" coords="653,471,748,496"/>
 <area shape="poly" id="edge21_Node000018_Node000013" title=" " alt="" coords="476,354,535,373,596,400,648,435,687,468,683,472,645,439,593,405,533,378,474,359"/>
 <area shape="rect" id="Node000014" href="$structResTIMG.html" title="Image data header." alt="" coords="377,267,454,292"/>
 <area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="470,277,655,277,655,282,470,282"/>

@@ -1,9 +1,9 @@
 var classdGameover__c =
 [
-    [ "_create", "classdGameover__c.html#a8b2ee6c31f9a3469e833306290007956", null ],
+    [ "_create", "classdGameover__c.html#a381aa84e599ab11869ce32b28415f6bf", null ],
     [ "_delete", "classdGameover__c.html#acef2c450a4a389b6c9a3758391d88770", null ],
     [ "_draw", "classdGameover__c.html#a91627f4be42d47c675c9e0f0fa84a6a2", null ],
-    [ "_execute", "classdGameover__c.html#a6a876386e105882fba1c298c6ebf91e8", null ],
+    [ "_execute", "classdGameover__c.html#ae01e0f7eafa2549691d46b2ae6409b8c", null ],
     [ "animeStart", "classdGameover__c.html#a6b82a0dc27c198e8278482a400f4f098", null ],
     [ "deleteCheck", "classdGameover__c.html#acef3a7b1700b2831e001235ba7cdae51", null ],
     [ "deleteWait_init", "classdGameover__c.html#aec7e2fd859f5886b1f7a91069f349664", null ],

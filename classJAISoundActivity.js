@@ -1,7 +1,7 @@
 var classJAISoundActivity =
 [
     [ "init", "classJAISoundActivity.html#ad96772f5fbf4da4e5f1bdfbde4e0694f", null ],
-    [ "field_0x0", "classJAISoundActivity.html#af31d01f8680fe2aab776ccb1835f8614", null ],
+    [ "field_0x0", "classJAISoundActivity.html#a21c9ea8251242109fc202bd83ea551ce", null ],
     [ "flag1", "classJAISoundActivity.html#a436eff0725577d09f3b0a5dc77d7c494", null ],
     [ "flag2", "classJAISoundActivity.html#a585228e10804bb95b4a303a620f48dfe", null ],
     [ "flag3", "classJAISoundActivity.html#a0128bd723c0e622948ffcf374bf0f004", null ],
@@ -10,6 +10,6 @@ var classJAISoundActivity =
     [ "flag6", "classJAISoundActivity.html#ac2fc8ca481d5d641028f2b871dde44aa", null ],
     [ "flag7", "classJAISoundActivity.html#aef243f5d2e1f21cf642f2ba3e2c8f28f", null ],
     [ "flag8", "classJAISoundActivity.html#a06481729bd199774e577552a9ff949cf", null ],
-    [ "flags", "classJAISoundActivity.html#a45265211ece7ba44e89d2580e74d425a", null ],
+    [ "flags", "classJAISoundActivity.html#a2b3c8b3045cf1fc63d4ff68652b6633f", null ],
     [ "value", "classJAISoundActivity.html#a33da048f651793aa08efad8631925bc5", null ]
 ];

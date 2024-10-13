@@ -1,8 +1,8 @@
 var structdCamForcusLine =
 [
-    [ "Draw", "structdCamForcusLine.html#a436a6014bd37c44f8c959205f7b9ed2c", null ],
-    [ "Init", "structdCamForcusLine.html#a09da8a99db3029398092e7a602bd2386", null ],
-    [ "Off", "structdCamForcusLine.html#a06dce42360a37f16956fb2af32bfd7d1", null ],
+    [ "Draw", "structdCamForcusLine.html#a679fe932342fafd9c66798e61afd8266", null ],
+    [ "Init", "structdCamForcusLine.html#ab7e6dc67a3380302c53b4194693a609b", null ],
+    [ "Off", "structdCamForcusLine.html#a73c3447423efa9308d28636dc9e1be67", null ],
     [ "field_0x38", "structdCamForcusLine.html#af35c5b3168fea8c43f92f8c759065c57", null ],
     [ "field_0x44", "structdCamForcusLine.html#a688982fbd9a80e9ef0560918b572e91e", null ],
     [ "field_0x48", "structdCamForcusLine.html#ac25ab2489391d0185441def501cbaf36", null ],

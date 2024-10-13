@@ -208,7 +208,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classJAISoundID.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structJAISoundID.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1130.38,-384.4 1061.88,-384.4 1061.88,-365.15 1130.38,-365.15 1130.38,-384.4"/>
 <text text-anchor="middle" x="1096.12" y="-370.9" font-family="Helvetica,sans-Serif" font-size="10.00">JAISoundID</text>
 </a>

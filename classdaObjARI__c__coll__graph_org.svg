@@ -56,7 +56,7 @@
 <!-- Node142 -->
 <g id="Node000142" class="node">
 <title>Node142</title>
-<g id="a_Node000142"><a xlink:href="structcCcD__Stts.html" target="_top" xlink:title=" ">
+<g id="a_Node000142"><a xlink:href="classcCcD__Stts.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="968.62,-581.25 905.38,-581.25 905.38,-562 968.62,-562 968.62,-581.25"/>
 <text text-anchor="middle" x="937" y="-567.75" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_Stts</text>
 </a>
@@ -75,7 +75,7 @@
 <!-- Node183 -->
 <g id="Node000183" class="node">
 <title>Node183</title>
-<g id="a_Node000183"><a xlink:href="classdBgS__Acch.html" target="_top" xlink:title=" ">
+<g id="a_Node000183"><a xlink:href="structdBgS__Acch.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="970.88,-1076.25 903.12,-1076.25 903.12,-1057 970.88,-1057 970.88,-1076.25"/>
 <text text-anchor="middle" x="937" y="-1062.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_Acch</text>
 </a>
@@ -170,7 +170,7 @@
 <!-- Node45 -->
 <g id="Node000045" class="node">
 <title>Node45</title>
-<g id="a_Node000045"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000045"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="526.75,-620.25 453.75,-620.25 453.75,-601 526.75,-601 526.75,-620.25"/>
 <text text-anchor="middle" x="490.25" y="-606.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -286,7 +286,7 @@
 <!-- Node129 -->
 <g id="Node000129" class="node">
 <title>Node129</title>
-<g id="a_Node000129"><a xlink:href="classcBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000129"><a xlink:href="structcBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="530.5,-1172.25 450,-1172.25 450,-1153 530.5,-1153 530.5,-1172.25"/>
 <text text-anchor="middle" x="490.25" y="-1158.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_GndChk</text>
 </a>
@@ -327,7 +327,7 @@
 <!-- Node190 -->
 <g id="Node000190" class="node">
 <title>Node190</title>
-<g id="a_Node000190"><a xlink:href="classmDoExt__McaMorfSO.html" target="_top" xlink:title=" ">
+<g id="a_Node000190"><a xlink:href="structmDoExt__McaMorfSO.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="785.75,-191.25 678.25,-191.25 678.25,-172 785.75,-172 785.75,-191.25"/>
 <text text-anchor="middle" x="732" y="-177.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_McaMorfSO</text>
 </a>
@@ -403,7 +403,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="236.38,-322.25 176.88,-322.25 176.88,-303 236.38,-303 236.38,-322.25"/>
 <text text-anchor="middle" x="206.62" y="-308.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -422,7 +422,7 @@
 <!-- Node89 -->
 <g id="Node000089" class="node">
 <title>Node89</title>
-<g id="a_Node000089"><a xlink:href="classJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000089"><a xlink:href="structJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="398.25,-19.25 276.5,-19.25 276.5,0 398.25,0 398.25,-19.25"/>
 <text text-anchor="middle" x="337.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTextureSRTKey</text>
 </a>
@@ -442,7 +442,7 @@
 <!-- Node164 -->
 <g id="Node000164" class="node">
 <title>Node164</title>
-<g id="a_Node000164"><a xlink:href="classZ2Creature.html" target="_top" xlink:title=" ">
+<g id="a_Node000164"><a xlink:href="structZ2Creature.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="522.25,-58.25 458.25,-58.25 458.25,-39 522.25,-39 522.25,-58.25"/>
 <text text-anchor="middle" x="490.25" y="-44.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2Creature</text>
 </a>
@@ -473,7 +473,7 @@
 <!-- Node54 -->
 <g id="Node000054" class="node">
 <title>Node54</title>
-<g id="a_Node000054"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000054"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="227.75,-953.25 185.5,-953.25 185.5,-934 227.75,-934 227.75,-953.25"/>
 <text text-anchor="middle" x="206.62" y="-939.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -611,7 +611,7 @@
 <!-- Node191 -->
 <g id="Node000191" class="node">
 <title>Node191</title>
-<g id="a_Node000191"><a xlink:href="classmDoExt__morf__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000191"><a xlink:href="structmDoExt__morf__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="532.75,-206.25 447.75,-206.25 447.75,-187 532.75,-187 532.75,-206.25"/>
 <text text-anchor="middle" x="490.25" y="-192.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_morf_c</text>
 </a>
@@ -650,7 +650,7 @@
 <!-- Node128 -->
 <g id="Node000128" class="node">
 <title>Node128</title>
-<g id="a_Node000128"><a xlink:href="classdBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000128"><a xlink:href="structdBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="772.25,-1167.25 691.75,-1167.25 691.75,-1148 772.25,-1148 772.25,-1167.25"/>
 <text text-anchor="middle" x="732" y="-1153.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_GndChk</text>
 </a>
@@ -715,7 +715,7 @@
 <!-- Node133 -->
 <g id="Node000133" class="node">
 <title>Node133</title>
-<g id="a_Node000133"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000133"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="246.88,-1160.25 166.38,-1160.25 166.38,-1141 246.88,-1141 246.88,-1160.25"/>
 <text text-anchor="middle" x="206.62" y="-1146.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>
@@ -733,7 +733,7 @@
 <!-- Node179 -->
 <g id="Node000179" class="node">
 <title>Node179</title>
-<g id="a_Node000179"><a xlink:href="classdBgS__AcchCir.html" target="_top" xlink:title=" ">
+<g id="a_Node000179"><a xlink:href="structdBgS__AcchCir.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="771.88,-1210.25 692.12,-1210.25 692.12,-1191 771.88,-1191 771.88,-1210.25"/>
 <text text-anchor="middle" x="732" y="-1196.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_AcchCir</text>
 </a>
@@ -788,7 +788,7 @@
 <!-- Node135 -->
 <g id="Node000135" class="node">
 <title>Node135</title>
-<g id="a_Node000135"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000135"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="258.5,-1082.25 154.75,-1082.25 154.75,-1063 258.5,-1063 258.5,-1082.25"/>
 <text text-anchor="middle" x="206.62" y="-1068.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>
@@ -824,7 +824,7 @@
 <!-- Node137 -->
 <g id="Node000137" class="node">
 <title>Node137</title>
-<g id="a_Node000137"><a xlink:href="classmDoExt__brkAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000137"><a xlink:href="structmDoExt__brkAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="776.38,-291.25 687.62,-291.25 687.62,-272 776.38,-272 776.38,-291.25"/>
 <text text-anchor="middle" x="732" y="-277.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_brkAnm</text>
 </a>
@@ -843,7 +843,7 @@
 <!-- Node138 -->
 <g id="Node000138" class="node">
 <title>Node138</title>
-<g id="a_Node000138"><a xlink:href="classmDoExt__baseAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000138"><a xlink:href="structmDoExt__baseAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="538.38,-132.25 442.12,-132.25 442.12,-113 538.38,-113 538.38,-132.25"/>
 <text text-anchor="middle" x="490.25" y="-118.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_baseAnm</text>
 </a>
@@ -861,7 +861,7 @@
 <!-- Node140 -->
 <g id="Node000140" class="node">
 <title>Node140</title>
-<g id="a_Node000140"><a xlink:href="classmDoExt__btkAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000140"><a xlink:href="structmDoExt__btkAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="776.38,-143.25 687.62,-143.25 687.62,-124 776.38,-124 776.38,-143.25"/>
 <text text-anchor="middle" x="732" y="-129.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_btkAnm</text>
 </a>
@@ -879,7 +879,7 @@
 <!-- Node139 -->
 <g id="Node000139" class="node">
 <title>Node139</title>
-<g id="a_Node000139"><a xlink:href="classJ3DFrameCtrl.html" target="_top" xlink:title=" ">
+<g id="a_Node000139"><a xlink:href="structJ3DFrameCtrl.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="244.62,-196.25 168.62,-196.25 168.62,-177 244.62,-177 244.62,-196.25"/>
 <text text-anchor="middle" x="206.62" y="-182.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DFrameCtrl</text>
 </a>
@@ -908,7 +908,7 @@
 <!-- Node96 -->
 <g id="Node000096" class="node">
 <title>Node96</title>
-<g id="a_Node000096"><a xlink:href="classJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000096"><a xlink:href="structJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="542.12,-291.25 438.38,-291.25 438.38,-272 542.12,-272 542.12,-291.25"/>
 <text text-anchor="middle" x="490.25" y="-277.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTevRegKey</text>
 </a>
@@ -993,7 +993,7 @@
 <!-- Node145 -->
 <g id="Node000145" class="node">
 <title>Node145</title>
-<g id="a_Node000145"><a xlink:href="structdCcD__Sph.html" target="_top" xlink:title=" ">
+<g id="a_Node000145"><a xlink:href="classdCcD__Sph.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1169,-129.25 1106.5,-129.25 1106.5,-110 1169,-110 1169,-129.25"/>
 <text text-anchor="middle" x="1137.75" y="-115.75" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_Sph</text>
 </a>
@@ -1030,7 +1030,7 @@
 <!-- Node159 -->
 <g id="Node000159" class="node">
 <title>Node159</title>
-<g id="a_Node000159"><a xlink:href="structcCcD__SphAttr.html" target="_top" xlink:title=" ">
+<g id="a_Node000159"><a xlink:href="classcCcD__SphAttr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="976.12,-84.25 897.88,-84.25 897.88,-65 976.12,-65 976.12,-84.25"/>
 <text text-anchor="middle" x="937" y="-70.75" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_SphAttr</text>
 </a>
@@ -1146,7 +1146,7 @@
 <!-- Node180 -->
 <g id="Node000180" class="node">
 <title>Node180</title>
-<g id="a_Node000180"><a xlink:href="classcM3dGCir.html" target="_top" xlink:title=" ">
+<g id="a_Node000180"><a xlink:href="structcM3dGCir.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="520,-1286.25 460.5,-1286.25 460.5,-1267 520,-1267 520,-1286.25"/>
 <text text-anchor="middle" x="490.25" y="-1272.75" font-family="Helvetica,sans-Serif" font-size="10.00">cM3dGCir</text>
 </a>
@@ -1165,7 +1165,7 @@
 <!-- Node182 -->
 <g id="Node000182" class="node">
 <title>Node182</title>
-<g id="a_Node000182"><a xlink:href="classdBgS__ObjAcch.html" target="_top" xlink:title=" ">
+<g id="a_Node000182"><a xlink:href="structdBgS__ObjAcch.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1179.12,-1051.25 1096.38,-1051.25 1096.38,-1032 1179.12,-1032 1179.12,-1051.25"/>
 <text text-anchor="middle" x="1137.75" y="-1037.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjAcch</text>
 </a>
@@ -1212,7 +1212,7 @@
 <!-- Node196 -->
 <g id="Node000196" class="node">
 <title>Node196</title>
-<g id="a_Node000196"><a xlink:href="classmDoExt__McaMorfCallBack1__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000196"><a xlink:href="structmDoExt__McaMorfCallBack1__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="564.25,-169.25 416.25,-169.25 416.25,-150 564.25,-150 564.25,-169.25"/>
 <text text-anchor="middle" x="490.25" y="-155.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_McaMorfCallBack1_c</text>
 </a>
@@ -1231,7 +1231,7 @@
 <!-- Node197 -->
 <g id="Node000197" class="node">
 <title>Node197</title>
-<g id="a_Node000197"><a xlink:href="classmDoExt__McaMorfCallBack2__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000197"><a xlink:href="structmDoExt__McaMorfCallBack2__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="564.25,-95.25 416.25,-95.25 416.25,-76 564.25,-76 564.25,-95.25"/>
 <text text-anchor="middle" x="490.25" y="-81.75" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_McaMorfCallBack2_c</text>
 </a>

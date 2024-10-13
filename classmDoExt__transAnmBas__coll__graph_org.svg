@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classJ3DAnmTransformKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structJ3DAnmTransformKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="173,-75.5 58.75,-75.5 58.75,-56.25 173,-56.25 173,-75.5"/>
 <text text-anchor="middle" x="115.88" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTransformKey</text>
 </a>

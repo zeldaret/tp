@@ -4,6 +4,8 @@ var dsp_8h =
     [ "DSPCallback", "dsp_8h.html#a31fa3e6a3ea63013f1e5e9074960eedb", null ],
     [ "DSPTaskInfo", "dsp_8h.html#abd352512808e6ca5a4411ca61d2ffd0a", null ],
     [ "__DSPHandler", "dsp_8h.html#a13a9dc79986123d81e6e7a75f4bf864b", null ],
+    [ "AT_ADDRESS", "dsp_8h.html#a16e7400d23031561a48a5aa4b5ff3668", null ],
+    [ "AT_ADDRESS", "dsp_8h.html#ac4dd7a720b028b5392d81a2ab7b005af", null ],
     [ "DsetMixerLevel", "dsp_8h.html#a4bdcd1fdcd2ff89fcff93e556cfba1db", null ],
     [ "DsetupTable", "dsp_8h.html#a52b3a8fef779e1bc558f30d27f5b42bd", null ],
     [ "DSP_CreateMap2", "dsp_8h.html#a689fc7fa2c410841b0e3ea973403605e", null ],
@@ -14,7 +16,5 @@ var dsp_8h =
     [ "DSPReadMailFromDSP", "dsp_8h.html#a8eb64a47c193b072da2e67280f98c85e", null ],
     [ "DSPReleaseHalt2", "dsp_8h.html#a45b12ecf621912faee8f67a7f2e4c203", null ],
     [ "DSPSendCommands2", "dsp_8h.html#a162353c3c5525b06aa4801e43d6686e6", null ],
-    [ "DSPSendMailToDSP", "dsp_8h.html#a49c7877588d38b5301260975b74cfb7a", null ],
-    [ "__AIRegs", "dsp_8h.html#aeee3fb94d6443a4e7508517a285a1fa2", null ],
-    [ "__DSPRegs", "dsp_8h.html#afe37ff7f235443b336b493cf6954ed7b", null ]
+    [ "DSPSendMailToDSP", "dsp_8h.html#a49c7877588d38b5301260975b74cfb7a", null ]
 ];

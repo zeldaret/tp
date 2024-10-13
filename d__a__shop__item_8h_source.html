@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/d_a_shop_item/d_a_shop_item.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_shop_item.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,29 +151,29 @@ $(document).ready(function(){initNavTree('d__a__shop__item_8h_source.html',''); 
 <a href="d__a__shop__item_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_SHOP_ITEM_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_SHOP_ITEM_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__shop__item__static_8h.html">d/a/d_a_shop_item_static.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__shop__item__static_8h.html">d/d_a_shop_item_static.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="foldopen" id="foldopen00006" data-start="{" data-end="}">
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="namespacedaShopItem__prm.html">    6</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacedaShopItem__prm.html">daShopItem_prm</a> {</div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3">    7</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3">getGroup</a>(<a class="code hl_class" href="classdaShopItem__c.html">daShopItem_c</a>* <a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>) {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>) &gt;&gt; 0x1C;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3">    7</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3">getGroup</a>(<a class="code hl_class" href="classdaShopItem__c.html">daShopItem_c</a>* <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_this</a>) {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_this</a>) &gt;&gt; 0x1C;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
 </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b">   11</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b">getItemNo</a>(<a class="code hl_class" href="classdaShopItem__c.html">daShopItem_c</a>* <a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>) {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">i_this</a>) &amp; 0xFF;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b">   11</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b">getItemNo</a>(<a class="code hl_class" href="classdaShopItem__c.html">daShopItem_c</a>* <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_this</a>) {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_this</a>) &amp; 0xFF;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
 </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}  <span class="comment">// namespace dahopItem_prm</span></div>
 </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_SHOP_ITEM_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="aclassdaShopItem__c_html"><div class="ttname"><a href="classdaShopItem__c.html">daShopItem_c</a></div><div class="ttdef"><b>Definition</b> d_a_shop_item_static.h:48</div></div>
+<div class="ttc" id="ad__a__movie__player_8cpp_html_ae9e7e99b5ae52c2ed271b70196a90967"><div class="ttname"><a href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a></div><div class="ttdeci">static void fopAcM_GetParam(void const *param_0)</div><div class="ttdef"><b>Definition</b> d_a_movie_player.cpp:1380</div></div>
 <div class="ttc" id="ad__a__shop__item__static_8h_html"><div class="ttname"><a href="d__a__shop__item__static_8h.html">d_a_shop_item_static.h</a></div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a10e09178f3c592d39f7cba7acd57d34f"><div class="ttname"><a href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a></div><div class="ttdeci">u32 fopAcM_GetParam(const void *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:209</div></div>
-<div class="ttc" id="agroup__jsystem-jsupport_html_ga13fa7ef63a40072c7203b3da54a569a2"><div class="ttname"><a href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">JSUConvertOffsetToPtr</a></div><div class="ttdeci">T * JSUConvertOffsetToPtr(const void *, const void *)</div><div class="ttdef"><b>Definition</b> JSupport.h:22</div></div>
 <div class="ttc" id="anamespacedaShopItem__prm_html"><div class="ttname"><a href="namespacedaShopItem__prm.html">daShopItem_prm</a></div><div class="ttdef"><b>Definition</b> d_a_shop_item.h:6</div></div>
 <div class="ttc" id="anamespacedaShopItem__prm_html_a0c44ffee834169391f8c65f7911e9cf3"><div class="ttname"><a href="namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3">daShopItem_prm::getGroup</a></div><div class="ttdeci">u8 getGroup(daShopItem_c *i_this)</div><div class="ttdef"><b>Definition</b> d_a_shop_item.h:7</div></div>
 <div class="ttc" id="anamespacedaShopItem__prm_html_a691fda505f960aa0745a9024a70a5f6b"><div class="ttname"><a href="namespacedaShopItem__prm.html#a691fda505f960aa0745a9024a70a5f6b">daShopItem_prm::getItemNo</a></div><div class="ttdeci">u8 getItemNo(daShopItem_c *i_this)</div><div class="ttdef"><b>Definition</b> d_a_shop_item.h:11</div></div>
@@ -183,7 +183,7 @@ $(document).ready(function(){initNavTree('d__a__shop__item_8h_source.html',''); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_314e57cdd543eef0338a11de71a136e4.html">d_a_shop_item</a></li><li class="navelem"><a class="el" href="d__a__shop__item_8h.html">d_a_shop_item.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__shop__item_8h.html">d_a_shop_item.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

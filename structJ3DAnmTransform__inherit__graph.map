@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="142,79,272,105"/>
 <area shape="rect" id="Node000003" href="$classJ3DAnmTransformFull.html" title=" " alt="" coords="43,153,195,178"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,117,135,154,132,150,179,113"/>
-<area shape="rect" id="Node000005" href="$classJ3DAnmTransformKey.html" title=" " alt="" coords="226,153,378,178"/>
+<area shape="rect" id="Node000005" href="$structJ3DAnmTransformKey.html" title=" " alt="" coords="226,153,378,178"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="237,112,287,150,284,154,234,117"/>
 <area shape="rect" id="Node000002" href="$classJ3DAnmBase.html" title=" " alt="" coords="156,5,258,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,46,210,79,204,79,204,46"/>

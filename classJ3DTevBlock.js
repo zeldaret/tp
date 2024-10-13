@@ -18,7 +18,7 @@ var classJ3DTevBlock =
     [ "getTevStage", "classJ3DTevBlock.html#a1119eccbb78162a176af2aa3a2eaa030", null ],
     [ "getTevStageNum", "classJ3DTevBlock.html#a89f42eb02848eb4f64ffb54f7273e15f", null ],
     [ "getTevSwapModeTable", "classJ3DTevBlock.html#a548f0653fe415b9aaa9a4fefd73ea31b", null ],
-    [ "getTexNo", "classJ3DTevBlock.html#ab4d834bee4d77594e8be1ce11927e758", null ],
+    [ "getTexNo", "classJ3DTevBlock.html#a5b09e7d60f0c5b17d7973f13cbfe0c1d", null ],
     [ "getTexNoOffset", "classJ3DTevBlock.html#a6966cb2842003574cf9c30c49257ec75", null ],
     [ "getType", "classJ3DTevBlock.html#a51d3648b27becd9a7c5270e47cffbdd3", null ],
     [ "indexToPtr", "classJ3DTevBlock.html#ad7e441600459d345dc7b35c0ce504a83", null ],

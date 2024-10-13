@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classmDoExt__morf__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structmDoExt__morf__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="128.12,-74.5 43.12,-74.5 43.12,-55.25 128.12,-55.25 128.12,-74.5"/>
 <text text-anchor="middle" x="85.62" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">mDoExt_morf_c</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classJ3DMtxCalcNoAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structJ3DMtxCalcNoAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="171.25,-152.25 0,-152.25 0,-110.5 171.25,-110.5 171.25,-152.25"/>
 <text text-anchor="start" x="8" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMtxCalcNoAnm&lt; J3DMtxCalc</text>
 <text text-anchor="start" x="8" y="-127.5" font-family="Helvetica,sans-Serif" font-size="10.00">CalcTransformMaya, J3DMtxCalcJ3</text>
@@ -68,7 +68,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classJ3DMtxCalcNoAnmBase.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structJ3DMtxCalcNoAnmBase.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="147.62,-207.5 23.62,-207.5 23.62,-188.25 147.62,-188.25 147.62,-207.5"/>
 <text text-anchor="middle" x="85.62" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMtxCalcNoAnmBase</text>
 </a>
@@ -86,7 +86,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classJ3DMtxCalc.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structJ3DMtxCalc.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="119.88,-262.75 51.38,-262.75 51.38,-243.5 119.88,-243.5 119.88,-262.75"/>
 <text text-anchor="middle" x="85.62" y="-249.25" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMtxCalc</text>
 </a>

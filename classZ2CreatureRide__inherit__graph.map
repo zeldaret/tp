@@ -1,6 +1,6 @@
 <map id="Z2CreatureRide" name="Z2CreatureRide">
 <area shape="rect" id="Node000001" title=" " alt="" coords="60,330,172,356"/>
-<area shape="rect" id="Node000002" href="$classZ2Creature.html" title=" " alt="" coords="5,256,91,282"/>
+<area shape="rect" id="Node000002" href="$structZ2Creature.html" title=" " alt="" coords="5,256,91,282"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,291,106,328,103,331,68,295"/>
 <area shape="rect" id="Node000003" href="$structZ2RideSoundStarter.html" title=" " alt="" coords="115,256,253,282"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,295,129,331,126,328,160,291"/>

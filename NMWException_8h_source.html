@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: libs/PowerPC_EABI_Support/Runtime/Inc/NMWException.h Source File</title>
+<title>Twilight Princess: src/PowerPC_EABI_Support/Runtime/Inc/NMWException.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,16 +151,50 @@ $(document).ready(function(){initNavTree('NMWException_8h_source.html',''); init
 <a href="NMWException_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef NMWEXCEPTION_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define NMWEXCEPTION_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="types_8h.html">dolphin/types.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="____ppc__eabi__linker_8h.html">__ppc_eabi_linker.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#endif </span><span class="comment">/* NMWEXCEPTION_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define DTORCALL(dtor, objptr) (((void (*)(void*, int))dtor)(objptr, -1))</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structDestructorChain.html">   12</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structDestructorChain.html">DestructorChain</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structDestructorChain.html#a766d473a707bd7b0f3d2c3258238a9b6">   13</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structDestructorChain.html">DestructorChain</a>* <a class="code hl_variable" href="structDestructorChain.html#a766d473a707bd7b0f3d2c3258238a9b6">next</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structDestructorChain.html#a80660a2505445d58ad4e561fdd543c5f">   14</a></span>    <span class="keywordtype">void</span>* <a class="code hl_variable" href="structDestructorChain.html#a80660a2505445d58ad4e561fdd543c5f">destructor</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structDestructorChain.html#add7d77c8737fc1ae476cadf9a3030131">   15</a></span>    <span class="keywordtype">void</span>* <a class="code hl_variable" href="structDestructorChain.html#add7d77c8737fc1ae476cadf9a3030131">object</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="NMWException_8h.html#a427ff927e27e2776c9f301e38c804cae">   16</a></span>} <a class="code hl_struct" href="structDestructorChain.html">DestructorChain</a>;</div>
+</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="NMWException_8h.html#adb88d4dc232f0dd6270989d61570b43e">   18</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="NMWException_8h.html#adb88d4dc232f0dd6270989d61570b43e">__unregister_fragment</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="____init__cpp__exceptions_8cpp.html#ac9609f6868302f50e459f97e6bcc2320">fragmentID</a>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="NMWException_8h.html#a28b00b48517ebcdec80149fdc12eb7f8">   19</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="NMWException_8h.html#a28b00b48517ebcdec80149fdc12eb7f8">__register_fragment</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="struct____eti__init__info.html">__eti_init_info</a>* info, <span class="keywordtype">char</span>* <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">TOC</a>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">void</span>* <a class="code hl_function" href="c__damagereaction_8cpp.html#a75cea59a88b9016eb884c7c20cdc3a21">__register_global_object</a>(<span class="keywordtype">void</span>* <span class="keywordtype">object</span>, <span class="keywordtype">void</span>* <a class="code hl_variable" href="structDestructorChain.html#a80660a2505445d58ad4e561fdd543c5f">destructor</a>, <span class="keywordtype">void</span>* <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">regmem</a>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">void</span> <a class="code hl_function" href="NMWException_8h.html#ae7326dd5e3a5a5fe3a47481b228ab022">__destroy_global_chain</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif </span><span class="comment">/* NMWEXCEPTION_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aNMWException_8h_html_a28b00b48517ebcdec80149fdc12eb7f8"><div class="ttname"><a href="NMWException_8h.html#a28b00b48517ebcdec80149fdc12eb7f8">__register_fragment</a></div><div class="ttdeci">int __register_fragment(struct __eti_init_info *info, char *TOC)</div></div>
+<div class="ttc" id="aNMWException_8h_html_adb88d4dc232f0dd6270989d61570b43e"><div class="ttname"><a href="NMWException_8h.html#adb88d4dc232f0dd6270989d61570b43e">__unregister_fragment</a></div><div class="ttdeci">void __unregister_fragment(int fragmentID)</div></div>
+<div class="ttc" id="aNMWException_8h_html_ae7326dd5e3a5a5fe3a47481b228ab022"><div class="ttname"><a href="NMWException_8h.html#ae7326dd5e3a5a5fe3a47481b228ab022">__destroy_global_chain</a></div><div class="ttdeci">void __destroy_global_chain(void)</div><div class="ttdef"><b>Definition</b> global_destructor_chain.c:16</div></div>
+<div class="ttc" id="a____init__cpp__exceptions_8cpp_html_ac9609f6868302f50e459f97e6bcc2320"><div class="ttname"><a href="____init__cpp__exceptions_8cpp.html#ac9609f6868302f50e459f97e6bcc2320">fragmentID</a></div><div class="ttdeci">static int fragmentID</div><div class="ttdef"><b>Definition</b> __init_cpp_exceptions.cpp:24</div></div>
+<div class="ttc" id="a____ppc__eabi__linker_8h_html"><div class="ttname"><a href="____ppc__eabi__linker_8h.html">__ppc_eabi_linker.h</a></div></div>
+<div class="ttc" id="ac__damagereaction_8cpp_html_a75cea59a88b9016eb884c7c20cdc3a21"><div class="ttname"><a href="c__damagereaction_8cpp.html#a75cea59a88b9016eb884c7c20cdc3a21">__register_global_object</a></div><div class="ttdeci">void __register_global_object()</div></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
+<div class="ttc" id="astructDestructorChain_html"><div class="ttname"><a href="structDestructorChain.html">DestructorChain</a></div><div class="ttdef"><b>Definition</b> NMWException.h:12</div></div>
+<div class="ttc" id="astructDestructorChain_html_a766d473a707bd7b0f3d2c3258238a9b6"><div class="ttname"><a href="structDestructorChain.html#a766d473a707bd7b0f3d2c3258238a9b6">DestructorChain::next</a></div><div class="ttdeci">struct DestructorChain * next</div><div class="ttdef"><b>Definition</b> NMWException.h:13</div></div>
+<div class="ttc" id="astructDestructorChain_html_a80660a2505445d58ad4e561fdd543c5f"><div class="ttname"><a href="structDestructorChain.html#a80660a2505445d58ad4e561fdd543c5f">DestructorChain::destructor</a></div><div class="ttdeci">void * destructor</div><div class="ttdef"><b>Definition</b> NMWException.h:14</div></div>
+<div class="ttc" id="astructDestructorChain_html_add7d77c8737fc1ae476cadf9a3030131"><div class="ttname"><a href="structDestructorChain.html#add7d77c8737fc1ae476cadf9a3030131">DestructorChain::object</a></div><div class="ttdeci">void * object</div><div class="ttdef"><b>Definition</b> NMWException.h:15</div></div>
+<div class="ttc" id="astruct____eti__init__info_html"><div class="ttname"><a href="struct____eti__init__info.html">__eti_init_info</a></div><div class="ttdef"><b>Definition</b> __ppc_eabi_linker.h:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_db1709413e4853dbf382363385ab04a7.html">PowerPC_EABI_Support</a></li><li class="navelem"><a class="el" href="dir_6f0c07838aa0fc1b269ae79ed2e2b858.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_ce09be433d41eeb93c2b3806e64b2ffa.html">Inc</a></li><li class="navelem"><a class="el" href="NMWException_8h.html">NMWException.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_03a653b015bec8e06c30a2aa3abc0761.html">PowerPC_EABI_Support</a></li><li class="navelem"><a class="el" href="dir_504170adbe9f88b76aab300b8b032179.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_e716711f7981cce37a312541085cfe92.html">Inc</a></li><li class="navelem"><a class="el" href="NMWException_8h.html">NMWException.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

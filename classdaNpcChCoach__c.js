@@ -1,4 +1,4 @@
 var classdaNpcChCoach__c =
 [
-    [ "~daNpcChCoach_c", "classdaNpcChCoach__c.html#ac2548e042296c82ca86d189439079557", null ]
+    [ "~daNpcChCoach_c", "classdaNpcChCoach__c.html#a09fe260c180d3b80bf42ddd34925634d", null ]
 ];

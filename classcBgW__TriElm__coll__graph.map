@@ -1,6 +1,6 @@
 <map id="cBgW_TriElm" name="cBgW_TriElm">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,352,106,378"/>
-<area shape="rect" id="Node000002" href="$classcM3dGPla.html" title=" " alt="" coords="14,263,97,289"/>
+<area shape="rect" id="Node000002" href="$structcM3dGPla.html" title=" " alt="" coords="14,263,97,289"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,305,58,352,53,352,53,305"/>
 <area shape="rect" id="Node000003" href="$structcXyz.html" title=" " alt="" coords="31,128,80,153"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="58,169,58,263,53,263,53,169"/>

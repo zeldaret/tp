@@ -3,7 +3,7 @@ var classdaObjHBombkoya__c =
     [ "PSetTbl", "structdaObjHBombkoya__c_1_1PSetTbl.html", "structdaObjHBombkoya__c_1_1PSetTbl" ],
     [ "daObjHBombkoya_c", "classdaObjHBombkoya__c.html#a508a98ef4d025e4b646e8f14aaadfc35", null ],
     [ "~daObjHBombkoya_c", "classdaObjHBombkoya__c.html#a4168875c1809aada7a0ff0ac771d3d91", null ],
-    [ "Create", "classdaObjHBombkoya__c.html#abc6467fd9091e4052dcfd7ba1cf15a4a", null ],
+    [ "Create", "classdaObjHBombkoya__c.html#a7179f73d4f90bc2173b42a4d03df7a12", null ],
     [ "create1st", "classdaObjHBombkoya__c.html#a7bdd747f2332c330cbe9dfc0b9291ad0", null ],
     [ "CreateHeap", "classdaObjHBombkoya__c.html#a2be2af8088d4fe58f2e30b4e74f5e6ca", null ],
     [ "Delete", "classdaObjHBombkoya__c.html#a24fc581bb5a54dcdea5bf8f96e91c30c", null ],

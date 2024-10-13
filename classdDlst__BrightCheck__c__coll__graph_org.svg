@@ -394,7 +394,7 @@
 <!-- Node67 -->
 <g id="Node000067" class="node">
 <title>Node67</title>
-<g id="a_Node000067"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000067"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="551.12,-572.25 496.88,-572.25 496.88,-553 551.12,-553 551.12,-572.25"/>
 <text text-anchor="middle" x="524" y="-558.75" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -706,7 +706,7 @@
 <!-- Node39 -->
 <g id="Node000039" class="node">
 <title>Node39</title>
-<g id="a_Node000039"><a xlink:href="structdMsgString__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000039"><a xlink:href="classdMsgString__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="2488.5,-428.25 2412.5,-428.25 2412.5,-409 2488.5,-409 2488.5,-428.25"/>
 <text text-anchor="middle" x="2450.5" y="-414.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgString_c</text>
 </a>

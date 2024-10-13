@@ -1,9 +1,0 @@
-<map id="Z2CreatureCitizen" name="Z2CreatureCitizen">
-<area shape="rect" id="Node000001" title=" " alt="" coords="69,153,193,178"/>
-<area shape="rect" id="Node000002" href="$classZ2Creature.html" title=" " alt="" coords="5,79,91,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,113,119,150,115,154,72,117"/>
-<area shape="rect" id="Node000003" href="$classJSULink.html" title=" " alt="" coords="115,79,312,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,117,146,154,143,150,186,113"/>
-<area shape="rect" id="Node000004" href="$classJSUPtrLink.html" title=" " alt="" coords="169,5,258,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="216,46,216,79,211,79,211,46"/>
-</map>

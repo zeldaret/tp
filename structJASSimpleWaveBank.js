@@ -1,11 +1,11 @@
 var structJASSimpleWaveBank =
 [
     [ "TWaveHandle", "structJASSimpleWaveBank_1_1TWaveHandle.html", "structJASSimpleWaveBank_1_1TWaveHandle" ],
-    [ "JASSimpleWaveBank", "structJASSimpleWaveBank.html#ad3839c652e4a8e9a98cb4d8edd30ca64", null ],
-    [ "~JASSimpleWaveBank", "structJASSimpleWaveBank.html#a5852b14793754c3cf41029bbdda4ae93", null ],
+    [ "JASSimpleWaveBank", "structJASSimpleWaveBank.html#abd60c2fd65da2bcecb3af6e2a4305f4e", null ],
+    [ "~JASSimpleWaveBank", "structJASSimpleWaveBank.html#a85082ac0821ac59d02bf9c8a55fd7ef2", null ],
     [ "getArcCount", "structJASSimpleWaveBank.html#a2af621f96e7c372859fadb7a67251da1", null ],
-    [ "getWaveArc", "structJASSimpleWaveBank.html#abb6ac88258f4b9759d11bdff3d559d36", null ],
-    [ "getWaveHandle", "structJASSimpleWaveBank.html#a40e43b36561b57536b2f7585eba3732e", null ],
-    [ "setWaveInfo", "structJASSimpleWaveBank.html#a80e749d59f8b1cca6804c7c21d8d61b9", null ],
-    [ "setWaveTableSize", "structJASSimpleWaveBank.html#a8fe3ddb1dc46b539e01b380ff94b33be", null ]
+    [ "getWaveArc", "structJASSimpleWaveBank.html#a43fee60065fed2e57f6a9497d3395974", null ],
+    [ "getWaveHandle", "structJASSimpleWaveBank.html#a483c56dcf2796190307bd12779462246", null ],
+    [ "setWaveInfo", "structJASSimpleWaveBank.html#a70071561f55bc54f771b17cf10ae11c9", null ],
+    [ "setWaveTableSize", "structJASSimpleWaveBank.html#a8dffb0af8919215a31c41595daf61d4f", null ]
 ];

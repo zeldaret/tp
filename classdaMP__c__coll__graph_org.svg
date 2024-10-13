@@ -560,7 +560,7 @@
 <!-- Node44 -->
 <g id="Node000044" class="node">
 <title>Node44</title>
-<g id="a_Node000044"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000044"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="966,-426.38 893,-426.38 893,-407.13 966,-407.13 966,-426.38"/>
 <text text-anchor="middle" x="929.5" y="-412.88" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -697,7 +697,7 @@
 <!-- Node57 -->
 <g id="Node000057" class="node">
 <title>Node57</title>
-<g id="a_Node000057"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000057"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="734,-142.38 674.5,-142.38 674.5,-123.13 734,-123.13 734,-142.38"/>
 <text text-anchor="middle" x="704.25" y="-128.88" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -865,7 +865,7 @@
 <!-- Node53 -->
 <g id="Node000053" class="node">
 <title>Node53</title>
-<g id="a_Node000053"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000053"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="725.38,-457.38 683.12,-457.38 683.12,-438.13 725.38,-438.13 725.38,-457.38"/>
 <text text-anchor="middle" x="704.25" y="-443.88" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -1000,7 +1000,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="463.88,-132.38 384.12,-132.38 384.12,-113.13 463.88,-113.13 463.88,-132.38"/>
 <text text-anchor="middle" x="424" y="-118.88" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>

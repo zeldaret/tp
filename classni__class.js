@@ -1,7 +1,6 @@
 var classni__class =
 [
     [ "checkGold", "classni__class.html#a6f159358efbf148a645b7cbb5f8796ca", null ],
-    [ "field_0x568", "classni__class.html#a2912f2d6864516a3bba81c5e16ce2663", null ],
     [ "field_0x5b4", "classni__class.html#a5b1d4f82b245dcbf02c9ac7693a8fff2", null ],
     [ "field_0x5b6", "classni__class.html#aa13f5559359d2b447e823d72a9d7c683", null ],
     [ "field_0x5c0", "classni__class.html#a7f40584a5b14dd4376a0e0d71085b1af", null ],

@@ -5,7 +5,6 @@ var classdSv__player__item__c =
     [ "checkEmptyBottle", "classdSv__player__item__c.html#a69b5076d0f7002876f08422397b8867e", null ],
     [ "checkInsectBottle", "classdSv__player__item__c.html#a825cd400eb084dcb0c4e970db3614e34", null ],
     [ "getItem", "classdSv__player__item__c.html#a4d63a6184b90c4a18e8a3b668690c815", null ],
-    [ "getItem", "classdSv__player__item__c.html#a8daee1fa858de6e04f5021ccc36b38a9", null ],
     [ "getLineUpItem", "classdSv__player__item__c.html#a7772cc589edf36d269824d330b0f223c", null ],
     [ "init", "classdSv__player__item__c.html#af384e43f0cf9e23352c12e171a678b9d", null ],
     [ "setBaitItem", "classdSv__player__item__c.html#a5c6cae92f002c32db837fb8c17c63d08", null ],

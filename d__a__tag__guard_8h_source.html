@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_tag_guard.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -155,12 +155,12 @@ $(document).ready(function(){initNavTree('d__a__tag__guard_8h_source.html',''); 
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__path_8h.html">d/d_path.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classdaTagGuard__c.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTagGuard__c.html">daTagGuard_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classdaTagGuard__c.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTagGuard__c.html">daTagGuard_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="comment">/* 80D597F8 */</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classdaTagGuard__c.html#a34f5b3f01f55bee19b202a365f3dcc1f">getAppearPoint</a>(<a class="code hl_struct" href="structVec.html">Vec</a>*);</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="comment">/* 80D5985C */</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdaTagGuard__c.html#a1b16cc88b2af3cf4e93cc492f4a5a1a2">createGuard</a>(<a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>);</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classdaTagGuard__c.html#a04e7db20d0b818a2464a7374bcfbd930">   12</a></span>    <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="classdaTagGuard__c.html#a04e7db20d0b818a2464a7374bcfbd930">getPathID</a>() { <span class="keywordflow">return</span> <a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 8; }</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classdaTagGuard__c.html#a04e7db20d0b818a2464a7374bcfbd930">   12</a></span>    <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="classdaTagGuard__c.html#a04e7db20d0b818a2464a7374bcfbd930">getPathID</a>() { <span class="keywordflow">return</span> <a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<span class="keyword">this</span>) &gt;&gt; 8; }</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classdaTagGuard__c.html#a3460eeff1b751749b369b5c68574ff1b">create</a>();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdaTagGuard__c.html#a0e2f506ba859f1256567269b2f154743">create_init</a>();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
@@ -176,12 +176,12 @@ $(document).ready(function(){initNavTree('d__a__tag__guard_8h_source.html',''); 
 <div class="ttc" id="aclassdaTagGuard__c_html_a3460eeff1b751749b369b5c68574ff1b"><div class="ttname"><a href="classdaTagGuard__c.html#a3460eeff1b751749b369b5c68574ff1b">daTagGuard_c::create</a></div><div class="ttdeci">int create()</div><div class="ttdef"><b>Definition</b> d_a_tag_guard.cpp:32</div></div>
 <div class="ttc" id="aclassdaTagGuard__c_html_a34f5b3f01f55bee19b202a365f3dcc1f"><div class="ttname"><a href="classdaTagGuard__c.html#a34f5b3f01f55bee19b202a365f3dcc1f">daTagGuard_c::getAppearPoint</a></div><div class="ttdeci">int getAppearPoint(Vec *)</div><div class="ttdef"><b>Definition</b> d_a_tag_guard.cpp:10</div></div>
 <div class="ttc" id="aclassdaTagGuard__c_html_a7784b9ae77e0c27943305bae721f72f6"><div class="ttname"><a href="classdaTagGuard__c.html#a7784b9ae77e0c27943305bae721f72f6">daTagGuard_c::mPath</a></div><div class="ttdeci">dPath * mPath</div><div class="ttdef"><b>Definition</b> d_a_tag_guard.h:16</div></div>
+<div class="ttc" id="ad__a__movie__player_8cpp_html_ae9e7e99b5ae52c2ed271b70196a90967"><div class="ttname"><a href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a></div><div class="ttdeci">static void fopAcM_GetParam(void const *param_0)</div><div class="ttdef"><b>Definition</b> d_a_movie_player.cpp:1380</div></div>
 <div class="ttc" id="ad__path_8h_html"><div class="ttname"><a href="d__path_8h.html">d_path.h</a></div></div>
 <div class="ttc" id="af__op__actor__mng_8h_html"><div class="ttname"><a href="f__op__actor__mng_8h.html">f_op_actor_mng.h</a></div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a10e09178f3c592d39f7cba7acd57d34f"><div class="ttname"><a href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a></div><div class="ttdeci">u32 fopAcM_GetParam(const void *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:209</div></div>
-<div class="ttc" id="astructVec_html"><div class="ttname"><a href="structVec.html">Vec</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:47</div></div>
+<div class="ttc" id="astructVec_html"><div class="ttname"><a href="structVec.html">Vec</a></div><div class="ttdef"><b>Definition</b> d_a_hozelda.cpp:18</div></div>
 <div class="ttc" id="astructdPath_html"><div class="ttname"><a href="structdPath.html">dPath</a></div><div class="ttdef"><b>Definition</b> d_a_npc_cd2.cpp:35</div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 <div class="ttc" id="atypes_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> types.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -189,7 +189,7 @@ $(document).ready(function(){initNavTree('d__a__tag__guard_8h_source.html',''); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_11e88f145dc2b5c9e0cddac7e74def83.html">tag</a></li><li class="navelem"><a class="el" href="dir_5035994d1a535d0827409155cd7cf50c.html">d_a_tag_guard</a></li><li class="navelem"><a class="el" href="d__a__tag__guard_8h.html">d_a_tag_guard.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__tag__guard_8h.html">d_a_tag_guard.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

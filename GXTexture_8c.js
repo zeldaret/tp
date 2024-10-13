@@ -23,7 +23,7 @@ var GXTexture_8c =
     [ "GXLoadTexObj", "GXTexture_8c.html#a72053a1fcc723b795bb2112526abcea9", null ],
     [ "GXLoadTexObjPreLoaded", "GXTexture_8c.html#a2914f372165e30d61667b3f9b806b3d1", null ],
     [ "GXLoadTlut", "GXTexture_8c.html#abb377c9984ad461a76d5a8ae49e7d4e0", null ],
-    [ "GXSetTexCoordScaleManually", "GXTexture_8c.html#a611e061ee3a62f421603f5272c21da69", null ],
+    [ "GXSetTexCoordScaleManually", "GXTexture_8c.html#ae6e12d96b59bad92017d626d28ab06a3", null ],
     [ "GXSetTexRegionCallback", "GXTexture_8c.html#a8b7526feea83dd60b6882439e4569e82", null ],
     [ "GXSetTlutRegionCallback", "GXTexture_8c.html#a10060a1d283d7501948c8072a1df629a", null ],
     [ "GX2HWFiltConv", "GXTexture_8c.html#a7d8206cd51da086d3e5e00f292c56c84", null ],

@@ -15,7 +15,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="510,352,464,348,418,337,405,328,394,319,348,304,350,299,396,314,408,324,420,332,465,343,511,347"/>
 <area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="811,364,760,359,711,343,702,337,698,330,687,316,651,299,653,294,690,312,702,327,706,333,714,338,761,354,811,358"/>
 <area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="1517,303,1506,305,1439,315,1371,320,1260,322,1150,319,967,305,967,299,1150,313,1260,317,1371,315,1438,310,1505,300,1516,297"/>
-<area shape="rect" id="Node000007" href="$classZ2Creature.html" title=" " alt="" coords="1395,199,1480,224"/>
+<area shape="rect" id="Node000007" href="$structZ2Creature.html" title=" " alt="" coords="1395,199,1480,224"/>
 <area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="1481,229,1558,268,1556,273,1478,234"/>
 <area shape="rect" id="Node000008" href="$structVec.html" title=" " alt="" coords="268,203,312,228"/>
 <area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="328,216,447,225,595,230,1164,230,1289,225,1394,214,1395,219,1290,230,1164,235,595,235,446,230,328,222"/>
@@ -43,7 +43,7 @@
 <area shape="poly" id="edge22_Node000016_Node000017" title=" " alt="" coords="704,30,803,45,826,49,826,54,802,50,703,35"/>
 <area shape="rect" id="Node000018" href="$classJAUSoundAnimationSound.html" title=" " alt="" coords="507,55,686,80"/>
 <area shape="poly" id="edge23_Node000016_Node000018" title=" " alt="" coords="702,64,826,63,826,68,702,69"/>
-<area shape="rect" id="Node000019" href="$classJAISoundID.html" title=" " alt="" coords="244,55,336,80"/>
+<area shape="rect" id="Node000019" href="$structJAISoundID.html" title=" " alt="" coords="244,55,336,80"/>
 <area shape="poly" id="edge24_Node000018_Node000019" title=" " alt="" coords="351,65,507,65,507,70,351,70"/>
 <area shape="poly" id="edge25_Node000007_Node000020" title=" " alt="" coords="1245,186,1395,204,1394,209,1244,192"/>
 </map>

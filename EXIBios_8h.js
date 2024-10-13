@@ -4,6 +4,7 @@ var EXIBios_8h =
     [ "EXICallback", "EXIBios_8h.html#a7138fa1e7122b3f129311feaafcb13e7", null ],
     [ "EXIControl", "EXIBios_8h.html#ab9f0f6dce2ee41aa036056b0574b5afa", null ],
     [ "OSContext", "EXIBios_8h.html#a924296baf430a531adb5135a5cd54207", null ],
+    [ "AT_ADDRESS", "EXIBios_8h.html#a9fa208847210a5044af039f2b16f0d74", null ],
     [ "EXIAttach", "EXIBios_8h.html#a116a86be9e16a724a181c7fa896534ff", null ],
     [ "EXIDeselect", "EXIBios_8h.html#af125a2c3921a828251052662c98affaf", null ],
     [ "EXIDetach", "EXIBios_8h.html#ae7e47b9c45c389d3315fcd57da06e5ff", null ],
@@ -20,6 +21,5 @@ var EXIBios_8h =
     [ "EXISetExiCallback", "EXIBios_8h.html#ae565bf6666fdfa22744a0af4a887cea4", null ],
     [ "EXISync", "EXIBios_8h.html#a898017357d73846e27f4a09d02b68316", null ],
     [ "EXIUnlock", "EXIBios_8h.html#a77eb40f1f87ecd18ba489cda7714d998", null ],
-    [ "UnlockedHandler", "EXIBios_8h.html#a4ad3caeb12c7ee282725568d8d0665a4", null ],
-    [ "__EXIRegs", "EXIBios_8h.html#ab67c1b63c4267fc3ef8630aee423c984", null ]
+    [ "UnlockedHandler", "EXIBios_8h.html#a4ad3caeb12c7ee282725568d8d0665a4", null ]
 ];

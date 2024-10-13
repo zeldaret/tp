@@ -1,8 +1,8 @@
 var d__bg__s_8h =
 [
     [ "cBgS_ChkElm", "classcBgS__ChkElm.html", "classcBgS__ChkElm" ],
-    [ "cBgS", "classcBgS.html", "classcBgS" ],
-    [ "dBgS", "classdBgS.html", "classdBgS" ],
+    [ "cBgS", "structcBgS.html", "structcBgS" ],
+    [ "dBgS", "structdBgS.html", "structdBgS" ],
     [ "dBgS_CheckBGroundPoly", "d__bg__s_8h.html#a78b8242fa1fb53f91a312d0333c7e3ac", null ],
     [ "dBgS_CheckBRoofPoly", "d__bg__s_8h.html#aa0fb554c4976bdd883320080fd6ed855", null ],
     [ "dBgS_CheckBWallPoly", "d__bg__s_8h.html#ac64579a960b96b4f12e7722cddf453d9", null ],

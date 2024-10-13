@@ -102,7 +102,7 @@ var sectionId = 'dynsection-1';
 <!-- Node147 -->
 <g id="Node000147" class="node">
 <title>Node147</title>
-<g id="a_Node000147"><a xlink:href="structcCcD__Stts.html" target="_top" xlink:title=" ">
+<g id="a_Node000147"><a xlink:href="classcCcD__Stts.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="904.38,-886.85 841.12,-886.85 841.12,-867.6 904.38,-867.6 904.38,-886.85"/>
 <text text-anchor="middle" x="872.75" y="-873.35" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_Stts</text>
 </a>
@@ -197,7 +197,7 @@ var sectionId = 'dynsection-1';
 <!-- Node45 -->
 <g id="Node000045" class="node">
 <title>Node45</title>
-<g id="a_Node000045"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000045"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="483.5,-741.85 410.5,-741.85 410.5,-722.6 483.5,-722.6 483.5,-741.85"/>
 <text text-anchor="middle" x="447" y="-728.35" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -332,7 +332,7 @@ var sectionId = 'dynsection-1';
 <!-- Node160 -->
 <g id="Node000160" class="node">
 <title>Node160</title>
-<g id="a_Node000160"><a xlink:href="structdCcD__GObjAt.html" target="_top" xlink:title=" ">
+<g id="a_Node000160"><a xlink:href="classdCcD__GObjAt.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="485.75,-364.85 408.25,-364.85 408.25,-345.6 485.75,-345.6 485.75,-364.85"/>
 <text text-anchor="middle" x="447" y="-351.35" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_GObjAt</text>
 </a>
@@ -353,7 +353,7 @@ var sectionId = 'dynsection-1';
 <!-- Node162 -->
 <g id="Node000162" class="node">
 <title>Node162</title>
-<g id="a_Node000162"><a xlink:href="structdCcD__GObjTg.html" target="_top" xlink:title=" ">
+<g id="a_Node000162"><a xlink:href="classdCcD__GObjTg.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="486.5,-401.85 407.5,-401.85 407.5,-382.6 486.5,-382.6 486.5,-401.85"/>
 <text text-anchor="middle" x="447" y="-388.35" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_GObjTg</text>
 </a>
@@ -374,7 +374,7 @@ var sectionId = 'dynsection-1';
 <!-- Node165 -->
 <g id="Node000165" class="node">
 <title>Node165</title>
-<g id="a_Node000165"><a xlink:href="structcCcD__ShapeAttr.html" target="_top" xlink:title=" ">
+<g id="a_Node000165"><a xlink:href="classcCcD__ShapeAttr.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="491.38,-560.85 402.62,-560.85 402.62,-541.6 491.38,-541.6 491.38,-560.85"/>
 <text text-anchor="middle" x="447" y="-547.35" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_ShapeAttr</text>
 </a>
@@ -469,7 +469,7 @@ var sectionId = 'dynsection-1';
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="267,-173.85 207.5,-173.85 207.5,-154.6 267,-154.6 267,-173.85"/>
 <text text-anchor="middle" x="237.25" y="-160.35" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -519,7 +519,7 @@ var sectionId = 'dynsection-1';
 <!-- Node54 -->
 <g id="Node000054" class="node">
 <title>Node54</title>
-<g id="a_Node000054"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000054"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="258.38,-885.85 216.12,-885.85 216.12,-866.6 258.38,-866.6 258.38,-885.85"/>
 <text text-anchor="middle" x="237.25" y="-872.35" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -647,7 +647,7 @@ var sectionId = 'dynsection-1';
 <!-- Node59 -->
 <g id="Node000059" class="node">
 <title>Node59</title>
-<g id="a_Node000059"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000059"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="84.62,-79.85 4.88,-79.85 4.88,-60.6 84.62,-60.6 84.62,-79.85"/>
 <text text-anchor="middle" x="44.75" y="-66.35" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>
@@ -1020,7 +1020,7 @@ var sectionId = 'dynsection-1';
 <!-- Node152 -->
 <g id="Node000152" class="node">
 <title>Node152</title>
-<g id="a_Node000152"><a xlink:href="structcCcD__GObjInf.html" target="_top" xlink:title=" ">
+<g id="a_Node000152"><a xlink:href="classcCcD__GObjInf.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="486.5,-327.85 407.5,-327.85 407.5,-308.6 486.5,-308.6 486.5,-327.85"/>
 <text text-anchor="middle" x="447" y="-314.35" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_GObjInf</text>
 </a>
@@ -1058,7 +1058,7 @@ var sectionId = 'dynsection-1';
 <!-- Node163 -->
 <g id="Node000163" class="node">
 <title>Node163</title>
-<g id="a_Node000163"><a xlink:href="structdCcD__GObjCo.html" target="_top" xlink:title=" ">
+<g id="a_Node000163"><a xlink:href="classdCcD__GObjCo.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="486.88,-290.85 407.12,-290.85 407.12,-271.6 486.88,-271.6 486.88,-290.85"/>
 <text text-anchor="middle" x="447" y="-277.35" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_GObjCo</text>
 </a>
@@ -1077,7 +1077,7 @@ var sectionId = 'dynsection-1';
 <!-- Node164 -->
 <g id="Node000164" class="node">
 <title>Node164</title>
-<g id="a_Node000164"><a xlink:href="structcCcD__CylAttr.html" target="_top" xlink:title=" ">
+<g id="a_Node000164"><a xlink:href="classcCcD__CylAttr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="709.88,-438.85 635.38,-438.85 635.38,-419.6 709.88,-419.6 709.88,-438.85"/>
 <text text-anchor="middle" x="672.62" y="-425.35" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_CylAttr</text>
 </a>

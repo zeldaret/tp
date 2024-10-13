@@ -55,7 +55,7 @@ var classnpc__ne__class =
       [ "LOOK_TARGET", "classnpc__ne__class.html#a40888f30c78b6baf82ec87683397f773a0db6d604d9a31ce44bbfebb5e96644d6", null ],
       [ "LOOK_NONE", "classnpc__ne__class.html#a40888f30c78b6baf82ec87683397f773a06445c1efe4716fa5176878834ea9e01", null ]
     ] ],
-    [ "npc_ne_class", "classnpc__ne__class.html#a600c84477b5e8fe60e600b8ef7f21890", null ],
+    [ "npc_ne_class", "classnpc__ne__class.html#abaf0c04163b95e08e0ae9ced0ad53ce9", null ],
     [ "field_0x5b9", "classnpc__ne__class.html#ad21cc910f07f7118fb47126a6baee400", null ],
     [ "field_0x634", "classnpc__ne__class.html#a1cb12e0bf765c0ff6dd36bd07f48dba4", null ],
     [ "field_0x63c", "classnpc__ne__class.html#a9de45810975476a2efbde5a8617dbaba", null ],

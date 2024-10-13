@@ -6,7 +6,7 @@ var structmDoGph__gInf__c =
     [ "create", "structmDoGph__gInf__c.html#abdc260abfc8fdbde52ec4bdcf0d5bc3d", null ],
     [ "endFrame", "structmDoGph__gInf__c.html#a85efb2232d395a05562811e94ad0af87", null ],
     [ "endRender", "structmDoGph__gInf__c.html#a5cab885f4d169a84af664f6bcf9f7d8a", null ],
-    [ "fadeIn", "structmDoGph__gInf__c.html#ab9113e4090fff83493e743ca05b796ca", null ],
+    [ "fadeIn", "structmDoGph__gInf__c.html#a53b7587c540a8f22c35fe1c0b8048e88", null ],
     [ "fadeOut", "structmDoGph__gInf__c.html#a9ea93bbfb9fc1a86e3df88839dd5410d", null ],
     [ "fadeOut", "structmDoGph__gInf__c.html#a6ae3e4ca89530944369f7b09fd2d2e3d", null ],
     [ "fadeOut", "structmDoGph__gInf__c.html#abd0093b23bfa58da779571657ffcce6d", null ],

@@ -17,7 +17,7 @@ var structJGadget_1_1TNodeLinkList =
     [ "Insert", "structJGadget_1_1TNodeLinkList.html#a6d21bc754c7651c16479bc52fd110b3a", null ],
     [ "Iterator_isEnd_", "structJGadget_1_1TNodeLinkList.html#a69c0362df19d1171f6161007759d3f67", null ],
     [ "pop_front", "structJGadget_1_1TNodeLinkList.html#ab5087814bae06ad012a0d344f99e6e44", null ],
-    [ "Remove", "structJGadget_1_1TNodeLinkList.html#aa3a41a7225d0b53f56afc437b7f9fad3", null ],
+    [ "Remove", "structJGadget_1_1TNodeLinkList.html#aa31deeb61e77ad9d02288ba5c77de06b", null ],
     [ "remove_if", "structJGadget_1_1TNodeLinkList.html#acdda4ec95cd903261e82aa6b5efd306c", null ],
     [ "Remove_if", "structJGadget_1_1TNodeLinkList.html#a912106da17b30edf68f58880357fd60b", null ],
     [ "size", "structJGadget_1_1TNodeLinkList.html#a34c707086b1902f066417056819be655", null ],

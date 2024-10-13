@@ -162,37 +162,43 @@ $(document).ready(function(){initNavTree('global_8h_source.html',''); initResiza
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define IS_ALIGNED(X, N) (((X) &amp; ((N)-1)) == 0)</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define IS_NOT_ALIGNED(X, N) (((X) &amp; ((N)-1)) != 0)</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define JUT_EXPECT(...)</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define FLAG_ON(V, F) (((V) &amp; (F)) == 0)</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ROUND(n, a) (((u32)(n) + (a)-1) &amp; ~((a)-1))</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define TRUNC(n, a) (((u32)(n)) &amp; ~((a)-1))</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define FLOAT_LABEL(x) (*(f32*)&amp;x)</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define DOUBLE_LABEL(x) (*(f64*)&amp;x)</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define JUT_EXPECT(...)</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define FLAG_ON(V, F) (((V) &amp; (F)) == 0)</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define _SDA_BASE_(dummy) 0</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define _SDA2_BASE_(dummy) 0</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define FLOAT_LABEL(x) (*(f32*)&amp;x)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define DOUBLE_LABEL(x) (*(f64*)&amp;x)</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifndef IN_VSCODE_EDITOR</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define GLUE(a, b) a##b</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define GLUE2(a, b) GLUE(a, b)</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define STATIC_ASSERT(...)</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// hack to make functions that return comparisons as int match</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="global_8h.html#add8c751814afc8108b19a1434ab15887">   33</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="global_8h.html#a233e496a72a14d16bf25788970e6572d">   34</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> <a class="code hl_function" href="global_8h.html#a233e496a72a14d16bf25788970e6572d">checkEqual</a>(<a class="code hl_typedef" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="code hl_variable" href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a>, <a class="code hl_typedef" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> b) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> (<a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)<a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<a class="code hl_variable" href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a> - b) &gt;&gt; 5;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define _SDA_BASE_(dummy) 0</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define _SDA2_BASE_(dummy) 0</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef __MWERKS__</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define GLUE(a, b) a##b</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define GLUE2(a, b) GLUE(a, b)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define STATIC_ASSERT(...)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// hack to make functions that return comparisons as int match</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="global_8h.html#add8c751814afc8108b19a1434ab15887">   36</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>);</div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="global_8h.html#a233e496a72a14d16bf25788970e6572d">   37</a></span><span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> <a class="code hl_function" href="global_8h.html#a233e496a72a14d16bf25788970e6572d">checkEqual</a>(<a class="code hl_typedef" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="code hl_variable" href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a>, <a class="code hl_typedef" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> b) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> (<a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)<a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<a class="code hl_variable" href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a> - b) &gt;&gt; 5;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define FAST_DIV(x, n) (x &gt;&gt; (n / 2))</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aglobal_8h_html_a233e496a72a14d16bf25788970e6572d"><div class="ttname"><a href="global_8h.html#a233e496a72a14d16bf25788970e6572d">checkEqual</a></div><div class="ttdeci">BOOL checkEqual(s32 a, s32 b)</div><div class="ttdef"><b>Definition</b> global.h:34</div></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define FAST_DIV(x, n) (x &gt;&gt; (n / 2))</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// hack to make strings with no references compile properly</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define DEAD_STRING(s) OSReport(s)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aglobal_8h_html_a233e496a72a14d16bf25788970e6572d"><div class="ttname"><a href="global_8h.html#a233e496a72a14d16bf25788970e6572d">checkEqual</a></div><div class="ttdeci">BOOL checkEqual(s32 a, s32 b)</div><div class="ttdef"><b>Definition</b> global.h:37</div></div>
 <div class="ttc" id="aglobal_8h_html_add8c751814afc8108b19a1434ab15887"><div class="ttname"><a href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a></div><div class="ttdeci">int __cntlzw(unsigned int)</div></div>
-<div class="ttc" id="ak__cos_8c_html_a4124bc0a9335c27f086f24ba207a4912"><div class="ttname"><a href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a></div><div class="ttdeci">a</div><div class="ttdef"><b>Definition</b> k_cos.c:90</div></div>
+<div class="ttc" id="ak__cos_8c_html_a4124bc0a9335c27f086f24ba207a4912"><div class="ttname"><a href="k__cos_8c.html#a4124bc0a9335c27f086f24ba207a4912">a</a></div><div class="ttdeci">a</div><div class="ttdef"><b>Definition</b> k_cos.c:89</div></div>
 <div class="ttc" id="atypes_8h_html"><div class="ttname"><a href="types_8h.html">types.h</a></div></div>
 <div class="ttc" id="atypes_8h_html_a050c65e107f0c828f856a231f4b4e788"><div class="ttname"><a href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a></div><div class="ttdeci">int BOOL</div><div class="ttdef"><b>Definition</b> types.h:27</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>

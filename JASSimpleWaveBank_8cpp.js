@@ -14,7 +14,7 @@ var JASSimpleWaveBank_8cpp =
     [ "__nwa__FUlP7JKRHeapi", "JASSimpleWaveBank_8cpp.html#a705148c8961d58e1331fd2c53e823e37", null ],
     [ "_restgpr_29", "JASSimpleWaveBank_8cpp.html#abed5bd59c54272a132a5b4da4beff66d", null ],
     [ "_savegpr_29", "JASSimpleWaveBank_8cpp.html#a5f3662cd06864ff7627d5424c192e6f2", null ],
-    [ "func_80298FA8", "JASSimpleWaveBank_8cpp.html#a8b40366c9703dbbf924d18fc248ad6a4", null ],
+    [ "func_80298FA8", "JASSimpleWaveBank_8cpp.html#aa77ab594de9b9e0c4a86c727b205e30b", null ],
     [ "getArcCount__17JASSimpleWaveBankCFv", "JASSimpleWaveBank_8cpp.html#a36195f610f1610dc8a9ba042c2d0b95c", null ],
     [ "getWaveArc__17JASSimpleWaveBankFUl", "JASSimpleWaveBank_8cpp.html#a2db73b3c9af398002c47a459b864c11d", null ],
     [ "getWaveHandle__17JASSimpleWaveBankCFUl", "JASSimpleWaveBank_8cpp.html#a90daf24795bf6669917c6dc80789513e", null ],

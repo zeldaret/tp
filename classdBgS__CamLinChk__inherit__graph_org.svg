@@ -38,7 +38,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classdBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structdBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="214.25,-129.75 138.25,-129.75 138.25,-110.5 214.25,-110.5 214.25,-129.75"/>
 <text text-anchor="middle" x="176.25" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_LinChk</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classcBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structcBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="159.25,-185 83.25,-185 83.25,-165.75 159.25,-165.75 159.25,-185"/>
 <text text-anchor="middle" x="121.25" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_LinChk</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="161.5,-240.25 81,-240.25 81,-221 161.5,-221 161.5,-240.25"/>
 <text text-anchor="middle" x="121.25" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>
@@ -128,7 +128,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="283.12,-240.25 179.38,-240.25 179.38,-221 283.12,-221 283.12,-240.25"/>
 <text text-anchor="middle" x="231.25" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>

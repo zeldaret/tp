@@ -1,6 +1,6 @@
 var classJPAEmitterManager =
 [
-    [ "JPAEmitterManager", "classJPAEmitterManager.html#ac020f410876b8b0afd4ad3ea80261660", null ],
+    [ "JPAEmitterManager", "classJPAEmitterManager.html#a4bd04675eeab29675ad979d88b470d22", null ],
     [ "calc", "classJPAEmitterManager.html#abaea8e42a71d102a72d57006731e8773", null ],
     [ "calcYBBCam", "classJPAEmitterManager.html#a4968bedc15b294f52d8d60a48d18a8c8", null ],
     [ "clearResourceManager", "classJPAEmitterManager.html#aa37ef65b650c39d8a1b8a2631e5d9730", null ],

@@ -1332,7 +1332,7 @@ var sectionId = 'dynsection-0';
 <!-- Node57 -->
 <g id="Node000057" class="node">
 <title>Node57</title>
-<g id="a_Node000057"><a xlink:href="classdPa__levelEcallBack.html" target="_top" xlink:title=" ">
+<g id="a_Node000057"><a xlink:href="structdPa__levelEcallBack.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1167.38,-710.23 1065.12,-710.23 1065.12,-690.98 1167.38,-690.98 1167.38,-710.23"/>
 <text text-anchor="middle" x="1116.25" y="-696.73" font-family="Helvetica,sans-Serif" font-size="10.00">dPa_levelEcallBack</text>
 </a>

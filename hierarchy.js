@@ -5,14 +5,15 @@ var hierarchy =
       [ "std::bitset< 255 >", "classstd_1_1bitset.html", null ],
       [ "std::bitset< N >", "classstd_1_1bitset.html", null ]
     ] ],
+    [ "__bss_init_info", "struct____bss__init__info.html", null ],
     [ "__d_timer_info_c", "class____d__timer__info__c.html", null ],
-    [ "__destructor_chain", "struct____destructor__chain.html", null ],
+    [ "__eti_init_info", "struct____eti__init__info.html", null ],
     [ "__InStrCtrl", "struct____InStrCtrl.html", null ],
     [ "__mem_pool", "struct____mem__pool.html", null ],
     [ "__mem_pool_obj", "struct____mem__pool__obj.html", null ],
     [ "__OutStrCtrl", "struct____OutStrCtrl.html", null ],
-    [ "__partial_array_destructor", "struct____partial__array__destructor.html", null ],
     [ "__ptmf", "struct____ptmf.html", null ],
+    [ "__rom_copy_info", "struct____rom__copy__info.html", null ],
     [ "__va_list_struct", "struct____va__list__struct.html", null ],
     [ "__wInStrCtrl", "struct____wInStrCtrl.html", null ],
     [ "__wOutStrCtrl", "struct____wOutStrCtrl.html", null ],
@@ -86,25 +87,25 @@ var hierarchy =
     [ "cBgD_Ti_t", "structcBgD__Ti__t.html", null ],
     [ "cBgD_Tree_t", "structcBgD__Tree__t.html", null ],
     [ "cBgD_Tri_t", "structcBgD__Tri__t.html", null ],
-    [ "cBgS", "classcBgS.html", [
-      [ "dBgS", "classdBgS.html", null ]
+    [ "cBgS", "structcBgS.html", [
+      [ "dBgS", "structdBgS.html", null ]
     ] ],
     [ "cBgS_Chk", "classcBgS__Chk.html", [
-      [ "cBgS_GndChk", "classcBgS__GndChk.html", [
-        [ "dBgS_GndChk", "classdBgS__GndChk.html", [
+      [ "cBgS_GndChk", "structcBgS__GndChk.html", [
+        [ "dBgS_GndChk", "structdBgS__GndChk.html", [
           [ "dBgS_CamGndChk", "classdBgS__CamGndChk.html", [
             [ "dBgS_CamGndChk_Wtr", "classdBgS__CamGndChk__Wtr.html", null ]
           ] ],
           [ "dBgS_LinkGndChk", "classdBgS__LinkGndChk.html", null ],
-          [ "dBgS_ObjGndChk", "classdBgS__ObjGndChk.html", [
+          [ "dBgS_ObjGndChk", "structdBgS__ObjGndChk.html", [
             [ "dBgS_ObjGndChk_All", "classdBgS__ObjGndChk__All.html", null ],
-            [ "dBgS_ObjGndChk_Spl", "classdBgS__ObjGndChk__Spl.html", null ],
+            [ "dBgS_ObjGndChk_Spl", "structdBgS__ObjGndChk__Spl.html", null ],
             [ "dBgS_ObjGndChk_Wtr", "classdBgS__ObjGndChk__Wtr.html", null ]
           ] ]
         ] ]
       ] ],
-      [ "cBgS_LinChk", "classcBgS__LinChk.html", [
-        [ "dBgS_LinChk", "classdBgS__LinChk.html", [
+      [ "cBgS_LinChk", "structcBgS__LinChk.html", [
+        [ "dBgS_LinChk", "structdBgS__LinChk.html", [
           [ "dBgS_ArrowLinChk", "classdBgS__ArrowLinChk.html", null ],
           [ "dBgS_BombLinChk", "classdBgS__BombLinChk.html", null ],
           [ "dBgS_BoomerangLinChk", "classdBgS__BoomerangLinChk.html", null ],
@@ -120,10 +121,10 @@ var hierarchy =
       [ "cBgS_ShdwDraw", "classcBgS__ShdwDraw.html", [
         [ "ShdwDrawPoly_c", "classShdwDrawPoly__c.html", null ]
       ] ],
-      [ "dBgS_Acch", "classdBgS__Acch.html", [
+      [ "dBgS_Acch", "structdBgS__Acch.html", [
         [ "dBgS_BombAcch", "classdBgS__BombAcch.html", null ],
         [ "dBgS_LinkAcch", "classdBgS__LinkAcch.html", null ],
-        [ "dBgS_ObjAcch", "classdBgS__ObjAcch.html", null ],
+        [ "dBgS_ObjAcch", "structdBgS__ObjAcch.html", null ],
         [ "dBgS_StatueAcch", "classdBgS__StatueAcch.html", null ]
       ] ],
       [ "dBgS_CaptPoly", "structdBgS__CaptPoly.html", null ],
@@ -140,26 +141,26 @@ var hierarchy =
     [ "cBgS_GrpPassChk", "classcBgS__GrpPassChk.html", [
       [ "dBgS_GrpPassChk", "classdBgS__GrpPassChk.html", [
         [ "dBgS_Chk", "classdBgS__Chk.html", [
-          [ "dBgS_Acch", "classdBgS__Acch.html", null ],
+          [ "dBgS_Acch", "structdBgS__Acch.html", null ],
           [ "dBgS_CaptPoly", "structdBgS__CaptPoly.html", null ],
-          [ "dBgS_GndChk", "classdBgS__GndChk.html", null ],
-          [ "dBgS_LinChk", "classdBgS__LinChk.html", null ],
+          [ "dBgS_GndChk", "structdBgS__GndChk.html", null ],
+          [ "dBgS_LinChk", "structdBgS__LinChk.html", null ],
           [ "dBgS_RoofChk", "classdBgS__RoofChk.html", null ],
           [ "dBgS_SphChk", "classdBgS__SphChk.html", null ],
           [ "dBgS_SplGrpChk", "classdBgS__SplGrpChk.html", null ]
         ] ]
       ] ]
     ] ],
-    [ "cBgS_PolyInfo", "classcBgS__PolyInfo.html", [
-      [ "cBgS_GndChk", "classcBgS__GndChk.html", null ],
-      [ "cBgS_LinChk", "classcBgS__LinChk.html", null ],
-      [ "dBgS_AcchCir", "classdBgS__AcchCir.html", null ],
+    [ "cBgS_PolyInfo", "structcBgS__PolyInfo.html", [
+      [ "cBgS_GndChk", "structcBgS__GndChk.html", null ],
+      [ "cBgS_LinChk", "structcBgS__LinChk.html", null ],
+      [ "dBgS_AcchCir", "structdBgS__AcchCir.html", null ],
       [ "dBgS_RoofChk", "classdBgS__RoofChk.html", null ],
       [ "dBgS_SphChk", "classdBgS__SphChk.html", null ],
       [ "dBgS_SplGrpChk", "classdBgS__SplGrpChk.html", null ]
     ] ],
     [ "cBgS_PolyPassChk", "classcBgS__PolyPassChk.html", [
-      [ "dBgS_PolyPassChk", "classdBgS__PolyPassChk.html", [
+      [ "dBgS_PolyPassChk", "structdBgS__PolyPassChk.html", [
         [ "dBgS_Chk", "classdBgS__Chk.html", null ]
       ] ]
     ] ],
@@ -177,43 +178,41 @@ var hierarchy =
     [ "cBgW_GrpElm", "classcBgW__GrpElm.html", null ],
     [ "cBgW_RwgElm", "classcBgW__RwgElm.html", null ],
     [ "cBgW_TriElm", "classcBgW__TriElm.html", null ],
-    [ "cCcD_AabAttr", "structcCcD__AabAttr.html", null ],
     [ "cCcD_DivideInfo", "classcCcD__DivideInfo.html", null ],
     [ "cCcD_GStts", "structcCcD__GStts.html", [
       [ "dCcD_GStts", "structdCcD__GStts.html", [
         [ "dCcD_Stts", "structdCcD__Stts.html", null ]
       ] ]
     ] ],
-    [ "cCcD_ObjCommonBase", "structcCcD__ObjCommonBase.html", [
-      [ "cCcD_ObjAt", "structcCcD__ObjAt.html", null ],
-      [ "cCcD_ObjCo", "structcCcD__ObjCo.html", null ],
-      [ "cCcD_ObjTg", "structcCcD__ObjTg.html", null ]
+    [ "cCcD_ObjCommonBase", "classcCcD__ObjCommonBase.html", [
+      [ "cCcD_ObjAt", "classcCcD__ObjAt.html", null ],
+      [ "cCcD_ObjCo", "classcCcD__ObjCo.html", null ],
+      [ "cCcD_ObjTg", "classcCcD__ObjTg.html", null ]
     ] ],
-    [ "cCcD_ObjHitInf", "structcCcD__ObjHitInf.html", [
+    [ "cCcD_ObjHitInf", "classcCcD__ObjHitInf.html", [
       [ "cCcD_Obj", "structcCcD__Obj.html", [
-        [ "cCcD_GObjInf", "structcCcD__GObjInf.html", [
+        [ "cCcD_GObjInf", "classcCcD__GObjInf.html", [
           [ "dCcD_GObjInf", "structdCcD__GObjInf.html", [
-            [ "dCcD_Cps", "structdCcD__Cps.html", null ],
+            [ "dCcD_Cps", "classdCcD__Cps.html", null ],
             [ "dCcD_Cyl", "structdCcD__Cyl.html", null ],
-            [ "dCcD_Sph", "structdCcD__Sph.html", null ],
-            [ "dCcD_Tri", "structdCcD__Tri.html", null ]
+            [ "dCcD_Sph", "classdCcD__Sph.html", null ],
+            [ "dCcD_Tri", "classdCcD__Tri.html", null ]
           ] ]
         ] ]
       ] ]
     ] ],
-    [ "cCcD_PntAttr", "structcCcD__PntAttr.html", null ],
-    [ "cCcD_ShapeAttr", "structcCcD__ShapeAttr.html", [
-      [ "cCcD_CpsAttr", "structcCcD__CpsAttr.html", [
-        [ "dCcD_Cps", "structdCcD__Cps.html", null ]
+    [ "cCcD_ShapeAttr", "classcCcD__ShapeAttr.html", [
+      [ "cCcD_CpsAttr", "classcCcD__CpsAttr.html", [
+        [ "dCcD_Cps", "classdCcD__Cps.html", null ]
       ] ],
-      [ "cCcD_CylAttr", "structcCcD__CylAttr.html", [
+      [ "cCcD_CylAttr", "classcCcD__CylAttr.html", [
         [ "dCcD_Cyl", "structdCcD__Cyl.html", null ]
       ] ],
-      [ "cCcD_SphAttr", "structcCcD__SphAttr.html", [
-        [ "dCcD_Sph", "structdCcD__Sph.html", null ]
+      [ "cCcD_SphAttr", "classcCcD__SphAttr.html", [
+        [ "dCcD_Sph", "classdCcD__Sph.html", null ]
       ] ],
-      [ "cCcD_TriAttr", "structcCcD__TriAttr.html", [
-        [ "dCcD_Tri", "structdCcD__Tri.html", null ]
+      [ "cCcD_TriAttr", "classcCcD__TriAttr.html", [
+        [ "dCcD_Tri", "classdCcD__Tri.html", null ]
       ] ]
     ] ],
     [ "cCcD_ShapeAttr::Shape", "structcCcD__ShapeAttr_1_1Shape.html", null ],
@@ -226,10 +225,10 @@ var hierarchy =
     [ "cCcD_SrcObjTg", "structcCcD__SrcObjTg.html", null ],
     [ "cCcD_SrcSphAttr", "structcCcD__SrcSphAttr.html", null ],
     [ "cCcD_SrcTriAttr", "structcCcD__SrcTriAttr.html", null ],
-    [ "cCcD_Stts", "structcCcD__Stts.html", [
+    [ "cCcD_Stts", "classcCcD__Stts.html", [
       [ "dCcD_Stts", "structdCcD__Stts.html", null ]
     ] ],
-    [ "cCcS", "classcCcS.html", [
+    [ "cCcS", "structcCcS.html", [
       [ "dCcS", "classdCcS.html", null ]
     ] ],
     [ "cDegree", "classcDegree.html", null ],
@@ -241,29 +240,29 @@ var hierarchy =
     [ "ClothJoint_c", "classClothJoint__c.html", null ],
     [ "CLOUD_EFF", "structCLOUD__EFF.html", null ],
     [ "cM2dGCir", "classcM2dGCir.html", [
-      [ "cM3dGCir", "classcM3dGCir.html", null ]
+      [ "cM3dGCir", "structcM3dGCir.html", null ]
     ] ],
-    [ "cM3dGAab", "classcM3dGAab.html", [
+    [ "cM3dGAab", "structcM3dGAab.html", [
       [ "cBgW_NodeTree", "classcBgW__NodeTree.html", null ],
       [ "cCcD_DivideArea", "classcCcD__DivideArea.html", null ]
     ] ],
     [ "cM3dGCpsS", "structcM3dGCpsS.html", null ],
     [ "cM3dGCyl", "structcM3dGCyl.html", [
-      [ "cCcD_CylAttr", "structcCcD__CylAttr.html", null ]
+      [ "cCcD_CylAttr", "classcCcD__CylAttr.html", null ]
     ] ],
     [ "cM3dGCylS", "structcM3dGCylS.html", null ],
-    [ "cM3dGLin", "classcM3dGLin.html", [
-      [ "cM3dGCps", "structcM3dGCps.html", [
-        [ "cCcD_CpsAttr", "structcCcD__CpsAttr.html", null ]
+    [ "cM3dGLin", "structcM3dGLin.html", [
+      [ "cM3dGCps", "classcM3dGCps.html", [
+        [ "cCcD_CpsAttr", "classcCcD__CpsAttr.html", null ]
       ] ]
     ] ],
-    [ "cM3dGPla", "classcM3dGPla.html", [
+    [ "cM3dGPla", "structcM3dGPla.html", [
       [ "cM3dGTri", "classcM3dGTri.html", [
-        [ "cCcD_TriAttr", "structcCcD__TriAttr.html", null ]
+        [ "cCcD_TriAttr", "classcCcD__TriAttr.html", null ]
       ] ]
     ] ],
     [ "cM3dGSph", "structcM3dGSph.html", [
-      [ "cCcD_SphAttr", "structcCcD__SphAttr.html", null ],
+      [ "cCcD_SphAttr", "classcCcD__SphAttr.html", null ],
       [ "dBgS_SphChk", "classdBgS__SphChk.html", null ]
     ] ],
     [ "cM3dGSphS", "structcM3dGSphS.html", null ],
@@ -767,7 +766,6 @@ var hierarchy =
     [ "daNpcAsh_Param_c::param", "structdaNpcAsh__Param__c_1_1param.html", null ],
     [ "daNpcAshB_Param_c", "classdaNpcAshB__Param__c.html", null ],
     [ "daNpcBlueNS_Param_c", "classdaNpcBlueNS__Param__c.html", null ],
-    [ "daNpcBlueNS_Param_c::Data", "structdaNpcBlueNS__Param__c_1_1Data.html", null ],
     [ "daNpcBouS_Param_c", "classdaNpcBouS__Param__c.html", null ],
     [ "daNpcCd2_HIO_c", "structdaNpcCd2__HIO__c.html", null ],
     [ "daNpcCd2_HIO_Jnt_c", "structdaNpcCd2__HIO__Jnt__c.html", null ],
@@ -808,16 +806,16 @@ var hierarchy =
     [ "daNpcRafrel_Param_c", "classdaNpcRafrel__Param__c.html", null ],
     [ "daNpcShad_Param_c", "classdaNpcShad__Param__c.html", null ],
     [ "daNpcShoe_Param_c", "classdaNpcShoe__Param__c.html", null ],
-    [ "daNpcT_ActorMngr_c", "classdaNpcT__ActorMngr__c.html", null ],
-    [ "daNpcT_DmgStagger_c", "classdaNpcT__DmgStagger__c.html", null ],
+    [ "daNpcT_ActorMngr_c", "structdaNpcT__ActorMngr__c.html", null ],
+    [ "daNpcT_DmgStagger_c", "structdaNpcT__DmgStagger__c.html", null ],
     [ "daNpcT_evtData_c", "structdaNpcT__evtData__c.html", null ],
     [ "daNpcT_faceMotionAnmData_c", "structdaNpcT__faceMotionAnmData__c.html", null ],
     [ "daNpcT_Hermite_c", "classdaNpcT__Hermite__c.html", null ],
-    [ "daNpcT_JntAnm_c", "classdaNpcT__JntAnm__c.html", null ],
+    [ "daNpcT_JntAnm_c", "structdaNpcT__JntAnm__c.html", null ],
     [ "daNpcT_motionAnmData_c", "structdaNpcT__motionAnmData__c.html", null ],
-    [ "daNpcT_MotionSeqMngr_c", "classdaNpcT__MotionSeqMngr__c.html", null ],
-    [ "daNpcT_MotionSeqMngr_c::sequenceStepData_c", "classdaNpcT__MotionSeqMngr__c_1_1sequenceStepData__c.html", null ],
-    [ "daNpcT_Path_c", "classdaNpcT__Path__c.html", null ],
+    [ "daNpcT_MotionSeqMngr_c", "structdaNpcT__MotionSeqMngr__c.html", null ],
+    [ "daNpcT_MotionSeqMngr_c::sequenceStepData_c", "structdaNpcT__MotionSeqMngr__c_1_1sequenceStepData__c.html", null ],
+    [ "daNpcT_Path_c", "structdaNpcT__Path__c.html", null ],
     [ "daNpcT_pntData_c", "structdaNpcT__pntData__c.html", null ],
     [ "daNpcThe_Param_c", "classdaNpcThe__Param__c.html", null ],
     [ "daNpcThe_Param_c::param", "structdaNpcThe__Param__c_1_1param.html", null ],
@@ -918,14 +916,13 @@ var hierarchy =
     [ "daObjYobikusa_c::actionFuncEntry", "structdaObjYobikusa__c_1_1actionFuncEntry.html", null ],
     [ "daObjYobikusa_c::attributes", "structdaObjYobikusa__c_1_1attributes.html", null ],
     [ "daObjZraMark_Hio_Param_c", "classdaObjZraMark__Hio__Param__c.html", null ],
-    [ "daOptiLift_HIO_c", "classdaOptiLift__HIO__c.html", null ],
     [ "daPeru_Param_c", "classdaPeru__Param__c.html", null ],
     [ "daPillar_HIO_c", "classdaPillar__HIO__c.html", null ],
     [ "daPoCandle_HIO_c", "classdaPoCandle__HIO__c.html", null ],
     [ "daPoFire_HIO_c", "classdaPoFire__HIO__c.html", null ],
     [ "daPoTbox_HIO_c", "classdaPoTbox__HIO__c.html", null ],
     [ "daPropY_HIO_c", "classdaPropY__HIO__c.html", null ],
-    [ "daPy_actorKeep_c", "classdaPy__actorKeep__c.html", null ],
+    [ "daPy_actorKeep_c", "structdaPy__actorKeep__c.html", null ],
     [ "daPy_anmHeap_c", "classdaPy__anmHeap__c.html", null ],
     [ "daPy_boomerangMove_c", "classdaPy__boomerangMove__c.html", null ],
     [ "daPy_demo_c", "classdaPy__demo__c.html", null ],
@@ -943,6 +940,7 @@ var hierarchy =
     [ "daTag_Lantern_Param_c", "classdaTag__Lantern__Param__c.html", null ],
     [ "daTag_Msg_HIO_Param_c", "classdaTag__Msg__HIO__Param__c.html", null ],
     [ "daTag_Msg_Param_c", "classdaTag__Msg__Param__c.html", null ],
+    [ "daTagQs_c", "structdaTagQs__c.html", null ],
     [ "daTagTWGate_zevParam", "structdaTagTWGate__zevParam.html", null ],
     [ "daTagWaterFall_HIO_c", "structdaTagWaterFall__HIO__c.html", null ],
     [ "daTbox_ModelInfo", "structdaTbox__ModelInfo.html", null ],
@@ -956,9 +954,9 @@ var hierarchy =
     [ "dAttCatch_c", "classdAttCatch__c.html", null ],
     [ "dAttDraw_c", "classdAttDraw__c.html", null ],
     [ "dAttDrawParam_c", "classdAttDrawParam__c.html", null ],
-    [ "dAttention_c", "classdAttention__c.html", null ],
+    [ "dAttention_c", "structdAttention__c.html", null ],
     [ "dAttHint_c", "classdAttHint__c.html", null ],
-    [ "dAttList_c", "classdAttList__c.html", null ],
+    [ "dAttList_c", "structdAttList__c.html", null ],
     [ "dAttLook_c", "classdAttLook__c.html", null ],
     [ "dAttParam_c", "classdAttParam__c.html", null ],
     [ "daTurara_HIO_c", "classdaTurara__HIO__c.html", null ],
@@ -978,7 +976,7 @@ var hierarchy =
     [ "dBrightCheck_c", "classdBrightCheck__c.html", null ],
     [ "dCamBGChk_c", "classdCamBGChk__c.html", null ],
     [ "dCamBGChk_c::ChkInfo", "structdCamBGChk__c_1_1ChkInfo.html", null ],
-    [ "dCamera_c", "classdCamera__c.html", null ],
+    [ "dCamera_c", "structdCamera__c.html", null ],
     [ "dCamera_c::BG", "structdCamera__c_1_1BG.html", null ],
     [ "dCamera_c::dCamera_pad_info", "structdCamera__c_1_1dCamera__pad__info.html", null ],
     [ "dCamera_c::dCamera_pad_info::_stick", "structdCamera__c_1_1dCamera__pad__info_1_1__stick.html", null ],
@@ -996,10 +994,10 @@ var hierarchy =
     [ "dCamSetup_c", "classdCamSetup__c.html", null ],
     [ "dCamStyleData", "structdCamStyleData.html", null ],
     [ "dCamStyleData::StyleData", "structdCamStyleData_1_1StyleData.html", null ],
-    [ "dCcD_GAtTgCoCommonBase", "structdCcD__GAtTgCoCommonBase.html", [
-      [ "dCcD_GObjAt", "structdCcD__GObjAt.html", null ],
-      [ "dCcD_GObjCo", "structdCcD__GObjCo.html", null ],
-      [ "dCcD_GObjTg", "structdCcD__GObjTg.html", null ]
+    [ "dCcD_GAtTgCoCommonBase", "classdCcD__GAtTgCoCommonBase.html", [
+      [ "dCcD_GObjAt", "classdCcD__GObjAt.html", null ],
+      [ "dCcD_GObjCo", "classdCcD__GObjCo.html", null ],
+      [ "dCcD_GObjTg", "classdCcD__GObjTg.html", null ]
     ] ],
     [ "dCcD_SrcCps", "structdCcD__SrcCps.html", null ],
     [ "dCcD_SrcCyl", "structdCcD__SrcCyl.html", null ],
@@ -1021,8 +1019,8 @@ var hierarchy =
     [ "dComIfG_resLoader_c", "classdComIfG__resLoader__c.html", null ],
     [ "dComIfGoat_info_c", "classdComIfGoat__info__c.html", null ],
     [ "dCstick_c", "classdCstick__c.html", null ],
-    [ "dDemo_c", "classdDemo__c.html", null ],
-    [ "dDemo_object_c", "classdDemo__object__c.html", null ],
+    [ "dDemo_c", "structdDemo__c.html", null ],
+    [ "dDemo_object_c", "structdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
@@ -1037,7 +1035,7 @@ var hierarchy =
       [ "dDlst_2D_c", "classdDlst__2D__c.html", null ],
       [ "dDlst_BrightCheck_c", "classdDlst__BrightCheck__c.html", null ],
       [ "dDlst_FileInfo_c", "classdDlst__FileInfo__c.html", null ],
-      [ "dDlst_FileWarn_c", "structdDlst__FileWarn__c.html", null ],
+      [ "dDlst_FileWarn_c", "classdDlst__FileWarn__c.html", null ],
       [ "dDlst_GameOverScrnDraw_c", "classdDlst__GameOverScrnDraw__c.html", null ],
       [ "dDlst_Gameover_CAPTURE_c", "classdDlst__Gameover__CAPTURE__c.html", null ],
       [ "dDlst_KanteraIcon_c", "classdDlst__KanteraIcon__c.html", null ],
@@ -1072,6 +1070,7 @@ var hierarchy =
       ] ],
       [ "dMenu_Collect2DTop_c", "classdMenu__Collect2DTop__c.html", null ],
       [ "dMenu_Collect2D_c", "classdMenu__Collect2D__c.html", null ],
+      [ "dMenu_DmapBg_c", "structdMenu__DmapBg__c.html", null ],
       [ "dMenu_Fishing_c", "classdMenu__Fishing__c.html", null ],
       [ "dMenu_Fmap2DBack_c", "classdMenu__Fmap2DBack__c.html", null ],
       [ "dMenu_Fmap2DTop_c", "classdMenu__Fmap2DTop__c.html", null ],
@@ -1117,7 +1116,7 @@ var hierarchy =
     [ "dDlst_list_c", "classdDlst__list__c.html", null ],
     [ "dDlst_peekZ_c", "classdDlst__peekZ__c.html", null ],
     [ "dDlst_peekZ_c::dDlst_peekZ_entry", "structdDlst__peekZ__c_1_1dDlst__peekZ__entry.html", null ],
-    [ "dDlst_shadowControl_c", "classdDlst__shadowControl__c.html", null ],
+    [ "dDlst_shadowControl_c", "structdDlst__shadowControl__c.html", null ],
     [ "dDlst_shadowPoly_c", "classdDlst__shadowPoly__c.html", [
       [ "dDlst_shadowRealPoly_c", "classdDlst__shadowRealPoly__c.html", null ]
     ] ],
@@ -1142,6 +1141,7 @@ var hierarchy =
     [ "delete_tag_class", "structdelete__tag__class.html", null ],
     [ "demo_s1_ke_s", "structdemo__s1__ke__s.html", null ],
     [ "dEnemyItem_c", "classdEnemyItem__c.html", null ],
+    [ "DestructorChain", "structDestructorChain.html", null ],
     [ "dEvDb_bit_c", "classdEvDb__bit__c.html", null ],
     [ "dEvDb_flag_base_c", "classdEvDb__flag__base__c.html", null ],
     [ "dEvDb_reg_c", "classdEvDb__reg__c.html", null ],
@@ -1158,13 +1158,16 @@ var hierarchy =
     [ "dEvDtStaff_c::StaffWork", "structdEvDtStaff__c_1_1StaffWork.html", null ],
     [ "dEvDtStaff_c::TimerKeeperData", "structdEvDtStaff__c_1_1TimerKeeperData.html", null ],
     [ "dEvent_exception_c", "classdEvent__exception__c.html", null ],
-    [ "dEvent_manager_c", "classdEvent__manager__c.html", null ],
+    [ "dEvent_manager_c", "structdEvent__manager__c.html", null ],
     [ "dEvLib_callback_c", "classdEvLib__callback__c.html", [
       [ "daObjHBombkoya_c", "classdaObjHBombkoya__c.html", null ],
+      [ "daObjSwBallA_c", "classdaObjSwBallA__c.html", null ],
+      [ "daObjSwBallB_c", "classdaObjSwBallB__c.html", null ],
       [ "daObjVolcBall_c", "classdaObjVolcBall__c.html", null ],
+      [ "daTagAtkItem_c", "classdaTagAtkItem__c.html", null ],
       [ "dalv4CandleDemoTag_c", "classdalv4CandleDemoTag__c.html", null ]
     ] ],
-    [ "dEvt_control_c", "classdEvt__control__c.html", null ],
+    [ "dEvt_control_c", "structdEvt__control__c.html", null ],
     [ "dEvt_info_c", "classdEvt__info__c.html", null ],
     [ "dEvt_order_c", "classdEvt__order__c.html", null ],
     [ "dEyeHL_c", "classdEyeHL__c.html", null ],
@@ -1197,7 +1200,7 @@ var hierarchy =
     [ "dKy_pol_effcol_struct", "structdKy__pol__effcol__struct.html", null ],
     [ "dKy_pol_efftbl_struct", "structdKy__pol__efftbl__struct.html", null ],
     [ "dKy_pol_sound_struct", "structdKy__pol__sound__struct.html", null ],
-    [ "dKy_tevstr_c", "classdKy__tevstr__c.html", null ],
+    [ "dKy_tevstr_c", "structdKy__tevstr__c.html", null ],
     [ "dKyd_l_vr_box_data_struct", "structdKyd__l__vr__box__data__struct.html", null ],
     [ "dKyd_lightSchejule", "structdKyd__lightSchejule.html", null ],
     [ "dkydata_bloomInfo_info_class", "classdkydata__bloomInfo__info__class.html", null ],
@@ -1216,7 +1219,6 @@ var hierarchy =
     [ "dMenu_Collect3D_c", "classdMenu__Collect3D__c.html", null ],
     [ "dMenu_Collect_c", "classdMenu__Collect__c.html", null ],
     [ "dMenu_Dmap_c", "classdMenu__Dmap__c.html", null ],
-    [ "dMenu_DmapBg_c", "structdMenu__DmapBg__c.html", null ],
     [ "dMenu_DmapMap_c", "structdMenu__DmapMap__c.html", null ],
     [ "dMenu_Fmap2DBack_c::RegionTexData", "structdMenu__Fmap2DBack__c_1_1RegionTexData.html", null ],
     [ "dMenu_Fmap_c", "classdMenu__Fmap__c.html", null ],
@@ -1246,6 +1248,7 @@ var hierarchy =
       [ "dMenuFmapIconDisp_c", "classdMenuFmapIconDisp__c.html", null ]
     ] ],
     [ "dMenuMapCommon_c", "structdMenuMapCommon__c.html", [
+      [ "dMenu_DmapBg_c", "structdMenu__DmapBg__c.html", null ],
       [ "dMenu_Fmap2DBack_c", "classdMenu__Fmap2DBack__c.html", null ]
     ] ],
     [ "dMenuMapCommon_c::data", "structdMenuMapCommon__c_1_1data.html", null ],
@@ -1285,7 +1288,7 @@ var hierarchy =
     [ "dMpath_RGB5A3_palDt_s", "structdMpath__RGB5A3__palDt__s.html", null ],
     [ "dMpath_RGB5A3_s", "structdMpath__RGB5A3__s.html", null ],
     [ "dMs_HIO_c", "classdMs__HIO__c.html", null ],
-    [ "dMsgFlow_c", "classdMsgFlow__c.html", null ],
+    [ "dMsgFlow_c", "structdMsgFlow__c.html", null ],
     [ "dMsgObject_HIO_c", "classdMsgObject__HIO__c.html", null ],
     [ "dMsgObject_HowlHIO_c", "classdMsgObject__HowlHIO__c.html", null ],
     [ "dMsgScrn3Select_c", "classdMsgScrn3Select__c.html", null ],
@@ -1294,17 +1297,17 @@ var hierarchy =
     [ "dMsgScrnLight_c", "structdMsgScrnLight__c.html", null ],
     [ "dMsgScrnLight_HIO_c", "classdMsgScrnLight__HIO__c.html", null ],
     [ "dMsgStringBase_c", "classdMsgStringBase__c.html", [
-      [ "dMsgString_c", "structdMsgString__c.html", null ]
+      [ "dMsgString_c", "classdMsgString__c.html", null ]
     ] ],
     [ "dMsgUnit_c", "classdMsgUnit__c.html", null ],
     [ "dMw_DHIO_c", "classdMw__DHIO__c.html", null ],
     [ "dMw_HIO_c", "classdMw__HIO__c.html", null ],
     [ "dName_c", "classdName__c.html", null ],
     [ "dNm_HIO_c", "classdNm__HIO__c.html", null ],
-    [ "dNpcLib_lookat_c", "classdNpcLib__lookat__c.html", null ],
+    [ "dNpcLib_lookat_c", "structdNpcLib__lookat__c.html", null ],
     [ "door_param2_c", "classdoor__param2__c.html", null ],
     [ "DOUBLE_POS", "structDOUBLE__POS.html", null ],
-    [ "dPa_control_c", "classdPa__control__c.html", null ],
+    [ "dPa_control_c", "structdPa__control__c.html", null ],
     [ "dPa_control_c::level_c", "classdPa__control__c_1_1level__c.html", null ],
     [ "dPa_control_c::level_c::emitter_c", "classdPa__control__c_1_1level__c_1_1emitter__c.html", null ],
     [ "dPa_modelEcallBack::model_c", "structdPa__modelEcallBack_1_1model__c.html", null ],
@@ -1319,9 +1322,9 @@ var hierarchy =
     [ "dPath", "structdPath.html", null ],
     [ "dPathCurve", "structdPathCurve.html", null ],
     [ "draw_priority_class", "structdraw__priority__class.html", null ],
-    [ "dRes_control_c", "classdRes__control__c.html", null ],
-    [ "dRes_info_c", "classdRes__info__c.html", null ],
-    [ "dScnKy_env_light_c", "classdScnKy__env__light__c.html", null ],
+    [ "dRes_control_c", "structdRes__control__c.html", null ],
+    [ "dRes_info_c", "structdRes__info__c.html", null ],
+    [ "dScnKy_env_light_c", "structdScnKy__env__light__c.html", null ],
     [ "dScnPly_env_debugHIO_c", "classdScnPly__env__debugHIO__c.html", null ],
     [ "dScnPly_env_HIO_c", "classdScnPly__env__HIO__c.html", null ],
     [ "dScnPly_env_otherHIO_c", "classdScnPly__env__otherHIO__c.html", null ],
@@ -1442,7 +1445,7 @@ var hierarchy =
     [ "DVDDriveInfo", "structDVDDriveInfo.html", null ],
     [ "DVDFileInfo", "structDVDFileInfo.html", null ],
     [ "DVDQueue", "structDVDQueue.html", null ],
-    [ "dVibration_c", "classdVibration__c.html", null ],
+    [ "dVibration_c", "structdVibration__c.html", null ],
     [ "dVibration_pattern", "classdVibration__pattern.html", null ],
     [ "DynamicModuleControlBase", "structDynamicModuleControlBase.html", [
       [ "DynamicModuleControl", "structDynamicModuleControl.html", null ]
@@ -1488,7 +1491,7 @@ var hierarchy =
     [ "fmpTresTypeGroupDataListAll_c", "classfmpTresTypeGroupDataListAll__c.html", null ],
     [ "FmtMember_c", "structFmtMember__c.html", null ],
     [ "FmtMngAttributes", "structFmtMngAttributes.html", null ],
-    [ "fopAcM_gc_c", "classfopAcM__gc__c.html", null ],
+    [ "fopAcM_gc_c", "structfopAcM__gc__c.html", null ],
     [ "fopAcM_lc_c", "classfopAcM__lc__c.html", null ],
     [ "fopAcM_prm_class", "structfopAcM__prm__class.html", null ],
     [ "fopAcM_prmBase_class", "structfopAcM__prmBase__class.html", null ],
@@ -1521,12 +1524,6 @@ var hierarchy =
     [ "himo_s", "structhimo__s.html", null ],
     [ "home_path_pnt", "structhome__path__pnt.html", null ],
     [ "HOUSI_EFF", "structHOUSI__EFF.html", null ],
-    [ "ifdef INHERIT_NPC daNpcF_cfopAc_ac_c", null, [
-      [ "daNpcBlueNS_c", "classdaNpcBlueNS__c.html", null ]
-    ] ],
-    [ "ifdef WITH_MOVEBG dBgS_MoveBgActorfopAc_ac_c", null, [
-      [ "daObjIce_s_c", "classdaObjIce__s__c.html", null ]
-    ] ],
     [ "inf1_entry_t", "structinf1__entry__t.html", null ],
     [ "inf1_section_t", "structinf1__section__t.html", null ],
     [ "interface_of_controller_pad", "structinterface__of__controller__pad.html", null ],
@@ -1649,14 +1646,14 @@ var hierarchy =
         [ "J3DAnmColorFull", "classJ3DAnmColorFull.html", null ],
         [ "J3DAnmColorKey", "classJ3DAnmColorKey.html", null ]
       ] ],
-      [ "J3DAnmTevRegKey", "classJ3DAnmTevRegKey.html", null ],
-      [ "J3DAnmTexPattern", "classJ3DAnmTexPattern.html", null ],
-      [ "J3DAnmTextureSRTKey", "classJ3DAnmTextureSRTKey.html", null ],
+      [ "J3DAnmTevRegKey", "structJ3DAnmTevRegKey.html", null ],
+      [ "J3DAnmTexPattern", "structJ3DAnmTexPattern.html", null ],
+      [ "J3DAnmTextureSRTKey", "structJ3DAnmTextureSRTKey.html", null ],
       [ "J3DAnmTransform", "structJ3DAnmTransform.html", [
         [ "J3DAnmTransformFull", "classJ3DAnmTransformFull.html", [
           [ "J3DAnmTransformFullWithLerp", "classJ3DAnmTransformFullWithLerp.html", null ]
         ] ],
-        [ "J3DAnmTransformKey", "classJ3DAnmTransformKey.html", [
+        [ "J3DAnmTransformKey", "structJ3DAnmTransformKey.html", [
           [ "mDoExt_transAnmBas", "classmDoExt__transAnmBas.html", null ]
         ] ]
       ] ],
@@ -1729,8 +1726,8 @@ var hierarchy =
     [ "J3DFogInfo", "structJ3DFogInfo.html", [
       [ "J3DFog", "structJ3DFog.html", null ]
     ] ],
-    [ "J3DFrameCtrl", "classJ3DFrameCtrl.html", [
-      [ "daPy_frameCtrl_c", "classdaPy__frameCtrl__c.html", null ]
+    [ "J3DFrameCtrl", "structJ3DFrameCtrl.html", [
+      [ "daPy_frameCtrl_c", "structdaPy__frameCtrl__c.html", null ]
     ] ],
     [ "J3DIndBlock", "classJ3DIndBlock.html", [
       [ "J3DIndBlockFull", "classJ3DIndBlockFull.html", null ],
@@ -1748,29 +1745,29 @@ var hierarchy =
     [ "J3DIndTexOrderInfo", "structJ3DIndTexOrderInfo.html", [
       [ "J3DIndTexOrder", "structJ3DIndTexOrder.html", null ]
     ] ],
-    [ "J3DJoint", "classJ3DJoint.html", null ],
+    [ "J3DJoint", "structJ3DJoint.html", null ],
     [ "J3DJointFactory", "structJ3DJointFactory.html", null ],
     [ "J3DJointInitData", "structJ3DJointInitData.html", null ],
     [ "J3DJointTree", "classJ3DJointTree.html", null ],
     [ "J3DLightInfo", "classJ3DLightInfo.html", null ],
     [ "J3DLightObj", "classJ3DLightObj.html", null ],
-    [ "J3DMatColorAnm", "classJ3DMatColorAnm.html", null ],
-    [ "J3DMaterial", "classJ3DMaterial.html", [
+    [ "J3DMatColorAnm", "structJ3DMatColorAnm.html", null ],
+    [ "J3DMaterial", "structJ3DMaterial.html", [
       [ "J3DLockedMaterial", "classJ3DLockedMaterial.html", null ],
       [ "J3DPatchedMaterial", "classJ3DPatchedMaterial.html", null ]
     ] ],
-    [ "J3DMaterialAnm", "classJ3DMaterialAnm.html", [
+    [ "J3DMaterialAnm", "structJ3DMaterialAnm.html", [
       [ "daAlink_matAnm_c", "classdaAlink__matAnm__c.html", null ],
-      [ "daHoZelda_matAnm_c", "classdaHoZelda__matAnm__c.html", null ],
+      [ "daHoZelda_matAnm_c", "structdaHoZelda__matAnm__c.html", null ],
       [ "daNpcF_MatAnm_c", "classdaNpcF__MatAnm__c.html", null ],
-      [ "daNpcT_MatAnm_c", "classdaNpcT__MatAnm__c.html", null ]
+      [ "daNpcT_MatAnm_c", "structdaNpcT__MatAnm__c.html", null ]
     ] ],
     [ "J3DMaterialFactory", "classJ3DMaterialFactory.html", null ],
     [ "J3DMaterialFactory_v21", "classJ3DMaterialFactory__v21.html", null ],
     [ "J3DMaterialInitData", "structJ3DMaterialInitData.html", null ],
     [ "J3DMaterialInitData_v21", "structJ3DMaterialInitData__v21.html", null ],
-    [ "J3DMaterialTable", "classJ3DMaterialTable.html", null ],
-    [ "J3DModel", "classJ3DModel.html", null ],
+    [ "J3DMaterialTable", "structJ3DMaterialTable.html", null ],
+    [ "J3DModel", "structJ3DModel.html", null ],
     [ "J3DModelBlock", "structJ3DModelBlock.html", [
       [ "J3DDrawBlock", "structJ3DDrawBlock.html", null ],
       [ "J3DEnvelopeBlock", "structJ3DEnvelopeBlock.html", null ],
@@ -1783,7 +1780,7 @@ var hierarchy =
       [ "J3DTextureBlock", "structJ3DTextureBlock.html", null ],
       [ "J3DVertexBlock", "structJ3DVertexBlock.html", null ]
     ] ],
-    [ "J3DModelData", "classJ3DModelData.html", null ],
+    [ "J3DModelData", "structJ3DModelData.html", null ],
     [ "J3DModelFileData", "structJ3DModelFileData.html", null ],
     [ "J3DModelHierarchy", "structJ3DModelHierarchy.html", null ],
     [ "J3DModelLoader", "classJ3DModelLoader.html", null ],
@@ -1791,19 +1788,19 @@ var hierarchy =
     [ "J3DModelLoader_v26", "classJ3DModelLoader__v26.html", null ],
     [ "J3DModelLoaderDataBase", "classJ3DModelLoaderDataBase.html", null ],
     [ "J3DMtxBuffer", "classJ3DMtxBuffer.html", null ],
-    [ "J3DMtxCalc", "classJ3DMtxCalc.html", [
-      [ "J3DMtxCalcNoAnmBase", "classJ3DMtxCalcNoAnmBase.html", [
-        [ "J3DMtxCalcNoAnm< J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya >", "classJ3DMtxCalcNoAnm.html", [
+    [ "J3DMtxCalc", "structJ3DMtxCalc.html", [
+      [ "J3DMtxCalcNoAnmBase", "structJ3DMtxCalcNoAnmBase.html", [
+        [ "J3DMtxCalcNoAnm< J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya >", "structJ3DMtxCalcNoAnm.html", [
           [ "mDoExt_MtxCalcAnmBlendTbl", "structmDoExt__MtxCalcAnmBlendTbl.html", [
             [ "mDoExt_MtxCalcAnmBlendTblOld", "structmDoExt__MtxCalcAnmBlendTblOld.html", null ]
           ] ],
-          [ "mDoExt_morf_c", "classmDoExt__morf__c.html", [
+          [ "mDoExt_morf_c", "structmDoExt__morf__c.html", [
             [ "mDoExt_McaMorf", "classmDoExt__McaMorf.html", null ],
             [ "mDoExt_McaMorf2", "classmDoExt__McaMorf2.html", null ],
-            [ "mDoExt_McaMorfSO", "classmDoExt__McaMorfSO.html", null ]
+            [ "mDoExt_McaMorfSO", "structmDoExt__McaMorfSO.html", null ]
           ] ]
         ] ],
-        [ "J3DMtxCalcNoAnm< A, B >", "classJ3DMtxCalcNoAnm.html", null ]
+        [ "J3DMtxCalcNoAnm< A0, B0 >", "structJ3DMtxCalcNoAnm.html", null ]
       ] ]
     ] ],
     [ "J3DMtxCalcAnimation__template0", "structJ3DMtxCalcAnimation____template0.html", null ],
@@ -1888,8 +1885,8 @@ var hierarchy =
       [ "J3DTevBlockNull", "classJ3DTevBlockNull.html", null ],
       [ "J3DTevBlockPatched", "classJ3DTevBlockPatched.html", null ]
     ] ],
-    [ "J3DTevColorAnm", "classJ3DTevColorAnm.html", null ],
-    [ "J3DTevKColorAnm", "classJ3DTevKColorAnm.html", null ],
+    [ "J3DTevColorAnm", "structJ3DTevColorAnm.html", null ],
+    [ "J3DTevKColorAnm", "structJ3DTevKColorAnm.html", null ],
     [ "J3DTevOrderInfo", "structJ3DTevOrderInfo.html", [
       [ "J3DTevOrder", "structJ3DTevOrder.html", null ]
     ] ],
@@ -1910,14 +1907,14 @@ var hierarchy =
       ] ]
     ] ],
     [ "J3DTexMtx", "classJ3DTexMtx.html", null ],
-    [ "J3DTexMtxAnm", "classJ3DTexMtxAnm.html", null ],
+    [ "J3DTexMtxAnm", "structJ3DTexMtxAnm.html", null ],
     [ "J3DTexMtxInfo", "structJ3DTexMtxInfo.html", null ],
     [ "J3DTexMtxObj", "classJ3DTexMtxObj.html", null ],
-    [ "J3DTexNoAnm", "classJ3DTexNoAnm.html", null ],
+    [ "J3DTexNoAnm", "structJ3DTexNoAnm.html", null ],
     [ "J3DTexture", "classJ3DTexture.html", null ],
     [ "J3DTextureSRTInfo", "structJ3DTextureSRTInfo.html", null ],
     [ "J3DTransformInfo", "structJ3DTransformInfo.html", null ],
-    [ "J3DUClipper", "classJ3DUClipper.html", null ],
+    [ "J3DUClipper", "structJ3DUClipper.html", null ],
     [ "J3DUnkCalc1", "structJ3DUnkCalc1.html", null ],
     [ "J3DUnkCalc2", "structJ3DUnkCalc2.html", null ],
     [ "J3DVertexBuffer", "classJ3DVertexBuffer.html", null ],
@@ -1959,7 +1956,7 @@ var hierarchy =
       [ "Z2SoundHandlePool", "classZ2SoundHandlePool.html", null ]
     ] ],
     [ "JAISoundHandles", "classJAISoundHandles.html", null ],
-    [ "JAISoundID", "classJAISoundID.html", null ],
+    [ "JAISoundID", "structJAISoundID.html", null ],
     [ "JAISoundParams", "structJAISoundParams.html", null ],
     [ "JAISoundParamsMove", "structJAISoundParamsMove.html", null ],
     [ "JAISoundParamsProperty", "structJAISoundParamsProperty.html", null ],
@@ -2090,19 +2087,19 @@ var hierarchy =
     ] ],
     [ "JASGlobalInstance< Z2SceneMgr >", "classJASGlobalInstance.html", [
       [ "Z2SceneMgr", "classZ2SceneMgr.html", [
-        [ "Z2AudioMgr", "classZ2AudioMgr.html", [
+        [ "Z2AudioMgr", "structZ2AudioMgr.html", [
           [ "mDoAud_zelAudio_c", "classmDoAud__zelAudio__c.html", null ]
         ] ]
       ] ]
     ] ],
     [ "JASGlobalInstance< Z2SeMgr >", "classJASGlobalInstance.html", [
-      [ "Z2SeMgr", "classZ2SeMgr.html", [
-        [ "Z2AudioMgr", "classZ2AudioMgr.html", null ]
+      [ "Z2SeMgr", "structZ2SeMgr.html", [
+        [ "Z2AudioMgr", "structZ2AudioMgr.html", null ]
       ] ]
     ] ],
     [ "JASGlobalInstance< Z2SeqMgr >", "classJASGlobalInstance.html", [
-      [ "Z2SeqMgr", "classZ2SeqMgr.html", [
-        [ "Z2AudioMgr", "classZ2AudioMgr.html", null ]
+      [ "Z2SeqMgr", "structZ2SeqMgr.html", [
+        [ "Z2AudioMgr", "structZ2AudioMgr.html", null ]
       ] ]
     ] ],
     [ "JASGlobalInstance< Z2SoundInfo >", "classJASGlobalInstance.html", [
@@ -2113,7 +2110,7 @@ var hierarchy =
     ] ],
     [ "JASGlobalInstance< Z2SoundObjMgr >", "classJASGlobalInstance.html", [
       [ "Z2SoundObjMgr", "structZ2SoundObjMgr.html", [
-        [ "Z2AudioMgr", "classZ2AudioMgr.html", null ]
+        [ "Z2AudioMgr", "structZ2AudioMgr.html", null ]
       ] ]
     ] ],
     [ "JASGlobalInstance< Z2SoundStarter >", "classJASGlobalInstance.html", [
@@ -2127,7 +2124,7 @@ var hierarchy =
     ] ],
     [ "JASGlobalInstance< Z2StatusMgr >", "classJASGlobalInstance.html", [
       [ "Z2StatusMgr", "structZ2StatusMgr.html", [
-        [ "Z2AudioMgr", "classZ2AudioMgr.html", null ]
+        [ "Z2AudioMgr", "structZ2AudioMgr.html", null ]
       ] ]
     ] ],
     [ "JASGlobalInstance< Z2WolfHowlMgr >", "classJASGlobalInstance.html", [
@@ -2368,7 +2365,7 @@ var hierarchy =
       ] ],
       [ "JKRHeap", "structJKRHeap.html", [
         [ "JKRAssertHeap", "classJKRAssertHeap.html", null ],
-        [ "JKRExpHeap", "classJKRExpHeap.html", null ],
+        [ "JKRExpHeap", "structJKRExpHeap.html", null ],
         [ "JKRSolidHeap", "classJKRSolidHeap.html", null ]
       ] ],
       [ "JKRThread", "classJKRThread.html", [
@@ -2445,7 +2442,7 @@ var hierarchy =
     [ "JPADynamicsBlockData", "structJPADynamicsBlockData.html", null ],
     [ "JPAEmitterCallBack", "classJPAEmitterCallBack.html", [
       [ "JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_", "structJStudio__JParticle_1_1TAdaptor__particle_1_1TJPACallback__emitter__.html", null ],
-      [ "dPa_levelEcallBack", "classdPa__levelEcallBack.html", [
+      [ "dPa_levelEcallBack", "structdPa__levelEcallBack.html", [
         [ "dPa_followEcallBack", "classdPa__followEcallBack.html", null ],
         [ "dPa_gen_b_light8EcallBack", "classdPa__gen__b__light8EcallBack.html", null ],
         [ "dPa_gen_d_light8EcallBack", "classdPa__gen__d__light8EcallBack.html", null ],
@@ -2682,7 +2679,7 @@ var hierarchy =
         [ "JAUBankTableLink", "classJAUBankTableLink.html", null ]
       ] ],
       [ "JSULink< Z2CreatureCitizen >", "classJSULink.html", [
-        [ "Z2CreatureCitizen", "classZ2CreatureCitizen.html", null ]
+        [ "Z2CreatureCitizen", "structZ2CreatureCitizen.html", null ]
       ] ],
       [ "JSULink< Z2CreatureEnemy >", "classJSULink.html", [
         [ "Z2CreatureEnemy", "classZ2CreatureEnemy.html", [
@@ -2790,9 +2787,9 @@ var hierarchy =
     [ "JUTException::JUTExMapFile", "classJUTException_1_1JUTExMapFile.html", null ],
     [ "JUTExternalFB", "classJUTExternalFB.html", null ],
     [ "JUTFader", "classJUTFader.html", null ],
-    [ "JUTFont", "structJUTFont.html", [
-      [ "JUTResFont", "structJUTResFont.html", [
-        [ "JUTCacheFont", "structJUTCacheFont.html", null ]
+    [ "JUTFont", "classJUTFont.html", [
+      [ "JUTResFont", "classJUTResFont.html", [
+        [ "JUTCacheFont", "classJUTCacheFont.html", null ]
       ] ]
     ] ],
     [ "JUTFont::TWidth", "structJUTFont_1_1TWidth.html", null ],
@@ -2885,6 +2882,7 @@ var hierarchy =
           [ "daObjYchndlr_c", "classdaObjYchndlr__c.html", null ],
           [ "daObjZraRock_c", "classdaObjZraRock__c.html", null ],
           [ "daObj_Sekizo_c", "classdaObj__Sekizo__c.html", null ],
+          [ "daOptiLift_c", "classdaOptiLift__c.html", null ],
           [ "daRfHole_c", "classdaRfHole__c.html", null ],
           [ "daSaidan_c", "classdaSaidan__c.html", null ],
           [ "daSwShutter_c", "classdaSwShutter__c.html", null ],
@@ -2913,7 +2911,7 @@ var hierarchy =
         [ "daAmiShutter_c", "classdaAmiShutter__c.html", null ],
         [ "daAndsw2_c", "classdaAndsw2__c.html", null ],
         [ "daAndsw_c", "classdaAndsw__c.html", null ],
-        [ "daArrow_c", "classdaArrow__c.html", null ],
+        [ "daArrow_c", "structdaArrow__c.html", null ],
         [ "daAttp_c", "classdaAttp__c.html", null ],
         [ "daB_ZANTS_c", "classdaB__ZANTS__c.html", null ],
         [ "daBalloon2D_c", "classdaBalloon2D__c.html", null ],
@@ -2950,11 +2948,11 @@ var hierarchy =
         [ "daGrass_c", "classdaGrass__c.html", null ],
         [ "daGrdWater_c", "classdaGrdWater__c.html", null ],
         [ "daGuardMng_c", "classdaGuardMng__c.html", null ],
-        [ "daHoZelda_c", "classdaHoZelda__c.html", null ],
+        [ "daHoZelda_c", "structdaHoZelda__c.html", null ],
         [ "daHorse_c", "classdaHorse__c.html", null ],
-        [ "daItemBase_c", "classdaItemBase__c.html", [
+        [ "daItemBase_c", "structdaItemBase__c.html", [
           [ "daItemKantera_c", "classdaItemKantera__c.html", null ],
-          [ "daItem_c", "classdaItem__c.html", null ],
+          [ "daItem_c", "structdaItem__c.html", null ],
           [ "daObjZCloth_c", "classdaObjZCloth__c.html", null ],
           [ "daShopItem_c", "classdaShopItem__c.html", null ]
         ] ],
@@ -2994,9 +2992,10 @@ var hierarchy =
         [ "daNPC_TK_c", "classdaNPC__TK__c.html", null ],
         [ "daNocrm_c", "classdaNocrm__c.html", null ],
         [ "daNpcAshB_c", "classdaNpcAshB__c.html", null ],
+        [ "daNpcBlueNS_c", "classdaNpcBlueNS__c.html", null ],
         [ "daNpcBouS_c", "classdaNpcBouS__c.html", null ],
-        [ "daNpcCd2_c", "classdaNpcCd2__c.html", [
-          [ "daNpcFgd_c", "classdaNpcFgd__c.html", null ]
+        [ "daNpcCd2_c", "structdaNpcCd2__c.html", [
+          [ "daNpcFgd_c", "structdaNpcFgd__c.html", null ]
         ] ],
         [ "daNpcCd_c", "classdaNpcCd__c.html", null ],
         [ "daNpcCdn3_c", "classdaNpcCdn3__c.html", null ],
@@ -3027,10 +3026,10 @@ var hierarchy =
         [ "daNpcRafrel_c", "classdaNpcRafrel__c.html", null ],
         [ "daNpcShad_c", "classdaNpcShad__c.html", null ],
         [ "daNpcShoe_c", "classdaNpcShoe__c.html", null ],
-        [ "daNpcT_c", "classdaNpcT__c.html", [
+        [ "daNpcT_c", "structdaNpcT__c.html", [
           [ "dShopSystem_c", "classdShopSystem__c.html", null ],
           [ "daNpc_Hoz_c", "classdaNpc__Hoz__c.html", null ],
-          [ "daObj_Sekizoa_c", "classdaObj__Sekizoa__c.html", null ]
+          [ "daObj_Sekizoa_c", "structdaObj__Sekizoa__c.html", null ]
         ] ],
         [ "daNpcTheB_c", "classdaNpcTheB__c.html", null ],
         [ "daNpcTkc_c", "classdaNpcTkc__c.html", null ],
@@ -3149,6 +3148,7 @@ var hierarchy =
         [ "daObjH_Saku_c", "classdaObjH__Saku__c.html", null ],
         [ "daObjIBone_c", "classdaObjIBone__c.html", null ],
         [ "daObjIceLeaf_c", "classdaObjIceLeaf__c.html", null ],
+        [ "daObjIce_s_c", "classdaObjIce__s__c.html", null ],
         [ "daObjIkada_c", "classdaObjIkada__c.html", null ],
         [ "daObjItaRope_c", "classdaObjItaRope__c.html", null ],
         [ "daObjIta_c", "classdaObjIta__c.html", null ],
@@ -3258,10 +3258,10 @@ var hierarchy =
         [ "daObj_AutoMata_c", "classdaObj__AutoMata__c.html", null ],
         [ "daObj_Balloon_c", "classdaObj__Balloon__c.html", null ],
         [ "daObj_Bed_c", "classdaObj__Bed__c.html", null ],
-        [ "daObj_BouMato_c", "classdaObj__BouMato__c.html", null ],
+        [ "daObj_BouMato_c", "structdaObj__BouMato__c.html", null ],
         [ "daObj_Gadget_c", "classdaObj__Gadget__c.html", null ],
         [ "daObj_GrA_c", "classdaObj__GrA__c.html", null ],
-        [ "daObj_ItaMato_c", "classdaObj__ItaMato__c.html", null ],
+        [ "daObj_ItaMato_c", "structdaObj__ItaMato__c.html", null ],
         [ "daObj_KBacket_c", "classdaObj__KBacket__c.html", null ],
         [ "daObj_Kago_c", "classdaObj__Kago__c.html", null ],
         [ "daObj_Kanban2_c", "classdaObj__Kanban2__c.html", null ],
@@ -3277,12 +3277,11 @@ var hierarchy =
           [ "daTag_SSDrink_c", "classdaTag__SSDrink__c.html", null ]
         ] ],
         [ "daObj_SSDrink_c", "classdaObj__SSDrink__c.html", null ],
-        [ "daObj_SekiDoor_c", "classdaObj__SekiDoor__c.html", null ],
+        [ "daObj_SekiDoor_c", "structdaObj__SekiDoor__c.html", null ],
         [ "daObj_Stick_c", "classdaObj__Stick__c.html", null ],
         [ "daObj_Suisya_c", "classdaObj__Suisya__c.html", null ],
         [ "daObj_YBag_c", "classdaObj__YBag__c.html", null ],
         [ "daOnsTaru_c", "classdaOnsTaru__c.html", null ],
-        [ "daOptiLift_c", "classdaOptiLift__c.html", null ],
         [ "daPPolamp_c", "classdaPPolamp__c.html", null ],
         [ "daPasserMng_c", "classdaPasserMng__c.html", null ],
         [ "daPeru_c", "classdaPeru__c.html", null ],
@@ -3330,7 +3329,6 @@ var hierarchy =
         [ "daTagGuard_c", "classdaTagGuard__c.html", null ],
         [ "daTagHinit_c", "classdaTagHinit__c.html", null ],
         [ "daTagHstop_c", "classdaTagHstop__c.html", null ],
-        [ "daTagHstop_c", "classdaTagHstop__c.html", null ],
         [ "daTagInst_c", "classdaTagInst__c.html", null ],
         [ "daTagKagoFall_c", "classdaTagKagoFall__c.html", null ],
         [ "daTagLightBall_c", "classdaTagLightBall__c.html", null ],
@@ -3347,7 +3345,6 @@ var hierarchy =
         [ "daTagMyna2_c", "classdaTagMyna2__c.html", null ],
         [ "daTagPati_c", "classdaTagPati__c.html", null ],
         [ "daTagPoFire_c", "classdaTagPoFire__c.html", null ],
-        [ "daTagQs_c", "classdaTagQs__c.html", null ],
         [ "daTagRestart_c", "classdaTagRestart__c.html", null ],
         [ "daTagRetRm_c", "classdaTagRetRm__c.html", null ],
         [ "daTagRiverBack_c", "classdaTagRiverBack__c.html", null ],
@@ -3371,7 +3368,7 @@ var hierarchy =
         [ "daTag_Cam_c", "classdaTag__Cam__c.html", null ],
         [ "daTag_Chk_c", "classdaTag__Chk__c.html", null ],
         [ "daTag_Event_c", "classdaTag__Event__c.html", null ],
-        [ "daTag_EvtArea_c", "classdaTag__EvtArea__c.html", null ],
+        [ "daTag_EvtArea_c", "structdaTag__EvtArea__c.html", null ],
         [ "daTag_EvtMsg_c", "classdaTag__EvtMsg__c.html", null ],
         [ "daTag_Evt_c", "classdaTag__Evt__c.html", null ],
         [ "daTag_FWall_c", "classdaTag__FWall__c.html", null ],
@@ -3389,7 +3386,6 @@ var hierarchy =
         [ "daTboxSw_c", "classdaTboxSw__c.html", null ],
         [ "daTenbin_c", "classdaTenbin__c.html", null ],
         [ "daTimeFire_c", "classdaTimeFire__c.html", null ],
-        [ "daTitle_c", "classdaTitle__c.html", null ],
         [ "daTitle_c", "classdaTitle__c.html", null ],
         [ "daTkraDai_c", "classdaTkraDai__c.html", null ],
         [ "daTogeRoll_c", "classdaTogeRoll__c.html", null ],
@@ -3414,9 +3410,8 @@ var hierarchy =
         [ "e_bee_class", "classe__bee__class.html", null ],
         [ "e_nest_class", "classe__nest__class.html", null ],
         [ "fopEn_enemy_c", "classfopEn__enemy__c.html", [
-          [ "JMSMesgEntry_c", "structJMSMesgEntry__c.html", null ],
+          [ "JMSMesgEntry_c", "classJMSMesgEntry__c.html", null ],
           [ "b_bh_class", "classb__bh__class.html", null ],
-          [ "b_bq_class", "classb__bq__class.html", null ],
           [ "b_bq_class", "classb__bq__class.html", null ],
           [ "b_gm_class", "classb__gm__class.html", null ],
           [ "b_gnd_class", "classb__gnd__class.html", null ],
@@ -3563,7 +3558,6 @@ var hierarchy =
         [ "kytag17_class", "classkytag17__class.html", null ],
         [ "mant_class", "classmant__class.html", null ],
         [ "nObjMHasu::daObjMHasu_c", "classnObjMHasu_1_1daObjMHasu__c.html", null ],
-        [ "ni_class", "classni__class.html", null ],
         [ "npc_df_class", "classnpc__df__class.html", null ],
         [ "npc_du_class", "classnpc__du__class.html", null ],
         [ "npc_fish_class", "classnpc__fish__class.html", null ],
@@ -3663,21 +3657,21 @@ var hierarchy =
       [ "mDoExt_3DlineMat0_c", "classmDoExt__3DlineMat0__c.html", null ],
       [ "mDoExt_3DlineMat1_c", "classmDoExt__3DlineMat1__c.html", null ]
     ] ],
-    [ "mDoExt_AnmRatioPack", "classmDoExt__AnmRatioPack.html", null ],
-    [ "mDoExt_baseAnm", "classmDoExt__baseAnm.html", [
-      [ "mDoExt_bckAnm", "classmDoExt__bckAnm.html", null ],
+    [ "mDoExt_AnmRatioPack", "structmDoExt__AnmRatioPack.html", null ],
+    [ "mDoExt_baseAnm", "structmDoExt__baseAnm.html", [
+      [ "mDoExt_bckAnm", "structmDoExt__bckAnm.html", null ],
       [ "mDoExt_blkAnm", "classmDoExt__blkAnm.html", null ],
       [ "mDoExt_bpkAnm", "classmDoExt__bpkAnm.html", null ],
-      [ "mDoExt_brkAnm", "classmDoExt__brkAnm.html", null ],
-      [ "mDoExt_btkAnm", "classmDoExt__btkAnm.html", null ],
-      [ "mDoExt_btpAnm", "classmDoExt__btpAnm.html", null ]
+      [ "mDoExt_brkAnm", "structmDoExt__brkAnm.html", null ],
+      [ "mDoExt_btkAnm", "structmDoExt__btkAnm.html", null ],
+      [ "mDoExt_btpAnm", "structmDoExt__btpAnm.html", null ]
     ] ],
-    [ "mDoExt_invisibleModel", "classmDoExt__invisibleModel.html", null ],
-    [ "mDoExt_McaMorfCallBack1_c", "classmDoExt__McaMorfCallBack1__c.html", [
+    [ "mDoExt_invisibleModel", "structmDoExt__invisibleModel.html", null ],
+    [ "mDoExt_McaMorfCallBack1_c", "structmDoExt__McaMorfCallBack1__c.html", [
       [ "dAttDraw_CallBack_c", "classdAttDraw__CallBack__c.html", null ]
     ] ],
-    [ "mDoExt_McaMorfCallBack2_c", "classmDoExt__McaMorfCallBack2__c.html", null ],
-    [ "mDoExt_MtxCalcOldFrame", "classmDoExt__MtxCalcOldFrame.html", null ],
+    [ "mDoExt_McaMorfCallBack2_c", "structmDoExt__McaMorfCallBack2__c.html", null ],
+    [ "mDoExt_MtxCalcOldFrame", "structmDoExt__MtxCalcOldFrame.html", null ],
     [ "mDoGph_gInf_c", "structmDoGph__gInf__c.html", null ],
     [ "mDoGph_gInf_c::bloom_c", "classmDoGph__gInf__c_1_1bloom__c.html", null ],
     [ "mDoHIO_entry_c", "classmDoHIO__entry__c.html", [
@@ -3699,6 +3693,7 @@ var hierarchy =
       [ "daLv6CstaSw_HIO_c", "classdaLv6CstaSw__HIO__c.html", null ],
       [ "daMagLiftRot_HIO_c", "classdaMagLiftRot__HIO__c.html", null ],
       [ "daMyna_HIO_c", "classdaMyna__HIO__c.html", null ],
+      [ "daOptiLift_HIO_c", "classdaOptiLift__HIO__c.html", null ],
       [ "daRfHole_HIO_c", "classdaRfHole__HIO__c.html", null ],
       [ "daSaidan_HIO_c", "structdaSaidan__HIO__c.html", null ],
       [ "daSnowEffTag_HIO_c", "classdaSnowEffTag__HIO__c.html", null ],
@@ -3724,7 +3719,7 @@ var hierarchy =
     [ "mDoMemCd_Ctrl_c", "classmDoMemCd__Ctrl__c.html", null ],
     [ "mDoMemCdRWm_HeaderData", "structmDoMemCdRWm__HeaderData.html", null ],
     [ "mDoMtx_quatStack_c", "classmDoMtx__quatStack__c.html", null ],
-    [ "mDoMtx_stack_c", "classmDoMtx__stack__c.html", null ],
+    [ "mDoMtx_stack_c", "structmDoMtx__stack__c.html", null ],
     [ "mDoRst", "classmDoRst.html", null ],
     [ "mDoRstData", "structmDoRstData.html", null ],
     [ "mem_pool_obj", "structmem__pool__obj.html", null ],
@@ -3938,7 +3933,7 @@ var hierarchy =
     [ "sub_kankyo__class", "structsub__kankyo____class.html", null ],
     [ "SubBlock", "structSubBlock.html", null ],
     [ "SVec", "structSVec.html", [
-      [ "csXyz", "classcsXyz.html", null ]
+      [ "csXyz", "structcsXyz.html", null ]
     ] ],
     [ "SYaz0Header", "structSYaz0Header.html", null ],
     [ "T", null, [
@@ -4038,8 +4033,8 @@ var hierarchy =
     [ "Z2AudioCamera", "structZ2AudioCamera.html", null ],
     [ "Z2Calc::FNoise1f", "structZ2Calc_1_1FNoise1f.html", null ],
     [ "Z2ConnectCost", "structZ2ConnectCost.html", null ],
-    [ "Z2Creature", "classZ2Creature.html", [
-      [ "Z2CreatureCitizen", "classZ2CreatureCitizen.html", null ],
+    [ "Z2Creature", "structZ2Creature.html", [
+      [ "Z2CreatureCitizen", "structZ2CreatureCitizen.html", null ],
       [ "Z2CreatureEnemy", "classZ2CreatureEnemy.html", null ],
       [ "Z2CreatureGob", "classZ2CreatureGob.html", null ],
       [ "Z2CreatureLink", "structZ2CreatureLink.html", null ],

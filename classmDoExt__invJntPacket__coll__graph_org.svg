@@ -67,7 +67,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1484,-810.86 1424.5,-810.86 1424.5,-791.61 1484,-791.61 1484,-810.86"/>
 <text text-anchor="middle" x="1454.25" y="-797.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -115,7 +115,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1316.88,-516.86 1237.12,-516.86 1237.12,-497.61 1316.88,-497.61 1316.88,-516.86"/>
 <text text-anchor="middle" x="1277" y="-503.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>
@@ -160,9 +160,9 @@
 </g>
 </g>
 <!-- Node5&#45;&gt;Node9 -->
-<g id="edge10_Node000009_Node000005" class="edge">
+<g id="edge11_Node000009_Node000005" class="edge">
 <title>Node5&#45;&gt;Node9</title>
-<g id="a_edge10_Node000009_Node000005"><a xlink:title=" ">
+<g id="a_edge11_Node000009_Node000005"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M830.52,-330.27C769.61,-308.33 643.18,-268.24 532.38,-268.24 210.88,-268.24 210.88,-268.24 210.88,-268.24 56.14,-268.24 39.9,-898.78 38.39,-986.22"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="829.1,-333.48 839.69,-333.63 831.5,-326.9 829.1,-333.48"/>
 </a>
@@ -191,7 +191,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classJ3DJoint.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structJ3DJoint.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="451.5,-559.86 397.25,-559.86 397.25,-540.61 451.5,-540.61 451.5,-559.86"/>
 <text text-anchor="middle" x="424.38" y="-546.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DJoint</text>
 </a>
@@ -223,16 +223,16 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classJ3DMtxCalc.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structJ3DMtxCalc.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="246.12,-540.86 177.62,-540.86 177.62,-521.61 246.12,-521.61 246.12,-540.86"/>
 <text text-anchor="middle" x="211.88" y="-527.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMtxCalc</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
-<g id="edge11_Node000008_Node000007" class="edge">
+<g id="edge9_Node000008_Node000007" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<g id="a_edge11_Node000008_Node000007"><a xlink:title=" ">
+<g id="a_edge9_Node000008_Node000007"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M385.54,-546.82C345.86,-543.24 284.13,-537.67 246.23,-534.25"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="385.06,-550.29 395.33,-547.71 385.69,-543.32 385.06,-550.29"/>
 </a>
@@ -242,7 +242,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classJ3DMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="structJ3DMaterial.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="673,-769.86 605.25,-769.86 605.25,-750.61 673,-750.61 673,-769.86"/>
 <text text-anchor="middle" x="639.12" y="-756.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterial</text>
 </a>
@@ -290,9 +290,9 @@
 <text text-anchor="middle" x="755.88" y="-1125.99" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mMtxBuffer</text>
 </g>
 <!-- Node9&#45;&gt;Node8 -->
-<g id="edge9_Node000008_Node000009" class="edge">
+<g id="edge10_Node000008_Node000009" class="edge">
 <title>Node9&#45;&gt;Node8</title>
-<g id="a_edge9_Node000008_Node000009"><a xlink:title=" ">
+<g id="a_edge10_Node000008_Node000009"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M43.75,-975.17C59.16,-917.25 105.42,-751.25 162.25,-620.24 175.14,-590.52 194.62,-557.54 204.56,-541.34"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="40.41,-974.09 41.25,-984.65 47.18,-975.87 40.41,-974.09"/>
 </a>
@@ -393,7 +393,7 @@
 <!-- Node50 -->
 <g id="Node000050" class="node">
 <title>Node50</title>
-<g id="a_Node000050"><a xlink:href="classJ3DMaterialTable.html" target="_top" xlink:title=" ">
+<g id="a_Node000050"><a xlink:href="structJ3DMaterialTable.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="914,-582.86 822.25,-582.86 822.25,-563.61 914,-563.61 914,-582.86"/>
 <text text-anchor="middle" x="868.12" y="-569.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterialTable</text>
 </a>
@@ -740,7 +740,7 @@
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="classJ3DMaterialAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000029"><a xlink:href="structJ3DMaterialAnm.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="468.38,-960.86 380.38,-960.86 380.38,-941.61 468.38,-941.61 468.38,-960.86"/>
 <text text-anchor="middle" x="424.38" y="-947.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterialAnm</text>
 </a>
@@ -769,7 +769,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="classJ3DMatColorAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000030"><a xlink:href="structJ3DMatColorAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="258.12,-1005.86 165.62,-1005.86 165.62,-986.61 258.12,-986.61 258.12,-1005.86"/>
 <text text-anchor="middle" x="211.88" y="-992.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMatColorAnm</text>
 </a>
@@ -788,7 +788,7 @@
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="classJ3DTexMtxAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000036"><a xlink:href="structJ3DTexMtxAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="254.38,-968.86 169.38,-968.86 169.38,-949.61 254.38,-949.61 254.38,-968.86"/>
 <text text-anchor="middle" x="211.88" y="-955.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTexMtxAnm</text>
 </a>
@@ -807,7 +807,7 @@
 <!-- Node40 -->
 <g id="Node000040" class="node">
 <title>Node40</title>
-<g id="a_Node000040"><a xlink:href="classJ3DTexNoAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000040"><a xlink:href="structJ3DTexNoAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="252.88,-931.86 170.88,-931.86 170.88,-912.61 252.88,-912.61 252.88,-931.86"/>
 <text text-anchor="middle" x="211.88" y="-918.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTexNoAnm</text>
 </a>
@@ -826,7 +826,7 @@
 <!-- Node43 -->
 <g id="Node000043" class="node">
 <title>Node43</title>
-<g id="a_Node000043"><a xlink:href="classJ3DTevColorAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000043"><a xlink:href="structJ3DTevColorAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="258.12,-1079.86 165.62,-1079.86 165.62,-1060.61 258.12,-1060.61 258.12,-1079.86"/>
 <text text-anchor="middle" x="211.88" y="-1066.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTevColorAnm</text>
 </a>
@@ -845,7 +845,7 @@
 <!-- Node47 -->
 <g id="Node000047" class="node">
 <title>Node47</title>
-<g id="a_Node000047"><a xlink:href="classJ3DTevKColorAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000047"><a xlink:href="structJ3DTevKColorAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="261.5,-1042.86 162.25,-1042.86 162.25,-1023.61 261.5,-1023.61 261.5,-1042.86"/>
 <text text-anchor="middle" x="211.88" y="-1029.36" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTevKColorAnm</text>
 </a>

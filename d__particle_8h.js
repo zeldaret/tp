@@ -1,6 +1,6 @@
 var d__particle_8h =
 [
-    [ "dPa_levelEcallBack", "classdPa__levelEcallBack.html", "classdPa__levelEcallBack" ],
+    [ "dPa_levelEcallBack", "structdPa__levelEcallBack.html", "structdPa__levelEcallBack" ],
     [ "dPa_hermiteEcallBack_c", "classdPa__hermiteEcallBack__c.html", "classdPa__hermiteEcallBack__c" ],
     [ "dPa_simpleEcallBack", "classdPa__simpleEcallBack.html", "classdPa__simpleEcallBack" ],
     [ "dPa_followEcallBack", "classdPa__followEcallBack.html", "classdPa__followEcallBack" ],
@@ -20,7 +20,7 @@ var d__particle_8h =
     [ "dPa_gen_b_light8EcallBack", "classdPa__gen__b__light8EcallBack.html", "classdPa__gen__b__light8EcallBack" ],
     [ "dPa_fsenthPcallBack", "classdPa__fsenthPcallBack.html", "classdPa__fsenthPcallBack" ],
     [ "dPa_simpleData_c", "classdPa__simpleData__c.html", "classdPa__simpleData__c" ],
-    [ "dPa_control_c", "classdPa__control__c.html", "classdPa__control__c" ],
+    [ "dPa_control_c", "structdPa__control__c.html", "structdPa__control__c" ],
     [ "dPa_control_c::level_c", "classdPa__control__c_1_1level__c.html", "classdPa__control__c_1_1level__c" ],
     [ "dPa_control_c::level_c::emitter_c", "classdPa__control__c_1_1level__c_1_1emitter__c.html", "classdPa__control__c_1_1level__c_1_1emitter__c" ]
 ];

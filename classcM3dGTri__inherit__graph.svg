@@ -30,7 +30,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structcCcD__TriAttr.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classcCcD__TriAttr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="72.25,-74.5 0,-74.5 0,-55.25 72.25,-55.25 72.25,-74.5"/>
 <text text-anchor="middle" x="36.12" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">cCcD_TriAttr</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classcM3dGPla.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structcM3dGPla.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="67,-185 5.25,-185 5.25,-165.75 67,-165.75 67,-185"/>
 <text text-anchor="middle" x="36.12" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">cM3dGPla</text>
 </a>
@@ -66,7 +66,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structdCcD__Tri.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classdCcD__Tri.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="64.38,-19.25 7.88,-19.25 7.88,0 64.38,0 64.38,-19.25"/>
 <text text-anchor="middle" x="36.12" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">dCcD_Tri</text>
 </a>

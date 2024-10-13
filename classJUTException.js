@@ -25,7 +25,7 @@ var classJUTException =
     [ "printContext", "classJUTException.html#a54ab1a092bbdda10c832ee250c28e7e5", null ],
     [ "printDebugInfo", "classJUTException.html#a770f7d0a092dc03a36cb8eefb2a41433", null ],
     [ "queryMapAddress", "classJUTException.html#ac2fa3cd26fb516d971a240d6103c9e86", null ],
-    [ "queryMapAddress_single", "classJUTException.html#aeb50fb73800ba5238413322e6ed3604c", null ],
+    [ "queryMapAddress_single", "classJUTException.html#a442873b7992596191724e28bcb226a89", null ],
     [ "readPad", "classJUTException.html#aba49674501a21b38abe88f8e1922efbc", null ],
     [ "run", "classJUTException.html#acfdbca2576a4a8ae2485e6a1a7eda6cb", null ],
     [ "searchPartialModule", "classJUTException.html#aa7795f94df52dcc539e1397a1fa8a529", null ],

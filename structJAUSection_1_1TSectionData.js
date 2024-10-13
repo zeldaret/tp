@@ -1,8 +1,8 @@
 var structJAUSection_1_1TSectionData =
 [
-    [ "TSectionData", "structJAUSection_1_1TSectionData.html#ab921c3187e0d76891ec5c33e472eab4e", null ],
-    [ "resetRegisteredBankTables", "structJAUSection_1_1TSectionData.html#ab26d5ddff4557ad11a5f434d28b5f803", null ],
-    [ "resetRegisteredWaveBankTables", "structJAUSection_1_1TSectionData.html#adba2720f4fc79d86f00021585a3b1b5a", null ],
+    [ "TSectionData", "structJAUSection_1_1TSectionData.html#ab95b43f78d1d15fcf889dd2a544bb895", null ],
+    [ "resetRegisteredBankTables", "structJAUSection_1_1TSectionData.html#aaa2c2eed90f6087da398f5bc61acb66b", null ],
+    [ "resetRegisteredWaveBankTables", "structJAUSection_1_1TSectionData.html#ab04b16f731bb0edc21610d9c97e5c3ce", null ],
     [ "field_0x00", "structJAUSection_1_1TSectionData.html#a1203a41b8a8955ce87cc1568b94ad61c", null ],
     [ "field_0x28", "structJAUSection_1_1TSectionData.html#aa8b00ebb61ab0ca790865cb5e5c29245", null ],
     [ "field_0x74", "structJAUSection_1_1TSectionData.html#a47081d9bdf504aa169ff97997e38338a", null ],

@@ -14,8 +14,8 @@ var d__gameover_8h =
       [ "PROC_SAVE_CLOSE", "d__gameover_8h.html#a9368975a3fec60667f0dde1eec05fc3ca6081fa8c3f5c51f09f2b39dc1f537405", null ],
       [ "PROC_DELETE_WAIT", "d__gameover_8h.html#a9368975a3fec60667f0dde1eec05fc3ca9307f5b7d88b592150fe6860ab541350", null ]
     ] ],
-    [ "d_GameOver_animeStart", "d__gameover_8h.html#a0ddd3393a468726bd185f23c6cce4ffb", null ],
-    [ "d_GameOver_CheckDelete", "d__gameover_8h.html#af12f4c7e1cabbc25f57d1a36e18ff093", null ],
+    [ "d_GameOver_animeStart", "d__gameover_8h.html#aba144869a841c3e3ad328920adf9b09c", null ],
+    [ "d_GameOver_CheckDelete", "d__gameover_8h.html#a7cdf7abbb81ad3fbc7b5b8894d2190f1", null ],
     [ "d_GameOver_Create", "d__gameover_8h.html#ad3000f652cb76aa1faed6bb518ae5ff3", null ],
-    [ "d_GameOver_Delete", "d__gameover_8h.html#a5ac0a4e6b46cc2e223ff0cd7c32f6bdf", null ]
+    [ "d_GameOver_Delete", "d__gameover_8h.html#a7c1ad31f64a23711b8483e0d17232788", null ]
 ];

@@ -76,7 +76,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="624.75,-404.65 551,-404.65 551,-385.4 624.75,-385.4 624.75,-404.65"/>
 <text text-anchor="middle" x="587.88" y="-391.15" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -1516,7 +1516,7 @@ var sectionId = 'dynsection-0';
 <!-- Node184 -->
 <g id="Node000184" class="node">
 <title>Node184</title>
-<g id="a_Node000184"><a xlink:href="classdMsgFlow__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000184"><a xlink:href="structdMsgFlow__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1783.62,-20.65 1712.12,-20.65 1712.12,-1.4 1783.62,-1.4 1783.62,-20.65"/>
 <text text-anchor="middle" x="1747.88" y="-7.15" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgFlow_c</text>
 </a>

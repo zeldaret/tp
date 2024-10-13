@@ -4,7 +4,7 @@
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="112,192,81,228,77,224,108,188"/>
 <area shape="rect" id="Node000006" href="$classZ2CreatureOI.html" title=" " alt="" coords="144,226,243,252"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="153,188,185,224,181,228,149,192"/>
-<area shape="rect" id="Node000002" href="$classZ2Creature.html" title=" " alt="" coords="5,79,91,105"/>
+<area shape="rect" id="Node000002" href="$structZ2Creature.html" title=" " alt="" coords="5,79,91,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,113,119,150,115,154,72,117"/>
 <area shape="rect" id="Node000003" href="$classJSULink.html" title=" " alt="" coords="115,79,312,105"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,117,146,154,143,150,186,113"/>

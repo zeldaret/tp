@@ -1,0 +1,902 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: daNpcT_Path_c Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structdaNpcT__Path__c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="structdaNpcT__Path__c-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">daNpcT_Path_c Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="d__a__npc_8h_source.html">d_a_npc.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for daNpcT_Path_c:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structdaNpcT__Path__c__coll__graph.svg" width="264" height="408"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a664c84b048d60ec53b53bb59109785d1" id="r_a664c84b048d60ec53b53bb59109785d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a664c84b048d60ec53b53bb59109785d1">initialize</a> ()</td></tr>
+<tr class="separator:a664c84b048d60ec53b53bb59109785d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05c4d075886fc5a2c55490198c169ea1" id="r_a05c4d075886fc5a2c55490198c169ea1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a05c4d075886fc5a2c55490198c169ea1">~daNpcT_Path_c</a> ()</td></tr>
+<tr class="separator:a05c4d075886fc5a2c55490198c169ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeffb8436c6ab3a08ac2430d7951a142" id="r_aaeffb8436c6ab3a08ac2430d7951a142"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#aaeffb8436c6ab3a08ac2430d7951a142">hermite</a> (<a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="classdaNpcT__Hermite__c.html">daNpcT_Hermite_c</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> &amp;)</td></tr>
+<tr class="separator:aaeffb8436c6ab3a08ac2430d7951a142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a664c84b048d60ec53b53bb59109785d1" id="r_a664c84b048d60ec53b53bb59109785d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a664c84b048d60ec53b53bb59109785d1">initialize</a> ()</td></tr>
+<tr class="separator:a664c84b048d60ec53b53bb59109785d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a702fabc1a1e8604a20ea5643a410c07b" id="r_a702fabc1a1e8604a20ea5643a410c07b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a702fabc1a1e8604a20ea5643a410c07b">setPathInfo</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a702fabc1a1e8604a20ea5643a410c07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1de6fa3864a4fe9b0f12c35334581a" id="r_ace1de6fa3864a4fe9b0f12c35334581a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#ace1de6fa3864a4fe9b0f12c35334581a">setNextPathInfo</a> (<a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:ace1de6fa3864a4fe9b0f12c35334581a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ccc6908510d019a6d8afa4667e1c961" id="r_a6ccc6908510d019a6d8afa4667e1c961"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a6ccc6908510d019a6d8afa4667e1c961">reverse</a> ()</td></tr>
+<tr class="separator:a6ccc6908510d019a6d8afa4667e1c961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f50d5dd9e196ce4604c63733baba07" id="r_a83f50d5dd9e196ce4604c63733baba07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a83f50d5dd9e196ce4604c63733baba07">setNextIdx</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>)</td></tr>
+<tr class="separator:a83f50d5dd9e196ce4604c63733baba07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f529f4bf2cc0f1ef70aec5d87c79c05" id="r_a7f529f4bf2cc0f1ef70aec5d87c79c05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a7f529f4bf2cc0f1ef70aec5d87c79c05">getDstPos</a> (<a class="el" href="structcXyz.html">cXyz</a>, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>)</td></tr>
+<tr class="separator:a7f529f4bf2cc0f1ef70aec5d87c79c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a4f441941b0a3ec54f8fffb83c03c5" id="r_a77a4f441941b0a3ec54f8fffb83c03c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a77a4f441941b0a3ec54f8fffb83c03c5">getDstPosH</a> (<a class="el" href="structcXyz.html">cXyz</a>, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>)</td></tr>
+<tr class="separator:a77a4f441941b0a3ec54f8fffb83c03c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf71b04ea0f104538f33328cb780bb6" id="r_adbf71b04ea0f104538f33328cb780bb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#adbf71b04ea0f104538f33328cb780bb6">chkPassed1</a> (<a class="el" href="structcXyz.html">cXyz</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>)</td></tr>
+<tr class="separator:adbf71b04ea0f104538f33328cb780bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a595dfe30d25a4fdabe924cf9fd9532a4" id="r_a595dfe30d25a4fdabe924cf9fd9532a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a595dfe30d25a4fdabe924cf9fd9532a4">chkPassed2</a> (<a class="el" href="structcXyz.html">cXyz</a>, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>)</td></tr>
+<tr class="separator:a595dfe30d25a4fdabe924cf9fd9532a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02756d9536b89a23d9c9ecb20b805aa1" id="r_a02756d9536b89a23d9c9ecb20b805aa1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a02756d9536b89a23d9c9ecb20b805aa1">getPntPos</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_idx</a>)</td></tr>
+<tr class="separator:a02756d9536b89a23d9c9ecb20b805aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c5c8d3c381178f4598481e23b3c5c3" id="r_a26c5c8d3c381178f4598481e23b3c5c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a26c5c8d3c381178f4598481e23b3c5c3">chkClose</a> ()</td></tr>
+<tr class="separator:a26c5c8d3c381178f4598481e23b3c5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbf3a3f6f686f3ff6d84d9f1ac9c550" id="r_abfbf3a3f6f686f3ff6d84d9f1ac9c550"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#abfbf3a3f6f686f3ff6d84d9f1ac9c550">chkReverse</a> ()</td></tr>
+<tr class="separator:abfbf3a3f6f686f3ff6d84d9f1ac9c550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa382b068261e62c157a85ff64be0dc5f" id="r_aa382b068261e62c157a85ff64be0dc5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#aa382b068261e62c157a85ff64be0dc5f">getNumPnts</a> ()</td></tr>
+<tr class="separator:aa382b068261e62c157a85ff64be0dc5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72ced17582abf49ca5c47b0ec3e955b2" id="r_a72ced17582abf49ca5c47b0ec3e955b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a72ced17582abf49ca5c47b0ec3e955b2">getIdx</a> ()</td></tr>
+<tr class="separator:a72ced17582abf49ca5c47b0ec3e955b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aedf65f38bfa0173ffdbd4dbc42024271" id="r_aedf65f38bfa0173ffdbd4dbc42024271"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdPath.html">dPath</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#aedf65f38bfa0173ffdbd4dbc42024271">mpRoomPath</a></td></tr>
+<tr class="separator:aedf65f38bfa0173ffdbd4dbc42024271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac73d66974f44dd4987d6bb4168cea282" id="r_ac73d66974f44dd4987d6bb4168cea282"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#ac73d66974f44dd4987d6bb4168cea282">mPosition</a></td></tr>
+<tr class="separator:ac73d66974f44dd4987d6bb4168cea282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab73d85cf9d2fe94a5a1cdcd757731144" id="r_ab73d85cf9d2fe94a5a1cdcd757731144"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#ab73d85cf9d2fe94a5a1cdcd757731144">field_0x10</a></td></tr>
+<tr class="separator:ab73d85cf9d2fe94a5a1cdcd757731144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a537d66775aea2aacc8c480008719c963" id="r_a537d66775aea2aacc8c480008719c963"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a537d66775aea2aacc8c480008719c963">field_0x14</a></td></tr>
+<tr class="separator:a537d66775aea2aacc8c480008719c963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44cf4d21d12b8229df22d6cdbc69ca21" id="r_a44cf4d21d12b8229df22d6cdbc69ca21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a44cf4d21d12b8229df22d6cdbc69ca21">field_0x18</a></td></tr>
+<tr class="separator:a44cf4d21d12b8229df22d6cdbc69ca21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268253b66a7a2de4d04540a173dc9b89" id="r_a268253b66a7a2de4d04540a173dc9b89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a268253b66a7a2de4d04540a173dc9b89">mIdx</a></td></tr>
+<tr class="separator:a268253b66a7a2de4d04540a173dc9b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb0268687ecd28e587def645f2a03cc5" id="r_aeb0268687ecd28e587def645f2a03cc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#aeb0268687ecd28e587def645f2a03cc5">field_0x1E</a></td></tr>
+<tr class="separator:aeb0268687ecd28e587def645f2a03cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5436d49b66c12a4a8c910137af23b583" id="r_a5436d49b66c12a4a8c910137af23b583"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a5436d49b66c12a4a8c910137af23b583">mDirection</a></td></tr>
+<tr class="separator:a5436d49b66c12a4a8c910137af23b583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09defa5a3f36b36170c897262fc38200" id="r_a09defa5a3f36b36170c897262fc38200"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdaNpcT__Path__c.html#a09defa5a3f36b36170c897262fc38200">mIsClosed</a></td></tr>
+<tr class="separator:a09defa5a3f36b36170c897262fc38200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a05c4d075886fc5a2c55490198c169ea1" name="a05c4d075886fc5a2c55490198c169ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c4d075886fc5a2c55490198c169ea1">&#9670;&#160;</a></span>~daNpcT_Path_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">daNpcT_Path_c::~daNpcT_Path_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a26c5c8d3c381178f4598481e23b3c5c3" name="a26c5c8d3c381178f4598481e23b3c5c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26c5c8d3c381178f4598481e23b3c5c3">&#9670;&#160;</a></span>chkClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::chkClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbf71b04ea0f104538f33328cb780bb6" name="adbf71b04ea0f104538f33328cb780bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf71b04ea0f104538f33328cb780bb6">&#9670;&#160;</a></span>chkPassed1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::chkPassed1 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td>
+          <td class="paramname"><em>i_pnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>i_num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a595dfe30d25a4fdabe924cf9fd9532a4" name="a595dfe30d25a4fdabe924cf9fd9532a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a595dfe30d25a4fdabe924cf9fd9532a4">&#9670;&#160;</a></span>chkPassed2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::chkPassed2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfbf3a3f6f686f3ff6d84d9f1ac9c550" name="abfbf3a3f6f686f3ff6d84d9f1ac9c550"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbf3a3f6f686f3ff6d84d9f1ac9c550">&#9670;&#160;</a></span>chkReverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> daNpcT_Path_c::chkReverse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f529f4bf2cc0f1ef70aec5d87c79c05" name="a7f529f4bf2cc0f1ef70aec5d87c79c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f529f4bf2cc0f1ef70aec5d87c79c05">&#9670;&#160;</a></span>getDstPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::getDstPos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>i_idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77a4f441941b0a3ec54f8fffb83c03c5" name="a77a4f441941b0a3ec54f8fffb83c03c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a4f441941b0a3ec54f8fffb83c03c5">&#9670;&#160;</a></span>getDstPosH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::getDstPosH </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>i_idx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72ced17582abf49ca5c47b0ec3e955b2" name="a72ced17582abf49ca5c47b0ec3e955b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ced17582abf49ca5c47b0ec3e955b2">&#9670;&#160;</a></span>getIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> &amp; daNpcT_Path_c::getIdx </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa382b068261e62c157a85ff64be0dc5f" name="aa382b068261e62c157a85ff64be0dc5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa382b068261e62c157a85ff64be0dc5f">&#9670;&#160;</a></span>getNumPnts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> daNpcT_Path_c::getNumPnts </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02756d9536b89a23d9c9ecb20b805aa1" name="a02756d9536b89a23d9c9ecb20b805aa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02756d9536b89a23d9c9ecb20b805aa1">&#9670;&#160;</a></span>getPntPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVec.html">Vec</a> daNpcT_Path_c::getPntPos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>i_idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaeffb8436c6ab3a08ac2430d7951a142" name="aaeffb8436c6ab3a08ac2430d7951a142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeffb8436c6ab3a08ac2430d7951a142">&#9670;&#160;</a></span>hermite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> daNpcT_Path_c::hermite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classdaNpcT__Hermite__c.html">daNpcT_Hermite_c</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_5</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a664c84b048d60ec53b53bb59109785d1" name="a664c84b048d60ec53b53bb59109785d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664c84b048d60ec53b53bb59109785d1">&#9670;&#160;</a></span>initialize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> daNpcT_Path_c::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a664c84b048d60ec53b53bb59109785d1" name="a664c84b048d60ec53b53bb59109785d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664c84b048d60ec53b53bb59109785d1">&#9670;&#160;</a></span>initialize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> daNpcT_Path_c::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ccc6908510d019a6d8afa4667e1c961" name="a6ccc6908510d019a6d8afa4667e1c961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ccc6908510d019a6d8afa4667e1c961">&#9670;&#160;</a></span>reverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> daNpcT_Path_c::reverse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83f50d5dd9e196ce4604c63733baba07" name="a83f50d5dd9e196ce4604c63733baba07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f50d5dd9e196ce4604c63733baba07">&#9670;&#160;</a></span>setNextIdx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::setNextIdx </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace1de6fa3864a4fe9b0f12c35334581a" name="ace1de6fa3864a4fe9b0f12c35334581a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1de6fa3864a4fe9b0f12c35334581a">&#9670;&#160;</a></span>setNextPathInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::setNextPathInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a702fabc1a1e8604a20ea5643a410c07b" name="a702fabc1a1e8604a20ea5643a410c07b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a702fabc1a1e8604a20ea5643a410c07b">&#9670;&#160;</a></span>setPathInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> daNpcT_Path_c::setPathInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_pathIdx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>i_roomNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab73d85cf9d2fe94a5a1cdcd757731144" name="ab73d85cf9d2fe94a5a1cdcd757731144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73d85cf9d2fe94a5a1cdcd757731144">&#9670;&#160;</a></span>field_0x10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daNpcT_Path_c::field_0x10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a537d66775aea2aacc8c480008719c963" name="a537d66775aea2aacc8c480008719c963"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a537d66775aea2aacc8c480008719c963">&#9670;&#160;</a></span>field_0x14</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daNpcT_Path_c::field_0x14</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44cf4d21d12b8229df22d6cdbc69ca21" name="a44cf4d21d12b8229df22d6cdbc69ca21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44cf4d21d12b8229df22d6cdbc69ca21">&#9670;&#160;</a></span>field_0x18</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> daNpcT_Path_c::field_0x18</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb0268687ecd28e587def645f2a03cc5" name="aeb0268687ecd28e587def645f2a03cc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb0268687ecd28e587def645f2a03cc5">&#9670;&#160;</a></span>field_0x1E</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> daNpcT_Path_c::field_0x1E</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5436d49b66c12a4a8c910137af23b583" name="a5436d49b66c12a4a8c910137af23b583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5436d49b66c12a4a8c910137af23b583">&#9670;&#160;</a></span>mDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daNpcT_Path_c::mDirection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a268253b66a7a2de4d04540a173dc9b89" name="a268253b66a7a2de4d04540a173dc9b89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a268253b66a7a2de4d04540a173dc9b89">&#9670;&#160;</a></span>mIdx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> daNpcT_Path_c::mIdx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09defa5a3f36b36170c897262fc38200" name="a09defa5a3f36b36170c897262fc38200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09defa5a3f36b36170c897262fc38200">&#9670;&#160;</a></span>mIsClosed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> daNpcT_Path_c::mIsClosed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac73d66974f44dd4987d6bb4168cea282" name="ac73d66974f44dd4987d6bb4168cea282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac73d66974f44dd4987d6bb4168cea282">&#9670;&#160;</a></span>mPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcXyz.html">cXyz</a> daNpcT_Path_c::mPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aedf65f38bfa0173ffdbd4dbc42024271" name="aedf65f38bfa0173ffdbd4dbc42024271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf65f38bfa0173ffdbd4dbc42024271">&#9670;&#160;</a></span>mpRoomPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structdPath.html">dPath</a>* daNpcT_Path_c::mpRoomPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/d/actor/<a class="el" href="d__a__obj__sekizoa_8cpp.html">d_a_obj_sekizoa.cpp</a></li>
+<li>include/d/actor/<a class="el" href="d__a__npc_8h_source.html">d_a_npc.h</a></li>
+<li>src/d/actor/<a class="el" href="d__a__npc_8cpp.html">d_a_npc.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structdaNpcT__Path__c.html">daNpcT_Path_c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,9 +1,7 @@
 var classdaTbox__HIO__c =
 [
     [ "daTbox_HIO_c", "classdaTbox__HIO__c.html#a3f597b4e10184a1d93b7af71f694bb4c", null ],
-    [ "~daTbox_HIO_c", "classdaTbox__HIO__c.html#a9881dadaa7d1dfc804d4d4c0a3b5c3aa", null ],
-    [ "daTbox_HIO_c", "classdaTbox__HIO__c.html#a3f597b4e10184a1d93b7af71f694bb4c", null ],
-    [ "~daTbox_HIO_c", "classdaTbox__HIO__c.html#aa8c0858a1c039d7f3f623eff2f84cc08", null ],
+    [ "~daTbox_HIO_c", "classdaTbox__HIO__c.html#aeb05c6383a376382edfb3ae71922e121", null ],
     [ "mCheckDisplay", "classdaTbox__HIO__c.html#a60e36e96fc2fdfd652e90c7f0066729f", null ],
     [ "mClearSwitch", "classdaTbox__HIO__c.html#a8de42791b56ece6bd34a0fc1e0516601", null ],
     [ "mDebugLightColorEnabled", "classdaTbox__HIO__c.html#ac311dfaa533883eef24cf32d1cb47ec8", null ],

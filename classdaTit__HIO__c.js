@@ -2,8 +2,6 @@ var classdaTit__HIO__c =
 [
     [ "daTit_HIO_c", "classdaTit__HIO__c.html#a720e217a9c204b9d5a7fd3978692efeb", null ],
     [ "~daTit_HIO_c", "classdaTit__HIO__c.html#aa1f4fa7341981d46762c4c365cfc5592", null ],
-    [ "daTit_HIO_c", "classdaTit__HIO__c.html#a720e217a9c204b9d5a7fd3978692efeb", null ],
-    [ "~daTit_HIO_c", "classdaTit__HIO__c.html#a7d9bc7f54e8b4acd6088a8bec757b7c9", null ],
     [ "field_0x1a", "classdaTit__HIO__c.html#aff1676f14130eed90d0fbe18ef7038c2", null ],
     [ "field_0x4", "classdaTit__HIO__c.html#a7d85e9832096159c0493d8d3ace2f6ad", null ],
     [ "mAppear", "classdaTit__HIO__c.html#a8b44746d4541d2d1d0ab83539cd079dd", null ],

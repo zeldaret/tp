@@ -700,7 +700,7 @@
 <!-- Node44 -->
 <g id="Node000044" class="node">
 <title>Node44</title>
-<g id="a_Node000044"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000044"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1102.5,-662.25 1029.5,-662.25 1029.5,-643 1102.5,-643 1102.5,-662.25"/>
 <text text-anchor="middle" x="1066" y="-648.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -893,7 +893,7 @@
 <!-- Node57 -->
 <g id="Node000057" class="node">
 <title>Node57</title>
-<g id="a_Node000057"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000057"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="870.5,-202.25 811,-202.25 811,-183 870.5,-183 870.5,-202.25"/>
 <text text-anchor="middle" x="840.75" y="-188.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -964,7 +964,7 @@
 <!-- Node53 -->
 <g id="Node000053" class="node">
 <title>Node53</title>
-<g id="a_Node000053"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000053"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="861.88,-776.25 819.62,-776.25 819.62,-757 861.88,-757 861.88,-776.25"/>
 <text text-anchor="middle" x="840.75" y="-762.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -1099,7 +1099,7 @@
 <!-- Node58 -->
 <g id="Node000058" class="node">
 <title>Node58</title>
-<g id="a_Node000058"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000058"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="652.75,-241.25 573,-241.25 573,-222 652.75,-222 652.75,-241.25"/>
 <text text-anchor="middle" x="612.88" y="-227.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>

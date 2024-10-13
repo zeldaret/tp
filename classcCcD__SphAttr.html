@@ -1,0 +1,1050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: cCcD_SphAttr Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classcCcD__SphAttr.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classcCcD__SphAttr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">cCcD_SphAttr Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="c__cc__d_8h_source.html">c_cc_d.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for cCcD_SphAttr:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcCcD__SphAttr__inherit__graph.svg" width="240" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for cCcD_SphAttr:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classcCcD__SphAttr__coll__graph.svg" width="292" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a0611693ebe1c19311373eac2255adc61" id="r_a0611693ebe1c19311373eac2255adc61"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a0611693ebe1c19311373eac2255adc61">cCcD_SphAttr</a> ()</td></tr>
+<tr class="separator:a0611693ebe1c19311373eac2255adc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5f2603d352cc997bcd5f285997579ff" id="r_aa5f2603d352cc997bcd5f285997579ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#aa5f2603d352cc997bcd5f285997579ff">Set</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcCcD__SrcSphAttr.html">cCcD_SrcSphAttr</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">src</a>)</td></tr>
+<tr class="separator:aa5f2603d352cc997bcd5f285997579ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29697f85376efbc14cc041bdfe6734d5" id="r_a29697f85376efbc14cc041bdfe6734d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a29697f85376efbc14cc041bdfe6734d5">~cCcD_SphAttr</a> ()</td></tr>
+<tr class="separator:a29697f85376efbc14cc041bdfe6734d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c4b39f5d56670da21a428696e33f87f" id="r_a8c4b39f5d56670da21a428696e33f87f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a8c4b39f5d56670da21a428696e33f87f">GetCoCP</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a8c4b39f5d56670da21a428696e33f87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac6beff7d0f97e78feca4627a9e619b" id="r_afac6beff7d0f97e78feca4627a9e619b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#afac6beff7d0f97e78feca4627a9e619b">GetCoCP</a> ()</td></tr>
+<tr class="separator:afac6beff7d0f97e78feca4627a9e619b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d3bade4091d7f5e664498632bd26be3" id="r_a2d3bade4091d7f5e664498632bd26be3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a2d3bade4091d7f5e664498632bd26be3">CrossAtTg</a> (<a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">shape</a>, <a class="el" href="structcXyz.html">cXyz</a> *xyz) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a2d3bade4091d7f5e664498632bd26be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584fbf241bd09474b13a5f3f153b2bdb" id="r_a584fbf241bd09474b13a5f3f153b2bdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a584fbf241bd09474b13a5f3f153b2bdb">CrossAtTg</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_PntAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a584fbf241bd09474b13a5f3f153b2bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a25960e03ca7abe627700d9aa5f1d8b" id="r_a4a25960e03ca7abe627700d9aa5f1d8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a4a25960e03ca7abe627700d9aa5f1d8b">CrossAtTg</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_AabAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a4a25960e03ca7abe627700d9aa5f1d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0833cc18500368bfe41a1bead301f0d" id="r_ab0833cc18500368bfe41a1bead301f0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#ab0833cc18500368bfe41a1bead301f0d">CrossCo</a> (<a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">shape</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *f) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab0833cc18500368bfe41a1bead301f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e8efa66f11e0f0a85ecffcaeb7e8c0" id="r_ac5e8efa66f11e0f0a85ecffcaeb7e8c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#ac5e8efa66f11e0f0a85ecffcaeb7e8c0">CrossCo</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_PntAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ac5e8efa66f11e0f0a85ecffcaeb7e8c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe169c554374045997375fa927a2c46" id="r_afbe169c554374045997375fa927a2c46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#afbe169c554374045997375fa927a2c46">CrossCo</a> (<a class="el" href="classcCcD__TriAttr.html">cCcD_TriAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:afbe169c554374045997375fa927a2c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a922f4b45e99b0cc708c956324f817fc1" id="r_a922f4b45e99b0cc708c956324f817fc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a922f4b45e99b0cc708c956324f817fc1">CrossCo</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_AabAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a922f4b45e99b0cc708c956324f817fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2eaae44b2492d38c291a2f35e31813" id="r_a4f2eaae44b2492d38c291a2f35e31813"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a4f2eaae44b2492d38c291a2f35e31813">CrossAtTg</a> (<a class="el" href="classcCcD__CylAttr.html">cCcD_CylAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a4f2eaae44b2492d38c291a2f35e31813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2ee572d3abd9fc23e77574b70eb4039" id="r_ad2ee572d3abd9fc23e77574b70eb4039"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#ad2ee572d3abd9fc23e77574b70eb4039">CrossAtTg</a> (<a class="el" href="classcCcD__TriAttr.html">cCcD_TriAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ad2ee572d3abd9fc23e77574b70eb4039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a76aca0f134e4841a0c710e40ef61c" id="r_a71a76aca0f134e4841a0c710e40ef61c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a71a76aca0f134e4841a0c710e40ef61c">CrossAtTg</a> (<a class="el" href="classcCcD__CpsAttr.html">cCcD_CpsAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a71a76aca0f134e4841a0c710e40ef61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9d277922ba55e594749e468ea6ceb4" id="r_a6d9d277922ba55e594749e468ea6ceb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a6d9d277922ba55e594749e468ea6ceb4">CrossAtTg</a> (<a class="el" href="classcCcD__SphAttr.html">cCcD_SphAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a6d9d277922ba55e594749e468ea6ceb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a24c208f2b0d20e8d4e3e1e37d9bea" id="r_ab2a24c208f2b0d20e8d4e3e1e37d9bea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#ab2a24c208f2b0d20e8d4e3e1e37d9bea">CrossCo</a> (<a class="el" href="classcCcD__CpsAttr.html">cCcD_CpsAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab2a24c208f2b0d20e8d4e3e1e37d9bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceeea23a04b29a1b63f37927daac1fab" id="r_aceeea23a04b29a1b63f37927daac1fab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#aceeea23a04b29a1b63f37927daac1fab">CrossCo</a> (<a class="el" href="classcCcD__SphAttr.html">cCcD_SphAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:aceeea23a04b29a1b63f37927daac1fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cddc878c2a37a85bbf4c47d92289757" id="r_a8cddc878c2a37a85bbf4c47d92289757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a8cddc878c2a37a85bbf4c47d92289757">CrossCo</a> (<a class="el" href="classcCcD__CylAttr.html">cCcD_CylAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a8cddc878c2a37a85bbf4c47d92289757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c916b61ff3a5ae4d0b51f23b1b5db8" id="r_aa0c916b61ff3a5ae4d0b51f23b1b5db8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#aa0c916b61ff3a5ae4d0b51f23b1b5db8">CalcAabBox</a> ()</td></tr>
+<tr class="separator:aa0c916b61ff3a5ae4d0b51f23b1b5db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d2dc03bc27ff2c8395f8e3e28a693e" id="r_a74d2dc03bc27ff2c8395f8e3e28a693e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a74d2dc03bc27ff2c8395f8e3e28a693e">GetNVec</a> (<a class="el" href="structcXyz.html">cXyz</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a74d2dc03bc27ff2c8395f8e3e28a693e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a400d91be454f006d60c221fcd81d3824" id="r_a400d91be454f006d60c221fcd81d3824"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__SphAttr.html#a400d91be454f006d60c221fcd81d3824">getShapeAccess</a> (<a class="el" href="structcCcD__ShapeAttr_1_1Shape.html">cCcD_ShapeAttr::Shape</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a400d91be454f006d60c221fcd81d3824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcCcD__ShapeAttr"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcCcD__ShapeAttr')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a></td></tr>
+<tr class="memitem:a6da9ce51b87cb5185ca2db83ea1fa9d1 inherit pub_methods_classcCcD__ShapeAttr" id="r_a6da9ce51b87cb5185ca2db83ea1fa9d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#a6da9ce51b87cb5185ca2db83ea1fa9d1">cCcD_ShapeAttr</a> ()</td></tr>
+<tr class="separator:a6da9ce51b87cb5185ca2db83ea1fa9d1 inherit pub_methods_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f64a89a7cad372e907716a5b4a839c5 inherit pub_methods_classcCcD__ShapeAttr" id="r_a7f64a89a7cad372e907716a5b4a839c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#a7f64a89a7cad372e907716a5b4a839c5">~cCcD_ShapeAttr</a> ()</td></tr>
+<tr class="separator:a7f64a89a7cad372e907716a5b4a839c5 inherit pub_methods_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc46962664c72d1fc4c71ad6b1521818 inherit pub_methods_classcCcD__ShapeAttr" id="r_adc46962664c72d1fc4c71ad6b1521818"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcM3dGAab.html">cM3dGAab</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#adc46962664c72d1fc4c71ad6b1521818">GetWorkAab</a> ()</td></tr>
+<tr class="separator:adc46962664c72d1fc4c71ad6b1521818 inherit pub_methods_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e6de45b59cb4f85cade951fbf3a7f5e inherit pub_methods_classcCcD__ShapeAttr" id="r_a4e6de45b59cb4f85cade951fbf3a7f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcM3dGAab.html">cM3dGAab</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#a4e6de45b59cb4f85cade951fbf3a7f5e">GetWorkAab</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a4e6de45b59cb4f85cade951fbf3a7f5e inherit pub_methods_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structcM3dGSph"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structcM3dGSph')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structcM3dGSph.html">cM3dGSph</a></td></tr>
+<tr class="memitem:afb17f7dda81fa609bfac57339dc49043 inherit pub_methods_structcM3dGSph" id="r_afb17f7dda81fa609bfac57339dc49043"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#afb17f7dda81fa609bfac57339dc49043">Set</a> (<a class="el" href="structcXyz.html">cXyz</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:afb17f7dda81fa609bfac57339dc49043 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4207d9656399846ee51258bcd8adbda6 inherit pub_methods_structcM3dGSph" id="r_a4207d9656399846ee51258bcd8adbda6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a4207d9656399846ee51258bcd8adbda6">~cM3dGSph</a> ()</td></tr>
+<tr class="separator:a4207d9656399846ee51258bcd8adbda6 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbdd127b4df4ded0fd06df22b511bf5b inherit pub_methods_structcM3dGSph" id="r_afbdd127b4df4ded0fd06df22b511bf5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#afbdd127b4df4ded0fd06df22b511bf5b">cM3dGSph</a> ()</td></tr>
+<tr class="separator:afbdd127b4df4ded0fd06df22b511bf5b inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2e7a0855431acabdaf52e987422c03 inherit pub_methods_structcM3dGSph" id="r_a1f2e7a0855431acabdaf52e987422c03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a1f2e7a0855431acabdaf52e987422c03">~cM3dGSph</a> ()</td></tr>
+<tr class="separator:a1f2e7a0855431acabdaf52e987422c03 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11d9035c89af90c94d5a923fff9659c8 inherit pub_methods_structcM3dGSph" id="r_a11d9035c89af90c94d5a923fff9659c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a11d9035c89af90c94d5a923fff9659c8">SetC</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> &amp;)</td></tr>
+<tr class="separator:a11d9035c89af90c94d5a923fff9659c8 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66acb3745c2d0bc465b71d4a282f3fc inherit pub_methods_structcM3dGSph" id="r_ad66acb3745c2d0bc465b71d4a282f3fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ad66acb3745c2d0bc465b71d4a282f3fc">Set</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:ad66acb3745c2d0bc465b71d4a282f3fc inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cadc62e3d796a113532629d807caece inherit pub_methods_structcM3dGSph" id="r_a7cadc62e3d796a113532629d807caece"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a7cadc62e3d796a113532629d807caece">Set</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcM3dGSphS.html">cM3dGSphS</a> &amp;)</td></tr>
+<tr class="separator:a7cadc62e3d796a113532629d807caece inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24bd00e0600c8a421fbcdc6fd78e152 inherit pub_methods_structcM3dGSph" id="r_ac24bd00e0600c8a421fbcdc6fd78e152"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ac24bd00e0600c8a421fbcdc6fd78e152">SetR</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:ac24bd00e0600c8a421fbcdc6fd78e152 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae46471ec278e2f412625fc5a16f75ba inherit pub_methods_structcM3dGSph" id="r_aae46471ec278e2f412625fc5a16f75ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#aae46471ec278e2f412625fc5a16f75ba">cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcM3dGSph.html">cM3dGSph</a> *, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:aae46471ec278e2f412625fc5a16f75ba inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2accc1bbebc23c9592e3e55236aa837 inherit pub_methods_structcM3dGSph" id="r_ab2accc1bbebc23c9592e3e55236aa837"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ab2accc1bbebc23c9592e3e55236aa837">cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcM3dGCyl.html">cM3dGCyl</a> *, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab2accc1bbebc23c9592e3e55236aa837 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae75a028926c9c2b5b264e96e251e1e99 inherit pub_methods_structcM3dGSph" id="r_ae75a028926c9c2b5b264e96e251e1e99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ae75a028926c9c2b5b264e96e251e1e99">cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="classcM3dGTri.html">cM3dGTri</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ae75a028926c9c2b5b264e96e251e1e99 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94a49e4cfe65ca72f38e7fbed07a243e inherit pub_methods_structcM3dGSph" id="r_a94a49e4cfe65ca72f38e7fbed07a243e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a94a49e4cfe65ca72f38e7fbed07a243e">GetMinMaxCube</a> (<a class="el" href="structcXyz.html">cXyz</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> &amp;) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a94a49e4cfe65ca72f38e7fbed07a243e inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb0c99e646e5a595067abebb6838b375 inherit pub_methods_structcM3dGSph" id="r_adb0c99e646e5a595067abebb6838b375"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#adb0c99e646e5a595067abebb6838b375">GetC</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:adb0c99e646e5a595067abebb6838b375 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d07ba0048b3abc9c2c4cfc65705018e inherit pub_methods_structcM3dGSph" id="r_a5d07ba0048b3abc9c2c4cfc65705018e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a5d07ba0048b3abc9c2c4cfc65705018e">GetCP</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a5d07ba0048b3abc9c2c4cfc65705018e inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cec4de60f87955880b0ef8fcc1d76b1 inherit pub_methods_structcM3dGSph" id="r_a1cec4de60f87955880b0ef8fcc1d76b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a1cec4de60f87955880b0ef8fcc1d76b1">GetR</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a1cec4de60f87955880b0ef8fcc1d76b1 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae252ef90d2a489a2e30056c7981bf958 inherit pub_methods_structcM3dGSph" id="r_ae252ef90d2a489a2e30056c7981bf958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ae252ef90d2a489a2e30056c7981bf958">GetCX</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ae252ef90d2a489a2e30056c7981bf958 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7348ebb268b3312397ee08d9fdbdccb6 inherit pub_methods_structcM3dGSph" id="r_a7348ebb268b3312397ee08d9fdbdccb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a7348ebb268b3312397ee08d9fdbdccb6">GetCY</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a7348ebb268b3312397ee08d9fdbdccb6 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a350d379e64851e5b77464f20c99ac2bf inherit pub_methods_structcM3dGSph" id="r_a350d379e64851e5b77464f20c99ac2bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a350d379e64851e5b77464f20c99ac2bf">GetCZ</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a350d379e64851e5b77464f20c99ac2bf inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bea26039f724ac7ef9c5add75bb988e inherit pub_methods_structcM3dGSph" id="r_a3bea26039f724ac7ef9c5add75bb988e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a3bea26039f724ac7ef9c5add75bb988e">Cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcM3dGSph.html">cM3dGSph</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">other</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *f) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a3bea26039f724ac7ef9c5add75bb988e inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960273ff8576c487f30b377013bbb3e7 inherit pub_methods_structcM3dGSph" id="r_a960273ff8576c487f30b377013bbb3e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a960273ff8576c487f30b377013bbb3e7">Cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="classcM3dGCps.html">cM3dGCps</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cps</a>, <a class="el" href="structcXyz.html">cXyz</a> *xyz) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a960273ff8576c487f30b377013bbb3e7 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72e33c14cd50cb1dcd679c7194f432d0 inherit pub_methods_structcM3dGSph" id="r_a72e33c14cd50cb1dcd679c7194f432d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a72e33c14cd50cb1dcd679c7194f432d0">Cross</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcM3dGCyl.html">cM3dGCyl</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cyl</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *f) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a72e33c14cd50cb1dcd679c7194f432d0 inherit pub_methods_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classcCcD__ShapeAttr"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classcCcD__ShapeAttr')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a></td></tr>
+<tr class="memitem:a21e53868e48986286cd75d26bb0f6eef inherit pub_attribs_classcCcD__ShapeAttr" id="r_a21e53868e48986286cd75d26bb0f6eef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcM3dGAab.html">cM3dGAab</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#a21e53868e48986286cd75d26bb0f6eef">mAab</a></td></tr>
+<tr class="separator:a21e53868e48986286cd75d26bb0f6eef inherit pub_attribs_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_structcM3dGSph"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structcM3dGSph')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="structcM3dGSph.html">cM3dGSph</a></td></tr>
+<tr class="memitem:a04317fd41c53e165b2bd9c74cd66e097 inherit pub_attribs_structcM3dGSph" id="r_a04317fd41c53e165b2bd9c74cd66e097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#a04317fd41c53e165b2bd9c74cd66e097">mCenter</a></td></tr>
+<tr class="separator:a04317fd41c53e165b2bd9c74cd66e097 inherit pub_attribs_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68fb21770ec3d7452932331e9420d56 inherit pub_attribs_structcM3dGSph" id="r_ad68fb21770ec3d7452932331e9420d56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcM3dGSph.html#ad68fb21770ec3d7452932331e9420d56">mRadius</a></td></tr>
+<tr class="separator:ad68fb21770ec3d7452932331e9420d56 inherit pub_attribs_structcM3dGSph"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_classcCcD__ShapeAttr"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classcCcD__ShapeAttr')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a></td></tr>
+<tr class="memitem:a9ae93e9454570a3ea223c996afb2c015 inherit pub_static_attribs_classcCcD__ShapeAttr" id="r_a9ae93e9454570a3ea223c996afb2c015"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcCcD__ShapeAttr.html#a9ae93e9454570a3ea223c996afb2c015">m_virtual_center</a> = <a class="el" href="structcXyz.html#af66ef183e7381e9586bd3740f84d4044">cXyz::Zero</a></td></tr>
+<tr class="separator:a9ae93e9454570a3ea223c996afb2c015 inherit pub_static_attribs_classcCcD__ShapeAttr"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0611693ebe1c19311373eac2255adc61" name="a0611693ebe1c19311373eac2255adc61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0611693ebe1c19311373eac2255adc61">&#9670;&#160;</a></span>cCcD_SphAttr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cCcD_SphAttr::cCcD_SphAttr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29697f85376efbc14cc041bdfe6734d5" name="a29697f85376efbc14cc041bdfe6734d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29697f85376efbc14cc041bdfe6734d5">&#9670;&#160;</a></span>~cCcD_SphAttr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> cCcD_SphAttr::~cCcD_SphAttr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa0c916b61ff3a5ae4d0b51f23b1b5db8" name="aa0c916b61ff3a5ae4d0b51f23b1b5db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c916b61ff3a5ae4d0b51f23b1b5db8">&#9670;&#160;</a></span>CalcAabBox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cCcD_SphAttr::CalcAabBox </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a423ee7d157d3da015db799b7cc116671">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a4a25960e03ca7abe627700d9aa5f1d8b" name="a4a25960e03ca7abe627700d9aa5f1d8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a25960e03ca7abe627700d9aa5f1d8b">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_AabAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a8704073420d1a08c646cf39d39e9f225">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a71a76aca0f134e4841a0c710e40ef61c" name="a71a76aca0f134e4841a0c710e40ef61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a76aca0f134e4841a0c710e40ef61c">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__CpsAttr.html">cCcD_CpsAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>cpsAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>pxyz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a0856986fea9029c0bc3019af17dd2db8">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a4f2eaae44b2492d38c291a2f35e31813" name="a4f2eaae44b2492d38c291a2f35e31813"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2eaae44b2492d38c291a2f35e31813">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__CylAttr.html">cCcD_CylAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>cylAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>pxyz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#afa41ce27c66a40da009237a2cd58666a">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a584fbf241bd09474b13a5f3f153b2bdb" name="a584fbf241bd09474b13a5f3f153b2bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a584fbf241bd09474b13a5f3f153b2bdb">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_PntAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a7e1fad1a04201c646d12061086e2702a">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a2d3bade4091d7f5e664498632bd26be3" name="a2d3bade4091d7f5e664498632bd26be3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d3bade4091d7f5e664498632bd26be3">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>shape</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>xyz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classcCcD__ShapeAttr.html#aaa92116ae5f0cd0bfdfd0e34f9276358">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a6d9d277922ba55e594749e468ea6ceb4" name="a6d9d277922ba55e594749e468ea6ceb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9d277922ba55e594749e468ea6ceb4">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__SphAttr.html">cCcD_SphAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>sphAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>pxyz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a7253a65ef35453c8d34eaadd655a0822">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="ad2ee572d3abd9fc23e77574b70eb4039" name="ad2ee572d3abd9fc23e77574b70eb4039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2ee572d3abd9fc23e77574b70eb4039">&#9670;&#160;</a></span>CrossAtTg() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossAtTg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__TriAttr.html">cCcD_TriAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>triAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>pxyz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a3e2d80eff4cd909e6a4a162158d9243c">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a922f4b45e99b0cc708c956324f817fc1" name="a922f4b45e99b0cc708c956324f817fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a922f4b45e99b0cc708c956324f817fc1">&#9670;&#160;</a></span>CrossCo() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_AabAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a9ec5f233e3f117914d222af7c6816be1">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="ab2a24c208f2b0d20e8d4e3e1e37d9bea" name="ab2a24c208f2b0d20e8d4e3e1e37d9bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a24c208f2b0d20e8d4e3e1e37d9bea">&#9670;&#160;</a></span>CrossCo() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__CpsAttr.html">cCcD_CpsAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>cpsAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a4a24d486f7fb04df0bc4ebd4b8a92975">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a8cddc878c2a37a85bbf4c47d92289757" name="a8cddc878c2a37a85bbf4c47d92289757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cddc878c2a37a85bbf4c47d92289757">&#9670;&#160;</a></span>CrossCo() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__CylAttr.html">cCcD_CylAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>cylAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#ad33bd5cd378f7cca2f73c80f462a2eea">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="ac5e8efa66f11e0f0a85ecffcaeb7e8c0" name="ac5e8efa66f11e0f0a85ecffcaeb7e8c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e8efa66f11e0f0a85ecffcaeb7e8c0">&#9670;&#160;</a></span>CrossCo() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cCcD_PntAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#acd1fed09219c905ea94acbdd39853593">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="ab0833cc18500368bfe41a1bead301f0d" name="ab0833cc18500368bfe41a1bead301f0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0833cc18500368bfe41a1bead301f0d">&#9670;&#160;</a></span>CrossCo() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__ShapeAttr.html">cCcD_ShapeAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>shape</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classcCcD__ShapeAttr.html#a59f0ade4056ea23d10cd4d1435a9833f">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="aceeea23a04b29a1b63f37927daac1fab" name="aceeea23a04b29a1b63f37927daac1fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceeea23a04b29a1b63f37927daac1fab">&#9670;&#160;</a></span>CrossCo() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__SphAttr.html">cCcD_SphAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>sphAttr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#a76484727eb2c687e5bc4ed1c3c2b7b7a">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="afbe169c554374045997375fa927a2c46" name="afbe169c554374045997375fa927a2c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbe169c554374045997375fa927a2c46">&#9670;&#160;</a></span>CrossCo() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::CrossCo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcCcD__TriAttr.html">cCcD_TriAttr</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#af69a283d410f2a7423dba56ad0474189">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="afac6beff7d0f97e78feca4627a9e619b" name="afac6beff7d0f97e78feca4627a9e619b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac6beff7d0f97e78feca4627a9e619b">&#9670;&#160;</a></span>GetCoCP() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="structcXyz.html">cXyz</a> &amp; cCcD_SphAttr::GetCoCP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classcCcD__ShapeAttr.html#aa3d83c007b6ca84ba2c78b7dc1170547">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a8c4b39f5d56670da21a428696e33f87f" name="a8c4b39f5d56670da21a428696e33f87f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4b39f5d56670da21a428696e33f87f">&#9670;&#160;</a></span>GetCoCP() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcXyz.html">cXyz</a> &amp; cCcD_SphAttr::GetCoCP </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classcCcD__ShapeAttr.html#a12a5682e234ae03345bb2c9d8c293297">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a74d2dc03bc27ff2c8395f8e3e28a693e" name="a74d2dc03bc27ff2c8395f8e3e28a693e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d2dc03bc27ff2c8395f8e3e28a693e">&#9670;&#160;</a></span>GetNVec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cCcD_SphAttr::GetNVec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classcCcD__ShapeAttr.html#ad42e9f6218f83be4921868b5f8f2d3ee">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="a400d91be454f006d60c221fcd81d3824" name="a400d91be454f006d60c221fcd81d3824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a400d91be454f006d60c221fcd81d3824">&#9670;&#160;</a></span>getShapeAccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cCcD_SphAttr::getShapeAccess </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcCcD__ShapeAttr_1_1Shape.html">cCcD_ShapeAttr::Shape</a> *&#160;</td>
+          <td class="paramname"><em>pshape</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classcCcD__ShapeAttr.html#acefcd71498887ce5af83d0abe0d9ceb8">cCcD_ShapeAttr</a>.</p>
+
+</div>
+</div>
+<a id="aa5f2603d352cc997bcd5f285997579ff" name="aa5f2603d352cc997bcd5f285997579ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5f2603d352cc997bcd5f285997579ff">&#9670;&#160;</a></span>Set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cCcD_SphAttr::Set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structcCcD__SrcSphAttr.html">cCcD_SrcSphAttr</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/SSystem/SComponent/<a class="el" href="c__cc__d_8h_source.html">c_cc_d.h</a></li>
+<li>src/SSystem/SComponent/<a class="el" href="c__cc__d_8cpp.html">c_cc_d.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classcCcD__SphAttr.html">cCcD_SphAttr</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

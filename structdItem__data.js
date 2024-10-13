@@ -26,7 +26,6 @@ var structdItem__data =
     [ "getTexScale", "structdItem__data.html#a251a3cdf8f987666903852830ed97365", null ],
     [ "getTexture", "structdItem__data.html#a317a9839776ab3631249877f3a1e4757", null ],
     [ "field_item_res", "structdItem__data.html#aa4f2639d14269b6e402498f17b21b259", null ],
-    [ "item_info", "structdItem__data.html#a4a83f7c2e311683e0551f3fe7d162c4e", null ],
     [ "item_info", "structdItem__data.html#a168540220e24cfd737711a6bb180f0b5", null ],
     [ "item_resource", "structdItem__data.html#a25691a8d3de62cd1ed22f948b75b9332", null ]
 ];

@@ -8,14 +8,11 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "f_pc", "dir_14c28d3bb977da9b21a3aa2d366ba228.html", "dir_14c28d3bb977da9b21a3aa2d366ba228" ],
     [ "JSystem", "dir_4f0979a7f5e3194619cde56505e372d8.html", "dir_4f0979a7f5e3194619cde56505e372d8" ],
     [ "m_Do", "dir_6bdfff2c28f90f381b6da5bee088878b.html", "dir_6bdfff2c28f90f381b6da5bee088878b" ],
-    [ "rel", "dir_d1e95842203b094e4f127fa85baf24b5.html", "dir_d1e95842203b094e4f127fa85baf24b5" ],
+    [ "REL", "dir_e6b5f3be2f9eef6ccd13436b6a8f6f8d.html", "dir_e6b5f3be2f9eef6ccd13436b6a8f6f8d" ],
     [ "SSystem", "dir_54283da8a0cf1311a88c964d76512876.html", "dir_54283da8a0cf1311a88c964d76512876" ],
     [ "TRK_MINNOW_DOLPHIN", "dir_1cf8c5ae6c227b033e49e3be60b350ef.html", "dir_1cf8c5ae6c227b033e49e3be60b350ef" ],
     [ "Z2AudioLib", "dir_81939fb769658ab66ba54ec390580a1a.html", "dir_81939fb769658ab66ba54ec390580a1a" ],
     [ "dol2asm.h", "dol2asm_8h.html", null ],
     [ "DynamicLink.h", "DynamicLink_8h.html", "DynamicLink_8h" ],
-    [ "errno.h", "errno_8h.html", "errno_8h" ],
-    [ "global.h", "global_8h.html", "global_8h" ],
-    [ "init.h", "init_8h.html", "init_8h" ],
-    [ "unknown_translation_unit.h", "unknown__translation__unit_8h.html", null ]
+    [ "global.h", "global_8h.html", "global_8h" ]
 ];

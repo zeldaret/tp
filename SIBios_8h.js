@@ -10,6 +10,7 @@ var SIBios_8h =
     [ "SIControl", "SIBios_8h.html#a9211905387693c01d2f6dd0942ffdc44", null ],
     [ "SIPacket", "SIBios_8h.html#a62cce2d4b5903ed05b45b8c90881fe29", null ],
     [ "SITypeAndStatusCallback", "SIBios_8h.html#a7a3a7fac08ddb4844f9c934eeedc914a", null ],
+    [ "AT_ADDRESS", "SIBios_8h.html#aa97aa0e626398ea72816ba42cae1901c", null ],
     [ "SIBusy", "SIBios_8h.html#afbc232fcc7157f9721011e1739c46abd", null ],
     [ "SIDisablePolling", "SIBios_8h.html#a7da89bb1deb457edffbb021ec38758f8", null ],
     [ "SIEnablePolling", "SIBios_8h.html#a72819a9ed2641b810e4ae3b7ad1ded28", null ],
@@ -27,6 +28,5 @@ var SIBios_8h =
     [ "SISetXY", "SIBios_8h.html#a4ab82129dd84be0bcfe2743e2d92f7bb", null ],
     [ "SITransfer", "SIBios_8h.html#a6d57d95fc79d606ef79f0a15459d110e", null ],
     [ "SITransferCommands", "SIBios_8h.html#afe599aadb0e7f1738021e008e7adc4bf", null ],
-    [ "SIUnregisterPollingHandler", "SIBios_8h.html#add12a15f38d0bda30464943150587d73", null ],
-    [ "__SIRegs", "SIBios_8h.html#a5dfe5430c1c9c28edcfb913d7108d7c1", null ]
+    [ "SIUnregisterPollingHandler", "SIBios_8h.html#add12a15f38d0bda30464943150587d73", null ]
 ];

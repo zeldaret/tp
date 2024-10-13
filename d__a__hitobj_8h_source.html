@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/d_a_hitobj/d_a_hitobj.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_hitobj.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,21 +151,22 @@ $(document).ready(function(){initNavTree('d__a__hitobj_8h_source.html',''); init
 <a href="d__a__hitobj_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_HITOBJ_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_HITOBJ_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/com/d_com_inf_game.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/d_com_inf_game.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classhitobj__class.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classhitobj__class.html">hitobj_class</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classhitobj__class.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classhitobj__class.html">hitobj_class</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a8ccfeddee6d43807d839befa9be09d17">   16</a></span>    <span class="comment">/* 0x568 */</span> <a class="code hl_struct" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> <a class="code hl_variable" href="classhitobj__class.html#a8ccfeddee6d43807d839befa9be09d17">mPhase</a>;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a044b4a6dcb760501b190e1aabbdf5ff3">   17</a></span>    <span class="comment">/* 0x570 */</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_variable" href="classhitobj__class.html#a044b4a6dcb760501b190e1aabbdf5ff3">field_0x570</a>;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a467f49e4a7726cec23b513a7f2776e9a">   18</a></span>    <span class="comment">/* 0x571 */</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_variable" href="classhitobj__class.html#a467f49e4a7726cec23b513a7f2776e9a">field_0x571</a>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classhitobj__class.html#aad3ba828d9669153feb250facc23a13f">   19</a></span>    <span class="comment">/* 0x572 */</span> <a class="code hl_typedef" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> <a class="code hl_variable" href="classhitobj__class.html#aad3ba828d9669153feb250facc23a13f">field_0x572</a>;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a84b0ee8091f910b8f219d9f3760a80a0">   20</a></span>    <span class="comment">/* 0x574 */</span> <a class="code hl_struct" href="structdCcD__Stts.html">dCcD_Stts</a> <a class="code hl_variable" href="classhitobj__class.html#a84b0ee8091f910b8f219d9f3760a80a0">field_0x574</a>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a380195a8ff65439711410bc044868619">   21</a></span>    <span class="comment">/* 0x5B0 */</span> <a class="code hl_class" href="structdCcD__Sph.html">dCcD_Sph</a> <a class="code hl_variable" href="classhitobj__class.html#a380195a8ff65439711410bc044868619">field_0x5b0</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a84b0ee8091f910b8f219d9f3760a80a0">   20</a></span>    <span class="comment">/* 0x574 */</span> <a class="code hl_class" href="structdCcD__Stts.html">dCcD_Stts</a> <a class="code hl_variable" href="classhitobj__class.html#a84b0ee8091f910b8f219d9f3760a80a0">field_0x574</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classhitobj__class.html#a380195a8ff65439711410bc044868619">   21</a></span>    <span class="comment">/* 0x5B0 */</span> <a class="code hl_class" href="classdCcD__Sph.html">dCcD_Sph</a> <a class="code hl_variable" href="classhitobj__class.html#a380195a8ff65439711410bc044868619">field_0x5b0</a>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
 </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_HITOBJ_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclassdCcD__Sph_html"><div class="ttname"><a href="classdCcD__Sph.html">dCcD_Sph</a></div><div class="ttdef"><b>Definition</b> d_cc_d.h:430</div></div>
 <div class="ttc" id="aclasshitobj__class_html"><div class="ttname"><a href="classhitobj__class.html">hitobj_class</a></div><div class="ttdoc">Hit Object?</div><div class="ttdef"><b>Definition</b> d_a_hitobj.h:14</div></div>
 <div class="ttc" id="aclasshitobj__class_html_a044b4a6dcb760501b190e1aabbdf5ff3"><div class="ttname"><a href="classhitobj__class.html#a044b4a6dcb760501b190e1aabbdf5ff3">hitobj_class::field_0x570</a></div><div class="ttdeci">u8 field_0x570</div><div class="ttdef"><b>Definition</b> d_a_hitobj.h:17</div></div>
 <div class="ttc" id="aclasshitobj__class_html_a380195a8ff65439711410bc044868619"><div class="ttname"><a href="classhitobj__class.html#a380195a8ff65439711410bc044868619">hitobj_class::field_0x5b0</a></div><div class="ttdeci">dCcD_Sph field_0x5b0</div><div class="ttdef"><b>Definition</b> d_a_hitobj.h:21</div></div>
@@ -174,10 +175,9 @@ $(document).ready(function(){initNavTree('d__a__hitobj_8h_source.html',''); init
 <div class="ttc" id="aclasshitobj__class_html_a8ccfeddee6d43807d839befa9be09d17"><div class="ttname"><a href="classhitobj__class.html#a8ccfeddee6d43807d839befa9be09d17">hitobj_class::mPhase</a></div><div class="ttdeci">request_of_phase_process_class mPhase</div><div class="ttdef"><b>Definition</b> d_a_hitobj.h:16</div></div>
 <div class="ttc" id="aclasshitobj__class_html_aad3ba828d9669153feb250facc23a13f"><div class="ttname"><a href="classhitobj__class.html#aad3ba828d9669153feb250facc23a13f">hitobj_class::field_0x572</a></div><div class="ttdeci">s16 field_0x572</div><div class="ttdef"><b>Definition</b> d_a_hitobj.h:19</div></div>
 <div class="ttc" id="ad__com__inf__game_8h_html"><div class="ttname"><a href="d__com__inf__game_8h.html">d_com_inf_game.h</a></div></div>
-<div class="ttc" id="astructdCcD__Sph_html"><div class="ttname"><a href="structdCcD__Sph.html">dCcD_Sph</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:55</div></div>
-<div class="ttc" id="astructdCcD__Stts_html"><div class="ttname"><a href="structdCcD__Stts.html">dCcD_Stts</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:24</div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
-<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> c_phase.h:17</div></div>
+<div class="ttc" id="astructdCcD__Stts_html"><div class="ttname"><a href="structdCcD__Stts.html">dCcD_Stts</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:70</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
+<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> d_a_hozelda.cpp:14</div></div>
 <div class="ttc" id="atypes_8h_html_a5ffa4f640862b25ba6d4f635b78bdbe1"><div class="ttname"><a href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a></div><div class="ttdeci">signed short s16</div><div class="ttdef"><b>Definition</b> types.h:5</div></div>
 <div class="ttc" id="atypes_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> types.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -185,7 +185,7 @@ $(document).ready(function(){initNavTree('d__a__hitobj_8h_source.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_30764610f326462dffa37c151ee7146e.html">d_a_hitobj</a></li><li class="navelem"><a class="el" href="d__a__hitobj_8h.html">d_a_hitobj.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__hitobj_8h.html">d_a_hitobj.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

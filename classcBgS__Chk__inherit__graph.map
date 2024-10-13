@@ -1,12 +1,12 @@
 <map id="cBgS_Chk" name="cBgS_Chk">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,500,89,526"/>
-<area shape="rect" id="Node000002" href="$classcBgS__GndChk.html" title=" " alt="" coords="145,163,252,188"/>
+<area shape="rect" id="Node000002" href="$structcBgS__GndChk.html" title=" " alt="" coords="145,163,252,188"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,485,134,306,188,188,193,190,139,309,62,487"/>
-<area shape="rect" id="Node000011" href="$classcBgS__LinChk.html" title=" " alt="" coords="148,320,249,346"/>
+<area shape="rect" id="Node000011" href="$structcBgS__LinChk.html" title=" " alt="" coords="148,320,249,346"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="59,485,91,431,135,374,173,344,176,348,139,377,95,434,64,487"/>
 <area shape="rect" id="Node000022" href="$classcBgS__ShdwDraw.html" title=" " alt="" coords="137,388,260,414"/>
 <area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="76,488,178,412,181,416,79,493"/>
-<area shape="rect" id="Node000024" href="$classdBgS__Acch.html" title=" " alt="" coords="153,475,244,500"/>
+<area shape="rect" id="Node000024" href="$structdBgS__Acch.html" title=" " alt="" coords="153,475,244,500"/>
 <area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="103,501,152,492,153,498,104,506"/>
 <area shape="rect" id="Node000029" href="$structdBgS__CaptPoly.html" title=" " alt="" coords="142,524,255,550"/>
 <area shape="poly" id="edge28_Node000001_Node000029" title=" " alt="" coords="104,519,142,525,142,531,103,524"/>
@@ -16,23 +16,23 @@
 <area shape="poly" id="edge32_Node000001_Node000033" title=" " alt="" coords="68,537,99,574,138,609,157,620,155,625,135,614,95,577,64,540"/>
 <area shape="rect" id="Node000034" href="$classdBgS__SplGrpChk.html" title=" " alt="" coords="137,672,260,698"/>
 <area shape="poly" id="edge33_Node000001_Node000034" title=" " alt="" coords="61,539,90,599,112,631,138,659,155,669,152,674,135,663,108,634,86,602,56,542"/>
-<area shape="rect" id="Node000003" href="$classdBgS__GndChk.html" title=" " alt="" coords="322,79,429,104"/>
+<area shape="rect" id="Node000003" href="$structdBgS__GndChk.html" title=" " alt="" coords="322,79,429,104"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="240,153,345,103,347,107,242,158"/>
 <area shape="rect" id="Node000004" href="$classdBgS__CamGndChk.html" title=" " alt="" coords="508,5,642,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="418,69,490,40,523,29,525,34,492,45,420,74"/>
 <area shape="rect" id="Node000006" href="$classdBgS__LinkGndChk.html" title=" " alt="" coords="509,55,641,80"/>
 <area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="444,81,508,73,509,78,445,86"/>
-<area shape="rect" id="Node000007" href="$classdBgS__ObjGndChk.html" title=" " alt="" coords="511,104,639,130"/>
+<area shape="rect" id="Node000007" href="$structdBgS__ObjGndChk.html" title=" " alt="" coords="511,104,639,130"/>
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="445,98,511,106,510,111,444,103"/>
 <area shape="rect" id="Node000005" href="$classdBgS__CamGndChk__Wtr.html" title=" " alt="" coords="714,5,876,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="658,16,714,16,714,21,658,21"/>
 <area shape="rect" id="Node000008" href="$classdBgS__ObjGndChk__All.html" title=" " alt="" coords="720,55,870,80"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="650,97,734,78,735,84,651,103"/>
-<area shape="rect" id="Node000009" href="$classdBgS__ObjGndChk__Spl.html" title=" " alt="" coords="718,104,872,130"/>
+<area shape="rect" id="Node000009" href="$structdBgS__ObjGndChk__Spl.html" title=" " alt="" coords="718,104,872,130"/>
 <area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="654,114,718,114,718,120,654,120"/>
 <area shape="rect" id="Node000010" href="$classdBgS__ObjGndChk__Wtr.html" title=" " alt="" coords="718,153,872,179"/>
 <area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="651,131,735,150,734,155,650,136"/>
-<area shape="rect" id="Node000012" href="$classdBgS__LinChk.html" title=" " alt="" coords="325,301,426,327"/>
+<area shape="rect" id="Node000012" href="$structdBgS__LinChk.html" title=" " alt="" coords="325,301,426,327"/>
 <area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="264,323,324,317,325,322,264,329"/>
 <area shape="rect" id="Node000013" href="$classdBgS__ArrowLinChk.html" title=" " alt="" coords="507,153,643,179"/>
 <area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="392,287,433,237,460,210,490,188,512,177,514,182,493,192,463,214,437,240,396,290"/>
@@ -58,7 +58,7 @@
 <area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="239,465,307,434,335,424,336,429,309,439,241,470"/>
 <area shape="rect" id="Node000026" href="$classdBgS__LinkAcch.html" title=" " alt="" coords="318,449,433,475"/>
 <area shape="poly" id="edge25_Node000024_Node000026" title=" " alt="" coords="258,476,317,468,318,473,259,482"/>
-<area shape="rect" id="Node000027" href="$classdBgS__ObjAcch.html" title=" " alt="" coords="321,499,431,524"/>
+<area shape="rect" id="Node000027" href="$structdBgS__ObjAcch.html" title=" " alt="" coords="321,499,431,524"/>
 <area shape="poly" id="edge26_Node000024_Node000027" title=" " alt="" coords="259,493,321,501,320,507,258,498"/>
 <area shape="rect" id="Node000028" href="$classdBgS__StatueAcch.html" title=" " alt="" coords="312,548,440,574"/>
 <area shape="poly" id="edge27_Node000024_Node000028" title=" " alt="" coords="250,504,261,509,309,534,335,545,333,550,307,539,259,514,248,509"/>

@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_obj_prop.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,10 +151,10 @@ $(document).ready(function(){initNavTree('d__a__obj__prop_8h_source.html',''); i
 <a href="d__a__obj__prop_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_OBJ_PROP_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_OBJ_PROP_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/com/d_com_inf_game.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/d_com_inf_game.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObjProp__c.html">daObjProp_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a>, <span class="keyword">public</span> <a class="code hl_struct" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObjProp__c.html">daObjProp_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a>, <span class="keyword">public</span> <a class="code hl_struct" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment">/* 80CB51F8 */</span> <a class="code hl_function" href="classdaObjProp__c.html#a0e08ecf204d4796b9b4703060a4a3745">daObjProp_c</a>();</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">/* 80CB5234 */</span> <span class="keyword">virtual</span> <a class="code hl_function" href="classdaObjProp__c.html#afbc05dc3b342e1ca57794c4af692afb0">~daObjProp_c</a>();</div>
@@ -170,7 +170,7 @@ $(document).ready(function(){initNavTree('d__a__obj__prop_8h_source.html',''); i
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html#aa7c575f8aed84665a2fc650cb70aca8c">   27</a></span>    <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code hl_function" href="classdaObjProp__c.html#aa7c575f8aed84665a2fc650cb70aca8c">getArg_0</a>() { <span class="keywordflow">return</span> <a class="code hl_function" href="f__op__actor__mng_8h.html#a52c02a481bf4ce9b5e40f9669fd02811">fopAcM_GetParamBit</a>(<span class="keyword">this</span>, 4, 4); }</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html#abda1b5db0a26d645a56ee9354f35918a">   30</a></span>    <span class="comment">/* 0x574 */</span> <a class="code hl_struct" href="classJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObjProp__c.html#abda1b5db0a26d645a56ee9354f35918a">mpModel</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html#abda1b5db0a26d645a56ee9354f35918a">   30</a></span>    <span class="comment">/* 0x574 */</span> <a class="code hl_class" href="structJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObjProp__c.html#abda1b5db0a26d645a56ee9354f35918a">mpModel</a>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classdaObjProp__c.html#a2569757edeccf1932fed5f966cc13580">   31</a></span>    <span class="comment">/* 0x578 */</span> <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_variable" href="classdaObjProp__c.html#a2569757edeccf1932fed5f966cc13580">mArg</a>;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
 </div>
@@ -178,7 +178,6 @@ $(document).ready(function(){initNavTree('d__a__obj__prop_8h_source.html',''); i
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="d__a__obj__prop_8h.html#a9021d2f8110ad32b2fdab242e85a21be">   34</a></span><a class="code hl_function" href="d__a__obj__prop_8h.html#a9021d2f8110ad32b2fdab242e85a21be">STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<a class="code hl_class" href="classdaObjProp__c.html">daObjProp_c</a>) == 0x57C);</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_OBJ_PROP_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassJ3DModel_html"><div class="ttname"><a href="classJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> J3DModel.h:42</div></div>
 <div class="ttc" id="aclassdaObjProp__c_html"><div class="ttname"><a href="classdaObjProp__c.html">daObjProp_c</a></div><div class="ttdoc">City in the Sky Propeller?</div><div class="ttdef"><b>Definition</b> d_a_obj_prop.h:14</div></div>
 <div class="ttc" id="aclassdaObjProp__c_html_a0d5b8083e07af7a2c8b0ffaa1fb0b69d"><div class="ttname"><a href="classdaObjProp__c.html#a0d5b8083e07af7a2c8b0ffaa1fb0b69d">daObjProp_c::setModelMtx</a></div><div class="ttdeci">void setModelMtx()</div><div class="ttdef"><b>Definition</b> d_a_obj_prop.cpp:84</div></div>
 <div class="ttc" id="aclassdaObjProp__c_html_a0e08ecf204d4796b9b4703060a4a3745"><div class="ttname"><a href="classdaObjProp__c.html#a0e08ecf204d4796b9b4703060a4a3745">daObjProp_c::daObjProp_c</a></div><div class="ttdeci">daObjProp_c()</div><div class="ttdef"><b>Definition</b> d_a_obj_prop.cpp:18</div></div>
@@ -195,9 +194,10 @@ $(document).ready(function(){initNavTree('d__a__obj__prop_8h_source.html',''); i
 <div class="ttc" id="aclassdaObjProp__c_html_afbc05dc3b342e1ca57794c4af692afb0"><div class="ttname"><a href="classdaObjProp__c.html#afbc05dc3b342e1ca57794c4af692afb0">daObjProp_c::~daObjProp_c</a></div><div class="ttdeci">virtual ~daObjProp_c()</div><div class="ttdef"><b>Definition</b> d_a_obj_prop.cpp:21</div></div>
 <div class="ttc" id="ad__a__obj__prop_8h_html_a9021d2f8110ad32b2fdab242e85a21be"><div class="ttname"><a href="d__a__obj__prop_8h.html#a9021d2f8110ad32b2fdab242e85a21be">STATIC_ASSERT</a></div><div class="ttdeci">STATIC_ASSERT(sizeof(daObjProp_c)==0x57C)</div></div>
 <div class="ttc" id="ad__com__inf__game_8h_html"><div class="ttname"><a href="d__com__inf__game_8h.html">d_com_inf_game.h</a></div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a52c02a481bf4ce9b5e40f9669fd02811"><div class="ttname"><a href="f__op__actor__mng_8h.html#a52c02a481bf4ce9b5e40f9669fd02811">fopAcM_GetParamBit</a></div><div class="ttdeci">u32 fopAcM_GetParamBit(void *ac, u8 shift, u8 bit)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:213</div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
-<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> c_phase.h:17</div></div>
+<div class="ttc" id="af__op__actor__mng_8h_html_a52c02a481bf4ce9b5e40f9669fd02811"><div class="ttname"><a href="f__op__actor__mng_8h.html#a52c02a481bf4ce9b5e40f9669fd02811">fopAcM_GetParamBit</a></div><div class="ttdeci">u32 fopAcM_GetParamBit(void *ac, u8 shift, u8 bit)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:214</div></div>
+<div class="ttc" id="astructJ3DModel_html"><div class="ttname"><a href="structJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:159</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
+<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> d_a_hozelda.cpp:14</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 <div class="ttc" id="atypes_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> types.h:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -205,7 +205,7 @@ $(document).ready(function(){initNavTree('d__a__obj__prop_8h_source.html',''); i
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_837b79828d4d0cae6e2581b9ebbbcbf8.html">obj</a></li><li class="navelem"><a class="el" href="dir_256db1b441230eac3770f8189f7b4b31.html">d_a_obj_prop</a></li><li class="navelem"><a class="el" href="d__a__obj__prop_8h.html">d_a_obj_prop.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__obj__prop_8h.html">d_a_obj_prop.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -3,7 +3,7 @@ var structJPADynamicsBlock =
     [ "JPADynamicsBlock", "structJPADynamicsBlock.html#abd34ad223a928a3bd74de4d980ad530d", null ],
     [ "JPADynamicsBlock", "structJPADynamicsBlock.html#abd34ad223a928a3bd74de4d980ad530d", null ],
     [ "calc", "structJPADynamicsBlock.html#af51826d7aae5e5c14653039ed7ca8598", null ],
-    [ "create", "structJPADynamicsBlock.html#ab7780f0585d9dc696c83c1b8f49ad6a4", null ],
+    [ "create", "structJPADynamicsBlock.html#a639a876d8b664762b9ea5916be23f8b1", null ],
     [ "getAirRes", "structJPADynamicsBlock.html#a9b7f412857915ebd470fb8e1b398f2fd", null ],
     [ "getDivNumber", "structJPADynamicsBlock.html#a45315da3675e9e9f11ab35c7e1ecdce4", null ],
     [ "getEmitterDir", "structJPADynamicsBlock.html#af6d0815c0327c440ae6f31b4476f3d71", null ],

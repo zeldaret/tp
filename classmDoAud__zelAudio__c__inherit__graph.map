@@ -1,12 +1,12 @@
 <map id="mDoAud_zelAudio_c" name="mDoAud_zelAudio_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="685,144,826,169"/>
-<area shape="rect" id="Node000002" href="$classZ2AudioMgr.html" title=" " alt="" coords="545,144,637,169"/>
+<area shape="rect" id="Node000002" href="$structZ2AudioMgr.html" title=" " alt="" coords="545,144,637,169"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="652,154,684,154,684,159,652,159"/>
-<area shape="rect" id="Node000003" href="$classZ2SeMgr.html" title=" " alt="" coords="403,25,477,51"/>
+<area shape="rect" id="Node000003" href="$structZ2SeMgr.html" title=" " alt="" coords="403,25,477,51"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="478,57,499,72,543,109,578,141,575,145,540,113,496,76,474,61"/>
 <area shape="rect" id="Node000004" href="$classJASGlobalInstance.html" title=" " alt="" coords="166,5,308,46"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="323,28,402,33,402,38,323,33"/>
-<area shape="rect" id="Node000005" href="$classZ2SeqMgr.html" title=" " alt="" coords="399,86,480,112"/>
+<area shape="rect" id="Node000005" href="$structZ2SeqMgr.html" title=" " alt="" coords="399,86,480,112"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="491,115,556,140,554,145,489,120"/>
 <area shape="rect" id="Node000006" href="$classJASGlobalInstance.html" title=" " alt="" coords="166,71,308,111"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="323,92,399,95,399,100,323,97"/>

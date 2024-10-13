@@ -1,7 +1,7 @@
 var structJASTrack_1_1TChannelMgr =
 [
-    [ "TChannelMgr", "structJASTrack_1_1TChannelMgr.html#a0a47544ef00f24fbbfaf9b6b9a2e8405", null ],
-    [ "init", "structJASTrack_1_1TChannelMgr.html#aae462d6795c3454c1ea1c6820fd39939", null ],
+    [ "TChannelMgr", "structJASTrack_1_1TChannelMgr.html#a0aaef959922ddada9a60c56fe3751bad", null ],
+    [ "init", "structJASTrack_1_1TChannelMgr.html#ab72ab68b74b627592ace1eb2a3e482e6", null ],
     [ "noteOff", "structJASTrack_1_1TChannelMgr.html#a39acbfe7a3de248e9292120d149157ea", null ],
     [ "releaseAll", "structJASTrack_1_1TChannelMgr.html#ae07ea4e10826c6aa166bd23e730f2796", null ],
     [ "setPauseFlag", "structJASTrack_1_1TChannelMgr.html#a650f35f99d9b4af9e777e3e42eeeec0f", null ],

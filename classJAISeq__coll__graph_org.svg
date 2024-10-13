@@ -162,7 +162,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classJAISoundID.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structJAISoundID.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="878.75,-1041.62 810.25,-1041.62 810.25,-1022.38 878.75,-1022.38 878.75,-1041.62"/>
 <text text-anchor="middle" x="844.5" y="-1028.12" font-family="Helvetica,sans-Serif" font-size="10.00">JAISoundID</text>
 </a>

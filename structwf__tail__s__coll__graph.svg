@@ -121,7 +121,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1329.25,-430.62 1269.75,-430.62 1269.75,-411.38 1329.25,-411.38 1329.25,-430.62"/>
 <text text-anchor="middle" x="1299.5" y="-417.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -140,7 +140,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="classJ3DJoint.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="structJ3DJoint.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="275,-683.62 220.75,-683.62 220.75,-664.38 275,-664.38 275,-683.62"/>
 <text text-anchor="middle" x="247.88" y="-670.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DJoint</text>
 </a>
@@ -180,7 +180,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1320.62,-47.62 1278.38,-47.62 1278.38,-28.38 1320.62,-28.38 1320.62,-47.62"/>
 <text text-anchor="middle" x="1299.5" y="-34.12" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -266,7 +266,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1148.62,-430.62 1068.88,-430.62 1068.88,-411.38 1148.62,-411.38 1148.62,-430.62"/>
 <text text-anchor="middle" x="1108.75" y="-417.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>
@@ -311,9 +311,9 @@ var sectionId = 'dynsection-0';
 </g>
 </g>
 <!-- Node8&#45;&gt;Node12 -->
-<g id="edge14_Node000012_Node000008" class="edge">
+<g id="edge15_Node000012_Node000008" class="edge">
 <title>Node8&#45;&gt;Node12</title>
-<g id="a_edge14_Node000012_Node000008"><a xlink:title=" ">
+<g id="a_edge15_Node000012_Node000008"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M959.99,-704.15C994.15,-700.64 1039.61,-695.98 1071.04,-692.76"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="959.97,-700.63 950.37,-705.13 960.68,-707.59 959.97,-700.63"/>
 </a>
@@ -365,16 +365,16 @@ var sectionId = 'dynsection-0';
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="classJ3DMtxCalc.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="structJ3DMtxCalc.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1333.75,-815.62 1265.25,-815.62 1265.25,-796.38 1333.75,-796.38 1333.75,-815.62"/>
 <text text-anchor="middle" x="1299.5" y="-802.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMtxCalc</text>
 </a>
 </g>
 </g>
 <!-- Node10&#45;&gt;Node11 -->
-<g id="edge15_Node000011_Node000010" class="edge">
+<g id="edge13_Node000011_Node000010" class="edge">
 <title>Node10&#45;&gt;Node11</title>
-<g id="a_edge15_Node000011_Node000010"><a xlink:title=" ">
+<g id="a_edge13_Node000011_Node000010"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M255.64,-694.43C265.27,-720.83 285.19,-766.83 315.5,-796 370.18,-848.61 392.5,-872 468.38,-872 468.38,-872 468.38,-872 1109.75,-872 1176.75,-872 1250.01,-834.49 1282.01,-816.02"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="259.03,-693.54 252.44,-685.25 252.42,-695.84 259.03,-693.54"/>
 </a>
@@ -384,7 +384,7 @@ var sectionId = 'dynsection-0';
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="classJ3DMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000014"><a xlink:href="structJ3DMaterial.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="503.25,-468.62 435.5,-468.62 435.5,-449.38 503.25,-449.38 503.25,-468.62"/>
 <text text-anchor="middle" x="469.38" y="-455.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterial</text>
 </a>
@@ -432,9 +432,9 @@ var sectionId = 'dynsection-0';
 <text text-anchor="middle" x="1204.88" y="-649.75" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mMtxBuffer</text>
 </g>
 <!-- Node12&#45;&gt;Node11 -->
-<g id="edge13_Node000011_Node000012" class="edge">
+<g id="edge14_Node000011_Node000012" class="edge">
 <title>Node12&#45;&gt;Node11</title>
-<g id="a_edge13_Node000011_Node000012"><a xlink:title=" ">
+<g id="a_edge14_Node000011_Node000012"><a xlink:title=" ">
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M1157.85,-686.52C1183.59,-687.42 1214.74,-692.26 1238.25,-707.75 1270.99,-729.33 1288.92,-775.46 1295.52,-795.9"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="1158.01,-683.02 1147.96,-686.39 1157.92,-690.02 1158.01,-683.02"/>
 </a>
@@ -485,7 +485,7 @@ var sectionId = 'dynsection-0';
 <!-- Node51 -->
 <g id="Node000051" class="node">
 <title>Node51</title>
-<g id="a_Node000051"><a xlink:href="classJ3DMaterialTable.html" target="_top" xlink:title=" ">
+<g id="a_Node000051"><a xlink:href="structJ3DMaterialTable.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="957.5,-469.62 865.75,-469.62 865.75,-450.38 957.5,-450.38 957.5,-469.62"/>
 <text text-anchor="middle" x="911.62" y="-456.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterialTable</text>
 </a>
@@ -813,7 +813,7 @@ var sectionId = 'dynsection-0';
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="classJ3DMaterialAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000030"><a xlink:href="structJ3DMaterialAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="291.88,-927.62 203.88,-927.62 203.88,-908.38 291.88,-908.38 291.88,-927.62"/>
 <text text-anchor="middle" x="247.88" y="-914.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterialAnm</text>
 </a>
@@ -842,7 +842,7 @@ var sectionId = 'dynsection-0';
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="classJ3DMatColorAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000031"><a xlink:href="structJ3DMatColorAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="92.5,-927.62 0,-927.62 0,-908.38 92.5,-908.38 92.5,-927.62"/>
 <text text-anchor="middle" x="46.25" y="-914.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMatColorAnm</text>
 </a>
@@ -861,7 +861,7 @@ var sectionId = 'dynsection-0';
 <!-- Node37 -->
 <g id="Node000037" class="node">
 <title>Node37</title>
-<g id="a_Node000037"><a xlink:href="classJ3DTexMtxAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000037"><a xlink:href="structJ3DTexMtxAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="88.75,-890.62 3.75,-890.62 3.75,-871.38 88.75,-871.38 88.75,-890.62"/>
 <text text-anchor="middle" x="46.25" y="-877.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTexMtxAnm</text>
 </a>
@@ -880,7 +880,7 @@ var sectionId = 'dynsection-0';
 <!-- Node41 -->
 <g id="Node000041" class="node">
 <title>Node41</title>
-<g id="a_Node000041"><a xlink:href="classJ3DTexNoAnm.html" target="_top" xlink:title=" ">
+<g id="a_Node000041"><a xlink:href="structJ3DTexNoAnm.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="87.25,-964.62 5.25,-964.62 5.25,-945.38 87.25,-945.38 87.25,-964.62"/>
 <text text-anchor="middle" x="46.25" y="-951.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DTexNoAnm</text>
 </a>

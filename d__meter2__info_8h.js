@@ -90,6 +90,7 @@ var d__meter2__info_8h =
     [ "dMeter2Info_onLifeGaugeSE", "d__meter2__info_8h.html#ae8d240ac579c2e8d8356bcbafca9c2d1", null ],
     [ "dMeter2Info_onShopTalkFlag", "d__meter2__info_8h.html#af5a8dde65704217944b680923770092d", null ],
     [ "dMeter2Info_onSub2DStatus", "d__meter2__info_8h.html#ad011ab25937c1ca65800ebda20455c4f", null ],
+    [ "dMeter2Info_onUseButton", "d__meter2__info_8h.html#afc7f2a7dda16c4c7596e940ab49ef68a", null ],
     [ "dMeter2Info_readItemTexture", "d__meter2__info_8h.html#aae116e182cb7d423befb56abaeb0c561", null ],
     [ "dMeter2Info_recieveLetter", "d__meter2__info_8h.html#a5731170b9fca373529498ce2df1397a5", null ],
     [ "dMeter2Info_resetBlinkButton", "d__meter2__info_8h.html#adec1fdeb73958a00dcedd3d55b7b16b5", null ],

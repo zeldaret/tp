@@ -1,6 +1,6 @@
 var d__msg__class_8h =
 [
-    [ "JMSMesgEntry_c", "structJMSMesgEntry__c.html", "structJMSMesgEntry__c" ],
+    [ "JMSMesgEntry_c", "classJMSMesgEntry__c.html", "classJMSMesgEntry__c" ],
     [ "JMSMesgHeader_c", "structJMSMesgHeader__c.html", "structJMSMesgHeader__c" ],
     [ "jmessage_tReference", "structjmessage__tReference.html", "structjmessage__tReference" ],
     [ "jmessage_tReference::CharSoundInfo", "structjmessage__tReference_1_1CharSoundInfo.html", "structjmessage__tReference_1_1CharSoundInfo" ],

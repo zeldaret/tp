@@ -58,7 +58,7 @@ var d__a__obj__swBallA_8cpp =
     [ "fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff", "d__a__obj__swBallA_8cpp.html#a81175f49b99856cae1d4e5b6c8551164", null ],
     [ "fpcEx_Search__FPFPvPv_PvPv", "d__a__obj__swBallA_8cpp.html#af3f4af440fe751721060d1c829069c10", null ],
     [ "fpcSch_JudgeByID__FPvPv", "d__a__obj__swBallA_8cpp.html#ac238e2013cb086fcb9c2333c3f386471", null ],
-    [ "func_80CF43D4", "d__a__obj__swBallA_8cpp.html#a324231190e5b34f6c346022eed45920e", null ],
+    [ "func_80CF43D4", "d__a__obj__swBallA_8cpp.html#a3b39114c1fa1282207eb02e169a6cb41", null ],
     [ "getRes__14dRes_control_cFPCclP11dRes_info_ci", "d__a__obj__swBallA_8cpp.html#a59a83dc2646cfbec35f3fb91b2158ad9", null ],
     [ "init__12J3DFrameCtrlFs", "d__a__obj__swBallA_8cpp.html#aede93e9980b517c969b88b1b43446807", null ],
     [ "init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss", "d__a__obj__swBallA_8cpp.html#a6c9e9eb3fb6b95719fb98c053b1a08c7", null ],

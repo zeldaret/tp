@@ -1,0 +1,48 @@
+<map id="Z2CreatureCitizen" name="Z2CreatureCitizen">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1637,228,1761,254"/>
+<area shape="rect" id="Node000002" href="$structZ2Creature.html" title=" " alt="" coords="1502,176,1588,202"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1601,205,1660,225,1658,230,1599,210"/>
+<area shape="rect" id="Node000003" href="$structVec.html" title=" " alt="" coords="268,120,312,146"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,127,447,120,595,116,1271,116,1331,117,1377,124,1479,154,1521,173,1519,178,1477,159,1376,129,1330,123,1271,121,595,121,447,125,328,133"/>
+<area shape="rect" id="Node000014" href="$structJGeometry_1_1TVec3_3_01f32_01_4.html" title=" " alt="" coords="513,156,681,182"/>
+<area shape="poly" id="edge18_Node000014_Node000003" title=" " alt="" coords="328,135,512,156,512,162,327,140"/>
+<area shape="rect" id="Node000004" href="$classZ2SoundObjAnime.html" title=" " alt="" coords="1205,156,1335,182"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1350,172,1502,183,1502,188,1350,177"/>
+<area shape="rect" id="Node000005" href="$classZ2SoundObjBase.html" title=" " alt="" coords="943,205,1067,231"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1081,200,1100,197,1203,178,1204,183,1100,202,1082,206"/>
+<area shape="rect" id="Node000019" href="$classZ2SoundObjSimple.html" title=" " alt="" coords="1203,205,1336,231"/>
+<area shape="poly" id="edge24_Node000019_Node000005" title=" " alt="" coords="1082,216,1202,216,1202,221,1082,221"/>
+<area shape="rect" id="Node000006" href="$classZ2SoundHandles.html" title=" " alt="" coords="536,205,657,231"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="673,216,943,216,943,221,673,221"/>
+<area shape="rect" id="Node000007" href="$classJSUList.html" title=" " alt="" coords="185,176,395,202"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="411,198,536,210,535,215,410,203"/>
+<area shape="rect" id="Node000008" href="$classJSUPtrList.html" title=" " alt="" coords="5,235,92,260"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="103,227,115,224,218,200,219,205,116,229,104,232"/>
+<area shape="rect" id="Node000009" href="$classJSUPtrLink.html" title=" " alt="" coords="245,280,335,306"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="79,267,117,285,149,292,183,296,245,295,245,300,183,301,148,298,115,290,77,272"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="229,284,91,258,92,253,230,279"/>
+<area shape="poly" id="edge10_Node000009_Node000009" title=" " alt="" coords="261,263,271,256,290,253,307,256,318,262,321,271,316,281,311,278,316,271,314,265,305,261,290,259,273,261,264,267"/>
+<area shape="rect" id="Node000020" href="$classJSULink.html" title=" " alt="" coords="712,256,910,282"/>
+<area shape="poly" id="edge26_Node000020_Node000009" title=" " alt="" coords="350,287,712,271,712,276,350,293"/>
+<area shape="rect" id="Node000010" href="$structZ2SoundStarter.html" title=" " alt="" coords="541,371,653,396"/>
+<area shape="poly" id="edge11_Node000005_Node000010" title=" " alt="" coords="667,369,802,341,865,324,908,307,934,289,957,269,992,230,996,233,961,272,938,294,911,312,866,329,803,346,668,374"/>
+<area shape="rect" id="Node000013" href="$classJASGlobalInstance.html" title=" " alt="" coords="934,363,1076,404"/>
+<area shape="poly" id="edge16_Node000013_Node000010" title=" " alt="" coords="668,394,713,400,811,406,909,400,933,397,934,402,910,405,811,411,712,405,668,400"/>
+<area shape="rect" id="Node000011" href="$structJAISoundStarter.html" title=" " alt="" coords="231,337,349,363"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="364,356,540,375,540,380,364,361"/>
+<area shape="rect" id="Node000012" href="$classJASGlobalInstance.html" title=" " alt="" coords="526,306,667,347"/>
+<area shape="poly" id="edge14_Node000012_Node000011" title=" " alt="" coords="364,338,419,333,526,326,526,332,419,338,364,344"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="511,336,349,348,349,343,510,330"/>
+<area shape="poly" id="edge15_Node000010_Node000013" title=" " alt="" coords="919,386,653,386,653,381,919,381"/>
+<area shape="poly" id="edge17_Node000005_Node000014" title=" " alt="" coords="696,174,910,198,943,204,942,209,909,203,696,180"/>
+<area shape="rect" id="Node000015" href="$classJAUSoundAnimation.html" title=" " alt="" coords="934,53,1076,79"/>
+<area shape="poly" id="edge19_Node000004_Node000015" title=" " alt="" coords="1056,83,1235,153,1233,158,1054,88"/>
+<area shape="rect" id="Node000016" href="$classJAUSoundAnimationControl.html" title=" " alt="" coords="505,5,688,31"/>
+<area shape="poly" id="edge20_Node000015_Node000016" title=" " alt="" coords="704,23,910,45,941,50,940,55,909,50,704,28"/>
+<area shape="rect" id="Node000017" href="$classJAUSoundAnimationSound.html" title=" " alt="" coords="507,55,686,80"/>
+<area shape="poly" id="edge21_Node000015_Node000017" title=" " alt="" coords="702,64,934,64,934,69,702,70"/>
+<area shape="rect" id="Node000018" href="$structJAISoundID.html" title=" " alt="" coords="244,55,336,80"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="351,65,507,65,507,70,351,70"/>
+<area shape="poly" id="edge23_Node000002_Node000019" title=" " alt="" coords="1352,225,1414,226,1478,218,1521,200,1523,205,1479,223,1414,231,1352,230"/>
+<area shape="poly" id="edge25_Node000001_Node000020" title=" " alt="" coords="925,266,1138,266,1546,266,1600,262,1650,252,1651,257,1601,267,1546,271,1138,272,925,272"/>
+</map>

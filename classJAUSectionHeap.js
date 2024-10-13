@@ -1,8 +1,8 @@
 var classJAUSectionHeap =
 [
     [ "TSectionHeapData", "structJAUSectionHeap_1_1TSectionHeapData.html", "structJAUSectionHeap_1_1TSectionHeapData" ],
-    [ "JAUSectionHeap", "classJAUSectionHeap.html#a46ef0c617cfe1476ba0a48b64a035ff2", null ],
-    [ "~JAUSectionHeap", "classJAUSectionHeap.html#a039f4e26697b7665955027a0efd30dee", null ],
+    [ "JAUSectionHeap", "classJAUSectionHeap.html#a3fbbefd082fc11ea0d93355ae8d404dc", null ],
+    [ "~JAUSectionHeap", "classJAUSectionHeap.html#a10af7063bf9daedbb0c6a7f25a20491c", null ],
     [ "getHeap", "classJAUSectionHeap.html#a4761dc20a6b462bb0d8c1ae6a57f7a5b", null ],
     [ "getOpenSection", "classJAUSectionHeap.html#ae519a774044c988a0d5a4fd746a2e096", null ],
     [ "getSectionHeapData", "classJAUSectionHeap.html#ac6e49f2042be602e8c945f06db0cf862", null ],

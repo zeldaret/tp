@@ -8,6 +8,5 @@ var searchData=
   ['leafdraw_5fmethod_5fclass_5',['leafdraw_method_class',['../f__op__camera__mng_8h.html#a71acd12c6d7ab61760fb0b4b928fa37f',1,'leafdraw_method_class:&#160;f_op_camera_mng.h'],['../f__pc__leaf_8h.html#a71acd12c6d7ab61760fb0b4b928fa37f',1,'leafdraw_method_class:&#160;f_pc_leaf.h'],['../f__pc__profile_8h.html#a71acd12c6d7ab61760fb0b4b928fa37f',1,'leafdraw_method_class:&#160;f_pc_profile.h']]],
   ['line_5ftag_6',['line_tag',['../f__pc__line__tag_8h.html#a21c3fcf019cb2170404594841b82bedd',1,'f_pc_line_tag.h']]],
   ['list_5fheader_7',['list_header',['../alloc_8c.html#a9dddcf812edc289f47f5b4e21e5ab419',1,'alloc.c']]],
-  ['loadcallback_8',['LoadCallback',['../JASResArcLoader_8h.html#adb3524cd728c74198a287f5f251af772',1,'JASResArcLoader.h']]],
-  ['logcallback_9',['LogCallback',['../OSExec_8c.html#a293b05d1d90feba2aafec9427c527757',1,'OSExec.c']]]
+  ['loadcallback_8',['LoadCallback',['../JASResArcLoader_8h.html#adb3524cd728c74198a287f5f251af772',1,'JASResArcLoader.h']]]
 ];

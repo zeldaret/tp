@@ -19,6 +19,8 @@ var OSThread_8h =
     [ "__OSPromoteThread", "OSThread_8h.html#a7273bdc1fd7324c51fed91595266a7d0", null ],
     [ "__OSReschedule", "OSThread_8h.html#a3b15f6e95a345803bbc435250d1c9809", null ],
     [ "__OSThreadInit", "OSThread_8h.html#abf027e983c90d86f31b664bffd8229c9", null ],
+    [ "AT_ADDRESS", "OSThread_8h.html#a8886f43b245ca89ba5e88b5d4e516ed6", null ],
+    [ "AT_ADDRESS", "OSThread_8h.html#a743754c65e06382f2b3c817d21a43a3e", null ],
     [ "CheckThreadQueue", "OSThread_8h.html#aedaaacf414216a4cc8f2c63531b86092", null ],
     [ "DefaultSwitchThreadCallback", "OSThread_8h.html#aca032bab6128b4d751206e62579e1e92", null ],
     [ "OSCancelThread", "OSThread_8h.html#a4dc00e8b9758c58fbdbb73350637f805", null ],
@@ -42,8 +44,5 @@ var OSThread_8h =
     [ "OSYieldThread", "OSThread_8h.html#a50be736cede3c8780500c9aa6d2f15e3", null ],
     [ "SelectThread", "OSThread_8h.html#a8e1073bb73bbbd3eeda4e21434a99b7c", null ],
     [ "SetEffectivePriority", "OSThread_8h.html#a7a65bd2a5f3e70088fd9b36db40926ad", null ],
-    [ "UnsetRun", "OSThread_8h.html#a5b16f1d9a607516405aa9bd6d05539f4", null ],
-    [ "data_804516D0", "OSThread_8h.html#a6009103ef6e25ffbe3ed283740a170c8", null ],
-    [ "OS_CURRENT_THREAD", "OSThread_8h.html#acc8cdb9e18a61e2a637488d5b7f4bdd9", null ],
-    [ "OS_THREAD_QUEUE", "OSThread_8h.html#a84946221f85d103f57dcea51a3a7e346", null ]
+    [ "UnsetRun", "OSThread_8h.html#a5b16f1d9a607516405aa9bd6d05539f4", null ]
 ];

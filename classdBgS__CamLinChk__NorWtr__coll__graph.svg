@@ -84,7 +84,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classdBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structdBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="328.5,-131.75 252.5,-131.75 252.5,-112.5 328.5,-112.5 328.5,-131.75"/>
 <text text-anchor="middle" x="290.5" y="-118.25" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_LinChk</text>
 </a>
@@ -102,7 +102,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classcBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structcBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="229.5,-188 153.5,-188 153.5,-168.75 229.5,-168.75 229.5,-188"/>
 <text text-anchor="middle" x="191.5" y="-174.5" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_LinChk</text>
 </a>
@@ -157,7 +157,7 @@ var sectionId = 'dynsection-1';
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="443.38,-254.5 339.62,-254.5 339.62,-235.25 443.38,-235.25 443.38,-254.5"/>
 <text text-anchor="middle" x="391.5" y="-241" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>
@@ -212,7 +212,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="321.75,-254.5 241.25,-254.5 241.25,-235.25 321.75,-235.25 321.75,-254.5"/>
 <text text-anchor="middle" x="281.5" y="-241" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>
@@ -230,7 +230,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classcM3dGLin.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="structcM3dGLin.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="61,-254.5 0,-254.5 0,-235.25 61,-235.25 61,-254.5"/>
 <text text-anchor="middle" x="30.5" y="-241" font-family="Helvetica,sans-Serif" font-size="10.00">cM3dGLin</text>
 </a>

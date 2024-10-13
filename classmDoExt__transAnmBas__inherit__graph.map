@@ -1,6 +1,6 @@
 <map id="mDoExt_transAnmBas" name="mDoExt_transAnmBas">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,226,158,252"/>
-<area shape="rect" id="Node000002" href="$classJ3DAnmTransformKey.html" title=" " alt="" coords="5,153,158,178"/>
+<area shape="rect" id="Node000002" href="$structJ3DAnmTransformKey.html" title=" " alt="" coords="5,153,158,178"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,194,84,226,79,226,79,194"/>
 <area shape="rect" id="Node000003" href="$structJ3DAnmTransform.html" title=" " alt="" coords="16,79,147,105"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,120,84,152,79,152,79,120"/>

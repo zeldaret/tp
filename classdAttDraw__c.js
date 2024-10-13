@@ -2,10 +2,10 @@ var classdAttDraw__c =
 [
     [ "~dAttDraw_c", "classdAttDraw__c.html#a0180eadf528dc24962f92241ae377f1d", null ],
     [ "dAttDraw_c", "classdAttDraw__c.html#a95203e8b906dde260cc6a1c0fb3384b3", null ],
-    [ "alphaAnm", "classdAttDraw__c.html#ae6223892af06256937f56f93dafbec43", null ],
-    [ "draw", "classdAttDraw__c.html#a7bc39afac002244017fc8e135dde739d", null ],
+    [ "alphaAnm", "classdAttDraw__c.html#a72ff90018526943056dcc020b8158d36", null ],
+    [ "draw", "classdAttDraw__c.html#ac3feef581765663dd58c235211388914", null ],
     [ "setAlphaAnm", "classdAttDraw__c.html#a52a65b981423711e0def4fed2e3bf40b", null ],
-    [ "setAnm", "classdAttDraw__c.html#ae827a7608a3ed9d8a9ee71588b8a4480", null ],
+    [ "setAnm", "classdAttDraw__c.html#a79bc9fc67e3bffa6a1df70c6a1ecf3a3", null ],
     [ "field_0x164", "classdAttDraw__c.html#a9f1ad1c09a65f3472ff65e24f05e78b4", null ],
     [ "field_0x170", "classdAttDraw__c.html#a2707bfedb6dc849c88460e099a1e6b17", null ],
     [ "field_0x171", "classdAttDraw__c.html#acad6f2355262e5426dae5456f5f16d88", null ],

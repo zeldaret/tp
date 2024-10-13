@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/d_a_guard_mng/d_a_guard_mng.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_guard_mng.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,12 +151,12 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <a href="d__a__guard__mng_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_GUARD_MNG_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_GUARD_MNG_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__player_8h.html">d/a/d_a_player.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/com/d_com_inf_game.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__tag__guard_8h.html">rel/d/a/tag/d_a_tag_guard/d_a_tag_guard.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__player_8h.html">d/actor/d_a_player.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__com__inf__game_8h.html">d/d_com_inf_game.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="d__a__tag__guard_8h.html">d/actor/d_a_tag_guard.h</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaGuardMng__c.html">daGuardMng_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaGuardMng__c.html">daGuardMng_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html#a5ee4b40e690ea61eacaf5f6bde370137">   18</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classdaGuardMng__c.html#a5ee4b40e690ea61eacaf5f6bde370137">countMerchantNum</a>() {</div>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html#a890249d561f4144f16c1a33bca4973e7">   22</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classdaGuardMng__c.html#a890249d561f4144f16c1a33bca4973e7">execute</a>() {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">static</span> <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <span class="keyword">const</span> <a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">mGuardDataTbl</a>[2] = {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keyword">static</span> <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <span class="keyword">const</span> <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">mGuardDataTbl</a>[2] = {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            0x00000200, 0x00000201,</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        };</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
@@ -181,7 +181,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classdaGuardMng__c.html#a6aedbb5d71095526a73c6cb1a970ab8a">mpTagGuard</a>) {</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classdaGuardMng__c.html#a03a31a1555773b8e1e7a06c6b0036007">field_0x571</a> &gt; <a class="code hl_variable" href="classdaGuardMng__c.html#a354136ffba3722f218287ee23f05b44b">mMerchantNum</a> &amp;&amp; 3 &lt; (<a class="code hl_variable" href="classdaGuardMng__c.html#a03a31a1555773b8e1e7a06c6b0036007">field_0x571</a> - <a class="code hl_variable" href="classdaGuardMng__c.html#a354136ffba3722f218287ee23f05b44b">mMerchantNum</a>)) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                    <a class="code hl_variable" href="classdaGuardMng__c.html#a6aedbb5d71095526a73c6cb1a970ab8a">mpTagGuard</a>-&gt;<a class="code hl_function" href="classdaTagGuard__c.html#a1b16cc88b2af3cf4e93cc492f4a5a1a2">createGuard</a>(<a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">mGuardDataTbl</a>[0]);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                    <a class="code hl_variable" href="classdaGuardMng__c.html#a6aedbb5d71095526a73c6cb1a970ab8a">mpTagGuard</a>-&gt;<a class="code hl_function" href="classdaTagGuard__c.html#a1b16cc88b2af3cf4e93cc492f4a5a1a2">createGuard</a>(<a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">mGuardDataTbl</a>[0]);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                    <a class="code hl_variable" href="classdaGuardMng__c.html#a6c8b4e3f253d169c62c5cf1aca9c95d0">field_0x573</a>++;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                    <a class="code hl_variable" href="classdaGuardMng__c.html#a03a31a1555773b8e1e7a06c6b0036007">field_0x571</a> = <a class="code hl_variable" href="classdaGuardMng__c.html#a354136ffba3722f218287ee23f05b44b">mMerchantNum</a>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                    <a class="code hl_function" href="d__com__inf__game_8h.html#af44528bc289e1c8183cad6df5d3a4945">dComIfGs_onSaveDunSwitch</a>(0x3c);</div>
@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html#a0584d0a79c5a70a0d72a0357c58819c1">   49</a></span>    <a class="code hl_typedef" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="code hl_function" href="classdaGuardMng__c.html#a0584d0a79c5a70a0d72a0357c58819c1">getLimitNum</a>() {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a>(<span class="keyword">this</span>) &amp; 0xff;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a>(<span class="keyword">this</span>) &amp; 0xff;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
 </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
@@ -208,7 +208,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classdaGuardMng__c.html#abb311e1ee6c0d3d25ae31a946a9f7f32">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classdaGuardMng__c.html#abb311e1ee6c0d3d25ae31a946a9f7f32">create</a>() {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_function" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">fopAcM_SetupActor</a>(<span class="keyword">this</span>, <a class="code hl_class" href="classdaGuardMng__c.html">daGuardMng_c</a>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">fopAcM_SetupActor</a>(<span class="keyword">this</span>, <a class="code hl_class" href="classdaGuardMng__c.html">daGuardMng_c</a>);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_function" href="classdaGuardMng__c.html#a1b8621b0b73489e115c6f1115d44cf13">create_init</a>();</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="c__phase_8h.html#a9f111b636d6afcaba75f303583cc8340a1236eeffe5a98ca9eafe100ac82f1406">cPhs_COMPLEATE_e</a>;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
@@ -227,6 +227,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_GUARD_MNG_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="ac__phase_8h_html_a9f111b636d6afcaba75f303583cc8340a1236eeffe5a98ca9eafe100ac82f1406"><div class="ttname"><a href="c__phase_8h.html#a9f111b636d6afcaba75f303583cc8340a1236eeffe5a98ca9eafe100ac82f1406">cPhs_COMPLEATE_e</a></div><div class="ttdeci">@ cPhs_COMPLEATE_e</div><div class="ttdef"><b>Definition</b> c_phase.h:13</div></div>
 <div class="ttc" id="aclassdaGuardMng__c_html"><div class="ttname"><a href="classdaGuardMng__c.html">daGuardMng_c</a></div><div class="ttdoc">Guard Manager?</div><div class="ttdef"><b>Definition</b> d_a_guard_mng.h:16</div></div>
 <div class="ttc" id="aclassdaGuardMng__c_html_a03a31a1555773b8e1e7a06c6b0036007"><div class="ttname"><a href="classdaGuardMng__c.html#a03a31a1555773b8e1e7a06c6b0036007">daGuardMng_c::field_0x571</a></div><div class="ttdeci">u8 field_0x571</div><div class="ttdef"><b>Definition</b> d_a_guard_mng.h:70</div></div>
@@ -244,14 +245,13 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <div class="ttc" id="aclassdaGuardMng__c_html_aea6f87fc670e9227bf29dc0c05ea7629"><div class="ttname"><a href="classdaGuardMng__c.html#aea6f87fc670e9227bf29dc0c05ea7629">daGuardMng_c::mLimitNum</a></div><div class="ttdeci">u8 mLimitNum</div><div class="ttdef"><b>Definition</b> d_a_guard_mng.h:71</div></div>
 <div class="ttc" id="aclassdaTagGuard__c_html"><div class="ttname"><a href="classdaTagGuard__c.html">daTagGuard_c</a></div><div class="ttdef"><b>Definition</b> d_a_tag_guard.h:7</div></div>
 <div class="ttc" id="aclassdaTagGuard__c_html_a1b16cc88b2af3cf4e93cc492f4a5a1a2"><div class="ttname"><a href="classdaTagGuard__c.html#a1b16cc88b2af3cf4e93cc492f4a5a1a2">daTagGuard_c::createGuard</a></div><div class="ttdeci">void createGuard(u32)</div><div class="ttdef"><b>Definition</b> d_a_tag_guard.cpp:20</div></div>
+<div class="ttc" id="ad__a__movie__player_8cpp_html_ae9e7e99b5ae52c2ed271b70196a90967"><div class="ttname"><a href="d__a__movie__player_8cpp.html#ae9e7e99b5ae52c2ed271b70196a90967">fopAcM_GetParam</a></div><div class="ttdeci">static void fopAcM_GetParam(void const *param_0)</div><div class="ttdef"><b>Definition</b> d_a_movie_player.cpp:1380</div></div>
 <div class="ttc" id="ad__a__player_8h_html"><div class="ttname"><a href="d__a__player_8h.html">d_a_player.h</a></div></div>
 <div class="ttc" id="ad__a__tag__guard_8h_html"><div class="ttname"><a href="d__a__tag__guard_8h.html">d_a_tag_guard.h</a></div></div>
 <div class="ttc" id="ad__com__inf__game_8h_html"><div class="ttname"><a href="d__com__inf__game_8h.html">d_com_inf_game.h</a></div></div>
-<div class="ttc" id="ad__com__inf__game_8h_html_af44528bc289e1c8183cad6df5d3a4945"><div class="ttname"><a href="d__com__inf__game_8h.html#af44528bc289e1c8183cad6df5d3a4945">dComIfGs_onSaveDunSwitch</a></div><div class="ttdeci">void dComIfGs_onSaveDunSwitch(int i_swNo)</div><div class="ttdef"><b>Definition</b> d_com_inf_game.h:1609</div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a10e09178f3c592d39f7cba7acd57d34f"><div class="ttname"><a href="f__op__actor__mng_8h.html#a10e09178f3c592d39f7cba7acd57d34f">fopAcM_GetParam</a></div><div class="ttdeci">u32 fopAcM_GetParam(const void *pActor)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:209</div></div>
-<div class="ttc" id="agroup__jsystem-jsupport_html_ga13fa7ef63a40072c7203b3da54a569a2"><div class="ttname"><a href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">JSUConvertOffsetToPtr</a></div><div class="ttdeci">T * JSUConvertOffsetToPtr(const void *, const void *)</div><div class="ttdef"><b>Definition</b> JSupport.h:22</div></div>
-<div class="ttc" id="astructdaPy__py__c_html_ae67f920ff1d5c050c72d3337d57bfa79"><div class="ttname"><a href="structdaPy__py__c.html#ae67f920ff1d5c050c72d3337d57bfa79">daPy_py_c::i_checkNowWolf</a></div><div class="ttdeci">static u32 i_checkNowWolf()</div><div class="ttdef"><b>Definition</b> d_a_player.h:885</div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
+<div class="ttc" id="ad__com__inf__game_8h_html_af44528bc289e1c8183cad6df5d3a4945"><div class="ttname"><a href="d__com__inf__game_8h.html#af44528bc289e1c8183cad6df5d3a4945">dComIfGs_onSaveDunSwitch</a></div><div class="ttdeci">void dComIfGs_onSaveDunSwitch(int i_swNo)</div><div class="ttdef"><b>Definition</b> d_com_inf_game.h:1618</div></div>
+<div class="ttc" id="astructdaPy__py__c_html_ae67f920ff1d5c050c72d3337d57bfa79"><div class="ttname"><a href="structdaPy__py__c.html#ae67f920ff1d5c050c72d3337d57bfa79">daPy_py_c::i_checkNowWolf</a></div><div class="ttdeci">static u32 i_checkNowWolf()</div><div class="ttdef"><b>Definition</b> d_a_player.h:909</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 <div class="ttc" id="atypes_8h_html_a5f6906312a689f27d70e9d086649d3fd"><div class="ttname"><a href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> types.h:22</div></div>
 <div class="ttc" id="atypes_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> types.h:8</div></div>
@@ -260,7 +260,7 @@ $(document).ready(function(){initNavTree('d__a__guard__mng_8h_source.html',''); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_16b1b1920d9b9f3fa15404f395df93c3.html">d_a_guard_mng</a></li><li class="navelem"><a class="el" href="d__a__guard__mng_8h.html">d_a_guard_mng.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__guard__mng_8h.html">d_a_guard_mng.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -56,7 +56,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classdBgS__Acch.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structdBgS__Acch.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="452.12,-574.25 384.38,-574.25 384.38,-555 452.12,-555 452.12,-574.25"/>
 <text text-anchor="middle" x="418.25" y="-560.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_Acch</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="classdBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="structdBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="458.5,-426.25 378,-426.25 378,-407 458.5,-407 458.5,-426.25"/>
 <text text-anchor="middle" x="418.25" y="-412.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_GndChk</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="classdBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="structdBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="456.25,-259.25 380.25,-259.25 380.25,-240 456.25,-240 456.25,-259.25"/>
 <text text-anchor="middle" x="418.25" y="-245.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_LinChk</text>
 </a>
@@ -218,7 +218,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classdBgS__ObjAcch.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structdBgS__ObjAcch.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="604.62,-574.25 521.88,-574.25 521.88,-555 604.62,-555 604.62,-574.25"/>
 <text text-anchor="middle" x="563.25" y="-560.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjAcch</text>
 </a>
@@ -290,7 +290,7 @@
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="classdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000014"><a xlink:href="structdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="611,-426.25 515.5,-426.25 515.5,-407 611,-407 611,-426.25"/>
 <text text-anchor="middle" x="563.25" y="-412.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjGndChk</text>
 </a>
@@ -344,7 +344,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="classdBgS__ObjGndChk__Spl.html" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="structdBgS__ObjGndChk__Spl.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="785.62,-426.25 670.62,-426.25 670.62,-407 785.62,-407 785.62,-426.25"/>
 <text text-anchor="middle" x="728.12" y="-412.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjGndChk_Spl</text>
 </a>

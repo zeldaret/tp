@@ -15,7 +15,7 @@ var structJASChannel =
       [ "STATUS_RELEASE", "structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee", null ]
     ] ],
     [ "JASChannel", "structJASChannel.html#a9f085cd3727a63e35d33e942925645bc", null ],
-    [ "~JASChannel", "structJASChannel.html#a479ef9748f2f8bb21014dc001f24e990", null ],
+    [ "~JASChannel", "structJASChannel.html#a7accc3c8aaeb925e11b3d3f208e0404f", null ],
     [ "calcEffect", "structJASChannel.html#a8ce17eef92c918869678f678b4b1da55", null ],
     [ "calcPan", "structJASChannel.html#a97a02e4db705389df0ff8ea1fd25ca9d", null ],
     [ "checkBankDispose", "structJASChannel.html#ab4eccc8db17277d438e876e5f32842ac", null ],
@@ -59,7 +59,7 @@ var structJASChannel =
     [ "field_0x0", "structJASChannel.html#a10405140607d3ac6713e5bf66cbd7e65", null ],
     [ "field_0x104", "structJASChannel.html#ac237601cc1c0148a97e07161868cab7d", null ],
     [ "field_0x4", "structJASChannel.html#a47fb62565330bcc79b3f55a5349785e1", null ],
-    [ "field_0xdc", "structJASChannel.html#a0091cee451657ff362a850f7322c69ef", null ],
+    [ "field_0xdc", "structJASChannel.html#aec057980d4c48b3e71792f7d782ca4ba", null ],
     [ "filler", "structJASChannel.html#a04dbaf358ba0b021b8596e547a249ee7", null ],
     [ "mBankDisposeID", "structJASChannel.html#a54842bd7dee5d16eb0e0cc5e30983d39", null ],
     [ "mCallback", "structJASChannel.html#a1312999e9480d7f4433fc6817e87cec3", null ],

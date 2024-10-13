@@ -355,7 +355,7 @@ var sectionId = 'dynsection-0';
 <!-- Node163 -->
 <g id="Node000163" class="node">
 <title>Node163</title>
-<g id="a_Node000163"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000163"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="448,-801.25 374.25,-801.25 374.25,-782 448,-782 448,-801.25"/>
 <text text-anchor="middle" x="411.12" y="-787.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -411,7 +411,7 @@ var sectionId = 'dynsection-0';
 <!-- Node46 -->
 <g id="Node000046" class="node">
 <title>Node46</title>
-<g id="a_Node000046"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000046"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="687,-1047.25 614,-1047.25 614,-1028 687,-1028 687,-1047.25"/>
 <text text-anchor="middle" x="650.5" y="-1033.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -584,7 +584,7 @@ var sectionId = 'dynsection-0';
 <!-- Node59 -->
 <g id="Node000059" class="node">
 <title>Node59</title>
-<g id="a_Node000059"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000059"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="440.88,-1132.25 381.38,-1132.25 381.38,-1113 440.88,-1113 440.88,-1132.25"/>
 <text text-anchor="middle" x="411.12" y="-1118.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -615,7 +615,7 @@ var sectionId = 'dynsection-0';
 <!-- Node55 -->
 <g id="Node000055" class="node">
 <title>Node55</title>
-<g id="a_Node000055"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000055"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="432.25,-1275.25 390,-1275.25 390,-1256 432.25,-1256 432.25,-1275.25"/>
 <text text-anchor="middle" x="411.12" y="-1261.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>

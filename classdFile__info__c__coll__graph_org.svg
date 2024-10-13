@@ -136,7 +136,7 @@
 <!-- Node63 -->
 <g id="Node000063" class="node">
 <title>Node63</title>
-<g id="a_Node000063"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000063"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1214,-465.64 1140.25,-465.64 1140.25,-446.39 1214,-446.39 1214,-465.64"/>
 <text text-anchor="middle" x="1177.12" y="-452.14" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -957,7 +957,7 @@
 <!-- Node61 -->
 <g id="Node000061" class="node">
 <title>Node61</title>
-<g id="a_Node000061"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000061"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="867.88,-630.64 813.62,-630.64 813.62,-611.39 867.88,-611.39 867.88,-630.64"/>
 <text text-anchor="middle" x="840.75" y="-617.14" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>

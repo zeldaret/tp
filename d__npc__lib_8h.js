@@ -1,4 +1,4 @@
 var d__npc__lib_8h =
 [
-    [ "dNpcLib_lookat_c", "classdNpcLib__lookat__c.html", "classdNpcLib__lookat__c" ]
+    [ "dNpcLib_lookat_c", "structdNpcLib__lookat__c.html", "structdNpcLib__lookat__c" ]
 ];

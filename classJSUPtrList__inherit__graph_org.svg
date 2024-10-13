@@ -760,7 +760,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="classZ2AudioMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="structZ2AudioMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="556,-963.25 487.5,-963.25 487.5,-944 556,-944 556,-963.25"/>
 <text text-anchor="middle" x="521.75" y="-949.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2AudioMgr</text>
 </a>

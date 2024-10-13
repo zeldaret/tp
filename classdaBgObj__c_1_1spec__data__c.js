@@ -4,7 +4,7 @@ var classdaBgObj__c_1_1spec__data__c =
     [ "initParticleBlock", "classdaBgObj__c_1_1spec__data__c.html#ae9ba6ce6e00c0d0beb08bf3fa10b4e81", null ],
     [ "initSoundBlock", "classdaBgObj__c_1_1spec__data__c.html#af2b18fc415cadc58484a95547a4d207e", null ],
     [ "initTexShareBlock", "classdaBgObj__c_1_1spec__data__c.html#a585658c36321c12175745389d7d30a98", null ],
-    [ "Set", "classdaBgObj__c_1_1spec__data__c.html#a1c8e5467e39db68ed128f5bfd4b40716", null ],
+    [ "Set", "classdaBgObj__c_1_1spec__data__c.html#ab602d27b2537da6ff8f965e4ec3cb487", null ],
     [ "field_0x02", "classdaBgObj__c_1_1spec__data__c.html#ab7efb8d7d0487e7209cebb5130260615", null ],
     [ "field_0x03", "classdaBgObj__c_1_1spec__data__c.html#ad4f9d51bcd215977bd0148f97ff43d46", null ],
     [ "field_0x14", "classdaBgObj__c_1_1spec__data__c.html#ae01a90ba6b68e23579bb190d7207b5d3", null ],

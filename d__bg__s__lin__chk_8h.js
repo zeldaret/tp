@@ -1,6 +1,6 @@
 var d__bg__s__lin__chk_8h =
 [
-    [ "dBgS_LinChk", "classdBgS__LinChk.html", "classdBgS__LinChk" ],
+    [ "dBgS_LinChk", "structdBgS__LinChk.html", "structdBgS__LinChk" ],
     [ "dBgS_LinkLinChk", "classdBgS__LinkLinChk.html", "classdBgS__LinkLinChk" ],
     [ "dBgS_RopeLinChk", "classdBgS__RopeLinChk.html", "classdBgS__RopeLinChk" ],
     [ "dBgS_BoomerangLinChk", "classdBgS__BoomerangLinChk.html", "classdBgS__BoomerangLinChk" ],

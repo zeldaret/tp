@@ -13,7 +13,7 @@ var classdDemo__camera__c =
     [ "JSGGetProjectionFovy", "classdDemo__camera__c.html#ab03d8c0647dda69be489dad45ffa85d1", null ],
     [ "JSGGetProjectionNear", "classdDemo__camera__c.html#ac1ab3147af210b632b5f291f7bd2c012", null ],
     [ "JSGGetViewPosition", "classdDemo__camera__c.html#aa02807b611d23436a936169276d45a31", null ],
-    [ "JSGGetViewRoll", "classdDemo__camera__c.html#abfbfa3d1cf4cc62d679b902c5b932fa2", null ],
+    [ "JSGGetViewRoll", "classdDemo__camera__c.html#a50aba801de97188f49912c930fc18064", null ],
     [ "JSGGetViewTargetPosition", "classdDemo__camera__c.html#a883f7c1077be5b2d1e731ced6c7ef0f1", null ],
     [ "JSGGetViewUpVector", "classdDemo__camera__c.html#a741703e07f12bd7d89c3af65728960b9", null ],
     [ "JSGSetProjectionAspect", "classdDemo__camera__c.html#af9ae0b331997676531c58fff336746bb", null ],

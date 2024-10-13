@@ -18,7 +18,7 @@ var m__Do__printf_8cpp =
     [ "OSReportForceEnableOff", "m__Do__printf_8cpp.html#a9c459a3995eb66d3490371e11208137f", null ],
     [ "OSReportForceEnableOn", "m__Do__printf_8cpp.html#a00e33eb6098c76e9200da057aba09cb8", null ],
     [ "OSReportInit", "m__Do__printf_8cpp.html#a3b3c6d4101afcedc4c58cdede56455b9", null ],
-    [ "OSSwitchFiberEx", "m__Do__printf_8cpp.html#ae39676360b389bc25fb43d78be3e956b", null ],
+    [ "OSSwitchFiberEx", "m__Do__printf_8cpp.html#a964c55b2cb29e88662b6269ba291e0c0", null ],
     [ "OSVAttention", "m__Do__printf_8cpp.html#aa8dea1b015db52473edc7846387b06f5", null ],
     [ "OSVReport", "m__Do__printf_8cpp.html#ae4cfc54a8868a2b9bf2ecf93e84f19c9", null ],
     [ "__OSReport_disable", "m__Do__printf_8cpp.html#a98b58c165eacfc265404d698e5bc9525", null ],

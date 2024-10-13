@@ -1,6 +1,6 @@
 var structfs__koro2__s =
 [
-    [ "~fs_koro2_s", "structfs__koro2__s.html#ac8cded5b2cb0d3147c1dd64a9cbcd2a1", null ],
+    [ "~fs_koro2_s", "structfs__koro2__s.html#a8842fab6850d2d973fada5f218aa36cc", null ],
     [ "fs_koro2_s", "structfs__koro2__s.html#ab67529ecab6dab5aaa9d3a89df41455b", null ],
     [ "field_0x04", "structfs__koro2__s.html#abc3cebd321f7fa81aa668a1bc8e8121e", null ],
     [ "field_0x34", "structfs__koro2__s.html#acb9fe3e164c55754c8189d02e6d0fb3b", null ],

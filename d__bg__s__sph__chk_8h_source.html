@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/d/bg/d_bg_s_sph_chk.h Source File</title>
+<title>Twilight Princess: include/d/d_bg_s_sph_chk.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -153,15 +153,15 @@ $(document).ready(function(){initNavTree('d__bg__s__sph__chk_8h_source.html','')
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="c__bg__s__poly__info_8h.html">SSystem/SComponent/c_bg_s_poly_info.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="c__m3d__g__sph_8h.html">SSystem/SComponent/c_m3d_g_sph.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__chk_8h.html">d/bg/d_bg_s_chk.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__chk_8h.html">d/d_bg_s_chk.h</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">struct </span><a class="code hl_struct" href="structcBgD__Vtx__t.html">cBgD_Vtx_t</a>;</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="classdBgS__SphChk.html">dBgS_SphChk</a>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="d__bg__s__sph__chk_8h.html#a2a033697ba43c0b952679ea4e5887671">   11</a></span><span class="keyword">typedef</span> <span class="keywordtype">void</span>* (*SphChk_Callback)(<a class="code hl_class" href="classdBgS__SphChk.html">dBgS_SphChk</a>*, <a class="code hl_struct" href="structcBgD__Vtx__t.html">cBgD_Vtx_t</a>*, int, int, int, <a class="code hl_struct" href="classcM3dGPla.html">cM3dGPla</a>*, <span class="keywordtype">void</span>*);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="d__bg__s__sph__chk_8h.html#a2a033697ba43c0b952679ea4e5887671">   11</a></span><span class="keyword">typedef</span> <span class="keywordtype">void</span>* (*SphChk_Callback)(<a class="code hl_class" href="classdBgS__SphChk.html">dBgS_SphChk</a>*, <a class="code hl_struct" href="structcBgD__Vtx__t.html">cBgD_Vtx_t</a>*, <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>, <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>, <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>, <a class="code hl_class" href="structcM3dGPla.html">cM3dGPla</a>*, <span class="keywordtype">void</span>*);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classdBgS__SphChk.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classdBgS__SphChk.html">dBgS_SphChk</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structcM3dGSph.html">cM3dGSph</a>, <span class="keyword">public</span> <a class="code hl_struct" href="classcBgS__PolyInfo.html">cBgS_PolyInfo</a>, <span class="keyword">public</span> <a class="code hl_class" href="classcBgS__Chk.html">cBgS_Chk</a>, <span class="keyword">public</span> <a class="code hl_class" href="classdBgS__Chk.html">dBgS_Chk</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classdBgS__SphChk.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classdBgS__SphChk.html">dBgS_SphChk</a> : <span class="keyword">public</span> <a class="code hl_class" href="structcM3dGSph.html">cM3dGSph</a>, <span class="keyword">public</span> <a class="code hl_class" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a>, <span class="keyword">public</span> <a class="code hl_class" href="classcBgS__Chk.html">cBgS_Chk</a>, <span class="keyword">public</span> <a class="code hl_class" href="classdBgS__Chk.html">dBgS_Chk</a> {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="comment">/* 80078A14 */</span> <a class="code hl_function" href="classdBgS__SphChk.html#aeda6d27627e26890c4b67d233cee466d">dBgS_SphChk</a>();</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment">/* 80078AC0 */</span> <span class="keyword">virtual</span> <a class="code hl_function" href="classdBgS__SphChk.html#a4df31e782adcf260e9f912f57bd238f2">~dBgS_SphChk</a>();</div>
@@ -172,10 +172,9 @@ $(document).ready(function(){initNavTree('d__bg__s__sph__chk_8h_source.html','')
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif </span><span class="comment">/* D_BG_D_BG_S_SPH_CHK_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="ac__bg__s__poly__info_8h_html"><div class="ttname"><a href="c__bg__s__poly__info_8h.html">c_bg_s_poly_info.h</a></div></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="ac__m3d__g__sph_8h_html"><div class="ttname"><a href="c__m3d__g__sph_8h.html">c_m3d_g_sph.h</a></div></div>
 <div class="ttc" id="aclasscBgS__Chk_html"><div class="ttname"><a href="classcBgS__Chk.html">cBgS_Chk</a></div><div class="ttdef"><b>Definition</b> c_bg_s_chk.h:16</div></div>
-<div class="ttc" id="aclasscBgS__PolyInfo_html"><div class="ttname"><a href="classcBgS__PolyInfo.html">cBgS_PolyInfo</a></div><div class="ttdef"><b>Definition</b> c_bg_s_poly_info.h:6</div></div>
-<div class="ttc" id="aclasscM3dGPla_html"><div class="ttname"><a href="classcM3dGPla.html">cM3dGPla</a></div><div class="ttdef"><b>Definition</b> c_m3d_g_pla.h:8</div></div>
 <div class="ttc" id="aclassdBgS__Chk_html"><div class="ttname"><a href="classdBgS__Chk.html">dBgS_Chk</a></div><div class="ttdef"><b>Definition</b> d_bg_s_chk.h:7</div></div>
 <div class="ttc" id="aclassdBgS__SphChk_html"><div class="ttname"><a href="classdBgS__SphChk.html">dBgS_SphChk</a></div><div class="ttdef"><b>Definition</b> d_bg_s_sph_chk.h:13</div></div>
 <div class="ttc" id="aclassdBgS__SphChk_html_a4df31e782adcf260e9f912f57bd238f2"><div class="ttname"><a href="classdBgS__SphChk.html#a4df31e782adcf260e9f912f57bd238f2">dBgS_SphChk::~dBgS_SphChk</a></div><div class="ttdeci">virtual ~dBgS_SphChk()</div><div class="ttdef"><b>Definition</b> d_bg_s_sph_chk.cpp:18</div></div>
@@ -184,13 +183,15 @@ $(document).ready(function(){initNavTree('d__bg__s__sph__chk_8h_source.html','')
 <div class="ttc" id="ad__bg__s__chk_8h_html"><div class="ttname"><a href="d__bg__s__chk_8h.html">d_bg_s_chk.h</a></div></div>
 <div class="ttc" id="ad__bg__s__sph__chk_8h_html_a2a033697ba43c0b952679ea4e5887671"><div class="ttname"><a href="d__bg__s__sph__chk_8h.html#a2a033697ba43c0b952679ea4e5887671">SphChk_Callback</a></div><div class="ttdeci">void *(* SphChk_Callback)(dBgS_SphChk *, cBgD_Vtx_t *, int, int, int, cM3dGPla *, void *)</div><div class="ttdef"><b>Definition</b> d_bg_s_sph_chk.h:11</div></div>
 <div class="ttc" id="astructcBgD__Vtx__t_html"><div class="ttname"><a href="structcBgD__Vtx__t.html">cBgD_Vtx_t</a></div><div class="ttdef"><b>Definition</b> c_bg_s_chk.h:7</div></div>
-<div class="ttc" id="astructcM3dGSph_html"><div class="ttname"><a href="structcM3dGSph.html">cM3dGSph</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:141</div></div>
+<div class="ttc" id="astructcBgS__PolyInfo_html"><div class="ttname"><a href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:134</div></div>
+<div class="ttc" id="astructcM3dGPla_html"><div class="ttname"><a href="structcM3dGPla.html">cM3dGPla</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:122</div></div>
+<div class="ttc" id="astructcM3dGSph_html"><div class="ttname"><a href="structcM3dGSph.html">cM3dGSph</a></div><div class="ttdef"><b>Definition</b> d_a_tag_allmato.cpp:94</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_5ee73c02bf7e1a2412e48c200b04969a.html">bg</a></li><li class="navelem"><a class="el" href="d__bg__s__sph__chk_8h.html">d_bg_s_sph_chk.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="d__bg__s__sph__chk_8h.html">d_bg_s_sph_chk.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

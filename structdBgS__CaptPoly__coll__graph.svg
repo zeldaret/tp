@@ -77,7 +77,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="103.75,-198.88 0,-198.88 0,-179.62 103.75,-179.62 103.75,-198.88"/>
 <text text-anchor="middle" x="51.88" y="-185.38" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>
@@ -168,7 +168,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classcM3dGAab.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structcM3dGAab.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="368.25,-85.75 303.5,-85.75 303.5,-66.5 368.25,-66.5 368.25,-85.75"/>
 <text text-anchor="middle" x="335.88" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">cM3dGAab</text>
 </a>

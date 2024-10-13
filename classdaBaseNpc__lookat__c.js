@@ -1,7 +1,7 @@
 var classdaBaseNpc__lookat__c =
 [
-    [ "~daBaseNpc_lookat_c", "classdaBaseNpc__lookat__c.html#a2e5905f95bba2315c39e1f76a648085e", null ],
-    [ "calc", "classdaBaseNpc__lookat__c.html#a329ba84d0cdcd3163dd711b1aed3941c", null ],
+    [ "~daBaseNpc_lookat_c", "classdaBaseNpc__lookat__c.html#a9454d867fe8a4d43375a5cf9ee7c9f8b", null ],
+    [ "calc", "classdaBaseNpc__lookat__c.html#ab9d0a22a02568dd7fc5fe662c43a5cb2", null ],
     [ "getRot", "classdaBaseNpc__lookat__c.html#ab1d6953020c2e2e15df4d12e8ff14551", null ],
     [ "limitter", "classdaBaseNpc__lookat__c.html#acac37e22f92392589016e8767f9800a3", null ],
     [ "setAttnPos", "classdaBaseNpc__lookat__c.html#aafeb19ac749f710434b5263e6fecf161", null ],

@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structdMsgString__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classdMsgString__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1976.75,-483.71 1900.75,-483.71 1900.75,-464.46 1976.75,-464.46 1976.75,-483.71"/>
 <text text-anchor="middle" x="1938.75" y="-470.21" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgString_c</text>
 </a>
@@ -373,7 +373,7 @@
 <!-- Node41 -->
 <g id="Node000041" class="node">
 <title>Node41</title>
-<g id="a_Node000041"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000041"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="552.38,-490.71 498.12,-490.71 498.12,-471.46 552.38,-471.46 552.38,-490.71"/>
 <text text-anchor="middle" x="525.25" y="-477.21" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -948,7 +948,7 @@
 <!-- Node85 -->
 <g id="Node000085" class="node">
 <title>Node85</title>
-<g id="a_Node000085"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000085"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="562.12,-1091.71 488.38,-1091.71 488.38,-1072.46 562.12,-1072.46 562.12,-1091.71"/>
 <text text-anchor="middle" x="525.25" y="-1078.21" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

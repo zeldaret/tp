@@ -1,4 +1,0 @@
-var dir_db7a2b76cc6d95716b96cb36a7074064 =
-[
-    [ "Runtime.PPCEABI.H", "dir_9b332552315149f34c888211705096c3.html", "dir_9b332552315149f34c888211705096c3" ]
-];

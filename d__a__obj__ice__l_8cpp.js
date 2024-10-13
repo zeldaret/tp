@@ -75,7 +75,7 @@ var d__a__obj__ice__l_8cpp =
     [ "MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f", "d__a__obj__ice__l_8cpp.html#aeaa6e144db70a98d777b7db9f8dce362", null ],
     [ "MoveBGDelete__16dBgS_MoveBgActorFv", "d__a__obj__ice__l_8cpp.html#a402146e4ef9c6621eb03c2b8d8b5dd68", null ],
     [ "MoveBGExecute__16dBgS_MoveBgActorFv", "d__a__obj__ice__l_8cpp.html#a3f4831ecaa5b4d0bd1be5bc389a22604", null ],
-    [ "rideCallBack", "d__a__obj__ice__l_8cpp.html#ab4b0cd8e016b6fcd87743ae46d856da6", null ],
+    [ "rideCallBack", "d__a__obj__ice__l_8cpp.html#a4a26a925228cf96e0c92c078f5fff2dc", null ],
     [ "rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c", "d__a__obj__ice__l_8cpp.html#a19dd15d0594b926ccd606318243a2780", null ],
     [ "RideOn_Angle__12daObjIce_l_cFRsfsf", "d__a__obj__ice__l_8cpp.html#a56e152971f11c258ab8be9ae251e673b", null ],
     [ "scaleM__14mDoMtx_stack_cFRC4cXyz", "d__a__obj__ice__l_8cpp.html#a6eeb428e558beee82006ce8e65452aa8", null ],

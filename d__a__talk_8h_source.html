@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/d_a_talk/d_a_talk.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_talk.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -152,10 +152,10 @@ $(document).ready(function(){initNavTree('d__a__talk_8h_source.html',''); initRe
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_TALK_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="f__op__actor__mng_8h.html">f_op/f_op_actor_mng.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__msg__flow_8h.html">d/msg/d_msg_flow.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__msg__flow_8h.html">d/d_msg_flow.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classdaTalk__c.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTalk__c.html">daTalk_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classdaTalk__c.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaTalk__c.html">daTalk_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">/* 80D66378 */</span> <a class="code hl_function" href="classdaTalk__c.html#a3ccb42fab9d6aab131011216c1d1b941">~daTalk_c</a>();</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">/* 80D663E4 */</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classdaTalk__c.html#af37296ec915c5da8d3df9e3080201405">create</a>();</div>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('d__a__talk_8h_source.html',''); initRe
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">/* 80D666A8 */</span> <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code hl_function" href="classdaTalk__c.html#a4bea53745030248cd1e383ac3c4323fa">messageSet</a>();</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classdaTalk__c.html#a53c6ba50abbff9f048c5c56e2ad9b40b">   26</a></span>    <span class="comment">/* 0x568 */</span> <a class="code hl_struct" href="classdMsgFlow__c.html">dMsgFlow_c</a> <a class="code hl_variable" href="classdaTalk__c.html#a53c6ba50abbff9f048c5c56e2ad9b40b">mMsgFlow</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classdaTalk__c.html#a53c6ba50abbff9f048c5c56e2ad9b40b">   26</a></span>    <span class="comment">/* 0x568 */</span> <a class="code hl_class" href="structdMsgFlow__c.html">dMsgFlow_c</a> <a class="code hl_variable" href="classdaTalk__c.html#a53c6ba50abbff9f048c5c56e2ad9b40b">mMsgFlow</a>;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classdaTalk__c.html#adf32abad90c42798ad29d0f38e9ff249">   27</a></span>    <span class="comment">/* 0x5B4 */</span> <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code hl_variable" href="classdaTalk__c.html#adf32abad90c42798ad29d0f38e9ff249">mMessageID</a>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
 </div>
@@ -174,7 +174,6 @@ $(document).ready(function(){initNavTree('d__a__talk_8h_source.html',''); initRe
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="d__a__talk_8h.html#a34c598d10a367cef554b906972cec667">   30</a></span><a class="code hl_function" href="d__a__talk_8h.html#a34c598d10a367cef554b906972cec667">STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<a class="code hl_class" href="classdaTalk__c.html">daTalk_c</a>) == 0x5B8);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_TALK_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassdMsgFlow__c_html"><div class="ttname"><a href="classdMsgFlow__c.html">dMsgFlow_c</a></div><div class="ttdef"><b>Definition</b> d_msg_flow.h:35</div></div>
 <div class="ttc" id="aclassdaTalk__c_html"><div class="ttname"><a href="classdaTalk__c.html">daTalk_c</a></div><div class="ttdoc">Talk (Unused?)</div><div class="ttdef"><b>Definition</b> d_a_talk.h:15</div></div>
 <div class="ttc" id="aclassdaTalk__c_html_a3ccb42fab9d6aab131011216c1d1b941"><div class="ttname"><a href="classdaTalk__c.html#a3ccb42fab9d6aab131011216c1d1b941">daTalk_c::~daTalk_c</a></div><div class="ttdeci">~daTalk_c()</div><div class="ttdef"><b>Definition</b> d_a_talk.cpp:23</div></div>
 <div class="ttc" id="aclassdaTalk__c_html_a4bea53745030248cd1e383ac3c4323fa"><div class="ttname"><a href="classdaTalk__c.html#a4bea53745030248cd1e383ac3c4323fa">daTalk_c::messageSet</a></div><div class="ttdeci">u32 messageSet()</div><div class="ttdef"><b>Definition</b> d_a_talk.cpp:99</div></div>
@@ -188,7 +187,8 @@ $(document).ready(function(){initNavTree('d__a__talk_8h_source.html',''); initRe
 <div class="ttc" id="ad__a__talk_8h_html_a34c598d10a367cef554b906972cec667"><div class="ttname"><a href="d__a__talk_8h.html#a34c598d10a367cef554b906972cec667">STATIC_ASSERT</a></div><div class="ttdeci">STATIC_ASSERT(sizeof(daTalk_c)==0x5B8)</div></div>
 <div class="ttc" id="ad__msg__flow_8h_html"><div class="ttname"><a href="d__msg__flow_8h.html">d_msg_flow.h</a></div></div>
 <div class="ttc" id="af__op__actor__mng_8h_html"><div class="ttname"><a href="f__op__actor__mng_8h.html">f_op_actor_mng.h</a></div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
+<div class="ttc" id="astructdMsgFlow__c_html"><div class="ttname"><a href="structdMsgFlow__c.html">dMsgFlow_c</a></div><div class="ttdef"><b>Definition</b> d_a_obj_sekizoa.cpp:318</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 <div class="ttc" id="atypes_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> types.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -196,7 +196,7 @@ $(document).ready(function(){initNavTree('d__a__talk_8h_source.html',''); initRe
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_152615f0640e2d18c165e9362c6adf55.html">d_a_talk</a></li><li class="navelem"><a class="el" href="d__a__talk_8h.html">d_a_talk.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__talk_8h.html">d_a_talk.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

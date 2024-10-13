@@ -1,6 +1,6 @@
 <map id="JFWSystem" name="JFWSystem">
 <area shape="rect" id="Node000001" title=" " alt="" coords="2484,802,2576,828"/>
-<area shape="rect" id="Node000002" href="$classJKRExpHeap.html" title=" " alt="" coords="1552,657,1650,683"/>
+<area shape="rect" id="Node000002" href="$structJKRExpHeap.html" title=" " alt="" coords="1552,657,1650,683"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1666,667,1784,669,1941,677,2117,694,2295,722,2380,742,2461,774,2509,799,2506,804,2459,779,2378,747,2293,727,2117,699,1940,682,1784,674,1666,672"/>
 <area shape="rect" id="Node000003" href="$structJKRHeap.html" title=" " alt="" coords="1189,650,1267,676"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1282,661,1552,666,1552,671,1282,667"/>
@@ -75,9 +75,9 @@
 <area shape="rect" id="Node000026" href="$structunk__print.html" title=" " alt="" coords="1564,1004,1638,1029"/>
 <area shape="poly" id="edge46_Node000025_Node000026" title=" " alt="" coords="1654,1014,1869,1014,1869,1019,1654,1019"/>
 <area shape="poly" id="edge47_Node000026_Node000026" title=" " alt="" coords="1573,986,1582,979,1601,977,1619,979,1629,985,1632,995,1627,1004,1623,1002,1627,994,1625,989,1617,984,1601,982,1584,984,1576,991"/>
-<area shape="rect" id="Node000027" href="$structJUTFont.html" title=" " alt="" coords="1565,1136,1637,1161"/>
+<area shape="rect" id="Node000027" href="$classJUTFont.html" title=" " alt="" coords="1565,1136,1637,1161"/>
 <area shape="poly" id="edge48_Node000025_Node000027" title=" " alt="" coords="1653,1157,1687,1160,1725,1161,1763,1157,1799,1145,1836,1120,1866,1088,1889,1055,1904,1028,1909,1031,1894,1058,1870,1091,1839,1124,1801,1150,1764,1162,1725,1166,1687,1166,1653,1162"/>
-<area shape="rect" id="Node000030" href="$structJUTResFont.html" title=" " alt="" coords="1867,1284,1962,1309"/>
+<area shape="rect" id="Node000030" href="$classJUTResFont.html" title=" " alt="" coords="1867,1284,1962,1309"/>
 <area shape="poly" id="edge54_Node000030_Node000027" title=" " alt="" coords="1653,1160,1724,1183,1802,1217,1856,1250,1898,1281,1895,1285,1853,1254,1799,1221,1723,1188,1651,1165"/>
 <area shape="poly" id="edge70_Node000041_Node000027" title=" " alt="" coords="1651,1130,1688,1115,1728,1094,1766,1068,1798,1035,1809,1015,1813,996,1814,976,1822,951,1862,883,1900,832,1904,835,1867,886,1827,953,1820,977,1818,997,1814,1016,1802,1038,1769,1072,1730,1099,1690,1120,1653,1135"/>
 <area shape="rect" id="Node000028" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="1175,1056,1281,1081"/>

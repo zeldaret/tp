@@ -56,7 +56,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="structJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="224.75,-222.25 121,-222.25 121,-203 224.75,-203 224.75,-222.25"/>
 <text text-anchor="middle" x="172.88" y="-208.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTevRegKey</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classJ3DAnmTexPattern.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="structJ3DAnmTexPattern.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="223.25,-185.25 122.5,-185.25 122.5,-166 223.25,-166 223.25,-185.25"/>
 <text text-anchor="middle" x="172.88" y="-171.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTexPattern</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="classJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="structJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="233.75,-148.25 112,-148.25 112,-129 233.75,-129 233.75,-148.25"/>
 <text text-anchor="middle" x="172.88" y="-134.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTextureSRTKey</text>
 </a>
@@ -254,7 +254,7 @@
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="classJ3DAnmTransformKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000014"><a xlink:href="structJ3DAnmTransformKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="384,-102.25 269.75,-102.25 269.75,-83 384,-83 384,-102.25"/>
 <text text-anchor="middle" x="326.88" y="-88.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTransformKey</text>
 </a>

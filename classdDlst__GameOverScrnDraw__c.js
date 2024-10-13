@@ -1,6 +1,6 @@
 var classdDlst__GameOverScrnDraw__c =
 [
-    [ "dDlst_GameOverScrnDraw_c", "classdDlst__GameOverScrnDraw__c.html#aea9b7f81f53a2810df346d7dee09242c", null ],
+    [ "dDlst_GameOverScrnDraw_c", "classdDlst__GameOverScrnDraw__c.html#a503a8b666ca21351e7495ae1ee389f47", null ],
     [ "~dDlst_GameOverScrnDraw_c", "classdDlst__GameOverScrnDraw__c.html#ab030af587d9414c6d5c2ee866b62f93e", null ],
     [ "draw", "classdDlst__GameOverScrnDraw__c.html#aad3ffee411da31dfc04d23c57dabc394", null ],
     [ "setBackAlpha", "classdDlst__GameOverScrnDraw__c.html#aa2d2fa7496fe94462441587e74195675", null ],

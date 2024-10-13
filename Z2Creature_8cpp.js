@@ -9,7 +9,7 @@ var Z2Creature_8cpp =
     [ "__dt__10JSUPtrLinkFv", "Z2Creature_8cpp.html#ab4ea0984d59ed1f3074078cdba2fa41e", null ],
     [ "__dt__14Z2SoundObjBaseFv", "Z2Creature_8cpp.html#a173636de9123121a7bd9c729073d4835", null ],
     [ "__dt__16Z2SoundObjSimpleFv", "Z2Creature_8cpp.html#acf010a52bd2a7911359b14dc5e0cd7bc", null ],
-    [ "__sinit_Z2Creature_cpp", "Z2Creature_8cpp.html#a8d4699a23c51c5fbd6afdeb0e454f717", null ],
+    [ "__sinit_Z2Creature_cpp", "Z2Creature_8cpp.html#a709b616fd30b605cc67fe44c3322fd46", null ],
     [ "_restgpr_20", "Z2Creature_8cpp.html#a2aca8d40c5f7f620c2bf2ebd6c1497ba", null ],
     [ "_restgpr_23", "Z2Creature_8cpp.html#a778466826efe33e53ffca7d528cfcd23", null ],
     [ "_restgpr_25", "Z2Creature_8cpp.html#a07802390ec789d585ab9991a261e4ee5", null ],

@@ -1,5 +1,5 @@
 var structdaBaseNpc__matAnm__c =
 [
-    [ "~daBaseNpc_matAnm_c", "structdaBaseNpc__matAnm__c.html#a7ae944dc23579b6ab5d52ab2891c343b", null ],
-    [ "calc", "structdaBaseNpc__matAnm__c.html#aba778083ee26da5441f303590b6fc025", null ]
+    [ "~daBaseNpc_matAnm_c", "structdaBaseNpc__matAnm__c.html#a4f3e7d4348361a9899db4c35d913b220", null ],
+    [ "calc", "structdaBaseNpc__matAnm__c.html#ade042e38353e0011fbfcefb4422017dd", null ]
 ];

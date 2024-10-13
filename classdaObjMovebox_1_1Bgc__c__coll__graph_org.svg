@@ -40,7 +40,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="294.62,-97 199.12,-97 199.12,-77.75 294.62,-77.75 294.62,-97"/>
 <text text-anchor="middle" x="246.88" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjGndChk</text>
 </a>
@@ -59,7 +59,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classdBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="structdBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="287.12,-153.25 206.62,-153.25 206.62,-134 287.12,-134 287.12,-153.25"/>
 <text text-anchor="middle" x="246.88" y="-139.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_GndChk</text>
 </a>
@@ -77,7 +77,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classcBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structcBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="274.12,-219.75 193.62,-219.75 193.62,-200.5 274.12,-200.5 274.12,-219.75"/>
 <text text-anchor="middle" x="233.88" y="-206.25" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_GndChk</text>
 </a>
@@ -131,7 +131,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="classcBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="structcBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="513.88,-219.75 437.88,-219.75 437.88,-200.5 513.88,-200.5 513.88,-219.75"/>
 <text text-anchor="middle" x="475.88" y="-206.25" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_LinChk</text>
 </a>
@@ -168,7 +168,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="structdBgS__PolyPassChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="732.75,-286.25 629,-286.25 629,-267 732.75,-267 732.75,-286.25"/>
 <text text-anchor="middle" x="680.88" y="-272.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_PolyPassChk</text>
 </a>
@@ -223,7 +223,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classcBgS__PolyInfo.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="structcBgS__PolyInfo.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="332.12,-286.25 251.62,-286.25 251.62,-267 332.12,-267 332.12,-286.25"/>
 <text text-anchor="middle" x="291.88" y="-272.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_PolyInfo</text>
 </a>
@@ -325,7 +325,7 @@
 <!-- Node20 -->
 <g id="Node000020" class="node">
 <title>Node20</title>
-<g id="a_Node000020"><a xlink:href="classcM3dGLin.html" target="_top" xlink:title=" ">
+<g id="a_Node000020"><a xlink:href="structcM3dGLin.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="530.38,-286.25 469.38,-286.25 469.38,-267 530.38,-267 530.38,-286.25"/>
 <text text-anchor="middle" x="499.88" y="-272.75" font-family="Helvetica,sans-Serif" font-size="10.00">cM3dGLin</text>
 </a>
@@ -390,7 +390,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="classdBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="structdBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="604.88,-153.25 528.88,-153.25 528.88,-134 604.88,-134 604.88,-153.25"/>
 <text text-anchor="middle" x="566.88" y="-139.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_LinChk</text>
 </a>

@@ -39,7 +39,7 @@
 <area shape="poly" id="edge33_Node000003_Node000018" title=" " alt="" coords="409,382,614,422,923,486,1057,518,1228,566,1320,598,1318,603,1226,571,1056,523,922,491,613,427,408,387"/>
 <area shape="poly" id="edge16_Node000017_Node000018" title=" " alt="" coords="401,391,426,413,441,445,445,476,442,505,435,533,429,560,427,588,433,615,450,643,476,656,528,671,650,699,649,704,527,676,474,660,446,647,428,617,422,588,424,560,430,532,437,504,440,476,436,447,422,417,398,395"/>
 <area shape="poly" id="edge50_Node000066_Node000018" title=" " alt="" coords="408,369,967,363,967,369,408,374"/>
-<area shape="rect" id="Node000067" href="$structJUTFont.html" title=" " alt="" coords="668,262,740,288"/>
+<area shape="rect" id="Node000067" href="$classJUTFont.html" title=" " alt="" coords="668,262,740,288"/>
 <area shape="poly" id="edge49_Node000067_Node000018" title=" " alt="" coords="405,352,667,282,668,287,407,358"/>
 <area shape="poly" id="edge56_Node000070_Node000018" title=" " alt="" coords="351,344,366,316,387,285,414,256,447,234,517,208,591,194,666,189,740,192,811,200,874,212,972,238,971,243,873,218,810,206,740,197,666,194,592,199,518,213,449,239,418,260,392,289,371,319,356,346"/>
 <area shape="rect" id="Node000019" href="$struct__GXColor.html" title=" " alt="" coords="45,360,116,385"/>
@@ -71,7 +71,7 @@
 <area shape="poly" id="edge31_Node000036_Node000037" title=" " alt="" coords="760,611,961,611,961,616,760,616"/>
 <area shape="rect" id="Node000038" href="$structResNTAB_1_1Entry.html" title=" " alt="" coords="283,613,398,639"/>
 <area shape="poly" id="edge32_Node000037_Node000038" title=" " alt="" coords="414,623,613,618,663,615,664,620,613,623,414,628"/>
-<area shape="rect" id="Node000039" href="$structdMsgString__c.html" title=" " alt="" coords="3222,454,3323,480"/>
+<area shape="rect" id="Node000039" href="$classdMsgString__c.html" title=" " alt="" coords="3222,454,3323,480"/>
 <area shape="poly" id="edge34_Node000001_Node000039" title=" " alt="" coords="3339,464,3444,464,3444,470,3339,470"/>
 <area shape="rect" id="Node000040" href="$classdMsgStringBase__c.html" title=" " alt="" coords="3041,182,3173,208"/>
 <area shape="poly" id="edge35_Node000039_Node000040" title=" " alt="" coords="3117,222,3130,268,3152,326,3183,387,3202,415,3224,441,3237,451,3234,456,3220,445,3198,419,3178,390,3147,328,3125,270,3112,223"/>

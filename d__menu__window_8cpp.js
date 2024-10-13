@@ -1,5 +1,7 @@
 var d__menu__window_8cpp =
 [
+    [ "initFunc", "d__menu__window_8cpp.html#a250ed6ecd3515d5d9e00c4fbe22379ad", null ],
+    [ "procFunc", "d__menu__window_8cpp.html#aac5d9d24d3760eba8d4267a70da9b126", null ],
     [ "__ct__12dMenu_Dmap_cFP10JKRExpHeapP9STControlP10CSTControlUcUc", "d__menu__window_8cpp.html#af9deb3cfcad0f666ad4b75b5afde52c0", null ],
     [ "__ct__12dMenu_Fmap_cFP10JKRExpHeapP9STControlP10CSTControlUcUcUcffUc", "d__menu__window_8cpp.html#a4fbf009574b4ae9a85320a38d70d04a6", null ],
     [ "__ct__12dMenu_Ring_cFP10JKRExpHeapP9STControlP10CSTControlUc", "d__menu__window_8cpp.html#a6dc4260dcae60b9a396da8dcca66c59a", null ],
@@ -15,7 +17,7 @@ var d__menu__window_8cpp =
     [ "__dt__20dDlst_MENU_CAPTURE_cFv", "d__menu__window_8cpp.html#ae63cb79ceb91c2eb0f02d2ab44619ae8", null ],
     [ "__nw__FUl", "d__menu__window_8cpp.html#a2b05986531107cde8783fde25a9a7413", null ],
     [ "__ptmf_scall", "d__menu__window_8cpp.html#abcc1145fa03be95d1df70e96494331d7", null ],
-    [ "__sinit_d_menu_window_cpp", "d__menu__window_8cpp.html#a0b38d7088eec9e1e4aa2b2bc6c63e7d9", null ],
+    [ "__sinit_d_menu_window_cpp", "d__menu__window_8cpp.html#a9e60fbf5ade3f7757b0bb3f2a792a497", null ],
     [ "_create__12dMenu_Ring_cFv", "d__menu__window_8cpp.html#a2e863b06cd9def0b5e67cbf045038a14", null ],
     [ "_create__12dMenu_save_cFv", "d__menu__window_8cpp.html#a70abcd7643f0f0e29afefd618d4f9bde", null ],
     [ "_create__15dMenu_Collect_cFv", "d__menu__window_8cpp.html#a23d259362cd58c68a7abe67f78a4a67b", null ],
@@ -249,7 +251,7 @@ var d__menu__window_8cpp =
     [ "cNullVec__6Z2Calc", "d__menu__window_8cpp.html#af1d641d5006e9852701e43891c9ccc5c", null ],
     [ "d_menu_d_menu_window__stringBase0", "d__menu__window_8cpp.html#aa833dcd69a42c3f9dc5696f4c55f4258", null ],
     [ "g_profile_MENUWINDOW", "d__menu__window_8cpp.html#aa64023222b81f77dca72ec60d6cc40a1", null ],
-    [ "init_proc", "d__menu__window_8cpp.html#a2950dc7f906c6e6b32e7113663719c3f", null ],
+    [ "init_proc", "d__menu__window_8cpp.html#ad23bad2c900d700ecd32bd3bf826c7fe", null ],
     [ "l_dMw_Method", "d__menu__window_8cpp.html#a2d2ce8c2dcdcc7ca31b053c96d978c39", null ],
     [ "lit_4115", "d__menu__window_8cpp.html#a60d93aee664bb83d2aabcb533688ba04", null ],
     [ "lit_4152", "d__menu__window_8cpp.html#a87a8c02dcf223df7a4524192c57c4d23", null ],
@@ -328,6 +330,6 @@ var d__menu__window_8cpp =
     [ "mFader__13mDoGph_gInf_c", "d__menu__window_8cpp.html#a60e6708b28df3a940fccf163d94456f7", null ],
     [ "mFrameBufferTex__13mDoGph_gInf_c", "d__menu__window_8cpp.html#aadfcbd832ba052046f40b1287a3104d1", null ],
     [ "mFrameBufferTimg__13mDoGph_gInf_c", "d__menu__window_8cpp.html#a3b63c5a6a71b86c7e81cbd884cb2046a", null ],
-    [ "move_proc", "d__menu__window_8cpp.html#a97e06379d97d6a5250cc2b2e54d73885", null ],
+    [ "move_proc", "d__menu__window_8cpp.html#ae6b68af69cefc445a8a848b5137dc8e3", null ],
     [ "sManager__10JFWDisplay", "d__menu__window_8cpp.html#a8c47483029d746100458fd510866414f", null ]
 ];

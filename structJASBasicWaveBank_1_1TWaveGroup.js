@@ -1,7 +1,7 @@
 var structJASBasicWaveBank_1_1TWaveGroup =
 [
-    [ "TWaveGroup", "structJASBasicWaveBank_1_1TWaveGroup.html#ab6ddb445cb0cf34d586b102aa426595d", null ],
-    [ "~TWaveGroup", "structJASBasicWaveBank_1_1TWaveGroup.html#a3ac758a3e2d7703bfe56c2f3c359cf9f", null ],
+    [ "TWaveGroup", "structJASBasicWaveBank_1_1TWaveGroup.html#a0bbafe642efad9255e8ff3430135bb75", null ],
+    [ "~TWaveGroup", "structJASBasicWaveBank_1_1TWaveGroup.html#a0035b5f9bd4227fd7eeca608f6c2fd36", null ],
     [ "getWaveCount", "structJASBasicWaveBank_1_1TWaveGroup.html#a0d6106c6e2d1aaf8fe200018173fc76c", null ],
     [ "getWaveID", "structJASBasicWaveBank_1_1TWaveGroup.html#a34be25b533f9564b04d069f6957401c8", null ],
     [ "onEraseDone", "structJASBasicWaveBank_1_1TWaveGroup.html#af51c7e0ff300406647777644bdb5bfdb", null ],

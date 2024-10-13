@@ -3,7 +3,7 @@ var classJ2DMaterial =
     [ "J2DMaterialAnmPointer", "structJ2DMaterial_1_1J2DMaterialAnmPointer.html", "structJ2DMaterial_1_1J2DMaterialAnmPointer" ],
     [ "J2DMaterial", "classJ2DMaterial.html#a00897ee7298d3a0c8412b9cde52883ae", null ],
     [ "~J2DMaterial", "classJ2DMaterial.html#aea24e97058a0602ad92b5852b87eac1c", null ],
-    [ "animation", "classJ2DMaterial.html#aa12a751ed742a1e81afee5afd8ae5b50", null ],
+    [ "animation", "classJ2DMaterial.html#a3487ce9cf3b9c9a167b962d91dd81f8e", null ],
     [ "createIndBlock", "classJ2DMaterial.html#a0fefbe4446a456ad074992a0e101658c", null ],
     [ "createTevBlock", "classJ2DMaterial.html#a3a71078c6b9941507c2eff602c678ff8", null ],
     [ "getColorBlock", "classJ2DMaterial.html#a2a1e1eafe2a779f5263eaae45e107caa", null ],

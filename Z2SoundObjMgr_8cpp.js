@@ -1,7 +1,7 @@
 var Z2SoundObjMgr_8cpp =
 [
     [ "EnemyInfo", "structEnemyInfo.html", "structEnemyInfo" ],
-    [ "__sinit_Z2SoundObjMgr_cpp", "Z2SoundObjMgr_8cpp.html#a78adba84bd931cec7e0bbdcb165b8f48", null ],
+    [ "__sinit_Z2SoundObjMgr_cpp", "Z2SoundObjMgr_8cpp.html#aa3bf77844e5543022a257eab83f3aaca", null ],
     [ "REGISTER_CTORS", "Z2SoundObjMgr_8cpp.html#a9a2b0467a4a3b0a047f0574c6d1119a4", null ],
     [ "data_80455B84", "Z2SoundObjMgr_8cpp.html#aaa9311e3d41f9b660ad6db55340ffd9a", null ],
     [ "data_80455B8C", "Z2SoundObjMgr_8cpp.html#a6dff804ae84eea03362a236ee8e2c9db", null ],

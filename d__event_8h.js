@@ -4,7 +4,7 @@ var d__event_8h =
     [ "dEvDb_reg_c", "classdEvDb__reg__c.html", "classdEvDb__reg__c" ],
     [ "dEvDb_flag_base_c", "classdEvDb__flag__base__c.html", "classdEvDb__flag__base__c" ],
     [ "dEvt_order_c", "classdEvt__order__c.html", "classdEvt__order__c" ],
-    [ "dEvt_control_c", "classdEvt__control__c.html", "classdEvt__control__c" ],
+    [ "dEvt_control_c", "structdEvt__control__c.html", "structdEvt__control__c" ],
     [ "SkipFunc", "d__event_8h.html#ac9548afe9476291696f75067c44d1181", null ],
     [ "EventMode", "d__event_8h.html#a0a8ba9df0e4b60821889d34ab83e47fe", [
       [ "EVT_MODE_NONE", "d__event_8h.html#a0a8ba9df0e4b60821889d34ab83e47feae06c0cb6a607abd9ef17ee40bc294dd8", null ],

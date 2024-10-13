@@ -160,10 +160,10 @@ $(document).ready(function(){initNavTree('gd_8h_source.html',''); initResizable(
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="gd_8h.html#a8c0818547792873fa28c2527fbb03489">   11</a></span><span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_typedef" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="code hl_function" href="gd_8h.html#a8c0818547792873fa28c2527fbb03489">__GDLightID2Index</a>(<a class="code hl_typedef" href="GXEnum_8h.html#a8c90da9fe0eb1c207af48ec850c251cd">GXLightID</a> <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_typedef" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> lightIdx = (31 - <a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<span class="keywordtype">id</span>));</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">if</span> (lightIdx &gt; 7)</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        lightIdx = 0;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">return</span> lightIdx;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_typedef" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">lightIdx</a> = (31 - <a class="code hl_function" href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a>(<span class="keywordtype">id</span>));</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">lightIdx</a> &gt; 7)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">lightIdx</a> = 0;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">lightIdx</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
 </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
@@ -181,6 +181,7 @@ $(document).ready(function(){initNavTree('gd_8h_source.html',''); initResizable(
 <div class="ttc" id="aGDBase_8h_html"><div class="ttname"><a href="GDBase_8h.html">GDBase.h</a></div></div>
 <div class="ttc" id="aGDGeometry_8h_html"><div class="ttname"><a href="GDGeometry_8h.html">GDGeometry.h</a></div></div>
 <div class="ttc" id="aGXEnum_8h_html_a8c90da9fe0eb1c207af48ec850c251cd"><div class="ttname"><a href="GXEnum_8h.html#a8c90da9fe0eb1c207af48ec850c251cd">GXLightID</a></div><div class="ttdeci">enum _GXLightID GXLightID</div></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="agd_8h_html_a8c0818547792873fa28c2527fbb03489"><div class="ttname"><a href="gd_8h.html#a8c0818547792873fa28c2527fbb03489">__GDLightID2Index</a></div><div class="ttdeci">static u16 __GDLightID2Index(GXLightID id)</div><div class="ttdef"><b>Definition</b> gd.h:11</div></div>
 <div class="ttc" id="agd_8h_html_aab833d0532bf0aef60987d2ed3cb649e"><div class="ttname"><a href="gd_8h.html#aab833d0532bf0aef60987d2ed3cb649e">__GDLightID2Offset</a></div><div class="ttdeci">static u16 __GDLightID2Offset(GXLightID id)</div><div class="ttdef"><b>Definition</b> gd.h:18</div></div>
 <div class="ttc" id="aglobal_8h_html_add8c751814afc8108b19a1434ab15887"><div class="ttname"><a href="global_8h.html#add8c751814afc8108b19a1434ab15887">__cntlzw</a></div><div class="ttdeci">int __cntlzw(unsigned int)</div></div>

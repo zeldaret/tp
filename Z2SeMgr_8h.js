@@ -2,7 +2,7 @@ var Z2SeMgr_8h =
 [
     [ "Z2MultiSeMgr", "structZ2MultiSeMgr.html", "structZ2MultiSeMgr" ],
     [ "Z2MultiSeObj", "structZ2MultiSeObj.html", "structZ2MultiSeObj" ],
-    [ "Z2SeMgr", "classZ2SeMgr.html", "classZ2SeMgr" ],
+    [ "Z2SeMgr", "structZ2SeMgr.html", "structZ2SeMgr" ],
     [ "Z2SoundID", "Z2SeMgr_8h.html#a2015be0323c9a6d9908c0ddb691584ab", [
       [ "Z2SE_SY_DUMMY", "Z2SeMgr_8h.html#a2015be0323c9a6d9908c0ddb691584abaede843a785a19a1a44bef1956635e3f1", null ],
       [ "Z2SE_ENTER_GAME", "Z2SeMgr_8h.html#a2015be0323c9a6d9908c0ddb691584aba8afdd39ebe940deba40ce44d8113b393", null ],

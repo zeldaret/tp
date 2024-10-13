@@ -16,10 +16,10 @@ var OSLink_8h =
     [ "OSRel", "OSLink_8h.html#a584373547d64021268de854c809e497f", null ],
     [ "OSSectionInfo", "OSLink_8h.html#a4615dcccfcfe257fdf15669c3e0454aa", null ],
     [ "__OSModuleInit", "OSLink_8h.html#a0c021770594e26da3469339cfd25cd9a", null ],
+    [ "AT_ADDRESS", "OSLink_8h.html#af6984d1410cae92a726cb1c3820b8d5e", null ],
+    [ "AT_ADDRESS", "OSLink_8h.html#a20c9cb9b628f5a409641491cbd3894e3", null ],
     [ "OSLink", "OSLink_8h.html#a9e97342c0469199adec260d1b95f09cf", null ],
     [ "OSLinkFixed", "OSLink_8h.html#a5e4ff0bc065068dbbf211872ca3a27a1", null ],
     [ "OSSetStringTable", "OSLink_8h.html#a93946dcc80fe20ecfbf9760a28b4ba2c", null ],
-    [ "OSUnlink", "OSLink_8h.html#a0b2b5cbc625fab631f31ba92447424e8", null ],
-    [ "__OSModuleList", "OSLink_8h.html#a00b3698f78852d3f1db914d0c788eb49", null ],
-    [ "__OSStringTable", "OSLink_8h.html#a74dd65ee568fb220c57c63647c9019ae", null ]
+    [ "OSUnlink", "OSLink_8h.html#a0b2b5cbc625fab631f31ba92447424e8", null ]
 ];

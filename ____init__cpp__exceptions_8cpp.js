@@ -1,15 +1,12 @@
 var ____init__cpp__exceptions_8cpp =
 [
-    [ "__destroy_global_chain", "____init__cpp__exceptions_8cpp.html#a709e235e919060e0ebb86ebda15a7ff2", null ],
-    [ "__fini_cpp_exceptions", "____init__cpp__exceptions_8cpp.html#a650a02cb5a76c6c3713fc7621d050c3f", null ],
-    [ "__init_cpp_exceptions", "____init__cpp__exceptions_8cpp.html#ac8c7a61fec89400e43f27f4cdbc51c32", null ],
-    [ "__register_fragment", "____init__cpp__exceptions_8cpp.html#a4f3495c7f00407c5807cccb63a5a7ad9", null ],
-    [ "__unregister_fragment", "____init__cpp__exceptions_8cpp.html#a06b390e71fb6d4ff6c921a3e0f64eb21", null ],
-    [ "__destroy_global_chain_reference", "____init__cpp__exceptions_8cpp.html#a9c2d48b94427028a46454d62dc2eba2b", null ],
-    [ "__dtors_null_terminator", "____init__cpp__exceptions_8cpp.html#ac01cad2358918b90b7ccd14791210e4a", null ],
-    [ "__fini_cpp_exceptions_reference", "____init__cpp__exceptions_8cpp.html#a8eaed5a99498be8f898f151e3b782045", null ],
-    [ "__init_cpp_exceptions_reference", "____init__cpp__exceptions_8cpp.html#a58be06be7d8c02be30c228004abb9e8b", null ],
-    [ "_ctors", "____init__cpp__exceptions_8cpp.html#a417934da9e21983b7cdf2186ad01b6ae", null ],
-    [ "data_8000569C", "____init__cpp__exceptions_8cpp.html#a120e11c1eb59db7608a42ed74c3e51a5", null ],
-    [ "fragmentID", "____init__cpp__exceptions_8cpp.html#a21243c988619632d6fefcc6327be951d", null ]
+    [ "__declspec", "____init__cpp__exceptions_8cpp.html#a2e1c784aee6219761135ee5112dc161b", null ],
+    [ "__declspec", "____init__cpp__exceptions_8cpp.html#ad5b27ec68135b7c8f8b5af0cc9119da8", null ],
+    [ "__destroy_global_chain", "____init__cpp__exceptions_8cpp.html#ae7326dd5e3a5a5fe3a47481b228ab022", null ],
+    [ "__fini_cpp_exceptions", "____init__cpp__exceptions_8cpp.html#ac8ab0a76646fa9ff75efebcd5f1cc763", null ],
+    [ "__init_cpp_exceptions", "____init__cpp__exceptions_8cpp.html#a3ec0d75dcedaeb414ca553106b3272b8", null ],
+    [ "__register_fragment", "____init__cpp__exceptions_8cpp.html#a28b00b48517ebcdec80149fdc12eb7f8", null ],
+    [ "__unregister_fragment", "____init__cpp__exceptions_8cpp.html#a6206c3b9a154f4c62ff0d225fb36d4d9", null ],
+    [ "GetR2", "____init__cpp__exceptions_8cpp.html#a054f36dd0cf9370b18a9b82ca13bbbfb", null ],
+    [ "fragmentID", "____init__cpp__exceptions_8cpp.html#ac9609f6868302f50e459f97e6bcc2320", null ]
 ];

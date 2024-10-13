@@ -1,6 +1,6 @@
 var classJ3DAnmVtxColor =
 [
-    [ "J3DAnmVtxColor", "classJ3DAnmVtxColor.html#aa4e9a014451745bf5dcdc2ce544d202d", null ],
+    [ "J3DAnmVtxColor", "classJ3DAnmVtxColor.html#afb8bb8fe5e5406c5a8f1c2f73b62d7bc", null ],
     [ "~J3DAnmVtxColor", "classJ3DAnmVtxColor.html#a5042edebc7977f27cba690f44db1642f", null ],
     [ "getColor", "classJ3DAnmVtxColor.html#aa33e28adeb7b6f8f2425c903bd44b69c", null ],
     [ "getKind", "classJ3DAnmVtxColor.html#a3f144d8971bad177d392fa8dff351251", null ],

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structJMSMesgEntry__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classJMSMesgEntry__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1818.88,-85.75 1726.38,-85.75 1726.38,-66.5 1818.88,-66.5 1818.88,-85.75"/>
 <text text-anchor="middle" x="1772.62" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">JMSMesgEntry_c</text>
 </a>
@@ -298,7 +298,7 @@
 <!-- Node46 -->
 <g id="Node000046" class="node">
 <title>Node46</title>
-<g id="a_Node000046"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000046"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1141.12,-294.5 1068.12,-294.5 1068.12,-275.25 1141.12,-275.25 1141.12,-294.5"/>
 <text text-anchor="middle" x="1104.62" y="-281" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -492,7 +492,7 @@
 <!-- Node59 -->
 <g id="Node000059" class="node">
 <title>Node59</title>
-<g id="a_Node000059"><a xlink:href="classJ3DModel.html" target="_top" xlink:title=" ">
+<g id="a_Node000059"><a xlink:href="structJ3DModel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="2446.38,-426.12 2386.88,-426.12 2386.88,-406.88 2446.38,-406.88 2446.38,-426.12"/>
 <text text-anchor="middle" x="2416.62" y="-412.62" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModel</text>
 </a>
@@ -530,7 +530,7 @@
 <!-- Node90 -->
 <g id="Node000090" class="node">
 <title>Node90</title>
-<g id="a_Node000090"><a xlink:href="classJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000090"><a xlink:href="structJ3DAnmTextureSRTKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1809.5,-426.12 1687.75,-426.12 1687.75,-406.88 1809.5,-406.88 1809.5,-426.12"/>
 <text text-anchor="middle" x="1748.62" y="-412.62" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTextureSRTKey</text>
 </a>
@@ -583,7 +583,7 @@
 <!-- Node55 -->
 <g id="Node000055" class="node">
 <title>Node55</title>
-<g id="a_Node000055"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000055"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="928.75,-426.12 886.5,-426.12 886.5,-406.88 928.75,-406.88 928.75,-426.12"/>
 <text text-anchor="middle" x="907.62" y="-412.62" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -728,7 +728,7 @@
 <!-- Node60 -->
 <g id="Node000060" class="node">
 <title>Node60</title>
-<g id="a_Node000060"><a xlink:href="classJ3DModelData.html" target="_top" xlink:title=" ">
+<g id="a_Node000060"><a xlink:href="structJ3DModelData.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="2650.5,-539.25 2570.75,-539.25 2570.75,-520 2650.5,-520 2650.5,-539.25"/>
 <text text-anchor="middle" x="2610.62" y="-525.75" font-family="Helvetica,sans-Serif" font-size="10.00">J3DModelData</text>
 </a>
@@ -804,7 +804,7 @@
 <!-- Node103 -->
 <g id="Node000103" class="node">
 <title>Node103</title>
-<g id="a_Node000103"><a xlink:href="classJ3DMaterialTable.html" target="_top" xlink:title=" ">
+<g id="a_Node000103"><a xlink:href="structJ3DMaterialTable.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="2588.5,-618.62 2496.75,-618.62 2496.75,-599.38 2588.5,-599.38 2588.5,-618.62"/>
 <text text-anchor="middle" x="2542.62" y="-605.12" font-family="Helvetica,sans-Serif" font-size="10.00">J3DMaterialTable</text>
 </a>
@@ -874,7 +874,7 @@
 <!-- Node97 -->
 <g id="Node000097" class="node">
 <title>Node97</title>
-<g id="a_Node000097"><a xlink:href="classJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
+<g id="a_Node000097"><a xlink:href="structJ3DAnmTevRegKey.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1976.5,-426.12 1872.75,-426.12 1872.75,-406.88 1976.5,-406.88 1976.5,-426.12"/>
 <text text-anchor="middle" x="1924.62" y="-412.62" font-family="Helvetica,sans-Serif" font-size="10.00">J3DAnmTevRegKey</text>
 </a>

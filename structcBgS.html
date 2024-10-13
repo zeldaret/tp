@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: cBgS Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('structcBgS.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structcBgS-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">cBgS Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="d__bg__s_8h_source.html">d_bg_s.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for cBgS:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structcBgS__inherit__graph.svg" width="64" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for cBgS:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="structcBgS__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a079ca5b87bdcf2e02c5595aaccdad475" id="r_a079ca5b87bdcf2e02c5595aaccdad475"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a079ca5b87bdcf2e02c5595aaccdad475">LineCross</a> (<a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *)</td></tr>
+<tr class="separator:a079ca5b87bdcf2e02c5595aaccdad475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2942fa8804991879db80eaaa963b432a" id="r_a2942fa8804991879db80eaaa963b432a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a2942fa8804991879db80eaaa963b432a">GroundCross</a> (<a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *)</td></tr>
+<tr class="separator:a2942fa8804991879db80eaaa963b432a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96580edd9ada50a8b3438aa220c69cd1" id="r_a96580edd9ada50a8b3438aa220c69cd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a96580edd9ada50a8b3438aa220c69cd1">GetTriPla</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcM3dGPla.html">cM3dGPla</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a96580edd9ada50a8b3438aa220c69cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6199c2cbecf0c5daa70e8cf513ebd8a5" id="r_a6199c2cbecf0c5daa70e8cf513ebd8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a6199c2cbecf0c5daa70e8cf513ebd8a5">LineCross</a> (<a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *)</td></tr>
+<tr class="separator:a6199c2cbecf0c5daa70e8cf513ebd8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a9ff74d020d9fb827a48d4daac3968f" id="r_a7a9ff74d020d9fb827a48d4daac3968f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a7a9ff74d020d9fb827a48d4daac3968f">GroundCross</a> (<a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *)</td></tr>
+<tr class="separator:a7a9ff74d020d9fb827a48d4daac3968f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc4b2effa5b189ad822eea90a2023c5" id="r_aebc4b2effa5b189ad822eea90a2023c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#aebc4b2effa5b189ad822eea90a2023c5">cBgS</a> ()</td></tr>
+<tr class="separator:aebc4b2effa5b189ad822eea90a2023c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a94dfc42ac2073aecccf33e6eef1839" id="r_a7a94dfc42ac2073aecccf33e6eef1839"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a7a94dfc42ac2073aecccf33e6eef1839">Regist</a> (<a class="el" href="classdBgW__Base.html">dBgW_Base</a> *, <a class="el" href="f__pc__base_8h.html#acd8dd8723a67c56756aefe06ed3ea645">fpc_ProcID</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td></tr>
+<tr class="separator:a7a94dfc42ac2073aecccf33e6eef1839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440bdff40e4a29ab3151938088e31a3d" id="r_a440bdff40e4a29ab3151938088e31a3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a440bdff40e4a29ab3151938088e31a3d">Release</a> (<a class="el" href="classdBgW__Base.html">dBgW_Base</a> *)</td></tr>
+<tr class="separator:a440bdff40e4a29ab3151938088e31a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a079ca5b87bdcf2e02c5595aaccdad475" id="r_a079ca5b87bdcf2e02c5595aaccdad475"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a079ca5b87bdcf2e02c5595aaccdad475">LineCross</a> (<a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *)</td></tr>
+<tr class="separator:a079ca5b87bdcf2e02c5595aaccdad475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2942fa8804991879db80eaaa963b432a" id="r_a2942fa8804991879db80eaaa963b432a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a2942fa8804991879db80eaaa963b432a">GroundCross</a> (<a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *)</td></tr>
+<tr class="separator:a2942fa8804991879db80eaaa963b432a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a83c9e990ae2c757ab5aae2bb4bd9fa" id="r_a3a83c9e990ae2c757ab5aae2bb4bd9fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a3a83c9e990ae2c757ab5aae2bb4bd9fa">GetActorPointer</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a3a83c9e990ae2c757ab5aae2bb4bd9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d40e0acfe283d3db15027720cc4494" id="r_ae8d40e0acfe283d3db15027720cc4494"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdBgW__Base.html">dBgW_Base</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#ae8d40e0acfe283d3db15027720cc4494">GetBgWBasePointer</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ae8d40e0acfe283d3db15027720cc4494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8692e4a46d944e8e029e8507c563b9" id="r_a7c8692e4a46d944e8e029e8507c563b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a7c8692e4a46d944e8e029e8507c563b9">ChkPolySafe</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;)</td></tr>
+<tr class="separator:a7c8692e4a46d944e8e029e8507c563b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae64fe5a036791e07f53279808f1f4b32" id="r_ae64fe5a036791e07f53279808f1f4b32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#ae64fe5a036791e07f53279808f1f4b32">GetGrpRoomId</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ae64fe5a036791e07f53279808f1f4b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96580edd9ada50a8b3438aa220c69cd1" id="r_a96580edd9ada50a8b3438aa220c69cd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a96580edd9ada50a8b3438aa220c69cd1">GetTriPla</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcM3dGPla.html">cM3dGPla</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a96580edd9ada50a8b3438aa220c69cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b19912d4ec2c83346296cb06960c21" id="r_a95b19912d4ec2c83346296cb06960c21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a95b19912d4ec2c83346296cb06960c21">GetTriPnt</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="structcXyz.html">cXyz</a> *, <a class="el" href="structcXyz.html">cXyz</a> *) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a95b19912d4ec2c83346296cb06960c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a48cdb748cf066cc68dd05681d86d6d" id="r_a0a48cdb748cf066cc68dd05681d86d6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a0a48cdb748cf066cc68dd05681d86d6d">ShdwDraw</a> (<a class="el" href="classcBgS__ShdwDraw.html">cBgS_ShdwDraw</a> *)</td></tr>
+<tr class="separator:a0a48cdb748cf066cc68dd05681d86d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0976d8bfa9b1b1a2b022580c069b474f" id="r_a0976d8bfa9b1b1a2b022580c069b474f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a0976d8bfa9b1b1a2b022580c069b474f">GetGrpInf</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a0976d8bfa9b1b1a2b022580c069b474f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16afc8454575a0b6021a8764b57b1b03" id="r_a16afc8454575a0b6021a8764b57b1b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a16afc8454575a0b6021a8764b57b1b03">~cBgS</a> ()</td></tr>
+<tr class="separator:a16afc8454575a0b6021a8764b57b1b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec968976d2c4ea54c91741e660f1be4a" id="r_aec968976d2c4ea54c91741e660f1be4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#aec968976d2c4ea54c91741e660f1be4a">Ct</a> ()</td></tr>
+<tr class="separator:aec968976d2c4ea54c91741e660f1be4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3000fb6f1cd437b9738be7c96d95581d" id="r_a3000fb6f1cd437b9738be7c96d95581d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#a3000fb6f1cd437b9738be7c96d95581d">Dt</a> ()</td></tr>
+<tr class="separator:a3000fb6f1cd437b9738be7c96d95581d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1da5861c50fb08bad4650e883309c9f" id="r_ab1da5861c50fb08bad4650e883309c9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#ab1da5861c50fb08bad4650e883309c9f">GetActorPointer</a> (<a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;info) <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab1da5861c50fb08bad4650e883309c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad5fbe6784e870c0d5f3ed0972551746d" id="r_ad5fbe6784e870c0d5f3ed0972551746d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#ad5fbe6784e870c0d5f3ed0972551746d">ConvDzb</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td></tr>
+<tr class="separator:ad5fbe6784e870c0d5f3ed0972551746d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ab9beb986f0d70429a8508538e5b08018" id="r_ab9beb986f0d70429a8508538e5b08018"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcBgS__ChkElm.html">cBgS_ChkElm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcBgS.html#ab9beb986f0d70429a8508538e5b08018">m_chk_element</a> [256]</td></tr>
+<tr class="separator:ab9beb986f0d70429a8508538e5b08018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aebc4b2effa5b189ad822eea90a2023c5" name="aebc4b2effa5b189ad822eea90a2023c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc4b2effa5b189ad822eea90a2023c5">&#9670;&#160;</a></span>cBgS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cBgS::cBgS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a16afc8454575a0b6021a8764b57b1b03" name="a16afc8454575a0b6021a8764b57b1b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16afc8454575a0b6021a8764b57b1b03">&#9670;&#160;</a></span>~cBgS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> cBgS::~cBgS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7c8692e4a46d944e8e029e8507c563b9" name="a7c8692e4a46d944e8e029e8507c563b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c8692e4a46d944e8e029e8507c563b9">&#9670;&#160;</a></span>ChkPolySafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::ChkPolySafe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5fbe6784e870c0d5f3ed0972551746d" name="ad5fbe6784e870c0d5f3ed0972551746d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5fbe6784e870c0d5f3ed0972551746d">&#9670;&#160;</a></span>ConvDzb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> * cBgS::ConvDzb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>p_dzb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec968976d2c4ea54c91741e660f1be4a" name="aec968976d2c4ea54c91741e660f1be4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec968976d2c4ea54c91741e660f1be4a">&#9670;&#160;</a></span>Ct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cBgS::Ct </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="structdBgS.html#a14eb588f33f289d298112353e80088f6">dBgS</a>.</p>
+
+</div>
+</div>
+<a id="a3000fb6f1cd437b9738be7c96d95581d" name="a3000fb6f1cd437b9738be7c96d95581d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3000fb6f1cd437b9738be7c96d95581d">&#9670;&#160;</a></span>Dt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cBgS::Dt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="structdBgS.html#a1d102f0cdd1269934b2f5c6b0ad2fbf0">dBgS</a>.</p>
+
+</div>
+</div>
+<a id="ab1da5861c50fb08bad4650e883309c9f" name="ab1da5861c50fb08bad4650e883309c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1da5861c50fb08bad4650e883309c9f">&#9670;&#160;</a></span>GetActorPointer() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> * cBgS::GetActorPointer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>info</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a83c9e990ae2c757ab5aae2bb4bd9fa" name="a3a83c9e990ae2c757ab5aae2bb4bd9fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a83c9e990ae2c757ab5aae2bb4bd9fa">&#9670;&#160;</a></span>GetActorPointer() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structfopAc__ac__c.html">fopAc_ac_c</a> * cBgS::GetActorPointer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td>
+          <td class="paramname"><em>actor_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae8d40e0acfe283d3db15027720cc4494" name="ae8d40e0acfe283d3db15027720cc4494"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d40e0acfe283d3db15027720cc4494">&#9670;&#160;</a></span>GetBgWBasePointer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classdBgW__Base.html">dBgW_Base</a> * cBgS::GetBgWBasePointer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0976d8bfa9b1b1a2b022580c069b474f" name="a0976d8bfa9b1b1a2b022580c069b474f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0976d8bfa9b1b1a2b022580c069b474f">&#9670;&#160;</a></span>GetGrpInf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> cBgS::GetGrpInf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae64fe5a036791e07f53279808f1f4b32" name="ae64fe5a036791e07f53279808f1f4b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae64fe5a036791e07f53279808f1f4b32">&#9670;&#160;</a></span>GetGrpRoomId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> cBgS::GetGrpRoomId </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96580edd9ada50a8b3438aa220c69cd1" name="a96580edd9ada50a8b3438aa220c69cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96580edd9ada50a8b3438aa220c69cd1">&#9670;&#160;</a></span>GetTriPla() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::GetTriPla </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcM3dGPla.html">cM3dGPla</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96580edd9ada50a8b3438aa220c69cd1" name="a96580edd9ada50a8b3438aa220c69cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96580edd9ada50a8b3438aa220c69cd1">&#9670;&#160;</a></span>GetTriPla() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::GetTriPla </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcM3dGPla.html">cM3dGPla</a> *&#160;</td>
+          <td class="paramname"><em>p_pla</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95b19912d4ec2c83346296cb06960c21" name="a95b19912d4ec2c83346296cb06960c21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b19912d4ec2c83346296cb06960c21">&#9670;&#160;</a></span>GetTriPnt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::GetTriPnt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__PolyInfo.html">cBgS_PolyInfo</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>poly</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcXyz.html">cXyz</a> *&#160;</td>
+          <td class="paramname"><em>param_3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2942fa8804991879db80eaaa963b432a" name="a2942fa8804991879db80eaaa963b432a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2942fa8804991879db80eaaa963b432a">&#9670;&#160;</a></span>GroundCross() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> cBgS::GroundCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2942fa8804991879db80eaaa963b432a" name="a2942fa8804991879db80eaaa963b432a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2942fa8804991879db80eaaa963b432a">&#9670;&#160;</a></span>GroundCross() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> cBgS::GroundCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *&#160;</td>
+          <td class="paramname"><em>p_gnd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a9ff74d020d9fb827a48d4daac3968f" name="a7a9ff74d020d9fb827a48d4daac3968f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9ff74d020d9fb827a48d4daac3968f">&#9670;&#160;</a></span>GroundCross() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cBgS::GroundCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__GndChk.html">cBgS_GndChk</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a079ca5b87bdcf2e02c5595aaccdad475" name="a079ca5b87bdcf2e02c5595aaccdad475"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079ca5b87bdcf2e02c5595aaccdad475">&#9670;&#160;</a></span>LineCross() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::LineCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a079ca5b87bdcf2e02c5595aaccdad475" name="a079ca5b87bdcf2e02c5595aaccdad475"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a079ca5b87bdcf2e02c5595aaccdad475">&#9670;&#160;</a></span>LineCross() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::LineCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *&#160;</td>
+          <td class="paramname"><em>p_line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6199c2cbecf0c5daa70e8cf513ebd8a5" name="a6199c2cbecf0c5daa70e8cf513ebd8a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6199c2cbecf0c5daa70e8cf513ebd8a5">&#9670;&#160;</a></span>LineCross() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cBgS::LineCross </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcBgS__LinChk.html">cBgS_LinChk</a> *&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a94dfc42ac2073aecccf33e6eef1839" name="a7a94dfc42ac2073aecccf33e6eef1839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a94dfc42ac2073aecccf33e6eef1839">&#9670;&#160;</a></span>Regist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> cBgS::Regist </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdBgW__Base.html">dBgW_Base</a> *&#160;</td>
+          <td class="paramname"><em>p_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="f__pc__base_8h.html#acd8dd8723a67c56756aefe06ed3ea645">fpc_ProcID</a>&#160;</td>
+          <td class="paramname"><em>actor_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>p_actor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a440bdff40e4a29ab3151938088e31a3d" name="a440bdff40e4a29ab3151938088e31a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440bdff40e4a29ab3151938088e31a3d">&#9670;&#160;</a></span>Release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> cBgS::Release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdBgW__Base.html">dBgW_Base</a> *&#160;</td>
+          <td class="paramname"><em>p_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a48cdb748cf066cc68dd05681d86d6d" name="a0a48cdb748cf066cc68dd05681d86d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a48cdb748cf066cc68dd05681d86d6d">&#9670;&#160;</a></span>ShdwDraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> cBgS::ShdwDraw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcBgS__ShdwDraw.html">cBgS_ShdwDraw</a> *&#160;</td>
+          <td class="paramname"><em>p_shdw</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab9beb986f0d70429a8508538e5b08018" name="ab9beb986f0d70429a8508538e5b08018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9beb986f0d70429a8508538e5b08018">&#9670;&#160;</a></span>m_chk_element</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcBgS__ChkElm.html">cBgS_ChkElm</a> cBgS::m_chk_element[256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/d/actor/<a class="el" href="d__a__ep_8cpp.html">d_a_ep.cpp</a></li>
+<li>include/d/<a class="el" href="d__bg__s_8h_source.html">d_bg_s.h</a></li>
+<li>src/d/actor/<a class="el" href="d__a__npc__fguard_8cpp.html">d_a_npc_fguard.cpp</a></li>
+<li>src/d/actor/<a class="el" href="d__a__obj__sekizoa_8cpp.html">d_a_obj_sekizoa.cpp</a></li>
+<li>src/d/<a class="el" href="d__bg__s_8cpp.html">d_bg_s.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structcBgS.html">cBgS</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$struct__GXColorS10.html" title=" " alt="" coords="5,31,106,56"/>
-<area shape="rect" id="Node000001" href="$structJ2DGXColorS10.html" title=" " alt="" coords="154,5,270,31"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="121,30,153,25,154,30,122,35"/>
-<area shape="rect" id="Node000002" href="$structJ3DGXColorS10.html" title=" " alt="" coords="154,55,270,80"/>
-<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="122,51,154,56,153,61,121,56"/>
+<area shape="rect" id="Node000000" href="$struct__GXColor.html" title=" " alt="" coords="5,31,83,56"/>
+<area shape="rect" id="Node000001" href="$structJ3DGXColor.html" title=" " alt="" coords="137,5,230,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="97,31,136,24,137,29,98,36"/>
+<area shape="rect" id="Node000002" href="$structJUtility_1_1TColor.html" title=" " alt="" coords="131,55,236,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="98,50,131,56,130,61,98,55"/>
 </map>

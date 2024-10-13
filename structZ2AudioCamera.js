@@ -1,6 +1,6 @@
 var structZ2AudioCamera =
 [
-    [ "Z2AudioCamera", "structZ2AudioCamera.html#a5584ac0b2b1a12f551ffb467def0d375", null ],
+    [ "Z2AudioCamera", "structZ2AudioCamera.html#a0d09de332fc9e6dfb63030295373a455", null ],
     [ "convertAbsToRel", "structZ2AudioCamera.html#a3ac49e53987b539eb4df5d98ad67352b", null ],
     [ "convertAbsToRel", "structZ2AudioCamera.html#a50f34b7f1f1104ab0cbade64b4bddf10", null ],
     [ "getDolbyCenterZ", "structZ2AudioCamera.html#a0268c09ec0d356aff028d6783e2c6c6b", null ],
@@ -9,9 +9,9 @@ var structZ2AudioCamera =
     [ "getVel", "structZ2AudioCamera.html#a59fcccbb7164dec632b0cd3afc12406c", null ],
     [ "getVolCenterZ", "structZ2AudioCamera.html#a08d03e2b16036dbfc4b7f685cfa297e6", null ],
     [ "init", "structZ2AudioCamera.html#a2fb602c786bd3401f814a06f41d2bde1", null ],
-    [ "isInSight", "structZ2AudioCamera.html#a9e6ed023da8995ec7a43f175ae7f5549", null ],
-    [ "setCameraState", "structZ2AudioCamera.html#afbb69266cefb7d53340774d5498bd755", null ],
-    [ "setCameraState", "structZ2AudioCamera.html#a26a997906a84fa135c3a02c9cb8fc579", null ],
+    [ "isInSight", "structZ2AudioCamera.html#af989f139af23d4415e0ff2c4a45e8e6a", null ],
+    [ "setCameraState", "structZ2AudioCamera.html#afcead90043c0966b439471fd506abff3", null ],
+    [ "setCameraState", "structZ2AudioCamera.html#ad0e1cbf80114bb3b125a4538aa62146b", null ],
     [ "setMainCamera", "structZ2AudioCamera.html#ac03328403297189a2435947f4883a101", null ],
     [ "setTargetVolume", "structZ2AudioCamera.html#ae59b7b3c1b319a8dabca9b6f3adf9e21", null ],
     [ "field_0x0", "structZ2AudioCamera.html#a8c54455f3fd7b6ca9b0c7bfc52fde18a", null ],

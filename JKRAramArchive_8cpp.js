@@ -7,7 +7,7 @@ var JKRAramArchive_8cpp =
     [ "__dt__10JKRArchiveFv", "JKRAramArchive_8cpp.html#ae211b211ff2d53914e482d04688e35be", null ],
     [ "__dt__11JKRDisposerFv", "JKRAramArchive_8cpp.html#a4e2906fcad482f08410e6847643c95b9", null ],
     [ "__dt__14JKRAramArchiveFv", "JKRAramArchive_8cpp.html#a34f8fcf9a4d769a1d8eb79e1190053c1", null ],
-    [ "__dt__7JKRFileFv", "JKRAramArchive_8cpp.html#a979365622ba5c6d3eb907e18226879f8", null ],
+    [ "__dt__7JKRFileFv", "JKRAramArchive_8cpp.html#a2fbfe686754026bd768536efe6db027d", null ],
     [ "__nw__FUlP7JKRHeapi", "JKRAramArchive_8cpp.html#afbab543e827198c4a78b583c1fb01747", null ],
     [ "_restgpr_26", "JKRAramArchive_8cpp.html#a144e235fa24971081cf050d9a260248c", null ],
     [ "_restgpr_27", "JKRAramArchive_8cpp.html#afdca0eb87578e0952b66387b093d81f3", null ],

@@ -28,7 +28,7 @@ var JASAramStream_8cpp =
     [ "dvdErrorCheck__13JASAramStreamFPv", "JASAramStream_8cpp.html#afd03d6b79a6b0d712565b4ff92165434", null ],
     [ "finishTask__13JASAramStreamFPv", "JASAramStream_8cpp.html#a2e1b3de1d8b46005bd03cfaf85eaf19d", null ],
     [ "firstLoadTask__13JASAramStreamFPv", "JASAramStream_8cpp.html#a24bbacaa60fa3d7a74f125bb827355e8", null ],
-    [ "func_802978DC", "JASAramStream_8cpp.html#a48e7a1c78991c9b673267080c6b1cf8d", null ],
+    [ "func_802978DC", "JASAramStream_8cpp.html#a44c04159923a9c7afa2b70dea5d64119", null ],
     [ "getBlockSamples__13JASAramStreamCFv", "JASAramStream_8cpp.html#aff83e897e7132338c9a0988784608dc0", null ],
     [ "getDacRate__9JASDriverFv", "JASAramStream_8cpp.html#a583278b96a77459088a646067815dfcd", null ],
     [ "getThreadPointer__6JASDvdFv", "JASAramStream_8cpp.html#ad62206a8a6277b39a86375ae6735e695", null ],

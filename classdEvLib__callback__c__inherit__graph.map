@@ -1,9 +1,15 @@
 <map id="dEvLib_callback_c" name="dEvLib_callback_c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="164,5,294,31"/>
-<area shape="rect" id="Node000002" href="$classdaObjHBombkoya__c.html" title="Destructable Bomb House." alt="" coords="5,79,146,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,40,103,81,101,76,188,36"/>
-<area shape="rect" id="Node000003" href="$classdaObjVolcBall__c.html" title="Volcano Ball." alt="" coords="170,79,288,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,46,232,79,226,79,226,46"/>
-<area shape="rect" id="Node000004" href="$classdalv4CandleDemoTag__c.html" title="Arbiter&#39;s Grounds Torch Cutscene Tag." alt="" coords="312,79,474,105"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="272,35,366,76,364,81,270,40"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,136,155"/>
+<area shape="rect" id="Node000002" href="$classdaObjHBombkoya__c.html" title="Destructable Bomb House." alt="" coords="195,5,335,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,116,131,77,182,40,206,29,208,34,185,44,135,81,95,119"/>
+<area shape="rect" id="Node000003" href="$classdaObjSwBallA__c.html" title="Ball Switch A." alt="" coords="205,55,325,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,120,183,89,214,78,216,83,185,94,113,125"/>
+<area shape="rect" id="Node000004" href="$classdaObjSwBallB__c.html" title="Ball Switch B." alt="" coords="205,104,325,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,129,204,122,205,127,151,134"/>
+<area shape="rect" id="Node000005" href="$classdaObjVolcBall__c.html" title="Volcano Ball." alt="" coords="206,153,324,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,149,206,156,206,162,151,155"/>
+<area shape="rect" id="Node000006" href="$classdaTagAtkItem__c.html" title=" " alt="" coords="206,203,324,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="114,159,185,189,216,200,215,205,183,194,112,164"/>
+<area shape="rect" id="Node000007" href="$classdalv4CandleDemoTag__c.html" title="Arbiter&#39;s Grounds Torch Cutscene Tag." alt="" coords="184,252,346,278"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="95,165,135,203,185,239,209,249,207,254,182,243,132,207,92,168"/>
 </map>

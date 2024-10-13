@@ -319,7 +319,7 @@
 <!-- Node128 -->
 <g id="Node000128" class="node">
 <title>Node128</title>
-<g id="a_Node000128"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000128"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="560.62,-164.25 486.88,-164.25 486.88,-145 560.62,-145 560.62,-164.25"/>
 <text text-anchor="middle" x="523.75" y="-150.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -460,7 +460,7 @@
 <!-- Node45 -->
 <g id="Node000045" class="node">
 <title>Node45</title>
-<g id="a_Node000045"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000045"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1009.62,-1708.25 936.62,-1708.25 936.62,-1689 1009.62,-1689 1009.62,-1708.25"/>
 <text text-anchor="middle" x="973.12" y="-1694.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -647,7 +647,7 @@
 <!-- Node54 -->
 <g id="Node000054" class="node">
 <title>Node54</title>
-<g id="a_Node000054"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000054"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="781.75,-1861.25 739.5,-1861.25 739.5,-1842 781.75,-1842 781.75,-1861.25"/>
 <text text-anchor="middle" x="760.62" y="-1847.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>
@@ -1399,7 +1399,7 @@
 <!-- Node189 -->
 <g id="Node000189" class="node">
 <title>Node189</title>
-<g id="a_Node000189"><a xlink:href="structdMsgString__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000189"><a xlink:href="classdMsgString__c.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1271.12,-1348.25 1195.12,-1348.25 1195.12,-1329 1271.12,-1329 1271.12,-1348.25"/>
 <text text-anchor="middle" x="1233.12" y="-1334.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgString_c</text>
 </a>

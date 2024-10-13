@@ -1,5 +1,5 @@
 <map id="JAUSoundAnimationSound" name="JAUSoundAnimationSound">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,94,185,120"/>
-<area shape="rect" id="Node000002" href="$classJAISoundID.html" title=" " alt="" coords="49,5,141,31"/>
+<area shape="rect" id="Node000002" href="$structJAISoundID.html" title=" " alt="" coords="49,5,141,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,47,98,94,92,94,92,47"/>
 </map>

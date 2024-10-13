@@ -95,7 +95,7 @@
 <area shape="poly" id="edge48_Node000040_Node000041" title=" " alt="" coords="1305,948,1353,946,1399,936,1429,922,1455,903,1494,865,1498,868,1459,907,1431,926,1401,941,1353,952,1305,954"/>
 <area shape="poly" id="edge49_Node000001_Node000042" title=" " alt="" coords="1823,573,2004,474,2006,478,1826,578"/>
 <area shape="poly" id="edge50_Node000042_Node000043" title=" " alt="" coords="1581,648,1700,623,1749,607,1751,612,1701,628,1582,654"/>
-<area shape="rect" id="Node000044" href="$classJKRExpHeap.html" title=" " alt="" coords="859,964,958,990"/>
+<area shape="rect" id="Node000044" href="$structJKRExpHeap.html" title=" " alt="" coords="859,964,958,990"/>
 <area shape="poly" id="edge52_Node000043_Node000044" title=" " alt="" coords="954,955,991,937,1113,867,1204,806,1297,746,1354,716,1423,684,1453,673,1454,678,1425,689,1356,721,1300,751,1207,810,1116,872,993,942,956,960"/>
 <area shape="rect" id="Node000045" href="$structJKRHeap.html" title=" " alt="" coords="555,936,633,962"/>
 <area shape="poly" id="edge53_Node000044_Node000045" title=" " alt="" coords="648,951,859,970,858,975,648,957"/>

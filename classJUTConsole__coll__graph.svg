@@ -533,7 +533,7 @@ var sectionId = 'dynsection-1';
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="54.25,-268.62 0,-268.62 0,-249.38 54.25,-249.38 54.25,-268.62"/>
 <text text-anchor="middle" x="27.12" y="-255.12" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>

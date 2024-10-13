@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classZ2Creature.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structZ2Creature.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="83.5,-74.5 19.5,-74.5 19.5,-55.25 83.5,-55.25 83.5,-74.5"/>
 <text text-anchor="middle" x="51.5" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Z2Creature</text>
 </a>

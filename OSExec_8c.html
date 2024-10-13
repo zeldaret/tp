@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: libs/dolphin/os/OSExec.c File Reference</title>
+<title>Twilight Princess: src/dolphin/os/OSExec.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -142,7 +142,6 @@ $(document).ready(function(){initNavTree('OSExec_8c.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">OSExec.c File Reference</div></div>
@@ -154,128 +153,78 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a117b5dffdcfdd8a1e8f3ddf1047417d1" id="r_a117b5dffdcfdd8a1e8f3ddf1047417d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a117b5dffdcfdd8a1e8f3ddf1047417d1">AppLoaderInnerCallback</a>) (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> *)</td></tr>
-<tr class="separator:a117b5dffdcfdd8a1e8f3ddf1047417d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a293b05d1d90feba2aafec9427c527757" id="r_a293b05d1d90feba2aafec9427c527757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a293b05d1d90feba2aafec9427c527757">LogCallback</a>) (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *)</td></tr>
-<tr class="separator:a293b05d1d90feba2aafec9427c527757"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afed75b1d3bb2504531510a18026d8105" id="r_afed75b1d3bb2504531510a18026d8105"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#afed75b1d3bb2504531510a18026d8105">AppLoaderCallback</a>) (<a class="el" href="OSExec_8c.html#a293b05d1d90feba2aafec9427c527757">LogCallback</a> *, <a class="el" href="OSExec_8c.html#a117b5dffdcfdd8a1e8f3ddf1047417d1">AppLoaderInnerCallback</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>(**callback) (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>))</td></tr>
-<tr class="separator:afed75b1d3bb2504531510a18026d8105"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a76e470c9c8f49185853dc6d2e989a048" id="r_a76e470c9c8f49185853dc6d2e989a048"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a76e470c9c8f49185853dc6d2e989a048">PackArgs</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_2</a>)</td></tr>
-<tr class="separator:a76e470c9c8f49185853dc6d2e989a048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a864c987bf7655cd80fc9d442996a5bdd" id="r_a864c987bf7655cd80fc9d442996a5bdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a864c987bf7655cd80fc9d442996a5bdd">Run</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
-<tr class="separator:a864c987bf7655cd80fc9d442996a5bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fa7b17f69870e1ba21561955b80fae8" id="r_a1fa7b17f69870e1ba21561955b80fae8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a1fa7b17f69870e1ba21561955b80fae8">ReadDisc</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_2</a>)</td></tr>
+<tr class="memitem:a03800f5a818aace9e49b45874411cf5b" id="r_a03800f5a818aace9e49b45874411cf5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a03800f5a818aace9e49b45874411cf5b">PackArgs</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *addr, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">argc</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">argv</a>)</td></tr>
+<tr class="separator:a03800f5a818aace9e49b45874411cf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17478901dd93ecfc92409bf841b46cb1" id="r_a17478901dd93ecfc92409bf841b46cb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">asm</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a17478901dd93ecfc92409bf841b46cb1">Run</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">register</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">entryPoint</a>)</td></tr>
+<tr class="separator:a17478901dd93ecfc92409bf841b46cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade63343e140fe2f532e08aa3217b5c55" id="r_ade63343e140fe2f532e08aa3217b5c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#ade63343e140fe2f532e08aa3217b5c55">StartDol</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *params, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *entry)</td></tr>
+<tr class="separator:ade63343e140fe2f532e08aa3217b5c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fa7b17f69870e1ba21561955b80fae8" id="r_a1fa7b17f69870e1ba21561955b80fae8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a1fa7b17f69870e1ba21561955b80fae8">ReadDisc</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_2</a>)</td></tr>
 <tr class="separator:a1fa7b17f69870e1ba21561955b80fae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96dd9999bfb4a3ada9c4f9a7f50afaa6" id="r_a96dd9999bfb4a3ada9c4f9a7f50afaa6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a96dd9999bfb4a3ada9c4f9a7f50afaa6">Callback</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
-<tr class="separator:a96dd9999bfb4a3ada9c4f9a7f50afaa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65a7919e0793deaa8294074833b25c17" id="r_a65a7919e0793deaa8294074833b25c17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a65a7919e0793deaa8294074833b25c17">__OSGetExecParams</a> (<a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>)</td></tr>
+<tr class="memitem:af0e94427dc44e4e82425e8124162cdfd" id="r_af0e94427dc44e4e82425e8124162cdfd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af0e94427dc44e4e82425e8124162cdfd">Callback</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="structDVDCommandBlock.html">DVDCommandBlock</a> *)</td></tr>
+<tr class="separator:af0e94427dc44e4e82425e8124162cdfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe5e4406ba7eb57ccf6c42dae890a9ad" id="r_abe5e4406ba7eb57ccf6c42dae890a9ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">osExecParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#abe5e4406ba7eb57ccf6c42dae890a9ad">AT_ADDRESS</a> (0x800030f0)</td></tr>
+<tr class="separator:abe5e4406ba7eb57ccf6c42dae890a9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff11bd7a742baa90066f2cbe9c248d9" id="r_a4ff11bd7a742baa90066f2cbe9c248d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a4ff11bd7a742baa90066f2cbe9c248d9">IsStreamEnabled</a> ()</td></tr>
+<tr class="separator:a4ff11bd7a742baa90066f2cbe9c248d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a7919e0793deaa8294074833b25c17" id="r_a65a7919e0793deaa8294074833b25c17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a65a7919e0793deaa8294074833b25c17">__OSGetExecParams</a> (<a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
 <tr class="separator:a65a7919e0793deaa8294074833b25c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf6371d7d7f4c88cb0ff531eb8c30bd" id="r_afaf6371d7d7f4c88cb0ff531eb8c30bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#afaf6371d7d7f4c88cb0ff531eb8c30bd">__OSSetExecParams</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">src</a>, <a class="el" href="structOSExecParams.html">OSExecParams</a> *dst)</td></tr>
-<tr class="separator:afaf6371d7d7f4c88cb0ff531eb8c30bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af985217153aa033d5e42b84ca608dbc9" id="r_af985217153aa033d5e42b84ca608dbc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af985217153aa033d5e42b84ca608dbc9">GetApploaderPosition</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>)</td></tr>
+<tr class="memitem:a804b54ca4add3635b6c838f99a1a3270" id="r_a804b54ca4add3635b6c838f99a1a3270"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a804b54ca4add3635b6c838f99a1a3270">__OSSetExecParams</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">src</a>, <a class="el" href="structOSExecParams.html">OSExecParams</a> *dst)</td></tr>
+<tr class="separator:a804b54ca4add3635b6c838f99a1a3270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0431897b09faf57dacff49ab97cef269" id="r_a0431897b09faf57dacff49ab97cef269"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a0431897b09faf57dacff49ab97cef269">StopStreaming</a> ()</td></tr>
+<tr class="separator:a0431897b09faf57dacff49ab97cef269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cf6ad74eb74ed9ba634390b0e72bdc9" id="r_a6cf6ad74eb74ed9ba634390b0e72bdc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">__OSAppLoaderOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a6cf6ad74eb74ed9ba634390b0e72bdc9">AT_ADDRESS</a> (0x800030f4)</td></tr>
+<tr class="separator:a6cf6ad74eb74ed9ba634390b0e72bdc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af985217153aa033d5e42b84ca608dbc9" id="r_af985217153aa033d5e42b84ca608dbc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af985217153aa033d5e42b84ca608dbc9">GetApploaderPosition</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>)</td></tr>
 <tr class="separator:af985217153aa033d5e42b84ca608dbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6be7a710494a545a2f783d8502ec66b" id="r_af6be7a710494a545a2f783d8502ec66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af6be7a710494a545a2f783d8502ec66b">LoadApploader</a> ()</td></tr>
+<tr class="memitem:af6be7a710494a545a2f783d8502ec66b" id="r_af6be7a710494a545a2f783d8502ec66b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af6be7a710494a545a2f783d8502ec66b">LoadApploader</a> ()</td></tr>
 <tr class="separator:af6be7a710494a545a2f783d8502ec66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d13209429743b5d7a898d81975c48cd" id="r_a3d13209429743b5d7a898d81975c48cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a3d13209429743b5d7a898d81975c48cd">IsNewApploader</a> (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *version)</td></tr>
-<tr class="separator:a3d13209429743b5d7a898d81975c48cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d5721b6154f7d172a082910d8f8ea53" id="r_a4d5721b6154f7d172a082910d8f8ea53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a4d5721b6154f7d172a082910d8f8ea53">LoadDol</a> (<a class="el" href="structOSExecParams.html">OSExecParams</a> *def, <a class="el" href="OSExec_8c.html#afed75b1d3bb2504531510a18026d8105">AppLoaderCallback</a> <a class="el" href="m__Do__dvd__thread_8cpp.html#a6740c015dd9c1f64fe72cfe15f1db677">cb</a>)</td></tr>
-<tr class="separator:a4d5721b6154f7d172a082910d8f8ea53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19be1d2cb16c3f45578a11967a432863" id="r_a19be1d2cb16c3f45578a11967a432863"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a19be1d2cb16c3f45578a11967a432863">StartDol</a> (<a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">execParams</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>)</td></tr>
-<tr class="separator:a19be1d2cb16c3f45578a11967a432863"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa567718e524d33242f94855da182fe24" id="r_aa567718e524d33242f94855da182fe24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#aa567718e524d33242f94855da182fe24">__OSBootDolSimple</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_2</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *param_3, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> param_4, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_5</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_6</a>)</td></tr>
-<tr class="separator:aa567718e524d33242f94855da182fe24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48cd3892e1b5082677fa574899d2e1df" id="r_a48cd3892e1b5082677fa574899d2e1df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a48cd3892e1b5082677fa574899d2e1df">__OSBootDol</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_0</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_1</a>, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> **<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">param_2</a>)</td></tr>
-<tr class="separator:a48cd3892e1b5082677fa574899d2e1df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b32a26cdd3e27cf44e7f91a48fa9c2c" id="r_a4b32a26cdd3e27cf44e7f91a48fa9c2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a4b32a26cdd3e27cf44e7f91a48fa9c2c">LoadDol</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *params, <a class="el" href="OSExec_8h.html#ab80ea08665f8d237c07043101c1c93bb">AppLoaderCallback</a> getInterface)</td></tr>
+<tr class="separator:a4b32a26cdd3e27cf44e7f91a48fa9c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11b3855b4900d0f9aeb3cd9e37ddc5fe" id="r_a11b3855b4900d0f9aeb3cd9e37ddc5fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a11b3855b4900d0f9aeb3cd9e37ddc5fe">IsNewApploader</a> (<a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> *header)</td></tr>
+<tr class="separator:a11b3855b4900d0f9aeb3cd9e37ddc5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fbfc3362cdae60a8afc6df7799a7fc4" id="r_a7fbfc3362cdae60a8afc6df7799a7fc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">BOOT_REGION_START</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a7fbfc3362cdae60a8afc6df7799a7fc4">AT_ADDRESS</a> (0x812FDFF0)</td></tr>
+<tr class="separator:a7fbfc3362cdae60a8afc6df7799a7fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4559f2c88bf27f26958004c06b0c87" id="r_a8a4559f2c88bf27f26958004c06b0c87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">BOOT_REGION_END</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a8a4559f2c88bf27f26958004c06b0c87">AT_ADDRESS</a> (0x812FDFEC)</td></tr>
+<tr class="separator:a8a4559f2c88bf27f26958004c06b0c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a123c72a39bb9972524bd30f476f1039f" id="r_a123c72a39bb9972524bd30f476f1039f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">g_unk_800030E2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a123c72a39bb9972524bd30f476f1039f">AT_ADDRESS</a> (0x800030E2)</td></tr>
+<tr class="separator:a123c72a39bb9972524bd30f476f1039f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af115eca402148faa99180b6e7b5fe7dd" id="r_af115eca402148faa99180b6e7b5fe7dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#af115eca402148faa99180b6e7b5fe7dd">__OSBootDolSimple</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">doloffset</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> restartCode, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *regionStart, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *regionEnd, <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> argsUseDefault, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">argc</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">argv</a>)</td></tr>
+<tr class="separator:af115eca402148faa99180b6e7b5fe7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952c9a40857cf336085825e99f442137" id="r_a952c9a40857cf336085825e99f442137"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a952c9a40857cf336085825e99f442137">__OSBootDol</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">doloffset</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> restartCode, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">argv</a>)</td></tr>
+<tr class="separator:a952c9a40857cf336085825e99f442137"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aadb3c5ec3d72a60eefaed1edd7f12721" id="r_aadb3c5ec3d72a60eefaed1edd7f12721"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#aadb3c5ec3d72a60eefaed1edd7f12721">Prepared</a></td></tr>
+<tr class="memitem:aadb3c5ec3d72a60eefaed1edd7f12721" id="r_aadb3c5ec3d72a60eefaed1edd7f12721"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#aadb3c5ec3d72a60eefaed1edd7f12721">Prepared</a></td></tr>
 <tr class="separator:aadb3c5ec3d72a60eefaed1edd7f12721"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cd8eec7c25ee626cb5183f7455eb064" id="r_a5cd8eec7c25ee626cb5183f7455eb064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a5cd8eec7c25ee626cb5183f7455eb064">osExecParams</a></td></tr>
-<tr class="separator:a5cd8eec7c25ee626cb5183f7455eb064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae60241a051073282ff1bbf3effa09152" id="r_ae60241a051073282ff1bbf3effa09152"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#ae60241a051073282ff1bbf3effa09152">apploaderPosition</a></td></tr>
-<tr class="separator:ae60241a051073282ff1bbf3effa09152"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32b2f921a559dd7267a140feaddae157" id="r_a32b2f921a559dd7267a140feaddae157"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a32b2f921a559dd7267a140feaddae157">appLoaderOffset</a></td></tr>
-<tr class="separator:a32b2f921a559dd7267a140feaddae157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177677f86559ec76bba99e775bdd4148" id="r_a177677f86559ec76bba99e775bdd4148"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_DATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a177677f86559ec76bba99e775bdd4148">lit_115</a> [] = &quot;2004/02/01&quot;</td></tr>
-<tr class="separator:a177677f86559ec76bba99e775bdd4148"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a700b004c1f49924ed2c724b2dadfb0a4" id="r_a700b004c1f49924ed2c724b2dadfb0a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a700b004c1f49924ed2c724b2dadfb0a4">DAT_800030e2</a></td></tr>
-<tr class="separator:a700b004c1f49924ed2c724b2dadfb0a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45b36ac18d5cb44419230a89c5ee3b00" id="r_a45b36ac18d5cb44419230a89c5ee3b00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_SDATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OSExec_8c.html#a45b36ac18d5cb44419230a89c5ee3b00">lit_213</a> [] = &quot;%d&quot;</td></tr>
-<tr class="separator:a45b36ac18d5cb44419230a89c5ee3b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="afed75b1d3bb2504531510a18026d8105" name="afed75b1d3bb2504531510a18026d8105"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afed75b1d3bb2504531510a18026d8105">&#9670;&#160;</a></span>AppLoaderCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>(* AppLoaderCallback) (<a class="el" href="OSExec_8c.html#a293b05d1d90feba2aafec9427c527757">LogCallback</a> *, <a class="el" href="OSExec_8c.html#a117b5dffdcfdd8a1e8f3ddf1047417d1">AppLoaderInnerCallback</a> *, <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>(**callback)(<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a117b5dffdcfdd8a1e8f3ddf1047417d1" name="a117b5dffdcfdd8a1e8f3ddf1047417d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a117b5dffdcfdd8a1e8f3ddf1047417d1">&#9670;&#160;</a></span>AppLoaderInnerCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>(* AppLoaderInnerCallback) (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a293b05d1d90feba2aafec9427c527757" name="a293b05d1d90feba2aafec9427c527757"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a293b05d1d90feba2aafec9427c527757">&#9670;&#160;</a></span>LogCallback</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">typedef</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>(* LogCallback) (<a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a48cd3892e1b5082677fa574899d2e1df" name="a48cd3892e1b5082677fa574899d2e1df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48cd3892e1b5082677fa574899d2e1df">&#9670;&#160;</a></span>__OSBootDol()</h2>
+<a id="a952c9a40857cf336085825e99f442137" name="a952c9a40857cf336085825e99f442137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a952c9a40857cf336085825e99f442137">&#9670;&#160;</a></span>__OSBootDol()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __OSBootDol </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> __OSBootDol </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
-          <td class="paramname"><em>param_0</em>, </td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>doloffset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
-          <td class="paramname"><em>param_1</em>, </td>
+          <td class="paramname"><em>restartCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> **&#160;</td>
-          <td class="paramname"><em>param_2</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -287,53 +236,53 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa567718e524d33242f94855da182fe24" name="aa567718e524d33242f94855da182fe24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa567718e524d33242f94855da182fe24">&#9670;&#160;</a></span>__OSBootDolSimple()</h2>
+<a id="af115eca402148faa99180b6e7b5fe7dd" name="af115eca402148faa99180b6e7b5fe7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af115eca402148faa99180b6e7b5fe7dd">&#9670;&#160;</a></span>__OSBootDolSimple()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __OSBootDolSimple </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> __OSBootDolSimple </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
-          <td class="paramname"><em>param_0</em>, </td>
+          <td class="paramname"><em>doloffset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
-          <td class="paramname"><em>param_1</em>, </td>
+          <td class="paramname"><em>restartCode</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
-          <td class="paramname"><em>param_2</em>, </td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>regionStart</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
-          <td class="paramname"><em>param_3</em>, </td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>regionEnd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a>&#160;</td>
+          <td class="paramname"><em>argsUseDefault</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
-          <td class="paramname"><em>param_4</em>, </td>
+          <td class="paramname"><em>argc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
-          <td class="paramname"><em>param_5</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
-          <td class="paramname"><em>param_6</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -352,7 +301,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> __OSGetExecParams </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> __OSGetExecParams </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
           <td class="paramname"><em>param_0</em></td><td>)</td>
@@ -363,19 +312,16 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="afaf6371d7d7f4c88cb0ff531eb8c30bd" name="afaf6371d7d7f4c88cb0ff531eb8c30bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf6371d7d7f4c88cb0ff531eb8c30bd">&#9670;&#160;</a></span>__OSSetExecParams()</h2>
+<a id="a804b54ca4add3635b6c838f99a1a3270" name="a804b54ca4add3635b6c838f99a1a3270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804b54ca4add3635b6c838f99a1a3270">&#9670;&#160;</a></span>__OSSetExecParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> __OSSetExecParams </td>
+          <td class="memname">__OSSetExecParams </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
           <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
@@ -390,17 +336,12 @@ Variables</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a96dd9999bfb4a3ada9c4f9a7f50afaa6" name="a96dd9999bfb4a3ada9c4f9a7f50afaa6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a96dd9999bfb4a3ada9c4f9a7f50afaa6">&#9670;&#160;</a></span>Callback()</h2>
+<a id="a123c72a39bb9972524bd30f476f1039f" name="a123c72a39bb9972524bd30f476f1039f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a123c72a39bb9972524bd30f476f1039f">&#9670;&#160;</a></span>AT_ADDRESS() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -409,11 +350,135 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Callback </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">g_unk_800030E2</a> AT_ADDRESS </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramtype">0x800030E2&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe5e4406ba7eb57ccf6c42dae890a9ad" name="abe5e4406ba7eb57ccf6c42dae890a9ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe5e4406ba7eb57ccf6c42dae890a9ad">&#9670;&#160;</a></span>AT_ADDRESS() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structOSExecParams.html">OSExecParams</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">osExecParams</a> AT_ADDRESS </td>
+          <td>(</td>
+          <td class="paramtype">0x800030f0&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6cf6ad74eb74ed9ba634390b0e72bdc9" name="a6cf6ad74eb74ed9ba634390b0e72bdc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cf6ad74eb74ed9ba634390b0e72bdc9">&#9670;&#160;</a></span>AT_ADDRESS() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">__OSAppLoaderOffset</a> AT_ADDRESS </td>
+          <td>(</td>
+          <td class="paramtype">0x800030f4&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a4559f2c88bf27f26958004c06b0c87" name="a8a4559f2c88bf27f26958004c06b0c87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a4559f2c88bf27f26958004c06b0c87">&#9670;&#160;</a></span>AT_ADDRESS() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">BOOT_REGION_END</a> AT_ADDRESS </td>
+          <td>(</td>
+          <td class="paramtype">0x812FDFEC&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fbfc3362cdae60a8afc6df7799a7fc4" name="a7fbfc3362cdae60a8afc6df7799a7fc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fbfc3362cdae60a8afc6df7799a7fc4">&#9670;&#160;</a></span>AT_ADDRESS() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">volatile</a> <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">BOOT_REGION_START</a> AT_ADDRESS </td>
+          <td>(</td>
+          <td class="paramtype">0x812FDFF0&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0e94427dc44e4e82425e8124162cdfd" name="af0e94427dc44e4e82425e8124162cdfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e94427dc44e4e82425e8124162cdfd">&#9670;&#160;</a></span>Callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Callback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structDVDCommandBlock.html">DVDCommandBlock</a> *&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -435,9 +500,9 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> GetApploaderPosition </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> GetApploaderPosition </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -451,8 +516,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a3d13209429743b5d7a898d81975c48cd" name="a3d13209429743b5d7a898d81975c48cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d13209429743b5d7a898d81975c48cd">&#9670;&#160;</a></span>IsNewApploader()</h2>
+<a id="a11b3855b4900d0f9aeb3cd9e37ddc5fe" name="a11b3855b4900d0f9aeb3cd9e37ddc5fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11b3855b4900d0f9aeb3cd9e37ddc5fe">&#9670;&#160;</a></span>IsNewApploader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -461,10 +526,35 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> IsNewApploader </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a050c65e107f0c828f856a231f4b4e788">BOOL</a> IsNewApploader </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">const</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> *&#160;</td>
-          <td class="paramname"><em>version</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> *&#160;</td>
+          <td class="paramname"><em>header</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ff11bd7a742baa90066f2cbe9c248d9" name="a4ff11bd7a742baa90066f2cbe9c248d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff11bd7a742baa90066f2cbe9c248d9">&#9670;&#160;</a></span>IsStreamEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> IsStreamEnabled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -487,7 +577,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> * LoadApploader </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structAppLoaderStruct.html">AppLoaderStruct</a> * LoadApploader </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -502,8 +592,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d5721b6154f7d172a082910d8f8ea53" name="a4d5721b6154f7d172a082910d8f8ea53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d5721b6154f7d172a082910d8f8ea53">&#9670;&#160;</a></span>LoadDol()</h2>
+<a id="a4b32a26cdd3e27cf44e7f91a48fa9c2c" name="a4b32a26cdd3e27cf44e7f91a48fa9c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b32a26cdd3e27cf44e7f91a48fa9c2c">&#9670;&#160;</a></span>LoadDol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -512,16 +602,16 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a> LoadDol </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> * LoadDol </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
-          <td class="paramname"><em>def</em>, </td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="OSExec_8c.html#afed75b1d3bb2504531510a18026d8105">AppLoaderCallback</a>&#160;</td>
-          <td class="paramname"><em>cb</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="OSExec_8h.html#ab80ea08665f8d237c07043101c1c93bb">AppLoaderCallback</a>&#160;</td>
+          <td class="paramname"><em>getInterface</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -538,8 +628,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a76e470c9c8f49185853dc6d2e989a048" name="a76e470c9c8f49185853dc6d2e989a048"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76e470c9c8f49185853dc6d2e989a048">&#9670;&#160;</a></span>PackArgs()</h2>
+<a id="a03800f5a818aace9e49b45874411cf5b" name="a03800f5a818aace9e49b45874411cf5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03800f5a818aace9e49b45874411cf5b">&#9670;&#160;</a></span>PackArgs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -548,22 +638,22 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> PackArgs </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> PackArgs </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
-          <td class="paramname"><em>param_0</em>, </td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
-          <td class="paramname"><em>param_1</em>, </td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
-          <td class="paramname"><em>param_2</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">char</a> **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -590,9 +680,9 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> ReadDisc </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> ReadDisc </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
           <td class="paramname"><em>param_0</em>, </td>
         </tr>
         <tr>
@@ -622,8 +712,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a864c987bf7655cd80fc9d442996a5bdd" name="a864c987bf7655cd80fc9d442996a5bdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a864c987bf7655cd80fc9d442996a5bdd">&#9670;&#160;</a></span>Run()</h2>
+<a id="a17478901dd93ecfc92409bf841b46cb1" name="a17478901dd93ecfc92409bf841b46cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17478901dd93ecfc92409bf841b46cb1">&#9670;&#160;</a></span>Run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -632,10 +722,10 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">asm</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> Run </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">asm</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Run </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
-          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">register</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>entryPoint</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -648,8 +738,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a19be1d2cb16c3f45578a11967a432863" name="a19be1d2cb16c3f45578a11967a432863"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19be1d2cb16c3f45578a11967a432863">&#9670;&#160;</a></span>StartDol()</h2>
+<a id="ade63343e140fe2f532e08aa3217b5c55" name="ade63343e140fe2f532e08aa3217b5c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade63343e140fe2f532e08aa3217b5c55">&#9670;&#160;</a></span>StartDol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -658,16 +748,16 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">static</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">void</a> StartDol </td>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> StartDol </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
-          <td class="paramname"><em>execParams</em>, </td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="structOSExecParams.html">OSExecParams</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">int</a>&#160;</td>
-          <td class="paramname"><em>param_1</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>entry</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -684,115 +774,32 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a0431897b09faf57dacff49ab97cef269" name="a0431897b09faf57dacff49ab97cef269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0431897b09faf57dacff49ab97cef269">&#9670;&#160;</a></span>StopStreaming()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> StopStreaming </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a32b2f921a559dd7267a140feaddae157" name="a32b2f921a559dd7267a140feaddae157"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32b2f921a559dd7267a140feaddae157">&#9670;&#160;</a></span>appLoaderOffset</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> appLoaderOffset</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae60241a051073282ff1bbf3effa09152" name="ae60241a051073282ff1bbf3effa09152"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae60241a051073282ff1bbf3effa09152">&#9670;&#160;</a></span>apploaderPosition</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> apploaderPosition</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a700b004c1f49924ed2c724b2dadfb0a4" name="a700b004c1f49924ed2c724b2dadfb0a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a700b004c1f49924ed2c724b2dadfb0a4">&#9670;&#160;</a></span>DAT_800030e2</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> DAT_800030e2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a177677f86559ec76bba99e775bdd4148" name="a177677f86559ec76bba99e775bdd4148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a177677f86559ec76bba99e775bdd4148">&#9670;&#160;</a></span>lit_115</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_DATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> lit_115[] = &quot;2004/02/01&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a45b36ac18d5cb44419230a89c5ee3b00" name="a45b36ac18d5cb44419230a89c5ee3b00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45b36ac18d5cb44419230a89c5ee3b00">&#9670;&#160;</a></span>lit_213</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">SECTION_SDATA</a> <a class="el" href="group__jsystem-jsupport.html#ga13fa7ef63a40072c7203b3da54a569a2">char</a> lit_213[] = &quot;%d&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5cd8eec7c25ee626cb5183f7455eb064" name="a5cd8eec7c25ee626cb5183f7455eb064"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cd8eec7c25ee626cb5183f7455eb064">&#9670;&#160;</a></span>osExecParams</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structOSExecParams.html">OSExecParams</a>* osExecParams</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aadb3c5ec3d72a60eefaed1edd7f12721" name="aadb3c5ec3d72a60eefaed1edd7f12721"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aadb3c5ec3d72a60eefaed1edd7f12721">&#9670;&#160;</a></span>Prepared</h2>
 
@@ -820,7 +827,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_22235b545bd11e9cf035754dc4797b88.html">dolphin</a></li><li class="navelem"><a class="el" href="dir_a768bdaf96d7d730a0dc11c4298b5b17.html">os</a></li><li class="navelem"><a class="el" href="OSExec_8c.html">OSExec.c</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_cc591b5d416c28db9940e46f13aceec4.html">dolphin</a></li><li class="navelem"><a class="el" href="dir_19ef72903be55625151d9169632ebe80.html">os</a></li><li class="navelem"><a class="el" href="OSExec_8c.html">OSExec.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

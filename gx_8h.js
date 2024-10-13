@@ -1,6 +1,7 @@
 var gx_8h =
 [
     [ "PPCWGPipe", "unionPPCWGPipe.html", "unionPPCWGPipe" ],
+    [ "AT_ADDRESS", "gx_8h.html#a0a2501df41d588232a09afdcb2600dbb", null ],
     [ "GFFill", "gx_8h.html#a91332f6553353fc70d03a0d1a72b8581", null ],
     [ "GFWriteBPCmd", "gx_8h.html#a1ab87fd5e7953bc9185d4cafbcbd56a3", null ],
     [ "GXColor1u32", "gx_8h.html#a62d849faab8928969e7791e22c8b3846", null ],
@@ -27,6 +28,5 @@ var gx_8h =
     [ "GXMpal480IntDf", "gx_8h.html#a7fd58e0950e7981cfd81a9409a29941d", null ],
     [ "GXNtsc480Int", "gx_8h.html#a1dc861b6a377c5e8596f38676a6f8592", null ],
     [ "GXNtsc480IntDf", "gx_8h.html#a41c824bbb84e8a709bde61399d27f585", null ],
-    [ "GXPal528IntDf", "gx_8h.html#a5d2bc632500bfcf165d5ecc637abe007", null ],
-    [ "GXWGFifo", "gx_8h.html#aedd739e8318efcd57fed5334b2981fce", null ]
+    [ "GXPal528IntDf", "gx_8h.html#a5d2bc632500bfcf165d5ecc637abe007", null ]
 ];

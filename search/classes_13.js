@@ -15,7 +15,7 @@ var searchData=
   ['sdifileentry_12',['SDIFileEntry',['../structJKRArchive_1_1SDIFileEntry.html',1,'JKRArchive']]],
   ['sdirentry_13',['SDirEntry',['../structJKRArchive_1_1SDirEntry.html',1,'JKRArchive']]],
   ['seiracam_14',['SeiraCam',['../structSeiraCam.html',1,'']]],
-  ['sequencestepdata_5fc_15',['sequenceStepData_c',['../classdaNpcT__MotionSeqMngr__c_1_1sequenceStepData__c.html',1,'daNpcT_MotionSeqMngr_c']]],
+  ['sequencestepdata_5fc_15',['sequenceStepData_c',['../structdaNpcT__MotionSeqMngr__c_1_1sequenceStepData__c.html',1,'daNpcT_MotionSeqMngr_c']]],
   ['shake_16',['Shake',['../structdCamera__c_1_1Shake.html',1,'dCamera_c']]],
   ['shape_17',['Shape',['../structcCcD__ShapeAttr_1_1Shape.html',1,'cCcD_ShapeAttr']]],
   ['shdwdrawpoly_5fc_18',['ShdwDrawPoly_c',['../classShdwDrawPoly__c.html',1,'']]],

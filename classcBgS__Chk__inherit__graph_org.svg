@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classcBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="structcBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="185,-419.25 104.5,-419.25 104.5,-400 185,-400 185,-419.25"/>
 <text text-anchor="middle" x="144.75" y="-405.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_GndChk</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="classcBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="structcBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="182.75,-301.25 106.75,-301.25 106.75,-282 182.75,-282 182.75,-301.25"/>
 <text text-anchor="middle" x="144.75" y="-287.75" font-family="Helvetica,sans-Serif" font-size="10.00">cBgS_LinChk</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="classdBgS__Acch.html" target="_top" xlink:title=" ">
+<g id="a_Node000024"><a xlink:href="structdBgS__Acch.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="178.62,-185.25 110.88,-185.25 110.88,-166 178.62,-166 178.62,-185.25"/>
 <text text-anchor="middle" x="144.75" y="-171.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_Acch</text>
 </a>
@@ -164,7 +164,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classdBgS__GndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="structdBgS__GndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="318,-482.25 237.5,-482.25 237.5,-463 318,-463 318,-482.25"/>
 <text text-anchor="middle" x="277.75" y="-468.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_GndChk</text>
 </a>
@@ -218,7 +218,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="structdBgS__ObjGndChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="475,-463.25 379.5,-463.25 379.5,-444 475,-444 475,-463.25"/>
 <text text-anchor="middle" x="427.25" y="-449.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjGndChk</text>
 </a>
@@ -272,7 +272,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classdBgS__ObjGndChk__Spl.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="structdBgS__ObjGndChk__Spl.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="649.62,-463.25 534.62,-463.25 534.62,-444 649.62,-444 649.62,-463.25"/>
 <text text-anchor="middle" x="592.12" y="-449.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjGndChk_Spl</text>
 </a>
@@ -308,7 +308,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="classdBgS__LinChk.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="structdBgS__LinChk.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="315.75,-315.25 239.75,-315.25 239.75,-296 315.75,-296 315.75,-315.25"/>
 <text text-anchor="middle" x="277.75" y="-301.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_LinChk</text>
 </a>
@@ -542,7 +542,7 @@
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="classdBgS__ObjAcch.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="structdBgS__ObjAcch.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="319.12,-167.25 236.38,-167.25 236.38,-148 319.12,-148 319.12,-167.25"/>
 <text text-anchor="middle" x="277.75" y="-153.75" font-family="Helvetica,sans-Serif" font-size="10.00">dBgS_ObjAcch</text>
 </a>

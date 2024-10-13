@@ -10,7 +10,7 @@ var classJ3DIndBlockFull =
     [ "getIndTexStageNum", "classJ3DIndBlockFull.html#a9b9da4037c8792a2a6dc8628d41b0b5a", null ],
     [ "getType", "classJ3DIndBlockFull.html#af7ed9016ea3b568fa1e20cba013efe1c", null ],
     [ "initialize", "classJ3DIndBlockFull.html#ae68cfd61889d69379f4096630d2eca23", null ],
-    [ "load", "classJ3DIndBlockFull.html#a56902a7434253b1b38c032d791038c91", null ],
+    [ "load", "classJ3DIndBlockFull.html#a87f5f1d25ee60876075bb5c3d226c69a", null ],
     [ "reset", "classJ3DIndBlockFull.html#a24ea4d0a1cfec17e540060ce64ac7139", null ],
     [ "setIndTexCoordScale", "classJ3DIndBlockFull.html#abd504c82f47fe5d2fb8c42e018eff157", null ],
     [ "setIndTexCoordScale", "classJ3DIndBlockFull.html#a0b367e740cf036594db12464a4d9e90c", null ],

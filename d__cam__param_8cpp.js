@@ -1,8 +1,8 @@
 var d__cam__param_8cpp =
 [
     [ "__dl__FPv", "d__cam__param_8cpp.html#a498e6440d5c316e2672169ee4ed92309", null ],
-    [ "__dt__11dCamParam_cFv", "d__cam__param_8cpp.html#a89c695e3d7257613f66e5774e5d79db9", null ],
-    [ "__dt__11dCamSetup_cFv", "d__cam__param_8cpp.html#a940b7d9a34f4385f42be2eb22f120c94", null ],
+    [ "__dt__11dCamParam_cFv", "d__cam__param_8cpp.html#adad0a73859785372104bc525a78b4642", null ],
+    [ "__dt__11dCamSetup_cFv", "d__cam__param_8cpp.html#a79e327f1e5eda4ff500978a1b20366a7", null ],
     [ "__dt__9dCstick_cFv", "d__cam__param_8cpp.html#a12b0c21fde1bc1637b7198aa12bf8478", null ],
     [ "__vt__11dCamParam_c", "d__cam__param_8cpp.html#aa22ae0f3eabb165354d3d90095c68696", null ],
     [ "__vt__11dCamSetup_c", "d__cam__param_8cpp.html#a81a95bd5344eb0ffc65264fc6457f538", null ],

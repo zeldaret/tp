@@ -1,7 +1,7 @@
 var classdaSus__c_1_1data__c =
 [
-    [ "~data_c", "classdaSus__c_1_1data__c.html#a2afe3675bb951540a7a5f6ae37bc14a4", null ],
-    [ "data_c", "classdaSus__c_1_1data__c.html#afdce90ed35d9c418061ae9ef4fc59221", null ],
+    [ "~data_c", "classdaSus__c_1_1data__c.html#aeb3611f239ef86645a6e736f4316c644", null ],
+    [ "data_c", "classdaSus__c_1_1data__c.html#a2851938b74f6415d0d100064ed4a0d8f", null ],
     [ "check", "classdaSus__c_1_1data__c.html#aab3f0bcd5bfb16b6ebf67fa8088c471e", null ],
     [ "check", "classdaSus__c_1_1data__c.html#a5f9af6a9ac32a147b34bcf28ea47cb2d", null ],
     [ "execute", "classdaSus__c_1_1data__c.html#a49340155689ead85c9e0c8350bb77ce6", null ],

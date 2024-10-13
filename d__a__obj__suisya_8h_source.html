@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_obj_suisya.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -152,10 +152,10 @@ $(document).ready(function(){initNavTree('d__a__obj__suisya_8h_source.html','');
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_OBJ_SUISYA_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="f__op__actor__mng_8h.html">f_op/f_op_actor_mng.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__acch_8h.html">d/bg/d_bg_s_acch.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__acch_8h.html">d/d_bg_s_acch.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObj__Suisya__c.html">daObj_Suisya_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObj__Suisya__c.html">daObj_Suisya_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="structfopAc__ac__c.html">fopAc_ac_c</a> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">/* 80CF0078 */</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classdaObj__Suisya__c.html#a04fb7619ac4d88e310656492e1130f4c">draw</a>();</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">/* 80CF0168 */</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classdaObj__Suisya__c.html#ae834e16be086a402da026cb5a46860ef">execute</a>();</div>
@@ -165,19 +165,16 @@ $(document).ready(function(){initNavTree('d__a__obj__suisya_8h_source.html','');
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a54d7614fe12b7e9a7602772c510c1b20">   24</a></span>    <span class="comment">/* 0x568 */</span> <a class="code hl_struct" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#a54d7614fe12b7e9a7602772c510c1b20">mPhase</a>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a6996c90d63da06f12f2677188bd675e3">   25</a></span>    <span class="comment">/* 0x570 */</span> <a class="code hl_struct" href="classJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObj__Suisya__c.html#a6996c90d63da06f12f2677188bd675e3">mpModel</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a6996c90d63da06f12f2677188bd675e3">   25</a></span>    <span class="comment">/* 0x570 */</span> <a class="code hl_class" href="structJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObj__Suisya__c.html#a6996c90d63da06f12f2677188bd675e3">mpModel</a>;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a059fe7344dff5c8555d2c7876058fd57">   26</a></span>    <span class="comment">/* 0x574 */</span> <a class="code hl_typedef" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#a059fe7344dff5c8555d2c7876058fd57">mShadowKey</a>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a85d22d9ab28795d00f2a8e04a9f877c5">   27</a></span>    <span class="comment">/* 0x578 */</span> <a class="code hl_struct" href="classdBgS__AcchCir.html">dBgS_AcchCir</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#a85d22d9ab28795d00f2a8e04a9f877c5">mAcchCir</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#abe28bd8e3822d27428ccc28f7023f977">   28</a></span>    <span class="comment">/* 0x5B8 */</span> <a class="code hl_struct" href="classdBgS__ObjAcch.html">dBgS_ObjAcch</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#abe28bd8e3822d27428ccc28f7023f977">mAcch</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#a85d22d9ab28795d00f2a8e04a9f877c5">   27</a></span>    <span class="comment">/* 0x578 */</span> <a class="code hl_class" href="structdBgS__AcchCir.html">dBgS_AcchCir</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#a85d22d9ab28795d00f2a8e04a9f877c5">mAcchCir</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classdaObj__Suisya__c.html#abe28bd8e3822d27428ccc28f7023f977">   28</a></span>    <span class="comment">/* 0x5B8 */</span> <a class="code hl_class" href="structdBgS__ObjAcch.html">dBgS_ObjAcch</a> <a class="code hl_variable" href="classdaObj__Suisya__c.html#abe28bd8e3822d27428ccc28f7023f977">mAcch</a>;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
 </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="d__a__obj__suisya_8h.html#aa6107fd228ea4aaf4e0a6ede551b8478">   31</a></span><a class="code hl_function" href="d__a__obj__suisya_8h.html#aa6107fd228ea4aaf4e0a6ede551b8478">STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<a class="code hl_class" href="classdaObj__Suisya__c.html">daObj_Suisya_c</a>) == 0x790);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_OBJ_SUISYA_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassJ3DModel_html"><div class="ttname"><a href="classJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> J3DModel.h:42</div></div>
-<div class="ttc" id="aclassdBgS__AcchCir_html"><div class="ttname"><a href="classdBgS__AcchCir.html">dBgS_AcchCir</a></div><div class="ttdef"><b>Definition</b> d_bg_s_acch.h:15</div></div>
-<div class="ttc" id="aclassdBgS__ObjAcch_html"><div class="ttname"><a href="classdBgS__ObjAcch.html">dBgS_ObjAcch</a></div><div class="ttdef"><b>Definition</b> d_bg_s_acch.h:241</div></div>
 <div class="ttc" id="aclassdaObj__Suisya__c_html"><div class="ttname"><a href="classdaObj__Suisya__c.html">daObj_Suisya_c</a></div><div class="ttdoc">Water Wheel.</div><div class="ttdef"><b>Definition</b> d_a_obj_suisya.h:15</div></div>
 <div class="ttc" id="aclassdaObj__Suisya__c_html_a04fb7619ac4d88e310656492e1130f4c"><div class="ttname"><a href="classdaObj__Suisya__c.html#a04fb7619ac4d88e310656492e1130f4c">daObj_Suisya_c::draw</a></div><div class="ttdeci">int draw()</div><div class="ttdef"><b>Definition</b> d_a_obj_suisya.cpp:11</div></div>
 <div class="ttc" id="aclassdaObj__Suisya__c_html_a059fe7344dff5c8555d2c7876058fd57"><div class="ttname"><a href="classdaObj__Suisya__c.html#a059fe7344dff5c8555d2c7876058fd57">daObj_Suisya_c::mShadowKey</a></div><div class="ttdeci">u32 mShadowKey</div><div class="ttdef"><b>Definition</b> d_a_obj_suisya.h:26</div></div>
@@ -192,15 +189,18 @@ $(document).ready(function(){initNavTree('d__a__obj__suisya_8h_source.html','');
 <div class="ttc" id="ad__a__obj__suisya_8h_html_aa6107fd228ea4aaf4e0a6ede551b8478"><div class="ttname"><a href="d__a__obj__suisya_8h.html#aa6107fd228ea4aaf4e0a6ede551b8478">STATIC_ASSERT</a></div><div class="ttdeci">STATIC_ASSERT(sizeof(daObj_Suisya_c)==0x790)</div></div>
 <div class="ttc" id="ad__bg__s__acch_8h_html"><div class="ttname"><a href="d__bg__s__acch_8h.html">d_bg_s_acch.h</a></div></div>
 <div class="ttc" id="af__op__actor__mng_8h_html"><div class="ttname"><a href="f__op__actor__mng_8h.html">f_op_actor_mng.h</a></div></div>
-<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:14</div></div>
-<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> c_phase.h:17</div></div>
+<div class="ttc" id="astructJ3DModel_html"><div class="ttname"><a href="structJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:159</div></div>
+<div class="ttc" id="astructdBgS__AcchCir_html"><div class="ttname"><a href="structdBgS__AcchCir.html">dBgS_AcchCir</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:98</div></div>
+<div class="ttc" id="astructdBgS__ObjAcch_html"><div class="ttname"><a href="structdBgS__ObjAcch.html">dBgS_ObjAcch</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:94</div></div>
+<div class="ttc" id="astructfopAc__ac__c_html"><div class="ttname"><a href="structfopAc__ac__c.html">fopAc_ac_c</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:19</div></div>
+<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> d_a_hozelda.cpp:14</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_837b79828d4d0cae6e2581b9ebbbcbf8.html">obj</a></li><li class="navelem"><a class="el" href="dir_1bc1e54585a14c28d61d5e633939b00e.html">d_a_obj_suisya</a></li><li class="navelem"><a class="el" href="d__a__obj__suisya_8h.html">d_a_obj_suisya.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__obj__suisya_8h.html">d_a_obj_suisya.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,6 +1,6 @@
 var structJPAFieldGravity =
 [
-    [ "~JPAFieldGravity", "structJPAFieldGravity.html#aef253b8fe0439cd948d5d314a38a7f22", null ],
-    [ "calc", "structJPAFieldGravity.html#abbe701e875b9673943480f228b0a913f", null ],
-    [ "prepare", "structJPAFieldGravity.html#a6e92d3d5cfd1d94753fc02ba70da91b4", null ]
+    [ "~JPAFieldGravity", "structJPAFieldGravity.html#ac5981e888ca97636157c8c48c544df9d", null ],
+    [ "calc", "structJPAFieldGravity.html#acdab25b6ef1b4d9aec0b28736de8e658", null ],
+    [ "prepare", "structJPAFieldGravity.html#a2fc5d1e9dd46c06abe5ec418061bbf01", null ]
 ];

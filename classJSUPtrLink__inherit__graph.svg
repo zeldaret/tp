@@ -626,7 +626,7 @@ var sectionId = 'dynsection-0';
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classZ2CreatureCitizen.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="structZ2CreatureCitizen.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="402.38,-838.25 309.12,-838.25 309.12,-819 402.38,-819 402.38,-838.25"/>
 <text text-anchor="middle" x="355.75" y="-824.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2CreatureCitizen</text>
 </a>

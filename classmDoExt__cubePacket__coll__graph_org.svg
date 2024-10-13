@@ -104,7 +104,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="322.12,-132.38 279.88,-132.38 279.88,-113.12 322.12,-113.12 322.12,-132.38"/>
 <text text-anchor="middle" x="301" y="-118.88" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>

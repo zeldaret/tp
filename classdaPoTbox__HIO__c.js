@@ -1,5 +1,5 @@
 var classdaPoTbox__HIO__c =
 [
-    [ "daPoTbox_HIO_c", "classdaPoTbox__HIO__c.html#a38af01cdbf8dbdbc5a00d3e28a21f52e", null ],
-    [ "~daPoTbox_HIO_c", "classdaPoTbox__HIO__c.html#a62fc34f2010281cd4ee73cfb31cf7022", null ]
+    [ "daPoTbox_HIO_c", "classdaPoTbox__HIO__c.html#a25f682fd495c45bc61fda776321b40ec", null ],
+    [ "~daPoTbox_HIO_c", "classdaPoTbox__HIO__c.html#a706cee3caae75555f8fc782cf49c872d", null ]
 ];

@@ -973,7 +973,7 @@ var sectionId = 'dynsection-1';
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000042"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="906.75,-142.25 833,-142.25 833,-123 906.75,-123 906.75,-142.25"/>
 <text text-anchor="middle" x="869.88" y="-128.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>

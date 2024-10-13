@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/d/msg/d_msg_unit.h Source File</title>
+<title>Twilight Princess: include/d/d_msg_unit.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -210,7 +210,7 @@ $(document).ready(function(){initNavTree('d__msg__unit_8h_source.html',''); init
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classdMsgUnit__c.html">   47</a></span><span class="keyword">class </span><a class="code hl_class" href="classdMsgUnit__c.html">dMsgUnit_c</a> {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">/* 80238C94 */</span> <a class="code hl_function" href="classdMsgUnit__c.html#a9014b54e6af8cfde8c192f0c04d39c73">dMsgUnit_c</a>();</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">/* 80238CEC */</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdMsgUnit__c.html#afc89fc6c7fffbeb27b2c9cd1d552a346">setTag</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">char</span>*, <span class="keywordtype">bool</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">/* 80238CEC */</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdMsgUnit__c.html#a20879df87f9c41a5f4c5c9dfa9b29832">setTag</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">char</span>*, <span class="keywordtype">bool</span>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">/* 80238CA4 */</span> <span class="keyword">virtual</span> <a class="code hl_function" href="classdMsgUnit__c.html#a634ecef55acc3c96064a70ff5e271ff2">~dMsgUnit_c</a>();</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
@@ -219,18 +219,19 @@ $(document).ready(function(){initNavTree('d__msg__unit_8h_source.html',''); init
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">extern</span> <a class="code hl_class" href="classdMsgUnit__c.html">dMsgUnit_c</a> <a class="code hl_variable" href="d__msg__unit_8h.html#af1d02c309bc18ec5fa036dd76ba2295d">g_msg_unit</a>;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="d__msg__unit_8h.html#abedb4325a214e48fd4d0c541531fde4d">   57</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="d__msg__unit_8h.html#abedb4325a214e48fd4d0c541531fde4d">dMsgUnit_setTag</a>(<span class="keywordtype">int</span> param_0, <span class="keywordtype">int</span> param_1, <span class="keywordtype">char</span>* param_2) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_variable" href="d__msg__unit_8h.html#af1d02c309bc18ec5fa036dd76ba2295d">g_msg_unit</a>.<a class="code hl_function" href="classdMsgUnit__c.html#afc89fc6c7fffbeb27b2c9cd1d552a346">setTag</a>(param_0, param_1, param_2, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="d__msg__unit_8h.html#abedb4325a214e48fd4d0c541531fde4d">   57</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="d__msg__unit_8h.html#abedb4325a214e48fd4d0c541531fde4d">dMsgUnit_setTag</a>(<span class="keywordtype">int</span> <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>, <span class="keywordtype">int</span> <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>, <span class="keywordtype">char</span>* <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_2</a>) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_variable" href="d__msg__unit_8h.html#af1d02c309bc18ec5fa036dd76ba2295d">g_msg_unit</a>.<a class="code hl_function" href="classdMsgUnit__c.html#a20879df87f9c41a5f4c5c9dfa9b29832">setTag</a>(<a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>, <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>, <a class="code hl_function" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_2</a>, <span class="keyword">true</span>);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
 </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">/* D_MSG_D_MSG_UNIT_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ac__lib_8h_html_a78569d8e1e6f0b9b721c63e167ad2735"><div class="ttname"><a href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">cLib_calcTimer</a></div><div class="ttdeci">T cLib_calcTimer(T *value)</div><div class="ttdef"><b>Definition</b> c_lib.h:95</div></div>
 <div class="ttc" id="aclassdMsgUnit__c_html"><div class="ttname"><a href="classdMsgUnit__c.html">dMsgUnit_c</a></div><div class="ttdef"><b>Definition</b> d_msg_unit.h:47</div></div>
+<div class="ttc" id="aclassdMsgUnit__c_html_a20879df87f9c41a5f4c5c9dfa9b29832"><div class="ttname"><a href="classdMsgUnit__c.html#a20879df87f9c41a5f4c5c9dfa9b29832">dMsgUnit_c::setTag</a></div><div class="ttdeci">void setTag(int, int, char *, bool)</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:76</div></div>
 <div class="ttc" id="aclassdMsgUnit__c_html_a634ecef55acc3c96064a70ff5e271ff2"><div class="ttname"><a href="classdMsgUnit__c.html#a634ecef55acc3c96064a70ff5e271ff2">dMsgUnit_c::~dMsgUnit_c</a></div><div class="ttdeci">virtual ~dMsgUnit_c()</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:41</div></div>
 <div class="ttc" id="aclassdMsgUnit__c_html_a9014b54e6af8cfde8c192f0c04d39c73"><div class="ttname"><a href="classdMsgUnit__c.html#a9014b54e6af8cfde8c192f0c04d39c73">dMsgUnit_c::dMsgUnit_c</a></div><div class="ttdeci">dMsgUnit_c()</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:38</div></div>
-<div class="ttc" id="aclassdMsgUnit__c_html_afc89fc6c7fffbeb27b2c9cd1d552a346"><div class="ttname"><a href="classdMsgUnit__c.html#afc89fc6c7fffbeb27b2c9cd1d552a346">dMsgUnit_c::setTag</a></div><div class="ttdeci">void setTag(int, int, char *, bool)</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:76</div></div>
 <div class="ttc" id="ad__msg__unit_8h_html_abedb4325a214e48fd4d0c541531fde4d"><div class="ttname"><a href="d__msg__unit_8h.html#abedb4325a214e48fd4d0c541531fde4d">dMsgUnit_setTag</a></div><div class="ttdeci">void dMsgUnit_setTag(int param_0, int param_1, char *param_2)</div><div class="ttdef"><b>Definition</b> d_msg_unit.h:57</div></div>
-<div class="ttc" id="ad__msg__unit_8h_html_af1d02c309bc18ec5fa036dd76ba2295d"><div class="ttname"><a href="d__msg__unit_8h.html#af1d02c309bc18ec5fa036dd76ba2295d">g_msg_unit</a></div><div class="ttdeci">dMsgUnit_c g_msg_unit</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:164</div></div>
+<div class="ttc" id="ad__msg__unit_8h_html_af1d02c309bc18ec5fa036dd76ba2295d"><div class="ttname"><a href="d__msg__unit_8h.html#af1d02c309bc18ec5fa036dd76ba2295d">g_msg_unit</a></div><div class="ttdeci">dMsgUnit_c g_msg_unit</div><div class="ttdef"><b>Definition</b> d_msg_unit.cpp:159</div></div>
 <div class="ttc" id="aglobal_8h_html"><div class="ttname"><a href="global_8h.html">global.h</a></div></div>
 <div class="ttc" id="astructbmg__header__t_html"><div class="ttname"><a href="structbmg__header__t.html">bmg_header_t</a></div><div class="ttdef"><b>Definition</b> d_msg_unit.h:13</div></div>
 <div class="ttc" id="astructbmg__header__t_html_a5378a6234750eb25a9b02c2ef2680331"><div class="ttname"><a href="structbmg__header__t.html#a5378a6234750eb25a9b02c2ef2680331">bmg_header_t::size</a></div><div class="ttdeci">u32 size</div><div class="ttdef"><b>Definition</b> d_msg_unit.h:15</div></div>
@@ -268,7 +269,7 @@ $(document).ready(function(){initNavTree('d__msg__unit_8h_source.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_d6b0d4f987b95c78b3cfcc31952546fc.html">msg</a></li><li class="navelem"><a class="el" href="d__msg__unit_8h.html">d_msg_unit.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="d__msg__unit_8h.html">d_msg_unit.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

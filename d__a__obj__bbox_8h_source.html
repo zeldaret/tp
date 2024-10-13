@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Twilight Princess Decompilation" />
 <meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
 <!-- END twitter metadata -->
-<title>Twilight Princess: include/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox.h Source File</title>
+<title>Twilight Princess: include/d/actor/d_a_obj_bbox.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -151,12 +151,12 @@ $(document).ready(function(){initNavTree('d__a__obj__bbox_8h_source.html',''); i
 <a href="d__a__obj__bbox_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef D_A_OBJ_BBOX_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define D_A_OBJ_BBOX_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__movebg__actor_8h.html">d/bg/d_bg_s_movebg_actor.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__cc__d_8h.html">d/cc/d_cc_d.h</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="d__bg__s__movebg__actor_8h.html">d/d_bg_s_movebg_actor.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="d__cc__d_8h.html">d/d_cc_d.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="f__op__actor__mng_8h.html">f_op/f_op_actor_mng.h</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObjBBox__c.html">daObjBBox_c</a> : <span class="keyword">public</span> <a class="code hl_struct" href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classdaObjBBox__c.html">daObjBBox_c</a> : <span class="keyword">public</span> <a class="code hl_class" href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">/* 80BACD38 */</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdaObjBBox__c.html#af723d92bd1141f3173fe9fdb726a5079">initBaseMtx</a>();</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="comment">/* 80BACD74 */</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classdaObjBBox__c.html#a470a80f1f19940996e4b9a8cd9f81965">setBaseMtx</a>();</div>
@@ -171,16 +171,15 @@ $(document).ready(function(){initNavTree('d__a__obj__bbox_8h_source.html',''); i
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#ac3d3da353b6dfbec15a0d8a4e4deb3ac">   30</a></span>    <span class="comment">/* 0x5A0 */</span> <a class="code hl_struct" href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a> <a class="code hl_variable" href="classdaObjBBox__c.html#ac3d3da353b6dfbec15a0d8a4e4deb3ac">mPhaseReq</a>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a544d694259064035a9328fa42610defe">   31</a></span>    <span class="comment">/* 0x5A8 */</span> <a class="code hl_struct" href="classJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObjBBox__c.html#a544d694259064035a9328fa42610defe">mpModel</a>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a4573ec4b179e2c6d780c458548281c6b">   32</a></span>    <span class="comment">/* 0x5AC */</span> <a class="code hl_struct" href="structdCcD__Stts.html">dCcD_Stts</a> <a class="code hl_variable" href="classdaObjBBox__c.html#a4573ec4b179e2c6d780c458548281c6b">mStts</a>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a81c8b0e649c3c3d4a8b19928e39d3ba6">   33</a></span>    <span class="comment">/* 0x5E8 */</span> <a class="code hl_struct" href="structdCcD__Cyl.html">dCcD_Cyl</a> <a class="code hl_variable" href="classdaObjBBox__c.html#a81c8b0e649c3c3d4a8b19928e39d3ba6">mCyl</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a544d694259064035a9328fa42610defe">   31</a></span>    <span class="comment">/* 0x5A8 */</span> <a class="code hl_class" href="structJ3DModel.html">J3DModel</a>* <a class="code hl_variable" href="classdaObjBBox__c.html#a544d694259064035a9328fa42610defe">mpModel</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a4573ec4b179e2c6d780c458548281c6b">   32</a></span>    <span class="comment">/* 0x5AC */</span> <a class="code hl_class" href="structdCcD__Stts.html">dCcD_Stts</a> <a class="code hl_variable" href="classdaObjBBox__c.html#a4573ec4b179e2c6d780c458548281c6b">mStts</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classdaObjBBox__c.html#a81c8b0e649c3c3d4a8b19928e39d3ba6">   33</a></span>    <span class="comment">/* 0x5E8 */</span> <a class="code hl_class" href="structdCcD__Cyl.html">dCcD_Cyl</a> <a class="code hl_variable" href="classdaObjBBox__c.html#a81c8b0e649c3c3d4a8b19928e39d3ba6">mCyl</a>;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
 </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="d__a__obj__bbox_8h.html#adcad25f06d4a6481cec5a240c9669580">   36</a></span><a class="code hl_function" href="d__a__obj__bbox_8h.html#adcad25f06d4a6481cec5a240c9669580">STATIC_ASSERT</a>(<span class="keyword">sizeof</span>(<a class="code hl_class" href="classdaObjBBox__c.html">daObjBBox_c</a>) == 0x724);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif </span><span class="comment">/* D_A_OBJ_BBOX_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="aclassJ3DModel_html"><div class="ttname"><a href="classJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> J3DModel.h:42</div></div>
 <div class="ttc" id="aclassdBgS__MoveBgActor_html"><div class="ttname"><a href="classdBgS__MoveBgActor.html">dBgS_MoveBgActor</a></div><div class="ttdef"><b>Definition</b> d_bg_s_movebg_actor.h:10</div></div>
 <div class="ttc" id="aclassdaObjBBox__c_html"><div class="ttname"><a href="classdaObjBBox__c.html">daObjBBox_c</a></div><div class="ttdoc">B Box.</div><div class="ttdef"><b>Definition</b> d_a_obj_bbox.h:16</div></div>
 <div class="ttc" id="aclassdaObjBBox__c_html_a0980557d5161353652fa5f3979900b5a"><div class="ttname"><a href="classdaObjBBox__c.html#a0980557d5161353652fa5f3979900b5a">daObjBBox_c::getSwNo</a></div><div class="ttdeci">u32 getSwNo()</div><div class="ttdef"><b>Definition</b> d_a_obj_bbox.h:27</div></div>
@@ -200,18 +199,19 @@ $(document).ready(function(){initNavTree('d__a__obj__bbox_8h_source.html',''); i
 <div class="ttc" id="ad__bg__s__movebg__actor_8h_html"><div class="ttname"><a href="d__bg__s__movebg__actor_8h.html">d_bg_s_movebg_actor.h</a></div></div>
 <div class="ttc" id="ad__cc__d_8h_html"><div class="ttname"><a href="d__cc__d_8h.html">d_cc_d.h</a></div></div>
 <div class="ttc" id="af__op__actor__mng_8h_html"><div class="ttname"><a href="f__op__actor__mng_8h.html">f_op_actor_mng.h</a></div></div>
-<div class="ttc" id="af__op__actor__mng_8h_html_a52c02a481bf4ce9b5e40f9669fd02811"><div class="ttname"><a href="f__op__actor__mng_8h.html#a52c02a481bf4ce9b5e40f9669fd02811">fopAcM_GetParamBit</a></div><div class="ttdeci">u32 fopAcM_GetParamBit(void *ac, u8 shift, u8 bit)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:213</div></div>
+<div class="ttc" id="af__op__actor__mng_8h_html_a52c02a481bf4ce9b5e40f9669fd02811"><div class="ttname"><a href="f__op__actor__mng_8h.html#a52c02a481bf4ce9b5e40f9669fd02811">fopAcM_GetParamBit</a></div><div class="ttdeci">u32 fopAcM_GetParamBit(void *ac, u8 shift, u8 bit)</div><div class="ttdef"><b>Definition</b> f_op_actor_mng.h:214</div></div>
 <div class="ttc" id="amtx_8h_html_afc58fc7f5dd84f97da2dab35156849ae"><div class="ttname"><a href="mtx_8h.html#afc58fc7f5dd84f97da2dab35156849ae">Mtx</a></div><div class="ttdeci">f32 Mtx[3][4]</div><div class="ttdef"><b>Definition</b> mtx.h:15</div></div>
-<div class="ttc" id="astructdCcD__Cyl_html"><div class="ttname"><a href="structdCcD__Cyl.html">dCcD_Cyl</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:122</div></div>
-<div class="ttc" id="astructdCcD__Stts_html"><div class="ttname"><a href="structdCcD__Stts.html">dCcD_Stts</a></div><div class="ttdef"><b>Definition</b> d_cc_d.cpp:24</div></div>
-<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> c_phase.h:17</div></div>
+<div class="ttc" id="astructJ3DModel_html"><div class="ttname"><a href="structJ3DModel.html">J3DModel</a></div><div class="ttdef"><b>Definition</b> d_a_ep.cpp:159</div></div>
+<div class="ttc" id="astructdCcD__Cyl_html"><div class="ttname"><a href="structdCcD__Cyl.html">dCcD_Cyl</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:86</div></div>
+<div class="ttc" id="astructdCcD__Stts_html"><div class="ttname"><a href="structdCcD__Stts.html">dCcD_Stts</a></div><div class="ttdef"><b>Definition</b> d_a_npc_fguard.cpp:70</div></div>
+<div class="ttc" id="astructrequest__of__phase__process__class_html"><div class="ttname"><a href="structrequest__of__phase__process__class.html">request_of_phase_process_class</a></div><div class="ttdef"><b>Definition</b> d_a_hozelda.cpp:14</div></div>
 <div class="ttc" id="atypes_8h_html_a2caf5cd7bcdbe1eefa727f44ffb10bac"><div class="ttname"><a href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></div><div class="ttdeci">unsigned long u32</div><div class="ttdef"><b>Definition</b> types.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d1e95842203b094e4f127fa85baf24b5.html">rel</a></li><li class="navelem"><a class="el" href="dir_244336746419795862f93731f1699860.html">d</a></li><li class="navelem"><a class="el" href="dir_b81c1d082692bb1b2b34ed3bfe8a0f4a.html">a</a></li><li class="navelem"><a class="el" href="dir_837b79828d4d0cae6e2581b9ebbbcbf8.html">obj</a></li><li class="navelem"><a class="el" href="dir_91b81d585a88422241f13bcb670613dd.html">d_a_obj_bbox</a></li><li class="navelem"><a class="el" href="d__a__obj__bbox_8h.html">d_a_obj_bbox.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cc3ad1aed4be3f446fdd7af78322f5bf.html">d</a></li><li class="navelem"><a class="el" href="dir_790f434fdf40e650d2c484ca203ac8dd.html">actor</a></li><li class="navelem"><a class="el" href="d__a__obj__bbox_8h.html">d_a_obj_bbox.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

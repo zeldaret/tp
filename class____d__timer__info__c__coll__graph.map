@@ -30,13 +30,13 @@
 <area shape="rect" id="Node000028" href="$structJKRHeap.html" title=" " alt="" coords="205,920,282,946"/>
 <area shape="poly" id="edge17_Node000027_Node000028" title=" " alt="" coords="298,923,656,871,656,876,298,928"/>
 <area shape="poly" id="edge18_Node000028_Node000028" title=" " alt="" coords="222,903,229,896,244,893,257,896,265,902,267,911,264,921,259,919,262,911,261,905,255,901,244,899,232,901,226,907"/>
-<area shape="rect" id="Node000163" href="$classJKRExpHeap.html" title=" " alt="" coords="504,929,603,955"/>
+<area shape="rect" id="Node000163" href="$structJKRExpHeap.html" title=" " alt="" coords="504,929,603,955"/>
 <area shape="poly" id="edge60_Node000163_Node000028" title=" " alt="" coords="298,932,504,938,504,943,298,937"/>
 <area shape="rect" id="Node000173" href="$classJKRArchive.html" title=" " alt="" coords="508,987,599,1012"/>
 <area shape="poly" id="edge76_Node000173_Node000028" title=" " alt="" coords="298,943,356,956,508,988,507,993,355,961,297,948"/>
 <area shape="rect" id="Node000045" href="$classdEvt__info__c.html" title=" " alt="" coords="828,439,917,464"/>
 <area shape="poly" id="edge19_Node000026_Node000045" title=" " alt="" coords="932,444,1093,425,1145,416,1146,422,1094,430,933,449"/>
-<area shape="rect" id="Node000046" href="$classdKy__tevstr__c.html" title=" " alt="" coords="824,601,921,627"/>
+<area shape="rect" id="Node000046" href="$structdKy__tevstr__c.html" title=" " alt="" coords="824,601,921,627"/>
 <area shape="poly" id="edge20_Node000026_Node000046" title=" " alt="" coords="937,618,975,618,1015,613,1055,603,1092,584,1112,567,1130,547,1157,501,1175,457,1185,423,1190,424,1180,459,1162,504,1134,550,1116,571,1095,589,1057,608,1016,619,975,623,937,623"/>
 <area shape="rect" id="Node000052" href="$structcXyz.html" title=" " alt="" coords="529,681,578,707"/>
 <area shape="poly" id="edge41_Node000003_Node000052" title=" " alt="" coords="593,707,657,725,782,749,835,759,884,765,931,764,980,756,1033,739,1092,710,1133,684,1172,655,1243,588,1307,515,1362,439,1408,366,1444,300,1487,212,1492,214,1449,303,1412,369,1366,442,1311,518,1247,592,1175,659,1136,688,1095,714,1035,744,981,761,932,770,883,770,834,764,781,754,656,730,592,712"/>
@@ -53,10 +53,10 @@
 <area shape="poly" id="edge31_Node000057_Node000049" title=" " alt="" coords="280,428,355,404,445,385,535,372,675,358,676,363,536,377,446,391,356,409,281,433"/>
 <area shape="rect" id="Node000058" href="$structcull__sphere.html" title=" " alt="" coords="666,389,754,415"/>
 <area shape="poly" id="edge33_Node000058_Node000049" title=" " alt="" coords="281,439,665,403,666,409,282,444"/>
-<area shape="rect" id="Node000059" href="$classJ3DModel.html" title=" " alt="" coords="514,488,593,514"/>
+<area shape="rect" id="Node000059" href="$structJ3DModel.html" title=" " alt="" coords="514,488,593,514"/>
 <area shape="poly" id="edge36_Node000059_Node000049" title=" " alt="" coords="281,449,514,491,513,496,280,454"/>
 <area shape="poly" id="edge24_Node000026_Node000054" title=" " alt="" coords="933,506,1010,506,1052,500,1092,489,1119,475,1142,457,1177,422,1181,425,1146,461,1121,480,1094,494,1053,505,1011,511,933,511"/>
-<area shape="rect" id="Node000055" href="$classcsXyz.html" title=" " alt="" coords="525,297,582,323"/>
+<area shape="rect" id="Node000055" href="$structcsXyz.html" title=" " alt="" coords="525,297,582,323"/>
 <area shape="poly" id="edge28_Node000026_Node000055" title=" " alt="" coords="596,293,656,278,781,262,833,259,881,260,929,266,978,277,1032,296,1095,322,1122,338,1146,358,1182,395,1178,399,1143,362,1119,343,1092,327,1031,301,977,283,928,271,881,265,833,264,782,267,657,283,597,298"/>
 <area shape="poly" id="edge26_Node000054_Node000055" title=" " alt="" coords="597,301,637,298,682,302,726,314,747,325,765,339,777,356,782,374,779,408,775,442,778,459,789,475,807,488,829,495,827,500,805,493,785,479,774,461,769,443,773,408,777,374,773,358,761,343,744,329,724,319,681,307,636,304,597,306"/>
 <area shape="poly" id="edge27_Node000055_Node000055" title=" " alt="" coords="525,280,535,273,553,271,571,273,581,279,584,289,579,298,575,296,579,288,577,283,569,278,554,276,537,278,528,284"/>

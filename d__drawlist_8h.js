@@ -13,7 +13,7 @@ var d__drawlist_8h =
     [ "dDlst_shadowPoly_c", "classdDlst__shadowPoly__c.html", "classdDlst__shadowPoly__c" ],
     [ "dDlst_shadowRealPoly_c", "classdDlst__shadowRealPoly__c.html", "classdDlst__shadowRealPoly__c" ],
     [ "dDlst_shadowReal_c", "classdDlst__shadowReal__c.html", "classdDlst__shadowReal__c" ],
-    [ "dDlst_shadowControl_c", "classdDlst__shadowControl__c.html", "classdDlst__shadowControl__c" ],
+    [ "dDlst_shadowControl_c", "structdDlst__shadowControl__c.html", "structdDlst__shadowControl__c" ],
     [ "dDlst_window_c", "classdDlst__window__c.html", "classdDlst__window__c" ],
     [ "dDlst_list_c", "classdDlst__list__c.html", "classdDlst__list__c" ],
     [ "STATIC_ASSERT", "d__drawlist_8h.html#a3532dd6455961e8e557a597c4f5a8841", null ],

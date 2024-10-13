@@ -46,7 +46,7 @@
 <area shape="rect" id="Node000040" href="$classCPaneMgr.html" title=" " alt="" coords="1275,996,1357,1021"/>
 <area shape="poly" id="edge44_Node000040_Node000019" title=" " alt="" coords="368,800,434,888,444,910,449,918,458,926,487,941,525,955,621,976,736,991,860,1000,1102,1008,1274,1007,1274,1012,1102,1013,860,1006,735,996,620,981,524,960,485,946,454,931,445,922,440,912,430,891,364,803"/>
 <area shape="poly" id="edge51_Node000061_Node000019" title=" " alt="" coords="369,799,407,836,457,870,528,899,603,919,680,931,756,936,828,937,893,935,995,925,995,930,894,940,828,943,756,942,680,936,602,924,527,904,455,875,404,840,365,803"/>
-<area shape="rect" id="Node000062" href="$structJUTFont.html" title=" " alt="" coords="695,814,767,840"/>
+<area shape="rect" id="Node000062" href="$classJUTFont.html" title=" " alt="" coords="695,814,767,840"/>
 <area shape="poly" id="edge50_Node000062_Node000019" title=" " alt="" coords="371,798,409,828,432,842,457,852,488,860,521,863,586,861,646,850,694,837,695,842,647,855,587,866,521,869,487,865,455,858,430,847,406,833,368,802"/>
 <area shape="poly" id="edge60_Node000063_Node000019" title=" " alt="" coords="412,762,456,755,636,729,816,701,997,664,998,670,817,706,637,734,456,760,412,768"/>
 <area shape="rect" id="Node000020" href="$struct__GXColor.html" title=" " alt="" coords="45,20,116,45"/>
@@ -81,7 +81,7 @@
 <area shape="poly" id="edge65_Node000001_Node000040" title=" " alt="" coords="1372,1004,1928,990,1928,995,1372,1010"/>
 <area shape="poly" id="edge35_Node000002_Node000040" title=" " alt="" coords="1371,992,1395,986,1495,966,1574,952,1611,942,1647,926,1686,904,1729,872,1774,824,1805,781,1809,784,1778,828,1732,876,1689,908,1650,931,1612,947,1575,957,1496,971,1396,991,1373,997"/>
 <area shape="poly" id="edge36_Node000040_Node000041" title=" " alt="" coords="1114,1170,1176,1162,1206,1153,1234,1138,1263,1112,1284,1079,1299,1046,1308,1021,1313,1022,1304,1048,1289,1081,1267,1115,1238,1143,1208,1158,1177,1167,1114,1175"/>
-<area shape="rect" id="Node000042" href="$classJKRExpHeap.html" title=" " alt="" coords="682,1233,780,1259"/>
+<area shape="rect" id="Node000042" href="$structJKRExpHeap.html" title=" " alt="" coords="682,1233,780,1259"/>
 <area shape="poly" id="edge38_Node000041_Node000042" title=" " alt="" coords="795,1227,986,1179,987,1184,796,1232"/>
 <area shape="rect" id="Node000043" href="$structJKRHeap.html" title=" " alt="" coords="306,1366,383,1392"/>
 <area shape="poly" id="edge39_Node000042_Node000043" title=" " alt="" coords="397,1358,690,1257,692,1262,399,1363"/>

@@ -1,12 +1,12 @@
 <map id="dBgS_StatueAcch" name="dBgS_StatueAcch">
 <area shape="rect" id="Node000001" title=" " alt="" coords="36,300,165,326"/>
-<area shape="rect" id="Node000002" href="$classdBgS__Acch.html" title=" " alt="" coords="55,226,146,252"/>
+<area shape="rect" id="Node000002" href="$structdBgS__Acch.html" title=" " alt="" coords="55,226,146,252"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,267,103,300,98,300,98,267"/>
 <area shape="rect" id="Node000003" href="$classcBgS__Chk.html" title=" " alt="" coords="5,153,89,178"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,189,93,224,89,227,63,192"/>
 <area shape="rect" id="Node000004" href="$classdBgS__Chk.html" title=" " alt="" coords="113,153,197,178"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="139,192,112,227,107,224,135,189"/>
-<area shape="rect" id="Node000005" href="$classdBgS__PolyPassChk.html" title=" " alt="" coords="6,79,144,105"/>
+<area shape="rect" id="Node000005" href="$structdBgS__PolyPassChk.html" title=" " alt="" coords="6,79,144,105"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="102,113,143,150,140,154,98,117"/>
 <area shape="rect" id="Node000006" href="$classcBgS__PolyPassChk.html" title=" " alt="" coords="6,5,144,31"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="78,46,78,79,72,79,72,46"/>

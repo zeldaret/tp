@@ -21,7 +21,7 @@
 <area shape="poly" id="edge11_Node000005_Node000009" title=" " alt="" coords="1163,295,1249,282,1295,271,1339,255,1390,227,1429,196,1432,201,1393,231,1341,260,1296,276,1250,287,1164,300"/>
 <area shape="rect" id="Node000063" href="$classJAISeMgr.html" title=" " alt="" coords="1406,457,1486,482"/>
 <area shape="poly" id="edge59_Node000063_Node000009" title=" " alt="" coords="1164,307,1264,325,1310,336,1342,349,1374,373,1402,403,1439,455,1435,458,1398,406,1371,377,1339,353,1308,341,1263,330,1163,312"/>
-<area shape="rect" id="Node000010" href="$classJAISoundID.html" title=" " alt="" coords="1055,38,1146,64"/>
+<area shape="rect" id="Node000010" href="$structJAISoundID.html" title=" " alt="" coords="1055,38,1146,64"/>
 <area shape="poly" id="edge12_Node000005_Node000010" title=" " alt="" coords="1162,48,1249,58,1296,70,1342,87,1372,106,1398,128,1436,170,1433,174,1395,132,1368,110,1339,92,1295,75,1248,63,1161,54"/>
 <area shape="rect" id="Node000011" href="$structJAISoundStatus__.html" title=" " alt="" coords="1039,87,1162,113"/>
 <area shape="poly" id="edge13_Node000005_Node000011" title=" " alt="" coords="1177,101,1257,111,1341,130,1387,149,1425,170,1422,174,1385,153,1340,135,1256,116,1177,106"/>

@@ -1,6 +1,6 @@
 var classJAISeMgr =
 [
-    [ "JAISeMgr", "classJAISeMgr.html#a7aee019086131d8580cb20a664738f08", null ],
+    [ "JAISeMgr", "classJAISeMgr.html#aeb2cbfb97c14d3045a0e62b995e73d11", null ],
     [ "~JAISeMgr", "classJAISeMgr.html#a3adbd6fe4aa6249494e0b0108586a808", null ],
     [ "calc", "classJAISeMgr.html#aa39658aec6a3fabb99449d5377d26ea3", null ],
     [ "getAudience", "classJAISeMgr.html#af11394369a4c814e7760213b6f403230", null ],
@@ -8,10 +8,10 @@ var classJAISeMgr =
     [ "getNumActiveSe", "classJAISeMgr.html#a9bade3a5032b1e755cb7c96af564f1f8", null ],
     [ "getParams", "classJAISeMgr.html#acd0d83c1adbb1fc1916a855db45eb509", null ],
     [ "getSeqDataMgr", "classJAISeMgr.html#ae3f5c15434c57156dd7da9f45b61252d", null ],
-    [ "initParams", "classJAISeMgr.html#a31b781552d0cd86b536bfccee14e6325", null ],
+    [ "initParams", "classJAISeMgr.html#afa36c83f635d633af45a6544232fd335", null ],
     [ "isUsingSeqData", "classJAISeMgr.html#a7c55967dbef05fe2d70002b42663d1c4", null ],
     [ "mixOut", "classJAISeMgr.html#a00f1fc417396dcaa1e77b60443059af0", null ],
-    [ "newSe_", "classJAISeMgr.html#a3b9ec0bdb314b7e2c25a57b37a62ee58", null ],
+    [ "newSe_", "classJAISeMgr.html#a46ae6836ffd08d66b6e1971f0233a199", null ],
     [ "releaseSeqData", "classJAISeMgr.html#a5517a0a930dac9e33a6267164d08ff0a", null ],
     [ "resetSeqDataMgr", "classJAISeMgr.html#ace9541164d1b11b9fb18d1852a394048", null ],
     [ "setAudience", "classJAISeMgr.html#a5aa4568c7c3fcb321764e0edbde7fb2c", null ],

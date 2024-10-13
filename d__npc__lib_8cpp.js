@@ -7,7 +7,7 @@ var d__npc__lib_8cpp =
     [ "__ct__5csXyzFv", "d__npc__lib_8cpp.html#ae7fe2630a9ed77553384e4cd7b29e757", null ],
     [ "__destroy_arr", "d__npc__lib_8cpp.html#a155ced9cda8b8f33e37813039dbf01b4", null ],
     [ "__dl__FPv", "d__npc__lib_8cpp.html#a498e6440d5c316e2672169ee4ed92309", null ],
-    [ "__dt__16dNpcLib_lookat_cFv", "d__npc__lib_8cpp.html#a8f34290c8bb62efe8580e03407081954", null ],
+    [ "__dt__16dNpcLib_lookat_cFv", "d__npc__lib_8cpp.html#a6125e270cfe037f3bcfb748513e93029", null ],
     [ "__dt__4cXyzFv", "d__npc__lib_8cpp.html#a2b5aea3c7cb7ba661e6e698485d575ca", null ],
     [ "__dt__5csXyzFv", "d__npc__lib_8cpp.html#a3944e30fdef89ef931abeb63a779a9b0", null ],
     [ "__mi__4cXyzCFRC3Vec", "d__npc__lib_8cpp.html#a1d9bcd9cce50109358430d7b8395557d", null ],

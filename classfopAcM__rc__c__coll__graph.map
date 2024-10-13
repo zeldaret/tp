@@ -4,13 +4,13 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,468,188,515,183,515,183,468"/>
 <area shape="rect" id="Node000003" href="$classdBgS__RoofChk.html" title=" " alt="" coords="131,352,241,378"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="188,393,188,427,183,427,183,393"/>
-<area shape="rect" id="Node000004" href="$classcBgS__PolyInfo.html" title=" " alt="" coords="13,216,121,242"/>
+<area shape="rect" id="Node000004" href="$structcBgS__PolyInfo.html" title=" " alt="" coords="13,216,121,242"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,253,109,289,141,326,169,349,166,354,137,330,105,292,80,256"/>
 <area shape="rect" id="Node000005" href="$classcBgS__Chk.html" title=" " alt="" coords="5,94,89,120"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="87,125,112,144,135,167,160,217,176,270,184,317,188,351,182,352,179,318,171,271,155,219,130,171,109,148,84,130"/>
 <area shape="rect" id="Node000006" href="$classcBgS__PolyPassChk.html" title=" " alt="" coords="41,5,179,31"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="79,43,67,57,57,75,52,94,47,93,52,74,62,53,75,39"/>
-<area shape="rect" id="Node000009" href="$classdBgS__PolyPassChk.html" title=" " alt="" coords="113,94,251,120"/>
+<area shape="rect" id="Node000009" href="$structdBgS__PolyPassChk.html" title=" " alt="" coords="113,94,251,120"/>
 <area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="144,39,158,53,171,73,180,92,175,94,167,76,154,57,140,43"/>
 <area shape="rect" id="Node000007" href="$classcBgS__GrpPassChk.html" title=" " alt="" coords="228,5,362,31"/>
 <area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="252,40,163,73,89,96,87,91,161,67,250,35"/>

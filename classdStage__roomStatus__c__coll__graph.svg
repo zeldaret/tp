@@ -558,7 +558,7 @@ var sectionId = 'dynsection-0';
 <!-- Node38 -->
 <g id="Node000038" class="node">
 <title>Node38</title>
-<g id="a_Node000038"><a xlink:href="classdKy__tevstr__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000038"><a xlink:href="structdKy__tevstr__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="813.75,-21.25 740.75,-21.25 740.75,-2 813.75,-2 813.75,-21.25"/>
 <text text-anchor="middle" x="777.25" y="-7.75" font-family="Helvetica,sans-Serif" font-size="10.00">dKy_tevstr_c</text>
 </a>
@@ -578,7 +578,7 @@ var sectionId = 'dynsection-0';
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="classcsXyz.html" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="structcsXyz.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="276.12,-167.25 233.88,-167.25 233.88,-148 276.12,-148 276.12,-167.25"/>
 <text text-anchor="middle" x="255" y="-153.75" font-family="Helvetica,sans-Serif" font-size="10.00">csXyz</text>
 </a>

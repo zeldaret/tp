@@ -1,7 +1,9 @@
 <map id="daObjSwBallB_c" name="daObjSwBallB_c">
-<area shape="rect" id="Node000001" title="Ball Switch B." alt="" coords="5,153,125,178"/>
-<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="20,79,110,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,120,68,152,62,152,62,120"/>
-<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="11,5,119,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,46,68,79,62,79,62,46"/>
+<area shape="rect" id="Node000001" title="Ball Switch B." alt="" coords="67,153,186,178"/>
+<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="14,79,105,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,114,117,150,113,154,79,118"/>
+<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="5,5,114,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,46,62,79,57,79,57,46"/>
+<area shape="rect" id="Node000004" href="$classdEvLib__callback__c.html" title=" " alt="" coords="129,79,259,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,118,140,154,136,150,170,114"/>
 </map>

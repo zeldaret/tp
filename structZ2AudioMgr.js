@@ -1,0 +1,25 @@
+var structZ2AudioMgr =
+[
+    [ "Z2AudioMgr", "structZ2AudioMgr.html#a2d12909cf06f54f550031805ac256df7", null ],
+    [ "~Z2AudioMgr", "structZ2AudioMgr.html#a3ce286364a8ec949a185f5b1b662f2ed", null ],
+    [ "getInterface", "structZ2AudioMgr.html#a12c33a8a8997e8a337ecf6b9276adaa1", null ],
+    [ "gframeProcess", "structZ2AudioMgr.html#a3fcab07e30b6f6633d7bf33f5e37b50c", null ],
+    [ "hasReset", "structZ2AudioMgr.html#a8578ea9a9b5aac552127f4e9ea89104e", null ],
+    [ "init", "structZ2AudioMgr.html#aaa97a2389a93806c1f40e1a17431da7f", null ],
+    [ "resetProcess", "structZ2AudioMgr.html#a381b1678b508dcf3b1819356f1860099", null ],
+    [ "resetRecover", "structZ2AudioMgr.html#a817f234ccdddcc42701acf0d4e2a343c", null ],
+    [ "setOutputMode", "structZ2AudioMgr.html#a3de7c5726fd5aa20c0396c762f4f0e2f", null ],
+    [ "startSound", "structZ2AudioMgr.html#a0fe5b9b7f3e94b5ef5055fc9553b2c23", null ],
+    [ "zeldaGFrameWork", "structZ2AudioMgr.html#a2f7eb7ff564d7ab3aa55e87c162c455e", null ],
+    [ "field_0x519", "structZ2AudioMgr.html#ace224be7019eb0cac9ccfe9d26c9c294", null ],
+    [ "mAudience", "structZ2AudioMgr.html#a6f94b9c44626c3926ee557d5a3b17150", null ],
+    [ "mAudioMgrPtr", "structZ2AudioMgr.html#af00ffccacb65344726e7457fec912341", null ],
+    [ "mAudioMgrPtr", "structZ2AudioMgr.html#a704a7868f4e991adc8607ac8489ae5fd", null ],
+    [ "mAudioReseter", "structZ2AudioMgr.html#ac8bd7836d17dfc749fdfc09c7d5d2c22", null ],
+    [ "mFxLineMgr", "structZ2AudioMgr.html#a14bc1e1d9fa3a06575133a437d8808d8", null ],
+    [ "mResettingFlag", "structZ2AudioMgr.html#a30fbc6eb73fa067bb1ea3383aca8fddc", null ],
+    [ "mSoundInfo", "structZ2AudioMgr.html#a68a0c121eca45e294b080db0bcd6cf4a", null ],
+    [ "mSoundMgr", "structZ2AudioMgr.html#a3db7f8a821af9c55493d3b2647ff918a", null ],
+    [ "mSoundStarter", "structZ2AudioMgr.html#aefbc5bb667ff98d4fb909a316e7c02d3", null ],
+    [ "mSpeechMgr", "structZ2AudioMgr.html#ae6fa01bb665820f6352c6ebe183d10cb", null ]
+];

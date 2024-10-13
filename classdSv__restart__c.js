@@ -1,6 +1,8 @@
 var classdSv__restart__c =
 [
+    [ "getLastAngleY", "classdSv__restart__c.html#a2bdc91d5aa0d4fb4d5a4a0f2f644556f", null ],
     [ "getLastMode", "classdSv__restart__c.html#acba870b806662e6925d2de30b13a3dec", null ],
+    [ "getLastSpeedF", "classdSv__restart__c.html#a00ed0c789450a8e3a6a48b6efe0fce4d", null ],
     [ "getRoomAngleY", "classdSv__restart__c.html#aad2c1b1f864105ca104054fd6e23a2c0", null ],
     [ "getRoomNo", "classdSv__restart__c.html#a7238be79d3f40e88ac011261f6ab7553", null ],
     [ "getRoomParam", "classdSv__restart__c.html#a41d3c8bc0c6391eb1900c6c80c98b895", null ],

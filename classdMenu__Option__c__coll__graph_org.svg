@@ -38,7 +38,7 @@
 <!-- Node65 -->
 <g id="Node000065" class="node">
 <title>Node65</title>
-<g id="a_Node000065"><a xlink:href="structdDlst__FileWarn__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000065"><a xlink:href="classdDlst__FileWarn__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1432.25,-861.25 1339.75,-861.25 1339.75,-842 1432.25,-842 1432.25,-861.25"/>
 <text text-anchor="middle" x="1386" y="-847.75" font-family="Helvetica,sans-Serif" font-size="10.00">dDlst_FileWarn_c</text>
 </a>
@@ -595,7 +595,7 @@
 <!-- Node66 -->
 <g id="Node000066" class="node">
 <title>Node66</title>
-<g id="a_Node000066"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000066"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1149.25,-530.25 1095,-530.25 1095,-511 1149.25,-511 1149.25,-530.25"/>
 <text text-anchor="middle" x="1122.12" y="-516.75" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -901,7 +901,7 @@
 <!-- Node112 -->
 <g id="Node000112" class="node">
 <title>Node112</title>
-<g id="a_Node000112"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000112"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="446.12,-266.25 372.38,-266.25 372.38,-247 446.12,-247 446.12,-266.25"/>
 <text text-anchor="middle" x="409.25" y="-252.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -1035,7 +1035,7 @@
 <!-- Node67 -->
 <g id="Node000067" class="node">
 <title>Node67</title>
-<g id="a_Node000067"><a xlink:href="structdMsgString__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000067"><a xlink:href="classdMsgString__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1160.12,-639.25 1084.12,-639.25 1084.12,-620 1160.12,-620 1160.12,-639.25"/>
 <text text-anchor="middle" x="1122.12" y="-625.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgString_c</text>
 </a>

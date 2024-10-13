@@ -1,10 +1,8 @@
 var classdaB__DS__HIO__c =
 [
     [ "daB_DS_HIO_c", "classdaB__DS__HIO__c.html#aa97aad93cca7d78506b43f0e806e58a2", null ],
-    [ "~daB_DS_HIO_c", "classdaB__DS__HIO__c.html#ae1318d8ca6b8d8fd52806819695fb6ae", null ],
-    [ "~daB_DS_HIO_c", "classdaB__DS__HIO__c.html#a02ebc452bbd18a3e22bdc66b7a365edb", null ],
-    [ "daB_DS_HIO_c", "classdaB__DS__HIO__c.html#aa97aad93cca7d78506b43f0e806e58a2", null ],
     [ "~daB_DS_HIO_c", "classdaB__DS__HIO__c.html#aea3b0bf6b1490af0f1c57f92c51d1242", null ],
+    [ "~daB_DS_HIO_c", "classdaB__DS__HIO__c.html#a02ebc452bbd18a3e22bdc66b7a365edb", null ],
     [ "_vtable", "classdaB__DS__HIO__c.html#a86fb2f05839cb52137db39072fc98c92", null ],
     [ "field_0x04", "classdaB__DS__HIO__c.html#a67c57856ecb819131d53031b59486ab7", null ],
     [ "mBreathRange", "classdaB__DS__HIO__c.html#ad5cf119b1d61f257d05ecfe2fbb1280c", null ],

@@ -2,7 +2,7 @@ var classdalv4CandleDemoTag__c =
 [
     [ "dalv4CandleDemoTag_c", "classdalv4CandleDemoTag__c.html#a16e6330df89bf48fc91f8ff5b13507b0", null ],
     [ "~dalv4CandleDemoTag_c", "classdalv4CandleDemoTag__c.html#a7f709f886229d703118d70dd3291a3f6", null ],
-    [ "create", "classdalv4CandleDemoTag__c.html#a62e4acc4cff1bf8023ee69a3c05972d6", null ],
+    [ "create", "classdalv4CandleDemoTag__c.html#ad84f3ffbfac1ca606232864bd7312e66", null ],
     [ "Delete", "classdalv4CandleDemoTag__c.html#a8a77c56958a2e20a4d9c351c65b8e3b9", null ],
     [ "Draw", "classdalv4CandleDemoTag__c.html#a04dd0c80b17d0b294c5b633bad5c68ee", null ],
     [ "eventStart", "classdalv4CandleDemoTag__c.html#a133ab21775f896b6a1b4f02d7243bc01", null ],
@@ -20,7 +20,7 @@ var classdalv4CandleDemoTag__c =
     [ "modeEnemyCreate", "classdalv4CandleDemoTag__c.html#a5e62770c6da1244590c3f53977f05668", null ],
     [ "modeNG", "classdalv4CandleDemoTag__c.html#a8dade038a566587046b22f400930ab5d", null ],
     [ "modeWatch", "classdalv4CandleDemoTag__c.html#a9df17d54315aa669308467df7ca2b8dd", null ],
-    [ "procMain", "classdalv4CandleDemoTag__c.html#ad2920f48ab080842de76892f43080cca", null ],
+    [ "procMain", "classdalv4CandleDemoTag__c.html#a07e03ededd7a46d096dc4330652af16e", null ],
     [ "searchShutterAct", "classdalv4CandleDemoTag__c.html#a39ff6b0058a38c3af12e5c3504514ffb", null ],
     [ "setBaseMtx", "classdalv4CandleDemoTag__c.html#ad5255214c308a638b427897787348688", null ],
     [ "mEnemyWaitTime", "classdalv4CandleDemoTag__c.html#aaad90172d643c0b1ad3672c9dc00e95e", null ],

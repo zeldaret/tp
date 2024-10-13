@@ -1,6 +1,6 @@
 var classdaNpcChin__c_1_1__SpotLight__c =
 [
-    [ "draw", "classdaNpcChin__c_1_1__SpotLight__c.html#ac0252c7f63c9c63b720676b419be542e", null ],
-    [ "loadModel", "classdaNpcChin__c_1_1__SpotLight__c.html#af9aba0ba6ba9b55613bb18346b8f0258", null ],
-    [ "setMtx", "classdaNpcChin__c_1_1__SpotLight__c.html#ad1cc3dbf36c473bdb15ba742639f0a81", null ]
+    [ "draw", "classdaNpcChin__c_1_1__SpotLight__c.html#a5b6e1be68a524a172a28b1079a388000", null ],
+    [ "loadModel", "classdaNpcChin__c_1_1__SpotLight__c.html#a790d63c20e544a08d0d774160b5a6e79", null ],
+    [ "setMtx", "classdaNpcChin__c_1_1__SpotLight__c.html#a012051061d591644af771500d844097a", null ]
 ];

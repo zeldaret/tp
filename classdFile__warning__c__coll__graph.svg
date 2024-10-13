@@ -182,7 +182,7 @@ var sectionId = 'dynsection-0';
 <!-- Node107 -->
 <g id="Node000107" class="node">
 <title>Node107</title>
-<g id="a_Node000107"><a xlink:href="classJKRExpHeap.html" target="_top" xlink:title=" ">
+<g id="a_Node000107"><a xlink:href="structJKRExpHeap.html" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="1189.62,-308.25 1115.88,-308.25 1115.88,-289 1189.62,-289 1189.62,-308.25"/>
 <text text-anchor="middle" x="1152.75" y="-294.75" font-family="Helvetica,sans-Serif" font-size="10.00">JKRExpHeap</text>
 </a>
@@ -611,7 +611,7 @@ var sectionId = 'dynsection-0';
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="structdDlst__FileWarn__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000025"><a xlink:href="classdDlst__FileWarn__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1621,-711.25 1528.5,-711.25 1528.5,-692 1621,-692 1621,-711.25"/>
 <text text-anchor="middle" x="1574.75" y="-697.75" font-family="Helvetica,sans-Serif" font-size="10.00">dDlst_FileWarn_c</text>
 </a>
@@ -925,7 +925,7 @@ var sectionId = 'dynsection-0';
 <!-- Node61 -->
 <g id="Node000061" class="node">
 <title>Node61</title>
-<g id="a_Node000061"><a xlink:href="structJUTFont.html" target="_top" xlink:title=" ">
+<g id="a_Node000061"><a xlink:href="classJUTFont.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1179.88,-698.25 1125.62,-698.25 1125.62,-679 1179.88,-679 1179.88,-698.25"/>
 <text text-anchor="middle" x="1152.75" y="-684.75" font-family="Helvetica,sans-Serif" font-size="10.00">JUTFont</text>
 </a>
@@ -1133,7 +1133,7 @@ var sectionId = 'dynsection-0';
 <!-- Node62 -->
 <g id="Node000062" class="node">
 <title>Node62</title>
-<g id="a_Node000062"><a xlink:href="structdMsgString__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000062"><a xlink:href="classdMsgString__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1404.38,-937.25 1328.38,-937.25 1328.38,-918 1404.38,-918 1404.38,-937.25"/>
 <text text-anchor="middle" x="1366.38" y="-923.75" font-family="Helvetica,sans-Serif" font-size="10.00">dMsgString_c</text>
 </a>

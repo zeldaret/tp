@@ -1,6 +1,6 @@
 var classb__gnd__class =
 [
-    [ "b_gnd_class", "classb__gnd__class.html#a04cacd5466d25333f0618dcd2963bf75", null ],
+    [ "b_gnd_class", "classb__gnd__class.html#abb881dd30e9fd7f4e2f7fa8ac236f1e1", null ],
     [ "checkAttackChance", "classb__gnd__class.html#ac6596365cff9d34a3debc51f0e799ef4", null ],
     [ "field_0x05bc", "classb__gnd__class.html#a0607c5c49b680a4b351229d3496be317", null ],
     [ "field_0x05be", "classb__gnd__class.html#add3301cb161855624dd79c32f2f4cd48", null ],

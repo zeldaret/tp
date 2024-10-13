@@ -17,6 +17,7 @@ var structJGeometry_1_1TVec3_3_01f32_01_4 =
     [ "normalize", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a31f66d2cb206e70c06d0005059326d46", null ],
     [ "operator const Vec *", "structJGeometry_1_1TVec3_3_01f32_01_4.html#aa9b30bb266b9d5024cfe7a29b38c8a0f", null ],
     [ "operator Vec *", "structJGeometry_1_1TVec3_3_01f32_01_4.html#aa43e4f4b3a19342286cd3957af1ecaa6", null ],
+    [ "operator+", "structJGeometry_1_1TVec3_3_01f32_01_4.html#ad22223e36f143621e38b438637702bc9", null ],
     [ "operator+=", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a2c154d186bf287afb35125a30ec70ce1", null ],
     [ "operator=", "structJGeometry_1_1TVec3_3_01f32_01_4.html#ac250be968b67e6e52e971ddac2865006", null ],
     [ "operator=", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a84aaa371c70ce2287880a0e0451e034b", null ],
