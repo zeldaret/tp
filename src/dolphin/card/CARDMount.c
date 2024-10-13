@@ -3,7 +3,7 @@
 #include "dolphin/card/CARDPriv.h"
 #include "dolphin/os/OSRtc.h"
 
-u8 GameChoice : 0x800030E3;
+u8 GameChoice AT_ADDRESS(0x800030E3);
 
 static BOOL IsCard(u32 id);
 static s32 DoMount(s32 chan);

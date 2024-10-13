@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-volatile u16 __DSPRegs[32] : 0xCC005000;
-volatile u32 __AIRegs[8] : 0xCC006C00;
+volatile u16 __DSPRegs[32] AT_ADDRESS(0xCC005000);
+volatile u32 __AIRegs[8] AT_ADDRESS(0xCC006C00);
 
 #define DSP_TASK_FLAG_CLEARALL 0x00000000
 #define DSP_TASK_FLAG_ATTACHED 0x00000001

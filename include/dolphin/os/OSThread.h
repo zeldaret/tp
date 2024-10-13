@@ -75,8 +75,8 @@ struct OSThread {
 
 typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
 
-OSThreadQueue OS_THREAD_QUEUE : 0x800000DC;
-OSThread* OS_CURRENT_THREAD : 0x800000E4;
+OSThreadQueue OS_THREAD_QUEUE AT_ADDRESS(0x800000DC);
+OSThread* OS_CURRENT_THREAD AT_ADDRESS(0x800000E4);
 
 static void DefaultSwitchThreadCallback(OSThread* from, OSThread* to);
 OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback func);

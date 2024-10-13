@@ -678,7 +678,7 @@ asm void __OSPSInit(void){
     // clang-format on
 }
 
-vu32 __DIRegs[16] : 0xCC006000;
+vu32 __DIRegs[16] AT_ADDRESS(0xCC006000);
 #define DI_CONFIG_IDX 0x9
 #define DI_CONFIG_CONFIG_MASK 0xFF
 

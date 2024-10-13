@@ -58,7 +58,7 @@ typedef union {
 } PPCWGPipe;
 
 #define GXFIFO_ADDR 0xCC008000
-volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
+volatile PPCWGPipe GXWGFifo AT_ADDRESS(GXFIFO_ADDR);
 
 #define GX_WRITE_U8(data) GXWGFifo.u8 = data;
 #define GX_WRITE_U32(data) GXWGFifo.u32 = data;

@@ -120,7 +120,7 @@ BOOL SITransfer(s32 chan, void* output, u32 outputBytes, void* input, u32 inputB
 u32 SIGetType(s32 chan);
 u32 SIGetTypeAsync(s32 chan, SITypeAndStatusCallback callback);
 
-vu32 __SIRegs[64] : 0xCC006400;
+vu32 __SIRegs[64] AT_ADDRESS(0xCC006400);
 
 #ifdef __cplusplus
 }

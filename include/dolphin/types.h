@@ -42,4 +42,10 @@ typedef int BOOL;
 #define FLOAT_MIN (1.175494351e-38f)
 #define FLOAT_MAX (3.40282346638528860e+38f)
 
+#ifdef __MWERKS__
+#define AT_ADDRESS(xyz) : (xyz)
+#else
+#define AT_ADDRESS(xyz)
+#endif
+
 #endif

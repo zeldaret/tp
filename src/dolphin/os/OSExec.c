@@ -104,7 +104,7 @@ static void Callback(s32, DVDCommandBlock*) {
     Prepared = TRUE;
 }
 
-OSExecParams* osExecParams : 0x800030f0;
+OSExecParams* osExecParams AT_ADDRESS(0x800030f0);
 
 static int IsStreamEnabled() {
     if (DVDGetCurrentDiskID()->is_streaming) {
@@ -148,7 +148,7 @@ static void StopStreaming() {
 }
 
 /* 8033CCFC-8033CDC0 33763C 00C4+00 1/1 0/0 0/0 .text            GetApploaderPosition */
-s32 __OSAppLoaderOffset : 0x800030f4;
+s32 __OSAppLoaderOffset AT_ADDRESS(0x800030f4);
 
 static int GetApploaderPosition(void) {
     static s32 apploaderPosition;
@@ -220,9 +220,9 @@ static BOOL IsNewApploader(AppLoaderStruct* header) {
     return strncmp(header->date, "2004/02/01", 10) > 0 ? TRUE : FALSE;
 }
 
-extern volatile u32 BOOT_REGION_START : 0x812FDFF0;
-extern volatile u32 BOOT_REGION_END : 0x812FDFEC;
-extern volatile u8 g_unk_800030E2 : 0x800030E2;
+extern volatile u32 BOOT_REGION_START AT_ADDRESS(0x812FDFF0);
+extern volatile u32 BOOT_REGION_END AT_ADDRESS(0x812FDFEC);
+extern volatile u8 g_unk_800030E2 AT_ADDRESS(0x800030E2);
 
 /* 8033CDC0-8033D244 337700 0484+00 1/1 0/0 0/0 .text            __OSBootDolSimple */
 void __OSBootDolSimple(u32 doloffset, u32 restartCode, void* regionStart, void* regionEnd, BOOL argsUseDefault, s32 argc, char** argv) {
