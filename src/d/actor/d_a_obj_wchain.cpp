@@ -603,7 +603,7 @@ void daObjWchain_c::setChainPos() {
         }
         f32 fvar2 = mInitOutLength + mPullLength - 53.75f;
         int local_68 = fvar2 * (1.0f / 17.5f);
-        int ivar5 = local_68 <= 0xf ? local_68 + 1 AT_ADDRESS(0x10);
+        int ivar5 = local_68 <= 0xf ? local_68 + 1 : 0x10;
         int chain_no = 0x10 - ivar5;
         cXyz* chain_pos = &mChainPos[chain_no];
         csXyz* chain_angle = &mChainAngle[chain_no];
