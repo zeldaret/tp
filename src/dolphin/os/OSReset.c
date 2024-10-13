@@ -1,7 +1,7 @@
 #include "dolphin/os/OSReset.h"
 #include "dolphin/os.h"
 
-vu16 __VIRegs[59] : 0xCC002000;
+vu16 __VIRegs[59] AT_ADDRESS(0xCC002000);
 OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
 
 extern OSExecParams __OSRebootParams;

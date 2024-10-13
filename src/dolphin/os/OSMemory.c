@@ -4,7 +4,7 @@
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
-vu16 __MEMRegs[64] : 0xCC004000;
+vu16 __MEMRegs[64] AT_ADDRESS(0xCC004000);
 
 extern OSErrorHandlerEx __OSErrorTable[16];
 

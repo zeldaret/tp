@@ -3,8 +3,8 @@
 #include "dolphin/exi/EXIBios.h"
 #include "dolphin/os.h"
 
-vu32 __PIRegs[12] : 0xCC003000;
-vu16 __MEMRegs[64] : 0xCC004000;
+vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
+vu16 __MEMRegs[64] AT_ADDRESS(0xCC004000);
 
 /* 8033D6F4-8033D700 338034 000C+00 2/2 200/200 5/5 .text            OSDisableInterrupts */
 asm BOOL OSDisableInterrupts(void) {

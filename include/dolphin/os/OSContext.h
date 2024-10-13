@@ -151,8 +151,8 @@ typedef struct OSContext {
     /* 0x1C4 */ f64 ps[32];
 } OSContext;
 
-OSContext* OS_CURRENT_CONTEXT : 0x800000D4;
-OSContext* OS_CURRENT_FPU_CONTEXT : 0x800000D8;
+OSContext* OS_CURRENT_CONTEXT AT_ADDRESS(0x800000D4);
+OSContext* OS_CURRENT_FPU_CONTEXT AT_ADDRESS(0x800000D8);
 
 void __OSLoadFPUContext(void);
 void __OSSaveFPUContext(s32 unused0, s32 unused1, OSContext* context);
