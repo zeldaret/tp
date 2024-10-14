@@ -1953,6 +1953,10 @@ inline void dComIfGs_setLightDropNum(u8 i_level, u8 i_num) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().setLightDropNum(i_level, i_num);
 }
 
+inline void dComIfGs_setBaitItem(u8 i_item) {
+    g_dComIfG_gameInfo.info.getPlayer().getItem().setBaitItem(i_item);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
