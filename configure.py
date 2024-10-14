@@ -1844,7 +1844,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_kamakiri"),
     ActorRel(NonMatching, "d_a_obj_kantera"),
     ActorRel(NonMatching, "d_a_obj_katatsumuri"),
-    ActorRel(NonMatching, "d_a_obj_kazeneko"),
+    ActorRel(Matching, "d_a_obj_kazeneko"),
     ActorRel(NonMatching, "d_a_obj_kbox"),
     ActorRel(NonMatching, "d_a_obj_key"),
     ActorRel(NonMatching, "d_a_obj_keyhole"),
