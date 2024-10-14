@@ -1,7 +1,9 @@
 <map id="daObjIce_s_c" name="daObjIce_s_c">
-<area shape="rect" id="Node000001" title="Ice (Small)" alt="" coords="9,153,110,178"/>
-<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="14,79,105,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,120,62,152,57,152,57,120"/>
-<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="5,5,114,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,46,62,79,57,79,57,46"/>
+<area shape="rect" id="Node000001" title="Ice (Small)" alt="" coords="24,226,126,252"/>
+<area shape="rect" id="Node000002" href="$classdBgS__MoveBgActor.html" title=" " alt="" coords="5,153,145,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,194,78,226,72,226,72,194"/>
+<area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="30,79,120,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,120,78,152,72,152,72,120"/>
+<area shape="rect" id="Node000004" href="$structleafdraw__class.html" title=" " alt="" coords="21,5,129,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="78,46,78,79,72,79,72,46"/>
 </map>
