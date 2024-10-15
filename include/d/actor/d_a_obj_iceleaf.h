@@ -37,7 +37,9 @@ public:
     /* 80C25C50 */ void _delete();
 
     void offRide() { mRide = false; }
+    void onRide() { mRide = true; }
     void setBreakEffect() { mBreakEffect = true; }
+    void deleteActor() { field_0x961 = 1; }
 
 private:
     /* 0x568 */ request_of_phase_process_class mPhase;
